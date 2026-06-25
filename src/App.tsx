@@ -18,6 +18,7 @@ import ScrollRestoration from "@/components/ScrollRestoration";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { SkinProvider } from "@/contexts/SkinContext";
 import SkinPreview from "./pages/SkinPreview";
+import HeroQuiz from "./pages/HeroQuiz";
 import PreviewBanner from "@/components/skin/PreviewBanner";
 import NSScopeLock from "@/components/skin/NSScopeLock";
 import DaouniverseScopeLock from "@/components/skin/DaouniverseScopeLock";
@@ -367,6 +368,22 @@ const UblRedirect = () => {
   return <Navigate to={`/page/${slugWithVersion ?? ""}`} replace />;
 };
 
+const GlobalChrome = () => {
+  const location = useLocation();
+  const isHeroQuiz = location.pathname === "/hero";
+
+  return (
+    <>
+      {!isHeroQuiz && <SiteLogo />}
+      {!isHeroQuiz && <GlobalLanguageSwitcher />}
+      <TitleManager />
+      <ScrollRestoration />
+      {!isHeroQuiz && <PreviewBanner />}
+      {!isHeroQuiz && <MusicPlayer />}
+    </>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
@@ -382,22 +399,7 @@ const App = () => (
           {isPlanetirScope && <PlanetirScopeLock />}
           {isAurumScope && <AurumScopeLock />}
           {isTechstarsScope && <TechstarsScopeLock />}
-          <SiteLogo />
-          {/* Global language switcher — shows ONLY to logged-out visitors (the
-              cold traffic actually choosing a language); logged-in users change
-              it from Settings → Profile. Keeps deep in-app chrome uncluttered. */}
-          <GlobalLanguageSwitcher />
-          <TitleManager />
-          <ScrollRestoration />
-          <PreviewBanner />
-          {/* Day 56 (Sasha 2026-05-01): ambient music player. Mounted
-              ONCE at App root above <Routes> so the audio engine
-              persists across navigation — visitor presses play on /,
-              music keeps playing through /ai-os, /path, etc. Gated by
-              ?music=1 query param so production traffic sees nothing
-              while we iterate. Flip MusicPlayer's enabled gate to
-              default-true when ready to launch for everyone. */}
-          <MusicPlayer />
+          <GlobalChrome />
           <EntryPathProvider>
           <CelebrationModalListener />
           <SoundCloudPlayerProvider>
@@ -414,6 +416,7 @@ const App = () => (
                   <Route element={<SmartShellLayout />}>
                   {/* ══════ PUBLIC ROUTES (no login required) ══════ */}
                   <Route path="/" element={<JourneyPage />} />
+                  <Route path="/hero" element={<HeroQuiz />} />
                   <Route path="/zone-of-genius" element={<ZoneOfGeniusEntry />} />
                   <Route path="/auth" element={<Auth />} />
                   <Route path="/auth/callback" element={<AuthCallback />} />
