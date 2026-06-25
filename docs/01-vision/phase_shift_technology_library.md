@@ -6543,3 +6543,116 @@ This is why collaboration rate matters. Collaboration rate is the first crude me
 > *"Uniqueness is the fifth element: every being is a unique face of eternity, and every living system ripens by making those faces legible enough to find fit, complements, shared work, and sustainable value flow without collapsing into sameness."*
 
 ---
+
+## Domain 95: Unique Value Articulation as the Scaling Parameter (Fit Before Prosperity)
+
+> *Named June 24, 2026. Surfaced from the realization that Domain 94's "specific fit" needed its actual upstream parameter. The contribution is not only "honor uniqueness" or "coordinate around uniqueness." The clear unifying parameter is: articulate people's unique value precisely enough that fit can form, and fit can carry sustainable value flow.*
+
+**The transformational result:** uniqueness stops being an identity insight and becomes the phase-shift catalyst by which holons form, scale, and create prosperity. The same law operates at every level: individual, team, community, civilization.
+
+### 95a. The Scaling Law
+
+> *"Uniqueness precision is upstream of fit; fit is upstream of sustainable value flow; sustainable value flow is upstream of prosperity."*
+
+This is the holonic scaling sequence:
+
+```
+unique value articulated precisely
+  -> specific fit becomes possible
+  -> complements and roles become visible
+  -> sustainable value flow can form
+  -> prosperity can distribute through the holon
+```
+
+The inhibitor is the opposite sequence:
+
+```
+editing oneself to fit in
+  -> partial legibility
+  -> misfit
+  -> trapped value
+  -> replaceability, friction, or stagnation
+```
+
+### 95b. The Catalyst and the Inhibitor
+
+| Function | Pattern | Effect |
+|---|---|---|
+| **Catalyst** | Articulate people's unique value with high precision. | Fit becomes discoverable, role becomes natural, complements become visible, and value can move. |
+| **Inhibitor** | Edit uniqueness into acceptable fragments to fit in. | The person or group becomes easier to process but harder to truly place, value, reciprocate, and build with. |
+
+This is why "fitting in" slows scaling. It may increase short-term acceptance, but it reduces the information density the system needs to place the person well. The system receives a socially acceptable fragment instead of the living pattern that could actually create value.
+
+### 95c. The Holonic Sequence
+
+| Holon | What the holon really is | Phase-shift parameter |
+|---|---|---|
+| **Individual** | One living pattern seeking coherent expression. | Articulate the person's unique value so professional path, contribution, and value exchange can organize around it. |
+| **Team** | A group of individuals in shared work and economic relation. | Articulate each person's unique value so role, complementarity, trust, and shared output can organize around fit. |
+| **Community** | A group of groups, teams, families, and individuals in a local or digital field. | Articulate the unique value of members and teams so collaboration, mutual support, and shared prosperity can be brokered. |
+| **Civilization** | A mesh of communities made of teams made of individuals. | Articulate uniqueness across the mesh so distributed prosperity can emerge through coordinated human irreducibility instead of replaceable role compliance. |
+
+The holons do not merely get bigger. Each scaling threshold produces a phase shift:
+
+- individual clarity becomes professional path,
+- multiple paths in relation become team fit,
+- many teams in relation become community intelligence,
+- many communities in relation become civilizational coordination.
+
+### 95d. Recursive Coordination: The Unit Changes at Each Level
+
+The sequence is not merely bigger groups. It is a recursive change in the **unit of coordination**:
+
+> individual -> constellation of individuals -> constellation of constellations -> mesh of constellations of constellations.
+
+Each level turns the prior level inside-out. What begins as an interior pattern in one person becomes a relation between people, then a field around groups, then a social operating logic across many communities.
+
+| Layer | Unit being coordinated | Fit question |
+|---|---|---|
+| **Individual** | Gift / path | What do I carry? |
+| **Team** | Role / complement | Who do I build with? |
+| **Community** | Belonging / opportunity | Where does this constellation belong and circulate value? |
+| **Civilization** | Protocol / story | How do many communities coordinate without flattening uniqueness? |
+
+This is why the ladder is special. Each threshold creates a higher-order coordination system where the previous holon becomes a component:
+
+1. A person is not just an isolated actor but a unique value pattern that can enter relation.
+2. A team is not just a group but a coordination vessel for multiple unique value patterns.
+3. A community is not just a population but a field where teams, projects, families, and people can discover mutual fit.
+4. A civilization is not just scale but the protocol layer that lets many communities coordinate across distance while preserving local uniqueness.
+
+The "inside-out" move is the phase shift: the thing that was private becomes relational; the thing that was relational becomes infrastructural; the thing that was local becomes civilizational.
+
+### 95e. Why This Is a Phase Shift Technology
+
+Most social and economic systems coordinate through standardized labels: job titles, credentials, categories, demographics, availability, and generic skills. These labels scale administratively, but they lose the high-resolution information that lets living fit emerge.
+
+Unique value articulation reverses the loss. It gives the system the missing variable: the precise value a person or holon carries that cannot be inferred from category membership.
+
+Once that variable becomes legible, the system can form better matches:
+
+1. person to path,
+2. person to role,
+3. role to complement,
+4. team to project,
+5. team to team,
+6. community to community,
+7. value to exchange.
+
+This is the deeper mechanism behind exponential scaling. Scaling is not merely "more of the same." Scaling hits phase-shift thresholds when a pattern becomes precise enough to compose at the next holonic level.
+
+### 95f. Relationship to Other Domains
+
+- **Domain 5 (Precision Gap IS Product):** this domain generalizes precision from product value to holonic formation.
+- **Domain 7 (Founder-First Inversion):** founder uniqueness is upstream because unique value is the parameter that organizes fit.
+- **Domain 13 (From Scattered Light to Laser):** unique value articulation is the focusing mechanism.
+- **Domain 72 (Signal-First Tribe):** tribe is defined by the live signal, not by the wound.
+- **Domain 91 (SOHN):** self-organizing human networks require differentiated value to be legible before coordination can decentralize.
+- **Domain 92 (Signal Legibility as Provision):** provision follows legibility; this domain names the upstream variable that must become legible.
+- **Domain 94 (The Unique Face of Eternity):** Domain 94 names the root myth; Domain 95 names the operational scaling law.
+
+### 95g. The One-Sentence Version
+
+> *"Articulate people's unique value precisely enough that fit can form; fit carries sustainable value flow; sustainable value flow compounds into prosperity across individuals, teams, communities, and civilization."*
+
+---
