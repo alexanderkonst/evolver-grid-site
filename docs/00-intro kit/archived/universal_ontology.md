@@ -45,6 +45,29 @@ This creates:
 
 Self-observation becomes possible.
 
+### The Practical Duality Principle
+
+The deepest applied form of duality is:
+
+> **Alignment with Source, and structure that mimics and supports natural dynamic flow.**
+
+Source without structure remains unmanifest potential. Structure without Source becomes dead machinery. Living systems develop when structure is faithful to the movement of the source it is meant to carry.
+
+This is why sustainable development cannot be produced by control alone. The task is to discover the living impulse at the center of a holon, then build a structure that lets that impulse circulate, differentiate, coordinate, and return value without distortion.
+
+At the human and economic layer, this becomes practical: a person's concrete unique value is the source-signal; professional clarity is the structure that makes the signal legible; fit is the dynamic flow that lets value move into right relationship; prosperity is the return current.
+
+The same pattern scales:
+
+| Layer | Source-signal | Supporting structure | Natural flow |
+|---|---|---|---|
+| **Individual** | Unique value | Professional clarity | Fit path / contribution |
+| **Group / Team** | Distinct gifts | Roles and complements | Shared work |
+| **Community** | Member and team value | Trust, matching, and exchange infrastructure | Collaboration and mutual support |
+| **Civilization** | Human uniqueness | Coordination protocols | Distributed prosperity |
+
+This is the ontological root of signal-preserving holonic artifact propagation: every downstream structure must remain aligned with the upstream source-signal while giving it enough form to move.
+
 ### From Two to Three (Trinity)
 
 The rotation begins. When movement enters, angles appear.
