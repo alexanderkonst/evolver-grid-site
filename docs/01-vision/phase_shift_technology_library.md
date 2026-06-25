@@ -6655,4 +6655,65 @@ This is the deeper mechanism behind exponential scaling. Scaling is not merely "
 
 > *"Articulate people's unique value precisely enough that fit can form; fit carries sustainable value flow; sustainable value flow compounds into prosperity across individuals, teams, communities, and civilization."*
 
+### 95h. Recognition Economics: The Myth Seed
+
+> *"The concrete value you recognize in yourself determines what professional opportunities are visible to you; better articulation makes better-fit options appear."*
+
+This is the market-native compression of the same scaling law. At the individual layer, it explains why professional clarity is not cosmetic self-knowledge: it changes what opportunities can be seen, chosen, created, asked for, and received. At the group and community layers, the same law becomes coordination infrastructure: the value a field can recognize and articulate determines what collaborations, roles, exchanges, and shared prosperity can become visible.
+
+---
+
+## Domain 96: Signal-Preserving Holonic Artifact Propagation
+
+> *Added June 25, 2026 — discovered while translating Alexander's locked uniqueness into shadow and myth without losing resonance.*
+
+### 96a. The Principle
+
+Every business artifact has an organizing principle. The higher the resonance of the upstream artifact, the closer that principle is to a universal law. The work is not to make new clever downstream copy, but to preserve the signal as it propagates:
+
+```
+upstream essence
+  -> organizing principle
+  -> artifact expression
+  -> holonic propagation across scale
+  -> market-facing language
+```
+
+The artifact sequence is therefore not a list of separate marketing assets. It is a signal-preservation pipeline. Uniqueness generates the core signal; shadow names its inversion; myth universalizes its law; tribe is polarized by that law; pain, promise, offer, method, product, marketing, and distribution all inherit the same signal or begin adding noise.
+
+### 96b. Essence, Significance, Consequence
+
+**Essence:** Find the irreducible organizing principle inside the highest-resonance artifact, then express that same principle at every downstream artifact and holonic layer without changing its physics.
+
+**Significance:** This prevents strategy from fragmenting into separate clients, offers, funnels, and channels; the business becomes complex in expression but radically simple in organizing principle.
+
+**Consequence:** Before moving from one artifact to the next, test whether the artifact still carries the same signal across individual, group/team, community, and civilization; if it does not, keep refining before downstreaming.
+
+### 96c. The Professional Relationship Scaling Law
+
+What scales is not "people" in the abstract. What scales is the professional relationship to value:
+
+| Layer | Relationship-to-value phase |
+|---|---|
+| **Individual** | A person relates to the value they carry and can recognize in themselves. |
+| **Group / Team** | Several people relate to one another through the value each can recognize, offer, receive, and coordinate. |
+| **Community** | Many groups form a professional relational field where value, trust, opportunity, and support can circulate. |
+| **Civilization** | Many professional relational fields become a conscious coordination layer for distributed prosperity without flattening human uniqueness. |
+
+The phase shift is that a private relationship to value becomes interpersonal, then field-level, then infrastructural. This is why professional clarity is not merely personal development: it is the first layer of a higher-order coordination system.
+
+### 96d. Artifact Quality Gate
+
+For any artifact, ask:
+
+1. What is the upstream signal?
+2. What is the artifact's exact organizing principle?
+3. Does it hold at the individual layer?
+4. Does it hold for a group/team?
+5. Does it hold for a community?
+6. Does it hold for civilization?
+7. Did the language add noise, moralism, abstraction, or premature pain/promise?
+
+If the answer is unclear, the artifact is not ready to move downstream.
+
 ---
