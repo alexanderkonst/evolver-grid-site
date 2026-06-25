@@ -961,7 +961,7 @@ Business is the middle octave between family and civilization. It is more struct
 |----------|---------|-----------|--------|
 | Uniqueness | **v2.0 preserved** → **v3.0** (Holonic Uniqueness Across Scales, 9.99) → **v3.1** (Unique Value Into Alive Work, 9.992) → **v3.2** (Professional Clarity Reveals High-Fit Business Opportunities, 9.993) → **v3.3** (Professional Clarity for Better-Fit Opportunities) | **9.999** | ✅ Locked |
 | Shadow | **v1.0** (Holonic Shadow Across Scales, 9.99) → **v1.1 seed** (Value Held Back From Movement) → **v1.2 seed** (Opportunities Obscured by Over-Articulation) → **v1.3** (System Refinement Instead of Market Visibility, 9.999) → **v1.4** (Deepening Clarity After Enough Clarity Exists) | **9.999** | ✅ Locked |
-| Myth | **v2.1 preserved** (grind is a lie / uniqueness IS your business) → **v3.0** (Recognition Economics for Professional Clarity, 9.995) → **v3.1 seed** (Holonic Recognition Economics) | **pending Sasha score** | 🔄 Holonic propagation ready |
+| Myth | **v2.1 preserved** (grind is a lie / uniqueness IS your business) → **v3.0** (Recognition Economics for Professional Clarity + Holonic Physics Layer) | **9.995** | ✅ Locked |
 | Tribe | **v3.0 preserved** (Signal-First: Awakened Practitioners Who Can't Name Their Fire) → **v3.1 seed** (Capable, Trusted, Under-Placed) | **pending Sasha score** | 🔄 Day 112 tribe seed ready |
 | Pain | **v3.1 preserved** (5-layer slicer per segment, 9.95 calibration) → **v3.2 seed** (Partial Recognition Caps the Field) | **pending Sasha score** | 🔄 Day 112 pain seed ready |
 | Dream Outcome | **v2.0** (inverse pain → integrated state) | — | ✅ Landed |
@@ -1237,7 +1237,16 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 
 > **Bridge law:** Professional clarity expands the professional and economic field by expanding the value a person, group, or community can recognize and articulate in itself.
 
+> **Holonic physics layer:** The concrete value an individual, team, community, or civilization can recognize in itself determines what fit is visible to it; better articulation makes better-fit options appear at that scale.
+
 **What shifted from v2.1:** v2.1 said "your uniqueness IS your business." v3.0 names the economic mechanism underneath: the value a person or field can recognize and articulate determines what work, exchange, collaboration, and prosperity can become visible and actionable.
+
+| Holonic layer | Myth expression |
+|---|---|
+| **Individual** | The concrete value you recognize in yourself determines what professional opportunities are visible to you; better articulation makes better-fit paths appear. |
+| **Team** | The concrete value a team recognizes in its people determines what roles and collaborations are visible to it; better articulation makes better-fit shared work appear. |
+| **Community** | The concrete value a community recognizes across its people and teams determines what opportunities for belonging, exchange, and business are visible to it; better articulation makes better-fit collaboration appear. |
+| **Civilization** | The concrete value humanity recognizes across its people, teams, and communities determines what forms of prosperity are visible to it; better articulation makes better-fit coordination appear. |
 
 **Attack / Reframe / Invitation seed:**
 
@@ -1251,11 +1260,13 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 
 ---
 
-#### v3.1 Seed · June 25, 2026 — Holonic Recognition Economics
+#### Exploration Note · June 25, 2026 — Holonic Recognition Economics
 
 > **Universal myth principle:** The concrete value a holon can recognize and articulate in itself determines what fit becomes visible to it; better articulation makes better-fit paths, roles, exchanges, and prosperity possible.
 
-> **Resonance marker:** This is a holonic propagation seed downstream from Myth v3.0, which Sasha locked at **9.995**. It is not yet scored as a final replacement.
+> **Status correction:** This exploration helped produce the locked holonic physics layer now included inside Myth v3.0. It is not an active replacement version.
+
+> **Clarifying seed:** Recognized value determines visible fit. This reinforces v3.1; it does not replace the fuller claim.
 
 | Holonic layer | Myth expression |
 |---|---|
@@ -1267,6 +1278,25 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 **What shifted from v3.0:** v3.0 named the individual-facing world-scale claim. v3.1 tests whether the same physics survives scale: value recognition and articulation determine visible fit at every holonic layer.
 
 **What this is not yet:** It is not the tribe, not the pain, not the promise, and not the slogan. It is the myth physics made holonic before downstream artifacts inherit it.
+
+---
+
+#### Unvetted Draft Note · June 25, 2026 — Recognized Value Determines Visible Fit
+
+> **Universal myth principle:** Recognized value determines visible fit.
+
+> **Status correction:** This was generated as a possible v3.2 before Sasha vetted it. It is **not** locked and should not replace Myth v3.1. Its value is the clarifying seed "recognized value determines visible fit," which should reinforce v3.1 without amputating the fuller holonic claim.
+
+| Holonic layer | Myth expression |
+|---|---|
+| **Individual** | The value a person can recognize in themselves determines the work where they can see themselves fitting. |
+| **Group / Team** | The value a group can recognize in each person determines the roles, complements, and shared work that can fit together. |
+| **Community** | The value a community can recognize across its people and groups determines what belonging, collaboration, and exchange can find its place. |
+| **Civilization** | The value humanity can recognize across its people and communities determines whether prosperity organizes around uniqueness or replaceability. |
+
+**What survived:** The compression "recognized value determines visible fit" is useful as a sub-principle inside v3.1, not as a standalone replacement.
+
+**Artifact boundary:** This still remains myth, not pain. It does not yet describe the wound of unrecognized value; it names the governing law that makes the wound and the promise intelligible.
 
 ---
 

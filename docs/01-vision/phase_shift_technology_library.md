@@ -6661,11 +6661,21 @@ This is the deeper mechanism behind exponential scaling. Scaling is not merely "
 
 This is the market-native compression of the same scaling law. At the individual layer, it explains why professional clarity is not cosmetic self-knowledge: it changes what opportunities can be seen, chosen, created, asked for, and received. At the group and community layers, the same law becomes coordination infrastructure: the value a field can recognize and articulate determines what collaborations, roles, exchanges, and shared prosperity can become visible.
 
+**Holonic physics layer:** The concrete value an individual, team, community, or civilization can recognize in itself determines what fit is visible to it; better articulation makes better-fit options appear at that scale.
+
+### 95i. Clarifying Seed: Recognized Value Determines Visible Fit
+
+> *"Recognized value determines visible fit."*
+
+This is a clarifying seed inside recognition economics, not a replacement for the fuller holonic claim. A person, team, community, or civilization cannot reliably organize around value it cannot recognize. Once value becomes recognized, fit becomes visible: path, role, complement, collaboration, exchange, and prosperity can begin to organize.
+
 ---
 
 ## Domain 96: Signal-Preserving Holonic Artifact Propagation
 
 > *Added June 25, 2026 — discovered while translating Alexander's locked uniqueness into shadow and myth without losing resonance.*
+
+> *Ontology anchor: Universal Ontology §2, "The Practical Duality Principle" — alignment with Source, and structure that mimics and supports natural dynamic flow.*
 
 ### 96a. The Principle
 
