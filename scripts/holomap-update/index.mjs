@@ -64,7 +64,7 @@ function main() {
   if (crm) {
     console.log(`  → ${crm.contacts.length} CRM contacts · ${crm.energyLeakCount} energy leaks · $${crm.cashReceivedUsd ?? 0} cash`);
   } else {
-    console.log(`  → CRM read failed — broadcast_tracker.md not parsed (skipped in briefing)`);
+    console.log(`  → CRM read failed — strategic_crm_outreach_tracker.md not parsed (skipped in briefing)`);
   }
   console.log("");
   console.log(`Next step: open Cowork chat and say "update the holomap using scripts/holomap-update/last-briefing.md"`);
@@ -151,11 +151,11 @@ function renderBriefingPacket({ holomap, roadmap, canvas, crm, sessionEntries, s
     }
   }
 
-  // 4b. CRM snapshot from broadcast_tracker.md
-  lines.push(`## 4b. CRM Snapshot — \`docs/09-logs/broadcast_tracker.md\``);
+  // 4b. CRM snapshot from strategic_crm_outreach_tracker.md
+  lines.push(`## 4b. CRM Snapshot — \`docs/02-strategy/strategic_crm_outreach_tracker.md\``);
   lines.push("");
   if (!crm) {
-    lines.push(`(broadcast_tracker.md could not be parsed — skipped)`);
+    lines.push(`(strategic_crm_outreach_tracker.md could not be parsed — skipped)`);
     lines.push("");
   } else {
     lines.push(`*${crm.version ?? ""} · ${crm.updatedNote ?? ""}*`);

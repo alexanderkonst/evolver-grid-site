@@ -647,7 +647,7 @@ function ContactsTab() {
         this tab will manage the full pipeline from prospect → facilitator.
       </p>
       <p className="text-xs text-muted-foreground/50 mt-4">
-        Currently tracked in <span className="font-mono">docs/02-strategy/tribe_outreach_tracker.md</span>
+        Currently tracked in <span className="font-mono">docs/02-strategy/strategic_crm_outreach_tracker.md</span>
       </p>
     </div>
   );

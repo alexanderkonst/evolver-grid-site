@@ -4,7 +4,7 @@
 // What it does:
 //   Builds a dated markdown dashboard snapshot by reading from:
 //     - docs/02-strategy/roadmap.md  (Current Status, This Week's Scope)
-//     - docs/09-logs/broadcast_tracker.md  (CRM state, revenue, leaks, events)
+//     - docs/02-strategy/strategic_crm_outreach_tracker.md  (CRM state, revenue, leaks, events)
 //     - docs/09-logs/session_log.md  (recent daily entries)
 //
 //   Output lands at: docs/09-logs/dashboard/YYYY-MM-DD.md
@@ -15,7 +15,7 @@
 //   today?" in a single glance.
 //
 // What it does NOT do:
-//   - Touch roadmap or broadcast_tracker (read-only).
+//   - Touch roadmap or strategic_crm_outreach_tracker (read-only).
 //   - Compute predictive metrics (leverage scores live in the directive engine, Phase 5).
 //
 // Usage:
@@ -118,7 +118,7 @@ function render({ date, roadmap, crm, recentSessions, sinceIso }) {
     lines.push(`| **Energy leaks flagged** | ${crm.energyLeakCount} |`);
     lines.push("");
   } else {
-    lines.push(`(CRM unavailable — broadcast_tracker.md not parsed)`);
+    lines.push(`(CRM unavailable — strategic_crm_outreach_tracker.md not parsed)`);
     lines.push("");
   }
 
@@ -165,7 +165,7 @@ function render({ date, roadmap, crm, recentSessions, sinceIso }) {
       lines.push(`- [ ] ${item.text}`);
     }
     if (open.length > 15) {
-      lines.push(`- _…and ${open.length - 15} more in \`broadcast_tracker.md\`_`);
+      lines.push(`- _…and ${open.length - 15} more in \`strategic_crm_outreach_tracker.md\`_`);
     }
     lines.push("");
   }
@@ -255,7 +255,7 @@ function render({ date, roadmap, crm, recentSessions, sinceIso }) {
 
   lines.push(`---`);
   lines.push("");
-  lines.push(`*This file is regenerated every run — do not edit by hand. If the underlying numbers look wrong, fix \`broadcast_tracker.md\` or \`roadmap.md\`, not this snapshot.*`);
+  lines.push(`*This file is regenerated every run — do not edit by hand. If the underlying numbers look wrong, fix \`strategic_crm_outreach_tracker.md\` or \`roadmap.md\`, not this snapshot.*`);
   lines.push("");
 
   return lines.join("\n");

@@ -603,7 +603,7 @@ aleksandrkonstantinov.com
 
 ### Phase 0 — Now (0-20 contacts)
 
-**Tool:** Markdown tracker → `docs/02-strategy/tribe_outreach_tracker.md`
+**Tool:** Markdown tracker → `docs/02-strategy/strategic_crm_outreach_tracker.md`
 
 Track: Name, type, DM version, status, notes.
 
@@ -633,7 +633,7 @@ prospect → dm_sent → responded → booking → ignited → building → alum
 
 ### Live Pipeline Tracker
 
-> **Active contacts:** [tribe_outreach_tracker.md](../02-strategy/tribe_outreach_tracker.md)
+> **Active contacts:** [strategic_crm_outreach_tracker.md](../02-strategy/strategic_crm_outreach_tracker.md)
 >
 > This is the operational data — real names, real statuses, real metrics. Update it after every outreach batch.
 
@@ -724,7 +724,7 @@ Revenue: $1,100–$2,200 + potential Build = $1,100–$5,800
 - [ ] Check emotional wave: is the impulse to initiate clean?
 - [ ] If yes: pick 10-15 warm contacts, send DMs (personalize first line)
 - [ ] Send 3 upstream partnership pings
-- [ ] Log all sends in [tribe tracker](../02-strategy/tribe_outreach_tracker.md)
+- [ ] Log all sends in [strategic CRM and outreach tracker](../02-strategy/strategic_crm_outreach_tracker.md)
 - [ ] If wave says "not yet" — skip. This is not failure. This is design.
 
 ### Wednesday: Content (30 min)
@@ -1220,7 +1220,7 @@ Before any DMs go out, this entire path must work end to end:
 |----------|-------------|
 | [Unique Business Playbook](./unique_business_playbook.md) | The methodology this journey implements. Funnel architecture lives here; principles live there |
 | [Alexander's Unique Business](../02-strategy/unique-businesses/alexanders_unique_business.md) | Alexander's own artifacts — the first instance of this journey, fully documented |
-| [Tribe Outreach Tracker](../02-strategy/tribe_outreach_tracker.md) | Live operational data — names, statuses, metrics. Updates after every outreach batch |
+| [Strategic CRM & Outreach Tracker](../02-strategy/strategic_crm_outreach_tracker.md) | Live operational data — names, statuses, metrics. Updates after every outreach batch |
 | [Digital Surface Holomap](../02-strategy/digital_surface_holomap.md) | Full inventory of digital real estate for surface activation |
 | [UI Playbook](./ui_playbook.md) | Design system (liquid glass, voice matrix, WCAG) that the funnel pages are built from |
 | [Glassmorphism Blueprint](./glassmorphism_blueprint.md) | The liquid glass design specification applied to the funnel |
@@ -1228,4 +1228,3 @@ Before any DMs go out, this entire path must work end to end:
 *Last updated: April 2, 2026*
 *This playbook consolidates: godfather_playbook, outreach_templates, tomorrow_sop, video_script_4min*
 *Section 15 distilled from holonic roasting session with Claude Opus 4.6 (April 1-2, 2026)*
-

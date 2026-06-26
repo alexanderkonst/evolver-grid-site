@@ -2,7 +2,7 @@
 /**
  * Emits a JSON snapshot of the CRM state for the admin dashboard.
  *
- * The CRM lives in `docs/09-logs/broadcast_tracker.md` (human-edited). The
+ * The CRM lives in `docs/02-strategy/strategic_crm_outreach_tracker.md` (human-edited). The
  * parser at `scripts/sources/broadcast-tracker.mjs` turns it into structured
  * data. That parser is Node-only (uses fs). To expose it to the React
  * dashboard without reimplementing the parser in the UI layer (explicit hard

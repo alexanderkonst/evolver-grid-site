@@ -23,7 +23,7 @@ This doc defines the loop, names its components, and phases the build so each ne
   • Session log          briefing packet     ──►  (navigation)  ──►   (ranked by leverage)  ──►  • Corpus edits
   • Founder canvases     stage detector           Founder views                                  • Outreach
   • Supabase (DB)        revenue aggregator       Dashboard snapshot                             • Build cohort ops
-  • broadcast_tracker    CRM adapter              (docs/09-logs/dashboard)
+  • strategic_crm_outreach_tracker CRM adapter    (docs/09-logs/dashboard)
          │                                              ▲
          └──────────── events ───────────────────────────┘
                   (write back into sources
@@ -51,7 +51,7 @@ Sasha runs on files and a database. The loop has to respect which artifact is au
 | **Project motion (decisions, priorities, scope)** | `docs/02-strategy/roadmap.md` | corpus | daily |
 | **Project memory (chronology)** | `docs/09-logs/session_log.md` | corpus | per-session |
 | **Navigation state** | `docs/02-strategy/morphogenetic_holomap.md` | corpus | triggered by the above |
-| **CRM (contacts, pipeline stage)** | `docs/09-logs/broadcast_tracker.md` | corpus | manual, Sasha |
+| **CRM (contacts, pipeline stage)** | `docs/02-strategy/strategic_crm_outreach_tracker.md` | corpus | manual, Sasha |
 | **Dashboard snapshot (today's operating state)** | `docs/09-logs/dashboard/YYYY-MM-DD.md` (regenerated, read-only) | corpus | per-run via `npm run dashboard:update` |
 
 Rule: the synthesizer **pulls** from authoritative sources and **writes** only to the navigation state and dashboard views. It never silently edits the upstream artifact.
@@ -75,9 +75,9 @@ The three tracks coexist; they don't compete. Edge events drive real-time state,
 ### Phase 0 — Foundation (shipped 2026-04-17 → 2026-04-18)
 
 - [x] **Corpus drift check** — `scripts/corpus-drift/` · C1 prices · C2 subtitles · C3 bundle symmetry. CLI + vitest + GitHub Action on PR + nightly. **Green.**
-- [x] **Holomap briefing packet** — `scripts/holomap-update/` · reads roadmap + session log + canvas header + CRM (broadcast_tracker) + current holomap state → produces `last-briefing.md`. Manual handoff to Claude for the semantic pass.
-- [x] **CRM source adapter** — `scripts/sources/broadcast-tracker.mjs` · parses Master Table, Revenue Summary, Open Items, Energy Leak Audit, Upcoming Events, Metrics, Pipeline Analytics, Content Pillars out of `docs/09-logs/broadcast_tracker.md`. Test coverage in `broadcast-tracker.test.mjs`.
-- [x] **Dashboard snapshot renderer** — `scripts/dashboard-update/` · reads roadmap + broadcast_tracker + session log → writes `docs/09-logs/dashboard/YYYY-MM-DD.md`. Precursor to `/admin/dashboard` (Phase 1). `npm run dashboard:update`.
+- [x] **Holomap briefing packet** — `scripts/holomap-update/` · reads roadmap + session log + canvas header + CRM (strategic CRM and outreach tracker) + current holomap state → produces `last-briefing.md`. Manual handoff to Claude for the semantic pass.
+- [x] **CRM source adapter** — `scripts/sources/broadcast-tracker.mjs` · parses Master Table, Revenue Summary, Open Items, Energy Leak Audit, Upcoming Events, Metrics, Pipeline Analytics, Content Pillars out of `docs/02-strategy/strategic_crm_outreach_tracker.md`. Test coverage in `broadcast-tracker.test.mjs`.
+- [x] **Dashboard snapshot renderer** — `scripts/dashboard-update/` · reads roadmap + strategic CRM and outreach tracker + session log → writes `docs/09-logs/dashboard/YYYY-MM-DD.md`. Precursor to `/admin/dashboard` (Phase 1). `npm run dashboard:update`.
 - [x] **This spec** — `docs/06-architecture/autonomous-navigation-loop.md`.
 
 ### Phase 1 — Founder-state view (next up)
@@ -96,7 +96,7 @@ The three tracks coexist; they don't compete. Edge events drive real-time state,
 
 ### Phase 3 — CRM integration ✅ (largely done)
 
-**Decision locked 2026-04-18:** CRM lives in `docs/09-logs/broadcast_tracker.md`. Markdown is already Sasha's native format; the file carries Master Table + Revenue Summary + Open Items + Energy Leaks + Upcoming Events + Metrics. Migrating to a DB or third-party tool (Notion / Attio / Folk) is a Phase 7+ decision, not a blocker today.
+**Decision locked 2026-04-18:** CRM lives in `docs/02-strategy/strategic_crm_outreach_tracker.md`. Markdown is already Sasha's native format; the file carries Master Table + Revenue Summary + Open Items + Energy Leaks + Upcoming Events + Metrics. Migrating to a DB or third-party tool (Notion / Attio / Folk) is a Phase 7+ decision, not a blocker today.
 
 - [x] **CRM source adapter** — `scripts/sources/broadcast-tracker.mjs` (shipped in Phase 0).
 - [x] **Briefing packet extended** — `scripts/holomap-update/index.mjs` now emits Section 4b (CRM snapshot: counts, stage distribution, active clients, energy leaks, open items, upcoming events).
@@ -151,5 +151,5 @@ Independent of the 6 phases above — this is a **substrate capability** that mu
 
 - **Scaffolded + shipped:** corpus drift check, holomap briefing packet (with CRM section), CRM source adapter, dashboard snapshot renderer, this spec.
 - **Directly next:** founder-state Supabase view + `/founders/:slug` page + `/admin/dashboard` UI (Claude Code brief in `ai_tasks/PENDING_founder_state_view.md`, Stripe framing corrected 2026-04-18: Ignition/Build derived from `onboarding_stage`, not Stripe priceId joins).
-- **Resolved:** CRM surface = `docs/09-logs/broadcast_tracker.md` (markdown native to Sasha's flow; migration to DB deferred).
+- **Resolved:** CRM surface = `docs/02-strategy/strategic_crm_outreach_tracker.md` (markdown native to Sasha's flow; migration to DB deferred).
 - **Open research:** holomap auto-apply safety (how strict the patch validator needs to be before unsupervised nightly runs). Directive engine tuning once three input signals (founder-state, CRM deltas, holomap auto-apply) are all reliable.

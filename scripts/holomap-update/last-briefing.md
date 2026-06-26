@@ -80,7 +80,7 @@ or Claude Code with the instruction: *"update the holomap based on this briefing
 
 ## Day 80 §B — UBB staleness UX hybrid (Phase 1 + Phase 2) — Friday, May 22, 2026 Closes the chip spawned at the end of Day 78. Two phases shipped end-to-end in one session: parent-aware staleness compute + bulk cascade UX (Phase 1), then prompt-version staleness axis with deterministic content-hashing (Phase 2). Parallel to today's Day 80 JOURNEY work — separate thread, separate surface (UBB canvas overview). ### What landed — Phase 1 (commits [`940c1621`](https://github.com/alexanderkonst/evolver-grid-site/commit/940c1621) foundation, [`01542b11`](https://github.com/alexanderkonst/evolver-
 
-## 4b. CRM Snapshot — `docs/09-logs/broadcast_tracker.md`
+## 4b. CRM Snapshot — `docs/02-strategy/strategic_crm_outreach_tracker.md`
 
 *v3.4 · April 12, 2026 · Energy Leak Audit: 5 relationships flagged (José, Terrina, Kirill, Roso, Cori). Mind virus named: loyalty-as-leak. Wrong-room broadcasting diagnosed. Transmission-to-wheel = audience access, not strategy.*
 
@@ -268,4 +268,3 @@ Read the inputs above, then update `docs/02-strategy/morphogenetic_holomap.md` i
 5. **Output shape:** write the update as an in-place edit to the holomap file. Surface each ► move in the reply with a one-line `P_N: <from> → <to>` note so the reasoning is visible.
 
 Do NOT rewrite the whole holomap. Only touch the fields warranted by the evidence.
-

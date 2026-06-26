@@ -5,7 +5,7 @@ Dated markdown snapshots of the project's operating state. **Precursor** to the 
 ## What it reads
 
 1. `docs/02-strategy/roadmap.md` — Current Status + This Week's Scope (via the holomap-update input parser, reused)
-2. `docs/09-logs/broadcast_tracker.md` — CRM via `scripts/sources/broadcast-tracker.mjs`
+2. `docs/02-strategy/strategic_crm_outreach_tracker.md` — CRM via `scripts/sources/broadcast-tracker.mjs`
 3. `docs/09-logs/session_log.md` — last 14 days of daily entries
 
 ## What it writes
@@ -36,7 +36,7 @@ Keeps a frozen record of how Sasha understood the project on any given day. Git 
 
 ## Hard constraints
 
-1. **Read-only on upstream.** Never mutates roadmap or broadcast_tracker.
+1. **Read-only on upstream.** Never mutates roadmap or strategic_crm_outreach_tracker.
 2. **Idempotent for the same day.** Rerunning overwrites today's file.
 3. **Fails soft.** If any source is missing or parser throws, the section is marked unavailable — the run still succeeds.
 

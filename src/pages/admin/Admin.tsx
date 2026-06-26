@@ -1685,7 +1685,7 @@ function CrmOverlaySection() {
           color: "var(--skin-text-muted, rgba(11, 42, 90, 0.5))",
         }}
       >
-        Snapshot from <code>docs/09-logs/broadcast_tracker.md</code>, generated {generated}. Refresh with <code>npm run crm:snapshot</code>.
+        Snapshot from <code>docs/02-strategy/strategic_crm_outreach_tracker.md</code>, generated {generated}. Refresh with <code>npm run crm:snapshot</code>.
       </p>
     </div>
   );
