@@ -29,7 +29,7 @@ describe("readBroadcastTracker", () => {
   });
 
   it("extracts revenue totals", () => {
-    expect(tracker.cashReceivedUsd).toBe(2548);
+    expect(tracker.cashReceivedUsd).toBe(2271);
     expect(tracker.revShareContractsUsd).toBe(277);
   });
 
@@ -73,7 +73,7 @@ describe("readBroadcastTracker", () => {
   });
 
   it("parses footer meta", () => {
-    expect(tracker.version).toBe("v3.7");
+    expect(tracker.version).toBe("v3.8");
     expect(tracker.updatedNote).toContain("June 26, 2026");
   });
 

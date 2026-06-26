@@ -366,7 +366,12 @@ function deriveRevenueTotals(revenueSummary) {
     const cat = row.category.toLowerCase();
     const amounts = extractDollarAmounts(row.amount);
     if (!amounts.length) continue;
-    if ((cat.includes("cash received") || cat.includes("total received")) && cashReceivedUsd === null) {
+    if (
+      (cat.includes("cash received") ||
+        cat.includes("total received") ||
+        cat.includes("strict received")) &&
+      cashReceivedUsd === null
+    ) {
       // First $ figure is the headline total; subsequent in parens are the breakdown.
       cashReceivedUsd = amounts[0];
     } else if (cat.includes("revenue share contracts") && revShareContractsUsd === null) {
