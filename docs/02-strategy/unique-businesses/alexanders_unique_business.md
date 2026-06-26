@@ -961,8 +961,8 @@ Business is the middle octave between family and civilization. It is more struct
 |----------|---------|-----------|--------|
 | Uniqueness | **v2.0 preserved** → **v3.0** (Holonic Uniqueness Across Scales, 9.99) → **v3.1** (Unique Value Into Alive Work, 9.992) → **v3.2** (Professional Clarity Reveals High-Fit Business Opportunities, 9.993) → **v3.3** (Professional Clarity for Better-Fit Opportunities) | **9.999** | ✅ Locked |
 | Shadow | **v1.0** (Holonic Shadow Across Scales, 9.99) → **v1.1 seed** (Value Held Back From Movement) → **v1.2 seed** (Opportunities Obscured by Over-Articulation) → **v1.3** (System Refinement Instead of Market Visibility, 9.999) → **v1.4** (Deepening Clarity After Enough Clarity Exists) | **9.999** | ✅ Locked |
-| Myth | **v2.1 preserved** (grind is a lie / uniqueness IS your business) → **v3.0** (Recognition Economics for Professional Clarity + Holonic Physics Layer) | **9.995** | ✅ Locked |
-| Tribe | **v3.0 preserved** (Signal-First: Awakened Practitioners Who Can't Name Their Fire) → **v3.1 seed** (Capable, Trusted, Under-Placed) | **pending Sasha score** | 🔄 Day 112 tribe seed ready |
+| Myth | **v2.1 preserved** (grind is a lie / uniqueness IS your business) → **v3.0** (Recognition Economics for Professional Clarity + Holonic Physics Layer) | **9.999** | ✅ Locked |
+| Tribe | **v3.0 preserved** (Signal-First: Awakened Practitioners Who Can't Name Their Fire) → **v3.1 seed** (Capable, Trusted, Under-Placed) → **v3.2 working seed** (Overqualified, Under-Articulated, Under-Placed) | **pending Sasha score** | 🔄 Tribe opening in progress |
 | Pain | **v3.1 preserved** (5-layer slicer per segment, 9.95 calibration) → **v3.2 seed** (Partial Recognition Caps the Field) | **pending Sasha score** | 🔄 Day 112 pain seed ready |
 | Dream Outcome | **v2.0** (inverse pain → integrated state) | — | ✅ Landed |
 | Promise | **v2.0 preserved** (collapsed from roasting) → **v3.0 seed** (Professional Clarity Expands the Field) | **pending Sasha score** | 🔄 Day 112 promise seed ready |
@@ -1241,6 +1241,8 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 
 **What shifted from v2.1:** v2.1 said "your uniqueness IS your business." v3.0 names the economic mechanism underneath: the value a person or field can recognize and articulate determines what work, exchange, collaboration, and prosperity can become visible and actionable.
 
+**Latest resonance update:** Sasha upgraded the resonance read from **9.995** to **9.999** after the holonic physics layer landed.
+
 | Holonic layer | Myth expression |
 |---|---|
 | **Individual** | The concrete value you recognize in yourself determines what professional opportunities are visible to you; better articulation makes better-fit paths appear. |
@@ -1486,6 +1488,45 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 **Optimally aligned persona:** She is capable, already trusted by people, and quietly under-placed. She has done real work, helped real people, and accumulated proof, but her current professional field still reflects an older, smaller version of her value. She keeps getting asked for the part of her gift that is easiest to understand: execution, advice, support, facilitation, analysis, healing, design, strategy, delivery. People like her, hire her, invite her, recommend her, but not quite for the thing she knows is most alive and valuable now. On paper she is not failing. That is the ache. The ache is that her opportunities are real, but too small, too partial, too old-patterned. She does not need a personality quiz. She needs professional clarity sharp enough to make her fuller concrete value visible, so a different class of work, clients, collaborators, and business opportunities can finally appear.
 
 **Recognition line:** "People keep choosing me for the part of my value they can already understand."
+
+---
+
+#### v3.2 Working Seed · June 25, 2026 — Overqualified, Under-Articulated, Under-Placed
+
+> **Status:** Working Tribe seed derived from locked Myth v3.0. Not yet scored or locked by Sasha.
+
+**Unfolding-process snapshot:**
+
+1. **Uniqueness is locked:** I assist individuals, groups, and communities get professional clarity so better fit opportunities appear. **9.999**.
+2. **Shadow is locked:** I can keep deepening clarity after enough clarity already exists to act. **9.999**.
+3. **Myth is locked:** The concrete value you recognize in yourself determines what professional opportunities are visible to you; better articulation makes better-fit options appear. **9.999**.
+4. **Tribe is opening:** the people who cannot unsee themselves inside the myth.
+
+**Human doorway:**
+
+> I'm tired of being underused.
+
+**Mechanism:**
+
+> You're not underqualified. You're under-articulated. And under-articulated people get under-placed.
+
+**Street-level law:**
+
+> People pay you for what they understand, not for what you meant.
+
+**Emerging tribe triad:**
+
+> Overqualified. Under-articulated. Under-placed.
+
+**Working tribe direction:**
+
+> People who are more useful than their current professional situation knows how to use them, because their fuller value is not yet articulated clearly enough to be bought, placed, trusted, or built around.
+
+**Why this matters:** this bridges the civilizational thesis ("prosperity depends on precise articulation of unique value") into the lived human doorknob ("I am more useful than this situation knows how to use me").
+
+**Boundary:** This remains Tribe, not Pain. The pain material around underuse, underpayment, underplacement, and micro-betrayal is visible, but should be fully developed only after the Tribe artifact lands.
+
+**Artifact stance:** Describe the tribe from the business's perspective in precise phenomenological language. Do not prematurely write the Tribe artifact as second-person copy. First name the lived structure clearly; later marketing can translate it into direct recognition language the tribe will hear themselves in.
 
 ---
 
