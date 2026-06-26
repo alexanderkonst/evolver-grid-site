@@ -830,6 +830,34 @@ When facilitating live (not via product), the same frequency holds. After every 
 
 ---
 
+## Principle 16: The Unique Business Accelerator
+
+> *v1.0 · June 26, 2026 — surfaced from Alexander's Day 112 recognition that the playbook is not merely artifact production; it is a clarity-to-action acceleration chamber.*
+
+### The Essence
+
+The Unique Business Playbook becomes an accelerator when it is used as a conscious cycle:
+
+> articulate → integrate → act → receive feedback → articulate at the next level
+
+The goal is not to produce more artifacts forever. The goal is to articulate unique value until enough professional clarity exists for the next fitting move to become visible, embodied, and actionable.
+
+### The Action Threshold
+
+> Clarity has ripened into action when the next move feels simple, alive, and available: you want to do it, you have energy for it, and avoiding it feels stranger than doing it.
+
+Before this threshold, articulation is medicine: it reveals fit. After this threshold, more articulation can become shadow: it delays contact with reality.
+
+### Why This Matters
+
+Working through the unique business is one of the paths of least resistance to gaining precision on uniqueness. The playbook concentrates attention on the founder's concrete value, then life, the body, and the market integrate that clarity by revealing the next opportunity. Running the cycle consciously accelerates business because it turns strategy into a living feedback loop instead of a document-production exercise.
+
+### Facilitator Rule
+
+When resistance appears after high-resonance clarity, do not automatically generate another artifact. Ask whether the system has reached the action threshold. If the next move has energy, simplicity, and aliveness, the work is to act, not refine.
+
+---
+
 ## The Transmission Principle: Medicine, Not Information
 
 > *"A reveal written as a report informs. The same reveal written as transmission opens. Same words, different organ."*
@@ -1676,6 +1704,7 @@ Every insight in the playbook must eventually find its home in a workflow step. 
     - **Surprising discovery:** The characteristics that ranked highest in live testing were NOT about pain — they were about unrealized CAPACITY, generative DESIRE, and existing COMPETENCE. The tribe that resonated most deeply was defined by what's RIGHT with them
   - **Situational Identity Principle:** NEVER use identity labels (founder, entrepreneur, coach, consultant) in primary copy. Use situational language — describe lived experience, not job titles. ❌ "Founders in transition" → ✅ "People who know they have something real but it's not becoming a real business." Labels trigger self-exclusion ("that's not me... yet"). Situations trigger recognition ("that IS my life")
   - **Artifact Stance Principle:** In the business artifact, describe the tribe from the business's perspective in precise phenomenological language. Do not prematurely write the artifact as direct second-person copy to the tribe. The artifact names the lived structure first; later marketing translates that structure into recognition language the tribe can hear themselves in.
+  - **Tribe vs. Pain Boundary:** The Tribe phrase names the living condition or readiness field; pain consequences belong downstream. Example: "overqualified, under-articulated, under-placed" is Tribe. "Underpaid" is a Pain consequence unless the founder explicitly chooses to make money the tribe's defining signal.
   - Each segment needs 4 fields: how they arrived, the grind, the dream (in THEIR words), what they tell themselves
   - Dream outcomes in THEIR conscious language, not our framework language
   - Produce anti-tribe (who is NOT for this) with explanations

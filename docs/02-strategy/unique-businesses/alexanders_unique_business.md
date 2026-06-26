@@ -963,7 +963,7 @@ Business is the middle octave between family and civilization. It is more struct
 | Shadow | **v1.0** (Holonic Shadow Across Scales, 9.99) → **v1.1 seed** (Value Held Back From Movement) → **v1.2 seed** (Opportunities Obscured by Over-Articulation) → **v1.3** (System Refinement Instead of Market Visibility, 9.999) → **v1.4** (Deepening Clarity After Enough Clarity Exists) | **9.999** | ✅ Locked |
 | Myth | **v2.1 preserved** (grind is a lie / uniqueness IS your business) → **v3.0** (Recognition Economics for Professional Clarity + Holonic Physics Layer) | **9.999** | ✅ Locked |
 | Tribe | **v3.0 preserved** (Signal-First: Awakened Practitioners Who Can't Name Their Fire) → **v3.1 seed** (Capable, Trusted, Under-Placed) → **v3.2 working seed** (Overqualified, Under-Articulated, Under-Placed) | **pending Sasha score** | 🔄 Tribe opening in progress |
-| Pain | **v3.1 preserved** (5-layer slicer per segment, 9.95 calibration) → **v3.2 seed** (Partial Recognition Caps the Field) | **pending Sasha score** | 🔄 Day 112 pain seed ready |
+| Pain | **v3.1 preserved** (5-layer slicer per segment, 9.95 calibration) → **v3.2 seed** (Partial Recognition Caps the Field) → **v3.3 working seed** (Unrecognized Value Becomes Unused Capacity) | **pending Sasha score** | 🔄 Pain refinement in progress |
 | Dream Outcome | **v2.0** (inverse pain → integrated state) | — | ✅ Landed |
 | Promise | **v2.0 preserved** (collapsed from roasting) → **v3.0 seed** (Professional Clarity Expands the Field) | **pending Sasha score** | 🔄 Day 112 promise seed ready |
 | Strategy | **v1.0** (absurdly simple: DM → session → build) | — | ✅ Operational |
@@ -1046,6 +1046,24 @@ The artifacts above feed into a **two-path execution structure:**
 **Day 112 correction:** The myth must stay upstream of tribe, pain, and promise. "People choosing from a professional field smaller than their actual value" is a pain-domain expression downstream of the myth, not the myth itself.
 
 **Signal-preservation principle:** Each artifact must carry the same organizing signal from uniqueness without adding noise. The test is holonic: the principle must hold for individual, group/team, community, and civilization before it is propagated downstream.
+
+### Unique Business Accelerator Seed — June 26, 2026
+
+**Container name:** Unique Business Accelerator
+
+**Core cycle:**
+
+> articulate → integrate → act → receive feedback → articulate at the next level
+
+**Action threshold:**
+
+> Clarity has ripened into action when the next move feels simple, alive, and available: you want to do it, you have energy for it, and avoiding it feels stranger than doing it.
+
+**Strategic meaning:** The Unique Business Playbook is not merely a document-production process. It is a clarity and strategy training ground: working through the artifacts concentrates attention on unique value until better-fit opportunities become visible, then the founder must let clarity land in the body and act when the next move has energy.
+
+**Shadow boundary:** Before the action threshold, more articulation reveals fit. After the action threshold, more articulation can become the shadow: deepening clarity after enough clarity already exists to act.
+
+**Business implication:** The live container may be framed as an accelerator because it accelerates the causal loop at the heart of the business: unique value articulation → professional clarity → visible fit → energized action → market feedback → sharper articulation → better-fit opportunity.
 
 ---
 
@@ -1518,6 +1536,14 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 
 > Overqualified. Under-articulated. Under-placed.
 
+**One-phrase Tribe artifact synthesis:**
+
+> Overqualified, under-articulated, under-placed.
+
+**Downstream pain consequence, not core Tribe phrase:**
+
+> Underpaid.
+
 **Working tribe direction:**
 
 > People who are more useful than their current professional situation knows how to use them, because their fuller value is not yet articulated clearly enough to be bought, placed, trusted, or built around.
@@ -1953,6 +1979,82 @@ Each platform = three surfaces in one: Presence (profile), Physical (events), Pu
 ---
 
 ### 5. Pain (Point A) — 5-Layer Slicer Per Segment
+
+#### v3.3 Working Seed · June 25, 2026 — Unrecognized Value Becomes Unused Capacity
+
+> **Status:** Working Pain seed derived from locked Myth v3.0 and Tribe v3.2 working seed. Not yet scored or locked by Sasha.
+
+**Bedrock pain invariant:**
+
+> Unrecognized value becomes unused capacity.
+
+**Human landed version:**
+
+> Their current professional situation uses only a fraction of what they actually bring to the table, and the mismatch is not closing.
+
+**Human doorway:**
+
+> I'm tired of being underused.
+
+**Cost cascade:**
+
+The mismatch compounds into underpayment, exhaustion, frustration, burnout risk, paycheck living, and ambition shrinkage. The work may still be useful and paid, but it keeps using too little of the person, so the gap between what they carry and what their professional life can use becomes more painful over time.
+
+**Pain essence:**
+
+They are not suffering because they lack value. They are suffering because too much of their actual value remains unrecognized by the professional situations they are in. When value is not recognized, it cannot be used, placed, paid for, coordinated, or built around. So they operate below capacity while still being useful, trusted, and often paid.
+
+**Technical invariant:**
+
+> Unarticulated value stays unseen; unseen value cannot be routed; unrouted value gets forced through categories.
+
+**Pain synthesis:**
+
+They are overqualified, under-articulated, and under-placed. Their current professional situation uses only a fraction of what they actually bring to the table, and the mismatch is not closing. The result is not only underpayment or underuse. It is the daily sense of being poorly matched to the work, role, offer, team, community, or opportunity currently available. Life seems not to cooperate, or to cooperate too slowly, because the surrounding field cannot use value it does not yet recognize.
+
+**Holonic refractions:**
+
+| Layer | Pain expression |
+|---|---|
+| **Individual** | A person's current professional situation uses only a fraction of what they actually bring to the table, so they feel overqualified, underused, and poorly matched every day. |
+| **Team** | A team uses only the parts of people it can clearly recognize, so hidden strengths, natural roles, and better collaborations stay unused. |
+| **Community** | A community contains more value than it can currently see, place, and connect, so member capacity remains underused and shared prosperity stays smaller than it could be. |
+| **Civilization** | Civilization routes people through jobs, credentials, titles, and categories that use only a fraction of human value, so enormous capacity stays unused while people feel overqualified for the lives available to them. |
+
+**5-layer pain slicer:**
+
+| Layer | What is happening | Self-talk |
+|---|---|---|
+| **1. Pressure** | The mismatch is becoming obvious: their current work, role, offer, or opportunity uses only a fraction of what they bring. | "I know I bring more than this situation is using." |
+| **2. Daily consequence** | They keep doing work that proves they are useful but does not use them fully. They feel partially seen, partially paid, and partially placed. | "I'm tired of being underused." |
+| **3. Cost of inaction** | The mismatch does not close by itself. It compounds into lower pricing, smaller opportunities, old referrals, old work, exhaustion, and professional frustration. | "The longer I stay here, the more this becomes my lane." |
+| **4. Urgency** | The gap between actual value and used value is now shaping their life, money, energy, confidence, and ambition. | "I can't keep living at a fraction of what I bring." |
+| **5. Struggle synthesized** | Their professional situation uses too little of their value, and the gap is not closing; unless the value becomes recognized, the unused capacity becomes exhaustion, underpayment, and shrinking ambition. | "My life is using too little of me." |
+
+**Segment pain textures:**
+
+1. **The Underpriced Expert:** Their professional situation pays for a useful output, but not the fuller value that would justify better pricing, better clients, and better work.
+2. **The Tired Service Provider:** Their service is real and useful, but the container uses too little of them, turning paid work into exhaustion and sometimes burnout.
+3. **The Almost-Founder:** Their current role or service uses a fraction of what they bring, but the business cannot form until the fuller value becomes clear enough to build around.
+4. **The Quiet Field-Builder:** Their field uses them for isolated tasks, advice, or support while the larger coordination value they carry remains underrecognized.
+
+**Recursive shadow:**
+
+Their unique value is the very thing that could close the gap between what they bring and what their professional situation can use. But because that value is under-articulated, the gap persists. The trap is devastating and liberating: the world may not be refusing their value; it may simply be unable to use what has not become recognizable.
+
+**One-line pain candidate:**
+
+> Their current professional situation uses only a fraction of what they actually bring to the table, and the mismatch is not closing.
+
+**Most piercing self-talk line:**
+
+> My life is using too little of me.
+
+**Language note:**
+
+The human landed version should be refracted into the language of each specific tribe flavor. For an entrepreneur, healer, startup founder, Web3 founder, AI founder, or community builder, the same invariant holds but the visible mismatch sounds different in their own words.
+
+---
 
 #### v3.2 Seed · June 25, 2026 — Partial Recognition Caps the Field
 
