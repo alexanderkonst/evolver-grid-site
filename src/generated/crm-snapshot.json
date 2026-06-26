@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-26T22:15:33.103Z",
-  "version": "v3.7",
+  "generated_at": "2026-06-26T22:32:56.202Z",
+  "version": "v3.8",
   "contactsCount": 28,
   "stageDistribution": {
     "Build": 4,
@@ -32,7 +32,7 @@
     "BUILDER": 1
   },
   "energyLeakCount": 5,
-  "cashReceivedUsd": 2548,
+  "cashReceivedUsd": 2271,
   "revShareContractsUsd": 277,
   "upcomingEvents": [
     {
@@ -60,5 +60,5 @@
       "notes": "Oaxaca or equivalent Pacific-coast venue. Format proven with Oyi: freedom, fulfilment, joy, fruits, scooters, co-building"
     }
   ],
-  "openItemsCount": 21
+  "openItemsCount": 23
 }

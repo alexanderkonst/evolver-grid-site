@@ -41,8 +41,8 @@
 | 8 | **Kirill** | `CLIENT` `NODE` | Session 1 Complete | The Naming (full) | 1 | Rev-share TBD (after first GrowFox revenue) | **$0** | TBD | Call + Telegram | Apr 14 | ✅ **UPGRADED from ENERGY LEAK.** Session 1 complete. Uniqueness: **Системный Алхимик** — 9.8 со слезами. All 7 artifacts drafted. Shadow: Алхимик Рассеивания. **BECAME A NODE:** organizing 3 intros (ТРИЗ+Genesis 2×2 call, Nikita/Wolf Line Capital). Products: Квадро (enterprise, 2yr) + GrowFox (health, 2wk, coding himself). GrowFox → 30-40 users by May 1. Partner: Diana. See: [kirills_unique_business.md](unique-businesses/kirills_unique_business.md) |
 | 9 | **Anton Parin** | `COLLABORATOR` `ECOSYSTEM` | In Conversation | — | — | — | **$0** | — | Telegram | Apr 7 | Bali. AI + интеграл + бизнес. **Сам прошёл ZoG!** Спросил про консультацию. Past collaborator |
 | 10 | **Nabadi** | `ECOSYSTEM` | In Conversation | — | — | — | **$0** | — | DM | Apr 6 | Compart founder. Integral Ecosystem Builder #1. Open-source modular platform pitch |
-| 11 | **Patricia Reed** | `ADJACENT` | Re-engage | — | 1 | — | **$0** | — | WhatsApp | Jun 26 | Via Karime. Reached out first (Apr 6). Took ZoG quiz Apr 10 (raw JSON → guided paste-back). **Apr 11: Alexander sent full pitch — validated her past coaching disappointment, explained hero's journey gap in society, then gave 4-step journey (clarity → uniqueness → build → scale). Jumped straight into uniqueness articulation in same session.** "Inner Systems Architect" archetype. Coaching business, scattered. Ближе к bullseye чем Chris. **Jun 26 move:** send one warm follow-up offering a 45-min exploratory/diagnostic call. Call frame: hear her situation, reflect hidden variables, sketch the path, then offer the exact next paid container if there is fit. |
-| 12 | **Chris** | `ADJACENT` | Re-engage | — | — | — | **$0** | — | WhatsApp | Jun 26 | Via Karime. Post-achievement, wine business. **Apr 11: Alexander sent full methodology pitch via WhatsApp — same 4-step journey (clarity → uniqueness → build → scale). "I take people throughout all of this journey."** "В чём моя духовная цель?" Нет financial pain. **Jun 26 move:** send one warm follow-up offering a 45-min exploratory/diagnostic call. Same structure as Patricia, but likely less bullseye; listen for purpose/next-chapter pull before offering container. |
+| 11 | **Patricia Reed** | `ADJACENT` | Re-engage | — | 1 | — | **$0** | — | Karime referral → WhatsApp | Jun 26 | Source: Karime referral. Reached out first (Apr 6). Took ZoG quiz Apr 10 (raw JSON → guided paste-back). **Apr 11: Alexander sent full pitch — validated her past coaching disappointment, explained hero's journey gap in society, then gave 4-step journey (clarity → uniqueness → build → scale). Jumped straight into uniqueness articulation in same session.** "Inner Systems Architect" archetype. Coaching business, scattered. Ближе к bullseye чем Chris. **Jun 26 move:** send one warm follow-up offering a 45-min exploratory/diagnostic call. Call frame: hear her situation, reflect hidden variables, sketch the path, then offer the exact next paid container if there is fit. |
+| 12 | **Chris** | `ADJACENT` | Re-engage | — | — | — | **$0** | — | Karime referral → WhatsApp | Jun 26 | Source: Karime referral. Post-achievement, wine business. **Apr 11: Alexander sent full methodology pitch via WhatsApp — same 4-step journey (clarity → uniqueness → build → scale). "I take people throughout all of this journey."** "В чём моя духовная цель?" Нет financial pain. **Jun 26 move:** send one warm follow-up offering a 45-min exploratory/diagnostic call. Same structure as Patricia, but likely less bullseye; listen for purpose/next-chapter pull before offering container. |
 | 13 | **Andrey Kamyshan** | `BULLSEYE` | In Conversation | — | — | — | **$0** | — | Telegram DM | Apr 4 | Raised "обман" concern → AI trust discussion. Trust friction pattern |
 | 14 | **Max Rodin** | `ORIGINAL` | Responded | — | — | — | **$0** | — | Telegram DM | Apr 3 | "Я потыкал — интересно, поварю еще!" Contemplative pause |
 | 15 | **José da Veiga** | `ORIGINAL` `ADJACENT` | In Conversation | — | — | — | **$0** | — | WhatsApp | Apr 10 | ⚠️ **ENERGY LEAK.** Watched /ignite video. Deeply resonant. *"I don't know what I am good at..."* Alexander coaching through limiting belief. **Has NOT done the ZoG quiz despite deep resonance.** Receiving free medicine. Needs boundary: quiz or release |
@@ -55,10 +55,10 @@
 | 22 | **Valentin** | `TBD` `ORIGINAL` | Planned | — | — | — | **$0** | — | ? | — | Организация "Природа". Intuitive arrival Apr 6 |
 | 23 | **Alexander Pustov** | `TBD` | Planned | — | — | — | **$0** | — | ? | — | Intuitive arrival Apr 7 |
 | 24 | **Terrina Cavendar** | `TBD` | Planned | — | — | — | **$0** | — | In person | This wknd | ⚠️ **ENERGY LEAK.** Visiting Mexico. Receiving at a level without corresponding commitment. Needs boundary |
-| 25 | **Oluwa Adams** | `COLLABORATOR` `BRIDGE` | Scheduled | — | — | — | **$0** | — | WhatsApp | Apr 10 | **NEW.** Connected via Karime. Healer, energy worker. **Livestream conversation scheduled: Wednesday Apr 16 at 10:30am Mexico City time.** Topic: path of mastery / hero's journey / unique gift monetization + how it's changing business on the planet. Oyi in audience. Oluwa agreed to co-create content that gets fed to AI for field amplification. High co-creator energy. Mexico-based |
-| 26 | **Nikita** | `ADJACENT` `HIGH-VALUE` | Planned (via Kirill) | — | — | — | **$0** | — | Via Kirill | Apr 14 | **NEW.** Wolf Line Capital. Investment banker. **70 companies, $4.5B raised.** Overcame lifelong stutter (age 7) through practices → Lamborghini moment. Top families/funds trust him. Can package anything for capital raise. **Kirill intro as gift: "Something money can't buy."** ZoG session planned. Sold 3 big businesses (golf, chemical lab). 7yr relationship with Kirill. Could issue $17M bonds for Kirill's company |
+| 25 | **Oluwa Adams** | `COLLABORATOR` `BRIDGE` | Scheduled | — | — | — | **$0** | — | Karime referral → WhatsApp | Apr 10 | **NEW.** Source: Karime referral. Healer, energy worker. **Livestream conversation scheduled: Wednesday Apr 16 at 10:30am Mexico City time.** Topic: path of mastery / hero's journey / unique gift monetization + how it's changing business on the planet. Oyi in audience. Oluwa agreed to co-create content that gets fed to AI for field amplification. High co-creator energy. Mexico-based |
+| 26 | **Nikita** | `ADJACENT` `HIGH-VALUE` | Planned (via Kirill) | — | — | — | **$0** | — | Kirill referral | Apr 14 | **NEW.** Source: Kirill referral. Wolf Line Capital. Investment banker. **70 companies, $4.5B raised.** Overcame lifelong stutter (age 7) through practices → Lamborghini moment. Top families/funds trust him. Can package anything for capital raise. **Kirill intro as gift: "Something money can't buy."** ZoG session planned. Sold 3 big businesses (golf, chemical lab). 7yr relationship with Kirill. Could issue $17M bonds for Kirill's company |
 | 27 | **Nia Leak** | `CLIENT` `BULLSEYE` | Post-session integration | Signature Workshop | 1 | $555 paid workshop | **$555** | — | Zoom + WhatsApp | Jun 26 | Delivered 2h+ workshop. Strong emotional resonance around mission: helping people recognize overlooked value already present in skills, experiences, relationships, and opportunities, then turn it into action/income/protection/growth. Follow-up: she is with her mom / busy and has not fully metabolized yet. Read: integration phase. Next move when she re-emerges with new clarity: offer next container for offer refinement / value ladder / lead magnet / launch path. |
-| 28 | **Roman / Raman Basinschi** | `CLIENT` `BUILDER` | In Conversation | Exploratory → potential in-person intensive | 1 | Gratitude / next container TBD | **$20** | TBD | LinkedIn → Zoom → Venmo | Jun 26 | Aspiring founder/operator with programmer + construction/business background. Found Sasha through LinkedIn messaging. 43-min call became a mini-session; he sent $20 via Venmo out of gratitude after receiving value. Wants to come to Mexico to learn from Sasha / get the "whole juice" and compress his founder path. Timing: not this week; possible next week, later in July, or San Pancho. Treat as closed paying-client signal; design in-person intensive/container proposal. |
+| 28 | **Roman / Raman Basinschi** | `CLIENT` `BUILDER` | In Conversation | Exploratory → potential in-person intensive | 1 | Gratitude / next container TBD | **$20** | TBD | Organic LinkedIn profile discovery → Zoom → Venmo | Jun 26 | Source: organic LinkedIn profile discovery. Raman said he "stumbled upon" Sasha's LinkedIn profile, then the conversation opened from there. Treat as high-signal evidence that the world is responding to the public field Sasha has put out, not only to direct outbound. Aspiring founder/operator with programmer + construction/business background. 43-min call became a mini-session; he sent $20 via Venmo out of gratitude after receiving value. Wants to come to Mexico to learn from Sasha / get the "whole juice" and compress his founder path. Timing: not this week; possible next week, later in July, or San Pancho. Treat as closed paying-client signal; design in-person intensive/container proposal. |
 
 ---
 
@@ -178,10 +178,13 @@ Aleksandr
 
 | Category | Amount |
 |----------|--------|
-| **Total received** | **$2,548** (prior recorded total $1,973 + Nia $555 + Roman/Raman $20 gratitude) |
+| **Strict received value** | **$2,271** (prior strict received $1,696 + Nia $555 + Roman/Raman $20 gratitude) |
 | **Revenue share contracts** | **$277** (Sergey) |
+| **Tracked relationship revenue incl. contracts** | **$2,548** ($2,271 strict received + $277 Sergey rev-share contract) |
 | **Agreements removed** | Taylor ($3,000) + Tracy ($3,000) — removed Apr 15, renegotiation pending |
 | **Revenue share TBD** | Sandra (needs terms — rec: 33% с первых $10K) |
+
+**Discrepancy note:** the earlier `$1,973` number was not pure received cash/in-kind. It appears to be prior strict received value `$1,696` plus Sergey's `$277` rev-share contract. That is why summing the visible paid rows produced `$2,271`, while Sasha's remembered relationship total produced `$2,548`.
 
 ---
 
@@ -205,6 +208,8 @@ Aleksandr
 - [ ] **Investor thread:** Decide when to send initial pitch deck / primitive + myth to investor targets; open conversations and pull the thread.
 - [ ] **Reddit test:** Convert current work into posts for specific high-fit Reddit forums.
 - [ ] **LinkedIn reachout:** Clarify target profile, then run targeted outreach using the refined primitive/myth language.
+- [ ] **Source tracking:** Backfill source/origin for every Master Table row: referrer, organic discovery surface, outbound campaign, post, or event.
+- [ ] **Referral tracking:** Add referrals sent/received fields for Karime, Kirill, Oyi, Sergey, and the Original 5 collective; this is the prototype for the future referral system.
 - [ ] **José da Veiga:** Guide to ZoG quiz (he watched video, deeply resonated, hasn't taken quiz yet)
 - [ ] **Oluwa Adams:** Confirm Wed Apr 16 livestream details, prepare talking points
 - [ ] **Karime Session #3:** Score Myth v1.2 and Tribe v1.2 (heartbreak rewrite, awaiting body-score)
@@ -271,6 +276,20 @@ Aleksandr
 ## Legacy Outreach Metadata
 
 > *Preserved from the old `tribe_outreach_tracker.md` so the merge does not discard migration assumptions, referral notes, or the original funnel instrumentation. Current operational source remains the Master Table above.*
+
+## Referral & Source Tracking Prototype
+
+> *This is the proto-schema for the future referral system. Every relationship should eventually answer: who/what brought them here, what signal opened the door, what they referred onward, and what value flowed.*
+
+| Person | Source Type | Source Detail | Referrer / Surface | Revenue Signal | Referral Notes | Next Tracking Action |
+|--------|-------------|---------------|--------------------|----------------|----------------|----------------------|
+| Raman / Roman Basinschi | Organic discovery | Stumbled upon Sasha's LinkedIn profile, then entered conversation | LinkedIn profile | $20 gratitude; potential Mexico/San Pancho intensive | No referrer. High-signal "life responds to public field" lead | Preserve as organic inbound proof; capture which profile/post/search path if he remembers |
+| Nia Leak | Existing relationship / direct session | Paid workshop already delivered | TBD | $555 paid workshop | TBD | Backfill exact source and referral potential after integration follow-up |
+| Patricia Reed | Referral | Karime client referral | Karime | Re-engagement target | Karime referred Patricia as potential client | Track Patricia outcome and attribute back to Karime |
+| Chris | Referral | Karime client referral | Karime | Re-engagement target | Karime referred Chris as potential client | Track Chris outcome and attribute back to Karime |
+| Oluwa Adams | Referral / bridge | Karime connection | Karime | Collaboration/content signal | Karime introduced Oluwa; livestream delivered | Track downstream audience/intros/content value |
+| Nikita | Referral | Kirill intro | Kirill | High-value strategic conversation | Kirill framed intro as gift: "something money can't buy" | Track whether session happens and whether capital/network doors open |
+| Original 5 collective | Referral pool | 6 unnamed people mentioned | Oyi / Sergey / Sandra / Aleksa / Karime | Not contacted | Old tracker says 6 referrals mentioned | Capture names and which founder referred each |
 
 ### Original Truth Rebels Snapshot
 
@@ -397,4 +416,6 @@ prospect -> dm_sent -> responded -> booking -> ignited -> building -> alumni -> 
 
 *CRM v3.6 — April 20, 2026 (Day 46) · Oyi: 5 in-kind gifts totaling $319 recorded (cumulative in-kind: $819, total from Oyi: $1,385). Total received across all founders: $1,696. Bio v1.0 added.*
 
-*CRM v3.7 — June 26, 2026 · GTM refresh from current client signals. Nia recorded as $555 paid workshop; Roman/Raman recorded as $20 gratitude payment + likely in-person intensive prospect. Patricia + Chris moved to re-engagement with 45-min exploratory/diagnostic call invite. Planetir remains strategic but waiting/no-nudge. Sales-learning captured: exploratory calls should diagnose + reflect + draw path + offer a concrete paid container, not over-deliver the full transformation. Total received corrected to $2,548 (= prior $1,973 + Nia $555 + Roman/Raman $20).*
+*CRM v3.7 — June 26, 2026 · GTM refresh from current client signals. Nia recorded as $555 paid workshop; Roman/Raman recorded as $20 gratitude payment + likely in-person intensive prospect. Patricia + Chris moved to re-engagement with 45-min exploratory/diagnostic call invite. Planetir remains strategic but waiting/no-nudge. Sales-learning captured: exploratory calls should diagnose + reflect + draw path + offer a concrete paid container, not over-deliver the full transformation. Revenue discrepancy resolved: strict received value is $2,271; tracked relationship revenue including Sergey's $277 contract is $2,548.*
+
+*CRM v3.8 — June 26, 2026 · Source/referral tracking made explicit as a proto-schema for the future referral system. Raman/Roman source corrected to organic LinkedIn profile discovery: he stumbled upon Sasha's profile, then the conversation opened from there. This is tracked as evidence of inbound field response, distinct from direct outbound or referral-led channels.*
