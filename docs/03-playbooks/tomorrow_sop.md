@@ -140,4 +140,4 @@ Pick 3 people whose clients need what comes AFTER their work.
 
 ---
 
-*Reference: [godfather_playbook.md](./godfather_playbook.md) · [outreach_templates.md](./outreach_templates.md) · [tribe_outreach_tracker.md](../02-strategy/tribe_outreach_tracker.md)*
+*Reference: [godfather_playbook.md](./godfather_playbook.md) · [outreach_templates.md](./outreach_templates.md) · [strategic_crm_outreach_tracker.md](../02-strategy/strategic_crm_outreach_tracker.md)*

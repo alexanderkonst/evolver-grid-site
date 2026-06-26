@@ -213,7 +213,7 @@ Step 1 free · Steps 2+3 **$555** · Step 4 **$1,111** · Step 5 **$333** · Ste
 
 This is not hypothetical. Real reachouts are in motion. As of Day 87 (2026-05-29): **7 Tribe 2 threads** (patrons, peers, ecosystem-holders, network-holders) sent or in conversation, e.g. Balaji Srinivasan, Vlad Gerasimov, Neerja Bharti (GeniusMesh), Геннадий Мутасов, Will Blakey, Silvana / Planetir, Victoria.
 
-**Single source of truth (any AI: start here for outreach context, copy, and reuse):** [`tribe_outreach_tracker.md`](../tribe_outreach_tracker.md). One doc holds both:
+**Single source of truth (any AI: start here for outreach context, copy, and reuse):** [`strategic_crm_outreach_tracker.md`](../strategic_crm_outreach_tracker.md). One doc holds both:
 - **The live trace** (who · category · when · result), including the non-responses.
 - **The Message Bank** (the reusable outreach pattern, the load-bearing lines, and the actual sent messages, tagged by recipient · category · key message).
 

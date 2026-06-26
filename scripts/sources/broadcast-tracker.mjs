@@ -1,4 +1,4 @@
-// CRM source — parses docs/09-logs/broadcast_tracker.md.
+// CRM source — parses docs/02-strategy/strategic_crm_outreach_tracker.md.
 //
 // This file is Sasha's single source of truth for contact-state + pipeline.
 // The parser is deliberately tolerant: the file is human-edited, so we read
@@ -29,7 +29,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
 const REPO_ROOT = join(import.meta.dirname, "..", "..");
-const BROADCAST_TRACKER = join(REPO_ROOT, "docs", "09-logs", "broadcast_tracker.md");
+const BROADCAST_TRACKER = join(REPO_ROOT, "docs", "02-strategy", "strategic_crm_outreach_tracker.md");
 
 /**
  * Split a markdown table row (`| a | b | c |`) into trimmed cells.
@@ -329,7 +329,8 @@ function parseContentPillars(src) {
 
 function parseFooterMeta(src) {
   // `*CRM v3.4 — April 12, 2026 · Energy Leak Audit: ...*`
-  const m = src.match(/\*CRM\s+(v[\d.]+)\s+—\s*([^·*]+)·([^*]+)\*/);
+  const matches = [...src.matchAll(/\*CRM\s+(v[\d.]+)\s+—\s*([^·*]+)·([^*]+)\*/g)];
+  const m = matches.at(-1);
   if (!m) return { version: null, updatedNote: null };
   return {
     version: m[1].trim(),
@@ -354,8 +355,9 @@ function deriveDistributions(contacts) {
 }
 
 /**
- * Pull cash + rev-share totals from the Revenue Summary narrative.
- * Heuristic: the "Cash received" row contains a single highlighted $N figure.
+ * Pull received + rev-share totals from the Revenue Summary narrative.
+ * Heuristic: the "Total received" / "Cash received" row starts with the
+ * headline $N figure; subsequent figures are breakdowns.
  */
 function deriveRevenueTotals(revenueSummary) {
   let cashReceivedUsd = null;
@@ -364,7 +366,7 @@ function deriveRevenueTotals(revenueSummary) {
     const cat = row.category.toLowerCase();
     const amounts = extractDollarAmounts(row.amount);
     if (!amounts.length) continue;
-    if (cat.includes("cash received") && cashReceivedUsd === null) {
+    if ((cat.includes("cash received") || cat.includes("total received")) && cashReceivedUsd === null) {
       // First $ figure is the headline total; subsequent in parens are the breakdown.
       cashReceivedUsd = amounts[0];
     } else if (cat.includes("revenue share contracts") && revShareContractsUsd === null) {

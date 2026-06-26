@@ -18,6 +18,8 @@
 >
 > *Last updated: 2026-06-24 — Two holonic myth post drafts captured verbatim into Active Backlog → Content Launch Queue. Both are intended for launch as posts: (1) family / ripening / inner father-mother-child; (2) `Человек` as "a unique face of eternity" through Slavic language lineage + Vitruvian center + fifth element uniqueness.*
 >
+> *Last updated: 2026-06-26 — GTM/proto-CRM refresh. Current proof shifted toward paid/high-gratitude individual sessions while community pilots remain the strategic upside: Nia paid $555 for a workshop and is integrating; Roman/Raman sent $20 after a 43-min mini-session and wants an in-person Mexico/San Pancho intensive; Patricia + Chris (Karime referrals) are re-engagement targets for a 45-min exploratory/diagnostic call; Planetir is waiting/no-nudge after ~2 weeks MIA on the pilot design-session idea; Balaji remains optional/hold until the primitive/myth/pitch-deck message is ready. Relationship-specific GTM actions moved into the merged `strategic_crm_outreach_tracker.md`; this roadmap now points there instead of duplicating them.*
+>
 > *Last updated: 2026-06-09 — Status corrections + the asset inventory codified. **Silvana replied and connected Sasha to the Planetir team; a paid pilot is now under discussion** — the first live conversation on the reshaped Si-Do ("first community signs paid pilot"). **Victoria's 1-pager was sent 2026-05-29** (tracker had it as prepared-only; corrected). Balaji day-14 gate lands ~June 11 (one verbatim nudge if silence, then leave it). **The Hand codified:** ten aces + four-layer model + three-horizon strategy snapshot + the distributor-invitation one-liner (DRAFT, awaiting Sasha's vetting) recorded as a dated section in `unique-businesses/alexanders_unique_business.md` ("The Hand: Ten Aces & the Three-Horizon Strategy, June 9, 2026"); the easy, benefit-first onboarding sequence named as a sub-asset of ace 1. Full three-horizon forecast synthesis (7-doc corpus sweep + Fathom-verified claims) delivered in session. Calendar dates now authoritative over day numbers (three numbering systems have drifted across roadmap / session log / skin tracker). `MorphogeneticHolomap.tsx` visual surface synced to the Day 85-87 center reading (Recognition → Transmission, two-gate Si-Do).*
 >
 > *Last updated: 2026-06-03 (Day 92) — Signal-legibility correction from Scarlett / Prisma synthesis. Strategic wedge sharpened: lead with **collaboration rate for high-agency ecosystems**, not ontology, "Planetary OS," or abstract coordination. The buyer-legible problem: most communities are directories, identity fields, or inspiration theaters, not coordination systems; the expensive failure is that the right people do not find and build with each other fast enough. The crisp public frame becomes **founder-market-fit infrastructure for high-agency ecosystems**. The deep stack stays intact: Universal Ontology = root, Phase Shift Library = technology layer, SOHN = thesis, white-label = distribution model. But the entry language moves to the economic primitive: accurate articulation of each member's unique leverage so collaborations, ventures, and projects can self-organize. Added Phase Shift Library Domain 92: Signal Legibility as Provision.*
@@ -199,6 +201,10 @@
 ## 📋 Active Backlog
 
 > Items that need doing. Ordered by leverage.
+
+### GTM / Strategic CRM & Outreach
+
+> *Relationship-specific GTM, CRM, outreach, waiting-on people, and message-bank details now live in one canonical file: [`strategic_crm_outreach_tracker.md`](strategic_crm_outreach_tracker.md). Keep roadmap items here only when they become larger product/build workstreams.*
 
 ### Content Launch Queue — Holonic Myth Posts
 

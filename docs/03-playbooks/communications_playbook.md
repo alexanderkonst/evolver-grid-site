@@ -503,7 +503,7 @@ Up to this point referrals have been organic — Fibonacci growth through the Oy
 | Someone who's referred 2-3 times | Personal gift chosen for them (a book, something specific to their work or family) + named thanks |
 | Evangelist / bridge (Karime, Oyi-level) | Revenue share, named attribution in the methodology, invitation to co-create — *they become part of the brand* |
 
-**Strategy 3 — Track, measure, manage.** Currently nobody's holding the number. Add to the broadcast_tracker.md workflow: per-contact "referrals received" and "referrals sent by this person in the last 90d." The courageous move (per Kennedy): single out below-par referrers among the closest circle and have a direct conversation — *"I notice you've loved the work but haven't sent anyone. Is that because the experience didn't land the way I think it did, or is there something I'm missing about how to make the intro easy for you?"* This is not a guilt trip — it's a diagnostic.
+**Strategy 3 — Track, measure, manage.** Currently nobody's holding the number. Add to the strategic_crm_outreach_tracker.md workflow: per-contact "referrals received" and "referrals sent by this person in the last 90d." The courageous move (per Kennedy): single out below-par referrers among the closest circle and have a direct conversation — *"I notice you've loved the work but haven't sent anyone. Is that because the experience didn't land the way I think it did, or is there something I'm missing about how to make the intro easy for you?"* This is not a guilt trip — it's a diagnostic.
 
 **Implementation gate:** don't activate Strategy 3's direct conversation until Strategies 1 and 2 have run for a full sprint cycle (4 weeks minimum). Asking for referrals before the experience is storyworthy, or before acknowledgment is automatic, collapses trust instead of building it.
 
@@ -929,7 +929,7 @@ it out loud makes it real.
 ## §9. CAMPAIGN TRACKING
 
 > **Live tracking is in a separate file for easy updates from any model:**
-> → [`docs/09-logs/broadcast_tracker.md`](../09-logs/broadcast_tracker.md)
+> → [`docs/02-strategy/strategic_crm_outreach_tracker.md`](../02-strategy/strategic_crm_outreach_tracker.md)
 >
 > **Why separate?** This playbook is INSTRUCTIONS (how to do it). The tracker is DATA (what happened). Keeping them apart means you can update the tracker quickly with a cheap model — just add a row.
 

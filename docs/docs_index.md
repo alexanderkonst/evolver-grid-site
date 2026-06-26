@@ -252,7 +252,7 @@ docs/
 | [presenter_notes_2026_01_24.md](./09-logs/presenter_notes_2026_01_24.md) | Presenter notes |
 | [today_brief.md](./09-logs/today_brief.md) | Today's brief |
 | [mission_updates.md](./09-logs/mission_updates.md) | Mission updates |
-| [broadcast_tracker.md](./09-logs/broadcast_tracker.md) | **Living data** — Epicenter broadcast log, field refraction intelligence (D68) |
+| [strategic_crm_outreach_tracker.md](./02-strategy/strategic_crm_outreach_tracker.md) | **Living data** — Relationship pipeline, CRM, outreach, strategic doors, field refraction intelligence (D68) |
 
 ---
 

@@ -29,8 +29,8 @@ describe("readBroadcastTracker", () => {
   });
 
   it("extracts revenue totals", () => {
-    expect(tracker.cashReceivedUsd).toBeGreaterThan(0);
-    expect(tracker.revShareContractsUsd).toBeGreaterThan(0);
+    expect(tracker.cashReceivedUsd).toBe(2548);
+    expect(tracker.revShareContractsUsd).toBe(277);
   });
 
   it("parses Open Items as checklist", () => {
@@ -73,8 +73,8 @@ describe("readBroadcastTracker", () => {
   });
 
   it("parses footer meta", () => {
-    expect(tracker.version).toMatch(/^v/);
-    expect(tracker.updatedNote).toBeTruthy();
+    expect(tracker.version).toBe("v3.7");
+    expect(tracker.updatedNote).toContain("June 26, 2026");
   });
 
   it("helper: groupContactsByStage('Build') returns active Build clients", () => {
