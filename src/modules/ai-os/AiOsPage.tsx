@@ -2197,8 +2197,8 @@ const SUITE_FUSIONS: Prompt[] = [
   },
   {
     id: "fusion-iteration",
-    label: "⚡ ITERATE 2.0 — STRATEGY CRUCIBLE",
-    description: "The new flagship Iterate prompt. Crystallize the strategy, roast and crash-test it, write the post-mortem, extract the ashes, and end with the one-sentence evolutionary record.",
+    label: "⚡ FIND THE NEXT MOVE",
+    description: "Use when a real strategy, tactic, offer, positioning, product idea, outreach angle, business model, or plan is already known. It crystallizes that strategy, kills the fantasy version, extracts the ashes, and returns the next sharper move.",
     locked: true,
     isRecommended: true,
     category: "iteration",
@@ -2206,8 +2206,9 @@ const SUITE_FUSIONS: Prompt[] = [
   },
   {
     id: "fusion-iteration-v1",
-    label: "ITERATE 1.0 — PRIOR FLAGSHIP",
-    description: "Previous flagship Iterate prompt, preserved as a versioned submodule: holonic roast, crash-test, meta-crash-test, 10x pass, full iteration cycle, and meta-roast.",
+    label: "⚡ MAKE THIS STRONGER",
+    description: "Use on any result or piece of work: copy, page, artifact, answer, plan, UI, product draft, or creative output. It roasts the work itself, crash-tests it, runs the 10x/full-iteration cycle, and improves the result without requiring a separate strategy.",
+    isRecommended: true,
     category: "iteration",
     content: ITERATE_FLAGSHIP_V1_CONTENT,
   },
