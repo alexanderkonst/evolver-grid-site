@@ -169,9 +169,17 @@ describe("Solar holonic — the 4 cycles of the Sun (birthday-anchored)", () => 
     expect(getSolarHolonic(state.personalHolonicPhase.id).name).toBe(name);
   });
 
-  // What the watch's "4 cycles of the Sun" actually displays: the
-  // solstice/equinox-anchored phase (the real sky, same for everyone).
-  // Interior-of-quarter dates avoid boundary float fragility.
+  it("March 25 birthday on June 28 sits in the first-quarter turn, not the solstice phase", () => {
+    const state = getSolarState(Date.parse("2026-06-28T12:00:00Z"), "1990-03-25");
+    expect(state.personalProgress).toBeGreaterThan(0.25);
+    expect(state.personalProgress).toBeLessThan(0.27);
+    expect(getSolarHolonic(state.personalHolonicPhase.id).name).toBe("Sprouting");
+    expect(getSolarHolonic(state.solarHolonicPhase.id).name).toBe("Fruiting");
+  });
+
+  // The same solar state also exposes the solstice/equinox-anchored
+  // phase (the real sky, same for everyone). Interior-of-quarter
+  // dates avoid boundary float fragility.
   const solarCases = [
     { label: "deep winter (Feb)",  utc: "2026-02-05T00:00:00Z", name: "Seeding" },
     { label: "mid spring (Apr)",   utc: "2026-04-15T00:00:00Z", name: "Sprouting" },

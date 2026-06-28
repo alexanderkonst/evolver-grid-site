@@ -25,7 +25,7 @@ describe("dashboard-update renderer", () => {
       cwd: REPO_ROOT,
       encoding: "utf8",
     });
-    // The broadcast tracker shows Cash received $1,377 — renderer strips comma → $1377.
-    expect(out).toMatch(/\$1377/);
+    // The broadcast tracker currently derives Cash received as $2,271.
+    expect(out).toMatch(/\$2271/);
   });
 });

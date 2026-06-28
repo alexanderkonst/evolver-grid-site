@@ -674,7 +674,7 @@ const SpacesRail = ({
                             )}
 
                             {active && (
-                                <div className="absolute left-0 top-1/2 w-1 h-8 rounded-r-full -translate-x-1/2 -translate-y-1/2 bg-[#d4af37] shadow-[0_0_8px_rgba(244,212,114,0.7)]" />
+                                <div className="absolute left-0 top-1/2 w-1 h-8 rounded-r-full translate-x-0 md:-translate-x-1/2 -translate-y-1/2 bg-[#d4af37] shadow-[0_0_8px_rgba(244,212,114,0.7)]" />
                             )}
                         </button>
                     );
