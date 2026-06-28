@@ -671,10 +671,12 @@ const Settings = () => {
                             below.
                             Day 79 (Sasha 2026-05-15): grid-cols-2 → grid-cols-3
                             again — Export tab added for the unified Personal
-                            Profile PDF + future data exports. The visible tabs
-                            are now Profile · Notifications · Export. */}
+                            Profile PDF + future data exports.
+                            Day 109 (Sasha 2026-06-28): mobile grid now wraps
+                            four visible tabs into two rows to prevent label
+                            collision. */}
                         <TabsList
-                            className="mb-6 h-auto p-1 rounded-full grid w-full grid-cols-4"
+                            className="mb-6 h-auto p-1 rounded-[1.5rem] sm:rounded-full grid w-full grid-cols-2 sm:grid-cols-4 gap-1"
                             style={{
                                 background: "hsla(228, 30%, 18%, 0.06)",
                                 border: "1px solid var(--skin-hairline, hsla(228, 30%, 18%, 0.10))",
@@ -683,15 +685,15 @@ const Settings = () => {
                             <TabsTrigger
                                 value="profile"
                                 className={cn(
-                                    "gap-2 rounded-full min-h-[44px] px-3 sm:px-5 py-2 transition-all",
+                                    "gap-1.5 sm:gap-2 rounded-full min-h-[44px] px-2 sm:px-5 py-2 transition-all",
                                     "data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-sm",
                                     "data-[state=inactive]:text-muted-foreground",
                                 )}
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     fontWeight: 600,
-                                    fontSize: "0.78rem",
-                                    letterSpacing: "0.14em",
+                                    fontSize: "clamp(0.66rem, 2.35vw, 0.78rem)",
+                                    letterSpacing: "clamp(0.045em, 0.45vw, 0.14em)",
                                     textTransform: "uppercase",
                                     color:
                                         activeTab === "profile"
@@ -699,21 +701,21 @@ const Settings = () => {
                                             : undefined,
                                 }}
                             >
-                                <User className="w-3.5 h-3.5" />
+                                <User className="w-3.5 h-3.5 flex-shrink-0" />
                                 {t("settings.tabProfile")}
                             </TabsTrigger>
                             <TabsTrigger
                                 value="notifications"
                                 className={cn(
-                                    "gap-2 rounded-full min-h-[44px] px-3 sm:px-5 py-2 transition-all",
+                                    "gap-1.5 sm:gap-2 rounded-full min-h-[44px] px-2 sm:px-5 py-2 transition-all",
                                     "data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-sm",
                                     "data-[state=inactive]:text-muted-foreground",
                                 )}
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     fontWeight: 600,
-                                    fontSize: "0.78rem",
-                                    letterSpacing: "0.14em",
+                                    fontSize: "clamp(0.66rem, 2.35vw, 0.78rem)",
+                                    letterSpacing: "clamp(0.045em, 0.45vw, 0.14em)",
                                     textTransform: "uppercase",
                                     color:
                                         activeTab === "notifications"
@@ -721,7 +723,7 @@ const Settings = () => {
                                             : undefined,
                                 }}
                             >
-                                <Bell className="w-3.5 h-3.5" />
+                                <Bell className="w-3.5 h-3.5 flex-shrink-0" />
                                 {t("settings.tabNotifications")}
                             </TabsTrigger>
                             {/* Day 79 (Sasha 2026-05-15): Export tab — entry
@@ -733,15 +735,15 @@ const Settings = () => {
                             <TabsTrigger
                                 value="export"
                                 className={cn(
-                                    "gap-2 rounded-full min-h-[44px] px-3 sm:px-5 py-2 transition-all",
+                                    "gap-1.5 sm:gap-2 rounded-full min-h-[44px] px-2 sm:px-5 py-2 transition-all",
                                     "data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-sm",
                                     "data-[state=inactive]:text-muted-foreground",
                                 )}
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     fontWeight: 600,
-                                    fontSize: "0.78rem",
-                                    letterSpacing: "0.14em",
+                                    fontSize: "clamp(0.66rem, 2.35vw, 0.78rem)",
+                                    letterSpacing: "clamp(0.045em, 0.45vw, 0.14em)",
                                     textTransform: "uppercase",
                                     color:
                                         activeTab === "export"
@@ -749,7 +751,7 @@ const Settings = () => {
                                             : undefined,
                                 }}
                             >
-                                <Download className="w-3.5 h-3.5" />
+                                <Download className="w-3.5 h-3.5 flex-shrink-0" />
                                 {t("settings.tabExport")}
                             </TabsTrigger>
                             {/* Day 78 (Sasha 2026-05-22): Appearance trigger
@@ -759,15 +761,15 @@ const Settings = () => {
                             <TabsTrigger
                                 value="appearance"
                                 className={cn(
-                                    "gap-2 rounded-full min-h-[44px] px-3 sm:px-5 py-2 transition-all",
+                                    "gap-1.5 sm:gap-2 rounded-full min-h-[44px] px-2 sm:px-5 py-2 transition-all",
                                     "data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-sm",
                                     "data-[state=inactive]:text-muted-foreground",
                                 )}
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     fontWeight: 600,
-                                    fontSize: "0.78rem",
-                                    letterSpacing: "0.14em",
+                                    fontSize: "clamp(0.66rem, 2.35vw, 0.78rem)",
+                                    letterSpacing: "clamp(0.045em, 0.45vw, 0.14em)",
                                     textTransform: "uppercase",
                                     color:
                                         activeTab === "appearance"
@@ -775,21 +777,21 @@ const Settings = () => {
                                             : undefined,
                                 }}
                             >
-                                <Palette className="w-3.5 h-3.5" />
+                                <Palette className="w-3.5 h-3.5 flex-shrink-0" />
                                 {t("settings.tabAppearance")}
                             </TabsTrigger>
                         </TabsList>
                         <TabsContent value="profile">
+                            <ProfileSettingsSection />
                             {/* Language — the logged-in home for switching locale
                                 (the floating switcher is guest-only). */}
-                            <div className="mb-6 flex items-center justify-between gap-4 rounded-xl border border-border/60 bg-card/50 p-4">
+                            <div className="mt-6 flex items-center justify-between gap-4 rounded-xl border border-border/60 bg-card/50 p-4">
                                 <div>
                                     <p className="font-medium text-foreground">{t("settings.languageRowTitle")}</p>
                                     <p className="text-sm text-muted-foreground">{t("settings.languageRowHint")}</p>
                                 </div>
                                 <LanguageSwitcher />
                             </div>
-                            <ProfileSettingsSection />
                         </TabsContent>
                         <TabsContent value="notifications">
                             <NotificationsTab />

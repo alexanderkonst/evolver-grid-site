@@ -1691,7 +1691,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 {/* Mobile: Navigation View (Panel 1 + Panel 2) */}
                 <div
                     className={cn(
-                        "absolute inset-0 flex transition-transform duration-300 ease-out",
+                        "absolute inset-0 flex overflow-visible pl-px transition-transform duration-300 ease-out",
                         mobileView === "navigation" ? "translate-x-0" : "-translate-x-full"
                     )}
                     style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)' }}

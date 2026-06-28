@@ -283,14 +283,13 @@ export const EquilibriumV2Page = () => {
               <SolarCycleBar progress={cycles.solar.personalProgress} />
             </div>
 
-            {/* The 4 holonic cycles of the Sun (Sasha 2026-06-22) —
+            {/* The 4 holonic cycles of the personal solar year —
                 Seeding → Sprouting → Fruiting → Harvest, anchored to the
-                ACTUAL solstices & equinoxes (the Sun's real season, same
-                for everyone). Shows which solar quarter we're in now +
-                its essence. */}
+                user's birthday so the phase labels match the yearly solar
+                progress bar above. */}
             <div className="mt-6 border-t border-white/30 pt-6">
               <SolarHolonicEssence
-                currentPhaseId={cycles.solar.solarHolonicPhase.id}
+                currentPhaseId={cycles.solar.personalHolonicPhase.id}
               />
             </div>
           </EquilibriumSectionCard>

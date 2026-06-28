@@ -257,7 +257,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
       // and Update always failed ("Couldn't save"). Fixed 2026-05-16.
       supabase
         .from("game_profiles")
-        .select("id, last_zog_snapshot_id")
+        .select("id, last_zog_snapshot_id, mission_statement")
         .eq("user_id", user.id)
         .maybeSingle(),
       eqAny.from("equilibrium_strategies").select("*").eq("user_id", user.id),
@@ -275,16 +275,19 @@ export function useEquilibriumV2(): EquilibriumV2Data {
       | null) ?? null;
     setState(stateRow);
 
-    if (participantRes.data?.mission_id) {
+    const profile = profileRes.data as
+      | { id?: string; last_zog_snapshot_id?: string | null; mission_statement?: string | null }
+      | null;
+
+    const canonicalMissionStatement = profile?.mission_statement?.trim() || null;
+    if (canonicalMissionStatement) {
+      setMissionStatement(canonicalMissionStatement);
+    } else if (participantRes.data?.mission_id) {
       const mission = MISSIONS.find((m) => m.id === participantRes.data!.mission_id);
       setMissionStatement(mission?.statement ?? null);
     } else {
       setMissionStatement(null);
     }
-
-    const profile = profileRes.data as
-      | { id?: string; last_zog_snapshot_id?: string | null }
-      | null;
     // Birthday is sourced from equilibrium_state.birthday (v2 user state).
     // Schema migration: 20260516000000_add_birthday_to_equilibrium_state.sql
     //

@@ -202,6 +202,12 @@
 
 > Items that need doing. Ordered by leverage.
 
+### UX / Platform Follow-Ups
+
+| # | Item | Priority | Notes |
+|---|------|----------|-------|
+| UX1 | Mobile shell: add an explicit Pane 2 close affordance | 🟡 | Parked from the 2026-06-28 mobile bug pass. Add a clear control that returns the user from the navigation/sections view to Pane 3 content without forcing a section selection. Do not ship in the current bugfix. |
+
 ### GTM / Strategic CRM & Outreach
 
 > *Relationship-specific GTM, CRM, outreach, waiting-on people, and message-bank details now live in one canonical file: [`strategic_crm_outreach_tracker.md`](strategic_crm_outreach_tracker.md). Keep roadmap items here only when they become larger product/build workstreams.*
