@@ -852,6 +852,18 @@ Before this threshold, articulation is medicine: it reveals fit. After this thre
 
 Working through the unique business is one of the paths of least resistance to gaining precision on uniqueness. The playbook concentrates attention on the founder's concrete value, then life, the body, and the market integrate that clarity by revealing the next opportunity. Running the cycle consciously accelerates business because it turns strategy into a living feedback loop instead of a document-production exercise.
 
+### The Venture-Building Octave Shift
+
+Traditional venture building often searches for reality-distortion fields: founders with enough vision, force, charisma, and persistence to bend reality toward a desired outcome. The Unique Business Accelerator searches for reality-cohering fields: humans whose unique value, perception, taste, obsession, and expression are becoming coherent with a real market need.
+
+The deeper primitive is not only founder-market fit. It is human-market fit: the degree to which a person's unique value becomes recognized, articulated, expressed, and matched with a field that can receive, pay for, build with, and amplify it.
+
+**Founder-market fit, reframed:**
+
+> Founder-market fit is the degree to which a founder's lived pattern of value, perception, taste, obsession, and judgment matches a market's unsolved need at the right time.
+
+Successful founders often operate this law instinctively and call it taste, unfair insight, obsession, product intuition, timing, or category creation. The accelerator names the mechanism underneath, which makes it teachable, detectable, matchable, improvable, and eventually scalable.
+
 ### Facilitator Rule
 
 When resistance appears after high-resonance clarity, do not automatically generate another artifact. Ask whether the system has reached the action threshold. If the next move has energy, simplicity, and aliveness, the work is to act, not refine.

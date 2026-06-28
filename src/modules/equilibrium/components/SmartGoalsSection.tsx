@@ -249,7 +249,7 @@ const SortableTaskBar = ({
         transition,
       }}
       className={cn(
-        "group flex items-center gap-2 rounded-xl border bg-white/65 backdrop-blur-sm",
+        "group flex items-center gap-2 rounded-xl border bg-white/65 backdrop-blur-sm max-sm:grid max-sm:grid-cols-[auto_minmax(0,1fr)_auto_auto] max-sm:gap-x-2 max-sm:gap-y-2 max-sm:px-3 max-sm:py-3",
         // Scope transitions to color/bg only (Sasha 2026-05-25): the
         // Tailwind catch-all `transition` includes `transform`, which
         // fights dnd-kit's 60Hz transform updates during drag and
@@ -273,7 +273,7 @@ const SortableTaskBar = ({
         type="button"
         aria-label="Complete task"
         onClick={onComplete}
-        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border-2 border-[#0a1628]/30 bg-white/85 ml-2 transition hover:border-emerald-400 hover:bg-emerald-50"
+        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border-2 border-[#0a1628]/30 bg-white/85 ml-2 transition hover:border-emerald-400 hover:bg-emerald-50 max-sm:col-start-1 max-sm:row-start-1 max-sm:ml-0"
       >
         <Check
           size={14}
@@ -281,7 +281,7 @@ const SortableTaskBar = ({
         />
       </button>
 
-      <div className="flex-1 min-w-0">
+      <div className="flex-1 min-w-0 max-sm:col-span-3 max-sm:col-start-2 max-sm:row-start-1 max-sm:self-center">
         <InlineEditableText
           value={task.text}
           size="body"
@@ -313,7 +313,7 @@ const SortableTaskBar = ({
         }
         onClick={inFocus ? onDemote : onPromote}
         className={cn(
-          "group/pill relative shrink-0 rounded-full px-3 py-1.5 text-xs font-medium uppercase tracking-wider transition",
+          "group/pill relative shrink-0 rounded-full px-3 py-1.5 text-xs font-medium uppercase tracking-wider transition max-sm:col-start-2 max-sm:row-start-2 max-sm:justify-self-start",
           inFocus
             ? "bg-emerald-100 text-emerald-700 hover:bg-rose-100 hover:text-rose-700"
             : "bg-[#0a1628] text-white hover:bg-[#0a1628]/85",
@@ -338,7 +338,7 @@ const SortableTaskBar = ({
         type="button"
         aria-label="Delete task"
         onClick={onDelete}
-        className="rounded p-2 text-[#0a1628]/55 opacity-0 transition hover:text-red-500 group-hover:opacity-100 focus-visible:opacity-100 max-sm:opacity-60"
+        className="rounded p-2 text-[#0a1628]/55 opacity-0 transition hover:text-red-500 group-hover:opacity-100 focus-visible:opacity-100 max-sm:col-start-3 max-sm:row-start-2 max-sm:opacity-60"
       >
         <Trash2 size={14} />
       </button>
@@ -346,7 +346,7 @@ const SortableTaskBar = ({
       <button
         type="button"
         aria-label="Drag to reorder"
-        className="cursor-grab touch-none p-2 mr-1 text-[#0a1628]/95 hover:text-[#0a1628]/90 active:cursor-grabbing"
+        className="cursor-grab touch-none p-2 mr-1 text-[#0a1628]/95 hover:text-[#0a1628]/90 active:cursor-grabbing max-sm:col-start-4 max-sm:row-start-2 max-sm:mr-0"
         {...attributes}
         {...listeners}
       >
