@@ -7,25 +7,25 @@ const CAL_LINK = "https://cal.com/aleksandrkonstantinov/fmf";
 const FounderMarketFit = () => {
     const { t } = useTranslation();
     useEffect(() => {
-        document.title = "Founder-Market Fit | Alexander Konstantinov";
+        document.title = "Human-Market Fit | Alexander Konstantinov";
         document.documentElement.classList.add("dark");
 
         // SEO meta tags
         const metaDesc = document.querySelector('meta[name="description"]') || document.createElement('meta');
         const origDesc = metaDesc.getAttribute('content') || '';
         metaDesc.setAttribute('name', 'description');
-        metaDesc.setAttribute('content', 'Find the structural match between who you are and what you build. 90-minute diagnostic for founders between ventures. $197.');
+        metaDesc.setAttribute('content', 'Map where your unique value coheres with a real market need. 90-minute human-market fit diagnostic for founders and builders. $197.');
         if (!metaDesc.parentNode) document.head.appendChild(metaDesc);
 
         // OG tags — update existing or create new
         const ogTags: Record<string, string> = {
-            'og:title': 'Founder-Market Fit | Alexander Konstantinov',
-            'og:description': 'You\'ve already been building it. You just can\'t see it yet. 90-minute diagnostic for founders between ventures.',
+            'og:title': 'Human-Market Fit | Alexander Konstantinov',
+            'og:description': 'Your unique value is already seeking a market. Map the coherence in a 90-minute diagnostic for founders and builders.',
             'og:type': 'website',
             'og:url': 'https://evolver.team/fmf',
             'twitter:card': 'summary_large_image',
-            'twitter:title': 'Founder-Market Fit | Alexander Konstantinov',
-            'twitter:description': 'The pattern you keep seeing. The problem you can\'t stop working on. That\'s not a detour — that\'s the business.',
+            'twitter:title': 'Human-Market Fit | Alexander Konstantinov',
+            'twitter:description': 'Reality-cohering field detection: where your lived value, taste, obsession, and judgment meet a real market need.',
         };
         const originals: Record<string, string | null> = {};
         const createdElements: HTMLMetaElement[] = [];
