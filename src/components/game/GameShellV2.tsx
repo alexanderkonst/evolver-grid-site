@@ -441,6 +441,10 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         last_name: string | null;
         avatar_url: string | null;
         onboarding_stage?: string | null;
+        last_zog_snapshot_id?: string | null;
+        zone_of_genius_completed?: boolean | null;
+        mission_discovered_at?: string | null;
+        resources_mapped_at?: string | null;
         level?: number | null;
         xp_total?: number | null;
         current_streak_days?: number | null;
@@ -712,7 +716,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         try {
             const { data } = await supabase
                 .from("game_profiles")
-                .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, level, xp_total, current_streak_days")
+                .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at, level, xp_total, current_streak_days")
                 .eq("user_id", userId)
                 .maybeSingle();
             setProfile(data || null);
@@ -742,7 +746,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         try {
             const { data } = await supabase
                 .from("game_profiles")
-                .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, level, xp_total, current_streak_days")
+                .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at, level, xp_total, current_streak_days")
                 .eq("id", profileId)
                 .maybeSingle();
             setProfile(data || null);
@@ -1046,7 +1050,11 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // probe-fallback (zog_snapshots, user_assets, qol_snapshots rows
     // checked directly when the pointer is null). Either source counts
     // for completion — matches SectionsPanel's strikethrough exactly.
-    const topTalentComplete = zogComplete || !!journeyProgress["journey-start-here"];
+    const topTalentComplete =
+        zogComplete ||
+        !!profile?.last_zog_snapshot_id ||
+        !!profile?.zone_of_genius_completed ||
+        !!journeyProgress["journey-start-here"];
     const missionComplete = missionCompleteStrict || !!journeyProgress["journey-mission-discovery"];
     const assetsComplete = assetsCompleteStrict || !!journeyProgress["journey-asset-mapper"];
     const tmaComplete = topTalentComplete && missionComplete && assetsComplete;
@@ -1084,15 +1092,15 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     const unlockStatus: Record<string, boolean> = profileLoaded
         ? {
             "journey": true,                                    // Always open — the front door
-            "next-move": zogComplete,                           // After Step 1
+            "next-move": topTalentComplete,                     // After Step 1
             "ai-os": aiOsUnlocked,                              // After T+M+A or ever-visited (Day 79)
-            "grow": zogComplete,                                // ME — visible always, locked until ZoG done (Sasha, 2026-04-21)
+            "grow": topTalentComplete,                          // ME — unlocked from actual Top Talent completion, not stage-only
             // Day 61 (Sasha 2026-05-04 14:30): LEARN + MEET gated
             // by feature flag (see top of file). When flag is false
             // (default), unlock = false unconditionally → lands in
             // hiddenSpaces → invisible in rail. When flipped to
             // true, restores the previous "After Step 1" behavior.
-            "learn": LEARN_VISIBLE && zogComplete,              // After Step 1 — growth material (currently flag-gated off)
+            "learn": LEARN_VISIBLE && topTalentComplete,        // After Step 1 — growth material (currently flag-gated off)
             // BUILD: Day 80 Wave 2.20 (Sasha 2026-05-22) — re-gated.
             // The Day 77 "always-true" rule was too permissive: it lit
             // up the BUILD chip for tasting-tier users the moment they
@@ -1107,7 +1115,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             // fall back to tmaComplete-only — avoids a brief unlocked
             // flash on tasting users while the fetch resolves.
             "build": buildUnlocked,
-            "meet": MEET_VISIBLE && zogComplete,                // After Step 1 — community events (currently flag-gated off)
+            "meet": MEET_VISIBLE && topTalentComplete,          // After Step 1 — community events (currently flag-gated off)
             // Day 87 v2 (Sasha 2026-05-29): COLLABORATE gated on T+M+A
             // completion (matching the matchable threshold from the
             // funnel-v2 spec). Authed users who haven't completed the
