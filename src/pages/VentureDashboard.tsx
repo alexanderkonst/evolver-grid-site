@@ -22,21 +22,22 @@ import { markJourneyVisited } from "@/lib/journeyVisits";
 
 const REVENUE_TIMELINE = [
   { day: 0, date: "Mar 4", total: 0, label: "Day 0" },
-  { day: 2, date: "Mar 5", total: 277, label: "Oyi (rev share)" },
-  { day: 4, date: "Mar 7", total: 554, label: "Sergey ($277 rev share)" },
-  { day: 30, date: "Apr 2", total: 604, label: "Oyi $50 gift" },
-  { day: 34, date: "Apr 6", total: 715, label: "Karime $111 gratitude" },
-  { day: 36, date: "Apr 8", total: 1231, label: "Oyi $516 gift" },
-  { day: 40, date: "Apr 12", total: 1431, label: "Karime $200 in-kind" },
-  { day: 41, date: "Apr 13", total: 1931, label: "Oyi $500 in-kind" },
-  { day: 44, date: "Apr 18", total: 1931, label: "Kirill joins — 7th founder" },
-  { day: 46, date: "Apr 20", total: 2250, label: "Oyi $319 in-kind (5 gifts)" },
-  { day: 51, date: "Apr 25", total: 2250, label: "Codification — commercial-decentralization model + Specificity Loop shipped, repo publicly fork-ready" },
-  { day: 53, date: "Apr 27", total: 2250, label: "AI OS empirical-rating telemetry + UBB founder-doc bulk seed (16/18) + .env hygiene closure" },
-  { day: 54, date: "Apr 28", total: 2250, label: "AI OS elevated to its own Space (process / substrate / being); MIT scoped to AI OS scaffold; admin operator-console + magic-link delivery" },
-  { day: 58, date: "May 2", total: 2250, label: "Top Talent surface deep restructure: free reveal rebuilt with Top Shadow promoted, ME space restructured to 10 canonical subpages, /activate retired in favor of in-shell Start Here, deep profile schema merged into single Lovable call, second-person voice + no-jargon rule baked into prompts, full editorial PDF rewrite, AAC audio shipped, Aleksandr calibration baked with Sasha's actual data — apparatus now coheres as a transmission" },
-  { day: 85, date: "May 27", total: 2250, label: "Collaboration rate named as the North Star metric; the triad and two-tribe strategy locked" },
-  { day: 87, date: "May 29", total: 2250, label: "Planetary OS one-pager shipped at /1-pager: the whole project on one shareable page" },
+  { day: 4, date: "Mar 7", total: 277, label: "Sergey ($277 rev share)" },
+  { day: 30, date: "Apr 2", total: 327, label: "Oyi $50 gift" },
+  { day: 34, date: "Apr 6", total: 438, label: "Karime $111 gratitude" },
+  { day: 36, date: "Apr 8", total: 954, label: "Oyi $516 gift" },
+  { day: 40, date: "Apr 12", total: 1154, label: "Karime $200 in-kind" },
+  { day: 41, date: "Apr 13", total: 1654, label: "Oyi $500 in-kind" },
+  { day: 44, date: "Apr 18", total: 1654, label: "Kirill joins — 7th founder" },
+  { day: 46, date: "Apr 20", total: 1973, label: "Oyi $319 in-kind (5 gifts)" },
+  { day: 51, date: "Apr 25", total: 1973, label: "Codification — commercial-decentralization model + Specificity Loop shipped, repo publicly fork-ready" },
+  { day: 53, date: "Apr 27", total: 1973, label: "AI OS empirical-rating telemetry + UBB founder-doc bulk seed (16/18) + .env hygiene closure" },
+  { day: 54, date: "Apr 28", total: 1973, label: "AI OS elevated to its own Space (process / substrate / being); MIT scoped to AI OS scaffold; admin operator-console + magic-link delivery" },
+  { day: 58, date: "May 2", total: 1973, label: "Top Talent surface deep restructure: free reveal rebuilt with Top Shadow promoted, ME space restructured to 10 canonical subpages, /activate retired in favor of in-shell Start Here, deep profile schema merged into single Lovable call, second-person voice + no-jargon rule baked into prompts, full editorial PDF rewrite, AAC audio shipped, Aleksandr calibration baked with Sasha's actual data — apparatus now coheres as a transmission" },
+  { day: 85, date: "May 27", total: 1973, label: "Collaboration rate named as the North Star metric; the triad and two-tribe strategy locked" },
+  { day: 87, date: "May 29", total: 1973, label: "Planetary OS one-pager shipped at /1-pager: the whole project on one shareable page" },
+  { day: 106, date: "Jun 18", total: 2528, label: "Nia $555 cash session" },
+  { day: 114, date: "Jun 26", total: 2548, label: "Roman/Raman $20 gratitude" },
 ];
 
 // ─── KPI Data ───────────────────────────────────────────────────────────────
@@ -44,10 +45,10 @@ const REVENUE_TIMELINE = [
 const KPIS = [
   {
     labelKey: "ventureDashboard.kpi.totalRevenue",
-    value: "$1,973",
-    trend: "+$319",
-    trendLabel: "Apr 20",
-    detail: "Cash: $677 · In-kind: $1,019 · Rev share: $277",
+    value: "$2,548",
+    trend: "+$575",
+    trendLabel: "Jun 26",
+    detail: "Strict received: $2,271 · Rev share: $277",
     gold: true,
   },
   {
@@ -70,8 +71,8 @@ const KPIS = [
 
 const SECONDARY_STATS = [
   { labelKey: "ventureDashboard.secondaryStats.marketingSpend", value: "$0" },
-  { labelKey: "ventureDashboard.secondaryStats.crmContacts", value: "31" },
-  { labelKey: "ventureDashboard.secondaryStats.daysActive", value: "87" },
+  { labelKey: "ventureDashboard.secondaryStats.crmContacts", value: "28" },
+  { labelKey: "ventureDashboard.secondaryStats.daysActive", value: "116" },
 ];
 
 // ─── Revenue Breakdown ──────────────────────────────────────────────────────
@@ -81,6 +82,7 @@ const REVENUE_BREAKDOWN = [
   { name: "Karime", cash: 111, inKind: 200, revShare: 0, type: "Cash + in-kind", status: "received", color: "#7a5108" },
   { name: "Sergey", cash: 0, inKind: 0, revShare: 277, type: "Rev share", status: "pending", color: "#b8860b" },
   { name: "Nia", cash: 555, inKind: 0, revShare: 0, type: "Cash ($555)", status: "received", color: "#d4af37" },
+  { name: "Roman/Raman", cash: 20, inKind: 0, revShare: 0, type: "Cash ($20)", status: "received", color: "#c99322" },
 ];
 
 // ─── Timeline ───────────────────────────────────────────────────────────────
