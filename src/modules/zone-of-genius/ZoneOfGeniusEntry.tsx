@@ -36,6 +36,7 @@ import { saveAppleseed, saveExcalibur, loadSavedData, saveAppleseedToLocalStorag
 import AppleseedDisplay from "./AppleseedDisplay";
 import AppleseedRitualLoading from "./AppleseedRitualLoading";
 import ExcaliburDisplay from "./ExcaliburDisplay";
+import TopTalentAuthGate from "./TopTalentAuthGate";
 import SignupModal from "@/components/auth/SignupModal";
 import { useToast } from "@/hooks/use-toast";
 import { getFirstTimeActionLabel } from "@/lib/xpService";
@@ -314,9 +315,12 @@ const ZoneOfGeniusEntry = () => {
                 return;
             }
 
-            // Only auto-restore saved data if user came from another page (has return param)
-            // Direct visits should stay on choice screen so user can redo if they want
-            if (savedAppleseed && hasReturnParam) {
+            const { data: { user } } = await supabase.auth.getUser();
+
+            // Only auto-restore saved data for authenticated users who came from another page.
+            // Guest localStorage is now only a recovery buffer; it must not reveal the result
+            // before identity capture.
+            if (user && savedAppleseed && hasReturnParam) {
                 setAppleseed(savedAppleseed);
                 if (savedExcalibur) {
                     setExcalibur(savedExcalibur);
@@ -462,7 +466,7 @@ const ZoneOfGeniusEntry = () => {
             const result = await generateAppleseed(aiResponse);
             setAppleseed(result);
 
-            // Auto-save to localStorage for guests (will be migrated after signup)
+            // Recovery buffer only. Guests now authenticate before seeing the reveal.
             saveAppleseedToLocalStorage(result, aiResponse);
 
             // Auto-save for AUTHED users is handled by the existing
@@ -475,6 +479,10 @@ const ZoneOfGeniusEntry = () => {
             // /game/me/zone-of-genius "deeper view" can't keep
             // returning the pre-save snapshot from sessionStorage.
             // Day 62 (Sasha 2026-05-05).
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session?.user) {
+                setIsGuest(true);
+            }
             setStep("appleseed-result");
         } catch (err) {
             const errorMsg = err instanceof Error ? err.message : t('zogEntry.errorGeneric');
@@ -613,6 +621,13 @@ const ZoneOfGeniusEntry = () => {
     if (step === "appleseed-result" && appleseed) {
         return (
             <GameShellV2 hideNavigation={hideNav} hideLogo>
+                {isGuest ? (
+                    <TopTalentAuthGate
+                        resultPayload={appleseed as unknown as Record<string, unknown>}
+                        assessmentVersion="ai-v1"
+                    />
+                ) : (
+                    <>
                 {anonymousSave.status !== "idle" && (
                     <div className="w-full max-w-3xl mx-auto px-5 pt-4">
                         {anonymousSave.status === "sending" && (
@@ -684,6 +699,8 @@ const ZoneOfGeniusEntry = () => {
                     build-path users — AppleseedDisplay's existing CTAs are
                     the only thing they see. */}
                 <MatchFlowCta step="top-talent" />
+                    </>
+                )}
             </GameShellV2>
         );
     }
