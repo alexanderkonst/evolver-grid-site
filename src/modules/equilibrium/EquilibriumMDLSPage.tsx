@@ -77,23 +77,10 @@ function useWatchMode(): [WatchMode, (m: WatchMode) => void] {
   return [mode, setMode];
 }
 
-function useCycles(birthday?: string): AllCyclesV2 {
-  const [cycles, setCycles] = useState<AllCyclesV2>(() =>
-    getAllCyclesV2(Date.now(), birthday),
-  );
-
-  useEffect(() => {
-    const tick = () => setCycles(getAllCyclesV2(Date.now(), birthday));
-    const id = window.setInterval(tick, 60_000);
-    return () => window.clearInterval(id);
-  }, [birthday]);
-
-  return cycles;
-}
 
 export const EquilibriumMDLSPage = () => {
   const eq = useEquilibriumV2();
-  const cycles = useCycles(eq.birthday ?? undefined);
+  const { cycles } = useCycles(eq.birthday ?? undefined);
   const [mode, setMode] = useWatchMode();
   const isAttune = mode === "attune";
 
