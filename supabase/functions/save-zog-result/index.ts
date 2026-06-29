@@ -333,12 +333,11 @@ serve(async (req) => {
             [
               { email: normalizedEmail, profile_id: profileId, email_type: "day1", scheduled_for: day1.toISOString(), payload },
               { email: normalizedEmail, profile_id: profileId, email_type: "day2", scheduled_for: day2.toISOString(), payload },
-              { email: normalizedEmail, profile_id: profileId, email_type: "day8", scheduled_for: day8.toISOString(), payload },
             ],
             { onConflict: "profile_id,email_type", ignoreDuplicates: false }
           );
 
-        console.log("[save-zog-result] Enqueued 3 nurture emails for:", normalizedEmail);
+        console.log("[save-zog-result] Enqueued 2 nurture emails for:", normalizedEmail);
       } else {
         console.log("[save-zog-result] User previously opted out — skipping nurture enqueue:", normalizedEmail);
       }
