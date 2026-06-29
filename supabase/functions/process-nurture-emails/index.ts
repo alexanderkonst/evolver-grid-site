@@ -141,13 +141,11 @@ const renderDay8 = (_payload: Payload, _magicLink: string, siteUrl: string) =>
 const renderersByType: Record<string, (p: Payload, link: string, siteUrl: string) => string> = {
   day1: renderDay1,
   day2: renderDay2,
-  day8: renderDay8,
 };
 
 const subjectsByType: Record<string, (p: Payload) => string> = {
   day1: () => `Your Top Talent has a deeper layer`,
   day2: () => `Has anything shifted?`,
-  day8: () => `Your Top Talent is still you`,
 };
 
 // ── Handler ────────────────────────────────────────────────────────
