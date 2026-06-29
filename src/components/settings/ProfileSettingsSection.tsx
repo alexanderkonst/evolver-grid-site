@@ -148,9 +148,13 @@ const ProfileSettingsSection = () => {
                 last_name: editLastName.trim() || null,
                 spoken_languages: normalizedLanguages,
             })
-            .eq("id", profile.id);
+            .eq("id", profile.id)
+            .eq("user_id", user.id)
+            .select("id, first_name, last_name, spoken_languages, avatar_url")
+            .single();
         if (error) {
-            toast({ title: t('profileSettings.toastErrorTitle'), description: t('profileSettings.toastUpdateFailedDescription'), variant: "destructive" });
+            console.warn("[ProfileSettingsSection] profile update failed", error);
+            toast({ title: t('profileSettings.toastErrorTitle'), description: error.message || t('profileSettings.toastUpdateFailedDescription'), variant: "destructive" });
         } else {
             setProfile({
                 ...profile,

@@ -122,12 +122,16 @@ const Profile = () => {
                 last_name: editLastName.trim() || null,
                 spoken_languages: normalizedLanguages,
             })
-            .eq("id", profile.id);
+            .eq("id", profile.id)
+            .eq("user_id", user.id)
+            .select("id, first_name, last_name, spoken_languages")
+            .single();
 
         if (error) {
+            console.warn("[Profile] profile update failed", error);
             toast({
                 title: t('profile.toastErrorTitle'),
-                description: t('profile.toastUpdateFailedDescription'),
+                description: error.message || t('profile.toastUpdateFailedDescription'),
                 variant: "destructive",
             });
         } else {
