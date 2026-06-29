@@ -79,8 +79,7 @@ function useWatchMode(): [WatchMode, (m: WatchMode) => void] {
 
 
 export const EquilibriumMDLSPage = () => {
-  const eq = useEquilibriumV2();
-  const cycles = useCycles(eq.birthday ?? undefined);
+  const { cycles } = useCycles(eq.birthday ?? undefined);
   const [mode, setMode] = useWatchMode();
   const isAttune = mode === "attune";
 
