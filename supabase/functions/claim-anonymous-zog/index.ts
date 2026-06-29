@@ -192,6 +192,7 @@ Deno.serve(async (req) => {
       .update({
         last_zog_snapshot_id: snapshot.id,
         zone_of_genius_completed: true,
+        onboarding_stage: "zog_complete",
       })
       .eq("id", profileId);
 
