@@ -2,7 +2,7 @@
 //
 // Runs every 10 min via pg_cron. Pulls pending rows from
 // `nurture_email_queue` whose scheduled_for has passed, renders the
-// appropriate template per email_type (day1, day2, day8), sends via
+// appropriate template per email_type (day1, day2), sends via
 // Resend, marks sent/failed.
 //
 // Safe to invoke manually (POST with empty body) for debugging.
@@ -58,7 +58,7 @@ const baseShell = (inner: string, siteUrl: string) => `
   </div>
 `;
 
-// Email 2 — Day 1 · log-in nudge + booking angle + "last reminder in a week" note
+// Email 2 — Day 1 · log-in nudge + booking angle + one remaining email note
 const renderDay1 = (payload: Payload, magicLink: string, siteUrl: string) => {
   const archetype = escapeHtml(payload.archetype || "Your Top Talent");
   return baseShell(`
@@ -87,7 +87,7 @@ const renderDay1 = (payload: Payload, magicLink: string, siteUrl: string) => {
     </div>
 
     <p style="color: rgba(255,255,255,0.4); font-size: 12px; font-style: italic; line-height: 1.6; margin: 0;">
-      I will send one last reminder in exactly one week from now — no more pings after that.
+      I will send one more short note tomorrow. If you do not react, I stop there.
     </p>
   `, siteUrl);
 };
@@ -106,36 +106,6 @@ const renderDay2 = (_payload: Payload, _magicLink: string, siteUrl: string) =>
         It stays an abstract insight until you turn it into something people can buy.
       </p>
     </div>
-  `, siteUrl);
-
-// Email 4 — Day 8 · last reminder + Productize Yourself CTA
-const renderDay8 = (_payload: Payload, _magicLink: string, siteUrl: string) =>
-  baseShell(`
-    <div style="margin-bottom: 24px;">
-      <h2 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; font-weight: 600; color: #e2e8f0; margin: 0 0 20px 0; line-height: 1.3;">
-        Your Top Talent is the unhinged raw YOU
-      </h2>
-      <p style="font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.6; margin: 0 0 14px 0;">
-        It's been a week. Your Top Talent hasn't changed. You still know what you're good at.
-      </p>
-      <p style="font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.6; margin: 0 0 14px 0;">
-        But nothing shifts until you turn it into something people can buy.
-      </p>
-      <p style="font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.6; margin: 0 0 14px 0;">
-        If you're ready to package it — I run a 2-hour Productize Yourself Session that compiles your entire unique business onto one page.
-      </p>
-      <p style="font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.6; margin: 0 0 20px 0;">
-        $555. Money-back guarantee: if you don't leave with a one-sentence business you recognize as yours, you don't pay.
-      </p>
-    </div>
-
-    <div style="text-align: center; margin-bottom: 24px;">
-      <a href="${siteUrl}/ignite#pricing-section" style="display: inline-block; background: linear-gradient(135deg, #7c3aed, #4f46e5); color: white; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 15px;">Book your Productize Yourself Session — $555 →</a>
-    </div>
-
-    <p style="color: rgba(255,255,255,0.45); font-size: 13px; font-style: italic; line-height: 1.6; margin: 0;">
-      Last reminder. No more emails from me unless you take the next step.
-    </p>
   `, siteUrl);
 
 const renderersByType: Record<string, (p: Payload, link: string, siteUrl: string) => string> = {

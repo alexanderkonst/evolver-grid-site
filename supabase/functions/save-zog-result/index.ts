@@ -276,7 +276,7 @@ serve(async (req) => {
       console.warn("[save-zog-result] RESEND_API_KEY not set, skipping email");
     }
 
-    // ── Step 6: Enqueue Day-1 / Day-2 / Day-8 nurture emails ───────
+    // ── Step 6: Enqueue Day-1 / Day-2 nurture emails ───────────────
     // Day 47 late pass (Sasha): scheduled follow-up sequence. A pg_cron
     // job (see 20260422010000_nurture_email_queue.sql) invokes
     // process-nurture-emails every 10 min to dispatch due rows.
@@ -286,7 +286,7 @@ serve(async (req) => {
     //
     // Day 61 (Sasha 2026-05-04 14:30): KILLED. Sasha is reconsidering
     // the consent / GDPR / spam-risk tradeoffs of the unsolicited
-    // Day-1/2/8 sequence. Until he's settled on the right policy
+    // Day-1/2 sequence. Until he's settled on the right policy
     // ("don't want to spam anybody"), no new rows get enqueued from
     // this signup path. The block below stays in code (preserves
     // template + payload shape for future revival) but is gated by
@@ -296,7 +296,7 @@ serve(async (req) => {
     const NURTURE_EMAILS_KILLED = true;
     if (NURTURE_EMAILS_KILLED) {
       console.log(
-        "[save-zog-result] Nurture-email enqueue is DISABLED (NURTURE_EMAILS_KILLED=true). Skipping Day-1/2/8 schedule for:",
+        "[save-zog-result] Nurture-email enqueue is DISABLED (NURTURE_EMAILS_KILLED=true). Skipping Day-1/2 schedule for:",
         normalizedEmail,
       );
     } else {
@@ -312,7 +312,6 @@ serve(async (req) => {
         const now = new Date();
         const day1 = new Date(now.getTime() + 24 * 60 * 60 * 1000);
         const day2 = new Date(now.getTime() + 48 * 60 * 60 * 1000);
-        const day8 = new Date(now.getTime() + 8 * 24 * 60 * 60 * 1000);
 
         // Payload snapshot for template rendering at send time
         const payload = {

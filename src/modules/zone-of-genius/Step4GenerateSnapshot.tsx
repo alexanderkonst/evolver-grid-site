@@ -30,6 +30,7 @@ import { trackCTAClick } from "@/lib/funnelAnalytics";
 // component, single artifact shape, no drift). Replaces the prior
 // 3-box layout (hero + character card + superpowers).
 import RevelatoryHero from "@/components/game/RevelatoryHero";
+import TopTalentAuthGate from "./TopTalentAuthGate";
 
 // Stripe checkout link for the $37 Activation product. Mirrors
 // AppleseedDisplay.STRIPE_ACTIVATE_LINK — keep in sync.
@@ -60,6 +61,7 @@ const Step4GenerateSnapshot = () => {
   const [isDownloading, setIsDownloading] = useState(false);
   const [profileId, setProfileId] = useState<string | null>(null);
   const [isLoadingProfile, setIsLoadingProfile] = useState(true);
+  const [isGuest, setIsGuest] = useState(true);
   // Populated by background appleseed processing — single source of truth
   // for downstream (email funnel, profile cards, Excalibur).
   const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
@@ -118,6 +120,16 @@ const Step4GenerateSnapshot = () => {
       .catch(err => {
         setIsLoadingProfile(false);
       });
+  }, []);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsGuest(!session?.user);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+      setIsGuest(!session?.user);
+    });
+    return () => subscription.unsubscribe();
   }, []);
 
   // Day 62+ (Sasha 2026-05-05): floating-pill scroll watcher — mirrors
@@ -261,7 +273,12 @@ const Step4GenerateSnapshot = () => {
       setSnapshotMarkdown(generatedText);
       generateSucceeded = true;
 
-      await saveSnapshotToDatabase(generatedText);
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user) {
+        await saveSnapshotToDatabase(generatedText);
+      } else {
+        setIsGuest(true);
+      }
     } catch (err) {
       if (generateSucceeded) {
         console.warn(
@@ -678,6 +695,12 @@ ${snapshotText}`;
             <PremiumLoader size="lg" text="Discovering your Top Talent..." />
           </div>
         ) : parsedSnapshot ? (
+          isGuest ? (
+            <TopTalentAuthGate
+              resultPayload={buildSavePayload() as Record<string, unknown>}
+              assessmentVersion="guided-v1"
+            />
+          ) : (
           <>
             <div className="max-w-2xl mx-auto space-y-6">
               {/* Unified reveal artifact */}
@@ -1252,6 +1275,7 @@ ${snapshotText}`;
               </div>
             </div>
           </>
+          )
         ) : null}
       </main>
 
