@@ -93,6 +93,7 @@ const SiteLogo = () => {
         // startsWith match also covers /build/karime/intake (the prep
         // page Sasha sends on WhatsApp).
         "/build/karime",
+        "/proposalforwegoodovahere",
     ];
     // Day 87 (Sasha 2026-05-29): /1-pager is the Planetary OS brand surface
     // (not the FYTT funnel), so it ships its own PlanetaryOSWordmark in-page
@@ -101,7 +102,7 @@ const SiteLogo = () => {
     // Day 107 (Sasha 2026-06-19): /landing (The Uniqueness Economy thesis
     // flag) ships its own in-page wordmark too — suppress the global FYTT
     // mark so it doesn't double up at top-center.
-    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb", "/mdls-preview", "/build/equilibrium", "/equilibrium", "/preview/equilibrium-v2", "/build/karime", "/build/karime/intake", "/1-pager", "/landing"];
+    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb", "/mdls-preview", "/build/equilibrium", "/equilibrium", "/preview/equilibrium-v2", "/build/karime", "/build/karime/intake", "/proposalforwegoodovahere", "/1-pager", "/landing"];
     if (hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
 
     return (

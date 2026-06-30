@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 const includedSetup = [
   "WeGoodOvaHere-branded experience using the community logo, colors, fonts, and background where available",
   "Entry page framing and copy",
@@ -25,7 +27,7 @@ const modules = [
   "Asset Mapping",
   "Quality of Life Map",
   "Collaborative Matchmaking",
-  "AIOS access as a bonus for individual personal use",
+  "AI OS access as a bonus for individual personal use",
 ];
 
 const timelineNeeds = [
@@ -35,11 +37,26 @@ const timelineNeeds = [
 ];
 
 export default function ProposalForWeGoodOvaHere() {
-  const bulletClass = "pl-5 leading-7 text-[#192033]/78 marker:text-[#8d5d26]";
+  const SectionTitle = ({ children }: { children: ReactNode }) => (
+    <h2 className="mb-4 font-serif text-2xl font-semibold leading-tight text-[#192033]">
+      {children}
+    </h2>
+  );
+
+  const BulletList = ({ items }: { items: string[] }) => (
+    <ul className="space-y-3">
+      {items.map((item) => (
+        <li key={item} className="flex gap-3 text-base leading-7 text-[#192033]/78">
+          <span className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#9b6729]" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
 
   return (
     <main className="min-h-screen bg-[#f7f2e8] text-[#192033]">
-      <section className="mx-auto max-w-4xl px-5 py-10 sm:px-8 sm:py-14">
+      <section className="mx-auto max-w-3xl px-5 py-10 sm:px-8 sm:py-14">
         <div className="mb-10 border-b border-[#192033]/15 pb-8">
           <h1 className="font-serif text-4xl font-semibold leading-tight sm:text-5xl">
             Proposal for WeGoodOvaHere
@@ -53,7 +70,7 @@ export default function ProposalForWeGoodOvaHere() {
 
         <div className="space-y-10">
           <section className="rounded-lg border border-[#192033]/12 bg-white/55 p-6 shadow-sm">
-            <h2 className="mb-3 text-xl font-semibold">Summary</h2>
+            <SectionTitle>Summary</SectionTitle>
             <p className="leading-7 text-[#192033]/78">
               Members get a self-understanding experience that
               helps them discover their top talent, mission, assets,
@@ -65,21 +82,13 @@ export default function ProposalForWeGoodOvaHere() {
           </section>
 
           <section>
-            <h2 className="mb-4 text-xl font-semibold">What's included</h2>
-            <ul className="list-disc space-y-2">
-              {includedSetup.map((item) => (
-                <li key={item} className={bulletClass}>
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <SectionTitle>What's included</SectionTitle>
+            <BulletList items={includedSetup} />
           </section>
 
           <section className="grid gap-8 md:grid-cols-2">
             <div>
-              <h2 className="mb-4 text-xl font-semibold">
-                Branded Experience
-              </h2>
+              <SectionTitle>Branded Experience</SectionTitle>
               <p className="leading-7 text-[#192033]/78">
                 Uses the WeGoodOvaHere logo, colors, fonts, and background if
                 provided. Before all brand assets are ready, we will use a clean
@@ -88,7 +97,7 @@ export default function ProposalForWeGoodOvaHere() {
             </div>
 
             <div>
-              <h2 className="mb-4 text-xl font-semibold">Website Connection</h2>
+              <SectionTitle>Website Connection</SectionTitle>
               <p className="leading-7 text-[#192033]/78">
                 Sasha provides the exact destination for the website button or
                 link. Oyi can place it on the WeGoodOvaHere website, or provide
@@ -99,34 +108,18 @@ export default function ProposalForWeGoodOvaHere() {
 
           <section className="grid gap-8 md:grid-cols-2">
             <div>
-              <h2 className="mb-4 text-xl font-semibold">
-                Entry Page Framing
-              </h2>
-              <ul className="list-disc space-y-2">
-                {entryFrames.map((frame) => (
-                  <li key={frame} className={bulletClass}>
-                    {frame}
-                  </li>
-                ))}
-              </ul>
+              <SectionTitle>Entry Page Framing</SectionTitle>
+              <BulletList items={entryFrames} />
             </div>
 
             <div>
-              <h2 className="mb-4 text-xl font-semibold">Included Modules</h2>
-              <ul className="list-disc space-y-2">
-                {modules.map((module) => (
-                  <li key={module} className={bulletClass}>
-                    {module}
-                  </li>
-                ))}
-              </ul>
+              <SectionTitle>Included Modules</SectionTitle>
+              <BulletList items={modules} />
             </div>
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold">
-              Community Leader Dashboard
-            </h2>
+            <SectionTitle>Community Leader Dashboard</SectionTitle>
             <p className="leading-7 text-[#192033]/78">
               Oyi can view member results when members have shared them with
               the community, use the data for community design and matchmaking,
@@ -136,9 +129,7 @@ export default function ProposalForWeGoodOvaHere() {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold">
-              Consent And Data Privacy
-            </h2>
+            <SectionTitle>Consent And Data Privacy</SectionTitle>
             <p className="leading-7 text-[#192033]/78">
               By default, members share their data with the WeGoodOvaHere
               community leader for matchmaking, collaboration, and community
@@ -148,7 +139,7 @@ export default function ProposalForWeGoodOvaHere() {
           </section>
 
           <section>
-            <h2 className="mb-4 text-xl font-semibold">Pricing</h2>
+            <SectionTitle>Pricing</SectionTitle>
             <div className="grid gap-4 md:grid-cols-2">
               <div className="rounded-lg border border-[#192033]/12 bg-white/60 p-6">
                 <p className="text-sm uppercase tracking-[0.18em] text-[#8d5d26]">
@@ -177,7 +168,7 @@ export default function ProposalForWeGoodOvaHere() {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold">Usage</h2>
+            <SectionTitle>Usage</SectionTitle>
             <p className="leading-7 text-[#192033]/78">
               100 completed scans are included. After that, 10 new scans per
               month are included. If WeGoodOvaHere grows beyond that, we can add
@@ -186,7 +177,7 @@ export default function ProposalForWeGoodOvaHere() {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold">Revenue Share</h2>
+            <SectionTitle>Revenue Share</SectionTitle>
             <div className="space-y-4 leading-7 text-[#192033]/78">
               <p>
                 Digital products sold through the WeGoodOvaHere node: Oyi keeps
@@ -201,17 +192,11 @@ export default function ProposalForWeGoodOvaHere() {
           </section>
 
           <section>
-            <h2 className="mb-3 text-xl font-semibold">Timeline</h2>
+            <SectionTitle>Timeline</SectionTitle>
             <p className="mb-4 leading-7 text-[#192033]/78">
               Estimated delivery: within 2 weeks after the following are clear:
             </p>
-            <ul className="list-disc space-y-2">
-              {timelineNeeds.map((item) => (
-                <li key={item} className={bulletClass}>
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <BulletList items={timelineNeeds} />
           </section>
         </div>
       </section>
