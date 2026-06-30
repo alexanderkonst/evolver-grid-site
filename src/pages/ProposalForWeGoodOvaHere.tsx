@@ -11,7 +11,7 @@ const includedSetup = [
   "One-click export for Go High Level import",
   "Built-in email campaign tool",
   "Website button/link connection",
-  "60-90 minute walkthrough and handoff",
+  "90-minute walkthrough and handoff",
 ];
 
 const entryFrames = [
@@ -33,14 +33,20 @@ const modules = [
 const timelineNeeds = [
   "Entry-page framing selected",
   "Logo, colors, fonts, and background provided, or approval to use the clean default version",
-  "Whether Sasha provides the button/link destination or places it directly on the WeGoodOvaHere website",
+  "You choose whether you want to place the button/link yourself or have Sasha place it directly on the WeGoodOvaHere website",
 ];
 
 export default function ProposalForWeGoodOvaHere() {
   const SectionTitle = ({ children }: { children: ReactNode }) => (
-    <h2 className="mb-4 font-serif text-2xl font-semibold leading-tight text-[#192033]">
+    <h2 className="mb-4 font-serif text-[1.65rem] font-semibold leading-tight text-[#192033]">
       {children}
     </h2>
+  );
+
+  const SectionBox = ({ children }: { children: ReactNode }) => (
+    <section className="rounded-xl border border-[#192033]/12 bg-white/60 p-6 shadow-[0_16px_40px_rgba(25,32,51,0.05)] sm:p-7">
+      {children}
+    </section>
   );
 
   const BulletList = ({ items }: { items: string[] }) => (
@@ -69,7 +75,7 @@ export default function ProposalForWeGoodOvaHere() {
         </div>
 
         <div className="space-y-10">
-          <section className="rounded-lg border border-[#192033]/12 bg-white/55 p-6 shadow-sm">
+          <SectionBox>
             <SectionTitle>Summary</SectionTitle>
             <p className="leading-7 text-[#192033]/78">
               Members get a self-understanding experience that
@@ -79,46 +85,46 @@ export default function ProposalForWeGoodOvaHere() {
               precision data layer for self-understanding, matchmaking, and
               community potential activation.
             </p>
-          </section>
+          </SectionBox>
 
-          <section>
+          <SectionBox>
             <SectionTitle>What's included</SectionTitle>
             <BulletList items={includedSetup} />
-          </section>
+          </SectionBox>
 
           <section className="grid gap-8 md:grid-cols-2">
-            <div>
+            <SectionBox>
               <SectionTitle>Branded Experience</SectionTitle>
               <p className="leading-7 text-[#192033]/78">
                 Uses the WeGoodOvaHere logo, colors, fonts, and background if
                 provided. Before all brand assets are ready, we will use a clean
                 default version.
               </p>
-            </div>
+            </SectionBox>
 
-            <div>
+            <SectionBox>
               <SectionTitle>Website Connection</SectionTitle>
               <p className="leading-7 text-[#192033]/78">
                 Sasha provides the exact destination for the website button or
-                link. Oyi can place it on the WeGoodOvaHere website, or provide
-                website access and Sasha can place it directly.
+                link. You can place it on the WeGoodOvaHere website yourself, or
+                provide website access and Sasha can place it directly.
               </p>
-            </div>
+            </SectionBox>
           </section>
 
           <section className="grid gap-8 md:grid-cols-2">
-            <div>
+            <SectionBox>
               <SectionTitle>Entry Page Framing</SectionTitle>
               <BulletList items={entryFrames} />
-            </div>
+            </SectionBox>
 
-            <div>
+            <SectionBox>
               <SectionTitle>Included Modules</SectionTitle>
               <BulletList items={modules} />
-            </div>
+            </SectionBox>
           </section>
 
-          <section>
+          <SectionBox>
             <SectionTitle>Community Leader Dashboard</SectionTitle>
             <p className="leading-7 text-[#192033]/78">
               Oyi can view member results when members have shared them with
@@ -126,9 +132,9 @@ export default function ProposalForWeGoodOvaHere() {
               export data for Go High Level import, and send simple email
               campaigns from the built-in campaign tool.
             </p>
-          </section>
+          </SectionBox>
 
-          <section>
+          <SectionBox>
             <SectionTitle>Consent And Data Privacy</SectionTitle>
             <p className="leading-7 text-[#192033]/78">
               By default, members share their data with the WeGoodOvaHere
@@ -136,7 +142,7 @@ export default function ProposalForWeGoodOvaHere() {
               intelligence. Members can adjust privacy settings if they want
               certain data kept private.
             </p>
-          </section>
+          </SectionBox>
 
           <section>
             <SectionTitle>Pricing</SectionTitle>
@@ -167,16 +173,16 @@ export default function ProposalForWeGoodOvaHere() {
             </div>
           </section>
 
-          <section>
+          <SectionBox>
             <SectionTitle>Usage</SectionTitle>
             <p className="leading-7 text-[#192033]/78">
               100 completed scans are included. After that, 10 new scans per
               month are included. If WeGoodOvaHere grows beyond that, we can add
               a scan pack or upgrade the usage plan.
             </p>
-          </section>
+          </SectionBox>
 
-          <section>
+          <SectionBox>
             <SectionTitle>Revenue Share</SectionTitle>
             <div className="space-y-4 leading-7 text-[#192033]/78">
               <p>
@@ -189,15 +195,15 @@ export default function ProposalForWeGoodOvaHere() {
                 WeGoodOvaHere: 33% referral share to Oyi.
               </p>
             </div>
-          </section>
+          </SectionBox>
 
-          <section>
+          <SectionBox>
             <SectionTitle>Timeline</SectionTitle>
             <p className="mb-4 leading-7 text-[#192033]/78">
               Estimated delivery: within 2 weeks after the following are clear:
             </p>
             <BulletList items={timelineNeeds} />
-          </section>
+          </SectionBox>
         </div>
       </section>
     </main>
