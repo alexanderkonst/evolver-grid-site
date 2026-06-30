@@ -39,7 +39,7 @@ const corsHeaders = {
  */
 
 const FROM_ADDRESS =
-    "Find Your Top Talent <notifications@notify.findtoptalent.com>";
+    "Find Your Top Talent <notifications@notify.findyourtoptalent.com>";
 
 // Day 80 (Sasha 2026-05-23): production URL. Override via SITE_URL env
 // when needed (preview deployments, custom domains).

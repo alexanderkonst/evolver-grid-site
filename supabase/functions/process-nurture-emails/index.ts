@@ -21,7 +21,7 @@ const corsHeaders = {
 // domain to avoid DNS re-verification. The "From" name "Find Your
 // Top Talent" is what recipients see in their inbox sender column.
 const FROM_ADDRESS =
-  "Find Your Top Talent <notifications@notify.findtoptalent.com>";
+  "Find Your Top Talent <notifications@notify.findyourtoptalent.com>";
 
 const BATCH_SIZE = 25;
 const MAX_ATTEMPTS = 3;

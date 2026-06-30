@@ -42,7 +42,7 @@ const corsHeaders = {
 // name is brand-identity ("Find Your Top Talent"); technical address
 // stays on the verified Resend domain.
 const FROM_ADDRESS =
-  "Find Your Top Talent <notifications@notify.findtoptalent.com>";
+  "Find Your Top Talent <notifications@notify.findyourtoptalent.com>";
 
 const MAX_RECIPIENTS_PER_CALL = 200;
 const SEND_DELAY_MS = 200;
