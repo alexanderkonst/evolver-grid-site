@@ -1,12 +1,12 @@
 const includedSetup = [
-  "WeGoodOvaHere-branded experience",
+  "WeGoodOvaHere-branded experience using the community logo, colors, fonts, and background where available",
   "Entry page framing and copy",
   "High-precision uniqueness scanner modules",
   "On-screen member results",
   "Email delivery of member results",
   "Community leader dashboard",
   "Consent and privacy settings",
-  "One-click Go High Level import export",
+  "One-click export for Go High Level import",
   "Built-in email campaign tool",
   "Website button/link connection",
   "60-90 minute walkthrough and handoff",
@@ -35,50 +35,48 @@ const timelineNeeds = [
 ];
 
 export default function ProposalForWeGoodOvaHere() {
+  const bulletClass = "pl-5 leading-7 text-[#192033]/78 marker:text-[#8d5d26]";
+
   return (
     <main className="min-h-screen bg-[#f7f2e8] text-[#192033]">
       <section className="mx-auto max-w-4xl px-5 py-10 sm:px-8 sm:py-14">
         <div className="mb-10 border-b border-[#192033]/15 pb-8">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-[#8d5d26]">
-            Proposal
-          </p>
           <h1 className="font-serif text-4xl font-semibold leading-tight sm:text-5xl">
-            WeGoodOvaHere Uniqueness Scanner
+            Proposal for WeGoodOvaHere
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-[#192033]/75">
-            A world-class, high-precision uniqueness scanner and collaborative
-            AI matchmaking layer for the WeGoodOvaHere community.
+            A world-class, high-precision uniqueness scanner, precision profile
+            builder, deep data layer, and collaborative AI matchmaking layer for
+            the WeGoodOvaHere community.
           </p>
         </div>
 
         <div className="space-y-10">
           <section className="rounded-lg border border-[#192033]/12 bg-white/55 p-6 shadow-sm">
-            <h2 className="mb-3 text-xl font-semibold">What This Is</h2>
+            <h2 className="mb-3 text-xl font-semibold">Summary</h2>
             <p className="leading-7 text-[#192033]/78">
-              Members get a self-understanding tool that helps them discover
-              their top talent, mission, assets, quality-of-life map, and
-              access collaborative AI matchmaking. As the community leader, Oyi
-              gets a precision data layer for self-understanding, matchmaking,
-              and community potential activation.
+              Members get a world-class self-understanding experience that
+              helps them discover their top talent, mission, assets,
+              quality-of-life map, and access collaborative AI matchmaking
+              within the community. As the community leader, you get a
+              precision data layer for self-understanding, matchmaking, and
+              community potential activation.
             </p>
           </section>
 
           <section>
-            <h2 className="mb-4 text-xl font-semibold">Included In Setup</h2>
-            <div className="grid gap-3 sm:grid-cols-2">
+            <h2 className="mb-4 text-xl font-semibold">What's included</h2>
+            <ul className="list-disc space-y-2">
               {includedSetup.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-md border border-[#192033]/12 bg-white/50 px-4 py-3 text-sm font-medium"
-                >
+                <li key={item} className={bulletClass}>
                   {item}
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </section>
 
-          <section className="grid gap-5 md:grid-cols-2">
-            <div className="rounded-lg border border-[#192033]/12 bg-white/55 p-6">
+          <section className="grid gap-8 md:grid-cols-2">
+            <div>
               <h2 className="mb-4 text-xl font-semibold">
                 Branded Experience
               </h2>
@@ -89,7 +87,7 @@ export default function ProposalForWeGoodOvaHere() {
               </p>
             </div>
 
-            <div className="rounded-lg border border-[#192033]/12 bg-white/55 p-6">
+            <div>
               <h2 className="mb-4 text-xl font-semibold">Website Connection</h2>
               <p className="leading-7 text-[#192033]/78">
                 Sasha provides the exact destination for the website button or
@@ -99,17 +97,14 @@ export default function ProposalForWeGoodOvaHere() {
             </div>
           </section>
 
-          <section className="grid gap-5 md:grid-cols-2">
+          <section className="grid gap-8 md:grid-cols-2">
             <div>
               <h2 className="mb-4 text-xl font-semibold">
                 Entry Page Framing
               </h2>
-              <ul className="space-y-2">
+              <ul className="list-disc space-y-2">
                 {entryFrames.map((frame) => (
-                  <li
-                    key={frame}
-                    className="rounded-md border border-[#192033]/12 bg-white/50 px-4 py-3 text-sm"
-                  >
+                  <li key={frame} className={bulletClass}>
                     {frame}
                   </li>
                 ))}
@@ -118,12 +113,9 @@ export default function ProposalForWeGoodOvaHere() {
 
             <div>
               <h2 className="mb-4 text-xl font-semibold">Included Modules</h2>
-              <ul className="space-y-2">
+              <ul className="list-disc space-y-2">
                 {modules.map((module) => (
-                  <li
-                    key={module}
-                    className="rounded-md border border-[#192033]/12 bg-white/50 px-4 py-3 text-sm"
-                  >
+                  <li key={module} className={bulletClass}>
                     {module}
                   </li>
                 ))}
@@ -131,7 +123,7 @@ export default function ProposalForWeGoodOvaHere() {
             </div>
           </section>
 
-          <section className="rounded-lg border border-[#192033]/12 bg-white/55 p-6">
+          <section>
             <h2 className="mb-3 text-xl font-semibold">
               Community Leader Dashboard
             </h2>
@@ -143,7 +135,7 @@ export default function ProposalForWeGoodOvaHere() {
             </p>
           </section>
 
-          <section className="rounded-lg border border-[#192033]/12 bg-white/55 p-6">
+          <section>
             <h2 className="mb-3 text-xl font-semibold">
               Consent And Data Privacy
             </h2>
@@ -184,7 +176,7 @@ export default function ProposalForWeGoodOvaHere() {
             </div>
           </section>
 
-          <section className="rounded-lg border border-[#192033]/12 bg-white/55 p-6">
+          <section>
             <h2 className="mb-3 text-xl font-semibold">Usage</h2>
             <p className="leading-7 text-[#192033]/78">
               100 completed scans are included. After that, 10 new scans per
@@ -193,7 +185,7 @@ export default function ProposalForWeGoodOvaHere() {
             </p>
           </section>
 
-          <section className="rounded-lg border border-[#192033]/12 bg-white/55 p-6">
+          <section>
             <h2 className="mb-3 text-xl font-semibold">Revenue Share</h2>
             <div className="space-y-4 leading-7 text-[#192033]/78">
               <p>
@@ -208,17 +200,14 @@ export default function ProposalForWeGoodOvaHere() {
             </div>
           </section>
 
-          <section className="rounded-lg border border-[#192033]/12 bg-white/55 p-6">
+          <section>
             <h2 className="mb-3 text-xl font-semibold">Timeline</h2>
             <p className="mb-4 leading-7 text-[#192033]/78">
               Estimated delivery: within 2 weeks after the following are clear:
             </p>
-            <ul className="space-y-2">
+            <ul className="list-disc space-y-2">
               {timelineNeeds.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-md border border-[#192033]/12 bg-white/50 px-4 py-3 text-sm"
-                >
+                <li key={item} className={bulletClass}>
                   {item}
                 </li>
               ))}
