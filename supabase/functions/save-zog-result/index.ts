@@ -236,7 +236,7 @@ serve(async (req) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from: "Find Your Top Talent <aleksandr@notify.aleksandrkonstantinov.com>",
+            from: "Find Your Top Talent <notifications@notify.findtoptalent.com>",
             to: [normalizedEmail],
             // Subject is intentionally generic — no archetype name, no
             // teaser. Preserves the curiosity hook so the return click
