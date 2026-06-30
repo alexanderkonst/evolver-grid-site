@@ -45,7 +45,7 @@ export default function ProposalForWeGoodOvaHere() {
             Proposal for WeGoodOvaHere
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-[#192033]/75">
-            A world-class, high-precision uniqueness scanner, precision profile
+            A high-precision uniqueness scanner, precision profile
             builder, deep data layer, and collaborative AI matchmaking layer for
             the WeGoodOvaHere community.
           </p>
@@ -55,7 +55,7 @@ export default function ProposalForWeGoodOvaHere() {
           <section className="rounded-lg border border-[#192033]/12 bg-white/55 p-6 shadow-sm">
             <h2 className="mb-3 text-xl font-semibold">Summary</h2>
             <p className="leading-7 text-[#192033]/78">
-              Members get a world-class self-understanding experience that
+              Members get a self-understanding experience that
               helps them discover their top talent, mission, assets,
               quality-of-life map, and access collaborative AI matchmaking
               within the community. As the community leader, you get a
