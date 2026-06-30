@@ -3282,6 +3282,24 @@
   display: none !important;
 }
 
+.spaces-rail-chat-cta {
+  background:
+    radial-gradient(circle at 18% 50%, rgba(244, 212, 114, 0.12), transparent 34%),
+    rgba(244, 212, 114, 0.025);
+  box-shadow:
+    inset 0 0 0 1px rgba(244, 212, 114, 0.12),
+    0 0 12px rgba(244, 212, 114, 0.08);
+}
+
+.spaces-rail-chat-cta:hover {
+  background:
+    radial-gradient(circle at 18% 50%, rgba(244, 212, 114, 0.18), transparent 38%),
+    rgba(244, 212, 114, 0.045);
+  box-shadow:
+    inset 0 0 0 1px rgba(244, 212, 114, 0.2),
+    0 0 18px rgba(244, 212, 114, 0.14);
+}
+
 /* Day 82 v6 (Sasha 2026-05-25): rail compact-mode visual polish.
    Five fixes from the screenshot audit:
    (1) Center icons horizontally in the 72px column (chips were
