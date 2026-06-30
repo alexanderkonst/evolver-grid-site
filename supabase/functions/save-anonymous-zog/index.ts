@@ -137,6 +137,67 @@ Deno.serve(async (req) => {
       resultId = inserted.id;
     }
 
+    // ── Schedule the promised two short follow-up emails ───────────
+    // These rows have no profile_id yet because the user has not claimed the
+    // result. process-nurture-emails treats them as "result is waiting" rows.
+    try {
+      const { data: optOut } = await admin
+        .from("nurture_opt_outs")
+        .select("email")
+        .eq("email", email)
+        .maybeSingle();
+
+      if (!optOut) {
+        const { data: existingNurtureRows } = await admin
+          .from("nurture_email_queue")
+          .select("email_type, status")
+          .eq("email", email)
+          .in("email_type", ["day1", "day2"]);
+        const sentTypes = new Set(
+          (existingNurtureRows ?? [])
+            .filter((row) => row.status === "sent")
+            .map((row) => row.email_type as string),
+        );
+
+        const now = new Date();
+        const day1 = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+        const day2 = new Date(now.getTime() + 48 * 60 * 60 * 1000);
+
+        await admin
+          .from("nurture_email_queue")
+          .update({ status: "cancelled", last_error: "superseded_by_new_anonymous_result" })
+          .eq("email", email)
+          .is("profile_id", null)
+          .eq("status", "pending");
+
+        const rowsToInsert: Record<string, unknown>[] = [];
+        if (!sentTypes.has("day1")) {
+          rowsToInsert.push({
+            email,
+            profile_id: null,
+            email_type: "day1",
+            scheduled_for: day1.toISOString(),
+            payload: { ...payload, claim_state: "unclaimed", intent: "journey" },
+          });
+        }
+        if (!sentTypes.has("day2")) {
+          rowsToInsert.push({
+            email,
+            profile_id: null,
+            email_type: "day2",
+            scheduled_for: day2.toISOString(),
+            payload: { ...payload, claim_state: "unclaimed", intent: "journey" },
+          });
+        }
+
+        if (rowsToInsert.length > 0) {
+          await admin.from("nurture_email_queue").insert(rowsToInsert);
+        }
+      }
+    } catch (nurtureErr) {
+      console.warn("save-anonymous-zog: nurture enqueue failed (non-fatal)", nurtureErr);
+    }
+
     // ── Fire a magic link so the user can come back and claim ───────
     // Belt-and-braces: Auth.tsx already calls signInWithOtp on the client
     // when the user entered their email on /auth?claim=true, but that

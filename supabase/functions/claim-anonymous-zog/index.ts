@@ -196,6 +196,80 @@ Deno.serve(async (req) => {
       })
       .eq("id", profileId);
 
+    // Promote the two-email sequence from anonymous "result waiting" rows to
+    // claimed-profile rows. This prevents duplicate sends and lets the Day-1
+    // template use the claimed/opened copy.
+    try {
+      const { data: optOut } = await admin
+        .from("nurture_opt_outs")
+        .select("email")
+        .eq("email", email)
+        .maybeSingle();
+      const { data: existingNurtureRows } = await admin
+        .from("nurture_email_queue")
+        .select("email_type, status, profile_id, scheduled_for")
+        .eq("email", email)
+        .in("email_type", ["day1", "day2"]);
+
+      const sentTypes = new Set(
+        (existingNurtureRows ?? [])
+          .filter((row) => row.status === "sent")
+          .map((row) => row.email_type as string),
+      );
+      const pendingAnonymousSchedule = new Map(
+        (existingNurtureRows ?? [])
+          .filter((row) => row.status === "pending" && !row.profile_id)
+          .map((row) => [row.email_type as string, row.scheduled_for as string]),
+      );
+
+      await admin
+        .from("nurture_email_queue")
+        .update({ status: "cancelled", last_error: "claimed_result_promoted_to_profile" })
+        .eq("email", email)
+        .is("profile_id", null)
+        .eq("status", "pending");
+
+      if (!optOut) {
+        const now = new Date();
+        const day1 = new Date(now.getTime() + 24 * 60 * 60 * 1000);
+        const day2 = new Date(now.getTime() + 48 * 60 * 60 * 1000);
+        const nurturePayload = {
+          archetype: snapshotFields.archetype_title,
+          bullseye: snapshotFields.core_pattern,
+          top_talents: snapshotFields.top_three_talents,
+          claim_state: "claimed",
+          intent: "journey",
+        };
+        const rowsToUpsert: Record<string, unknown>[] = [];
+        if (!sentTypes.has("day1")) {
+          rowsToUpsert.push({
+            email,
+            profile_id: profileId,
+            email_type: "day1",
+            scheduled_for: pendingAnonymousSchedule.get("day1") ?? day1.toISOString(),
+            payload: nurturePayload,
+          });
+        }
+        if (!sentTypes.has("day2")) {
+          rowsToUpsert.push({
+            email,
+            profile_id: profileId,
+            email_type: "day2",
+            scheduled_for: pendingAnonymousSchedule.get("day2") ?? day2.toISOString(),
+            payload: nurturePayload,
+          });
+        }
+
+        if (rowsToUpsert.length > 0) {
+          await admin
+            .from("nurture_email_queue")
+            .upsert(rowsToUpsert, { onConflict: "profile_id,email_type", ignoreDuplicates: false });
+        }
+      }
+    } catch (nurtureErr) {
+      console.warn("claim-anonymous-zog: nurture promotion failed (non-fatal)", nurtureErr);
+    }
+
     // ── Mark the anonymous row as claimed ───────────────────────────
     const { error: claimMarkError } = await admin
       .from("anonymous_genius_results")
