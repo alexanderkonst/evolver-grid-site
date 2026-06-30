@@ -791,6 +791,7 @@ const SpacesRail = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(
+                        "spaces-rail-chat-cta",
                         "flex items-center gap-3 px-3 py-2.5 rounded-2xl transition-all duration-300 w-full",
                         "justify-center md:justify-start",
                         "text-white/55 hover:bg-white/[0.04] hover:text-white/85 hover:translate-y-[-1px] active:translate-y-0"
