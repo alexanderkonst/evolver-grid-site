@@ -293,7 +293,7 @@ serve(async (req) => {
     // this single constant. Flip to `false` to revive.
     // PAIRED with a matching kill in process-nurture-emails so any
     // already-queued rows from prior signups also stop dispatching.
-    const NURTURE_EMAILS_KILLED = true;
+    const NURTURE_EMAILS_KILLED = false;
     if (NURTURE_EMAILS_KILLED) {
       console.log(
         "[save-zog-result] Nurture-email enqueue is DISABLED (NURTURE_EMAILS_KILLED=true). Skipping Day-1/2 schedule for:",
@@ -309,6 +309,17 @@ serve(async (req) => {
         .maybeSingle();
 
       if (!optOut) {
+        const { data: existingNurtureRows } = await supabase
+          .from("nurture_email_queue")
+          .select("email_type, status")
+          .eq("email", normalizedEmail)
+          .in("email_type", ["day1", "day2"]);
+        const sentTypes = new Set(
+          (existingNurtureRows ?? [])
+            .filter((row) => row.status === "sent")
+            .map((row) => row.email_type as string),
+        );
+
         const now = new Date();
         const day1 = new Date(now.getTime() + 24 * 60 * 60 * 1000);
         const day2 = new Date(now.getTime() + 48 * 60 * 60 * 1000);
@@ -320,23 +331,28 @@ serve(async (req) => {
           top_talents: appleseedData.threeLenses?.actions?.slice(0, 5) || [],
           prime_driver: appleseedData.threeLenses?.primeDriver || "",
           archetype_lens: appleseedData.threeLenses?.archetype || "",
+          claim_state: "claimed",
+          intent: "journey",
         };
+        const rowsToUpsert: Record<string, unknown>[] = [];
+        if (!sentTypes.has("day1")) {
+          rowsToUpsert.push({ email: normalizedEmail, profile_id: profileId, email_type: "day1", scheduled_for: day1.toISOString(), payload });
+        }
+        if (!sentTypes.has("day2")) {
+          rowsToUpsert.push({ email: normalizedEmail, profile_id: profileId, email_type: "day2", scheduled_for: day2.toISOString(), payload });
+        }
 
         // Regenerate magic link per scheduled send? For now, use the same
         // link we just emailed. Supabase magic links typically expire in 1h;
         // each send regenerates at dispatch time (see process-nurture-emails).
         // Here we just enqueue — the dispatcher generates fresh links.
-        await supabase
-          .from("nurture_email_queue")
-          .upsert(
-            [
-              { email: normalizedEmail, profile_id: profileId, email_type: "day1", scheduled_for: day1.toISOString(), payload },
-              { email: normalizedEmail, profile_id: profileId, email_type: "day2", scheduled_for: day2.toISOString(), payload },
-            ],
-            { onConflict: "profile_id,email_type", ignoreDuplicates: false }
-          );
+        if (rowsToUpsert.length > 0) {
+          await supabase
+            .from("nurture_email_queue")
+            .upsert(rowsToUpsert, { onConflict: "profile_id,email_type", ignoreDuplicates: false });
+        }
 
-        console.log("[save-zog-result] Enqueued 2 nurture emails for:", normalizedEmail);
+        console.log("[save-zog-result] Enqueued nurture emails for:", normalizedEmail);
       } else {
         console.log("[save-zog-result] User previously opted out — skipping nurture enqueue:", normalizedEmail);
       }

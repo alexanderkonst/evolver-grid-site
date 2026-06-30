@@ -44,6 +44,8 @@ type Payload = {
   top_talents?: string[];
   prime_driver?: string;
   archetype_lens?: string;
+  claim_state?: "unclaimed" | "claimed";
+  intent?: "business" | "journey";
 };
 
 const baseShell = (inner: string, siteUrl: string) => `
@@ -58,55 +60,125 @@ const baseShell = (inner: string, siteUrl: string) => `
   </div>
 `;
 
-// Email 2 — Day 1 · log-in nudge + booking angle + one remaining email note
+// Email 1 - Day 1 / 24h after result.
 const renderDay1 = (payload: Payload, magicLink: string, siteUrl: string) => {
-  const archetype = escapeHtml(payload.archetype || "Your Top Talent");
+  if (payload.claim_state === "unclaimed") {
+    return baseShell(`
+      <div style="margin-bottom: 24px;">
+        <p style="font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.6; margin: 0 0 14px 0;">
+          Your Top Talent result is ready.
+        </p>
+        <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 14px 0;">
+          We saved it so it does not disappear.
+        </p>
+        <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0;">
+          Open it here:
+        </p>
+      </div>
+
+      <div style="text-align: center; margin-bottom: 24px;">
+        <a href="${magicLink}" style="display: inline-block; background: linear-gradient(135deg, #7a5108, #a06d08); color: white; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 15px;">Open my Top Talent result</a>
+      </div>
+
+      <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 14px 0;">
+        Just your result, free, no strings attached.
+      </p>
+
+      <p style="color: rgba(255,255,255,0.4); font-size: 12px; font-style: italic; line-height: 1.6; margin: 0;">
+        We will send one more short note tomorrow if you do not open it, and then we stop.
+      </p>
+    `, siteUrl);
+  }
+
   return baseShell(`
     <div style="margin-bottom: 24px;">
       <p style="font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.6; margin: 0 0 14px 0;">
-        Yesterday you met your Top Talent: <strong style="color: #e2e8f0;">${archetype}</strong>.
+        Your Top Talent has a deeper layer.
       </p>
       <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 14px 0;">
-        That was the surface.
+        The first reveal names the value you carry.
       </p>
       <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 14px 0;">
-        Inside your account there's a deeper layer — where this pattern shines brightest, where it trips you up, the roles it's built for, the repeatable action that sharpens it over time. 30 seconds to open.
+        The deeper layer shows where it shines, where it gets blocked, what kinds of roles it is built for, and how it can be monetized.
+      </p>
+      <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0;">
+        The free next step is to find the direction this value wants to move in.
       </p>
     </div>
 
     <div style="text-align: center; margin-bottom: 24px;">
-      <a href="${magicLink}" style="display: inline-block; background: linear-gradient(135deg, #7c3aed, #4f46e5); color: white; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 15px;">Open my full Top Talent profile →</a>
-    </div>
-
-    <div style="background: rgba(240,194,127,0.06); border: 1px solid rgba(240,194,127,0.15); border-radius: 12px; padding: 20px 24px; margin-bottom: 20px;">
-      <p style="color: rgba(255,255,255,0.8); font-size: 14px; margin: 0 0 10px 0; font-weight: 500;">Already thinking about turning this into a business?</p>
-      <p style="color: rgba(255,255,255,0.6); font-size: 13px; margin: 0 0 14px 0; line-height: 1.6;">
-        That's the next thing I help with. A 2-hour Productize Yourself Session. $555. Money-back guarantee: if you don't leave with a one-sentence business you recognize as yours, you don't pay.
-      </p>
-      <a href="${siteUrl}/ignite#pricing-section" style="display: inline-block; color: rgba(240,194,127,0.9); text-decoration: none; font-size: 13px; font-weight: 600; border-bottom: 1px solid rgba(240,194,127,0.3);">Book your Productize Yourself Session →</a>
+      <a href="${siteUrl}/mission-discovery" style="display: inline-block; background: linear-gradient(135deg, #7a5108, #a06d08); color: white; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 15px;">Continue to mission discovery</a>
     </div>
 
     <p style="color: rgba(255,255,255,0.4); font-size: 12px; font-style: italic; line-height: 1.6; margin: 0;">
-      I will send one more short note tomorrow. If you do not react, I stop there.
+      We will send one more short note tomorrow with the next best step, and then we stop.
     </p>
   `, siteUrl);
 };
 
-// Email 3 — Day 2 (T+48h) · minimalist check-in
-const renderDay2 = (_payload: Payload, _magicLink: string, siteUrl: string) =>
-  baseShell(`
+// Email 2 - Day 2 / 48h after result.
+const renderDay2 = (payload: Payload, _magicLink: string, siteUrl: string) => {
+  if (payload.claim_state === "unclaimed") {
+    return baseShell(`
+      <div style="padding: 20px 0;">
+        <p style="font-size: 18px; color: #e2e8f0; line-height: 1.6; margin: 0 0 24px 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;">
+          Your Top Talent result is still waiting.
+        </p>
+        <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 20px 0;">
+          We saved it so it does not disappear.
+        </p>
+        <div style="text-align: center; margin-bottom: 24px;">
+          <a href="${_magicLink}" style="display: inline-block; background: linear-gradient(135deg, #7a5108, #a06d08); color: white; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 15px;">Open my Top Talent result</a>
+        </div>
+        <p style="color: rgba(255,255,255,0.4); font-size: 12px; font-style: italic; line-height: 1.6; margin: 0;">
+          This is the last follow-up email unless you choose to go deeper.
+        </p>
+      </div>
+    `, siteUrl);
+  }
+
+  if (payload.intent === "business") {
+    return baseShell(`
+      <div style="padding: 20px 0;">
+        <p style="font-size: 18px; color: #e2e8f0; line-height: 1.6; margin: 0 0 24px 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;">
+          Your Top Talent points toward monetization, but it still needs business structure on top of it.
+        </p>
+        <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 14px 0;">
+          The question is not "what could I do with this information?"
+        </p>
+        <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 20px 0;">
+          The question is: what is the clearest business direction to build from this unique value now?
+        </p>
+        <div style="text-align: center; margin-bottom: 24px;">
+          <a href="${siteUrl}/ignite#pricing-section" style="display: inline-block; background: linear-gradient(135deg, #7a5108, #a06d08); color: white; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 15px;">Turn Your Uniqueness into a Business</a>
+        </div>
+        <p style="color: rgba(255,255,255,0.4); font-size: 12px; font-style: italic; line-height: 1.6; margin: 0;">
+          This is the last follow-up email unless you choose to go deeper.
+        </p>
+      </div>
+    `, siteUrl);
+  }
+
+  return baseShell(`
     <div style="padding: 20px 0;">
       <p style="font-size: 18px; color: #e2e8f0; line-height: 1.6; margin: 0 0 24px 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;">
-        What's shifted since you read it?
+        You named the unique value you bring to any professional space.
       </p>
       <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 14px 0;">
-        You now know better what you're good at.
+        But what is your career direction? What do you bring to the table?
       </p>
-      <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0;">
-        It stays an abstract insight until you turn it into something people can buy.
+      <div style="text-align: center; margin: 24px 0;">
+        <a href="${siteUrl}/mission-discovery" style="display: inline-block; background: linear-gradient(135deg, #7a5108, #a06d08); color: white; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 15px;">Continue to mission discovery and resource mapping</a>
+      </div>
+      <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 14px 0;">
+        That makes your profile robust enough to send a signal to collaborators and projects that are a precise fit for you.
+      </p>
+      <p style="color: rgba(255,255,255,0.4); font-size: 12px; font-style: italic; line-height: 1.6; margin: 0;">
+        This is the last follow-up email unless you choose to go deeper.
       </p>
     </div>
   `, siteUrl);
+};
 
 const renderersByType: Record<string, (p: Payload, link: string, siteUrl: string) => string> = {
   day1: renderDay1,
@@ -114,20 +186,20 @@ const renderersByType: Record<string, (p: Payload, link: string, siteUrl: string
 };
 
 const subjectsByType: Record<string, (p: Payload) => string> = {
-  day1: () => `Your Top Talent has a deeper layer`,
-  day2: () => `Has anything shifted?`,
+  day1: (payload) =>
+    payload.claim_state === "unclaimed"
+      ? `Your Top Talent result is waiting`
+      : `Your Top Talent has a deeper layer`,
+  day2: (payload) =>
+    payload.claim_state === "unclaimed"
+      ? `Your Top Talent result is still waiting`
+      : payload.intent === "business"
+        ? `Turn your Top Talent into a business`
+        : `You named the value you carry. But in which direction?`,
 };
 
 // ── Handler ────────────────────────────────────────────────────────
-// Day 61 (Sasha 2026-05-04 14:30): KILLED. The Day-1/2/8 nurture
-// sequence is shut down while Sasha settles on the right consent /
-// GDPR / spam-risk policy. This kill drains in-flight rows too —
-// any emails already queued from prior signups will NOT be sent.
-// PAIRED with NURTURE_EMAILS_KILLED in save-zog-result which stops
-// new enqueues. To revive: flip both constants to `false` (here and
-// in save-zog-result) AND audit any rows in nurture_email_queue with
-// scheduled_for in the past — the "due" window grows while killed.
-const NURTURE_DISPATCH_KILLED = true;
+const NURTURE_DISPATCH_KILLED = false;
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -164,7 +236,7 @@ serve(async (req) => {
   // Pull due + pending rows, oldest first.
   const { data: dueRows, error: queueErr } = await supabase
     .from("nurture_email_queue")
-    .select("id, email, profile_id, email_type, payload, attempts")
+    .select("id, email, profile_id, email_type, payload, attempts, created_at")
     .eq("status", "pending")
     .lte("scheduled_for", new Date().toISOString())
     .lt("attempts", MAX_ATTEMPTS)
@@ -211,12 +283,12 @@ serve(async (req) => {
     // Day 2 and Day 8 emails don't need magic links — they're content-only —
     // but we generate one anyway so "Open my result" links still work in the
     // footer if we add them later.
-    let magicLink = `${siteUrl}/auth?next=%2Fgame%2Fme`;
+    let magicLink = `${siteUrl}/auth?next=%2Fzone-of-genius`;
     try {
       const { data: linkData } = await supabase.auth.admin.generateLink({
         type: "magiclink",
         email: row.email,
-        options: { redirectTo: `${siteUrl}/auth/callback?next=/game/me` },
+        options: { redirectTo: `${siteUrl}/auth/callback?next=/zone-of-genius` },
       });
       if (linkData?.properties?.action_link) {
         magicLink = linkData.properties.action_link;
@@ -241,6 +313,9 @@ serve(async (req) => {
     }
 
     const payload = (row.payload ?? {}) as Payload;
+    if (row.email_type === "day1") {
+      payload.claim_state = row.profile_id ? "claimed" : "unclaimed";
+    }
     const html = renderer(payload, magicLink, siteUrl);
     const subject = subjectFn(payload);
 
