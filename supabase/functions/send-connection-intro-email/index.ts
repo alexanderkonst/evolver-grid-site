@@ -43,7 +43,7 @@ const corsHeaders = {
 };
 
 const FROM_ADDRESS =
-  "Find Your Top Talent <notifications@notify.findtoptalent.com>";
+  "Find Your Top Talent <notifications@notify.findyourtoptalent.com>";
 
 interface ConnectionIntroPayload {
   /** The user receiving the introduction email. */
