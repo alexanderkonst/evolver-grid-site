@@ -35,8 +35,8 @@ const escapeHtml = (unsafe: string): string =>
     .replace(/'/g, "&#039;");
 
 // ── Email renderers ────────────────────────────────────────────────
-// All three emails share a base: dark navy card, light halo, Cormorant
-// archetype, Source Serif body. Signed "— Aleksandr / FindYourTopTalent.Com".
+// Clean note-style emails: white canvas, readable text, neon-yellow
+// highlighter accents. No founder signature.
 
 type Payload = {
   archetype?: string;
@@ -49,70 +49,52 @@ type Payload = {
 };
 
 const baseShell = (inner: string, siteUrl: string) => `
-  <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 560px; margin: 0 auto; background: #0a0a1a; color: #e2e8f0; padding: 40px 32px; border-radius: 16px;">
-    ${inner}
-    <div style="text-align: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);">
-      <p style="color: rgba(255,255,255,0.3); font-size: 12px; margin: 0;">— Aleksandr</p>
-      <p style="color: rgba(255,255,255,0.25); font-size: 11px; margin: 2px 0 0 0;">
-        <a href="${siteUrl}" style="color: rgba(255,255,255,0.35); text-decoration: none;">FindYourTopTalent.Com</a>
-      </p>
+  <div style="margin: 0; padding: 0; background: #ffffff;">
+    <div style="font-family: Arial, Helvetica, sans-serif; max-width: 560px; margin: 0 auto; background: #ffffff; color: #111827; padding: 34px 22px 28px 22px;">
+      ${inner}
+      <div style="margin-top: 34px; padding-top: 18px; border-top: 1px solid #e5e7eb;">
+        <a href="${siteUrl}" style="color: #6b7280; font-size: 12px; line-height: 1.5; text-decoration: none;">Find Your Top Talent</a>
+      </div>
     </div>
   </div>
+`;
+
+const p = (copy: string) => `
+  <p style="font-size: 16px; line-height: 1.65; color: #111827; margin: 0 0 16px 0;">${copy}</p>
+`;
+
+const quiet = (copy: string) => `
+  <p style="font-size: 13px; line-height: 1.6; color: #6b7280; margin: 20px 0 0 0;">${copy}</p>
+`;
+
+const mark = (copy: string) =>
+  `<span style="background: #eaff00; color: #111827; padding: 0 4px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">${copy}</span>`;
+
+const cta = (href: string, copy: string) => `
+  <p style="font-size: 16px; line-height: 1.65; margin: 22px 0 20px 0;">
+    <a href="${href}" style="background: #eaff00; color: #111827; font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; padding: 2px 5px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">${copy}</a>
+  </p>
 `;
 
 // Email 1 - Day 1 / 24h after result.
 const renderDay1 = (payload: Payload, magicLink: string, siteUrl: string) => {
   if (payload.claim_state === "unclaimed") {
     return baseShell(`
-      <div style="margin-bottom: 24px;">
-        <p style="font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.6; margin: 0 0 14px 0;">
-          Your Top Talent result is ready.
-        </p>
-        <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 14px 0;">
-          We saved it so it does not disappear.
-        </p>
-        <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0;">
-          Open it here:
-        </p>
-      </div>
-
-      <div style="text-align: center; margin-bottom: 24px;">
-        <a href="${magicLink}" style="display: inline-block; background: linear-gradient(135deg, #7a5108, #a06d08); color: white; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 15px;">Open my Top Talent result</a>
-      </div>
-
-      <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 14px 0;">
-        Just your result, free, no strings attached.
-      </p>
-
-      <p style="color: rgba(255,255,255,0.4); font-size: 12px; font-style: italic; line-height: 1.6; margin: 0;">
-        We will send one more short note tomorrow if you do not open it, and then we stop.
-      </p>
+      ${p(`Your ${mark("Top Talent result is ready")}.`)}
+      ${p(`We saved it so it ${mark("does not disappear")}.`)}
+      ${cta(magicLink, "Open my Top Talent result")}
+      ${p(`${mark("Free, no strings attached.")}`)}
+      ${quiet("We will send one more short note tomorrow if you do not open it, and then we stop.")}
     `, siteUrl);
   }
 
   return baseShell(`
-    <div style="margin-bottom: 24px;">
-      <p style="font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.6; margin: 0 0 14px 0;">
-        Your Top Talent has a deeper layer.
-      </p>
-      <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 14px 0;">
-        The first reveal names the value you carry.
-      </p>
-      <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 14px 0;">
-        The deeper layer shows where it shines, where it gets blocked, what kinds of roles it is built for, and how it can be monetized.
-      </p>
-      <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0;">
-        The free next step is to find the direction this value wants to move in.
-      </p>
-    </div>
-
-    <div style="text-align: center; margin-bottom: 24px;">
-      <a href="${siteUrl}/mission-discovery" style="display: inline-block; background: linear-gradient(135deg, #7a5108, #a06d08); color: white; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 15px;">Continue to mission discovery</a>
-    </div>
-
-    <p style="color: rgba(255,255,255,0.4); font-size: 12px; font-style: italic; line-height: 1.6; margin: 0;">
-      We will send one more short note tomorrow with the next best step, and then we stop.
-    </p>
+    ${p(`Your Top Talent has ${mark("a deeper layer")}.`)}
+    ${p(`The first reveal names the value you carry.`)}
+    ${p(`The deeper layer shows where it shines, where it gets blocked, what kinds of roles it is built for, and ${mark("how it can be monetized")}.`)}
+    ${p(`The free next step is to find the direction this value wants to move in.`)}
+    ${cta(`${siteUrl}/mission-discovery`, "Continue to mission discovery")}
+    ${quiet("We will send one more short note tomorrow with the next best step, and then we stop.")}
   `, siteUrl);
 };
 
@@ -120,63 +102,29 @@ const renderDay1 = (payload: Payload, magicLink: string, siteUrl: string) => {
 const renderDay2 = (payload: Payload, _magicLink: string, siteUrl: string) => {
   if (payload.claim_state === "unclaimed") {
     return baseShell(`
-      <div style="padding: 20px 0;">
-        <p style="font-size: 18px; color: #e2e8f0; line-height: 1.6; margin: 0 0 24px 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;">
-          Your Top Talent result is still waiting.
-        </p>
-        <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 20px 0;">
-          We saved it so it does not disappear.
-        </p>
-        <div style="text-align: center; margin-bottom: 24px;">
-          <a href="${_magicLink}" style="display: inline-block; background: linear-gradient(135deg, #7a5108, #a06d08); color: white; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 15px;">Open my Top Talent result</a>
-        </div>
-        <p style="color: rgba(255,255,255,0.4); font-size: 12px; font-style: italic; line-height: 1.6; margin: 0;">
-          This is the last follow-up email unless you choose to go deeper.
-        </p>
-      </div>
+      ${p(`Your ${mark("Top Talent result is still waiting")}.`)}
+      ${p(`We saved it so it does not disappear.`)}
+      ${cta(_magicLink, "Open my Top Talent result")}
+      ${quiet("This is the last follow-up email unless you choose to go deeper.")}
     `, siteUrl);
   }
 
   if (payload.intent === "business") {
     return baseShell(`
-      <div style="padding: 20px 0;">
-        <p style="font-size: 18px; color: #e2e8f0; line-height: 1.6; margin: 0 0 24px 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;">
-          Your Top Talent points toward monetization, but it still needs business structure on top of it.
-        </p>
-        <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 14px 0;">
-          The question is not "what could I do with this information?"
-        </p>
-        <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 20px 0;">
-          The question is: what is the clearest business direction to build from this unique value now?
-        </p>
-        <div style="text-align: center; margin-bottom: 24px;">
-          <a href="${siteUrl}/ignite#pricing-section" style="display: inline-block; background: linear-gradient(135deg, #7a5108, #a06d08); color: white; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 15px;">Turn Your Uniqueness into a Business</a>
-        </div>
-        <p style="color: rgba(255,255,255,0.4); font-size: 12px; font-style: italic; line-height: 1.6; margin: 0;">
-          This is the last follow-up email unless you choose to go deeper.
-        </p>
-      </div>
+      ${p(`Your Top Talent points toward monetization, but it still needs ${mark("business structure")} on top of it.`)}
+      ${p(`The question is not "what could I do with this information?"`)}
+      ${p(`The question is: ${mark("what is the clearest business direction")} to build from this unique value now?`)}
+      ${cta(`${siteUrl}/ignite#pricing-section`, "Turn Your Uniqueness into a Business")}
+      ${quiet("This is the last follow-up email unless you choose to go deeper.")}
     `, siteUrl);
   }
 
   return baseShell(`
-    <div style="padding: 20px 0;">
-      <p style="font-size: 18px; color: #e2e8f0; line-height: 1.6; margin: 0 0 24px 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic;">
-        You named the unique value you bring to any professional space.
-      </p>
-      <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 14px 0;">
-        But what is your career direction? What do you bring to the table?
-      </p>
-      <div style="text-align: center; margin: 24px 0;">
-        <a href="${siteUrl}/mission-discovery" style="display: inline-block; background: linear-gradient(135deg, #7a5108, #a06d08); color: white; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 15px;">Continue to mission discovery and resource mapping</a>
-      </div>
-      <p style="font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; margin: 0 0 14px 0;">
-        That makes your profile robust enough to send a signal to collaborators and projects that are a precise fit for you.
-      </p>
-      <p style="color: rgba(255,255,255,0.4); font-size: 12px; font-style: italic; line-height: 1.6; margin: 0;">
-        This is the last follow-up email unless you choose to go deeper.
-      </p>
-    </div>
+    ${p(`You named the unique value you bring to any professional space.`)}
+    ${p(`But ${mark("what is your career direction?")} What do you bring to the table?`)}
+    ${cta(`${siteUrl}/mission-discovery`, "Continue to mission discovery and resource mapping")}
+    ${p(`That makes your profile robust enough to send a signal to collaborators and projects that are ${mark("a precise fit for you")}.`)}
+    ${quiet("This is the last follow-up email unless you choose to go deeper.")}
   `, siteUrl);
 };
 
