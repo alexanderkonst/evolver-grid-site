@@ -243,20 +243,20 @@ serve(async (req) => {
             // is the moment of recognition, not the inbox preview.
             subject: "Your Top Talent — saved",
             html: `
-              <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 480px; margin: 0 auto; background: #0a0a1a; color: #e2e8f0; padding: 48px 32px; border-radius: 16px;">
-                <div style="text-align: center;">
-                  <p style="font-size: 17px; color: rgba(255,255,255,0.85); line-height: 1.55; margin: 0 0 32px 0; font-weight: 400;">
-                    Your Top Talent profile is saved. Open it any time.
+              <div style="margin: 0; padding: 0; background: #ffffff;">
+                <div style="font-family: Arial, Helvetica, sans-serif; max-width: 560px; margin: 0 auto; background: #ffffff; color: #111827; padding: 34px 22px 28px 22px;">
+                  <p style="font-size: 16px; line-height: 1.65; color: #111827; margin: 0 0 16px 0;">
+                    Your <span style="background: #eaff00; color: #111827; padding: 0 4px;">Top Talent profile is saved</span>.
                   </p>
-                  <a href="${resultUrl}" style="display: inline-block; background: linear-gradient(135deg, #7c3aed, #4f46e5); color: white; text-decoration: none; padding: 14px 32px; border-radius: 999px; font-weight: 600; font-size: 15px;">Open my saved result →</a>
-                </div>
-                <div style="text-align: center; margin-top: 40px;">
-                  <p style="color: rgba(255,255,255,0.35); font-size: 12px; margin: 0; line-height: 1.6;">
-                    — Aleksandr
+                  <p style="font-size: 16px; line-height: 1.65; color: #111827; margin: 0 0 16px 0;">
+                    Open it any time.
                   </p>
-                  <p style="color: rgba(255,255,255,0.25); font-size: 11px; margin: 4px 0 0 0;">
-                    <a href="${SITE_URL}" style="color: rgba(255,255,255,0.35); text-decoration: none;">FindYourTopTalent.Com</a>
+                  <p style="font-size: 16px; line-height: 1.65; margin: 22px 0 20px 0;">
+                    <a href="${resultUrl}" style="background: #eaff00; color: #111827; font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; padding: 2px 5px;">Open my saved result</a>
                   </p>
+                  <div style="margin-top: 34px; padding-top: 18px; border-top: 1px solid #e5e7eb;">
+                    <a href="${SITE_URL}" style="color: #6b7280; font-size: 12px; line-height: 1.5; text-decoration: none;">Find Your Top Talent</a>
+                  </div>
                 </div>
               </div>
             `,
