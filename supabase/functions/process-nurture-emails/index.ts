@@ -36,7 +36,7 @@ const escapeHtml = (unsafe: string): string =>
 
 // ── Email renderers ────────────────────────────────────────────────
 // Clean note-style emails: white canvas, readable text, neon-yellow
-// highlighter accents. No founder signature.
+// highlighter CTA only. No founder signature.
 
 type Payload = {
   archetype?: string;
@@ -67,9 +67,6 @@ const quiet = (copy: string) => `
   <p style="font-size: 13px; line-height: 1.6; color: #6b7280; margin: 20px 0 0 0;">${copy}</p>
 `;
 
-const mark = (copy: string) =>
-  `<span style="background: #eaff00; color: #111827; padding: 0 4px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">${copy}</span>`;
-
 const cta = (href: string, copy: string) => `
   <p style="font-size: 16px; line-height: 1.65; margin: 22px 0 20px 0;">
     <a href="${href}" style="background: #eaff00; color: #111827; font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; padding: 2px 5px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">${copy}</a>
@@ -80,18 +77,18 @@ const cta = (href: string, copy: string) => `
 const renderDay1 = (payload: Payload, magicLink: string, siteUrl: string) => {
   if (payload.claim_state === "unclaimed") {
     return baseShell(`
-      ${p(`Your ${mark("Top Talent result is ready")}.`)}
-      ${p(`We saved it so it ${mark("does not disappear")}.`)}
+      ${p("Your Top Talent result is ready.")}
+      ${p("We saved it so it does not disappear.")}
       ${cta(magicLink, "Open my Top Talent result")}
-      ${p(`${mark("Free, no strings attached.")}`)}
+      ${p("Free, no strings attached.")}
       ${quiet("We will send one more short note tomorrow if you do not open it, and then we stop.")}
     `, siteUrl);
   }
 
   return baseShell(`
-    ${p(`Your Top Talent has ${mark("a deeper layer")}.`)}
+    ${p("Your Top Talent has a deeper layer.")}
     ${p(`The first reveal names the value you carry.`)}
-    ${p(`The deeper layer shows where it shines, where it gets blocked, what kinds of roles it is built for, and ${mark("how it can be monetized")}.`)}
+    ${p("The deeper layer shows where it shines, where it gets blocked, what kinds of roles it is built for, and how it can be monetized.")}
     ${p(`The free next step is to find the direction this value wants to move in.`)}
     ${cta(`${siteUrl}/mission-discovery`, "Continue to mission discovery")}
     ${quiet("We will send one more short note tomorrow with the next best step, and then we stop.")}
@@ -102,7 +99,7 @@ const renderDay1 = (payload: Payload, magicLink: string, siteUrl: string) => {
 const renderDay2 = (payload: Payload, _magicLink: string, siteUrl: string) => {
   if (payload.claim_state === "unclaimed") {
     return baseShell(`
-      ${p(`Your ${mark("Top Talent result is still waiting")}.`)}
+      ${p("Your Top Talent result is still waiting.")}
       ${p(`We saved it so it does not disappear.`)}
       ${cta(_magicLink, "Open my Top Talent result")}
       ${quiet("This is the last follow-up email unless you choose to go deeper.")}
@@ -111,9 +108,9 @@ const renderDay2 = (payload: Payload, _magicLink: string, siteUrl: string) => {
 
   if (payload.intent === "business") {
     return baseShell(`
-      ${p(`Your Top Talent points toward monetization, but it still needs ${mark("business structure")} on top of it.`)}
+      ${p("Your Top Talent points toward monetization, but it still needs business structure on top of it.")}
       ${p(`The question is not "what could I do with this information?"`)}
-      ${p(`The question is: ${mark("what is the clearest business direction")} to build from this unique value now?`)}
+      ${p("The question is: what is the clearest business direction to build from this unique value now?")}
       ${cta(`${siteUrl}/ignite#pricing-section`, "Turn Your Uniqueness into a Business")}
       ${quiet("This is the last follow-up email unless you choose to go deeper.")}
     `, siteUrl);
@@ -121,9 +118,9 @@ const renderDay2 = (payload: Payload, _magicLink: string, siteUrl: string) => {
 
   return baseShell(`
     ${p(`You named the unique value you bring to any professional space.`)}
-    ${p(`But ${mark("what is your career direction?")} What do you bring to the table?`)}
+    ${p("But what is your career direction? What do you bring to the table?")}
     ${cta(`${siteUrl}/mission-discovery`, "Continue to mission discovery and resource mapping")}
-    ${p(`That makes your profile robust enough to send a signal to collaborators and projects that are ${mark("a precise fit for you")}.`)}
+    ${p("That makes your profile robust enough to send a signal to collaborators and projects that are a precise fit for you.")}
     ${quiet("This is the last follow-up email unless you choose to go deeper.")}
   `, siteUrl);
 };
