@@ -556,6 +556,9 @@
       }
     },
     "build": {
+      "founderCockpit": {
+        "label": "Founder Cockpit"
+      },
       "avb": {
         "label": "Автоматический конструктор бизнеса"
       },

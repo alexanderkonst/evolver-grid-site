@@ -555,6 +555,9 @@
       }
     },
     "build": {
+      "founderCockpit": {
+        "label": "Founder Cockpit"
+      },
       "avb": {
         "label": "Automated Venture Builder"
       },
