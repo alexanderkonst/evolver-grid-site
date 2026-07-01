@@ -45,7 +45,7 @@ import { useFounderStates, type FounderState } from "./useFounderStates";
 import { FounderDetailDrawer } from "./FounderDetailDrawer";
 import { BulkEmailComposer } from "./BulkEmailComposer";
 import { SentCampaignsSection } from "./SentCampaignsSection";
-import { Mail, Loader2, RefreshCw } from "lucide-react";
+import { Clipboard, Mail, Loader2, RefreshCw, Search } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { useToast } from "@/hooks/use-toast";
 import GameShellV2 from "@/components/game/GameShellV2";
@@ -1756,6 +1756,132 @@ function SpecializedAdminLinksSection() {
 }
 
 // ─────────────────────────────────────────────────────────────────────
+// Section: Attention surface research prompts
+// ─────────────────────────────────────────────────────────────────────
+
+const ATTENTION_SURFACE_PROMPTS: { label: string; hint: string; prompt: string }[] = [
+  {
+    label: "Reddit fields",
+    hint: "Find subreddits where the wound is already being spoken.",
+    prompt: `Use web search/deep research. I am building Founder Life's Work Navigation: a cockpit for founders whose main project has a life of its own. Find the 20 most relevant Reddit subreddits and recurring thread patterns where these founders naturally talk about scattered strategy, founder identity, life’s work, business as a living assignment, product-market confusion, burnout from hustle tools, CRM/task-tool overload, and wanting clearer next moves. For each subreddit: give why it fits, sample search queries, what language they use, what not to say, and one respectful post/comment angle.`,
+  },
+  {
+    label: "LinkedIn people",
+    hint: "Generate keyword searches for high-fit founders and operators.",
+    prompt: `Use LinkedIn-native search logic. I am looking for founders whose project feels like a life’s work, not just a startup. Generate 25 LinkedIn Boolean/search strings and profile-keyword patterns to find them. Include categories: conscious founders, AI founders, regenerative founders, creator-founders, coaches turned founders, community builders, venture studio builders, spiritual-but-operational entrepreneurs, and founders talking about founder journey, purpose, product-market fit, second brain, operating system, or life’s work. For each: explain what signal to look for on the profile, how to open a warm message, and what would indicate bad fit.`,
+  },
+  {
+    label: "Aligned orgs",
+    hint: "Find communities, accelerators, fellowships, and networks.",
+    prompt: `Use web search/deep research. Find aligned organizations, communities, accelerators, fellowships, and venture networks for founders whose business is tied to purpose, consciousness, regeneration, AI, creator economy, or community building. I offer a Founder Life's Work Navigation cockpit: a way to see project architecture, relationship energy, bottlenecks, timing, and next high-leverage moves. Return 30 organizations with website, why aligned, the likely buyer/contact role, LinkedIn search terms for people inside the org, one collaboration angle, and a low-friction first message.`,
+  },
+  {
+    label: "Podcasters",
+    hint: "Find shows and hosts who already interview this tribe.",
+    prompt: `Use web search/deep research. Find podcasts, YouTube shows, newsletters, and hosts whose audience includes founders treating entrepreneurship as life’s work: conscious entrepreneurship, AI and the future of work, creator-founders, regenerative business, second brain, systems thinking, personal transformation through building, founder psychology, and purpose-driven startups. Return 25 targets with audience fit, why the cockpit idea would interest them, the best episode angle, one pitch subject line, and a concise outreach note.`,
+  },
+  {
+    label: "Upstream partners",
+    hint: "Find people who already serve the founder before they need this.",
+    prompt: `Use web search/deep research. Map upstream partners for Founder Life's Work Navigation: people and services that encounter founders right before they need a cockpit for their life’s work. Include executive coaches, founder therapists, spiritual business mentors, fractional COOs, brand strategists, pitch deck consultants, venture studios, accelerator mentors, community facilitators, and AI workflow consultants. For each category: define the referral trigger, what problem they see first, how my cockpit complements them without competing, and a first partnership message.`,
+  },
+  {
+    label: "Community matching",
+    hint: "Find where member data can unlock collaboration.",
+    prompt: `Use web search/deep research. Identify communities where a uniqueness scanner + consent-based member data layer + collaborative AI matchmaking would create obvious value. Look for communities with high-agency members, unused collaboration potential, many founders/creators/operators, and weak existing member-discovery systems. Return 30 community types or specific communities, the pain they already feel, what data they lack, what collaboration outcome they want, and the best pilot offer.`,
+  },
+];
+
+function AttentionSurfacePromptsSection() {
+  const copyPrompt = async (prompt: string, label: string) => {
+    try {
+      await navigator.clipboard.writeText(prompt);
+      sonnerToast.success(`${label} prompt copied`);
+    } catch {
+      sonnerToast.error("Could not copy prompt");
+    }
+  };
+
+  return (
+    <section className="rounded-2xl px-6 py-6" style={cardSurface}>
+      <div className="flex items-start gap-3">
+        <div
+          className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(184,134,11,0.18), rgba(255,255,255,0.55))",
+            border:
+              "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.08))",
+          }}
+        >
+          <Search size={16} style={{ color: "var(--skin-accent-gold, #b8860b)" }} />
+        </div>
+        <div>
+          <h2 style={sectionTitleStyle}>Attention surface prompts</h2>
+          <p
+            className="italic mt-1.5 mb-4"
+            style={{
+              fontFamily: "'Source Serif 4', serif",
+              fontSize: "13.5px",
+              color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+            }}
+          >
+            Copy a research prompt into an AI with web or deep research. Each prompt finds a live surface where the cockpit can meet the right people.
+          </p>
+        </div>
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {ATTENTION_SURFACE_PROMPTS.map((item) => (
+          <button
+            key={item.label}
+            type="button"
+            onClick={() => copyPrompt(item.prompt, item.label)}
+            className="group rounded-xl px-4 py-4 text-left transition-all duration-200 hover:translate-y-[-1px]"
+            style={{
+              background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
+              border:
+                "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.08))",
+            }}
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <div
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontSize: "18px",
+                    fontWeight: 600,
+                    color: "var(--skin-text-primary, #0b2a5a)",
+                  }}
+                >
+                  {item.label}
+                </div>
+                <div
+                  className="mt-1 italic"
+                  style={{
+                    fontFamily: "'Source Serif 4', serif",
+                    fontSize: "12.5px",
+                    lineHeight: 1.45,
+                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
+                  }}
+                >
+                  {item.hint}
+                </div>
+              </div>
+              <Clipboard
+                size={15}
+                className="mt-1 shrink-0 opacity-55 transition-opacity group-hover:opacity-90"
+                style={{ color: "var(--skin-accent-gold, #b8860b)" }}
+              />
+            </div>
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────
 // Page
 // ─────────────────────────────────────────────────────────────────────
 
@@ -1887,6 +2013,8 @@ function AdminPageInner() {
           <CrmOverlaySection />
           <Ornament className="my-2" />
           <SpecializedAdminLinksSection />
+          <Ornament className="my-2" />
+          <AttentionSurfacePromptsSection />
         </>
       )}
     </div>

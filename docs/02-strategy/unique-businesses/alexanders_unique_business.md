@@ -1583,6 +1583,53 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 
 ---
 
+#### v3.3 Living Project Tribe · July 1, 2026 — Founders Whose Project Has a Life of Its Own
+
+> **Status:** New high-resonance tribe lens downstream of the Living Project Holograph / Founder Life's Work Navigation discovery. Additive to v3.1-v3.2; does not replace them.
+
+**Core recognition trigger:**
+
+> The project has a life of its own.
+
+**Tribe synthesis:**
+
+Founders whose main project has stopped feeling like a business idea and started feeling like a living assignment: it changes them, teaches them, pressures them, mirrors them, and asks to be navigated with the same seriousness as a hero's journey.
+
+**Vivid phenomenology:**
+
+They cannot cleanly separate "business strategy" from "who I am becoming." Their work pulls on their relationships, nervous system, money patterns, courage, visibility, voice, discipline, faith, ambition, and shadow. They are not merely trying to ship a product; they are trying to stay truthful enough for the product to be born through them without getting distorted by fear, hustle, ego, or market noise.
+
+They have too many moving parts in their head: conversations, signs, ideas, offers, possible partners, half-open doors, strategic intuitions, money pressures, relationship threads, moments of synchronicity, sudden clarity, sudden resistance. Normal tools flatten all of this into tasks and pipelines, so the aliveness disappears. But inside them, they know the aliveness is the actual signal.
+
+**What they say or feel:**
+
+- "This is bigger than me, but it is clearly coming through me."
+- "I know there is a pattern here, but I can't hold the whole thing at once."
+- "My business keeps teaching me what I need to become."
+- "I don't need another productivity app. I need to understand what is actually happening."
+- "I can feel the next move when I stop forcing it."
+- "The project has a life of its own."
+
+**Anti-tribe / polarity:**
+
+They are repelled by cold hustle machinery and also suspicious of vague spiritual business language. They need both: the sacred seriousness of a life's work and the operational rigor of a founder building something real.
+
+**Relationship field signal:**
+
+The more a founder lives here, the more aligned the field feels: ease, spaciousness, ocean speaking to ocean, the work recognizing itself through two vessels. The highest-fit conversations feel less like persuasion and more like mutual recognition of a living project already asking to be navigated.
+
+**Product implication:**
+
+This tribe does not primarily need another tool to manage a business. They need a cockpit / пульт управления / navigation system for the living relationship between founder and life's work: a way to see the project's architecture, energy exchanges, timing, bottlenecks, growth drivers, ripe relationships, and next high-leverage moves.
+
+**Copy seed:**
+
+> You feel your main project has a life of its own?
+>
+> Get a cockpit for your life's work.
+
+---
+
 *Version: v2.2 · Feb 20, 2026 — forged from Alexander's lived experience across all 3 segments*
 
 > **Validation marker:** Alexander IS all three segments. Gets emotional reading them. If the founder who forged the myth can feel each segment in his bones, the tribe definition has signal.

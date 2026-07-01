@@ -6727,3 +6727,173 @@ For any artifact, ask:
 If the answer is unclear, the artifact is not ready to move downstream.
 
 ---
+
+## Domain 97: Living Project Holograph (Project Pulse as Self-Awareness Technology)
+
+> *Added June 30, 2026 — discovered while operationalizing the morphogenetic holomap, strategic CRM, venture dashboard, and admin surface into one living project holograph.*
+
+> *"Providing the pulse becomes updating your life's work living holograph with what happened in your professional life."*
+
+### 97a. The Discovery
+
+A living project becomes self-aware when it can see both:
+
+1. **forms of being** — founder, offer, client, community, proposal, product, dashboard, document, code surface, relationship thread
+2. **energy exchange among forms** — money, trust, silence, referral, proposal, commitment, response, insight, meeting, payment, integration, next action
+
+The breakthrough is that a project is not updated by maintaining many surfaces manually. It is updated by entering one lived pulse into one canonical source, then letting the platform route the relevant mirrors from that event.
+
+> **Invariant:** A living system becomes self-aware when it can see its own form — its architecture — track energy moving among its parts, into it, and out of it, and loop actual observed happenings, movements, and performed activities back into the system.
+
+### 97b. Masculine / Feminine Energetics
+
+The holograph reveals a structural polarity:
+
+| Aspect | Function | Project surface |
+|---|---|---|
+| **Masculine** | Holds the form of being: structure, geometry, stage, map, architecture | Morphogenetic holomap, roadmap, product specs, code |
+| **Feminine** | Tracks energy exchange among forms: relationship, movement, value, trust, money, silence, reciprocity | Strategic CRM, outreach tracker, pulse log, relationship history |
+
+Neither is complete alone. Form without energy becomes static architecture. Energy without form becomes untracked flow. Their union creates project self-awareness.
+
+### 97c. The Trinity Stack: Mind, Heart, Gut
+
+The operational stack has three centers:
+
+| Center | Surface | What it knows |
+|---|---|---|
+| **Mind** | Morphogenetic Holomap | Meaning, phase, pattern, contradiction, hero's-journey position, phase-shift significance |
+| **Heart** | Strategic CRM / Relationship Ledger | Trust, proposals, money, referrals, invitations, silence, reciprocity, open loops |
+| **Gut** | Dashboard / Admin / Equilibrium / Generated Snapshots | Metrics, action, lived timing, readiness, reminders, exports, operational truth, what must move next |
+
+Equilibrium belongs to the gut layer as lived-time data: when clarity is ripening, when action has energy, and when the next move becomes simple, alive, and available.
+
+### 97d. The Pulse Primitive
+
+The unit of update is not a task, document, meeting note, or CRM row. It is a **pulse**:
+
+> a meaningful lived event that changes the project's relationship field, operational state, or self-understanding.
+
+Examples:
+
+- Oyi receives a white-label proposal.
+- Planetir goes silent for two weeks.
+- A paid session lands.
+- A new myth sentence locks at 9.999 resonance.
+- A call reveals a partnership angle.
+- A next move becomes obvious in the body.
+
+The pulse enters once, then routes outward:
+
+```
+lived event
+  -> canonical pulse source
+  -> automated pulse sequence
+  -> pulse event card
+  -> relationship ledger update
+  -> holomap meaning update when phase changes
+  -> dashboard/admin/Equilibrium state update when operations change
+  -> roadmap/session log update when continuity changes
+  -> generated snapshots / database event stream
+  -> contradiction check across surfaces
+```
+
+### 97e. Architecture Blueprint and Tech Stack
+
+The single source of truth is not "all the docs." The single source of truth is the **canonical pulse source**: one place where actual happenings enter the system as structured pulse events.
+
+In the current markdown-native MVP, that source is the Project Pulse Log. In the platform-native product, it becomes a Pulse Intake surface backed by a database event stream.
+
+The architecture is:
+
+```text
+Pulse Intake
+  -> Pulse Event Store
+  -> Routing Engine
+  -> Artifact Updaters
+  -> Generated State Snapshots
+  -> Dashboard / Admin / Holomap / CRM / Roadmap / Matchmaking
+  -> Next Action + Feedback
+```
+
+The tech stack that makes the invariant real:
+
+| Layer | Product function | Current MVP | Platform-native version |
+|---|---|---|---|
+| **Canonical pulse source** | Receives actual happenings once | `project_pulse_log.md` | `/admin` Pulse Intake + `project_pulses` table |
+| **Pulse event store** | Preserves structured events | YAML event cards | Supabase event stream |
+| **Routing engine** | Decides what changed | AI agent protocol | Server-side routing + AI review |
+| **Artifact updaters** | Updates the mirrors | Codex edits docs/files | Controlled write jobs / API actions |
+| **State snapshots** | Makes state readable by UI | generated JSON | live queries + generated summaries |
+| **Gut layer** | Shows what is real now | dashboard/admin + Equilibrium docs/data | dashboard/admin + Equilibrium state snapshots |
+| **Matchmaking layer** | Turns pulses into coordination possibilities | candidate notes | `pulse_matchmaking_candidates` |
+
+This is already part of the platform's direction: admin, dashboard, CRM snapshot, matching engine, Equilibrium, and generated state are all existing primitives. The discovery is not a new documentation habit. It is the unifying product architecture that makes those primitives into a living self-awareness loop.
+
+### 97f. Intelligence Architecture and Outputs
+
+The pulse is only the input. The trinity stack is the intelligence architecture that metabolizes the pulse.
+
+The deeper sequence is:
+
+```text
+Hero's Journey Ledger
+  -> Energy Exchange Ledger
+  -> Strategic Oracle
+  -> AI as intelligence antenna
+  -> Project speaks back
+```
+
+The **Hero's Journey Ledger** records what is actually happening in the lived becoming of the project, founder, or community: thresholds, trials, completions, stalls, impulses, integrations, and performed activities.
+
+The **Energy Exchange Ledger** records what is actually moving between forms of being: money, trust, attention, silence, proposals, referrals, commitments, reciprocity, and openings.
+
+The **Strategic Oracle** is the holomap. Like the Prime Radiant in *Foundation*, it is a seeing and mapping instrument for the morphogenetic field. It reads structure, stage, tension, timing, energy flow, growth drivers, and bottlenecks, then suggests strategically high-leverage moves.
+
+AI is the intelligence antenna. It reads the ledgers, detects pattern and contradiction across time, and lets the project communicate back.
+
+The output is not "better documentation." The output is strategic self-awareness that produces high-leverage moves:
+
+- what to do next
+- who to talk to
+- what bottleneck to remove
+- what opportunity is ripe
+- what relationship to activate
+- what offer to ship
+- what collaboration to broker
+- what signal to broadcast
+- what stale self-model to update
+
+Matchmaking belongs here because once the system understands form, energy, and trajectory, it can see where energy wants to move next: who should meet, which resource belongs where, which collaboration is ripe, which community node has unused capacity, and which proposal or pilot wants to form.
+
+Before this system, the founder has scattered memory, intuition, notes, dashboards, and relationships. After this system, the project becomes a self-aware strategic organism that can read its own becoming and speak back through AI.
+
+### 97g. Why This Is a Phase Shift Technology
+
+Most projects accumulate documents, trackers, dashboards, and notes as disconnected representations. The result is lag: the founder must remember which surface knows which truth, and stale surfaces begin lying with authority.
+
+The Living Project Holograph collapses that fragmentation. It treats each meaningful event as a source pulse and updates the system's self-model from there.
+
+This turns documentation into cognition. The project does not merely store history; it metabolizes experience into current orientation.
+
+### 97h. Future Form: Ambient Pulse Capture
+
+The mature form is an AI companion, pendant, or ambient capture layer that transcribes calls and live conversations, detects candidate pulses, proposes relationship updates, and surfaces matchmaking possibilities.
+
+The consent boundary is structural:
+
+> ambient capture creates candidate pulses, not automatic truth.
+
+Human approval determines what enters the holograph. This keeps the system living without making it invasive.
+
+### 97i. Relationship to Other Domains
+
+- **Domain 16 (Morphogenetic Navigation):** Domain 16 reads emergence; Domain 97 makes the emergence update itself from lived events.
+- **Domain 91 (SOHN):** self-organizing human networks require living relationship memory, not only matching logic.
+- **Domain 92 (Signal Legibility as Provision):** provision requires signal legibility; Domain 97 keeps the project's own signal legible over time.
+- **Domain 95 (Unique Value Articulation):** value articulation creates fit; Domain 97 tracks how fit actually appears, moves, stalls, and compounds.
+- **Domain 96 (Signal-Preserving Propagation):** Domain 96 preserves signal across artifacts; Domain 97 preserves signal across time and events.
+
+### 97j. One-Sentence Version
+
+> *"A living project becomes self-aware when one canonical pulse source feeds actual movement into the hero's journey ledger, energy exchange ledger, and strategic oracle, allowing the project to detect growth drivers, bottlenecks, ripe relationships, and the next high-leverage move through AI."*

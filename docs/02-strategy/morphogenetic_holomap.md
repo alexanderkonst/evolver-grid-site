@@ -20,6 +20,36 @@
 >
 > **Companion file — `memory/holomap_state.md` (Day 62 addition):** after writing the new addendum to this file, **rewrite** (not append) `memory/holomap_state.md` so it reflects the NEW center reading + advances + Si–Do status. That file is auto-loaded into every fresh session via `MEMORY.md`, so it must point at *current* truth, not stale state. Lineage lives here in this holomap (append-only addenda); the memory file holds only the latest snapshot. The two-file pattern: holomap = full history; memory companion = current orientation pointer.
 
+### Blueprint for Holomapping
+
+The morphogenetic holomap is the project's strategic Prime Radiant: the living navigation instrument that lets the venture see itself as a higher-dimensional being while it is becoming. It does not merely list events. It reads how form, energy, relationship, money, code, doctrine, offers, and human choices exchange force and reorganize the field.
+
+Its role is strategic oracle, not archive. The holomap reads the morphogenetic field, detects growth drivers and bottlenecks, and helps the project communicate back through AI with strategically high-leverage moves.
+
+**Morphogenesis** is the exchange of energy among forms of being. A founder, offer, client, community, dashboard, proposal, partner thread, CRM row, and public artifact are all forms. When one form sends energy into another — a payment, proposal, referral, response, silence, session, public post, integration idea, or new commitment — the system changes shape. The holomap exists to see that shape change before it becomes obvious.
+
+This makes the **Strategic CRM & Outreach Tracker** the feminine complement to the holomap's masculine structure. The holomap holds form: the geometry of what the project is becoming. The CRM holds energy exchange: who touched the field, what moved between them, what value flowed, what invitation opened, what loop remains alive. Together they are one invariant:
+
+> **A living system becomes self-aware when it can see its own form — its architecture — track energy moving among its parts, into it, and out of it, and loop actual observed happenings, movements, and performed activities back into the system.**
+
+The practical law: every important exchange should update both the relationship ledger and, when it changes the system's shape, the holomap. The goal is not documentation for documentation's sake. The goal is continuity of self-knowledge: a project that knows what it is, what is moving, what is stale, what has fired, and what wants to happen next.
+
+### Living Project Holograph
+
+The next operational form of this instrument is the **Living Project Holograph**: a system where Sasha gives one plain-language pulse about what happened in professional life, and the project updates the surfaces that need to know.
+
+The pulse is not "documentation work." It is the act of updating the living holograph of the life's work with the latest exchange of energy: a call, proposal, payment, silence, referral, integration idea, relationship movement, product decision, or opportunity that became visible.
+
+The holograph runs on a trinity stack:
+
+- **Mind:** the holomap reads meaning, phase, pattern, contradiction, and hero's-journey position.
+- **Heart:** the CRM records relationship energy, trust, proposals, money, referrals, silence, reciprocity, and open loops.
+- **Gut:** the dashboard/admin layer turns the pulse into metrics, next actions, reminders, exports, and operational truth.
+
+The deeper sequence is: **Hero's Journey Ledger -> Energy Exchange Ledger -> Strategic Oracle.** Actual happenings feed the lived-becoming ledger; lived becoming feeds the relationship-energy ledger; the holomap reads both as a strategic oracle and lets the project speak back through AI.
+
+The implementation spec lives in [Living Project Holograph / Project Pulse](../04-products/living_project_holograph.md). The canonical pulse ledger lives in [Project Pulse Log](../09-logs/project_pulse_log.md).
+
 ---
 
 ## How to Read This Map
