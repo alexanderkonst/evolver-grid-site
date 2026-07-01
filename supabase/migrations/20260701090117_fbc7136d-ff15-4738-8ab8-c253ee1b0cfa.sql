@@ -1,0 +1,1 @@
+DELETE FROM public.nurture_email_queue WHERE id='046c948e-3085-44c5-9819-c18c5aba86e9';
