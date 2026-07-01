@@ -20,6 +20,7 @@ import { SkinProvider } from "@/contexts/SkinContext";
 import SkinPreview from "./pages/SkinPreview";
 import HeroQuiz from "./pages/HeroQuiz";
 import ProposalForWeGoodOvaHere from "./pages/ProposalForWeGoodOvaHere";
+import CockpitLanding from "./pages/CockpitLanding";
 import PreviewBanner from "@/components/skin/PreviewBanner";
 import NSScopeLock from "@/components/skin/NSScopeLock";
 import DaouniverseScopeLock from "@/components/skin/DaouniverseScopeLock";
@@ -418,6 +419,7 @@ const App = () => (
                   {/* ══════ PUBLIC ROUTES (no login required) ══════ */}
                   <Route path="/" element={<JourneyPage />} />
                   <Route path="/hero" element={<HeroQuiz />} />
+                  <Route path="/cockpit" element={<CockpitLanding />} />
                   <Route path="/proposalforwegoodovahere" element={<ProposalForWeGoodOvaHere />} />
                   <Route path="/zone-of-genius" element={<ZoneOfGeniusEntry />} />
                   <Route path="/auth" element={<Auth />} />

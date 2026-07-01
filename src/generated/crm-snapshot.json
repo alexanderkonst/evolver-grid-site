@@ -1,9 +1,10 @@
 {
-  "generated_at": "2026-06-30T21:07:46.117Z",
-  "version": "v3.8",
+  "generated_at": "2026-07-01T08:22:30.183Z",
+  "version": "v3.9",
   "contactsCount": 28,
   "stageDistribution": {
-    "Build": 4,
+    "Proposal sent": 1,
+    "Build": 3,
     "Naming done": 1,
     "Agreement removed": 2,
     "Session 1 Complete": 1,
@@ -18,7 +19,8 @@
   },
   "segmentDistribution": {
     "CLIENT": 8,
-    "BRIDGE": 2,
+    "BRIDGE": 3,
+    "COMMUNITY-PILOT": 1,
     "PAUSED": 2,
     "NODE": 1,
     "COLLABORATOR": 5,

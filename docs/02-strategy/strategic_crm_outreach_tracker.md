@@ -5,7 +5,7 @@
 > **Export:** This table can be imported to Notion as CSV when ready.
 > **Merged from:** `docs/09-logs/broadcast_tracker.md` + `docs/02-strategy/tribe_outreach_tracker.md` on 2026-06-26.
 >
-> *Last updated: 2026-06-26 · GTM/proto-CRM refresh. Planetir moved to waiting/no-nudge after ~2 weeks MIA on pilot design-session idea. Karime-referral follow-up strategy reset: Patricia + Chris get a 45-min exploratory/diagnostic call invite, with the call designed to diagnose, reflect hidden variables, sketch the path, and offer a concrete paid container. Roman/Raman and Nia added as current paid-client signals. New GTM lanes captured: Reddit posts, targeted LinkedIn reachout, investor/pitch-deck thread, and ask Fadim how Karime structures exploratory calls.*
+> *Last updated: 2026-06-30 · WeGoodOvaHere proposal sent to Oyi. The Oyi thread has moved from gratitude/client/build relationship into the first concrete white-label community-node proposal: uniqueness scanner + precision profile builder + consent-based member data layer + collaborative AI matchmaking for WeGoodOvaHere. This is a major community-pilot signal because it translates the platform from individual clarity into community intelligence infrastructure.*
 
 ---
 
@@ -19,6 +19,7 @@
 | `COLLABORATOR` | — | Peer builder. Wants to co-create, license, or integrate |
 | `ECOSYSTEM` | — | Building parallel projects. Potential modular integration |
 | `BRIDGE` | — | Refers others. Frequency translator between rings |
+| `COMMUNITY-PILOT` | — | Community-holder relationship where the scanner/data/matching layer may become a white-label node |
 | `PAST-ZOG` | — | Took ZoG before. Re-engagement through video note |
 | `ORIGINAL` | — | Early supporter / community member |
 | `BUILDER` | — | Builder/operator/founder who wants compressed founder-market fit, leverage, and business clarity |
@@ -31,7 +32,7 @@
 
 | # | Name | Segment | Stage | Container | Sessions | Agreement | Paid | Pending | Channel | Last Contact | Notes |
 |---|------|---------|-------|-----------|----------|-----------|------|---------|---------|--------------|-------|
-| 1 | **Oyi** | `CLIENT` | Build | The Build (deep, mid-stage) | 5+ | Gratitude-based | **$1,385** | — | ? | Apr 20 | All artifacts 9.9+. Mirror Session blueprinted. **Cash: $566 ($50 initial + $516 gift Apr 8). In-kind: $819 ($500 Mexico Apr 13 + $319 five gifts Apr 20).** Mexico intensive delivered Apr 14-17. |
+| 1 | **Oyi / WeGoodOvaHere** | `CLIENT` `BRIDGE` `COMMUNITY-PILOT` | Proposal sent | White-label community node | 5+ | Gratitude-based + proposal: $1,500 setup, $75/mo platform access, revenue share | **$1,385** | Proposal pending | WhatsApp / proposal page | Jun 30 | All artifacts 9.9+. Mirror Session blueprinted. **Cash: $566 ($50 initial + $516 gift Apr 8). In-kind: $819 ($500 Mexico Apr 13 + $319 five gifts Apr 20).** Mexico intensive delivered Apr 14-17. **Jun 30:** proposal sent for a WeGoodOvaHere branded uniqueness scanner, precision profile builder, deep/member data layer, consent-based community dashboard, Go High Level import, and collaborative AI matchmaking layer. This is the first concrete white-label ecosystem node proposal. |
 | 2 | **Sergey** | `CLIENT` | Build | The Build (advanced) | 5 | $277 rev share from first paid client | **$0** | $277 | Telegram | Mar | Product Kernel v1.0 (Мультиварка). 3 gift sessions delivered. Workflow handoff done. **Boundary: 3 paid sessions** |
 | 3 | **Sandra** | `CLIENT` | Build | The Build (early-stage) | ~6 | Rev share TBD — **she asked, needs answer** | **$0** | ⚠️ TBD | ? | Mar | Uniqueness + myth + tribe landed. Pain in progress. **Rec: 33% с первых $10K** |
 | 4 | **Karime** | `CLIENT` `BRIDGE` | Build | The Build (active — deep) | 3 | Gratitude → transitioning | **$111** | — | WhatsApp | Apr 10 | Active bridge (refers Chris + Patricia + Oluwa). $111 donation Apr 7. **Session #3 completed Apr 9 — 216 min, MASSIVE. Heartbreak Mechanism discovered. Uniqueness v1.1 scored 9.7, Shadow v1.2 scored 9.4. Myth + Tribe rewritten (v1.2 — heartbreak/steel). Asymptotic precision principle landed.** Co-creator energy |
@@ -75,6 +76,7 @@
 | T2-5 | **William Blakey** | Ecosystem holder (Club DAO Universe + Starseed Village) | White-label skin / community pilot | ✅ Skin sent (date TBD) | ⏳ Ignored, no reply so far | Custom white-label skin built for his community, live at `/daouniverse`. Learning: skin sent without warm relational opener is easy to ignore. Test warm relational re-open vs. cold skin-drop. Confirm send date. |
 | T2-6 | **Neerja Bharti** (GeniusMesh) | B2B talent-intelligence operator / network-holder | Collaboration / enterprise channel | ✅ Sent 2026-05-29 (Day 87), awaiting reply | Inbound via newsletter | Thesis-aligned: talent intelligence > AI; talent map > org chart. Her 12k+ Executive MBA network makes her a community-pilot candidate, not just a channel. Message positions Sasha as the precise per-person signal underneath her talent map. |
 | T2-7 | **Геннадий Мутасов** (@mutasov) | Peer collaborator + audience-holder | Collaboration / channel | 🟡 Reply drafted 2026-05-29, not yet sent | In conversation | Creative producer, ex-GQ / Condé Nast / GEO editor, 30.7K IG. Warm reply asked: tried it? do you talk about it? results? Draft answers those and hooks into his "как подступиться к потенциалу" audience use case. |
+| T2-8 | **Oyi / WeGoodOvaHere** | Community-holder / first-node candidate | White-label community node | ✅ Proposal sent 2026-06-30 | 🟡 Awaiting response / call | Concrete offer: $1,500 setup + $75/mo for a WeGoodOvaHere branded scanner, precision profile builder, deep data layer, community leader dashboard, Go High Level import, built-in campaign layer, 100 included scans + 10/month thereafter, 90%/10% digital-product revenue share, 33% human-led container referral share. Strategic meaning: first real test of community-scale professional clarity infrastructure. |
 
 ---
 
@@ -194,7 +196,7 @@ Aleksandr
 - [ ] **Taylor:** Checkpoint conversation. "У нас есть соглашение. Давай профессионально или фиксируем паузу"
 - [ ] **Tracy:** Same checkpoint conversation
 - [ ] **Sergey:** Обозначить границу Build (3 paid sessions)
-- [ ] **Oyi:** Мексика — определить формат intensive (arriving Mon Apr 14)
+- [ ] **Oyi / WeGoodOvaHere:** Follow up on the white-label community-node proposal after he has had time to read it; next move is a clear yes/no/modify conversation, not more abstract strategy.
 - [ ] **Roso + Cori:** Предложить демо-сессию каждому
 - [ ] **Instagram Creator switch** — 30 сек
 - [ ] **Original Truth Rebels** — разослать ссылку на фаннел
@@ -419,3 +421,5 @@ prospect -> dm_sent -> responded -> booking -> ignited -> building -> alumni -> 
 *CRM v3.7 — June 26, 2026 · GTM refresh from current client signals. Nia recorded as $555 paid workshop; Roman/Raman recorded as $20 gratitude payment + likely in-person intensive prospect. Patricia + Chris moved to re-engagement with 45-min exploratory/diagnostic call invite. Planetir remains strategic but waiting/no-nudge. Sales-learning captured: exploratory calls should diagnose + reflect + draw path + offer a concrete paid container, not over-deliver the full transformation. Revenue discrepancy resolved: strict received value is $2,271; tracked relationship revenue including Sergey's $277 contract is $2,548.*
 
 *CRM v3.8 — June 26, 2026 · Source/referral tracking made explicit as a proto-schema for the future referral system. Raman/Roman source corrected to organic LinkedIn profile discovery: he stumbled upon Sasha's profile, then the conversation opened from there. This is tracked as evidence of inbound field response, distinct from direct outbound or referral-led channels.*
+
+*CRM v3.9 — June 30, 2026 · WeGoodOvaHere proposal sent to Oyi. The first concrete white-label community-node offer exists: scanner + precision profile builder + deep data layer + consent-based community intelligence + collaborative AI matchmaking + admin/export/campaign layer. This upgrades the Oyi relationship from client/bridge into a potential community infrastructure pilot.*

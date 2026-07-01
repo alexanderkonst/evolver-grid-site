@@ -124,6 +124,18 @@ docs/
 
 ---
 
+## 🧭 04-products (Product Instruments)
+
+*Living products and product-level specs.*
+
+| Doc | Purpose |
+|-----|---------|
+| [equilibrium_user_manual.md](./04-products/equilibrium_user_manual.md) | Equilibrium user manual — biological time OS |
+| [morphogenetic_navigation.md](./04-products/morphogenetic_navigation.md) | Morphogenetic navigation — 27-perspective venture navigation instrument |
+| [living_project_holograph.md](./04-products/living_project_holograph.md) | Living Project Holograph / Project Pulse — one lived event enters once, every relevant mirror updates from it |
+
+---
+
 ## ⚙️ 04-workflows (Standard Operating Procedures)
 
 *How we execute repeatable tasks — step-by-step SOPs.*
