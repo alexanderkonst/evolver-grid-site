@@ -246,7 +246,7 @@ serve(async (req) => {
               <div style="margin: 0; padding: 0; background: #ffffff;">
                 <div style="font-family: Arial, Helvetica, sans-serif; max-width: 560px; margin: 0 auto; background: #ffffff; color: #111827; padding: 34px 22px 28px 22px;">
                   <p style="font-size: 16px; line-height: 1.65; color: #111827; margin: 0 0 16px 0;">
-                    Your <span style="background: #eaff00; color: #111827; padding: 0 4px;">Top Talent profile is saved</span>.
+                    Your Top Talent profile is saved.
                   </p>
                   <p style="font-size: 16px; line-height: 1.65; color: #111827; margin: 0 0 16px 0;">
                     Open it any time.
