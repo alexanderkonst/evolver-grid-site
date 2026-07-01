@@ -315,6 +315,7 @@ const SPACE_SECTIONS: SpaceSections = {
             // JOURNEY when the funnel reshaped into matching-as-hero;
             // their existing routes resolve unchanged.
             // Spec: docs/specs/funnel-v2/funnel-v2_product_spec.md §4.3.
+            { id: "founder-cockpit", label: "Founder Cockpit",                  path: "/cockpit" },
             { id: "ubb-v2",           label: "Automated Venture Builder",         path: "/ubb" },
             { id: "build-path",       label: "The path to your unique business", path: "/path" },
             { id: "build-playbook",   label: "Take the exact playbook",           path: "/playbook" },
@@ -415,6 +416,7 @@ export const STATIC_LABEL_KEYS: Record<string, { label: string; lockedHint?: str
         lockedHint: "rail.collaborate.missionGroups.lockedHint",
     },
     // BUILD space
+    "founder-cockpit": { label: "rail.build.founderCockpit.label" },
     "ubb-v2": { label: "rail.build.avb.label" },
     "build-path": { label: "rail.build.path.label" },
     "build-playbook": { label: "rail.build.playbook.label" },
