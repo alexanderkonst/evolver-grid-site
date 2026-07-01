@@ -210,6 +210,12 @@ Codex turns it into a Pulse Event Card, appends it to [Project Pulse Log](../09-
 
 This phase is ready now.
 
+### Current Product Surface — Founder Cockpit
+
+`/cockpit` is the public front-door for Founder Life's Work Navigation and now lives inside the GameShell `BUILD` space as **Founder Cockpit**.
+
+This matters because the cockpit is not a detached marketing page. It is a BUILD instrument: a founder-facing place where the life-work project can be seen as one living system rather than scattered strategy, relationships, opportunities, and next moves.
+
 ### Phase 2 — Generated Pulse Snapshot
 
 The build already includes a script that reads the pulse log and generates:

@@ -226,6 +226,60 @@ serve(async (req) => {
     // (set by the trigger that creates the row). One link, no expiry, no
     // session creation. UTM tags so we can attribute returning traffic.
     const resultUrl = `${SITE_URL}/zone-of-genius?result=${encodeURIComponent(accessToken)}&utm_source=email&utm_medium=deposit_slip&utm_campaign=top_talent_save`;
+    const savedResultEmailHtml = `
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light only">
+    <meta name="supported-color-schemes" content="light only">
+    <style>
+      :root { color-scheme: light only; supported-color-schemes: light only; }
+      body, table, td, p, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+      table { border-collapse: collapse; }
+      @media screen and (max-width: 600px) {
+        .container { width: 100% !important; }
+        .content { padding: 28px 22px !important; }
+        .headline { font-size: 26px !important; line-height: 1.18 !important; }
+        .body-copy { font-size: 16px !important; line-height: 1.6 !important; }
+        .button-link { display: block !important; }
+      }
+    </style>
+  </head>
+  <body style="margin:0; padding:0; background-color:#f7f1e6;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#f7f1e6" style="width:100%; background-color:#f7f1e6; margin:0; padding:0;">
+      <tr>
+        <td align="center" style="padding:28px 14px;">
+          <table role="presentation" class="container" width="560" cellpadding="0" cellspacing="0" bgcolor="#fffaf0" style="width:560px; max-width:560px; background-color:#fffaf0; border:1px solid #eadfca; border-radius:12px;">
+            <tr>
+              <td class="content" style="padding:38px 34px; font-family:Arial, Helvetica, sans-serif; color:#111827;">
+                <p class="headline" style="font-family:Arial, Helvetica, sans-serif; font-size:30px; line-height:1.18; color:#111827; font-weight:700; margin:0 0 24px 0;">Your Top Talent is saved</p>
+                <p class="body-copy" style="font-family:Arial, Helvetica, sans-serif; font-size:16px; line-height:1.65; color:#111827; margin:0 0 16px 0;">Your Top Talent profile is ready.</p>
+                <p class="body-copy" style="font-family:Arial, Helvetica, sans-serif; font-size:16px; line-height:1.65; color:#111827; margin:0 0 16px 0;">We saved it so it does not disappear.</p>
+                <table role="presentation" cellpadding="0" cellspacing="0" style="margin:24px 0 22px 0;">
+                  <tr>
+                    <td bgcolor="#111827" style="border-radius:999px; background-color:#111827;">
+                      <a class="button-link" href="${resultUrl}" style="display:inline-block; padding:14px 22px; border-radius:999px; border:1px solid #111827; background-color:#111827; color:#ffffff; font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:1.2; font-weight:700; text-decoration:none;">Open my saved result</a>
+                    </td>
+                  </tr>
+                </table>
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:34px; border-top:1px solid #e4d7bd;">
+                  <tr>
+                    <td style="padding-top:18px; font-family:Arial, Helvetica, sans-serif;">
+                      <a href="${SITE_URL}" style="color:#6b7280; font-size:13px; line-height:1.5; text-decoration:none;">Find Your Top Talent</a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+    `;
 
     if (RESEND_API_KEY) {
       try {
@@ -242,24 +296,7 @@ serve(async (req) => {
             // teaser. Preserves the curiosity hook so the return click
             // is the moment of recognition, not the inbox preview.
             subject: "Your Top Talent — saved",
-            html: `
-              <div style="margin: 0; padding: 0; background: #ffffff;">
-                <div style="font-family: Arial, Helvetica, sans-serif; max-width: 560px; margin: 0 auto; background: #ffffff; color: #111827; padding: 34px 22px 28px 22px;">
-                  <p style="font-size: 16px; line-height: 1.65; color: #111827; margin: 0 0 16px 0;">
-                    Your Top Talent profile is saved.
-                  </p>
-                  <p style="font-size: 16px; line-height: 1.65; color: #111827; margin: 0 0 16px 0;">
-                    Open it any time.
-                  </p>
-                  <p style="font-size: 16px; line-height: 1.65; margin: 22px 0 20px 0;">
-                    <a href="${resultUrl}" style="background: #eaff00; color: #111827; font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; padding: 2px 5px;">Open my saved result</a>
-                  </p>
-                  <div style="margin-top: 34px; padding-top: 18px; border-top: 1px solid #e5e7eb;">
-                    <a href="${SITE_URL}" style="color: #6b7280; font-size: 12px; line-height: 1.5; text-decoration: none;">Find Your Top Talent</a>
-                  </div>
-                </div>
-              </div>
-            `,
+            html: savedResultEmailHtml,
           }),
         });
 

@@ -35,8 +35,9 @@ const escapeHtml = (unsafe: string): string =>
     .replace(/'/g, "&#039;");
 
 // ── Email renderers ────────────────────────────────────────────────
-// Clean note-style emails: white canvas, readable text, neon-yellow
-// highlighter CTA only. No founder signature.
+// Bulletproof table markup: email clients are hostile to modern CSS, and
+// Gmail/iOS dark mode can invert loose text/background styles. Keep the
+// email intentionally light, explicit, table-based, and CTA-as-button.
 
 type Payload = {
   archetype?: string;
@@ -49,34 +50,76 @@ type Payload = {
 };
 
 const baseShell = (inner: string, siteUrl: string) => `
-  <div style="margin: 0; padding: 0; background: #ffffff;">
-    <div style="font-family: Arial, Helvetica, sans-serif; max-width: 560px; margin: 0 auto; background: #ffffff; color: #111827; padding: 34px 22px 28px 22px;">
-      ${inner}
-      <div style="margin-top: 34px; padding-top: 18px; border-top: 1px solid #e5e7eb;">
-        <a href="${siteUrl}" style="color: #6b7280; font-size: 12px; line-height: 1.5; text-decoration: none;">Find Your Top Talent</a>
-      </div>
-    </div>
-  </div>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light only">
+    <meta name="supported-color-schemes" content="light only">
+    <style>
+      :root { color-scheme: light only; supported-color-schemes: light only; }
+      body, table, td, p, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+      table { border-collapse: collapse; }
+      @media screen and (max-width: 600px) {
+        .container { width: 100% !important; }
+        .content { padding: 28px 22px !important; }
+        .headline { font-size: 26px !important; line-height: 1.18 !important; }
+        .body-copy { font-size: 16px !important; line-height: 1.6 !important; }
+        .button-link { display: block !important; }
+      }
+    </style>
+  </head>
+  <body style="margin:0; padding:0; background-color:#f7f1e6;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#f7f1e6" style="width:100%; background-color:#f7f1e6; margin:0; padding:0;">
+      <tr>
+        <td align="center" style="padding:28px 14px;">
+          <table role="presentation" class="container" width="560" cellpadding="0" cellspacing="0" bgcolor="#fffaf0" style="width:560px; max-width:560px; background-color:#fffaf0; border:1px solid #eadfca; border-radius:12px;">
+            <tr>
+              <td class="content" style="padding:38px 34px; font-family:Arial, Helvetica, sans-serif; color:#111827;">
+                ${inner}
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:34px; border-top:1px solid #e4d7bd;">
+                  <tr>
+                    <td style="padding-top:18px; font-family:Arial, Helvetica, sans-serif;">
+                      <a href="${siteUrl}" style="color:#6b7280; font-size:13px; line-height:1.5; text-decoration:none;">Find Your Top Talent</a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
 `;
 
 const p = (copy: string) => `
-  <p style="font-size: 16px; line-height: 1.65; color: #111827; margin: 0 0 16px 0;">${copy}</p>
+  <p class="body-copy" style="font-family:Arial, Helvetica, sans-serif; font-size:16px; line-height:1.65; color:#111827; margin:0 0 16px 0;">${copy}</p>
 `;
 
 const quiet = (copy: string) => `
-  <p style="font-size: 13px; line-height: 1.6; color: #6b7280; margin: 20px 0 0 0;">${copy}</p>
+  <p style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:1.6; color:#6b7280; margin:20px 0 0 0;">${copy}</p>
 `;
 
 const cta = (href: string, copy: string) => `
-  <p style="font-size: 16px; line-height: 1.65; margin: 22px 0 20px 0;">
-    <a href="${href}" style="background: #eaff00; color: #111827; font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; padding: 2px 5px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">${copy}</a>
-  </p>
+  <table role="presentation" cellpadding="0" cellspacing="0" style="margin:24px 0 22px 0;">
+    <tr>
+      <td bgcolor="#111827" style="border-radius:999px; background-color:#111827;">
+        <a class="button-link" href="${href}" style="display:inline-block; padding:14px 22px; border-radius:999px; border:1px solid #111827; background-color:#111827; color:#ffffff; font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:1.2; font-weight:700; text-decoration:none;">
+          ${copy}
+        </a>
+      </td>
+    </tr>
+  </table>
 `;
 
 // Email 1 - Day 1 / 24h after result.
 const renderDay1 = (payload: Payload, magicLink: string, siteUrl: string) => {
   if (payload.claim_state === "unclaimed") {
     return baseShell(`
+      <p class="headline" style="font-family:Arial, Helvetica, sans-serif; font-size:30px; line-height:1.18; color:#111827; font-weight:700; margin:0 0 24px 0;">Your Top Talent result is waiting</p>
       ${p("Your Top Talent result is ready.")}
       ${p("We saved it so it does not disappear.")}
       ${cta(magicLink, "Open my Top Talent result")}
@@ -86,6 +129,7 @@ const renderDay1 = (payload: Payload, magicLink: string, siteUrl: string) => {
   }
 
   return baseShell(`
+    <p class="headline" style="font-family:Arial, Helvetica, sans-serif; font-size:30px; line-height:1.18; color:#111827; font-weight:700; margin:0 0 24px 0;">Your Top Talent has a deeper layer</p>
     ${p("Your Top Talent has a deeper layer.")}
     ${p(`The first reveal names the value you carry.`)}
     ${p("The deeper layer shows where it shines, where it gets blocked, what kinds of roles it is built for, and how it can be monetized.")}
@@ -99,6 +143,7 @@ const renderDay1 = (payload: Payload, magicLink: string, siteUrl: string) => {
 const renderDay2 = (payload: Payload, _magicLink: string, siteUrl: string) => {
   if (payload.claim_state === "unclaimed") {
     return baseShell(`
+      <p class="headline" style="font-family:Arial, Helvetica, sans-serif; font-size:30px; line-height:1.18; color:#111827; font-weight:700; margin:0 0 24px 0;">Your Top Talent result is still waiting</p>
       ${p("Your Top Talent result is still waiting.")}
       ${p(`We saved it so it does not disappear.`)}
       ${cta(_magicLink, "Open my Top Talent result")}
@@ -108,6 +153,7 @@ const renderDay2 = (payload: Payload, _magicLink: string, siteUrl: string) => {
 
   if (payload.intent === "business") {
     return baseShell(`
+      <p class="headline" style="font-family:Arial, Helvetica, sans-serif; font-size:30px; line-height:1.18; color:#111827; font-weight:700; margin:0 0 24px 0;">Turn your Top Talent into a business</p>
       ${p("Your Top Talent points toward monetization, but it still needs business structure on top of it.")}
       ${p(`The question is not "what could I do with this information?"`)}
       ${p("The question is: what is the clearest business direction to build from this unique value now?")}
@@ -117,6 +163,7 @@ const renderDay2 = (payload: Payload, _magicLink: string, siteUrl: string) => {
   }
 
   return baseShell(`
+    <p class="headline" style="font-family:Arial, Helvetica, sans-serif; font-size:30px; line-height:1.18; color:#111827; font-weight:700; margin:0 0 24px 0;">You named the value you carry</p>
     ${p(`You named the unique value you bring to any professional space.`)}
     ${p("But what is your career direction? What do you bring to the table?")}
     ${cta(`${siteUrl}/mission-discovery`, "Continue to mission discovery and resource mapping")}
