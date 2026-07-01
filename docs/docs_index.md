@@ -144,6 +144,12 @@ docs/
 |-----|---------|
 | [notebooklm_video_production.md](./04-workflows/notebooklm_video_production.md) | NotebookLM → Video → YouTube pipeline |
 
+### NotebookLM Exports
+
+| Doc | Purpose |
+|-----|---------|
+| [living_project_holograph_chat_export_2026-07-01.txt](./09-logs/notebooklm_exports/living_project_holograph_chat_export_2026-07-01.txt) | NotebookLM-ready source export for the Living Project Holograph / Founder Life's Work Navigation / Founder Cockpit discovery arc |
+
 ---
 
 ## 📋 05-specs (Module Specifications)
