@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
-import { Mail, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { localizedOrigin } from "@/i18n/localeScope";
 
@@ -180,13 +180,12 @@ const TopTalentAuthGate = ({
         ) : (
           <form onSubmit={handleSubmit} className="space-y-3">
             <div
-              className="flex items-center gap-2 rounded-full px-4 py-2.5"
+              className="flex items-center gap-3 rounded-full py-2.5 pl-5 pr-3"
               style={{
                 background: "var(--skin-input-fill, rgba(255,255,255,0.72))",
                 border: "1px solid var(--skin-hairline, rgba(26,30,58,0.14))",
               }}
             >
-              <Mail className="h-4 w-4 shrink-0 text-[rgba(122,81,8,0.76)]" />
               <input
                 type="email"
                 value={email}
