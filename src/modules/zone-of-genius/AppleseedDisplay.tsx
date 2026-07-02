@@ -495,7 +495,7 @@ const AppleseedDisplay = ({
                     own self-knowledge is the thing that matters, and a
                     re-take yielding different words is the proof that
                     their true essence stays their secret. */}
-                <div className="max-w-xl mx-auto px-4 pt-2 pb-4 text-center">
+                <div className="max-w-2xl mx-auto px-4 pt-2 pb-4 text-center space-y-4">
                     <p
                         className="text-xs uppercase tracking-[0.14em] mb-2"
                         style={{ color: "var(--skin-text-muted, #6b7280)" }}
@@ -522,6 +522,44 @@ const AppleseedDisplay = ({
                     >
                         {t('appleseed.cautionBody')}
                     </p>
+                    <div className="pt-3 space-y-3">
+                        <p
+                            className="text-xs uppercase tracking-[0.14em]"
+                            style={{ color: "var(--skin-text-muted, #6b7280)" }}
+                        >
+                            {t('appleseed.cautionNextTitle')}
+                        </p>
+                        <p
+                            className="leading-relaxed"
+                            style={{
+                                fontFamily: "'Source Serif 4', serif",
+                                fontSize: "clamp(0.95rem, 2vw, 1.05rem)",
+                                color: "var(--skin-text-primary, #2c3150)",
+                            }}
+                        >
+                            {t('appleseed.cautionNextLead')}
+                        </p>
+                        <p
+                            className="leading-relaxed"
+                            style={{
+                                fontFamily: "'Source Serif 4', serif",
+                                fontSize: "clamp(0.9rem, 1.9vw, 1rem)",
+                                color: "var(--skin-text-muted, #4a4a6d)",
+                            }}
+                        >
+                            {t('appleseed.cautionNextBody')}
+                        </p>
+                        <p
+                            className="leading-relaxed"
+                            style={{
+                                fontFamily: "'Source Serif 4', serif",
+                                fontSize: "clamp(0.9rem, 1.9vw, 1rem)",
+                                color: "var(--skin-text-muted, #4a4a6d)",
+                            }}
+                        >
+                            {t('appleseed.cautionNextReminder')}
+                        </p>
+                    </div>
                 </div>
 
                 {/* Day 61 (Sasha 2026-05-04 22:00): inline save block
