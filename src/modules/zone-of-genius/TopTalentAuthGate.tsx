@@ -11,19 +11,42 @@ type TopTalentAuthGateProps = {
 
 const PENDING_CLAIM_EMAIL_KEY = "pending_claim_email";
 
+const parseRetryAfterSeconds = (message: string): number | null => {
+  const match = message.match(/after\s+(\d+)\s+seconds?/i);
+  if (!match?.[1]) return null;
+  const seconds = Number.parseInt(match[1], 10);
+  return Number.isFinite(seconds) && seconds > 0 ? seconds : null;
+};
+
 const TopTalentAuthGate = ({
   resultPayload,
   assessmentVersion = "v1",
 }: TopTalentAuthGateProps) => {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "saving" | "sent" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "saving" | "sent" | "cooldown" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
+  const [retryAfterSeconds, setRetryAfterSeconds] = useState(0);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     const pendingEmail = window.sessionStorage.getItem(PENDING_CLAIM_EMAIL_KEY);
     if (pendingEmail) setEmail(pendingEmail);
   }, []);
+
+  useEffect(() => {
+    if (status !== "cooldown" || retryAfterSeconds <= 0) return;
+    const timer = window.setTimeout(() => {
+      setRetryAfterSeconds((seconds) => {
+        const next = Math.max(0, seconds - 1);
+        if (next === 0) {
+          setStatus("idle");
+          setError(null);
+        }
+        return next;
+      });
+    }, 1000);
+    return () => window.clearTimeout(timer);
+  }, [retryAfterSeconds, status]);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -42,7 +65,25 @@ const TopTalentAuthGate = ({
         },
       });
 
-      if (saveError || !(data as { ok?: boolean } | null)?.ok) {
+      const saveResponse = data as {
+        ok?: boolean;
+        error?: string;
+        retry_after_seconds?: number;
+      } | null;
+
+      if (
+        saveResponse?.error === "rate_limited" &&
+        typeof saveResponse.retry_after_seconds === "number"
+      ) {
+        setRetryAfterSeconds(saveResponse.retry_after_seconds);
+        setStatus("cooldown");
+        setError(
+          "Too many save attempts for this email. Please wait, then tap Reveal again.",
+        );
+        return;
+      }
+
+      if (saveError || !saveResponse?.ok) {
         throw saveError ?? new Error("Could not save your Top Talent result.");
       }
 
@@ -55,7 +96,18 @@ const TopTalentAuthGate = ({
         email: normalizedEmail,
         options: { emailRedirectTo },
       });
-      if (linkError) throw linkError;
+      if (linkError) {
+        const retryAfter = parseRetryAfterSeconds(linkError.message);
+        if (retryAfter) {
+          setRetryAfterSeconds(retryAfter);
+          setStatus("cooldown");
+          setError(
+            "Your result is saved. Email security allows one magic-link request per minute. Try Reveal again when the timer finishes.",
+          );
+          return;
+        }
+        throw linkError;
+      }
 
       setStatus("sent");
     } catch (err) {
@@ -146,18 +198,29 @@ const TopTalentAuthGate = ({
               />
               <button
                 type="submit"
-                disabled={status === "saving" || !email.trim()}
+                disabled={status === "saving" || status === "cooldown" || !email.trim()}
                 className="rounded-full px-4 py-2 text-xs font-semibold text-white transition-opacity disabled:opacity-50"
                 style={{
                   backgroundImage: "linear-gradient(135deg, #a06d08 0%, #7a5108 100%)",
                   fontFamily: "'DM Sans', system-ui, sans-serif",
                 }}
               >
-                {status === "saving" ? "Saving..." : "Reveal"}
+                {status === "saving"
+                  ? "Saving..."
+                  : status === "cooldown"
+                    ? `Wait ${retryAfterSeconds}s`
+                    : "Reveal"}
               </button>
             </div>
-            {status === "error" && (
-              <p className="text-sm text-red-700">{error ?? "Please try again."}</p>
+            {(status === "error" || status === "cooldown") && (
+              <p
+                className="text-sm"
+                style={{
+                  color: status === "cooldown" ? "#7a5108" : "#b91c1c",
+                }}
+              >
+                {error ?? "Please try again."}
+              </p>
             )}
           </form>
         )}
