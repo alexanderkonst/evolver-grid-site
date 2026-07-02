@@ -7,6 +7,7 @@ import { localizedOrigin } from "@/i18n/localeScope";
 type TopTalentAuthGateProps = {
   resultPayload: Record<string, unknown>;
   assessmentVersion?: string;
+  onSaved?: (email: string) => void;
 };
 
 const PENDING_CLAIM_EMAIL_KEY = "pending_claim_email";
@@ -45,6 +46,7 @@ const readFunctionErrorPayload = async (
 const TopTalentAuthGate = ({
   resultPayload,
   assessmentVersion = "v1",
+  onSaved,
 }: TopTalentAuthGateProps) => {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "saving" | "sent" | "cooldown" | "error">("idle");
@@ -107,6 +109,8 @@ const TopTalentAuthGate = ({
             window.sessionStorage.setItem(PENDING_CLAIM_EMAIL_KEY, normalizedEmail);
             window.sessionStorage.setItem(PENDING_CLAIM_SAVED_EMAIL_KEY, normalizedEmail);
           }
+          onSaved?.(normalizedEmail);
+          if (onSaved) return;
         } else if (saveError || !saveResponse?.ok) {
           throw new Error("Could not save your Top Talent result. Please try again.");
         }
@@ -118,23 +122,20 @@ const TopTalentAuthGate = ({
       }
 
       const emailRedirectTo = `${localizedOrigin()}/auth/callback?next=${encodeURIComponent("/zone-of-genius")}`;
-      const { error: linkError } = await supabase.auth.signInWithOtp({
+      void supabase.auth.signInWithOtp({
         email: normalizedEmail,
         options: { emailRedirectTo },
-      });
-      if (linkError) {
-        const retryAfter = parseRetryAfterSeconds(linkError.message);
-        if (retryAfter) {
-          setRetryAfterSeconds(retryAfter);
-          setStatus("cooldown");
-          setError(
-            "Your result is saved. Email security allows one magic-link request per minute. Try Reveal again when the timer finishes.",
-          );
-          return;
+      }).then(({ error: linkError }) => {
+        if (linkError) {
+          const retryAfter = parseRetryAfterSeconds(linkError.message);
+          if (!retryAfter) {
+            console.warn("[TopTalentAuthGate] Magic-link send failed:", linkError.message);
+          }
         }
-        throw linkError;
-      }
+      });
 
+      onSaved?.(normalizedEmail);
+      if (onSaved) return;
       setStatus("sent");
     } catch (err) {
       setStatus("error");
@@ -182,10 +183,10 @@ const TopTalentAuthGate = ({
               fontWeight: 600,
             }}
           >
-            Save it before we reveal it.
+            Make sure you save it to be able to access it later.
           </h1>
           <p
-            className="text-sm sm:text-base leading-relaxed"
+            className="text-xs sm:text-sm leading-relaxed"
             style={{
               fontFamily: "'Source Serif 4', Georgia, serif",
               color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
@@ -239,7 +240,7 @@ const TopTalentAuthGate = ({
                   ? "Saving..."
                   : status === "cooldown"
                     ? `Wait ${retryAfterSeconds}s`
-                    : "Reveal"}
+                    : "Save email"}
               </button>
             </div>
             {(status === "error" || status === "cooldown") && (

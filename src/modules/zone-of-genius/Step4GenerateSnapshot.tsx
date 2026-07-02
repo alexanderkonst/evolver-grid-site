@@ -62,6 +62,7 @@ const Step4GenerateSnapshot = () => {
   const [profileId, setProfileId] = useState<string | null>(null);
   const [isLoadingProfile, setIsLoadingProfile] = useState(true);
   const [isGuest, setIsGuest] = useState(true);
+  const [guestRevealUnlocked, setGuestRevealUnlocked] = useState(false);
   // Populated by background appleseed processing — single source of truth
   // for downstream (email funnel, profile cards, Excalibur).
   const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
@@ -695,10 +696,11 @@ ${snapshotText}`;
             <PremiumLoader size="lg" text="Discovering your Top Talent..." />
           </div>
         ) : parsedSnapshot ? (
-          isGuest ? (
+          isGuest && !guestRevealUnlocked ? (
             <TopTalentAuthGate
               resultPayload={buildSavePayload() as Record<string, unknown>}
               assessmentVersion="guided-v1"
+              onSaved={() => setGuestRevealUnlocked(true)}
             />
           ) : (
           <>
