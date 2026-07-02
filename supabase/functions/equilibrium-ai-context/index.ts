@@ -110,7 +110,7 @@ Deno.serve(async (req) => {
     safeSelect(admin, "equilibrium_workstreams", (q) => q.eq("user_id", userId).order("position"), warnings),
     safeSelect(admin, "equilibrium_tasks", (q) => q.order("position"), warnings),
     safeSelect(admin, "equilibrium_focus", (q) => q.eq("user_id", userId).order("position"), warnings),
-    safeSelect(admin, "equilibrium_synthesis_log", (q) => q.eq("user_id", userId).order("created_at", { ascending: false }).limit(10), warnings),
+    safeSelect(admin, "equilibrium_synthesis_log", (q) => q.eq("user_id", userId).order("generated_at", { ascending: false }).limit(10), warnings),
     safeSelect(admin, "game_profiles", (q) => q.eq("user_id", userId).limit(1), warnings),
   ]);
 
