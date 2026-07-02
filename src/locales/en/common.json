@@ -87,7 +87,7 @@
   },
   "matchCta": {
     "topTalent": {
-      "primaryLabel": "Discover your mission"
+      "primaryLabel": "Continue your self-discovery journey"
     },
     "mission": {
       "primaryLabel": "Map your assets",
@@ -1131,9 +1131,13 @@
     "cautionTitle": "Important words of caution",
     "cautionLead": "This reminder of your natural talent planted a seed of self-knowledge that will be growing in you.",
     "cautionBody": "The exact words you got are NOT literally YOU, right? They are a useful reflection of your essence for the purpose of your self-understanding. Your knowledge of yourself is what truly matters, and will only matter more as AI develops. Only you can know how much these words resonated with your essence, not any other AI or human. In fact, if you retake the test, you will see different words which proves that your true essence is your secret.",
+    "cautionNextTitle": "What to do with this now",
+    "cautionNextLead": "The exact phrases you got are a useful way to see yourself more accurately.",
+    "cautionNextBody": "Which leads to more professional clarity, then to seeing better fit opportunities, leading to more value flow, and then to higher and sustainable revenues.",
+    "cautionNextReminder": "Remember that the phrases are not literally you, they are an approximation of your unique value. Only you can know how much you resonated with it.",
     "heroTagline": "My top talent",
-    "congratsHeading": "Congrats with articulating your top talent!",
-    "congratsBody": "Next, articulate where you're heading to meet people heading the same way.",
+    "congratsHeading": "We're just getting started :)",
+    "congratsBody": "Continue your self-discovery journey.",
     "option1Lead": "If you're ready to act:",
     "option1Title": "Build a Business From It",
     "option1Body": "Turn your top talent into a clear and sellable business offer.",

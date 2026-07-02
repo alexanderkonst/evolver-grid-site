@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { localizedOrigin } from "@/i18n/localeScope";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { TALENTS } from "./talents";
 import { supabase } from "@/integrations/supabase/client";
@@ -48,6 +49,7 @@ const ACTIVATION_COUPON_CODES = new Set([
 
 const Step4GenerateSnapshot = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get("return");
@@ -780,6 +782,73 @@ ${snapshotText}`;
                 />
               </div>
 
+              <div className="max-w-2xl mx-auto px-4 pt-2 pb-4 text-center space-y-4">
+                <p
+                  className="text-xs uppercase tracking-[0.14em] mb-2"
+                  style={{ color: "var(--skin-text-muted, #6b7280)" }}
+                >
+                  {t("appleseed.cautionTitle")}
+                </p>
+                <p
+                  className="leading-relaxed mb-3"
+                  style={{
+                    fontFamily: "'Source Serif 4', serif",
+                    fontSize: "clamp(0.95rem, 2vw, 1.05rem)",
+                    color: "var(--skin-text-primary, #2c3150)",
+                  }}
+                >
+                  {t("appleseed.cautionLead")}
+                </p>
+                <p
+                  className="leading-relaxed"
+                  style={{
+                    fontFamily: "'Source Serif 4', serif",
+                    fontSize: "clamp(0.9rem, 1.9vw, 1rem)",
+                    color: "var(--skin-text-muted, #4a4a6d)",
+                  }}
+                >
+                  {t("appleseed.cautionBody")}
+                </p>
+                <div className="pt-3 space-y-3">
+                  <p
+                    className="text-xs uppercase tracking-[0.14em]"
+                    style={{ color: "var(--skin-text-muted, #6b7280)" }}
+                  >
+                    {t("appleseed.cautionNextTitle")}
+                  </p>
+                  <p
+                    className="leading-relaxed"
+                    style={{
+                      fontFamily: "'Source Serif 4', serif",
+                      fontSize: "clamp(0.95rem, 2vw, 1.05rem)",
+                      color: "var(--skin-text-primary, #2c3150)",
+                    }}
+                  >
+                    {t("appleseed.cautionNextLead")}
+                  </p>
+                  <p
+                    className="leading-relaxed"
+                    style={{
+                      fontFamily: "'Source Serif 4', serif",
+                      fontSize: "clamp(0.9rem, 1.9vw, 1rem)",
+                      color: "var(--skin-text-muted, #4a4a6d)",
+                    }}
+                  >
+                    {t("appleseed.cautionNextBody")}
+                  </p>
+                  <p
+                    className="leading-relaxed"
+                    style={{
+                      fontFamily: "'Source Serif 4', serif",
+                      fontSize: "clamp(0.9rem, 1.9vw, 1rem)",
+                      color: "var(--skin-text-muted, #4a4a6d)",
+                    }}
+                  >
+                    {t("appleseed.cautionNextReminder")}
+                  </p>
+                </div>
+              </div>
+
               {/* Day 61+ (Sasha 2026-05-04): Edge / Thrives / Mastery
                   Action panels REMOVED. Karime walkthrough showed
                   step-4 was giving away too much depth before the
@@ -825,7 +894,7 @@ ${snapshotText}`;
                           color: "var(--skin-text-primary, #0a1628)",
                         }}
                       >
-                        Your Top Talent is named.
+                        {t("appleseed.congratsHeading")}
                       </h2>
                       <p
                         className="italic text-base sm:text-lg leading-snug"
@@ -835,7 +904,7 @@ ${snapshotText}`;
                           color: "var(--skin-text-muted, rgba(11,42,90,0.78))",
                         }}
                       >
-                        Next, discover the direction it wants to serve.
+                        {t("appleseed.congratsBody")}
                       </p>
                     </div>
                   </div>
