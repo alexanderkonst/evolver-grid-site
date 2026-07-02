@@ -86,11 +86,11 @@ Deno.serve(async (req) => {
       window_start: new Date().toISOString(),
     });
 
-    // ── Upsert the anonymous result ─────────────────────────────────
+    // ── Upsert the anonymous result for this normalized email ───────
     const { data: existing, error: lookupError } = await admin
       .from("anonymous_genius_results")
       .select("id")
-      .ilike("email", email)
+      .eq("email", email)
       .is("claimed_at", null)
       .order("created_at", { ascending: false })
       .limit(1)

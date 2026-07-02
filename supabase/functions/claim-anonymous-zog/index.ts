@@ -149,11 +149,11 @@ Deno.serve(async (req) => {
     const user = userResult.user;
     const email = user.email!.trim().toLowerCase();
 
-    // ── Find most recent unclaimed row for this email ───────────────
+    // ── Find most recent unclaimed row for this normalized email ────
     const { data: anon, error: findError } = await admin
       .from("anonymous_genius_results")
       .select("id, result_payload, assessment_version")
-      .ilike("email", email)
+      .eq("email", email)
       .is("claimed_at", null)
       .order("created_at", { ascending: false })
       .limit(1)
