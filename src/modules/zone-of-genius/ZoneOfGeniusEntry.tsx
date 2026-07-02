@@ -1066,23 +1066,22 @@ const ZoneOfGeniusEntry = () => {
                             </p>
                         </div>
 
-                        {/* Day 91 (Sasha 2026-06-09): glass fill tokenized for
-                            Aurum — `background` (not backgroundImage) so the
-                            skin's --skin-card-fill color value resolves; lapis
-                            keeps the exact gradient via the fallback. */}
+                        {/* Darkroom prompt preview. Use darkroom tokens instead
+                            of card-fill tokens so dark skins never produce
+                            gold-on-gold prompt text. */}
                         <div
                             className="relative rounded-2xl"
                             style={{
                                 background:
-                                    "var(--skin-card-fill, linear-gradient(135deg, rgba(255,255,255,0.30), rgba(255,255,255,0.12)))",
-                                border: "1px solid var(--skin-rule-medium, rgba(26,30,58,0.12))",
+                                    "var(--skin-darkroom-bg, rgba(10,10,26,0.76))",
+                                border: "1px solid var(--skin-darkroom-border, rgba(255,255,255,0.12))",
                                 backdropFilter: "blur(12px)",
                                 WebkitBackdropFilter: "blur(12px)",
                             }}
                         >
                             <pre
                                 className="text-[11px] whitespace-pre-wrap font-mono leading-snug max-h-36 overflow-y-auto p-4 pr-16 selection:bg-[#d4af37]/25"
-                                style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.45))" }}
+                                style={{ color: "var(--skin-darkroom-muted, rgba(245,245,250,0.7))" }}
                             >
                                 {ZONE_OF_GENIUS_PROMPT}
                             </pre>
