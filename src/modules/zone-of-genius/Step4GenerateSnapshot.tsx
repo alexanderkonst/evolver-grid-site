@@ -25,6 +25,8 @@ import { formatDate } from "@/i18n/format";
 // `RevealCTASection` component to eliminate this drift risk.
 import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
 import { trackCTAClick } from "@/lib/funnelAnalytics";
+import MatchFlowCta from "@/components/landing/MatchFlowCta";
+import { useEntryPath } from "@/contexts/EntryPathContext";
 // Day 61 (Sasha 2026-05-04 21:30): RevelatoryHero imported to unify
 // the assessment-path reveal with the AI-path reveal (single render
 // component, single artifact shape, no drift). Replaces the prior
@@ -49,6 +51,8 @@ const Step4GenerateSnapshot = () => {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get("return");
+  const { path: entryPath } = useEntryPath();
+  const isMatchPath = entryPath !== "build";
   const {
     selectedTop10TalentIds,
     orderedTalentIds,
@@ -193,9 +197,27 @@ const Step4GenerateSnapshot = () => {
   // Excalibur). Falls back to a snapshot-derived minimum only if the user
   // clicks save before background appleseed completes.
   const buildSavePayload = () => {
-    if (appleseed) return appleseed;
+    const top3TalentNames = top3Talents.map((t) => t.name);
+    const top10TalentNames = top10Talents.map((t) => t.name);
+
+    if (appleseed) {
+      return {
+        ...appleseed,
+        archetype_title: appleseed.vibrationalKey.name,
+        core_pattern: appleseed.bullseyeSentence,
+        top_three_talents:
+          appleseed.topTalentProfile?.top_three_talents_compact?.length
+            ? appleseed.topTalentProfile.top_three_talents_compact
+            : top3TalentNames,
+        top_ten_talents: top10TalentNames,
+      };
+    }
 
     return {
+      archetype_title: cleanedArchetypeTitle,
+      core_pattern: parsedSnapshot?.description || "",
+      top_three_talents: top3TalentNames,
+      top_ten_talents: top10TalentNames,
       vibrationalKey: { name: cleanedArchetypeTitle },
       bullseyeSentence:
         (parsedSnapshot?.description || "").split(/\.\s+/)[0]?.slice(0, 280) || "",
@@ -785,6 +807,44 @@ ${snapshotText}`;
                   carry the framing already; the rhetorical bridge was
                   visual weight without payload. */}
 
+              {isMatchPath && (
+                <>
+                  <div
+                    className="space-y-6 max-w-lg mx-auto transition-all duration-700 ease-out"
+                  >
+                    <div
+                      className="liquid-glass-strong rounded-3xl p-6 sm:p-8 text-center space-y-4"
+                      style={{ border: "1px solid rgba(212, 175, 55, 0.32)" }}
+                    >
+                      <h2
+                        className="leading-[1.15] tracking-[-0.005em]"
+                        style={{
+                          fontFamily: "'Cormorant Garamond', serif",
+                          fontSize: "clamp(1.5rem, 4vw, 1.95rem)",
+                          fontWeight: 600,
+                          color: "var(--skin-text-primary, #0a1628)",
+                        }}
+                      >
+                        Your Top Talent is named.
+                      </h2>
+                      <p
+                        className="italic text-base sm:text-lg leading-snug"
+                        style={{
+                          fontFamily: "'Source Serif 4', serif",
+                          fontWeight: 500,
+                          color: "var(--skin-text-muted, rgba(11,42,90,0.78))",
+                        }}
+                      >
+                        Next, discover the direction it wants to serve.
+                      </p>
+                    </div>
+                  </div>
+                  <MatchFlowCta step="top-talent" />
+                </>
+              )}
+
+              {!isMatchPath && (
+              <>
               <div className="space-y-8 max-w-lg mx-auto">
                 {/* OPTION 1 — Build a business ($555, primary, large) */}
                 <div
@@ -1168,6 +1228,8 @@ ${snapshotText}`;
                       in the footer. */}
                 </div>
               </div>
+              </>
+              )}
             </div>
 
             {/* Hidden PDF content — uses inline styles for reliable html2canvas rendering */}
@@ -1289,38 +1351,40 @@ ${snapshotText}`;
           Compact right-anchored glass pill, never a full-width banner.
           Hidden via opacity + pointer-events so the transition stays
           smooth without layout reflow. */}
-      <div
-        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 transition-all duration-500 ${
-          floatBarVisible
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-4 pointer-events-none"
-        }`}
-        aria-hidden={!floatBarVisible}
-      >
-        <a
-          href={STRIPE_ACTIVATE_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackCTAClick("activate_click", "step4_floating_bar")}
-          className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium whitespace-nowrap transition-all duration-300 hover:scale-[1.04] active:scale-[0.97]"
-          style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            color: "var(--skin-text-primary, #0a1628)",
-            // Day 91 (Sasha 2026-06-09): tokenized for Aurum — `backgroundImage`
-            // → `background` shorthand so the skin token (a flat color on dark
-            // skins) stays valid; the original white gradient is the fallback.
-            background:
-              "var(--skin-card-fill, linear-gradient(180deg, rgba(255,255,255,0.97), rgba(255,255,255,0.90)))",
-            border: "1px solid rgba(122, 81, 8, 0.32)",
-            boxShadow:
-              "0 10px 28px -10px rgba(10,22,40,0.22), 0 0 18px -2px rgba(244,212,114,0.45), inset 0 1px 0 rgba(255,255,255,0.7)",
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
-          }}
+      {!isMatchPath && (
+        <div
+          className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 transition-all duration-500 ${
+            floatBarVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-4 pointer-events-none"
+          }`}
+          aria-hidden={!floatBarVisible}
         >
-          Activate — $37 →
-        </a>
-      </div>
+          <a
+            href={STRIPE_ACTIVATE_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackCTAClick("activate_click", "step4_floating_bar")}
+            className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium whitespace-nowrap transition-all duration-300 hover:scale-[1.04] active:scale-[0.97]"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              color: "var(--skin-text-primary, #0a1628)",
+              // Day 91 (Sasha 2026-06-09): tokenized for Aurum — `backgroundImage`
+              // → `background` shorthand so the skin token (a flat color on dark
+              // skins) stays valid; the original white gradient is the fallback.
+              background:
+                "var(--skin-card-fill, linear-gradient(180deg, rgba(255,255,255,0.97), rgba(255,255,255,0.90)))",
+              border: "1px solid rgba(122, 81, 8, 0.32)",
+              boxShadow:
+                "0 10px 28px -10px rgba(10,22,40,0.22), 0 0 18px -2px rgba(244,212,114,0.45), inset 0 1px 0 rgba(255,255,255,0.7)",
+              backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
+            }}
+          >
+            Activate — $37 →
+          </a>
+        </div>
+      )}
     </div>
   );
 };

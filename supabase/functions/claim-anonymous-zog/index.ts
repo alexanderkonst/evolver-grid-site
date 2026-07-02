@@ -74,20 +74,39 @@ const extractSnapshotFields = (payload: Record<string, unknown>) => {
     return cursor;
   };
 
+  const asStringArray = (value: unknown): string[] => {
+    if (!Array.isArray(value)) return [];
+    return value
+      .map((item) => {
+        if (typeof item === "string") return item;
+        if (item && typeof item === "object" && "name" in item) {
+          const name = (item as { name?: unknown }).name;
+          return typeof name === "string" ? name : "";
+        }
+        return "";
+      })
+      .map((item) => item.trim())
+      .filter(Boolean);
+  };
+
   const archetype = (get(["vibrationalKey", "name"]) as string | undefined)
     ?? (get(["archetype_title"]) as string | undefined)
+    ?? (get(["topTalentProfile", "archetype_title"]) as string | undefined)
     ?? "Discovered Genius";
 
   const corePattern = (get(["threeLenses", "primeDriver"]) as string | undefined)
     ?? (get(["core_pattern"]) as string | undefined)
+    ?? (get(["topTalentProfile", "core_pattern"]) as string | undefined)
+    ?? (get(["bullseyeSentence"]) as string | undefined)
     ?? "Unique Pattern";
 
-  const topThree = Array.isArray(get(["top_three_talents"]))
-    ? (get(["top_three_talents"]) as unknown[])
-    : [];
-  const topTen = Array.isArray(get(["top_ten_talents"]))
-    ? (get(["top_ten_talents"]) as unknown[])
-    : [];
+  const topThree =
+    asStringArray(get(["top_three_talents"])).length > 0
+      ? asStringArray(get(["top_three_talents"]))
+      : asStringArray(get(["topTalentProfile", "top_three_talents_compact"])).length > 0
+        ? asStringArray(get(["topTalentProfile", "top_three_talents_compact"]))
+        : asStringArray(get(["threeLenses", "actions"])).slice(0, 3);
+  const topTen = asStringArray(get(["top_ten_talents"]));
 
   return {
     archetype_title: archetype,
