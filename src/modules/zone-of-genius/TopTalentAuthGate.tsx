@@ -105,12 +105,16 @@ const TopTalentAuthGate = ({
           saveResponse?.error === "rate_limited" &&
           typeof saveResponse.retry_after_seconds === "number"
         ) {
-          if (typeof window !== "undefined") {
-            window.sessionStorage.setItem(PENDING_CLAIM_EMAIL_KEY, normalizedEmail);
-            window.sessionStorage.setItem(PENDING_CLAIM_SAVED_EMAIL_KEY, normalizedEmail);
+          if (alreadySavedForEmail) {
+            onSaved?.(normalizedEmail);
+            if (onSaved) return;
           }
-          onSaved?.(normalizedEmail);
-          if (onSaved) return;
+          setRetryAfterSeconds(saveResponse.retry_after_seconds);
+          setStatus("cooldown");
+          setError(
+            `Too many save attempts for this email. Try again in ${saveResponse.retry_after_seconds} seconds.`,
+          );
+          return;
         } else if (saveError || !saveResponse?.ok) {
           throw new Error("Could not save your Top Talent result. Please try again.");
         }

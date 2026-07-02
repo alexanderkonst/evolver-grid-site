@@ -181,6 +181,47 @@ Deno.serve(async (req) => {
       });
     }
 
+    // Reserve this anonymous row before inserting the snapshot. AuthCallback
+    // and the global SIGNED_IN listener can both invoke this function around
+    // the same time; the conditional update makes the claim idempotent so
+    // only one caller can promote the row.
+    const claimedAt = new Date().toISOString();
+    const { data: reservedAnon, error: reserveError } = await admin
+      .from("anonymous_genius_results")
+      .update({
+        claimed_user_id: user.id,
+        claimed_at: claimedAt,
+      })
+      .eq("id", anon.id)
+      .is("claimed_at", null)
+      .select("id")
+      .maybeSingle();
+
+    if (reserveError) {
+      console.error("claim-anonymous-zog: claim reservation failed", reserveError);
+      return json(500, {
+        error: "claim_reservation_failed",
+        detail: reserveError.message,
+      });
+    }
+
+    if (!reservedAnon) {
+      return json(200, { claimed: false });
+    }
+
+    const restoreClaimReservation = async () => {
+      const { error: restoreError } = await admin
+        .from("anonymous_genius_results")
+        .update({
+          claimed_user_id: null,
+          claimed_at: null,
+        })
+        .eq("id", anon.id);
+      if (restoreError) {
+        console.warn("claim-anonymous-zog: failed to restore claim reservation", restoreError);
+      }
+    };
+
     // ── Insert zog_snapshot ─────────────────────────────────────────
     const snapshotFields = extractSnapshotFields(resultPayload);
     const { data: snapshot, error: snapshotError } = await admin
@@ -199,6 +240,7 @@ Deno.serve(async (req) => {
 
     if (snapshotError || !snapshot) {
       console.error("claim-anonymous-zog: snapshot insert failed", snapshotError);
+      await restoreClaimReservation();
       return json(500, {
         error: "snapshot_insert_failed",
         detail: snapshotError?.message ?? "no row returned",
@@ -206,7 +248,7 @@ Deno.serve(async (req) => {
     }
 
     // Keep game_profiles.last_zog_snapshot_id fresh so downstream UI picks it up.
-    await admin
+    const { error: profileUpdateError } = await admin
       .from("game_profiles")
       .update({
         last_zog_snapshot_id: snapshot.id,
@@ -214,6 +256,16 @@ Deno.serve(async (req) => {
         onboarding_stage: "zog_complete",
       })
       .eq("id", profileId);
+
+    if (profileUpdateError) {
+      console.error("claim-anonymous-zog: profile pointer update failed", profileUpdateError);
+      await admin.from("zog_snapshots").delete().eq("id", snapshot.id);
+      await restoreClaimReservation();
+      return json(500, {
+        error: "profile_update_failed",
+        detail: profileUpdateError.message,
+      });
+    }
 
     // Promote the two-email sequence from anonymous "result waiting" rows to
     // claimed-profile rows. This prevents duplicate sends and lets the Day-1
@@ -287,20 +339,6 @@ Deno.serve(async (req) => {
       }
     } catch (nurtureErr) {
       console.warn("claim-anonymous-zog: nurture promotion failed (non-fatal)", nurtureErr);
-    }
-
-    // ── Mark the anonymous row as claimed ───────────────────────────
-    const { error: claimMarkError } = await admin
-      .from("anonymous_genius_results")
-      .update({
-        claimed_user_id: user.id,
-        claimed_at: new Date().toISOString(),
-      })
-      .eq("id", anon.id);
-
-    if (claimMarkError) {
-      // Log but don't fail — the snapshot is already in place.
-      console.warn("claim-anonymous-zog: claim-mark failed", claimMarkError);
     }
 
     return json(200, {
