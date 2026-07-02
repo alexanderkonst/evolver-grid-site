@@ -173,6 +173,7 @@ const ZoneOfGeniusEntry = () => {
 
     // Guest/Auth state
     const [isGuest, setIsGuest] = useState(true);
+    const [guestRevealUnlocked, setGuestRevealUnlocked] = useState(false);
     const [showSignupModal, setShowSignupModal] = useState(false);
     const [isSaved, setIsSaved] = useState(false);
 
@@ -621,10 +622,14 @@ const ZoneOfGeniusEntry = () => {
     if (step === "appleseed-result" && appleseed) {
         return (
             <GameShellV2 hideNavigation={hideNav} hideLogo>
-                {isGuest ? (
+                {isGuest && !guestRevealUnlocked ? (
                     <TopTalentAuthGate
                         resultPayload={appleseed as unknown as Record<string, unknown>}
                         assessmentVersion="ai-v1"
+                        onSaved={(email) => {
+                            setAnonymousSave({ status: "sent", email });
+                            setGuestRevealUnlocked(true);
+                        }}
                     />
                 ) : (
                     <>
