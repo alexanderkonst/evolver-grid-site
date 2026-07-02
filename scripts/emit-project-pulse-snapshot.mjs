@@ -16,14 +16,37 @@ const OUT_PATH = join(REPO_ROOT, "src", "generated", "project-pulse-snapshot.jso
 
 function parseYamlBlock(block) {
   const event = {};
+  const lines = block.split("\n");
 
-  for (const line of block.split("\n")) {
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
     const match = line.match(/^([a-zA-Z0-9_]+):\s*(.*)$/);
     if (!match) continue;
 
     const [, key, rawValue] = match;
     const value = rawValue.trim();
-    event[key] = value.length ? value : null;
+
+    if (value === ">") {
+      const parts = [];
+      while (i + 1 < lines.length && /^\s+/.test(lines[i + 1]) && !/^\s+-\s+/.test(lines[i + 1])) {
+        parts.push(lines[i + 1].trim());
+        i++;
+      }
+      event[key] = parts.join(" ").replace(/\s+/g, " ").trim() || null;
+      continue;
+    }
+
+    if (!value.length) {
+      const list = [];
+      while (i + 1 < lines.length && /^\s+-\s+/.test(lines[i + 1])) {
+        list.push(lines[i + 1].replace(/^\s+-\s+/, "").trim());
+        i++;
+      }
+      event[key] = list.length ? list : null;
+      continue;
+    }
+
+    event[key] = value;
   }
 
   return event;
