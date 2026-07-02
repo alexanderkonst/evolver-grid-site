@@ -88,3 +88,60 @@ staleness_or_contradictions: >
   None. This confirms Founder Cockpit belongs inside BUILD while remaining a
   shareable public front-door for Founder Life's Work Navigation.
 ```
+
+### 2026-07-01 — Ariana / Resilience Collective opens collective-action pilot path
+
+```yaml
+date: 2026-07-01
+day_number: 111
+title: Ariana / Resilience Collective opens collective-action pilot path
+source: Zoom call transcript excerpt + Sasha reflection
+actors:
+  - Sasha / Alexander Konstantinov
+  - Ariana Gómez
+  - Resilience Collective
+  - Technology for Impact
+  - potential future partner ecosystems: Promotora Social, Irrazonables, New Ventures
+what_happened: >
+  Sasha spoke with Ariana Gómez after resonating with her Climate Summit talk
+  and LinkedIn profile. The call went well: Ariana connected with the thesis,
+  asked a substantive trust/shadow question about AI self-understanding, and
+  wanted to try the platform. She named a likely pilot window after her travel,
+  around October/November, once Resilience Collective has a larger stable
+  community. She also described her own community design: members should know
+  what infrastructure they are building, what they offer, what they need, and
+  how they can help each other's infrastructure work.
+energy_exchanged:
+  - attention
+  - trust
+  - strategic resonance
+  - pilot interest
+  - potential introductions
+  - product-validation signal
+affected_holons:
+  - individual founder
+  - Resilience Collective community
+  - high-agency impact networks
+  - inter-community coordination layer
+  - civilizational collective-action primitive
+affected_artifacts:
+  - strategic_crm_outreach_tracker.md
+  - project_pulse_log.md
+  - crm-snapshot.json
+  - project-pulse-snapshot.json
+  - future Resilience Collective pilot outline
+phase_shift_significance: major
+next_action: >
+  Send Ariana a concise follow-up with the platform link, thank her for the
+  call, reflect her infrastructure-building community frame, and propose a
+  mid-October pilot-design conversation. Prepare a small pilot outline: 10-15
+  members, uniqueness/self-understanding scan, assets/offers/needs layer,
+  contribution map, and concrete collaboration/introduction candidates.
+staleness_or_contradictions: >
+  The pitch can still overrun the conversation if Sasha speaks for too long.
+  The system should help Sasha convert resonance into a clear next step and a
+  small pilot artifact rather than more thesis transmission. The strategic
+  language also shifted from "role placement" to "collective action
+  infrastructure": awakened people need contribution-legibility and matching
+  infrastructure to coordinate real action.
+```
