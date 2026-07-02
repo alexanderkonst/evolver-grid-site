@@ -10,12 +10,36 @@ type TopTalentAuthGateProps = {
 };
 
 const PENDING_CLAIM_EMAIL_KEY = "pending_claim_email";
+const PENDING_CLAIM_SAVED_EMAIL_KEY = "pending_claim_saved_email";
+
+type SaveAnonymousZogResponse = {
+  ok?: boolean;
+  error?: string;
+  retry_after_seconds?: number;
+};
 
 const parseRetryAfterSeconds = (message: string): number | null => {
   const match = message.match(/after\s+(\d+)\s+seconds?/i);
   if (!match?.[1]) return null;
   const seconds = Number.parseInt(match[1], 10);
   return Number.isFinite(seconds) && seconds > 0 ? seconds : null;
+};
+
+const readFunctionErrorPayload = async (
+  error: unknown,
+): Promise<SaveAnonymousZogResponse | null> => {
+  const context =
+    error && typeof error === "object" && "context" in error
+      ? (error as { context?: unknown }).context
+      : null;
+
+  if (!(context instanceof Response)) return null;
+
+  try {
+    return (await context.clone().json()) as SaveAnonymousZogResponse;
+  } catch {
+    return null;
+  }
 };
 
 const TopTalentAuthGate = ({
@@ -57,38 +81,40 @@ const TopTalentAuthGate = ({
     setError(null);
 
     try {
-      const { data, error: saveError } = await supabase.functions.invoke("save-anonymous-zog", {
-        body: {
-          email: normalizedEmail,
-          result_payload: resultPayload,
-          assessment_version: assessmentVersion,
-        },
-      });
+      const alreadySavedForEmail =
+        typeof window !== "undefined" &&
+        window.sessionStorage.getItem(PENDING_CLAIM_SAVED_EMAIL_KEY) === normalizedEmail;
 
-      const saveResponse = data as {
-        ok?: boolean;
-        error?: string;
-        retry_after_seconds?: number;
-      } | null;
+      if (!alreadySavedForEmail) {
+        const { data, error: saveError } = await supabase.functions.invoke("save-anonymous-zog", {
+          body: {
+            email: normalizedEmail,
+            result_payload: resultPayload,
+            assessment_version: assessmentVersion,
+          },
+        });
 
-      if (
-        saveResponse?.error === "rate_limited" &&
-        typeof saveResponse.retry_after_seconds === "number"
-      ) {
-        setRetryAfterSeconds(saveResponse.retry_after_seconds);
-        setStatus("cooldown");
-        setError(
-          "Too many save attempts for this email. Please wait, then tap Reveal again.",
-        );
-        return;
-      }
+        const errorPayload = saveError
+          ? await readFunctionErrorPayload(saveError)
+          : null;
+        const saveResponse = (data ?? errorPayload) as SaveAnonymousZogResponse | null;
 
-      if (saveError || !saveResponse?.ok) {
-        throw saveError ?? new Error("Could not save your Top Talent result.");
+        if (
+          saveResponse?.error === "rate_limited" &&
+          typeof saveResponse.retry_after_seconds === "number"
+        ) {
+          if (typeof window !== "undefined") {
+            window.sessionStorage.setItem(PENDING_CLAIM_EMAIL_KEY, normalizedEmail);
+            window.sessionStorage.setItem(PENDING_CLAIM_SAVED_EMAIL_KEY, normalizedEmail);
+          }
+        } else if (saveError || !saveResponse?.ok) {
+          throw new Error("Could not save your Top Talent result. Please try again.");
+        }
       }
 
       if (typeof window !== "undefined") {
         window.sessionStorage.setItem(PENDING_CLAIM_EMAIL_KEY, normalizedEmail);
+        window.sessionStorage.setItem(PENDING_CLAIM_SAVED_EMAIL_KEY, normalizedEmail);
       }
 
       const emailRedirectTo = `${localizedOrigin()}/auth/callback?next=${encodeURIComponent("/zone-of-genius")}`;
@@ -112,7 +138,12 @@ const TopTalentAuthGate = ({
       setStatus("sent");
     } catch (err) {
       setStatus("error");
-      setError(err instanceof Error ? err.message : "Please try again.");
+      setError(
+        err instanceof Error &&
+          !err.message.includes("Edge Function returned a non-2xx status code")
+          ? err.message
+          : "Something went wrong saving your result. Please try again.",
+      );
     }
   };
 
