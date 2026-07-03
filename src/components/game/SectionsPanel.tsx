@@ -315,8 +315,8 @@ const SPACE_SECTIONS: SpaceSections = {
             // JOURNEY when the funnel reshaped into matching-as-hero;
             // their existing routes resolve unchanged.
             // Spec: docs/specs/funnel-v2/funnel-v2_product_spec.md §4.3.
-            { id: "founder-cockpit", label: "Founder Cockpit",                  path: "/cockpit" },
-            { id: "founder-cockpit-dashboard", label: "Cockpit Dashboard",      path: "/cockpit/dashboard" },
+            { id: "founder-cockpit", label: "Founder Cockpit",                  path: "/build/cockpit" },
+            { id: "founder-cockpit-dashboard", label: "Cockpit Dashboard",      path: "/build/cockpit/dashboard" },
             { id: "ubb-v2",           label: "Automated Venture Builder",         path: "/ubb" },
             { id: "build-path",       label: "The path to your unique business", path: "/path" },
             { id: "build-playbook",   label: "Take the exact playbook",           path: "/playbook" },
