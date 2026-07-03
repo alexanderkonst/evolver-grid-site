@@ -342,10 +342,10 @@ Secondary reflection buttons can sit below the command surface:
 | Button | Question it answers |
 |---|---|
 | **What Is the Project Becoming?** | What deeper form is emerging through current movement? |
-| **Founder Shadow at Play** | What current founder pattern may be blocking progress? |
+| **Current Founder Shadow** | What is the current key founder shadow at play in blocking progress? |
 | **Attention Leaks** | Where is attention leaking away from the real next move? |
-| **Key Relationships Now** | Which relationships matter most now, and why? |
-| **Outdated Strategy** | Which strategy is no longer true, and what concrete change is becoming obvious? |
+| **Key Relationships Now** | Which relationship(s) matter most now, and why? |
+| **Outdated Strategy** | Which strategy is outdated, and what concrete change is becoming more and more obvious? |
 
 ### Refine My Operating System
 
