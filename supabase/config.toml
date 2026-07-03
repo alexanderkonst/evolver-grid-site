@@ -9,6 +9,9 @@ verify_jwt = true
 [functions.validate-promo-code]
 verify_jwt = false
 
+[functions.equilibrium-ai-context]
+verify_jwt = false
+
 [functions.suggest-next-quest]
 verify_jwt = true
 

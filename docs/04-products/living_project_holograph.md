@@ -143,6 +143,61 @@ Matchmaking is therefore not an add-on. It is the coordination output of the hol
 
 ---
 
+## Pulse Protocol v1
+
+Pulse Protocol v1 is the operating contract for making the project readable by any AI agent without Sasha re-explaining the whole field.
+
+### Trigger
+
+If Sasha gives a professional-life update — a call, proposal, payment, silence, referral, relationship movement, product decision, inner clarity shift, or opportunity becoming visible — the agent should treat it as a **Living Project Pulse**.
+
+### Required Read Path
+
+Before advising, the agent reads the current living context in this order:
+
+1. **Equilibrium AI Context Export** — visceral/action layer: current focus, strategies, workstreams, tasks, synthesis, readiness.
+2. **Project Pulse Log** — narrative continuity: what moved recently.
+3. **Strategic CRM & Outreach Tracker** — relationship and energy-exchange ledger.
+4. **Living Project Holograph** — architecture and routing protocol.
+5. **Relevant artifact docs** — only where the pulse actually changes meaning or strategy.
+
+### Required Output
+
+Every pulse pass returns four operational lenses:
+
+- **Movement:** what changed in the living field.
+- **Bottlenecks:** where energy is stuck, leaking, waiting, or over-concentrated.
+- **Follow-Ups:** who to message, why now, and what the clean next ask is.
+- **High-Leverage Moves:** the few actions most likely to move strategy, relationships, money, or product reality now.
+
+### Agent Contract
+
+1. Read the required context before advising.
+2. Convert the update into a Pulse Event Card.
+3. Append the card to [Project Pulse Log](../09-logs/project_pulse_log.md).
+4. Route updates only to surfaces that actually changed.
+5. Regenerate snapshots if a generated surface changed.
+6. Return Movement, Bottlenecks, Follow-Ups, and High-Leverage Moves.
+7. Report what was updated and what stayed untouched.
+8. If the pulse reveals a reusable law, propose a Phase Shift Library update; do not assume every pulse is a phase shift.
+
+### Equilibrium AI Context Export
+
+The automatic Equilibrium read path is:
+
+```text
+supabase/functions/equilibrium-ai-context
+```
+
+The endpoint supports two access modes:
+
+- logged-in Supabase session from the private cockpit UI
+- read-only agent token via `x-agent-token`, configured with `EQUILIBRIUM_AI_CONTEXT_TOKEN` and `EQUILIBRIUM_AI_CONTEXT_USER_ID`
+
+This removes the manual export bottleneck. Sasha should not have to press an "export Equilibrium data" button before a useful agent can read what is live in the gut/action layer.
+
+---
+
 ## Cross-Chat / Multi-Agent Protocol
 
 Any AI agent working on the project should follow this contract when Sasha gives a pulse.
@@ -151,21 +206,11 @@ Any AI agent working on the project should follow this contract when Sasha gives
 
 If a message starts with `Pulse:` or clearly reports meaningful professional movement, the agent should treat it as a candidate Project Pulse.
 
-### Agent Contract
-
-1. Read this spec.
-2. Convert the update into a Pulse Event Card.
-3. Append the card to [Project Pulse Log](../09-logs/project_pulse_log.md).
-4. Route updates only to surfaces that actually changed.
-5. Regenerate snapshots if a generated surface changed.
-6. Report what was updated and what stayed untouched.
-7. If the pulse reveals a reusable law, propose a Phase Shift Library update; do not assume every pulse is a phase shift.
-
 ### Repeatable User Instruction
 
 Sasha can paste this into any chat or agent:
 
-> **Project Pulse:** Treat the following update as a Living Project Holograph pulse. Read `docs/04-products/living_project_holograph.md`, convert the update into a Pulse Event Card, append it to `docs/09-logs/project_pulse_log.md`, update only the relevant mirrors, regenerate snapshots if needed, and tell me what changed.
+> **Project Pulse:** Treat the following update as a Living Project Pulse. Read the Equilibrium AI Context Export, `docs/04-products/living_project_holograph.md`, `docs/09-logs/project_pulse_log.md`, and `docs/02-strategy/strategic_crm_outreach_tracker.md`; convert the update into a Pulse Event Card; update only the relevant mirrors; regenerate snapshots if needed; and return Movement, Bottlenecks, Follow-Ups, and High-Leverage Moves.
 
 ---
 
@@ -232,6 +277,44 @@ Command:
 npm run pulse:snapshot
 ```
 
+### Phase 2.5 — Private Cockpit Dashboard
+
+`/cockpit/dashboard` is the private operational cockpit.
+
+Its first version reads:
+
+- `src/generated/project-pulse-snapshot.json`
+- `src/generated/crm-snapshot.json`
+- `equilibrium-ai-context`
+
+The founder-facing surface is not a generic dashboard. It is a navigation instrument.
+
+The operating metaphor is a founder starship cockpit:
+
+- **Mission Vector:** shows whether the venture is aligned with true north.
+- **Founder State:** shows focus, capacity, and how much force is being applied.
+- **Opportunity Field:** shows relationship doors by ripeness, not by chronological inbox order.
+- **Energy Ledger:** shows where money, trust, attention, referrals, commitments, and silence are actually moving.
+- **Strategic Oracle:** reads pattern, bottleneck, timing, and leverage.
+- **Readiness Signal:** distinguishes "alive now" from "still ripening."
+- **Next Move Engine:** compresses the field into the few moves that matter now.
+- **Field Coherence:** checks whether mission, founder, offer, relationships, execution, money, and meaning agree.
+
+The four reusable action buttons are the command surface:
+
+- **What Moved**
+- **Generate Follow-Ups**
+- **Find Bottlenecks**
+- **Name High-Leverage Moves**
+
+Each button should output three layers:
+
+1. **Field reading:** what the living system is actually doing.
+2. **Ripeness filter:** what has energy now vs. what should stay warm but inactive.
+3. **Crystallized action:** what exact next move is obvious enough to do.
+
+This is the first UI form of the pulse protocol: one private surface where the living project can show movement, pressure, relationship action, and next moves without Sasha manually recomposing the context.
+
 ### Phase 3 — Admin Pulse Intake
 
 Add an `/admin` panel section:
@@ -264,6 +347,39 @@ Markdown remains the canonical narrative layer; the database becomes the queryab
 The future form is an AI pendant or equivalent ambient companion that can transcribe calls, live conversations, and meetings; extract candidate pulses; detect relationship movements; and propose matchmaking opportunities.
 
 The important boundary: ambient capture creates **candidate pulses**, not automatic truth. Sasha or the relevant human approves what enters the holograph.
+
+### Phase 5.1 — Transcript-Fed Organizational Intelligence
+
+The July 1 Sergey call clarified that the same architecture scales from solo founder to team and organization.
+
+The biggest product insight:
+
+> **Founder Cockpit scales beyond solo founders. Meeting transcripts, decisions, unresolved tensions, outcomes, and burnout signals can become organizational AI context.**
+
+For a solo founder, the project can receive pulses from Sasha directly. For a team or company, the richest pulse source is often not a manual update but the actual record of work: meeting transcripts, call recordings, decisions, unresolved debates, customer conversations, proposals, task movement, and outcome notes.
+
+This makes the AI context holonic:
+
+```text
+AI for a person
+  -> AI for a project
+  -> AI for a team
+  -> AI for an organization
+```
+
+An organization-level cockpit should be able to answer:
+
+- What decisions were made while I was not present?
+- What cannot the team resolve across repeated meetings?
+- Where is pressure rising, trust dropping, or burnout appearing?
+- Which topic needs founder/leader intervention?
+- Which opportunity, workflow, or bottleneck is now ripe?
+
+This is not generic meeting summarization. The transcript layer becomes useful only when interpreted through the project's strategic ontology: what matters, what success means, which tensions matter, and which outcomes the organization is trying to create.
+
+The emerging product category is therefore broader than a personal second brain:
+
+> **Living Work Intelligence:** a pulse-fed AI context layer that helps a person, project, team, or organization know what is actually happening and where high-leverage action is needed.
 
 ---
 
