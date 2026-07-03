@@ -315,6 +315,55 @@ Each button should output three layers:
 
 This is the first UI form of the pulse protocol: one private surface where the living project can show movement, pressure, relationship action, and next moves without Sasha manually recomposing the context.
 
+### Cockpit AI Lens Pattern
+
+Every serious cockpit button should reuse the same read layer:
+
+```text
+equilibrium-ai-context
++ button-specific prompt
++ relevant generated snapshots
+→ AI lens output
+```
+
+`equilibrium-ai-context` is the live Equilibrium read: strategies, workstreams, tasks, focus, synthesis, and current founder state. The button prompt decides what kind of intelligence is produced from that shared state. This keeps the cockpit coherent: different buttons, same living context.
+
+The four trajectory buttons remain primary:
+
+| Button | Question it answers |
+|---|---|
+| **What Moved** | What actually changed in the living project field? |
+| **Generate Follow-Ups** | Which relationship actions are ripe now, and what should be said? |
+| **Find Bottlenecks** | Where is energy clogged, duplicated, stale, or over-concentrated? |
+| **Name High-Leverage Moves** | What few actions most change the project's trajectory now? |
+
+Secondary reflection buttons can sit below the command surface:
+
+| Button | Question it answers |
+|---|---|
+| **What Is the Project Becoming?** | What deeper form is emerging through current movement? |
+| **Founder Shadow at Play** | What current founder pattern may be blocking progress? |
+| **Attention Leaks** | Where is attention leaking away from the real next move? |
+| **Key Relationships Now** | Which relationships matter most now, and why? |
+| **Outdated Strategy** | Which strategy is no longer true, and what concrete change is becoming obvious? |
+
+### Refine My Operating System
+
+This is the deeper Equilibrium capability: an AI reflection on the current strategy-and-tactics structure itself.
+
+The button should ask:
+
+> Suggest a more optimal way to synthesize, articulate, and organize my current strategies, workstreams, and tasks that preserves all or nearly all signal — the energies or building blocks each articulation is made of — and rigorously removes noise: redundancies, verbosity, repetitions, and stale structure.
+
+Output should be review-first, not auto-write:
+
+1. Show the **top three proposed changes**, each summarized in one sentence.
+2. Let Sasha open each change to see before/after.
+3. Offer: **Accept**, **Skip**, **Copy as Markdown**, **Apply later**.
+4. Only accepted changes may write back into Equilibrium.
+
+Rule: AI proposes; Sasha decides; the system writes only after explicit acceptance.
+
 ### Phase 3 — Admin Pulse Intake
 
 Add an `/admin` panel section:
