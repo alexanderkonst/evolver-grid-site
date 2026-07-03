@@ -208,6 +208,7 @@
 
 | # | Item | Priority | Notes |
 |---|------|----------|-------|
+| FC1 | Build Cockpit AI Lens buttons | 🔴 | Use `equilibrium-ai-context` as the shared read layer. Ship four primary trajectory buttons, five secondary reflection buttons, and review-first "Refine My Operating System" before any writeback. |
 | UX1 | Mobile shell: add an explicit Pane 2 close affordance | 🟡 | Parked from the 2026-06-28 mobile bug pass. Add a clear control that returns the user from the navigation/sections view to Pane 3 content without forcing a section selection. Do not ship in the current bugfix. |
 
 ### GTM / Strategic CRM & Outreach
@@ -535,7 +536,6 @@ Sasha asked: "How do people solve for version history of these things? We're cre
 | Events module (Luma-like) | Feature | Parked |
 | Admin panel & dashboard | Feature | Future |
 | Split public `/dashboard` from private `/build/cockpit/dashboard`; move relationship/money/CRM details behind auth and leave public dashboard as anonymized/open-in-public strategy surface | Privacy / Product | Parked |
-| Build Cockpit AI Lens buttons using `equilibrium-ai-context` as the shared read layer: four primary trajectory buttons, five secondary reflection buttons, and review-first "Refine My Operating System" before any writeback | Founder Cockpit / AI | Active Backlog |
 | Remove `/game` prefix from URLs | Infra | Backlog |
 | Module versioning + user artifact versioning | Infra | Backlog |
 | Backend-validated activation coupons (Supabase table + RLS + signed-token edge fn, replaces frontend `Set` in `AppleseedDisplay.tsx`) | Infra | When wider distribution outgrows trusted-audience use |
