@@ -43,6 +43,11 @@ const Auth = () => {
   // Top Talent result without picking a password first.
   const claimMode = searchParams.get("claim") === "true";
   const mode = searchParams.get("mode"); // signup, login, or null
+  // Read both ?next= (spec) and ?redirect= (legacy). Default depends on flow.
+  const queryNext = searchParams.get("next") || searchParams.get("redirect");
+  const defaultNext = claimMode ? "/zone-of-genius" : "/playbook/discover";
+  const nextPath = queryNext || defaultNext;
+  const isCockpitRedirect = nextPath.startsWith("/cockpit");
   // Day 79 (Sasha 2026-05-22): match-path entry detection. When the user
   // came in via `?path=match`, completed Top Talent, and clicked
   // "Discover your mission", RequireAuth on /mission-discovery bounces
@@ -64,10 +69,11 @@ const Auth = () => {
     typeof window !== "undefined" &&
     (window.localStorage?.getItem("ftt_entry_path") ||
       window.sessionStorage?.getItem("ftt_entry_path")) !== "build";
-  const isOnboardingFlow = mode === "signup" || claimMode || isMatchPathEntry; // tinted UI
+  const isOnboardingFlow =
+    !isCockpitRedirect && (mode === "signup" || claimMode || isMatchPathEntry); // tinted UI
   // Match-path users are net-new — default them to Sign Up, not Log In.
   const defaultTab =
-    mode === "signup" || isMatchPathEntry ? "signup" : "login";
+    mode === "signup" || (!isCockpitRedirect && isMatchPathEntry) ? "signup" : "login";
   // Day 58+ (Sasha 2026-05-03): Tabs converted from uncontrolled to
   // controlled so the cross-device email-confirmation flow can flip
   // the user from Sign Up → Log In automatically when we detect they
@@ -75,11 +81,6 @@ const Auth = () => {
   // on mobile, came to desktop, hit Sign Up, got a destructive
   // "already registered" toast with no path forward).
   const [tab, setTab] = useState<string>(defaultTab);
-
-  // Read both ?next= (spec) and ?redirect= (legacy). Default depends on flow.
-  const queryNext = searchParams.get("next") || searchParams.get("redirect");
-  const defaultNext = claimMode ? "/zone-of-genius" : "/playbook/discover";
-  const nextPath = queryNext || defaultNext;
 
   useEffect(() => {
     captureReferralIdFromUrl();
@@ -516,7 +517,9 @@ const Auth = () => {
   // users heading toward Ignite — wrong direction for this user.
   const subtitleText = isQolRedirect
     ? t('auth.subtitleQol')
-    : isMatchPathEntry
+    : isCockpitRedirect
+      ? t('auth.subtitleCockpit')
+      : isMatchPathEntry
       ? t('auth.subtitleMatch')
       : isOnboardingFlow
         ? t('auth.subtitleOnboarding')
