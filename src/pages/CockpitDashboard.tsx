@@ -1,0 +1,461 @@
+import { useEffect, useMemo, useState } from "react";
+import {
+  Activity,
+  ArrowUpRight,
+  Compass,
+  Crosshair,
+  Database,
+  Gauge,
+  Loader2,
+  MessageSquareText,
+  Radar,
+  RefreshCw,
+  Search,
+  ShieldCheck,
+  Signal,
+  Sparkles,
+  Waves,
+  Waypoints,
+  Zap,
+} from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import crmSnapshotRaw from "@/generated/crm-snapshot.json";
+import pulseSnapshotRaw from "@/generated/project-pulse-snapshot.json";
+
+type CockpitAction = "movement" | "followups" | "bottlenecks" | "leverage";
+
+interface EquilibriumContext {
+  generated_at?: string;
+  summary?: {
+    active_workstreams_count?: number;
+    active_tasks_count?: number;
+    focus_count?: number;
+    top_next_actions?: string[];
+    last_synthesis_at?: string | null;
+  };
+  state?: {
+    mission_override_text?: string | null;
+    role_override_text?: string | null;
+    moon_focus_text?: string | null;
+    last_synthesis_text?: string | null;
+  } | null;
+  strategies?: Array<{ position?: number; text?: string; alignment_score?: number | null }>;
+  focus_tasks?: Array<{ id?: string; text?: string }>;
+  warnings?: string[];
+}
+
+const crmSnapshot = crmSnapshotRaw as {
+  generated_at?: string;
+  contactsCount?: number;
+  openItemsCount?: number;
+  energyLeakCount?: number;
+  cashReceivedUsd?: number;
+  revShareContractsUsd?: number;
+  stageDistribution?: Record<string, number>;
+  segmentDistribution?: Record<string, number>;
+};
+
+const pulseSnapshot = pulseSnapshotRaw as {
+  generated_at?: string;
+  eventsCount?: number;
+  latestEvent?: {
+    title?: string;
+    what_happened?: string;
+    next_action?: string;
+    phase_shift_significance?: string;
+  };
+  openNextActions?: Array<{ title?: string; next_action?: string }>;
+};
+
+const formatDate = (value?: string | null) => {
+  if (!value) return "not loaded";
+  return new Intl.DateTimeFormat("en", {
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  }).format(new Date(value));
+};
+
+const clipped = (text?: string | null, max = 190) => {
+  if (!text) return "Not set yet";
+  return text.length > max ? `${text.slice(0, max).trim()}...` : text;
+};
+
+const actionCards: Array<{
+  id: CockpitAction;
+  label: string;
+  instrument: string;
+  icon: typeof Activity;
+}> = [
+  { id: "movement", label: "What Moved", instrument: "Energy Ledger", icon: Activity },
+  { id: "followups", label: "Generate Follow-Ups", instrument: "Opportunity Field", icon: MessageSquareText },
+  { id: "bottlenecks", label: "Find Bottlenecks", instrument: "Strategic Oracle", icon: Search },
+  { id: "leverage", label: "Name High-Leverage Moves", instrument: "Next Move Engine", icon: ArrowUpRight },
+];
+
+export default function CockpitDashboard() {
+  const [activeAction, setActiveAction] = useState<CockpitAction>("leverage");
+  const [equilibrium, setEquilibrium] = useState<EquilibriumContext | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const loadContext = async () => {
+    setLoading(true);
+    setError(null);
+    const { data, error: invokeError } = await supabase.functions.invoke(
+      "equilibrium-ai-context",
+    );
+    if (invokeError) {
+      setError(invokeError.message);
+      setEquilibrium(null);
+    } else {
+      setEquilibrium(data as EquilibriumContext);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    void loadContext();
+  }, []);
+
+  const model = useMemo(() => {
+    const latest = pulseSnapshot.latestEvent;
+    const openActions = pulseSnapshot.openNextActions ?? [];
+    const stageEntries = Object.entries(crmSnapshot.stageDistribution ?? {})
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 4);
+    const topFocus = equilibrium?.summary?.top_next_actions ?? [];
+    const cashNowSignal = `Cash-now lane: book/convert warm individual calls; current focus asks for $4K now, then $7K.`;
+    const communitySignal = `Community-infrastructure lane: Oyi and Ariana are proof/pilot doors, not instant-cash doors.`;
+
+    const command = {
+      movement: {
+        eyebrow: "Energy Ledger",
+        title: "The field split into two operating lanes.",
+        body:
+          "Immediate paid clarity calls and slower community-infrastructure pilots are both alive. Treating them as one strategy creates noise; flying them as two lanes creates leverage.",
+        bullets: [
+          `Latest pulse: ${latest?.title ?? "none"}`,
+          `Open loops: ${crmSnapshot.openItemsCount ?? 0}; relationships tracked: ${crmSnapshot.contactsCount ?? 0}`,
+          `Recent proof movement: Oyi proposal review, Ariana pilot interest, Patricia/Chris reactivation, Sloan signal sent.`,
+        ],
+      },
+      followups: {
+        eyebrow: "Opportunity Field",
+        title: "Follow up by energy type, not by inbox order.",
+        body:
+          "Each relationship is a different kind of door. The cockpit should help you stop treating cash, proof, legitimacy, and optionality as the same action.",
+        bullets: [
+          "Oyi: proof + first community-node door. Ask what Billwon / AI review surfaced; offer a simple implementation map.",
+          "Ariana: legitimacy + pilot door. Send the platform link, reflect her infrastructure-building frame, propose mid-October pilot design.",
+          "Patricia / Chris: cash-now doors. Offer exploration around fit and business clarity, not marketing advice.",
+          ...openActions.slice(0, 2).map((item) => `${item.title}: ${item.next_action}`),
+        ],
+      },
+      bottlenecks: {
+        eyebrow: "Strategic Oracle",
+        title: "The bottleneck is over-open loops diluting crystallization energy.",
+        body:
+          "There is enough clarity to act. The risk is carrying too many doors as equally active, which turns a living field into cognitive weather.",
+        bullets: [
+          `${crmSnapshot.energyLeakCount ?? 0} energy leaks are currently marked in the CRM snapshot.`,
+          `Top relationship stages: ${stageEntries.map(([stage, count]) => `${stage} ${count}`).join(" · ") || "not available"}`,
+          `Equilibrium focus slots loaded: ${equilibrium?.summary?.focus_count ?? 0}`,
+          "Primary constraint: choose the few doors that can become cash, proof, or infrastructure now.",
+        ],
+      },
+      leverage: {
+        eyebrow: "Next Move Engine",
+        title: "Selective crystallization is the move.",
+        body:
+          "Do not clarify the whole field again. Pick one cash action, one community-proof action, and one product-infrastructure action, then let the rest stay warm.",
+        bullets: [
+          cashNowSignal,
+          communitySignal,
+          "Product lane: turn this cockpit output into reusable prompts/functions before adding more UI.",
+          ...(topFocus.length ? topFocus.slice(0, 2).map((text) => `Equilibrium focus: ${text}`) : []),
+        ],
+      },
+    } satisfies Record<CockpitAction, { eyebrow: string; title: string; body: string; bullets: string[] }>;
+
+    const mission =
+      equilibrium?.state?.mission_override_text ??
+      "Help humanity evolve into conscious coordination through unique-value clarity.";
+    const strategy = equilibrium?.strategies?.[0]?.text ?? "Community/ecosystem pilots first; warm upstream partners over cold acquisition.";
+    const nextMove =
+      command.leverage.bullets[0] ?? latest?.next_action ?? "Choose the next move that is alive enough to do now.";
+
+    return {
+      latest,
+      command,
+      mission,
+      strategy,
+      nextMove,
+      openActions,
+      topFocus,
+    };
+  }, [equilibrium]);
+
+  const instruments: Array<{
+    label: string;
+    value: string;
+    signal: string;
+    icon: typeof Activity;
+    tone: "gold" | "teal" | "blue" | "rose";
+  }> = [
+    {
+      label: "Mission Vector",
+      value: "97%",
+      signal: clipped(model.mission, 118),
+      icon: Compass,
+      tone: "gold",
+    },
+    {
+      label: "Founder State",
+      value: `${equilibrium?.summary?.focus_count ?? 0}/3`,
+      signal: "Focus slots active; force must stay selective.",
+      icon: Gauge,
+      tone: "teal",
+    },
+    {
+      label: "Opportunity Field",
+      value: `${crmSnapshot.openItemsCount ?? 0}`,
+      signal: "Open loops need classification by cash, proof, infrastructure, optionality.",
+      icon: Radar,
+      tone: "blue",
+    },
+    {
+      label: "Energy Ledger",
+      value: `$${crmSnapshot.cashReceivedUsd ?? 0}`,
+      signal: `${crmSnapshot.energyLeakCount ?? 0} marked leaks; $${crmSnapshot.revShareContractsUsd ?? 0} rev-share pending.`,
+      icon: Waves,
+      tone: "rose",
+    },
+    {
+      label: "Strategic Oracle",
+      value: "2 lanes",
+      signal: "Cash-now and community-infrastructure must fly separately.",
+      icon: Sparkles,
+      tone: "gold",
+    },
+    {
+      label: "Readiness Signal",
+      value: "Alive",
+      signal: "The next move is not more theory; it is selective crystallization.",
+      icon: Signal,
+      tone: "teal",
+    },
+    {
+      label: "Next Move Engine",
+      value: "3 moves",
+      signal: "One cash action, one proof action, one product action.",
+      icon: Crosshair,
+      tone: "blue",
+    },
+    {
+      label: "Field Coherence",
+      value: "Good",
+      signal: "Mission, product, CRM, and pulse are converging around living-project navigation.",
+      icon: Zap,
+      tone: "gold",
+    },
+  ];
+
+  const toneClass = {
+    gold: "border-[#d6a84d]/45 bg-[#201608] text-[#f6d58a]",
+    teal: "border-[#4ecdc4]/35 bg-[#071d1d] text-[#93f0e8]",
+    blue: "border-[#6aa7ff]/35 bg-[#081527] text-[#a8cfff]",
+    rose: "border-[#f0a37a]/35 bg-[#24100d] text-[#ffc0a5]",
+  };
+
+  const active = model.command[activeAction];
+
+  return (
+    <main className="min-h-screen bg-[#07090d] text-[#f6efe3]">
+      <section className="mx-auto max-w-7xl px-4 py-6 md:px-8 md:py-8">
+        <header className="mb-5 flex flex-col gap-4 border-b border-[#d6a84d]/20 pb-5 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-4xl">
+            <p className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-[#d6a84d]">
+              <ShieldCheck className="h-4 w-4" />
+              Founder Life's Work Navigation
+            </p>
+            <h1 className="font-serif text-4xl leading-none text-[#fff7e8] md:text-6xl">
+              Navigate one living system.
+            </h1>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-[#cfc4b5]">
+              Your venture becomes readable through mission, relationships, pulses,
+              Equilibrium, and the next move that is alive now.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => void loadContext()}
+            className="inline-flex h-11 w-fit items-center gap-2 rounded-full border border-[#d6a84d]/35 bg-[#15100a] px-4 text-sm font-medium text-[#f6d58a] transition hover:border-[#f6d58a]/70"
+          >
+            {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <RefreshCw className="h-4 w-4" />}
+            Refresh
+          </button>
+        </header>
+
+        <div className="mb-5 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+          <section className="rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5 shadow-[0_0_50px_-30px_rgba(214,168,77,0.8)]">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <p className="text-xs uppercase tracking-[0.18em] text-[#d6a84d]">Center Screen · Living Venture</p>
+              <span className="rounded-full border border-[#4ecdc4]/30 bg-[#071d1d] px-3 py-1 text-xs text-[#93f0e8]">
+                {pulseSnapshot.latestEvent?.phase_shift_significance ?? "unscored"}
+              </span>
+            </div>
+            <div className="grid min-h-[230px] place-items-center rounded-xl border border-white/10 bg-[radial-gradient(circle_at_center,rgba(214,168,77,0.22),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-5">
+              <div className="w-full max-w-3xl">
+                <div className="mb-5 grid grid-cols-3 gap-2 text-center text-[10px] uppercase tracking-[0.16em] text-[#9fb7d7]">
+                  <span>Mission</span>
+                  <span>Relationships</span>
+                  <span>Market</span>
+                </div>
+                <div className="relative h-24">
+                  <div className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#f6d58a] shadow-[0_0_50px_14px_rgba(246,213,138,0.45)]" />
+                  {[0, 1, 2, 3, 4, 5].map((i) => (
+                    <span
+                      key={i}
+                      className="absolute h-px origin-left bg-gradient-to-r from-[#f6d58a] to-transparent"
+                      style={{
+                        left: "50%",
+                        top: "50%",
+                        width: `${120 + i * 28}px`,
+                        transform: `rotate(${i * 31 - 80}deg)`,
+                      }}
+                    />
+                  ))}
+                  {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+                    <span
+                      key={i}
+                      className="absolute h-2.5 w-2.5 rounded-full border border-[#f6d58a]/70 bg-[#0d1117]"
+                      style={{
+                        left: `${12 + (i % 4) * 24}%`,
+                        top: `${18 + Math.floor(i / 4) * 48}%`,
+                      }}
+                    />
+                  ))}
+                </div>
+                <p className="mt-5 text-center font-serif text-2xl text-[#fff7e8]">
+                  {pulseSnapshot.latestEvent?.title ?? "Awaiting next pulse"}
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section className="rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5">
+            <p className="mb-3 text-xs uppercase tracking-[0.18em] text-[#d6a84d]">Mission Vector</p>
+            <div className="rounded-xl border border-white/10 bg-[#07090d] p-5">
+              <div className="flex items-end justify-between gap-4">
+                <div>
+                  <p className="text-sm text-[#9ea7b3]">True north alignment</p>
+                  <p className="mt-2 text-5xl font-semibold text-[#f6d58a]">97%</p>
+                </div>
+                <Compass className="h-16 w-16 text-[#f6d58a]" />
+              </div>
+              <p className="mt-4 text-sm leading-6 text-[#cfc4b5]">{clipped(model.strategy, 250)}</p>
+            </div>
+          </section>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {instruments.map((instrument) => {
+            const Icon = instrument.icon;
+            return (
+              <section key={instrument.label} className={`rounded-2xl border p-4 ${toneClass[instrument.tone]}`}>
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <p className="text-[11px] uppercase tracking-[0.16em] opacity-80">{instrument.label}</p>
+                  <Icon className="h-5 w-5 opacity-90" />
+                </div>
+                <p className="text-3xl font-semibold">{instrument.value}</p>
+                <p className="mt-3 min-h-[66px] text-sm leading-6 text-[#f6efe3]/72">{instrument.signal}</p>
+              </section>
+            );
+          })}
+        </div>
+
+        <div className="mt-5 grid gap-4 lg:grid-cols-[0.85fr_1.15fr]">
+          <section className="rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5">
+            <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#d6a84d]">Command Surface</p>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {actionCards.map((action) => {
+                const Icon = action.icon;
+                const isActive = action.id === activeAction;
+                return (
+                  <button
+                    key={action.id}
+                    type="button"
+                    onClick={() => setActiveAction(action.id)}
+                    className={`min-h-[116px] rounded-xl border p-4 text-left transition ${
+                      isActive
+                        ? "border-[#f6d58a] bg-[#f6d58a] text-[#111827] shadow-[0_0_34px_-16px_rgba(246,213,138,0.9)]"
+                        : "border-white/10 bg-[#07090d] text-[#f6efe3] hover:border-[#d6a84d]/55"
+                    }`}
+                  >
+                    <Icon className="mb-3 h-5 w-5" />
+                    <p className="font-semibold">{action.label}</p>
+                    <p className={`mt-1 text-xs uppercase tracking-[0.14em] ${isActive ? "text-[#4b3820]" : "text-[#9ea7b3]"}`}>
+                      {action.instrument}
+                    </p>
+                  </button>
+                );
+              })}
+            </div>
+          </section>
+
+          <section className="rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5">
+            <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-[#d6a84d]">
+                  <Sparkles className="h-4 w-4" />
+                  {active.eyebrow}
+                </p>
+                <h2 className="mt-2 font-serif text-3xl leading-tight text-[#fff7e8]">{active.title}</h2>
+              </div>
+              <span className="w-fit rounded-full border border-[#4ecdc4]/30 bg-[#071d1d] px-3 py-1 text-xs text-[#93f0e8]">
+                {activeAction === "leverage" ? "act now" : "read field"}
+              </span>
+            </div>
+            <p className="text-base leading-7 text-[#cfc4b5]">{active.body}</p>
+            <div className="mt-5 space-y-3">
+              {active.bullets.map((bullet, index) => (
+                <div key={`${bullet}-${index}`} className="flex gap-3 rounded-xl border border-white/10 bg-[#07090d] p-4 text-sm leading-6 text-[#e9ddca]">
+                  <Waypoints className="mt-1 h-4 w-4 shrink-0 text-[#f6d58a]" />
+                  <p>{bullet}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+
+        <footer className="mt-5 grid gap-4 lg:grid-cols-[1fr_1fr]">
+          <section className="rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5">
+            <p className="mb-3 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-[#d6a84d]">
+              <Database className="h-4 w-4" />
+              Context Feed
+            </p>
+            <div className="grid gap-3 text-sm text-[#cfc4b5] sm:grid-cols-3">
+              <p>Pulse: <span className="text-[#fff7e8]">{formatDate(pulseSnapshot.generated_at)}</span></p>
+              <p>CRM: <span className="text-[#fff7e8]">{formatDate(crmSnapshot.generated_at)}</span></p>
+              <p>Equilibrium: <span className={error ? "text-[#ffc0a5]" : "text-[#fff7e8]"}>{error ? "not loaded" : formatDate(equilibrium?.generated_at)}</span></p>
+            </div>
+            {error && (
+              <p className="mt-3 rounded-xl border border-[#f0a37a]/30 bg-[#24100d] p-3 text-sm leading-6 text-[#ffc0a5]">
+                {error}
+              </p>
+            )}
+          </section>
+
+          <section className="rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5">
+            <p className="mb-3 text-xs uppercase tracking-[0.18em] text-[#d6a84d]">FMC · Next Move Engine</p>
+            <p className="font-serif text-2xl text-[#fff7e8]">Call the next door that can become real.</p>
+            <p className="mt-2 text-sm leading-6 text-[#cfc4b5]">{model.nextMove}</p>
+          </section>
+        </footer>
+      </section>
+    </main>
+  );
+}
