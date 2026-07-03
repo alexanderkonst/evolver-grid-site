@@ -62,7 +62,7 @@ what_happened: >
   curiosity sharpened around FIT: why capable people end up underused, why
   better opportunities become visible after more precise value articulation, and
   how AI can help humans become less interchangeable. In the product surface,
-  /cockpit was promoted into GameShell BUILD as "Founder Cockpit."
+  /build/cockpit was promoted into GameShell BUILD as "Founder Cockpit."
 energy_exchanged:
   - public positioning
   - alumni-network signal
@@ -74,14 +74,14 @@ affected_holons:
   - founder/community pilots
   - platform product architecture
 affected_artifacts:
-  - /cockpit
+  - /build/cockpit
   - GameShell BUILD navigation
   - Living Project Holograph
   - NotebookLM export
   - Sloan alumni survey copy
 phase_shift_significance: minor
 next_action: >
-  Continue tightening /cockpit landing-page detail later; use the Sloan alumni
+  Continue tightening /build/cockpit landing-page detail later; use the Sloan alumni
   surface as a friendly field test for Professional Clarity / Unique Value
   Infrastructure language.
 staleness_or_contradictions: >

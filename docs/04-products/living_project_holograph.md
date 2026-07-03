@@ -257,7 +257,7 @@ This phase is ready now.
 
 ### Current Product Surface — Founder Cockpit
 
-`/cockpit` is the public front-door for Founder Life's Work Navigation and now lives inside the GameShell `BUILD` space as **Founder Cockpit**.
+`/build/cockpit` is the public front-door for Founder Life's Work Navigation and now lives inside the GameShell `BUILD` space as **Founder Cockpit**.
 
 This matters because the cockpit is not a detached marketing page. It is a BUILD instrument: a founder-facing place where the life-work project can be seen as one living system rather than scattered strategy, relationships, opportunities, and next moves.
 
@@ -279,7 +279,7 @@ npm run pulse:snapshot
 
 ### Phase 2.5 — Private Cockpit Dashboard
 
-`/cockpit/dashboard` is the private operational cockpit.
+`/build/cockpit/dashboard` is the private operational cockpit.
 
 Its first version reads:
 

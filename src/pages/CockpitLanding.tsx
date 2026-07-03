@@ -97,7 +97,7 @@ export default function CockpitLanding() {
               </p>
               <div className="mt-9 flex flex-wrap items-center gap-3">
                 <Link
-                  to="/cockpit/dashboard"
+                  to="/build/cockpit/dashboard"
                   className="inline-flex items-center justify-center rounded-full bg-[#111827] px-6 py-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-white transition-transform duration-200 hover:translate-y-[-1px]"
                   style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
                 >

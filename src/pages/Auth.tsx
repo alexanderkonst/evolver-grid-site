@@ -47,7 +47,8 @@ const Auth = () => {
   const queryNext = searchParams.get("next") || searchParams.get("redirect");
   const defaultNext = claimMode ? "/zone-of-genius" : "/playbook/discover";
   const nextPath = queryNext || defaultNext;
-  const isCockpitRedirect = nextPath.startsWith("/cockpit");
+  const isCockpitRedirect =
+    nextPath.startsWith("/build/cockpit") || nextPath.startsWith("/cockpit");
   // Day 79 (Sasha 2026-05-22): match-path entry detection. When the user
   // came in via `?path=match`, completed Top Talent, and clicked
   // "Discover your mission", RequireAuth on /mission-discovery bounces

@@ -420,8 +420,10 @@ const App = () => (
                   {/* ══════ PUBLIC ROUTES (no login required) ══════ */}
                   <Route path="/" element={<JourneyPage />} />
                   <Route path="/hero" element={<HeroQuiz />} />
-                  <Route path="/cockpit" element={<CockpitLanding />} />
-                  <Route path="/cockpit/dashboard" element={<RequireAuth><CockpitDashboard /></RequireAuth>} />
+                  <Route path="/build/cockpit" element={<CockpitLanding />} />
+                  <Route path="/build/cockpit/dashboard" element={<RequireAuth><CockpitDashboard /></RequireAuth>} />
+                  <Route path="/cockpit" element={<Navigate to="/build/cockpit" replace />} />
+                  <Route path="/cockpit/dashboard" element={<Navigate to="/build/cockpit/dashboard" replace />} />
                   <Route path="/proposalforwegoodovahere" element={<ProposalForWeGoodOvaHere />} />
                   <Route path="/zone-of-genius" element={<ZoneOfGeniusEntry />} />
                   <Route path="/auth" element={<Auth />} />
