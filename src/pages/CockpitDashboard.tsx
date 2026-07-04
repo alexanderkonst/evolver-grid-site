@@ -590,6 +590,23 @@ export default function CockpitDashboard() {
                 );
               })}
             </div>
+
+            <div className="mt-4 rounded-xl border border-[#4ecdc4]/25 bg-[#071d1d] p-4">
+              <p className="text-xs uppercase tracking-[0.14em] text-[#93f0e8]">Equilibrium Upgrade</p>
+              <h3 className="mt-2 font-serif text-2xl leading-tight text-[#fff7e8]">Refine My Operating System</h3>
+              <p className="mt-2 text-sm leading-6 text-[#cfc4b5]">
+                Suggest the top three changes that preserve signal and remove noise from current strategies, workstreams, and tasks.
+              </p>
+              <button
+                type="button"
+                onClick={() => void runLens("refine-operating-system")}
+                disabled={lensLoading}
+                className="mt-4 inline-flex h-10 items-center gap-2 rounded-full border border-[#4ecdc4]/35 bg-[#071d1d] px-4 text-sm font-medium text-[#93f0e8] transition hover:border-[#93f0e8]/70 disabled:cursor-wait disabled:opacity-65"
+              >
+                {lensLoading && activeLensId === "refine-operating-system" ? <Loader2 className="h-4 w-4 animate-spin" /> : <BrainCircuit className="h-4 w-4" />}
+                Review top 3 changes
+              </button>
+            </div>
           </section>
 
           <section className="rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5">
@@ -634,7 +651,9 @@ export default function CockpitDashboard() {
                 <div className="grid gap-3">
                   {lensResult.evidence.map((item, index) => (
                     <div key={`${item}-${index}`} className="flex gap-3 rounded-xl border border-white/10 bg-[#07090d] p-4 text-sm leading-6 text-[#e9ddca]">
-                      <Waypoints className="mt-1 h-4 w-4 shrink-0 text-[#f6d58a]" />
+                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-[#f6d58a]/45 text-xs text-[#f6d58a]">
+                        {index + 1}
+                      </span>
                       <p>{item}</p>
                     </div>
                   ))}

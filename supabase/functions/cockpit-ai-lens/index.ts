@@ -15,7 +15,8 @@ type CockpitLensId =
   | "founder-shadow"
   | "attention-leaks"
   | "key-relationships"
-  | "outdated-strategy";
+  | "outdated-strategy"
+  | "refine-operating-system";
 
 interface LensSpec {
   label: string;
@@ -69,6 +70,11 @@ const LENSES: Record<CockpitLensId, LensSpec> = {
     label: "Outdated Strategy",
     instruction:
       "Identify which strategy is becoming outdated and what concrete change is becoming more and more obvious. Use Equilibrium strategies, current pulse, CRM movement, and holomap context. Distinguish stale strategy from still-valid long-horizon strategy. Name the strategy to retire, revise, or narrow, and the replacement move.",
+  },
+  "refine-operating-system": {
+    label: "Refine My Operating System",
+    instruction:
+      "Suggest a more optimal way to synthesize, articulate, and organize Sasha's current strategies, workstreams, and tasks. Preserve all or nearly all signal: the energies or building blocks each articulation is made of. Rigorously remove noise: redundancies, verbosity, repetitions, stale structure, and unclear grouping. Return exactly three proposed changes in the evidence array, each summarized in one sentence. Do not write back, do not pretend changes are already applied, and do not recommend a database operation. The recommendedMove should tell Sasha which one change to review first.",
   },
 };
 
