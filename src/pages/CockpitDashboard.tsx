@@ -107,6 +107,10 @@ export default function CockpitDashboard() {
   const [lensLoading, setLensLoading] = useState(false);
   const [lensError, setLensError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [primaryResult, setPrimaryResult] = useState<CockpitLensResult | null>(null);
+  const [primaryLoading, setPrimaryLoading] = useState(false);
+  const [primaryError, setPrimaryError] = useState<string | null>(null);
+  const [primaryCopied, setPrimaryCopied] = useState(false);
 
   const loadContext = async () => {
     setLoading(true);
@@ -126,6 +130,12 @@ export default function CockpitDashboard() {
   useEffect(() => {
     void loadContext();
   }, []);
+
+  useEffect(() => {
+    setPrimaryResult(null);
+    setPrimaryError(null);
+    setPrimaryCopied(false);
+  }, [activeAction]);
 
   const runLens = async (lensId: CockpitLensId) => {
     setActiveLensId(lensId);
@@ -161,6 +171,34 @@ export default function CockpitDashboard() {
     if (!lensResult) return;
     await navigator.clipboard.writeText(lensResult.markdown);
     setCopied(true);
+  };
+
+  const runPrimaryRead = async () => {
+    setPrimaryLoading(true);
+    setPrimaryError(null);
+    setPrimaryResult(null);
+    setPrimaryCopied(false);
+
+    try {
+      const liveEquilibrium = equilibrium ?? (await loadContextForLens());
+      const result = await runCockpitLens({
+        lensId: activeAction,
+        equilibrium: liveEquilibrium,
+        crmSnapshot,
+        pulseSnapshot,
+      });
+      setPrimaryResult(result);
+    } catch (runError) {
+      setPrimaryError(runError instanceof Error ? runError.message : "Could not run live cockpit read.");
+    } finally {
+      setPrimaryLoading(false);
+    }
+  };
+
+  const copyPrimaryMarkdown = async () => {
+    if (!primaryResult) return;
+    await navigator.clipboard.writeText(primaryResult.markdown);
+    setPrimaryCopied(true);
   };
 
   const model = useMemo(() => {
@@ -472,6 +510,50 @@ export default function CockpitDashboard() {
                 </div>
               ))}
             </div>
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={() => void runPrimaryRead()}
+                disabled={primaryLoading}
+                className="inline-flex h-10 items-center gap-2 rounded-full border border-[#d6a84d]/35 bg-[#15100a] px-4 text-sm font-medium text-[#f6d58a] transition hover:border-[#f6d58a]/70 disabled:cursor-wait disabled:opacity-65"
+              >
+                {primaryLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <BrainCircuit className="h-4 w-4" />}
+                Run live AI read
+              </button>
+              <button
+                type="button"
+                onClick={() => void copyPrimaryMarkdown()}
+                disabled={!primaryResult}
+                className="inline-flex h-10 items-center gap-2 rounded-full border border-white/10 bg-[#07090d] px-4 text-sm font-medium text-[#cfc4b5] transition hover:border-[#d6a84d]/45 disabled:cursor-not-allowed disabled:opacity-45"
+              >
+                <Copy className="h-4 w-4" />
+                {primaryCopied ? "Copied" : "Copy read"}
+              </button>
+            </div>
+
+            {primaryError && (
+              <p className="mt-4 rounded-xl border border-[#f0a37a]/30 bg-[#24100d] p-3 text-sm leading-6 text-[#ffc0a5]">
+                {primaryError}
+              </p>
+            )}
+
+            {primaryResult && (
+              <div className="mt-4 space-y-3 rounded-xl border border-[#4ecdc4]/25 bg-[#071d1d] p-4">
+                <p className="text-xs uppercase tracking-[0.14em] text-[#93f0e8]">Live AI Read</p>
+                <h3 className="font-serif text-2xl leading-tight text-[#fff7e8]">{primaryResult.title}</h3>
+                <p className="text-sm leading-6 text-[#d8fffb]">{primaryResult.bottomLine}</p>
+                <div className="grid gap-2">
+                  {primaryResult.evidence.slice(0, 3).map((item, index) => (
+                    <p key={`${item}-${index}`} className="rounded-lg border border-white/10 bg-[#07090d] p-3 text-sm leading-6 text-[#e9ddca]">
+                      {item}
+                    </p>
+                  ))}
+                </div>
+                <p className="text-sm leading-6 text-[#cfc4b5]">
+                  <span className="text-[#f6d58a]">Move:</span> {primaryResult.recommendedMove}
+                </p>
+              </div>
+            )}
           </section>
         </div>
 

@@ -1,6 +1,10 @@
 import { supabase } from "@/integrations/supabase/client";
 
 export type CockpitLensId =
+  | "movement"
+  | "followups"
+  | "bottlenecks"
+  | "leverage"
   | "project-becoming"
   | "founder-shadow"
   | "attention-leaks"
