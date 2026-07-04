@@ -284,6 +284,22 @@ Goal: make becoming visible through time while preserving invariant topology.
 | 9 | Motion avoids decorative pulse | The octahedron does not wobble, morph, or flare | Pending |
 | 10 | Debug/SOW logs are updated | `debug_report.md` and threshold log updated | Pending |
 
+## Phase 6: Implicit Circulation DoD
+
+Goal: move becoming from visible path-work into field behavior: refraction, shimmer, and light propagation.
+
+| # | Item | Evidence | Status |
+|---|---|---|---|
+| 1 | Implicit motion mode exists | `viewer.html` supports `motion=implicit` | Pending |
+| 2 | Field shader carries circulation behavior | Shader includes traveling caustic / phase bands | Pending |
+| 3 | Toroidal paths are visually reduced | Implicit mode lowers path opacity and transform amplitude | Pending |
+| 4 | Light propagation is visible without starburst drift | Motion report/poster show restrained field shimmer, no particles or flares | Pending |
+| 5 | Topology remains invariant | Source model is unchanged; only shader/material timing changes | Pending |
+| 6 | Motion v3 MP4 exists | `canonical-artifact-motion-v3-implicit.mp4` | Pending |
+| 7 | Motion v3 poster exists | `canonical-artifact-motion-v3-implicit-poster.png` | Pending |
+| 8 | Video metadata is valid | `ffprobe` confirms duration, frames, codec | Pending |
+| 9 | Debug/SOW logs are updated | `debug_report.md` and threshold log updated | Pending |
+
 ## Recursive Self-Check Protocol
 
 The agent must run a private-but-recorded check after each threshold below. The check can revise the SOW or DoDs if evidence shows the plan is wrong.
@@ -581,3 +597,31 @@ Open decisions:
 Next irreversible action:
 
 - Reduce explicit path visibility further and make circulation appear as field behavior: refraction, shimmer, and light propagation.
+
+### T12: After Motion v3 Implicit
+
+Date: 2026-07-04.
+
+What the motion pass revealed:
+
+- The artifact can imply toroidal becoming through field behavior rather than drawn circulation paths.
+- Reducing path opacity improves ontological correctness: the torus reads more as metabolism than decoration.
+- The real limitation is now renderer fidelity, not topology or motion architecture.
+
+Revision made:
+
+- Added `motion=implicit` support to `viewer.html`.
+- Added traveling caustic bands to the field shader.
+- Reduced toroidal path opacity and transform amplitude in implicit mode.
+- Updated `capture-motion.mjs` default output to `motion-v3-implicit`.
+- Generated `canonical-artifact-motion-v3-implicit.mp4`.
+- Generated `canonical-artifact-motion-v3-implicit-poster.png`.
+- Added Phase 6 Implicit Circulation DoD.
+
+Open decisions:
+
+- None now.
+
+Next irreversible action:
+
+- If continuing, improve physical believability through higher-fidelity material/refraction rendering while preserving the exact canonical model.

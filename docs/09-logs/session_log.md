@@ -8238,3 +8238,34 @@ Started 3 days before Sasha's birthday — his solar year is phase-locked to the
 ### Day 110 follow-up: anchor the 4 Sun cycles to the actual sky + drop redundant pills
 
 Two corrections after Sasha saw it live. (1) **Anchoring:** the 4 cycles are "of the **Sun**," so they must track the real solstices/equinoxes, not the birthday. Sasha's birthday sits a few days after Dec 21, so the birthday-anchored version showed him Sprouting (~0.49 of his personal year) while the sky said Fruiting (summer solstice was the day before). Added `solarHolonicPhase` to `SolarState` (= `getHolonicPhase(solsticeYearProgress)`, sun-longitude anchored, same for everyone) and pointed the display at it. Now the day after the June solstice = Fruiting, just entered. The personal-year arc ("energy left") stays birthday-anchored; the two readings coincide for solstice-born Sasha, diverge for others (a feature). (2) **Removed** the redundant 5-phase named pills (Big push / Steady stretch / Harvest time) from the Solar card — the 4 holonic cycles carry that now. Kept the golden arc + orb. Tests 38 (+7), typecheck/lint green, verified live desktop + mobile, deployed.
+
+---
+
+## Day 113: The Prime Invariant — from logo to generative ontology (July 3, 2026)
+
+Sasha brought in the image-only PDF **"The Prime Invariant"**. The artifact reframed the logo from a static 2D mark into a projection of a deeper canonical object: a regular octahedron held inside a sphere. The core line landed as doctrine:
+
+> **Find the invariant. Everything else is a derivation.**
+
+The big shift: branding is not primarily message communication. At the deepest level it is **generative ontology**: instantiate an invariant pattern, then derive the visible symbol, software topology, event installation, ceremony, cockpit, and product surface from that same source. The 2D logo is downstream; the prime object is the source.
+
+Key laws captured from the artifact:
+
+- Reality is approached through relationships before objects.
+- Every coherent structure is a projection of deeper invariants.
+- The purpose of intelligence is increasing coherent participation.
+- Beauty is a consequence of internal consistency.
+- Technology should amplify recognition rather than replace it.
+
+This directly reinforced the current Founder Cockpit / Living Project Holograph arc. The cockpit should not be a generic dashboard with brand styling. It should be a derivative of the prime invariant: a living navigation instrument that helps the founder see whether the project still preserves its source-pattern across strategy, relationships, money, opportunities, product architecture, and next moves.
+
+**Corpus updates made:**
+
+- `docs/01-vision/phase_shift_technology_library.md`: Domain 98 — Prime Invariant Branding.
+- `docs/01-vision/universal_ontology.md`: §12 — The Prime Invariant: Form That Forms.
+- `docs/00-intro kit/archived/universal_ontology.md`: archived pointer addendum to current ontology + Domain 98.
+- `docs/03-playbooks/unique_business_playbook.md`: Prime Invariant Principle added to the playbook.
+- `docs/02-strategy/unique-businesses/alexanders_unique_business.md`: Day 113 Product Doctrine — Prime Invariant and Founder Cockpit.
+- `docs/02-strategy/roadmap.md`: current roadmap note added.
+
+**Bottom line:** the founder's unique value is the prime invariant; the business is the projection library.

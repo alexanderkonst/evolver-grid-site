@@ -1042,6 +1042,59 @@ Its other faces, the same pattern each time:
 
 ---
 
+## The Prime Invariant Principle — Find the Form That Forms
+
+> *v1.0 · July 3, 2026. Added after "The Prime Invariant" artifact clarified that a logo, offer, page, cockpit, ritual, or product surface should be a projection of a deeper invariant, not an isolated creative asset.*
+
+Every artifact in this playbook should be treated as a derivative of a deeper source-pattern.
+
+The rule:
+
+> **Find the invariant. Everything else is a derivation.**
+
+In business-building terms, the invariant is the living source-pattern that survives transformation across:
+
+- uniqueness,
+- shadow,
+- myth,
+- tribe,
+- pain,
+- promise,
+- offer,
+- method,
+- landing page,
+- product surface,
+- dashboard,
+- community architecture,
+- ceremony,
+- and distribution.
+
+If the artifact does not preserve the invariant, it is adding noise. If it preserves the invariant, the business becomes recognizable across many surfaces without needing to over-explain itself.
+
+### How To Use This In Artifact Work
+
+Before producing the next artifact, ask:
+
+1. What is the invariant this business is carrying?
+2. What changes when that invariant projects into this artifact?
+3. What must not change?
+4. What visible form best preserves the invariant here?
+5. Is this a true derivative, or merely decoration / clever copy / surface polish?
+
+This is the deeper version of signal-preserving artifact propagation. It also explains why the highest-resonance upstream artifacts matter so much: once the invariant is clean, downstream work is derivation; when the invariant is unclear, downstream work becomes invention, noise, and fragmentation.
+
+### The Design Law
+
+Branding communicates messages. Generative ontology instantiates patterns.
+
+The logo is not the source. The source is the canonical object. The mark, interface, cockpit, pitch deck, community node, and ceremony should all derive from the same living pattern.
+
+For Unique Business work, this means:
+
+> The founder's unique value is the prime invariant; the business is the projection library.
+
+---
+
 ## The Myth — Anatomy of a World-Changing Claim
 
 > *v1.0 · Feb 19, 2026 — Discovered through live roasting of Alexander's myth articulations*
