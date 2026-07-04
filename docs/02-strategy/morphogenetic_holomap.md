@@ -3296,6 +3296,7 @@ Day 103:   (no new center reading)           → n climbs (Roman, +container); o
 - **Sandra:** the "alive projects" / project-self-awareness frame resonated with her 5D-management experience, confirming that this is not just Sasha's private metaphor but a field pattern others recognize.
 - **Sergey:** the architecture widened beyond solo founders. Meeting transcripts, decisions, unresolved tensions, outcomes, and burnout signals can become organizational AI context. Founder Cockpit scales toward **Living Work Intelligence** for teams and organizations.
 - **MIT Sloan alumni surface:** the Professional Clarity / Unique Value Infrastructure thesis gained a friendly public language for high-agency alumni, potential pilots, investors, cofounders, and future-of-work people.
+- **Prime Invariant:** the logo/product doctrine upgraded from static 2D brand mark to generative ontology: a canonical invariant object projects into logo, software topology, cockpit, ceremonies, events, and surfaces. Governing line: *"Find the invariant. Everything else is a derivation."*
 
 **Why this is a stage movement.** Day 102 propagated the thesis as a public flag. Day 113 makes the propagation navigable. The idea is no longer only being explained outward; the project now has a mechanism for metabolizing incoming reality and producing strategic guidance. This is the move from a project with documentation to a project with an emerging nervous system.
 
@@ -3306,6 +3307,7 @@ Day 103:   (no new center reading)           → n climbs (Roman, +container); o
 - **Equilibrium -> Gut Layer.** Equilibrium becomes the lived-time readiness layer: what has energy now, what is stale, what is ripening, and what the founder actually has capacity to do.
 - **Pulse -> Unit of professional life.** The pulse becomes the atomic input: one lived event enters once; every relevant mirror updates from it.
 - **Founder Cockpit -> Product surface.** The cockpit is the first customer-facing form of recursive self-awareness between founder and life's work.
+- **Prime Invariant -> Design law.** The cockpit should be a derivative of the source-pattern, not a generic dashboard decorated with the brand.
 
 ### Si-Do — Status
 
@@ -3337,5 +3339,6 @@ Day 113:   "Propagation -> Navigation"        -> the map becomes cockpit; pulses
 - `docs/02-strategy/strategic_crm_outreach_tracker.md`: energy-exchange ledger for Oyi, Ariana, Sandra, Sergey, Patricia, Chris, and other open loops.
 - `src/pages/CockpitDashboard.tsx`: first founder-facing cockpit surface.
 - `supabase/functions/equilibrium-ai-context`: Equilibrium read path for AI agents, pending deploy through a permitted Supabase/Lovable channel.
+- `docs/01-vision/phase_shift_technology_library.md`: Domain 98 — Prime Invariant Branding.
 
 > *Day 113 reading: **Propagation -> Navigation.** July 3, 2026. The thesis that went public on Day 102 has learned to navigate itself. The project no longer only asks, "What are we building?" It now asks, "What moved, what is stuck, who needs to be contacted, and what move has energy now?" This is the birth of a living work instrument: a second brain not merely for Sasha, but for the life-work holon that is also reshaping Sasha as it grows.*

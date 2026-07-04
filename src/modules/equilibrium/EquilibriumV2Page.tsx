@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react";
+import { Download } from "lucide-react";
+import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { InfoPopover } from "./components/InfoPopover";
 import { BirthdayPrompt } from "./components/BirthdayPrompt";
@@ -24,6 +26,7 @@ import { SectionAnchorNav } from "./components/SectionAnchorNav";
 import { WatchModeToggle, type WatchMode } from "./components/WatchModeToggle";
 import { ActiveFocusBanner } from "./components/ActiveFocusBanner";
 import { useEquilibriumV2 } from "./hooks/useEquilibriumV2";
+import { generateEquilibriumPdf } from "./generateEquilibriumPdf";
 import {
   DAY_OF_WEEK_SEGMENTS,
   LUNAR_SEGMENTS,
@@ -89,6 +92,7 @@ export const EquilibriumV2Page = () => {
   const eq = useEquilibriumV2();
   const { cycles, nowMs: cyclesNowMs } = useCycles(eq.birthday ?? undefined);
   const [mode, setMode] = useWatchMode();
+  const [exportingPdf, setExportingPdf] = useState(false);
   const isAttune = mode === "attune";
 
   const activeWorkstream =
@@ -106,6 +110,18 @@ export const EquilibriumV2Page = () => {
     }
     return map;
   }, [eq.tasksByWorkstream]);
+
+  const handleSavePdf = async () => {
+    setExportingPdf(true);
+    try {
+      await generateEquilibriumPdf({ cycles, eq });
+    } catch (error) {
+      console.warn("[EquilibriumV2Page] PDF export failed:", error);
+      toast.error("Couldn't save the PDF. Try again in a moment.");
+    } finally {
+      setExportingPdf(false);
+    }
+  };
 
   return (
     <main className="eq-v2-page mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 sm:py-12">
@@ -591,6 +607,20 @@ export const EquilibriumV2Page = () => {
               onUncompleteTask={eq.uncompleteTask}
             />
           </EquilibriumSectionCard>
+        )}
+
+        {!isAttune && (
+          <div className="flex justify-center pb-4 pt-2">
+            <button
+              type="button"
+              onClick={() => void handleSavePdf()}
+              disabled={exportingPdf || eq.loading}
+              className="inline-flex items-center gap-2 rounded-full border border-[#0a1628]/15 bg-[#0a1628] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(10,22,40,0.16)] transition hover:-translate-y-0.5 hover:bg-[#111f35] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0"
+            >
+              <Download className="h-4 w-4" aria-hidden="true" />
+              {exportingPdf ? "Saving PDF..." : "Save the read as PDF"}
+            </button>
+          </div>
         )}
       </div>
     </main>

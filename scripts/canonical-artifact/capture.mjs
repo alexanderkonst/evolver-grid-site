@@ -59,6 +59,8 @@ async function capture(name, viewport, targetUrl = url) {
 
 await capture("canonical-artifact-three-v3-anatomy-desktop", { width: 1440, height: 1200 }, `${url}?mode=anatomy`);
 await capture("canonical-artifact-three-v3-anatomy-mobile", { width: 390, height: 844 }, `${url}?mode=anatomy`);
+await capture("canonical-artifact-three-v4-physical-desktop", { width: 1440, height: 1200 }, `${url}?mode=anatomy&motion=implicit&quality=physical`);
+await capture("canonical-artifact-three-v4-physical-mobile", { width: 390, height: 844 }, `${url}?mode=anatomy&motion=implicit&quality=physical`);
 await browser.close();
 
 const report = `# Three.js Render Capture
@@ -67,7 +69,7 @@ Generated: ${new Date().toISOString()}
 
 URL: ${url}
 
-Mode: anatomy
+Modes: anatomy; anatomy + implicit motion + physical quality
 
 | Capture | Viewport | Screenshot | Canvas | Console |
 |---|---|---|---|---|

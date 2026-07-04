@@ -8263,7 +8263,7 @@ This directly reinforced the current Founder Cockpit / Living Project Holograph 
 
 - `docs/01-vision/phase_shift_technology_library.md`: Domain 98 — Prime Invariant Branding.
 - `docs/01-vision/universal_ontology.md`: §12 — The Prime Invariant: Form That Forms.
-- `docs/00-intro kit/archived/universal_ontology.md`: archived pointer addendum to current ontology + Domain 98.
+- Old intro-kit archive later removed as outdated; current ontology is the living source of truth.
 - `docs/03-playbooks/unique_business_playbook.md`: Prime Invariant Principle added to the playbook.
 - `docs/02-strategy/unique-businesses/alexanders_unique_business.md`: Day 113 Product Doctrine — Prime Invariant and Founder Cockpit.
 - `docs/02-strategy/roadmap.md`: current roadmap note added.

@@ -300,6 +300,37 @@ Goal: move becoming from visible path-work into field behavior: refraction, shim
 | 8 | Video metadata is valid | `ffprobe` confirms duration, frames, codec | Pending |
 | 9 | Debug/SOW logs are updated | `debug_report.md` and threshold log updated | Pending |
 
+## Phase 7: Physical Quality DoD
+
+Goal: improve material/refraction believability without adding decorative geometry or changing the canonical model.
+
+| # | Item | Evidence | Status |
+|---|---|---|---|
+| 1 | Physical render profile exists | `viewer.html` supports `quality=physical` | Pending |
+| 2 | Environment reflections exist | Renderer creates a reflection environment for physical materials | Pending |
+| 3 | Alloy material gains anisotropy | Material uses anisotropy and an anisotropy map | Pending |
+| 4 | Thin-film behavior improves | Materials use iridescence / thickness controls where supported | Pending |
+| 5 | Field gains refractive shell behavior | Physical profile adds transparent transmission / dispersion field shell | Pending |
+| 6 | Canonical topology remains unchanged | Source model still loads from `canonical-artifact.model.json` | Pending |
+| 7 | Desktop and mobile v4 captures exist | v4 render paths recorded | Pending |
+| 8 | Pixel/canvas checks pass | capture report records nonblank desktop/mobile | Pending |
+| 9 | Debug/SOW logs are updated | `debug_report.md` and threshold log updated | Pending |
+
+## Phase 8: Review Plate DoD
+
+Goal: assemble the artifact family into one reviewable surface without turning it into a marketing page.
+
+| # | Item | Evidence | Status |
+|---|---|---|---|
+| 1 | Review plate HTML exists | `docs/assets/canonical-artifact/review_plate.html` | Pending |
+| 2 | Review plate PNG exists | `canonical-artifact-review-plate.png` | Pending |
+| 3 | Plate shows the canonical physical artifact as the primary signal | Primary visual is v4 physical still | Pending |
+| 4 | Plate shows projection as derivative | Plate includes primary projection and states source relationship | Pending |
+| 5 | Plate shows anatomy and motion lineage | Plate includes v3 anatomy, v2 metabolic, and v3 implicit posters | Pending |
+| 6 | Geometry constraints are visible | Plate names 6 vertices / 12 edges / 8 faces / 3 axes | Pending |
+| 7 | Image load audit passes | Capture report records loaded natural dimensions | Pending |
+| 8 | Debug/SOW logs are updated | `debug_report.md` and threshold log updated | Pending |
+
 ## Recursive Self-Check Protocol
 
 The agent must run a private-but-recorded check after each threshold below. The check can revise the SOW or DoDs if evidence shows the plan is wrong.
@@ -625,3 +656,58 @@ Open decisions:
 Next irreversible action:
 
 - If continuing, improve physical believability through higher-fidelity material/refraction rendering while preserving the exact canonical model.
+
+### T13: After v4 Physical Quality
+
+Date: 2026-07-04.
+
+What the render pass revealed:
+
+- Browser-native physical materials can move the artifact toward satin alloy / refractive field behavior without changing the source model.
+- The first physical capture was too washed out; exposure and field-shell opacity needed restraint.
+- The next limitation is not geometry or material parameters alone, but presentation/offline rendering fidelity.
+
+Revision made:
+
+- Added `quality=physical` support to `viewer.html`.
+- Added a generated equirectangular reflection environment.
+- Added anisotropy, anisotropy map, iridescence, tuned clearcoat, and roughness mapping to the alloy.
+- Added a transparent transmissive / dispersive field shell in physical mode.
+- Updated `capture.mjs` to capture v4 physical desktop and mobile stills.
+- Generated `canonical-artifact-three-v4-physical-desktop.png`.
+- Generated `canonical-artifact-three-v4-physical-mobile.png`.
+- Added Phase 7 Physical Quality DoD.
+
+Open decisions:
+
+- None now.
+
+Next irreversible action:
+
+- If continuing, assemble a presentation plate that compares canonical projection, anatomy still, physical still, and motion outputs as one reviewable artifact family.
+
+### T14: After Review Plate v1
+
+Date: 2026-07-04.
+
+What the plate revealed:
+
+- The artifact family now reads as a coherent system rather than separate experiments.
+- The v4 physical still is strong enough to serve as the primary review signal.
+- Motion stills communicate lineage, but a later interactive plate could embed the actual MP4s for richer review.
+
+Revision made:
+
+- Added `docs/assets/canonical-artifact/review_plate.html`.
+- Added `scripts/canonical-artifact/capture-review-plate.mjs`.
+- Generated `canonical-artifact-review-plate.png`.
+- Generated `review_plate_capture_report.md`.
+- Added Phase 8 Review Plate DoD.
+
+Open decisions:
+
+- None now.
+
+Next irreversible action:
+
+- If continuing, either create an offline-render brief/package or begin deriving identity applications from the review-approved artifact family.
