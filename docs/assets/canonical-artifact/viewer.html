@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canonical Artifact v1</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #fffefa;
+      }
+
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="module">
+      import * as THREE from "/node_modules/three/build/three.module.js";
+
+      const model = await fetch("/docs/assets/canonical-artifact/geometry/canonical-artifact.model.json").then((response) => response.json());
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xfffefa);
+
+      const camera = new THREE.PerspectiveCamera(38, window.innerWidth / window.innerHeight, 0.01, 100);
+      camera.position.set(2.75, -3.2, 2.05);
+      camera.lookAt(0, 0, 0);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.08;
+      document.body.appendChild(renderer.domElement);
+
+      const ambient = new THREE.HemisphereLight(0xffffff, 0xe8d6ad, 1.55);
+      scene.add(ambient);
+
+      const key = new THREE.DirectionalLight(0xffffff, 2.5);
+      key.position.set(3.5, -4.5, 5.5);
+      scene.add(key);
+
+      const fill = new THREE.DirectionalLight(0xd7efff, 0.82);
+      fill.position.set(-3, 2, 2);
+      scene.add(fill);
+
+      const warm = new THREE.PointLight(0xffe29b, 3.5, 6.5, 1.5);
+      warm.position.set(0, 0, 0);
+      scene.add(warm);
+
+      const vertices = new Map(model.sourceModel.vertices.map((vertex) => [vertex.id, new THREE.Vector3(...vertex.p)]));
+      const group = new THREE.Group();
+      scene.add(group);
+
+      function makeBrushedTexture() {
+        let seed = 137;
+        const random = () => {
+          seed = (seed * 16807) % 2147483647;
+          return (seed - 1) / 2147483646;
+        };
+        const canvas = document.createElement("canvas");
+        canvas.width = 512;
+        canvas.height = 512;
+        const ctx = canvas.getContext("2d");
+        const gradient = ctx.createLinearGradient(0, 0, 512, 512);
+        gradient.addColorStop(0, "#c6a458");
+        gradient.addColorStop(0.34, "#ecd184");
+        gradient.addColorStop(0.55, "#fff1ae");
+        gradient.addColorStop(0.78, "#d1ad5e");
+        gradient.addColorStop(1, "#a9863f");
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 512, 512);
+        for (let y = 0; y < 512; y += 2) {
+          const alpha = 0.035 + ((y % 17) / 17) * 0.055;
+          ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+          ctx.beginPath();
+          ctx.moveTo(0, y + Math.sin(y * 0.03) * 1.4);
+          ctx.lineTo(512, y + Math.cos(y * 0.025) * 1.4);
+          ctx.stroke();
+        }
+        for (let i = 0; i < 700; i += 1) {
+          const x = random() * 512;
+          const y = random() * 512;
+          const v = 182 + random() * 58;
+          ctx.fillStyle = `rgba(${v},${v * 0.9},${v * 0.56},0.034)`;
+          ctx.fillRect(x, y, 1.1, 1.1);
+        }
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(3, 1);
+        texture.colorSpace = THREE.SRGBColorSpace;
+        return texture;
+      }
+
+      const brushedTexture = makeBrushedTexture();
+
+      const alloyMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0xd6b565,
+        map: brushedTexture,
+        metalness: 0.76,
+        roughness: 0.29,
+        clearcoat: 0.68,
+        clearcoatRoughness: 0.2,
+        emissive: 0x4b3510,
+        emissiveIntensity: 0.055,
+      });
+
+      const axisMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0xf5dd8f,
+        metalness: 0.22,
+        roughness: 0.12,
+        transmission: 0.24,
+        thickness: 0.3,
+        clearcoat: 0.84,
+        clearcoatRoughness: 0.16,
+        emissive: 0xffeeb4,
+        emissiveIntensity: 0.34,
+      });
+
+      const glowMaterial = new THREE.MeshBasicMaterial({
+        color: 0xfff7c6,
+        transparent: true,
+        opacity: 0.055,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
+
+      const fieldMaterial = new THREE.ShaderMaterial({
+        transparent: true,
+        side: THREE.DoubleSide,
+        depthWrite: false,
+        uniforms: {
+          time: { value: 0 },
+          colorA: { value: new THREE.Color(0xc8b7d8) },
+          colorB: { value: new THREE.Color(0xa7cbd4) },
+          colorC: { value: new THREE.Color(0xf7f4e3) },
+        },
+        vertexShader: `
+          varying vec3 vNormal;
+          varying vec3 vWorldPosition;
+          void main() {
+            vec4 world = modelMatrix * vec4(position, 1.0);
+            vWorldPosition = world.xyz;
+            vNormal = normalize(mat3(modelMatrix) * normal);
+            gl_Position = projectionMatrix * viewMatrix * world;
+          }
+        `,
+        fragmentShader: `
+          uniform float time;
+          uniform vec3 colorA;
+          uniform vec3 colorB;
+          uniform vec3 colorC;
+          varying vec3 vNormal;
+          varying vec3 vWorldPosition;
+          void main() {
+            vec3 viewDirection = normalize(cameraPosition - vWorldPosition);
+            float fresnel = pow(1.0 - abs(dot(normalize(vNormal), viewDirection)), 2.4);
+            float band = sin((vWorldPosition.x * 3.1 + vWorldPosition.y * 2.3 + vWorldPosition.z * 2.7) + time * 0.9) * 0.5 + 0.5;
+            vec3 iridescence = mix(colorA, colorB, band);
+            iridescence = mix(iridescence, colorC, 0.38);
+            float alpha = 0.018 + fresnel * 0.095 + band * 0.01;
+            gl_FragColor = vec4(iridescence, alpha);
+          }
+        `,
+      });
+
+      function tubeBetween(a, b, radius, material, radialSegments = 32) {
+        const mid = new THREE.Vector3().addVectors(a, b).multiplyScalar(0.5);
+        const direction = new THREE.Vector3().subVectors(b, a);
+        const length = direction.length();
+        const geometry = new THREE.CylinderGeometry(radius, radius, length, radialSegments, 1, false);
+        const mesh = new THREE.Mesh(geometry, material);
+        mesh.position.copy(mid);
+        mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction.clone().normalize());
+        return mesh;
+      }
+
+      for (const [aId, bId] of model.sourceModel.edges) {
+        const a = vertices.get(aId);
+        const b = vertices.get(bId);
+        group.add(tubeBetween(a, b, 0.017, alloyMaterial, 24));
+      }
+
+      for (const [aId, bId] of model.sourceModel.coherenceAxes) {
+        const a = vertices.get(aId);
+        const b = vertices.get(bId);
+        group.add(tubeBetween(a, b, 0.031, axisMaterial, 36));
+        group.add(tubeBetween(a, b, 0.067, glowMaterial, 36));
+      }
+
+      for (const vertex of vertices.values()) {
+        const joint = new THREE.Mesh(new THREE.SphereGeometry(0.054, 40, 24), alloyMaterial);
+        joint.position.copy(vertex);
+        group.add(joint);
+      }
+
+      const singularity = new THREE.Mesh(
+        new THREE.SphereGeometry(0.035, 48, 24),
+        new THREE.MeshBasicMaterial({ color: 0xfffdf0 })
+      );
+      group.add(singularity);
+
+      const singularityAura = new THREE.Mesh(
+        new THREE.SphereGeometry(0.18, 48, 24),
+        new THREE.MeshBasicMaterial({ color: 0xfff3b0, transparent: true, opacity: 0.06, blending: THREE.AdditiveBlending, depthWrite: false })
+      );
+      group.add(singularityAura);
+
+      const field = new THREE.Mesh(new THREE.SphereGeometry(1.015, 96, 48), fieldMaterial);
+      group.add(field);
+
+      const fieldRingMaterial = new THREE.MeshBasicMaterial({
+        color: 0xc9e2ea,
+        transparent: true,
+        opacity: 0.09,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(1.01, 0.0035, 8, 192), fieldRingMaterial);
+      ring.rotation.x = Math.PI * 0.5;
+      group.add(ring);
+
+      const cameraDirection = new THREE.Vector3(2.75, -3.2, 2.05).normalize();
+
+      const resize = () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        const distance = camera.aspect < 0.74 ? 7.35 : 4.85;
+        camera.position.copy(cameraDirection.clone().multiplyScalar(distance));
+        camera.lookAt(0, 0, 0);
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      };
+      window.addEventListener("resize", resize);
+      resize();
+
+      function animate() {
+        const t = performance.now() * 0.00018;
+        fieldMaterial.uniforms.time.value = performance.now() * 0.001;
+        field.rotation.y = t;
+        field.rotation.x = Math.sin(t * 0.7) * 0.08;
+        ring.rotation.z = t * 1.8;
+        singularityAura.scale.setScalar(1 + Math.sin(t * 8) * 0.04);
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
+
+      renderer.render(scene, camera);
+      window.__artifactReady = true;
+      animate();
+    </script>
+  </body>
+</html>

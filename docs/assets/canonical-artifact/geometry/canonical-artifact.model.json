@@ -1,0 +1,191 @@
+{
+  "generatedAt": "2026-07-03T23:51:45.645Z",
+  "geometry": {
+    "type": "regular-octahedron-inscribed-in-spherical-field",
+    "radius": 1,
+    "vertexCount": 6,
+    "edgeCount": 12,
+    "faceCount": 8,
+    "edgeLength": 1.4142135623730951,
+    "edgeLengthSpread": 0,
+    "radiusSpread": 0,
+    "passes": {
+      "vertices": true,
+      "edges": true,
+      "faces": true,
+      "equalEdges": true,
+      "verticesOnSphere": true
+    }
+  },
+  "sourceModel": {
+    "vertices": [
+      {
+        "id": "x+",
+        "p": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "x-",
+        "p": [
+          -1,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "y+",
+        "p": [
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "id": "y-",
+        "p": [
+          0,
+          -1,
+          0
+        ]
+      },
+      {
+        "id": "z+",
+        "p": [
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "id": "z-",
+        "p": [
+          0,
+          0,
+          -1
+        ]
+      }
+    ],
+    "edges": [
+      [
+        "x+",
+        "y+"
+      ],
+      [
+        "x+",
+        "y-"
+      ],
+      [
+        "x+",
+        "z+"
+      ],
+      [
+        "x+",
+        "z-"
+      ],
+      [
+        "x-",
+        "y+"
+      ],
+      [
+        "x-",
+        "y-"
+      ],
+      [
+        "x-",
+        "z+"
+      ],
+      [
+        "x-",
+        "z-"
+      ],
+      [
+        "y+",
+        "z+"
+      ],
+      [
+        "y+",
+        "z-"
+      ],
+      [
+        "y-",
+        "z+"
+      ],
+      [
+        "y-",
+        "z-"
+      ]
+    ],
+    "faces": [
+      [
+        "x+",
+        "y+",
+        "z+"
+      ],
+      [
+        "x+",
+        "z+",
+        "y-"
+      ],
+      [
+        "x+",
+        "y-",
+        "z-"
+      ],
+      [
+        "x+",
+        "z-",
+        "y+"
+      ],
+      [
+        "x-",
+        "z+",
+        "y+"
+      ],
+      [
+        "x-",
+        "y-",
+        "z+"
+      ],
+      [
+        "x-",
+        "z-",
+        "y-"
+      ],
+      [
+        "x-",
+        "y+",
+        "z-"
+      ]
+    ],
+    "coherenceAxes": [
+      [
+        "x+",
+        "x-"
+      ],
+      [
+        "y+",
+        "y-"
+      ],
+      [
+        "z+",
+        "z-"
+      ]
+    ]
+  },
+  "projection": {
+    "primaryProjectionCameraDirection": [
+      1,
+      1,
+      1
+    ],
+    "canonicalRenderCameraDirection": [
+      2.2,
+      -2.6,
+      1.7
+    ],
+    "note": "Primary projection is derived from the regular octahedron source model, not separately illustrated."
+  }
+}
