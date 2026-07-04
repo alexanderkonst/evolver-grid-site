@@ -9,7 +9,8 @@ export type CockpitLensId =
   | "founder-shadow"
   | "attention-leaks"
   | "key-relationships"
-  | "outdated-strategy";
+  | "outdated-strategy"
+  | "refine-operating-system";
 
 export interface CockpitLensResult {
   title: string;
