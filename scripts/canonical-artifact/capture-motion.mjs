@@ -5,13 +5,14 @@ import { chromium } from "playwright";
 
 const root = process.cwd();
 const renderDir = join(root, "docs", "assets", "canonical-artifact", "renders");
-const framesDir = join(renderDir, "motion-v1-frames");
+const motionName = process.env.MOTION_NAME || "motion-v3-implicit";
+const framesDir = join(renderDir, `${motionName}-frames`);
 mkdirSync(framesDir, { recursive: true });
 
-const url = process.env.CANONICAL_ARTIFACT_URL || "http://127.0.0.1:5177/docs/assets/canonical-artifact/viewer.html?mode=anatomy";
+const url = process.env.CANONICAL_ARTIFACT_URL || "http://127.0.0.1:5177/docs/assets/canonical-artifact/viewer.html?mode=anatomy&motion=implicit";
 const frameCount = Number(process.env.FRAME_COUNT || 96);
 const fps = Number(process.env.FPS || 24);
-const durationMs = Number(process.env.DURATION_MS || 8000);
+const durationMs = Number(process.env.DURATION_MS || 10000);
 const viewport = { width: 960, height: 960 };
 
 const browser = await chromium.launch({
@@ -44,8 +45,8 @@ for (let frame = 0; frame < frameCount; frame += 1) {
 
 await browser.close();
 
-const mp4Path = join(renderDir, "canonical-artifact-motion-v1.mp4");
-const posterPath = join(renderDir, "canonical-artifact-motion-v1-poster.png");
+const mp4Path = join(renderDir, `canonical-artifact-${motionName}.mp4`);
+const posterPath = join(renderDir, `canonical-artifact-${motionName}-poster.png`);
 execFileSync("ffmpeg", [
   "-y",
   "-framerate", String(fps),
@@ -58,7 +59,7 @@ execFileSync("ffmpeg", [
 
 execFileSync("cp", [join(framesDir, "frame-0024.png"), posterPath]);
 
-const report = `# Motion Capture v1
+const report = `# Motion Capture ${motionName}
 
 Generated: ${new Date().toISOString()}
 
@@ -70,17 +71,17 @@ URL: ${url}
 | FPS | ${fps} |
 | Duration source | ${durationMs} ms |
 | Viewport | ${viewport.width}x${viewport.height} |
-| Frames dir | \`docs/assets/canonical-artifact/renders/motion-v1-frames/\` |
-| MP4 | \`docs/assets/canonical-artifact/renders/canonical-artifact-motion-v1.mp4\` |
-| Poster | \`docs/assets/canonical-artifact/renders/canonical-artifact-motion-v1-poster.png\` |
+| Frames dir | \`docs/assets/canonical-artifact/renders/${motionName}-frames/\` |
+| MP4 | \`docs/assets/canonical-artifact/renders/canonical-artifact-${motionName}.mp4\` |
+| Poster | \`docs/assets/canonical-artifact/renders/canonical-artifact-${motionName}-poster.png\` |
 | Console | ${errors.length ? errors.join("<br>") : "clean"} |
 
 ## Intent
 
 The animation preserves the canonical topology while making becoming visible:
 
-- field shimmer changes over time,
-- toroidal circulation rotates around the invariant,
+- field shimmer changes through layered phase waves and traveling caustic bands,
+- toroidal circulation is mostly implied through light propagation instead of visible path rotation,
 - the central coherence breathes subtly,
 - octahedron vertices, edges, faces, and axes do not change.
 `;
