@@ -22,6 +22,8 @@ Date: 2026-07-03.
 | Motion v1 MP4 | `docs/assets/canonical-artifact/renders/canonical-artifact-motion-v1.mp4` | Pass |
 | Motion v1 poster | `docs/assets/canonical-artifact/renders/canonical-artifact-motion-v1-poster.png` | Pass |
 | Motion v1 capture report | `docs/assets/canonical-artifact/renders/motion_capture_report.md` | Pass |
+| Motion v2 Metabolic MP4 | `docs/assets/canonical-artifact/renders/canonical-artifact-motion-v2-metabolic.mp4` | Pass |
+| Motion v2 Metabolic poster | `docs/assets/canonical-artifact/renders/canonical-artifact-motion-v2-metabolic-poster.png` | Pass |
 | Three.js capture report | `docs/assets/canonical-artifact/renders/three_capture_report.md` | Pass |
 | Execution log | `docs/assets/canonical-artifact/execution_log.md` | Pass |
 
@@ -87,13 +89,24 @@ Date: 2026-07-03.
 | Becoming is visible | Toroidal circulation rotates around the invariant over time | Pass |
 | Breathing is subtle | Singularity aura scales gently, without pulsing the topology | Pass |
 
+## Motion v2 Metabolic Audit
+
+| Check | Evidence | Status |
+|---|---|---|
+| Metabolic motion mode exists | `viewer.html` supports `motion=metabolic` | Pass |
+| Field motion is phase-based | Field shader mixes layered waves when metabolism is enabled | Pass |
+| Toroidal motion is not simple group rotation | Circulation paths use per-path phase offsets and scale modulation | Pass |
+| Central coherence breathes subtly | Aura, warm light, axis emissive intensity, and glow opacity modulate gently | Pass |
+| Invariant topology is preserved | Motion affects materials/transforms of field/circulation/aura, not source model | Pass |
+| MP4 generated | `canonical-artifact-motion-v2-metabolic.mp4`, 96 frames, 24fps, 4s | Pass |
+
 ## Known Limitations
 
 1. The SVG implementation is exact and audit-friendly; the Three.js render is more material-rich but still not a final Blender/Cycles-grade photograph.
 2. The material now includes deterministic brushed texture and stronger physicality, but still needs final art direction to escape ordinary gold completely.
-3. Motion v1 shows circulation over time, but it is still a technical proof. Future art direction should make the circulation feel less like paths rotating and more like field metabolism.
+3. Motion v2 moves closer to field metabolism, but the paths are still visibly explicit. Future passes should make circulation more implicit through refraction, shimmer, and light propagation.
 4. The privileged viewpoint is operationalized as `[1, 1, 1]`; Sasha may later tune this from lived visual memory.
 
 ## Debug Conclusion
 
-The first execution target is complete and the renderer now has three layers: v2 artifact/material render, v3 Anatomy Mode, and Motion v1. All derive from the same procedural geometry. The next quality leap is field metabolism: making motion feel internally alive rather than mechanically rotating.
+The first execution target is complete and the renderer now has four layers: v2 artifact/material render, v3 Anatomy Mode, Motion v1, and Motion v2 Metabolic. All derive from the same procedural geometry. The next quality leap is implicit circulation: less visible path-work, more refraction/shimmer/light propagation.

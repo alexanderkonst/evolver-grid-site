@@ -23,8 +23,12 @@
     <script type="module">
       import * as THREE from "/node_modules/three/build/three.module.js";
 
-      const mode = new URLSearchParams(window.location.search).get("mode") || "artifact";
+      const params = new URLSearchParams(window.location.search);
+      const mode = params.get("mode") || "artifact";
       const isAnatomy = mode === "anatomy";
+      const motion = params.get("motion") || "v1";
+      const isMetabolicMotion = motion === "metabolic";
+      const isImplicitMotion = motion === "implicit";
       const model = await fetch("/docs/assets/canonical-artifact/geometry/canonical-artifact.model.json").then((response) => response.json());
       const scene = new THREE.Scene();
       scene.background = new THREE.Color(0xfffefa);
@@ -142,6 +146,8 @@
         depthWrite: false,
         uniforms: {
           time: { value: 0 },
+          metabolism: { value: isMetabolicMotion ? 1 : 0 },
+          implicitness: { value: isImplicitMotion ? 1 : 0 },
           colorA: { value: new THREE.Color(0xc8b7d8) },
           colorB: { value: new THREE.Color(0xa7cbd4) },
           colorC: { value: new THREE.Color(0xf7f4e3) },
@@ -158,6 +164,8 @@
         `,
         fragmentShader: `
           uniform float time;
+          uniform float metabolism;
+          uniform float implicitness;
           uniform vec3 colorA;
           uniform vec3 colorB;
           uniform vec3 colorC;
@@ -166,11 +174,18 @@
           void main() {
             vec3 viewDirection = normalize(cameraPosition - vWorldPosition);
             float fresnel = pow(1.0 - abs(dot(normalize(vNormal), viewDirection)), 2.4);
-            float band = sin((vWorldPosition.x * 3.1 + vWorldPosition.y * 2.3 + vWorldPosition.z * 2.7) + time * 0.9) * 0.5 + 0.5;
+            float waveA = sin((vWorldPosition.x * 3.1 + vWorldPosition.y * 2.3 + vWorldPosition.z * 2.7) + time * 0.9);
+            float waveB = sin(length(vWorldPosition.xy) * 9.0 - time * 1.25 + vWorldPosition.z * 2.0);
+            float angle = atan(vWorldPosition.y, vWorldPosition.x);
+            float radial = length(vWorldPosition.xy);
+            float propagation = sin(angle * 3.0 + radial * 12.0 - time * 1.95 + vWorldPosition.z * 5.2);
+            float caustic = pow(propagation * 0.5 + 0.5, 7.0);
+            float band = mix(waveA, (waveA * 0.55 + waveB * 0.45), metabolism) * 0.5 + 0.5;
+            band = mix(band, band * 0.68 + caustic * 0.32, implicitness);
             vec3 iridescence = mix(colorA, colorB, band);
-            iridescence = mix(iridescence, colorC, 0.38);
+            iridescence = mix(iridescence, colorC, 0.38 + caustic * implicitness * 0.22);
             float modeScale = ${isAnatomy ? "0.48" : "1.0"};
-            float alpha = (0.018 + fresnel * 0.095 + band * 0.01) * modeScale;
+            float alpha = (0.018 + fresnel * 0.095 + band * 0.01 + caustic * implicitness * 0.026) * modeScale;
             gl_FragColor = vec4(iridescence, alpha);
           }
         `,
@@ -228,11 +243,12 @@
 
       const torusGroup = new THREE.Group();
       group.add(torusGroup);
+      const circulationPaths = [];
 
       const torusMaterial = new THREE.MeshBasicMaterial({
         color: 0xffe9a6,
         transparent: true,
-        opacity: isAnatomy ? 0.18 : 0.035,
+        opacity: isAnatomy ? (isImplicitMotion ? 0.045 : 0.18) : 0.035,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
       });
@@ -248,6 +264,11 @@
         const mesh = new THREE.Mesh(new THREE.TubeGeometry(curve, 240, isAnatomy ? 0.0038 : 0.002, 8, true), torusMaterial);
         mesh.rotation.set(rotation[0], rotation[1], rotation[2]);
         torusGroup.add(mesh);
+        circulationPaths.push({
+          mesh,
+          baseRotation: new THREE.Euler(rotation[0], rotation[1], rotation[2]),
+          phase: circulationPaths.length * Math.PI * 0.67,
+        });
       }
 
       addCirculationPath([0.2, 0.2, 0.0], 0.36, 1.02);
@@ -257,7 +278,7 @@
       const fieldRingMaterial = new THREE.MeshBasicMaterial({
         color: 0xc9e2ea,
         transparent: true,
-        opacity: 0.09,
+        opacity: isImplicitMotion ? 0.035 : 0.09,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
       });
@@ -280,13 +301,33 @@
 
       function renderAt(ms) {
         const t = ms * 0.00018;
-        fieldMaterial.uniforms.time.value = ms * 0.001;
-        field.rotation.y = t;
-        field.rotation.x = Math.sin(t * 0.7) * 0.08;
-        ring.rotation.z = t * 1.8;
-        torusGroup.rotation.y = t * 1.4;
-        torusGroup.rotation.z = Math.sin(t * 0.9) * 0.08;
-        singularityAura.scale.setScalar(1 + Math.sin(t * 8) * 0.04);
+        const slow = ms * 0.001;
+        fieldMaterial.uniforms.time.value = slow;
+        field.rotation.y = isMetabolicMotion || isImplicitMotion ? Math.sin(slow * 0.16) * 0.035 : t;
+        field.rotation.x = Math.sin(t * 0.7) * (isMetabolicMotion || isImplicitMotion ? 0.025 : 0.08);
+        ring.rotation.z = isImplicitMotion ? Math.sin(slow * 0.32) * 0.08 : (isMetabolicMotion ? Math.sin(slow * 0.22) * 0.18 : t * 1.8);
+        if (isMetabolicMotion || isImplicitMotion) {
+          torusGroup.rotation.y = Math.sin(slow * 0.2) * (isImplicitMotion ? 0.035 : 0.08);
+          torusGroup.rotation.z = Math.sin(slow * 0.17) * (isImplicitMotion ? 0.02 : 0.045);
+          for (const path of circulationPaths) {
+            const phase = slow * 0.85 + path.phase;
+            path.mesh.rotation.x = path.baseRotation.x + Math.sin(phase) * (isImplicitMotion ? 0.025 : 0.08);
+            path.mesh.rotation.y = path.baseRotation.y + Math.cos(phase * 0.8) * (isImplicitMotion ? 0.02 : 0.06);
+            path.mesh.rotation.z = path.baseRotation.z + Math.sin(phase * 0.55) * (isImplicitMotion ? 0.025 : 0.08);
+            path.mesh.scale.setScalar(1 + Math.sin(phase * 1.3) * (isImplicitMotion ? 0.012 : 0.025));
+          }
+          torusMaterial.opacity = isAnatomy
+            ? (isImplicitMotion ? 0.024 + (Math.sin(slow * 1.4) * 0.5 + 0.5) * 0.024 : 0.115 + (Math.sin(slow * 1.1) * 0.5 + 0.5) * 0.055)
+            : 0.035;
+          fieldRingMaterial.opacity = isImplicitMotion ? 0.026 + (Math.sin(slow * 1.2) * 0.5 + 0.5) * 0.022 : 0.09;
+          axisMaterial.emissiveIntensity = isAnatomy ? 0.46 + (Math.sin(slow * 0.85) * 0.5 + 0.5) * (isImplicitMotion ? 0.18 : 0.12) : 0.34;
+          glowMaterial.opacity = isAnatomy ? 0.026 + (Math.sin(slow * 0.7) * 0.5 + 0.5) * (isImplicitMotion ? 0.024 : 0.018) : 0.055;
+          warm.intensity = 3.0 + (Math.sin(slow * 0.55) * 0.5 + 0.5) * (isImplicitMotion ? 0.85 : 0.55);
+        } else {
+          torusGroup.rotation.y = t * 1.4;
+          torusGroup.rotation.z = Math.sin(t * 0.9) * 0.08;
+        }
+        singularityAura.scale.setScalar(1 + Math.sin(t * 8) * (isMetabolicMotion || isImplicitMotion ? 0.022 : 0.04));
         renderer.render(scene, camera);
       }
 

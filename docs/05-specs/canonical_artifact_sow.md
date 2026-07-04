@@ -555,3 +555,29 @@ Open decisions:
 Next irreversible action:
 
 - Refine motion aesthetics: replace visible path-rotation with subtler field metabolism, light propagation, and coherent breathing.
+
+### T11: After Motion v2 Metabolic
+
+Date: 2026-07-04.
+
+What the motion pass revealed:
+
+- Per-path phase motion is more alive than group rotation.
+- Field shimmer can carry more of the motion burden than visible path movement.
+- The current circulation paths are still explicit; the next frontier is to imply circulation through refraction and light propagation.
+
+Revision made:
+
+- Added `motion=metabolic` support to `viewer.html`.
+- Added layered phase waves to the field shader.
+- Added per-path phase offsets and scale modulation for toroidal circulation paths.
+- Generalized `capture-motion.mjs` to produce named motion outputs.
+- Generated `canonical-artifact-motion-v2-metabolic.mp4`.
+
+Open decisions:
+
+- None now.
+
+Next irreversible action:
+
+- Reduce explicit path visibility further and make circulation appear as field behavior: refraction, shimmer, and light propagation.

@@ -1,7 +1,7 @@
 # Morphogenetic Navigation Holo Map
 
 > *The Navigation Instrument — Venture v2.0 (27×7 Topology)*
-> *Updated: June 19, 2026 · Day 102 (Crystallization → Propagation: the thesis crystallized into a public flag at /landing, "The Uniqueness Economy"; the idea goes out for the network to inherit). See the Day 102 Addendum at the bottom.*
+> *Updated: July 3, 2026 · Day 113 (Propagation → Navigation: the thesis, pulse protocol, relationship ledger, Equilibrium layer, and holomap crystallized into Founder Cockpit — a living project navigation surface). See the Day 113 Addendum at the bottom.*
 > *Grounding: [Seven Number-Prisms](../01-vision/universal_ontology.md#4e-the-seven-number-prisms--an-integral-directory-of-seeing-systems) — Lens 4 (12) → Lens 5 (13) → Lens 6 (26) → Lens 7 (27 / Crystallization) · [Domain 66 — The 27th Perspective](../01-vision/phase_shift_technology_library.md#domain-66) · [Integral Theory Upgrade v1.1](../../src/pages/IntegralTheoryUpgrade1.tsx)*
 > *Center Reading: Unification (← Coherence ← Recognition ← Emanation ← Activation ← Consolidation ← Crystallization ← Declaration ← Flowering ← Rooting ← Branching ← Ignition ← Threshold)*
 > *Holon: The Unique Business Methodology Emergence*
@@ -11,10 +11,14 @@
 ### Auto-Update Mechanism
 
 > **To update this holomap:** Say "update the holomap" and the AI reads:
-> 1. `docs/09-logs/session_log.md` — the latest entries since the last holomap update date
-> 2. `docs/02-strategy/roadmap.md` — current status and weekly scope
+> 1. Equilibrium AI Context Export — current visceral/action state, workstreams, tasks, focus, readiness
+> 2. `docs/09-logs/project_pulse_log.md` — recent lived professional movement
+> 3. `docs/02-strategy/strategic_crm_outreach_tracker.md` — relationship energy, trust, proposals, money, referrals, silence, and open loops
+> 4. `docs/04-products/living_project_holograph.md` — the pulse protocol and cockpit product architecture
+> 5. `docs/02-strategy/roadmap.md` — current priorities, parked work, and shipped surfaces
+> 6. `docs/09-logs/session_log.md` — legacy continuity when needed
 >
-> Both files already get updated every session. No extra work needed. The holomap reads what already exists.
+> These surfaces are the project's current self-awareness stack. The holomap reads what already exists, then updates only the mirrors whose meaning actually changed.
 >
 > **Rule-based update scope (policy-bound):** advancing `►` markers, updating `✓` completions, refreshing timing overlays 🐢/🎯/⚡, bumping version + date, adding a new dated addendum block. Topology changes (axes, stages, perspective count) and synthesis-heavy reframings are NOT auto-updatable — they require Sasha. See `.agent/auto-execute-policy.md` §2.3.
 >
@@ -3274,3 +3278,64 @@ Day 103:   (no new center reading)           → n climbs (Roman, +container); o
 - `memory/MEMORY.md`: holomap pointer slimmed to point at this corpus doc with brief inline current state.
 
 > *Day 103 reading (no new center, two adjacent ships and a law). The instrument does not advance a stage on June 22-23. It does three things at once: it lets n climb on the funnel vector (Roman, the first container); it surfaces the offer's own shape as an open question (holonic, not laddered); and it catches its own memory mis-firing and writes the law into the library. The most important act of the day is the smallest: an AI told its founder something false about him with full confidence, and that false confidence became a domain. Self-knowledge is upstream of success; the fidelity of self-knowledge over time is upstream of that.*
+
+---
+
+## Day 113 Addendum — "Propagation -> Navigation" (July 3, 2026)
+
+> *The map became the cockpit. The holomap is no longer only a strategic reading of the project. It has begun turning into the founder-facing product surface through which the project reads itself and speaks back.*
+
+**What happened.** The Living Project Holograph moved from insight to product architecture. The project now has a clearer trinity stack: **Mind = holomap / strategic oracle**, **Heart = CRM / energy-exchange ledger**, **Gut = Equilibrium + dashboard / operational readiness layer**. A pulse from real professional life can now be interpreted as a structured event that updates the living project memory and returns four operating lenses: **Movement, Bottlenecks, Follow-Ups, and High-Leverage Moves**.
+
+**What crystallized as product.** Founder Cockpit emerged as the founder-facing surface for this stack: not a generic dashboard, but a navigation instrument for a living venture. The surface combines the Equilibrium Watch, Action Compass, dashboard, holomap, strategic CRM, pulse log, and AI lens buttons into one operational cockpit. The cockpit answers: *What is this living project becoming, what is it asking of the founder, where is energy actually moving, and what is the next high-leverage move?*
+
+**What moved in the field.**
+
+- **Oyi / WeGoodOvaHere:** a concrete white-label community-node proposal was sent and received positively. The proposal names the scanner, precision profile builder, deep data layer, consent-based community intelligence, collaborative AI matchmaking, admin/export/campaign layer, and revenue-share logic.
+- **Ariana / Resilience Collective:** a high-resonance call opened a likely October/November pilot path. The bridge language shifted from "role placement" into **collective action infrastructure**: awakened, high-agency people need contribution-legibility and matching infrastructure so their energy becomes coordinated action.
+- **Sandra:** the "alive projects" / project-self-awareness frame resonated with her 5D-management experience, confirming that this is not just Sasha's private metaphor but a field pattern others recognize.
+- **Sergey:** the architecture widened beyond solo founders. Meeting transcripts, decisions, unresolved tensions, outcomes, and burnout signals can become organizational AI context. Founder Cockpit scales toward **Living Work Intelligence** for teams and organizations.
+- **MIT Sloan alumni surface:** the Professional Clarity / Unique Value Infrastructure thesis gained a friendly public language for high-agency alumni, potential pilots, investors, cofounders, and future-of-work people.
+
+**Why this is a stage movement.** Day 102 propagated the thesis as a public flag. Day 113 makes the propagation navigable. The idea is no longer only being explained outward; the project now has a mechanism for metabolizing incoming reality and producing strategic guidance. This is the move from a project with documentation to a project with an emerging nervous system.
+
+### Marker moves
+
+- **Holomap -> Strategic Oracle.** The holomap's role upgrades from historical/morphogenetic reading to an active product component: it forecasts the project field by reading form, phase, tension, energy flow, and timing.
+- **CRM -> Energy Exchange Ledger.** Relationship tracking becomes a living account of energy moving among forms: trust, silence, proposals, referrals, money, attention, and commitments.
+- **Equilibrium -> Gut Layer.** Equilibrium becomes the lived-time readiness layer: what has energy now, what is stale, what is ripening, and what the founder actually has capacity to do.
+- **Pulse -> Unit of professional life.** The pulse becomes the atomic input: one lived event enters once; every relevant mirror updates from it.
+- **Founder Cockpit -> Product surface.** The cockpit is the first customer-facing form of recursive self-awareness between founder and life's work.
+
+### Si-Do — Status
+
+| Trigger | Status |
+|---|---|
+| **Tribe 1 (funnel) Si-Do — first $555 client** | ✅ FIRED Day 101: Nia |
+| **First multi-session container** | ✅ Day 103: Roman path opened; outcome/payment still needs tracking |
+| **Community white-label node** | 🟡 Day 110-113: WeGoodOvaHere proposal sent and positively received; decision pending Oyi + advisor/AI review |
+| **Collective-action pilot** | 🟡 Day 111-113: Ariana / Resilience Collective interested; likely October/November pilot design |
+| **Founder Cockpit as product** | 🆕 ✅ Day 113: architecture + first UI surface crystallized at `/cockpit/dashboard` |
+| **Automated Equilibrium agent readability** | 🟡 coded/spec'd; Supabase deployment blocked by external permissions |
+| **Pulse protocol operational loop** | 🆕 ✅ tested manually; database-backed/automated version still ahead |
+
+### Center reading lineage (recent)
+
+```text
+Day 101:   "Transmission -> Crystallization"  -> first $555 stranger pays (Nia)
+Day 102:   "Crystallization -> Propagation"   -> thesis crystallizes, /landing flag plants
+Day 103:   (no new center reading)            -> n climbs; offer-shape surfaces; mirror-lag law
+Day 113:   "Propagation -> Navigation"        -> the map becomes cockpit; pulses, CRM,
+                                                 Equilibrium, and holomap form a living
+                                                 project navigation system.
+```
+
+### Cross-references updated
+
+- `docs/04-products/living_project_holograph.md`: product architecture for pulse protocol, cockpit dashboard, AI lens buttons, and transcript-fed organizational intelligence.
+- `docs/09-logs/project_pulse_log.md`: canonical pulse ledger with Ariana / Resilience Collective and Founder Cockpit entries.
+- `docs/02-strategy/strategic_crm_outreach_tracker.md`: energy-exchange ledger for Oyi, Ariana, Sandra, Sergey, Patricia, Chris, and other open loops.
+- `src/pages/CockpitDashboard.tsx`: first founder-facing cockpit surface.
+- `supabase/functions/equilibrium-ai-context`: Equilibrium read path for AI agents, pending deploy through a permitted Supabase/Lovable channel.
+
+> *Day 113 reading: **Propagation -> Navigation.** July 3, 2026. The thesis that went public on Day 102 has learned to navigate itself. The project no longer only asks, "What are we building?" It now asks, "What moved, what is stuck, who needs to be contacted, and what move has energy now?" This is the birth of a living work instrument: a second brain not merely for Sasha, but for the life-work holon that is also reshaping Sasha as it grows.*
