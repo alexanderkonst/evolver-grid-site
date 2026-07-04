@@ -70,6 +70,15 @@ export async function runCockpitLens(params: {
   });
 
   if (error) {
+    const status = typeof error === "object" && error && "context" in error
+      ? (error as { context?: { status?: number } }).context?.status
+      : undefined;
+    if (status === 404) {
+      throw new Error("The cockpit AI lens function is not deployed yet.");
+    }
+    if (status === 401) {
+      throw new Error("You need Sasha/admin access to run this cockpit AI lens.");
+    }
     throw new Error(error.message);
   }
 
