@@ -23,6 +23,8 @@
     <script type="module">
       import * as THREE from "/node_modules/three/build/three.module.js";
 
+      const mode = new URLSearchParams(window.location.search).get("mode") || "artifact";
+      const isAnatomy = mode === "anatomy";
       const model = await fetch("/docs/assets/canonical-artifact/geometry/canonical-artifact.model.json").then((response) => response.json());
       const scene = new THREE.Scene();
       scene.background = new THREE.Color(0xfffefa);
@@ -104,30 +106,32 @@
       const alloyMaterial = new THREE.MeshPhysicalMaterial({
         color: 0xd6b565,
         map: brushedTexture,
-        metalness: 0.76,
-        roughness: 0.29,
-        clearcoat: 0.68,
-        clearcoatRoughness: 0.2,
+        metalness: isAnatomy ? 0.62 : 0.76,
+        roughness: isAnatomy ? 0.36 : 0.29,
+        clearcoat: isAnatomy ? 0.44 : 0.68,
+        clearcoatRoughness: isAnatomy ? 0.28 : 0.2,
         emissive: 0x4b3510,
-        emissiveIntensity: 0.055,
+        emissiveIntensity: isAnatomy ? 0.025 : 0.055,
+        transparent: isAnatomy,
+        opacity: isAnatomy ? 0.68 : 1,
       });
 
       const axisMaterial = new THREE.MeshPhysicalMaterial({
         color: 0xf5dd8f,
-        metalness: 0.22,
-        roughness: 0.12,
-        transmission: 0.24,
+        metalness: isAnatomy ? 0.1 : 0.22,
+        roughness: isAnatomy ? 0.1 : 0.12,
+        transmission: isAnatomy ? 0.36 : 0.24,
         thickness: 0.3,
-        clearcoat: 0.84,
+        clearcoat: isAnatomy ? 0.92 : 0.84,
         clearcoatRoughness: 0.16,
         emissive: 0xffeeb4,
-        emissiveIntensity: 0.34,
+        emissiveIntensity: isAnatomy ? 0.58 : 0.34,
       });
 
       const glowMaterial = new THREE.MeshBasicMaterial({
         color: 0xfff7c6,
         transparent: true,
-        opacity: 0.055,
+        opacity: isAnatomy ? 0.035 : 0.055,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
       });
@@ -165,7 +169,8 @@
             float band = sin((vWorldPosition.x * 3.1 + vWorldPosition.y * 2.3 + vWorldPosition.z * 2.7) + time * 0.9) * 0.5 + 0.5;
             vec3 iridescence = mix(colorA, colorB, band);
             iridescence = mix(iridescence, colorC, 0.38);
-            float alpha = 0.018 + fresnel * 0.095 + band * 0.01;
+            float modeScale = ${isAnatomy ? "0.48" : "1.0"};
+            float alpha = (0.018 + fresnel * 0.095 + band * 0.01) * modeScale;
             gl_FragColor = vec4(iridescence, alpha);
           }
         `,
@@ -185,18 +190,23 @@
       for (const [aId, bId] of model.sourceModel.edges) {
         const a = vertices.get(aId);
         const b = vertices.get(bId);
-        group.add(tubeBetween(a, b, 0.017, alloyMaterial, 24));
+        group.add(tubeBetween(a, b, isAnatomy ? 0.01 : 0.017, alloyMaterial, 24));
       }
 
       for (const [aId, bId] of model.sourceModel.coherenceAxes) {
         const a = vertices.get(aId);
         const b = vertices.get(bId);
-        group.add(tubeBetween(a, b, 0.031, axisMaterial, 36));
-        group.add(tubeBetween(a, b, 0.067, glowMaterial, 36));
+        if (isAnatomy) {
+          group.add(tubeBetween(a, b, 0.038, glowMaterial, 36));
+          group.add(tubeBetween(a, b, 0.018, axisMaterial, 36));
+        } else {
+          group.add(tubeBetween(a, b, 0.031, axisMaterial, 36));
+          group.add(tubeBetween(a, b, 0.067, glowMaterial, 36));
+        }
       }
 
       for (const vertex of vertices.values()) {
-        const joint = new THREE.Mesh(new THREE.SphereGeometry(0.054, 40, 24), alloyMaterial);
+        const joint = new THREE.Mesh(new THREE.SphereGeometry(isAnatomy ? 0.036 : 0.054, 40, 24), alloyMaterial);
         joint.position.copy(vertex);
         group.add(joint);
       }
@@ -216,6 +226,34 @@
       const field = new THREE.Mesh(new THREE.SphereGeometry(1.015, 96, 48), fieldMaterial);
       group.add(field);
 
+      const torusGroup = new THREE.Group();
+      group.add(torusGroup);
+
+      const torusMaterial = new THREE.MeshBasicMaterial({
+        color: 0xffe9a6,
+        transparent: true,
+        opacity: isAnatomy ? 0.18 : 0.035,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      });
+
+      function addCirculationPath(rotation, scaleY = 0.42, radius = 0.98) {
+        const points = [];
+        for (let i = 0; i <= 240; i += 1) {
+          const t = (i / 240) * Math.PI * 2;
+          const r = radius + Math.sin(t * 3) * 0.025;
+          points.push(new THREE.Vector3(Math.cos(t) * r, Math.sin(t) * r * scaleY, Math.sin(t * 2) * 0.08));
+        }
+        const curve = new THREE.CatmullRomCurve3(points, true, "catmullrom", 0.5);
+        const mesh = new THREE.Mesh(new THREE.TubeGeometry(curve, 240, isAnatomy ? 0.0038 : 0.002, 8, true), torusMaterial);
+        mesh.rotation.set(rotation[0], rotation[1], rotation[2]);
+        torusGroup.add(mesh);
+      }
+
+      addCirculationPath([0.2, 0.2, 0.0], 0.36, 1.02);
+      addCirculationPath([1.15, 0.45, 0.8], 0.32, 1.0);
+      addCirculationPath([-0.75, 0.35, -0.7], 0.38, 0.98);
+
       const fieldRingMaterial = new THREE.MeshBasicMaterial({
         color: 0xc9e2ea,
         transparent: true,
@@ -231,7 +269,7 @@
 
       const resize = () => {
         camera.aspect = window.innerWidth / window.innerHeight;
-        const distance = camera.aspect < 0.74 ? 7.35 : 4.85;
+        const distance = camera.aspect < 0.74 ? (isAnatomy ? 7.65 : 7.35) : (isAnatomy ? 5.05 : 4.85);
         camera.position.copy(cameraDirection.clone().multiplyScalar(distance));
         camera.lookAt(0, 0, 0);
         camera.updateProjectionMatrix();
@@ -246,6 +284,8 @@
         field.rotation.y = t;
         field.rotation.x = Math.sin(t * 0.7) * 0.08;
         ring.rotation.z = t * 1.8;
+        torusGroup.rotation.y = t * 1.4;
+        torusGroup.rotation.z = Math.sin(t * 0.9) * 0.08;
         singularityAura.scale.setScalar(1 + Math.sin(t * 8) * 0.04);
         renderer.render(scene, camera);
         requestAnimationFrame(animate);

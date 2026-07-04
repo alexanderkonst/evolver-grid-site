@@ -40,6 +40,23 @@ Create an object that appears discovered rather than invented: a minimal stable 
 | Radiance | Coherence influencing perception | Restrained internal luminosity; physically plausible response |
 | Projection | Identity view | 2D mark derived from the 3D source |
 
+## Artifact Anatomies
+
+The PDF `The_Prime_Invariant.pdf` sharpens the model: the artifact is not one shiny object. It is a grammar of anatomies.
+
+| Anatomy | Role | Visual Rule |
+|---|---|---|
+| Sphere | Geometry of Being | The field/domain, continuous and potential; almost invisible |
+| Octahedron | Geometry of Relationship | The invariant graph; relationship before object |
+| Torus | Geometry of Becoming | Circulation, metabolism, regeneration; primarily motion/behavior |
+
+Operational correction:
+
+- Do not make the sphere a bubble.
+- Do not make the octahedron a heavy sculpture.
+- Do not make the torus a literal decorative donut unless the mode specifically isolates it.
+- The integrated artifact should read as coherent relationship crystallizing inside a living field, with becoming expressed through circulation.
+
 ## Immutable Geometry
 
 The canonical object must be grounded in exact geometry before rendering.
@@ -101,6 +118,20 @@ Light behavior:
 - no "energy explosion" language.
 
 Static renders should feel poised. Motion renders should breathe or circulate rather than pulse.
+
+## v3 Direction: Anatomy Mode
+
+Goal: move from "object render" to "living invariant."
+
+Anatomy Mode should:
+
+- thin and quiet the metal shell;
+- make the coherence axes feel like light-guides with inner transmission;
+- make octahedron edges read as relationship graph, not heavy rods;
+- reduce spherical-field opacity further;
+- add subtle toroidal circulation paths as becoming/field behavior;
+- keep all topology derived from the same canonical model;
+- preserve exact 6 vertices, 12 edges, 8 faces, 3 axes, and 6 half-rays.
 
 ## Deliverables
 
@@ -218,6 +249,23 @@ Goal: prove the artifact works and catch the predictable failure modes.
 | 9 | Brand audit passes | Output remains compatible with Bio-Light, iridescence, and the existing brandbook | Pending |
 | 10 | Regression audit passes | No existing assets/docs are overwritten or invalidated without explicit promotion | Pending |
 | 11 | Debug log names misses and next correction | Execution notes include what failed, what changed, and what remains open | Pending |
+
+## Phase 4: Anatomy / Motion DoD
+
+Goal: integrate the PDF insight into the next render mode without changing canonical topology.
+
+| # | Item | Evidence | Status |
+|---|---|---|---|
+| 1 | Sphere / octahedron / torus anatomies are documented | `Artifact Anatomies` section exists | Pending |
+| 2 | v3 Anatomy Mode exists in the renderer | `viewer.html` supports `mode=anatomy` | Pending |
+| 3 | Octahedron remains exact | v3 still loads `canonical-artifact.model.json` | Pending |
+| 4 | Metal shell is quieter than v2 | v3 screenshot shows thinner relationship graph | Pending |
+| 5 | Coherence axes remain legible as 3 diameters / 6 half-rays | v3 screenshot and model verify 3 axes / 6 half-rays | Pending |
+| 6 | Sphere reads as subtle field, not bubble | v3 screenshot shows lower-opacity field boundary | Pending |
+| 7 | Toroidal becoming is visible but not decorative | v3 screenshot shows faint circulation paths | Pending |
+| 8 | Desktop and mobile v3 captures exist | v3 render paths recorded | Pending |
+| 9 | Pixel/canvas checks pass | capture report records nonblank desktop/mobile | Pending |
+| 10 | Debug report records v3 limitations and next move | `debug_report.md` updated | Pending |
 
 ## Recursive Self-Check Protocol
 
@@ -414,3 +462,53 @@ Open decisions:
 Next irreversible action:
 
 - Choose whether v3 should prioritize identity/logo elegance, photoreal artifact realism, or live motion behavior.
+
+### T8: After Prime Invariant PDF Review
+
+Date: 2026-07-04.
+
+What the PDF revealed:
+
+- The current v2 is still too close to "sculpture."
+- The more accurate target is a living invariant: sphere as being, octahedron as relationship, torus as becoming.
+- "Pre-melting light radiation" should be rendered as shell/core: satin electroformed alloy outside, coherent transmission inside.
+- The octahedron should read as a graph of relationships more than a solid object.
+
+Revision made:
+
+- Added `Artifact Anatomies`.
+- Added `v3 Direction: Anatomy Mode`.
+- Added Phase 4 Anatomy / Motion DoD.
+
+Open decisions:
+
+- None now.
+
+Next irreversible action:
+
+- Implement Anatomy Mode while preserving the canonical source model.
+
+### T9: After Anatomy Mode v3
+
+Date: 2026-07-04.
+
+What the render revealed:
+
+- Thinning the shell and lowering field opacity moves the artifact away from sculpture and toward relationship graph.
+- Faint toroidal paths make becoming visible without turning the object into a decorative torus.
+- The next frontier is temporal: circulation and coherent breathing should be understood through motion, not only static screenshots.
+
+Revision made:
+
+- Added `mode=anatomy` to `viewer.html`.
+- Added faint toroidal circulation paths.
+- Reduced edge radius, joint size, shell opacity, and field intensity in Anatomy Mode.
+- Captured v3 desktop and mobile renders.
+
+Open decisions:
+
+- None now.
+
+Next irreversible action:
+
+- Build a short motion capture or animation loop that shows coherent breathing / toroidal circulation while preserving the exact invariant geometry.

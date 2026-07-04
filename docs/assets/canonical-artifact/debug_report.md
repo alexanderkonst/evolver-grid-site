@@ -17,6 +17,8 @@ Date: 2026-07-03.
 | Three.js mobile render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-mobile.png` | Pass |
 | Three.js v2 desktop render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-v2-desktop.png` | Pass |
 | Three.js v2 mobile render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-v2-mobile.png` | Pass |
+| Three.js v3 Anatomy desktop render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-v3-anatomy-desktop.png` | Pass |
+| Three.js v3 Anatomy mobile render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-v3-anatomy-mobile.png` | Pass |
 | Three.js capture report | `docs/assets/canonical-artifact/renders/three_capture_report.md` | Pass |
 | Execution log | `docs/assets/canonical-artifact/execution_log.md` | Pass |
 
@@ -53,17 +55,30 @@ Date: 2026-07-03.
 | Desktop render captured | `renders/canonical-artifact-three-desktop.png` at 1440x1200 | Pass |
 | Mobile render captured | `renders/canonical-artifact-three-mobile.png` at 390x844 | Pass |
 | v2 shader render captured | `renders/canonical-artifact-three-v2-desktop.png` and `renders/canonical-artifact-three-v2-mobile.png` | Pass |
+| v3 Anatomy render captured | `renders/canonical-artifact-three-v3-anatomy-desktop.png` and `renders/canonical-artifact-three-v3-anatomy-mobile.png` | Pass |
 | Canvas is nonblank | `three_capture_report.md` grid samples show `nonBlank=true` for both captures | Pass |
 | Mobile object is framed | Mobile screenshot contains full field/object after camera-fit correction | Pass |
 | Console health | Mobile clean; desktop only reports expected `readPixels` performance warnings from the audit itself | Pass with note |
+
+## v3 Anatomy Audit
+
+| Check | Evidence | Status |
+|---|---|---|
+| Sphere / octahedron / torus anatomies are implemented | `viewer.html` supports `mode=anatomy` | Pass |
+| Canonical topology is unchanged | Viewer still loads `canonical-artifact.model.json` | Pass |
+| Relationship graph is lighter than v2 | v3 edge radius and shell opacity are reduced in Anatomy Mode | Pass |
+| Coherence axes remain legible | v3 render keeps 3 axes / 6 half-rays visible through center | Pass |
+| Sphere is quieter | v3 reduces field shader alpha by Anatomy Mode scaling | Pass |
+| Toroidal becoming is present | v3 adds faint circulation paths through `torusGroup` | Pass |
+| Desktop/mobile captures exist | v3 desktop/mobile PNGs captured and listed above | Pass |
 
 ## Known Limitations
 
 1. The SVG implementation is exact and audit-friendly; the Three.js render is more material-rich but still not a final Blender/Cycles-grade photograph.
 2. The material now includes deterministic brushed texture and stronger physicality, but still needs final art direction to escape ordinary gold completely.
-3. The field uses a custom iridescent shader with subtle live rotation; deeper toroidal circulation remains a future motion layer.
+3. Anatomy Mode introduces faint toroidal circulation, but the final motion layer should eventually show circulation over time, not only as static paths.
 4. The privileged viewpoint is operationalized as `[1, 1, 1]`; Sasha may later tune this from lived visual memory.
 
 ## Debug Conclusion
 
-The first execution target is complete and the second renderer layer now exists: source model, canonical SVG, primary projection, and Three.js material render all derive from the same procedural geometry. The next quality leap is high-end shader/material art direction, not topology.
+The first execution target is complete and the renderer now has two directions: v2 artifact/material render and v3 Anatomy Mode. All derive from the same procedural geometry. The next quality leap is temporal behavior: coherent breathing and toroidal circulation as motion, not static ornament.
