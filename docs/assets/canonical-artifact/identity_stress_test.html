@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prime Radiant Identity Stress Test</title>
+    <style>
+      :root {
+        background: #fffefa;
+        color: #211f1a;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #fffefa;
+      }
+
+      main {
+        width: 1600px;
+        min-height: 1180px;
+        padding: 48px 56px;
+      }
+
+      header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 32px;
+        align-items: end;
+        padding-bottom: 26px;
+        border-bottom: 1px solid rgba(85, 75, 52, 0.16);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 36px;
+        line-height: 1;
+        font-weight: 560;
+        letter-spacing: 0;
+      }
+
+      .subhead {
+        max-width: 900px;
+        margin: 12px 0 0;
+        color: rgba(33, 31, 26, 0.66);
+        font-size: 16px;
+        line-height: 1.45;
+      }
+
+      .meta {
+        color: rgba(33, 31, 26, 0.56);
+        font-size: 12px;
+        line-height: 1.45;
+        text-align: right;
+      }
+
+      .meta strong,
+      strong {
+        color: rgba(33, 31, 26, 0.9);
+        font-weight: 610;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 24px;
+        padding-top: 28px;
+      }
+
+      .panel {
+        border: 1px solid rgba(85, 75, 52, 0.15);
+        background: rgba(255, 255, 255, 0.48);
+        padding: 22px;
+      }
+
+      .panel h2 {
+        margin: 0 0 16px;
+        font-size: 14px;
+        font-weight: 680;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        color: rgba(33, 31, 26, 0.54);
+      }
+
+      .icon-row {
+        display: grid;
+        grid-template-columns: 90px repeat(4, 1fr) 190px;
+        gap: 14px;
+        align-items: center;
+        padding: 12px 0;
+        border-top: 1px solid rgba(85, 75, 52, 0.1);
+      }
+
+      .icon-row:first-of-type {
+        border-top: 0;
+      }
+
+      .size-label,
+      .score {
+        color: rgba(33, 31, 26, 0.58);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .sample {
+        display: grid;
+        place-items: center;
+        min-height: 76px;
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(248, 246, 238, 0.76)),
+          #fffefa;
+        border: 1px solid rgba(85, 75, 52, 0.1);
+      }
+
+      .sample.dark {
+        background: #171711;
+      }
+
+      .sample img {
+        display: block;
+        width: var(--size);
+        height: var(--size);
+        object-fit: contain;
+      }
+
+      .mono-black {
+        filter: brightness(0) saturate(1);
+      }
+
+      .mono-white {
+        filter: brightness(0) invert(1);
+      }
+
+      .app-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .mock {
+        min-height: 210px;
+        border: 1px solid rgba(85, 75, 52, 0.12);
+        background: rgba(255, 255, 255, 0.58);
+        overflow: hidden;
+      }
+
+      .mock-inner {
+        padding: 18px;
+      }
+
+      .app-icon {
+        width: 120px;
+        height: 120px;
+        border-radius: 28px;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at 48% 42%, rgba(255, 239, 176, 0.34), transparent 44%),
+          linear-gradient(145deg, #fffefa, #efeee8);
+        box-shadow: inset 0 0 0 1px rgba(85, 75, 52, 0.14), 0 20px 42px rgba(70, 55, 20, 0.11);
+      }
+
+      .app-icon img {
+        width: 92px;
+        height: 92px;
+        object-fit: contain;
+      }
+
+      .avatar {
+        width: 136px;
+        height: 136px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: #fffefa;
+        box-shadow: inset 0 0 0 1px rgba(85, 75, 52, 0.16);
+      }
+
+      .avatar img {
+        width: 108px;
+        height: 108px;
+        object-fit: contain;
+      }
+
+      .header-mock {
+        height: 76px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 16px;
+        align-items: center;
+        padding: 0 22px;
+        border-bottom: 1px solid rgba(85, 75, 52, 0.12);
+        background: rgba(255, 254, 250, 0.9);
+      }
+
+      .header-mock img {
+        width: 42px;
+        height: 42px;
+        object-fit: contain;
+      }
+
+      .wordmark {
+        font-size: 15px;
+        font-weight: 610;
+        color: rgba(33, 31, 26, 0.78);
+      }
+
+      .nav {
+        color: rgba(33, 31, 26, 0.46);
+        font-size: 12px;
+        text-align: right;
+      }
+
+      .deck {
+        height: 230px;
+        display: grid;
+        grid-template-columns: 1fr 0.9fr;
+        background:
+          radial-gradient(circle at 72% 50%, rgba(255, 242, 187, 0.28), transparent 38%),
+          linear-gradient(135deg, #fffefa, #f3f1e9);
+      }
+
+      .deck-copy {
+        padding: 28px;
+        align-self: end;
+      }
+
+      .deck-copy div:first-child {
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(33, 31, 26, 0.44);
+      }
+
+      .deck-copy div:last-child {
+        margin-top: 8px;
+        max-width: 320px;
+        font-size: 28px;
+        line-height: 1.05;
+        font-weight: 560;
+      }
+
+      .deck-art {
+        display: grid;
+        place-items: center;
+      }
+
+      .deck-art img {
+        width: 300px;
+        max-width: 92%;
+      }
+
+      .notes {
+        display: grid;
+        gap: 11px;
+        color: rgba(33, 31, 26, 0.68);
+        font-size: 14px;
+        line-height: 1.42;
+      }
+
+      .status {
+        display: inline-block;
+        min-width: 72px;
+        padding: 4px 8px;
+        border: 1px solid rgba(85, 75, 52, 0.14);
+        color: rgba(33, 31, 26, 0.66);
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .fail {
+        color: #8f4e2c;
+      }
+
+      .pass {
+        color: #477052;
+      }
+
+      .mixed {
+        color: #8a6b25;
+      }
+
+      code {
+        font-family: "SFMono-Regular", Consolas, monospace;
+        font-size: 11px;
+        color: rgba(33, 31, 26, 0.62);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <h1>Prime Radiant Identity Stress Test</h1>
+          <p class="subhead">
+            Testing whether the canonical artifact can survive real identity constraints before
+            investing in another hero render. This is a pressure sheet, not a showcase.
+          </p>
+        </div>
+        <div class="meta">
+          <div><strong>Source:</strong> <code>canonical-artifact.model.json</code></div>
+          <div><strong>Projection:</strong> <code>primary-projection.svg</code></div>
+          <div><strong>Artifact:</strong> <code>mode=anatomy&motion=implicit&quality=physical</code></div>
+        </div>
+      </header>
+
+      <section class="grid">
+        <article class="panel">
+          <h2>Small-Size Legibility</h2>
+          <div class="icon-row">
+            <div class="size-label">16 px</div>
+            <div class="sample"><img style="--size: 16px" src="./projections/primary-projection.svg.png" alt="" /></div>
+            <div class="sample dark"><img class="mono-white" style="--size: 16px" src="./projections/primary-projection.svg.png" alt="" /></div>
+            <div class="sample"><img class="mono-black" style="--size: 16px" src="./projections/primary-projection.svg.png" alt="" /></div>
+            <div class="sample"><img style="--size: 16px" src="./renders/canonical-artifact-three-v4-physical-desktop.png" alt="" /></div>
+            <div class="score"><span class="status fail">Fail</span> Full geometry collapses.</div>
+          </div>
+          <div class="icon-row">
+            <div class="size-label">32 px</div>
+            <div class="sample"><img style="--size: 32px" src="./projections/primary-projection.svg.png" alt="" /></div>
+            <div class="sample dark"><img class="mono-white" style="--size: 32px" src="./projections/primary-projection.svg.png" alt="" /></div>
+            <div class="sample"><img class="mono-black" style="--size: 32px" src="./projections/primary-projection.svg.png" alt="" /></div>
+            <div class="sample"><img style="--size: 32px" src="./renders/canonical-artifact-three-v4-physical-desktop.png" alt="" /></div>
+            <div class="score"><span class="status mixed">Weak</span> Recognizable only as a fine mark.</div>
+          </div>
+          <div class="icon-row">
+            <div class="size-label">48 px</div>
+            <div class="sample"><img style="--size: 48px" src="./projections/primary-projection.svg.png" alt="" /></div>
+            <div class="sample dark"><img class="mono-white" style="--size: 48px" src="./projections/primary-projection.svg.png" alt="" /></div>
+            <div class="sample"><img class="mono-black" style="--size: 48px" src="./projections/primary-projection.svg.png" alt="" /></div>
+            <div class="sample"><img style="--size: 48px" src="./renders/canonical-artifact-three-v4-physical-desktop.png" alt="" /></div>
+            <div class="score"><span class="status mixed">Weak</span> Projection works; artifact still too detailed.</div>
+          </div>
+          <div class="icon-row">
+            <div class="size-label">128 px</div>
+            <div class="sample"><img style="--size: 96px" src="./projections/primary-projection.svg.png" alt="" /></div>
+            <div class="sample dark"><img class="mono-white" style="--size: 96px" src="./projections/primary-projection.svg.png" alt="" /></div>
+            <div class="sample"><img class="mono-black" style="--size: 96px" src="./projections/primary-projection.svg.png" alt="" /></div>
+            <div class="sample"><img style="--size: 96px" src="./renders/canonical-artifact-three-v4-physical-desktop.png" alt="" /></div>
+            <div class="score"><span class="status pass">Pass</span> System starts to read clearly.</div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Application Pressure</h2>
+          <div class="app-grid">
+            <div class="mock">
+              <div class="mock-inner">
+                <div class="app-icon">
+                  <img src="./projections/primary-projection.svg.png" alt="App icon test" />
+                </div>
+                <p><strong>App icon.</strong> Works at large sizes, but needs a heavier simplified mark for home-screen scale.</p>
+              </div>
+            </div>
+            <div class="mock">
+              <div class="mock-inner">
+                <div class="avatar">
+                  <img src="./renders/canonical-artifact-three-v4-physical-desktop.png" alt="Avatar test" />
+                </div>
+                <p><strong>Social avatar.</strong> Artifact feels premium, but loses identity when reduced.</p>
+              </div>
+            </div>
+            <div class="mock" style="grid-column: 1 / -1">
+              <div class="header-mock">
+                <img src="./projections/primary-projection.svg.png" alt="Header mark" />
+                <div class="wordmark">Find Your Top Talent</div>
+                <div class="nav">AI OS · Build · Collaborate</div>
+              </div>
+              <div class="mock-inner">
+                <p><strong>Website header.</strong> Projection can work as a quiet nav mark. Full artifact should not be used here.</p>
+              </div>
+            </div>
+            <div class="mock" style="grid-column: 1 / -1">
+              <div class="deck">
+                <div class="deck-copy">
+                  <div>Canonical identity test</div>
+                  <div>A projection of coherent relationship</div>
+                </div>
+                <div class="deck-art">
+                  <img src="./renders/canonical-artifact-three-v4-physical-desktop.png" alt="Deck cover artifact" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel" style="grid-column: 1 / -1">
+          <h2>Findings</h2>
+          <div class="notes">
+            <div><strong>Survives:</strong> the artifact works as a hero/deck object and the projection works as a medium-size identity mark.</div>
+            <div><strong>Breaks:</strong> the full artifact fails as a favicon/app-icon source; too many fine relationships vanish below 48 px.</div>
+            <div><strong>Required next move:</strong> derive a simplified small-size mark from the same projection: heavier strokes, fewer visible relationships, same six-ray lineage.</div>
+            <div><strong>Do not do:</strong> use the physical artifact as the everyday logo. It should remain the source/hero object.</div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
