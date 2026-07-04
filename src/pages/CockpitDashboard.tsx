@@ -107,6 +107,7 @@ export default function CockpitDashboard() {
   const [lensLoading, setLensLoading] = useState(false);
   const [lensError, setLensError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [reviewDecision, setReviewDecision] = useState<"accepted" | "skipped" | "later" | null>(null);
   const [primaryResult, setPrimaryResult] = useState<CockpitLensResult | null>(null);
   const [primaryLoading, setPrimaryLoading] = useState(false);
   const [primaryError, setPrimaryError] = useState<string | null>(null);
@@ -143,6 +144,7 @@ export default function CockpitDashboard() {
     setLensError(null);
     setLensResult(null);
     setCopied(false);
+    setReviewDecision(null);
 
     try {
       const liveEquilibrium = equilibrium ?? (await loadContextForLens());
@@ -667,6 +669,35 @@ export default function CockpitDashboard() {
                     <p className="mb-2 text-xs uppercase tracking-[0.14em] text-[#d6a84d]">Recommended Move</p>
                     <p className="text-sm leading-6 text-[#cfc4b5]">{lensResult.recommendedMove}</p>
                   </div>
+                </div>
+                <div className="flex flex-wrap items-center gap-3 rounded-xl border border-white/10 bg-[#07090d] p-4">
+                  <button
+                    type="button"
+                    onClick={() => setReviewDecision("accepted")}
+                    className="inline-flex h-10 items-center gap-2 rounded-full border border-[#4ecdc4]/35 bg-[#071d1d] px-4 text-sm font-medium text-[#93f0e8] transition hover:border-[#93f0e8]/70"
+                  >
+                    Accept changes
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setReviewDecision("later")}
+                    className="inline-flex h-10 items-center gap-2 rounded-full border border-[#d6a84d]/35 bg-[#15100a] px-4 text-sm font-medium text-[#f6d58a] transition hover:border-[#f6d58a]/70"
+                  >
+                    Apply later
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setReviewDecision("skipped")}
+                    className="inline-flex h-10 items-center gap-2 rounded-full border border-white/10 bg-transparent px-4 text-sm font-medium text-[#cfc4b5] transition hover:border-white/25"
+                  >
+                    Skip
+                  </button>
+                  <p className="text-sm leading-6 text-[#9ea7b3]">
+                    {reviewDecision === "accepted" && "Accepted locally. Nothing has been written back yet."}
+                    {reviewDecision === "later" && "Marked for later review. Nothing has been written back yet."}
+                    {reviewDecision === "skipped" && "Skipped locally. Nothing has been written back."}
+                    {!reviewDecision && "Review only. AI proposes; Sasha decides before anything writes back."}
+                  </p>
                 </div>
               </div>
             )}
