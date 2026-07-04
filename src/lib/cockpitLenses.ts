@@ -1,6 +1,11 @@
 import { supabase } from "@/integrations/supabase/client";
 
-export type CockpitLensId = "project-becoming" | "founder-shadow";
+export type CockpitLensId =
+  | "project-becoming"
+  | "founder-shadow"
+  | "attention-leaks"
+  | "key-relationships"
+  | "outdated-strategy";
 
 export interface CockpitLensResult {
   title: string;
@@ -29,6 +34,24 @@ export const cockpitLenses: Array<{
     label: "Current Founder Shadow",
     instrument: "Shadow Lens",
     question: "What is the current key founder shadow at play in blocking progress?",
+  },
+  {
+    id: "attention-leaks",
+    label: "Attention Leaks",
+    instrument: "Focus Lens",
+    question: "Where is attention leaking away from the real next move?",
+  },
+  {
+    id: "key-relationships",
+    label: "Key Relationships Now",
+    instrument: "Relationship Lens",
+    question: "Which relationship(s) matter most now, and why?",
+  },
+  {
+    id: "outdated-strategy",
+    label: "Outdated Strategy",
+    instrument: "Strategy Decay Lens",
+    question: "Which strategy is outdated, and what concrete change is becoming more obvious?",
   },
 ];
 

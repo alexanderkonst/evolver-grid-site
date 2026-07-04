@@ -19,6 +19,9 @@ Date: 2026-07-03.
 | Three.js v2 mobile render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-v2-mobile.png` | Pass |
 | Three.js v3 Anatomy desktop render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-v3-anatomy-desktop.png` | Pass |
 | Three.js v3 Anatomy mobile render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-v3-anatomy-mobile.png` | Pass |
+| Motion v1 MP4 | `docs/assets/canonical-artifact/renders/canonical-artifact-motion-v1.mp4` | Pass |
+| Motion v1 poster | `docs/assets/canonical-artifact/renders/canonical-artifact-motion-v1-poster.png` | Pass |
+| Motion v1 capture report | `docs/assets/canonical-artifact/renders/motion_capture_report.md` | Pass |
 | Three.js capture report | `docs/assets/canonical-artifact/renders/three_capture_report.md` | Pass |
 | Execution log | `docs/assets/canonical-artifact/execution_log.md` | Pass |
 
@@ -72,13 +75,25 @@ Date: 2026-07-03.
 | Toroidal becoming is present | v3 adds faint circulation paths through `torusGroup` | Pass |
 | Desktop/mobile captures exist | v3 desktop/mobile PNGs captured and listed above | Pass |
 
+## Motion v1 Audit
+
+| Check | Evidence | Status |
+|---|---|---|
+| Deterministic time control exists | `viewer.html` exposes `window.__setArtifactTime(ms)` | Pass |
+| Motion capture script exists | `scripts/canonical-artifact/capture-motion.mjs` | Pass |
+| MP4 generated | `canonical-artifact-motion-v1.mp4`, 96 frames, 24fps, 4s | Pass |
+| Poster generated | `canonical-artifact-motion-v1-poster.png` | Pass |
+| Topology remains invariant | Motion changes field, torus group, and aura timing; source geometry is unchanged | Pass |
+| Becoming is visible | Toroidal circulation rotates around the invariant over time | Pass |
+| Breathing is subtle | Singularity aura scales gently, without pulsing the topology | Pass |
+
 ## Known Limitations
 
 1. The SVG implementation is exact and audit-friendly; the Three.js render is more material-rich but still not a final Blender/Cycles-grade photograph.
 2. The material now includes deterministic brushed texture and stronger physicality, but still needs final art direction to escape ordinary gold completely.
-3. Anatomy Mode introduces faint toroidal circulation, but the final motion layer should eventually show circulation over time, not only as static paths.
+3. Motion v1 shows circulation over time, but it is still a technical proof. Future art direction should make the circulation feel less like paths rotating and more like field metabolism.
 4. The privileged viewpoint is operationalized as `[1, 1, 1]`; Sasha may later tune this from lived visual memory.
 
 ## Debug Conclusion
 
-The first execution target is complete and the renderer now has two directions: v2 artifact/material render and v3 Anatomy Mode. All derive from the same procedural geometry. The next quality leap is temporal behavior: coherent breathing and toroidal circulation as motion, not static ornament.
+The first execution target is complete and the renderer now has three layers: v2 artifact/material render, v3 Anatomy Mode, and Motion v1. All derive from the same procedural geometry. The next quality leap is field metabolism: making motion feel internally alive rather than mechanically rotating.

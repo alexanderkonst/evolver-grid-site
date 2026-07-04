@@ -267,6 +267,23 @@ Goal: integrate the PDF insight into the next render mode without changing canon
 | 9 | Pixel/canvas checks pass | capture report records nonblank desktop/mobile | Pending |
 | 10 | Debug report records v3 limitations and next move | `debug_report.md` updated | Pending |
 
+## Phase 5: Motion Proof DoD
+
+Goal: make becoming visible through time while preserving invariant topology.
+
+| # | Item | Evidence | Status |
+|---|---|---|---|
+| 1 | Deterministic animation control exists | `viewer.html` exposes `window.__setArtifactTime(ms)` | Pending |
+| 2 | Motion capture script exists | `scripts/canonical-artifact/capture-motion.mjs` | Pending |
+| 3 | Motion MP4 exists | `canonical-artifact-motion-v1.mp4` | Pending |
+| 4 | Motion poster exists | `canonical-artifact-motion-v1-poster.png` | Pending |
+| 5 | Motion report exists | `motion_capture_report.md` | Pending |
+| 6 | Video metadata is valid | `ffprobe` confirms duration, frames, codec | Pending |
+| 7 | Topology remains invariant | Motion changes field/torus/aura only, not source model | Pending |
+| 8 | Motion expresses becoming | Toroidal circulation is visible over time | Pending |
+| 9 | Motion avoids decorative pulse | The octahedron does not wobble, morph, or flare | Pending |
+| 10 | Debug/SOW logs are updated | `debug_report.md` and threshold log updated | Pending |
+
 ## Recursive Self-Check Protocol
 
 The agent must run a private-but-recorded check after each threshold below. The check can revise the SOW or DoDs if evidence shows the plan is wrong.
@@ -512,3 +529,29 @@ Open decisions:
 Next irreversible action:
 
 - Build a short motion capture or animation loop that shows coherent breathing / toroidal circulation while preserving the exact invariant geometry.
+
+### T10: After Motion Proof v1
+
+Date: 2026-07-04.
+
+What the motion proof revealed:
+
+- The artifact can express becoming without changing topology.
+- Deterministic frame capture makes motion auditable.
+- The current motion is a valid proof but still mechanically legible; it should eventually feel more like field metabolism than rotating paths.
+
+Revision made:
+
+- Added `window.__setArtifactTime(ms)` to `viewer.html`.
+- Added `scripts/canonical-artifact/capture-motion.mjs`.
+- Generated `canonical-artifact-motion-v1.mp4`.
+- Generated `canonical-artifact-motion-v1-poster.png`.
+- Added `motion_capture_report.md`.
+
+Open decisions:
+
+- None now.
+
+Next irreversible action:
+
+- Refine motion aesthetics: replace visible path-rotation with subtler field metabolism, light propagation, and coherent breathing.

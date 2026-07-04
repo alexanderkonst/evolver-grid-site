@@ -278,9 +278,9 @@
       window.addEventListener("resize", resize);
       resize();
 
-      function animate() {
-        const t = performance.now() * 0.00018;
-        fieldMaterial.uniforms.time.value = performance.now() * 0.001;
+      function renderAt(ms) {
+        const t = ms * 0.00018;
+        fieldMaterial.uniforms.time.value = ms * 0.001;
         field.rotation.y = t;
         field.rotation.x = Math.sin(t * 0.7) * 0.08;
         ring.rotation.z = t * 1.8;
@@ -288,6 +288,14 @@
         torusGroup.rotation.z = Math.sin(t * 0.9) * 0.08;
         singularityAura.scale.setScalar(1 + Math.sin(t * 8) * 0.04);
         renderer.render(scene, camera);
+      }
+
+      window.__setArtifactTime = (ms) => {
+        renderAt(ms);
+      };
+
+      function animate() {
+        renderAt(performance.now());
         requestAnimationFrame(animate);
       }
 

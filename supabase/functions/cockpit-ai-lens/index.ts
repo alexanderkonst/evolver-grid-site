@@ -6,7 +6,12 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-type CockpitLensId = "project-becoming" | "founder-shadow";
+type CockpitLensId =
+  | "project-becoming"
+  | "founder-shadow"
+  | "attention-leaks"
+  | "key-relationships"
+  | "outdated-strategy";
 
 interface LensSpec {
   label: string;
@@ -25,6 +30,21 @@ const LENSES: Record<CockpitLensId, LensSpec> = {
     label: "Current Founder Shadow",
     instruction:
       "Identify the current key founder shadow at play in blocking progress. Read the whole stack, especially the holomap context, plus Equilibrium, pulse, and CRM. Do not moralize or psychologize vaguely. Distinguish a true founder shadow from an ordinary operational constraint. Name one corrective move that preserves the useful signal while removing noise.",
+  },
+  "attention-leaks": {
+    label: "Attention Leaks",
+    instruction:
+      "Find where attention is leaking away from the real next move. Use Equilibrium focus/tasks, pulse open loops, CRM energy leaks, and holomap context. Separate useful optionality from noise. Name the one attention leak with the highest current cost, why it matters, and what to stop, defer, or compress now.",
+  },
+  "key-relationships": {
+    label: "Key Relationships Now",
+    instruction:
+      "Identify which relationship or relationships matter most now. Use CRM context first, then pulse and Equilibrium context. Rank by current leverage: cash, proof, infrastructure, legitimacy, timing, or strategic learning. Do not produce a broad networking list. Name the few relationships that most change the field now and the next concrete relational move.",
+  },
+  "outdated-strategy": {
+    label: "Outdated Strategy",
+    instruction:
+      "Identify which strategy is becoming outdated and what concrete change is becoming more and more obvious. Use Equilibrium strategies, current pulse, CRM movement, and holomap context. Distinguish stale strategy from still-valid long-horizon strategy. Name the strategy to retire, revise, or narrow, and the replacement move.",
   },
 };
 
