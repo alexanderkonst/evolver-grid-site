@@ -17,14 +17,14 @@ const browser = await chromium.launch({
 });
 const results = [];
 
-async function capture(name, viewport) {
+async function capture(name, viewport, targetUrl = url) {
   const page = await browser.newPage({ viewport, deviceScaleFactor: 1 });
   const errors = [];
   page.on("console", (message) => {
     if (["error", "warning"].includes(message.type())) errors.push(`${message.type()}: ${message.text()}`);
   });
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto(url, { waitUntil: "networkidle" });
+  await page.goto(targetUrl, { waitUntil: "networkidle" });
   await page.waitForFunction(() => window.__artifactReady === true, null, { timeout: 15000 });
   await page.waitForTimeout(600);
   const screenshot = join(outDir, `${name}.png`);
@@ -57,8 +57,8 @@ async function capture(name, viewport) {
   results.push({ name, viewport, screenshot, canvasCheck, errors });
 }
 
-await capture("canonical-artifact-three-v2-desktop", { width: 1440, height: 1200 });
-await capture("canonical-artifact-three-v2-mobile", { width: 390, height: 844 });
+await capture("canonical-artifact-three-v3-anatomy-desktop", { width: 1440, height: 1200 }, `${url}?mode=anatomy`);
+await capture("canonical-artifact-three-v3-anatomy-mobile", { width: 390, height: 844 }, `${url}?mode=anatomy`);
 await browser.close();
 
 const report = `# Three.js Render Capture
@@ -66,6 +66,8 @@ const report = `# Three.js Render Capture
 Generated: ${new Date().toISOString()}
 
 URL: ${url}
+
+Mode: anatomy
 
 | Capture | Viewport | Screenshot | Canvas | Console |
 |---|---|---|---|---|
