@@ -29,6 +29,8 @@
       const motion = params.get("motion") || "v1";
       const isMetabolicMotion = motion === "metabolic";
       const isImplicitMotion = motion === "implicit";
+      const quality = params.get("quality") || "standard";
+      const isPhysicalQuality = quality === "physical";
       const model = await fetch("/docs/assets/canonical-artifact/geometry/canonical-artifact.model.json").then((response) => response.json());
       const scene = new THREE.Scene();
       scene.background = new THREE.Color(0xfffefa);
@@ -42,8 +44,45 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.outputColorSpace = THREE.SRGBColorSpace;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.08;
+      renderer.toneMappingExposure = isPhysicalQuality ? 0.96 : 1.08;
       document.body.appendChild(renderer.domElement);
+
+      function makeEnvironmentTexture() {
+        const canvas = document.createElement("canvas");
+        canvas.width = 1024;
+        canvas.height = 512;
+        const ctx = canvas.getContext("2d");
+        const sky = ctx.createLinearGradient(0, 0, 0, 512);
+        sky.addColorStop(0, "#ffffff");
+        sky.addColorStop(0.22, "#f7f3e8");
+        sky.addColorStop(0.55, "#d7eef0");
+        sky.addColorStop(0.78, "#f6df9d");
+        sky.addColorStop(1, "#fffefa");
+        ctx.fillStyle = sky;
+        ctx.fillRect(0, 0, 1024, 512);
+        const bands = [
+          [130, 112, 360, 58, "rgba(255,255,255,0.72)"],
+          [620, 118, 290, 42, "rgba(255,236,172,0.58)"],
+          [460, 286, 420, 70, "rgba(170,215,225,0.34)"],
+          [28, 330, 310, 52, "rgba(196,176,215,0.22)"],
+        ];
+        for (const [x, y, w, h, color] of bands) {
+          const gradient = ctx.createRadialGradient(x + w * 0.5, y + h * 0.5, 4, x + w * 0.5, y + h * 0.5, w * 0.55);
+          gradient.addColorStop(0, color);
+          gradient.addColorStop(1, "rgba(255,255,255,0)");
+          ctx.fillStyle = gradient;
+          ctx.fillRect(x, y, w, h);
+        }
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.mapping = THREE.EquirectangularReflectionMapping;
+        texture.colorSpace = THREE.SRGBColorSpace;
+        texture.needsUpdate = true;
+        return texture;
+      }
+
+      if (isPhysicalQuality) {
+        scene.environment = makeEnvironmentTexture();
+      }
 
       const ambient = new THREE.HemisphereLight(0xffffff, 0xe8d6ad, 1.55);
       scene.add(ambient);
@@ -105,17 +144,47 @@
         return texture;
       }
 
+      function makeAnisotropyTexture() {
+        const canvas = document.createElement("canvas");
+        canvas.width = 512;
+        canvas.height = 512;
+        const ctx = canvas.getContext("2d");
+        for (let y = 0; y < 512; y += 1) {
+          for (let x = 0; x < 512; x += 1) {
+            const wave = Math.sin((x + y * 0.22) * 0.045) * 0.5 + 0.5;
+            const strength = 160 + wave * 82;
+            ctx.fillStyle = `rgb(${strength},${128 + wave * 42},${205 + wave * 38})`;
+            ctx.fillRect(x, y, 1, 1);
+          }
+        }
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(4, 1);
+        texture.colorSpace = THREE.SRGBColorSpace;
+        return texture;
+      }
+
       const brushedTexture = makeBrushedTexture();
+      const anisotropyTexture = makeAnisotropyTexture();
 
       const alloyMaterial = new THREE.MeshPhysicalMaterial({
-        color: 0xd6b565,
+        color: isPhysicalQuality ? 0xd9bf78 : 0xd6b565,
         map: brushedTexture,
-        metalness: isAnatomy ? 0.62 : 0.76,
-        roughness: isAnatomy ? 0.36 : 0.29,
-        clearcoat: isAnatomy ? 0.44 : 0.68,
-        clearcoatRoughness: isAnatomy ? 0.28 : 0.2,
+        roughnessMap: isPhysicalQuality ? brushedTexture : null,
+        anisotropyMap: isPhysicalQuality ? anisotropyTexture : null,
+        metalness: isAnatomy ? (isPhysicalQuality ? 0.78 : 0.62) : 0.76,
+        roughness: isAnatomy ? (isPhysicalQuality ? 0.27 : 0.36) : 0.29,
+        clearcoat: isAnatomy ? (isPhysicalQuality ? 0.62 : 0.44) : 0.68,
+        clearcoatRoughness: isAnatomy ? (isPhysicalQuality ? 0.18 : 0.28) : 0.2,
+        anisotropy: isPhysicalQuality ? 0.82 : 0,
+        anisotropyRotation: Math.PI * 0.18,
+        iridescence: isPhysicalQuality ? 0.18 : 0,
+        iridescenceIOR: 1.42,
+        iridescenceThicknessRange: [120, 310],
+        envMapIntensity: isPhysicalQuality ? 0.92 : 1,
         emissive: 0x4b3510,
-        emissiveIntensity: isAnatomy ? 0.025 : 0.055,
+        emissiveIntensity: isAnatomy ? (isPhysicalQuality ? 0.01 : 0.025) : 0.055,
         transparent: isAnatomy,
         opacity: isAnatomy ? 0.68 : 1,
       });
@@ -123,13 +192,19 @@
       const axisMaterial = new THREE.MeshPhysicalMaterial({
         color: 0xf5dd8f,
         metalness: isAnatomy ? 0.1 : 0.22,
-        roughness: isAnatomy ? 0.1 : 0.12,
-        transmission: isAnatomy ? 0.36 : 0.24,
-        thickness: 0.3,
+        roughness: isAnatomy ? (isPhysicalQuality ? 0.07 : 0.1) : 0.12,
+        transmission: isAnatomy ? (isPhysicalQuality ? 0.5 : 0.36) : 0.24,
+        thickness: isPhysicalQuality ? 0.48 : 0.3,
+        ior: 1.62,
+        dispersion: isPhysicalQuality ? 0.22 : 0,
         clearcoat: isAnatomy ? 0.92 : 0.84,
         clearcoatRoughness: 0.16,
+        iridescence: isPhysicalQuality ? 0.28 : 0,
+        iridescenceIOR: 1.36,
+        iridescenceThicknessRange: [160, 420],
+        envMapIntensity: isPhysicalQuality ? 1.34 : 1,
         emissive: 0xffeeb4,
-        emissiveIntensity: isAnatomy ? 0.58 : 0.34,
+        emissiveIntensity: isAnatomy ? (isPhysicalQuality ? 0.46 : 0.58) : 0.34,
       });
 
       const glowMaterial = new THREE.MeshBasicMaterial({
@@ -148,6 +223,7 @@
           time: { value: 0 },
           metabolism: { value: isMetabolicMotion || isImplicitMotion ? 1 : 0 },
           implicitness: { value: isImplicitMotion ? 1 : 0 },
+          physicality: { value: isPhysicalQuality ? 1 : 0 },
           colorA: { value: new THREE.Color(0xc8b7d8) },
           colorB: { value: new THREE.Color(0xa7cbd4) },
           colorC: { value: new THREE.Color(0xf7f4e3) },
@@ -166,6 +242,7 @@
           uniform float time;
           uniform float metabolism;
           uniform float implicitness;
+          uniform float physicality;
           uniform vec3 colorA;
           uniform vec3 colorB;
           uniform vec3 colorC;
@@ -183,9 +260,11 @@
             float band = mix(waveA, (waveA * 0.55 + waveB * 0.45), metabolism) * 0.5 + 0.5;
             band = mix(band, band * 0.68 + caustic * 0.32, implicitness);
             vec3 iridescence = mix(colorA, colorB, band);
+            float thinFilm = pow(fresnel, 1.4) * (0.24 + caustic * 0.28);
             iridescence = mix(iridescence, colorC, 0.38 + caustic * implicitness * 0.22);
+            iridescence = mix(iridescence, vec3(0.94, 0.98, 1.0), thinFilm * physicality);
             float modeScale = ${isAnatomy ? "0.48" : "1.0"};
-            float alpha = (0.018 + fresnel * 0.095 + band * 0.01 + caustic * implicitness * 0.044) * modeScale;
+            float alpha = (0.018 + fresnel * (0.095 + physicality * 0.028) + band * 0.01 + caustic * implicitness * 0.044) * modeScale;
             gl_FragColor = vec4(iridescence, alpha);
           }
         `,
@@ -241,6 +320,32 @@
       const field = new THREE.Mesh(new THREE.SphereGeometry(1.015, 96, 48), fieldMaterial);
       group.add(field);
 
+      if (isPhysicalQuality) {
+        const refractiveField = new THREE.Mesh(
+          new THREE.SphereGeometry(1.012, 128, 64),
+          new THREE.MeshPhysicalMaterial({
+            color: 0xf8fbff,
+            transparent: true,
+            opacity: isAnatomy ? 0.12 : 0.2,
+            transmission: 0.72,
+            thickness: 0.18,
+            ior: 1.24,
+            dispersion: 0.28,
+            roughness: 0.03,
+            metalness: 0,
+            iridescence: 0.62,
+            iridescenceIOR: 1.22,
+            iridescenceThicknessRange: [80, 260],
+            clearcoat: 0.7,
+            clearcoatRoughness: 0.08,
+            envMapIntensity: 0.7,
+            depthWrite: false,
+            side: THREE.DoubleSide,
+          })
+        );
+        group.add(refractiveField);
+      }
+
       const torusGroup = new THREE.Group();
       group.add(torusGroup);
       const circulationPaths = [];
@@ -290,7 +395,7 @@
 
       const resize = () => {
         camera.aspect = window.innerWidth / window.innerHeight;
-        const distance = camera.aspect < 0.74 ? (isAnatomy ? 7.65 : 7.35) : (isAnatomy ? 5.05 : 4.85);
+        const distance = camera.aspect < 0.74 ? (isAnatomy ? 7.65 : 7.35) : (isAnatomy ? (isPhysicalQuality ? 5.18 : 5.05) : 4.85);
         camera.position.copy(cameraDirection.clone().multiplyScalar(distance));
         camera.lookAt(0, 0, 0);
         camera.updateProjectionMatrix();

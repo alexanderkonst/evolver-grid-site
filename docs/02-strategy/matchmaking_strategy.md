@@ -727,7 +727,7 @@ Still genuinely open:
 
 ## 14. Genealogy
 
-- **v0 (Feb 17, 2026):** original matchmaking docs at `docs/00-intro kit/archived/matchmaking_strategy.md`, `docs/06-architecture/matchmaking_architecture.md`, `docs/07-technology/matchmaking_engine.md`. Engineering-leaning; subordinated to v1's strategic framing.
+- **v0 (Feb 17, 2026):** original matchmaking docs lived in the old intro-kit archive (deleted July 4, 2026 as outdated) plus `docs/06-architecture/matchmaking_architecture.md` and `docs/07-technology/matchmaking_engine.md`. Engineering-leaning; subordinated to v1's strategic framing.
 - **v1 (March 31, 2026):** Trojan Horse + 5-match-type framing in this file. Pulled the engine up into strategy. Preserved here as foundational concepts that v2 didn't replace.
 - **v2 (May 16, 2026, Day 66):** primitive-driven holarchic engine download. Reframed match-types as compounds of primitives; added wants/needs dimension; added holarchy; added scoring sketches.
 - **v2.1 (May 16, 2026, Day 66 — same day):** Sasha-reviewed synthesis. Wants/needs reframed from "load-bearing precondition" to "one valuable primitive among many." QoL-as-multiplier deferred (not wiring yet). Project-leader-proxy critique retracted (every project has an ultimate decision-maker per decision context; project profiles will exist independently when built). User scope locked as "person" for v1; matching engine pricing locked as "free for v1." Added §8: Match interaction mechanic spec — the Bordy-style double-opt-in flow, intro email, recorded success event as the feedback loop, mutual-opt-in as the v1 trust filter.

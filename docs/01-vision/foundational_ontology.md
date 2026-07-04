@@ -263,7 +263,6 @@ Their products follow the same pattern.
 
 After enrichment comes the next will.
 The product is never "done" — it evolves.
-That's why it's called **Evolver**.
 
 ### On Materialization
 

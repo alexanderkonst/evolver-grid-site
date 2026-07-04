@@ -13,12 +13,17 @@ Date: 2026-07-03.
 | Primary projection | `docs/assets/canonical-artifact/projections/primary-projection.svg` | Pass |
 | Primary projection preview | `docs/assets/canonical-artifact/projections/primary-projection.svg.png` | Pass |
 | Three.js viewer | `docs/assets/canonical-artifact/viewer.html` | Pass |
+| Review plate HTML | `docs/assets/canonical-artifact/review_plate.html` | Pass |
+| Review plate PNG | `docs/assets/canonical-artifact/renders/canonical-artifact-review-plate.png` | Pass |
+| Review plate capture report | `docs/assets/canonical-artifact/renders/review_plate_capture_report.md` | Pass |
 | Three.js desktop render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-desktop.png` | Pass |
 | Three.js mobile render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-mobile.png` | Pass |
 | Three.js v2 desktop render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-v2-desktop.png` | Pass |
 | Three.js v2 mobile render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-v2-mobile.png` | Pass |
 | Three.js v3 Anatomy desktop render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-v3-anatomy-desktop.png` | Pass |
 | Three.js v3 Anatomy mobile render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-v3-anatomy-mobile.png` | Pass |
+| Three.js v4 Physical desktop render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-v4-physical-desktop.png` | Pass |
+| Three.js v4 Physical mobile render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-v4-physical-mobile.png` | Pass |
 | Motion v1 MP4 | `docs/assets/canonical-artifact/renders/canonical-artifact-motion-v1.mp4` | Pass |
 | Motion v1 poster | `docs/assets/canonical-artifact/renders/canonical-artifact-motion-v1-poster.png` | Pass |
 | Motion v1 capture report | `docs/assets/canonical-artifact/renders/motion_capture_report.md` | Pass |
@@ -79,6 +84,31 @@ Date: 2026-07-03.
 | Toroidal becoming is present | v3 adds faint circulation paths through `torusGroup` | Pass |
 | Desktop/mobile captures exist | v3 desktop/mobile PNGs captured and listed above | Pass |
 
+## v4 Physical Quality Audit
+
+| Check | Evidence | Status |
+|---|---|---|
+| Physical quality profile exists | `viewer.html` supports `quality=physical` | Pass |
+| Environment lighting exists | Physical profile creates an equirectangular reflection environment | Pass |
+| Alloy material is more physical | Alloy uses anisotropy, anisotropy map, roughness map, iridescence, and tuned clearcoat | Pass |
+| Field gains refractive behavior | Physical profile adds a transparent transmissive field shell with iridescence and dispersion | Pass |
+| Canonical topology is unchanged | Source geometry still loads from `canonical-artifact.model.json` | Pass |
+| Desktop/mobile captures exist | `canonical-artifact-three-v4-physical-desktop.png` and `canonical-artifact-three-v4-physical-mobile.png` | Pass |
+| Canvas checks pass | `three_capture_report.md` records nonblank v4 desktop/mobile captures | Pass |
+| Console health | v4 physical desktop/mobile captures are clean | Pass |
+
+## Review Plate Audit
+
+| Check | Evidence | Status |
+|---|---|---|
+| Review plate exists | `review_plate.html` | Pass |
+| Captured review PNG exists | `canonical-artifact-review-plate.png` | Pass |
+| Source-first family is represented | Plate includes physical artifact, projection, anatomy, metabolic poster, and implicit-circulation poster | Pass |
+| Projection remains derivative | Plate copy states the 2D mark is derived, not source | Pass |
+| Geometry audit is visible | Plate names 6 vertices / 12 edges / 8 faces / 3 axes | Pass |
+| Images load | `review_plate_capture_report.md` records 5 loaded images with natural dimensions | Pass |
+| Console health | Review plate capture is clean | Pass |
+
 ## Motion v1 Audit
 
 | Check | Evidence | Status |
@@ -117,10 +147,10 @@ Date: 2026-07-03.
 ## Known Limitations
 
 1. The SVG implementation is exact and audit-friendly; the Three.js render is more material-rich but still not a final Blender/Cycles-grade photograph.
-2. The material now includes deterministic brushed texture and stronger physicality, but still needs final art direction to escape ordinary gold completely.
+2. v4 improves physical believability with environment lighting, anisotropy, iridescence, transmission, and dispersion, but remains a real-time browser approximation.
 3. Motion v3 reduces explicit path-work and makes circulation more implicit, but the field shader remains a real-time approximation rather than physically simulated refraction.
 4. The privileged viewpoint is operationalized as `[1, 1, 1]`; Sasha may later tune this from lived visual memory.
 
 ## Debug Conclusion
 
-The first execution target is complete and the renderer now has five layers: v2 artifact/material render, v3 Anatomy Mode, Motion v1, Motion v2 Metabolic, and Motion v3 Implicit. All derive from the same procedural geometry. The next quality leap is higher-fidelity physics/material rendering: more convincing refraction, anisotropy, and light propagation without adding decorative structure.
+The first execution target is complete and the renderer now has seven layers: v2 artifact/material render, v3 Anatomy Mode, v4 Physical Quality, Motion v1, Motion v2 Metabolic, Motion v3 Implicit, and Review Plate v1. All derive from the same procedural geometry. The next quality leap is an offline renderer pass or a more finished identity application system built from these source assets.
