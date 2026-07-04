@@ -481,10 +481,32 @@ If this ontology is true, it implies a different reality for any information pro
 
 ---
 
+## Archived Addendum — The Prime Invariant
+
+> *Added July 3, 2026 as a pointer to the current Universal Ontology v1.8 and Phase Shift Technology Library Domain 98.*
+
+The later corpus sharpens this archived ontology with one governing law:
+
+> **Find the invariant. Everything else is a derivation.**
+
+Identity is not the visible symbol, artifact, or interface. Identity is the invariant that survives transformation across symbol, software, event, ceremony, product, and community architecture.
+
+Five articles summarize the update:
+
+1. Reality is approached through relationships before objects.
+2. Every coherent structure is a projection of deeper invariants.
+3. The purpose of intelligence is increasing coherent participation.
+4. Beauty is a consequence of internal consistency.
+5. Technology should amplify recognition rather than replace it.
+
+See the current [Universal Ontology](../../01-vision/universal_ontology.md#12-the-prime-invariant-form-that-forms) and [Phase Shift Technology Library Domain 98](../../01-vision/phase_shift_technology_library.md#domain-98-prime-invariant-branding-generative-ontology-before-projection).
+
+---
+
 ![Holon Essential Qualities Diagram](./holon_essential_qualities_diagram.jpg)
 
 ---
 
-*Universal Ontology v1.0*
+*Universal Ontology v1.0 archived · Addendum pointer added July 3, 2026*
 *Synthesized: January 28, 2026*
 *Sources: Holon's Essential Qualities, Integral Theory of Everything (v0.7 Beta, February 2024)*

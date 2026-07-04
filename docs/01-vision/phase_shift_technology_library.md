@@ -6897,3 +6897,116 @@ Human approval determines what enters the holograph. This keeps the system livin
 ### 97j. One-Sentence Version
 
 > *"A living project becomes self-aware when one canonical pulse source feeds actual movement into the hero's journey ledger, energy exchange ledger, and strategic oracle, allowing the project to detect growth drivers, bottlenecks, ripe relationships, and the next high-leverage move through AI."*
+
+---
+
+## Domain 98: Prime Invariant Branding (Generative Ontology Before Projection)
+
+> *Added July 3, 2026 — surfaced through the "The Prime Invariant" artifact and the realization that the logo should not be treated as a static 2D brand mark, but as a projection of a deeper canonical object.*
+
+> *"Find the invariant. Everything else is a derivation."*
+
+### 98a. The Discovery
+
+Traditional branding tries to communicate a message through a static 2D symbol. Generative ontology starts earlier: it instantiates an invariant pattern, then derives logos, software architecture, event installations, ceremonies, animations, and product surfaces from that same source.
+
+The 2D mark is not the origin. It is an orthographic projection of a deeper canonical artifact.
+
+The source is a metastable 3D object: a regular octahedron held inside a sphere. The octahedron is not merely a sculptural shape; it is a graph of relationships. The sphere is not decoration; it is the continuous field in which stable relationship can appear.
+
+### 98b. The Law
+
+> *Whatever survives every transformation is the identity.*
+
+Identity is not the visible symbol. Identity is the invariant that remains coherent as it moves through media:
+
+```text
+Canonical object
+  -> orthographic projection / primary logo
+  -> spatial projection / installations
+  -> temporal projection / transformational ceremonies
+  -> software architecture / OS topology
+  -> product behavior / living interface
+```
+
+If a derivative cannot preserve the invariant, it is not a true derivative. It is decoration.
+
+### 98c. The Constitution of ORIGINAL
+
+The attached artifact named five constitutional laws:
+
+1. Reality is approached through relationships before objects.
+2. Every coherent structure is a projection of deeper invariants.
+3. The purpose of intelligence is increasing coherent participation.
+4. Beauty is a consequence of internal consistency.
+5. Technology should amplify recognition rather than replace it.
+
+These are not only brand principles. They are design, product, AI, and civilization principles.
+
+### 98d. Generative Ontology vs Branding
+
+| Traditional branding | Generative ontology |
+|---|---|
+| Communicates messages | Instantiates invariant patterns |
+| Static 2D symbol | Metastable 3D artifact |
+| Light as energy / emission / radiation | Light as legibility / understanding / coherent transmission |
+| Aspiration: "be different" | Aspiration: "become original" |
+| Comparative and sideways | Inward, source-returning, coherence-seeking |
+
+The distinction matters because "be different" can still be driven by comparison. "Become original" means return to source until the invariant can project cleanly through many forms.
+
+### 98e. Metastability and Frozen Dynamics
+
+The canonical object is not a frozen sculpture. It is frozen dynamics.
+
+A whirlpool is not "water plus shape"; it is the stable organization of moving water. Likewise, a living brand object is not a static object with symbolic associations. It is coherence defending itself against entropy by continuously reorganizing while preserving its invariant.
+
+This is why the logo must eventually become motion, software behavior, cockpit topology, event architecture, and ceremony. The object is permanently poised on the edge of becoming.
+
+### 98f. The Architecture of Recognition
+
+The octahedron reveals a recognition law:
+
+> *Reality does not become more intelligent by accumulating structure, but by discovering relationships that allow previously separate structures to participate in one another.*
+
+Therefore the purpose of intelligence is not to eliminate difference. The purpose of intelligence is to discover forms of relationship through which increasing difference can coexist with increasing coherence.
+
+This is the visual-symbolic sibling of Domain 94 and Domain 95: unique value does not need to be flattened into sameness; it needs a relationship architecture in which difference can participate coherently.
+
+### 98g. The Generative Compiler
+
+The prime invariant is not vocabulary. It is a grammar that compiles potential into reality.
+
+The artifact's compiler verbs are:
+
+```text
+Be -> Distinguish -> Relate -> Resonate -> Cohere -> Illuminate -> Recognize -> Integrate -> Create
+```
+
+This sequence is a practical design loop. Any derivative of the brand, product, or ontology should be tested against it: does it help the user be, distinguish, relate, resonate, cohere, illuminate, recognize, integrate, and create?
+
+### 98h. Engineering Blueprint
+
+The artifact implies a concrete build sequence:
+
+1. **Canonical geometry:** perfect topology, edge radii, parametric construction.
+2. **Canonical digital artifact:** procedural code / Three.js establishing the invariant.
+3. **Canonical physics:** light propagation, field shimmer, coherent breathing.
+4. **Projection library:** extracting 2D and 3D derivatives from the core object.
+5. **ORIGINAL OS:** the living object as the orientation layer of the software.
+
+This gives a standard for future visual/product work: build the invariant first, then derive surfaces from it.
+
+### 98i. Relationship to Other Domains
+
+- **Domain 1 (Prime Radiant):** the logo object is a projected local instance of the origin pattern: sphere, axes, octahedron, light, and field.
+- **Domain 4 (Essence of Essence):** uniqueness becomes visible through refraction; the prime invariant gives the brand's own refraction geometry.
+- **Domain 16 (Morphogenetic Navigation):** the holomap reads invariants through time; this domain makes invariance the brand/design method.
+- **Domain 94 (Unique Face of Eternity):** difference is sacred; Domain 98 gives a relationship architecture for difference to cohere.
+- **Domain 95 (Unique Value Articulation):** value becomes useful when legible; Domain 98 makes legibility a visual and spatial property.
+- **Domain 96 (Signal-Preserving Propagation):** signal preservation across business artifacts is the same law as invariant preservation across visual/product projections.
+- **Domain 97 (Living Project Holograph):** the cockpit should become a derivative of the prime invariant, not merely a dashboard styled with a brand mark.
+
+### 98j. One-Sentence Version
+
+> *"A true brand begins as a canonical invariant, not a logo: find the form that survives every transformation, then derive symbols, interfaces, ceremonies, products, and systems from that source without losing coherence."*

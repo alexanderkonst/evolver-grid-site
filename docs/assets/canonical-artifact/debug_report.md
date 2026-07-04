@@ -24,6 +24,8 @@ Date: 2026-07-03.
 | Motion v1 capture report | `docs/assets/canonical-artifact/renders/motion_capture_report.md` | Pass |
 | Motion v2 Metabolic MP4 | `docs/assets/canonical-artifact/renders/canonical-artifact-motion-v2-metabolic.mp4` | Pass |
 | Motion v2 Metabolic poster | `docs/assets/canonical-artifact/renders/canonical-artifact-motion-v2-metabolic-poster.png` | Pass |
+| Motion v3 Implicit MP4 | `docs/assets/canonical-artifact/renders/canonical-artifact-motion-v3-implicit.mp4` | Pass |
+| Motion v3 Implicit poster | `docs/assets/canonical-artifact/renders/canonical-artifact-motion-v3-implicit-poster.png` | Pass |
 | Three.js capture report | `docs/assets/canonical-artifact/renders/three_capture_report.md` | Pass |
 | Execution log | `docs/assets/canonical-artifact/execution_log.md` | Pass |
 
@@ -100,13 +102,25 @@ Date: 2026-07-03.
 | Invariant topology is preserved | Motion affects materials/transforms of field/circulation/aura, not source model | Pass |
 | MP4 generated | `canonical-artifact-motion-v2-metabolic.mp4`, 96 frames, 24fps, 4s | Pass |
 
+## Motion v3 Implicit Audit
+
+| Check | Evidence | Status |
+|---|---|---|
+| Implicit motion mode exists | `viewer.html` supports `motion=implicit` | Pass |
+| Field carries more circulation burden | Field shader adds traveling caustic bands and layered phase waves in implicit mode | Pass |
+| Toroidal paths are reduced | Implicit mode lowers path opacity and narrows transform amplitude | Pass |
+| Light propagation is present | Caustic bands modulate field color and alpha over time | Pass |
+| Invariant topology is preserved | Motion changes shader/material timing only; source model remains unchanged | Pass |
+| MP4 generated | `canonical-artifact-motion-v3-implicit.mp4`, 96 frames, 24fps, 4s | Pass |
+| Console health | Capture reports expected WebGL `ReadPixels` performance warnings from screenshot capture | Pass with note |
+
 ## Known Limitations
 
 1. The SVG implementation is exact and audit-friendly; the Three.js render is more material-rich but still not a final Blender/Cycles-grade photograph.
 2. The material now includes deterministic brushed texture and stronger physicality, but still needs final art direction to escape ordinary gold completely.
-3. Motion v2 moves closer to field metabolism, but the paths are still visibly explicit. Future passes should make circulation more implicit through refraction, shimmer, and light propagation.
+3. Motion v3 reduces explicit path-work and makes circulation more implicit, but the field shader remains a real-time approximation rather than physically simulated refraction.
 4. The privileged viewpoint is operationalized as `[1, 1, 1]`; Sasha may later tune this from lived visual memory.
 
 ## Debug Conclusion
 
-The first execution target is complete and the renderer now has four layers: v2 artifact/material render, v3 Anatomy Mode, Motion v1, and Motion v2 Metabolic. All derive from the same procedural geometry. The next quality leap is implicit circulation: less visible path-work, more refraction/shimmer/light propagation.
+The first execution target is complete and the renderer now has five layers: v2 artifact/material render, v3 Anatomy Mode, Motion v1, Motion v2 Metabolic, and Motion v3 Implicit. All derive from the same procedural geometry. The next quality leap is higher-fidelity physics/material rendering: more convincing refraction, anisotropy, and light propagation without adding decorative structure.

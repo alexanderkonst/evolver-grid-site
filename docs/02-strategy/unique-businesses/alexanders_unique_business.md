@@ -1630,6 +1630,55 @@ This tribe does not primarily need another tool to manage a business. They need 
 
 ---
 
+## Day 113 Product Doctrine — Prime Invariant and Founder Cockpit
+
+*July 3, 2026. Additive doctrine downstream of the Living Project Holograph / Founder Cockpit discovery and the "The Prime Invariant" artifact.*
+
+**New governing line:**
+
+> Find the invariant. Everything else is a derivation.
+
+**Business-level meaning:**
+
+The founder's unique value is the prime invariant; the business is the projection library.
+
+This clarifies what Sasha's work actually does. It does not merely help someone produce better copy, pick a niche, or design a dashboard. It helps a founder recognize the invariant source-pattern of their life's work, then derive the business, offer, cockpit, relationships, community node, and next moves from that source without losing coherence.
+
+**Founder Cockpit implication:**
+
+Founder Cockpit is not a management dashboard with spiritual language on top. It is the operational surface where a founder sees whether the living project is preserving its invariant across movement:
+
+- strategy,
+- relationships,
+- money,
+- offers,
+- product architecture,
+- energy,
+- timing,
+- opportunities,
+- bottlenecks,
+- and next moves.
+
+The cockpit's job is to reveal whether the project is still coherent with its source-pattern as reality moves.
+
+**Category refinement:**
+
+Founder Life's Work Navigation is the practical category. Prime Invariant Branding / Generative Ontology is the deeper design law underneath it.
+
+**One-sentence product synthesis:**
+
+> I help founders recognize the prime invariant of their life's work and navigate the business, relationships, products, and opportunities that derive from it without losing coherence.
+
+**Relationship to locked uniqueness:**
+
+Locked uniqueness remains:
+
+> I assist individuals, groups, and communities get professional clarity so better fit opportunities appear.
+
+The Prime Invariant layer does not replace that. It explains the deeper physics: professional clarity is the recognition of the invariant; better-fit opportunities appear because the field can finally recognize what all the derivatives are actually expressions of.
+
+---
+
 *Version: v2.2 · Feb 20, 2026 — forged from Alexander's lived experience across all 3 segments*
 
 > **Validation marker:** Alexander IS all three segments. Gets emotional reading them. If the founder who forged the myth can feel each segment in his bones, the tribe definition has signal.
