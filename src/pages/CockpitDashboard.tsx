@@ -2,7 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import {
   Activity,
   ArrowUpRight,
+  BrainCircuit,
   Compass,
+  Copy,
   Crosshair,
   Database,
   Gauge,
@@ -19,6 +21,7 @@ import {
   Zap,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { cockpitLenses, type CockpitLensId, type CockpitLensResult, runCockpitLens } from "@/lib/cockpitLenses";
 import crmSnapshotRaw from "@/generated/crm-snapshot.json";
 import pulseSnapshotRaw from "@/generated/project-pulse-snapshot.json";
 
@@ -99,6 +102,11 @@ export default function CockpitDashboard() {
   const [equilibrium, setEquilibrium] = useState<EquilibriumContext | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [activeLensId, setActiveLensId] = useState<CockpitLensId | null>(null);
+  const [lensResult, setLensResult] = useState<CockpitLensResult | null>(null);
+  const [lensLoading, setLensLoading] = useState(false);
+  const [lensError, setLensError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   const loadContext = async () => {
     setLoading(true);
@@ -118,6 +126,42 @@ export default function CockpitDashboard() {
   useEffect(() => {
     void loadContext();
   }, []);
+
+  const runLens = async (lensId: CockpitLensId) => {
+    setActiveLensId(lensId);
+    setLensLoading(true);
+    setLensError(null);
+    setLensResult(null);
+    setCopied(false);
+
+    try {
+      const liveEquilibrium = equilibrium ?? (await loadContextForLens());
+      const result = await runCockpitLens({
+        lensId,
+        equilibrium: liveEquilibrium,
+        crmSnapshot,
+        pulseSnapshot,
+      });
+      setLensResult(result);
+    } catch (runError) {
+      setLensError(runError instanceof Error ? runError.message : "Could not run cockpit lens.");
+    } finally {
+      setLensLoading(false);
+    }
+  };
+
+  const loadContextForLens = async () => {
+    const { data, error: invokeError } = await supabase.functions.invoke("equilibrium-ai-context");
+    if (invokeError) throw new Error(invokeError.message);
+    setEquilibrium(data as EquilibriumContext);
+    return data as EquilibriumContext;
+  };
+
+  const copyLensMarkdown = async () => {
+    if (!lensResult) return;
+    await navigator.clipboard.writeText(lensResult.markdown);
+    setCopied(true);
+  };
 
   const model = useMemo(() => {
     const latest = pulseSnapshot.latestEvent;
@@ -428,6 +472,109 @@ export default function CockpitDashboard() {
                 </div>
               ))}
             </div>
+          </section>
+        </div>
+
+        <div className="mt-5 grid gap-4 lg:grid-cols-[0.85fr_1.15fr]">
+          <section className="rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5">
+            <p className="mb-4 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-[#d6a84d]">
+              <BrainCircuit className="h-4 w-4" />
+              AI Lens Lab
+            </p>
+            <div className="grid gap-3">
+              {cockpitLenses.map((lens) => {
+                const isActive = lens.id === activeLensId;
+                return (
+                  <button
+                    key={lens.id}
+                    type="button"
+                    onClick={() => void runLens(lens.id)}
+                    disabled={lensLoading}
+                    className={`rounded-xl border p-4 text-left transition disabled:cursor-wait disabled:opacity-70 ${
+                      isActive
+                        ? "border-[#f6d58a] bg-[#201608] text-[#fff7e8] shadow-[0_0_34px_-18px_rgba(246,213,138,0.85)]"
+                        : "border-white/10 bg-[#07090d] text-[#f6efe3] hover:border-[#d6a84d]/55"
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p className="font-semibold">{lens.label}</p>
+                        <p className="mt-1 text-xs uppercase tracking-[0.14em] text-[#9ea7b3]">{lens.instrument}</p>
+                      </div>
+                      {lensLoading && isActive ? <Loader2 className="h-4 w-4 animate-spin text-[#f6d58a]" /> : <Sparkles className="h-4 w-4 text-[#f6d58a]" />}
+                    </div>
+                    <p className="mt-3 text-sm leading-6 text-[#cfc4b5]">{lens.question}</p>
+                  </button>
+                );
+              })}
+            </div>
+          </section>
+
+          <section className="rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5">
+            <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="text-xs uppercase tracking-[0.18em] text-[#d6a84d]">Review Screen</p>
+                <h2 className="mt-2 font-serif text-3xl leading-tight text-[#fff7e8]">
+                  {lensResult?.title ?? "Run a lens to read the field."}
+                </h2>
+              </div>
+              <button
+                type="button"
+                onClick={() => void copyLensMarkdown()}
+                disabled={!lensResult}
+                className="inline-flex h-10 w-fit items-center gap-2 rounded-full border border-[#d6a84d]/35 bg-[#15100a] px-4 text-sm font-medium text-[#f6d58a] transition hover:border-[#f6d58a]/70 disabled:cursor-not-allowed disabled:opacity-45"
+              >
+                <Copy className="h-4 w-4" />
+                {copied ? "Copied" : "Copy as markdown"}
+              </button>
+            </div>
+
+            {lensLoading && (
+              <div className="grid min-h-[260px] place-items-center rounded-xl border border-white/10 bg-[#07090d] p-6 text-[#cfc4b5]">
+                <div className="text-center">
+                  <Loader2 className="mx-auto mb-3 h-6 w-6 animate-spin text-[#f6d58a]" />
+                  <p>Reading Equilibrium, pulse, CRM, and holomap context...</p>
+                </div>
+              </div>
+            )}
+
+            {!lensLoading && lensError && (
+              <div className="rounded-xl border border-[#f0a37a]/30 bg-[#24100d] p-4 text-sm leading-6 text-[#ffc0a5]">
+                {lensError}
+              </div>
+            )}
+
+            {!lensLoading && !lensError && lensResult && (
+              <div className="space-y-4">
+                <p className="rounded-xl border border-[#4ecdc4]/30 bg-[#071d1d] p-4 text-base leading-7 text-[#d8fffb]">
+                  {lensResult.bottomLine}
+                </p>
+                <div className="grid gap-3">
+                  {lensResult.evidence.map((item, index) => (
+                    <div key={`${item}-${index}`} className="flex gap-3 rounded-xl border border-white/10 bg-[#07090d] p-4 text-sm leading-6 text-[#e9ddca]">
+                      <Waypoints className="mt-1 h-4 w-4 shrink-0 text-[#f6d58a]" />
+                      <p>{item}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="grid gap-3 md:grid-cols-2">
+                  <div className="rounded-xl border border-white/10 bg-[#07090d] p-4">
+                    <p className="mb-2 text-xs uppercase tracking-[0.14em] text-[#d6a84d]">Consequence</p>
+                    <p className="text-sm leading-6 text-[#cfc4b5]">{lensResult.consequence}</p>
+                  </div>
+                  <div className="rounded-xl border border-white/10 bg-[#07090d] p-4">
+                    <p className="mb-2 text-xs uppercase tracking-[0.14em] text-[#d6a84d]">Recommended Move</p>
+                    <p className="text-sm leading-6 text-[#cfc4b5]">{lensResult.recommendedMove}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {!lensLoading && !lensError && !lensResult && (
+              <p className="rounded-xl border border-white/10 bg-[#07090d] p-5 text-sm leading-6 text-[#cfc4b5]">
+                These buttons call the live AI lens. They do not write back into Equilibrium yet.
+              </p>
+            )}
           </section>
         </div>
 

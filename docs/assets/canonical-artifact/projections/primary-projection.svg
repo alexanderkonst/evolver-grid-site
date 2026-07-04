@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="720" viewBox="0 0 720 720" role="img" aria-label="Primary Projection">
+  
+    <defs>
+      <radialGradient id="fieldWash" cx="50%" cy="47%" r="49%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+        <stop offset="58%" stop-color="#f5f0dc" stop-opacity="0.05"/>
+        <stop offset="76%" stop-color="#c9e2ea" stop-opacity="0.11"/>
+        <stop offset="89%" stop-color="#d8c1de" stop-opacity="0.12"/>
+        <stop offset="100%" stop-color="#fff8df" stop-opacity="0.03"/>
+      </radialGradient>
+      <linearGradient id="iridescentBoundary" x1="80" y1="120" x2="650" y2="610" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#c8b7d8" stop-opacity="0.28"/>
+        <stop offset="25%" stop-color="#a7cbd4" stop-opacity="0.23"/>
+        <stop offset="50%" stop-color="#f7f4e3" stop-opacity="0.18"/>
+        <stop offset="75%" stop-color="#cea4ae" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#a4a3d0" stop-opacity="0.26"/>
+      </linearGradient>
+      <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%">
+        <feGaussianBlur stdDeviation="5.2" result="blur"/>
+        <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.98  0 1 0 0 0.82  0 0 1 0 0.42  0 0 0 0.42 0" result="glow"/>
+        <feMerge>
+          <feMergeNode in="glow"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      <filter id="singularityGlow" x="-200%" y="-200%" width="500%" height="500%">
+        <feGaussianBlur stdDeviation="8" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+  <rect width="720" height="720" fill="#fffefa"/>
+  <circle cx="360" cy="360" r="264" fill="url(#fieldWash)" opacity="0.58"/>
+  <circle cx="360" cy="360" r="264" fill="none" stroke="url(#iridescentBoundary)" stroke-width="1.8" opacity="0.28"/>
+  
+  <g>
+    
+    <defs>
+      <linearGradient id="g-p-0" x1="184.6375182657362" y1="258.754423964962" x2="535.3624817342638" y2="258.754423964962" gradientUnits="userSpaceOnUse">
+        
+        <stop offset="0" stop-color="#b99a53"/>
+        <stop offset="0.43" stop-color="#f8f2d9"/>
+        <stop offset="0.52" stop-color="#fffef6"/>
+        <stop offset="0.61" stop-color="#f3df99"/>
+        <stop offset="1" stop-color="#9d7731"/>
+      </linearGradient>
+    </defs>
+    
+    <line x1="184.64" y1="258.75" x2="535.36" y2="258.75"
+      stroke="url(#g-p-0)" stroke-width="5" stroke-linecap="round" opacity="0.18600000000000003"/>
+    <line x1="184.64" y1="258.75" x2="535.36" y2="258.75"
+      stroke="#fffdf0" stroke-width="1.20" stroke-linecap="round" opacity="0.13"/>
+  
+
+    <defs>
+      <linearGradient id="g-p-1" x1="184.6375182657362" y1="258.754423964962" x2="360" y2="562.491152070076" gradientUnits="userSpaceOnUse">
+        
+        <stop offset="0" stop-color="#b99a53"/>
+        <stop offset="0.43" stop-color="#f8f2d9"/>
+        <stop offset="0.52" stop-color="#fffef6"/>
+        <stop offset="0.61" stop-color="#f3df99"/>
+        <stop offset="1" stop-color="#9d7731"/>
+      </linearGradient>
+    </defs>
+    
+    <line x1="184.64" y1="258.75" x2="360.00" y2="562.49"
+      stroke="url(#g-p-1)" stroke-width="5" stroke-linecap="round" opacity="0.18600000000000003"/>
+    <line x1="184.64" y1="258.75" x2="360.00" y2="562.49"
+      stroke="#fffdf0" stroke-width="1.20" stroke-linecap="round" opacity="0.13"/>
+  
+
+    <defs>
+      <linearGradient id="g-p-2" x1="535.3624817342638" y1="258.754423964962" x2="360" y2="562.491152070076" gradientUnits="userSpaceOnUse">
+        
+        <stop offset="0" stop-color="#b99a53"/>
+        <stop offset="0.43" stop-color="#f8f2d9"/>
+        <stop offset="0.52" stop-color="#fffef6"/>
+        <stop offset="0.61" stop-color="#f3df99"/>
+        <stop offset="1" stop-color="#9d7731"/>
+      </linearGradient>
+    </defs>
+    
+    <line x1="535.36" y1="258.75" x2="360.00" y2="562.49"
+      stroke="url(#g-p-2)" stroke-width="5" stroke-linecap="round" opacity="0.18600000000000003"/>
+    <line x1="535.36" y1="258.75" x2="360.00" y2="562.49"
+      stroke="#fffdf0" stroke-width="1.20" stroke-linecap="round" opacity="0.13"/>
+  
+
+    <defs>
+      <linearGradient id="g-p-3" x1="535.3624817342638" y1="461.245576035038" x2="535.3624817342638" y2="258.754423964962" gradientUnits="userSpaceOnUse">
+        
+        <stop offset="0" stop-color="#b99a53"/>
+        <stop offset="0.43" stop-color="#f8f2d9"/>
+        <stop offset="0.52" stop-color="#fffef6"/>
+        <stop offset="0.61" stop-color="#f3df99"/>
+        <stop offset="1" stop-color="#9d7731"/>
+      </linearGradient>
+    </defs>
+    
+    <line x1="535.36" y1="461.25" x2="535.36" y2="258.75"
+      stroke="url(#g-p-3)" stroke-width="5" stroke-linecap="round" opacity="0.18600000000000003"/>
+    <line x1="535.36" y1="461.25" x2="535.36" y2="258.75"
+      stroke="#fffdf0" stroke-width="1.20" stroke-linecap="round" opacity="0.13"/>
+  
+
+    <defs>
+      <linearGradient id="g-p-4" x1="535.3624817342638" y1="461.245576035038" x2="360" y2="562.491152070076" gradientUnits="userSpaceOnUse">
+        
+        <stop offset="0" stop-color="#b99a53"/>
+        <stop offset="0.43" stop-color="#f8f2d9"/>
+        <stop offset="0.52" stop-color="#fffef6"/>
+        <stop offset="0.61" stop-color="#f3df99"/>
+        <stop offset="1" stop-color="#9d7731"/>
+      </linearGradient>
+    </defs>
+    
+    <line x1="535.36" y1="461.25" x2="360.00" y2="562.49"
+      stroke="url(#g-p-4)" stroke-width="5" stroke-linecap="round" opacity="0.18600000000000003"/>
+    <line x1="535.36" y1="461.25" x2="360.00" y2="562.49"
+      stroke="#fffdf0" stroke-width="1.20" stroke-linecap="round" opacity="0.13"/>
+  
+
+    <defs>
+      <linearGradient id="g-p-5" x1="184.6375182657362" y1="258.754423964962" x2="184.6375182657362" y2="461.245576035038" gradientUnits="userSpaceOnUse">
+        
+        <stop offset="0" stop-color="#b99a53"/>
+        <stop offset="0.43" stop-color="#f8f2d9"/>
+        <stop offset="0.52" stop-color="#fffef6"/>
+        <stop offset="0.61" stop-color="#f3df99"/>
+        <stop offset="1" stop-color="#9d7731"/>
+      </linearGradient>
+    </defs>
+    
+    <line x1="184.64" y1="258.75" x2="184.64" y2="461.25"
+      stroke="url(#g-p-5)" stroke-width="5" stroke-linecap="round" opacity="0.18600000000000003"/>
+    <line x1="184.64" y1="258.75" x2="184.64" y2="461.25"
+      stroke="#fffdf0" stroke-width="1.20" stroke-linecap="round" opacity="0.13"/>
+  
+
+    <defs>
+      <linearGradient id="g-p-6" x1="184.6375182657362" y1="258.754423964962" x2="360" y2="157.50884792992392" gradientUnits="userSpaceOnUse">
+        
+        <stop offset="0" stop-color="#b99a53"/>
+        <stop offset="0.43" stop-color="#f8f2d9"/>
+        <stop offset="0.52" stop-color="#fffef6"/>
+        <stop offset="0.61" stop-color="#f3df99"/>
+        <stop offset="1" stop-color="#9d7731"/>
+      </linearGradient>
+    </defs>
+    
+    <line x1="184.64" y1="258.75" x2="360.00" y2="157.51"
+      stroke="url(#g-p-6)" stroke-width="5" stroke-linecap="round" opacity="0.18600000000000003"/>
+    <line x1="184.64" y1="258.75" x2="360.00" y2="157.51"
+      stroke="#fffdf0" stroke-width="1.20" stroke-linecap="round" opacity="0.13"/>
+  
+
+    <defs>
+      <linearGradient id="g-p-7" x1="184.6375182657362" y1="461.245576035038" x2="360" y2="562.491152070076" gradientUnits="userSpaceOnUse">
+        
+        <stop offset="0" stop-color="#b99a53"/>
+        <stop offset="0.43" stop-color="#f8f2d9"/>
+        <stop offset="0.52" stop-color="#fffef6"/>
+        <stop offset="0.61" stop-color="#f3df99"/>
+        <stop offset="1" stop-color="#9d7731"/>
+      </linearGradient>
+    </defs>
+    
+    <line x1="184.64" y1="461.25" x2="360.00" y2="562.49"
+      stroke="url(#g-p-7)" stroke-width="5" stroke-linecap="round" opacity="0.18600000000000003"/>
+    <line x1="184.64" y1="461.25" x2="360.00" y2="562.49"
+      stroke="#fffdf0" stroke-width="1.20" stroke-linecap="round" opacity="0.13"/>
+  
+
+    <defs>
+      <linearGradient id="g-p-8" x1="535.3624817342638" y1="258.754423964962" x2="360" y2="157.50884792992392" gradientUnits="userSpaceOnUse">
+        
+        <stop offset="0" stop-color="#b99a53"/>
+        <stop offset="0.43" stop-color="#f8f2d9"/>
+        <stop offset="0.52" stop-color="#fffef6"/>
+        <stop offset="0.61" stop-color="#f3df99"/>
+        <stop offset="1" stop-color="#9d7731"/>
+      </linearGradient>
+    </defs>
+    
+    <line x1="535.36" y1="258.75" x2="360.00" y2="157.51"
+      stroke="url(#g-p-8)" stroke-width="5" stroke-linecap="round" opacity="0.18600000000000003"/>
+    <line x1="535.36" y1="258.75" x2="360.00" y2="157.51"
+      stroke="#fffdf0" stroke-width="1.20" stroke-linecap="round" opacity="0.13"/>
+  
+
+    <defs>
+      <linearGradient id="g-p-9" x1="535.3624817342638" y1="461.245576035038" x2="184.6375182657362" y2="461.245576035038" gradientUnits="userSpaceOnUse">
+        
+        <stop offset="0" stop-color="#b99a53"/>
+        <stop offset="0.43" stop-color="#f8f2d9"/>
+        <stop offset="0.52" stop-color="#fffef6"/>
+        <stop offset="0.61" stop-color="#f3df99"/>
+        <stop offset="1" stop-color="#9d7731"/>
+      </linearGradient>
+    </defs>
+    
+    <line x1="535.36" y1="461.25" x2="184.64" y2="461.25"
+      stroke="url(#g-p-9)" stroke-width="5" stroke-linecap="round" opacity="0.18600000000000003"/>
+    <line x1="535.36" y1="461.25" x2="184.64" y2="461.25"
+      stroke="#fffdf0" stroke-width="1.20" stroke-linecap="round" opacity="0.13"/>
+  
+
+    <defs>
+      <linearGradient id="g-p-10" x1="535.3624817342638" y1="461.245576035038" x2="360" y2="157.50884792992392" gradientUnits="userSpaceOnUse">
+        
+        <stop offset="0" stop-color="#b99a53"/>
+        <stop offset="0.43" stop-color="#f8f2d9"/>
+        <stop offset="0.52" stop-color="#fffef6"/>
+        <stop offset="0.61" stop-color="#f3df99"/>
+        <stop offset="1" stop-color="#9d7731"/>
+      </linearGradient>
+    </defs>
+    
+    <line x1="535.36" y1="461.25" x2="360.00" y2="157.51"
+      stroke="url(#g-p-10)" stroke-width="5" stroke-linecap="round" opacity="0.18600000000000003"/>
+    <line x1="535.36" y1="461.25" x2="360.00" y2="157.51"
+      stroke="#fffdf0" stroke-width="1.20" stroke-linecap="round" opacity="0.13"/>
+  
+
+    <defs>
+      <linearGradient id="g-p-11" x1="184.6375182657362" y1="461.245576035038" x2="360" y2="157.50884792992392" gradientUnits="userSpaceOnUse">
+        
+        <stop offset="0" stop-color="#b99a53"/>
+        <stop offset="0.43" stop-color="#f8f2d9"/>
+        <stop offset="0.52" stop-color="#fffef6"/>
+        <stop offset="0.61" stop-color="#f3df99"/>
+        <stop offset="1" stop-color="#9d7731"/>
+      </linearGradient>
+    </defs>
+    
+    <line x1="184.64" y1="461.25" x2="360.00" y2="157.51"
+      stroke="url(#g-p-11)" stroke-width="5" stroke-linecap="round" opacity="0.18600000000000003"/>
+    <line x1="184.64" y1="461.25" x2="360.00" y2="157.51"
+      stroke="#fffdf0" stroke-width="1.20" stroke-linecap="round" opacity="0.13"/>
+  
+    
+    <defs>
+      <linearGradient id="g-pa-0" x1="535.3624817342638" y1="461.245576035038" x2="184.6375182657362" y2="258.754423964962" gradientUnits="userSpaceOnUse">
+        
+        <stop offset="0" stop-color="#c7a65a"/>
+        <stop offset="0.38" stop-color="#f7e9a6"/>
+        <stop offset="0.49" stop-color="#fffef8"/>
+        <stop offset="0.51" stop-color="#fffef8"/>
+        <stop offset="0.62" stop-color="#f7e9a6"/>
+        <stop offset="1" stop-color="#b58d3f"/>
+      </linearGradient>
+    </defs>
+    <line x1="535.36" y1="461.25" x2="184.64" y2="258.75"
+      stroke="#b8913f" stroke-width="20.52" stroke-linecap="round" opacity="0.39"/>
+    <line x1="535.36" y1="461.25" x2="184.64" y2="258.75"
+      stroke="url(#g-pa-0)" stroke-width="18" stroke-linecap="round" opacity="0.98" filter="url(#softGlow)"/>
+    <line x1="535.36" y1="461.25" x2="184.64" y2="258.75"
+      stroke="#fffdf0" stroke-width="3.96" stroke-linecap="round" opacity="0.71"/>
+  
+
+    <defs>
+      <linearGradient id="g-pa-1" x1="184.6375182657362" y1="461.245576035038" x2="535.3624817342638" y2="258.754423964962" gradientUnits="userSpaceOnUse">
+        
+        <stop offset="0" stop-color="#c7a65a"/>
+        <stop offset="0.38" stop-color="#f7e9a6"/>
+        <stop offset="0.49" stop-color="#fffef8"/>
+        <stop offset="0.51" stop-color="#fffef8"/>
+        <stop offset="0.62" stop-color="#f7e9a6"/>
+        <stop offset="1" stop-color="#b58d3f"/>
+      </linearGradient>
+    </defs>
+    <line x1="184.64" y1="461.25" x2="535.36" y2="258.75"
+      stroke="#b8913f" stroke-width="20.52" stroke-linecap="round" opacity="0.39"/>
+    <line x1="184.64" y1="461.25" x2="535.36" y2="258.75"
+      stroke="url(#g-pa-1)" stroke-width="18" stroke-linecap="round" opacity="0.98" filter="url(#softGlow)"/>
+    <line x1="184.64" y1="461.25" x2="535.36" y2="258.75"
+      stroke="#fffdf0" stroke-width="3.96" stroke-linecap="round" opacity="0.71"/>
+  
+
+    <defs>
+      <linearGradient id="g-pa-2" x1="360" y1="157.50884792992392" x2="360" y2="562.491152070076" gradientUnits="userSpaceOnUse">
+        
+        <stop offset="0" stop-color="#c7a65a"/>
+        <stop offset="0.38" stop-color="#f7e9a6"/>
+        <stop offset="0.49" stop-color="#fffef8"/>
+        <stop offset="0.51" stop-color="#fffef8"/>
+        <stop offset="0.62" stop-color="#f7e9a6"/>
+        <stop offset="1" stop-color="#b58d3f"/>
+      </linearGradient>
+    </defs>
+    <line x1="360.00" y1="157.51" x2="360.00" y2="562.49"
+      stroke="#b8913f" stroke-width="20.52" stroke-linecap="round" opacity="0.39"/>
+    <line x1="360.00" y1="157.51" x2="360.00" y2="562.49"
+      stroke="url(#g-pa-2)" stroke-width="18" stroke-linecap="round" opacity="0.98" filter="url(#softGlow)"/>
+    <line x1="360.00" y1="157.51" x2="360.00" y2="562.49"
+      stroke="#fffdf0" stroke-width="3.96" stroke-linecap="round" opacity="0.71"/>
+  
+  </g>
+  <circle cx="360" cy="360" r="4.2" fill="#fffef8" filter="url(#singularityGlow)"/>
+       <circle cx="360" cy="360" r="1.4" fill="#fffef8"/>
+</svg>
