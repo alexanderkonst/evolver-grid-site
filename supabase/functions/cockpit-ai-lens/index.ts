@@ -7,6 +7,10 @@ const corsHeaders = {
 };
 
 type CockpitLensId =
+  | "movement"
+  | "followups"
+  | "bottlenecks"
+  | "leverage"
   | "project-becoming"
   | "founder-shadow"
   | "attention-leaks"
@@ -21,6 +25,26 @@ interface LensSpec {
 const ADMIN_EMAILS = new Set(["alexanderkonst@gmail.com", "konst@alum.mit.edu", "me@sloan.mit.edu"]);
 
 const LENSES: Record<CockpitLensId, LensSpec> = {
+  movement: {
+    label: "What Moved",
+    instruction:
+      "Read what actually changed in the living project field. Use pulse first, then CRM, Equilibrium, and holomap context. Distinguish real movement from activity, planning, or cognitive weather. Name the few changes that materially alter the project's trajectory and the next move implied by those changes.",
+  },
+  followups: {
+    label: "Generate Follow-Ups",
+    instruction:
+      "Identify which relationship actions are ripe now and what should be said. Use CRM context first, then pulse and Equilibrium. Classify relationships by energy type: cash, proof, infrastructure, legitimacy, strategic learning, or optionality. Return only the few follow-ups that matter now, with concrete wording direction rather than generic networking advice.",
+  },
+  bottlenecks: {
+    label: "Find Bottlenecks",
+    instruction:
+      "Find where energy is clogged, duplicated, stale, or over-concentrated. Use Equilibrium workstreams/tasks, CRM open loops/energy leaks, pulse, and holomap context. Separate true bottlenecks from normal pending work. Name the bottleneck that most constrains the project now and the simplest corrective move.",
+  },
+  leverage: {
+    label: "Name High-Leverage Moves",
+    instruction:
+      "Name the few actions that most change the project's trajectory now. Use the whole stack: Equilibrium, CRM, pulse, and holomap context. Prefer cash/proof/infrastructure moves over more abstraction unless abstraction is the bottleneck. Return one primary move and supporting signals.",
+  },
   "project-becoming": {
     label: "What Is the Project Becoming?",
     instruction:
