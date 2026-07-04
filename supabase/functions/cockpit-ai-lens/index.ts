@@ -12,6 +12,8 @@ interface LensSpec {
   instruction: string;
 }
 
+const ADMIN_EMAILS = new Set(["alexanderkonst@gmail.com", "konst@alum.mit.edu", "me@sloan.mit.edu"]);
+
 const LENSES: Record<CockpitLensId, LensSpec> = {
   "project-becoming": {
     label: "What Is the Project Becoming?",
@@ -70,12 +72,37 @@ function parseJsonObject(content: string) {
   return JSON.parse(candidate);
 }
 
+function decodeJwtPayload(token: string) {
+  const payload = token.split(".")[1];
+  if (!payload) return null;
+  const normalized = payload.replace(/-/g, "+").replace(/_/g, "/");
+  const padded = normalized.padEnd(normalized.length + ((4 - (normalized.length % 4)) % 4), "=");
+  return JSON.parse(atob(padded));
+}
+
+function requireAdmin(req: Request) {
+  const auth = req.headers.get("authorization") ?? "";
+  const token = auth.match(/^Bearer\s+(.+)$/i)?.[1];
+  if (!token) return false;
+  try {
+    const payload = decodeJwtPayload(token);
+    const email = String(payload?.email ?? "").toLowerCase();
+    return ADMIN_EMAILS.has(email);
+  } catch (_error) {
+    return false;
+  }
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
+    if (!requireAdmin(req)) {
+      return jsonResponse({ error: "Unauthorized." }, 401);
+    }
+
     const { lensId, context } = await req.json();
     const spec = LENSES[lensId as CockpitLensId];
     if (!spec) {
