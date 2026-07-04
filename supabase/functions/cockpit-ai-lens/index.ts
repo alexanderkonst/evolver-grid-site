@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -72,25 +73,27 @@ function parseJsonObject(content: string) {
   return JSON.parse(candidate);
 }
 
-function decodeJwtPayload(token: string) {
-  const payload = token.split(".")[1];
-  if (!payload) return null;
-  const normalized = payload.replace(/-/g, "+").replace(/_/g, "/");
-  const padded = normalized.padEnd(normalized.length + ((4 - (normalized.length % 4)) % 4), "=");
-  return JSON.parse(atob(padded));
+function bearerToken(req: Request) {
+  const auth = req.headers.get("authorization") ?? "";
+  return auth.match(/^Bearer\s+(.+)$/i)?.[1] ?? null;
 }
 
-function requireAdmin(req: Request) {
-  const auth = req.headers.get("authorization") ?? "";
-  const token = auth.match(/^Bearer\s+(.+)$/i)?.[1];
-  if (!token) return false;
-  try {
-    const payload = decodeJwtPayload(token);
-    const email = String(payload?.email ?? "").toLowerCase();
-    return ADMIN_EMAILS.has(email);
-  } catch (_error) {
+async function requireAdmin(req: Request) {
+  const token = bearerToken(req);
+  const supabaseUrl = Deno.env.get("SUPABASE_URL");
+  const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
+
+  if (!token || !supabaseUrl || !anonKey) return false;
+
+  const authClient = createClient(supabaseUrl, anonKey, {
+    global: { headers: { Authorization: `Bearer ${token}` } },
+  });
+  const { data, error } = await authClient.auth.getUser();
+  if (error || !data.user) {
     return false;
   }
+
+  return ADMIN_EMAILS.has(String(data.user.email ?? "").toLowerCase());
 }
 
 serve(async (req) => {
@@ -99,7 +102,7 @@ serve(async (req) => {
   }
 
   try {
-    if (!requireAdmin(req)) {
+    if (!(await requireAdmin(req))) {
       return jsonResponse({ error: "Unauthorized." }, 401);
     }
 
