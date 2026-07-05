@@ -14,7 +14,6 @@ import { SmartGoalsSection } from "./components/SmartGoalsSection";
 import { DoNowSection } from "./components/DoNowSection";
 import { HarvestSection } from "./components/HarvestSection";
 import { PhaseTransitionEyebrow } from "./components/PhaseTransitionEyebrow";
-import { UpcomingTransitions } from "./components/UpcomingTransitions";
 import { ActiveFocusBanner } from "./components/ActiveFocusBanner";
 import { SynthesisCard } from "./components/SynthesisCard";
 import { SectionAnchorNav } from "./components/SectionAnchorNav";

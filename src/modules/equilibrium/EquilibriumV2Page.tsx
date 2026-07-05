@@ -21,7 +21,6 @@ import { DoNowSection } from "./components/DoNowSection";
 import { HarvestSection } from "./components/HarvestSection";
 import { PhaseTransitionEyebrow } from "./components/PhaseTransitionEyebrow";
 import { SynthesisCard } from "./components/SynthesisCard";
-import { UpcomingTransitions } from "./components/UpcomingTransitions";
 import { SectionAnchorNav } from "./components/SectionAnchorNav";
 import { WatchModeToggle, type WatchMode } from "./components/WatchModeToggle";
 import { ActiveFocusBanner } from "./components/ActiveFocusBanner";
@@ -90,7 +89,7 @@ export const EquilibriumV2Page = () => {
   // if (isMdls) return <EquilibriumMDLSPage />;
 
   const eq = useEquilibriumV2();
-  const { cycles, nowMs: cyclesNowMs } = useCycles(eq.birthday ?? undefined);
+  const { cycles } = useCycles(eq.birthday ?? undefined);
   const [mode, setMode] = useWatchMode();
   const [exportingPdf, setExportingPdf] = useState(false);
   const isAttune = mode === "attune";
@@ -254,13 +253,6 @@ export const EquilibriumV2Page = () => {
               loading={eq.loading}
               onSave={eq.setMoonFocus}
             />
-            {/* Coming-up: next 4 phase boundary moments (Sasha
-                2026-05-24). Surfaces phase transitions as scheduling
-                anchors — "Planning starts Tue May 27 03:14" — turning
-                the spine into a calendar. nowMs is derived from the
-                cycles tick (5-min cadence), so the panel refreshes
-                without its own timer. */}
-            <UpcomingTransitions nowMs={cyclesNowMs} />
           </EquilibriumSectionCard>
         )}
 
