@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+import { mcpPlugin } from "@lovable.dev/mcp-js/stacks/supabase/vite";
 
 const LOVABLE_CLOUD_URL = "https://jypjttotvastdhanwvrx.supabase.co";
 const LOVABLE_CLOUD_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp5cGp0dG90dmFzdGRoYW53dnJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMwOTQ5MTQsImV4cCI6MjA3ODY3MDkxNH0.fVSXHJ_eqvMfblTD2SbNcYDrkulhqVCzv_7dXMenKc8";
@@ -12,7 +13,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  plugins: [react(), mcpPlugin(), mode === "development" && componentTagger()].filter(Boolean),
   define: {
     "import.meta.env.VITE_SUPABASE_URL": JSON.stringify(
       process.env.VITE_SUPABASE_URL || LOVABLE_CLOUD_URL,
