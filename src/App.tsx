@@ -19,6 +19,7 @@ import ScrollRestoration from "@/components/ScrollRestoration";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { SkinProvider } from "@/contexts/SkinContext";
 import SkinPreview from "./pages/SkinPreview";
+import OAuthConsent from "./pages/OAuthConsent";
 import HeroQuiz from "./pages/HeroQuiz";
 import ProposalForWeGoodOvaHere from "./pages/ProposalForWeGoodOvaHere";
 import CockpitLanding from "./pages/CockpitLanding";
@@ -430,6 +431,7 @@ const App = () => (
                   <Route path="/auth" element={<Auth />} />
                   <Route path="/auth/callback" element={<AuthCallback />} />
                   <Route path="/auth/reset-password" element={<ResetPassword />} />
+                  <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
                   {/* /reveal — legacy redirect kept so any old shared
                       links resolve home. The PDF download + the in-app
                       Top Talent overview ARE the reveal — no need for
