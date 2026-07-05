@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "sdk_version": "0.20.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://jypjttotvastdhanwvrx.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "genius-business-mcp",
+      "version": "0.1.0",
+      "title": "Genius Business MCP"
+    },
+    "tools": [
+      {
+        "name": "get_equilibrium_state",
+        "title": "Get Equilibrium state",
+        "description": "Return the signed-in user's Equilibrium snapshot: state row, strategies, workstreams with active tasks, focus tasks, and recent synthesis log.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_game_profile",
+        "title": "Get game profile",
+        "description": "Return the signed-in user's game profile: mission statement, last ZoG snapshot id, and recent update timestamps.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
