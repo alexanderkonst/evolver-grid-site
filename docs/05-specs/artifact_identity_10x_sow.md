@@ -6,7 +6,7 @@ Next-phase scope of work for turning the Prime Radiant canonical artifact from a
 
 This SOW does not replace `canonical_artifact_sow.md`. That document protects the source artifact. This document puts the artifact under real-world identity pressure.
 
-Current phase: Phase 1 Canonical Lock is complete. Evidence: `docs/assets/canonical-artifact/identity_canonical_lock.md`.
+Current phase: Phase 3 Identity Stress Test is complete. Evidence: `docs/assets/canonical-artifact/renders/identity_stress_test_capture_report.md`.
 
 ## Core Diagnosis
 
@@ -225,6 +225,33 @@ Open decisions:
 Next irreversible action:
 
 - Build the identity stress-test sheet before investing further in hero-render polish.
+
+### T3: After Identity Stress Test
+
+Date: 2026-07-04.
+
+What the stress test revealed:
+
+- The full physical artifact works as hero/deck object, not everyday logo.
+- The primary projection works at medium sizes and in a website header.
+- The projection weakens at 32/48 px and fails as a 16 px favicon.
+- Monochrome cannot be solved with a CSS/filter treatment; it needs a dedicated derivative asset.
+
+Revision made:
+
+- Added `docs/assets/canonical-artifact/identity_stress_test.html`.
+- Added `scripts/canonical-artifact/capture-identity-stress-test.mjs`.
+- Generated `canonical-artifact-identity-stress-test.png`.
+- Generated `identity_stress_test_capture_report.md`.
+- Deferred Phase 2 hero polish until Phase 4 derivation produces a simplified small-size mark.
+
+Open decisions:
+
+- None blocking the next phase.
+
+Next irreversible action:
+
+- Derive a simplified mark from the canonical projection: heavier strokes, fewer visible relationships, same six-ray lineage.
 
 ## Open Decision Standard
 

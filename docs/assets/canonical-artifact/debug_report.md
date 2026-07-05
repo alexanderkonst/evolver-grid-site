@@ -16,6 +16,9 @@ Date: 2026-07-03.
 | Review plate HTML | `docs/assets/canonical-artifact/review_plate.html` | Pass |
 | Review plate PNG | `docs/assets/canonical-artifact/renders/canonical-artifact-review-plate.png` | Pass |
 | Review plate capture report | `docs/assets/canonical-artifact/renders/review_plate_capture_report.md` | Pass |
+| Identity stress-test HTML | `docs/assets/canonical-artifact/identity_stress_test.html` | Pass |
+| Identity stress-test PNG | `docs/assets/canonical-artifact/renders/canonical-artifact-identity-stress-test.png` | Pass |
+| Identity stress-test capture report | `docs/assets/canonical-artifact/renders/identity_stress_test_capture_report.md` | Pass |
 | Three.js desktop render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-desktop.png` | Pass |
 | Three.js mobile render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-mobile.png` | Pass |
 | Three.js v2 desktop render | `docs/assets/canonical-artifact/renders/canonical-artifact-three-v2-desktop.png` | Pass |
@@ -109,6 +112,21 @@ Date: 2026-07-03.
 | Images load | `review_plate_capture_report.md` records 5 loaded images with natural dimensions | Pass |
 | Console health | Review plate capture is clean | Pass |
 
+## Identity Stress Test Audit
+
+| Check | Evidence | Status |
+|---|---|---|
+| Stress-test sheet exists | `identity_stress_test.html` | Pass |
+| Captured stress-test PNG exists | `canonical-artifact-identity-stress-test.png` | Pass |
+| App icon test exists | Sheet includes app icon mockup | Pass |
+| Favicon / small-size test exists | Sheet tests 16, 32, 48, and 128 px | Pass |
+| Social avatar test exists | Sheet includes circular avatar mockup | Pass |
+| Website header test exists | Sheet includes header mockup | Pass |
+| Deck cover test exists | Sheet includes deck cover mockup | Pass |
+| Monochrome test exists | Sheet includes black/white projection tests | Pass with limitation |
+| Failure cases are recorded | Capture report names 16 px failure, 32/48 px weakness, and need for simplified mark | Pass |
+| Image loading and console health | Capture report records 20 loaded images and clean console | Pass |
+
 ## Motion v1 Audit
 
 | Check | Evidence | Status |
@@ -149,8 +167,9 @@ Date: 2026-07-03.
 1. The SVG implementation is exact and audit-friendly; the Three.js render is more material-rich but still not a final Blender/Cycles-grade photograph.
 2. v4 improves physical believability with environment lighting, anisotropy, iridescence, transmission, and dispersion, but remains a real-time browser approximation.
 3. Motion v3 reduces explicit path-work and makes circulation more implicit, but the field shader remains a real-time approximation rather than physically simulated refraction.
-4. The privileged viewpoint is operationalized as `[1, 1, 1]`; Sasha may later tune this from lived visual memory.
+4. The identity stress test shows the projection works at medium sizes but fails or weakens below 48 px; a dedicated simplified mark is required.
+5. The privileged viewpoint is operationalized as `[1, 1, 1]`; Sasha may later tune this from lived visual memory.
 
 ## Debug Conclusion
 
-The first execution target is complete and the renderer now has seven layers: v2 artifact/material render, v3 Anatomy Mode, v4 Physical Quality, Motion v1, Motion v2 Metabolic, Motion v3 Implicit, and Review Plate v1. All derive from the same procedural geometry. The next quality leap is an offline renderer pass or a more finished identity application system built from these source assets.
+The first execution target is complete and the renderer now has eight layers: v2 artifact/material render, v3 Anatomy Mode, v4 Physical Quality, Motion v1, Motion v2 Metabolic, Motion v3 Implicit, Review Plate v1, and Identity Stress Test v1. All derive from the same procedural geometry. The next quality leap is a simplified small-size mark derived from the canonical projection.
