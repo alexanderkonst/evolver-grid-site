@@ -250,7 +250,7 @@ const GeniusOfferIntake = () => {
         best_clients: progress.best_clients,
       });
       if (!parsed.success) {
-        const firstError = parsed.error.errors[0]?.message ?? t('geniusOfferIntake.toast.reviewInputs');
+        const firstError = parsed.error.issues[0]?.message ?? t('geniusOfferIntake.toast.reviewInputs');
         toast({ title: firstError, variant: "destructive" });
         setSaving(false);
         return;
