@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="720" viewBox="0 0 720 720" role="img" aria-label="Primary Projection Bold Field Candidate">
+  <defs>
+    <filter id="soft-bio-glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="5.5" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.92  0 0.82 0 0 0.62  0 0 0.42 0 0.18  0 0 0 0.58 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="core-glow" x="-140%" y="-140%" width="380%" height="380%">
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="bio-light" x1="94" y1="100" x2="628" y2="626" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c7a65a"/>
+      <stop offset="0.34" stop-color="#f7e9a6"/>
+      <stop offset="0.54" stop-color="#fffef6"/>
+      <stop offset="0.72" stop-color="#f3df99"/>
+      <stop offset="1" stop-color="#b58d3f"/>
+    </linearGradient>
+    <linearGradient id="bio-shadow" x1="92" y1="640" x2="628" y2="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#70551f"/>
+      <stop offset="0.52" stop-color="#a88235"/>
+      <stop offset="1" stop-color="#5d4519"/>
+    </linearGradient>
+  </defs>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="360" cy="360" r="284" stroke="url(#bio-shadow)" stroke-width="13" opacity="0.24"/>
+    <circle cx="360" cy="360" r="284" stroke="url(#bio-light)" stroke-width="18" opacity="0.9" filter="url(#soft-bio-glow)"/>
+    <circle cx="360" cy="360" r="258" stroke="#eaff38" stroke-width="3.5" opacity="0.34"/>
+
+    <g opacity="0.56">
+      <path d="M360 88 L616 275 L536 552 L360 632 L184 552 L104 275 Z" stroke="url(#bio-shadow)" stroke-width="7"/>
+      <path d="M360 88 L616 275 L536 552 L360 632 L184 552 L104 275 Z" stroke="url(#bio-light)" stroke-width="8" filter="url(#soft-bio-glow)"/>
+
+      <path d="M104 275 L536 552 M616 275 L184 552 M360 88 L184 552 M360 88 L536 552 M104 275 L360 632 M616 275 L360 632" stroke="url(#bio-shadow)" stroke-width="5"/>
+      <path d="M104 275 L536 552 M616 275 L184 552 M360 88 L184 552 M360 88 L536 552 M104 275 L360 632 M616 275 L360 632" stroke="url(#bio-light)" stroke-width="5.5" filter="url(#soft-bio-glow)"/>
+    </g>
+
+    <g>
+      <path d="M360 88 L360 632" stroke="url(#bio-shadow)" stroke-width="15"/>
+      <path d="M104 275 L616 275" stroke="url(#bio-shadow)" stroke-width="13"/>
+      <path d="M184 552 L616 275" stroke="url(#bio-shadow)" stroke-width="14"/>
+      <path d="M536 552 L104 275" stroke="url(#bio-shadow)" stroke-width="14"/>
+
+      <path d="M360 88 L360 632" stroke="url(#bio-light)" stroke-width="19" filter="url(#soft-bio-glow)"/>
+      <path d="M104 275 L616 275" stroke="url(#bio-light)" stroke-width="17" filter="url(#soft-bio-glow)"/>
+      <path d="M184 552 L616 275" stroke="url(#bio-light)" stroke-width="18" filter="url(#soft-bio-glow)"/>
+      <path d="M536 552 L104 275" stroke="url(#bio-light)" stroke-width="18" filter="url(#soft-bio-glow)"/>
+
+      <path d="M360 88 L360 632 M104 275 L616 275 M184 552 L616 275 M536 552 L104 275" stroke="#faffb8" stroke-width="3.5" opacity="0.7"/>
+    </g>
+
+    <g opacity="0.42">
+      <path d="M184 552 L536 552" stroke="url(#bio-shadow)" stroke-width="7"/>
+      <path d="M184 552 L536 552" stroke="url(#bio-light)" stroke-width="8" filter="url(#soft-bio-glow)"/>
+      <path d="M104 275 L184 552 M616 275 L536 552 M360 88 L104 275 M360 88 L616 275" stroke="url(#bio-shadow)" stroke-width="5"/>
+      <path d="M104 275 L184 552 M616 275 L536 552 M360 88 L104 275 M360 88 L616 275" stroke="url(#bio-light)" stroke-width="5.5" filter="url(#soft-bio-glow)"/>
+    </g>
+  </g>
+
+  <g fill="url(#bio-light)" filter="url(#soft-bio-glow)">
+    <circle cx="360" cy="88" r="16"/>
+    <circle cx="616" cy="275" r="16"/>
+    <circle cx="536" cy="552" r="16"/>
+    <circle cx="360" cy="632" r="16"/>
+    <circle cx="184" cy="552" r="16"/>
+    <circle cx="104" cy="275" r="16"/>
+  </g>
+  <circle cx="360" cy="360" r="18" fill="#faffb8" opacity="0.85" filter="url(#core-glow)"/>
+  <circle cx="360" cy="360" r="6" fill="#fbffe0"/>
+</svg>
