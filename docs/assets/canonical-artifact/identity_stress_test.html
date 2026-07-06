@@ -90,7 +90,7 @@
 
       .icon-row {
         display: grid;
-        grid-template-columns: 90px repeat(4, 1fr) 190px;
+        grid-template-columns: 90px repeat(5, 1fr) 190px;
         gap: 14px;
         align-items: center;
         padding: 12px 0;
@@ -306,7 +306,7 @@
         </div>
         <div class="meta">
           <div><strong>Source:</strong> <code>canonical-artifact.model.json</code></div>
-          <div><strong>Projection:</strong> <code>primary-projection.svg</code></div>
+          <div><strong>Projection:</strong> <code>primary-projection-bold-field.svg</code></div>
           <div><strong>Artifact:</strong> <code>mode=anatomy&motion=implicit&quality=physical</code></div>
         </div>
       </header>
@@ -317,32 +317,36 @@
           <div class="icon-row">
             <div class="size-label">16 px</div>
             <div class="sample"><img style="--size: 16px" src="./projections/primary-projection.svg" alt="" /></div>
-            <div class="sample dark"><img class="mono-white" style="--size: 16px" src="./projections/primary-projection.svg" alt="" /></div>
-            <div class="sample"><img class="mono-black" style="--size: 16px" src="./projections/primary-projection.svg" alt="" /></div>
+            <div class="sample"><img style="--size: 16px" src="./projections/primary-projection-bold-field.svg" alt="" /></div>
+            <div class="sample dark"><img class="mono-white" style="--size: 16px" src="./projections/primary-projection-bold-field.svg" alt="" /></div>
+            <div class="sample"><img class="mono-black" style="--size: 16px" src="./projections/primary-projection-bold-field.svg" alt="" /></div>
             <div class="sample"><img style="--size: 16px" src="./renders/canonical-artifact-three-v4-physical-desktop.png" alt="" /></div>
-            <div class="score"><span class="status fail">Fail</span> Full geometry collapses.</div>
+            <div class="score"><span class="status mixed">Mixed</span> Candidate survives better, but crowded.</div>
           </div>
           <div class="icon-row">
             <div class="size-label">32 px</div>
             <div class="sample"><img style="--size: 32px" src="./projections/primary-projection.svg" alt="" /></div>
-            <div class="sample dark"><img class="mono-white" style="--size: 32px" src="./projections/primary-projection.svg" alt="" /></div>
-            <div class="sample"><img class="mono-black" style="--size: 32px" src="./projections/primary-projection.svg" alt="" /></div>
+            <div class="sample"><img style="--size: 32px" src="./projections/primary-projection-bold-field.svg" alt="" /></div>
+            <div class="sample dark"><img class="mono-white" style="--size: 32px" src="./projections/primary-projection-bold-field.svg" alt="" /></div>
+            <div class="sample"><img class="mono-black" style="--size: 32px" src="./projections/primary-projection-bold-field.svg" alt="" /></div>
             <div class="sample"><img style="--size: 32px" src="./renders/canonical-artifact-three-v4-physical-desktop.png" alt="" /></div>
-            <div class="score"><span class="status mixed">Weak</span> Recognizable only as a fine mark.</div>
+            <div class="score"><span class="status pass">Pass</span> Candidate becomes recognizable.</div>
           </div>
           <div class="icon-row">
             <div class="size-label">48 px</div>
             <div class="sample"><img style="--size: 48px" src="./projections/primary-projection.svg" alt="" /></div>
-            <div class="sample dark"><img class="mono-white" style="--size: 48px" src="./projections/primary-projection.svg" alt="" /></div>
-            <div class="sample"><img class="mono-black" style="--size: 48px" src="./projections/primary-projection.svg" alt="" /></div>
+            <div class="sample"><img style="--size: 48px" src="./projections/primary-projection-bold-field.svg" alt="" /></div>
+            <div class="sample dark"><img class="mono-white" style="--size: 48px" src="./projections/primary-projection-bold-field.svg" alt="" /></div>
+            <div class="sample"><img class="mono-black" style="--size: 48px" src="./projections/primary-projection-bold-field.svg" alt="" /></div>
             <div class="sample"><img style="--size: 48px" src="./renders/canonical-artifact-three-v4-physical-desktop.png" alt="" /></div>
-            <div class="score"><span class="status mixed">Weak</span> Projection works; artifact still too detailed.</div>
+            <div class="score"><span class="status pass">Pass</span> Candidate reads as a field mark.</div>
           </div>
           <div class="icon-row">
             <div class="size-label">128 px</div>
             <div class="sample"><img style="--size: 96px" src="./projections/primary-projection.svg" alt="" /></div>
-            <div class="sample dark"><img class="mono-white" style="--size: 96px" src="./projections/primary-projection.svg" alt="" /></div>
-            <div class="sample"><img class="mono-black" style="--size: 96px" src="./projections/primary-projection.svg" alt="" /></div>
+            <div class="sample"><img style="--size: 96px" src="./projections/primary-projection-bold-field.svg" alt="" /></div>
+            <div class="sample dark"><img class="mono-white" style="--size: 96px" src="./projections/primary-projection-bold-field.svg" alt="" /></div>
+            <div class="sample"><img class="mono-black" style="--size: 96px" src="./projections/primary-projection-bold-field.svg" alt="" /></div>
             <div class="sample"><img style="--size: 96px" src="./renders/canonical-artifact-three-v4-physical-desktop.png" alt="" /></div>
             <div class="score"><span class="status pass">Pass</span> System starts to read clearly.</div>
           </div>
@@ -356,25 +360,25 @@
                 <div class="app-icon">
                   <img src="./projections/primary-projection.svg" alt="App icon test" />
                 </div>
-                <p><strong>App icon.</strong> Works at large sizes, but needs a heavier simplified mark for home-screen scale.</p>
+                <p><strong>Original projection.</strong> Elegant, but too fragile for home-screen scale.</p>
               </div>
             </div>
             <div class="mock">
               <div class="mock-inner">
-                <div class="avatar">
-                  <img src="./renders/canonical-artifact-three-v4-physical-desktop.png" alt="Avatar test" />
+                <div class="app-icon">
+                  <img src="./projections/primary-projection-bold-field.svg" alt="Bold field app icon test" />
                 </div>
-                <p><strong>Social avatar.</strong> Artifact feels premium, but loses identity when reduced.</p>
+                <p><strong>Bold field candidate.</strong> Better identity mass; now needs taste refinement.</p>
               </div>
             </div>
             <div class="mock" style="grid-column: 1 / -1">
               <div class="header-mock">
-                <img src="./projections/primary-projection.svg" alt="Header mark" />
+                <img src="./projections/primary-projection-bold-field.svg" alt="Header mark" />
                 <div class="wordmark">Find Your Top Talent</div>
                 <div class="nav">AI OS · Build · Collaborate</div>
               </div>
               <div class="mock-inner">
-                <p><strong>Website header.</strong> Projection can work as a quiet nav mark. Full artifact should not be used here.</p>
+                <p><strong>Website header.</strong> Bold field works, but may be too loud unless toned down.</p>
               </div>
             </div>
             <div class="mock" style="grid-column: 1 / -1">
@@ -394,10 +398,10 @@
         <article class="panel" style="grid-column: 1 / -1">
           <h2>Findings</h2>
           <div class="notes">
-            <div><strong>Survives:</strong> the artifact works as a hero/deck object and the projection works as a medium-size identity mark.</div>
-            <div><strong>Breaks:</strong> the full artifact fails as a favicon/app-icon source; too many fine relationships vanish below 48 px.</div>
-            <div><strong>Required next move:</strong> derive a simplified small-size mark from the same projection: heavier strokes, fewer visible relationships, same six-ray lineage.</div>
-            <div><strong>Do not do:</strong> use the physical artifact as the everyday logo. It should remain the source/hero object.</div>
+            <div><strong>Survives:</strong> the sketch-inspired bold field candidate solves more of the small-size problem than the delicate projection.</div>
+            <div><strong>Breaks:</strong> it is still too complex and needs a dedicated mono/small-size cut before it can be final.</div>
+            <div><strong>Required next move:</strong> refine the gold bold-field candidate: fewer internal lines, clearer boundary, same six-ray lineage, cleaner mono version.</div>
+            <div><strong>Do not do:</strong> treat the hand-sketch translation as final. It is a better direction, not yet a finished mark.</div>
           </div>
         </article>
       </section>

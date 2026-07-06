@@ -63,15 +63,15 @@ URL: ${url}
 
 | Test | Result | Note |
 |---|---|---|
-| 16 px favicon | Fail | Full geometry collapses; needs simplified mark. |
-| 32 px favicon | Weak | Projection is barely recognizable; physical artifact is too detailed. |
-| 48 px favicon | Weak | Projection begins to work, but not enough for final identity. |
+| 16 px favicon | Mixed | Bold field candidate survives better than the delicate projection, but remains crowded. |
+| 32 px favicon | Pass with refinement | Bold field candidate becomes recognizable. |
+| 48 px favicon | Pass with refinement | Bold field candidate reads as a field mark. |
 | 128 px icon | Pass | Projection and artifact both start reading. |
-| App icon | Weak | Needs heavier small-size derivative. |
-| Social avatar | Mixed | Physical artifact is attractive but not enough as an identity mark. |
-| Website header | Pass | Projection can work as a quiet mark beside wordmark. |
+| App icon | Mixed | Original projection is too fragile; bold field has better mass but needs taste refinement. |
+| Social avatar | Deferred | Physical artifact remains a hero/source object, not everyday avatar. |
+| Website header | Mixed | Bold field works, but may be too loud unless toned down. |
 | Deck cover | Pass | Physical artifact works as hero object. |
-| Monochrome | Mixed | Projection can reduce; line weights need a dedicated mono asset. |
+| Monochrome | Mixed | Bold candidate needs a dedicated mono version rather than CSS filter. |
 
 ## Image Audit
 
@@ -81,7 +81,7 @@ ${imageAudit.map((image) => `| \`${image.src}\` | ${image.naturalWidth}x${image.
 
 ## Required Next Move
 
-Derive a simplified small-size mark from the canonical projection: heavier strokes, fewer visible relationships, same six-ray lineage. The full physical artifact should remain the hero/source object, not the everyday logo.
+Refine the sketch-inspired bold field candidate: less black mass, clearer boundary, same six-ray lineage, cleaner mono version. The full physical artifact should remain the hero/source object, not the everyday logo.
 `;
 
 writeFileSync(join(outDir, "identity_stress_test_capture_report.md"), report);

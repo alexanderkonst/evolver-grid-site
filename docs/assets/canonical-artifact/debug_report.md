@@ -12,6 +12,8 @@ Date: 2026-07-03.
 | Canonical still preview | `docs/assets/canonical-artifact/renders/canonical-artifact-render.svg.png` | Pass |
 | Primary projection | `docs/assets/canonical-artifact/projections/primary-projection.svg` | Pass |
 | Primary projection preview | `docs/assets/canonical-artifact/projections/primary-projection.svg.png` | Pass |
+| Bold field projection candidate | `docs/assets/canonical-artifact/projections/primary-projection-bold-field.svg` | Candidate |
+| Bold field projection preview | `docs/assets/canonical-artifact/projections/primary-projection-bold-field.svg.png` | Candidate |
 | Three.js viewer | `docs/assets/canonical-artifact/viewer.html` | Pass |
 | Review plate HTML | `docs/assets/canonical-artifact/review_plate.html` | Pass |
 | Review plate PNG | `docs/assets/canonical-artifact/renders/canonical-artifact-review-plate.png` | Pass |
@@ -127,6 +129,17 @@ Date: 2026-07-03.
 | Failure cases are recorded | Capture report names 16 px failure, 32/48 px weakness, and need for simplified mark | Pass |
 | Image loading and console health | Capture report records 20 loaded images and clean console | Pass |
 
+## Bold Field Candidate Audit
+
+| Check | Evidence | Status |
+|---|---|---|
+| Candidate derives from sketch insight | `identity_derivation_notes.md` records Sasha sketch trigger and interpretation | Pass |
+| Boundary field is first-class | `primary-projection-bold-field.svg` includes explicit enclosing circle | Pass |
+| Small-size legibility improves | Updated stress test shows candidate recognizable at 32 px and strong at 48/128 px | Pass with limitation |
+| Six-ray lineage remains | Candidate preserves vertical, horizontal, and diagonal beam structure through center | Pass |
+| Gold-like palette restored | Candidate uses artifact-family gold palette after Sasha correction | Pass |
+| Not final identity mark | Current pass still needs simplification and a dedicated mono/small-size cut | Pass with limitation |
+
 ## Motion v1 Audit
 
 | Check | Evidence | Status |
@@ -167,9 +180,10 @@ Date: 2026-07-03.
 1. The SVG implementation is exact and audit-friendly; the Three.js render is more material-rich but still not a final Blender/Cycles-grade photograph.
 2. v4 improves physical believability with environment lighting, anisotropy, iridescence, transmission, and dispersion, but remains a real-time browser approximation.
 3. Motion v3 reduces explicit path-work and makes circulation more implicit, but the field shader remains a real-time approximation rather than physically simulated refraction.
-4. The identity stress test shows the projection works at medium sizes but fails or weakens below 48 px; a dedicated simplified mark is required.
-5. The privileged viewpoint is operationalized as `[1, 1, 1]`; Sasha may later tune this from lived visual memory.
+4. The identity stress test shows the delicate projection works at medium sizes but weakens below 48 px.
+5. The bold field candidate improves small-size legibility and now uses the correct gold-like palette, but must be simplified for mono/small-size use.
+6. The privileged viewpoint is operationalized as `[1, 1, 1]`; Sasha may later tune this from lived visual memory.
 
 ## Debug Conclusion
 
-The first execution target is complete and the renderer now has eight layers: v2 artifact/material render, v3 Anatomy Mode, v4 Physical Quality, Motion v1, Motion v2 Metabolic, Motion v3 Implicit, Review Plate v1, and Identity Stress Test v1. All derive from the same procedural geometry. The next quality leap is a simplified small-size mark derived from the canonical projection.
+The first execution target is complete and the renderer now has nine layers: v2 artifact/material render, v3 Anatomy Mode, v4 Physical Quality, Motion v1, Motion v2 Metabolic, Motion v3 Implicit, Review Plate v1, Identity Stress Test v1, and Gold Bold Field Candidate v1.1. All derive from the same procedural geometry or Sasha's sketch insight. The next quality leap is a cleaner v2 bold-field mark with fewer internal lines and better mono behavior.

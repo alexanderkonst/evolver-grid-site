@@ -6,7 +6,7 @@ Next-phase scope of work for turning the Prime Radiant canonical artifact from a
 
 This SOW does not replace `canonical_artifact_sow.md`. That document protects the source artifact. This document puts the artifact under real-world identity pressure.
 
-Current phase: Phase 3 Identity Stress Test is complete. Evidence: `docs/assets/canonical-artifact/renders/identity_stress_test_capture_report.md`.
+Current phase: Phase 4 Derivation System is in progress. Evidence: `docs/assets/canonical-artifact/identity_derivation_notes.md`.
 
 ## Core Diagnosis
 
@@ -252,6 +252,36 @@ Open decisions:
 Next irreversible action:
 
 - Derive a simplified mark from the canonical projection: heavier strokes, fewer visible relationships, same six-ray lineage.
+
+### T4: After Bold Field Candidate v1
+
+Date: 2026-07-06.
+
+What the derivation pass revealed:
+
+- Sasha's sketch is likely the missing bridge between the 3D artifact and a usable 2D identity mark.
+- The 2D mark wants a first-class boundary circle and stronger bio-light beams.
+- The bold field candidate improves small-size recognition over the delicate projection.
+- Sasha corrected the palette: the mark must remain gold-like and aligned with the artifact family, not acid bio-light.
+- The current vector pass is not finished; it needs simplification and a dedicated mono/small-size cut.
+
+Revision made:
+
+- Added `primary-projection-bold-field.svg`.
+- Generated `primary-projection-bold-field.svg.png`.
+- Revised the candidate into the same gold-like palette as the artifact family.
+- Updated `identity_stress_test.html` to compare delicate projection vs bold field candidate.
+- Regenerated `canonical-artifact-identity-stress-test.png`.
+- Updated `identity_stress_test_capture_report.md`.
+- Added `identity_derivation_notes.md`.
+
+Open decisions:
+
+- None blocking the next pass.
+
+Next irreversible action:
+
+- Produce a cleaner v2 bold-field mark: fewer internal lines, clearer boundary, stronger mono behavior, same gold-like palette and six-ray lineage.
 
 ## Open Decision Standard
 
