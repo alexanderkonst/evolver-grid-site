@@ -253,24 +253,27 @@ Next irreversible action:
 
 - Derive a simplified mark from the canonical projection: heavier strokes, fewer visible relationships, same six-ray lineage.
 
-### T4: After Bold Field Candidate v1
+### T4: After Gold Medallion Candidate v2
 
 Date: 2026-07-06.
 
 What the derivation pass revealed:
 
 - Sasha's sketch is likely the missing bridge between the 3D artifact and a usable 2D identity mark.
-- The 2D mark wants a first-class boundary circle and stronger bio-light beams.
-- The bold field candidate improves small-size recognition over the delicate projection.
-- Sasha corrected the palette: the mark must remain gold-like and aligned with the artifact family, not acid bio-light.
-- The current vector pass is not finished; it needs simplification and a dedicated mono/small-size cut.
+- The 2D mark wants a first-class boundary circle, stronger beams, and gold-like artifact material.
+- The earlier bold-field pass improved legibility but still felt like a flat study.
+- Sasha's Image 1 reference clarified the stronger target: dimensional gold lattice medallion, no iridescent fill.
+- Image 2 is useful for hero/artifact language; Image 3 is useful as construction logic, not material direction.
+- The medallion is a stronger master-mark direction, but it still needs a dedicated mono/small-size cut.
 
 Revision made:
 
 - Added `primary-projection-bold-field.svg`.
 - Generated `primary-projection-bold-field.svg.png`.
 - Revised the candidate into the same gold-like palette as the artifact family.
-- Updated `identity_stress_test.html` to compare delicate projection vs bold field candidate.
+- Added `primary-projection-gold-medallion.svg`.
+- Generated `primary-projection-gold-medallion.svg.png`.
+- Updated `identity_stress_test.html` to compare delicate projection vs gold medallion candidate.
 - Regenerated `canonical-artifact-identity-stress-test.png`.
 - Updated `identity_stress_test_capture_report.md`.
 - Added `identity_derivation_notes.md`.
@@ -281,7 +284,7 @@ Open decisions:
 
 Next irreversible action:
 
-- Produce a cleaner v2 bold-field mark: fewer internal lines, clearer boundary, stronger mono behavior, same gold-like palette and six-ray lineage.
+- Produce a reduced small-size cut from the gold medallion: ring, six anchoring nodes, fewer internal rods, stronger mono behavior, same artifact lineage.
 
 ## Open Decision Standard
 

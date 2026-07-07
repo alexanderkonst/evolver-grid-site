@@ -23,7 +23,7 @@ export interface CockpitLensResult {
 }
 
 export interface AcceptedEquilibriumChange {
-  change_type: "add_synthesis_log" | "update_strategy" | "update_workstream" | "update_task";
+  change_type: "add_synthesis_log";
   target_id?: string;
   title?: string;
   body: string;
