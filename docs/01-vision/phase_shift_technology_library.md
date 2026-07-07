@@ -7062,3 +7062,7 @@ Ideas do not spread because they are true. They spread when someone reads them a
 - One thesis, many recognitions: one trunk, many branches (entry doors). Never force one leaf to speak to the whole tree.
 
 **Why this is a domain and not a marketing tip:** the same ladder explains how theories, religions, startups, movements, and the Uniqueness Economy thesis itself spread. Marketing is one application. Full tactical treatment: `marketing_playbook.md` Part III-B ("The Adoption Ladder & Threshold Marketing").
+
+### Domain 100 refinement (July 7, 2026): the wider physics
+
+Self-recognition is the strongest force, not the only one. The research names four: the idea clicks fast (relevance: big payoff for small effort; Sasha's word: grokability), it pays the reader (useful or moving), it pays the sharer (social currency and identity signaling, Berger), and the network carries it (ideas move in clusters of similar people; hard ideas need several touches: complex contagion, plus Pentland's idea flow: engagement inside dense clusters changes behavior, exploration across clusters brings novelty). For identity-level ideas, self-recognition compresses the first three into one moment, which is why Domain 100 holds as bedrock for this venture's class of ideas. Full table + venture mapping: `marketing_playbook.md`, "The Physics of Propagation."

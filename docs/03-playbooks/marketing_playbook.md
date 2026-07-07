@@ -1372,6 +1372,23 @@ Qualification filter: **ready to steward their gift, or still addicted to being 
 
 Collect 30-50 real "what was happening when you reached out?" phrases from call recordings. Highlight the exact words. Cluster into 5-7 threshold archetypes. Those words ARE the copy, the DMs, the landing hero, and the qualification checklist. First confirmed entry: "стеклянный потолок."
 
+## The Physics of Propagation (added July 7, 2026)
+
+Self-recognition (Domain 100) is the strongest force for identity-level ideas. The full physics of how an idea spreads has four forces. Check any post, share flow, or campaign against all four:
+
+| Force | Plain version | Established term |
+|-------|---------------|------------------|
+| **1. It clicks fast** | Big payoff for small reading effort. Grokability. | Relevance (Sperber & Wilson): cognitive effect ÷ processing cost |
+| **2. It pays the reader** | The person who takes it in gets something: a useful move or a real feeling | Content bias (cultural evolution research) |
+| **3. It pays the sharer** | People pass on what makes them look good or says who they are | Social currency + identity signaling (Berger, *Contagious*) |
+| **4. The network carries it** | Ideas move inside clusters of similar people; hard ideas need several touches before someone adopts them | Homophily + complex contagion (Centola); idea flow (Pentland, *Social Physics*) |
+
+**Force 3 is why the Curiosity Gap share works.** The ZoG share post pays the sharer twice: it says who they are (identity) and it starts a conversation about them (social currency). The product result is the currency. Any self-knowledge output has this property built in: sharing MY result is always about ME.
+
+**Force 4, Pentland's version (adopted July 7).** Sandy Pentland's Social Physics: communities thrive on **idea flow**, which has two motions. *Engagement*: repeated interaction inside a dense cluster turns an idea into actual behavior change. *Exploration*: bridges to other clusters bring fresh ideas in. Both are measured by interaction patterns, not by content quality. Mapping to this venture: **collaboration rate is an idea-flow metric**; the two growth lanes already map cleanly (Resonant Invites = engagement inside dense communities like Oyi's and Ariana's; Viral Vectors / Threshold Answering = exploration across clusters). Practical rule: seed inside dense communities for behavior change, use public threshold-answering for reach, and never expect a cold broadcast to change behavior in one touch.
+
+**The dominance rule:** for ideas about who a person IS (this venture's entire category), self-recognition compresses forces 1-3 into one moment: seeing yourself in the idea is the click, the payoff, and the identity signal at once. That is why this domain is unusually viral-ready by construction.
+
 ---
 
 # Part IV: The Recursive Insight
