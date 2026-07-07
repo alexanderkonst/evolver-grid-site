@@ -22,6 +22,14 @@ export interface CockpitLensResult {
   markdown: string;
 }
 
+export interface AcceptedEquilibriumChange {
+  change_type: "add_synthesis_log" | "update_strategy" | "update_workstream" | "update_task";
+  target_id?: string;
+  title?: string;
+  body: string;
+  reason?: string;
+}
+
 export const cockpitLenses: Array<{
   id: CockpitLensId;
   label: string;
@@ -128,4 +136,33 @@ export async function runCockpitLens(params: {
     confidence: result.confidence ?? "medium",
     markdown: result.markdown ?? `# ${result.title}\n\n${result.bottomLine}`,
   };
+}
+
+export async function applyEquilibriumAiChanges(params: {
+  lensId: CockpitLensId;
+  acceptedChanges: AcceptedEquilibriumChange[];
+}): Promise<{ applied_count: number }> {
+  const { data, error } = await supabase.functions.invoke("apply-equilibrium-ai-changes", {
+    body: {
+      source: "founder_cockpit",
+      lens_id: params.lensId,
+      accepted_changes: params.acceptedChanges,
+    },
+  });
+
+  if (error) {
+    const status = typeof error === "object" && error && "context" in error
+      ? (error as { context?: { status?: number } }).context?.status
+      : undefined;
+    if (status === 404) {
+      throw new Error("The Equilibrium writeback function is not deployed yet.");
+    }
+    if (status === 401 || status === 403) {
+      throw new Error("You need Sasha/admin access to write back into Equilibrium.");
+    }
+    throw new Error(error.message);
+  }
+
+  const result = data as { applied_count?: number } | null;
+  return { applied_count: result?.applied_count ?? 0 };
 }
