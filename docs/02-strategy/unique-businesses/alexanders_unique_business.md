@@ -9101,3 +9101,17 @@ Ace 7 (Equilibrium) stays a satellite: real product, different audience, does no
 3. Artifact drift: the 1-pager still leads with Planetary OS language; the June 3 wedge says lead with collaboration rate.
 4. Instrument drift: session log days behind, weekly scope expired un-triaged, three day-numbering systems.
 5. The biggest lever is in no document: rooms per week. "I don't need a better funnel. I need more people inside it."
+
+---
+
+## Market verdict + wedge doors (July 6, 2026, Days 115-116)
+
+**The market's pain sentence:** "What I carry is real, but my current life does not know how to hold it."
+
+**The six recognition doorways** (one invariant: real gift, wrong ecology): brilliant founder in the wrong market/category · coach/healer over-serving underpriced clients · executive whose genius is misused by the structure · artist/creator proving themselves to non-receptive audiences · impact leader stuck in loyalty to old circles · polymath with source but no ecology.
+
+**Verdict:** this list is the ecology (selection layer), not "a market." Entry happens through 1-2 doors at a time; the wedge defines the first repeatable engine, not the life's work. The two doors with demonstrated willingness to pay in this project's own ledger: (1) **founder in the wrong category** (Kirill, Roman shape) and (2) **coach/healer under-priced and under-articulated** (Karime, Patricia, Nia shape). Post-exit and polymath doors carry high resonance but unproven payment; the artist door has the weakest purchasing power.
+
+**Recognition invariant (all public copy derives from it):** "The way I've been approaching my professional life no longer feels capable of producing what I know is possible." Wedge selection is empirical: highest transformation × highest founder-enjoyment × highest willingness to invest, read from the client ledger, not from abstraction.
+
+**Gut-layer anchor (live Equilibrium read, July 6):** moon focus = $4,000 by period end. The door prioritization above serves that number: diagnostic-first calls into the two paying doors, prescription containers behind them.

@@ -105,6 +105,27 @@ Their intersection is **frictionless value.** Fit is not a vibe; it is that spec
 
 ---
 
+## 0.7 The ontology of uniqueness: the steward-participant (Days 115-116, July 5-6, 2026)
+
+The missing axis of all uniqueness work: not only WHAT the gift is, but HOW the person relates to it.
+
+**Uniqueness is not a trait. It is a living relationship.** Not a possession, a rank, or an achievement: the irreducible way life becomes more itself through a particular person. You don't own it or invent it; you participate in it and steward it. The human is the **steward-participant**: participant, because uniqueness unfolds through lived experience; steward, because its unfolding depends on how you care for the conditions that let it live. The farmer-gardener: entrusted with the orchard, feeding it first, and also eating its fruit.
+
+**The developmental arc of the relationship:** (1) unaware ("I'm nothing special") → (2) owner/creator ("I made this; these fruits are mine": an advanced shadow) → (3) steward-participant ("this was entrusted to me; I tend the conditions and receive the goodness"). Two people with equal capacities diverge by this relationship alone: one proves it, one hides it, one performs it, one tends it.
+
+**Gift ↔ Ecology (the deepest practical engine).** A gift does not flourish by proving itself to the wrong field; it flourishes in the ecology capable of recognizing, nourishing, and multiplying it. The wrong field is not evil or stupid; it lacks the organs of perception. Hence the methodology's four movements:
+
+1. **Source**: what is the living uniqueness?
+2. **Distortion**: where is it being proven, over-given, hidden, or misread?
+3. **Ecology**: what rooms, clients, collaborators, and markets can metabolize it?
+4. **Fruit**: what concrete offer, role, or product makes it visible through results?
+
+The prior diagnostic that precedes "what is your gift": **"What is your current relationship with your uniqueness?"**
+
+This layer was excavated through the founder's own wound (spending the source trying to convert unrecognizing fields); the wound revealed the engine. Law-level statement: Phase Shift Library, Domain 99 ("The Steward of the Source"). Propagation counterpart: Domain 100 ("The Architecture of Adoption").
+
+---
+
 ## 1. The hero (peer invitation — NOT the economics)
 
 The page opens to peers, warm and second-person. The economics is the floor beneath, never the doorway. Audience: sovereign builders.

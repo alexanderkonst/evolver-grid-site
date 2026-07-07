@@ -7010,3 +7010,55 @@ This gives a standard for future visual/product work: build the invariant first,
 ### 98j. One-Sentence Version
 
 > *"A true brand begins as a canonical invariant, not a logo: find the form that survives every transformation, then derive symbols, interfaces, ceremonies, products, and systems from that source without losing coherence."*
+
+---
+
+## Domain 99: The Steward of the Source (Days 115-116, July 5-6, 2026)
+
+**The law in one sentence: never spend the source to prove the gift.**
+
+A gift is not the thing you make. It is the living thing in you that keeps making it. The products, sessions, frameworks, and results are fruit. The source is the tree.
+
+**The failure pattern:** you bring the gift to people who cannot yet see it, and then you spend the gift's own fuel (attention, clarity, nerve, time, love) trying to make them see it. Explaining, defending, over-giving, waiting, converting skeptics. It feels like love and loyalty. It is the goose feeding everyone its own food.
+
+**The physics:** whenever the source is spent trying to change the field, the source weakens before the field changes. Proving reverses the causal arrow. Healthy: gift → creation → reality → recognition. Proving: recognition → permission → confidence → creation. The audience becomes upstream of the work. That is why proving is exhausting: it is pulling water uphill.
+
+**The turn:** from "I am responsible for how everyone responds to the gift" to **"I am responsible for the conditions under which the gift stays alive."** Healthy order: stewardship → practice → fruit → recognition (sometimes, from the fields that are ready). Recognition is a byproduct, never a prerequisite.
+
+**The two working questions that replace proving:**
+
+1. Room test: "Can this room make what I carry more alive?"
+2. Placement test: "What ecology can metabolize this gift?"
+
+**The blade:** the seed is not responsible for convincing concrete to become soil.
+
+**Corpus lineage.** The CRM Energy Leak Audit (April 12, 2026) caught this at the symptom layer ("too much medicine given for free"; per-person boundaries for José, Terrina, Roso, Cori). The root (spending source to reverse disbelief, starting in the closest fields) surfaced July 5-6. Sibling of Domain 16: there the mirror lagged; here the mirror was aimed at an audience without the organs to read it. The full personal doctrines (Sasha and Karime versions) are held privately, outside the public corpus. Business application: `uniqueness_economy_thesis.md` §0.7 · `marketing_playbook.md` Part III-B · `unique_business_playbook.md` v4.4.
+
+---
+
+## Domain 100: The Architecture of Adoption (Day 114, July 4, 2026)
+
+**The law in one sentence: deep ideas propagate when they enable accurate self-recognition.**
+
+Ideas do not spread because they are true. They spread when someone reads them and says "I didn't have words for this until now." Virality spreads attention; self-recognition spreads understanding.
+
+**The ladder.** Every idea that takes root in a human travels the same steps, each answering one question:
+
+| Layer | The human question |
+|-------|--------------------|
+| Reality | What is actually true? |
+| Myth | Why does this matter? |
+| Threshold | Why now? |
+| Recognition | Is this me? |
+| Trust | Does this person understand me? |
+| Selection | Should we work together? |
+| Transformation | What changes? |
+| Propagation | (a property of the whole, not a step) |
+
+**Key distinctions:**
+
+- Recognition language vs selection language: the public hears symptoms ("I'm stuck"); the backstage works in structure ("threshold reached"). Recognition gets them to raise their hand; selection tells you whether to shake it.
+- Myth is the destination; threshold is the departure. People do not leave home because they know where Paris is. They leave because they cannot stay.
+- One thesis, many recognitions: one trunk, many branches (entry doors). Never force one leaf to speak to the whole tree.
+
+**Why this is a domain and not a marketing tip:** the same ladder explains how theories, religions, startups, movements, and the Uniqueness Economy thesis itself spread. Marketing is one application. Full tactical treatment: `marketing_playbook.md` Part III-B ("The Adoption Ladder & Threshold Marketing").
