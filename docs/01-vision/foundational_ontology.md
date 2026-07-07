@@ -4,6 +4,8 @@
 
 > The Deepest Framework — The Primordial Architecture of Creation
 
+> **Legacy / companion note:** This is an earlier condensed companion to [Universal Ontology](./universal_ontology.md), which is now the canonical ontology file. Keep this file as a readable short-form orientation and historical artifact; update `universal_ontology.md` first when the ontology itself changes.
+
 ![Holon Essential Qualities Diagram](./holon_essential_qualities_diagram.jpg)
 
 ---
