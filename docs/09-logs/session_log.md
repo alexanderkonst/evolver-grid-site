@@ -8269,3 +8269,13 @@ This directly reinforced the current Founder Cockpit / Living Project Holograph 
 - `docs/02-strategy/roadmap.md`: current roadmap note added.
 
 **Bottom line:** the founder's unique value is the prime invariant; the business is the projection library.
+
+---
+
+## Days 115-116: The Steward of the Source, and the Adoption Ladder (July 5-6, 2026)
+
+Two ChatGPT excavations (exported and metabolized July 6) reached the root beneath the April 12 Energy Leak Audit: the pattern was never "too much free work" but **spending the source trying to convert unrecognizing fields**, starting with the closest ones (family, mentor, inner circle) and repeating outward (clients, patrons, rooms). Named: reversing disbelief · loyalty that has forgotten time · the turn from Guardian of Relationships to Guardian of the Source. The corpus had photographed the symptoms since Day 38; the root system was outside the corpus until now. Twin discovery: the **Architecture of Adoption** (Reality → Myth → Threshold → Recognition → Trust → Selection → Transformation; law: deep ideas propagate when they enable accurate self-recognition) plus threshold marketing and the recognition/selection language split, which dissolves the years-long "who is my tribe" conundrum into entry doors.
+
+**Documented this session:** Phase Shift Library Domains 99 + 100 · `marketing_playbook.md` Part III-B (adoption ladder, threshold marketing, entry doors, right-ecology 2×2, outreach formula, diagnostic-call redesign, threshold-archetype research program) · guerrilla hack "Threshold Answering" (Reddit as a threshold search engine) · `uniqueness_economy_thesis.md` §0.7 (ontology of uniqueness: steward-participant, gift↔ecology, four movements Source → Distortion → Ecology → Fruit) · `unique_business_playbook.md` v4.4 (the Ecology Upgrade) · `alexanders_unique_business.md` market verdict + wedge doors. Personal stewardship doctrines (Sasha and Karime versions) held privately, outside the public corpus.
+
+**Instruments:** Equilibrium agent read path fully live (agent token shared and stored; first successful machine read of state, strategies, workstreams, focus). Known bug surfaced by the read: `equilibrium_strategy_completions` table missing (PGRST205 warning in the function response). Field: Roman boundary held (Jul 4, no reply expected); Patricia/Chris reminders sent Jun 30; Oyi proposal in advisor review; moon focus $4,000 by period end.

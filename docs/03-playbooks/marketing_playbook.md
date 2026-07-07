@@ -1292,6 +1292,88 @@ With an affluent, program-fatigued audience, **a low price creates suspicion, no
 
 ---
 
+# Part III-B: The Adoption Ladder & Threshold Marketing (July 6, 2026)
+
+> *Source: the July 4-6 excavation (Ivory Tower + Steward of the Source conversations). Theory: Phase Shift Library Domains 99-100. Ontology: `uniqueness_economy_thesis.md` §0.7. This section supersedes "pick a niche" thinking.*
+
+## The Adoption Ladder
+
+Ideas do not spread because they are true. They spread when someone recognizes themselves inside them. Every idea that takes root travels the same ladder, and every marketing artifact does exactly ONE job on it:
+
+| Layer | Human question | Invariant | Your job |
+|-------|----------------|-----------|----------|
+| **Reality** | What is true? | Structural truth | Discover it |
+| **Myth** | Why does this matter? | Meaning | Inspire |
+| **Threshold** | Why now? | Developmental transition | Activate |
+| **Recognition** | Is this me? | Lived experience | Evoke self-recognition |
+| **Trust** | Does this person understand me? | Accuracy | Demonstrate understanding |
+| **Selection** | Should we work together? | Mutual fit | Diagnose |
+| **Transformation** | What changes? | New pattern | Deliver results |
+| **Propagation** | Why will this spread? | Self-recognition, repeated | Property of the whole system |
+
+**The rule:** one artifact, one job. A post evokes recognition. A myth line gives meaning. A call diagnoses fit. Mixing jobs is the diagnosable bug behind "messaging isn't working."
+
+## Threshold Marketing
+
+Market to a **developmental moment**, not a demographic. Four phases: Unaware ("everything is fine") → Friction ("something feels off") → **Threshold** ("my current way no longer works, and I'm ready") → Integration (building the new). The work sells only in phase 3, where willingness and necessity overlap.
+
+The threshold as the buyer lives it: **"The way I've been approaching my professional life no longer feels capable of producing what I know is possible."**
+
+Myth is the destination; threshold is the departure. People don't leave home because they know where Paris is. They leave because they can't stay.
+
+## Recognition Language vs Selection Language
+
+- **Recognition** = the language of symptoms, used in public: "I'm stuck" · "why isn't this working anymore" · "стеклянный потолок".
+- **Selection** = the language of structure, used backstage: growth-oriented, builder, at threshold, resonant, able to invest.
+
+**Recognition gets them to raise their hand. Selection tells you whether to shake it.** Never put selection language on the billboard. (For years the corpus marketed in selection language; this split ends that.)
+
+## Entry Doors, Not Tribes
+
+One trunk: *the next chapter cannot be built from yesterday's pattern.* Branches are doors into the same house, not separate businesses. Refractions of the one invariant:
+
+| Door | Their sentence |
+|------|----------------|
+| Founder | "The business works. I don't." |
+| Coach / healer | "I help others find clarity, yet I can't explain why people should choose me." |
+| Post-exit | "Now that I have freedom, what is actually worth building?" |
+| Polymath | "People see scattered interests. I see one body of work." |
+| Professional | "I've become good at my job, and I can't imagine five more years of it." |
+
+Underneath, one question: **"What is mine to build next?"** The resonance category is *builders* (a disposition), not any job title.
+
+## Right-Ecology Broadcasting (the 2×2 that retires Wrong-Room Broadcasting)
+
+Before spending source on any room, post, or DM, score two coordinates:
+
+1. **FIELD:** has this room shown organs of perception? Evidence only: they paid, they asked, they leaned in, they build adjacent things.
+2. **MOMENT:** is this person at the threshold? Detect by their own language, never by their title.
+
+| | Wrong moment | At threshold |
+|---|---|---|
+| **Wrong field** | Pure leak | Leak with applause |
+| **Right field** | Admiration: plant a seed, calendar it | Collapse into transaction |
+
+## The Outreach Formula (per door)
+
+1. Personal relevance ("I noticed you're building...") → 2. Recognition (one sentence that lands "that's exactly where I am") → 3. Threshold reframe ("not a capability problem; a transition into a different way of building") → 4. Myth, one sentence → 5. Invitation, no selling → 6. Outcome (sell the result of the call, not the call) → 7. Low-friction CTA (45-min diagnostic).
+
+**Rule of One:** exactly one myth, one threshold, one recognition, one promise, one invitation per message. The keyword is the locator; recognition is the weapon (LinkedIn keyword × recognition matrix; see `guerrilla_marketing_hacks.md`, Threshold Answering).
+
+## The Diagnostic Call (redesigned)
+
+The free call **diagnoses ecology; it does not prove depth.** Four movements: what is the gift (Source), where is it being drained (Distortion), which rooms can metabolize it (Ecology), what offer makes it visible (Fruit). The paid container is the prescription that follows the diagnosis.
+
+Explicit promise: *"The goal isn't to convince you to work with me. It's to determine whether you've reached a threshold where a different pattern of building creates disproportionate leverage. If not, I'll tell you. If yes, you leave with a much clearer picture of what your next chapter is asking of you."*
+
+Qualification filter: **ready to steward their gift, or still addicted to being misrecognized?**
+
+## The Empirical Program (run before scaling any channel)
+
+Collect 30-50 real "what was happening when you reached out?" phrases from call recordings. Highlight the exact words. Cluster into 5-7 threshold archetypes. Those words ARE the copy, the DMs, the landing hero, and the qualification checklist. First confirmed entry: "стеклянный потолок."
+
+---
+
 # Part IV: The Recursive Insight
 
 **Marketing is a product.**

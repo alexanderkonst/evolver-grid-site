@@ -329,3 +329,26 @@ Network School = how to make life easy, work easy, play easy, community easy. Bu
 - Co-living/co-working operators
 - Retreat center operators
 
+
+---
+
+## Threshold Answering: Reddit as a Threshold Search Engine (July 6, 2026)
+
+**The Hack:** don't broadcast to rooms; search for people mid-threshold and answer them.
+
+**Setup:**
+1. Search Reddit / forums / LinkedIn for the literal threshold sentences: "what got me here isn't working," "don't know what's next after the exit," "glass ceiling," "I keep pivoting," "successful on paper but something's off"
+2. Reply with pure recognition + one map insight. No link (Curiosity Gap rules apply)
+3. The profile carries the door; the curious follow it themselves
+
+**Why It Works:**
+- A person posting their threshold sentence is self-declared phase 3 (see `marketing_playbook.md` Part III-B). You skip Unaware and Friction entirely
+- Broadcasting hopes a threshold walks by; answering finds it directly
+- Field + moment are both verified before any source is spent (right-ecology 2×2)
+
+**LinkedIn variant (keyword × recognition matrix):** the keyword is the locator ("founder," "product manager," "coach"), the recognition sentence is the weapon. One recognition DM per door, never one template for all.
+
+**Principles Applied:**
+- Pull, don't push (they already raised their hand in public)
+- Right field × right moment (never spend the source on concrete)
+- Story-worthy (a precise recognition from a stranger is memorable)
