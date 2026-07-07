@@ -63,15 +63,15 @@ URL: ${url}
 
 | Test | Result | Note |
 |---|---|---|
-| 16 px favicon | Mixed | Gold medallion silhouette survives better than the delicate projection, but inner lattice remains crowded. |
-| 32 px favicon | Pass with refinement | Gold ring and central lattice become recognizable. |
-| 48 px favicon | Pass with refinement | Gold medallion reads as an artifact-derived mark. |
+| 16 px favicon | Mixed | Original projection is too delicate at favicon scale. |
+| 32 px favicon | Mixed | Original projection is recognizable but fragile. |
+| 48 px favicon | Mixed | Original projection works only as a delicate projection. |
 | 128 px icon | Pass | Projection and artifact both start reading. |
-| App icon | Mixed | Original projection is too fragile; gold medallion has better artifact continuity but needs a small-size cut. |
+| App icon | Mixed | Original projection remains the only surfaced 2D mark while candidate work is halted. |
 | Social avatar | Deferred | Physical artifact remains a hero/source object, not everyday avatar. |
-| Website header | Mixed | Gold medallion works, but needs a flatter header variant. |
+| Website header | Mixed | Original projection remains usable but delicate. |
 | Deck cover | Pass | Physical artifact works as hero object. |
-| Monochrome | Mixed | Gold medallion needs a dedicated mono version rather than CSS filter. |
+| Monochrome | Mixed | Original projection needs a dedicated mono version rather than CSS filter. |
 
 ## Image Audit
 
@@ -81,7 +81,7 @@ ${imageAudit.map((image) => `| \`${image.src}\` | ${image.naturalWidth}x${image.
 
 ## Required Next Move
 
-Derive a small-size cut from the Image 1-inspired gold medallion: preserve ring, six anchoring nodes, and core lattice while reducing internal rods. The full physical artifact should remain the hero/source object, not the everyday logo.
+Candidate figure work is halted. Do not surface rejected bold-field or medallion figures in app, header, favicon, or presentation UI. The full physical artifact should remain the hero/source object, not the everyday logo.
 `;
 
 writeFileSync(join(outDir, "identity_stress_test_capture_report.md"), report);

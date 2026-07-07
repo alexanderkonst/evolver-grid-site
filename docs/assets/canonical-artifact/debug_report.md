@@ -12,10 +12,6 @@ Date: 2026-07-03.
 | Canonical still preview | `docs/assets/canonical-artifact/renders/canonical-artifact-render.svg.png` | Pass |
 | Primary projection | `docs/assets/canonical-artifact/projections/primary-projection.svg` | Pass |
 | Primary projection preview | `docs/assets/canonical-artifact/projections/primary-projection.svg.png` | Pass |
-| Bold field projection candidate | `docs/assets/canonical-artifact/projections/primary-projection-bold-field.svg` | Candidate |
-| Bold field projection preview | `docs/assets/canonical-artifact/projections/primary-projection-bold-field.svg.png` | Candidate |
-| Gold medallion projection candidate | `docs/assets/canonical-artifact/projections/primary-projection-gold-medallion.svg` | Candidate |
-| Gold medallion projection preview | `docs/assets/canonical-artifact/projections/primary-projection-gold-medallion.svg.png` | Candidate |
 | Three.js viewer | `docs/assets/canonical-artifact/viewer.html` | Pass |
 | Review plate HTML | `docs/assets/canonical-artifact/review_plate.html` | Pass |
 | Review plate PNG | `docs/assets/canonical-artifact/renders/canonical-artifact-review-plate.png` | Pass |
@@ -131,26 +127,13 @@ Date: 2026-07-03.
 | Failure cases are recorded | Capture report names 16 px failure, 32/48 px weakness, and need for simplified mark | Pass |
 | Image loading and console health | Capture report records 20 loaded images and clean console | Pass |
 
-## Bold Field Candidate Audit
+## Halted 2D Candidate Audit
 
 | Check | Evidence | Status |
 |---|---|---|
-| Candidate derives from sketch insight | `identity_derivation_notes.md` records Sasha sketch trigger and interpretation | Pass |
-| Boundary field is first-class | `primary-projection-bold-field.svg` includes explicit enclosing circle | Pass |
-| Small-size legibility improves | Updated stress test shows candidate recognizable at 32 px and strong at 48/128 px | Pass with limitation |
-| Six-ray lineage remains | Candidate preserves vertical, horizontal, and diagonal beam structure through center | Pass |
-| Gold-like palette restored | Candidate uses artifact-family gold palette after Sasha correction | Pass |
-| Not final identity mark | Current pass still needs simplification and a dedicated mono/small-size cut | Pass with limitation |
-
-## Gold Medallion Candidate Audit
-
-| Check | Evidence | Status |
-|---|---|---|
-| Candidate derives from Sasha's Image 1 reference | `identity_derivation_notes.md` records the gold-medallion reset | Pass |
-| Gold-like palette is first-class | `primary-projection-gold-medallion.svg` uses dimensional gold tube gradients | Pass |
-| Artifact continuity improves | Candidate uses polished ring, nodes, and lattice rods rather than flat neon strokes | Pass |
-| Iridescent fill is excluded | Image 2 is explicitly treated as hero/artifact language, not everyday logo | Pass |
-| Small-size limitation is recorded | Stress test states the medallion still needs a reduced favicon/mono cut | Pass with limitation |
+| Rejected figures are not surfaced | Candidate SVG/PNG files were removed from `projections/` | Pass |
+| Stress sheet no longer loads rejected candidates | `identity_stress_test.html` references only `primary-projection.svg` for 2D mark tests | Pass |
+| Candidate work is halted | `identity_derivation_notes.md` records pause and non-use rule | Pass |
 
 ## Motion v1 Audit
 
@@ -193,10 +176,9 @@ Date: 2026-07-03.
 2. v4 improves physical believability with environment lighting, anisotropy, iridescence, transmission, and dispersion, but remains a real-time browser approximation.
 3. Motion v3 reduces explicit path-work and makes circulation more implicit, but the field shader remains a real-time approximation rather than physically simulated refraction.
 4. The identity stress test shows the delicate projection works at medium sizes but weakens below 48 px.
-5. The bold field candidate improves small-size legibility and now uses the correct gold-like palette, but remains a study.
-6. The gold medallion candidate is the stronger master-mark direction, but must be reduced for mono/small-size use.
-7. The privileged viewpoint is operationalized as `[1, 1, 1]`; Sasha may later tune this from lived visual memory.
+5. Rejected 2D candidate figures are removed from the UI-facing stress sheet and projection asset folder.
+6. The privileged viewpoint is operationalized as `[1, 1, 1]`; Sasha may later tune this from lived visual memory.
 
 ## Debug Conclusion
 
-The first execution target is complete and the renderer now has ten layers: v2 artifact/material render, v3 Anatomy Mode, v4 Physical Quality, Motion v1, Motion v2 Metabolic, Motion v3 Implicit, Review Plate v1, Identity Stress Test v1, Gold Bold Field Candidate v1.1, and Gold Medallion Candidate v2.0. All derive from the same procedural geometry or Sasha's visual references. The next quality leap is a reduced small-size cut derived from the gold medallion: fewer rods, stronger mono behavior, same artifact lineage.
+The first execution target remains useful through the canonical artifact, physical render, motion studies, review plate, and identity stress test. The recent 2D candidate initiative is halted: rejected bold-field and medallion figures are removed from surfaced UI/test-sheet usage. The next quality leap should not be more image generation; it should be a tighter art-direction brief or external craft support before any new 2D candidate is produced.

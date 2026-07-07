@@ -90,7 +90,7 @@
 
       .icon-row {
         display: grid;
-        grid-template-columns: 90px repeat(5, 1fr) 190px;
+        grid-template-columns: 90px repeat(4, 1fr) 190px;
         gap: 14px;
         align-items: center;
         padding: 12px 0;
@@ -306,7 +306,7 @@
         </div>
         <div class="meta">
           <div><strong>Source:</strong> <code>canonical-artifact.model.json</code></div>
-          <div><strong>Projection:</strong> <code>primary-projection-gold-medallion.svg</code></div>
+          <div><strong>Projection:</strong> <code>primary-projection.svg</code></div>
           <div><strong>Artifact:</strong> <code>mode=anatomy&motion=implicit&quality=physical</code></div>
         </div>
       </header>
@@ -317,38 +317,34 @@
           <div class="icon-row">
             <div class="size-label">16 px</div>
             <div class="sample"><img style="--size: 16px" src="./projections/primary-projection.svg" alt="" /></div>
-            <div class="sample"><img style="--size: 16px" src="./projections/primary-projection-gold-medallion.svg" alt="" /></div>
-            <div class="sample dark"><img class="mono-white" style="--size: 16px" src="./projections/primary-projection-gold-medallion.svg" alt="" /></div>
-            <div class="sample"><img class="mono-black" style="--size: 16px" src="./projections/primary-projection-gold-medallion.svg" alt="" /></div>
+            <div class="sample dark"><img class="mono-white" style="--size: 16px" src="./projections/primary-projection.svg" alt="" /></div>
+            <div class="sample"><img class="mono-black" style="--size: 16px" src="./projections/primary-projection.svg" alt="" /></div>
             <div class="sample"><img style="--size: 16px" src="./renders/canonical-artifact-three-v4-physical-desktop.png" alt="" /></div>
-            <div class="score"><span class="status mixed">Mixed</span> Medallion silhouette survives; inner lattice crowds.</div>
+            <div class="score"><span class="status mixed">Mixed</span> Original projection is too delicate at favicon scale.</div>
           </div>
           <div class="icon-row">
             <div class="size-label">32 px</div>
             <div class="sample"><img style="--size: 32px" src="./projections/primary-projection.svg" alt="" /></div>
-            <div class="sample"><img style="--size: 32px" src="./projections/primary-projection-gold-medallion.svg" alt="" /></div>
-            <div class="sample dark"><img class="mono-white" style="--size: 32px" src="./projections/primary-projection-gold-medallion.svg" alt="" /></div>
-            <div class="sample"><img class="mono-black" style="--size: 32px" src="./projections/primary-projection-gold-medallion.svg" alt="" /></div>
+            <div class="sample dark"><img class="mono-white" style="--size: 32px" src="./projections/primary-projection.svg" alt="" /></div>
+            <div class="sample"><img class="mono-black" style="--size: 32px" src="./projections/primary-projection.svg" alt="" /></div>
             <div class="sample"><img style="--size: 32px" src="./renders/canonical-artifact-three-v4-physical-desktop.png" alt="" /></div>
-            <div class="score"><span class="status pass">Pass</span> Gold ring and central lattice become recognizable.</div>
+            <div class="score"><span class="status mixed">Mixed</span> Projection is recognizable but fragile.</div>
           </div>
           <div class="icon-row">
             <div class="size-label">48 px</div>
             <div class="sample"><img style="--size: 48px" src="./projections/primary-projection.svg" alt="" /></div>
-            <div class="sample"><img style="--size: 48px" src="./projections/primary-projection-gold-medallion.svg" alt="" /></div>
-            <div class="sample dark"><img class="mono-white" style="--size: 48px" src="./projections/primary-projection-gold-medallion.svg" alt="" /></div>
-            <div class="sample"><img class="mono-black" style="--size: 48px" src="./projections/primary-projection-gold-medallion.svg" alt="" /></div>
+            <div class="sample dark"><img class="mono-white" style="--size: 48px" src="./projections/primary-projection.svg" alt="" /></div>
+            <div class="sample"><img class="mono-black" style="--size: 48px" src="./projections/primary-projection.svg" alt="" /></div>
             <div class="sample"><img style="--size: 48px" src="./renders/canonical-artifact-three-v4-physical-desktop.png" alt="" /></div>
-            <div class="score"><span class="status pass">Pass</span> Reads as a gold lattice medallion.</div>
+            <div class="score"><span class="status mixed">Mixed</span> Works only as a delicate projection.</div>
           </div>
           <div class="icon-row">
             <div class="size-label">128 px</div>
             <div class="sample"><img style="--size: 96px" src="./projections/primary-projection.svg" alt="" /></div>
-            <div class="sample"><img style="--size: 96px" src="./projections/primary-projection-gold-medallion.svg" alt="" /></div>
-            <div class="sample dark"><img class="mono-white" style="--size: 96px" src="./projections/primary-projection-gold-medallion.svg" alt="" /></div>
-            <div class="sample"><img class="mono-black" style="--size: 96px" src="./projections/primary-projection-gold-medallion.svg" alt="" /></div>
+            <div class="sample dark"><img class="mono-white" style="--size: 96px" src="./projections/primary-projection.svg" alt="" /></div>
+            <div class="sample"><img class="mono-black" style="--size: 96px" src="./projections/primary-projection.svg" alt="" /></div>
             <div class="sample"><img style="--size: 96px" src="./renders/canonical-artifact-three-v4-physical-desktop.png" alt="" /></div>
-            <div class="score"><span class="status pass">Pass</span> Dimensional structure reads clearly.</div>
+            <div class="score"><span class="status pass">Pass</span> Projection and artifact start to read clearly.</div>
           </div>
         </article>
 
@@ -363,22 +359,14 @@
                 <p><strong>Original projection.</strong> Elegant, but too fragile for home-screen scale.</p>
               </div>
             </div>
-            <div class="mock">
-              <div class="mock-inner">
-                <div class="app-icon">
-                  <img src="./projections/primary-projection-gold-medallion.svg" alt="Gold medallion app icon test" />
-                </div>
-                <p><strong>Gold medallion candidate.</strong> Better artifact continuity; still needs a simpler mono cut.</p>
-              </div>
-            </div>
             <div class="mock" style="grid-column: 1 / -1">
               <div class="header-mock">
-                <img src="./projections/primary-projection-gold-medallion.svg" alt="Header mark" />
+                <img src="./projections/primary-projection.svg" alt="Header mark" />
                 <div class="wordmark">Find Your Top Talent</div>
                 <div class="nav">AI OS · Build · Collaborate</div>
               </div>
               <div class="mock-inner">
-                <p><strong>Website header.</strong> Gold medallion works as a prestige mark, but needs a flatter header version.</p>
+                <p><strong>Website header.</strong> Original projection remains the only surfaced 2D mark while candidate work is halted.</p>
               </div>
             </div>
             <div class="mock" style="grid-column: 1 / -1">
@@ -398,10 +386,10 @@
         <article class="panel" style="grid-column: 1 / -1">
           <h2>Findings</h2>
           <div class="notes">
-            <div><strong>Survives:</strong> the Image 1-inspired gold medallion solves the artifact-continuity problem better than the flat bold-field pass.</div>
-            <div><strong>Breaks:</strong> it is still too detailed for 16 px and needs a dedicated mono/small-size reduction.</div>
-            <div><strong>Required next move:</strong> derive a small-size cut from the medallion: ring, six anchoring nodes, fewer internal rods, same gold-like palette.</div>
-            <div><strong>Do not do:</strong> treat the polished medallion as the favicon. It is the 2D identity master, not every output size.</div>
+            <div><strong>Survives:</strong> the original projection remains coherent as a derivation of the canonical artifact.</div>
+            <div><strong>Breaks:</strong> recent rejected candidate work is halted and removed from this UI-facing sheet.</div>
+            <div><strong>Required next move:</strong> pause visual generation until the target can be specified with tighter art direction or outside craft support.</div>
+            <div><strong>Do not do:</strong> surface rejected candidate figures in app, header, favicon, or presentation UI.</div>
           </div>
         </article>
       </section>
