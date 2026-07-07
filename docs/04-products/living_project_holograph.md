@@ -314,6 +314,12 @@ Its first version reads:
 
 The founder-facing surface is not a generic dashboard. It is a navigation instrument.
 
+The cockpit's product promise:
+
+> **Founder Cockpit is the source of project self-awareness.**
+
+It should not become a giant dashboard that asks the founder to interpret dozens of signals. Its job is to compress the whole venture field into the few reads and moves that matter now.
+
 The operating metaphor is a founder starship cockpit:
 
 - **Mission Vector:** shows whether the venture is aligned with true north.
@@ -339,6 +345,97 @@ Each button should output three layers:
 3. **Crystallized action:** what exact next move is obvious enough to do.
 
 This is the first UI form of the pulse protocol: one private surface where the living project can show movement, pressure, relationship action, and next moves without Sasha manually recomposing the context.
+
+### Founder Cockpit Product Direction — July 2026
+
+The current cockpit has become powerful but too dashboard-like: many datapoints, many panels, many suggestions. The next product move is to turn it into a **Founder Decision Engine**.
+
+The three most practical founder jobs:
+
+| Job | Button-level question | Practical output |
+|---|---|---|
+| **What should I do next?** | Given the whole project field, what are the 1-3 moves that most change the project now? | One primary move, two supporting moves, what to ignore. |
+| **Who matters now?** | Which relationships matter this week, why, and what should be said? | Top 3 people/doors, exact follow-up angle, what not to feed. |
+| **What is blocking progress?** | What is the true bottleneck or founder-shadow pattern now? | One constraint, one avoided action, one corrective move. |
+
+Everything else should serve those three jobs.
+
+### Button Taxonomy
+
+Buttons should be categorized because the cockpit is now a navigation system for navigation. The most used and most practical buttons should sit at the top.
+
+#### Command Buttons — top row
+
+These are the daily/weekly buttons. They should be visually first.
+
+| Button | Status | Purpose |
+|---|---|---|
+| **What Should I Do Next?** | Next iteration of `Name High-Leverage Moves` | Compresses the whole context packet into the few moves that matter. |
+| **Who Matters Now?** | Next iteration of `Key Relationships Now` / `Generate Follow-Ups` | Prioritizes relationships and drafts the next relational move. |
+| **Weekly Founder Brief** | New | Reads the whole project and returns what changed, what matters, what to do next, and what to ignore. |
+| **Revenue Focus** | New | Separates interesting motion from the shortest credible path to money. |
+
+#### Diagnostic Buttons — second row
+
+These explain what is blocking or decaying.
+
+| Button | Status | Purpose |
+|---|---|---|
+| **Founder Shadow** | Existing, keep | Detects overthinking, avoidance, sales resistance, too many doors, or meaning-motion confusion. |
+| **Strategy Decay** | Existing as `Outdated Strategy`, rename | Finds strategies that were once true but are stale because the field moved. |
+| **Attention Leaks** | Existing, keep | Names where attention is leaking away from the real next move. |
+| **Find Bottlenecks** | Existing, keep or merge | Names the operational bottleneck: cash, offer clarity, product sprawl, relationship focus, etc. |
+
+#### Continuity / Memory Buttons — third row
+
+These help Sasha or a collaborator re-enter the project after time away.
+
+| Button | Status | Purpose |
+|---|---|---|
+| **Project Memory** | New | “I was away; where is the venture now?” |
+| **What Is the Project Becoming?** | Existing, keep | Names the actual emerging form, not aspiration. |
+| **Noise Compressor** | Existing as `Refine My Operating System`, rename/clarify | Turns messy strategies/workstreams/tasks into fewer sharper priorities without losing signal. |
+
+#### Externalization Buttons — later
+
+These convert the cockpit read into communication artifacts.
+
+| Button | Status | Purpose |
+|---|---|---|
+| **Investor / Advisor Brief** | New, high value | Produces a concise external update: what we are building, what moved, what we need, where help matters. |
+| **Decision Review Board** | New | For a major choice: best option, hidden risk, opportunity cost, next test. |
+
+### Output Contract
+
+Cockpit AI output must be ultra-concise by default. If the response is daunting, the product fails because the founder will not read it.
+
+Default button output:
+
+1. **Bottom line:** 1-2 sentences.
+2. **Top 3 signals:** bullets only.
+3. **Move:** one concrete next action.
+4. **Ignore / defer:** one thing not to feed.
+
+Maximum default length: about 120-180 words.
+
+Expanded detail can exist behind “Show reasoning,” but the first screen must be readable in under 30 seconds.
+
+### Shared Context Packet
+
+Every serious cockpit AI button should use the same curated context packet:
+
+```text
+live Equilibrium
++ CRM / relationship state
++ recent project pulse events
++ holomap summary
++ roadmap / active product direction
++ money / offers / users where relevant
+```
+
+The AI button should not decide what the project is from scratch. It should run a specific lens over the same living project packet.
+
+This is the quality upgrade: AI stops being a chatbot and becomes a project intelligence layer.
 
 ### Cockpit AI Lens Pattern
 

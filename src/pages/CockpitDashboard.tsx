@@ -419,7 +419,7 @@ export default function CockpitDashboard() {
               Navigate one living system.
             </h1>
             <p className="mt-4 max-w-2xl text-base leading-7 text-[#cfc4b5]">
-              Your venture becomes readable through mission, relationships, pulses,
+              Founder Cockpit is the source of project self-awareness: mission, relationships, pulses,
               Equilibrium, and the next move that is alive now.
             </p>
           </div>
