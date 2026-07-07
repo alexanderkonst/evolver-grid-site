@@ -18,6 +18,9 @@ verify_jwt = true
 [functions.apply-equilibrium-ai-changes]
 verify_jwt = true
 
+[functions.equilibrium-agent-write]
+verify_jwt = false
+
 [functions.suggest-next-quest]
 verify_jwt = true
 

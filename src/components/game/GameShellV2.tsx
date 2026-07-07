@@ -695,6 +695,14 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         // activeSpaceId stayed on the default "next-move" space — which
         // has no pane-2 content — and Sasha got pane 1 + pane 3 only,
         // no contextual nav. Same shape of fix as the Day 64 QoL entry.
+        const buildSharedPaths = ["/playbook", "/path", "/dashboard", "/ignite"];
+        const isBuildSharedPath = buildSharedPaths.some(
+            (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
+        );
+        if (activeSpaceId === "build" && isBuildSharedPath) {
+            return;
+        }
+
         const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius", "/game/settings", "/dashboard", "/ignite", "/quality-of-life-map", "/asset-mapping", "/activate-top-talent"];
         const isJourneyFamily = journeyPaths.some(
             (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
@@ -714,7 +722,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         if (fallback) {
             setActiveSpaceId(fallback.id);
         }
-    }, [location.pathname]);
+    }, [location.pathname, activeSpaceId]);
 
     // Load profile
     const loadProfile = async (userId: string) => {
