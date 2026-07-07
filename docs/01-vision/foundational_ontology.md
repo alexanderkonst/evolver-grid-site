@@ -10,7 +10,7 @@
 
 ## What This Is
 
-This is not a playbook. This is the **underlying ontology** — the foundational architecture that everything is based on:
+This is the **underlying ontology** — the foundational architecture that everything is based on:
 - Bio-Light: the fluid dynamism and inner structure of Light and Primordial Energy
 - The shared architecture of the universe
 - The unique essential center of each being
