@@ -24,13 +24,13 @@ This phase deliberately avoids silent AI rewrites of strategies, workstreams, or
 
 ### Phase 2: Structured Mutations
 
-The backend contract supports these future change types:
+Future versions may support these change types:
 
 - `update_strategy`
 - `update_workstream`
 - `update_task`
 
-They must only be used once the AI proposal includes real target IDs and the UI shows before/after text. Until then, direct mutation remains locked behind stricter validation.
+They must only be implemented once the AI proposal includes real target IDs and the UI shows before/after text. Until then, direct mutation is intentionally not deployed.
 
 ## Product Spec
 

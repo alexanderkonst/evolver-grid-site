@@ -9,10 +9,7 @@ const corsHeaders = {
 const ADMIN_EMAILS = new Set(["alexanderkonst@gmail.com", "konst@alum.mit.edu", "me@sloan.mit.edu"]);
 
 type ChangeType =
-  | "add_synthesis_log"
-  | "update_strategy"
-  | "update_workstream"
-  | "update_task";
+  | "add_synthesis_log";
 
 interface AcceptedChange {
   change_type: ChangeType;
@@ -30,9 +27,6 @@ interface ApplyRequest {
 
 const allowedChangeTypes = new Set<ChangeType>([
   "add_synthesis_log",
-  "update_strategy",
-  "update_workstream",
-  "update_task",
 ]);
 
 function jsonResponse(body: unknown, status = 200) {
@@ -96,7 +90,7 @@ async function requireAdmin(req: Request) {
   return { ok: true as const, token, userId: data.user.id, email };
 }
 
-function readingText(change: AcceptedChange, request: ApplyRequest) {
+function readingText(change: AcceptedChange) {
   const title = change.title ? `${change.title}\n\n` : "";
   const reason = change.reason ? `\n\nReason accepted: ${change.reason}` : "";
   return `${title}${change.body}${reason}`;
@@ -131,101 +125,39 @@ serve(async (req) => {
     const applied: Array<{ change_type: ChangeType; target_id?: string; log_id?: string }> = [];
 
     for (const change of changes) {
-      if (change.change_type === "add_synthesis_log") {
-        const { data, error } = await admin
-          .from("equilibrium_synthesis_log")
-          .insert({
-            user_id: auth.userId,
-            reading_text: readingText(change, body),
-            cycle_snapshot_json: {
-              source,
-              lens_id: lensId,
-              accepted_at: new Date().toISOString(),
-              accepted_by: auth.email,
-              change_type: change.change_type,
-              title: change.title ?? null,
-            },
-          })
-          .select("id")
-          .single();
-
-        if (error) throw new Error(`Could not add synthesis log: ${error.message}`);
-
-        await admin
-          .from("equilibrium_state")
-          .upsert({
-            user_id: auth.userId,
-            last_synthesis_text: readingText(change, body),
-            last_synthesis_at: new Date().toISOString(),
-            updated_at: new Date().toISOString(),
-          }, { onConflict: "user_id" });
-
-        applied.push({ change_type: change.change_type, log_id: data?.id });
-        continue;
-      }
-
-      if (!change.target_id) {
-        throw new Error(`${change.change_type} requires target_id.`);
-      }
-
-      if (change.change_type === "update_strategy") {
-        const position = Number(change.target_id);
-        if (!Number.isInteger(position) || position < 1 || position > 3) {
-          throw new Error("update_strategy target_id must be a strategy position from 1 to 3.");
-        }
-        const { error } = await admin
-          .from("equilibrium_strategies")
-          .update({ text: change.body, set_at: new Date().toISOString() })
-          .eq("user_id", auth.userId)
-          .eq("position", position);
-        if (error) throw new Error(`Could not update strategy: ${error.message}`);
-        applied.push({ change_type: change.change_type, target_id: change.target_id });
-      }
-
-      if (change.change_type === "update_workstream") {
-        const { error } = await admin
-          .from("equilibrium_workstreams")
-          .update({ title: change.body })
-          .eq("user_id", auth.userId)
-          .eq("id", change.target_id);
-        if (error) throw new Error(`Could not update workstream: ${error.message}`);
-        applied.push({ change_type: change.change_type, target_id: change.target_id });
-      }
-
-      if (change.change_type === "update_task") {
-        const { data: ownedTask, error: readError } = await admin
-          .from("equilibrium_tasks")
-          .select("id, equilibrium_workstreams!inner(user_id)")
-          .eq("id", change.target_id)
-          .eq("equilibrium_workstreams.user_id", auth.userId)
-          .maybeSingle();
-        if (readError) throw new Error(`Could not verify task ownership: ${readError.message}`);
-        if (!ownedTask) throw new Error("Task not found or not owned by current user.");
-
-        const { error } = await admin
-          .from("equilibrium_tasks")
-          .update({ text: change.body })
-          .eq("id", change.target_id);
-        if (error) throw new Error(`Could not update task: ${error.message}`);
-        applied.push({ change_type: change.change_type, target_id: change.target_id });
-      }
-
-      const { error: logError } = await admin
+      const acceptedAt = new Date().toISOString();
+      const text = readingText(change);
+      const { data, error } = await admin
         .from("equilibrium_synthesis_log")
         .insert({
           user_id: auth.userId,
-          reading_text: `Applied ${change.change_type}: ${change.body}`,
+          reading_text: text,
           cycle_snapshot_json: {
             source,
             lens_id: lensId,
-            accepted_at: new Date().toISOString(),
+            accepted_at: acceptedAt,
             accepted_by: auth.email,
             change_type: change.change_type,
-            target_id: change.target_id,
             title: change.title ?? null,
           },
-        });
-      if (logError) throw new Error(`Could not audit writeback: ${logError.message}`);
+        })
+        .select("id")
+        .single();
+
+      if (error) throw new Error(`Could not add synthesis log: ${error.message}`);
+
+      const { error: stateError } = await admin
+        .from("equilibrium_state")
+        .upsert({
+          user_id: auth.userId,
+          last_synthesis_text: text,
+          last_synthesis_at: acceptedAt,
+          updated_at: acceptedAt,
+        }, { onConflict: "user_id" });
+
+      if (stateError) throw new Error(`Could not update Equilibrium state cache: ${stateError.message}`);
+
+      applied.push({ change_type: change.change_type, log_id: data?.id });
     }
 
     return jsonResponse({

@@ -14,6 +14,8 @@ Date: 2026-07-03.
 | Primary projection preview | `docs/assets/canonical-artifact/projections/primary-projection.svg.png` | Pass |
 | Bold field projection candidate | `docs/assets/canonical-artifact/projections/primary-projection-bold-field.svg` | Candidate |
 | Bold field projection preview | `docs/assets/canonical-artifact/projections/primary-projection-bold-field.svg.png` | Candidate |
+| Gold medallion projection candidate | `docs/assets/canonical-artifact/projections/primary-projection-gold-medallion.svg` | Candidate |
+| Gold medallion projection preview | `docs/assets/canonical-artifact/projections/primary-projection-gold-medallion.svg.png` | Candidate |
 | Three.js viewer | `docs/assets/canonical-artifact/viewer.html` | Pass |
 | Review plate HTML | `docs/assets/canonical-artifact/review_plate.html` | Pass |
 | Review plate PNG | `docs/assets/canonical-artifact/renders/canonical-artifact-review-plate.png` | Pass |
@@ -140,6 +142,16 @@ Date: 2026-07-03.
 | Gold-like palette restored | Candidate uses artifact-family gold palette after Sasha correction | Pass |
 | Not final identity mark | Current pass still needs simplification and a dedicated mono/small-size cut | Pass with limitation |
 
+## Gold Medallion Candidate Audit
+
+| Check | Evidence | Status |
+|---|---|---|
+| Candidate derives from Sasha's Image 1 reference | `identity_derivation_notes.md` records the gold-medallion reset | Pass |
+| Gold-like palette is first-class | `primary-projection-gold-medallion.svg` uses dimensional gold tube gradients | Pass |
+| Artifact continuity improves | Candidate uses polished ring, nodes, and lattice rods rather than flat neon strokes | Pass |
+| Iridescent fill is excluded | Image 2 is explicitly treated as hero/artifact language, not everyday logo | Pass |
+| Small-size limitation is recorded | Stress test states the medallion still needs a reduced favicon/mono cut | Pass with limitation |
+
 ## Motion v1 Audit
 
 | Check | Evidence | Status |
@@ -181,9 +193,10 @@ Date: 2026-07-03.
 2. v4 improves physical believability with environment lighting, anisotropy, iridescence, transmission, and dispersion, but remains a real-time browser approximation.
 3. Motion v3 reduces explicit path-work and makes circulation more implicit, but the field shader remains a real-time approximation rather than physically simulated refraction.
 4. The identity stress test shows the delicate projection works at medium sizes but weakens below 48 px.
-5. The bold field candidate improves small-size legibility and now uses the correct gold-like palette, but must be simplified for mono/small-size use.
-6. The privileged viewpoint is operationalized as `[1, 1, 1]`; Sasha may later tune this from lived visual memory.
+5. The bold field candidate improves small-size legibility and now uses the correct gold-like palette, but remains a study.
+6. The gold medallion candidate is the stronger master-mark direction, but must be reduced for mono/small-size use.
+7. The privileged viewpoint is operationalized as `[1, 1, 1]`; Sasha may later tune this from lived visual memory.
 
 ## Debug Conclusion
 
-The first execution target is complete and the renderer now has nine layers: v2 artifact/material render, v3 Anatomy Mode, v4 Physical Quality, Motion v1, Motion v2 Metabolic, Motion v3 Implicit, Review Plate v1, Identity Stress Test v1, and Gold Bold Field Candidate v1.1. All derive from the same procedural geometry or Sasha's sketch insight. The next quality leap is a cleaner v2 bold-field mark with fewer internal lines and better mono behavior.
+The first execution target is complete and the renderer now has ten layers: v2 artifact/material render, v3 Anatomy Mode, v4 Physical Quality, Motion v1, Motion v2 Metabolic, Motion v3 Implicit, Review Plate v1, Identity Stress Test v1, Gold Bold Field Candidate v1.1, and Gold Medallion Candidate v2.0. All derive from the same procedural geometry or Sasha's visual references. The next quality leap is a reduced small-size cut derived from the gold medallion: fewer rods, stronger mono behavior, same artifact lineage.
