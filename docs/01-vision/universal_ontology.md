@@ -10,13 +10,13 @@
 
 ## OPEN EDGES: The Living Frontier
 
-> *These are the edges this telling surfaced. All three found a working resolution on June 5, 2026, and are kept here with those resolutions to show how a frontier folds into the body of the ontology. The geometric names (inversion, orthogonality, stella octangula) are AI formalizations (Claude) of Sasha's recognitions, offered as the bridge to established geometry. Held honestly, not smoothed over. New edges will be added here as recognition keeps reaching.*
+> *These are the edges this telling surfaced. All three found a working resolution on June 5, 2026, and are kept here with those resolutions to show how a frontier folds into the body of the ontology. The geometric names (inversion, orthogonality, stella octangula) are AI formalizations (Claude) of these recognitions, offered as the bridge to established geometry. Held honestly, not smoothed over. New edges will be added here as recognition keeps reaching.*
 
-**1. How does one ray create two mirror-spheres from one? [Recognized June 5, 2026 → §11.1]**
-A single ray launched from the 0D Source point yields two touching spheres that perfectly mirror each other: stand at the point between them and you see only an infinite mirror. The mechanism is the universe *turning onto itself*, the t-shirt pulled inside-out through its own center. Its precise geometric name is **inversion**, which is a mirror operation by nature (so the second sphere is the first one's reflection by construction) and which sends the center to infinity (so the shared point shows the infinite regress, the infinity mirror). It is the two-holes-in-one of §11.1 seen as a movement: out to infinity is the white hole, in to the center is the black hole. The ray gives only the axis; the inversion gives the doubling, the reflection, and the infinity mirror at once. Full treatment in §11.1.
+**1. How does the first axis become two mirror-spheres? [Recognized June 5, 2026 → §11.1]**
+A first ray launched from the 0D Source point creates the first dichotomy: up/down, left/right, the diameter, the axis. That part is straightforward. The deeper question is how the axis becomes two touching mirror-spheres: stand at the point between them and you see only an infinite mirror. The mechanism is the universe *turning onto itself*, the t-shirt pulled inside-out through its own center. Its precise geometric name is **inversion**, which is a mirror operation by nature (so the second sphere is the first one's reflection by construction) and which sends the center to infinity (so the shared point shows the infinite regress, the infinity mirror). It is the two-holes-in-one of §11.1 seen as a movement: out to infinity is the white hole, in to the center is the black hole. The ray gives the axis; inversion gives the doubling, the reflection, and the infinity mirror at once. Full treatment in §11.1.
 
 **2. Why do the axes lock to 90°? [Recognized June 5, 2026]**
-The first two rays make a plane; the next two arrive orthogonal to them, building the 3D cross. The resolution: 90° is the only angle at which a new axis is fully independent of the existing one (its projection onto the first is zero), so orthogonality is not chosen but forced. Sasha's framing carries it furthest: each new perpendicular axis opens a *whole new infinity of information* (a line becomes a plane, a plane becomes a volume), and 90° is the only angle at which that new infinity shares nothing with the old one. A genuinely new dimension is precisely one that adds information rather than repeating it, and that is what orthogonality means.
+The first two rays make a plane; the next two arrive orthogonal to them, building the 3D cross. The resolution: 90° is the only angle at which a new axis is fully independent of the existing one (its projection onto the first is zero), so orthogonality is not chosen but forced. Each new perpendicular axis opens a *whole new infinity of information* (a line becomes a plane, a plane becomes a volume), and 90° is the only angle at which that new infinity shares nothing with the old one. A genuinely new dimension is precisely one that adds information rather than repeating it, and that is what orthogonality means.
 
 **3. What is the exact octahedron ↔ Star Tetrahedron (Merkaba) relation? [Recognized June 5, 2026 → §11.3]**
 The octahedron and the Star Tetrahedron are one structure at different stages of self-development; the precise bridge is the **stella octangula**. The octahedron is the shared core: it is exactly the solid where the two interpenetrating tetrahedra overlap. Equivalently, the Merkaba is that octahedron with a tetrahedron raised on each of its eight faces, its two halves set counter-spinning. So the octahedron is the structure at rest (pulse, §11.3) and the Merkaba is the same structure in counter-spin (spin, §11.3). To see it, search "stella octangula octahedron core." Full pairing in §11.3.
@@ -29,7 +29,7 @@ The octahedron and the Star Tetrahedron are one structure at different stages of
 
 The undifferentiated Oneness. The state before the first impulse. No mirror, no observation — just One.
 
-This is not a playbook. This is the **underlying ontology** — the foundational architecture that everything is based on:
+This is the **underlying ontology** — the foundational architecture that everything is based on:
 - Bio-Light: the fluid dynamism and inner structure of Light and Primordial Energy
 - The shared architecture of the universe
 - The unique essential center of each being
@@ -64,7 +64,7 @@ Self-observation becomes possible.
 
 ### The Hidden Secret: Sequential Asymmetry → Spin
 
-> *February 22, 2026 — revealed in SM ceremony*
+> *February 22, 2026 — received as a vivid mystical insight*
 
 As its first cosmogenetic step, Source launches two rays from itself as radia, creating the second dimension from a dot (1D).
 
@@ -269,7 +269,7 @@ Like a drop of ocean that has all the properties of the entire ocean.
 
 ## 4b. THE ROSETTA STONE — The Holon's Toroidal Anatomy
 
-> *February 22, 2026 — revealed in SM ceremony, articulated through drawing and dialogue*
+> *February 22, 2026 — received as a vivid mystical insight, articulated through drawing and dialogue*
 
 *The complete elephant. Every tradition sees a part. This is the whole.*
 
