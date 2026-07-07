@@ -21,7 +21,13 @@ import {
   Zap,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { cockpitLenses, type CockpitLensId, type CockpitLensResult, runCockpitLens } from "@/lib/cockpitLenses";
+import {
+  applyEquilibriumAiChanges,
+  cockpitLenses,
+  type CockpitLensId,
+  type CockpitLensResult,
+  runCockpitLens,
+} from "@/lib/cockpitLenses";
 import crmSnapshotRaw from "@/generated/crm-snapshot.json";
 import pulseSnapshotRaw from "@/generated/project-pulse-snapshot.json";
 
@@ -112,6 +118,9 @@ export default function CockpitDashboard() {
   const [primaryLoading, setPrimaryLoading] = useState(false);
   const [primaryError, setPrimaryError] = useState<string | null>(null);
   const [primaryCopied, setPrimaryCopied] = useState(false);
+  const [selectedEvidence, setSelectedEvidence] = useState<number[]>([]);
+  const [applyLoading, setApplyLoading] = useState(false);
+  const [applyError, setApplyError] = useState<string | null>(null);
 
   const loadContext = async () => {
     setLoading(true);
@@ -137,6 +146,11 @@ export default function CockpitDashboard() {
     setPrimaryError(null);
     setPrimaryCopied(false);
   }, [activeAction]);
+
+  useEffect(() => {
+    setSelectedEvidence(lensResult ? lensResult.evidence.slice(0, 3).map((_, index) => index) : []);
+    setApplyError(null);
+  }, [lensResult]);
 
   const runLens = async (lensId: CockpitLensId) => {
     setActiveLensId(lensId);
@@ -201,6 +215,43 @@ export default function CockpitDashboard() {
     if (!primaryResult) return;
     await navigator.clipboard.writeText(primaryResult.markdown);
     setPrimaryCopied(true);
+  };
+
+  const toggleEvidenceSelection = (index: number) => {
+    setSelectedEvidence((current) =>
+      current.includes(index) ? current.filter((item) => item !== index) : [...current, index].sort(),
+    );
+  };
+
+  const acceptSelectedChanges = async () => {
+    if (!lensResult || !activeLensId) return;
+    setApplyLoading(true);
+    setApplyError(null);
+    setReviewDecision(null);
+
+    try {
+      const acceptedChanges = selectedEvidence
+        .map((index) => lensResult.evidence[index])
+        .filter(Boolean)
+        .map((body, index) => ({
+          change_type: "add_synthesis_log" as const,
+          title: `${lensResult.title} · Change ${index + 1}`,
+          body,
+          reason: lensResult.recommendedMove,
+        }));
+
+      if (!acceptedChanges.length) {
+        throw new Error("Select at least one change to apply.");
+      }
+
+      await applyEquilibriumAiChanges({ lensId: activeLensId, acceptedChanges });
+      setReviewDecision("accepted");
+      await loadContext();
+    } catch (applyIssue) {
+      setApplyError(applyIssue instanceof Error ? applyIssue.message : "Could not write back into Equilibrium.");
+    } finally {
+      setApplyLoading(false);
+    }
   };
 
   const model = useMemo(() => {
@@ -653,9 +704,24 @@ export default function CockpitDashboard() {
                 <div className="grid gap-3">
                   {lensResult.evidence.map((item, index) => (
                     <div key={`${item}-${index}`} className="flex gap-3 rounded-xl border border-white/10 bg-[#07090d] p-4 text-sm leading-6 text-[#e9ddca]">
-                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-[#f6d58a]/45 text-xs text-[#f6d58a]">
-                        {index + 1}
-                      </span>
+                      {activeLensId === "refine-operating-system" ? (
+                        <button
+                          type="button"
+                          onClick={() => toggleEvidenceSelection(index)}
+                          className={`mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border text-xs transition ${
+                            selectedEvidence.includes(index)
+                              ? "border-[#93f0e8] bg-[#071d1d] text-[#93f0e8]"
+                              : "border-[#f6d58a]/45 text-[#f6d58a]"
+                          }`}
+                          aria-label={`Select change ${index + 1}`}
+                        >
+                          {selectedEvidence.includes(index) ? "✓" : index + 1}
+                        </button>
+                      ) : (
+                        <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-[#f6d58a]/45 text-xs text-[#f6d58a]">
+                          {index + 1}
+                        </span>
+                      )}
                       <p>{item}</p>
                     </div>
                   ))}
@@ -673,10 +739,12 @@ export default function CockpitDashboard() {
                 <div className="flex flex-wrap items-center gap-3 rounded-xl border border-white/10 bg-[#07090d] p-4">
                   <button
                     type="button"
-                    onClick={() => setReviewDecision("accepted")}
-                    className="inline-flex h-10 items-center gap-2 rounded-full border border-[#4ecdc4]/35 bg-[#071d1d] px-4 text-sm font-medium text-[#93f0e8] transition hover:border-[#93f0e8]/70"
+                    onClick={() => void acceptSelectedChanges()}
+                    disabled={applyLoading || activeLensId !== "refine-operating-system"}
+                    className="inline-flex h-10 items-center gap-2 rounded-full border border-[#4ecdc4]/35 bg-[#071d1d] px-4 text-sm font-medium text-[#93f0e8] transition hover:border-[#93f0e8]/70 disabled:cursor-not-allowed disabled:opacity-45"
                   >
-                    Accept changes
+                    {applyLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+                    Accept selected changes
                   </button>
                   <button
                     type="button"
@@ -693,12 +761,18 @@ export default function CockpitDashboard() {
                     Skip
                   </button>
                   <p className="text-sm leading-6 text-[#9ea7b3]">
-                    {reviewDecision === "accepted" && "Accepted locally. Nothing has been written back yet."}
+                    {reviewDecision === "accepted" && "Changes applied to Equilibrium."}
                     {reviewDecision === "later" && "Marked for later review. Nothing has been written back yet."}
                     {reviewDecision === "skipped" && "Skipped locally. Nothing has been written back."}
-                    {!reviewDecision && "Review only. AI proposes; Sasha decides before anything writes back."}
+                    {!reviewDecision && activeLensId === "refine-operating-system" && "Select the changes to save. AI proposes; Sasha decides before anything writes back."}
+                    {!reviewDecision && activeLensId !== "refine-operating-system" && "Review only. Writeback is enabled for Refine My Operating System first."}
                   </p>
                 </div>
+                {applyError && (
+                  <p className="rounded-xl border border-[#f0a37a]/30 bg-[#24100d] p-3 text-sm leading-6 text-[#ffc0a5]">
+                    {applyError}
+                  </p>
+                )}
               </div>
             )}
 

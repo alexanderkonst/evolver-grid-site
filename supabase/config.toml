@@ -15,6 +15,9 @@ verify_jwt = false
 [functions.cockpit-ai-lens]
 verify_jwt = true
 
+[functions.apply-equilibrium-ai-changes]
+verify_jwt = true
+
 [functions.suggest-next-quest]
 verify_jwt = true
 
@@ -124,4 +127,3 @@ verify_jwt = false
 # request to the Edge Function" with no useful diagnostics.
 [functions.delete-account]
 verify_jwt = false
-
