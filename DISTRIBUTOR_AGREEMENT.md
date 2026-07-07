@@ -254,7 +254,7 @@ The artifacts you generate are **yours**. You retain full ownership of the *cont
 
 The right to use your outputs *commercially* tracks the path under which you're using the Platform:
 
-- **Path A (hosted subscription)** — commercial rights to outputs are defined in your specific subscription agreement with Alexander Konstantinov. Pricing and the exact scope of commercial use (personal use only / paid client work / agency / community deployment) are bespoke per engagement at this stage. Upgrading or extending the agreement at any time retroactively grants additional commercial rights to outputs already produced.
+- **Path A (hosted subscription)** — commercial rights to outputs are defined in your specific subscription agreement. Pricing and the exact scope of commercial use (personal use only / paid client work / agency / community deployment) are bespoke at this stage. Upgrading or extending the agreement at any time retroactively grants additional commercial rights to outputs already produced.
 - **Distributor Instance (Path B)** — outputs generated through your forked instance are part of the Platform Revenue surface and are governed by the rev-share, reporting, and other obligations of this agreement.
 
 ### 15.3 Methodology shape stays licensed
