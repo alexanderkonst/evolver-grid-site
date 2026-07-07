@@ -253,7 +253,7 @@ Next irreversible action:
 
 - Derive a simplified mark from the canonical projection: heavier strokes, fewer visible relationships, same six-ray lineage.
 
-### T4: After Gold Medallion Candidate v2
+### T4: After Halted 2D Candidate Attempt
 
 Date: 2026-07-06.
 
@@ -261,22 +261,16 @@ What the derivation pass revealed:
 
 - Sasha's sketch is likely the missing bridge between the 3D artifact and a usable 2D identity mark.
 - The 2D mark wants a first-class boundary circle, stronger beams, and gold-like artifact material.
-- The earlier bold-field pass improved legibility but still felt like a flat study.
-- Sasha's Image 1 reference clarified the stronger target: dimensional gold lattice medallion, no iridescent fill.
-- Image 2 is useful for hero/artifact language; Image 3 is useful as construction logic, not material direction.
-- The medallion is a stronger master-mark direction, but it still needs a dedicated mono/small-size cut.
+- The attempted bold-field and medallion translations missed the visual bar badly enough to halt.
+- More image generation without tighter art direction is the wrong next move.
+- The UI-facing system should preserve only the original canonical projection and physical artifact for now.
 
 Revision made:
 
-- Added `primary-projection-bold-field.svg`.
-- Generated `primary-projection-bold-field.svg.png`.
-- Revised the candidate into the same gold-like palette as the artifact family.
-- Added `primary-projection-gold-medallion.svg`.
-- Generated `primary-projection-gold-medallion.svg.png`.
-- Updated `identity_stress_test.html` to compare delicate projection vs gold medallion candidate.
-- Regenerated `canonical-artifact-identity-stress-test.png`.
-- Updated `identity_stress_test_capture_report.md`.
-- Added `identity_derivation_notes.md`.
+- Removed rejected bold-field and medallion candidate files from `docs/assets/canonical-artifact/projections/`.
+- Updated `identity_stress_test.html` so it no longer loads rejected candidate figures.
+- Updated `identity_derivation_notes.md` with the halt decision and non-use rule.
+- Updated `debug_report.md` so the rejected candidates are not treated as current deliverables.
 
 Open decisions:
 
@@ -284,7 +278,7 @@ Open decisions:
 
 Next irreversible action:
 
-- Produce a reduced small-size cut from the gold medallion: ring, six anchoring nodes, fewer internal rods, stronger mono behavior, same artifact lineage.
+- Pause 2D candidate production. Resume only after an accepted art-direction brief or human-grade craft path exists.
 
 ## Open Decision Standard
 
