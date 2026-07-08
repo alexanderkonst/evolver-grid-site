@@ -8289,3 +8289,16 @@ The category/shelf framework landed and compounded. What got documented: "Catego
 Instruments: Equilibrium agent WRITE lane verified live (`equilibrium-agent-write`; Threshold Language Harvest task created by Claude; twin-workstream wrinkle noted). CLAUDE.md restructured (Shape/Voice/Stance; AI-tell bans scoped to external copy only). Sasha's copywriting voice captured to memory with 8 traits.
 
 Threshold Language Harvest, pass 1: **Nia** ("I'm in survival mode... really in the limbo... what is my real offer, what do I really want to be known for... will people even trust to buy from me"), **Roman** ("я хочу владеть своим временем... хочу выйти на другой уровень абстракции... хочется реально делать, что по кайфу"), **Catalina** ("nothing was coming through... I feel like just a boat being whipped by waves in the ocean, I don't really have a true north right now, whereas for a long time I did... 22-year-olds with an iPhone can do the work, but they don't have the experience I do... I'm exhausted of doing everything by myself... I've lost the wind in my sails"). Denis pending (Sasha to provide transcripts).
+
+### Day 118 addendum: shelf lines shipped + Denis harvested (July 8, 2026)
+
+**Shipped and deployed (commit 5cdfd4cd):** shelf lines live on /path + /ignite ("Next-chapter positioning strategy for founders · MIT-trained", en/ru/es), /landing + /1-pager ("Onboarding and matching infrastructure for communities and ecosystems"), CRM outreach pattern gained the shelf-line step. Verified in preview on all four surfaces + RU, zero console errors. The shelf is picked in public.
+
+**Threshold Language Harvest, pass 2 — Denis** (from the Oct 2024 transcripts Sasha shared): "Все мы приходим в этот мир для какой-то задачи... хотелось бы по крайней мере [понять для какой]" · "определить предназначение и понять, как я с ним коррелирую... как к этому предназначению можно двигаться" · "я нахожусь в состоянии, когда я это осознал... и дальше я в состоянии точку Б определять. Понять, как туда бежать."
+
+**First archetype draft (4 doors, one house):**
+1. **The scattered polymath in survival limbo** (Nia): "what is my real offer, what do I want to be known for?"
+2. **The successful operator wanting the next level** (Roman): "хочу владеть своим временем, выйти на другой уровень абстракции."
+3. **The mid-career craftsperson who lost true north** (Catalina): "nothing was coming through... a boat whipped by waves... I've lost the wind in my sails."
+4. **The purpose-awakened professional** (Denis): "мы приходим для какой-то задачи; хочу определить предназначение и понять, как туда бежать."
+Underneath all four: the way I've been working can't produce what I know is possible; what is mine to build/do next?
