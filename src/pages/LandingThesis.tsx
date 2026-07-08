@@ -403,6 +403,16 @@ const LandingThesis = () => {
             </p>
           </section>
 
+          {/* Day 118 (2026-07-08): the shelf line — what we build, named in a
+              category partners and investors already know. See
+              marketing_playbook.md, "Category Lines: the Shelf Key". */}
+          <p
+            className="text-center mt-10 text-[13px] font-semibold uppercase tracking-[0.16em]"
+            style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
+          >
+            What we build: onboarding and matching infrastructure for communities and ecosystems
+          </p>
+
           {/* ── THE RESONANT INVITE — single CTA for this stage ── */}
           <section className="mt-16 sm:mt-20 text-center">
             <Ornament className="mb-10" />

@@ -2,6 +2,8 @@
 
 > *A one-pager. © 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
+**Onboarding and matching infrastructure for communities and ecosystems.**
+
 *An operating system for a civilization that coordinates around who people actually are.*
 
 Planetary OS helps people find their unique contribution, find the right people to build with, and turn that into real ventures. It does the same thing at every scale: a person, a team, a community, and ecosystems, evolution-oriented communities, network states, and land-based projects. The entire system runs on one core move: making a person's differentiated value legible enough that the right collaborations, ventures, and opportunities can form around it.

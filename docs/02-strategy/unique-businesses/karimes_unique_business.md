@@ -238,3 +238,38 @@ Looking forward to my conversation with Karime.
 *v1.1 · Day 88 · June 6, 2026 · Copy-clarity pass on both surfaces after a Top-Talent-grounded UB synthesis revealed the funnel was leaving signal on the table. Shipped: bridge trim (7-item pain list → 3-item), cut two duplicate bold blocks, restrained emphasis to one span per page (H1 "alone" only), unified CTA label across page + microcopy + doc ("Speak with Karime" / "Free 20-minute fit call"), eyebrow size bump (11 → 13px), and full reframe of the intake CTA cluster from the abstract "Send your reflection" → the literal "Send to Sasha on WhatsApp" with explicit naming of who's on the other end and what physically happens on click. Held for sign-off (NOT shipped): platform-wide rail + sidebar visibility — both surfaces still render inside `GameShellV2` with the full BUILD-space sections panel visible, which contradicts the doc's "outside the FYTT platform" architectural principle. Three sign-off options drafted (CSS-only hide, new GameShellV2 prop, slimmer page shell); awaiting Sasha's call.*
 
 *v1.2 · Day 89 · June 6, 2026 · Two-track pass. **Intake-form track:** added the 6th "Something else (I'll describe it)" multi-select option that reveals an inline textarea on selection. The textarea is mobile-aware (rows=2 baseline, no fixed height so iOS soft keyboard lifts cleanly, inputMode + autoCapitalize set), capped at 400 chars with a live counter, and the CTA is disabled with the helper "Add a sentence to send." when "Other" is selected without text. The WhatsApp message body splices a verbatim "• Something else: \<text\>" bullet at the end instead of generic option-label text, so Sasha sees the visitor's own words. **Rail-polish track (Karime-scoped, NOT platform-wide):** three rail fixes on `/build/karime` after a live pixel-measurement pass — (a) BUILD hex glyph re-centered inside its 26x26 chip box (root cause: GlyphIcon's inline `fontSize=32` survived the existing compact normalization because it lived on the GRANDCHILD span, not the direct child); (b) FYTT brand torus now uses the same 48x48 grid place-items-center machinery as nav chips so both centering pipelines are identical (was math-centered via mx-auto but the brand-spin AABB rotation magnified PNG-internal whitespace bias); (c) FYTT brand-logo prominence via a three-stop warm cream-gold drop-shadow halo, same size (28px) preserved per Sasha's directive. All four new rules scoped to `[data-skin="karime"][data-rail-compact="true"]`; Aurora / NS / daouniverse untouched. Verify-fix note: the wrapper-padding rule initially shipped with `> div:first-child` which matched nothing (first child is a `<span>` gold spine, not a div); corrected to `> div:nth-of-type(1)`. Next platform-wide work (Sasha-approved, NOT done yet): extend the Karime rail-minimization pattern to the entire platform — explicitly held until this Karime-scoped logo work is verified visually on the live deploy.*
+
+---
+
+## Category work: her shelves and shelf key (July 7, 2026)
+
+> *From Karime's own June 4-10 download ("Self-Intimacy and Relational Healing" conversation, shared by Sasha) + the shelf framework in `marketing_playbook.md` ("Category Lines: the Shelf Key"). Her words quoted, not paraphrased.*
+
+### Her essence, in her own words
+
+- Mission: "plug people's hearts back into the love source... so they stop looking outside of themselves."
+- Healing redefined: "removing everything that is false to reveal what is true."
+- What her work gives: "alleviation, a deep sense of lightness, of a deep exhale, of peace, of wholeness, of trust, of relaxation."
+- Master keys: "presence and relaxation... fully relaxed and flexible and fluid in the present moment."
+- The thread her whole map revealed: **"From holding everything alone to discovering that life is holding you."**
+
+### Her map (June download)
+
+Four concentric circles: **Self** (self-intimacy, coherence, inner authority) · **Partner** (sacred partnership, conscious relating; her named growth edge is couples work) · **Life** (heartbreak initiations, grief, illness as messenger, evolutionary meaning-making) · **Source** (cosmic mother/father, drinking from source). Fifteen-plus domains, all doors into one temple. Her architecture organizes around **human initiations, not modalities**; the modalities (coaching, ceremony, Santa Maria, cannabis, ritual) serve the initiations.
+
+### The shelves
+
+**Her shelf key: WEF Global Leadership Fellows** (the Forum's elite leadership track). It legitimately places her on the leadership-transformation shelf, where a day of work costs $5,000-25,000 from organizational budgets. Without it, her language files her next to therapists at ~$150/session. Same gift, ~20x price, purely by shelf.
+
+| Offer direction | Shelf it enters (has budget) | Category line (draft) | New category it's building |
+|-----------------|------------------------------|------------------------|-----------------------------|
+| Leadership work | Leadership development / executive coaching | **Leadership transformation, WEF-trained** | Relational leadership (leading from presence, not depletion) |
+| Couples work | Couples intensives / retreats | Conscious partnership intensives for couples growing at different speeds | Sacred partnership as a path of awakening |
+| Women's work | Women's leadership retreats | Feminine leadership initiation for women done with over-holding | From carrying life to being carried by life |
+| Ceremony / plant work | (method, not a shelf) | Stays inside the containers, never on the public label | Presence-and-relaxation initiation |
+
+**Rules applied:** (1) relationships are her method, never her public category: "I transform how leaders relate, at home and at work" sells on the leadership shelf; "I mend relationships" sells on the therapy shelf. (2) Plant medicine stays inside the container (legality + budget). (3) Enter the leadership shelf first (the funded one her credential unlocks); the deeper category (initiation work, heart awakening) is the room people discover after entering. (4) Couples intensives priced as leadership work for two, not as therapy.
+
+### Steward note (July 5-6 excavation)
+
+Her pattern doorway, distinct from Sasha's: not reversing disbelief but **reversing rupture** ("if my relationships deteriorate, I don't deserve to claim I restore relationships"). Her medicine: "my gift is not disproven by relationships that cannot meet truth." Her personalized stewardship artifact exists and is held privately; it is hers to receive, not a corpus document.

@@ -97,11 +97,12 @@
 ### The pattern
 
 1. Recognition opener.
-2. Shared core / myth: the way a person naturally thinks, creates, and solves is their real market value.
-3. Precise bridge: high-precision articulation in ~2 min + matching.
-4. Network leverage: run it across a network → capability map + member matches.
-5. Peer frame: different ends of one thesis.
-6. Close: short call + experiential link + Calendly; no price or pitch at the door.
+2. **Shelf line (added Jul 8, 2026):** one sentence that places the offer on a shelf the recipient already funds ("member onboarding and matching infrastructure for communities" · "next-chapter positioning strategy for founders"). The category before the myth; see `marketing_playbook.md`, "Category Lines: the Shelf Key."
+3. Shared core / myth: the way a person naturally thinks, creates, and solves is their real market value.
+4. Precise bridge: high-precision articulation in ~2 min + matching.
+5. Network leverage: run it across a network → capability map + member matches.
+6. Peer frame: different ends of one thesis.
+7. Close: short call + experiential link + Calendly; no price or pitch at the door.
 
 ### Load-bearing lines
 

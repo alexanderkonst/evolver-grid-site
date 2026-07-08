@@ -269,6 +269,14 @@ Premium customer service throughout every touchpoint is not "good service" — i
 
 > **The synthesis:** Parts I-VI describe the physics. Part VII names the source. The energy flowing through the transactional field IS love. When the field is coherent (Purity Check), the love flows unimpeded and transactions arise naturally — not through manipulation, but through alignment confirmed.
 
+### First-Principles Lineage (added July 7, 2026 — Money Studies cycle #1)
+
+The stance underlying Parts I-VII was arrived at independently, then found confirmed at the headwater of prosperity literature. Henry Harrison Brown, *Dollars Want Me* (1903), the first published articulation that money seeks its user rather than the reverse:
+
+> "'Dollars want me!' in place of 'I want dollars!'" ... "They need your heart, brain and hand that they may benefit the world."
+
+Brown's "honey-pot" (via Elizabeth Towne: "you are the pot of honey, the dollars are the flies... the honey doesn't worry about the flies; it is content to be sweet") is the 1903 octave of "You don't hunt. You hum." His Two Poles (real supply the world will pay for + every dollar dedicated to service) are the 1903 octave of value crystallization + the Purity Check. Convergent arrival across 123 years is evidence the pattern is structural, not stylistic. Full study: [money-studies/sources/henry_harrison_brown_dollars_want_me.md](../05-reference/money-studies/sources/henry_harrison_brown_dollars_want_me.md).
+
 ---
 
 ## Part VIII: The Circulatory System of the Venture Studio

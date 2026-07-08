@@ -205,6 +205,12 @@ const OnePager = () => {
           >
             Planetary OS
           </h1>
+          {/* Day 118 (2026-07-08): the shelf line — the category sentence a
+              cold reader (or their AI) can file instantly. See
+              marketing_playbook.md, "Category Lines: the Shelf Key". */}
+          <p className="mt-4 text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.16em]" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}>
+            {t("onePager.shelfLine")}
+          </p>
           <p
             className="mt-5 italic mx-auto max-w-[44ch]"
             style={{

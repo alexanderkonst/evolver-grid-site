@@ -6671,6 +6671,10 @@ This is a clarifying seed inside recognition economics, not a replacement for th
 
 ---
 
+### Domain 95 refinement (July 7, 2026): the measurement unlock
+
+Sasha's crystallization, near-verbatim: **the scaling parameter is self-knowledge; articulation is how you measure and register it.** What can be measured can be tracked, and what can be tracked can be accelerated. That is why precision scores (the 9.9 roasts) matter: they are the instrument reading on the scaling parameter. The maxim that falls out: **know how you are different from other humans, be different, and seize the high-fit opportunities that then open up.** Every product in the line is a tool somewhere on that loop.
+
 ## Domain 96: Signal-Preserving Holonic Artifact Propagation
 
 > *Added June 25, 2026 — discovered while translating Alexander's locked uniqueness into shadow and myth without losing resonance.*
@@ -6903,6 +6907,10 @@ Human approval determines what enters the holograph. This keeps the system livin
 ## Domain 98: Prime Invariant Branding (Generative Ontology Before Projection)
 
 > *Added July 3, 2026 — surfaced through the "The Prime Invariant" artifact and the realization that the logo should not be treated as a static 2D brand mark, but as a projection of a deeper canonical object.*
+
+**In plain words (added July 7, 2026):** most brands start with a logo and invent everything else to match it. Here it's the reverse. There is one golden object at the center (an octahedron inside a sphere). The logo is just that object's shadow on a wall. The products, the pages, the story, the events: each is another shadow of the same object, cast from a different angle. That's why everything feels like one thing: it IS one thing, seen from different sides. "Find the invariant. Everything else is a derivation."
+
+**The animation corollary (July 7, 2026):** the same nature that projects into logo and products can be connected to and turned into a living strategic instrument (the Founder Cockpit reading the venture back to its founder). That is what animation actually means here: not motion graphics, but giving something life out of the overflow of life. The brand object, the products, and the cockpit are one nature at three degrees of aliveness: symbol, tool, and mirror.
 
 > *"Find the invariant. Everything else is a derivation."*
 

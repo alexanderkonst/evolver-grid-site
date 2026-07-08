@@ -194,7 +194,8 @@
     "sectionLeaveWith": "What you leave with",
     "sectionBook": "Book your session",
     "sectionAlternatesFaq": "Alternates and FAQ",
-    "sectionMethodologyVideo": "Methodology video"
+    "sectionMethodologyVideo": "Methodology video",
+    "shelfLine": "Next-chapter positioning strategy for founders · MIT-trained"
   },
   "auth": {
     "emailRequiredTitle": "Email required",
@@ -2694,7 +2695,8 @@
       "h1After": ".",
       "h2": "In 6–8 Weeks.",
       "guarantee": "Money-Back Guaranteed.",
-      "fineprint": "Provided you do your part."
+      "fineprint": "Provided you do your part.",
+      "shelfLine": "Next-chapter positioning strategy for founders · MIT-trained"
     },
     "ladder": {
       "payAsYouProgress": "Pay as you progress",
@@ -2842,7 +2844,8 @@
     "secondaryBook": "Book a chat with Aleksandr",
     "stakeEyebrow": "The stake",
     "stakeQuote": "A civilization that organizes around who people actually are, instead of flattening them into standardized roles. Make differentiated human value legible, and everything else, the matching, the ventures, the ecosystems and network states, follows.",
-    "footerTagline": "Built in the open. Owned by the people who use it."
+    "footerTagline": "Built in the open. Owned by the people who use it.",
+    "shelfLine": "Onboarding and matching infrastructure for communities and ecosystems"
   },
   "founderMarketFit": {
     "heroEyebrow": "Human-market fit for founders and builders",
