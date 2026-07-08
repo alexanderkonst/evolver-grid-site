@@ -145,3 +145,40 @@ staleness_or_contradictions: >
   infrastructure": awakened people need contribution-legibility and matching
   infrastructure to coordinate real action.
 ```
+
+### 2026-07-07 — Oyi covers the Claude Max subscription ($100, in-kind)
+
+```yaml
+date: 2026-07-07
+day_number: 117
+title: Oyi pays the $100 Claude Max subscription (in-kind support)
+source: Sasha dictation (pulse test #2)
+actors:
+  - Sasha / Alexander Konstantinov
+  - Oyi Sun / WeGoodOvaHere
+what_happened: >
+  Oyi paid the $100/month Claude Max subscription that powers Sasha's AI
+  collaboration (the very lane this project runs on). Incoming payment
+  in kind from a collaborator and client who cares for the partnership,
+  while his white-label community-node proposal sits in advisor review.
+energy_exchanged:
+  - money-in-kind ($100)
+  - care
+  - partnership trust
+  - infrastructure support
+affected_holons:
+  - individual founder
+  - founder-collaborator dyad (Sasha + Oyi)
+  - the AI collaboration lane itself
+affected_artifacts:
+  - strategic_crm_outreach_tracker.md (Oyi row + revenue summary)
+  - crm-snapshot.json
+  - project-pulse-snapshot.json
+phase_shift_significance: minor
+next_action: >
+  Thank Oyi; keep the proposal review warm without nudging. Note the
+  pattern: the field is now funding the instrument that grows the field.
+staleness_or_contradictions: >
+  None. Revenue ledger updated: Oyi cumulative $1,485; strict received
+  total $2,371.
+```

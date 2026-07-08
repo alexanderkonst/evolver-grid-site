@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T00:07:58.662Z",
+  "generated_at": "2026-07-08T19:55:47.284Z",
   "version": "v3.9",
   "contactsCount": 29,
   "stageDistribution": {
@@ -40,7 +40,7 @@
     "BUILDER": 1
   },
   "energyLeakCount": 5,
-  "cashReceivedUsd": 2271,
+  "cashReceivedUsd": 2371,
   "revShareContractsUsd": 277,
   "upcomingEvents": [
     {

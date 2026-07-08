@@ -212,6 +212,10 @@
 
 | # | Item | Priority | Notes |
 |---|------|----------|-------|
+| CK1 | **Investor pitch deck assembly from the product evolution table** | 🟡 started 2026-07-08 | Spine pre-written: shelf-today = market-we-enter slide · category lines = product slides · evolution column = vision slide · "seven doors one room" = thesis slide. Table: `alexanders_unique_business.md`. Sasha has prior deck work to bring in. Casebook: `marketing_playbook.md` Part III-B/"Category King Casebook" |
+| CK2 | **Threshold Language Harvest → 5-7 stable archetypes** | 🟡 started 2026-07-07 | 4 of ~12 voices done (Nia, Roman, Catalina, Denis). Kinetic-metaphor + vector-not-self + curve-position discoveries logged in session log Day 118 |
+| CK3 | **Personalytics deck → 2015-2026 lineage mapping** | 🟡 [brief] | Sasha found the deck; book-grade lineage evidence (category creation without category language, 2018) |
+| CK4 | **Sergey live demo of the collaboration form** | 🔴 | 9-step demo drafted (see session log); record it → pitch-deck proof + landing demo |
 | FC1 | Deploy + verify Founder Cockpit live read/writeback | 🔴 | Run the one Lovable prompt against latest repo. Deploy `equilibrium-ai-context`, `cockpit-ai-lens`, `apply-equilibrium-ai-changes`; verify live read, safe `add_synthesis_log` writeback, non-write paths, and admin-only security. |
 | FC2 | Reorganize cockpit buttons into product categories | 🔴 | Implement the taxonomy in `living_project_holograph.md`: Command, Diagnostic, Continuity / Memory, Externalization. Put practical high-use buttons at the top; reduce dashboard sprawl. |
 | FC3 | Add Command buttons: **What Should I Do Next?**, **Who Matters Now?**, **Weekly Founder Brief**, **Revenue Focus** | 🔴 | These are the founder's practical daily/weekly buttons. Each uses the same cockpit context packet and the concise output contract. `Name High-Leverage Moves` likely becomes What Should I Do Next?; `Generate Follow-Ups` + `Key Relationships Now` likely become Who Matters Now? |
@@ -436,6 +440,12 @@ A unique face of eternity.
 ---
 
 ## 🔮 Parked / Future
+
+### Parked (2026-07-08, Day 118) — Money-Stance Module (platform reveal, sibling to ZoG)
+
+**What:** a reveal experience diagnosing the user's money stage (1-7 per the [Money Holomap](../05-reference/money-studies/money_holomap.md)), with the Stage 4→5 inversion as the aha moment: "you've been hunting; here's what humming looks like for *your* gift." Natural value-ladder entry for the same tribe that buys Ignition sessions. Lineage: Money Studies cycles #1-2 (Brown 1903 + ITFT Part VII); the "being wanted" register principle now lives in the marketing playbook (Step 0.5).
+
+**Restore condition:** viral launch fired and stabilized. New module work stays parked until then — the launch is the bottleneck, not the product line.
 
 ### Parked (2026-05-22, Day 78) — Appearance tab in Settings (skin chooser)
 

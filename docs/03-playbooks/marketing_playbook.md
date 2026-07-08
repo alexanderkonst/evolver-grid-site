@@ -299,6 +299,31 @@ Your truth appears in multiple community languages. If it resonates in 3+ commun
 > [!IMPORTANT]
 > **The confabulation layer:** Your ICP cannot accurately name their own root cause. They confabulate plausible explanations ("the market wasn't ready," "funding dried up"). The myth gives them the vocabulary to see the real root cause. Design messaging that names what they CAN'T name themselves.
 
+### Step 0.5: The Register Test — Being Wanted, Not Wanting
+
+> *Added July 8, 2026 — Money Studies cycle #1. Lineage: [ITFT Part VII](../01-vision/integral_transactional_field_theory.md) (Sales as Love) · Brown 1903 ([source study](../05-reference/money-studies/sources/henry_harrison_brown_dollars_want_me.md)): "He who says, 'I want your dollars!' repels you; he who says, 'You want my goods and I am glad to serve you!' draws business."*
+
+Every piece of copy is written in one of two registers:
+
+| Register | Stance | Felt by the reader as |
+|----------|--------|----------------------|
+| **Wanting** | The copy needs the reader to say yes | Pressure, being hunted |
+| **Being wanted** | The copy serves whether they say yes or no | Sovereignty, being seen |
+
+**The one-question test, applied to every copy block before it ships:**
+
+> *Does this line need the reader to say yes, or does it serve them whether they say yes or no?*
+
+**The three neediness tells:**
+
+1. **Urgency that serves the seller** — "don't miss out," countdowns, scarcity that isn't real. (Real capacity limits stated plainly are fine; they're facts, not pressure.)
+2. **Over-justifying the price** — stacking bonuses, apologizing with value math. Cost-Signal Fit works in the opposite direction: state the price, let it signal.
+3. **Chasing CTAs** — asking twice, "last chance," following the reader out the door. One clean invitation per stage (funnel monogamy) and the door stays open.
+
+**What this does NOT forbid:** naming pain sharply (Part IX consequence blocks stay — diagnosis from sovereignty is service), binary framing, or the identity-snap CTA. The customer voicing their own desire ("I'm done circling this — let's build it") IS the being-wanted register: they make the move.
+
+**When it matters most:** launch waves and low-revenue moments — exactly when the wanting register creeps in under pressure. Standing gate: every launch draft (Reddit, Substack, outreach) passes the one-question test before it ships.
+
 ---
 
 ## Phase 1: Packaging (Format + Sequence)
@@ -1385,7 +1410,7 @@ Self-recognition (Domain 100) is the strongest force for identity-level ideas. T
 
 **Force 3 is why the Curiosity Gap share works.** The ZoG share post pays the sharer twice: it says who they are (identity) and it starts a conversation about them (social currency). The product result is the currency. Any self-knowledge output has this property built in: sharing MY result is always about ME.
 
-**Force 4, Pentland's version (adopted July 7).** Sandy Pentland's Social Physics: communities thrive on **idea flow**, which has two motions. *Engagement*: repeated interaction inside a dense cluster turns an idea into actual behavior change. *Exploration*: bridges to other clusters bring fresh ideas in. Both are measured by interaction patterns, not by content quality. Mapping to this venture: **collaboration rate is an idea-flow metric**; the two growth lanes already map cleanly (Resonant Invites = engagement inside dense communities like Oyi's and Ariana's; Viral Vectors / Threshold Answering = exploration across clusters). Practical rule: seed inside dense communities for behavior change, use public threshold-answering for reach, and never expect a cold broadcast to change behavior in one touch.
+**Force 4, Pentland's version (adopted July 7).** Sandy Pentland's Social Physics: communities thrive on **idea flow**, which has two motions. *Engagement*: repeated interaction inside a dense cluster turns an idea into actual behavior change. *Exploration*: bridges to other clusters bring fresh ideas in. Both are measured by interaction patterns, not by content quality. Mapping to this venture (refined July 8, Sasha): idea flow is upstream of collaboration; high flow does not guarantee collaboration, but collaboration cannot start without it. So **collaboration rate measures the crystallization of idea flow into structure** (like revenue vs traffic); the two growth lanes already map cleanly (Resonant Invites = engagement inside dense communities like Oyi's and Ariana's; Viral Vectors / Threshold Answering = exploration across clusters). Practical rule: seed inside dense communities for behavior change, use public threshold-answering for reach, and never expect a cold broadcast to change behavior in one touch.
 
 **The dominance rule:** for ideas about who a person IS (this venture's entire category), self-recognition compresses forces 1-3 into one moment: seeing yourself in the idea is the click, the payoff, and the identity signal at once. That is why this domain is unusually viral-ready by construction.
 
@@ -1409,6 +1434,52 @@ Self-recognition (Domain 100) is the strongest force for identity-level ideas. T
 **Relation to the Adoption Ladder:** the category line is the Recognition layer applied to offers. Shelf = public recognition surface; thesis = backstage structure. Same split as recognition vs selection language.
 
 **How categories actually get created (July 7 addition).** Category creation is not one big announcement. It is several familiar doors bending toward one new room. Apple entered computers, phones, and watches (all existing shelves); the new room people found themselves in was personal computing as identity. The sequencing law: a category becomes real when it has spread into the de-facto noosphere, not when it is coined. So: enter known shelves, accumulate users, cash, and proof, and name the new category publicly only when enough people are already living in the room. Category-king economics (the Play Bigger research: the category creator captures roughly three quarters of the category's value) is the prize for getting this sequence right, and the punishment for announcing cold is that nobody can buy from a shelf they've never seen.
+
+## The Category King Casebook (July 8, 2026)
+
+> *Is the "category kings take ~3/4 of the value" claim real, how did winners do it, how did famous failures lose it, and what is the roadmap. Evidence quality stated first, then the cases, then the common thread.*
+
+### Evidence quality, honestly
+
+The **76% number** comes from *Play Bigger* (Ramadan, Peterson, Lochhead, Maney, 2016): their analysis of US VC-backed startups founded 2000-2015 found category kings capturing ~76% of the category's market cap. It is consultant research, directionally strong, not peer-reviewed. The peer-reviewed anchor is **Golder & Tellis (1993)**: market *pioneers* fail ~47% of the time and hold ~10% average share, while "early leaders" who enter after the pioneer and dominate take the market. Read together: **the value goes to whoever DEFINES and DOMINATES the category, not to whoever arrives first.** That distinction is the whole game.
+
+### Kings and their signature moves
+
+| King | Category move | The lesson |
+|------|---------------|------------|
+| **Salesforce** | "No Software": named the enemy (installed software) and evangelized a point of view years before product superiority | Name the old way as the enemy; the POV is the product's advance guard |
+| **Apple (iPhone)** | Entered the existing "phone" shelf and redefined it from inside; never announced a new category cold | Enter familiar, redefine from within; the ecosystem (App Store) captured the economics |
+| **Amazon AWS** | Built cloud infrastructure quietly through developers, let usage define the category, named it after it existed | Let the room fill before you put the name on the door |
+| **HubSpot** | Coined "inbound marketing" and gave the whole methodology away (book, free courses, certification) | Teaching the market IS the moat; education creates the category's citizens |
+| **Tesla** | Entered "cars," redefined around software + the Supercharger network | Own the category's infrastructure, not just its product |
+| **Red Bull** | Created Western energy drinks by owning ritual, culture, and media, not formula | A category is a culture; own the culture |
+
+### The famous failures
+
+| Failure | What killed the crown | The lesson |
+|---------|----------------------|------------|
+| **TiVo** | Invented the DVR, educated the whole market, cable companies harvested it | Education without distribution/ecosystem control = you teach for someone else's harvest |
+| **Segway** | Announced a "revolution" with no shelf to enter (not a bike, not a car) | Uncategorizable = unbuyable; cold category announcements die |
+| **Napster** | Created digital music demand, ignored the ecosystem's rules; iTunes harvested it | The king must be able to legally and structurally hold the territory |
+| **Webvan, Quibi** | Right category idea, no threshold pull; capital substituted for demand | Why-now is a force of nature, not a budget line |
+| **Friendster, MySpace** | Created the category, lost the throne through product neglect | Coronation is not tenure; the king must keep winning the core metric |
+| **Kodak, Xerox PARC** | Invented the future internally; identity refused the shelf shift | The incumbent's self-image can beat category logic from inside |
+
+### The common thread (the Category King Roadmap)
+
+1. **Enter through a familiar shelf; redefine from inside.** (Apple, Tesla. Already shipped here: the shelf lines.)
+2. **Name the enemy, not just the product.** (Salesforce's "No Software"; ours: standardization, "fit in.")
+3. **Teach the market generously.** (HubSpot; ours: Open Blueprint / playbook-as-lead-magnet, already doctrine.)
+4. **Own the category's infrastructure.** (AWS, Superchargers; ours: the data + matching layer.)
+5. **Own the category's metric.** (Define how success is measured; ours: collaboration rate.)
+6. **Name the category LAST**, when people already live in the room. (AWS; the anti-Segway.)
+7. **Keep winning the core metric after coronation.** (The MySpace clause.)
+
+**The most common fatal mistakes:** announcing the category cold (Segway; Personalytics 2018), educating without owning distribution (TiVo), being first without becoming dominant (the pioneer trap, Golder & Tellis), mistaking product superiority for category ownership, and letting incumbent identity refuse the shelf (Kodak).
+
+### The holonic contribution (what this corpus adds)
+
+Classical category design is one company, one category. This venture designs a **set of categories from one invariant**: each person's unique business is a category of one; each product enters a familiar shelf; all doors bend toward one room (coordination around human uniqueness). Category design applied holonically: individual → offer → product line → economy. The platform doesn't just create a category; **it industrializes category-of-one creation**, which is the mechanism by which the Uniqueness Economy gets built. That is the theoretical extension this corpus adds to *Play Bigger*, and it is the bridge between this playbook and `uniqueness_economy_thesis.md`.
 
 **Marketing is a product.**
 
