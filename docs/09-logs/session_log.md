@@ -8302,3 +8302,12 @@ Threshold Language Harvest, pass 1: **Nia** ("I'm in survival mode... really in 
 3. **The mid-career craftsperson who lost true north** (Catalina): "nothing was coming through... a boat whipped by waves... I've lost the wind in my sails."
 4. **The purpose-awakened professional** (Denis): "мы приходим для какой-то задачи; хочу определить предназначение и понять, как туда бежать."
 Underneath all four: the way I've been working can't produce what I know is possible; what is mine to build/do next?
+
+### Day 118 close: compendium of the July 7-8 arc (for re-entry)
+
+**Categories:** shelf key framework · credentials as shelf labels · enter-before-create sequencing · product evolution table (pitch-deck spine) · seven doors one room · Karime's two tables · shelf lines SHIPPED to /path, /ignite, /landing, /1-pager + CRM pattern (commit 5cdfd4cd).
+**Thresholds:** 4 voices harvested (Nia, Roman, Catalina, Denis) · motion crisis not identity crisis (kinetic metaphors) · they buy a vector, not a self · they arrive post-self-help · archetypes cluster by success-curve position (before floor / plateau / after peak / after awakening), crosscutting profession doors.
+**Theory:** Physics of Propagation (grokability, reader payoff, sharer payoff, network shape; collaboration rate = idea-flow metric) · Domain 95 measurement unlock (self-knowledge = scaling parameter, articulation = its instrument) · Domain 96 two-sentence compression = the whole playbook (gate, opener, prompt-header, audit tool) · convergence law (invariance under derivation predicts invariance under transmission; convergence is the pre-flight test for book/license/AI encoding) · Domain 98 plain words + animation corollary.
+**Infrastructure:** Equilibrium agent WRITE lane live · Threshold Language Harvest task created in-app · collaboration form captured in living_project_holograph.md (two minds one memory; next move: live demo to Sergey, record it).
+**Voice:** CLAUDE.md Shape/Voice/Stance · AI-tell bans scoped to external copy only · Sasha's voice reference (8 traits) in memory.
+**Open threads for tomorrow:** more harvest voices toward 5-7 stable archetypes · Personalytics deck → exact 2015-2026 lineage mapping · Sergey demo · twin Equilibrium workstream cleanup · booking-page category line = live experiment now collecting data.
