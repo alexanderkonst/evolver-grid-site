@@ -6675,6 +6675,8 @@ This is a clarifying seed inside recognition economics, not a replacement for th
 
 Sasha's crystallization, near-verbatim: **the scaling parameter is self-knowledge; articulation is how you measure and register it.** What can be measured can be tracked, and what can be tracked can be accelerated. That is why precision scores (the 9.9 roasts) matter: they are the instrument reading on the scaling parameter. The maxim that falls out: **know how you are different from other humans, be different, and seize the high-fit opportunities that then open up.** Every product in the line is a tool somewhere on that loop.
 
+**Second refinement (July 8, Sasha):** the instrument has two parts. Articulation is the OUTPUT of the measurement (the reading); inner resonance is its ACCURACY (the calibration signal). You measure self-knowledge by articulating and checking resonance: the articulate-and-check loop. That is why the roast works: it drives resonance scores up, which means it is literally tuning the instrument. The platform's precision scores are instrumentation of human self-knowledge: a newly measurable quantity, which is part of what makes the category and its dataset defensible.
+
 ## Domain 96: Signal-Preserving Holonic Artifact Propagation
 
 > *Added June 25, 2026 — discovered while translating Alexander's locked uniqueness into shadow and myth without losing resonance.*
