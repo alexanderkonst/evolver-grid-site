@@ -9115,3 +9115,27 @@ Ace 7 (Equilibrium) stays a satellite: real product, different audience, does no
 **Recognition invariant (all public copy derives from it):** "The way I've been approaching my professional life no longer feels capable of producing what I know is possible." Wedge selection is empirical: highest transformation × highest founder-enjoyment × highest willingness to invest, read from the client ledger, not from abstraction.
 
 **Gut-layer anchor (live Equilibrium read, July 6):** moon focus = $4,000 by period end. The door prioritization above serves that number: diagnostic-first calls into the two paying doors, prescription containers behind them.
+
+---
+
+## Category lines, first draft (July 7, 2026)
+
+> Principle + the four shelf rules: `marketing_playbook.md`, "Category Lines: the Shelf Key." These are the working drafts for each offer. X = a shelf that already has budget; the thesis stays behind the door.
+
+| Offer | Shelf it enters (today, has budget) | Category line (draft) | New category it's building (the evolution) |
+|-------|--------------------------------------|------------------------|---------------------------------------------|
+| $555 Signature Session | Strategy consulting for founders | Next-chapter positioning strategy for founders. MIT-trained | Uniqueness-based venture design |
+| Find Your Top Talent (individual) | Talent assessment / professional clarity | Precision talent discovery for professionals | Uniqueness legibility (professional clarity infrastructure) |
+| FYTT white-label node | Community platforms / member onboarding | Member onboarding and matching infrastructure for community leaders | Community coordination infrastructure |
+| Founder Cockpit | Founder tools / business dashboards | A live navigation instrument for founders running a venture | Venture navigation intelligence (living-project intelligence) |
+| Equilibrium | Planning and focus apps | A timing compass: plan by life's cycles, not just calendars | Biological navigation |
+| Collaborative Match-Making | Professional networking / intro services | Precision collaborator matching for builders | Complementarity coordination |
+| Venture Studio | Venture studios / accelerators | A venture studio that builds businesses from founders' uniqueness | Differentiation-first venture genesis |
+| Torus Art Collection | Art objects / collectible design | The ontology as physical objects | Ontology made tangible |
+| R&D / Meta-Architecture of Intelligence | AI research | Independent research on AI meta-architecture and self-aware systems | Developmental AI architecture (self-aware systems) |
+
+**Rising above the table:** every product enters a familiar shelf and bends it toward the same new room: coordination around human uniqueness. Seven familiar doors, one new economy. The Uniqueness Economy is not announced as a category; it is discovered by people who entered through any of the doors.
+
+**Credential lines (shelf keys):** MIT + Silicon Valley launches + hundreds of transformational processes with leaders places the founder-strategy shelf. The MAI deck places the AI-research shelf (a citable artifact, not a claim). Karime's WEF Global Leadership Fellows background places the leadership-transformation shelf.
+
+**Sequencing rule:** cash comes from known shelves first (founder strategy, community infrastructure). "The Uniqueness Economy" as a new category is the later, funded move. The crystallizing act: the chosen category sentence goes on the $555 booking page.

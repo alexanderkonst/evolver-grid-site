@@ -302,6 +302,13 @@ const IgniteSession = () => {
             {t('ignite.heroSubB')}
           </p>
 
+          {/* Day 118 (2026-07-08): the shelf line — category sentence placing
+              the offer on a known shelf (marketing_playbook.md, "Category
+              Lines: the Shelf Key"). One size smaller than /path per spec. */}
+          <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.16em] text-white/60">
+            {t('ignite.shelfLine')}
+          </p>
+
           <div className="flex flex-col items-center gap-3 pt-4">
             <Button size="lg" asChild>
               <a

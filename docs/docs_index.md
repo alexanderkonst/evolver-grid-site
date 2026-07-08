@@ -94,6 +94,7 @@ docs/
 | [unique_business_playbook.md](./03-playbooks/unique_business_playbook.md) | **Master playbook** — Two-Path Architecture, 10+ principles, session-tested |
 | [unique_business_creation_playbook.md](./03-playbooks/unique_business_creation_playbook.md) | Canvas artifact creation (Tribe, Promise, Offer, Value Ladder, etc.) |
 | [marketing_playbook.md](./03-playbooks/marketing_playbook.md) | First principles, 7 centers, copy |
+| [money_studies_sop.md](./03-playbooks/money_studies_sop.md) | Money Studies layer — art/wisdom/practice, 4-quadrant SOP, holomap formats |
 | [godfather_playbook.md](./03-playbooks/godfather_playbook.md) | Sales conversion — Godfather Offer Probe |
 | [customer_journey_playbook.md](./03-playbooks/customer_journey_playbook.md) | Gate A → Gate B conversion flow |
 | [distribution_playbook.md](./03-playbooks/distribution_playbook.md) | Philosophy, channels, growth loops |
@@ -194,6 +195,7 @@ docs/
 | Doc | Purpose |
 |-----|---------|
 | [brandbook.md](./05-reference/brandbook.md) | Visual identity, voice, colors |
+| [money-studies/money_holomap.md](./05-reference/money-studies/money_holomap.md) | Living money holomap (8 modules × 7 stages) + source studies in `sources/` |
 | [design_system.md](./05-reference/design_system.md) | CSS variables, components |
 | [roasting_protocol.md](./05-reference/roasting_protocol.md) | 3-cycle critique methodology |
 | [module_implementation_checklist.md](./05-reference/module_implementation_checklist.md) | Universal checklist template |

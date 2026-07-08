@@ -134,6 +134,20 @@ const PathPage = () => {
                 render as neutral dark navy, letting the 3 accents do
                 the lifting. Color regains meaning by scarcity. */}
             <section className="mb-14">
+              {/* Day 118 (2026-07-08): the shelf line — the category sentence
+                  that places this offer on a known shelf, picked in public
+                  where strangers meet the price. See marketing_playbook.md,
+                  "Category Lines: the Shelf Key". */}
+              <p
+                className="text-[13px] sm:text-sm font-semibold uppercase tracking-[0.14em] mb-3"
+                style={{
+                  color: "var(--skin-text-secondary, #33415c)",
+                  textShadow:
+                    "var(--skin-text-halo-strong, 0 0 20px rgba(255,255,255,0.8), 0 1px 2px rgba(255,255,255,0.9))",
+                }}
+              >
+                {t("pathPage.hero.shelfLine")}
+              </p>
               {/* Day 62 (Sasha 2026-05-05): Strong legibility cocktail
                   per ui_playbook.md Part VIII — weight 600→700,
                   halo-strong→halo-deep. Same pattern as landing hero. */}

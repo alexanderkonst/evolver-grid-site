@@ -1389,9 +1389,26 @@ Self-recognition (Domain 100) is the strongest force for identity-level ideas. T
 
 **The dominance rule:** for ideas about who a person IS (this venture's entire category), self-recognition compresses forces 1-3 into one moment: seeing yourself in the idea is the click, the payoff, and the identity signal at once. That is why this domain is unusually viral-ready by construction.
 
----
+## Category Lines: the Shelf Key (July 7, 2026)
 
-# Part IV: The Recursive Insight
+> *Validated independently by Sergey (July 1 strategic mirror, in the CRM): "people think in categories; if the category is unclear, the market cannot place the product." Sibling of Domain 90 (Three-Layer Positioning Architecture): the category line is the Audience Translation layer made purchasable.*
+
+**The law: people buy through categories.** A category is the shelf in the buyer's head. It tells them what this is, what it should cost, and who else sells it. No shelf, no purchase, no matter how good the work.
+
+- **Essence:** a category is how a buyer feels safe. A known shelf means known risk, known price, known way to judge you.
+- **Significance:** the shelf fixes three numbers before you say a word: which budget pays for it, what the price anchor is, and who the competitors are. Uncategorizable = unbuyable. Miscategorized = mispriced. The same work can carry a 20x price difference depending on the shelf it stands on.
+- **Consequence:** category choice IS ecology choice (Domain 99). The shelf decides which fields have the organs to recognize you.
+
+**The four rules:**
+
+1. **Write a category line for every offer:** "X for Y," where X is a shelf that already has budget. The rest of the work (thesis, depth, method) lives behind the door, not on the shelf label.
+2. **Credentials are shelf keys, not vanity.** A credential's job is to place you on a shelf you couldn't otherwise claim. Karime's WEF Global Leadership Fellows background moves her from the "relationship help" shelf (~$150/session, therapy budget) to the "leadership transformation" shelf ($5-25K/day, organizational budget). Same gift, 20x price, purely from the shelf. Relationships become her method, not her category.
+3. **Enter an existing category before creating a new one.** "The Uniqueness Economy" as a new category is the later move, funded by cash from a known shelf. You can't create a shelf from zero revenue; you enter a shelf, then rename it.
+4. **Pick the shelf in public.** The category sentence goes on the booking page, where strangers meet the price. Until it's public, the choice is just a preference that can be endlessly revised (the tower's "one more refinement"). Public means committed, and committed means reality starts returning data.
+
+**Relation to the Adoption Ladder:** the category line is the Recognition layer applied to offers. Shelf = public recognition surface; thesis = backstage structure. Same split as recognition vs selection language.
+
+**How categories actually get created (July 7 addition).** Category creation is not one big announcement. It is several familiar doors bending toward one new room. Apple entered computers, phones, and watches (all existing shelves); the new room people found themselves in was personal computing as identity. The sequencing law: a category becomes real when it has spread into the de-facto noosphere, not when it is coined. So: enter known shelves, accumulate users, cash, and proof, and name the new category publicly only when enough people are already living in the room. Category-king economics (the Play Bigger research: the category creator captures roughly three quarters of the category's value) is the prize for getting this sequence right, and the punishment for announcing cold is that nobody can buy from a shelf they've never seen.
 
 **Marketing is a product.**
 

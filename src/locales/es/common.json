@@ -2622,7 +2622,8 @@
     "secondaryBook": "Reserva una charla con Aleksandr",
     "stakeEyebrow": "Lo que está en juego",
     "stakeQuote": "Una civilización que se organiza en torno a quién es realmente cada persona, en lugar de aplanarla en roles estandarizados. Haz legible el valor humano diferenciado, y todo lo demás —el emparejamiento, las empresas, los ecosistemas y estados-red— se deriva de ello.",
-    "footerTagline": "Construido en abierto. Propiedad de las personas que lo usan."
+    "footerTagline": "Construido en abierto. Propiedad de las personas que lo usan.",
+    "shelfLine": "Infraestructura de onboarding y matching para comunidades y ecosistemas"
   },
   "profileAssets": {
     "toastCopyBlocked": "No se pudo copiar — portapapeles bloqueado",
@@ -5172,7 +5173,8 @@
       "h1After": ".",
       "h2": "En 6–8 semanas.",
       "guarantee": "Garantía de devolución del dinero.",
-      "fineprint": "Siempre que hagas tu parte."
+      "fineprint": "Siempre que hagas tu parte.",
+      "shelfLine": "Estrategia de posicionamiento del próximo capítulo para founders · Formación en MIT"
     },
     "ladder": {
       "payAsYouProgress": "Paga a medida que avanzas",
@@ -5417,7 +5419,8 @@
     "sectionLeaveWith": "Con qué te vas",
     "sectionBook": "Reserva tu sesión",
     "sectionAlternatesFaq": "Alternativas y preguntas frecuentes",
-    "sectionMethodologyVideo": "Vídeo de la metodología"
+    "sectionMethodologyVideo": "Vídeo de la metodología",
+    "shelfLine": "Estrategia de posicionamiento del próximo capítulo para founders · Formación en MIT"
   },
   "geniusBusiness": {
     "loading": "Cargando...",
