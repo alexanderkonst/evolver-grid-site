@@ -268,6 +268,18 @@ Four concentric circles: **Self** (self-intimacy, coherence, inner authority) ·
 | Women's work | Women's leadership retreats | Feminine leadership initiation for women done with over-holding | From carrying life to being carried by life |
 | Ceremony / plant work | (method, not a shelf) | Stays inside the containers, never on the public label | Presence-and-relaxation initiation |
 
+### Offer-level table (July 8, 2026, mirroring Sasha's format)
+
+| Offer | Shelf it enters (has budget) | Category line (draft) | New category it's building |
+|-------|------------------------------|------------------------|-----------------------------|
+| Free 20-min fit call | Discovery calls | A first read on what you're carrying | (entry door, no shelf needed) |
+| 1:1 session (paid) | Executive / leadership coaching | Leadership transformation session, WEF-trained | Relational leadership |
+| 3-month engagement | Leadership development programs | A three-month leadership transformation container | Initiation-based development |
+| Couples intensive (emerging) | Couples retreats / intensives | Conscious partnership intensive for couples growing at different speeds | Sacred partnership as a path of awakening |
+| Women's retreat (potential) | Women's leadership retreats | Feminine leadership initiation for women done with over-holding | From carrying life to being carried by life |
+| Ceremony work (Santa Maria, cannabis) | (method, not a shelf) | Never the public label; lives inside the containers | Presence-and-relaxation initiation |
+| Blue Lotus tincture | Botanical / wellness products | Ceremonial-grade blue lotus tincture | Sacred plant allies as a consumer category |
+
 **Rules applied:** (1) relationships are her method, never her public category: "I transform how leaders relate, at home and at work" sells on the leadership shelf; "I mend relationships" sells on the therapy shelf. (2) Plant medicine stays inside the container (legality + budget). (3) Enter the leadership shelf first (the funded one her credential unlocks); the deeper category (initiation work, heart awakening) is the room people discover after entering. (4) Couples intensives priced as leadership work for two, not as therapy.
 
 ### Steward note (July 5-6 excavation)
