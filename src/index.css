@@ -804,131 +804,15 @@
 /* ───────────────────────────────────────────────────────────────────
    KARIME — compact-rail icon-size normalization (Day 86, 2026-05-26)
    ───────────────────────────────────────────────────────────────────
-   Sasha caught that the rail icons on /build/karime read as off-center
-   even though every icon's bounding-box centerX equals the rail centerX
-   (delta 0 confirmed in headless browser). Root cause: three different
-   icon sizes in the column — FYTT brand logo at 40px, nav icons at
-   26px, utility icons (play / chat / settings / log-out) at 22px. The
-   1.8× size variance reads as "not aligned" even with perfect
-   mathematical centering.
-
-   Fix: normalize every icon in the karime compact rail to a uniform
-   28px. The whole column reads as one consistent vertical line of
-   matched glyphs, regardless of their underlying SVG / PNG dimensions.
-   Scoped to `[data-skin="karime"][data-rail-compact="true"]` so:
-     - Aurora / NS / daouniverse rails are NOT affected
-     - Non-compact karime rail (if it ever expands) keeps native sizes
-   The `!important` is necessary because Tailwind utility classes on
-   each icon (h-9, w-5, etc.) live in the cascade with higher specificity
-   than naked element selectors.
-
-   The brand logo (FYTT starburst at the top) intentionally shrinks
-   from 40 → 28. On /build/karime the dominant brand is KARIME, not
-   FYTT; the starburst sits as a quiet attribution mark in the rail,
-   not a hero. Letting it sit at the same size as nav icons reads as
-   intentional minimalism, not de-emphasis. */
-[data-skin="karime"] [data-rail-compact="true"] img,
-[data-skin="karime"] [data-rail-compact="true"] svg {
-  width: 28px !important;
-  height: 28px !important;
-  object-fit: contain;
-}
-
-/* The play-button SVG inside the SoundCloud mini player sits inside a
-   small <button> container whose visual ring (the gold "now playing"
-   circle) is sized via the button itself. The inner play-arrow SVG is
-   intentionally smaller (12px) than the surrounding container so the
-   arrow doesn't fill the gold ring edge-to-edge. The rule above would
-   bloat the arrow to 28px and burst out of the ring. Restore the inner
-   arrow's intended size. */
-[data-skin="karime"] [data-rail-compact="true"] button[aria-label*="playlist"] svg,
-[data-skin="karime"] [data-rail-compact="true"] button[aria-label*="Play"] svg {
-  width: 14px !important;
-  height: 14px !important;
-}
-
-/* Day 89 (Sasha 2026-06-06): BUILD hex glyph fix.
-   ============================================================
-   Bug: ⬢ (U+2B22) visually sits ~2-3px below the gold ring center
-   in compact rail. Root cause: GlyphIcon for BUILD passes size={32}
-   (SpacesRail.tsx:205), setting inline fontSize: 32 on its span.
-   The compact rule at line 2038-2041 forces the outer wrapper to
-   26x26, but the font-size override at line 2072-2077 only targets
-   direct-child spans of [data-tour-id]; GlyphIcon's text-bearing
-   span is the GRANDCHILD, so it keeps the inline 32px. Result:
-   32px character draws inside a 26x26 grid box, overflowing and
-   landing low because Cormorant's bearing for U+2B22 sits below
-   typographic center.
-   Fix: re-normalize font-size for ANY descendant span carrying
-   inline grid + aria-hidden inside a Karime compact chip. Matches
-   the GlyphIcon shape exactly (display: grid + aria-hidden="true"
-   per GlyphIcon.tsx:39-43). Scoped to Karime so global rail is
-   untouched. Line-height: 1 centers the glyph EM box vertically
-   inside the 26x26 container. */
-[data-skin="karime"] [data-rail-compact="true"] [data-tour-id] span[aria-hidden="true"][style*="grid"] {
-  font-size: 22px !important;
-  line-height: 1 !important;
-}
-
-/* Day 89 (Sasha 2026-06-06): FYTT brand-logo alignment fix.
-   ============================================================
-   Bug: torus mark reads as not vertically aligned with nav icons
-   beneath it. Math centerX matches (36px both), but the centering
-   machinery differs: logo uses mx-auto on the <img> inside a
-   p-1.5 wrapper, while nav chips use display: grid + place-items:
-   center inside a 48x48 button. The brand-spin-slow rotation also
-   pushes the AABB to 33x33 (desktop) vs 28x28 footprint of nav
-   icons, magnifying any PNG-internal whitespace bias.
-   Fix: give the logo's <Link> the same 48x48 grid-center
-   treatment as nav chips, so both centering pipelines are
-   identical. The wrapping <div className="p-1 md:p-1.5"> stays;
-   we only restructure the Link's display box. */
-[data-skin="karime"] [data-rail-compact="true"] a[aria-label*="Find Your Top Talent"] {
-  display: grid !important;
-  place-items: center !important;
-  width: 48px !important;
-  height: 48px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding: 0 !important;
-}
-
-/* Re-center the logo <img> inside the new 48x48 grid box. Cancel
-   the mx-auto + any inherited block alignment so grid place-items
-   handles both axes cleanly.
-
-   Day 89 verify-fix #2 (Sasha 2026-06-06): the brand <Link> contains
-   TWO <img> tags — the mobile torus (`md:hidden`) and the desktop
-   wordmark (`hidden md:block`). The compact-rail rule at index.css
-   ~line 1971-1975 hides the wordmark via `.md\:block { display: none
-   !important; }`. My initial rule selected ALL imgs in the brand
-   link and applied `display: block !important`, which overrode the
-   compact-mode hide because the attribute-selector specificity beat
-   the class-selector specificity at equal !important. Result: the
-   wordmark stayed visible in compact mode (visible regression in the
-   live preview). Scope tightened to `img.md\:hidden` (the mobile
-   torus only) so the wordmark hide is restored. Same fix applied to
-   the drop-shadow halo rule below — without it, the halo was being
-   drawn around the wordmark too. */
-[data-skin="karime"] [data-rail-compact="true"] a[aria-label*="Find Your Top Talent"] img.md\:hidden {
-  margin: 0 !important;
-  display: block !important;
-}
-
-/* Tighten the logo wrapper padding so the new 48x48 Link sits with
-   the same vertical rhythm as the nav chips below (which sit inside
-   a nav.p-3 = 12px padding box). The previous p-1.5 (6px) wrapper
-   leaves the logo too cramped against the divider; matching the nav
-   padding restores the rail's three-section visual rhythm.
-
-   Day 89 verify-fix (Sasha 2026-06-06): the first direct child of
-   the data-rail-compact root is a `<span aria-hidden="true">` gold
-   spine, not a div, so `> div:first-child` matched nothing and the
-   padding silently no-opped. `> div:nth-of-type(1)` matches the first
-   DIV child regardless of preceding non-div siblings. */
-[data-skin="karime"] [data-rail-compact="true"] > div:nth-of-type(1) {
-  padding: 8px !important;
-}
+   Day 119 (Sasha 2026-07-09): the alignment/sizing patch rules that
+   used to live here (global img/svg 28px override, play-button svg
+   size restore, BUILD hex glyph font-size fix, brand-logo grid/
+   place-items/48px rule, logo-wrapper padding nth-of-type rule) are
+   RETIRED. Compact mode is now first-class in SpacesRail.tsx/
+   SoundCloudMinimalPlayer.tsx: every rail item (brand logo, nav
+   chips, utility row, player) renders its own centered 48x48 cell via
+   JSX classes driven by the `compact` prop, so there's no longer a
+   mismatched box model for CSS to patch after the fact. */
 
 /* Day 89 (Sasha 2026-06-06): FYTT brand-logo prominence (Karime).
    ============================================================
@@ -937,15 +821,12 @@
    nav ImageIcon defaults (rgba 244,212,114) but at higher amplitude:
    wider blur + a second copper inner-glow stop. Reads as the rail's
    "lit candle" anchor without making the icon louder than the
-   experience. Identical at desktop and mobile (no viewport
-   conditionals); applies only to the actual <img> element so the
-   spin animation isn't double-shadowed. */
-[data-skin="karime"] [data-rail-compact="true"] a[aria-label*="Find Your Top Talent"] img.md\:hidden {
-  filter:
-    drop-shadow(0 0 8px rgba(244, 212, 114, 0.55))
-    drop-shadow(0 0 14px rgba(212, 175, 55, 0.32))
-    drop-shadow(0 0 1px rgba(122, 81, 8, 0.45)) !important;
-}
+   experience.
+   Day 119 (Sasha 2026-07-09): moved inline into SpacesRail.tsx's
+   compact brand-logo branch (the CSS selector below targeted
+   `img.md\:hidden`, a class the compact branch no longer renders now
+   that it always shows the same torus mark). Kept here as the source
+   of truth for the halo values the JSX inline style mirrors. */
 
 /* ───────────────────────────────────────────────────────────────────
    KARIME — Day 89 (Sasha 2026-06-06): rail palette + halo cohesion
@@ -3300,107 +3181,14 @@
     0 0 18px rgba(244, 212, 114, 0.14);
 }
 
-/* Day 82 v6 (Sasha 2026-05-25): rail compact-mode visual polish.
-   Five fixes from the screenshot audit:
-   (1) Center icons horizontally in the 72px column (chips were
-       flush-left because the original flex layout was icon-left,
-       label-right; without label, the icon sat off-center).
-   (2) Swap rounded-2xl chip shape to rounded-full so the hover ring
-       + halo render as a tight circle around the icon, fitting
-       inside the 72px boundary instead of clipping at pane edges.
-   (3) Hide the active-state gold pip — its `-translate-x-1/2` would
-       overflow the slim rail's left edge. The chip's own gold ring
-       on active state is enough indicator in compact.
-   (4) Show the small torus brand glyph (the mobile-pattern mark)
-       even at md+ when compact, so the rail has a brand anchor at
-       the top instead of an awkward empty zone.
-   (5) Tighten chip horizontal padding so the centered circle hover
-       has equal breathing room on both sides. */
-[data-rail-compact="true"] [data-tour-id],
-[data-rail-compact="true"] .liquid-glass button.group,
-[data-rail-compact="true"] .liquid-glass a.group {
-  justify-content: center !important;
-}
-[data-rail-compact="true"] .rounded-2xl,
-[data-rail-compact="true"] .rounded-xl {
-  border-radius: 9999px !important;
-}
-/* Day 83 (Sasha 2026-05-25) v2: soft chip-sizing for compact rail.
-   Previous attempt forced every button to 44x44 which collapsed the
-   layout — too aggressive. Now we just give each chip a defined
-   width that fits inside the 72px column with breathing room, and
-   center horizontally. Height stays natural (padding-driven). */
-/* Day 83 v5 (Sasha 2026-05-25): bulletproof chip centering via grid.
-   Earlier passes used flex justify-content + align-self + margin
-   auto, but per-chip inline styles + nested wrappers kept producing
-   visible left-bias. Switching the chip to `display: grid;
-   place-items: center` forces every direct child to the exact
-   center regardless of internal flex/inline-style quirks. */
-[data-rail-compact="true"] [data-tour-id],
-[data-rail-compact="true"] .liquid-glass button.group,
-[data-rail-compact="true"] .liquid-glass a.group {
-  display: grid !important;
-  place-items: center !important;
-  width: 48px !important;
-  height: 48px !important;
-  align-self: center !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding: 0 !important;
-  gap: 0 !important;
-}
-/* Force every direct child of the chip to grid-center too —
-   catches the icon-wrapper span and any positioning glitch from
-   inline styles on inner children. */
-[data-rail-compact="true"] .liquid-glass button.group > *,
-[data-rail-compact="true"] .liquid-glass a.group > * {
-  display: grid !important;
-  place-items: center !important;
-  margin: 0 !important;
-}
-/* GlyphIcon spans set width/height inline (size prop varies 22-32
-   across glyphs). Normalize to 26x26 so every chip's glyph occupies
-   the same visual footprint. */
-[data-rail-compact="true"] [aria-hidden="true"][style*="grid"] {
-  width: 26px !important;
-  height: 26px !important;
-}
-/* Trim the hover-ring shadow blur radius so it stays inside the
-   72px rail boundary (default 16px blur was overflowing + clipping
-   against the pane-2 edge). */
-[data-rail-compact="true"] .liquid-glass button.group:hover,
-[data-rail-compact="true"] .liquid-glass a.group:hover {
-  box-shadow: 0 0 8px -2px rgba(244, 212, 114, 0.28) !important;
-}
-
-/* Day 83 v4 (Sasha 2026-05-25): normalize icon sizes inside compact
-   chips. Original glyph sizes ranged from 22px (AI OS img) to 32px
-   (BUILD glyph font-size) to ~18px (other glyphs). Inside the slim
-   72px rail this variance made the icons read as inconsistently
-   placed — small icons floating, large icons crowding — even though
-   the chip containers themselves are perfectly centered. Forcing all
-   icons to 26px (image) / 22px (glyph) and making each chip a
-   consistent 48x48 square gives the rail visual rhythm: every chip
-   is the same circle, every icon sits at the same scale. */
-[data-rail-compact="true"] [data-tour-id],
-[data-rail-compact="true"] .liquid-glass button.group,
-[data-rail-compact="true"] .liquid-glass a.group {
-  height: 48px !important;
-  min-height: 48px !important;
-}
-[data-rail-compact="true"] [data-tour-id] img,
-[data-rail-compact="true"] .liquid-glass button.group img,
-[data-rail-compact="true"] .liquid-glass a.group img {
-  width: 26px !important;
-  height: 26px !important;
-}
-/* Glyph characters (rendered as text spans with font-size) */
-[data-rail-compact="true"] [data-tour-id] > span,
-[data-rail-compact="true"] .liquid-glass button.group > span,
-[data-rail-compact="true"] .liquid-glass a.group > span {
-  font-size: 22px !important;
-  line-height: 1 !important;
-}
+/* Day 82 v6 / Day 83 (Sasha 2026-05-25) rail compact-mode chip
+   centering + sizing patches RETIRED Day 119 (Sasha 2026-07-09):
+   SpacesRail.tsx now renders every compact chip as a native
+   `grid place-items-center w-12 h-12 mx-auto rounded-full p-0` cell
+   via JSX classes on the `compact` prop, so there's no longer a
+   flex-row-with-hidden-label box model for CSS to force into a
+   circle after the fact. The active-pip hide and label-hide are also
+   now handled in JSX (conditional render) rather than CSS. */
 
 /* ───────────────────────────────────────────────────────────────────
    COLLAPSED SPINE — Day 84 (Sasha 2026-05-26)
@@ -3700,18 +3488,11 @@
     3px 0 14px -4px rgba(0, 0, 0, 0.45),
     8px 0 32px -10px rgba(0, 0, 0, 0.30) !important;
 }
-[data-rail-compact="true"] .absolute.left-0.rounded-r-full {
-  display: none !important;
-}
-[data-rail-compact="true"] img.md\:hidden {
-  display: block !important;
-}
-[data-rail-compact="true"] [data-tour-id],
-[data-rail-compact="true"] .liquid-glass button.group,
-[data-rail-compact="true"] .liquid-glass a.group {
-  padding-left: 0.5rem !important;
-  padding-right: 0.5rem !important;
-}
+/* Day 119 (Sasha 2026-07-09): the active-pip hide, brand-img visibility,
+   and chip horizontal-padding overrides that used to live here are
+   retired — SpacesRail.tsx now handles all three natively (conditional
+   render for the pip, a single compact img branch, and `p-0` on the
+   fixed 48x48 cell). */
 
 /* V3 typography (Sasha 2026-05-19) — NS is editorial serif throughout
    for content, clean sans only for UI chrome (rail chips, Pane 2 nav,
