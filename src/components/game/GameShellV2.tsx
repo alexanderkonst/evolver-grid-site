@@ -315,7 +315,10 @@ const JOURNEY_SECTION_LABELS: Array<{ path: string; labelKey: string }> = [
 // Same flag pattern as MeGate.tsx's `ME_SPACE_LOCKED` and
 // StepCard.tsx's `SHOW_UBB_BRIDGE` — single-constant feature gates,
 // no env vars, no admin UI; flip + ship.
-const LEARN_VISIBLE = false;
+//
+// Day 113 (Sasha 2026-07-09): LEARN_VISIBLE retired — the "learn" id
+// (rail label now GROW) graduated off the flag onto the real T+M+A
+// gate below (matches COLLABORATE). MEET stays flag-gated.
 const MEET_VISIBLE = false;
 
 interface GameShellV2Props {
@@ -1108,12 +1111,18 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             "next-move": topTalentComplete,                     // After Step 1
             "ai-os": aiOsUnlocked,                              // After T+M+A or ever-visited (Day 79)
             "grow": topTalentComplete,                          // ME — unlocked from actual Top Talent completion, not stage-only
-            // Day 61 (Sasha 2026-05-04 14:30): LEARN + MEET gated
-            // by feature flag (see top of file). When flag is false
-            // (default), unlock = false unconditionally → lands in
-            // hiddenSpaces → invisible in rail. When flipped to
-            // true, restores the previous "After Step 1" behavior.
-            "learn": LEARN_VISIBLE && topTalentComplete,        // After Step 1 — growth material (currently flag-gated off)
+            // Day 113 (Sasha 2026-07-09): GROW space enabled — id stays
+            // "learn" (rail label is now GROW, positioned between
+            // COLLABORATE and BUILD). Gate switched from the
+            // LEARN_VISIBLE flag to tmaComplete so it unlocks together
+            // with COLLABORATE and BUILD's triad arm, on the same
+            // "onboarding complete" signal. MEET stays flag-gated below.
+            "learn": tmaComplete,                               // GROW — unlocks with COLLABORATE, after T+M+A complete
+            // Day 61 (Sasha 2026-05-04 14:30): MEET gated by feature
+            // flag (see top of file). When flag is false (default),
+            // unlock = false unconditionally → lands in hiddenSpaces →
+            // invisible in rail. When flipped to true, restores the
+            // previous "After Step 1" behavior.
             // BUILD: Day 80 Wave 2.20 (Sasha 2026-05-22) — re-gated.
             // The Day 77 "always-true" rule was too permissive: it lit
             // up the BUILD chip for tasting-tier users the moment they

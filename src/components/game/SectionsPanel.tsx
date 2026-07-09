@@ -356,7 +356,7 @@ export const SPACE_TITLE_KEYS: Record<string, string> = {
     journey: "spacesRail.journey",
     "ai-os": "spacesRail.aiOs",
     me: "spacesRail.me",
-    learn: "spacesRail.learn",
+    learn: "spacesRail.grow",
     grow: "spacesRail.learn",
     meet: "spacesRail.meet",
     collaborate: "spacesRail.collaborate",
@@ -586,6 +586,18 @@ const buildUbbSections = (
  * Spirit) hang as future-grouping placeholders, unchanged from before.
  */
 const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Section[] => {
+    // Day 113 (Sasha 2026-07-09): "Transformational Library" landing row,
+    // first item in the GROW pane 2. Routes to pathBase with no :stepId —
+    // Library.tsx's LearnSpaceContent renders LibraryIndex (the full
+    // category-filterable video grid) in that case. Same component the
+    // 6 numbered steps below already use for their per-step content; this
+    // row is just the un-scoped overview entry point into it.
+    const libraryOverviewRow: Section = {
+        id: "transformational-library",
+        label: "Transformational Library",
+        path: pathBase,
+    };
+
     const stepRows: Section[] = GROWTH_STEPS.map((step) => ({
         id: `learn-step-${step.id}`,
         label: `${step.number}. ${step.shortLabel}`,
@@ -627,7 +639,7 @@ const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Secti
         },
     ];
 
-    return [...stepRows, ...pathRows];
+    return [libraryOverviewRow, ...stepRows, ...pathRows];
 };
 
 type EntryPath = "match" | "build" | null;
@@ -1064,7 +1076,7 @@ const SectionsPanel = ({
                 location.pathname === "/game/learn" || location.pathname.startsWith("/game/learn/");
             const pathBase = insideAuthed ? "/game/learn/library" : "/library";
             return {
-                title: "LEARN",
+                title: "GROW",
                 sections: buildLearnSections(pathBase),
             };
         }

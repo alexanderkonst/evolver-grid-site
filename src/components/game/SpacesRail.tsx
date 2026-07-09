@@ -183,13 +183,6 @@ const SPACES: SpaceItem[] = [
         path: "/game/me",
     },
     {
-        id: "learn",
-        label: "LEARN",
-        labelKey: "spacesRail.learn",
-        icon: <GlyphIcon glyph="✹" color="hsl(210, 75%, 68%)" />,
-        path: "/game/learn",
-    },
-    {
         id: "meet",
         label: "MEET",
         labelKey: "spacesRail.meet",
@@ -209,6 +202,20 @@ const SPACES: SpaceItem[] = [
         labelKey: "spacesRail.collaborate",
         icon: <GlyphIcon glyph="⇶" color="hsl(325, 65%, 65%)" />,
         path: "/game/collaborate/matches",
+    },
+    {
+        // Day 113 (Sasha 2026-07-09): GROW space enabled — was LEARN,
+        // sat between ME and MEET, gated behind LEARN_VISIBLE (off).
+        // Repositioned between COLLABORATE and BUILD, relabeled GROW,
+        // re-gated to unlock together with COLLABORATE/BUILD (T+M+A
+        // complete). Internal id stays "learn" — routes, GATED_SPACES,
+        // SectionsPanel keys, etc. all key off it; only label/position/
+        // gate changed. See GameShellV2.tsx unlockStatus["learn"].
+        id: "learn",
+        label: "GROW",
+        labelKey: "spacesRail.grow",
+        icon: <GlyphIcon glyph="✹" color="hsl(210, 75%, 68%)" />,
+        path: "/game/learn",
     },
     {
         id: "build",
