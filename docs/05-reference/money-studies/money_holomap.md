@@ -64,6 +64,24 @@ Corpus anchors already at Stage 5-7 language: [STF](../../01-vision/sacred_trans
 
 ---
 
+### 2026-07-09 · Source: Eker, *Secrets of the Millionaire Mind* (2005) → [study](./sources/t_harv_eker_millionaire_mind.md) · knowledge-synthesis grade
+
+**Meaning × Stage 3→4:** The Money Blueprint: a subconscious thermostat set in childhood (verbal programming · modeling · specific incidents); outer results regress to the inner setting. T→F→A=R. Diagnosis: trace the three channels. Retraining: declarations + the 6-jar ritual + acting in spite of fear. Corpus rule: translate his rich/poor contrast tables into *stage* language, never class language.
+
+**Storage × Stage 3-4:** The 6 jars: money management at any income as blueprint retraining through ritual. First real Storage-column entry.
+
+### 2026-07-09 · Source: Myron Golden (body of work) → [study](./sources/myron_golden_body_of_work.md) · knowledge-synthesis grade
+
+**Price/Value × Stage 4→5:** The 4 Levels of Value (Implementation → Unification → Communication → **Imagination**): you are paid at the level you work *from*, not the effort you spend. Premium pricing as service (forces results, selects commitment, funds excellence). Structural answer to "what should this cost": the level of the offer, not the hours inside it.
+
+**Exchange × Stage 4:** Make More Offers: revenue is a lagging indicator of offer emission rate. Offer cadence as vital sign.
+
+**Creation × Stage 4:** offers, systems, and IP as personal-scale money creation: the Creation column's first entry.
+
+**Cross-stage finding #2 (the y-axis completes):** with Eker (3→4 transition mechanics) and Golden (4→5 integration) joining Brown (pure Stage 5 stance) and Hotep (Stage 2-3 ceiling), the map holds a documented specimen at every rung from Stage 2 to Stage 5. Before: two poles and an empty middle: the map could classify but not *develop*. After: a developmental instrument: locate a person's money stage and prescribe stage-matched medicine (Hotep-grade mechanics for 2→3 · Eker blueprint work for 3→4 · Golden offer architecture for 4→5 · Brown stance for 5 proper). The SOP's stage-honesty rule ("medicine mismatched to stage is poison") is now operational.
+
+---
+
 ## Open Questions (for future sources)
 
 - Creation and Exchange columns nearly empty: needs a source on monetary systems proper (credit creation, MMT vs Austrian, history of money: Graeber, Lietaer).

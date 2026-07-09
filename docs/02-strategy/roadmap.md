@@ -441,6 +441,12 @@ A unique face of eternity.
 
 ## 🔮 Parked / Future
 
+### Parked (2026-07-09, Day 119) — Formal MCP server for node live-state (white-label infrastructure)
+
+**What:** wrap the existing `equilibrium-ai-context` edge function (agent-token, curl-only today) in a standard MCP server so any Claude surface (Desktop, mobile, Cowork) can plug into a node's live state with zero setup. For Sasha alone this is marginal — the edge fn already answers AI calls. The real payoff is the **white-label play**: each node (Oyi first) ships with its own MCP server reading its own data, so the $75/mo becomes infrastructure the node-holder *feels* (their AI knows their live state in every conversation), not a hosting fee. Pattern generalizes: one MCP server template, per-node token + data scope.
+
+**Restore condition:** the second node signs (Oyi says yes to the $1,500 + $75/mo proposal). Building it earlier is preparation without a consumer.
+
 ### Parked (2026-07-08, Day 118) — Money-Stance Module (platform reveal, sibling to ZoG)
 
 **What:** a reveal experience diagnosing the user's money stage (1-7 per the [Money Holomap](../05-reference/money-studies/money_holomap.md)), with the Stage 4→5 inversion as the aha moment: "you've been hunting; here's what humming looks like for *your* gift." Natural value-ladder entry for the same tribe that buys Ignition sessions. Lineage: Money Studies cycles #1-2 (Brown 1903 + ITFT Part VII); the "being wanted" register principle now lives in the marketing playbook (Step 0.5).
