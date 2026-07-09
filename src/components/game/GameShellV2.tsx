@@ -316,7 +316,7 @@ const JOURNEY_SECTION_LABELS: Array<{ path: string; labelKey: string }> = [
 // StepCard.tsx's `SHOW_UBB_BRIDGE` — single-constant feature gates,
 // no env vars, no admin UI; flip + ship.
 //
-// Day 113 (Sasha 2026-07-09): LEARN_VISIBLE retired — the "learn" id
+// Day 119 (Sasha 2026-07-09): LEARN_VISIBLE retired — the "learn" id
 // (rail label now GROW) graduated off the flag onto the real T+M+A
 // gate below (matches COLLABORATE). MEET stays flag-gated.
 const MEET_VISIBLE = false;
@@ -1111,7 +1111,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             "next-move": topTalentComplete,                     // After Step 1
             "ai-os": aiOsUnlocked,                              // After T+M+A or ever-visited (Day 79)
             "grow": topTalentComplete,                          // ME — unlocked from actual Top Talent completion, not stage-only
-            // Day 113 (Sasha 2026-07-09): GROW space enabled — id stays
+            // Day 119 (Sasha 2026-07-09): GROW space enabled — id stays
             // "learn" (rail label is now GROW, positioned between
             // COLLABORATE and BUILD). Gate switched from the
             // LEARN_VISIBLE flag to tmaComplete so it unlocks together

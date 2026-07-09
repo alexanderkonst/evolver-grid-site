@@ -204,7 +204,7 @@ const SPACES: SpaceItem[] = [
         path: "/game/collaborate/matches",
     },
     {
-        // Day 113 (Sasha 2026-07-09): GROW space enabled — was LEARN,
+        // Day 119 (Sasha 2026-07-09): GROW space enabled — was LEARN,
         // sat between ME and MEET, gated behind LEARN_VISIBLE (off).
         // Repositioned between COLLABORATE and BUILD, relabeled GROW,
         // re-gated to unlock together with COLLABORATE/BUILD (T+M+A

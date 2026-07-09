@@ -670,6 +670,7 @@ Sasha asked: "How do people solve for version history of these things? We're cre
 - [x] Fast design workflow
 - [x] Onboarding flow polish
 - [x] Rename GROW → ME
+- [x] **GROW space enabled — repositioned between COLLABORATE and BUILD** (2026-07-09, Day 119) — the disabled LEARN space (id stays `"learn"` — `SpacesRail.tsx`, `SectionsPanel.tsx`, `GameShellV2.tsx` all key off it, only label/position/gate changed) graduates off the `LEARN_VISIBLE` flag and into production, relabeled **GROW**, moved from its old slot between ME and MEET to sit between COLLABORATE and BUILD. Gate switched to `tmaComplete` — unlocks together with COLLABORATE and BUILD's triad arm, on "onboarding complete" (Top Talent + Mission + Assets). Pane 2 gains a new first row, "Transformational Library," routed to the existing `Library.tsx` → `LearnSpaceContent` → `LibraryIndex` overview already serving `/game/learn/library` — no new component, just a new nav entry point into content that was already built. The 6 numbered Growth Steps + 5 Growth Paths render unchanged below it. i18n shipped for en/ru/es (label, unlock hint, tour title). Sasha confirmed the GROW naming explicitly. Commit `a72d279e` on `main`, pushed and deployed.
 - [x] Logos (platform + modules)
 - [x] Daily use case (Learn/Meet/Build)
 - [x] Integrated product building workflow — roast enhancement
