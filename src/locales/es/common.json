@@ -982,6 +982,7 @@
     "learn": "APRENDER",
     "meet": "CONOCER",
     "collaborate": "SOCIOS",
+    "grow": "CRECER",
     "build": "CONSTRUIR",
     "offer": "OFRECER",
     "lockedLabel": "{{space}}, bloqueado",
@@ -1308,7 +1309,7 @@
     "unlockHints": {
       "nextMove": "Se desbloquea tras el Paso 1",
       "grow": "Se desbloquea tras tu Revelación Encuentra Tu Talento Principal.",
-      "learn": "Se desbloquea tras el Paso 1",
+      "learn": "Se desbloquea tras Talento Principal + Misión + Activos.",
       "build": "Se desbloquea cuando activas tu talento principal o completas tu perfil de colaboración.",
       "meet": "Se desbloquea tras el Paso 1",
       "collaborate": "Se desbloquea tras Talento Principal + Misión + Activos.",
@@ -3083,7 +3084,7 @@
       "description": "Este eres tú — tu Zona de Genio, tu historia, tus dones únicos. Todo lo que descubres sobre ti se guarda aquí."
     },
     "learn": {
-      "title": "Aprende",
+      "title": "Crece",
       "tagline": "Tu camino de transformación",
       "description": "Mapea tu Calidad de Vida, elige tu camino de crecimiento y accede a contenido transformador. Aquí es donde creces."
     },

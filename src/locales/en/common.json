@@ -612,7 +612,7 @@
     "unlockHints": {
       "nextMove": "Unlocks after Step 1",
       "grow": "Unlocks after your Find Your Top Talent Reveal.",
-      "learn": "Unlocks after Step 1",
+      "learn": "Unlocks after Top Talent + Mission + Assets.",
       "build": "Unlocks after you activate your top talent or complete your collaboration profile.",
       "meet": "Unlocks after Step 1",
       "collaborate": "Unlocks after Top Talent + Mission + Assets.",
@@ -3094,6 +3094,7 @@
     "learn": "LEARN",
     "meet": "MEET",
     "collaborate": "COLLABORATE",
+    "grow": "GROW",
     "build": "BUILD",
     "offer": "OFFER",
     "lockedLabel": "{{space}}, locked",
@@ -5064,7 +5065,7 @@
       "description": "This is you — your Zone of Genius, your story, your unique gifts. Everything you discover about yourself gets saved here."
     },
     "learn": {
-      "title": "Learn",
+      "title": "Grow",
       "tagline": "Your path of transformation",
       "description": "Map your Quality of Life, choose your growth path, and access transformational content. This is where you grow."
     },
