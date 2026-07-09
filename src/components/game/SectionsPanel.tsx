@@ -586,7 +586,7 @@ const buildUbbSections = (
  * Spirit) hang as future-grouping placeholders, unchanged from before.
  */
 const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Section[] => {
-    // Day 113 (Sasha 2026-07-09): "Transformational Library" landing row,
+    // Day 119 (Sasha 2026-07-09): "Transformational Library" landing row,
     // first item in the GROW pane 2. Routes to pathBase with no :stepId —
     // Library.tsx's LearnSpaceContent renders LibraryIndex (the full
     // category-filterable video grid) in that case. Same component the
