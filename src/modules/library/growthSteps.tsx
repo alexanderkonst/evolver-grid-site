@@ -28,7 +28,7 @@ export const GROWTH_STEPS: GrowthStep[] = [
     id: "foundational-videos",
     number: 1,
     title: "Watch the foundational course",
-    shortLabel: "Foundational Course",
+    shortLabel: "Transformational Library",
     description:
       "Curated breathwork, activations, wisdom, and spiritual practices from embodied modern guides.",
     locked: false,

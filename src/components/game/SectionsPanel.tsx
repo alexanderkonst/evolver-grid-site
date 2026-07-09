@@ -582,19 +582,25 @@ const buildUbbSections = (
  * inside an authed `/game/*` route — keeps a single visual structure for
  * both surfaces while routing them to their respective scopes.
  *
- * Below the 6 steps, the 5 Growth Paths (Body / Emotions / Mind / Talent /
- * Spirit) hang as future-grouping placeholders, unchanged from before.
+ * Day 119 evening (Sasha 2026-07-09): the 5 Growth Paths (Body / Emotions /
+ * Mind / Talent / Spirit) removed — each one's subSection just said
+ * "Coming soon," which read as broken rather than aspirational. Re-add
+ * once any path actually has content.
  */
 const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Section[] => {
-    // Day 119 (Sasha 2026-07-09): "Transformational Library" landing row,
-    // first item in the GROW pane 2. Routes to pathBase with no :stepId —
+    // Day 119 (Sasha 2026-07-09): "Path of Mastery" overview row, first
+    // item in the GROW pane 2. Routes to pathBase with no :stepId —
     // Library.tsx's LearnSpaceContent renders LibraryIndex (the full
     // category-filterable video grid) in that case. Same component the
     // 6 numbered steps below already use for their per-step content; this
     // row is just the un-scoped overview entry point into it.
+    // Day 119 evening: relabeled from "Transformational Library" —
+    // that name belongs to step 1 below (the row that actually opens the
+    // library material), not this overview/index page. Was a naming swap,
+    // not a new row.
     const libraryOverviewRow: Section = {
-        id: "transformational-library",
-        label: "Transformational Library",
+        id: "path-of-mastery",
+        label: "Path of Mastery",
         path: pathBase,
     };
 
@@ -606,40 +612,7 @@ const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Secti
         lockedHint: step.lockedHint,
     }));
 
-    const pathRows: Section[] = [
-        {
-            id: "body",
-            label: "Body",
-            path: "/game/learn/path/body",
-            subSections: [{ id: "body-overview", label: "Coming soon", path: "/game/learn/path/body" }],
-        },
-        {
-            id: "emotions",
-            label: "Emotions",
-            path: "/game/learn/path/emotions",
-            subSections: [{ id: "emotions-overview", label: "Coming soon", path: "/game/learn/path/emotions" }],
-        },
-        {
-            id: "mind",
-            label: "Mind",
-            path: "/game/learn/path/mind",
-            subSections: [{ id: "mind-overview", label: "Coming soon", path: "/game/learn/path/mind" }],
-        },
-        {
-            id: "talent",
-            label: "Talent",
-            path: "/game/learn/path/genius",
-            subSections: [{ id: "talent-overview", label: "Coming soon", path: "/game/learn/path/genius" }],
-        },
-        {
-            id: "spirit",
-            label: "Spirit",
-            path: "/game/learn/path/spirit",
-            subSections: [{ id: "spirit-overview", label: "Coming soon", path: "/game/learn/path/spirit" }],
-        },
-    ];
-
-    return [libraryOverviewRow, ...stepRows, ...pathRows];
+    return [libraryOverviewRow, ...stepRows];
 };
 
 type EntryPath = "match" | "build" | null;
