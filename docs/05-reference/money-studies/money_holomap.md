@@ -82,6 +82,16 @@ Corpus anchors already at Stage 5-7 language: [STF](../../01-vision/sacred_trans
 
 ---
 
+### 2026-07-09 · Source: Omar Takrori, "Teaching Is the Highest-Paying Skill" (transcript) → [study](./sources/omar_takrori_teach_and_sell.md) · transcript-verified
+
+**Exchange × Stage 4:** Teach-sell fusion: teach at all four business phases (lead gen → conversion → fulfillment → ascension) and the sales team becomes unnecessary; marketing becomes a sample of the product. The #1 mistake is overteaching: "an overwhelmed person never takes action." The objective of teaching is a *feeling* (the next step), not information transfer; shift three beliefs: possible · easy · trust. Teach what/when/why, not how. Boundary clause: the mechanics pass the frequency test only when the installed belief is true.
+
+**Price/Value × Stage 4:** Context determines value: the same content is free on YouTube and premium in a paid room, because payment purchases attention ("where your treasure is, there your heart is"). Pricing as attention-container design.
+
+**Lineage note:** Takrori paid Golden ~$110k and converted Level-4 instruction into owned IP: a live specimen of the 3→4 climb via framework-craft. The Communication-level mastery manual for the map.
+
+---
+
 ## Open Questions (for future sources)
 
 - Creation and Exchange columns nearly empty: needs a source on monetary systems proper (credit creation, MMT vs Austrian, history of money: Graeber, Lietaer).
