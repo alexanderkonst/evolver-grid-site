@@ -12,6 +12,7 @@ import { useSkin, type Skin } from "@/contexts/SkinContext";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
+import { isAdminEmail } from "@/lib/isAdmin";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 
 /**
@@ -264,6 +265,9 @@ const NotificationsTab = () => {
     const [saving, setSaving] = useState(false);
     const [optOut, setOptOut] = useState(false);
     const [userId, setUserId] = useState<string | null>(null);
+    const [isFounder, setIsFounder] = useState(false);
+    const [pulseOptOut, setPulseOptOut] = useState(false);
+    const [pulseSaving, setPulseSaving] = useState(false);
 
     useEffect(() => {
         const load = async () => {
@@ -273,17 +277,48 @@ const NotificationsTab = () => {
                 return;
             }
             setUserId(user.id);
+            setIsFounder(isAdminEmail(user.email));
             const { data } = await supabase
                 .from("game_profiles")
-                .select("match_headsup_opt_out")
+                .select("match_headsup_opt_out, pulse_email_opt_out")
                 .eq("user_id", user.id)
                 .maybeSingle();
-            const value = (data as { match_headsup_opt_out?: boolean } | null)?.match_headsup_opt_out;
-            setOptOut(!!value);
+            const row = data as { match_headsup_opt_out?: boolean; pulse_email_opt_out?: boolean } | null;
+            setOptOut(!!row?.match_headsup_opt_out);
+            setPulseOptOut(!!row?.pulse_email_opt_out);
             setLoading(false);
         };
         load();
     }, []);
+
+    const handlePulseToggle = async (next: boolean) => {
+        if (!userId) return;
+        const prev = pulseOptOut;
+        setPulseOptOut(next); // optimistic
+        setPulseSaving(true);
+        try {
+            const { error } = await supabase
+                .from("game_profiles")
+                .update({ pulse_email_opt_out: next } as never)
+                .eq("user_id", userId);
+            if (error) throw error;
+            toast({
+                title: next ? t("settings.pulseEmailsPausedTitle") : t("settings.pulseEmailsResumedTitle"),
+                description: next
+                    ? t("settings.pulseEmailsPausedDescription")
+                    : t("settings.pulseEmailsResumedDescription"),
+            });
+        } catch (err) {
+            setPulseOptOut(prev); // revert on error
+            toast({
+                title: t("settings.couldntSaveTitle"),
+                description: err instanceof Error ? err.message : t("settings.tryAgain"),
+                variant: "destructive",
+            });
+        } finally {
+            setPulseSaving(false);
+        }
+    };
 
     const handleToggle = async (next: boolean) => {
         if (!userId) return;
@@ -390,6 +425,44 @@ const NotificationsTab = () => {
                         aria-label={t("settings.pauseHeadsUpEmailsAriaLabel")}
                     />
                 </div>
+
+                {isFounder && (
+                    <div
+                        className="flex items-center justify-between gap-4 rounded-xl p-4"
+                        style={{
+                            background: "rgba(212, 175, 55, 0.06)",
+                            border: "0.5px solid rgba(212, 175, 55, 0.30)",
+                        }}
+                    >
+                        <div className="min-w-0">
+                            <p
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontWeight: 600,
+                                    fontSize: "15px",
+                                    color: "var(--skin-text-primary, #0a1628)",
+                                }}
+                            >
+                                {t("settings.pausePulseEmailsLabel")}
+                            </p>
+                            <p
+                                className="text-xs mt-1 leading-relaxed"
+                                style={{
+                                    fontFamily: "'Source Serif 4', Georgia, serif",
+                                    color: "var(--skin-text-muted, rgba(26,30,58,0.65))",
+                                }}
+                            >
+                                {t("settings.pausePulseEmailsHint")}
+                            </p>
+                        </div>
+                        <Switch
+                            checked={pulseOptOut}
+                            onCheckedChange={handlePulseToggle}
+                            disabled={loading || pulseSaving}
+                            aria-label={t("settings.pausePulseEmailsAriaLabel")}
+                        />
+                    </div>
+                )}
             </div>
         </div>
     );

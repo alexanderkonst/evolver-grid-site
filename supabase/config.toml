@@ -118,6 +118,14 @@ verify_jwt = true
 [functions.process-nurture-emails]
 verify_jwt = true
 
+# Day 119 (Sasha 2026-07-09): Founder Pulse generator. Invoked by pg_cron
+# (2x daily + Monday weekly, see migration 20260709120000) with the
+# service-role key, and manually from the Founder Cockpit with an admin
+# JWT. The function additionally validates admin email / service key
+# internally.
+[functions.generate-pulse-brief]
+verify_jwt = true
+
 [functions.auth-email-hook]
 verify_jwt = false
 

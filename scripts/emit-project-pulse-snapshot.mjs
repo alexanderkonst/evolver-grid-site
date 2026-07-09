@@ -13,6 +13,9 @@ import { dirname, join } from "node:path";
 const REPO_ROOT = join(import.meta.dirname, "..");
 const LOG_PATH = join(REPO_ROOT, "docs", "09-logs", "project_pulse_log.md");
 const OUT_PATH = join(REPO_ROOT, "src", "generated", "project-pulse-snapshot.json");
+// Public copy so server-side readers (generate-pulse-brief edge function)
+// can fetch the same snapshot over HTTP after deploy.
+const PUBLIC_OUT_PATH = join(REPO_ROOT, "public", "generated", "project-pulse-snapshot.json");
 
 function parseYamlBlock(block) {
   const event = {};
@@ -102,6 +105,8 @@ function main() {
   }
 
   writeFileSync(OUT_PATH, JSON.stringify(payload, null, 2) + "\n");
+  mkdirSync(dirname(PUBLIC_OUT_PATH), { recursive: true });
+  writeFileSync(PUBLIC_OUT_PATH, JSON.stringify(payload, null, 2) + "\n");
   const suffix = payload.error ? ` (fallback: ${payload.error})` : "";
   console.log(`✓ wrote ${OUT_PATH}${suffix}`);
 }
