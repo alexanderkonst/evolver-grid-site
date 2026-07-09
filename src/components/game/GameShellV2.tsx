@@ -1,7 +1,7 @@
 import { ReactNode, useState, useEffect, useRef, createContext, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate, useNavigationType, Outlet } from "react-router-dom";
-import { ArrowLeft, Menu, PanelLeft } from "lucide-react";
+import { ArrowLeft, ChevronRight, Menu, PanelLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { cn } from "@/lib/utils";
@@ -1521,6 +1521,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         onClick={toggleRailMinimize}
                         className={cn(
                             "h-dvh w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative z-30 group",
+                            "focus-visible:outline focus-visible:outline-1 focus-visible:outline-[rgba(244,212,114,0.6)]",
                             isAiOsRoute ? "shrink-0" : "sticky top-0",
                             pageOwnsBackground
                                 ? "bg-[rgba(6,12,28,0.55)]"
@@ -1533,18 +1534,22 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                                 "inset -1px 0 0 rgba(212, 175, 55, 0.32), 2px 0 14px -8px rgba(244, 212, 114, 0.3)",
                         }}
                     >
-                        <span
+                        {/* Day 119 (Sasha 2026-07-09): raw "▶" text glyph
+                            replaced with a Lucide ChevronRight — crisper at
+                            14px, no font-rendering/baseline quirks across
+                            platforms. Same rotate-180 flip drives direction. */}
+                        <ChevronRight
                             aria-hidden="true"
-                            className="text-[14px] leading-none transition-transform"
+                            className="transition-transform"
                             style={{
+                                width: 14,
+                                height: 14,
                                 color: "rgba(244, 212, 114, 0.85)",
                                 transform: railMinimized
                                     ? "rotate(0deg)"
                                     : "rotate(180deg)",
                             }}
-                        >
-                            ▶
-                        </span>
+                        />
                     </button>
                 )}
 

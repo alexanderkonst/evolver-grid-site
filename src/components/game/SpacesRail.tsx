@@ -416,10 +416,21 @@ const SpacesRail = ({
                 before the SPACES nav starts. Applies platform-wide
                 because Sasha asked for the change "not only in the
                 skin but also in the platform itself." */}
-            <div className="p-1 md:p-1.5">
+            {/* Day 119 (Sasha 2026-07-09): compact mode made first-class —
+                single centered 48px cell axis, replacing the index.css
+                !important patch layer. The brand logo, every nav chip, and
+                every utility-row item now share one `w-12 h-12 mx-auto grid
+                place-items-center` cell when `compact` is true, instead of
+                relying on ~150 lines of `[data-rail-compact="true"]`
+                selectors to force each icon's different box model into
+                alignment after the fact. */}
+            <div className={compact ? "p-1.5" : "p-1 md:p-1.5"}>
                 <Link
                     to="/"
-                    className="block group transition-all hover:opacity-90"
+                    className={cn(
+                        "block group transition-all hover:opacity-90",
+                        compact && "grid place-items-center w-12 h-12 mx-auto p-0"
+                    )}
                     aria-label={isNS ? "Network School home" : isDao ? "LATAM Impact home" : isPlanetir ? "Planetir home" : isTechstars ? "Techstars home" : "Find Your Top Talent home"}
                 >
                     {isTechstars ? (
@@ -549,6 +560,24 @@ const SpacesRail = ({
                                 </span>
                             </div>
                         </>
+                    ) : compact ? (
+                        /* Day 119 (Sasha 2026-07-09): compact mode shows the
+                           torus mark at every viewport width (was previously
+                           forced via a CSS override toggling img.md:hidden's
+                           `display` back on). 28px icon, centered in the 48px
+                           cell above. Halo kept via the drop-shadow filter
+                           (previously a Karime-scoped CSS rule targeting this
+                           same img). */
+                        <img
+                            src={brandMark}
+                            alt="Find Your Top Talent"
+                            className="w-7 h-7 object-contain brand-spin-slow"
+                            draggable={false}
+                            style={{
+                                filter:
+                                    "drop-shadow(0 0 8px rgba(244, 212, 114, 0.55)) drop-shadow(0 0 14px rgba(212, 175, 55, 0.32)) drop-shadow(0 0 1px rgba(122, 81, 8, 0.45))",
+                            }}
+                        />
                     ) : (
                         <>
                             {/* Mobile: torus mark, slow rotation + breath. */}
@@ -606,7 +635,7 @@ const SpacesRail = ({
                 delay. */}
             <ScrollArea className="flex-1">
               <TooltipProvider delayDuration={150} skipDelayDuration={0}>
-                <nav className="flex flex-col gap-1.5 p-2 md:p-3">
+                <nav className={compact ? "flex flex-col gap-2 p-2" : "flex flex-col gap-1.5 p-2 md:p-3"}>
                 {SPACES.filter(space => !hiddenSpaces.includes(space.id)).map((space) => {
                     const isLocked = unlockStatus[space.id] === false;
                     const active = isActive(space.path);
@@ -625,8 +654,10 @@ const SpacesRail = ({
                             onClick={handleSpaceClick}
                             disabled={isLocked}
                             className={cn(
-                                "flex items-center gap-3 px-3 py-2.5 rounded-2xl transition-all duration-300 relative group",
-                                "justify-center md:justify-start",
+                                "transition-all duration-300 relative group",
+                                compact
+                                    ? "grid place-items-center w-12 h-12 mx-auto rounded-full p-0"
+                                    : "flex items-center gap-3 px-3 py-2.5 rounded-2xl justify-center md:justify-start",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
                                 isLocked
                                     ? "text-white/30 cursor-not-allowed"
@@ -660,18 +691,20 @@ const SpacesRail = ({
                                 </span>
                             </span>
 
-                            <span
-                                className="hidden md:block truncate transition-opacity duration-500"
-                                style={{
-                                    fontFamily: "'Cormorant Garamond', serif",
-                                    fontWeight: active ? 700 : 600,
-                                    fontSize: "0.78rem",
-                                    letterSpacing: "0.14em",
-                                    textTransform: "uppercase",
-                                }}
-                            >
-                                {t(space.labelKey)}
-                            </span>
+                            {!compact && (
+                                <span
+                                    className="hidden md:block truncate transition-opacity duration-500"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontWeight: active ? 700 : 600,
+                                        fontSize: "0.78rem",
+                                        letterSpacing: "0.14em",
+                                        textTransform: "uppercase",
+                                    }}
+                                >
+                                    {t(space.labelKey)}
+                                </span>
+                            )}
 
                             {hasNudge && (
                                 <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-black/30 animate-ping" />
@@ -680,7 +713,12 @@ const SpacesRail = ({
                                 <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-black/30" />
                             )}
 
-                            {active && (
+                            {/* Day 119 (Sasha 2026-07-09): active-state gold pip
+                                hidden in compact — its left-edge positioning
+                                overflowed the slim 72px column (previously
+                                hidden via a CSS override). The chip's own gold
+                                ring on active state is enough indicator. */}
+                            {active && !compact && (
                                 <div className="absolute left-0 top-1/2 w-1 h-8 rounded-r-full translate-x-0 md:-translate-x-1/2 -translate-y-1/2 bg-[#d4af37] shadow-[0_0_8px_rgba(244,212,114,0.7)]" />
                             )}
                         </button>
@@ -760,7 +798,7 @@ const SpacesRail = ({
                 the chip's own weight. Rule uses a horizontal gradient
                 that fades to transparent at both ends — rhymes with the
                 ornament bookend on the landing. */}
-            <div className="p-2 md:p-3 space-y-1">
+            <div className={compact ? "p-2 space-y-2" : "p-2 md:p-3 space-y-1"}>
                 <div
                     aria-hidden="true"
                     className="h-px mx-2 mb-2"
@@ -786,7 +824,7 @@ const SpacesRail = ({
                       • On shell mobile (<md), only the play button
                         renders centered in the 72px icon column;
                         title / skip / attribution glyph are hidden. */}
-                <SoundCloudMinimalPlayer />
+                <SoundCloudMinimalPlayer compact={compact} />
 
                 {/* Day 51 (Sasha 2026-04-25): Request Guidance — direct
                     Telegram DM to Aleksandr. Zero backend, zero widget.
@@ -798,9 +836,10 @@ const SpacesRail = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(
-                        "spaces-rail-chat-cta",
-                        "flex items-center gap-3 px-3 py-2.5 rounded-2xl transition-all duration-300 w-full",
-                        "justify-center md:justify-start",
+                        "spaces-rail-chat-cta transition-all duration-300",
+                        compact
+                            ? "grid place-items-center w-12 h-12 mx-auto rounded-full p-0"
+                            : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start",
                         "text-white/55 hover:bg-white/[0.04] hover:text-white/85 hover:translate-y-[-1px] active:translate-y-0"
                     )}
                     title={t('spacesRail.chatTitle')}
@@ -808,25 +847,27 @@ const SpacesRail = ({
                     <MessageCircle
                         className="flex-shrink-0"
                         style={{
-                            width: 22,
-                            height: 22,
+                            width: compact ? 20 : 22,
+                            height: compact ? 20 : 22,
                             opacity: 0.8,
                             filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
                         }}
                         aria-hidden="true"
                     />
-                    <span
-                        className="hidden md:block truncate"
-                        style={{
-                            fontFamily: "'Cormorant Garamond', serif",
-                            fontWeight: 600,
-                            fontSize: "0.82rem",
-                            letterSpacing: "0.06em",
-                            textTransform: "lowercase",
-                        }}
-                    >
-                        {t('spacesRail.chatLabel')}
-                    </span>
+                    {!compact && (
+                        <span
+                            className="hidden md:block truncate"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 600,
+                                fontSize: "0.82rem",
+                                letterSpacing: "0.06em",
+                                textTransform: "lowercase",
+                            }}
+                        >
+                            {t('spacesRail.chatLabel')}
+                        </span>
+                    )}
                 </a>
                 {/* Day 48 iter 9 (Sasha): Settings chip upgraded to match
                     the chip register — rounded-2xl, Cormorant Garamond
@@ -836,8 +877,10 @@ const SpacesRail = ({
                 <button
                     onClick={() => navigate("/game/settings")}
                     className={cn(
-                        "flex items-center gap-3 px-3 py-2.5 rounded-2xl transition-all duration-300 w-full",
-                        "justify-center md:justify-start",
+                        "transition-all duration-300",
+                        compact
+                            ? "grid place-items-center w-12 h-12 mx-auto rounded-full p-0"
+                            : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start",
                         "text-white/45 hover:bg-white/[0.04] hover:text-white/80 hover:translate-y-[-1px] active:translate-y-0"
                     )}
                     title={t('spacesRail.settingsTitle')}
@@ -852,24 +895,26 @@ const SpacesRail = ({
                         draggable={false}
                         className="flex-shrink-0 select-none object-contain"
                         style={{
-                            width: 22,
-                            height: 22,
+                            width: compact ? 20 : 22,
+                            height: compact ? 20 : 22,
                             filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
                             opacity: 0.75,
                         }}
                     />
-                    <span
-                        className="hidden md:block truncate"
-                        style={{
-                            fontFamily: "'Cormorant Garamond', serif",
-                            fontWeight: 600,
-                            fontSize: "0.82rem",
-                            letterSpacing: "0.06em",
-                            textTransform: "lowercase",
-                        }}
-                    >
-                        {t('spacesRail.settingsLabel')}
-                    </span>
+                    {!compact && (
+                        <span
+                            className="hidden md:block truncate"
+                            style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 600,
+                                fontSize: "0.82rem",
+                                letterSpacing: "0.06em",
+                                textTransform: "lowercase",
+                            }}
+                        >
+                            {t('spacesRail.settingsLabel')}
+                        </span>
+                    )}
                 </button>
                 {/* Day 91 (Sasha 2026-06-09): Lapis/Aurum theme toggle.
                     Rendered ONLY on the two first-class themes — the
@@ -883,8 +928,10 @@ const SpacesRail = ({
                     <button
                         onClick={() => setSkin(skin === "aurum" ? "lapis" : "aurum")}
                         className={cn(
-                            "flex items-center gap-3 px-3 py-2.5 rounded-2xl transition-all duration-300 w-full",
-                            "justify-center md:justify-start",
+                            "transition-all duration-300",
+                            compact
+                                ? "grid place-items-center w-12 h-12 mx-auto rounded-full p-0"
+                                : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start",
                             "text-white/45 hover:bg-white/[0.04] hover:text-white/80 hover:translate-y-[-1px] active:translate-y-0"
                         )}
                         title={skin === "aurum" ? t('spacesRail.themeToggleToLapisTitle') : t('spacesRail.themeToggleToAurumTitle')}
@@ -895,8 +942,8 @@ const SpacesRail = ({
                                 className="flex-shrink-0"
                                 aria-hidden="true"
                                 style={{
-                                    width: 22,
-                                    height: 22,
+                                    width: compact ? 20 : 22,
+                                    height: compact ? 20 : 22,
                                     filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
                                     opacity: 0.75,
                                 }}
@@ -906,25 +953,27 @@ const SpacesRail = ({
                                 className="flex-shrink-0"
                                 aria-hidden="true"
                                 style={{
-                                    width: 22,
-                                    height: 22,
+                                    width: compact ? 20 : 22,
+                                    height: compact ? 20 : 22,
                                     filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
                                     opacity: 0.75,
                                 }}
                             />
                         )}
-                        <span
-                            className="hidden md:block truncate"
-                            style={{
-                                fontFamily: "'Cormorant Garamond', serif",
-                                fontWeight: 600,
-                                fontSize: "0.82rem",
-                                letterSpacing: "0.06em",
-                                textTransform: "lowercase",
-                            }}
-                        >
-                            {skin === "aurum" ? t('spacesRail.lightTheme') : t('spacesRail.darkTheme')}
-                        </span>
+                        {!compact && (
+                            <span
+                                className="hidden md:block truncate"
+                                style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
+                                    fontWeight: 600,
+                                    fontSize: "0.82rem",
+                                    letterSpacing: "0.06em",
+                                    textTransform: "lowercase",
+                                }}
+                            >
+                                {skin === "aurum" ? t('spacesRail.lightTheme') : t('spacesRail.darkTheme')}
+                            </span>
+                        )}
                     </button>
                 )}
                 {(() => {
@@ -965,29 +1014,33 @@ const SpacesRail = ({
                                     // foreign element in the utility row. Now matches the
                                     // family. Pink → uniform light-gray hover for all rail
                                     // items.
-                                    "flex items-center gap-3 px-3 py-2.5 rounded-2xl transition-all duration-300 w-full",
-                                    "justify-center md:justify-start",
+                                    "transition-all duration-300",
+                                    compact
+                                        ? "grid place-items-center w-12 h-12 mx-auto rounded-full p-0"
+                                        : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start",
                                     "text-white/45 hover:bg-white/[0.04] hover:text-white/80 hover:translate-y-[-1px] active:translate-y-0"
                                 )}
                                 title={t('spacesRail.logOutTitle')}
                             >
                                 <LogOut
                                     className="flex-shrink-0"
-                                    style={{ width: 22, height: 22, opacity: 0.8 }}
+                                    style={{ width: compact ? 20 : 22, height: compact ? 20 : 22, opacity: 0.8 }}
                                     aria-hidden="true"
                                 />
-                                <span
-                                    className="hidden md:block truncate"
-                                    style={{
-                                        fontFamily: "'Cormorant Garamond', serif",
-                                        fontWeight: 600,
-                                        fontSize: "0.82rem",
-                                        letterSpacing: "0.06em",
-                                        textTransform: "lowercase",
-                                    }}
-                                >
-                                    {t('spacesRail.logOutLabel')}
-                                </span>
+                                {!compact && (
+                                    <span
+                                        className="hidden md:block truncate"
+                                        style={{
+                                            fontFamily: "'Cormorant Garamond', serif",
+                                            fontWeight: 600,
+                                            fontSize: "0.82rem",
+                                            letterSpacing: "0.06em",
+                                            textTransform: "lowercase",
+                                        }}
+                                    >
+                                        {t('spacesRail.logOutLabel')}
+                                    </span>
+                                )}
                             </button>
                         );
                     }
@@ -1000,14 +1053,18 @@ const SpacesRail = ({
                         <button
                             onClick={() => navigate("/auth")}
                             className={cn(
-                                "flex items-center gap-3 px-3 py-2 rounded-xl transition-all w-full",
-                                "justify-center md:justify-start",
+                                "transition-all",
+                                compact
+                                    ? "grid place-items-center w-12 h-12 mx-auto rounded-full p-0"
+                                    : "flex items-center gap-3 px-3 py-2 rounded-xl w-full justify-center md:justify-start",
                                 "text-white/60 hover:bg-white/10 hover:text-white"
                             )}
                             title={t('spacesRail.logInTitle')}
                         >
-                            <LogIn className="w-4 h-4 flex-shrink-0" />
-                            <span className="hidden md:block text-xs font-medium">{t('spacesRail.logInLabel')}</span>
+                            <LogIn className={compact ? "w-5 h-5 flex-shrink-0" : "w-4 h-4 flex-shrink-0"} />
+                            {!compact && (
+                                <span className="hidden md:block text-xs font-medium">{t('spacesRail.logInLabel')}</span>
+                            )}
                         </button>
                     );
                 })()}

@@ -19,6 +19,7 @@
 
 import { Play, Pause, SkipForward } from "lucide-react";
 import { useSoundCloudPlayer } from "@/components/audio/SoundCloudPlayerProvider";
+import { cn } from "@/lib/utils";
 
 /**
  * Tiny inline SoundCloud cloud mark — used as the attribution glyph
@@ -47,7 +48,19 @@ const SoundCloudGlyph = () => (
     </svg>
 );
 
-const SoundCloudMinimalPlayer = () => {
+interface SoundCloudMinimalPlayerProps {
+    /**
+     * Day 119 (Sasha 2026-07-09): compact mode made first-class — single
+     * centered 48px cell axis, replacing the index.css !important patch
+     * layer. When true, renders only the play/pause button, centered in
+     * a 48x48 cell matching every other rail item's hit target (was
+     * previously achieved via CSS overrides keyed off
+     * `[data-rail-compact="true"]`).
+     */
+    compact?: boolean;
+}
+
+const SoundCloudMinimalPlayer = ({ compact = false }: SoundCloudMinimalPlayerProps) => {
     const player = useSoundCloudPlayer();
 
     // Provider not mounted — render nothing. Defensive: prevents the
@@ -106,7 +119,14 @@ const SoundCloudMinimalPlayer = () => {
         // actually pulled the play button OUT of the icon column.
         // Restoring uniform px-3 so the play button sits at the same
         // x as JOURNEY / AI OS / chat / settings / log-out icons.
-        <div className="flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start transition-all duration-300 hover:bg-white/[0.04]">
+        <div
+            className={cn(
+                "transition-all duration-300",
+                compact
+                    ? "grid place-items-center w-12 h-12 mx-auto rounded-full p-0"
+                    : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start hover:bg-white/[0.04]"
+            )}
+        >
             {/* Play / Pause */}
             <button
                 type="button"
@@ -120,8 +140,10 @@ const SoundCloudMinimalPlayer = () => {
                     // so it matches the chat-with-us / settings / log-out
                     // icon footprint exactly. Previously read as the largest
                     // mark in the utility row.
-                    width: 22,
-                    height: 22,
+                    // Day 119 (Sasha 2026-07-09): 20px in compact — matches
+                    // the rest of the utility row's compact icon scale.
+                    width: compact ? 20 : 22,
+                    height: compact ? 20 : 22,
                     background:
                         "var(--skin-music-play-bg, linear-gradient(135deg, rgba(244, 212, 114, 0.32) 0%, rgba(212, 175, 55, 0.18) 100%))",
                     border: "0.5px solid var(--skin-music-play-border, rgba(212, 175, 55, 0.55))",
@@ -143,6 +165,8 @@ const SoundCloudMinimalPlayer = () => {
                 )}
             </button>
 
+            {compact ? null : (
+            <>
             {/* Track label "Title · Artist" — Cormorant, small, tracked.
                 Hidden on mobile (rail is icon-only at <md). */}
             <span
@@ -199,6 +223,8 @@ const SoundCloudMinimalPlayer = () => {
             >
                 <SoundCloudGlyph />
             </a>
+            </>
+            )}
         </div>
     );
 };
