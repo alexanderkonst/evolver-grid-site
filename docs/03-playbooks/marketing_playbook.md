@@ -1477,9 +1477,31 @@ The **76% number** comes from *Play Bigger* (Ramadan, Peterson, Lochhead, Maney,
 
 **The most common fatal mistakes:** announcing the category cold (Segway; Personalytics 2018), educating without owning distribution (TiVo), being first without becoming dominant (the pioneer trap, Golder & Tellis), mistaking product superiority for category ownership, and letting incumbent identity refuse the shelf (Kodak).
 
-### The holonic contribution (what this corpus adds)
+### The holonic contribution (what this corpus adds — refined with Sasha, July 9, 2026)
 
-Classical category design is one company, one category. This venture designs a **set of categories from one invariant**: each person's unique business is a category of one; each product enters a familiar shelf; all doors bend toward one room (coordination around human uniqueness). Category design applied holonically: individual → offer → product line → economy. The platform doesn't just create a category; **it industrializes category-of-one creation**, which is the mechanism by which the Uniqueness Economy gets built. That is the theoretical extension this corpus adds to *Play Bigger*, and it is the bridge between this playbook and `uniqueness_economy_thesis.md`.
+Classical category design is **one company, one category**. This venture transcends that in three exact ways, and the exactness is what keeps it from becoming fluff or overwhelm:
+
+1. **The set of categories stems from one invariant.** That makes it easy to explain, bedrock-founded, and sustainable: every category line derives from the same object (Domain 98).
+2. **One product, one category stays the law.** The transcendence is not "one company, many categories" loosely; it is **one company, many products, and each product holds exactly one category.** Discipline preserved at every holon.
+3. **The platform scales category-of-one creation.** The precise statement: **every person is either creating or evolving a category** — most evolve an existing one (a better-fit position on a known shelf); a minority create a category of one. The methodology serves both, and that is the mechanism by which the Uniqueness Economy gets built.
+
+Category design applied holonically: individual → offer → product line → economy. That is the theoretical extension this corpus adds to *Play Bigger*, and the bridge to `uniqueness_economy_thesis.md`.
+
+### Operationalizing category design across the whole suite (the checklist)
+
+Run every product (door) through seven questions, one per roadmap step:
+
+| # | Question | Status marker |
+|---|----------|---------------|
+| 1 | Is its **shelf line** shipped on its public surface? | /path, /ignite, /landing, /1-pager: done July 8 |
+| 2 | Is its **enemy** named in its copy? (the old way, not a competitor) | e.g. standardization, "fit in," scattered tools |
+| 3 | Does it have a **teaching asset** that educates the market generously? | playbook episodes, open blueprints |
+| 4 | What **infrastructure** does it own that a copycat can't? | data layer, matching graph, corpus |
+| 5 | What **metric** does it define for its category? | e.g. collaboration rate, precision score |
+| 6 | Is the **new-category name** being withheld until people live in the room? | evolution column stays investor-facing |
+| 7 | What is its **king-maintenance metric** (the thing to keep winning after coronation)? | per product |
+
+One product per working session; the answers land in each product's row in `alexanders_unique_business.md`.
 
 **Marketing is a product.**
 
