@@ -8329,3 +8329,5 @@ Underneath all four: the way I've been working can't produce what I know is poss
 **Verification:** `tsc --noEmit` clean, production build clean, emit scripts write both copies. Live cron/email fire requires deploy + migration apply — first real proof lands next Monday 8:00, or via "Pulse now" after deploy.
 
 **Meaning:** Domain 16 ("The Mirror Must Not Lag") gets teeth — the mirror now looks first.
+
+**Day 119, wave 2 — Telegram founder chat (same session):** `equilibrium-telegram-bot` rewritten from cosmic-reading bot into private corpus chat: `founder_corpus_docs` mirror (synced by `scripts/sync-founder-corpus.mjs`, 6 canonical docs, git canonical) + live packet + `telegram_founder_messages` 20-turn memory; locked to `TELEGRAM_FOUNDER_CHAT_ID`; commands /start /pulse /clear. `equilibrium-cron` broadcasts deprecated (410 stub, migration `20260709150000` unschedules plausible job names). `deno check` clean on all three edge fns. Activation after deploy: /start → chat id → Supabase secret → run sync script.
