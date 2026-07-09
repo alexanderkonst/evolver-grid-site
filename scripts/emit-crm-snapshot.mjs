@@ -25,6 +25,9 @@ import { readBroadcastTracker } from "./sources/broadcast-tracker.mjs";
 
 const REPO_ROOT = join(import.meta.dirname, "..");
 const OUT_PATH = join(REPO_ROOT, "src", "generated", "crm-snapshot.json");
+// Public copy so server-side readers (generate-pulse-brief edge function)
+// can fetch the same snapshot over HTTP after deploy.
+const PUBLIC_OUT_PATH = join(REPO_ROOT, "public", "generated", "crm-snapshot.json");
 
 function main() {
   mkdirSync(dirname(OUT_PATH), { recursive: true });
@@ -60,6 +63,8 @@ function main() {
   }
 
   writeFileSync(OUT_PATH, JSON.stringify(payload, null, 2) + "\n");
+  mkdirSync(dirname(PUBLIC_OUT_PATH), { recursive: true });
+  writeFileSync(PUBLIC_OUT_PATH, JSON.stringify(payload, null, 2) + "\n");
   const suffix = payload.error ? ` (fallback: ${payload.error})` : "";
   console.log(`✓ wrote ${OUT_PATH}${suffix}`);
 }

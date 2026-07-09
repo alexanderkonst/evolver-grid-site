@@ -8311,3 +8311,21 @@ Underneath all four: the way I've been working can't produce what I know is poss
 **Infrastructure:** Equilibrium agent WRITE lane live · Threshold Language Harvest task created in-app · collaboration form captured in living_project_holograph.md (two minds one memory; next move: live demo to Sergey, record it).
 **Voice:** CLAUDE.md Shape/Voice/Stance · AI-tell bans scoped to external copy only · Sasha's voice reference (8 traits) in memory.
 **Open threads for tomorrow:** more harvest voices toward 5-7 stable archetypes · Personalytics deck → exact 2015-2026 lineage mapping · Sergey demo · twin Equilibrium workstream cleanup · booking-page category line = live experiment now collecting data.
+
+---
+
+## Day 119 — July 9, 2026 (Claude Code): Founder Pulse — the cockpit becomes proactive
+
+**Context:** Sasha reviewed a $299 "agentic AI" workshop; verdict: he already runs 3 of its 4 layers. The one real low-hanging fruit was scheduled autonomous agents. Confirmed build: pulse into the cockpit 2x daily + weekly Monday email with a Settings mute.
+
+**Shipped (this session, pending deploy):**
+- `pulse_briefs` table + admin-read RLS + `game_profiles.pulse_email_opt_out` + three pg_cron jobs (migration `20260709120000_founder_pulse_briefs.sql`): daily 14:00/02:00 UTC (8am/8pm Mexico City), weekly Monday 14:00 UTC.
+- `generate-pulse-brief` edge function: assembles live context (Equilibrium tables via service role + CRM/project-pulse snapshots fetched from `/generated/*.json`), Gemini 2.5 Flash via Lovable gateway, strict-JSON brief (title / bottom line / signals / move / markdown), inserts to `pulse_briefs`; weekly kind also sends the branded Resend email (logged to `email_send_log`, suppressed when opted out). Auth: service-role bearer (cron) or admin JWT (cockpit button).
+- Emit scripts now also publish snapshots to `public/generated/` so the edge function can read what the build knows.
+- Cockpit dashboard: Founder Pulse section (daily/weekly toggle, latest brief render, "Pulse now").
+- Settings → Notifications: founder-only "Pause Founder Pulse emails" toggle, en/ru/es.
+- Roadmap: dated 2026-07-09 note added; formal-MCP-server-for-nodes already parked (Day 119 entry).
+
+**Verification:** `tsc --noEmit` clean, production build clean, emit scripts write both copies. Live cron/email fire requires deploy + migration apply — first real proof lands next Monday 8:00, or via "Pulse now" after deploy.
+
+**Meaning:** Domain 16 ("The Mirror Must Not Lag") gets teeth — the mirror now looks first.

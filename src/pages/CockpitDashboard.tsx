@@ -33,6 +33,18 @@ import pulseSnapshotRaw from "@/generated/project-pulse-snapshot.json";
 
 type CockpitAction = "movement" | "followups" | "bottlenecks" | "leverage";
 
+type PulseBriefKind = "daily" | "weekly";
+
+interface PulseBrief {
+  id: string;
+  kind: PulseBriefKind;
+  title: string | null;
+  bottom_line: string | null;
+  content: { signals?: string[]; move?: string } | null;
+  markdown: string;
+  created_at: string;
+}
+
 interface EquilibriumContext {
   generated_at?: string;
   summary?: {
@@ -122,6 +134,14 @@ export default function CockpitDashboard() {
   const [applyLoading, setApplyLoading] = useState(false);
   const [applyError, setApplyError] = useState<string | null>(null);
 
+  const [pulseBriefs, setPulseBriefs] = useState<Record<PulseBriefKind, PulseBrief | null>>({
+    daily: null,
+    weekly: null,
+  });
+  const [pulseGenKind, setPulseGenKind] = useState<PulseBriefKind | null>(null);
+  const [pulseError, setPulseError] = useState<string | null>(null);
+  const [activePulseKind, setActivePulseKind] = useState<PulseBriefKind>("daily");
+
   const loadContext = async () => {
     setLoading(true);
     setError(null);
@@ -137,8 +157,42 @@ export default function CockpitDashboard() {
     setLoading(false);
   };
 
+  const loadPulseBriefs = async () => {
+    const [daily, weekly] = await Promise.all(
+      (["daily", "weekly"] as const).map(async (kind) => {
+        const { data } = await supabase
+          .from("pulse_briefs")
+          .select("id, kind, title, bottom_line, content, markdown, created_at")
+          .eq("kind", kind)
+          .order("created_at", { ascending: false })
+          .limit(1)
+          .maybeSingle();
+        return (data as PulseBrief | null) ?? null;
+      }),
+    );
+    setPulseBriefs({ daily, weekly });
+  };
+
+  const generatePulse = async (kind: PulseBriefKind) => {
+    setPulseGenKind(kind);
+    setPulseError(null);
+    try {
+      const { error: invokeError } = await supabase.functions.invoke("generate-pulse-brief", {
+        body: { kind },
+      });
+      if (invokeError) throw new Error(invokeError.message);
+      await loadPulseBriefs();
+      setActivePulseKind(kind);
+    } catch (genError) {
+      setPulseError(genError instanceof Error ? genError.message : "Could not generate pulse brief.");
+    } finally {
+      setPulseGenKind(null);
+    }
+  };
+
   useEffect(() => {
     void loadContext();
+    void loadPulseBriefs();
   }, []);
 
   useEffect(() => {
@@ -433,6 +487,86 @@ export default function CockpitDashboard() {
             Refresh
           </button>
         </header>
+
+        <section className="mb-5 rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5">
+          <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p className="flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-[#d6a84d]">
+              <Radar className="h-4 w-4" />
+              Founder Pulse · Autonomous Read
+            </p>
+            <div className="flex flex-wrap items-center gap-2">
+              {(["daily", "weekly"] as const).map((kind) => (
+                <button
+                  key={kind}
+                  type="button"
+                  onClick={() => setActivePulseKind(kind)}
+                  className={`rounded-full border px-3 py-1 text-xs transition ${
+                    activePulseKind === kind
+                      ? "border-[#f6d58a] bg-[#f6d58a] text-[#111827]"
+                      : "border-white/15 bg-[#07090d] text-[#cfc4b5] hover:border-[#d6a84d]/55"
+                  }`}
+                >
+                  {kind === "daily" ? "Daily" : "Weekly"}
+                </button>
+              ))}
+              <button
+                type="button"
+                onClick={() => void generatePulse(activePulseKind)}
+                disabled={pulseGenKind !== null}
+                className="inline-flex items-center gap-2 rounded-full border border-[#4ecdc4]/35 bg-[#071d1d] px-3 py-1 text-xs text-[#93f0e8] transition hover:border-[#93f0e8]/70 disabled:opacity-60"
+              >
+                {pulseGenKind ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Zap className="h-3.5 w-3.5" />}
+                Pulse now
+              </button>
+            </div>
+          </div>
+
+          {pulseError && (
+            <p className="mb-3 rounded-lg border border-[#f0a37a]/35 bg-[#24100d] p-3 text-sm text-[#ffc0a5]">
+              {pulseError}
+            </p>
+          )}
+
+          {(() => {
+            const brief = pulseBriefs[activePulseKind];
+            if (!brief) {
+              return (
+                <p className="text-sm leading-6 text-[#9ea7b3]">
+                  No {activePulseKind} brief yet. The pulse runs on its own — daily at 8:00 and 20:00,
+                  weekly on Monday mornings — or press Pulse now.
+                </p>
+              );
+            }
+            return (
+              <div className="rounded-xl border border-white/10 bg-[#07090d] p-5">
+                <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
+                  <h2 className="font-serif text-2xl leading-tight text-[#fff7e8]">{brief.title ?? "Founder Pulse"}</h2>
+                  <span className="text-xs text-[#9ea7b3]">{formatDate(brief.created_at)}</span>
+                </div>
+                {brief.bottom_line && (
+                  <p className="mb-4 border-l-2 border-[#d6a84d] pl-3 text-base leading-7 text-[#f6efe3]">
+                    {brief.bottom_line}
+                  </p>
+                )}
+                {(brief.content?.signals ?? []).length > 0 && (
+                  <ul className="mb-4 space-y-2">
+                    {(brief.content?.signals ?? []).map((signal, index) => (
+                      <li key={index} className="text-sm leading-6 text-[#cfc4b5]">
+                        — {signal}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {brief.content?.move && (
+                  <p className="text-sm leading-6">
+                    <span className="mr-2 text-xs uppercase tracking-[0.14em] text-[#93f0e8]">Move</span>
+                    <span className="text-[#f6efe3]">{brief.content.move}</span>
+                  </p>
+                )}
+              </div>
+            );
+          })()}
+        </section>
 
         <div className="mb-5 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
           <section className="rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5 shadow-[0_0_50px_-30px_rgba(214,168,77,0.8)]">
