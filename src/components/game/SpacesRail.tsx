@@ -419,17 +419,21 @@ const SpacesRail = ({
             {/* Day 119 (Sasha 2026-07-09): compact mode made first-class —
                 single centered 48px cell axis, replacing the index.css
                 !important patch layer. The brand logo, every nav chip, and
-                every utility-row item now share one `w-12 h-12 mx-auto grid
-                place-items-center` cell when `compact` is true, instead of
-                relying on ~150 lines of `[data-rail-compact="true"]`
-                selectors to force each icon's different box model into
-                alignment after the fact. */}
-            <div className={compact ? "p-1.5" : "p-1 md:p-1.5"}>
+                every utility-row item now share one `w-[48px] h-[48px]
+                mx-auto grid place-items-center` cell when `compact` is true,
+                instead of relying on ~150 lines of
+                `[data-rail-compact="true"]` selectors to force each icon's
+                different box model into alignment after the fact.
+                Day 119 v2 (Sasha 2026-07-09): compact cells sized in
+                absolute px, not rem — user browser font-size settings
+                (Sasha runs 24px root) inflated 3rem cells to 72px inside
+                the fixed 72px rail. */}
+            <div className={compact ? "p-[6px]" : "p-1 md:p-1.5"}>
                 <Link
                     to="/"
                     className={cn(
                         "block group transition-all hover:opacity-90",
-                        compact && "grid place-items-center w-12 h-12 mx-auto p-0"
+                        compact && "grid place-items-center w-[48px] h-[48px] mx-auto p-0"
                     )}
                     aria-label={isNS ? "Network School home" : isDao ? "LATAM Impact home" : isPlanetir ? "Planetir home" : isTechstars ? "Techstars home" : "Find Your Top Talent home"}
                 >
@@ -635,7 +639,7 @@ const SpacesRail = ({
                 delay. */}
             <ScrollArea className="flex-1">
               <TooltipProvider delayDuration={150} skipDelayDuration={0}>
-                <nav className={compact ? "flex flex-col gap-2 p-2" : "flex flex-col gap-1.5 p-2 md:p-3"}>
+                <nav className={compact ? "flex flex-col gap-[8px] p-[8px]" : "flex flex-col gap-1.5 p-2 md:p-3"}>
                 {SPACES.filter(space => !hiddenSpaces.includes(space.id)).map((space) => {
                     const isLocked = unlockStatus[space.id] === false;
                     const active = isActive(space.path);
@@ -656,7 +660,7 @@ const SpacesRail = ({
                             className={cn(
                                 "transition-all duration-300 relative group",
                                 compact
-                                    ? "grid place-items-center w-12 h-12 mx-auto rounded-full p-0"
+                                    ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
                                     : "flex items-center gap-3 px-3 py-2.5 rounded-2xl justify-center md:justify-start",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
                                 isLocked
@@ -804,7 +808,7 @@ const SpacesRail = ({
                 the chip's own weight. Rule uses a horizontal gradient
                 that fades to transparent at both ends — rhymes with the
                 ornament bookend on the landing. */}
-            <div className={compact ? "p-2 space-y-2" : "p-2 md:p-3 space-y-1"}>
+            <div className={compact ? "p-[8px] space-y-[8px]" : "p-2 md:p-3 space-y-1"}>
                 <div
                     aria-hidden="true"
                     className="h-px mx-2 mb-2"
@@ -844,7 +848,7 @@ const SpacesRail = ({
                     className={cn(
                         "spaces-rail-chat-cta transition-all duration-300",
                         compact
-                            ? "grid place-items-center w-12 h-12 mx-auto rounded-full p-0"
+                            ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
                             : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start",
                         "text-white/55 hover:bg-white/[0.04] hover:text-white/85 hover:translate-y-[-1px] active:translate-y-0"
                     )}
@@ -885,7 +889,7 @@ const SpacesRail = ({
                     className={cn(
                         "transition-all duration-300",
                         compact
-                            ? "grid place-items-center w-12 h-12 mx-auto rounded-full p-0"
+                            ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
                             : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start",
                         "text-white/45 hover:bg-white/[0.04] hover:text-white/80 hover:translate-y-[-1px] active:translate-y-0"
                     )}
@@ -936,7 +940,7 @@ const SpacesRail = ({
                         className={cn(
                             "transition-all duration-300",
                             compact
-                                ? "grid place-items-center w-12 h-12 mx-auto rounded-full p-0"
+                                ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
                                 : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start",
                             "text-white/45 hover:bg-white/[0.04] hover:text-white/80 hover:translate-y-[-1px] active:translate-y-0"
                         )}
@@ -1022,7 +1026,7 @@ const SpacesRail = ({
                                     // items.
                                     "transition-all duration-300",
                                     compact
-                                        ? "grid place-items-center w-12 h-12 mx-auto rounded-full p-0"
+                                        ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
                                         : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start",
                                     "text-white/45 hover:bg-white/[0.04] hover:text-white/80 hover:translate-y-[-1px] active:translate-y-0"
                                 )}
@@ -1061,7 +1065,7 @@ const SpacesRail = ({
                             className={cn(
                                 "transition-all",
                                 compact
-                                    ? "grid place-items-center w-12 h-12 mx-auto rounded-full p-0"
+                                    ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
                                     : "flex items-center gap-3 px-3 py-2 rounded-xl w-full justify-center md:justify-start",
                                 "text-white/60 hover:bg-white/10 hover:text-white"
                             )}
