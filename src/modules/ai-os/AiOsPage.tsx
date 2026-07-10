@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
-import { Copy, Check, Send, Loader2, Youtube, Lock, ExternalLink, ArrowRight, Heart } from "lucide-react";
+import { Copy, Check, Send, Loader2, Youtube, Lock, ExternalLink, ArrowRight, ArrowLeft, Heart } from "lucide-react";
 import StarryBackground from "./components/StarryBackground";
 import SEO from "@/components/SEO";
 import aiOsBgPoster from "@/assets/ai-os-bg-poster.webp";
@@ -3101,6 +3101,36 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
               suite gets its own focused page, /ai-os is the install. */}
           {focusCategory && (
           <section className="space-y-16" aria-label="Available suites">
+            {/* Day 120 (Sasha 2026-07-10): orientation header for deep-linked
+                suite sub-routes. Bug found via founder pulse feedback (Tom
+                Norwood) — landing directly on /ai-os/iteration (e.g. from the
+                Playbook's "iterative improvement prompt" link) dropped users
+                straight into a wall of prompt cards with zero page title and
+                no way back — the suite chip-nav + hero only render on the
+                bare /ai-os landing (`!focusCategory` above). This header is
+                universal (works for anonymous Holonic Commons visitors too,
+                not just logged-in ME-space users) — it orients to "which
+                suite am I in" and links back to the /ai-os hub, not to any
+                specific referrer page. */}
+            <RevealSection>
+              <div className="flex items-center justify-center gap-3 mb-2 sm:mb-4">
+                <Link
+                  to="/ai-os"
+                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium tracking-wide transition-opacity hover:opacity-100"
+                  style={{ color: 'hsla(242, 40%, 85%, 0.75)' }}
+                >
+                  <ArrowLeft className="w-3.5 h-3.5" />
+                  AI OS
+                </Link>
+                <span aria-hidden="true" style={{ color: 'hsla(0, 0%, 100%, 0.3)' }}>/</span>
+                <span
+                  className="text-xs sm:text-sm font-medium tracking-wide"
+                  style={{ color: 'hsla(0, 0%, 100%, 0.92)' }}
+                >
+                  {SUITE_TITLE[focusCategory]}
+                </span>
+              </div>
+            </RevealSection>
             {visibleGroups.map((group) => {
               const headerColor = tocColors[group.category] || '#a4a3d0';
               const signaturePrompts = group.prompts.filter(
