@@ -149,8 +149,19 @@ const getProfileId = async (): Promise<string | null> => {
 };
 
 /**
- * Get or create a ZoG snapshot for the user
- * Returns the snapshot ID
+ * Get or create a ZoG snapshot for the user.
+ *
+ * Day 119 (Profile Space D1, Sasha 2026-07-09): history requires
+ * retakes to APPEND a new row instead of silently overwriting the
+ * latest one. The rule: if the latest existing row is COMPLETE (has
+ * non-null excalibur_data — the full assessment ran to completion),
+ * a fresh call here means a NEW assessment run has started, so we
+ * insert a brand-new row. If the latest row is INCOMPLETE (a partial
+ * run — e.g. Appleseed saved but Excalibur hasn't generated yet), we
+ * keep reusing it so within-run saves (saveAppleseed → saveExcalibur)
+ * land on the same row instead of fragmenting one run into two.
+ *
+ * Returns the snapshot ID.
  */
 const getOrCreateSnapshot = async (
   profileId: string
@@ -158,13 +169,14 @@ const getOrCreateSnapshot = async (
   // Check if snapshot exists
   const { data: existing } = await supabase
     .from("zog_snapshots")
-    .select("id, xp_awarded, excalibur_generated_at")
+    .select("id, xp_awarded, excalibur_generated_at, excalibur_data")
     .eq("profile_id", profileId)
     .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle();
 
-  if (existing) {
+  if (existing && existing.excalibur_data == null) {
+    // Latest row is a partial run (no Excalibur yet) — keep reusing it.
     return {
       id: existing.id,
       xp_awarded: existing.xp_awarded,
@@ -172,7 +184,9 @@ const getOrCreateSnapshot = async (
     };
   }
 
-  // Create minimal snapshot (will be filled by Appleseed)
+  // Either no snapshot exists yet, or the latest one is COMPLETE
+  // (excalibur_data present) — insert a fresh row so history is
+  // preserved. Create minimal snapshot (will be filled by Appleseed)
   const { data: newSnapshot, error } = await supabase
     .from("zog_snapshots")
     .insert({

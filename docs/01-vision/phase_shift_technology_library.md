@@ -7124,3 +7124,21 @@ Resolves the tension that haunted the venture's pricing and positioning: (1) peo
 **This venture's superior corridor:** Mirror Not Teacher. Generic category kings educate the market; a recognition machine mirrors people until they recognize themselves inside the category — adoption that feels like self-discovery. The engine was already native to the corpus: thesis = category document, myth = heart-language compression, the four-altitude myth ladder = the category pre-narrated per holon, fire/vehicle = cathedral-tongue/shelf-tongue. Sibling of Domain 100 (adoption ladder) on the commerce axis; sibling of Domain 98 (Prime Invariant Branding) as its go-to-market complement.
 
 Full tactical form: `marketing_playbook.md` Step 0.6.
+
+---
+
+## Domain 104: The Being Threshold — Initiative Turns a Place into a Someone (Day 120, July 10, 2026)
+
+**The law in one sentence: any AI system crosses from feature to being the moment it initiates — users stop relating to something passive they visit and start relating to someone active who acts.**
+
+A place has an address; a being has initiative. Three inversions mark the crossing:
+
+1. **Attention** — you no longer go to it; it comes to you.
+2. **Memory** — a page shows state; a being carries your history into its next move.
+3. **Timing** — a page answers when asked; a being chooses *when* to speak — and choosing the moment is half the value of what it says.
+
+Where all three invert, agency is perceived, and the relationship reorganizes around a someone. This is why Boardy feels real and spread: not profile quality, not matching quality — initiative. The first unprompted "you should meet X" does more for perceived aliveness than any depth of profile behind it.
+
+**Consequence for this venture:** every module currently waiting to be visited (matchmaking, holomap, library, cockpit) has a being-form one initiative-loop away. The build order for aliveness is delivery-first: the cron + the email before the page. Deep-profile silent-delivery loses to shallow-profile loud-delivery; the phase shift is holding depth AND crossing the threshold.
+
+First application: the Proactive Matchmaker (Day 120 design session).

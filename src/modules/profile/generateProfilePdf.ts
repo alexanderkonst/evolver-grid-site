@@ -44,6 +44,15 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import type { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import type { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 import { ASSET_TYPES, type AssetTypeId } from "@/modules/asset-mapping/data/assetTypes";
+import { mapTalentsJson } from "@/modules/profile-space/useProfileSpaceData";
+import { buildHistoryEvents } from "@/modules/profile-space/changeLines";
+import type {
+    AssetLite as HistoryAssetLite,
+    HistoryEvent,
+    ProfileSpaceData,
+    QolSnapshotLite as HistoryQolSnapshotLite,
+    ZogSnapshotLite as HistoryZogSnapshotLite,
+} from "@/modules/profile-space/types";
 import {
     // primitives
     PdfBuilder,
@@ -79,10 +88,12 @@ interface MissionData {
 }
 
 interface AssetRow {
+    id?: string;
     title: string;
     type_id: string;
     description: string | null;
     source: string | null;
+    created_at?: string | null;
 }
 
 interface QolData {
@@ -111,6 +122,14 @@ interface ProfileBundle {
     // FAIL-OPEN: defaults true and stays true if the access read errors
     // (e.g. before the migration is applied), mirroring useDeeperAccess.
     hasDeeperAccess: boolean;
+    // Day 119 (Profile Space D5, Sasha 2026-07-09): full snapshot
+    // histories + mission discovery date, added ONLY to power the
+    // "Profile history" section via changeLines.ts's buildHistoryEvents
+    // — the rest of the PDF still reads appleseed/excalibur/qol (latest)
+    // as before. Cheap re-queries of tables already touched above.
+    zogHistory: HistoryZogSnapshotLite[];
+    qolHistory: HistoryQolSnapshotLite[];
+    missionDiscoveredAt: string | null;
 }
 
 // ─────────────────────────────────────────────────────────────────────
@@ -127,6 +146,9 @@ async function loadProfileBundle(): Promise<ProfileBundle> {
         assets: [],
         qol: null,
         hasDeeperAccess: true, // fail-open default (see interface note)
+        zogHistory: [],
+        qolHistory: [],
+        missionDiscoveredAt: null,
     };
 
     // Auth — user identity
@@ -161,7 +183,7 @@ async function loadProfileBundle(): Promise<ProfileBundle> {
         // fallback below re-queries by profile_id — it masked the bug.)
         const { data: profileData, error: profileError } = await supabase
             .from("game_profiles")
-            .select("last_zog_snapshot_id, mission_statement")
+            .select("last_zog_snapshot_id, mission_statement, mission_discovered_at")
             .eq("id", profileId)
             .single();
         if (profileError) {
@@ -215,6 +237,9 @@ async function loadProfileBundle(): Promise<ProfileBundle> {
         const profileStatement =
             (profileData as { mission_statement?: string | null } | null)
                 ?.mission_statement ?? null;
+        bundle.missionDiscoveredAt =
+            (profileData as { mission_discovered_at?: string | null } | null)
+                ?.mission_discovered_at ?? null;
 
         const { data: missionRow } = await supabase
             .from("missions")
@@ -262,12 +287,37 @@ async function loadProfileBundle(): Promise<ProfileBundle> {
         console.warn("[generateProfilePdf] access read threw — failing open:", err);
     }
 
+    // ZoG history — Day 119 (D5): all snapshots for this profile, for
+    // the "Profile history" section. Cheap re-query of the same table
+    // already read above for the latest appleseed/excalibur.
+    try {
+        const { data: zogRows, error: zogHistErr } = await supabase
+            .from("zog_snapshots")
+            .select("id, archetype_title, core_pattern, top_three_talents, top_ten_talents, created_at")
+            .eq("profile_id", profileId)
+            .order("created_at", { ascending: false });
+        if (zogHistErr) {
+            console.warn("[generateProfilePdf] zog history fetch failed:", zogHistErr);
+        } else {
+            bundle.zogHistory = (zogRows ?? []).map((row) => ({
+                id: row.id,
+                archetypeTitle: row.archetype_title ?? null,
+                corePattern: row.core_pattern ?? null,
+                topThreeTalents: mapTalentsJson(row.top_three_talents),
+                topTenTalents: mapTalentsJson(row.top_ten_talents),
+                createdAt: row.created_at,
+            }));
+        }
+    } catch (err) {
+        console.warn("[generateProfilePdf] zog history fetch threw:", err);
+    }
+
     // Assets — user_assets list, latest first
     try {
         if (user?.id) {
             const { data: assets } = await supabase
                 .from("user_assets")
-                .select("title, type_id, description, source")
+                .select("id, title, type_id, description, source, created_at")
                 .eq("user_id", user.id)
                 .order("updated_at", { ascending: false });
             bundle.assets = ((assets as AssetRow[] | null) ?? []).filter(
@@ -294,6 +344,37 @@ async function loadProfileBundle(): Promise<ProfileBundle> {
         }
     } catch (err) {
         console.warn("[generateProfilePdf] QoL fetch failed:", err);
+    }
+
+    // QoL history — Day 119 (D5): all snapshots, for "Profile history".
+    try {
+        const { data: qolRows, error: qolHistErr } = await supabase
+            .from("qol_snapshots")
+            .select(
+                "id, created_at, wealth_stage, health_stage, happiness_stage, love_relationships_stage, impact_stage, growth_stage, social_ties_stage, home_stage",
+            )
+            .eq("profile_id", profileId)
+            .order("created_at", { ascending: false });
+        if (qolHistErr) {
+            console.warn("[generateProfilePdf] qol history fetch failed:", qolHistErr);
+        } else {
+            bundle.qolHistory = (qolRows ?? []).map((row) => ({
+                id: row.id,
+                createdAt: row.created_at,
+                stages: {
+                    wealth: row.wealth_stage,
+                    health: row.health_stage,
+                    happiness: row.happiness_stage,
+                    loveRelationships: row.love_relationships_stage,
+                    impact: row.impact_stage,
+                    growth: row.growth_stage,
+                    socialTies: row.social_ties_stage,
+                    home: row.home_stage,
+                },
+            }));
+        }
+    } catch (err) {
+        console.warn("[generateProfilePdf] qol history fetch threw:", err);
     }
 
     return bundle;
@@ -569,6 +650,77 @@ function renderTopTalentEmpty(b: PdfBuilder) {
 }
 
 // ─────────────────────────────────────────────────────────────────────
+// Profile history — Day 119 (D5). Reuses buildHistoryEvents from
+// changeLines.ts (the same deterministic diff logic that powers the
+// Profile Space progression timeline on-screen) so the PDF and the
+// live UI can never drift into two different "what changed" stories.
+// Renders one row per event: date, title, change line. Skipped
+// entirely when there is nothing to show.
+// ─────────────────────────────────────────────────────────────────────
+
+function buildPdfHistoryEvents(bundle: ProfileBundle): HistoryEvent[] {
+    const assets: HistoryAssetLite[] = bundle.assets
+        .filter((a): a is AssetRow & { id: string; created_at: string } => !!a.id && !!a.created_at)
+        .map((a) => ({
+            id: a.id,
+            title: a.title,
+            typeId: a.type_id ?? null,
+            description: a.description ?? null,
+            createdAt: a.created_at,
+        }));
+
+    const data: ProfileSpaceData = {
+        identity: null,
+        zogLatest: bundle.zogHistory[0] ?? null,
+        zogHistory: bundle.zogHistory,
+        mission: {
+            statement: bundle.mission?.statement ?? null,
+            categories: bundle.mission?.categories ?? [],
+            discoveredAt: bundle.missionDiscoveredAt,
+        },
+        assets,
+        qolLatest: bundle.qolHistory[0] ?? null,
+        qolHistory: bundle.qolHistory,
+        requests: [], // Not fetched for the PDF (D5 scope: zog + qol history only)
+        loading: false,
+        error: null,
+        reload: async () => {},
+    };
+
+    return buildHistoryEvents(data);
+}
+
+// A title-key like "profileSpace.history.zog" → a plain English label
+// for the PDF, which is English-only (see file header). Kept local so
+// this file doesn't need an i18n dependency just for four labels.
+const HISTORY_KIND_LABEL: Record<HistoryEvent["kind"], string> = {
+    zog: "Top Talent snapshot",
+    qol: "Quality of Life snapshot",
+    mission: "Mission discovered",
+    asset: "Assets added",
+    request: "Collaboration request sent",
+};
+
+function renderProfileHistorySection(b: PdfBuilder, bundle: ProfileBundle) {
+    const events = buildPdfHistoryEvents(bundle);
+    if (events.length === 0) return;
+
+    renderSectionHeader(b, "Progression", "Profile History");
+    b.y += 2;
+
+    for (const event of events) {
+        const dateStr = formatDate(event.date, {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+        });
+        const label = HISTORY_KIND_LABEL[event.kind] ?? event.kind;
+        b.cardBody(`${dateStr} — ${label}\n${event.changeLine}`);
+        b.y += 3;
+    }
+}
+
+// ─────────────────────────────────────────────────────────────────────
 // Footer — page N of M, brand. Copied from generateZogPdf so the file
 // stays self-sufficient and we can iterate this footer independently if
 // the unified profile wants different chrome later.
@@ -657,6 +809,9 @@ export async function generateProfilePdf(): Promise<void> {
 
     // ── Quality of Life ───────────────────────────────────────────
     renderQolSection(b, bundle.qol);
+
+    // ── Profile history (D5) ──────────────────────────────────────
+    renderProfileHistorySection(b, bundle);
 
     // ── Footer (page numbers across all pages) ────────────────────
     renderFooter(b);

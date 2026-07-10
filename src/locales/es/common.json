@@ -1156,6 +1156,9 @@
       }
     },
     "me": {
+      "profile": {
+        "label": "Perfil"
+      },
       "topTalent": {
         "label": "Talento principal"
       },
@@ -6790,5 +6793,100 @@
     "xpBadge_few": "+{{count}} XP",
     "xpBadge_many": "+{{count}} XP",
     "xpBadge_other": "+{{count}} XP"
+  },
+  "profileSpace": {
+    "loading": "Cargando tu perfil…",
+    "errorLine": "Algo salió mal al cargar tu perfil. Intenta refrescar.",
+    "identity": {
+      "nameFallback": "Tu perfil",
+      "memberSince": "Miembro desde {{date}}"
+    },
+    "topTalent": {
+      "title": "Talento Principal",
+      "viewFull": "Ver completo",
+      "retake": "Repetir",
+      "emptyLine": "Aún no has descubierto tu talento principal.",
+      "ctaTakeAssessment": "Hacer el test"
+    },
+    "mission": {
+      "title": "Misión",
+      "view": "Ver",
+      "rediscover": "Redescubrir",
+      "emptyLine": "Aún no has descubierto tu misión.",
+      "ctaDiscover": "Descubre tu misión"
+    },
+    "assets": {
+      "title": "Activos",
+      "viewAll": "Ver todos",
+      "addMore": "Añadir más",
+      "emptyLine": "Aún no has mapeado activos.",
+      "ctaMap": "Mapea tus activos"
+    },
+    "qol": {
+      "title": "Calidad de Vida",
+      "viewMap": "Ver mapa",
+      "retake": "Repetir",
+      "emptyLine": "Aún no has mapeado tu calidad de vida.",
+      "ctaAssess": "Hacer la evaluación",
+      "overall": "Etapa general: {{average}} / {{max}}",
+      "dimensions": {
+        "wealth": "Riqueza",
+        "health": "Salud",
+        "happiness": "Felicidad",
+        "loveRelationships": "Amor y Relaciones",
+        "impact": "Impacto",
+        "growth": "Crecimiento",
+        "socialTies": "Lazos Sociales",
+        "home": "Hogar"
+      }
+    },
+    "collaboration": {
+      "title": "Solicitudes de Colaboración",
+      "unnamedRecipient": "Alguien",
+      "viewConnections": "Ver conexiones",
+      "emptyLine": "Aún no has enviado solicitudes de colaboración.",
+      "status": {
+        "pending": "Pendiente",
+        "accepted": "Aceptada",
+        "declined": "Rechazada"
+      }
+    },
+    "history": {
+      "title": "Progresión",
+      "showAll": "Mostrar todo",
+      "showLess": "Mostrar menos",
+      "emptyLine": "Nada que mostrar todavía: tu historial se construye al hacer los tests, descubrir tu misión, mapear activos y conectar con otros.",
+      "zog": "Talento Principal actualizado",
+      "qol": "Calidad de Vida actualizada",
+      "mission": "Misión actualizada",
+      "asset": "Activo añadido",
+      "request": "Solicitud de colaboración enviada"
+    },
+    "linkedin": {
+      "title": "LinkedIn",
+      "subtitle": "Sube tu exportación de LinkedIn en PDF para guardarla con tu perfil.",
+      "upload": "Subir PDF",
+      "uploading": "Subiendo…",
+      "uploaded": "PDF de LinkedIn subido.",
+      "download": "Descargar",
+      "replace": "Reemplazar",
+      "remove": "Eliminar",
+      "removed": "PDF de LinkedIn eliminado.",
+      "fileFallback": "PDF de LinkedIn",
+      "uploadedOn": "Subido el {{date}}",
+      "errorType": "Sube un archivo PDF, por favor.",
+      "errorSize": "El archivo es demasiado grande. Máximo 10MB.",
+      "errorUpload": "La subida falló. Inténtalo de nuevo.",
+      "errorDownload": "No se pudo obtener el enlace de descarga. Inténtalo de nuevo.",
+      "errorDelete": "No se pudo eliminar el archivo. Inténtalo de nuevo."
+    },
+    "export": {
+      "title": "Exportar",
+      "subtitle": "Descarga tu perfil completo en PDF: Talento Principal, Misión, Activos, Calidad de Vida e historial.",
+      "cta": "Descargar perfil completo (PDF)",
+      "building": "Generando tu PDF…",
+      "success": "Tu PDF de perfil se está descargando.",
+      "failure": "No se pudo generar el PDF. Inténtalo de nuevo."
+    }
   }
 }

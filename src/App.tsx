@@ -122,6 +122,7 @@ import GameMap from "./pages/GameMap";
 import ProfileMissionSection from "./pages/spaces/sections/ProfileMissionSection";
 import ProfileAssetsSection from "./pages/spaces/sections/ProfileAssetsSection";
 import ProfileOverview from "./pages/spaces/sections/ProfileOverview";
+import ProfileSpaceHome from "./pages/spaces/sections/ProfileSpaceHome";
 import GeniusBusiness from "./pages/spaces/profile/GeniusBusiness";
 import GeniusBusinessAudience from "./pages/spaces/profile/GeniusBusinessAudience";
 import GeniusBusinessPromise from "./pages/spaces/profile/GeniusBusinessPromise";
@@ -594,6 +595,7 @@ const App = () => (
                       and see their fuller Top Talent profile directly. */}
                   <Route path="/game/me" element={<Navigate to="/game/me/zone-of-genius" replace />} />
                   <Route path="/game/me/overview" element={<MeGate><ProfileOverview /></MeGate>} />
+                  <Route path="/game/me/profile" element={<MeGate><ProfileSpaceHome /></MeGate>} />
                   {/* Legacy ME-space Profile Settings now redirects to the unified Settings. */}
                   <Route path="/game/me/settings" element={<Navigate to="/game/settings?tab=profile" replace />} />
                   <Route path="/game/me/mission" element={<MeGate><ProfileMissionSection /></MeGate>} />
