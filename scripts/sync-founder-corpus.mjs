@@ -4,19 +4,23 @@
  * Telegram founder chat (equilibrium-telegram-bot) can read them.
  *
  * Git stays canonical — this is a machine-readable mirror, full text only,
- * no compressions. Re-run after meaningful corpus edits (or wire into a
- * deploy step later).
+ * no compressions. Re-run after meaningful corpus edits.
+ *
+ * Writes go through the `sync-founder-corpus` edge function (the project is
+ * Lovable-managed, so there is no local service_role key). Auth is the
+ * CORPUS_SYNC_TOKEN edge-function secret, passed as x-sync-token.
  *
  * Usage:
- *   SUPABASE_URL=https://<ref>.supabase.co \
- *   SUPABASE_SERVICE_ROLE_KEY=... \
- *   node scripts/sync-founder-corpus.mjs
+ *   CORPUS_SYNC_TOKEN=... node scripts/sync-founder-corpus.mjs
  */
 
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
 const REPO_ROOT = join(import.meta.dirname, "..");
+const FN_URL =
+  process.env.SYNC_FN_URL ??
+  "https://jypjttotvastdhanwvrx.supabase.co/functions/v1/sync-founder-corpus";
 
 // path (repo-relative) → { title, tail?: chars-from-end for long logs }
 const DOCS = [
@@ -30,27 +34,13 @@ const DOCS = [
 
 const MAX_CHARS = 120_000; // per-doc hard cap
 
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
-if (!SUPABASE_URL || !SERVICE_KEY) {
-  console.error("Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.");
+const TOKEN = process.env.CORPUS_SYNC_TOKEN;
+if (!TOKEN) {
+  console.error("Set CORPUS_SYNC_TOKEN (the sync-founder-corpus edge fn secret).");
   process.exit(1);
 }
 
-async function upsert(row) {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/founder_corpus_docs`, {
-    method: "POST",
-    headers: {
-      apikey: SERVICE_KEY,
-      Authorization: `Bearer ${SERVICE_KEY}`,
-      "Content-Type": "application/json",
-      Prefer: "resolution=merge-duplicates",
-    },
-    body: JSON.stringify(row),
-  });
-  if (!res.ok) throw new Error(`${row.path}: HTTP ${res.status} ${await res.text()}`);
-}
-
+const docs = [];
 for (const doc of DOCS) {
   const abs = join(REPO_ROOT, doc.path);
   if (!existsSync(abs)) {
@@ -60,12 +50,19 @@ for (const doc of DOCS) {
   let content = readFileSync(abs, "utf8");
   if (doc.tail && content.length > doc.tail) content = content.slice(-doc.tail);
   if (content.length > MAX_CHARS) content = content.slice(0, MAX_CHARS);
-  await upsert({
-    path: doc.path,
-    title: doc.title,
-    content,
-    updated_at: new Date().toISOString(),
-  });
-  console.log(`✓ synced ${doc.path} (${content.length} chars)`);
+  docs.push({ path: doc.path, title: doc.title, content });
 }
+
+const res = await fetch(FN_URL, {
+  method: "POST",
+  headers: { "Content-Type": "application/json", "x-sync-token": TOKEN },
+  body: JSON.stringify({ docs }),
+});
+const result = await res.json();
+if (!res.ok) {
+  console.error(`✗ sync failed: HTTP ${res.status}`, result);
+  process.exit(1);
+}
+for (const path of result.synced ?? []) console.log(`✓ synced ${path}`);
+for (const err of result.errors ?? []) console.error(`✗ ${err}`);
 console.log("Corpus mirror synced.");
