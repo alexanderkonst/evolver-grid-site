@@ -7162,3 +7162,37 @@ Day 120 discovery, live: the CollabTech Holomap (Teaming layer, matching primiti
 4. The map itself becomes the corridor artifact (Domain 103): publishing it narrates the category before entering it.
 
 Sibling of Domain 103 (Splitting Principle) — this domain finds the cathedral; 103 sells it. Maps live in `docs/holomaps/`.
+
+---
+
+## Domain 106: Professional Orientation as Original Adulthood (Day 120, July 10, 2026)
+
+**The law in one sentence: professional orientation should reveal the person, not sort them into an occupation.**
+
+Teenagers are expected to choose a professional direction before they are taught how to perceive their uniqueness, their possibilities, or their relationship with life. This is the formative wound: uniqueness of being is central to human experience, yet remains an obscure domain of knowledge precisely when a young person is making choices that can harden into destiny.
+
+Profession is not primarily a route to money. It is a developmental path through which identity meets reality: relationship with life, other people, self-worth, growth, humility, shadow, character, and honourability all become visible through work. Money follows value successfully embodied in a profession; the deeper hunger beneath the fixation on money is freedom.
+
+Freedom is not the absence of demands or a return to the womb. It is the growing capacity to perceive possibilities, respond to what life asks, and act honourably toward oneself. Discipline at this depth is **honourability**: treating oneself well while retaining the disposition to become the bigger person through challenge.
+
+**Product consequence:** *Find Your Top Ten* can become an initiation into original adulthood: discover your unique configuration, see several viable futures, and test them through lived experience before conditioning hardens into destiny. Evolver helps a young person meet who they are before the world decides for them.
+
+---
+
+## Domain 107: Collective Neural Pathways (Day 120, July 10, 2026)
+
+**Definition:** inherited patterns of perception and choice that make culturally repeated possibilities feel natural—and unrecognized possibilities feel impossible.
+
+The constraint is not merely that teenagers lack information about professions. The available possibility-space has already been pre-shaped by family, education, economics, status, and culture. High-quality orientation therefore must do two things at once: reveal the person's original signal and loosen the inherited pathways that prevent them from seeing where that signal could live.
+
+**Phase-shift move:** do not ask only, “Which known career fits you?” Ask, “What becomes possible when your uniqueness—not the inherited menu—is the organizing principle?”
+
+---
+
+## Domain 108: The Beneficial Contrast Move (Day 120, July 10, 2026)
+
+**The observation in one sentence: AI's “it is not this; it is that” construction is often a perspective-shifting instrument that moves a human from a less useful frame into a more beneficial one—unless the system has been tuned to manipulate the shift.**
+
+The form is not inherently truth. It is a rhetorical operation: first it dislodges the current frame, then it installs a replacement. Its value depends on whether the replacement increases truth, agency, and useful possibility; its danger is that the same linguistic move can smuggle in the preferences of whoever tuned the AI.
+
+**Quality gate:** whenever using contrastive reframing, test three things: Is the old frame represented fairly? Is the new frame better supported rather than merely more appealing? Does the shift increase the human's sovereignty rather than quietly directing it?
