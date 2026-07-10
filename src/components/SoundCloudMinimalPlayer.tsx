@@ -123,7 +123,7 @@ const SoundCloudMinimalPlayer = ({ compact = false }: SoundCloudMinimalPlayerPro
             className={cn(
                 "transition-all duration-300",
                 compact
-                    ? "grid place-items-center w-12 h-12 mx-auto rounded-full p-0"
+                    ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
                     : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start hover:bg-white/[0.04]"
             )}
         >
