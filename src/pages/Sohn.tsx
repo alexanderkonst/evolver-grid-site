@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import { GOLD_GRADIENT, GOLD_GLOW, Ornament } from "@/lib/landingDesign";
-import fyttTorus from "@/assets/find-your-top-talent-torus.png";
+import fyttTorus from "@/assets/original-octahedron-mark.png"; // Day 119 (Sasha 2026-07-09): mark swapped to ORIGINAL octahedron
 
 /**
  * Sohn — public seminal note for the Self-Organizing Human Network (SOHN).
