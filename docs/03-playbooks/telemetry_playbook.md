@@ -102,3 +102,27 @@ from mission_participants
 order by created_at desc
 limit 50;
 ```
+
+---
+
+## Offer Cadence — the One Metric That Matters (added Day 119, July 9, 2026)
+
+> *Origin: Money Studies cycles #1-5 (Golden's "make more offers" + Brown's "idle dollars, go to work"). Surfaced during the July 2026 offer audit; instrumented on the Founder Cockpit.*
+
+**The metric:** offers made per week to actual humans. One unit = one named offer presented to one named person. Logged atomically in `offer_pulses`, displayed on `/build/cockpit/dashboard` (Offer Cadence card).
+
+**The science (three converging lineages):**
+
+1. **One Metric That Matters (OMTM)** — Alistair Croll & Ben Yoskovitz, *Lean Analytics* (2013): at any given stage, optimize exactly one metric; everything else is reporting. Focus compounds; vanity metrics kill.
+2. **North Star Metric** — Sean Ellis and the growth community (~2013-2017): the single number that best captures value delivery (Airbnb: nights booked; Facebook: 7 friends in 10 days).
+3. **Controllable input metrics** — Amazon doctrine (*Working Backwards*): don't manage the lagging output (revenue); manage the controllable input causally upstream of it (Amazon: selection, price, delivery speed).
+
+Offers-per-week is an OMTM of the *input* type — the strongest kind for a solo founder: revenue is the lagging output, offer emission is the input, Golden supplies the causal link, and nothing outside the founder can prevent the number from moving.
+
+**ESC:**
+
+- **Essence (Heart):** the metric measures *courage in circulation* — how many times per week the work was actually offered to reality. It is the behavioral opposite of the preparation loop.
+- **Significance (Mind):** it converts "sales" from an outcome to a practice. The founder stops asking "why is revenue low?" (unanswerable, lagging) and starts asking "did I make offers this week?" (answerable, controllable). It is also the direct instrument for the Self-Use Discipline shadow: the hoarded offer becomes visible as a zero on a dashboard.
+- **Consequences (Gut):** what gets counted gets done; a visible weekly number creates cadence pressure without external accountability. Sequencing note (Sasha, Day 119): cadence begins AFTER the current digestion phase completes (category → threshold/tribe → offer are upstream). The instrument ships first so the practice starts on an instrumented field.
+
+**Operational rule:** log the offer the moment it is made (5 seconds). Review weekly count in the Cockpit. The number never lies and never needs interpretation.
