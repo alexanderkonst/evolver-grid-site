@@ -324,6 +324,25 @@ Every piece of copy is written in one of two registers:
 
 **When it matters most:** launch waves and low-revenue moments — exactly when the wanting register creeps in under pressure. Standing gate: every launch draft (Reddit, Substack, outreach) passes the one-question test before it ships.
 
+### Step 0.6: Shelf and Cathedral — the Category Reconciliation
+
+> *Added July 9, 2026 — Money Studies. Resolves the two competing pressures of category-creating businesses: (1) people buy what they can name from a known shelf; (2) new categories have no competition and no attached price tag, but demand education, and education at the sales moment kills sales.*
+
+**The resolution: never make one offer do both jobs.** The pattern behind every category king (Tesla sold "a sports car" that was secretly electric transport; Salesforce sold "CRM" that was secretly cloud software — Benioff's launch logo was literally the word SOFTWARE crossed out; Apple sold "a phone" that was secretly a pocket computer):
+
+| Layer | Job | Rule |
+|---|---|---|
+| **SELL on the known shelf** | The doorway | The sales moment stays shelf-simple — name the offer in words the buyer already shops with (for us: the "zone of genius" shelf Gay Hendricks built) |
+| **NARRATE the new category in content** | The corridor | Category education happens at lead-gen, decoupled from the sales moment — teach-sell fusion means the education IS the marketing and costs the buyer nothing |
+| **GRADUATE buyers through the ladder** | The cathedral | Ascension converts shelf-buyers into category-dwellers; premium pricing lives here, where the category (not the shelf) sets the price physics |
+
+**ESC (one sentence each):**
+- **Essence:** the shelf is how they find you; the cathedral is what they find; the content is the corridor between them.
+- **Significance:** this dissolves the false choice between "sell what people understand" and "build what doesn't exist yet" — both run simultaneously in different layers, so category education stops taxing conversion and starts feeding it.
+- **Consequences:** the doorway offer gets named in shelf language and priced for entry, the thesis content carries the category story at lead-gen for free, and the price ceiling migrates from the shelf's comparison table to the category's own physics as buyers ascend.
+
+**Level-4 corollary (from the 4 Levels of Value):** category-creating products sold with category-competing price tags get underpriced by construction — the anchor offer at the cathedral level must exist publicly, even if rarely bought, because every offer below it is re-read against it.
+
 ---
 
 ## Phase 1: Packaging (Format + Sequence)
