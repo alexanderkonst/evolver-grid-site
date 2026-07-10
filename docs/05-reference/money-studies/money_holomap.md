@@ -92,6 +92,18 @@ Corpus anchors already at Stage 5-7 language: [STF](../../01-vision/sacred_trans
 
 ---
 
+### 2026-07-09 · Source: Wattles, *The Science of Getting Rich* (1910, Proctor Gallagher workbook ed.) → [study](./sources/wattles_science_of_getting_rich.md) · text-verified
+
+**Exchange × Stage 5:** "See that you give them a use value greater than the cash value you are taking from them" — the complete ethics of exchange in one 1910 sentence (Golden's buyer-profits-more rule, 111 years early). **The Impression of Increase:** every transaction, however small, must leave the other person advanced and *feeling* it; "people will go where they are given increase."
+
+**Meaning × Stage 5:** creative plane vs competitive plane ("the competitive mind is not the creative one"); "desire is possibility seeking expression"; "What I want for myself, I want for everybody" (Golden Rule Jones). The being-wanted register at the level of character.
+
+**Creation × Stage 5:** the First Principle — one thinking substance, thought produces the form imaged; the genre's metaphysical creation account, held as creed.
+
+**Pathology cross-reference:** ch. 4 contains the belief-engine commands in explicit text at the genre's origin: "Do not ask why these things are true... take them on trust... cast doubt aside as a sin... do not read books which teach a different idea," plus "there is no poverty" and "it cannot fail." The founding specimen for Field Pathologies below — one text holding both the ethics the corpus keeps and the epistemology it rejects. The line between frequency-pass and frequency-fail runs *through the middle of the genre's constitution.*
+
+---
+
 ## Field Pathologies (added Day 119, July 9, 2026)
 
 ### The Guru Loop (closed-circuit wealth teaching)

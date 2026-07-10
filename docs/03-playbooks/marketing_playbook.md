@@ -343,6 +343,13 @@ Every piece of copy is written in one of two registers:
 
 **Level-4 corollary (from the 4 Levels of Value):** category-creating products sold with category-competing price tags get underpriced by construction — the anchor offer at the cathedral level must exist publicly, even if rarely bought, because every offer below it is re-read against it.
 
+**Two refinements (Day 119, Sasha's pushback — "the corridor is not just content"):**
+
+1. **The corridor is the NARRATIVE layer, not "content marketing."** Benioff did not blog at his buyers — he ran "The End of Software" as theater: the crossed-out-SOFTWARE logo, fake protest marches outside Siebel's conference, press, keynotes, analyst briefings. The corridor is every surface where the category story travels without a price tag attached: thesis documents, manifestos, stunts, talks, PR, and yes, posts. What qualifies it as corridor is not the medium but the decoupling: category education happening away from the sales moment.
+2. **Two buyers, two doors.** Customers enter through the shelf; **capital, partners, and talent buy the cathedral directly** — investors are shown the category (the thesis, the TAM of the new world) with shelf revenue as the *evidence* it's real. Same machine, two doors: sell the shelf to users, sell the cathedral to believers, and let each audience's yes strengthen the other's.
+
+**The recognition corollary (ours specifically):** the corpus already holds a stronger corridor mechanic than education — **Mirror Not Teacher** (canvas, Day 111: "Recognition cannot be handed over; it has to fire inside the person. The product is a recognition machine"). Our corridor doesn't explain the category; it mirrors the reader until they recognize *themselves* inside it. The thesis is the category document; the myth is its heart-language compression; the four-altitude myth ladder (person / venture / community / civilization) is the category pre-narrated for every room; the two languages (fire / vehicle) are cathedral-tongue and shelf-tongue. The category engine was already in the canvas — Step 0.6 only names which artifact plays which position.
+
 ---
 
 ## Phase 1: Packaging (Format + Sequence)
