@@ -142,6 +142,72 @@ export default function CockpitDashboard() {
   const [pulseError, setPulseError] = useState<string | null>(null);
   const [activePulseKind, setActivePulseKind] = useState<PulseBriefKind>("daily");
 
+  // Offer Cadence — the controllable input metric (offers made per week).
+  const [offerWeekCount, setOfferWeekCount] = useState<number | null>(null);
+  const [offerPrevWeekCount, setOfferPrevWeekCount] = useState<number>(0);
+  const [offerRecent, setOfferRecent] = useState<
+    Array<{ id: string; created_at: string; recipient: string; offer_name: string; channel: string | null }>
+  >([]);
+  const [offerTableReady, setOfferTableReady] = useState(true);
+  const [offerRecipient, setOfferRecipient] = useState("");
+  const [offerName, setOfferName] = useState("");
+  const [offerChannel, setOfferChannel] = useState("");
+  const [offerLogging, setOfferLogging] = useState(false);
+  const [offerError, setOfferError] = useState<string | null>(null);
+
+  const loadOfferCadence = async () => {
+    const since = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString();
+    // offer_pulses may not exist in generated client types until Lovable regenerates them.
+    const { data, error: cadenceError } = await (supabase as any)
+      .from("offer_pulses")
+      .select("id, created_at, recipient, offer_name, channel")
+      .gte("created_at", since)
+      .order("created_at", { ascending: false });
+    if (cadenceError) {
+      setOfferTableReady(false);
+      return;
+    }
+    setOfferTableReady(true);
+    const rows = (data ?? []) as Array<{
+      id: string;
+      created_at: string;
+      recipient: string;
+      offer_name: string;
+      channel: string | null;
+    }>;
+    const weekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+    setOfferWeekCount(rows.filter((r) => new Date(r.created_at).getTime() >= weekAgo).length);
+    setOfferPrevWeekCount(rows.filter((r) => new Date(r.created_at).getTime() < weekAgo).length);
+    setOfferRecent(rows.slice(0, 3));
+  };
+
+  const logOffer = async () => {
+    if (!offerRecipient.trim() || !offerName.trim()) {
+      setOfferError("Recipient and offer are required.");
+      return;
+    }
+    setOfferLogging(true);
+    setOfferError(null);
+    const { error: insertError } = await (supabase as any).from("offer_pulses").insert({
+      recipient: offerRecipient.trim(),
+      offer_name: offerName.trim(),
+      channel: offerChannel.trim() || null,
+    });
+    if (insertError) {
+      setOfferError(insertError.message);
+    } else {
+      setOfferRecipient("");
+      setOfferChannel("");
+      await loadOfferCadence();
+    }
+    setOfferLogging(false);
+  };
+
+  useEffect(() => {
+    void loadOfferCadence();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const loadContext = async () => {
     setLoading(true);
     setError(null);
@@ -566,6 +632,84 @@ export default function CockpitDashboard() {
               </div>
             );
           })()}
+        </section>
+
+        <section className="mb-5 rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5">
+          <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p className="flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-[#d6a84d]">
+              <Crosshair className="h-4 w-4" />
+              Offer Cadence · Controllable Input
+            </p>
+            <span className="text-xs text-[#9ea7b3]">
+              Revenue is the lagging output. Offers made is the input you control.
+            </span>
+          </div>
+
+          {!offerTableReady ? (
+            <p className="rounded-lg border border-[#f0a37a]/35 bg-[#24100d] p-3 text-sm text-[#ffc0a5]">
+              offer_pulses table not deployed yet — run the pending migration via Lovable, then refresh.
+            </p>
+          ) : (
+            <div className="grid gap-4 lg:grid-cols-[0.55fr_1fr]">
+              <div className="rounded-xl border border-white/10 bg-[#07090d] p-5">
+                <p className="text-sm text-[#9ea7b3]">Offers made · last 7 days</p>
+                <p className="mt-2 text-5xl font-semibold text-[#f6d58a]">{offerWeekCount ?? "—"}</p>
+                <p className="mt-2 text-xs text-[#9ea7b3]">
+                  Previous 7 days: {offerPrevWeekCount}
+                </p>
+                {offerRecent.length > 0 && (
+                  <ul className="mt-4 space-y-1.5 border-t border-white/10 pt-3">
+                    {offerRecent.map((row) => (
+                      <li key={row.id} className="text-xs leading-5 text-[#cfc4b5]">
+                        {row.offer_name} → {row.recipient}
+                        {row.channel ? ` · ${row.channel}` : ""} · {formatDate(row.created_at)}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              <div className="rounded-xl border border-white/10 bg-[#07090d] p-5">
+                <p className="mb-3 text-xs uppercase tracking-[0.14em] text-[#93f0e8]">Log an offer</p>
+                <div className="flex flex-col gap-2 sm:flex-row">
+                  <input
+                    value={offerRecipient}
+                    onChange={(e) => setOfferRecipient(e.target.value)}
+                    placeholder="Who (person / org)"
+                    className="h-10 flex-1 rounded-lg border border-white/15 bg-[#0d1117] px-3 text-sm text-[#f6efe3] placeholder:text-[#6b7280] focus:border-[#d6a84d]/60 focus:outline-none"
+                  />
+                  <input
+                    value={offerName}
+                    onChange={(e) => setOfferName(e.target.value)}
+                    placeholder="Which offer"
+                    className="h-10 flex-1 rounded-lg border border-white/15 bg-[#0d1117] px-3 text-sm text-[#f6efe3] placeholder:text-[#6b7280] focus:border-[#d6a84d]/60 focus:outline-none"
+                  />
+                  <input
+                    value={offerChannel}
+                    onChange={(e) => setOfferChannel(e.target.value)}
+                    placeholder="Channel (optional)"
+                    className="h-10 w-full rounded-lg border border-white/15 bg-[#0d1117] px-3 text-sm text-[#f6efe3] placeholder:text-[#6b7280] focus:border-[#d6a84d]/60 focus:outline-none sm:w-40"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => void logOffer()}
+                    disabled={offerLogging}
+                    className="inline-flex h-10 items-center gap-2 rounded-full border border-[#d6a84d]/35 bg-[#15100a] px-4 text-sm font-medium text-[#f6d58a] transition hover:border-[#f6d58a]/70 disabled:opacity-60"
+                  >
+                    {offerLogging ? <Loader2 className="h-4 w-4 animate-spin" /> : <Zap className="h-4 w-4" />}
+                    Log
+                  </button>
+                </div>
+                {offerError && (
+                  <p className="mt-3 rounded-lg border border-[#f0a37a]/35 bg-[#24100d] p-2.5 text-xs text-[#ffc0a5]">
+                    {offerError}
+                  </p>
+                )}
+                <p className="mt-3 text-xs leading-5 text-[#9ea7b3]">
+                  One row = one offer to one real human. Five seconds, then back to the field.
+                </p>
+              </div>
+            </div>
+          )}
         </section>
 
         <div className="mb-5 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
