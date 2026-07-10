@@ -48,6 +48,17 @@ verify_jwt = true
 [functions.create-portal-session]
 verify_jwt = true
 
+[functions.match-consent]
+# Day 120 (Sasha 2026-07-10): bug found via founder pulse feedback — this
+# function was never declared here, so it fell back to the platform
+# default (verify_jwt = true). The Kong gateway then rejected every
+# anonymous email-link click (no Authorization header) BEFORE the
+# function's own code ever ran, returning a raw JSON 401 instead of the
+# Aurora HTML confirmation page the code renders on every branch. The
+# function's own header comment says "PUBLIC endpoint — no JWT
+# required" — that was always the intent, just never wired into config.
+verify_jwt = false
+
 [functions.match-missions]
 verify_jwt = false
 
