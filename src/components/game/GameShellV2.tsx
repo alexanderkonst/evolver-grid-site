@@ -7,7 +7,6 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { cn } from "@/lib/utils";
 // Top-right corner icon — FYTT glyph, separate from the rail wordmark.
 // AI OS routes still swap this for the merkaba below.
-import logoSrc from "@/assets/find-your-top-talent-torus.png";
 // Day 54+ (Sasha 2026-04-28): on AI OS routes, the top-right home icon
 // uses the merkaba (matching the AI OS Space rail icon) instead of the
 // default torus-dodecahedron logo.jpg. Route-detected inside the
@@ -16,7 +15,9 @@ import aiOsHomeIcon from "@/assets/mc-merkaba.png";
 // Day 53 (Sasha 2026-04-27): brand torus mark used as the leading
 // glyph in the mobile menu pill — pairs with the hamburger to read as
 // "your home + open menu" in one affordance.
-import brandMark from "@/assets/find-your-top-talent-torus.png";
+// Day 119 (Sasha 2026-07-09): mark-only brand logo swapped to the ORIGINAL
+// octahedron-in-sphere (matches SpacesRail); unused logoSrc import removed.
+import brandMark from "@/assets/original-octahedron-mark.png";
 // Day 84 v3 (Sasha 2026-05-25): real LATAM Impact pyramid mark for the
 // daouniverse mobile pill — replaces the V2 inline SVG.
 import latamPyramidMark from "@/assets/latam-impact-pyramid.png";
