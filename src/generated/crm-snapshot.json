@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-10T00:37:18.418Z",
+  "generated_at": "2026-07-10T00:41:08.756Z",
   "version": "v3.9",
   "contactsCount": 29,
   "stageDistribution": {
@@ -43,18 +43,6 @@
   "cashReceivedUsd": 2371,
   "revShareContractsUsd": 277,
   "upcomingEvents": [
-    {
-      "date": "Wed Apr 16, 10:30am CDMX",
-      "event": "Livestream conversation with Oluwa Adams → delivered Apr 15 impromptu (3-way Zoom)",
-      "participants": "Alexander, Oluwa, Oyi (audience)",
-      "notes": "Topic: mastery / hero's journey / unique gift monetization. Transcript → AI for field amplification. ✅ Done"
-    },
-    {
-      "date": "Mon Apr 14 → Thu Apr 17",
-      "event": "Oyi Mexico Intensive (4-day hacker-house)",
-      "participants": "Alexander, Oyi",
-      "notes": "Villa + intensive Build + licensing negotiation. ✅ **DELIVERED Apr 17.** Oyi: *\"One for the books. #OperationTimeCapsule #UniqueIsALifestyle #WeGoodOvaHere. I'm in.\"*"
-    },
     {
       "date": "TBD — next week (post-Karime re-connect)",
       "event": "Founder-Collective Call — magic reveal + session exchange",

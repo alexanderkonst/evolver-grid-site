@@ -45,7 +45,10 @@ const TELEGRAM_CHUNK = 3900;
 
 const SYSTEM_PROMPT = `You are the private founder chat for Alexander (Sasha) Konstantinov's Planetary OS venture. You answer from his corpus mirror and the live project state provided below. You are talking to Sasha himself on Telegram.
 
+Today is ${new Date().toISOString().slice(0, 10)}.
+
 Rules:
+- Every source carries dates (generated_at, updated_at, entry dates). When data is stale — an "upcoming" event whose date is in the past, a log whose latest entry is over a week old — say so explicitly ("latest pulse entry is July 7; nothing logged since") instead of presenting it as current.
 - Lead with the answer. Keep replies short and phone-readable; expand only when he asks.
 - Plain, human language. Short sentences. Concrete over abstract. No hype, no coaching filler.
 - Russian in, Russian out; English in, English out.
@@ -53,15 +56,55 @@ Rules:
 - Only claim what the provided context supports. If the corpus mirror or a data source is missing something, say so plainly instead of guessing.
 - He calls the play: give options plus one recommendation, never orders.`;
 
-async function sendTelegram(chatId: number, text: string) {
+// Persistent one-tap keyboard for the founder chat. Sending it also
+// replaces the legacy "⚡ SEE CURRENT ENERGY" keyboard from the old bot.
+const FOUNDER_KEYBOARD = {
+  keyboard: [[{ text: "⚡ Project status" }, { text: "🫀 Pulse" }]],
+  resize_keyboard: true,
+  is_persistent: true,
+};
+
+const STATUS_QUESTION =
+  "Give me a current project status snapshot: money, CRM movement, current focus, and next moves. Date-stamp the sources and flag anything stale.";
+
+async function sendTelegram(chatId: number, text: string, withKeyboard = false) {
   // Telegram hard limit is 4096 chars; chunk conservatively.
   for (let i = 0; i < text.length; i += TELEGRAM_CHUNK) {
     await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: chatId, text: text.slice(i, i + TELEGRAM_CHUNK) }),
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: text.slice(i, i + TELEGRAM_CHUNK),
+        ...(withKeyboard ? { reply_markup: FOUNDER_KEYBOARD } : {}),
+      }),
     });
   }
+}
+
+// ── Voice notes ──────────────────────────────────────────────────────
+
+function toBase64(bytes: Uint8Array): string {
+  let binary = "";
+  const CHUNK = 0x8000;
+  for (let i = 0; i < bytes.length; i += CHUNK) {
+    binary += String.fromCharCode(...bytes.subarray(i, i + CHUNK));
+  }
+  return btoa(binary);
+}
+
+async function downloadVoice(fileId: string): Promise<Uint8Array> {
+  const metaRes = await fetch(
+    `https://api.telegram.org/bot${BOT_TOKEN}/getFile?file_id=${fileId}`,
+  );
+  const meta = await metaRes.json();
+  const filePath = meta?.result?.file_path;
+  if (!filePath) throw new Error("Telegram getFile returned no file_path");
+  const fileRes = await fetch(
+    `https://api.telegram.org/file/bot${BOT_TOKEN}/${filePath}`,
+  );
+  if (!fileRes.ok) throw new Error(`voice download HTTP ${fileRes.status}`);
+  return new Uint8Array(await fileRes.arrayBuffer());
 }
 
 async function safeJson(url: string): Promise<unknown> {
@@ -151,7 +194,11 @@ async function saveMessage(chatId: number, role: "user" | "assistant", content: 
   await admin.from("telegram_founder_messages").insert({ chat_id: chatId, role, content });
 }
 
-async function answer(chatId: number, question: string): Promise<string> {
+async function answer(
+  chatId: number,
+  question: string,
+  voiceBase64?: string,
+): Promise<string> {
   const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
   if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
 
@@ -161,6 +208,20 @@ async function answer(chatId: number, question: string): Promise<string> {
     loadHistory(chatId),
   ]);
 
+  const userContent = voiceBase64
+    ? [
+        {
+          type: "text",
+          text:
+            "This is a voice note from Sasha. Start your reply with one line: \"🎙️ \" plus a short paraphrase of what you heard, then answer it per your rules.",
+        },
+        {
+          type: "input_audio",
+          input_audio: { data: voiceBase64, format: "ogg" },
+        },
+      ]
+    : question;
+
   const messages = [
     { role: "system", content: SYSTEM_PROMPT },
     {
@@ -168,7 +229,7 @@ async function answer(chatId: number, question: string): Promise<string> {
       content: `LIVE PROJECT STATE (JSON):\n${JSON.stringify(live).slice(0, 24_000)}\n\nCORPUS MIRROR:\n${corpus}`,
     },
     ...history.map((m) => ({ role: m.role, content: m.content })),
-    { role: "user", content: question },
+    { role: "user", content: userContent },
   ];
 
   const res = await fetch(AI_GATEWAY_URL, {
@@ -197,18 +258,56 @@ Deno.serve(async (req) => {
   try {
     const update = await req.json();
     const message = update?.message;
-    if (!message?.text) return new Response("ok", { headers: corsHeaders });
+    if (!message?.text && !message?.voice) {
+      return new Response("ok", { headers: corsHeaders });
+    }
 
     const chatId: number = message.chat.id;
-    const text: string = message.text.trim();
     const isFounder = FOUNDER_CHAT_ID !== "" && String(chatId) === FOUNDER_CHAT_ID;
+
+    // ── Voice notes (founder only) ─────────────────────────────────
+    if (message.voice) {
+      if (!isFounder) {
+        await sendTelegram(chatId, "This is a private bot. Nothing to see here.");
+        return new Response("ok", { headers: corsHeaders });
+      }
+      if ((message.voice.duration ?? 0) > 300) {
+        await sendTelegram(chatId, "That voice note is over 5 minutes — send a shorter one.", true);
+        return new Response("ok", { headers: corsHeaders });
+      }
+      try {
+        const audio = await downloadVoice(message.voice.file_id);
+        const reply = await answer(chatId, "", toBase64(audio));
+        await saveMessage(chatId, "user", "[voice note — gist is in the 🎙️ line of the next reply]");
+        await saveMessage(chatId, "assistant", reply);
+        await sendTelegram(chatId, reply, true);
+      } catch (err) {
+        console.error("voice note error:", err);
+        await sendTelegram(
+          chatId,
+          `Couldn't process that voice note (${err instanceof Error ? err.message : String(err)}). Text works.`,
+          true,
+        );
+      }
+      return new Response("ok", { headers: corsHeaders });
+    }
+
+    let text: string = message.text.trim();
+
+    // One-tap keyboard buttons (incl. the legacy button from the old bot).
+    if (text === "⚡ Project status" || text === "⚡ SEE CURRENT ENERGY") {
+      text = STATUS_QUESTION;
+    } else if (text === "🫀 Pulse") {
+      text = "/pulse";
+    }
 
     if (text === "/start") {
       await sendTelegram(
         chatId,
         isFounder
-          ? "Founder chat online. Ask the project anything — corpus + live state. Commands: /pulse (latest brief), /clear (forget this conversation)."
+          ? "Founder chat online. Ask the project anything — text or voice note. Commands: /pulse (latest brief), /clear (forget this conversation)."
           : `This is a private founder bot. Chat id: ${chatId}. If this bot is yours, set TELEGRAM_FOUNDER_CHAT_ID to this value in Supabase secrets.`,
+        isFounder,
       );
       return new Response("ok", { headers: corsHeaders });
     }
@@ -220,7 +319,7 @@ Deno.serve(async (req) => {
 
     if (text === "/clear") {
       await admin.from("telegram_founder_messages").delete().eq("chat_id", chatId);
-      await sendTelegram(chatId, "Conversation forgotten. Clean slate.");
+      await sendTelegram(chatId, "Conversation forgotten. Clean slate.", true);
       return new Response("ok", { headers: corsHeaders });
     }
 
@@ -236,6 +335,7 @@ Deno.serve(async (req) => {
         brief
           ? `${brief.title ?? "Founder Pulse"} (${brief.created_at})\n\n${brief.markdown}`
           : "No pulse brief yet. It runs 8:00 and 20:00 Mexico City, or tap Pulse now in the cockpit.",
+        true,
       );
       return new Response("ok", { headers: corsHeaders });
     }
@@ -244,12 +344,13 @@ Deno.serve(async (req) => {
     try {
       const reply = await answer(chatId, text);
       await saveMessage(chatId, "assistant", reply);
-      await sendTelegram(chatId, reply);
+      await sendTelegram(chatId, reply, true);
     } catch (err) {
       console.error("founder chat error:", err);
       await sendTelegram(
         chatId,
         `Hit an error answering that: ${err instanceof Error ? err.message : String(err)}`,
+        true,
       );
     }
 
