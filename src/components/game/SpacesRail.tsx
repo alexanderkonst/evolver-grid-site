@@ -471,7 +471,17 @@ const SpacesRail = ({
                                 centered narrow band that still reads as the
                                 star + first letter of the wordmark. Desktop:
                                 full wordmark. */}
-                            <div className="md:hidden flex items-center justify-center px-3 py-2.5">
+                            {/* Day 119 (Sasha 2026-07-09): minimize is now
+                                platform-wide, so every skin branch needs a
+                                compact variant — the mark-only asset rendered
+                                bare inside the 48px grid cell (the padded
+                                mobile/desktop wrappers below rely on md:
+                                viewport variants, which compact must ignore).
+                                Previously a CSS rule force-hid the desktop
+                                lockups; that rule blocked the new label fade
+                                and is retired. Same pattern for Planetir /
+                                LATAM / NS below. */}
+                            {compact ? (
                                 <img
                                     src={techstarsLogo}
                                     alt="Techstars"
@@ -479,15 +489,27 @@ const SpacesRail = ({
                                     style={{ maxWidth: "48px" }}
                                     draggable={false}
                                 />
-                            </div>
-                            <div className="hidden md:flex items-center justify-start px-3 py-2.5">
-                                <img
-                                    src={techstarsLogo}
-                                    alt="Techstars"
-                                    className="h-7 w-auto object-contain flex-shrink-0"
-                                    draggable={false}
-                                />
-                            </div>
+                            ) : (
+                                <>
+                                    <div className="md:hidden flex items-center justify-center px-3 py-2.5">
+                                        <img
+                                            src={techstarsLogo}
+                                            alt="Techstars"
+                                            className="h-7 w-auto object-contain object-left flex-shrink-0"
+                                            style={{ maxWidth: "48px" }}
+                                            draggable={false}
+                                        />
+                                    </div>
+                                    <div className="hidden md:flex items-center justify-start px-3 py-2.5">
+                                        <img
+                                            src={techstarsLogo}
+                                            alt="Techstars"
+                                            className="h-7 w-auto object-contain flex-shrink-0"
+                                            draggable={false}
+                                        />
+                                    </div>
+                                </>
+                            )}
                         </>
                     ) : isPlanetir ? (
                         <>
@@ -495,7 +517,7 @@ const SpacesRail = ({
                                 (olive shield + wordmark, transparent bg).
                                 Mobile (72px) crops to icon-only via object
                                 positioning; desktop shows full lockup. */}
-                            <div className="md:hidden flex items-center justify-center px-3 py-2.5">
+                            {compact ? (
                                 <img
                                     src={planetirLogo}
                                     alt="Planetir"
@@ -503,15 +525,27 @@ const SpacesRail = ({
                                     style={{ maxWidth: "40px" }}
                                     draggable={false}
                                 />
-                            </div>
-                            <div className="hidden md:flex items-center justify-start px-3 py-2.5">
-                                <img
-                                    src={planetirLogo}
-                                    alt="Planetir"
-                                    className="h-10 w-auto object-contain flex-shrink-0"
-                                    draggable={false}
-                                />
-                            </div>
+                            ) : (
+                                <>
+                                    <div className="md:hidden flex items-center justify-center px-3 py-2.5">
+                                        <img
+                                            src={planetirLogo}
+                                            alt="Planetir"
+                                            className="h-9 w-auto object-contain object-left flex-shrink-0"
+                                            style={{ maxWidth: "40px" }}
+                                            draggable={false}
+                                        />
+                                    </div>
+                                    <div className="hidden md:flex items-center justify-start px-3 py-2.5">
+                                        <img
+                                            src={planetirLogo}
+                                            alt="Planetir"
+                                            className="h-10 w-auto object-contain flex-shrink-0"
+                                            draggable={false}
+                                        />
+                                    </div>
+                                </>
+                            )}
                         </>
                     ) : isDao ? (
                         <>
@@ -524,22 +558,33 @@ const SpacesRail = ({
                                 rendering — the lockup already carries it,
                                 avoiding font-family mismatch with the canonical
                                 LATAM Impact wordmark. */}
-                            <div className="md:hidden flex items-center justify-center px-3 py-2.5">
+                            {compact ? (
                                 <img
                                     src={latamPyramid}
                                     alt="LATAM Impact"
                                     className="w-10 h-10 object-contain flex-shrink-0"
                                     draggable={false}
                                 />
-                            </div>
-                            <div className="hidden md:flex items-center justify-start px-3 py-2.5">
-                                <img
-                                    src={latamLockup}
-                                    alt="LATAM Impact"
-                                    className="h-12 w-auto object-contain flex-shrink-0"
-                                    draggable={false}
-                                />
-                            </div>
+                            ) : (
+                                <>
+                                    <div className="md:hidden flex items-center justify-center px-3 py-2.5">
+                                        <img
+                                            src={latamPyramid}
+                                            alt="LATAM Impact"
+                                            className="w-10 h-10 object-contain flex-shrink-0"
+                                            draggable={false}
+                                        />
+                                    </div>
+                                    <div className="hidden md:flex items-center justify-start px-3 py-2.5">
+                                        <img
+                                            src={latamLockup}
+                                            alt="LATAM Impact"
+                                            className="h-12 w-auto object-contain flex-shrink-0"
+                                            draggable={false}
+                                        />
+                                    </div>
+                                </>
+                            )}
                         </>
                     ) : isNS ? (
                         <>
@@ -556,6 +601,15 @@ const SpacesRail = ({
                                 the flag's center auto-aligns with the
                                 JOURNEY/AI OS/ME/BUILD icon column — no
                                 hand-tuned padding required. */}
+                            {compact ? (
+                                <img
+                                    src={NS_LOGO_URL}
+                                    alt="Network School"
+                                    className="w-9 h-9 object-contain flex-shrink-0"
+                                    draggable={false}
+                                />
+                            ) : (
+                                <>
                             <div className="md:hidden flex items-center justify-center px-3 py-2.5">
                                 <img
                                     src={NS_LOGO_URL}
@@ -589,6 +643,8 @@ const SpacesRail = ({
                                     ns.com
                                 </span>
                             </div>
+                                </>
+                            )}
                         </>
                     ) : compact ? (
                         /* Day 119 (Sasha 2026-07-09): compact mode shows the
@@ -1183,6 +1239,9 @@ const SpacesRail = ({
 };
 
 const areEqual = (prev: SpacesRailProps, next: SpacesRailProps) => {
+    // Day 119 (Sasha 2026-07-09): compact now flips at runtime on every
+    // shell route (platform-wide minimize) — must invalidate the memo.
+    if (prev.compact !== next.compact) return false;
     if (prev.activeSpaceId !== next.activeSpaceId) return false;
     if (prev.onSpaceSelect !== next.onSpaceSelect) return false;
     if (prev.className !== next.className) return false;

@@ -3141,27 +3141,15 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
-/* Day 82 v4 (Sasha 2026-05-24): SpacesRail compact mode. When the rail
-   carries data-rail-compact="true" (set by GameShellV2 when the user
-   minimizes pane 1 via the new toggle), force-hide every `md:block`
-   descendant. The rail's labels — chip labels, brand wordmark, "chat
-   with us", "settings", "Log In/Out" — are all rendered with
-   `hidden md:block`; this rule overrides the `md:block` half so they
-   stay hidden even at md+ viewport widths, leaving the icon-only strip.
-
-   Day 85 (Sasha 2026-05-25): extended to also cover `md:inline-flex`
-   and `md:flex`. The SoundCloudMinimalPlayer's Skip-track button and
-   SC-attribution mark use `hidden md:inline-flex`; in desktop+
-   compact, they were still rendering and bleeding 30-65px to the
-   right of the 72px rail, into the spine/content zone. Sasha caught
-   this as "logos in the 1st panel not aligned." Same intent as the
-   block rule: "anything that should only show on a full desktop rail
-   stays hidden in compact." */
-[data-rail-compact="true"] .md\:block,
-[data-rail-compact="true"] .md\:inline-flex,
-[data-rail-compact="true"] .md\:flex {
-  display: none !important;
-}
+/* Day 82 v4 (Sasha 2026-05-24) / Day 85 force-hide of `md:block` /
+   `md:inline-flex` / `md:flex` descendants under
+   [data-rail-compact="true"] RETIRED Day 119 (Sasha 2026-07-09):
+   every element it hid (chip labels, utility labels, brand wordmark,
+   the four white-label skin lockups, the player's title/skip/
+   attribution) is now conditionally rendered in JSX behind the
+   `compact` prop — and the instant `display:none !important` was
+   killing the new 150ms label fade, since the attribute lands on the
+   rail root the same frame the collapse starts. */
 
 .spaces-rail-chat-cta {
   background:
