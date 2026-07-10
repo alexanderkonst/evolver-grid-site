@@ -229,6 +229,7 @@ import FounderMarketFit from "./pages/FounderMarketFit";
 import TheOriginalsPage from "./pages/TheOriginalsPage";
 import IntegralTheoryUpgrade1 from "./pages/IntegralTheoryUpgrade1";
 import Intros from "./pages/Intros";
+import YouBeOriginal from "./pages/YouBeOriginal";
 // Unique Business Builder v2.0
 import UniqueBusinessLayout from "./modules/unique-business-builder/UniqueBusinessLayout";
 import CanvasOverviewScreen from "./modules/unique-business-builder/screens/CanvasOverviewScreen";
@@ -862,6 +863,7 @@ const App = () => (
                       Upgrade of /1-pager into the thesis landing for sovereign builders.
                       Source of truth: docs/02-strategy/uniqueness_economy_thesis.md. */}
                   <Route path="/landing" element={<LandingThesis />} />
+                  <Route path="/you" element={<YouBeOriginal />} />
                   {/* Public monetization explainer · /monetization · standalone (no shell),
                       radical-transparency framing, Liquid Glass register. */}
                   <Route path="/monetization" element={<Monetization />} />

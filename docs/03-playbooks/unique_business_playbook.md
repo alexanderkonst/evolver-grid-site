@@ -34,6 +34,14 @@ The whole is one sentence:
 
 > *"Top talent → playbook → business off that top talent → a builder tool that a) follows the playbook; b) makes sure no versions get lost, that the specificity score is going up as a trend; c) AI workflows are leveraged to ease the work; d) stuckness of ignorance is largely eradicated and only stuckness of inner challenges remains."*
 
+## The Unique Business Playbook — in two sentences
+
+> **Your unique business is the one signal you carry within turned into a business.**
+>
+> **Your uniqueness articulation generates the core signal, your shadow names its inversion, myth universalizes it into a law, tribe polarizes around that law, and pain, promise, offer, marketing, comms, and distribution all inherit the same signal.**
+
+That is the whole playbook, compressed. It is not a sequence of disconnected business artifacts; it is one originating signal refracted through every layer of the venture.
+
 Read it in one breath. That is the founder's full arc.
 
 ## The four moving pieces
