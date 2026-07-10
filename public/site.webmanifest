@@ -1,0 +1,21 @@
+{
+  "name": "Find Your Top Talent",
+  "short_name": "Top Talent",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "theme_color": "#041a2f",
+  "background_color": "#041a2f",
+  "display": "standalone"
+}

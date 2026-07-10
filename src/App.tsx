@@ -230,6 +230,7 @@ import TheOriginalsPage from "./pages/TheOriginalsPage";
 import IntegralTheoryUpgrade1 from "./pages/IntegralTheoryUpgrade1";
 import Intros from "./pages/Intros";
 import YouBeOriginal from "./pages/YouBeOriginal";
+import Web3Commons from "./pages/Web3Commons";
 // Unique Business Builder v2.0
 import UniqueBusinessLayout from "./modules/unique-business-builder/UniqueBusinessLayout";
 import CanvasOverviewScreen from "./modules/unique-business-builder/screens/CanvasOverviewScreen";
@@ -629,7 +630,7 @@ const App = () => (
                   <Route path="/playbook" element={<PlaybookPage />} />
                   <Route path="/playbook/discover" element={<Navigate to="/playbook" replace />} />
                   <Route path="/playbook/:slug" element={<PlaybookPage />} />
-                  {/* THE PATH — one-page value ladder. Soft-gated (auth or ZoG done) by the page itself. */}
+                  {/* THE PATH — fully public one-page value ladder. No auth or ZoG prerequisite. */}
                   <Route path="/path" element={<PathPage />} />
                   {/* MY ARTIFACTS — user's unique-business artifacts grouped by step. RLS-scoped. */}
                   <Route path="/my-artifacts" element={<RequireAuth><MyArtifactsPage /></RequireAuth>} />
@@ -864,6 +865,7 @@ const App = () => (
                       Source of truth: docs/02-strategy/uniqueness_economy_thesis.md. */}
                   <Route path="/landing" element={<LandingThesis />} />
                   <Route path="/you" element={<YouBeOriginal />} />
+                  <Route path="/web3" element={<Web3Commons />} />
                   {/* Public monetization explainer · /monetization · standalone (no shell),
                       radical-transparency framing, Liquid Glass register. */}
                   <Route path="/monetization" element={<Monetization />} />

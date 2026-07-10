@@ -88,6 +88,7 @@
 | C5 | **Tribe 1 Si-Do** still unfired | Funnel | 🔴 | First $555 stranger from the funnel. Plus the Self-Use Discipline move flagged since Day 81: post own match card in aligned rooms. The world-touching Tribe 1 act remains |
 | C6 | Orphan spine CSS cleanup | Infra | 🟡 [brief] | ~140 lines in `src/index.css` (lines ~2090-2230) left after the Day 85 spine revert |
 | C7 | Founder cohort (the 7) | Build | 🟢 ongoing | Responsive, not proactive: Oyi, Sergey, Sandra, Alexa, Karime, Kirill |
+| C8 | **`/web3` Holonic Code Commons Ledger — taxonomy expansion** | Commons / Architecture | 🟡 Later | Add the first two holonic layers of the integralOS module taxonomy to the public ledger after the initial module registry and contribution invitation have been tested. Preserve the page's core model: every module is sovereign enough to stand alone and interoperable enough to plug into larger wholes. |
 
 ---
 
