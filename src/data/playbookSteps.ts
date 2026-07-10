@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { ITERATE_STRATEGY_CRUCIBLE_V2_PROMPT } from "@/prompts";
 
 /**
  * Playbook steps — single source of truth for the seven-step journey.
@@ -41,6 +42,17 @@ export type Substep = {
    * Hidden until the substep's "See one proven strategy" button is clicked.
    */
   oneProvenStrategy: string;
+  /**
+   * Day 120 (Sasha 2026-07-10): optional prompt text to render inline with
+   * a copy button, right below oneProvenStrategy. Added after founder pulse
+   * feedback (Tom Norwood) — a substep used to LINK OUT to /ai-os/iteration
+   * for its prompt, which yanked mid-methodology users into an unrelated
+   * top-level app Space (own hero, own nav, own unrelated suites) with no
+   * way back. The prompt itself was fine; the navigation-away was the bug.
+   * Fix: bring the prompt text into the Playbook step directly. No more
+   * step should link out to another Space just to hand over a prompt.
+   */
+  copyPrompt?: string;
 };
 
 export type PlaybookStep = {
@@ -150,7 +162,8 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
         name: "Distill it into one sentence — and actually write it down",
         description: "",
         oneProvenStrategy:
-          "Ask your AI to do this for you, and then polish it yourself. You can use [this iterative improvement prompt](/ai-os/iteration).",
+          "Ask your AI to do this for you, and then polish it yourself. Copy the prompt below and paste it in.",
+        copyPrompt: ITERATE_STRATEGY_CRUCIBLE_V2_PROMPT,
       },
       {
         number: 3,

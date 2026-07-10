@@ -3201,6 +3201,10 @@
   },
   "stepCard": {
     "oneProvenStrategy": "One Proven Strategy",
+    "copyPromptLabel": "Copy prompt",
+    "promptCopiedLabel": "Copied",
+    "promptCopied": "Prompt copied — paste it into your AI.",
+    "promptCopyFailed": "Couldn't copy — select the text manually.",
     "essayTitle": "The Secret to Productizing Yourself",
     "essayP1": "Startup influencers say \"Productize yourself.\"",
     "essayP2": "Social media coaches say \"monetize who you are.\" \"Build an authentic brand.\"",
