@@ -93,7 +93,7 @@ const KarimeOffer = () => {
   };
 
   return (
-    <GameShellV2 hideLogo enableRailMinimize>
+    <GameShellV2 hideLogo defaultRailMinimized>
       <SEO
         title="Karime Kuri · Grounded Emotional Support"
         description="Private emotional support for people moving through heartbreak, grief, burnout, relationship pain, family crisis, impossible decisions, and emotionally overwhelming seasons of life."

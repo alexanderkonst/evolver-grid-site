@@ -275,7 +275,7 @@ const SpacesRail = ({
     activeSpaceId,
     onSpaceSelect,
     unlockStatus = {},
-    compact = false,
+    compact: compactRequested = false,
     unlockHints = {},
     nudgeBadges = [],
     hiddenSpaces = [],
@@ -325,6 +325,32 @@ const SpacesRail = ({
         };
     }, []);
 
+    // Day 119 (Sasha 2026-07-09): label fade on minimize/expand. The rail
+    // width animates over 200ms (transition-[width] from GameShellV2), but
+    // labels used to unmount instantly — a visual pop. Two-phase switch:
+    //   COLLAPSE: compactRequested flips true → labels fade to opacity-0
+    //     (150ms) while the rail narrows; after 200ms the layout flips to
+    //     the compact 48px-cell grid (labels unmount).
+    //   EXPAND: layout flips back to rows immediately (labels mount at
+    //     opacity-0), then fade in on the next tick.
+    // `compact` below aliases the DELAYED layout state so every existing
+    // compact-layout branch switches in sync; width + data-rail-compact
+    // stay on compactRequested (immediate) so the CSS width transition and
+    // the kept attribute-scoped rules track the user's intent frame-one.
+    const [compactLayout, setCompactLayout] = useState(compactRequested);
+    const [labelsVisible, setLabelsVisible] = useState(!compactRequested);
+    useEffect(() => {
+        if (compactRequested) {
+            setLabelsVisible(false);
+            const id = window.setTimeout(() => setCompactLayout(true), 200);
+            return () => window.clearTimeout(id);
+        }
+        setCompactLayout(false);
+        const id = window.setTimeout(() => setLabelsVisible(true), 20);
+        return () => window.clearTimeout(id);
+    }, [compactRequested]);
+    const compact = compactLayout;
+
     const isActive = (path: string) => {
         if (activeSpaceId) {
             return SPACES.find(s => s.path === path)?.id === activeSpaceId;
@@ -334,9 +360,9 @@ const SpacesRail = ({
 
     return (
         <div
-            data-rail-compact={compact ? "true" : undefined}
+            data-rail-compact={compactRequested ? "true" : undefined}
             className={cn(
-                compact ? "w-[72px] flex flex-col relative z-30" : "w-[72px] lg:w-[280px] flex flex-col relative z-30",
+                compactRequested ? "w-[72px] flex flex-col relative z-30" : "w-[72px] lg:w-[280px] flex flex-col relative z-30",
                 "liquid-glass",
                 className
             )}
@@ -662,6 +688,11 @@ const SpacesRail = ({
                                 compact
                                     ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
                                     : "flex items-center gap-3 px-3 py-2.5 rounded-2xl justify-center md:justify-start",
+                                // Day 119 (Sasha 2026-07-09): during the 200ms
+                                // collapse fade (width already narrowing, layout
+                                // still row) clip the fading label instead of
+                                // letting it spill over the pane edge.
+                                compactRequested && !compact && "overflow-hidden",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
                                 isLocked
                                     ? "text-white/30 cursor-not-allowed"
@@ -687,7 +718,10 @@ const SpacesRail = ({
                             // Non-locked chips keep the native title as a simple
                             // accessibility fallback for mobile where the label
                             // column is hidden.
-                            title={!isLocked ? t(space.labelKey) : undefined}
+                            // Day 119 (Sasha 2026-07-09): also dropped in compact
+                            // — the Radix label tooltip below covers it, and the
+                            // native one would double up.
+                            title={!isLocked && !compact ? t(space.labelKey) : undefined}
                             aria-label={isLocked ? (unlockHints[space.id] || t('spacesRail.lockedLabel', { space: t(space.labelKey) })) : t(space.labelKey)}
                         >
                             <span className="relative flex-shrink-0">
@@ -703,7 +737,12 @@ const SpacesRail = ({
 
                             {!compact && (
                                 <span
-                                    className="hidden md:block truncate transition-opacity duration-500"
+                                    // Day 119 (Sasha 2026-07-09): fade with the
+                                    // rail width transition instead of popping.
+                                    className={cn(
+                                        "hidden md:block truncate transition-opacity duration-150",
+                                        labelsVisible ? "opacity-100" : "opacity-0"
+                                    )}
                                     style={{
                                         fontFamily: "'Cormorant Garamond', serif",
                                         fontWeight: active ? 700 : 600,
@@ -793,6 +832,54 @@ const SpacesRail = ({
                         );
                     }
 
+                    // Day 119 (Sasha 2026-07-09): compact-mode label tooltip
+                    // for UNLOCKED chips. In compact the visible label is
+                    // gone, so hovering a chip shows its name in the same
+                    // premium register as the locked-chip tooltip above
+                    // (dark glass pill + gold hairline + Cormorant), just
+                    // without the unlock-hint line. Non-compact keeps the
+                    // visible label + native title, no Radix tooltip.
+                    if (compact) {
+                        return (
+                            <Tooltip key={space.id}>
+                                <TooltipTrigger asChild>
+                                    {chipButton}
+                                </TooltipTrigger>
+                                <TooltipContent
+                                    side="right"
+                                    align="center"
+                                    sideOffset={12}
+                                    className="max-w-[260px] rounded-xl border-none p-0 shadow-none bg-transparent animate-in fade-in-0 zoom-in-95"
+                                >
+                                    <div
+                                        className="liquid-glass-dark rounded-xl px-4 py-2.5"
+                                        style={{
+                                            backgroundImage:
+                                                "linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(18,28,56,0.88) 50%, rgba(10,22,40,0.92) 100%)",
+                                            border: "1px solid rgba(212, 175, 55, 0.35)",
+                                            boxShadow:
+                                                "0 0 0 1px rgba(212, 175, 55, 0.15), 0 8px 28px -8px rgba(10, 22, 40, 0.6), 0 0 24px -6px rgba(244, 212, 114, 0.25)",
+                                        }}
+                                    >
+                                        <p
+                                            className="text-[11px]"
+                                            style={{
+                                                fontFamily: "'Cormorant Garamond', serif",
+                                                fontWeight: 600,
+                                                letterSpacing: "0.22em",
+                                                textTransform: "uppercase",
+                                                color: "#f4d472",
+                                                textShadow: "0 0 10px rgba(244, 212, 114, 0.4)",
+                                            }}
+                                        >
+                                            {t(space.labelKey)}
+                                        </p>
+                                    </div>
+                                </TooltipContent>
+                            </Tooltip>
+                        );
+                    }
+
                     return chipButton;
                 })}
                 </nav>
@@ -866,7 +953,10 @@ const SpacesRail = ({
                     />
                     {!compact && (
                         <span
-                            className="hidden md:block truncate"
+                            className={cn(
+                                "hidden md:block truncate transition-opacity duration-150",
+                                labelsVisible ? "opacity-100" : "opacity-0"
+                            )}
                             style={{
                                 fontFamily: "'Cormorant Garamond', serif",
                                 fontWeight: 600,
@@ -913,7 +1003,10 @@ const SpacesRail = ({
                     />
                     {!compact && (
                         <span
-                            className="hidden md:block truncate"
+                            className={cn(
+                                "hidden md:block truncate transition-opacity duration-150",
+                                labelsVisible ? "opacity-100" : "opacity-0"
+                            )}
                             style={{
                                 fontFamily: "'Cormorant Garamond', serif",
                                 fontWeight: 600,
@@ -972,7 +1065,10 @@ const SpacesRail = ({
                         )}
                         {!compact && (
                             <span
-                                className="hidden md:block truncate"
+                                className={cn(
+                                    "hidden md:block truncate transition-opacity duration-150",
+                                    labelsVisible ? "opacity-100" : "opacity-0"
+                                )}
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     fontWeight: 600,
@@ -1039,7 +1135,10 @@ const SpacesRail = ({
                                 />
                                 {!compact && (
                                     <span
-                                        className="hidden md:block truncate"
+                                        className={cn(
+                                            "hidden md:block truncate transition-opacity duration-150",
+                                            labelsVisible ? "opacity-100" : "opacity-0"
+                                        )}
                                         style={{
                                             fontFamily: "'Cormorant Garamond', serif",
                                             fontWeight: 600,
@@ -1073,7 +1172,7 @@ const SpacesRail = ({
                         >
                             <LogIn className={compact ? "w-5 h-5 flex-shrink-0" : "w-4 h-4 flex-shrink-0"} />
                             {!compact && (
-                                <span className="hidden md:block text-xs font-medium">{t('spacesRail.logInLabel')}</span>
+                                <span className={cn("hidden md:block text-xs font-medium transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}>{t('spacesRail.logInLabel')}</span>
                             )}
                         </button>
                     );
