@@ -1,7 +1,7 @@
 import { ReactNode, useState, useEffect, useRef, createContext, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate, useNavigationType, Outlet } from "react-router-dom";
-import { ArrowLeft, ChevronRight, Menu, PanelLeft } from "lucide-react";
+import { ArrowLeft, ChevronRight, Menu } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { cn } from "@/lib/utils";
@@ -1662,24 +1662,40 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     /* Day 85 (Sasha 2026-05-27): Day 84 collapsed-spine
                        treatment reverted. The gold ornate spine read as
                        Victorian against the cinematic hero. Restored
-                       pre-Day-84 flat w-5 column with PanelLeft icon. */
+                       pre-Day-84 flat w-5 column.
+                       Day 119 v3 (Sasha 2026-07-09): seam controls
+                       harmonized — PanelLeft icon replaced with the same
+                       14px ChevronRight the rail-minimize strip uses
+                       (pointing the direction the pane will move), and
+                       bg / hairline / focus ring switched to the shared
+                       --skin-rail-toggle-* tokens so both strips read as
+                       one control language. */
                     <button
                         onClick={toggleSectionsPanel}
                         className={cn(
                             "h-dvh w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative z-30 group",
+                            "focus-visible:outline focus-visible:outline-1 focus-visible:outline-[color:var(--skin-rail-toggle-accent,rgba(244,212,114,0.6))]",
                             isAiOsRoute ? "shrink-0" : "sticky top-0",
                             pageOwnsBackground
-                                ? "bg-[rgba(6,12,28,0.78)]"
-                                : "bg-[rgba(14,32,68,0.32)]"
+                                ? "bg-[var(--skin-rail-toggle-bg-deep,rgba(6,12,28,0.55))]"
+                                : "bg-[var(--skin-rail-toggle-bg,rgba(14,32,68,0.22))]"
                         )}
                         title={t("shell.sidebar.expandTitle")}
                         aria-label={t("shell.sidebar.expand")}
                         style={{
                             boxShadow:
-                                "inset -1px 0 0 rgba(212, 175, 55, 0.5), 2px 0 18px -6px rgba(244, 212, 114, 0.4)",
+                                "inset -1px 0 0 var(--skin-rail-toggle-hairline, rgba(212, 175, 55, 0.32)), 2px 0 14px -8px var(--skin-rail-toggle-glow, rgba(244, 212, 114, 0.3))",
                         }}
                     >
-                        <PanelLeft className="w-3 h-3 text-[#d4af37]/85 group-hover:text-[#d4af37] transition-colors" />
+                        <ChevronRight
+                            aria-hidden="true"
+                            className="transition-transform"
+                            style={{
+                                width: 14,
+                                height: 14,
+                                color: "var(--skin-rail-toggle-accent, rgba(244, 212, 114, 0.85))",
+                            }}
+                        />
                     </button>
                 )}
 

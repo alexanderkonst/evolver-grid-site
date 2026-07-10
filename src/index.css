@@ -885,10 +885,10 @@
   filter: drop-shadow(0 0 4px rgba(244, 212, 114, 0.25)) !important;
 }
 
-/* HALO — sidebar toggle (PanelLeft icon, lives in GameShellV2 outside
-   the rail but visually adjacent). Slightly higher amplitude than the
-   utility tier to acknowledge its larger interaction footprint. */
-[data-skin="karime"] svg.lucide-panel-left {
+/* HALO — seam toggle chevrons (both strips in GameShellV2, outside the
+   rail but visually adjacent). Day 119 v3 (Sasha 2026-07-09): PanelLeft
+   retired — both seam strips now use ChevronRight; halo retargeted. */
+[data-skin="karime"] svg.lucide-chevron-right {
   filter: drop-shadow(0 0 4px rgba(244, 212, 114, 0.3));
 }
 
