@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ChevronRight, Wrench } from "lucide-react";
+import { ChevronRight, Wrench, Copy, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { toast } from "@/hooks/use-toast";
 import {
   PLAYBOOK_STEPS,
   PlaybookStep,
@@ -60,6 +61,59 @@ const renderInlineLinks = (text: string): React.ReactNode => {
       </a>
     );
   });
+};
+
+/**
+ * CopyPromptBlock — Day 120 (Sasha 2026-07-10): inline "copy this prompt"
+ * affordance, added after founder pulse feedback (Tom Norwood) found a
+ * substep linking OUT to /ai-os/iteration just to hand over a prompt —
+ * dropping mid-methodology users into an unrelated top-level Space with
+ * no way back. This keeps the prompt (and the user) inside the Playbook
+ * step. Scrollable box (prompts can run long) + a copy button that mirrors
+ * the AI OS card's copy-to-clipboard pattern, at Playbook scale.
+ */
+const CopyPromptBlock = ({ prompt, neonRgb }: { prompt: string; neonRgb: string }) => {
+  const { t } = useTranslation();
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(prompt);
+      setCopied(true);
+      toast({ description: t("stepCard.promptCopied") });
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast({ description: t("stepCard.promptCopyFailed"), variant: "destructive" });
+    }
+  };
+
+  return (
+    <div className="mt-4">
+      <button
+        type="button"
+        onClick={handleCopy}
+        className="inline-flex items-center gap-2 mb-2 py-1.5 px-3.5 rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-semibold transition-all hover:scale-[1.02]"
+        style={{
+          backgroundImage: `linear-gradient(135deg, rgba(${neonRgb},0.3), rgba(${neonRgb},0.1))`,
+          border: `1px solid rgba(${neonRgb},0.55)`,
+          color: "var(--skin-text-primary, #0a1628)",
+        }}
+      >
+        {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+        {copied ? t("stepCard.promptCopiedLabel") : t("stepCard.copyPromptLabel")}
+      </button>
+      <pre
+        className="max-h-56 overflow-y-auto rounded-xl p-3.5 text-xs leading-relaxed whitespace-pre-wrap font-sans"
+        style={{
+          backgroundImage: `linear-gradient(135deg, rgba(${neonRgb},0.06), rgba(${neonRgb},0.015))`,
+          border: `1px solid rgba(${neonRgb},0.18)`,
+          color: "var(--skin-text-body, rgba(26,30,58,0.78))",
+        }}
+      >
+        {prompt}
+      </pre>
+    </div>
+  );
 };
 
 /**
@@ -268,6 +322,9 @@ const SubstepRow = ({
                   </p>
                 ))}
               </div>
+              {substep.copyPrompt && (
+                <CopyPromptBlock prompt={substep.copyPrompt} neonRgb={neonRgb} />
+              )}
             </div>
           </div>
         </div>

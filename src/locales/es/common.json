@@ -3530,6 +3530,10 @@
   },
   "stepCard": {
     "oneProvenStrategy": "Una estrategia probada",
+    "copyPromptLabel": "Copiar prompt",
+    "promptCopiedLabel": "Copiado",
+    "promptCopied": "Prompt copiado — pégalo en tu IA.",
+    "promptCopyFailed": "No se pudo copiar — selecciona el texto manualmente.",
     "essayTitle": "El secreto para productizarte",
     "essayP1": "Los influencers de startups dicen \"Productízate\".",
     "essayP2": "Los coaches de redes sociales dicen \"monetiza quién eres\". \"Construye una marca auténtica\".",
