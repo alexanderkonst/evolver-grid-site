@@ -529,6 +529,39 @@ export type Database = {
         }
         Relationships: []
       }
+      equilibrium_strategy_completions: {
+        Row: {
+          alignment_reasoning: string | null
+          alignment_score: number | null
+          done_at: string
+          id: string
+          original_position: number | null
+          set_at: string
+          text: string
+          user_id: string
+        }
+        Insert: {
+          alignment_reasoning?: string | null
+          alignment_score?: number | null
+          done_at?: string
+          id?: string
+          original_position?: number | null
+          set_at: string
+          text: string
+          user_id: string
+        }
+        Update: {
+          alignment_reasoning?: string | null
+          alignment_score?: number | null
+          done_at?: string
+          id?: string
+          original_position?: number | null
+          set_at?: string
+          text?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       equilibrium_synthesis_log: {
         Row: {
           cycle_snapshot_json: Json
@@ -879,7 +912,6 @@ export type Database = {
           main_quest_updated_at: string
           match_explainer_seen_at: string | null
           match_headsup_opt_out: boolean
-          pulse_email_opt_out: boolean
           mission_discovered_at: string | null
           mission_id: string | null
           mission_statement: string | null
@@ -949,7 +981,6 @@ export type Database = {
           main_quest_updated_at?: string
           match_explainer_seen_at?: string | null
           match_headsup_opt_out?: boolean
-          pulse_email_opt_out?: boolean
           mission_discovered_at?: string | null
           mission_id?: string | null
           mission_statement?: string | null
@@ -1019,7 +1050,6 @@ export type Database = {
           main_quest_updated_at?: string
           match_explainer_seen_at?: string | null
           match_headsup_opt_out?: boolean
-          pulse_email_opt_out?: boolean
           mission_discovered_at?: string | null
           mission_id?: string | null
           mission_statement?: string | null
@@ -1832,36 +1862,6 @@ export type Database = {
           resonance_ratings?: Json | null
           updated_at?: string | null
           user_id?: string
-        }
-        Relationships: []
-      }
-      pulse_briefs: {
-        Row: {
-          bottom_line: string | null
-          content: Json
-          created_at: string
-          id: string
-          kind: string
-          markdown: string
-          title: string | null
-        }
-        Insert: {
-          bottom_line?: string | null
-          content: Json
-          created_at?: string
-          id?: string
-          kind: string
-          markdown: string
-          title?: string | null
-        }
-        Update: {
-          bottom_line?: string | null
-          content?: Json
-          created_at?: string
-          id?: string
-          kind?: string
-          markdown?: string
-          title?: string | null
         }
         Relationships: []
       }
