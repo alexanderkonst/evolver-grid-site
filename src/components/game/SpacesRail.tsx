@@ -31,7 +31,11 @@ import SoundCloudMinimalPlayer from "@/components/SoundCloudMinimalPlayer";
 // — the wordmark would crop off on a 72px column, so a dedicated
 // mark-only asset is cleaner.
 import brandLogo from "@/assets/find-your-top-talent-logo.png";
-import brandMark from "@/assets/find-your-top-talent-torus.png";
+// Day 119 (Sasha 2026-07-09): mark-only brand logo swapped from the
+// torus to the ORIGINAL octahedron-in-sphere (the canonical Prime
+// Attractor artifact — docs/assets/canonical-artifact/). The wordmark
+// lockup (find-your-top-talent-logo.png) is unchanged.
+import brandMark from "@/assets/original-octahedron-mark.png";
 import { useSkin } from "@/contexts/SkinContext";
 // White-label demo (2026-05-19, Sasha): when skin is `network-school`,
 // the rail brand mark swaps to the official NS flag asset hosted on
