@@ -12,6 +12,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { ITERATE_STRATEGY_CRUCIBLE_V2_PROMPT } from "@/prompts";
+// Day 120 (Sasha 2026-07-10): YOU · be original — holographic variant.
+// The inside-layer brand's second temperature: gold signs the human/warm
+// surfaces (reveal, saved profile), holo signs the AI-native layer.
+// AI OS is that layer's front room.
+import youHoloLockup from "@/assets/you-be-original-holo.webp";
 // Day 53 evening (Sasha 2026-04-27): useAiOsAuth retired from /ai-os.
 // The page is Holonic Commons — free for everyone, no profile, no sign-in.
 
@@ -3340,6 +3345,23 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
 
           {/* Footer — polished CTA pill + finer license text */}
           <RevealSection>
+            {/* Day 120 (Sasha 2026-07-10): YOU · be original (holo) —
+                the AI-native layer's brand signature, above the footer.
+                Same grammar as the gold signature on the reveal + saved
+                profile: small, no link, a signature not a CTA. Holo
+                colorway on this surface only (gold = human/warm layer);
+                the iridescent cyan-violet sits naturally in the page's
+                existing indigo-violet glow palette. */}
+            <div className="flex justify-center pt-6 pb-2">
+              <img
+                src={youHoloLockup}
+                alt="YOU — be original."
+                className="h-12 w-auto object-contain select-none"
+                draggable={false}
+                style={{ opacity: 0.88, filter: 'drop-shadow(0 0 18px rgba(140, 120, 255, 0.22))' }}
+              />
+            </div>
+
             <footer className="text-center space-y-5 pt-10" style={{ borderTop: '1px solid hsl(0 0% 100% / 0.05)' }}>
               <button
                 onClick={() => navigate("/ai-os/pricing")}
