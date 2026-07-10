@@ -1610,7 +1610,17 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     `basis-0` on the collapsed state (force flex-basis: 0).
                     DO NOT REMOVE without re-testing the desktop collapse/
                     reopen flow on /ai-os AND /journey. */}
+                {/* Day 119 v2 (Sasha 2026-07-09): data-pane="2" added as the
+                    STABLE skin-CSS hook. Five skins targeted this wrapper via
+                    `.liquid-glass.h-dvh + .h-dvh.sticky` (adjacent-sibling);
+                    once the rail-minimize toggle started rendering between
+                    rail and pane 2 on all routes, those selectors hit the
+                    toggle instead — pane 2 lost its skin bg AND the toggle's
+                    hover wash was pinned by the rules' !important bg (Sasha's
+                    dark-theme-hover bug). index.css now targets
+                    [data-pane="2"] directly. */}
                 <div
+                    data-pane="2"
                     className={cn(
                         "transition-all duration-200 ease-out h-dvh overflow-hidden z-30 min-w-0 transform-gpu",
                         isAiOsRoute ? "shrink-0" : "sticky top-0",

@@ -1260,8 +1260,14 @@
 }
 
 /* Pane 2 right edge — single gold hairline + ensure forest bg. */
-[data-skin="daouniverse"] .liquid-glass.h-dvh + .h-dvh.sticky,
-[data-skin="daouniverse"] .liquid-glass.h-dvh + div[class*="w-[260px]"],
+/* Day 119 v2 (Sasha 2026-07-09): pane-2 skin selectors rewritten from
+   `.liquid-glass.h-dvh + .h-dvh.sticky` (adjacent-sibling, written when
+   pane 2 sat right after the rail) to the stable [data-pane="2"] hook.
+   The rail-minimize toggle now renders between rail and pane 2 on all
+   routes, so the sibling selectors were painting the TOGGLE (pinning its
+   bg with !important and killing its hover wash in dark theme) while
+   pane 2 silently lost its skin background. */
+[data-skin="daouniverse"] div[data-pane="2"],
 [data-skin="daouniverse"] aside[data-pane="2"] {
   border-right: 1px solid rgba(196, 163, 92, 0.22) !important;
   background-color: var(--skin-panel-2-bg, rgb(20, 38, 28)) !important;
@@ -1870,8 +1876,7 @@
 }
 
 /* Pane 2 right edge + forest bg. */
-[data-skin="planetir"] .liquid-glass.h-dvh + .h-dvh.sticky,
-[data-skin="planetir"] .liquid-glass.h-dvh + div[class*="w-[260px]"],
+[data-skin="planetir"] div[data-pane="2"],
 [data-skin="planetir"] aside[data-pane="2"] {
   border-right: 1px solid rgba(196, 163, 92, 0.22) !important;
   background-color: var(--skin-panel-2-bg, rgb(26, 38, 22)) !important;
@@ -2390,8 +2395,7 @@
 }
 
 /* Pane 2 right edge — amber hairline. */
-[data-skin="aurum"] .liquid-glass.h-dvh + .h-dvh.sticky,
-[data-skin="aurum"] .liquid-glass.h-dvh + div[class*="w-[260px]"],
+[data-skin="aurum"] div[data-pane="2"],
 [data-skin="aurum"] aside[data-pane="2"] {
   border-right: 1px solid rgba(212, 168, 58, 0.22) !important;
   background-color: var(--skin-panel-2-bg, rgba(14, 14, 18, 0.92)) !important;
@@ -2956,8 +2960,7 @@
 }
 
 /* Pane 2 right edge — green hairline. */
-[data-skin="techstars"] .liquid-glass.h-dvh + .h-dvh.sticky,
-[data-skin="techstars"] .liquid-glass.h-dvh + div[class*="w-[260px]"],
+[data-skin="techstars"] div[data-pane="2"],
 [data-skin="techstars"] aside[data-pane="2"] {
   border-right: 1px solid rgba(61, 204, 74, 0.22) !important;
   background-color: var(--skin-panel-2-bg, rgba(8, 10, 12, 0.92)) !important;
@@ -3670,8 +3673,7 @@
    container by its observed shape (sticky / h-dvh / w-[260px] sibling
    of the rail). Stronger hairline so all three panes register as
    distinct surfaces under the SaaS-dashboard vibe Sasha called for. */
-[data-skin="network-school"] .liquid-glass.h-dvh + .h-dvh.sticky,
-[data-skin="network-school"] .liquid-glass.h-dvh + div[class*="w-[260px]"],
+[data-skin="network-school"] div[data-pane="2"],
 [data-skin="network-school"] aside[data-pane="2"] {
   border-right: 1px solid rgba(10, 10, 10, 0.10) !important;
   background-color: #ffffff !important;
@@ -3956,7 +3958,7 @@
    was text-white/50 which is invisible on the V2 white Pane 2 bg.
    Force near-black under NS. */
 [data-skin="network-school"] aside[data-pane="2"] button[aria-label="Hide sidebar"],
-[data-skin="network-school"] .liquid-glass.h-dvh + div[class*="w-[260px]"] button[aria-label="Hide sidebar"],
+[data-skin="network-school"] div[data-pane="2"] button[aria-label="Hide sidebar"],
 [data-skin="network-school"] button[aria-label="Hide sidebar"] {
   color: #0a0a0a !important;
 }
