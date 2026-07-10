@@ -343,6 +343,12 @@ Every piece of copy is written in one of two registers:
 
 **Level-4 corollary (from the 4 Levels of Value):** category-creating products sold with category-competing price tags get underpriced by construction — the anchor offer at the cathedral level must exist publicly, even if rarely bought, because every offer below it is re-read against it.
 
+**The Trojan Horse common thread — ESC (locked Day 119):**
+
+- **Essence:** package the unprecedented inside the familiar — sell the container they can name, deliver the content that doesn't have a name yet.
+- **Significance:** it resolves innovation's adoption paradox (people can only buy what they can categorize, and new categories have no shelf) by **splitting the *naming* of the offer from the *being* of the offer**. The splitting principle is the whole trick: name and being run on separate tracks, each optimized for its own job.
+- **Consequence:** name offers in shelf language, deliver category substance, narrate the category publicly on unpriced surfaces, graduate buyers inward, and let the price ceiling migrate from the shelf's comparison table to the category's own physics.
+
 **Two refinements (Day 119, Sasha's pushback — "the corridor is not just content"):**
 
 1. **The corridor is the NARRATIVE layer, not "content marketing."** Benioff did not blog at his buyers — he ran "The End of Software" as theater: the crossed-out-SOFTWARE logo, fake protest marches outside Siebel's conference, press, keynotes, analyst briefings. The corridor is every surface where the category story travels without a price tag attached: thesis documents, manifestos, stunts, talks, PR, and yes, posts. What qualifies it as corridor is not the medium but the decoupling: category education happening away from the sales moment.
