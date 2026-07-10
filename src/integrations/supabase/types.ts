@@ -874,6 +874,27 @@ export type Database = {
         }
         Relationships: []
       }
+      founder_corpus_docs: {
+        Row: {
+          content: string
+          path: string
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          content: string
+          path: string
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          path?: string
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       game_profiles: {
         Row: {
           access_token: string | null
@@ -2064,6 +2085,30 @@ export type Database = {
           id?: string
           metadata?: Json | null
           reason?: string
+        }
+        Relationships: []
+      }
+      telegram_founder_messages: {
+        Row: {
+          chat_id: number
+          content: string
+          created_at: string
+          id: string
+          role: string
+        }
+        Insert: {
+          chat_id: number
+          content: string
+          created_at?: string
+          id?: string
+          role: string
+        }
+        Update: {
+          chat_id?: number
+          content?: string
+          created_at?: string
+          id?: string
+          role?: string
         }
         Relationships: []
       }
