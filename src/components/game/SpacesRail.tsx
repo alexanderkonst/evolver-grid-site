@@ -662,7 +662,13 @@ const SpacesRail = ({
                                 isLocked
                                     ? "text-white/30 cursor-not-allowed"
                                     : active
-                                        ? "text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35)]"
+                                        // Day 119 (Sasha 2026-07-09): in compact, the
+                                        // 22-48px glow radius bled past the 72px pane's
+                                        // right edge (48px cell + 12px margin leaves no
+                                        // room). Tighter contained glow; same gold ring.
+                                        ? compact
+                                            ? "text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_10px_-2px_rgba(244,212,114,0.5)]"
+                                            : "text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35)]"
                                         : hasNudge
                                             ? "bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 hover:text-emerald-300 ring-1 ring-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.4)] animate-pulse"
                                             : "text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"

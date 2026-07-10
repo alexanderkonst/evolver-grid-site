@@ -3494,6 +3494,17 @@
    render for the pip, a single compact img branch, and `p-0` on the
    fixed 48x48 cell). */
 
+/* Day 119 (Sasha 2026-07-09): classic macOS scrollbars stole ~15px
+   inside the 72px compact rail — icons off-center + visible gutter.
+   Scroll stays, scrollbar hidden. */
+[data-rail-compact="true"] {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+[data-rail-compact="true"]::-webkit-scrollbar {
+  display: none;
+}
+
 /* V3 typography (Sasha 2026-05-19) — NS is editorial serif throughout
    for content, clean sans only for UI chrome (rail chips, Pane 2 nav,
    form controls). Body type in serif is what carries the editorial
