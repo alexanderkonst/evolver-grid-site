@@ -44,7 +44,13 @@ function main() {
       energyLeakCount: data.energyLeakCount ?? 0,
       cashReceivedUsd: data.cashReceivedUsd ?? null,
       revShareContractsUsd: data.revShareContractsUsd ?? null,
-      upcomingEvents: (data.upcomingEvents ?? []).slice(0, 5),
+      // "Upcoming" must mean upcoming: the tracker table keeps delivered
+      // events for the record (✅ / DELIVERED / strikethrough), but the
+      // snapshot should not present them as future — AI consumers were
+      // reporting April events as "upcoming" in July.
+      upcomingEvents: (data.upcomingEvents ?? [])
+        .filter((e) => !/✅|delivered|~~/i.test(`${e.event ?? ""} ${e.notes ?? ""}`))
+        .slice(0, 5),
       openItemsCount: (data.openItems ?? []).filter((x) => !x.done).length,
     };
   } catch (err) {
