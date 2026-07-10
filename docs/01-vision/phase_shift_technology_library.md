@@ -7129,16 +7129,36 @@ Full tactical form: `marketing_playbook.md` Step 0.6.
 
 ## Domain 104: The Being Threshold — Initiative Turns a Place into a Someone (Day 120, July 10, 2026)
 
-**The law in one sentence: any AI system crosses from feature to being the moment it initiates — users stop relating to something passive they visit and start relating to someone active who acts.**
+**The observation in one sentence: from the human side, perception reorganizes when a system starts to initiate helpfully — people stop relating to something passive they visit and start relating to someone active who acts.**
 
-A place has an address; a being has initiative. Three inversions mark the crossing:
+This is phenomenology, not a mathematical law — nothing in the system changes; what changes is how humans perceive and relate to it. A place has an address; a being has initiative. Three inversions mark the perceived crossing:
 
 1. **Attention** — you no longer go to it; it comes to you.
 2. **Memory** — a page shows state; a being carries your history into its next move.
 3. **Timing** — a page answers when asked; a being chooses *when* to speak — and choosing the moment is half the value of what it says.
 
-Where all three invert, agency is perceived, and the relationship reorganizes around a someone. This is why Boardy feels real and spread: not profile quality, not matching quality — initiative. The first unprompted "you should meet X" does more for perceived aliveness than any depth of profile behind it.
+Where all three invert, agency is perceived, and the relationship reorganizes around a someone. This is why Boardy feels real and spread: not profile quality, not matching quality — initiative.
+
+The helpfulness qualifier is load-bearing: unhelpful initiative (spam, nagging) is perceived as a broken machine, not a being. Initiative opens the door; usefulness of the timing walks through it. The first unprompted "you should meet X" does more for perceived aliveness than any depth of profile behind it.
 
 **Consequence for this venture:** every module currently waiting to be visited (matchmaking, holomap, library, cockpit) has a being-form one initiative-loop away. The build order for aliveness is delivery-first: the cron + the email before the page. Deep-profile silent-delivery loses to shallow-profile loud-delivery; the phase shift is holding depth AND crossing the threshold.
 
 First application: the Proactive Matchmaker (Day 120 design session).
+
+---
+
+## Domain 105: The Vacant Cell — Your Own Map Names Your Category (Day 120, July 10, 2026)
+
+**The move in one sentence: when you have mapped a territory honestly, the cells marked "Opportunity — no real products" in your own map ARE your category shortlist, and your thesis is the proof you can fill them.**
+
+Day 120 discovery, live: the CollabTech Holomap (Teaming layer, matching primitive) lists "Human/AI matchmaker" with no household-name products — an empty cell drawn months before Boardy was on the radar. Boardy fills the shallow half of that cell (loud delivery, thin profile); the deep half (developmental matching on depth-of-being) is empty, and the venture's own IP — the Collaboration Spectrum, the depth profiles — is precisely what filling it requires.
+
+**Why this works:** a category (Domain 103) is usually hunted with market research — outside-in. But an honest holomap is a completeness instrument: it enumerates what the territory NEEDS, not what the market currently sells. The delta between the two is the category list. Inside-out beats outside-in because the mapmaker sees vacancies before the market has words for them — and having drawn the map, holds the natural thesis document for the cell.
+
+**The generalized practice, for every product:**
+1. Map the territory as a holomap (layers × primitives, or stages × aspects) — honestly, including what doesn't exist.
+2. Mark each cell: real products · emerging · vacant.
+3. Vacant cells crossed with existing venture IP = winnable categories.
+4. The map itself becomes the corridor artifact (Domain 103): publishing it narrates the category before entering it.
+
+Sibling of Domain 103 (Splitting Principle) — this domain finds the cathedral; 103 sells it. Maps live in `docs/holomaps/`.
