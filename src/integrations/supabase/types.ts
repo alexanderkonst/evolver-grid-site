@@ -923,6 +923,7 @@ export type Database = {
           personality_tests: Json | null
           playbook_visited_at: string | null
           practice_count: number
+          pulse_email_opt_out: boolean
           qol_priorities: Json | null
           qol_priority_order: Json | null
           resources_mapped_at: string | null
@@ -992,6 +993,7 @@ export type Database = {
           personality_tests?: Json | null
           playbook_visited_at?: string | null
           practice_count?: number
+          pulse_email_opt_out?: boolean
           qol_priorities?: Json | null
           qol_priority_order?: Json | null
           resources_mapped_at?: string | null
@@ -1061,6 +1063,7 @@ export type Database = {
           personality_tests?: Json | null
           playbook_visited_at?: string | null
           practice_count?: number
+          pulse_email_opt_out?: boolean
           qol_priorities?: Json | null
           qol_priority_order?: Json | null
           resources_mapped_at?: string | null
@@ -1862,6 +1865,36 @@ export type Database = {
           resonance_ratings?: Json | null
           updated_at?: string | null
           user_id?: string
+        }
+        Relationships: []
+      }
+      pulse_briefs: {
+        Row: {
+          bottom_line: string | null
+          content: Json
+          created_at: string
+          id: string
+          kind: string
+          markdown: string
+          title: string | null
+        }
+        Insert: {
+          bottom_line?: string | null
+          content: Json
+          created_at?: string
+          id?: string
+          kind: string
+          markdown: string
+          title?: string | null
+        }
+        Update: {
+          bottom_line?: string | null
+          content?: Json
+          created_at?: string
+          id?: string
+          kind?: string
+          markdown?: string
+          title?: string | null
         }
         Relationships: []
       }
