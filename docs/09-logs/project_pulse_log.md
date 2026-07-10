@@ -182,3 +182,99 @@ staleness_or_contradictions: >
   None. Revenue ledger updated: Oyi cumulative $1,485; strict received
   total $2,371.
 ```
+
+### 2026-07-10 — Nia returns from integration and asks for the next paid container
+
+```yaml
+date: 2026-07-10
+day_number: 120
+title: Nia returns from integration and asks for the next paid container
+source: WhatsApp exchange + Sasha's unsent offer draft
+actors:
+  - Sasha / Alexander Konstantinov
+  - Nia Leak
+what_happened: >
+  Three weeks after her $555 Ignition workshop, Nia returned with a precise
+  concern: her ChatGPT history reflects only what she has already shared,
+  discovered, and struggled with, not the full range of what she may become.
+  Sasha reframed this not as a failure of the work but as the next clarity
+  layer: name what is concretely missing, enrich the articulation, act on it,
+  and let action reveal the next layer. Nia said the response gave her thoughts
+  and actions to sit with, then explicitly asked what the next container includes
+  and what it costs. Sasha drafted, but has not yet sent, a three-week direct
+  container at $1,111: update core articulations and map the business; deliver
+  the medicine to real people and learn from conversations; then turn evidence
+  into a working offer, message, and client-acquisition system.
+energy_exchanged:
+  - post-session integration
+  - substantive product feedback
+  - trust
+  - explicit buying intent
+  - offer-design signal
+affected_holons:
+  - individual client
+  - Sasha's service business
+  - Unique Business Accelerator method
+  - clarity-to-action learning loop
+affected_artifacts:
+  - strategic_crm_outreach_tracker.md
+  - project-pulse-snapshot.json
+  - crm-snapshot.json
+phase_shift_significance: major
+next_action: >
+  Tighten and send the three-week $1,111 offer while the request is live. Treat
+  it as a candidate offer until Nia accepts and pays; if she does, capture the
+  delivery as the first explicit post-Ignition ascension path and measure whether
+  articulation becomes conversations, clients, and income.
+staleness_or_contradictions: >
+  The prior CRM state said to wait for Nia to re-emerge. She has re-emerged and
+  directly requested scope and price. The offer draft is not yet an agreement,
+  and the deeper outcome hypothesis (canvas -> income) remains unproven.
+```
+
+### 2026-07-10 — Heinrich opens an intergenerational trust and guidance bridge
+
+```yaml
+date: 2026-07-10
+day_number: 120
+title: Heinrich opens an intergenerational trust and guidance bridge
+source: VK exchange
+actors:
+  - Sasha / Alexander Konstantinov
+  - Heinrich Isaakovich Kulakov
+  - Heinrich's granddaughter, an MSU student
+what_happened: >
+  Sasha's basketball coach from many years ago reached out after a long interval
+  and asked Sasha to advise his younger granddaughter, an accomplished second-year
+  MSU student, about graduate study and work abroad. Sasha welcomed the referral,
+  shared his direct contact details, described his current work in professional
+  clarity and business building, and invited Heinrich himself to take the Top
+  Talent assessment in Russian. The exchange also restored a formative relationship:
+  Heinrich shared his life after a stroke, his continued contribution to young
+  athletes, and his enduring inner youth at 78.
+energy_exchanged:
+  - long-term trust
+  - care and recognition
+  - intergenerational referral
+  - professional guidance invitation
+  - product invitation
+affected_holons:
+  - Sasha's formative basketball lineage
+  - coach-student relationship
+  - next-generation professional guidance
+  - Russian-language product field
+affected_artifacts:
+  - strategic_crm_outreach_tracker.md
+  - project-pulse-snapshot.json
+  - crm-snapshot.json
+phase_shift_significance: minor
+next_action: >
+  Wait for the granddaughter to initiate contact, then help her clarify her actual
+  decision rather than giving generic emigration advice. If Heinrich completes the
+  assessment, receive his experience as product feedback and relational reconnection,
+  not as a sales lead to force.
+staleness_or_contradictions: >
+  No commercial opportunity exists yet. The signal is trusted referral and role
+  recognition: people increasingly approach Sasha as someone who can help a person
+  see and navigate a professional path.
+```

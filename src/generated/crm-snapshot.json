@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-10T20:29:20.971Z",
-  "version": "v3.9",
-  "contactsCount": 29,
+  "generated_at": "2026-07-10T21:15:01.485Z",
+  "version": "v4.0",
+  "contactsCount": 30,
   "stageDistribution": {
     "Advisor review": 1,
     "Monthly peer cadence proposed": 1,
@@ -17,13 +17,14 @@
     "Planned": 7,
     "Scheduled": 1,
     "Planned (via Kirill)": 1,
-    "Post-session integration": 1,
+    "Offer requested": 1,
     "Paused — boundary set, ball his": 1,
-    "Pilot interest": 1
+    "Pilot interest": 1,
+    "Referral opened": 1
   },
   "segmentDistribution": {
     "CLIENT": 8,
-    "BRIDGE": 4,
+    "BRIDGE": 5,
     "COMMUNITY-PILOT": 2,
     "FOUNDER-COCKPIT-FIT": 2,
     "PEER-MIRROR": 1,
@@ -31,13 +32,14 @@
     "NODE": 1,
     "COLLABORATOR": 5,
     "ECOSYSTEM": 4,
-    "ADJACENT": 4,
+    "ADJACENT": 5,
     "BULLSEYE": 2,
     "ORIGINAL": 3,
     "PAST-ZOG": 1,
     "TBD": 5,
     "HIGH-VALUE": 1,
-    "BUILDER": 1
+    "BUILDER": 1,
+    "TRUST-LINEAGE": 1
   },
   "energyLeakCount": 5,
   "cashReceivedUsd": 2371,
@@ -56,5 +58,5 @@
       "notes": "Oaxaca or equivalent Pacific-coast venue. Format proven with Oyi: freedom, fulfilment, joy, fruits, scooters, co-building"
     }
   ],
-  "openItemsCount": 29
+  "openItemsCount": 30
 }
