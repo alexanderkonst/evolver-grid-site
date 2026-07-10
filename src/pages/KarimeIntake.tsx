@@ -188,7 +188,7 @@ const KarimeIntake = () => {
   };
 
   return (
-    <GameShellV2 hideLogo enableRailMinimize>
+    <GameShellV2 hideLogo defaultRailMinimized>
       <SEO
         title="Karime Kuri · Preparing for our conversation"
         description="A short orientation before your free 20-minute conversation with Karime — her bio, the path, and one question that helps her prepare thoughtfully."

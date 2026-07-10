@@ -342,11 +342,20 @@ interface GameShellV2Props {
      * pane 1 (SpacesRail) — same pattern as the existing pane-2
      * collapse. When minimized, pane 1 collapses to a slim icon-only
      * strip (no labels). Tapping the expand button restores full pane 1.
-     * Currently used by /build/karime*; extendable to other routes by
-     * passing this prop.
+     *
+     * Day 119 (Sasha 2026-07-09): SEMANTIC SHIFT — the toggle strip now
+     * renders on ALL desktop shell routes unconditionally; minimization
+     * is a platform-wide affordance persisted in localStorage. This prop
+     * (renamed enableRailMinimize → defaultRailMinimized) now only means
+     * "open minimized on entry, regardless of the stored preference" —
+     * used by branded surfaces (/build/karime*) that want the editorial
+     * card to own the first impression (the Day 82 call).
      */
-    enableRailMinimize?: boolean;
+    defaultRailMinimized?: boolean;
 }
+
+/** Day 119 (Sasha 2026-07-09): platform-wide pane-1 minimize preference. */
+const RAIL_MINIMIZED_STORAGE_KEY = "fytt-rail-minimized";
 
 /**
  * Day 87 (Sasha 2026-05-29) — Shell-nesting guard for the layout-route
@@ -394,15 +403,37 @@ export const GameShellV2 = (props: GameShellV2Props) => {
  * Panel 2: SectionsPanel (sections list)
  * Panel 3: Content area
  */
-const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo, enableRailMinimize = false }: GameShellV2Props) => {
+const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo, defaultRailMinimized = false }: GameShellV2Props) => {
     const { t } = useTranslation();
     // Day 82 v4 (Sasha 2026-05-24): pane-1 minimize state. Defaults to
-    // ON when enableRailMinimize is enabled — Karime's pages open with
-    // the rail in compact (icon-only) mode so the editorial card has
-    // full visual focus on first impression. User can expand by tapping
-    // the chevron column between pane 1 and pane 2.
-    const [railMinimized, setRailMinimized] = useState(enableRailMinimize);
-    const toggleRailMinimize = () => setRailMinimized((v) => !v);
+    // ON when the page passes defaultRailMinimized — Karime's pages open
+    // with the rail in compact (icon-only) mode so the editorial card
+    // has full visual focus on first impression. User can expand by
+    // tapping the chevron column between pane 1 and pane 2.
+    // Day 119 (Sasha 2026-07-09): minimization is now platform-wide.
+    // Init order: page-forced default (branded surfaces, always wins on
+    // entry) → stored user preference → false. try/catch guards Safari
+    // private mode where localStorage access throws.
+    const [railMinimized, setRailMinimized] = useState<boolean>(() => {
+        if (defaultRailMinimized) return true;
+        try {
+            return window.localStorage.getItem(RAIL_MINIMIZED_STORAGE_KEY) === "true";
+        } catch {
+            return false;
+        }
+    });
+    const toggleRailMinimize = () =>
+        setRailMinimized((v) => {
+            const next = !v;
+            // Persist the preference on every toggle (including on
+            // Karime — the default only governs entry, not the session).
+            try {
+                window.localStorage.setItem(RAIL_MINIMIZED_STORAGE_KEY, String(next));
+            } catch {
+                // Safari private mode — preference just won't persist.
+            }
+            return next;
+        });
     // V5 debug (Sasha 2026-05-19): mobile-header brand glyph needs to swap
     // to the NS flag under network-school. Previously rendered the FYTT
     // torus regardless of skin — mobile users on /ns saw the rainbow mark
@@ -1472,7 +1503,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     activeSpaceId={activeSpaceId}
                     onSpaceSelect={handleSpaceSelect}
                     unlockStatus={unlockStatus}
-                    compact={enableRailMinimize && railMinimized}
+                    compact={railMinimized}
                     unlockHints={unlockHints}
                     nudgeBadges={nudgeBadges}
                     hiddenSpaces={hiddenSpaces}
@@ -1507,51 +1538,52 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 />
 
                 {/* Day 82 v4 (Sasha 2026-05-24): pane-1 minimize toggle —
-                    only rendered when the page opted in via
-                    `enableRailMinimize`. Slim column-button between pane 1
-                    and pane 2, same visual register as the pane-2 expand
-                    column. Chevron flips direction based on state.
-                    Currently used by /build/karime*. */}
-                {enableRailMinimize && (
-                    /* Day 85 (Sasha 2026-05-27): Day 84 collapsed-spine
-                       treatment reverted. Restored pre-Day-84 flat w-5
-                       column with chevron, matching the sections-panel
-                       toggle's visual register. */
-                    <button
-                        onClick={toggleRailMinimize}
-                        className={cn(
-                            "h-dvh w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative z-30 group",
-                            "focus-visible:outline focus-visible:outline-1 focus-visible:outline-[rgba(244,212,114,0.6)]",
-                            isAiOsRoute ? "shrink-0" : "sticky top-0",
-                            pageOwnsBackground
-                                ? "bg-[rgba(6,12,28,0.55)]"
-                                : "bg-[rgba(14,32,68,0.22)]",
-                        )}
-                        title={railMinimized ? t("shell.rail.expand") : t("shell.rail.minimize")}
-                        aria-label={railMinimized ? t("shell.rail.expand") : t("shell.rail.minimize")}
+                    slim column-button between pane 1 and pane 2, same visual
+                    register as the pane-2 expand column. Chevron flips
+                    direction based on state.
+                    Day 119 (Sasha 2026-07-09): rendered on ALL desktop shell
+                    routes (was gated on enableRailMinimize / Karime-only);
+                    state persists via localStorage. Colors token-driven with
+                    today's gold/navy as fallbacks so skins can retheme
+                    without touching this component. */}
+                {/* Day 85 (Sasha 2026-05-27): Day 84 collapsed-spine
+                    treatment reverted. Restored pre-Day-84 flat w-5
+                    column with chevron, matching the sections-panel
+                    toggle's visual register. */}
+                <button
+                    onClick={toggleRailMinimize}
+                    className={cn(
+                        "h-dvh w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative z-30 group",
+                        "focus-visible:outline focus-visible:outline-1 focus-visible:outline-[color:var(--skin-rail-toggle-accent,rgba(244,212,114,0.6))]",
+                        isAiOsRoute ? "shrink-0" : "sticky top-0",
+                        pageOwnsBackground
+                            ? "bg-[var(--skin-rail-toggle-bg-deep,rgba(6,12,28,0.55))]"
+                            : "bg-[var(--skin-rail-toggle-bg,rgba(14,32,68,0.22))]",
+                    )}
+                    title={railMinimized ? t("shell.rail.expand") : t("shell.rail.minimize")}
+                    aria-label={railMinimized ? t("shell.rail.expand") : t("shell.rail.minimize")}
+                    style={{
+                        boxShadow:
+                            "inset -1px 0 0 var(--skin-rail-toggle-hairline, rgba(212, 175, 55, 0.32)), 2px 0 14px -8px var(--skin-rail-toggle-glow, rgba(244, 212, 114, 0.3))",
+                    }}
+                >
+                    {/* Day 119 (Sasha 2026-07-09): raw "▶" text glyph
+                        replaced with a Lucide ChevronRight — crisper at
+                        14px, no font-rendering/baseline quirks across
+                        platforms. Same rotate-180 flip drives direction. */}
+                    <ChevronRight
+                        aria-hidden="true"
+                        className="transition-transform"
                         style={{
-                            boxShadow:
-                                "inset -1px 0 0 rgba(212, 175, 55, 0.32), 2px 0 14px -8px rgba(244, 212, 114, 0.3)",
+                            width: 14,
+                            height: 14,
+                            color: "var(--skin-rail-toggle-accent, rgba(244, 212, 114, 0.85))",
+                            transform: railMinimized
+                                ? "rotate(0deg)"
+                                : "rotate(180deg)",
                         }}
-                    >
-                        {/* Day 119 (Sasha 2026-07-09): raw "▶" text glyph
-                            replaced with a Lucide ChevronRight — crisper at
-                            14px, no font-rendering/baseline quirks across
-                            platforms. Same rotate-180 flip drives direction. */}
-                        <ChevronRight
-                            aria-hidden="true"
-                            className="transition-transform"
-                            style={{
-                                width: 14,
-                                height: 14,
-                                color: "rgba(244, 212, 114, 0.85)",
-                                transform: railMinimized
-                                    ? "rotate(0deg)"
-                                    : "rotate(180deg)",
-                            }}
-                        />
-                    </button>
-                )}
+                    />
+                </button>
 
                 {/* Panel 2: Sections with transition.
                     Day 52 (Sasha 2026-04-27): `relative` removed.

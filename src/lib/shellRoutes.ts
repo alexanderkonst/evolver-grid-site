@@ -40,7 +40,7 @@ const HOLDOUT_EXACT = new Set<string>([
 
 const HOLDOUT_PREFIX: string[] = [
     "/zone-of-genius/assessment", // ZoneOfGeniusAssessmentLayout (own Outlet layout)
-    "/build/karime",              // KarimeOffer / KarimeIntake (hideLogo + enableRailMinimize)
+    "/build/karime",              // KarimeOffer / KarimeIntake (hideLogo + defaultRailMinimized)
 ];
 
 /** Paths whose page currently mounts GameShellV2 → layout supplies it instead. */
