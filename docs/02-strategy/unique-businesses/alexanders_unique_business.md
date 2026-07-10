@@ -205,7 +205,9 @@ These outputs are also baked into `appleseedGenerator.ts` `CALIBRATION_EXAMPLES`
 *Use for:* Life-update post ("what I just focused my life on") · About page opener · Step 6 masthead example · the example-in-playbook that demonstrates the "master tuning fork" substep. **This is the template sentence structure** for anyone producing their own Step 6 tuning fork.
 
 ### Value Ladder (the Path · `/path`)
-Step 1 free · Steps 2+3 **$555** · Step 4 **$1,111** · Step 5 **$333** · Step 6 **$1,111 + 1/3 of first $10k** (capped) · Step 7 by invitation. Total entry path to PMF: **$2,555** in 6–8 weeks. Money-back guarantee on every step.
+Step 1 free · Steps 2+3 **$555** · Step 4 **$1,111** · Step 5 **$333** · Step 6 *(format retired — see note)* · Step 7 by invitation. Total entry path to PMF: **$2,555** in 6–8 weeks. Money-back guarantee on every step.
+
+> **✦ Step 6 correction (Day 119, July 9, 2026):** the **$1,111 + ⅓ of first $10k (capped)** format is retired — it was never charged in practice (Sasha, direct). Step 6 awaits re-pricing after the category/threshold/tribe decisions land (see roadmap, digestion phase). The old format is preserved here as genealogy. Note: the skin-in-the-game *instinct* behind the rev-share component is validated and kept — it is the structural answer to the guru-loop pathology documented in [money_holomap.md](../../05-reference/money-studies/money_holomap.md) — only the specific price format is retired.
 
 > **✦ Canonical product name (Day 53, April 27, 2026):** the $555 Steps 2+3 product is now called the **Top Talent Business Session.** Naming evolution: *Ignition Session* (v1.0, March 5) → *Productize Yourself Session* (Day 47, April 21) → **Top Talent Business Session** (Day 53). Older SOPs in this doc still use "Ignition Session" — those are dated artifacts of evolution, preserved as genealogy. New copy + active surfaces should use Top Talent Business Session. URL stays `/ignite#pricing-section`.
 
