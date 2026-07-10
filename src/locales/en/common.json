@@ -459,6 +459,9 @@
       }
     },
     "me": {
+      "profile": {
+        "label": "Profile"
+      },
       "topTalent": {
         "label": "Top Talent"
       },
@@ -6790,5 +6793,100 @@
     "xpBadge_few": "+{{count}} XP",
     "xpBadge_many": "+{{count}} XP",
     "xpBadge_other": "+{{count}} XP"
+  },
+  "profileSpace": {
+    "loading": "Loading your profile…",
+    "errorLine": "Something went wrong loading your profile. Try refreshing.",
+    "identity": {
+      "nameFallback": "Your Profile",
+      "memberSince": "Member since {{date}}"
+    },
+    "topTalent": {
+      "title": "Top Talent",
+      "viewFull": "View full",
+      "retake": "Retake",
+      "emptyLine": "You haven't discovered your top talent yet.",
+      "ctaTakeAssessment": "Take the assessment"
+    },
+    "mission": {
+      "title": "Mission",
+      "view": "View",
+      "rediscover": "Rediscover",
+      "emptyLine": "You haven't discovered your mission yet.",
+      "ctaDiscover": "Discover your mission"
+    },
+    "assets": {
+      "title": "Assets",
+      "viewAll": "View all",
+      "addMore": "Add more",
+      "emptyLine": "No assets mapped yet.",
+      "ctaMap": "Map your assets"
+    },
+    "qol": {
+      "title": "Quality of Life",
+      "viewMap": "View map",
+      "retake": "Retake",
+      "emptyLine": "You haven't mapped your quality of life yet.",
+      "ctaAssess": "Take the assessment",
+      "overall": "Overall stage: {{average}} / {{max}}",
+      "dimensions": {
+        "wealth": "Wealth",
+        "health": "Health",
+        "happiness": "Happiness",
+        "loveRelationships": "Love & Relationships",
+        "impact": "Impact",
+        "growth": "Growth",
+        "socialTies": "Social Ties",
+        "home": "Home"
+      }
+    },
+    "collaboration": {
+      "title": "Collaboration Requests",
+      "unnamedRecipient": "Someone",
+      "viewConnections": "View connections",
+      "emptyLine": "No collaboration requests sent yet.",
+      "status": {
+        "pending": "Pending",
+        "accepted": "Accepted",
+        "declined": "Declined"
+      }
+    },
+    "history": {
+      "title": "Progression",
+      "showAll": "Show all",
+      "showLess": "Show less",
+      "emptyLine": "Nothing to show yet — your history builds as you take assessments, discover your mission, map assets, and connect with others.",
+      "zog": "Top Talent updated",
+      "qol": "Quality of Life updated",
+      "mission": "Mission updated",
+      "asset": "Asset added",
+      "request": "Collaboration request sent"
+    },
+    "linkedin": {
+      "title": "LinkedIn",
+      "subtitle": "Upload your LinkedIn PDF export to keep it with your profile.",
+      "upload": "Upload PDF",
+      "uploading": "Uploading…",
+      "uploaded": "LinkedIn PDF uploaded.",
+      "download": "Download",
+      "replace": "Replace",
+      "remove": "Remove",
+      "removed": "LinkedIn PDF removed.",
+      "fileFallback": "LinkedIn PDF",
+      "uploadedOn": "Uploaded {{date}}",
+      "errorType": "Please upload a PDF file.",
+      "errorSize": "File is too large. Max size is 10MB.",
+      "errorUpload": "Upload failed. Please try again.",
+      "errorDownload": "Couldn't get a download link. Please try again.",
+      "errorDelete": "Couldn't remove the file. Please try again."
+    },
+    "export": {
+      "title": "Export",
+      "subtitle": "Download your complete profile as a PDF — Top Talent, Mission, Assets, Quality of Life, and history.",
+      "cta": "Download complete profile (PDF)",
+      "building": "Building your PDF…",
+      "success": "Your profile PDF is downloading.",
+      "failure": "Couldn't build the PDF. Please try again."
+    }
   }
 }

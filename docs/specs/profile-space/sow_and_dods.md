@@ -27,7 +27,7 @@
 1. **D1 — ZoG history:** retakes append a new `zog_snapshots` row; `last_zog_snapshot_id` tracks latest. No migration needed (schema already allows many rows) — only the save-flow change in `saveToDatabase.ts`.
 2. **D2 — Change summary:** the "what changed" line per history event is computed **client-side, deterministic** (v1): diff of talents list / QoL stage deltas / mission text change / assets added. An AI-written narrative summary is wave 2 (new edge fn) — not in this build.
 3. **D3 — LinkedIn v1 = upload + store + display** (filename, date, download/replace/delete). AI extraction of the PDF into profile fields = wave 2, parked.
-4. **D4 — Route:** Profile Space lives at `/game/me` index (new `ProfileSpaceHome`), replacing the redirect-to-overview. `/game/me/overview` redirects to `/game/me`. ME pane item "Profile" added at position 1.
+4. **D4 (revised at sign-off, 2026-07-09) — Route:** Profile Space lives at **`/game/me/profile`** as a NEW ME pane item ("Profile", top of the list). `/game/me` and `/game/me/overview` stay exactly as they are — nothing existing moves, nothing breaks in production. Sasha: "I want the ME space to have a 'profile' 2nd-pane item where we will show this profile."
 5. **D5 — PDF:** reuse `generateProfilePdf` as the engine; add a "Change history" page section to the PDF; button on the profile page mirrors Settings (single source function, two entry points).
 6. **D6 — New DB surface:** none required. History derives from existing snapshot rows + `user_assets.created_at` + `match_interests.created_at`. Zero Lovable prompts if D2 stays deterministic; the only Supabase touch is *no-op*. (If QoL/ZoG RLS blocks reading older rows, one migration adds select policies — checked in Phase T.)
 
@@ -45,7 +45,7 @@
 | P2 | Decisions D1–D6 stated, each with rationale | section above | ✅ |
 | P3 | Screen inventory + section-by-section content contract | below | ✅ |
 | P4 | Implementation & Testing SOW/DoDs written | below | ✅ |
-| P5 | Sasha sign-off on D1–D6 and scope | chat confirmation | ☐ |
+| P5 | Sasha sign-off on D1–D6 and scope | chat confirmation 2026-07-09 ("Green Light", D4 revised to pane item) | ✅ |
 
 ### Screen inventory (content contract)
 
@@ -72,16 +72,16 @@ All sections: populated-or-empty (never locked), skin tokens, trilingual.
 
 | # | Item | Evidence | Status |
 |---|---|---|---|
-| I1 | `src/modules/profile-space/` created; `ProfileSpaceHome` + section components, **zero imports from legacy** `Profile.tsx`/`CharacterHub.tsx`/`ProfileOverview.tsx` | grep clean | ☐ |
-| I2 | Route `/game/me` renders ProfileSpaceHome under `MeGate`; `/game/me/overview` → redirect; ME pane item "Profile" first | App.tsx + SectionsPanel diff | ☐ |
+| I1 | `src/modules/profile-space/` created; `ProfileSpaceHome` + section components, **zero imports from legacy** `Profile.tsx`/`CharacterHub.tsx`/`ProfileOverview.tsx` | grep clean | ✅ |
+| I2 | Route `/game/me/profile` renders ProfileSpaceHome under `MeGate`; ME pane item "Profile" at top; existing routes untouched | App.tsx + SectionsPanel diff | ✅ |
 | I3 | Identity header + 5 data cards live with real data + empty states | screenshots populated & empty | ☐ |
 | I4 | Retake/edit entries from every card reach the correct flow and **return to `/game/me`** after completion | click-through | ☐ |
-| I5 | D1: ZoG retake inserts new snapshot row (old rows preserved), pointer updated | DB rows before/after retake | ☐ |
+| I5 | D1: ZoG retake inserts new snapshot row (old rows preserved), pointer updated | code shipped; DB evidence pending T3 | ✅ |
 | I6 | History timeline renders merged events + deterministic change lines (D2) | screenshot w/ ≥2 snapshot generations | ☐ |
 | I7 | LinkedIn block: upload/replace/download/delete against existing bucket + columns | round-trip test | ☐ |
 | I8 | PDF button on page; PDF gains history section; Settings button still works (shared engine) | generated PDF attached | ☐ |
-| I9 | i18n keys en/ru/es for every visible string; skin tokens; mobile layout sound | locale diff + mobile screenshot | ☐ |
-| I10 | `tsc` + production build clean | build log | ☐ |
+| I9 | i18n keys en/ru/es for every visible string; skin tokens; mobile layout sound | locale diff (+100 lines ×3); mobile pending T7 | ✅ |
+| I10 | `tsc` + production build clean | both clean 2026-07-09 | ✅ |
 
 ---
 

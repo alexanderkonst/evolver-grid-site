@@ -159,6 +159,15 @@ const SPACE_SECTIONS: SpaceSections = {
     grow: {
         title: "ME",
         sections: [
+            // Day 119 (Sasha 2026-07-09): Profile Space — the assembled
+            // profile (identity, talents, mission, assets, QoL, collab
+            // requests, history, LinkedIn, PDF export) as the first ME item.
+            // Spec: docs/specs/profile-space/sow_and_dods.md.
+            {
+                id: "me-profile",
+                label: "Profile",
+                path: "/game/me/profile",
+            },
             {
                 id: "top-talent",
                 label: "Top Talent",
@@ -375,6 +384,7 @@ export const STATIC_LABEL_KEYS: Record<string, { label: string; lockedHint?: str
     "ai-os-benchmark": { label: "rail.aiOs.benchmark.label" },
     "ai-os-pricing": { label: "rail.aiOs.pricing.label" },
     // ME space
+    "me-profile": { label: "rail.me.profile.label" },
     "top-talent": { label: "rail.me.topTalent.label" },
     "tt-start-here": { label: "rail.me.ttStartHere.label" },
     "tt-overview": { label: "rail.me.ttOverview.label" },
