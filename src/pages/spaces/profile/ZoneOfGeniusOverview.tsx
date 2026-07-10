@@ -35,6 +35,9 @@ import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
 import CardActions from "@/components/sharing/CardActions";
 import ReadNextSectionButton from "@/components/profile/ReadNextSectionButton";
 import { flipToSecondPerson } from "@/lib/zogProfileVoice";
+// Day 119 (Sasha 2026-07-09): inside-layer brand signature (see the
+// matching placement in RevelatoryHero).
+import youLockup from "@/assets/you-be-original-lockup.webp";
 
 /**
  * Strip decorative glyphs (✦ ✧ ◆ ◇ ❖ ✱ ★ ☆) some AI generators wrap
@@ -772,6 +775,21 @@ const ZoneOfGeniusOverview = () => {
                         {t('zogOverview.ctaSecondary')}
                     </a>
                 </section>
+
+                {/* Day 119 (Sasha 2026-07-09): YOU · be original — the
+                    inside-layer brand signature (FYTT = door, YOU =
+                    inside). This page is the most-visited inside surface:
+                    a returning member re-reading their own Top Talent.
+                    Same quiet treatment as the live post-reveal view in
+                    RevelatoryHero: small, no link, a signature not a CTA. */}
+                <div className="mt-10 mb-4 flex justify-center">
+                    <img
+                        src={youLockup}
+                        alt="YOU — be original."
+                        className="h-12 w-auto object-contain opacity-90 select-none"
+                        draggable={false}
+                    />
+                </div>
             </div>
         </GameShellV2>
     );
