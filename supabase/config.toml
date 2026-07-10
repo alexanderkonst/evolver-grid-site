@@ -126,6 +126,13 @@ verify_jwt = true
 [functions.generate-pulse-brief]
 verify_jwt = true
 
+# Day 119 (Sasha 2026-07-09): corpus-mirror write gate for the Telegram
+# founder chat. verify_jwt = false because the caller is a local script
+# with no Supabase JWT; the function validates x-sync-token against the
+# CORPUS_SYNC_TOKEN secret internally.
+[functions.sync-founder-corpus]
+verify_jwt = false
+
 [functions.auth-email-hook]
 verify_jwt = false
 
