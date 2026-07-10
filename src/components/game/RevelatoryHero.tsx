@@ -14,6 +14,10 @@ import { Ornament } from "@/lib/landingDesign";
 // QR + URL line cover the brand-mark + way-back jobs together).
 // Asset file kept in /assets for future reuse / other surfaces.
 // import brandTorus from "@/assets/find-your-top-talent-torus.png";
+// Day 119 (Sasha 2026-07-09): YOU · be original lockup — the inside-layer
+// brand (FYTT = door, YOU = inside). Signs the live post-reveal view;
+// excluded from the captured PNG. 640w webp, ~59KB.
+import youLockup from "@/assets/you-be-original-lockup.webp";
 
 interface RevelatoryHeroProps {
     type: "appleseed" | "excalibur";
@@ -502,6 +506,33 @@ const RevelatoryHero = ({
                         shareText={shareText}
                         darkMode={darkMode}
                         captureWidth={480}
+                    />
+                </div>
+
+                {/* Day 119 (Sasha 2026-07-09): YOU · be original — the
+                    inside-layer brand lands exactly at the seam. The
+                    reveal is the moment "the product is YOU" stops
+                    being a slogan and becomes the person's experience,
+                    so the lockup signs the LIVE post-reveal view only.
+                    data-html2canvas-ignore keeps it OUT of the captured
+                    PNG — the shared image travels to strangers (door
+                    layer) and keeps the FYTT URL + QR (Day 61 logic
+                    unchanged). Quiet placement: small, breathing room,
+                    no link — a signature, not a CTA. */}
+                <div
+                    className="mt-10 mb-2 flex justify-center"
+                    data-html2canvas-ignore="true"
+                >
+                    <img
+                        src={youLockup}
+                        alt="YOU — be original."
+                        className="h-12 w-auto object-contain opacity-90 select-none"
+                        draggable={false}
+                        style={{
+                            filter: darkMode
+                                ? "drop-shadow(0 0 14px rgba(244, 212, 114, 0.18))"
+                                : "none",
+                        }}
                     />
                 </div>
             </div>
