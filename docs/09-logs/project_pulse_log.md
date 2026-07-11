@@ -278,3 +278,39 @@ staleness_or_contradictions: >
   recognition: people increasingly approach Sasha as someone who can help a person
   see and navigate a professional path.
 ```
+
+### 2026-07-09 — Nia container proposal drafted ($1,111, 3 weeks)
+
+```yaml
+date: 2026-07-09
+day_number: 119
+title: Nia asked for container details; Sasha drafted the $1,111 / 3-week proposal
+source: Sasha dictation (pulse)
+actors:
+  - Sasha / Alexander Konstantinov
+  - Nia Leak
+what_happened: >
+  Nia re-emerged from integration and asked for the container details and
+  price. Sasha drafted a 3-week private strategic advisory (Week 1 mindset
+  and strategy, Week 2 tactics, Week 3 first clients/sales loop), weekly
+  2-hour sessions plus chat check-ins, priced $1,111 (cohort-equivalent
+  price for a private container). Promise: ready to sell her newly
+  packaged signature offer in 3 weeks. Draft reviewed before sending.
+energy_exchanged:
+  - buying intent (she asked for the price)
+  - container design
+  - trust
+affected_holons:
+  - individual founder
+  - client dyad (Sasha + Nia)
+  - the value ladder (first $1,111 container offer to a funnel-born client)
+affected_artifacts:
+  - strategic_crm_outreach_tracker.md (Nia row)
+  - crm-snapshot.json
+phase_shift_significance: major
+next_action: >
+  Send after final pass; if accepted this is the first funnel-born client
+  ascending the ladder ($555 workshop -> $1,111 container).
+staleness_or_contradictions: >
+  None. Note: Nia asked first — inbound ascension, not outbound push.
+```
