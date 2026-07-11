@@ -40,9 +40,13 @@ The invariant that changes across the whole taxonomy is WHO ACTS. In gifts 1-5 t
 - 🧠 One mind — ideas arise between you that neither can trace to themselves; your private vocabulary does real work.
 - 🔥 One metabolism — money, opportunities, and risk flow through shared channels without per-instance negotiation; one balance sheet of fate.
 
+**The archetypal instance of Communion is the co-founder bond.** A venture, in this taxonomy, is a communion that took a body: the third being gets a name (incorporation), the one mind gets an address (the shared thesis), the one metabolism becomes literal (cap table, one bank account). Marriage is the same octave in the personal register. Not every communion incorporates — but every real co-founding is a communion, and co-founding without communion is the classic startup death (a partnership at aspect 6 wearing aspect 7's legal skin).
+
 MECE note: aspects 1-5 are complete for MOMENTS; 6-7 make the taxonomy complete for RELATIONSHIPS. Compounds are not overlaps — they live at 6. Relationships that transcend gift exchange live at 7.
 
-Correlation with the Collaboration Spectrum (10-stage, sibling file collaboration_spectrum_holomap.md): the taxonomy is a MENU (what can pass between two people); the Spectrum is a LADDER (how much structure the relationship carries). Gifts 1-5 can occur at any Spectrum stage, but frequency and bidirectionality rise as you climb. Aspect 6 (Weave) corresponds to Spectrum stages ~4-7 (Collabs → Teams). Aspect 7 (Communion) corresponds to Spectrum stages 8-10 (Swarms → Holonic Ecosystems → Mycelium Symbiosis). Early stages: a single gift is an event. Late stages: gifts are ambient.
+Correlation with the Collaboration Spectrum (10-stage, sibling file collaboration_spectrum_holomap.md): the taxonomy is a MENU (what can pass between two people); the Spectrum is a LADDER (how much structure the relationship carries). Gifts 1-5 can occur at any Spectrum stage, but frequency and bidirectionality rise as you climb. Aspect 6 (Weave) corresponds to Spectrum stages ~4-7 (Collabs → Teams). Aspect 7 (Communion) corresponds to Spectrum stages 8-10 (Swarms → Holonic Ecosystems → Mycelium Symbiosis). Early stages: a single gift is an event. Late stages: gifts are ambient. At Spectrum stage 3, a gift is the headline of the month; at stage 8, gifts are the weather.
+
+**Why the two maps stay separate (Day 121):** the menu tells you WHAT to offer; the ladder tells you WHAT THE RELATIONSHIP CAN HOLD. Collapse them into one map and you lose both readings. The matchmaker uses both at once: it proposes at the gift level (menu) and tracks at the spectrum level (ladder) — propose gifts, track the climb.
 
 ---
 
