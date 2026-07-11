@@ -420,6 +420,16 @@ Deno.serve(async (req) => {
       return htmlResponse(200, pageAlreadyResponded());
     }
 
+    // Mirror the acceptance onto any match_proposals row that seeded
+    // this match_interests (proactive-match-proposal loop).
+    await admin
+      .from("match_proposals")
+      .update(
+        { response: "accepted", responded_at: now } as never,
+      )
+      .eq("match_interest_id", miRow.id)
+      .eq("response", "pending");
+
     // Insert match_intros row with canonical ordering
     const userA =
       miRow.from_user_id < miRow.to_user_id
