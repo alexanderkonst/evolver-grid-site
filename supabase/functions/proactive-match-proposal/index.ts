@@ -7,10 +7,14 @@
 // at match-consent, sends a 3-line proposal email in the Aurora register,
 // and logs a match_proposals row.
 //
-// Silence-respect: if the user's last two proposals were both ignored
-// (7+ days since proposed_at with response='pending'), pause them for
-// 30 days from the second ignored proposal. When resumed, prepend a
-// gentle acknowledgement.
+// Day 121 (Sasha 2026-07-11): copy overhaul + policy simplification.
+//   - Declined pairs get a 3-month cool-off, not a permanent ban. The
+//     history window IS the cool-off: we only load 90 days of
+//     match_proposals, so declines age out naturally.
+//   - No silence-pause. Ignoring proposals has no side effects; the
+//     weekly 1-proposal cap is the only frequency guardrail.
+//   - Subject + gift line + first step + why-now are LLM-written per
+//     pair (concise, concrete, no hedging), with static fallbacks.
 //
 // Request body (optional): { "userIds": ["..."] } to scope a dry run.
 
@@ -75,7 +79,6 @@ interface Profile {
     first_name: string | null;
     email: string;
     last_zog_snapshot_id: string | null;
-    match_digest_paused_until: string | null;
 }
 
 interface ProposalRow {
@@ -121,7 +124,7 @@ serve(async (req) => {
         let query = admin
             .from("game_profiles")
             .select(
-                "id, user_id, first_name, last_zog_snapshot_id, visibility, match_digest_opt_in, match_digest_paused_until",
+                "id, user_id, first_name, last_zog_snapshot_id, visibility, match_digest_opt_in",
             )
             .eq("match_digest_opt_in", true)
             .not("last_zog_snapshot_id", "is", null)
@@ -140,15 +143,8 @@ serve(async (req) => {
 
         // Resolve email addresses
         const eligible: Profile[] = [];
-        const nowIso = new Date().toISOString();
         for (const p of profiles) {
             if (!p.user_id) continue;
-            const pausedUntil = (p as { match_digest_paused_until?: string | null })
-                .match_digest_paused_until ?? null;
-            if (pausedUntil && pausedUntil > nowIso) {
-                // Currently paused — skip
-                continue;
-            }
             const { data: authUser } = await admin.auth.admin.getUserById(
                 p.user_id,
             );
@@ -160,7 +156,6 @@ serve(async (req) => {
                 first_name: p.first_name ?? null,
                 email,
                 last_zog_snapshot_id: p.last_zog_snapshot_id ?? null,
-                match_digest_paused_until: pausedUntil,
             });
         }
 
@@ -231,9 +226,10 @@ async function processUser(args: {
     const nowIso = new Date(now).toISOString();
     const NINETY_DAYS_MS = 90 * 24 * 60 * 60 * 1000;
     const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
-    const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
 
     // ── Load 90-day proposal history ────────────────────────────
+    // The 90-day window doubles as the decline cool-off: a declined
+    // pair simply ages out of the exclusion set after ~3 months.
     const cutoffIso = new Date(now - NINETY_DAYS_MS).toISOString();
     const { data: historyRows } = await admin
         .from("match_proposals")
@@ -243,48 +239,15 @@ async function processUser(args: {
         .order("proposed_at", { ascending: false });
     const history: ProposalRow[] = (historyRows ?? []) as ProposalRow[];
 
-    // Silence-respect: mark old pending → ignored (7d+ no response)
-    for (const row of history) {
-        if (
-            row.response === "pending" &&
-            now - Date.parse(row.proposed_at) >= SEVEN_DAYS_MS
-        ) {
-            row.response = "ignored";
-        }
-    }
-
-    // Check for two consecutive ignored (most recent two)
-    const wasPaused = !!profile.match_digest_paused_until;
-    if (history.length >= 2) {
-        const [latest, prev] = history;
-        if (
-            latest.response === "ignored" &&
-            prev.response === "ignored"
-        ) {
-            const pauseUntilMs =
-                Date.parse(latest.proposed_at) + THIRTY_DAYS_MS;
-            if (pauseUntilMs > now) {
-                // Set pause and skip this cycle
-                await admin
-                    .from("game_profiles")
-                    .update({
-                        match_digest_paused_until: new Date(pauseUntilMs)
-                            .toISOString(),
-                    } as never)
-                    .eq("user_id", profile.user_id);
-                return "skipped";
-            }
-        }
-    }
-
-    // Build exclusion sets
-    const declinedForever = new Set<string>();
+    // Build exclusion sets. Declined = 3-month cool-off (the history
+    // window above), not a permanent ban.
+    const declinedCoolOff = new Set<string>();
     const recentlyProposed = new Set<string>();
     const acceptedGifts = new Map<string, number>();
     const declinedGifts = new Map<string, number>();
     for (const row of history) {
         if (row.response === "declined") {
-            declinedForever.add(row.proposed_user_id);
+            declinedCoolOff.add(row.proposed_user_id);
         }
         if (now - Date.parse(row.proposed_at) < THIRTY_DAYS_MS) {
             recentlyProposed.add(row.proposed_user_id);
@@ -342,7 +305,7 @@ async function processUser(args: {
     const candidates = matches
         .filter(
             (m) =>
-                !declinedForever.has(m.userId) &&
+                !declinedCoolOff.has(m.userId) &&
                 !recentlyProposed.has(m.userId),
         )
         .map((m) => {
@@ -403,51 +366,48 @@ async function processUser(args: {
         encodeURIComponent(declineToken)
     }`;
 
-    // ── Compose 3-line proposal ─────────────────────────────────
-    const giftLine = buildGiftLine(best.gift, best.match.firstName);
-    const firstStep = (
-        best.match.suggestedAction ||
-        best.match.proposals?.[0]?.proposal ||
-        best.match.collaborationProposal ||
-        "Share your current focus and see if a first 30-minute call reveals a natural collaboration."
-    ).trim();
-    const whyNow = (
-        best.match.evolutionLine ||
-        best.match.proposals?.[0]?.evolutionLine ||
-        best.match.alignment ||
-        "You're both at a moment where an outside mirror could unlock the next move."
-    ).trim();
-
-    // Gentle acknowledgement if returning from pause
-    const gentleNote = wasPaused
-        ? "It's been a little while since we sent you a match — we've kept things quiet on purpose. Here's a fresh one worth a look."
-        : "";
+    // ── Compose the proposal copy (LLM with static fallbacks) ───
+    const copy = await generateProposalCopy({
+        gift: best.gift,
+        recipientFirstName: profile.first_name || "",
+        otherFirstName: best.match.firstName || "",
+        otherArchetype: best.match.archetype || "",
+        rawFirstStep: (
+            best.match.suggestedAction ||
+            best.match.proposals?.[0]?.proposal ||
+            best.match.collaborationProposal ||
+            ""
+        ).trim(),
+        rawWhyNow: (
+            best.match.evolutionLine ||
+            best.match.proposals?.[0]?.evolutionLine ||
+            best.match.alignment ||
+            ""
+        ).trim(),
+    });
 
     // ── Send email ──────────────────────────────────────────────
-    const subject = `A match worth a look: ${
-        best.match.firstName || "a new member"
-    }`;
     const html = renderProposalHtml({
         recipientFirstName: profile.first_name || "",
         otherFirstName: best.match.firstName || "",
         otherArchetype: best.match.archetype || "",
-        giftLine,
-        firstStep,
-        whyNow,
-        gentleNote,
+        giftLine: copy.gift,
+        firstStep: copy.firstStep,
+        whyNow: copy.whyNow,
         consentUrl,
         declineUrl,
     });
     const text = renderProposalText({
         recipientFirstName: profile.first_name || "",
         otherFirstName: best.match.firstName || "",
-        giftLine,
-        firstStep,
-        whyNow,
-        gentleNote,
+        otherArchetype: best.match.archetype || "",
+        giftLine: copy.gift,
+        firstStep: copy.firstStep,
+        whyNow: copy.whyNow,
         consentUrl,
         declineUrl,
     });
+    const subject = copy.subject;
 
     const resendRes = await fetch("https://api.resend.com/emails", {
         method: "POST",
@@ -483,14 +443,6 @@ async function processUser(args: {
         match_interest_id: matchInterestId,
     } as never);
 
-    // Clear pause flag on resume
-    if (wasPaused) {
-        await admin
-            .from("game_profiles")
-            .update({ match_digest_paused_until: null } as never)
-            .eq("user_id", profile.user_id);
-    }
-
     // Best-effort log
     await admin.from("email_send_log").insert({
         template_name: "proactive_match_proposal",
@@ -507,21 +459,140 @@ async function processUser(args: {
     return "sent";
 }
 
-function buildGiftLine(gift: GiftType, otherFirstName?: string): string {
-    const name = otherFirstName || "They";
-    switch (gift) {
-        case "mirror":
-            return `${name} may be a mirror for your current edge — someone whose reflection can sharpen the work you're already doing.`;
-        case "compass":
-            return `${name} may be a compass — with a resource or perspective that points toward a direction you haven't yet named.`;
-        case "door":
-            return `${name} may be a door — an access point into a network, audience, or channel that matters for your next move.`;
-        case "co_creation":
-            return `${name} may be a co-creation partner — someone whose gifts compose with yours into something neither of you would build alone.`;
-        case "motivation":
-            return `${name} may be a motivation — someone whose momentum, care, or stewardship can hold your work steady.`;
+const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+const COPY_MODEL_ID = "google/gemini-2.5-flash-lite";
+
+function sanitizeDashes(s: string): string {
+    return s.replace(/\s*—\s*/g, ", ").replace(/\s*–\s*/g, ", ");
+}
+
+function truncateAtWord(s: string, max: number): string {
+    if (s.length <= max) return s;
+    const cut = s.slice(0, max);
+    const lastSpace = cut.lastIndexOf(" ");
+    return (lastSpace > 0 ? cut.slice(0, lastSpace) : cut).trim();
+}
+
+function staticFallback(args: {
+    gift: GiftType;
+    otherFirstName: string;
+    rawFirstStep: string;
+    rawWhyNow: string;
+}): { subject: string; gift: string; firstStep: string; whyNow: string } {
+    const { gift, otherFirstName, rawFirstStep, rawWhyNow } = args;
+    const B = otherFirstName || "Someone new";
+
+    const subjects: Record<GiftType, string> = {
+        mirror: `${B} sees what you can't from inside`,
+        compass: `${B} may know your next direction`,
+        door: `${B} can open a door you need`,
+        co_creation: `${B} could build with you`,
+        motivation: `${B} might be your missing momentum`,
+    };
+
+    const giftLines: Record<GiftType, string> = {
+        mirror:
+            `${B} works close enough to your edge to show you what you can't see from inside.`,
+        compass:
+            `${B} carries a perspective that could point your next move.`,
+        door:
+            `${B} has access to rooms and audiences that matter for what you're building.`,
+        co_creation:
+            `${B}'s gifts compose with yours. Together you could build what neither of you would alone.`,
+        motivation:
+            `${B} brings the kind of momentum and belief that makes hard weeks move.`,
+    };
+
+    const firstStep = rawFirstStep
+        ? sanitizeDashes(rawFirstStep)
+        : "A 30-minute call. Share your current focus and see what forms.";
+    const whyNow = rawWhyNow
+        ? sanitizeDashes(rawWhyNow)
+        : "You're both in motion right now, and timing matters.";
+
+    return {
+        subject: sanitizeDashes(subjects[gift]),
+        gift: sanitizeDashes(giftLines[gift]),
+        firstStep,
+        whyNow,
+    };
+}
+
+async function generateProposalCopy(args: {
+    gift: GiftType;
+    recipientFirstName: string;
+    otherFirstName: string;
+    otherArchetype: string;
+    rawFirstStep: string;
+    rawWhyNow: string;
+}): Promise<{ subject: string; gift: string; firstStep: string; whyNow: string }> {
+    const {
+        gift,
+        recipientFirstName,
+        otherFirstName,
+        otherArchetype,
+        rawFirstStep,
+        rawWhyNow,
+    } = args;
+    const A = recipientFirstName || "there";
+    const B = otherFirstName || "someone new";
+    const fallback = staticFallback({ gift, otherFirstName, rawFirstStep, rawWhyNow });
+
+    if (!LOVABLE_API_KEY) return fallback;
+
+    try {
+        const prompt =
+            `You are a thoughtful human matchmaker writing a very short introduction proposal email from the platform to ${A} about ${B}.
+GIFT TYPE: ${gift} (mirror = B can reveal A's blind spot or give exact words; compass = B carries orientation or a next direction; door = B has access to rooms, networks, audiences A needs; co_creation = B could build something with A; motivation = B brings momentum and belief).
+MATERIAL (from the matching engine, may be rough): B's archetype: ${otherArchetype}. Suggested first step: ${rawFirstStep}. Why now: ${rawWhyNow}.
+Return ONLY JSON: {"subject": "...", "gift": "...", "firstStep": "...", "whyNow": "..."}.
+Rules: subject = max 55 characters, starts with or contains ${B}'s first name, states the concrete benefit, no colon-cleverness, no emoji. gift = ONE sentence, max 22 words, second person to ${A}, names concretely what ${B} can do for them. firstStep = ONE sentence, a small sized action (call, exchange, review). whyNow = ONE sentence grounded in the material. Plain human words. No em-dashes (use commas or periods). No exclamation marks. No hype adjectives. No hedging like "may be a mirror for your edge".`;
+
+        const resp = await fetch(
+            "https://ai.gateway.lovable.dev/v1/chat/completions",
+            {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${LOVABLE_API_KEY}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    model: COPY_MODEL_ID,
+                    messages: [{ role: "user", content: prompt }],
+                    temperature: 0.6,
+                }),
+            },
+        );
+        if (!resp.ok) return fallback;
+
+        const r = await resp.json();
+        let content = String(r.choices?.[0]?.message?.content || "").trim();
+        content = content.replace(/^```(?:json)?\s*/i, "").replace(/```\s*$/i, "").trim();
+        const jsonMatch = content.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) return fallback;
+        const parsed = JSON.parse(jsonMatch[0]);
+
+        let subject = String(parsed.subject || "").trim();
+        let giftLine = String(parsed.gift || "").trim();
+        let firstStep = String(parsed.firstStep || "").trim();
+        let whyNow = String(parsed.whyNow || "").trim();
+
+        if (!subject || !giftLine || !firstStep || !whyNow) return fallback;
+
+        subject = sanitizeDashes(subject);
+        giftLine = sanitizeDashes(giftLine);
+        firstStep = sanitizeDashes(firstStep);
+        whyNow = sanitizeDashes(whyNow);
+
+        subject = truncateAtWord(subject, 70);
+
+        if (!subject || !giftLine || !firstStep || !whyNow) return fallback;
+
+        return { subject, gift: giftLine, firstStep, whyNow };
+    } catch (err) {
+        console.warn("[proactive-match] generateProposalCopy failed", err);
+        return fallback;
     }
-    return `${name} may be a match worth a conversation.`;
 }
 
 interface EmailArgs {
@@ -531,7 +602,6 @@ interface EmailArgs {
     giftLine: string;
     firstStep: string;
     whyNow: string;
-    gentleNote: string;
     consentUrl: string;
     declineUrl: string;
 }
@@ -544,63 +614,41 @@ function renderProposalHtml(args: EmailArgs): string {
         giftLine,
         firstStep,
         whyNow,
-        gentleNote,
         consentUrl,
         declineUrl,
     } = args;
     const greeting = recipientFirstName ? `Hi ${escapeHtml(recipientFirstName)},` : "Hi,";
     const arch = (otherArchetype || "").replace(/[✦★☆✧⬥◇◆⟐]/g, "").trim();
+    const nameB = escapeHtml(otherFirstName || "someone new");
+    const introLine = arch
+        ? `One introduction this week: <strong>${nameB}</strong>, ${escapeHtml(arch)}.`
+        : `One introduction this week: <strong>${nameB}</strong>.`;
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>A match worth a look</title>
+<title>An introduction</title>
 </head>
 <body style="margin:0;padding:0;background:#f5f1e8;font-family:'Source Serif 4', Georgia, serif;">
   <div style="max-width:600px;margin:0 auto;padding:40px 24px;">
     <div style="background:rgba(255, 252, 245, 0.95);border:0.5px solid rgba(212, 175, 55, 0.55);border-radius:16px;padding:36px 28px;box-shadow:0 12px 32px -16px rgba(10, 22, 40, 0.18), 0 0 22px -8px rgba(212, 175, 55, 0.30);">
-      <p style="margin:0 0 14px 0;font-family:'DM Sans', system-ui, sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#5d4307;">
-        ✦ A proactive match
-      </p>
-      <h1 style="margin:0 0 18px 0;font-family:'Cormorant Garamond', Georgia, serif;font-weight:700;font-size:28px;line-height:1.2;color:#0b2a5a;letter-spacing:-0.005em;">
-        A match worth a look
-      </h1>
       <p style="margin:0 0 16px 0;font-family:'Source Serif 4', Georgia, serif;font-weight:600;font-size:15.5px;line-height:1.6;color:#0b2a5a;">
         ${greeting}
       </p>
-      ${
-        gentleNote
-            ? `<p style="margin:0 0 22px 0;font-family:'Source Serif 4', Georgia, serif;font-style:italic;font-weight:500;font-size:14.5px;line-height:1.65;color:rgba(11, 42, 90, 0.72);background:rgba(212, 175, 55, 0.06);border-left:2px solid rgba(212, 175, 55, 0.40);padding:12px 16px;border-radius:6px;">
-          ${escapeHtml(gentleNote)}
-        </p>`
-            : ""
-    }
-      ${
-        arch
-            ? `<div style="background:rgba(212, 175, 55, 0.06);border:0.5px solid rgba(212, 175, 55, 0.30);border-radius:12px;padding:16px 18px;margin:0 0 22px 0;">
-          <p style="margin:0 0 4px 0;font-family:'Cormorant Garamond', Georgia, serif;font-weight:700;font-size:17px;color:#0b2a5a;">
-            ${escapeHtml(otherFirstName || "A new member")}
-          </p>
-          <p style="margin:0;font-family:'Source Serif 4', Georgia, serif;font-style:italic;font-weight:600;font-size:13.5px;color:#5d4307;">
-            ${escapeHtml(arch)}
-          </p>
-        </div>`
-            : ""
-    }
-      <p style="margin:0 0 8px 0;font-family:'DM Sans', system-ui, sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#5d4307;">
-        The gift
-      </p>
       <p style="margin:0 0 22px 0;font-family:'Source Serif 4', Georgia, serif;font-weight:500;font-size:15px;line-height:1.65;color:#0b2a5a;">
+        ${introLine}
+      </p>
+      <p style="margin:0 0 24px 0;font-family:'Source Serif 4', Georgia, serif;font-weight:600;font-size:16.5px;line-height:1.6;color:#0b2a5a;">
         ${escapeHtml(giftLine)}
       </p>
-      <p style="margin:0 0 8px 0;font-family:'DM Sans', system-ui, sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#5d4307;">
-        A concrete first step
+      <p style="margin:0 0 6px 0;font-family:'DM Sans', system-ui, sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#5d4307;">
+        First step
       </p>
-      <p style="margin:0 0 22px 0;font-family:'Source Serif 4', Georgia, serif;font-weight:500;font-size:15px;line-height:1.65;color:#0b2a5a;">
+      <p style="margin:0 0 20px 0;font-family:'Source Serif 4', Georgia, serif;font-weight:500;font-size:15px;line-height:1.65;color:#0b2a5a;">
         ${escapeHtml(firstStep)}
       </p>
-      <p style="margin:0 0 8px 0;font-family:'DM Sans', system-ui, sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#5d4307;">
+      <p style="margin:0 0 6px 0;font-family:'DM Sans', system-ui, sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#5d4307;">
         Why now
       </p>
       <p style="margin:0 0 28px 0;font-family:'Source Serif 4', Georgia, serif;font-weight:500;font-size:15px;line-height:1.65;color:#0b2a5a;">
@@ -615,17 +663,17 @@ function renderProposalHtml(args: EmailArgs): string {
           </td>
           <td>
             <a href="${escapeHtml(declineUrl)}" style="display:inline-block;background:transparent;color:#0b2a5a;padding:14px 22px;border-radius:999px;border:1px solid rgba(11, 42, 90, 0.30);font-family:'DM Sans', system-ui, sans-serif;font-size:13px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">
-              Not now
+              Not this one
             </a>
           </td>
         </tr>
       </table>
       <p style="margin:32px 0 0 0;font-family:'Source Serif 4', Georgia, serif;font-weight:500;font-style:italic;font-size:13.5px;line-height:1.55;color:rgba(11, 42, 90, 0.62);text-align:center;">
-        No response, no pressure. If two proposals go quiet, we'll pause and give you space.
+        One proposal a week, only when it's strong. No response needed.
       </p>
       <hr style="margin:28px 0;border:0;border-top:0.5px solid rgba(212, 175, 55, 0.30);" />
       <p style="margin:0;font-family:'Source Serif 4', Georgia, serif;font-weight:500;font-style:italic;font-size:13px;line-height:1.55;color:rgba(11, 42, 90, 0.70);">
-        — Find Your Top Talent
+        Find Your Top Talent
       </p>
     </div>
   </div>
@@ -637,24 +685,26 @@ function renderProposalText(args: EmailArgs): string {
     const {
         recipientFirstName,
         otherFirstName,
+        otherArchetype,
         giftLine,
         firstStep,
         whyNow,
-        gentleNote,
         consentUrl,
         declineUrl,
     } = args;
     const greeting = recipientFirstName ? `Hi ${recipientFirstName},` : "Hi,";
-    return `A match worth a look
+    const arch = (otherArchetype || "").replace(/[✦★☆✧⬥◇◆⟐]/g, "").trim();
+    const nameB = otherFirstName || "someone new";
+    const introLine = arch
+        ? `One introduction this week: ${nameB}, ${arch}.`
+        : `One introduction this week: ${nameB}.`;
+    return `${greeting}
 
-${greeting}
+${introLine}
 
-${gentleNote ? gentleNote + "\n\n" : ""}${otherFirstName ? otherFirstName + " —" : ""}
-
-THE GIFT
 ${giftLine}
 
-A CONCRETE FIRST STEP
+FIRST STEP
 ${firstStep}
 
 WHY NOW
@@ -665,14 +715,14 @@ ${whyNow}
 YES, INTRODUCE US:
 ${consentUrl}
 
-NOT NOW:
+NOT THIS ONE:
 ${declineUrl}
 
 ─────────────────────────
 
-No response, no pressure. If two proposals go quiet, we'll pause and give you space.
+One proposal a week, only when it's strong. No response needed.
 
-— Find Your Top Talent
+Find Your Top Talent
 `;
 }
 
