@@ -383,6 +383,15 @@ Deno.serve(async (req) => {
         // Lost the race — another tab/click already set the response.
         return htmlResponse(200, pageAlreadyResponded());
       }
+      // Mirror the response onto any match_proposals row that seeded
+      // this match_interests (proactive-match-proposal loop).
+      await admin
+        .from("match_proposals")
+        .update(
+          { response: "declined", responded_at: now } as never,
+        )
+        .eq("match_interest_id", miRow.id)
+        .eq("response", "pending");
       return htmlResponse(200, pageNo(aFirstName));
     }
 
