@@ -1,43 +1,38 @@
 {
-  "generated_at": "2026-07-10T23:08:02.770Z",
+  "generated_at": "2026-07-11T17:58:21.139Z",
   "source": "docs/09-logs/project_pulse_log.md",
-  "eventsCount": 5,
+  "eventsCount": 6,
   "latestEvent": {
-    "date": "2026-07-10",
-    "day_number": "120",
-    "title": "Heinrich opens an intergenerational trust and guidance bridge",
-    "source": "VK exchange",
+    "date": "2026-07-09",
+    "day_number": "119",
+    "title": "Nia asked for container details; Sasha drafted the $1,111 / 3-week proposal",
+    "source": "Sasha dictation (pulse)",
     "actors": [
       "Sasha / Alexander Konstantinov",
-      "Heinrich Isaakovich Kulakov",
-      "Heinrich's granddaughter, an MSU student"
+      "Nia Leak"
     ],
-    "what_happened": "Sasha's basketball coach from many years ago reached out after a long interval and asked Sasha to advise his younger granddaughter, an accomplished second-year MSU student, about graduate study and work abroad. Sasha welcomed the referral, shared his direct contact details, described his current work in professional clarity and business building, and invited Heinrich himself to take the Top Talent assessment in Russian. The exchange also restored a formative relationship: Heinrich shared his life after a stroke, his continued contribution to young athletes, and his enduring inner youth at 78.",
+    "what_happened": "Nia re-emerged from integration and asked for the container details and price. Sasha drafted a 3-week private strategic advisory (Week 1 mindset and strategy, Week 2 tactics, Week 3 first clients/sales loop), weekly 2-hour sessions plus chat check-ins, priced $1,111 (cohort-equivalent price for a private container). Promise: ready to sell her newly packaged signature offer in 3 weeks. Draft reviewed before sending.",
     "energy_exchanged": [
-      "long-term trust",
-      "care and recognition",
-      "intergenerational referral",
-      "professional guidance invitation",
-      "product invitation"
+      "buying intent (she asked for the price)",
+      "container design",
+      "trust"
     ],
     "affected_holons": [
-      "Sasha's formative basketball lineage",
-      "coach-student relationship",
-      "next-generation professional guidance",
-      "Russian-language product field"
+      "individual founder",
+      "client dyad (Sasha + Nia)",
+      "the value ladder (first $1,111 container offer to a funnel-born client)"
     ],
     "affected_artifacts": [
-      "strategic_crm_outreach_tracker.md",
-      "project-pulse-snapshot.json",
+      "strategic_crm_outreach_tracker.md (Nia row)",
       "crm-snapshot.json"
     ],
-    "phase_shift_significance": "minor",
-    "next_action": "Wait for the granddaughter to initiate contact, then help her clarify her actual decision rather than giving generic emigration advice. If Heinrich completes the assessment, receive his experience as product feedback and relational reconnection, not as a sales lead to force.",
-    "staleness_or_contradictions": "No commercial opportunity exists yet. The signal is trusted referral and role recognition: people increasingly approach Sasha as someone who can help a person see and navigate a professional path."
+    "phase_shift_significance": "major",
+    "next_action": "Send after final pass; if accepted this is the first funnel-born client ascending the ladder ($555 workshop -> $1,111 container).",
+    "staleness_or_contradictions": "None. Note: Nia asked first — inbound ascension, not outbound push."
   },
   "phaseShiftDistribution": {
     "minor": 3,
-    "major": 2
+    "major": 3
   },
   "openNextActions": [
     {
@@ -64,6 +59,11 @@
       "date": "2026-07-10",
       "title": "Heinrich opens an intergenerational trust and guidance bridge",
       "next_action": "Wait for the granddaughter to initiate contact, then help her clarify her actual decision rather than giving generic emigration advice. If Heinrich completes the assessment, receive his experience as product feedback and relational reconnection, not as a sales lead to force."
+    },
+    {
+      "date": "2026-07-09",
+      "title": "Nia asked for container details; Sasha drafted the $1,111 / 3-week proposal",
+      "next_action": "Send after final pass; if accepted this is the first funnel-born client ascending the ladder ($555 workshop -> $1,111 container)."
     }
   ]
 }

@@ -9,7 +9,7 @@ A holomap is an integral taxonomy (x-axis) crossed with evolutionary stages or d
 - Every NEW holomap is created here as a markdown file: the map itself + three depths (❤️ Essence — what it IS · 🧠 Significance — why it matters · 🔥 Consequences — the ripple effects).
 - Source artifacts (PDFs, CSVs) live in `assets/`.
 - Existing holomaps stay where they live (the Morphogenetic Holomap remains in `02-strategy/`); they may be pointered from here, not duplicated (no parallel compressions).
-- Vacant cells in any honest holomap are category candidates — see Phase Shift Library Domain 105 (The Vacant Cell).
+- Vacant categories in any honest holomap are category candidates — see Phase Shift Library Domain 105 (The Vacant Category).
 
 ## Index
 

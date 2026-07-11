@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { supabase } from "@/integrations/supabase/client";
-import logo from "@/assets/find-your-top-talent-logo.png";
+import logo from "@/assets/find-your-top-talent-lockup-v2.webp";
 
 interface UserProfile {
   first_name: string | null;

@@ -30,7 +30,7 @@ import SoundCloudMinimalPlayer from "@/components/SoundCloudMinimalPlayer";
 // Mobile (rail compressed to 72px) uses the standalone torus image
 // — the wordmark would crop off on a 72px column, so a dedicated
 // mark-only asset is cleaner.
-import brandLogo from "@/assets/find-your-top-talent-logo.png";
+import brandLogo from "@/assets/find-your-top-talent-lockup-v2.webp";
 // Day 119 (Sasha 2026-07-09): mark-only brand logo swapped from the
 // torus to the ORIGINAL octahedron-in-sphere (the canonical Prime
 // Attractor artifact — docs/assets/canonical-artifact/). The wordmark

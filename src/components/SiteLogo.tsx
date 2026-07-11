@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 // Day 48 (Sasha): the brand logo (orb + FIND YOUR TOP TALENT wordmark).
 // Same asset used by the SpacesRail and the top-right shell icon.
-import brandLogo from "@/assets/find-your-top-talent-logo.png";
+import brandLogo from "@/assets/find-your-top-talent-lockup-v2.webp";
 
 /**
  * SiteLogo — Full brand lockup, fixed top-center of the viewport, links to home.
