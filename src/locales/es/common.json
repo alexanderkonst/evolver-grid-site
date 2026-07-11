@@ -6888,5 +6888,63 @@
       "success": "Tu PDF de perfil se está descargando.",
       "failure": "No se pudo generar el PDF. Inténtalo de nuevo."
     }
+  },
+  "products": {
+    "eyebrow": "Productos",
+    "title": "Productos",
+    "intro": "Distintas puertas, un mismo punto de partida: tu unicidad, formulada con la precisión suficiente para construir sobre ella. Empieza donde estás.",
+    "seoDescription": "Siete propuestas, un mismo punto de partida: tu unicidad formulada con la precisión suficiente para construir sobre ella. Sesiones, descubrimiento de talento, matchmaking e infraestructura para comunidades y fundadores.",
+    "closingBefore": "¿No sabes cuál es tu puerta? Una ",
+    "closingLink": "llamada de 15 minutos",
+    "closingAfter": " lo resuelve.",
+    "card1": {
+      "name": "Sesión Productize Yourself",
+      "badge": "$555",
+      "line": "Estrategia de posicionamiento para el siguiente capítulo de fundadores. Formación MIT.",
+      "body": "Una sesión de trabajo. Tomamos lo que ya sabes de ti mismo y lo convertimos en palabras exactas: qué ofreces, a quién y por qué tú. Sales con un lenguaje lo bastante preciso para poner precio, presentar y construir.",
+      "cta": "Reservar la sesión"
+    },
+    "card2": {
+      "name": "Find Your Top Talent",
+      "badge": "Gratis para empezar",
+      "line": "Descubrimiento preciso de talento para profesionales.",
+      "body": "Una revelación guiada que nombra tu talento principal con palabras que puedes usar de verdad. En vez de otra etiqueta de personalidad, obtienes la frase exacta que la gente necesita para elegirte. Gratis para empezar. La profundidad completa se activa por $37.",
+      "cta": "Empezar la revelación"
+    },
+    "card3": {
+      "name": "Nodo White-Label",
+      "badge": "Para líderes de comunidad",
+      "line": "Infraestructura de incorporación y emparejamiento de miembros para líderes de comunidad.",
+      "body": "Tu comunidad, funcionando sobre esta plataforma. Cada miembro recibe la revelación de su talento, un perfil vivo y presentaciones con los colaboradores adecuados dentro de tu espacio. Tú sigues siendo el anfitrión. La infraestructura trabaja por debajo.",
+      "cta": "Reservar una llamada de 15 minutos"
+    },
+    "card4": {
+      "name": "Matchmaking colaborativo",
+      "badge": "Incluido en la plataforma",
+      "line": "Emparejamiento preciso de colaboradores para quienes construyen.",
+      "body": "La plataforma lee quién eres y qué necesitas, y hace la presentación. Una propuesta a la vez, por correo, con un primer paso concreto. Ambas partes dicen que sí antes de que nadie quede expuesto.",
+      "cta": "Empieza con tu revelación gratuita"
+    },
+    "card5": {
+      "name": "Equilibrium",
+      "badge": "Acceso anticipado",
+      "line": "Una brújula de tiempo: planifica según los ciclos de la vida, no solo el calendario.",
+      "body": "El trabajo tiene temporadas. Equilibrium lee las tuyas y te dice para qué sirve realmente esta semana. Una planificación que empieza en el cuerpo y el ciclo, y luego se encuentra con el calendario.",
+      "cta": "Preguntar por el acceso anticipado"
+    },
+    "card6": {
+      "name": "Founder Cockpit",
+      "badge": "Acceso anticipado",
+      "line": "Un instrumento de navegación en vivo para fundadores que llevan una empresa.",
+      "body": "Una pantalla que lee tu empresa y a ti como un solo sistema: estrategia, relaciones, energía. Pregúntale qué hacer después y responde desde el cuadro completo, incluyendo lo que todo panel de control ignora: el fundador.",
+      "cta": "Preguntar por el acceso anticipado"
+    },
+    "card7": {
+      "name": "Venture Studio",
+      "badge": "Por invitación",
+      "line": "Un estudio de venture que construye negocios a partir de la unicidad de los fundadores.",
+      "body": "Para fundadores cuya próxima empresa debería construirse a partir de quienes son. Primero diseñamos la empresa desde tu unicidad, luego la construimos contigo.",
+      "cta": "Empezar una conversación"
+    }
   }
 }

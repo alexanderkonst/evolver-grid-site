@@ -75,6 +75,7 @@ import { pathUsesLayoutShell, pathHidesLogo } from "./lib/shellRoutes";
 import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
 import FoundersShowcase from "./pages/FoundersShowcase";
 import IgniteSession from "./pages/IgniteSession";
+const ProductsPage = lazy(() => import("./pages/ProductsPage"));
 // Day 80 Wave 2.4 (Sasha 2026-05-22): standalone $37 Top Talent
 // Activation page — clean landing for the JOURNEY 1.5 sidequest row.
 import ActivateTopTalent from "./pages/ActivateTopTalent";
@@ -526,6 +527,7 @@ const App = () => (
                   {/* Day 47 (Sasha): /ignite is now public — the ZoG result CTA lands
                       here directly. Auth at the pricing step was redundant funnel friction. */}
                   <Route path="/ignite" element={<IgniteSession />} />
+                  <Route path="/products" element={<ProductsPage />} />
                   {/* Day 80 Wave 2.4 (Sasha 2026-05-22): $37 Top Talent
                       Activation as its own clean landing — extracted
                       from AppleseedDisplay's Option-2 card so the
