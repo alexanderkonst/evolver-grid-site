@@ -6888,5 +6888,63 @@
       "success": "Your profile PDF is downloading.",
       "failure": "Couldn't build the PDF. Please try again."
     }
+  },
+  "products": {
+    "eyebrow": "Products",
+    "title": "Products",
+    "intro": "Different doors, one starting point: your uniqueness, made precise enough to build on. Start where you are.",
+    "seoDescription": "Seven offers, one starting point: your uniqueness made precise enough to build on. Sessions, talent discovery, matchmaking, and infrastructure for communities and founders.",
+    "closingBefore": "Unsure which door is yours? A ",
+    "closingLink": "15-minute call",
+    "closingAfter": " sorts it.",
+    "card1": {
+      "name": "Productize Yourself Session",
+      "badge": "$555",
+      "line": "Next-chapter positioning strategy for founders. MIT-trained.",
+      "body": "One working session. We take what you already know about yourself and turn it into exact words: what you offer, to whom, and why you. You leave with language precise enough to price, pitch, and build on.",
+      "cta": "Book the session"
+    },
+    "card2": {
+      "name": "Find Your Top Talent",
+      "badge": "Free to start",
+      "line": "Precision talent discovery for professionals.",
+      "body": "A guided reveal that names your top talent in words you can actually use. Instead of another personality label, you get the exact line people need in order to choose you. Free to start. Full depth activates for $37.",
+      "cta": "Start the reveal"
+    },
+    "card3": {
+      "name": "White-Label Node",
+      "badge": "For community leaders",
+      "line": "Member onboarding and matching infrastructure for community leaders.",
+      "body": "Your community, running on this platform. Every member gets their talent revealed, a living profile, and introductions to the right collaborators inside your space. You stay the host. The infrastructure works underneath.",
+      "cta": "Book a 15-minute call"
+    },
+    "card4": {
+      "name": "Collaborative Matchmaking",
+      "badge": "Included in the platform",
+      "line": "Precision collaborator matching for builders.",
+      "body": "The platform reads who you are and what you need, then makes the introduction. One proposal at a time, by email, with a concrete first step. Both sides say yes before anyone is exposed.",
+      "cta": "Start with your free reveal"
+    },
+    "card5": {
+      "name": "Equilibrium",
+      "badge": "Early access",
+      "line": "A timing compass: plan by life's cycles, not just calendars.",
+      "body": "Work has seasons. Equilibrium reads yours and tells you what this week is actually for. Planning that starts from the body and the cycle, then meets the calendar.",
+      "cta": "Ask about early access"
+    },
+    "card6": {
+      "name": "Founder Cockpit",
+      "badge": "Early access",
+      "line": "A live navigation instrument for founders running a venture.",
+      "body": "One screen that reads your venture and you as one system: strategy, relationships, energy. Ask it what to do next and it answers from the whole picture, including the part every dashboard ignores: the founder.",
+      "cta": "Ask about early access"
+    },
+    "card7": {
+      "name": "Venture Studio",
+      "badge": "By invitation",
+      "line": "A venture studio that builds businesses from founders' uniqueness.",
+      "body": "For founders whose next company should be built from who they are. We design the venture from your uniqueness first, then build it with you.",
+      "cta": "Start a conversation"
+    }
   }
 }
