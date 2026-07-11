@@ -7147,9 +7147,9 @@ First application: the Proactive Matchmaker (Day 120 design session).
 
 ---
 
-## Domain 105: The Vacant Cell — Your Own Map Names Your Category (Day 120, July 10, 2026)
+## Domain 105: The Vacant Category — Your Own Map Names It (Day 120, July 10, 2026)
 
-**The move in one sentence: when you have mapped a territory honestly, the cells marked "Opportunity — no real products" in your own map ARE your category shortlist, and your thesis is the proof you can fill them.**
+**The move in one sentence: when you have mapped a territory honestly, the categories marked "Opportunity — no real products" in your own map ARE your category shortlist, and your thesis is the proof you can fill them.**
 
 Day 120 discovery, live: the CollabTech Holomap (Teaming layer, matching primitive) lists "Human/AI matchmaker" with no household-name products — an empty cell drawn months before Boardy was on the radar. Boardy fills the shallow half of that cell (loud delivery, thin profile); the deep half (developmental matching on depth-of-being) is empty, and the venture's own IP — the Collaboration Spectrum, the depth profiles — is precisely what filling it requires.
 
@@ -7158,8 +7158,9 @@ Day 120 discovery, live: the CollabTech Holomap (Teaming layer, matching primiti
 **The generalized practice, for every product:**
 1. Map the territory as a holomap (layers × primitives, or stages × aspects) — honestly, including what doesn't exist.
 2. Mark each cell: real products · emerging · vacant.
-3. Vacant cells crossed with existing venture IP = winnable categories.
+3. Vacant categories crossed with existing venture IP = winnable categories.
 4. The map itself becomes the corridor artifact (Domain 103): publishing it narrates the category before entering it.
+5. Applied to the full product line: the vacant-category columns in the evolution table, `alexanders_unique_business.md` → "Category lines, first draft" (July 11, 2026).
 
 Sibling of Domain 103 (Splitting Principle) — this domain finds the cathedral; 103 sells it. Maps live in `docs/holomaps/`.
 
@@ -7196,3 +7197,19 @@ The constraint is not merely that teenagers lack information about professions. 
 The form is not inherently truth. It is a rhetorical operation: first it dislodges the current frame, then it installs a replacement. Its value depends on whether the replacement increases truth, agency, and useful possibility; its danger is that the same linguistic move can smuggle in the preferences of whoever tuned the AI.
 
 **Quality gate:** whenever using contrastive reframing, test three things: Is the old frame represented fairly? Is the new frame better supported rather than merely more appealing? Does the shift increase the human's sovereignty rather than quietly directing it?
+
+---
+
+## Domain 109: A Venture Is a Communion That Took a Body (Day 121, July 11, 2026)
+
+**The recognition in one sentence: real co-foundership is not a contract between two people — it is a third being coming into existence, and incorporation is that being taking a body.**
+
+Source map: the Collaboration Gift Taxonomy (`docs/holomaps/collaboration_gift_taxonomy_holomap.md`). The invariant across its seven aspects is WHO ACTS: in single gifts the other person acts on you; in a standing bond (Weave) the relationship acts; at Communion the relationship becomes the actor — a third being with its own name, mind, and metabolism.
+
+A venture is what happens when a communion incorporates: the third being gets a legal name, the one mind gets an address (the shared thesis), the one metabolism becomes literal (cap table, one bank account). Marriage is the same octave in the personal register.
+
+**The diagnostic, both directions:**
+- **Startup death, named structurally:** co-founding without communion is an aspect-6 partnership wearing aspect-7's legal skin. The paperwork asserts a being that does not exist; the "co-founder conflict" that kills companies is the skin tearing where there was no body inside it.
+- **The inverse test, before signing:** does a third being already act? Do outsiders address you as a unit, do ideas arise between you that neither can trace, does anything already flow through shared channels without per-instance negotiation? If none of this exists yet, incorporate later — or knowingly build a partnership and paper it as one.
+
+**Product consequence:** the matchmaking layer can honestly say what no networking tool can — it is not introducing contacts, it is creating the conditions for third beings. Co-founder matching without a communion test is malpractice; with one, it is a category of its own.
