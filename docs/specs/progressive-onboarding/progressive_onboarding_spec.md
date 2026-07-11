@@ -46,22 +46,42 @@ cosmetic.                     works — tmaComplete etc).
 - **Stage 1 → Stage 2:** no hard trigger needed — Stage 1 IS Stage 2 with fewer spaces visible; it already grows into the full shell automatically as `tmaComplete`, `activationDone`, etc. resolve. Nothing new to build here.
 - Tom's "single homepage listing all journeys" isn't a new screen to design — it's what pane 1 already becomes once Stage 1 starts revealing spaces. The gap was never the homepage; it was the absence of Stage 0 in front of it.
 
-## 4. Open decisions (need Sasha's call before implementation)
+## 4. Decisions (2026-07-10, Sasha, in conversation)
 
-1. **Enforce JOURNEY locks during Stage 0, or leave them cosmetic?** Today a curious user can type `/mission-discovery` directly and skip ahead; the row just shows dim. "Hand hold... know exactly what the next step is" reads as wanting real enforcement during Stage 0 specifically (redirect back to the current step). Recommendation: enforce during Stage 0 only; leave Stage 2 exactly as free-roaming as it is today.
-2. **Revive `myNextMoveLogic.ts`/`suggest-next-quest`, or extend the simpler proven `UpNext` pattern?** The dormant sequencer is smarter (multi-source recommendation engine) but unproven and references pre-GROW-rename naming. `UpNext` is simple, live, and already trusted in the Playbook. Recommendation: ship Stage 0 with the `UpNext`-style pattern first; revisit the smarter engine later if the simple version isn't enough.
-3. **What happens to `/start` and the existing Tour?** They're not reachable from the live funnel today, so they're not actively hurting anyone — but they're also not nothing (real screens, real copy, real work). Options: (a) retire them once Stage 0 ships, since Stage 0 replaces their purpose; (b) repurpose `TourSpotlight` as an optional "show me around the full shell" moment offered at the Stage 1→2 boundary, for users who want a tour of what just opened up. Recommendation: (b) — reuse rather than discard, but move it to the point where there's actually something to tour.
-4. **Does Stage 0 apply to the `?path=match` entry (MatchHero) the same way as the default build-path entry?** Funnel v2 already has two distinct JOURNEY heroes; Stage 0 needs to wrap both, not just one.
+1. **JOURNEY locks during Stage 0.** Resolved via a concrete scenario, not the abstract framing (which didn't land — noted for future planning docs: lead with the scenario, not the policy question). Scenario: someone types `/mission-discovery` directly, or closes the tab mid-assessment, before finishing Top Talent. **Decision: they land on a one-line "let's finish this first" screen with a single button back to where they left off — no dead end, no half-built page.** Applies during Stage 0 only; Stage 2 stays exactly as free-roaming as it is today.
+2. **Next-step guidance engine.** *"No, let's not revive any dormant engines, we stay clean... let's just build from scratch."* Checked `myNextMoveLogic.ts` (261 lines) directly: the sequencing SHAPE is fine (ordered priority list, one primary + one optional nudge) but the DATA is stale — pre-GROW-rename space names, dead routes (`/game/build` instead of `/ubb`, `/quality-of-life-map/assessment` instead of `/game/me/quality-of-life`). **Decision: build the next-step strip fresh, small, and deliberately simple — extending the already-live `UpNext` (Playbook) pattern, not this file.** `myNextMoveLogic.ts`, `CoreLoopHome.tsx`, and the `suggest-next-quest`/`suggest-main-quest` edge functions stay untouched — not deleted, not built on top of, just left alone unless a specific piece is worth pulling out on its own later.
+3. **`/start` and the existing Tour.** Not explicitly re-confirmed this round — carrying forward the working recommendation (repurpose `TourSpotlight` as an optional "show me around" at the Stage 1→2 boundary, once there's actually something to tour) since it follows the same "look at it, take what's useful, otherwise don't touch it" principle Sasha just applied to decision #2. Flag this one for an explicit yes/no before building it.
+4. **Every entry path.** *"Yes, we should apply this to every entry path."* Confirmed — Stage 0 wraps both the default build-path JOURNEY hero and the `?path=match` MatchHero. Same mechanics, different landing copy/hero underneath.
 
-## 5. Recommended sequencing (pending sign-off)
+## 5. The walk-through — every touchpoint, screen by screen
+
+Built and reviewed as a visual storyboard first (screen text, action, response, transformation, emotion per touchpoint) so decisions could be made against something concrete instead of abstractions. Condensed here for the durable record:
+
+| # | Touchpoint | Stage | On screen (literal) | Action → response | Transformation | Target emotion |
+|---|---|---|---|---|---|---|
+| 1 | Landing | Before stage 0 | Wordmark, one headline ("Find your top talent."), one subhead, one button ("Start"). No rail, no pane 2, no music player, no chat bubble. | Clicks Start → straight into assessment step 1, no fork screen | None yet — the invitation | Curious, low-pressure |
+| 2 | Assessment, steps 1-4 | Stage 0 | One question per screen, 4-dot progress, nothing else | Answers, taps Next ×4 | Small compounding commitments | Light momentum |
+| 3 | Synthesis moment | Stage 0 | Full screen, brand mark pulsing, "Reading what you told us…" | Waits ~2-3s → flows into reveal | Deliberate anticipation, not just a spinner | Suspense |
+| 4 | The reveal | Stage 0 | Their Top Talent sentence, large serif/gold, one supporting line, one button ("Save this") | Reads, clicks Save → email capture opens immediately | Now has something real and specific that didn't exist 5 min ago | Recognition, quiet pride |
+| 5 | Claim it | Stage 0 | Light form over a dimmed, still-visible result. Headline: "Don't lose this." (reuses the existing ownership-first email-gate pattern) | Enters email, submits → account created silently, result attaches | Result goes from "something I saw" to "something I own" | Ownership |
+| 6 | "Boom, you're in" | Transition | Full-screen, ~1.5s, no button. Rail slides in with exactly 2 icons (JOURNEY, ME). Pane 2 shows the guided path, item 1 already checked | Watches → lands on touchpoint 7 | Single-purpose tool becomes a system — but only 2 pieces, not 8 | Arrival, controlled expansion |
+| 7 | Next-step strip | Stage 1 | Persistent single-line strip, pinned in pane 3: "Your next step: Discover your mission →" | Clicks strip or the highlighted pane-2 row → Mission Discovery | "What do I do now?" never needs asking | Clarity |
+| 8 | Mission, then Assets | Stage 1 | Same one-thing-at-a-time pattern — these screens already exist | Completes both → JOURNEY rows check off, strip updates | Profile becomes 3-D: talent, mission, resources | Steady progress |
+| 9 | Something new opens | Milestone | One quiet banner ("New: Collaborate, Build, and Grow are open") + 2-3 icons animate into the rail with a soft glow | Notices, keeps going | System got bigger BECAUSE of something they did | Earned expansion |
+| 10 | Full shell | Stage 2 | Today's 3-pane experience, unchanged | Navigates freely | Arrived by building up to it, not being dropped into it | Mastery |
+
+Full visual version (with per-card copy blocks and the concrete locks scenario) was reviewed live in this session — not re-attached here since artifacts aren't git-tracked; this table is the durable record of what was approved.
+
+## 6. Recommended sequencing (pending sign-off)
 
 | # | Step | Type | Depends on |
 |---|---|---|---|
-| 1 | Stop hardcoding `hideNav = false` in `ZoneOfGeniusEntry.tsx`; make `/` and `/zone-of-genius*` actually respect a real Stage-0 flag | Fix (small) | — |
-| 2 | Build the Stage-0 layout: single column, "Step N of M," next-step CTA (extend `UpNext`'s pattern, don't rebuild) | Build (small-medium) | 1 |
-| 3 | Wire the Stage 0 → 1 transition on `topTalentComplete` | Wiring | 1, 2 |
-| 4 | Decide + implement enforced-vs-cosmetic locks for Stage 0 (open decision #1) | Build (small) | Sasha's call |
-| 5 | Decide fate of `/start` + Tour (open decision #3); if repurposing, move `TourSpotlight` trigger to Stage 1→2 boundary | Build or retire | Sasha's call |
-| 6 | QA: mobile Stage 0, i18n (en/ru/es), deep-link mid-flow behavior, match-path entry (open decision #4) | Test | 1-5 |
+| 1 | Stop hardcoding `hideNav = false` in `ZoneOfGeniusEntry.tsx`; make `/` and `/zone-of-genius*` actually respect a real Stage-0 flag, for both entry paths (build + match) | Fix (small) | — |
+| 2 | Build the Stage-0 layout per touchpoints 1-6 above (fresh components, no legacy reuse except the existing email-gate pattern at touchpoint 5) | Build (small-medium) | 1 |
+| 3 | Build the next-step strip (touchpoint 7) fresh, extending `UpNext`'s pattern | Build (small) | 1, 2 |
+| 4 | Wire the Stage 0 → 1 transition on `topTalentComplete`; build the "let's finish this first" redirect screen for out-of-order URL access during Stage 0 | Wiring + build (small) | 1, 2 |
+| 5 | Build the milestone "something new opens" moment (touchpoint 9) | Build (small) | 3, 4 |
+| 6 | Decide + build (or explicitly skip) the Tour repurposing (decision #3) | Build or retire — Sasha's call | 4 |
+| 7 | QA: mobile Stage 0, i18n (en/ru/es), deep-link mid-flow behavior on both entry paths | Test | 1-6 |
 
-Nothing in this list has been touched yet. This spec is the planning deliverable; next step is Sasha confirming the 3-stage model and the 4 open decisions before any code changes.
+Nothing in this list has been touched yet. This spec is the planning deliverable.
