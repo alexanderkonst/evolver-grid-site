@@ -16,6 +16,14 @@ The primitive is simple:
 
 This turns documentation from manual surface maintenance into a self-awareness loop. The project sees its own form, tracks energy moving among its parts, into it, and out of it, feeds actual observed movement back into itself, detects contradiction, and clarifies the next action.
 
+## The Category Realization (Day 121, July 11, 2026)
+
+*From the vacant-category pass (Phase Shift Library Domain 105): every founder tool on the market reads the state of the business; none reads the state of the business AND the state of the founder together.*
+
+- **❤️ Essence** — the venture and the founder are one organism; every dashboard on the market amputates half of it. Reading both together is not a feature; it is the recognition that a small venture IS the founder's state, extended.
+- **🧠 Significance** — this is why founder tools plateau: they optimize the company while the actual bottleneck (energy, attention, shadow, timing) sits in the person, unread. The Cockpit's trinity stack (holomap = Mind, CRM = Heart, Equilibrium = Gut) is the first instrument where advice can be conditioned on both. "Delay this launch, your gut-layer says depletion" is a sentence no BI tool can form.
+- **🔥 Consequences** — the defensible category line: *the instrument that reads the founder and the venture as one system.* Demo-able in 60 seconds (same question answered with and without founder-state). The natural cathedral behind the "founder dashboards" shelf. Compounds with every other product: Equilibrium and the profiles become its sensors; matchmaking becomes one of its actuators.
+
 ---
 
 ## The Core Object: Pulse Event
