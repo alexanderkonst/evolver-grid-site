@@ -931,6 +931,8 @@ export type Database = {
           main_quest_stage: string
           main_quest_status: string
           main_quest_updated_at: string
+          match_digest_opt_in: boolean
+          match_digest_paused_until: string | null
           match_explainer_seen_at: string | null
           match_headsup_opt_out: boolean
           mission_discovered_at: string | null
@@ -1001,6 +1003,8 @@ export type Database = {
           main_quest_stage?: string
           main_quest_status?: string
           main_quest_updated_at?: string
+          match_digest_opt_in?: boolean
+          match_digest_paused_until?: string | null
           match_explainer_seen_at?: string | null
           match_headsup_opt_out?: boolean
           mission_discovered_at?: string | null
@@ -1071,6 +1075,8 @@ export type Database = {
           main_quest_stage?: string
           main_quest_status?: string
           main_quest_updated_at?: string
+          match_digest_opt_in?: boolean
+          match_digest_paused_until?: string | null
           match_explainer_seen_at?: string | null
           match_headsup_opt_out?: boolean
           mission_discovered_at?: string | null
@@ -1384,6 +1390,50 @@ export type Database = {
           user_b_id?: string
         }
         Relationships: []
+      }
+      match_proposals: {
+        Row: {
+          created_at: string
+          gift_type: string
+          id: string
+          match_interest_id: string | null
+          proposed_at: string
+          proposed_user_id: string
+          responded_at: string | null
+          response: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          gift_type: string
+          id?: string
+          match_interest_id?: string | null
+          proposed_at?: string
+          proposed_user_id: string
+          responded_at?: string | null
+          response?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          gift_type?: string
+          id?: string
+          match_interest_id?: string | null
+          proposed_at?: string
+          proposed_user_id?: string
+          responded_at?: string | null
+          response?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "match_proposals_match_interest_id_fkey"
+            columns: ["match_interest_id"]
+            isOneToOne: false
+            referencedRelation: "match_interests"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       mission_challenges: {
         Row: {
