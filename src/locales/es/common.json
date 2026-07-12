@@ -6967,9 +6967,9 @@
     }
   },
   "thebuild": {
-    "seoTitle": "El Contenedor BUILD: 3 semanas hasta un negocio en marcha",
+    "seoTitle": "El Contenedor BUILT: 3 semanas hasta un negocio en marcha",
     "seoDescription": "En 3 semanas: de «¿cuál es mi verdadera oferta?» a vender tu oferta insignia empaquetada a personas reales. Asesoría estratégica privada, $1,111.",
-    "eyebrow": "El Contenedor BUILD · 3 semanas",
+    "eyebrow": "El Contenedor BUILT · 3 semanas",
     "h1": "Mi propuesta es simple: en 3 semanas pasas de «¿cuál es mi verdadera oferta?» a vender tu oferta insignia empaquetada a personas reales.",
     "sauce": "El ingrediente secreto eres tú :) Y avanzamos rápido y con cuidado gracias a este combo: mi experiencia vivida + los flujos de IA que viste en nuestra sesión + mi acompañamiento.",
     "w1Label": "Semana 1",
@@ -6991,6 +6991,13 @@
     "cta": "Escribir a Sasha por WhatsApp",
     "routerBefore": "¿Aún no hiciste la sesión Productize Yourself?",
     "routerLink": "Empieza ahí",
-    "routerAfter": ": el BUILD continúa justo donde ella termina."
+    "routerAfter": ": el BUILT continúa justo donde ella termina.",
+    "storiesEyebrow": "Personas reales, caminos reales",
+    "storyFounder": "Uno es fundador de una startup. Llegó con un equipo ya formado y demasiadas direcciones de producto intentadas a la vez, con prisa. Lo dijo sin rodeos: “tomo hipótesis al azar y construyo un producto al azar que no es del todo mío”. Encontramos su una dirección y su gente: ejecutivos que adoptan IA. Ahora hace exactamente eso. Un cliente de asesoría pagado, un proyecto de consultoría encima de eso, más acuerdos en marcha. Hace dos semanas me dijo: “establecimos un corredor estratégico para construir un negocio que nunca había tenido. Siento una confianza muy grande”.",
+    "storyCoach": "La otra es coach de liderazgo para mujeres, con varias modalidades de sanación. Lleva conmigo un par de años. En cada conversación gana más claridad sobre su cliente ideal, y entonces llega exactamente ese tipo de negocio. Ese es el punto entero: se abre más oportunidad cuanto más se abre la claridad. Su negocio crece, no a base de más esfuerzo forzado.",
+    "testimonialsBefore": "Más de lo que dicen los clientes, en sus propias palabras, de transcripciones reales de sesiones:",
+    "testimonialsLink": "aquí",
+    "noScratch": "Nadie empieza de cero conmigo. Cada quien llega con algo ya en marcha, un negocio, un trabajo, un proyecto aparte. Nunca lo desmontamos, no tendría sentido. Sigues con tu línea de trabajo tal como está. Encontramos qué partes son verdaderamente tuyas, las conservamos, las reforzamos, crecemos desde ahí. Lo que no es tuyo se cae solo, poco a poco, mientras la parte alineada empieza a alimentarte.",
+    "promise": "Para ser claro sobre lo que prometo: una dirección, tu oferta empaquetada y con precio, lanzada a personas reales. No prometo riqueza rápida ni vendo un esquema. Esto es construcción de negocio sostenible y creación de riqueza, alineada con quien eres. Los resultados vienen de que tú lo trabajes."
   }
 }

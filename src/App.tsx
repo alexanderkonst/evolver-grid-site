@@ -529,7 +529,8 @@ const App = () => (
                       here directly. Auth at the pricing step was redundant funnel friction. */}
                   <Route path="/ignite" element={<IgniteSession />} />
                   <Route path="/products" element={<ProductsPage />} />
-                  <Route path="/products/build" element={<BuildContainer />} />
+                  <Route path="/products/built" element={<BuildContainer />} />
+                  <Route path="/products/build" element={<Navigate to="/products/built" replace />} />
                   {/* Day 80 Wave 2.4 (Sasha 2026-05-22): $37 Top Talent
                       Activation as its own clean landing — extracted
                       from AppleseedDisplay's Option-2 card so the

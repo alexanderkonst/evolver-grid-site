@@ -354,3 +354,39 @@ staleness_or_contradictions: >
   None. Note the sequence integrity: she asked, then the offer was sent.
   Inbound ascension, being-wanted register held.
 ```
+
+```yaml
+- date: 2026-07-12
+  day: 122
+  pulse: proof_answer_sent_and_container_renamed_BUILT
+  who:
+    - Sasha
+    - Nia Leak
+  what_happened: >
+    Nia responded to the container offer with a diligence question: 1-2
+    examples of where clients started, what was built, and the outcome.
+    The Proof Answer v1.0 was composed from actual Fathom transcripts
+    (Sergey Mar 23 + Jul 1; Karime arc) and sent the same day: two real
+    arcs with verbatim client quotes, the build-on-top principle ("nobody
+    starts from scratch"), transcripts-as-testimonials link (/ignite),
+    and the deliverables promise with no refund talk. The container was
+    renamed BUILD -> BUILT (past tense = done-state), /products/built
+    shipped with the reusable elements folded in. The answer pattern is
+    canonized in docs/04-products/the_build_container.md for every future
+    "show me results" moment.
+  energy_exchanged:
+    - honest proof (transcript-verbatim, no inflation)
+    - sovereign earliness (no guarantee theater)
+    - playbook compounding (objection -> reusable asset -> page, same day)
+  affected_holons:
+    - client dyad (Sasha + Nia)
+    - the BUILT container (named, paged, proof-armed)
+    - the playbook (real-time organ, not rearview mirror)
+  phase_shift_significance: notable
+  next_action: >
+    Wait for Nia's decision; no nudge. Reuse the Proof Answer for the
+    next prospect who asks for results.
+  staleness_or_contradictions: >
+    Docs and page renamed to BUILT; historical pulse/log entries keep
+    "BUILD" as written (they are records, not live state).
+```

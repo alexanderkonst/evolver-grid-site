@@ -4,6 +4,10 @@
 
 ---
 
+## Day 122 — July 12, 2026 (Sunday)
+
+**Nia's diligence question → Proof Answer v1.0 → BUILT.** Nia responded to the first container offer asking for 1-2 client examples (start / built / outcome). Mined Fathom transcripts for the real arcs (Sergey Mar 23 + Jul 1: "random hypotheses" → "strategic corridor... very big confidence" + paying clients; Karime: years of clarity → growing business without hustle; Sandra: circles → mission in one sentence + priced offer in 10 days). Sasha sent the Proof Answer same day, 95% as drafted. Pattern canonized in `the_build_container.md`; container renamed **BUILD → BUILT**; `/products/built` shipped with proof stories, build-on-top principle, /ignite transcripts pointer, and the promise paragraph. Phase-shift note named: the playbook now updates in the same motion as the business (selling = building = documenting).
+
 ## Day 0 (Pre-Sprint) — Friday, Jan 3, 2026
 
 **Location**: Network School, Forest City, Malaysia
