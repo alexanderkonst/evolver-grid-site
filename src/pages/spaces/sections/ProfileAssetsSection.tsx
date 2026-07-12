@@ -11,17 +11,46 @@
  *   • AppleseedDisplay — header + italic echo + ornament rhythm
  */
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { Boxes, ChevronDown, ChevronUp, Users, Plus, ArrowRight, RefreshCw, Loader2, Copy, Check } from "lucide-react";
+import { Boxes, ChevronDown, ChevronUp, Users, Plus, ArrowRight, RefreshCw, Loader2, Copy, Check, Pencil, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { supabase } from "@/integrations/supabase/client";
 import { ASSET_TYPES } from "@/modules/asset-mapping/data/assetTypes";
 import { ASSET_SUB_TYPES } from "@/modules/asset-mapping/data/assetSubtypes";
-import { loadAndSyncAssets, type SavedAsset } from "@/modules/asset-mapping/assetSync";
+import { useLocalizedAssetCategories } from "@/modules/asset-mapping/data/assetCategories";
+import { loadAndSyncAssets, updateAsset, deleteAsset, type SavedAsset } from "@/modules/asset-mapping/assetSync";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogFooter,
+} from "@/components/ui/dialog";
+import {
+    AlertDialog,
+    AlertDialogContent,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogCancel,
+    AlertDialogAction,
+} from "@/components/ui/alert-dialog";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 
 // ─────────────────────────────────────────────────────────────────────
 // Aurora style atoms — same family used across /admin, /game/me/*, etc.
@@ -121,6 +150,96 @@ const ProfileAssetsSection = () => {
     //   3. Show a small loading dot while reload is in flight.
     const [isReloading, setIsReloading] = useState(false);
     const [justCopied, setJustCopied] = useState(false);
+
+    // Per-row Edit/Delete (2026-07-11): only db-backed rows (asset.id set)
+    // get action buttons — localStorage-only rows have no id to key on.
+    const localizedCategories = useLocalizedAssetCategories();
+    const [deleteTarget, setDeleteTarget] = useState<{ id: string; title: string } | null>(null);
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [editTarget, setEditTarget] = useState<SavedAsset | null>(null);
+    const [editTypeId, setEditTypeId] = useState("");
+    const [editSubTypeId, setEditSubTypeId] = useState("");
+    const [editCategoryId, setEditCategoryId] = useState("");
+    const [editTitle, setEditTitle] = useState("");
+    const [editDescription, setEditDescription] = useState("");
+    const [isSavingEdit, setIsSavingEdit] = useState(false);
+
+    const editSubTypes = useMemo(
+        () => ASSET_SUB_TYPES.filter((s) => s.typeId === editTypeId),
+        [editTypeId],
+    );
+    const editCategories = useMemo(
+        () => localizedCategories.filter((c) => c.subTypeId === editSubTypeId),
+        [localizedCategories, editSubTypeId],
+    );
+
+    const openEditDialog = useCallback((asset: SavedAsset) => {
+        setEditTarget(asset);
+        setEditTypeId(asset.typeId);
+        setEditSubTypeId(asset.subTypeId || "");
+        setEditCategoryId(asset.categoryId || "");
+        setEditTitle(asset.title);
+        setEditDescription(asset.description || "");
+    }, []);
+
+    const handleEditTypeChange = useCallback((value: string) => {
+        setEditTypeId(value);
+        setEditSubTypeId("");
+        setEditCategoryId("");
+    }, []);
+
+    const handleEditSubTypeChange = useCallback((value: string) => {
+        setEditSubTypeId(value);
+        setEditCategoryId("");
+    }, []);
+
+    const handleSaveEdit = useCallback(async () => {
+        if (!editTarget?.id || !editTitle.trim()) return;
+        setIsSavingEdit(true);
+        try {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) return;
+            const { error } = await updateAsset(user.id, editTarget.id, {
+                typeId: editTypeId,
+                subTypeId: editSubTypeId || null,
+                categoryId: editCategoryId || null,
+                title: editTitle.trim(),
+                description: editDescription.trim() || null,
+            });
+            if (error) {
+                if ((error as any)?.code === "23505") {
+                    toast.error(t('profileAssets.toastDuplicate'));
+                } else {
+                    toast.error(t('profileAssets.toastSaveFailed'));
+                }
+                return;
+            }
+            toast.success(t('profileAssets.toastUpdated'));
+            setEditTarget(null);
+            await reload();
+        } finally {
+            setIsSavingEdit(false);
+        }
+    }, [editTarget, editTypeId, editSubTypeId, editCategoryId, editTitle, editDescription, t, reload]);
+
+    const handleConfirmDelete = useCallback(async () => {
+        if (!deleteTarget) return;
+        setIsDeleting(true);
+        try {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) return;
+            const { error } = await deleteAsset(user.id, deleteTarget.id);
+            if (error) {
+                toast.error(t('profileAssets.toastSaveFailed'));
+                return;
+            }
+            toast.success(t('profileAssets.toastDeleted'));
+            setDeleteTarget(null);
+            await reload();
+        } finally {
+            setIsDeleting(false);
+        }
+    }, [deleteTarget, t, reload]);
 
     const copyAssets = useCallback(async () => {
         if (savedAssets.length === 0) return;
@@ -459,8 +578,8 @@ const ProfileAssetsSection = () => {
                             ) : (
                                 savedAssets.map((asset, i) => (
                                     <div
-                                        key={i}
-                                        className="px-5 py-3.5 last:rounded-b-2xl transition-colors hover:bg-white/40"
+                                        key={asset.id || i}
+                                        className="group/row px-5 py-3.5 last:rounded-b-2xl transition-colors hover:bg-white/40"
                                         style={{
                                             borderBottom:
                                                 i < savedAssets.length - 1
@@ -468,59 +587,193 @@ const ProfileAssetsSection = () => {
                                                     : "none",
                                         }}
                                     >
-                                        <div className="flex flex-wrap items-baseline gap-1.5 mb-1">
-                                            <span
-                                                style={{
-                                                    ...labelMuted,
-                                                    background: "rgba(212, 175, 55, 0.10)",
-                                                    border: "0.5px solid rgba(212, 175, 55, 0.30)",
-                                                    color: "var(--skin-goldDeep, #5d4307)",
-                                                    padding: "1px 8px",
-                                                    borderRadius: "999px",
-                                                }}
-                                            >
-                                                {getAssetTypeName(asset.typeId)}
-                                            </span>
-                                            {asset.subTypeId && (
-                                                <span
+                                        <div className="flex items-start justify-between gap-3">
+                                            <div className="min-w-0 flex-1">
+                                                <div className="flex flex-wrap items-baseline gap-1.5 mb-1">
+                                                    <span
+                                                        style={{
+                                                            ...labelMuted,
+                                                            background: "rgba(212, 175, 55, 0.10)",
+                                                            border: "0.5px solid rgba(212, 175, 55, 0.30)",
+                                                            color: "var(--skin-goldDeep, #5d4307)",
+                                                            padding: "1px 8px",
+                                                            borderRadius: "999px",
+                                                        }}
+                                                    >
+                                                        {getAssetTypeName(asset.typeId)}
+                                                    </span>
+                                                    {asset.subTypeId && (
+                                                        <span
+                                                            style={{
+                                                                fontFamily: "'Source Serif 4', serif",
+                                                                fontStyle: "italic",
+                                                                fontSize: "12px",
+                                                                color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
+                                                            }}
+                                                        >
+                                                            → {getAssetSubTypeName(asset.subTypeId)}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                                <p
                                                     style={{
-                                                        fontFamily: "'Source Serif 4', serif",
-                                                        fontStyle: "italic",
-                                                        fontSize: "12px",
-                                                        color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
+                                                        ...cormorantTitle,
+                                                        fontSize: "16px",
+                                                        fontWeight: 600,
                                                     }}
                                                 >
-                                                    → {getAssetSubTypeName(asset.subTypeId)}
-                                                </span>
+                                                    {asset.title}
+                                                </p>
+                                                {asset.description && (
+                                                    <p
+                                                        className="mt-1"
+                                                        style={{
+                                                            ...sourceSerifBody,
+                                                            fontSize: "13.5px",
+                                                            lineHeight: 1.5,
+                                                        }}
+                                                    >
+                                                        {asset.description}
+                                                    </p>
+                                                )}
+                                            </div>
+                                            {/* Only db-backed rows (asset.id present) can be
+                                                edited/deleted — localStorage-only rows have no
+                                                row to target on the server. */}
+                                            {asset.id && (
+                                                <div className="flex items-center gap-1 shrink-0 opacity-60 group-hover/row:opacity-100 transition-opacity">
+                                                    <button
+                                                        onClick={() => openEditDialog(asset)}
+                                                        aria-label={t('profileAssets.edit')}
+                                                        title={t('profileAssets.edit')}
+                                                        className="p-1.5 rounded-full hover:bg-white/60 transition-colors"
+                                                        style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))" }}
+                                                    >
+                                                        <Pencil className="w-3.5 h-3.5" />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => setDeleteTarget({ id: asset.id!, title: asset.title })}
+                                                        aria-label={t('profileAssets.delete')}
+                                                        title={t('profileAssets.delete')}
+                                                        className="p-1.5 rounded-full hover:bg-white/60 transition-colors"
+                                                        style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))" }}
+                                                    >
+                                                        <Trash2 className="w-3.5 h-3.5" />
+                                                    </button>
+                                                </div>
                                             )}
                                         </div>
-                                        <p
-                                            style={{
-                                                ...cormorantTitle,
-                                                fontSize: "16px",
-                                                fontWeight: 600,
-                                            }}
-                                        >
-                                            {asset.title}
-                                        </p>
-                                        {asset.description && (
-                                            <p
-                                                className="mt-1"
-                                                style={{
-                                                    ...sourceSerifBody,
-                                                    fontSize: "13.5px",
-                                                    lineHeight: 1.5,
-                                                }}
-                                            >
-                                                {asset.description}
-                                            </p>
-                                        )}
                                     </div>
                                 ))
                             )}
                         </div>
                     )}
                 </div>
+
+                {/* Delete confirm — copies the destructive AlertDialog
+                    pattern from MissionDiscoveryLanding's "start over"
+                    dialog (gentle-pause register). */}
+                <AlertDialog open={!!deleteTarget} onOpenChange={(open) => !open && setDeleteTarget(null)}>
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                            <AlertDialogTitle style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 700 }}>
+                                {t('profileAssets.deleteConfirmTitle')}
+                            </AlertDialogTitle>
+                            <AlertDialogDescription style={{ fontFamily: "'Source Serif 4', serif" }}>
+                                {t('profileAssets.deleteConfirmBody', { title: deleteTarget?.title || '' })}
+                            </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                            <AlertDialogCancel disabled={isDeleting}>
+                                {t('profileAssets.deleteConfirmCancel')}
+                            </AlertDialogCancel>
+                            <AlertDialogAction
+                                disabled={isDeleting}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handleConfirmDelete();
+                                }}
+                            >
+                                {t('profileAssets.deleteConfirmConfirm')}
+                            </AlertDialogAction>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialog>
+
+                {/* Edit — cascading Type → Subtype → Category → Title →
+                    Description form, prefilled from the row. */}
+                <Dialog open={!!editTarget} onOpenChange={(open) => !open && setEditTarget(null)}>
+                    <DialogContent className="max-h-[85vh] overflow-y-auto">
+                        <DialogHeader>
+                            <DialogTitle style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 700 }}>
+                                {t('profileAssets.editTitle')}
+                            </DialogTitle>
+                        </DialogHeader>
+                        <div className="space-y-4 py-2">
+                            <div className="space-y-1.5">
+                                <Label>{t('profileAssets.editTypeLabel')}</Label>
+                                <Select value={editTypeId} onValueChange={handleEditTypeChange}>
+                                    <SelectTrigger>
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {ASSET_TYPES.map((type) => (
+                                            <SelectItem key={type.id} value={type.id}>
+                                                {type.title}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <div className="space-y-1.5">
+                                <Label>{t('profileAssets.editSubtypeLabel')}</Label>
+                                <Select value={editSubTypeId} onValueChange={handleEditSubTypeChange} disabled={editSubTypes.length === 0}>
+                                    <SelectTrigger>
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {editSubTypes.map((sub) => (
+                                            <SelectItem key={sub.id} value={sub.id}>
+                                                {sub.title}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <div className="space-y-1.5">
+                                <Label>{t('profileAssets.editCategoryLabel')}</Label>
+                                <Select value={editCategoryId} onValueChange={setEditCategoryId} disabled={editCategories.length === 0}>
+                                    <SelectTrigger>
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {editCategories.map((cat) => (
+                                            <SelectItem key={cat.id} value={cat.id}>
+                                                {cat.title}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <div className="space-y-1.5">
+                                <Label>{t('profileAssets.editTitleLabel')}</Label>
+                                <Input value={editTitle} onChange={(e) => setEditTitle(e.target.value)} />
+                            </div>
+                            <div className="space-y-1.5">
+                                <Label>{t('profileAssets.editDescriptionLabel')}</Label>
+                                <Textarea value={editDescription} onChange={(e) => setEditDescription(e.target.value)} rows={3} />
+                            </div>
+                        </div>
+                        <DialogFooter>
+                            <Button variant="outline" onClick={() => setEditTarget(null)} disabled={isSavingEdit}>
+                                {t('profileAssets.editCancel')}
+                            </Button>
+                            <Button onClick={handleSaveEdit} disabled={isSavingEdit || !editTitle.trim()}>
+                                {isSavingEdit ? t('profileAssets.editSaving') : t('profileAssets.editSave')}
+                            </Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
             </div>
         </GameShellV2>
     );

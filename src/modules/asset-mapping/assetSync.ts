@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { withRetry } from "@/lib/withRetry";
 
 export interface SavedAsset {
+  id?: string;
   typeId: string;
   subTypeId?: string;
   categoryId?: string;
@@ -98,6 +99,7 @@ export const writeLocalAssets = (userId: string, assets: SavedAsset[]) => {
 
 /** Convert DB row to SavedAsset */
 const dbToLocal = (row: DbAsset): SavedAsset => ({
+  id: row.id,
   typeId: row.type_id,
   subTypeId: row.sub_type_id || undefined,
   categoryId: row.category_id || undefined,
@@ -287,4 +289,96 @@ export const saveAssets = async (
   // Unlock the next JOURNEY step (Assess your quality of life) without a reload.
   notifyJourneyProgressRefresh();
   return { saved: newAssets.length, skipped, success: true };
+};
+
+/**
+ * Update a single DB-backed asset in place (per-row Edit on the assets list).
+ *
+ * Mirrors saveAsset's withRetry + (supabase as any) style. A unique index
+ * on (user_id, type_id, LOWER(TRIM(title))) means an edit that changes
+ * title/type can collide with another row — that surfaces as a Postgres
+ * 23505 error, which we hand back to the caller (not thrown) so the UI can
+ * show a friendly "an asset like this already exists" message.
+ */
+export const updateAsset = async (
+  userId: string,
+  id: string,
+  patch: {
+    typeId: string;
+    subTypeId?: string | null;
+    categoryId?: string | null;
+    title: string;
+    description?: string | null;
+  },
+): Promise<{ error: unknown }> => {
+  const { error } = await withRetry(() =>
+    (supabase as any)
+      .from("user_assets")
+      .update({
+        type_id: patch.typeId,
+        sub_type_id: patch.subTypeId || null,
+        category_id: patch.categoryId || null,
+        title: patch.title,
+        description: patch.description || null,
+      })
+      .eq("id", id)
+      .eq("user_id", userId),
+  );
+
+  if (error) {
+    console.warn("Failed to update asset:", (error as any)?.message);
+    return { error };
+  }
+
+  // Keep the localStorage mirror in sync: replace the matching row by id,
+  // falling back to a (typeId, title)-match for any pre-id local rows.
+  const existing = readLocalAssets(userId);
+  const updatedLocal: SavedAsset = {
+    id,
+    typeId: patch.typeId,
+    subTypeId: patch.subTypeId || undefined,
+    categoryId: patch.categoryId || undefined,
+    title: patch.title,
+    description: patch.description || undefined,
+    savedAt: new Date().toISOString(),
+    source: "manual",
+  };
+  const idx = existing.findIndex((a) => a.id === id);
+  if (idx >= 0) {
+    updatedLocal.savedAt = existing[idx].savedAt;
+    updatedLocal.source = existing[idx].source;
+    existing[idx] = updatedLocal;
+  } else {
+    existing.push(updatedLocal);
+  }
+  writeLocalAssets(userId, existing);
+
+  notifyJourneyProgressRefresh();
+  return { error: null };
+};
+
+/**
+ * Delete a single DB-backed asset (per-row Delete on the assets list).
+ */
+export const deleteAsset = async (
+  userId: string,
+  id: string,
+): Promise<{ error: unknown }> => {
+  const { error } = await withRetry(() =>
+    (supabase as any).from("user_assets").delete().eq("id", id).eq("user_id", userId),
+  );
+
+  if (error) {
+    console.warn("Failed to delete asset:", (error as any)?.message);
+    return { error };
+  }
+
+  const existing = readLocalAssets(userId);
+  writeLocalAssets(
+    userId,
+    existing.filter((a) => a.id !== id),
+  );
+
+  notifyJourneyProgressRefresh();
+  return { error: null };
 };
