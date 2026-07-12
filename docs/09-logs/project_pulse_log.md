@@ -314,3 +314,43 @@ next_action: >
 staleness_or_contradictions: >
   None. Note: Nia asked first — inbound ascension, not outbound push.
 ```
+
+### 2026-07-10 — BUILD container offer SENT to Nia ($1,111) — first ever
+
+```yaml
+date: 2026-07-10
+day_number: 120
+title: First-ever BUILD container offer sent (Nia, $1,111, 3 weeks)
+source: Sasha dictation (pulse)
+actors:
+  - Sasha / Alexander Konstantinov
+  - Nia Leak
+what_happened: >
+  The $1,111 / 3-week BUILD container offer was sent to Nia over WhatsApp.
+  Final copy woven from her own harvested threshold language ("what is my
+  real offer", "no more hundred paths", "no script... from your mind, your
+  spirit, your heart", "spinning wheels", "down for challenging work").
+  Structure: Week 1 One Direction, Week 2 The Offer Packaged, Week 3
+  Serving Real People. Price held at cohort-seat parity ($1,111, or 2x
+  $600), one-on-one until the cohort assembles (cadence fact, not
+  apology). This is the first offer of the BUILD container to anyone,
+  and the first offer counted by the new Offer Cadence metric (OMTM:
+  offers-made-per-week).
+energy_exchanged:
+  - offer (first BUILD container ask)
+  - recognition language returned to its source
+  - price integrity
+affected_holons:
+  - individual founder
+  - client dyad (Sasha + Nia)
+  - the value ladder ($555 workshop -> $1,111 BUILD, first ascension offer)
+  - the Offer Cadence instrument
+phase_shift_significance: major
+next_action: >
+  Wait for her response; no nudge. If yes: first funnel-born client
+  ascending the full ladder. If silence: the offer stands; cadence
+  continues with the next humans regardless.
+staleness_or_contradictions: >
+  None. Note the sequence integrity: she asked, then the offer was sent.
+  Inbound ascension, being-wanted register held.
+```

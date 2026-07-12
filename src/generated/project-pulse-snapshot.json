@@ -1,38 +1,35 @@
 {
-  "generated_at": "2026-07-11T18:44:29.932Z",
+  "generated_at": "2026-07-12T02:08:30.444Z",
   "source": "docs/09-logs/project_pulse_log.md",
-  "eventsCount": 6,
+  "eventsCount": 7,
   "latestEvent": {
-    "date": "2026-07-09",
-    "day_number": "119",
-    "title": "Nia asked for container details; Sasha drafted the $1,111 / 3-week proposal",
+    "date": "2026-07-10",
+    "day_number": "120",
+    "title": "First-ever BUILD container offer sent (Nia, $1,111, 3 weeks)",
     "source": "Sasha dictation (pulse)",
     "actors": [
       "Sasha / Alexander Konstantinov",
       "Nia Leak"
     ],
-    "what_happened": "Nia re-emerged from integration and asked for the container details and price. Sasha drafted a 3-week private strategic advisory (Week 1 mindset and strategy, Week 2 tactics, Week 3 first clients/sales loop), weekly 2-hour sessions plus chat check-ins, priced $1,111 (cohort-equivalent price for a private container). Promise: ready to sell her newly packaged signature offer in 3 weeks. Draft reviewed before sending.",
+    "what_happened": "The $1,111 / 3-week BUILD container offer was sent to Nia over WhatsApp. Final copy woven from her own harvested threshold language (\"what is my real offer\", \"no more hundred paths\", \"no script... from your mind, your spirit, your heart\", \"spinning wheels\", \"down for challenging work\"). Structure: Week 1 One Direction, Week 2 The Offer Packaged, Week 3 Serving Real People. Price held at cohort-seat parity ($1,111, or 2x $600), one-on-one until the cohort assembles (cadence fact, not apology). This is the first offer of the BUILD container to anyone, and the first offer counted by the new Offer Cadence metric (OMTM: offers-made-per-week).",
     "energy_exchanged": [
-      "buying intent (she asked for the price)",
-      "container design",
-      "trust"
+      "offer (first BUILD container ask)",
+      "recognition language returned to its source",
+      "price integrity"
     ],
     "affected_holons": [
       "individual founder",
       "client dyad (Sasha + Nia)",
-      "the value ladder (first $1,111 container offer to a funnel-born client)"
-    ],
-    "affected_artifacts": [
-      "strategic_crm_outreach_tracker.md (Nia row)",
-      "crm-snapshot.json"
+      "the value ladder ($555 workshop -> $1,111 BUILD, first ascension offer)",
+      "the Offer Cadence instrument"
     ],
     "phase_shift_significance": "major",
-    "next_action": "Send after final pass; if accepted this is the first funnel-born client ascending the ladder ($555 workshop -> $1,111 container).",
-    "staleness_or_contradictions": "None. Note: Nia asked first — inbound ascension, not outbound push."
+    "next_action": "Wait for her response; no nudge. If yes: first funnel-born client ascending the full ladder. If silence: the offer stands; cadence continues with the next humans regardless.",
+    "staleness_or_contradictions": "None. Note the sequence integrity: she asked, then the offer was sent. Inbound ascension, being-wanted register held."
   },
   "phaseShiftDistribution": {
     "minor": 3,
-    "major": 3
+    "major": 4
   },
   "openNextActions": [
     {
@@ -64,6 +61,11 @@
       "date": "2026-07-09",
       "title": "Nia asked for container details; Sasha drafted the $1,111 / 3-week proposal",
       "next_action": "Send after final pass; if accepted this is the first funnel-born client ascending the ladder ($555 workshop -> $1,111 container)."
+    },
+    {
+      "date": "2026-07-10",
+      "title": "First-ever BUILD container offer sent (Nia, $1,111, 3 weeks)",
+      "next_action": "Wait for her response; no nudge. If yes: first funnel-born client ascending the full ladder. If silence: the offer stands; cadence continues with the next humans regardless."
     }
   ]
 }
