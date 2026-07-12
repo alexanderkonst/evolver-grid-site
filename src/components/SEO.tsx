@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 //   overridden when the social hook differs from the SEO hook.
 
 const PROD_ORIGIN = "https://findyourtoptalent.com";
-const DEFAULT_OG_IMAGE = `${PROD_ORIGIN}/opengraph-image-v2.png`;
+const DEFAULT_OG_IMAGE = `${PROD_ORIGIN}/opengraph-image-v3.png`;
 const DEFAULT_OG_IMAGE_ALT = "Find Your Top Talent. Productize It. Find Your People.";
 
 // i18n: hreflang + og:locale alternates; canonical/og:url follow the active
