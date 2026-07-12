@@ -180,7 +180,7 @@ Runs weekly (see cron below). For each eligible user:
 
 ### Changed: `send-weekly-matches-digest` cron slot
 
-The existing `20260523_weekly_matches_digest_cron.sql` Monday job is repointed to invoke `proactive-match-proposal` instead of `send-weekly-matches-digest`. The old digest function body stays in the repo (not deleted — cheap fallback if v1 needs a rollback) but the cron no longer calls it.
+The existing `20260523_weekly_matches_digest_cron.sql` job is repointed (and moved to **Wednesday 14:00 UTC**, `0 14 * * 3` — Sasha Day 121: "the communication day") to invoke `proactive-match-proposal` instead of `send-weekly-matches-digest`. The old digest function body stays in the repo (not deleted — cheap fallback if v1 needs a rollback) but the cron no longer calls it.
 
 ### Unchanged: `match-consent`, `send-mutual-intro-email`, `suggest-asset-matches`
 
@@ -211,7 +211,7 @@ All reused as-is. `match-consent` gets one small addition: when the incoming tok
 | 7 | Silence-respect: 2 consecutive ignores pauses 1 month with gentle copy | Simulated via backdated `match_proposals` rows, confirm pause fires and copy renders | ☐ |
 | 8 | Declined pairs never re-proposed | Simulated decline, confirm excluded from next run's candidate pool | ☐ |
 | 9 | Opt-out link in footer flips `match_digest_opt_in` and stops future sends | Click test + confirm next cron run skips the user | ☐ |
-| 10 | Monday cron slot repointed from `send-weekly-matches-digest` to `proactive-match-proposal`; old fn left intact, unrouted | Cron SQL diff + confirm old digest fn is dead code, not deleted | ☐ |
+| 10 | Cron slot repointed (Wednesday 14:00 UTC, `0 14 * * 3`) from `send-weekly-matches-digest` to `proactive-match-proposal`; old fn left intact, unrouted | Cron SQL diff + confirm old digest fn is dead code, not deleted | ☐ |
 | 11 | No em-dashes / "Not this. That." constructions in shipped email copy | Manual read of rendered HTML + text bodies | ☐ |
 | 12 | Deployed via the single Lovable prompt below, verified live | Screenshot of Lovable run + one real end-to-end test on prod | ☐ |
 
@@ -290,3 +290,14 @@ All Supabase changes ship in **one** verbatim Lovable prompt (two-prompts-a-day 
 ```
 
 After the Lovable run: verify with one real end-to-end test (a scoped `{"userIds":[...]}` dry run to a test account) before letting the cron fire broadly.
+
+---
+
+## Addendum — Day 121 revisions (July 11, 2026, post-first-deploy)
+
+Sasha's corrections after seeing v1 live; all shipped in commit `0b4e4d17`:
+
+1. **Decline = 3-month cool-off**, not a permanent ban (the 90-day history window IS the cool-off).
+2. **Silence-pause removed entirely.** Ignoring proposals has no side effects; weekly cadence + opt-out are the only controls. Sasha: "a member who never responds keeps receiving one email every Wednesday — that's ok."
+3. **Copy engine rewritten:** subject + gift line + first step + why now are LLM-written per pair (Gemini Flash via Lovable gateway, static per-gift fallbacks). Concise grammar; the subject IS the gift ("Marina sees what you can't from inside"). Buttons: "Yes, introduce us" / "Not this one". No em-dashes.
+4. **Cadence: Wednesdays 14:00 UTC** (`0 14 * * 3`), the communication day.
