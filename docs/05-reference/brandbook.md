@@ -588,3 +588,44 @@ Never: Stock photo aesthetic, corporate, bright/punchy colors.
 *Codified: January 27, 2026*
 *Updated: February 11, 2026 — Added CSS Variable Override Trap*
 *Updated: March 26, 2026 — Added Semantic Color System, Voice & Tone Matrix, Imagery Style Guide, and Responsive Breakpoints*
+
+---
+
+## Logo Change SOP & Checklist
+
+*Added July 11, 2026 (Day 121) — after a logo update shipped to the site but WhatsApp shares kept serving the old mark for two days. The share-preview image is a separate baked asset, not derived from the site logo. This checklist is the single source of truth for swapping any brand mark.*
+
+### The principle
+
+The logo lives in MORE places than the React components. Every baked/rendered copy must be updated by hand, and every cached surface must be busted by renaming the file (caches key on URL, not content).
+
+### Checklist — every logo change touches ALL of these
+
+**In-app assets (`src/assets/`)**
+- [ ] Mark-only asset (rail compact + mobile menu + Sohn): `original-octahedron-mark.png` — imported in `SpacesRail.tsx`, `GameShellV2.tsx`, `Sohn.tsx`
+- [ ] Wordmark lockup (expanded rail + `SiteLogo.tsx` + `Navigation.tsx`): `find-your-top-talent-lockup-v2.webp` (or current version)
+- [ ] **Padding geometry**: the rail spacing is tuned for a lockup whose content occupies ~93.5% of canvas width and ~47.5% of canvas height, centered. A tight-cropped export WILL misalign. Re-pad before export.
+
+**Share previews (`public/`) — the one that bit us**
+- [ ] OG image: `public/opengraph-image-vN.png` (1200×630, lockup ~76% width, centered on white)
+- [ ] **Bump the version number in the filename** — WhatsApp/Telegram/Slack/Twitter cache by URL indefinitely; same-name replacement changes nothing for anyone who ever shared the link
+- [ ] Update BOTH references: `index.html` (`og:image` + `twitter:image`) and `src/components/SEO.tsx` (`DEFAULT_OG_IMAGE`)
+- [ ] Check per-page OG overrides: `src/pages/PublicProfile.tsx` (and grep `og:image` for new ones)
+
+**Favicons & PWA (`public/` + `index.html`)**
+- [ ] `favicon.ico` / `favicon-*.png` / `apple-touch-icon*.png` / any `manifest` icons — grep `index.html` for `icon`
+
+**Sibling/static surfaces**
+- [ ] `public/karime/bluelotus/`, Gabriel site, other static HTML under `public/` — grep for the old asset filename
+- [ ] Email templates / Supabase auth emails if they embed the logo URL
+
+**Verification (do not skip)**
+- [ ] `grep -rn "old-asset-name" src public index.html` returns nothing
+- [ ] Build passes; check rail expanded + compact, mobile menu, at 16px AND 24px root font
+- [ ] After deploy: paste the site URL into WhatsApp (or use a fresh OG debugger, e.g. opengraph.xyz) and confirm the NEW image renders. Facebook's sharing debugger can force a re-scrape for FB/WA — but the filename bump is what actually guarantees it
+- [ ] Old OG files stay in `public/` (existing shares keep resolving); never delete, only supersede
+
+### Asset production notes
+
+- Source masters arrive on black or checkerboard; background removal: full-opacity body above 50% luminance keeps original color, below that alpha ramps and black is unmixed (script pattern lives in session history, Day 119-121)
+- Web exports: lockup as WebP q88 ≤ ~100KB; OG image stays PNG (some scrapers dislike WebP), ≤ ~300KB
