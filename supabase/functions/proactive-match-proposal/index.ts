@@ -239,6 +239,23 @@ async function processUser(args: {
         .order("proposed_at", { ascending: false });
     const history: ProposalRow[] = (historyRows ?? []) as ProposalRow[];
 
+    // ── Load already-seeded match_interests pairs ───────────────
+    // match_interests has a permanent unique (from_user_id, to_user_id)
+    // constraint. Rows land here from BOTH paths: this proactive loop
+    // AND the user clicking "I'd like to meet" on the matches page.
+    // Any candidate we already have a row with would collide on insert,
+    // so exclude them from the pool up front. (This is broader than the
+    // 30-day match_proposals window, which is why the page-seeded and
+    // 30-day-old pairs were slipping through and colliding.)
+    const alreadySeeded = new Set<string>();
+    const { data: existingInterests } = await admin
+        .from("match_interests")
+        .select("to_user_id")
+        .eq("from_user_id", profile.user_id);
+    for (const row of (existingInterests ?? []) as Array<{ to_user_id: string }>) {
+        if (row.to_user_id) alreadySeeded.add(row.to_user_id);
+    }
+
     // Build exclusion sets. Declined = 3-month cool-off (the history
     // window above), not a permanent ban.
     const declinedCoolOff = new Set<string>();
@@ -306,7 +323,8 @@ async function processUser(args: {
         .filter(
             (m) =>
                 !declinedCoolOff.has(m.userId) &&
-                !recentlyProposed.has(m.userId),
+                !recentlyProposed.has(m.userId) &&
+                !alreadySeeded.has(m.userId),
         )
         .map((m) => {
             const gift = matchTypeToGift(m.matchType);
@@ -344,6 +362,18 @@ async function processUser(args: {
         .select("id")
         .single();
     if (miErr || !miRow) {
+        // A duplicate here means a match_interests row was created for
+        // this pair between our exclusion query and this insert (race,
+        // or a path we don't model). Skip this user gracefully rather
+        // than failing the whole run.
+        if (miErr?.code === "23505") {
+            console.warn(
+                "[proactive-match] pair already seeded, skipping",
+                profile.user_id,
+                best.match.userId,
+            );
+            return "skipped";
+        }
         throw new Error(`match_interests insert failed: ${miErr?.message}`);
     }
     const matchInterestId = (miRow as { id: string }).id;
