@@ -96,6 +96,14 @@
         "8093"
       ],
       "port": 8093
+    },
+    {
+      "name": "vite-dev-auto",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "vite"
+      ],
+      "autoPort": true
     }
   ]
 }

@@ -6965,5 +6965,32 @@
       "body": "For founders whose next company should be built from who they are. We design the venture from your uniqueness first, then build it with you.",
       "cta": "Start a conversation"
     }
+  },
+  "thebuild": {
+    "seoTitle": "The BUILD Container: 3 Weeks to a Running Business",
+    "seoDescription": "In 3 weeks, you go from 'what is my real offer?' to selling your packaged signature offer to real people. Private strategic advisory, $1,111.",
+    "eyebrow": "The BUILD Container · 3 weeks",
+    "h1": "My proposal is simple: in 3 weeks, you go from “what is my real offer?” to selling your packaged signature offer to real people.",
+    "sauce": "The secret sauce is you :) And how we move swiftly yet with care is this combo: my lived experience + the AI workflows you saw in our session + my guidance.",
+    "w1Label": "Week 1",
+    "w1Title": "ONE DIRECTION",
+    "w1Body": "We take the clarity from our session and your new insights to its next level of resolution and choose your ONE next direction. No more hundred paths. By the end of the week you have your business strategy: real, concrete, and specific enough to build on: the essence of your unique business, with the key decisions made. We also set up your working rhythm: entrepreneurial action balanced with proper rest and integration, so the flywheel keeps spinning without me.",
+    "w2Label": "Week 2",
+    "w2Title": "THE OFFER, PACKAGED",
+    "w2Body": "We turn the direction into the thing itself: your offer packaged and priced, the value ladder around it, and the words for all of it: the bio people actually get, a landing page that sells, your channels chosen. This is the part that was borderline impossible going solopreneur. When anchored in your uniqueness, you'll know what's clear signal and what's distraction, and the AI workflows carry the heavy lifting. By the end of Week 2: you can get on a call or a webinar with no script and fill 60 minutes from your mind, your spirit, your heart, your experiences. Because everything we built is from you.",
+    "w3Label": "Week 3",
+    "w3Title": "SERVING REAL PEOPLE",
+    "w3Body": "Your business touches the real world. We prep your first client sessions, run the first manual sales moves together, and set up the feedback loop that turns every conversation into a product improvement. By the end of the week, or shortly after, you'll have your first clients: free, paid, or a mix. Serving people, and them reciprocating you for it. No more spinning wheels: continuous motion, with a direction. Which essentially is a running business.",
+    "formatLabel": "Format",
+    "format1": "weekly 2-hour hands-on business building sessions (not late at night 😁)",
+    "format2": "check-ins through chat between sessions",
+    "format3": "one clear expected result per week",
+    "priceLabel": "Price",
+    "priceBody": "This container is the direct continuation of the Productize Yourself Session. It's designed as a cohort program; until the group assembles, you get it one-on-one: private strategic advisory at the cohort seat price. And one-on-one means we go exactly at your pace. If two payments of $600 work better with your cash flow, that works too.",
+    "closing": "Let me know how this lands.",
+    "cta": "Message Sasha on WhatsApp",
+    "routerBefore": "Haven't done the Productize Yourself Session yet?",
+    "routerLink": "Start there",
+    "routerAfter": ": the BUILD picks up where it leaves off."
   }
 }
