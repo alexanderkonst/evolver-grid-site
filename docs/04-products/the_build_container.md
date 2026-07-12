@@ -1,4 +1,6 @@
-# The BUILD Container — 3-Week Private Strategic Advisory
+# The BUILT Container — 3-Week Private Strategic Advisory
+
+> **Naming:** renamed **BUILD → BUILT** on July 12, 2026 (Day 122), Sasha's call. Past tense = done-state: the offer packaged, the business launched. Route: `/products/built`.
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 > **Status:** v1.0 — first offer ever sent July 10, 2026 (Day 120) to Nia Leak. This file holds the canonical offer copy as sent, its origin, and the copy laws it obeys.
@@ -46,3 +48,40 @@ Woven from harvested threshold language (Threshold Language Harvest, `marketing_
 ## Ladder position
 
 Free Top Talent reveal → $37 amplification → $555 Productize Yourself Session → **$1,111 BUILD container (this)** → future cohort at same seat price → Level-4 anchor offer (to be designed, money-week anchor rule).
+
+
+---
+
+## The Proof Answer v1.0 (Day 122, July 12, 2026 — verbatim as sent)
+
+*Context: the prospect (first-ever BUILT offer recipient) asked: "could you share 1 or 2 examples of where someone started, what you helped them build, and what the final outcome was?" This is the canonical answer pattern for every future "show me results" moment. All quotes are verbatim from Fathom session transcripts (Sergey: Mar 23 + Jul 1, 2026). Reusable structure: two real arcs → build-on-top principle → transcripts-as-testimonials link → deliverables promise with no-scheme energy. No refund talk, ever: the last paragraph carries what a guarantee conversation would, in sovereign register.*
+
+Happy Sunday! Great question
+
+One is a startup founder who started with me in March. He came with a parked startup with an actual team and too many product directions at once tried hastily. He said: "I take random hypotheses and build a random product that isn't fully mine." We found his one direction and his people: executives adopting AI. He's now actually doing exactly that. He has a paid advisory client, a consulting project on top of that, and has more deals in motion. He told me two weeks ago: "we set a strategic corridor for building a business which I never had before. I feel very big confidence."
+
+The other is a coach/healer/spiritual advisor/feminine leadership advocate. A woman who's been working with me for a couple of years now. She has a running business in leadership coaching for women using various healing modalities. Every conversation we have, she gets clearer on her ideal client, and then more business comes exactly like that. That's the whole point: more professional opportunity opens up as more clarity opens up. Her business is growing but not through hustling more.
+
+Oyi is prepping to launch a whole new phase of WeGoodOvaHer using what we uncovered together :)
+
+Nobody starts from scratch with me, really. Everybody arrives with something professional going on, a business, a job, side work. We never dismantle it (makes no sense). They continue on their line of work or their business as is. We find which parts of your business are truly yours, keep them, reinforce them, focus on them, and grow from there. Whatever is not yours falls away on its own, gradually, as the aligned part starts feeding you.
+
+More of what clients say is here: https://findyourtoptalent.com/ignite
+This comes from actual session transcripts, in their own words, from different people as we workshop their business.
+
+And to be clear about what I promise: the deliverables I named. One direction, your offer packaged and priced, launched to real people. I'm not promising rapid riches and I'm not selling a scheme. This is sustainable business & wealth creation aligned with who you are, and the results come from you working it.
+
+Lmk if you have any other questions!
+
+### Why it works (the laws it obeys)
+
+1. **Answer the exact question shape.** She asked started → built → outcome. Two cases, that shape, no third.
+2. **Client words carry the proof.** Verbatim transcript quotes, not paraphrase. The "random hypotheses" and "strategic corridor" lines are Sergey's own.
+3. **Build-on-top dissolves the real fear.** Nobody starts from scratch; the existing business is kept, the aligned parts grow, the rest falls away on its own.
+4. **Transcripts-as-testimonials is the epistemic asset.** The /ignite link answers social proof structurally; every future prospect gets the same link.
+5. **The promise paragraph replaces the guarantee conversation.** Deliverables promised plainly; no rapid riches, no scheme, results come from the client working it. Refunds never mentioned, no doors opened to relitigating "how fully we got there."
+6. **Ends open-palmed.** "Lmk if you have any other questions!" — unattached, no chase.
+
+### Page integration (Day 122)
+
+Elements 2, 3, 4, 5 shipped to `/products/built` as four sections: Real people real arcs (both stories, anonymized, quotes verbatim) → transcripts pointer to /ignite → Nobody starts from scratch → What I promise (placed after Price, before the CTA). Placement rationale: proof lands right after the mechanism (three weeks) and before price; the promise is the last voice before the ask.

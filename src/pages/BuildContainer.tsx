@@ -18,7 +18,7 @@ import SEO from "@/components/SEO";
 
 const WHATSAPP_URL =
   "https://wa.me/14157073432?text=" +
-  encodeURIComponent("Hi Sasha! The BUILD container lands. I'd like to start.");
+  encodeURIComponent("Hi Sasha! The BUILT container lands. I'd like to start.");
 
 const eyebrowGold: React.CSSProperties = {
   fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -111,7 +111,7 @@ const BuildContainer = () => {
       <SEO
         title={t("thebuild.seoTitle")}
         description={t("thebuild.seoDescription")}
-        path="/products/build"
+        path="/products/built"
       />
       <div className="max-w-[680px] mx-auto px-5 py-14 sm:py-20">
         {/* Hero */}
@@ -148,6 +148,33 @@ const BuildContainer = () => {
           />
         </section>
 
+        {/* Proof: real arcs from real clients, anonymized; quotes verbatim from transcripts */}
+        <section className="mb-12">
+          <p style={eyebrowGold}>{t("thebuild.storiesEyebrow")}</p>
+          <p className="text-[15px] sm:text-base mt-3" style={sourceSerifBody}>
+            {t("thebuild.storyFounder")}
+          </p>
+          <p className="text-[15px] sm:text-base mt-4" style={sourceSerifBody}>
+            {t("thebuild.storyCoach")}
+          </p>
+          <p className="text-[13px] italic mt-4" style={{ ...sourceSerifBody, opacity: 0.8 }}>
+            {t("thebuild.testimonialsBefore")}{" "}
+            <Link
+              to="/ignite"
+              className="underline underline-offset-4 decoration-[rgba(184,134,11,0.5)] hover:opacity-70 transition-opacity"
+            >
+              {t("thebuild.testimonialsLink")}
+            </Link>
+          </p>
+        </section>
+
+        {/* Nobody starts from scratch */}
+        <section className="mb-14">
+          <p className="text-[15px] sm:text-base" style={sourceSerifBody}>
+            {t("thebuild.noScratch")}
+          </p>
+        </section>
+
         {/* Format */}
         <section className="rounded-2xl p-6 sm:p-7 mb-8" style={parchmentCard}>
           <p style={eyebrowGold}>{t("thebuild.formatLabel")}</p>
@@ -177,6 +204,13 @@ const BuildContainer = () => {
           </p>
           <p className="text-[15px] sm:text-base" style={sourceSerifBody}>
             {t("thebuild.priceBody")}
+          </p>
+        </section>
+
+        {/* What I promise */}
+        <section className="mb-12">
+          <p className="text-[15px] sm:text-base" style={sourceSerifBody}>
+            {t("thebuild.promise")}
           </p>
         </section>
 
