@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { formatDate } from "@/i18n/format";
-import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
+import { GOLD_TEXT_STYLE } from "@/lib/landingDesign";
 import type { ProfileIdentity, ZogSnapshotLite } from "@/modules/profile-space/types";
 import { cormorantTitle, legibleHeadlineHalo, legibleItalicEcho } from "./styles";
 
@@ -70,8 +70,6 @@ const IdentityHeader = ({ identity, zogLatest }: IdentityHeaderProps) => {
                     })}
                 </p>
             )}
-
-            <Ornament className="mt-5" />
         </header>
     );
 };

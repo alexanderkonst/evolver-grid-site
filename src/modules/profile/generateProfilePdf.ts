@@ -183,11 +183,21 @@ async function loadProfileBundle(): Promise<ProfileBundle> {
         // fallback below re-queries by profile_id — it masked the bug.)
         const { data: profileData, error: profileError } = await supabase
             .from("game_profiles")
-            .select("last_zog_snapshot_id, mission_statement, mission_discovered_at")
+            .select("last_zog_snapshot_id, mission_statement, mission_discovered_at, first_name, last_name")
             .eq("id", profileId)
             .single();
         if (profileError) {
             console.warn("[generateProfilePdf] game_profiles fetch failed:", profileError);
+        }
+
+        // Prefer the profile's first/last name over auth metadata/email.
+        const profileFirstName =
+            (profileData as { first_name?: string | null } | null)?.first_name ?? null;
+        const profileLastName =
+            (profileData as { last_name?: string | null } | null)?.last_name ?? null;
+        const profileFullName = [profileFirstName, profileLastName].filter(Boolean).join(" ").trim();
+        if (profileFullName) {
+            bundle.userName = profileFullName;
         }
 
         let snapshotId =
@@ -401,7 +411,7 @@ function renderCover(b: PdfBuilder, bundle: ProfileBundle) {
     b.y += 6;
 
     // Top eyebrow — what this document IS
-    b.eyebrow("Personal Profile", { center: true });
+    b.eyebrow("Professional Profile", { center: true });
     b.y += 3;
 
     // Big title — user name, or fallback to "Your Top Talent Profile"
@@ -433,10 +443,17 @@ function renderCover(b: PdfBuilder, bundle: ProfileBundle) {
     });
     b.body(`Generated ${dateStr}`, { size: 8.5, center: true, color: C.muted });
 
-    // Footer brand mark — pin at bottom of page
+    // Footer brand mark — pin at bottom of page. Drawn directly via the
+    // underlying jsPDF call (not b.body) because b.body() routes through
+    // ensureSpace(), which sees a y this close to FOOTER_Y and fires a
+    // newPage() — injecting a near-blank page before the hero. Style
+    // replicated from body({ size: 9, center: true, color: C.muted,
+    // italic: true }).
     const restoreY = b.y;
-    b.y = FOOTER_Y - 8;
-    b.body("findyourtoptalent.com", { size: 9, center: true, color: C.muted, italic: true });
+    b.doc.setFont(b.fonts.body, "italic");
+    b.doc.setFontSize(9);
+    b.doc.setTextColor(...C.muted);
+    b.doc.text("findyourtoptalent.com", PAGE_W / 2, FOOTER_Y - 8, { align: "center" });
     b.y = restoreY;
 }
 
@@ -563,7 +580,7 @@ const QOL_DOMAINS: Array<{ key: keyof QolData; label: string }> = [
     { key: "impact_stage", label: "Impact" },
 ];
 
-const QOL_MAX_STAGE = 7; // Mirrors the QoL Map UI's stage scale (1–7).
+const QOL_MAX_STAGE = 10; // Canonical QoL scale is 1-10 (qolConfig.ts, 10 stages per domain).
 
 function renderQolBar(b: PdfBuilder, label: string, stage: number) {
     const barX = MARGIN + 60;
@@ -734,7 +751,7 @@ function renderFooter(b: PdfBuilder) {
         b.doc.setFontSize(7);
         b.doc.setTextColor(...C.muted);
         b.doc.text(
-            `Page ${i} of ${pageCount}  ·  findyourtoptalent.com  ·  Personal Profile`,
+            `Page ${i} of ${pageCount}  ·  findyourtoptalent.com  ·  Professional Profile`,
             PAGE_W / 2,
             FOOTER_Y,
             { align: "center" },
@@ -747,7 +764,7 @@ function renderFooter(b: PdfBuilder) {
 // ─────────────────────────────────────────────────────────────────────
 
 /**
- * Build the unified Personal Profile PDF and trigger a download in the
+ * Build the unified Professional Profile PDF and trigger a download in the
  * browser. The function handles its own data fetching — callers don't
  * need to pre-load anything.
  *
@@ -764,54 +781,126 @@ export async function generateProfilePdf(): Promise<void> {
     const fonts = await setupFonts(doc);
     const b = new PdfBuilder(doc, fonts);
 
-    // ── Cover ─────────────────────────────────────────────────────
+    // ── Cover (page 1) ───────────────────────────────────────────
     renderCover(b, bundle);
+
+    // ── Contents (page 2, reserved — filled in after everything else
+    // has rendered, once we know each section's start page) ────────
+    b.newPage();
+    const tocPageIndex = b.doc.getNumberOfPages(); // 2
+
+    const tocEntries: Array<{ title: string; page: number }> = [];
+    const recordSection = (title: string, render: () => void) => {
+        const startPage = b.doc.getNumberOfPages() + 1; // render() opens a fresh page first
+        render();
+        tocEntries.push({ title, page: startPage });
+    };
 
     // ── Top Talent ────────────────────────────────────────────────
     if (bundle.appleseed) {
-        b.newPage();
-        // renderHero is the first-level identity (archetype + bullseye +
-        // core pattern) — free-tier, always included.
-        renderHero(b, bundle.appleseed);
-        // Day 95 (Sasha 2026-06-13): the eight DEEP sections are the paid
-        // $37 product. Only render them when the user has actually
-        // activated (paid / coupon / tier). A free user exporting via
-        // Settings → Export gets the hero + a locked note, not the paid
-        // depth — closing the PDF as a paywall-bypass vector. (Fail-open:
-        // hasDeeperAccess defaults true, so grandfathered users and the
-        // pre-migration window keep the full export.)
-        if (bundle.hasDeeperAccess) {
-            renderHowItShowsUp(b, bundle.appleseed);
-            renderThreeKeyTalents(b, bundle.appleseed);
-            renderTopShadow(b, bundle.appleseed);
-            renderPathOfMastery(b, bundle.appleseed);
-            renderOneAction(b, bundle.appleseed);
-            renderIdealEnvironments(b, bundle.appleseed);
-            renderComplementaryPartner(b, bundle.appleseed);
-            renderMonetization(b, bundle.appleseed);
-        } else {
-            b.y += SECTION_GAP;
-            b.eyebrow("Locked");
-            b.body(
-                "Your full deeper Top Talent profile — How It Shows Up, Three Talents in Depth, Top Shadow, Path of Mastery, One Action, Ideal Environments, Complementary Partner, and Monetization — unlocks with the $37 Top Talent Activation. Visit findyourtoptalent.com/activate-top-talent.",
-                { italic: true, color: C.muted },
-            );
-        }
+        recordSection("Top Talent", () => {
+            b.newPage();
+            // renderHero is the first-level identity (archetype + bullseye +
+            // core pattern) — free-tier, always included.
+            renderHero(b, bundle.appleseed!);
+            // Day 95 (Sasha 2026-06-13): the eight DEEP sections are the paid
+            // $37 product. Only render them when the user has actually
+            // activated (paid / coupon / tier). A free user exporting via
+            // Settings → Export gets the hero + a locked note, not the paid
+            // depth — closing the PDF as a paywall-bypass vector. (Fail-open:
+            // hasDeeperAccess defaults true, so grandfathered users and the
+            // pre-migration window keep the full export.)
+            if (bundle.hasDeeperAccess) {
+                renderHowItShowsUp(b, bundle.appleseed!);
+                renderThreeKeyTalents(b, bundle.appleseed!);
+                renderTopShadow(b, bundle.appleseed!);
+                renderPathOfMastery(b, bundle.appleseed!);
+                renderOneAction(b, bundle.appleseed!);
+                renderIdealEnvironments(b, bundle.appleseed!);
+                renderComplementaryPartner(b, bundle.appleseed!);
+                renderMonetization(b, bundle.appleseed!);
+            } else {
+                b.y += SECTION_GAP;
+                b.eyebrow("Locked");
+                b.body(
+                    "Your full deeper Top Talent profile — How It Shows Up, Three Talents in Depth, Top Shadow, Path of Mastery, One Action, Ideal Environments, Complementary Partner, and Monetization — unlocks with the $37 Top Talent Activation. Visit findyourtoptalent.com/activate-top-talent.",
+                    { italic: true, color: C.muted },
+                );
+            }
+        });
     } else {
-        renderTopTalentEmpty(b);
+        recordSection("Top Talent", () => renderTopTalentEmpty(b));
     }
 
     // ── Mission ───────────────────────────────────────────────────
-    renderMissionSection(b, bundle.mission);
+    recordSection("Mission", () => renderMissionSection(b, bundle.mission));
 
     // ── Assets ────────────────────────────────────────────────────
-    renderAssetsSection(b, bundle.assets);
+    recordSection("Assets", () => renderAssetsSection(b, bundle.assets));
 
     // ── Quality of Life ───────────────────────────────────────────
-    renderQolSection(b, bundle.qol);
+    recordSection("Quality of Life", () => renderQolSection(b, bundle.qol));
 
-    // ── Profile history (D5) ──────────────────────────────────────
-    renderProfileHistorySection(b, bundle);
+    // ── Profile history (D5) — only recorded if it actually rendered
+    // (renderProfileHistorySection no-ops when there are no events, and
+    // in that case it does NOT call newPage — so recordSection's page
+    // math would be wrong. Detect via page count before/after instead.)
+    {
+        const pagesBefore = b.doc.getNumberOfPages();
+        renderProfileHistorySection(b, bundle);
+        const pagesAfter = b.doc.getNumberOfPages();
+        if (pagesAfter > pagesBefore) {
+            tocEntries.push({ title: "Profile History", page: pagesBefore + 1 });
+        }
+    }
+
+    // ── Fill in the reserved Contents page ──────────────────────────
+    const pageCountForOutline = b.doc.getNumberOfPages();
+    b.doc.setPage(tocPageIndex);
+    b.y = MARGIN;
+    b.ornament();
+    b.y += 4;
+    b.eyebrow("Contents", { center: true });
+    b.y += 2;
+    b.title("Contents", { size: 22, center: true });
+    b.y += 6;
+
+    for (const entry of tocEntries) {
+        b.ensureSpace(9);
+        const rowY = b.y;
+        b.doc.setFont(b.fonts.body, "normal");
+        b.doc.setFontSize(11);
+        b.doc.setTextColor(...C.inkBody);
+        b.doc.textWithLink(entry.title, MARGIN, rowY, { pageNumber: entry.page });
+        b.doc.setFont(b.fonts.body, "bold");
+        b.doc.setTextColor(...C.goldDeep);
+        b.doc.textWithLink(String(entry.page), PAGE_W - MARGIN, rowY, {
+            align: "right",
+            pageNumber: entry.page,
+        });
+        b.y += 9;
+    }
+
+    // Real PDF bookmarks for sidebar navigation. jsPDF's outline API
+    // isn't guaranteed across versions — fail silently if it's not
+    // there, since the visible Contents page above is the primary
+    // deliverable.
+    try {
+        const outline = (b.doc as unknown as {
+            outline?: { add: (parent: null, title: string, opts: { pageNumber: number }) => void };
+        }).outline;
+        if (outline?.add) {
+            for (const entry of tocEntries) {
+                outline.add(null, entry.title, { pageNumber: entry.page });
+            }
+        }
+    } catch (err) {
+        console.warn("[generateProfilePdf] PDF outline/bookmarks unavailable:", err);
+    }
+
+    // Restore the page pointer to the last content page so anything
+    // after this (footer pass) sweeps every page including the TOC.
+    b.doc.setPage(pageCountForOutline);
 
     // ── Footer (page numbers across all pages) ────────────────────
     renderFooter(b);
@@ -819,7 +908,7 @@ export async function generateProfilePdf(): Promise<void> {
     // ── Save ──────────────────────────────────────────────────────
     const slug = bundle.appleseed?.vibrationalKey?.name
         ? slugifyArchetype(bundle.appleseed.vibrationalKey.name)
-        : "personal-profile";
+        : "professional-profile";
     const today = new Date();
     const dateSlug = today.toISOString().slice(0, 10); // YYYY-MM-DD
     doc.save(`my-profile-${slug}-${dateSlug}.pdf`);
