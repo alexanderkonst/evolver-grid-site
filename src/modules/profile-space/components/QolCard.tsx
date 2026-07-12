@@ -9,10 +9,9 @@ interface QolCardProps {
 }
 
 // Mirrors QOL_MAX_STAGE in src/modules/profile/generateProfilePdf.ts —
-// the platform's established display ceiling for the 8-domain stages
-// (qolConfig.ts defines 10 narrative stages per domain, but the
-// results/PDF surfaces read against a 1-7 display scale).
-const QOL_MAX_STAGE = 7;
+// canonical QoL scale is 1-10 (qolConfig.ts defines 10 narrative stages
+// per domain, and the results page divides by 10).
+const QOL_MAX_STAGE = 10;
 
 const QOL_DIMENSIONS: Array<{ key: keyof QolSnapshotLite["stages"]; labelKey: string }> = [
     { key: "happiness", labelKey: "profileSpace.qol.dimensions.happiness" },

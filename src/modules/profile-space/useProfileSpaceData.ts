@@ -315,23 +315,28 @@ async function loadAll(): Promise<{ state: LoadedState; error: string | null }> 
       created_at: string;
     }>;
 
-    // Batched name resolution — one game_profiles select for every
-    // to_user_id. RLS may block reading other users' profiles from
-    // this surface; if it does, toName stays null (never throw).
+    // Batched name resolution — mission_participants_public is the
+    // cross-user readable (consent-gated) view; game_profiles is
+    // owner-only via RLS and returns nothing for other users' rows.
+    // If it does, toName stays null (never throw).
     let namesByUserId: Record<string, string | null> = {};
     const toUserIds = Array.from(new Set(requestRows.map((r) => r.to_user_id)));
     if (toUserIds.length > 0) {
       try {
-        const { data: nameRows, error: nameError } = await supabase
-          .from("game_profiles")
+        const { data: nameRows, error: nameError } = await (supabase as any)
+          .from("mission_participants_public")
           .select("user_id, first_name")
           .in("user_id", toUserIds);
         if (nameError) throw nameError;
-        namesByUserId = Object.fromEntries(
-          (nameRows ?? [])
-            .filter((r) => r.user_id)
-            .map((r) => [r.user_id as string, r.first_name ?? null])
-        );
+        namesByUserId = {};
+        for (const r of (nameRows ?? []) as Array<{ user_id: string | null; first_name: string | null }>) {
+          if (!r.user_id) continue;
+          if (namesByUserId[r.user_id] == null && r.first_name) {
+            namesByUserId[r.user_id] = r.first_name;
+          } else if (!(r.user_id in namesByUserId)) {
+            namesByUserId[r.user_id] = null;
+          }
+        }
       } catch (nameErr) {
         console.warn("[useProfileSpaceData] request name resolution failed:", nameErr);
       }
