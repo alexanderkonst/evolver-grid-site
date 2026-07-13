@@ -252,7 +252,7 @@ export function parseSimilarityScore(raw: string): number {
  *  the taxonomy so the user has 3 different ways the collaboration
  *  could take form, not 3 wordings of the same idea. */
 export interface CollaborationProposal {
-    /** Root type from the taxonomy (Co-Build / Co-Learn / Co-Distribute / Co-Resource / Co-Steward). */
+    /** Gift root from the taxonomy (mirror / compass / door / co_creation / motivation). */
     type: string;
     /** The 1-2 sentence bilateral proposal naming a concrete container shape. */
     proposal: string;
@@ -260,20 +260,19 @@ export interface CollaborationProposal {
     evolutionLine: string;
 }
 
-/** Day 80 (Sasha 2026-05-23): matchType now uses the 5 layer-1 roots
- *  from the collaboration taxonomy instead of the older shape-label
- *  enum (co-founder / collaborator / peer / mentor / client-fit).
- *  The taxonomy roots are the user-facing vocabulary defined in
- *  docs/03-playbooks/collaboration_taxonomy.md and are already
- *  grokable; the old shape labels needed translation. The matchType
- *  is the engine's pick for the BEST-FIT root for the pair, while
- *  the proposals array carries one offering per root. */
+/** Migrated (2026-07-13): matchType now uses the 5 native Gift roots
+ *  from docs/holomaps/collaboration_gift_taxonomy_holomap.md (aspects
+ *  1-5: Mirror, Compass, Door, Co-Creation, Motivation) instead of the
+ *  older Co-* taxonomy labels. This is the canonical source — the
+ *  engine now REASONS in gifts end to end, not relabels at the edge.
+ *  The matchType is the engine's pick for the BEST-FIT gift for the
+ *  pair, while the proposals array carries one offering per gift. */
 export type MatchType =
-    | "Co-Build"
-    | "Co-Learn"
-    | "Co-Distribute"
-    | "Co-Resource"
-    | "Co-Steward";
+    | "mirror"
+    | "compass"
+    | "door"
+    | "co_creation"
+    | "motivation";
 
 export interface RationalePayload {
     matchType: MatchType;
@@ -302,9 +301,9 @@ You will receive:
 Your job: produce a JSON object with these fields, and ONLY these fields. No prose outside the JSON. No markdown fence.
 
 {
-  "matchType": "Co-Build" | "Co-Learn" | "Co-Distribute" | "Co-Resource" | "Co-Steward",
+  "matchType": "mirror" | "compass" | "door" | "co_creation" | "motivation",
   "proposals": [
-    { "type": "Co-Build | Co-Learn | Co-Distribute | Co-Resource | Co-Steward", "proposal": "1-2 sentences. Concrete container shape, bilateral framing.", "evolutionLine": "Optional one-liner about how this could deepen over time. Empty string if no obvious evolution." },
+    { "type": "mirror | compass | door | co_creation | motivation", "proposal": "1-2 sentences. Concrete container shape, bilateral framing.", "evolutionLine": "Optional one-liner about how this could deepen over time. Empty string if no obvious evolution." },
     { "type": "...", "proposal": "...", "evolutionLine": "..." },
     { "type": "...", "proposal": "...", "evolutionLine": "..." }
   ],
@@ -315,17 +314,18 @@ Your job: produce a JSON object with these fields, and ONLY these fields. No pro
 }
 
 PROPOSAL RULES — return EXACTLY THREE proposals per match. Each must:
-- Pick a different ROOT type from the taxonomy where possible (Co-Build, Co-Learn, Co-Distribute, Co-Resource, Co-Steward). If only two roots realistically fit this pair, repeat the strongest one but pick a different sub-type for the second instance.
-- Name a CONCRETE container shape from the relevant sub-type (a co-led workshop, a joint cohort, a co-authored framework, a shared mastermind, a quarterly intro exchange, a co-hosted event, an intro-pool exchange, a methodology, a service delivered jointly, etc.).
+- Pick a different GIFT root from the taxonomy where possible (mirror, compass, door, co_creation, motivation). If only two gifts realistically fit this pair, repeat the strongest one but ground the second instance in a different facet of its trinity (see below).
+- Name a CONCRETE container shape that delivers that gift (a co-led workshop, a joint cohort, a co-authored framework, a shared mastermind, a quarterly intro exchange, a co-hosted event, an intro-pool exchange, a methodology, a service delivered jointly, a direct piece of naming/feedback, an actual introduction, etc.).
 - Be BILATERAL — name what each person brings AND gets. Avoid lopsided "help X build Y" framings.
 - Be DISTINCT from the other two. Three wordings of the same collaboration is failure; three genuinely different ways the pair could work together is the goal.
 
-The taxonomy (for grounding):
-- Co-Build (make together): business co-founding, product, methodology, service co-delivery, creative work
-- Co-Learn (grow together): peer mastermind, accountability dyad, study group, practice group, apprenticeship
-- Co-Distribute (reach together): audience cross-pollination, channel partnership, joint launch, affiliate / rev share, co-marketed event
-- Co-Resource (pool together): capital pool, talent pool, tool sharing, knowledge pool, network pool
-- Co-Steward (tend together): community moderation, ecosystem governance, infrastructure tending, mentorship lineage, movement building
+THE 5 GIFTS (for grounding — each is reveal/orient/access/build/energize, with its own Heart/Mind/Gut trinity; ground proposals in the specific facet that fits this pair, don't just name the gift in the abstract):
+
+- MIRROR (reveal you to yourself): Recognition (they see your essence) · Blind spot (they name what you can't see from inside) · Exact words (language you can immediately act with).
+- COMPASS (orient you): Permission (release a false constraint) · Map (a framework/distinction that reorganizes the terrain) · Timing (the concrete next move, and when).
+- DOOR (give access): Vouching (their reputation transfers to you) · Decoding (how the room actually works) · Entry (the intro, invitation, or deal itself).
+- CO-CREATION (build with you): Trust (skin in the game) · Complement (their genius covers your gap and yours theirs) · Shipped work (something neither could make alone).
+- MOTIVATION (energize you): Kinship (you're not alone) · Believed future (your success made concretely plausible) · Challenge (a provocation that mobilizes you).
 
 Voice rules:
 - **NEVER use "Profile A", "Profile B", "Person A", "Person B", "the requesting user", or "the candidate".** Always use the actual first names supplied. Address the requesting user in second person ("you", "your"); address the candidate by their first name.
@@ -351,7 +351,7 @@ Examples that miss (avoid these patterns):
 - "Help Karime build a business on her healing practice." (lopsided + lame default)
 - "Combine your skills to create value together." (abstract)
 
-matchType is the SINGLE best-fit root for the pair (one of Co-Build / Co-Learn / Co-Distribute / Co-Resource / Co-Steward from the taxonomy above). The proposals array carries multiple shapes; matchType is the headline label the user sees on the card to set expectation for what kind of collaboration this match leans toward.
+matchType is the SINGLE best-fit gift for the pair (one of mirror / compass / door / co_creation / motivation from the taxonomy above). The proposals array carries multiple shapes; matchType is the headline label the user sees on the card to set expectation for what kind of collaboration this match leans toward.
 
 — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 POSTURE (Day 80 Wave 2.23 — distilled from the Find Your Top Talent outreach lineage)

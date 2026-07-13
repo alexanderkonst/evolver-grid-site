@@ -33,14 +33,37 @@ export type MatchInteractionState = "default" | "interest-expressed" | "mutual";
 
 /**
  * Day 80 (Sasha 2026-05-23): each match now carries up to 3 distinct
- * collaboration proposals from different taxonomy roots (Co-Build,
- * Co-Learn, Co-Distribute, Co-Resource, Co-Steward). Surfaced
+ * collaboration proposals from different taxonomy roots. As of Day 121
+ * (2026-07-11) these roots are the native 5 Gifts — Mirror, Compass,
+ * Door, Co-Creation, Motivation — per
+ * docs/holomaps/collaboration_gift_taxonomy_holomap.md. Surfaced
  * one-after-another on the card so the user has real choice.
  */
 export interface MatchProposal {
   type: string;
   proposal: string;
   evolutionLine?: string;
+}
+
+// Day 121 (Sasha 2026-07-11): `type` may arrive as a raw gift value
+// (mirror, compass, door, co_creation, motivation) or a legacy Co-*
+// string from cached data. Title-Case it for display without touching
+// matching logic. See docs/holomaps/collaboration_gift_taxonomy_holomap.md.
+const GIFT_TYPE_LABELS: Record<string, string> = {
+  mirror: "Mirror",
+  compass: "Compass",
+  door: "Door",
+  co_creation: "Co-Creation",
+  motivation: "Motivation",
+  "Co-Build": "Co-Creation",
+  "Co-Learn": "Mirror",
+  "Co-Distribute": "Door",
+  "Co-Resource": "Compass",
+  "Co-Steward": "Motivation",
+};
+
+function formatGiftType(type: string): string {
+  return GIFT_TYPE_LABELS[type] || type;
 }
 
 interface MatchCardProps {
@@ -650,9 +673,10 @@ const MatchCard = ({
         </div>
 
         {/* Day 80 (Sasha 2026-05-23): three collaboration proposals
-            stacked one after another. Each carries its taxonomy root
-            (Co-Build, Co-Learn, etc.) as a small label, then the
-            bilateral proposal prose. Legacy single-proposal callers
+            stacked one after another. Each carries its gift-taxonomy
+            root (Mirror, Compass, Door, Co-Creation, Motivation — see
+            docs/holomaps/collaboration_gift_taxonomy_holomap.md) as a
+            small label, then the bilateral proposal prose. Legacy single-proposal callers
             (the old matchReason / matchLabel API) still render
             correctly via the fallback below. */}
         <div className="px-6 pb-5 space-y-4">
@@ -693,7 +717,7 @@ const MatchCard = ({
                           marginBottom: "6px",
                         }}
                       >
-                        {p.type}
+                        {formatGiftType(p.type)}
                       </p>
                       <p
                         style={{

@@ -61,3 +61,9 @@ This is the gift taxonomy and the needs taxonomy at once — a gift received is 
 ## 🔥 Consequences
 
 Match proposals get 10x more concrete when they name the gift: "Marina can likely show you your blind spot on distribution" beats "you two could co-learn." Accept/decline per gift-type becomes the vocabulary the learning loop trains on. This taxonomy is used by the Proactive Matchmaker v1 spec (`docs/specs/proactive-matchmaker/`).
+
+---
+
+## Wired into the engine (Day 121)
+
+As of July 11, 2026, the 5 gifts — Mirror, Compass, Door, Co-Creation, Motivation — are the native output of `suggest-asset-matches` (`matchType` field) and the working vocabulary of the Proactive Matchmaker. Old Co-* labels (Co-Build, Co-Learn, Co-Distribute, Co-Resource, Co-Steward) are retired from the engine and kept only as backward-compat aliases in frontend display maps for old cached data. The rich sub-type/container library — the deeper granularity beneath each gift — still lives in `docs/03-playbooks/collaboration_taxonomy.md`; this map defines the 5 roots and their essence, that doc supplies the shape-level detail underneath each one.

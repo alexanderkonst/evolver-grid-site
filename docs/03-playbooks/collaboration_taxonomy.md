@@ -8,6 +8,10 @@
 
 ---
 
+> **Day 121 update (July 11, 2026):** as of this date the 5 roots below are expressed natively in the matching engine as the 5 GIFTS — Mirror, Compass, Door, Co-Creation, Motivation — per `docs/holomaps/collaboration_gift_taxonomy_holomap.md`. Mapping: Co-Build → Co-Creation, Co-Learn → Mirror, Co-Distribute → Door, Co-Resource → Compass, Co-Steward → Motivation. The rich sub-type and container libraries below still apply in full; they now nest under each gift rather than under the old Co-* labels.
+
+---
+
 ## 1. Why a taxonomy at all
 
 Three reasons:
