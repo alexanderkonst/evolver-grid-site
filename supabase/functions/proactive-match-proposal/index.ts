@@ -19,7 +19,7 @@
 // Request body (optional): { "userIds": ["..."] } to scope a dry run.
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
+import { createClient, type SupabaseClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 import { signConsentToken } from "../_shared/matchConsentToken.ts";
 
 const corsHeaders = {
@@ -31,6 +31,15 @@ const corsHeaders = {
 const FROM_ADDRESS =
     "Find Your Top Talent <notifications@notify.findyourtoptalent.com>";
 const SITE_URL = Deno.env.get("SITE_URL") || "https://findyourtoptalent.com";
+
+// Max users processed per invocation. Keeps background wall-clock bounded.
+// At current scale (dozens) this never bites; beyond it, add self-chaining.
+const MAX_PER_RUN = 120;
+
+// Supabase edge runtime global for post-response background work.
+declare const EdgeRuntime:
+    | { waitUntil(p: Promise<unknown>): void }
+    | undefined;
 
 type GiftType =
     | "mirror"
@@ -99,8 +108,14 @@ serve(async (req) => {
 
         const admin = createClient(supabaseUrl, serviceKey);
 
-        // Optional dry-run scoping
+        // Body options:
+        //   { userIds: [...] } — scope the run to specific users (small,
+        //                         processed synchronously, returns counts).
+        //   { dryRun: true }   — count the eligible pool and return
+        //                         immediately WITHOUT calling the LLM or
+        //                         sending any email. Safe to run anytime.
         let userIdFilter: string[] | null = null;
+        let dryRun = false;
         try {
             const body = await req.json();
             if (Array.isArray(body?.userIds)) {
@@ -108,8 +123,9 @@ serve(async (req) => {
                     (id: unknown) => typeof id === "string",
                 );
             }
+            if (body?.dryRun === true) dryRun = true;
         } catch {
-            // No body — process all eligible users.
+            // No body — process all eligible users in the background.
         }
 
         // ── 1. Find eligible users ──────────────────────────────────
@@ -159,42 +175,68 @@ serve(async (req) => {
             });
         }
 
-        let sent = 0;
-        let skipped = 0;
-        let failed = 0;
-        const failures: { userId: string; reason: string }[] = [];
-
-        for (const profile of eligible) {
-            try {
-                const result = await processUser({
-                    admin,
-                    supabaseUrl,
-                    serviceKey,
-                    resendKey: RESEND_API_KEY,
-                    matchConsentSecret: MATCH_CONSENT_SECRET,
-                    profile,
-                });
-                if (result === "sent") sent += 1;
-                else skipped += 1;
-            } catch (err) {
-                failed += 1;
-                const reason = err instanceof Error ? err.message : String(err);
-                failures.push({ userId: profile.user_id, reason });
-                console.warn(
-                    "[proactive-match] failed for",
-                    profile.user_id,
-                    reason,
-                );
-            }
+        // ── dryRun: report the pool, send nothing ───────────────────
+        if (dryRun) {
+            return json({
+                dryRun: true,
+                eligible: eligible.length,
+                totalProfiles: profiles.length,
+                capPerRun: MAX_PER_RUN,
+                wouldCapAt: Math.min(eligible.length, MAX_PER_RUN),
+                sampleEmails: eligible.slice(0, 5).map((e) => e.email),
+            });
         }
 
+        // Cap a single run so background work stays under the worker's
+        // wall-clock limit. Beyond this we'll need self-chaining (future).
+        const batch = eligible.slice(0, MAX_PER_RUN);
+        const capped = eligible.length > MAX_PER_RUN;
+
+        const deps = {
+            admin,
+            supabaseUrl,
+            serviceKey,
+            resendKey: RESEND_API_KEY,
+            matchConsentSecret: MATCH_CONSENT_SECRET,
+        };
+
+        // ── Targeted run (userIds): synchronous, returns counts ─────
+        // Small by construction, safe under the 150s idle limit, and the
+        // caller wants to see the result (testing a specific pair).
+        if (userIdFilter && userIdFilter.length > 0) {
+            const counts = await runProcessing(batch, deps);
+            return json({
+                ...counts,
+                eligible: eligible.length,
+                totalProfiles: profiles.length,
+                capped,
+            });
+        }
+
+        // ── Full-cohort run (cron / no body): background ────────────
+        // The whole cohort's LLM calls exceed the 150s idle limit, and the
+        // cron never reads the body. Return immediately; process after.
+        const work = runProcessing(batch, deps).then((c) => {
+            console.log("[proactive-match] background run done", {
+                ...c,
+                capped,
+            });
+        }).catch((e) => {
+            console.error("[proactive-match] background run threw", e);
+        });
+        if (typeof EdgeRuntime !== "undefined" && EdgeRuntime?.waitUntil) {
+            EdgeRuntime.waitUntil(work);
+        } else {
+            // Local/other runtime without waitUntil: don't block forever,
+            // but keep the reference so the promise isn't GC'd.
+            void work;
+        }
         return json({
-            sent,
-            skipped,
-            failed,
-            failures,
+            started: true,
             eligible: eligible.length,
             totalProfiles: profiles.length,
+            processing: batch.length,
+            capped,
         });
     } catch (error) {
         console.error("[proactive-match] unhandled error", error);
@@ -205,8 +247,49 @@ serve(async (req) => {
     }
 });
 
+// Run the proposal loop over a batch, returning counts. Shared by the
+// synchronous (userIds) and background (full-cohort) paths.
+async function runProcessing(
+    batch: Profile[],
+    deps: {
+        admin: SupabaseClient;
+        supabaseUrl: string;
+        serviceKey: string;
+        resendKey: string;
+        matchConsentSecret: string;
+    },
+): Promise<{
+    sent: number;
+    skipped: number;
+    failed: number;
+    failures: { userId: string; reason: string }[];
+}> {
+    let sent = 0;
+    let skipped = 0;
+    let failed = 0;
+    const failures: { userId: string; reason: string }[] = [];
+
+    for (const profile of batch) {
+        try {
+            const result = await processUser({ ...deps, profile });
+            if (result === "sent") sent += 1;
+            else skipped += 1;
+        } catch (err) {
+            failed += 1;
+            const reason = err instanceof Error ? err.message : String(err);
+            failures.push({ userId: profile.user_id, reason });
+            console.warn(
+                "[proactive-match] failed for",
+                profile.user_id,
+                reason,
+            );
+        }
+    }
+    return { sent, skipped, failed, failures };
+}
+
 async function processUser(args: {
-    admin: ReturnType<typeof createClient>;
+    admin: SupabaseClient;
     supabaseUrl: string;
     serviceKey: string;
     resendKey: string;
