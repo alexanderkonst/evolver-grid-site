@@ -8,10 +8,6 @@ import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { PLAYBOOK_STEPS } from "@/data/playbookSteps";
 import { GROWTH_STEPS } from "@/modules/library/growthSteps";
-// Day 53 night iter 3 (Sasha 2026-04-27): pane 2 phase progress decorations.
-// Hook returns null when not on /ubb*, so this import is free on every
-// other route — the hook is the gate, not a wrapper.
-import { useCanvasProgressLite } from "@/modules/unique-business-builder/useCanvasProgressLite";
 import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
 import { useDeeperAccess } from "@/hooks/useDeeperAccess";
 import { useEntitlement } from "@/hooks/useEntitlement";
@@ -83,6 +79,14 @@ interface Section {
      * and ME panes don't use this field, so its absence is harmless.
      */
     progress?: { locked: number; total: number };
+    /**
+     * Day 121 (Sasha 2026-07-13): BUILD pane restructure. When true, the
+     * row renders as a non-interactive group-header (label + divider) —
+     * not a nav link, not clickable, no active/locked state. `path` is
+     * ignored for header rows but kept required on the type for
+     * simplicity; callers pass an empty string.
+     */
+    isHeader?: boolean;
 }
 
 interface SpaceSections {
@@ -302,36 +306,43 @@ const SPACE_SECTIONS: SpaceSections = {
         ],
     },
     // BUILD Space (was Coop/Incubator)
-    // Day 64 (Sasha 2026-05-07): UBB moved to position 1 — it is the
-    // canonical BUILD experience. The four predecessors (canvas,
-    // product-builder, my-business, refine) are flat-locked as
-    // retired stubs: their /game/build/* routes still resolve via
-    // direct URL (RequireAuth gated) so any deep links don't 404,
-    // but the rail signals clearly that they've been replaced. No
-    // dynamic gate on these four — the lock is unconditional.
-    // (BUILD pane 2 swaps to UBB phase navigation when the user is
-    // actually inside /ubb*, see the activeSpaceId === "build" branch
-    // in getSections — these five items are what shows when BUILD is
-    // active but the user is on a /game/build/* legacy path.)
+    // Day 121 (Sasha 2026-07-13): BUILD pane restructured from a
+    // URL-dependent dual layout (dynamic UBB phase nav on /ubb* vs this
+    // static list everywhere else) into ONE always-the-same pane with
+    // two header-grouped sections. "Founder Tools" holds the day-to-day
+    // operating instruments (Equilibrium, the Automated Venture Builder
+    // with its 6 phase sub-sections, the Founder Cockpit + its dashboard).
+    // "Unique Startup Incubation" holds the methodology/offer arc
+    // (Playbook / Roadmap / Ignite / Products / Dashboard / Holomap).
+    // Karime's per-founder offer row still injects into the second group
+    // (see getSections below). No more branching on location.pathname.
     build: {
         title: "BUILD",
         sections: [
-            // Funnel v2 (Day 77, Sasha 2026-05-20 evening): BUILD pane
-            // order per Sasha's call — AVB first (the canonical builder),
-            // then the methodology rows (Path / Playbook / Dashboard /
-            // Ignite), Equilibrium last (sibling tool, not on the build
-            // arc). Path / Playbook / Dashboard / Ignite moved here from
-            // JOURNEY when the funnel reshaped into matching-as-hero;
-            // their existing routes resolve unchanged.
-            // Spec: docs/specs/funnel-v2/funnel-v2_product_spec.md §4.3.
-            { id: "founder-cockpit", label: "Founder Cockpit",                  path: "/build/cockpit" },
-            { id: "founder-cockpit-dashboard", label: "Cockpit Dashboard",      path: "/build/cockpit/dashboard" },
-            { id: "ubb-v2",           label: "Automated Venture Builder",         path: "/ubb" },
-            { id: "build-path",       label: "The path to your unique business", path: "/path" },
-            { id: "build-playbook",   label: "Take the exact playbook",           path: "/playbook" },
-            { id: "build-dashboard",  label: "See the dashboard",                 path: "/dashboard" },
-            { id: "build-ignite",     label: "Productize Yourself Session",       path: "/ignite" },
-            { id: "equilibrium-v2",   label: "Equilibrium",                       path: "/build/equilibrium" },
+            { id: "build-header-founder-tools", label: "Founder Tools", path: "", isHeader: true },
+            { id: "equilibrium-v2", label: "Equilibrium", path: "/build/equilibrium" },
+            {
+                id: "ubb-v2",
+                label: "Automated Venture Builder",
+                path: "/ubb",
+                subSections: [
+                    { id: "ubb-canvas",         label: "Canvas",         path: "/ubb" },
+                    { id: "ubb-session",        label: "1st Session",    path: "/ubb/session" },
+                    { id: "ubb-marketing",      label: "Marketing",      path: "/ubb/marketing" },
+                    { id: "ubb-distribution",   label: "Distribution",   path: "/ubb/distribution" },
+                    { id: "ubb-communications", label: "Communications", path: "/ubb/communications" },
+                    { id: "ubb-landing",        label: "Landing Page",   path: "/ubb/landing-page" },
+                ],
+            },
+            { id: "founder-cockpit", label: "Founder Cockpit", path: "/build/cockpit" },
+            { id: "founder-cockpit-dashboard", label: "Enter the Cockpit", path: "/build/cockpit/dashboard" },
+            { id: "build-header-incubation", label: "Unique Startup Incubation", path: "", isHeader: true },
+            { id: "build-playbook",   label: "Playbook",                                path: "/playbook" },
+            { id: "build-path",       label: "Roadmap",                                 path: "/path" },
+            { id: "build-ignite",     label: "Productize Yourself Signature Workshop",   path: "/ignite" },
+            { id: "build-products",   label: "Products",                                path: "/products" },
+            { id: "build-dashboard",  label: "Dashboard",                               path: "/dashboard" },
+            { id: "build-holomap",    label: "Holomap",                                 path: "/holomap" },
         ],
     },
     // OFFER Space (was Marketplace)
@@ -427,13 +438,24 @@ export const STATIC_LABEL_KEYS: Record<string, { label: string; lockedHint?: str
         lockedHint: "rail.collaborate.missionGroups.lockedHint",
     },
     // BUILD space
-    "founder-cockpit": { label: "rail.build.founderCockpit.label" },
-    "ubb-v2": { label: "rail.build.avb.label" },
-    "build-path": { label: "rail.build.path.label" },
-    "build-playbook": { label: "rail.build.playbook.label" },
-    "build-dashboard": { label: "rail.build.dashboard.label" },
-    "build-ignite": { label: "rail.build.ignite.label" },
+    "build-header-founder-tools": { label: "rail.build.headerFounderTools.label" },
+    "build-header-incubation": { label: "rail.build.headerIncubation.label" },
     "equilibrium-v2": { label: "rail.build.equilibrium.label" },
+    "ubb-v2": { label: "rail.build.avb.label" },
+    "ubb-canvas": { label: "rail.build.ubbCanvas.label" },
+    "ubb-session": { label: "rail.build.ubbSession.label" },
+    "ubb-marketing": { label: "rail.build.ubbMarketing.label" },
+    "ubb-distribution": { label: "rail.build.ubbDistribution.label" },
+    "ubb-communications": { label: "rail.build.ubbCommunications.label" },
+    "ubb-landing": { label: "rail.build.ubbLanding.label" },
+    "founder-cockpit": { label: "rail.build.founderCockpit.label" },
+    "founder-cockpit-dashboard": { label: "rail.build.founderCockpitDashboard.label" },
+    "build-playbook": { label: "rail.build.playbook.label" },
+    "build-path": { label: "rail.build.path.label" },
+    "build-ignite": { label: "rail.build.ignite.label" },
+    "build-products": { label: "rail.build.products.label" },
+    "build-dashboard": { label: "rail.build.dashboard.label" },
+    "build-holomap": { label: "rail.build.holomap.label" },
     "build-karime": { label: "rail.build.karime.label" },
     // OFFER space
     overview: { label: "rail.offer.overview.label" },
@@ -523,60 +545,6 @@ interface SectionsPanelProps {
  * The Dossier is reachable from inside /ubb (as a publication exit),
  * not from pane 2 — it's an output, not a navigation peer.
  */
-/**
- * Day 53 night iter 3 (Sasha 2026-04-27): UBB phase rows now carry
- * live progress (e.g. "6/7" for Canvas) when the founder is inside
- * /ubb*. Progress is fed by `useCanvasProgressLite` — a targeted
- * Supabase fetch that only runs on /ubb routes. Outside /ubb the
- * `progress` field is undefined and rows render plain.
- *
- * Per-phase total is taken from the live data, not hardcoded — keeps
- * the row labels honest if `ALL_ARTIFACT_KEYS` ever shifts.
- */
-const buildUbbSections = (
-    progress: ReturnType<typeof useCanvasProgressLite>,
-): Section[] => {
-    // Day 65 wave 6 (Sasha 2026-05-15): BUILD pane 2 restructured.
-    // The six phase groups are no longer top-level rows — they're now
-    // sub-items disclosed under a single parent row "Automated Venture
-    // Builder" (matching the dropdown pattern used by ME → Top Talent
-    // and AI OS → Prompt Suites). Equilibrium joins as the second
-    // top-level row alongside AVB.
-    //
-    // Day 65 wave 7 (Sasha 2026-05-15): per-phase progress fractions
-    // (the "0/8", "0/3" right-aligned counts that used to render on
-    // each phase row) are now consolidated onto the AVB parent row
-    // as a single overall fraction (e.g., "3/19"). One signal at the
-    // level that matters; sub-rows stay clean. Total comes from
-    // useCanvasProgressLite's totalLocked + total.
-    const totalProgress =
-        progress && !progress.isLoading && progress.total > 0
-            ? { locked: progress.totalLocked, total: progress.total }
-            : undefined;
-
-    return [
-        {
-            id: "ubb-builder",
-            label: "Automated Venture Builder",
-            path: "/ubb",
-            progress: totalProgress,
-            subSections: [
-                { id: "ubb-canvas",         label: "Canvas",         path: "/ubb" },
-                { id: "ubb-session",        label: "1st Session",    path: "/ubb/session" },
-                { id: "ubb-marketing",      label: "Marketing",      path: "/ubb/marketing" },
-                { id: "ubb-distribution",   label: "Distribution",   path: "/ubb/distribution" },
-                { id: "ubb-communications", label: "Communications", path: "/ubb/communications" },
-                { id: "ubb-landing",        label: "Landing Page",   path: "/ubb/landing-page" },
-            ],
-        },
-        {
-            id: "equilibrium",
-            label: "Equilibrium",
-            path: "/build/equilibrium",
-        },
-    ];
-};
-
 /**
  * Day 56 (Sasha 2026-04-28): LEARN pane 2 sections.
  *
@@ -885,12 +853,6 @@ const SectionsPanel = ({
     const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
     const [userEmail, setUserEmail] = useState<string | null>(null);
 
-    // Day 53 night iter 3 (Sasha 2026-04-27): pane 2 phase progress.
-    // Hook returns null when not on /ubb*; only fires its Supabase fetch
-    // there. Drives the right-aligned "6/7" + thin gold progress bar on
-    // each UBB phase row.
-    const ubbProgress = useCanvasProgressLite();
-
     // Day 64 (Sasha 2026-05-07): deeper-Top-Talent-view gate for the
     // JOURNEY #5 ("Build a business off your top talent") soft-lock.
     // Same hook is consumed by GameShellV2 to gate the BUILD space
@@ -1064,41 +1026,12 @@ const SectionsPanel = ({
             };
         }
 
-        // BUILD ∩ /ubb → UBB phase groups (Canvas · Session · Marketing ·
-        // Distribution · Communications · Landing Page). When the user
-        // is anywhere inside the Unique Business Builder, pane 2 owns
-        // the phase-group navigation; pane 3 hosts the artifacts and
-        // their wizards. Outside /ubb, BUILD pane 2 falls back to the
-        // legacy build items (canvas/product-builder/my-business/refine)
-        // which still have live routes under /game/build/*. Sasha,
-        // Day 52 (2026-04-26).
-        //
-        // Day 80 Wave 2.20 (Sasha 2026-05-22): match-path exception.
-        // On the match path the BUILD pane is the lighter "methodology +
-        // graduation" view — Path / Playbook / Dashboard / Ignite +
-        // AVB top-level + Equilibrium. We do NOT override into the
-        // 6-phase canvas-builder nav even when the user has navigated
-        // into /ubb*, because the match-path user's BUILD destination
-        // is about discovering the methodology, not running the full
-        // canvas yet. Falls through to the static SPACE_SECTIONS.build
-        // below (Path/Playbook/Dashboard etc.) for match-path users.
-        //
-        // 2026-06-10 default flip note: this branch DELIBERATELY stays
-        // keyed on explicit `match` (not the new `!== "build"` funnel
-        // default). It serves users already standing on /ubb* — active
-        // UBB founders with no stored entry path — who need the 6-phase
-        // canvas nav. Only explicit `?path=match` outreach entries get
-        // the lighter methodology pane here.
-        if (
-            activeSpaceId === "build" &&
-            entryPath !== "match" &&
-            (location.pathname === "/ubb" || location.pathname.startsWith("/ubb/"))
-        ) {
-            return {
-                title: "BUILD",
-                sections: buildUbbSections(ubbProgress),
-            };
-        }
+        // Day 121 (Sasha 2026-07-13): BUILD is now ONE pane always — no
+        // more branching on location.pathname for /ubb*. The static
+        // SPACE_SECTIONS.build tree above (two header-grouped sections)
+        // renders unconditionally. The dynamic phase-nav swap (formerly
+        // here) and its `entryPath === "match"` exception are retired
+        // along with it.
 
         // Day 80 (Sasha 2026-05-23): Karime Kuri's in-platform offering
         // page. BUILD sidebar row appears only when:
@@ -1119,14 +1052,15 @@ const SectionsPanel = ({
                 label: "Karime's Unique Offer",
                 path: "/build/karime",
             };
-            // Insert between "Productize Yourself Session" and "Equilibrium"
-            // so it sits in the offer-cluster of the pane rather than at the
-            // top or bottom.
-            const igniteIdx = baseData.sections.findIndex(
-                (s) => s.id === "build-ignite",
+            // Day 121: Founder Tools / Unique Startup Incubation groups
+            // replaced the flat list — Karime's row now inserts after
+            // "Products", still inside the incubation group, still
+            // adjacent to the other offer-cluster rows.
+            const productsIdx = baseData.sections.findIndex(
+                (s) => s.id === "build-products",
             );
             const insertAt =
-                igniteIdx >= 0 ? igniteIdx + 1 : baseData.sections.length;
+                productsIdx >= 0 ? productsIdx + 1 : baseData.sections.length;
             return {
                 ...baseData,
                 sections: [
@@ -1351,6 +1285,32 @@ const SectionsPanel = ({
                     row from each locked item's 0-indexed position among
                     locked items. */}
                 {spaceData.sections.map((section) => {
+                    // Day 121 (Sasha 2026-07-13): non-interactive group
+                    // header row — label + hairline divider, no click
+                    // target, no active/locked state. Used by BUILD pane's
+                    // two-group layout ("Founder Tools" / "Unique Startup
+                    // Incubation"). Bail out of the rest of the per-row
+                    // logic entirely; headers don't participate in
+                    // expand/active/fog calculations.
+                    if (section.isHeader) {
+                        return (
+                            <div
+                                key={section.id}
+                                className="px-4 pt-4 pb-1 first:pt-2"
+                            >
+                                <div
+                                    className="text-[11px] uppercase tracking-[0.14em] mb-1.5"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        color: "var(--skin-sections-text-muted, rgba(255, 255, 255, 0.45))",
+                                    }}
+                                >
+                                    {section.label}
+                                </div>
+                                <div className="h-px bg-gradient-to-r from-[#d4af37]/30 via-[#d4af37]/10 to-transparent" />
+                            </div>
+                        );
+                    }
                     const hasSubSections = section.subSections && section.subSections.length > 0;
                     // Day 58 (Sasha 2026-05-02 evening): default to "expanded
                     // when there's an active child" so the dropdown opens
@@ -1363,12 +1323,22 @@ const SectionsPanel = ({
                     // collapsed even when on a sub-route. The dropdown
                     // is only auto-opened by the one-shot useEffect
                     // above (first ME visit after deepProfileActivated
-                    // flips true). Other sections (AI OS Suites, UBB
-                    // phases, LEARN paths) keep the hasActiveChild
-                    // auto-expand so they pop open when the user lands
-                    // on a relevant sub-route.
+                    // flips true). Other sections (AI OS Suites, LEARN
+                    // paths) keep the hasActiveChild auto-expand so they
+                    // pop open when the user lands on a relevant sub-route.
+                    //
+                    // Day 121 (Sasha 2026-07-13): BUILD's Automated Venture
+                    // Builder parent joins the same exception. Now that
+                    // BUILD is one always-on pane, landing anywhere under
+                    // /ubb/* would otherwise auto-pop the dropdown open on
+                    // every visit — noisy for a pane the user sees constantly.
+                    // Collapsed by default; the user can still expand it
+                    // manually (their toggle still overrides via
+                    // `expandedSections`).
                     const defaultExpanded =
-                        section.id === "top-talent" ? false : hasActiveChild;
+                        section.id === "top-talent" || activeSpaceId === "build"
+                            ? false
+                            : hasActiveChild;
                     const isExpanded = expandedSections[section.id] ?? defaultExpanded;
                     // Day 52 (Sasha 2026-04-26): when sibling sections share a
                     // common path prefix (e.g. UBB pane 2: /ubb, /ubb/session,

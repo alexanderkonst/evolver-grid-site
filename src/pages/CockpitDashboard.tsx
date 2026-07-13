@@ -21,6 +21,7 @@ import {
   Zap,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { isAdminEmail } from "@/lib/isAdmin";
 import {
   applyEquilibriumAiChanges,
   cockpitLenses,
@@ -116,6 +117,18 @@ const actionCards: Array<{
 ];
 
 export default function CockpitDashboard() {
+  // Founder-only data (crm/pulse snapshots, AI lenses, Founder Pulse briefs) is
+  // gated behind this flag. Non-admin users see the same instrument shell with
+  // graceful empty states instead of Sasha's build-time snapshots.
+  const [isFounder, setIsFounder] = useState(false);
+
+  useEffect(() => {
+    void (async () => {
+      const { data } = await supabase.auth.getUser();
+      setIsFounder(isAdminEmail(data.user?.email));
+    })();
+  }, []);
+
   const [activeAction, setActiveAction] = useState<CockpitAction>("leverage");
   const [equilibrium, setEquilibrium] = useState<EquilibriumContext | null>(null);
   const [loading, setLoading] = useState(true);
@@ -204,9 +217,12 @@ export default function CockpitDashboard() {
   };
 
   useEffect(() => {
-    void loadOfferCadence();
+    // offer_pulses is admin-only RLS (cockpit is a founder surface for this
+    // metric); skip the fetch entirely for non-admins to avoid a failed
+    // request / silently-empty table state.
+    if (isFounder) void loadOfferCadence();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isFounder]);
 
   const loadContext = async () => {
     setLoading(true);
@@ -375,6 +391,39 @@ export default function CockpitDashboard() {
   };
 
   const model = useMemo(() => {
+    // Sasha's committed build-time crm/pulse snapshots (and the hardcoded
+    // relationship copy below, e.g. "Oyi", "Ariana", "$4K now") are
+    // founder-only. Non-admins get a generic, empty-safe placeholder command
+    // set instead — never his data, never his named relationships.
+    if (!isFounder) {
+      const placeholderCommand = {
+        eyebrow: "Founder Cockpit",
+        title: "Fills in as you build your venture.",
+        body: "This instrument populates once you have relationships, pulses, and Equilibrium data of your own.",
+        bullets: ["N/A — fills in as you build your venture."],
+      };
+      const command = {
+        movement: placeholderCommand,
+        followups: placeholderCommand,
+        bottlenecks: placeholderCommand,
+        leverage: placeholderCommand,
+      } satisfies Record<CockpitAction, { eyebrow: string; title: string; body: string; bullets: string[] }>;
+
+      return {
+        latest: undefined as typeof pulseSnapshot.latestEvent,
+        command,
+        mission:
+          equilibrium?.state?.mission_override_text ??
+          "Help humanity evolve into conscious coordination through unique-value clarity.",
+        strategy:
+          equilibrium?.strategies?.[0]?.text ??
+          "Fills in as you build your venture.",
+        nextMove: "Choose the next move that is alive enough to do now.",
+        openActions: equilibrium?.focus_tasks ?? [],
+        topFocus: equilibrium?.summary?.top_next_actions ?? [],
+      };
+    }
+
     const latest = pulseSnapshot.latestEvent;
     const openActions = pulseSnapshot.openNextActions ?? [];
     const stageEntries = Object.entries(crmSnapshot.stageDistribution ?? {})
@@ -450,7 +499,7 @@ export default function CockpitDashboard() {
       openActions,
       topFocus,
     };
-  }, [equilibrium]);
+  }, [equilibrium, isFounder]);
 
   const instruments: Array<{
     label: string;
@@ -475,15 +524,19 @@ export default function CockpitDashboard() {
     },
     {
       label: "Opportunity Field",
-      value: `${crmSnapshot.openItemsCount ?? 0}`,
-      signal: "Open loops need classification by cash, proof, infrastructure, optionality.",
+      value: isFounder ? `${crmSnapshot.openItemsCount ?? 0}` : "N/A",
+      signal: isFounder
+        ? "Open loops need classification by cash, proof, infrastructure, optionality."
+        : "Fills in as you build your venture.",
       icon: Radar,
       tone: "blue",
     },
     {
       label: "Energy Ledger",
-      value: `$${crmSnapshot.cashReceivedUsd ?? 0}`,
-      signal: `${crmSnapshot.energyLeakCount ?? 0} marked leaks; $${crmSnapshot.revShareContractsUsd ?? 0} rev-share pending.`,
+      value: isFounder ? `$${crmSnapshot.cashReceivedUsd ?? 0}` : "N/A",
+      signal: isFounder
+        ? `${crmSnapshot.energyLeakCount ?? 0} marked leaks; $${crmSnapshot.revShareContractsUsd ?? 0} rev-share pending.`
+        : "Fills in as you build your venture.",
       icon: Waves,
       tone: "rose",
     },
@@ -575,15 +628,17 @@ export default function CockpitDashboard() {
                   {kind === "daily" ? "Daily" : "Weekly"}
                 </button>
               ))}
-              <button
-                type="button"
-                onClick={() => void generatePulse(activePulseKind)}
-                disabled={pulseGenKind !== null}
-                className="inline-flex items-center gap-2 rounded-full border border-[#4ecdc4]/35 bg-[#071d1d] px-3 py-1 text-xs text-[#93f0e8] transition hover:border-[#93f0e8]/70 disabled:opacity-60"
-              >
-                {pulseGenKind ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Zap className="h-3.5 w-3.5" />}
-                Pulse now
-              </button>
+              {isFounder && (
+                <button
+                  type="button"
+                  onClick={() => void generatePulse(activePulseKind)}
+                  disabled={pulseGenKind !== null}
+                  className="inline-flex items-center gap-2 rounded-full border border-[#4ecdc4]/35 bg-[#071d1d] px-3 py-1 text-xs text-[#93f0e8] transition hover:border-[#93f0e8]/70 disabled:opacity-60"
+                >
+                  {pulseGenKind ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Zap className="h-3.5 w-3.5" />}
+                  Pulse now
+                </button>
+              )}
             </div>
           </div>
 
@@ -594,6 +649,13 @@ export default function CockpitDashboard() {
           )}
 
           {(() => {
+            if (!isFounder) {
+              return (
+                <p className="text-sm leading-6 text-[#9ea7b3]">
+                  Your pulse fills in as your venture grows.
+                </p>
+              );
+            }
             const brief = pulseBriefs[activePulseKind];
             if (!brief) {
               return (
@@ -645,7 +707,11 @@ export default function CockpitDashboard() {
             </span>
           </div>
 
-          {!offerTableReady ? (
+          {!isFounder ? (
+            <p className="rounded-lg border border-white/10 bg-[#07090d] p-4 text-sm leading-6 text-[#9ea7b3]">
+              Fills in as you build your venture.
+            </p>
+          ) : !offerTableReady ? (
             <p className="rounded-lg border border-[#f0a37a]/35 bg-[#24100d] p-3 text-sm text-[#ffc0a5]">
               offer_pulses table not deployed yet — run the pending migration via Lovable, then refresh.
             </p>
@@ -717,7 +783,7 @@ export default function CockpitDashboard() {
             <div className="mb-4 flex items-center justify-between gap-3">
               <p className="text-xs uppercase tracking-[0.18em] text-[#d6a84d]">Center Screen · Living Venture</p>
               <span className="rounded-full border border-[#4ecdc4]/30 bg-[#071d1d] px-3 py-1 text-xs text-[#93f0e8]">
-                {pulseSnapshot.latestEvent?.phase_shift_significance ?? "unscored"}
+                {isFounder ? pulseSnapshot.latestEvent?.phase_shift_significance ?? "unscored" : "N/A"}
               </span>
             </div>
             <div className="grid min-h-[230px] place-items-center rounded-xl border border-white/10 bg-[radial-gradient(circle_at_center,rgba(214,168,77,0.22),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-5">
@@ -753,7 +819,7 @@ export default function CockpitDashboard() {
                   ))}
                 </div>
                 <p className="mt-5 text-center font-serif text-2xl text-[#fff7e8]">
-                  {pulseSnapshot.latestEvent?.title ?? "Awaiting next pulse"}
+                  {isFounder ? pulseSnapshot.latestEvent?.title ?? "Awaiting next pulse" : "Fills in as you build your venture"}
                 </p>
               </div>
             </div>
@@ -841,34 +907,40 @@ export default function CockpitDashboard() {
                 </div>
               ))}
             </div>
-            <div className="mt-5 flex flex-wrap items-center gap-3">
-              <button
-                type="button"
-                onClick={() => void runPrimaryRead()}
-                disabled={primaryLoading}
-                className="inline-flex h-10 items-center gap-2 rounded-full border border-[#d6a84d]/35 bg-[#15100a] px-4 text-sm font-medium text-[#f6d58a] transition hover:border-[#f6d58a]/70 disabled:cursor-wait disabled:opacity-65"
-              >
-                {primaryLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <BrainCircuit className="h-4 w-4" />}
-                Run live AI read
-              </button>
-              <button
-                type="button"
-                onClick={() => void copyPrimaryMarkdown()}
-                disabled={!primaryResult}
-                className="inline-flex h-10 items-center gap-2 rounded-full border border-white/10 bg-[#07090d] px-4 text-sm font-medium text-[#cfc4b5] transition hover:border-[#d6a84d]/45 disabled:cursor-not-allowed disabled:opacity-45"
-              >
-                <Copy className="h-4 w-4" />
-                {primaryCopied ? "Copied" : "Copy read"}
-              </button>
-            </div>
+            {isFounder ? (
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => void runPrimaryRead()}
+                  disabled={primaryLoading}
+                  className="inline-flex h-10 items-center gap-2 rounded-full border border-[#d6a84d]/35 bg-[#15100a] px-4 text-sm font-medium text-[#f6d58a] transition hover:border-[#f6d58a]/70 disabled:cursor-wait disabled:opacity-65"
+                >
+                  {primaryLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <BrainCircuit className="h-4 w-4" />}
+                  Run live AI read
+                </button>
+                <button
+                  type="button"
+                  onClick={() => void copyPrimaryMarkdown()}
+                  disabled={!primaryResult}
+                  className="inline-flex h-10 items-center gap-2 rounded-full border border-white/10 bg-[#07090d] px-4 text-sm font-medium text-[#cfc4b5] transition hover:border-[#d6a84d]/45 disabled:cursor-not-allowed disabled:opacity-45"
+                >
+                  <Copy className="h-4 w-4" />
+                  {primaryCopied ? "Copied" : "Copy read"}
+                </button>
+              </div>
+            ) : (
+              <p className="mt-5 rounded-xl border border-white/10 bg-[#07090d] p-4 text-sm leading-6 text-[#9ea7b3]">
+                N/A — available as your venture data grows.
+              </p>
+            )}
 
-            {primaryError && (
+            {isFounder && primaryError && (
               <p className="mt-4 rounded-xl border border-[#f0a37a]/30 bg-[#24100d] p-3 text-sm leading-6 text-[#ffc0a5]">
                 {primaryError}
               </p>
             )}
 
-            {primaryResult && (
+            {isFounder && primaryResult && (
               <div className="mt-4 space-y-3 rounded-xl border border-[#4ecdc4]/25 bg-[#071d1d] p-4">
                 <p className="text-xs uppercase tracking-[0.14em] text-[#93f0e8]">Live AI Read</p>
                 <h3 className="font-serif text-2xl leading-tight text-[#fff7e8]">{primaryResult.title}</h3>
@@ -888,6 +960,26 @@ export default function CockpitDashboard() {
           </section>
         </div>
 
+        {!isFounder ? (
+          <div className="mt-5 grid gap-4 lg:grid-cols-[0.85fr_1.15fr]">
+            <section className="rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5">
+              <p className="mb-4 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-[#d6a84d]">
+                <BrainCircuit className="h-4 w-4" />
+                AI Lens Lab
+              </p>
+              <p className="rounded-xl border border-white/10 bg-[#07090d] p-5 text-sm leading-6 text-[#9ea7b3]">
+                N/A — available as your venture data grows.
+              </p>
+            </section>
+            <section className="rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5">
+              <p className="text-xs uppercase tracking-[0.18em] text-[#d6a84d]">Review Screen</p>
+              <h2 className="mt-2 font-serif text-3xl leading-tight text-[#fff7e8]">Fills in as you build your venture.</h2>
+              <p className="mt-4 rounded-xl border border-white/10 bg-[#07090d] p-5 text-sm leading-6 text-[#9ea7b3]">
+                N/A — available as your venture data grows.
+              </p>
+            </section>
+          </div>
+        ) : (
         <div className="mt-5 grid gap-4 lg:grid-cols-[0.85fr_1.15fr]">
           <section className="rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5">
             <p className="mb-4 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-[#d6a84d]">
@@ -1061,6 +1153,7 @@ export default function CockpitDashboard() {
             )}
           </section>
         </div>
+        )}
 
         <footer className="mt-5 grid gap-4 lg:grid-cols-[1fr_1fr]">
           <section className="rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5">
@@ -1069,8 +1162,8 @@ export default function CockpitDashboard() {
               Context Feed
             </p>
             <div className="grid gap-3 text-sm text-[#cfc4b5] sm:grid-cols-3">
-              <p>Pulse: <span className="text-[#fff7e8]">{formatDate(pulseSnapshot.generated_at)}</span></p>
-              <p>CRM: <span className="text-[#fff7e8]">{formatDate(crmSnapshot.generated_at)}</span></p>
+              <p>Pulse: <span className="text-[#fff7e8]">{isFounder ? formatDate(pulseSnapshot.generated_at) : "N/A"}</span></p>
+              <p>CRM: <span className="text-[#fff7e8]">{isFounder ? formatDate(crmSnapshot.generated_at) : "N/A"}</span></p>
               <p>Equilibrium: <span className={error ? "text-[#ffc0a5]" : "text-[#fff7e8]"}>{error ? "not loaded" : formatDate(equilibrium?.generated_at)}</span></p>
             </div>
             {error && (
