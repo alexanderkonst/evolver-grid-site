@@ -30,7 +30,7 @@ import SoundCloudMinimalPlayer from "@/components/SoundCloudMinimalPlayer";
 // Mobile (rail compressed to 72px) uses the standalone torus image
 // — the wordmark would crop off on a 72px column, so a dedicated
 // mark-only asset is cleaner.
-import brandLogo from "@/assets/find-your-top-talent-lockup-v2.webp";
+import brandLogo from "@/assets/you-be-original-main-lockup.webp"; // Day 123 (Sasha 2026-07-13): main brand -> YOU be original
 // Day 119 (Sasha 2026-07-09): mark-only brand logo swapped from the
 // torus to the ORIGINAL octahedron-in-sphere (the canonical Prime
 // Attractor artifact — docs/assets/canonical-artifact/). The wordmark
@@ -680,7 +680,7 @@ const SpacesRail = ({
                             {/* Desktop: full wordmark — breath only. */}
                             <img
                                 src={brandLogo}
-                                alt="Find Your Top Talent"
+                                alt="YOU — be original."
                                 className="hidden md:block h-auto object-contain brand-breath"
                                 style={{ width: "89%", marginLeft: "8px" }}
                                 draggable={false}
