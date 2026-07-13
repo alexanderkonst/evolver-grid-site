@@ -222,8 +222,12 @@ const SPACES: SpaceItem[] = [
         path: "/game/learn",
     },
     {
+        // Day 121 (Sasha 2026-07-13): renamed BUILD -> "BUILT BY YOU" —
+        // labelKey unchanged (spacesRail.build), only the translated
+        // string changes (see locale files). Rail chip text is
+        // t(labelKey), not this `label` field (English fallback only).
         id: "build",
-        label: "BUILD",
+        label: "BUILT BY YOU",
         labelKey: "spacesRail.build",
         icon: <GlyphIcon glyph="⬢" color="hsl(45, 90%, 62%)" size={32} />,
         // Day 52 (Sasha 2026-04-26): BUILD chip lands on the Unique
