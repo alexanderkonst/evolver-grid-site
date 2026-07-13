@@ -5208,7 +5208,7 @@
       "h2": "En 6–8 semanas.",
       "guarantee": "Garantía de devolución del dinero.",
       "fineprint": "Siempre que hagas tu parte.",
-      "shelfLine": "Estrategia de posicionamiento del próximo capítulo para founders · Formación en MIT"
+      "shelfLine": "Estrategia de posicionamiento del próximo capítulo para founders, de un founder con formación en MIT"
     },
     "ladder": {
       "payAsYouProgress": "Paga a medida que avanzas",
@@ -5426,9 +5426,9 @@
   "ignite": {
     "alreadyPaidLink": "¿Ya pagaste? Reserva tu sesión aquí →",
     "videoLoading": "Cargando…",
-    "heroTitle": "Sal con un negocio en una sola frase",
+    "heroTitle": "Llévate un negocio en una sola frase",
     "heroSubA": "En 2 horas",
-    "heroSubB": "O no pagas",
+    "heroSubB": "O corre por mi cuenta",
     "ctaGetBusiness": "Consigue mi negocio en una frase — $555",
     "clarityLinkHero": "¿Aún no lo tienes claro? Dedica 20 min — una primera lectura de tu situación, gratis →",
     "leaveWithLabel": "Con qué sales",
@@ -5454,7 +5454,7 @@
     "sectionBook": "Reserva tu sesión",
     "sectionAlternatesFaq": "Alternativas y preguntas frecuentes",
     "sectionMethodologyVideo": "Vídeo de la metodología",
-    "shelfLine": "Estrategia de posicionamiento del próximo capítulo para founders · Formación en MIT"
+    "shelfLine": "Estrategia de posicionamiento del próximo capítulo para founders, de un founder con formación en MIT"
   },
   "geniusBusiness": {
     "loading": "Cargando...",

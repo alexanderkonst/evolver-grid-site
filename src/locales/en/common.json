@@ -167,9 +167,9 @@
   "ignite": {
     "alreadyPaidLink": "Already paid? Book your session here →",
     "videoLoading": "Loading…",
-    "heroTitle": "Walk out with a one-sentence business",
+    "heroTitle": "Leave with a one-sentence business",
     "heroSubA": "In 2 hours",
-    "heroSubB": "Or you don't pay",
+    "heroSubB": "Or it's on me",
     "ctaGetBusiness": "Get my one-sentence business — $555",
     "clarityLinkHero": "Not sure yet? Take 20 min — a first read on your situation, free →",
     "leaveWithLabel": "What you leave with",
@@ -195,7 +195,7 @@
     "sectionBook": "Book your session",
     "sectionAlternatesFaq": "Alternates and FAQ",
     "sectionMethodologyVideo": "Methodology video",
-    "shelfLine": "Next-chapter positioning strategy for founders · MIT-trained"
+    "shelfLine": "Next-chapter positioning strategy for founders, from an MIT-trained founder"
   },
   "auth": {
     "emailRequiredTitle": "Email required",
@@ -2706,7 +2706,7 @@
       "h2": "In 6–8 Weeks.",
       "guarantee": "Money-Back Guaranteed.",
       "fineprint": "Provided you do your part.",
-      "shelfLine": "Next-chapter positioning strategy for founders · MIT-trained"
+      "shelfLine": "Next-chapter positioning strategy for founders, from an MIT-trained founder"
     },
     "ladder": {
       "payAsYouProgress": "Pay as you progress",
@@ -6919,7 +6919,7 @@
     "card1": {
       "name": "Productize Yourself Session",
       "badge": "$555",
-      "line": "Next-chapter positioning strategy for founders. MIT-trained.",
+      "line": "Next-chapter positioning strategy for founders, from an MIT-trained founder.",
       "body": "One working session. We take what you already know about yourself and turn it into exact words: what you offer, to whom, and why you. You leave with language precise enough to price, pitch, and build on.",
       "cta": "Book the session"
     },
