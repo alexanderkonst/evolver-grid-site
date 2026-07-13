@@ -183,7 +183,10 @@ const IgniteSession = () => {
 
   useEffect(() => {
     const previousTitle = document.title;
-    document.title = "You've Been Giving Your Best Work Away for Free — Productize Yourself Session";
+    // Day 123 (Sasha 2026-07-13): tab title harmonized to the hero's
+    // being-wanted register — the old shame-hook headline contradicted
+    // the page it opened.
+    document.title = "Leave with a One-Sentence Business — Productize Yourself Session";
     trackPageView('ignite_view');
     return () => { document.title = previousTitle; };
   }, []);
