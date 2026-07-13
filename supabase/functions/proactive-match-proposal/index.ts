@@ -28,9 +28,17 @@ const corsHeaders = {
         "authorization, x-client-info, apikey, content-type",
 };
 
-const FROM_ADDRESS =
-    "Find Your Top Talent <notifications@notify.findyourtoptalent.com>";
 const SITE_URL = Deno.env.get("SITE_URL") || "https://findyourtoptalent.com";
+
+// Sender identity. SENDER_NAME is the human-facing brand shown in the
+// From line and the email signoff — swap in one place if the brand name
+// changes (Day 121: under review — Find Your Top Talent vs an ecosystem
+// / matchmaker-persona name).
+const SENDER_NAME = "Find Your Top Talent";
+const FROM_ADDRESS =
+    `${SENDER_NAME} <notifications@notify.findyourtoptalent.com>`;
+// Hosted brand mark for the email header (updated with the Jul 10 logo).
+const LOGO_URL = `${SITE_URL}/apple-touch-icon.png`;
 
 // Max users processed per invocation. Keeps background wall-clock bounded.
 // At current scale (dozens) this never bites; beyond it, add self-chaining.
@@ -691,7 +699,11 @@ MATERIAL from the matching engine (use the specifics; do not restate them generi
 - Suggested first step: ${rawFirstStep || "(none given)"}
 - Why now: ${rawWhyNow || "(none given)"}
 Return ONLY JSON: {"subject": "...", "gift": "...", "firstStep": "...", "whyNow": "..."}.
-Rules: subject = max 55 characters, contains ${B}'s first name, states ONE concrete benefit drawn from the material, no colon-cleverness, no emoji. gift = ONE sentence, max 22 words, second person to ${A}, names a SPECIFIC thing ${B} can do for them drawn from the material (not "build something new together", not "a co-branded program"). firstStep = ONE sentence, a small sized action. whyNow = ONE sentence grounded in the specific material above. Plain human words. Every sentence must reference something concrete from the material. If a field is "(none given)", infer from the archetype, never pad with generic phrases like "this person can help you" or "shared intellectual property". No em-dashes. No exclamation marks. No hype adjectives. No hedging.`;
+Rules: subject = max 55 characters, contains ${B}'s first name, states ONE concrete benefit drawn from the material, no colon-cleverness, no emoji. gift = ONE sentence, max 22 words, second person to ${A}, names a SPECIFIC thing ${B} can do for them drawn from the material (not "build something new together", not "a co-branded program"). firstStep = ONE sentence, a small sized action. whyNow = ONE sentence grounded in the specific material above. Plain human words. Every sentence must reference something concrete from the material. If a field is "(none given)", infer from the archetype, never pad with generic phrases like "this person can help you" or "shared intellectual property". No em-dashes. No exclamation marks. No hype adjectives. No hedging.
+HARD BANS (these ruin the email):
+- The subject must name a CONCRETE domain or thing, never an abstract noun. Ban the words "potential", "latent", "opportunities", "synergy", "value-add", "growth" in the subject. "Nia can spot overlooked value in your product line" is good; "Nia can help you name latent potential" is bad.
+- Do NOT reuse the same key noun in more than one of the four fields. If "framework" appears once, it cannot appear again anywhere.
+- Ban the generic container words "framework", "cohort", "workshop", "series", "program", "initiative" UNLESS that exact word appears in the MATERIAL above. Name the real thing instead (a methodology, a course, a joint offer, a shared client, a co-written piece).`;
 
         const resp = await fetch(
             "https://ai.gateway.lovable.dev/v1/chat/completions",
@@ -765,9 +777,11 @@ function renderProposalHtml(args: EmailArgs): string {
     const greeting = recipientFirstName ? `Hi ${escapeHtml(recipientFirstName)},` : "Hi,";
     const arch = (otherArchetype || "").replace(/[✦★☆✧⬥◇◆⟐]/g, "").trim();
     const nameB = escapeHtml(otherFirstName || "someone new");
+    // Headline is just the person; the gold eyebrow above carries the
+    // "your introduction this week" framing, so no repetition here.
     const introLine = arch
-        ? `One introduction this week: <strong>${nameB}</strong>, ${escapeHtml(arch)}.`
-        : `One introduction this week: <strong>${nameB}</strong>.`;
+        ? `<strong>${nameB}</strong>, ${escapeHtml(arch)}.`
+        : `<strong>${nameB}</strong>.`;
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -776,51 +790,61 @@ function renderProposalHtml(args: EmailArgs): string {
 <title>An introduction</title>
 </head>
 <body style="margin:0;padding:0;background:#f5f1e8;font-family:'Source Serif 4', Georgia, serif;">
-  <div style="max-width:600px;margin:0 auto;padding:40px 24px;">
-    <div style="background:rgba(255, 252, 245, 0.95);border:0.5px solid rgba(212, 175, 55, 0.55);border-radius:16px;padding:36px 28px;box-shadow:0 12px 32px -16px rgba(10, 22, 40, 0.18), 0 0 22px -8px rgba(212, 175, 55, 0.30);">
-      <p style="margin:0 0 16px 0;font-family:'Source Serif 4', Georgia, serif;font-weight:600;font-size:15.5px;line-height:1.6;color:#0b2a5a;">
+  <div style="max-width:560px;margin:0 auto;padding:32px 24px;">
+    <!-- Brand header -->
+    <div style="text-align:center;margin:0 0 24px 0;">
+      <img src="${LOGO_URL}" width="46" height="46" alt="${escapeHtml(SENDER_NAME)}" style="display:inline-block;border-radius:10px;" />
+    </div>
+    <div style="background:#fffdf7;border:1px solid rgba(212, 175, 55, 0.45);border-radius:18px;padding:38px 32px;box-shadow:0 14px 40px -20px rgba(10, 22, 40, 0.22);">
+      <p style="margin:0 0 18px 0;font-family:'Source Serif 4', Georgia, serif;font-weight:600;font-size:16px;line-height:1.6;color:#0b2a5a;">
         ${greeting}
       </p>
-      <p style="margin:0 0 22px 0;font-family:'Source Serif 4', Georgia, serif;font-weight:500;font-size:15px;line-height:1.65;color:#0b2a5a;">
-        ${introLine}
+      <p style="margin:0 0 20px 0;font-family:'DM Sans', system-ui, sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#b8860b;">
+        Your introduction this week
       </p>
-      <p style="margin:0 0 24px 0;font-family:'Source Serif 4', Georgia, serif;font-weight:600;font-size:16.5px;line-height:1.6;color:#0b2a5a;">
-        ${escapeHtml(giftLine)}
-      </p>
-      <p style="margin:0 0 6px 0;font-family:'DM Sans', system-ui, sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#5d4307;">
+      <!-- Hero: the gift line, with a gold accent rule -->
+      <div style="border-left:3px solid #d4af37;padding-left:18px;margin:0 0 26px 0;">
+        <p style="margin:0 0 6px 0;font-family:'Cormorant Garamond', Georgia, serif;font-weight:700;font-size:22px;line-height:1.25;color:#0b2a5a;">
+          ${introLine}
+        </p>
+        <p style="margin:0;font-family:'Source Serif 4', Georgia, serif;font-weight:600;font-size:16.5px;line-height:1.55;color:#0b2a5a;">
+          ${escapeHtml(giftLine)}
+        </p>
+      </div>
+      <p style="margin:0 0 5px 0;font-family:'DM Sans', system-ui, sans-serif;font-size:10.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#b8860b;">
         First step
       </p>
-      <p style="margin:0 0 20px 0;font-family:'Source Serif 4', Georgia, serif;font-weight:500;font-size:15px;line-height:1.65;color:#0b2a5a;">
+      <p style="margin:0 0 20px 0;font-family:'Source Serif 4', Georgia, serif;font-weight:500;font-size:15px;line-height:1.6;color:#243b63;">
         ${escapeHtml(firstStep)}
       </p>
-      <p style="margin:0 0 6px 0;font-family:'DM Sans', system-ui, sans-serif;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#5d4307;">
+      <p style="margin:0 0 5px 0;font-family:'DM Sans', system-ui, sans-serif;font-size:10.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#b8860b;">
         Why now
       </p>
-      <p style="margin:0 0 28px 0;font-family:'Source Serif 4', Georgia, serif;font-weight:500;font-size:15px;line-height:1.65;color:#0b2a5a;">
+      <p style="margin:0 0 30px 0;font-family:'Source Serif 4', Georgia, serif;font-weight:500;font-size:15px;line-height:1.6;color:#243b63;">
         ${escapeHtml(whyNow)}
       </p>
-      <table role="presentation" style="margin:0 auto;border-collapse:separate;border-spacing:12px 0;">
+      <table role="presentation" style="margin:0 auto;border-collapse:separate;border-spacing:10px 0;">
         <tr>
           <td>
-            <a href="${escapeHtml(consentUrl)}" style="display:inline-block;background:linear-gradient(135deg, #b8860b, #7a5108);color:#fffdf6;padding:14px 22px;border-radius:999px;font-family:'DM Sans', system-ui, sans-serif;font-size:13px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;box-shadow:0 6px 18px -6px rgba(122, 81, 8, 0.5);">
+            <a href="${escapeHtml(consentUrl)}" style="display:inline-block;background:linear-gradient(135deg, #c79a2e, #7a5108);color:#fffdf6;padding:15px 26px;border-radius:999px;font-family:'DM Sans', system-ui, sans-serif;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;box-shadow:0 8px 20px -6px rgba(122, 81, 8, 0.55);">
               Yes, introduce us
             </a>
           </td>
           <td>
-            <a href="${escapeHtml(declineUrl)}" style="display:inline-block;background:transparent;color:#0b2a5a;padding:14px 22px;border-radius:999px;border:1px solid rgba(11, 42, 90, 0.30);font-family:'DM Sans', system-ui, sans-serif;font-size:13px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">
+            <a href="${escapeHtml(declineUrl)}" style="display:inline-block;background:transparent;color:#5a6b8a;padding:15px 22px;border-radius:999px;border:1px solid rgba(36, 59, 99, 0.22);font-family:'DM Sans', system-ui, sans-serif;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;">
               Not this one
             </a>
           </td>
         </tr>
       </table>
-      <p style="margin:32px 0 0 0;font-family:'Source Serif 4', Georgia, serif;font-weight:500;font-style:italic;font-size:13.5px;line-height:1.55;color:rgba(11, 42, 90, 0.62);text-align:center;">
-        One proposal a week, only when it's strong. No response needed.
-      </p>
-      <hr style="margin:28px 0;border:0;border-top:0.5px solid rgba(212, 175, 55, 0.30);" />
-      <p style="margin:0;font-family:'Source Serif 4', Georgia, serif;font-weight:500;font-style:italic;font-size:13px;line-height:1.55;color:rgba(11, 42, 90, 0.70);">
-        Find Your Top Talent
-      </p>
     </div>
+    <!-- Footer, outside the card -->
+    <p style="margin:22px 0 0 0;font-family:'Source Serif 4', Georgia, serif;font-weight:500;font-size:13px;line-height:1.55;color:rgba(11, 42, 90, 0.55);text-align:center;">
+      One introduction a week. Yours to take or leave.
+    </p>
+    <p style="margin:8px 0 0 0;font-family:'DM Sans', system-ui, sans-serif;font-size:12px;font-weight:600;letter-spacing:0.06em;color:rgba(11, 42, 90, 0.7);text-align:center;">
+      ${escapeHtml(SENDER_NAME)}
+    </p>
   </div>
 </body>
 </html>`;
@@ -865,9 +889,9 @@ ${declineUrl}
 
 ─────────────────────────
 
-One proposal a week, only when it's strong. No response needed.
+One introduction a week. Yours to take or leave.
 
-Find Your Top Talent
+${SENDER_NAME}
 `;
 }
 
