@@ -193,6 +193,18 @@ const ProfileAssetsSection = () => {
         setEditCategoryId("");
     }, []);
 
+    const reload = useCallback(async () => {
+        setIsReloading(true);
+        try {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) return;
+            const assets = await loadAndSyncAssets(user.id);
+            setSavedAssets(assets);
+        } finally {
+            setIsReloading(false);
+        }
+    }, []);
+
     const handleSaveEdit = useCallback(async () => {
         if (!editTarget?.id || !editTitle.trim()) return;
         setIsSavingEdit(true);
