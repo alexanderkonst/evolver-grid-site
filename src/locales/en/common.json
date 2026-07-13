@@ -174,20 +174,20 @@
     "clarityLinkHero": "Not sure yet? Take 20 min — a first read on your situation, free →",
     "leaveWithLabel": "What you leave with",
     "leaveWith1": "The \"not-ready\" loop named and cleared.",
-    "leaveWith2": "Your purpose and mission, demystified and defined.",
+    "leaveWith2": "Your purpose and mission, finally in plain words.",
     "leaveWith3": "Your lifelong pattern compressed to one sentence: your one-sentence business.",
     "leaveWith4": "Your magnetic story, a usable bio, and a single landing page that holds it all.",
     "leaveWithConvergence": "The rare part isn't any one of them. It's getting all of it in a single sitting, instead of buying fragments from coaches and consultants over years.",
     "leaveWithDisclaimer": "A 2-hour working session that produces a landing page for your business.",
     "priceAttribution": "2 hours · one-on-one working session",
     "guarantee": "If you don't leave with a one-sentence business you recognize as yours: you don't pay.",
-    "resonancePermission": "If your heart isn't resonating with this, don't sign up. This works because people come when they're ready — not when they're pressured or manipulated.",
+    "resonancePermission": "If your heart isn't resonating with this, don't sign up. This works because people come when they're ready, not when they're pressured or manipulated.",
     "ctaBookSession": "Book my session — $555",
     "clarityLinkFooter": "Not sure yet? 20 min — a first read on your situation, free. →",
     "faq1Q": "What if I don't know my top talent yet?",
-    "faq1A": "Everyone has one. You can't see yours because it's been YOU your whole life — too natural to notice. The session names what's already there and turns it into a one-sentence business people will actually pay for.",
+    "faq1A": "Everyone has one. You can't see yours because it's been YOU your whole life, too natural to notice. The session names what's already there and turns it into a one-sentence business people will actually pay for. It's what happened for every one of the clients quoted below.",
     "faq2Q": "What if there's no actual business in what I do?",
-    "faq2A": "Every top talent is monetizable — nature doesn't waste them. If yours exists, it's because it's useful, helpful, and valuable to other people. The only question is how it translates into something they'll pay for. The session names the three pieces (what you do, who pays for it, why) and pulls them into one sentence.",
+    "faq2A": "Every top talent is monetizable. Nature doesn't waste them. If yours exists, it's because it's useful, helpful, and valuable to other people. The only question is how it translates into something they'll pay for. The session names the three pieces (what you do, who pays for it, why) and pulls them into one sentence.",
     "methodologyLabel": "Methodology overview · 6 min",
     "methodologyVideoTitle": "The Productize Yourself Session — Methodology Overview",
     "logoAlt": "Find Your Top Talent",
@@ -560,26 +560,59 @@
       }
     },
     "build": {
-      "founderCockpit": {
-        "label": "Founder Cockpit"
+      "headerFounderTools": {
+        "label": "Founder Tools"
+      },
+      "headerIncubation": {
+        "label": "Unique Startup Incubation"
+      },
+      "equilibrium": {
+        "label": "Equilibrium"
       },
       "avb": {
         "label": "Automated Venture Builder"
       },
-      "path": {
-        "label": "The path to your unique business"
+      "ubbCanvas": {
+        "label": "Canvas"
+      },
+      "ubbSession": {
+        "label": "1st Session"
+      },
+      "ubbMarketing": {
+        "label": "Marketing"
+      },
+      "ubbDistribution": {
+        "label": "Distribution"
+      },
+      "ubbCommunications": {
+        "label": "Communications"
+      },
+      "ubbLanding": {
+        "label": "Landing Page"
+      },
+      "founderCockpit": {
+        "label": "Founder Cockpit"
+      },
+      "founderCockpitDashboard": {
+        "label": "Enter the Cockpit"
       },
       "playbook": {
-        "label": "Take the exact playbook"
+        "label": "Playbook"
       },
-      "dashboard": {
-        "label": "See the dashboard"
+      "path": {
+        "label": "Roadmap"
       },
       "ignite": {
-        "label": "Productize Yourself Session"
+        "label": "Productize Yourself Signature Workshop"
       },
-      "equilibrium": {
-        "label": "Equilibrium"
+      "products": {
+        "label": "Products"
+      },
+      "dashboard": {
+        "label": "Dashboard"
+      },
+      "holomap": {
+        "label": "Holomap"
       },
       "karime": {
         "label": "Karime's Unique Offer"
@@ -3105,7 +3138,7 @@
     "meet": "MEET",
     "collaborate": "COLLABORATE",
     "grow": "GROW",
-    "build": "BUILD",
+    "build": "BUILT BY YOU",
     "offer": "OFFER",
     "lockedLabel": "{{space}}, locked",
     "lockedHeader": "{{space}} · Locked"
