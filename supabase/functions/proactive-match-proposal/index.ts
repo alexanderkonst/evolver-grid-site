@@ -560,6 +560,9 @@ async function generateProposalCopy(args: {
     otherArchetype: string;
     rawFirstStep: string;
     rawWhyNow: string;
+    rawAlignment: string;
+    rawComplementarity: string;
+    rawCollaboration: string;
 }): Promise<{ subject: string; gift: string; firstStep: string; whyNow: string }> {
     const {
         gift,
@@ -568,6 +571,9 @@ async function generateProposalCopy(args: {
         otherArchetype,
         rawFirstStep,
         rawWhyNow,
+        rawAlignment,
+        rawComplementarity,
+        rawCollaboration,
     } = args;
     const A = recipientFirstName || "there";
     const B = otherFirstName || "someone new";
@@ -575,13 +581,34 @@ async function generateProposalCopy(args: {
 
     if (!LOVABLE_API_KEY) return fallback;
 
+    // Signal check: if the matching engine gave us no concrete grounding,
+    // the LLM can only invent generic filler ("this person can help you
+    // build something new"). Fall back to the gift-specific static copy,
+    // which is at least concrete about the KIND of value, instead of
+    // letting the model hallucinate empty specifics.
+    const grounding = [
+        otherArchetype,
+        rawAlignment,
+        rawComplementarity,
+        rawCollaboration,
+        rawFirstStep,
+        rawWhyNow,
+    ].filter((s) => s && s.length > 8).join(" ").trim();
+    if (grounding.length < 24) return fallback;
+
     try {
         const prompt =
-            `You are a thoughtful human matchmaker writing a very short introduction proposal email from the platform to ${A} about ${B}.
+            `You are a thoughtful human matchmaker writing a very short introduction proposal email from the platform to ${A} about a DIFFERENT person, ${B}.
 GIFT TYPE: ${gift} (mirror = B can reveal A's blind spot or give exact words; compass = B carries orientation or a next direction; door = B has access to rooms, networks, audiences A needs; co_creation = B could build something with A; motivation = B brings momentum and belief).
-MATERIAL (from the matching engine, may be rough): B's archetype: ${otherArchetype}. Suggested first step: ${rawFirstStep}. Why now: ${rawWhyNow}.
+MATERIAL from the matching engine (use the specifics; do not restate them generically):
+- ${B}'s archetype: ${otherArchetype || "(unknown)"}
+- Why they align: ${rawAlignment || "(none given)"}
+- How they complement each other: ${rawComplementarity || "(none given)"}
+- A collaboration the engine sketched: ${rawCollaboration || "(none given)"}
+- Suggested first step: ${rawFirstStep || "(none given)"}
+- Why now: ${rawWhyNow || "(none given)"}
 Return ONLY JSON: {"subject": "...", "gift": "...", "firstStep": "...", "whyNow": "..."}.
-Rules: subject = max 55 characters, starts with or contains ${B}'s first name, states the concrete benefit, no colon-cleverness, no emoji. gift = ONE sentence, max 22 words, second person to ${A}, names concretely what ${B} can do for them. firstStep = ONE sentence, a small sized action (call, exchange, review). whyNow = ONE sentence grounded in the material. Plain human words. No em-dashes (use commas or periods). No exclamation marks. No hype adjectives. No hedging like "may be a mirror for your edge".`;
+Rules: subject = max 55 characters, contains ${B}'s first name, states ONE concrete benefit drawn from the material, no colon-cleverness, no emoji. gift = ONE sentence, max 22 words, second person to ${A}, names a SPECIFIC thing ${B} can do for them drawn from the material (not "build something new together", not "a co-branded program"). firstStep = ONE sentence, a small sized action. whyNow = ONE sentence grounded in the specific material above. Plain human words. Every sentence must reference something concrete from the material. If a field is "(none given)", infer from the archetype, never pad with generic phrases like "this person can help you" or "shared intellectual property". No em-dashes. No exclamation marks. No hype adjectives. No hedging.`;
 
         const resp = await fetch(
             "https://ai.gateway.lovable.dev/v1/chat/completions",
