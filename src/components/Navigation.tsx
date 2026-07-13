@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { supabase } from "@/integrations/supabase/client";
-import logo from "@/assets/find-your-top-talent-lockup-v2.webp";
+import logo from "@/assets/you-be-original-main-lockup.webp"; // Day 123 (Sasha 2026-07-13): main brand -> YOU be original
 
 interface UserProfile {
   first_name: string | null;
