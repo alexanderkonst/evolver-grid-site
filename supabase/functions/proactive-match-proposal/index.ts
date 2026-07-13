@@ -113,13 +113,21 @@ serve(async (req) => {
         }
 
         // ── 1. Find eligible users ──────────────────────────────────
+        // Day 121 (Sasha): match regardless of profile completeness. The
+        // only hard excludes are an explicit opt-out or a hidden profile.
+        // We deliberately DROPPED the `last_zog_snapshot_id IS NOT NULL`
+        // requirement that was capping the pool to 1 of ~35 accounts. A
+        // too-thin profile self-selects out downstream: suggest-asset-
+        // matches returns no candidates → the user is skipped that week,
+        // not errored. (opt_in is NOT NULL DEFAULT true, so .eq(true)
+        // already includes every existing account; kept for explicit
+        // future opt-outs.)
         let query = admin
             .from("game_profiles")
             .select(
                 "id, user_id, first_name, last_zog_snapshot_id, visibility, match_digest_opt_in",
             )
             .eq("match_digest_opt_in", true)
-            .not("last_zog_snapshot_id", "is", null)
             .neq("visibility", "hidden");
         if (userIdFilter && userIdFilter.length > 0) {
             query = query.in("user_id", userIdFilter);
