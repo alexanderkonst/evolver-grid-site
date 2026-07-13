@@ -983,7 +983,7 @@
     "meet": "CONOCER",
     "collaborate": "SOCIOS",
     "grow": "CRECER",
-    "build": "CONSTRUIR",
+    "build": "CREADO POR TI",
     "offer": "OFRECER",
     "lockedLabel": "{{space}}, bloqueado",
     "lockedHeader": "{{space}} · Bloqueado"
@@ -1257,26 +1257,59 @@
       }
     },
     "build": {
-      "founderCockpit": {
-        "label": "Founder Cockpit"
+      "headerFounderTools": {
+        "label": "Herramientas del fundador"
+      },
+      "headerIncubation": {
+        "label": "Incubación de negocio único"
+      },
+      "equilibrium": {
+        "label": "Equilibrium"
       },
       "avb": {
         "label": "Constructor automático de negocios"
       },
-      "path": {
-        "label": "El camino a tu negocio único"
+      "ubbCanvas": {
+        "label": "Lienzo"
+      },
+      "ubbSession": {
+        "label": "1ª sesión"
+      },
+      "ubbMarketing": {
+        "label": "Marketing"
+      },
+      "ubbDistribution": {
+        "label": "Distribución"
+      },
+      "ubbCommunications": {
+        "label": "Comunicaciones"
+      },
+      "ubbLanding": {
+        "label": "Página de aterrizaje"
+      },
+      "founderCockpit": {
+        "label": "Founder Cockpit"
+      },
+      "founderCockpitDashboard": {
+        "label": "Entrar a la cabina"
       },
       "playbook": {
-        "label": "Toma el playbook exacto"
+        "label": "Playbook"
       },
-      "dashboard": {
-        "label": "Ver el panel"
+      "path": {
+        "label": "Ruta"
       },
       "ignite": {
-        "label": "Sesión «Conviértete en producto»"
+        "label": "Taller «Conviértete en producto»"
       },
-      "equilibrium": {
-        "label": "Equilibrium"
+      "products": {
+        "label": "Productos"
+      },
+      "dashboard": {
+        "label": "Panel"
+      },
+      "holomap": {
+        "label": "Holomapa"
       },
       "karime": {
         "label": "La oferta única de Karime"
@@ -5433,7 +5466,7 @@
     "clarityLinkHero": "¿Aún no lo tienes claro? Dedica 20 min — una primera lectura de tu situación, gratis →",
     "leaveWithLabel": "Con qué sales",
     "leaveWith1": "El bucle de \"no estoy listo\" nombrado y disuelto.",
-    "leaveWith2": "Tu propósito y misión, desmitificados y definidos.",
+    "leaveWith2": "Tu propósito y misión, finalmente en palabras claras.",
     "leaveWith3": "Tu patrón de toda la vida comprimido en una frase: tu negocio en una frase.",
     "leaveWith4": "Tu historia magnética, una bio lista para usar y una sola landing page que lo sostiene todo.",
     "leaveWithConvergence": "Lo raro no es ninguno de ellos por separado. Es que todo converge en una sola sesión, en vez de comprar fragmentos a coaches y consultores durante años.",
@@ -5444,9 +5477,9 @@
     "ctaBookSession": "Reservar mi sesión — $555",
     "clarityLinkFooter": "¿Aún no lo tienes claro? 20 min — una primera lectura de tu situación, gratis. →",
     "faq1Q": "¿Y si aún no conozco mi talento principal?",
-    "faq1A": "Todo el mundo tiene uno. No ves el tuyo porque ha sido TÚ toda tu vida — demasiado natural para notarlo. La sesión nombra lo que ya está ahí y lo convierte en un negocio en una frase por el que la gente de verdad pagará.",
+    "faq1A": "Todo el mundo tiene uno. No ves el tuyo porque ha sido TÚ toda tu vida, demasiado natural para notarlo. La sesión nombra lo que ya está ahí y lo convierte en un negocio en una frase por el que la gente de verdad pagará. Es lo que le pasó a cada uno de los clientes citados abajo.",
     "faq2Q": "¿Y si no hay un negocio real en lo que hago?",
-    "faq2A": "Todo talento principal es monetizable — la naturaleza no los desperdicia. Si el tuyo existe, es porque es útil, valioso y de ayuda para otras personas. La única pregunta es cómo se traduce en algo por lo que paguen. La sesión nombra las tres piezas (qué haces, quién paga por ello, por qué) y las reúne en una sola frase.",
+    "faq2A": "Todo talento principal es monetizable. La naturaleza no los desperdicia. Si el tuyo existe, es porque es útil, valioso y de ayuda para otras personas. La única pregunta es cómo se traduce en algo por lo que paguen. La sesión nombra las tres piezas (qué haces, quién paga por ello, por qué) y las reúne en una sola frase.",
     "methodologyLabel": "Visión general de la metodología · 6 min",
     "methodologyVideoTitle": "La Sesión Productiza Yourself — Visión General de la Metodología",
     "logoAlt": "Encuentra tu talento principal",
