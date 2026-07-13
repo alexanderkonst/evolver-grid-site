@@ -322,6 +322,8 @@ async function processUser(args: {
     const candidates = matches
         .filter(
             (m) =>
+                m.userId &&
+                m.userId !== profile.user_id &&
                 !declinedCoolOff.has(m.userId) &&
                 !recentlyProposed.has(m.userId) &&
                 !alreadySeeded.has(m.userId),
@@ -414,6 +416,9 @@ async function processUser(args: {
             best.match.alignment ||
             ""
         ).trim(),
+        rawAlignment: (best.match.alignment || "").trim(),
+        rawComplementarity: (best.match.complementarity || "").trim(),
+        rawCollaboration: (best.match.collaborationProposal || "").trim(),
     });
 
     // ── Send email ──────────────────────────────────────────────
