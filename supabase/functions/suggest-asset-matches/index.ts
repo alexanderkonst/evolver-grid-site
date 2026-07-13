@@ -572,7 +572,7 @@ Return the JSON.`;
         const proposals: CollaborationProposal[] = rawProposals
             .slice(0, 3)
             .map((p: any) => ({
-                type: String(p?.type || "Co-Build").slice(0, 32),
+                type: String(p?.type || "co_creation").slice(0, 32),
                 proposal: String(p?.proposal || "").slice(0, 400),
                 evolutionLine: String(p?.evolutionLine || "").slice(0, 200),
             }))
@@ -581,14 +581,14 @@ Return the JSON.`;
         // returned fewer than asked.
         while (proposals.length < 3) {
             proposals.push({
-                type: "Co-Learn",
+                type: "mirror",
                 proposal:
                     "Open a single conversation to find the specific shape together.",
                 evolutionLine: "",
             });
         }
         return {
-            matchType: validMatchType(parsed.matchType) || inferMatchType(subScores),
+            matchType: validGift(parsed.matchType) || inferGift(subScores),
             proposals,
             suggestedAction: validSuggestedAction(parsed.suggestedAction) || "intro",
             alignment: String(parsed.alignment || "").slice(0, 240),
@@ -607,22 +607,22 @@ Return the JSON.`;
  */
 function fallbackRationale(subScores: SubScores): RationalePayload {
     return {
-        matchType: inferMatchType(subScores),
+        matchType: inferGift(subScores),
         proposals: [
             {
-                type: "Co-Learn",
+                type: "mirror",
                 proposal:
                     "Open a single conversation to feel the resonance and decide what shape fits.",
                 evolutionLine: "",
             },
             {
-                type: "Co-Distribute",
+                type: "door",
                 proposal:
                     "Swap audiences via a single guest appearance to test the fit at low commitment.",
                 evolutionLine: "",
             },
             {
-                type: "Co-Resource",
+                type: "compass",
                 proposal:
                     "Trade one warm introduction each as the lightest possible first move.",
                 evolutionLine: "",
@@ -641,34 +641,35 @@ function fallbackRationale(subScores: SubScores): RationalePayload {
     };
 }
 
-// Day 80 (Sasha 2026-05-23): match-type heuristic now maps the four
-// sub-scores to the 5 taxonomy roots. Maps signal-shape to root:
+// Migrated (2026-07-13): gift heuristic maps the four sub-scores to the
+// 5 native Gift roots (docs/holomaps/collaboration_gift_taxonomy_holomap.md).
+// Maps signal-shape to gift:
 //   • Strong top-talent complementarity + strong mission alignment →
-//     Co-Build (the pair makes something together).
-//   • Strong asset complementarity (Lego-fit) → Co-Resource (pool
-//     complementary assets) OR Co-Build (if also strong on talent).
+//     co_creation (the pair makes something together).
+//   • Strong asset complementarity (Lego-fit) → co_creation (if also
+//     strong on talent) OR compass (pool complementary assets, orient).
 //   • Strong mission similarity with weak top-talent complementarity
-//     (same direction, similar gifts) → Co-Learn (peer practice).
-//   • Strong QoL similarity + decent top-talent → Co-Steward (tend
-//     a shared field together).
-//   • Fallback → Co-Distribute (the lowest-commitment, most-universal
-//     starting shape).
-function inferMatchType(s: SubScores): RationalePayload["matchType"] {
-    if (s.topTalent >= 0.7 && s.mission >= 0.7) return "Co-Build";
-    if (s.assets >= 0.7 && s.topTalent >= 0.5) return "Co-Build";
-    if (s.assets >= 0.7) return "Co-Resource";
-    if (s.mission >= 0.7 && s.topTalent <= 0.4) return "Co-Learn";
-    if (s.qol >= 0.7 && s.topTalent >= 0.6) return "Co-Steward";
-    return "Co-Distribute";
+//     (same direction, similar gifts) → mirror (peer reflection).
+//   • Strong QoL similarity + decent top-talent → motivation (tend a
+//     shared field, energize each other).
+//   • Fallback → door (the lowest-commitment, most-universal starting
+//     shape — an access/intro exchange).
+function inferGift(s: SubScores): RationalePayload["matchType"] {
+    if (s.topTalent >= 0.7 && s.mission >= 0.7) return "co_creation";
+    if (s.assets >= 0.7 && s.topTalent >= 0.5) return "co_creation";
+    if (s.assets >= 0.7) return "compass";
+    if (s.mission >= 0.7 && s.topTalent <= 0.4) return "mirror";
+    if (s.qol >= 0.7 && s.topTalent >= 0.6) return "motivation";
+    return "door";
 }
 
-function validMatchType(v: unknown): RationalePayload["matchType"] | null {
+function validGift(v: unknown): RationalePayload["matchType"] | null {
     const valid = [
-        "Co-Build",
-        "Co-Learn",
-        "Co-Distribute",
-        "Co-Resource",
-        "Co-Steward",
+        "mirror",
+        "compass",
+        "door",
+        "co_creation",
+        "motivation",
     ];
     return typeof v === "string" && valid.includes(v)
         ? (v as RationalePayload["matchType"])

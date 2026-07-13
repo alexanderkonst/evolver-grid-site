@@ -158,18 +158,23 @@ const SUGGESTED_ACTION_LABELS: Record<string, string> = {
   wait: "Revisit Later",
 };
 
-// Day 80 (Sasha 2026-05-23): match-type vocabulary moved from the old
-// "co-founder / collaborator / peer / mentor / client-fit" shape labels
-// to the 5 layer-1 roots from the collaboration taxonomy. The roots
-// are already user-facing (per docs/03-playbooks/collaboration_taxonomy.md);
-// no translation needed. Dict kept as a display-tweak hook in case
-// we ever want to expand a root into a longer badge label.
+// Day 121 (Sasha 2026-07-11): match-type vocabulary migrated from the
+// old "Co-*" taxonomy to the native 5-Gift taxonomy — see
+// docs/holomaps/collaboration_gift_taxonomy_holomap.md. The engine
+// (suggest-asset-matches) now returns matchType as one of the 5 gift
+// values directly. Old Co-* keys are kept as aliases for backward
+// compat with any cached/old proposal data.
 const MATCH_TYPE_LABELS: Record<string, string> = {
-  "Co-Build": "Co-Build",
-  "Co-Learn": "Co-Learn",
-  "Co-Distribute": "Co-Distribute",
-  "Co-Resource": "Co-Resource",
-  "Co-Steward": "Co-Steward",
+  mirror: "Mirror",
+  compass: "Compass",
+  door: "Door",
+  co_creation: "Co-Creation",
+  motivation: "Motivation",
+  "Co-Build": "Co-Creation",
+  "Co-Learn": "Mirror",
+  "Co-Distribute": "Door",
+  "Co-Resource": "Compass",
+  "Co-Steward": "Motivation",
 };
 
 interface CurrentProfile {

@@ -47,22 +47,14 @@ const GIFT_TYPES: GiftType[] = [
     "motivation",
 ];
 
-// Map suggest-asset-matches matchType → our stored gift_type taxonomy.
-const matchTypeToGift = (matchType: string | null | undefined): GiftType => {
-    switch ((matchType || "").toLowerCase()) {
-        case "co-build":
-            return "co_creation";
-        case "co-learn":
-            return "mirror";
-        case "co-distribute":
-            return "door";
-        case "co-resource":
-            return "compass";
-        case "co-steward":
-            return "motivation";
-        default:
-            return "co_creation";
-    }
+// suggest-asset-matches now returns matchType as a native gift value
+// (Migrated 2026-07-13 — see docs/holomaps/collaboration_gift_taxonomy_holomap.md).
+// Guard against old/bad rows rather than trusting the string blindly.
+const asGift = (v: string | null | undefined): GiftType => {
+    const lower = (v || "").toLowerCase();
+    return (GIFT_TYPES as string[]).includes(lower)
+        ? (lower as GiftType)
+        : "co_creation";
 };
 
 const escapeHtml = (s: string): string =>
@@ -329,7 +321,7 @@ async function processUser(args: {
                 !alreadySeeded.has(m.userId),
         )
         .map((m) => {
-            const gift = matchTypeToGift(m.matchType);
+            const gift = asGift(m.matchType);
             const base = m.resonanceScore ?? 0;
             const boost = (acceptedGifts.get(gift) ?? 0) * 5;
             const penalty = (declinedGifts.get(gift) ?? 0) * 5;
