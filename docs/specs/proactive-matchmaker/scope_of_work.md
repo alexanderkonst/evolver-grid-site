@@ -301,3 +301,19 @@ Sasha's corrections after seeing v1 live; all shipped in commit `0b4e4d17`:
 2. **Silence-pause removed entirely.** Ignoring proposals has no side effects; weekly cadence + opt-out are the only controls. Sasha: "a member who never responds keeps receiving one email every Wednesday — that's ok."
 3. **Copy engine rewritten:** subject + gift line + first step + why now are LLM-written per pair (Gemini Flash via Lovable gateway, static per-gift fallbacks). Concise grammar; the subject IS the gift ("Marina sees what you can't from inside"). Buttons: "Yes, introduce us" / "Not this one". No em-dashes.
 4. **Cadence: Wednesdays 14:00 UTC** (`0 14 * * 3`), the communication day.
+
+---
+
+## Addendum — Day 121 wave 4 (July 11, 2026): engine depth + eligibility + runtime
+
+Shipped after the first live run surfaced three issues:
+
+1. **Gift taxonomy is now native to the engine.** `suggest-asset-matches` reasons and speaks in the 5 gifts (Mirror·Compass·Door·Co-Creation·Motivation), grounded in the Heart/Mind/Gut trinities; `proactive-match-proposal` consumes gifts directly (no relabel). Same vocabulary flows engine → email → UI → `match_proposals` log. Source of truth: `docs/holomaps/collaboration_gift_taxonomy_holomap.md`. (Native per-gift *scoring* deferred = roadmap MM4.)
+2. **Self-match excluded + copy grounded.** The engine no longer proposes a user to themselves (perfect self-resonance was ranking #1). Copy generation is fed the real alignment/complementarity/collaboration rationale and refuses generic filler.
+3. **Match regardless of profile completeness.** Dropped the `last_zog_snapshot_id IS NOT NULL` recipient gate (was capping the pool to 1). Only explicit opt-out or hidden excludes now; thin profiles self-skip downstream (no candidates → skipped, not errored). Ceiling is real *accounts*, not CRM contacts — the reveal-≠-account funnel leak is a separate item.
+4. **Three run modes (fixes the 150s idle timeout on full-cohort runs):**
+   - `{ dryRun: true }` — fast synchronous pool count, sends nothing.
+   - `{ userIds: [...] }` — synchronous, returns counts (small, safe).
+   - `{}` / no body — `EdgeRuntime.waitUntil` background, returns instantly (the cron path). `MAX_PER_RUN = 120` bounds background wall-clock; self-chaining deferred.
+
+Deploy: redeploy `suggest-asset-matches` + `proactive-match-proposal` from GitHub. No new migration.
