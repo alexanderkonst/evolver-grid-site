@@ -301,7 +301,7 @@ const CycleEnergyBarBase = ({
           owns the visual hierarchy. Active pill carries emoji + name +
           description in one place (no separate guidance line beneath). */}
       <div className="mt-6 flex w-full max-w-sm flex-col items-stretch gap-2">
-        <DimPill>{prevLabel}</DimPill>
+        <DimPill phasePosition="PREVIOUS">{prevLabel}</DimPill>
         <ActivePill
           emoji={activePillEmoji}
           emojiTooltip={activePillEmojiTooltip}
@@ -316,7 +316,7 @@ const CycleEnergyBarBase = ({
           </div>
         )}
 
-        <DimPill>{nextLabel}</DimPill>
+        <DimPill phasePosition="UPCOMING">{nextLabel}</DimPill>
       </div>
     </div>
   );
@@ -327,7 +327,13 @@ const CycleEnergyBarBase = ({
  * opaque so the middle stands out"). Background quieter, text quieter,
  * border lighter — they recede into the visual background.
  */
-const DimPill = ({ children }: { children: ReactNode }) => (
+const DimPill = ({
+  children,
+  phasePosition,
+}: {
+  children: ReactNode;
+  phasePosition?: "PREVIOUS" | "UPCOMING";
+}) => (
   <div
     className="eq-text-halo rounded-full px-6 py-1.5 text-center text-xs font-medium text-[#0a1628]/55"
     style={{
@@ -336,6 +342,11 @@ const DimPill = ({ children }: { children: ReactNode }) => (
       border: "1px solid rgba(255,255,255,0.30)",
     }}
   >
+    {phasePosition && (
+      <span className="mr-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-[#0a1628]/55">
+        {phasePosition}:
+      </span>
+    )}
     {children}
   </div>
 );

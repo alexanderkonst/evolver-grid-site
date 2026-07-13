@@ -208,16 +208,22 @@ const SolarCycleBarBase = ({
           if the caller explicitly passes labels. */}
       {(prevLabel || currentLabel || nextLabel) && (
         <div className="mt-8 flex w-full max-w-xs flex-col items-stretch gap-2">
-          {prevLabel && <DimPill>{prevLabel}</DimPill>}
+          {prevLabel && <DimPill phasePosition="PREVIOUS">{prevLabel}</DimPill>}
           {currentLabel && <ActivePill>{currentLabel}</ActivePill>}
-          {nextLabel && <DimPill>{nextLabel}</DimPill>}
+          {nextLabel && <DimPill phasePosition="UPCOMING">{nextLabel}</DimPill>}
         </div>
       )}
     </div>
   );
 };
 
-const DimPill = ({ children }: { children: ReactNode }) => (
+const DimPill = ({
+  children,
+  phasePosition,
+}: {
+  children: ReactNode;
+  phasePosition?: "PREVIOUS" | "UPCOMING";
+}) => (
   <div
     className="eq-text-halo rounded-full px-6 py-2 text-center text-sm font-medium text-[#0a1628]/95"
     style={{
@@ -226,6 +232,11 @@ const DimPill = ({ children }: { children: ReactNode }) => (
       border: "1px solid rgba(255,255,255,0.5)",
     }}
   >
+    {phasePosition && (
+      <span className="mr-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-[#0a1628]/55">
+        {phasePosition}:
+      </span>
+    )}
     {children}
   </div>
 );
