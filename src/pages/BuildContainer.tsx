@@ -18,7 +18,7 @@ import SEO from "@/components/SEO";
 
 const WHATSAPP_URL =
   "https://wa.me/14157073432?text=" +
-  encodeURIComponent("Hi Sasha! The BUILT container lands. I'd like to start.");
+  encodeURIComponent("Hi Sasha! The BUILT container lands for me, and I wanted to get in touch.");
 
 const eyebrowGold: React.CSSProperties = {
   fontFamily: "'DM Sans', system-ui, sans-serif",
