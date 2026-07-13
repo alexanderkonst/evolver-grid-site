@@ -262,17 +262,6 @@ const ProfileAssetsSection = () => {
         }
     }, [savedAssets]);
 
-    const reload = useCallback(async () => {
-        setIsReloading(true);
-        try {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) return;
-            const assets = await loadAndSyncAssets(user.id);
-            setSavedAssets(assets);
-        } finally {
-            setIsReloading(false);
-        }
-    }, []);
 
     useEffect(() => {
         let isMounted = true;
