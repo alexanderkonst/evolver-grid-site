@@ -1,7 +1,7 @@
 # Outreach Strategy — July 2026 (Days 122-123)
 
 > *© 2026 Alexander Konstantinov · CC BY-NC-SA 4.0*
-> **Status:** v1.0, July 13, 2026 (Day 123). The single document for the massive-outreach campaign: axes, scoring, tests, offers, channels, economics, decisions. Companion execution log: `tribe_outreach_tracker.md` (individual reachouts) and `strategic_crm_outreach_tracker.md` (relationships).
+> **Status:** v1.1, July 13, 2026 (Day 123). v1.1: segment-channel fit, cold trio revised, test protocol + prospect scorecard added, physical engine added, teen subsegment identified, tagline/banner finalized. The single document for the massive-outreach campaign: axes, scoring, tests, offers, channels, economics, decisions. Companion execution log: `tribe_outreach_tracker.md` (individual reachouts) and `strategic_crm_outreach_tracker.md` (relationships).
 
 ## 0. Strategy in one line
 
@@ -112,3 +112,36 @@ Person holon (Direction Call → $555 → BUILT) — the only thing SOLD cold. B
 - [ ] Which open positions to apply to first.
 - [ ] Webinar date + first community.
 - [ ] Wave 2: Big4 consultants (needs first comparable proof arc), Reddit subreddit list, noisy bases.
+
+
+---
+
+## 12. v1.1 refinements (Sasha's strategy review, Day 123)
+
+### One free threshold, two sizes
+Direction Call (solo, cold/1:1 channels) and the community webinar (group) are the SAME product in two sizes. Webinar attendees' next step is the $555 session directly.
+
+### Segment-channel fit (the upgrade)
+Findability is channel-specific; each segment gets its best channel, not the same one.
+- **Cold LinkedIn DM trio (this week's test):** Fractional executives · US coaches/solopreneurs in limbo (searchable by "coach"; the missing-positioning signal is visible on the profile itself, which is also the pitch) · Big4/MBB consultants at up-or-out.
+- **Webinar engine:** conscious web3/tech builders (communities ARE the consciousness filter: ClubDAO, RnDAO) · post-exit founders (trust networks; cold keyword search cannot find "actually free" exits).
+- **Deep-research rifle (slow lane):** shortlist of genuinely-free post-exit founders from acquired-company lists; not this week.
+- **Wave 3, warm referral only:** pre-university teens (16-17, selective/STEM schools), sold to PARENTS on the профориентация shelf as its category evolution ("direction from his uniqueness, not from fear"). Heinrich's MSU granddaughter = live pilot.
+
+### Cold test protocol (falsifiable, per segment)
+1. Pre-registered hypothesis: "Segment X at 30 touches → ≥20% accept, ≥15% reply, ≥2 Direction Calls in 7 days." Miss = killed, benched, next segment in.
+2. **Prospect scorecard (before sending, 0-5, send at ≥4):** visible threshold signal (+1) · has built something real (+1) · US/top-5 market (+1) · active on LinkedIn last 30 days (+1) · any warmth (mutual, group, prior touch) (+1).
+3. Metrics chain per prospect in tracker: sent → accepted → replied → booked → showed → paid.
+4. Message #1 = threshold hook + recognition (≤300 chars in invite note). Message #2 after accept = why-free line + two questions. Manual week 1; automate learned steps week 2.
+5. Friday: OMTM count, per-segment funnel, axes re-scored with real data.
+
+### Engine 4: physical-space workshops
+Same webinar SOP run live in CDMX entrepreneur hubs, coworkings, accelerators. Free for the venue's community, monthly per venue. Falsifiable like engine 2.
+
+### Reddit (wave 2)
+Needs account warm-up + value-post format (story, no links). Candidates: r/Entrepreneur, r/solopreneur, r/consulting, r/startups. Lift the Jul 3 viral-plan Reddit sequence when activated.
+
+### LinkedIn identity (finalized Day 123)
+- **Tagline:** "I help people name what's next professionally, and turn it into clear positioning · MIT MBA"
+- **Banner:** "are you clear on your next professional chapter yet?"
+- Architecture: banner asks about THEM (seen on profile visit, post-curiosity); tagline answers who I am (travels in search/DM previews). No identity labels anywhere; people self-select by situation, not costume.
