@@ -8,6 +8,7 @@ import {
     MessageCircle,
     Moon,
     Sun,
+    UserRound,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
@@ -462,7 +463,7 @@ const SpacesRail = ({
                 absolute px, not rem — user browser font-size settings
                 (Sasha runs 24px root) inflated 3rem cells to 72px inside
                 the fixed 72px rail. */}
-            <div className={compact ? "p-[6px]" : "p-1 md:p-1.5"}>
+            <div className={compact ? "p-[6px]" : "px-3 pt-3 pb-1"}>
                 <Link
                     to="/"
                     className={cn(
@@ -681,14 +682,19 @@ const SpacesRail = ({
                                 className="md:hidden w-10 h-10 mx-auto object-contain brand-spin-slow"
                                 draggable={false}
                             />
-                            {/* Desktop: full wordmark — breath only. */}
-                            <img
-                                src={brandLogo}
-                                alt="YOU — be original."
-                                className="hidden md:block h-auto object-contain brand-breath"
-                                style={{ width: "89%", marginLeft: "8px" }}
-                                draggable={false}
-                            />
+                            {/* Desktop: optically cropped lockup. The source
+                                contains sparse peripheral pixels, so alpha trim
+                                alone leaves a 4:3 canvas with large dead zones.
+                                This viewport preserves the canonical artwork and
+                                crops around the visible sphere + wordmark. */}
+                            <div className="hidden md:flex h-[116px] w-full items-center justify-center overflow-hidden">
+                                <img
+                                    src={brandLogo}
+                                    alt="YOU — be original."
+                                    className="w-[244px] max-w-none h-auto object-contain brand-breath"
+                                    draggable={false}
+                                />
+                            </div>
                         </>
                     )}
                 </Link>
@@ -729,7 +735,10 @@ const SpacesRail = ({
                 delay. */}
             <ScrollArea className="flex-1">
               <TooltipProvider delayDuration={150} skipDelayDuration={0}>
-                <nav className={compact ? "flex flex-col gap-[8px] p-[8px]" : "flex flex-col gap-1.5 p-2 md:p-3"}>
+                <nav className={compact ? "flex flex-col gap-[8px] p-[8px]" : "flex flex-col gap-1.5 px-3 pt-2 pb-3"}>
+                {!compact && (
+                    <div className={cn("px-3 pb-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/35 transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}>Spaces</div>
+                )}
                 {SPACES.filter(space => !hiddenSpaces.includes(space.id)).map((space) => {
                     const isLocked = unlockStatus[space.id] === false;
                     const active = isActive(space.path);
@@ -959,7 +968,7 @@ const SpacesRail = ({
                 the chip's own weight. Rule uses a horizontal gradient
                 that fades to transparent at both ends — rhymes with the
                 ornament bookend on the landing. */}
-            <div className={compact ? "p-[8px] space-y-[8px]" : "p-2 md:p-3 space-y-1"}>
+            <div className={compact ? "p-[8px] space-y-[8px]" : "px-3 pb-4 space-y-1"}>
                 <div
                     aria-hidden="true"
                     className="h-px mx-2 mb-2"
@@ -985,7 +994,44 @@ const SpacesRail = ({
                       • On shell mobile (<md), only the play button
                         renders centered in the 72px icon column;
                         title / skip / attribution glyph are hidden. */}
+                {!compact && (
+                    <div className={cn("px-3 pt-1 pb-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/35 transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}>Music</div>
+                )}
                 <SoundCloudMinimalPlayer compact={compact} />
+
+                {!compact && (
+                    <div className={cn("px-3 pt-4 pb-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/35 transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}>Settings</div>
+                )}
+
+                {isAuthed && userName && (
+                    <button
+                        onClick={() => navigate("/game/me/profile")}
+                        className={cn(
+                            "transition-all duration-300",
+                            compact
+                                ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
+                                : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start",
+                            location.pathname === "/game/me/profile"
+                                ? "bg-white/[0.08] text-white/90"
+                                : "text-white/55 hover:bg-white/[0.04] hover:text-white/85 hover:translate-y-[-1px] active:translate-y-0"
+                        )}
+                        title={userName}
+                    >
+                        {userAvatarUrl ? (
+                            <img src={userAvatarUrl} alt="" className="h-[22px] w-[22px] flex-shrink-0 rounded-full object-cover ring-1 ring-[#f4d472]/30" />
+                        ) : (
+                            <UserRound className="h-[22px] w-[22px] flex-shrink-0" aria-hidden="true" />
+                        )}
+                        {!compact && (
+                            <span
+                                className={cn("hidden md:block truncate transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}
+                                style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "0.82rem", letterSpacing: "0.04em" }}
+                            >
+                                {userName}
+                            </span>
+                        )}
+                    </button>
+                )}
 
                 {/* Day 51 (Sasha 2026-04-25): Request Guidance — direct
                     Telegram DM to Aleksandr. Zero backend, zero widget.

@@ -241,6 +241,14 @@
      wash). Now identical on every route. Lighter RGB preserved so
      pane 2 reads a hair lifted from pane 1. */
   --skin-panel-2-bg: rgb(26, 58, 128);         /* Pane 2 — solid lit navy */
+  /* Day 121 (Sasha 2026-07-13): the two 20px shell toggle strips are
+     collapsed edges of pane 2, not a third panel. Match the actual Lapis
+     pane-2 glass materials from SectionsPanel (desktop and page-owned
+     background) so the seam composites to the same blue instead of the
+     old 0.22-alpha gray ribbon. Skin-specific blocks can still override
+     these inherited tokens where their pane-2 material differs. */
+  --skin-rail-toggle-bg: rgba(14, 32, 68, 0.72);
+  --skin-rail-toggle-bg-deep: rgba(6, 12, 28, 0.94);
   /* Day 53 (Sasha 2026-04-27): wash promoted from flat 10% white to a
      radial gradient — strong (~50%) at the center column where hero text
      sits, fading to ~8% at edges so the animated video still reads

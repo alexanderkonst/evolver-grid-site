@@ -1532,7 +1532,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         "overflow-y-auto overflow-x-hidden",
                     )}
                     pageOwnsBackground={pageOwnsBackground}
-                    userName={profile?.first_name || undefined}
+                    userName={[profile?.first_name, profile?.last_name].filter(Boolean).join(" ") || undefined}
                     userAvatarUrl={profile?.avatar_url || undefined}
                     userLevel={profile?.level || undefined}
                     userXp={profile?.xp_total || undefined}
@@ -1806,7 +1806,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         nudgeBadges={nudgeBadges}
                         hiddenSpaces={hiddenSpaces}
                         pageOwnsBackground={pageOwnsBackground}
-                        userName={profile?.first_name || undefined}
+                        userName={[profile?.first_name, profile?.last_name].filter(Boolean).join(" ") || undefined}
                         userAvatarUrl={profile?.avatar_url || undefined}
                         userLevel={profile?.level || undefined}
                         userXp={profile?.xp_total || undefined}
