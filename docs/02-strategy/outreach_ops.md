@@ -1,0 +1,293 @@
+# Outreach Ops — the one file
+
+> **v1.0 — Day 124.** The single execution file. Everything needed to run outreach lives here: no jumping between docs. Strategy source: `outreach_strategy_2026-07.md` v3.0 (don't touch that for execution, only for strategy changes). Tracker: `outreach_tracker.csv`.
+>
+> External copy law, every campaign: no em-dashes, no "Not X. Y." constructions, one CTA, being-wanted energy, never chasing.
+
+---
+
+## 1. Daily rhythm (fixed schedule, not memory)
+
+| Time | Block | What happens |
+|---|---|---|
+| Morning (60-90 min) | **Send block** | Work through today's campaign quota below. Log every send in the campaign's tracking table the moment it's sent. |
+| 13:00 | **Response sweep** | Check all channels (LinkedIn, email, WhatsApp, VK, Reddit). Answer every reply per the reply playbook (§4 below). Update tracker rows. |
+| 17:00 | **Response sweep** | Same. |
+| 21:00 | **Response sweep + 5-min evening log** | Same, plus: scan every campaign table for follow-ups due tomorrow, note them so the morning block already knows what to send. |
+
+**Rule: every incoming reply gets answered in the next sweep. Never "later."** If you can't answer fully, send a one-line holding reply ("great question, more in a bit") rather than let it sit past the next sweep.
+
+---
+
+## 2. LinkedIn safety budget
+
+- Invites: **10/day week 1**, ramp to **15/day max** after. Hard cap **70/week**.
+- Messages to existing connections: **≤30/day**.
+- **Never use automation tools on the account.** Everything manual, week 1. Week 2: supervised Chrome-assist only, still no bulk automation (ToS/account risk).
+- Spread sends across the day, not one burst — mix into the response sweeps, don't dump 15 invites in five minutes.
+- Invite note ≤300 characters.
+
+---
+
+## 3. The campaigns
+
+Each campaign below is fully self-contained: verbatim copy, search query, tracking table. Copy-paste and go.
+
+### 3.1 Warm-150 (personal email)
+
+- **Audience source:** existing list of ~150 past clients/signups (Gmail contacts / CRM export).
+- **Channel:** personal email, one at a time or batches of 20 via mail merge.
+
+**Message 1 (verbatim):**
+> **Subject:** What became possible since we last worked
+>
+> Hi [Name],
+>
+> Sasha here. A while back we worked together on naming your zone of genius. Since then this work grew into something much more complete: I now help people name what's next professionally and package it into a real offer, with AI workflows carrying the heavy lifting. Real clients, real businesses launched, and the method got sharp.
+>
+> I'm opening a few free 45-minute Direction Calls this month. You leave with your transition named and your strongest next direction on the table. Practically everyone does.
+>
+> If this lands for where you are right now, reply and I'll send times. If not, all good, I'm happy to be back in touch either way.
+>
+> Aleks
+
+**Follow-up 1 (+3 days, gentle):**
+> Just floating this back up in case it got buried, no worries either way.
+
+**Follow-up 2 (+7 days, open-palmed close):**
+> Leaving this here, door stays open. If a Direction Call ever feels right, just reply.
+
+| Date | Name | Sent | Acc | Rep | Booked | Paid | Next follow-up date |
+|---|---|---|---|---|---|---|---|
+
+---
+
+### 3.2 Sabbatical / career-break founders (LinkedIn)
+
+- **Search query:** LinkedIn "Career Break" feature filter, plus keyword search "sabbatical" + founder, "career break" + founder / ex-founder.
+- **Quota:** 25 invites (equal-N with other cold segments).
+
+**Message 1 — invite note (verbatim, ≤300 chars):**
+> Hi [Name], saw you're on a break after [Company]. That pause between chapters is exactly where I work: naming what's next and giving it a shape worth building. Free 45-min Direction Call, no strings. Curious?
+
+**Message 2 — why-free + 2 questions (after accept, verbatim):**
+> Thanks for connecting! Why free? Because the first 45 minutes is where my work does the most visible good, and it's how I choose who I go deeper with. If we're a fit, I have paid containers and I'll say so in one sentence, not in a pitch. So I come prepared and the time goes fully into your situation, two quick questions: (1) What's the transition you're in? (2) What have you tried?
+
+**Follow-up 1 (+3 days, gentle):**
+> Hey [Name], no pressure, just checking this didn't slip past you.
+
+**Follow-up 2 (+7 days, open-palmed close):**
+> Leaving this here, door stays open. If a Direction Call ever feels right, just say the word.
+
+| Date | Name | Sent | Acc | Rep | Booked | Paid | Next follow-up date |
+|---|---|---|---|---|---|---|---|
+
+---
+
+### 3.3 Fractional executives (US, LinkedIn)
+
+- **Search query:** "fractional CMO" / "fractional CPO" / "fractional COO", US filter.
+- **Quota:** 25 invites (equal-N).
+
+**Message 1 — invite note (verbatim):**
+> Hi [Name], saw you've gone fractional. Many I talk to love the freedom and are still working out what the gigs add up to: the one direction. I run free 45-min Direction Calls: you leave with your next chapter named. No strings attached. Want the details?
+
+**Message 2 — why-free + 2 questions:** same verbatim block as §3.2.
+
+**Follow-up 1 (+3 days):**
+> Hey [Name], no pressure, just checking this didn't slip past you.
+
+**Follow-up 2 (+7 days):**
+> Leaving this here, door stays open. If a Direction Call ever feels right, just say the word.
+
+| Date | Name | Sent | Acc | Rep | Booked | Paid | Next follow-up date |
+|---|---|---|---|---|---|---|---|
+
+---
+
+### 3.4 Coaches / solopreneurs in limbo (US, LinkedIn)
+
+- **Search query:** LinkedIn "coach" search, US, profiles with missing/weak positioning visible.
+- **Quota:** 25 invites (equal-N).
+- **Register:** not-another-coach. Education/conviction happens inside the session via playbooks, not in the DM.
+
+**Message 1 — invite note (verbatim):**
+> Hi [Name], I see you're a coach. I'm not one :) I do positioning: we don't talk about your business, we build its words. Your offer, your one sentence, your page. If you're rethinking what's next, I run free 45-min Direction Calls. Want the details?
+
+**Message 2 — why-free + 2 questions:** same verbatim block as §3.2.
+
+**Follow-up 1 (+3 days):**
+> Hey [Name], no pressure, just checking this didn't slip past you.
+
+**Follow-up 2 (+7 days):**
+> Leaving this here, door stays open. If a Direction Call ever feels right, just say the word.
+
+| Date | Name | Sent | Acc | Rep | Booked | Paid | Next follow-up date |
+|---|---|---|---|---|---|---|---|
+
+---
+
+### 3.5 Big4 / MBB consultants (LinkedIn, pragmatic probe)
+
+- **Search query:** LinkedIn search for Big4/MBB titles + "up or out" / promotion-cycle signals.
+- **Quota:** 25 invites (equal-N; strategy doc's original probe was 10, raised to match equal-N portfolio rule).
+- **Register:** pragmatic only, no myth.
+
+**Message 1 — invite note (verbatim):**
+> Hi [Name], quick one. If up-or-out is on your mind, my angle is simple: don't quit. We build the next thing in parallel, and you leave when it stands on its own. Free 45-min Direction Call to map it. Interested?
+
+**Message 2 — why-free + 2 questions:** same verbatim block as §3.2.
+
+**Follow-up 1 (+3 days):**
+> Hey [Name], no pressure, just checking this didn't slip past you.
+
+**Follow-up 2 (+7 days):**
+> Leaving this here, door stays open. If a Direction Call ever feels right, just say the word.
+
+| Date | Name | Sent | Acc | Rep | Booked | Paid | Next follow-up date |
+|---|---|---|---|---|---|---|---|
+
+---
+
+### 3.6 Host pitches (Oyi, NS, Devon, 1 physical hub)
+
+- **Audience source:** warm community contacts (Oyi, NS contact, Devon) + one CDMX physical entrepreneur space.
+- **Channel:** WhatsApp/DM, direct.
+
+**Message 1 — host pitch (verbatim):**
+> [Name], I want to gift your community something real. A free 90-minute hands-on workshop: everyone leaves with the words for what they professionally carry, a live profile they can use with any AI, and a first read of their next direction. You post it as coming from within the community, you host or co-host if you feel like it, I do all the work. And openly: whoever later buys my paid sessions, you get 33% of their first two purchases. At modest numbers that's a few hundred dollars a month for two posts. Want to see it first yourself? Happy to walk you through it 1:1.
+
+**Physical hub variant (add):**
+> Free for your residents/members, I handle everything, you provide the room and one announcement. Monthly if it lands.
+
+**Follow-up 1 (+3 days):**
+> [Name], no rush, just checking this landed on your end.
+
+**Follow-up 2 (+7 days):**
+> Leaving this here, door stays open. Whenever it makes sense for the community, I'm in.
+
+**Timing:** schedule workshop ~10 days out; host makes 2 posts + 1 reminder. Attendees' next step is $555 directly, never a second free step.
+
+| Date | Name | Sent | Acc | Rep | Booked | Paid | Next follow-up date |
+|---|---|---|---|---|---|---|---|
+
+---
+
+### 3.7 Reddit — r/findapath
+
+- **Search query / audience source:** r/findapath (check rules before posting — no CTA of any kind allowed, post must be pure story + question ending in an open invitation to comment, NOT "DM me"). Fallback: r/careerchange, r/solopreneur, r/freelance if r/findapath doesn't fit.
+- **Quota:** 1 post.
+
+**Message 1 — post (verbatim):**
+> **Title:** I spent 20 years collecting impressive titles. One question finally showed me what's next.
+>
+> Body: the honest arc (MIT, Google, telecom regulator, startups... and still lost between chapters at 40) → the realization: the answer wasn't a new title, it was naming the one thing I'd always done in every role → the question that unlocked it: "What do people always come to you for, no matter your job title?" → how naming it changed what I build and sell → closing: "If you're between chapters right now, try answering that question in one sentence. It's harder and more useful than it looks. Happy to react to yours if you post it below."
+
+No follow-up 1/2 (single post, not a DM thread). Engage with comments in each sweep instead.
+
+| Date posted | Sub | Comment-engagements | DMs received | Booked | Paid |
+|---|---|---|---|---|---|
+
+---
+
+### 3.8 Engine 5 — paid EIR / advisor / founder-in-residence roles
+
+**Two lanes, ONLY paid roles:**
+1. **Advisor / EIR** — fractional, part-time, paid.
+2. **Founder-in-residence WITH his own venture** — paid track that lets him build his own thing inside the room.
+
+- **Audience source (warm outreach, not cold applications — research verdict Day 123: cold postings barely exist in this exact shape):**
+
+| Org | Role | Note |
+|---|---|---|
+| Entrepreneur First | Talent Investor | entrepreneursfirst.careers.hibob.com — standing hiring line |
+| EF Germany | Venture Partner, part-time 1-2 days/wk | verify still live via startup.jobs |
+| D.E. Shaw DESCOvery | EIR, $175-250K, 6 mo | NYC on-site only, paid |
+| 500 Global (LatAm) | EIR/advisor pool | no open req, warm outreach target |
+| MIT delta v | 2026 "partner model" mentorship | email deltavstaff@mit.edu directly |
+
+- **First action:** 2-3 warm expressions of interest (not cold applications).
+
+**Message 1 (adapt per org, verbatim skeleton):**
+> Hi [Name], I've been following [Org]'s work on [specific program/model]. My background is direction-finding for talented individuals at inflection points (MIT Sloan, Google, telecom regulator, founder work) — it's close to what you do at the pre-idea stage. I'd love a conversation about a paid advisor/EIR fit, even if nothing's posted right now. Open to a quick call?
+
+**Follow-up 1 (+3 days):**
+> [Name], no rush, just checking this landed.
+
+**Follow-up 2 (+7 days):**
+> Leaving this here, door stays open. If a fit opens up, I'd welcome the conversation.
+
+| Date | Org | Role/lane | Sent | Rep | Call | Outcome | Next follow-up date |
+|---|---|---|---|---|---|---|---|
+
+---
+
+### 3.9 VK teens (профориентация, adjacent product)
+
+- **Search query / audience source:** VK lyceum publics — members of Лицей 239, Аничков лицей, ФТШ им. Иоффе (SPb, strong schools). School filter unreliable; go by public membership.
+- **Quota:** 20 DMs.
+- **Funnel:** teen → family decision → parent pays. No free step. Lands on /you page → paid session → 3-week container.
+
+**Message 1 — verbatim (Russian, to the teen):**
+> Привет! Пишу ученикам сильных школ Петербурга. Я провожу сессии профессионального самоопределения: за полтора часа находим, что у тебя получается лучше всего, и собираем из этого стратегию: куда поступать и почему именно туда. Это платно и обычно оказывается самым полезным разговором за год. Обсуди с родителями, если интересно, расскажу, как проходит. Если нет, всё ок :)
+
+**Follow-up 1 (+3 days, gentle):**
+> Привет, если ещё интересно — дай знать, расскажу подробнее :)
+
+**Follow-up 2 (+7 days, open-palmed close):**
+> Оставляю это здесь, если вдруг захочется вернуться к разговору — всегда пожалуйста.
+
+**Parent-side amplifier (Telegram, not cold DM — admin partnerships):** Навигатор Поступления (@propostuplenieru, 21.5K), ПРО ШКОЛЫ (@proschoolmsk, 15.6K), Новости Родители Москвы (@roditelimoskvynews, 25.1K). Approach via admin partnership / native post, not a cold blast.
+
+| Date | Name | Sent | Rep | Family convo | Paid | Next follow-up date |
+|---|---|---|---|---|---|---|
+
+---
+
+## 4. Reply playbook (all channels)
+
+- **Yes/curious** → send calendar link `[CALENDAR-LINK]` + the two questions (if not already answered). Log: booked.
+- **"What's this about?"** → one line: "A working session, not a pitch: 45 minutes on your situation, you leave with your transition named and your strongest next direction. Free because it's how I choose who I go deeper with."
+- **Objection/skeptic** → agree lightly, restate no-strings, leave door open. Never chase.
+- **Silence** → send the campaign's Follow-up 1 at +3 days, Follow-up 2 at +7 days, then close the row.
+- **After every call** → 2-line log: their exact threshold words (harvest!) + next step offered.
+
+---
+
+## 5. Follow-up discipline
+
+The **"Next follow-up date" column IS the system.** No memory required.
+
+- Every evening log (21:00 sweep): scan all campaign tables above for rows with a "Next follow-up date" of tomorrow.
+- Send those follow-ups first thing in tomorrow's morning send block.
+- After a follow-up is sent, either update the date to the next stage (+7 days) or close the row if Follow-up 2 already went and nothing came back.
+
+---
+
+## 6. Copy bank (reusable snippets)
+
+- **Direction Call promise:** "You leave with your transition named and your strongest next direction on the table. Practically everyone does."
+- **Why-free line:** "Why free? Because the first 45 minutes is where my work does the most visible good, and it's how I choose who I go deeper with. If we're a fit, I have paid containers and I'll say so in one sentence, not in a pitch."
+- **Proof answer:** point to `docs/04-products/the_build_container.md`.
+- **Testimonials link:** https://findyourtoptalent.com/ignite
+- **Booking link:** `[CALENDAR-LINK]` (placeholder — replace once calendar is set up, see Open item below).
+- **Teen product page:** /you
+- **Container product page:** /products/built
+
+---
+
+## 7. Weekly Friday review
+
+1. **OMTM count** (offers made this week) — sum across all campaign tables.
+2. **Per-campaign funnel** — touches → accept% → reply% → calls → paid, one row per campaign above.
+3. **Kill/scale calls** — kill only on zero signal (n=20-30 is a directional read, not proof). Scale what's converting.
+4. **Re-score segments** — 12-axis instrument (see `outreach_strategy_2026-07.md` §8) updated with real week data.
+5. Pulse the results: session log + CRM + holomap if it moved.
+
+---
+
+## Setup still open (once, before first send)
+
+- [ ] Create calendar link with the 2 questions as booking form fields (Calendly/Cal.com, 45-min event "Direction Call") — replaces `[CALENDAR-LINK]` everywhere above.
+- [ ] Set профориентация price point.
+- [ ] Confirm LinkedIn profile shows tagline/banner/About (done Day 123).
