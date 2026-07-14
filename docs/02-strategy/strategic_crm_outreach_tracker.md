@@ -178,7 +178,62 @@ Hope this answers your questions, and it gives you further actionable clarity.
 Happy to offer you a personalized container to arrive at a chosen one direction, a business direction, and paying clients asap.
 ```
 
-**Nia — container offer (3-week 1:1, $1,111).** Recommended draft delivered 2026-07-09 (session log Day 119 wave 3: group-seat price honored 1:1, honest framing); **final sent version not yet captured — paste it here when convenient, it's the first container offer to a near-stranger and belongs in the bank.**
+**Nia — proof/results reply (sent ~2026-07-19, answering her ask for evidence).** Key message: real client stories with honest limits. **Register notes:** this is Domain 102 (guru-loop immunity) practiced inside a sales message — proof anchored in clients' EXTERNAL results (founder's paid advisory client + consulting project; coach's business growing "not through hustling more"; Oyi launching WeGoodOvaHer's next phase), plus the explicit anti-scheme disclaimer ("I'm not promising rapid riches... the results come from you working it"). The "nobody starts from scratch / we never dismantle" paragraph is a reusable objection-dissolver: keep what's yours, reinforce it, the rest falls away on its own.
+
+```text
+Happy Sunday! Great question
+
+One is a startup founder who started with me in March. He came with a parked startup with an actual team and too many product directions at once tried hastily. He said: "I take random hypotheses and build a random product that isn't fully mine." We found his one direction and his people: executives adopting AI. He's now actually doing exactly that. He has a paid advisory client, a consulting project on top of that, and has more deals in motion. He told me two weeks ago: "we set a strategic corridor for building a business which I never had before. I feel very big confidence."
+
+The other is a coach/healer/spiritual advisor/feminine leadership advocate. A woman who's been working with me for a couple of years now. She has a running business in leadership coaching for women using various healing modalities. Every conversation we have, she gets clearer on her ideal client, and then more business comes exactly like that. That's the whole point: more professional opportunity opens up as more clarity opens up. Her business is growing but not through hustling more.
+
+Oyi is prepping to launch a whole new phase of WeGoodOvaHer using what we uncovered together :)
+
+Nobody starts from scratch with me, really. Everybody arrives with something professional going on, a business, a job, side work. We never dismantle it (makes no sense). They continue on their line of work or their business as is. We find which parts of your business are truly yours, keep them, reinforce them, focus on them, and grow from there. Whatever is not yours falls away on its own, gradually, as the aligned part starts feeding you.
+
+More of what clients say is here: https://findyourtoptalent.com/ignite
+This comes from actual session transcripts, in their own words, from different people as we workshop their business.
+
+And to be clear about what I promise: the deliverables I named. One direction, your offer packaged and priced, launched to real people. I'm not promising rapid riches and I'm not selling a scheme. This is sustainable business & wealth creation aligned with who you are, and the results come from you working it.
+
+Lmk if you have any other questions!
+```
+
+**Nia — container offer, FINAL as sent (~2026-07-19; the first container offer to a near-stranger).** Key message: 3 weeks from "what is my real offer?" to selling the packaged signature offer to real people; one deliverable per week; cohort-seat price honored 1:1. **Register notes:** "the secret sauce is you :)" = Mirror Not Teacher in offer copy · "so the flywheel keeps spinning without me" = the Empowerment prime directive stated as a deliverable (anti-dependency IN the sales pitch) · honest price framing (cohort design named, 1:1 honored, split option offered as care) · CTA is pure being-wanted register: "Let me know how this lands."
+
+```text
+Hi Nia!
+
+My proposal is simple: in 3 weeks, you go from "what is my real offer?" to selling your packaged signature offer to real people.
+
+As before, the secret sauce is you :) And how we move swiftly yet with care is this combo: my lived experience + the AI workflows you saw in our session + my guidance.
+
+Week 1: ONE DIRECTION
+
+We take the clarity from our session and your new insights to its next level of resolution and choose your ONE next direction. No more hundred paths. By the end of the week you have your business strategy: real, concrete, and specific enough to build on: the essence of your unique business, with the key decisions made. We also set up your working rhythm: entrepreneurial action balanced with proper rest and integration, so the flywheel keeps spinning without me.
+
+Week 2: PACKAGED OFFER
+
+We turn the direction into the thing itself: your offer packaged and priced, the value ladder around it, and the words for all of it: the bio people actually get, a landing page that sells, your channels chosen. This is the part that was borderline impossible going solopreneur. When anchored in your uniqueness, you'll know what's clear signal and what's distraction, and the AI workflows carry the heavy lifting. By the end of Week 2: you can get on a call or a webinar with no script and fill 60 minutes from your mind, your spirit, your heart, your experiences. Because everything we built is from you.
+
+Week 3: SERVING REAL PEOPLE
+
+Your business touches the real world. We prep your first client sessions, run the first manual sales moves together, and set up the feedback loop that turns every conversation into a product improvement. By the end of the week, or shortly after, you'll have your first clients: free, paid, or a mix. Serving people, and them reciprocating you for it. No more spinning wheels: continuous motion, with a direction. Which essentially is a running business.
+
+Format
+
+• weekly 2-hour hands-on business building sessions (not late at night 😁)
+• check-ins through chat between sessions
+• one clear expected result per week (above)
+
+Price
+
+This container is the direct continuation of the session we did. It's designed as a cohort program; until the group assembles, you get it one-on-one: private strategic advisory at the cohort seat price: $1,111. And one-on-one means we go exactly at your pace. If two payments of $600 work better with your cash flow, that works too.
+
+Let me know how this lands.
+
+Aleks
+```
 
 **Balaji Srinivasan — patron-fit.** Key message: collaboration rate is the missing KPI, and Sasha is the infrastructure underneath that moves it. Full v14 + the v0-v14 arc + post-send protocol in [`leonardo_strategy_instances/balaji_srinivasan.md`](../03-playbooks/leonardo_strategy_instances/balaji_srinivasan.md). Sent 2026-05-28 on Discord.
 
