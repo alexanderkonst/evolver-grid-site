@@ -388,11 +388,16 @@ const UblRedirect = () => {
 const GlobalChrome = () => {
   const location = useLocation();
   const isHeroQuiz = location.pathname === "/hero";
+  // Day 124: /you ships its own header with an in-page language switcher
+  // (matching the page's dark/cream register), same reasoning as SiteLogo's
+  // /you suppression above — the global fixed top-right pill would collide
+  // with the page's own "BOOK THE SESSION" header CTA in the same corner.
+  const isYouPage = location.pathname === "/you";
 
   return (
     <>
       {!isHeroQuiz && <SiteLogo />}
-      {!isHeroQuiz && <GlobalLanguageSwitcher />}
+      {!isHeroQuiz && !isYouPage && <GlobalLanguageSwitcher />}
       <TitleManager />
       <ScrollRestoration />
       {!isHeroQuiz && <PreviewBanner />}
