@@ -787,6 +787,8 @@ One myth, spoken at the altitude of the room. This folds the Day-85 Tribe-1/Trib
 - **Community:** "A network is its weave. Difference is what unity runs on."
 - **Civilization:** "For the first time, we can organize around uniqueness instead of conformity."
 
+> **✦ The matryoshka line (Day 119, July 9, 2026 — Sasha, live, in the Kirill/Kvatra outreach):** *«Экосистемы вкладываются друг в друга как матрёшки, не теряя суверенности и усиливая друг друга.»* ("Ecosystems nest into each other like matryoshkas, losing no sovereignty and strengthening one another.") The holonic thesis in Russian cultural code — the Community/Civilization-altitude myth spoken in the tribe's native image. Canonical Russian-language transmission line for the federation story; use verbatim.
+
 The Master Lie / Master Belief polarity (Feb 19) holds and deepens:
 
 | | |
