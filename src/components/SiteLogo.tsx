@@ -17,6 +17,9 @@ const SiteLogo = () => {
 
     // Hide on pages whose layout already carries the brand elsewhere.
     const hidden = [
+        // /founder is a standalone editorial page with its own header brand.
+        "/founder",
+        "/about/meet-the-founder",
         "/game",
         "/zone-of-genius",
         "/playbook",
