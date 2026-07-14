@@ -39,15 +39,15 @@ Each campaign below is fully self-contained: verbatim copy, search query, tracki
 - **Channel:** personal email, one at a time or batches of 20 via mail merge.
 
 **Message 1 (verbatim):**
-> **Subject:** What became possible since we last worked
+> **Subject:** form-era contacts: "Your [their words], four years later" · platform users: "Your [top talent], and what's next"
 >
 > Hi [Name],
 >
-> Sasha here. A while back we worked together on naming your zone of genius. Since then this work grew into something much more complete: I now help people name what's next professionally and package it into a real offer, with AI workflows carrying the heavy lifting. Real clients, real businesses launched, and the method got sharp.
+> Sasha here. When we worked together, you named [their superpower words]. I went back and reread it before writing this. That work grew into something much more complete: I now help people name what's next professionally and turn it into an offer people actually pay for. Real businesses have launched from it.
 >
-> I'm opening a few free 45-minute Direction Calls this month. You leave with your transition named and your strongest next direction on the table. Practically everyone does.
+> I run free 45-minute Direction Calls. You leave with your transition named and your strongest next direction on the table. Practically everyone does. If it lands for where you are right now, grab a time: https://cal.com/aleksandrkonstantinov/direction-call
 >
-> If this lands for where you are right now, reply and I'll send times. If not, all good, I'm happy to be back in touch either way.
+> If not, all good. Happy to be back in touch either way.
 >
 > Aleks
 
@@ -71,13 +71,16 @@ Each campaign below is fully self-contained: verbatim copy, search query, tracki
 - **Quota:** 25 invites (equal-N with other cold segments).
 
 **Message 1 — invite note (verbatim, ≤300 chars):**
-> Hi [Name], saw you're on a break after [Company]. That pause between chapters is exactly where I work: naming what's next and giving it a shape worth building. Free 45-min Direction Call, no strings. Curious?
+> Hi [Name], saw you're taking a break after [Company]. That in-between stretch, when the last chapter is closed and the next one hasn't named itself yet, is the territory I love most. If it resonates, I'm glad to connect.
 
 **Message 2 — why-free + 2 questions (after accept, verbatim):**
-> Thanks for connecting! Why free? Because the first 45 minutes is where my work does the most visible good, and it's how I choose who I go deeper with. If we're a fit, I have paid containers and I'll say so in one sentence, not in a pitch. So I come prepared and the time goes fully into your situation, two quick questions: (1) What's the transition you're in? (2) What have you tried?
+> Thanks for connecting! I'll be straight about what I do: I run free 45-minute Direction Calls. You leave with your transition named and your strongest next direction on the table. Practically everyone does. Why free? Because the first 45 minutes is where my work does the most visible good, and it's how I choose who I go deeper with. If we're a fit, I have paid containers and I'll say so in one sentence, not in a pitch. What clients say, from real session transcripts: https://findyourtoptalent.com/ignite. If it lands, grab a time: https://cal.com/aleksandrkonstantinov/direction-call
+
+**After they book (same channel):**
+> Great. So the 45 minutes go fully into your situation, two quick questions: What's the transition you're in? And what have you tried?
 
 **Follow-up 1 (+3 days, gentle):**
-> Hey [Name], no pressure, just checking this didn't slip past you.
+> Hey [Name], no pressure. One line from a recent client, verbatim: "we set a strategic corridor for building a business which I never had before." If a Direction Call sounds useful, the door is open.
 
 **Follow-up 2 (+7 days, open-palmed close):**
 > Leaving this here, door stays open. If a Direction Call ever feels right, just say the word.
@@ -95,12 +98,12 @@ Each campaign below is fully self-contained: verbatim copy, search query, tracki
 - **Quota:** 25 invites (equal-N).
 
 **Message 1 — invite note (verbatim):**
-> Hi [Name], saw you've gone fractional. Many I talk to love the freedom and are still working out what the gigs add up to: the one direction. I run free 45-min Direction Calls: you leave with your next chapter named. No strings attached. Want the details?
+> Hi [Name], saw you've gone fractional. Many I talk to love the freedom and are still working out what the gigs add up to: the one direction. That question is my whole craft. Happy to connect.
 
 **Message 2 — why-free + 2 questions:** same verbatim block as §3.2.
 
 **Follow-up 1 (+3 days):**
-> Hey [Name], no pressure, just checking this didn't slip past you.
+> Hey [Name], no pressure. One line from a recent client, verbatim: "we set a strategic corridor for building a business which I never had before." If a Direction Call sounds useful, the door is open.
 
 **Follow-up 2 (+7 days):**
 > Leaving this here, door stays open. If a Direction Call ever feels right, just say the word.
@@ -119,12 +122,12 @@ Each campaign below is fully self-contained: verbatim copy, search query, tracki
 - **Register:** not-another-coach. Education/conviction happens inside the session via playbooks, not in the DM.
 
 **Message 1 — invite note (verbatim):**
-> Hi [Name], I see you're a coach. I'm not one :) I do positioning: we don't talk about your business, we build its words. Your offer, your one sentence, your page. If you're rethinking what's next, I run free 45-min Direction Calls. Want the details?
+> Hi [Name], your work with [their niche] caught my eye. I do positioning: the words, the offer, the page, built together in a working session rather than talked about. If you're rethinking your own next chapter, that's my favorite conversation to have.
 
 **Message 2 — why-free + 2 questions:** same verbatim block as §3.2.
 
 **Follow-up 1 (+3 days):**
-> Hey [Name], no pressure, just checking this didn't slip past you.
+> Hey [Name], no pressure. One line from a recent client, verbatim: "we set a strategic corridor for building a business which I never had before." If a Direction Call sounds useful, the door is open.
 
 **Follow-up 2 (+7 days):**
 > Leaving this here, door stays open. If a Direction Call ever feels right, just say the word.
@@ -143,12 +146,12 @@ Each campaign below is fully self-contained: verbatim copy, search query, tracki
 - **Register:** pragmatic only, no myth.
 
 **Message 1 — invite note (verbatim):**
-> Hi [Name], quick one. If up-or-out is on your mind, my angle is simple: don't quit. We build the next thing in parallel, and you leave when it stands on its own. Free 45-min Direction Call to map it. Interested?
+> Hi [Name], a lot of consultants I talk to are quietly working out what comes after consulting. My angle is unusual: don't quit. Build the next thing in parallel, leave when it stands on its own. If that's you these days, I'm glad to connect.
 
 **Message 2 — why-free + 2 questions:** same verbatim block as §3.2.
 
 **Follow-up 1 (+3 days):**
-> Hey [Name], no pressure, just checking this didn't slip past you.
+> Hey [Name], no pressure. One line from a recent client, verbatim: "we set a strategic corridor for building a business which I never had before." If a Direction Call sounds useful, the door is open.
 
 **Follow-up 2 (+7 days):**
 > Leaving this here, door stays open. If a Direction Call ever feels right, just say the word.
@@ -164,7 +167,7 @@ Each campaign below is fully self-contained: verbatim copy, search query, tracki
 - **Channel:** WhatsApp/DM, direct.
 
 **Message 1 — host pitch (verbatim):**
-> [Name], I want to gift your community something real. A free 90-minute hands-on workshop: everyone leaves with the words for what they professionally carry, a live profile they can use with any AI, and a first read of their next direction. You post it as coming from within the community, you host or co-host if you feel like it, I do all the work. And openly: whoever later buys my paid sessions, you get 33% of their first two purchases. At modest numbers that's a few hundred dollars a month for two posts. Want to see it first yourself? Happy to walk you through it 1:1.
+> [Name], idea for [community]. I run a hands-on 90-minute workshop where everyone leaves with the words for what they're best at, a live profile they can use with any AI, and a first read of their next direction. I'd love to run one just for your people. It's yours to present as your event, I stay the guest and do all the work. And openly: whoever later buys my paid sessions, you get 33% of their first two purchases. At modest numbers that's a few hundred dollars a month for two posts. Want to experience it 1:1 first?
 
 **Physical hub variant (add):**
 > Free for your residents/members, I handle everything, you provide the room and one announcement. Monthly if it lands.
@@ -218,7 +221,7 @@ No follow-up 1/2 (single post, not a DM thread). Engage with comments in each sw
 - **First action:** 2-3 warm expressions of interest (not cold applications).
 
 **Message 1 (adapt per org, verbatim skeleton):**
-> Hi [Name], I've been following [Org]'s work on [specific program/model]. My background is direction-finding for talented individuals at inflection points (MIT Sloan, Google, telecom regulator, founder work) — it's close to what you do at the pre-idea stage. I'd love a conversation about a paid advisor/EIR fit, even if nothing's posted right now. Open to a quick call?
+> Hi [Name], I've been following [Org]'s work on [specific program/model]. My craft is direction-finding for people at day zero: naming what someone should build from what they naturally do. Background: MIT Sloan, Google, telecom regulator director, founder. I'd love a conversation about a paid advisor or EIR fit, even if nothing's posted right now. Open to a quick call?
 
 **Follow-up 1 (+3 days):**
 > [Name], no rush, just checking this landed.
@@ -238,13 +241,13 @@ No follow-up 1/2 (single post, not a DM thread). Engage with comments in each sw
 - **Funnel:** teen → family decision → parent pays. No free step. Lands on /you page → paid session → 3-week container.
 
 **Message 1 — verbatim (Russian, to the teen):**
-> Привет! Пишу ученикам сильных школ Петербурга. Я провожу сессии профессионального самоопределения: за полтора часа находим, что у тебя получается лучше всего, и собираем из этого стратегию: куда поступать и почему именно туда. Это платно и обычно оказывается самым полезным разговором за год. Обсуди с родителями, если интересно, расскажу, как проходит. Если нет, всё ок :)
+> Привет! Нашёл тебя в группе [лицей 239]. Я провожу сессии профессионального самоопределения: за час находим, что у тебя получается лучше всего, и собираем из этого стратегию: куда поступать и почему именно туда. Про меня: 41 год, закончил MIT, много лет в бизнесе и технологиях. Это платно и обычно оказывается самым полезным разговором за год. Обсуди с родителями, если интересно, расскажу, как проходит. Если нет, всё ок :)
 
 **Message 2 — verbatim (Russian, to the teen, after "yes"/interest):**
 > Отлично! Вот страница с описанием сессии: [/you]. Можешь скинуть её родителям вместе с моим номером — если у них появятся вопросы, пусть пишут мне в чат, я отвечу. Звонки не нужны, всё решаем перепиской.
 
 **Follow-up 1 (+3 days, gentle):**
-> Привет, если ещё интересно — дай знать, расскажу подробнее :)
+> Привет! Если ещё интересно, дай знать, расскажу подробнее :)
 
 **Follow-up 2 (+7 days, open-palmed close):**
 > Оставляю это здесь, если вдруг захочется вернуться к разговору — всегда пожалуйста.
@@ -327,3 +330,13 @@ Claude then logs the touch to `outreach_tracker.csv`, computes the funnel per ca
 - [x] Calendar link live: https://cal.com/aleksandrkonstantinov/direction-call. The two questions are NOT booking form fields, they go out in Message 2 and get answered in the same channel (LinkedIn DM) after booking.
 - [ ] Set профориентация price point.
 - [ ] Confirm LinkedIn profile shows tagline/banner/About (done Day 123).
+
+
+## 11. Co-pilot runbook (cheap-model LinkedIn assist)
+
+Sasha does the first 3-5 invites per segment fully manually (calibration). Then any executor agent (Sonnet/Codex/Gemini) runs this loop in the browser while Sasha stays at the wheel:
+1. Open the segment's Boolean search (queries in §3.2-3.5), filters: US, 2nd-degree first.
+2. For each profile: score the 5-point checklist (threshold signal · built something real · top-5 market · active ≤30d · warmth). Skip below 4.
+3. Draft the invite note from the segment's Message 1, filling the two personalization slots ([Company]/[their niche]/the visible threshold detail). ≤300 chars.
+4. Present to Sasha. SASHA clicks send. Agent never sends, never auto-clicks, human pacing, max 10-12/day total.
+5. Log each send to the tracker (or report to Claude in the evening sweep).
