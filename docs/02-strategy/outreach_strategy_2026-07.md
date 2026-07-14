@@ -1,11 +1,16 @@
 # Outreach Strategy — July 2026
 
 > *© 2026 Alexander Konstantinov · CC BY-NC-SA 4.0*
-> **v2.0 — July 13, 2026 (Day 123).** The single strategy document: bullets only, precise and concise. Execution logs: `tribe_outreach_tracker.md` (reachouts), `strategic_crm_outreach_tracker.md` (relationships).
+> **v2.1 — July 13, 2026 (Day 123).** Mode: collecting moves; prioritization comes after collection is complete. The single strategy document: bullets only, precise and concise. Execution logs: `tribe_outreach_tracker.md` (reachouts), `strategic_crm_outreach_tracker.md` (relationships).
 
-## 0. Strategy in one line
+## 0. The strategy, structured
 
-One free threshold in two sizes (solo Direction Call · group workshop) × threshold-recognition copy in each segment's own register × segment-matched channels tested falsifiably × warm base first. Meter: offers made per week. Flywheel: act → learn → rebuild → act.
+- **What we sell free:** one threshold, two sizes — solo Direction Call (45 min, cap 5/wk) · group workshop (~90 min).
+- **What we sell paid:** $555 Productize Yourself session → $1,111 BUILT container. (+ adjacent: paid профориентация session, RU teens, own funnel.)
+- **Who & how (law: channel depends on segment):** fractional execs + coaches/solopreneurs + Big4 probe via LinkedIn DM tests · post-exit founders via "sabbatical + founder" search AND deep-research shortlist · communities + physical hubs via hosted workshops (33% of first two purchases) · stabilized containers via genuine open-position applications · warm 150 via one honest email, first · teens via VK lyceum publics, through the teen to the family · Reddit via niche value posts.
+- **How we speak:** threshold recognition in their harvested words, per-segment register (myth for founders, not-another-coach for coaches, pragmatic for consultants), being-wanted register, one CTA, person-holon only.
+- **How we learn:** pre-registered falsifiable tests, per-person funnel logging, Friday re-scoring of the 12-axis instrument, OMTM as the weekly meter.
+- **Flywheel:** act → learn → rebuild → act.
 
 ## 1. The ladder
 
@@ -25,15 +30,15 @@ One free threshold in two sizes (solo Direction Call · group workshop) × thres
 | Segment | Channel | Register / angle | Status |
 |---|---|---|---|
 | Fractional executives (US) | LinkedIn keyword search + DM | Threshold recognition + myth | **Test: 30 invites** |
-| US coaches / solopreneurs in limbo | LinkedIn "coach" search (missing positioning visible on profile) | **Not-another-coach:** "coaches sell conversations; we build artifacts — words, positioning, page" (Patricia insight) | **Test: 30 invites** |
+| US coaches / solopreneurs in limbo | LinkedIn "coach" search (missing positioning visible on profile) | **Not-another-coach:** "coaches sell conversations; we build artifacts — words, positioning, page" (Patricia insight). Education/conviction happens INSIDE the session via playbooks, not in the DM | **Confirmed segment. Test: 30 invites** |
 | Big4 / MBB consultants (up-or-out) | LinkedIn search | Pragmatic only, NO myth: "Don't quit. We build it in parallel; you leave when it stands." | **Probe: 10 invites** |
-| Post-exit (actually-free) founders | Deep-research shortlist: acquisition news + LinkedIn signals (advisor-role ending, "building what's next", sabbatical) | Myth-friendly | **1-hour research test → 20 names; <50% precision = discard** |
-| Web3 / conscious builders | none (ClubDAO ≠ web3; RnDAO dismantled) | — | **Parked: no channel = no segment** |
+| Post-exit (actually-free) founders | **(a) LinkedIn keyword: "sabbatical" + founder/ex-founder (self-declared threshold badge)** · (b) deep-research shortlist from acquisition news + profile signals | Myth-friendly | **(a) 1-hour search test now · (b) research shortlist 20 names; <50% precision = discard path (b)** |
+| Web3 / conscious builders | none clean (NS online w/ promoter = mixed energy) | — | **Parked (Sasha's call, Day 123)** |
 | Communities (any composition) | Webinar via host | Gift-from-within framing | **Pitch NS / Oyi / Devon / hub this week** |
 | RU teens 16→17 (pre-11th grade), strong schools | VK: lyceum public groups' members, parent chats (school filter unreliable) | Профориентация shelf, its category evolution | **Separate paid product, separate funnel; messages drafted; test 20 DMs** |
 | Warm base ~150 | Email | Honest re-introduction, one CTA | **First, before all cold** |
 | Stabilized containers (open positions) | Job boards + org sites: accelerators, venture studios, funds, research institutes, gov innovation units | Genuine application: plug my genius into workflows already stabilized into money | **Engine 5: define fit criteria, apply to 2-3 this week** |
-| Reddit r/Entrepreneur, r/solopreneur | Value post: story + lesson, zero links, "DM me" | Open blueprint; copyability is not a moat, depth is | **Tomorrow, 1 post** |
+| Reddit, niche-first: r/findapath (threshold-dense), r/careerchange, r/consulting; big subs wave 2 | Value post: story + lesson, zero links, "DM me"; check each sub's self-promo rules first | Open blueprint; copyability is not a moat, depth is | **Tomorrow, 1 post in one niche sub** |
 
 ## 4. Cold test protocol (per segment)
 
@@ -66,7 +71,7 @@ One free threshold in two sizes (solo Direction Call · group workshop) × thres
 
 ## 7. Passive layer (LinkedIn, finalized Day 123)
 
-- Tagline: shelf-first format (final wording Sasha's pick of A/B/C, Day 123 session).
+- Tagline (FINAL, live): "Next-Chapter Positioning · Name What's Next Professionally & Package It Into an Offer · MIT MBA"
 - Banner: "are you clear on your next professional chapter yet?"
 - Architecture: banner asks about them (profile visit = post-curiosity); tagline answers who I am (travels in previews). No identity labels; self-selection by situation.
 - About: threshold hook → mechanism → real arcs → credibility stack (MIT Sloan, Google, Bell Labs, UN, ~$1M AT&T, Mexico regulator director, MIT Solve judge) → Direction Call CTA + why-free.
@@ -81,7 +86,7 @@ One free threshold in two sizes (solo Direction Call · group workshop) × thres
 
 - One paid session, honestly one — no container upsell built in. Own tiny funnel, own page later; not routed through findyourtoptalent.
 - Hot window: summer before 11th grade (university strategy season for parents).
-- Channel: VK lyceum publics + parent chats (SPb first: 239, Аничков, ФТШ). Teen + parent message drafts: Day 123 session.
+- Channel: VK lyceum publics, SPb first (239, Аничков, ФТШ). **Parents are NOT directly findable on VK.** Routes: (1) message the teen, close the family ("обсуди с родителями" built into flow, parent pays); (2) ЕГЭ/поступление publics & Telegram channels where parents of 10th-11th graders gather (hot window = now); (3) school parent chats (Telegram/WhatsApp) entered via one satisfied family — the first sold session IS the parent-channel strategy; (4) VK targeted ads (age 40-55 + city + ЕГЭ interests) only after manual DMs convert. Teen + parent message drafts: Day 123 session.
 - Warm pilot: Heinrich's MSU granddaughter (diagnostic first: her situation, payer, what she wants).
 
 ## 10. Waves
@@ -92,7 +97,6 @@ One free threshold in two sizes (solo Direction Call · group workshop) × thres
 
 ## 11. Open decisions
 
-- [ ] Tagline final pick (A/B/C)
 - [ ] Direction Call booking mechanics (calendar + 2-question form)
 - [ ] Warm-base email text · DM templates ×3 · host pitch text · Reddit post text (build next)
 - [ ] Профориентация price point
