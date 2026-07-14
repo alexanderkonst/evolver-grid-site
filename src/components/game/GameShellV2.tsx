@@ -1557,13 +1557,13 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         "h-dvh w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative z-30 group",
                         "focus-visible:outline focus-visible:outline-1 focus-visible:outline-[color:var(--skin-rail-toggle-accent,rgba(244,212,114,0.6))]",
                         isAiOsRoute ? "shrink-0" : "sticky top-0",
-                        pageOwnsBackground
-                            ? "bg-[var(--skin-rail-toggle-bg-deep,rgba(6,12,28,0.55))]"
-                            : "bg-[var(--skin-rail-toggle-bg,rgba(14,32,68,0.22))]",
                     )}
                     title={railMinimized ? t("shell.rail.expand") : t("shell.rail.minimize")}
                     aria-label={railMinimized ? t("shell.rail.expand") : t("shell.rail.minimize")}
                     style={{
+                        backgroundColor: pageOwnsBackground
+                            ? "var(--skin-rail-toggle-bg-deep, rgba(6,12,28,0.94))"
+                            : "var(--skin-rail-toggle-bg, rgba(14,32,68,0.88))",
                         boxShadow:
                             "inset -1px 0 0 var(--skin-rail-toggle-hairline, rgba(212, 175, 55, 0.32)), 2px 0 14px -8px var(--skin-rail-toggle-glow, rgba(244, 212, 114, 0.3))",
                     }}
@@ -1676,13 +1676,13 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                             "h-dvh w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative z-30 group",
                             "focus-visible:outline focus-visible:outline-1 focus-visible:outline-[color:var(--skin-rail-toggle-accent,rgba(244,212,114,0.6))]",
                             isAiOsRoute ? "shrink-0" : "sticky top-0",
-                            pageOwnsBackground
-                                ? "bg-[var(--skin-rail-toggle-bg-deep,rgba(6,12,28,0.55))]"
-                                : "bg-[var(--skin-rail-toggle-bg,rgba(14,32,68,0.22))]"
                         )}
                         title={t("shell.sidebar.expandTitle")}
                         aria-label={t("shell.sidebar.expand")}
                         style={{
+                            backgroundColor: pageOwnsBackground
+                                ? "var(--skin-rail-toggle-bg-deep, rgba(6,12,28,0.94))"
+                                : "var(--skin-rail-toggle-bg, rgba(14,32,68,0.88))",
                             boxShadow:
                                 "inset -1px 0 0 var(--skin-rail-toggle-hairline, rgba(212, 175, 55, 0.32)), 2px 0 14px -8px var(--skin-rail-toggle-glow, rgba(244, 212, 114, 0.3))",
                         }}
