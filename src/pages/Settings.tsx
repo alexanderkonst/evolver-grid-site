@@ -749,7 +749,7 @@ const Settings = () => {
                             four visible tabs into two rows to prevent label
                             collision. */}
                         <TabsList
-                            className="mb-6 h-auto p-1 rounded-[1.5rem] sm:rounded-full grid w-full grid-cols-2 sm:grid-cols-4 gap-1"
+                            className="mb-6 h-auto p-1.5 rounded-[1.5rem] grid w-full grid-cols-2 gap-1.5"
                             style={{
                                 background: "hsla(228, 30%, 18%, 0.06)",
                                 border: "1px solid var(--skin-hairline, hsla(228, 30%, 18%, 0.10))",
@@ -758,15 +758,15 @@ const Settings = () => {
                             <TabsTrigger
                                 value="profile"
                                 className={cn(
-                                    "gap-1.5 sm:gap-2 rounded-full min-h-[44px] px-2 sm:px-5 py-2 transition-all",
+                                    "gap-2 rounded-full min-h-[48px] px-4 py-2 transition-all",
                                     "data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-sm",
                                     "data-[state=inactive]:text-muted-foreground",
                                 )}
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     fontWeight: 600,
-                                    fontSize: "clamp(0.66rem, 2.35vw, 0.78rem)",
-                                    letterSpacing: "clamp(0.045em, 0.45vw, 0.14em)",
+                                    fontSize: "0.82rem",
+                                    letterSpacing: "0.08em",
                                     textTransform: "uppercase",
                                     color:
                                         activeTab === "profile"
@@ -780,15 +780,15 @@ const Settings = () => {
                             <TabsTrigger
                                 value="notifications"
                                 className={cn(
-                                    "gap-1.5 sm:gap-2 rounded-full min-h-[44px] px-2 sm:px-5 py-2 transition-all",
+                                    "gap-2 rounded-full min-h-[48px] px-4 py-2 transition-all",
                                     "data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-sm",
                                     "data-[state=inactive]:text-muted-foreground",
                                 )}
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     fontWeight: 600,
-                                    fontSize: "clamp(0.66rem, 2.35vw, 0.78rem)",
-                                    letterSpacing: "clamp(0.045em, 0.45vw, 0.14em)",
+                                    fontSize: "0.82rem",
+                                    letterSpacing: "0.08em",
                                     textTransform: "uppercase",
                                     color:
                                         activeTab === "notifications"
@@ -808,15 +808,15 @@ const Settings = () => {
                             <TabsTrigger
                                 value="export"
                                 className={cn(
-                                    "gap-1.5 sm:gap-2 rounded-full min-h-[44px] px-2 sm:px-5 py-2 transition-all",
+                                    "gap-2 rounded-full min-h-[48px] px-4 py-2 transition-all",
                                     "data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-sm",
                                     "data-[state=inactive]:text-muted-foreground",
                                 )}
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     fontWeight: 600,
-                                    fontSize: "clamp(0.66rem, 2.35vw, 0.78rem)",
-                                    letterSpacing: "clamp(0.045em, 0.45vw, 0.14em)",
+                                    fontSize: "0.82rem",
+                                    letterSpacing: "0.08em",
                                     textTransform: "uppercase",
                                     color:
                                         activeTab === "export"
@@ -834,15 +834,15 @@ const Settings = () => {
                             <TabsTrigger
                                 value="appearance"
                                 className={cn(
-                                    "gap-1.5 sm:gap-2 rounded-full min-h-[44px] px-2 sm:px-5 py-2 transition-all",
+                                    "gap-2 rounded-full min-h-[48px] px-4 py-2 transition-all",
                                     "data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-sm",
                                     "data-[state=inactive]:text-muted-foreground",
                                 )}
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
                                     fontWeight: 600,
-                                    fontSize: "clamp(0.66rem, 2.35vw, 0.78rem)",
-                                    letterSpacing: "clamp(0.045em, 0.45vw, 0.14em)",
+                                    fontSize: "0.82rem",
+                                    letterSpacing: "0.08em",
                                     textTransform: "uppercase",
                                     color:
                                         activeTab === "appearance"
