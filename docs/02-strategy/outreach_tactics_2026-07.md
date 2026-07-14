@@ -86,3 +86,51 @@ Friday rollup per segment: touches → accept% → reply% → calls → paid; OM
 - T7 Reddit r/findapath post: ≥20 comment-engagements or ≥3 DMs.
 - T8 VK teens 20 DMs: ≥2 family conversations.
 - T9 Engine-5: 2-3 applications sent.
+
+
+---
+
+## 10. Research results (Day 123 evening)
+
+### Engine 5 — rooms shortlist (verified live unless noted)
+
+| Org | Role | Fit note | Status |
+|---|---|---|---|
+| Entrepreneur First | Talent Investor (job board: entrepreneursfirst.careers.hibob.com) | EF's whole model IS pre-idea direction-finding for talented individuals — closest philosophical match | Standing hiring line; openings rotate |
+| EF Germany | Venture Partner, part-time 1-2 days/wk | Exact "fractional EIR" shape | Found via startup.jobs; verify still live |
+| D.E. Shaw DESCOvery | EIR, venture studio, $175-250K, 6 mo | Paid venture-building; fintech/data fits Google+regulator background | Live posting; NYC on-site only |
+| Techstars | Global Mentor Network | Direction-finding mentorship, remote, multilingual valued | PAUSED — reopening "soon", check back |
+| 500 Global (LatAm) | EIR/advisor pool | LatAm presence fits Mexico base | No open req — warm outreach target |
+| Babson GEIR | Global EIR | Early-stage founder mentoring, MBA-prestige fit | Open (closes Dec 1); unpaid 10-15h/wk, check remote |
+| MIT delta v | New 2026 "partner model" mentorship | MIT lineage | Email deltavstaff@mit.edu directly |
+
+**Research verdict:** the market offers either unpaid mentor tracks or full-time on-site EIRs; the exact "fractional, remote, AI-forward, direction-finding" role barely exists as a posting. Strongest paths = warm outreach (500 LatAm, EF team, MIT delta v) over cold applications. Engine 5 tactic adjusted: 2-3 warm expressions of interest beat 2-3 cold applications.
+
+
+### Reddit rules check (UNVERIFIED — Reddit blocked in research environment; confirm each sub's /about/rules before posting)
+
+| Sub | Verdict for value post | The rule that matters |
+|---|---|---|
+| r/findapath | Risky-to-yes | NO CTA of any kind, including "DM me" — post must be pure story + question (our draft already ends with "post yours below", which is the right shape) |
+| r/careerchange | Yes | Must read as advice-giving, not lead-gen; no profile/newsletter plugs |
+| r/solopreneur | Yes (most tolerant) | Check sidebar; growing subs tighten rules |
+| r/freelance | Yes if disciplined | Zero links means zero, incl. bio plugs |
+| r/consulting | Risky | Needs consulting-native angle ("should I leave consulting"), else off-topic |
+
+Extra candidates: r/careerguidance. **SOP amendment: before posting, open the sub's rules page manually — 5 minutes — and only then post.**
+
+
+### Parents/абитуриенты communities (Telegram verified via tgstat/telemetr; VK unreachable to research tools — verify VK entries by hand)
+
+| Community | Platform | Size | Fit |
+|---|---|---|---|
+| Навигатор Поступления (@propostuplenieru) | TG + VK | 21.5K | Strong: профориентация + вуз выбор audience; sponsored post or comment presence |
+| ПРО ШКОЛЫ (@proschoolmsk) | TG | 15.6K | Strong: school-choice-minded Moscow parents; direct admin outreach for native post |
+| НОВОСТИ - Родители Москвы (@roditelimoskvynews) | TG | 25.1K | Medium: admin partnership possible |
+| Русский язык ЕГЭ 2026 (Тамара Ларина) | TG | ~12.7K cohort | Medium: guest tie-in during prep season |
+| ФМЛ 239: vk.com/fml239 + @news_fml239 | VK+TG | unverified | Via school relationship only, not cold post |
+| Аничков лицей | TG (handle via spbal.exams@anichkov.ru) | unverified | Direct school outreach needed |
+| ФТШ Иоффе | not found this pass | — | Manual VK lookup needed |
+| eva.ru thread "Тг-каналы про топ школы" | forum | — | Discovery hub for more channels |
+
+**Route implication:** Telegram parent channels are the reachable layer (admin partnerships / native posts); VK lyceum publics need hand-browsing from a real account; the SPb lyceums are school-relationship plays, not cold posts. Teen-first DM route (tactics §5) remains primary; these channels are the parent-side amplifier.
