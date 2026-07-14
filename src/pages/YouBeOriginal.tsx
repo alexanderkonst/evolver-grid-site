@@ -44,7 +44,7 @@ export default function YouBeOriginal() {
           <a className="you-primary-cta" href={BOOKING_URL} target="_blank" rel="noreferrer">
             {t("youpage.heroCtaPrimary")} · {t("youpage.price")} <ArrowUpRight size={18} />
           </a>
-          <small><span /> {t("youpage.scarcityLine")}</small>
+          
           <p className="you-parent-note">{t("youpage.parentLine")}</p>
         </div>
         <a className="you-scroll" href="#orientation" aria-label="Continue to the next section"><ArrowDown /></a>
@@ -125,7 +125,7 @@ export default function YouBeOriginal() {
         <a className="you-primary-cta" href={BOOKING_URL} target="_blank" rel="noreferrer">
           {t("youpage.finalCta")} · {t("youpage.price")} <ArrowUpRight size={18} />
         </a>
-        <small>{t("youpage.finalScarcity")}</small>
+        
       </section>
 
       <footer className="you-footer"><span>{t("youpage.footerBrand")}</span><span>{t("youpage.footerTagline")}</span><span>© 2026</span></footer>
