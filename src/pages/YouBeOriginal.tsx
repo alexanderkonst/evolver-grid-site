@@ -67,8 +67,7 @@ export default function YouBeOriginal() {
           <a className="you-primary-cta" href={BOOKING_URL} target="_blank" rel="noreferrer">
             {t("youpage.heroCtaPrimary")} · {t("youpage.price")} <ArrowUpRight size={18} />
           </a>
-          
-          <p className="you-parent-note">{t("youpage.parentLine")}</p>
+          <p className="you-deliverable">{t("youpage.heroDeliverable")}</p>
         </div>
         <a className="you-scroll" href="#orientation" aria-label="Continue to the next section"><ArrowDown /></a>
       </section>
@@ -107,9 +106,7 @@ export default function YouBeOriginal() {
       </section>
 
       <aside className="you-neural">
-        <p className="you-neural-label">{t("youpage.neuralLabel")}</p>
-        <blockquote>{t("youpage.neuralQuoteMain")} <em>{t("youpage.neuralQuoteEm")}</em></blockquote>
-        <div className="you-neural-note">{t("youpage.neuralNote")}</div>
+        <blockquote className="you-neural-note">{t("youpage.neuralNote")}</blockquote>
       </aside>
 
       <section className="you-about">
@@ -130,6 +127,11 @@ export default function YouBeOriginal() {
           <p>{t("youpage.aboutBody2")}</p>
           <div className="you-belief"><span>{t("youpage.aboutBeliefLabel")}</span> {t("youpage.aboutBeliefBody")}</div>
         </div>
+      </section>
+
+      <section className="you-parents">
+        <p className="you-parents-label">{t("youpage.parentsLabel")}</p>
+        <p className="you-parents-body">{t("youpage.parentsBody")}</p>
       </section>
 
       <section className="you-after">
