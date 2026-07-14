@@ -1561,7 +1561,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     title={railMinimized ? t("shell.rail.expand") : t("shell.rail.minimize")}
                     aria-label={railMinimized ? t("shell.rail.expand") : t("shell.rail.minimize")}
                     style={{
-                        backgroundColor: pageOwnsBackground
+                        background: pageOwnsBackground
                             ? "var(--skin-rail-toggle-bg-deep, rgba(6,12,28,0.94))"
                             : "var(--skin-rail-toggle-bg, rgba(14,32,68,0.88))",
                         boxShadow:
@@ -1680,9 +1680,9 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         title={t("shell.sidebar.expandTitle")}
                         aria-label={t("shell.sidebar.expand")}
                         style={{
-                            backgroundColor: pageOwnsBackground
-                                ? "var(--skin-rail-toggle-bg-deep, rgba(6,12,28,0.94))"
-                                : "var(--skin-rail-toggle-bg, rgba(14,32,68,0.88))",
+                            background: pageOwnsBackground
+                                ? "var(--skin-sections-toggle-bg-deep, linear-gradient(90deg, rgb(20,52,122), rgb(35,76,157)))"
+                                : "var(--skin-sections-toggle-bg, linear-gradient(90deg, rgb(26,58,128), rgb(43,86,170)))",
                             boxShadow:
                                 "inset -1px 0 0 var(--skin-rail-toggle-hairline, rgba(212, 175, 55, 0.32)), 2px 0 14px -8px var(--skin-rail-toggle-glow, rgba(244, 212, 114, 0.3))",
                         }}
