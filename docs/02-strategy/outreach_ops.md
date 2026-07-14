@@ -64,7 +64,10 @@ Each campaign below is fully self-contained: verbatim copy, search query, tracki
 
 ### 3.2 Sabbatical / career-break founders (LinkedIn)
 
-- **Search query:** LinkedIn "Career Break" feature filter, plus keyword search "sabbatical" + founder, "career break" + founder / ex-founder.
+- **Search query:** Boolean in LinkedIn's top search bar, People tab: `("sabbatical" OR "career break") AND (founder OR "ex-founder" OR "co-founder")`. Filters after search: Locations = United States, Connections = 2nd first, then 3rd.
+- **Career Break note:** LinkedIn has an official "Career Break" profile field. The keyword "career break" in People search surfaces people who self-declared it there, so it's the highest-signal term in this segment.
+- **Google X-ray variant:** `site:linkedin.com/in ("sabbatical" OR "career break") (founder OR "ex-founder")`.
+- **1st-degree lane:** same keywords with Connections = 1st. This lane costs no invite budget, it's messages not invites. Connections CSV export (Settings → Data Privacy → Get a copy of your data → Connections, up to 24h wait) can be scanned by Claude for threshold badges (sabbatical, career break, ex-founder) to build a ranked list.
 - **Quota:** 25 invites (equal-N with other cold segments).
 
 **Message 1 — invite note (verbatim, ≤300 chars):**
@@ -86,7 +89,9 @@ Each campaign below is fully self-contained: verbatim copy, search query, tracki
 
 ### 3.3 Fractional executives (US, LinkedIn)
 
-- **Search query:** "fractional CMO" / "fractional CPO" / "fractional COO", US filter.
+- **Search query:** Boolean in LinkedIn's top search bar, People tab: `"fractional" AND (CMO OR CPO OR COO OR CGO)`. Filters after search: Locations = United States, Connections = 2nd first, then 3rd.
+- **Google X-ray variant:** `site:linkedin.com/in "fractional" (CMO OR CPO OR COO OR CGO)`.
+- **1st-degree lane:** same keywords with Connections = 1st, no invite budget spent.
 - **Quota:** 25 invites (equal-N).
 
 **Message 1 — invite note (verbatim):**
@@ -107,7 +112,9 @@ Each campaign below is fully self-contained: verbatim copy, search query, tracki
 
 ### 3.4 Coaches / solopreneurs in limbo (US, LinkedIn)
 
-- **Search query:** LinkedIn "coach" search, US, profiles with missing/weak positioning visible.
+- **Search query:** Boolean in LinkedIn's top search bar, People tab: `coach AND ("in transition" OR "reinventing" OR "figuring out")`. Filters after search: Locations = United States, Connections = 2nd first, then 3rd. Also browse plain "coach" results for weak-positioning signals (empty About, generic headline, no offer stated).
+- **Google X-ray variant:** `site:linkedin.com/in coach ("in transition" OR "reinventing" OR "figuring out")`.
+- **1st-degree lane:** same keywords with Connections = 1st, no invite budget spent.
 - **Quota:** 25 invites (equal-N).
 - **Register:** not-another-coach. Education/conviction happens inside the session via playbooks, not in the DM.
 
@@ -129,7 +136,9 @@ Each campaign below is fully self-contained: verbatim copy, search query, tracki
 
 ### 3.5 Big4 / MBB consultants (LinkedIn, pragmatic probe)
 
-- **Search query:** LinkedIn search for Big4/MBB titles + "up or out" / promotion-cycle signals.
+- **Search query:** Boolean in LinkedIn's top search bar, People tab: `(Deloitte OR PwC OR KPMG OR EY OR McKinsey OR BCG OR Bain) AND (manager OR "senior consultant")`. Filters after search: Locations = United States, Connections = 2nd first, then 3rd.
+- **Google X-ray variant:** `site:linkedin.com/in (Deloitte OR PwC OR KPMG OR EY OR McKinsey OR BCG OR Bain) (manager OR "senior consultant")`.
+- **1st-degree lane:** same keywords with Connections = 1st, no invite budget spent.
 - **Quota:** 25 invites (equal-N; strategy doc's original probe was 10, raised to match equal-N portfolio rule).
 - **Register:** pragmatic only, no myth.
 
@@ -247,9 +256,18 @@ No follow-up 1/2 (single post, not a DM thread). Engage with comments in each sw
 
 ---
 
+### 3.10 Watering holes (warm-ish, no tools)
+
+- Find 3-5 recent viral posts about sabbaticals, fractional life, or leaving Big4. Search LinkedIn posts (not people) with the same keywords, sort by recent.
+- Open each post's likers and commenters.
+- Whoever ALSO carries a threshold badge on their profile (career break, "fractional," Big4 title) gets an invite that references the post: "saw your comment on X's post about..." This beats pure cold, same daily budget.
+- Also join 1-2 Fractional-executive LinkedIn groups and comment there before ever DMing anyone from the group.
+
+---
+
 ## 4. Reply playbook (all channels)
 
-- **Yes/curious** → send calendar link `[CALENDAR-LINK]` + the two questions (if not already answered). Log: booked.
+- **Yes/curious** → send calendar link https://cal.com/aleksandrkonstantinov/direction-call + the two questions (if not already answered). Log: booked.
 - **"What's this about?"** → one line: "A working session, not a pitch: 45 minutes on your situation, you leave with your transition named and your strongest next direction. Free because it's how I choose who I go deeper with."
 - **Objection/skeptic** → agree lightly, restate no-strings, leave door open. Never chase.
 - **Silence** → send the campaign's Follow-up 1 at +3 days, Follow-up 2 at +7 days, then close the row.
@@ -273,7 +291,7 @@ The **"Next follow-up date" column IS the system.** No memory required.
 - **Why-free line:** "Why free? Because the first 45 minutes is where my work does the most visible good, and it's how I choose who I go deeper with. If we're a fit, I have paid containers and I'll say so in one sentence, not in a pitch."
 - **Proof answer:** point to `docs/04-products/the_build_container.md`.
 - **Testimonials link:** https://findyourtoptalent.com/ignite
-- **Booking link:** `[CALENDAR-LINK]` (placeholder — replace once calendar is set up, see Open item below).
+- **Booking link:** https://cal.com/aleksandrkonstantinov/direction-call
 - **Teen product page:** /you
 - **Container product page:** /products/built
 
@@ -289,8 +307,23 @@ The **"Next follow-up date" column IS the system.** No memory required.
 
 ---
 
+## 8. How to report to Claude (the clerk protocol)
+
+Sasha reports once a day, or ad hoc, in chat. Minimum viable fields per touch:
+
+1. LinkedIn profile URL (or name + company).
+2. Campaign/segment (which of the tables above).
+3. What was sent (msg1 / msg2 / follow-up 1 / follow-up 2).
+4. Any reply, pasted verbatim (screenshots fine).
+
+Claude then logs the touch to `outreach_tracker.csv`, computes the funnel per campaign, flags follow-ups due tomorrow, and captures reply language verbatim into the harvest.
+
+**Booking flow note:** the cal.com link (https://cal.com/aleksandrkonstantinov/direction-call) goes out in Message 2. The two questions are asked in the SAME channel (LinkedIn DM), after they book, not in the booking form itself.
+
+---
+
 ## Setup still open (once, before first send)
 
-- [ ] Create calendar link with the 2 questions as booking form fields (Calendly/Cal.com, 45-min event "Direction Call") — replaces `[CALENDAR-LINK]` everywhere above.
+- [x] Calendar link live: https://cal.com/aleksandrkonstantinov/direction-call. The two questions are NOT booking form fields, they go out in Message 2 and get answered in the same channel (LinkedIn DM) after booking.
 - [ ] Set профориентация price point.
 - [ ] Confirm LinkedIn profile shows tagline/banner/About (done Day 123).
