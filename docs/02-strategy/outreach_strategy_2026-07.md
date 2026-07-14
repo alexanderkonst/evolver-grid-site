@@ -32,6 +32,7 @@ One free threshold in two sizes (solo Direction Call · group workshop) × thres
 | Communities (any composition) | Webinar via host | Gift-from-within framing | **Pitch NS / Oyi / Devon / hub this week** |
 | RU teens 16→17 (pre-11th grade), strong schools | VK: lyceum public groups' members, parent chats (school filter unreliable) | Профориентация shelf, its category evolution | **Separate paid product, separate funnel; messages drafted; test 20 DMs** |
 | Warm base ~150 | Email | Honest re-introduction, one CTA | **First, before all cold** |
+| Stabilized containers (open positions) | Job boards + org sites: accelerators, venture studios, funds, research institutes, gov innovation units | Genuine application: plug my genius into workflows already stabilized into money | **Engine 5: define fit criteria, apply to 2-3 this week** |
 | Reddit r/Entrepreneur, r/solopreneur | Value post: story + lesson, zero links, "DM me" | Open blueprint; copyability is not a moat, depth is | **Tomorrow, 1 post** |
 
 ## 4. Cold test protocol (per segment)
@@ -50,6 +51,12 @@ One free threshold in two sizes (solo Direction Call · group workshop) × thres
 - Falsifiable: ≥15 attendees → ≥10 live profiles → ≥1 paid in 2 weeks. Predictive metric: profiles-created-live.
 - Engine 4 = same SOP in physical CDMX entrepreneur spaces, monthly per venue. First hub pitch: tomorrow.
 - Sequenced door: host sees revenue share work → community onboarding-module conversation opens (ecosystem holon, value-first).
+
+## 5b. Engine 5 — plugging into stabilized containers (open positions)
+
+- Same holonic move as everything else: join an existing container where money workflows are already stable, and plug in with the genius. Fractional / EIR / advisor / mentor / venture-builder roles at accelerators, venture studios, funds, research institutes, gov innovation initiatives. Fully clean channel: genuine interest, honest application.
+- **The open question (to work through): which rooms/teams match most.** Fit criteria draft: (1) they work with founders/talent at the direction-finding stage (method fit); (2) AI-forward or AI-curious (his edge compounds); (3) the role touches positioning/selection/enablement, not ops plumbing; (4) top-5 market or remote; (5) the room's mission rhymes with the cathedral (long-term compounding, not just salary).
+- Each application logged in the tracker like any other offer made (counts toward OMTM).
 
 ## 6. Copy laws (all channels)
 
@@ -79,7 +86,7 @@ One free threshold in two sizes (solo Direction Call · group workshop) × thres
 
 ## 10. Waves
 
-- **Now:** warm 150 → cold trio tests → host pitches (incl. 1 physical hub) → Reddit post #1 → post-exit research test → VK teens 20-DM test.
+- **Now:** warm 150 → cold trio tests → host pitches (incl. 1 physical hub) → Reddit post #1 → post-exit research test → VK teens 20-DM test → 2-3 open-position applications (Engine 5).
 - **Wave 2:** noisy ~500 bases · Reddit expansion (Jul 3 viral-plan sequence) · Big4 full test if probe converts · senior corp leaders 45+.
 - **Wave 3:** teens scale if test converts · new communities via webinar referrals.
 
@@ -90,3 +97,4 @@ One free threshold in two sizes (solo Direction Call · group workshop) × thres
 - [ ] Warm-base email text · DM templates ×3 · host pitch text · Reddit post text (build next)
 - [ ] Профориентация price point
 - [ ] Which physical hub first
+- [ ] Engine 5: shortlist of matching rooms/teams (research task: accelerators, studios, funds with talent-enablement roles)
