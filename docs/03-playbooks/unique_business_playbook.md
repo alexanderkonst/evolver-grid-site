@@ -4686,12 +4686,13 @@ These are not in opposition. They are complementary faces of the same whole. The
 
 ## Addendum — The Free Diagnostic Rung & Message Anatomy (Day 124, July 14, 2026)
 
-**Principle: the ladder needs a trust rung.** Strangers do not buy mid-priced sessions from strangers. Below the first paid step lives a free diagnostic container (the Direction Call pattern): small enough to be an easy yes, real enough to change the person. Its promise must place the knowing in the CLIENT: the practitioner helps them see and say what is already theirs. Promise pattern: "You leave seeing your transition clearly: what you're growing out of, what you're growing into, and the direction that follows. Most people discover they already knew, and hadn't yet dared to say it out loud." The free rung is not a discount: it is where the work does its most visible good and where the practitioner chooses who to go deeper with, said openly.
+**Pattern: the trust rung.** Before trust or status exists, a mid-priced session is a hard first yes; whether a ladder needs a free rung is an empirical, per-venture question, not a law. When it does, below the first paid step lives a free diagnostic container (the Direction Call pattern): small enough to be an easy yes, real enough to change the person. Its promise must place the knowing in the CLIENT: the practitioner helps them see and say what is already theirs. Promise pattern: "You leave seeing your transition clearly: what you're growing out of, what you're growing into, and the direction that follows. Most people discover they already knew, and hadn't yet dared to say it out loud." The free rung is not a discount: it is where the work does its most visible good and where the practitioner chooses who to go deeper with, said openly.
 
 **Message Anatomy (applies to every outreach message, any channel):**
 1. **Threshold recognition** — name the threshold, or ask the question that makes the person in it recognize themselves ("are you clear on your next professional chapter yet?").
 2. **Kinetic story, one sentence** — the sender's magnetic story compressed; polarizes and pulls.
 3. **Transformational result + conditions** — what is proposed, at what price/terms, with the promise phrased as empowerment (see above).
-4. **One door** — a single CTA; proof links only where trust is absent (proof in a warm letter treats a friend as a skeptic; omit).
+4. **A known shelf, named** — place yourself on a shelf the reader already understands (category line / credential key), so the mind knows where to put you before deciding anything.
+5. **One door** — a single CTA; proof links only where trust is absent (proof in a warm letter treats a friend as a skeptic; omit).
 
 **Sequencing note:** recognition travels in message 1; the offer and conditions travel only after the person leans in.

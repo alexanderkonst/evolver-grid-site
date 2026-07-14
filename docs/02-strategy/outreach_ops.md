@@ -356,4 +356,4 @@ Sasha does the first 3-5 invites per segment fully manually (calibration). Then 
 
 **Connections export:** part 1 of the archive (Articles/Invitations/Profile/...) does NOT contain Connections.csv; it arrives in the second, complete archive (~24h). Drop Connections.csv into docs/02-strategy/warm-base/ for the 5,000 badge-scan.
 
-**Harvest, canonical (via Maya):** "People know what they're going to grow into. They're just afraid to be that bigger version of themselves."
+**Harvest, canonical (via Daria Zamorina):** "People know what they're going to grow into. They're just afraid to be that bigger version of themselves."
