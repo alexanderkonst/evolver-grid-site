@@ -1,14 +1,34 @@
+import { useEffect } from "react";
 import { ArrowDown, ArrowUpRight, Asterisk, Orbit, Sparkles } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import logo from "@/assets/you-be-original-holo-transparent.png";
 import aleksandrPhoto from "@/assets/aleksandr-photo.jpeg";
+import { LanguageSwitcher } from "@/i18n/LanguageSwitcher";
+import { buildLocalePath, initialLocaleScope, LOCALE_STORAGE_KEY } from "@/i18n/localeScope";
 import "./YouBeOriginal.css";
 
-const BOOKING_URL = "https://www.calendly.com/konstantinov";
+const BOOKING_URL = "https://cal.com/aleksandrkonstantinov/professional-discovery";
 
 export default function YouBeOriginal() {
   const { t } = useTranslation();
+
+  // Day 124: /you defaults to Russian, unlike the rest of the site (English
+  // default). Only redirects a bare, unprefixed visit with no prior explicit
+  // choice — a URL locale prefix (/ru, /es) or a stored preference always wins.
+  useEffect(() => {
+    if (initialLocaleScope) return;
+    try {
+      if (window.localStorage.getItem(LOCALE_STORAGE_KEY)) return;
+    } catch {
+      /* ignore */
+    }
+    window.location.replace(
+      buildLocalePath("ru", window.location.pathname) +
+        window.location.search +
+        window.location.hash,
+    );
+  }, []);
 
   const moves = [
     { n: "01", title: t("youpage.move1Title"), body: t("youpage.move1Body") },
@@ -28,9 +48,12 @@ export default function YouBeOriginal() {
           <img src={logo} alt="YOU — be original" />
         </a>
         <p>{t("youpage.headerTagline")}</p>
-        <a className="you-header-cta" href={BOOKING_URL} target="_blank" rel="noreferrer">
-          {t("youpage.headerCta")} <ArrowUpRight size={16} />
-        </a>
+        <div className="you-header-actions">
+          <LanguageSwitcher className="you-lang-switcher" />
+          <a className="you-header-cta" href={BOOKING_URL} target="_blank" rel="noreferrer">
+            {t("youpage.headerCta")} <ArrowUpRight size={16} />
+          </a>
+        </div>
       </header>
 
       <section className="you-hero">
