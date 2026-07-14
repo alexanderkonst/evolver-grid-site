@@ -10,11 +10,11 @@ describe("readBroadcastTracker", () => {
 
   it("parses the Master Table with all contacts", () => {
     expect(tracker.contacts.length).toBeGreaterThan(20);
-    // The first contact is Oyi — documented in the fixture.
-    const oyi = tracker.contacts.find((c) => c.name === "Oyi");
+    // The first contact is Oyi / WeGoodOvaHere — documented in the tracker.
+    const oyi = tracker.contacts.find((c) => c.name === "Oyi / WeGoodOvaHere");
     expect(oyi).toBeTruthy();
     expect(oyi.segments).toContain("CLIENT");
-    expect(oyi.stage).toBe("Build");
+    expect(oyi.stage).toBe("Advisor review");
   });
 
   it("derives stage distribution", () => {
@@ -29,7 +29,7 @@ describe("readBroadcastTracker", () => {
   });
 
   it("extracts revenue totals", () => {
-    expect(tracker.cashReceivedUsd).toBe(2271);
+    expect(tracker.cashReceivedUsd).toBe(2371);
     expect(tracker.revShareContractsUsd).toBe(277);
   });
 
@@ -73,15 +73,15 @@ describe("readBroadcastTracker", () => {
   });
 
   it("parses footer meta", () => {
-    expect(tracker.version).toBe("v3.8");
-    expect(tracker.updatedNote).toContain("June 26, 2026");
+    expect(tracker.version).toBe("v4.0");
+    expect(tracker.updatedNote).toContain("July 10, 2026");
   });
 
   it("helper: groupContactsByStage('Build') returns active Build clients", () => {
     const build = groupContactsByStage(tracker.contacts, "Build");
     const names = build.map((c) => c.name);
-    expect(names).toContain("Oyi");
-    expect(names).toContain("Sergey");
+    expect(names).toContain("Sandra");
+    expect(names).toContain("Karime");
   });
 
   it("helper: filterBySegment('CLIENT') surfaces active clients", () => {

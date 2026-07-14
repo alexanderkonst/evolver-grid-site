@@ -8,11 +8,10 @@ const skinCss = readFileSync(
 
 describe("shell skin tokens", () => {
   it("keeps the rail toggle strips in pane 2's color plane", () => {
+    expect(skinCss).toContain("--skin-rail-toggle-bg: rgb(35, 76, 157);");
+    expect(skinCss).toContain("--skin-rail-toggle-bg-deep: rgb(20, 52, 122);");
     expect(skinCss).toContain(
-      "--skin-rail-toggle-bg: rgba(14, 32, 68, 0.72);",
-    );
-    expect(skinCss).toContain(
-      "--skin-rail-toggle-bg-deep: rgba(6, 12, 28, 0.94);",
+      "--skin-rail-toggle-hairline: rgba(116, 163, 255, 0.72);",
     );
   });
 });

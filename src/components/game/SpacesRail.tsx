@@ -687,11 +687,11 @@ const SpacesRail = ({
                                 alone leaves a 4:3 canvas with large dead zones.
                                 This viewport preserves the canonical artwork and
                                 crops around the visible sphere + wordmark. */}
-                            <div className="hidden md:flex h-[116px] w-full items-center justify-center overflow-hidden">
+                            <div className="hidden md:flex h-[92px] w-full items-center justify-center overflow-hidden">
                                 <img
                                     src={brandLogo}
                                     alt="YOU — be original."
-                                    className="w-[244px] max-w-none h-auto object-contain brand-breath"
+                                    className="w-[224px] max-w-none h-auto object-contain brand-breath"
                                     draggable={false}
                                 />
                             </div>

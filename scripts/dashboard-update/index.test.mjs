@@ -25,7 +25,7 @@ describe("dashboard-update renderer", () => {
       cwd: REPO_ROOT,
       encoding: "utf8",
     });
-    // The broadcast tracker currently derives Cash received as $2,271.
-    expect(out).toMatch(/\$2271/);
+    // The broadcast tracker currently derives Cash received as $2,371.
+    expect(out).toMatch(/\$2371/);
   });
 });
