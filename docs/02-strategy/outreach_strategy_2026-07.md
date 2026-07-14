@@ -96,12 +96,11 @@
 - **Wave 2:** noisy ~500 bases · Reddit expansion (Jul 3 viral-plan sequence) · Big4 full test if probe converts · senior corp leaders 45+.
 - **Wave 3:** teens scale if test converts · new communities via webinar referrals.
 
-## 10a. Roast outcomes (Day 123, Strategy Iteration Button)
+## 10a. Threshold-badge search terms
 
-- **Survived intact:** the ladder · recognition language · instrument discipline · sabbatical signal · workshop-with-host-economics · teens product · warm 150 · Engine 5.
-- **Rebutted by Sasha (now test hypotheses, not verdicts):** "fractional execs read free-from-stranger as a funnel" → the message says no-strings explicitly and leads with threshold, so test it; "coaches are DM-fatigued" → the copy is different and self-selecting, test it; "chronic not burning pain" → fractional = gig economy, gaps between gigs ARE acute pain.
-- **Accepted fixes:** response-time QA (check all channels every 30-60 min on send days; warm windows close fast) · call capacity is flexible upward (more calls = more sales + more learning; the 2-question filter still gates) · test math redone: 20-30 touches/channel are a DIRECTIONAL read, not a statistical verdict; kill only on zero signal, rank channels by relative response · LinkedIn safety: stay well under limits (~15-20 invites/day, ~80/week ceiling) · webinar scheduled ~10 days out (weekend after next), host makes 2 posts + 1 reminder.
-- **Threshold-badge search terms (beyond "sabbatical"):** Career Break (official LinkedIn feature) · "in transition" · ex-[Company] · former founder · "exploring what's next" · "open to new opportunities" · "next chapter" · "recovering founder" · advisor freshly post-exit · coaches: "reinventing", "pivoting".
+Self-declared threshold badges, each searchable, each a candidate probe: **Career Break** (official LinkedIn feature) · "sabbatical" · "in transition" · ex-[Company] · "former founder" · "exploring what's next" · "open to new opportunities" · "next chapter" · "recovering founder" · advisor freshly post-exit · coaches: "reinventing", "pivoting".
+
+Operational guardrails from the Day 123 roast: response sweeps every 30-60 min on send days · call capacity flexes upward, the 2-question filter gates · n=20-30 per channel = directional read, kill only on zero signal · LinkedIn ≤15-20 invites/day, ≤80/week · webinar scheduled ~10 days out.
 
 ## 10b. Cadence & automation
 
