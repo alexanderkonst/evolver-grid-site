@@ -548,7 +548,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     energy: "Clearing · Release fear · Cry, don't complain · The how is not yours yet",
     holonicQuadrant: "emanation",
     guidance:
-      "The mind freaks out about the how — that's the resistance to release. Cry, don't complain. Don't form limiting beliefs.",
+      "Cry, don't complain. Release without forming beliefs. Don't discharge on others. Don't figure out the how.",
   },
   {
     name: "Waxing Crescent",
