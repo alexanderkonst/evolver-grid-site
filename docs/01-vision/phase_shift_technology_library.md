@@ -7213,3 +7213,31 @@ A venture is what happens when a communion incorporates: the third being gets a 
 - **The inverse test, before signing:** does a third being already act? Do outsiders address you as a unit, do ideas arise between you that neither can trace, does anything already flow through shared channels without per-instance negotiation? If none of this exists yet, incorporate later — or knowingly build a partnership and paper it as one.
 
 **Product consequence:** the matchmaking layer can honestly say what no networking tool can — it is not introducing contacts, it is creating the conditions for third beings. Co-founder matching without a communion test is malpractice; with one, it is a category of its own.
+
+---
+
+## Domain 104: Self-Knowledge as the Agentic Index (Day 123, July 13, 2026)
+
+**The law in one sentence: your level of self-knowledge is the level of knowledge of you by AI — and in an agent-mediated economy, that makes articulation existence, not marketing.**
+
+*Sensed for years; crystallized live in the Tom Norwood call, July 13, 2026.*
+
+**The inversion.** The internet's next form is agents talking to agents: your AI books, filters, searches, hires, and matches on your behalf, and everyone else's does the same. When discovery becomes agent-mediated, nobody browses anymore — agents match on *structured, articulated descriptions*. Which changes what a professional profile IS: no longer a brochure a human might read, but the index entry by which the entire agentic economy resolves you.
+
+**The two directions of the law, one artifact.**
+
+1. **Inward:** your own AI can only represent you to the depth you have articulated yourself. Vague self-knowledge in, generic representation out — your agent negotiates the world carrying a blurry photograph of you. The quality of your articulation IS the quality of your agentic presence.
+2. **Outward:** other people's agents find you by your articulated structure. "When an AI is looking for someone with that exact value proposition, it says: this is the person you have to talk to" (Tom, on the call). Unarticulated genius is not underpriced in this economy — it is *unindexed*. Invisible. Non-existent to the searches that matter.
+
+**Why this is the thesis's hardest economic argument.** The first domino (canvas, Day 112) named the bottleneck: perception scarcity, articulation scarcity, self-recognition scarcity. Domain 104 gives that bottleneck teeth: the agentic economy converts articulation from a soft advantage into hard infrastructure. Self-knowledge tooling stops being self-help; it becomes the factory of index entries for the next economy. Every reveal the platform generates is an agentic passport being issued before the border opens.
+
+**Corollaries:**
+
+- **Machine-legibility is existence infrastructure, not SEO plumbing.** Generated landing pages and profiles carry structured data (JSON-LD/schema) so agents can read, index, and recommend the person. The corridor of Domain 103 now includes agent-readable surfaces: the category is narrated to humans AND to machines.
+- **Precision compounds.** A profile articulated at "coach" resolution loses every agentic match to a profile articulated at Top-Talent-sentence resolution. The Precision Gap IS the product, now with a machine counterparty that rewards it mechanically.
+- **Sovereignty edge:** whoever holds the profile holds the person's agentic representation. This is the deep argument for self-owned profiles and sovereign nodes (the matryoshka federation): your index entry should be a possession, not a platform's asset.
+- **The mirror closes the loop:** the platform's own thesis ("the startup industry is a billion-dollar workaround for not knowing yourself") extends one ring outward — the agentic internet would otherwise become a billion-agent workaround for people not being articulated.
+
+**Relationship to other domains:** Domain 100 (adoption via self-recognition — humans recognize themselves; agents *resolve* the articulated form of the same artifact); Domain 98 (the invariant beneath representations); Domain 103 (agent-readable surfaces join the corridor); Domain 101-102 (the money week's demand for proof outside the loop — agentic matching is external validation by construction: agents don't buy hope).
+
+**One-sentence version:** *In the economy where agents do the finding, self-knowledge is the index — the unarticulated do not appear in the search results of reality.*
