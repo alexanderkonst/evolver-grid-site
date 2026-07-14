@@ -233,6 +233,7 @@ import IntegralTheoryUpgrade1 from "./pages/IntegralTheoryUpgrade1";
 import Intros from "./pages/Intros";
 import YouBeOriginal from "./pages/YouBeOriginal";
 import Web3Commons from "./pages/Web3Commons";
+import Founder from "./pages/Founder";
 // Unique Business Builder v2.0
 import UniqueBusinessLayout from "./modules/unique-business-builder/UniqueBusinessLayout";
 import CanvasOverviewScreen from "./modules/unique-business-builder/screens/CanvasOverviewScreen";
@@ -877,6 +878,9 @@ const App = () => (
                   <Route path="/landing" element={<LandingThesis />} />
                   <Route path="/you" element={<YouBeOriginal />} />
                   <Route path="/web3" element={<Web3Commons />} />
+                  {/* Founder trust page · /founder · standalone (no shell). Copy from Message Bank artifacts. */}
+                  <Route path="/founder" element={<Founder />} />
+                  <Route path="/about/meet-the-founder" element={<Founder />} />
                   {/* Public monetization explainer · /monetization · standalone (no shell),
                       radical-transparency framing, Liquid Glass register. */}
                   <Route path="/monetization" element={<Monetization />} />
