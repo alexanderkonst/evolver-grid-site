@@ -13,6 +13,23 @@
 - **Flywheel:** act → learn → rebuild → act.
 - **Operating philosophy (Day 123):** maximize learning. Every experiment earns coins on the hero's journey: results, clarity, artifacts, and the next vantage point ("to see the vista, one must arrive at the vantage point"). Launch the full portfolio, respond to what life sends back, surrender the outcome, follow the inner guidance on what to do next.
 
+## 0b. All initiatives, one table (Day 124)
+
+| # | Initiative | Segment | Channel | First action | They land on | Success test |
+|---|---|---|---|---|---|---|
+| 1 | Warm-base reactivation | ~150 past clients/signups | Personal email (Gmail drafts) | One honest re-intro email | Direction Call booking | ≥10% reply, ≥3 calls |
+| 2 | Sabbatical search | Post-exit founders on career break | LinkedIn "sabbatical/career break + founder" | 1-hr search test → DMs | Direction Call | search yields real people; ≥2 calls/30 |
+| 3 | Fractional test | Fractional execs (US) | LinkedIn keyword + DM | 30 invites | Direction Call | ≥20% accept, ≥2 calls |
+| 4 | Coaches test | US coaches/solopreneurs in limbo | LinkedIn "coach" + DM (not-another-coach) | 30 invites | Direction Call | same |
+| 5 | Big4 probe | Consultants at up-or-out | LinkedIn + pragmatic DM | 10 invites | Direction Call | any signal |
+| 6 | Community webinars | Any trusted community | Host pitch (33% first two purchases) | Pitch Oyi + NS + Devon | Webinar → $555 direct | ≥15 attend, ≥1 paid/2wk |
+| 7 | Physical hubs | CDMX entrepreneur spaces | Venue pitch | Pitch 1 hub | Live workshop → $555 | venue yes; repeat monthly |
+| 8 | Reddit value posts | Threshold-dense niche subs | r/findapath first (rules-checked) | 1 post | DM → Direction Call | post survives; ≥3 DMs |
+| 9 | Engine 5: rooms | Accelerators/studios/funds | Warm apps (EF, 500 LatAm, MIT delta v) | 2-3 applications | Interview | any conversation |
+| 10 | Teen профориентация | RU teens 16-17 + parents | VK lyceum publics + TG parent channels | 20 DMs | /you page → paid 5 000 ₽ session → 3-wk container (solo/group) | ≥2 paid sessions |
+
+Funnel law: every cold/warm 1:1 route lands on the free Direction Call; webinars and workshops land on $555 directly; teens land on the paid 5 000 ₽ session (no free step); Engine 5 lands on interviews. Everything ascends the same ladder after entry.
+
 ## 1. The ladder
 
 - Free: **Direction Call** (45 min, cap 5/week stated honestly) or **group workshop** (~90 min, communities/venues)
