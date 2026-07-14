@@ -45,7 +45,7 @@ Each campaign below is fully self-contained: verbatim copy, search query, tracki
 >
 > Sasha here. When we worked together, you named [their superpower words]. I went back and reread it before writing this. That work grew into something much more complete: I now help people name what's next professionally and turn it into an offer people actually pay for. Real businesses have launched from it.
 >
-> I run free 45-minute Direction Calls. You leave with your transition named and your strongest next direction on the table. Practically everyone does. If it lands for where you are right now, grab a time: https://cal.com/aleksandrkonstantinov/direction-call
+> I run free 45-minute Direction Calls. You leave seeing your transition clearly: what you're growing out of, what you're growing into, and the direction that follows. Most people discover they already knew, and hadn't yet dared to say it out loud. If it lands for where you are right now, grab a time: https://cal.com/aleksandrkonstantinov/direction-call
 >
 > If not, all good. Happy to be back in touch either way.
 >
@@ -74,7 +74,7 @@ Each campaign below is fully self-contained: verbatim copy, search query, tracki
 > Hi [Name], saw you're taking a break after [Company]. That in-between stretch, when the last chapter is closed and the next one hasn't named itself yet, is the territory I love most. If it resonates, I'm glad to connect.
 
 **Message 2 — why-free + 2 questions (after accept, verbatim):**
-> Thanks for connecting! I'll be straight about what I do: I run free 45-minute Direction Calls. You leave with your transition named and your strongest next direction on the table. Practically everyone does. Why free? Because the first 45 minutes is where my work does the most visible good, and it's how I choose who I go deeper with. If we're a fit, I have paid containers and I'll say so in one sentence, not in a pitch. What clients say, from real session transcripts: https://findyourtoptalent.com/ignite. If it lands, grab a time: https://cal.com/aleksandrkonstantinov/direction-call
+> Thanks for connecting! I'll be straight about what I do: I run free 45-minute Direction Calls. You leave seeing your transition clearly: what you're growing out of, what you're growing into, and the direction that follows. Most people discover they already knew, and hadn't yet dared to say it out loud. Why free? Because the first 45 minutes is where my work does the most visible good, and it's how I choose who I go deeper with. If we're a fit, I have paid containers and I'll say so in one sentence, not in a pitch. What clients say, from real session transcripts: https://findyourtoptalent.com/ignite. If it lands, grab a time: https://cal.com/aleksandrkonstantinov/direction-call
 
 **After they book (same channel):**
 > Great. So the 45 minutes go fully into your situation, two quick questions: What's the transition you're in? And what have you tried?
@@ -290,7 +290,7 @@ The **"Next follow-up date" column IS the system.** No memory required.
 
 ## 6. Copy bank (reusable snippets)
 
-- **Direction Call promise:** "You leave with your transition named and your strongest next direction on the table. Practically everyone does."
+- **Direction Call promise:** "You leave seeing your transition clearly: what you're growing out of, what you're growing into, and the direction that follows. Most people discover they already knew, and hadn't yet dared to say it out loud."
 - **Why-free line:** "Why free? Because the first 45 minutes is where my work does the most visible good, and it's how I choose who I go deeper with. If we're a fit, I have paid containers and I'll say so in one sentence, not in a pitch."
 - **Proof answer:** point to `docs/04-products/the_build_container.md`.
 - **Testimonials link:** https://findyourtoptalent.com/ignite
@@ -355,3 +355,5 @@ Sasha does the first 3-5 invites per segment fully manually (calibration). Then 
 **Batching rule (warm email):** 20-30 sends per sitting, several sittings per day. Burst-sending 150 similar emails trips Gmail's spam classifier (their inbox placement + your account flag risk); batches read as human correspondence and replies arrive in absorbable waves.
 
 **Connections export:** part 1 of the archive (Articles/Invitations/Profile/...) does NOT contain Connections.csv; it arrives in the second, complete archive (~24h). Drop Connections.csv into docs/02-strategy/warm-base/ for the 5,000 badge-scan.
+
+**Harvest, canonical (via Maya):** "People know what they're going to grow into. They're just afraid to be that bigger version of themselves."
