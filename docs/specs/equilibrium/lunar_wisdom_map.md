@@ -411,3 +411,5 @@ pills, sub-label below the active pill.
 
 The full wisdom for each phase lives only in this document so the source
 signal isn't lost when the pill strings get re-tuned over time.
+
+> **Canonical Clearing guidance copy (Day 123, July 13, 2026 — shipped to `equilibrium-cycles`):** *"Cry, don't complain. Release without forming beliefs. Don't discharge on others. Don't figure out the how."* Four beats: release valve · belief hygiene · relational hygiene · surrender of mechanism.
