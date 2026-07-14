@@ -95,6 +95,11 @@
 - **Wave 2:** noisy ~500 bases · Reddit expansion (Jul 3 viral-plan sequence) · Big4 full test if probe converts · senior corp leaders 45+.
 - **Wave 3:** teens scale if test converts · new communities via webinar referrals.
 
+## 10b. Cadence & automation
+
+- Tuesday Jul 14 = send day; Wednesday Jul 15 = send + work responses.
+- No LinkedIn bulk automation (ToS/account risk). Week 1 manual with Claude-prepped artifacts; week 2 supervised Chrome-assist; email = the one truly automatable channel. Details: `outreach_tactics_2026-07.md`.
+
 ## 11. Open decisions
 
 - [ ] Direction Call booking mechanics (calendar + 2-question form)
