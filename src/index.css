@@ -241,14 +241,14 @@
      wash). Now identical on every route. Lighter RGB preserved so
      pane 2 reads a hair lifted from pane 1. */
   --skin-panel-2-bg: rgb(26, 58, 128);         /* Pane 2 — solid lit navy */
-  /* Day 121 (Sasha 2026-07-13): the two 20px shell toggle strips are
-     collapsed edges of pane 2, not a third panel. Match the actual Lapis
-     pane-2 glass materials from SectionsPanel (desktop and page-owned
-     background) so the seam composites to the same blue instead of the
-     old 0.22-alpha gray ribbon. Skin-specific blocks can still override
-     these inherited tokens where their pane-2 material differs. */
-  --skin-rail-toggle-bg: rgb(35, 76, 157);
-  --skin-rail-toggle-bg-deep: rgb(20, 52, 122);
+  /* The two 20px shell toggle strips are transitions between planes, not
+     miniature panels. Keep each one distinct: pane 1 -> pane 2, then pane 2
+     -> content. The gradients preserve Lapis' left-to-right lift even when
+     both navigation panes are collapsed side by side. */
+  --skin-rail-toggle-bg: linear-gradient(90deg, rgb(16, 42, 96) 0%, rgb(26, 58, 128) 100%);
+  --skin-rail-toggle-bg-deep: linear-gradient(90deg, rgb(11, 31, 76) 0%, rgb(20, 52, 122) 100%);
+  --skin-sections-toggle-bg: linear-gradient(90deg, rgb(26, 58, 128) 0%, rgb(43, 86, 170) 100%);
+  --skin-sections-toggle-bg-deep: linear-gradient(90deg, rgb(20, 52, 122) 0%, rgb(35, 76, 157) 100%);
   --skin-rail-toggle-hairline: rgba(116, 163, 255, 0.72);
   --skin-rail-toggle-glow: rgba(44, 102, 220, 0.48);
   --skin-rail-toggle-accent: rgba(244, 212, 114, 0.95);
