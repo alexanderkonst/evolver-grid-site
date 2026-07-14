@@ -358,7 +358,13 @@ const SmartShellLayout = () => {
   const location = useLocation();
   if (pathUsesLayoutShell(location.pathname)) {
     return (
-      <GameShellV2 hideLogo={pathHidesLogo(location.pathname)}>
+      // Day 124 (Sasha 2026-07-14): homepage opens with pane 1 (SpacesRail)
+      // minimized by default — first impression stays focused on pane 3
+      // content. Only governs the shell's initial mount (GameShellV2 is a
+      // single persistent instance across in-shell routes), so this does
+      // not force minimization when navigating to "/" from elsewhere in
+      // the same session, and other routes' defaults are untouched.
+      <GameShellV2 hideLogo={pathHidesLogo(location.pathname)} defaultRailMinimized={location.pathname === "/"}>
         <Outlet />
       </GameShellV2>
     );
