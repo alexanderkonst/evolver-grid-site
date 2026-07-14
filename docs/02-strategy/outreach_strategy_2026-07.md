@@ -38,7 +38,7 @@ Funnel law: every cold/warm 1:1 route lands on the free Direction Call; webinars
 
 ## 2. Direction Call (canonical design)
 
-- Result: "You leave with your transition named and your strongest next direction on the table. Practically everyone does."
+- Result: "You leave seeing your transition clearly: what you're growing out of, what you're growing into, and the direction that follows. Most people discover they already knew, and hadn't yet dared to say it out loud."
 - Why-free (message #2 after accept): "Why free? Because the first 45 minutes is where my work does the most visible good, and it's how I choose who I go deeper with. If we're a fit, I have paid containers and I'll say so in one sentence, not in a pitch."
 - Two-question filter (service framing): (1) What's the transition you're in? (2) What have you tried? — state + motion; answering Q1 starts the work.
 - Week 1 manual, week 2 automate what was learned.

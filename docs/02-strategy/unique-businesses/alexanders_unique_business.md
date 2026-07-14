@@ -9143,3 +9143,20 @@ Ace 7 (Equilibrium) stays a satellite: real product, different audience, does no
 **Credential lines (shelf keys):** MIT + Silicon Valley launches + hundreds of transformational processes with leaders places the founder-strategy shelf. The MAI deck places the AI-research shelf (a citable artifact, not a claim). Karime's WEF Global Leadership Fellows background places the leadership-transformation shelf.
 
 **Sequencing rule:** cash comes from known shelves first (founder strategy, community infrastructure). "The Uniqueness Economy" as a new category is the later, funded move. The crystallizing act: the chosen category sentence goes on the $555 booking page.
+
+
+---
+
+## Addendum — Day 124 (July 14, 2026): The Direction Call, the missing rung
+
+**The realization:** strangers do not buy a $555 session from a stranger. Until status arrives, the ladder needs a trust rung below the first paid step. The **free 45-minute Direction Call** is that rung: a new container, overlooked for months because of its simplicity. Life-changing in the literal sense: it changes how every stranger enters.
+
+**What it is (in relation to before and after):** the message creates recognition ("in motion without one clear direction") → the call is the diagnostic → the paid work builds what the call names. Three moves inside: (1) name the transition A→B; (2) trace it inward: every outer transition rides an inner one, growing into the next version of yourself; (3) read the signal: uniqueness + excitement + hero's journey = direction recognized, not invented.
+
+**The stance (the shift that matters):** empowerment, not oracle. The knowing is theirs; the naming is the work; the fear of being the bigger version is the threshold. Canonical threshold language (via Maya): "People know what they're going to grow into. They're just afraid to be that bigger version of themselves."
+
+**The honest promise (canonical):** "You leave seeing your transition clearly: what you're growing out of, what you're growing into, and the direction that follows. Most people discover they already knew, and hadn't yet dared to say it out loud." RU: «Ты уйдёшь, ясно видя свой переход: из чего ты вырастаешь, во что растёшь, и направление, которое из этого следует. Большинство обнаруживает, что уже знали, просто ещё не решались сказать это вслух».
+
+**Direct version of the stance, sayable as-is:** "You'll see it yourself. I do this professionally, so we'll get to clarity faster together. That's my life's work, so I'm good at it."
+
+**Ladder as of Day 124:** free Direction Call (solo) / free group workshop → $555 Productize Yourself → $1,111 BUILT → advisory/venture tools. Parked idea: venture-studio / incubator positioning as a credibility frame (own landing page later).
