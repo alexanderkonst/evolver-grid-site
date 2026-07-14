@@ -1,7 +1,7 @@
 # Outreach Strategy — July 2026
 
 > *© 2026 Alexander Konstantinov · CC BY-NC-SA 4.0*
-> **v2.1 — July 13, 2026 (Day 123).** Mode: collecting moves; prioritization comes after collection is complete. The single strategy document: bullets only, precise and concise. Execution logs: `tribe_outreach_tracker.md` (reachouts), `strategic_crm_outreach_tracker.md` (relationships).
+> **v3.0 — July 13, 2026 (Day 123).** Roasted via Strategy Iteration Button; Sasha's verdict: strategy holds, run ALL engines as a parallel experiment portfolio. Objections raised in the crash-test are now hypotheses the tests measure, not reasons to pre-kill channels. The single strategy document: bullets only, precise and concise. Execution logs: `tribe_outreach_tracker.md` (reachouts), `strategic_crm_outreach_tracker.md` (relationships).
 
 ## 0. The strategy, structured
 
@@ -11,6 +11,7 @@
 - **How we speak:** threshold recognition in their harvested words, per-segment register (myth for founders, not-another-coach for coaches, pragmatic for consultants), being-wanted register, one CTA, person-holon only.
 - **How we learn:** pre-registered falsifiable tests, per-person funnel logging, Friday re-scoring of the 12-axis instrument, OMTM as the weekly meter.
 - **Flywheel:** act → learn → rebuild → act.
+- **Operating philosophy (Day 123):** maximize learning. Every experiment earns coins on the hero's journey: results, clarity, artifacts, and the next vantage point ("to see the vista, one must arrive at the vantage point"). Launch the full portfolio, respond to what life sends back, surrender the outcome, follow the inner guidance on what to do next.
 
 ## 1. The ladder
 
@@ -94,6 +95,13 @@
 - **Now:** warm 150 → cold trio tests → host pitches (incl. 1 physical hub) → Reddit post #1 → post-exit research test → VK teens 20-DM test → 2-3 open-position applications (Engine 5).
 - **Wave 2:** noisy ~500 bases · Reddit expansion (Jul 3 viral-plan sequence) · Big4 full test if probe converts · senior corp leaders 45+.
 - **Wave 3:** teens scale if test converts · new communities via webinar referrals.
+
+## 10a. Roast outcomes (Day 123, Strategy Iteration Button)
+
+- **Survived intact:** the ladder · recognition language · instrument discipline · sabbatical signal · workshop-with-host-economics · teens product · warm 150 · Engine 5.
+- **Rebutted by Sasha (now test hypotheses, not verdicts):** "fractional execs read free-from-stranger as a funnel" → the message says no-strings explicitly and leads with threshold, so test it; "coaches are DM-fatigued" → the copy is different and self-selecting, test it; "chronic not burning pain" → fractional = gig economy, gaps between gigs ARE acute pain.
+- **Accepted fixes:** response-time QA (check all channels every 30-60 min on send days; warm windows close fast) · call capacity is flexible upward (more calls = more sales + more learning; the 2-question filter still gates) · test math redone: 20-30 touches/channel are a DIRECTIONAL read, not a statistical verdict; kill only on zero signal, rank channels by relative response · LinkedIn safety: stay well under limits (~15-20 invites/day, ~80/week ceiling) · webinar scheduled ~10 days out (weekend after next), host makes 2 posts + 1 reminder.
+- **Threshold-badge search terms (beyond "sabbatical"):** Career Break (official LinkedIn feature) · "in transition" · ex-[Company] · former founder · "exploring what's next" · "open to new opportunities" · "next chapter" · "recovering founder" · advisor freshly post-exit · coaches: "reinventing", "pivoting".
 
 ## 10b. Cadence & automation
 
