@@ -340,3 +340,18 @@ Sasha does the first 3-5 invites per segment fully manually (calibration). Then 
 3. Draft the invite note from the segment's Message 1, filling the two personalization slots ([Company]/[their niche]/the visible threshold detail). ≤300 chars.
 4. Present to Sasha. SASHA clicks send. Agent never sends, never auto-clicks, human pacing, max 10-12/day total.
 5. Log each send to the tracker (or report to Claude in the evening sweep).
+
+
+## 12. High-resolution execution notes (Day 124)
+
+**Search strings (top bar → People tab → Locations: US → Connections: 2nd):**
+- Sabbatical: ("sabbatical" OR "career break") AND (founder OR "ex-founder" OR "co-founder")
+- Fractional: "fractional" AND ("CMO" OR "CPO" OR "COO" OR "CGO")
+- Coaches: ("executive coach" OR "leadership coach" OR "career coach") then eyeball for weak-positioning signals (generic headline, no clear offer, active but directionless)
+- Big4: Current-company FILTER = Deloitte/PwC/KPMG/EY/McKinsey/BCG/Bain + keyword ("senior consultant" OR "manager")
+
+**Apps Script ritual:** script.google.com → New project → paste create_drafts.gs → Save → Run → first run: Authorization required → Review permissions → account → "unverified app" → Advanced → Go to project → Allow → check Gmail Drafts.
+
+**Batching rule (warm email):** 20-30 sends per sitting, several sittings per day. Burst-sending 150 similar emails trips Gmail's spam classifier (their inbox placement + your account flag risk); batches read as human correspondence and replies arrive in absorbable waves.
+
+**Connections export:** part 1 of the archive (Articles/Invitations/Profile/...) does NOT contain Connections.csv; it arrives in the second, complete archive (~24h). Drop Connections.csv into docs/02-strategy/warm-base/ for the 5,000 badge-scan.
