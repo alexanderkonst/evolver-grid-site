@@ -66,7 +66,7 @@ it("common Gmail domain typos are corrected before drafting", () => {
   expect(rows[0].email).toBe("person@gmail.com");
 });
 
-it("generated drafts contain one CTA and no em dash", () => {
+it("generated drafts contain both requested links and no em dash", () => {
   const platform = parseCsv(readFileSync("docs/warm_base_platform_users.csv", "utf8"));
   const form = parseCsv(
     readFileSync("docs/02-strategy/warm-base/superpower_responses.csv", "utf8"),
@@ -74,7 +74,10 @@ it("generated drafts contain one CTA and no em dash", () => {
   const rows = buildDraftRows(platform, form);
   expect(new Set(rows.map((row) => row.email)).size).toBe(rows.length);
   for (const row of rows) {
-    expect((row.body.match(/https:\/\//g) ?? []).length, row.email).toBe(1);
+    expect(row.body, row.email).toContain(
+      "https://cal.com/aleksandrkonstantinov/direction-choice-call",
+    );
+    expect(row.body, row.email).toContain("findyourtoptalent.com");
     expect(row.body.includes("—"), row.email).toBe(false);
     expect(row.subject.includes("—"), row.email).toBe(false);
   }
