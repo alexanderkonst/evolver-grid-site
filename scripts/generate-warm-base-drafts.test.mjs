@@ -42,6 +42,7 @@ it("platform row wins while retaining form superpower words", () => {
       {
         email: "person@example.com",
         display_name: "Fresh Name",
+        talent_reveal_completed: "yes",
         top_talent: "Sense Patterns",
       },
     ],
@@ -55,12 +56,39 @@ it("platform row wins while retaining form superpower words", () => {
   );
   expect(rows).toHaveLength(1);
   expect(rows[0].name).toBe("Fresh Name");
-  expect(rows[0].body).toMatch(/Bring order to complex situations/);
+  expect(rows[0].subject).toBe("Your top talent: Sense Patterns");
+  expect(rows[0].body).toMatch(/person behind FindYourTopTalent/);
+  expect(rows[0].body).not.toMatch(/helping me get here/);
+});
+
+it("platform rows without a completed reveal use the professional fallback", () => {
+  const [draft] = buildDraftRows(
+    [
+      {
+        email: "person@example.com",
+        display_name: "Person Example",
+        talent_reveal_completed: "no",
+        top_talent: "",
+      },
+    ],
+    [],
+  );
+  expect(draft.subject).toBe("What's next, professionally");
+  expect(draft.body).toContain(
+    "Some time back you created your profile on the platform. I wonder where things stand for you now.",
+  );
 });
 
 it("common Gmail domain typos are corrected before drafting", () => {
   const rows = buildDraftRows(
-    [{ email: "person@gmai.com", display_name: "Person", top_talent: "Listen" }],
+    [
+      {
+        email: "person@gmai.com",
+        display_name: "Person",
+        talent_reveal_completed: "yes",
+        top_talent: "Listen",
+      },
+    ],
     [],
   );
   expect(rows[0].email).toBe("person@gmail.com");
