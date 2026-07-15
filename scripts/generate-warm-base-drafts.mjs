@@ -206,7 +206,42 @@ function isRussian(record) {
   return RUSSIAN_FIRST_NAMES.has(firstName(record.name).toLowerCase());
 }
 
+function platformEnglishDraft(record) {
+  const hasTalent =
+    record.talentRevealCompleted === "yes" && Boolean(record.topTalent);
+  const name = firstName(record.name) || "friend";
+  const subject = hasTalent
+    ? `Your top talent: ${record.topTalent}`
+    : "What's next, professionally";
+  const platformMemory = hasTalent
+    ? `Some months back you revealed your top talent on the platform: ${record.topTalent}\n\nDoes it still resonate? I'd love to know what's happened with it since.`
+    : "Some time back you created your profile on the platform. I wonder where things stand for you now.";
+
+  return {
+    subject,
+    body: `Hey ${name},\n\nIt's Sasha, the person behind FindYourTopTalent.\n\n${platformMemory}\n\nThe platform is one piece of a bigger practice: helping people build their own business by monetizing their zone of genius.\n\nThe main secret I've discovered on this path:\n\nSelf-knowledge is the source that professional success is born from.\n\nWith this formula, building a scalable business from scratch with AI becomes radically simpler and faster. I see it happen again and again.\n\nI run free 45-minute calls on finding your next professional direction.\n\nThey're especially useful when the transition to your next professional level has been dragging on, or when you're ready to see which vector to choose.\n\nIf that's you, pick a time right in my calendar: ${DIRECTION_CALL_URL}\n\nAnd if someone you know would benefit from the free self-discovery test, pass it along: ${SELF_DISCOVERY_URL}\n\nSasha`,
+  };
+}
+
+function platformRussianDraft(record) {
+  const hasTalent =
+    record.talentRevealCompleted === "yes" && Boolean(record.topTalent);
+  const name = firstName(record.name) || "друг";
+  const subject = hasTalent
+    ? `Твой главный талант: ${record.topTalent}`
+    : "Что дальше в профессиональной жизни?";
+  const platformMemory = hasTalent
+    ? `Несколько месяцев назад ты раскрыл свой главный талант на платформе: ${record.topTalent}\n\nВсе еще резонирует? Мне очень интересно, что происходило с ним с тех пор.`
+    : "Некоторое время назад ты создал свой профиль на платформе. Интересно, где ты находишься сейчас.";
+
+  return {
+    subject,
+    body: `Привет, ${name}!\n\nЭто Саша, создатель FindYourTopTalent.\n\n${platformMemory}\n\nПлатформа - это одна часть более широкой практики: я помогаю людям строить собственный бизнес через монетизацию своей зоны гениальности.\n\nГлавный секрет, который я открыл на этом пути:\n\nСамопонимание - это источник, из которого рождается профессиональный успех.\n\nС этой формулой создание масштабируемого бизнеса с нуля с помощью ИИ становится радикально проще и быстрее. Я вижу это снова и снова.\n\nЯ провожу бесплатные 45-минутные созвоны по нахождению следующего профессионального направления.\n\nОни особенно полезны, когда переход на следующий профессиональный уровень подзатянулся или когда ты готов увидеть, какой вектор выбрать.\n\nЕсли это про тебя, выбирай время прямо в моём календаре: ${DIRECTION_CALL_URL}\n\nЕсли кому-то из знакомых будет полезно пройти бесплатный тест на самоопределение, поделись с ним: ${SELF_DISCOVERY_URL}\n\nСаша`,
+  };
+}
+
 function englishDraft(record) {
+  if (record.source === "platform") return platformEnglishDraft(record);
   const talent = record.superpower || record.topTalent;
   const subject = talent
     ? `Your zone of genius: ${subjectPhrase(talent)}`
@@ -225,6 +260,7 @@ function englishDraft(record) {
 }
 
 function russianDraft(record) {
+  if (record.source === "platform") return platformRussianDraft(record);
   const talent = record.superpower || record.topTalent;
   const subject = talent
     ? `Твоя зона гениальности - ${subjectPhrase(talent)}`
@@ -260,6 +296,7 @@ export function buildDraftRows(platformRows, formRows) {
       name: cleanName(row.Name),
       superpower: extractSuperpower(row),
       topTalent: "",
+      talentRevealCompleted: "",
       source: "form",
     });
   }
@@ -273,6 +310,9 @@ export function buildDraftRows(platformRows, formRows) {
       name: cleanName(row.display_name) || form?.name || "",
       superpower: form?.superpower || "",
       topTalent: String(row.top_talent ?? "").trim(),
+      talentRevealCompleted: String(row.talent_reveal_completed ?? "")
+        .trim()
+        .toLowerCase(),
       source: "platform",
     });
   }
