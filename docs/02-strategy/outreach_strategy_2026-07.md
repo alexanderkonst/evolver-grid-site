@@ -75,6 +75,14 @@ Funnel law: every cold/warm 1:1 route lands on the free Direction Call; webinars
 - Engine 4 = same SOP in physical CDMX entrepreneur spaces, monthly per venue. First hub pitch: tomorrow.
 - Sequenced door: host sees revenue share work → community onboarding-module conversation opens (ecosystem holon, value-first).
 
+## 5c. The Community-Leader Value Ladder (ecosystem holon, Day 125)
+
+- The webinar engine is rung 1 of a full value ladder for community leaders, mirroring the person-holon ladder fractally: free threshold, then paid step, then infrastructure container.
+- **Rung 1, free + aligned:** the hosted workshop. Members get real self-knowledge live (words for what they're best at, AI-ready profile, direction clarity). The leader gets a gift to give plus revenue share: one third of whatever their members buy from Sasha afterward, from the entry digital product to the full containers. No sales in the room: 3-5 minutes of information at the end, declared upfront.
+- **Rung 2, the proof of matching (private sequencing, not pitched in message 1):** with 5-20 member profiles from one community in the system, Sasha manually works up 2-3 ripe collaboration intros the members themselves cannot see, and shows them to the leader: "these collaborations are sitting latent in your community; now you know." Sold per-intro or as a batch; the leader makes the intros and shines.
+- **Rung 3, the module:** the community buys the onboarding/matching module itself: consent-based member data, the leader can generate intros continuously, arrange people into duos, trios, or project groups. The community becomes generative, which is the ecosystem-holon transformational result. This is the irresistible offer because rung 2 already proved it with their own people.
+- Law observed: each holon's ladder has the same shape as the person ladder. Value flows first, infrastructure sells last. The leader is never sold the module cold; the module is bought after the intros proved themselves.
+
 ## 5b. Engine 5 — plugging into stabilized containers (open positions)
 
 - Same holonic move as everything else: join an existing container where money workflows are already stable, and plug in with the genius. Fractional / EIR / advisor / mentor / venture-builder roles at accelerators, venture studios, funds, research institutes, gov innovation initiatives. Fully clean channel: genuine interest, honest application.
