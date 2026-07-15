@@ -68,6 +68,7 @@ const SHELL_EXACT = new Set<string>([
     "/growth-paths",
     "/build/cockpit",
     "/build/cockpit/dashboard",
+    "/build/cockpit/offers",
     "/game/test-nav",
     "/game/next-move-v2",   // DailyLoopV2 — sibling of /game/next-move; distinct path so listed explicitly
 ]);
@@ -108,6 +109,7 @@ const HIDE_LOGO_EXACT = new Set<string>([
     "/build/equilibrium",
     "/build/cockpit",
     "/build/cockpit/dashboard",
+    "/build/cockpit/offers",
     "/preview/equilibrium-v2",
     "/game/me/quality-of-life",
     "/game/me/mission",

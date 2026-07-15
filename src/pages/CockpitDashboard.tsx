@@ -3,6 +3,7 @@ import {
   Activity,
   ArrowUpRight,
   BrainCircuit,
+  ClipboardList,
   Compass,
   Copy,
   Crosshair,
@@ -20,6 +21,7 @@ import {
   Waypoints,
   Zap,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { isAdminEmail } from "@/lib/isAdmin";
 import {
@@ -702,9 +704,20 @@ export default function CockpitDashboard() {
               <Crosshair className="h-4 w-4" />
               Offer Cadence · Controllable Input
             </p>
-            <span className="text-xs text-[#9ea7b3]">
-              Revenue is the lagging output. Offers made is the input you control.
-            </span>
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="text-xs text-[#9ea7b3]">
+                Revenue is the lagging output. Offers made is the input you control.
+              </span>
+              {isFounder && (
+                <Link
+                  to="/build/cockpit/offers"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-[#93f0e8] transition hover:text-[#c7fffa]"
+                >
+                  <ClipboardList className="h-3.5 w-3.5" />
+                  Open offers board
+                </Link>
+              )}
+            </div>
           </div>
 
           {!isFounder ? (

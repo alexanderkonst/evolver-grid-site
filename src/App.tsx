@@ -24,6 +24,7 @@ import HeroQuiz from "./pages/HeroQuiz";
 import ProposalForWeGoodOvaHere from "./pages/ProposalForWeGoodOvaHere";
 import CockpitLanding from "./pages/CockpitLanding";
 import CockpitDashboard from "./pages/CockpitDashboard";
+import CockpitOffersBoard from "./pages/CockpitOffersBoard";
 import PreviewBanner from "@/components/skin/PreviewBanner";
 import NSScopeLock from "@/components/skin/NSScopeLock";
 import DaouniverseScopeLock from "@/components/skin/DaouniverseScopeLock";
@@ -441,6 +442,7 @@ const App = () => (
                   <Route path="/hero" element={<HeroQuiz />} />
                   <Route path="/build/cockpit" element={<CockpitLanding />} />
                   <Route path="/build/cockpit/dashboard" element={<RequireAuth><CockpitDashboard /></RequireAuth>} />
+                  <Route path="/build/cockpit/offers" element={<RequireAdmin><CockpitOffersBoard /></RequireAdmin>} />
                   <Route path="/cockpit" element={<Navigate to="/build/cockpit" replace />} />
                   <Route path="/cockpit/dashboard" element={<Navigate to="/build/cockpit/dashboard" replace />} />
                   <Route path="/proposalforwegoodovahere" element={<ProposalForWeGoodOvaHere />} />
