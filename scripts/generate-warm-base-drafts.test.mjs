@@ -85,6 +85,29 @@ it("platform rows without a completed reveal use the professional fallback", () 
   );
 });
 
+it("uses the short platform talent in the subject and the full sentence in the body", () => {
+  const [draft] = buildDraftRows(
+    [
+      {
+        email: "person@example.com",
+        display_name: "Person Example",
+        talent_reveal_completed: "yes",
+        top_talent_short: "Synthesize",
+        top_talent_sentence:
+          "You synthesize complex ideas into a clear direction others can act on.",
+      },
+    ],
+    [],
+  );
+  expect(draft.subject).toBe("Your top talent: Synthesize");
+  expect(draft.body).toContain(
+    "You synthesize complex ideas into a clear direction others can act on.",
+  );
+  expect(draft.body).not.toContain(
+    "revealed your top talent on the platform: Synthesize",
+  );
+});
+
 it("common Gmail domain typos are corrected before drafting", () => {
   const rows = buildDraftRows(
     [
