@@ -610,3 +610,22 @@ staleness_or_contradictions: >
     Optional: draft the terms-first response to Kirill when Sasha calls
     for it; verify Qwatra commercial claims before any deepening.
 ```
+
+```yaml
+- date: 2026-07-15
+  day: 125
+  pulse: warm_base_batch_complete_25_sent
+  what_happened: >
+    The warm-base reactivation campaign's first full wave is out: 25
+    personalized emails sent via Gmail drafts (v3 Sasha-vetted copy, two
+    cohorts: superpower alumni and platform users). First reply already
+    in (Tatjana, Direction Call effectively booking). Every email is a
+    free Direction Call offer; OMTM this week now 28+ (25 free + Patricia
+    $555 + Gabriel $111 + prior). Remaining ~74 drafts go out in batches
+    today/tomorrow. Energy: tribe is seeing the offer; hunter/warrior
+    determination named by Sasha ("the work is in front of real people,
+    not down the drain").
+  phase_shift_significance: notable
+  next_action: >
+    Batches 2-3 today, sweeps at 17:00/21:00, follow-ups from Jul 18.
+```
