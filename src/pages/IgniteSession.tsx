@@ -76,7 +76,7 @@ const HLS_VIDEO_URL = "https://stream.mux.com/wstCtshW01u9dh5EBOuLyGy201ftwiVvQZ
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 const CALCOM_BOOKING_LINK = "https://cal.com/aleksandrkonstantinov/unique-business-ignition-session";
-const CALCOM_CLARITY_LINK = "https://cal.com/aleksandrkonstantinov/15min";
+const CALCOM_CLARITY_LINK = "https://cal.com/aleksandrkonstantinov/direction-choice-call";
 
 
 /* ─── HLS Background Video ──────────────────────────────────
@@ -326,9 +326,7 @@ const IgniteSession = () => {
             </Button>
 
             <a
-              href={CALCOM_CLARITY_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#direction-call"
               className="text-xs text-white/55 hover:text-white/85 italic underline underline-offset-4 decoration-white/15 hover:decoration-white/40 transition-colors"
               onClick={() => trackCTAClick('clarity_call_click', 'hero-quiet-link')}
             >
@@ -452,20 +450,49 @@ const IgniteSession = () => {
           </div>
         </section>
 
+        {/* Day 124: Direction Call block — subordinate offer for people not
+            ready for the paid session. Sits right after price/guarantee,
+            right before the quiet footer. Footer's own clarity link was
+            removed as redundant (this block covers it). */}
+        <section
+          className="text-center space-y-4 max-w-md mx-auto"
+          id="direction-call"
+          aria-label={t('ignite.directionCallTitle')}
+        >
+          <p className="text-[10px] text-white/45 uppercase tracking-[0.28em] text-center font-medium">
+            {t('ignite.directionCallEyebrow')}
+          </p>
+          <h2
+            className="font-serif text-white/90"
+            style={{ fontSize: "clamp(1.3rem, 3.5vw, 1.75rem)", fontWeight: 600, letterSpacing: "-0.01em" }}
+          >
+            {t('ignite.directionCallTitle')}
+          </h2>
+          <p
+            className="text-sm sm:text-base text-white/75 leading-relaxed max-w-md mx-auto"
+            style={{ fontFamily: "'Source Serif 4', serif" }}
+          >
+            {t('ignite.directionCallPromise')}
+          </p>
+          <p className="text-xs text-white/50">
+            {t('ignite.directionCallMeta')}
+          </p>
+          <div className="pt-1">
+            <Button size="lg" variant="outline" asChild>
+              <a
+                href={CALCOM_CLARITY_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackCTAClick('clarity_call_click', 'direction-call-cta')}
+              >
+                {t('ignite.directionCallCta')}
+              </a>
+            </Button>
+          </div>
+        </section>
+
         {/* BLOCK 4 — QUIET FOOTER (alternates + 2 FAQs + methodology video) */}
         <section className="space-y-6 pt-2" aria-label={t('ignite.sectionAlternatesFaq')}>
-          {/* Alternates — two thin links stacked */}
-          <div className="flex flex-col items-center gap-3 text-center">
-            <a
-              href={CALCOM_CLARITY_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs text-white/55 hover:text-white/85 italic underline underline-offset-4 decoration-white/15 hover:decoration-white/40 transition-colors"
-              onClick={() => trackCTAClick('clarity_call_click', 'footer-quiet-link')}
-            >
-              {t('ignite.clarityLinkFooter')}
-            </a>
-          </div>
 
           {/* TWO FAQs only — self concern + business concern */}
           <div className="space-y-2 max-w-lg mx-auto" id="faq-section">
