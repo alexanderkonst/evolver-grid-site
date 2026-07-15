@@ -442,6 +442,3 @@ See [`DISTRIBUTOR_AGREEMENT.md`](./DISTRIBUTOR_AGREEMENT.md) for the full terms.
 For dual-licensing (organizations that want a private commercial license without the rev-share structure), contact Alexander Konstantinov.
 
 ---
-
-*Built across Network School (Malaysia), Mexico City, and the road. January–March 2026.*
-*Not a plan. An observation of what's already happening.*
