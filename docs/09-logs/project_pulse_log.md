@@ -531,3 +531,34 @@ staleness_or_contradictions: >
     re-tagging toward watch-energy peer until governance concreteness
     appears.
 ```
+
+```yaml
+- date: 2026-07-15
+  day: 125
+  pulse: chris_reengaged_waiting_next_week
+  who: [Sasha, Chris M (via Karime)]
+  what_happened: >
+    Chris returned from jet lag: "next week is looking clearer." Sasha:
+    "Whenever you are ready." Warm thread alive, no offer yet; next step
+    is the exploratory/diagnostic call when he initiates or early next week.
+  phase_shift_significance: minor
+  next_action: If silent by Jul 21, one light check-in.
+```
+
+```yaml
+- date: 2026-07-15
+  day: 125
+  pulse: gabriel_inbound_request_111_offer_sent
+  who: [Sasha, Gabriel (Bali, referred circle)]
+  what_happened: >
+    Gabriel sent a warm voice note from Bali: built an English-teaching
+    assessment suite with Claude, stuck on GitHub Pages 404, asks for a
+    paid session ("tu me propones cuánto"). Sasha offered a workshop
+    session at $111 (business tier), then rightsized 90 -> 60 minutes in
+    a follow-up message, and re-shared the calendar link. Inbound demand
+    for the AI-workflows layer of the ladder; second Gabriel-adjacent
+    node (Gabi's teaching site already built earlier).
+  energy_exchanged: [inbound trust, honest price with ROI rationale, rightsizing]
+  phase_shift_significance: notable
+  next_action: Await his booking; session likely fixes 404 + advances his offer.
+```
