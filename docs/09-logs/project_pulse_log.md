@@ -428,3 +428,65 @@ staleness_or_contradictions: >
     CRM shows Patricia in re-engagement with 45-min exploratory invite;
     that call has now happened. Update row on next CRM pass.
 ```
+
+```yaml
+- date: 2026-07-14
+  day: 124
+  pulse: patricia_555_proposal_sent_omtm_plus_one
+  who:
+    - Sasha
+    - Patricia Reed
+  what_happened: >
+    The $555 unique-business-workshop proposal was emailed to Patricia,
+    hours after the exploratory call. Copy written by Sasha's own hand,
+    roasted once (judgment-of-her-choices removed, fictional
+    recommend-other-guides line cut, price/September in-person added),
+    sent same day. This is the first full cycle of the new machine:
+    exploratory call run as a de-facto Direction Call -> proposal in her
+    own vocabulary (no homework, valley of death, emotional debt,
+    one-line value proposition) -> one clean door (/ignite).
+    OMTM this week: +1.
+  the_sent_text: |
+    Hi Patricia,
+    My honest recommendation: stop paying for downstream work and
+    marketing gimmicks you never needed in the first place. Go upstream
+    into self-knowledge instead. That's the source of your business
+    growth, and anyone who works from that paradigm and delivers
+    results, not information, will get you where you want to be.
+    What I haven't seen anyone else have: the AI workflows that do the
+    heavy lifting of turning uniqueness articulation into a
+    high-precision business strategy.
+    So if you want to continue with me, we'd start with a 2-hour unique
+    business workshop.
+    We work live for two hours and build your business strategy in one
+    session. No homework before, none after.
+    We take what you already do as the foundation: current positioning,
+    clients, testimonials, the valley-of-death angle, the emotional-debt
+    method. And we synthesize it.
+    Then we build the upstream layer you're tired of circling: your
+    one-line value proposition that matches who you are now, not who
+    you were.
+    From there we project it onto the key strategic aspects of your
+    business: a precise picture of who you serve and in what state you
+    meet them, and your A-to-B promise in plain outcome words, the part
+    that closes sales. Each artifact becomes one sentence that sits
+    well. We don't dismantle your current business, we name its
+    strategy at a higher resolution.
+    Here's the page with the details and the price:
+    findyourtoptalent.com/ignite
+    And if you'd rather do it in person, I'm around when you're here in
+    September.
+    Aleks
+  energy_exchanged:
+    - offer in her vocabulary, zero chase
+    - copy authored by Sasha (resistance metabolized into craft)
+  affected_holons:
+    - client dyad (Sasha + Patricia)
+    - Offer Cadence instrument
+    - coaches segment (first live proposal of the wave)
+  phase_shift_significance: notable
+  next_action: >
+    No nudge. If silence, FU per ops cadence (+3d gentle with one client
+    line, +7d open-palmed). Track: reply -> booking -> Sept in-person option.
+  staleness_or_contradictions: none
+```
