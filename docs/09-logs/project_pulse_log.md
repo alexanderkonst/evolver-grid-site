@@ -390,3 +390,41 @@ staleness_or_contradictions: >
     Docs and page renamed to BUILT; historical pulse/log entries keep
     "BUILD" as written (they are records, not live state).
 ```
+
+```yaml
+- date: 2026-07-14
+  day: 124
+  pulse: patricia_exploratory_call_555_offer_to_send
+  who:
+    - Sasha
+    - Patricia Reed
+  what_happened: >
+    56-min exploration call. Patricia (founder/tech-professional coach,
+    Singapore, YC-coach-list alumna) arrived coach-fatigued: 1.5 years of
+    LinkedIn work yielded one client, multiple marketing coaches all
+    started with "what is your uniqueness," homework exhaustion, "I can't
+    be asked to do it," yet her practice retains and refers (year+ clients,
+    testimonial video, referral engine works; conversion breaks at
+    proposal stage). Sasha named upstream (self-knowledge) vs downstream
+    (funnels/channels); she repeated the frame back. The no-homework,
+    built-in-session property landed instantly ("that's already
+    positive"). Pitched the $555 two-hour workshop in one sentence with
+    exact scope (artifacts, no marketing tactics, no distribution) and
+    A-to-B outcome. She gave her work email and asked for the description.
+    In-person window: Sept 4, Puerto Vallarta area visit.
+  energy_exchanged:
+    - upstream clarity mirrored (light reflecting light)
+    - coach-fatigue objection heard and answered structurally
+    - one-sentence pitch, no chase
+  affected_holons:
+    - client dyad (Sasha + Patricia)
+    - coaches/solopreneurs segment (thesis confirmed live)
+    - the $555 session (offer pending by email)
+  phase_shift_significance: notable
+  next_action: >
+    Send the session description to her work email (promised on call).
+    OMTM +1 when sent.
+  staleness_or_contradictions: >
+    CRM shows Patricia in re-engagement with 45-min exploratory invite;
+    that call has now happened. Update row on next CRM pass.
+```
