@@ -21,7 +21,7 @@ export const TESTIMONIALS: TestimonialData[] = [
   },
   {
     shortQuote: "I've been working on this since 2011. This is life changing.",
-    fullQuote: "Wow, wow, wow, wow, wow. I've been working on this since 2011. You've changed the dynamic. This is a major breakthrough. I feel like I'm in a deep mushroom journey. Like, how many hours is this thing going to last? I'd like another shot of the good vodka that you're pouring. I physically feel chills, and I feel unfolding. I feel like skin peeling off and layers of things unfolding off my shoulders right now. You take pressure off of me. I just relax. I am in awe right now of the accuracy and the amount of freedom that it is letting me have. My guides, they like you. I see this as life changing.",
+    fullQuote: "I've been working on this since 2011. You've changed the dynamic. This is a major breakthrough. I physically feel chills, and layers of things unfolding off my shoulders right now. You take pressure off of me. I just relax. I am in awe right now of the accuracy and the amount of freedom that it is letting me have. I see this as life changing.",
     name: "Oyi Sun",
     before: "Medicine Man, Ye Ming Zhu keeper",
     after: "teaches sovereignty through storytelling — helping creative builders reclaim their inner authority.",
