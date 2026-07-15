@@ -171,7 +171,7 @@ export default function CockpitOffersBoard() {
             </div>
           ) : (
             <>
-              <div className="hidden overflow-x-auto md:block">
+              <div className="hidden overflow-x-auto 2xl:block">
                 <table className="w-full min-w-[820px] border-collapse text-left">
                   <thead>
                     <tr className="border-b border-white/10 text-xs uppercase tracking-[0.12em] text-[#9ea7b3]">
@@ -203,7 +203,7 @@ export default function CockpitOffersBoard() {
                 </table>
               </div>
 
-              <div className="divide-y divide-white/10 md:hidden">
+              <div className="divide-y divide-white/10 2xl:hidden">
                 {board.metrics.waitingOffers.map((offer) => (
                   <article key={getOfferKey(offer)} className={`p-5 ${isOverdue(offer) ? "bg-[#3a1712]/55" : ""}`}>
                     <div className="flex items-start justify-between gap-3">
