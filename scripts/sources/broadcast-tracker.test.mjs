@@ -39,6 +39,19 @@ describe("readBroadcastTracker", () => {
     expect(tracker.openItems[0]).toHaveProperty("text");
   });
 
+  it("parses the Pulse-maintained Offer Ledger", () => {
+    expect(tracker.offers.length).toBeGreaterThan(5);
+    const warmBase = tracker.offers.find((offer) => offer.name === "Warm-base wave 1 remainder");
+    expect(warmBase).toMatchObject({
+      dateSent: "2026-07-15",
+      offerType: "free",
+      status: "waiting",
+      quantity: 24,
+    });
+    const patricia = tracker.offers.find((offer) => offer.name === "Patricia Reed");
+    expect(patricia).toMatchObject({ amountUsd: 555, nextFollowupDate: "2026-07-17" });
+  });
+
   it("parses Energy Leak Audit — 5 flagged relationships", () => {
     expect(tracker.energyLeaks.length).toBe(5);
     const names = tracker.energyLeaks.map((l) => l.name);

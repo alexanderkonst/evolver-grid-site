@@ -9,6 +9,7 @@
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
+import { pathToFileURL } from "node:url";
 
 const REPO_ROOT = join(import.meta.dirname, "..");
 const LOG_PATH = join(REPO_ROOT, "docs", "09-logs", "project_pulse_log.md");
@@ -17,22 +18,26 @@ const OUT_PATH = join(REPO_ROOT, "src", "generated", "project-pulse-snapshot.jso
 // can fetch the same snapshot over HTTP after deploy.
 const PUBLIC_OUT_PATH = join(REPO_ROOT, "public", "generated", "project-pulse-snapshot.json");
 
-function parseYamlBlock(block) {
+export function parseYamlBlock(block) {
   const event = {};
   const lines = block.split("\n");
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    const match = line.match(/^([a-zA-Z0-9_]+):\s*(.*)$/);
+    const match = line.match(/^(\s*)(?:-\s+)?([a-zA-Z0-9_]+):\s*(.*)$/);
     if (!match) continue;
 
-    const [, key, rawValue] = match;
+    const [, indentation, key, rawValue] = match;
     const value = rawValue.trim();
 
     if (value === ">") {
       const parts = [];
-      while (i + 1 < lines.length && /^\s+/.test(lines[i + 1]) && !/^\s+-\s+/.test(lines[i + 1])) {
-        parts.push(lines[i + 1].trim());
+      const baseIndent = indentation.length;
+      while (i + 1 < lines.length) {
+        const nextLine = lines[i + 1];
+        const nextIndent = nextLine.match(/^\s*/)?.[0].length ?? 0;
+        if (!nextLine.trim() || nextIndent <= baseIndent) break;
+        parts.push(nextLine.trim());
         i++;
       }
       event[key] = parts.join(" ").replace(/\s+/g, " ").trim() || null;
@@ -55,12 +60,16 @@ function parseYamlBlock(block) {
   return event;
 }
 
-function readPulseEvents(markdown) {
+export function readPulseEvents(markdown) {
   const logSection = markdown.split(/^## Log\s*$/m)[1] ?? "";
   const yamlBlocks = [...logSection.matchAll(/```yaml\n([\s\S]*?)```/g)];
 
   return yamlBlocks
     .map((match) => parseYamlBlock(match[1]))
+    .map((event) => ({
+      ...event,
+      title: event.title ?? event.pulse ?? null,
+    }))
     .filter((event) => event.title || event.what_happened);
 }
 
@@ -111,4 +120,4 @@ function main() {
   console.log(`✓ wrote ${OUT_PATH}${suffix}`);
 }
 
-main();
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main();

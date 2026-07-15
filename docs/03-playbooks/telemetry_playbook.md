@@ -109,7 +109,7 @@ limit 50;
 
 > *Origin: Money Studies cycles #1-5 (Golden's "make more offers" + Brown's "idle dollars, go to work"). Surfaced during the July 2026 offer audit; instrumented on the Founder Cockpit.*
 
-**The metric:** offers made per week to actual humans. One unit = one named offer presented to one named person. Logged atomically in `offer_pulses`, displayed on `/build/cockpit/dashboard` (Offer Cadence card).
+**The metric:** offers made per week to actual humans. One unit = one named offer presented to one named person. Pulse records the movement once and reconciles the **Offer Ledger** in `strategic_crm_outreach_tracker.md`; the generated projection is displayed on `/build/cockpit/dashboard` and `/build/cockpit/offers`. Aggregate campaign rows carry a quantity so a 25-person wave counts as 25 offers without creating a second source of truth.
 
 **The science (three converging lineages):**
 
