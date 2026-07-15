@@ -277,8 +277,9 @@ function platformEnglishDraft(record) {
   const hasTalent =
     record.talentRevealCompleted === "yes" && Boolean(record.topTalent);
   const name = firstName(record.name) || "friend";
+  const subjectTalent = record.topTalentShort || record.topTalent;
   const subject = hasTalent
-    ? `Your top talent: ${record.topTalent}`
+    ? `Your top talent: ${subjectTalent}`
     : "What's next for you professionally?";
   const platformMemory = hasTalent
     ? `Some months back you revealed your top talent on the platform: ${record.topTalent}\n\nDoes it still resonate? I'd love to know what's happened with it since.`
@@ -293,7 +294,8 @@ function platformEnglishDraft(record) {
 function platformRussianDraft(record) {
   const greeting = russianGreeting(record);
   const passed = isFemale(record) ? "проходила" : "проходил";
-  const subject = `Твой главный талант: ${record.topTalent}`;
+  const subjectTalent = record.topTalentShort || record.topTalent;
+  const subject = `Твой главный талант: ${subjectTalent}`;
 
   return {
     subject,
@@ -360,6 +362,7 @@ export function buildDraftRows(platformRows, formRows) {
       name: cleanName(row.Name),
       superpower: extractSuperpower(row),
       topTalent: "",
+      topTalentShort: "",
       talentRevealCompleted: "",
       source: "form",
     });
@@ -373,7 +376,8 @@ export function buildDraftRows(platformRows, formRows) {
       email,
       name: cleanName(row.display_name) || form?.name || "",
       superpower: form?.superpower || "",
-      topTalent: String(row.top_talent ?? "").trim(),
+      topTalent: String(row.top_talent_sentence ?? row.top_talent ?? "").trim(),
+      topTalentShort: String(row.top_talent_short ?? row.top_talent ?? "").trim(),
       talentRevealCompleted: String(row.talent_reveal_completed ?? "")
         .trim()
         .toLowerCase(),
