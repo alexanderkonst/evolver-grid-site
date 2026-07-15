@@ -16,6 +16,8 @@
 //     surfacePosts: [{ surface, posted, date, notes }],
 //     metrics: [{ week, dmsSent, responses, clicks, quizCompletions, emails }],
 //     pipelineAnalytics: [{ metric, value }],
+//     offers: [{ dateSent, name, segmentOrCampaign, channel, offerType,
+//                amountUsd, status, nextFollowupDate, quantity, notes }],
 //     upcomingEvents: [{ date, event, participants, notes }],
 //     contentPillars: [string],
 //     stageDistribution: Record<string, number>,
@@ -174,6 +176,28 @@ function parseMasterTable(src) {
       };
     })
     .filter(Boolean);
+}
+
+function parseOfferLedger(src) {
+  const { headers, rows } = readTableAfter(src, "## Offer Ledger");
+  if (!rows.length) return [];
+
+  const idx = (needle) =>
+    headers.findIndex((header) => header.toLowerCase().includes(needle.toLowerCase()));
+  const at = (row, needle) => stripEmphasis(row[idx(needle)] ?? "");
+
+  return rows.map((row) => ({
+    dateSent: at(row, "Date Sent"),
+    name: at(row, "Name"),
+    segmentOrCampaign: at(row, "Segment / Campaign"),
+    channel: at(row, "Channel"),
+    offerType: at(row, "Type").toLowerCase(),
+    amountUsd: Number(at(row, "Amount USD").replace(/[$,]/g, "")) || 0,
+    status: at(row, "Status").toLowerCase(),
+    nextFollowupDate: at(row, "Next Follow-up"),
+    quantity: Math.max(1, Number(at(row, "Quantity")) || 1),
+    notes: at(row, "Notes"),
+  }));
 }
 
 function parseRevenueSummary(src) {
@@ -391,6 +415,7 @@ export function readBroadcastTracker() {
   const surfacePosts = parseSurfacePosts(src);
   const metrics = parseMetrics(src);
   const pipelineAnalytics = parsePipelineAnalytics(src);
+  const offers = parseOfferLedger(src);
   const upcomingEvents = parseUpcomingEvents(src);
   const contentPillars = parseContentPillars(src);
   const { version, updatedNote } = parseFooterMeta(src);
@@ -410,6 +435,7 @@ export function readBroadcastTracker() {
     surfacePosts,
     metrics,
     pipelineAnalytics,
+    offers,
     upcomingEvents,
     contentPillars,
     stageDistribution,

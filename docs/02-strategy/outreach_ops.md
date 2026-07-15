@@ -1,6 +1,6 @@
 # Outreach Ops — the one file
 
-> **v1.0 — Day 124.** The single execution file. Everything needed to run outreach lives here: no jumping between docs. Strategy source: `outreach_strategy_2026-07.md` v3.0 (don't touch that for execution, only for strategy changes). Tracker: `outreach_tracker.csv`.
+> **v1.0 — Day 124.** The single execution file. Everything needed to run outreach lives here: no jumping between docs. Strategy source: `outreach_strategy_2026-07.md` v3.0 (don't touch that for execution, only for strategy changes). Current relationship and offer state: the Master Table + Offer Ledger in `strategic_crm_outreach_tracker.md`, maintained through Pulse.
 >
 > External copy law, every campaign: no em-dashes, no "Not X. Y." constructions, one CTA, being-wanted energy, never chasing.
 
@@ -319,7 +319,7 @@ Sasha reports once a day, or ad hoc, in chat. Minimum viable fields per touch:
 3. What was sent (msg1 / msg2 / follow-up 1 / follow-up 2).
 4. Any reply, pasted verbatim (screenshots fine).
 
-Claude then logs the touch to `outreach_tracker.csv`, computes the funnel per campaign, flags follow-ups due tomorrow, and captures reply language verbatim into the harvest.
+Claude then sends one Pulse: update the Pulse event, reconcile the CRM Master Table + Offer Ledger, compute the funnel per campaign, flag follow-ups due tomorrow, and capture reply language verbatim into the harvest.
 
 **Booking flow note:** the cal.com link (https://cal.com/aleksandrkonstantinov/direction-call) goes out in Message 2. The two questions are asked in the SAME channel (LinkedIn DM), after they book, not in the booking form itself.
 

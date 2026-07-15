@@ -52,6 +52,7 @@ function main() {
         .filter((e) => !/✅|delivered|~~/i.test(`${e.event ?? ""} ${e.notes ?? ""}`))
         .slice(0, 5),
       openItemsCount: (data.openItems ?? []).filter((x) => !x.done).length,
+      offers: data.offers ?? [],
     };
   } catch (err) {
     payload = {
@@ -65,6 +66,7 @@ function main() {
       revShareContractsUsd: null,
       upcomingEvents: [],
       openItemsCount: 0,
+      offers: [],
     };
   }
 
