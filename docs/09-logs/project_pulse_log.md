@@ -562,3 +562,24 @@ staleness_or_contradictions: >
   phase_shift_significance: notable
   next_action: Await his booking; session likely fixes 404 + advances his offer.
 ```
+
+```yaml
+- date: 2026-07-15
+  day: 125
+  pulse: first_warm_base_reply_tatjana
+  who: [Sasha, Tatjana Kniazeva]
+  what_happened: >
+    FIRST reply to the warm-base campaign, ~hours after batch 1 (13
+    emails). Tatjana (past client): "Рада тебя слышать. С удовольствием
+    встречусь и пообщаюсь про вектор развития... Посмотрю завтра с утра
+    на рабочие встречи и выберу время." Self-describes as "мультистрастный
+    эксперт, которого кидает как бумеранг в разные мерности вселенной" —
+    textbook motion-without-direction threshold language, harvest-worthy.
+    Direction Call effectively booked pending her calendar pick.
+  energy_exchanged: [warm recognition returned, threshold self-named]
+  affected_holons: [warm-base campaign (validated), Direction Call funnel]
+  phase_shift_significance: notable
+  next_action: >
+    Await her time tomorrow; if none by Jul 17 evening, one light nudge
+    with the calendar link.
+```
