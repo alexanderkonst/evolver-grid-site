@@ -7241,3 +7241,23 @@ A venture is what happens when a communion incorporates: the third being gets a 
 **Relationship to other domains:** Domain 100 (adoption via self-recognition — humans recognize themselves; agents *resolve* the articulated form of the same artifact); Domain 98 (the invariant beneath representations); Domain 103 (agent-readable surfaces join the corridor); Domain 101-102 (the money week's demand for proof outside the loop — agentic matching is external validation by construction: agents don't buy hope).
 
 **One-sentence version:** *In the economy where agents do the finding, self-knowledge is the index — the unarticulated do not appear in the search results of reality.*
+
+---
+
+## Domain 110: Terms-First Openness (Day 125, July 15, 2026)
+
+**The law in one sentence: openness is not defined by open versus closed — it is defined by whether the conditions of use exist at the moment of transfer.**
+
+*Crystallized from the Qwatra episode, Day 125.*
+
+**The distinction.** Two things can look identical on the surface — a repo you can clone, a community you can join — and differ completely underneath. Terms-first openness publishes the license before anything is copied: whoever contributes knows the deal going in. "Join now, terms later" is a leverage inversion: the terms end up set by whoever already holds your contribution, after you can no longer withdraw it. The difference is not generosity. It is sequencing — who holds the pen, and when.
+
+**The crown jewel distinction.** A public repo holds derivations: copyable, licensed, observable. The corpus — the second brain, self-knowledge, method internals, client arcs, harvested language — is the generator. *"Find the invariant. Everything else is a derivation."* Licenses protect derivations because derivations are what gets copied. The generator is protected differently: not by a license clause, but by never transferring it into a system that cannot be audited from outside.
+
+**Observable use is the boundary of license enforceability.** A license only protects where a violation can actually be detected — by the licensor or by the public. "We track everything internally" is a closed contour: it asks you to trust telemetry you cannot see, not auditability you possess. The test for a real license is independent auditability — a public ledger, or logs the licensor can verify without owning the other side's infrastructure. Where that doesn't exist, the license is a sentence, not a mechanism.
+
+**The participant-sets-terms test.** Apply this to any commons, community, or collective: if each contour-holder enters on terms they published themselves, the structure amplifies every member's corpus — that's alignment. If participants accept terms that are imposed, or deferred until after they've already contributed, the structure is an empire shell, regardless of the words used to describe it (commons, co-op, community, movement).
+
+**The asymmetry detector.** When patience covers their obligations and urgency covers yours — when they can wait, you can't, and the terms are still unwritten — you are reading a term sheet, not a philosophy.
+
+**Relationship to other domains:** sibling to Domain 109 (a venture is a communion that took a body — the same test, whether a third being or an empire shell is forming) and Domain 104 (self-knowledge as agentic index — the corpus that must never transfer is the same corpus that makes the index worth having).

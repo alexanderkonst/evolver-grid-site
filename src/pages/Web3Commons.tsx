@@ -85,6 +85,15 @@ export default function Web3Commons() {
         </div>
       </section>
 
+      <section className="commons-principle">
+        <div className="commons-index">[ CORE / 01 ]</div>
+        <div>
+          <p className="commons-tagline">Terms-first openness</p>
+          <h2>Conditions exist before anything is copied. That is the whole difference between a commons and an empire.</h2>
+          <p className="commons-registry-intro">Licenses protect what the world can see. The generator, the corpus behind the derivations, is never part of the transfer. Everyone enters on their own published terms. If a structure cannot accept that, it is not a commons.</p>
+        </div>
+      </section>
+
       <section className="commons-contribute">
         <GitFork size={28} />
         <p>[ THE INVITATION ]</p>

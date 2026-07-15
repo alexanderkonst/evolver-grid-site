@@ -403,7 +403,7 @@ This is infrastructure for the Great Turning. An operating system for human tran
 
 ## License — Open-Source Platform with Sovereign Distributors
 
-This project uses a **three-tier license model** that captures both the openness of the system and the value of the years of work behind it:
+This project uses a **three-tier license model** that captures both the openness of the system and the value of the years of work behind it. The openness here is terms-first: the conditions below are published before anything is copied, not added later once a contribution is already in. The tiers are enforceable because use of the code and docs is public and observable. The corpus and method internals behind this codebase are not part of the transfer under any tier.
 
 | Layer | What it covers | License | Commercial use |
 |-------|---------------|---------|----------------|
