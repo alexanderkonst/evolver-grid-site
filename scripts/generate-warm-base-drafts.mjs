@@ -14,7 +14,8 @@ const OUTPUT_CSV = resolve(ROOT, "docs/02-strategy/warm-base/drafts.csv");
 const OUTPUT_GS = resolve(ROOT, "docs/02-strategy/warm-base/create_drafts.gs");
 
 const DIRECTION_CALL_URL =
-  "https://cal.com/aleksandrkonstantinov/direction-call";
+  "https://cal.com/aleksandrkonstantinov/direction-choice-call";
+const SELF_DISCOVERY_URL = "findyourtoptalent.com";
 const SENDER_EMAILS = new Set([
   "alexanderkonst@gmail.com",
   "personalytics@gmail.com",
@@ -206,40 +207,38 @@ function isRussian(record) {
 }
 
 function englishDraft(record) {
-  const name = firstName(record.name) || "there";
-  const hasWords = Boolean(record.superpower || record.topTalent);
   const talent = record.superpower || record.topTalent;
-  const subject = hasWords
-    ? `Your ${subjectPhrase(talent)}: what's next`
-    : "Your professional direction: what's next";
-  const opener = record.superpower
-    ? `Sasha here. When we worked together, you named this as your superpower: ${record.superpower}. I still remember it, and I'm writing because that work grew into something much more complete.`
-    : record.topTalent
-      ? `Sasha here. You revealed ${record.topTalent} on the platform. I'm writing because that work grew into something much more complete.`
-      : `Sasha here. A while back you created your profile on FindYourTopTalent. A lot has grown since.`;
+  const subject = talent
+    ? `Your zone of genius: ${subjectPhrase(talent)}`
+    : "Your zone of genius";
+  const phrasing = talent
+    ? `Here's the phrasing you landed on back then: ${talent}`
+    : "I don't have your original phrasing on file anymore, but I still remember our work together.";
+  const resonance = talent
+    ? "Does it still resonate? I'm sure you've gained even more clarity about yourself since."
+    : "I'm sure you've gained even more clarity about yourself since.";
 
   return {
     subject,
-    body: `Hi ${name},\n\n${opener}\n\nI now help people name what's next professionally and package it into a real offer, with AI doing the heavy lifting. Real clients, real businesses launched since.\n\nI'm opening a few free 45-minute Direction Calls. You leave with your transition named and your strongest next direction on the table. Practically everyone does.\n\nIf this lands for where you are right now, grab a time: ${DIRECTION_CALL_URL}\nIf not, all good. Happy to be back in touch either way.\n\nAleks`,
+    body: `Hey friend\n\nIt's Sasha.\n\nA few years ago you did the zone of genius discovery with me.\n\n${phrasing}\n\n${resonance}\n\nOver these years, creating that test led me to the work of my life: helping people build their own scaling business by monetizing their "zone of genius."\n\nThank you for helping me get here 💗\n\nI'll share the main secret I've discovered for myself on this path.\n\nSelf-knowledge is the source that professional success is born from.\n\nUsing this formula, building a scalable business from scratch with AI becomes radically simpler, faster, and available to anyone.\n\nI run free 45-minute calls on finding next professional direction.\n\nThey're especially useful when the transition to the next professional level has been dragging on, or when one is ready to choose the main direction.\n\nIf that's you, pick a time right in my calendar: ${DIRECTION_CALL_URL}\n\nAnd if someone you know would benefit from the free self-discovery test, here's its latest version: ${SELF_DISCOVERY_URL}\n\nSasha`,
   };
 }
 
 function russianDraft(record) {
-  const name = firstName(record.name);
-  const greeting = name ? `Здравствуйте, ${name}!` : "Здравствуйте!";
   const talent = record.superpower || record.topTalent;
   const subject = talent
-    ? `Ваш талант: ${subjectPhrase(talent)}. Что дальше?`
-    : "Ваше профессиональное направление. Что дальше?";
-  const opener = record.superpower
-    ? `Это Саша. Когда мы работали вместе, вы назвали свою сильную сторону так: ${record.superpower}. Я это помню и пишу вам, потому что с тех пор эта работа стала намного глубже и полнее.`
-    : record.topTalent
-      ? `Это Саша. На платформе вы раскрыли свой талант: ${record.topTalent}. Я пишу вам, потому что с тех пор эта работа стала намного глубже и полнее.`
-      : "Это Саша. Некоторое время назад вы создали профиль на FindYourTopTalent. С тех пор проект сильно вырос.";
+    ? `Твоя зона гениальности - ${subjectPhrase(talent)}`
+    : "Твоя зона гениальности";
+  const phrasing = talent
+    ? `У тебя тогда получилась вот такая формулировка: ${talent}`
+    : "Твоя исходная формулировка у меня не сохранилась, но я помню нашу совместную работу.";
+  const resonance = talent
+    ? "Все еще резонирует? Уверен, что с тех пор у тебя прибавилось ясности в понимании себя."
+    : "Уверен, что с тех пор у тебя прибавилось ясности в понимании себя.";
 
   return {
     subject,
-    body: `${greeting}\n\n${opener}\n\nСейчас я помогаю людям определить следующий профессиональный шаг и превратить его в реальное предложение, а основную работу берет на себя ИИ. За это время появились реальные клиенты и были запущены реальные бизнесы.\n\nЯ открываю несколько бесплатных 45-минутных звонков о профессиональном направлении. После звонка у вас будет ясное понимание своего перехода и самое сильное следующее направление. Так происходит практически с каждым.\n\nЕсли это откликается вам сейчас, выберите время: ${DIRECTION_CALL_URL}\nЕсли нет, все хорошо. В любом случае рад снова быть на связи.\n\nАлекс`,
+    body: `Привет, друг\n\nЭто Саша.\n\nТы проходил со мной тест на определение зоны гениальности несколько лет назад.\n\n${phrasing}\n\n${resonance}\n\nЗа прошедшие годы создание того теста вывело меня на дело моей жизни - помогать строить собственный бизнес через монетизацию своей «зоны гениальности».\n\nСпасибо, что ты помог мне сюда добраться 💗\n\nПоделюсь главным секретом, который я для себя открыл на этом пути.\n\n*Самопонимание - это источник, из которого рождается профессиональный успех.*\n\nС этой формулой создание масштабируемого бизнеса с нуля с помощью ИИ радикально упрощается и ускоряется.\n\nЯ провожу бесплатные 45-минутные созвоны по нахождению следующего профессионального направления.\n\nОни особенно полезны, когда переход на следующий профессиональный уровень подзатянулся или когда уже хочется понять, какой вектор выбрать.\n\nЕсли это про тебя, выбирай время прямо в моём календаре: ${DIRECTION_CALL_URL}\n\nЕсли кому-то из знакомых будет полезно пройти бесплатный тест на самоопределение, вот его последняя версия: ${SELF_DISCOVERY_URL}\n\nСаша`,
   };
 }
 
