@@ -357,3 +357,9 @@ Sasha does the first 3-5 invites per segment fully manually (calibration). Then 
 **Connections export:** part 1 of the archive (Articles/Invitations/Profile/...) does NOT contain Connections.csv; it arrives in the second, complete archive (~24h). Drop Connections.csv into docs/02-strategy/warm-base/ for the 5,000 badge-scan.
 
 **Harvest, canonical (via Daria Zamorina):** "People know what they're going to grow into. They're just afraid to be that bigger version of themselves."
+
+## 13. Modus operandi: orchestrator + Sonnet
+
+Mechanical work (pulse logging, doc updates, translations, scoring tables, copy propagation across locales) is executed by Sonnet subagents with tight specs. Fable orchestrates, makes strategic calls, and writes/vets copy with Sasha directly.
+
+Reason: token economy + right tool per layer. Mechanistic work is delegable; subtle strategy and copy are not. Sasha's rule, Day 125.
