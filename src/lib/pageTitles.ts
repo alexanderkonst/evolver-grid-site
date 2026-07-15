@@ -20,6 +20,7 @@ const titleRules: TitleRule[] = [
   { match: (path) => path === "/ai-os" || path.startsWith("/ai-os/"), title: "AI OS" },
   { match: (path) => path === "/dashboard", title: "Dashboard" },
   { match: (path) => path === "/build/cockpit/dashboard", title: "Founder Cockpit" },
+  { match: (path) => path === "/build/cockpit/offers", title: "Offers Board" },
   { match: (path) => path === "/build/cockpit", title: "Founder Cockpit" },
   { match: (path) => path === "/ubb" || path.startsWith("/ubb/"), title: "Build a Business" },
   // Day 55 (Sasha 2026-04-29): tab titles aligned with the new nav

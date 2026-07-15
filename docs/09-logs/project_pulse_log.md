@@ -583,3 +583,30 @@ staleness_or_contradictions: >
     Await her time tomorrow; if none by Jul 17 evening, one light nudge
     with the calendar link.
 ```
+
+```yaml
+- date: 2026-07-15
+  day: 125
+  pulse: debt_forgiven_gratitude_and_qwatra_invitation_read
+  who: [Sasha, Oleg (Pravilo teacher), Sasha-2 (work-giver), Kirill]
+  what_happened: >
+    (1) Ceremony insight executed same week: forgave ~$400 of debt across
+    two people with explicit gratitude messages (Oleg: Pravilo initiation
+    honored; Sasha-2: projects and trust honored). Also tipped all
+    found-coins at the favorite cafe. Open loops closed from fullness,
+    days after sending more offers than ever.
+    (2) Kirill's formal invitation document (Qwatra v5) read: named core
+    team (Kamyshev CEO/methodology, Laryukhin CTO/Skobelev MAS school,
+    Progress Inc/Zlotin TRIZ lineage), claimed clients (Uzbekistan
+    Academy of Sciences 34 institutes, 11k-aircraft operator, family
+    offices), claimed $17M convertible first stage (Wolfline), Dubai
+    freezone + holding. Sasha named in it as the "zone of genius + AI OS"
+    contour-holder. Document register is sovereignty-respecting ("форма
+    за тобой"), notably cleaner than the call. Response strategy: reply
+    with terms-first form (own licenses govern contributions; concrete
+    reversible pilot; no twin/corpus upload until auditability).
+  phase_shift_significance: notable
+  next_action: >
+    Optional: draft the terms-first response to Kirill when Sasha calls
+    for it; verify Qwatra commercial claims before any deepening.
+```
