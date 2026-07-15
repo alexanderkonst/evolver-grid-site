@@ -26,6 +26,66 @@ const DOMAIN_CORRECTIONS = new Map([
   ["gmail.con", "gmail.com"],
 ]);
 
+const CONTACTED_IDENTIFIERS = [
+  "zhurbin",
+  "zavadsky",
+  "zacharyarcher",
+  "yasnayaolya",
+  "katiewu",
+  "wukatiec",
+  "withlovebycari",
+  "vilenchuk",
+  "victoriake",
+  "theresianovitas",
+  "victoriashu",
+  "tylor",
+  "ttapua",
+  "traceyabbott",
+  "tatjanaknyazeva",
+  "tatjanakniazeva",
+  "telishiaalt",
+  "suzette",
+  "sotirisrov",
+  "sukmanskaya",
+];
+
+const FEMALE_FIRST_NAMES = new Set([
+  "alessia",
+  "alena",
+  "anna",
+  "daria",
+  "elena",
+  "karime",
+  "ksenia",
+  "kseniia",
+  "kseniya",
+  "kristina",
+  "maria",
+  "nastya",
+  "nika",
+  "olga",
+  "tatiana",
+  "tatjana",
+  "tanya",
+  "vera",
+  "victoria",
+  "viktoria",
+  "алена",
+  "алёна",
+  "анна",
+  "дарья",
+  "елена",
+  "ксения",
+  "кристина",
+  "мария",
+  "настя",
+  "ника",
+  "ольга",
+  "татьяна",
+  "вера",
+  "виктория",
+]);
+
 const RUSSIAN_FIRST_NAMES = new Set(
   [
     "aleksandr",
@@ -149,6 +209,28 @@ function firstName(name) {
   return cleanName(name).split(" ")[0] || "";
 }
 
+function identifier(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[^a-zа-яё0-9]/gu, "");
+}
+
+function isAlreadyContacted(record) {
+  const haystack = identifier(`${record.email} ${record.name}`);
+  return CONTACTED_IDENTIFIERS.some((contacted) => haystack.includes(contacted));
+}
+
+function isFemale(record) {
+  return FEMALE_FIRST_NAMES.has(firstName(record.name).toLowerCase());
+}
+
+function russianGreeting(record) {
+  const name = firstName(record.name);
+  if (isFemale(record)) return name ? `Привет, ${name}!` : "Привет!";
+  return "Привет друг";
+}
+
 function superpowerScore(row) {
   const value = String(row.Superpower ?? "").trim();
   return value.length + (value.includes("Your superpower is to") ? 200 : 0);
@@ -209,12 +291,13 @@ function platformEnglishDraft(record) {
 }
 
 function platformRussianDraft(record) {
-  const name = firstName(record.name) || "друг";
+  const greeting = russianGreeting(record);
+  const passed = isFemale(record) ? "проходила" : "проходил";
   const subject = `Твой главный талант: ${record.topTalent}`;
 
   return {
     subject,
-    body: `Привет, ${name}!\n\nЭто Саша, основатель FindYourTopTalent.\n\nТы проходил(а) процесс раскрытия топ таланта на сайте, и у тебя тогда получилась вот такая формулировка: ${record.topTalent}\n\nВсе еще резонирует? Уверен, что с тех пор у тебя прибавилось ясности в понимании себя.\n\nСоздание этого теста заняло несколько лет, и вывело меня на дело моей жизни: помогать строить собственный бизнес через монетизацию своей «зоны гениальности».\n\nПоделюсь главным секретом, который я для себя открыл на этом пути.\n\nСамопонимание — это источник, из которого рождается профессиональный успех.\n\nКогда я применил эту формулу к моему и другим бизнесам, создание масштабируемого бизнеса с нуля с помощью ИИ радикально упростилось и ускорилось, и я стал этим делиться с миром.\n\nЯ провожу бесплатные 45-минутные созвоны по нахождению следующего профессионального направления. Мы просто вместе смотрим на твою ситуацию, и получаем ясность по следующему шагу.\n\nОни особенно полезны, когда переход на следующий профессиональный уровень подзатянулся, или когда уже хочется понять, какой вектор выбрать.\n\nЕсли это про тебя, выбери время прямо в моём календаре: ${DIRECTION_CALL_URL}\n\nЕсли кому-то из знакомых будет полезно пройти бесплатный тест на самоопределение, ты знаешь адрес - ${SELF_DISCOVERY_URL} :)\n\nСаша`,
+    body: `${greeting}\n\nЭто Саша, основатель FindYourTopTalent.\n\nТы ${passed} процесс раскрытия топ таланта на сайте, и у тебя тогда получилась вот такая формулировка: ${record.topTalent}\n\nВсе еще резонирует? Уверен, что с тех пор у тебя прибавилось ясности в понимании себя.\n\nСоздание этого теста заняло несколько лет, и вывело меня на дело моей жизни: помогать строить собственный бизнес через монетизацию своей «зоны гениальности».\n\nПоделюсь главным секретом, который я для себя открыл на этом пути.\n\nСамопонимание — это источник, из которого рождается профессиональный успех.\n\nКогда я применил эту формулу к моему и другим бизнесам, создание масштабируемого бизнеса с нуля с помощью ИИ радикально упростилось и ускорилось, и я стал этим делиться с миром.\n\nЯ провожу бесплатные 45-минутные созвоны по нахождению следующего профессионального направления. Мы просто вместе смотрим на твою ситуацию, и получаем ясность по следующему шагу.\n\nОни особенно полезны, когда переход на следующий профессиональный уровень подзатянулся, или когда уже хочется понять, какой вектор выбрать.\n\nЕсли это про тебя, можешь выбрать время прямо в моём календаре: ${DIRECTION_CALL_URL}\n\nЕсли кому-то из знакомых будет полезно пройти бесплатный тест на самоопределение, ты знаешь адрес - ${SELF_DISCOVERY_URL} :)\n\nСаша`,
   };
 }
 
@@ -239,6 +322,9 @@ function englishDraft(record) {
 
 function russianDraft(record) {
   if (record.source === "platform") return platformRussianDraft(record);
+  const greeting = russianGreeting(record);
+  const passed = isFemale(record) ? "проходила" : "проходил";
+  const helped = isFemale(record) ? "помогла" : "помог";
   const talent = record.superpower || record.topTalent;
   const subject = talent
     ? `Твоя зона гениальности: ${talent}`
@@ -252,7 +338,7 @@ function russianDraft(record) {
 
   return {
     subject,
-    body: `Привет, друг!\n\nЭто Саша.\n\nТы проходил(а) со мной тест на определение зоны гениальности несколько лет назад.\n\n${phrasing}\n\n${resonance}\n\nЗа прошедшие годы создание того теста вывело меня на дело моей жизни: помогать строить собственный бизнес через монетизацию своей «зоны гениальности».\n\nСпасибо, что ты помог(ла) мне сюда добраться 💗\n\nПоделюсь главным секретом, который я для себя открыл на этом пути.\n\nСамопонимание — это источник, из которого рождается профессиональный успех.\n\nКогда я применил эту формулу к моему и другим бизнесам, создание масштабируемого бизнеса с нуля с помощью ИИ радикально упростилось и ускорилось, и я стал этим делиться с миром.\n\nЯ провожу бесплатные 45-минутные созвоны по нахождению следующего профессионального направления. Мы просто вместе смотрим на твою ситуацию, и получаем ясность по следующему шагу.\n\nОни особенно полезны, когда переход на следующий профессиональный уровень подзатянулся, или когда уже хочется понять, какой вектор выбрать.\n\nЕсли это про тебя, выбери время прямо в моём календаре: ${DIRECTION_CALL_URL}\n\nЕсли кому-то из знакомых будет полезно пройти бесплатный тест на самоопределение, вот его последняя версия: ${SELF_DISCOVERY_URL}\n\nСаша`,
+    body: `${greeting}\n\nЭто Саша.\n\nТы ${passed} со мной тест на определение зоны гениальности несколько лет назад.\n\n${phrasing}\n\n${resonance}\n\nЗа прошедшие годы создание того теста вывело меня на дело моей жизни: помогать строить собственный бизнес через монетизацию своей «зоны гениальности».\n\nСпасибо, что ты ${helped} мне сюда добраться 💗\n\nПоделюсь главным секретом, который я для себя открыл на этом пути.\n\nСамопонимание — это источник, из которого рождается профессиональный успех.\n\nКогда я применил эту формулу к моему и другим бизнесам, создание масштабируемого бизнеса с нуля с помощью ИИ радикально упростилось и ускорилось, и я стал этим делиться с миром.\n\nЯ провожу бесплатные 45-минутные созвоны по нахождению следующего профессионального направления. Мы просто вместе смотрим на твою ситуацию, и получаем ясность по следующему шагу.\n\nОни особенно полезны, когда переход на следующий профессиональный уровень подзатянулся, или когда уже хочется понять, какой вектор выбрать.\n\nЕсли это про тебя, можешь выбрать время прямо в моём календаре: ${DIRECTION_CALL_URL}\n\nЕсли кому-то из знакомых будет полезно пройти бесплатный тест на самоопределение, вот его последняя версия: ${SELF_DISCOVERY_URL}\n\nСаша`,
   };
 }
 
@@ -296,6 +382,7 @@ export function buildDraftRows(platformRows, formRows) {
   }
 
   return [...records.values()]
+    .filter((record) => !isAlreadyContacted(record))
     .sort((a, b) => a.email.localeCompare(b.email))
     .map((record) => {
       const hasPlatformTalent =
@@ -335,7 +422,7 @@ function createWarmBaseDrafts() {
   let skipped = 0;
 
   WARM_BASE_DRAFTS.forEach(function (draft) {
-    const key = "warm-base-draft:2026-07-15-final-v3:" + draft.email.toLowerCase();
+    const key = "warm-base-draft:2026-07-15-final-v4:" + draft.email.toLowerCase();
     if (properties.getProperty(key)) {
       skipped += 1;
       return;
