@@ -9186,3 +9186,18 @@ Fractal law: each layer's result is the previous layer's result scaled up one ho
 ### Day 125 addendum: the ecosystem value ladder crystallized
 
 The community-leader offer has three rungs, same shape as the person ladder. Rung 1: the free hosted workshop, members get real self-knowledge live, leader gets a gift plus a third of what members buy afterward. Rung 2: Sasha manually surfaces 2-3 latent collaboration intros from the member profiles already in the system, sold to the leader per-intro or as a batch, proving the matching works on their own people. Rung 3: the community buys the onboarding/matching module itself, so the leader can generate intros continuously and the community becomes generative. This completes the third holonic layer's commercial structure. Discovered live during outreach prep, another instance of the vantage-point law: touching the market crystallizes strategy.
+
+
+### Day 125 addendum (2): The four engines, the stack of power laws, and the advisory mycelium
+
+**The four engines of the organism (one invariant underneath):**
+1. **Person funnel:** Direction Call (free) -> $555 Productize Yourself -> $1,111 BUILT. Armed and firing.
+2. **Community engine:** hosted workshop (free, host earns a third of first three offers) -> collaboration intros -> matching module with subscription. Evolves into a MONTHLY INSTITUTION: one webinar Sasha hosts monthly (possibly two, per community type), multiple communities feed into it, each host still earns on their people. Delivery cost becomes constant while reach compounds.
+3. **Rooms / paid advisory:** matured unique businesses need the invariant repeatedly as they grow; advisory is the recurring form of the invariant. This is where engines 1 and 2 connect: a unique business eventually becomes a business, and paid advisory is what the venture studio sells it.
+4. **Bring Your Own Code (the commons engine):** people integrate their own modules into one decentralized system; every module picks a license (terms-first); a public mind map of the system shows everyone what exists and where to plug in. The civilization layer's GTM.
+
+**The stack of power laws (holonic monetization):** growth multiplies across layers rather than adding: (a) more communities reached x (b) attendees ascending the person ladder x (c) each community climbing its own ladder (workshop -> intros -> module -> subscription) x (d) satisfied hosts referring new hosts x (e) matured businesses buying recurring advisory. Each layer is a power law; the stack multiplies them. Because what is created is value flow and well-being, growth maximization and mission are the same motion.
+
+**The advisory mycelium (to be developed):** if Sasha advises another unique business and it grows, and everyone is connected through revenue share, then revenue share is the connective tissue of the network: the mycelium. As nodes mature, they advise newer nodes; advisory edges carry both wisdom and revenue share. Endgame shape: a decentralized venture studio where "who advises is everybody," Sasha as one of its key architects in an unconventional, non-owning way. The code mycelium (engine 4) and the revenue mycelium (advisory + shares) are the same network in two substrates.
+
+**The fractal purchase law (de facto invariant, observed):** every holon buys the same shape: free taste -> paid step -> infrastructure. Person: Direction Call -> session -> BUILT. Community: workshop -> intros -> module. Business: advisory taste -> engagement -> studio partnership. Infrastructure is never sold cold; it is bought after its output has been tasted.
