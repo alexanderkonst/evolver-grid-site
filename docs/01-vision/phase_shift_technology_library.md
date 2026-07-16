@@ -7276,3 +7276,15 @@ A venture is what happens when a communion incorporates: the third being gets a 
 - Consequence: growing the network means weaving one more well-formed edge at a time, not recruiting subjects or building a headquarters; and nothing can be captured that has no center to seize.
 
 **Relation:** completes Domain 110 (Terms-First Openness): terms-first is the property of one edge; edge-carried alignment is what a network of such edges becomes. (Day 125, July 15, 2026.)
+
+**The plain layer (Day 125, evening): no deciphering required.**
+
+**What is an edge?** A relationship between two sovereigns, given form. Two people come to terms: a revenue share, a license, an advisory arrangement, a joint product. Both set the terms; both benefit; either can exit. That agreement is the edge. Nothing more exotic than that: sovereigns reaching mutually beneficial agreement, which is how humans have always naturally worked until non-sovereign systems tampered with it.
+
+**What is "the oldest objection to decentralization"?** Every decentralization attempt in history meets the same critique: without a center, who coordinates? Who enforces? Who stops free-riders, chaos, fragmentation? And because that question went unanswered, almost every "decentralized" system quietly re-centralized: a foundation, a core team, a treasury, whales. The objection assumes alignment must be held SOMEWHERE, so if not in a center, nowhere.
+
+**The dissolution:** alignment does not need to be held anywhere globally, because it is held everywhere locally. If every edge is well-formed (consent, mutual benefit, exit rights), the network is aligned by construction. The internet already proves this shape: it has no owner and runs on thousands of bilateral peering agreements; global coherence emerges from local contracts. Mycelium proves it biologically; markets prove it partially (and show what happens when edges are malformed: manipulation, fear-based selling, zero-sum extraction, which are symptoms of non-sovereign edges, not of trade itself).
+
+**Not everyone with everyone:** no person needs to agree with all of humanity. Each sovereign agrees with SOME others, and the webs overlap. Coherence is transitive: my agreement with you, yours with her. The network grows one well-formed relationship at a time, as each person's business grows.
+
+**Why this is the economic layer of well-being:** nobody needs to lose for this system to grow, because the edges create new value flow rather than redistributing captured value. It is an economics hidden in plain sight: the most natural way for human beings to do things, resuming. Full sovereignty, full uniqueness, full giving and receiving, for the well-being of everyone involved.
