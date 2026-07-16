@@ -7300,3 +7300,15 @@ A venture is what happens when a communion incorporates: the third being gets a 
 **Not everyone with everyone:** no person needs to agree with all of humanity. Each sovereign agrees with SOME others, and the webs overlap. Coherence is transitive: my agreement with you, yours with her. The network grows one well-formed relationship at a time, as each person's business grows.
 
 **Why this is the economic layer of well-being:** nobody needs to lose for this system to grow, because the edges create new value flow rather than redistributing captured value. It is an economics hidden in plain sight: the most natural way for human beings to do things, resuming. Full sovereignty, full uniqueness, full giving and receiving, for the well-being of everyone involved.
+
+---
+
+## Domain 112: Science as Return to Source (Day 125, July 15, 2026)
+
+**The sentence:** the whole point of science is to get closer to the source: the first moments after the Big Bang are the permanent frontier, the source of all new physics forever.
+
+**Method (from Universal Ontology §2b and §13):** ontology-first postulation, honestly labeled, mechanism worked out after; recognitions are held with explicit honesty markers rather than smoothed into certainty.
+
+**Consequence:** new physics arrived at this way is a founding permanence, not a paradigm shift: paradigms replace each other, a permanence deepens.
+
+**Cross-reference:** Universal Ontology §13. (Day 125, July 15, 2026.)
