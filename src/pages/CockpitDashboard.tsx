@@ -35,9 +35,9 @@ import crmSnapshotRaw from "@/generated/crm-snapshot.json";
 import pulseSnapshotRaw from "@/generated/project-pulse-snapshot.json";
 import {
   calculateOffersBoardMetrics,
-  normalizeOffers,
   type OutreachOffer,
 } from "@/lib/offersBoard";
+import { useRuntimeOffers } from "@/hooks/useRuntimeOffers";
 
 type CockpitAction = "movement" | "followups" | "bottlenecks" | "leverage";
 
@@ -162,7 +162,8 @@ export default function CockpitDashboard() {
   const [pulseGenKind, setPulseGenKind] = useState<PulseBriefKind | null>(null);
   const [pulseError, setPulseError] = useState<string | null>(null);
   const [activePulseKind, setActivePulseKind] = useState<PulseBriefKind>("daily");
-  const offers = useMemo(() => normalizeOffers(crmSnapshot.offers ?? []), []);
+  const offerRuntime = useRuntimeOffers();
+  const offers = offerRuntime.offers;
   const offerMetrics = useMemo(() => calculateOffersBoardMetrics(offers), [offers]);
   const offerRecent = useMemo(
     () => [...offers].sort((left, right) => right.dateSent.localeCompare(left.dateSent)).slice(0, 3),
@@ -687,10 +688,26 @@ export default function CockpitDashboard() {
                 )}
               </div>
               <div className="rounded-xl border border-white/10 bg-[#07090d] p-5">
-                <p className="mb-3 text-xs uppercase tracking-[0.14em] text-[#93f0e8]">Maintained by Pulse</p>
+                <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                  <p className="text-xs uppercase tracking-[0.14em] text-[#93f0e8]">Maintained by Pulse</p>
+                  <button
+                    type="button"
+                    onClick={() => void offerRuntime.refresh()}
+                    disabled={offerRuntime.loading}
+                    className="inline-flex items-center gap-1.5 text-xs text-[#9ea7b3] transition hover:text-[#f6d58a] disabled:opacity-60"
+                  >
+                    <RefreshCw className={`h-3.5 w-3.5 ${offerRuntime.loading ? "animate-spin" : ""}`} />
+                    Refresh
+                  </button>
+                </div>
                 <p className="text-sm leading-6 text-[#cfc4b5]">
                   Report a client movement once. Pulse updates the relationship state, offer ledger,
-                  follow-up, and cockpit projection together.
+                  follow-up, and committed cockpit projection together.
+                </p>
+                <p className={`mt-3 text-xs ${offerRuntime.error ? "text-[#ffc0a5]" : "text-[#9ea7b3]"}`}>
+                  {offerRuntime.error
+                    ? `Live source unavailable; showing bundled fallback. ${offerRuntime.error}`
+                    : `Live from GitHub main · generated ${formatDate(offerRuntime.generatedAt)}`}
                 </p>
                 <Link
                   to="/build/cockpit/offers"
