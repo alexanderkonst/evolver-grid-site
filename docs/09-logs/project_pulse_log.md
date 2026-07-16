@@ -687,7 +687,9 @@ staleness_or_contradictions: >
     automation, even CRM team access; asks Sasha to produce 6 assets
     (landing HTML, promo email, welcome email, 2 reminders, post-event
     flows x2, social graphics+copy) in Club DAO black-gold branding.
-    Note: Club DAO = the web3 segment's channel reopening. Oyi Sun:
+    Note: Club DAO is a DAO/governance community (distinct from the parked
+    web3-builders segment); its members are community leaders and
+    governance-minded builders, a segment of its own. Oyi Sun:
     raised the frame twice: (a) nonprofit-funded programs - he can
     solicit funds via his nonprofit to pay Sasha to run 6-week/90-day
     cohorts; (b) pushes for a regular webinar not a one-off ("a stream
