@@ -13,6 +13,7 @@ export interface OutreachOffer {
   amountUsd: number;
   status: OfferStatus;
   nextFollowupDate: string;
+  quantity: number;
   notes: string;
 }
 
@@ -31,57 +32,7 @@ export interface OffersBoardMetrics {
   overdueOfferKeys: Set<string>;
 }
 
-const expectedHeaders = [
-  "date_sent",
-  "name",
-  "segment_or_campaign",
-  "channel",
-  "offer_type(paid|free|partnership)",
-  "amount_usd",
-  "status(waiting|replied|booked|paid|closed)",
-  "next_followup_date",
-  "notes",
-] as const;
-
 const emptyCounts = (): OfferTypeCounts => ({ paid: 0, free: 0, partnership: 0 });
-
-/** Parses RFC-4180-style CSV, including commas, quotes and line breaks in fields. */
-const parseCsvRows = (input: string): string[][] => {
-  const rows: string[][] = [];
-  let row: string[] = [];
-  let field = "";
-  let quoted = false;
-
-  for (let index = 0; index < input.length; index += 1) {
-    const character = input[index];
-    const next = input[index + 1];
-
-    if (character === '"') {
-      if (quoted && next === '"') {
-        field += '"';
-        index += 1;
-      } else {
-        quoted = !quoted;
-      }
-    } else if (character === "," && !quoted) {
-      row.push(field);
-      field = "";
-    } else if ((character === "\n" || character === "\r") && !quoted) {
-      if (character === "\r" && next === "\n") index += 1;
-      row.push(field);
-      if (row.some((value) => value.trim() !== "")) rows.push(row);
-      row = [];
-      field = "";
-    } else {
-      field += character;
-    }
-  }
-
-  if (quoted) throw new Error("CSV contains an unclosed quoted field.");
-  row.push(field);
-  if (row.some((value) => value.trim() !== "")) rows.push(row);
-  return rows;
-};
 
 const isDateOnly = (value: string) => /^\d{4}-\d{2}-\d{2}$/.test(value);
 
@@ -106,58 +57,17 @@ const startOfMondayWeek = (date: Date) => {
 const offerKey = (offer: OutreachOffer) =>
   `${offer.dateSent}\u0000${offer.name}\u0000${offer.segmentOrCampaign}`;
 
-export const parseOutreachCsv = (input: string): OutreachOffer[] => {
-  const rows = parseCsvRows(input.replace(/^\uFEFF/, ""));
-  if (rows.length === 0) return [];
 
-  const headers = rows[0].map((header) => header.trim());
-  if (
-    headers.length !== expectedHeaders.length ||
-    expectedHeaders.some((header, index) => headers[index] !== header)
-  ) {
-    throw new Error(`Outreach tracker headers do not match the Offers Board schema.`);
-  }
-
-  return rows.slice(1).map((values, rowIndex) => {
-    const rowNumber = rowIndex + 2;
-    if (values.length !== expectedHeaders.length) {
-      throw new Error(
-        `Row ${rowNumber}: expected ${expectedHeaders.length} columns, found ${values.length}. Quote fields that contain commas.`,
-      );
-    }
-    const cells = expectedHeaders.map((_, index) => (values[index] ?? "").trim());
-    const [dateSent, name, segmentOrCampaign, channel, rawType, rawAmount, rawStatus, nextFollowupDate, notes] = cells;
-
-    if (!localDate(dateSent)) throw new Error(`Row ${rowNumber}: date_sent must be YYYY-MM-DD.`);
-    if (!name) throw new Error(`Row ${rowNumber}: name is required.`);
-    if (!offerTypes.includes(rawType as OfferType)) {
-      throw new Error(`Row ${rowNumber}: offer_type must be paid, free, or partnership.`);
-    }
-    if (!offerStatuses.includes(rawStatus as OfferStatus)) {
-      throw new Error(`Row ${rowNumber}: status is invalid.`);
-    }
-    if (nextFollowupDate && !localDate(nextFollowupDate)) {
-      throw new Error(`Row ${rowNumber}: next_followup_date must be YYYY-MM-DD or empty.`);
-    }
-
-    const amountUsd = rawAmount === "" ? 0 : Number(rawAmount);
-    if (!Number.isFinite(amountUsd) || amountUsd < 0) {
-      throw new Error(`Row ${rowNumber}: amount_usd must be a non-negative number.`);
-    }
-
-    return {
-      dateSent,
-      name,
-      segmentOrCampaign,
-      channel,
-      offerType: rawType as OfferType,
-      amountUsd,
-      status: rawStatus as OfferStatus,
-      nextFollowupDate,
-      notes,
-    };
-  });
-};
+export const normalizeOffers = (offers: OutreachOffer[]): OutreachOffer[] =>
+  offers.filter((offer) =>
+    Boolean(
+      localDate(offer.dateSent) &&
+        offer.name &&
+        offerTypes.includes(offer.offerType) &&
+        offerStatuses.includes(offer.status) &&
+        (!offer.nextFollowupDate || localDate(offer.nextFollowupDate)),
+    ),
+  ).map((offer) => ({ ...offer, quantity: Math.max(1, offer.quantity || 1) }));
 
 export const calculateOffersBoardMetrics = (
   offers: OutreachOffer[],
@@ -176,8 +86,8 @@ export const calculateOffersBoardMetrics = (
   offers.forEach((offer) => {
     const sent = localDate(offer.dateSent);
     if (!sent) return;
-    if (sent >= thisWeekStart && sent < nextWeekStart) current[offer.offerType] += 1;
-    if (sent >= lastWeekStart && sent < thisWeekStart) previous[offer.offerType] += 1;
+    if (sent >= thisWeekStart && sent < nextWeekStart) current[offer.offerType] += offer.quantity;
+    if (sent >= lastWeekStart && sent < thisWeekStart) previous[offer.offerType] += offer.quantity;
   });
 
   const byFollowup = (left: OutreachOffer, right: OutreachOffer) => {
@@ -186,7 +96,9 @@ export const calculateOffersBoardMetrics = (
     if (!right.nextFollowupDate) return -1;
     return left.nextFollowupDate.localeCompare(right.nextFollowupDate);
   };
-  const waitingOffers = offers.filter((offer) => offer.status === "waiting").sort(byFollowup);
+  const waitingOffers = offers
+    .filter((offer) => !["paid", "closed"].includes(offer.status))
+    .sort(byFollowup);
   const followupsDue = waitingOffers.filter((offer) => {
     const followup = localDate(offer.nextFollowupDate);
     return followup !== null && followup <= today;
@@ -200,7 +112,7 @@ export const calculateOffersBoardMetrics = (
   return {
     thisWeek: { ...current, total: current.paid + current.free + current.partnership },
     lastWeek: { ...previous, total: previous.paid + previous.free + previous.partnership },
-    pendingAmountUsd: waitingOffers.reduce((sum, offer) => sum + offer.amountUsd, 0),
+    pendingAmountUsd: waitingOffers.reduce((sum, offer) => sum + offer.amountUsd * offer.quantity, 0),
     waitingOffers,
     followupsDue,
     overdueOfferKeys,
