@@ -9201,3 +9201,19 @@ The community-leader offer has three rungs, same shape as the person ladder. Run
 **The advisory mycelium (to be developed):** if Sasha advises another unique business and it grows, and everyone is connected through revenue share, then revenue share is the connective tissue of the network: the mycelium. As nodes mature, they advise newer nodes; advisory edges carry both wisdom and revenue share. Endgame shape: a decentralized venture studio where "who advises is everybody," Sasha as one of its key architects in an unconventional, non-owning way. The code mycelium (engine 4) and the revenue mycelium (advisory + shares) are the same network in two substrates.
 
 **The fractal purchase law (de facto invariant, observed):** every holon buys the same shape: free taste -> paid step -> infrastructure. Person: Direction Call -> session -> BUILT. Community: workshop -> intros -> module. Business: advisory taste -> engagement -> studio partnership. Infrastructure is never sold cold; it is bought after its output has been tasted.
+
+### Day 125 addendum (3): The Network of Sovereigns (the resolved state)
+
+The whole system resolved into one simple sentence: **a network of sovereigns, each with an AI enabling a business that stems from their uniqueness, weaving revenue-share agreements, collaborations, joint ventures, and joint products, while staying sovereign, staying in their lane, and continuing their life's work.**
+
+That is the decentralized venture studio (working names: decentralized unique business network / mycelium / conglomerate). Entry is economic because the economic door is the one already open: AI is an ongoing, power-law-stacked process, and riding it is the shortcut through which most people can receive the most well-being.
+
+**Vocabulary correction (Sasha's call):** not "cathedral". It is his life's work, and everybody has one. The reconciliation stands: building the life's work and feeding the family are now the same motion.
+
+**Uniqueness as the fifth element:** uniqueness is linked to everything, so precision about it drags everything else upward with it: relationships, health, consciousness, emotions. This is why the professional door is not "just business": it is the handle that moves the whole person.
+
+**Method transmission: lineage + license, not certification-as-gatekeeping.** Quality assurance for practitioners who run the method (Sergey being case one) has three organs, none of them an exam:
+1. **Lineage:** you can only transmit what you have received; practitioners learn by being taken through the method themselves, full-depth, by Sasha or by a mature node. Sergey's phrase is the standard: "I was 100% inside your structure."
+2. **The tools carry the QA:** the AI workflows and playbooks encode the method's precision; quality travels with the instruments, not with a diploma. Keeping practitioners on current workflows keeps practice quality current.
+3. **Results-visible recognition:** practitioner status is earned by documented outcomes (transcripts, testimonials, launched businesses), published; the network sees who delivers. Recognition can be revoked by reality, not by a committee.
+Three relationship tiers follow from the existing licenses: open use (anyone, attribution, non-commercial) -> practitioner (lineage-trained, listed, commercial terms per the distributor structure) -> node (a unique business advised within the mycelium, woven by revenue-share edges of varying scope and duration).
