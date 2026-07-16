@@ -240,7 +240,7 @@ The gut layer answers: *what is actually true now, what has energy, what is stal
 
 The AI routes each pulse by what changed:
 
-- **Relationship moved:** update `docs/02-strategy/strategic_crm_outreach_tracker.md`; if an offer moved, update its **Offer Ledger** row in the same file; then regenerate `src/generated/crm-snapshot.json`.
+- **Relationship moved:** update `docs/02-strategy/strategic_crm_outreach_tracker.md`; if an offer moved, update its **Offer Ledger** row in the same file; run `npm run snapshots:generate`; commit and push the canonical documents and generated snapshots together. The Founder Cockpit reads the latest committed projection at runtime.
 - **System meaning changed:** update `docs/02-strategy/morphogenetic_holomap.md`.
 - **Roadmap priority changed:** update `docs/02-strategy/roadmap.md`.
 - **Product idea became real enough to build:** create or update a file in `docs/04-products/`.

@@ -12,6 +12,7 @@
     "sitemap:generate": "bunx tsx scripts/generate-sitemap.ts",
     "crm:snapshot": "node scripts/emit-crm-snapshot.mjs",
     "pulse:snapshot": "node scripts/emit-project-pulse-snapshot.mjs",
+    "snapshots:generate": "node scripts/emit-crm-snapshot.mjs && node scripts/emit-project-pulse-snapshot.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "update:mission-manifest": "node scripts/update-mission-manifest.js",
