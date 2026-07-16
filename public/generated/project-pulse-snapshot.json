@@ -1,71 +1,71 @@
 {
-  "generated_at": "2026-07-15T19:38:52.043Z",
+  "generated_at": "2026-07-15T23:54:58.019Z",
   "source": "docs/09-logs/project_pulse_log.md",
-  "eventsCount": 7,
+  "eventsCount": 16,
   "latestEvent": {
-    "date": "2026-07-10",
-    "day_number": "120",
-    "title": "First-ever BUILD container offer sent (Nia, $1,111, 3 weeks)",
-    "source": "Sasha dictation (pulse)",
-    "actors": [
-      "Sasha / Alexander Konstantinov",
-      "Nia Leak"
-    ],
-    "what_happened": "The $1,111 / 3-week BUILD container offer was sent to Nia over WhatsApp. Final copy woven from her own harvested threshold language (\"what is my real offer\", \"no more hundred paths\", \"no script... from your mind, your spirit, your heart\", \"spinning wheels\", \"down for challenging work\"). Structure: Week 1 One Direction, Week 2 The Offer Packaged, Week 3 Serving Real People. Price held at cohort-seat parity ($1,111, or 2x $600), one-on-one until the cohort assembles (cadence fact, not apology). This is the first offer of the BUILD container to anyone, and the first offer counted by the new Offer Cadence metric (OMTM: offers-made-per-week).",
-    "energy_exchanged": [
-      "offer (first BUILD container ask)",
-      "recognition language returned to its source",
-      "price integrity"
-    ],
-    "affected_holons": [
-      "individual founder",
-      "client dyad (Sasha + Nia)",
-      "the value ladder ($555 workshop -> $1,111 BUILD, first ascension offer)",
-      "the Offer Cadence instrument"
-    ],
-    "phase_shift_significance": "major",
-    "next_action": "Wait for her response; no nudge. If yes: first funnel-born client ascending the full ladder. If silence: the offer stands; cadence continues with the next humans regardless.",
-    "staleness_or_contradictions": "None. Note the sequence integrity: she asked, then the offer was sent. Inbound ascension, being-wanted register held."
+    "date": "2026-07-15",
+    "day": "125",
+    "pulse": "warm_base_batch_complete_25_sent",
+    "what_happened": "The warm-base reactivation campaign's first full wave is out: 25 personalized emails sent via Gmail drafts (v3 Sasha-vetted copy, two cohorts: superpower alumni and platform users). First reply already in (Tatjana, Direction Call effectively booking). Every email is a free Direction Call offer; OMTM this week now 28+ (25 free + Patricia $555 + Gabriel $111 + prior). Remaining ~74 drafts go out in batches today/tomorrow. Energy: tribe is seeing the offer; hunter/warrior determination named by Sasha (\"the work is in front of real people, not down the drain\").",
+    "phase_shift_significance": "notable",
+    "next_action": "Batches 2-3 today, sweeps at 17:00/21:00, follow-ups from Jul 18.",
+    "title": "warm_base_batch_complete_25_sent"
   },
   "phaseShiftDistribution": {
-    "minor": 3,
-    "major": 4
+    "minor": 5,
+    "major": 4,
+    "notable": 7
   },
   "openNextActions": [
-    {
-      "date": "2026-07-01",
-      "title": "Founder Cockpit enters BUILD + Sloan alumni clarity surface",
-      "next_action": "Continue tightening /build/cockpit landing-page detail later; use the Sloan alumni surface as a friendly field test for Professional Clarity / Unique Value Infrastructure language."
-    },
-    {
-      "date": "2026-07-01",
-      "title": "Ariana / Resilience Collective opens collective-action pilot path",
-      "next_action": "Send Ariana a concise follow-up with the platform link, thank her for the call, reflect her infrastructure-building community frame, and propose a mid-October pilot-design conversation. Prepare a small pilot outline: 10-15 members, uniqueness/self-understanding scan, assets/offers/needs layer, contribution map, and concrete collaboration/introduction candidates."
-    },
-    {
-      "date": "2026-07-07",
-      "title": "Oyi pays the $100 Claude Max subscription (in-kind support)",
-      "next_action": "Thank Oyi; keep the proposal review warm without nudging. Note the pattern: the field is now funding the instrument that grows the field."
-    },
-    {
-      "date": "2026-07-10",
-      "title": "Nia returns from integration and asks for the next paid container",
-      "next_action": "Tighten and send the three-week $1,111 offer while the request is live. Treat it as a candidate offer until Nia accepts and pays; if she does, capture the delivery as the first explicit post-Ignition ascension path and measure whether articulation becomes conversations, clients, and income."
-    },
-    {
-      "date": "2026-07-10",
-      "title": "Heinrich opens an intergenerational trust and guidance bridge",
-      "next_action": "Wait for the granddaughter to initiate contact, then help her clarify her actual decision rather than giving generic emigration advice. If Heinrich completes the assessment, receive his experience as product feedback and relational reconnection, not as a sales lead to force."
-    },
-    {
-      "date": "2026-07-09",
-      "title": "Nia asked for container details; Sasha drafted the $1,111 / 3-week proposal",
-      "next_action": "Send after final pass; if accepted this is the first funnel-born client ascending the ladder ($555 workshop -> $1,111 container)."
-    },
     {
       "date": "2026-07-10",
       "title": "First-ever BUILD container offer sent (Nia, $1,111, 3 weeks)",
       "next_action": "Wait for her response; no nudge. If yes: first funnel-born client ascending the full ladder. If silence: the offer stands; cadence continues with the next humans regardless."
+    },
+    {
+      "date": "2026-07-12",
+      "title": "proof_answer_sent_and_container_renamed_BUILT",
+      "next_action": "Wait for Nia's decision; no nudge. Reuse the Proof Answer for the next prospect who asks for results."
+    },
+    {
+      "date": "2026-07-14",
+      "title": "patricia_exploratory_call_555_offer_to_send",
+      "next_action": "Send the session description to her work email (promised on call). OMTM +1 when sent."
+    },
+    {
+      "date": "2026-07-14",
+      "title": "patricia_555_proposal_sent_omtm_plus_one",
+      "next_action": "No nudge. If silence, FU per ops cadence (+3d gentle with one client line, +7d open-palmed). Track: reply -> booking -> Sept in-person option."
+    },
+    {
+      "date": "2026-07-15",
+      "title": "kirill_kvadra_community_pitch_call",
+      "next_action": "No action owed except sending the recording as promised. Friendly peer distance; nothing gets uploaded into Kvadra (methodology, code, or digital twin) without explicit terms Sasha has vetted in writing."
+    },
+    {
+      "date": "2026-07-15",
+      "title": "chris_reengaged_waiting_next_week",
+      "next_action": "If silent by Jul 21, one light check-in."
+    },
+    {
+      "date": "2026-07-15",
+      "title": "gabriel_inbound_request_111_offer_sent",
+      "next_action": "Await his booking; session likely fixes 404 + advances his offer."
+    },
+    {
+      "date": "2026-07-15",
+      "title": "first_warm_base_reply_tatjana",
+      "next_action": "Await her time tomorrow; if none by Jul 17 evening, one light nudge with the calendar link."
+    },
+    {
+      "date": "2026-07-15",
+      "title": "debt_forgiven_gratitude_and_qwatra_invitation_read",
+      "next_action": "Optional: draft the terms-first response to Kirill when Sasha calls for it; verify Qwatra commercial claims before any deepening."
+    },
+    {
+      "date": "2026-07-15",
+      "title": "warm_base_batch_complete_25_sent",
+      "next_action": "Batches 2-3 today, sweeps at 17:00/21:00, follow-ups from Jul 18."
     }
   ]
 }

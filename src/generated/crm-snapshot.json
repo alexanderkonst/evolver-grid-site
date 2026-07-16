@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-15T19:38:51.990Z",
+  "generated_at": "2026-07-15T23:54:57.966Z",
   "version": "v4.0",
-  "contactsCount": 30,
+  "contactsCount": 32,
   "stageDistribution": {
     "Advisor review": 1,
     "Monthly peer cadence proposed": 1,
@@ -11,8 +11,9 @@
     "Agreement removed": 2,
     "Session 1 Complete": 1,
     "In Conversation": 4,
-    "Responded": 2,
-    "Responded / readiness signal": 1,
+    "Offer sent (Jul 14)": 1,
+    "Responded / waiting next week": 1,
+    "Responded": 1,
     "Paused": 2,
     "Planned": 7,
     "Scheduled": 1,
@@ -20,7 +21,9 @@
     "Offer sent (Jul 10)": 1,
     "Paused — boundary set, ball his": 1,
     "Pilot interest": 1,
-    "Referral opened": 1
+    "Referral opened": 1,
+    "Offer sent (Jul 15)": 1,
+    "Replied / choosing time": 1
   },
   "segmentDistribution": {
     "CLIENT": 8,
@@ -32,13 +35,13 @@
     "NODE": 1,
     "COLLABORATOR": 5,
     "ECOSYSTEM": 4,
-    "ADJACENT": 5,
+    "ADJACENT": 7,
     "BULLSEYE": 2,
     "ORIGINAL": 3,
-    "PAST-ZOG": 1,
+    "PAST-ZOG": 2,
     "TBD": 5,
     "HIGH-VALUE": 1,
-    "BUILDER": 1,
+    "BUILDER": 2,
     "TRUST-LINEAGE": 1
   },
   "energyLeakCount": 5,
@@ -58,5 +61,103 @@
       "notes": "Oaxaca or equivalent Pacific-coast venue. Format proven with Oyi: freedom, fulfilment, joy, fruits, scooters, co-building"
     }
   ],
-  "openItemsCount": 30
+  "openItemsCount": 30,
+  "offers": [
+    {
+      "dateSent": "2026-05-29",
+      "name": "Silvana -> Planetir",
+      "segmentOrCampaign": "Land-based network-state pilot",
+      "channel": "Message",
+      "offerType": "partnership",
+      "amountUsd": 0,
+      "status": "waiting",
+      "nextFollowupDate": "",
+      "quantity": 1,
+      "notes": "Waiting / no-nudge; thread rests unless they reopen."
+    },
+    {
+      "dateSent": "2026-06-30",
+      "name": "Oyi / WeGoodOvaHere",
+      "segmentOrCampaign": "White-label community node",
+      "channel": "WhatsApp / proposal page",
+      "offerType": "partnership",
+      "amountUsd": 1500,
+      "status": "waiting",
+      "nextFollowupDate": "",
+      "quantity": 1,
+      "notes": "Advisor + AI review; no abstract-strategy nudge."
+    },
+    {
+      "dateSent": "2026-06-30",
+      "name": "Chris",
+      "segmentOrCampaign": "45-min exploration",
+      "channel": "WhatsApp",
+      "offerType": "free",
+      "amountUsd": 0,
+      "status": "replied",
+      "nextFollowupDate": "2026-07-21",
+      "quantity": 1,
+      "notes": "Warm thread alive; one light check-in only if still silent."
+    },
+    {
+      "dateSent": "2026-07-10",
+      "name": "Nia Leak",
+      "segmentOrCampaign": "3-week BUILT container",
+      "channel": "WhatsApp",
+      "offerType": "paid",
+      "amountUsd": 1111,
+      "status": "waiting",
+      "nextFollowupDate": "",
+      "quantity": 1,
+      "notes": "Proof answer sent Jul 12; awaiting decision, no nudge."
+    },
+    {
+      "dateSent": "2026-07-14",
+      "name": "Patricia Reed",
+      "segmentOrCampaign": "Unique-business workshop",
+      "channel": "Email",
+      "offerType": "paid",
+      "amountUsd": 555,
+      "status": "waiting",
+      "nextFollowupDate": "2026-07-17",
+      "quantity": 1,
+      "notes": "Same-day proposal after exploratory call."
+    },
+    {
+      "dateSent": "2026-07-15",
+      "name": "Gabriel (Bali)",
+      "segmentOrCampaign": "AI-workflows workshop",
+      "channel": "Message / Cal.com",
+      "offerType": "paid",
+      "amountUsd": 111,
+      "status": "waiting",
+      "nextFollowupDate": "",
+      "quantity": 1,
+      "notes": "Inbound request; awaiting booking."
+    },
+    {
+      "dateSent": "2026-07-15",
+      "name": "Tatjana Kniazeva",
+      "segmentOrCampaign": "Direction Call",
+      "channel": "Warm-base email",
+      "offerType": "free",
+      "amountUsd": 0,
+      "status": "replied",
+      "nextFollowupDate": "2026-07-17",
+      "quantity": 1,
+      "notes": "Choosing a time; light nudge only if none arrives."
+    },
+    {
+      "dateSent": "2026-07-15",
+      "name": "Warm-base wave 1 remainder",
+      "segmentOrCampaign": "Direction Call",
+      "channel": "Email",
+      "offerType": "free",
+      "amountUsd": 0,
+      "status": "waiting",
+      "nextFollowupDate": "2026-07-18",
+      "quantity": 24,
+      "notes": "Aggregate remainder after Tatjana's reply; 25 total offers sent in wave 1."
+    }
+  ]
 }

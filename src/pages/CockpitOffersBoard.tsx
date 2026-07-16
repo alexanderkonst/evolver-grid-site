@@ -9,14 +9,16 @@ import {
   Handshake,
   Send,
 } from "lucide-react";
-import outreachTrackerRaw from "../../docs/02-strategy/outreach_tracker.csv?raw";
+import crmSnapshotRaw from "@/generated/crm-snapshot.json";
 import {
   calculateOffersBoardMetrics,
   getOfferKey,
-  parseOutreachCsv,
+  normalizeOffers,
   type OfferTypeCounts,
   type OutreachOffer,
 } from "@/lib/offersBoard";
+
+const crmSnapshot = crmSnapshotRaw as { offers?: OutreachOffer[] };
 
 const currency = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -61,16 +63,8 @@ function StatusPill({ status }: { status: OutreachOffer["status"] }) {
 
 export default function CockpitOffersBoard() {
   const board = useMemo(() => {
-    try {
-      const offers = parseOutreachCsv(outreachTrackerRaw);
-      return { offers, metrics: calculateOffersBoardMetrics(offers), error: null };
-    } catch (error) {
-      return {
-        offers: [] as OutreachOffer[],
-        metrics: calculateOffersBoardMetrics([]),
-        error: error instanceof Error ? error.message : "The outreach tracker could not be read.",
-      };
-    }
+    const offers = normalizeOffers(crmSnapshot.offers ?? []);
+    return { offers, metrics: calculateOffersBoardMetrics(offers), error: null };
   }, []);
 
   const isOverdue = (offer: OutreachOffer) => board.metrics.overdueOfferKeys.has(getOfferKey(offer));
@@ -93,9 +87,9 @@ export default function CockpitOffersBoard() {
             </p>
           </div>
           <p className="w-fit border-l-2 border-[#d6a84d] pl-3 text-sm leading-6 text-[#9ea7b3]">
-            Source: outreach_tracker.csv
+            Source: Pulse + strategic CRM
             <br />
-            Refreshes on deploy
+            Reconciled on every Pulse
           </p>
         </header>
 
@@ -124,7 +118,7 @@ export default function CockpitOffersBoard() {
             <p className="mt-2 text-5xl font-semibold text-[#93f0e8]">
               {currency.format(board.metrics.pendingAmountUsd)}
             </p>
-            <p className="mt-3 text-xs text-[#9ea7b3]">Waiting offers only</p>
+            <p className="mt-3 text-xs text-[#9ea7b3]">Open offers only</p>
           </article>
         </section>
 
@@ -157,16 +151,16 @@ export default function CockpitOffersBoard() {
         <section className="border border-[#d6a84d]/25 bg-[#0d1117]">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 p-5">
             <p className="flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-[#d6a84d]">
-              <Send className="h-4 w-4" /> Waiting board
+              <Send className="h-4 w-4" /> Open offers
             </p>
             <span className="text-sm text-[#9ea7b3]">{board.metrics.waitingOffers.length} open</span>
           </div>
 
           {board.metrics.waitingOffers.length === 0 ? (
             <div className="px-5 py-14 text-center">
-              <p className="font-serif text-2xl text-[#fff7e8]">No offers are waiting.</p>
+              <p className="font-serif text-2xl text-[#fff7e8]">No offers are open.</p>
               <p className="mx-auto mt-2 max-w-lg text-sm leading-6 text-[#9ea7b3]">
-                Add the next offer to docs/02-strategy/outreach_tracker.csv, commit, and deploy. It will appear here automatically.
+                Tell the project what moved with a Pulse. The strategic CRM and this board will update together.
               </p>
             </div>
           ) : (
@@ -188,10 +182,13 @@ export default function CockpitOffersBoard() {
                       <tr key={getOfferKey(offer)} className={isOverdue(offer) ? "bg-[#3a1712]/55" : "bg-[#0d1117]"}>
                         <td className="px-5 py-4 font-medium text-[#fff7e8]">{offer.name}</td>
                         <td className="px-5 py-4">
-                          <p className="text-sm text-[#f6efe3]">{offer.segmentOrCampaign || typeMeta[offer.offerType].label}</p>
+                          <p className="text-sm text-[#f6efe3]">
+                            {offer.segmentOrCampaign || typeMeta[offer.offerType].label}
+                            {offer.quantity > 1 ? ` × ${offer.quantity}` : ""}
+                          </p>
                           <p className="mt-1 text-xs capitalize text-[#9ea7b3]">{offer.offerType}{offer.channel ? ` · ${offer.channel}` : ""}</p>
                         </td>
-                        <td className="px-5 py-4 text-sm text-[#cfc4b5]">{offer.amountUsd ? currency.format(offer.amountUsd) : "—"}</td>
+                        <td className="px-5 py-4 text-sm text-[#cfc4b5]">{offer.amountUsd ? currency.format(offer.amountUsd * offer.quantity) : "—"}</td>
                         <td className="px-5 py-4 text-sm text-[#cfc4b5]">{formatDate(offer.dateSent)}</td>
                         <td className="px-5 py-4"><StatusPill status={offer.status} /></td>
                         <td className={`px-5 py-4 text-sm ${isOverdue(offer) ? "font-medium text-[#ffc0a5]" : "text-[#cfc4b5]"}`}>
@@ -209,12 +206,15 @@ export default function CockpitOffersBoard() {
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <h2 className="font-medium text-[#fff7e8]">{offer.name}</h2>
-                        <p className="mt-1 text-sm text-[#cfc4b5]">{offer.segmentOrCampaign || typeMeta[offer.offerType].label}</p>
+                        <p className="mt-1 text-sm text-[#cfc4b5]">
+                          {offer.segmentOrCampaign || typeMeta[offer.offerType].label}
+                          {offer.quantity > 1 ? ` × ${offer.quantity}` : ""}
+                        </p>
                       </div>
                       <StatusPill status={offer.status} />
                     </div>
                     <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
-                      <div><dt className="text-xs text-[#9ea7b3]">Amount</dt><dd className="mt-1 text-[#f6efe3]">{offer.amountUsd ? currency.format(offer.amountUsd) : "—"}</dd></div>
+                      <div><dt className="text-xs text-[#9ea7b3]">Amount</dt><dd className="mt-1 text-[#f6efe3]">{offer.amountUsd ? currency.format(offer.amountUsd * offer.quantity) : "—"}</dd></div>
                       <div><dt className="text-xs text-[#9ea7b3]">Sent</dt><dd className="mt-1 text-[#f6efe3]">{formatDate(offer.dateSent)}</dd></div>
                       <div className="col-span-2"><dt className="text-xs text-[#9ea7b3]">Next follow-up</dt><dd className={`mt-1 ${isOverdue(offer) ? "font-medium text-[#ffc0a5]" : "text-[#f6efe3]"}`}>{formatDate(offer.nextFollowupDate)}{isOverdue(offer) ? " · overdue" : ""}</dd></div>
                     </dl>
