@@ -7274,7 +7274,7 @@ A venture is what happens when a communion incorporates: the third being gets a 
 
 **Relationship to other domains:** sibling to Domain 109 (a venture is a communion that took a body — the same test, whether a third being or an empire shell is forming) and Domain 104 (self-knowledge as agentic index — the corpus that must never transfer is the same corpus that makes the index worth having).
 
-## Domain 111: Edge-Carried Alignment (the source of decentralization) (Day 125, July 15, 2026)
+## Domain 111: The Network of Sovereigns: Edge-Carried Alignment as the source of decentralization. (Day 125, July 15, 2026)
 
 **The sentence:** "The network doesn't need an owner because the edges themselves carry the alignment."
 
@@ -7305,7 +7305,7 @@ A venture is what happens when a communion incorporates: the third being gets a 
 
 ## Domain 112: Science as Return to Source (Day 125, July 15, 2026)
 
-**The sentence:** the whole point of science is to get closer to the source: the first moments after the Big Bang are the permanent frontier, the source of all new physics forever.
+**The sentence:** the whole point of science is to get closer to the source: the first moments after the Big Bang are the frontier, the source of all new physics for a while if not forever.
 
 **Method (from Universal Ontology §2b and §13):** ontology-first postulation, honestly labeled, mechanism worked out after; recognitions are held with explicit honesty markers rather than smoothed into certainty.
 
