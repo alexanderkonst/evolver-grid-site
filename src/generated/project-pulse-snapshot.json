@@ -1,37 +1,22 @@
 {
-  "generated_at": "2026-07-15T23:54:58.019Z",
+  "generated_at": "2026-07-16T02:03:49.277Z",
   "source": "docs/09-logs/project_pulse_log.md",
-  "eventsCount": 16,
+  "eventsCount": 19,
   "latestEvent": {
     "date": "2026-07-15",
     "day": "125",
-    "pulse": "warm_base_batch_complete_25_sent",
-    "what_happened": "The warm-base reactivation campaign's first full wave is out: 25 personalized emails sent via Gmail drafts (v3 Sasha-vetted copy, two cohorts: superpower alumni and platform users). First reply already in (Tatjana, Direction Call effectively booking). Every email is a free Direction Call offer; OMTM this week now 28+ (25 free + Patricia $555 + Gabriel $111 + prior). Remaining ~74 drafts go out in batches today/tomorrow. Energy: tribe is seeing the offer; hunter/warrior determination named by Sasha (\"the work is in front of real people, not down the drain\").",
-    "phase_shift_significance": "notable",
-    "next_action": "Batches 2-3 today, sweeps at 17:00/21:00, follow-ups from Jul 18.",
-    "title": "warm_base_batch_complete_25_sent"
+    "pulse": "haab_submitted_and_two_hosts_yes",
+    "what_happened": "(1) HAAB \"bring your event\" form submitted (Find Your Direction workshop, free for attendees, monthly/bi-monthly ambition named): Engine 4 physical ignited. (2) Within hours of the 3 community proposals, 2 of 3 hosts said yes. Will Blakey (Club DAO): experienced host (recent masterclass: 75 registrations, 30 attended, followed up all); offers custom URL daouniverse.club/zoneofgenius, full CRM automation, even CRM team access; asks Sasha to produce 6 assets (landing HTML, promo email, welcome email, 2 reminders, post-event flows x2, social graphics+copy) in Club DAO black-gold branding. Note: Club DAO = the web3 segment's channel reopening. Oyi Sun: raised the frame twice: (a) nonprofit-funded programs - he can solicit funds via his nonprofit to pay Sasha to run 6-week/90-day cohorts; (b) pushes for a regular webinar not a one-off (\"a stream vs a drop in the bucket\"), offers to run ads; wants details as a short video. Oyi independently confirmed the monthly-institution design hours after it was written into strategy.",
+    "phase_shift_significance": "major",
+    "next_action": "Sasha sends message 2 (details) to both; asset production for Will (Claude/Codex factory); short Loom for Oyi; funded-cohort idea to be explored with written terms when concrete.",
+    "title": "haab_submitted_and_two_hosts_yes"
   },
   "phaseShiftDistribution": {
     "minor": 5,
-    "major": 4,
-    "notable": 7
+    "major": 5,
+    "notable": 9
   },
   "openNextActions": [
-    {
-      "date": "2026-07-10",
-      "title": "First-ever BUILD container offer sent (Nia, $1,111, 3 weeks)",
-      "next_action": "Wait for her response; no nudge. If yes: first funnel-born client ascending the full ladder. If silence: the offer stands; cadence continues with the next humans regardless."
-    },
-    {
-      "date": "2026-07-12",
-      "title": "proof_answer_sent_and_container_renamed_BUILT",
-      "next_action": "Wait for Nia's decision; no nudge. Reuse the Proof Answer for the next prospect who asks for results."
-    },
-    {
-      "date": "2026-07-14",
-      "title": "patricia_exploratory_call_555_offer_to_send",
-      "next_action": "Send the session description to her work email (promised on call). OMTM +1 when sent."
-    },
     {
       "date": "2026-07-14",
       "title": "patricia_555_proposal_sent_omtm_plus_one",
@@ -66,6 +51,21 @@
       "date": "2026-07-15",
       "title": "warm_base_batch_complete_25_sent",
       "next_action": "Batches 2-3 today, sweeps at 17:00/21:00, follow-ups from Jul 18."
+    },
+    {
+      "date": "2026-07-15",
+      "title": "warm_base_50_sent_halfway",
+      "next_action": "Two more bursts tomorrow (~50 remaining), host pitches to Oyi/Devon/Will."
+    },
+    {
+      "date": "2026-07-15",
+      "title": "community_collab_proposals_sent_x3",
+      "next_action": "Await Oyi/Devon/Will responses, send message 2 (details) once they reply, schedule and prep community webinars."
+    },
+    {
+      "date": "2026-07-15",
+      "title": "haab_submitted_and_two_hosts_yes",
+      "next_action": "Sasha sends message 2 (details) to both; asset production for Will (Claude/Codex factory); short Loom for Oyi; funded-cohort idea to be explored with written terms when concrete."
     }
   ]
 }

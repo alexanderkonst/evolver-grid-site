@@ -672,3 +672,31 @@ staleness_or_contradictions: >
     Await Oyi/Devon/Will responses, send message 2 (details) once they
     reply, schedule and prep community webinars.
 ```
+
+```yaml
+- date: 2026-07-15
+  day: 125
+  pulse: haab_submitted_and_two_hosts_yes
+  what_happened: >
+    (1) HAAB "bring your event" form submitted (Find Your Direction
+    workshop, free for attendees, monthly/bi-monthly ambition named):
+    Engine 4 physical ignited. (2) Within hours of the 3 community
+    proposals, 2 of 3 hosts said yes. Will Blakey (Club DAO): experienced
+    host (recent masterclass: 75 registrations, 30 attended, followed up
+    all); offers custom URL daouniverse.club/zoneofgenius, full CRM
+    automation, even CRM team access; asks Sasha to produce 6 assets
+    (landing HTML, promo email, welcome email, 2 reminders, post-event
+    flows x2, social graphics+copy) in Club DAO black-gold branding.
+    Note: Club DAO = the web3 segment's channel reopening. Oyi Sun:
+    raised the frame twice: (a) nonprofit-funded programs - he can
+    solicit funds via his nonprofit to pay Sasha to run 6-week/90-day
+    cohorts; (b) pushes for a regular webinar not a one-off ("a stream
+    vs a drop in the bucket"), offers to run ads; wants details as a
+    short video. Oyi independently confirmed the monthly-institution
+    design hours after it was written into strategy.
+  phase_shift_significance: major
+  next_action: >
+    Sasha sends message 2 (details) to both; asset production for Will
+    (Claude/Codex factory); short Loom for Oyi; funded-cohort idea to be
+    explored with written terms when concrete.
+```

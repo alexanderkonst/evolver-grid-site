@@ -84,9 +84,9 @@
 | 2026-07-15 | Tatjana Kniazeva | Direction Call | Warm-base email | free | 0 | replied | 2026-07-17 | 1 | Choosing a time; light nudge only if none arrives. |
 | 2026-07-15 | Warm-base wave 1 remainder | Direction Call | Email | free | 0 | waiting | 2026-07-18 | 24 | Aggregate remainder after Tatjana's reply; 25 total offers sent in wave 1. |
 | 2026-07-15 | Warm-base wave 2 | Direction Call | Email | free | 0 | waiting | 2026-07-18 | 25 | Second burst of 25; 50 of ~99 total sent. |
-| 2026-07-15 | Oyi / WeGoodOvaHere | Community webinar | DM | partnership | 0 | waiting | 2026-07-18 | 1 | Message 1 sent (gift + shine + zero work + 33% of first three offers, up to $568/person). |
+| 2026-07-15 | Oyi / WeGoodOvaHere | Community webinar | DM | partnership | 0 | replied-yes | 2026-07-18 | 1 | Message 1 sent (gift + shine + zero work + 33% of first three offers, up to $568/person). Said yes within hours; wants a regular (not one-off) webinar, offers to run ads, raised nonprofit-funded cohort idea, wants details as a short video. |
 | 2026-07-15 | Devon | Community webinar | DM | partnership | 0 | waiting | 2026-07-18 | 1 | Message 1 sent; same irresistible-offer structure. |
-| 2026-07-15 | Will Blakey / ClubDAO | Community webinar | DM | partnership | 0 | waiting | 2026-07-18 | 1 | Message 1 sent; same irresistible-offer structure. |
+| 2026-07-15 | Will Blakey / ClubDAO | Community webinar | DM | partnership | 0 | replied-yes | 2026-07-18 | 1 | Message 1 sent; same irresistible-offer structure. Said yes within hours; offers custom URL daouniverse.club/zoneofgenius, full CRM automation + team access; asks Sasha to produce 6 assets in Club DAO black-gold branding. |
 
 ---
 

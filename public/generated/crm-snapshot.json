@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T00:52:28.228Z",
+  "generated_at": "2026-07-16T02:03:49.232Z",
   "version": "v4.0",
   "contactsCount": 32,
   "stageDistribution": {
@@ -178,10 +178,10 @@
       "channel": "DM",
       "offerType": "partnership",
       "amountUsd": 0,
-      "status": "waiting",
+      "status": "replied-yes",
       "nextFollowupDate": "2026-07-18",
       "quantity": 1,
-      "notes": "Message 1 sent (gift + shine + zero work + 33% of first three offers, up to $568/person)."
+      "notes": "Message 1 sent (gift + shine + zero work + 33% of first three offers, up to $568/person). Said yes within hours; wants a regular (not one-off) webinar, offers to run ads, raised nonprofit-funded cohort idea, wants details as a short video."
     },
     {
       "dateSent": "2026-07-15",
@@ -202,10 +202,10 @@
       "channel": "DM",
       "offerType": "partnership",
       "amountUsd": 0,
-      "status": "waiting",
+      "status": "replied-yes",
       "nextFollowupDate": "2026-07-18",
       "quantity": 1,
-      "notes": "Message 1 sent; same irresistible-offer structure."
+      "notes": "Message 1 sent; same irresistible-offer structure. Said yes within hours; offers custom URL daouniverse.club/zoneofgenius, full CRM automation + team access; asks Sasha to produce 6 assets in Club DAO black-gold branding."
     }
   ]
 }
