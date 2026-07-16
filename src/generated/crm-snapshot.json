@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T02:03:49.232Z",
+  "generated_at": "2026-07-16T20:33:13.650Z",
   "version": "v4.0",
   "contactsCount": 32,
   "stageDistribution": {
@@ -142,10 +142,22 @@
       "channel": "Warm-base email",
       "offerType": "free",
       "amountUsd": 0,
-      "status": "replied",
-      "nextFollowupDate": "2026-07-17",
+      "status": "booked",
+      "nextFollowupDate": "",
       "quantity": 1,
-      "notes": "Choosing a time; light nudge only if none arrives."
+      "notes": "Booked a Direction Call."
+    },
+    {
+      "dateSent": "2026-07-16",
+      "name": "Kristina",
+      "segmentOrCampaign": "Direction Call",
+      "channel": "Warm-base email",
+      "offerType": "free",
+      "amountUsd": 0,
+      "status": "booked",
+      "nextFollowupDate": "",
+      "quantity": 1,
+      "notes": "Booked a Direction Call."
     },
     {
       "dateSent": "2026-07-15",

@@ -81,7 +81,8 @@
 | 2026-07-10 | Nia Leak | 3-week BUILT container | WhatsApp | paid | 1111 | waiting |  | 1 | Proof answer sent Jul 12; awaiting decision, no nudge. |
 | 2026-07-14 | Patricia Reed | Unique-business workshop | Email | paid | 555 | waiting | 2026-07-17 | 1 | Same-day proposal after exploratory call. |
 | 2026-07-15 | Gabriel (Bali) | AI-workflows workshop | Message / Cal.com | paid | 111 | waiting |  | 1 | Inbound request; awaiting booking. |
-| 2026-07-15 | Tatjana Kniazeva | Direction Call | Warm-base email | free | 0 | replied | 2026-07-17 | 1 | Choosing a time; light nudge only if none arrives. |
+| 2026-07-15 | Tatjana Kniazeva | Direction Call | Warm-base email | free | 0 | booked |  | 1 | Booked a Direction Call. |
+| 2026-07-16 | Kristina | Direction Call | Warm-base email | free | 0 | booked |  | 1 | Booked a Direction Call. |
 | 2026-07-15 | Warm-base wave 1 remainder | Direction Call | Email | free | 0 | waiting | 2026-07-18 | 24 | Aggregate remainder after Tatjana's reply; 25 total offers sent in wave 1. |
 | 2026-07-15 | Warm-base wave 2 | Direction Call | Email | free | 0 | waiting | 2026-07-18 | 25 | Second burst of 25; 50 of ~99 total sent. |
 | 2026-07-15 | Oyi / WeGoodOvaHere | Community webinar | DM | partnership | 0 | replied-yes | 2026-07-18 | 1 | Message 1 sent (gift + shine + zero work + 33% of first three offers, up to $568/person). Said yes within hours; wants a regular (not one-off) webinar, offers to run ads, raised nonprofit-funded cohort idea, wants details as a short video. |

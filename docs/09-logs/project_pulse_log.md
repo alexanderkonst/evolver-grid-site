@@ -702,3 +702,19 @@ staleness_or_contradictions: >
     (Claude/Codex factory); short Loom for Oyi; funded-cohort idea to be
     explored with written terms when concrete.
 ```
+
+```yaml
+- date: 2026-07-16
+  day: 126
+  pulse: warm_base_two_calls_booked
+  what_happened: >
+    Warm-base campaign conversion accelerating: Tatjana AND Kristina have
+    both booked Direction Calls; a third person replied wanting to get
+    on a call. Funnel now reads: ~50 sent -> 3+ replies -> 2 booked calls
+    within 48h of the first batch. First quantified conversion signal
+    from the warm-base wave since it launched Jul 15.
+  phase_shift_significance: notable
+  next_action: >
+    Hold the third reply's call-booking thread; run remaining ~49 of the
+    wave; watch booked-call rate as the wave completes.
+```
