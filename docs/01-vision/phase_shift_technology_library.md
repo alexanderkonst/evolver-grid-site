@@ -6,7 +6,19 @@
 > *The day the Playing Small membership was revoked.*
 
 > [!NOTE]
-> **Why not "Breakthroughs"?** "Breakthrough" is a lower truth description of a rapid phase shift. There are no literal break-throughs in nature — only in limited minds. A "breakthrough" implies an act of breaking, i.e. damaging something permanently while moving through it. Believing in breakthroughs creates a tacit agreement to postpone things until one has "finally arrived" — at the cost of permanently delaying arrival. No process in existence is perfectly instant, but some do have the relative quality of **unusually rapid phase shifts.** Each entry in this library is a technology — a seeing instrument that produces such a shift. Named by the transformational result it delivers, not by the wall it supposedly broke.
+
+ON THE DANGER OF BELIEVING A BREAKTHROUGH IS COMING
+> **Why not "Breakthroughs"?**
+
+There are no literal break-throughs in nature — only in limited minds. A "breakthrough" implies an act of breaking, i.e. damaging something permanently while moving through it. Believing in breakthroughs creates a tacit agreement to postpone things until one has "finally broke through" which is a moving target — at the cost of permanently delaying arrival. 
+
+When using the concept "breakthrough", people usually subconsciously imply an instant massive improvement, i.e of the duration of zero length. No process in existence is perfectly instant. And believing in "an instant massive improvement hopefully coming soon" puts a handbreak to it because 
+
+However, it is important to discern that some do have the relative quality of **unusually rapid phase shifts.** 
+
+"Breakthrough" is a lower truth description of a rapid phase shift. 
+
+Each entry in this library is a technology — a seeing instrument that produces such a shift. Named by the transformational result it delivers.
 
 ---
 
