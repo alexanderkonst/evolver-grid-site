@@ -1,0 +1,12 @@
+Challenge Date,IP Address,User Agent,Country,Challenge Type
+Tue Jun 18 05:26:11 UTC 2024,114.122.167.163,"Mozilla/5.0 (iPad; CPU OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/125.0.6422.80 Mobile/15E148 Safari/604.1",Indonesia,EMAIL_PIN_CHALLENGE
+Tue Jun 18 05:26:11 UTC 2024,114.122.167.163,"Mozilla/5.0 (iPad; CPU OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/125.0.6422.80 Mobile/15E148 Safari/604.1",Indonesia,EMAIL_PIN_CHALLENGE
+Tue Jun 18 05:26:50 UTC 2024,114.122.167.163,"Mozilla/5.0 (iPad; CPU OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/125.0.6422.80 Mobile/15E148 Safari/604.1",Indonesia,EMAIL_PIN_CHALLENGE
+Fri Apr 18 17:13:49 UTC 2025,201.46.20.179,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",Brazil,CAPTCHA_CHALLENGE
+Fri Apr 18 17:13:49 UTC 2025,201.46.20.179,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",Brazil,CAPTCHA_CHALLENGE
+Tue Apr 22 10:47:50 UTC 2025,177.8.133.251,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",Unknown,CAPTCHA_CHALLENGE
+Tue Apr 22 10:47:50 UTC 2025,177.8.133.251,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",Unknown,CAPTCHA_CHALLENGE
+Thu Jun 26 04:00:21 UTC 2025,154.213.193.110,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",United States,CAPTCHA_CHALLENGE
+Thu Jun 26 04:00:21 UTC 2025,154.213.193.110,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",United States,CAPTCHA_CHALLENGE
+Wed Jul 23 05:46:34 UTC 2025,156.242.34.79,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",South Africa,CAPTCHA_CHALLENGE
+Wed Jul 23 05:46:34 UTC 2025,156.242.34.79,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",South Africa,CAPTCHA_CHALLENGE

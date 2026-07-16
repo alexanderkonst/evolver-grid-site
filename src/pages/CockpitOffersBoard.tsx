@@ -7,18 +7,17 @@ import {
   CircleDollarSign,
   Gift,
   Handshake,
+  Loader2,
+  RefreshCw,
   Send,
 } from "lucide-react";
-import crmSnapshotRaw from "@/generated/crm-snapshot.json";
 import {
   calculateOffersBoardMetrics,
   getOfferKey,
-  normalizeOffers,
   type OfferTypeCounts,
   type OutreachOffer,
 } from "@/lib/offersBoard";
-
-const crmSnapshot = crmSnapshotRaw as { offers?: OutreachOffer[] };
+import { useRuntimeOffers } from "@/hooks/useRuntimeOffers";
 
 const currency = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -62,10 +61,11 @@ function StatusPill({ status }: { status: OutreachOffer["status"] }) {
 }
 
 export default function CockpitOffersBoard() {
-  const board = useMemo(() => {
-    const offers = normalizeOffers(crmSnapshot.offers ?? []);
-    return { offers, metrics: calculateOffersBoardMetrics(offers), error: null };
-  }, []);
+  const runtime = useRuntimeOffers();
+  const board = useMemo(() => ({
+    offers: runtime.offers,
+    metrics: calculateOffersBoardMetrics(runtime.offers),
+  }), [runtime.offers]);
 
   const isOverdue = (offer: OutreachOffer) => board.metrics.overdueOfferKeys.has(getOfferKey(offer));
 
@@ -86,19 +86,27 @@ export default function CockpitOffersBoard() {
               What is out, who has it, what is waiting, and where the next human move is due.
             </p>
           </div>
-          <p className="w-fit border-l-2 border-[#d6a84d] pl-3 text-sm leading-6 text-[#9ea7b3]">
-            Source: Pulse + strategic CRM
-            <br />
-            Reconciled on every Pulse
-          </p>
+          <div className="w-fit border-l-2 border-[#d6a84d] pl-3 text-sm leading-6 text-[#9ea7b3]">
+            <p>{runtime.source === "runtime" ? "Live from GitHub main" : "Bundled fallback"}</p>
+            <p>{runtime.generatedAt ? `Snapshot ${runtime.generatedAt.slice(0, 10)}` : "Generation time unavailable"}</p>
+            <button
+              type="button"
+              onClick={() => void runtime.refresh()}
+              disabled={runtime.loading}
+              className="mt-1 inline-flex items-center gap-1.5 text-xs font-medium text-[#f6d58a] transition hover:text-[#fff7e8] disabled:opacity-60"
+            >
+              {runtime.loading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <RefreshCw className="h-3.5 w-3.5" />}
+              Refresh from Pulse
+            </button>
+          </div>
         </header>
 
-        {board.error && (
+        {runtime.error && (
           <section className="mb-5 border border-[#f0a37a]/45 bg-[#24100d] p-4 text-sm text-[#ffc0a5]">
             <p className="flex items-center gap-2 font-medium">
-              <AlertTriangle className="h-4 w-4" /> Tracker needs attention
+              <AlertTriangle className="h-4 w-4" /> Live source unavailable
             </p>
-            <p className="mt-2">{board.error}</p>
+            <p className="mt-2">Showing the bundled fallback. {runtime.error}</p>
           </section>
         )}
 
