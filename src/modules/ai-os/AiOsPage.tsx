@@ -1086,6 +1086,29 @@ Strip 1: electric violet → periwinkle → seafoam → pale olive/beige → dus
 Strip 2: deep ocean blue → royal blue → sky/ice blue → pale mint/pearl → lilac → soft pink`,
   },
   {
+    id: "aesthetics-frame-kintsugi",
+    label: "ESTABLISH THE AESTHETICS FRAME",
+    description: "Extend the mythic-minimalism frame into a new series — a fractured gold line that repairs into a path, then resolves into a constellation of opportunities. Same world, new myth.",
+    category: "design",
+    contextLabel: "🖼 Image tool",
+    content: `Series: Kintsugi Night Garden
+Tagline: "The fracture becomes the path."
+
+Established frame (carry forward, unchanged): contemporary Korean/Japanese mythic minimalism — midnight indigo atmosphere, atmospheric depth, monumental geometry, restrained antique gold, Shippori Mincho-inspired typography, a solitary human-scale presence inside something archetypal. Cinematic depth, negative space held with intention, nothing decorative.
+
+What shifts: retire the circular gateway. The new anchor image is a kintsugi night garden — a single fractured gold line running through dark stone and shadow, in the process of being repaired.
+
+The progression (three movements):
+
+1. Fracture — a hairline break in raw stone, the gold seam only just beginning to fill it. Stillness, tension, the solitary figure at a distance, unresolved.
+
+2. Path — the gold line has grown continuous, low and grounded, guiding the eye and the figure forward through the garden. Motion implied, not shown.
+
+3. Constellation — the repaired line lifts off the ground plane into the night sky above the garden, resolving into a scattered constellation of small gold points — each one a distinct opportunity, singular but interconnected.
+
+Constraints: keep the palette and materials from the established frame — midnight indigo ground, antique gold seam (never bright or yellow gold), Shippori Mincho or an equivalent serif for any typography, one human figure at monumental scale, cinematic lighting with real shadow falloff. No new color families, no crowd scenes, no literal map or chart iconography for the constellation — it must read as sky, not infographic.`,
+  },
+  {
     id: "evolutionary-mastery",
     label: "EVOLUTIONARY MASTERY",
     description: "Stop waiting for AI to ask 'what should I do?' Get an AI that anticipates, leads, and thinks 3 moves ahead — proactive intelligence, not reactive compliance.",

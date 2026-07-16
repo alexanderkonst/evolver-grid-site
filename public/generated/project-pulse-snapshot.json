@@ -1,27 +1,22 @@
 {
-  "generated_at": "2026-07-16T02:03:49.277Z",
+  "generated_at": "2026-07-16T21:38:53.863Z",
   "source": "docs/09-logs/project_pulse_log.md",
-  "eventsCount": 19,
+  "eventsCount": 20,
   "latestEvent": {
-    "date": "2026-07-15",
-    "day": "125",
-    "pulse": "haab_submitted_and_two_hosts_yes",
-    "what_happened": "(1) HAAB \"bring your event\" form submitted (Find Your Direction workshop, free for attendees, monthly/bi-monthly ambition named): Engine 4 physical ignited. (2) Within hours of the 3 community proposals, 2 of 3 hosts said yes. Will Blakey (Club DAO): experienced host (recent masterclass: 75 registrations, 30 attended, followed up all); offers custom URL daouniverse.club/zoneofgenius, full CRM automation, even CRM team access; asks Sasha to produce 6 assets (landing HTML, promo email, welcome email, 2 reminders, post-event flows x2, social graphics+copy) in Club DAO black-gold branding. Note: Club DAO = the web3 segment's channel reopening. Oyi Sun: raised the frame twice: (a) nonprofit-funded programs - he can solicit funds via his nonprofit to pay Sasha to run 6-week/90-day cohorts; (b) pushes for a regular webinar not a one-off (\"a stream vs a drop in the bucket\"), offers to run ads; wants details as a short video. Oyi independently confirmed the monthly-institution design hours after it was written into strategy.",
-    "phase_shift_significance": "major",
-    "next_action": "Sasha sends message 2 (details) to both; asset production for Will (Claude/Codex factory); short Loom for Oyi; funded-cohort idea to be explored with written terms when concrete.",
-    "title": "haab_submitted_and_two_hosts_yes"
+    "date": "2026-07-16",
+    "day": "126",
+    "pulse": "warm_base_two_calls_booked",
+    "what_happened": "Warm-base campaign conversion accelerating: Tatjana AND Kristina have both booked Direction Calls; a third person replied wanting to get on a call. Funnel now reads: ~50 sent -> 3+ replies -> 2 booked calls within 48h of the first batch. First quantified conversion signal from the warm-base wave since it launched Jul 15.",
+    "phase_shift_significance": "notable",
+    "next_action": "Hold the third reply's call-booking thread; run remaining ~49 of the wave; watch booked-call rate as the wave completes.",
+    "title": "warm_base_two_calls_booked"
   },
   "phaseShiftDistribution": {
     "minor": 5,
     "major": 5,
-    "notable": 9
+    "notable": 10
   },
   "openNextActions": [
-    {
-      "date": "2026-07-14",
-      "title": "patricia_555_proposal_sent_omtm_plus_one",
-      "next_action": "No nudge. If silence, FU per ops cadence (+3d gentle with one client line, +7d open-palmed). Track: reply -> booking -> Sept in-person option."
-    },
     {
       "date": "2026-07-15",
       "title": "kirill_kvadra_community_pitch_call",
@@ -66,6 +61,11 @@
       "date": "2026-07-15",
       "title": "haab_submitted_and_two_hosts_yes",
       "next_action": "Sasha sends message 2 (details) to both; asset production for Will (Claude/Codex factory); short Loom for Oyi; funded-cohort idea to be explored with written terms when concrete."
+    },
+    {
+      "date": "2026-07-16",
+      "title": "warm_base_two_calls_booked",
+      "next_action": "Hold the third reply's call-booking thread; run remaining ~49 of the wave; watch booked-call rate as the wave completes."
     }
   ]
 }
