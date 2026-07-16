@@ -36,3 +36,7 @@ dist-ssr
 # auto-deploy script keeps churning "deploy" commits as they change.
 .claude/worktrees/
 .gstack/
+
+# Raw LinkedIn exports contain private messages and account data. Keep only
+# intentionally derived outreach artifacts under docs/02-strategy/warm-base/.
+docs/02-strategy/warm-base/Complete_LinkedInDataExport_*/

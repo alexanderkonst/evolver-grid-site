@@ -1,5 +1,0 @@
-First Name,Last Name,Billing Country,Postal Code,Transaction Made At,Payment Method Type,Invoice Number,Description,Tax Amount,Sub Total,Total Amount,Currency Code
-Aleksandr,Konstantinov,US,94115,01/31/25 12:02 AM UTC,CARD,10567342998,Refund for invoice: 10166674697 Premium Business,0.00, -899.99, -899.99,MXN
-Aleksandr,Konstantinov,US,94115,01/29/25 06:05 AM UTC,CARD,10166674697,Premium Business,0.00,899.99,899.99,MXN
-Aleksandr,Konstantinov,US,94115,12/29/24 06:05 AM UTC,CARD,10158231219,Premium Business,0.00,899.99,899.99,MXN
-Aleksandr,Konstantinov,US,94115,11/29/24 06:05 AM UTC,CARD,10950427168,Premium Business,0.00,0.00,0.00,MXN
