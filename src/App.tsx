@@ -889,9 +889,10 @@ const App = () => (
                   {/* Founder trust page · /founder · standalone (no shell). Copy from Message Bank artifacts. */}
                   <Route path="/founder" element={<Founder />} />
                   <Route path="/about/meet-the-founder" element={<Founder />} />
-                  {/* Alexander's public platform profile · /alexander · standalone (no shell).
+                  {/* Aleksandr's public platform profile · /aleksandr · standalone (no shell).
                       "The platform's profile, in public." One CTA: create your own profile. */}
-                  <Route path="/alexander" element={<AlexanderProfile />} />
+                  <Route path="/aleksandr" element={<AlexanderProfile />} />
+                  <Route path="/alexander" element={<Navigate to="/aleksandr" replace />} />
                   {/* Public monetization explainer · /monetization · standalone (no shell),
                       radical-transparency framing, Liquid Glass register. */}
                   <Route path="/monetization" element={<Monetization />} />

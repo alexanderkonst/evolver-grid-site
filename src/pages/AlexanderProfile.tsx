@@ -144,9 +144,16 @@ export default function AlexanderProfile() {
 
   return (
     <div
-      className="min-h-dvh relative overflow-hidden"
+      className="relative"
       style={{
-        background: "linear-gradient(175deg, #080d1a 0%, #0d1526 55%, #080d1a 100%)",
+        // Solid base color + full-height gradient on the outermost wrapper.
+        // The wrapper grows with content, so the indigo covers the whole
+        // document at any content length (the earlier version broke past
+        // the first viewport). backgroundColor is the hard floor — no
+        // light app body can ever show through.
+        minHeight: "100vh",
+        backgroundColor: "#080d1a",
+        backgroundImage: "linear-gradient(175deg, #080d1a 0%, #0d1526 55%, #080d1a 100%)",
         color: INK,
         fontFamily: BODY_FONT,
       }}
@@ -165,11 +172,16 @@ export default function AlexanderProfile() {
         />
       </Helmet>
 
-      {/* Atmospheric depth — indigo mist, fog over mountains at dusk */}
+      {/* Atmospheric depth — indigo mist, fog over mountains at dusk.
+          FIXED to the viewport (not absolute to the document) so the mist
+          washes the screen at every scroll position. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
+        className="pointer-events-none"
         style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 0,
           background: [
             "radial-gradient(ellipse 90% 45% at 50% -5%, rgba(46, 62, 102, 0.22), transparent 70%)",
             "radial-gradient(ellipse 70% 35% at 30% 68%, rgba(38, 52, 88, 0.16), transparent 70%)",
@@ -177,17 +189,23 @@ export default function AlexanderProfile() {
           ].join(", "),
         }}
       />
-      {/* Vignette */}
+      {/* Vignette — also viewport-fixed */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
+        className="pointer-events-none"
         style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 0,
           background:
             "radial-gradient(ellipse at center, transparent 55%, rgba(4, 7, 14, 0.55) 100%)",
         }}
       />
 
-      <div className="relative max-w-[620px] mx-auto px-5 sm:px-8 pt-24 sm:pt-32 pb-20">
+      <div
+        className="relative max-w-[620px] mx-auto px-5 sm:px-8 pt-24 sm:pt-32 pb-20 overflow-x-clip"
+        style={{ zIndex: 1 }}
+      >
         {/* Header — a solitary presence inside the archetype */}
         <header className="relative text-center mb-4">
           <CanonicalArtifact />
