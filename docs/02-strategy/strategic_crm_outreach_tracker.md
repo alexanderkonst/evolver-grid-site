@@ -567,3 +567,9 @@ prospect -> dm_sent -> responded -> booking -> ignited -> building -> alumni -> 
 *CRM v3.9 — June 30, 2026 · WeGoodOvaHere proposal sent to Oyi. The first concrete white-label community-node offer exists: scanner + precision profile builder + deep data layer + consent-based community intelligence + collaborative AI matchmaking + admin/export/campaign layer. This upgrades the Oyi relationship from client/bridge into a potential community infrastructure pilot.*
 
 *CRM v4.0 — July 10, 2026 (Day 120) · Nia moved from post-session integration to explicit next-container demand: she requested scope and price after identifying the frontier between current articulation and unrealized potential. A three-week $1,111 activation container is drafted but remains unsent/unagreed. Heinrich Kulakov added as a formative trust-lineage bridge after referring his MSU-student granddaughter for professional-path guidance and accepting an invitation into the Russian Top Talent experience. Master table now holds 30 relationships.*
+
+## ZoG Alumni cohort (Day 125)
+
+Zone of Genius / superpower session alumni are the warmest standing cohort - roughly 99 emailable, with more to be recovered from memory and records over time: Laura Fakuse (email bouncing, find alternate channel), Kin (testimonial on site), others as recalled.
+
+**Rule:** every recovered alumnus gets added to the warm-base tracker with cohort=zog-alumni; they receive the superpower letter; testimonial-donors get a personal line referencing their testimonial.

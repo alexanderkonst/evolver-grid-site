@@ -629,3 +629,24 @@ staleness_or_contradictions: >
   next_action: >
     Batches 2-3 today, sweeps at 17:00/21:00, follow-ups from Jul 18.
 ```
+
+```yaml
+- date: 2026-07-15
+  day: 125
+  pulse: warm_base_50_sent_halfway
+  what_happened: >
+    Second burst of 25 warm-base emails sent, bringing the total to 50 of
+    ~99 (two bursts today). Sending now takes about 10 minutes per 25 -
+    copy stabilized after the first-burst edits. About 50 remain, planned
+    as two bursts tomorrow. One bounce: Laura, a former Zone of Genius
+    session client, inbox full/inactive. Host pitches (new two-message
+    structure) about to go to Oyi, Devon, Will. Insight logged: Zone of
+    Genius session alumni across the years are the warmest lead list in
+    existence (roughly 99-130 people, including testimonial-donors like
+    Kin) - track them as a named cohort. Sasha's read: "I have no
+    guaranteed income now" - the hunter cadence is survival-real, and it
+    is working (first reply already in).
+  phase_shift_significance: notable
+  next_action: >
+    Two more bursts tomorrow (~50 remaining), host pitches to Oyi/Devon/Will.
+```
