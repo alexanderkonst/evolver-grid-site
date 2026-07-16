@@ -6,6 +6,8 @@
 > **Merged from:** `docs/09-logs/broadcast_tracker.md` + `docs/02-strategy/tribe_outreach_tracker.md` on 2026-06-26.
 >
 > *Updated 2026-07-15: Pulse reconciliation added the canonical Offer Ledger below. Patricia received the $555 workshop proposal; Gabriel received the $111 workshop offer; Tatjana replied to the free Direction Call; Chris re-engaged; and the first 25-person warm-base wave went out.*
+>
+> *Updated 2026-07-15 (Day 125): warm-base wave 50/99 sent (first reply: Tatjana, Direction Call booking); community-workshop proposals sent to Oyi, Devon, Will Blakey (33% first-three-offers share); Patricia $555 and Gabriel $111 proposals pending; Roman proposal drafted, unsent.*
 
 ---
 
@@ -81,6 +83,10 @@
 | 2026-07-15 | Gabriel (Bali) | AI-workflows workshop | Message / Cal.com | paid | 111 | waiting |  | 1 | Inbound request; awaiting booking. |
 | 2026-07-15 | Tatjana Kniazeva | Direction Call | Warm-base email | free | 0 | replied | 2026-07-17 | 1 | Choosing a time; light nudge only if none arrives. |
 | 2026-07-15 | Warm-base wave 1 remainder | Direction Call | Email | free | 0 | waiting | 2026-07-18 | 24 | Aggregate remainder after Tatjana's reply; 25 total offers sent in wave 1. |
+| 2026-07-15 | Warm-base wave 2 | Direction Call | Email | free | 0 | waiting | 2026-07-18 | 25 | Second burst of 25; 50 of ~99 total sent. |
+| 2026-07-15 | Oyi / WeGoodOvaHere | Community webinar | DM | partnership | 0 | waiting | 2026-07-18 | 1 | Message 1 sent (gift + shine + zero work + 33% of first three offers, up to $568/person). |
+| 2026-07-15 | Devon | Community webinar | DM | partnership | 0 | waiting | 2026-07-18 | 1 | Message 1 sent; same irresistible-offer structure. |
+| 2026-07-15 | Will Blakey / ClubDAO | Community webinar | DM | partnership | 0 | waiting | 2026-07-18 | 1 | Message 1 sent; same irresistible-offer structure. |
 
 ---
 

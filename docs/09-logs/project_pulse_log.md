@@ -650,3 +650,25 @@ staleness_or_contradictions: >
   next_action: >
     Two more bursts tomorrow (~50 remaining), host pitches to Oyi/Devon/Will.
 ```
+
+```yaml
+- date: 2026-07-15
+  day: 125
+  pulse: community_collab_proposals_sent_x3
+  what_happened: >
+    Sasha sent the community-workshop collaboration proposal (message 1,
+    irresistible-offer structure: gift + shine + zero work + a third of
+    first three offers, up to $568/person) to Oyi (WeGoodOvaHere), Devon,
+    and Will Blakey (ClubDAO). His words: first real outreach of his
+    life; business proposals used to be one-per-six-months events, now
+    they flow daily. Strategy 2 (community webinars) is now LAUNCHED: 3
+    of 3-4 planned pitches out; remaining work is responses, message 2
+    (details), scheduling, prep, delivery. Also: 1st-degree wave
+    (strategy 11) handed to Codex (Connections.csv scan). Offer counter
+    today: 50 free (warm emails) + 3 partnership; week total ~56 incl.
+    Patricia $555 and Gabriel $111.
+  phase_shift_significance: notable
+  next_action: >
+    Await Oyi/Devon/Will responses, send message 2 (details) once they
+    reply, schedule and prep community webinars.
+```

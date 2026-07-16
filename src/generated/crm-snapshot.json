@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T23:54:57.966Z",
+  "generated_at": "2026-07-16T00:52:28.228Z",
   "version": "v4.0",
   "contactsCount": 32,
   "stageDistribution": {
@@ -158,6 +158,54 @@
       "nextFollowupDate": "2026-07-18",
       "quantity": 24,
       "notes": "Aggregate remainder after Tatjana's reply; 25 total offers sent in wave 1."
+    },
+    {
+      "dateSent": "2026-07-15",
+      "name": "Warm-base wave 2",
+      "segmentOrCampaign": "Direction Call",
+      "channel": "Email",
+      "offerType": "free",
+      "amountUsd": 0,
+      "status": "waiting",
+      "nextFollowupDate": "2026-07-18",
+      "quantity": 25,
+      "notes": "Second burst of 25; 50 of ~99 total sent."
+    },
+    {
+      "dateSent": "2026-07-15",
+      "name": "Oyi / WeGoodOvaHere",
+      "segmentOrCampaign": "Community webinar",
+      "channel": "DM",
+      "offerType": "partnership",
+      "amountUsd": 0,
+      "status": "waiting",
+      "nextFollowupDate": "2026-07-18",
+      "quantity": 1,
+      "notes": "Message 1 sent (gift + shine + zero work + 33% of first three offers, up to $568/person)."
+    },
+    {
+      "dateSent": "2026-07-15",
+      "name": "Devon",
+      "segmentOrCampaign": "Community webinar",
+      "channel": "DM",
+      "offerType": "partnership",
+      "amountUsd": 0,
+      "status": "waiting",
+      "nextFollowupDate": "2026-07-18",
+      "quantity": 1,
+      "notes": "Message 1 sent; same irresistible-offer structure."
+    },
+    {
+      "dateSent": "2026-07-15",
+      "name": "Will Blakey / ClubDAO",
+      "segmentOrCampaign": "Community webinar",
+      "channel": "DM",
+      "offerType": "partnership",
+      "amountUsd": 0,
+      "status": "waiting",
+      "nextFollowupDate": "2026-07-18",
+      "quantity": 1,
+      "notes": "Message 1 sent; same irresistible-offer structure."
     }
   ]
 }
