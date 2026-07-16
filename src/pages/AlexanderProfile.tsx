@@ -1,32 +1,119 @@
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
-import { GOLD_TEXT_STYLE, META_EYEBROW_STYLE, Ornament } from "@/lib/landingDesign";
-import { EditorialCta } from "@/components/ui/editorial-cta";
-
-const DISPLAY_FONT = "'Cormorant Garamond', Georgia, serif";
-const BODY_FONT = "'Source Serif 4', Georgia, serif";
+import { useState } from "react";
+import { igniteLogo } from "@/lib/landingDesign";
 
 /**
  * /alexander — Alexander Konstantinov's own public platform profile.
  *
- * "The platform's profile, in public." Resume-shaped, but a profile:
- * the same editorial register as the rest of Find Your Top Talent
- * (Cormorant Garamond display, Source Serif 4 body, gold accents via
- * landingDesign tokens, skin-aware color throughout). One CTA only,
- * at the close: create your own profile.
+ * v2 (founder redesign): contemporary Korean/Japanese mythic minimalism.
+ * Midnight indigo, atmospheric depth, monumental geometry (octahedron
+ * inscribed in a circle — the brand's canonical artifact), restrained
+ * antique gold, Shippori Mincho display type, and a solitary human-scale
+ * presence inside something archetypal. Reads as one tall futuristic
+ * profile card floating in fog.
+ *
+ * Self-contained cinematic dark page — does NOT follow skin CSS vars
+ * (same pattern as Founder.tsx owning its own look). All styles scoped
+ * to this component. Copy is verbatim from v1; only presentation changed.
  */
 
-const SectionLabel = ({ children }: { children: React.ReactNode }) => (
-  <p
-    style={{
-      ...META_EYEBROW_STYLE,
-      color: "var(--skin-text-muted, rgba(44,49,80,0.55))",
-    }}
-    className="mb-3 text-center sm:text-left"
+// ── Palette ──
+const INK = "#e8e6df"; // primary off-white
+const MUTE = "#8b93a7"; // secondary blue-grey
+const GOLD = "#b99a5f"; // restrained antique gold
+const GOLD_HAIRLINE = "rgba(185, 154, 95, 0.25)";
+const GOLD_FAINT = "rgba(185, 154, 95, 0.15)";
+const GOLD_ROW_RULE = "rgba(185, 154, 95, 0.12)";
+
+const DISPLAY_FONT = "'Shippori Mincho', 'Cormorant Garamond', Georgia, serif";
+const BODY_FONT = "'Source Serif 4', Georgia, serif";
+
+const EYEBROW_STYLE: React.CSSProperties = {
+  fontFamily: DISPLAY_FONT,
+  fontSize: "11px",
+  letterSpacing: "0.25em",
+  textTransform: "uppercase",
+  color: GOLD,
+  fontWeight: 500,
+};
+
+// ── Local gold ornament — hairline · emblem · hairline ──
+const GoldOrnament = () => (
+  <div
+    className="flex items-center justify-center gap-4 max-w-[280px] mx-auto my-10 sm:my-12"
+    aria-hidden="true"
   >
-    {children}
-  </p>
+    <span
+      className="flex-1 h-px"
+      style={{ background: `linear-gradient(to right, transparent, ${GOLD_HAIRLINE})` }}
+    />
+    <img
+      src={igniteLogo}
+      alt=""
+      aria-hidden="true"
+      className="h-4 w-auto"
+      style={{
+        opacity: 0.55,
+        filter: "drop-shadow(0 0 6px rgba(185, 154, 95, 0.35))",
+        animation: "ornament-spin 48s linear infinite",
+        transformOrigin: "center",
+        willChange: "transform",
+      }}
+      draggable={false}
+    />
+    <span
+      className="flex-1 h-px"
+      style={{ background: `linear-gradient(to left, transparent, ${GOLD_HAIRLINE})` }}
+    />
+  </div>
 );
+
+// ── Monumental geometry — octahedron inscribed in a circle ──
+// The brand's canonical artifact as thin gold line-art: a circle, the
+// octahedron projection (square rotated 45°), and its vertical +
+// horizontal diagonals through center. Archetypal architecture behind
+// the name block.
+const CanonicalArtifact = () => (
+  <svg
+    viewBox="0 0 520 520"
+    aria-hidden="true"
+    className="absolute left-1/2 -translate-x-1/2 pointer-events-none select-none"
+    style={{
+      top: "-140px",
+      width: "min(500px, 105vw)",
+      height: "auto",
+      stroke: GOLD,
+      opacity: 0.15,
+    }}
+  >
+    <g fill="none" strokeWidth="1">
+      <circle cx="260" cy="260" r="230" />
+      <path d="M260 30 L490 260 L260 490 L30 260 Z" />
+      <line x1="260" y1="30" x2="260" y2="490" />
+      <line x1="30" y1="260" x2="490" y2="260" />
+    </g>
+  </svg>
+);
+
+const sentences = [
+  {
+    eyebrow: "Zone of Genius",
+    text: "I turn vague thoughts into exact words people can use to decide and act.",
+  },
+  {
+    eyebrow: "Life's Direction",
+    text: "Assist humanity evolve into a consciously coordinated civilization by awakening individual genius, integrating consciousness with technology, and architecting systems that transform human potential into coherent collective flourishing.",
+  },
+  {
+    eyebrow: "What I Do",
+    text: "I help conscious aspiring impact founders turn their top talent into an organically growing scalable business — in flow, in 6–8 weeks.",
+  },
+  {
+    eyebrow: "Ideal Roles, in Plain English",
+    text: "Clarity architect for founders, venture studios, and accelerators: I name what you actually do, build the offer and the page, and design the method your team can run without you.",
+  },
+];
 
 const resources = [
   "Top Talent extraction: a proven method that takes a person from a vague sense of gift to one exact sentence.",
@@ -53,14 +140,14 @@ const ecosystems = ["MIT", "Bell Labs", "Network School", "UN", "Autodidact"];
 
 export default function AlexanderProfile() {
   const navigate = useNavigate();
+  const [ctaHover, setCtaHover] = useState(false);
 
   return (
     <div
-      className="min-h-dvh"
+      className="min-h-dvh relative overflow-hidden"
       style={{
-        background:
-          "var(--skin-page-wash, radial-gradient(circle at top,#f8f4ff,transparent 45%),radial-gradient(circle at bottom,#fff6ea,transparent 50%))",
-        color: "var(--skin-text-primary, #2c3150)",
+        background: "linear-gradient(175deg, #080d1a 0%, #0d1526 55%, #080d1a 100%)",
+        color: INK,
         fontFamily: BODY_FONT,
       }}
     >
@@ -70,174 +157,224 @@ export default function AlexanderProfile() {
           name="description"
           content="I turn vague thoughts into exact words people can use to decide and act. This is my own platform profile, public."
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&display=swap"
+          rel="stylesheet"
+        />
       </Helmet>
 
-      <div className="max-w-[760px] mx-auto px-5 sm:px-8 py-16 sm:py-24">
-        {/* Header */}
-        <header className="text-center mb-14 sm:mb-20">
+      {/* Atmospheric depth — indigo mist, fog over mountains at dusk */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: [
+            "radial-gradient(ellipse 90% 45% at 50% -5%, rgba(46, 62, 102, 0.22), transparent 70%)",
+            "radial-gradient(ellipse 70% 35% at 30% 68%, rgba(38, 52, 88, 0.16), transparent 70%)",
+            "radial-gradient(ellipse 60% 30% at 78% 42%, rgba(42, 56, 94, 0.13), transparent 70%)",
+          ].join(", "),
+        }}
+      />
+      {/* Vignette */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 55%, rgba(4, 7, 14, 0.55) 100%)",
+        }}
+      />
+
+      <div className="relative max-w-[620px] mx-auto px-5 sm:px-8 pt-24 sm:pt-32 pb-20">
+        {/* Header — a solitary presence inside the archetype */}
+        <header className="relative text-center mb-4">
+          <CanonicalArtifact />
           <h1
-            className="text-4xl sm:text-5xl font-semibold"
-            style={{ fontFamily: DISPLAY_FONT }}
+            className="relative text-[2rem] sm:text-[2.6rem] leading-tight"
+            style={{ fontFamily: DISPLAY_FONT, letterSpacing: "0.08em", fontWeight: 400 }}
           >
             Alexander Konstantinov
           </h1>
           <p
-            className="mt-3 text-lg sm:text-xl"
-            style={{ fontFamily: DISPLAY_FONT, color: "var(--skin-text-primary, #2c3150)" }}
+            className="relative mt-3 text-sm sm:text-base"
+            style={{ fontFamily: DISPLAY_FONT, color: MUTE, letterSpacing: "0.12em" }}
           >
             Founder of Find Your Top Talent
           </p>
-          <p
-            className="mt-4 text-sm italic"
-            style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.6))" }}
-          >
+          <p className="relative mt-4 text-[13px] italic" style={{ color: MUTE }}>
             This page is my own platform profile, public.
           </p>
         </header>
 
-        <Ornament className="mb-14 sm:mb-20" />
+        {/* Profile card panel — floating in fog */}
+        <div
+          className="mt-16 sm:mt-20 rounded-2xl px-5 sm:px-10 py-10 sm:py-12"
+          style={{
+            border: `1px solid ${GOLD_FAINT}`,
+            background: "rgba(6, 10, 20, 0.45)",
+            backdropFilter: "blur(2px)",
+          }}
+        >
+          {/* Four one-sentence sections: eyebrow + sentence */}
+          {sentences.map((s, i) => (
+            <section key={s.eyebrow} className="text-center">
+              {i > 0 && <GoldOrnament />}
+              <p style={EYEBROW_STYLE} className="mb-4">
+                {s.eyebrow}
+              </p>
+              <p
+                className="text-[19px] sm:text-[21px] leading-relaxed"
+                style={{ fontFamily: DISPLAY_FONT, color: INK, fontWeight: 400 }}
+              >
+                {s.text}
+              </p>
+            </section>
+          ))}
 
-        {/* Zone of Genius */}
-        <section className="mb-14 sm:mb-20 text-center">
-          <SectionLabel>Zone of Genius</SectionLabel>
-          <p
-            className="text-2xl sm:text-3xl leading-snug bg-clip-text text-transparent"
-            style={{ fontFamily: DISPLAY_FONT, ...GOLD_TEXT_STYLE }}
-          >
-            I turn vague thoughts into exact words people can use to decide and act.
-          </p>
-        </section>
+          <GoldOrnament />
 
-        <Ornament className="mb-14 sm:mb-20" />
-
-        {/* Life's Direction */}
-        <section className="mb-14 sm:mb-20">
-          <SectionLabel>Life's Direction</SectionLabel>
-          <p
-            className="text-lg sm:text-xl leading-relaxed"
-            style={{ fontFamily: DISPLAY_FONT }}
-          >
-            "Assist humanity evolve into a consciously coordinated civilization by awakening
-            individual genius, integrating consciousness with technology, and architecting
-            systems that transform human potential into coherent collective flourishing."
-          </p>
-        </section>
-
-        {/* What I Do */}
-        <section className="mb-14 sm:mb-20">
-          <SectionLabel>What I Do</SectionLabel>
-          <p className="text-base sm:text-lg leading-relaxed">
-            "I help conscious aspiring impact founders turn their top talent into an
-            organically growing scalable business — in flow, in 6–8 weeks."
-          </p>
-        </section>
-
-        {/* Ideal Roles */}
-        <section className="mb-14 sm:mb-20">
-          <SectionLabel>Ideal Roles, in Plain English</SectionLabel>
-          <p className="text-base sm:text-lg leading-relaxed">
-            "Clarity architect for founders, venture studios, and accelerators: I name what
-            you actually do, build the offer and the page, and design the method your team
-            can run without you."
-          </p>
-        </section>
-
-        <Ornament className="mb-14 sm:mb-20" />
-
-        {/* Top 10 Resources */}
-        <section className="mb-14 sm:mb-20">
-          <SectionLabel>Top 10 Resources I Bring</SectionLabel>
-          <ol className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5 mt-4">
-            {resources.map((item, i) => (
-              <li key={i} className="flex gap-3 text-sm sm:text-base leading-relaxed">
-                <span
-                  className="flex-none font-semibold"
-                  style={{ fontFamily: DISPLAY_FONT, color: "var(--skin-text-primary, #2c3150)" }}
+          {/* Top 10 Resources — compact hairline rows, gold numerals */}
+          <section>
+            <p style={EYEBROW_STYLE} className="mb-5 text-center">
+              Top 10 Resources I Bring
+            </p>
+            <ol>
+              {resources.map((item, i) => (
+                <li
+                  key={i}
+                  className="flex gap-4 items-baseline py-2.5 text-[13.5px] leading-snug"
+                  style={{
+                    color: MUTE,
+                    borderTop: i === 0 ? "none" : `1px solid ${GOLD_ROW_RULE}`,
+                  }}
                 >
-                  {i + 1}.
-                </span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ol>
-        </section>
+                  <span
+                    className="flex-none w-5 text-right text-[12px]"
+                    style={{ fontFamily: DISPLAY_FONT, color: GOLD }}
+                  >
+                    {i + 1}
+                  </span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ol>
+          </section>
 
-        <Ornament className="mb-14 sm:mb-20" />
+          <GoldOrnament />
 
-        {/* Ideal Complementary Partner */}
-        <section className="mb-14 sm:mb-20">
-          <SectionLabel>Ideal Complementary Partner</SectionLabel>
-          <p className="text-base sm:text-lg leading-relaxed">
-            "A grounded closer-operator who loves finishing — running sales calls, setting
-            prices, sending proposals, installing the weekly cadence that turns plans into
-            revenue."
-          </p>
-        </section>
-
-        {/* Collaborations Offered */}
-        <section className="mb-14 sm:mb-20">
-          <SectionLabel>Collaborations Offered</SectionLabel>
-          <ul className="space-y-3 mt-4">
-            {collaborations.map((item, i) => (
-              <li key={i} className="flex gap-3 text-sm sm:text-base leading-relaxed">
-                <span aria-hidden="true" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.5))" }}>
-                  &middot;
-                </span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-6 text-sm">
-            <a
-              href="/products"
-              className="underline underline-offset-4 decoration-[var(--skin-hairline,rgba(44,49,80,0.3))] hover:opacity-80 transition-opacity"
-              style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.7))" }}
+          {/* Ideal Complementary Partner */}
+          <section className="text-center">
+            <p style={EYEBROW_STYLE} className="mb-4">
+              Ideal Complementary Partner
+            </p>
+            <p
+              className="text-[17px] sm:text-[19px] leading-relaxed"
+              style={{ fontFamily: DISPLAY_FONT, color: INK }}
             >
-              Products → findyourtoptalent.com/products
-            </a>
-          </p>
-        </section>
+              A grounded closer-operator who loves finishing — running sales calls, setting
+              prices, sending proposals, installing the weekly cadence that turns plans into
+              revenue.
+            </p>
+          </section>
 
-        <Ornament className="mb-14 sm:mb-20" />
+          <GoldOrnament />
 
-        {/* Ecosystem Experience */}
-        <section className="mb-16 sm:mb-24 text-center">
-          <SectionLabel>
-            <span className="block text-center">Ecosystem Experience</span>
-          </SectionLabel>
-          <div className="flex flex-wrap justify-center gap-2.5 mt-4">
-            {ecosystems.map((name) => (
-              <span
-                key={name}
-                className="rounded-full px-4 py-1.5 text-xs sm:text-sm border"
+          {/* Collaborations Offered — hairline rows, no bullets */}
+          <section>
+            <p style={EYEBROW_STYLE} className="mb-5 text-center">
+              Collaborations Offered
+            </p>
+            <ul>
+              {collaborations.map((item, i) => (
+                <li
+                  key={i}
+                  className="py-2.5 text-[13.5px] leading-snug"
+                  style={{
+                    color: MUTE,
+                    borderTop: i === 0 ? "none" : `1px solid ${GOLD_ROW_RULE}`,
+                  }}
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 text-center text-[13px]">
+              <a
+                href="/products"
+                className="transition-opacity hover:opacity-75"
                 style={{
-                  borderColor: "var(--skin-hairline, rgba(164,163,208,0.3))",
-                  color: "var(--skin-text-primary, #2c3150)",
-                  background: "var(--skin-card-bg, rgba(255,255,255,0.5))",
+                  color: GOLD,
+                  textDecoration: "underline",
+                  textUnderlineOffset: "4px",
+                  textDecorationColor: GOLD_HAIRLINE,
                 }}
               >
-                {name}
-              </span>
-            ))}
-          </div>
-        </section>
+                Products → findyourtoptalent.com/products
+              </a>
+            </p>
+          </section>
+
+          <GoldOrnament />
+
+          {/* Ecosystem Experience — ghost pills */}
+          <section className="text-center">
+            <p style={EYEBROW_STYLE} className="mb-5">
+              Ecosystem Experience
+            </p>
+            <div className="flex flex-wrap justify-center gap-2.5">
+              {ecosystems.map((name) => (
+                <span
+                  key={name}
+                  className="rounded-full px-4 py-1.5"
+                  style={{
+                    border: `1px solid ${GOLD_HAIRLINE}`,
+                    color: MUTE,
+                    fontSize: "11px",
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    background: "transparent",
+                  }}
+                >
+                  {name}
+                </span>
+              ))}
+            </div>
+          </section>
+        </div>
 
         {/* CTA — the only call to action on the page */}
-        <section className="text-center">
+        <section className="text-center mt-16 sm:mt-20">
           <h2
-            className="text-2xl sm:text-3xl font-semibold"
-            style={{ fontFamily: DISPLAY_FONT }}
+            className="text-[22px] sm:text-[26px] leading-snug"
+            style={{ fontFamily: DISPLAY_FONT, color: INK, letterSpacing: "0.04em", fontWeight: 400 }}
           >
             Create your professional profile in minutes.
           </h2>
-          <p
-            className="mt-3 text-sm sm:text-base"
-            style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.65))" }}
-          >
+          <p className="mt-3 text-sm" style={{ color: MUTE }}>
             Get matched to high-fit professionals.
           </p>
           <div className="mt-8 flex justify-center">
-            <EditorialCta label="Create your profile" onClick={() => navigate("/")} />
+            <button
+              type="button"
+              onClick={() => navigate("/")}
+              onMouseEnter={() => setCtaHover(true)}
+              onMouseLeave={() => setCtaHover(false)}
+              className="rounded-full px-8 py-3.5 transition-all duration-300"
+              style={{
+                fontFamily: DISPLAY_FONT,
+                border: `1px solid ${GOLD}`,
+                color: GOLD,
+                background: ctaHover ? "rgba(185, 154, 95, 0.08)" : "transparent",
+                fontSize: "12px",
+                letterSpacing: "0.25em",
+                textTransform: "uppercase",
+                fontWeight: 500,
+              }}
+            >
+              Create your profile
+            </button>
           </div>
         </section>
       </div>
