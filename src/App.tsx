@@ -235,6 +235,7 @@ import Intros from "./pages/Intros";
 import YouBeOriginal from "./pages/YouBeOriginal";
 import Web3Commons from "./pages/Web3Commons";
 import Founder from "./pages/Founder";
+import AlexanderProfile from "./pages/AlexanderProfile";
 // Unique Business Builder v2.0
 import UniqueBusinessLayout from "./modules/unique-business-builder/UniqueBusinessLayout";
 import CanvasOverviewScreen from "./modules/unique-business-builder/screens/CanvasOverviewScreen";
@@ -888,6 +889,9 @@ const App = () => (
                   {/* Founder trust page · /founder · standalone (no shell). Copy from Message Bank artifacts. */}
                   <Route path="/founder" element={<Founder />} />
                   <Route path="/about/meet-the-founder" element={<Founder />} />
+                  {/* Alexander's public platform profile · /alexander · standalone (no shell).
+                      "The platform's profile, in public." One CTA: create your own profile. */}
+                  <Route path="/alexander" element={<AlexanderProfile />} />
                   {/* Public monetization explainer · /monetization · standalone (no shell),
                       radical-transparency framing, Liquid Glass register. */}
                   <Route path="/monetization" element={<Monetization />} />
