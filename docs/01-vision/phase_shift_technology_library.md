@@ -7228,7 +7228,7 @@ A venture is what happens when a communion incorporates: the third being gets a 
 
 ---
 
-## Domain 104: Self-Knowledge as the Agentic Index (Day 123, July 13, 2026)
+## Domain 104b: Self-Knowledge as the Agentic Index (Day 123, July 13, 2026)
 
 **The law in one sentence: your level of self-knowledge is the level of knowledge of you by AI — and in an agent-mediated economy, that makes articulation existence, not marketing.**
 
@@ -7241,7 +7241,7 @@ A venture is what happens when a communion incorporates: the third being gets a 
 1. **Inward:** your own AI can only represent you to the depth you have articulated yourself. Vague self-knowledge in, generic representation out — your agent negotiates the world carrying a blurry photograph of you. The quality of your articulation IS the quality of your agentic presence.
 2. **Outward:** other people's agents find you by your articulated structure. "When an AI is looking for someone with that exact value proposition, it says: this is the person you have to talk to" (Tom, on the call). Unarticulated genius is not underpriced in this economy — it is *unindexed*. Invisible. Non-existent to the searches that matter.
 
-**Why this is the thesis's hardest economic argument.** The first domino (canvas, Day 112) named the bottleneck: perception scarcity, articulation scarcity, self-recognition scarcity. Domain 104 gives that bottleneck teeth: the agentic economy converts articulation from a soft advantage into hard infrastructure. Self-knowledge tooling stops being self-help; it becomes the factory of index entries for the next economy. Every reveal the platform generates is an agentic passport being issued before the border opens.
+**Why this is the thesis's hardest economic argument.** The first domino (canvas, Day 112) named the bottleneck: perception scarcity, articulation scarcity, self-recognition scarcity. Domain 104b gives that bottleneck teeth: the agentic economy converts articulation from a soft advantage into hard infrastructure. Self-knowledge tooling stops being self-help; it becomes the factory of index entries for the next economy. Every reveal the platform generates is an agentic passport being issued before the border opens.
 
 **Corollaries:**
 
@@ -7272,7 +7272,7 @@ A venture is what happens when a communion incorporates: the third being gets a 
 
 **The asymmetry detector.** When patience covers their obligations and urgency covers yours — when they can wait, you can't, and the terms are still unwritten — you are reading a term sheet, not a philosophy.
 
-**Relationship to other domains:** sibling to Domain 109 (a venture is a communion that took a body — the same test, whether a third being or an empire shell is forming) and Domain 104 (self-knowledge as agentic index — the corpus that must never transfer is the same corpus that makes the index worth having).
+**Relationship to other domains:** sibling to Domain 109 (a venture is a communion that took a body — the same test, whether a third being or an empire shell is forming) and Domain 104b (self-knowledge as agentic index — the corpus that must never transfer is the same corpus that makes the index worth having).
 
 ## Domain 111: The Network of Sovereigns: Edge-Carried Alignment as the source of decentralization. (Day 125, July 15, 2026)
 
