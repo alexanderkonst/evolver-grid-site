@@ -7261,3 +7261,18 @@ A venture is what happens when a communion incorporates: the third being gets a 
 **The asymmetry detector.** When patience covers their obligations and urgency covers yours — when they can wait, you can't, and the terms are still unwritten — you are reading a term sheet, not a philosophy.
 
 **Relationship to other domains:** sibling to Domain 109 (a venture is a communion that took a body — the same test, whether a third being or an empire shell is forming) and Domain 104 (self-knowledge as agentic index — the corpus that must never transfer is the same corpus that makes the index worth having).
+
+## Domain 111: Edge-Carried Alignment (the source of decentralization) (Day 125, July 15, 2026)
+
+**The sentence:** "The network doesn't need an owner because the edges themselves carry the alignment."
+
+**What it names:** in the Network of Sovereigns, alignment does not live in a center above the nodes (an owner, a board, a token treasury); it lives inside the edges between them: revenue-share agreements, licenses, advisory relationships, joint products. Each edge is consent-shaped: it carries terms, shared upside, and exit rights. A network whose edges carry alignment can be whole without being owned. This is the source of decentralization, not its consequence.
+
+**The name that follows:** THE TERMS for the decentralized AI network of coordination among sovereign humans. Each human sovereign, each with an AI enabling a business grown from their uniqueness, coordinated not by command but by well-formed edges.
+
+**ESC:**
+- Essence: alignment lives in the agreements between nodes, not in a center above them, so the network can be whole without being owned.
+- Significance: it dissolves the oldest objection to decentralization ("who keeps everyone aligned?"): the answer is the edges themselves, each carrying consent, terms, and shared upside.
+- Consequence: growing the network means weaving one more well-formed edge at a time, not recruiting subjects or building a headquarters; and nothing can be captured that has no center to seize.
+
+**Relation:** completes Domain 110 (Terms-First Openness): terms-first is the property of one edge; edge-carried alignment is what a network of such edges becomes. (Day 125, July 15, 2026.)
