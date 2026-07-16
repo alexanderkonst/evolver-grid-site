@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { User, CreditCard, Check, Edit2, X, AlertTriangle, ArrowRight } from "lucide-react";
+import { User, CreditCard, Check, Edit2, X, AlertTriangle, ArrowRight, Eye, Globe, Users, Lock } from "lucide-react";
 // Day 53 night iter 4 (Sasha 2026-04-27): entitlement tier surfacing.
 // `SettingsTierBadge` (defined below) wraps `EntitlementBadge` to handle
 // the "no tier yet / tasting" case with a friendly placeholder rather
@@ -20,6 +20,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useStripePortal } from "@/hooks/use-stripe-portal";
@@ -63,6 +65,22 @@ interface Purchase {
     source: string | null;
 }
 
+// Day 126 (Sasha 2026-07-16): profile AUDIENCE visibility — WHO can see the
+// profile (distinct from the existing content-depth `visibility` column).
+// Lives on `game_profiles.profile_visibility` / `visible_community_ids`,
+// columns added by a migration that has NOT been applied to the live DB yet
+// (goes through Lovable). Every read/write here is defensive: on any error
+// (missing column/table) the card silently doesn't render — never crashes
+// Settings. `types.ts` is generated and doesn't know about these columns or
+// the `communities` / `community_members` tables yet, hence the `as any`
+// casts below rather than hand-editing the generated file.
+type ProfileVisibilityValue = "friends" | "communities" | "public";
+
+interface UserCommunity {
+    id: string;
+    name: string;
+}
+
 const COMMON_LANGUAGES = [
     "English",
     "Russian",
@@ -91,6 +109,13 @@ const ProfileSettingsSection = () => {
     const [editLanguages, setEditLanguages] = useState<string[]>([]);
     const [customLanguage, setCustomLanguage] = useState("");
     const [isSaving, setIsSaving] = useState(false);
+
+    // Day 126 — audience visibility card state. `audienceSupported` gates
+    // whether the whole card renders at all (false = pre-migration DB).
+    const [audienceSupported, setAudienceSupported] = useState(false);
+    const [profileVisibility, setProfileVisibility] = useState<ProfileVisibilityValue>("public");
+    const [visibleCommunityIds, setVisibleCommunityIds] = useState<string[]>([]);
+    const [userCommunities, setUserCommunities] = useState<UserCommunity[]>([]);
 
     const { openPortal, isLoading: isPortalLoading } = useStripePortal();
 
@@ -128,7 +153,104 @@ const ProfileSettingsSection = () => {
             .eq("user_id", user.id)
             .order("created_at", { ascending: false });
         if (purchaseData) setPurchases(purchaseData);
+
+        await loadAudienceVisibility(user.id);
+
         setIsLoading(false);
+    };
+
+    // Day 126 — separate defensive fetch for the audience visibility card.
+    // Two independent try/catch blocks: the profile_visibility fetch gates
+    // whether the whole card renders (pre-migration DB = hide it); the
+    // communities fetch only gates the "My communities" option (any error
+    // there just means zero communities, not a broken card).
+    const loadAudienceVisibility = async (userId: string) => {
+        try {
+            const { data, error } = await (supabase as any)
+                .from("game_profiles")
+                .select("profile_visibility, visible_community_ids")
+                .eq("user_id", userId)
+                .maybeSingle();
+            if (error) throw error;
+            if (data) {
+                const value = data.profile_visibility;
+                setProfileVisibility(value === "friends" || value === "communities" ? value : "public");
+                setVisibleCommunityIds(Array.isArray(data.visible_community_ids) ? data.visible_community_ids : []);
+                setAudienceSupported(true);
+            } else {
+                setAudienceSupported(false);
+            }
+        } catch (err) {
+            // 42703 = undefined_column, 42P01 = undefined_table, PGRST204 =
+            // PostgREST schema-cache miss — all mean the migration hasn't
+            // landed on the live DB yet. Degrade silently: card just doesn't
+            // render, profile behaves as 'public' (today's behavior).
+            console.warn("[ProfileSettingsSection] profile_visibility not available yet", err);
+            setAudienceSupported(false);
+        }
+
+        try {
+            const { data, error } = await (supabase as any)
+                .from("community_members")
+                .select("community_id, communities(name)")
+                .eq("user_id", userId);
+            if (error) throw error;
+            const communities: UserCommunity[] = Array.isArray(data)
+                ? data
+                    .filter((row: any) => row?.community_id)
+                    .map((row: any) => ({
+                        id: row.community_id as string,
+                        name: (row.communities?.name as string) || "Community",
+                    }))
+                : [];
+            setUserCommunities(communities);
+        } catch (err) {
+            console.warn("[ProfileSettingsSection] community membership fetch failed", err);
+            setUserCommunities([]);
+        }
+    };
+
+    const handleProfileVisibilityChange = async (value: ProfileVisibilityValue) => {
+        if (!profile || !user) return;
+        const previous = profileVisibility;
+        setProfileVisibility(value); // optimistic
+        const { error } = await (supabase as any)
+            .from("game_profiles")
+            .update({ profile_visibility: value })
+            .eq("id", profile.id)
+            .eq("user_id", user.id);
+        if (error) {
+            setProfileVisibility(previous);
+            toast({
+                title: t('profileSettings.toastErrorTitle'),
+                description: error.message || t('profileSettings.audienceToastUpdateFailedDescription'),
+                variant: "destructive",
+            });
+            return;
+        }
+        toast({ title: t('profileSettings.audienceToastUpdatedTitle'), description: t('profileSettings.audienceToastUpdatedDescription') });
+    };
+
+    const toggleVisibleCommunity = async (communityId: string) => {
+        if (!profile || !user) return;
+        const previous = visibleCommunityIds;
+        const next = previous.includes(communityId)
+            ? previous.filter(id => id !== communityId)
+            : [...previous, communityId];
+        setVisibleCommunityIds(next); // optimistic
+        const { error } = await (supabase as any)
+            .from("game_profiles")
+            .update({ visible_community_ids: next })
+            .eq("id", profile.id)
+            .eq("user_id", user.id);
+        if (error) {
+            setVisibleCommunityIds(previous);
+            toast({
+                title: t('profileSettings.toastErrorTitle'),
+                description: error.message || t('profileSettings.audienceToastUpdateFailedDescription'),
+                variant: "destructive",
+            });
+        }
     };
 
     const normalizeLanguage = (value: string) => value.trim().replace(/\s+/g, " ");
@@ -483,6 +605,113 @@ const ProfileSettingsSection = () => {
                     )}
                 </CardContent>
             </Card>
+
+            {/* Audience visibility — Day 126 (Sasha 2026-07-16). Only renders
+                once `audienceSupported` confirms the profile_visibility
+                column exists on the live DB; otherwise silently absent. */}
+            {audienceSupported && (
+                <Card>
+                    <CardHeader>
+                        <div className="flex items-center gap-3">
+                            <Eye className="h-5 w-5 text-muted-foreground" />
+                            <div>
+                                <CardTitle
+                                    className="text-xl"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontWeight: 600,
+                                    }}
+                                >
+                                    {t('profileSettings.audienceVisibilityTitle')}
+                                </CardTitle>
+                                <CardDescription
+                                    className="text-base mt-0.5"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        fontWeight: 500,
+                                        fontStyle: "italic",
+                                    }}
+                                >
+                                    {t('profileSettings.audienceVisibilityDescription')}
+                                </CardDescription>
+                            </div>
+                        </div>
+                    </CardHeader>
+                    <CardContent>
+                        <RadioGroup
+                            value={profileVisibility}
+                            onValueChange={(value) => handleProfileVisibilityChange(value as ProfileVisibilityValue)}
+                            className="gap-3"
+                        >
+                            <label
+                                htmlFor="audience-public"
+                                className={`flex items-start gap-3 rounded-lg border px-4 py-3 cursor-pointer transition ${profileVisibility === "public"
+                                    ? "border-amber-300 bg-amber-50"
+                                    : "border-border bg-background hover:border-border/60"
+                                    }`}
+                            >
+                                <RadioGroupItem value="public" id="audience-public" className="mt-1" />
+                                <Globe className="h-5 w-5 mt-0.5 text-muted-foreground shrink-0" />
+                                <div>
+                                    <p className="font-medium text-sm text-foreground">{t('profileSettings.audiencePublicLabel')}</p>
+                                    <p className="text-xs text-muted-foreground">{t('profileSettings.audiencePublicDescription')}</p>
+                                </div>
+                            </label>
+
+                            {userCommunities.length > 0 && (
+                                <div className="space-y-2">
+                                    <label
+                                        htmlFor="audience-communities"
+                                        className={`flex items-start gap-3 rounded-lg border px-4 py-3 cursor-pointer transition ${profileVisibility === "communities"
+                                            ? "border-amber-300 bg-amber-50"
+                                            : "border-border bg-background hover:border-border/60"
+                                            }`}
+                                    >
+                                        <RadioGroupItem value="communities" id="audience-communities" className="mt-1" />
+                                        <Users className="h-5 w-5 mt-0.5 text-muted-foreground shrink-0" />
+                                        <div>
+                                            <p className="font-medium text-sm text-foreground">{t('profileSettings.audienceCommunitiesLabel')}</p>
+                                            <p className="text-xs text-muted-foreground">{t('profileSettings.audienceCommunitiesDescription')}</p>
+                                        </div>
+                                    </label>
+                                    {profileVisibility === "communities" && (
+                                        <div className="ml-9 space-y-2 rounded-md border border-border bg-muted/30 p-3">
+                                            <p className="text-xs font-medium text-muted-foreground">{t('profileSettings.audienceSelectCommunitiesLabel')}</p>
+                                            {userCommunities.map((community) => (
+                                                <div key={community.id} className="flex items-center gap-2">
+                                                    <Checkbox
+                                                        id={`community-${community.id}`}
+                                                        checked={visibleCommunityIds.includes(community.id)}
+                                                        onCheckedChange={() => toggleVisibleCommunity(community.id)}
+                                                    />
+                                                    <Label htmlFor={`community-${community.id}`} className="text-sm font-normal text-foreground cursor-pointer">
+                                                        {community.name}
+                                                    </Label>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            <label
+                                htmlFor="audience-friends"
+                                className={`flex items-start gap-3 rounded-lg border px-4 py-3 cursor-pointer transition ${profileVisibility === "friends"
+                                    ? "border-amber-300 bg-amber-50"
+                                    : "border-border bg-background hover:border-border/60"
+                                    }`}
+                            >
+                                <RadioGroupItem value="friends" id="audience-friends" className="mt-1" />
+                                <Lock className="h-5 w-5 mt-0.5 text-muted-foreground shrink-0" />
+                                <div>
+                                    <p className="font-medium text-sm text-foreground">{t('profileSettings.audienceFriendsLabel')}</p>
+                                    <p className="text-xs text-muted-foreground">{t('profileSettings.audienceFriendsDescription')}</p>
+                                </div>
+                            </label>
+                        </RadioGroup>
+                    </CardContent>
+                </Card>
+            )}
 
             {/* Billing */}
             <Card className="">
