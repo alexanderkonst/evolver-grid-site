@@ -30,7 +30,6 @@ import SEO from "@/components/SEO";
 // removed (called trackFunnelEvent for the divine_timing event).
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import Hls from "hls.js";
 import geniusLogo from "@/assets/ignite-logo.png";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -72,48 +71,11 @@ const useTestimonials = (): TestimonialData[] => {
   return testimonials;
 };
 
-const HLS_VIDEO_URL = "https://stream.mux.com/wstCtshW01u9dh5EBOuLyGy201ftwiVvQZPtENsX2F9QI.m3u8";
-
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 const CALCOM_BOOKING_LINK = "https://cal.com/aleksandrkonstantinov/unique-business-ignition-session";
 const CALCOM_CLARITY_LINK = "https://cal.com/aleksandrkonstantinov/direction-choice-call";
 
 
-/* ─── HLS Background Video ──────────────────────────────────
-   Day 47 late pass (Sasha): changed from `fixed` → `absolute` so the video
-   scopes to Panel 3 when this page is wrapped in GameShellV2, rather than
-   leaking over the spaces rail + sections panel. */
-const HlsBackground = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (Hls.isSupported()) {
-      const hls = new Hls({ autoStartLoad: true });
-      hls.loadSource(HLS_VIDEO_URL);
-      hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}); });
-      return () => hls.destroy();
-    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = HLS_VIDEO_URL;
-      video.addEventListener("loadedmetadata", () => { video.play().catch(() => {}); });
-    }
-  }, []);
-
-  return (
-    <video
-      ref={videoRef}
-      autoPlay
-      loop
-      muted
-      playsInline
-      className="absolute inset-0 w-full h-full object-cover z-0"
-      aria-hidden="true"
-    />
-  );
-};
 /* ─── Lazy YouTube Embed ──────────────────────────────────── */
 const LazyYouTube = ({ id, title }: { id: string; title: string }) => {
   const { t } = useTranslation();
@@ -221,31 +183,17 @@ const IgniteSession = () => {
   }, [location.hash]);
 
   const content = (
-    // Day 47 late pass (Sasha): `/ignite` is now always rendered inside
-    // GameShellV2. The wrapper is a relative container (not min-h-screen
-    // bg-black fixed), video + dark overlay are scoped to THIS page's
-    // Panel 3 area via `absolute` positioning — they no longer cover the
-    // spaces rail and sections panel. Own SiteLogo removed (shell owns it).
-    <div className="relative min-h-dvh text-white overflow-hidden font-sans" id="ignite-page">
-
-      {/* VIDEO BACKGROUND — scoped to Panel 3 via absolute positioning */}
-      <HlsBackground />
-
-      {/* Dark wash — "decision room" feel, scoped to Panel 3.
-          Day 48 (Sasha): wash darkened substantially from bg-black/55 to
-          a skin-aware near-opaque darkroom tint. When /ignite is contained
-          inside the shell (smaller than full viewport), the HLS video
-          rainbow animation reads as "squeezed aurora" at 55% opacity.
-          The darkroom token lands ~0.92-0.95 opacity in both skins,
-          killing the aurora bleed while preserving a hint of center-
-          pulse motion beneath. */}
-      <div
-        className="absolute inset-0 z-[1]"
-        aria-hidden="true"
-        style={{
-          backgroundColor: "var(--skin-darkroom-bg, rgba(10, 10, 26, 0.92))",
-        }}
-      />
+    // `/ignite` uses a static, skin-aware darkroom canvas. The previous
+    // page-owned HLS background and wash were removed so no moving overlay
+    // competes with the purchase decision.
+    <div
+      className="relative min-h-dvh text-white overflow-hidden font-sans"
+      id="ignite-page"
+      style={{
+        background:
+          "linear-gradient(var(--skin-darkroom-bg, rgba(10, 10, 26, 0.96)), var(--skin-darkroom-bg, rgba(10, 10, 26, 0.96))), #0a0a1a",
+      }}
+    >
 
       {/* CONTENT LAYER */}
       <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-16 space-y-14">
