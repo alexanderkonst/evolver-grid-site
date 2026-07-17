@@ -40,3 +40,11 @@ dist-ssr
 # Raw LinkedIn exports contain private messages and account data. Keep only
 # intentionally derived outreach artifacts under docs/02-strategy/warm-base/.
 docs/02-strategy/warm-base/Complete_LinkedInDataExport_*/
+
+# Private data (lives in evolver-private-ledger)
+src/generated/crm-snapshot.json
+public/generated/crm-snapshot.json
+docs/02-strategy/warm-base/
+docs/warm_base_platform_users.csv
+docs/02-strategy/strategic_crm_outreach_tracker.md
+docs/09-logs/project_pulse_log.md
