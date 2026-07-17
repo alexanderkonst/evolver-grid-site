@@ -104,6 +104,12 @@ const SiteLogo = () => {
         // page's centered "Professional orientation for teenagers" text —
         // a real overlap, not a false alarm. Suppress here.
         "/you",
+        // Day 127: /alexander is a self-contained cinematic dark profile
+        // page (mythic minimalism). The global wordmark collides with the
+        // octahedron geometry apex behind the name — suppress here; the
+        // page carries its own identity.
+        "/alexander",
+        "/aleksandr",
     ];
     // Day 87 (Sasha 2026-05-29): /1-pager is the Planetary OS brand surface
     // (not the FYTT funnel), so it ships its own PlanetaryOSWordmark in-page

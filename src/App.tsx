@@ -395,11 +395,15 @@ const GlobalChrome = () => {
   // /you suppression above — the global fixed top-right pill would collide
   // with the page's own "BOOK THE SESSION" header CTA in the same corner.
   const isYouPage = location.pathname === "/you";
+  // Day 127: /alexander is a self-contained dark composition (mythic
+  // minimalism) — the light EN switcher pill is a foreign object there.
+  // SiteLogo suppresses itself via its own hidden-paths list.
+  const isAlexanderPage = location.pathname === "/alexander" || location.pathname === "/aleksandr";
 
   return (
     <>
       {!isHeroQuiz && <SiteLogo />}
-      {!isHeroQuiz && !isYouPage && <GlobalLanguageSwitcher />}
+      {!isHeroQuiz && !isYouPage && !isAlexanderPage && <GlobalLanguageSwitcher />}
       <TitleManager />
       <ScrollRestoration />
       {!isHeroQuiz && <PreviewBanner />}

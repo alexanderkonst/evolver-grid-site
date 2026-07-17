@@ -41,7 +41,7 @@ const EYEBROW_STYLE: React.CSSProperties = {
 // ── Local gold ornament — hairline · emblem · hairline ──
 const GoldOrnament = () => (
   <div
-    className="flex items-center justify-center gap-4 max-w-[280px] mx-auto my-10 sm:my-12"
+    className="flex items-center justify-center gap-4 max-w-[280px] mx-auto my-7 sm:my-9"
     aria-hidden="true"
   >
     <span
@@ -80,14 +80,35 @@ const CanonicalArtifact = () => (
     aria-hidden="true"
     className="absolute left-1/2 -translate-x-1/2 pointer-events-none select-none"
     style={{
-      top: "-140px",
-      width: "min(500px, 105vw)",
+      // Centered on the name block: header text sits ~56px into the
+      // header zone, so the circle's center (~288px from svg top at
+      // rendered scale) lands on the name — the solitary human presence
+      // at the heart of the archetypal form.
+      top: "-230px",
+      width: "min(575px, 120vw)",
       height: "auto",
       stroke: GOLD,
-      opacity: 0.15,
+      opacity: 0.22,
     }}
   >
     <g fill="none" strokeWidth="1">
+      <circle cx="260" cy="260" r="230" />
+      <path d="M260 30 L490 260 L260 490 L30 260 Z" />
+      <line x1="260" y1="30" x2="260" y2="490" />
+      <line x1="30" y1="260" x2="490" y2="260" />
+    </g>
+  </svg>
+);
+
+// ── Seal mark — the same construction at hanko scale ──
+// A quiet signature at the card's bottom-right. No text, no link.
+const SealMark = () => (
+  <svg
+    viewBox="0 0 520 520"
+    aria-hidden="true"
+    style={{ width: "26px", height: "26px", stroke: GOLD, opacity: 0.45 }}
+  >
+    <g fill="none" strokeWidth="14">
       <circle cx="260" cy="260" r="230" />
       <path d="M260 30 L490 260 L260 490 L30 260 Z" />
       <line x1="260" y1="30" x2="260" y2="490" />
@@ -203,7 +224,7 @@ export default function AlexanderProfile() {
       />
 
       <div
-        className="relative max-w-[620px] mx-auto px-5 sm:px-8 pt-24 sm:pt-32 pb-20 overflow-x-clip"
+        className="relative max-w-[620px] mx-auto px-5 sm:px-8 pt-32 sm:pt-40 pb-[120px] overflow-x-clip"
         style={{ zIndex: 1 }}
       >
         {/* Header — a solitary presence inside the archetype */}
@@ -228,7 +249,7 @@ export default function AlexanderProfile() {
 
         {/* Profile card panel — floating in fog */}
         <div
-          className="mt-16 sm:mt-20 rounded-2xl px-5 sm:px-10 py-10 sm:py-12"
+          className="mt-12 sm:mt-16 rounded-2xl px-5 sm:px-10 py-8 sm:py-9"
           style={{
             border: `1px solid ${GOLD_FAINT}`,
             background: "rgba(6, 10, 20, 0.45)",
@@ -239,7 +260,7 @@ export default function AlexanderProfile() {
           {sentences.map((s, i) => (
             <section key={s.eyebrow} className="text-center">
               {i > 0 && <GoldOrnament />}
-              <p style={EYEBROW_STYLE} className="mb-4">
+              <p style={EYEBROW_STYLE} className="mb-3">
                 {s.eyebrow}
               </p>
               <p
@@ -255,7 +276,7 @@ export default function AlexanderProfile() {
 
           {/* Top 10 Resources — compact hairline rows, gold numerals */}
           <section>
-            <p style={EYEBROW_STYLE} className="mb-5 text-center">
+            <p style={EYEBROW_STYLE} className="mb-4 text-center">
               Top 10 Resources I Bring
             </p>
             <ol>
@@ -269,8 +290,8 @@ export default function AlexanderProfile() {
                   }}
                 >
                   <span
-                    className="flex-none w-5 text-right text-[12px]"
-                    style={{ fontFamily: DISPLAY_FONT, color: GOLD }}
+                    className="flex-none w-5 text-right text-[13px]"
+                    style={{ fontFamily: DISPLAY_FONT, color: "#cdad6d", fontWeight: 600 }}
                   >
                     {i + 1}
                   </span>
@@ -284,7 +305,7 @@ export default function AlexanderProfile() {
 
           {/* Ideal Complementary Partner */}
           <section className="text-center">
-            <p style={EYEBROW_STYLE} className="mb-4">
+            <p style={EYEBROW_STYLE} className="mb-3">
               Ideal Complementary Partner
             </p>
             <p
@@ -301,7 +322,7 @@ export default function AlexanderProfile() {
 
           {/* Collaborations Offered — hairline rows, no bullets */}
           <section>
-            <p style={EYEBROW_STYLE} className="mb-5 text-center">
+            <p style={EYEBROW_STYLE} className="mb-4 text-center">
               Collaborations Offered
             </p>
             <ul>
@@ -336,9 +357,9 @@ export default function AlexanderProfile() {
 
           <GoldOrnament />
 
-          {/* Ecosystem Experience — ghost pills */}
+          {/* Ecosystem Experience — ghost pills, seal at bottom-right */}
           <section className="text-center">
-            <p style={EYEBROW_STYLE} className="mb-5">
+            <p style={EYEBROW_STYLE} className="mb-3">
               Ecosystem Experience
             </p>
             <div className="flex flex-wrap justify-center gap-2.5">
@@ -359,42 +380,47 @@ export default function AlexanderProfile() {
                 </span>
               ))}
             </div>
+            <div className="flex justify-end mt-4 -mb-2 sm:-mr-4">
+              <SealMark />
+            </div>
+          </section>
+
+          <GoldOrnament />
+
+          {/* CTA — the only call to action on the page, closing the card */}
+          <section className="text-center">
+            <h2
+              className="text-[22px] sm:text-[26px] leading-snug"
+              style={{ fontFamily: DISPLAY_FONT, color: INK, letterSpacing: "0.04em", fontWeight: 400 }}
+            >
+              Create your professional profile in minutes.
+            </h2>
+            <p className="mt-2.5 text-sm" style={{ color: MUTE }}>
+              Get matched to high-fit professionals.
+            </p>
+            <div className="mt-6 flex justify-center">
+              <button
+                type="button"
+                onClick={() => navigate("/")}
+                onMouseEnter={() => setCtaHover(true)}
+                onMouseLeave={() => setCtaHover(false)}
+                className="rounded-full px-8 py-3.5 transition-all duration-300"
+                style={{
+                  fontFamily: DISPLAY_FONT,
+                  border: `1px solid ${GOLD}`,
+                  color: GOLD,
+                  background: ctaHover ? "rgba(185, 154, 95, 0.08)" : "transparent",
+                  fontSize: "12px",
+                  letterSpacing: "0.25em",
+                  textTransform: "uppercase",
+                  fontWeight: 500,
+                }}
+              >
+                Create your profile
+              </button>
+            </div>
           </section>
         </div>
-
-        {/* CTA — the only call to action on the page */}
-        <section className="text-center mt-16 sm:mt-20">
-          <h2
-            className="text-[22px] sm:text-[26px] leading-snug"
-            style={{ fontFamily: DISPLAY_FONT, color: INK, letterSpacing: "0.04em", fontWeight: 400 }}
-          >
-            Create your professional profile in minutes.
-          </h2>
-          <p className="mt-3 text-sm" style={{ color: MUTE }}>
-            Get matched to high-fit professionals.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <button
-              type="button"
-              onClick={() => navigate("/")}
-              onMouseEnter={() => setCtaHover(true)}
-              onMouseLeave={() => setCtaHover(false)}
-              className="rounded-full px-8 py-3.5 transition-all duration-300"
-              style={{
-                fontFamily: DISPLAY_FONT,
-                border: `1px solid ${GOLD}`,
-                color: GOLD,
-                background: ctaHover ? "rgba(185, 154, 95, 0.08)" : "transparent",
-                fontSize: "12px",
-                letterSpacing: "0.25em",
-                textTransform: "uppercase",
-                fontWeight: 500,
-              }}
-            >
-              Create your profile
-            </button>
-          </div>
-        </section>
       </div>
     </div>
   );
