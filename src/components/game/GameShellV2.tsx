@@ -1413,10 +1413,11 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // /playbook and /path — the rail read as flat dark navy. Pane 3's
     // heavy cream wash (relocated inside <main>) keeps the editorial
     // feel for content; pane 2 finally has the animated dust to peek
-    // through. Only page-owned-bg routes still suppress the shell
-    // video (they render their own).
+    // through. Page-owned-bg routes and immersive static routes suppress
+    // the shell video; `/ignite` deliberately uses a still decision-room
+    // canvas.
     const suppressShellBackground =
-        pageOwnsBackground || isEquilibriumRoute || isKarimeRoute;
+        pageOwnsBackground || isImmersiveDarkRoute || isEquilibriumRoute || isKarimeRoute;
 
     // Day 56 (Sasha 2026-04-29): /ai-os ships as a real app-shell on desktop.
     // The earlier sticky-pane-on-document-scroll layout kept producing
