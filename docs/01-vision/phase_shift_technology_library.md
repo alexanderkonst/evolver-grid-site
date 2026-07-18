@@ -7311,4 +7311,22 @@ A venture is what happens when a communion incorporates: the third being gets a 
 
 **Consequence:** new physics arrived at this way is a founding permanence, not a paradigm shift: paradigms replace each other, a permanence deepens.
 
+---
+
+## Domain 113: Holonic Positioning and the Two Directions of Deployment (Day 127, July 17, 2026)
+
+**The law in one sentence: a holonic venture is positioned as one invariant at every holon scale — each layer nested in the next layer's story — so that a person entering at ANY layer is interacting with the whole, hologram-style, whether they know the other layers exist or not.**
+
+**The two directions (Sasha's completion, Day 127):**
+1. **Upward / entry:** whoever enters at any layer (person, business, ecosystem, civilization) receives the entire holonic construct. The further layers are simply there for them the moment they arrive at them. Nothing has to be explained at the door; the whole travels inside every part.
+2. **Downward / deployment:** whoever wants to deploy the system at a higher layer must descend through every layer to the bottom. A civilization-scale deployment is impossible except through communities, which are impossible except through businesses, which are impossible except through persons. The descent is not bureaucracy; it is how the invariant stays real instead of becoming an announcement.
+
+**Why the positions never compete:** they are the same position at different addresses — the projection logic of Domain 98 applied to go-to-market. Per the fractal purchase law, every holon buys the same shape (free taste → paid step → infrastructure) at its own scale.
+
+**Integral positioning (the sibling definition):** all four quadrants of positioning covered — identity (who you become), outcome (what you get), category (which shelf), method (how it works) — each delivered at the depth the surface's earned trust can carry: threshold at the door, category on the shelf, outcome at the offer, method at the proof, identity at the transformation, mythic in the corridor (Domain 103). Domain 90's three-layer architecture is a projection of this.
+
+**Lineage evidence (systems whose essence is this architecture):** Alexander's Pattern Language (region → window seat, each pattern whole), Git (every clone carries the entire history — the hologram made software), the Internet (a network of networks, same protocol at every scale), Bitcoin (every full node holds the whole ledger), AA (steps for the person, traditions for the group, concepts for world service — one program), permaculture (same principles from windowsill pot to bioregion, and no bioregion deployment except through soil-level practice), Holacracy — literally named for holons. The Network of Sovereigns stands in this lineage.
+
+**Relationship to other domains:** Domain 98 (one invariant, many projections), Domain 90 (depth sequencing), Domain 103 (the corridor), Domain 111 (edge-carried alignment is what holds the layers together without a center).
+
 **Cross-reference:** Universal Ontology §13. (Day 125, July 15, 2026.)

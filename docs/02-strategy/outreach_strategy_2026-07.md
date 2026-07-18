@@ -22,13 +22,15 @@
 | 3 | Fractional test | Fractional execs (US) | LinkedIn keyword + DM | 30 invites | Direction Call | ≥20% accept, ≥2 calls |
 | 4 | Coaches test | US coaches/solopreneurs in limbo | LinkedIn "coach" + DM (not-another-coach) | 30 invites | Direction Call | same |
 | 5 | Big4 probe | Consultants at up-or-out | LinkedIn + pragmatic DM | 10 invites | Direction Call | any signal |
-| 6 | Community webinars | Any trusted community | Host pitch (33% first two purchases) | Pitch Oyi + NS + Devon | Webinar → $555 direct | ≥15 attend, ≥1 paid/2wk |
+| 6 | Community webinars | Any trusted community | Host pitch (33% first two purchases) | **3/3 hosts accepted (Jul 17)** → schedule + deliver | Webinar → $555 direct | ≥15 attend, ≥1 paid/2wk |
 | 7 | Physical hubs | CDMX entrepreneur spaces | Venue pitch | Pitch 1 hub | Live workshop → $555 | venue yes; repeat monthly |
 | 8 | Reddit value posts | Threshold-dense niche subs | r/findapath first (rules-checked) | 1 post | DM → Direction Call | post survives; ≥3 DMs |
 | 9 | Engine 5: rooms | Accelerators/studios/funds | Warm apps (EF, 500 LatAm, MIT delta v) | 2-3 applications | Interview | any conversation |
 | 10 | Teen профориентация | RU teens 16-17 + parents | VK lyceum publics + TG parent channels | 20 DMs | /you page → paid 5 000 ₽ session → 3-wk container (solo/group) | ≥2 paid sessions |
 
 Funnel law: every cold/warm 1:1 route lands on the free Direction Call; webinars and workshops land on $555 directly; teens land on the paid 5 000 ₽ session (no free step); Engine 5 lands on interviews. Everything ascends the same ladder after entry.
+
+Parked candidate (Day 127): #11 monthly recorded show — one recorded session per month (executive-show format), repurposed into clips; mature form of the §14 content engine. Surfaced on a funnel-sourced call; possible collaboration attached. After the sprint, not during.
 
 ## 1. The ladder
 
@@ -52,7 +54,7 @@ Funnel law: every cold/warm 1:1 route lands on the free Direction Call; webinars
 | Big4 / MBB consultants (up-or-out) | LinkedIn search | Pragmatic only, NO myth: "Don't quit. We build it in parallel; you leave when it stands." | **Probe: 10 invites** |
 | Post-exit (actually-free) founders | **(a) LinkedIn keyword: "sabbatical" + founder/ex-founder (self-declared threshold badge)** · (b) deep-research shortlist from acquisition news + profile signals | Myth-friendly | **(a) 1-hour search test now · (b) research shortlist 20 names; <50% precision = discard path (b)** |
 | Web3 / conscious builders | none clean (NS online w/ promoter = mixed energy) | — | **Parked (Sasha's call, Day 123)** |
-| Communities (any composition) | Webinar via host | Gift-from-within framing | **Pitch NS / Oyi / Devon / hub this week** |
+| Communities (any composition) | Webinar via host | Gift-from-within framing | **3/3 pitched hosts accepted (Jul 17) → delivery phase: schedule, produce assets** |
 | RU teens 16→17 (pre-11th grade), strong schools | VK: lyceum public groups' members, parent chats (school filter unreliable) | Профориентация shelf, its category evolution | **Separate paid product, separate funnel; messages drafted; test 20 DMs** |
 | Warm base ~150 | Email | Honest re-introduction, one CTA | **First, before all cold** |
 | Stabilized containers (open positions) | Job boards + org sites: accelerators, venture studios, funds, research institutes, gov innovation units | Genuine application: plug my genius into workflows already stabilized into money | **Engine 5: define fit criteria, apply to 2-3 this week** |
