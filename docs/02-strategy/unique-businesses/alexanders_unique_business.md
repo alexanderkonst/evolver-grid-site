@@ -1118,6 +1118,26 @@ have no more grinding uncertainty, scattered energy, or identity paradox.
 
 ### 1. Myth
 
+#### ⭐ v4.0 · July 17, 2026 (Day 127) — The Ceiling Law
+
+*Derived from the axiom landed Day 127 ("Your career is capped by how well you know yourself" / «Твоя карьера ограничена степенью понимания себя»). Sasha's verdict on the stanza: approved verbatim. v2.1 and v3.0 preserved below as genealogy; the three-layer structure updates: Attack (unchanged) · Law (the axiom, stated flat, replaces the hypothetical reframe) · Invitation ("Raise the ceiling. Name it, choose the direction, build from it.").*
+
+> We are taught that professional success comes from the outside: the right niche, the right channel, the right market, the right resume.
+>
+> It is a lie.
+>
+> Your career is capped by how well you know yourself.
+>
+> Every strategy, every funnel, every job search runs under that ceiling.
+>
+> And the ceiling moves the moment your self-understanding does.
+>
+> Naming what you do better than others is not self-help. It is the highest-leverage professional act there is.
+
+*What changed vs v2.1: the myth no longer argues against grind; it states a law and lets the reader collide with it. Accept the axiom and the ladder follows as logic; reject it and you self-select out.*
+
+---
+
 *Version: v2.1 · Feb 19, 2026 19:56*
 
 **Tagline:** *The grind is a lie, your uniqueness IS your business, you've always had it.*
@@ -9231,6 +9251,20 @@ That is the decentralized venture studio (working names: decentralized unique bu
 **The myth line (landed Day 127, Sasha's final wording, quote verbatim):** EN: "Your career is capped by how well you know yourself." RU: «Твоя карьера ограничена степенью понимания себя.» The axis is limit, not source: a source is a promise about the future, a limit is a pressure the reader is under right now. The line states the law; the funnel sells the lever (raise self-understanding, the ceiling moves). Spoken register variant (DMs, calls): «Твоя карьера ограничена тем, насколько ты понимаешь себя».
 
 **What the line IS (named Day 127): the axiom of the myth.** The myth is the story that carries the law; this line is the law, naked. It is the person-scale projection of the same invariant whose civilization-scale projection is "the startup industry is a billion-dollar workaround for not knowing yourself" (one law, two holonic addresses, per Domain 113). Its three functions: (1) **polarizer**: accept the axiom and the whole ladder follows as logic, not persuasion (ceiling is self-understanding → raising it is possible → Direction Call is the first increment → $555 names it precisely → BUILT builds from it); reject it and you self-select out; (2) **derivation root**: every surface derives from it (banner, hero, webinar open, DM, bio), one signal through every phrase; (3) **qualifying test**: whoever feels quietly indicted by the line is the tribe at its threshold. Why it broke the Domain 90 constraint: mythic depth normally cannot be said at the door, but this line carries mythic content in door-safe form because it is a law about the reader, not a story about the founder.
+
+
+### Day 127 addendum (2): The vNext artifact set, derived from the axiom
+
+*Every core artifact re-derived from the ceiling law. Before Day 127 the artifacts shared a hero (uniqueness); now they share a law, and each artifact is one consequence of it. Prior versions preserved in their sections as genealogy. Myth v4.0 recorded in §1 (approved verbatim). Tribe v3.4 in the forge (Sasha requested a redo that keeps the v3.1/v3.2 charm).*
+
+- **Master Tuning Fork v3.0.** Full: "Your career is capped by how well you know yourself. I raise the ceiling: what you do better than others in exact words, the direction that follows, and the offer that carries it." Compressed: "I name what you do better than anyone, and turn it into direction and offer." Change: the fork states the law first and the function second; the law does the stopping.
+- **Pain (Point A) vNext.** Effort keeps rising, results stay flat; each new strategy works exactly as well as the last, which is the signature of a ceiling. The cap is invisible from inside, so it gets billed to the market, the niche, age, the algorithm. Underneath: "I am more useful than my situation knows how to use me, and I cannot say precisely how." The pain is misattributing an internal ceiling to external causes, which is why every external fix fails identically.
+- **Dream Outcome (Point B) vNext.** The ceiling moved: one true sentence about what they do better than others, and with it, options that existed all along become visible enough to choose. Recognition, not invention: "I was already this. Now it has words, and the words open doors."
+- **Transformational Promise v3.1.** "We raise the one ceiling that caps everything else: your self-understanding, taken to exact words." A → B: from optimizing the outside under a fixed ceiling, to raising the ceiling and choosing from a larger field. Felt: "I stopped pushing against the ceiling and moved it instead."
+- **Strategy (ONE Myth row) vNext.** Master lie: "The ceiling is outside me: wrong market, wrong niche, wrong channel, bad luck." Myth that destroys it: the axiom plus its corollary (the ceiling moves). The ladder as logic: Direction Call = first visible raise → $555 = the ceiling named precisely and converted to an offer → BUILT = building at the new height → platform = the meter. Every product is a lever on the same variable.
+- **Method vNext framing.** MAP = measure the ceiling · MATCH = the raised ceiling reveals fit · MOVE = build at the new height. Mechanics unchanged; the method now has physics under it.
+- **Proof vNext spine.** "My own career was capped for five years by the exact thing I now help others name. I raised it, and this business is the evidence." Plus 2026 data: strangers paying full price through the funnel, first fully funnel-sourced call, 3/3 community hosts, Sergey 100% inside the structure, and the AI articulation result as twin proof: articulation raises ceilings even for machines.
+- **Channel vNext law.** A channel is wherever people hit the ceiling and say so out loud; threshold badges ("sabbatical", "career break", "in transition") are public announcements of contact with the ceiling. Channels are downstream of the axiom.
 
 **Empirical result:** community host pitches 3/3 accepted (Day 127). Rung 1 of the ecosystem ladder is validated at the acceptance layer; the constraint has moved from yeses to delivery (scheduling + asset production). Parked candidate from the same day: a monthly recorded show (one session recorded once, repurposed into clips) as the content engine's mature form — after the sprint, not during.
 Three relationship tiers follow from the existing licenses: open use (anyone, attribution, non-commercial) -> practitioner (lineage-trained, listed, commercial terms per the distributor structure) -> node (a unique business advised within the mycelium, woven by revenue-share edges of varying scope and duration).
