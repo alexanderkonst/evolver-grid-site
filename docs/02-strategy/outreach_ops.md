@@ -292,6 +292,22 @@ The **"Next follow-up date" column IS the system.** No memory required.
 
 ## 6. Copy bank (reusable snippets)
 
+### 6a. The Axiom copy (Day 127 — derives every other line)
+
+The axiom (Myth v4.0, `alexanders_unique_business.md` §1): **EN "Your career is capped by how well you know yourself."** · **RU «Твоя карьера ограничена степенью понимания себя»** (spoken variant: «…тем, насколько ты понимаешь себя»). The line states the law; the funnel sells the lever. Use it once per message maximum; it is the polarizer, not decoration.
+
+- **LinkedIn banner (replaces the question banner when Sasha swaps the image):** "Your career is capped by how well you know yourself."
+- **LinkedIn About opener:** "Your career is capped by how well you know yourself. I spent years turning that law into a method: name what you do better than others, choose the direction that follows, package it into an offer."
+- **DM message 2 add-on (alongside the why-free line):** "The short version of what I do: your career is capped by how well you know yourself, and the first 45 minutes raises that ceiling visibly."
+- **Bio (Instagram / Telegram):** "Your career is capped by how well you know yourself. I help you raise the ceiling: exact words, direction, offer."
+- **Webinar opening slide:** "Everything tonight rests on one law: your career is capped by how well you know yourself. In 90 minutes we raise your ceiling in real time."
+- **Warm-base follow-up (+3d wave), EN:** "Hi [Name], me again, briefly. One idea distilled since my last note: your career is capped by how well you know yourself. The free call raises that ceiling in 45 minutes, and you leave with your next direction on the table. A few spots next week: [link]. If the timing is wrong, no worries at all."
+- **Warm-base follow-up (+3d wave), RU:** «Привет, [Имя]! Коротко, вдогонку к прошлому письму. Одна мысль, которая с тех пор оформилась: карьера ограничена степенью понимания себя. Бесплатный созвон поднимает этот потолок за 45 минут, и ты уходишь с ясным следующим направлением. Есть несколько окон на той неделе: [ссылка]. Если сейчас не время, всё в порядке.»
+- **Paid-offer follow-up frame (Patricia pattern):** no pressure line + one new idea (the axiom) + "say the word and I'll send times." Never repeat the pitch; add one insight and re-open the door.
+- **Reddit post spine:** story first, the axiom as the earned lesson: "It took me two careers and an MIT MBA to learn one law: your career is capped by how well you know yourself. Here is how I found out."
+
+### 6b. Standing snippets
+
 - **Direction Call promise:** "You leave seeing your transition clearly: what you're growing out of, what you're growing into, and the direction that follows. Most people discover they already knew, and hadn't yet dared to say it out loud."
 - **Why-free line:** "Why free? Because the first 45 minutes is where my work does the most visible good, and it's how I choose who I go deeper with. If we're a fit, I have paid containers and I'll say so in one sentence, not in a pitch."
 - **Proof answer:** point to `docs/04-products/the_build_container.md`.
