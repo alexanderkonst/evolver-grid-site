@@ -125,26 +125,27 @@ async function assembleContext() {
       safe("equilibrium_workstreams", warnings, async () => {
         const { data, error } = await admin
           .from("equilibrium_workstreams")
-          .select("id, title, status")
+          .select("id, title, archived_at")
           .eq("user_id", userId)
           .order("created_at", { ascending: false })
           .limit(12);
         if (error) throw error;
         if (!data?.length) return [];
         const ids = data.map((w) => w.id);
-        const { data: tasks } = await admin
+        const { data: tasks, error: tasksError } = await admin
           .from("equilibrium_tasks")
-          .select("workstream_id, text, status, updated_at")
+          .select("workstream_id, text, status, done_at")
           .in("workstream_id", ids)
-          .order("updated_at", { ascending: false })
+          .order("done_at", { ascending: false, nullsFirst: true })
           .limit(60);
+        if (tasksError) throw tasksError;
         return data.map((w) => ({
           title: w.title,
-          status: w.status,
+          status: w.archived_at ? "archived" : "active",
           tasks: (tasks ?? [])
             .filter((t) => t.workstream_id === w.id)
             .slice(0, 8)
-            .map((t) => ({ text: t.text, status: t.status, updated_at: t.updated_at })),
+            .map((t) => ({ text: t.text, status: t.status, done_at: t.done_at })),
         }));
       }),
       safe("equilibrium_focus", warnings, async () => {
@@ -158,9 +159,9 @@ async function assembleContext() {
       safe("equilibrium_synthesis_log", warnings, async () => {
         const { data, error } = await admin
           .from("equilibrium_synthesis_log")
-          .select("reading_text, created_at")
+          .select("reading_text, generated_at")
           .eq("user_id", userId)
-          .order("created_at", { ascending: false })
+          .order("generated_at", { ascending: false })
           .limit(5);
         if (error) throw error;
         return data;
@@ -168,7 +169,7 @@ async function assembleContext() {
       safe("equilibrium_strategies", warnings, async () => {
         const { data, error } = await admin
           .from("equilibrium_strategies")
-          .select("position, text, alignment_score")
+          .select("position, text, set_at")
           .eq("user_id", userId)
           .order("position", { ascending: true })
           .limit(10);

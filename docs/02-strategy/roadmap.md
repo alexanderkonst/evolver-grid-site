@@ -14,6 +14,8 @@
 > 3. **Active Backlog item with `started` > 30 days ago and no forward motion** → revisit priority or move to Parked / Future.
 > 4. Items in Weekly Scope that are actually blocked on someone else's move belong in Waiting On, not in the 🔴 active lane. Mis-classification is the #1 source of "feels busy, nothing shipped."
 >
+> *Last updated: 2026-07-20 — **Practitioner Node — first instance Karime: proposal out, awaiting yes; then landing + /products entry** (see `docs/04-products/practitioner_node.md`). New standard path from idea to shipped product also captured: `docs/03-playbooks/product_onboarding_playbook.md`.*
+>
 > *Last updated: 2026-06-10 — **Match funnel becomes the default** (the live-demo fork closed). A demo in front of ~20 people exposed that the bare URL still served the OLD build funnel (post-reveal $555/$37 cards) and that a guest's Top Talent completion never unlocked JOURNEY #2 ("Discover your mission" stayed locked right after the reveal). Sasha's call: match flow (reveal → Mission → Assets → matchmaking) is now the default for all cold traffic — directly serves the North Star (collaboration rate) and the triad as matching unit. Sessions funnel preserved behind explicit `?path=build` links (sticky end-to-end), `/ignite` direct links, the $37 power-up at JOURNEY 1.5, and the $555 path at JOURNEY #6 → `/path`. Landing hero at `/` untouched (MethodologyLandingPage stays; MatchHero still needs `?path=match`). Guest gate fixed: on-device reveal now unlocks Mission pre-signup. Funnel-v2 spec §4.1 carries the dated correction. Verified in preview (cold visitor, guest unlock, both overrides, Sign-Up default, clean build). Si–Do unchanged: first $555 stranger from the funnel — the funnel strangers walk is now the one that was designed for them.*
 >
 > *Last updated: 2026-07-01 — **Founder Cockpit private surface begins.** Pulse Protocol v1 documented in `living_project_holograph.md`; `equilibrium-ai-context` Edge Function added as the automatic AI-readable Equilibrium export; `/build/cockpit/dashboard` created as the private cockpit surface with four first buttons: What Moved, Generate Follow-Ups, Find Bottlenecks, Name High-Leverage Moves. Public/private dashboard cleanup is intentionally parked: `/dashboard` currently exposes relationship/money data and should be split from the private cockpit later, not in this pass.*
@@ -213,6 +215,13 @@
 ## 📋 Active Backlog
 
 > Items that need doing. Ordered by leverage.
+
+### Day 130 — Practitioner Node follow-ons
+
+| # | Item | Priority | Notes |
+|---|------|----------|-------|
+| PN1 | **Voice-to-practice advisor**: speak what's going on + how much time you have, AI returns 1 practice | 🟡 | Adopt existing voice module; Lovable built-in model |
+| PN2 | **Panel v2 remainder**: glyph-system decision (Sasha), skin-following rail decision (Sasha) | 🟡 | Awaiting Sasha's call on both |
 
 ### UX / Platform Follow-Ups
 

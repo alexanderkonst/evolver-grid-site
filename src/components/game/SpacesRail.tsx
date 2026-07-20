@@ -16,6 +16,7 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip";
 import GlyphIcon from "./GlyphIcon";
+import { useSoulColors } from "@/hooks/useSoulColors";
 // Day 58+ (Sasha 2026-05-03): custom minimal SoundCloud player. Hides
 // the default iframe entirely (waveform / privacy-policy link / SC
 // branding gone) and drives playback via the SC Widget JS API. We
@@ -242,6 +243,14 @@ const SPACES: SpaceItem[] = [
     },
 ];
 
+// Day 130 (Sasha 2026-07-20): per-space accent hue for the ENTERED-STATE
+// DEPTH background wash — deliberately sparse. Most spaces stay neutral;
+// only GROW and BUILT BY YOU get a named atmosphere.
+const SPACE_ACCENT_HUE: Record<string, number> = {
+    learn: 40, // GROW — warm dawn gold
+    build: 46, // BUILT BY YOU — deep gold
+};
+
 interface SpacesRailProps {
     activeSpaceId?: string;
     onSpaceSelect?: (spaceId: string) => void;
@@ -274,6 +283,19 @@ interface SpacesRailProps {
     userAvatarUrl?: string;
     userLevel?: number;
     userXp?: number;
+    /**
+     * Day 130 (Sasha 2026-07-20): IDENTITY AS PRESENCE. Explicit soul
+     * colors from `game_profiles.soul_colors` (already generated
+     * elsewhere in the app — see CharacterHub.tsx). When present, these
+     * win outright over the derived hash below.
+     */
+    soulColors?: string[] | null;
+    /**
+     * Deterministic hash seed for deriving a personal 3-hue palette when
+     * `soulColors` isn't set yet — archetype title if known, else the
+     * user id. Undefined/null → default gold ring (no snapshot yet).
+     */
+    soulColorSeed?: string | null;
 }
 
 const SpacesRail = ({
@@ -290,8 +312,11 @@ const SpacesRail = ({
     userAvatarUrl,
     userLevel,
     userXp,
+    soulColors,
+    soulColorSeed,
 }: SpacesRailProps) => {
     const { t } = useTranslation();
+    const { hasSoulColors, ringGradient, glowColor } = useSoulColors(soulColors, soulColorSeed);
     const location = useLocation();
     const navigate = useNavigate();
     const { skin } = useSkin();
@@ -361,6 +386,13 @@ const SpacesRail = ({
         }
         return location.pathname.startsWith(path);
     };
+
+    // Day 130 (Sasha 2026-07-20): ENTERED-STATE DEPTH — a very subtle
+    // per-space hue tints the rail background when that space is active,
+    // atmosphere rather than paint. Only GROW (learn) and BUILT BY YOU
+    // (build) get a named accent; everything else stays neutral (no wash).
+    const activeSpace = SPACES.find((s) => isActive(s.path));
+    const activeAccentHue = activeSpace ? SPACE_ACCENT_HUE[activeSpace.id] ?? null : null;
 
     return (
         <div
@@ -495,7 +527,7 @@ const SpacesRail = ({
                                 />
                             ) : (
                                 <>
-                                    <div className="md:hidden flex items-center justify-center px-3 py-2.5">
+                                    <div className="lg:hidden flex items-center justify-center px-3 py-2.5">
                                         <img
                                             src={techstarsLogo}
                                             alt="Techstars"
@@ -504,7 +536,7 @@ const SpacesRail = ({
                                             draggable={false}
                                         />
                                     </div>
-                                    <div className="hidden md:flex items-center justify-start px-3 py-2.5">
+                                    <div className="hidden lg:flex items-center justify-start px-3 py-2.5">
                                         <img
                                             src={techstarsLogo}
                                             alt="Techstars"
@@ -531,7 +563,7 @@ const SpacesRail = ({
                                 />
                             ) : (
                                 <>
-                                    <div className="md:hidden flex items-center justify-center px-3 py-2.5">
+                                    <div className="lg:hidden flex items-center justify-center px-3 py-2.5">
                                         <img
                                             src={planetirLogo}
                                             alt="Planetir"
@@ -540,7 +572,7 @@ const SpacesRail = ({
                                             draggable={false}
                                         />
                                     </div>
-                                    <div className="hidden md:flex items-center justify-start px-3 py-2.5">
+                                    <div className="hidden lg:flex items-center justify-start px-3 py-2.5">
                                         <img
                                             src={planetirLogo}
                                             alt="Planetir"
@@ -571,7 +603,7 @@ const SpacesRail = ({
                                 />
                             ) : (
                                 <>
-                                    <div className="md:hidden flex items-center justify-center px-3 py-2.5">
+                                    <div className="lg:hidden flex items-center justify-center px-3 py-2.5">
                                         <img
                                             src={latamPyramid}
                                             alt="LATAM Impact"
@@ -579,7 +611,7 @@ const SpacesRail = ({
                                             draggable={false}
                                         />
                                     </div>
-                                    <div className="hidden md:flex items-center justify-start px-3 py-2.5">
+                                    <div className="hidden lg:flex items-center justify-start px-3 py-2.5">
                                         <img
                                             src={latamLockup}
                                             alt="LATAM Impact"
@@ -614,7 +646,7 @@ const SpacesRail = ({
                                 />
                             ) : (
                                 <>
-                            <div className="md:hidden flex items-center justify-center px-3 py-2.5">
+                            <div className="lg:hidden flex items-center justify-center px-3 py-2.5">
                                 <img
                                     src={NS_LOGO_URL}
                                     alt="Network School"
@@ -626,7 +658,7 @@ const SpacesRail = ({
                                 Sasha called the v6 28px "a bit smaller than I want." 32px
                                 matches BUILD's GlyphIcon size and sits at the upper end of
                                 the chip-icon visual weight range (22–32). */}
-                            <div className="hidden md:flex items-center gap-3 px-3 py-2.5">
+                            <div className="hidden lg:flex items-center gap-3 px-3 py-2.5">
                                 <img
                                     src={NS_LOGO_URL}
                                     alt="Network School"
@@ -674,7 +706,7 @@ const SpacesRail = ({
                             <img
                                 src={brandMark}
                                 alt="Find Your Top Talent"
-                                className="md:hidden w-10 h-10 mx-auto object-contain brand-spin-slow"
+                                className="lg:hidden w-10 h-10 mx-auto object-contain brand-spin-slow"
                                 draggable={false}
                             />
                             {/* Desktop: optically cropped lockup. The source
@@ -682,7 +714,7 @@ const SpacesRail = ({
                                 alone leaves a 4:3 canvas with large dead zones.
                                 This viewport preserves the canonical artwork and
                                 crops around the visible sphere + wordmark. */}
-                            <div className="hidden md:flex h-[92px] w-full items-center justify-center overflow-hidden">
+                            <div className="hidden lg:flex h-[92px] w-full items-center justify-center overflow-hidden">
                                 <img
                                     src={brandLogo}
                                     alt="YOU — be original."
@@ -773,34 +805,64 @@ const SpacesRail = ({
                             <>
                                 <button
                                     onClick={() => navigate("/game/settings")}
-                                    className="flex-1 min-w-0 flex items-center gap-2.5 px-3 py-2.5 rounded-2xl transition-all duration-300 text-white/70 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30"
+                                    className="group/identity flex-1 min-w-0 flex items-center gap-2.5 px-3 py-2.5 rounded-2xl transition-all duration-300 text-white/70 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30"
                                     aria-label={t('spacesRail.identityRowAria')}
                                 >
-                                    {userAvatarUrl ? (
+                                    {/* Day 130 (Sasha 2026-07-20): soul-color ring — a
+                                        deterministic personal 3-hue conic gradient replaces
+                                        the flat gold ring when soul colors are available
+                                        (explicit or hashed from archetype/user id). Users
+                                        with no snapshot yet keep the original gold ring. */}
+                                    {hasSoulColors ? (
+                                        <span
+                                            className="relative flex-shrink-0 rounded-full"
+                                            style={{
+                                                padding: 2,
+                                                background: ringGradient ?? undefined,
+                                                boxShadow: glowColor ? `0 0 10px 1px ${glowColor}4d` : undefined,
+                                            }}
+                                        >
+                                            <span className="flex items-center justify-center h-[26px] w-[26px] rounded-full overflow-hidden bg-[#0a1632]">
+                                                {userAvatarUrl ? (
+                                                    <img src={userAvatarUrl} alt="" className="h-full w-full object-cover" />
+                                                ) : (
+                                                    <UserRound className="h-[18px] w-[18px]" aria-hidden="true" />
+                                                )}
+                                            </span>
+                                        </span>
+                                    ) : userAvatarUrl ? (
                                         <img src={userAvatarUrl} alt="" className="h-[26px] w-[26px] flex-shrink-0 rounded-full object-cover ring-1 ring-[#f4d472]/30" />
                                     ) : (
                                         <UserRound className="h-[26px] w-[26px] flex-shrink-0" aria-hidden="true" />
                                     )}
                                     {userName && (
                                         <span
-                                            className={cn("hidden lg:block truncate min-w-0 transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}
-                                            style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "0.85rem", letterSpacing: "0.04em" }}
+                                            // Day 130 (Sasha 2026-07-20): full name, no
+                                            // truncation — up to 2 lines instead of a
+                                            // single-line ellipsis cutoff.
+                                            className={cn("hidden lg:block min-w-0 text-left transition-opacity duration-150 line-clamp-2", labelsVisible ? "opacity-100" : "opacity-0")}
+                                            style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "13px", lineHeight: 1.2, letterSpacing: "0.04em" }}
                                         >
                                             {userName}
                                         </span>
                                     )}
                                     <span className="flex-1 hidden lg:block" />
+                                    {/* Day 130 (Sasha 2026-07-20): gear only reveals on
+                                        identity-row hover/focus (desktop only) — was
+                                        always-visible chrome. */}
                                     <img
                                         src={settingsIcon}
                                         alt=""
                                         aria-hidden="true"
                                         draggable={false}
-                                        className={cn("hidden lg:block flex-shrink-0 select-none object-contain transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}
+                                        className={cn(
+                                            "hidden lg:block flex-shrink-0 select-none object-contain transition-opacity duration-150",
+                                            labelsVisible ? "opacity-0 group-hover/identity:opacity-100 group-focus-within/identity:opacity-100" : "opacity-0"
+                                        )}
                                         style={{
                                             width: 18,
                                             height: 18,
                                             filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
-                                            opacity: 0.75,
                                         }}
                                     />
                                 </button>
@@ -848,7 +910,23 @@ const SpacesRail = ({
                 so hover feels crisp but not jumpy. `skipDelayDuration=0`
                 so moving between adjacent chips doesn't re-flash the
                 delay. */}
-            <ScrollArea className="flex-1">
+            <ScrollArea className="flex-1 spaces-rail-scroll">
+              <div className="relative">
+                {/* Day 130 (Sasha 2026-07-20): ENTERED-STATE DEPTH — barely-
+                    there radial wash tinting the rail toward the active
+                    space's accent hue. Atmosphere, not paint: ~4-5% opacity,
+                    fades in/out with the active space. */}
+                <div
+                    aria-hidden="true"
+                    className="absolute inset-0 pointer-events-none transition-opacity duration-500"
+                    style={{
+                        opacity: activeAccentHue !== null ? 0.045 : 0,
+                        background:
+                            activeAccentHue !== null
+                                ? `radial-gradient(circle at 50% 20%, hsl(${activeAccentHue}, 70%, 55%) 0%, transparent 65%)`
+                                : undefined,
+                    }}
+                />
               <TooltipProvider delayDuration={150} skipDelayDuration={0}>
                 <nav className={compact ? "flex flex-col gap-[8px] p-[8px]" : "flex flex-col gap-2.5 px-3 pt-5 pb-3"}>
                 {!compact && (
@@ -875,7 +953,7 @@ const SpacesRail = ({
                                 "transition-all duration-300 relative group",
                                 compact
                                     ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
-                                    : "flex items-center gap-3 px-3 py-3.5 rounded-2xl justify-center md:justify-start",
+                                    : "flex items-center gap-3 px-3 py-3.5 rounded-2xl justify-center lg:justify-start",
                                 // Day 119 (Sasha 2026-07-09): during the 200ms
                                 // collapse fade (width already narrowing, layout
                                 // still row) clip the fading label instead of
@@ -889,16 +967,24 @@ const SpacesRail = ({
                                         // 22-48px glow radius bled past the 72px pane's
                                         // right edge (48px cell + 12px margin leaves no
                                         // room). Tighter contained glow; same gold ring.
+                                        // Day 130 (Sasha 2026-07-20): ENTERED-STATE
+                                        // DEPTH — the flat "lit ring" gets a recessed
+                                        // inset shadow + slight scale-down, reading as
+                                        // a place you've stepped INTO rather than a
+                                        // button lit from outside. Faint gold ring kept.
                                         ? compact
-                                            ? "text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_10px_-2px_rgba(244,212,114,0.5)]"
-                                            : "text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35)]"
+                                            ? "text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_10px_-2px_rgba(244,212,114,0.5),inset_0_2px_8px_rgba(0,0,0,0.35)] scale-[0.99]"
+                                            : "text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35),inset_0_2px_8px_rgba(0,0,0,0.35)] scale-[0.99]"
                                         : hasNudge
                                             ? "bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 hover:text-emerald-300 ring-1 ring-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.4)] animate-pulse"
                                             : "text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
                             )}
                             style={
                                 active
-                                    ? { backgroundColor: "var(--skin-selected-bg, rgba(212, 175, 55, 0.08))" }
+                                    // Day 130 (Sasha 2026-07-20): background deepened
+                                    // slightly (0.08 → 0.13) to pair with the inset
+                                    // shadow — the chip reads as recessed, not just lit.
+                                    ? { backgroundColor: "var(--skin-selected-bg-deep, rgba(212, 175, 55, 0.13))" }
                                     : undefined
                             }
                             // Day 48 iter 16: native `title` attribute retired for
@@ -928,7 +1014,7 @@ const SpacesRail = ({
                                     // Day 119 (Sasha 2026-07-09): fade with the
                                     // rail width transition instead of popping.
                                     className={cn(
-                                        "hidden md:block truncate transition-opacity duration-150",
+                                        "hidden lg:block truncate transition-opacity duration-150",
                                         labelsVisible ? "opacity-100" : "opacity-0"
                                     )}
                                     style={{
@@ -956,7 +1042,7 @@ const SpacesRail = ({
                                 hidden via a CSS override). The chip's own gold
                                 ring on active state is enough indicator. */}
                             {active && !compact && (
-                                <div className="absolute left-0 top-1/2 w-1 h-8 rounded-r-full translate-x-0 md:-translate-x-1/2 -translate-y-1/2 bg-[#d4af37] shadow-[0_0_8px_rgba(244,212,114,0.7)]" />
+                                <div className="absolute left-0 top-1/2 w-1 h-8 rounded-r-full translate-x-0 lg:-translate-x-1/2 -translate-y-1/2 bg-[#d4af37] shadow-[0_0_8px_rgba(244,212,114,0.7)]" />
                             )}
                         </button>
                     );
@@ -1072,6 +1158,7 @@ const SpacesRail = ({
                 })}
                 </nav>
               </TooltipProvider>
+              </div>
             </ScrollArea>
 
             {/* Footer — Day 47 late pass (Sasha): hard border-t divider removed;
@@ -1138,14 +1225,14 @@ const SpacesRail = ({
                                 "transition-all",
                                 compact
                                     ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
-                                    : "flex items-center gap-3 px-3 py-2 rounded-xl w-full justify-center md:justify-start",
+                                    : "flex items-center gap-3 px-3 py-2 rounded-xl w-full justify-center lg:justify-start",
                                 "text-white/60 hover:bg-white/10 hover:text-white"
                             )}
                             title={t('spacesRail.logInTitle')}
                         >
                             <LogIn className={compact ? "w-5 h-5 flex-shrink-0" : "w-4 h-4 flex-shrink-0"} />
                             {!compact && (
-                                <span className={cn("hidden md:block text-xs font-medium transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}>{t('spacesRail.logInLabel')}</span>
+                                <span className={cn("hidden lg:block text-xs font-medium transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}>{t('spacesRail.logInLabel')}</span>
                             )}
                         </button>
                     );

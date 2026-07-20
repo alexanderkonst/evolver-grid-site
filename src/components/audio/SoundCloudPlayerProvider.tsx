@@ -162,6 +162,21 @@ export function SoundCloudPlayerProvider({
     const location = useLocation();
     const iframeRef = useRef<HTMLIFrameElement | null>(null);
     const widgetRef = useRef<SCWidget | null>(null);
+    // Shuffle-by-default (2026-07-20, Sasha): each visitor gets a unique
+    // playlist order, randomized once per session on load. `shuffleOrderRef`
+    // holds a permutation of playlist indices; `shufflePositionRef` tracks
+    // where we are inside that permutation. `next()` and the auto-advance
+    // on track FINISH both walk this shuffled order instead of the
+    // playlist's native sequential order.
+    const shuffleOrderRef = useRef<number[]>([]);
+    const shufflePositionRef = useRef(0);
+    const advanceShuffled = useCallback(() => {
+        const widget = widgetRef.current;
+        const order = shuffleOrderRef.current;
+        if (!widget || order.length === 0) return;
+        shufflePositionRef.current = (shufflePositionRef.current + 1) % order.length;
+        widget.skip(order[shufflePositionRef.current]);
+    }, []);
     const [ready, setReady] = useState(false);
     const [playing, setPlaying] = useState(false);
     const [trackTitle, setTrackTitle] = useState<string>("");
@@ -218,20 +233,29 @@ export function SoundCloudPlayerProvider({
 
                 widget.bind(Events.READY, () => {
                     if (cancelled) return;
-                    // Defensive force-to-track-0: SoundCloud's widget can
-                    // resume from a cached playback position via cookies
-                    // on the w.soundcloud.com origin. We always want a
-                    // fresh listener to start at track 1 of the playlist,
-                    // so on every READY we check the current index and
-                    // skip(0) if it's not already there. No-op in the
-                    // common case (idx === 0).
-                    widget.getCurrentSoundIndex((idx) => {
-                        if (idx !== 0 && !cancelled) {
-                            widget.skip(0);
+                    // Build this session's shuffle order once, then jump to
+                    // its first track. Replaces the old "force track 0"
+                    // defensive skip — that was fighting SC's resumed
+                    // cookie position toward a fixed start; now we WANT a
+                    // randomized start, so the skip below both neutralizes
+                    // the cached-position issue and seeds the shuffle.
+                    widget.getSounds((sounds) => {
+                        if (cancelled) return;
+                        const n = sounds?.length ?? 0;
+                        if (n > 0) {
+                            const order = Array.from({ length: n }, (_, i) => i);
+                            // Fisher-Yates shuffle — uniform random permutation.
+                            for (let i = order.length - 1; i > 0; i--) {
+                                const j = Math.floor(Math.random() * (i + 1));
+                                [order[i], order[j]] = [order[j], order[i]];
+                            }
+                            shuffleOrderRef.current = order;
+                            shufflePositionRef.current = 0;
+                            widget.skip(order[0]);
                         }
+                        setReady(true);
+                        readCurrentInto(widget);
                     });
-                    setReady(true);
-                    readCurrentInto(widget);
                 });
                 widget.bind(Events.PLAY, () => {
                     if (cancelled) return;
@@ -242,7 +266,12 @@ export function SoundCloudPlayerProvider({
                     if (!cancelled) setPlaying(false);
                 });
                 widget.bind(Events.FINISH, () => {
-                    if (!cancelled) setPlaying(false);
+                    if (cancelled) return;
+                    setPlaying(false);
+                    // Auto-advance through the shuffled order (instead of
+                    // SC's native sequential auto-advance) so shuffle holds
+                    // for unattended playback, not just manual "next" taps.
+                    advanceShuffled();
                 });
                 // ERROR event — kept as a permanent observability hook.
                 // Day-60 diagnostic session (Sasha 2026-05-04) confirmed
@@ -276,7 +305,7 @@ export function SoundCloudPlayerProvider({
             // session. The iframe never re-renders since `engineMounted`
             // only flips false→true (never the reverse).
         };
-    }, [engineMounted]);
+    }, [engineMounted, advanceShuffled]);
 
     const toggle = useCallback(() => {
         if (!ready || !widgetRef.current) return;
@@ -284,9 +313,12 @@ export function SoundCloudPlayerProvider({
     }, [ready]);
 
     const next = useCallback(() => {
-        if (!ready || !widgetRef.current) return;
-        widgetRef.current.next();
-    }, [ready]);
+        if (!ready) return;
+        // Walk the shuffled order rather than SC's native `next()` (native
+        // sequential order) — keeps manual skips consistent with the
+        // randomized session order set up on READY / FINISH.
+        advanceShuffled();
+    }, [ready, advanceShuffled]);
 
     // Build the widget URL with all chrome stripped — engine only,
     // no visible UI from SoundCloud (the iframe is hidden anyway).

@@ -4821,6 +4821,14 @@ All colors MUST be HSL.
     display: none;
   }
 
+  /* Day 130 (Sasha 2026-07-20): SPACES rail nav — Radix ScrollArea renders
+     its own custom scrollbar thumb (not the native OS one .scrollbar-hide
+     above targets), so it needs its own hide rule. Scroll stays fully
+     functional via the Viewport; only the visible thumb/track is hidden. */
+  .spaces-rail-scroll [data-radix-scroll-area-scrollbar] {
+    display: none;
+  }
+
   .mobile-content-scroll {
     scrollbar-width: none;
     -ms-overflow-style: none;

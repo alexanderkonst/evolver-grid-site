@@ -483,8 +483,17 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         level?: number | null;
         xp_total?: number | null;
         current_streak_days?: number | null;
+        // Day 130 (Sasha 2026-07-20): IDENTITY AS PRESENCE — soul-color
+        // avatar ring. Not in the generated Supabase types yet (same gap
+        // CharacterHub.tsx works around); selected explicitly below and
+        // read back via an `any` cast, matching that existing pattern.
+        soul_colors?: string[] | null;
     } | null>(null);
     const [hasGeniusOffer, setHasGeniusOffer] = useState(false);
+    // Day 130 (Sasha 2026-07-20): archetype title from the user's latest
+    // zog_snapshot — used as the deterministic hash seed for the soul-color
+    // ring when no explicit `soul_colors` are set yet.
+    const [archetypeTitle, setArchetypeTitle] = useState<string | null>(null);
     // Day 63 → Day 87 — COLLABORATE space gating history:
     //
     // Day 63 (Sasha 2026-05-07 night): gated on localStorage flag
@@ -764,7 +773,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         try {
             const { data } = await supabase
                 .from("game_profiles")
-                .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at, level, xp_total, current_streak_days")
+                .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at, level, xp_total, current_streak_days, soul_colors")
                 .eq("user_id", userId)
                 .maybeSingle();
             setProfile(data || null);
@@ -773,12 +782,14 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             if (data?.last_zog_snapshot_id) {
                 const { data: snapshotData } = await supabase
                     .from("zog_snapshots")
-                    .select("excalibur_data")
+                    .select("excalibur_data, archetype_title")
                     .eq("id", data.last_zog_snapshot_id)
                     .maybeSingle();
                 setHasGeniusOffer(!!snapshotData?.excalibur_data);
+                setArchetypeTitle(snapshotData?.archetype_title || null);
             } else {
                 setHasGeniusOffer(false);
+                setArchetypeTitle(null);
             }
 
         } catch (error) {
@@ -794,7 +805,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         try {
             const { data } = await supabase
                 .from("game_profiles")
-                .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at, level, xp_total, current_streak_days")
+                .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at, level, xp_total, current_streak_days, soul_colors")
                 .eq("id", profileId)
                 .maybeSingle();
             setProfile(data || null);
@@ -803,12 +814,14 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             if (data?.last_zog_snapshot_id) {
                 const { data: snapshotData } = await supabase
                     .from("zog_snapshots")
-                    .select("excalibur_data")
+                    .select("excalibur_data, archetype_title")
                     .eq("id", data.last_zog_snapshot_id)
                     .maybeSingle();
                 setHasGeniusOffer(!!snapshotData?.excalibur_data);
+                setArchetypeTitle(snapshotData?.archetype_title || null);
             } else {
                 setHasGeniusOffer(false);
+                setArchetypeTitle(null);
             }
 
         } catch (error) {
@@ -1500,6 +1513,11 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 or disappear entirely. Isolating the parent stacking
                 context prevents the bleed and the panes stay rendered. */}
             <div className={cn("hidden lg:flex isolate", isAiOsRoute ? "h-dvh min-h-0 overflow-hidden" : "min-h-dvh")}>
+                {/* Day 130 (Sasha 2026-07-20): "group/rail" wraps rail +
+                    minimize toggle only (not pane 2) so the chevron button
+                    below appears strictly on rail hover/focus, not on any
+                    hover anywhere in the shell. */}
+                <div className="group/rail contents">
                 {/* Panel 1: Spaces Rail */}
                 <SpacesRail
                     activeSpaceId={activeSpaceId}
@@ -1537,6 +1555,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     userAvatarUrl={profile?.avatar_url || undefined}
                     userLevel={profile?.level || undefined}
                     userXp={profile?.xp_total || undefined}
+                    soulColors={profile?.soul_colors || undefined}
+                    soulColorSeed={archetypeTitle || user?.id || undefined}
                 />
 
                 {/* Day 82 v4 (Sasha 2026-05-24): pane-1 minimize toggle —
@@ -1555,9 +1575,15 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 <button
                     onClick={toggleRailMinimize}
                     className={cn(
-                        "h-dvh w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative z-30 group",
+                        "h-dvh w-5 flex items-center justify-center transition-all duration-200 hover:bg-white/10 relative z-30 group",
                         "focus-visible:outline focus-visible:outline-1 focus-visible:outline-[color:var(--skin-rail-toggle-accent,rgba(244,212,114,0.6))]",
                         isAiOsRoute ? "shrink-0" : "sticky top-0",
+                        // Day 130 (Sasha 2026-07-20): CHROME SILENCE — the
+                        // toggle is visual chrome, not a permanent nav
+                        // element, so it now only reveals on rail hover
+                        // (group/rail, from the wrapper above) or keyboard
+                        // focus, instead of sitting always-visible.
+                        "opacity-0 group-hover/rail:opacity-100 focus-visible:opacity-100",
                     )}
                     title={railMinimized ? t("shell.rail.expand") : t("shell.rail.minimize")}
                     aria-label={railMinimized ? t("shell.rail.expand") : t("shell.rail.minimize")}
@@ -1586,6 +1612,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         }}
                     />
                 </button>
+                </div>
 
                 {/* Panel 2: Sections with transition.
                     Day 52 (Sasha 2026-04-27): `relative` removed.
@@ -1811,6 +1838,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         userAvatarUrl={profile?.avatar_url || undefined}
                         userLevel={profile?.level || undefined}
                         userXp={profile?.xp_total || undefined}
+                        soulColors={profile?.soul_colors || undefined}
+                        soulColorSeed={archetypeTitle || user?.id || undefined}
                         className="h-dvh"
                     />
 

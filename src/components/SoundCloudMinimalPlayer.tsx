@@ -124,7 +124,7 @@ const SoundCloudMinimalPlayer = ({ compact = false }: SoundCloudMinimalPlayerPro
                 "transition-all duration-300",
                 compact
                     ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
-                    : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start hover:bg-white/[0.04]"
+                    : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center lg:justify-start hover:bg-white/[0.04]"
             )}
         >
             {/* Play / Pause */}
@@ -170,7 +170,7 @@ const SoundCloudMinimalPlayer = ({ compact = false }: SoundCloudMinimalPlayerPro
             {/* Track label "Title · Artist" — Cormorant, small, tracked.
                 Hidden on mobile (rail is icon-only at <md). */}
             <span
-                className="flex-1 truncate hidden md:block"
+                className="flex-1 truncate hidden lg:block"
                 style={{
                     fontFamily: "'Cormorant Garamond', serif",
                     fontWeight: 600,
@@ -192,7 +192,7 @@ const SoundCloudMinimalPlayer = ({ compact = false }: SoundCloudMinimalPlayerPro
                 disabled={!ready}
                 aria-label="Next track"
                 title="Next"
-                className="flex-shrink-0 hidden md:inline-flex items-center justify-center w-6 h-6 rounded-full transition-all duration-200 hover:scale-[1.10] active:scale-[0.94] disabled:opacity-30 disabled:cursor-not-allowed"
+                className="flex-shrink-0 hidden lg:inline-flex items-center justify-center w-6 h-6 rounded-full transition-all duration-200 hover:scale-[1.10] active:scale-[0.94] disabled:opacity-30 disabled:cursor-not-allowed"
                 style={{
                     color: "var(--skin-music-meta, rgba(255, 255, 255, 0.45))",
                 }}
@@ -215,7 +215,7 @@ const SoundCloudMinimalPlayer = ({ compact = false }: SoundCloudMinimalPlayerPro
                 rel="noopener noreferrer"
                 aria-label="Listen on SoundCloud"
                 title="Listen on SoundCloud"
-                className="flex-shrink-0 hidden md:inline-flex items-center justify-center transition-opacity duration-200 hover:opacity-100"
+                className="flex-shrink-0 hidden lg:inline-flex items-center justify-center transition-opacity duration-200 hover:opacity-100"
                 style={{
                     color: "var(--skin-music-meta, rgba(255, 255, 255, 0.45))",
                     opacity: 0.65,
