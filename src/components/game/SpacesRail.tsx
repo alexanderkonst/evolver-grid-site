@@ -16,6 +16,7 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip";
 import GlyphIcon from "./GlyphIcon";
+import { GrowGlyph, BuildGlyph, CollaborateGlyph, SpaceGlyphProps } from "./SpaceGlyphs";
 import { useSoulColors } from "@/hooks/useSoulColors";
 // Day 58+ (Sasha 2026-05-03): custom minimal SoundCloud player. Hides
 // the default iframe entirely (waveform / privacy-policy link / SC
@@ -92,22 +93,16 @@ const ImageIcon = ({
         which made it read as larger in the rail row. */
     size?: number;
 }) => (
-    // Day 48 iter 14 (Sasha): rotation is now applied via INLINE style
-    // (in addition to the .gentle-spin class) — the class rule wasn't
-    // landing in Sasha's preview. Inline styles bypass the entire
-    // cascade and can only be beaten by !important inline, which
-    // nothing else sets.
+    // Day 131 (Sasha 2026-07-20): rotation removed from rail icons —
+    // `.gentle-spin-always` + inline `animation` retired here. The class
+    // itself stays in index.css (still used outside the rail, e.g.
+    // AiOsPricingPage) — only this rail usage is dropped.
     <img
         src={src}
         alt={alt}
         aria-hidden="true"
         draggable={false}
-        // Day 54 (Sasha 2026-04-28): switched from `.gentle-spin` to
-        // `.gentle-spin-always` — the rail emblems carry brand identity
-        // through their slow rotation; this class re-asserts the spin
-        // even when the user has prefers-reduced-motion enabled. See
-        // index.css for the full rationale and scope guidance.
-        className="flex-shrink-0 select-none object-contain gentle-spin-always"
+        className="flex-shrink-0 select-none object-contain"
         style={{
             width: size,
             height: size,
@@ -119,11 +114,37 @@ const ImageIcon = ({
             filter: glow
                 ? "drop-shadow(0 0 5px rgba(244, 212, 114, 0.4)) drop-shadow(0 0 1px rgba(212, 175, 55, 0.55))"
                 : "drop-shadow(0 0 4px rgba(244, 212, 114, 0.3))",
-            animation: "gentle-spin 60s linear infinite",
-            willChange: "transform",
-            transformOrigin: "center",
         }}
     />
+);
+
+/**
+ * SvgGlyphIcon — wraps the geometric line-glyph family (SpaceGlyphs.tsx)
+ * in the same footprint/glow treatment as GlyphIcon, so GROW / BUILT BY
+ * YOU / COLLABORATE read as siblings of the other rail icons (color glow,
+ * centered grid cell, no rotation).
+ */
+const SvgGlyphIcon = ({
+    Glyph,
+    color,
+    size = 28,
+}: {
+    Glyph: (props: SpaceGlyphProps) => JSX.Element;
+    color: string;
+    size?: number;
+}) => (
+    <span
+        aria-hidden="true"
+        className="flex-shrink-0 select-none grid place-items-center"
+        style={{
+            width: size,
+            height: size,
+            color,
+            filter: `drop-shadow(0 0 4px ${color}) drop-shadow(0 0 10px ${color}66) drop-shadow(0 0 10px rgba(244, 212, 114, 0.28))`,
+        }}
+    >
+        <Glyph size={size} />
+    </span>
 );
 
 interface SpaceItem {
@@ -202,7 +223,7 @@ const SPACES: SpaceItem[] = [
         id: "collaborate",
         label: "COLLABORATE",
         labelKey: "spacesRail.collaborate",
-        icon: <GlyphIcon glyph="⇶" color="hsl(325, 65%, 65%)" />,
+        icon: <SvgGlyphIcon Glyph={CollaborateGlyph} color="hsl(325, 65%, 65%)" />,
         path: "/game/collaborate/matches",
     },
     {
@@ -216,7 +237,7 @@ const SPACES: SpaceItem[] = [
         id: "learn",
         label: "GROW",
         labelKey: "spacesRail.grow",
-        icon: <GlyphIcon glyph="✹" color="hsl(210, 75%, 68%)" />,
+        icon: <SvgGlyphIcon Glyph={GrowGlyph} color="hsl(210, 75%, 68%)" />,
         path: "/game/learn",
     },
     {
@@ -227,7 +248,7 @@ const SPACES: SpaceItem[] = [
         id: "build",
         label: "BUILT BY YOU",
         labelKey: "spacesRail.build",
-        icon: <GlyphIcon glyph="⬢" color="hsl(45, 90%, 62%)" size={32} />,
+        icon: <SvgGlyphIcon Glyph={BuildGlyph} color="hsl(45, 90%, 62%)" size={32} />,
         // Day 52 (Sasha 2026-04-26): BUILD chip lands on the Unique
         // Business Builder. UBB is the canonical BUILD experience —
         // legacy /game/build/* paths still resolve for back-compat
@@ -693,7 +714,7 @@ const SpacesRail = ({
                         <img
                             src={brandMark}
                             alt="Find Your Top Talent"
-                            className="w-7 h-7 object-contain brand-spin-slow"
+                            className="w-7 h-7 object-contain"
                             draggable={false}
                             style={{
                                 filter:
@@ -706,7 +727,7 @@ const SpacesRail = ({
                             <img
                                 src={brandMark}
                                 alt="Find Your Top Talent"
-                                className="lg:hidden w-10 h-10 mx-auto object-contain brand-spin-slow"
+                                className="lg:hidden w-10 h-10 mx-auto object-contain"
                                 draggable={false}
                             />
                             {/* Desktop: optically cropped lockup. The source
