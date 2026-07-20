@@ -11,28 +11,29 @@ import {
 import { GROWTH_STEPS, findStep, type GrowthStep } from "@/modules/library/growthSteps";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { cn } from "@/lib/utils";
-import { Lock, Play, BookOpen, ArrowRight, Rocket, Sparkles } from "lucide-react";
+import { Lock, Play, BookOpen, ArrowRight, Rocket, Sparkles, Compass } from "lucide-react";
+import { useSuggestedPractices } from "@/hooks/useSuggestedPractices";
 
 /* ─── Shared skin-aware text styles ─── */
 // Day 56 night (Sasha 2026-04-28): Library now reads against the editorial
 // brand register, not the dark cosmic-only palette. All text uses skin
 // tokens so it stays legible on Aurora (cream) AND Navy+Gold (dark) skins
 // — same pattern Auth.tsx uses, same litmus as the landing.
-const TITLE_STYLE: React.CSSProperties = {
+export const TITLE_STYLE: React.CSSProperties = {
   fontFamily: "'Cormorant Garamond', serif",
   color: "var(--skin-text-primary, #0a1628)",
   textShadow:
     "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8))",
 };
 
-const BODY_STYLE: React.CSSProperties = {
+export const BODY_STYLE: React.CSSProperties = {
   fontFamily: "'Cormorant Garamond', serif",
   color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
   textShadow:
     "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
 };
 
-const EYEBROW_STYLE: React.CSSProperties = {
+export const EYEBROW_STYLE: React.CSSProperties = {
   fontFamily: "'Cormorant Garamond', serif",
   color: "var(--skin-text-muted, rgba(26,30,58,0.78))",
   letterSpacing: "0.22em",
@@ -90,8 +91,55 @@ const VideoCategoryFilter = ({
   );
 };
 
+/* ─── Video Modal (shared by Library steps and Today's Practice) ─── */
+export const VideoModal = ({ item, onClose }: { item: LibraryItem; onClose: () => void }) => {
+  const { t } = useTranslation();
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm px-4"
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-4xl rounded-2xl liquid-glass-strong p-6 shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex justify-between items-start mb-4">
+          <h2 className="text-base sm:text-lg font-semibold pr-4" style={TITLE_STYLE}>
+            {item.title}
+          </h2>
+          <button
+            onClick={onClose}
+            className="text-sm rounded-full px-3 py-1 transition-colors"
+            style={{
+              ...BODY_STYLE,
+              background: "rgba(212,175,55,0.08)",
+              border: "1px solid rgba(212,175,55,0.24)",
+            }}
+          >
+            {t('library.close')}
+          </button>
+        </div>
+        <div className="w-full aspect-video mb-4">
+          <iframe
+            src={`https://www.youtube.com/embed/${item.youtubeId}`}
+            title={item.title}
+            className="h-full w-full rounded-lg"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+        {item.teacher && (
+          <p className="text-sm italic" style={BODY_STYLE}>
+            {t('library.guidedBy', { teacher: item.teacher })}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+};
+
 /* ─── Video Card ─── */
-const VideoCard = ({
+export const VideoCard = ({
   item,
   onSelect,
 }: {
@@ -187,6 +235,57 @@ const StepHeader = ({ step }: { step: GrowthStep }) => {
   );
 };
 
+/* ─── Recommended For You (Day 128) ───
+ * Surfaces the practice-picker recommendation engine
+ * (getSuggestedPractices in src/lib/practiceSystem.ts) above the category
+ * filter. Authed users only. Graceful states:
+ *   - no session      → renders nothing (caller hides via status check)
+ *   - session, no QoL  → quiet invite card linking to the QoL assessment
+ *   - snapshot present → top 3 suggested practices as VideoCards
+ */
+const RecommendedForYou = ({ onSelect }: { onSelect: (item: LibraryItem) => void }) => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { status, practices, lowestDomain } = useSuggestedPractices();
+
+  if (status === "loading" || status === "signed-out") return null;
+
+  if (status === "no-snapshot") {
+    return (
+      <button
+        onClick={() => navigate("/game/learn/qol-assessment")}
+        className="w-full flex items-center gap-4 rounded-2xl liquid-glass p-5 mb-8 text-left hover:scale-[1.01] transition-all duration-300"
+        style={{ boxShadow: "0 0 0 1px rgba(212, 175, 55, 0.18)" }}
+      >
+        <Compass className="w-6 h-6 flex-shrink-0" style={{ color: "rgba(160, 109, 8, 0.85)" }} />
+        <p className="text-sm italic" style={BODY_STYLE}>
+          {t('library.qolInvite')}
+        </p>
+      </button>
+    );
+  }
+
+  if (practices.length === 0) return null;
+
+  return (
+    <div className="mb-8">
+      <div className="mb-4">
+        <div className="text-[10.5px] mb-1" style={EYEBROW_STYLE}>
+          {t('library.recommendedTitle')}
+        </div>
+        <p className="text-sm italic" style={BODY_STYLE}>
+          {lowestDomain && t('library.recommendedReason', { domain: t(`library.domain.${lowestDomain}`) })}
+        </p>
+      </div>
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {practices.map((item) => (
+          <VideoCard key={item.id} item={item} onSelect={onSelect} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 /* ─── Step Content (pane 3) ─── */
 const StepContent = ({ step }: { step: GrowthStep }) => {
   const { t } = useTranslation();
@@ -206,6 +305,7 @@ const StepContent = ({ step }: { step: GrowthStep }) => {
         {/* Videos grid */}
         {step.content === "videos" && (
           <div>
+            <RecommendedForYou onSelect={setSelectedItem} />
             <VideoCategoryFilter activeCategory={activeCategory} onSelect={setActiveCategory} />
             {filteredItems.length > 0 ? (
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -371,46 +471,7 @@ const StepContent = ({ step }: { step: GrowthStep }) => {
 
       {/* Video Modal */}
       {selectedItem && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm px-4"
-          onClick={() => setSelectedItem(null)}
-        >
-          <div
-            className="w-full max-w-4xl rounded-2xl liquid-glass-strong p-6 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex justify-between items-start mb-4">
-              <h2 className="text-base sm:text-lg font-semibold pr-4" style={TITLE_STYLE}>
-                {selectedItem.title}
-              </h2>
-              <button
-                onClick={() => setSelectedItem(null)}
-                className="text-sm rounded-full px-3 py-1 transition-colors"
-                style={{
-                  ...BODY_STYLE,
-                  background: "rgba(212,175,55,0.08)",
-                  border: "1px solid rgba(212,175,55,0.24)",
-                }}
-              >
-                {t('library.close')}
-              </button>
-            </div>
-            <div className="w-full aspect-video mb-4">
-              <iframe
-                src={`https://www.youtube.com/embed/${selectedItem.youtubeId}`}
-                title={selectedItem.title}
-                className="h-full w-full rounded-lg"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-            {selectedItem.teacher && (
-              <p className="text-sm italic" style={BODY_STYLE}>
-                {t('library.guidedBy', { teacher: selectedItem.teacher })}
-              </p>
-            )}
-          </div>
-        </div>
+        <VideoModal item={selectedItem} onClose={() => setSelectedItem(null)} />
       )}
     </>
   );

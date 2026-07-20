@@ -1,5 +1,38 @@
 import { supabase } from "@/integrations/supabase/client";
-import { type LibraryItem } from "@/modules/library/libraryContent";
+import { type LibraryItem, type QolDomain } from "@/modules/library/libraryContent";
+
+export type QolSnapshotStages = {
+  wealth_stage: number;
+  health_stage: number;
+  happiness_stage: number;
+  love_relationships_stage: number;
+  impact_stage: number;
+  growth_stage: number;
+  social_ties_stage: number;
+  home_stage: number;
+};
+
+/**
+ * Find the lowest-scoring QoL domain from a snapshot — the person's
+ * current "growth edge". Shared by getSuggestedPractices and any UI
+ * that needs to label why a practice was recommended.
+ */
+export function getLowestQolDomain(qolSnapshot: QolSnapshotStages): QolDomain {
+  const domainScores: Record<QolDomain, number> = {
+    wealth: qolSnapshot.wealth_stage,
+    health: qolSnapshot.health_stage,
+    happiness: qolSnapshot.happiness_stage,
+    love_relationships: qolSnapshot.love_relationships_stage,
+    impact: qolSnapshot.impact_stage,
+    growth: qolSnapshot.growth_stage,
+    social_ties: qolSnapshot.social_ties_stage,
+    home: qolSnapshot.home_stage,
+  };
+
+  return Object.entries(domainScores).reduce((lowest, [domain, score]) => {
+    return score < domainScores[lowest as QolDomain] ? (domain as QolDomain) : lowest;
+  }, 'health' as QolDomain);
+}
 
 /**
  * Mark a practice as done and award XP
@@ -39,32 +72,9 @@ export async function markPracticeDone(
  */
 export function getSuggestedPractices(
   practices: LibraryItem[],
-  qolSnapshot: {
-    wealth_stage: number;
-    health_stage: number;
-    happiness_stage: number;
-    love_relationships_stage: number;
-    impact_stage: number;
-    growth_stage: number;
-    social_ties_stage: number;
-    home_stage: number;
-  }
+  qolSnapshot: QolSnapshotStages
 ): LibraryItem[] {
-  // Find lowest scoring domain
-  const domainScores = {
-    wealth: qolSnapshot.wealth_stage,
-    health: qolSnapshot.health_stage,
-    happiness: qolSnapshot.happiness_stage,
-    love_relationships: qolSnapshot.love_relationships_stage,
-    impact: qolSnapshot.impact_stage,
-    growth: qolSnapshot.growth_stage,
-    social_ties: qolSnapshot.social_ties_stage,
-    home: qolSnapshot.home_stage,
-  };
-
-  const lowestDomain = Object.entries(domainScores).reduce((lowest, [domain, score]) => {
-    return score < domainScores[lowest] ? domain : lowest;
-  }, 'health');
+  const lowestDomain = getLowestQolDomain(qolSnapshot);
 
   // Filter practices matching lowest domain
   const matchingPractices = practices.filter(

@@ -783,19 +783,19 @@ const SpacesRail = ({
                                     )}
                                     {userName && (
                                         <span
-                                            className={cn("hidden md:block truncate min-w-0 transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}
+                                            className={cn("hidden lg:block truncate min-w-0 transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}
                                             style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "0.85rem", letterSpacing: "0.04em" }}
                                         >
                                             {userName}
                                         </span>
                                     )}
-                                    <span className="flex-1 hidden md:block" />
+                                    <span className="flex-1 hidden lg:block" />
                                     <img
                                         src={settingsIcon}
                                         alt=""
                                         aria-hidden="true"
                                         draggable={false}
-                                        className={cn("hidden md:block flex-shrink-0 select-none object-contain transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}
+                                        className={cn("hidden lg:block flex-shrink-0 select-none object-contain transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}
                                         style={{
                                             width: 18,
                                             height: 18,
@@ -808,7 +808,7 @@ const SpacesRail = ({
                                     href="https://t.me/integralevolution"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="spaces-rail-chat-cta flex-shrink-0 grid place-items-center w-[40px] h-[40px] rounded-full transition-all duration-300 text-white/55 hover:bg-white/[0.04] hover:text-white/85"
+                                    className="spaces-rail-chat-cta flex-shrink-0 hidden lg:grid place-items-center w-[40px] h-[40px] rounded-full transition-all duration-300 text-white/55 hover:bg-white/[0.04] hover:text-white/85"
                                     title={t('spacesRail.chatTitle')}
                                     aria-label={t('spacesRail.chatTitle')}
                                 >

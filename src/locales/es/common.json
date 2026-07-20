@@ -924,7 +924,20 @@
     "guidedBy": "Guiado por {{teacher}}",
     "growthSequence": "Secuencia de crecimiento",
     "indexHero": "CRECE",
-    "indexIntro": "Seis pasos. Del talento disperso a la maestría centrada. Elige un paso del panel lateral — cada uno desbloquea el siguiente nivel de ver."
+    "indexIntro": "Seis pasos. Del talento disperso a la maestría centrada. Elige un paso del panel lateral — cada uno desbloquea el siguiente nivel de ver.",
+    "recommendedTitle": "Recomendado para ti",
+    "recommendedReason": "Elegido para tu área de {{domain}} — tu punto de crecimiento actual",
+    "qolInvite": "Haz la instantánea de Calidad de Vida para desbloquear recomendaciones personales.",
+    "domain": {
+      "wealth": "riqueza",
+      "health": "salud",
+      "happiness": "felicidad",
+      "love_relationships": "amor y relaciones",
+      "impact": "impacto",
+      "growth": "crecimiento",
+      "social_ties": "vínculos sociales",
+      "home": "hogar"
+    }
   },
   "linkedinUpload": {
     "heading": "Añade tu perfil de LinkedIn",
@@ -7104,5 +7117,14 @@
     "finalCta": "Reservar la sesión",
     "footerBrand": "YOU · BE ORIGINAL",
     "footerTagline": "ORIENTACIÓN PROFESIONAL PARA VIDAS ORIGINALES"
+  },
+  "todaysPractice": {
+    "title": "Práctica de hoy",
+    "subtitle": "Tu recomendación de práctica personalizada",
+    "goToNextMove": "Ir a mi próximo paso",
+    "loading": "Buscando tu práctica...",
+    "emptyState": "Todavía no tenemos una coincidencia exacta — explora la biblioteca completa.",
+    "heroEyebrow": "Elección de hoy",
+    "alternatesTitle": "También vale la pena"
   }
 }

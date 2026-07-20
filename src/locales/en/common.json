@@ -1780,7 +1780,20 @@
     "guidedBy": "Guided by {{teacher}}",
     "growthSequence": "Growth Sequence",
     "indexHero": "GROW",
-    "indexIntro": "Six steps. From scattered talent to centered mastery. Pick a step from the side panel — each one unlocks the next level of seeing."
+    "indexIntro": "Six steps. From scattered talent to centered mastery. Pick a step from the side panel — each one unlocks the next level of seeing.",
+    "recommendedTitle": "Recommended for you",
+    "recommendedReason": "Chosen for your {{domain}} — your current growth edge",
+    "qolInvite": "Take the Quality of Life snapshot to unlock personal recommendations.",
+    "domain": {
+      "wealth": "wealth",
+      "health": "health",
+      "happiness": "happiness",
+      "love_relationships": "love & relationships",
+      "impact": "impact",
+      "growth": "growth",
+      "social_ties": "social ties",
+      "home": "home"
+    }
   },
   "moduleDetail": {
     "notFoundTitle": "Module Not Found",
@@ -7104,5 +7117,14 @@
     "finalCta": "Book the session",
     "footerBrand": "YOU · BE ORIGINAL",
     "footerTagline": "PROFESSIONAL ORIENTATION FOR ORIGINAL LIVES"
+  },
+  "todaysPractice": {
+    "title": "Today's Practice",
+    "subtitle": "Your personalized practice recommendation",
+    "goToNextMove": "Go to My Next Move",
+    "loading": "Finding your practice...",
+    "emptyState": "We don't have a specific match yet — browse the full library instead.",
+    "heroEyebrow": "Today's pick",
+    "alternatesTitle": "Also worth a look"
   }
 }
