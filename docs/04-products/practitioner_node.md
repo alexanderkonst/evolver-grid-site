@@ -18,6 +18,14 @@ The practitioner stops asserting that their work works. The node shows it: each 
 - Pricing frame: $555 setup + monthly per-seat — decided, see "Pricing decision (Day 130)" under the proposal below
 - Explicitly NOT in v1: admin UI for practice management, per-practice analytics, custom assessments
 
+## Category & shelf (Day 130)
+
+- Public category name: **Client Evolution Portal**. "Practitioner Node" stays internal.
+- Sell from the **client-evolution shelf**, not the software shelf.
+- Comparison set: the proof mechanisms practitioners use today (testimonials, before/after stories, outcome questionnaires) and body-evolution trackers (Whoop, Oura, Strava) as the mental anchor: "this, for inner transformation."
+- Slug: `/products/evolution-portal`.
+- Landing page exists: route `/products/evolution-portal` → `src/pages/EvolutionPortal.tsx` (public, registered in `App.tsx`); shelf card added on `/products` (card8).
+
 ## Business case (for Aleksandr)
 
 - Zero marginal build: the product is a bundle of already-shipped modules; margin is composition, not construction.

@@ -89,6 +89,8 @@ const CARDS: ProductCardDef[] = [
   { key: "card5", href: CALCOM_15MIN, external: true },
   { key: "card6", href: CALCOM_15MIN, external: true },
   { key: "card7", href: CALCOM_15MIN, external: true },
+  // Day 130: Client Evolution Portal (Practitioner Node).
+  { key: "card8", href: "/products/evolution-portal", external: false },
 ];
 
 const ProductCard = ({ def }: { def: ProductCardDef }) => {

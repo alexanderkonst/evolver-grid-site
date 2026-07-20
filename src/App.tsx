@@ -77,6 +77,7 @@ import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
 import FoundersShowcase from "./pages/FoundersShowcase";
 import IgniteSession from "./pages/IgniteSession";
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
+const EvolutionPortal = lazy(() => import("./pages/EvolutionPortal"));
 const BuildContainer = lazy(() => import("./pages/BuildContainer"));
 // Day 80 Wave 2.4 (Sasha 2026-05-22): standalone $37 Top Talent
 // Activation page — clean landing for the JOURNEY 1.5 sidequest row.
@@ -548,6 +549,8 @@ const App = () => (
                       here directly. Auth at the pricing step was redundant funnel friction. */}
                   <Route path="/ignite" element={<IgniteSession />} />
                   <Route path="/products" element={<ProductsPage />} />
+                  {/* Day 130: Client Evolution Portal (Practitioner Node) landing — public. */}
+                  <Route path="/products/evolution-portal" element={<EvolutionPortal />} />
                   <Route path="/products/built" element={<BuildContainer />} />
                   <Route path="/products/build" element={<Navigate to="/products/built" replace />} />
                   {/* Day 80 Wave 2.4 (Sasha 2026-05-22): $37 Top Talent

@@ -3139,6 +3139,7 @@
     "settingsTitle": "Settings",
     "settingsLabel": "settings",
     "identityRowAria": "Open Settings",
+    "profileAria": "Open profile",
     "themeToggleToLapisTitle": "Switch to Aurum's light sister, Lapis",
     "themeToggleToAurumTitle": "Switch to Aurum, the dark theme",
     "themeToggleToLightAria": "Switch to light theme",
@@ -7027,6 +7028,13 @@
       "line": "A venture studio that builds businesses from founders' uniqueness.",
       "body": "For founders whose next company should be built from who they are. We design the venture from your uniqueness first, then build it with you.",
       "cta": "Start a conversation"
+    },
+    "card8": {
+      "name": "Client Evolution Portal",
+      "badge": "For practitioners",
+      "line": "For practitioners: your clients, seeing their own evolution.",
+      "body": "Your own corner of the platform, in your colors. Your clients take a Quality of Life snapshot, practice with your library inside, and watch their own lines move.",
+      "cta": "See the portal"
     }
   },
   "thebuild": {
