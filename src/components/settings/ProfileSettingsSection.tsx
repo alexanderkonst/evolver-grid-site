@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { User, CreditCard, Check, Edit2, X, AlertTriangle, ArrowRight, Eye, Globe, Users, Lock } from "lucide-react";
+import { User, CreditCard, Check, Edit2, X, AlertTriangle, ArrowRight, Eye, Globe, Users, Lock, LogOut } from "lucide-react";
 // Day 53 night iter 4 (Sasha 2026-04-27): entitlement tier surfacing.
 // `SettingsTierBadge` (defined below) wraps `EntitlementBadge` to handle
 // the "no tier yet / tasting" case with a friendly placeholder rather
@@ -1117,6 +1117,36 @@ const ProfileSettingsSection = () => {
                             {t('profileSettings.deleteMyAccountButton')}
                         </Button>
                     </div>
+                </CardContent>
+            </Card>
+
+            {/* Day 128 (Sasha): Log Out relocated here from the rail's old
+                bottom SETTINGS group ("Settings should be just one button
+                at the very top — you shouldn't have a SETTINGS group in
+                the menu"). Sits below the Danger Zone but styled calmly
+                (not destructive-red) — logging out isn't destructive.
+                Logic reused verbatim from the retired SpacesRail row:
+                supabase.auth.signOut() + the same spacesRail.logoutToast*
+                i18n keys, then navigate("/"). */}
+            <Card>
+                <CardContent className="flex items-center justify-between pt-6">
+                    <div>
+                        <p className="font-medium text-foreground">{t('spacesRail.logOutTitle')}</p>
+                    </div>
+                    <Button
+                        variant="outline"
+                        onClick={async () => {
+                            await supabase.auth.signOut();
+                            toast({
+                                title: t('spacesRail.logoutToastTitle'),
+                                description: t('spacesRail.logoutToastDescription'),
+                            });
+                            navigate("/");
+                        }}
+                    >
+                        <LogOut className="h-4 w-4 mr-2" />
+                        {t('spacesRail.logOutLabel')}
+                    </Button>
                 </CardContent>
             </Card>
         </div>

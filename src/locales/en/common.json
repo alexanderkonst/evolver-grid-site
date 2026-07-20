@@ -3125,6 +3125,7 @@
     "chatLabel": "chat with us",
     "settingsTitle": "Settings",
     "settingsLabel": "settings",
+    "identityRowAria": "Open Settings",
     "themeToggleToLapisTitle": "Switch to Aurum's light sister, Lapis",
     "themeToggleToAurumTitle": "Switch to Aurum, the dark theme",
     "themeToggleToLightAria": "Switch to light theme",

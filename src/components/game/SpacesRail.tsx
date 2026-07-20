@@ -3,16 +3,12 @@ import { useTranslation } from "react-i18next";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
-    LogOut,
     LogIn,
     MessageCircle,
-    Moon,
-    Sun,
     UserRound,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "@/hooks/use-toast";
 import {
     Tooltip,
     TooltipContent,
@@ -298,8 +294,7 @@ const SpacesRail = ({
     const { t } = useTranslation();
     const location = useLocation();
     const navigate = useNavigate();
-    const { toast } = useToast();
-    const { skin, setSkin } = useSkin();
+    const { skin } = useSkin();
     const isNS = skin === "network-school";
     const isDao = skin === "daouniverse";
     const isPlanetir = skin === "planetir";
@@ -714,6 +709,126 @@ const SpacesRail = ({
                 }}
             />
 
+            {/* Day 128 (Sasha): identity row — single button
+                (avatar + name + gear) that replaces the old bottom
+                SETTINGS group entirely, plus a small separate
+                chat-bubble icon button reusing the exact "chat with
+                us" Telegram DM handler that used to live in the
+                utility footer. Sasha: "Settings should be just one
+                button at the very top — you shouldn't have a
+                SETTINGS group in the menu." Compact mode collapses to
+                just the avatar circle (still → /game/settings, via a
+                Radix tooltip) and hides the chat icon entirely. */}
+            <div className={compact ? "px-[6px] pb-2" : "px-3 pb-2"}>
+                <TooltipProvider delayDuration={150} skipDelayDuration={0}>
+                    <div className={cn("flex items-center", compact ? "flex-col gap-2" : "gap-1.5")}>
+                        {compact ? (
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <button
+                                        onClick={() => navigate("/game/settings")}
+                                        className="grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0 transition-all duration-300 text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30"
+                                        aria-label={t('spacesRail.identityRowAria')}
+                                    >
+                                        {userAvatarUrl ? (
+                                            <img src={userAvatarUrl} alt="" className="h-[22px] w-[22px] flex-shrink-0 rounded-full object-cover ring-1 ring-[#f4d472]/30" />
+                                        ) : (
+                                            <UserRound className="h-[22px] w-[22px] flex-shrink-0" aria-hidden="true" />
+                                        )}
+                                    </button>
+                                </TooltipTrigger>
+                                <TooltipContent
+                                    side="right"
+                                    align="center"
+                                    sideOffset={12}
+                                    className="max-w-[260px] rounded-xl border-none p-0 shadow-none bg-transparent animate-in fade-in-0 zoom-in-95"
+                                >
+                                    <div
+                                        className="liquid-glass-dark rounded-xl px-4 py-2.5"
+                                        style={{
+                                            backgroundImage:
+                                                "linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(18,28,56,0.88) 50%, rgba(10,22,40,0.92) 100%)",
+                                            border: "1px solid rgba(212, 175, 55, 0.35)",
+                                            boxShadow:
+                                                "0 0 0 1px rgba(212, 175, 55, 0.15), 0 8px 28px -8px rgba(10, 22, 40, 0.6), 0 0 24px -6px rgba(244, 212, 114, 0.25)",
+                                        }}
+                                    >
+                                        <p
+                                            className="text-[11px]"
+                                            style={{
+                                                fontFamily: "'Cormorant Garamond', serif",
+                                                fontWeight: 600,
+                                                letterSpacing: "0.22em",
+                                                textTransform: "uppercase",
+                                                color: "#f4d472",
+                                                textShadow: "0 0 10px rgba(244, 212, 114, 0.4)",
+                                            }}
+                                        >
+                                            {t('spacesRail.settingsLabel')}
+                                        </p>
+                                    </div>
+                                </TooltipContent>
+                            </Tooltip>
+                        ) : (
+                            <>
+                                <button
+                                    onClick={() => navigate("/game/settings")}
+                                    className="flex-1 min-w-0 flex items-center gap-2.5 px-3 py-2.5 rounded-2xl transition-all duration-300 text-white/70 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30"
+                                    aria-label={t('spacesRail.identityRowAria')}
+                                >
+                                    {userAvatarUrl ? (
+                                        <img src={userAvatarUrl} alt="" className="h-[26px] w-[26px] flex-shrink-0 rounded-full object-cover ring-1 ring-[#f4d472]/30" />
+                                    ) : (
+                                        <UserRound className="h-[26px] w-[26px] flex-shrink-0" aria-hidden="true" />
+                                    )}
+                                    {userName && (
+                                        <span
+                                            className={cn("hidden md:block truncate min-w-0 transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}
+                                            style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "0.85rem", letterSpacing: "0.04em" }}
+                                        >
+                                            {userName}
+                                        </span>
+                                    )}
+                                    <span className="flex-1 hidden md:block" />
+                                    <img
+                                        src={settingsIcon}
+                                        alt=""
+                                        aria-hidden="true"
+                                        draggable={false}
+                                        className={cn("hidden md:block flex-shrink-0 select-none object-contain transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}
+                                        style={{
+                                            width: 18,
+                                            height: 18,
+                                            filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
+                                            opacity: 0.75,
+                                        }}
+                                    />
+                                </button>
+                                <a
+                                    href="https://t.me/integralevolution"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="spaces-rail-chat-cta flex-shrink-0 grid place-items-center w-[40px] h-[40px] rounded-full transition-all duration-300 text-white/55 hover:bg-white/[0.04] hover:text-white/85"
+                                    title={t('spacesRail.chatTitle')}
+                                    aria-label={t('spacesRail.chatTitle')}
+                                >
+                                    <MessageCircle
+                                        className="flex-shrink-0"
+                                        style={{
+                                            width: 20,
+                                            height: 20,
+                                            opacity: 0.8,
+                                            filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
+                                        }}
+                                        aria-hidden="true"
+                                    />
+                                </a>
+                            </>
+                        )}
+                    </div>
+                </TooltipProvider>
+            </div>
+
             {/* Day 48 iter 8 (Sasha) — chip refinements:
                 • gap between chips bumped (gap-1 → gap-1.5) so the
                   active gold halo has room to breathe.
@@ -735,7 +850,7 @@ const SpacesRail = ({
                 delay. */}
             <ScrollArea className="flex-1">
               <TooltipProvider delayDuration={150} skipDelayDuration={0}>
-                <nav className={compact ? "flex flex-col gap-[8px] p-[8px]" : "flex flex-col gap-1.5 px-3 pt-2 pb-3"}>
+                <nav className={compact ? "flex flex-col gap-[8px] p-[8px]" : "flex flex-col gap-2.5 px-3 pt-5 pb-3"}>
                 {!compact && (
                     <div className={cn("px-3 pb-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/35 transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}>Spaces</div>
                 )}
@@ -760,7 +875,7 @@ const SpacesRail = ({
                                 "transition-all duration-300 relative group",
                                 compact
                                     ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
-                                    : "flex items-center gap-3 px-3 py-2.5 rounded-2xl justify-center md:justify-start",
+                                    : "flex items-center gap-3 px-3 py-3.5 rounded-2xl justify-center md:justify-start",
                                 // Day 119 (Sasha 2026-07-09): during the 200ms
                                 // collapse fade (width already narrowing, layout
                                 // still row) clip the fading label instead of
@@ -977,226 +1092,22 @@ const SpacesRail = ({
                             "linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.22) 50%, transparent 100%)",
                     }}
                 />
-                {/* Day 58+ (Sasha 2026-05-03 → 2026-05-04): SoundCloud
-                    playlist — `findyourtoptalent.com`. Sits ABOVE
-                    "chat with us" in the utility row when visible.
-                    Custom in-register player: gold play/pause +
-                    Cormorant title + skip + tiny SC attribution mark.
-                    The audio engine lives in SoundCloudPlayerProvider
-                    at App root (not in this component) so playback
-                    persists across navigation; this component is a
-                    thin context consumer.
-                    Visibility rules (handled inside the component):
-                      • Hidden entirely on non-shell routes (landing /
-                        ignite / zone-of-genius funnel / auth) — no
-                        stuck-loading state on sales pages, honors the
-                        "no music on sales pages" rule visually.
-                      • On shell mobile (<md), only the play button
-                        renders centered in the 72px icon column;
-                        title / skip / attribution glyph are hidden. */}
-                {!compact && (
-                    <div className={cn("px-3 pt-1 pb-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/35 transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}>Music</div>
-                )}
-                <SoundCloudMinimalPlayer compact={compact} />
-
-                {!compact && (
-                    <div className={cn("px-3 pt-4 pb-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/35 transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}>Settings</div>
-                )}
-
-                {isAuthed && userName && (
-                    <button
-                        onClick={() => navigate("/game/me/profile")}
-                        className={cn(
-                            "transition-all duration-300",
-                            compact
-                                ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
-                                : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start",
-                            location.pathname === "/game/me/profile"
-                                ? "bg-white/[0.08] text-white/90"
-                                : "text-white/55 hover:bg-white/[0.04] hover:text-white/85 hover:translate-y-[-1px] active:translate-y-0"
-                        )}
-                        title={userName}
-                    >
-                        {userAvatarUrl ? (
-                            <img src={userAvatarUrl} alt="" className="h-[22px] w-[22px] flex-shrink-0 rounded-full object-cover ring-1 ring-[#f4d472]/30" />
-                        ) : (
-                            <UserRound className="h-[22px] w-[22px] flex-shrink-0" aria-hidden="true" />
-                        )}
-                        {!compact && (
-                            <span
-                                className={cn("hidden md:block truncate transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}
-                                style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "0.82rem", letterSpacing: "0.04em" }}
-                            >
-                                {userName}
-                            </span>
-                        )}
-                    </button>
-                )}
-
-                {/* Day 51 (Sasha 2026-04-25): Request Guidance — direct
-                    Telegram DM to Aleksandr. Zero backend, zero widget.
-                    Aligned with Holonic Commons: open access, no SaaS.
-                    Slightly warmer opacity (white/55) than Settings to
-                    invite contact while staying within utility row. */}
-                <a
-                    href="https://t.me/integralevolution"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cn(
-                        "spaces-rail-chat-cta transition-all duration-300",
-                        compact
-                            ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
-                            : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start",
-                        "text-white/55 hover:bg-white/[0.04] hover:text-white/85 hover:translate-y-[-1px] active:translate-y-0"
-                    )}
-                    title={t('spacesRail.chatTitle')}
-                >
-                    <MessageCircle
-                        className="flex-shrink-0"
-                        style={{
-                            width: compact ? 20 : 22,
-                            height: compact ? 20 : 22,
-                            opacity: 0.8,
-                            filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
-                        }}
-                        aria-hidden="true"
-                    />
-                    {!compact && (
-                        <span
-                            className={cn(
-                                "hidden md:block truncate transition-opacity duration-150",
-                                labelsVisible ? "opacity-100" : "opacity-0"
-                            )}
-                            style={{
-                                fontFamily: "'Cormorant Garamond', serif",
-                                fontWeight: 600,
-                                fontSize: "0.82rem",
-                                letterSpacing: "0.06em",
-                                textTransform: "lowercase",
-                            }}
-                        >
-                            {t('spacesRail.chatLabel')}
-                        </span>
-                    )}
-                </a>
-                {/* Day 48 iter 9 (Sasha): Settings chip upgraded to match
-                    the chip register — rounded-2xl, Cormorant Garamond
-                    uppercase tracked. Kept dimmer (white/45) so the
-                    "utility ↓ / spaces ↑" hierarchy still reads
-                    through weight, not through visual-family mismatch. */}
-                <button
-                    onClick={() => navigate("/game/settings")}
-                    className={cn(
-                        "transition-all duration-300",
-                        compact
-                            ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
-                            : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start",
-                        "text-white/45 hover:bg-white/[0.04] hover:text-white/80 hover:translate-y-[-1px] active:translate-y-0"
-                    )}
-                    title={t('spacesRail.settingsTitle')}
-                >
-                    {/* Day 48 iter 10 (Sasha): custom gold settings
-                        mark in place of the lucide gear. Static — no
-                        rotation per Sasha's explicit note. */}
-                    <img
-                        src={settingsIcon}
-                        alt=""
-                        aria-hidden="true"
-                        draggable={false}
-                        className="flex-shrink-0 select-none object-contain"
-                        style={{
-                            width: compact ? 20 : 22,
-                            height: compact ? 20 : 22,
-                            filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
-                            opacity: 0.75,
-                        }}
-                    />
-                    {!compact && (
-                        <span
-                            className={cn(
-                                "hidden md:block truncate transition-opacity duration-150",
-                                labelsVisible ? "opacity-100" : "opacity-0"
-                            )}
-                            style={{
-                                fontFamily: "'Cormorant Garamond', serif",
-                                fontWeight: 600,
-                                fontSize: "0.82rem",
-                                letterSpacing: "0.06em",
-                                textTransform: "lowercase",
-                            }}
-                        >
-                            {t('spacesRail.settingsLabel')}
-                        </span>
-                    )}
-                </button>
-                {/* Day 91 (Sasha 2026-06-09): Lapis/Aurum theme toggle.
-                    Rendered ONLY on the two first-class themes — the
-                    white-label demo scopes (ns/dao/planetir/techstars/
-                    karime) own their look and must not expose a theme
-                    switch. Visible to guests too: the theme is a device
-                    preference, not an account setting. Persists via
-                    setSkin (localStorage); full names + swatches live in
-                    Settings → Appearance. */}
-                {(skin === "lapis" || skin === "aurum") && (
-                    <button
-                        onClick={() => setSkin(skin === "aurum" ? "lapis" : "aurum")}
-                        className={cn(
-                            "transition-all duration-300",
-                            compact
-                                ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
-                                : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start",
-                            "text-white/45 hover:bg-white/[0.04] hover:text-white/80 hover:translate-y-[-1px] active:translate-y-0"
-                        )}
-                        title={skin === "aurum" ? t('spacesRail.themeToggleToLapisTitle') : t('spacesRail.themeToggleToAurumTitle')}
-                        aria-label={skin === "aurum" ? t('spacesRail.themeToggleToLightAria') : t('spacesRail.themeToggleToDarkAria')}
-                    >
-                        {skin === "aurum" ? (
-                            <Sun
-                                className="flex-shrink-0"
-                                aria-hidden="true"
-                                style={{
-                                    width: compact ? 20 : 22,
-                                    height: compact ? 20 : 22,
-                                    filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
-                                    opacity: 0.75,
-                                }}
-                            />
-                        ) : (
-                            <Moon
-                                className="flex-shrink-0"
-                                aria-hidden="true"
-                                style={{
-                                    width: compact ? 20 : 22,
-                                    height: compact ? 20 : 22,
-                                    filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
-                                    opacity: 0.75,
-                                }}
-                            />
-                        )}
-                        {!compact && (
-                            <span
-                                className={cn(
-                                    "hidden md:block truncate transition-opacity duration-150",
-                                    labelsVisible ? "opacity-100" : "opacity-0"
-                                )}
-                                style={{
-                                    fontFamily: "'Cormorant Garamond', serif",
-                                    fontWeight: 600,
-                                    fontSize: "0.82rem",
-                                    letterSpacing: "0.06em",
-                                    textTransform: "lowercase",
-                                }}
-                            >
-                                {skin === "aurum" ? t('spacesRail.lightTheme') : t('spacesRail.darkTheme')}
-                            </span>
-                        )}
-                    </button>
-                )}
+                {/* Day 128 (Sasha): the old bottom SETTINGS group (avatar
+                    row → /game/me/profile, "chat with us", the settings
+                    row, the dark-theme toggle, and the Log Out row) is
+                    retired from the rail. Avatar + name + gear now live
+                    in the single identity row under the logo (top of the
+                    rail); chat is the small icon button next to it; dark
+                    theme lives in Settings → Appearance (unchanged); Log
+                    Out moved to the bottom of Settings → Profile
+                    (ProfileSettingsSection). Log In (guests) is the only
+                    surviving item here — it's useful navigation, not a
+                    settings action. Rendered ABOVE Music so the player
+                    stays the true bottom-pinned element. */}
                 {(() => {
                     // Hide Log In on pages that are part of the unauthenticated
                     // funnel (landing + ZoG reveal + playbook + path + settings)
-                    // so visitors don't get pulled out of the flow. Log Out
-                    // stays visible everywhere for authenticated users.
+                    // so visitors don't get pulled out of the flow.
                     // Day 48 (Sasha): /game/settings added — guests can tour
                     // Appearance without a Log In nag.
                     const isLandingPage =
@@ -1212,56 +1123,8 @@ const SpacesRail = ({
                         return <div className="h-[32px]" aria-hidden="true" />;
                     }
                     if (isAuthed) {
-                        return (
-                            <button
-                                onClick={async () => {
-                                    await supabase.auth.signOut();
-                                    toast({
-                                        title: t('spacesRail.logoutToastTitle'),
-                                        description: t('spacesRail.logoutToastDescription'),
-                                    });
-                                    navigate("/");
-                                }}
-                                className={cn(
-                                    // V4 (Sasha 2026-05-19): standardize Log Out to match
-                                    // the chat-with-us / settings chip shape — same padding,
-                                    // radius, hover register, icon scale. Previous styling
-                                    // ("py-2 rounded-xl, red hover, w-4 icon") read as a
-                                    // foreign element in the utility row. Now matches the
-                                    // family. Pink → uniform light-gray hover for all rail
-                                    // items.
-                                    "transition-all duration-300",
-                                    compact
-                                        ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
-                                        : "flex items-center gap-3 px-3 py-2.5 rounded-2xl w-full justify-center md:justify-start",
-                                    "text-white/45 hover:bg-white/[0.04] hover:text-white/80 hover:translate-y-[-1px] active:translate-y-0"
-                                )}
-                                title={t('spacesRail.logOutTitle')}
-                            >
-                                <LogOut
-                                    className="flex-shrink-0"
-                                    style={{ width: compact ? 20 : 22, height: compact ? 20 : 22, opacity: 0.8 }}
-                                    aria-hidden="true"
-                                />
-                                {!compact && (
-                                    <span
-                                        className={cn(
-                                            "hidden md:block truncate transition-opacity duration-150",
-                                            labelsVisible ? "opacity-100" : "opacity-0"
-                                        )}
-                                        style={{
-                                            fontFamily: "'Cormorant Garamond', serif",
-                                            fontWeight: 600,
-                                            fontSize: "0.82rem",
-                                            letterSpacing: "0.06em",
-                                            textTransform: "lowercase",
-                                        }}
-                                    >
-                                        {t('spacesRail.logOutLabel')}
-                                    </span>
-                                )}
-                            </button>
-                        );
+                        // Log Out lives in Settings → Profile now.
+                        return null;
                     }
                     // Unauthenticated + on landing → hide entirely (don't divert from the funnel).
                     if (isLandingPage) {
@@ -1287,6 +1150,28 @@ const SpacesRail = ({
                         </button>
                     );
                 })()}
+
+                {/* Day 58+ (Sasha 2026-05-03 → 2026-05-04): SoundCloud
+                    playlist — `findyourtoptalent.com`. Pinned as the
+                    LAST item in the rail (Sasha, Day 128: "Music should
+                    be at the very bottom"). Custom in-register player:
+                    gold play/pause + Cormorant title + skip + tiny SC
+                    attribution mark. The audio engine lives in
+                    SoundCloudPlayerProvider at App root (not in this
+                    component) so playback persists across navigation;
+                    this component is a thin context consumer.
+                    Visibility rules (handled inside the component):
+                      • Hidden entirely on non-shell routes (landing /
+                        ignite / zone-of-genius funnel / auth) — no
+                        stuck-loading state on sales pages, honors the
+                        "no music on sales pages" rule visually.
+                      • On shell mobile (<md), only the play button
+                        renders centered in the 72px icon column;
+                        title / skip / attribution glyph are hidden. */}
+                {!compact && (
+                    <div className={cn("px-3 pt-1 pb-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/35 transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}>Music</div>
+                )}
+                <SoundCloudMinimalPlayer compact={compact} />
             </div>
         </div>
     );
