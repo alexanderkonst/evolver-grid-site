@@ -463,6 +463,10 @@ During downstream artifact production (Myth, Tribe, Pain, Promise, etc.), the sy
 
 3. **When in doubt, cite the source version.** Every downstream artifact should name which exact version (e.g., "Derived from Uniqueness v1.0, 9.9/10") it was built from. This creates traceability and prevents silent re-distillation.
 
+### The Timestamp Requirement (v1.0, July 20, 2026)
+
+Every articulation, score, body-score, artifact version, and prediction produced by this playbook must carry an explicit date at the moment of recording. Reason: the method's central claim — articulation precision predicts professional and commercial outcomes — becomes provable only through ex-ante timestamped reads matched to later outcomes. Every practitioner running this playbook is building the dataset that proves the paradigm. Date your reads. An undated score is a lost data point.
+
 **Why this matters:** The founder's body-score is the ground truth. When AI re-distills a scored artifact, it makes editorial decisions about what's "important" — often stripping the exact energies that made the founder score it high. In Karime's case, the Return (bringing people home to the heart), Attuned Presence, and Mothering energies were stripped from the canvas distillation, causing all downstream artifacts to miss the heart of her work. Three energies lost → entire canvas at 5/10.
 
 ---
@@ -1128,6 +1132,18 @@ A myth is a living organism. It needs:
 | **Water** (the call) | What the believer does next | *What action does the myth demand?* |
 
 > A seed without soil is a nice thought. A seed without sunlight grows in the dark. A seed without water dies waiting. The myth needs all four.
+
+### Tribe Selection Optimization: the Five Practical Tests (v1.0, July 20, 2026)
+
+Among segments that resonate with the myth, prioritize the beachhead by five tests drawn from live campaign data (July 2026):
+
+1. **They pay:** your value converts into their income within weeks, so buying is an investment decision, not a lifestyle purchase.
+2. **Double indictment:** the myth/axiom indicts them both personally and professionally (example: practitioners — their own ceiling is unnamed AND their craft is raising other people's ceilings; the cobbler's-shoes recognition carries the strongest charge available).
+3. **Lateral referrals:** members of the segment know and refer each other, so one client becomes three.
+4. **Gathered reachability:** they cluster in reachable rooms — communities, searchable keywords, self-declared badges.
+5. **Medium trust:** they already buy transformation in your medium and price range.
+
+Magnetism without payment is an audience, not a beachhead. Payment without referrals is a treadmill. The optimal beachhead scores on all five.
 
 ### The 3-Layer Depth Model
 

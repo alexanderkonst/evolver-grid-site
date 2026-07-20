@@ -33,6 +33,8 @@
 
 Each campaign below is fully self-contained: verbatim copy, search query, tracking table. Copy-paste and go.
 
+**Source-of-truth law (July 20, 2026):** this file is the single source of truth for all campaign copy and search strings. Every change to copy or queries is added as a new dated version block; prior versions stay as genealogy. No campaign copy lives anywhere else.
+
 ### 3.1 Warm-150 (personal email)
 
 - **Audience source:** existing list of ~150 past clients/signups (Gmail contacts / CRM export).
@@ -119,6 +121,14 @@ Each campaign below is fully self-contained: verbatim copy, search query, tracki
 - **Google X-ray variant:** `site:linkedin.com/in coach ("in transition" OR "reinventing" OR "figuring out")`.
 - **1st-degree lane:** same keywords with Connections = 1st, no invite budget spent.
 - **Quota:** 25 invites (equal-N).
+
+**Search query v2 (July 20, 2026 — coaches promoted to campaign #1 by the tribe verdict: they pay, they're doubly indicted by the law, they refer laterally):**
+- Primary: `coach AND ("in transition" OR "reinventing" OR "next chapter" OR "pivoting")` — US, 2nd-degree first.
+- Secondary (revenue-symptom is invisible to search; select on profile signals): browse `"executive coach" OR "leadership coach" OR "transformational coach"`, US; select for weak-positioning signals: generic headline, no named offer, boilerplate About.
+- Adjacent practitioners: `(facilitator OR healer OR "somatic" OR "breathwork") AND coach`.
+- Watering holes: recent posts about coaching-business struggle; invite commenters carrying coach titles, referencing the post.
+
+v1 query above preserved as genealogy.
 - **Register:** not-another-coach. Education/conviction happens inside the session via playbooks, not in the DM.
 
 **Message 1 — invite note (verbatim):**
@@ -244,6 +254,9 @@ No follow-up 1/2 (single post, not a DM thread). Engage with comments in each sw
 
 **Message 1 — verbatim (Russian, to the teen):**
 > Привет! Нашёл тебя в группе [лицей 239]. Я провожу сессии профессионального самоопределения: за час находим, что у тебя получается лучше всего, и собираем из этого стратегию: куда поступать и почему именно туда. Про меня: 41 год, закончил MIT, много лет в бизнесе и технологиях. Это платно и обычно оказывается самым полезным разговором за год. Обсуди с родителями, если интересно, расскажу, как проходит. Если нет, всё ок :)
+
+**Message 1 — v2 (July 20, 2026, axiom hook; v1 above preserved as genealogy):**
+> Привет! Нашёл тебя в группе [лицей 239]. Я закончил MIT, много лет строил технологические проекты, а сейчас помогаю старшеклассникам с тем, чего не даёт школа: точными словами о том, что у тебя получается лучше других. Пока все выбирают вуз по баллам, сильные выбирают по себе: будущая карьера ограничена не ЕГЭ, а тем, насколько точно ты понимаешь себя. За час мы это формулируем: твоя сильная сторона, направление и как использовать это при выборе вуза. Сессия платная, 5000 ₽. Обсуди с родителями, если откликается. Если нет, всё ок :)
 
 **Message 2 — verbatim (Russian, to the teen, after "yes"/interest):**
 > Отлично! Вот страница с описанием сессии: [/you]. Можешь скинуть её родителям вместе с моим номером — если у них появятся вопросы, пусть пишут мне в чат, я отвечу. Звонки не нужны, всё решаем перепиской.

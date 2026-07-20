@@ -7330,3 +7330,18 @@ A venture is what happens when a communion incorporates: the third being gets a 
 **Relationship to other domains:** Domain 98 (one invariant, many projections), Domain 90 (depth sequencing), Domain 103 (the corridor), Domain 111 (edge-carried alignment is what holds the layers together without a center).
 
 **Cross-reference:** Universal Ontology §13. (Day 125, July 15, 2026.)
+
+---
+
+## Domain 114: The Holonic Wants→Products Matrix (Day 130, July 20, 2026)
+
+**The law in one sentence: each holonic layer has its own dominant want, and it may only be sold its own want, in its own language — while one invariant serves all four.**
+
+| Layer | Dominant want (harvested, not invented) | Product ladder |
+|---|---|---|
+| **Person** | A clear next direction, and income from being themselves | Direction Call (free) → $37 profile → $555 Productize Yourself → $1,111 BUILT |
+| **Business** (matured unique business) | Compounding growth without self-betrayal | Advisory edge (rev-share) → studio membership → navigation instruments (Cockpit, Equilibrium) |
+| **Ecosystem** (community / org leader) | A generative room, not a directory | Hosted workshop (free) → collaboration intros → onboarding/matching module subscription |
+| **Civilization / capital** | Aligned deployment into the new paradigm | Originals Index → thesis → funded edges / carry → the timestamped articulation dataset |
+
+Selling across layers fails predictably: a person offered the civilization story hears a cult; a community leader offered a personal session hears irrelevance; capital offered inspiration hears no instrument. The fractal purchase law governs every row (free taste → paid step → infrastructure), and Domain 113 guarantees whoever enters at any row is interacting with the whole. Wants are read from harvested language in the field, never invented at the desk.
