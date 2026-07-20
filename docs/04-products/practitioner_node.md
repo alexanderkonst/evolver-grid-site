@@ -53,7 +53,21 @@ The practitioner stops asserting that their work works. The node shows it: each 
 
 Practitioner owns their practice content and client relationships; platform owns engine and infrastructure; rev-share percentages fixed in writing at entry; either side can exit, practitioner takes their content and client list.
 
-## The Karime Proposal (v1, ready to send — Day 130)
+## The Karime Proposal (v2, layered frame — Day 130 evening)
+
+---
+Karime, here is what I want to build with you.
+Your clients take a Quality of Life snapshot when they start with you. Eight areas of life, one honest self-assessment. You both see where the bottlenecks are. That is what real life coaching starts with, and your clients will feel the structure behind it.
+They retake it as they go and literally watch themselves evolve. Almost nobody in this field measures progress. You will.
+Inside, they get your practices: your meditations, your recordings, your links. All in your colors, your brand.
+And we exchange clients. When someone needs work that is not yours, you send them my way and earn 33% of everything they buy where I facilitate. I send people your way too. Nobody counts 50/50. Everybody wins in every configuration. Your digital products sold through the portal stay 90% yours.
+Your client base gets treated with care: at most one email a month from me, always an invitation. You see everything they buy.
+Setup: $555, branded fully to you. Then one dollar per active client per month. Ten clients, ten dollars.
+To start I need one voicenote: your list of meditations and resources, one line each on what it is and what it changes.
+Want it?
+---
+
+## The Karime Proposal (v1, superseded — genealogy)
 
 ---
 Karime, here is what I want to build for you.
@@ -66,8 +80,20 @@ To start I need one voicenote: your list of meditations and resources, one line 
 Want it?
 ---
 
-### Pricing decision (Day 130)
+### Pricing decision (Day 130 evening — supersedes the daytime note below)
+
+**$1 per active client per month, no minimum.** Psychological irresistibility: "ten clients, ten dollars." Setup stays $555, including full branding. This replaces the $5/active-seat model below.
+
+### Pricing decision (Day 130, superseded — genealogy)
 
 Per-seat model chosen: **$5 per ACTIVE seat per month** (active = logged in that month), minimum $25/mo. Rationale: she never pays for dormant clients, the price is invisible next to client value, and it scales with her practice. Anchor: the Oyi community node sits one tier above at $75/mo flat.
 
-This is the decision the earlier "monthly TBD" line in the spec section above points to.
+This is the decision the earlier "monthly TBD" line in the spec section above points to. *Superseded same-day evening by the $1/active-client model above.*
+
+## Open architecture question (Day 130)
+
+Scope of what the practitioner's clients receive: likely the GROW space only (library + QoL + recommendations + profile), NOT the whole platform; possibly its own sub-brand under the YOU umbrella (working names floated: "YOU grow" / "YOU transform").
+
+Client comms covenant: max one platform email per month to portal-originated users, always an invitation; the practitioner sees all purchases.
+
+Decision pending first instance.

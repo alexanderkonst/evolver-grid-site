@@ -551,6 +551,7 @@ const App = () => (
                   <Route path="/products" element={<ProductsPage />} />
                   {/* Day 130: Client Evolution Portal (Practitioner Node) landing — public. */}
                   <Route path="/products/evolution-portal" element={<EvolutionPortal />} />
+                  <Route path="/product/evolution-portal" element={<Navigate to="/products/evolution-portal" replace />} />
                   <Route path="/products/built" element={<BuildContainer />} />
                   <Route path="/products/build" element={<Navigate to="/products/built" replace />} />
                   {/* Day 80 Wave 2.4 (Sasha 2026-05-22): $37 Top Talent
