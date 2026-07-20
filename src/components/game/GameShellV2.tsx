@@ -805,7 +805,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         try {
             const { data } = await supabase
                 .from("game_profiles")
-                .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at, level, xp_total, current_streak_days, soul_colors")
+                .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at, level, xp_total, current_streak_days")
                 .eq("id", profileId)
                 .maybeSingle();
             setProfile(data || null);
