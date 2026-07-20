@@ -330,6 +330,8 @@ The axiom (Myth v4.0, `alexanders_unique_business.md` §1): **EN "Your career is
 
 ## 8. How to report to Claude (the clerk protocol)
 
+**Timestamp law (Day 130, July 20, 2026 — binding on every AI agent working this project):** every articulation-depth read, precision/body-score, segment re-score, Originals Index entry, and prediction gets an explicit date attached at the moment of recording. Never write a score or a read without its date. Reason: the investment thesis (articulation depth predicts compounding) becomes provable only through ex-ante timestamped reads matched to later outcomes; an undated score is a lost data point. Session SOP addition: every session ends with one articulation-depth score for the business touched, dated, recorded in the CRM row.
+
 Sasha reports once a day, or ad hoc, in chat. Minimum viable fields per touch:
 
 1. LinkedIn profile URL (or name + company).
