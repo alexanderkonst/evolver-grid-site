@@ -285,6 +285,56 @@ export type Database = {
           },
         ]
       }
+      communities: {
+        Row: {
+          created_at: string | null
+          id: string
+          name: string
+          slug: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          name: string
+          slug: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          name?: string
+          slug?: string
+        }
+        Relationships: []
+      }
+      community_members: {
+        Row: {
+          community_id: string
+          created_at: string | null
+          id: string
+          user_id: string
+        }
+        Insert: {
+          community_id: string
+          created_at?: string | null
+          id?: string
+          user_id: string
+        }
+        Update: {
+          community_id?: string
+          created_at?: string | null
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "community_members_community_id_fkey"
+            columns: ["community_id"]
+            isOneToOne: false
+            referencedRelation: "communities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       email_send_log: {
         Row: {
           created_at: string
@@ -946,6 +996,7 @@ export type Database = {
           personality_tests: Json | null
           playbook_visited_at: string | null
           practice_count: number
+          profile_visibility: string
           pulse_email_opt_out: boolean
           qol_priorities: Json | null
           qol_priority_order: Json | null
@@ -959,6 +1010,7 @@ export type Database = {
           user_id: string | null
           username: string | null
           visibility: string | null
+          visible_community_ids: string[]
           xp_body: number
           xp_emotions: number
           xp_mind: number
@@ -1018,6 +1070,7 @@ export type Database = {
           personality_tests?: Json | null
           playbook_visited_at?: string | null
           practice_count?: number
+          profile_visibility?: string
           pulse_email_opt_out?: boolean
           qol_priorities?: Json | null
           qol_priority_order?: Json | null
@@ -1031,6 +1084,7 @@ export type Database = {
           user_id?: string | null
           username?: string | null
           visibility?: string | null
+          visible_community_ids?: string[]
           xp_body?: number
           xp_emotions?: number
           xp_mind?: number
@@ -1090,6 +1144,7 @@ export type Database = {
           personality_tests?: Json | null
           playbook_visited_at?: string | null
           practice_count?: number
+          profile_visibility?: string
           pulse_email_opt_out?: boolean
           qol_priorities?: Json | null
           qol_priority_order?: Json | null
@@ -1103,6 +1158,7 @@ export type Database = {
           user_id?: string | null
           username?: string | null
           visibility?: string | null
+          visible_community_ids?: string[]
           xp_body?: number
           xp_emotions?: number
           xp_mind?: number
