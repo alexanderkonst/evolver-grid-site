@@ -14,7 +14,8 @@ The practitioner stops asserting that their work works. The node shows it: each 
 - QoL assessment, repeatable, with longitudinal history (existing qol_snapshots)
 - Transformational Library preloaded with the practitioner's own practices (existing libraryContent model; ingestion = practitioner sends a list: link + 1 line on what it is + what it changes; voicenote accepted)
 - QoL-driven practice recommendation engine (shipped Day 127: Recommended-for-you + Today's Practice)
-- Rev-share edges (Domain 111, terms-first per Domain 110): practitioner keeps 90% on their digital products sold through their node; earns 33% on Aleksandr-facilitated products their people buy
+- Rev-share edges (Domain 111, terms-first per Domain 110): practitioner keeps 90% on their digital products sold through their node; earns 33% on Aleksandr-facilitated products their people buy — **[SUPERSEDED, see corrected line below]**
+- Rev-share (corrected Day 130 evening): practitioner receives 90% on platform digital products bought by her portal clients (we keep 10%) and 33% on facilitated containers; the portal's single internal doorway is the free top-talent discovery funnel.
 - Pricing frame: $555 setup + monthly per-seat — decided, see "Pricing decision (Day 130)" under the proposal below
 - Explicitly NOT in v1: admin UI for practice management, per-practice analytics, custom assessments
 

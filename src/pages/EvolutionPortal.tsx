@@ -94,9 +94,10 @@ const HOW_IT_WORKS = [
 
 const WHATS_INSIDE = [
   "Your own portal, branded fully to you: your colors, your logo, your fonts.",
-  "A living evolution graph for every client.",
+  "Every client's Quality of Life history, snapshot after snapshot: evolution they can see.",
   "The Transformation Library with your practices loaded.",
-  "Personal practice recommendations, driven by each client's own numbers.",
+  "Personal practice recommendations, drawn from each client's own numbers.",
+  "A free self-knowledge layer where they articulate their top talent and build a profile they can use anywhere.",
 ];
 
 const EvolutionPortal = () => {
@@ -144,14 +145,15 @@ const EvolutionPortal = () => {
           {/* THE INTAKE OF A SERIOUS PRACTICE */}
           <section className="rounded-2xl overflow-hidden" style={parchmentCard}>
             <div className="p-6 md:p-8 space-y-3">
-              <p style={sectionEyebrow}>The intake of a serious practice</p>
+              <p style={sectionEyebrow}>Clarity from day one</p>
               <p style={{ ...sourceSerifBody, fontSize: "15.5px" }}>
-                Real life coaching starts with finding the bottlenecks. The
-                Quality of Life snapshot does exactly that: eight domains of
-                life, one honest self-assessment, a clear picture of where the
-                work is. Your client feels the structure behind your process
-                from day one. The energy of the whole engagement changes: this
-                is someone who means business.
+                Real life coaching starts with seeing where life actually is.
+                The Quality of Life snapshot does exactly that: eight domains
+                of life, one honest self-assessment, a clear picture of where
+                the work wants to go. Your client feels the care and the
+                structure behind your process from the first session. And it
+                calls in the ones who are ready: grounded people, open to
+                change, carrying their own quiet fire.
               </p>
             </div>
           </section>
@@ -159,15 +161,15 @@ const EvolutionPortal = () => {
           {/* MEASURED, NOT GUESSED */}
           <section className="rounded-2xl overflow-hidden" style={parchmentCard}>
             <div className="p-6 md:p-8 space-y-3">
-              <p style={sectionEyebrow}>Measured, not guessed</p>
+              <p style={sectionEyebrow}>The hidden secret of the industry</p>
               <p style={{ ...sourceSerifBody, fontSize: "15.5px" }}>
                 Almost nobody in this field measures progress. So the decision
-                to continue rides on a feeling, and the practitioner quietly
-                drifts toward keeping clients comfortable. Comfort is
-                counterproductive to transformation. When progress is
-                measured, a different kind of client appears: people who are
-                in it for real, who value their time, who keep investing
-                because the work keeps working.
+                to continue rides on a feeling, and the work quietly bends
+                toward keeping clients comfortable. Comfort is not
+                transformation. When progress is measured, a different kind
+                of client stays with you: people who are in it for real, who
+                honor their time, who keep investing because they can see the
+                work working.
               </p>
             </div>
           </section>
@@ -205,7 +207,7 @@ const EvolutionPortal = () => {
           {/* WHAT'S INSIDE */}
           <section className="space-y-5">
             <p className="text-center" style={sectionEyebrow}>
-              What&apos;s inside
+              What your clients receive
             </p>
             <div className="rounded-2xl overflow-hidden" style={parchmentCard}>
               <div className="p-6 md:p-8 space-y-3">
@@ -229,15 +231,13 @@ const EvolutionPortal = () => {
           {/* A TWO-WAY PARTNERSHIP */}
           <section className="rounded-2xl overflow-hidden" style={parchmentCard}>
             <div className="p-6 md:p-8 space-y-3">
-              <p style={sectionEyebrow}>A two-way partnership</p>
+              <p style={sectionEyebrow}>Revenue share</p>
               <p style={{ ...sourceSerifBody, fontSize: "15.5px" }}>
-                Some things your clients need are not your work. Send them our
-                way and earn 33% of everything they buy where we facilitate.
-                We send people your way too. Nobody keeps an anxious 50/50
-                score: every configuration wins. In front of your clients you
-                remain what you are, the one who knows what is good for them.
-                And your digital products sold through your portal stay 90%
-                yours.
+                Inside the portal your clients find one quiet doorway: an
+                invitation to discover their top talent, free. If they choose
+                to go further, the revenue share is simple: 90% of digital
+                products they buy is yours, and 33% of the containers we
+                facilitate is yours. We do the work. You share the fruit.
               </p>
               <p
                 style={{
@@ -246,9 +246,14 @@ const EvolutionPortal = () => {
                   opacity: 0.85,
                 }}
               >
-                Your client base is treated with care: at most one email from
-                us per month, always an invitation, never a push. You see
-                everything they buy.
+                Your clients remain your clients. From our side: one
+                invitation a month at most, nothing pushy, and you always see
+                what they buy.
+              </p>
+              <p style={{ ...sourceSerifBody, fontSize: "15.5px" }}>
+                And it flows both ways. When our people need what you do, we
+                send them to you. Nobody keeps score. Every configuration
+                wins.
               </p>
             </div>
           </section>
@@ -261,9 +266,9 @@ const EvolutionPortal = () => {
               style={{ ...sourceSerifBody, fontSize: "15.5px" }}
             >
               Setup: $555, including branding the portal to your identity.
-              Then one dollar per active client per month. A full practice
-              costs you about ten dollars a month. It never becomes a burden.
-              It just keeps proving your work.
+              Then one dollar per active client per month. Ten clients, ten
+              dollars. It never becomes a burden. It just keeps showing your
+              work working.
             </p>
           </section>
 
