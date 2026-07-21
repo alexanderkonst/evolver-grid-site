@@ -102,6 +102,42 @@ const WHATS_INSIDE = [
   "A free self-knowledge layer where they articulate their top talent and build a profile they can use anywhere.",
 ];
 
+/**
+ * Mini portal chrome for the preview mocks: a slim deep-navy rail strip
+ * with stacked decorative glyph dots, evoking the real member-portal
+ * rail (logo + space glyphs) at screenshot scale. Purely decorative.
+ */
+const MiniPortalRail = () => (
+  <div
+    className="flex-shrink-0 self-stretch flex flex-col items-center gap-3 pt-5"
+    style={{ width: "48px", background: "#1e2a52" }}
+  >
+    <span
+      className="rounded-full"
+      style={{
+        width: "12px",
+        height: "12px",
+        border: "1px solid rgba(212, 175, 55, 0.7)",
+        opacity: 0.75,
+      }}
+    />
+    {Array.from({ length: 4 }).map((_, i) => (
+      <span
+        key={i}
+        style={{
+          width: "8px",
+          height: "8px",
+          transform: "rotate(45deg)",
+          background:
+            i === 0 ? "rgba(212, 175, 55, 0.55)" : "rgba(255, 255, 255, 0.28)",
+          opacity: 0.6,
+          borderRadius: "2px",
+        }}
+      />
+    ))}
+  </div>
+);
+
 const LOVE_DOMAIN = DOMAINS.find((d) => d.id === "love");
 const QOL_PREVIEW_STAGES = (LOVE_DOMAIN?.stages ?? []).slice(0, 3);
 
@@ -177,11 +213,16 @@ const EvolutionPortal = () => {
           {/* PREVIEW A — QOL SNAPSHOT MINIATURE */}
           <section className="max-w-[640px] mx-auto space-y-3" aria-hidden="true">
             <div
-              className="rounded-2xl overflow-hidden pointer-events-none"
+              className="rounded-2xl overflow-hidden pointer-events-none flex items-stretch"
               style={parchmentCard}
             >
+              <MiniPortalRail />
               <div
-                className="px-8 py-6 md:py-8"
+                className="flex-shrink-0 self-stretch"
+                style={{ width: "10px", background: "#2b3a6b" }}
+              />
+              <div
+                className="flex-1 min-w-0 px-6 md:px-8 py-6 md:py-8"
                 style={{ transform: "scale(0.75)", transformOrigin: "top center" }}
               >
                 <div className="space-y-4">
@@ -343,10 +384,11 @@ const EvolutionPortal = () => {
           {/* PREVIEW B — TRANSFORMATION LIBRARY MINIATURE */}
           <section className="max-w-[880px] mx-auto space-y-3" aria-hidden="true">
             <div
-              className="rounded-2xl overflow-hidden pointer-events-none"
+              className="rounded-2xl overflow-hidden pointer-events-none flex items-stretch"
               style={parchmentCard}
             >
-              <div className="p-6 md:p-9 space-y-5">
+              <MiniPortalRail />
+              <div className="flex-1 min-w-0 p-6 md:p-9 space-y-5">
                 <div className="flex flex-wrap justify-center gap-2">
                   {LIBRARY_PREVIEW_CATEGORIES.map((cat) => (
                     <span
