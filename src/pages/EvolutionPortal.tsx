@@ -9,9 +9,8 @@
  * page, parchment/Cormorant/gold-eyebrow cocktail with skin-token
  * fallbacks. NOT the dark /aleksandr composition.
  *
- * ONE CTA throughout: "Claim your portal" → cal.com 15-minute
- * conversation (same booking mechanism as the products shelf and the
- * Ignite funnel's cal.com pattern), tracked via trackCTAClick.
+ * ONE CTA throughout: "Claim your portal" → Telegram conversation,
+ * tracked via trackCTAClick.
  *
  * Copy is founder-approved verbatim — do not rewrite.
  */
@@ -183,11 +182,25 @@ const EvolutionPortal = () => {
             <h1
               style={{
                 ...cormorantTitle,
-                fontSize: "clamp(2rem, 5vw, 3rem)",
-                lineHeight: 1.15,
+                lineHeight: 1.05,
               }}
             >
-              Your own Client Evolution Portal.
+              <span
+                className="block"
+                style={{
+                  fontSize: "clamp(1.35rem, 3vw, 1.8rem)",
+                  fontWeight: 500,
+                  marginBottom: "0.2em",
+                }}
+              >
+                Your Own
+              </span>
+              <span
+                className="block"
+                style={{ fontSize: "clamp(2.25rem, 5.5vw, 3.4rem)" }}
+              >
+                Client Evolution Portal
+              </span>
             </h1>
             <p
               className="max-w-xl mx-auto"
