@@ -5,11 +5,9 @@
  * Public category: "Client Evolution Portal". Spec + shelf decision:
  * docs/04-products/practitioner_node.md.
  *
- * Register matches /products (ProductsPage.tsx): parchment/Cormorant/
- * gold-eyebrow cocktail with skin-token fallbacks. NOT the dark
- * /aleksandr composition. Renders INSIDE the persistent GameShellV2
- * (rail + panes) via shellRoutes.ts SHELL_EXACT — the member-portal
- * chrome is part of the product's proof (founder call, Day 130).
+ * Register matches /products (ProductsPage.tsx): standalone editorial
+ * page, parchment/Cormorant/gold-eyebrow cocktail with skin-token
+ * fallbacks. NOT the dark /aleksandr composition.
  *
  * ONE CTA throughout: "Claim your portal" → cal.com 15-minute
  * conversation (same booking mechanism as the products shelf and the
@@ -131,7 +129,7 @@ const EvolutionPortal = () => {
         path="/products/evolution-portal"
       />
       <div
-        className="min-h-full"
+        className="min-h-dvh"
         style={{ background: "var(--skin-page-bg, #f7f3ea)" }}
       >
         <div className="mx-auto px-4 md:px-6 py-16 md:py-20 space-y-14">

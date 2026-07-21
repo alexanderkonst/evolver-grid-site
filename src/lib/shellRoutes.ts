@@ -71,7 +71,6 @@ const SHELL_EXACT = new Set<string>([
     "/build/cockpit/offers",
     "/game/test-nav",
     "/game/next-move-v2",   // DailyLoopV2 — sibling of /game/next-move; distinct path so listed explicitly
-    "/products/evolution-portal", // EvolutionPortal — member-portal chrome is part of the product's proof (Day 130)
 ]);
 
 /**
