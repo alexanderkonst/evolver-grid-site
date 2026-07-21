@@ -461,6 +461,8 @@ A unique face of eternity.
 
 ## 🔮 Parked / Future
 
+- **Originals Index v2 — the living conglomerate (Day 130 seed, not for the next month or two; the time will come soon):** each venture in the Index gets an account-linked page; the one-paragraph read is editable by the venture itself; full version history of the paragraph is publicly visible. The thesis demonstrated as UX: anyone can watch articulation precision rising over time across a living wall of real companies with real websites. V1 remains simple: companies + websites + timestamped one-paragraph reads.
+
 ### Parked (2026-07-09, Day 119) — Formal MCP server for node live-state (white-label infrastructure)
 
 **What:** wrap the existing `equilibrium-ai-context` edge function (agent-token, curl-only today) in a standard MCP server so any Claude surface (Desktop, mobile, Cowork) can plug into a node's live state with zero setup. For Sasha alone this is marginal — the edge fn already answers AI calls. The real payoff is the **white-label play**: each node (Oyi first) ships with its own MCP server reading its own data, so the $75/mo becomes infrastructure the node-holder *feels* (their AI knows their live state in every conversation), not a hosting fee. Pattern generalizes: one MCP server template, per-node token + data scope.

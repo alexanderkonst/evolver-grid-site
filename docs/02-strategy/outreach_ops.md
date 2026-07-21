@@ -419,3 +419,14 @@ Three formats:
 - **(c) Reddit value posts** drawn from single domains, told as personal story.
 
 **Cadence law:** batched ceremony creation, not daily grind. Follows the 6/2 profile rhythm: retreat, integrate, emerge, impact.
+
+## 15. The Deep-Research Scouting Arm (v1.0, July 20, 2026)
+
+**The law:** deep research scouts only channels already proven manually. First a channel converts by hand, repeatedly; then a laser-focused deep research multiplies it far beyond manual capacity. The human (Sasha) is always the downstream filter: AI scouts the bundle, Sasha reads the shortlist.
+
+**The generalized template (parameterize and paste into a deep-research AI):**
+> Deep research task. Map the global landscape of [COUNTERPARTY TYPE: capital / community hosts / practitioners / venture studios / distribution surfaces] most aligned with this thesis: [ONE-PARAGRAPH THESIS]. Screen for: (1) language markers: [verbatim phrases the aligned use]; (2) behavior/instruments: [what the aligned actually do: instruments used, formats run, content published]; (3) evidence of live activity (dates, examples, deployments), not just content. For each candidate return: name, entity type, scale, verbatim alignment quotes with source links, 2-3 concrete examples of their activity, best contact surface. Rank the top 25 by alignment. Also sweep adjacent pools: [ADJACENT CATEGORIES]. Cite everything.
+
+**Instance #1 (capital scan, recorded July 20, 2026):** counterparty = investors/funds/family offices; thesis paragraph = the uniqueness-compounding investment thesis (alexanders_unique_business.md, Day 128 addendum); language markers = 'we invest in people, not companies', founder-market fit, specific knowledge, calm companies, authenticity as moat; instruments = revenue-based financing, SEALs, redeemable equity, profit-share, holdco acquisitions; adjacent pools = royalty financing, creator funds, talent investing, venture DAOs, profit-share structures in Islamic finance.
+
+**Queued instances (run when the corresponding channel is manually proven):** community hosts per niche (find every community whose leader-language matches the host-offer geometry) · practitioners at the ceiling (beyond LinkedIn: directories, podcast guests, certification alumni lists) · venture studios/incubators as B2B clients for the articulation gauge · distribution surfaces (podcasts/newsletters where each tribe already listens) · per-client collaboration scouting (a sellable Node Suite service: scout aligned partners/clients for a member's articulated business).
