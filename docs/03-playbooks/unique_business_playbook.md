@@ -60,6 +60,16 @@ Read it in one breath. That is the founder's full arc.
 
 Every chapter that follows in this playbook is a property of one of these four. Part 0 (Soul-Aligned Foundation) and Part I (Philosophy & Ontology) define the *shape* of the playbook. Part II (Core Frameworks) and Part III (AI-Executable Workflows) are *what UBB executes*. Parts IV–V are the *operational layer* the guide and the founder walk together.
 
+## The Method in Six Frames (v1.0, July 20, 2026)
+
+The whole method explains itself in six visual frames (canonical infographic set for webinars, decks, and pages):
+1. **The Ceiling** — the law: nothing grows past how well it knows itself; your career is capped by how well you know yourself.
+2. **The Waterfall** — one derivation: uniqueness → myth → tribe → offer → channel. Change the top, everything downstream re-runs.
+3. **The Loop** — articulate → possibilities become visible → enter them → new vantage → re-articulate. Words open doors; walking through moves the ceiling.
+4. **The Two Fuels** — expression runs on a renewable (excitement); imitation runs on a depletable (grind).
+5. **The Ladder** — free taste → paid step → infrastructure, at every holon (person, community, business).
+6. **The Network** — sovereigns, each 100% self-owned, connected by consent-shaped edges (revenue shares, advisory, collaborations); alignment lives in the edges.
+
 ## The deepest claim: ignorance-stuckness eliminated
 
 Founders are blocked by two kinds of stuckness — *ignorance* ("I don't know what to do") and *inner challenge* ("I know what to do but something inside resists"). The Integrated Stack eliminates the first kind structurally. The playbook tells you what to do; the builder gives you a working draft; Linguistic Synthesis (Domain 82) keeps the output simple-not-simplistic; the improve loop pushes specificity up and refuses to ship if it doesn't.
