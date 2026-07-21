@@ -61,8 +61,9 @@ Karime, here is what I want to build with you.
 Your clients take a Quality of Life snapshot when they start with you. Eight areas of life, one honest self-assessment. You both see where the bottlenecks are. That is what real life coaching starts with, and your clients will feel the structure behind it.
 They retake it as they go and literally watch themselves evolve. Almost nobody in this field measures progress. You will.
 Inside, they get your practices: your meditations, your recordings, your links. All in your colors, your brand.
-And we exchange clients. When someone needs work that is not yours, you send them my way and earn 33% of everything they buy where I facilitate. I send people your way too. Nobody counts 50/50. Everybody wins in every configuration. Your digital products sold through the portal stay 90% yours.
-Your client base gets treated with care: at most one email a month from me, always an invitation. You see everything they buy.
+And the portal pays you. Inside it, your clients find one quiet doorway: an invitation to discover their top talent, free. If they choose to go further, 90% of digital products they buy is yours, and 33% of the containers I facilitate is yours. I do the work. You share the fruit.
+It flows both ways. When my people need what you do, I send them to you. Nobody counts 50/50. Everybody wins in every configuration.
+Your clients remain your clients. From my side: one invitation a month at most, nothing pushy, and you always see what they buy.
 Setup: $555, branded fully to you. Then one dollar per active client per month. Ten clients, ten dollars.
 To start I need one voicenote: your list of meditations and resources, one line each on what it is and what it changes.
 Want it?
