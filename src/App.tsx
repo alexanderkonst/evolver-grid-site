@@ -552,6 +552,7 @@ const App = () => (
                   <Route path="/products" element={<ProductsPage />} />
                   {/* Day 130: Client Evolution Portal (Practitioner Node) landing — public. */}
                   <Route path="/products/evolution-portal" element={<EvolutionPortal />} />
+                  <Route path="/products/evolution-protocol" element={<Navigate to="/products/evolution-portal" replace />} />
                   <Route path="/product/evolution-portal" element={<Navigate to="/products/evolution-portal" replace />} />
                   <Route path="/products/built" element={<BuildContainer />} />
                   <Route path="/communities" element={<CommunityWebinar />} />

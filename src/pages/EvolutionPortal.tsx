@@ -166,7 +166,15 @@ const EvolutionPortal = () => {
       />
       <div
         className="min-h-dvh"
-        style={{ background: "var(--skin-page-bg, #f7f3ea)" }}
+        style={{
+          backgroundColor: "var(--skin-page-bg, #f7f3ea)",
+          backgroundImage:
+            "linear-gradient(rgba(248, 245, 238, 0.08), rgba(248, 245, 238, 0.08)), url('/images/evolution-portal-atmosphere.png')",
+          backgroundPosition: "center top",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundAttachment: "fixed",
+        }}
       >
         <div className="mx-auto px-4 md:px-6 py-16 md:py-20 space-y-14">
           {/* HERO */}
