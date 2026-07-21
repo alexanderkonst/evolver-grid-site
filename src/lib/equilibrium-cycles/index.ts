@@ -1079,7 +1079,7 @@ export const PLANETARY_DAYS: PlanetaryDayInfo[] = [
     emoji: "🌙",
     energy: "Intuition & Emotional Depth",
     intelligence: "Emotional (EQ)",
-    description: "Reflection, inner sensing, emotional recalibration. Plan from feeling, not force.",
+    description: "See + prep. Survey what's actionable, load the artifacts, choose the week's aims.",
   },
   {
     dayOfWeek: 2,
@@ -1089,7 +1089,7 @@ export const PLANETARY_DAYS: PlanetaryDayInfo[] = [
     emoji: "🔥",
     energy: "Action & Courage",
     intelligence: "Kinesthetic (Body)",
-    description: "Decisive action, physical energy, tackling hard things. Move your body.",
+    description: "Massive action. Sends, invites, asks. The week's kinetic day.",
   },
   {
     dayOfWeek: 3,
@@ -1099,7 +1099,7 @@ export const PLANETARY_DAYS: PlanetaryDayInfo[] = [
     emoji: "🗣️",
     energy: "Clarity & Communication",
     intelligence: "Verbal-Linguistic",
-    description: "Meetings, writing, learning, networking. Mental agility at peak.",
+    description: "Exchange + harvest. Calls and conversations open the next layer of clarity; update strategy from live data.",
   },
   {
     dayOfWeek: 4,
@@ -1109,7 +1109,7 @@ export const PLANETARY_DAYS: PlanetaryDayInfo[] = [
     emoji: "🦉",
     energy: "Expansion & Wisdom",
     intelligence: "Vision-Logic",
-    description: "Big-picture thinking, teaching, strategic planning. Expand horizons.",
+    description: "Build + deliver. Teach, produce, run the rooms. Expansion through giving.",
   },
   {
     dayOfWeek: 5,
@@ -1119,7 +1119,7 @@ export const PLANETARY_DAYS: PlanetaryDayInfo[] = [
     emoji: "🌹",
     energy: "Beauty & Harmony",
     intelligence: "Aesthetic & Interpersonal",
-    description: "Creativity, relationships, design, pleasure. Make things beautiful.",
+    description: "Harvest + relations. Review the numbers, re-score, gratitude, pulses. Tend the relationships the week opened.",
   },
   {
     dayOfWeek: 6,
@@ -1129,7 +1129,7 @@ export const PLANETARY_DAYS: PlanetaryDayInfo[] = [
     emoji: "⛰️",
     energy: "Structure & Grounding",
     intelligence: "Moral & Logical",
-    description: "Discipline, organizing, completing. Review the week, ground the gains.",
+    description: "Structure + integration. Ledger and corpus hygiene, body, boundaries; no outreach. Restoration through order.",
   },
   {
     dayOfWeek: 0,
@@ -1139,7 +1139,7 @@ export const PLANETARY_DAYS: PlanetaryDayInfo[] = [
     emoji: "☀️",
     energy: "Illumination & Celebration",
     intelligence: "Spiritual (SQ)",
-    description: "Vision, purpose, creative self-expression. Celebrate what you've built.",
+    description: "Radiance + reset. Vision, ceremony, sharing with community. Write, don't send; seed Monday.",
   },
 ];
 

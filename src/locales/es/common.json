@@ -7064,6 +7064,28 @@
     "noScratch": "Nadie empieza de cero conmigo. Cada quien llega con algo ya en marcha, un negocio, un trabajo, un proyecto aparte. Nunca lo desmontamos, no tendría sentido. Sigues con tu línea de trabajo tal como está. Encontramos qué partes son verdaderamente tuyas, las conservamos, las reforzamos, crecemos desde ahí. Lo que no es tuyo se cae solo, poco a poco, mientras la parte alineada empieza a alimentarte.",
     "promise": "Para ser claro sobre lo que prometo: una dirección, tu oferta empaquetada y con precio, lanzada a personas reales. No prometo riqueza rápida ni vendo un esquema. Esto es construcción de negocio sostenible y creación de riqueza, alineada con quien eres. Los resultados vienen de que tú lo trabajes."
   },
+  "hostpage": {
+    "seoTitle": "Organiza un taller de Zona de Genialidad para tu comunidad",
+    "seoDescription": "Un taller gratuito de 90 minutos para tus miembros, participación en los ingresos para ti, cero trabajo de tu parte.",
+    "eyebrow": "PARA LÍDERES DE COMUNIDADES",
+    "h1": "Un regalo para tu gente. Ingresos para ti. Cero trabajo de tu parte.",
+    "intro": "Una comunidad crece exactamente hasta donde sus miembros son precisamente visibles entre sí. Yo dirijo un taller en vivo de 90 minutos para tu comunidad: cada persona sale con su zona de genialidad en palabras exactas, un perfil profesional listo para la IA y una lectura clara de su próxima dirección profesional. Gratis para tus miembros. Funciona de maravilla desde 5 personas hasta 50.",
+    "yourPartLabel": "Tu parte, unos 15 minutos en total",
+    "yourPart1": "Elige una fecha.",
+    "yourPart2": "Publica el anuncio. Te envío un texto listo que puedes pegar tal cual o editar libremente.",
+    "yourPart3": "Abre la llamada con una introducción de 2 minutos. Del resto me encargo yo.",
+    "myPartLabel": "Mi parte",
+    "myPartBody": "Yo me encargo de todo: la sesión, los materiales, el Zoom, la grabación. Después recibes la grabación y se queda con tu comunidad como un activo. Tras el taller, hago seguimiento personal a quien quiera ir más lejos.",
+    "economicsLabel": "La economía",
+    "economicsBody": "Ganas un tercio de las primeras tres compras que cualquiera de tus miembros haga conmigo, desde el perfil de $37 hasta la sesión de $555 y el contenedor de $1,111. Eso es hasta $568 por persona. Registro cada compra de tu comunidad y te envío un resumen simple más el pago cada mes, por el método que prefieras. Puedes verlo todo, en cualquier momento.",
+    "noSellingLabel": "Sin ventas en la sala",
+    "noSellingBody": "El taller es puro valor. En los últimos minutos digo una sola frase sobre cómo profundizar, y lo declaro abiertamente desde el inicio. La confianza con tu gente queda intacta. Ese es todo el punto del diseño.",
+    "highlight1": "Todo a favor.",
+    "highlight2": "Cero trabajo para ti.",
+    "highlight3": "Tu confianza protegida.",
+    "highlight4": "Ganas solo con resultados.",
+    "cta": "Llevar esto a mi comunidad"
+  },
   "youpage": {
     "seoTitle": "YOU — Be Original · Orientación profesional para adolescentes",
     "seoDescription": "Conoce quién eres antes de que el mundo decida por ti. Una sesión pagada de una hora para adolescentes.",
