@@ -22,7 +22,7 @@ import { useEffect } from "react";
 import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
 import { LIBRARY_CATEGORIES, LIBRARY_ITEMS } from "@/modules/library/libraryContent";
 
-const CALCOM_15MIN = "https://cal.com/aleksandrkonstantinov/15min";
+const TELEGRAM_CONVERSATION = "https://t.me/integralevolution";
 
 const eyebrowGold: React.CSSProperties = {
   fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -76,7 +76,7 @@ const sectionEyebrow: React.CSSProperties = {
 
 const ClaimCta = ({ ctaId }: { ctaId: string }) => (
   <a
-    href={CALCOM_15MIN}
+    href={TELEGRAM_CONVERSATION}
     target="_blank"
     rel="noopener noreferrer"
     className="inline-flex items-center gap-2 rounded-full px-6 py-3 transition-all duration-300 hover:translate-y-[-1px]"
