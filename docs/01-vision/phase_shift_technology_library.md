@@ -7345,3 +7345,19 @@ A venture is what happens when a communion incorporates: the third being gets a 
 | **Civilization / capital** | Aligned deployment into the new paradigm | Originals Index → thesis → funded edges / carry → the timestamped articulation dataset |
 
 Selling across layers fails predictably: a person offered the civilization story hears a cult; a community leader offered a personal session hears irrelevance; capital offered inspiration hears no instrument. The fractal purchase law governs every row (free taste → paid step → infrastructure), and Domain 113 guarantees whoever enters at any row is interacting with the whole. Wants are read from harvested language in the field, never invented at the desk.
+
+---
+
+## Domain 115: Articulation Is the Mechanism of Growth (The Developmental Law of Every Holon) (Day 130, July 20, 2026)
+
+**The law in one sentence: a system grows precisely by making its own interior legible to itself — articulation is not a description of growth, it IS growth's mechanism, at every scale.**
+
+**The lineage and the generalization.** At person scale this is Kegan's subject-object move: what you are but cannot see runs you; what you can name becomes an object you can hold, operate, and recombine — development is the migration of subject into object, and articulation is that operation performed in language. At organization scale, systems theory says the same thing: an organization exists and steers by its self-description (charters, roles, strategy are the org's interior made legible to itself; Luhmann's self-describing social systems). At civilization scale: law, constitutions, and science are a society making its own workings legible to itself. The oldest lineage said it first: Logos; naming as the first creative act.
+
+**The substrate-neutral form (and the plant).** A plant does not speak, yet its growth runs on the same operation: cells read internal positional information — hormone gradients, gene expression — and act on it; morphogenesis is interior state becoming information the organism's own processes can use. So the general mechanism is: **growth = interior states becoming legible to the system's own operations.** Language is the human implementation; signaling chemistry is the plant's; charters are the org's. *Honesty marker: at the biological register this generalization is a structural postulate to be formalized, not an established identity; at person and organization scale it stands on developmental psychology and systems theory.*
+
+**What makes this a scientific theory rather than a philosophy: it is operational.** (1) A measurable variable: articulation depth / precision of self-description. (2) An intervention: raise it (the playbook, the session, the gauge). (3) Falsifiable predictions per scale: a person's plateau breaks after articulation rises; org alignment tracks role-articulation precision; community generativity tracks member legibility; AI capability on strategic tasks tracks articulated self-context (measured: +40% metathinking from one articulation document). The timestamped dataset (ops §8 Timestamp Law) is the accumulating evidence base.
+
+**The full loop (the ceiling law is this mechanism's shadow).** Nothing grows past how well it knows itself — AND the knowing alone does not lift; the loop is: articulate → possibilities become visible → ENTER them → new vantage point → re-articulate. Words open the doors; walking through them moves the ceiling. Self-knowledge that never hits the world sits and waits for its chance.
+
+**Relationship to other domains:** the axiom and Myth v4.0 (Day 127), Domain 90 (depth sequencing), Domain 98 (invariant/derivation), Domain 104b (articulation as agentic existence), Domain 113 (holonic positioning), Domain 114 (wants→products matrix).
