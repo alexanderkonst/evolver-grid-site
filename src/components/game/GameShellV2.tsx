@@ -1513,11 +1513,6 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 or disappear entirely. Isolating the parent stacking
                 context prevents the bleed and the panes stay rendered. */}
             <div className={cn("hidden lg:flex isolate", isAiOsRoute ? "h-dvh min-h-0 overflow-hidden" : "min-h-dvh")}>
-                {/* Day 130 (Sasha 2026-07-20): "group/rail" wraps rail +
-                    minimize toggle only (not pane 2) so the chevron button
-                    below appears strictly on rail hover/focus, not on any
-                    hover anywhere in the shell. */}
-                <div className="group/rail contents">
                 {/* Panel 1: Spaces Rail */}
                 <SpacesRail
                     activeSpaceId={activeSpaceId}
@@ -1578,12 +1573,6 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         "h-dvh w-5 flex items-center justify-center transition-all duration-200 hover:bg-white/10 relative z-30 group",
                         "focus-visible:outline focus-visible:outline-1 focus-visible:outline-[color:var(--skin-rail-toggle-accent,rgba(244,212,114,0.6))]",
                         isAiOsRoute ? "shrink-0" : "sticky top-0",
-                        // Day 130 (Sasha 2026-07-20): CHROME SILENCE — the
-                        // toggle is visual chrome, not a permanent nav
-                        // element, so it now only reveals on rail hover
-                        // (group/rail, from the wrapper above) or keyboard
-                        // focus, instead of sitting always-visible.
-                        "opacity-0 group-hover/rail:opacity-100 focus-visible:opacity-100",
                     )}
                     title={railMinimized ? t("shell.rail.expand") : t("shell.rail.minimize")}
                     aria-label={railMinimized ? t("shell.rail.expand") : t("shell.rail.minimize")}
@@ -1612,7 +1601,6 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         }}
                     />
                 </button>
-                </div>
 
                 {/* Panel 2: Sections with transition.
                     Day 52 (Sasha 2026-04-27): `relative` removed.
