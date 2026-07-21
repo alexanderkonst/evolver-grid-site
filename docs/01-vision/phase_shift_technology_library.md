@@ -7361,3 +7361,20 @@ Selling across layers fails predictably: a person offered the civilization story
 **The full loop (the ceiling law is this mechanism's shadow).** Nothing grows past how well it knows itself — AND the knowing alone does not lift; the loop is: articulate → possibilities become visible → ENTER them → new vantage point → re-articulate. Words open the doors; walking through them moves the ceiling. Self-knowledge that never hits the world sits and waits for its chance.
 
 **Relationship to other domains:** the axiom and Myth v4.0 (Day 127), Domain 90 (depth sequencing), Domain 98 (invariant/derivation), Domain 104b (articulation as agentic existence), Domain 113 (holonic positioning), Domain 114 (wants→products matrix).
+
+---
+
+## Domain 116: The Geometry That Compounds Trust, and the Scoped Claim (Day 130, July 20, 2026)
+
+**The law in one sentence: a network whose edges are deliberately favorable to the other side never generates enemies, and therefore accumulates the scarcest capital — trust — instead of burning it.**
+
+**The mechanism.** Positive-sum edges create new value flow rather than redistributing captured flow, so the system's total circulation grows with every well-formed agreement. Originating nodes sit where the flows cross (origination, advisory, curation, platform), and money circulates through them in proportion to exactly two variables the node controls: (1) delivery keeping pace with promises, and (2) terms staying favorable even when the node no longer needs them to be. The second variable is the long test — the point where most systems begin extracting is the point where this one compounds instead.
+
+**The scoped claim (the sword's discipline: how this system is spoken about).** The superlative ('the most valuable system ever') is unfalsifiable, survives no adversarial panel, and costs credibility everywhere it is said. The claim that survives attack, stated in full:
+- an **open design space, independently confirmed** (external capital-landscape scan, July 2026: identity-first underwriting + native capped revenue share with the founder keeping 100% 'is still mostly an open design space, not an established category' — `capital_landscape_scan_2026-07.md`);
+- an **instrument with ancient lineage** (risk-sharing finance: musharakah and mudarabah profit-share structures, centuries old; royalty portfolios in music, pharma, and mining as the modern industrial form) — the funded edge is a return, not an invention;
+- a **geometry that compounds trust** (this domain's law);
+- a **live ledger, small and honest and growing** (the timestamped dataset, ops §8).
+Keep the fire, keep the present-continuous tense ('in the making'), and let the ledger produce the superlatives.
+
+**Relationship to other domains:** Domain 111 (edge-carried alignment — this domain names what a network of such edges accumulates), Domain 110 (terms-first openness — the entry condition of every trust-compounding edge), Domain 115 (articulation as growth — legibility is what lets the favorable terms be seen as favorable), and the Day 128 bedrock (an expressed being as the renewable-and-exclusive resource that the flows carry).
