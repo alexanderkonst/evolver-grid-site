@@ -19,6 +19,8 @@ import { ArrowRight } from "lucide-react";
 import SEO from "@/components/SEO";
 import { trackPageView, trackCTAClick } from "@/lib/funnelAnalytics";
 import { useEffect } from "react";
+import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
+import { LIBRARY_CATEGORIES, LIBRARY_ITEMS } from "@/modules/library/libraryContent";
 
 const CALCOM_15MIN = "https://cal.com/aleksandrkonstantinov/15min";
 
@@ -100,6 +102,20 @@ const WHATS_INSIDE = [
   "A free self-knowledge layer where they articulate their top talent and build a profile they can use anywhere.",
 ];
 
+const LOVE_DOMAIN = DOMAINS.find((d) => d.id === "love");
+const QOL_PREVIEW_STAGES = (LOVE_DOMAIN?.stages ?? []).slice(0, 3);
+
+const LIBRARY_PREVIEW_CATEGORIES = LIBRARY_CATEGORIES.slice(0, 4);
+
+const LIBRARY_PREVIEW_ITEM_IDS = [
+  "heart-coherence-breathing",
+  "use-breath-relax-energize",
+  "feel-better-fast-energy-boost",
+];
+const LIBRARY_PREVIEW_ITEMS = LIBRARY_PREVIEW_ITEM_IDS.map((id) =>
+  LIBRARY_ITEMS.find((item) => item.id === id)
+).filter((item): item is (typeof LIBRARY_ITEMS)[number] => Boolean(item));
+
 const EvolutionPortal = () => {
   useEffect(() => {
     trackPageView("evolution_portal_view");
@@ -116,9 +132,9 @@ const EvolutionPortal = () => {
         className="min-h-dvh"
         style={{ background: "var(--skin-page-bg, #f7f3ea)" }}
       >
-        <div className="max-w-3xl mx-auto px-4 md:px-6 py-16 md:py-20 space-y-12">
+        <div className="mx-auto px-4 md:px-6 py-16 md:py-20 space-y-14">
           {/* HERO */}
-          <header className="text-center space-y-5">
+          <header className="max-w-3xl mx-auto text-center space-y-5">
             <p style={eyebrowGold}>For practitioners of transformation</p>
             <h1
               style={{
@@ -143,7 +159,7 @@ const EvolutionPortal = () => {
           </header>
 
           {/* THE INTAKE OF A SERIOUS PRACTICE */}
-          <section className="rounded-2xl overflow-hidden" style={parchmentCard}>
+          <section className="max-w-3xl mx-auto rounded-2xl overflow-hidden" style={parchmentCard}>
             <div className="p-6 md:p-8 space-y-3">
               <p style={sectionEyebrow}>Clarity from day one</p>
               <p style={{ ...sourceSerifBody, fontSize: "15.5px" }}>
@@ -158,8 +174,104 @@ const EvolutionPortal = () => {
             </div>
           </section>
 
+          {/* PREVIEW A — QOL SNAPSHOT MINIATURE */}
+          <section className="max-w-[640px] mx-auto space-y-3" aria-hidden="true">
+            <div
+              className="rounded-2xl overflow-hidden pointer-events-none"
+              style={parchmentCard}
+            >
+              <div
+                className="px-8 py-6 md:py-8"
+                style={{ transform: "scale(0.75)", transformOrigin: "top center" }}
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <p style={eyebrowGold}>Step 4 of 8</p>
+                    <div className="flex items-center gap-1.5">
+                      {Array.from({ length: 8 }).map((_, i) => (
+                        <span
+                          key={i}
+                          className="rounded-full"
+                          style={{
+                            width: i === 3 ? "16px" : "6px",
+                            height: "6px",
+                            background:
+                              i <= 3
+                                ? "var(--skin-accent-gold, #b8860b)"
+                                : "rgba(11, 42, 90, 0.18)",
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <h3 style={{ ...cormorantTitle, fontSize: "24px", lineHeight: 1.2 }}>
+                    Love &amp; Relationships
+                  </h3>
+                  <p
+                    style={{
+                      ...sourceSerifBody,
+                      fontSize: "14px",
+                      fontStyle: "italic",
+                      opacity: 0.85,
+                    }}
+                  >
+                    Select the stage that best represents your current state
+                    in this domain.
+                  </p>
+                  <div className="space-y-2.5 pt-1">
+                    {QOL_PREVIEW_STAGES.map((stage) => (
+                      <div
+                        key={stage.id}
+                        className="flex items-start gap-3 rounded-xl p-3"
+                        style={{
+                          border: "0.5px solid rgba(212, 175, 55, 0.35)",
+                          background: "rgba(255, 255, 255, 0.4)",
+                        }}
+                      >
+                        <span
+                          className="rounded-full flex items-center justify-center flex-shrink-0"
+                          style={{
+                            ...cormorantTitle,
+                            width: "26px",
+                            height: "26px",
+                            fontSize: "13px",
+                            color: "var(--skin-accent-gold, #b8860b)",
+                            border: "0.5px solid rgba(212, 175, 55, 0.55)",
+                          }}
+                        >
+                          {stage.id}
+                        </span>
+                        <div>
+                          <p style={{ ...cormorantTitle, fontSize: "15px", lineHeight: 1.3 }}>
+                            {stage.title}
+                          </p>
+                          <p
+                            style={{
+                              ...sourceSerifBody,
+                              fontSize: "12.5px",
+                              opacity: 0.8,
+                              lineHeight: 1.4,
+                            }}
+                          >
+                            {stage.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p
+              className="text-center"
+              style={{ ...sourceSerifBody, fontSize: "13px", fontStyle: "italic", opacity: 0.7 }}
+            >
+              The Quality of Life snapshot, as your clients see it.
+            </p>
+          </section>
+
           {/* MEASURED, NOT GUESSED */}
-          <section className="rounded-2xl overflow-hidden" style={parchmentCard}>
+          <section className="max-w-3xl mx-auto rounded-2xl overflow-hidden" style={parchmentCard}>
             <div className="p-6 md:p-8 space-y-3">
               <p style={sectionEyebrow}>The hidden secret of the industry</p>
               <p style={{ ...sourceSerifBody, fontSize: "15.5px" }}>
@@ -175,7 +287,7 @@ const EvolutionPortal = () => {
           </section>
 
           {/* HOW IT WORKS */}
-          <section className="space-y-5">
+          <section className="max-w-3xl mx-auto space-y-5">
             <p className="text-center" style={sectionEyebrow}>
               How it works
             </p>
@@ -205,7 +317,7 @@ const EvolutionPortal = () => {
           </section>
 
           {/* WHAT'S INSIDE */}
-          <section className="space-y-5">
+          <section className="max-w-3xl mx-auto space-y-5">
             <p className="text-center" style={sectionEyebrow}>
               What your clients receive
             </p>
@@ -228,8 +340,70 @@ const EvolutionPortal = () => {
             </div>
           </section>
 
+          {/* PREVIEW B — TRANSFORMATION LIBRARY MINIATURE */}
+          <section className="max-w-[880px] mx-auto space-y-3" aria-hidden="true">
+            <div
+              className="rounded-2xl overflow-hidden pointer-events-none"
+              style={parchmentCard}
+            >
+              <div className="p-6 md:p-9 space-y-5">
+                <div className="flex flex-wrap justify-center gap-2">
+                  {LIBRARY_PREVIEW_CATEGORIES.map((cat) => (
+                    <span
+                      key={cat.id}
+                      className="rounded-full px-3.5 py-1.5"
+                      style={{
+                        ...eyebrowGold,
+                        fontSize: "9.5px",
+                        border: "0.5px solid rgba(212, 175, 55, 0.5)",
+                      }}
+                    >
+                      {cat.name}
+                    </span>
+                  ))}
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                  {LIBRARY_PREVIEW_ITEMS.map((item) => (
+                    <div key={item.id} className="space-y-2">
+                      <div
+                        className="rounded-xl overflow-hidden aspect-video"
+                        style={{ border: "0.5px solid rgba(212, 175, 55, 0.4)" }}
+                      >
+                        <img
+                          src={`https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`}
+                          alt=""
+                          loading="lazy"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <p style={{ ...cormorantTitle, fontSize: "15px", lineHeight: 1.3 }}>
+                        {item.title}
+                      </p>
+                      <p
+                        style={{
+                          ...sourceSerifBody,
+                          fontSize: "12.5px",
+                          fontStyle: "italic",
+                          opacity: 0.8,
+                        }}
+                      >
+                        {item.teacher} &middot; {item.durationLabel}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <p
+              className="text-center"
+              style={{ ...sourceSerifBody, fontSize: "13px", fontStyle: "italic", opacity: 0.7 }}
+            >
+              The Transformation Library, as your clients see it.
+            </p>
+          </section>
+
           {/* A TWO-WAY PARTNERSHIP */}
-          <section className="rounded-2xl overflow-hidden" style={parchmentCard}>
+          <section className="max-w-3xl mx-auto rounded-2xl overflow-hidden" style={parchmentCard}>
             <div className="p-6 md:p-8 space-y-3">
               <p style={sectionEyebrow}>Revenue share</p>
               <p style={{ ...sourceSerifBody, fontSize: "15.5px" }}>
@@ -259,17 +433,33 @@ const EvolutionPortal = () => {
           </section>
 
           {/* PRICING */}
-          <section className="text-center space-y-3">
-            <p style={sectionEyebrow}>Pricing</p>
-            <p
-              className="max-w-xl mx-auto"
-              style={{ ...sourceSerifBody, fontSize: "15.5px" }}
+          <section className="max-w-[560px] mx-auto text-center">
+            <div
+              className="rounded-2xl overflow-hidden"
+              style={{
+                border: "0.5px solid rgba(212, 175, 55, 0.55)",
+                background: "var(--skin-card-fill, rgba(255, 252, 245, 0.92))",
+              }}
             >
-              Setup: $555, including branding the portal to your identity.
-              Then one dollar per active client per month. Ten clients, ten
-              dollars. It never becomes a burden. It just keeps showing your
-              work working.
-            </p>
+              <div className="p-6 md:p-8 space-y-3">
+                <p style={sectionEyebrow}>Pricing</p>
+                <p style={{ ...sourceSerifBody, fontSize: "15.5px" }}>
+                  Setup: $555, including branding the portal to your
+                  identity. Then one dollar per active client per month.{" "}
+                  <span
+                    style={{
+                      ...cormorantTitle,
+                      color: "var(--skin-accent-gold, #b8860b)",
+                      fontSize: "17px",
+                    }}
+                  >
+                    Ten clients, ten dollars.
+                  </span>{" "}
+                  It never becomes a burden. It just keeps showing your work
+                  working.
+                </p>
+              </div>
+            </div>
           </section>
 
           {/* CLOSING CTA */}
