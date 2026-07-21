@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import SEO from "@/components/SEO";
 
-const CALCOM_15MIN = "https://cal.com/aleksandrkonstantinov/15min";
+const TELEGRAM_CONVERSATION = "https://t.me/integralevolution";
 
 const eyebrowGold: React.CSSProperties = {
   fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -84,11 +84,11 @@ interface ProductCardDef {
 const CARDS: ProductCardDef[] = [
   { key: "card1", href: "/ignite", external: false },
   { key: "card2", href: "/zone-of-genius", external: false },
-  { key: "card3", href: CALCOM_15MIN, external: true },
+  { key: "card3", href: TELEGRAM_CONVERSATION, external: true },
   { key: "card4", href: "/zone-of-genius", external: false },
-  { key: "card5", href: CALCOM_15MIN, external: true },
-  { key: "card6", href: CALCOM_15MIN, external: true },
-  { key: "card7", href: CALCOM_15MIN, external: true },
+  { key: "card5", href: TELEGRAM_CONVERSATION, external: true },
+  { key: "card6", href: TELEGRAM_CONVERSATION, external: true },
+  { key: "card7", href: TELEGRAM_CONVERSATION, external: true },
   // Day 130: Client Evolution Portal (Practitioner Node).
   { key: "card8", href: "/products/evolution-portal", external: false },
 ];
@@ -198,7 +198,7 @@ const ProductsPage = () => {
           >
             {t("products.closingBefore")}
             <a
-              href={CALCOM_15MIN}
+              href={TELEGRAM_CONVERSATION}
               target="_blank"
               rel="noopener noreferrer"
               className="underline underline-offset-4"
