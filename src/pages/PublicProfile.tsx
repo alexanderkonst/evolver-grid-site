@@ -80,15 +80,19 @@ const PublicProfile = () => {
         // Root-slug pages use a narrow SECURITY DEFINER projection. Never
         // expose the private game_profiles row (email, entitlements, tokens)
         // merely to render a public profile.
+        // The RPC returns a table projection. Read the array directly rather
+        // than coercing it to an object with `.maybeSingle()`: PostgREST emits
+        // HTTP 406 for the expected zero-row case, polluting the console when
+        // a visitor follows an unused username.
         const { data } = await supabase
-          .rpc("get_public_profile_by_username", { p_username: username })
-          .maybeSingle();
-        profileData = data;
-        if (data) {
+          .rpc("get_public_profile_by_username", { p_username: username });
+        const publicRow = Array.isArray(data) ? data[0] ?? null : data;
+        profileData = publicRow;
+        if (publicRow) {
           zogData = {
-            appleseed_data: data.appleseed_data,
-            excalibur_data: data.excalibur_data,
-            top_three_talents: data.top_three_talents,
+            appleseed_data: publicRow.appleseed_data,
+            excalibur_data: publicRow.excalibur_data,
+            top_three_talents: publicRow.top_three_talents,
           };
         }
       } else if (userId) {
