@@ -36,6 +36,7 @@ export type FunnelStep =
   | "divine_timing"     // Submitted "not now" email
   | "qol_start"         // Started QoL assessment
   | "qol_complete"      // Completed QoL assessment
+  | "evolution_portal_view" // Landed on practitioner Evolution Portal
   | "activate_click"            // Clicked Activate ($37) Stripe CTA on AppleseedDisplay
   | "activate_coupon_redeemed"  // Redeemed coupon to bypass Stripe (Day 58)
   | "activate_welcome";         // Landed on /activate/welcome (post-payment or coupon)
