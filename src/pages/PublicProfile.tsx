@@ -161,11 +161,10 @@ const PublicProfile = () => {
             if (viewerId) {
               try {
                 const { data: connectionRows, error: connectionError } = await (supabase as any)
-                  .from("connections")
+                  .from("match_intros")
                   .select("id")
-                  .eq("status", "accepted")
                   .or(
-                    `and(requester_id.eq.${viewerId},receiver_id.eq.${resolvedUserId}),and(requester_id.eq.${resolvedUserId},receiver_id.eq.${viewerId})`
+                    `and(user_a_id.eq.${viewerId},user_b_id.eq.${resolvedUserId}),and(user_a_id.eq.${resolvedUserId},user_b_id.eq.${viewerId})`
                   )
                   .limit(1);
                 if (connectionError) throw connectionError;
