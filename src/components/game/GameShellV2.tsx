@@ -2112,7 +2112,11 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                             page paints its own full-screen surface */}
                     <main
                         className={cn(
-                            "mobile-content-scroll flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide relative [&::-webkit-scrollbar]:hidden",
+                            // `min-h-0` is load-bearing in this column flexbox.
+                            // Without it, long pages make <main> grow to their
+                            // full intrinsic height; the absolute parent clips
+                            // that overflow and mobile users cannot scroll.
+                            "mobile-content-scroll flex-1 min-h-0 overflow-y-auto overflow-x-hidden scrollbar-hide relative [&::-webkit-scrollbar]:hidden",
                             (pageOwnsBackground || isImmersiveDarkRoute) ? "" : "pt-4"
                         )}
                         style={{
