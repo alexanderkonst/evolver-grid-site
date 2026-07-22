@@ -1467,6 +1467,21 @@ Self-recognition (Domain 100) is the strongest force for identity-level ideas. T
 
 **How categories actually get created (July 7 addition).** Category creation is not one big announcement. It is several familiar doors bending toward one new room. Apple entered computers, phones, and watches (all existing shelves); the new room people found themselves in was personal computing as identity. The sequencing law: a category becomes real when it has spread into the de-facto noosphere, not when it is coined. So: enter known shelves, accumulate users, cash, and proof, and name the new category publicly only when enough people are already living in the room. Category-king economics (the Play Bigger research: the category creator captures roughly three quarters of the category's value) is the prize for getting this sequence right, and the punishment for announcing cold is that nobody can buy from a shelf they've never seen.
 
+## The Lavender Inversion (Day 132, July 22, 2026 — from the Sleep or Die case)
+
+When every brand in a category shares one aesthetic-emotional convention, the convention is a commons to defect from: find the "lavender" niche and become red. Sleep or Die entered the $585B sleep market (lavender, pastel, clouds) with acid red, cigarette-pack packaging, a name made of the hard truth (sleep or die early), customers called "zombies," a waitlist called Zombie Club — and one post organically pulled 150K+ views and inbound investors.
+
+**The four levers:**
+
+1. Pick a category where everyone looks the same.
+2. Invert demonstratively, not incrementally.
+3. One strong visual artifact instead of an ad budget (artifact-led distribution).
+4. Give the tribe its own language.
+
+**Application to our category:** coaching/self-knowledge is itself maximal lavender (pastels, lotuses, "find your purpose" softness) — our red is speaking in laws and physics: ceilings, caps, thermodynamics, "no one can pivot away from themselves," luxe navy-gold-parchment instead of wellness pastel. The name-from-hard-truth lever is available and unused.
+
+**Caution:** inversion is a shelf-entry lever, not a substitute for the invariant; it polarizes attention, the articulation converts it.
+
 ## The Category King Casebook (July 8, 2026)
 
 > *Is the "category kings take ~3/4 of the value" claim real, how did winners do it, how did famous failures lose it, and what is the roadmap. Evidence quality stated first, then the cases, then the common thread.*
