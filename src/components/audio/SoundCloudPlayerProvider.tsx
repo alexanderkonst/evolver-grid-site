@@ -364,7 +364,7 @@ export function SoundCloudPlayerProvider({
                     ref={iframeRef}
                     title="findyourtoptalent.com playlist (App-root audio engine)"
                     src={widgetSrc}
-                    allow="autoplay"
+                    allow="autoplay; encrypted-media"
                     aria-hidden="true"
                     tabIndex={-1}
                     style={{
