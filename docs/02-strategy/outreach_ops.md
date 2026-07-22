@@ -297,6 +297,8 @@ No follow-up 1/2 (single post, not a DM thread). Engage with comments in each sw
 
 Do not close on the call and do not send a generic details message. Instead, same day: run the call transcript through analysis and send a personalized reflection message built ONLY from things they said themselves. Structure: (1) their invariant, quoted back in their own words ("you said X — that is your pattern"); (2) their buying question, quoted back ("you said you don't know how to Y — that is exactly what the session does"); (3) their project's core, derived from their own material; then ONE door with the price. Rule: give the seed generously (it proves the method); sell the operationalization (exact wording, derivation, pricing). Lineage: Karime's personalized-proposal practice, compressed from 2-3 days to same-day so the lead stays warm. The call opens the gap; the reflection message connects the dots; the session closes them.
 
+**The give/sell law (Day 132):** give all diagnosis, sell all derivation. Diagnosis (their words mirrored, the stuck named, the cost named, even a strong articulation seed) is the free taste and cannot be over-given: the better the diagnosis, the stronger the pull, because hunger for operationalization grows with clarity. Derivation (the co-verified 9.5-precision formulation, the offer, pricing, page, distribution, a designed product core) is the product and never goes in a message. Sayable form: «Диагностика бесплатно. Сборка за деньги.»
+
 ---
 
 ## 5. Follow-up discipline
@@ -335,6 +337,7 @@ The axiom (Myth v4.0, `alexanders_unique_business.md` §1): **EN "Your career is
 - **Teen product page:** /you
 - **Container product page:** /products/built
 - **Mirror objection disarm (born live on a Direction Call, Jul 22, 2026):** to 'why would you know me better than I know myself?' — «В зеркало себя увидеть проще, чем без зеркала. Это физика.» / EN: 'Seeing yourself in a mirror is easier than without one. That's physics.'
+- **Founder tagline diagnostic (incepting question pair, for founders with a live business):** 'What's your tagline?' → then: 'Would your best customer say that's what they actually bought?' The gap between the two answers is the business's ceiling, audible. For founders between ventures, use the invariant form instead; hold the tagline pair for the moment they describe the next idea.
 
 ---
 
