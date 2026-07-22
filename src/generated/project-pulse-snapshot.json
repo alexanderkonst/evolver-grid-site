@@ -1,75 +1,8 @@
 {
-  "generated_at": "2026-07-22T22:19:14.968Z",
+  "generated_at": "2026-07-22T22:40:42.647Z",
   "source": "docs/09-logs/project_pulse_log.md",
-  "eventsCount": 31,
-  "latestEvent": {
-    "date": "2026-07-22",
-    "day": "132",
-    "pulse": "karime_evolution_portal_proposal_sent",
-    "who": "[Sasha, Karime]",
-    "what_happened": "Sasha sent Karime the offer she had asked for last week: \"me preguntaste... si podria crear una libreria transformacional para tus clientes.\" Sent in Spanish via WhatsApp as a one-pager — https://findyourtoptalent.com/products/evolution-portal — packaging the Evolution Portal as a transformational library for her clients, including the Zone of Genius test. This closes the open \"what is Karime's offer\" item on the CRM. Partnership/paid structure remains TBD per the page itself.",
-    "energy_exchanged": "[offer sent, open-item closed]",
-    "affected_holons": "[CRM Master Table, Offer Ledger]",
-    "phase_shift_significance": "notable",
-    "next_action": "Awaiting Karime's reply. Follow-up ~Jul 25 if silent. OMTM +1 this week.",
-    "staleness_or_contradictions": "none",
-    "title": "karime_evolution_portal_proposal_sent"
-  },
-  "phaseShiftDistribution": {
-    "minor": 10,
-    "major": 6,
-    "notable": 15
-  },
-  "openNextActions": [
-    {
-      "date": "2026-07-17",
-      "title": "alex_utkin_friend_call_free_session",
-      "next_action": "None owed by Sasha; Alex offered to help if useful. Standing law going forward: future friend requests route through the standard free 45-min Direction Call container, time-boxed, same door as everyone (being documented separately in the corpus)."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "kristina_direction_call_first_funnel_sourced_ladder_offer",
-      "next_action": "Sasha sends the promised links within ~1-2 days. Kristina owes her container details. Do NOT buy or barter her container during the outreach sprint; her monthly-show idea is parked as a content-engine candidate."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "warm_base_campaign_fully_sent_bobby_replied",
-      "next_action": "Follow-up wave on today's batch ~July 20. Sasha to report the Bobby conversation content so it can be properly logged in the CRM."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "kristina_links_sent_roman_note_corrected",
-      "next_action": "Await Kristina's container details. No action owed on Roman until he says «готов»."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "gabriel_no_tatjana_booked_bobby_dasha",
-      "next_action": "No action on Gabriel or Tatjana. Sasha to send his reply to Bobby. If Dasha hasn't scheduled within ~3 days (~Jul 20), one light nudge with the calendar link."
-    },
-    {
-      "date": "2026-07-18",
-      "title": "gleb_a16z_founder_inbound_referral_axiom_first_field_use",
-      "next_action": "If Gleb hasn't booked within ~3 days (~Jul 21), one light nudge. A thank-you to Alex Pustov for the intro is warranted."
-    },
-    {
-      "date": "2026-07-18",
-      "title": "gleb_booked_wednesday",
-      "next_action": "Deliver the Direction Call Wed Jul 22."
-    },
-    {
-      "date": "2026-07-21",
-      "title": "immigration_day_gleb_moved_call_tatjana_wed",
-      "next_action": "Deliver Tatjana's Direction Call Wed Jul 22 morning. Deliver Gleb's Direction Call whenever it now falls (Jul 21-22, exact time unknown). Send follow-up reminders to Patricia and Nia on Jul 22. Send community- webinar proposals to Devon, Oyi, and Will ~Jul 22-23. Consider adding calendar-boundary protection so future self-moved calls need confirmation."
-    },
-    {
-      "date": "2026-07-22",
-      "title": "tatjana_call_delivered_details_requested",
-      "next_action": "Send Tatjana the details message today: $555 Productize Yourself session + /ignite link. No chasing — she is at the dacha for ~2.5 weeks. Follow-up ~Aug 1 if silent."
-    },
-    {
-      "date": "2026-07-22",
-      "title": "karime_evolution_portal_proposal_sent",
-      "next_action": "Awaiting Karime's reply. Follow-up ~Jul 25 if silent. OMTM +1 this week."
-    }
-  ]
+  "eventsCount": 0,
+  "latestEvent": null,
+  "phaseShiftDistribution": {},
+  "openNextActions": []
 }

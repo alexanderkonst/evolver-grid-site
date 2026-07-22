@@ -2763,6 +2763,32 @@ export type Database = {
         Returns: number
       }
       eq_complete_task: { Args: { p_task_id: string }; Returns: undefined }
+      generate_profile_username: {
+        Args: {
+          p_first_name: string
+          p_last_name: string
+          p_profile_id?: string
+        }
+        Returns: string
+      }
+      get_public_profile_by_username: {
+        Args: { p_username: string }
+        Returns: {
+          appleseed_data: Json
+          avatar_url: string
+          excalibur_data: Json
+          first_name: string
+          last_name: string
+          location: string
+          show_location: boolean
+          show_mission: boolean
+          show_offer: boolean
+          top_three_talents: Json
+          user_id: string
+          username: string
+          visibility: string
+        }[]
+      }
       get_public_zog_snapshot: {
         Args: { p_slug: string }
         Returns: {
@@ -2774,40 +2800,6 @@ export type Database = {
           mastery_action: string
           share_slug: string
         }[]
-      }
-      get_public_profile_by_username: {
-        Args: { p_username: string }
-        Returns: {
-          appleseed_data: Json | null
-          avatar_url: string | null
-          excalibur_data: Json | null
-          first_name: string | null
-          last_name: string | null
-          location: string | null
-          show_location: boolean | null
-          show_mission: boolean | null
-          show_offer: boolean | null
-          top_three_talents: Json | null
-          user_id: string
-          username: string
-          visibility: string
-        }[]
-      }
-      normalize_profile_username: {
-        Args: { p_value: string }
-        Returns: string
-      }
-      profile_username_is_reserved: {
-        Args: { p_username: string }
-        Returns: boolean
-      }
-      profile_username_is_valid: {
-        Args: { p_username: string }
-        Returns: boolean
-      }
-      set_my_public_profile_username: {
-        Args: { p_username: string }
-        Returns: string
       }
       has_role: {
         Args: {
@@ -2824,6 +2816,15 @@ export type Database = {
           source_queue: string
         }
         Returns: number
+      }
+      normalize_profile_username: { Args: { p_value: string }; Returns: string }
+      profile_username_is_reserved: {
+        Args: { p_username: string }
+        Returns: boolean
+      }
+      profile_username_is_valid: {
+        Args: { p_username: string }
+        Returns: boolean
       }
       read_email_batch: {
         Args: { batch_size: number; queue_name: string; vt: number }
@@ -2855,6 +2856,10 @@ export type Database = {
           previous_tier: Database["public"]["Enums"]["entitlement_tier"]
           profile_id: string
         }[]
+      }
+      set_my_public_profile_username: {
+        Args: { p_username: string }
+        Returns: string
       }
     }
     Enums: {
