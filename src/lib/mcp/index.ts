@@ -5,7 +5,10 @@ import getGameProfileTool from "./tools/get-game-profile";
 // Direct Supabase host — never the .lovable.cloud proxy. Read from
 // VITE_SUPABASE_PROJECT_ID which Vite inlines at build time so this module
 // stays import-safe (no runtime env reads at top level).
-const projectRef = import.meta.env.VITE_SUPABASE_PROJECT_ID ?? "project-ref-unset";
+// The Lovable bundler can replace an unavailable build-time value with an
+// empty string. Use a known-safe project fallback so the generated function
+// never ships an invalid `https://.supabase.co` OAuth issuer.
+const projectRef = import.meta.env.VITE_SUPABASE_PROJECT_ID || "jypjttotvastdhanwvrx";
 
 export default defineMcp({
   name: "genius-business-mcp",
