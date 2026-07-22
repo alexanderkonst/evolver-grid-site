@@ -1,75 +1,8 @@
 {
-  "generated_at": "2026-07-21T03:37:14.934Z",
+  "generated_at": "2026-07-22T20:50:12.779Z",
   "source": "docs/09-logs/project_pulse_log.md",
-  "eventsCount": 28,
-  "latestEvent": {
-    "date": "2026-07-18",
-    "day": "128",
-    "pulse": "gleb_booked_wednesday",
-    "who": "[Sasha, Gleb]",
-    "what_happened": "Gleb booked his free Direction Call for Wednesday, July 22 — within hours of receiving Sasha's axiom message and the calendar link. Fast conversion in a bullseye segment (founder-in-pivot, a16z-backed, searching for self). No nudge is needed.",
-    "energy_exchanged": "[booking, fast conversion]",
-    "affected_holons": "[CRM Master Table, Offer Ledger, Day 127 axiom]",
-    "phase_shift_significance": "minor",
-    "next_action": "Deliver the Direction Call Wed Jul 22.",
-    "staleness_or_contradictions": "none",
-    "title": "gleb_booked_wednesday"
-  },
-  "phaseShiftDistribution": {
-    "minor": 9,
-    "major": 6,
-    "notable": 13
-  },
-  "openNextActions": [
-    {
-      "date": "2026-07-15",
-      "title": "haab_submitted_and_two_hosts_yes",
-      "next_action": "Sasha sends message 2 (details) to both; asset production for Will (Claude/Codex factory); short Loom for Oyi; funded-cohort idea to be explored with written terms when concrete."
-    },
-    {
-      "date": "2026-07-16",
-      "title": "warm_base_two_calls_booked",
-      "next_action": "Hold the third reply's call-booking thread; run remaining ~49 of the wave; watch booked-call rate as the wave completes."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "devon_host_pitch_accepted_3_of_3",
-      "next_action": "Sasha owes Devon a concrete webinar proposal (format + date options) within ~2-3 days, by ~Jul 20."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "alex_utkin_friend_call_free_session",
-      "next_action": "None owed by Sasha; Alex offered to help if useful. Standing law going forward: future friend requests route through the standard free 45-min Direction Call container, time-boxed, same door as everyone (being documented separately in the corpus)."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "kristina_direction_call_first_funnel_sourced_ladder_offer",
-      "next_action": "Sasha sends the promised links within ~1-2 days. Kristina owes her container details. Do NOT buy or barter her container during the outreach sprint; her monthly-show idea is parked as a content-engine candidate."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "warm_base_campaign_fully_sent_bobby_replied",
-      "next_action": "Follow-up wave on today's batch ~July 20. Sasha to report the Bobby conversation content so it can be properly logged in the CRM."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "kristina_links_sent_roman_note_corrected",
-      "next_action": "Await Kristina's container details. No action owed on Roman until he says «готов»."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "gabriel_no_tatjana_booked_bobby_dasha",
-      "next_action": "No action on Gabriel or Tatjana. Sasha to send his reply to Bobby. If Dasha hasn't scheduled within ~3 days (~Jul 20), one light nudge with the calendar link."
-    },
-    {
-      "date": "2026-07-18",
-      "title": "gleb_a16z_founder_inbound_referral_axiom_first_field_use",
-      "next_action": "If Gleb hasn't booked within ~3 days (~Jul 21), one light nudge. A thank-you to Alex Pustov for the intro is warranted."
-    },
-    {
-      "date": "2026-07-18",
-      "title": "gleb_booked_wednesday",
-      "next_action": "Deliver the Direction Call Wed Jul 22."
-    }
-  ]
+  "eventsCount": 0,
+  "latestEvent": null,
+  "phaseShiftDistribution": {},
+  "openNextActions": []
 }
