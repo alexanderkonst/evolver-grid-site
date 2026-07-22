@@ -206,9 +206,8 @@ const EvolutionPortal = () => {
               className="max-w-xl mx-auto"
               style={{ ...sourceSerifBody, fontSize: "16.5px" }}
             >
-              This is your client evolution portal. Not an app, not a course
-              platform. It&apos;s where your people watch themselves change,
-              with your practices inside, and it pays you.
+              Where your clients watch themselves change overtime, with your
+              transformational library inside. Where you get paid.
             </p>
             <div className="pt-2">
               <ClaimCta ctaId="hero-cta" />
