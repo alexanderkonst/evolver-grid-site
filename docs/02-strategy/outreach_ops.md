@@ -328,7 +328,7 @@ The axiom (Myth v4.0, `alexanders_unique_business.md` §1): **EN "Your career is
 - **Booking link:** https://cal.com/aleksandrkonstantinov/direction-call
 - **Teen product page:** /you
 - **Container product page:** /products/built
-- **Mirror objection disarm (born live, Tatjana call, Jul 22, 2026):** to 'why would you know me better than I know myself?' — «В зеркало себя увидеть проще, чем без зеркала. Это физика.» / EN: 'Seeing yourself in a mirror is easier than without one. That's physics.'
+- **Mirror objection disarm (born live on a Direction Call, Jul 22, 2026):** to 'why would you know me better than I know myself?' — «В зеркало себя увидеть проще, чем без зеркала. Это физика.» / EN: 'Seeing yourself in a mirror is easier than without one. That's physics.'
 
 ---
 
