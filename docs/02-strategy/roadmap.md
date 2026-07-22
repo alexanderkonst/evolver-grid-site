@@ -461,6 +461,7 @@ A unique face of eternity.
 ## 🔮 Parked / Future
 
 - **Originals Index v2 — the living conglomerate (Day 130 seed, not for the next month or two; the time will come soon):** each venture in the Index gets an account-linked page; the one-paragraph read is editable by the venture itself; full version history of the paragraph is publicly visible. The thesis demonstrated as UX: anyone can watch articulation precision rising over time across a living wall of real companies with real websites. V1 remains simple: companies + websites + timestamped one-paragraph reads.
+- **Reflection Proposal automation (Day 132 seed):** platform feature that generates the post-Direction-Call reflection message automatically from the call transcript — their invariant quoted back, their buying question pointed at, their project's core, one door — via a prompt series plus checks, calibrated on the vetted human-sounding messages that actually converted (ops §4a is the manual SOP and the training corpus). Manual first; automate after the pattern proves itself repeatedly.
 
 ### Parked (2026-07-09, Day 119) — Formal MCP server for node live-state (white-label infrastructure)
 
