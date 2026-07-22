@@ -299,6 +299,8 @@ Do not close on the call and do not send a generic details message. Instead, sam
 
 **The give/sell law (Day 132):** give all diagnosis, sell all derivation. Diagnosis (their words mirrored, the stuck named, the cost named, even a strong articulation seed) is the free taste and cannot be over-given: the better the diagnosis, the stronger the pull, because hunger for operationalization grows with clarity. Derivation (the co-verified 9.5-precision formulation, the offer, pricing, page, distribution, a designed product core) is the product and never goes in a message. Sayable form: «Диагностика бесплатно. Сборка за деньги.»
 
+**Corollaries (Day 132):** better diagnosis is better for both, always — the free diagnosis is simultaneously the gift, the proof, and the appetite; you cannot lose by diagnosing brilliantly. And the platform is the naming machine: point warm leads to the free assessment BEFORE the Direction Call where possible (they arrive with raw naming; the call goes deeper), or include it as the gift inside the reflection message. Full school: ITFT Part X (Mirror Selling).
+
 ---
 
 ## 5. Follow-up discipline
