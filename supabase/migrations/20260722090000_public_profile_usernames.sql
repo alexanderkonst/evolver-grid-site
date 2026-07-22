@@ -334,12 +334,9 @@ as $$
             gp.profile_visibility = 'friends'
             and auth.uid() is not null
             and exists (
-              select 1 from public.connections c
-              where c.status = 'accepted'
-                and (
-                  (c.requester_id = auth.uid() and c.receiver_id = gp.user_id)
-                  or (c.receiver_id = auth.uid() and c.requester_id = gp.user_id)
-                )
+              select 1 from public.match_intros mi
+              where (mi.user_a_id = auth.uid() and mi.user_b_id = gp.user_id)
+                 or (mi.user_b_id = auth.uid() and mi.user_a_id = gp.user_id)
             )
           )
           or (
