@@ -388,6 +388,21 @@ Recognition + Consequence + Simplicity + Trust = Inevitable Transaction
 
 ---
 
+## Part X: Mirror Selling — the Operating School (v1.0, July 22, 2026)
+
+Part VII named the source (love); this Part names the school that operationalizes it, assembled and field-tested in the July 2026 campaign. Its core move is one sentence: **the diagnosis IS the demo — you sell articulation by performing it on the prospect, free.**
+
+The five laws of Mirror Selling:
+1. **Give all diagnosis, sell all derivation.** Naming is free (their pattern, their stuck, their cost, even a strong articulation seed); building is paid (the co-verified formulation, offer, pricing, page, product core). Sayable: «Диагностика бесплатно. Сборка за деньги.»
+2. **Better diagnosis is better for both, always.** A brilliant free diagnosis is simultaneously the gift, the proof, and the appetite: clarity increases hunger for operationalization. You cannot lose by diagnosing too well.
+3. **Catch buying questions; never answer them with explanations.** A buying question is the prospect stating the product as a question ('how do I sell lightness and energy?'). Point at it: 'what you just asked is exactly the work.'
+4. **The call opens the gap; the reflection connects the dots; the session closes them.** Live calls are for eliciting their words (Elicit-Provide-Elicit); the same-day Reflection Proposal (ops §4a) mirrors their own words back with one door; closing happens when yes-energy appears: 'if you're ready, let's set it up right now' — their ask, your door, zero pressure.
+5. **The platform is the naming machine.** The free high-precision reveal is the school's infrastructure: warm leads take the free assessment before the call (arriving with raw naming, so the call goes deeper), or receive it as the gift inside the reflection message. As naming gets better and cheaper at scale, whoever names best owns the front door to all building.
+
+Lineage: Mirror-Not-Teacher (playbook), Sales as Love (Part VII), MI's Elicit-Provide-Elicit, SPIN's buyer-stated value, the Challenger's teach-with-a-reframe, Karime's personalized proposal compressed to same-day. The novelty is the core move: demonstration by articulation.
+
+---
+
 ## Related Documents
 
 This theory is the **foundational layer** under:
@@ -403,4 +418,5 @@ This theory is the **foundational layer** under:
 *Codified: January 27, 2026*
 *Source: Alexander Konst's Integral Transactional Field Theory synthesis*
 *Updated: April 2, 2026 — Part IX: Controlled Collapse Sequence (5 Money Secrets, Consequence Block, Micro-Commitment, Non-Optionality framing)*
+*Updated: July 22, 2026 — Part X: Mirror Selling — the Operating School (5 laws, diagnosis-is-the-demo)*
 
