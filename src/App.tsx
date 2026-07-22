@@ -389,6 +389,11 @@ const UblRedirect = () => {
   return <Navigate to={`/page/${slugWithVersion ?? ""}`} replace />;
 };
 
+const LegacyPublicProfileRedirect = () => {
+  const { username } = useParams<{ username: string }>();
+  return <Navigate to={`/${username ?? ""}`} replace />;
+};
+
 const GlobalChrome = () => {
   const location = useLocation();
   const isHeroQuiz = location.pathname === "/hero";
@@ -475,7 +480,7 @@ const App = () => (
                   <Route path="/integral_theory_upgrade1" element={<Navigate to="/27" replace />} />
                   <Route path="/intros" element={<Intros />} />
                   <Route path="/profile/:userId" element={<PublicProfile />} />
-                  <Route path="/u/:username" element={<PublicProfile />} />
+                  <Route path="/u/:username" element={<LegacyPublicProfileRedirect />} />
                   <Route path="/p/:slug" element={<CreatorPage />} />
                   <Route path="/mp/:slug" element={<MarketplaceProductPage />} />
                   {/* Day 53 night iter 2 (Sasha 2026-04-27): UBD/UBL acronyms
@@ -904,6 +909,7 @@ const App = () => (
                       "The platform's profile, in public." One CTA: create your own profile. */}
                   <Route path="/aleksandr" element={<AlexanderProfile />} />
                   <Route path="/alexander" element={<Navigate to="/aleksandr" replace />} />
+                  <Route path="/integralevolution" element={<Navigate to="/aleksandr" replace />} />
                   {/* Public monetization explainer · /monetization · standalone (no shell),
                       radical-transparency framing, Liquid Glass register. */}
                   <Route path="/monetization" element={<Monetization />} />
@@ -924,6 +930,10 @@ const App = () => (
                       the shipped Aurora experience for anyone else.
                       Not linked from any nav — discoverable by URL only. */}
                   <Route path="/preview" element={<SkinPreview />} />
+                  {/* Canonical public profiles live directly at /:username.
+                      Explicit application routes above always win; reserved
+                      slugs in the database prevent future route collisions. */}
+                  <Route path="/:username" element={<GameShellV2 spaceOverride="grow"><PublicProfile /></GameShellV2>} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                   </Route>

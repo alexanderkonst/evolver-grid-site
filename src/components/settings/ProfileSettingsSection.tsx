@@ -57,6 +57,7 @@ interface UserProfile {
     last_name: string | null;
     spoken_languages: string[] | null;
     avatar_url: string | null;
+    username: string | null;
 }
 
 interface Purchase {
@@ -106,6 +107,7 @@ const ProfileSettingsSection = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [editFirstName, setEditFirstName] = useState("");
     const [editLastName, setEditLastName] = useState("");
+    const [editUsername, setEditUsername] = useState("");
     const [editLanguages, setEditLanguages] = useState<string[]>([]);
     const [customLanguage, setCustomLanguage] = useState("");
     const [isSaving, setIsSaving] = useState(false);
@@ -138,13 +140,14 @@ const ProfileSettingsSection = () => {
         setUser(user);
         const { data: profileData } = await supabase
             .from("game_profiles")
-            .select("id, first_name, last_name, spoken_languages, avatar_url")
+            .select("id, first_name, last_name, spoken_languages, avatar_url, username")
             .eq("user_id", user.id)
             .maybeSingle();
         if (profileData) {
             setProfile(profileData);
             setEditFirstName(profileData.first_name || "");
             setEditLastName(profileData.last_name || "");
+            setEditUsername(profileData.username || "");
             setEditLanguages(Array.isArray(profileData.spoken_languages) ? profileData.spoken_languages : []);
         }
         const { data: purchaseData } = await supabase
@@ -263,6 +266,24 @@ const ProfileSettingsSection = () => {
             .filter(Boolean)
             .filter((l, i, list) => list.findIndex(v => normalizeKey(v) === normalizeKey(l)) === i);
         setIsSaving(true);
+        const requestedUsername = editUsername.trim().toLowerCase();
+        let savedUsername = profile.username;
+        if (requestedUsername !== (profile.username || "")) {
+            const { data: usernameData, error: usernameError } = await supabase.rpc(
+                "set_my_public_profile_username",
+                { p_username: requestedUsername },
+            );
+            if (usernameError) {
+                toast({
+                    title: "Could not save public profile address",
+                    description: usernameError.message,
+                    variant: "destructive",
+                });
+                setIsSaving(false);
+                return;
+            }
+            savedUsername = usernameData;
+        }
         const { error } = await supabase
             .from("game_profiles")
             .update({
@@ -272,7 +293,7 @@ const ProfileSettingsSection = () => {
             })
             .eq("id", profile.id)
             .eq("user_id", user.id)
-            .select("id, first_name, last_name, spoken_languages, avatar_url")
+            .select("id, first_name, last_name, spoken_languages, avatar_url, username")
             .single();
         if (error) {
             console.warn("[ProfileSettingsSection] profile update failed", error);
@@ -283,6 +304,7 @@ const ProfileSettingsSection = () => {
                 first_name: editFirstName.trim() || null,
                 last_name: editLastName.trim() || null,
                 spoken_languages: normalizedLanguages,
+                username: savedUsername,
             });
             setIsEditing(false);
             toast({ title: t('profileSettings.toastProfileUpdatedTitle'), description: t('profileSettings.toastProfileUpdatedDescription') });
@@ -293,6 +315,7 @@ const ProfileSettingsSection = () => {
     const handleCancelEdit = () => {
         setEditFirstName(profile?.first_name || "");
         setEditLastName(profile?.last_name || "");
+        setEditUsername(profile?.username || "");
         setEditLanguages(Array.isArray(profile?.spoken_languages) ? profile?.spoken_languages : []);
         setCustomLanguage("");
         setIsEditing(false);
@@ -491,6 +514,25 @@ const ProfileSettingsSection = () => {
                                 </div>
                             </div>
                             <div className="space-y-2">
+                                <Label htmlFor="username">Public profile address</Label>
+                                <div className="flex items-center rounded-md border border-input bg-background focus-within:ring-2 focus-within:ring-ring">
+                                    <span className="pl-3 text-sm text-muted-foreground">findyourtoptalent.com/</span>
+                                    <Input
+                                        id="username"
+                                        value={editUsername}
+                                        onChange={e => setEditUsername(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""))}
+                                        placeholder="your-name"
+                                        className="border-0 pl-0 shadow-none focus-visible:ring-0"
+                                        autoCapitalize="none"
+                                        autoCorrect="off"
+                                        spellCheck={false}
+                                    />
+                                </div>
+                                <p className="text-xs text-muted-foreground">
+                                    3–40 lowercase letters, numbers, or single hyphens. Your current links redirect to this address.
+                                </p>
+                            </div>
+                            <div className="space-y-2">
                                 <Label>{t('profileSettings.emailLabel')}</Label>
                                 <Input value={user?.email || ""} disabled className="bg-muted" />
                                 <p className="text-xs text-muted-foreground">{t('profileSettings.emailCannotBeChanged')}</p>
@@ -588,6 +630,20 @@ const ProfileSettingsSection = () => {
                             <div>
                                 <p className="text-sm text-muted-foreground">{t('profileSettings.emailLabel')}</p>
                                 <p className="font-medium text-foreground">{user?.email}</p>
+                            </div>
+                            <div>
+                                <p className="text-sm text-muted-foreground">Public profile</p>
+                                {profile?.username ? (
+                                    <button
+                                        type="button"
+                                        onClick={() => navigate(`/${profile.username}`)}
+                                        className="font-medium text-foreground underline decoration-amber-400/50 underline-offset-4 hover:decoration-amber-400"
+                                    >
+                                        findyourtoptalent.com/{profile.username}
+                                    </button>
+                                ) : (
+                                    <p className="font-medium text-foreground">Created automatically when you save</p>
+                                )}
                             </div>
                             <div>
                                 <p className="text-sm text-muted-foreground">{t('profileSettings.languagesLabel')}</p>

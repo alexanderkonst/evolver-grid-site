@@ -304,6 +304,8 @@ interface SpacesRailProps {
     // Optional user data props
     userName?: string;
     userAvatarUrl?: string;
+    /** Canonical root-level public profile URL for the authenticated user. */
+    publicProfilePath?: string;
     userLevel?: number;
     userXp?: number;
     /**
@@ -333,6 +335,7 @@ const SpacesRail = ({
     pageOwnsBackground = false,
     userName,
     userAvatarUrl,
+    publicProfilePath = "/game/me/profile",
     userLevel,
     userXp,
     soulColors,
@@ -1110,7 +1113,7 @@ const SpacesRail = ({
                             <Tooltip>
                                 <TooltipTrigger asChild>
                                     <button
-                                        onClick={() => navigate("/game/me")}
+                                        onClick={() => navigate(publicProfilePath)}
                                         className={cn(
                                             "grid place-items-center rounded-full transition-all duration-300 hover:ring-1 hover:ring-[#d4af37]/30",
                                             compact ? "w-[30px] h-[30px]" : "w-[40px] h-[40px]"

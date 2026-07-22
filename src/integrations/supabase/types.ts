@@ -2775,6 +2775,40 @@ export type Database = {
           share_slug: string
         }[]
       }
+      get_public_profile_by_username: {
+        Args: { p_username: string }
+        Returns: {
+          appleseed_data: Json | null
+          avatar_url: string | null
+          excalibur_data: Json | null
+          first_name: string | null
+          last_name: string | null
+          location: string | null
+          show_location: boolean | null
+          show_mission: boolean | null
+          show_offer: boolean | null
+          top_three_talents: Json | null
+          user_id: string
+          username: string
+          visibility: string
+        }[]
+      }
+      normalize_profile_username: {
+        Args: { p_value: string }
+        Returns: string
+      }
+      profile_username_is_reserved: {
+        Args: { p_username: string }
+        Returns: boolean
+      }
+      profile_username_is_valid: {
+        Args: { p_username: string }
+        Returns: boolean
+      }
+      set_my_public_profile_username: {
+        Args: { p_username: string }
+        Returns: string
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

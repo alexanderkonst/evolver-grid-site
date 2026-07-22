@@ -71,6 +71,7 @@ const SHELL_EXACT = new Set<string>([
     "/build/cockpit/offers",
     "/game/test-nav",
     "/game/next-move-v2",   // DailyLoopV2 — sibling of /game/next-move; distinct path so listed explicitly
+    "/aleksandr",           // Founder public profile — belongs to ME while retaining its shareable root slug
 ]);
 
 /**
