@@ -81,6 +81,9 @@ Each campaign below is fully self-contained: verbatim copy, search query, tracki
 **After they book (same channel):**
 > Great. So the 45 minutes go fully into your situation, two quick questions: What's the transition you're in? And what have you tried?
 
+**After they book — v2 (July 22, 2026; adds the optional pre-call assessment per the naming-machine protocol):**
+> Great. So the 45 minutes go fully into your situation, two quick questions: What's the transition you're in? And what have you tried? And if you feel like it, take the free assessment before we talk — you'll arrive with raw material and we'll go deeper: https://findyourtoptalent.com. Totally optional.
+
 **Follow-up 1 (+3 days, gentle):**
 > Hey [Name], no pressure. One line from a recent client, verbatim: "we set a strategic corridor for building a business which I never had before." If a Direction Call sounds useful, the door is open.
 
@@ -376,6 +379,8 @@ Claude then sends one Pulse: update the Pulse event, reconcile the CRM Master Ta
 - **looks-like-data-collection** — trust-first, gets consent-of-seeing transparency.
 
 Type determines the reply move. Typed responses accumulate into the response map (Domain 68).
+
+**Sent-copy corpus rule (Day 132):** every final sent wording Sasha reports is archived verbatim in the CRM's Outreach Message Bank → Sent messages (private ledger), tagged with scenario and outcome. This corpus is the calibration set for all future AI-drafted copy: new drafts are checked against what actually got sent and what actually converted.
 
 **Booking flow note:** the cal.com link (https://cal.com/aleksandrkonstantinov/direction-call) goes out in Message 2. The two questions are asked in the SAME channel (LinkedIn DM), after they book, not in the booking form itself.
 
