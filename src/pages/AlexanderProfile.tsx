@@ -2,9 +2,10 @@ import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { igniteLogo } from "@/lib/landingDesign";
+import profilePhoto from "@/assets/profile-photo.png";
 
 /**
- * /alexander — Alexander Konstantinov's own public platform profile.
+ * /aleksandr — Aleksandr Konstantinov's own public platform profile.
  *
  * v2 (founder redesign): contemporary Korean/Japanese mythic minimalism.
  * Midnight indigo, atmospheric depth, monumental geometry (octahedron
@@ -180,7 +181,7 @@ export default function AlexanderProfile() {
       }}
     >
       <Helmet>
-        <title>Alexander Konstantinov — Find Your Top Talent</title>
+        <title>Aleksandr Konstantinov — Find Your Top Talent</title>
         <meta
           name="description"
           content="I turn vague thoughts into exact words people can use to decide and act. This is my own platform profile, public."
@@ -230,11 +231,20 @@ export default function AlexanderProfile() {
         {/* Header — a solitary presence inside the archetype */}
         <header className="relative text-center mb-4">
           <CanonicalArtifact />
+          <img
+            src={profilePhoto}
+            alt="Aleksandr Konstantinov"
+            className="relative mx-auto mb-7 h-28 w-28 sm:h-32 sm:w-32 rounded-full object-cover"
+            style={{
+              border: `1px solid ${GOLD_HAIRLINE}`,
+              boxShadow: "0 0 0 6px rgba(8, 13, 26, 0.76), 0 0 40px rgba(185, 154, 95, 0.18)",
+            }}
+          />
           <h1
             className="relative text-[2rem] sm:text-[2.6rem] leading-tight"
             style={{ fontFamily: DISPLAY_FONT, letterSpacing: "0.08em", fontWeight: 400 }}
           >
-            Alexander Konstantinov
+            Aleksandr Konstantinov
           </h1>
           <p
             className="relative mt-3 text-sm sm:text-base"

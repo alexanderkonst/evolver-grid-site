@@ -353,6 +353,8 @@ interface GameShellV2Props {
      * card to own the first impression (the Day 82 call).
      */
     defaultRailMinimized?: boolean;
+    /** Force a conceptual space for root-level surfaces such as /:username. */
+    spaceOverride?: string;
 }
 
 /** Day 119 (Sasha 2026-07-09): platform-wide pane-1 minimize preference. */
@@ -404,7 +406,7 @@ export const GameShellV2 = (props: GameShellV2Props) => {
  * Panel 2: SectionsPanel (sections list)
  * Panel 3: Content area
  */
-const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo, defaultRailMinimized = false }: GameShellV2Props) => {
+const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo, defaultRailMinimized = false, spaceOverride }: GameShellV2Props) => {
     const { t } = useTranslation();
     // Day 82 v4 (Sasha 2026-05-24): pane-1 minimize state. Defaults to
     // ON when the page passes defaultRailMinimized — Karime's pages open
@@ -475,6 +477,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         first_name: string | null;
         last_name: string | null;
         avatar_url: string | null;
+        username?: string | null;
         onboarding_stage?: string | null;
         last_zog_snapshot_id?: string | null;
         zone_of_genius_completed?: boolean | null;
@@ -494,6 +497,11 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // zog_snapshot — used as the deterministic hash seed for the soul-color
     // ring when no explicit `soul_colors` are set yet.
     const [archetypeTitle, setArchetypeTitle] = useState<string | null>(null);
+    const publicProfilePath = profile?.username
+        ? `/${profile.username}`
+        : location.pathname === "/aleksandr"
+            ? "/aleksandr"
+            : "/game/me/profile";
     // Day 63 → Day 87 — COLLABORATE space gating history:
     //
     // Day 63 (Sasha 2026-05-07 night): gated on localStorage flag
@@ -713,6 +721,10 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
 
     // Determine active space from URL
     useEffect(() => {
+        if (spaceOverride) {
+            setActiveSpaceId(spaceOverride);
+            return;
+        }
         // Root path `/` + the Journey-family URLs all belong to JOURNEY.
         // This ensures the sections pane renders (and is closable) on
         // /playbook, /path, /my-artifacts, /zone-of-genius — Sasha, 2026-04-21.
@@ -747,6 +759,11 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             return;
         }
 
+        if (location.pathname === "/aleksandr") {
+            setActiveSpaceId("grow");
+            return;
+        }
+
         const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius", "/game/settings", "/dashboard", "/ignite", "/quality-of-life-map", "/asset-mapping", "/activate-top-talent"];
         const isJourneyFamily = journeyPaths.some(
             (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
@@ -766,14 +783,14 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         if (fallback) {
             setActiveSpaceId(fallback.id);
         }
-    }, [location.pathname, activeSpaceId]);
+    }, [location.pathname, activeSpaceId, spaceOverride]);
 
     // Load profile
     const loadProfile = async (userId: string) => {
         try {
             const { data } = await supabase
                 .from("game_profiles")
-                .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at, level, xp_total, current_streak_days")
+                .select("first_name, last_name, avatar_url, username, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at, level, xp_total, current_streak_days")
                 .eq("user_id", userId)
                 .maybeSingle();
             setProfile(data || null);
@@ -805,7 +822,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         try {
             const { data } = await supabase
                 .from("game_profiles")
-                .select("first_name, last_name, avatar_url, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at, level, xp_total, current_streak_days")
+                .select("first_name, last_name, avatar_url, username, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at, level, xp_total, current_streak_days")
                 .eq("id", profileId)
                 .maybeSingle();
             setProfile(data || null);
@@ -1552,6 +1569,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     userXp={profile?.xp_total || undefined}
                     soulColors={profile?.soul_colors || undefined}
                     soulColorSeed={archetypeTitle || user?.id || undefined}
+                    publicProfilePath={publicProfilePath}
                 />
 
                 {/* Day 82 v4 (Sasha 2026-05-24): pane-1 minimize toggle —
@@ -1649,6 +1667,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         onClose={toggleSectionsPanel}
                         className="h-full w-[260px]"
                         pageOwnsBackground={pageOwnsBackground}
+                        publicProfilePath={publicProfilePath}
                     />
                 </div>
 
@@ -1828,6 +1847,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         userXp={profile?.xp_total || undefined}
                         soulColors={profile?.soul_colors || undefined}
                         soulColorSeed={archetypeTitle || user?.id || undefined}
+                        publicProfilePath={publicProfilePath}
                         className="h-dvh"
                     />
 
@@ -1838,6 +1858,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                             onSectionSelect={handleSectionSelect}
                             className="w-full h-full"
                             pageOwnsBackground={pageOwnsBackground}
+                            publicProfilePath={publicProfilePath}
                         />
                     </div>
                 </div>

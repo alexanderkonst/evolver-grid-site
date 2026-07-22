@@ -69,19 +69,39 @@ const PublicProfile = () => {
       if (!userId && !username) return;
       setLoading(true);
 
-      let profileQuery = supabase
-        .from("game_profiles")
-        .select(
-          "user_id, first_name, last_name, avatar_url, location, visibility, show_location, show_mission, show_offer, last_zog_snapshot_id"
-        );
+      let profileData: any = null;
+      let zogData: {
+        appleseed_data: unknown | null;
+        excalibur_data: unknown | null;
+        top_three_talents: unknown | null;
+      } | null = null;
 
       if (username) {
-        profileQuery = profileQuery.eq("username", username);
+        // Root-slug pages use a narrow SECURITY DEFINER projection. Never
+        // expose the private game_profiles row (email, entitlements, tokens)
+        // merely to render a public profile.
+        const { data } = await supabase
+          .rpc("get_public_profile_by_username", { p_username: username })
+          .maybeSingle();
+        profileData = data;
+        if (data) {
+          zogData = {
+            appleseed_data: data.appleseed_data,
+            excalibur_data: data.excalibur_data,
+            top_three_talents: data.top_three_talents,
+          };
+        }
       } else if (userId) {
-        profileQuery = profileQuery.or(`user_id.eq.${userId},id.eq.${userId}`);
+        // Legacy ID route remains available for signed-in internal links.
+        const { data } = await supabase
+          .from("game_profiles")
+          .select(
+            "user_id, first_name, last_name, avatar_url, location, visibility, show_location, show_mission, show_offer, last_zog_snapshot_id"
+          )
+          .or(`user_id.eq.${userId},id.eq.${userId}`)
+          .maybeSingle();
+        profileData = data;
       }
-
-      const { data: profileData } = await profileQuery.maybeSingle();
 
       if (!profileData) {
         if (isMounted) {
@@ -93,12 +113,7 @@ const PublicProfile = () => {
 
       const visibility = resolveVisibility(profileData.visibility);
 
-      let zogData: {
-        appleseed_data: unknown | null;
-        excalibur_data: unknown | null;
-        top_three_talents: unknown | null;
-      } | null = null;
-      if (profileData.last_zog_snapshot_id) {
+      if (!zogData && profileData.last_zog_snapshot_id) {
         const { data } = await supabase
           .from("zog_snapshots")
           .select("appleseed_data, excalibur_data, top_three_talents")
@@ -209,7 +224,7 @@ const PublicProfile = () => {
         .maybeSingle();
 
       if (isMounted) {
-        setProfile(profileData as PublicProfileData);
+        setProfile({ ...profileData, last_zog_snapshot_id: profileData.last_zog_snapshot_id ?? null } as PublicProfileData);
         setMission(missionData ? (missionData as MissionRow) : null);
         setAppleseed(zogData?.appleseed_data ? (zogData.appleseed_data as unknown as AppleseedData) : null);
         setExcalibur(zogData?.excalibur_data ? (zogData.excalibur_data as unknown as ExcaliburData) : null);

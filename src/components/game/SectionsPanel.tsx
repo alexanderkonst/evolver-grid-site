@@ -503,6 +503,8 @@ interface SectionsPanelProps {
      * panels disappear on /ai-os.
      */
     pageOwnsBackground?: boolean;
+    /** Canonical root-level public profile URL for the authenticated user. */
+    publicProfilePath?: string;
 }
 
 /**
@@ -847,6 +849,7 @@ const SectionsPanel = ({
     onClose,
     className,
     pageOwnsBackground = false,
+    publicProfilePath = "/game/me/profile",
 }: SectionsPanelProps) => {
     const { t } = useTranslation();
     const location = useLocation();
@@ -1076,6 +1079,11 @@ const SectionsPanel = ({
             return {
                 ...baseData,
                 sections: [
+                    {
+                        id: "public-profile",
+                        label: "Public Profile",
+                        path: publicProfilePath,
+                    },
                     ...baseData.sections,
                     {
                         id: "art",
@@ -1089,6 +1097,23 @@ const SectionsPanel = ({
                             { id: "art-webportals", label: "Webportals", path: "/art/webportals" },
                         ],
                     },
+                ],
+            };
+        }
+
+        // A user's public profile lives at its short root slug (`/aleksandr`,
+        // `/jane-doe`, …), but conceptually belongs to ME. Keep the route
+        // dynamic so pane 1 and pane 2 always resolve to the same address.
+        if (activeSpaceId === "grow") {
+            return {
+                ...baseData,
+                sections: [
+                    {
+                        id: "public-profile",
+                        label: "Public Profile",
+                        path: publicProfilePath,
+                    },
+                    ...baseData.sections,
                 ],
             };
         }
