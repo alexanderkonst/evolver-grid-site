@@ -90,7 +90,7 @@ var get_game_profile_default = defineTool2({
 });
 
 // src/lib/mcp/index.ts
-var projectRef = "";
+var projectRef = "jypjttotvastdhanwvrx";
 var mcp_default = defineMcp({
   name: "genius-business-mcp",
   title: "Genius Business MCP",
