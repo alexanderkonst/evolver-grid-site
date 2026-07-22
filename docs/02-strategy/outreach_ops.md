@@ -293,6 +293,12 @@ No follow-up 1/2 (single post, not a DM thread). Engage with comments in each sw
 
 ---
 
+### 4a. The Reflection Proposal (v1.0, July 22, 2026 — new standard step after every Direction Call)
+
+Do not close on the call and do not send a generic details message. Instead, same day: run the call transcript through analysis and send a personalized reflection message built ONLY from things they said themselves. Structure: (1) their invariant, quoted back in their own words ("you said X — that is your pattern"); (2) their buying question, quoted back ("you said you don't know how to Y — that is exactly what the session does"); (3) their project's core, derived from their own material; then ONE door with the price. Rule: give the seed generously (it proves the method); sell the operationalization (exact wording, derivation, pricing). Lineage: Karime's personalized-proposal practice, compressed from 2-3 days to same-day so the lead stays warm. The call opens the gap; the reflection message connects the dots; the session closes them.
+
+---
+
 ## 5. Follow-up discipline
 
 The **"Next follow-up date" column IS the system.** No memory required.
