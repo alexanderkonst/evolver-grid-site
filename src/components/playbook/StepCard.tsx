@@ -522,47 +522,7 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
         {t("stepCard.essayShortcuts")}
       </p>
 
-      <p>
-        {t("stepCard.essayToolsRecommend")}{" "}
-        <a href="https://talentq.me/" target="_blank" rel="noreferrer noopener" style={linkStyle}>1</a>
-        ,{" "}
-        <a href="https://www.evolution.life/" target="_blank" rel="noreferrer noopener" style={linkStyle}>2</a>
-        .
-      </p>
-
-      {/* Three purpose coaches: Paul + John open WhatsApp with a pre-
-          composed intro; Kawtar goes to LinkedIn. Names not surfaced —
-          rendered as anonymous numbered links matching the tools above. */}
-      <p>
-        {t("stepCard.essayCoachRecommend")}{" "}
-        <a
-          href="https://wa.me/13018733135?text=Hi%20Paul%2C%20Aleksandr%20Konstantinov%20at%20www.FindYourTopTalent.com%20recommended%20you%20as%20a%20purpose%20coach%20I%20can%20work%20with.%20What%27s%20the%20best%20way%20to%20engage%20with%20you%3F"
-          target="_blank"
-          rel="noreferrer noopener"
-          style={linkStyle}
-        >
-          1
-        </a>
-        ,{" "}
-        <a
-          href="https://wa.me/447771911220?text=Hi%20John%2C%20Aleksandr%20Konstantinov%20at%20www.FindYourTopTalent.com%20recommended%20you%20as%20a%20purpose%20coach%20I%20can%20work%20with.%20What%27s%20the%20best%20way%20to%20engage%20with%20you%3F"
-          target="_blank"
-          rel="noreferrer noopener"
-          style={linkStyle}
-        >
-          2
-        </a>
-        ,{" "}
-        <a
-          href="https://www.linkedin.com/in/kawtar-mahdaoui-a3337810a/"
-          target="_blank"
-          rel="noreferrer noopener"
-          style={linkStyle}
-        >
-          3
-        </a>
-        .
-      </p>
+      <p>{t("stepCard.essayReferralNetwork")}</p>
 
       <p>{t("stepCard.essayWishCommonplace")}</p>
 
@@ -573,6 +533,8 @@ const Step2Essay = (_: { neonHsl: string; neonRgb: string }) => {
       <p>{t("stepCard.essayHindsight")}</p>
 
       <p>{t("stepCard.essayMorePeople")}</p>
+
+      <p>{t("stepCard.essayPivotLine")}</p>
 
       <p>
         <a href="/ignite" style={linkStyle}>
@@ -697,16 +659,31 @@ const StepCard = ({ step }: StepCardProps) => {
           }}
         >
           {t("stepCard.stepLabel", { number: step.number })}{" "}
-          <span
-            style={{
-              // Step color blended with skin-text-primary so it stays
-              // readable on either light (Aurora) or dark (Navy+Gold) panel.
-              color: `color-mix(in srgb, ${step.neonHsl} 55%, var(--skin-text-primary, #0a1628) 45%)`,
-              textShadow: `0 0 14px rgba(${step.neonRgb}, 0.45), 0 0 3px rgba(${step.neonRgb}, 0.55), var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))`,
-            }}
-          >
-            {step.subtitle}
-          </span>
+          {step.number === 4 ? (
+            <Link
+              to="/products/built"
+              style={{
+                color: `color-mix(in srgb, ${step.neonHsl} 55%, var(--skin-text-primary, #0a1628) 45%)`,
+                textShadow: `0 0 14px rgba(${step.neonRgb}, 0.45), 0 0 3px rgba(${step.neonRgb}, 0.55), var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))`,
+                textDecoration: "underline",
+                textDecorationThickness: "1px",
+                textUnderlineOffset: "4px",
+              }}
+            >
+              {step.subtitle}
+            </Link>
+          ) : (
+            <span
+              style={{
+                // Step color blended with skin-text-primary so it stays
+                // readable on either light (Aurora) or dark (Navy+Gold) panel.
+                color: `color-mix(in srgb, ${step.neonHsl} 55%, var(--skin-text-primary, #0a1628) 45%)`,
+                textShadow: `0 0 14px rgba(${step.neonRgb}, 0.45), 0 0 3px rgba(${step.neonRgb}, 0.55), var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))`,
+              }}
+            >
+              {step.subtitle}
+            </span>
+          )}
         </h1>
 
         {/* ══ Day 51 night (Sasha 2026-04-25): outcome-before-route.

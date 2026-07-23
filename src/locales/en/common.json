@@ -2748,15 +2748,13 @@
   },
   "pathPage": {
     "hero": {
-      "h1Before": "Solid Founder-Market Fit. Early",
-      "h1ProductMarketFit": "Product-Market Fit",
-      "h1Middle": ". Traction. Organic Demand.",
-      "h1InvestorsLovingIt": "Investors Loving It",
-      "h1After": ".",
-      "h2": "In 6–8 Weeks.",
-      "guarantee": "Money-Back Guaranteed.",
-      "fineprint": "Provided you do your part.",
+      "h1": "Your career is capped by how well you know yourself.",
+      "subhead": "Articulate your unique value, monetize it, and build a scalable business structure around it. In 6-8 weeks.",
       "shelfLine": "Next-chapter positioning strategy for founders, from an MIT-trained founder"
+    },
+    "quickTest": {
+      "heading": "Quick test:",
+      "body": "Can you say what you do in one breath? If not, that's not a flaw. It's the exact place we start."
     },
     "ladder": {
       "payAsYouProgress": "Pay as you progress",
@@ -2765,7 +2763,9 @@
         "step": "Step 1",
         "title": "Name Your Top Talent",
         "duration": "Minutes",
-        "price": "Free"
+        "price": "Free",
+        "freeDoors": "Two free doors: the 10-minute test, or a free 45-minute Direction Call if you want it guided.",
+        "directionCallCta": "Book a free Direction Call"
       },
       "step23": {
         "step": "Step 2 + 3",
@@ -2775,7 +2775,7 @@
       },
       "step4": {
         "step": "Step 4",
-        "title": "Build Your Product, Package it, Strategize Distribution, Create Comms Kit, Pick a Business Model & License, Rehearse, Pass the \"Founder Consciousness Adjustment\", Add Leverage & Virality",
+        "title": "BUILT: Build Your Product, Package It, Strategize Distribution, Pick Your Business Model",
         "duration": "3 weeks, alongside other conscious impact entrepreneurs",
         "price": "$1,111"
       },
@@ -2789,8 +2789,7 @@
         "step": "Step 6",
         "title": "Laser-Focus Tactically and Go Live",
         "duration": "2-week container",
-        "price": "$1,111",
-        "priceDetail": "+ $2,222 from your first $10k (1/3 of first $10k)"
+        "price": "Priced in conversation"
       },
       "step7": {
         "step": "Step 7",
@@ -2800,20 +2799,16 @@
       }
     },
     "totals": {
-      "beforeTotal": "The upfront path (Steps 1–5) totals",
-      "afterTotal": ". Step 6 adds",
-      "step6Upfront": "$1,111 upfront",
-      "and": "and",
-      "step6Share": "1/3 of your first $10k in revenue",
-      "tail": "— capped there. After that, 0%. Step 7 is by invitation only, after you have early product-market fit and organic demand."
+      "beforeTotal": "The upfront path (Steps 1-5) totals",
+      "step6Note": "Step 6 is priced in conversation.",
+      "step7Note": "Step 7 is by invitation."
     },
     "cta": {
       "primary": "Start free with Step 1",
       "secondary": "Book your Productize Yourself Session"
     },
     "close": {
-      "optional": "Every step is optional. Every step delivers a complete transformation in itself.",
-      "guarantee": "Pay as you progress. Money-back guarantee on every step."
+      "optional": "Every step is optional. Every step delivers a complete transformation in itself."
     }
   },
   "coreLoopHome": {
@@ -3299,11 +3294,13 @@
     "essayShortcuts": "Shortcuts exist too. Either you get guided by someone who has already reached 9.9+ for themselves and shares the path, or you use a high-precision purpose-discovery tool. Or both. As of 2026, both are still rare.",
     "essayToolsRecommend": "We recommend a couple of other tools outside of findyourtoptalent tool:",
     "essayCoachRecommend": "You could work with a purpose coach too, we recommend:",
+    "essayReferralNetwork": "Referrals flow through the network: once you're live, aligned practitioners and communities send people your way, and you send yours.",
     "essayWishCommonplace": "We wish these were commonplace. They aren't yet.",
     "essayMethodSixYears": "The method we've refined over six years gets you to 9+/10. When you reach that, a highly specific business naturally emerges from the self-knowledge — the one that was always uniquely yours. AI skills and templates from founders who already saw theirs make the build fast.",
     "essayHindsight": "In hindsight it always looks obvious. Like you've always known it.",
     "essayMorePeople": "The more people get there, the easier it becomes for the next.",
-    "essayBookSession": "Book a session",
+    "essayPivotLine": "And one more thing: you can't pivot away from yourself. That's why this works.",
+    "essayBookSession": "Book a Productize Yourself Session",
     "essayShortcutAfter": "if you'd like to take the shortcut.",
     "stepLabel": "Step {{number}}:",
     "byTheEnd": "By the end:",
@@ -3712,6 +3709,7 @@
     "byline": "by Aleksandr Konstantinov · FindYourTopTalent.Com"
   },
   "playbookShell": {
+    "firstLawBanner": "One law runs everything below: nothing grows past how well it knows itself. Your business is capped by how precisely your unique value is articulated. The seven steps raise that ceiling, in order.",
     "back": "Back",
     "backAriaLabel": "Back to landing page",
     "stepAriaLabel": "Step {{number}}: {{subtitle}}",

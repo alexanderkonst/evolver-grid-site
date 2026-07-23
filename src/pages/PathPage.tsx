@@ -33,6 +33,8 @@ type LadderRow = {
   durationKey: string;
   priceKey: string;
   priceDetailKey?: string;
+  /** Day 133: Step 4's title links out to its product page (BUILT). */
+  titleLinkTo?: string;
 };
 
 // Copy fields hold i18n keys, resolved with t() at render (see below).
@@ -58,6 +60,7 @@ const LADDER: LadderRow[] = [
     titleKey: "pathPage.ladder.step4.title",
     durationKey: "pathPage.ladder.step4.duration",
     priceKey: "pathPage.ladder.step4.price",
+    titleLinkTo: "/products/built",
   },
   {
     id: "step5",
@@ -72,7 +75,6 @@ const LADDER: LadderRow[] = [
     titleKey: "pathPage.ladder.step6.title",
     durationKey: "pathPage.ladder.step6.duration",
     priceKey: "pathPage.ladder.step6.price",
-    priceDetailKey: "pathPage.ladder.step6.priceDetail",
   },
   {
     id: "step7",
@@ -160,33 +162,7 @@ const PathPage = () => {
                     "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                 }}
               >
-                {t("pathPage.hero.h1Before")}{" "}
-                <span
-                  className="bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage:
-                      "var(--skin-accent-2-bg, linear-gradient(135deg, hsl(220, 85%, 28%) 0%, hsl(210, 85%, 24%) 50%, hsl(200, 85%, 26%) 100%))",
-                    filter:
-                      "var(--skin-accent-2-glow, drop-shadow(0 0 10px hsl(212 95% 52% / 0.38)) drop-shadow(0 0 3px hsl(205 95% 48% / 0.45)))",
-                    textShadow: "none",
-                  }}
-                >
-                  {t("pathPage.hero.h1ProductMarketFit")}
-                </span>
-                {t("pathPage.hero.h1Middle")}{" "}
-                <span
-                  className="bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(135deg, hsl(45, 95%, 32%) 0%, hsl(38, 95%, 28%) 50%, hsl(28, 90%, 30%) 100%)",
-                    filter:
-                      "drop-shadow(0 0 10px hsl(40 100% 50% / 0.4)) drop-shadow(0 0 3px hsl(35 100% 48% / 0.48))",
-                    textShadow: "none",
-                  }}
-                >
-                  {t("pathPage.hero.h1InvestorsLovingIt")}
-                </span>
-                {t("pathPage.hero.h1After")}
+                {t("pathPage.hero.h1")}
               </h1>
 
               {/* Day 62 (Sasha 2026-05-05): Strong legibility cocktail. */}
@@ -199,38 +175,25 @@ const PathPage = () => {
                     "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                 }}
               >
-                {t("pathPage.hero.h2")}
+                {t("pathPage.hero.subhead")}
               </h2>
+            </section>
 
-              <p
-                className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-[1.2] tracking-[-0.01em] mb-8 italic"
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                }}
-              >
-                <span
-                  className="bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage:
-                      "var(--skin-callout-bg, linear-gradient(135deg, hsl(285, 85%, 28%) 0%, hsl(272, 85%, 24%) 50%, hsl(258, 85%, 26%) 100%))",
-                    filter:
-                      "var(--skin-callout-glow, drop-shadow(0 0 10px hsl(278 95% 55% / 0.38)) drop-shadow(0 0 3px hsl(268 95% 48% / 0.45)))",
-                    textShadow: "none",
-                  }}
-                >
-                  {t("pathPage.hero.guarantee")}
-                </span>
-              </p>
-
+            {/* ─── Quick test — Day 133 (2026-07-23): axiom-era addition,
+                right after the hero, before the ladder. */}
+            <section className="mb-10">
               <p
                 className="text-sm sm:text-[15px] leading-relaxed"
                 style={{
-                  color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                  color: "var(--skin-text-strong, rgba(26,30,58,0.88))",
                   textShadow:
                     "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                 }}
               >
-                {t("pathPage.hero.fineprint")}
+                <span className="font-semibold">
+                  {t("pathPage.quickTest.heading")}
+                </span>{" "}
+                {t("pathPage.quickTest.body")}
               </p>
             </section>
 
@@ -295,7 +258,16 @@ const PathPage = () => {
                           color: "var(--skin-text-primary, #0a1628)",
                         }}
                       >
-                        {t(row.titleKey)}
+                        {row.titleLinkTo ? (
+                          <Link
+                            to={row.titleLinkTo}
+                            className="underline underline-offset-4 decoration-current/40 hover:decoration-current transition-colors"
+                          >
+                            {t(row.titleKey)}
+                          </Link>
+                        ) : (
+                          t(row.titleKey)
+                        )}
                       </h3>
                       <p
                         className="text-[12px]"
@@ -306,6 +278,32 @@ const PathPage = () => {
                       >
                         {t(row.durationKey)}
                       </p>
+                      {/* Day 133: Step 1's second free door — a guided
+                          Direction Call alongside the self-serve test. */}
+                      {row.id === "step1" && (
+                        <div className="mt-2 space-y-1.5">
+                          <p
+                            className="text-[12px] leading-relaxed"
+                            style={{
+                              color:
+                                "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+                            }}
+                          >
+                            {t("pathPage.ladder.step1.freeDoors")}
+                          </p>
+                          <a
+                            href="https://cal.com/aleksandrkonstantinov/direction-choice-call"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block text-[12px] font-semibold underline underline-offset-4 decoration-current/40 hover:decoration-current transition-colors"
+                            style={{
+                              color: "var(--skin-selected-text, #5b21b6)",
+                            }}
+                          >
+                            {t("pathPage.ladder.step1.directionCallCta")}
+                          </a>
+                        </div>
+                      )}
                     </div>
                     <div className="col-span-12 sm:col-span-4 sm:text-right">
                       <div
@@ -354,21 +352,8 @@ const PathPage = () => {
                   >
                     $1,999
                   </span>
-                  {t("pathPage.totals.afterTotal")}{" "}
-                  <span
-                    className="font-semibold"
-                    style={{ color: "var(--skin-text-primary, #0a1628)" }}
-                  >
-                    {t("pathPage.totals.step6Upfront")}
-                  </span>{" "}
-                  {t("pathPage.totals.and")}{" "}
-                  <span
-                    className="font-semibold"
-                    style={{ color: "var(--skin-text-primary, #0a1628)" }}
-                  >
-                    {t("pathPage.totals.step6Share")}
-                  </span>
-                  {" "}{t("pathPage.totals.tail")}
+                  . {t("pathPage.totals.step6Note")}{" "}
+                  {t("pathPage.totals.step7Note")}
                 </p>
               </div>
             </section>
@@ -416,16 +401,6 @@ const PathPage = () => {
                 }}
               >
                 {t("pathPage.close.optional")}
-              </p>
-              <p
-                className="text-[11px] leading-relaxed"
-                style={{
-                  color: "var(--skin-text-muted, rgba(26,30,58,0.65))",
-                  textShadow:
-                    "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-                }}
-              >
-                {t("pathPage.close.guarantee")}
               </p>
             </div>
         </div>

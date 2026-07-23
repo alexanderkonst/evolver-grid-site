@@ -1072,6 +1072,7 @@
     "allActivations": "Todas las Activaciones"
   },
   "playbookShell": {
+    "firstLawBanner": "Todo lo que sigue obedece a una sola ley: nada crece más allá de cuánto se conoce a sí mismo. Tu negocio está limitado por la precisión con la que articulas tu valor único. Los siete pasos elevan ese techo, en orden.",
     "back": "Atrás",
     "backAriaLabel": "Volver a la landing",
     "stepAriaLabel": "Paso {{number}}: {{subtitle}}",
@@ -3643,11 +3644,13 @@
     "essayShortcuts": "También existen atajos. O te guía alguien que ya alcanzó 9.9+ para sí mismo y comparte el camino, o usas una herramienta de descubrimiento de propósito de alta precisión. O ambas. A fecha de 2026, ambas siguen siendo raras.",
     "essayToolsRecommend": "Recomendamos un par de otras herramientas además de la herramienta de findyourtoptalent:",
     "essayCoachRecommend": "También podrías trabajar con un coach de propósito, recomendamos:",
+    "essayReferralNetwork": "Las referencias fluyen a través de la red: en cuanto estás en marcha, practicantes y comunidades alineados te envían personas, y tú envías las tuyas.",
     "essayWishCommonplace": "Ojalá esto fuera habitual. Aún no lo es.",
     "essayMethodSixYears": "El método que hemos refinado durante seis años te lleva a 9+/10. Cuando llegas ahí, un negocio muy específico emerge de forma natural del autoconocimiento: el que siempre fue únicamente tuyo. Las habilidades de IA y las plantillas de fundadores que ya vieron el suyo hacen rápida la construcción.",
     "essayHindsight": "En retrospectiva siempre parece obvio. Como si siempre lo hubieras sabido.",
     "essayMorePeople": "Cuantas más personas llegan ahí, más fácil se vuelve para la siguiente.",
-    "essayBookSession": "Reserva una sesión",
+    "essayPivotLine": "Y una cosa más: no puedes pivotar lejos de ti mismo. Por eso esto funciona.",
+    "essayBookSession": "Reserva una sesión Productize Yourself",
     "essayShortcutAfter": "si quieres tomar el atajo.",
     "stepLabel": "Paso {{number}}:",
     "byTheEnd": "Al final:",
@@ -5260,15 +5263,13 @@
   },
   "pathPage": {
     "hero": {
-      "h1Before": "Sólido Founder-Market Fit. Temprano",
-      "h1ProductMarketFit": "Product-Market Fit",
-      "h1Middle": ". Tracción. Demanda orgánica.",
-      "h1InvestorsLovingIt": "Inversores encantados",
-      "h1After": ".",
-      "h2": "En 6–8 semanas.",
-      "guarantee": "Garantía de devolución del dinero.",
-      "fineprint": "Siempre que hagas tu parte.",
+      "h1": "Tu carrera está limitada por cuánto te conoces a ti mismo.",
+      "subhead": "Articula tu valor único, monetízalo y construye a su alrededor una estructura de negocio escalable. En 6-8 semanas.",
       "shelfLine": "Estrategia de posicionamiento del próximo capítulo para founders, de un founder con formación en MIT"
+    },
+    "quickTest": {
+      "heading": "Prueba rápida:",
+      "body": "¿Puedes decir a qué te dedicas en una sola frase? Si no puedes, no es un defecto, es justamente el punto de partida."
     },
     "ladder": {
       "payAsYouProgress": "Paga a medida que avanzas",
@@ -5277,7 +5278,9 @@
         "step": "Paso 1",
         "title": "Nombra tu talento principal",
         "duration": "Minutos",
-        "price": "Gratis"
+        "price": "Gratis",
+        "freeDoors": "Dos puertas gratuitas: la prueba de 10 minutos, o una Direction Call gratuita de 45 minutos si prefieres ir acompañado.",
+        "directionCallCta": "Reserva una Direction Call gratuita"
       },
       "step23": {
         "step": "Paso 2 + 3",
@@ -5287,7 +5290,7 @@
       },
       "step4": {
         "step": "Paso 4",
-        "title": "Construye tu producto, empaquétalo, define la estrategia de distribución, crea el kit de comunicación, elige un modelo de negocio y licencia, ensaya, pasa el \"Ajuste de Conciencia del Fundador\", añade apalancamiento y viralidad",
+        "title": "BUILT: Construye tu producto, empaquétalo, define la estrategia de distribución, elige tu modelo de negocio",
         "duration": "3 semanas, junto a otros emprendedores de impacto consciente",
         "price": "$1,111"
       },
@@ -5301,8 +5304,7 @@
         "step": "Paso 6",
         "title": "Enfócate tácticamente como un láser y sal en vivo",
         "duration": "Formato de 2 semanas",
-        "price": "$1,111",
-        "priceDetail": "+ $2,222 de tus primeros $10k (1/3 de los primeros $10k)"
+        "price": "Se acuerda en conversación"
       },
       "step7": {
         "step": "Paso 7",
@@ -5312,20 +5314,16 @@
       }
     },
     "totals": {
-      "beforeTotal": "El camino con pago por adelantado (Pasos 1–5) suma",
-      "afterTotal": ". El Paso 6 añade",
-      "step6Upfront": "$1,111 por adelantado",
-      "and": "y",
-      "step6Share": "1/3 de tus primeros $10k en ingresos",
-      "tail": "— con tope ahí. Después de eso, 0%. El Paso 7 es solo por invitación, una vez que tengas un product-market fit temprano y demanda orgánica."
+      "beforeTotal": "El camino con pago por adelantado (Pasos 1-5) suma",
+      "step6Note": "El Paso 6 se acuerda en conversación.",
+      "step7Note": "El Paso 7 es solo por invitación."
     },
     "cta": {
       "primary": "Empieza gratis con el Paso 1",
-      "secondary": "Reserva tu Sesión Productiza Yourself"
+      "secondary": "Reserva tu sesión Productize Yourself"
     },
     "close": {
-      "optional": "Cada paso es opcional. Cada paso entrega por sí mismo una transformación completa.",
-      "guarantee": "Paga a medida que avanzas. Garantía de devolución del dinero en cada paso."
+      "optional": "Cada paso es opcional. Cada paso entrega por sí mismo una transformación completa."
     }
   },
   "teamsSpace": {
