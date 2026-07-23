@@ -93,6 +93,14 @@ Each campaign below is fully self-contained: verbatim copy, search query, tracki
 | Date | Name | Sent | Acc | Rep | Booked | Paid | Next follow-up date |
 |---|---|---|---|---|---|---|---|
 
+**Search queries v2 (July 23, 2026 — sharpened to the bullseye "founder going sovereign"; v1 above preserved):**
+- Base (unchanged): `("sabbatical" OR "career break") AND (founder OR "ex-founder" OR "co-founder")` — US, 2nd-degree first.
+- Dissolved-company badges: `("sold my company" OR "post-exit" OR "former founder") AND ("exploring" OR "what's next" OR "next chapter")`.
+- Parking-role ripeness: `"ex-founder" AND (advisor OR angel OR coach)` — post-exit founders parked in advisor/angel roles while searching are ripe; the parking role IS the badge.
+- Watering hole (posts, not people): recent posts by founders about burnout, sabbatical, or 'what's next', last 30 days → authors and commenters carrying founder badges get referenced invites.
+
+**Ripeness checklist before inviting (score ≥3/5):** company end-date ≤12 months · no new venture listed · searching language in headline/about · interiority markers (inner work, intentional, purpose, burnout recovery) · reflective recent activity. Interiority markers double the priority: they add altitude-respect and transformation-buying habit (Day 132 correlates).
+
 ---
 
 ### 3.3 Fractional executives (US, LinkedIn)
