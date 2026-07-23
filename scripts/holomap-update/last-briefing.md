@@ -182,7 +182,7 @@ CLIENT: 6 · COLLABORATOR: 5 · TBD: 5 · ADJACENT: 4 · ECOSYSTEM: 3 · ORIGINA
 **Conscious aspiring impact founders** — people who already help others, already have a spark, but are challenged to clearly explain what they do, and therefore can't turn it into something people buy.
 
 ### Top Talent — 10/10 articulation
-I assist conscious aspiring impact founders turn their top talent into a growing scalable business in flow.
+I assist entrepreneurial people in transition to their next-big-thing articulate unique value, monetize it, and build a scalable business structure around it.
 
 ### Personal Top Talent Profile (Day 58 generated, May 2, 2026)
 
