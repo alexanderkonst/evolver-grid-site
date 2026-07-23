@@ -7378,3 +7378,17 @@ Selling across layers fails predictably: a person offered the civilization story
 Keep the fire, keep the present-continuous tense ('in the making'), and let the ledger produce the superlatives.
 
 **Relationship to other domains:** Domain 111 (edge-carried alignment — this domain names what a network of such edges accumulates), Domain 110 (terms-first openness — the entry condition of every trust-compounding edge), Domain 115 (articulation as growth — legibility is what lets the favorable terms be seen as favorable), and the Day 128 bedrock (an expressed being as the renewable-and-exclusive resource that the flows carry).
+
+---
+
+## Domain 117: The Learning Ledger and the Meta-Game (Day 133, July 23, 2026)
+
+**The insight in one sentence: a founder's timestamped daily learnings are not a diary — they are the dataset that lets an incubator rise to the meta-position and turn entrepreneurial development itself into a gamified, navigable curriculum.**
+
+**The mechanism.** Every founder walks a learning curve mostly blind: lessons arrive as bruises, are rarely articulated, and evaporate. A daily learnings ledger (one timestamped sentence per day — instituted Day 133 in the clerk protocol) converts the curve into data. With learning data from many founders, the incubator sees the curve from above: which lessons come in which order, which thresholds block which stage, which learnings predict which outcomes. That meta-position enables the second product of the studio, beyond building businesses: **accelerating the founder's learning curve itself** — a gamified way of development as an entrepreneur, with the map visible, the next lesson named, and progress felt.
+
+**Why this is the same law again.** Articulation is the mechanism of growth (Domain 115): a lesson articulated becomes an object the founder can operate. The holomap instrument (Domain 84) says any developing phenomenon admits a map of arc × primitives × stages. The learning ledger is the empirical feed of that map for the entrepreneurial journey. Gamification here is not decoration; it is making the development map legible enough to act on — the ceiling law applied to the journey itself: a founder's growth rate is capped by how well their own learning is articulated.
+
+**The recursive move (Sasha's question honored):** rising above the playing field is articulation applied to the level one is on; rising above the rising is articulation applied to one's own meta-move. Each articulation seats the articulator one level above what it names (the subject→object operation, recursively). This is why the corpus keeps producing meta-instruments: the practice IS recursive articulation, and the library is its ledger.
+
+**Relationship:** Domain 115 (articulation as growth), Domain 84 (holomap instrument / general theory of development), the Daily Learnings Ledger (clerk protocol, Day 133), Domain 113 (the same instrument at every holon: person's learnings → cohort's curriculum → civilization's developmental map).
