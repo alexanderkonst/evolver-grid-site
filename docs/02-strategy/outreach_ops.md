@@ -380,7 +380,7 @@ Claude then sends one Pulse: update the Pulse event, reconcile the CRM Master Ta
 
 Type determines the reply move. Typed responses accumulate into the response map (Domain 68).
 
-**Sent-copy corpus rule (Day 132):** every final sent wording Sasha reports is archived verbatim in the CRM's Outreach Message Bank → Sent messages (private ledger), tagged with scenario and outcome. This corpus is the calibration set for all future AI-drafted copy: new drafts are checked against what actually got sent and what actually converted.
+**Sent-copy corpus rule (Day 132):** every final sent wording Sasha reports is archived verbatim in the CRM's Outreach Message Bank → Sent messages (private ledger), tagged with scenario, outcome, and timestamped (date of send recorded at archiving, per the Timestamp Law). This corpus is the calibration set for all future AI-drafted copy: new drafts are checked against what actually got sent and what actually converted.
 
 **Booking flow note:** the cal.com link (https://cal.com/aleksandrkonstantinov/direction-call) goes out in Message 2. The two questions are asked in the SAME channel (LinkedIn DM), after they book, not in the booking form itself.
 
