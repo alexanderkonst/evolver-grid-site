@@ -6,6 +6,7 @@ import {
     LogIn,
     MessageCircle,
     Moon,
+    Settings,
     Sun,
     UserRound,
 } from "lucide-react";
@@ -18,7 +19,7 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip";
 import GlyphIcon from "./GlyphIcon";
-import { GrowGlyph, BuildGlyph, CollaborateGlyph, SpaceGlyphProps } from "./SpaceGlyphs";
+import { BuildGlyph, CollaborateGlyph, SpaceGlyphProps } from "./SpaceGlyphs";
 import { useSoulColors } from "@/hooks/useSoulColors";
 // Day 58+ (Sasha 2026-05-03): custom minimal SoundCloud player. Hides
 // the default iframe entirely (waveform / privacy-policy link / SC
@@ -70,8 +71,9 @@ import meIcon from "@/assets/me-icon.png";
 // signals the substrate it is (cognitive scaffold), not a stop on the
 // value ladder.
 import aiOsIcon from "@/assets/mc-merkaba.png";
-// Day 48 iter 10 (Sasha): Settings gear (lucide) replaced with a
-// custom gold settings mark. Does NOT rotate — Sasha's explicit note.
+// Day 134 (Sasha 2026-07-23): this geometric mark moves from Settings
+// to GROW. Settings returns to the universally recognized gear icon;
+// the more distinctive brand artifact now belongs to a primary Space.
 import settingsIcon from "@/assets/settings-icon.png";
 
 /**
@@ -239,7 +241,27 @@ const SPACES: SpaceItem[] = [
         id: "learn",
         label: "GROW",
         labelKey: "spacesRail.grow",
-        icon: <SvgGlyphIcon Glyph={GrowGlyph} color="hsl(210, 75%, 68%)" />,
+        // Day 134 (Sasha 2026-07-23): the former Settings artifact is
+        // now GROW's mark. Keep the space's established cool-blue glow
+        // so the icon inherits GROW's atmosphere rather than utility gold.
+        icon: (
+            <span
+                aria-hidden="true"
+                className="flex-shrink-0 select-none grid place-items-center"
+                style={{
+                    width: 28,
+                    height: 28,
+                    filter: "drop-shadow(0 0 4px hsl(210 75% 68%)) drop-shadow(0 0 10px hsl(210 75% 68% / 0.4))",
+                }}
+            >
+                <img
+                    src={settingsIcon}
+                    alt=""
+                    draggable={false}
+                    className="h-[24px] w-[24px] object-contain"
+                />
+            </span>
+        ),
         path: "/game/learn",
     },
     {
@@ -1150,7 +1172,7 @@ const SpacesRail = ({
                             </Tooltip>
                         )}
 
-                        {/* Settings gear */}
+                        {/* Settings — universal gear */}
                         <Tooltip>
                             <TooltipTrigger asChild>
                                 <button
@@ -1159,19 +1181,15 @@ const SpacesRail = ({
                                         "grid place-items-center rounded-full transition-all duration-300 text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30",
                                         compact ? "w-[30px] h-[30px]" : "w-[40px] h-[40px]"
                                     )}
-                                    aria-label={t('spacesRail.identityRowAria')}
+                                    aria-label={t('spacesRail.settingsTitle')}
                                 >
-                                    <img
-                                        src={settingsIcon}
-                                        alt=""
+                                    <Settings
                                         aria-hidden="true"
-                                        draggable={false}
-                                        className="flex-shrink-0 select-none object-contain"
-                                        style={{
-                                            width: compact ? 16 : 18,
-                                            height: compact ? 16 : 18,
-                                            filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
-                                        }}
+                                        className={cn(
+                                            "flex-shrink-0",
+                                            compact ? "h-[17px] w-[17px]" : "h-[19px] w-[19px]"
+                                        )}
+                                        strokeWidth={1.8}
                                     />
                                 </button>
                             </TooltipTrigger>
