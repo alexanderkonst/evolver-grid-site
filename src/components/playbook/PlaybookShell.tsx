@@ -102,6 +102,22 @@ const PlaybookShell = ({
         </button>
       </div>
 
+      {/* ═══════ FIRST LAW BANNER — Day 133 (2026-07-23): the axiom that
+          governs the whole playbook, shown once above the step nav. */}
+      <div className="mb-5 sm:mb-6 text-center">
+        <p
+          className="text-xs sm:text-[13px] leading-relaxed max-w-2xl mx-auto"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontStyle: "italic",
+            color: "var(--skin-text-strong, rgba(26,30,58,0.88))",
+            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+          }}
+        >
+          {t("playbookShell.firstLawBanner")}
+        </p>
+      </div>
+
       {/* ═══════ TOP NAV: 7 steps ═══════ */}
       {/* Day 51 night (Sasha 2026-04-25): nav now sticky-on-scroll. Step 2's
           long-form essay + multi-substep cards on other steps make the

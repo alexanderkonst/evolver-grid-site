@@ -262,13 +262,13 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
   {
     number: 4,
     slug: "product",
-    appName: "PRODUCT",
+    appName: "BUILT",
     subtitle: "Build your First Unique Product",
     transformationalResult: "My first product exists — I can hand it to someone.",
     neonHsl: "hsl(180, 85%, 55%)",
     neonRgb: "35, 220, 220",
     labelLines: ["Build your First", "Unique Product"],
-    price: "$1,111 + rev share",
+    price: "$1,111",
     bundleWith: [5],
     ctaText: "Build Your First Unique Product, Ready for Testing and Selling",
     included: [
@@ -312,7 +312,7 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     neonHsl: "hsl(130, 75%, 55%)",
     neonRgb: "65, 220, 105",
     labelLines: ["Gift or Sell", "to Beta-Test"],
-    price: "$1,111 + rev share",
+    price: "$333",
     bundleWith: [4],
     substeps: [
       {
@@ -348,6 +348,7 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
     neonHsl: "hsl(45, 98%, 60%)",
     neonRgb: "255, 200, 40",
     labelLines: ["Laser-Focus and", "Go Live"],
+    price: "Priced in conversation",
     substeps: [
       {
         number: 1,
@@ -389,21 +390,21 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
         name: "Get guidance from a whole team of venture scalers working with you",
         description: "",
         oneProvenStrategy:
-          "[Pending Sasha's vetted text]",
+          "Join the network of sovereigns: independent founders, each owning 100% of their venture, connected through revenue-share collaborations, shared distribution, and mutual advisory.",
       },
       {
         number: 2,
         name: "Enter a decentralized revenue-sharing coop scheme",
         description: "",
         oneProvenStrategy:
-          "[Pending Sasha's vetted text]",
+          "Add leverage: productize, license, or white-label what you built, so value flows without your hours.",
       },
       {
         number: 3,
         name: "Enjoy the next octave of the ride",
         description: "",
         oneProvenStrategy:
-          "[Pending Sasha's vetted text]",
+          "Advise newer founders and earn through revenue-share edges: growth stops being a solo grind and becomes network physics.",
       },
     ],
   },
