@@ -351,6 +351,7 @@ The axiom (Myth v4.0, `alexanders_unique_business.md` §1): **EN "Your career is
 - **Container product page:** /products/built
 - **Mirror objection disarm (born live on a Direction Call, Jul 22, 2026):** to 'why would you know me better than I know myself?' — «В зеркало себя увидеть проще, чем без зеркала. Это физика.» / EN: 'Seeing yourself in a mirror is easier than without one. That's physics.'
 - **Founder tagline diagnostic (incepting question pair, for founders with a live business):** 'What's your tagline?' → then: 'Would your best customer say that's what they actually bought?' The gap between the two answers is the business's ceiling, audible. For founders between ventures, use the invariant form instead; hold the tagline pair for the moment they describe the next idea.
+- **Polymath commitment line (born live, Jul 23, 2026):** «Единственный способ для полимата что-то выбрать — это закоммититься на самого себя.» The only way for a polymath to choose is to commit to themselves.
 
 ---
 
@@ -391,6 +392,8 @@ Type determines the reply move. Typed responses accumulate into the response map
 **Sent-copy corpus rule (Day 132):** every final sent wording Sasha reports is archived verbatim in the CRM's Outreach Message Bank → Sent messages (private ledger), tagged with scenario, outcome, and timestamped (date of send recorded at archiving, per the Timestamp Law). This corpus is the calibration set for all future AI-drafted copy: new drafts are checked against what actually got sent and what actually converted.
 
 **Booking flow note:** the cal.com link (https://cal.com/aleksandrkonstantinov/direction-call) goes out in Message 2. The two questions are asked in the SAME channel (LinkedIn DM), after they book, not in the booking form itself.
+
+**Daily learning rule (Day 133):** every day's pulses end with one learning-of-the-day sentence appended to the Daily Learnings Ledger section of the pulse log. Timestamped by day like everything else.
 
 ---
 
