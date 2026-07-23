@@ -72,7 +72,7 @@ const useTestimonials = (): TestimonialData[] => {
 };
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
-const CALCOM_BOOKING_LINK = "https://cal.com/aleksandrkonstantinov/unique-business-ignition-session";
+const CALCOM_BOOKING_LINK = "https://cal.com/aleksandrkonstantinov/productize-yourself";
 const CALCOM_CLARITY_LINK = "https://cal.com/aleksandrkonstantinov/direction-choice-call";
 
 
