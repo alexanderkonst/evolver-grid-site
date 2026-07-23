@@ -353,6 +353,8 @@ interface GameShellV2Props {
      * card to own the first impression (the Day 82 call).
      */
     defaultRailMinimized?: boolean;
+    /** Open pane 2 collapsed on entry while keeping its restore toggle available. */
+    defaultSectionsPanelClosed?: boolean;
     /** Force a conceptual space for root-level surfaces such as /:username. */
     spaceOverride?: string;
 }
@@ -406,7 +408,7 @@ export const GameShellV2 = (props: GameShellV2Props) => {
  * Panel 2: SectionsPanel (sections list)
  * Panel 3: Content area
  */
-const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo, defaultRailMinimized = false, spaceOverride }: GameShellV2Props) => {
+const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo, defaultRailMinimized = false, defaultSectionsPanelClosed = false, spaceOverride }: GameShellV2Props) => {
     const { t } = useTranslation();
     // Day 82 v4 (Sasha 2026-05-24): pane-1 minimize state. Defaults to
     // ON when the page passes defaultRailMinimized — Karime's pages open
@@ -559,6 +561,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // Navigation state
     const [activeSpaceId, setActiveSpaceId] = useState<string>("next-move");
     const [sectionsPanelOpen, setSectionsPanelOpen] = useState(() => {
+        if (defaultSectionsPanelClosed) return false;
         // Day 48 (Sasha): Pane 2 is CLOSED only on the very first page
         // (landing) so the primary "Find your top talent" CTA gets full
         // attention. On every other funnel surface — /playbook, /path,

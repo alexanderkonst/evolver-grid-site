@@ -907,7 +907,7 @@ const App = () => (
                   <Route path="/about/meet-the-founder" element={<Founder />} />
                   {/* Aleksandr's public platform profile · /aleksandr · standalone (no shell).
                       "The platform's profile, in public." One CTA: create your own profile. */}
-                  <Route path="/aleksandr" element={<AlexanderProfile />} />
+                  <Route path="/aleksandr" element={<GameShellV2 spaceOverride="grow" defaultRailMinimized defaultSectionsPanelClosed><AlexanderProfile /></GameShellV2>} />
                   <Route path="/alexander" element={<Navigate to="/aleksandr" replace />} />
                   <Route path="/integralevolution" element={<Navigate to="/aleksandr" replace />} />
                   {/* Public monetization explainer · /monetization · standalone (no shell),
@@ -933,7 +933,7 @@ const App = () => (
                   {/* Canonical public profiles live directly at /:username.
                       Explicit application routes above always win; reserved
                       slugs in the database prevent future route collisions. */}
-                  <Route path="/:username" element={<GameShellV2 spaceOverride="grow"><PublicProfile /></GameShellV2>} />
+                  <Route path="/:username" element={<GameShellV2 spaceOverride="grow" defaultRailMinimized defaultSectionsPanelClosed><PublicProfile /></GameShellV2>} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                   </Route>
