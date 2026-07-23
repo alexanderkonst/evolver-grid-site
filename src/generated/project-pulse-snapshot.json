@@ -1,31 +1,26 @@
 {
-  "generated_at": "2026-07-22T23:00:27.539Z",
+  "generated_at": "2026-07-23T00:05:31.068Z",
   "source": "docs/09-logs/project_pulse_log.md",
-  "eventsCount": 31,
+  "eventsCount": 32,
   "latestEvent": {
     "date": "2026-07-22",
     "day": "132",
-    "pulse": "karime_evolution_portal_proposal_sent",
-    "who": "[Sasha, Karime]",
-    "what_happened": "Sasha sent Karime the offer she had asked for last week: \"me preguntaste... si podria crear una libreria transformacional para tus clientes.\" Sent in Spanish via WhatsApp as a one-pager — https://findyourtoptalent.com/products/evolution-portal — packaging the Evolution Portal as a transformational library for her clients, including the Zone of Genius test. This closes the open \"what is Karime's offer\" item on the CRM. Partnership/paid structure remains TBD per the page itself.",
-    "energy_exchanged": "[offer sent, open-item closed]",
-    "affected_holons": "[CRM Master Table, Offer Ledger]",
+    "pulse": "patricia_letter_nia_reopener_sent_copy_corpus_started",
+    "who": "[Sasha, Patricia, Nia]",
+    "what_happened": "Two outreach follow-ups sent. Patricia: full \"upstream layer\" letter sent as FU1 to the Jul 14 $555 workshop offer — names her coach-fatigue, reframes the workshop as turning what she already knows into the layer every downstream tactic waits on, closes open-palmed. Nia: light re-opener sent after the Jul 12 Proof Answer (\"what's been happening, any new clarity or questions\"), no push. Both final wordings appended verbatim to the CRM's Outreach Message Bank -> Sent messages subsection, starting the sent-copy corpus there.",
+    "energy_exchanged": "[follow-up sent, thread re-opened, corpus started]",
+    "affected_holons": "[CRM Master Table, Offer Ledger, Outreach Message Bank]",
     "phase_shift_significance": "notable",
-    "next_action": "Awaiting Karime's reply. Follow-up ~Jul 25 if silent. OMTM +1 this week.",
+    "next_action": "Patricia: next follow-up only if silent by ~Jul 29, open-palmed close then. Nia: awaiting reply; keep the \"why one thing\" argument in the holster for when she responds.",
     "staleness_or_contradictions": "none",
-    "title": "karime_evolution_portal_proposal_sent"
+    "title": "patricia_letter_nia_reopener_sent_copy_corpus_started"
   },
   "phaseShiftDistribution": {
     "minor": 10,
     "major": 6,
-    "notable": 15
+    "notable": 16
   },
   "openNextActions": [
-    {
-      "date": "2026-07-17",
-      "title": "alex_utkin_friend_call_free_session",
-      "next_action": "None owed by Sasha; Alex offered to help if useful. Standing law going forward: future friend requests route through the standard free 45-min Direction Call container, time-boxed, same door as everyone (being documented separately in the corpus)."
-    },
     {
       "date": "2026-07-17",
       "title": "kristina_direction_call_first_funnel_sourced_ladder_offer",
@@ -70,6 +65,11 @@
       "date": "2026-07-22",
       "title": "karime_evolution_portal_proposal_sent",
       "next_action": "Awaiting Karime's reply. Follow-up ~Jul 25 if silent. OMTM +1 this week."
+    },
+    {
+      "date": "2026-07-22",
+      "title": "patricia_letter_nia_reopener_sent_copy_corpus_started",
+      "next_action": "Patricia: next follow-up only if silent by ~Jul 29, open-palmed close then. Nia: awaiting reply; keep the \"why one thing\" argument in the holster for when she responds."
     }
   ]
 }
