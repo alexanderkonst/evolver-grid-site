@@ -243,6 +243,16 @@ const BuildContainer = () => {
             Aleks
           </p>
         </section>
+
+        <footer className="mt-16 text-center">
+          <Link
+            to="/data"
+            className="text-[12px] underline underline-offset-4 decoration-[rgba(184,134,11,0.35)] hover:opacity-70 transition-opacity"
+            style={{ ...sourceSerifBody, opacity: 0.55 }}
+          >
+            {t("thebuild.dataLink")}
+          </Link>
+        </footer>
       </div>
     </div>
   );
