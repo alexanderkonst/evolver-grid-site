@@ -206,6 +206,8 @@ v1 query above preserved as genealogy.
 
 **Skin-first upgrade (Domain 88, Demo-as-Hospitality):** for the next wave of community pitches, build the community's skin BEFORE message 1 (30-60 min per skin, see `skin_creation_playbook.md`) and open with the live URL: "here is what your community's version already looks like." The demo is the proposal. Applies when the community has a public visual identity to mirror.
 
+**Asset reference (Jul 23):** Will's own masterclass flyer set ("DAOS UNLEASHED", daouniverse.club/masterclass) is the visual/structural template his audience already responds to: hero title + speaker portrait + "in 90 minutes you will learn" 4-icon grid + single gold register CTA. Our /zoneofgenius assets should match this skeleton in Club DAO black-gold with our navy-gold accents.
+
 ---
 
 ### 3.7 Reddit — r/findapath
