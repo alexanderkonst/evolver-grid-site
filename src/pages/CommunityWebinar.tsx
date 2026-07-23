@@ -6,6 +6,7 @@
  * Register mirrors /products/built (BuildContainer.tsx): parchment/
  * Cormorant/gold, single CTA to WhatsApp.
  */
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import SEO from "@/components/SEO";
@@ -166,6 +167,16 @@ const CommunityWebinar = () => {
             Aleks
           </p>
         </section>
+
+        <footer className="mt-16 text-center">
+          <Link
+            to="/data"
+            className="text-[12px] underline underline-offset-4 decoration-[rgba(184,134,11,0.35)] hover:opacity-70 transition-opacity"
+            style={{ ...sourceSerifBody, opacity: 0.55 }}
+          >
+            {t("hostpage.dataLink")}
+          </Link>
+        </footer>
       </div>
     </div>
   );

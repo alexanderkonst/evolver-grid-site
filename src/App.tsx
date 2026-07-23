@@ -80,6 +80,10 @@ const ProductsPage = lazy(() => import("./pages/ProductsPage"));
 const EvolutionPortal = lazy(() => import("./pages/EvolutionPortal"));
 const BuildContainer = lazy(() => import("./pages/BuildContainer"));
 const CommunityWebinar = lazy(() => import("./pages/CommunityWebinar"));
+// Day 133: plain-language data promise + legal companions.
+const YourDataPlainly = lazy(() => import("./pages/YourDataPlainly"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 // Day 80 Wave 2.4 (Sasha 2026-05-22): standalone $37 Top Talent
 // Activation page — clean landing for the JOURNEY 1.5 sidequest row.
 import ActivateTopTalent from "./pages/ActivateTopTalent";
@@ -562,6 +566,10 @@ const App = () => (
                   <Route path="/products/built" element={<BuildContainer />} />
                   <Route path="/communities" element={<CommunityWebinar />} />
                   <Route path="/products/build" element={<Navigate to="/products/built" replace />} />
+                  {/* Day 133: plain-language data promise + legal companions. */}
+                  <Route path="/data" element={<YourDataPlainly />} />
+                  <Route path="/privacy" element={<PrivacyPolicy />} />
+                  <Route path="/terms" element={<TermsOfService />} />
                   {/* Day 80 Wave 2.4 (Sasha 2026-05-22): $37 Top Talent
                       Activation as its own clean landing — extracted
                       from AppleseedDisplay's Option-2 card so the
