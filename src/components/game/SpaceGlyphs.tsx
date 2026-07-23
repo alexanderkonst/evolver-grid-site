@@ -1,6 +1,6 @@
 /**
  * SpaceGlyphs — custom geometric line-glyph family for the rail, replacing
- * the Lucide/typographic glyphs on GROW, BUILT BY YOU, and COLLABORATE.
+ * the Lucide/typographic glyphs on BUILT BY YOU and COLLABORATE.
  *
  * Day 130 (Sasha 2026-07-20): "ugly and cliparty" icons swapped for a
  * single construction language shared with the brand's canonical geometry
@@ -23,41 +23,6 @@ const commonSvgProps = {
   strokeWidth: 1.5,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
-};
-
-/** GROW — seed-to-star: small center circle radiating 8 short rays at
- * 45° increments toward (not touching) an outer circle. Echoes the
- * canonical sphere while reading as radiance/growth. */
-export const GrowGlyph = ({ className, size = 24, color }: SpaceGlyphProps) => {
-  const rays = Array.from({ length: 8 }, (_, i) => {
-    const angle = (i * Math.PI) / 4;
-    const rInner = 5.5;
-    const rOuter = 8.5;
-    const x1 = 12 + rInner * Math.cos(angle);
-    const y1 = 12 + rInner * Math.sin(angle);
-    const x2 = 12 + rOuter * Math.cos(angle);
-    const y2 = 12 + rOuter * Math.sin(angle);
-    return { x1, y1, x2, y2 };
-  });
-
-  return (
-    <svg
-      {...commonSvgProps}
-      width={size}
-      height={size}
-      className={className}
-      style={color ? { color } : undefined}
-      aria-hidden="true"
-    >
-      {/* outer bounding sphere, faint */}
-      <circle cx="12" cy="12" r="10.5" opacity={0.35} />
-      {/* seed core */}
-      <circle cx="12" cy="12" r="2.75" />
-      {rays.map((r, i) => (
-        <line key={i} x1={r.x1} y1={r.y1} x2={r.x2} y2={r.y2} />
-      ))}
-    </svg>
-  );
 };
 
 /** BUILD (BUILT BY YOU) — the octahedron itself: a 45°-rotated square
