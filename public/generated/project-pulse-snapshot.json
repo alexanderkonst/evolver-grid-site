@@ -1,56 +1,26 @@
 {
-  "generated_at": "2026-07-23T00:05:31.068Z",
+  "generated_at": "2026-07-23T23:45:39.276Z",
   "source": "docs/09-logs/project_pulse_log.md",
-  "eventsCount": 32,
+  "eventsCount": 38,
   "latestEvent": {
-    "date": "2026-07-22",
-    "day": "132",
-    "pulse": "patricia_letter_nia_reopener_sent_copy_corpus_started",
-    "who": "[Sasha, Patricia, Nia]",
-    "what_happened": "Two outreach follow-ups sent. Patricia: full \"upstream layer\" letter sent as FU1 to the Jul 14 $555 workshop offer — names her coach-fatigue, reframes the workshop as turning what she already knows into the layer every downstream tactic waits on, closes open-palmed. Nia: light re-opener sent after the Jul 12 Proof Answer (\"what's been happening, any new clarity or questions\"), no push. Both final wordings appended verbatim to the CRM's Outreach Message Bank -> Sent messages subsection, starting the sent-copy corpus there.",
-    "energy_exchanged": "[follow-up sent, thread re-opened, corpus started]",
-    "affected_holons": "[CRM Master Table, Offer Ledger, Outreach Message Bank]",
+    "date": "2026-07-23",
+    "day": "133",
+    "pulse": "nia_precision_riff_oyi_pdf_flow_marley_parked",
+    "who": "[Sasha, Nia Leak, Oyi / WeGoodOvaHere, Marley]",
+    "what_happened": "Three more threads moved same day. Nia and Sasha had a live afternoon exchange where Sasha's \"buying precision\" riff landed: precision of one-breath self-articulation is what a coach is actually bought for -- MANY coaches can work with a client who brings great precision, ALMOST NO coaches can work with mediocre precision, because coaches sell the promise of client demand and every downstream tactic depends on upstream clarity. Nia replied \"Yeah! Truth\" -- full agreement, relationship warm. Archived verbatim in the Outreach Message Bank (tagged precision-riff / one-breath-doctrine-live / EN). Separately, Oyi messaged wanting to run people through the Top Talent test now, pre-webinar, and self-answered the flow: people take the test, download their PDF, bring the PDF to him -- no backend data needed. Read as a strong demand signal: Oyi is pulling the community-onboarding flow forward himself; the PDF flow is the free rung-1 taste, and the $1,500 dashboard/module proposal is the natural upgrade once PDF-collecting by hand gets tedious. Sasha is replying with the flow plus a soft pointer to the proposal. Also logged: Marley, a friend who delivered a stunning visualization/activation practice at the ClubDAO incubator ~3 years ago -- idea to license/feature her activation inside the digital product lineup at 15-25% revenue share (another mycelium edge); pinned as a parked, warm conversation candidate.",
+    "energy_exchanged": "[full agreement, demand pull-forward, warm parked idea]",
+    "affected_holons": "[CRM Master Table, Outreach Message Bank, Open Items, Daily Learnings Ledger]",
     "phase_shift_significance": "notable",
-    "next_action": "Patricia: next follow-up only if silent by ~Jul 29, open-palmed close then. Nia: awaiting reply; keep the \"why one thing\" argument in the holster for when she responds.",
+    "next_action": "Sasha replies to Oyi with the test-then-PDF flow and a soft pointer to the $1,500 proposal. No action owed on Nia or Marley.",
     "staleness_or_contradictions": "none",
-    "title": "patricia_letter_nia_reopener_sent_copy_corpus_started"
+    "title": "nia_precision_riff_oyi_pdf_flow_marley_parked"
   },
   "phaseShiftDistribution": {
     "minor": 10,
     "major": 6,
-    "notable": 16
+    "notable": 22
   },
   "openNextActions": [
-    {
-      "date": "2026-07-17",
-      "title": "kristina_direction_call_first_funnel_sourced_ladder_offer",
-      "next_action": "Sasha sends the promised links within ~1-2 days. Kristina owes her container details. Do NOT buy or barter her container during the outreach sprint; her monthly-show idea is parked as a content-engine candidate."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "warm_base_campaign_fully_sent_bobby_replied",
-      "next_action": "Follow-up wave on today's batch ~July 20. Sasha to report the Bobby conversation content so it can be properly logged in the CRM."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "kristina_links_sent_roman_note_corrected",
-      "next_action": "Await Kristina's container details. No action owed on Roman until he says «готов»."
-    },
-    {
-      "date": "2026-07-17",
-      "title": "gabriel_no_tatjana_booked_bobby_dasha",
-      "next_action": "No action on Gabriel or Tatjana. Sasha to send his reply to Bobby. If Dasha hasn't scheduled within ~3 days (~Jul 20), one light nudge with the calendar link."
-    },
-    {
-      "date": "2026-07-18",
-      "title": "gleb_a16z_founder_inbound_referral_axiom_first_field_use",
-      "next_action": "If Gleb hasn't booked within ~3 days (~Jul 21), one light nudge. A thank-you to Alex Pustov for the intro is warranted."
-    },
-    {
-      "date": "2026-07-18",
-      "title": "gleb_booked_wednesday",
-      "next_action": "Deliver the Direction Call Wed Jul 22."
-    },
     {
       "date": "2026-07-21",
       "title": "immigration_day_gleb_moved_call_tatjana_wed",
@@ -70,6 +40,36 @@
       "date": "2026-07-22",
       "title": "patricia_letter_nia_reopener_sent_copy_corpus_started",
       "next_action": "Patricia: next follow-up only if silent by ~Jul 29, open-palmed close then. Nia: awaiting reply; keep the \"why one thing\" argument in the holster for when she responds."
+    },
+    {
+      "date": "2026-07-22",
+      "title": "tatjana_reflection_proposal_sent",
+      "next_action": "No chasing. She is at the dacha; decision window ~2-3 weeks. Follow-up ~Aug 1 if silent."
+    },
+    {
+      "date": "2026-07-22",
+      "title": "brenda_chamber_connector_github_ceo_intro_offered",
+      "next_action": "Schedule the meeting with Brenda this week to design the approach. Strongest near-term angle: executive/org AI-transformation workshops (already validated with this exact audience), with the articulation layer inside; possible Sergey partnership. No resume or curriculum sent until the angle is chosen."
+    },
+    {
+      "date": "2026-07-23",
+      "title": "rafael_kirill_referral_donation_session_agreed",
+      "next_action": "Owed by Sasha today: send calendar link + payment/donation instructions. Follow-up 2026-07-26 if not booked."
+    },
+    {
+      "date": "2026-07-23",
+      "title": "nia_soft_no_chris_booked_rafael_links_sent",
+      "next_action": "Send Nia the generous no-strings reply. Deliver Chris's Direction Call Jul 28. Await Rafael's donation + booking; follow-up Jul 26 if silent."
+    },
+    {
+      "date": "2026-07-23",
+      "title": "rafael_donated_booked_mon_nia_reply_gold",
+      "next_action": "Deliver Rafael's session Monday, Jul 27. No action owed on Nia -- relationship kept warm, no nudges."
+    },
+    {
+      "date": "2026-07-23",
+      "title": "nia_precision_riff_oyi_pdf_flow_marley_parked",
+      "next_action": "Sasha replies to Oyi with the test-then-PDF flow and a soft pointer to the $1,500 proposal. No action owed on Nia or Marley."
     }
   ]
 }
