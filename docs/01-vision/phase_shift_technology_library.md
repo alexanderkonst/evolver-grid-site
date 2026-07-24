@@ -7331,6 +7331,8 @@ A venture is what happens when a communion incorporates: the third being gets a 
 
 **Cross-reference:** Universal Ontology §13. (Day 125, July 15, 2026.)
 
+**Field annotation (Day 133, July 23, 2026):** first real-world instantiation choreographed and logged — the Convergence Play (outreach_ops.md §5): a community webinar articulates persons (consent declared at the door), the persons' legibility activates the community (hand-crafted collaboration intros delivered to the host minutes after the room closes), the activated community demonstrates the infrastructure (the matching module offered while the wow is fresh), and the infrastructure feeds the studio. Four holons, one motion — the domain observed walking, ten days after it was written.
+
 ---
 
 ## Domain 114: The Holonic Wants→Products Matrix (Day 130, July 20, 2026)
