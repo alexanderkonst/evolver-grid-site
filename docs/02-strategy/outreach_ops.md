@@ -356,6 +356,7 @@ The axiom (Myth v4.0, `alexanders_unique_business.md` §1): **EN "Your career is
 - **Mirror objection disarm (born live on a Direction Call, Jul 22, 2026):** to 'why would you know me better than I know myself?' — «В зеркало себя увидеть проще, чем без зеркала. Это физика.» / EN: 'Seeing yourself in a mirror is easier than without one. That's physics.'
 - **Founder tagline diagnostic (incepting question pair, for founders with a live business):** 'What's your tagline?' → then: 'Would your best customer say that's what they actually bought?' The gap between the two answers is the business's ceiling, audible. For founders between ventures, use the invariant form instead; hold the tagline pair for the moment they describe the next idea.
 - **Polymath commitment line (born live, Jul 23, 2026):** «Единственный способ для полимата что-то выбрать — это закоммититься на самого себя.» The only way for a polymath to choose is to commit to themselves.
+- **Breath-gate lines (the couplet family; attack-layer polarizer, top-of-funnel only, never a door CTA):** solopreneurs/practitioners: 'Say what you do in one breath. Or sell your hours forever.' / «Назови своё дело на одном дыхании. Или продавай часы вечно.» · founders: 'Name what you're building in one breath. Or pivot forever.' / «Назови, что ты строишь, на одном дыхании. Или пивоться вечно.» Function: the reader involuntarily performs the one-breath test upon reading — self-diagnosis, tribe filter, and inception in one line; each tribe gets its own purgatory in the second clause.
 
 ---
 

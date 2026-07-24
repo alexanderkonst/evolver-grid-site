@@ -1437,6 +1437,8 @@ Pointer: full lineage (Mirror-Not-Teacher, Sales as Love, MI's Elicit-Provide-El
 
 **Note on stage 4 (the mirror):** the emotion is STRUCK — the oh-shit of seeing the gap clearly for the first time. Not relief. Relief belongs to the paid session, when the gap actually closes.
 
+**The Two Containers (v1.1, July 23, 2026):** the 45-minute law is for strangers: cold and funnel-sourced calls run 45 hard, two doors at minute 40. Peer-caliber warm calls (referred founders, potential nodes, ecosystem leaders) are a DIFFERENT container: a declared 90-minute exploration, stated at the start, because at that altitude the depth IS the demonstration. Empirical basis: three long calls in one week (137/148/107 min) produced a booking, a donation, and a collaboration bridge. The law was never broken; it was misscoped. Rule: choose and DECLARE the container before the call begins.
+
 ---
 
 ## 3. The Incepting Questions (per segment)
