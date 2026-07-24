@@ -47,8 +47,16 @@ const YourDataPlainly = () => {
 
   return (
     <div
-      className="min-h-screen"
-      style={{ background: "var(--skin-page-bg, #f6f1e7)" }}
+      className="min-h-dvh"
+      style={{
+        backgroundColor: "var(--skin-page-bg, #f7f3ea)",
+        backgroundImage:
+          "linear-gradient(rgba(248, 245, 238, 0.08), rgba(248, 245, 238, 0.08)), url('/images/evolution-portal-atmosphere.png')",
+        backgroundPosition: "center top",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundAttachment: "fixed",
+      }}
     >
       <SEO
         title={t("dataplainly.seoTitle")}
