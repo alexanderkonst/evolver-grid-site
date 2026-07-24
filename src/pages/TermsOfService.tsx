@@ -57,8 +57,16 @@ const TermsOfService = () => {
 
   return (
     <div
-      className="min-h-screen"
-      style={{ background: "var(--skin-page-bg, #f6f1e7)" }}
+      className="min-h-dvh"
+      style={{
+        backgroundColor: "var(--skin-page-bg, #f7f3ea)",
+        backgroundImage:
+          "linear-gradient(rgba(248, 245, 238, 0.08), rgba(248, 245, 238, 0.08)), url('/images/evolution-portal-atmosphere.png')",
+        backgroundPosition: "center top",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundAttachment: "fixed",
+      }}
     >
       <SEO
         title={t("termsofservice.seoTitle")}
@@ -82,9 +90,9 @@ const TermsOfService = () => {
           </p>
         </header>
 
-        <section className="space-y-8 mb-8">
+        <section className="space-y-5 mb-8">
           {SECTION_KEYS.filter((k) => k !== "openMethod").map((key) => (
-            <div key={key}>
+            <div key={key} className="rounded-2xl p-6 sm:p-7" style={parchmentCard}>
               <h2 className="text-lg sm:text-xl mb-2" style={cormorantTitle}>
                 {t(`termsofservice.${key}Title`)}
               </h2>

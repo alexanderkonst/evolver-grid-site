@@ -324,6 +324,8 @@ The **"Next follow-up date" column IS the system.** No memory required.
 - Send those follow-ups first thing in tomorrow's morning send block.
 - After a follow-up is sent, either update the date to the next stage (+7 days) or close the row if Follow-up 2 already went and nothing came back.
 
+**The Convergence Play (Day 133, July 23, 2026) — the applied choreography:** the webinar is the matching layer's live demo, not just a funnel. Sequence: (1) attendees create profiles through the community-branded flow whose door states the consent plainly ("your profile will be visible to [community] for collaboration matching — opt out anytime, one click"); (2) 20-30 consented profiles land; (3) Sasha hand-crafts 2-3 collaboration intros the members can't see themselves; (4) minutes after the webinar, the host receives a prepared WhatsApp: "make this intro between X and Y; this collaboration between A, B and C just revealed itself"; (5) while the wow is fresh, the module offer, one sentence: **"You just watched your community start matching itself — the module keeps that running continuously, under your brand, and you saw it work on your own people."** What the host buys = the ongoing ability to generate that moment monthly without Sasha in the loop: a branded dashboard view of member profiles with continuously suggested matches. Four holons, one motion: the webinar articulates persons → the persons' legibility activates the community → the activated community demonstrates the infrastructure → the infrastructure feeds the studio (Domains 113/114 applied).
+
 ---
 
 ## 6. Copy bank (reusable snippets)
