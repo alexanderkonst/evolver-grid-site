@@ -34,6 +34,7 @@ import { initialSkinScope } from "@/lib/skinScope";
 import { initialLocaleScope } from "@/i18n/localeScope";
 import TechstarsScopeLock from "@/components/skin/TechstarsScopeLock";
 import MusicPlayer from "@/components/MusicPlayer";
+import ChatLauncher from "@/components/ChatLauncher";
 // Day 58+ (Sasha 2026-05-03): App-root mount for the SoundCloud
 // playlist audio engine. SoundCloudMinimalPlayer used to own its
 // own iframe inside SpacesRail, but SpacesRail lives inside
@@ -439,6 +440,7 @@ const App = () => (
           {isAurumScope && <AurumScopeLock />}
           {isTechstarsScope && <TechstarsScopeLock />}
           <GlobalChrome />
+          <ChatLauncher />
           <EntryPathProvider>
           <CelebrationModalListener />
           <SoundCloudPlayerProvider>
