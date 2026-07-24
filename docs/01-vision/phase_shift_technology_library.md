@@ -7394,3 +7394,34 @@ Keep the fire, keep the present-continuous tense ('in the making'), and let the 
 **The recursive move (Sasha's question honored):** rising above the playing field is articulation applied to the level one is on; rising above the rising is articulation applied to one's own meta-move. Each articulation seats the articulator one level above what it names (the subject→object operation, recursively). This is why the corpus keeps producing meta-instruments: the practice IS recursive articulation, and the library is its ledger.
 
 **Relationship:** Domain 115 (articulation as growth), Domain 84 (holomap instrument / general theory of development), the Daily Learnings Ledger (clerk protocol, Day 133), Domain 113 (the same instrument at every holon: person's learnings → cohort's curriculum → civilization's developmental map).
+
+---
+
+## Domain 118: The Seer Invariant — Development and Seeing Are One Act (Day 133, July 23, 2026)
+
+**The invariant in one sentence: what develops a person and what a seer does to a situation are the same operation — turning the containing frame from subject into object — performed in different directions.**
+
+**The mechanism.** A person grows by objectifying what they were embedded in (the subject→object move). A seer is someone who performs that operation natively, on demand, for someone or something else: they look at a person, a project, a field, and the invisible game becomes visible to them the way color is visible to everyone. Naming a level seats the namer above it; a seer's gift is producing that elevation in others.
+
+**What this reframes:**
+- **The medicine, precisely defined:** any true 'medicine' is whatever reliably turns someone's subject into object. Signal-to-Path Shaping is this operation performed in language: objectify the game the person is inside, and the naming seats them above it — the shoulders drop because it is elevation, not information.
+- **Abstraction gifts, de-mystified:** the 'seer' types differ only in native target — persons, systems, fields, energies. One operation, many aims.
+- **The commercial split:** the advice industry sells content INSIDE people's frames (furniture for the room they are trapped in); seers sell frame visibility (the walls of the room). Different product category, no shared shelf — which is why frame-work feels incomparable to coaching from inside a session.
+- **The tribe, deepest description yet:** people whose gift is making games visible, who could not see their own game. The cobbler's law is the entry wound of the seer class.
+
+**Relationship:** Domain 115 (articulation as the mechanism of growth — articulation IS the subject→object move in language), Domain 117 (the meta-game: recursive articulation), the mirror line («в зеркало себя увидеть проще, чем без зеркала — это физика»).
+
+---
+
+## Domain 119: Bring Your Own Clerk — The Self-Replicating Operating System (Day 133, July 23, 2026)
+
+**The insight in one sentence: the studio scales not by hosting founders' data but by installing its practice — each founder's own AI becomes their clerk, and the guild federates what sovereigns choose to share.**
+
+**The mechanism.** The clerk protocol (pulses, offer ledger, timestamped daily learning line, sent-copy corpus) is a practice, not a platform. Any founder can install it into their own AI in an afternoon: the playbook travels with it, the instrument runs on their corpus, under their terms. The incubator's product shifts from collection to installation — teach the practice, and every node self-tracks, self-articulates, and holds its own ledger.
+
+**Consequences:**
+- **The AI-native guild:** every member runs the same protocol on sovereign infrastructure; the entrepreneurial curriculum (Domain 117) emerges from federated learning ledgers shared on published terms (Domain 110), without a data empire forming anywhere.
+- **Engine 4 completed:** Bring Your Own Code gave the commons its modules; Bring Your Own Clerk gives it its nervous system.
+- **The boundary holds by design:** people are free, infrastructure is paid — and here even the infrastructure is theirs; what the studio sells is the installation, the calibration, and the network the ledgers plug into.
+
+**Relationship:** Domain 117 (the learning ledger this replicates), Domain 111 (edge-carried alignment — federated sharing is edges applied to data), Domain 116 (trust compounding: a guild that never takes custody never has to be trusted with custody).
