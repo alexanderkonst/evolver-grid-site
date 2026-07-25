@@ -141,7 +141,8 @@ async function moveToDlq(
   supabase: any,
   queue: string,
   msg: { msg_id: number; message: Record<string, any> },
-  reason: string
+  reason: string,
+  metadata?: Record<string, unknown>
 ): Promise<void> {
   const payload = msg.message
   await supabase.from('email_send_log').insert({
@@ -150,6 +151,7 @@ async function moveToDlq(
     recipient_email: payload.to,
     status: 'dlq',
     error_message: reason,
+    metadata: metadata ?? null,
   })
   const { error } = await supabase.rpc('move_to_dlq', {
     source_queue: queue,
@@ -162,10 +164,56 @@ async function moveToDlq(
   }
 }
 
+// ---------------------------------------------------------------------------
+// Resend fallback (Day 135, 2026-07-25).
+//
+// auth-email-hook's sender domain (notify.findyourtoptalent.com) is
+// verified with Resend, but its verification status with Lovable's
+// messaging API (the primary transport below) is opaque to this codebase.
+// If the primary Lovable send fails for any reason, retry the identical
+// message once via Resend — the exact call shape already used by the
+// working direct-Resend senders (e.g. generate-pulse-brief) — before
+// falling into the existing rate-limit/forbidden/generic-failure handling.
+// This is a fallback only: on success it still counts as delivered, on
+// failure the existing semantics (DLQ, retry, rate-limit cooldown) are
+// unchanged.
+async function sendResendFallbackEmail(
+  payload: { to: string; from: string; subject: string; html: string },
+  resendApiKey: string,
+): Promise<{ ok: boolean; id?: string; error?: string }> {
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${resendApiKey}`,
+      },
+      body: JSON.stringify({
+        from: payload.from,
+        to: [payload.to],
+        subject: payload.subject,
+        html: payload.html,
+      }),
+    })
+
+    const ok = res.ok
+    const body = ok ? await res.json() : await res.text()
+    if (!ok) {
+      return { ok: false, error: `Resend ${res.status}: ${String(body).slice(0, 500)}` }
+    }
+    return { ok: true, id: (body as { id?: string })?.id }
+  } catch (err) {
+    return { ok: false, error: err instanceof Error ? err.message : String(err) }
+  }
+}
+
 Deno.serve(async (req) => {
   const apiKey = Deno.env.get('LOVABLE_API_KEY')
   const supabaseUrl = Deno.env.get('SUPABASE_URL')
   const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
+  // Optional: enables the Resend fallback below. Absent = Lovable-only
+  // behavior, unchanged from before Day 135.
+  const resendApiKey = Deno.env.get('RESEND_API_KEY')
 
   if (!apiKey || !supabaseUrl || !supabaseServiceKey) {
     console.error('Missing required environment variables')
@@ -361,6 +409,7 @@ Deno.serve(async (req) => {
           template_name: payload.label || queue,
           recipient_email: payload.to,
           status: 'sent',
+          metadata: { transport: 'lovable' },
         })
 
         // Delete from queue
@@ -382,56 +431,130 @@ Deno.serve(async (req) => {
           error: errorMsg,
         })
 
-        if (isRateLimited(error)) {
+        // Resend fallback: the Lovable send above failed (any non-2xx
+        // response or thrown error). If a Resend API key is configured,
+        // retry this exact message once via Resend before falling into
+        // the rate-limit/forbidden/generic-failure handling below.
+        let deliveredViaFallback = false
+
+        if (resendApiKey) {
+          const fallback = await sendResendFallbackEmail(
+            {
+              to: payload.to,
+              from: payload.from,
+              subject: payload.subject,
+              html: payload.html,
+            },
+            resendApiKey,
+          )
+
+          if (fallback.ok) {
+            deliveredViaFallback = true
+            console.warn('Lovable send failed; Resend fallback delivered', {
+              queue,
+              msg_id: msg.msg_id,
+              message_id: payload.message_id,
+              lovable_error: errorMsg,
+              resend_id: fallback.id,
+            })
+
+            await supabase.from('email_send_log').insert({
+              message_id: payload.message_id,
+              template_name: payload.label || queue,
+              recipient_email: payload.to,
+              status: 'sent',
+              error_message: `Lovable send failed, delivered via Resend fallback: ${errorMsg.slice(0, 400)}`,
+              metadata: {
+                transport: 'resend',
+                primary_error: errorMsg.slice(0, 500),
+                resend_id: fallback.id ?? null,
+              },
+            })
+
+            const { error: delError } = await supabase.rpc('delete_email', {
+              queue_name: queue,
+              message_id: msg.msg_id,
+            })
+            if (delError) {
+              console.error('Failed to delete sent message from queue', { queue, msg_id: msg.msg_id, error: delError })
+            }
+            totalProcessed++
+          } else {
+            console.error('Resend fallback also failed', {
+              queue,
+              msg_id: msg.msg_id,
+              message_id: payload.message_id,
+              lovable_error: errorMsg,
+              resend_error: fallback.error,
+            })
+          }
+        } else {
+          console.warn('Resend fallback unavailable (RESEND_API_KEY not configured)', {
+            queue,
+            msg_id: msg.msg_id,
+            message_id: payload.message_id,
+          })
+        }
+
+        // Both transports failed (or no fallback was available) — preserve
+        // the exact pre-fallback failure/retry semantics.
+        if (!deliveredViaFallback) {
+          if (isRateLimited(error)) {
+            await supabase.from('email_send_log').insert({
+              message_id: payload.message_id,
+              template_name: payload.label || queue,
+              recipient_email: payload.to,
+              status: 'rate_limited',
+              error_message: errorMsg.slice(0, 1000),
+              metadata: { transport: 'lovable', fallback_attempted: Boolean(resendApiKey) },
+            })
+
+            const retryAfterSecs = getRetryAfterSeconds(error)
+            await supabase
+              .from('email_send_state')
+              .update({
+                retry_after_until: new Date(
+                  Date.now() + retryAfterSecs * 1000
+                ).toISOString(),
+                updated_at: new Date().toISOString(),
+              })
+              .eq('id', 1)
+
+            // Stop processing — remaining messages stay in queue (VT expires, retried next cycle)
+            return new Response(
+              JSON.stringify({ processed: totalProcessed, stopped: 'rate_limited' }),
+              { headers: { 'Content-Type': 'application/json' } }
+            )
+          }
+
+          // 403 means emails are disabled for this project — retrying won't help.
+          // Move straight to DLQ and stop processing the rest of the batch.
+          if (isForbidden(error)) {
+            await moveToDlq(supabase, queue, msg, 'Emails disabled for this project', {
+              transport: 'lovable',
+              fallback_attempted: Boolean(resendApiKey),
+            })
+            return new Response(
+              JSON.stringify({ processed: totalProcessed, stopped: 'emails_disabled' }),
+              { headers: { 'Content-Type': 'application/json' } }
+            )
+          }
+
+          // Log non-429 failures to track real retry attempts.
           await supabase.from('email_send_log').insert({
             message_id: payload.message_id,
             template_name: payload.label || queue,
             recipient_email: payload.to,
-            status: 'rate_limited',
+            status: 'failed',
             error_message: errorMsg.slice(0, 1000),
+            metadata: { transport: 'lovable', fallback_attempted: Boolean(resendApiKey) },
           })
+          if (payload?.message_id && typeof payload.message_id === 'string') {
+            failedAttemptsByMessageId.set(payload.message_id, failedAttempts + 1)
+          }
 
-          const retryAfterSecs = getRetryAfterSeconds(error)
-          await supabase
-            .from('email_send_state')
-            .update({
-              retry_after_until: new Date(
-                Date.now() + retryAfterSecs * 1000
-              ).toISOString(),
-              updated_at: new Date().toISOString(),
-            })
-            .eq('id', 1)
-
-          // Stop processing — remaining messages stay in queue (VT expires, retried next cycle)
-          return new Response(
-            JSON.stringify({ processed: totalProcessed, stopped: 'rate_limited' }),
-            { headers: { 'Content-Type': 'application/json' } }
-          )
+          // Non-429 errors: message stays invisible until VT expires, then retried
         }
-
-        // 403 means emails are disabled for this project — retrying won't help.
-        // Move straight to DLQ and stop processing the rest of the batch.
-        if (isForbidden(error)) {
-          await moveToDlq(supabase, queue, msg, 'Emails disabled for this project')
-          return new Response(
-            JSON.stringify({ processed: totalProcessed, stopped: 'emails_disabled' }),
-            { headers: { 'Content-Type': 'application/json' } }
-          )
-        }
-
-        // Log non-429 failures to track real retry attempts.
-        await supabase.from('email_send_log').insert({
-          message_id: payload.message_id,
-          template_name: payload.label || queue,
-          recipient_email: payload.to,
-          status: 'failed',
-          error_message: errorMsg.slice(0, 1000),
-        })
-        if (payload?.message_id && typeof payload.message_id === 'string') {
-          failedAttemptsByMessageId.set(payload.message_id, failedAttempts + 1)
-        }
-
-        // Non-429 errors: message stays invisible until VT expires, then retried
       }
 
       // Small delay between sends to smooth bursts
