@@ -376,8 +376,13 @@ export const SPACE_TITLE_KEYS: Record<string, string> = {
     journey: "spacesRail.journey",
     "ai-os": "spacesRail.aiOs",
     me: "spacesRail.me",
+    // Day 135 (Sasha) bugfix: these two were swapped — id "grow" is the ME
+    // space (rail labelKey spacesRail.me) and id "learn" is the GROW space
+    // (rail labelKey spacesRail.grow). The swap made pane 2's header read
+    // "LEARN" while ME's Public Profile/Top Talent/Mission/Assets sections
+    // were listed underneath.
     learn: "spacesRail.grow",
-    grow: "spacesRail.learn",
+    grow: "spacesRail.me",
     meet: "spacesRail.meet",
     collaborate: "spacesRail.collaborate",
     build: "spacesRail.build",

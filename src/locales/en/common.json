@@ -56,7 +56,7 @@
     "toastFirstTimeBonusDesc": "+{{xp}} XP for your first {{action}}!",
     "toastCouldNotSaveOffer": "Could not save your offer.",
     "bannerSavingTo": "Saving your result to",
-    "bannerResultSaved": "Result saved. Check your email — the magic link unlocks your full playbook.",
+    "bannerResultSaved": "Result saved, you can come back to it anytime",
     "bannerSentTo": "Sent to",
     "bannerWrongEmailRedo": "Wrong email? Redo",
     "bannerCouldNotSaveTo": "We couldn't save your result to",
@@ -658,6 +658,10 @@
       "meet": "Unlocks after Step 1",
       "collaborate": "Unlocks after Top Talent + Mission + Assets.",
       "buysell": "Unlocks after Step 2"
+    },
+    "meUnlockToast": {
+      "title": "Your ME space is open.",
+      "body": "Everything you've discovered now lives in one place."
     },
     "rail": {
       "expand": "Expand rail",
