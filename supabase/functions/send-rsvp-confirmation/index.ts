@@ -1,5 +1,6 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { FROM_NOTIFICATIONS } from "../_shared/senders.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -127,7 +128,7 @@ const handler = async (req: Request): Promise<Response> => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "ARKHAZM <onboarding@resend.dev>",
+        from: FROM_NOTIFICATIONS,
         to: [sanitizedEmail],
         subject: `You're confirmed for ${sanitizedTitle}!`,
         html: `

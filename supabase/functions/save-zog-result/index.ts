@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.4";
+import { FROM_NOTIFICATIONS } from "../_shared/senders.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -290,7 +291,7 @@ serve(async (req) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from: "Find Your Top Talent <notifications@notify.findyourtoptalent.com>",
+            from: FROM_NOTIFICATIONS,
             to: [normalizedEmail],
             // Subject is intentionally generic — no archetype name, no
             // teaser. Preserves the curiosity hook so the return click

@@ -487,81 +487,6 @@ const AppleseedDisplay = ({
                     />
                 )}
 
-                {/* Words of caution — Day 110 (Sasha 2026-06-23): sits
-                    directly under the 1–10 resonance scale. Hands
-                    sovereignty back to the user the moment the words
-                    land: the articulation is a useful reflection of
-                    their essence, not their essence itself. The user's
-                    own self-knowledge is the thing that matters, and a
-                    re-take yielding different words is the proof that
-                    their true essence stays their secret. */}
-                <div className="max-w-2xl mx-auto px-4 pt-2 pb-4 text-center space-y-4">
-                    <p
-                        className="text-xs uppercase tracking-[0.14em] mb-2"
-                        style={{ color: "var(--skin-text-muted, #6b7280)" }}
-                    >
-                        {t('appleseed.cautionTitle')}
-                    </p>
-                    <p
-                        className="leading-relaxed mb-3"
-                        style={{
-                            fontFamily: "'Source Serif 4', serif",
-                            fontSize: "clamp(0.95rem, 2vw, 1.05rem)",
-                            color: "var(--skin-text-primary, #2c3150)",
-                        }}
-                    >
-                        {t('appleseed.cautionLead')}
-                    </p>
-                    <p
-                        className="leading-relaxed"
-                        style={{
-                            fontFamily: "'Source Serif 4', serif",
-                            fontSize: "clamp(0.9rem, 1.9vw, 1rem)",
-                            color: "var(--skin-text-muted, #4a4a6d)",
-                        }}
-                    >
-                        {t('appleseed.cautionBody')}
-                    </p>
-                    <div className="pt-3 space-y-3">
-                        <p
-                            className="text-xs uppercase tracking-[0.14em]"
-                            style={{ color: "var(--skin-text-muted, #6b7280)" }}
-                        >
-                            {t('appleseed.cautionNextTitle')}
-                        </p>
-                        <p
-                            className="leading-relaxed"
-                            style={{
-                                fontFamily: "'Source Serif 4', serif",
-                                fontSize: "clamp(0.95rem, 2vw, 1.05rem)",
-                                color: "var(--skin-text-primary, #2c3150)",
-                            }}
-                        >
-                            {t('appleseed.cautionNextLead')}
-                        </p>
-                        <p
-                            className="leading-relaxed"
-                            style={{
-                                fontFamily: "'Source Serif 4', serif",
-                                fontSize: "clamp(0.9rem, 1.9vw, 1rem)",
-                                color: "var(--skin-text-muted, #4a4a6d)",
-                            }}
-                        >
-                            {t('appleseed.cautionNextBody')}
-                        </p>
-                        <p
-                            className="leading-relaxed"
-                            style={{
-                                fontFamily: "'Source Serif 4', serif",
-                                fontSize: "clamp(0.9rem, 1.9vw, 1rem)",
-                                color: "var(--skin-text-muted, #4a4a6d)",
-                            }}
-                        >
-                            {t('appleseed.cautionNextReminder')}
-                        </p>
-                    </div>
-                </div>
-
                 {/* Day 61 (Sasha 2026-05-04 22:00): inline save block
                     REMOVED from after-resonance position. Per Sasha's
                     "CTA sequence on both reveal pages" instruction:
@@ -611,21 +536,8 @@ const AppleseedDisplay = ({
                             transform: ctasVisible ? 'translateY(0)' : 'translateY(12px)',
                         }}
                     >
-                        {/* Day 80 Wave 2.7 (Sasha 2026-05-22): copy + glyph
-                            revision. Removed the ✦ eyebrow. Headline now
-                            celebrates the just-completed act; body names
-                            the why for the next act (meet people heading
-                            the same way) without methodology jargon.
-
-                            Day 79 (Sasha 2026-05-22, late): inner "Discover
-                            My Mission" CTA removed. ZoneOfGeniusEntry now
-                            renders <MatchFlowCta step="top-talent" /> right
-                            below this celebration card, which carries the
-                            single "Discover your mission in 1 minute" CTA.
-                            Two identical CTAs in the same scroll was the
-                            duplicate Sasha flagged. Keep heading + body as
-                            the celebration anchor; the MatchFlowCta below
-                            is the action. */}
+                        {/* The reveal names the value already articulated;
+                            the CTA below invites the next profile layer. */}
                         <div
                             className="liquid-glass-strong rounded-3xl p-6 sm:p-8 text-center space-y-4"
                             style={{ border: '1px solid rgba(212, 175, 55, 0.32)' }}

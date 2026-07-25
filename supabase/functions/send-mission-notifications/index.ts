@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { Resend } from "https://esm.sh/resend@2.0.0";
+import { FROM_NOTIFICATIONS } from "../_shared/senders.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -254,7 +255,7 @@ const handler = async (req: Request): Promise<Response> => {
           console.log(`Sending email to ${newParticipant.email}, CC: ${ccList.length} people`);
 
           const emailResult = await resend.emails.send({
-            from: "Mission Control <onboarding@resend.dev>",
+            from: FROM_NOTIFICATIONS,
             to: recipients,
             cc: ccList.length > 0 ? ccList : undefined,
             subject: `🎯 New ally joined your mission: ${newParticipant.mission_title}`,

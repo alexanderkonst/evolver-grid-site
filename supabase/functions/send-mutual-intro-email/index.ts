@@ -34,6 +34,7 @@
 //   - No magic link CTA — the meeting happens outside the platform.
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
+import { FROM_NOTIFICATIONS } from "../_shared/senders.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -42,8 +43,7 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-const FROM_ADDRESS =
-  "Find Your Top Talent <notifications@notify.findyourtoptalent.com>";
+const FROM_ADDRESS = FROM_NOTIFICATIONS;
 
 interface MutualIntroPayload {
   user_a_id: string;

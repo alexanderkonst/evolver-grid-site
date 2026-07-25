@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { FROM_NOTIFICATIONS } from "../_shared/senders.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
@@ -109,7 +110,7 @@ const handler = async (req: Request): Promise<Response> => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Genius Offer <onboarding@resend.dev>",
+        from: FROM_NOTIFICATIONS,
         to: ["alexanderkonst@gmail.com"],
         subject: "New Genius Offer intake received",
         html: `

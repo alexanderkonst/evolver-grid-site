@@ -21,6 +21,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient, type SupabaseClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 import { signConsentToken } from "../_shared/matchConsentToken.ts";
+import { BRAND_NAME, SENDER_DOMAIN } from "../_shared/senders.ts";
 
 const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
@@ -34,9 +35,9 @@ const SITE_URL = Deno.env.get("SITE_URL") || "https://findyourtoptalent.com";
 // From line and the email signoff — swap in one place if the brand name
 // changes (Day 121: under review — Find Your Top Talent vs an ecosystem
 // / matchmaker-persona name).
-const SENDER_NAME = "Find Your Top Talent";
+const SENDER_NAME = BRAND_NAME;
 const FROM_ADDRESS =
-    `${SENDER_NAME} <notifications@notify.findyourtoptalent.com>`;
+    `${SENDER_NAME} <notifications@${SENDER_DOMAIN}>`;
 // Hosted brand mark for the email header (updated with the Jul 10 logo).
 const LOGO_URL = `${SITE_URL}/apple-touch-icon.png`;
 
