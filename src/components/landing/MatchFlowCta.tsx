@@ -318,6 +318,20 @@ export const MatchFlowCta = ({ step }: { step: Step }) => {
           onClick={() => navigate(cfg.primaryHref)}
         />
 
+        {isTopTalent && (
+          <p
+            style={{
+              marginTop: "-0.55rem",
+              fontFamily: "'Source Serif 4', Georgia, serif",
+              fontSize: "13px",
+              fontStyle: "italic",
+              color: "var(--skin-text-muted, rgba(11,42,90,0.62))",
+            }}
+          >
+            {t("matchCta.topTalent.freeLabel")}
+          </p>
+        )}
+
         {cfg.secondaryLabelKey && cfg.secondaryHref && (
           <EditorialCta
             variant="secondary"

@@ -30,6 +30,7 @@
 // 2.1 if needed. Most lifecycle emails don't need more than this.
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
+import { FROM_NOTIFICATIONS } from "../_shared/senders.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -38,11 +39,7 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-// Mirror process-nurture-emails / save-zog-result FROM_ADDRESS. Display
-// name is brand-identity ("Find Your Top Talent"); technical address
-// stays on the verified Resend domain.
-const FROM_ADDRESS =
-  "Find Your Top Talent <notifications@notify.findyourtoptalent.com>";
+const FROM_ADDRESS = FROM_NOTIFICATIONS;
 
 const MAX_RECIPIENTS_PER_CALL = 200;
 const SEND_DELAY_MS = 200;

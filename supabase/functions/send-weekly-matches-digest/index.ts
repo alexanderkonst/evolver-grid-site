@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
+import { FROM_NOTIFICATIONS } from "../_shared/senders.ts";
 
 const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
@@ -38,8 +39,7 @@ const corsHeaders = {
  * (useful for dry-runs). With no body, it processes all eligible users.
  */
 
-const FROM_ADDRESS =
-    "Find Your Top Talent <notifications@notify.findyourtoptalent.com>";
+const FROM_ADDRESS = FROM_NOTIFICATIONS;
 
 // Day 80 (Sasha 2026-05-23): production URL. Override via SITE_URL env
 // when needed (preview deployments, custom domains).
