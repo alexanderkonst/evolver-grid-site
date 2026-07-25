@@ -43,7 +43,12 @@ import PlayerStatsBadge from "./PlayerStatsBadge";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import SiteLogo from "@/components/SiteLogo";
 // hls.js is dynamically imported inside MuxVideoBackground to avoid module-level crashes
-// import { loadNudgeState } from "@/lib/myNextMoveLogic";
+// Day 135 (Sasha): static import — needed synchronously to compute the ME
+// nudge badge every render (see nudgeBadges below). markNudgeSeen itself is
+// still invoked via the existing dynamic-import pattern in handleSpaceSelect
+// for build/collaborate/grow, unchanged.
+import { loadNudgeState } from "@/lib/myNextMoveLogic";
+import { useToast } from "@/hooks/use-toast";
 
 /** Animated video background — Mux HLS stream behind all panels */
 // Day 51 (Sasha 2026-04-25): swapped to new animated cosmic-landscape stream
@@ -410,6 +415,7 @@ export const GameShellV2 = (props: GameShellV2Props) => {
  */
 const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo, defaultRailMinimized = false, defaultSectionsPanelClosed = false, spaceOverride }: GameShellV2Props) => {
     const { t } = useTranslation();
+    const { toast } = useToast();
     // Day 82 v4 (Sasha 2026-05-24): pane-1 minimize state. Defaults to
     // ON when the page passes defaultRailMinimized — Karime's pages open
     // with the rail in compact (icon-only) mode so the editorial card
@@ -1175,7 +1181,15 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             "journey": true,                                    // Always open — the front door
             "next-move": topTalentComplete,                     // After Step 1
             "ai-os": aiOsUnlocked,                              // After T+M+A or ever-visited (Day 79)
-            "grow": topTalentComplete,                          // ME — unlocked from actual Top Talent completion, not stage-only
+            // Day 135 (Sasha): ME re-gated from `topTalentComplete` to the
+            // full `tmaComplete` triad (Top Talent + Mission + Assets), same
+            // signal as "learn"/COLLABORATE/BUILD's triad arm. ME now sits
+            // in GATED_SPACES (below) so it's hidden — not dimmed — until
+            // earned. Direct routes (/game/me/*) stay reachable throughout
+            // via MeGate + the rail's own footer profile button, so nothing
+            // the user already produced (Top Talent / Mission / Assets) is
+            // stranded while this chip is hidden.
+            "grow": tmaComplete,                                // ME — unlocked after T+M+A complete
             // Day 119 (Sasha 2026-07-09): GROW space enabled — id stays
             // "learn" (rail label is now GROW, positioned between
             // COLLABORATE and BUILD). Gate switched from the
@@ -1219,6 +1233,23 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // "Unlocks after Step 1" to the proper product language:
     // "Unlocks after your Find Your Top Talent Reveal." Hovered
     // via the native `title` attribute on the locked chip.
+    // Day 135 (Sasha): ME unlock toast — fires ONCE, ever, the moment T+M+A
+    // completes (independent of the nudge badge above, which persists until
+    // the user actually opens ME; this flag persists forever so a refresh,
+    // re-login, or later re-completion never re-fires it). localStorage
+    // over a profile column per the founder directive (no migration).
+    useEffect(() => {
+        if (!profileLoaded || !tmaComplete || !user?.id) return;
+        if (typeof window === "undefined") return;
+        const key = `fytt:me-unlock-toast-shown:${user.id}`;
+        if (window.localStorage.getItem(key) === "true") return;
+        window.localStorage.setItem(key, "true");
+        toast({
+            title: t("shell.meUnlockToast.title"),
+            description: t("shell.meUnlockToast.body"),
+        });
+    }, [profileLoaded, tmaComplete, user?.id, toast, t]);
+
     const unlockHints: Record<string, string> = {
         "next-move": t("shell.unlockHints.nextMove"),
         "grow": t("shell.unlockHints.grow"),
@@ -1235,6 +1266,14 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // if (hasResources && !nudges.collaborateNudgeSeen) {
     //     nudgeBadges.push('collaborate');
     // }
+    // Day 135 (Sasha): ME micro-notification. The moment T+M+A completes
+    // and the ME chip appears (unlockStatus["grow"] flips true, above), a
+    // nudge badge lands on the chip — the SAME emerald-dot vocabulary
+    // already used for BUILD/COLLABORATE — until the user opens ME once
+    // (markNudgeSeen('me'), wired into handleSpaceSelect below).
+    if (profileLoaded && tmaComplete && !loadNudgeState().meNudgeSeen) {
+        nudgeBadges.push('grow');
+    }
 
     // Hide-don't-lock (Sasha, 2026-04-21): a locked space just clutters the
     // rail. Anywhere in the app, if a space isn't unlocked, hide it entirely —
@@ -1247,7 +1286,10 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // Day 79 (Sasha 2026-05-22): ai-os added to GATED_SPACES so it falls
     // into the hide-don't-lock pattern when the unlockStatus[ai-os] is
     // false. Localised handling below for the unauthed-guest case.
-    const GATED_SPACES = ["next-move", "ai-os", "learn", "meet", "collaborate", "buysell"] as const;
+    // Day 135 (Sasha): "grow" (ME) added — same hide-don't-lock treatment as
+    // the rest of the T+M+A-gated set, replacing the dimmed/disabled chip
+    // it used to render via unlockStatus["grow"] === false.
+    const GATED_SPACES = ["next-move", "ai-os", "grow", "learn", "meet", "collaborate", "buysell"] as const;
     // Day 75 → Day 87 — COLLABORATE flicker fix history:
     //
     // Day 75 (Sasha 2026-05-19): COLLABORATE was specifically extracted
@@ -1349,6 +1391,9 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         }
         if (spaceId === 'collaborate' && nudgeBadges.includes('collaborate')) {
             import('@/lib/myNextMoveLogic').then(m => m.markNudgeSeen('collaborate'));
+        }
+        if (spaceId === 'grow' && nudgeBadges.includes('grow')) {
+            import('@/lib/myNextMoveLogic').then(m => m.markNudgeSeen('me'));
         }
         // Mobile view stays on navigation - both panels visible
     };

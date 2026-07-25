@@ -1379,6 +1379,10 @@
       "collaborate": "Se desbloquea tras Talento Principal + Misión + Activos.",
       "buysell": "Se desbloquea tras el Paso 2"
     },
+    "meUnlockToast": {
+      "title": "Tu espacio YO está abierto.",
+      "body": "Todo lo que has descubierto ahora vive en un solo lugar."
+    },
     "rail": {
       "expand": "Expandir barra",
       "minimize": "Minimizar barra"
@@ -4759,7 +4763,8 @@
   },
   "matchCta": {
     "topTalent": {
-      "primaryLabel": "Descubre tu misión"
+      "primaryLabel": "Descubre tu dirección profesional clave en 1 minuto",
+      "freeLabel": "gratis"
     },
     "mission": {
       "primaryLabel": "Mapea tus activos",

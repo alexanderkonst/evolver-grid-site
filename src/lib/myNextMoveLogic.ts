@@ -36,6 +36,11 @@ export interface NudgeState {
     // Track if user has seen each nudge (persisted in localStorage)
     collaborateNudgeSeen: boolean;
     buildNudgeSeen: boolean;
+    // Day 135 (Sasha): ME space nudge badge — set once the T+M+A triad
+    // completes and the ME chip appears in the rail (GameShellV2's
+    // GATED_SPACES gate on `tmaComplete`). Cleared/marked-seen the first
+    // time the user actually opens the ME space.
+    meNudgeSeen: boolean;
 }
 
 /**
@@ -241,13 +246,14 @@ export function loadNudgeState(): NudgeState {
     return {
         collaborateNudgeSeen: false,
         buildNudgeSeen: false,
+        meNudgeSeen: false,
     };
 }
 
 /**
  * Mark a nudge as seen
  */
-export function markNudgeSeen(nudgeType: 'collaborate' | 'build'): void {
+export function markNudgeSeen(nudgeType: 'collaborate' | 'build' | 'me'): void {
     try {
         const current = loadNudgeState();
         const updated = {
