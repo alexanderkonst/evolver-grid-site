@@ -222,6 +222,13 @@
 | PN1 | **Voice-to-practice advisor**: speak what's going on + how much time you have, AI returns 1 practice | 🟡 | Adopt existing voice module; Lovable built-in model |
 | PN2 | **Panel v2 remainder**: glyph-system decision (Sasha), skin-following rail decision (Sasha) | 🟡 | Awaiting Sasha's call on both |
 
+### Day 134 — Proof & Demonstration Video (seeds)
+
+| # | Item | Priority | Notes |
+|---|------|----------|-------|
+| VP1 | **Video proof library (Day 134 seed)** | 🟡 [seed] | Cut short highlight clips of real clients speaking their own transformation moments (not written quotes) from existing Fathom recordings. Process: pull transcripts via the Fathom connector, identify the highest-charge 10-30 second moments with timestamps, cut clips from downloaded recordings. Consent required per client before any public use. Purpose: sensory proof for the founder segment, who buy on demonstrated evidence rather than testimonials. |
+| AD1 | **Async demonstration video (Day 134 seed)** | 🟡 [seed] | An evergreen 5-minute video that names the law, demonstrates a real before/after reveal, states the ladder and prices transparently, and ends with one door. Sits between the hand-raiser/DM and the Direction Call so the call converts instead of over-gives. Structural antidote to the over-giving pattern (see distribution_playbook.md Part B). |
+
 ### UX / Platform Follow-Ups
 
 | # | Item | Priority | Notes |
