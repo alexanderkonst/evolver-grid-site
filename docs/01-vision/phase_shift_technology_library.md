@@ -7425,3 +7425,37 @@ Keep the fire, keep the present-continuous tense ('in the making'), and let the 
 - **The boundary holds by design:** people are free, infrastructure is paid — and here even the infrastructure is theirs; what the studio sells is the installation, the calibration, and the network the ledgers plug into.
 
 **Relationship:** Domain 117 (the learning ledger this replicates), Domain 111 (edge-carried alignment — federated sharing is edges applied to data), Domain 116 (trust compounding: a guild that never takes custody never has to be trusted with custody).
+
+---
+
+## Domain 120: The Formed Edge (Day 134, July 24, 2026)
+
+**The law in one sentence: a network of sovereigns is constituted by formed agreements between sovereigns; without formed edges there is no network, only disconnected people who like each other.**
+
+**What a formed edge is, concretely:** who does what, for what, on what terms, by when. A price, a percentage, a scope, a date, a named container. Warmth is not an edge. Mutual admiration is not an edge. 'Let's collaborate' is not an edge. An edge exists the moment terms exist.
+
+**ESC.** *Essence:* alignment is carried by agreements between sovereigns, so the agreement, not the affinity, is the unit of the network. *Significance:* it explains both the failures and the successes of a relational business without moralizing about anyone — enthusiasm is free and therefore inflates, commitment costs and therefore deflates on contact, and only formed terms convert warmth into structure; fourteen ghosted collaborations are not fourteen betrayals but one missing mechanism repeated fourteen times. *Consequence:* form the edge before pouring value, and give without limit inside it; every relationship gets one of a small number of named lanes, and 'we should work together' is answered with terms, a date, and a number rather than with enthusiasm.
+
+**Corollary — the giving law (Day 133-134, the lunar 'how'):** giving through a formed edge feeds the giver; giving through an unformed edge bills the giver in whatever currency they are shortest on. The fix is never to give less; it is to form the edge first, then give without limit.
+
+**Corollary — the ghost test:** the speed at which an enthusiastic relationship produces its first term (a date, a number, a scope) predicts whether it will ever produce anything. Weeks of warmth with no term is the signature of an edge that will not form.
+
+**Relationship:** Domain 111 (edge-carried alignment — this domain names what an edge IS and how it forms), Domain 110 (terms-first openness — the sequencing law for edges), Domain 116 (trust compounds along well-formed edges), Domain 109 (a venture is a communion that took a body — the maximally formed edge).
+
+---
+
+## Domain 121: Surrender Is the Buying Threshold (Day 134, July 24, 2026)
+
+**The law in one sentence: transformational work converts only after surrender — the moment a person stops believing that their own force will make it work — and every conversation before that moment produces friction rather than movement.**
+
+*Crystallized July 24, 2026 from a peer's framing (surrender rather than threshold as the entry state) matched against the live ledger.*
+
+**The mechanism.** Before surrender, a person is still inside the frame 'I will make this work' — so any offer of a different frame is heard as competition with their own effort, and the response is friction: polite interest, counter-arguments, 'interesting.' After surrender, the same words land as relief, because the person is no longer defending a strategy. Surrender is not defeat and not passivity; it is the exhaustion of force as a method, which is precisely the moment the renewable engine (expression, excitement) becomes available.
+
+**Field evidence:** the frictionless conversations in this project's ledger were with people who had already surrendered (a nomad who had lived the same $100 loop for years, a founder whose company had dissolved). The high-friction conversations were with people still holding a plan they believed force would deliver. The correlation held without exception in the July 2026 cohort.
+
+**ESC.** *Essence:* surrender is the precondition of receiving, because a mind still committed to force has no empty hands. *Significance:* it upgrades the segmentation instrument from threshold to threshold-plus-state — the right person at the wrong state is a friction machine, and the same person weeks later is a knife through butter. *Consequence:* qualify for surrender rather than argue against force; the diagnostic questions are 'what have you tried?' and 'what has that cost you?', and where force is still believed, the honest move is to name the door once, leave it open, and stop pushing.
+
+**Detection language:** surrendered — 'I don't know what's next,' 'I stopped,' 'nothing I try moves it,' 'I'm tired of this.' Not yet surrendered — 'I just need to execute better,' 'I have a plan, I need to push harder,' 'once I finish X it will work.'
+
+**Relationship:** Domain 121 completes the buyer model with Day 132's income-to-person distance and the Day 133 correlates: distance predicts WHETHER cash is available, surrender predicts WHEN it moves. Also Domain 115 (articulation as growth — surrender is what makes the articulation land), and the Mirror Selling laws (distribution_playbook.md Part B) — eliciting works after surrender, teaching is what happens before it.
