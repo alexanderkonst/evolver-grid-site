@@ -1512,5 +1512,45 @@ Every final sent wording is archived verbatim in the CRM's Outreach Message Bank
 
 ---
 
+### Pull Mechanics and the Two-Layer Funnel (v1.0, July 24, 2026 — adapted from direct response, register translated)
+
+**The rule for borrowing from direct response: steal the invariant, never the register.** Mass-market tactics carry sound mechanisms inside a voice that would vaporize a premium brand. Take the mechanism; rewrite the voice.
+
+**1. The hand-raiser (warm pull instead of cold push).** Add ~100 people of one segment on the platform where they live, then post a promise (not a service) and let the ripe ones raise a hand. Mechanism: demand discovery before supply-building, plus self-selection — the aligned identify themselves, which is the polarizing-myth mechanic made active. Honesty note: the source frames this as engineering a power dynamic ('they think they found you'); the clean version is making yourself findable and letting the aligned self-select. Same effect, clean conscience.
+
+Hand-raiser copy v1 (practitioners segment, EN, drafted July 24, 2026, untested):
+> A pattern I keep seeing in good coaches and guides: the work is genuinely excellent, and the revenue swings wildly anyway. Some months $10k, some months near zero, and every new funnel performs about like the last one.
+>
+> Here's what I think is actually going on: clients can't refer what they can't repeat, and strangers can't buy what they can't read in one sentence. The bottleneck is upstream of marketing. It's the words.
+>
+> I'm doing a handful of these conversations this month. If that's your year, say so in the comments and I'll reach out.
+
+**2. Promise, not mechanism — concretely stated and price-contextualized.** The law polarizes at the top of the funnel; at the offer, the promise must be a concrete result, and the price must be contextualized by what it buys, otherwise the number floats free and reads as expensive. Reference wording (July 24, 2026): '$555, two hours. You walk out with: the one sentence for what you do better than anyone (scored 9+/10 by your own gut), your business on one page, and the story that magnetizes your people. That missing sentence has probably already cost you years, or a venture. $555 is the cheapest that lesson will ever be.' They are not buying $555; they are buying the thing that dwarfs it.
+
+**3. The two-layer funnel (the structural antidote to over-giving).** Layer one: an async demonstration video, free and evergreen, that names the law, demonstrates a real before/after reveal, states the ladder and prices transparently, and ends with one door. Layer two: the live call, now bespoke, bounded, and converting rather than giving the product away. Sequence: hand-raiser or DM → they raise a hand → send the video (the filter) → two questions in-channel → the call. Video and questions are optional-framed but strongly implied ('most people watch this first, it saves us twenty minutes'). Why it matters here specifically: the live mirror IS the product in this practice, so the async layer must front the call, never replace it — but without that layer, the call becomes the free give-away and the paid container erodes.
+
+**4. Show, don't tell.** Sensory evidence collapses skepticism faster than argument. Written quotes are the weakest proof layer; recorded moments of real transformation (a client speaking their own sentence, a reveal generating live) are the strongest, and they are load-bearing for the founder segment, which buys on demonstrated evidence rather than testimonials. See roadmap items VP1 and AD1.
+
+**5. Objection harvest, then one video to rule them all.** Send custom videos while the objections are still being learned; standardize into one evergreen video once the objection set stops changing. The manual-first, systematize-second law applied to video.
+
+---
+
+### The Objection Set (v1.0, July 24, 2026 — harvested from live calls; each with its handle)
+
+| # | Objection (as actually spoken) | Segment where it shows | The handle |
+|---|---|---|---|
+| 1 | 'I already know myself well enough.' | self-examined polymaths, long-time seekers | Reframe from discovery to operationalization: the knowledge exists as raw material; what is missing is the sellable formulation. |
+| 2 | 'This sounds like the coaches I'm tired of.' | practitioners burned by marketing coaches | Name the difference in method: they work downstream (funnels, ideal-client exercises); this works upstream, and downstream fails without it. Refuse to persuade. |
+| 3 | 'How do I know this is real and not another guru thing?' | rationalist founders, scam-averse skeptics | Epistemic tools rather than claims: the depth-meter, ask who they learn from, the open public playbook, verbatim transcripts. |
+| 4 | 'Will clarity actually move the needle for me?' | practitioners with limited funds | Concretize the promise and contextualize the price; name what the missing sentence has already cost. |
+| 5 | 'I don't have the money right now.' | cash-poor visionaries, early-stage practitioners | Believe it and do not discount. Free layer stays generous, door stays open, no chasing. Watch whether budget appears for shinier promises: that reveals promise-shape, not purchasing power. |
+| 6 | 'Let's collaborate instead / I'll be your ambassador.' | resonant peers with no cash | The barter flip. Sequence it: no co-building or ambassadorship before they have walked the method themselves. Offer the container with dignity-flexed pricing if warranted, once, and never free consulting. |
+| 7 | 'Which of your two products is this — business or inner work?' | anyone who received deep transformational work in a sales call | Name the lane explicitly and early; both exist, both are contained and priced. Ambiguity here converts a client into a devotee. |
+| 8 | 'I need to digest / I'll come back to it.' | founders mid-dissolution, deep processors | Real and often true for this segment; they close in writing days later. Stop educating, point at the door once, let the silence work. |
+| 9 | 'Is it different in my situation?' | everyone, at the end | Answer plainly and briefly; over-answering here reads as anxiety. |
+| 10 | 'Interesting.' | anyone who was taught rather than mirrored | Not an objection but a verdict: the label the mind uses to file something without letting it change anything. Diagnostic: the gap was never opened in their own words. Return to eliciting. |
+
+---
+
 *Codified: January 27, 2026 (Distribution Parts I-VIII, see history above)*
 *Restructured: July 22, 2026 (Day 132) — v2.0, Jobs triad: full original Distribution content preserved as base + Sales appended as final section (moved in whole from the short-lived sales_playbook.md)*
