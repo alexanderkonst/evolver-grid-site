@@ -1,75 +1,8 @@
 {
-  "generated_at": "2026-07-24T00:15:45.632Z",
+  "generated_at": "2026-07-25T19:29:13.729Z",
   "source": "docs/09-logs/project_pulse_log.md",
-  "eventsCount": 39,
-  "latestEvent": {
-    "date": "2026-07-23",
-    "day": "133",
-    "pulse": "oyi_webinar_proposal_msg3_sent",
-    "who": "[Sasha, Oyi / WeGoodOvaHere]",
-    "what_happened": "Sasha sent Oyi two messages the same day. First, the PDF-flow reply: confirmed the self-serve flow (findyourtoptalent.com -> Discover Your Top Talent -> optional Mission, Resource Mapping, Quality of Life assessments -> profile PDF -> bring to Oyi), zero setup, works today, with a soft pointer to the $1,500 dashboard proposal (\"the PDFs are the taste of it\"). Second, the full webinar proposal -- message 3 of the community-host sequence following Oyi's message-1 yes: 90 minutes live plus 30 minutes QA, date proposed ~Aug 6 (two weeks out) pending the community's preferred day/time, deliverables (zone of genius articulated with precision, an AI-ready professional profile, a monetization playbook), no persuasion (just a few minutes at the end on going deeper), what Sasha handles (structure, materials, follow-up, sales, payment processing), recording stays with the community, revenue share (33% of the first two products -- Productize Yourself and BUILT -- plus 90% of digital-product revenue like the $37 Top Talent Activation; revenue share not profit share; monthly payouts with per-sale reporting), honest turnout scenarios (~$100 at 7 people, ~$500 at 15, ~$1,800 at 30, becoming a monthly stream if it proves out), assets offered (landing page, promo email sequence, welcome email, anything else reasonably needed), yes to making it monthly once the format proves itself, and the nonprofit-funded cohort designed properly after webinar #1. Closed with a single bottomline ask: confirmation plus 1-2 date/time options. Both messages archived verbatim in the Outreach Message Bank (tagged pdf-flow-reply / community-host / EN and webinar-proposal-msg3 / community-host / EN). CRM row 1 and the community-webinar Offer Ledger row updated to proposal-sent-awaiting-date, follow-up 2026-07-26.",
-    "energy_exchanged": "[concrete proposal delivered, flow confirmed, demand honored]",
-    "affected_holons": "[CRM Master Table, Offer Ledger, Outreach Message Bank, Daily Learnings Ledger]",
-    "phase_shift_significance": "notable",
-    "next_action": "Wait for Oyi's confirmation and date/time options. Follow up 2026-07-26 if silent. No other action owed.",
-    "staleness_or_contradictions": "none",
-    "title": "oyi_webinar_proposal_msg3_sent"
-  },
-  "phaseShiftDistribution": {
-    "minor": 10,
-    "major": 6,
-    "notable": 23
-  },
-  "openNextActions": [
-    {
-      "date": "2026-07-22",
-      "title": "tatjana_call_delivered_details_requested",
-      "next_action": "Send Tatjana the details message today: $555 Productize Yourself session + /ignite link. No chasing — she is at the dacha for ~2.5 weeks. Follow-up ~Aug 1 if silent."
-    },
-    {
-      "date": "2026-07-22",
-      "title": "karime_evolution_portal_proposal_sent",
-      "next_action": "Awaiting Karime's reply. Follow-up ~Jul 25 if silent. OMTM +1 this week."
-    },
-    {
-      "date": "2026-07-22",
-      "title": "patricia_letter_nia_reopener_sent_copy_corpus_started",
-      "next_action": "Patricia: next follow-up only if silent by ~Jul 29, open-palmed close then. Nia: awaiting reply; keep the \"why one thing\" argument in the holster for when she responds."
-    },
-    {
-      "date": "2026-07-22",
-      "title": "tatjana_reflection_proposal_sent",
-      "next_action": "No chasing. She is at the dacha; decision window ~2-3 weeks. Follow-up ~Aug 1 if silent."
-    },
-    {
-      "date": "2026-07-22",
-      "title": "brenda_chamber_connector_github_ceo_intro_offered",
-      "next_action": "Schedule the meeting with Brenda this week to design the approach. Strongest near-term angle: executive/org AI-transformation workshops (already validated with this exact audience), with the articulation layer inside; possible Sergey partnership. No resume or curriculum sent until the angle is chosen."
-    },
-    {
-      "date": "2026-07-23",
-      "title": "rafael_kirill_referral_donation_session_agreed",
-      "next_action": "Owed by Sasha today: send calendar link + payment/donation instructions. Follow-up 2026-07-26 if not booked."
-    },
-    {
-      "date": "2026-07-23",
-      "title": "nia_soft_no_chris_booked_rafael_links_sent",
-      "next_action": "Send Nia the generous no-strings reply. Deliver Chris's Direction Call Jul 28. Await Rafael's donation + booking; follow-up Jul 26 if silent."
-    },
-    {
-      "date": "2026-07-23",
-      "title": "rafael_donated_booked_mon_nia_reply_gold",
-      "next_action": "Deliver Rafael's session Monday, Jul 27. No action owed on Nia -- relationship kept warm, no nudges."
-    },
-    {
-      "date": "2026-07-23",
-      "title": "nia_precision_riff_oyi_pdf_flow_marley_parked",
-      "next_action": "Sasha replies to Oyi with the test-then-PDF flow and a soft pointer to the $1,500 proposal. No action owed on Nia or Marley."
-    },
-    {
-      "date": "2026-07-23",
-      "title": "oyi_webinar_proposal_msg3_sent",
-      "next_action": "Wait for Oyi's confirmation and date/time options. Follow up 2026-07-26 if silent. No other action owed."
-    }
-  ]
+  "eventsCount": 0,
+  "latestEvent": null,
+  "phaseShiftDistribution": {},
+  "openNextActions": []
 }
