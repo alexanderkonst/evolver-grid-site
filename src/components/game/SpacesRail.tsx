@@ -763,11 +763,11 @@ const SpacesRail = ({
                                 alone leaves a 4:3 canvas with large dead zones.
                                 This viewport preserves the canonical artwork and
                                 crops around the visible sphere + wordmark. */}
-                            <div className="hidden lg:flex h-[92px] w-full items-center justify-center overflow-hidden">
+                            <div className="hidden lg:flex h-[116px] w-full items-center justify-center overflow-hidden">
                                 <img
                                     src={brandLogo}
                                     alt="YOU — be original."
-                                    className="w-[224px] max-w-none h-auto object-contain brand-breath"
+                                    className="w-[304px] max-w-none h-auto object-contain brand-breath"
                                     draggable={false}
                                 />
                             </div>
@@ -827,10 +827,7 @@ const SpacesRail = ({
                     }}
                 />
               <TooltipProvider delayDuration={150} skipDelayDuration={0}>
-                <nav className={compact ? "flex flex-col gap-[8px] p-[8px]" : "flex flex-col gap-2.5 px-3 pt-5 pb-3"}>
-                {!compact && (
-                    <div className={cn("px-3 pb-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/35 transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}>Spaces</div>
-                )}
+                <nav className={compact ? "flex flex-col gap-[8px] p-[8px]" : "flex flex-col gap-2.5 px-3 pt-4 pb-3"}>
                 {SPACES.filter(space => !hiddenSpaces.includes(space.id)).map((space) => {
                     const isLocked = unlockStatus[space.id] === false;
                     const active = isActive(space.path);
@@ -1086,8 +1083,10 @@ const SpacesRail = ({
                     profile pages. Guests: the avatar slot swaps for the
                     existing Log In affordance (no avatar to show, no
                     /game/me to send them to yet).
-                    Expanded (lg): one horizontal line, 4 buttons evenly
-                    distributed, ~40px ghost touch targets.
+                    Expanded (lg): a four-column utility grid whose first
+                    48px cell shares the nav icon axis. This keeps the row
+                    orderly without spreading its first icon away from the
+                    alignment established by every Space.
                     Compact (72px, incl. below-lg): a 2x2 grid of the same
                     4 buttons (~28-32px) sitting above the compact music
                     play button — a straight 4-across line at 72px width
@@ -1099,7 +1098,7 @@ const SpacesRail = ({
                         className={cn(
                             compact
                                 ? "grid grid-cols-2 gap-1.5 justify-items-center w-fit mx-auto"
-                                : "flex items-center justify-between gap-1"
+                                : "grid grid-cols-4 gap-0 px-3"
                         )}
                     >
                         {/* Avatar / Profile — hidden for guests on pages that
@@ -1121,7 +1120,7 @@ const SpacesRail = ({
                                         onClick={() => navigate("/auth")}
                                         className={cn(
                                             "grid place-items-center rounded-full transition-all duration-300 text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30",
-                                            compact ? "w-[30px] h-[30px]" : "w-[40px] h-[40px]"
+                                            compact ? "w-[30px] h-[30px]" : "w-[48px] h-[48px]"
                                         )}
                                         aria-label={t('spacesRail.logInTitle')}
                                     >
@@ -1139,7 +1138,7 @@ const SpacesRail = ({
                                         onClick={() => navigate(publicProfilePath)}
                                         className={cn(
                                             "grid place-items-center rounded-full transition-all duration-300 hover:ring-1 hover:ring-[#d4af37]/30",
-                                            compact ? "w-[30px] h-[30px]" : "w-[40px] h-[40px]"
+                                            compact ? "w-[30px] h-[30px]" : "w-[48px] h-[48px]"
                                         )}
                                         aria-label={t('spacesRail.profileAria')}
                                     >
@@ -1180,7 +1179,7 @@ const SpacesRail = ({
                                     onClick={() => navigate("/game/settings")}
                                     className={cn(
                                         "grid place-items-center rounded-full transition-all duration-300 text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30",
-                                        compact ? "w-[30px] h-[30px]" : "w-[40px] h-[40px]"
+                                        compact ? "w-[30px] h-[30px]" : "w-[48px] h-[48px]"
                                     )}
                                     aria-label={t('spacesRail.settingsTitle')}
                                 >
@@ -1207,7 +1206,7 @@ const SpacesRail = ({
                                     onClick={() => window.dispatchEvent(new Event(OPEN_CHAT_EVENT))}
                                     className={cn(
                                         "spaces-rail-chat-cta grid place-items-center rounded-full transition-all duration-300 text-white/55 hover:bg-white/[0.04] hover:text-white/85 hover:ring-1 hover:ring-[#d4af37]/30",
-                                        compact ? "w-[30px] h-[30px]" : "w-[40px] h-[40px]"
+                                        compact ? "w-[30px] h-[30px]" : "w-[48px] h-[48px]"
                                     )}
                                     aria-label={t('spacesRail.chatTitle')}
                                 >
@@ -1238,7 +1237,7 @@ const SpacesRail = ({
                                         onClick={() => setSkin(skin === "aurum" ? "lapis" : "aurum")}
                                         className={cn(
                                             "grid place-items-center rounded-full transition-all duration-300 text-white/55 hover:bg-white/[0.04] hover:text-white/85 hover:ring-1 hover:ring-[#d4af37]/30",
-                                            compact ? "w-[30px] h-[30px]" : "w-[40px] h-[40px]"
+                                            compact ? "w-[30px] h-[30px]" : "w-[48px] h-[48px]"
                                         )}
                                         aria-label={skin === "aurum" ? t('spacesRail.themeToggleToLightAria') : t('spacesRail.themeToggleToDarkAria')}
                                     >
@@ -1292,9 +1291,14 @@ const SpacesRail = ({
                       • On shell mobile (<md), only the play button
                         renders centered in the 72px icon column;
                         title / skip / attribution glyph are hidden. */}
-                {!compact && (
-                    <div className={cn("px-3 pt-1 pb-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/35 transition-opacity duration-150", labelsVisible ? "opacity-100" : "opacity-0")}>Music</div>
-                )}
+                <div
+                    aria-hidden="true"
+                    className="h-px mx-2 mt-2 mb-2"
+                    style={{
+                        backgroundImage:
+                            "linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.22) 50%, transparent 100%)",
+                    }}
+                />
                 <SoundCloudMinimalPlayer compact={compact} />
             </div>
         </div>

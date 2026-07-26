@@ -25,6 +25,7 @@ import latamPyramidMark from "@/assets/latam-impact-pyramid.png";
 import planetirLogoMark from "@/assets/planetir-logo.png";
 // Day 91 (Sasha 2026-06-08): Techstars wordmark for mobile pill.
 import techstarsLogoMark from "@/assets/techstars-logo.png";
+import lapisStillBackground from "@/assets/lapis-still-background.webp";
 import { useSkin } from "@/contexts/SkinContext";
 // Day 91 (Sasha 2026-06-09): route-scope detection for demo-only
 // behavior (full guest rail on /aurum and the white-label prefixes).
@@ -1532,7 +1533,17 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     reactive (useSkin), so toggling Aurum → Lapis mounts
                     the video fresh. The [data-skin="aurum"] video-kill
                     CSS stays as belt-and-suspenders. */}
-                {!suppressShellBackground && __spaceShipSkin !== "aurum" && <MuxVideoBackground />}
+                {!suppressShellBackground && __spaceShipSkin === "lapis" && (
+                    <img
+                        src={lapisStillBackground}
+                        alt=""
+                        aria-hidden="true"
+                        className="absolute inset-0 h-full w-full object-cover"
+                    />
+                )}
+                {!suppressShellBackground &&
+                    __spaceShipSkin !== "aurum" &&
+                    __spaceShipSkin !== "lapis" && <MuxVideoBackground />}
                 {/*
                   Equilibrium clean backdrop (Sasha 2026-05-20). When
                   the Mux video is suppressed for /build/equilibrium,
@@ -1585,7 +1596,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 Spotlight enters viewport, panes 1+2 (sticky, z-30) flicker
                 or disappear entirely. Isolating the parent stacking
                 context prevents the bleed and the panes stay rendered. */}
-            <div className={cn("hidden lg:flex isolate", isAiOsRoute ? "h-dvh min-h-0 overflow-hidden" : "min-h-dvh")}>
+            <div className={cn("relative z-10 hidden lg:flex isolate", isAiOsRoute ? "h-dvh min-h-0 overflow-hidden" : "min-h-dvh")}>
                 {/* Panel 1: Spaces Rail */}
                 <SpacesRail
                     activeSpaceId={activeSpaceId}
@@ -1872,7 +1883,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             </div>
 
             {/* === MOBILE LAYOUT === */}
-            <div className="lg:hidden relative w-full min-h-dvh overflow-hidden">
+            <div className="relative z-10 lg:hidden w-full min-h-dvh overflow-hidden">
                 {/* Mobile: Navigation View (Panel 1 + Panel 2) */}
                 <div
                     className={cn(
