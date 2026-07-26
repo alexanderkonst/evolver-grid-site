@@ -530,8 +530,11 @@ const Auth = () => {
     <GameShellV2 hideLogo>
       <main className="min-h-dvh flex items-center justify-center px-4 py-16 sm:py-24 relative z-10">
         <article
-          className="w-full max-w-md liquid-glass-strong rounded-3xl px-6 sm:px-9 py-10 sm:py-12"
+          className="relative z-20 w-full max-w-md rounded-3xl px-6 sm:px-9 py-10 sm:py-12"
           style={{
+            background:
+              "linear-gradient(145deg, rgba(255, 253, 248, 0.96) 0%, rgba(248, 247, 244, 0.92) 100%)",
+            border: "1px solid rgba(212, 175, 55, 0.22)",
             boxShadow:
               "0 8px 24px -10px rgba(10, 22, 40, 0.18), 0 24px 60px -24px rgba(10, 22, 40, 0.22), 0 0 0 1px rgba(212, 175, 55, 0.10)",
           }}
