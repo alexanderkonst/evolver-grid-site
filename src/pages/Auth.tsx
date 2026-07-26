@@ -791,18 +791,8 @@ const Auth = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    minLength={6}
                     className="rounded-xl"
                   />
-                  <p
-                    className="text-[11px] italic mt-1.5"
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))",
-                    }}
-                  >
-                    {t('auth.passwordHint')}
-                  </p>
                 </div>
                 <Button type="submit" className="w-full h-12 rounded-full" disabled={loading}>
                   {loading ? t('auth.creatingAccount') : t('auth.signUpButton')}

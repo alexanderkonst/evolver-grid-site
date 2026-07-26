@@ -133,8 +133,6 @@ const buildShareTextFor = (
  *   • Tagline eyebrow: "My top talent is" (was "My genius is to be a";
  *     archetype shifted from action-noun "Forger" to gerund "Forging"
  *     so it reads grammatically clean as a complement of "is").
- *   • Dodecahedron: golden glow halo + slow rotation (60s) — signals
- *     the artifact as living/alive without shouting.
  *   • Subtle gold border around the card itself + slightly stronger
  *     ambient halo (handled by the wrapper in AppleseedDisplay).
  */
@@ -167,7 +165,7 @@ const RevelatoryHero = ({
         }
         : isAppleseed
         ? {
-            gradient: "from-white/70 via-[#fdf6e3]/80 to-white/60",
+            gradient: "from-white/88 via-[#fdf6e3]/92 to-white/86",
             textPrimary: "text-[#2c3150]",
             textMuted: "text-[#7a5108]",
             shadowText: "text-[#2c3150]/80",
@@ -231,34 +229,8 @@ const RevelatoryHero = ({
                 ))}
             </div>
 
-            {/* Content — Day 58 (Sasha 2026-05-02): vertical padding
-                tightened (was py-6 sm:py-8) so the rebuilt card with
-                Top Shadow eyebrow + sentence still fits a single
-                viewport on common screen sizes. */}
+            {/* Content */}
             <div className="relative px-5 py-5 sm:px-7 sm:py-6 text-center">
-                {/* Dodecahedron — Day 58 (Sasha 2026-05-02): now wears
-                    its own gold halo + slow rotation. The icon reads as
-                    a living artifact instead of a static badge. */}
-                <div
-                    className="relative inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden mb-4 mx-auto"
-                    style={{
-                        boxShadow:
-                            "0 0 24px 4px rgba(244, 212, 114, 0.50), 0 0 56px 12px rgba(212, 175, 55, 0.22)",
-                    }}
-                >
-                    <img
-                        src="/zone-of-genius-logo.png"
-                        alt={t("revelatoryHero.logoAlt")}
-                        className="w-full h-full object-cover"
-                        draggable={false}
-                        style={{
-                            animation: "rh-gentle-spin 60s linear infinite",
-                            willChange: "transform",
-                            transformOrigin: "center",
-                        }}
-                    />
-                </div>
-
                 {/* Tagline — eyebrow above the archetype */}
                 {tagline && (
                     <p

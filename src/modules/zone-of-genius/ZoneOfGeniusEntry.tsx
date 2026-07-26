@@ -39,6 +39,7 @@ import ExcaliburDisplay from "./ExcaliburDisplay";
 import TopTalentAuthGate from "./TopTalentAuthGate";
 import SignupModal from "@/components/auth/SignupModal";
 import { useToast } from "@/hooks/use-toast";
+import { toast as systemToast } from "sonner";
 import { getFirstTimeActionLabel } from "@/lib/xpService";
 import { getPostZogRedirect } from "@/lib/onboardingRouting";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
@@ -629,11 +630,14 @@ const ZoneOfGeniusEntry = () => {
                         onSaved={(email) => {
                             setAnonymousSave({ status: "sent", email });
                             setGuestRevealUnlocked(true);
+                            systemToast.success(t("zogEntry.bannerResultSaved"), {
+                                duration: 5000,
+                            });
                         }}
                     />
                 ) : (
                     <>
-                {anonymousSave.status !== "idle" && (
+                {(anonymousSave.status === "sending" || anonymousSave.status === "error") && (
                     <div className="w-full max-w-3xl mx-auto px-5 pt-4">
                         {anonymousSave.status === "sending" && (
                             <div
@@ -645,29 +649,6 @@ const ZoneOfGeniusEntry = () => {
                                 }}
                             >
                                 {t('zogEntry.bannerSavingTo')} <strong>{anonymousSave.email}</strong>…
-                            </div>
-                        )}
-                        {anonymousSave.status === "sent" && (
-                            <div
-                                className="rounded-xl bg-emerald-500/10 border border-emerald-500/20 px-5 py-4 text-sm"
-                                style={{ color: "var(--skin-text-primary, #2c3150)" }}
-                            >
-                                <p className="font-medium">
-                                    {t('zogEntry.bannerResultSaved')}
-                                </p>
-                                <p
-                                    className="mt-1"
-                                    style={{ color: "var(--skin-text-muted, #4a4a6d)" }}
-                                >
-                                    {t('zogEntry.bannerSentTo')} <strong>{anonymousSave.email}</strong>.{" "}
-                                    <button
-                                        type="button"
-                                        onClick={handleRedoClaimEmail}
-                                        className="underline text-[#7a5108] hover:text-[#a06d08]"
-                                    >
-                                        {t('zogEntry.bannerWrongEmailRedo')}
-                                    </button>
-                                </p>
                             </div>
                         )}
                         {anonymousSave.status === "error" && (

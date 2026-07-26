@@ -248,7 +248,7 @@ const Step4GenerateSnapshot = () => {
         // Non-blocking — snapshot is already persisted to zog_snapshots.
       }
       setSaveState("saved");
-      toast.success("Saved. We sent your Top Talent to your inbox.");
+      toast.success(t("zogEntry.bannerResultSaved"), { duration: 5000 });
     },
     [saveEmail, parsedSnapshot],
   );
@@ -461,7 +461,7 @@ ${snapshotText}`;
         if (pointerError) throw pointerError;
       }
 
-      toast.success("Your Top Talent has been saved!");
+      toast.success(t("zogEntry.bannerResultSaved"), { duration: 5000 });
       successToastFired = true;
 
       // Day 80 Wave 2 (Sasha 2026-05-22): fire celebration modal event.
@@ -724,7 +724,12 @@ ${snapshotText}`;
             <TopTalentAuthGate
               resultPayload={buildSavePayload() as Record<string, unknown>}
               assessmentVersion="guided-v1"
-              onSaved={() => setGuestRevealUnlocked(true)}
+              onSaved={() => {
+                setGuestRevealUnlocked(true);
+                toast.success(t("zogEntry.bannerResultSaved"), {
+                  duration: 5000,
+                });
+              }}
             />
           ) : (
           <>
