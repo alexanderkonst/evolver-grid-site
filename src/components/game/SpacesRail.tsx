@@ -327,6 +327,8 @@ interface SpacesRailProps {
     // Optional user data props
     userName?: string;
     userAvatarUrl?: string;
+    /** Authoritative auth result from the shell's getUser() check. */
+    isAuthenticated?: boolean;
     /** Canonical root-level public profile URL for the authenticated user. */
     publicProfilePath?: string;
     userLevel?: number;
@@ -358,6 +360,7 @@ const SpacesRail = ({
     pageOwnsBackground = false,
     userName,
     userAvatarUrl,
+    isAuthenticated,
     publicProfilePath = "/game/me/profile",
     userLevel,
     userXp,
@@ -402,6 +405,7 @@ const SpacesRail = ({
             listener.subscription.unsubscribe();
         };
     }, []);
+    const effectiveIsAuthed = isAuthenticated ?? isAuthed;
 
     // Day 119 (Sasha 2026-07-09): label fade on minimize/expand. The rail
     // width animates over 200ms (transition-[width] from GameShellV2), but
@@ -1105,14 +1109,14 @@ const SpacesRail = ({
                             ZoG reveal + playbook + path + settings), same
                             rule the old Log In row used, so visitors aren't
                             pulled out of the flow by an auth prompt. */}
-                        {isAuthed === false && (
+                        {effectiveIsAuthed === false && (
                             location.pathname === "/" ||
                             location.pathname.startsWith("/game/journey") ||
                             location.pathname.startsWith("/zone-of-genius") ||
                             location.pathname.startsWith("/playbook") ||
                             location.pathname === "/path" ||
                             location.pathname === "/game/settings"
-                        ) ? null : isAuthed === false ? (
+                        ) ? null : effectiveIsAuthed === false ? (
                             <Tooltip>
                                 <TooltipTrigger asChild>
                                     <button
@@ -1134,7 +1138,7 @@ const SpacesRail = ({
                             <Tooltip>
                                 <TooltipTrigger asChild>
                                     <button
-                                        onClick={() => navigate(publicProfilePath)}
+                                        onClick={() => navigate(effectiveIsAuthed === true ? publicProfilePath : "/auth")}
                                         className={cn(
                                             "grid place-items-center rounded-full transition-all duration-300 hover:ring-1 hover:ring-[#d4af37]/30",
                                             compact ? "w-[30px] h-[30px]" : "w-[48px] h-[48px]"
