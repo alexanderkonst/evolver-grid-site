@@ -1,57 +1,39 @@
-## What I found
+## Short answer
 
-The top horizontal strip is real and reproducible on `/ignite` at the current 1088px preview width. It is not a browser chrome issue and not a console/runtime crash.
+Yes — but not the whole domain. Lovable never takes over `findyourtoptalent.com` itself. It delegates **one subdomain** to Lovable's nameservers with two NS records added at GoDaddy, and manages SPF/DKIM/MX inside that delegated zone. Your website, root SPF, and everything else in the zone stay untouched.
 
-The likely cause is layout ownership conflict:
+One constraint that decides the subdomain name: `notify.findyourtoptalent.com` is already in use by Resend (verified DKIM + SES SPF, and it is what all 16 app-email functions send from). Lovable NS delegation on that exact host would break Resend. So the new auth-email subdomain must be a different one — **`mail.findyourtoptalent.com`**.
+
+End state:
 
 ```text
-GameShellV2 desktop main
-  adds top padding / shell wash for normal routes
-  wraps page in .page-transition-enter
-    IgniteSession
-      owns its own absolute HLS background + dark wash
+findyourtoptalent.com            → unchanged (site, root SPF)
+notify.findyourtoptalent.com     → Resend, app emails (16 functions)  [unchanged]
+mail.findyourtoptalent.com       → Lovable, auth emails               [new]
+notify.aleksandrkonstantinov.com → retired once auth is live          [cleanup]
 ```
 
-There is already an attempted `/ignite` special-case, but it only fully handles the mobile content path. On desktop, `/ignite` is still treated as a normal non-page-owned route in key places, so shell-level chrome/wash can peek above the page-owned background as a redundant bar.
+## What I do (Lovable side)
 
-## Debugging strategy
+1. Open the email-domain setup dialog for `findyourtoptalent.com` with subdomain `mail`, which generates the exact NS pair for your zone.
+2. Once you have added them and verification flips to active: point the auth sender at `mail.findyourtoptalent.com`, redeploy `auth-email-hook` and `process-email-queue`, and confirm the queue is healthy.
+3. Send a live signup/reset test and read `email_send_log` to confirm delivery from the new sender.
+4. Cleanup: remove the `notify` NS records from the `aleksandrkonstantinov.com` zone.
 
-1. Inspect the exact element stack at the strip
-   - Use browser tooling at `/ignite` to identify what is painted at `y=0..25`.
-   - Confirm whether the visible strip is coming from shell `<main>` padding/wash, shell background video, `#ignite-page`, or the page transition wrapper.
+## What you do (GoDaddy — I have no write access to that zone)
 
-2. Fix ownership, not symptoms
-   - Treat `/ignite` as a page-owned immersive route in `GameShellV2` for pane 3 background/padding decisions.
-   - Do not change SpacesRail or SectionsPanel visual behavior unless testing shows that `pageOwnsBackground` would unintentionally restyle them.
-   - Prefer a narrowly named flag, e.g. `pane3OwnsBackground`, instead of forcing `/ignite` into the AI OS-specific `pageOwnsBackground` path.
+**Step A — fix the two invalid duplicate records first.** Your screenshot shows GoDaddy's bulk delete failing; delete records **one at a time** from the row's ⋯ menu instead of the multi-select checkbox flow. That failure is a known GoDaddy bulk-op quirk, not a permissions problem.
 
-3. Make the Ignite page fill pane 3 from pixel 0
-   - Ensure desktop `<main>` does not add `pt-4` for `/ignite`.
-   - Ensure the pane-3 wash is skipped for `/ignite`.
-   - Ensure `#ignite-page` and its absolute video/wash begin at the top of the content column.
+- `send.notify.findyourtoptalent.com` TXT — delete `v=spf1 include:dc-fd741b8612._spfm.send.notify.findyourtoptalent.com ~all`, keep `v=spf1 include:amazonses.com ~all`
+- `_dmarc.findyourtoptalent.com` TXT — delete `v=DMARC1; p=none;`, keep `v=DMARC1; p=quarantine; adkim=r; aspf=r; rua=mailto:dmarc_rua@onsecureserver.net;`
 
-4. Regression test the notorious cases
-   - `/ignite` desktop: no top strip, content starts flush inside pane 3.
-   - `/ignite` mobile: previous mobile strip fix remains intact.
-   - `/game/journey` or `/`: shell still has expected pane behavior.
-   - `/ai-os`: no regression to the special app-shell behavior.
+Until this is done the domain has two SPF records on the sending host (permanent SPF error) and zero DMARC evaluation.
 
-## Files to change after approval
+**Step B — add the delegation.** Two NS records, Name `mail`, values as shown in Cloud → Emails after step 1. One record per nameserver. Do not add SPF/DKIM/MX for `mail` yourself — Lovable manages those inside the delegated zone.
 
-- `src/components/game/GameShellV2.tsx`
-  - Refactor the current `/ignite` special-case into a pane-3 background ownership flag used consistently by desktop and mobile.
-  - Keep navigation/rail semantics unchanged.
+**Step C — tell me when it shows verified** (usually minutes, up to 72h) and I finish steps 2–4.
 
-Potentially only if browser inspection proves it necessary:
+## Notes
 
-- `src/pages/IgniteSession.tsx`
-  - Tighten the root wrapper/background fill so its absolute background reliably covers the full pane from the first pixel.
-
-## Definition of done
-
-| # | Evidence | Status |
-|---|---|---|
-| 1 | `/ignite` screenshot at 1088px shows no redundant top horizontal strip | Pending implementation |
-| 2 | Browser element stack confirms pane 3 is painted by Ignite background from top edge | Pending implementation |
-| 3 | `/ignite` mobile still has no cream/top shell strip | Pending implementation |
-| 4 | `/ai-os` and `/` shell behavior unchanged visually | Pending implementation |
+- Nothing here touches the live app or app-email sending; the switch is auth emails only.
+- If GoDaddy keeps refusing deletions even one-by-one, the alternative is moving DNS hosting to a provider that handles NS records cleanly (Cloudflare free tier, registrar stays GoDaddy).
