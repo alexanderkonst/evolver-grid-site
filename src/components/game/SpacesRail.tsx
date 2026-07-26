@@ -1083,10 +1083,9 @@ const SpacesRail = ({
                     profile pages. Guests: the avatar slot swaps for the
                     existing Log In affordance (no avatar to show, no
                     /game/me to send them to yet).
-                    Expanded (lg): a four-column utility grid whose first
-                    48px cell shares the nav icon axis. This keeps the row
-                    orderly without spreading its first icon away from the
-                    alignment established by every Space.
+                    Expanded (lg): a fixed four-column utility grid. Its
+                    slight optical offset aligns the first visible glyph
+                    edge—not the larger invisible hit target—with Space icons.
                     Compact (72px, incl. below-lg): a 2x2 grid of the same
                     4 buttons (~28-32px) sitting above the compact music
                     play button — a straight 4-across line at 72px width
@@ -1098,7 +1097,7 @@ const SpacesRail = ({
                         className={cn(
                             compact
                                 ? "grid grid-cols-2 gap-1.5 justify-items-center w-fit mx-auto"
-                                : "grid grid-cols-4 gap-0 px-3"
+                                : "grid grid-cols-[repeat(4,48px)] gap-0 ml-[3px]"
                         )}
                     >
                         {/* Avatar / Profile — hidden for guests on pages that

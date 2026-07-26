@@ -13,7 +13,8 @@
  *
  * Signals consumed:
  *   FROM game_profiles (single fetch):
- *     - last_zog_snapshot_id   → "journey-start-here"
+ *     - last_zog_snapshot_id OR zone_of_genius_completed
+ *                              → "journey-start-here"
  *                                ("Start by finding your top talent")
  *     - resources_mapped_at    → "journey-asset-mapper"
  *                                ("Map your assets")
@@ -131,7 +132,7 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
         const { data, error } = await (supabase as any)
           .from("game_profiles")
           .select(
-            "id, last_zog_snapshot_id, resources_mapped_at, last_qol_snapshot_id, mission_discovered_at, playbook_visited_at, path_visited_at, dashboard_visited_at",
+            "id, last_zog_snapshot_id, zone_of_genius_completed, resources_mapped_at, last_qol_snapshot_id, mission_discovered_at, playbook_visited_at, path_visited_at, dashboard_visited_at",
           )
           .eq("user_id", uid)
           .maybeSingle();
@@ -240,6 +241,7 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
           // yet doesn't see the gate re-lock.
           "journey-start-here":
             !!data?.last_zog_snapshot_id ||
+            !!data?.zone_of_genius_completed ||
             hasZogRow ||
             !!visitFlags["journey-start-here"],
           "journey-asset-mapper": !!data?.resources_mapped_at || hasAssetRow,
