@@ -37,8 +37,6 @@ import { initialSkinScope } from "@/lib/skinScope";
 // below) so sessionStorage-cached match flags don't poison fresh loads.
 import SpacesRail, { SPACES } from "./SpacesRail";
 import SectionsPanel, { SPACE_SECTIONS, STATIC_LABEL_KEYS } from "./SectionsPanel";
-import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
-import { useEntitlement } from "@/hooks/useEntitlement";
 import { useJourneyProgress } from "@/hooks/useJourneyProgress";
 import PlayerStatsBadge from "./PlayerStatsBadge";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
@@ -638,31 +636,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     });
     const [shortcutsOpen, setShortcutsOpen] = useState(false);
 
-    // Day 65 (Sasha 2026-05-14) BUG FIX: this hook must be called
-    // unconditionally on every render — including the early-return
-    // `hideNavigation` branch below. Previously declared at line ~614
-    // (after `if (hideNavigation) return …`), which violated the
-    // rules-of-hooks: any route that flipped between nav-hidden and
-    // nav-shown produced "Rendered fewer hooks than expected" and
-    // crashed the page (caught by ErrorBoundary on
-    // /game/me/zone-of-genius). Hoisting it here keeps the hook order
-    // stable across both render paths.
-    const { activated: deepProfileActivated, isLoading: deepProfileLoading } = useDeepProfileActivated();
-    // Day 80 Wave 2.20 (Sasha 2026-05-22): BUILD-gate refresh. Per spec
-    // §8.6 + §9, BUILD now unlocks ONLY when one of two conditions holds:
-    //   (a) Activate Top Talent sidequest done — i.e. paid/gifted tier
-    //       OR `coupon_activated` sessionStorage flag (set by the $37
-    //       Stripe return path and the coupon-redeem path), OR
-    //   (b) Full T+M+A triad complete (computed below as `tmaComplete`).
-    // The earlier Day 77 "always-true" rule leaked the BUILD chip to
-    // tasting-tier users who hit /game/collaborate/matches without ever
-    // having paid OR completed the triad. We keep `deepProfileActivated`
-    // for unrelated callers (Top Talent reveal gate, etc.) but consume
-    // tier + coupon directly here so the BUILD gate doesn't inherit
-    // the looser hasReveal arm.
-    const { tier, isLoading: entitlementLoading } = useEntitlement();
-    // Day 80 Wave 2.21 (Sasha 2026-05-23): journey progress shared with
-    // SectionsPanel as the lenient completion signal — pointer columns
+    // Journey progress is shared with SectionsPanel as the lenient
+    // completion signal. Pointer columns
     // (mission_discovered_at, resources_mapped_at) on game_profiles are
     // NOT reliably set by every save flow (Day 65 wave 5 finding —
     // see useJourneyProgress for the full list of probes). Wave 2.20's
@@ -671,7 +646,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // through in the lenient pane — still hit a locked BUILD chip.
     // Reading the same hook here re-uses the probe fallbacks and lets
     // the BUILD chip + the JOURNEY strikethrough light up in lockstep.
-    const { progress: journeyProgress, isLoading: journeyProgressLoading } = useJourneyProgress();
+    const { progress: journeyProgress } = useJourneyProgress();
 
     const getSpaceFromPath = (pathname: string): string | undefined => {
         // Day 52 (Sasha 2026-04-26): /ubb (Unique Business Builder)
@@ -1102,39 +1077,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     const zogComplete = ["zog_complete", "qol_started", "qol_complete", "offer_complete", "recipe_complete", "unlocked"].includes(stage);
     const ignitionComplete = ["offer_complete", "recipe_complete", "unlocked"].includes(stage) || hasGeniusOffer;
 
-    // Day 65: hook moved to top of component (see comment near
-    // shortcutsOpen) to satisfy rules-of-hooks across the
-    // `hideNavigation` early return. Variables consumed below.
-
-    // NOTE: until `profileLoaded === true`, we intentionally emit an empty map.
-    // `SpacesRail` only marks an item as locked when `unlockStatus[id] === false`;
-    // `undefined` means "don't render a lock." So we render a neutral rail during
-    // the profile fetch, then flip to the real lock state on first real value —
-    // no visible lock-then-unlock flicker on ME/LEARN/MEET.
-    //
-    // Day 65 wave 7 (Sasha 2026-05-15) — REGRESSION FIX. Earlier wave 3
-    // tightened this gate to `profileLoaded && !deepProfileLoading` so
-    // the BUILD chip wouldn't flicker while the deep-profile read
-    // resolved. That was fine when BUILD was in GATED_SPACES — both
-    // reads needed to be done before the rail rendered, period. But
-    // the BUILD-exception change (BUILD removed from GATED_SPACES so
-    // Equilibrium is always reachable) made the tight gate
-    // counter-productive: while `deepProfileLoading` is true (now
-    // ~300–600ms thanks to the wave 5 source-table fallback in
-    // useDeepProfileActivated), the empty unlockStatus map causes
-    // EVERY gated chip — COLLABORATE, OFFER, ME, etc. — to also
-    // disappear, because hiddenSpaces falls through to "[...GATED_SPACES]".
-    // Sasha saw COLLABORATE missing on /game/me/zone-of-genius for
-    // exactly this reason.
-    //
-    // Fix: gate unlockStatus on `profileLoaded` only (the old behavior).
-    // BUILD's lock indicator transitions optimistically during the
-    // deep-profile read — when `deepProfileLoading` is true, treat it
-    // as "no lock yet shown" (true). Once the read resolves, the real
-    // value (deepProfileActivated) lands. The chip is always visible
-    // anyway (BUILD-exception), so the only visible effect is a
-    // possible brief "no-lock → locked-then-unlocked" transition on
-    // accounts that haven't activated. Acceptable trade-off.
+    // Until the profile and journey probes resolve, gated spaces remain
+    // hidden. This avoids showing a space briefly and then taking it away.
     // Day 79 (Sasha 2026-05-22): T+M+A gate for AI OS visibility.
     // Top Talent = zogComplete (already derived above from onboarding_stage).
     // Mission = mission_discovered_at column written by Mission Discovery save.
@@ -1158,34 +1102,10 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     const tmaComplete = topTalentComplete && missionComplete && assetsComplete;
     const aiOsUnlocked = tmaComplete;
 
-    // Day 80 Wave 2.20 (Sasha 2026-05-22): BUILD unlock signal.
-    // (a) ACTIVATION arm — paid/gifted tier OR coupon_activated flag.
-    //     `tier !== "tasting"` catches Stripe success returns + admin
-    //     gifts (builder / locked_in / gifted_* / founders_50 / ignition).
-    //     The sessionStorage flag is set by the $37 Stripe success path
-    //     and the coupon-redeem path on the activation page.
-    // (b) TRIAD arm — tmaComplete already covers Top Talent + Mission + Assets.
-    // While entitlementLoading is true the tier arm is treated as unknown,
-    // so unauthed/loading users only unlock via tmaComplete (which is also
-    // resolved from the profile fetch — same loading window).
-    const couponActivated =
-        typeof window !== "undefined" &&
-        window.sessionStorage.getItem("coupon_activated") === "true";
-    const activationDone =
-        !entitlementLoading && (tier !== "tasting" || couponActivated);
-    // Day 80 Wave 2.21 (Sasha 2026-05-23): no-flicker BUILD gate. Until
-    // BOTH the entitlement read AND the journeyProgress probes resolve,
-    // we don't have enough information to lock the chip — and a
-    // momentary "open → locked" flash on a returning user who has
-    // genuinely earned BUILD reads as a bug (Sasha: "At first it's open
-    // and then it locks. It closes, and there is no message"). Match
-    // the existing optimistic-loading pattern noted in the comment block
-    // around `profileLoaded`: BUILD stays unlocked during the fetch
-    // window; the real gate only lands once we can answer it correctly.
-    const buildGateResolved = !entitlementLoading && !journeyProgressLoading;
-    const buildUnlocked = buildGateResolved
-        ? activationDone || tmaComplete
-        : true;
+    // BUILT BY YOU is part of the post-onboarding world. Entitlement or a
+    // prior activation must not surface it before the standard Top Talent +
+    // Mission + Assets sequence is complete.
+    const buildUnlocked = tmaComplete;
 
     const unlockStatus: Record<string, boolean> = profileLoaded
         ? {
@@ -1213,20 +1133,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             // unlock = false unconditionally → lands in hiddenSpaces →
             // invisible in rail. When flipped to true, restores the
             // previous "After Step 1" behavior.
-            // BUILD: Day 80 Wave 2.20 (Sasha 2026-05-22) — re-gated.
-            // The Day 77 "always-true" rule was too permissive: it lit
-            // up the BUILD chip for tasting-tier users the moment they
-            // visited /game/collaborate/matches, before they'd ever
-            // earned the right to build a business off their top talent.
-            // New rule: BUILD unlocks on EITHER
-            //   (a) Activate Top Talent done — `activationDone` below
-            //       (paid/gifted tier OR `coupon_activated` flag), OR
-            //   (b) T+M+A triad complete — `tmaComplete` already derived
-            //       just above from zogComplete + missionComplete + assetsComplete.
-            // During the entitlement fetch we treat tier as unknown and
-            // fall back to tmaComplete-only — avoids a brief unlocked
-            // flash on tasting users while the fetch resolves.
-            "build": buildUnlocked,
+            "build": buildUnlocked,                            // After T+M+A complete
             "meet": MEET_VISIBLE && topTalentComplete,          // After Step 1 — community events (currently flag-gated off)
             // Day 87 v2 (Sasha 2026-05-29): COLLABORATE gated on T+M+A
             // completion (matching the matchable threshold from the
@@ -1290,17 +1197,13 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // rail. Anywhere in the app, if a space isn't unlocked, hide it entirely —
     // it reveals itself when the user earns it. JOURNEY and ME are always on.
     //
-    // BUILD exception (Sasha, 2026-05-15): BUILD chip surfaces immediately
-    // because Equilibrium (Biologic Watch) is now a daily-companion entry
-    // point inside BUILD that doesn't require funnel progression. UBB itself
-    // retains its existing gate via MeGate at the /ubb route level.
     // Day 79 (Sasha 2026-05-22): ai-os added to GATED_SPACES so it falls
     // into the hide-don't-lock pattern when the unlockStatus[ai-os] is
     // false. Localised handling below for the unauthed-guest case.
     // Day 135 (Sasha): "grow" (ME) added — same hide-don't-lock treatment as
     // the rest of the T+M+A-gated set, replacing the dimmed/disabled chip
     // it used to render via unlockStatus["grow"] === false.
-    const GATED_SPACES = ["next-move", "ai-os", "grow", "learn", "meet", "collaborate", "buysell"] as const;
+    const GATED_SPACES = ["next-move", "ai-os", "grow", "learn", "meet", "collaborate", "build", "buysell"] as const;
     // Day 75 → Day 87 — COLLABORATE flicker fix history:
     //
     // Day 75 (Sasha 2026-05-19): COLLABORATE was specifically extracted
