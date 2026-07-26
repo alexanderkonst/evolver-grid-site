@@ -496,7 +496,10 @@ const MissionDiscoveryLanding = () => {
             {state === "prompt" && (
                 <div className="space-y-6">
                     {/* ─ Step 1: copy the prompt ─ */}
-                    <div className="liquid-glass rounded-2xl p-5 sm:p-6">
+                    <div
+                        className="liquid-glass rounded-2xl p-5 sm:p-6"
+                        style={{ background: "rgba(255,255,255,0.84)" }}
+                    >
                         <div className="flex items-start justify-between mb-3 gap-3">
                             <div>
                                 <p
@@ -507,7 +510,8 @@ const MissionDiscoveryLanding = () => {
                                         fontSize: "11px",
                                         letterSpacing: "0.22em",
                                         textTransform: "uppercase",
-                                        color: "var(--skin-accent-gold, #b8860b)",
+                                        color: "#755000",
+                                        textShadow: "0 1px 0 rgba(255,255,255,0.9)",
                                     }}
                                 >
                                     {t("missionLanding.step1Eyebrow")}
@@ -523,7 +527,7 @@ const MissionDiscoveryLanding = () => {
                                 >
                                     {t("missionLanding.step1Title")}
                                 </h3>
-                                <p className="text-xs" style={{ color: INK_MUTED }}>
+                                <p className="text-sm font-medium" style={{ color: INK }}>
                                     {t("missionLanding.step1Desc")}
                                 </p>
                             </div>
@@ -574,6 +578,7 @@ const MissionDiscoveryLanding = () => {
                         ref={pasteSectionRef}
                         className="liquid-glass rounded-2xl p-5 sm:p-6 transition-shadow duration-700"
                         style={{
+                            background: "rgba(255,255,255,0.84)",
                             boxShadow: pulsePasteCard
                                 ? "0 0 0 2px rgba(244,212,114,0.55), 0 0 32px -4px rgba(244,212,114,0.45)"
                                 : undefined,
@@ -587,7 +592,8 @@ const MissionDiscoveryLanding = () => {
                                 fontSize: "11px",
                                 letterSpacing: "0.22em",
                                 textTransform: "uppercase",
-                                color: "var(--skin-accent-gold, #b8860b)",
+                                color: "#755000",
+                                textShadow: "0 1px 0 rgba(255,255,255,0.9)",
                             }}
                         >
                             {t("missionLanding.step2Eyebrow")}

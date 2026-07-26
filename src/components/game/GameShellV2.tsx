@@ -416,6 +416,8 @@ export const GameShellV2 = (props: GameShellV2Props) => {
 const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showNavigation: forceShowNavigation, hideLogo, defaultRailMinimized = false, defaultSectionsPanelClosed = false, spaceOverride }: GameShellV2Props) => {
     const { t } = useTranslation();
     const { toast } = useToast();
+    const location = useLocation();
+    const isAuthRoute = location.pathname === "/auth" || location.pathname.startsWith("/auth/");
     // Day 82 v4 (Sasha 2026-05-24): pane-1 minimize state. Defaults to
     // ON when the page passes defaultRailMinimized — Karime's pages open
     // with the rail in compact (icon-only) mode so the editorial card
@@ -426,7 +428,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // entry) → stored user preference → false. try/catch guards Safari
     // private mode where localStorage access throws.
     const [railMinimized, setRailMinimized] = useState<boolean>(() => {
-        if (defaultRailMinimized) return true;
+        if (defaultRailMinimized || isAuthRoute) return true;
         try {
             return window.localStorage.getItem(RAIL_MINIMIZED_STORAGE_KEY) === "true";
         } catch {
@@ -469,7 +471,6 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // content-scroll rule (Aurora cream wash → transparent so the Mux
     // photo bg shows through), same full-rail inclusion.
     const __isTechstarsShell = __spaceShipSkin === "techstars";
-    const location = useLocation();
     const navigate = useNavigate();
 
     // User & profile state
@@ -567,7 +568,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // Navigation state
     const [activeSpaceId, setActiveSpaceId] = useState<string>("next-move");
     const [sectionsPanelOpen, setSectionsPanelOpen] = useState(() => {
-        if (defaultSectionsPanelClosed) return false;
+        if (defaultSectionsPanelClosed || isAuthRoute) return false;
         // Day 48 (Sasha): Pane 2 is CLOSED only on the very first page
         // (landing) so the primary "Find your top talent" CTA gets full
         // attention. On every other funnel surface — /playbook, /path,
@@ -615,6 +616,15 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         const isAdminPage = p === '/admin' || p.startsWith('/admin/');
         return !isLandingPage && !isIgnitePage && !isEquilibriumPage && !isKarimePage && !isAdminPage;
     });
+
+    // Auth is a focused account surface inside the persistent shell.
+    // Route transitions do not remount this component, so enforce its
+    // compact state whenever auth becomes active.
+    useEffect(() => {
+        if (!isAuthRoute) return;
+        setRailMinimized(true);
+        setSectionsPanelOpen(false);
+    }, [isAuthRoute]);
     const [mobileView, setMobileView] = useState<"navigation" | "content">(() => {
         // Day 53 (Sasha 2026-04-27): mobile landing now defaults to CONTENT
         // (the hero), not navigation. Hiding the hero behind a nav list
@@ -1145,7 +1155,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     const missionComplete = missionCompleteStrict || !!journeyProgress["journey-mission-discovery"];
     const assetsComplete = assetsCompleteStrict || !!journeyProgress["journey-asset-mapper"];
     const tmaComplete = topTalentComplete && missionComplete && assetsComplete;
-    const aiOsUnlocked = tmaComplete || aiOsEverVisited;
+    const aiOsUnlocked = tmaComplete;
 
     // Day 80 Wave 2.20 (Sasha 2026-05-22): BUILD unlock signal.
     // (a) ACTIVATION arm — paid/gifted tier OR coupon_activated flag.
@@ -1370,8 +1380,6 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // flag on AiOsPage mount) continues to see the chip thereafter.
     const guestHidden: string[] = __isFullRailScope
         ? [] // show ALL chips on white-label demo surfaces
-        : aiOsEverVisited
-        ? [...NON_PUBLIC_SPACE_IDS]
         : [...NON_PUBLIC_SPACE_IDS, "ai-os"];
 
     const hiddenSpaces: string[] = isGuest
@@ -1741,7 +1749,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                        why the button showed there but not on /ai-os.
                        z-30 puts the reopen column on the same stacking
                        layer as pane 1 + pane 2, above page overlays. */}
-                {!sectionsPanelOpen && (
+                {!sectionsPanelOpen && !isAuthRoute && (
                     /* Day 85 (Sasha 2026-05-27): Day 84 collapsed-spine
                        treatment reverted. The gold ornate spine read as
                        Victorian against the cinematic hero. Restored

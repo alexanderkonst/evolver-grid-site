@@ -788,6 +788,26 @@ Sasha asked: "How do people solve for version history of these things? We're cre
 
 ---
 
+## Parked copy — post-reveal caution and interpretation block
+
+**Status:** Parked on July 25, 2026. Removed from both Top Talent reveal screens to restore momentum and keep the revelation itself central. Preserve verbatim for possible later reuse in onboarding, methodology education, an FAQ, or a deeper profile interpretation surface.
+
+### Important words of caution
+
+This reminder of your natural talent planted a seed of self-knowledge that will be growing in you.
+
+The exact words you got are NOT literally YOU, right? They are a useful reflection of your essence for the purpose of your self-understanding. Your knowledge of yourself is what truly matters, and will only matter more as AI develops. Only you can know how much these words resonated with your essence, not any other AI or human. In fact, if you retake the test, you will see different words which proves that your true essence is your secret.
+
+### What to do with this now
+
+The exact phrases you got are a useful way to see yourself more accurately.
+
+Which leads to more professional clarity, then to seeing better fit opportunities, leading to more value flow, and then to higher and sustainable revenues.
+
+Remember that the phrases are not literally you, they are an approximation of your unique value. Only you can know how much you resonated with it.
+
+---
+
 ## The seed pattern
 
 > **"I don't need a better funnel. I need more people inside it."**

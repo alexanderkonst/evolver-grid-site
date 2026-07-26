@@ -56,7 +56,7 @@
     "toastFirstTimeBonusDesc": "+{{xp}} XP for your first {{action}}!",
     "toastCouldNotSaveOffer": "Could not save your offer.",
     "bannerSavingTo": "Saving your result to",
-    "bannerResultSaved": "Result saved, you can come back to it anytime",
+    "bannerResultSaved": "✓ Result saved. You can come back to it anytime.",
     "bannerSentTo": "Sent to",
     "bannerWrongEmailRedo": "Wrong email? Redo",
     "bannerCouldNotSaveTo": "We couldn't save your result to",
