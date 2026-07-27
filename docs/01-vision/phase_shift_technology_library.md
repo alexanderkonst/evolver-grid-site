@@ -1086,7 +1086,7 @@ Domain 15a-d describes the **theory** of complete seeing. This section codifies 
 
 | | Essence (What IS) | Significance (Why MATTERS) | Implications (What DEMANDS) |
 |---|---|---|---|
-| **UL (I)** | Does this feel TRUE from the inside? | Does this liberate or constrain the individual soul? | What must the creator do INTERNALLY next? |
+| **UL (I)** | Does this feel TRUE from the inside? | Does this liberate or constrain the individual? | What must be done INTERNALLY next? |
 | **UR (It)** | Does this WORK mechanically? | Does the evidence support the claims? | What must be BUILT or CHANGED concretely? |
 | **LL (We)** | Does this create SHARED MEANING? | Is a cultural shift happening here? | What must the TRIBE do together? |
 | **LR (Its)** | Does this fit the SYSTEM? | Does this advance the system architecture? | What does this mean at SYSTEM scale? |

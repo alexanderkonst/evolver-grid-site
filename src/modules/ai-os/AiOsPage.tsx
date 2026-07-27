@@ -1675,19 +1675,19 @@ The intersection of 4 Quadrants × 3 Depths = 12 seeing-positions. These are not
 This is a 27-perspective analysis: 12 perspectives across a grid, a center (13th — the Sun Logos), a recursive pass (14th–25th), a meta-pass (26th — the Meta-Logos / Merkaba), and a crystallization (27th — the Si-Do shock). Before evaluating, think through ALL 13 base perspectives:
 
 ESSENCE ❤️ (Heart / Middle Dantian) — What IS this? (stripped to irreducible felt truth — Being before interpretation)
-1. UL (I): Does this feel TRUE from the inside? Would the creator recognize their soul in this?
+1. UL (I): Does this feel TRUE from the inside?
 2. UR (It): Does this WORK mechanically? Is the structure sound, logic tight, output measurable?
 3. LL (We): Does this create SHARED MEANING? Would the tribe feel "this is us"?
 4. LR (Its): Does this fit the SYSTEM? Is it architecturally sound at scale?
 
 SIGNIFICANCE 🧠 (Mind / Upper Dantian) — Why does this MATTER? (what understanding does it yield)
-5. UL: Does this liberate or constrain the individual soul?
+5. UL: Does this liberate or constrain the individual?
 6. UR: Does the evidence/data support the claims?
 7. LL: Is a cultural shift happening here? Does this move the collective?
 8. LR: Does this advance the system architecture? Does it serve the larger mission?
 
 CONSEQUENCES 🔥 (Gut / Hara / Lower Dantian) — What does this inevitably RESULT IN? (what ripples and manifests)
-9. UL: What must the creator do INTERNALLY next? What inner move is required?
+9. UL: What must be done INTERNALLY next? What inner move is required?
 10. UR: What must be BUILT or CHANGED concretely? Specific next actions?
 11. LL: What must the TRIBE do together? How does this affect the collective?
 12. LR: What does this mean at SYSTEM scale? What infrastructure changes are demanded?
@@ -1758,7 +1758,7 @@ SIGNIFICANCE 🧠 (Mind / Upper Dantian — Why does this MATTER? What understan
 8. LR-Significance (Its/🧠): Does this advance the system architecture? Does it serve the larger mission?
 
 CONSEQUENCES 🔥 (Gut / Hara / Lower Dantian — What does this inevitably RESULT IN? What ripples and manifests):
-9. UL-Consequences (I/🔥): What must the creator do INTERNALLY next? What inner move is required?
+9. UL-Consequences (I/🔥): What must be done INTERNALLY next? What inner move is required?
 10. UR-Consequences (It/🔥): What must be BUILT or CHANGED concretely? Specific next actions?
 11. LL-Consequences (We/🔥): What must the TRIBE do together? How does this affect the collective?
 12. LR-Consequences (Its/🔥): What does this mean at SYSTEM scale? What infrastructure changes?
