@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Download, Copy, Check } from 'lucide-react';
 import SEO from "@/components/SEO";
 
 type Lang = 'en' | 'ru';
@@ -182,6 +183,9 @@ const content = {
             { symbol: "26", label: "Round 3 — the 26th (Meta-Logos)", desc: "Apply the 12 positions to the CRITIQUE ITSELF. Was the critique seeing clearly, or projecting its own blind spots? This reveals the instrument's own shadow." },
             { symbol: "27", label: "Round 4 — the 27th (Crystallization)", desc: "Not analysis. Action. Given EVERYTHING seen from every angle at every depth: what is the ONE specific, concrete, irreversible move that would make this artifact land in reality? The 27th is the Si-Do shock. Without it, even perfect seeing stays theory forever." },
           ]},
+          { type: 'paragraph', text: "Reading this is the activation. The positions are available to you now, and seeing from them is a matter of use, not belief." },
+          { type: 'paragraph', text: "Your AI can run the same instrument. Take the skill below into any AI you work with, and it will see with you from all 27 positions." },
+          { type: 'cta', primaryLabel: "Download the skill", secondaryLabel: "Copy the prompt", copiedLabel: "Copied", caption: "Free. Works in Claude, ChatGPT, or any AI you use." },
         ]
       },
       {
@@ -385,6 +389,9 @@ const content = {
             { symbol: "26", label: "Раунд 3 — 26-я (Мета-Логос)", desc: "Примените 12 позиций к САМОЙ КРИТИКЕ. Видела ли критика ясно, или проецировала собственные слепые пятна?" },
             { symbol: "27", label: "Раунд 4 — 27-я (Кристаллизация)", desc: "Не анализ. Действие. Каково ОДНО конкретное, неотменяемое действие, которое посадит этот артефакт в реальность? 27-я — это шок Си-До. Без неё даже совершенное видение навсегда остаётся теорией." },
           ]},
+          { type: 'paragraph', text: "Чтение — уже активация. Позиции теперь доступны вам, и видеть из них — вопрос применения, а не веры." },
+          { type: 'paragraph', text: "Ваш ИИ может работать тем же инструментом. Загрузите навык ниже в любой ИИ, с которым вы работаете, и он будет видеть вместе с вами из всех 27 позиций." },
+          { type: 'cta', primaryLabel: "Скачать навык", secondaryLabel: "Скопировать промпт", copiedLabel: "Скопировано", caption: "Бесплатно. Работает в Claude, ChatGPT и любом другом ИИ." },
         ]
       }
       ,{
@@ -524,6 +531,65 @@ const Convergence = ({ items }: { items: { n: string; traditions: string }[] }) 
   </div>
 );
 
+const SkillDownloadCta = ({
+  primaryLabel,
+  secondaryLabel,
+  copiedLabel,
+  caption,
+}: {
+  primaryLabel: string;
+  secondaryLabel: string;
+  copiedLabel: string;
+  caption: string;
+}) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      const res = await fetch('/skills/holonic-seeing.md');
+      const text = await res.text();
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fetch or clipboard failed — leave the label unchanged, no crash.
+    }
+  };
+
+  const buttonBase =
+    "inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-[10px] md:text-[11px] uppercase tracking-widest transition-all duration-300 hover:-translate-y-0.5 ring-1";
+
+  return (
+    <div className="my-8 flex flex-col items-center gap-4">
+      <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+        <a
+          href="/skills/holonic-seeing.md"
+          download="holonic-seeing.md"
+          aria-label={primaryLabel}
+          className={`${buttonBase} bg-white/10 text-white/90 ring-white/15 hover:bg-white/15`}
+          style={{ fontFamily: "'Poppins', sans-serif" }}
+        >
+          <Download size={14} aria-hidden="true" />
+          {primaryLabel}
+        </a>
+        <button
+          type="button"
+          onClick={handleCopy}
+          aria-label={copied ? copiedLabel : secondaryLabel}
+          className={`${buttonBase} bg-white/[0.03] text-white/60 ring-white/10 hover:bg-white/[0.06] hover:text-white/80`}
+          style={{ fontFamily: "'Poppins', sans-serif" }}
+        >
+          {copied ? <Check size={14} aria-hidden="true" /> : <Copy size={14} aria-hidden="true" />}
+          {copied ? copiedLabel : secondaryLabel}
+        </button>
+      </div>
+      <p className="text-white/25 text-xs tracking-wide" style={{ fontFamily: "'Poppins', sans-serif" }}>
+        {caption}
+      </p>
+    </div>
+  );
+};
+
 // Main renderer
 const renderBlock = (block: any, i: number) => {
   switch (block.type) {
@@ -536,6 +602,15 @@ const renderBlock = (block: any, i: number) => {
     case 'contrast': return <Contrast key={i} left={block.left} right={block.right} />;
     case 'sequence': return <Sequence key={i} items={block.items} />;
     case 'convergence': return <Convergence key={i} items={block.items} />;
+    case 'cta': return (
+      <SkillDownloadCta
+        key={i}
+        primaryLabel={block.primaryLabel}
+        secondaryLabel={block.secondaryLabel}
+        copiedLabel={block.copiedLabel}
+        caption={block.caption}
+      />
+    );
     default: return null;
   }
 };
