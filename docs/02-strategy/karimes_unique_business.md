@@ -1099,7 +1099,7 @@ This was the first Ignition Session with a woman, the first in-person, and the f
 **The fracture line:**
 > "I kind of amputated my World Economic Forum leadership capabilities. I'm just doing therapeutic coaching because the client cannot handle more... or I'm just doing ceremony but I'm not integrating my other capacities."
 
-**The scatter pattern (Domain 14):**
+**The scatter pattern (Phase Shift Technology 14):**
 - Retreats
 - Masterclasses
 - Collaborations

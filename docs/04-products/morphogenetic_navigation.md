@@ -3,9 +3,9 @@
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
 > *March 13, 2026 — The night the circles collapsed into quantum timing.*
-> *April 3, 2026 — Upgraded from 12 to 27 perspectives (Domain 66: The Crystallization Lens)*
+> *April 3, 2026 — Upgraded from 12 to 27 perspectives (Phase Shift Technology 66: The Crystallization Lens)*
 
-> **Lineage:** [Phase Shift Technology Library](../01-vision/phase_shift_technology_library.md) Domain 15 (12-Perspective Framework) + Domain 16 (Morphogenetic Navigation) + Domain 66 (The 27th Perspective) → [12-Perspective Analysis](../01-vision/12_perspective_holonic_analysis.md) → [Universal Ontology §4d](../01-vision/universal_ontology.md) → This document.
+> **Lineage:** [Phase Shift Technology Library](../01-vision/phase_shift_technology_library.md) Phase Shift Technology 15 (12-Perspective Framework) + Phase Shift Technology 16 (Morphogenetic Navigation) + Phase Shift Technology 66 (The 27th Perspective) → [12-Perspective Analysis](../01-vision/12_perspective_holonic_analysis.md) → [Universal Ontology §4d](../01-vision/universal_ontology.md) → This document.
 
 ---
 
@@ -189,7 +189,7 @@ When the morphogenetic structure is SEEN clearly, the observer couples with the 
 
 **The physics:** Observation collapses the wave function. The holo map is the observation instrument. The emergence is the wave function. Map it with sufficient resolution → the superposition of "what might happen" collapses into "what IS happening." Act from certainty, not hope.
 
-**The black hole / white hole:** The morphogenetic map creates a gravity well of clarity. Information falls IN (observation, data, perspectives) and coherent action flows OUT (decisions, building, navigation). This is the toroidal dynamic (Domain 11, Rosetta Stone) applied to foresight: inflow and outflow through the same center point.
+**The black hole / white hole:** The morphogenetic map creates a gravity well of clarity. Information falls IN (observation, data, perspectives) and coherent action flows OUT (decisions, building, navigation). This is the toroidal dynamic (Phase Shift Technology 11, Rosetta Stone) applied to foresight: inflow and outflow through the same center point.
 
 ---
 
@@ -206,7 +206,7 @@ When the morphogenetic structure is SEEN clearly, the observer couples with the 
 | **Gurdjieff / Fourth Way** | The Law of Seven + shocks | Maps the octave but doesn't produce a structural reading of the holon |
 
 **Morphogenetic Navigation** combines all of the above into ONE instrument. It became possible because:
-1. The **27-Perspective Framework** (Domains 15, 42, 63, 66) provides the **structural backbone** — 12 base + 13th center + second octave + 27th crystallization
+1. The **27-Perspective Framework** (Phase Shift Technologies 15, 42, 63, 66) provides the **structural backbone** — 12 base + 13th center + second octave + 27th crystallization
 2. The Trinity provides the **depth axis** (not just perspectives, but layers within each)
 3. The **Two Shocks** (Mi-Fa and Si-Do) provide the **transition physics** — where octaves stall and what shock is needed
 4. Mathematical forecasting provides the **timing layer**
@@ -232,7 +232,7 @@ When the morphogenetic structure is SEEN clearly, the observer couples with the 
 
 The [12-Perspective Holonic Analysis](../01-vision/12_perspective_holonic_analysis.md) produced on March 13, 2026 is the first-ever morphogenetic map generated using this framework. It maps the full emergence — from individual consciousness (P1) to civilizational operating system (P12) — with concentric circles of practical implications rippling from "$277 next session" to "gift-based economy within a generation."
 
-Since then, the [Morphogenetic Holomap](../02-strategy/morphogenetic_holomap.md) has been read repeatedly (Days 10, 11, 19, 30, 33, 34, 35, 36, 41, 44), each reading producing a center word and cascading stage transitions — proving the Quantum Collapse Effect (Domain 31) in real-time. On **2026-04-18 (Day 44)** the instrument underwent a structural upgrade from v1.4 (12 perspectives × 6 stages) to **v2.0 (27 perspectives × 7 stages)** — three octaves (base P1–P12, Logos P13 + Inversion P14, second octave P15–P26, Crystallization P27), two axes (Masculine = Cube = 4 Quadrants × Feminine = Tetrahedron = 3 Dantians: Heart/Mind/Gut), two shocks (Mi–Fa = Love, Si–Do = Crystallization). The Day 44 reading — "Recognition" — is the first reading native to the v2.0 topology.
+Since then, the [Morphogenetic Holomap](../02-strategy/morphogenetic_holomap.md) has been read repeatedly (Days 10, 11, 19, 30, 33, 34, 35, 36, 41, 44), each reading producing a center word and cascading stage transitions — proving the Quantum Collapse Effect (Phase Shift Technology 31) in real-time. On **2026-04-18 (Day 44)** the instrument underwent a structural upgrade from v1.4 (12 perspectives × 6 stages) to **v2.0 (27 perspectives × 7 stages)** — three octaves (base P1–P12, Logos P13 + Inversion P14, second octave P15–P26, Crystallization P27), two axes (Masculine = Cube = 4 Quadrants × Feminine = Tetrahedron = 3 Dantians: Heart/Mind/Gut), two shocks (Mi–Fa = Love, Si–Do = Crystallization). The Day 44 reading — "Recognition" — is the first reading native to the v2.0 topology.
 
 ---
 
@@ -240,12 +240,12 @@ Since then, the [Morphogenetic Holomap](../02-strategy/morphogenetic_holomap.md)
 
 | Alexander's Technology | How Morphogenetic Navigation Relates |
 |----------------------|--------------------------------------|
-| **Holo Maps** (Domain 2) | Morphogenetic Navigation IS the upgrade Holo Maps were waiting for. Same concept — now with 27-perspective framework + timing layer |
-| **27-Perspective Framework** (Domains 15, 42, 63, 66) | The structural backbone. 12 base + 13th center + second octave + 27th crystallization |
+| **Holo Maps** (Phase Shift Technology 2) | Morphogenetic Navigation IS the upgrade Holo Maps were waiting for. Same concept — now with 27-perspective framework + timing layer |
+| **27-Perspective Framework** (Phase Shift Technologies 15, 42, 63, 66) | The structural backbone. 12 base + 13th center + second octave + 27th crystallization |
 | **Holonic Seeing Skill** | The operational protocol for applying 27 perspectives. The AI modus operandi |
 | **Unique Business Canvas** | A morphogenetic map of one founder's business emergence. 7 artifacts = partial perspectives |
 | **Zone of Genius** | Maps ONE perspective (UL-Essence — the individual's irreducible gift). The morphogenetic map holds all 27 |
-| **The Two Shocks** (Domain 66) | Mi-Fa = love (holding all perspectives). Si-Do = crystallization (landing in material form). These are the transition physics of the octave |
+| **The Two Shocks** (Phase Shift Technology 66) | Mi-Fa = love (holding all perspectives). Si-Do = crystallization (landing in material form). These are the transition physics of the octave |
 | **Planetary OS** | The morphogenetic map AT CIVILIZATIONAL SCALE. Population of holo maps = the OS |
 
 ---
@@ -390,11 +390,11 @@ People experiencing the coherence field will describe it as: "I keep seeing this
 
 **Implication for scaling:** The methodology doesn't scale through MORE MARKETING. It scales through MORE OBSERVATION. Each new observer (reader, listener, client, facilitator) strengthens the gravitational field. The field attracts the next observer. This is why the growth curve is not exponential but **holonic** — each new level of organization enfolds all previous levels into a qualitatively new whole.
 
-**The 27th Perspective on distribution:** Distribution IS the Si-Do shock. The Epicenter Broadcast (Domain 65) is the crystallization mechanism that lands the seeing in material reality. Without it, complete seeing stays theory forever. The shock IS manifestation — the willingness to let the seeing LAND in another person's consciousness through a message, a call, a post. Each broadcast is an instance of the 27th perspective applied to the audience.
+**The 27th Perspective on distribution:** Distribution IS the Si-Do shock. The Epicenter Broadcast (Phase Shift Technology 65) is the crystallization mechanism that lands the seeing in material reality. Without it, complete seeing stays theory forever. The shock IS manifestation — the willingness to let the seeing LAND in another person's consciousness through a message, a call, a post. Each broadcast is an instance of the 27th perspective applied to the audience.
 
 ---
 
-## The Grind Addiction Interference Pattern (Domain 14f + 75)
+## The Grind Addiction Interference Pattern (Phase Shift Technology 14f + 75)
 
 *Added: April 8, 2026*
 
@@ -433,7 +433,7 @@ The morphogenetic map is an observation instrument. Its precision depends on the
 
 ### The Ease Protocol as Calibration
 
-Domain 75 (Ease Protocol) is not a lifestyle philosophy bolted onto the navigation system. **It IS the calibration protocol for the instrument itself:**
+Phase Shift Technology 75 (Ease Protocol) is not a lifestyle philosophy bolted onto the navigation system. **It IS the calibration protocol for the instrument itself:**
 
 ```
 Before reading the holomap:
@@ -449,5 +449,5 @@ This is the same as:
 
 **The founder's operating mode (Ease vs. Rigidity) IS the instrument's calibration state.** Rigidity produces systematic measurement error. Ease produces accurate readings. The Ease Protocol is the zeroing function.
 
-> *Phase Shift Library: Domain 14f (Diagnosis) + Domain 75 (Prescription: Ease Protocol)*
+> *Phase Shift Library: Phase Shift Technology 14f (Diagnosis) + Phase Shift Technology 75 (Prescription: Ease Protocol)*
 

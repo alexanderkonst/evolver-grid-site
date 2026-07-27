@@ -229,7 +229,7 @@ In a unique business, **sales is not a phase that follows product and marketing.
 
 ### The Structural Discovery: Touchpoints = Offers
 
-The customer journey map and the value ladder are the SAME artifact. This is the **Three-in-One Collapse** (Phase Shift Technology Library, Domain 11b) extended:
+The customer journey map and the value ladder are the SAME artifact. This is the **Three-in-One Collapse** (Phase Shift Technology Library, Technology 11b) extended:
 
 | Perspective | Name | Same sequence seen as... |
 |------------|------|------------------------|

@@ -8,7 +8,7 @@
 
 ## Objective
 
-Redesign the **Morphogenetic Navigation Holo Map** from its current **12 perspectives × 6 evolutionary stages** topology to the **27 perspectives × 7 stages** topology that Sasha's corpus now supports — grounded in Domain 66 (The 27th Perspective / Crystallization Lens), the 3-octave architecture (12 base + 13th Center + 14th Inversion + 15–26 Second Octave + 27th Crystallization), and the masculine/feminine axis distinction that surfaced in the April 18 Scaffold Engineering Lab session (compute ↔ knowledge-structure).
+Redesign the **Morphogenetic Navigation Holo Map** from its current **12 perspectives × 6 evolutionary stages** topology to the **27 perspectives × 7 stages** topology that Sasha's corpus now supports — grounded in Phase Shift Technology 66 (The 27th Perspective / Crystallization Lens), the 3-octave architecture (12 base + 13th Center + 14th Inversion + 15–26 Second Octave + 27th Crystallization), and the masculine/feminine axis distinction that surfaced in the April 18 Scaffold Engineering Lab session (compute ↔ knowledge-structure).
 
 The current holomap is the most load-bearing navigation instrument in the system — it's what Sasha reads to understand the structural state of his life's work. Redesigning it is a structural upgrade, not a reformatting pass. Every downstream artifact (session log appends, roadmap status, holomap auto-update protocol) reads against this topology.
 
@@ -35,10 +35,10 @@ Read these **before** writing a single line of the new holomap. This is a non-tr
 
 6. **`docs/04-products/morphogenetic_navigation.md`** — the 27-perspective source document. Upgraded April 3, 2026 from 12 to 27. Read the whole file; the two-layer architecture (outer = ontological structure, inner = mathematical forecasting) is how the new holomap must be organized.
 7. **`docs/01-vision/phase_shift_technology_library.md`** — especially:
-   - **Domain 15** — 12-Perspective Framework (base octave)
-   - **Domain 63** — Seven Number-Prisms (the grounding of why 7 stages, 12/13/14/26/27 all matter)
-   - **Domain 66** — The 27th Perspective / Crystallization Lens (the upgrade rationale)
-   - **Domain 80** — Scaffold Engineering (operating principle that lets you improve AI performance without training — context for why this redesign is high-leverage)
+   - **Phase Shift Technology 15** — 12-Perspective Framework (base octave)
+   - **Phase Shift Technology 63** — Seven Number-Prisms (the grounding of why 7 stages, 12/13/14/26/27 all matter)
+   - **Phase Shift Technology 66** — The 27th Perspective / Crystallization Lens (the upgrade rationale)
+   - **Phase Shift Technology 80** — Scaffold Engineering (operating principle that lets you improve AI performance without training — context for why this redesign is high-leverage)
 8. **`docs/01-vision/universal_ontology.md`** — especially **§4d** (27-perspective theory) and **§4e** (Seven Number-Prisms). This is what Sasha called "универсальная онтология" — it's the abstract grounding.
 9. **`docs/01-vision/12_perspective_holonic_analysis.md`** — the predecessor framework doc; shows the 12-perspective logic before it was upgraded.
 

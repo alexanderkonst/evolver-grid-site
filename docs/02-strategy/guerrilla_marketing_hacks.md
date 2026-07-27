@@ -129,7 +129,7 @@ Tell me if this lands or if I'm delusional 😂
 - Story-worthy (unique post their friends haven't seen)
 - Make it undeniable (the result is personal, accurate, shareable)
 
-**Phase Shift Technology:** Domain 51 — The Curiosity Gap Engine (Algorithmic Aikido)
+**Phase Shift Technology:** Phase Shift Technology 51 — The Curiosity Gap Engine (Algorithmic Aikido)
 **Implementation:** `src/components/sharing/ShareZoG.tsx`
 
 ---

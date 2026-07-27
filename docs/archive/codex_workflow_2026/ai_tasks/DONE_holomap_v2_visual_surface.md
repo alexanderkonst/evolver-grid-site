@@ -10,9 +10,9 @@ The corpus-side holomap (`docs/02-strategy/morphogenetic_holomap.md`) was upgrad
 
 v2.0 is a structural upgrade, not a cosmetic one. The redesign is grounded in:
 
-- **Domain 66** (The 27th Perspective / Crystallization Lens) — `docs/01-vision/phase_shift_technology_library.md`
-- **Domain 63** (Seven Number-Prisms) — grounds why 7 stages, why 12/13/14/26/27
-- **Domain 80** (Scaffold Engineering) — why the knowledge-structure axis matters
+- **Phase Shift Technology 66** (The 27th Perspective / Crystallization Lens) — `docs/01-vision/phase_shift_technology_library.md`
+- **Phase Shift Technology 63** (Seven Number-Prisms) — grounds why 7 stages, why 12/13/14/26/27
+- **Phase Shift Technology 80** (Scaffold Engineering) — why the knowledge-structure axis matters
 - **IntegralTheoryUpgrade v1.1** (April 16, 2026) — canonical mapping Essence=Heart/Middle Dantian, Significance=Mind/Upper Dantian, Consequences=Gut/Lower Dantian
 - **Scaffold Engineering Lab §4.3–4.4** — the masculine/feminine axis (compute × knowledge-structure)
 
@@ -33,7 +33,7 @@ The v2.0 corpus file at `docs/02-strategy/morphogenetic_holomap.md` is authorita
 
 1. **`docs/02-strategy/morphogenetic_holomap.md`** — the v2.0 source of truth. Read the whole file; the head (topology + stages table + axes section) + the Day 44 addendum are mandatory.
 2. **`docs/04-products/morphogenetic_navigation.md`** — the 27-perspective framework explanation (two-layer architecture: outer ontological + inner mathematical forecasting).
-3. **`docs/01-vision/phase_shift_technology_library.md`** — Domains 15, 63, 66, 80.
+3. **`docs/01-vision/phase_shift_technology_library.md`** — Phase Shift Technologies 15, 63, 66, 80.
 4. **`src/pages/MorphogeneticHolomap.tsx`** — current visual surface (1044 lines). Note the `PerspectiveData.layer` field currently uses `"Implications"` — rename to `"Consequences"` as part of this work, along with the depth-label mapping inversion.
 5. **`docs/09-logs/transcripts/scaffold_engineering_lab.md`** §4.3–4.4 — masculine/feminine framing.
 6. **`.agent/RULES.md`** — autonomous execution mode for Codex/Claude Code.

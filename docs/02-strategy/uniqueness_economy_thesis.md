@@ -122,7 +122,7 @@ The missing axis of all uniqueness work: not only WHAT the gift is, but HOW the 
 
 The prior diagnostic that precedes "what is your gift": **"What is your current relationship with your uniqueness?"**
 
-This layer was excavated through the founder's own wound (spending the source trying to convert unrecognizing fields); the wound revealed the engine. Law-level statement: Phase Shift Library, Domain 99 ("The Steward of the Source"). Propagation counterpart: Domain 100 ("The Architecture of Adoption").
+This layer was excavated through the founder's own wound (spending the source trying to convert unrecognizing fields); the wound revealed the engine. Law-level statement: Phase Shift Library, Phase Shift Technology 99 ("The Steward of the Source"). Propagation counterpart: Phase Shift Technology 100 ("The Architecture of Adoption").
 
 ---
 

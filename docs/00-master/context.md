@@ -220,10 +220,10 @@ A **phase shift technology** is a seeing instrument that produces an unusually r
 | 10 | **I Focus the Lens** | Alexander's business compressed to one gesture: focusing scattered light into laser |
 | 11 | **The Scatter Pattern** | Effort is not the problem. Scatter is. All founder shadows map to one defense: avoiding the simple thing |
 | 12 | **The Noble=Free Antidote** | Pricing as commitment signal. Charging money IS the act of serving — it creates the container for transformation |
-| 13 | **The Builder's Blind Spot** (Domain 55) | Builders optimize the product (surface friction). The real blocker is the viewer's decision (decision friction). "Stop building. Start collapsing." |
-| 14 | **Externalized Self-Recognition** (Domain 56) | People don't share mirrors to help friends. They share to confirm what they saw about themselves. Identity verification loop > distribution |
-| 15 | **Campfire Networking** (Domain 57) | Stop hunting for 1:1s. Join a group. Speak into it. The right person finds you — because you named something they couldn't name themselves |
-| 16 | **The Temporal Realization** (Domain 61) | Declaration restructures the past. The present doesn't emerge from the past — the present reveals what was always being prepared. The Copernican Inversion applied to time |
+| 13 | **The Builder's Blind Spot** (Phase Shift Technology 55) | Builders optimize the product (surface friction). The real blocker is the viewer's decision (decision friction). "Stop building. Start collapsing." |
+| 14 | **Externalized Self-Recognition** (Phase Shift Technology 56) | People don't share mirrors to help friends. They share to confirm what they saw about themselves. Identity verification loop > distribution |
+| 15 | **Campfire Networking** (Phase Shift Technology 57) | Stop hunting for 1:1s. Join a group. Speak into it. The right person finds you — because you named something they couldn't name themselves |
+| 16 | **The Temporal Realization** (Phase Shift Technology 61) | Declaration restructures the past. The present doesn't emerge from the past — the present reveals what was always being prepared. The Copernican Inversion applied to time |
 
 These are the project's operating vocabulary: "Copernican Inversion," "scatter pattern," "precision gap," "tuning fork," "builder's blind spot," "campfire networking." Features and copy that use these terms inherit the surrounding meaning; ones that don't have to do that work alone.
 

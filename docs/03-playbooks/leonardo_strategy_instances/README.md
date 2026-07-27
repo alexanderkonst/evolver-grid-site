@@ -6,7 +6,7 @@
 
 ## The meta-pattern
 
-This folder operationalizes **Phase Shift Domain 87 — Multi-Patron Architecture** ([`docs/01-vision/phase_shift_technology_library.md`](../../01-vision/phase_shift_technology_library.md#domain-87-multi-patron-architecture-the-leonardo-strategy-generalized-white-label-skins-as-the-patron-relationship-vehicle)).
+This folder operationalizes **Phase Shift Technology 87 — Multi-Patron Architecture** ([`docs/01-vision/phase_shift_technology_library.md`](../../01-vision/phase_shift_technology_library.md#domain-87-multi-patron-architecture-the-leonardo-strategy-generalized-white-label-skins-as-the-patron-relationship-vehicle)).
 
 Leonardo da Vinci had multiple patrons across his life: Medici, Sforza, Borgia, Francis I. He moved between them. Each provided different conditions. No single relationship was load-bearing. The portfolio carried him.
 
@@ -18,9 +18,9 @@ Each file in this folder is one named patron candidate, treated as a Leonardo-st
 
 ## Related domains
 
-- **Domain 85 — The Assembly Recognition:** the perception that opens multi-patron strategy as a viable move (multiple aligned platforms converging on the same coordination-infrastructure intuition mean many potential patrons exist).
-- **Domain 86 — Substrate Positioning:** the strategic position that makes multi-patron natural (substrate stewards have many customers; platforms have few large customers).
-- **Domain 88 — Demo-as-Hospitality:** the tactical opening move that makes each patron conversation cheap (build their skin before the conversation, open with the URL).
+- **Phase Shift Technology 85 — The Assembly Recognition:** the perception that opens multi-patron strategy as a viable move (multiple aligned platforms converging on the same coordination-infrastructure intuition mean many potential patrons exist).
+- **Phase Shift Technology 86 — Substrate Positioning:** the strategic position that makes multi-patron natural (substrate stewards have many customers; platforms have few large customers).
+- **Phase Shift Technology 88 — Demo-as-Hospitality:** the tactical opening move that makes each patron conversation cheap (build their skin before the conversation, open with the URL).
 
 ---
 

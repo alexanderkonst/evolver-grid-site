@@ -311,7 +311,7 @@ Without green light, scope ends here. Cumulative artifacts (CSS primitives · Re
 - UI playbook: `docs/03-playbooks/ui_playbook.md` (general UI standards)
 - Integrated workflow: `docs/03-playbooks/integrated_product_building_workflow.md` (this work follows + adapts that)
 - Identity context: `docs/02-strategy/unique-businesses/alexanders_unique_business.md` (Holonic Primitive Builder section)
-- Phase Shift register: `docs/01-vision/phase_shift_technology_library.md` (Domain 84 — The Holomap Instrument)
+- Phase Shift register: `docs/01-vision/phase_shift_technology_library.md` (Phase Shift Technology 84 — The Holomap Instrument)
 - Equilibrium current spec: `docs/specs/equilibrium/equilibrium_v2_spec.md` and `equilibrium_v2_tracker.md`
 
 ---

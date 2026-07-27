@@ -793,7 +793,7 @@ The contemplative and shadow vocabulary — load-bearing words for his inner lif
 - **greatness held cleanly** *(Jun 2026)* — "The flower does not own the flowering." Potent and humble at once.
 - **The Great Paradox** *(Dec 2025)* — Feeling vs ascension; "the ultimate divine mindfuck"; the way out may be eternal holding, never arriving.
 - **Sales = Love / todo es medicina / "we are the medicine"** *(2025–26)* — Service as birthright.
-- **the Sovereign Story (Domain 46)** *(Mar 2026)* — "Truth, not copy." The first-person testimony letter. "Just tell the truth."
+- **the Sovereign Story (Phase Shift Technology 46)** *(Mar 2026)* — "Truth, not copy." The first-person testimony letter. "Just tell the truth."
 - **Sacred Numerology** *(May 2026)* — His read of his own drawings: nine lines, each carrying a digit's signature energy.
 
 ---

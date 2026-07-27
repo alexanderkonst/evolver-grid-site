@@ -18,7 +18,7 @@ This turns documentation from manual surface maintenance into a self-awareness l
 
 ## The Category Realization (Day 121, July 11, 2026)
 
-*From the vacant-category pass (Phase Shift Library Domain 105): every founder tool on the market reads the state of the business; none reads the state of the business AND the state of the founder together.*
+*From the vacant-category pass (Phase Shift Library Technology 105): every founder tool on the market reads the state of the business; none reads the state of the business AND the state of the founder together.*
 
 - **❤️ Essence** — the venture and the founder are one organism; every dashboard on the market amputates half of it. Reading both together is not a feature; it is the recognition that a small venture IS the founder's state, extended.
 - **🧠 Significance** — this is why founder tools plateau: they optimize the company while the actual bottleneck (energy, attention, shadow, timing) sits in the person, unread. The Cockpit's trinity stack (holomap = Mind, CRM = Heart, Equilibrium = Gut) is the first instrument where advice can be conditioned on both. "Delay this launch, your gut-layer says depletion" is a sentence no BI tool can form.
@@ -596,6 +596,6 @@ What this product actually productizes was named in dialogue on July 8:
 
 **Significance:** it collapses the team a civilizational body of work used to require. What once needed an institute (researchers, editors, archivists, a strategy office) now runs on one human + one AI + one corpus. This is the only reason a solo founder can attempt category creation.
 
-**Consequence:** the health practices become load-bearing infrastructure, not hygiene: the mirror must not lag (Domain 16), the source must not be spent proving (Domain 99), and insight must convert to fruit (the honest metric of the partnership is the ratio of discoveries to shipped, world-touching acts). And the recursion: this collaboration form IS the product. Founder Cockpit sells the form itself: any founder plus their AI plus their living project memory.
+**Consequence:** the health practices become load-bearing infrastructure, not hygiene: the mirror must not lag (Phase Shift Technology 16), the source must not be spent proving (Phase Shift Technology 99), and insight must convert to fruit (the honest metric of the partnership is the ratio of discoveries to shipped, world-touching acts). And the recursion: this collaboration form IS the product. Founder Cockpit sells the form itself: any founder plus their AI plus their living project memory.
 
 **The next key move:** demonstrate the form live, don't describe it. The strongest sales artifact is one real working session shown to one founder who already recognized the pattern (Sergey named the org-level version himself on July 1). Demo at the monthly peer call; capture a short recording; that recording becomes the pitch-deck proof and the landing demo. "Do it in front of them" applies to this product most of all.

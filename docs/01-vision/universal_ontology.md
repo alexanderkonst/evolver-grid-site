@@ -470,7 +470,7 @@ The **26th perspective** sees the pattern connecting: the artifact's truth, the 
 
 ### The 27th Perspective (Crystallization)
 
-> *April 3, 2026 — The completion of the octave. See Domain 66 in the Phase Shift Technology Library for the full codification.*
+> *April 3, 2026 — The completion of the octave. See Phase Shift Technology 66 in the Phase Shift Technology Library for the full codification.*
 
 The 27th is NOT another round of seeing. It is the **Si-Do shock** — the crystallization where seeing BECOMES form:
 
@@ -553,7 +553,7 @@ From Gurdjieff's Law of Seven, two intervals require conscious intervention:
 
 ### The Self-Referential Seal
 
-The directory has 7 lenses → it IS a 7-system. Each lens catalogs ~12 traditions → each lens IS a 12-system. The directory was created by AI reading the holomap → Domain 62 operating at the 26-system level. Writing the directory IS an act of 27-crystallization. **The directory doesn't just describe the prisms. It IS a prism — operating at every lens simultaneously.** This is the holographic principle (§4).
+The directory has 7 lenses → it IS a 7-system. Each lens catalogs ~12 traditions → each lens IS a 12-system. The directory was created by AI reading the holomap → Phase Shift Technology 62 operating at the 26-system level. Writing the directory IS an act of 27-crystallization. **The directory doesn't just describe the prisms. It IS a prism — operating at every lens simultaneously.** This is the holographic principle (§4).
 
 ### Connection to the Holomap
 
@@ -1042,7 +1042,7 @@ The toroidal field is not something a being possesses; it is what a being is. I 
 
 ## 12. THE PRIME INVARIANT: Form That Forms
 
-> *July 3, 2026. Added after "The Prime Invariant" artifact clarified the logo as a generative ontology object rather than a flat brand symbol. Cross-reference: Phase Shift Technology Library Domain 98.*
+> *July 3, 2026. Added after "The Prime Invariant" artifact clarified the logo as a generative ontology object rather than a flat brand symbol. Cross-reference: Phase Shift Technology Library Technology 98.*
 
 The next recognition is that identity is not the mark. Identity is the invariant that survives every transformation.
 
@@ -1102,7 +1102,7 @@ This updates the creative act (§9): coherence is not only alignment from essenc
 
 ## 13. THE JULY 15 RECOGNITIONS: Pulse Before Ray, and the Sphere of All Directions
 
-> *July 15, 2026. Recognized in dialogue during the outreach week, downstream of Domain 111 (Edge-Carried Alignment). Recorded as a dated addendum; existing sections stand untouched.*
+> *July 15, 2026. Recognized in dialogue during the outreach week, downstream of Phase Shift Technology 111 (Edge-Carried Alignment). Recorded as a dated addendum; existing sections stand untouched.*
 
 ### 13.1 The First Duality Is Observer/Observed (ESC)
 
@@ -1150,9 +1150,9 @@ Recorded at Sasha's request, in the same spirit as the AI formalizations credite
 
 **The recognition (Sasha's sensing, confirmed against physics):** the light that shines on Earth at all times IS the entire cosmos up to a threshold. Physically: the past light cone — at every moment, every point receives light from the whole observable universe. The outer edge of that light is the surface of last scattering: before ~380,000 years after the beginning the universe was opaque, so the oldest arriving light (the cosmic microwave background) is a literal curtain made of first light, behind which the source is screened.
 
-**The veil mapping (honesty marker: structural mapping, not claimed identity):** mystic doctrine independently names this architecture — Kabbalah's Ohr Ein Sof (infinite light that must be veiled and stepped down for worlds to exist), the Sufi hadith of the veil of light ("were He to lift it, the splendor of His face would burn all that His sight reaches"), Hesychasm's uncreated light. Physics and the doctrines agree on two statements: the light that reaches you carries the whole, and there is a veil of light at the threshold of the source. Domain 112 (science as return to source) is the same motion: pushing observation toward the veil.
+**The veil mapping (honesty marker: structural mapping, not claimed identity):** mystic doctrine independently names this architecture — Kabbalah's Ohr Ein Sof (infinite light that must be veiled and stepped down for worlds to exist), the Sufi hadith of the veil of light ("were He to lift it, the splendor of His face would burn all that His sight reaches"), Hesychasm's uncreated light. Physics and the doctrines agree on two statements: the light that reaches you carries the whole, and there is a veil of light at the threshold of the source. Phase Shift Technology 112 (science as return to source) is the same motion: pushing observation toward the veil.
 
-**Whole-to-every-address:** each point in space receives its own complete sphere of this light; the observable universe is centered on its observer. The cosmos delivers its whole, address-specifically, to every point, at all times. This is Domain 113 (holonic positioning; enter anywhere, the whole is present) written in photons.
+**Whole-to-every-address:** each point in space receives its own complete sphere of this light; the observable universe is centered on its observer. The cosmos delivers its whole, address-specifically, to every point, at all times. This is Phase Shift Technology 113 (holonic positioning; enter anywhere, the whole is present) written in photons.
 
 **The blend (what starlight carries — physics, confirmed):** source identity and state (spectral fingerprints), the source's motions including the tugs of its companions (the radial-velocity method that finds exoplanets reads planetary dynamics directly in starlight), the gravitational landscape traversed (lensing), magnetic environments (polarization), and the expansion of space during transit (redshift). From the photon's own frame, emission and absorption are one touch: zero proper time. And the receiver is made of prior starlight (stellar nucleosynthesis) and powered by it (photosynthesis).
 

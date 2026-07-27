@@ -1045,7 +1045,7 @@ Social media ranking algorithms optimize for **dwell time × engagement depth.**
 **The n-th degree effect:** Each comment exposes the post to the commenter's network. 15 comments → 2,000-5,000 organic reach. Same post with a link → 200-500. **10x multiplier from removing four characters (a URL).** This is the same feedback loop that makes posts "go viral" — but triggered by structural design, not luck.
 
 **Implementation:** `src/components/sharing/ShareZoG.tsx`
-**Phase Shift Technology:** Domain 51 — The Curiosity Gap Engine (Algorithmic Aikido) in [Phase Shift Technology Library](../01-vision/phase_shift_technology_library.md)
+**Phase Shift Technology:** Phase Shift Technology 51 — The Curiosity Gap Engine (Algorithmic Aikido) in [Phase Shift Technology Library](../01-vision/phase_shift_technology_library.md)
 **Guerrilla Hack:** [Curiosity Gap Share](../02-strategy/guerrilla_marketing_hacks.md#the-curiosity-gap-share--zog-viral-engine-april-2026)
 **Playbook Tactic:** Tactic 9 in [Unique Business Playbook](./unique_business_playbook.md)
 
@@ -1185,7 +1185,7 @@ The shift from observer → protagonist happens at the CTA, not before it.
 ## The Dual-Frequency Distribution Principle (April 2026)
 
 > *"The content addresses what's RIGHT. The funnel addresses what's WRONG. Both are true. Both are needed."*
-> *Source: Domain 73 — Phase Shift Technology Library*
+> *Source: Phase Shift Technology 73 — Phase Shift Technology Library*
 
 ### The Principle
 
@@ -1228,14 +1228,14 @@ Entrance: voluntary resonance     Entrance: recognition of cost
 3. **The funnel should never feel like content.** It should feel like a decision — naming consequence and offering the bridge
 4. **The bridge surfaces (quiz, DM conversation) hold both frequencies simultaneously:** recognition of what's alive AND acknowledgment of what it costs to leave it unnamed
 
-> **Connection:** [Phase Shift Technology Library — Domain 73](../01-vision/phase_shift_technology_library.md) | [Unique Business Playbook — Principle 6](./unique_business_playbook.md)
+> **Connection:** [Phase Shift Technology Library — Phase Shift Technology 73](../01-vision/phase_shift_technology_library.md) | [Unique Business Playbook — Principle 6](./unique_business_playbook.md)
 
 ---
 
 ## The Playbook-as-Lead-Magnet Pattern (April 2026)
 
 > *"Give away the entire architecture. The blueprints show you the architecture. The session builds the house."*
-> *Source: Domain 74 + Principle 2 (Open Blueprint Paradox)*
+> *Source: Phase Shift Technology 74 + Principle 2 (Open Blueprint Paradox)*
 
 ### The Principle
 
@@ -1283,7 +1283,7 @@ Reader sees the methodology → understands the architecture
 
 The content CREATES the felt need for the session. Not by withholding — by GIVING EVERYTHING and letting the reader discover the gap on their own.
 
-> **Connection:** [Phase Shift Technology Library — Domain 74](../01-vision/phase_shift_technology_library.md) | [Unique Business Playbook — Principle 2](./unique_business_playbook.md)
+> **Connection:** [Phase Shift Technology Library — Phase Shift Technology 74](../01-vision/phase_shift_technology_library.md) | [Unique Business Playbook — Principle 2](./unique_business_playbook.md)
 
 ---
 
@@ -1351,7 +1351,7 @@ With an affluent, program-fatigued audience, **a low price creates suspicion, no
 
 # Part III-B: The Adoption Ladder & Threshold Marketing (July 6, 2026)
 
-> *Source: the July 4-6 excavation (Ivory Tower + Steward of the Source conversations). Theory: Phase Shift Library Domains 99-100. Ontology: `uniqueness_economy_thesis.md` §0.7. This section supersedes "pick a niche" thinking.*
+> *Source: the July 4-6 excavation (Ivory Tower + Steward of the Source conversations). Theory: Phase Shift Library Technologies 99-100. Ontology: `uniqueness_economy_thesis.md` §0.7. This section supersedes "pick a niche" thinking.*
 
 ## The Adoption Ladder
 
@@ -1431,7 +1431,7 @@ Collect 30-50 real "what was happening when you reached out?" phrases from call 
 
 ## The Physics of Propagation (added July 7, 2026)
 
-Self-recognition (Domain 100) is the strongest force for identity-level ideas. The full physics of how an idea spreads has four forces. Check any post, share flow, or campaign against all four:
+Self-recognition (Phase Shift Technology 100) is the strongest force for identity-level ideas. The full physics of how an idea spreads has four forces. Check any post, share flow, or campaign against all four:
 
 | Force | Plain version | Established term |
 |-------|---------------|------------------|
@@ -1448,13 +1448,13 @@ Self-recognition (Domain 100) is the strongest force for identity-level ideas. T
 
 ## Category Lines: the Shelf Key (July 7, 2026)
 
-> *Validated independently by Sergey (July 1 strategic mirror, in the CRM): "people think in categories; if the category is unclear, the market cannot place the product." Sibling of Domain 90 (Three-Layer Positioning Architecture): the category line is the Audience Translation layer made purchasable.*
+> *Validated independently by Sergey (July 1 strategic mirror, in the CRM): "people think in categories; if the category is unclear, the market cannot place the product." Sibling of Phase Shift Technology 90 (Three-Layer Positioning Architecture): the category line is the Audience Translation layer made purchasable.*
 
 **The law: people buy through categories.** A category is the shelf in the buyer's head. It tells them what this is, what it should cost, and who else sells it. No shelf, no purchase, no matter how good the work.
 
 - **Essence:** a category is how a buyer feels safe. A known shelf means known risk, known price, known way to judge you.
 - **Significance:** the shelf fixes three numbers before you say a word: which budget pays for it, what the price anchor is, and who the competitors are. Uncategorizable = unbuyable. Miscategorized = mispriced. The same work can carry a 20x price difference depending on the shelf it stands on.
-- **Consequence:** category choice IS ecology choice (Domain 99). The shelf decides which fields have the organs to recognize you.
+- **Consequence:** category choice IS ecology choice (Phase Shift Technology 99). The shelf decides which fields have the organs to recognize you.
 
 **The four rules:**
 
@@ -1528,7 +1528,7 @@ The **76% number** comes from *Play Bigger* (Ramadan, Peterson, Lochhead, Maney,
 
 Classical category design is **one company, one category**. This venture transcends that in three exact ways, and the exactness is what keeps it from becoming fluff or overwhelm:
 
-1. **The set of categories stems from one invariant.** That makes it easy to explain, bedrock-founded, and sustainable: every category line derives from the same object (Domain 98).
+1. **The set of categories stems from one invariant.** That makes it easy to explain, bedrock-founded, and sustainable: every category line derives from the same object (Phase Shift Technology 98).
 2. **One product, one category stays the law.** The transcendence is not "one company, many categories" loosely; it is **one company, many products, and each product holds exactly one category.** Discipline preserved at every holon.
 3. **The platform scales category-of-one creation.** The precise statement: **every person is either creating or evolving a category** — most evolve an existing one (a better-fit position on a known shelf); a minority create a category of one. The methodology serves both, and that is the mechanism by which the Uniqueness Economy gets built.
 

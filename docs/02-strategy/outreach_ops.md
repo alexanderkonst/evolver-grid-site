@@ -204,7 +204,7 @@ v1 query above preserved as genealogy.
 | Date | Name | Sent | Acc | Rep | Booked | Paid | Next follow-up date |
 |---|---|---|---|---|---|---|---|
 
-**Skin-first upgrade (Domain 88, Demo-as-Hospitality):** for the next wave of community pitches, build the community's skin BEFORE message 1 (30-60 min per skin, see `skin_creation_playbook.md`) and open with the live URL: "here is what your community's version already looks like." The demo is the proposal. Applies when the community has a public visual identity to mirror.
+**Skin-first upgrade (Phase Shift Technology 88, Demo-as-Hospitality):** for the next wave of community pitches, build the community's skin BEFORE message 1 (30-60 min per skin, see `skin_creation_playbook.md`) and open with the live URL: "here is what your community's version already looks like." The demo is the proposal. Applies when the community has a public visual identity to mirror.
 
 **Asset reference (Jul 23):** Will's own masterclass flyer set ("DAOS UNLEASHED", daouniverse.club/masterclass) is the visual/structural template his audience already responds to: hero title + speaker portrait + "in 90 minutes you will learn" 4-icon grid + single gold register CTA. Our /zoneofgenius assets should match this skeleton in Club DAO black-gold with our navy-gold accents.
 
@@ -324,7 +324,7 @@ The **"Next follow-up date" column IS the system.** No memory required.
 - Send those follow-ups first thing in tomorrow's morning send block.
 - After a follow-up is sent, either update the date to the next stage (+7 days) or close the row if Follow-up 2 already went and nothing came back.
 
-**The Convergence Play (Day 133, July 23, 2026) — the applied choreography:** the webinar is the matching layer's live demo, not just a funnel. Sequence: (1) attendees create profiles through the community-branded flow whose door states the consent plainly ("your profile will be visible to [community] for collaboration matching — opt out anytime, one click"); (2) 20-30 consented profiles land; (3) Sasha hand-crafts 2-3 collaboration intros the members can't see themselves; (4) minutes after the webinar, the host receives a prepared WhatsApp: "make this intro between X and Y; this collaboration between A, B and C just revealed itself"; (5) while the wow is fresh, the module offer, one sentence: **"You just watched your community start matching itself — the module keeps that running continuously, under your brand, and you saw it work on your own people."** What the host buys = the ongoing ability to generate that moment monthly without Sasha in the loop: a branded dashboard view of member profiles with continuously suggested matches. Four holons, one motion: the webinar articulates persons → the persons' legibility activates the community → the activated community demonstrates the infrastructure → the infrastructure feeds the studio (Domains 113/114 applied).
+**The Convergence Play (Day 133, July 23, 2026) — the applied choreography:** the webinar is the matching layer's live demo, not just a funnel. Sequence: (1) attendees create profiles through the community-branded flow whose door states the consent plainly ("your profile will be visible to [community] for collaboration matching — opt out anytime, one click"); (2) 20-30 consented profiles land; (3) Sasha hand-crafts 2-3 collaboration intros the members can't see themselves; (4) minutes after the webinar, the host receives a prepared WhatsApp: "make this intro between X and Y; this collaboration between A, B and C just revealed itself"; (5) while the wow is fresh, the module offer, one sentence: **"You just watched your community start matching itself — the module keeps that running continuously, under your brand, and you saw it work on your own people."** What the host buys = the ongoing ability to generate that moment monthly without Sasha in the loop: a branded dashboard view of member profiles with continuously suggested matches. Four holons, one motion: the webinar articulates persons → the persons' legibility activates the community → the activated community demonstrates the infrastructure → the infrastructure feeds the studio (Phase Shift Technologies 113/114 applied).
 
 ---
 
@@ -383,7 +383,7 @@ Sasha reports once a day, or ad hoc, in chat. Minimum viable fields per touch:
 
 Claude then sends one Pulse: update the Pulse event, reconcile the CRM Master Table + Offer Ledger, compute the funnel per campaign, flag follow-ups due tomorrow, and capture reply language verbatim into the harvest.
 
-**Response typology (Domain 68).** Every logged reply also gets a RESPONSE TYPE, and Claude harvests per type:
+**Response typology (Phase Shift Technology 68).** Every logged reply also gets a RESPONSE TYPE, and Claude harvests per type:
 
 - **wow-this-is-me** — UL-first, validates the copy.
 - **how-does-this-work** — UR-first, needs mechanism transparency.
@@ -392,7 +392,7 @@ Claude then sends one Pulse: update the Pulse event, reconcile the CRM Master Ta
 - **silence** — normal, not data about the person.
 - **looks-like-data-collection** — trust-first, gets consent-of-seeing transparency.
 
-Type determines the reply move. Typed responses accumulate into the response map (Domain 68).
+Type determines the reply move. Typed responses accumulate into the response map (Phase Shift Technology 68).
 
 **Sent-copy corpus rule (Day 132):** every final sent wording Sasha reports is archived verbatim in the CRM's Outreach Message Bank → Sent messages (private ledger), tagged with scenario, outcome, and timestamped (date of send recorded at archiving, per the Timestamp Law). This corpus is the calibration set for all future AI-drafted copy: new drafts are checked against what actually got sent and what actually converted.
 
@@ -441,14 +441,14 @@ Mechanical work (pulse logging, doc updates, translations, scoring tables, copy 
 
 Reason: token economy + right tool per layer. Mechanistic work is delegable; subtle strategy and copy are not. Sasha's rule, Day 125.
 
-## 14. Content engine (Domains 74/71/79, designed April, activating now)
+## 14. Content engine (Phase Shift Technologies 74/71/79, designed April, activating now)
 
 The Phase Shift Technology Library's 112 domains ARE the content library. Production is sequencing and visualizing, not creating.
 
 Three formats:
 
 - **(a) Infographic Episodes.** The 7-artifact methodology as a permanent carousel library, batched in one ceremony session, posted as permanent profile content. CTA only in the final episode, as the logical conclusion.
-- **(b) The weekly genuine question (Domain 79).** One question that gives the reader an insight, no links. Example: "Who is your business actually for?"
+- **(b) The weekly genuine question (Phase Shift Technology 79).** One question that gives the reader an insight, no links. Example: "Who is your business actually for?"
 - **(c) Reddit value posts** drawn from single domains, told as personal story.
 
 **Cadence law:** batched ceremony creation, not daily grind. Follows the 6/2 profile rhythm: retreat, integrate, emerge, impact.
