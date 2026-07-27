@@ -367,7 +367,7 @@ This is the cycle the divine engages in. Not 13 separate stages — 13 STEPS of 
 
 The Merkaba (Star Tetrahedron) has been understood as an energy body (Egyptian/Kabbalistic), a light vehicle for ascension, a meditation geometry. The ontological reframe:
 
-**The Merkaba is the geometry OF seeing at the 6th-person level.** Two interpenetrating tetrahedra — Masculine/Structure pointing up, Feminine/Depth pointing down — rotating in opposite directions. What their rotation produces is not transportation. It is **complete seeing** — every angle at every depth.
+**The Merkaba is the geometry OF seeing at the 6th-person level.** Two interpenetrating tetrahedra — the first act of seeing and the seeing of that seeing, offset by sequence (see §11.3a) — rotating in opposite directions. What their rotation produces is not transportation. It is **complete seeing** — every angle at every depth.
 
 The Merkaba doesn't take you somewhere. **It lets you SEE completely.** The 13th perspective at its center is the awareness that is BORN when the seeing becomes complete.
 
@@ -1016,6 +1016,20 @@ The three axes, connected at their ends, form two pyramids base to base: the oct
 
 §2 names the straight radia and the spin. This recognition names the pair cleanly and assigns each its work. The universe both pulses (expands in discrete steps) and spins (rotates), at once. Pulse creates structure: directed instantaneous movements that build form and repeat fractally at every scale. Spin creates process: flow, relation, relativity, the infinite angles by which everything relates to everything. Pulse is the masculine line, spin is the feminine rotation. Structure and flow are the two faces of one growing, ever-expanding sphere. Geometrically this pairing is exact: the octahedron is the structure at rest, and the Merkaba (Star Tetrahedron) is the same octahedron in counter-spin, because the octahedron is precisely the shared core of the Merkaba's two interpenetrating tetrahedra (the stella octangula). Pulse holds the form still; spin flowers its eight faces outward into the two counter-rotating tetrahedra. (See Open Edge 3.)
 
+### 11.3a The Stella Octangula, Exactly (July 26, 2026)
+
+The Merkaba and the octahedron are one solid described twice. The arithmetic proves it: a regular tetrahedron of edge 2 divides exactly into four regular tetrahedra of edge 1 plus one regular octahedron of edge 1. So each large tetrahedron already contains an octahedron wearing four spikes. Overlay the second tetrahedron in dual position and it contains the same octahedron, its four spikes on the other four faces. One shared core, eight spikes. Read one way: two interpenetrating tetrahedra. Read the other way: an octahedron with a tetrahedron raised on each of its eight faces. The same object, counted twice.
+
+**Two wholes, not two halves.** The two tetrahedra do not split the octahedron between them. Each tetrahedron contains the entire octahedron; the octahedron is their overlap, not their sum. This is not a form cut in two that spins apart. It is two complete forms sharing one core, each holding the whole core inside itself. For the seeing instrument this is structural: the second act of seeing does not complete the first. It is a whole act of seeing containing the same invariant.
+
+**The core breathes.** The intersection equals the octahedron exactly when the two tetrahedra sit in the aligned dual position. Rotate one against the other and the shared volume is no longer an octahedron; it changes shape continuously through the turn and returns to a clean octahedron each time alignment comes round again. The core does not vanish and reappear. It breathes. Spin carries the form around; the octahedron is what pulses into being each time the turn comes home. Pulse and spin (§11.3) are therefore not commentary on the geometry. They are inside it.
+
+**The cube completes the nesting.** The eight spike tips are exactly the eight corners of a cube, each tetrahedron using four alternating corners. The octahedron at the center is that cube's dual, its six vertices at the centers of the cube's six faces. So: cube = the hull, two tetrahedra = the two acts of seeing, octahedron = their shared core. "Cube married to Tetrahedron" (§4c) and "two interpenetrating tetrahedra" were never two claims. The cube is the outside of the same object whose inside is the octahedron.
+
+**Sequence, not direction.** The traditional assignment (Masculine/Structure pointing up, Feminine/Depth pointing down) is borrowed iconography, and it trips the container-error diagnostic of §13.7: up and down are directions, and §13.3 holds that the pulse creates direction, so orientation cannot distinguish the primordial pair. What distinguishes the two tetrahedra is sequence. One is the act of seeing, the other the seeing of that seeing; 13 and 13, offset by the ordering that makes them irreducible (§2). A second reason to retire the old phrasing: §11.3 assigns spin itself to the feminine, so she cannot also be one of the two spinning halves. She is the rotation of both.
+
+**Why it spins.** §13.3: spin is the cause-and-effect of a potential difference, what a system does when a gradient exists. §13.1: the first duality is observer/observed. Seer and seen are never symmetric, and the act of seeing is the current across that asymmetry. The Merkaba rotates because seeing is asymmetric. And per §13.2 the rotation runs on every axis, not one, which is why the instrument yields 27 positions rather than a single privileged viewpoint.
+
 ### 11.4 The Depiction Ladder: 2D Renders 3D, 3D Renders 4D
 
 A flat 2D plane can depict a 3D object; a 3D space can depict a 4D object. Each dimension can render the one above it, but not two above. On 2D you can already make interfaces that read as real physical 3D objects (known craft in design). The 3D-to-4D translation is the frontier: extremely avant-garde, and the direction the next paradigm of surface design is reaching toward. This ties directly into the NEO-DIMENSIONAL (Stage 8) UI work, where dimensionality is the first principle of digital surface.
@@ -1154,7 +1168,8 @@ Recorded at Sasha's request, in the same spirit as the AI formalizations credite
 
 ---
 
-*Universal Ontology v1.10*
+*Universal Ontology v2.0*
+*Updated: July 26, 2026 (§11.3a The Stella Octangula, Exactly: the dissection identity, two wholes not two halves, the breathing core, cube as hull, sequence not direction, spin as gradient response)*
 *Updated: July 17, 2026 (§13.8 The Light of the Cosmos: the veil, the blend, whole-to-every-address, Day 127)*
 *Updated: July 15, 2026 (§13 The July 15 Recognitions: pulse before ray, the two ESCs of the first duality and the omnidirectional spin, rays multiply then branch, pyramid as half-octahedron, new physics as founding permanence)*
 *Updated: July 3, 2026 (§12 The Prime Invariant: relationships before objects, invariance under transformation, the five articles, generative ontology as source-pattern before projection)*
