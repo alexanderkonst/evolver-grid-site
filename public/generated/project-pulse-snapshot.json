@@ -1,76 +1,8 @@
 {
-  "generated_at": "2026-07-27T05:15:14.070Z",
+  "generated_at": "2026-07-27T18:20:17.356Z",
   "source": "docs/09-logs/project_pulse_log.md",
-  "eventsCount": 42,
-  "latestEvent": {
-    "date": "2026-07-24",
-    "day": "134",
-    "pulse": "rafael_paid_devon_proposal_karime_scope",
-    "who": "[Sasha, Rafael Saar, Devon Seagers, Karime]",
-    "what_happened": "Three threads moved. Rafael Saar's donation-track payment for the 2-hour Productize Yourself session came in: 4,444 RUB, approximately $57 USD, more than expected for the ambassador-track exception. His session stays booked for Monday, Jul 27. CRM row 39 and the Offer Ledger row moved to paid; the Revenue Summary strict-received total recomputed to $2,428 (prior $2,371 + Rafael's $57). Devon Seagers received the community- webinar proposal (message 3 of the host sequence), essentially identical in structure to the Oyi send already archived: 90 minutes live plus 30 minutes QA, date proposed ~Aug 6 pending Devon's day/time preference, deliverables, what Sasha handles, revenue share (33% of Productize Yourself and BUILT, 90% of digital-product revenue), honest turnout scenarios (~$100/7 people, ~$500/15, ~$1,800/30), assets offered, and a single bottomline ask for confirmation plus 1-2 date/time options; it omits the nonprofit-funded-cohort and monthly-cadence paragraphs, which answered Oyi-specific questions Devon never raised. CRM row 19 and the Offer Ledger moved to proposal-sent-awaiting-date, follow-up 2026-07-27. Separately, Karime and Sasha held a 53-minute working session on the Evolution Portal scope. Six new facts surfaced: two distinct use cases (a sequenced 8-week unlocking practice journey for microdosing-protocol clients, and a free-browse thematic library for coaching clients and alumni); her own audio library needs consolidation and naming, with she supplying the raw audios; a quality-of-life assessment to be included as optional self-tracking, positioned as sovereignty over one's own transformation rather than coach-graded progress; subscription pricing under consideration (~$33/mo) that needs category/shelf positioning work; a new product idea surfaced live, personalized gift meditations for loved ones' big moments; and a later-layer idea to curate other practitioners' work. This is a priced SOW conversation inside a named container — Karime intends to pay. Next step: Sasha revises the priced Evolution Portal proposal with these aspects and returns it.",
-    "energy_exchanged": "[donation received above expectation, proposal parity delivered, scope-deepening working session, trust to pay]",
-    "affected_holons": "[CRM Master Table, Offer Ledger, Outreach Message Bank, Revenue Summary, Daily Learnings Ledger]",
-    "phase_shift_significance": "notable",
-    "next_action": "Deliver Rafael's session Monday, Jul 27. Await Devon's confirmation and date/time options, follow-up 2026-07-27 if silent. Sasha to revise and return the priced Evolution Portal proposal to Karime with the six new scope facts folded in.",
-    "staleness_or_contradictions": "none",
-    "title": "rafael_paid_devon_proposal_karime_scope"
-  },
-  "phaseShiftDistribution": {
-    "minor": 10,
-    "major": 6,
-    "notable": 25,
-    "routine": 1
-  },
-  "openNextActions": [
-    {
-      "date": "2026-07-22",
-      "title": "tatjana_reflection_proposal_sent",
-      "next_action": "No chasing. She is at the dacha; decision window ~2-3 weeks. Follow-up ~Aug 1 if silent."
-    },
-    {
-      "date": "2026-07-22",
-      "title": "brenda_chamber_connector_github_ceo_intro_offered",
-      "next_action": "Schedule the meeting with Brenda this week to design the approach. Strongest near-term angle: executive/org AI-transformation workshops (already validated with this exact audience), with the articulation layer inside; possible Sergey partnership. No resume or curriculum sent until the angle is chosen."
-    },
-    {
-      "date": "2026-07-23",
-      "title": "rafael_kirill_referral_donation_session_agreed",
-      "next_action": "Owed by Sasha today: send calendar link + payment/donation instructions. Follow-up 2026-07-26 if not booked."
-    },
-    {
-      "date": "2026-07-23",
-      "title": "nia_soft_no_chris_booked_rafael_links_sent",
-      "next_action": "Send Nia the generous no-strings reply. Deliver Chris's Direction Call Jul 28. Await Rafael's donation + booking; follow-up Jul 26 if silent."
-    },
-    {
-      "date": "2026-07-23",
-      "title": "rafael_donated_booked_mon_nia_reply_gold",
-      "next_action": "Deliver Rafael's session Monday, Jul 27. No action owed on Nia -- relationship kept warm, no nudges."
-    },
-    {
-      "date": "2026-07-23",
-      "title": "nia_precision_riff_oyi_pdf_flow_marley_parked",
-      "next_action": "Sasha replies to Oyi with the test-then-PDF flow and a soft pointer to the $1,500 proposal. No action owed on Nia or Marley."
-    },
-    {
-      "date": "2026-07-23",
-      "title": "oyi_webinar_proposal_msg3_sent",
-      "next_action": "Wait for Oyi's confirmation and date/time options. Follow up 2026-07-26 if silent. No other action owed."
-    },
-    {
-      "date": "2026-07-23",
-      "title": "gleb_call_107min_evolution_lead_nia_clipping",
-      "next_action": "Sasha to send Gleb the Reflection Proposal (ops §4a) within 24h, anchoring the BUSINESS door -- risk of being positioned as a free spiritual advisor. Await Gleb's message in ~2 days, follow-up 2026-07-25 if silent. Evolution collab call with Женя Валенская stays sequenced behind Gleb's own path-walking. Reply to Nia with the clipping-thread mirror; no offer."
-    },
-    {
-      "date": "2026-07-23",
-      "title": "day133_close_karime_tomorrow_learnings",
-      "next_action": "Sasha shows up to the Karime call Jul 24. No other action owed."
-    },
-    {
-      "date": "2026-07-24",
-      "title": "rafael_paid_devon_proposal_karime_scope",
-      "next_action": "Deliver Rafael's session Monday, Jul 27. Await Devon's confirmation and date/time options, follow-up 2026-07-27 if silent. Sasha to revise and return the priced Evolution Portal proposal to Karime with the six new scope facts folded in."
-    }
-  ]
+  "eventsCount": 0,
+  "latestEvent": null,
+  "phaseShiftDistribution": {},
+  "openNextActions": []
 }
