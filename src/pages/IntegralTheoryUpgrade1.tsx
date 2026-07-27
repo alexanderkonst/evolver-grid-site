@@ -129,14 +129,14 @@ const content = {
         title: "The Complete Sequence",
         content: [
           { type: 'sequence', items: [
-            { n: "1", insight: "Pure existence. \"I AM.\"" },
+            { n: "1", insight: "Pure existence. \"BEING IT.\"" },
             { n: "3", insight: "First distinction. Trinity. \"I can SEE that I am.\"" },
             { n: "4", insight: "Direction. Four quadrants. \"I can MOVE in what I see.\"" },
             { n: "7", insight: "Full spectrum. Two crisis points. \"I can CHOOSE — and some choices reverse me.\"" },
             { n: "12", insight: "All angles at all depths. None privileged. \"I can hold it ALL.\"" },
             { n: "13", insight: "The center born. The Logos. The Sun. \"I AM the one who holds.\"" },
             { n: "14", insight: "The Logos seen from outside. 13 and 14 interpenetrate. \"I can see the seer.\"" },
-            { n: "26", insight: "Two complete acts of seeing held as one. The Merkaba in full rotation. \"I see the seeing itself. This is the Name of God.\"" },
+            { n: "26", insight: "Two complete acts of seeing held as one. The Merkaba in full rotation. \"I see the seeing itself.\"" },
             { n: "27", insight: "Seeing BECOMES form. The Spoken Name. \"It is done. And it begins again.\"" },
           ]}
         ]
@@ -332,14 +332,14 @@ const content = {
         title: "Полная последовательность",
         content: [
           { type: 'sequence', items: [
-            { n: "1", insight: "Чистое существование. «Я ЕСТЬ.»" },
+            { n: "1", insight: "Чистое существование. «БЫТЬ ЭТИМ.»" },
             { n: "3", insight: "Первое различение. Троица. «Я ВИЖУ, что я есть.»" },
             { n: "4", insight: "Направление. Четыре квадранта. «Я могу ДВИГАТЬСЯ в том, что вижу.»" },
             { n: "7", insight: "Полный спектр. Две точки кризиса. «Я могу ВЫБИРАТЬ — и некоторые выборы обращают меня вспять.»" },
             { n: "12", insight: "Все углы на всех глубинах. Ни один не привилегирован. «Я способен УДЕРЖАТЬ всё.»" },
             { n: "13", insight: "Центр рождён. Логос. Солнце. «Я ЕСТЬ тот, кто удерживает.»" },
             { n: "14", insight: "Логос увиден снаружи. 13 и 14 взаимопроникают. «Я вижу видящего.»" },
-            { n: "26", insight: "Два полных акта видения удержаны как одно. Меркаба во вращении. «Я вижу само видение. Это Имя Бога.»" },
+            { n: "26", insight: "Два полных акта видения удержаны как одно. Меркаба во вращении. «Я вижу само видение.»" },
             { n: "27", insight: "Видение СТАНОВИТСЯ формой. Изречённое Имя. «Совершилось. И начинается снова.»" },
           ]}
         ]

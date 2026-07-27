@@ -4182,7 +4182,7 @@ At 27 facets, a thing has been seen from enough angles at enough depth to become
 | 5 | **12** | Love | All angles at all depths, none privileged | *"I can hold it ALL"* |
 | 6 | **13** | Wisdom | The center born — the Logos | *"I AM the one who holds — the SUN"* |
 | — | **14** | — | The Logos seen from outside. 13 & 14 interpenetrate | *"The Sun has a shadow. I can see the seer"* |
-| 7 | **26** | Unity | Two complete acts of seeing held as one | *"I see the seeing itself. This is the Name of God"* |
+| 7 | **26** | Unity | Two complete acts of seeing held as one | *"I see the seeing itself"* |
 | 8 | **27** | Gateway | Seeing BECOMES form. New octave begins | *"It is done. And it begins again."* |
 
 ### 66g. The Two Shocks Revisited
