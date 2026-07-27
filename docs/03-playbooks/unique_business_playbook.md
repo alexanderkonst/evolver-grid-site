@@ -1814,7 +1814,19 @@ Every insight in the playbook must eventually find its home in a workflow step. 
     3. **Identify the emotional trigger.** The moment in the session where the founder gets emotional IS the crack where the shadow lives. For Alexa: "I felt emotional when I recognized that the tech is just a mechanism and the gift is different." For Sergey: the firewood story. For Oyi: the inner child recognition.
     4. **Produce the shadow anatomy.** Four layers: Surface (the presenting worry), Middle (how they explain it to themselves), Root (the ontological belief), Inversion (why the root belief is false).
     5. **Write in universal language.** The shadow must land in the gut, not the mind. No jargon, no framework terms.
-  - **Precision scoring:** Shadow typically scores higher than uniqueness (10/10 vs 8/10) because the shadow is felt, not assessed. The body recognizes the shadow instantly.
+  - **Precision scoring:** Shadow typically scores higher than uniqueness (10/10 vs 8/10) because the shadow is felt, not assessed. The body recognizes the shadow instantly. **⚠️ Read this together with the Two Dials below — that 10/10 pattern holds only for shadows the founder has already met.**
+  - **⭐ TWO DIALS — resonance reads the light, charge reads the shadow (v1.0, Day 137, July 27, 2026 — Rafael's session).** The 1–10 resonance scale asks one question: *how much does this resonate, how much is this me?* That works for the light, where accuracy produces recognition. **It inverts on the shadow.** The shadow is by definition the part the founder has not claimed yet, so an accurate naming produces recoil, not recognition — and recoil reads as a LOW number on a resonance dial.
+    - **The founder's own diagnostic (Rafael, verbatim):** light artifacts land as *«вау, да, это я»*; shadow artifacts land as *«нет, блядь, это не я, идите нахер»*. Resistance IS the confirmation.
+    - **The two regimes — and why the number alone can't tell them apart:**
+
+      | Regime | What the founder feels | What they score |
+      |---|---|---|
+      | Shadow already integrated (Alexa, Sergey, Oyi — the cases this playbook was written from) | no sting, easy to affirm | **9–10** |
+      | Shadow still live and unclaimed (the valuable one) | sting, argument, tightening | **6–7** |
+
+    - **The systematic risk:** a live shadow scored 6–7 gets deprioritized in favour of a comfortable 10, in every session run on a single dial. Re-read old sessions with this in mind — a shadow that came back a 7 may have been the accurate one.
+    - **The fix — score the shadow on a second dial:** **ЗАРЯД / CHARGE (0–10): how much does this sting? How much do you want to argue with it?** The shadow is landed when charge is HIGH **and**, a minute later, the founder can still say *"это про меня"*. High charge with no ownership = wrong or too early. Low charge with instant ownership = already integrated; keep digging, the live one is underneath.
+    - **Live evidence (Rafael, Day 137):** the parts he graded most comfortably («картину я уже показываю», «авторство я принял») were the parts he had already worked through. The one still live scored 7.5–8 with visible resistance — and he then called it *«практически вся тёмная сторона»*: **«Я раздаю мужество, которого себе не даю.»**
   - **Connection to other artifacts:** Shadow → Myth (the Master Lie is the world-level version of the personal shadow) → Tribe (the tribe shares the same shadow pattern) → Pain (the tribe's pain is the shadow playing out in their lives)
 - [ ] **2. MYTH** → What must be true about the world for my work to be inevitable?
   - Output: Worldview (attack + reframe + invitation) + tagline

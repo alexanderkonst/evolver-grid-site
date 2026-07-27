@@ -23,7 +23,7 @@ import {
   type ArtifactKey,
 } from "../_shared/ubb-prompts.ts";
 import { isViabilityApplicable, runViabilityPass, type Viability } from "../_shared/viability.ts";
-import { resolveOutputLanguage, languageDirective } from "../_shared/language.ts";
+import { resolveOutputLanguage, languageDirective, proseCalibration } from "../_shared/language.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -127,7 +127,7 @@ signal-energies from across all versions, plus any new signal-energies
 surfaced by the roast. The common threads across versions are higher-
 confidence signal; energies that appear in only one version need to be
 scored carefully — they may be signal that hasn't yet been preserved, or
-noise the iteration is correctly shedding.${languageDirective(outputLanguage)}`;
+noise the iteration is correctly shedding.${languageDirective(outputLanguage)}${proseCalibration(outputLanguage)}`;
 
     const siblingSummary = Object.entries(sibling_artifacts || {})
       .map(([k, v]) => `- ${k} (specificity ${v.specificity}): ${JSON.stringify(v.content).slice(0, 400)}`)
