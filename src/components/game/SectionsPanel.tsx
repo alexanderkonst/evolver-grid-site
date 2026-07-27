@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useLocation } from "react-router-dom";
-import { ChevronRight, ChevronDown, X } from "lucide-react";
+import { Check, ChevronRight, ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { PLAYBOOK_STEPS } from "@/data/playbookSteps";
@@ -1186,6 +1186,23 @@ const SectionsPanel = ({
         return { text: label };
     };
 
+    // Shell Harmony: JOURNEY is temporally minimal. Keep completed history,
+    // the present actionable step, and one next step in view. Compute the
+    // progression window once per render rather than once per row.
+    const journeyPrimarySections =
+        activeSpaceId === "journey"
+            ? spaceData.sections.filter((item) => item.variant !== "sidequest" && !item.isHeader)
+            : [];
+    const firstActionableJourneyIndex = journeyPrimarySections.findIndex(
+        (item) => !item.completed && !item.locked,
+    );
+    const journeyPresentIndex =
+        activeSpaceId === "journey"
+            ? firstActionableJourneyIndex >= 0
+                ? firstActionableJourneyIndex
+                : Math.max(0, journeyPrimarySections.length - 1)
+            : -1;
+
     return (
         <div
             className={cn(
@@ -1229,13 +1246,16 @@ const SectionsPanel = ({
                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
                 pageOwnsBackground
                     ? "bg-[rgba(6,12,28,0.94)]"
-                    : "bg-[rgba(14,32,68,0.80)] lg:bg-[rgba(14,32,68,0.72)]",
+                    : "bg-[rgba(14,32,68,0.86)] lg:bg-[rgba(14,32,68,0.82)]",
                 className
             )}
             style={{
                 border: "none",
+                backgroundImage: pageOwnsBackground
+                    ? "linear-gradient(170deg, rgba(27,45,82,0.32) 0%, rgba(6,12,28,0.06) 52%, rgba(2,8,22,0.42) 100%)"
+                    : "linear-gradient(170deg, rgba(68,88,132,0.34) 0%, rgba(31,52,94,0.22) 42%, rgba(12,29,62,0.48) 100%)",
                 boxShadow:
-                    "2px 0 22px -10px rgba(244, 212, 114, 0.22)",
+                    "2px 0 18px -12px rgba(244, 212, 114, 0.16)",
             }}
         >
             {/* Gold spine — mirrors the pane 1 treatment. Strongest in
@@ -1304,7 +1324,7 @@ const SectionsPanel = ({
                 section rows can render the same dark-glass + gold-hairline
                 tooltip as the locked space chips on pane 1. */}
             <TooltipProvider delayDuration={150} skipDelayDuration={0}>
-            <nav className="py-2 pt-1">
+            <nav className="py-2 pt-1" aria-label={`${spaceData.title} path`}>
                 {/* Day 52 (Sasha 2026-04-26): Fog-of-war effect.
                     Locked items in pane 2 are dimmed progressively: the
                     first locked item is clearly readable (still soft), and
@@ -1389,6 +1409,28 @@ const SectionsPanel = ({
                         return !moreSpecific;
                     })();
                     const isLocked = section.locked === true;
+                    const isSidequest = section.variant === "sidequest";
+                    const journeySectionIndex =
+                        activeSpaceId === "journey"
+                            ? journeyPrimarySections.findIndex((item) => item.id === section.id)
+                            : -1;
+                    const journeyState =
+                        activeSpaceId !== "journey" || isSidequest
+                            ? undefined
+                            : section.completed
+                                ? "complete"
+                                : sectionActive || journeySectionIndex === journeyPresentIndex
+                                    ? "present"
+                                    : journeySectionIndex === journeyPresentIndex + 1
+                                        ? "next"
+                                        : "future";
+                    const journeyVisible =
+                        activeSpaceId !== "journey" ||
+                        isSidequest ||
+                        journeyState !== "future" ||
+                        sectionActive;
+
+                    if (!journeyVisible) return null;
                     const { number, text: sectionText } = parseNumberedLabel(section.label);
 
                     // Fog-of-war opacity for locked items. 1st locked stays
@@ -1450,11 +1492,11 @@ const SectionsPanel = ({
                     // (rowWithTooltip below) handles the click-hint
                     // popover on hover/tap for both standard + sidequest
                     // rows uniformly.
-                    const isSidequest = section.variant === "sidequest";
                     const sidequestRowContent = isSidequest ? (
                         <div
+                            data-journey-state={activeSpaceId === "journey" ? "sidequest" : undefined}
                             className={cn(
-                                "group flex items-center gap-2.5 px-3 py-2 ml-8 mr-2 rounded-2xl transition-all duration-300 relative",
+                                "group flex items-center gap-2.5 px-3 py-2 ml-8 mr-2 rounded-xl transition-all duration-300 relative",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
                                 isLocked
                                     ? "cursor-not-allowed bg-white/[0.05] opacity-100"
@@ -1559,8 +1601,10 @@ const SectionsPanel = ({
                     // visible but text dim + no hover lift.
                     const standardRowContent = (
                         <div
+                            data-journey-state={journeyState}
                             className={cn(
-                                "group flex items-center gap-2.5 px-3 py-3 mx-2 rounded-2xl transition-all duration-300 relative",
+                                "group flex items-center gap-2.5 mx-2 rounded-xl transition-all duration-300 relative",
+                                journeyState === "complete" ? "px-3 py-2" : "px-3 py-3",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
                                 // Day 51 (Sasha 2026-04-25): legibility pass.
                                 // Now that pane 2 is fully opaque dark navy on
@@ -1581,14 +1625,16 @@ const SectionsPanel = ({
                                 // tier (1.0 white) so the row reads as
                                 // inactive without going invisible.
                                 isLocked
-                                    ? "cursor-not-allowed bg-white/[0.07] text-white/[0.94]"
+                                    ? "cursor-not-allowed bg-white/[0.025] text-white/[0.90]"
                                     : sectionActive && !hasSubSections
-                                        ? "cursor-pointer text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35)]"
-                                        : "cursor-pointer bg-white/[0.07] text-white hover:bg-white/[0.12] hover:text-white hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
+                                        ? "cursor-pointer text-white shadow-[inset_0_2px_10px_rgba(0,0,0,0.34),inset_0_0_0_1px_rgba(244,212,114,0.16)]"
+                                        : journeyState === "present"
+                                            ? "cursor-pointer text-white shadow-[inset_0_2px_10px_rgba(0,0,0,0.34),inset_0_0_0_1px_rgba(244,212,114,0.16)]"
+                                            : "cursor-pointer bg-white/[0.025] text-white hover:bg-white/[0.07] hover:text-white active:translate-y-0"
                             )}
                             style={
-                                sectionActive && !hasSubSections && !isLocked
-                                    ? { backgroundColor: "var(--skin-selected-bg, rgba(212, 175, 55, 0.08))" }
+                                (sectionActive || journeyState === "present") && !hasSubSections && !isLocked
+                                    ? { backgroundColor: "var(--skin-selected-bg, rgba(212, 175, 55, 0.10))" }
                                     : isLocked
                                         ? { opacity: fogOpacity }
                                         : undefined
@@ -1610,7 +1656,7 @@ const SectionsPanel = ({
                                     : undefined
                             }
                         >
-                            {sectionActive && !hasSubSections && !isLocked && (
+                            {(sectionActive || journeyState === "present") && !hasSubSections && !isLocked && (
                                 <div className="absolute left-0 top-1/2 w-1 h-8 rounded-r-full -translate-x-1/2 -translate-y-1/2 bg-[#d4af37] shadow-[0_0_8px_rgba(244,212,114,0.7)]" />
                             )}
                             <span className="w-[22px] h-[22px] flex items-center justify-center">
@@ -1620,6 +1666,18 @@ const SectionsPanel = ({
                                     ) : (
                                         <ChevronRight className="w-3.5 h-3.5" />
                                     )
+                                ) : section.completed && activeSpaceId === "journey" ? (
+                                    <span
+                                        className="inline-flex items-center justify-center w-[22px] h-[22px] rounded-full"
+                                        style={{
+                                            color: "rgba(244, 212, 114, 0.68)",
+                                            border: "0.5px solid rgba(212, 175, 55, 0.30)",
+                                            background: "rgba(244, 212, 114, 0.035)",
+                                        }}
+                                        aria-label="Complete"
+                                    >
+                                        <Check className="w-3 h-3" strokeWidth={1.8} aria-hidden="true" />
+                                    </span>
                                 ) : number ? (
                                     <span
                                         className="inline-flex items-center justify-center w-[22px] h-[22px] rounded-full text-[11px] font-semibold transition-all duration-200"
