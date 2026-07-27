@@ -23,7 +23,7 @@ import ConnectionSent from "@/components/game/ConnectionSent";
 
 type FilterMode = "all" | "mission" | "local" | "cofounders";
 type MatchMode = "genius" | "assets";
-type AssetGroup = "audience" | "product" | "skill" | "distribution" | "need" | "resource";
+type AssetGroup = "audience" | "product" | "skill" | "distribution" | "partner" | "resource";
 
 interface StoredAsset {
     typeId?: string;
@@ -109,7 +109,7 @@ const buildCandidateSignals = (appleseed: AppleseedData | null | undefined): Ass
     });
 
     if (appleseed.complementaryPartner?.skillsWise) {
-        signals.push({ label: appleseed.complementaryPartner.skillsWise, group: "need" });
+        signals.push({ label: appleseed.complementaryPartner.skillsWise, group: "partner" });
     }
 
     if (signals.length === 0) {
@@ -140,7 +140,7 @@ const scoreAssetPair = (yourGroup: AssetGroup, theirGroup: AssetGroup) => {
     ) {
         return 2;
     }
-    if (yourGroup === "skill" && theirGroup === "need") {
+    if (yourGroup === "skill" && theirGroup === "partner") {
         return 2;
     }
     if (yourGroup === "resource" && theirGroup === "product") {
