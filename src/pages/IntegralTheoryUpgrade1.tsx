@@ -7,10 +7,9 @@ const content = {
   en: {
     title: "27-Perspective Vision",
     subtitle: "Person-Perspectives as Dimensions of Reality",
-    author: "Aleksandr Konstantinov & Synthetic Intelligence",
+    author: "Aleksandr Konstantinov & AI",
     version: "v1.1",
     versionDate: "April 16, 2026",
-    versionNote: "Resolves Cube + Merkaba geometry and the three strata of convergence.",
     abstract: {
       label: "Abstract",
       text: "This paper presents a 27-perspective vision derived from two irreducible axes: the Four Quadrants of Integral Theory (Structure / the Divine Masculine) and the Three Depths of Trinitarian inquiry (Depth / the Divine Feminine), independently identified in Daoist philosophy as the three dantians. These axes generate 12 seeing-positions corresponding to 12 dimensions of perspective, independently identified as the 12 facets of the dodecahedron, Plato's solid shape of essence, the fifth element. Through recursive application — seeing the balanced perspective born at the center (13th, the Greek Sun Logos), then seeing the Logos itself from all positions (14th–26th) — the vision then integrates 26 perspectives: a new octave of complete seeing. The 27th is not a perspective but a crystallization — the Si-Do shock (Gurdjieff) at which seeing becomes an impulse. And that's how consciousness turns itself into matter without ever changing its nature. Hence leading to the realization of the unity of consciousness, vision, light, vibration, information, vacuum (space), archetype (myth), energy, and physical matter."
@@ -214,10 +213,9 @@ const content = {
   ru: {
     title: "27 перспектив видения",
     subtitle: "Перспективы субъекта как измерения реальности",
-    author: "Александр Константинов и Синтетический Интеллект",
+    author: "Александр Константинов и ИИ",
     version: "в. 1.1",
     versionDate: "16 апреля 2026",
-    versionNote: "Разрешение геометрии Куб + Меркаба и трёх страт конвергенции.",
     abstract: {
       label: "Аннотация",
       text: "В настоящей работе представлено видение из 27 перспектив, выведенное из двух нередуцируемых осей: Четырёх Квадрантов Интегральной Теории (Структура / Божественная Маскулинность) и Трёх Глубин тринитарного исследования (Глубина / Божественная Феминность), независимо идентифицированных в даосской философии как три дантяня. Эти оси порождают 12 позиций видения, соответствующих 12 измерениям восприятия, независимо идентифицированных как 12 граней додекаэдра — Платонова тела сущности, пятого элемента. Через рекурсивное применение — видение сбалансированной перспективы, рождённой в центре (13-я, греческий Солнечный Логос), затем видение самого Логоса со всех позиций (14–26-я) — видение интегрирует 26 перспектив: новую октаву полного видения. 27-я не является перспективой, а кристаллизацией — шоком Си-До (Гурджиев), в котором видение становится импульсом. Так сознание превращает себя в материю, не меняя своей природы. Что ведёт к осознанию единства сознания, видения, света, вибрации, информации, вакуума (пространства), архетипа (мифа), энергии и физической материи."
@@ -596,14 +594,15 @@ export default function IntegralTheoryUpgrade1() {
 
       {/* Content */}
       <div className="relative z-10 max-w-3xl mx-auto px-5 md:px-8">
-        {/* Language toggle */}
-        <div className="sticky top-36 z-40 pt-6 pb-4" style={{ background: 'linear-gradient(180deg, rgba(8,8,24,0.98) 0%, rgba(8,8,24,0) 100%)' }}>
+        {/* Hero */}
+        <header className="pt-10 md:pt-14 pb-16 md:pb-24 text-center flex flex-col items-center gap-6 md:gap-8">
+          {/* Language toggle — in-flow, quiet, scrolls with content */}
           <div className="flex justify-center">
-            <div className="liquid-glass rounded-full p-1.5 flex gap-1 ring-1 ring-white/10">
+            <div className="inline-flex gap-0.5 rounded-full ring-1 ring-white/10 bg-white/[0.03] p-0.5">
               <button
                 onClick={() => setLang('en')}
-                className={`px-8 py-3 rounded-full text-xs tracking-widest uppercase transition-all duration-300 ${
-                  lang === 'en' ? 'bg-white/10 text-white shadow-[0_0_20px_rgba(255,255,255,0.06)]' : 'text-white/40 hover:text-white/60'
+                className={`px-3.5 py-1.5 rounded-full text-[10px] tracking-widest uppercase transition-all duration-300 ${
+                  lang === 'en' ? 'bg-white/10 text-white/80' : 'text-white/30 hover:text-white/50'
                 }`}
                 style={{ fontFamily: "'Poppins', sans-serif" }}
               >
@@ -611,8 +610,8 @@ export default function IntegralTheoryUpgrade1() {
               </button>
               <button
                 onClick={() => setLang('ru')}
-                className={`px-8 py-3 rounded-full text-xs tracking-widest uppercase transition-all duration-300 ${
-                  lang === 'ru' ? 'bg-white/10 text-white shadow-[0_0_20px_rgba(255,255,255,0.06)]' : 'text-white/40 hover:text-white/60'
+                className={`px-3.5 py-1.5 rounded-full text-[10px] tracking-widest uppercase transition-all duration-300 ${
+                  lang === 'ru' ? 'bg-white/10 text-white/80' : 'text-white/30 hover:text-white/50'
                 }`}
                 style={{ fontFamily: "'Poppins', sans-serif" }}
               >
@@ -620,12 +619,9 @@ export default function IntegralTheoryUpgrade1() {
               </button>
             </div>
           </div>
-        </div>
 
-        {/* Hero */}
-        <header className="pt-20 md:pt-28 pb-16 md:pb-24 text-center">
           <h1
-            className="text-3xl md:text-5xl lg:text-6xl font-light text-white leading-tight mb-6 tracking-tight"
+            className="text-3xl md:text-5xl lg:text-6xl font-light text-white leading-tight tracking-tight"
             style={{
               fontFamily: "'Playfair Display', serif",
               textShadow: '0 0 60px rgba(255,255,255,0.08)',
@@ -633,10 +629,10 @@ export default function IntegralTheoryUpgrade1() {
           >
             {c.title}
           </h1>
-          <p className="text-white/40 text-base md:text-lg font-light mb-8" style={{ fontFamily: "'Source Serif 4', serif" }}>
+          <p className="text-white/40 text-base md:text-lg font-light" style={{ fontFamily: "'Source Serif 4', serif" }}>
             {c.subtitle}
           </p>
-          <p className="text-white/25 text-sm tracking-widest uppercase mb-3" style={{ fontFamily: "'Poppins', sans-serif" }}>
+          <p className="text-white/25 text-sm tracking-widest" style={{ fontFamily: "'Poppins', sans-serif" }}>
             {c.author}
           </p>
           <p className="text-white/15 text-xs tracking-wide" style={{ fontFamily: "'Poppins', sans-serif" }}>
@@ -647,9 +643,6 @@ export default function IntegralTheoryUpgrade1() {
             <a href="https://findyourtoptalent.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white/30 transition-colors">findyourtoptalent.com</a>
             {' · '}
             <a href="https://github.com/alexanderkonst/evolver-grid-site/blob/main/src/pages/IntegralTheoryUpgrade1.tsx" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white/30 transition-colors">source on github</a>
-          </p>
-          <p className="text-white/20 text-[11px] tracking-wide mt-2 italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
-            {c.versionNote}
           </p>
         </header>
 
