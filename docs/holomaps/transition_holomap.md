@@ -1,6 +1,6 @@
 # The Transition Holomap — the interval between two fits
 
-> *© 2026 Alexander Konstantinov · CC BY-NC-SA 4.0 · v1.0, July 26, 2026 (Day 136). Built with the holomap-builder method (.agent/skills/holomap-builder/). Theory: Phase Shift Technology 123. Feeds the Ripeness Vector (Technology 122) as its Transition axis.*
+> *© 2026 Alexander Konstantinov · CC BY-NC-SA 4.0 · v1.0, July 26, 2026 (Day 136). Built with the holomap-builder method (.agent/skills/holomap-builder/). Theory: Phase Shift Technology 124. Feeds the Ripeness Vector (Technology 123) as its Transition axis.*
 
 ---
 

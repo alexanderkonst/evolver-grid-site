@@ -1322,7 +1322,7 @@ Nine axes, each with a target position:
 
 Surrender and the two capacity gates (Means, Consent) are **multiplicative, not additive**: a closed gate cannot be compensated by pushing harder on the other axes. A ripe person with no means is not ripe yet; a wealthy person who has not surrendered is not ripe yet.
 
-Full instrument: Phase Shift Technology 122. Transition axis in full: `docs/holomaps/transition_holomap.md`.
+Full instrument: Phase Shift Technology 123. Transition axis in full: `docs/holomaps/transition_holomap.md`.
 
 #### Sovereignty first, gift second
 
@@ -1334,7 +1334,7 @@ Five moves that hand the other person authorship of the encounter before anythin
 4. Qualify surrender before offering sight.
 5. Declare the container at the start.
 
-**The underlying law:** an unrequested mirror is a status claim and provokes a status test. Permission converts the same words into a gift. Full theory: Phase Shift Technology 124.
+**The underlying law:** an unrequested mirror is a status claim and provokes a status test. Permission converts the same words into a gift. Full theory: Phase Shift Technology 125.
 
 #### Promise-shape under pressure
 
