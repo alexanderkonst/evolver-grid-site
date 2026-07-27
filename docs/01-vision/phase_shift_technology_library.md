@@ -7476,3 +7476,94 @@ Keep the fire, keep the present-continuous tense ('in the making'), and let the 
 **The second finding: the invariant is an event, not a possession.** The shared core equals the octahedron only at the moments of alignment; through the rotation the overlap deforms and returns. Applied to self-knowledge: an articulated Top Talent is not a stored object but what appears when the acts of seeing align. It has to be re-aligned, not merely remembered. This is Technology 16 (The Mirror Must Not Lag) restated as geometry.
 
 **Relation:** refines Technology 98 (Prime Invariant Branding) — the invariant survives transformation, and now we can say how it shows itself: at alignment, rhythmically, not continuously. Sibling to Technology 111 (edge-carried alignment among sovereigns).
+
+---
+
+## Technology 123: The Ripeness Vector (Day 136, July 26, 2026)
+
+**The law in one sentence: a person's readiness to receive transformational work is not one variable but a position across several developmental lines at once, so matching becomes search rather than persuasion.**
+
+**The reframe.** Marketing normally tries to move people toward readiness. That is slow, expensive, and mostly futile. If readiness is a *region* in a multi-axis space, the work is to find the people already standing in it. The ideal client is a target vector, not a maximum: on several axes, being past the target scores lower than being at it (a person fully embodying their uniqueness is a peer, not a client).
+
+**The nine axes** (each named by what it measures, with its target):
+
+| Axis | What it measures | Physics analogy | Target |
+|---|---|---|---|
+| **Transition** | position in the form-death/form-birth arc | position in the cycle | Liminality (stage 5) |
+| **Surrender** | whether force has been abandoned as a method | conductivity: does current flow at all | high |
+| **Distance** | how directly income depends on their own name | coupling coefficient between self and income | zero |
+| **Locus** | whether professional success is attributed to inside or outside | field polarity | internal, unarticulated |
+| **Uniqueness** | development of their relationship to their own gift | accumulated charge | stage 3-4 of 5 |
+| **Maturity** | professional development stage | wire gauge: how much current the circuit carries | stage 6-7 of 16 |
+| **Consent** | willingness to be seen and altered | membrane permeability | high |
+| **Means** | capacity to invest in themselves | available amperage | high (6-7 of 7) |
+| **Currency** | which category of purchase they believe in | what the circuit is wired to power | transformation (6 of 7) |
+
+**The mathematics, honestly stated.** A person is a point in R^9; ripeness is proximity to a target vector, weighted. Because axes correlate, the formally correct metric is Mahalanobis distance (inverse-covariance weighting, which stops correlated axes from double-counting); with fewer than ~30 scored cases the honest interim is to name the latent factor by hand where two axes travel together and score it once. **Surrender is not a coordinate but a gain term:** it multiplies rather than adds, which is why a high score on every other axis produces friction rather than conversion when surrender is absent. Same for the two capacity gates. The working form:
+
+> **Ripeness = Surrender(conductivity) × Means × Currency × Fit(the remaining six)**
+
+Multiplicative terms formalize the field rule: a closed gate can never be compensated by pushing harder on another axis. Voltage without conductivity dissipates as heat, which is the exact felt quality of a high-friction sales conversation.
+
+**Universal vs practice-specific axes.** Transition, Surrender, Distance, Means and Currency are universal to any business selling change. Locus, Uniqueness and Consent are specific to a mirror-product. When this instrument is handed to another founder, the universal five carry over and the last three are re-derived for their business. This is what makes the vector the first genuinely transmissible asset in the method: unlike the mirror itself, it does not require its author to be present.
+
+**Field use:** nine scores after any call, ninety seconds. Read the shape, not the total: a 70 with surrender at 2 is a different animal from a 70 with surrender at 9.
+
+**Relationship:** Technology 121 (surrender as the buying threshold, here formalized as the conductivity term), Technology 84 (the holomap instrument, which builds each axis), Technology 118 (the seer invariant: one can only read the ripeness one has lived through).
+
+---
+
+## Technology 124: A Transition Is the Interval Between Two Fits (Day 136, July 26, 2026)
+
+**The law in one sentence: a professional transition is the interval in which the form that carried a person has ended and the next has not yet taken shape, so identity is temporarily without a container and therefore, uniquely, malleable.**
+
+**ESC.** *Essence:* fit is never a property of a person or of a context but of the relation between them, so a transition is the gap between two fits. *Significance:* it is the only window in which the invariant becomes visible, because the form that was hiding it has dissolved; what normally cannot be changed can be changed here. *Consequence:* transitions are the highest-leverage intervention points in a human life, help offered inside one compounds for decades, and identical help offered outside one is filed as "interesting."
+
+**The seven stages, in the person's own voice:**
+1. **Settled** (center: routine) — "This is what I do." No narration at all; it is just Tuesday.
+2. **The Itch** (dissonance) — "I'm fine. ...I don't know, something's just off."
+3. **Tremors** (symptoms) — "I just need to push through, or fix this one thing." The old form is patched from inside.
+4. **Rupture** (the break) — "It's over."
+5. **Liminality** (the void) — "I don't know who I am professionally."
+6. **Reorientation** (recognition) — "I think I see it."
+7. **Crossing** (commitment) — "This is what I do now."
+
+**The shifts, and the two shocks:** 1 to 2, the first feeling the current form has no slot for. 2 to 3, the symptom becomes physical and starts costing sleep, energy, health. **3 to 4 is the Mi-Fa shock**: something that was carrying the person stops carrying them and the way back closes; it typically requires a force from outside the octave, which is why most people stall at Tremors for years. 4 to 5, the last plan dies and the reflex to rebuild the same form exhausts itself: **this is surrender**. 5 to 6, recognition rather than decision: something already true gets named and it feels like remembering, not choosing. **6 to 7 is the Si-Do shock**: the first real exchange, someone pays or says yes, and the direction takes a body.
+
+**The shock taxonomy (the flavors of 3 to 4).** The invariant is: *something that was carrying you stops carrying you, and the way back is closed.* Its forms:
+- **External-forced:** fired, exit, shutdown, co-founder leaves, market dies, visa or geography.
+- **Economic:** what reliably made money stops making money. The entrepreneur's most common flavor.
+- **Somatic:** the body refuses. Burnout, panic attacks, illness.
+- **Relational:** a marriage, partnership or intimate field ends or changes its terms.
+- **Internal/growth:** a practice, journey, medicine, teacher or book dissolves the identity from inside. Chosen, and typically slow: months or years, with no event to report to anyone.
+- **Perceptual:** seeing something that cannot be unseen, after which the old form is intolerable although nothing external changed.
+
+Consequence of the taxonomy: **the shock is not always an event and not always fast.** Internal-growth ruptures are gradual dissolutions with no news to tell, which is exactly why people inside them feel insane and do not recognize themselves in loud "I got fired" language. Copy that addresses only the loud flavors leaves the quietest and most underserved door unattended.
+
+**Stages 8-10, the register shift.** 7 to 8: the second crossing is recognized as the same shape as the first; pattern is visible only from the second instance. **8 Fluency** — "I know which phase I'm in"; transitions are navigated rather than suffered. 8 to 9: the cost of waiting exceeds the cost of leaving. **9 Volition** — transitions are initiated before the shock arrives; a working form is composted deliberately. 9 to 10: one's own crossings and other people's become one field. **10 Hosting** — holding transition-space is the vocation; the crossing IS the work. Stage 10 is universal as a capacity and specific as a vocation: not everyone becomes a transition-host professionally, but every mature path eventually includes holding someone else's crossing.
+
+**Structural facts worth naming:** the stages are one-way, nobody returns to Settled inside the old form. And a transition is the mechanism by which the uniqueness line advances: uniqueness is the ratchet, a completed transition is the click. This is why crossing-work moves people up the uniqueness map without anyone teaching uniqueness directly.
+
+**Relationship:** Technology 121 (surrender is the 4 to 5 shift, isolated as a variable), Technology 123 (transition is one axis of the ripeness vector), Technology 84 (holomap instrument), Technology 115 (articulation as the mechanism of growth: the naming at 5 to 6 is that mechanism firing). The full 10x10 holomap lives in docs/holomaps/transition_holomap.md.
+
+---
+
+## Technology 125: The Social Physics of the Mirror (Day 136, July 26, 2026)
+
+**The law in one sentence: accurate seeing is an act of power, so an unrequested mirror registers as a status claim and provokes a status test, while the identical words offered after permission register as a gift.**
+
+**The bedrock question.** Under every reaction to being seen sits one silent question: *do I trust you enough to let you change me?* Being seen accurately IS being changed, because a correct naming cannot be un-known. Consent to be seen is therefore permission to be altered, and it has two components: trust in what the seer will do with what they see, and willingness to become different.
+
+**Why status is involved.** To see someone whole you must be standing somewhere they cannot stand. An unrequested mirror therefore carries an implicit vertical claim, and every social species runs an automatic test on unearned vertical moves. The advice handed back is that test, not a rejection. This also explains the faint discomfort even in people who receive the mirror well: accepting an ungranted vertical position is uncomfortable even when it is accurate.
+
+**The four failure modes, with their bedrock and their remedy:**
+1. **Reciprocity reflex** — receiving without giving creates debt, and advice is the cheapest currency available to repay it. Remedy: give them a way to give, by asking a real question, and the reflex discharges harmlessly.
+2. **Identity defense** — when being the-one-who-knows is load-bearing, being known threatens the structure; the more expert the person, the more the mirror costs them. Remedy: name their expertise out loud before reflecting anything.
+3. **Unconsented seeing** — power taken invites resistance; the same words, differently consented, produce opposite outcomes. Remedy: ask first, always. "Would it be useful if I reflected back what I'm seeing?"
+4. **Pre-surrender counter-claim** — a person still holding a force-plan hears any other frame as a rival rather than a gift; the mirror fails on timing, not on accuracy. Remedy: qualify surrender before offering sight.
+
+**The split.** Roughly half of apparent unreceptiveness is the seer's frame failure (modes 3 and 4, both curable by declaring the container and qualifying surrender) and half is the other person's structure (identity rigidity, and capacity to tolerate alteration). The measurement consequence is significant: receptivity read *before* the frame is set is contaminated, so people written off as defensive were frequently never asked. The tribe is larger than the uncorrected measurement suggests.
+
+**The unifying law (with Technology 111).** Ask a real question; name their expertise; ask consent; qualify surrender; declare the container. All five hand the other person authorship of the encounter before anything is given. **Sovereignty first, gift second** — the Network of Sovereigns applied inside a single conversation.
+
+**Relationship:** Technology 111 (edge-carried alignment, here at conversational scale), Technology 121 (surrender as timing), Technology 118 (the seer invariant), and the Mirror Selling laws in distribution_playbook.md Part B.
