@@ -170,10 +170,21 @@ export function SoundCloudPlayerProvider({
     // playlist's native sequential order.
     const shuffleOrderRef = useRef<number[]>([]);
     const shufflePositionRef = useRef(0);
+    // Guards the shuffled start: `skip()` on the SC widget begins
+    // playback immediately (it's not a silent seek), so we can't call
+    // it on the READY event without violating the no-autoplay rule.
+    // Instead the shuffle order is computed on READY but held inert;
+    // the FIRST user-initiated play (see `toggle`) applies it via
+    // `skip()` — at that point playback starting is exactly what the
+    // user asked for. Every subsequent advance already has playback
+    // in progress, so `advanceShuffled` (used by `next()` and the
+    // FINISH auto-advance) is safe unconditionally.
+    const hasAppliedInitialShuffleRef = useRef(false);
     const advanceShuffled = useCallback(() => {
         const widget = widgetRef.current;
         const order = shuffleOrderRef.current;
         if (!widget || order.length === 0) return;
+        hasAppliedInitialShuffleRef.current = true;
         shufflePositionRef.current = (shufflePositionRef.current + 1) % order.length;
         widget.skip(order[shufflePositionRef.current]);
     }, []);
@@ -233,12 +244,12 @@ export function SoundCloudPlayerProvider({
 
                 widget.bind(Events.READY, () => {
                     if (cancelled) return;
-                    // Build this session's shuffle order once, then jump to
-                    // its first track. Replaces the old "force track 0"
-                    // defensive skip — that was fighting SC's resumed
-                    // cookie position toward a fixed start; now we WANT a
-                    // randomized start, so the skip below both neutralizes
-                    // the cached-position issue and seeds the shuffle.
+                    // Build this session's shuffle order — but do NOT jump
+                    // to it yet. `widget.skip()` starts playback, and READY
+                    // fires on page load before any user action, so calling
+                    // it here would be exactly the autoplay bug we're
+                    // fixing. The order is held in state; the first
+                    // user-initiated play (in `toggle`) applies it.
                     widget.getSounds((sounds) => {
                         if (cancelled) return;
                         const n = sounds?.length ?? 0;
@@ -251,7 +262,6 @@ export function SoundCloudPlayerProvider({
                             }
                             shuffleOrderRef.current = order;
                             shufflePositionRef.current = 0;
-                            widget.skip(order[0]);
                         }
                         setReady(true);
                         readCurrentInto(widget);
@@ -309,7 +319,22 @@ export function SoundCloudPlayerProvider({
 
     const toggle = useCallback(() => {
         if (!ready || !widgetRef.current) return;
-        widgetRef.current.toggle();
+        const widget = widgetRef.current;
+        // First press of this session: apply the shuffled start. If the
+        // shuffle picked a track other than the one natively loaded
+        // (index 0), jump there now — `skip()` starts playback, which is
+        // correct here because this IS the user's play action. If the
+        // shuffle happens to be already sitting on track 0, fall through
+        // to the normal toggle() so a paused widget still starts.
+        if (!hasAppliedInitialShuffleRef.current) {
+            hasAppliedInitialShuffleRef.current = true;
+            const order = shuffleOrderRef.current;
+            if (order.length > 0 && order[0] !== 0) {
+                widget.skip(order[0]);
+                return;
+            }
+        }
+        widget.toggle();
     }, [ready]);
 
     const next = useCallback(() => {

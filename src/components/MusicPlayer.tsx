@@ -62,6 +62,11 @@ const MusicPlayer = () => {
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const widgetRef = useRef<SCWidget | null>(null);
     const trackCountRef = useRef<number>(1);
+    // `widget.skip()` starts playback immediately — it must never be
+    // called from the READY handler (page load, no user action yet).
+    // The random starting track is applied on the first user-initiated
+    // play instead. See SoundCloudPlayerProvider.tsx for the same fix.
+    const pendingStartTrackRef = useRef<number | null>(null);
 
     const [scriptLoaded, setScriptLoaded] = useState(false);
     const [widgetReady, setWidgetReady] = useState(false);
@@ -108,8 +113,10 @@ const MusicPlayer = () => {
                 trackCountRef.current = sounds.length;
                 // Random starting track — true session shuffle: each
                 // visitor gets a different first track of the playlist.
+                // Do NOT skip() here — that starts playback on page load.
+                // Stash the pick; it's applied on the first user press.
                 if (sounds.length > 1) {
-                    widget.skip(Math.floor(Math.random() * sounds.length));
+                    pendingStartTrackRef.current = Math.floor(Math.random() * sounds.length);
                 }
                 setWidgetReady(true);
                 updateTrackName();
@@ -160,7 +167,13 @@ const MusicPlayer = () => {
             widgetRef.current.pause();
         } else {
             setIsLoading(true);
-            widgetRef.current.play();
+            if (pendingStartTrackRef.current !== null) {
+                const track = pendingStartTrackRef.current;
+                pendingStartTrackRef.current = null;
+                widgetRef.current.skip(track);
+            } else {
+                widgetRef.current.play();
+            }
         }
     };
 
