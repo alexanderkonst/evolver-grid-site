@@ -20,6 +20,7 @@ A holomap is an integral taxonomy (x-axis) crossed with evolutionary stages or d
 | [Worktools Evolution](worktools_evolution_holomap.md) | 6 maturity stages of collaboration technology, Analog → Programmed Networks | v1.1 |
 | [Professional Development Map](professional_development_map.md) | 16 stages, Dependent Contributor → Legacy Builder, with inner-growth lines | v1.0 |
 | [Collaboration Gift Taxonomy](collaboration_gift_taxonomy_holomap.md) | 7 aspects × Heart/Mind/Gut: what actually passes between two people when an intro is "exactly right" | v1.0, Day 120 |
+| [Transition Holomap](transition_holomap.md) | 10 stages, the interval between two fits: 3×3 aspects × 7 core stages, 54 shifts, shock taxonomy | v1.0, Day 136 |
 
 ## Pointers (maps living elsewhere)
 
