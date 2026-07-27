@@ -48,7 +48,7 @@ I assist entrepreneurial people in transition to their next-big-thing articulate
 - **One Action (repeat daily):** Every workday, take one paid call with one high-fit person, name their core message in one sentence, turn it into one clear offer, then publish one anonymized paragraph about what changed.
 - **Path of Mastery (7 stages):** Noise Tolerance → True Signal Naming → Simple Structure Building → Artifact Reliability → Market Doorway Discipline → Transmission Through Others → Civilization-Scale Simplifying.
 - **Ideal Environments:** A small high-trust room with a founder who can handle blunt clarity and will act this week · a venture studio or accelerator where raw potential must become an offer, a pitch, and a weekly execution plan · a quiet morning block with one messy input and one shippable output due by end of day.
-- **Complementary Partner:** A grounded closer-operator who loves finishing — running sales calls, setting prices, sending proposals, installing the weekly cadence that turns plans into revenue. Steady, pragmatic, slightly impatient with endless refining. Together: one names the real signal and builds the path; the other turns it into booked calls, signed agreements, shipped releases on a timetable.
+- **Complementary Partner:** A grounded closer-operator whose craft is finishing: running sales calls, setting prices, sending proposals, installing the weekly cadence that turns plans into revenue. Steady, pragmatic, slightly impatient with endless refining. Same aim, different position: one names the real signal and builds the path, the other turns it into booked calls, signed agreements, shipped releases on a timetable. *(reframed Day 136, July 26, 2026: shared center, different position — see Universal Ontology §11.3a and Phase Shift Technology 122)*
 - **Monetization (3 tiers):**
   - Intro · *One-sentence + three-step clarity call* — 75-min call that turns your messy story into one sentence, one clear offer, and three next actions you can take this week ($450)
   - Signature · *Offer and page build sprint* — 2-week build delivering finished offer + landing page draft + simple sales message ready to send to 10 high-fit people ($4500)
@@ -1550,6 +1550,24 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 
 ### 3. Tribe (ICP)
 
+#### ⭐ v4.0 · July 26, 2026 (Day 136) — The Ripe Position
+
+*Supersedes segment-list definitions. The tribe is no longer described by who people are, but by where they are standing. Instrument: Phase Shift Technology 123 (the Ripeness Vector); the Transition axis is mapped in `docs/holomaps/transition_holomap.md`.*
+
+**Synthesis:** anyone standing in Liminality with their hands empty and their income tied to their own name.
+
+**The position, precisely:** the form that carried them has ended and the way back is closed (Transition stage 5) · force has stopped being their method (surrendered) · their income depends directly on their own name (zero distance) · they attribute professional success to who they are rather than to markets and hustle (internal locus) · they know they carry something they cannot yet say (Uniqueness stage 3-4) · their next move is their own thing rather than a better employer (Maturity stage 6-7) · they can tolerate being seen and altered (consent) · they have means to invest in themselves · and they buy transformation rather than templates.
+
+**Recognition lines, in their voice:** "I don't know who I am professionally." · "I can't answer 'what do you do' anymore." · "I pushed harder and it changed nothing." · "I have a lot of pieces and no offer."
+
+**Human doorway:** *"I'm in the gap."*
+
+**Where this position clusters** (segments are search locations, not definitions): practitioners past the ceiling · founders whose company dissolved · post-burnout high performers re-entering · newly independent experts · plateaued solo creators.
+
+**Boundaries:** stages 1-3 are not yet (nurture until rupture, never push) · stages 8-9 are advisory and node relationships, not clients · stage 10 is peers.
+
+---
+
 #### v3.1 Seed · June 25, 2026 — Capable, Trusted, Under-Placed
 
 > **Tribe synthesis:** Capable, trusted, under-placed people whose real opportunities are too small, partial, or old-patterned for the value they now carry.
@@ -2127,6 +2145,16 @@ Each platform = three surfaces in one: Presence (profile), Physical (events), Pu
 
 ### 5. Pain (Point A) — 5-Layer Slicer Per Segment
 
+#### ⭐ v4.0 · July 26, 2026 (Day 136) — Liminality, from inside
+
+*Point A is now named as a position on the transition arc (stage 5) rather than as a list of symptoms. Written in the client's own narration.*
+
+> "I can't answer 'what do you do' anymore. The thing that carried me is gone or dying, and I can't go back to it. I tried pushing harder and it changed nothing. Now I read, I take tests, I talk to people, and none of it turns into a move. I have a lot of pieces and no offer. When someone introduces me I hear myself say 'I'm figuring things out.' The clock is running and every month costs something. Underneath all of it: I don't know who I am professionally, and I'm not sure I'm allowed to say that out loud."
+
+**What it costs while it lasts:** the clock rules every decision · energy flatlines and then goes numb · introductions become painful · the closest people are bracing or asking how long this will take · and the fragments multiply instead of resolving.
+
+---
+
 #### v3.3 Working Seed · June 25, 2026 — Unrecognized Value Becomes Unused Capacity
 
 > **Status:** Working Pain seed derived from locked Myth v3.0 and Tribe v3.2 working seed. Not yet scored or locked by Sasha.
@@ -2344,6 +2372,14 @@ Each sub-identity brings a specific, differentiated capability. The combination 
 
 ### 7. Dream Outcome (Point B)
 
+#### ⭐ v4.0 · July 26, 2026 (Day 136) — Crossing
+
+> "I say what I do in one breath, to a stranger, without flinching. Someone paid for it. The pieces turned out to be one thing. My energy came back before the results did, and now it renews itself. People repeat my sentence back to me, and strangers get referred to me correctly. The clock still runs, but it measures a build instead of a decline."
+
+**Observable markers of the crossing:** one named offer sold more than once · the sentence said to strangers without hedging · referrals arriving correctly framed · energy self-renewing around the work.
+
+---
+
 *Version: v2.0 · Feb 23, 2026 — derived from inverse pain principle applied to meta-segment at 9.95*
 
 > **Method:** Each dream layer is the exact inversion of its corresponding pain layer. The pain card designed this — we didn't.
@@ -2379,6 +2415,16 @@ These aren't separate dream outcomes — they're how the same arrival LOOKS depe
 ---
 
 ### 8. Transformational Promise (Point A → Point B)
+
+#### ⭐ v4.0 · July 26, 2026 (Day 136) — Across the gap
+
+**The promise, shortest form (recovered verbatim from the /destiny page, written months before the map existed):** *"You enter in limbo, you leave with one working path."*
+
+**Full form:** I take you across the gap between the form that ended and the form that has not formed yet: from fragments and "I'm figuring things out" to one sentence, one offer, and the first real exchange.
+
+**A → B:** Liminality (stage 5) to Crossing (stage 7).
+
+---
 
 #### v3.0 Seed · June 25, 2026 — Professional Clarity Expands the Field
 
@@ -3386,6 +3432,17 @@ Stanford wine study: same wine, different price labels. The higher-priced wine d
 
 ### 10. Method (MAP → MATCH → MOVE)
 
+#### ⭐ v4.0 · July 26, 2026 (Day 136) — The scope, named in developmental space
+
+The work is the crossing, stages 5 through 7 of the transition arc:
+- **5 → 6 (Direction Call and the $555 session):** recognition rather than decision. Something already true gets named; the fragments collapse into one thing.
+- **6 → 7 (BUILT):** the naming takes a body. Packaging, distribution, the first ten real conversations, the first exchange.
+- **8 → 9 (advisory, studio, nodes):** navigation and infrastructure for people who now cross deliberately rather than by shock.
+
+**Why this moves the uniqueness line without teaching uniqueness:** a completed transition advances the uniqueness map by one stage. Uniqueness is the ratchet; the crossing is the click.
+
+---
+
 *Version: v1.0 · Feb 18, 2026*
 
 | Phase | What happens |
@@ -3490,6 +3547,12 @@ What's available (not yet activated):
 ---
 
 ### 12. Channel
+
+#### ⭐ v4.0 · July 26, 2026 (Day 136) — Channels are stage announcements
+
+A channel is wherever people at stages 4-5 announce their position out loud. Self-declared badges (career break, sabbatical, "exploring what's next," "former founder," "in transition") are literally stage declarations, which is why badge-based search outperforms demographic search. Communities of practitioners are stage-5 dense. Referrals from past clients convert fastest because the frame arrives pre-installed with the introduction.
+
+---
 
 | Priority | Channel | Status |
 |----------|---------|--------|
