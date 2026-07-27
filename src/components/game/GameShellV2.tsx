@@ -42,11 +42,6 @@ import PlayerStatsBadge from "./PlayerStatsBadge";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import SiteLogo from "@/components/SiteLogo";
 // hls.js is dynamically imported inside MuxVideoBackground to avoid module-level crashes
-// Day 135 (Sasha): static import — needed synchronously to compute the ME
-// nudge badge every render (see nudgeBadges below). markNudgeSeen itself is
-// still invoked via the existing dynamic-import pattern in handleSpaceSelect
-// for build/collaborate/grow, unchanged.
-import { loadNudgeState } from "@/lib/myNextMoveLogic";
 import { useToast } from "@/hooks/use-toast";
 
 /** Animated video background — Mux HLS stream behind all panels */
@@ -1184,15 +1179,6 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // if (hasResources && !nudges.collaborateNudgeSeen) {
     //     nudgeBadges.push('collaborate');
     // }
-    // Day 135 (Sasha): ME micro-notification. The moment T+M+A completes
-    // and the ME chip appears (unlockStatus["grow"] flips true, above), a
-    // nudge badge lands on the chip — the SAME emerald-dot vocabulary
-    // already used for BUILD/COLLABORATE — until the user opens ME once
-    // (markNudgeSeen('me'), wired into handleSpaceSelect below).
-    if (profileLoaded && tmaComplete && !loadNudgeState().meNudgeSeen) {
-        nudgeBadges.push('grow');
-    }
-
     // Hide-don't-lock (Sasha, 2026-04-21): a locked space just clutters the
     // rail. Anywhere in the app, if a space isn't unlocked, hide it entirely —
     // it reveals itself when the user earns it. JOURNEY and ME are always on.
@@ -1303,9 +1289,6 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         }
         if (spaceId === 'collaborate' && nudgeBadges.includes('collaborate')) {
             import('@/lib/myNextMoveLogic').then(m => m.markNudgeSeen('collaborate'));
-        }
-        if (spaceId === 'grow' && nudgeBadges.includes('grow')) {
-            import('@/lib/myNextMoveLogic').then(m => m.markNudgeSeen('me'));
         }
         // Mobile view stays on navigation - both panels visible
     };
