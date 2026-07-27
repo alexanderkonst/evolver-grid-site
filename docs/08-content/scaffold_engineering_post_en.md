@@ -1,7 +1,7 @@
 # A Parallel Axis of AI Progress — and What Turned Up There
 
 *Channel post — Sasha Konstantinov, April 18, 2026*
-*v2 — ready to publish. Term: **Knoware** (Domain 80).*
+*v2 — ready to publish. Term: **Knoware** (Phase Shift Technology 80).*
 *English rendering of `scaffold_engineering_post_draft_2026_04_18.md`.*
 
 ---

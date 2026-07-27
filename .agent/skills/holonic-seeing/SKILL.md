@@ -126,5 +126,5 @@ Before finalizing ANY output, verify:
 
 - `docs/01-vision/12_perspective_holonic_analysis.md` — Full example of 12-perspective analysis
 - `docs/01-vision/universal_ontology.md` — §4c: Dimensions Are Perspectives
-- `docs/01-vision/phase_shift_technology_library.md` — Domain 41 (Divine Marriage) + Domain 42 (Dimensions as Perspectives)
+- `docs/01-vision/phase_shift_technology_library.md` — Phase Shift Technology 41 (Divine Marriage) + Phase Shift Technology 42 (Dimensions as Perspectives)
 - `docs/05-reference/roasting_protocol.md` — The roasting protocol mechanics

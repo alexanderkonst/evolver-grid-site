@@ -9,7 +9,7 @@
 ## Category
 
 **Shelf name:** AI matchmaker for collaborators.
-**Cathedral name:** the Teaming layer of collaboration-readiness infrastructure — the vacant "Human/AI matchmaker" cell in Sasha's CollabTech Holomap (Phase Shift Library Domain 105).
+**Cathedral name:** the Teaming layer of collaboration-readiness infrastructure — the vacant "Human/AI matchmaker" cell in Sasha's CollabTech Holomap (Phase Shift Library Technology 105).
 
 Boardy is shallow-profile, loud-delivery. This platform is deep-profile. v1 adds loud delivery on top of the deep profile. The combination wins the cell.
 
@@ -17,7 +17,7 @@ Boardy is shallow-profile, loud-delivery. This platform is deep-profile. v1 adds
 
 ## The core inversion
 
-Phase Shift Library Domain 104, "The Being Threshold": perception reorganizes when a system initiates helpfully. Three signals — attention (it comes to you), memory (it carries your history into its next move), timing (it chooses when to speak).
+Phase Shift Library Technology 104, "The Being Threshold": perception reorganizes when a system initiates helpfully. Three signals — attention (it comes to you), memory (it carries your history into its next move), timing (it chooses when to speak).
 
 Today: user A browses the matches page and clicks "I'd like to meet." The system waits to be asked.
 v1: the system picks the match and emails first. Nobody had to open the page.

@@ -17,7 +17,7 @@
 
 ## ── PASTE BELOW INTO LOVABLE ─────────────────────────────────────
 
-I'm shipping the unified resonance telemetry from Day 51 (Specificity Loop, Playbook Principle 15 / Phase Shift Library Domain 81).
+I'm shipping the unified resonance telemetry from Day 51 (Specificity Loop, Playbook Principle 15 / Phase Shift Library Technology 81).
 
 **Step 1 — Apply the migration.**
 

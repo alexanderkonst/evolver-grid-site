@@ -6,7 +6,7 @@ Sasha's decisions (Day 121 chat): no cathedral footer · no Torus, no R&D/MAI ·
 
 ## Rules the page obeys
 
-- **Shelf language only** (Domain 103): category lines quoted from `alexanders_unique_business.md` evolution table. The thesis stays behind the door.
+- **Shelf language only** (Phase Shift Technology 103): category lines quoted from `alexanders_unique_business.md` evolution table. The thesis stays behind the door.
 - **Funnel monogamy per card:** exactly one CTA each.
 - **No ghosting:** early-access offers say "early access" plainly, full opacity. Nothing dimmed.
 - **Sequencing rule:** the two revenue doors lead (Session, then FYTT; White-Label third).

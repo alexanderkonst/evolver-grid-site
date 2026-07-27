@@ -14,7 +14,7 @@ The practitioner stops asserting that their work works. The node shows it: each 
 - QoL assessment, repeatable, with longitudinal history (existing qol_snapshots)
 - Transformational Library preloaded with the practitioner's own practices (existing libraryContent model; ingestion = practitioner sends a list: link + 1 line on what it is + what it changes; voicenote accepted)
 - QoL-driven practice recommendation engine (shipped Day 127: Recommended-for-you + Today's Practice)
-- Rev-share edges (Domain 111, terms-first per Domain 110): practitioner keeps 90% on their digital products sold through their node; earns 33% on Aleksandr-facilitated products their people buy — **[SUPERSEDED, see corrected line below]**
+- Rev-share edges (Phase Shift Technology 111, terms-first per Phase Shift Technology 110): practitioner keeps 90% on their digital products sold through their node; earns 33% on Aleksandr-facilitated products their people buy — **[SUPERSEDED, see corrected line below]**
 - Rev-share (corrected Day 130 evening): practitioner receives 90% on platform digital products bought by her portal clients (we keep 10%) and 33% on facilitated containers; the portal's single internal doorway is the free top-talent discovery funnel.
 - Pricing frame: $555 setup + monthly per-seat — decided, see "Pricing decision (Day 130)" under the proposal below
 - Explicitly NOT in v1: admin UI for practice management, per-practice analytics, custom assessments
@@ -31,7 +31,7 @@ The practitioner stops asserting that their work works. The node shows it: each 
 
 - Zero marginal build: the product is a bundle of already-shipped modules; margin is composition, not construction.
 - Each node = setup revenue + recurring seat revenue + a DISTRIBUTION EDGE: the rev-share inverts the sale. The practitioner is not buying a tool; they are opening an income line by introducing their people to the platform. Nodes become the sales force (BIG IDEA #2: fractal growth through resonant, aligned edges).
-- Each node also compounds proof: longitudinal QoL data across practitioners = the output-first measurement corpus (Domain 59/60).
+- Each node also compounds proof: longitudinal QoL data across practitioners = the output-first measurement corpus (Phase Shift Technology 59/60).
 - Risk: support load per node; mitigation: voicenote-to-library ingestion stays manual-by-Aleksandr until node #3, then automate.
 
 ## Segments + key benefits + ROI
@@ -50,7 +50,7 @@ The practitioner stops asserting that their work works. The node shows it: each 
 5. Pricing: $555 setup + small monthly per seats.
 6. CTA repeat.
 
-## Terms-first one-pager (Domain 110 discipline — must exist before first sale)
+## Terms-first one-pager (Phase Shift Technology 110 discipline — must exist before first sale)
 
 Practitioner owns their practice content and client relationships; platform owns engine and infrastructure; rev-share percentages fixed in writing at entry; either side can exit, practitioner takes their content and client list.
 

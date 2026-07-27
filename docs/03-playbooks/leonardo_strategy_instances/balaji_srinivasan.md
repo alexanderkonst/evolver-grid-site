@@ -451,7 +451,7 @@ After v10 was locked, Sasha realized the matching URL (`/ns/?path=match`) actual
 
 ### v12 — KPI-synthesis convergence + gradient (May 28, 2026, Day 86)
 
-After v11 locked, a new strategic understanding crystallized (see Phase Shift Library Domain 15: differentiated nature as value, the articulation bottleneck, collaboration rate as a first-class ecosystem metric). A parallel "collaboration-rate / missing-KPI" framing was developed and Sasha chose to merge it into the Leonardo v11 spine. The collaboration-rate metric becomes the conceptual wedge: the payload that legitimizes the three-primitive stack. Once the metric is accepted, the primitives follow from it. Refined through a full holonic roast plus an external GFOA roast.
+After v11 locked, a new strategic understanding crystallized (see Phase Shift Library Technology 15: differentiated nature as value, the articulation bottleneck, collaboration rate as a first-class ecosystem metric). A parallel "collaboration-rate / missing-KPI" framing was developed and Sasha chose to merge it into the Leonardo v11 spine. The collaboration-rate metric becomes the conceptual wedge: the payload that legitimizes the three-primitive stack. Once the metric is accepted, the primitives follow from it. Refined through a full holonic roast plus an external GFOA roast.
 
 **Moves from v11 to v12:**
 

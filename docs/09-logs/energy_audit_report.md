@@ -144,7 +144,7 @@ The insight is true (focus produces output). The framing applies an "if/not" wor
 
 ---
 
-### H5 — `docs/02-strategy/alexanders_operating_system.md` lines 275–322 — "The Ease Protocol (Domain 75) — Operating Mode"
+### H5 — `docs/02-strategy/alexanders_operating_system.md` lines 275–322 — "The Ease Protocol (Phase Shift Technology 75) — Operating Mode"
 
 > **Patterns:** 5, 6
 > **Why HIGH:** This is the most subtle one and the one closest to the prompt's "grind addiction wearing a spiritual costume" example. The *meta-message* is anti-grind. The *delivery* uses shame: "**The cruelest part: they're doing it sincerely.**" + "**So the person most committed to success is the person most structurally preventing it.**" The founder reading at 3am, having grinded all day in fear, is told that his sincere commitment is what's preventing his results.

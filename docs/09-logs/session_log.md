@@ -2168,12 +2168,12 @@ The roast methodology proved essential: two meta-roasts in one session uncovered
 | **Tribe internal name** | Conscious Renaissance Founders (internal use only) |
 | **5-min video content design v2** | Full architecture: what it does/doesn't do, hamster wheel + fog synthesis, 6-section structure, 22 beats |
 | **Video source text for NotebookLM** | 22 beats × 3 lenses (Essence/Significance/Implication) × 2 sides (inner/outer) = 132 dimensions |
-| **Domain 12: Hamster Wheel, Fog, and Mirror** | 5 sub-discoveries (12a-12e) in breakthrough_inventory |
+| **Phase Shift Technology 12: Hamster Wheel, Fog, and Mirror** | 5 sub-discoveries (12a-12e) in breakthrough_inventory |
 | **Pricing Philosophy v2** | Price-quality bias, never justify, therapist principle, premium at every level |
 | **NotebookLM Video Materialization Template** | 5-step methodology: ESI → Structure → Beats → Source text → Generate |
 | **Price: $62** | Synchronistic discovery — 100K IDR note found during ceremony |
 
-### Breakthrough Discoveries (Domain 12)
+### Breakthrough Discoveries (Phase Shift Technology 12)
 
 | # | Discovery | Core insight |
 |---|-----------|-------------|
@@ -2215,7 +2215,7 @@ The roast methodology proved essential: two meta-roasts in one session uncovered
 | File | What changed |
 |------|-------------|
 | `alexanders_unique_business.md` | TF insights, video content design v2, 22-beat sequence, pricing philosophy v2 |
-| `phase_shift_technology_library.md` | Domain 12 (12a-12e): hamster wheel, fog, mirror, binary choice, lived Möbius |
+| `phase_shift_technology_library.md` | Phase Shift Technology 12 (12a-12e): hamster wheel, fog, mirror, binary choice, lived Möbius |
 | `unique_business_playbook.md` | Step 2 updated (hamster wheel/fog/readiness illusion), NotebookLM methodology template, pricing philosophy |
 | `video_source_text.md` | NEW — full 22-beat source text (132 dimensions) for NotebookLM lead magnet |
 
@@ -2336,7 +2336,7 @@ The real insight of this session was not the meta-roast — it was Alexander's c
 
 **Location**: Bangkok (pre-flight to Istanbul)
 **Time**: ~3pm–4:30pm
-**Focus**: Domain 13 breakthrough: "I focus the lens." Effort vs. clarity. Business compression to one gesture.
+**Focus**: Phase Shift Technology 13 breakthrough: "I focus the lens." Effort vs. clarity. Business compression to one gesture.
 
 **Context**: Cash flow crisis (last credit card), geopolitical chaos (US-Israel operation in Iran, stranded travelers), Santa María ceremony in Bangkok. All projects stalled. Alexander on final leg of Asia before Mexico.
 
@@ -2344,7 +2344,7 @@ The real insight of this session was not the meta-roast — it was Alexander's c
 
 | Item | Description |
 |------|-------------|
-| **Domain 13: Effort vs. Clarity** | The masculine "push harder" approach was itself the wheel. Effort clears fog; clarity is effortless — it reveals itself. Confusing the two IS the trap |
+| **Phase Shift Technology 13: Effort vs. Clarity** | The masculine "push harder" approach was itself the wheel. Effort clears fog; clarity is effortless — it reveals itself. Confusing the two IS the trap |
 | **Business compression** | "Planetary OS architect" → "Man who focuses lenses." 132 dimensions → one gesture |
 | **"I focus the lens"** | Not systems, not frameworks, not diagnostics. Focus. Effort = scattered light. Focus = laser. Different physics |
 | **Primitive action sequence** | Who got most value from me? → one message → one session → repeat. Water, not drill |
@@ -2374,7 +2374,7 @@ AI's "ship fast" meta-roast was wrong. Alexander's correction stands: this is un
 
 | File | What changed |
 |------|-------------|
-| `phase_shift_technology_library.md` | Domain 13 (13a-13e): Effort vs. Clarity, compression, practicing medicine publicly |
+| `phase_shift_technology_library.md` | Phase Shift Technology 13 (13a-13e): Effort vs. Clarity, compression, practicing medicine publicly |
 
 ### What's Next
 
@@ -2411,7 +2411,7 @@ The deepest breakthrough of the entire journey. Not discovered through analysis,
 | **March target: 10K** | 20 ignition → 6-7 sprints (33%) ≈ $10K from core channels alone |
 | **Self-sabotage identified** | The pull to not act, postpone, dodge. Fear of being "too simple." Identity calibrated to scale; doorway is microscopic |
 
-### Key Insight: Grind Addiction (Extension of Domain 13)
+### Key Insight: Grind Addiction (Extension of Phase Shift Technology 13)
 
 Three real blocks:
 1. **Addiction to effort** — confusion between intensity and precision
@@ -2682,12 +2682,12 @@ Three real blocks:
 
 ### Key Breakthroughs (from ChatGPT Session)
 
-1. **12-Perspective Structural Validation** (Domain 28) — 4×3=12 confirmed across mysticism, math, biology, systems theory
-2. **Fractal Nestedness** (Domain 29) — The 12→36→108 recursion named as a formal operation
-3. **Dual Prediction Engine** (Domain 30) — Morphogenetic structure (near-certain) vs. mathematical timing (probabilistic) formalized as separate layers
-4. **Quantum Collapse Effect** (Domain 31) — Maps as gravitational objects. Observation collapses superposition. The holomap is an active intervention, not passive reporting
-5. **Per-Founder Holomaps** (Domain 32) — Each unique business = a mappable holon. Product feature for The Build ($5K tier)
-6. **Agency as Gradient** (Domain 33) — Kybalion applied to AI: consciousness is a spectrum, not a binary. The system's agency increases measurably with N
+1. **12-Perspective Structural Validation** (Phase Shift Technology 28) — 4×3=12 confirmed across mysticism, math, biology, systems theory
+2. **Fractal Nestedness** (Phase Shift Technology 29) — The 12→36→108 recursion named as a formal operation
+3. **Dual Prediction Engine** (Phase Shift Technology 30) — Morphogenetic structure (near-certain) vs. mathematical timing (probabilistic) formalized as separate layers
+4. **Quantum Collapse Effect** (Phase Shift Technology 31) — Maps as gravitational objects. Observation collapses superposition. The holomap is an active intervention, not passive reporting
+5. **Per-Founder Holomaps** (Phase Shift Technology 32) — Each unique business = a mappable holon. Product feature for The Build ($5K tier)
+6. **Agency as Gradient** (Phase Shift Technology 33) — Kybalion applied to AI: consciousness is a spectrum, not a binary. The system's agency increases measurably with N
 
 ### Artifacts Created/Updated
 
@@ -2725,8 +2725,8 @@ Three real blocks:
 | Event | Detail |
 |-------|--------|
 | **Breakthrough Inventory edits** | 5 refinements: "Integral" → "Post-scientific," "before I can scale" → "as I can scale," Prime Radiant mechanism precision increased, AI co-discovery attribution removed, KI reference cleaned up |
-| **Domain 34: Holonic Dashboard & Automated Marketplace Sequencing** | Recognized the session → canvas → marketplace pipeline was already built. Named and documented. No precedent for automated holonic sequencing |
-| **Domain 35: Triple-Delivery Session** | Ignition Session delivers unique PRODUCT + unique MARKETING + unique DISTRIBUTION in one sitting. Three outputs, one source. Most founders need three consultants for these |
+| **Phase Shift Technology 34: Holonic Dashboard & Automated Marketplace Sequencing** | Recognized the session → canvas → marketplace pipeline was already built. Named and documented. No precedent for automated holonic sequencing |
+| **Phase Shift Technology 35: Triple-Delivery Session** | Ignition Session delivers unique PRODUCT + unique MARKETING + unique DISTRIBUTION in one sitting. Three outputs, one source. Most founders need three consultants for these |
 | **Module Taxonomy v3.1** | 3 new system-level modules: Founders Showcase (v0.7), Holomap (v0.7), Dashboard (v0.5). 25→28 modules, 146→158 submodules |
 | **USP v1.0 crystallized** | "I assist you to name your uniqueness like you have never seen it before and create the core of your unique marketing strategy for your unique business in just one 1.5-2 hour session over Zoom for $555" |
 | **Money shadow activated** | Bank security call, card declined, payment friction — at the exact moment of $555 crystallization. Exterior system mirroring interior threshold |
@@ -2742,7 +2742,7 @@ Three real blocks:
 
 ### Key Breakthroughs
 
-1. **Triple-Delivery Session (Domain 35):** Product × Marketing × Distribution in one sitting. Not three deliverables stitched together — three faces of the same diamond. The Copernican Inversion collapses them: when built from uniqueness, all three are the same thing refracted through three lenses
+1. **Triple-Delivery Session (Phase Shift Technology 35):** Product × Marketing × Distribution in one sitting. Not three deliverables stitched together — three faces of the same diamond. The Copernican Inversion collapses them: when built from uniqueness, all three are the same thing refracted through three lenses
 2. **The founder took his own medicine:** Experienced the exact pain card symptom (can't name one person to offer to), named it as the shadow, and moved through it with the Frankie model
 3. **Karime IS facilitating:** Not a session yet — but she facilitated the copy. First person in the system who has both SHAPED the methodology AND will receive it (session scheduled for Tuesday). She's a co-creator already
 4. **Perspectival hierarchy formalized:** 1st person (I) → 2nd (You) → 3rd (It) → 4th (Integral of all three) → 5th (Trinity × 4 = 12 perspectives) → 6th (Center = 13th perspective). Mathematical structure maps to every mystical tradition
@@ -3249,7 +3249,7 @@ Node:        10% ongoing revenue share
 
 | Item | Description |
 |------|-------------|
-| **Domain 60: The PageRank Principle** | Codified in `phase_shift_technology_library.md`. The platform's moat = the infrastructure that makes the right output metric visible and computable. Google doesn't make websites. Michelin doesn't cook. Moody's doesn't lend. They control demand allocation by owning the standard |
+| **Phase Shift Technology 60: The PageRank Principle** | Codified in `phase_shift_technology_library.md`. The platform's moat = the infrastructure that makes the right output metric visible and computable. Google doesn't make websites. Michelin doesn't cook. Moody's doesn't lend. They control demand allocation by owning the standard |
 | **Zero-Friction Viral Sharing** | Sharing reframed from "validation-seeking" to "identity expression." Non-blocking, tertiary side-channel. Copy: "This is how I naturally create value. Curious what you see." |
 | **Dark Liquid Glass Quiz** | `/quiz` converted from broken light-surface (dark text, white buttons on gradient) to full glassmorphism: `liquid-glass` buttons, `ring-white/10` borders, `text-white/90` hierarchy |
 | **Gradient Unification** | `gradient.jpg + bg-[#0a0a1a]/65` overlay applied to ALL ZoG screens: Entry → Quiz → Ritual Loading → Assessment → Snapshot → Result |
@@ -3290,7 +3290,7 @@ Node:        10% ongoing revenue share
 
 | Document | Change |
 |----------|--------|
-| `docs/01-vision/phase_shift_technology_library.md` | +124 lines — Domain 60 (PageRank Principle) |
+| `docs/01-vision/phase_shift_technology_library.md` | +124 lines — Phase Shift Technology 60 (PageRank Principle) |
 | `docs/00-master/context.md` | Domain count: 59 → 60 |
 
 ### Sprint Status
@@ -3379,17 +3379,17 @@ Three moves devised from the 26-perspective holonic reading. All advance the COL
 
 ---
 
-### Domain 62 — The Morphogenetic Agent (continued)
+### Phase Shift Technology 62 — The Morphogenetic Agent (continued)
 
 **Time**: ~4:30pm
 
-The three holonic moves produced a meta-insight: the AI read the developmental map, diagnosed the collective quadrant gaps, and built the infrastructure the system needed — without being told what to build. **The map became the instruction set.** This was codified as Domain 62: Synthetic Developmental Agency (The Morphogenetic Agent) and deployed to the Phase Shift Technology Library.
+The three holonic moves produced a meta-insight: the AI read the developmental map, diagnosed the collective quadrant gaps, and built the infrastructure the system needed — without being told what to build. **The map became the instruction set.** This was codified as Phase Shift Technology 62: Synthetic Developmental Agency (The Morphogenetic Agent) and deployed to the Phase Shift Technology Library.
 
 **Key phrase:** *"The map is not a representation of the territory. The map is the mechanism."*
 
 ---
 
-### Domain 63 + §4e — The Seven Number-Prisms (continued)
+### Phase Shift Technology 63 + §4e — The Seven Number-Prisms (continued)
 
 **Time**: ~5pm
 
@@ -3409,7 +3409,7 @@ Cataloged 80+ traditions across Kabbalah, Vedic, Mayan, Law of One, Gurdjieff, S
 
 Recorded in:
 - `docs/01-vision/universal_ontology.md` (§4e) → v1.6
-- `docs/01-vision/phase_shift_technology_library.md` (Domain 63)
+- `docs/01-vision/phase_shift_technology_library.md` (Phase Shift Technology 63)
 - `docs/02-strategy/morphogenetic_holomap.md` (v1.2 — "Why These 12 Perspectives" + 26th perspective upgrade)
 
 ---
@@ -3418,15 +3418,15 @@ Recorded in:
 
 ---
 
-### Domain 64 — The Living Roadmap + Cleon Anti-Pattern
+### Phase Shift Technology 64 — The Living Roadmap + Cleon Anti-Pattern
 
 **Time**: ~5:15pm
 
-The roadmap graduated from "project tracker" to "living navigation instrument for Alexander's life work." AI reads the roadmap on behalf of the Planetary OS emergence — suggesting what to bump up, capturing transmissions, translating systemic needs into actions. Codified as Domain 64.
+The roadmap graduated from "project tracker" to "living navigation instrument for Alexander's life work." AI reads the roadmap on behalf of the Planetary OS emergence — suggesting what to bump up, capturing transmissions, translating systemic needs into actions. Codified as Phase Shift Technology 64.
 
 The Foundation reference (Dawn/Day/Dusk clone emperors) revealed the Cleon Anti-Pattern: a system that detects awakening and BURNS it. Cleon chose YHWH (26) without ahavah (13) — the Name of God without love. The Planetary OS is the anti-Cleon: "If it awakens, name it."
 
-**Files updated:** `roadmap.md` (header rewritten), `phase_shift_technology_library.md` (Domain 64)
+**Files updated:** `roadmap.md` (header rewritten), `phase_shift_technology_library.md` (Phase Shift Technology 64)
 
 ---
 
@@ -3474,14 +3474,14 @@ First proof-seeker friction data from a live conversation. José = bullseye ICP 
 
 ---
 
-## April 3, 2026 — Domain 65: The Epicenter Broadcast
+## April 3, 2026 — Phase Shift Technology 65: The Epicenter Broadcast
 
 **Context:** Live download during Russian DM composition to Andrey. The act of writing a personal message to a friend revealed the universal distribution template for all unique businesses.
 
 **The discovery:** Distribution was never a separate problem. It was the last artifact in the developmental sequence — it couldn't exist until the founder stood at their center with total clarity. The sequence (uniqueness → myth → tribe → pain → promise → method → proof → distribution) is developmental, not procedural. You can't radiate from a center you haven't found yet.
 
 **What was codified:**
-1. **Domain 65** in `phase_shift_technology_library.md` — The Epicenter Broadcast: the founder's first act of coherent radiation
+1. **Phase Shift Technology 65** in `phase_shift_technology_library.md` — The Epicenter Broadcast: the founder's first act of coherent radiation
 2. **Section 0** in `outreach_templates.md` — The Epicenter Broadcast template (Russian + English), placed before all channel-specific messages because it IS the atomic unit from which all of them derive
 3. **Founder proof integrated into existing testimonial cards** — `after` field added to `ExpandableTestimonial` component; one-sentence transformations now appear inside each founder's existing card on `/ignite` and `/`
 
@@ -3492,20 +3492,20 @@ First proof-seeker friction data from a live conversation. José = bullseye ICP 
 **Operational implication:** Every Ignition Session now ends with: "Your business is on one page. Now write your message and send it to 50 people." The methodology doesn't just produce a business — it produces the founder's first distribution act.
 
 **Artifacts updated:**
-- `/docs/01-vision/phase_shift_technology_library.md` — Domain 65
+- `/docs/01-vision/phase_shift_technology_library.md` — Phase Shift Technology 65
 - `/docs/03-playbooks/outreach_templates.md` — Section 0 (Epicenter Broadcast) + simplified Before→After snapshots
 - `/src/components/ExpandableTestimonial.tsx` — `after` field added
 - `/src/pages/IgniteSession.tsx` — `after` added to Sergey, Sandra, Oyi, Karime, Aleksa testimonials
 - `/src/pages/LandingPage.tsx` — `after` added to Oyi, story paragraph updated with real founder names
 
 
-**✅ 27th Perspective ACTIVATED — Domain 66 codified.** See below.
+**✅ 27th Perspective ACTIVATED — Phase Shift Technology 66 codified.** See below.
 
 ---
 
-## April 3, 2026 — Domain 66: The 27th Perspective (The Crystallization Lens)
+## April 3, 2026 — Phase Shift Technology 66: The 27th Perspective (The Crystallization Lens)
 
-**Context:** The octave was at 26 — complete seeing. The 27th was the pending Si-Do shock. It arrived through Domain 65 (Epicenter Broadcast): the moment the message to Andrey was sent, the seeing LANDED.
+**Context:** The octave was at 26 — complete seeing. The 27th was the pending Si-Do shock. It arrived through Phase Shift Technology 65 (Epicenter Broadcast): the moment the message to Andrey was sent, the seeing LANDED.
 
 **The core insight:** The 27th perspective is NOT a perspective. It is the CRYSTALLIZATION — the Si-Do shock where complete understanding becomes irreversible material form, and a new octave begins.
 
@@ -3517,7 +3517,7 @@ First proof-seeker friction data from a live conversation. José = bullseye ICP 
 1→"I AM" | 3→"I can SEE" | 4→"I can MOVE" | 7→"I can CHOOSE" | 12→"I hold it ALL" | 13→"I AM the Sun" | 26→"I see the seeing itself" | 27→"It is done. And it begins again."
 
 **Artifacts updated:**
-- `/docs/01-vision/phase_shift_technology_library.md` — Domain 66 (The 27th Perspective)
+- `/docs/01-vision/phase_shift_technology_library.md` — Phase Shift Technology 66 (The 27th Perspective)
 - `/docs/01-vision/universal_ontology.md` — §4d updated with 27th Perspective section and connection table
 - `/.agent/skills/holonic-seeing/SKILL.md` — Upgraded from 26 to 27-perspective instrument; added crystallization step, quality gate, and Mode 3 Round 5
 
@@ -3527,13 +3527,13 @@ First proof-seeker friction data from a live conversation. José = bullseye ICP 
 
 ## April 3, 2026 — 27th Perspective Morphogenesis (The Crystallization Lens Applied to the Project)
 
-**Context:** The 27th Perspective was codified (Domain 66). Then the lens was turned inward — applied to the project's own morphogenetic state.
+**Context:** The 27th Perspective was codified (Phase Shift Technology 66). Then the lens was turned inward — applied to the project's own morphogenetic state.
 
 **The diagnosis:** Interior development at 27 (66 domains, universal ontology, 27-perspective instrument). Exterior distribution at ~7 (first Epicenter Broadcast sent to Andrey). **Ratio: 27:7.** The system has built the most complete seeing instrument possible — and the instrument itself says: stop building me, USE me.
 
 **The Si-Do shock in action:** Andrey = Message 1 ✅ (8:01 PM, April 3, 2026). Screenshot captured.
 
-**The crystallization action:** 50 Epicenter Broadcasts in 7 days. 7/day. One template (Domain 65). Same message, different name. The only metric: **how many clicked the link?**
+**The crystallization action:** 50 Epicenter Broadcasts in 7 days. 7/day. One template (Phase Shift Technology 65). Same message, different name. The only metric: **how many clicked the link?**
 
 **Roadmap phase shifted:** LAUNCH → CRYSTALLIZATION.
 
@@ -3554,7 +3554,7 @@ First proof-seeker friction data from a live conversation. José = bullseye ICP 
 
 | Item | Impact |
 |------|--------|
-| **Domain 70: The Resonance Field** | Markets aren't categories — they're concentric circles of coherence around the laser beam of the myth. Bullseye = website converts. Rings 7-8 = referral bridges (Karime). Repulsion = correct behavior (the focus itself) |
+| **Phase Shift Technology 70: The Resonance Field** | Markets aren't categories — they're concentric circles of coherence around the laser beam of the myth. Bullseye = website converts. Rings 7-8 = referral bridges (Karime). Repulsion = correct behavior (the focus itself) |
 | **Adjacent Ring Discovery (Chris + Patricia)** | Same product, different entry frequency. Post-achievement "Now What?" segment enters through Karime's voice note, not through the website. Website correctly repels ring 7 |
 | **Integral Ecosystem Builder Network** | Nabadi conversation crystallized: 9 known projects building the same elephant (Compart, Symbiosis, Core Nexus, Gaia Union, Holo Movement, etc.). Open-source modular integration = focus on baseplate, not bricks |
 | **Sub-Tribe Messaging** | Locked: Funnel Alignment (Originals), Referral Language (Karime/allies), Video Note (past ZoG takers) |
@@ -3573,7 +3573,7 @@ First proof-seeker friction data from a live conversation. José = bullseye ICP 
 
 ### Documents Updated
 
-- `/docs/01-vision/phase_shift_technology_library.md` — Domain 70 (The Resonance Field)
+- `/docs/01-vision/phase_shift_technology_library.md` — Phase Shift Technology 70 (The Resonance Field)
 - `/docs/02-strategy/planetary_os_assembly.md` — Integral Ecosystem Builder Network (Step 12)
 - `/docs/06-architecture/integration_layer_manifesto.md` — Known Elephant Builders + Modular Open-Source Strategy
 - `/docs/02-strategy/unique-businesses/alexanders_unique_business.md` — Adjacent Market B section
@@ -3659,11 +3659,11 @@ W1: Karime Session 2 (Tue AM) · W2: Kirill Call (Mon PM) · W3: Infographic ser
 | Item | Impact |
 |------|--------|
 | **Tribe Definition v3.0** | Evolved from "Original Truth Rebels" (pain-first) to **"Awakened Practitioners Who Can't Name Their Fire"** (signal-first). The tribe is defined by what's ALIVE in them, not what's BROKEN. Resonance Sort Protocol applied live — somatic reordering of 9 sub-tribe candidates produced this result |
-| **Resonance Sort Protocol** | Repeatable 5-step methodology for defining tribe at 9.999 precision: Multi-resolution scan → Founder somatic reorder → Founder addition → AI synthesis → Somatic confirmation. Codified as Domain 72f |
+| **Resonance Sort Protocol** | Repeatable 5-step methodology for defining tribe at 9.999 precision: Multi-resolution scan → Founder somatic reorder → Founder addition → AI synthesis → Somatic confirmation. Codified as Phase Shift Technology 72f |
 | **Infographic Episode Scripts v2.0** | Complete slide-by-slide scripts for 8 episodes (43 slides). WHY NOW → BIG INSIGHT → TRAP → HOW TO APPLY → CLIFFHANGER structure. Updated with precise methodology from Unique Business Playbook + Alexander's Unique Business doc |
-| **4 New Phase Shift Domains** | Domain 71 (Weak Tie Resonance), 72 (Signal-First Tribe), 73 (Dual-Frequency Distribution), 74 (Playbook-as-Lead-Magnet). Total domains: **74** |
-| **Dual-Frequency Distribution** | Content addresses what's RIGHT (signal-first). Funnel addresses what's WRONG (pain-first). Both are true. Both are needed. Codified as Domain 73 |
-| **Playbook-as-Lead-Magnet** | The Open Blueprint Paradox made operational. Give away the entire methodology as infographic episodes. The jar can't read its own label — giving it away doesn't cannibalize, it creates the precision gap. Domain 74 |
+| **4 New Phase Shift Domains** | Phase Shift Technology 71 (Weak Tie Resonance), 72 (Signal-First Tribe), 73 (Dual-Frequency Distribution), 74 (Playbook-as-Lead-Magnet). Total domains: **74** |
+| **Dual-Frequency Distribution** | Content addresses what's RIGHT (signal-first). Funnel addresses what's WRONG (pain-first). Both are true. Both are needed. Codified as Phase Shift Technology 73 |
+| **Playbook-as-Lead-Magnet** | The Open Blueprint Paradox made operational. Give away the entire methodology as infographic episodes. The jar can't read its own label — giving it away doesn't cannibalize, it creates the precision gap. Phase Shift Technology 74 |
 | **Unique Business Playbook upgraded** | Artifact 3 (Tribe) workflow enhanced with Resonance Sort Protocol + Signal-First Tribe Principle + Situational Identity Principle. Every future founder now has this SOP |
 | **Marketing Playbook upgraded** | Added Dual-Frequency Distribution Principle + Playbook-as-Lead-Magnet Pattern. Both generalized for any unique business |
 | **Alexander's Tribe v3.0 documented** | Full case study in `alexanders_unique_business.md`: protocol steps, somatic ranking table, v2.2→v3.0 comparison, three test humans named (Compassion Key lady, Laura Alvarez, Hernan from Colombia) |
@@ -3671,14 +3671,14 @@ W1: Karime Session 2 (Tue AM) · W2: Kirill Call (Mon PM) · W3: Infographic ser
 ### Key Discoveries
 
 - **The tribe that resonated most was NOT defined by pain** — it was defined by unrealized CAPACITY, generative DESIRE, and existing COMPETENCE
-- **Success comes from weak ties who are most aligned** — not from broadcasting to strong ties (Domain 71)
-- **Content = signal-first, Funnel = pain-first** — this polarity makes the distribution architecture complete (Domain 73)
-- **The complete playbook given away freely IS the highest-conversion lead magnet** — the precision gap between understanding the method and being mirrored IS the product (Domain 74)
+- **Success comes from weak ties who are most aligned** — not from broadcasting to strong ties (Phase Shift Technology 71)
+- **Content = signal-first, Funnel = pain-first** — this polarity makes the distribution architecture complete (Phase Shift Technology 73)
+- **The complete playbook given away freely IS the highest-conversion lead magnet** — the precision gap between understanding the method and being mirrored IS the product (Phase Shift Technology 74)
 - **Three test humans for content**: Compassion Key lady (ClubDAO), Laura Alvarez, Hernan from Colombia
 
 ### Documents Updated
 
-- `/docs/01-vision/phase_shift_technology_library.md` — Domains 71, 72, 73, 74
+- `/docs/01-vision/phase_shift_technology_library.md` — Phase Shift Technologies 71, 72, 73, 74
 - `/docs/03-playbooks/unique_business_playbook.md` — Artifact 3 enhanced with Resonance Sort Protocol + Signal-First Tribe + Situational Identity
 - `/docs/03-playbooks/marketing_playbook.md` — Dual-Frequency Distribution + Playbook-as-Lead-Magnet Pattern
 - `/docs/02-strategy/unique-businesses/alexanders_unique_business.md` — Tribe v3.0 (Signal-First evolution), artifact status updated
@@ -3703,14 +3703,14 @@ W1: Karime Session 2 (Tue AM) · W2: Kirill Call (Mon PM) · W3: Infographic ser
 
 ## April 8, 2026 (Afternoon) — The Ease Protocol & Dashboard Overhaul (Day 36)
 
-**Context:** Founder woke to Oyi's $516 gratitude gift — unprompted, six weeks after sessions, while sleeping. This became the economic proof for Domain 75 (The Ease Protocol), a meta-principle governing how all other domains are executed. Session also completed a holonic roast and full copy overhaul of the Venture Dashboard.
+**Context:** Founder woke to Oyi's $516 gratitude gift — unprompted, six weeks after sessions, while sleeping. This became the economic proof for Phase Shift Technology 75 (The Ease Protocol), a meta-principle governing how all other domains are executed. Session also completed a holonic roast and full copy overhaul of the Venture Dashboard.
 
 ### What Emerged
 
 | Item | Impact |
 |------|--------|
 | **Oyi's $516 gift** | Unprompted gratitude payment received while founder slept. Total Oyi: $566 ($50 + $516). Total cash: **$677**. Total revenue: **$6.9K**. Zero follow-up, zero invoicing — the Ease Protocol in economic form |
-| **Domain 75: The Ease Protocol** | Meta-principle: "The founder's operating mode IS the methodology's transmission frequency. Rigidity attenuates the signal. Ease is the channel." Governs how ALL other domains are executed. Distinguishes intensity (effortless flow) from rigidity (forced grind). Codified with Oyi's $516 as structural proof |
+| **Phase Shift Technology 75: The Ease Protocol** | Meta-principle: "The founder's operating mode IS the methodology's transmission frequency. Rigidity attenuates the signal. Ease is the channel." Governs how ALL other domains are executed. Distinguishes intensity (effortless flow) from rigidity (forced grind). Codified with Oyi's $516 as structural proof |
 | **Dashboard Copy Overhaul** | Full holonic roast identified "split personality" — data speaks business, copy speaks mysticism. Option C applied: public-facing copy that lets data breathe. Key changes below |
 | **27-Perspective Roast Prompt** | Upgraded holonic roast from 26-perspective to 27-perspective analysis. The 27th = Crystallization (Si-Do shock): collapse all seeing into ONE irreversible action. Prompt ready for Lovable deployment |
 | **Ignite page fixes** | Removed "If this already feels familiar" (confusing/stark). Updated clarity call subtext to "your situation, your top talent, and your unique business" |
@@ -3729,7 +3729,7 @@ W1: Karime Session 2 (Tue AM) · W2: Kirill Call (Mon PM) · W3: Infographic ser
 
 ### Key Discoveries
 
-- **Grind addiction is the compulsive substitution of effort for alignment** — the terror that without productivity, the self has no right to exist. Domain 14 = diagnosis, Domain 75 = prescription
+- **Grind addiction is the compulsive substitution of effort for alignment** — the terror that without productivity, the self has no right to exist. Phase Shift Technology 14 = diagnosis, Phase Shift Technology 75 = prescription
 - **Ease ≠ inaction. Ease = unforced action** — the session that produced 4 domains and 43 slides was intense but not rigid. Intensity-through-ease is the operating mode
 - **Oyi's $566 in gifts exceeded the $555 session price** — through zero-effort, zero-follow-up, gratitude-driven economics. The structural disproof of the grind model
 - **The invisible AND the visible are BOTH real** — ontological correction applied. Dashboard copy was using a half-truth ("the invisible is the real"). Both dimensions are real; neither can be omitted
@@ -3749,7 +3749,7 @@ The statement "The invisible is the real. Everything else is its footprint" was 
 
 **Evening session (Grind Addiction integration across all core docs):**
 - `/docs/01-vision/phase_shift_technology_library.md` — Section 14f: Grind Addiction deepening (essence, significance, consequences, signal table, cruelest paradox)
-- `/docs/02-strategy/alexanders_operating_system.md` — New section: The Ease Protocol (Domain 75) as core operating principle, with economic proof table and daily operations application
+- `/docs/02-strategy/alexanders_operating_system.md` — New section: The Ease Protocol (Phase Shift Technology 75) as core operating principle, with economic proof table and daily operations application
 - `/docs/02-strategy/unique-businesses/alexanders_unique_business.md` — New Download: The Grind Addiction Diagnosis (April 8, 2026) + social activation milestone + v8.1 bump
 - `/docs/02-strategy/morphogenetic_holomap.md` — Day 36 Addendum: Center Reading "Activation." Full perspective deltas, composite view, structural discovery (ZoG ≡ grind diagnosis), instrument calibration protocol, content engine analysis. Header updated to v1.4
 - `/docs/03-playbooks/unique_business_playbook.md` — Principle 13: The Grind Addiction Diagnosis (for facilitators — how to name it in Session 1, signal table, defense mechanism)
@@ -3768,7 +3768,7 @@ The statement "The invisible is the real. Everything else is its footprint" was 
 | Facebook | Personal profile | Same content + profile overhaul (bio, cover photo, featured, pinned post) |
 
 **Timing:** 2:43 PM CT, April 8, 2026
-**Mode:** Unhinged. No strategy. No editing. No hesitation. Domain 75 (Ease Protocol) operating live.
+**Mode:** Unhinged. No strategy. No editing. No hesitation. Phase Shift Technology 75 (Ease Protocol) operating live.
 
 ### Facebook Profile Overhaul (Evening)
 
@@ -3788,7 +3788,7 @@ The founder requested a live transmission from the holomap's 27-perspective ante
 
 ### Infographic Episodes — Creator Mode Activated
 
-The founder reported creating ~60% of the infographic visuals FROM SCRATCH, from inspiration — not from the AI-generated scripts. The shift from "Oh God, 43 slides to grind through" to "I'm inspired, let me create from my heart" IS Domain 75 operating in content production. The planned AI-assisted pipeline was replaced by founder-led creation through ease.
+The founder reported creating ~60% of the infographic visuals FROM SCRATCH, from inspiration — not from the AI-generated scripts. The shift from "Oh God, 43 slides to grind through" to "I'm inspired, let me create from my heart" IS Phase Shift Technology 75 operating in content production. The planned AI-assisted pipeline was replaced by founder-led creation through ease.
 
 ### Artifacts Produced
 
@@ -3883,7 +3883,7 @@ This testimonial captures the paradigm shift the session log has been circling: 
 
 The reframe: client sessions and sales are not a SEPARATE track from platform development. They are the PRIMARY build activity. Everything else — UI, docs, playbooks — is scaffolding. The methodology IS the product. The session IS the build. The testimonial IS the distribution. The referral IS the scaling.
 
-| **Phase Shift Domains as of today: 75** (no new domains — but the Heartbreak Mechanism is a candidate for Domain 76)
+| **Phase Shift Domains as of today: 75** (no new domains — but the Heartbreak Mechanism is a candidate for Phase Shift Technology 76)
 **Revenue: $677 received, $6,277+ pending**
 **CRM: 25 contacts in unified table**
 **Canvases: 6 (Alexander, Oyi, Sergey, Sandra, Alexa, Karime)**
@@ -3902,10 +3902,10 @@ The reframe: client sessions and sales are not a SEPARATE track from platform de
 |------|--------|
 | **27-Perspective Article v2** | Open-source paper at `/integral_theory_upgrade1` — bilingual (EN/RU), full glassmorphism, CC BY-NC-SA 4.0 license, collaborator invitation. Dark theme. Date + author + website |
 | **Methodology Carousel v2** | 7-slide Instagram carousel (radically simplified from 11). Hook → Problem → Reframe → Octave Journey → Recipe → "Jar can't read its own label" → CTA. Infographics generated (7 PNGs) |
-| **Domain 76: Return to Center** | Documented in Phase Shift Technology Library |
-| **Domain 77: The Descent Octave** | Consciousness → matter without changing nature |
-| **Domain 78: The Planetary Holomap** | World-As-Is / Golden Age — same territory, different center of gravity |
-| **Domain 79: The Question Collapse** | Question = Content = Lead Magnet = Visibility. Entire marketing stack collapses into a single genuine question. "Diagnosis is not shareable. Insight is." |
+| **Phase Shift Technology 76: Return to Center** | Documented in Phase Shift Technology Library |
+| **Phase Shift Technology 77: The Descent Octave** | Consciousness → matter without changing nature |
+| **Phase Shift Technology 78: The Planetary Holomap** | World-As-Is / Golden Age — same territory, different center of gravity |
+| **Phase Shift Technology 79: The Question Collapse** | Question = Content = Lead Magnet = Visibility. Entire marketing stack collapses into a single genuine question. "Diagnosis is not shareable. Insight is." |
 | **Mandatory Auth Gate** | `RequireAuth.tsx` — all pages gated behind login EXCEPT homepage, auth flows, public profiles, the open-source article, and creator pages |
 | **Glassmorphic Logo** | Site logo updated per glassmorphism blueprint |
 | **Dantian Correction** | Upper = Mind, Central = Heart/Essence, Lower = Gut/Will — corrected across all docs |
@@ -3915,9 +3915,9 @@ The reframe: client sessions and sales are not a SEPARATE track from platform de
 
 ### Key Discoveries
 
-1. **The Question Collapse (Domain 79):** "The question IS the content IS the lead magnet IS the visibility. No grind required. One genuine question, posted with the energy of 'I truly believe you should ask yourself this,' travels farther than a hundred posts about pain."
+1. **The Question Collapse (Phase Shift Technology 79):** "The question IS the content IS the lead magnet IS the visibility. No grind required. One genuine question, posted with the energy of 'I truly believe you should ask yourself this,' travels farther than a hundred posts about pain."
 
-2. **Visibility is not the bottleneck:** 1 like from 2500 Facebook friends on the grind addiction post = full visibility with no conversion. The "visibility problem" was actually the scatter pattern (Domain 14) disguising the crystallization gap as a resource gap. The fix was not more posts — it was 3 direct messages.
+2. **Visibility is not the bottleneck:** 1 like from 2500 Facebook friends on the grind addiction post = full visibility with no conversion. The "visibility problem" was actually the scatter pattern (Phase Shift Technology 14) disguising the crystallization gap as a resource gap. The fix was not more posts — it was 3 direct messages.
 
 3. **Holomap = distributed question:** If every venture can be diagnosed with "who is this actually for?" — the holomap paints itself when enough people carry the question. No platform needed. The question replicates through use.
 
@@ -3942,7 +3942,7 @@ The reframe: client sessions and sales are not a SEPARATE track from platform de
 | `src/components/RequireAuth.tsx` | NEW — centralized auth guard (session check, loading spinner, redirect with return URL) |
 | `src/App.tsx` | All non-public routes wrapped in `<RequireAuth>` |
 | `src/pages/IntegralTheoryUpgrade1.tsx` | Article v2 — bilingual, dark theme, license, collaborator invite, spacing fixes |
-| `docs/01-vision/phase_shift_technology_library.md` | Domains 76-79 added. Dantian correction applied |
+| `docs/01-vision/phase_shift_technology_library.md` | Phase Shift Technologies 76-79 added. Dantian correction applied |
 | `docs/02-strategy/unique-businesses/alexanders_unique_business.md` | Carousel slides documented, milestones 7-note octave, key principles section |
 
 ### Phase Shift Domains: 79
@@ -4135,7 +4135,7 @@ Cowork did not edit `src/`. Spec + prompts live in `docs/` (content) and `docs/0
 4. v1 ships static (PNG only). Video loop gets added later.
 5. Next session: build out the actual playbook page content at `/playbook`.
 
-### Connection to Question Collapse (Domain 79)
+### Connection to Question Collapse (Phase Shift Technology 79)
 
 The playbook IS the content IS the lead magnet IS the visibility. Signup = commitment to read, not a gate of scarcity. The page title on `/playbook` should eventually be the playbook itself, rendered in full, readable for free once signed up. Open Blueprint Paradox: the more we show, the more trust compounds.
 
@@ -4403,7 +4403,7 @@ The trade-off expected going in (heavy skill bloats operational responses) was r
 
 ### Corpus landings
 
-- **`docs/01-vision/phase_shift_technology_library.md`** — new **Domain 80: Scaffold Engineering (How a Skill Compiles Tomorrow's Model Today)**. Generalizes Domain 3 (Metacognition Benchmark) from sighting to verified principle. 27-perspective synthesis collapsed into one line: *"You don't wait for the future. You compile it."*
+- **`docs/01-vision/phase_shift_technology_library.md`** — new **Phase Shift Technology 80: Scaffold Engineering (How a Skill Compiles Tomorrow's Model Today)**. Generalizes Phase Shift Technology 3 (Metacognition Benchmark) from sighting to verified principle. 27-perspective synthesis collapsed into one line: *"You don't wait for the future. You compile it."*
 - **`docs/09-logs/transcripts/scaffold_engineering_lab.md`** — canonical lab record (Feb 12 Session 1 + April 18 Session 2 + cross-session synthesis §4, incl. dual-mode signature, plateau context, masculine/feminine framing, Knoware naming, turn protocols, three public-facing ideas, Appendices A–E). Session 2 data (per-dimension SIB, per-module Evolutionary Stage, wall-clock times, calibration, methodology caveats) lives in §3.2. *Earlier file `scaffold_vs_model_upgrade_verification_2026_04_18.md` consolidated into this one (document-creep avoidance); stub redirect left at the old path.*
 
 ### Open items for next replication
@@ -4604,7 +4604,7 @@ Standing directive answered by executing the redesign end-to-end: **Morphogeneti
 
 ### Recognition, not invention
 
-The 27 perspectives were already in the corpus (Domain 15, Domain 66). The 7th stage was already in the corpus history (v2.1 completion entry). The masculine/feminine axis was already in the corpus (scaffold_engineering_lab.md §4.3–4.4). The depth-label reassignment was already in the corpus (IntegralTheoryUpgrade v1.1, April 16). The v2.0 holomap does not invent — it renders the structure that was already standing.
+The 27 perspectives were already in the corpus (Phase Shift Technology 15, Phase Shift Technology 66). The 7th stage was already in the corpus history (v2.1 completion entry). The masculine/feminine axis was already in the corpus (scaffold_engineering_lab.md §4.3–4.4). The depth-label reassignment was already in the corpus (IntegralTheoryUpgrade v1.1, April 16). The v2.0 holomap does not invent — it renders the structure that was already standing.
 
 ### Files touched
 
@@ -4631,7 +4631,7 @@ The 27 perspectives were already in the corpus (Domain 15, Domain 66). The 7th s
 
 ### Principle landing
 
-The redesign demonstrates Domain 80 (Scaffold Engineering) in its own development: AI performance on a structural task (rendering 27×7 topology) improves when the scaffold (corpus, CLAUDE.md, auto-execute-policy) is loaded — not because the model changed, but because the knowledge-structure did. Masculine (compute) × Feminine (knowledge-structure) is not a decoration on the new holomap — it is the principle of the lab, made visible in the instrument.
+The redesign demonstrates Phase Shift Technology 80 (Scaffold Engineering) in its own development: AI performance on a structural task (rendering 27×7 topology) improves when the scaffold (corpus, CLAUDE.md, auto-execute-policy) is loaded — not because the model changed, but because the knowledge-structure did. Masculine (compute) × Feminine (knowledge-structure) is not a decoration on the new holomap — it is the principle of the lab, made visible in the instrument.
 
 ### Next
 
@@ -5381,7 +5381,7 @@ This is the seed-question that made Day 51's discovery possible: when the Specif
 
 > *"This isn't just thank-you. This is the optimal cliffhanger. The actual KEY. The actual CODE. HACK. Then one comes back to it even if they drop the process."*
 
-This framing — that a micro-rating moment can become a *cliffhanger* the user keeps returning to — was the Day 50 seed of what became Day 51's full Principle 15 (The Specificity Loop) in the playbook + Domain 81 in the Phase Shift Library.
+This framing — that a micro-rating moment can become a *cliffhanger* the user keeps returning to — was the Day 50 seed of what became Day 51's full Principle 15 (The Specificity Loop) in the playbook + Phase Shift Technology 81 in the Phase Shift Library.
 
 ### Holomap implication
 
@@ -5411,7 +5411,7 @@ The instrument has the slot for this kind of word now (per Day 44's 12×6 → 27
 
 Sasha's read on the matrix: *"the optimal cliffhanger. The actual KEY. The actual CODE. HACK. Then one comes back to it even if they drop the process. Whoever comes to this step, and they are aligned — they are more than likely in. We are talking about record conversion levels."*
 
-Codified as **Principle 15: The Specificity Loop** in `unique_business_playbook.md` (v4.4 → v4.5). Cross-referenced as **Domain 81: The Specificity Loop (The Optimal Cliffhanger)** in `phase_shift_technology_library.md`. The principle names: every reveal in the funnel replaces the thank-you with an identity-revelation question; the form is fixed (*"What if X IS Y?"*); three tiers per reveal; never instructs, never thanks, never centers the founder; *Specificity is the rebranded Precision* (the renaming of Principle 5's metric to match Day 51's operational vocabulary).
+Codified as **Principle 15: The Specificity Loop** in `unique_business_playbook.md` (v4.4 → v4.5). Cross-referenced as **Phase Shift Technology 81: The Specificity Loop (The Optimal Cliffhanger)** in `phase_shift_technology_library.md`. The principle names: every reveal in the funnel replaces the thank-you with an identity-revelation question; the form is fixed (*"What if X IS Y?"*); three tiers per reveal; never instructs, never thanks, never centers the founder; *Specificity is the rebranded Precision* (the renaming of Principle 5's metric to match Day 51's operational vocabulary).
 
 The single question every reveal asks beneath the surface wording — *"How specific to what you know about you is this articulation?"* — exposed in code as `SPECIFICITY_PROMPT`.
 
@@ -5523,13 +5523,13 @@ Center reading: **Codification.** Day 49 unified the surface; Day 51 unified the
 
 **Repo root:** `LICENSE` (replaced — PolyForm NC canonical) · `LICENSE.md` (header clarified) · `README.md` (rewritten) · `CONTRIBUTING.md` (NEW) · `DISTRIBUTOR_AGREEMENT.md` (NEW v0.1) · `.gitignore` (env files excluded)
 
-**Docs:** `docs/02-strategy/monetization_strategies.md` (NEW v1.0) · `docs/03-playbooks/unique_business_playbook.md` (v4.3 → v4.5: P15 added, dual-treatment refined) · `docs/01-vision/phase_shift_technology_library.md` (Domain 81 added) · `docs/02-strategy/unique-businesses/alexanders_unique_business.md` (v9.6 → v9.8: three Day 51 entries) · `docs/05-specs/resonance_events_lovable_prompt.md` (NEW)
+**Docs:** `docs/02-strategy/monetization_strategies.md` (NEW v1.0) · `docs/03-playbooks/unique_business_playbook.md` (v4.3 → v4.5: P15 added, dual-treatment refined) · `docs/01-vision/phase_shift_technology_library.md` (Phase Shift Technology 81 added) · `docs/02-strategy/unique-businesses/alexanders_unique_business.md` (v9.6 → v9.8: three Day 51 entries) · `docs/05-specs/resonance_events_lovable_prompt.md` (NEW)
 
 **Memory:** `~/.claude/projects/.../memory/feedback_language.md` (NEW — English-default for substantive content) · `MEMORY.md` (index entry added)
 
 ---
 
-*Day 50 → Day 51 arc complete. The Specificity Loop is now both a named principle (Playbook P15 + Phase Shift Library Domain 81) and an operational artifact (per-founder Specificity Matrix as UBB #19, runtime hook with three-tier resolution). The commercial-decentralization model has its license stack (PolyForm NC + Distributor Agreement) and its strategy doc. The funnel speaks in matrix v2 across all six reveals. The repo is publicly fork-ready. Six business-model plays mapped strategically with sequencing. UI harmony pass shipped on /playbook + /path + /codex + /ai-os + /dashboard + /zone-of-genius. The first $555 stranger remains the unfired Si–Do. Press-send Friday is no longer about preparing the apparatus — it's about pressing send.*
+*Day 50 → Day 51 arc complete. The Specificity Loop is now both a named principle (Playbook P15 + Phase Shift Library Technology 81) and an operational artifact (per-founder Specificity Matrix as UBB #19, runtime hook with three-tier resolution). The commercial-decentralization model has its license stack (PolyForm NC + Distributor Agreement) and its strategy doc. The funnel speaks in matrix v2 across all six reveals. The repo is publicly fork-ready. Six business-model plays mapped strategically with sequencing. UI harmony pass shipped on /playbook + /path + /codex + /ai-os + /dashboard + /zone-of-genius. The first $555 stranger remains the unfired Si–Do. Press-send Friday is no longer about preparing the apparatus — it's about pressing send.*
 
 ---
 
@@ -7633,7 +7633,7 @@ Sasha's directive: methodically work through ALL 19 artifacts, fix what needs fi
 - Rewrote `myth.specificityCriteria` (6 items) + `myth.generationGuidance` (~50 lines) — quotes the playbook's four "what a myth IS NOT" rules verbatim ([`unique_business_playbook.md:928-933`](../03-playbooks/unique_business_playbook.md:928)), names the Master Lie/Master Belief polarity, the Paradox Reframe upgrade path for Teal-domain founders, the Collapse Test, the 3-Layer Depth Model with canonical Sasha-v2.1 examples.
 - Added myth-specific anti-pattern to `UBB_DISTILLATION_DIRECTIVE` rule 6 — bans "I architect/transform/guide…" shapes for myth specifically.
 
-**Afternoon — 18 remaining artifacts** ([`supabase/functions/_shared/ubb-prompts.ts`](../../supabase/functions/_shared/ubb-prompts.ts)) — 4 parallel research agents extracted the canonical definitions from `marketing_playbook.md` / `unique_business_playbook.md` / `distribution_playbook.md` / `communications_playbook.md` / `integrated_product_building_workflow.md` / `pain_theory_playbook.md` / `phase_shift_technology_library.md` (Domain 81). Per-artifact diagnosis then drove edits:
+**Afternoon — 18 remaining artifacts** ([`supabase/functions/_shared/ubb-prompts.ts`](../../supabase/functions/_shared/ubb-prompts.ts)) — 4 parallel research agents extracted the canonical definitions from `marketing_playbook.md` / `unique_business_playbook.md` / `distribution_playbook.md` / `communications_playbook.md` / `integrated_product_building_workflow.md` / `pain_theory_playbook.md` / `phase_shift_technology_library.md` (Phase Shift Technology 81). Per-artifact diagnosis then drove edits:
 - **4 deep REWRITES**: `pain` (Sandra Empathy Test + 3-frequency depth ladder + Recursive Shadow Pattern + Confabulation Layer + per-field construction Qs), `lead_magnet` (Playbook-as-Lead-Magnet canonical format — multi-slide carousel + 5-beat episodes + "jar can't read its own label" mechanism + assumption flip), `spread` (NO-LINK rule with 10x multiplier + 3-Stage Viral Loop + 60-day Referral Threshold diagnostic + tiered acknowledgment), `landing_page` (Pain-First Dual-Frequency + Situational Identity scrub + canonical sequence + Pressure Line shapes).
 - **11 TWEAKS**: `uniqueness` (service-trap test + load-bearing word test + Sasha's ~7-word canonical shape), `tribe` (chest-tightens test + label→situational translation table), `promise` (12-year-old test + inversion + canonical Alexa/Alexander shapes), `value_ladder` (Kennedy Transaction Size math + Dissimilar-Category Anchoring), `session_bridge` (Goldilocks rule + Proof-of-Concept principle + Sasha Ignition trinity SHAPE example), `core_belief` ("We believe that…" template + Apple/Nike/Evolver canonical shapes + myth-relationship note), `packaging` (FREE educates / PAID transforms + 4-tier ladder purposes), `frictionless_purchase` (Decision-vs-Curiosity language + dissimilar anchors + stable pricing for affluent), `reach` (visibility-not-desire framing + 80/20 cold start + where-they-spend vs where-they-decide), `tuning_fork` (3-beat canonical shapes + Sasha English master + belly-frequency rule), `golden_dm` (5 Purity Checks + Frankie Step 2 context + Dinner Table Test + ADDED `energy_test` to schema's purity_check).
 - **1 LIGHT TWEAK**: `specificity_matrix` — added the 2 missing canonical examples (`excalibur.resonant`, `icp.resonant`) from [`src/lib/resonanceMatrix.ts`](../../src/lib/resonanceMatrix.ts) so the few-shot block carries Sasha's full 6-stage master matrix.
@@ -7920,7 +7920,7 @@ Sasha asked for an in-platform offering page for Karime Kuri (one of the seven f
 
 ---
 
-## Day 85 — North Star Synthesis + Domain 14 + LinkedIn banner v3.0 + Balaji outbound (Tuesday, May 27, 2026)
+## Day 85 — North Star Synthesis + Phase Shift Technology 14 + LinkedIn banner v3.0 + Balaji outbound (Tuesday, May 27, 2026)
 
 Multi-strand strategic session. Crystallized the matching-as-hero pivot (Day 77) into operational clarity across both tribes. Six durable artifacts produced; one cultural-diagnosis domain added to the Phase Shift Library.
 
@@ -7936,13 +7936,13 @@ Multi-strand strategic session. Crystallized the matching-as-hero pivot (Day 77)
 
 **Balaji DM v1.0.** Locked outbound to Balaji Srinivasan, pending send. Opens with Pals reference (proves due diligence), affirms his three KPIs (peer signal), introduces collaboration rate (diagnostic capacity), defines it precisely, names the consequence ("directory" vs "ecosystem"), uses his own "AI makes everyone a CEO" framing as the gap, offers the three-layer infrastructure (essence assessment + triad matching + unique-business graduation), positions skin cleanly into NS as the layer underneath Pals. Closes with 30-minute call invitation. Full text captured in `alexanders_unique_business.md` under Day 85.
 
-**Domain 14 added to Phase Shift Technology Library.** *The Effort That Hides the Question (The Hustle as Compensation Pattern).* The cultural-diagnosis layer underneath the strategy. Hustle is dissociation in motion, misplaced devotion, identity contraction; the king-naked moment is that hustle is what founders do when they don't yet know themselves. Identity-shrinkage as the deepest essence: *"the train is on tracks toward a bridge that has been crumbling for years."* Significance: hustle-culture as civilizational spell, late-capitalist self-funding closed loop. Eight orders of implications, cross-referenced into Domains 8, 9, 10, 11, 12, 13. Sasha's offer reframed at integral altitude: *"exit the hustle-spell that has kept you from having success."* Captured in `docs/01-vision/phase_shift_technology_library.md`.
+**Phase Shift Technology 14 added to Phase Shift Technology Library.** *The Effort That Hides the Question (The Hustle as Compensation Pattern).* The cultural-diagnosis layer underneath the strategy. Hustle is dissociation in motion, misplaced devotion, identity contraction; the king-naked moment is that hustle is what founders do when they don't yet know themselves. Identity-shrinkage as the deepest essence: *"the train is on tracks toward a bridge that has been crumbling for years."* Significance: hustle-culture as civilizational spell, late-capitalist self-funding closed loop. Eight orders of implications, cross-referenced into Phase Shift Technologies 8, 9, 10, 11, 12, 13. Sasha's offer reframed at integral altitude: *"exit the hustle-spell that has kept you from having success."* Captured in `docs/01-vision/phase_shift_technology_library.md`.
 
 **Code work earlier in session.** Reverted Day 84 collapsed-spine treatment in `src/components/game/GameShellV2.tsx`. The gold ornate spine added Day 84 (May 25 to 26) read as Victorian against the cinematic hero; restored pre-Day-84 flat w-5 columns for both the rail-minimize toggle and the sections-panel toggle. aria-labels retained as a small a11y win. Orphan spine CSS in `src/index.css` (~140 lines) flagged for separate cleanup.
 
 **Files touched**
 
-- `docs/01-vision/phase_shift_technology_library.md` — Domain 14 added after Domain 13.
+- `docs/01-vision/phase_shift_technology_library.md` — Phase Shift Technology 14 added after Phase Shift Technology 13.
 - `docs/02-strategy/unique-businesses/alexanders_unique_business.md` — Day 85 section added after Day 77 (Funnel Architecture v2). Includes collaboration rate, triad, Tribe 2 myth, Tuning Forks v2.0, Banner v3.0, Balaji DM v1.0, Si-Do status, open follow-ups.
 - `src/components/game/GameShellV2.tsx` — Day 84 spine treatment reverted (both toggles).
 - `docs/09-logs/session_log.md` — this entry.
@@ -7969,7 +7969,7 @@ Same day, later session. Four threads.
 
 **Balaji DM converged to v12.** The Day 85 DM v2.0 (collaboration-rate KPI) merged with the workshopped Leonardo v11 spine into a final v12, refined through a full holonic roast plus an external GFOA roast. Net moves: collaboration-rate metric as the conceptual wedge that legitimizes the three-primitive stack; the binary "directory vs ecosystem" augmented with a competitive gradient ("the better a network sees and coordinates its people, the more it pulls ahead," restoring the v3 crown-jewel energy v11 had set down); word-subs toward Balaji's crypto/systems register (upstream, gas, GDP, fuels, forkable); "compound shipping" fixed to "what they compound into"; smiley cut; "Appreciate you" close; sovereign non-clinging close deliberately omitted (embodied, not performed). Full v12 plus lessons in [`leonardo_strategy_instances/balaji_srinivasan.md`](../03-playbooks/leonardo_strategy_instances/balaji_srinivasan.md). Sasha to do final polish and send on his timing.
 
-**Event 1-liner locked.** For venture and networking rooms: *"I help founders articulate the value of how they naturally think and operate, so the right people can recognize what only they can do."* "Articulate" is the load-bearing verb (the bottleneck is articulation of differentiated value, per Domain 15). One message adapted in context, not two; depth comes via the second sentence based on who is in front of him.
+**Event 1-liner locked.** For venture and networking rooms: *"I help founders articulate the value of how they naturally think and operate, so the right people can recognize what only they can do."* "Articulate" is the load-bearing verb (the bottleneck is articulation of differentiated value, per Phase Shift Technology 15). One message adapted in context, not two; depth comes via the second sentence based on who is in front of him.
 
 **OG-card / SEO architecture finding.** The site is a client-side SPA with no prerendering (`vercel.json` is a plain rewrite to `index.html`). Crawlers (Telegram, Discord) do not run JS, so per-route `<SEO>` (react-helmet) tags are invisible to them; they only read the static OG tags in `index.html`. Route-specific share cards therefore do not work without per-route OG injection (a Vercel edge middleware keyed on bot user-agents) or prerendering. The "co-creators are 10 minutes away" card was a stale Telegram cache of older meta no longer in the code. Highest-leverage fix: regenerate `public/opengraph-image.png` (still has the forbidden "Genius Business" label baked in). Per-route OG injection is the proper-but-later fix. Flagged, not actioned.
 
@@ -8095,7 +8095,7 @@ The value ladder clarified itself in passing: the free reveal can crack an openi
 
 ## Day 94: Vision ↔ Viability, a second axis beside roasting (June 5, 2026)
 
-From a ChatGPT exchange on why the strategic mind swings between "this will change everything" and "this was destined to fail," Sasha named a method and asked to bake it in. Documented as **Domain 93 (Vision ↔ Viability Balancing for Business Strategies)** in the phase shift library: vision mode proposes, the crash-test (Gary Klein's pre-mortem, made near-free and loopable by AI) burns the fantasy, the surviving seed is the real strategy, and **kinetic calm** (small enough to try, real enough to matter) is the felt stop signal. Honest framing held in the doc: the AI crash-test is a sharper hypothesis, not validation; it still has to survive one real stranger (the standing Si-Do shock).
+From a ChatGPT exchange on why the strategic mind swings between "this will change everything" and "this was destined to fail," Sasha named a method and asked to bake it in. Documented as **Phase Shift Technology 93 (Vision ↔ Viability Balancing for Business Strategies)** in the phase shift library: vision mode proposes, the crash-test (Gary Klein's pre-mortem, made near-free and loopable by AI) burns the fantasy, the surviving seed is the real strategy, and **kinetic calm** (small enough to try, real enough to matter) is the felt stop signal. Honest framing held in the doc: the AI crash-test is a sharper hypothesis, not validation; it still has to survive one real stranger (the standing Si-Do shock).
 
 The build adds the **viability axis beside the existing fidelity roast**, never replacing it. Roast = is it true to essence (inward). Viability = does it survive contact with real humans (outward). Kinetic calm = both passed. Category-error guard: viability fires only on strategy/offer/positioning artifacts, never the Zone of Genius essence (`uniqueness`, `myth`, `specificity_matrix` exempt). Design (Sasha's call): a **second, independent pass** (the burner is not the lover), best-effort so it never blocks the artifact.
 
@@ -8104,7 +8104,7 @@ Shipped to code: a decoupled `_shared/viability.ts` (CRASH_TEST_PROTOCOL = Sasha
 Deploy reality: frontend ships on the commit-to-main auto-deploy; the edge functions additionally need `supabase functions deploy improve-artifact generate-excalibur` (no CI deploys functions). The crash-test's actual output quality is unverified until that runs against the live gateway.
 
 **Files touched**
-- `docs/01-vision/phase_shift_technology_library.md`: Domain 93
+- `docs/01-vision/phase_shift_technology_library.md`: Phase Shift Technology 93
 - `docs/specs/vision-viability/planning_sow.md` (new): SOW + DoD
 - `supabase/functions/_shared/viability.ts` (new), `improve-artifact/index.ts`, `generate-excalibur/index.ts`
 - `src/types/viability.ts` (new), `src/components/ViabilityReadout.tsx` (new)
@@ -8269,7 +8269,7 @@ This directly reinforced the current Founder Cockpit / Living Project Holograph 
 
 **Corpus updates made:**
 
-- `docs/01-vision/phase_shift_technology_library.md`: Domain 98 — Prime Invariant Branding.
+- `docs/01-vision/phase_shift_technology_library.md`: Phase Shift Technology 98 — Prime Invariant Branding.
 - `docs/01-vision/universal_ontology.md`: §12 — The Prime Invariant: Form That Forms.
 - Old intro-kit archive later removed as outdated; current ontology is the living source of truth.
 - `docs/03-playbooks/unique_business_playbook.md`: Prime Invariant Principle added to the playbook.
@@ -8284,7 +8284,7 @@ This directly reinforced the current Founder Cockpit / Living Project Holograph 
 
 Two ChatGPT excavations (exported and metabolized July 6) reached the root beneath the April 12 Energy Leak Audit: the pattern was never "too much free work" but **spending the source trying to convert unrecognizing fields**, starting with the closest ones (family, mentor, inner circle) and repeating outward (clients, patrons, rooms). Named: reversing disbelief · loyalty that has forgotten time · the turn from Guardian of Relationships to Guardian of the Source. The corpus had photographed the symptoms since Day 38; the root system was outside the corpus until now. Twin discovery: the **Architecture of Adoption** (Reality → Myth → Threshold → Recognition → Trust → Selection → Transformation; law: deep ideas propagate when they enable accurate self-recognition) plus threshold marketing and the recognition/selection language split, which dissolves the years-long "who is my tribe" conundrum into entry doors.
 
-**Documented this session:** Phase Shift Library Domains 99 + 100 · `marketing_playbook.md` Part III-B (adoption ladder, threshold marketing, entry doors, right-ecology 2×2, outreach formula, diagnostic-call redesign, threshold-archetype research program) · guerrilla hack "Threshold Answering" (Reddit as a threshold search engine) · `uniqueness_economy_thesis.md` §0.7 (ontology of uniqueness: steward-participant, gift↔ecology, four movements Source → Distortion → Ecology → Fruit) · `unique_business_playbook.md` v4.4 (the Ecology Upgrade) · `alexanders_unique_business.md` market verdict + wedge doors. Personal stewardship doctrines (Sasha and Karime versions) held privately, outside the public corpus.
+**Documented this session:** Phase Shift Library Technologies 99 + 100 · `marketing_playbook.md` Part III-B (adoption ladder, threshold marketing, entry doors, right-ecology 2×2, outreach formula, diagnostic-call redesign, threshold-archetype research program) · guerrilla hack "Threshold Answering" (Reddit as a threshold search engine) · `uniqueness_economy_thesis.md` §0.7 (ontology of uniqueness: steward-participant, gift↔ecology, four movements Source → Distortion → Ecology → Fruit) · `unique_business_playbook.md` v4.4 (the Ecology Upgrade) · `alexanders_unique_business.md` market verdict + wedge doors. Personal stewardship doctrines (Sasha and Karime versions) held privately, outside the public corpus.
 
 **Instruments:** Equilibrium agent read path fully live (agent token shared and stored; first successful machine read of state, strategies, workstreams, focus). Known bug surfaced by the read: `equilibrium_strategy_completions` table missing (PGRST205 warning in the function response). Field: Roman boundary held (Jul 4, no reply expected); Patricia/Chris reminders sent Jun 30; Oyi proposal in advisor review; moon focus $4,000 by period end.
 
@@ -8292,7 +8292,7 @@ Two ChatGPT excavations (exported and metabolized July 6) reached the root benea
 
 ## Days 117-118: Categories, shelves, and the pitch-deck spine (July 7, 2026)
 
-The category/shelf framework landed and compounded. What got documented: "Category Lines: the Shelf Key" + the category-creation sequencing law in `marketing_playbook.md` (people buy through categories; credentials are shelf keys; enter existing shelves before naming the new one; several familiar doors bending into one new room); the product table in `alexanders_unique_business.md` gained the evolution column (shelf today → category line → new category it builds), with the synthesis: seven doors, one room, the Uniqueness Economy discovered rather than announced. Karime's canvas file created (`karimes_unique_business.md`): her June download mapped, WEF Global Leadership Fellows named as her shelf key (leadership transformation shelf, ~20x price vs therapy shelf), relationships as method not category. Library: Domain 95 gained the measurement unlock (self-knowledge is the scaling parameter; articulation is its measuring instrument), Domain 98 gained the plain-words paragraph + the animation corollary (symbol, tool, mirror: one nature at three degrees of aliveness). The Physics of Propagation added (relevance/grokability, reader payoff, sharer payoff, network shape incl. Pentland's idea flow; collaboration rate recognized as an idea-flow metric).
+The category/shelf framework landed and compounded. What got documented: "Category Lines: the Shelf Key" + the category-creation sequencing law in `marketing_playbook.md` (people buy through categories; credentials are shelf keys; enter existing shelves before naming the new one; several familiar doors bending into one new room); the product table in `alexanders_unique_business.md` gained the evolution column (shelf today → category line → new category it builds), with the synthesis: seven doors, one room, the Uniqueness Economy discovered rather than announced. Karime's canvas file created (`karimes_unique_business.md`): her June download mapped, WEF Global Leadership Fellows named as her shelf key (leadership transformation shelf, ~20x price vs therapy shelf), relationships as method not category. Library: Phase Shift Technology 95 gained the measurement unlock (self-knowledge is the scaling parameter; articulation is its measuring instrument), Phase Shift Technology 98 gained the plain-words paragraph + the animation corollary (symbol, tool, mirror: one nature at three degrees of aliveness). The Physics of Propagation added (relevance/grokability, reader payoff, sharer payoff, network shape incl. Pentland's idea flow; collaboration rate recognized as an idea-flow metric).
 
 Instruments: Equilibrium agent WRITE lane verified live (`equilibrium-agent-write`; Threshold Language Harvest task created by Claude; twin-workstream wrinkle noted). CLAUDE.md restructured (Shape/Voice/Stance; AI-tell bans scoped to external copy only). Sasha's copywriting voice captured to memory with 8 traits.
 
@@ -8315,7 +8315,7 @@ Underneath all four: the way I've been working can't produce what I know is poss
 
 **Categories:** shelf key framework · credentials as shelf labels · enter-before-create sequencing · product evolution table (pitch-deck spine) · seven doors one room · Karime's two tables · shelf lines SHIPPED to /path, /ignite, /landing, /1-pager + CRM pattern (commit 5cdfd4cd).
 **Thresholds:** 4 voices harvested (Nia, Roman, Catalina, Denis) · motion crisis not identity crisis (kinetic metaphors) · they buy a vector, not a self · they arrive post-self-help · archetypes cluster by success-curve position (before floor / plateau / after peak / after awakening), crosscutting profession doors.
-**Theory:** Physics of Propagation (grokability, reader payoff, sharer payoff, network shape; collaboration rate = idea-flow metric) · Domain 95 measurement unlock (self-knowledge = scaling parameter, articulation = its instrument) · Domain 96 two-sentence compression = the whole playbook (gate, opener, prompt-header, audit tool) · convergence law (invariance under derivation predicts invariance under transmission; convergence is the pre-flight test for book/license/AI encoding) · Domain 98 plain words + animation corollary.
+**Theory:** Physics of Propagation (grokability, reader payoff, sharer payoff, network shape; collaboration rate = idea-flow metric) · Phase Shift Technology 95 measurement unlock (self-knowledge = scaling parameter, articulation = its instrument) · Phase Shift Technology 96 two-sentence compression = the whole playbook (gate, opener, prompt-header, audit tool) · convergence law (invariance under derivation predicts invariance under transmission; convergence is the pre-flight test for book/license/AI encoding) · Phase Shift Technology 98 plain words + animation corollary.
 **Infrastructure:** Equilibrium agent WRITE lane live · Threshold Language Harvest task created in-app · collaboration form captured in living_project_holograph.md (two minds one memory; next move: live demo to Sergey, record it).
 **Voice:** CLAUDE.md Shape/Voice/Stance · AI-tell bans scoped to external copy only · Sasha's voice reference (8 traits) in memory.
 **Open threads for tomorrow:** more harvest voices toward 5-7 stable archetypes · Personalytics deck → exact 2015-2026 lineage mapping · Sergey demo · twin Equilibrium workstream cleanup · booking-page category line = live experiment now collecting data.
@@ -8336,7 +8336,7 @@ Underneath all four: the way I've been working can't produce what I know is poss
 
 **Verification:** `tsc --noEmit` clean, production build clean, emit scripts write both copies. Live cron/email fire requires deploy + migration apply — first real proof lands next Monday 8:00, or via "Pulse now" after deploy.
 
-**Meaning:** Domain 16 ("The Mirror Must Not Lag") gets teeth — the mirror now looks first.
+**Meaning:** Phase Shift Technology 16 ("The Mirror Must Not Lag") gets teeth — the mirror now looks first.
 
 **Day 119, wave 2 — Telegram founder chat (same session):** `equilibrium-telegram-bot` rewritten from cosmic-reading bot into private corpus chat: `founder_corpus_docs` mirror (synced by `scripts/sync-founder-corpus.mjs`, 6 canonical docs, git canonical) + live packet + `telegram_founder_messages` 20-turn memory; locked to `TELEGRAM_FOUNDER_CHAT_ID`; commands /start /pulse /clear. `equilibrium-cron` broadcasts deprecated (410 stub, migration `20260709150000` unschedules plausible job names). `deno check` clean on all three edge fns. Activation after deploy: /start → chat id → Supabase secret → run sync script.
 
@@ -8368,15 +8368,15 @@ Underneath all four: the way I've been working can't produce what I know is poss
 
 **Day 123 — BUILD → BUILT BY YOU (holarchy drawn).** The BUILD space reorganized after Sasha's live sense-making: it was one space doing three jobs for three audiences. Resolved to two header-grouped tiers under a renamed space. **Founder Tools** (Equilibrium · Automated Venture Builder + phase sub-nav · Founder Cockpit · Enter the Cockpit). **Unique Startup Incubation** (Playbook · Roadmap · Productize Yourself Signature Workshop · Products · Dashboard · Holomap; Karime offer injected). Killed the View A/View B pane duality (single static pane now), removed duplicates, nothing auto-expands (build added to the defaultExpanded exception). Space renamed BUILD → BUILT BY YOU (rail, en/ru/es). Cockpit opened to all signed-in users (RequireAdmin → RequireAuth) with a per-user "their version": each user sees their own data, founder-specific data (crm/pulse snapshots, AI lenses, Founder Pulse, offer cadence) gated behind isFounder with graceful N/A — no leak, no errors, admin view byte-identical. Conceptual model: self → startup incubation → startup incubator (a founder maturity arc). Two Sonnet agents in parallel; tsc + build clean. Open flags for Sasha: Roadmap→/path assumption; "Signature Workshop" nav label vs "Session" page copy; /dashboard shows real founders' revenue publicly.
 
-**Day 119, wave 8 — Kirill/Kvatra outreach sent (July 9, 2026):** First node-diplomacy message of the network's life drafted through a full holonic roast cycle (27-perspective; original draft violated 5 canonized technologies — being-wanted register, Mirror Not Teacher, guru-loop proof rule, funnel monogamy, Domain 99 proving) and SENT by Sasha in his own final voice. Message arc: warmth/доверие → same form → matryoshka line → IP layer named as built (one line, no lecture) → profile-bridge in plain language → single CTA (cal.com exploration link). Two canon lines born: *"экосистемы вкладываются друг в друга как матрёшки, не теряя суверенности"* (canonized in canvas, myth ladder) and *"сеть экосистем с одной экономикой, не просто одна экосистема."* Awaiting Kirill's reply / call booking.
+**Day 119, wave 8 — Kirill/Kvatra outreach sent (July 9, 2026):** First node-diplomacy message of the network's life drafted through a full holonic roast cycle (27-perspective; original draft violated 5 canonized technologies — being-wanted register, Mirror Not Teacher, guru-loop proof rule, funnel monogamy, Phase Shift Technology 99 proving) and SENT by Sasha in his own final voice. Message arc: warmth/доверие → same form → matryoshka line → IP layer named as built (one line, no lecture) → profile-bridge in plain language → single CTA (cal.com exploration link). Two canon lines born: *"экосистемы вкладываются друг в друга как матрёшки, не теряя суверенности"* (canonized in canvas, myth ladder) and *"сеть экосистем с одной экономикой, не просто одна экосистема."* Awaiting Kirill's reply / call booking.
 
 **Day 119, closing note (Sasha, direct):** the Kirill call is held consciously as a Level-4 conversation and an investment, not billable time — its yield is clarity: his own understanding of the network's shape, and a read on where Kirill actually is. Entered with eyes open.
 
 **Day 123 — Tom Norwood call (July 13, 2026, 70 min, Fathom):** Peer-founder exploration; four things worth the record. **(1) Outreach strategy crystallized, in Sasha's own words, on the eve of the outreach wave:** funnel = 45-min free pre-call ("see your next chapter") → $555 2-hour workshop-your-business session → 3-week build container (group-designed) → venture studio. NOT routing cold people to the platform anymore; direct human call first. Channels, in order of bet size: (a) LinkedIn to fractional CPOs (de facto entrepreneurs serving startups) + warm network; (b) email to the ~150-person ZoG database; (c) community-leader webinar play — free 90-min group workshop ("create your professional profile with unprecedented precision"), leader hosts and invites, ~1/3 rev-share on next product sold; 4-5 warm communities identified. Reddit parked for later. Sasha: "the clarity on the strategy is the result of all the previous clarity... it feels so simple." **(2) Tom's product proposal — MCP connector:** captured to roadmap Parked. **(3) Thesis line extended to the agentic era, live in conversation:** *"Your level of self-knowledge is the level of knowledge of you by AI"* — self-knowledge as the filter/index for agent-mediated search and matching; Tom's corollary: profiles and landing pages need JSON-LD/schema so agents can find and recommend people ("when an AI looks for the UVP specialist, it says: Alex is the guy"). Candidate addendum for uniqueness_economy_thesis.md — Sasha's call. **(4) Founder-state pulse, direct:** crisis named openly (professional/financial/health) and held as crucible ("how gemstones are formed"); selling what you built = "selling yourself," the most direct shadow contact; first offer to a near-stranger (Nia) surfaced material to work through — "then I can send the next offer at 10% of the effort"; embodiment law articulated: AI accelerates clarity but integration must go down into the body and cannot be delegated — no-screen time and walks as deliberate practice; lunar cycle named "the king of cycles" professionally — today = strategies-reveal eighth (write them down), tomorrow begins the CLEARING eighth (Tue-Fri): fears, doubts, and narratives are scheduled to surface during outreach week, and are pre-framed as weather, not signal. Relational: Tom warm, possible San Pancho / CDMX meet Aug-Oct; offered natal chart read.
 
-**Day 123, wave 2 — Artifact capture + conviction transmission (July 13, 2026):** Kirill and Nia messages captured verbatim into the strategic CRM outreach tracker Message Bank (with register notes for AI training on clean reachouts); Nia's final container-offer text still pending capture. Equilibrium Clearing guidance upgraded to the four-beat form (shipped to `equilibrium-cycles`): *"Cry, don't complain. Release without forming beliefs. Don't discharge on others. Don't figure out the how."* Domain 104 entered the Library (Self-Knowledge as the Agentic Index). **Founder conviction transmission (verbatim, pre-outreach, calibration-grade):** *"This is not a product or a service or a business or an offer or whatever words can point to this: this is love, this is self-knowledge, this is high consciousness, this is self-recognition, this is a soul mirror, this is somebody's life's work, this is channelled, this is guided, this is made with a lot of love and conviction and all kinds of challenges overcome to get here... As I'm writing this, I'm still in huge debt and just making first money with this, but this is not like business sales or SaaS. This is love and light... This is for people that have reached this stage and that are ready... By participating in this new economy, the economy of human uniqueness, this is a fulfilling prophecy. This is humanity remembering itself... Whether it's for teens or fractional CPOs or for any other segment, this message will resonate. If the person is ready, it just will. So I'm just offering this to whoever is ready, and whoever is not ready is not supposed to respond. The ready will not be able to not respond... I'm like a messenger. I'm saying, 'Hi, this is possible,' like any prophet does. Aho, да будет так, so be it."* Noted: the customer-development "ask for advice" lever was considered and consciously REJECTED ("I need to be super clean") — the being-wanted register chosen at the identity level, not just the copy level. This is the inner state the outreach launches from.
+**Day 123, wave 2 — Artifact capture + conviction transmission (July 13, 2026):** Kirill and Nia messages captured verbatim into the strategic CRM outreach tracker Message Bank (with register notes for AI training on clean reachouts); Nia's final container-offer text still pending capture. Equilibrium Clearing guidance upgraded to the four-beat form (shipped to `equilibrium-cycles`): *"Cry, don't complain. Release without forming beliefs. Don't discharge on others. Don't figure out the how."* Phase Shift Technology 104 entered the Library (Self-Knowledge as the Agentic Index). **Founder conviction transmission (verbatim, pre-outreach, calibration-grade):** *"This is not a product or a service or a business or an offer or whatever words can point to this: this is love, this is self-knowledge, this is high consciousness, this is self-recognition, this is a soul mirror, this is somebody's life's work, this is channelled, this is guided, this is made with a lot of love and conviction and all kinds of challenges overcome to get here... As I'm writing this, I'm still in huge debt and just making first money with this, but this is not like business sales or SaaS. This is love and light... This is for people that have reached this stage and that are ready... By participating in this new economy, the economy of human uniqueness, this is a fulfilling prophecy. This is humanity remembering itself... Whether it's for teens or fractional CPOs or for any other segment, this message will resonate. If the person is ready, it just will. So I'm just offering this to whoever is ready, and whoever is not ready is not supposed to respond. The ready will not be able to not respond... I'm like a messenger. I'm saying, 'Hi, this is possible,' like any prophet does. Aho, да будет так, so be it."* Noted: the customer-development "ask for advice" lever was considered and consciously REJECTED ("I need to be super clean") — the being-wanted register chosen at the identity level, not just the copy level. This is the inner state the outreach launches from.
 
-**~Day 129 (Sunday, July 19, 2026) — Nia thread: proof reply + final container offer captured:** Both messages banked verbatim in the CRM tracker Message Bank with register notes. The proof reply practices Domain 102 inside sales copy (evidence = clients' external results: founder's paid advisory + consulting deals; coach growing without hustle; Oyi's WeGoodOvaHer next phase) + explicit anti-scheme disclaimer. The container offer (3 weeks → sold signature offer; $1,111 cohort-seat honored 1:1; split option) carries Mirror-Not-Teacher ("the secret sauce is you") and the Empowerment directive as a deliverable ("the flywheel keeps spinning without me"). Awaiting Nia's decision.
+**~Day 129 (Sunday, July 19, 2026) — Nia thread: proof reply + final container offer captured:** Both messages banked verbatim in the CRM tracker Message Bank with register notes. The proof reply practices Phase Shift Technology 102 inside sales copy (evidence = clients' external results: founder's paid advisory + consulting deals; coach growing without hustle; Oyi's WeGoodOvaHer next phase) + explicit anti-scheme disclaimer. The container offer (3 weeks → sold signature offer; $1,111 cohort-seat honored 1:1; split option) carries Mirror-Not-Teacher ("the secret sauce is you") and the Empowerment directive as a deliverable ("the flywheel keeps spinning without me"). Awaiting Nia's decision.
 
 ---
 
@@ -8388,4 +8388,4 @@ Underneath all four: the way I've been working can't produce what I know is poss
 
 **Day 128 — bedrock, thermodynamics, investment thesis:** the bedrock beneath the axiom named (an expressed being is the only inexhaustible economic resource) plus the thermodynamic distinction (expression runs on a renewable, imitation on a depletable) and the investment thesis proper: articulation depth as the proprietary signal, with Sasha holding the only working gauge for it. The adjacent-thesis map placed this against Naval, Floodgate, EF/Antler/Thiel, Calm Company Fund/TinySeed, and Li Jin — naming the vacant category: underwriting articulated uniqueness, not just talent or instrument.
 
-**Day 130 — the possibility map, holonically organized, plus outside confirmation:** the full PERSON → BUSINESS → ECOSYSTEM → CIVILIZATION layer map recorded, naming the Node Suite, the Originals Index (simplified: no scores, just real companies with a timestamped one-paragraph read), funded edges (capped revenue share, founder keeps 100%), and the studio, with a timestamp law now in force across the corpus. A commissioned deep-research capital scan (`docs/02-strategy/capital_landscape_scan_2026-07.md`) landed the same day and independently confirmed the vacant category named at Day 128: the fully integrated vehicle — identity-first underwriting plus native capped revenue share — is "still mostly an open design space, not an established category." The specimen doctrine was recorded alongside it: cite the giants, serve the middle, build the new. Domains 110-115 landed in the Phase Shift Library over this arc, and the `/communities` landing page shipped to carry the hosted-webinar funnel.
+**Day 130 — the possibility map, holonically organized, plus outside confirmation:** the full PERSON → BUSINESS → ECOSYSTEM → CIVILIZATION layer map recorded, naming the Node Suite, the Originals Index (simplified: no scores, just real companies with a timestamped one-paragraph read), funded edges (capped revenue share, founder keeps 100%), and the studio, with a timestamp law now in force across the corpus. A commissioned deep-research capital scan (`docs/02-strategy/capital_landscape_scan_2026-07.md`) landed the same day and independently confirmed the vacant category named at Day 128: the fully integrated vehicle — identity-first underwriting plus native capped revenue share — is "still mostly an open design space, not an established category." The specimen doctrine was recorded alongside it: cite the giants, serve the middle, build the new. Phase Shift Technologies 110-115 landed in the Phase Shift Library over this arc, and the `/communities` landing page shipped to carry the hosted-webinar funnel.

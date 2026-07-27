@@ -1,10 +1,10 @@
 # Communications Playbook
 
 > *The founder's execution engine for coherent radiation.*
-> *(Formerly: "Epicenter Broadcast Playbook" — renamed 2026-04-18. Lineage preserved: Domain 65 · Epicenter Broadcast.)*
+> *(Formerly: "Epicenter Broadcast Playbook" — renamed 2026-04-18. Lineage preserved: Phase Shift Technology 65 · Epicenter Broadcast.)*
 > *April 8, 2026 — v3.2: First social activation (Telegram + IG + FB) + Grind Addiction content weapon*
 > *© 2026 Alexander Konstantinov · For personal use*
-> *Lineage: Domain 65 (Epicenter Broadcast) + Domain 67 (Consent of Seeing) + Domain 68 (Field Refraction Intelligence) + Domain 69 (Crystallization Antenna) + Domain 14f (Grind Addiction) + Domain 75 (Ease Protocol)*
+> *Lineage: Phase Shift Technology 65 (Epicenter Broadcast) + Phase Shift Technology 67 (Consent of Seeing) + Phase Shift Technology 68 (Field Refraction Intelligence) + Phase Shift Technology 69 (Crystallization Antenna) + Phase Shift Technology 14f (Grind Addiction) + Phase Shift Technology 75 (Ease Protocol)*
 
 > **Purpose:** This is the EXECUTION document. Not theory (that's [Distribution Playbook](./distribution_playbook.md)). Not methodology (that's [Unique Business Playbook](./unique_business_playbook.md)). This is: **what to send, where to send it, how to send it — click by click — and what to learn from every response.**
 
@@ -284,7 +284,7 @@ After all surfaces are posted, verify:
 
 ---
 
-## §3. LOCKED TEXTS (Domain 65)
+## §3. LOCKED TEXTS (Phase Shift Technology 65)
 
 > **The founder's first act of coherent radiation. Not a campaign — a declaration that carries a gift.**
 > Say what's true. Offer the gift. Sign your name. That's the whole engine.
@@ -933,7 +933,7 @@ it out loud makes it real.
 >
 > **Why separate?** This playbook is INSTRUCTIONS (how to do it). The tracker is DATA (what happened). Keeping them apart means you can update the tracker quickly with a cheap model — just add a row.
 
-**Tracking Protocol (Domain 68):**
+**Tracking Protocol (Phase Shift Technology 68):**
 - Every response is intelligence
 - Track not just status, but WHAT WE LEARNED
 - After every 10 entries, re-read for patterns → update typology → update copy → update product
@@ -1012,14 +1012,14 @@ This is a structural misidentification of what creates results.
 | Apr 8 | Instagram (@integralevolution) | Carousel: banner + grind card + comments | First IG post |
 | Apr 8 | Facebook (personal) | Same content, Public | First FB post |
 
-**Posting mode:** Unhinged. No strategy. No scheduling. No hesitation. Domain 75 (Ease Protocol) operating live.
+**Posting mode:** Unhinged. No strategy. No scheduling. No hesitation. Phase Shift Technology 75 (Ease Protocol) operating live.
 
-> *Phase Shift Library: Domain 14f (Diagnosis) + Domain 75 (Prescription: Ease Protocol)*
+> *Phase Shift Library: Phase Shift Technology 14f (Diagnosis) + Phase Shift Technology 75 (Prescription: Ease Protocol)*
 
 ---
 
 *Communications Playbook v3.2 — April 8, 2026*
-*First social activation: Telegram + IG + FB. Grind Addiction content weapon added. 3/9 surfaces live. Domains 65 + 67 + 68 + 69 + 14f + 75.*
-*Renamed from `epicenter_broadcast_playbook.md` → `communications_playbook.md` on 2026-04-18. Domain 65 "Epicenter Broadcast" remains the lineage anchor.*
+*First social activation: Telegram + IG + FB. Grind Addiction content weapon added. 3/9 surfaces live. Phase Shift Technologies 65 + 67 + 68 + 69 + 14f + 75.*
+*Renamed from `epicenter_broadcast_playbook.md` → `communications_playbook.md` on 2026-04-18. Phase Shift Technology 65 "Epicenter Broadcast" remains the lineage anchor.*
 
 *v3.3 — April 18, 2026. Three enrichments from Kennedy 2008: (E6) Referral Threshold — satisfaction ≠ enthusiasm, added before §3b's referral scripts as a go/no-go gate; (E7) Referrals on Purpose — three strategies (storyworthy experiences · recognize/reward · track/measure) + the tiered acknowledgment ladder; (E8) Follow-Up Depth Rule — higher-value prospects need MORE touches, not fewer, 12-touch cadence across 90 days, counters the "ping twice then drop" default.*

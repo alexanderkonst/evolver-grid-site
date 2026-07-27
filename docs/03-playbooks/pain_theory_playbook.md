@@ -132,7 +132,7 @@ Alexander: *"It's fear mongering... When you say pain I go, oh, are we fear mong
 
 **The structural reason it works:** When the founder IS the tribe (recursive validation), describing the tribe's pain IS describing their own. Empathy is structural, not performative. The founder doesn't need to "add empathy" — they need to write from inside their own experience. Testimony energy, not diagnostic energy.
 
-> See also: [Phase Shift Technology Library — Domain 19: Testimony Frequency](../01-vision/phase_shift_technology_library.md)
+> See also: [Phase Shift Technology Library — Phase Shift Technology 19: Testimony Frequency](../01-vision/phase_shift_technology_library.md)
 
 ---
 

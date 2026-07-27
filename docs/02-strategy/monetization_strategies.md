@@ -8,7 +8,7 @@
 >
 > **Status:** living document. Always work from the latest version. Each addition is additive (changelog at end of file); nothing is deleted, but the *current shape* is whatever the latest version describes.
 >
-> **Cross-references:** [Unique Business Playbook — Principle 15](../03-playbooks/unique_business_playbook.md) (the conversion mechanism every play leverages) · [Phase Shift Library Domain 81](../01-vision/phase_shift_technology_library.md) (the discovery in research-grade form) · [Distributor Agreement v0.1](../../DISTRIBUTOR_AGREEMENT.md) (the legal instrument) · [Integration Layer Manifesto](../06-architecture/integration_layer_manifesto.md) (the architectural rationale for plays #3 and #5) · [Planetary OS Assembly](./planetary_os_assembly.md) (the 12-step growth path the plays map to) · [Roadmap](./roadmap.md) (current sprint status) · [Alexander's Unique Business](./unique-businesses/alexanders_unique_business.md) (the master holon's lived state)
+> **Cross-references:** [Unique Business Playbook — Principle 15](../03-playbooks/unique_business_playbook.md) (the conversion mechanism every play leverages) · [Phase Shift Library Technology 81](../01-vision/phase_shift_technology_library.md) (the discovery in research-grade form) · [Distributor Agreement v0.1](../../DISTRIBUTOR_AGREEMENT.md) (the legal instrument) · [Integration Layer Manifesto](../06-architecture/integration_layer_manifesto.md) (the architectural rationale for plays #3 and #5) · [Planetary OS Assembly](./planetary_os_assembly.md) (the 12-step growth path the plays map to) · [Roadmap](./roadmap.md) (current sprint status) · [Alexander's Unique Business](./unique-businesses/alexanders_unique_business.md) (the master holon's lived state)
 
 ---
 
@@ -174,8 +174,8 @@ The existing 10% revenue-share Distributor Agreement (Path B) stays in place for
 
 The monetization plays in this doc operate within two perception-shifts formally captured in [`docs/01-vision/phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md):
 
-- **Domain 86 — Substrate Positioning:** Find Your Top Talent operates as coordination substrate, not as a competing platform. The org stays small while the substrate compounds large. Revenue is a lagging indicator of adoption, not a leading one. Pricing models that optimize for adoption-cost approaching zero (Distributor Agreement, free under threshold) protect the substrate's neutrality and therefore its adoption velocity.
-- **Domain 87 — Multi-Patron Architecture:** the commercial shape is portfolio-of-aligned-patrons, not pursuit-of-one-big-deal. Each white-label deployment is a patron-shaped relationship. Revenue is distributed and lower-variance. Founder identity is tied to the substrate working, not to any single deal closing.
+- **Phase Shift Technology 86 — Substrate Positioning:** Find Your Top Talent operates as coordination substrate, not as a competing platform. The org stays small while the substrate compounds large. Revenue is a lagging indicator of adoption, not a leading one. Pricing models that optimize for adoption-cost approaching zero (Distributor Agreement, free under threshold) protect the substrate's neutrality and therefore its adoption velocity.
+- **Phase Shift Technology 87 — Multi-Patron Architecture:** the commercial shape is portfolio-of-aligned-patrons, not pursuit-of-one-big-deal. Each white-label deployment is a patron-shaped relationship. Revenue is distributed and lower-variance. Founder identity is tied to the substrate working, not to any single deal closing.
 
 The six plays in this doc are different shapes of monetization within this frame, not alternative theories of the business.
 

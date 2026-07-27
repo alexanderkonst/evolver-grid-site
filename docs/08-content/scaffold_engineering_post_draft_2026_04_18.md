@@ -1,7 +1,7 @@
 # Параллельная ось прогресса AI — и что на ней оказалось
 
 *Channel post — Sasha Konstantinov, April 18, 2026*
-*v2 — ready to publish. Term: **Knoware** (Domain 80).*
+*v2 — ready to publish. Term: **Knoware** (Phase Shift Technology 80).*
 
 ---
 
@@ -113,11 +113,11 @@ Whitepaper с протоколом — в работе. Числа открыт�
 ## Internal (not for publication)
 
 - Canonical lab journal (Feb 12 + Apr 18 + synthesis): `docs/09-logs/transcripts/scaffold_engineering_lab.md`
-- PST Domain 3 (metacognition, first observation): `docs/01-vision/phase_shift_technology_library.md` §3
-- PST Domain 80 (Scaffold Engineering, verification and generalization): `docs/01-vision/phase_shift_technology_library.md` §80
+- PST Phase Shift Technology 3 (metacognition, first observation): `docs/01-vision/phase_shift_technology_library.md` §3
+- PST Phase Shift Technology 80 (Scaffold Engineering, verification and generalization): `docs/01-vision/phase_shift_technology_library.md` §80
 
 **v2 decisions (Day 44, 2026-04-18):**
-- Term: **Knoware** (canonized, Domain 80). Glossary added at first mention.
+- Term: **Knoware** (canonized, Phase Shift Technology 80). Glossary added at first mention.
 - SIB: publish the 5-measure rubric, not the 4 question texts. Questions go in the whitepaper.
 - Replication call: in-body, immediate. Whitepaper follows as next step.
 - Hype check: `n=1` and "my class of tasks" explicit throughout. "Next-generation quality" is grounded by +1.14 stages (scale calibrated on generational gap). No softening.

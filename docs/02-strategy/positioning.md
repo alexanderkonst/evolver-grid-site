@@ -1,6 +1,6 @@
 # Positioning
 
-*Operational reference for how Find Your Top Talent positions itself across audiences and depths. The strategic frame this doc operationalizes lives in [`docs/01-vision/phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md): **Domain 86 (Substrate Positioning)**, **Domain 89 (Self-Description Quality Determines Opportunity Quality)**, and **Domain 90 (Three-Layer Positioning Architecture)**. This doc holds the operational what; those domains hold the why.*
+*Operational reference for how Find Your Top Talent positions itself across audiences and depths. The strategic frame this doc operationalizes lives in [`docs/01-vision/phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md): **Phase Shift Technology 86 (Substrate Positioning)**, **Phase Shift Technology 89 (Self-Description Quality Determines Opportunity Quality)**, and **Phase Shift Technology 90 (Three-Layer Positioning Architecture)**. This doc holds the operational what; those domains hold the why.*
 
 *Started: 2026-05-25 (Day 84). Refresh when canonical language evolves.*
 
@@ -18,7 +18,7 @@ We are not:
 - A talent marketplace (traps us in a transaction layer)
 - Tinder for [anything] (collapses the category)
 
-We are the substrate that lets all of those things become possible at higher precision. The core mechanic is **self-description quality determines opportunity quality** (Domain 89). Networking, matching, recruiting, and collaboration discovery are all downstream of articulation precision. The upstream lever is the instrument that helps each person describe themselves with precision. AI removes the bottleneck that previously required a human coach.
+We are the substrate that lets all of those things become possible at higher precision. The core mechanic is **self-description quality determines opportunity quality** (Phase Shift Technology 89). Networking, matching, recruiting, and collaboration discovery are all downstream of articulation precision. The upstream lever is the instrument that helps each person describe themselves with precision. AI removes the bottleneck that previously required a human coach.
 
 The distinguishing axis vs. LinkedIn and adjacent platforms: **LinkedIn centralizes visibility. Find Your Top Talent decentralizes meaningfulness.** Different category entirely.
 
@@ -26,7 +26,7 @@ The distinguishing axis vs. LinkedIn and adjacent platforms: **LinkedIn centrali
 
 ## The three layers
 
-Positioning operates on three vertically stacked layers (per **Domain 90**). The discipline is to sequence them: products before mythology, trust before vision.
+Positioning operates on three vertically stacked layers (per **Phase Shift Technology 90**). The discipline is to sequence them: products before mythology, trust before vision.
 
 ### Layer 1 — Universal Core (ontology; never changes)
 
@@ -91,7 +91,7 @@ Leading with Layer 3 is the most common failure mode for coordination-infrastruc
 
 ---
 
-## The substrate positioning lock (per Domain 86)
+## The substrate positioning lock (per Phase Shift Technology 86)
 
 The org stays small while the substrate compounds large. Two operating disciplines that protect this:
 
@@ -104,7 +104,7 @@ Founder framing that reinforces this: *"I am one of the integrators of this syst
 
 ## How this doc relates to other docs
 
-- **Phase-shift library** ([`docs/01-vision/phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md)): the perception-shift discoveries underneath this doc. Domains 85-90 are the strategic cluster this doc operationalizes.
+- **Phase-shift library** ([`docs/01-vision/phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md)): the perception-shift discoveries underneath this doc. Phase Shift Technologies 85-90 are the strategic cluster this doc operationalizes.
 - **White-label strategy** ([`white_label_strategy.md`](./white_label_strategy.md)): the commercial model that delivers substrate positioning + multi-patron architecture at scale.
 - **Monetization strategies** ([`monetization_strategies.md`](./monetization_strategies.md)): the six plays that operate within substrate + multi-patron framing.
 - **Alexander's unique business canvas** ([`unique-businesses/alexanders_unique_business.md`](./unique-businesses/alexanders_unique_business.md)): the founder-level canvas that this doc generalizes from.
@@ -115,4 +115,4 @@ Founder framing that reinforces this: *"I am one of the integrators of this syst
 
 ## How to update this doc
 
-When a layer-1 line gets refined (better wording surfaces in practice), update it here and let the cross-references propagate. When a new audience emerges, add a row to the Layer 2 table. When a manifesto seed crystallizes into final language, move it from "seeds (held in reserve)" to a separate manifesto.md when one is created. Keep this doc one-screen-readable; the depth lives in Domain 90.
+When a layer-1 line gets refined (better wording surfaces in practice), update it here and let the cross-references propagate. When a new audience emerges, add a row to the Layer 2 table. When a manifesto seed crystallizes into final language, move it from "seeds (held in reserve)" to a separate manifesto.md when one is created. Keep this doc one-screen-readable; the depth lives in Phase Shift Technology 90.

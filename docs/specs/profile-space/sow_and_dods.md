@@ -2,7 +2,7 @@
 
 > *Day 119 (2026-07-09), Sasha's brief, verbatim intent: create a Profile space in ME holding mission discovery, assets discovered, top talent, quality of life, and collaboration requests sent — with retake/edit for any test, QoL assessment access, progression view ("short summary of what changed" + history), a LinkedIn upload, and one-click full-profile PDF export building on the existing Settings download. Built from scratch — no legacy pages reused.*
 
-**Why this matters (roadmap frame):** the profile is the atomic unit of the coordination system — Signal Legibility as Provision (Domain 92) made into a surface. It is also the exact module set being sold to community nodes (onboarding = profile creation · ZoG detection · matchmaking), so this build doubles as white-label product hardening.
+**Why this matters (roadmap frame):** the profile is the atomic unit of the coordination system — Signal Legibility as Provision (Phase Shift Technology 92) made into a surface. It is also the exact module set being sold to community nodes (onboarding = profile creation · ZoG detection · matchmaking), so this build doubles as white-label product hardening.
 
 ---
 

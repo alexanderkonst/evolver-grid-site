@@ -3,7 +3,7 @@
 *Living document. One topic, one file. Testing and benchmarking protocols for AI scaffolds (skills, corpora, Knoware artifacts), plus session-by-session data and cross-session synthesis.*
 
 **Current canonical path**: `docs/09-logs/transcripts/scaffold_engineering_lab.md`
-**Companion concept**: PST Domain 3 (Metacognition Benchmark) · PST Domain 80 (Scaffold Engineering) — `docs/01-vision/phase_shift_technology_library.md`
+**Companion concept**: PST Phase Shift Technology 3 (Metacognition Benchmark) · PST Phase Shift Technology 80 (Scaffold Engineering) — `docs/01-vision/phase_shift_technology_library.md`
 **Companion method**: `docs/03-playbooks/unique_business_playbook.md` (master playbook v4.1)
 
 ---
@@ -132,7 +132,7 @@ Per-prompt scores for all three conditions are preserved in git history of the p
 | Q4 AI as ultimate tech | 19/25 | 25/25 | +6 |
 | **Total** | **67/100** | **95/100** | **+28 (+42%)** |
 
-Per-dimension signature on skill-loaded condition: Wisdom-Brevity and Essence saturate first (fully 5/5 on Q2–Q4); Integration and Depth next; Novelty the last to saturate (only 4/5 on Q1–Q3). See PST Domain 80, §80i.
+Per-dimension signature on skill-loaded condition: Wisdom-Brevity and Essence saturate first (fully 5/5 on Q2–Q4); Integration and Depth next; Novelty the last to saturate (only 4/5 on Q1–Q3). See PST Phase Shift Technology 80, §80i.
 
 #### 3.2.2 SIB-dimensional scoring applied to Mini-HELM outputs (n=30)
 
@@ -344,7 +344,7 @@ For future sessions (whether run by Sasha or by an external replicator):
 
 | Layer | Location |
 |---|---|
-| Conceptual (PST) | `docs/01-vision/phase_shift_technology_library.md` → Domains 3 and 80 |
+| Conceptual (PST) | `docs/01-vision/phase_shift_technology_library.md` → Phase Shift Technologies 3 and 80 |
 | Method (playbook) | `docs/03-playbooks/unique_business_playbook.md` |
 | Data (this file) | `docs/09-logs/transcripts/scaffold_engineering_lab.md` |
 | Applied (Sasha) | `docs/02-strategy/unique-businesses/alexanders_unique_business.md` |
@@ -355,7 +355,7 @@ For future sessions (whether run by Sasha or by an external replicator):
 ## 7. Companion artifacts
 
 - Russian channel post draft (Apr 18, 2026): `docs/08-content/scaffold_engineering_post_draft_2026_04_18.md`
-- PST Domain 80 entry: `docs/01-vision/phase_shift_technology_library.md` (§80)
+- PST Phase Shift Technology 80 entry: `docs/01-vision/phase_shift_technology_library.md` (§80)
 - Session log entry: `docs/09-logs/session_log.md` → Day 41 addendum 7
 
 **Queued**: English whitepaper · 27×7 holomap redesign · main prompt upgrade · Day 43 addendum to current 12×7 holomap · future replication sessions (external operator, external corpus).

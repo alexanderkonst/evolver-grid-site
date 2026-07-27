@@ -26,7 +26,7 @@
 
 # The Integrated Stack — How This Playbook Is One Continuous Machine
 
-> *v4.6 · April 26, 2026 — The unifying frame the playbook had been pointing at for months without naming. Every chapter that follows operates inside this stack. Codified in full as Phase Shift Technology Library Domain 83.*
+> *v4.6 · April 26, 2026 — The unifying frame the playbook had been pointing at for months without naming. Every chapter that follows operates inside this stack. Codified in full as Phase Shift Technology Library Technology 83.*
 
 For most of its life, this playbook was experienced as a collection of frameworks: name your uniqueness, articulate your tribe, slice the pain, promise the transformation, build the value ladder, run the session. Each framework was complete on its own. None was the whole.
 
@@ -47,7 +47,7 @@ Read it in one breath. That is the founder's full arc.
 ## The four moving pieces
 
 ```
-1. TOP TALENT       — revealed via the Specificity Loop (Principle 15 / Domain 81)
+1. TOP TALENT       — revealed via the Specificity Loop (Principle 15 / Phase Shift Technology 81)
 2. PLAYBOOK         — this document; the methodology that turns top talent
                       into a productized business
 3. BUILDER TOOL     — the Unique Business Builder (UBB); the playbook
@@ -72,7 +72,7 @@ The whole method explains itself in six visual frames (canonical infographic set
 
 ## The deepest claim: ignorance-stuckness eliminated
 
-Founders are blocked by two kinds of stuckness — *ignorance* ("I don't know what to do") and *inner challenge* ("I know what to do but something inside resists"). The Integrated Stack eliminates the first kind structurally. The playbook tells you what to do; the builder gives you a working draft; Linguistic Synthesis (Domain 82) keeps the output simple-not-simplistic; the improve loop pushes specificity up and refuses to ship if it doesn't.
+Founders are blocked by two kinds of stuckness — *ignorance* ("I don't know what to do") and *inner challenge* ("I know what to do but something inside resists"). The Integrated Stack eliminates the first kind structurally. The playbook tells you what to do; the builder gives you a working draft; Linguistic Synthesis (Phase Shift Technology 82) keeps the output simple-not-simplistic; the improve loop pushes specificity up and refuses to ship if it doesn't.
 
 What remains is the inner work — and that is exactly the founder's own. The stack is the structure that **clears the external noise so the founder meets only their own inner work, not their ignorance**. This is the deepest compression of what this playbook delivers.
 
@@ -81,14 +81,14 @@ What remains is the inner work — and that is exactly the founder's own. The st
 - **Near-9 specificity in days, with cheap AI.** Run UBB end-to-end with Gemini Flash and 3–4 improve iterations per artifact and the founder reaches close-to-9 specificity on first pass. The methodology is the active ingredient; the AI is the substrate.
 - **9.9+ in months, hand-iterated.** `alexanders_unique_business.md` sits at 9.9+, hand-built. There is still ground above what cheap AI can produce on first pass. That ground is the Guided Path's value, and the value of ongoing iteration in the Builder.
 
-The pricing tiers map directly onto this spectrum. See Domain 83 for the full empirical argument and strategic implications.
+The pricing tiers map directly onto this spectrum. See Phase Shift Technology 83 for the full empirical argument and strategic implications.
 
 ## Where to look next
 
 - **Operating the methodology in your own life:** continue with Part 0 onward.
 - **Operating the Builder:** the artifact prompts in `supabase/functions/_shared/ubb-prompts.ts` are this playbook compiled into machine instructions.
-- **The two paths through the stack and the source-of-truth architecture:** Phase Shift Technology Library, Domain 83.
-- **Linguistic Synthesis (the simple-vs-simplistic guarantee at every distillation):** Phase Shift Technology Library, Domain 82.
+- **The two paths through the stack and the source-of-truth architecture:** Phase Shift Technology Library, Technology 83.
+- **Linguistic Synthesis (the simple-vs-simplistic guarantee at every distillation):** Phase Shift Technology Library, Technology 82.
 
 Everything that follows operates inside this frame.
 
@@ -352,7 +352,7 @@ The medicine: catch yourself doing it. Then go DM people.
 
 > *"Stop hunting for the right person. Join a group. Speak into it. The right person finds you."*
 >
-> *v1.0 · April 2, 2026 — Discovered live at a networking event in Mexico City. Domain 57 + 58 of the Phase Shift Technology Library.*
+> *v1.0 · April 2, 2026 — Discovered live at a networking event in Mexico City. Phase Shift Technology 57 + 58 of the Phase Shift Technology Library.*
 
 ### The Discovery
 
@@ -376,7 +376,7 @@ An event is NOT a "networking opportunity." **An event is a physical broadcast s
 
 The same Yield formula applies: `Yield = (Attention × Clout × Alignment) / Energy Cost`. The same activation rule applies across ALL surfaces: **communication, not presence.**
 
-### The Resonance Metric (Domain 58)
+### The Resonance Metric (Phase Shift Technology 58)
 
 The entire events industry measures the wrong thing:
 
@@ -615,7 +615,7 @@ This is the bridge between the Methodology (mystical/visionary) and the Technolo
 
 > *"The person most committed to success is the person most structurally preventing it."*
 >
-> *v1.0 · April 8, 2026 — Phase Shift Domain 14f + Domain 75. The unifying diagnosis beneath scatter, burnout, and misalignment.*
+> *v1.0 · April 8, 2026 — Phase Shift Technology 14f + Phase Shift Technology 75. The unifying diagnosis beneath scatter, burnout, and misalignment.*
 
 Grind addiction is **the compulsive substitution of effort for alignment.** It is the belief — held in the body, not just the mind — that the way to make something work is to push harder, do more, control more, and sleep less.
 
@@ -663,7 +663,7 @@ The answer — when it actually arrives — was always simple, always nearby, us
 
 > *"Not grind. Effortless intensity. Effortless exciting intensity. Intense, but not grind. A constant awe and excitement. I can't stop. It's just so much fun."* — Sasha, April 15, 2026
 
-The ease protocol (Domain 75) is sometimes misread as *low energy, mellow, restful.* That is rest, not the antidote. The antidote to grind is the **third state** — high-energy, high-engagement, low-coercion. The body is fully in, the will is fully on, the pushing is gone.
+The ease protocol (Phase Shift Technology 75) is sometimes misread as *low energy, mellow, restful.* That is rest, not the antidote. The antidote to grind is the **third state** — high-energy, high-engagement, low-coercion. The body is fully in, the will is fully on, the pushing is gone.
 
 | | **Grind** | **Rest** | **Effortless exciting intensity** (the antidote) |
 |---|---|---|---|
@@ -677,13 +677,13 @@ The diagnostic: *Am I still having fun right now, or did I slip into drilling ag
 
 ### The Defense Mechanism
 
-The grind is a defense against a specific terror: **the terror of being seen as who you actually are, without the armor of productivity.** If you're always busy, no one can question whether the busyness is pointed at the right thing. The grind provides a cover story → Domain 14c (Identity Terror).
+The grind is a defense against a specific terror: **the terror of being seen as who you actually are, without the armor of productivity.** If you're always busy, no one can question whether the busyness is pointed at the right thing. The grind provides a cover story → Phase Shift Technology 14c (Identity Terror).
 
 ### For Facilitators
 
 Name this in Session 1. Every founder has it. The diagnostic question: *"Are you doing this because it's the right thing to do — or because stopping would feel like dying?"* The grind addict answers: "Both." That's the signal.
 
-> *Phase Shift Library: Domain 14f (Diagnosis) + Domain 75 (Prescription: Ease Protocol)*
+> *Phase Shift Library: Phase Shift Technology 14f (Diagnosis) + Phase Shift Technology 75 (Prescription: Ease Protocol)*
 
 ---
 
@@ -734,7 +734,7 @@ Answer: the resistance is the signal of the next clarity required. Sit with it, 
 
 When a client brings a challenge, don't help them push through. Ask: *"What is this challenge trying to clarify for you?"* The client will usually answer themselves within 2 minutes. The clarity was always the actual work; the challenge was the messenger.
 
-> *Relates to: Principle 13 (Grind Addiction) — this is the *what to do instead of push* corollary. Phase Shift Library candidate: Domain 80 (Challenge Ordering).*
+> *Relates to: Principle 13 (Grind Addiction) — this is the *what to do instead of push* corollary. Phase Shift Library candidate: Phase Shift Technology 80 (Challenge Ordering).*
 
 ---
 
@@ -826,7 +826,7 @@ The protocol holds the moment every reveal stays inside the *"What if … IS …
 
 The Specificity Loop lives at two layers simultaneously, on purpose:
 
-**Framework layer** — this principle (and Phase Shift Library Domain 81). The conceptual protocol every founder reads, every artifact respects. The `lead_magnet` artifact's prompt explicitly references this framework when articulating its `transformational_result_sequence` — the matrix shape is the lead magnet's voice at every waypoint.
+**Framework layer** — this principle (and Phase Shift Library Technology 81). The conceptual protocol every founder reads, every artifact respects. The `lead_magnet` artifact's prompt explicitly references this framework when articulating its `transformational_result_sequence` — the matrix shape is the lead magnet's voice at every waypoint.
 
 **Artifact layer** — `specificity_matrix` (Day 51 — added as UBB artifact #19, end of Phase A Canvas, after `value_ladder`). Each founder generates THEIR matrix in their voice, locks it, and the funnel uses it at runtime. Sasha's master holon matrix in `src/lib/resonanceMatrix.ts` (`MASTER_MATRIX`) is the canonical few-shot example for the generator and the universal fallback for any visitor or founder who hasn't yet locked their own.
 
@@ -848,7 +848,7 @@ The Specificity Loop lives at two layers simultaneously, on purpose:
 
 When facilitating live (not via product), the same frequency holds. After every reflection the client gives, do not validate ("yes, exactly!") and do not instruct ("now look at X"). Ask the recognition question: *"What if this IS what you've been telling me all along?"* The recognition collapses the gap between insight and ownership.
 
-> *Relates to: Principle 4 (Mirror, Not Teacher), Principle 5 (Precision Gap IS Product), Principle 11 (Resonance Metric), Principle 13 (Highest-Rated Version Rule). Phase Shift Library entry: Domain 81 — The Specificity Loop. The macro-bridge ("What if your shining this top talent bright IS your business?") is the canonical example of the protocol applied at scale (page level, not micro-rating level). The per-founder matrix architecture is the technical foundation of the [commercial-decentralization model](../02-strategy/monetization_strategies.md) — operational identity sovereignty for distributors.*
+> *Relates to: Principle 4 (Mirror, Not Teacher), Principle 5 (Precision Gap IS Product), Principle 11 (Resonance Metric), Principle 13 (Highest-Rated Version Rule). Phase Shift Library entry: Phase Shift Technology 81 — The Specificity Loop. The macro-bridge ("What if your shining this top talent bright IS your business?") is the canonical example of the protocol applied at scale (page level, not micro-rating level). The per-founder matrix architecture is the technical foundation of the [commercial-decentralization model](../02-strategy/monetization_strategies.md) — operational identity sovereignty for distributors.*
 
 ---
 
@@ -1278,7 +1278,7 @@ Every myth has a structural backbone: a **master lie** it calls out and a **mast
 
 > Sandra's myth sits at the frontier: data and warm data are valuable but partial. Direct knowing was always there. Integrating both the yin channel AND the yang structure is the path — not destroying one side. Unifying both.
 
-**Connection to the Scatter Pattern (Domain 14):** Sandra's shadow (reversing yin-yang order) IS the myth lived. She fights the same battle her clients fight. This is the Mask-On-First principle in action — the founder's myth is always autobiographical.
+**Connection to the Scatter Pattern (Phase Shift Technology 14):** Sandra's shadow (reversing yin-yang order) IS the myth lived. She fights the same battle her clients fight. This is the Mask-On-First principle in action — the founder's myth is always autobiographical.
 
 ### The Myth-Marketing Collapse
 
@@ -1791,9 +1791,9 @@ Every insight in the playbook must eventually find its home in a workflow step. 
   - Output: Qualifiers (inner state) → Segments (types) → Life Situation (why NOW) → Tribe Synthesis paragraph
   - Key principle: The myth is universal. The tribe is YOUR tribe. Beachhead.
   - Don't define tribe first. Forge myth, watch who magnetizes.
-  - **The Signal-First Tribe Principle (Domain 72):** Define the tribe by what's ALIVE in them (their unique creative signal), not by what's BROKEN (their pain). The tribe is not "people in pain." The tribe is "people carrying an unmistakable creative signal that they cannot yet articulate." Pain is real — but it's a consequence of the unnamed signal, not the defining characteristic. This reframe changes EVERYTHING downstream: content reflects fire instead of poking wounds, the promise shifts from "fix what's wrong" to "name what's right," and the self-selection energy shifts from deficit to recognition.
+  - **The Signal-First Tribe Principle (Phase Shift Technology 72):** Define the tribe by what's ALIVE in them (their unique creative signal), not by what's BROKEN (their pain). The tribe is not "people in pain." The tribe is "people carrying an unmistakable creative signal that they cannot yet articulate." Pain is real — but it's a consequence of the unnamed signal, not the defining characteristic. This reframe changes EVERYTHING downstream: content reflects fire instead of poking wounds, the promise shifts from "fix what's wrong" to "name what's right," and the self-selection energy shifts from deficit to recognition.
   - **Derivation method:** Reverse myth's truth claims into qualifier questions → ask "what life paths produce this inner state?" → segments emerge → ask "what pressure makes them ready TODAY?" → life situation → founder fills in self-talk + felt texture from embodied experience
-  - **The Resonance Sort Protocol (Domain 72f):** The repeatable 5-step methodology for defining tribe at 9.999 precision:
+  - **The Resonance Sort Protocol (Phase Shift Technology 72f):** The repeatable 5-step methodology for defining tribe at 9.999 precision:
     1. **Multi-resolution field scan** — AI generates sub-tribe candidates at 3+ precision tiers (9.99, 9.9, 9.0). Include characteristics beyond pain: capacity, desire, competence, signal strength, readiness
     2. **Founder somatic reordering** — The founder feels into each candidate and reorders by body resonance, not logic. The head will pick "who seems like a good customer." The body picks "who I light up with." Trust the body
     3. **Founder addition** — The founder names what the AI missed (this always happens — AI can't see the full interior). The characteristics the founder adds will often be the most defining ones
@@ -1847,8 +1847,8 @@ Every insight in the playbook must eventually find its home in a workflow step. 
   - **Condition 1 — Universal language:** Name results so people unmistakably understand what they're getting. No insider terminology. The test: would a stranger reading a landing page immediately know what they walk away with?
   - **Condition 2 — Silhouette of the full journey:** The client leaves seeing just enough of A → B to feel the path exists. Still foggy, but palpable and tangible. Just enough to say YES to the next step.
   - **The sweet spot:** Too much clarity → overwhelm, freeze. Too little → drift. Just enough → ground under their feet AND horizon ahead.
-  - **Then: deliver sessions → collect testimonials → write the Sovereign Story (Domain 46) → distribute.**
-  - See: [The Bridge](file:///Users/alexanderkonst/evolver-grid-site/docs/03-playbooks/integrated_product_building_workflow.md#-the-bridge-pain--promise--1st-session) and [Domain 46: The Sovereign Story](file:///Users/alexanderkonst/evolver-grid-site/docs/01-vision/phase_shift_technology_library.md)
+  - **Then: deliver sessions → collect testimonials → write the Sovereign Story (Phase Shift Technology 46) → distribute.**
+  - See: [The Bridge](file:///Users/alexanderkonst/evolver-grid-site/docs/03-playbooks/integrated_product_building_workflow.md#-the-bridge-pain--promise--1st-session) and [Phase Shift Technology 46: The Sovereign Story](file:///Users/alexanderkonst/evolver-grid-site/docs/01-vision/phase_shift_technology_library.md)
 - [ ] **6. LEAD MAGNET** → The pain card as content, delivered through the channel
   - Output: The piece of content that makes the right person say "how do they know this about me?"
   - At 9.95 pain precision, the pain card IS the lead magnet. Not a methodology guide. Not an explainer video. The PAIN — mirrored back with devastating accuracy.
@@ -2499,7 +2499,7 @@ What you DO to create the encounter. Scored on Simplicity (S) and Leverage (L), 
 | | **— Engagement encounter (you meet them where they already are) —** | | | | |
 | 12 | **Targeted commenting** | Commenting on THEIR posts with genuine insight. Not "great post!" but a mirror-like observation that shows you see their pattern | 🎯 10 | 8 | 8 |
 | 13 | **Community participation** | Joining communities where the segment gathers (founder groups, coaching circles, career transition spaces). The myth surfaces naturally through genuine participation | 🎯 7 | 6 | 7 |
-| 14 | **Event-based encounter (Campfire Protocol)** | Attending events where the segment is. **Do NOT hunt for 1:1s.** Join a standing group → listen → contribute → let 1:1s form from resonance (Domain 57). Metric: resonant connections self-formed, NOT contacts made (Domain 58). Events = physical broadcast surfaces — same physics as LinkedIn. | 🎯 8 | 5 | 9 |
+| 14 | **Event-based encounter (Campfire Protocol)** | Attending events where the segment is. **Do NOT hunt for 1:1s.** Join a standing group → listen → contribute → let 1:1s form from resonance (Phase Shift Technology 57). Metric: resonant connections self-formed, NOT contacts made (Phase Shift Technology 58). Events = physical broadcast surfaces — same physics as LinkedIn. | 🎯 8 | 5 | 9 |
 | 15 | **Speaking / workshop** | Getting on stages where the segment is in the audience. Delivering the myth live. The room self-selects | 🎯 7 | 4 | 9 |
 | | **— Content encounter (they find you organically) —** | | | | |
 | 16 | **Long-form myth content** | Blog posts, LinkedIn articles, newsletter. Deeper expression of the myth for those who want to go down the rabbit hole | 🎯 5 | 6 | 8 |
@@ -2530,7 +2530,7 @@ Not outreach tactics — these are HOW the encounter content is delivered once a
 | **Image** | Pattern interrupt in feed. Higher stop rate than text. Before/after visuals | Social posts, stickers, visual pain card, before/after transformation | 7 | 7 |
 | **Audio** | Intimate. Voice carries emotion text can't. Podcast-like depth | Voice notes, podcast clips, audio DMs | 6 | 6 |
 | **Video** | Highest engagement and trust-building. Shows the real person | NotebookLM custom videos, session demos, Frankie-style 5-min close videos | 5 | 10 |
-| **Physical** | Breaks the digital pattern entirely. Memorable precisely because it's real. Events are surfaces — activation = communication, not presence (Domain 57) | Stickers, QR codes, cafe tables, events (Campfire protocol), community platforms (InterNations, MATES, Meetup) | 8 | 9 |
+| **Physical** | Breaks the digital pattern entirely. Memorable precisely because it's real. Events are surfaces — activation = communication, not presence (Phase Shift Technology 57) | Stickers, QR codes, cafe tables, events (Campfire protocol), community platforms (InterNations, MATES, Meetup) | 8 | 9 |
 
 > **Key format insight:** NotebookLM custom video is NOT outreach — it's Frankie's "close video" equivalent. It's a delivery format for the lead magnet. The person has ALREADY raised their hand. The video is the next portion of attention, demonstrating the mirror in miniature.
 
@@ -3349,7 +3349,7 @@ CHECK:  "Is this sustainable for founder's capacity?"
 ### Channel 1: WARM NETWORK (always first)
 - List criteria (who to include)
 - Size target: 30-50 people
-- **The Sovereign Story (Domain 46):** The founder writes their true story using the 7-movement structure (Door → Honest Look Back → Paradox → Pivot → Proof → Ask → Landing). AI drafts first version from session artifacts; founder rewrites in their own voice. Not a template — a structure to write inside. Precision test: "Would I send this to my closest friend?"
+- **The Sovereign Story (Phase Shift Technology 46):** The founder writes their true story using the 7-movement structure (Door → Honest Look Back → Paradox → Pivot → Proof → Ask → Landing). AI drafts first version from session artifacts; founder rewrites in their own voice. Not a template — a structure to write inside. Precision test: "Would I send this to my closest friend?"
 - **Launch sequence:** Send to existing clients FIRST — confirms testimonials AND activates distribution in one move. Then warm network. The resistance dissolves when the first send is to people who already believe
 
 ### Channel 2: CONTENT HOME (one platform mastered)
@@ -3928,7 +3928,7 @@ STEP 2.5: WARM NETWORK — THE SOVEREIGN STORY (Day 3-7 — Channel 3)
   │  which applies to them too, (c) zero resistance — they
   │  already believe. Then warm network.
   │  
-  │  Use the Sovereign Story (Domain 46):
+  │  Use the Sovereign Story (Phase Shift Technology 46):
   │    Image first → then the full story.
   │    7 movements: Door → Honest Look Back → Paradox →
   │    Pivot → Proof → Ask → Landing.
@@ -4060,7 +4060,7 @@ These DM templates are **protocol-level.** Any node adapts them:
 >
 > *"A tuning fork is not a sales message. It is a frequency. Strings tuned to the same note vibrate on their own."*
 >
-> See also: [Domain 8b: Attention Coupling](../01-vision/phase_shift_technology_library.md#8b-attention-coupling-not-capture) in the Phase Shift Library
+> See also: [Phase Shift Technology 8b: Attention Coupling](../01-vision/phase_shift_technology_library.md#8b-attention-coupling-not-capture) in the Phase Shift Library
 
 ### What a Tuning Fork IS and IS NOT
 
@@ -4626,7 +4626,7 @@ Tell me if this lands or if I'm delusional 😂
 
 ### Cross-Reference
 
-- **Phase Shift Technology:** Domain 51 — The Curiosity Gap Engine (Algorithmic Aikido) in [Phase Shift Technology Library](../01-vision/phase_shift_technology_library.md)
+- **Phase Shift Technology:** Phase Shift Technology 51 — The Curiosity Gap Engine (Algorithmic Aikido) in [Phase Shift Technology Library](../01-vision/phase_shift_technology_library.md)
 - **Guerrilla Playbook:** [Curiosity Gap Share](../02-strategy/guerrilla_marketing_hacks.md#the-curiosity-gap-share--zog-viral-engine-april-2026)
 - **Marketing Playbook:** [Curiosity Gap Sharing Pattern](./marketing_playbook.md#the-curiosity-gap-sharing-pattern-april-2026)
 - **Implementation:** `src/components/sharing/ShareZoG.tsx`
@@ -4673,11 +4673,11 @@ These are not in opposition. They are complementary faces of the same whole. The
 
 **Changelog:**
 - **v4.2:** Funnel Hearing Principle (April 3, 2026). New operational infrastructure: the funnel can now HEAR. `src/lib/funnelAnalytics.ts` wires 17 typed event types across the entire ZoG → Quiz → /ignite → Booking conversion pipeline. Events tracked: page views, step transitions, email saves, CTA clicks, quiz completions (with archetype), divine timing captures, and booking link clicks. Anonymous session IDs, localStorage queue fallback for offline resilience, Supabase `funnel_events` target table. This is the first LR (systemic) infrastructure for measuring encounter — without it, every decision about the funnel is assumption-based. PageLoader dark glass fix deployed: Suspense fallback now matches the liquid glass aesthetic (bg-[#0a0a1a] + white/30 spinner). Cross-references: Roadmap analytics wiring, Session Log Day 34 afternoon.
-- **v4.1:** PageRank Principle (Domain 60) codified — the platform's moat is not making the product but owning the standard that RANKS the products. Google doesn't make websites, Michelin doesn't cook, Moody's doesn't lend. ZoG maps genius → whoever controls that mapping controls demand allocation. Zero-Friction Viral Sharing architecture: sharing reframed from "validation-seeking" to "identity expression." Copy: "This is how I naturally create value." Share is a non-blocking tertiary side-channel, collapsed by default, triggered only after emotional recognition. Premium UI deployed as operational proof: dark liquid glass across ALL ZoG screens, gradient.jpg unification, glassmorphism blueprint applied to quiz, auto-scroll on step transitions, SiteLogo (toroidal field) deployed site-wide. Guarantee landed: "If you don't leave with a one-sentence business you recognize as yours: you don't pay." Cross-references: Phase Shift Technology Library Domain 60, Customer Journey Playbook Section 20.
-- **v4.0:** Principle 11 (Campfire Networking & The Resonance Metric) added — events are physical broadcast surfaces activated by communication, not presence. Campfire protocol: join group → listen → contribute → let 1:1s form from resonance. The Resonance Metric (Domain 58): the events industry measures the wrong thing (contacts made vs resonant connections self-formed from signal). Pattern generalizes across ALL industries: wrong metric = volume at input, right metric = quality at output. Event-based encounter tactic (#14) upgraded with Campfire protocol. Physical delivery format scored. Physical Community Platforms (InterNations, MATES, Meetup, CDMX Expats, Latitud) added to Wave 4 in Surface Holomap.
+- **v4.1:** PageRank Principle (Phase Shift Technology 60) codified — the platform's moat is not making the product but owning the standard that RANKS the products. Google doesn't make websites, Michelin doesn't cook, Moody's doesn't lend. ZoG maps genius → whoever controls that mapping controls demand allocation. Zero-Friction Viral Sharing architecture: sharing reframed from "validation-seeking" to "identity expression." Copy: "This is how I naturally create value." Share is a non-blocking tertiary side-channel, collapsed by default, triggered only after emotional recognition. Premium UI deployed as operational proof: dark liquid glass across ALL ZoG screens, gradient.jpg unification, glassmorphism blueprint applied to quiz, auto-scroll on step transitions, SiteLogo (toroidal field) deployed site-wide. Guarantee landed: "If you don't leave with a one-sentence business you recognize as yours: you don't pay." Cross-references: Phase Shift Technology Library Technology 60, Customer Journey Playbook Section 20.
+- **v4.0:** Principle 11 (Campfire Networking & The Resonance Metric) added — events are physical broadcast surfaces activated by communication, not presence. Campfire protocol: join group → listen → contribute → let 1:1s form from resonance. The Resonance Metric (Phase Shift Technology 58): the events industry measures the wrong thing (contacts made vs resonant connections self-formed from signal). Pattern generalizes across ALL industries: wrong metric = volume at input, right metric = quality at output. Event-based encounter tactic (#14) upgraded with Campfire protocol. Physical delivery format scored. Physical Community Platforms (InterNations, MATES, Meetup, CDMX Expats, Latitud) added to Wave 4 in Surface Holomap.
 - **v3.9:** Principle 10 (The Builder's Blind Spot) added — the universal tendency for builders to optimize surfaces (UR) when the real friction is in the decision (LR). Contains: the diagnostic (4 reflexes mapped to real problems), the consequence (surface-polishing is infinite), the medicine (teach in Call 2 of The Build: "your product isn't your problem — your client's decision is your problem"), and the meta-trap (wanting to understand this principle fully IS the blind spot, recursive). GFOA Solo Dominance phasing codified: Phase 1 collapse YOUR funnel → get paid → Phase 2 extract pattern → Phase 3 group build from reality not theory. Revenue sequencing simplified: flat pricing for Cohort 1, no rev share until proven. Communication compression rule added: "Can this be understood in 10 seconds?"
 - **v3.8:** Ownership-First Conversion Principle (April 2, 2026). New principle codified: **"Users don't join platforms. They keep things they don't want to lose."** Applied to ZoG result email gate — replaced generic "Unlock" with "Don't lose this" value-preservation frame. One intention per moment: Save (dominant) → Share (delayed 500ms, collapsed). Backend spec: silent account creation, ZoG result attachment, magic link email. Banned language in conversion gates: "create account," "profile," "sign up," "join," "login." Dark glass ShareZoG dropdown for aesthetic coherence. Applies to any node's lead capture: frame the gate around VALUE PRESERVATION, not PLATFORM JOINING.
-- **v3.7:** Four-Quadrant System Download (March 31, 2026). Principle 8 added: The Organizing Principle of Sales — sales = love in a unique business. P × M × D × S = ONE (Sales completes the tetrad). Touchpoint-Offer Collapse codified: customer journey and value ladder are the same artifact. Premium Customer Service redefined as operational love (continuous high trust + useful assistance + gentle nudges). 5 Collaborator Segments mapped for partner-driven distribution. Cross-Pollination Technology (Domain 48) documented as venture studio Episode Zero protocol. One-Button Funnel Progression (Domain 49) and Digital Surface Holomap (Domain 50) established. Asset Matchmaking repositioned as standalone platform entry point.
+- **v3.7:** Four-Quadrant System Download (March 31, 2026). Principle 8 added: The Organizing Principle of Sales — sales = love in a unique business. P × M × D × S = ONE (Sales completes the tetrad). Touchpoint-Offer Collapse codified: customer journey and value ladder are the same artifact. Premium Customer Service redefined as operational love (continuous high trust + useful assistance + gentle nudges). 5 Collaborator Segments mapped for partner-driven distribution. Cross-Pollination Technology (Phase Shift Technology 48) documented as venture studio Episode Zero protocol. One-Button Funnel Progression (Phase Shift Technology 49) and Digital Surface Holomap (Phase Shift Technology 50) established. Asset Matchmaking repositioned as standalone platform entry point.
 - **v3.7:** Principle 9 (The Controlled Collapse Sequence) added. The missing LR (systemic pressure) layer that completes the 4-quadrant conversion field. Documents the 5-step Recognition → Consequence → Non-optionality → Simplicity → Action sequence. 5 Money Secrets codified (Collapse Requires Edge, Non-Optionality, Structure = Relief, Proximity Reframe, Identity Snap). Key techniques: Consequence Block, Micro-Commitment self-diagnostic, Non-optionality Frame, Pressure Line. Equation: Recognition + Consequence + Simplicity + Trust = Inevitable Transaction. Cross-referenced with ITFT Part IX.
 - **v3.6:** AI-Native Distribution Infrastructure integrated. GHL Ask AI 4-Command Launch Sequence added to Workflow 8 (Ladder → Distribution Strategy). Frankie Model (hand-raiser outreach architecture) documented as the soul-aligned alternative to cold outreach — Post → DM → Video → Conversation → Close. Purity Check requirement added as protocol-level gate for all AI-generated distribution copy (5-point filter: fear-based? scarcity? founder's voice? energy test? gift or extraction?). Automation scaling sequence codified (manual first 10 → assisted 10-25 → orchestrated 25-50 → scaled 50+). Agency View principle established for GHL token optimization. Cross-references to Distribution Playbook Part VI established.
 - **v3.5:** Oyi × Alexander × Karime Session methodology upgrades. Quiz-as-Lead-Magnet Principle added — the product quiz IS the lead capture engine for every founder in the venture studio (ZoG quiz = 4M profiles = distribution infrastructure). Two-Layer Platform Architecture Principle added — separate intelligence layer (genius mapping) from operational layer (CRM/automation). Upfront + Revenue Share pricing principle added — both parties need skin in the game from day one. Facilitator Emergence Principle added — facilitator transfer can happen in ANY dimension of the venture (distribution, operations, sessions), not just session facilitation. Go High Level integration documented as operational nervous system.
@@ -4704,8 +4704,8 @@ These are not in opposition. They are complementary faces of the same whole. The
 - **v4.3:** Brand/domain-product alignment principle (April 21, 2026). When the domain is named *FindYourTopTalent.Com*, the entire funnel's lexicon should speak **Top Talent**, not a legacy in-house term. "Zone of Genius" served well for 18 months of development; the moment the domain shipped, the brand moment started, and the rest of the vocabulary owes allegiance to the brand moment, not to the development history. Day 47 evening swept every active user-facing surface. URL paths, component filenames, and DB columns were intentionally preserved to protect backwards-compat with shared links, screenshots, and queries — the rename lives in the COPY layer only. Rule: **rename the voice, preserve the plumbing.** The plumbing has its own archaeology; the voice must speak the current truth.
 - **v4.3:** The Single-Essay Step Principle (April 21, 2026). Step 2 ("Articulate it with Precision") in the playbook was decomposed into three substeps like the other steps. Sasha replaced it with a single long-form essay — **"The Secret to Productizing Yourself"** — and everything got better. Principle: **some steps don't decompose, they argue.** Discover (Step 1), Build (Step 4), Beta-Test (Step 5), Go-Live (Step 6), Scale (Step 7) are all *moves* — they break into substeps because movement has parts. Articulate (Step 2) is a *realization* — it doesn't break into parts because you don't articulate in three parts; you articulate when the one sentence lands. The essay format honors the nature of the content. Rule for future playbook authoring: if a step's substeps read as forced ("Step 1 of 3 in articulation" feels like a list pretending to be a method), retire the three-substep scaffold for that step and write the argument the content is actually making. The playbook can be heterogeneous in form — some steps decompose, some argue — and that heterogeneity honors what each step actually IS rather than imposing a template.
 - **v4.3:** The Integration Principle (April 21, 2026). When a system is built across multiple sprints, different surfaces accumulate different conventions — one page in a dark shell, another in a light one, one route auth-gated, another public, one uses "Zone of Genius," another uses "Top Talent." These drift points don't matter individually — they only matter at launch. Day 47 was a two-pass integration sprint: morning collapsed the visual conventions (canvas ↔ code parity), evening collapsed the architectural + terminological conventions (surface ↔ machinery parity, brand ↔ domain parity). Rule: **budget an integration sprint before any launch where strangers will touch the system.** The rough cost is a day. The invisible cost of not doing it is that every visitor sees the platform's architectural archaeology before they see the offer — which erodes trust before the CTA loads. This integration sprint should include: (1) typography pass, (2) color / gradient pass, (3) terminology pass, (4) shell / navigation pass, (5) auth / gate pass, (6) copy alignment across surfaces, (7) funnel-state-machine synthesis doc (for GFOA or equivalent external review). Seven passes, one day if disciplined.
-- **v4.4: The Ecology Upgrade (July 6, 2026, Days 115-116).** The methodology gains its fourth dimension. Old core question: "What is your gift?" New core question: **"What is your gift, what ecology does it need, and what wrong fields are currently draining it?"** Four movements now structure every engagement: **Source** (the living uniqueness) → **Distortion** (where it is proven, over-given, hidden, or misread) → **Ecology** (which rooms, clients, collaborators, markets can metabolize it) → **Fruit** (the offer/role/product that makes it visible through results). Underneath: uniqueness is a living relationship, not a trait; the client is a steward-participant of it (ontology: `uniqueness_economy_thesis.md` §0.7; law: Phase Shift Library Domain 99). Two operational consequences. (1) **The free diagnostic call diagnoses ecology; it does not prove depth.** The paid container is the prescription that follows the diagnosis; qualification filter: ready to steward their gift, or still addicted to being misrecognized. (2) **Sell transformation, not architecture.** The corpus's own "architecture of..." titles are the tell of selling the builder's view; the buyer purchases the result of the Original Pattern being revealed, and the architecture is the explanation of why it works, delivered after entry. Tactics: `marketing_playbook.md` Part III-B (Adoption Ladder, threshold marketing, recognition vs selection language, right-ecology 2×2).
-- **v4.5: The Money Layer (July 7-13, 2026, Days 117-123).** The methodology gains its exchange physics, distilled from the Money Studies week (six sources: Brown 1903 → Wattles 1910 → Hotep → Eker → Golden → Takrori; full instrument: `docs/05-reference/money-studies/money_holomap.md`). Five additions, each living in its canonical home — pointers only, no re-compression: (1) **The Register Test** — every copy block asks "does this line need the reader to say yes, or serve them either way?" (`marketing_playbook.md` Step 0.5). (2) **Shelf and Cathedral** — split the naming of the offer from the being of the offer: sell on the known shelf, narrate the category on unpriced surfaces, graduate buyers inward; two buyers, two doors (Step 0.6 + Library Domain 103). (3) **The 4 Levels of Value** — price at the level the offer operates from, not the hours inside it; one public cathedral-level anchor re-prices the whole ladder (money holomap, Golden study). (4) **Offer Cadence** — offers-made-per-week is the controllable input metric upstream of revenue; instrumented on the Founder Cockpit (`telemetry_playbook.md`, Offer Cadence section). (5) **The Guru-Loop Immunity Rule** — proof must be anchored outside the teaching loop (client results in the external economy), and the system never blames the student (Library Domain 102). Together these convert the playbook's sales layer from craft to physics: the methodology now knows *why* clean selling works, not only *how*.
+- **v4.4: The Ecology Upgrade (July 6, 2026, Days 115-116).** The methodology gains its fourth dimension. Old core question: "What is your gift?" New core question: **"What is your gift, what ecology does it need, and what wrong fields are currently draining it?"** Four movements now structure every engagement: **Source** (the living uniqueness) → **Distortion** (where it is proven, over-given, hidden, or misread) → **Ecology** (which rooms, clients, collaborators, markets can metabolize it) → **Fruit** (the offer/role/product that makes it visible through results). Underneath: uniqueness is a living relationship, not a trait; the client is a steward-participant of it (ontology: `uniqueness_economy_thesis.md` §0.7; law: Phase Shift Library Technology 99). Two operational consequences. (1) **The free diagnostic call diagnoses ecology; it does not prove depth.** The paid container is the prescription that follows the diagnosis; qualification filter: ready to steward their gift, or still addicted to being misrecognized. (2) **Sell transformation, not architecture.** The corpus's own "architecture of..." titles are the tell of selling the builder's view; the buyer purchases the result of the Original Pattern being revealed, and the architecture is the explanation of why it works, delivered after entry. Tactics: `marketing_playbook.md` Part III-B (Adoption Ladder, threshold marketing, recognition vs selection language, right-ecology 2×2).
+- **v4.5: The Money Layer (July 7-13, 2026, Days 117-123).** The methodology gains its exchange physics, distilled from the Money Studies week (six sources: Brown 1903 → Wattles 1910 → Hotep → Eker → Golden → Takrori; full instrument: `docs/05-reference/money-studies/money_holomap.md`). Five additions, each living in its canonical home — pointers only, no re-compression: (1) **The Register Test** — every copy block asks "does this line need the reader to say yes, or serve them either way?" (`marketing_playbook.md` Step 0.5). (2) **Shelf and Cathedral** — split the naming of the offer from the being of the offer: sell on the known shelf, narrate the category on unpriced surfaces, graduate buyers inward; two buyers, two doors (Step 0.6 + Library Phase Shift Technology 103). (3) **The 4 Levels of Value** — price at the level the offer operates from, not the hours inside it; one public cathedral-level anchor re-prices the whole ladder (money holomap, Golden study). (4) **Offer Cadence** — offers-made-per-week is the controllable input metric upstream of revenue; instrumented on the Founder Cockpit (`telemetry_playbook.md`, Offer Cadence section). (5) **The Guru-Loop Immunity Rule** — proof must be anchored outside the teaching loop (client results in the external economy), and the system never blames the student (Library Phase Shift Technology 102). Together these convert the playbook's sales layer from craft to physics: the methodology now knows *why* clean selling works, not only *how*.
 
 
 ---

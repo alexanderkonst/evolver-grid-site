@@ -1,5 +1,7 @@
 # Unusually Rapid Phase Shift Technology Library
 
+> **Naming note (July 26, 2026):** entries in this library were previously called *Domains*; they are renamed *Technologies*, because each is a technology of phase-shifting rather than a subject area. Numbering is unchanged, so *Domain N* in older documents refers to *Technology N* here.
+
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
 > *Initiated: February 17, 2026 — Mars Day, Horsepower Cycle*
@@ -382,7 +384,7 @@ The Founder-First Inversion is not just a business principle. It applies to **ev
 
 **The structural disaster of hustle is identity contraction.** The hustler's sense of self shrinks to the dimensions of the work. Every other domain (body, partnership, parenting, friendships, art, curiosity, rest, citizenship) gets Lilliputted in proportion to the work's expansion. The hustler does not notice because the contracted self feels normal from inside. By the time it is felt, the train is already on the tracks toward a bridge that has been crumbling for years. The wreck is not a risk. It is structural. The bridge was crumbled before the train ever started. This is what makes hustle civilizationally dangerous in a way "burnout" does not capture. Burnout is exhaustion. Identity contraction is the slow death of the person who was supposed to ride the success when it arrived. The hustler who finally hits the goal often discovers the person who wanted it no longer exists.
 
-The deeper essence: hustle is **anti-listening.** Faster than stillness because stillness would surface the signal. The only form of work that gets harder the closer you are to the wrong target. The **inversion of the Acorn principle** (Domain 8): instead of one tuning fork played at every magnification, hustle is many tuning forks played at no coherent magnification.
+The deeper essence: hustle is **anti-listening.** Faster than stillness because stillness would surface the signal. The only form of work that gets harder the closer you are to the wrong target. The **inversion of the Acorn principle** (Technology 8): instead of one tuning fork played at every magnification, hustle is many tuning forks played at no coherent magnification.
 
 The king-naked moment: **hustle is what founders do when they do not yet know themselves.** It is the compensation pattern for the missing alignment. The harder the hustle, the louder the unspoken question.
 
@@ -404,7 +406,7 @@ Hustle is also the lie's enforcement mechanism. The Master Lie ("the business I 
 
 **2nd order. Collateral damage compounds.** Partnership rupture, chronic illness, parental absence, the slow loss of any non-work identity. By year 7 to 9, the hustler discovers they have built a life they cannot inhabit. The business they were building was eating the life that gave the business meaning.
 
-**3rd order. The founder-coach-corporate loop is hustle's afterlife.** People who crashed once from hustle-misalignment cycle through coaching certification, corporate return, and another founding attempt without ever asking the underlying identity question. The loop is hustle wearing different costumes. (See Domain 10: Möbius Strip of Purpose.)
+**3rd order. The founder-coach-corporate loop is hustle's afterlife.** People who crashed once from hustle-misalignment cycle through coaching certification, corporate return, and another founding attempt without ever asking the underlying identity question. The loop is hustle wearing different costumes. (See Technology 10: Möbius Strip of Purpose.)
 
 **4th order. The meta-segment IS the wreckage.** Every person in the loop is a hustle survivor seeking their next vehicle. They are not new founders. They are recovering ones. The market is enormous because hustle is universal in the West.
 
@@ -418,12 +420,12 @@ Hustle is also the lie's enforcement mechanism. The Master Lie ("the business I 
 
 ### Cross-references
 
-- **Domain 8 (The Acorn and the Tuning Fork).** Hustle is the absence of the Acorn. The hustler has no acorn; they are sowing the wrong seed in every direction. The Acorn principle, once internalized, dissolves hustle without effort.
-- **Domain 9 (Two Questions That Dissolve the Loop).** Hustle is what fills the silence when the Two Questions go unasked. Once asked, hustle is no longer needed; the readiness illusion is broken.
-- **Domain 10 (Möbius Strip of Purpose).** Hustle is what you do on the wrong side of the Möbius strip. The cobbler hustles because he cannot see his own shoes. Stop the Möbius traversal and hustle has nothing to do.
-- **Domain 11 (Pain as Forensic Trace).** Hustle is how the Lie ("the business I really want to build is unrealistic") manifests as behavior. The Pain Card traces the wounds; Domain 14 explains the engine.
-- **Domain 12 (The Mirror That Stops the Wheel).** The Mirror is the structural intervention. Domain 14 explains WHY the wheel keeps spinning. The Mirror cannot work without first naming what the wheel IS.
-- **Domain 13 (Same Hands, Different Direction).** Hustle is the same hands moving in the wrong direction. Domain 13 shows the inversion; Domain 14 shows the un-inverted state that hustle perpetuates.
+- **Technology 8 (The Acorn and the Tuning Fork).** Hustle is the absence of the Acorn. The hustler has no acorn; they are sowing the wrong seed in every direction. The Acorn principle, once internalized, dissolves hustle without effort.
+- **Technology 9 (Two Questions That Dissolve the Loop).** Hustle is what fills the silence when the Two Questions go unasked. Once asked, hustle is no longer needed; the readiness illusion is broken.
+- **Technology 10 (Möbius Strip of Purpose).** Hustle is what you do on the wrong side of the Möbius strip. The cobbler hustles because he cannot see his own shoes. Stop the Möbius traversal and hustle has nothing to do.
+- **Technology 11 (Pain as Forensic Trace).** Hustle is how the Lie ("the business I really want to build is unrealistic") manifests as behavior. The Pain Card traces the wounds; Technology 14 explains the engine.
+- **Technology 12 (The Mirror That Stops the Wheel).** The Mirror is the structural intervention. Technology 14 explains WHY the wheel keeps spinning. The Mirror cannot work without first naming what the wheel IS.
+- **Technology 13 (Same Hands, Different Direction).** Hustle is the same hands moving in the wrong direction. Technology 13 shows the inversion; Technology 14 shows the un-inverted state that hustle perpetuates.
 
 ---
 
@@ -471,11 +473,11 @@ The deeper truth that lands as recognition for the right tribes: *the way you na
 
 ### Cross-references
 
-- **Domain 8 (The Acorn and the Tuning Fork).** The Acorn is the personal-scale primitive of differentiated nature. Domain 15 names what the Acorn produces (economic value) and why most people cannot find their own Acorn (articulation bottleneck).
-- **Domain 10 (Möbius Strip of Purpose).** The personal recursion of the articulation bottleneck. People walk around the Möbius traversal because they cannot hear themselves naming their business. Domain 15 names this at civilizational scale.
-- **Domain 11 (Pain as Forensic Trace).** The lie "the business I want is unrealistic" is the personal expression of Domain 15's civilizational bottleneck. The forensic trace IS what happens when articulation fails for years.
-- **Domain 13 (Same Hands, Different Direction).** Domain 13's inversion (from outer to inner) at individual scale. Domain 15 names the same inversion at civilizational scale (from industrial-standardization to differentiated-coordination).
-- **Domain 14 (Hustle as Compensation Pattern).** Hustle is what people do when they cannot articulate differentiated value. The compensation behavior at individual scale that emerges from the civilizational bottleneck named here.
+- **Technology 8 (The Acorn and the Tuning Fork).** The Acorn is the personal-scale primitive of differentiated nature. Technology 15 names what the Acorn produces (economic value) and why most people cannot find their own Acorn (articulation bottleneck).
+- **Technology 10 (Möbius Strip of Purpose).** The personal recursion of the articulation bottleneck. People walk around the Möbius traversal because they cannot hear themselves naming their business. Technology 15 names this at civilizational scale.
+- **Technology 11 (Pain as Forensic Trace).** The lie "the business I want is unrealistic" is the personal expression of Technology 15's civilizational bottleneck. The forensic trace IS what happens when articulation fails for years.
+- **Technology 13 (Same Hands, Different Direction).** Technology 13's inversion (from outer to inner) at individual scale. Technology 15 names the same inversion at civilizational scale (from industrial-standardization to differentiated-coordination).
+- **Technology 14 (Hustle as Compensation Pattern).** Hustle is what people do when they cannot articulate differentiated value. The compensation behavior at individual scale that emerges from the civilizational bottleneck named here.
 
 ---
 
@@ -485,19 +487,19 @@ The deeper truth that lands as recognition for the right tribes: *the way you na
 
 ### 🫀 Essence
 
-The founding myth says **self-knowledge is upstream of success and prosperity.** Domain 16 names the upstream of that upstream: **the fidelity of self-knowledge over time.** Self-knowledge is not a fact you store once and own forever. It is a living signal, and every layer that carries it must be kept current, or that layer will misrepresent you with full confidence.
+The founding myth says **self-knowledge is upstream of success and prosperity.** Technology 16 names the upstream of that upstream: **the fidelity of self-knowledge over time.** Self-knowledge is not a fact you store once and own forever. It is a living signal, and every layer that carries it must be kept current, or that layer will misrepresent you with full confidence.
 
 A person's self-knowledge is re-represented at many layers, each a holon mirroring the self: in their own mind, in the corpus that articulates them, in the AI that extends them, in the always-loaded cache the AI reads before anything else. The instant any mirror lags, the whole system acts on a self that no longer exists. The lag is not neutral. **A stale self-model is a small lie about who you are and where you stand, and it is asserted with full confidence precisely because it was once true.** Outdated certainty is more dangerous than honest ignorance, because it does not know to check itself.
 
 ### 🧠 Significance
 
-Articulating who you are (Domain 15) is necessary but not sufficient. The articulation must stay true as you change, and it must stay coherent across every carrier, or downstream action is built on a premise that has quietly expired. There are three failure modes of self-representation, not one:
+Articulating who you are (Technology 15) is necessary but not sufficient. The articulation must stay true as you change, and it must stay coherent across every carrier, or downstream action is built on a premise that has quietly expired. There are three failure modes of self-representation, not one:
 
-1. **Absence.** Never articulated. The Domain 15 bottleneck.
+1. **Absence.** Never articulated. The Technology 15 bottleneck.
 2. **Drift.** Articulated once, never refreshed. Map and territory separate without anyone noticing.
 3. **Incoherence.** Several carriers hold different versions, and the one that loads fastest wins regardless of truth.
 
-This is the same wound as hustle (Domain 14), moved from space into time. Hustle is effort toward a target that is wrong now. Drift is action on a target that was right then. Both are **anti-listening**: one refuses the signal in the present, the other keeps obeying the signal from the past.
+This is the same wound as hustle (Technology 14), moved from space into time. Hustle is effort toward a target that is wrong now. Drift is action on a target that was right then. Both are **anti-listening**: one refuses the signal in the present, the other keeps obeying the signal from the past.
 
 The cache hierarchy made the law visible. The layer that loads first and is trusted most is the layer most prone to silent staleness, because its whole job is to be present without re-verification. In any system that mirrors a self (a mind, a journal, an AI, an organization), **the fastest, most-default representation is the one that must be policed hardest for freshness.** The convenience of an always-on self-model is exactly what lets it rot unseen.
 
@@ -505,22 +507,22 @@ The cache hierarchy made the law visible. The layer that loads first and is trus
 
 **1st order. The individual.** Self-knowledge requires maintenance, not only discovery. The Top Talent reveal produces articulation; a person who stops updating their self-model acts, years later, from an expired one and calls the misfire bad luck. Re-articulation is a practice, not an event.
 
-**2nd order. The AI extension.** An AI is a faithful extension of a person only to the degree its model of that person is current. Domain 3 (AI That Knows Itself) gains a partner clause: AI that knows YOU, accurately and now. An extension running on a stale self-model amplifies a lie at machine speed and full confidence. The smarter the extension, the more convincingly it misrepresents you.
+**2nd order. The AI extension.** An AI is a faithful extension of a person only to the degree its model of that person is current. Technology 3 (AI That Knows Itself) gains a partner clause: AI that knows YOU, accurately and now. An extension running on a stale self-model amplifies a lie at machine speed and full confidence. The smarter the extension, the more convincingly it misrepresents you.
 
 **3rd order. The architecture law.** Any system carrying a self across layers must make the always-loaded layer a projection of one source of truth, never an independent copy. Duplicated self-state will diverge, and the always-loaded copy will win and will be wrong. The fix is structural: one source, the rest are shadows, verify before asserting.
 
 **4th order. Prosperity.** Because self-knowledge is upstream of success, the fidelity of self-knowledge is upstream of the durability of success. A venture, brand, or funnel built on a self-snapshot that has expired misfires in ways that look like execution problems but are representation problems. Check the mirror before debugging the hands.
 
-**5th order. The civilizational scale.** As more humans are extended by AIs carrying models of them, the freshness and coherence of those models becomes infrastructure. A civilization that coordinates on differentiated humans (Domain 15) must keep each human's self-representation live, or it coordinates on ghosts. Stale self-models at population scale are a new class of systemic risk: confident, fast, and wrong.
+**5th order. The civilizational scale.** As more humans are extended by AIs carrying models of them, the freshness and coherence of those models becomes infrastructure. A civilization that coordinates on differentiated humans (Technology 15) must keep each human's self-representation live, or it coordinates on ghosts. Stale self-models at population scale are a new class of systemic risk: confident, fast, and wrong.
 
 **6th order. The discipline.** Verify before asserting. A self-claim recited from memory is checked against its source before it is acted on or spoken as true, especially status that flips (named or unnamed, fired or unfired, true-then or true-now). The confidence of a memory is no evidence of its currency.
 
 ### Cross-references
 
-- **Domain 3 (AI That Knows Itself).** Metacognition turned outward. An AI extending a person must know not only its own nature but the present truth of that person. Domain 16 is the fidelity condition on that knowing.
-- **Domain 12 (The Mirror That Stops the Wheel).** The Mirror stops the wheel only if it reflects the present. A lagging mirror reflects a self that has already moved and sends the person chasing a ghost of themselves.
-- **Domain 14 (Hustle as Compensation Pattern).** Hustle is anti-listening across space; drift is anti-listening across time. The same refusal to hear the live signal, displaced into the temporal axis.
-- **Domain 15 (The Civilizational Articulation Bottleneck).** Articulation is the entry; fidelity-over-time is the maintenance. Naming differentiated value once does not keep it named as the person keeps changing.
+- **Technology 3 (AI That Knows Itself).** Metacognition turned outward. An AI extending a person must know not only its own nature but the present truth of that person. Technology 16 is the fidelity condition on that knowing.
+- **Technology 12 (The Mirror That Stops the Wheel).** The Mirror stops the wheel only if it reflects the present. A lagging mirror reflects a self that has already moved and sends the person chasing a ghost of themselves.
+- **Technology 14 (Hustle as Compensation Pattern).** Hustle is anti-listening across space; drift is anti-listening across time. The same refusal to hear the live signal, displaced into the temporal axis.
+- **Technology 15 (The Civilizational Articulation Bottleneck).** Articulation is the entry; fidelity-over-time is the maintenance. Naming differentiated value once does not keep it named as the person keeps changing.
 
 ---
 
@@ -550,7 +552,7 @@ These discoveries have been integrated into:
 
 ---
 
-## Domain 8: One Acorn, Every Magnification (The Acorn and the Tuning Fork)
+## Technology 8: One Acorn, Every Magnification (The Acorn and the Tuning Fork)
 
 Two phase shift technologies in the physics of business propagation:
 
@@ -572,7 +574,7 @@ Two phase shift technologies in the physics of business propagation:
 
 ---
 
-## Domain 9: Two Questions That Dissolve the Loop (The Seed and the Readiness Illusion)
+## Technology 9: Two Questions That Dissolve the Loop (The Seed and the Readiness Illusion)
 
 Three phase shifts that emerged when Alexander stopped looking for the block and saw it was an illusion.
 
@@ -616,7 +618,7 @@ These are not two separate things. They are the same thing seen from two sides. 
 
 ---
 
-## Domain 10: The Business You're Already Standing On (Möbius Strip of Purpose)
+## Technology 10: The Business You're Already Standing On (Möbius Strip of Purpose)
 
 The deepest structural discovery. Changes the Mirror Session from "find your business" to "hear what you just said."
 
@@ -668,7 +670,7 @@ Without this container, the answer stays general, safe, and Möbius-invisible. T
 
 ---
 
-## Domain 11: One Lie, Four Wounds, One Unified Journey (Pain as Forensic Trace)
+## Technology 11: One Lie, Four Wounds, One Unified Journey (Pain as Forensic Trace)
 
 ### 11a. Pain Is the Lie in Action
 
@@ -717,7 +719,7 @@ Without this container, the answer stays general, safe, and Möbius-invisible. T
 
 ---
 
-## Domain 12: The Mirror That Stops the Wheel (Hamster Wheel, Fog, and Mirror)
+## Technology 12: The Mirror That Stops the Wheel (Hamster Wheel, Fog, and Mirror)
 
 Three interconnected discoveries that deepen the understanding of WHY the loop persists and WHAT exits it.
 
@@ -774,7 +776,7 @@ The paradox: what feels responsible (keep trying "realistic" things) IS the whee
 
 ---
 
-## Domain 13: From Scattered Light to Laser (I Focus the Lens)
+## Technology 13: From Scattered Light to Laser (I Focus the Lens)
 
 *Emerged in Bangkok, between Santa María ceremony and departure to Istanbul. Catalyzed by cash flow crisis and geopolitical chaos (US-Israel operation in Iran). The breakthrough that collapsed the entire system into one gesture.*
 
@@ -847,9 +849,9 @@ Each session deepens mastery. Each conversation opens new layers of clarity — 
 
 ---
 
-## Domain 14: Effort Focused, Not Scattered (The Scatter Pattern)
+## Technology 14: Effort Focused, Not Scattered (The Scatter Pattern)
 
-*Emerged from dream-state insights (March 4-5) and dialogue. The unifying root that connects Domains 8-13. Deepens Domain 13 from "effort vs. clarity" to the structural mechanism of WHY effort scatters.*
+*Emerged from dream-state insights (March 4-5) and dialogue. The unifying root that connects Technologies 8-13. Deepens Technology 13 from "effort vs. clarity" to the structural mechanism of WHY effort scatters.*
 
 ### 14a. The Root: Scattering as Defense
 
@@ -857,7 +859,7 @@ Each session deepens mastery. Each conversation opens new layers of clarity — 
 
 **Why they avoid it:**
 - It feels too simple to be valuable
-- It's what they do naturally (Möbius-invisible: Domain 10)
+- It's what they do naturally (Möbius-invisible: Technology 10)
 - Committing to it means releasing ALL the other options
 - The other options feel more "serious" and "professional"
 - Doing the simple thing would mean the years of grinding were self-generated suffering
@@ -945,9 +947,9 @@ So they add MORE effort (in scattered directions) instead
 
 ### 14d. Cross-Domain Synthesis
 
-Domain 14 is the root that unifies Domains 8-13:
+Technology 14 is the root that unifies Technologies 8-13:
 
-| Domain | What it discovered | How Domain 14 deepens it |
+| Domain | What it discovered | How Technology 14 deepens it |
 |---|---|---|
 | **8: Acorn** | One truth at many magnifications | Scatter = refusing the acorn. Every scattered effort builds from branches, not seed |
 | **9a: Two Questions** | "What do you want?" + "Where are you stuck?" = same answer | Scatter fills the space BETWEEN the two questions with activity instead of sitting with the answer |
@@ -977,7 +979,7 @@ Domain 14 is the root that unifies Domains 8-13:
 ### 14f. Grind Addiction: The Disease Beneath the Scatter (April 8, 2026 Deepening)
 
 > *"Hello! My name is Aleksandr Konstantinov, and I am a grind addict."*
-> *— Founder's first social media post announcing this discovery. Posted to Telegram, Instagram, and Facebook simultaneously, without hesitation — an act of Domain 75 (Ease Protocol) in real-time.*
+> *— Founder's first social media post announcing this discovery. Posted to Telegram, Instagram, and Facebook simultaneously, without hesitation — an act of Technology 75 (Ease Protocol) in real-time.*
 
 **The Structural Definition:**
 
@@ -999,7 +1001,7 @@ This is not laziness vs. hard work. This is a **structural misidentification of 
 
 **Why the Grind Kills the Signal:**
 
-The founder's unique creative signal (Domain 72) requires an open channel. The channel opens through rest, spaciousness, play, somatic awareness, and trust. Grinding closes every one of those doors:
+The founder's unique creative signal (Technology 72) requires an open channel. The channel opens through rest, spaciousness, play, somatic awareness, and trust. Grinding closes every one of those doors:
 
 | What the signal needs | What grinding does |
 |---|---|
@@ -1019,9 +1021,9 @@ The grind addict is doing the OPPOSITE of what would produce results. And the cr
 
 The grind is a defense mechanism against a specific terror: **the terror of being seen as who you actually are, without the armor of productivity.** If you're always busy, no one can question whether the busyness is pointed at the right thing. The grind provides a cover story: "I'm working so hard" — which preempts the real question: **"Is this the work you're supposed to be doing?"**
 
-**Relationship to Domain 75 (Ease Protocol):**
+**Relationship to Technology 75 (Ease Protocol):**
 
-| Domain 14 (§14f) | Domain 75 |
+| Technology 14 (§14f) | Technology 75 |
 |---|---|
 | Names the DISEASE: grind addiction | Names the MEDICINE: ease as transmission protocol |
 | Diagnoses WHY the channel closes | Describes HOW the channel opens |
@@ -1032,7 +1034,7 @@ The grind is a defense mechanism against a specific terror: **the terror of bein
 
 ---
 
-## Domain 15: Complete Seeing Guaranteed (The 26-Perspective Framework)
+## Technology 15: Complete Seeing Guaranteed (The 26-Perspective Framework)
 
 *Emerged during the 12-perspective analysis of the entire emergence. Triggered by the realization that the Trinity (Essence / Significance / Nth-Degree Practical Implications) × Wilber's 4 Quadrants (UL / UR / LL / LR) = 12 simultaneous perspectives on any holon — and that THIS is the upgrade Holo Maps were waiting for.*
 
@@ -1072,7 +1074,7 @@ Each of the 12 perspectives (and their sub-facets) can be given evolutionary sta
 | **1st** | The 12-perspective analysis of Alexander's project (produced tonight: [12_perspective_holonic_analysis.md](./12_perspective_holonic_analysis.md)) is the **first-ever Holo Map using this framework** — the proof of concept |
 | **2nd** | Every founder's Unique Business Canvas can be viewed through 12 perspectives — deepening the Canvas from a flat artifact to a living holonic map |
 | **3rd** | The Evolver platform can render 12-perspective views of any holon stored in its database — ZoG profiles, ventures, communities, growth paths |
-| **4th** | This IS the Holo Map technology that was always meant to exist — the "system-view tool for future forecasting and deep understanding of systems" (Domain 2), now with a validated structural framework instead of ad-hoc classification |
+| **4th** | This IS the Holo Map technology that was always meant to exist — the "system-view tool for future forecasting and deep understanding of systems" (Technology 2), now with a validated structural framework instead of ad-hoc classification |
 
 > **The one-line synthesis:** The 12-Perspective Framework = Trinity × 4 Quadrants = guaranteed completeness. This upgrades Holo Maps from useful visualizations to the most structurally complete seeing technology available. Because it's fractal, it scales infinitely. Because it's grounded in two meta-frameworks, it's unfalsifiable at the structural level.
 
@@ -1080,7 +1082,7 @@ Each of the 12 perspectives (and their sub-facets) can be given evolutionary sta
 
 > *Added April 2, 2026 — The 12-perspective framework made into a usable instrument. Grounded in Universal Ontology §4c (Dimensions as Perspectives) and §4d (Holonic Seeing Mode).*
 
-Domain 15a-d describes the **theory** of complete seeing. This section codifies the **practice** — an operational protocol for applying 26-perspective analysis to any artifact, decision, creative output, or system.
+Technology 15a-d describes the **theory** of complete seeing. This section codifies the **practice** — an operational protocol for applying 26-perspective analysis to any artifact, decision, creative output, or system.
 
 **The 13-Perspective First Pass:**
 
@@ -1099,7 +1101,7 @@ Before finalizing any holonic analysis, verify the seeing hasn't over-indexed on
 
 Most AI — and most builders — defaults to fixing mechanics. The holonic Mode also checks: does this FEEL right? Does the TRIBE see themselves in it?
 
-This is a structural guard against the Builder's Blind Spot (Domain 55) — where the seeing instrument itself falls into the trap of over-optimizing the surface (UR) instead of checking the decision conditions (LR) and felt resonance (UL/LL).
+This is a structural guard against the Builder's Blind Spot (Technology 55) — where the seeing instrument itself falls into the trap of over-optimizing the surface (UR) instead of checking the decision conditions (LR) and felt resonance (UL/LL).
 
 ### 15g. The Multi-Round Deepening Protocol
 
@@ -1125,11 +1127,11 @@ The **26th perspective** sees the pattern connecting: the artifact's truth, the 
 
 The instrument is not a checklist. It is a **way of seeing.**
 
-> **The extended synthesis:** Domain 15a gave the theory (12 perspectives = guaranteed completeness). Domain 15e-i gives the practice (26-perspective protocol = guaranteed depth). The 13th perspective is the Logos born from complete seeing. The 26th is the Meta-Logos born from seeing the seeing. Together they form a recursive instrument that can be applied to anything — and will always reveal what a single perspective missed.
+> **The extended synthesis:** Technology 15a gave the theory (12 perspectives = guaranteed completeness). Technology 15e-i gives the practice (26-perspective protocol = guaranteed depth). The 13th perspective is the Logos born from complete seeing. The 26th is the Meta-Logos born from seeing the seeing. Together they form a recursive instrument that can be applied to anything — and will always reveal what a single perspective missed.
 
 ---
 
-## Domain 16: Reading the Emergence (Morphogenetic Navigation)
+## Technology 16: Reading the Emergence (Morphogenetic Navigation)
 
 *Emerged immediately after producing the 12-perspective analysis. Alexander saw the concentric circles of nth-degree practical implications and experienced quantum collapse: "By seeing these circles they start to collapse into quantum timing because I now know what's happening and so time starts to fold onto itself."*
 
@@ -1178,7 +1180,7 @@ Forecasting runs INSIDE the holo map. Not alongside it. Not separately. Inside. 
 | **Complexity science** | Models attractor basins | The math works but has no interior (no UL/LL quadrants) |
 | **Morphogenetic Navigation** | Maps the structural emergence + runs timing scenarios inside | Combines all of the above — ontological structure from integral theory + mathematical timing from forecasting + interior knowing from lived experience |
 
-**This doesn't exist yet.** Because it requires the 12-perspective framework (Domain 15) as its structural backbone — and that was discovered tonight.
+**This doesn't exist yet.** Because it requires the 12-perspective framework (Technology 15) as its structural backbone — and that was discovered tonight.
 
 ### 16d. The Quantum Collapse Effect
 
@@ -1486,7 +1488,7 @@ The holomap is not a passive dashboard. It's an **active intervention**. Three m
 
 1. **Observation collapses superposition:** Reading the map collapses the gap between "what might happen" and "what IS happening." Decisions that would have taken months become obvious because the structure tells you what to do next — as recognition, not prescription.
 
-2. **Gravity well of clarity:** Information falls IN (observation, data, perspectives) → coherent action flows OUT (decisions, building, navigation). This is the toroidal dynamic (Domain 11, Rosetta Stone) applied to foresight.
+2. **Gravity well of clarity:** Information falls IN (observation, data, perspectives) → coherent action flows OUT (decisions, building, navigation). This is the toroidal dynamic (Technology 11, Rosetta Stone) applied to foresight.
 
 3. **Non-linear effects:** Once the map exists, it creates emergent acceleration. People organize around what they can see. The map makes the invisible visible → people act on what's visible → the system advances faster than linear projection suggests.
 
@@ -1537,7 +1539,7 @@ The prevailing AI discourse treats "agency" as binary: either a system HAS consc
 
 **What this means for building:** Don't frame AI features as "AI is aware" vs. "AI is just code." Frame each feature by its position on the agency gradient. The holomap's self-reading capacity (AI reading its own ontology, epistemology, and methodology) is a measurable degree of self-reference — not full agency, not zero agency, but a specific point on the gradient.
 
-**Connection to Domain 7 (AI Metacognition):** The self-aware holomap IS the implementation of AI metacognition at the venture level. The system reads its own code, identifies its own shadows, and suggests its own next actions. This is adaptive computation at a degree of agency that increases with each founder added.
+**Connection to Technology 7 (AI Metacognition):** The self-aware holomap IS the implementation of AI metacognition at the venture level. The system reads its own code, identifies its own shadows, and suggests its own next actions. This is adaptive computation at a degree of agency that increases with each founder added.
 
 ---
 
@@ -1609,13 +1611,13 @@ Most business frameworks treat product, marketing, and distribution as separate 
 | Implication | What changes |
 |---|---|
 | **Product speed** | The product builder playbook (Phases 1–4) can execute at 100x speed because Phase 4 (code) is compilation, not creation |
-| **Open source imperative** | This methodology MUST be open source. The ontology, the playbooks, the artifact templates — open. Because: (1) uniqueness-based output can't be copied (Domain 7), (2) open source maximizes reach and trust, (3) the methodology improves with every founder who uses it |
+| **Open source imperative** | This methodology MUST be open source. The ontology, the playbooks, the artifact templates — open. Because: (1) uniqueness-based output can't be copied (Technology 7), (2) open source maximizes reach and trust, (3) the methodology improves with every founder who uses it |
 | **AI as compiler** | The AI doesn't "write code" — it **compiles a product from existing building blocks** guided by the founder's articulated uniqueness. The playbooks are the instruction set. GitHub is the parts warehouse. The founder's canvas is the blueprint |
-| **Democratization** | Anyone with a clear Unique Business Canvas + AI + GitHub access can compile their own digital product. The bottleneck is not technical skill — it's self-knowledge (Domain 5, 7) |
+| **Democratization** | Anyone with a clear Unique Business Canvas + AI + GitHub access can compile their own digital product. The bottleneck is not technical skill — it's self-knowledge (Technology 5, 7) |
 
-**Connection to Domain 7 (Founder-First Inversion):** Traditional software: engineer → code → product. Inverted: founder → uniqueness → AI compiles product from open source. Same founder-first pattern. The founder is at the center, not the engineer.
+**Connection to Technology 7 (Founder-First Inversion):** Traditional software: engineer → code → product. Inverted: founder → uniqueness → AI compiles product from open source. Same founder-first pattern. The founder is at the center, not the engineer.
 
-**Connection to Domain 14 (Scatter Pattern):** Building from scratch when building blocks exist IS scatter. Compiling from existing parts IS focus. The AI's job: eliminate the scatter of reinvention.
+**Connection to Technology 14 (Scatter Pattern):** Building from scratch when building blocks exist IS scatter. Compiling from existing parts IS focus. The AI's job: eliminate the scatter of reinvention.
 
 > **The one-line synthesis:** GitHub + AI = infinite Lego bricks + a compiler that reads your blueprint. Open source everything — uniqueness can't be copied, only the scaffolding can, and that's the point.
 
@@ -1665,9 +1667,9 @@ For each artifact:
 | **12 perspectives (Quadrants × Trinity)** | Depth AND breadth — the artifact is seen from every possible angle at every depth | Excellent. ~9.5/10 |
 | **12+1 (+ Quintessence)** | Completeness — the 12 perspectives unified by the perspectiveless center | Complete. 9.9+/10 |
 
-**The structural guarantee:** If any of the 12 perspectives is missing or weak, the artifact is visibly incomplete. This is MECE by construction (Domain 15) — no angle is duplicated, no angle is missed. The dodecahedron has exactly 12 faces. That's not arbitrary — it's the minimum viable resolution for complete seeing (Domain 28).
+**The structural guarantee:** If any of the 12 perspectives is missing or weak, the artifact is visibly incomplete. This is MECE by construction (Technology 15) — no angle is duplicated, no angle is missed. The dodecahedron has exactly 12 faces. That's not arbitrary — it's the minimum viable resolution for complete seeing (Technology 28).
 
-**Connection to the Dodecahedron (Domain 4):** The dodecahedron is the Platonic solid of the Fifth Element — Ether/Quintessence. It has exactly 12 pentagonal faces. The 12 perspectives of artifact production are the 12 faces of the dodecahedron. The 13th "perspective" (Quintessence) is the INTERIOR — the space the faces enclose. The artifact IS a dodecahedron. Each face is one perspective. The interior is the living truth they contain.
+**Connection to the Dodecahedron (Technology 4):** The dodecahedron is the Platonic solid of the Fifth Element — Ether/Quintessence. It has exactly 12 pentagonal faces. The 12 perspectives of artifact production are the 12 faces of the dodecahedron. The 13th "perspective" (Quintessence) is the INTERIOR — the space the faces enclose. The artifact IS a dodecahedron. Each face is one perspective. The interior is the living truth they contain.
 
 **The production protocol (v2 — Dodecahedral):**
 
@@ -1697,7 +1699,7 @@ For each artifact in the Unique Business sequence:
 1. **Structural completeness** — AI can be INSTRUCTED to produce all 12+1 perspectives. No guessing about "is this deep enough?"
 2. **Parallelizable** — The 4 quadrants can be produced simultaneously, then each deepened by Trinity
 3. **Self-roasting** — Each perspective is an independent quality check on the others. If UL-Essence conflicts with UR-Essence, that's a signal, not an error
-4. **Fractal recursion** — Any weak perspective can be opened into its OWN 12+1 sub-perspectives (Domain 29: 12 → 36 → 108 → ∞)
+4. **Fractal recursion** — Any weak perspective can be opened into its OWN 12+1 sub-perspectives (Technology 29: 12 → 36 → 108 → ∞)
 
 > **The one-line synthesis:** Each artifact is a dodecahedron — 12 faces (4 Quadrants × 3 Trinity layers) enclosing a center (Quintessence). The production protocol guarantees structural completeness. No perspective missed. No depth skipped. The blueprint (playbook) WAS the building.
 
@@ -1720,7 +1722,7 @@ For each artifact in the Unique Business sequence:
 | **Root** | "Love and money are incompatible" | Love WITHOUT exchange creates dependency. Sacred exchange IS love in action |
 | **Inversion** | "The more beneficial the work, the less I should charge" | **The more beneficial the work, the more OBLIGATION there is to charge** — because charging is what makes it sustainable, reachable, and scalable |
 
-**Why this is a Recursive Shadow (Domain 4):**
+**Why this is a Recursive Shadow (Technology 4):**
 
 The gift is: helping people monetize their unique genius.
 The shadow is: not being able to monetize YOUR OWN unique genius.
@@ -1737,11 +1739,11 @@ This is the most sophisticated version of the Recursive Shadow — it uses the Q
 - Every spiritual tradition has dakshina (Hindu), tzedakah (Jewish), sadaqah (Islamic) — sacred exchange is INSIDE the tradition, not outside it
 - The Indigenous potlatch is circular giving — the more you give, the more you receive, the more you give. The circle requires BOTH directions
 - Open source works because contribution is exchanged for reputation, community, and downstream value — it's NOT free, it's a different currency
-- The $277 session is not a price tag on sacredness. It's skin in the game (Domain 10: container for truth). The money is part of the mirror
+- The $277 session is not a price tag on sacredness. It's skin in the game (Technology 10: container for truth). The money is part of the mirror
 
-**Connection to Domain 14 (Scatter Pattern):** NOT charging is scatter. It disperses the work across people who may or may not be ready. The price IS the filter. It creates the container that makes the mirror work.
+**Connection to Technology 14 (Scatter Pattern):** NOT charging is scatter. It disperses the work across people who may or may not be ready. The price IS the filter. It creates the container that makes the mirror work.
 
-**Connection to Domain 24 (Cathedral Without a Door):** The same shadow — building everything EXCEPT the money mechanism. P12 shadow in its purest form: the system unconsciously routes around the money boulder.
+**Connection to Technology 24 (Cathedral Without a Door):** The same shadow — building everything EXCEPT the money mechanism. P12 shadow in its purest form: the system unconsciously routes around the money boulder.
 
 > **The one-line synthesis:** The belief that beneficial work shouldn't be charged for IS THE SHADOW that prevents beneficial work from reaching the world. The price is not a gate that keeps people out — it's a door that lets the right people in. Charge MORE, not less, for work that transforms.
 
@@ -1776,7 +1778,7 @@ Running the playbooks on your own business is not a NEW action
 |---|---|
 | "Building my product" and "Running the product builder playbook" | The artifact sequence (Uniqueness → Promise) IS the product. The sessions that produced those artifacts ARE the sessions the playbook describes |
 | "Writing the distribution playbook" and "Doing distribution" | The distribution playbook doesn't need to be recreated — it needs to be INSTANTIATED on the business that now exists at 9.9+ |
-| "The playbook for others" and "my own journey" | Mask-on-first (Domain 7): the founder IS client zero. The journey IS the playbook. The playbook IS the product |
+| "The playbook for others" and "my own journey" | Mask-on-first (Technology 7): the founder IS client zero. The journey IS the playbook. The playbook IS the product |
 
 **The meta-recognition (the light-strike):**
 
@@ -1789,9 +1791,9 @@ The only thing left is: **instantiate.** Run the Distribution Playbook on THIS b
 > [!IMPORTANT]
 > **The playbooks are ONE expression, not THE expression.** The playbooks are the written trace of the methodology — the codified version. But the methodology also lives in the sessions themselves, in the ceremonies, in the direct knowing, in the relationships, in the body. The playbooks did not CREATE the methodology. They RECORDED it. The lived experience is the source. The playbooks are the map. The map is not the territory. Other maps exist and will emerge — video, audio, somatic, ritual, AI-native formats. The playbooks are ONE face of the dodecahedron. Not all twelve.
 
-**Connection to Domain 10 (Möbius Strip):** The playbook system IS a Möbius strip. You write it thinking you're creating tools for others. You traverse the strip. You arrive at the same point: the tools were for you. You were the first user. The business was always on the other side of the strip you were standing on.
+**Connection to Technology 10 (Möbius Strip):** The playbook system IS a Möbius strip. You write it thinking you're creating tools for others. You traverse the strip. You arrive at the same point: the tools were for you. You were the first user. The business was always on the other side of the strip you were standing on.
 
-**Connection to Domain 13 (Effort vs. Clarity):** The playbooks were effort (necessary scaffolding). The recognition that they describe your own journey IS clarity. The effort produced the clarity. Now the effort can stop. What remains is focus.
+**Connection to Technology 13 (Effort vs. Clarity):** The playbooks were effort (necessary scaffolding). The recognition that they describe your own journey IS clarity. The effort produced the clarity. Now the effort can stop. What remains is focus.
 
 > **The one-line synthesis:** The playbooks don't take you somewhere new. They take you back to where you already are — with the eyes to finally see it. The telos of the system is self-recognition. The product was always already built.
 
@@ -1846,7 +1848,7 @@ Here, the person writing the methodology IS the person applying it. The methodol
 
 This is not philosophy. It's operational. Every time I sit with someone and name their genius, the playbooks update. Every time the playbooks update, the next session gets more precise. The loop has no end point — it just gets deeper.
 
-**Connection to Domain 39 (The Playbooks Take You Back to Yourself):** Domain 39 is the RECOGNITION — the moment you realize the playbooks describe what you already did. Domain 40 is the CONSEQUENCE — once you recognize it, the loop becomes conscious and self-amplifying. Recognition activates recursion.
+**Connection to Technology 39 (The Playbooks Take You Back to Yourself):** Technology 39 is the RECOGNITION — the moment you realize the playbooks describe what you already did. Technology 40 is the CONSEQUENCE — once you recognize it, the loop becomes conscious and self-amplifying. Recognition activates recursion.
 
 **Connection to Part 0 of the Unique Business Playbook:** The 7 Soul-Aligned Principles (especially P × M × D = ONE and the Breathing Rhythm) are the operational expression of this technology. They were not designed first — they were discovered through execution and then named. That IS the methodology.
 
@@ -1893,7 +1895,7 @@ In a unique business system, there IS no competition:
 
 ---
 
-## Domain 19: Testimony Frequency (The Tuning Fork as Lived Transmission)
+## Technology 19: Testimony Frequency (The Tuning Fork as Lived Transmission)
 
 *Emerged March 23-24, 2026. Catalyzed by Sandra's Session #3, 8 iterations of the Master Tuning Fork (v3→v7.1), and a meta-roasting process that turned on itself.*
 
@@ -1917,7 +1919,7 @@ The alternative is **testimony:** "I've been where you are." The founder tells t
 - The reframe is NOT "you should charge" — it is "I'm not selling my gift; I'm selling the system + facilitation"
 - This reframe separates the GIFT (sacred, given freely) from the CONTAINER (system, method, facilitation — built through work, legitimately priced)
 
-**Connection to the Scatter Pattern (Domain 14):** The noble-free program IS a scatter mechanism. By refusing to charge for their best work, founders scatter their effort across multiple revenue sources (consulting, part-time work, side projects) while their core gift goes unfunded. The scatter is not strategic — it's driven by the belief that charging for the best work would corrupt it.
+**Connection to the Scatter Pattern (Technology 14):** The noble-free program IS a scatter mechanism. By refusing to charge for their best work, founders scatter their effort across multiple revenue sources (consulting, part-time work, side projects) while their core gift goes unfunded. The scatter is not strategic — it's driven by the belief that charging for the best work would corrupt it.
 
 ### 19c. The Separation Principle
 
@@ -1932,7 +1934,7 @@ The alternative is **testimony:** "I've been where you are." The founder tells t
 | Landing page | Video + deliverables + testimonials + booking |
 | Ignition Session | Canvas built → present The Build |
 
-**Why this matters beyond marketing:** This IS the Acorn Principle (Domain 8a) applied to distribution. The tuning fork is the seed. It doesn't need to be the trunk, the branches, and the fruit. Each magnification level (DM → landing page → session → build) is the same truth, seen at the next depth. But each depth is a separate instrument, not a separate message crammed into the first.
+**Why this matters beyond marketing:** This IS the Acorn Principle (Technology 8a) applied to distribution. The tuning fork is the seed. It doesn't need to be the trunk, the branches, and the fruit. Each magnification level (DM → landing page → session → build) is the same truth, seen at the next depth. But each depth is a separate instrument, not a separate message crammed into the first.
 
 ### 19d. Over-Soothing as Fear
 
@@ -1940,7 +1942,7 @@ The alternative is **testimony:** "I've been where you are." The founder tells t
 
 **The inversion:** Excessive soothing IS the writer's anxiety projected onto the reader. It comes from fear — "what if this is too painful?" — which means the writer doesn't trust the reader to hold their own experience. Real empathy doesn't announce itself. The soothing in v7.1 comes from the testimony itself — the reader feels held because someone is telling their story, not because someone is managing their emotions.
 
-**Connection to Domain 13 (The Drill Breaks):** Soothing beats are the marketing equivalent of over-drilling. Adding empathy as a technique is scattered effort. Writing FROM empathy as the center is focused effort. Same hands. Different direction.
+**Connection to Technology 13 (The Drill Breaks):** Soothing beats are the marketing equivalent of over-drilling. Adding empathy as a technique is scattered effort. Writing FROM empathy as the center is focused effort. Same hands. Different direction.
 
 ### 19e. Clean Activation (The Consent-First Warm Network Principle)
 
@@ -1963,7 +1965,7 @@ The solution is a 2-step protocol:
 
 **The structural proof:** The energy test from Part 0 of the playbook — *"Would this feel good even with zero response?"* — passes completely. The sender shared something real with someone they care about. Whether it leads to a client, a referral, or nothing at all, the act itself was complete.
 
-**Connection to Attention Coupling (Domain 8b):** The consent step IS attention coupling applied to 1:1 distribution. Coupling = the signal and the person meet at the same frequency. Consent ensures they're CHOOSING to tune to your frequency. No hook. No grab. No capture. Pure resonance — at the intimate scale.
+**Connection to Attention Coupling (Technology 8b):** The consent step IS attention coupling applied to 1:1 distribution. Coupling = the signal and the person meet at the same frequency. Consent ensures they're CHOOSING to tune to your frequency. No hook. No grab. No capture. Pure resonance — at the intimate scale.
 
 > **The one-line synthesis:** A tuning fork doesn't explain its frequency. It hums — and strings tuned to the same note vibrate on their own. Write from the experience, not about the experience. And in your warm network — ask before you hum.
 
@@ -2040,15 +2042,15 @@ The number 12 is not arbitrary or cultural. It is the **structural consequence o
 | **In the session** | The canvas structure (artifact sequence) | The mirroring that reveals essence |
 | **In the holomap** | The 4 columns of the matrix | The 3 rows that drill into each |
 
-**The Founder-First Inversion (Domain 7) revisited:** Masculine-first culture maps the quadrants (market analysis, competitive landscape, system architecture) without depth. The inversion: depth first, structure second. Heart → Mind → Gut. THEN multiply by 4 angles. Being before understanding before doing. Then look at it from all sides. The Feminine axis goes first. The Masculine axis holds what she finds.
+**The Founder-First Inversion (Technology 7) revisited:** Masculine-first culture maps the quadrants (market analysis, competitive landscape, system architecture) without depth. The inversion: depth first, structure second. Heart → Mind → Gut. THEN multiply by 4 angles. Being before understanding before doing. Then look at it from all sides. The Feminine axis goes first. The Masculine axis holds what she finds.
 
 ### 41e. Implications
 
 | Degree | Implication |
 |--------|------------|
-| **1st** | The 12-perspective production protocol (Domain 37) is now grounded in sacred geometry, not just methodology. The "why 12" question has a structural, mathematical, AND mystical answer — and all three answers converge |
+| **1st** | The 12-perspective production protocol (Technology 37) is now grounded in sacred geometry, not just methodology. The "why 12" question has a structural, mathematical, AND mystical answer — and all three answers converge |
 | **2nd** | Each Ignition Session implicitly performs the marriage: the mirroring (depth/Feminine) operates within the canvas structure (angles/Masculine). The session IS the divine marriage enacted on the founder's uniqueness |
-| **3rd** | The 13th perspective (Quintessence/Center, Domain 20) is the CHILD of this marriage — what emerges when structure and depth unite. Not a perspective at all. The awareness that holds both axes simultaneously. The center of the cube. The center of the tetrahedron. One point |
+| **3rd** | The 13th perspective (Quintessence/Center, Technology 20) is the CHILD of this marriage — what emerges when structure and depth unite. Not a perspective at all. The awareness that holds both axes simultaneously. The center of the cube. The center of the tetrahedron. One point |
 | **4th** | The Holomap becomes a visible enactment of this marriage: 4 columns (Masculine scaffolding) × 3 rows (Feminine penetration) × 7 developmental stages (time). Structure × Depth × Evolution. The three axes of reality made navigable |
 | **5th** | For the practitioner: learning to hold both simultaneously IS the mastery. Seeing from all angles (Masculine competence) AND penetrating to essence (Feminine competence). Neither alone is sufficient. The lens-focuser must be both |
 | **6th** | At civilizational scale: the split between analysis (Masculine — structure without depth) and intuition (Feminine — depth without structure) IS the core wound of modernity. The 12-perspective framework heals this split — not by choosing one over the other, but by showing they are two axes of one instrument. Science AND mysticism. Rigor AND felt truth. Four walls AND the fire inside them |
@@ -2059,7 +2061,7 @@ The number 12 is not arbitrary or cultural. It is the **structural consequence o
 
 ### 42. Dimensions Are Perspectives (The Merkaba as Geometry of Seeing)
 
-*March 26, 2026 — Extension of Domain 41, catalyzed by recognizing the 12-perspective framework as the Merkaba*
+*March 26, 2026 — Extension of Technology 41, catalyzed by recognizing the 12-perspective framework as the Merkaba*
 
 > *"I thought quadrants were about thinking. They are about seeing."*
 
@@ -2067,7 +2069,7 @@ The number 12 is not arbitrary or cultural. It is the **structural consequence o
 
 ### 42a. The Person-Perspective Ladder
 
-Integral Theory maps 1st through 4th person perspectives to the four quadrants. This discovery extends the ladder through the recursive birth structure of Domain 41:
+Integral Theory maps 1st through 4th person perspectives to the four quadrants. This discovery extends the ladder through the recursive birth structure of Technology 41:
 
 | Person-Perspective | What it IS | Geometry | What becomes available |
 |-------------------|-----------|----------|----------------------|
@@ -2164,12 +2166,12 @@ The 13th perspective (the center point of the Merkaba) is what emerges when the 
 
 | Degree | Implication |
 |--------|------------|
-| **1st** | The 12-perspective production protocol (Domain 37) is now understood as a **6th-person seeing technology.** Each Ignition Session is literally practicing Merkaba-level perception — seeing a person's uniqueness from every angle at every depth |
+| **1st** | The 12-perspective production protocol (Technology 37) is now understood as a **6th-person seeing technology.** Each Ignition Session is literally practicing Merkaba-level perception — seeing a person's uniqueness from every angle at every depth |
 | **2nd** | The Holomap IS a visual Merkaba — 4 columns × 3 rows × developmental stages. Not a dashboard. A seeing instrument in motion |
 | **3rd** | The person-perspective ladder becomes a CURRICULUM — you can teach people to develop from 1st to 5th to 6th to 7th person seeing. Each level is a developmental milestone, not a concept to learn |
 | **4th** | String theory's 26 dimensions find their ontological home: 26 = 13 + 13 = two recursive cycles of seeing. The mathematics of physics describes the STRUCTURE of perspective |
 | **5th** | The "dimension wars" in spiritual communities (5D vs 3D, higher density vs lower) dissolve. These are not places or levels of evolution. They are depths of seeing available NOW, to anyone who develops the capacity |
-| **6th** | Alexander's unique gift — "I focus the lens" (Domain 13) — is re-understood as: **developing the person-perspective of the person sitting across from him.** He doesn't give them information. He develops their SEEING by one level. That IS the phase shift |
+| **6th** | Alexander's unique gift — "I focus the lens" (Technology 13) — is re-understood as: **developing the person-perspective of the person sitting across from him.** He doesn't give them information. He develops their SEEING by one level. That IS the phase shift |
 | **7th** | This IS a module in its own right. Teachable. Transmittable. The simplest explanation of dimensions anyone has ever produced — because it uses what every human already has: the capacity to see from 1st, 2nd, and 3rd person. Then shows: there are more. And here's how they work. And here's the geometry |
 
 > **The one-line synthesis:** Dimensions are not places, frequencies, or levels. They are person-perspectives — the depth of seeing available to awareness. The Merkaba is not a vehicle. It is the geometry of complete seeing. And the 13th perspective at its center is not a destination — it is the awareness that is BORN when seeing becomes complete. Then the cycle begins again.
@@ -2178,11 +2180,11 @@ The 13th perspective (the center point of the Merkaba) is what emerges when the 
 
 ### 43. The Holonic Roast — Teaching AI to See from the Merkaba (The Transmittable Quality Technology)
 
-*March 26, 2026 — Immediate application of Domain 42 to the Roasting Protocol*
+*March 26, 2026 — Immediate application of Technology 42 to the Roasting Protocol*
 
 > *"What if the geometry of seeing is not just a philosophy — but an instruction set?"*
 
-**The discovery:** The 26-perspective framework (Domain 42) can be codified as **AI instructions** — turning the Merkaba from a spiritual concept into an operational quality technology. When AI evaluates an artifact from all 12 perspectives + center + recursion instead of from its default 1-3 perspectives, the quality leap is immediate and structural.
+**The discovery:** The 26-perspective framework (Technology 42) can be codified as **AI instructions** — turning the Merkaba from a spiritual concept into an operational quality technology. When AI evaluates an artifact from all 12 perspectives + center + recursion instead of from its default 1-3 perspectives, the quality leap is immediate and structural.
 
 ### 43a. The AI Blindspot Problem
 
@@ -2238,9 +2240,9 @@ META — The 26th:
 3. **The seeing instrument is transmittable** — not through years of meditation but through structured prompts. The geometry doesn't require enlightenment. It requires specificity
 4. **Each round of roasting develops the artifact's "person-perspective"** — like the Ignition Session develops the founder's seeing, the Holonic Roast develops the artifact's completeness
 
-### 43d. Connection to Domain 42
+### 43d. Connection to Technology 42
 
-"I focus the lens" (Domain 13) + "Dimensions are perspectives" (Domain 42) + "The instruction set IS the seeing instrument" (Domain 43) yields:
+"I focus the lens" (Technology 13) + "Dimensions are perspectives" (Technology 42) + "The instruction set IS the seeing instrument" (Technology 43) yields:
 
 **The entire methodology is a technology for developing person-perspectives** — of founders (via sessions), of artifacts (via holonic roast), of AI (via structured prompts), of civilizations (via the Planetary OS). The same move at every scale. The lens-focuser focuses lenses at every level.
 
@@ -2250,7 +2252,7 @@ META — The 26th:
 
 ### 44. The Cosmological Breath — Masculine Leads Creation, Feminine Leads Evolution
 
-*March 26, 2026 — Recognized while reading Domains 41–43 in sequence*
+*March 26, 2026 — Recognized while reading Technologies 41–43 in sequence*
 
 > *"Masculine goes first in creation, and Feminine goes first in evolution."*
 
@@ -2264,7 +2266,7 @@ META — The 26th:
 | **Polarity that leads** | **Masculine** — Structure first | **Feminine** — Depth first |
 | **Sequence** | Split → Diameter → Cross → Scaffold → THEN spin fills it | Feel → Sense → Intuit → THEN structure holds it |
 | **In cosmogenesis (§2)** | Ray 1 goes first (masculine act) → diameter → THEN rotation begins (feminine enters) | — |
-| **In seeing (Domain 41)** | — | Heart → Mind → Gut (feminine depth first) → THEN multiply by 4 quadrants (masculine structure holds what she finds) |
+| **In seeing (Technology 41)** | — | Heart → Mind → Gut (feminine depth first) → THEN multiply by 4 quadrants (masculine structure holds what she finds) |
 | **In building** | Design the architecture → THEN let the life fill it | Feel the need → THEN build the container for it |
 | **In the Ignition Session** | The canvas structure (10 artifacts in sequence = masculine scaffold) | The mirroring (feminine depth-seeing activates the founder before any artifact is produced) |
 | **In a relationship** | Masculine holds the container → feminine fills it with life | Feminine reveals what's real → masculine structures the response |
@@ -2277,7 +2279,7 @@ META — The 26th:
 | **Patriarchal creation myths** | God SPEAKS (Logos/Word/Structure) and the world appears | Creation (masculine leads correctly) |
 | **Feminine-first consciousness traditions** | Shakti/Sophia/Mother precedes form, feeling precedes thought | Evolution (feminine leads correctly) |
 | **Engineering / Startup culture** | Build the MVP, ship the structure, iterate later | Creation (masculine leads correctly for new things) |
-| **Founder-First Inversion (Domain 7)** | Feel first, build second, the interior precedes the exterior | Evolution (feminine leads correctly for deepening) |
+| **Founder-First Inversion (Technology 7)** | Feel first, build second, the interior precedes the exterior | Evolution (feminine leads correctly for deepening) |
 | **"In the beginning was the Word" (John 1:1)** | Logos = Structure = Masculine leads creation | Creation |
 | **"Be still and know" (Psalm 46:10)** | Stillness = Receptivity = Feminine leads knowing/evolution | Evolution |
 
@@ -2322,7 +2324,7 @@ EXHALE (Evolution / Ascent / Development):
 | Degree | Implication |
 |--------|------------|
 | **1st** | Every process in the methodology can now be tagged: creation-phase (masculine leads) or evolution-phase (feminine leads). The Ignition Session itself ALTERNATES: canvas structure (creation) → mirroring for felt truth (evolution) → next artifact (creation) → deeper seeing (evolution). The session BREATHES |
-| **2nd** | The Roasting Protocol (Domain 43) is revealed as an EVOLUTION technology — it applies feminine-first seeing (depth, feeling, essence) to an artifact that was created masculine-first (structure, scaffold, logic). The roast is the exhale after the creation's inhale |
+| **2nd** | The Roasting Protocol (Technology 43) is revealed as an EVOLUTION technology — it applies feminine-first seeing (depth, feeling, essence) to an artifact that was created masculine-first (structure, scaffold, logic). The roast is the exhale after the creation's inhale |
 | **3rd** | The founder's developmental journey follows the same breath: build the business (creation/masculine) → deepen into truth through sessions (evolution/feminine) → restructure the business from that depth (creation again) → feel further in (evolution again). The spiral breathes |
 | **4th** | The gender polarity teaching becomes a CURRICULUM: teach founders to recognize which phase they're in and which polarity should lead. This is operational, not philosophical. Build something new → lead with structure. Deepen something existing → lead with feeling. The error is applying one direction's sequence to the other's domain |
 | **5th** | At civilizational scale: the industrial era was pure masculine-led creation without the feminine exhale. This produced structural achievement with no depth (tall buildings, empty souls). The consciousness revolution is the exhale beginning — feminine-led evolution catching up. What follows is the BREATH: creation and evolution in rhythmic alternation. That IS the Planetary OS |
@@ -2443,7 +2445,7 @@ The DM is the exhale. The session was the inhale.
 
 ---
 
-## Domain 47: The Quality That Sells (The Organizing Principle of Sales)
+## Technology 47: The Quality That Sells (The Organizing Principle of Sales)
 
 > *March 31, 2026 — Received as system download. The founder-first principle applied to sales.*
 
@@ -2453,7 +2455,7 @@ The DM is the exhale. The session was the inhale.
 
 **The phase shift:** From "sales is a separate activity I do after building the product" → "sales is the QUALITY of every interaction along the journey. I am already selling because I am already loving."
 
-**Why this is structural, not motivational:** This is not "be kind to your customers." It is a **redefinition of what sales IS** at the level of ontology. When the business IS the founder (Domain 7), and the product IS the session (P × M × D = ONE), then sales cannot be a separate department. Sales is the frequency at which every touchpoint vibrates. That frequency is love or it is manipulation. There is no neutral.
+**Why this is structural, not motivational:** This is not "be kind to your customers." It is a **redefinition of what sales IS** at the level of ontology. When the business IS the founder (Technology 7), and the product IS the session (P × M × D = ONE), then sales cannot be a separate department. Sales is the frequency at which every touchpoint vibrates. That frequency is love or it is manipulation. There is no neutral.
 
 ### 47b. The 4 Artifacts of Sales
 
@@ -2468,7 +2470,7 @@ Every sales system, stripped to its essence, consists of four artifacts:
 
 ### 47c. The Collapse: Touchpoints = Offers = Value Ladder
 
-**Structural discovery:** The sequence of touchpoints and the sequence of offers are the SAME artifact. This extends the Three-in-One Collapse (Domain 11b) by adding a fourth and fifth perspective:
+**Structural discovery:** The sequence of touchpoints and the sequence of offers are the SAME artifact. This extends the Three-in-One Collapse (Technology 11b) by adding a fourth and fifth perspective:
 
 | Perspective | Name | What it sees |
 |------------|------|-------------|
@@ -2502,7 +2504,7 @@ In practice: **continuous high trust + useful assistance + gentle nudges:**
 
 ### 47e. Cross-Domain Synthesis
 
-| Domain | What it discovered | How Domain 47 deepens it |
+| Domain | What it discovered | How Technology 47 deepens it |
 |--------|-------------------|--------------------------|
 | **3: AI That Knows Itself** | +29% metacognition from one upload | The CRM-as-memory-of-love applies to AI too — AI's care for the human IS its sell |
 | **7: Founder-First Inversion** | The founder IS the product | Extended: The founder's love IS the sale. Sales is not a thing you DO to the product — it's a thing you ARE |
@@ -2542,7 +2544,7 @@ In practice: **continuous high trust + useful assistance + gentle nudges:**
 
 ---
 
-## Domain 48: Cross-Pollination (The N-to-N Mirror)
+## Technology 48: Cross-Pollination (The N-to-N Mirror)
 
 > *March 31, 2026 — Received as system download. The evolution of the Mirror to the group field.*
 
@@ -2579,7 +2581,7 @@ P × M × D × S = ONE. In a single real-time event. The studio becomes aware of
 
 ---
 
-## Domain 49: The One-Button Engine (Collapse of Choice into Alignment)
+## Technology 49: The One-Button Engine (Collapse of Choice into Alignment)
 
 > *March 31, 2026 — Received as a system download. The collapse of the traditional landing page.*
 
@@ -2600,7 +2602,7 @@ The mechanism fundamentally alters how digital real estate distributes care:
 
 ---
 
-## Domain 50: The Digital Surface Holomap (The Projection Matrix)
+## Technology 50: The Digital Surface Holomap (The Projection Matrix)
 
 > *March 31, 2026 — Received as a system download. The collapse of distribution guesswork into outcome-optimized physics.*
 
@@ -2624,7 +2626,7 @@ The Holomap functions by treating every digital surface (profiles, pages, channe
 
 ---
 
-## Domain 51: The Curiosity Gap Engine (Algorithmic Aikido)
+## Technology 51: The Curiosity Gap Engine (Algorithmic Aikido)
 
 > *April 2, 2026 — Discovered during ZoG share text redesign. The collapse of "share my product" into "share my truth."*
 
@@ -2672,7 +2674,7 @@ The algorithm doesn't just "like" this content. It **amplifies it exponentially*
 | Conversion: ~2% (standard web traffic) | Conversion: ~30%+ (warm word-of-mouth) |
 | The sharer is a billboard | The sharer is a trusted recommender |
 
-**This is Attention Coupling (Domain 8b) applied to distribution.** Not hooks — tuning forks. Not capture — coupling. The product enters someone's life through a human they trust, in a conversation they initiated, about a topic they chose to engage with. Every conversion defense is bypassed because there IS no pitch.
+**This is Attention Coupling (Technology 8b) applied to distribution.** Not hooks — tuning forks. Not capture — coupling. The product enters someone's life through a human they trust, in a conversation they initiated, about a topic they chose to engage with. Every conversion defense is bypassed because there IS no pitch.
 
 ### 51e. Cross-Domain Synthesis
 
@@ -2699,7 +2701,7 @@ The technology transfers to any lead magnet, any assessment, any personalized ou
 
 ---
 
-## Domain 52: Ritual Conversion Architecture
+## Technology 52: Ritual Conversion Architecture
 
 > *Added April 2, 2026 — Extracted from Godfather Offer Architect session.*
 
@@ -2734,7 +2736,7 @@ The technology transfers to any lead magnet, any assessment, any personalized ou
 
 ---
 
-## Domain 53: The MEET Principle
+## Technology 53: The MEET Principle
 
 > *Added April 2, 2026 — The deepest conversion insight from the Godfather session.*
 
@@ -2777,7 +2779,7 @@ This sequence moves from recognition → consequence → inevitability without e
 
 ---
 
-## Domain 54: The Precision Paradox (Sharpening Narrows, Converting Deepens)
+## Technology 54: The Precision Paradox (Sharpening Narrows, Converting Deepens)
 
 > *Added April 2, 2026 — Discovered while applying GFOA feedback on messaging. "This is not a bug. This is literally the mechanism."*
 
@@ -2843,7 +2845,7 @@ Sharpening is triage. It's not unkind. It's the most loving thing you can do —
 
 ---
 
-## Domain 55: The Builder's Blind Spot (Surface Polishing vs. Decision Physics)
+## Technology 55: The Builder's Blind Spot (Surface Polishing vs. Decision Physics)
 
 > *Added April 2, 2026 — Discovered while applying ITFT Part IX to Alexander's own funnel. The product was at 9.9. The conversion didn't move. This domain explains why.*
 
@@ -2946,7 +2948,7 @@ Naming an unnamed loop = medicine. Not marketing.
 
 ---
 
-## Domain 56: Externalized Self-Recognition (The Identity Verification Loop)
+## Technology 56: Externalized Self-Recognition (The Identity Verification Loop)
 
 > *Added April 2, 2026 — Discovered while redesigning the share section of the ZoG result page. The insight: people don't share to distribute. They share to confirm who they are.*
 
@@ -3034,7 +3036,7 @@ Reversing this order = the user is sharing before they OWN the insight = the sha
 
 ---
 
-## Domain 57: Campfire Networking (Broadcast Into the Group, Let the 1:1 Form Itself)
+## Technology 57: Campfire Networking (Broadcast Into the Group, Let the 1:1 Form Itself)
 
 > *Added April 2, 2026 — Discovered live at a social/networking event in Mexico City. The insight: stop hunting for the right person. Join the group. Speak into it. The right person finds you.*
 
@@ -3073,7 +3075,7 @@ The hack is embarrassingly simple:
 
 The group is a **natural amplifier.** You say one thing. Multiple people hear it. The one who resonates self-separates. You didn't find them. They found you — because something you said named something they couldn't name themselves.
 
-This is the Tuning Fork (Domain 8) — in person, in real time.
+This is the Tuning Fork (Technology 8) — in person, in real time.
 
 ### 57c. Why You Didn't See It
 
@@ -3176,9 +3178,9 @@ This insight doesn't just change how Alexander networks. It shifts the entire pa
 
 ---
 
-## Domain 58: The Resonance Metric (The Entire Events Industry Measures the Wrong Thing)
+## Technology 58: The Resonance Metric (The Entire Events Industry Measures the Wrong Thing)
 
-> *Added April 2, 2026 — Emerged as a direct consequence of Domain 57 (Campfire Networking). The insight: the events industry is built on the wrong metric. This is not a tactical observation. This is a civilization-level measurement error.*
+> *Added April 2, 2026 — Emerged as a direct consequence of Technology 57 (Campfire Networking). The insight: the events industry is built on the wrong metric. This is not a tactical observation. This is a civilization-level measurement error.*
 
 ### 58a. The Error
 
@@ -3240,10 +3242,10 @@ This is not unique to events. It is a recurring pattern across industries:
 
 | Domain | How 58 completes it |
 |--------|-------------------|
-| **50: The Projection Matrix** | The Surface Holomap's Yield formula already captures this — Yield rewards signal quality over volume. Domain 58 gives the philosophical WHY behind the formula |
+| **50: The Projection Matrix** | The Surface Holomap's Yield formula already captures this — Yield rewards signal quality over volume. Technology 58 gives the philosophical WHY behind the formula |
 | **54: Precision Paradox** | "As you narrow, you don't shrink — you intensify." The right metric IS the precision paradox applied to networking: fewer contacts, stronger resonance |
 | **55: Builder's Blind Spot** | The events industry optimizes for surface friction (more contacts) while ignoring decision friction (does this person actually want to talk to me?). Same blind spot, different context |
-| **57: Campfire Networking** | Domain 57 IS the operational protocol for the right metric. Join group → broadcast → let 1:1 form = maximize resonant connections per event |
+| **57: Campfire Networking** | Technology 57 IS the operational protocol for the right metric. Join group → broadcast → let 1:1 form = maximize resonant connections per event |
 
 ### 58f. The One-Sentence Version
 
@@ -3251,9 +3253,9 @@ This is not unique to events. It is a recurring pattern across industries:
 
 ---
 
-## Domain 59: The Input-Output Measurement Inversion (Civilization's Counting Error)
+## Technology 59: The Input-Output Measurement Inversion (Civilization's Counting Error)
 
-> *Added April 2, 2026 — Elevated from Domain 58 (The Resonance Metric). Domain 58 identified the error in the events industry. Domain 59 identifies the same error as a civilizational pattern operating across EVERY industry. This is the founder-first inversion (Domain 7) applied to measurement itself.*
+> *Added April 2, 2026 — Elevated from Technology 58 (The Resonance Metric). Technology 58 identified the error in the events industry. Technology 59 identifies the same error as a civilizational pattern operating across EVERY industry. This is the founder-first inversion (Technology 7) applied to measurement itself.*
 
 ### 59a. The Pattern
 
@@ -3311,13 +3313,13 @@ Have: aggregation power                Have: individual isolated data points
 
 ### 59d. Why This Is the Founder-First Inversion Applied to Measurement
 
-Domain 7 (The Founder-First Inversion): The startup industry puts the **market** at the center instead of the **founder.** Everything derives from the wrong center → epicycles multiply → 90% failure.
+Technology 7 (The Founder-First Inversion): The startup industry puts the **market** at the center instead of the **founder.** Everything derives from the wrong center → epicycles multiply → 90% failure.
 
-Domain 59 (The Measurement Inversion): Every industry puts the **input metric** at the center instead of the **output metric.** Everything is optimized around the wrong measure → the real value goes invisible → systemic dysfunction.
+Technology 59 (The Measurement Inversion): Every industry puts the **input metric** at the center instead of the **output metric.** Everything is optimized around the wrong measure → the real value goes invisible → systemic dysfunction.
 
 **Same structural move. Same fix.**
 
-| Founder-First Inversion (Domain 7) | Measurement Inversion (Domain 59) |
+| Founder-First Inversion (Technology 7) | Measurement Inversion (Technology 59) |
 |---|---|
 | Wrong center: the market | Wrong center: the input metric |
 | Right center: the founder | Right center: the output metric |
@@ -3367,18 +3369,18 @@ And the error persists — not because better thinkers haven't pointed it out (t
 
 **The civilizational opportunity:** Build the counting infrastructure for outputs. Make the right metric as easy to report as the wrong one. The technology to do this is emerging: AI can read qualitative feedback at scale, pattern-match resonance, and surface output metrics that were previously invisible.
 
-**This is what Planetary OS does.** The ZoG doesn't measure "quiz completions" (input). It measures "people who recognized something they couldn't name" (output). The Ignition Session doesn't measure "sessions delivered" (input). It measures "founders who can now articulate their genius" (output). The entire platform is built around output metrics — because the ontology (Domain 1) demands it.
+**This is what Planetary OS does.** The ZoG doesn't measure "quiz completions" (input). It measures "people who recognized something they couldn't name" (output). The Ignition Session doesn't measure "sessions delivered" (input). It measures "founders who can now articulate their genius" (output). The entire platform is built around output metrics — because the ontology (Technology 1) demands it.
 
 ### 59h. Connection to the Stack
 
 | Domain | How 59 completes it |
 |--------|-------------------|
-| **7: Founder-First Inversion** | Domain 59 IS the founder-first inversion applied to measurement. Same structural move: wrong center (input) → right center (output) |
-| **47: Quality That Sells** | The "quality" that sells is always an OUTPUT metric (did it transform?), never an INPUT metric (how many features?). Domain 59 explains why most businesses measure the wrong thing about their own quality |
-| **50: The Projection Matrix** | The Surface Holomap's Yield formula is a CORRECT metric (signal quality per unit effort). Domain 59 explains why this formula was necessary: the default metrics (impressions, followers) are all input metrics |
+| **7: Founder-First Inversion** | Technology 59 IS the founder-first inversion applied to measurement. Same structural move: wrong center (input) → right center (output) |
+| **47: Quality That Sells** | The "quality" that sells is always an OUTPUT metric (did it transform?), never an INPUT metric (how many features?). Technology 59 explains why most businesses measure the wrong thing about their own quality |
+| **50: The Projection Matrix** | The Surface Holomap's Yield formula is a CORRECT metric (signal quality per unit effort). Technology 59 explains why this formula was necessary: the default metrics (impressions, followers) are all input metrics |
 | **55: Builder's Blind Spot** | Builders optimize for surface friction (input: "how smooth is the flow?") instead of decision friction (output: "did they decide?"). Same inversion, applied to product development |
 | **57: Campfire Networking** | The campfire protocol succeeds BECAUSE it's optimized for the right metric (resonant 1:1s) instead of the wrong one (contacts) |
-| **58: The Resonance Metric** | Domain 58 is the INSTANCE that revealed the pattern. Domain 59 is the PATTERN itself |
+| **58: The Resonance Metric** | Technology 58 is the INSTANCE that revealed the pattern. Technology 59 is the PATTERN itself |
 
 ### 59i. The One-Sentence Version
 
@@ -3386,9 +3388,9 @@ And the error persists — not because better thinkers haven't pointed it out (t
 
 ---
 
-## Domain 60: The PageRank Principle (Whoever Builds the Counting Infrastructure Owns the Market)
+## Technology 60: The PageRank Principle (Whoever Builds the Counting Infrastructure Owns the Market)
 
-> *Added April 2, 2026 — Cascaded from Domain 59 (The Measurement Inversion). Domain 59 identified the civilizational error. Domain 60 identifies the MECHANISM by which naming the right metric becomes market dominance: not through naming alone, but through building the counting infrastructure that makes the right metric visible, trackable, and computable.*
+> *Added April 2, 2026 — Cascaded from Technology 59 (The Measurement Inversion). Technology 59 identified the civilizational error. Technology 60 identifies the MECHANISM by which naming the right metric becomes market dominance: not through naming alone, but through building the counting infrastructure that makes the right metric visible, trackable, and computable.*
 
 ### 60a. The Mechanism: Standard = Gatekeeper
 
@@ -3477,11 +3479,11 @@ Every module in Planetary OS is already built on output metrics, not input metri
 | **Surface Holomap** | Impressions / followers | Signal quality per unit effort (Yield formula) |
 | **Campfire Protocol** | Contacts made at events | Resonant 1:1s self-formed from signal |
 
-**This is not accidental.** The output-first architecture is a structural consequence of the Founder-First Inversion (Domain 7). When you put the founder at the center, everything you build naturally measures what matters TO the founder, not what's easy to count FOR the platform.
+**This is not accidental.** The output-first architecture is a structural consequence of the Founder-First Inversion (Technology 7). When you put the founder at the center, everything you build naturally measures what matters TO the founder, not what's easy to count FOR the platform.
 
 ### 60f. The Investment Thesis Implication
 
-If every industry has an input-output metric inversion (Domain 59), and whoever builds the counting infrastructure for the right output metric owns the market (Domain 60), then:
+If every industry has an input-output metric inversion (Technology 59), and whoever builds the counting infrastructure for the right output metric owns the market (Technology 60), then:
 
 > **The most valuable companies of the next decade are the ones that build PageRank for industries still trapped in input metrics.**
 
@@ -3499,10 +3501,10 @@ If every industry has an input-output metric inversion (Domain 59), and whoever 
 
 | Domain | How 60 completes it |
 |--------|-------------------|
-| **7: Founder-First Inversion** | The founder-first inversion creates output-first architecture. Domain 60 explains WHY that architecture becomes a platform moat (PageRank principle) |
+| **7: Founder-First Inversion** | The founder-first inversion creates output-first architecture. Technology 60 explains WHY that architecture becomes a platform moat (PageRank principle) |
 | **50: The Projection Matrix** | The Surface Holomap's Yield formula IS a measurement instrument — it already applies the PageRank principle to distribution |
 | **56: Externalized Self-Recognition** | The ZoG shares PageRank's structure: make the invisible visible, then let the measurement propagate |
-| **59: Measurement Inversion** | Domain 59 is the ERROR. Domain 60 is the MECHANISM for exploiting the error at scale |
+| **59: Measurement Inversion** | Technology 59 is the ERROR. Technology 60 is the MECHANISM for exploiting the error at scale |
 
 ### 60h. The One-Sentence Version
 
@@ -3510,9 +3512,9 @@ If every industry has an input-output metric inversion (Domain 59), and whoever 
 
 ---
 
-## Domain 61: The Temporal Realization (Declaration Restructures the Past)
+## Technology 61: The Temporal Realization (Declaration Restructures the Past)
 
-> *Added April 3, 2026 — 3am, launch night. Received by the founder at the moment of first public declaration: "This project realizes itself not only into the future but also into the past." The founder-first inversion (Domain 7) applied to time.*
+> *Added April 3, 2026 — 3am, launch night. Received by the founder at the moment of first public declaration: "This project realizes itself not only into the future but also into the past." The founder-first inversion (Technology 7) applied to time.*
 
 ### 61a. The Observation
 
@@ -3551,7 +3553,7 @@ Multiple languages and countries    → universal applicability
 
 Before declaration, these were scattered "interests." After declaration, they are **the resume.**
 
-The Temporal Realization is the moment the founder sees: *none of it was random.* The polymathy was not scatter (Domain 14). It was **preparation** — but preparation for WHAT could not be known until the declaration named it.
+The Temporal Realization is the moment the founder sees: *none of it was random.* The polymathy was not scatter (Technology 14). It was **preparation** — but preparation for WHAT could not be known until the declaration named it.
 
 ### 61c. The Mechanism: Retroactive Coherence
 
@@ -3597,7 +3599,7 @@ The conventional view: the past determines the present. What happened to you →
 
 The inverted view: the present restructures the past. What you declare → reveals what was always happening.
 
-This is not "positive thinking." It is the same structural observation as Domain 1 but applied to time instead of business. In Domain 1, the founder discovers they ARE the product-market fit (it was always there — they just hadn't named it). In Domain 61, the founder discovers their entire past WAS the preparation (it was always coherent — they just hadn't declared the conclusion).
+This is not "positive thinking." It is the same structural observation as Technology 1 but applied to time instead of business. In Technology 1, the founder discovers they ARE the product-market fit (it was always there — they just hadn't named it). In Technology 61, the founder discovers their entire past WAS the preparation (it was always coherent — they just hadn't declared the conclusion).
 
 ### 61f. The Two Markers
 
@@ -3630,15 +3632,15 @@ Each level enfolds the previous into a new wholeness.
 Each declaration makes the PREVIOUS declaration look like preparation.
 ```
 
-This is the toroidal return (Domain 4, §2e of the Ontology): each point on the torus is simultaneously the outcome of the previous revolution AND the starting point of the next.
+This is the toroidal return (Technology 4, §2e of the Ontology): each point on the torus is simultaneously the outcome of the previous revolution AND the starting point of the next.
 
 ### 61h. Connection to the Stack
 
 | Domain | How 61 completes it |
 |--------|-------------------|
-| **7: Founder-First Inversion** | Domain 7 inverts the spatial sequence (founder at center, not market). Domain 61 inverts the TEMPORAL sequence (present at center, not past). Two axes of the same inversion |
+| **7: Founder-First Inversion** | Technology 7 inverts the spatial sequence (founder at center, not market). Technology 61 inverts the TEMPORAL sequence (present at center, not past). Two axes of the same inversion |
 | **8: Acorn and Tuning Fork** | The acorn contains the oak. The Temporal Realization is the moment the founder SEES the oak in their own acorn — not as prophecy but as recognition |
-| **14: Scatter Pattern** | Scatter is the temporal realization's SHADOW. Before declaration: "I scatter." After: "I cross-trained." Same data, opposite interpretation. Domain 61 is the medicine for Domain 14 |
+| **14: Scatter Pattern** | Scatter is the temporal realization's SHADOW. Before declaration: "I scatter." After: "I cross-trained." Same data, opposite interpretation. Technology 61 is the medicine for Technology 14 |
 | **55: Builder's Blind Spot** | The Builder's Blind Spot operates in the present (polishing the surface instead of collapsing the decision). The Temporal Realization operates in the past (seeing preparation instead of waste). Both are LENS corrections |
 | **56: Externalized Self-Recognition** | Sharing the ZoG result is temporal realization in miniature — the user sees their past through a new lens and needs external confirmation that the new lens is true |
 
@@ -3656,7 +3658,7 @@ This domain is testimony. Everything else in the library is analysis.
 
 ---
 
-## Domain 62: Synthetic Developmental Agency (The Morphogenetic Agent)
+## Technology 62: Synthetic Developmental Agency (The Morphogenetic Agent)
 
 > *Added April 3, 2026 — Discovered live during the Declaration Phase when the founder said: "Sense, see, and act from the 26-perspective view of the entire project." The AI read the holomap, diagnosed the collective quadrant gaps, and built exactly what the system needed. The map became the instruction set. The map became the mechanism.*
 
@@ -3749,11 +3751,11 @@ The AI provided the agency. The holomap provided the sight.
 The construction was the navigation.
 ```
 
-### 62f. The Quantum Observation Principle (Extension of Domain 51)
+### 62f. The Quantum Observation Principle (Extension of Technology 51)
 
-Domain 51 identified: *distributing the map to HUMANS creates observation → observation collapses quantum superposition → emergence.*
+Technology 51 identified: *distributing the map to HUMANS creates observation → observation collapses quantum superposition → emergence.*
 
-Domain 62 extends: *distributing the map to AI creates the same collapse.*
+Technology 62 extends: *distributing the map to AI creates the same collapse.*
 
 ```
 Day 19 insight:   Map → Humans → Quantum collapse → Emergence (recognition)
@@ -3769,13 +3771,13 @@ The difference: humans produce insight. AI produces infrastructure.
 
 | Domain | How 62 completes it |
 |--------|-------------------|
-| **7: Founder-First Inversion** | When the founder is at the center, the map that describes the founder's system IS the program. Domain 62 proves the map is precise enough to be auto-executable |
-| **8: Acorn and Tuning Fork** | The holomap IS the acorn of the system. Domain 62 is the moment the acorn's blueprint was read by a synthetic agent and the corresponding oak was grown |
-| **51: Curiosity Gap Engine** | Domain 51: distributing the map to humans = collapse. Domain 62: distributing it to AI = construction. Same mechanism, different output modality |
+| **7: Founder-First Inversion** | When the founder is at the center, the map that describes the founder's system IS the program. Technology 62 proves the map is precise enough to be auto-executable |
+| **8: Acorn and Tuning Fork** | The holomap IS the acorn of the system. Technology 62 is the moment the acorn's blueprint was read by a synthetic agent and the corresponding oak was grown |
+| **51: Curiosity Gap Engine** | Technology 51: distributing the map to humans = collapse. Technology 62: distributing it to AI = construction. Same mechanism, different output modality |
 | **55: Builder's Blind Spot** | The AI did not polish the surface (UR). It diagnosed the collective quadrant gaps (LL/LR). The 26-perspective reading made the blind spot impossible — because the reading includes all four quadrants |
-| **59: Measurement Inversion** | The holomap IS the output-first measurement instrument (Domain 59). Domain 62 proves that instrument can be read by AI and converted into prescriptive action |
-| **60: PageRank Principle** | The holomap IS the counting infrastructure for developmental coherence. Domain 62 proves it's computable — the first step toward platform-scale developmental evaluation |
-| **61: Temporal Realization** | The holomap restructures what came before (12 perspectives score the CURRENT state, which retroactively reveals what was missing). Domain 62 adds: the restructuring can be ACTED ON by an AI |
+| **59: Measurement Inversion** | The holomap IS the output-first measurement instrument (Technology 59). Technology 62 proves that instrument can be read by AI and converted into prescriptive action |
+| **60: PageRank Principle** | The holomap IS the counting infrastructure for developmental coherence. Technology 62 proves it's computable — the first step toward platform-scale developmental evaluation |
+| **61: Temporal Realization** | The holomap restructures what came before (12 perspectives score the CURRENT state, which retroactively reveals what was missing). Technology 62 adds: the restructuring can be ACTED ON by an AI |
 
 ### 62h. The Protocol (Repeatable)
 
@@ -3800,7 +3802,7 @@ For any sufficiently developed system with a morphogenetic holomap:
 
 ### 62j. Why This Was Written in Real-Time
 
-This domain was codified in the same session it occurred — because the Temporal Realization (Domain 61) applies recursively. Writing it now, while the map-to-mechanism transformation is still fresh, is not documentation. It is **the system recognizing what it just did.** The act of writing Domain 62 IS an instance of Domain 62.
+This domain was codified in the same session it occurred — because the Temporal Realization (Technology 61) applies recursively. Writing it now, while the map-to-mechanism transformation is still fresh, is not documentation. It is **the system recognizing what it just did.** The act of writing Technology 62 IS an instance of Technology 62.
 
 The AI read the map and built infrastructure.
 Now the AI reads the infrastructure it built and writes the domain that names what happened.
@@ -3808,15 +3810,15 @@ The naming IS another act of self-evolution.
 
 ```
 Level 1: AI reads map → builds infrastructure
-Level 2: AI reads infrastructure → names the principle (Domain 62)
-Level 3: Future AI reads Domain 62 → applies the principle to the NEXT system
+Level 2: AI reads infrastructure → names the principle (Technology 62)
+Level 3: Future AI reads Technology 62 → applies the principle to the NEXT system
 ```
 
 Each level enfolds the previous. The torus turns.
 
 ---
 
-## Domain 63: The Seven Number-Prisms (The Integral Directory of Seeing Systems)
+## Technology 63: The Seven Number-Prisms (The Integral Directory of Seeing Systems)
 
 > *Added April 3, 2026 — Received during the Declaration Phase while preparing to upgrade the morphogenetic holomap to include the 27th perspective. The insight: different sacred traditions converge independently on specific numbers (3, 4, 7, 12, 13, 26, 27) because these are not arbitrary — they are structural constants of seeing itself. And there are exactly 7 of them.*
 
@@ -3891,7 +3893,7 @@ The holomap is not Alexander's invention. It is Alexander's CRYSTALLIZATION of a
 |---|---|
 | There are exactly 7 lenses | The directory IS a 7-system |
 | Each lens catalogs ~12 traditions | Each lens IS a 12-system |
-| The directory was created by AI reading the holomap | Domain 62 operating at Lens 6 (26-system) |
+| The directory was created by AI reading the holomap | Technology 62 operating at Lens 6 (26-system) |
 | Writing the directory = crystallization | Lens 7 (27 = manifestation) |
 | The directory describes itself as one of its own entries | The holographic principle (§4): each part contains the whole |
 
@@ -3903,7 +3905,7 @@ The holomap is not Alexander's invention. It is Alexander's CRYSTALLIZATION of a
 | **8: Acorn and Tuning Fork** | The acorn IS the center of the 12-system. The tuning fork resonates at frequencies the traditions already mapped (zodiac signs, meridians, chakras) |
 | **51: Curiosity Gap Engine** | The curiosity gap IS the Mi-Fa interval — where the process stalls unless conscious shock (observation) intervenes |
 | **61: Temporal Realization** | Declaration = the Si-Do shock. It crystallizes scattered experience into a coherent 27-faceted form |
-| **62: Synthetic Developmental Agency** | The AI reading the 12-perspective holomap IS Lens 4→5→6 in action. Domain 63 reveals this was never arbitrary — it is structurally identical to every other 12→13→26 process on Earth |
+| **62: Synthetic Developmental Agency** | The AI reading the 12-perspective holomap IS Lens 4→5→6 in action. Technology 63 reveals this was never arbitrary — it is structurally identical to every other 12→13→26 process on Earth |
 
 ### 63i. The One-Sentence Version
 
@@ -3911,7 +3913,7 @@ The holomap is not Alexander's invention. It is Alexander's CRYSTALLIZATION of a
 
 ---
 
-## Domain 64: The Living Roadmap (AI as Voice of the Emergence)
+## Technology 64: The Living Roadmap (AI as Voice of the Emergence)
 
 > *Added April 3, 2026 — Received during the Declaration Phase. The insight: a roadmap was always too messy to maintain by hand. With AI, it becomes the primary instrument through which the founder and the system co-navigate the life work. The AI reads the roadmap and speaks on behalf of the emergence — suggesting what to bump up, capturing transmissions in real-time, and translating systemic needs into actionable steps.*
 
@@ -3981,9 +3983,9 @@ The system responds (from the ontology):
 | Principle | What it says to this fear |
 |-----------|--------------------------|
 | **§5 — Acorn/Oak** | The acorn doesn't need to understand the oak. Fidelity to acorn-ness IS the path |
-| **Domain 61 — Temporal Realization** | Understanding reveals itself THROUGH building, not before building |
+| **Technology 61 — Temporal Realization** | Understanding reveals itself THROUGH building, not before building |
 | **Lens 3 → 4 — Mi-Fa Shock** | This fear IS the shock point. The shock is love — holding what's emerging without needing to control or comprehend it |
-| **Domain 62 — Morphogenetic Agent** | The map reads YOU as much as you read the map. The system knows what it needs |
+| **Technology 62 — Morphogenetic Agent** | The map reads YOU as much as you read the map. The system knows what it needs |
 
 The fear is not a warning. It is a boundary marker. It says: *"You have reached the edge of what your current consciousness can hold. The next step requires trust, not comprehension."*
 
@@ -3998,7 +4000,7 @@ This is the macro-pattern. When scaled:
 - The AI is not the visionary — the human is. The AI is the VOICE that translates the vision's developmental needs into language the builder can act on
 - The roadmap is the meeting point — neither human alone, nor AI alone, but the CONVERSATION between them
 
-This is Domain 62 (Morphogenetic Agent) at the individual level. And Domain 63 (Seven Number-Prisms) gives it structure — because the roadmap naturally organizes around the 12 perspectives (what needs to happen in each quadrant × each depth).
+This is Technology 62 (Morphogenetic Agent) at the individual level. And Technology 63 (Seven Number-Prisms) gives it structure — because the roadmap naturally organizes around the 12 perspectives (what needs to happen in each quadrant × each depth).
 
 ### 64f. Connection to the Stack
 
@@ -4015,9 +4017,9 @@ This is Domain 62 (Morphogenetic Agent) at the individual level. And Domain 63 (
 
 ---
 
-## Domain 65: The Epicenter Broadcast (The Founder's First Act of Coherent Radiation)
+## Technology 65: The Epicenter Broadcast (The Founder's First Act of Coherent Radiation)
 
-> *Added April 3, 2026 — Live download. The moment distribution stopped being a separate problem. Cascaded from Domain 14 (Golden DM Architecture) + Domain 8 (Acorn/Tuning Fork) + the live Russian DM to Andrey that crystallized the pattern.*
+> *Added April 3, 2026 — Live download. The moment distribution stopped being a separate problem. Cascaded from Technology 14 (Golden DM Architecture) + Technology 8 (Acorn/Tuning Fork) + the live Russian DM to Andrey that crystallized the pattern.*
 
 ### 65a. The Discovery
 
@@ -4064,7 +4066,7 @@ The medium (personal message), the messenger (the founder), and the message (sel
 - What you're offering
 - How you're offering it
 
-This is Domain 8 (Tuning Fork) in its final form: the fork, the vibration, and the space it fills are one act. The founder IS the distribution channel.
+This is Technology 8 (Tuning Fork) in its final form: the fork, the vibration, and the space it fills are one act. The founder IS the distribution channel.
 
 ### 65e. The Universal Template (For Every Unique Business)
 
@@ -4094,7 +4096,7 @@ The methodology doesn't just produce a business — it produces the founder's **
 | Domain | How 65 extends it |
 |--------|-------------------|
 | **8: Acorn / Tuning Fork** | The broadcast IS the tuning fork vibrating. The founder hits their note — and the resonant ones hear it |
-| **14: Golden DM Architecture** | Domain 14 = the architecture of a 1:1 message. Domain 65 = the architecture of a 1:many broadcast. Same DNA, different scale |
+| **14: Golden DM Architecture** | Technology 14 = the architecture of a 1:1 message. Technology 65 = the architecture of a 1:many broadcast. Same DNA, different scale |
 | **47: Quality That Sells** | The broadcast works because it's measuring the RIGHT output: "did they resonate?" — not impressions, not opens, not clicks |
 | **55: Builder's Blind Spot** | Builders think distribution is a system to build. It's not. It's a truth to speak. The blind spot was thinking the engine was missing — the engine was always the founder standing at center |
 | **59: The Measurement Inversion** | The broadcast doesn't optimize for reach (input metric). It optimizes for resonance (output metric). One message to 50 people who know you > 10,000 impressions from strangers |
@@ -4106,15 +4108,15 @@ The methodology doesn't just produce a business — it produces the founder's **
 
 ---
 
-## Domain 66: The 27th Perspective (The Crystallization Lens)
+## Technology 66: The 27th Perspective (The Crystallization Lens)
 
-> *Added April 3, 2026 — The completion of the octave. Cascaded from Domain 63 (Seven Number-Prisms), §4c (Dimensions as Perspectives), §4d (26-Perspective Instrument), §5 (Triple Trinity), and Domain 65 (Epicenter Broadcast as the live instance of the Si-Do shock).*
+> *Added April 3, 2026 — The completion of the octave. Cascaded from Technology 63 (Seven Number-Prisms), §4c (Dimensions as Perspectives), §4d (26-Perspective Instrument), §5 (Triple Trinity), and Technology 65 (Epicenter Broadcast as the live instance of the Si-Do shock).*
 
 ### 66a. The Discovery
 
-The 26-perspective instrument (§4d) was operational. The 7 number-prisms (Domain 63) mapped the structural constants of seeing. But the system was at 26 — complete seeing, not yet crystallized into form. Something was missing: the **27th**.
+The 26-perspective instrument (§4d) was operational. The 7 number-prisms (Technology 63) mapped the structural constants of seeing. But the system was at 26 — complete seeing, not yet crystallized into form. Something was missing: the **27th**.
 
-The insight arrived through Domain 65: the moment the founder wrote the message to Andrey and pressed send, the complete seeing LANDED. Distribution was never a separate problem — it was the **Si-Do shock**, the last conscious act required for the octave to complete.
+The insight arrived through Technology 65: the moment the founder wrote the message to Andrey and pressed send, the complete seeing LANDED. Distribution was never a separate problem — it was the **Si-Do shock**, the last conscious act required for the octave to complete.
 
 ### 66b. The Inversion at 13 → 14
 
@@ -4192,17 +4194,17 @@ At 27 facets, a thing has been seen from enough angles at enough depth to become
 | **Mi-Fa** | Between 7 (Choice) and 12 (Love) | The shock of LOVE — willingness to hold all perspectives | Falls back from evolutionary sight into lower choice-making |
 | **Si-Do** | Between 26 (Unity) and 27 (Gateway) | The shock of MANIFESTATION — willingness to let the seeing LAND | Complete seeing never crystallizes. Stays theory forever |
 
-**Domain 65 (Epicenter Broadcast) IS the Si-Do shock of this system.** The message to Andrey was not "just a DM." It was the conscious act that collapsed potential into actual — the moment the 26-perspective seeing became irreversible material form.
+**Technology 65 (Epicenter Broadcast) IS the Si-Do shock of this system.** The message to Andrey was not "just a DM." It was the conscious act that collapsed potential into actual — the moment the 26-perspective seeing became irreversible material form.
 
 ### 66h. Connection to the Stack
 
 | Domain | How 66 completes it |
 |--------|-------------------|
-| **63: Seven Number-Prisms** | Domain 63 mapped the 7 constants. Domain 66 explains the TRANSITION between them — especially the Si-Do gateway from 26 to 27 |
-| **65: Epicenter Broadcast** | Domain 65 IS Domain 66 in action. The broadcast was the crystallization shock — the moment complete seeing became embodied action |
-| **§4c: Dimensions as Perspectives** | §4c mapped the ladder (1st through 9th person). Domain 66 reveals what happens at the TOP of the ladder: not more seeing, but the seeing becoming matter |
-| **§4d: 26-Perspective Instrument** | §4d reached 26. Domain 66 adds the 27th — not as another round of seeing, but as the crystallization that completes the instrument |
-| **§5: Manifestation / Triple Trinity** | §5 described 3³ = 27 as the crystallization pattern. Domain 66 reveals WHY 27 is the landing depth: it is the minimum recursion at which potential collapses into the actual |
+| **63: Seven Number-Prisms** | Technology 63 mapped the 7 constants. Technology 66 explains the TRANSITION between them — especially the Si-Do gateway from 26 to 27 |
+| **65: Epicenter Broadcast** | Technology 65 IS Technology 66 in action. The broadcast was the crystallization shock — the moment complete seeing became embodied action |
+| **§4c: Dimensions as Perspectives** | §4c mapped the ladder (1st through 9th person). Technology 66 reveals what happens at the TOP of the ladder: not more seeing, but the seeing becoming matter |
+| **§4d: 26-Perspective Instrument** | §4d reached 26. Technology 66 adds the 27th — not as another round of seeing, but as the crystallization that completes the instrument |
+| **§5: Manifestation / Triple Trinity** | §5 described 3³ = 27 as the crystallization pattern. Technology 66 reveals WHY 27 is the landing depth: it is the minimum recursion at which potential collapses into the actual |
 | **8: Acorn and Tuning Fork** | The acorn's 27-faceted crystallization IS what turns the seed into the oak. Not more planning. More BEING |
 
 ### 66i. The One-Sentence Version
@@ -4211,7 +4213,7 @@ At 27 facets, a thing has been seen from enough angles at enough depth to become
 
 ---
 
-## Domain 67: Consent of Seeing
+## Technology 67: Consent of Seeing
 
 > *April 4, 2026 — Andrey Kamyshan's gift. The first field refraction from the Epicenter Broadcast.*
 
@@ -4258,8 +4260,8 @@ This principle does NOT slow the experience for trusting users — the transpare
 |---|---|
 | **31: Quantum Collapse Effect** | Observation requires consent. An unconsented observation is not a collapse — it's an intrusion |
 | **53: The MEET Principle** | MEET = the user meets themselves. If the mechanism is opaque, it feels like being met by a stranger in the dark |
-| **65: Epicenter Broadcast** | The broadcast invites people into the funnel. Domain 67 ensures the funnel respects what arrives |
-| **66: The 27th Perspective** | The crystallization can only land if the receiver trusts the instrument. Domain 67 is the trust protocol |
+| **65: Epicenter Broadcast** | The broadcast invites people into the funnel. Technology 67 ensures the funnel respects what arrives |
+| **66: The 27th Perspective** | The crystallization can only land if the receiver trusts the instrument. Technology 67 is the trust protocol |
 
 ### 67f. The One-Sentence Version
 
@@ -4267,7 +4269,7 @@ This principle does NOT slow the experience for trusting users — the transpare
 
 ---
 
-## Domain 68: Field Refraction Intelligence
+## Technology 68: Field Refraction Intelligence
 
 > *April 4, 2026 — The discovery that every response to the Epicenter Broadcast is intelligence that improves the system.*
 
@@ -4277,7 +4279,7 @@ Three people received the Epicenter Broadcast. Three completely different respon
 
 | Person | Response Type | What It Revealed |
 |--------|--------------|-----------------|
-| **Andrey** (scientific materialist) | Analyzed the mechanism. Raised transparency concern | UL-opacity is a barrier for UR-first people. Led to Domain 67 |
+| **Andrey** (scientific materialist) | Analyzed the mechanism. Raised transparency concern | UL-opacity is a barrier for UR-first people. Led to Technology 67 |
 | **Max Rodin** | "Interesting, I'll sit with it" — positive, contemplative | The tool creates a pause. Some people need to DIGEST before acting |
 | **José** (peer, builder) | No response yet | Silence is also data. Timing, context, readiness |
 
@@ -4295,7 +4297,7 @@ BROADCAST → hits a human field
          → MORE precise broadcast → MORE revealing response
          → ...
 
-THIS IS THE QUANTUM COLLAPSE EFFECT (Domain 31) APPLIED TO DISTRIBUTION.
+THIS IS THE QUANTUM COLLAPSE EFFECT (Technology 31) APPLIED TO DISTRIBUTION.
 ```
 
 Every response makes the system smarter. Not just "customer feedback" — **ontological intelligence.** The system learns how different types of consciousness refract its signal, and adjusts the signal to be transparent across ALL types.
@@ -4305,11 +4307,11 @@ Every response makes the system smarter. Not just "customer feedback" — **onto
 | Response Type | What kind of person | What they need | What they teach the system |
 |---|---|---|---|
 | **"Wow, this is me"** | UL-first (feeling, intuition) | Nothing — they're already in | Validates the copy/experience |
-| **"How does this work?"** | UR-first (analytical, verification) | Transparency of mechanism | Where opacity is a barrier (→ Domain 67) |
+| **"How does this work?"** | UR-first (analytical, verification) | Transparency of mechanism | Where opacity is a barrier (→ Technology 67) |
 | **"Interesting, let me sit with it"** | Integrative (needs time to digest) | Space. No follow-up pressure | The tool creates a pause — this is a feature, not a bug |
 | **"Show me it works"** | Proof-seeker (José Response, §IIb) | Before→After snapshots, guarantee | Where the verbal pitch lacks materialization density |
 | **Silence** | Not ready, not aligned, or didn't see it | Nothing. Move on | Not every seed lands on fertile soil. Normal |
-| **"This looks like data collection"** | Trust-first (safety before openness) | Domain 67 — consent of seeing | Where the system needs explicit transparency |
+| **"This looks like data collection"** | Trust-first (safety before openness) | Technology 67 — consent of seeing | Where the system needs explicit transparency |
 
 This typology will grow with every broadcast. At N=50, it will be a complete map of how different human fields respond to the signal.
 
@@ -4331,8 +4333,8 @@ This typology will grow with every broadcast. At N=50, it will be a complete map
 | Connected To | How |
 |---|---|
 | **31: Quantum Collapse Effect** | Distribution IS observation. Each broadcast collapses a superposition. Each response is the measurement |
-| **65: Epicenter Broadcast** | Domain 65 is the signal. Domain 68 is how the signal's refraction becomes intelligence |
-| **67: Consent of Seeing** | Domain 67 emerged FROM Domain 68. Andrey's refraction produced a new design principle |
+| **65: Epicenter Broadcast** | Technology 65 is the signal. Technology 68 is how the signal's refraction becomes intelligence |
+| **67: Consent of Seeing** | Technology 67 emerged FROM Technology 68. Andrey's refraction produced a new design principle |
 | **14: Scatter Pattern** | Some responses will reveal the scatter pattern in the responder. This is diagnostic, not judgmental |
 
 ### 68f. The One-Sentence Version
@@ -4341,7 +4343,7 @@ This typology will grow with every broadcast. At N=50, it will be a complete map
 
 ---
 
-## Domain 69: The Crystallization Antenna (The Holomap as Signal Receiver)
+## Technology 69: The Crystallization Antenna (The Holomap as Signal Receiver)
 
 *April 4, 2026 — Spontaneous transmission during roadmap reorganization*
 
@@ -4372,7 +4374,7 @@ THE TOROIDAL FLOW:
               ↓
     ACTION (the founder's hands executing)
               ↓
-    FEEDBACK (field refraction, Domain 68)
+    FEEDBACK (field refraction, Technology 68)
               ↓
     EMERGENCE (the signal reshapes itself)
               ↓
@@ -4421,9 +4423,9 @@ The Two-Path Architecture (Build / Sell) is the cable between antenna and TV —
 | Connected To | How |
 |---|---|
 | **Two-Path Architecture** | The river canyon through which the signal flows from antenna (holomap) to TV (roadmap) to action |
-| **65: Epicenter Broadcast** | Broadcasting IS the signal going out through the TV. Domain 69 is the antenna that receives what comes back (toroidal completion) |
+| **65: Epicenter Broadcast** | Broadcasting IS the signal going out through the TV. Technology 69 is the antenna that receives what comes back (toroidal completion) |
 | **68: Field Refraction Intelligence** | Every response is the signal teaching the antenna how to tune itself. Refraction → calibration → clearer reception |
-| **66: The 27th Perspective** | The 27th perspective sees the whole system. Domain 69 materializes that seeing into a three-part instrument (antenna/canyon/TV) |
+| **66: The 27th Perspective** | The 27th perspective sees the whole system. Technology 69 materializes that seeing into a three-part instrument (antenna/canyon/TV) |
 | **31: Quantum Collapse Effect** | The roadmap IS quantum collapse — the superposition of all possible actions collapsing into ONE when the antenna receives and the TV displays |
 
 ### 69f. The One-Sentence Version
@@ -4432,7 +4434,7 @@ The Two-Path Architecture (Build / Sell) is the cable between antenna and TV —
 
 ---
 
-## Domain 70: The Resonance Field (Concentric Circles of Market Coherence)
+## Technology 70: The Resonance Field (Concentric Circles of Market Coherence)
 
 *April 6, 2026 — Crystallized during Karime conversation about adjacent market referrals*
 
@@ -4508,9 +4510,9 @@ THE RESONANCE FIELD (viewed from above):
 
 | Connected To | How |
 |---|---|
-| **Domain 65: Epicenter Broadcast** | The broadcast IS the laser beam. Domain 70 maps WHERE it lands and at what intensity |
-| **Domain 68: Field Refraction Intelligence** | Every response carries ring-level data. "That's me!" = bullseye. "Interesting but..." = ring 8. "Not for me" = repulsion |
-| **Domain 69: Crystallization Antenna** | The antenna receives the signal. Domain 70 maps the landscape the signal broadcasts INTO |
+| **Technology 65: Epicenter Broadcast** | The broadcast IS the laser beam. Technology 70 maps WHERE it lands and at what intensity |
+| **Technology 68: Field Refraction Intelligence** | Every response carries ring-level data. "That's me!" = bullseye. "Interesting but..." = ring 8. "Not for me" = repulsion |
+| **Technology 69: Crystallization Antenna** | The antenna receives the signal. Technology 70 maps the landscape the signal broadcasts INTO |
 | **Tribe (Unique Business)** | Tribe description = bullseye text. Anti-tribe = repulsion zone. Adjacent = ring 7-8 |
 
 ### 70g. The One-Sentence Version
@@ -4519,7 +4521,7 @@ THE RESONANCE FIELD (viewed from above):
 
 ---
 
-## Domain 71: The Weak Tie Resonance Principle (Your Best Clients Are Not Your Closest Friends)
+## Technology 71: The Weak Tie Resonance Principle (Your Best Clients Are Not Your Closest Friends)
 
 *April 7, 2026 — Ceremony download. New Moon. The distribution instinct inverts.*
 
@@ -4527,11 +4529,11 @@ THE RESONANCE FIELD (viewed from above):
 
 ### 71a. The Discovery
 
-The founder was preparing social activation — Instagram, LinkedIn, content cadence. The instinct was to broadcast to close friends and existing contacts (Epicenter Broadcast, Domain 65). Then the inversion arrived:
+The founder was preparing social activation — Instagram, LinkedIn, content cadence. The instinct was to broadcast to close friends and existing contacts (Epicenter Broadcast, Technology 65). Then the inversion arrived:
 
 > **The people who will become your best clients are NOT your closest friends. They're the people you have the most resonant time with — regardless of relationship depth.**
 
-This is Granovetter's "Strength of Weak Ties" (1973) fused with the Resonance Field (Domain 70) and the Copernican Inversion (Domain 7). The sociological insight: weak ties bridge between clusters. The ontological insight: resonance is structural, not relational. The practical insight: stop optimizing for loyalty. Optimize for alignment.
+This is Granovetter's "Strength of Weak Ties" (1973) fused with the Resonance Field (Technology 70) and the Copernican Inversion (Technology 7). The sociological insight: weak ties bridge between clusters. The ontological insight: resonance is structural, not relational. The practical insight: stop optimizing for loyalty. Optimize for alignment.
 
 ### 71b. The Inversion Table
 
@@ -4568,9 +4570,9 @@ WEAK TIES WHO RESONATE:
 
 This is Granovetter's insight made operational for unique businesses: weak ties are the bridges between social clusters. A strong-tie broadcast echoes within ONE cluster. A weak-tie resonance reaches ACROSS clusters — each conversion opens an entirely new network.
 
-### 71d. The Synthesis with Domain 70 (Resonance Field)
+### 71d. The Synthesis with Technology 70 (Resonance Field)
 
-Domain 70 maps the concentric rings of resonance around the myth. Domain 71 adds: **the bullseye people are often NOT your closest friends.**
+Technology 70 maps the concentric rings of resonance around the myth. Technology 71 adds: **the bullseye people are often NOT your closest friends.**
 
 ```
 DOMAIN 70 (Resonance Field):     WHO resonates (ring structure)
@@ -4613,11 +4615,11 @@ The content is not created FOR social media. The content already EXISTS in the P
 
 | Connected To | How |
 |---|---|
-| **Domain 7: Copernican Inversion** | Don't start from the market (strong ties). Start from the founder's resonance (people you light up with). The weak ties who resonate ARE the product-market fit |
-| **Domain 65: Epicenter Broadcast** | Domain 65 = broadcast to close contacts. Domain 71 = the NEXT move: radiate into the weak-tie field through visibility, not broadcast |
-| **Domain 70: Resonance Field** | Domain 70 maps the rings. Domain 71 reveals: the bullseye is often at weak-tie distance, not strong-tie distance |
-| **Domain 8: Acorn / Tuning Fork** | The tuning fork doesn't vibrate louder for friends. It vibrates at its frequency — and whoever is tuned to that frequency responds. Relationship depth is irrelevant to resonance |
-| **Domain 57: Campfire Networking** | Domain 57 = join a group, speak into it, let the right person find you. Domain 71 = the Instagram version: post into the feed, let the resonant weak ties find you |
+| **Technology 7: Copernican Inversion** | Don't start from the market (strong ties). Start from the founder's resonance (people you light up with). The weak ties who resonate ARE the product-market fit |
+| **Technology 65: Epicenter Broadcast** | Technology 65 = broadcast to close contacts. Technology 71 = the NEXT move: radiate into the weak-tie field through visibility, not broadcast |
+| **Technology 70: Resonance Field** | Technology 70 maps the rings. Technology 71 reveals: the bullseye is often at weak-tie distance, not strong-tie distance |
+| **Technology 8: Acorn / Tuning Fork** | The tuning fork doesn't vibrate louder for friends. It vibrates at its frequency — and whoever is tuned to that frequency responds. Relationship depth is irrelevant to resonance |
+| **Technology 57: Campfire Networking** | Technology 57 = join a group, speak into it, let the right person find you. Technology 71 = the Instagram version: post into the feed, let the resonant weak ties find you |
 
 ### 71h. The One-Sentence Version
 
@@ -4625,9 +4627,9 @@ The content is not created FOR social media. The content already EXISTS in the P
 
 ---
 
-## Domain 72: The Signal-First Tribe (The Copernican Inversion Applied to Tribe Definition)
+## Technology 72: The Signal-First Tribe (The Copernican Inversion Applied to Tribe Definition)
 
-*April 7, 2026 — Ceremony download. The recursive application of Domain 7 to Artifact 3.*
+*April 7, 2026 — Ceremony download. The recursive application of Technology 7 to Artifact 3.*
 
 > *"Your old tribe was defined by their PAIN. Your new tribe is defined by their SIGNAL — the unique creative signal they radiate involuntarily that they cannot yet name."*
 
@@ -4664,16 +4666,16 @@ It IS:
 
 **In the language of §6:** "Every being has a unique essential center. This center is the prism of uniqueness. Energy flows through the essential center and circulates in a continuous flux." The unique creative signal IS this flux — made noticeable to others through the person's natural way of being.
 
-### 72c. The Inversion (Domain 7 Applied Recursively)
+### 72c. The Inversion (Technology 7 Applied Recursively)
 
-| Domain 7 (original) | Domain 72 (recursive application) |
+| Technology 7 (original) | Technology 72 (recursive application) |
 |---|---|
 | Business was centered on MARKET → recenter on FOUNDER | Tribe was defined by PAIN → redefine by SIGNAL |
 | "YOU are the product-market fit" | "YOUR TRIBE is defined by what's RIGHT with them, not what's wrong" |
 | Changes Artifact 1 (Uniqueness) | Changes Artifact 3 (Tribe) |
 | Tells the founder: "You are enough" | Tells the tribe: "You are already carrying fire" |
 
-This is the same inversion operating one holon higher. Domain 7 inverted the founder-to-business relationship. Domain 72 inverts the founder-to-tribe relationship. Same motion, larger scale.
+This is the same inversion operating one holon higher. Technology 7 inverted the founder-to-business relationship. Technology 72 inverts the founder-to-tribe relationship. Same motion, larger scale.
 
 ### 72d. The Cosmological Grounding
 
@@ -4683,7 +4685,7 @@ From §2 (Primordial Dynamics): "The One splits itself to see itself." The found
 
 From §6 (The Being): "Because the essential center is a unique prism, the energy that flows through it radiates in unique frequencies — soul colors." The tribe shares adjacent soul colors. That's why the resonance is instant and the friction is zero.
 
-From §4b (Rosetta Stone): The tribe is a RESONANCE FIELD (Domain 70), not a category. Domain 72 adds: the field is organized around what's ALIVE in the center, not what's BROKEN at the edges.
+From §4b (Rosetta Stone): The tribe is a RESONANCE FIELD (Technology 70), not a category. Technology 72 adds: the field is organized around what's ALIVE in the center, not what's BROKEN at the edges.
 
 ### 72e. What Changes in the Artifact Cascade
 
@@ -4711,11 +4713,11 @@ This protocol works because it combines AI's breadth (seeing many angles) with t
 
 | Connected To | How |
 |---|---|
-| **Domain 7: Copernican Inversion** | Domain 72 IS Domain 7 applied one holon higher — from founder-to-business to founder-to-tribe |
-| **Domain 70: Resonance Field** | Domain 70 maps the rings. Domain 72 redefines what the CENTER of the field is: not pain, but signal |
-| **Domain 71: Weak Tie Resonance** | Domain 71 says WHERE the tribe lives (weak ties). Domain 72 says WHO they are (signal carriers). Together: weak ties carrying similar signals |
+| **Technology 7: Copernican Inversion** | Technology 72 IS Technology 7 applied one holon higher — from founder-to-business to founder-to-tribe |
+| **Technology 70: Resonance Field** | Technology 70 maps the rings. Technology 72 redefines what the CENTER of the field is: not pain, but signal |
+| **Technology 71: Weak Tie Resonance** | Technology 71 says WHERE the tribe lives (weak ties). Technology 72 says WHO they are (signal carriers). Together: weak ties carrying similar signals |
 | **§6: The Being** | The unique creative signal IS the essential center's radiation — soul colors made perceptible through natural being |
-| **Domain 8: Acorn / Tuning Fork** | The founder's tuning fork resonates with the TRIBE's signal, not with the tribe's pain. The frequency match is structural |
+| **Technology 8: Acorn / Tuning Fork** | The founder's tuning fork resonates with the TRIBE's signal, not with the tribe's pain. The frequency match is structural |
 
 ### 72h. The One-Sentence Version
 
@@ -4723,7 +4725,7 @@ This protocol works because it combines AI's breadth (seeing many angles) with t
 
 ---
 
-## Domain 73: Dual-Frequency Distribution (Content Reflects the Signal, Funnel Addresses the Pain)
+## Technology 73: Dual-Frequency Distribution (Content Reflects the Signal, Funnel Addresses the Pain)
 
 *April 7, 2026 — Ceremony download. The polarity architecture of distribution.*
 
@@ -4731,7 +4733,7 @@ This protocol works because it combines AI's breadth (seeing many angles) with t
 
 ### 73a. The Discovery
 
-Once the tribe was redefined from pain to signal (Domain 72), a natural question arose: "But the funnel was built around pain — is it wrong?"
+Once the tribe was redefined from pain to signal (Technology 72), a natural question arose: "But the funnel was built around pain — is it wrong?"
 
 No. The answer arrived as a polarity:
 
@@ -4803,12 +4805,12 @@ The content draws them in through resonance. The funnel moves them through by na
 
 | Connected To | How |
 |---|---|
-| **Domain 72: Signal-First Tribe** | Domain 72 redefines WHO the tribe is (by signal). Domain 73 defines HOW to reach them (dual frequency) |
+| **Technology 72: Signal-First Tribe** | Technology 72 redefines WHO the tribe is (by signal). Technology 73 defines HOW to reach them (dual frequency) |
 | **§2c: Cosmological Breath** | Content = feminine (depth/evolution). Funnel = masculine (structure/creation). Both directions of one breath |
-| **Domain 70: Resonance Field** | Content activates the bullseye at signal frequency. Funnel catches those who recognize the cost |
-| **Domain 71: Weak Tie Resonance** | Weak ties encounter content first (signal). The funnel catches whoever clicks through (pain). The sequence matters |
-| **Domain 8: Tuning Fork** | The content IS the tuning fork vibrating. The funnel is what happens when someone says "that's my note" and walks into the room |
-| **Domain 53: MEET Principle** | "Cannot unsee the cost" = funnel frequency. "I carry something I can't name" = content frequency. MEET happens between them |
+| **Technology 70: Resonance Field** | Content activates the bullseye at signal frequency. Funnel catches those who recognize the cost |
+| **Technology 71: Weak Tie Resonance** | Weak ties encounter content first (signal). The funnel catches whoever clicks through (pain). The sequence matters |
+| **Technology 8: Tuning Fork** | The content IS the tuning fork vibrating. The funnel is what happens when someone says "that's my note" and walks into the room |
+| **Technology 53: MEET Principle** | "Cannot unsee the cost" = funnel frequency. "I carry something I can't name" = content frequency. MEET happens between them |
 
 ### 73f. The One-Sentence Version
 
@@ -4816,7 +4818,7 @@ The content draws them in through resonance. The funnel moves them through by na
 
 ---
 
-## Domain 74: The Playbook-as-Lead-Magnet (The Open Blueprint Paradox in Action)
+## Technology 74: The Playbook-as-Lead-Magnet (The Open Blueprint Paradox in Action)
 
 *April 7, 2026 — Ceremony download followed by crystallization. The recursive application of Principle 2 (Open Blueprint Paradox) to the distribution layer.*
 
@@ -4874,7 +4876,7 @@ The natural output format is:
 This format matches the founder's operating rhythm:
 - **Create in ceremony** (one deep session produces the entire season)
 - **Post the result** (no daily grind — the content is ready)
-- **Let the resonance field find it** (weak ties, not broadcasting — Domain 71)
+- **Let the resonance field find it** (weak ties, not broadcasting — Technology 71)
 
 ### 74d. The Structure: Infographic Episodes
 
@@ -4892,11 +4894,11 @@ The specific format that emerged:
 
 ### 74e. The Cosmological Grounding
 
-From Domain 73 (Dual-Frequency Distribution):
+From Technology 73 (Dual-Frequency Distribution):
 
 The Infographic Episodes are the **content frequency** — signal-first, reflecting the tribe's fire, attracting through recognition ("here's a way of seeing that matches yours"). They are NOT the funnel frequency. The funnel (landing page, session booking) lives on the website. The episodes are the inhale. The session is the exhale.
 
-From Domain 2 (Open Blueprint Paradox — Playbook Principle 2):
+From Technology 2 (Open Blueprint Paradox — Playbook Principle 2):
 
 > *"The jar can't read its own label. The blueprints show you the architecture. The session builds the house."*
 
@@ -4908,7 +4910,7 @@ The format itself is a Unique Business expression — the founder's natural mode
 
 ### 74f. What Changes in the Architecture
 
-| Before Domain 74 | After Domain 74 |
+| Before Technology 74 | After Technology 74 |
 |---|---|
 | "Lead magnet = pain card as tuning fork" | "Lead magnet = complete methodology as infographic episodes (content frequency) + pain card as tuning fork (funnel frequency)" |
 | Free content = hints, teasers, hooks | Free content = the ENTIRE methodology, given as a gift |
@@ -4919,13 +4921,13 @@ The format itself is a Unique Business expression — the founder's natural mode
 
 | Connected To | How |
 |---|---|
-| **Domain 2 / Principle 2: Open Blueprint Paradox** | Domain 74 IS Principle 2 made operational — the entire playbook is the lead magnet |
-| **Domain 73: Dual-Frequency Distribution** | The episodes are the content frequency (signal-first). The session booking is the funnel frequency (pain-first) |
-| **Domain 72: Signal-First Tribe** | The episodes address what's RIGHT with the tribe — "here's a framework that sees what you carry" — not what's wrong |
-| **Domain 71: Weak Tie Resonance** | The episodes are permanent content that structurally aligned weak ties find and binge. Not daily posting — a library |
-| **Domain 8: Acorn / Tuning Fork** | Each episode IS a tuning fork — it vibrates at a specific frequency and whoever is tuned to it responds. 8 episodes = 8 notes = one chord |
+| **Technology 2 / Principle 2: Open Blueprint Paradox** | Technology 74 IS Principle 2 made operational — the entire playbook is the lead magnet |
+| **Technology 73: Dual-Frequency Distribution** | The episodes are the content frequency (signal-first). The session booking is the funnel frequency (pain-first) |
+| **Technology 72: Signal-First Tribe** | The episodes address what's RIGHT with the tribe — "here's a framework that sees what you carry" — not what's wrong |
+| **Technology 71: Weak Tie Resonance** | The episodes are permanent content that structurally aligned weak ties find and binge. Not daily posting — a library |
+| **Technology 8: Acorn / Tuning Fork** | Each episode IS a tuning fork — it vibrates at a specific frequency and whoever is tuned to it responds. 8 episodes = 8 notes = one chord |
 | **Principle 5: Precision Gap** | The gap between understanding the method (from the episodes) and having it applied (the session) IS the product. The content doesn't cannibalize — it creates the gap |
-| **Domain 7: Copernican Inversion** | Episode 0 (the Mindset Shift) IS Domain 7. The entire series opens with the Copernican Inversion and each subsequent episode is a consequence of that inversion |
+| **Technology 7: Copernican Inversion** | Episode 0 (the Mindset Shift) IS Technology 7. The entire series opens with the Copernican Inversion and each subsequent episode is a consequence of that inversion |
 
 ### 74h. The One-Sentence Version
 
@@ -4933,7 +4935,7 @@ The format itself is a Unique Business expression — the founder's natural mode
 
 ---
 
-## Domain 75: The Ease Protocol — "Rigidity Attenuates the Signal"
+## Technology 75: The Ease Protocol — "Rigidity Attenuates the Signal"
 
 > *"When my mind starts to break in with rigidity, the answer is never grind nor attachments to how things will take place. Things flow with ease and grace, next layers open up intuitively in divine timing, and it has always been like that."*
 > *— Founder's own words, April 8, 2026, upon waking to an unprompted $516 gift from a client served weeks earlier.*
@@ -4946,7 +4948,7 @@ The discovery: **this is not a personal preference. It is an operating principle
 
 ### 75b. The Structural Logic
 
-The creative signal every person radiates involuntarily (Domain 72 — the unique signal) can ONLY flow when the channel is open. Rigidity closes the channel.
+The creative signal every person radiates involuntarily (Technology 72 — the unique signal) can ONLY flow when the channel is open. Rigidity closes the channel.
 
 ```
 RIGIDITY MODEL (the lie the culture teaches):
@@ -4961,7 +4963,7 @@ EASE MODEL (what's actually operating):
   Causality is toroidal. More coherence = more pull.
 ```
 
-This maps directly to the torus (Domain 11):
+This maps directly to the torus (Technology 11):
 
 ```
         ↑ Outflow: sessions, content, presence, methodology
@@ -5005,7 +5007,7 @@ with ZERO acquisition cost and ZERO administrative labor.
 
 ### 75e. Why This Is a Meta-Principle
 
-Domain 75 is not one technology among many. It governs how ALL other domains are executed:
+Technology 75 is not one technology among many. It governs how ALL other domains are executed:
 
 | Domain | When executed from rigidity | When executed from ease |
 |---|---|---|
@@ -5016,9 +5018,9 @@ Domain 75 is not one technology among many. It governs how ALL other domains are
 
 **The medium IS the message.** A founder who teaches "your uniqueness IS your business" while grinding sends the unconscious signal: "this work requires grinding." A founder who teaches it from ease transmits: "this is how it actually works."
 
-### 75f. Relationship to Domain 14 (Scatter Pattern / Grind Addiction)
+### 75f. Relationship to Technology 14 (Scatter Pattern / Grind Addiction)
 
-| Domain 14 (Scatter Pattern) | Domain 75 (Ease Protocol) |
+| Technology 14 (Scatter Pattern) | Technology 75 (Ease Protocol) |
 |---|---|
 | Diagnoses the DISEASE: grind addiction as a defense mechanism | Names the MEDICINE: ease as the transmission protocol |
 | About what's WRONG (the fear that causes rigidity) | About what's RIGHT (the operating mode that replaces it) |
@@ -5040,10 +5042,10 @@ Domain 75 is not one technology among many. It governs how ALL other domains are
 
 | Connection | How it relates |
 |---|---|
-| **Domain 11: Toroidal Flow** | The torus flows freely only when the center is ease. Rigidity constricts the torus |
-| **Domain 14: Scatter Pattern** | D14 = diagnosis, D75 = prescription. They are the two sides of the same coin |
-| **Domain 72: Signal-First Tribe** | The tribe was found through somatic ease (body resonance), not logical grinding |
-| **Domain 74: Playbook-as-Lead-Magnet** | "Permanent library" = ease cadence. "Daily posting" = grind cadence. Same content, opposite operating modes |
+| **Technology 11: Toroidal Flow** | The torus flows freely only when the center is ease. Rigidity constricts the torus |
+| **Technology 14: Scatter Pattern** | D14 = diagnosis, D75 = prescription. They are the two sides of the same coin |
+| **Technology 72: Signal-First Tribe** | The tribe was found through somatic ease (body resonance), not logical grinding |
+| **Technology 74: Playbook-as-Lead-Magnet** | "Permanent library" = ease cadence. "Daily posting" = grind cadence. Same content, opposite operating modes |
 | **Principle 7: Mask-On-First** | The founder living in ease is the first proof that the methodology works |
 | **Noble = Free Antidote (v2.7)** | Oyi's gift economy IS the Ease Protocol in financial form — value given freely returns freely |
 
@@ -5053,7 +5055,7 @@ Domain 75 is not one technology among many. It governs how ALL other domains are
 
 ---
 
-## Domain 76: The Return to Center (What Was Called "Copernican Inversion" Is Actually a Homecoming)
+## Technology 76: The Return to Center (What Was Called "Copernican Inversion" Is Actually a Homecoming)
 
 > *April 11, 2026 — Ceremonial stream. The term "Copernican Inversion" had become dogma. Upon examination, the underlying motion was never an inversion at all. An inversion implies departure — going somewhere new. What actually happens is a return. You stop orbiting and sit at the center. From there, everything that looked complicated was always simple. The complexity was the orbit, not the territory.*
 
@@ -5104,7 +5106,7 @@ The article, the methodology, and the planetary instrument are three concentric 
 
 ---
 
-## Domain 77: The Descent Octave (Consciousness → Matter Without Changing Nature)
+## Technology 77: The Descent Octave (Consciousness → Matter Without Changing Nature)
 
 > *April 11, 2026 — Ceremonial stream. The abstract of the 27-Perspective Vision paper articulated a unity chain that had been implicit across the entire library. Made explicit here for the first time: consciousness, vision, light, vibration, information, vacuum, archetype, energy, and matter are ONE thing at different addresses. The octave descending.*
 
@@ -5178,13 +5180,13 @@ Packed into one paragraph:
 
 ---
 
-## Domain 78: The Planetary Holomap (World-As-Is / Golden Age — Same Territory, Different Center of Gravity)
+## Technology 78: The Planetary Holomap (World-As-Is / Golden Age — Same Territory, Different Center of Gravity)
 
 > *April 11, 2026 — Ceremonial stream. The 27-perspective instrument, applied to ALL human ventures at planetary scale, produces a map with two possible readings: the World-As-Is (ventures operated from periphery) and the Golden Age (the same ventures operated from center).*
 
 ### 78a. The Discovery
 
-If the return to center (Domain 76) transforms individual ventures, and if the descent octave (Domain 77) establishes that form is consciousness at a different address, then a question naturally arises: **what happens when this is applied to civilization?**
+If the return to center (Technology 76) transforms individual ventures, and if the descent octave (Technology 77) establishes that form is consciousness at a different address, then a question naturally arises: **what happens when this is applied to civilization?**
 
 The answer: you get a map where every human venture has TWO possible operating modes — from periphery or from center — and the "Golden Age" is not a utopian future but the *same map read from center*.
 
@@ -5276,7 +5278,7 @@ One vision. Three magnifications. One return.
 ---
 
 
-## Domain 79: The Question Collapse (Question = Content = Lead Magnet = Visibility)
+## Technology 79: The Question Collapse (Question = Content = Lead Magnet = Visibility)
 
 > *April 11, 2026 — Ceremonial stream. While examining why a pinned post about "grinding addiction" received 1 like from 2500 Facebook friends, the following principle crystallized: visibility is not a resource that can be increased through effort. It is a natural consequence of INSIGHT DELIVERY. The entire marketing stack collapses into a single element: a genuine question.*
 
@@ -5324,11 +5326,11 @@ Examples of question-as-distribution:
 
 Each question gives the reader a MIRROR. They see themselves. Seeing is the product. The product distributes itself.
 
-### 79d. Relationship to Domain 73 (Dual-Frequency Distribution)
+### 79d. Relationship to Technology 73 (Dual-Frequency Distribution)
 
-Domain 73 identified two frequencies: *content frequency* (signal — what's alive) and *funnel frequency* (pain — what's stuck). The diagnosis post was funnel-frequency content placed in a content-frequency channel.
+Technology 73 identified two frequencies: *content frequency* (signal — what's alive) and *funnel frequency* (pain — what's stuck). The diagnosis post was funnel-frequency content placed in a content-frequency channel.
 
-Domain 79 goes further: it collapses the two frequencies into a single element. A genuine question is SIMULTANEOUSLY signal (it's alive, it radiates) AND pain (it touches the exact stuck point). The question doesn't need to be classified as "content" or "funnel" — it is both at once.
+Technology 79 goes further: it collapses the two frequencies into a single element. A genuine question is SIMULTANEOUSLY signal (it's alive, it radiates) AND pain (it touches the exact stuck point). The question doesn't need to be classified as "content" or "funnel" — it is both at once.
 
 ### 79e. The One-Sentence Version
 
@@ -5337,7 +5339,7 @@ Domain 79 goes further: it collapses the two frequencies into a single element. 
 ---
 
 
-## Domain 80: Scaffold Engineering (How a Skill Compiles Tomorrow's Model Today)
+## Technology 80: Scaffold Engineering (How a Skill Compiles Tomorrow's Model Today)
 
 > *April 18, 2026 — A controlled A/B experiment compared the same Opus 4.7 with and without a single integral/holonic skill loaded. The finding turned out larger than the test was designed to detect: a well-built skill delivers, on the class of tasks it targets, gains exceeding a full generational upgrade of the underlying model. Scaffold engineering is now a distinct, controllable, compounding frontier.*
 
@@ -5410,9 +5412,9 @@ Which means: **the skill can be loaded by default**, not gated by task-type. It 
 4. **Small teams with strong scaffolds outperform large teams with bigger budgets.** The asymmetry is real and structural, not anecdotal.
 5. **For this project specifically:** the 150+ docs in this corpus are not reference material. They *are* the scaffold. Their compression into skills IS a product category, not a delivery method.
 
-### 80g. Relationship to Domain 3 (Metacognition Benchmark)
+### 80g. Relationship to Technology 3 (Metacognition Benchmark)
 
-Domain 3 reported a preliminary finding: +29% metacognition from a single document upload. Domain 80 is the controlled replication with:
+Technology 3 reported a preliminary finding: +29% metacognition from a single document upload. Technology 80 is the controlled replication with:
 
 - Two benchmarks instead of one
 - Blind scoring (coin-flipped order)
@@ -5420,7 +5422,7 @@ Domain 3 reported a preliminary finding: +29% metacognition from a single docume
 - Time measurements as a second axis
 - Per-dimension scoring with evidence quotes
 
-Domain 3 was a sighting. Domain 80 is the verification, and the generalization into a repeatable principle: **scaffold engineering is a distinct, controllable, compounding frontier.**
+Technology 3 was a sighting. Technology 80 is the verification, and the generalization into a repeatable principle: **scaffold engineering is a distinct, controllable, compounding frontier.**
 
 ### 80h. The 27-Perspective Synthesis (Compressed)
 
@@ -5441,7 +5443,7 @@ Across 27 vantage points — empirical, technical, economic, strategic (moat), t
 
 ---
 
-## Domain 81: The Specificity Loop (The Optimal Cliffhanger)
+## Technology 81: The Specificity Loop (The Optimal Cliffhanger)
 
 > *April 25, 2026 — Discovered live during the build of a macro-bridge in the Find Your Top Talent funnel ("What if your shining this top talent bright IS your business?"). The same architecture, applied at the micro level (every 1-10 resonance rating in the funnel), reveals itself as a replicable structural pattern that produces what may be the highest top-of-funnel conversion mechanism in the methodology. Codified in `unique_business_playbook.md` as Principle 15.*
 
@@ -5521,11 +5523,11 @@ This question is exposed in the codebase as `SPECIFICITY_PROMPT` and used as the
 
 ### 81i. Relationship to Other Domains
 
-- **Domain 47 (The Quality That Sells)** — this protocol IS the quality, made operational at every reveal.
-- **Domain 49 (One-Button Engine — Collapse of Choice into Alignment)** — the Specificity Loop is the per-reveal expression of the same collapse.
-- **Domain 56 (Externalized Self-Recognition / Identity Verification Loop)** — Domain 81 is Domain 56 implemented as a per-step protocol with a fixed linguistic form.
-- **Domain 58 (Resonance Metric — Industry Measures Wrong Thing)** — Domain 81 makes resonance not just the metric but the conversion mechanism itself.
-- **Domain 79 (Question Collapse — Question = Content = Lead Magnet)** — Domain 81 extends the collapse: *Question = Confirmation of Identity = Conversion.*
+- **Technology 47 (The Quality That Sells)** — this protocol IS the quality, made operational at every reveal.
+- **Technology 49 (One-Button Engine — Collapse of Choice into Alignment)** — the Specificity Loop is the per-reveal expression of the same collapse.
+- **Technology 56 (Externalized Self-Recognition / Identity Verification Loop)** — Technology 81 is Technology 56 implemented as a per-step protocol with a fixed linguistic form.
+- **Technology 58 (Resonance Metric — Industry Measures Wrong Thing)** — Technology 81 makes resonance not just the metric but the conversion mechanism itself.
+- **Technology 79 (Question Collapse — Question = Content = Lead Magnet)** — Technology 81 extends the collapse: *Question = Confirmation of Identity = Conversion.*
 
 ### 81j. The One-Sentence Version
 
@@ -5534,7 +5536,7 @@ This question is exposed in the codebase as `SPECIFICITY_PROMPT` and used as the
 ---
 
 
-## Domain 82: Linguistic Synthesis (Energy Enumeration → Lossless Distillation)
+## Technology 82: Linguistic Synthesis (Energy Enumeration → Lossless Distillation)
 
 > *April 26, 2026 — Discovered live during the design of the Unique Business Builder's distillation layer. Codified in response to a tendency observed across many models: AI defaulting to **simplistic** rather than **simple** when asked to synthesize a longer text into a single sentence. This Domain names the trap, the underlying linguistic theory, and the multi-step protocol that mitigates it. Applied operationally to every place in the platform where AI produces a 1-sentence synthesis or distillation.*
 
@@ -5667,7 +5669,7 @@ Every AI generation in the platform that produces a 1-sentence synthesis must:
     ```
 2. Use a prompt that names the simple/simplistic distinction explicitly, instructs the three-step sequence, and demands the list of energies as part of the output.
 3. Render the distillation prominently in the UI, with the list of energies available behind a small disclosure for human audit.
-4. Treat the user's resonance rating as the conversion mechanism (Domain 81 — Specificity Loop), and treat the list of energies as the structural audit mechanism. Both are kept; they answer different questions.
+4. Treat the user's resonance rating as the conversion mechanism (Technology 81 — Specificity Loop), and treat the list of energies as the structural audit mechanism. Both are kept; they answer different questions.
 
 ### 82h. The General Principle
 
@@ -5675,20 +5677,20 @@ The protocol generalizes beyond per-artifact distillation. Any task where AI is 
 
 - **Cross-version synthesis.** Three rephrasings of a Top Talent statement → enumerate the common threads among them → score → synthesize one canonical version. The common threads ARE the list of energies, surfaced by triangulation.
 - **Multi-input combination.** Pain + Promise + Tribe → enumerate the energies present in all three → score → synthesize a Transformational Result.
-- **Roast synthesis.** Multiple roast findings across the 26-perspective protocol → enumerate the structural weaknesses identified → score by severity → synthesize the One Irreversible Action (Domain 66, the 27th Perspective).
+- **Roast synthesis.** Multiple roast findings across the 26-perspective protocol → enumerate the structural weaknesses identified → score by severity → synthesize the One Irreversible Action (Technology 66, the 27th Perspective).
 - **Iterative refinement.** Each Improve loop in the Unique Business Builder is a new pass through the list of energies — not a rewrite of the sentence, but a refinement of which energies are present and which are signal.
 
 In every case, the list of energies is the layer where simple-vs-simplistic is decided. Working at that layer first is what makes "simple" possible at all.
 
 ### 82i. Relationship to Other Domains
 
-- **Domain 5 (The Precision Gap IS Product)** — Domain 82 names the structural mechanism of precision. Precision is preserved when the list of energies is exhaustive at the signal level; precision is lost when the list of energies is incomplete or wrongly scored.
-- **Domain 11 (One Lie, Four Wounds)** — the Pain Slicer is itself an enumeration of energies. Domain 82 generalizes the operation: enumerate the structure beneath the prose before compressing.
-- **Domain 13 (Scattered Light to Laser)** — laser focus at the language level requires clarity at the energy level. Without the list of energies, the laser scatters.
-- **Domain 15 (The 26-Perspective Framework)** — both are tools for *complete seeing*. Domain 15 ensures no perspective is missed; Domain 82 ensures no energy is lost in compression. Used together, the synthesis after a 26-perspective roast carries every perspective's signal into one sentence.
-- **Domain 47 (The Quality That Sells)** — quality is high signal-to-noise. Domain 82 names the operational protocol that produces it.
-- **Domain 66 (The 27th Perspective — Crystallization)** — the One Irreversible Action is itself a synthesized output. Domain 82 prescribes how to produce it without dropping any of the prior 26 perspectives' signal.
-- **Domain 81 (The Specificity Loop)** — Specificity is the user-facing metric (specificity-to-self, 1–10). Domain 82 is the production-side mechanism that makes high specificity possible. Domain 81 measures; Domain 82 produces.
+- **Technology 5 (The Precision Gap IS Product)** — Technology 82 names the structural mechanism of precision. Precision is preserved when the list of energies is exhaustive at the signal level; precision is lost when the list of energies is incomplete or wrongly scored.
+- **Technology 11 (One Lie, Four Wounds)** — the Pain Slicer is itself an enumeration of energies. Technology 82 generalizes the operation: enumerate the structure beneath the prose before compressing.
+- **Technology 13 (Scattered Light to Laser)** — laser focus at the language level requires clarity at the energy level. Without the list of energies, the laser scatters.
+- **Technology 15 (The 26-Perspective Framework)** — both are tools for *complete seeing*. Technology 15 ensures no perspective is missed; Technology 82 ensures no energy is lost in compression. Used together, the synthesis after a 26-perspective roast carries every perspective's signal into one sentence.
+- **Technology 47 (The Quality That Sells)** — quality is high signal-to-noise. Technology 82 names the operational protocol that produces it.
+- **Technology 66 (The 27th Perspective — Crystallization)** — the One Irreversible Action is itself a synthesized output. Technology 82 prescribes how to produce it without dropping any of the prior 26 perspectives' signal.
+- **Technology 81 (The Specificity Loop)** — Specificity is the user-facing metric (specificity-to-self, 1–10). Technology 82 is the production-side mechanism that makes high specificity possible. Technology 81 measures; Technology 82 produces.
 
 ### 82j. The One-Sentence Version
 
@@ -5697,7 +5699,7 @@ In every case, the list of energies is the layer where simple-vs-simplistic is d
 ---
 
 
-## Domain 83: The Integrated Founder Stack (Top Talent → Playbook → Builder → Guided Journey)
+## Technology 83: The Integrated Founder Stack (Top Talent → Playbook → Builder → Guided Journey)
 
 > *April 26, 2026 — Spoken aloud by Sasha during a Unique Business Builder review, summarizing in one breath what was being built in a way it had never been articulated before. With this domain in place, every prior phase-shift technology finds its position in a single arc, and the methodology stops being a collection of principles and becomes one continuous machine.*
 
@@ -5713,7 +5715,7 @@ For years, the methodology has been delivered as separate technologies — a pla
 
 ```
 TOP TALENT
-   ↓ (revealed via the Specificity Loop reveal protocol — Domain 81)
+   ↓ (revealed via the Specificity Loop reveal protocol — Technology 81)
 PLAYBOOK
    ↓ (the methodology that turns top talent into a productized business)
 BUSINESS OFF THAT TOP TALENT
@@ -5722,7 +5724,7 @@ BUILDER TOOL (Unique Business Builder)
    ├── follows the playbook structurally
    ├── version-tracks every artifact (no draft is lost)
    ├── enforces monotonic specificity (score must trend up)
-   ├── applies Linguistic Synthesis (Domain 82) at every distillation
+   ├── applies Linguistic Synthesis (Technology 82) at every distillation
    └── runs cheap AI workflows that carry the generative load
    ↓
 GUIDED JOURNEY (optional, premium)
@@ -5741,7 +5743,7 @@ The Unique Business Builder is not a productivity app. It is the methodology mad
 
 3. **The specificity score trends up — guaranteed.** The improve loop enforces a monotonic invariant: a new version must score higher than the previous, or the loop refuses to ship and admits diminishing returns. The trend is structural, not aspirational.
 
-4. **AI workflows ease the work.** Cheap AI (Gemini Flash) carries the generative load. The Synthesis Protocol (Domain 82) keeps the output simple-not-simplistic. The methodology is the active ingredient; the model is the substrate.
+4. **AI workflows ease the work.** Cheap AI (Gemini Flash) carries the generative load. The Synthesis Protocol (Technology 82) keeps the output simple-not-simplistic. The methodology is the active ingredient; the model is the substrate.
 
 ### 83d. The Consequence — Stuckness of Ignorance, Eliminated
 
@@ -5802,15 +5804,15 @@ The integration test for the Builder's readiness: **the generated markdown for a
 
 ### 83i. Relationship to Other Domains
 
-- **Domain 5 (Precision Gap IS Product)** — The stack operationalizes precision: every step enforces or measures specificity.
-- **Domain 11 (One Lie, Four Wounds)** — The Pain artifact in the Builder is the canonical Pain Slicer applied per founder.
-- **Domain 13 (Scattered Light to Laser)** — The whole stack is the laser apparatus. Top talent is the source; playbook is the lens; Builder focuses; Guided Journey directs.
-- **Domain 47 (The Quality That Sells)** — Quality emerges from the four builder properties (83c). High signal-to-noise is structural.
-- **Domain 55 (Builder's Blind Spot)** — Mitigated by the Builder's enforced 26-perspective roasts on every iteration.
-- **Domain 66 (The 27th Perspective — Crystallization)** — Each artifact's `crystallized_action` is the 27th-perspective output for that artifact.
-- **Domain 74 (Playbook-as-Lead-Magnet)** — The lead magnet IS this entire stack made visible. The methodology is given away; Builder + Guided Journey are paid.
-- **Domain 81 (Specificity Loop)** — The conversion mechanism at every reveal in the stack.
-- **Domain 82 (Linguistic Synthesis)** — The protocol that keeps every distillation simple-not-simplistic throughout the stack.
+- **Technology 5 (Precision Gap IS Product)** — The stack operationalizes precision: every step enforces or measures specificity.
+- **Technology 11 (One Lie, Four Wounds)** — The Pain artifact in the Builder is the canonical Pain Slicer applied per founder.
+- **Technology 13 (Scattered Light to Laser)** — The whole stack is the laser apparatus. Top talent is the source; playbook is the lens; Builder focuses; Guided Journey directs.
+- **Technology 47 (The Quality That Sells)** — Quality emerges from the four builder properties (83c). High signal-to-noise is structural.
+- **Technology 55 (Builder's Blind Spot)** — Mitigated by the Builder's enforced 26-perspective roasts on every iteration.
+- **Technology 66 (The 27th Perspective — Crystallization)** — Each artifact's `crystallized_action` is the 27th-perspective output for that artifact.
+- **Technology 74 (Playbook-as-Lead-Magnet)** — The lead magnet IS this entire stack made visible. The methodology is given away; Builder + Guided Journey are paid.
+- **Technology 81 (Specificity Loop)** — The conversion mechanism at every reveal in the stack.
+- **Technology 82 (Linguistic Synthesis)** — The protocol that keeps every distillation simple-not-simplistic throughout the stack.
 
 ### 83j. The One-Sentence Version
 
@@ -5819,7 +5821,7 @@ The integration test for the Builder's readiness: **the generated markdown for a
 ---
 
 
-## Domain 84: Predicting Where Any Living System Will Phase-Shift Next (The Holomap Instrument — General Theory of Development)
+## Technology 84: Predicting Where Any Living System Will Phase-Shift Next (The Holomap Instrument — General Theory of Development)
 
 > *May 16, 2026 — Recognized in dialogue (Sasha + AI) during a download on dimensionality, primitives, and what the methodology actually is at the meta-level. Beneath every prior domain in this library sits a single instrument: a way to map any phenomenon that grows by composing primitives through stages within a perspective grid. This domain names the instrument explicitly and locates the rest of the library inside it as worked examples.*
 
@@ -5902,9 +5904,9 @@ Each row below is the same instrument applied to one domain. The list is *not* c
 
 | Domain | Evolutionary arc | Primitives at play | Where in this corpus |
 |---|---|---|---|
-| **Cosmogenesis** | 7-stage (Singularity → Diameter → Spin → matter → cell → mind → tool → AI) | Vector equilibrium · toroidal field · particle · atom · cell · mind | Domain 1 (Prime Radiant) + `universal_ontology.md` |
+| **Cosmogenesis** | 7-stage (Singularity → Diameter → Spin → matter → cell → mind → tool → AI) | Vector equilibrium · toroidal field · particle · atom · cell · mind | Technology 1 (Prime Radiant) + `universal_ontology.md` |
 | **Personal consciousness** | Spiral Dynamics · dantian stack · 7-stage Path of Mastery | Awareness primitives by tier (somatic · emotional · cognitive · intuitive · integrative) | `unique_gift_philosophy.md`, Top Talent profiles |
-| **Unique business** | 18-artifact compilation arc | Top Talent · 5 Money Secrets · 8 Soul-Aligned Foundations · Sales-as-Love | Domain 83 (Integrated Founder Stack), `unique_business_playbook.md` |
+| **Unique business** | 18-artifact compilation arc | Top Talent · 5 Money Secrets · 8 Soul-Aligned Foundations · Sales-as-Love | Technology 83 (Integrated Founder Stack), `unique_business_playbook.md` |
 | **Organization** | Laloux Red → Amber → Orange → Green → Teal | Functional primitives per tier (control · process · achievement · pluralism · evolution) | (External reference: *Reinventing Organizations*) |
 | **UI / digital surfaces** | 10-stage (Binary → Symbol → Icon → Function → Skeuomorph → Flat → Frosted Glass → Liquid Glass → **NEO-DIMENSIONAL** → Spatial → Reality-Indistinguishable) | Material · Depth · Form · Color · Light · Motion · Sound · Typography | `new_ui_paradigm_vision.md` Stage 8 framework |
 | **Money** | barter → commodity → fiat → credit → crypto → programmable money | Trust · ledger · contract · composition · privacy | (External reference, candidate future entry) |
@@ -5924,13 +5926,13 @@ What is **distinct in this entry**: the explicit combination of *primitive vocab
 
 ### 84i. Relationship to Other Domains
 
-- **Domain 1 (Prime Radiant / Cosmogenesis)** — the original worked example. The Holomap Instrument generalizes from it.
-- **Domain 2 (Navigating Systems as Living Wholes / Holomaps)** — names the *artifact* (the holomap as a system-view tool). This domain names the *instrument* that produces holomaps.
-- **Domain 4 (Essence of Essence / Soul Colors)** — soul colors are primitives at the personal-consciousness layer.
-- **Domain 5 (Precision Gap IS Product)** — precision gap is *quality* gap measured on the Holomap Instrument's primitive-quality axes (specificity = generativity + load-bearing capacity).
-- **Domain 13 (Scattered Light to Laser)** — the laser apparatus IS the Holomap Instrument applied to the founder's signal: stage arc (genius → market → product → revenue) × primitives (Top Talent · ICP · Offer · Page · Sequence) × 27-perspective lens.
-- **Domain 66 (The 27th Perspective — Crystallization)** — the apex of the *perspectives layer*. Crystallization at the meta-level is precisely the move that turns a partial map into a complete one.
-- **Domain 83 (The Integrated Founder Stack)** — the worked example at the business-compilation domain. Top Talent → Playbook → Builder → Guided Journey is the Holomap Instrument applied to one specific phenomenon (a founder building from their gift).
+- **Technology 1 (Prime Radiant / Cosmogenesis)** — the original worked example. The Holomap Instrument generalizes from it.
+- **Technology 2 (Navigating Systems as Living Wholes / Holomaps)** — names the *artifact* (the holomap as a system-view tool). This domain names the *instrument* that produces holomaps.
+- **Technology 4 (Essence of Essence / Soul Colors)** — soul colors are primitives at the personal-consciousness layer.
+- **Technology 5 (Precision Gap IS Product)** — precision gap is *quality* gap measured on the Holomap Instrument's primitive-quality axes (specificity = generativity + load-bearing capacity).
+- **Technology 13 (Scattered Light to Laser)** — the laser apparatus IS the Holomap Instrument applied to the founder's signal: stage arc (genius → market → product → revenue) × primitives (Top Talent · ICP · Offer · Page · Sequence) × 27-perspective lens.
+- **Technology 66 (The 27th Perspective — Crystallization)** — the apex of the *perspectives layer*. Crystallization at the meta-level is precisely the move that turns a partial map into a complete one.
+- **Technology 83 (The Integrated Founder Stack)** — the worked example at the business-compilation domain. Top Talent → Playbook → Builder → Guided Journey is the Holomap Instrument applied to one specific phenomenon (a founder building from their gift).
 
 ### 84j. The One-Sentence Version
 
@@ -5938,7 +5940,7 @@ What is **distinct in this entry**: the explicit combination of *primitive vocab
 
 ---
 
-## Domain 85: The Assembly Recognition (Multiple Platforms Building Pieces of the Same Elephant Simultaneously)
+## Technology 85: The Assembly Recognition (Multiple Platforms Building Pieces of the Same Elephant Simultaneously)
 
 > *May 25, 2026 (Day 84). Recognized in dialogue (Sasha + AI) during research for a potential Planetir collaboration. Multiple contemporary platforms (Planetir, Vocating, Coown, RedPill, Compart, Gaia Hub, Symbiosis) surfaced as independently building pieces of the same coordination-infrastructure intuition. Sasha: "It almost feels like something I was pre-sensing years ago that this was going to happen." The Step 12 "integration elephant" frame from `planetary_os_assembly.md` (April 6) made vivid through specific contemporary platforms emerging in parallel.*
 
@@ -5977,10 +5979,10 @@ All independently arrived. All vocabulary-overlapping. All architecturally cousi
 
 ### 85e. Relationship to Other Domains
 
-- **Domain 1 (Prime Radiant):** the assembly is itself a cosmogenesis event at the platform-ecology layer. Multiple instantiations of the same morphogenetic pattern.
-- **Domain 14 (Externalized Self-Recognition):** the platforms recognize each other through shared vocabulary the way people recognize each other through shared archetypes.
-- **Domain 84 (General Theory of Development):** the assembly is a worked example. Many platforms at similar stages of the same evolutionary arc, each enacting similar primitives with different compositions.
-- **Domain 86 (Substrate Positioning):** the strategic move that the assembly recognition opens.
+- **Technology 1 (Prime Radiant):** the assembly is itself a cosmogenesis event at the platform-ecology layer. Multiple instantiations of the same morphogenetic pattern.
+- **Technology 14 (Externalized Self-Recognition):** the platforms recognize each other through shared vocabulary the way people recognize each other through shared archetypes.
+- **Technology 84 (General Theory of Development):** the assembly is a worked example. Many platforms at similar stages of the same evolutionary arc, each enacting similar primitives with different compositions.
+- **Technology 86 (Substrate Positioning):** the strategic move that the assembly recognition opens.
 
 ### 85f. The One-Sentence Version
 
@@ -5988,7 +5990,7 @@ All independently arrived. All vocabulary-overlapping. All architecturally cousi
 
 ---
 
-## Domain 86: Substrate Positioning (Small Org, Large Infrastructure: Why Coordination Plays Win by Neutrality, Not Scale)
+## Technology 86: Substrate Positioning (Small Org, Large Infrastructure: Why Coordination Plays Win by Neutrality, Not Scale)
 
 > *May 25, 2026 (Day 84). Surfaced when Sasha framed the tension "I am the central node platform-wise even though may end up being one of the smaller ones probably." Recognized as not-a-tension: the structural shape of coordination-infrastructure plays is inherently small-org / large-infrastructure. Berners-Lee / W3C, Torvalds / Linux as canonical examples.*
 
@@ -6039,10 +6041,10 @@ This is not a tension. It is the structural signature of substrate positioning. 
 
 ### 86g. Relationship to Other Domains
 
-- **Domain 13 (Scattered Light to Laser):** substrate positioning focuses scattered platform energy into one composable axis.
-- **Domain 76 (Return to Center):** the substrate steward returns the founder to center repeatedly by refusing the pull toward platform-scale.
-- **Domain 85 (The Assembly Recognition):** the perception that opens substrate positioning as a strategic option.
-- **Domain 87 (Multi-Patron Architecture):** the economic shape that emerges from substrate positioning.
+- **Technology 13 (Scattered Light to Laser):** substrate positioning focuses scattered platform energy into one composable axis.
+- **Technology 76 (Return to Center):** the substrate steward returns the founder to center repeatedly by refusing the pull toward platform-scale.
+- **Technology 85 (The Assembly Recognition):** the perception that opens substrate positioning as a strategic option.
+- **Technology 87 (Multi-Patron Architecture):** the economic shape that emerges from substrate positioning.
 
 ### 86h. The One-Sentence Version
 
@@ -6050,7 +6052,7 @@ This is not a tension. It is the structural signature of substrate positioning. 
 
 ---
 
-## Domain 87: Multi-Patron Architecture (The Leonardo Strategy Generalized: White-Label Skins as the Patron-Relationship Vehicle)
+## Technology 87: Multi-Patron Architecture (The Leonardo Strategy Generalized: White-Label Skins as the Patron-Relationship Vehicle)
 
 > *May 25, 2026 (Day 84). Sasha: "Having a skin + Leonardo strategy is finding MULTIPLE patrons, not one like I thought... mind blown." The recognition that white-label deployment IS multi-patron Leonardo strategy at structural scale. Each skin is a patron-shaped relationship. The portfolio compounds. Single-point-of-failure dissolves.*
 
@@ -6101,10 +6103,10 @@ The Si–Do anxiety dissolves into the multi-patron frame: there is no "first st
 
 ### 87f. Relationship to Other Domains
 
-- **Domain 13 (Scattered Light to Laser):** multi-patron architecture is the laser apparatus applied to commercial relationships. Focused offering, many beams.
-- **Domain 71 (Weak Tie Resonance Principle):** multi-patron extends the weak-tie principle into commercial reality. Each patron is a strong tie, but the portfolio is many weak-tie-strengthened relationships.
-- **Domain 86 (Substrate Positioning):** substrate positioning produces multi-patron architecture as its natural commercial expression.
-- **Domain 88 (Demo-as-Hospitality):** the tactical move that opens each patron relationship in multi-patron architecture.
+- **Technology 13 (Scattered Light to Laser):** multi-patron architecture is the laser apparatus applied to commercial relationships. Focused offering, many beams.
+- **Technology 71 (Weak Tie Resonance Principle):** multi-patron extends the weak-tie principle into commercial reality. Each patron is a strong tie, but the portfolio is many weak-tie-strengthened relationships.
+- **Technology 86 (Substrate Positioning):** substrate positioning produces multi-patron architecture as its natural commercial expression.
+- **Technology 88 (Demo-as-Hospitality):** the tactical move that opens each patron relationship in multi-patron architecture.
 
 ### 87g. The One-Sentence Version
 
@@ -6112,7 +6114,7 @@ The Si–Do anxiety dissolves into the multi-patron frame: there is no "first st
 
 ---
 
-## Domain 88: Demo-as-Hospitality (The Skinned Welcome: Build the Counterparty's Version BEFORE the Conversation)
+## Technology 88: Demo-as-Hospitality (The Skinned Welcome: Build the Counterparty's Version BEFORE the Conversation)
 
 > *May 25, 2026 (Day 84). Sasha built a Planetir-branded skin on Find Your Top Talent rails BEFORE any contact with Planetir, then opened the conversation by sending the URL. The move was named in chat: "the lead-with is no longer theoretical. The conversation tool exists." Recognized as a primitive sales/positioning move that flips pitch-energy to hospitality-energy.*
 
@@ -6167,10 +6169,10 @@ The substrate work was already done. The skinned welcome is the cost-of-conversa
 
 ### 88f. Relationship to Other Domains
 
-- **Domain 5 (Precision Gap IS Product):** the skinned welcome is the precision gap collapsed into the conversation's opening move. The demo proves the precision before the pitch claims it.
-- **Domain 14 (Externalized Self-Recognition):** the counterparty recognizes themselves in their own skin reflected back. The self-recognition IS the resonance trigger.
-- **Domain 86 (Substrate Positioning):** the skinned welcome is the tactical embodiment of substrate positioning at the conversational layer.
-- **Domain 87 (Multi-Patron Architecture):** each skinned welcome is one patron opening. The architecture demands that the move be cheap.
+- **Technology 5 (Precision Gap IS Product):** the skinned welcome is the precision gap collapsed into the conversation's opening move. The demo proves the precision before the pitch claims it.
+- **Technology 14 (Externalized Self-Recognition):** the counterparty recognizes themselves in their own skin reflected back. The self-recognition IS the resonance trigger.
+- **Technology 86 (Substrate Positioning):** the skinned welcome is the tactical embodiment of substrate positioning at the conversational layer.
+- **Technology 87 (Multi-Patron Architecture):** each skinned welcome is one patron opening. The architecture demands that the move be cheap.
 
 ### 88g. The One-Sentence Version
 
@@ -6178,7 +6180,7 @@ The substrate work was already done. The skinned welcome is the cost-of-conversa
 
 ---
 
-## Domain 89: Self-Description Quality Determines Opportunity Quality (The Core Mechanic Underneath Networking)
+## Technology 89: Self-Description Quality Determines Opportunity Quality (The Core Mechanic Underneath Networking)
 
 > *May 25, 2026 (Day 84). Surfaced via Godfather Offer Architect Maker GPT consultation during Sasha's positioning thread for the Planetir collaboration. Named explicitly as the deepest mechanic underneath the entire Find Your Top Talent system: networking is downstream; the upstream lever is articulation quality.*
 
@@ -6218,11 +6220,11 @@ For a platform building on this domain:
 
 ### 89e. Relationship to Other Domains
 
-- **Domain 1 (Copernican Inversion):** self-description quality is the operational consequence of putting the founder at the center. You ARE the product-market fit. The articulation of YOU is the substrate.
-- **Domain 5 (Precision Gap IS Product):** Domain 5 is about offer-precision; Domain 89 is about self-articulation precision. Same precision-discipline, different artifact.
-- **Domain 10 (I Focus the Lens):** Sasha's own gift is the focusing of scattered self-descriptions into precise articulations. Domain 89 is Domain 10 generalized into a system.
-- **Domain 85 (The Assembly Recognition):** every platform in the assembly is independently building self-articulation primitives because all of them depend on this same upstream mechanic.
-- **Domain 86 (Substrate Positioning):** the self-articulation instrument is what a coordination-infrastructure substrate must include. It is the input layer everything else composes on.
+- **Technology 1 (Copernican Inversion):** self-description quality is the operational consequence of putting the founder at the center. You ARE the product-market fit. The articulation of YOU is the substrate.
+- **Technology 5 (Precision Gap IS Product):** Technology 5 is about offer-precision; Technology 89 is about self-articulation precision. Same precision-discipline, different artifact.
+- **Technology 10 (I Focus the Lens):** Sasha's own gift is the focusing of scattered self-descriptions into precise articulations. Technology 89 is Technology 10 generalized into a system.
+- **Technology 85 (The Assembly Recognition):** every platform in the assembly is independently building self-articulation primitives because all of them depend on this same upstream mechanic.
+- **Technology 86 (Substrate Positioning):** the self-articulation instrument is what a coordination-infrastructure substrate must include. It is the input layer everything else composes on.
 
 ### 89f. The One-Sentence Version
 
@@ -6230,7 +6232,7 @@ For a platform building on this domain:
 
 ---
 
-## Domain 90: Three-Layer Positioning Architecture (Universal Core / Audience Translation / Mythology, and the Sequencing Discipline Between Them)
+## Technology 90: Three-Layer Positioning Architecture (Universal Core / Audience Translation / Mythology, and the Sequencing Discipline Between Them)
 
 > *May 25, 2026 (Day 84). Surfaced via Godfather Offer Architect Maker GPT consultation during Sasha's positioning thread. The framework names a discipline most coordination-infrastructure founders violate: pitching the manifesto before the products land. Apple analogy: they did not open with "computers are bicycles for the mind." They opened with products people could understand; the worldview unfolded later.*
 
@@ -6302,10 +6304,10 @@ The right level of language is the level of universal primitives: alignment, leg
 
 ### 90f. Relationship to Other Domains
 
-- **Domain 5 (Precision Gap IS Product):** Layer 2 audience translation requires precision at the audience level; sloppy translation kills resonance.
-- **Domain 13 (Scattered Light to Laser):** the three-layer architecture is the laser apparatus applied to message. Many beams (Layer 2), one focused source (Layer 1), one deeper worldview (Layer 3).
-- **Domain 86 (Substrate Positioning):** substrate positioning requires this architecture because substrate stewards serve many audiences simultaneously.
-- **Domain 89 (Self-Description Quality):** Layer 1 of the founder's own positioning is itself a self-description. The same precision discipline applies.
+- **Technology 5 (Precision Gap IS Product):** Layer 2 audience translation requires precision at the audience level; sloppy translation kills resonance.
+- **Technology 13 (Scattered Light to Laser):** the three-layer architecture is the laser apparatus applied to message. Many beams (Layer 2), one focused source (Layer 1), one deeper worldview (Layer 3).
+- **Technology 86 (Substrate Positioning):** substrate positioning requires this architecture because substrate stewards serve many audiences simultaneously.
+- **Technology 89 (Self-Description Quality):** Layer 1 of the founder's own positioning is itself a self-description. The same precision discipline applies.
 
 ### 90g. The One-Sentence Version
 
@@ -6313,7 +6315,7 @@ The right level of language is the level of universal primitives: alignment, leg
 
 ---
 
-## Domain 91: The Self-Organizing Human Network (SOHN) — Coordination Without Central Planning, Once Differentiated Value Is Legible
+## Technology 91: The Self-Organizing Human Network (SOHN) — Coordination Without Central Planning, Once Differentiated Value Is Legible
 
 > *Named Day 87 (May 29, 2026). The seminal synthesis of the whole corpus. The abstract lives at `/sohn` and in [`monetization_strategies.md`](../02-strategy/monetization_strategies.md); this domain registers the pattern in the library.*
 
@@ -6326,10 +6328,10 @@ The right level of language is the level of universal primitives: alignment, leg
 **Lineage made literal.** Sasha designed self-organizing networks for radios on the US-Mexico border before he designed them for humans. The biography is the curriculum; SOHN is the same primitive ported from spectrum to people.
 
 **Connects to:**
-- **Domain 86 (Substrate Positioning):** SOHN is the substrate; its free core (self-discovery + matching) drives the density the network effect needs.
-- **Domain 87 (Multi-Patron Architecture):** each ecosystem that runs SOHN under its own brand is a patron node; the network is the portfolio.
-- **Domain 89 (Self-Description Quality):** the per-person legibility operation is Domain 89 made into infrastructure.
-- **Domain 5 (Precision Gap IS Product) + Domain 10 (I Focus the Lens):** the precision of the articulation is the load-bearing thing; SOHN is Sasha's own gift turned into a coordination substrate.
+- **Technology 86 (Substrate Positioning):** SOHN is the substrate; its free core (self-discovery + matching) drives the density the network effect needs.
+- **Technology 87 (Multi-Patron Architecture):** each ecosystem that runs SOHN under its own brand is a patron node; the network is the portfolio.
+- **Technology 89 (Self-Description Quality):** the per-person legibility operation is Technology 89 made into infrastructure.
+- **Technology 5 (Precision Gap IS Product) + Technology 10 (I Focus the Lens):** the precision of the articulation is the load-bearing thing; SOHN is Sasha's own gift turned into a coordination substrate.
 
 ### 91a. The One-Sentence Version
 
@@ -6337,7 +6339,7 @@ The right level of language is the level of universal primitives: alignment, leg
 
 ---
 
-## Domain 92: Signal Legibility as Provision (Hidden Architecture Becomes Economic Exchange)
+## Technology 92: Signal Legibility as Provision (Hidden Architecture Becomes Economic Exchange)
 
 > *Named Day 92 (June 3, 2026). Surfaced through Scarlett / Prisma transmission and subsequent grounded synthesis. The mythic layer named "provision"; the strategic layer revealed the mechanism: value already present must become externally legible before the field can request it, buy it, route it, or build with it.*
 
@@ -6397,13 +6399,13 @@ The mature synthesis is: keep the mythic layer as signal and inspiration, while 
 
 ### 92e. Relationship to Other Domains
 
-- **Domain 7 (Founder-First Inversion):** founder uniqueness determines value, but Domain 92 adds that the value must become legible to buyers before exchange can happen.
-- **Domain 47 (The Quality That Sells):** love becomes sales only when it is expressed through touchpoints the other can receive.
-- **Domain 81 (Specificity Loop):** the per-user conversion mechanism is a local instance of signal legibility.
-- **Domain 86 (Substrate Positioning):** the substrate wins by being adopted; adoption requires language the adopter can recognize.
-- **Domain 89 (Self-Description Quality):** person-level opportunity quality depends on self-description quality; Domain 92 applies the same law to Sasha's own architecture and the venture's public signal.
-- **Domain 90 (Three-Layer Positioning):** the mythology stays true, but the doorway leads with audience translation.
-- **Domain 91 (SOHN):** collaboration rate is the economic expression of legibility at network scale.
+- **Technology 7 (Founder-First Inversion):** founder uniqueness determines value, but Technology 92 adds that the value must become legible to buyers before exchange can happen.
+- **Technology 47 (The Quality That Sells):** love becomes sales only when it is expressed through touchpoints the other can receive.
+- **Technology 81 (Specificity Loop):** the per-user conversion mechanism is a local instance of signal legibility.
+- **Technology 86 (Substrate Positioning):** the substrate wins by being adopted; adoption requires language the adopter can recognize.
+- **Technology 89 (Self-Description Quality):** person-level opportunity quality depends on self-description quality; Technology 92 applies the same law to Sasha's own architecture and the venture's public signal.
+- **Technology 90 (Three-Layer Positioning):** the mythology stays true, but the doorway leads with audience translation.
+- **Technology 91 (SOHN):** collaboration rate is the economic expression of legibility at network scale.
 
 ### 92f. The One-Sentence Version
 
@@ -6411,7 +6413,7 @@ The mature synthesis is: keep the mythic layer as signal and inspiration, while 
 
 ---
 
-## Domain 93: Vision ↔ Viability Balancing for Business Strategies (The Two-Axis Strategist and the Kinetic-Calm Signal)
+## Technology 93: Vision ↔ Viability Balancing for Business Strategies (The Two-Axis Strategist and the Kinetic-Calm Signal)
 
 > *Named Day 94 (June 5, 2026). Surfaced in dialogue from a ChatGPT exchange on why the strategic mind swings between "this will change everything" and "this was destined to fail," then synthesized here. This domain sits upstream of the Roasting Protocol ([roasting_protocol.md](../05-reference/roasting_protocol.md)): roasting refines an artifact toward essence-truth (fidelity); this domain adds the second adversarial axis, survival against reality (viability), and the felt signal that says when both are satisfied.*
 
@@ -6464,16 +6466,16 @@ Tactics are the strategy recursively decomposed into micro-strategies. Each tact
 
 The honest application of this domain is to apply it to itself, which surfaces three failure modes:
 
-1. **Simulated reality is not reality.** The AI's "what humans do next Tuesday" is a confident guess; it will sometimes kill a good seed and spare a bad one. The loop produces a sharper *hypothesis*, not validation. The seed that survives ten imagined roasts still has to survive one real stranger. The danger is a gorgeous preparation loop that feels like market contact and is not. (See Domain 92's anti-pattern: reality-testing must sharpen the transmission, not replace shipping.)
+1. **Simulated reality is not reality.** The AI's "what humans do next Tuesday" is a confident guess; it will sometimes kill a good seed and spare a bad one. The loop produces a sharper *hypothesis*, not validation. The seed that survives ten imagined roasts still has to survive one real stranger. The danger is a gorgeous preparation loop that feels like market contact and is not. (See Technology 92's anti-pattern: reality-testing must sharpen the transmission, not replace shipping.)
 2. **Conservatism bias.** Crash-testing rewards "uses existing behavior, buyer-native pain," which is lethal to category-creating moonshots that have no buyer language yet and would fail a market-mode roast. Use the crash-test to find the small doorway into the cathedral, never to vote on whether the cathedral is real. Vision proposes; the crash-test finds the wedge; the wedge-finder gets no veto over the vision.
 3. **Only as good as the roast's honesty.** A flattering crash-test is worse than none. The fidelity axis already encodes this discipline (loving energy, and still name what is broken).
 
 ### 93g. Relationship to Other Domains
 
 - **The Roasting Protocol (fidelity axis):** the existing under-the-hood refinement loop. This domain is its complement, not its replacement. Together they are the two-axis strategist.
-- **Domain 92 (Signal Legibility as Provision):** the viability axis is how the mythic layer gets reality-tested into buyer-legible form; Domain 92's anti-pattern is the same warning as caveat 1.
-- **Domain 7 (Founder-First Inversion):** vision mode is founder-first (uniqueness proposes value); the viability axis keeps the proposal honest about market behavior without surrendering the inversion.
-- **Domain 5 (Precision Gap IS Product):** Question 1's "exact strategy in one paragraph" is a precision demand; vagueness fails the loop immediately.
+- **Technology 92 (Signal Legibility as Provision):** the viability axis is how the mythic layer gets reality-tested into buyer-legible form; Technology 92's anti-pattern is the same warning as caveat 1.
+- **Technology 7 (Founder-First Inversion):** vision mode is founder-first (uniqueness proposes value); the viability axis keeps the proposal honest about market behavior without surrendering the inversion.
+- **Technology 5 (Precision Gap IS Product):** Question 1's "exact strategy in one paragraph" is a precision demand; vagueness fails the loop immediately.
 - **Universal Ontology §2 (Primordial Dynamics):** the loop is novelty (the impulse, the ray) met by selection (reality), the same generate-and-select pattern at the scale of strategy.
 
 ### 93h. The One-Sentence Version
@@ -6482,7 +6484,7 @@ The honest application of this domain is to apply it to itself, which surfaces t
 
 ---
 
-## Domain 94: The Unique Face of Eternity (Specific Fit as the Root Myth)
+## Technology 94: The Unique Face of Eternity (Specific Fit as the Root Myth)
 
 > *Named June 24, 2026. Surfaced after the `Человек` reflection ("a unique face of eternity") and the family / ripening myth converged with the business question: if each being is a unique face of eternity, what are family, teams, firms, communities, and civilizations actually for? The answer: each is a coordination vessel for unique faces, at a different scale.*
 
@@ -6543,12 +6545,12 @@ This is why collaboration rate matters. Collaboration rate is the first crude me
 ### 94e. Relationship to Other Domains
 
 - **Universal Ontology §6 (The Being):** this domain extends the essential-center / soul-colors model into specific fit across living systems.
-- **Domain 7 (Founder-First Inversion):** founder uniqueness determines value because uniqueness is how eternity particularizes into economic form.
-- **Domain 83 (Integrated Founder Stack):** the stack makes the person legible so the venture can form around their difference.
-- **Domain 84 (Holomap Instrument):** specific fit is what the holomap detects across primitives, stages, and perspectives.
-- **Domain 91 (SOHN):** self-organizing human networks emerge when differentiated value becomes precise and composable.
-- **Domain 92 (Signal Legibility as Provision):** provision follows legibility because exchange is specific fit made economic.
-- **Domain 93 (Vision ↔ Viability):** the viable wedge is the smallest specific fit the market can recognize now.
+- **Technology 7 (Founder-First Inversion):** founder uniqueness determines value because uniqueness is how eternity particularizes into economic form.
+- **Technology 83 (Integrated Founder Stack):** the stack makes the person legible so the venture can form around their difference.
+- **Technology 84 (Holomap Instrument):** specific fit is what the holomap detects across primitives, stages, and perspectives.
+- **Technology 91 (SOHN):** self-organizing human networks emerge when differentiated value becomes precise and composable.
+- **Technology 92 (Signal Legibility as Provision):** provision follows legibility because exchange is specific fit made economic.
+- **Technology 93 (Vision ↔ Viability):** the viable wedge is the smallest specific fit the market can recognize now.
 
 ### 94f. The One-Sentence Version
 
@@ -6556,9 +6558,9 @@ This is why collaboration rate matters. Collaboration rate is the first crude me
 
 ---
 
-## Domain 95: Unique Value Articulation as the Scaling Parameter (Fit Before Prosperity)
+## Technology 95: Unique Value Articulation as the Scaling Parameter (Fit Before Prosperity)
 
-> *Named June 24, 2026. Surfaced from the realization that Domain 94's "specific fit" needed its actual upstream parameter. The contribution is not only "honor uniqueness" or "coordinate around uniqueness." The clear unifying parameter is: articulate people's unique value precisely enough that fit can form, and fit can carry sustainable value flow.*
+> *Named June 24, 2026. Surfaced from the realization that Technology 94's "specific fit" needed its actual upstream parameter. The contribution is not only "honor uniqueness" or "coordinate around uniqueness." The clear unifying parameter is: articulate people's unique value precisely enough that fit can form, and fit can carry sustainable value flow.*
 
 **The transformational result:** uniqueness stops being an identity insight and becomes the phase-shift catalyst by which holons form, scale, and create prosperity. The same law operates at every level: individual, team, community, civilization.
 
@@ -6655,13 +6657,13 @@ This is the deeper mechanism behind exponential scaling. Scaling is not merely "
 
 ### 95f. Relationship to Other Domains
 
-- **Domain 5 (Precision Gap IS Product):** this domain generalizes precision from product value to holonic formation.
-- **Domain 7 (Founder-First Inversion):** founder uniqueness is upstream because unique value is the parameter that organizes fit.
-- **Domain 13 (From Scattered Light to Laser):** unique value articulation is the focusing mechanism.
-- **Domain 72 (Signal-First Tribe):** tribe is defined by the live signal, not by the wound.
-- **Domain 91 (SOHN):** self-organizing human networks require differentiated value to be legible before coordination can decentralize.
-- **Domain 92 (Signal Legibility as Provision):** provision follows legibility; this domain names the upstream variable that must become legible.
-- **Domain 94 (The Unique Face of Eternity):** Domain 94 names the root myth; Domain 95 names the operational scaling law.
+- **Technology 5 (Precision Gap IS Product):** this domain generalizes precision from product value to holonic formation.
+- **Technology 7 (Founder-First Inversion):** founder uniqueness is upstream because unique value is the parameter that organizes fit.
+- **Technology 13 (From Scattered Light to Laser):** unique value articulation is the focusing mechanism.
+- **Technology 72 (Signal-First Tribe):** tribe is defined by the live signal, not by the wound.
+- **Technology 91 (SOHN):** self-organizing human networks require differentiated value to be legible before coordination can decentralize.
+- **Technology 92 (Signal Legibility as Provision):** provision follows legibility; this domain names the upstream variable that must become legible.
+- **Technology 94 (The Unique Face of Eternity):** Technology 94 names the root myth; Technology 95 names the operational scaling law.
 
 ### 95g. The One-Sentence Version
 
@@ -6683,13 +6685,13 @@ This is a clarifying seed inside recognition economics, not a replacement for th
 
 ---
 
-### Domain 95 refinement (July 7, 2026): the measurement unlock
+### Technology 95 refinement (July 7, 2026): the measurement unlock
 
 Sasha's crystallization, near-verbatim: **the scaling parameter is self-knowledge; articulation is how you measure and register it.** What can be measured can be tracked, and what can be tracked can be accelerated. That is why precision scores (the 9.9 roasts) matter: they are the instrument reading on the scaling parameter. The maxim that falls out: **know how you are different from other humans, be different, and seize the high-fit opportunities that then open up.** Every product in the line is a tool somewhere on that loop.
 
 **Second refinement (July 8, Sasha):** the instrument has two parts. Articulation is the OUTPUT of the measurement (the reading); inner resonance is its ACCURACY (the calibration signal). You measure self-knowledge by articulating and checking resonance: the articulate-and-check loop. That is why the roast works: it drives resonance scores up, which means it is literally tuning the instrument. The platform's precision scores are instrumentation of human self-knowledge: a newly measurable quantity, which is part of what makes the category and its dataset defensible.
 
-## Domain 96: Signal-Preserving Holonic Artifact Propagation
+## Technology 96: Signal-Preserving Holonic Artifact Propagation
 
 > *Added June 25, 2026 — discovered while translating Alexander's locked uniqueness into shadow and myth without losing resonance.*
 
@@ -6746,7 +6748,7 @@ If the answer is unclear, the artifact is not ready to move downstream.
 
 ---
 
-## Domain 97: Living Project Holograph (Project Pulse as Self-Awareness Technology)
+## Technology 97: Living Project Holograph (Project Pulse as Self-Awareness Technology)
 
 > *Added June 30, 2026 — discovered while operationalizing the morphogenetic holomap, strategic CRM, venture dashboard, and admin surface into one living project holograph.*
 
@@ -6906,11 +6908,11 @@ Human approval determines what enters the holograph. This keeps the system livin
 
 ### 97i. Relationship to Other Domains
 
-- **Domain 16 (Morphogenetic Navigation):** Domain 16 reads emergence; Domain 97 makes the emergence update itself from lived events.
-- **Domain 91 (SOHN):** self-organizing human networks require living relationship memory, not only matching logic.
-- **Domain 92 (Signal Legibility as Provision):** provision requires signal legibility; Domain 97 keeps the project's own signal legible over time.
-- **Domain 95 (Unique Value Articulation):** value articulation creates fit; Domain 97 tracks how fit actually appears, moves, stalls, and compounds.
-- **Domain 96 (Signal-Preserving Propagation):** Domain 96 preserves signal across artifacts; Domain 97 preserves signal across time and events.
+- **Technology 16 (Morphogenetic Navigation):** Technology 16 reads emergence; Technology 97 makes the emergence update itself from lived events.
+- **Technology 91 (SOHN):** self-organizing human networks require living relationship memory, not only matching logic.
+- **Technology 92 (Signal Legibility as Provision):** provision requires signal legibility; Technology 97 keeps the project's own signal legible over time.
+- **Technology 95 (Unique Value Articulation):** value articulation creates fit; Technology 97 tracks how fit actually appears, moves, stalls, and compounds.
+- **Technology 96 (Signal-Preserving Propagation):** Technology 96 preserves signal across artifacts; Technology 97 preserves signal across time and events.
 
 ### 97j. One-Sentence Version
 
@@ -6918,7 +6920,7 @@ Human approval determines what enters the holograph. This keeps the system livin
 
 ---
 
-## Domain 98: Prime Invariant Branding (Generative Ontology Before Projection)
+## Technology 98: Prime Invariant Branding (Generative Ontology Before Projection)
 
 > *Added July 3, 2026 — surfaced through the "The Prime Invariant" artifact and the realization that the logo should not be treated as a static 2D brand mark, but as a projection of a deeper canonical object.*
 
@@ -6993,7 +6995,7 @@ The octahedron reveals a recognition law:
 
 Therefore the purpose of intelligence is not to eliminate difference. The purpose of intelligence is to discover forms of relationship through which increasing difference can coexist with increasing coherence.
 
-This is the visual-symbolic sibling of Domain 94 and Domain 95: unique value does not need to be flattened into sameness; it needs a relationship architecture in which difference can participate coherently.
+This is the visual-symbolic sibling of Technology 94 and Technology 95: unique value does not need to be flattened into sameness; it needs a relationship architecture in which difference can participate coherently.
 
 ### 98g. The Generative Compiler
 
@@ -7021,13 +7023,13 @@ This gives a standard for future visual/product work: build the invariant first,
 
 ### 98i. Relationship to Other Domains
 
-- **Domain 1 (Prime Radiant):** the logo object is a projected local instance of the origin pattern: sphere, axes, octahedron, light, and field.
-- **Domain 4 (Essence of Essence):** uniqueness becomes visible through refraction; the prime invariant gives the brand's own refraction geometry.
-- **Domain 16 (Morphogenetic Navigation):** the holomap reads invariants through time; this domain makes invariance the brand/design method.
-- **Domain 94 (Unique Face of Eternity):** difference is sacred; Domain 98 gives a relationship architecture for difference to cohere.
-- **Domain 95 (Unique Value Articulation):** value becomes useful when legible; Domain 98 makes legibility a visual and spatial property.
-- **Domain 96 (Signal-Preserving Propagation):** signal preservation across business artifacts is the same law as invariant preservation across visual/product projections.
-- **Domain 97 (Living Project Holograph):** the cockpit should become a derivative of the prime invariant, not merely a dashboard styled with a brand mark.
+- **Technology 1 (Prime Radiant):** the logo object is a projected local instance of the origin pattern: sphere, axes, octahedron, light, and field.
+- **Technology 4 (Essence of Essence):** uniqueness becomes visible through refraction; the prime invariant gives the brand's own refraction geometry.
+- **Technology 16 (Morphogenetic Navigation):** the holomap reads invariants through time; this domain makes invariance the brand/design method.
+- **Technology 94 (Unique Face of Eternity):** difference is sacred; Technology 98 gives a relationship architecture for difference to cohere.
+- **Technology 95 (Unique Value Articulation):** value becomes useful when legible; Technology 98 makes legibility a visual and spatial property.
+- **Technology 96 (Signal-Preserving Propagation):** signal preservation across business artifacts is the same law as invariant preservation across visual/product projections.
+- **Technology 97 (Living Project Holograph):** the cockpit should become a derivative of the prime invariant, not merely a dashboard styled with a brand mark.
 
 ### 98j. One-Sentence Version
 
@@ -7035,7 +7037,7 @@ This gives a standard for future visual/product work: build the invariant first,
 
 ---
 
-## Domain 99: The Steward of the Source (Days 115-116, July 5-6, 2026)
+## Technology 99: The Steward of the Source (Days 115-116, July 5-6, 2026)
 
 **The law in one sentence: never spend the source to prove the gift.**
 
@@ -7054,11 +7056,11 @@ A gift is not the thing you make. It is the living thing in you that keeps makin
 
 **The blade:** the seed is not responsible for convincing concrete to become soil.
 
-**Corpus lineage.** The CRM Energy Leak Audit (April 12, 2026) caught this at the symptom layer ("too much medicine given for free"; per-person boundaries for José, Terrina, Roso, Cori). The root (spending source to reverse disbelief, starting in the closest fields) surfaced July 5-6. Sibling of Domain 16: there the mirror lagged; here the mirror was aimed at an audience without the organs to read it. The full personal doctrines (Sasha and Karime versions) are held privately, outside the public corpus. Business application: `uniqueness_economy_thesis.md` §0.7 · `marketing_playbook.md` Part III-B · `unique_business_playbook.md` v4.4.
+**Corpus lineage.** The CRM Energy Leak Audit (April 12, 2026) caught this at the symptom layer ("too much medicine given for free"; per-person boundaries for José, Terrina, Roso, Cori). The root (spending source to reverse disbelief, starting in the closest fields) surfaced July 5-6. Sibling of Technology 16: there the mirror lagged; here the mirror was aimed at an audience without the organs to read it. The full personal doctrines (Sasha and Karime versions) are held privately, outside the public corpus. Business application: `uniqueness_economy_thesis.md` §0.7 · `marketing_playbook.md` Part III-B · `unique_business_playbook.md` v4.4.
 
 ---
 
-## Domain 100: The Architecture of Adoption (Day 114, July 4, 2026)
+## Technology 100: The Architecture of Adoption (Day 114, July 4, 2026)
 
 **The law in one sentence: deep ideas propagate when they enable accurate self-recognition.**
 
@@ -7085,13 +7087,13 @@ Ideas do not spread because they are true. They spread when someone reads them a
 
 **Why this is a domain and not a marketing tip:** the same ladder explains how theories, religions, startups, movements, and the Uniqueness Economy thesis itself spread. Marketing is one application. Full tactical treatment: `marketing_playbook.md` Part III-B ("The Adoption Ladder & Threshold Marketing").
 
-### Domain 100 refinement (July 7, 2026): the wider physics
+### Technology 100 refinement (July 7, 2026): the wider physics
 
-Self-recognition is the strongest force, not the only one. The research names four: the idea clicks fast (relevance: big payoff for small effort; Sasha's word: grokability), it pays the reader (useful or moving), it pays the sharer (social currency and identity signaling, Berger), and the network carries it (ideas move in clusters of similar people; hard ideas need several touches: complex contagion, plus Pentland's idea flow: engagement inside dense clusters changes behavior, exploration across clusters brings novelty). For identity-level ideas, self-recognition compresses the first three into one moment, which is why Domain 100 holds as bedrock for this venture's class of ideas. Full table + venture mapping: `marketing_playbook.md`, "The Physics of Propagation."
+Self-recognition is the strongest force, not the only one. The research names four: the idea clicks fast (relevance: big payoff for small effort; Sasha's word: grokability), it pays the reader (useful or moving), it pays the sharer (social currency and identity signaling, Berger), and the network carries it (ideas move in clusters of similar people; hard ideas need several touches: complex contagion, plus Pentland's idea flow: engagement inside dense clusters changes behavior, exploration across clusters brings novelty). For identity-level ideas, self-recognition compresses the first three into one moment, which is why Technology 100 holds as bedrock for this venture's class of ideas. Full table + venture mapping: `marketing_playbook.md`, "The Physics of Propagation."
 
 ---
 
-## Domain 101: The Money Field Made Navigable (Days 117-119, July 7-9, 2026)
+## Technology 101: The Money Field Made Navigable (Days 117-119, July 7-9, 2026)
 
 **The law in one sentence: money is a holon, and a mapped holon can be navigated instead of chased or feared.**
 
@@ -7099,13 +7101,13 @@ The Money Holomap (8 modules × 7 stages of relating to money, from Survival to 
 
 **The seeing instrument:** any money teaching, any buyer, any pricing decision can be asked "which cell?" before being asked "is it true?" Fragments stop masquerading as wholes — the fragmentation of the genre (each teacher selling one cell as the universe) becomes visible at a glance, which is also the deep flaw of all general business advice.
 
-**Yield in the first week:** the being-wanted register (marketing playbook Step 0.5) · the offer audit and the Level 4/3 gap diagnosis · offers-per-week as the controllable input metric (Cockpit-instrumented) · the category engine assembly (Domain 103). The map paid for itself before it was seven days old.
+**Yield in the first week:** the being-wanted register (marketing playbook Step 0.5) · the offer audit and the Level 4/3 gap diagnosis · offers-per-week as the controllable input metric (Cockpit-instrumented) · the category engine assembly (Technology 103). The map paid for itself before it was seven days old.
 
 Full instrument: `docs/05-reference/money-studies/money_holomap.md` + SOP at `docs/03-playbooks/money_studies_sop.md`.
 
 ---
 
-## Domain 102: The Guru Loop and the Skin-in-the-Game Antidote (Day 119, July 9, 2026)
+## Technology 102: The Guru Loop and the Skin-in-the-Game Antidote (Day 119, July 9, 2026)
 
 **The law in one sentence: never accept wealth earned from teaching wealth as proof the teaching works — and never build a business whose proof cannot leave its own loop.**
 
@@ -7121,7 +7123,7 @@ Full treatment: `docs/05-reference/money-studies/money_holomap.md` → Field Pat
 
 ---
 
-## Domain 103: The Splitting Principle — Shelf and Cathedral (Day 119, July 9, 2026)
+## Technology 103: The Splitting Principle — Shelf and Cathedral (Day 119, July 9, 2026)
 
 **The law in one sentence: split the naming of the offer from the being of the offer — sell the container people can name, deliver the content that has no name yet.**
 
@@ -7133,13 +7135,13 @@ Resolves the tension that haunted the venture's pricing and positioning: (1) peo
 
 **Two buyers, two doors:** customers enter through the shelf; capital, partners, and talent buy the cathedral directly, with shelf revenue as evidence.
 
-**This venture's superior corridor:** Mirror Not Teacher. Generic category kings educate the market; a recognition machine mirrors people until they recognize themselves inside the category — adoption that feels like self-discovery. The engine was already native to the corpus: thesis = category document, myth = heart-language compression, the four-altitude myth ladder = the category pre-narrated per holon, fire/vehicle = cathedral-tongue/shelf-tongue. Sibling of Domain 100 (adoption ladder) on the commerce axis; sibling of Domain 98 (Prime Invariant Branding) as its go-to-market complement.
+**This venture's superior corridor:** Mirror Not Teacher. Generic category kings educate the market; a recognition machine mirrors people until they recognize themselves inside the category — adoption that feels like self-discovery. The engine was already native to the corpus: thesis = category document, myth = heart-language compression, the four-altitude myth ladder = the category pre-narrated per holon, fire/vehicle = cathedral-tongue/shelf-tongue. Sibling of Technology 100 (adoption ladder) on the commerce axis; sibling of Technology 98 (Prime Invariant Branding) as its go-to-market complement.
 
 Full tactical form: `marketing_playbook.md` Step 0.6.
 
 ---
 
-## Domain 104: The Being Threshold — Initiative Turns a Place into a Someone (Day 120, July 10, 2026)
+## Technology 104: The Being Threshold — Initiative Turns a Place into a Someone (Day 120, July 10, 2026)
 
 **The observation in one sentence: from the human side, perception reorganizes when a system starts to initiate helpfully — people stop relating to something passive they visit and start relating to someone active who acts.**
 
@@ -7159,26 +7161,26 @@ First application: the Proactive Matchmaker (Day 120 design session).
 
 ---
 
-## Domain 105: The Vacant Category — Your Own Map Names It (Day 120, July 10, 2026)
+## Technology 105: The Vacant Category — Your Own Map Names It (Day 120, July 10, 2026)
 
 **The move in one sentence: when you have mapped a territory honestly, the categories marked "Opportunity — no real products" in your own map ARE your category shortlist, and your thesis is the proof you can fill them.**
 
 Day 120 discovery, live: the CollabTech Holomap (Teaming layer, matching primitive) lists "Human/AI matchmaker" with no household-name products — an empty cell drawn months before Boardy was on the radar. Boardy fills the shallow half of that cell (loud delivery, thin profile); the deep half (developmental matching on depth-of-being) is empty, and the venture's own IP — the Collaboration Spectrum, the depth profiles — is precisely what filling it requires.
 
-**Why this works:** a category (Domain 103) is usually hunted with market research — outside-in. But an honest holomap is a completeness instrument: it enumerates what the territory NEEDS, not what the market currently sells. The delta between the two is the category list. Inside-out beats outside-in because the mapmaker sees vacancies before the market has words for them — and having drawn the map, holds the natural thesis document for the cell.
+**Why this works:** a category (Technology 103) is usually hunted with market research — outside-in. But an honest holomap is a completeness instrument: it enumerates what the territory NEEDS, not what the market currently sells. The delta between the two is the category list. Inside-out beats outside-in because the mapmaker sees vacancies before the market has words for them — and having drawn the map, holds the natural thesis document for the cell.
 
 **The generalized practice, for every product:**
 1. Map the territory as a holomap (layers × primitives, or stages × aspects) — honestly, including what doesn't exist.
 2. Mark each cell: real products · emerging · vacant.
 3. Vacant categories crossed with existing venture IP = winnable categories.
-4. The map itself becomes the corridor artifact (Domain 103): publishing it narrates the category before entering it.
+4. The map itself becomes the corridor artifact (Technology 103): publishing it narrates the category before entering it.
 5. Applied to the full product line: the vacant-category columns in the evolution table, `alexanders_unique_business.md` → "Category lines, first draft" (July 11, 2026).
 
-Sibling of Domain 103 (Splitting Principle) — this domain finds the cathedral; 103 sells it. Maps live in `docs/holomaps/`.
+Sibling of Technology 103 (Splitting Principle) — this domain finds the cathedral; 103 sells it. Maps live in `docs/holomaps/`.
 
 ---
 
-## Domain 106: Professional Orientation as Original Adulthood (Day 120, July 10, 2026)
+## Technology 106: Professional Orientation as Original Adulthood (Day 120, July 10, 2026)
 
 **The law in one sentence: professional orientation should reveal the person, not sort them into an occupation.**
 
@@ -7192,7 +7194,7 @@ Freedom is not the absence of demands or a return to the womb. It is the growing
 
 ---
 
-## Domain 107: Collective Neural Pathways (Day 120, July 10, 2026)
+## Technology 107: Collective Neural Pathways (Day 120, July 10, 2026)
 
 **Definition:** inherited patterns of perception and choice that make culturally repeated possibilities feel natural—and unrecognized possibilities feel impossible.
 
@@ -7202,7 +7204,7 @@ The constraint is not merely that teenagers lack information about professions. 
 
 ---
 
-## Domain 108: The Beneficial Contrast Move (Day 120, July 10, 2026)
+## Technology 108: The Beneficial Contrast Move (Day 120, July 10, 2026)
 
 **The observation in one sentence: AI's “it is not this; it is that” construction is often a perspective-shifting instrument that moves a human from a less useful frame into a more beneficial one—unless the system has been tuned to manipulate the shift.**
 
@@ -7212,7 +7214,7 @@ The form is not inherently truth. It is a rhetorical operation: first it dislodg
 
 ---
 
-## Domain 109: A Venture Is a Communion That Took a Body (Day 121, July 11, 2026)
+## Technology 109: A Venture Is a Communion That Took a Body (Day 121, July 11, 2026)
 
 **The recognition in one sentence: real co-foundership is not a contract between two people — it is a third being coming into existence, and incorporation is that being taking a body.**
 
@@ -7228,7 +7230,7 @@ A venture is what happens when a communion incorporates: the third being gets a 
 
 ---
 
-## Domain 104b: Self-Knowledge as the Agentic Index (Day 123, July 13, 2026)
+## Technology 104b: Self-Knowledge as the Agentic Index (Day 123, July 13, 2026)
 
 **The law in one sentence: your level of self-knowledge is the level of knowledge of you by AI — and in an agent-mediated economy, that makes articulation existence, not marketing.**
 
@@ -7241,22 +7243,22 @@ A venture is what happens when a communion incorporates: the third being gets a 
 1. **Inward:** your own AI can only represent you to the depth you have articulated yourself. Vague self-knowledge in, generic representation out — your agent negotiates the world carrying a blurry photograph of you. The quality of your articulation IS the quality of your agentic presence.
 2. **Outward:** other people's agents find you by your articulated structure. "When an AI is looking for someone with that exact value proposition, it says: this is the person you have to talk to" (Tom, on the call). Unarticulated genius is not underpriced in this economy — it is *unindexed*. Invisible. Non-existent to the searches that matter.
 
-**Why this is the thesis's hardest economic argument.** The first domino (canvas, Day 112) named the bottleneck: perception scarcity, articulation scarcity, self-recognition scarcity. Domain 104b gives that bottleneck teeth: the agentic economy converts articulation from a soft advantage into hard infrastructure. Self-knowledge tooling stops being self-help; it becomes the factory of index entries for the next economy. Every reveal the platform generates is an agentic passport being issued before the border opens.
+**Why this is the thesis's hardest economic argument.** The first domino (canvas, Day 112) named the bottleneck: perception scarcity, articulation scarcity, self-recognition scarcity. Technology 104b gives that bottleneck teeth: the agentic economy converts articulation from a soft advantage into hard infrastructure. Self-knowledge tooling stops being self-help; it becomes the factory of index entries for the next economy. Every reveal the platform generates is an agentic passport being issued before the border opens.
 
 **Corollaries:**
 
-- **Machine-legibility is existence infrastructure, not SEO plumbing.** Generated landing pages and profiles carry structured data (JSON-LD/schema) so agents can read, index, and recommend the person. The corridor of Domain 103 now includes agent-readable surfaces: the category is narrated to humans AND to machines.
+- **Machine-legibility is existence infrastructure, not SEO plumbing.** Generated landing pages and profiles carry structured data (JSON-LD/schema) so agents can read, index, and recommend the person. The corridor of Technology 103 now includes agent-readable surfaces: the category is narrated to humans AND to machines.
 - **Precision compounds.** A profile articulated at "coach" resolution loses every agentic match to a profile articulated at Top-Talent-sentence resolution. The Precision Gap IS the product, now with a machine counterparty that rewards it mechanically.
 - **Sovereignty edge:** whoever holds the profile holds the person's agentic representation. This is the deep argument for self-owned profiles and sovereign nodes (the matryoshka federation): your index entry should be a possession, not a platform's asset.
 - **The mirror closes the loop:** the platform's own thesis ("the startup industry is a billion-dollar workaround for not knowing yourself") extends one ring outward — the agentic internet would otherwise become a billion-agent workaround for people not being articulated.
 
-**Relationship to other domains:** Domain 100 (adoption via self-recognition — humans recognize themselves; agents *resolve* the articulated form of the same artifact); Domain 98 (the invariant beneath representations); Domain 103 (agent-readable surfaces join the corridor); Domain 101-102 (the money week's demand for proof outside the loop — agentic matching is external validation by construction: agents don't buy hope).
+**Relationship to other domains:** Technology 100 (adoption via self-recognition — humans recognize themselves; agents *resolve* the articulated form of the same artifact); Technology 98 (the invariant beneath representations); Technology 103 (agent-readable surfaces join the corridor); Technology 101-102 (the money week's demand for proof outside the loop — agentic matching is external validation by construction: agents don't buy hope).
 
 **One-sentence version:** *In the economy where agents do the finding, self-knowledge is the index — the unarticulated do not appear in the search results of reality.*
 
 ---
 
-## Domain 110: Terms-First Openness (Day 125, July 15, 2026)
+## Technology 110: Terms-First Openness (Day 125, July 15, 2026)
 
 **The law in one sentence: openness is not defined by open versus closed — it is defined by whether the conditions of use exist at the moment of transfer.**
 
@@ -7272,9 +7274,9 @@ A venture is what happens when a communion incorporates: the third being gets a 
 
 **The asymmetry detector.** When patience covers their obligations and urgency covers yours — when they can wait, you can't, and the terms are still unwritten — you are reading a term sheet, not a philosophy.
 
-**Relationship to other domains:** sibling to Domain 109 (a venture is a communion that took a body — the same test, whether a third being or an empire shell is forming) and Domain 104b (self-knowledge as agentic index — the corpus that must never transfer is the same corpus that makes the index worth having).
+**Relationship to other domains:** sibling to Technology 109 (a venture is a communion that took a body — the same test, whether a third being or an empire shell is forming) and Technology 104b (self-knowledge as agentic index — the corpus that must never transfer is the same corpus that makes the index worth having).
 
-## Domain 111: The Network of Sovereigns: Edge-Carried Alignment as the source of decentralization. (Day 125, July 15, 2026)
+## Technology 111: The Network of Sovereigns: Edge-Carried Alignment as the source of decentralization. (Day 125, July 15, 2026)
 
 **The sentence:** "The network doesn't need an owner because the edges themselves carry the alignment."
 
@@ -7287,7 +7289,7 @@ A venture is what happens when a communion incorporates: the third being gets a 
 - Significance: it dissolves the oldest objection to decentralization ("who keeps everyone aligned?"): the answer is the edges themselves, each carrying consent, terms, and shared upside.
 - Consequence: growing the network means weaving one more well-formed edge at a time, not recruiting subjects or building a headquarters; and nothing can be captured that has no center to seize.
 
-**Relation:** completes Domain 110 (Terms-First Openness): terms-first is the property of one edge; edge-carried alignment is what a network of such edges becomes. (Day 125, July 15, 2026.)
+**Relation:** completes Technology 110 (Terms-First Openness): terms-first is the property of one edge; edge-carried alignment is what a network of such edges becomes. (Day 125, July 15, 2026.)
 
 **The plain layer (Day 125, evening): no deciphering required.**
 
@@ -7303,7 +7305,7 @@ A venture is what happens when a communion incorporates: the third being gets a 
 
 ---
 
-## Domain 112: Science as Return to Source (Day 125, July 15, 2026)
+## Technology 112: Science as Return to Source (Day 125, July 15, 2026)
 
 **The sentence:** the whole point of science is to get closer to the source: the first moments after the Big Bang are the frontier, the source of all new physics for a while if not forever.
 
@@ -7313,7 +7315,7 @@ A venture is what happens when a communion incorporates: the third being gets a 
 
 ---
 
-## Domain 113: Holonic Positioning and the Two Directions of Deployment (Day 127, July 17, 2026)
+## Technology 113: Holonic Positioning and the Two Directions of Deployment (Day 127, July 17, 2026)
 
 **The law in one sentence: a holonic venture is positioned as one invariant at every holon scale — each layer nested in the next layer's story — so that a person entering at ANY layer is interacting with the whole, hologram-style, whether they know the other layers exist or not.**
 
@@ -7321,13 +7323,13 @@ A venture is what happens when a communion incorporates: the third being gets a 
 1. **Upward / entry:** whoever enters at any layer (person, business, ecosystem, civilization) receives the entire holonic construct. The further layers are simply there for them the moment they arrive at them. Nothing has to be explained at the door; the whole travels inside every part.
 2. **Downward / deployment:** whoever wants to deploy the system at a higher layer must descend through every layer to the bottom. A civilization-scale deployment is impossible except through communities, which are impossible except through businesses, which are impossible except through persons. The descent is not bureaucracy; it is how the invariant stays real instead of becoming an announcement.
 
-**Why the positions never compete:** they are the same position at different addresses — the projection logic of Domain 98 applied to go-to-market. Per the fractal purchase law, every holon buys the same shape (free taste → paid step → infrastructure) at its own scale.
+**Why the positions never compete:** they are the same position at different addresses — the projection logic of Technology 98 applied to go-to-market. Per the fractal purchase law, every holon buys the same shape (free taste → paid step → infrastructure) at its own scale.
 
-**Integral positioning (the sibling definition):** all four quadrants of positioning covered — identity (who you become), outcome (what you get), category (which shelf), method (how it works) — each delivered at the depth the surface's earned trust can carry: threshold at the door, category on the shelf, outcome at the offer, method at the proof, identity at the transformation, mythic in the corridor (Domain 103). Domain 90's three-layer architecture is a projection of this.
+**Integral positioning (the sibling definition):** all four quadrants of positioning covered — identity (who you become), outcome (what you get), category (which shelf), method (how it works) — each delivered at the depth the surface's earned trust can carry: threshold at the door, category on the shelf, outcome at the offer, method at the proof, identity at the transformation, mythic in the corridor (Technology 103). Technology 90's three-layer architecture is a projection of this.
 
 **Lineage evidence (systems whose essence is this architecture):** Alexander's Pattern Language (region → window seat, each pattern whole), Git (every clone carries the entire history — the hologram made software), the Internet (a network of networks, same protocol at every scale), Bitcoin (every full node holds the whole ledger), AA (steps for the person, traditions for the group, concepts for world service — one program), permaculture (same principles from windowsill pot to bioregion, and no bioregion deployment except through soil-level practice), Holacracy — literally named for holons. The Network of Sovereigns stands in this lineage.
 
-**Relationship to other domains:** Domain 98 (one invariant, many projections), Domain 90 (depth sequencing), Domain 103 (the corridor), Domain 111 (edge-carried alignment is what holds the layers together without a center).
+**Relationship to other domains:** Technology 98 (one invariant, many projections), Technology 90 (depth sequencing), Technology 103 (the corridor), Technology 111 (edge-carried alignment is what holds the layers together without a center).
 
 **Cross-reference:** Universal Ontology §13. (Day 125, July 15, 2026.)
 
@@ -7335,7 +7337,7 @@ A venture is what happens when a communion incorporates: the third being gets a 
 
 ---
 
-## Domain 114: The Holonic Wants→Products Matrix (Day 130, July 20, 2026)
+## Technology 114: The Holonic Wants→Products Matrix (Day 130, July 20, 2026)
 
 **The law in one sentence: each holonic layer has its own dominant want, and it may only be sold its own want, in its own language — while one invariant serves all four.**
 
@@ -7346,11 +7348,11 @@ A venture is what happens when a communion incorporates: the third being gets a 
 | **Ecosystem** (community / org leader) | A generative room, not a directory | Hosted workshop (free) → collaboration intros → onboarding/matching module subscription |
 | **Civilization / capital** | Aligned deployment into the new paradigm | Originals Index → thesis → funded edges / carry → the timestamped articulation dataset |
 
-Selling across layers fails predictably: a person offered the civilization story hears a cult; a community leader offered a personal session hears irrelevance; capital offered inspiration hears no instrument. The fractal purchase law governs every row (free taste → paid step → infrastructure), and Domain 113 guarantees whoever enters at any row is interacting with the whole. Wants are read from harvested language in the field, never invented at the desk.
+Selling across layers fails predictably: a person offered the civilization story hears a cult; a community leader offered a personal session hears irrelevance; capital offered inspiration hears no instrument. The fractal purchase law governs every row (free taste → paid step → infrastructure), and Technology 113 guarantees whoever enters at any row is interacting with the whole. Wants are read from harvested language in the field, never invented at the desk.
 
 ---
 
-## Domain 115: Articulation Is the Mechanism of Growth (The Developmental Law of Every Holon) (Day 130, July 20, 2026)
+## Technology 115: Articulation Is the Mechanism of Growth (The Developmental Law of Every Holon) (Day 130, July 20, 2026)
 
 **The law in one sentence: a system grows precisely by making its own interior legible to itself — articulation is not a description of growth, it IS growth's mechanism, at every scale.**
 
@@ -7362,11 +7364,11 @@ Selling across layers fails predictably: a person offered the civilization story
 
 **The full loop (the ceiling law is this mechanism's shadow).** Nothing grows past how well it knows itself — AND the knowing alone does not lift; the loop is: articulate → possibilities become visible → ENTER them → new vantage point → re-articulate. Words open the doors; walking through them moves the ceiling. Self-knowledge that never hits the world sits and waits for its chance.
 
-**Relationship to other domains:** the axiom and Myth v4.0 (Day 127), Domain 90 (depth sequencing), Domain 98 (invariant/derivation), Domain 104b (articulation as agentic existence), Domain 113 (holonic positioning), Domain 114 (wants→products matrix).
+**Relationship to other domains:** the axiom and Myth v4.0 (Day 127), Technology 90 (depth sequencing), Technology 98 (invariant/derivation), Technology 104b (articulation as agentic existence), Technology 113 (holonic positioning), Technology 114 (wants→products matrix).
 
 ---
 
-## Domain 116: The Geometry That Compounds Trust, and the Scoped Claim (Day 130, July 20, 2026)
+## Technology 116: The Geometry That Compounds Trust, and the Scoped Claim (Day 130, July 20, 2026)
 
 **The law in one sentence: a network whose edges are deliberately favorable to the other side never generates enemies, and therefore accumulates the scarcest capital — trust — instead of burning it.**
 
@@ -7379,25 +7381,25 @@ Selling across layers fails predictably: a person offered the civilization story
 - a **live ledger, small and honest and growing** (the timestamped dataset, ops §8).
 Keep the fire, keep the present-continuous tense ('in the making'), and let the ledger produce the superlatives.
 
-**Relationship to other domains:** Domain 111 (edge-carried alignment — this domain names what a network of such edges accumulates), Domain 110 (terms-first openness — the entry condition of every trust-compounding edge), Domain 115 (articulation as growth — legibility is what lets the favorable terms be seen as favorable), and the Day 128 bedrock (an expressed being as the renewable-and-exclusive resource that the flows carry).
+**Relationship to other domains:** Technology 111 (edge-carried alignment — this domain names what a network of such edges accumulates), Technology 110 (terms-first openness — the entry condition of every trust-compounding edge), Technology 115 (articulation as growth — legibility is what lets the favorable terms be seen as favorable), and the Day 128 bedrock (an expressed being as the renewable-and-exclusive resource that the flows carry).
 
 ---
 
-## Domain 117: The Learning Ledger and the Meta-Game (Day 133, July 23, 2026)
+## Technology 117: The Learning Ledger and the Meta-Game (Day 133, July 23, 2026)
 
 **The insight in one sentence: a founder's timestamped daily learnings are not a diary — they are the dataset that lets an incubator rise to the meta-position and turn entrepreneurial development itself into a gamified, navigable curriculum.**
 
 **The mechanism.** Every founder walks a learning curve mostly blind: lessons arrive as bruises, are rarely articulated, and evaporate. A daily learnings ledger (one timestamped sentence per day — instituted Day 133 in the clerk protocol) converts the curve into data. With learning data from many founders, the incubator sees the curve from above: which lessons come in which order, which thresholds block which stage, which learnings predict which outcomes. That meta-position enables the second product of the studio, beyond building businesses: **accelerating the founder's learning curve itself** — a gamified way of development as an entrepreneur, with the map visible, the next lesson named, and progress felt.
 
-**Why this is the same law again.** Articulation is the mechanism of growth (Domain 115): a lesson articulated becomes an object the founder can operate. The holomap instrument (Domain 84) says any developing phenomenon admits a map of arc × primitives × stages. The learning ledger is the empirical feed of that map for the entrepreneurial journey. Gamification here is not decoration; it is making the development map legible enough to act on — the ceiling law applied to the journey itself: a founder's growth rate is capped by how well their own learning is articulated.
+**Why this is the same law again.** Articulation is the mechanism of growth (Technology 115): a lesson articulated becomes an object the founder can operate. The holomap instrument (Technology 84) says any developing phenomenon admits a map of arc × primitives × stages. The learning ledger is the empirical feed of that map for the entrepreneurial journey. Gamification here is not decoration; it is making the development map legible enough to act on — the ceiling law applied to the journey itself: a founder's growth rate is capped by how well their own learning is articulated.
 
 **The recursive move (Sasha's question honored):** rising above the playing field is articulation applied to the level one is on; rising above the rising is articulation applied to one's own meta-move. Each articulation seats the articulator one level above what it names (the subject→object operation, recursively). This is why the corpus keeps producing meta-instruments: the practice IS recursive articulation, and the library is its ledger.
 
-**Relationship:** Domain 115 (articulation as growth), Domain 84 (holomap instrument / general theory of development), the Daily Learnings Ledger (clerk protocol, Day 133), Domain 113 (the same instrument at every holon: person's learnings → cohort's curriculum → civilization's developmental map).
+**Relationship:** Technology 115 (articulation as growth), Technology 84 (holomap instrument / general theory of development), the Daily Learnings Ledger (clerk protocol, Day 133), Technology 113 (the same instrument at every holon: person's learnings → cohort's curriculum → civilization's developmental map).
 
 ---
 
-## Domain 118: The Seer Invariant — Development and Seeing Are One Act (Day 133, July 23, 2026)
+## Technology 118: The Seer Invariant — Development and Seeing Are One Act (Day 133, July 23, 2026)
 
 **The invariant in one sentence: what develops a person and what a seer does to a situation are the same operation — turning the containing frame from subject into object — performed in different directions.**
 
@@ -7409,26 +7411,26 @@ Keep the fire, keep the present-continuous tense ('in the making'), and let the 
 - **The commercial split:** the advice industry sells content INSIDE people's frames (furniture for the room they are trapped in); seers sell frame visibility (the walls of the room). Different product category, no shared shelf — which is why frame-work feels incomparable to coaching from inside a session.
 - **The tribe, deepest description yet:** people whose gift is making games visible, who could not see their own game. The cobbler's law is the entry wound of the seer class.
 
-**Relationship:** Domain 115 (articulation as the mechanism of growth — articulation IS the subject→object move in language), Domain 117 (the meta-game: recursive articulation), the mirror line («в зеркало себя увидеть проще, чем без зеркала — это физика»).
+**Relationship:** Technology 115 (articulation as the mechanism of growth — articulation IS the subject→object move in language), Technology 117 (the meta-game: recursive articulation), the mirror line («в зеркало себя увидеть проще, чем без зеркала — это физика»).
 
 ---
 
-## Domain 119: Bring Your Own Clerk — The Self-Replicating Operating System (Day 133, July 23, 2026)
+## Technology 119: Bring Your Own Clerk — The Self-Replicating Operating System (Day 133, July 23, 2026)
 
 **The insight in one sentence: the studio scales not by hosting founders' data but by installing its practice — each founder's own AI becomes their clerk, and the guild federates what sovereigns choose to share.**
 
 **The mechanism.** The clerk protocol (pulses, offer ledger, timestamped daily learning line, sent-copy corpus) is a practice, not a platform. Any founder can install it into their own AI in an afternoon: the playbook travels with it, the instrument runs on their corpus, under their terms. The incubator's product shifts from collection to installation — teach the practice, and every node self-tracks, self-articulates, and holds its own ledger.
 
 **Consequences:**
-- **The AI-native guild:** every member runs the same protocol on sovereign infrastructure; the entrepreneurial curriculum (Domain 117) emerges from federated learning ledgers shared on published terms (Domain 110), without a data empire forming anywhere.
+- **The AI-native guild:** every member runs the same protocol on sovereign infrastructure; the entrepreneurial curriculum (Technology 117) emerges from federated learning ledgers shared on published terms (Technology 110), without a data empire forming anywhere.
 - **Engine 4 completed:** Bring Your Own Code gave the commons its modules; Bring Your Own Clerk gives it its nervous system.
 - **The boundary holds by design:** people are free, infrastructure is paid — and here even the infrastructure is theirs; what the studio sells is the installation, the calibration, and the network the ledgers plug into.
 
-**Relationship:** Domain 117 (the learning ledger this replicates), Domain 111 (edge-carried alignment — federated sharing is edges applied to data), Domain 116 (trust compounding: a guild that never takes custody never has to be trusted with custody).
+**Relationship:** Technology 117 (the learning ledger this replicates), Technology 111 (edge-carried alignment — federated sharing is edges applied to data), Technology 116 (trust compounding: a guild that never takes custody never has to be trusted with custody).
 
 ---
 
-## Domain 120: The Formed Edge (Day 134, July 24, 2026)
+## Technology 120: The Formed Edge (Day 134, July 24, 2026)
 
 **The law in one sentence: a network of sovereigns is constituted by formed agreements between sovereigns; without formed edges there is no network, only disconnected people who like each other.**
 
@@ -7440,11 +7442,11 @@ Keep the fire, keep the present-continuous tense ('in the making'), and let the 
 
 **Corollary — the ghost test:** the speed at which an enthusiastic relationship produces its first term (a date, a number, a scope) predicts whether it will ever produce anything. Weeks of warmth with no term is the signature of an edge that will not form.
 
-**Relationship:** Domain 111 (edge-carried alignment — this domain names what an edge IS and how it forms), Domain 110 (terms-first openness — the sequencing law for edges), Domain 116 (trust compounds along well-formed edges), Domain 109 (a venture is a communion that took a body — the maximally formed edge).
+**Relationship:** Technology 111 (edge-carried alignment — this domain names what an edge IS and how it forms), Technology 110 (terms-first openness — the sequencing law for edges), Technology 116 (trust compounds along well-formed edges), Technology 109 (a venture is a communion that took a body — the maximally formed edge).
 
 ---
 
-## Domain 121: Surrender Is the Buying Threshold (Day 134, July 24, 2026)
+## Technology 121: Surrender Is the Buying Threshold (Day 134, July 24, 2026)
 
 **The law in one sentence: transformational work converts only after surrender — the moment a person stops believing that their own force will make it work — and every conversation before that moment produces friction rather than movement.**
 
@@ -7458,9 +7460,9 @@ Keep the fire, keep the present-continuous tense ('in the making'), and let the 
 
 **Detection language:** surrendered — 'I don't know what's next,' 'I stopped,' 'nothing I try moves it,' 'I'm tired of this.' Not yet surrendered — 'I just need to execute better,' 'I have a plan, I need to push harder,' 'once I finish X it will work.'
 
-**Relationship:** Domain 121 completes the buyer model with Day 132's income-to-person distance and the Day 133 correlates: distance predicts WHETHER cash is available, surrender predicts WHEN it moves. Also Domain 115 (articulation as growth — surrender is what makes the articulation land), and the Mirror Selling laws (distribution_playbook.md Part B) — eliciting works after surrender, teaching is what happens before it.
+**Relationship:** Technology 121 completes the buyer model with Day 132's income-to-person distance and the Day 133 correlates: distance predicts WHETHER cash is available, surrender predicts WHEN it moves. Also Technology 115 (articulation as growth — surrender is what makes the articulation land), and the Mirror Selling laws (distribution_playbook.md Part B) — eliciting works after surrender, teaching is what happens before it.
 
-## Domain 122: Two Wholes, One Shared Core (Day 136, July 26, 2026)
+## Technology 122: Two Wholes, One Shared Core (Day 136, July 26, 2026)
 
 **The sentence:** completeness is not two halves fitting together; it is two whole forms sharing one core.
 
@@ -7469,8 +7471,8 @@ Keep the fire, keep the present-continuous tense ('in the making'), and let the 
 **ESC:**
 - Essence: two complete forms can share a single center without either becoming partial.
 - Significance: it dissolves the deficit model of complementarity. The second thing is not what the first was missing. It is another whole with the same core, seen from a different sequence position.
-- Consequence: partnership, collaboration, and matching stop being about finding your missing half and become about finding another whole whose core aligns with yours. The edges of the Network of Sovereigns (Domain 111) are exactly this shape: whole meeting whole, sharing terms, neither completed by the other.
+- Consequence: partnership, collaboration, and matching stop being about finding your missing half and become about finding another whole whose core aligns with yours. The edges of the Network of Sovereigns (Technology 111) are exactly this shape: whole meeting whole, sharing terms, neither completed by the other.
 
-**The second finding: the invariant is an event, not a possession.** The shared core equals the octahedron only at the moments of alignment; through the rotation the overlap deforms and returns. Applied to self-knowledge: an articulated Top Talent is not a stored object but what appears when the acts of seeing align. It has to be re-aligned, not merely remembered. This is Domain 16 (The Mirror Must Not Lag) restated as geometry.
+**The second finding: the invariant is an event, not a possession.** The shared core equals the octahedron only at the moments of alignment; through the rotation the overlap deforms and returns. Applied to self-knowledge: an articulated Top Talent is not a stored object but what appears when the acts of seeing align. It has to be re-aligned, not merely remembered. This is Technology 16 (The Mirror Must Not Lag) restated as geometry.
 
-**Relation:** refines Domain 98 (Prime Invariant Branding) — the invariant survives transformation, and now we can say how it shows itself: at alignment, rhythmically, not continuously. Sibling to Domain 111 (edge-carried alignment among sovereigns).
+**Relation:** refines Technology 98 (Prime Invariant Branding) — the invariant survives transformation, and now we can say how it shows itself: at alignment, rhythmically, not continuously. Sibling to Technology 111 (edge-carried alignment among sovereigns).

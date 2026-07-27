@@ -1,8 +1,8 @@
 # Vision ↔ Viability Upgrade: Planning SOW + DoD
 
-> *Operationalizes Domain 93 (Vision ↔ Viability Balancing for Business Strategies). Adds the **viability** (crash-test) axis beside the existing **fidelity** (roast) axis in the platform's under-the-hood refinement. Dated June 5, 2026 (Day 94).*
+> *Operationalizes Phase Shift Technology 93 (Vision ↔ Viability Balancing for Business Strategies). Adds the **viability** (crash-test) axis beside the existing **fidelity** (roast) axis in the platform's under-the-hood refinement. Dated June 5, 2026 (Day 94).*
 >
-> Links: [Domain 93](../../01-vision/phase_shift_technology_library.md) · [Roasting Protocol](../../05-reference/roasting_protocol.md)
+> Links: [Phase Shift Technology 93](../../01-vision/phase_shift_technology_library.md) · [Roasting Protocol](../../05-reference/roasting_protocol.md)
 
 ---
 
@@ -41,7 +41,7 @@ Strategy-class artifacts get viability; essence-class do not. Implement as a `vi
 
 ## 5. Design decision: embedded vs second pass
 
-**Recommendation: a second, independent pass.** The method's integrity depends on the burner not being the lover. If the same call that generated and fell in love with the artifact also crash-tests it, it is marking its own homework, which violates Domain 93's honesty caveat. A second call with a fresh adversarial context (no generation history beyond the artifact plus the founder/tribe root context) is structurally more honest, and lets us read a real kinetic-calm score.
+**Recommendation: a second, independent pass.** The method's integrity depends on the burner not being the lover. If the same call that generated and fell in love with the artifact also crash-tests it, it is marking its own homework, which violates Phase Shift Technology 93's honesty caveat. A second call with a fresh adversarial context (no generation history beyond the artifact plus the founder/tribe root context) is structurally more honest, and lets us read a real kinetic-calm score.
 
 **Embedded** (one call, `CRASH_TEST_PROTOCOL` appended after the roast) is cheaper and lower-latency; acceptable as a v1 fallback. Build it behind a flag so the two can be compared.
 
@@ -84,13 +84,13 @@ Add to the `improve-artifact` response (and the Excalibur response) on viability
 - **Phase 2:** `generate-excalibur` (make the implicit crash-test explicit, consolidate the duplicate roast text).
 - **Phase 3:** `deepen-icp` / `deepen-pain` / `deepen-tp` / `generate-landing` / `generate-blueprint`.
 
-Every phase closes by taking **one real artifact to one real human.** This is the anti-Kool-Aid gate (Domain 93 caveat 1): the loop produces a sharper hypothesis, never validation. Simulated reality is not reality.
+Every phase closes by taking **one real artifact to one real human.** This is the anti-Kool-Aid gate (Phase Shift Technology 93 caveat 1): the loop produces a sharper hypothesis, never validation. Simulated reality is not reality.
 
 ## 9. UI surfacing (light, editorial)
 
 The user already sees "Roasting…" during improve. Add a quiet viability read: a kinetic-calm indicator and the one next move, in the same editorial register as the rest of the surface (back-office matches the front). Not a dashboard. Can be deferred to internal-only for v1 (see §12).
 
-## 10. Risks (Domain 93's own caveats, plus product)
+## 10. Risks (Phase Shift Technology 93's own caveats, plus product)
 
 | Risk | Guard |
 |------|-------|

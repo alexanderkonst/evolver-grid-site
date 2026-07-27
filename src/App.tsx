@@ -607,7 +607,7 @@ const App = () => (
                   <Route path="/marketplace/browse" element={<Navigate to="/game/marketplace/browse" replace />} />
                   <Route path="/marketplace/create-page" element={<RequireAuth><PublicPageEditor /></RequireAuth>} />
                   <Route path="/ai-upgrade" element={<RequireAuth><AIUpgrade /></RequireAuth>} />
-                  <Route path="/destiny" element={<RequireAuth><Destiny /></RequireAuth>} />
+                  <Route path="/destiny" element={<Destiny />} />
                   <Route path="/mens-circle" element={<RequireAuth><MensCircle /></RequireAuth>} />
                   <Route path="/mens-circle/thank-you" element={<RequireAuth><MensCircleThankYou /></RequireAuth>} />
                   <Route path="/genius-offer" element={<Navigate to="/zone-of-genius/entry" replace />} />

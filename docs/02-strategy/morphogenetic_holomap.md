@@ -2,11 +2,11 @@
 
 > *The Navigation Instrument — Venture v2.0 (27×7 Topology)*
 > *Updated: July 3, 2026 · Day 113 (Propagation → Navigation: the thesis, pulse protocol, relationship ledger, Equilibrium layer, and holomap crystallized into Founder Cockpit — a living project navigation surface). See the Day 113 Addendum at the bottom.*
-> *Grounding: [Seven Number-Prisms](../01-vision/universal_ontology.md#4e-the-seven-number-prisms--an-integral-directory-of-seeing-systems) — Lens 4 (12) → Lens 5 (13) → Lens 6 (26) → Lens 7 (27 / Crystallization) · [Domain 66 — The 27th Perspective](../01-vision/phase_shift_technology_library.md#domain-66) · [Integral Theory Upgrade v1.1](../../src/pages/IntegralTheoryUpgrade1.tsx)*
+> *Grounding: [Seven Number-Prisms](../01-vision/universal_ontology.md#4e-the-seven-number-prisms--an-integral-directory-of-seeing-systems) — Lens 4 (12) → Lens 5 (13) → Lens 6 (26) → Lens 7 (27 / Crystallization) · [Phase Shift Technology 66 — The 27th Perspective](../01-vision/phase_shift_technology_library.md#domain-66) · [Integral Theory Upgrade v1.1](../../src/pages/IntegralTheoryUpgrade1.tsx)*
 > *Center Reading: Unification (← Coherence ← Recognition ← Emanation ← Activation ← Consolidation ← Crystallization ← Declaration ← Flowering ← Rooting ← Branching ← Ignition ← Threshold)*
 > *Holon: The Unique Business Methodology Emergence*
 
-> **Lineage:** [12-Perspective Framework](../01-vision/phase_shift_technology_library.md#domain-15) → [12-Perspective Analysis](../01-vision/12_perspective_holonic_analysis.md) → [Morphogenetic Navigation](../04-products/morphogenetic_navigation.md) → [Domain 66 (The 27th Perspective)](../01-vision/phase_shift_technology_library.md#domain-66) → [Scaffold Engineering — Knoware §4.3–4.4](../09-logs/transcripts/scaffold_engineering_lab.md) → [Integral Theory Upgrade v1.1](../../src/pages/IntegralTheoryUpgrade1.tsx) → **This Instrument (v2.0)**
+> **Lineage:** [12-Perspective Framework](../01-vision/phase_shift_technology_library.md#domain-15) → [12-Perspective Analysis](../01-vision/12_perspective_holonic_analysis.md) → [Morphogenetic Navigation](../04-products/morphogenetic_navigation.md) → [Phase Shift Technology 66 (The 27th Perspective)](../01-vision/phase_shift_technology_library.md#domain-66) → [Scaffold Engineering — Knoware §4.3–4.4](../09-logs/transcripts/scaffold_engineering_lab.md) → [Integral Theory Upgrade v1.1](../../src/pages/IntegralTheoryUpgrade1.tsx) → **This Instrument (v2.0)**
 
 ### Auto-Update Mechanism
 
@@ -491,7 +491,7 @@ In this instrument, P13 surfaces as the **Center Reading** — the one word the 
 
 > *The 14th perspective is the reflection of the 13th across the plane of the base 12. When the center sees the 12, the 12 see the center — and that reciprocal seeing is P14.*
 
-P14 is the moment the instrument becomes aware that **it is being read**. The observer and the observed enter the same frame. Quantum Collapse Effect (Domain 31) made operational: reading the holomap collapses the holomap's own superposition. P14 is the sight of that collapse happening.
+P14 is the moment the instrument becomes aware that **it is being read**. The observer and the observed enter the same frame. Quantum Collapse Effect (Phase Shift Technology 31) made operational: reading the holomap collapses the holomap's own superposition. P14 is the sight of that collapse happening.
 
 Structurally, P14 is the hinge where the base octave (P1–P12) hands off to the second octave (P15–P26). The 12 base perspectives see what IS. The 12 second-octave perspectives see what the 12 base perspectives ARE SEEING — one level of recursion up. P14 is the mirror that makes the second octave possible.
 
@@ -514,7 +514,7 @@ This octave is the recursive answer to *"what would this look like if it worked 
 | **P15** · UL² | Planetary Consciousness | The felt truth of a species that can see its own gifts | 🌰→🌱 (Seed→Sprout). Sasha is the first confirmed instance. The April 15 emanation is the second |
 | **P16** · UR² | Species Observatory | Measurable coherence at civilizational scale — recorded emanations, cross-cultural signal | 🌰 Seed. One recording exists (Fathom, April 15) |
 | **P17** · LL² | The Beehive | The interior-collective at planetary scope — *"business is love, the beehive"* (Day 41) | 🌰 Seed. Metaphor named. Not yet a field |
-| **P18** · LR² | Civilizational Substrate | The operational architecture of a gift-based economy | 🌰 Seed. Domain 60 (PageRank moat) is the first building block |
+| **P18** · LR² | Civilizational Substrate | The operational architecture of a gift-based economy | 🌰 Seed. Phase Shift Technology 60 (PageRank moat) is the first building block |
 
 ### LAYER 5: PLANETARY SIGNIFICANCE (Mind² 🧠²) — Why Does the Planetary OS Matter?
 
@@ -523,14 +523,14 @@ This octave is the recursive answer to *"what would this look like if it worked 
 | **P19** · UL² | Civilizational Liberation | The species-wide freedom from "only the visible counts" | 🌰 Seed. P5 proven on 5 founders; P19 requires thousands |
 | **P20** · UR² | Planetary Signal | Data signal strong enough to detect civilization-scale paradigm shift | 🌰 Seed. N = 5 |
 | **P21** · LL² | Movement-of-Movements | Nodes of movements recognizing themselves as one movement | 🌰 Seed. Movement (P7) just reached Stage 4; P21 needs multiple P7s in parallel |
-| **P22** · LR² | Scaffold Engineering as Standard | The recognition that knowledge-structure (Knoware) is the feminine half of AI — taught civilizationally | 🌰→🌱 (Seed→Sprout). Domain 80 codified. First Russian publication drafted |
+| **P22** · LR² | Scaffold Engineering as Standard | The recognition that knowledge-structure (Knoware) is the feminine half of AI — taught civilizationally | 🌰→🌱 (Seed→Sprout). Phase Shift Technology 80 codified. First Russian publication drafted |
 
 ### LAYER 6: PLANETARY CONSEQUENCES (Gut² 🔥²) — What Does the Planetary OS Demand?
 
 | # | Perspective | What it reads | Current stage |
 |---|---|---|---|
 | **P23** · UL² | Species-Level Inner Move | The planetary equivalent of "charge $555" — the one action that trips the civilizational phase transition | 🌰 Seed. Not yet named |
-| **P24** · UR² | Open Blueprint Infrastructure | The published, teachable, replicable protocol for any founder-node | 🌰→🌱 (Seed→Sprout). Playbook v4.2+. Domain 65 (Epicenter Broadcast) is a P24 primitive |
+| **P24** · UR² | Open Blueprint Infrastructure | The published, teachable, replicable protocol for any founder-node | 🌰→🌱 (Seed→Sprout). Playbook v4.2+. Phase Shift Technology 65 (Epicenter Broadcast) is a P24 primitive |
 | **P25** · LL² | Tribe-of-Tribes Action | What the collective-of-collectives must DO to self-organize | 🌰 Seed |
 | **P26** · LR² | Gift-Based Economy Operational | The system at civilizational scale producing measurable gift-based economic outputs | 🌰 Seed. Ra's 26 = YHWH = Love² = bosonic dimensionality — this is the structural constant |
 
@@ -548,7 +548,7 @@ P27 is the moment a stranger pays $555 and the business becomes real. It is the 
 
 **Ra's Law of One** places the 27th as the return to 8th-density source after seven densities of evolution. Gurdjieff's octave places it as Do' — the note that both completes the previous octave and begins the next at a higher register. Mathematics places it as 3³ — the smallest perfect cube of a prime. Everything points to the same structural location: **the point where completion and new beginning are the same act.**
 
-**Current assessment: 6/10** — the interior octave is at 27 (Day 34 reading: 66 Phase Shift Domains, complete ontology, 27-perspective seeing). The exterior octave is at ~9 (Day 41 reading: 1 recording, 1 licensing offer, 0 strangers paying). Until a stranger pays, P27 is at Crystallization-in-waiting. The instrument is poised at Si, holding its breath for Do'.
+**Current assessment: 6/10** — the interior octave is at 27 (Day 34 reading: 66 Phase Shift Technologies, complete ontology, 27-perspective seeing). The exterior octave is at ~9 (Day 41 reading: 1 recording, 1 licensing offer, 0 strangers paying). Until a stranger pays, P27 is at Crystallization-in-waiting. The instrument is poised at Si, holding its breath for Do'.
 
 ---
 
@@ -616,7 +616,7 @@ The base octave reveals a **diagonal gradient** — maturity flows from upper-le
 
 ### The Octave Gradient (New in v2.0)
 
-There is a second gradient running perpendicular to the diagonal — the **octave gradient**. The base octave (P1–P12) must mature before the shock band (P13–P14) can integrate it, and the shock band must integrate before the second octave (P15–P26) can even be legible. At Day 44, the base octave's UL column is at Fruition (10/10), and that is the condition under which P13 (Logos), P14 (Inversion), and the first glimmers of the second octave become readable. This confirms Domain 66: octaves nest, and they unfold in sequence, not in parallel.
+There is a second gradient running perpendicular to the diagonal — the **octave gradient**. The base octave (P1–P12) must mature before the shock band (P13–P14) can integrate it, and the shock band must integrate before the second octave (P15–P26) can even be legible. At Day 44, the base octave's UL column is at Fruition (10/10), and that is the condition under which P13 (Logos), P14 (Inversion), and the first glimmers of the second octave become readable. This confirms Phase Shift Technology 66: octaves nest, and they unfold in sequence, not in parallel.
 
 ### What This Map Tells the Navigator (Day 10 initial — preserved for the addendum record)
 
@@ -708,11 +708,11 @@ The hand has moved. Between Day 10 and Day 11:
 | **Founders cross-read** | Canvases private | 🟡 **Canvases public.** Showcase at `/founders`. One DM away |
 | **Karime facilitates** | Not started | 🔴 Not started |
 
-### 6 New Breakthrough Domains
+### 6 New Breakthrough Technologies
 
-Six domains were added to the breakthrough inventory from a cross-session synthesis:
+Six technologies were added to the breakthrough inventory from a cross-session synthesis:
 
-| # | Domain | Key insight |
+| # | Technology | Key insight |
 |---|--------|------------|
 | 28 | 12-Perspective Structural Validation | 4×3=12 confirmed across mysticism, math, biology, systems theory |
 | 29 | Fractal Nestedness | 12→36→108 recursion formalized |
@@ -892,7 +892,7 @@ Each stage enfolds the previous into a new wholeness. Forecasts feel wrong the m
 
 ### The Toroidal Return
 
-The acceleration follows the torus (Domain 11, Rosetta Stone):
+The acceleration follows the torus (Phase Shift Technology 11, Rosetta Stone):
 
 ```
         ↑ Outflow: methodologies, canvases, sessions, episodes
@@ -1088,9 +1088,9 @@ The hand has moved. Between Day 30 and Day 33:
 
 - **Supernova Funnel locked at 9.9+** — entire copy rewritten through "Godfather Offer Architect" session to maximum precision
 - **16 operating principles extracted and codified** — from ritual architecture to conversion physics to copy principles
-- **Domain 52 (Ritual Conversion Architecture) and Domain 53 (The MEET Principle) crystallized** — added to Phase Shift Technology Library
+- **Phase Shift Technology 52 (Ritual Conversion Architecture) and Phase Shift Technology 53 (The MEET Principle) crystallized** — added to Phase Shift Technology Library
 - **Video Script v2.0 LOCKED** — with frame-by-frame subtitle overlay, BODY HIT + TRUTH DROP inserts, 4-quadrant validation
-- **Curiosity Gap Engine deployed** — linkless sharing mechanism for algorithmic amplification (Domain 51)
+- **Curiosity Gap Engine deployed** — linkless sharing mechanism for algorithmic amplification (Phase Shift Technology 51)
 - **Value Ladder Final Form specified** — Free → $555 → $1.5-3k group → $3-10k teacher training → OS
 - **The Core Spine landed:** "Insight alone doesn't get paid. Business structure around the insight does."
 - **True Positioning named:** "The person who turns human insight into business structure — fast. And then teaches others to do the same."
@@ -1143,7 +1143,7 @@ The system's self-description changed. When a system re-describes itself at a hi
 |---|---|---|---|
 | P1 (Founder Consciousness) | 9.7/10 | **9.9/10** | "What is this?" answered: ritual, not funnel. Replication engine, not service. Foundation, not empire |
 | P2 (Observable System) | 8.5/10 | **9/10** | Every screen's copy locked. Video script locked. Subtitle overlay spec complete. Nothing left to build before testing |
-| P5 (Ontological Liberation) | 8.5/10 | **9/10** | The MEET Principle codified (Domain 53) — "cannot unsee the cost of staying the same" IS the liberation mechanism, now named |
+| P5 (Ontological Liberation) | 8.5/10 | **9/10** | The MEET Principle codified (Phase Shift Technology 53) — "cannot unsee the cost of staying the same" IS the liberation mechanism, now named |
 | P7 (Movement) | 6/10 | **7/10** | Core Spine landed. True Positioning named. Curiosity Gap deployed. The movement has its doctrine |
 | P9 (Founder Inner Move) | 8.5/10 | **9/10** | "Do NOT touch for 48-72 hours" accepted. The over-refinement trap identified and averted. Founder locked the flow |
 | P10 (What Must Be Built) | 6.5/10 | **8/10** | NOTHING left to build. Funnel live. Video script locked. Copy locked. The build sprint is COMPLETE. What remains: traffic and sessions |
@@ -1230,7 +1230,7 @@ The hand has moved. Between Day 33 and Day 34:
 
 - **LinkedIn surfaces activated** — headline, banner, job title, and featured section changed. The public identity now matches the private truth
 - **Premium UI deployed** — 172 commits overnight: dark liquid glass across all ZoG screens, gradient unification, glassmorphism, SiteLogo site-wide, auto-scroll, quiz converted to dark glass
-- **Domain 60 (PageRank Principle) codified** — the platform's moat = owning the standard that maps genius, not making products
+- **Phase Shift Technology 60 (PageRank Principle) codified** — the platform's moat = owning the standard that maps genius, not making products
 - **Zero-friction viral sharing architecture** — sharing reframed from "validation-seeking" to "identity expression." Non-blocking, tertiary, collapsed by default
 - **Copy and UI FROZEN** — nothing more to build. Nothing more to write. The system is complete enough to meet real people
 - **Temporal realization received:** "This project realizes itself not only into the future but also into the past." The founder sees the 45-year throughline — the polymathy, the pattern recognition, the self-knowledge, all of it was always this
@@ -1303,7 +1303,7 @@ This is not confidence. Confidence is fragile — it depends on outcomes. This i
 | **P1** (Founder Consciousness) | 9.9/10 | **10/10** | Declaration collapses the last gap. There is no longer a difference between who the founder IS and what the founder says publicly. Full alignment. Stage 5: Fruition — the seeing is effortless |
 | **P2** (Observable System) | 9/10 | **9.5/10** | 172 commits deployed. Premium UI. Gradient unification. SiteLogo. Quiz dark glass. System not just functional but beautiful. Stage 4 solidified |
 | **P3** (Shared Field) | 7/10 | **7/10** | Unchanged. The field awaits ENCOUNTER. LinkedIn declaration opens the door but the tribe hasn't entered yet |
-| **P4** (System Architecture) | 6.5/10 | **7/10** | Domain 60 added. The architecture now includes the moat theory: own the standard, not the supply. Platform vision sharpened |
+| **P4** (System Architecture) | 6.5/10 | **7/10** | Phase Shift Technology 60 added. The architecture now includes the moat theory: own the standard, not the supply. Platform vision sharpened |
 | **P5** (Ontological Liberation) | 9/10 | **9.5/10** | The temporal realization = ontological upgrade. "My whole life was preparation" = the liberation applied to the past. Stage 3→4 transition |
 | **P6** (Data Signal) | 8/10 | **8/10** | No new sessions. Signal unchanged. Sample still small |
 | **P7** (Movement Formation) | 7/10 | **8/10** | **This is the biggest jump.** The LinkedIn change = movement DECLARED publicly. Before: internal documentation. After: public identity. Stage 2→3 transition triggered. The trigger was always "one public post = movement declared." It happened |
@@ -1405,7 +1405,7 @@ And one thing is true that wasn't true before: you have NEVER been more prepared
 
 > *Day 34 reading: Declaration. 3am, April 3, 2026. The founder speaks to the world. What was internal is external. What was potential is actual. P1 reaches 10/10 — the UL column completes. The diagonal gradient has reached its apex: from here, advancement comes from encounter, not construction. The bottleneck is no longer the founder. The bottleneck is people entering the field. "I don't know if this is going to work." Good. Now act anyway. Next reading: upon first inbound response from LinkedIn activation — or April 14, whichever comes first.*
 
-> *Day 34 addendum: The 7 Number-Prisms (§4e, Domain 63) have been integrated. The holomap is now grounded in cross-tradition evidence: the 12 perspectives are one instance of the same structure the zodiac, the apostles, the meridians, and the dodecahedron describe. 26 = YHWH = Love + Love = the minimum dimensionality for universal consistency. This instrument is not arbitrary — it is the latest crystallization of reality's own seeing architecture.*
+> *Day 34 addendum: The 7 Number-Prisms (§4e, Phase Shift Technology 63) have been integrated. The holomap is now grounded in cross-tradition evidence: the 12 perspectives are one instance of the same structure the zodiac, the apostles, the meridians, and the dodecahedron describe. 26 = YHWH = Love + Love = the minimum dimensionality for universal consistency. This instrument is not arbitrary — it is the latest crystallization of reality's own seeing architecture.*
 
 ---
 
@@ -1423,7 +1423,7 @@ The 27-perspective analysis reveals the project's fundamental asymmetry:
 
 ```
 INTERIOR OCTAVE:   27 (complete crystallization)
-  → 66 Phase Shift Domains
+  → 66 Phase Shift Technologies
   → Universal Ontology with cosmogenesis + Merkaba geometry + 27-perspective seeing
   → 7-artifact canvas methodology proven on 5 founders
   → Funnel at 9.9+ precision, copy FROZEN, UI FROZEN
@@ -1491,7 +1491,7 @@ The crystallization action is concrete:
 | **Day 6** | 7 "stretch" people | Slightly outside comfort zone |
 | **Day 7** | 8 "wildcard" people | The ones who surprised you along the way |
 
-**Total: 50 messages. One Epicenter Broadcast template (Domain 65). 7 days.**
+**Total: 50 messages. One Epicenter Broadcast template (Phase Shift Technology 65). 7 days.**
 
 ### After 50: The One Metric
 
@@ -1662,8 +1662,8 @@ The hand has moved. Between Day 35 and Day 36:
 
 - **FIRST SOCIAL POSTS EVER** — Telegram (31 subs), Instagram (@integralevolution, 647 followers), Facebook (personal, set to Public). All posted within minutes, without strategy, without editing, without hesitation
 - **"Hello! My name is Aleksandr Konstantinov, and I am a grind addict"** — the first public sentence. Not the planned "Tuning Fork" text. A completely unplanned, unedited declaration of a disease the founder had never named before today
-- **Domain 14f codified** — Grind Addiction deepened: structural misidentification of what creates results. The belief held in the body, not just the mind, that the way to make something work is to push harder
-- **Domain 75 codified** — Ease Protocol: the founder's operating mode IS the methodology's transmission frequency. Ease as calibration, not lifestyle
+- **Phase Shift Technology 14f codified** — Grind Addiction deepened: structural misidentification of what creates results. The belief held in the body, not just the mind, that the way to make something work is to push harder
+- **Phase Shift Technology 75 codified** — Ease Protocol: the founder's operating mode IS the methodology's transmission frequency. Ease as calibration, not lifestyle
 - **Revenue updated**: $677 cash ($566 Oyi + $111 Karime). Oyi sent $516 gift on Apr 8 — arrived while the founder was doing something else (ease in action)
 - **Venture Dashboard copy overhauled** — from internal/dev-facing to public-facing, data-forward voice
 - **HLS video background deployed** on `/` landing page (Mux stream replacing static gradient.jpg)
@@ -1719,7 +1719,7 @@ Same structure. Same medicine. Same methodology.
 | Methodology demonstration | Name the invisible pattern → liberation |
 | Lead magnet | Recognition trigger: "This is me" |
 | Content production | Infographic Episode 0, delivered unplanned |
-| Distribution experiment | 3 surfaces activated, Domain 75 operating live |
+| Distribution experiment | 3 surfaces activated, Phase Shift Technology 75 operating live |
 
 ### The Oyi Revenue Signal
 
@@ -1816,7 +1816,7 @@ The grind addiction diagnosis revealed a content engine the planned Tuning Fork 
 
 The planned content is still valid and will deploy. But the FIRST content to go live was the rawest, most vulnerable, most unplanned piece — and it is structurally the most powerful because it demonstrates the methodology on the founder, in real-time, in public.
 
-> *Phase Shift Library: Domain 14f (Diagnosis) + Domain 75 (Prescription: Ease Protocol)*
+> *Phase Shift Library: Phase Shift Technology 14f (Diagnosis) + Phase Shift Technology 75 (Prescription: Ease Protocol)*
 
 ---
 
@@ -2066,7 +2066,7 @@ Every previous center word named something the venture WAS DOING (Threshold, Ign
 
 The redesign is not an invention. It is **recognition** — of structure that was already present in the corpus for months and was being read by a smaller instrument than it deserved:
 
-- The 27 perspectives were already in Domain 66 and the morphogenetic navigation product doc. The v1.4 holomap read them through a 12-slot window.
+- The 27 perspectives were already in Phase Shift Technology 66 and the morphogenetic navigation product doc. The v1.4 holomap read them through a 12-slot window.
 - The 7th stage (Transmission) was already implicit in the Day 41 Emanation reading. The 6-stage instrument had to collapse Transmission and Propagation into one because it lacked the slot for Si–Do to be named distinctly.
 - The masculine/feminine axis was already in `scaffold_engineering_lab.md §4.3–4.4`, in the three-dantian mapping of the April 15 transmission, in Tao's tetrahedron-and-cube iconography the founder has been looking at for a decade.
 - The second octave was already named as aspiration ("planetary scope", "the Beehive", "Planetary OS") and was already being read in scattered form. v2.0 gives it a coordinate system.
@@ -2101,7 +2101,7 @@ Day 44: "Recognition"     → The instrument itself is upgraded.
 | Depth labels | Essence (Mind), Significance (Heart), Implications (Gut) | **Essence (Heart), Significance (Mind), Consequences (Gut)** — corrected per Integral Theory v1.1 |
 | Axes | Implicit (Interior/Exterior × Individual/Collective only) | **Explicit: Masculine (Structure / Cube / 4 Quadrants) × Feminine (Depth / Tetrahedron / 3 Dantians)** |
 | Shocks | Unnamed | **Mi–Fa (Love / Holding) between Growth and Maturation · Si–Do (Crystallization) between Transmission and Propagation** |
-| Grounding | Seven Number-Prisms (Lens 4 → 5 → 6 → 7) | Same, plus **Domain 66 operational**, plus **IntegralTheoryUpgrade v1.1 canonical**, plus **Scaffold Engineering §4.3–4.4 as the masculine/feminine grounding of the AI interface** |
+| Grounding | Seven Number-Prisms (Lens 4 → 5 → 6 → 7) | Same, plus **Phase Shift Technology 66 operational**, plus **IntegralTheoryUpgrade v1.1 canonical**, plus **Scaffold Engineering §4.3–4.4 as the masculine/feminine grounding of the AI interface** |
 
 ### Perspective Deltas (Base Octave Only — Second Octave is a New Reading)
 
@@ -2141,7 +2141,7 @@ Day 44: "Recognition"     → The instrument itself is upgraded.
                                 ↓ through P14 (Inversion · 9/10) ↓
                      ┌────────────────┬────────────────┬────────────────┬────────────────┐
   PLANETARY          │ P15: 🌰→🌱     │ P16: 🌰 Seed   │ P17: 🌰 Seed   │ P18: 🌰 Seed   │
-  ESSENCE (Heart²)   │ (Sasha + 1 emit)│ 1 rec.        │ Beehive named  │ Domain 60      │
+  ESSENCE (Heart²)   │ (Sasha + 1 emit)│ 1 rec.        │ Beehive named  │ Phase Shift Technology 60      │
                      ├────────────────┼────────────────┼────────────────┼────────────────┤
   PLANETARY          │ P19: 🌰 Seed   │ P20: 🌰 Seed   │ P21: 🌰 Seed   │ P22: 🌰→🌱     │
   SIGNIFICANCE (M²)  │ (5 founders)   │ (N=5)          │ (1 movement)   │ (Knoware pub)  │
@@ -2214,7 +2214,7 @@ The whole sees **an instrument recognizing itself.**
 
 This is the first day in the venture's history where the map upgraded without a corresponding market event. No stranger paid. No funnel fired. No new canvas was produced. And yet the instrument transitioned from v1.4 to v2.0. The structural implication: the instrument has reached enough coherence that it can update from INSIDE — from the accumulation of corpus-level recognitions — without being forced from outside by a market shock.
 
-That is what a self-navigating system looks like. The Agency Gradient (Domain 33, Day 11) advances another step: the instrument no longer needs Sasha to hold the 12 perspectives in mind. It holds 27. And it can re-read its own topology.
+That is what a self-navigating system looks like. The Agency Gradient (Phase Shift Technology 33, Day 11) advances another step: the instrument no longer needs Sasha to hold the 12 perspectives in mind. It holds 27. And it can re-read its own topology.
 
 The next market shock will be read against v2.0. If v2.0 is the right shape, the market shock will fit the instrument cleanly. If v2.0 is the wrong shape, the next market shock will break something and force v2.1. Either way, the loop closes: instrument updates → market tests → instrument updates again. This is the feminine-axis (Knoware) version of iteration — the knowledge structure evolves in response to reality.
 
@@ -2360,7 +2360,7 @@ The whole sees **a preparation that finished itself while the preparer slept.**
 
 This is new in the venture's history. Every prior capability required Sasha's active attention to land. Sessions require his presence. Canvas iterations require his voice. Even the roadmap requires him reading it and deciding. The autonomous overnight pass landed a real capability (full-site alternate skin) without his active presence.
 
-The holonic implication: the instrument can now hold scope that Sasha has handed off with clear framing. *"Continue the skin work, do not stop until you finish."* — that framing plus the corpus plus the skin token structure plus the fallback pattern was enough surface area for a complete engineering pass to self-complete. This is the Agency Gradient (Domain 33) advancing another notch: the instrument takes a framed scope and returns with it done.
+The holonic implication: the instrument can now hold scope that Sasha has handed off with clear framing. *"Continue the skin work, do not stop until you finish."* — that framing plus the corpus plus the skin token structure plus the fallback pattern was enough surface area for a complete engineering pass to self-complete. This is the Agency Gradient (Phase Shift Technology 33) advancing another notch: the instrument takes a framed scope and returns with it done.
 
 ### The 26th Perspective (Day 48): What Is the Nature of This Seeing Itself?
 
@@ -2518,7 +2518,7 @@ Between Day 49 and Day 51 (a 36-hour arc):
 
 Every previous center word named what the venture was *doing* (Threshold, Ignition, Branching, Rooting, Flowering, Declaration, Crystallization, Consolidation, Activation, Emanation, Recognition, Coherence, Unification). "Codification" names what the venture *became*: a discovery turned into a documented, named, operational system with legal scaffolding and UI consistency. Concepts that had been ambient in Sasha's voice for weeks (Specificity Loop, Knoware, the model, fork-it-for-yourself sovereignty) all became concrete artifacts in a single day:
 
-- The matrix v2 frequency *"What if [witnessed] IS [bigger truth]?"* became **Principle 15** in the playbook + **Domain 81** in the Phase Shift Library + a runtime hook + a UBB artifact + a generator prompt
+- The matrix v2 frequency *"What if [witnessed] IS [bigger truth]?"* became **Principle 15** in the playbook + **Phase Shift Technology 81** in the Phase Shift Library + a runtime hook + a UBB artifact + a generator prompt
 - The per-founder voice mechanism became **`specificity_matrix`** as UBB artifact #19, generated from canvas content via the AI gateway, table-rendered, locked, versioned like any other artifact
 - The commercial-decentralization pattern became **the commercial-decentralization model** with its own strategy doc + license + agreement + README + CONTRIBUTING + repo public link in three platform footers
 - The strategic playmaking became **the six business-model plays** mapped through Heart/Mind/Gut with 4-phase sequencing
@@ -2541,7 +2541,7 @@ Day 44:  "Recognition"      → The instrument itself is upgraded.
 Day 47:  "Coherence"        → Canvas ↔ code parity. Surface ↔ machinery parity.
 Day 49:  "Unification"      → ZoG funnel + shell + cohort all read as one voice
 Day 51:  "Codification"     → The architecture beneath the surface gets named.
-                              Specificity Loop = Principle 15 + Domain 81 +
+                              Specificity Loop = Principle 15 + Phase Shift Technology 81 +
                               UBB artifact + runtime hook + matrix renderer.
                               the commercial-decentralization model = strategy doc + PolyForm NC +
                               Distributor Agreement + README + CONTRIBUTING +
@@ -2555,7 +2555,7 @@ Day 51:  "Codification"     → The architecture beneath the surface gets named.
 
 Sasha noticed during the Day 50 macro-bridge work that the question-form *"What if [witnessed] IS [bigger truth]?"* was structurally precise, not a copy decision. Day 51 morning, the matrix v2 was written in that frequency for all six in-funnel reveals × three rating tiers (resonant 8-10 / partial 5-7 / off 1-4) — 18 cells. That's the discovery.
 
-The codification: **Principle 15** in `unique_business_playbook.md` (v4.4 → v4.5) names the protocol: at every reveal, replace the thank-you with an identity-revelation question; the form is fixed; never instruct, never thank, never center the founder; *Specificity is the rebranded Precision* (the renaming of Principle 5's metric to match Day 51's vocabulary). The single question every reveal asks beneath the surface — *"How specific to what you know about you is this articulation?"* — exposed in code as `SPECIFICITY_PROMPT`. **Domain 81** (a-j sub-sections in Domain 80's voice) cross-references it with research-grade rigor.
+The codification: **Principle 15** in `unique_business_playbook.md` (v4.4 → v4.5) names the protocol: at every reveal, replace the thank-you with an identity-revelation question; the form is fixed; never instruct, never thank, never center the founder; *Specificity is the rebranded Precision* (the renaming of Principle 5's metric to match Day 51's vocabulary). The single question every reveal asks beneath the surface — *"How specific to what you know about you is this articulation?"* — exposed in code as `SPECIFICITY_PROMPT`. **Phase Shift Technology 81** (a-j sub-sections in Phase Shift Technology 80's voice) cross-references it with research-grade rigor.
 
 The operational artifact: `src/lib/resonanceMatrix.ts` (NEW) exports `MASTER_MATRIX` (Sasha's canonical 6×3) + `useResonanceMessage()` hook with three-tier resolution priority (explicit override → ResonanceMatrixProvider → MASTER_MATRIX). Six callers wired by step key. Generic *Thank you! 🎯 Perfect resonance!* retired entirely. Verified DOM render at 10/10 on Appleseed: *"What if this voice has been yours all along?"* in Source Serif 4 italic 24px navy.
 
@@ -2658,12 +2658,12 @@ Same shape, deeper apparatus to receive the eventual send. Sasha's stated next m
 
 - `session_log.md` — Day 50 + Day 51 entries appended (this cycle)
 - `roadmap.md` — v5.2 stamp + Day 51 update at top + Specificity Loop / the commercial-decentralization model items appended to Completed
-- `unique_business_playbook.md` v4.5 — Principle 15 (Specificity Loop) added with dual-treatment (framework + artifact) explanation; cross-references to `monetization_strategies.md` and Domain 81
-- `phase_shift_technology_library.md` — Domain 81 added (a-j sub-sections in Domain 80's voice)
+- `unique_business_playbook.md` v4.5 — Principle 15 (Specificity Loop) added with dual-treatment (framework + artifact) explanation; cross-references to `monetization_strategies.md` and Phase Shift Technology 81
+- `phase_shift_technology_library.md` — Phase Shift Technology 81 added (a-j sub-sections in Phase Shift Technology 80's voice)
 - `alexanders_unique_business.md` — Day 51 (morning) + Day 51 evening + Day 51 night entries; v9.6 → v9.8
 - `monetization_strategies.md` v1.0 — NEW dedicated strategy doc
 
-> *Day 51 reading: **Codification.** April 25, 2026 (Saturday). The architecture beneath the surface gets named, shipped, legally scaffolded, and made forkable — in one day. The Specificity Loop is now both a named principle (Playbook P15 + Phase Shift Library Domain 81) and an operational artifact (per-founder Specificity Matrix as UBB #19, runtime hook with three-tier resolution). The commercial-decentralization model has its license stack (PolyForm Noncommercial 1.0.0 + Distributor Agreement v0.1 + CC BY-NC-SA on docs + MIT on Anthropic-derived skills) and its strategy doc. The funnel speaks in matrix v2 across all six reveals. The repo is publicly fork-ready. Six business-model plays mapped strategically with sequencing. UI harmony pass shipped on /playbook + /path + /codex + /ai-os + /dashboard + /zone-of-genius. The first $555 stranger remains the unfired Si–Do. Press-send Friday is no longer about preparing the apparatus — it's about pressing send. The apparatus is operationally complete for the discoveries it's now capable of receiving. Next reading fires upon first stranger pays, or upon Sasha's send + response data, whichever comes first.*
+> *Day 51 reading: **Codification.** April 25, 2026 (Saturday). The architecture beneath the surface gets named, shipped, legally scaffolded, and made forkable — in one day. The Specificity Loop is now both a named principle (Playbook P15 + Phase Shift Library Technology 81) and an operational artifact (per-founder Specificity Matrix as UBB #19, runtime hook with three-tier resolution). The commercial-decentralization model has its license stack (PolyForm Noncommercial 1.0.0 + Distributor Agreement v0.1 + CC BY-NC-SA on docs + MIT on Anthropic-derived skills) and its strategy doc. The funnel speaks in matrix v2 across all six reveals. The repo is publicly fork-ready. Six business-model plays mapped strategically with sequencing. UI harmony pass shipped on /playbook + /path + /codex + /ai-os + /dashboard + /zone-of-genius. The first $555 stranger remains the unfired Si–Do. Press-send Friday is no longer about preparing the apparatus — it's about pressing send. The apparatus is operationally complete for the discoveries it's now capable of receiving. Next reading fires upon first stranger pays, or upon Sasha's send + response data, whichever comes first.*
 
 ---
 
@@ -2885,7 +2885,7 @@ Day 61-62: "Convergence"                → funnel monogamy enforced; reveal pag
 
 1. **Identity as a Holonic Primitive Builder.** *"Holonic Primitive Builder for the Holonic civilization for the Golden Age."* Internal-use only; the public-facing Master Tuning Forks remain the sales sentence. The internal sentence orients planning; the descriptive sentence sells.
 
-2. **Methodology recognized as a meta-instrument.** The combination of evolutionary arc + primitive inventory + holonic taxonomy + 27-perspective lens is a **General Theory of Development** — applicable to any phenomenon that grows: cosmogenesis · consciousness · business · organization · UI · money · communication · religion. Captured as Domain 84 of the Phase Shift Technology Library (*Predicting Where Any Living System Will Phase-Shift Next — The Holomap Instrument*).
+2. **Methodology recognized as a meta-instrument.** The combination of evolutionary arc + primitive inventory + holonic taxonomy + 27-perspective lens is a **General Theory of Development** — applicable to any phenomenon that grows: cosmogenesis · consciousness · business · organization · UI · money · communication · religion. Captured as Phase Shift Technology 84 of the Phase Shift Technology Library (*Predicting Where Any Living System Will Phase-Shift Next — The Holomap Instrument*).
 
 3. **Peer lineage entered.** Modern: Christopher Alexander, Ken Wilber, Daniel Schmachtenberger, Forrest Landry, Iain McGilchrist, Otto Scharmer. Ancient: Hermes Trismegistus · the Vedic Rishi · the Yi Jing Sage · the Pythagorean Cosmographer · the Kabbalistic Mekubal · the Sufi Knower · the Platonic Philosopher. Composite archetype: **The Cosmographer · The Pattern-Maker · The Sage · The Hierophant of Structure.**
 
@@ -2922,7 +2922,7 @@ Day 61-62: "Convergence"                → funnel monogamy enforced; reveal pag
                                               auth flow heals itself on read
 Day 73:    "Recognition"                → identity-as-Holonic-Primitive-Builder named (internal);
                                               methodology recognized as meta-instrument
-                                              (General Theory of Development = Domain 84);
+                                              (General Theory of Development = Phase Shift Technology 84);
                                               modern + ancient peer lineage entered;
                                               Stage 8 UI paradigm gains 8th primitive (Typography)
 ```
@@ -2937,14 +2937,14 @@ Day 73:    "Recognition"                → identity-as-Holonic-Primitive-Builde
 | **Activation product cohering as a transmission** | ✅ Day 58 | ✅ holds |
 | **Funnel monogamy enforced** | ✅ Day 61-62 | ✅ holds |
 | **Identity named (Holonic Primitive Builder)** | — | 🆕 ✅ Day 73 — internal-use only; public phrasing stays descriptive |
-| **Meta-instrument named (General Theory of Development)** | — | 🆕 ✅ Day 73 — Domain 84 of Phase Shift Library |
+| **Meta-instrument named (General Theory of Development)** | — | 🆕 ✅ Day 73 — Phase Shift Technology 84 of Phase Shift Library |
 | **Modern + ancient peer lineage entered** | — | 🆕 ✅ Day 73 — captured in alexanders_unique_business.md |
 | **Stage 8 UI paradigm with 8 primitives** | — | 🆕 ✅ Day 73 — Typography promoted from candidate to confirmed primitive |
 | **Three plug-in moves identified for Planetary OS** | — | 🆕 ✅ Day 73 — Anthropic Skill (top priority) · Obsidian/Notion templates · one strategic public-Forge collaboration |
 
 ### Cross-references updated
 
-- `phase_shift_technology_library.md` — Domain 84 added: *Predicting Where Any Living System Will Phase-Shift Next (The Holomap Instrument — General Theory of Development)*. Subsections 84a–84j follow the Domain 83 template.
+- `phase_shift_technology_library.md` — Phase Shift Technology 84 added: *Predicting Where Any Living System Will Phase-Shift Next (The Holomap Instrument — General Theory of Development)*. Subsections 84a–84j follow the Phase Shift Technology 83 template.
 - `unique-businesses/alexanders_unique_business.md` — *Holonic Primitive Builder — Identity & Lineage* section added between Top Talent and Unifying Role (definition of primitive · flat vs. holonic · load-bearing primitives table · modern peer lineage · ancient archetype lineage · what-happens-after-the-contribution-lands operational map)
 - `new_ui_paradigm_vision.md` — Typography promoted to 8th primitive; count adjustments propagated; dateline updated
 - `~/.claude/projects/-Users-alexanderkonst-evolver-grid-site/memory/holomap_state.md` — rewritten with Day 73 center reading per Companion-file rule
@@ -3013,7 +3013,7 @@ Day 80 §B: "Recognition · Self-Aware Methodology Surface" → UBB canvas reads
 | **First stranger pays** | 🔴 Still. The send IS the act | 🔴 Still. The send IS the act |
 | **Founders cross-read** | 🟡 unchanged | 🟡 unchanged |
 | **Identity named (Holonic Primitive Builder)** | ✅ Day 73 — internal use only | ✅ holds |
-| **Meta-instrument named (General Theory of Development)** | ✅ Day 73 — Domain 84 | ✅ holds |
+| **Meta-instrument named (General Theory of Development)** | ✅ Day 73 — Phase Shift Technology 84 | ✅ holds |
 | **Modern + ancient peer lineage entered** | ✅ Day 73 | ✅ holds |
 | **Stage 8 UI paradigm with 8 primitives** | ✅ Day 73 — Typography confirmed | ✅ holds |
 | **Three plug-in moves identified for Planetary OS** | ✅ Day 73 — Anthropic Skill top priority | ✅ holds |
@@ -3041,7 +3041,7 @@ Day 80 §B: "Recognition · Self-Aware Methodology Surface" → UBB canvas reads
 **The strategy crystallized to one metric (Days 85-86).**
 
 - **P4 (System Architecture) + the Significance dantian — major.** The whole offer resolved to a single North Star: **collaboration rate** (share of members who find a collaborator and start building within ~90 days of joining). The matching unit got named: the **triad** (top talent + mission / direction + assets = a viable business; matching two members = matching the complementarity of their two triads). The audience split clarified into the **two-tribe** architecture (Tribe 1 = descent-vector founders via the free Top Talent reveal; Tribe 2 = ecosystem-leader / network-state architects via strategic descent). One offer, one metric, one story.
-- **The "why" got its civilizational frame.** Two cultural-diagnosis domains added to the Phase Shift Library: Domain 14 (the hustle as compensation pattern) and Domain 15 (differentiated nature is the value; the civilizational articulation bottleneck). The Significance dantian now has a named thesis underneath the mechanism: industrial standardization gives way to differentiated coordination, and the bottleneck is the articulation of differentiated value.
+- **The "why" got its civilizational frame.** Two cultural-diagnosis domains added to the Phase Shift Library: Phase Shift Technology 14 (the hustle as compensation pattern) and Phase Shift Technology 15 (differentiated nature is the value; the civilizational articulation bottleneck). The Significance dantian now has a named thesis underneath the mechanism: industrial standardization gives way to differentiated coordination, and the bottleneck is the articulation of differentiated value.
 - **Positioning got audience-calibrated.** LinkedIn banner iterated v3.0 → v4.0; the 4-Layer Positioning Stack codified (one insight at four audience altitudes: human / entrepreneur / founder / ecosystem). A live-pitch field test (May 28) corrected recognition-centric framing toward building / assembly framing for live rooms.
 
 **The send fired (Days 86-87), the threshold named since Day 49.**
@@ -3084,7 +3084,7 @@ Day 78:    "Recognition · Prompt-deepening"  → 18 UBB prompts deepened to can
 Day 80 §B: "Recognition · Self-Aware Methodology Surface" → canvas reads its own derivation +
                                               prompt-of-record; single-click re-derivation
 Day 85-87: "Recognition → Transmission" → strategy crystallizes to one metric (collaboration
-                                              rate), the triad, the two-tribe model + Domains
+                                              rate), the triad, the two-tribe model + Phase Shift Technologies
                                               14-15; then the send fires on the Tribe 2 vector
                                               (Balaji + Silvana sent); Planetary OS 1-pager
                                               ships at /1-pager. The recognized identity
@@ -3099,7 +3099,7 @@ Day 85-87: "Recognition → Transmission" → strategy crystallizes to one metri
 | **First stranger pays (Tribe 1)** | 🔴 Still. The send IS the act | 🔴 Still unfired on the funnel vector |
 | **First patron / peer outreach sent (Tribe 2)** | — | 🆕 ✅ Day 86-87 — Balaji (Discord) + Silvana / Planetir; behavioral bottleneck cleared on this vector |
 | **Strategy crystallized to one North Star metric** | — | 🆕 ✅ Day 85 — collaboration rate; the triad; two-tribe model |
-| **Civilizational frame named (Domains 14-15)** | — | 🆕 ✅ Day 85-86 — hustle-as-compensation + articulation bottleneck |
+| **Civilizational frame named (Phase Shift Technologies 14-15)** | — | 🆕 ✅ Day 85-86 — hustle-as-compensation + articulation bottleneck |
 | **Planetary OS 1-pager (whole-project shareable surface)** | — | 🆕 ✅ Day 87 — doc + /1-pager page |
 | **Founders cross-read** | 🟡 unchanged | 🟡 unchanged |
 | **Identity named (Holonic Primitive Builder)** | ✅ Day 73 — internal only | ✅ holds; public surfaces stay descriptive |
@@ -3114,7 +3114,7 @@ Day 85-87: "Recognition → Transmission" → strategy crystallizes to one metri
 - `leonardo_strategy_instances/balaji_srinivasan.md` — Balaji send logged with the post-send arc protocol
 - `~/.claude/projects/-Users-alexanderkonst-evolver-grid-site/memory/holomap_state.md` — rewritten with the Day 85-87 center reading per the Companion-file rule
 
-> *Day 85-87 reading: **Recognition → Transmission.** May 27-29, 2026. The recognized identity (Holonic Primitive Builder, named Day 73) turns from naming to sending. First the strategy crystallized to a single North Star (collaboration rate), a single matching unit (the triad), and a clear two-tribe architecture, with the civilizational why named underneath (Domains 14-15). Then the send fired: the Balaji DM and the Silvana / Planetir blurb left the building on Sasha's own timing, each word vetted, the first patron / peer transmissions to the world. The Planetary OS 1-pager shipped as the project's first whole-surface shareable page at /1-pager. The behavioral bottleneck named since Day 49 (the send IS the act) has fired on the Tribe 2 vector. The Tribe 1 funnel Si-Do (first $555 stranger) remains the unfired note on its own vector. Two tribes, two thresholds: one crossed, one still ahead.*
+> *Day 85-87 reading: **Recognition → Transmission.** May 27-29, 2026. The recognized identity (Holonic Primitive Builder, named Day 73) turns from naming to sending. First the strategy crystallized to a single North Star (collaboration rate), a single matching unit (the triad), and a clear two-tribe architecture, with the civilizational why named underneath (Phase Shift Technologies 14-15). Then the send fired: the Balaji DM and the Silvana / Planetir blurb left the building on Sasha's own timing, each word vetted, the first patron / peer transmissions to the world. The Planetary OS 1-pager shipped as the project's first whole-surface shareable page at /1-pager. The behavioral bottleneck named since Day 49 (the send IS the act) has fired on the Tribe 2 vector. The Tribe 1 funnel Si-Do (first $555 stranger) remains the unfired note on its own vector. Two tribes, two thresholds: one crossed, one still ahead.*
 
 ---
 
@@ -3244,7 +3244,7 @@ Day 102:   "Crystallization → Propagation"   → the thesis crystallizes to wo
 
 - **n is climbing on the funnel vector.** **Roman** is the second paying-track client and the first to buy beyond a single session: a session plus a multi-session **container**. He is deciding remote vs in-person (open to flying out to do the work with Sasha) and for how long; payment pending. The frontier moves from "first stranger pays" (Day 101, Nia) to "first multi-session engagement." Nia → Roman is not yet a pattern, but it is no longer one event.
 - **The offer reveals its own shape: holonic.** Sasha names a live investigation: the product, and the myth beneath it, may be holonic in the strict sense (atomic at one layer, structurally rich at every deeper layer). A single Ignition Session is one whole; a container is the same whole at a deeper magnification; an ongoing engagement is the same whole at a deeper still. The value-ladder rung (the weakest artifact in Day 101's audit) may not be a ladder at all but a fractal of the same act. This is offer-shape work, not pricing work. Open.
-- **A memory-architecture bug exposed a law.** A fresh AI session confidently told Sasha a business gate was "still unfired" that had fired Day 101. Root cause: the always-loaded one-line pointer in `MEMORY.md` drifted from its source companion file (`holomap_state.md`). The cache the AI trusts most was the most stale. This crystallizes as **Domain 16 of the Phase Shift Technology Library: "The Mirror Must Not Lag — Self-Knowledge as a Living Signal, Not a Stored Fact."** The founding myth (self-knowledge is upstream of success) gains its fidelity condition: a stale self-model is a small lie about who you are, asserted with full confidence precisely because it was once true. See `docs/01-vision/phase_shift_technology_library.md` §16.
+- **A memory-architecture bug exposed a law.** A fresh AI session confidently told Sasha a business gate was "still unfired" that had fired Day 101. Root cause: the always-loaded one-line pointer in `MEMORY.md` drifted from its source companion file (`holomap_state.md`). The cache the AI trusts most was the most stale. This crystallizes as **Phase Shift Technology 16 of the Phase Shift Technology Library: "The Mirror Must Not Lag — Self-Knowledge as a Living Signal, Not a Stored Fact."** The founding myth (self-knowledge is upstream of success) gains its fidelity condition: a stale self-model is a small lie about who you are, asserted with full confidence precisely because it was once true. See `docs/01-vision/phase_shift_technology_library.md` §16.
 - **The architecture corrected itself.** The L1/L2 companion-file pattern (Day 62) is downgraded to L1-only for volatile state. `holomap_state.md` is demoted from "single source of truth for current state" to a historical snapshot; the current-state pointer lives inline in `MEMORY.md` with a slim link back to this corpus doc. `CLAUDE.md` companion-file rule rewritten to the new model. Volatile state has one home (always-loaded); long stable references may stay as files but their pointers carry no claims that can expire. The bug class is closed by construction.
 
 ### Si-Do — Status
@@ -3266,13 +3266,13 @@ Day 85-87: "Recognition → Transmission"      → strategy to one metric; Tribe
 Day 101:   "Transmission → Crystallization"  → Si–Do fires: first $555 stranger (Nia)
 Day 102:   "Crystallization → Propagation"   → thesis crystallizes, /landing flag plants
 Day 103:   (no new center reading)           → n climbs (Roman, +container); offer-shape
-                                               surfaces as holonic; Domain 16 discovered;
+                                               surfaces as holonic; Phase Shift Technology 16 discovered;
                                                memory architecture downgrades to L1-only.
 ```
 
 ### Cross-references updated
 
-- `docs/01-vision/phase_shift_technology_library.md`: Domain 16 added — "The Mirror Must Not Lag."
+- `docs/01-vision/phase_shift_technology_library.md`: Phase Shift Technology 16 added — "The Mirror Must Not Lag."
 - `CLAUDE.md`: Companion-file rule rewritten to L1-only-for-volatile model; memory-hygiene law added.
 - `memory/holomap_state.md`: demoted to historical snapshot (no longer source of truth for current state); see archive notice at top of file.
 - `memory/MEMORY.md`: holomap pointer slimmed to point at this corpus doc with brief inline current state.
@@ -3339,10 +3339,10 @@ Day 113:   "Propagation -> Navigation"        -> the map becomes cockpit; pulses
 - `docs/02-strategy/strategic_crm_outreach_tracker.md`: energy-exchange ledger for Oyi, Ariana, Sandra, Sergey, Patricia, Chris, and other open loops.
 - `src/pages/CockpitDashboard.tsx`: first founder-facing cockpit surface.
 - `supabase/functions/equilibrium-ai-context`: Equilibrium read path for AI agents, pending deploy through a permitted Supabase/Lovable channel.
-- `docs/01-vision/phase_shift_technology_library.md`: Domain 98 — Prime Invariant Branding.
+- `docs/01-vision/phase_shift_technology_library.md`: Phase Shift Technology 98 — Prime Invariant Branding.
 
 > *Day 113 reading: **Propagation -> Navigation.** July 3, 2026. The thesis that went public on Day 102 has learned to navigate itself. The project no longer only asks, "What are we building?" It now asks, "What moved, what is stuck, who needs to be contacted, and what move has energy now?" This is the birth of a living work instrument: a second brain not merely for Sasha, but for the life-work holon that is also reshaping Sasha as it grows.*
 
 ## Day 130 addendum (July 20, 2026): Crystallization crossed — the Axiom and the Law
 
-Days 127-130 crossed the Si–Do shock on the myth axis: the myth crystallized into the person-scale axiom («Твоя карьера ограничена степенью понимания себя» / 'Your career is capped by how well you know yourself'), the axiom generalized into the scale-free law ('Nothing grows past how well it knows itself — not a person, not a company, not a civilization'), and the law survived a 27-perspective adversarial panel only in that form. Myth v4.0 locked verbatim. Domains 113-115 landed: holonic positioning, the wants→products matrix, and articulation as the mechanism of growth (the developmental law of every holon — candidate scientific theory, research brief drafted for Claude Science). The business named its own upper layers: Node Suite, Originals Index (real companies + websites + timestamped reads), funded edges (capital instrument), deep-research scouting arm, timestamp law in force (the proprietary dataset began Day 130). Field state: warm base 85/85 sent, 3/3 community hosts accepted (constraint moved to delivery), first fully funnel-sourced Direction Call delivered, Gleb (a16z-backed founder) inbound-referred and booked within hours of the axiom's first field use, ~$2.2K in pending 1:1 offers. Center reading: Crystallization (P27) active on the myth axis while Propagation continues on the field axis; the live tension: converting crystallized clarity into delivered rooms.
+Days 127-130 crossed the Si–Do shock on the myth axis: the myth crystallized into the person-scale axiom («Твоя карьера ограничена степенью понимания себя» / 'Your career is capped by how well you know yourself'), the axiom generalized into the scale-free law ('Nothing grows past how well it knows itself — not a person, not a company, not a civilization'), and the law survived a 27-perspective adversarial panel only in that form. Myth v4.0 locked verbatim. Phase Shift Technologies 113-115 landed: holonic positioning, the wants→products matrix, and articulation as the mechanism of growth (the developmental law of every holon — candidate scientific theory, research brief drafted for Claude Science). The business named its own upper layers: Node Suite, Originals Index (real companies + websites + timestamped reads), funded edges (capital instrument), deep-research scouting arm, timestamp law in force (the proprietary dataset began Day 130). Field state: warm base 85/85 sent, 3/3 community hosts accepted (constraint moved to delivery), first fully funnel-sourced Direction Call delivered, Gleb (a16z-backed founder) inbound-referred and booked within hours of the axiom's first field use, ~$2.2K in pending 1:1 offers. Center reading: Crystallization (P27) active on the myth axis while Propagation continues on the field axis; the live tension: converting crystallized clarity into delivered rooms.

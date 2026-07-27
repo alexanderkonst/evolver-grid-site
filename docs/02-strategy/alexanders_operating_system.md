@@ -268,7 +268,7 @@ The next workspace isn't chosen — life brings you into it. When you sit down a
 
 ---
 
-## The Ease Protocol (Domain 75) — Operating Mode
+## The Ease Protocol (Phase Shift Technology 75) — Operating Mode
 
 > *April 8, 2026 — "Hello! My name is Aleksandr Konstantinov, and I am a grind addict."*
 
@@ -315,9 +315,9 @@ The session that produced 4 domains and 43 slides was intense but not rigid. Int
 - **When stuck:** Walk, don't force. The answer is already inside the single-definition circuit (HD: Single Definition + Emotional Authority)
 - **When "grinding":** Ask: "Am I doing this because it's the right thing — or because stopping would feel like dying?"
 - **When posting/distributing:** Post when called, not when scheduled. The unhinged ease-post to Telegram/IG/FB on April 8 outperformed any planned strategy
-- **When scattered:** Scatter = grind's symptom. Return to the seed (Domain 14). Do ONE thing
+- **When scattered:** Scatter = grind's symptom. Return to the seed (Phase Shift Technology 14). Do ONE thing
 
-> *Phase Shift Library: Domain 14f (Diagnosis) + Domain 75 (Prescription)*
+> *Phase Shift Library: Phase Shift Technology 14f (Diagnosis) + Phase Shift Technology 75 (Prescription)*
 
 ---
 

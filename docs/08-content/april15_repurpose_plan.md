@@ -28,7 +28,7 @@ Three principles for this tape — different from how most podcast episodes get 
 
 2. **Leave the witnesses in.** Oluwa's reflections and Oyi's questions are load-bearing. Sasha alone on a clip talking about grind-as-mind-virus lands at 60%. Sasha with Oyi asking "what about people who don't want it simplified?" lands at 100%. The three-way field *is* the medicine.
 
-3. **Every clip is a lead into the methodology, not a standalone soundbite.** This is the Playbook-as-Lead-Magnet pattern (Domain 74): the clip should trigger "I need to know more" and point to the playbook, not close the loop on its own.
+3. **Every clip is a lead into the methodology, not a standalone soundbite.** This is the Playbook-as-Lead-Magnet pattern (Phase Shift Technology 74): the clip should trigger "I need to know more" and point to the playbook, not close the loop on its own.
 
 ---
 
@@ -93,7 +93,7 @@ Timestamps reference the Fathom recording. Each clip is 45–180 seconds. Pull i
 - **Speaker:** Oluwa.
 - **Hook:** *"Truth has to be digested. Give too much food, they throw it all away. Is it a teaspoon or a bucket? Part of growth and wisdom is knowing."*
 - **Who this is for:** Teachers, facilitators, guides, parents — anyone carrying a transmission worried about overwhelming the recipient.
-- **CTA:** Link to Ease Protocol (Domain 75) — the facilitator's calibration.
+- **CTA:** Link to Ease Protocol (Phase Shift Technology 75) — the facilitator's calibration.
 
 ### Bonus clip (optional) — "The universe has the same clarity we have about ourselves"
 - **Timecode:** ~58:30 – 1:00:30 (120 sec)
