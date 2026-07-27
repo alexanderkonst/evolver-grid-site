@@ -322,9 +322,9 @@ export default function AlexanderProfile() {
               className="text-[17px] sm:text-[19px] leading-relaxed"
               style={{ fontFamily: DISPLAY_FONT, color: INK }}
             >
-              A grounded closer-operator who loves finishing — running sales calls, setting
+              A grounded closer-operator whose craft is finishing: running sales calls, setting
               prices, sending proposals, installing the weekly cadence that turns plans into
-              revenue.
+              revenue. Same aim, different position on the way there.
             </p>
           </section>
 

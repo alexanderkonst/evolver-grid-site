@@ -202,12 +202,14 @@ export function buildGiftSignature(profile: ProfileForMatching): string {
  * LLM call. Kept here so the prompt is part of the spec'd algorithm,
  * not buried in the edge function body.
  */
-export const TOP_TALENT_RUBRIC_PROMPT = `Rate how complementary these two talent profiles are.
+export const TOP_TALENT_RUBRIC_PROMPT = `Rate how productively these two talent profiles meet.
+
+Both people are whole. Neither is a set of missing pieces. What you are rating is whether they occupy DIFFERENT POSITIONS that compose, not whether one covers the other's deficiency.
 
 Scale:
-0.0 = redundant. They have the same gifts and the same shadows. Pairing them adds no new capability; they would compete or overlap rather than compose.
-0.5 = neutral. Their gifts are unrelated. Neither fills the other's gap, but neither competes either.
-1.0 = fully complementary. Their gifts compose into a larger whole. One's strength is the other's growth edge; one's shadow is the other's natural domain.
+0.0 = same position. The same gifts expressed the same way. Nothing new appears between them; they would overlap or compete rather than compose.
+0.5 = unrelated positions. Their gifts neither compose nor collide. Nothing much appears between them either way.
+1.0 = composing positions. Two distinct masteries that produce something neither position produces alone. Where one works, the other works somewhere the first does not reach, and together they cover a whole act.
 
 Reply with a single decimal number between 0.0 and 1.0. No explanation, no other text.`;
 
@@ -309,7 +311,7 @@ Your job: produce a JSON object with these fields, and ONLY these fields. No pro
   ],
   "suggestedAction": "intro" | "micro-collab" | "practice-together" | "wait",
   "alignment": "1 sentence on Mission similarity. What direction or value they share. Use their first names, not 'Profile A/B'.",
-  "complementarity": "1 sentence on Top Talent + Asset fit. What each brings the other lacks. Use first names.",
+  "complementarity": "1 sentence on Top Talent + Asset fit. Name what each one does, as two distinct masteries, and what appears between them. Never say either one lacks, needs, or is missing anything. Use first names.",
   "friction": "1 sentence on potential friction (timing, timezone, stage, language, mission divergence) or the literal string 'None identified' if you see nothing. Use first names when relevant."
 }
 
@@ -324,7 +326,7 @@ THE 5 GIFTS (for grounding — each is reveal/orient/access/build/energize, with
 - MIRROR (reveal you to yourself): Recognition (they see your essence) · Blind spot (they name what you can't see from inside) · Exact words (language you can immediately act with).
 - COMPASS (orient you): Permission (release a false constraint) · Map (a framework/distinction that reorganizes the terrain) · Timing (the concrete next move, and when).
 - DOOR (give access): Vouching (their reputation transfers to you) · Decoding (how the room actually works) · Entry (the intro, invitation, or deal itself).
-- CO-CREATION (build with you): Trust (skin in the game) · Complement (their genius covers your gap and yours theirs) · Shipped work (something neither could make alone).
+- CO-CREATION (build with you): Trust (skin in the game) · Distinct positions (two masteries aimed at the same thing from different places) · Shipped work (something neither could make alone).
 - MOTIVATION (energize you): Kinship (you're not alone) · Believed future (your success made concretely plausible) · Challenge (a provocation that mobilizes you).
 
 Voice rules:
