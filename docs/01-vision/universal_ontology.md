@@ -435,7 +435,7 @@ The intersection produces 12 seeing-positions:
 
 | | Essence (What IS) | Significance (Why MATTERS) | Implications (What DEMANDS) |
 |---|---|---|---|
-| **UL (I)** | 1. Does this feel TRUE from the inside? Would the creator recognize their soul in this? | 5. Does this liberate or constrain the individual soul? | 9. What must the creator do INTERNALLY next? What inner move is required? |
+| **UL (I)** | 1. Does this feel TRUE from the inside? | 5. Does this liberate or constrain the individual? | 9. What must be done INTERNALLY next? What inner move is required? |
 | **UR (It)** | 2. Does this WORK mechanically? Is the structure sound, logic tight, output measurable? | 6. Does the evidence/data support the claims? | 10. What must be BUILT or CHANGED concretely? Specific next actions? |
 | **LL (We)** | 3. Does this create SHARED MEANING? Would the tribe feel "this is us"? | 7. Is a cultural shift happening here? Does this move the collective? | 11. What must the TRIBE do together? How does this affect the collective? |
 | **LR (Its)** | 4. Does this fit the SYSTEM? Is it architecturally sound at scale? | 8. Does this advance the system architecture? Does it serve the larger mission? | 12. What does this mean at SYSTEM scale? What infrastructure changes are demanded? |
