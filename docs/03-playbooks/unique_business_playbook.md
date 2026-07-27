@@ -1304,6 +1304,42 @@ LIFE SITUATION (why NOW, not someday)
 
 **Key principle: The myth is universal. The tribe is YOUR tribe.** The myth doesn't change for different audiences — the segments, language, and channels narrow to where the founder's credibility and natural energy are highest. This is the beachhead market (Bill Aulet, MIT): universal myth → specific beach.
 
+### Ripeness: the physics of the ideal client (v1.0, July 26, 2026)
+
+The ideal client is not a demographic or a job title. It is a position across several developmental lines at once, which turns marketing from persuasion into search: you do not move people toward readiness, you find the ones already standing in it.
+
+Nine axes, each with a target position:
+
+- **Transition** — inside stages 5-7 (Liminality, Reorientation, Crossing) of the Transition Holomap.
+- **Surrender** — has stopped believing their own force will make it work.
+- **Distance** — income-to-person distance is short: money is theirs to move, not routed through someone else's approval.
+- **Locus** — internal locus of control, not blaming the market or the boss.
+- **Uniqueness** — has some articulated sense of what makes them specifically them, even if unrefined.
+- **Maturity** — developmental stage high enough to hold a mirror without collapsing into it.
+- **Consent** — has asked for reflection, or will say yes cleanly when asked.
+- **Means** — can actually pay, in money or in a currency the practitioner accepts.
+- **Currency** — the exchange on offer matches what they have to give.
+
+Surrender and the two capacity gates (Means, Consent) are **multiplicative, not additive**: a closed gate cannot be compensated by pushing harder on the other axes. A ripe person with no means is not ripe yet; a wealthy person who has not surrendered is not ripe yet.
+
+Full instrument: Phase Shift Technology 122. Transition axis in full: `docs/holomaps/transition_holomap.md`.
+
+#### Sovereignty first, gift second
+
+Five moves that hand the other person authorship of the encounter before anything is given:
+
+1. Ask a real question.
+2. Name their expertise out loud.
+3. Ask consent before mirroring — "Would it be useful if I reflected back what I'm seeing?"
+4. Qualify surrender before offering sight.
+5. Declare the container at the start.
+
+**The underlying law:** an unrequested mirror is a status claim and provokes a status test. Permission converts the same words into a gift. Full theory: Phase Shift Technology 124.
+
+#### Promise-shape under pressure
+
+The more pressure someone is under, the more concrete and income-denominated the promise must be to reach them at all. Clarity-shaped promises convert the already-converted; people under financial strain regress down the purchase ladder toward mechanical, money-denominated promises. This is not a compromise of the work. It is meeting the rung they are standing on.
+
 ### The Mask-On-First Principle
 
 The founder IS the first client. By doing the full process on yourself — forging YOUR myth, defining YOUR tribe, articulating YOUR uniqueness — you simultaneously:
