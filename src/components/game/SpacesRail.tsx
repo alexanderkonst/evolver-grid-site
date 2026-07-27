@@ -484,6 +484,8 @@ const SpacesRail = ({
                 backgroundColor: pageOwnsBackground
                     ? "var(--skin-panel-1-bg, rgba(10, 22, 48, 0.96))"
                     : "var(--skin-panel-1-bg, rgba(10, 22, 50, 0.98))",
+                backgroundImage:
+                    "linear-gradient(165deg, rgba(53, 78, 132, 0.34) 0%, rgba(18, 43, 91, 0.12) 34%, rgba(5, 21, 54, 0.44) 100%)",
                 // Day 55 (Sasha 2026-04-29): backdrop-filter retired entirely
                 // (was already off on touch). On Chrome desktop too, the
                 // viewport-tall blurred backdrop region was contributing to
@@ -543,7 +545,7 @@ const SpacesRail = ({
                 absolute px, not rem — user browser font-size settings
                 (Sasha runs 24px root) inflated 3rem cells to 72px inside
                 the fixed 72px rail. */}
-            <div className={compact ? "p-[6px]" : "px-3 pt-3 pb-1"}>
+            <div className={compact ? "p-[6px]" : "px-3 pt-2 pb-0"}>
                 <Link
                     to="/"
                     className={cn(
@@ -767,7 +769,7 @@ const SpacesRail = ({
                                 alone leaves a 4:3 canvas with large dead zones.
                                 This viewport preserves the canonical artwork and
                                 crops around the visible sphere + wordmark. */}
-                            <div className="hidden lg:flex h-[116px] w-full items-center justify-center overflow-hidden">
+                            <div className="hidden lg:flex h-[104px] w-full items-center justify-center overflow-hidden">
                                 <img
                                     src={brandLogo}
                                     alt="YOU — be original."
@@ -873,8 +875,8 @@ const SpacesRail = ({
                                         // a place you've stepped INTO rather than a
                                         // button lit from outside. Faint gold ring kept.
                                         ? compact
-                                            ? "text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_10px_-2px_rgba(244,212,114,0.5),inset_0_2px_8px_rgba(0,0,0,0.35)] scale-[0.99]"
-                                            : "text-white ring-1 ring-[#d4af37]/60 shadow-[0_0_22px_-6px_rgba(244,212,114,0.55),0_0_48px_-14px_rgba(212,175,55,0.35),inset_0_2px_8px_rgba(0,0,0,0.35)] scale-[0.99]"
+                                            ? "text-white shadow-[inset_0_2px_8px_rgba(0,0,0,0.35)] scale-[0.99]"
+                                            : "text-white shadow-[inset_0_2px_10px_rgba(0,0,0,0.38),inset_0_0_0_1px_rgba(244,212,114,0.14)] scale-[0.99]"
                                         : hasNudge
                                             ? "bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 hover:text-emerald-300 ring-1 ring-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.4)] animate-pulse"
                                             : "text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
