@@ -8,7 +8,7 @@
  */
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { resolveOutputLanguage, languageDirective } from "../_shared/language.ts";
+import { resolveOutputLanguage, languageDirective, proseCalibration } from "../_shared/language.ts";
 import {
   ARTIFACT_CONFIGS,
   ARTIFACT_INPUTS,
@@ -101,7 +101,7 @@ SOURCE PLAYBOOK: ${config.sourcePlaybook}
 
 ---
 
-${SYNTHESIS_PROTOCOL_PROMPT}${languageDirective(outputLanguage)}`;
+${SYNTHESIS_PROTOCOL_PROMPT}${languageDirective(outputLanguage)}${proseCalibration(outputLanguage)}`;
 
     const siblingSummary = Object.entries(sibling_artifacts || {})
       .map(([k, v]) => `- ${k}: ${JSON.stringify(v.content).slice(0, 400)}`)
