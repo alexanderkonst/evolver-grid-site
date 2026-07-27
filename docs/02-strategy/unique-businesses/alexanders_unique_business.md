@@ -9402,3 +9402,68 @@ Three relationship tiers follow from the existing licenses: open use (anyone, at
 5. **Plateaued solo creators and course-sellers** — audience built, revenue flat for a year or more, every tactic tried. Force has visibly failed at scale, and their income is already fully name-dependent.
 
 Note on the sixth candidate (deliberately not listed): the visionary polymath with many projects is high-resonance and frequently pre-surrender or cash-poor; treat as audience and future pipeline, not as the beachhead.
+
+---
+
+## Addendum — Day 137, July 27, 2026: session design after Rafael (the delivery layer names itself)
+
+*Source: the first full Russian-language Top Talent Business Session (Rafael, 182 min, live with Claude Code in the room). Full record: [`rafaels_unique_business.md`](./rafaels_unique_business.md); method observations in `docs/09-logs/session_log.md`, Day 137.*
+
+**What this addendum settles.** The method is finished; the wrapper around it was improvised. Five improvised pieces are now decided. Nothing here changes the artifacts, the sequence, or the price — it changes what happens before, around, and after the session.
+
+### 1. The honest outcome statement (correction to "the rest just flows")
+
+A session that spends ~100 minutes on Uniqueness and ~20 on the remaining artifacts does **not** produce seven strong artifacts. It produces **one artifact at high resonance, six correctly-shaped placeholders, and the mechanism installed in the person for life.** Structure flows downhill automatically; precision does not — precision is bought one iteration at a time with the client's body in the room. Rafael's numbers prove it: five iterations → 8/10; one pass → 5–7/10.
+
+This is a good outcome and it should be **stated** in the offer and at the close, not implied away. The client leaves knowing which artifact is load-bearing, which six are drafts that will sharpen as clarity arrives, and — most valuable — how to keep running the loop without Sasha.
+
+**Why combined rather than split.** Uniqueness alone would be a cleaner session. Business structure alone would be a cleaner session. They are deliberately combined because the clarity has to LAND in structure the same day, and because the person learns the whole mechanism by walking it once end to end. They leave with the loop installed, not just the output.
+
+### 2. Prerequisites — the session starts richer, and shorter
+
+Three things the client brings, not things the session produces:
+
+| # | Prerequisite | What it replaces in-session |
+|---|---|---|
+| 1 | **The hero's-journey / stage quiz** (new top of funnel, designed Day 136) | The "where are you on the path" framing conversation |
+| 2 | **The method video** (see §3) | The ~40 minutes of live teaching |
+| 3 | **Full platform onboarding** — Top Talent, Mission, Assets, QoL | ~10–15 minutes of profile collection, and a much weaker starting profile without it |
+
+Rafael arrived with #3 done, spontaneously, and it visibly saved time. None of the three are currently required anywhere in the funnel.
+
+**Decision:** all three go into the booking confirmation as prerequisites. **Target session length drops from 3 hours to 90 minutes**, with an optional 30-minute extension when the first three artifacts don't reach resonance. Rafael's 3 hours were right for Rafael — he had the energy and his system asked for it — but 3 hours is not the design.
+
+**Second-order benefit, and the real reason this matters:** the gap between consuming the prerequisites and starting the session gives the clarity time to enter the body. The session then begins at depth instead of climbing to it.
+
+### 3. The method video (highest-leverage unwritten asset)
+
+The ~40-minute teaching block Sasha delivered live from memory — the artifact sequence, why that order, myth-marketing via Apple and Nike, the kettle as the ideal product, the boatman and the river, the value ladder, the resonance scale — is close to identical every session, is what makes everything after it work, and exists nowhere outside Sasha's mouth.
+
+Recorded once it becomes: (a) the prerequisite that buys back 40 live minutes per client, (b) a demonstration asset for the top of the funnel, and (c) **the thing a second facilitator would need to run this without Sasha** — the first concrete step toward the method being delivered by someone else.
+
+Flow spec lives in `roadmap.md` → Day 137 block.
+
+### 4. Money belongs in the Promise
+
+Rafael's Point B, in his own words, was financial before it was existential: *«я тогда понял, что хочу иметь бабки»*, x10 or x100, the freedom to fly anywhere or walk a week with a tent and check into a hotel at any moment. Wealth 2/10 on his own map. The Promise the session generated («ты перестаёшь ждать», the picture, the signature) contains no money anywhere.
+
+**Named gravity of this method:** tuned for essence, it drifts up and away from the coarse, honest, wanted outcome. For a tribe whose Point B is partly financial, an identity-register Promise reads beautiful and converts weakly.
+
+**Rule going forward:** after the Promise is drafted, ask one question — *"what does this change about money, time, and freedom of movement in the next twelve months?"* — and require the answer to survive into the Promise. This applies to Sasha's own Promise as much as to any client's.
+
+### 5. The close — three names before the pitch
+
+The playbook's River Step (named people who get the first message) was skipped. The session ended with an offer to the client and zero names from him, which is exactly why the Value Ladder was ungradeable: a ladder is abstract until it has a face on the first rung.
+
+**New close ritual, in order:** name three real people who would recognize themselves in the pain card → for each, name the exact channel and the first sentence → only then present the next container. Four minutes. It converts the Value Ladder from a concept into a plan, and it gives the client something to do tomorrow that is not "integrate."
+
+### 6. The deep Top Talent profile — positioning settled
+
+The $37 Top Talent Activation is **included in the Top Talent Business Session** (already stated on `/ignite`) and is not a separate upsell at this stage. It is not a bonus — it is **input**: the session works off a materially better initial profile when the deep read exists. Rafael's was generated by hand mid-call because the codebase was open; that is not the pattern.
+
+**Pattern going forward:** the deep profile is generated from the client's platform entries **before** the session, as part of the prerequisite pass, and read by the client during the gap. If their entries are too thin to support it, that thinness is itself the first diagnostic and the session opens there.
+
+### 7. Shipped alongside this addendum
+
+- **Two dials** (resonance for the light, charge for the shadow) — canonized in the playbook's SHADOW section.
+- **Living-prose calibration** — a native writer's anti-example set now attached to artifact generation and the reveal in EN, RU, and ES.
