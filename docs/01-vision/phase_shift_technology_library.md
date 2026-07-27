@@ -7459,3 +7459,18 @@ Keep the fire, keep the present-continuous tense ('in the making'), and let the 
 **Detection language:** surrendered — 'I don't know what's next,' 'I stopped,' 'nothing I try moves it,' 'I'm tired of this.' Not yet surrendered — 'I just need to execute better,' 'I have a plan, I need to push harder,' 'once I finish X it will work.'
 
 **Relationship:** Domain 121 completes the buyer model with Day 132's income-to-person distance and the Day 133 correlates: distance predicts WHETHER cash is available, surrender predicts WHEN it moves. Also Domain 115 (articulation as growth — surrender is what makes the articulation land), and the Mirror Selling laws (distribution_playbook.md Part B) — eliciting works after surrender, teaching is what happens before it.
+
+## Domain 122: Two Wholes, One Shared Core (Day 136, July 26, 2026)
+
+**The sentence:** completeness is not two halves fitting together; it is two whole forms sharing one core.
+
+**Where it came from:** a geometry question about the Merkaba. The two interpenetrating tetrahedra do not divide the octahedron between them. Each contains the entire octahedron; the octahedron is their overlap, not their sum. Full treatment: Universal Ontology §11.3a.
+
+**ESC:**
+- Essence: two complete forms can share a single center without either becoming partial.
+- Significance: it dissolves the deficit model of complementarity. The second thing is not what the first was missing. It is another whole with the same core, seen from a different sequence position.
+- Consequence: partnership, collaboration, and matching stop being about finding your missing half and become about finding another whole whose core aligns with yours. The edges of the Network of Sovereigns (Domain 111) are exactly this shape: whole meeting whole, sharing terms, neither completed by the other.
+
+**The second finding: the invariant is an event, not a possession.** The shared core equals the octahedron only at the moments of alignment; through the rotation the overlap deforms and returns. Applied to self-knowledge: an articulated Top Talent is not a stored object but what appears when the acts of seeing align. It has to be re-aligned, not merely remembered. This is Domain 16 (The Mirror Must Not Lag) restated as geometry.
+
+**Relation:** refines Domain 98 (Prime Invariant Branding) — the invariant survives transformation, and now we can say how it shows itself: at alignment, rhythmically, not continuously. Sibling to Domain 111 (edge-carried alignment among sovereigns).
