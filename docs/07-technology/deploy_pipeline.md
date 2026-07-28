@@ -58,3 +58,95 @@ The `typecheck`-in-`build` gate only fires when something actually invokes `npm 
 2. **A local `pre-push` hook** in `.git/hooks/` that runs the typecheck (or full test suite) before any push to `main` reaches the remote — would catch the one-liner too, since hooks fire regardless of how the push is invoked. Not added here because no existing hook was found to extend, and inventing new local infrastructure crossed the line drawn for this pass ("only gate an existing local hook/script that is clearly the auto-committer").
 
 Either is a five-minute follow-up if Sasha wants the gate to reach the one-liner itself, not just the hosted build step.
+
+---
+
+## Privacy incident: real CRM/pulse names reached public artifacts (Jul 28, 2026)
+
+**What leaked.** `scripts/emit-project-pulse-snapshot.mjs` (predev/prebuild) reads the
+gitignored private ledgers — `docs/09-logs/project_pulse_log.md` and
+`docs/02-strategy/strategic_crm_outreach_tracker.md` — and writes two JSON snapshots
+that are *not* private:
+
+- `src/generated/project-pulse-snapshot.json` — statically imported by
+  `src/pages/CockpitDashboard.tsx`, so it ships inside the bundled JS for anyone who
+  loads the site, admin-gated UI or not.
+- `public/generated/project-pulse-snapshot.json` — served at an unauthenticated public
+  URL.
+
+Both contained real first names (Gleb, Karime, Nia, Oyi, Chris, Rafael, Sergey, and
+others) and free-text pipeline strategy (`next_action`, `what_happened`, event
+`title`/`pulse` slugs) — e.g. `"Sasha to send Gleb the Reflection Proposal, anchoring
+the BUSINESS door."` The sibling script `scripts/emit-crm-snapshot.mjs` had the exact
+same shape of leak, worse in degree: `offers[].name`/`.notes` and
+`upcomingEvents[].participants`/`.notes` carried full names (e.g. "Chris Milliken",
+"Andrey Kamyshan") and per-relationship dollar amounts, also reaching both the bundled
+JS and a public URL.
+
+**Why fix-forward, not history rewrite.** Sasha's explicit call: the exposure is first
+names of people who know him, not financial/credential data, and rewriting git history
+(`filter-branch`, force-push) is more disruptive than the leak itself. This section is
+the fix-forward record, not a claim that the historical commits are clean.
+
+**A tracked-file fix already existed for half of this.** `src/generated/crm-snapshot.json`
+and `public/generated/crm-snapshot.json` were already gitignored and untracked before
+this pass — someone had previously stopped committing them. That fix only addressed *git
+history churn*; it did nothing about the content itself, which was (and, before this
+pass, still is) real names written straight from the tracker into a bundled/public
+artifact every time `predev`/`prebuild` ran. Untracking a file does not anonymize it.
+
+**What changed.**
+
+1. **New shared anonymizer** — `scripts/sources/anonymize.mjs`. Builds the name list
+   *dynamically* from the CRM tracker itself (Master Table contacts, Offer Ledger,
+   Upcoming Events participants, Energy Leak Audit, Intuitive Launch batches) plus, for
+   the pulse snapshot, the pulse log's own structured `who:`/`actors:` fields — not a
+   hardcoded regex list, so it stays current as contacts are added. Each distinct
+   person gets a **stable token** (`P-XXXX`, derived from a hash of their fullest known
+   name) — the same person always maps to the same token across runs and across both
+   snapshots, so the cockpit stays internally coherent. Two people who share a first
+   name (e.g. two different "Andrey"s) are kept as two different tokens rather than
+   merged. Scrubbing runs over structured name fields *and* free text (`notes`,
+   `next_action`, `what_happened`, event `title`/`pulse` slugs) — a name buried in prose
+   or in a `snake_case` slug (`gleb_business_spiritual_integration_offer`) is scrubbed
+   the same as a name in a dedicated `name` column.
+2. **Both emit scripts now scrub before writing.** `emit-project-pulse-snapshot.mjs`
+   and `emit-crm-snapshot.mjs` build the anonymizer from `readBroadcastTracker()` and
+   run every emitted field through it before either JSON file is written. Verified: zero
+   case-insensitive matches for Gleb, Karime, Nia, Oyi, Chris, Milliken, Rafael, Sergey,
+   Roman, Andrey, and Kamyshan in the regenerated files.
+3. **`public/generated/crm-snapshot.json`'s vestigial-copy status did NOT hold for the
+   pulse snapshot — corrected from the original ask.** The plan going in was to stop
+   writing `public/generated/project-pulse-snapshot.json` entirely (it looked unused
+   from the frontend). Grepping the Supabase functions surfaced that
+   `supabase/functions/generate-pulse-brief/index.ts` and
+   `supabase/functions/equilibrium-telegram-bot/index.ts` both `fetch(`${SITE_ORIGIN}/generated/crm-snapshot.json`)`
+   and `.../project-pulse-snapshot.json` **at request time**, over plain HTTP, to build
+   the Founder Pulse briefs (rendered in the cockpit) and the Telegram bot's context.
+   Deleting the public copy outright would have silently broken both in production.
+   **What actually shipped instead:** the public copy is still written by
+   `predev`/`prebuild` (so it exists in every deployed build for those two edge
+   functions to fetch) but is now (a) anonymized, exactly like the bundled copy, and (b)
+   untracked in git (`git rm --cached` + added to `.gitignore`) — it never needs to enter
+   the repo's history again, tracked or not, since it's a pure build artifact
+   regenerated on every `predev`/`prebuild`.
+4. **`src/generated/project-pulse-snapshot.json` stays tracked and committed**,
+   regenerated with the anonymized script, because it's statically imported by Vite at
+   build time and needs to exist in a fresh checkout before the first build runs.
+   `src/generated/crm-snapshot.json` stays untracked (pre-existing convention) — this
+   introduces a small asymmetry between the two snapshots worth Sasha's attention if he
+   wants them handled identically.
+
+**Known residual gap.** Name detection is ASCII/Latin-script only
+(`/^[A-Z][a-zA-Z'-]{2,}$/`). At least one Cyrillic name appears in pulse-log prose
+("Женя Валенская") that this pass does **not** scrub — it was not on the list Sasha
+asked to verify, but it is real PII in the same free-text fields. Flagging rather than
+silently claiming full coverage.
+
+**Standing rule.** Any generated artifact derived from a private ledger
+(`docs/09-logs/project_pulse_log.md`, `docs/02-strategy/strategic_crm_outreach_tracker.md`,
+or any future private source) must run through `scripts/sources/anonymize.mjs` (or an
+equivalent, purpose-built scrubber) before it is written to *any* path that is bundled
+into shipped JS, served from `public/`, or fetched over an unauthenticated URL by an
+edge function. Gitignoring a generated file only stops future git-history churn — it
+does not anonymize the content, and the content is the actual leak.

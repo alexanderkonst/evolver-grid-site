@@ -89,13 +89,16 @@ function extractLeadingNameWords(segment) {
 
 /**
  * Build an anonymizer from the parsed CRM tracker (readBroadcastTracker()
- * output). Call once per emit run and reuse across both snapshot scripts so
- * "Oyi" always maps to the same token whether it's mentioned in the CRM
- * offer ledger or in pulse-log prose.
+ * output) plus any extra raw identity strings the caller supplies (e.g. the
+ * pulse log's own structured `who:` / `actors:` fields, which sometimes name
+ * a contact — like "Andrey Talalaev" — before they ever make it into the
+ * CRM tracker). Call once per emit run and reuse across both snapshot
+ * scripts so "Oyi" always maps to the same token whether it's mentioned in
+ * the CRM offer ledger or in pulse-log prose.
  */
-export function buildAnonymizer(crmData) {
+export function buildAnonymizer(crmData, extraRawIdentities = []) {
   // Pass 1: collect every name-shaped word sequence we can find in the
-  // identity-bearing fields of the tracker.
+  // identity-bearing fields of the tracker (plus any extra sources).
   const entries = [];
   const registerRaw = (raw) => {
     for (const segment of splitIdentitySegments(raw)) {
@@ -111,29 +114,71 @@ export function buildAnonymizer(crmData) {
   for (const batch of crmData?.intuitiveLaunch ?? []) {
     for (const item of batch.items ?? []) registerRaw(item.name);
   }
+  for (const raw of extraRawIdentities) registerRaw(raw);
 
-  // Pass 2: group by first name, keeping the longest (most complete) form
-  // seen for each — so "Kristina" and "Kristina Bikare" resolve to one
-  // canonical identity and one token, regardless of which was seen first.
-  const canonicalByFirstWord = new Map();
+  // Pass 2: two-word ("full name") entries are treated as distinct
+  // identities keyed by their exact full name — NOT grouped by first name
+  // alone. Two different people who happen to share a first name (e.g.
+  // "Andrey Kamyshan" and "Andrey Talalaev") must get two different tokens,
+  // never merged.
+  const fullNameGroups = new Map(); // "first last" (lowercase) -> canonicalWords
+  const singleNameEntries = []; // lone first-name-only mentions
   for (const words of entries) {
-    const key = words[0].toLowerCase();
-    const existing = canonicalByFirstWord.get(key);
-    if (!existing || words.length > existing.length) canonicalByFirstWord.set(key, words);
+    if (words.length >= 2) {
+      const key = words.join(" ").toLowerCase();
+      if (!fullNameGroups.has(key)) fullNameGroups.set(key, words);
+    } else {
+      singleNameEntries.push(words[0]);
+    }
   }
 
-  // Pass 3: assign a stable token per canonical identity, and register every
-  // word of the canonical name (full name + first + last) as an alias for
-  // that same token.
+  // Pass 3: assign a stable token per full-name identity, and register the
+  // full name + last name as aliases for it. The first name is only added
+  // as an alias when it's unambiguous — i.e. exactly one known full name
+  // starts with it — so "Andrey" alone (ambiguous between two contacts)
+  // does not get merged into either.
   const aliasToToken = new Map(); // exact-case alias -> token
-  for (const canonicalWords of canonicalByFirstWord.values()) {
-    const fullName = canonicalWords.join(" ");
-    if (FOUNDER_ALIASES.has(fullName.toLowerCase())) continue;
-    if (canonicalWords.some((w) => FOUNDER_ALIASES.has(w.toLowerCase()))) continue;
+  const firstWordOwners = new Map(); // lowercase first word -> Set of full-name keys
+
+  const isFounder = (words) =>
+    FOUNDER_ALIASES.has(words.join(" ").toLowerCase()) ||
+    words.some((w) => FOUNDER_ALIASES.has(w.toLowerCase()));
+
+  for (const words of fullNameGroups.values()) {
+    if (isFounder(words)) continue;
+    const firstKey = words[0].toLowerCase();
+    if (!firstWordOwners.has(firstKey)) firstWordOwners.set(firstKey, new Set());
+    firstWordOwners.get(firstKey).add(words.join(" ").toLowerCase());
+  }
+
+  for (const words of fullNameGroups.values()) {
+    if (isFounder(words)) continue;
+    const fullName = words.join(" ");
     const token = tokenFor(fullName);
-    for (const alias of new Set([fullName, ...canonicalWords])) {
-      if (!aliasToToken.has(alias)) aliasToToken.set(alias, token);
+    if (!aliasToToken.has(fullName)) aliasToToken.set(fullName, token);
+    // Last name: fairly unique, safe to alias unconditionally (first
+    // registration wins on rare collision).
+    const lastWord = words[words.length - 1];
+    if (!aliasToToken.has(lastWord)) aliasToToken.set(lastWord, token);
+    // First name: only alias it if this is the ONLY full name starting
+    // with it, otherwise a lone mention of that first name is ambiguous
+    // and must not be merged into either identity.
+    const firstWord = words[0];
+    const owners = firstWordOwners.get(firstWord.toLowerCase());
+    if (owners && owners.size === 1 && !aliasToToken.has(firstWord)) {
+      aliasToToken.set(firstWord, token);
     }
+  }
+
+  // Single-word-only mentions (no full name ever seen for them, e.g. "Oyi",
+  // "Devon", "Karime") get their own identity/token, unless they collide
+  // with a first name already claimed above (in which case they refer to
+  // that same person and were already handled) or are the founder.
+  for (const name of singleNameEntries) {
+    if (FOUNDER_ALIASES.has(name.toLowerCase())) continue;
+    if (aliasToToken.has(name)) continue;
+    if (firstWordOwners.has(name.toLowerCase())) continue; // ambiguous, see above
+    aliasToToken.set(name, tokenFor(name));
   }
 
   // Longest alias first so "Chris Milliken" is replaced whole before the
