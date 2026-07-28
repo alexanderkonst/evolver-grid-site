@@ -1140,31 +1140,37 @@ LEVEL 4: alexanders_unique_business.md  (THE LIVING PROOF)
 
 ---
 
-## 🗺️ THE UNIQUENESS MAP — What It Actually Is (Day 138 finding)
+## 🗺️ THE UNIQUENESS MAP — What It Actually Is (Day 138 finding, corrected Day 138)
 
-> *Added 2026-07-28. A prior search for an artifact literally named "the uniqueness map" found nothing and concluded it doesn't exist (see `roadmap.md` Day 138 open thread Q5). That was a name-matching search, not a concept search — the thing exists, under other names, distributed across several artifacts that were never consolidated under one label.*
+> *Added 2026-07-28. A prior search for an artifact literally named "the uniqueness map" found nothing and concluded it doesn't exist (see `roadmap.md` Day 138 open thread Q5). That was a name-matching search, not a concept search — the thing existed, before this correction, under other names, distributed across several artifacts that were never consolidated under one label.*
+>
+> **Correction (same day):** the first pass of this finding concluded that "v2.0" meant the Quiz shipping and reaching Phase 3 retrodiction, not a new document. Sasha's read, verbatim: *"wrong conclusion. Definitely a document to write!!! This is hugely important as a holomap."* The instrument and its validation are two separate deliverables, not two names for one deliverable — see below.
 
-**What "uniqueness map" means in the corpus.** Two distinct things share the name, and the confusion comes from conflating them:
+**What "uniqueness map" means in the corpus.** Two distinct things share the name, and the earlier confusion came from conflating them:
 
-1. **The Uniqueness developmental line** — a 5-stage maturity axis for a person's relationship to their own gift: Unawareness → Initial exploration → Initiation → Integration → Embodiment (`docs/08-content/training_analysis_complete.md` line 181, an early curriculum artifact, "Map of Uniqueness Development"). This is the older, narrower sense — one line among several in a person's development, not an instrument.
-2. **"The uniqueness map" as Sasha now uses it in conversation** — the *instrument* that places a person on that line and moves them along it. This is not one file. It is the composite of:
-   - **The Ripeness Vector** (Phase Shift Technology 123, `docs/01-vision/phase_shift_technology_library.md` line 7482) — nine axes describing a person's readiness for transformational work; **Uniqueness is one of the nine axes** ("development of their relationship to their own gift," target stage 3-4 of 5 — the same 5-stage line as #1 above).
-   - **The Transition Holomap** (Phase Shift Technology 124, `docs/holomaps/transition_holomap.md`) — the 7-stage (extended to 10) Identity/Economy/Fit taxonomy, 63-cell grid. This is the *mechanism*: "a transition is the mechanism by which the uniqueness line advances: uniqueness is the ratchet, a completed transition is the click" (Technology 124, and echoed verbatim in `alexanders_unique_business.md` §10 Method v4.0, line 3442).
-   - **The Quiz** (`docs/specs/quiz/quiz_product_spec.md` + `quiz_tracker.md`) — the shipped product that operationalizes both: it places a person on the Transition Holomap's 7 stages, reads the Identity/Economy/Fit spread, and its output loop *is* the crossing-work that advances the Uniqueness axis of the Ripeness Vector. **This is why Sasha says the quiz is based on the uniqueness map** — the quiz is the first artifact that actually implements the instrument, even though no single file is titled "uniqueness map."
+1. **The Uniqueness developmental line** — a 5-stage maturity axis for a person's relationship to their own gift: Unawareness → Initial exploration → Initiation → Integration → Embodiment (`docs/08-content/training_analysis_complete.md` line 181, an early curriculum artifact, "Map of Uniqueness Development"). This is the older, narrower sense — one line among several in a person's development, not an instrument. **This is v1.**
+2. **"The uniqueness map" as Sasha now uses it in conversation** — the *instrument* that places a person on that line and moves them along it. Before Day 138 this was not one file; it was distributed across:
+   - **The Ripeness Vector** (Phase Shift Technology 123, `docs/01-vision/phase_shift_technology_library.md` line 7482) — nine axes describing a person's readiness for transformational work; **Uniqueness is one of the nine axes** ("development of their relationship to their own gift," target stage 3-4 of 5 in the old 5-stage terms).
+   - **The Transition Holomap** (Phase Shift Technology 124, `docs/holomaps/transition_holomap.md`) — the *mechanism*: "a transition is the mechanism by which the uniqueness line advances: uniqueness is the ratchet, a completed transition is the click" (Technology 124, echoed verbatim in `alexanders_unique_business.md` §10 Method v4.0, line 3442).
+   - **The Quiz** (`docs/specs/quiz/quiz_product_spec.md` + `quiz_tracker.md`) — the shipped product built on top of the mechanism, not the instrument itself.
+
+   Distributed across three cross-referenced artifacts and never written up as its own instrument, this is why Sasha says the quiz is "based on the uniqueness map" — the quiz consumes an instrument that, until Day 138, existed only implicitly.
 
 **Version state, concretely:**
 - v1.0 (implicit): the 2026-01/02-era "Map of Uniqueness Development," 5 stages, curriculum-only, never shipped as a product.
-- v1.5 (implicit, Day 136, Jul 26): Technology 123 (Ripeness Vector) formalizes Uniqueness as one of nine scored axes; Technology 124 (Transition Holomap) formalizes the mechanism that moves it. Still three separate documents, no consolidated label.
-- **What a "v2.0" would concretely mean**, given what shipped in the last ten days (Day 128-138): the Quiz reaching Phase 3 (retrodiction-tested against the 7 known clients — `roadmap.md` Q1, `quiz_tracker.md`) is the point at which the instrument stops being three cross-referenced documents and becomes one working, validated tool a stranger can use on themselves. A v2.0 uniqueness map is therefore not a new doc to write — it is the Quiz shipped and retrodiction-proven, with Technology 123 and 124 as its named theoretical spine. Scoping it as a fresh artifact (as `roadmap.md` Q5 currently frames it) would duplicate work already in flight under Q1.
+- v1.5 (implicit, Day 136, Jul 26): Technology 123 (Ripeness Vector) formalizes Uniqueness as one of nine scored axes; Technology 124 (Transition Holomap) formalizes the mechanism that moves it. Still three separate documents, no consolidated label — the gap that made v2.0 necessary.
+- **v2.0 (Day 138, Jul 28): `docs/holomaps/uniqueness_holomap.md`.** The instrument itself, written up as its own holomap — sibling to the Transition Holomap, extending the v1 five stages into a seven-stage octave (Unawareness → Transmission) plus a register shift to Symbiosis (10), a Pattern/Direction/Assets 3×3 taxonomy, the 63-cell grid, and the 54 shifts. This is what "v2.0" means: **the document, not the quiz.**
+- **Validation, separately:** the Quiz reaching Phase 3 (retrodiction-tested against the 7 known clients — `roadmap.md` Q1, `quiz_tracker.md`) is how the instrument gets *proven against real cases*, not what the instrument *is*. Quiz Phase 3 validates the holomap; it does not replace it, and the holomap did not need to wait for Phase 3 to be written.
 
-**Constituent files (no new file created — this section is the consolidation):**
+**Constituent files:**
+- `docs/holomaps/uniqueness_holomap.md` — **the instrument itself (v2.0).**
 - `docs/01-vision/phase_shift_technology_library.md` — Technologies 123, 124 (125, 126 are adjacent: Social Physics of the Mirror, Persuasion as a Perception Deficit — not part of the uniqueness map itself, but govern when/how it may be shown to someone).
-- `docs/holomaps/transition_holomap.md` — the 7/10-stage instrument.
-- `docs/specs/quiz/quiz_product_spec.md`, `docs/specs/quiz/quiz_tracker.md` — the shipping product.
+- `docs/holomaps/transition_holomap.md` — the sibling instrument (the mechanism/ratchet-click).
+- `docs/specs/quiz/quiz_product_spec.md`, `docs/specs/quiz/quiz_tracker.md` — the shipping product that operationalizes the instrument and, at Phase 3, validates it.
 - `docs/02-strategy/unique-businesses/alexanders_unique_business.md` §10 Method v4.0 — names the ratchet/click relationship.
-- `docs/08-content/training_analysis_complete.md` — origin of the 5-stage Uniqueness line itself (older, narrower artifact, still the correct definition of the axis).
+- `docs/08-content/training_analysis_complete.md` — origin of the 5-stage Uniqueness line itself (v1, superseded but preserved as genealogy).
 
-*Note: `roadmap.md` Day 138 Q5 ("Uniqueness map v2.0 — no v2.0 scope or draft found") was written before this consolidation and is now superseded by the finding above; left unedited pending Sasha's read, per this investigation's scope (correction authority was for the revenue figure only).*
+*Note: `roadmap.md` Day 138 Q5 has been corrected to match this finding — the holomap shows as delivered, and Quiz Phase 3 remains tracked separately as validation.*
 
 ---
 
