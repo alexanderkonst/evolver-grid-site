@@ -79,6 +79,7 @@ import FoundersShowcase from "./pages/FoundersShowcase";
 import IgniteSession from "./pages/IgniteSession";
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
 const EvolutionPortal = lazy(() => import("./pages/EvolutionPortal"));
+const EvolutionPortalKarime = lazy(() => import("./pages/EvolutionPortalKarime"));
 const BuildContainer = lazy(() => import("./pages/BuildContainer"));
 const CommunityWebinar = lazy(() => import("./pages/CommunityWebinar"));
 // Day 133: plain-language data promise + legal companions.
@@ -563,6 +564,9 @@ const App = () => (
                   <Route path="/products" element={<ProductsPage />} />
                   {/* Day 130: Client Evolution Portal (Practitioner Node) landing — public. */}
                   <Route path="/products/evolution-portal" element={<EvolutionPortal />} />
+                  {/* Personalized proposal for Karime — private, noindex, kept out of the
+                      sitemap generator's explicit allowlist. */}
+                  <Route path="/products/evolution-portal/karime" element={<EvolutionPortalKarime />} />
                   <Route path="/products/evolution-protocol" element={<Navigate to="/products/evolution-portal" replace />} />
                   <Route path="/product/evolution-portal" element={<Navigate to="/products/evolution-portal" replace />} />
                   <Route path="/products/built" element={<BuildContainer />} />
