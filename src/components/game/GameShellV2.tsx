@@ -1549,11 +1549,14 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     title={railMinimized ? t("shell.rail.expand") : t("shell.rail.minimize")}
                     aria-label={railMinimized ? t("shell.rail.expand") : t("shell.rail.minimize")}
                     style={{
-                        background: pageOwnsBackground
-                            ? "var(--skin-rail-toggle-bg-deep, rgba(6,12,28,0.94))"
-                            : "var(--skin-rail-toggle-bg, rgba(14,32,68,0.88))",
-                        boxShadow:
-                            "inset -1px 0 0 var(--skin-rail-toggle-hairline, rgba(212, 175, 55, 0.32)), 2px 0 14px -8px var(--skin-rail-toggle-glow, rgba(244, 212, 114, 0.3))",
+                        background: __spaceShipSkin === "lapis"
+                            ? "linear-gradient(90deg, rgba(6, 25, 65, 0.98) 0%, rgba(28, 56, 109, 0.96) 100%)"
+                            : pageOwnsBackground
+                                ? "var(--skin-rail-toggle-bg-deep, rgba(6,12,28,0.94))"
+                                : "var(--skin-rail-toggle-bg, rgba(14,32,68,0.88))",
+                        boxShadow: __spaceShipSkin === "lapis"
+                            ? "inset 1px 0 0 rgba(212, 175, 55, 0.10), inset -1px 0 0 rgba(244, 212, 114, 0.16)"
+                            : "inset -1px 0 0 var(--skin-rail-toggle-hairline, rgba(212, 175, 55, 0.32)), 2px 0 14px -8px var(--skin-rail-toggle-glow, rgba(244, 212, 114, 0.3))",
                     }}
                 >
                     {/* Day 119 (Sasha 2026-07-09): raw "▶" text glyph
@@ -1566,7 +1569,9 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         style={{
                             width: 14,
                             height: 14,
-                            color: "var(--skin-rail-toggle-accent, rgba(244, 212, 114, 0.85))",
+                            color: __spaceShipSkin === "lapis"
+                                ? "rgba(244, 212, 114, 0.72)"
+                                : "var(--skin-rail-toggle-accent, rgba(244, 212, 114, 0.85))",
                             transform: railMinimized
                                 ? "rotate(0deg)"
                                 : "rotate(180deg)",

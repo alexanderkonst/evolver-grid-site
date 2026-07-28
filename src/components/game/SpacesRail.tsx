@@ -968,7 +968,7 @@ const SpacesRail = ({
                                 hidden via a CSS override). The chip's own gold
                                 ring on active state is enough indicator. */}
                             {active && !compact && (
-                                <div className="absolute left-0 top-1/2 w-1 h-8 rounded-r-full translate-x-0 lg:-translate-x-1/2 -translate-y-1/2 bg-[#d4af37] shadow-[0_0_8px_rgba(244,212,114,0.7)]" />
+                                <div className="absolute left-0 top-1/2 w-[3px] h-7 rounded-r-full translate-x-0 lg:-translate-x-1/2 -translate-y-1/2 bg-[rgba(226,190,82,0.86)] shadow-[0_0_6px_rgba(244,212,114,0.34)]" />
                             )}
                         </button>
                     );
