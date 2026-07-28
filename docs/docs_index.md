@@ -60,6 +60,7 @@ docs/
 | [venture_growth_playbook.md](./02-strategy/venture_growth_playbook.md) | Venture growth strategy |
 | [planetary_os_assembly.md](./02-strategy/planetary_os_assembly.md) | **How This Business Grows** — 12-step emergence sequence from founder to ecosystem (v1.1) |
 | [venture_building_holomap.md](./02-strategy/venture_building_holomap.md) | Venture building map |
+| [holomaps/uniqueness_holomap.md](./holomaps/uniqueness_holomap.md) | **Uniqueness Holomap v2.0** (Day 138) — 7-stage octave (Unawareness → Transmission) + register shift to Symbiosis (10), Pattern/Direction/Assets 3×3 taxonomy, 63-cell grid. Sibling to `holomaps/transition_holomap.md`: uniqueness is the ratchet, transition is the click. Supersedes the 5-stage "Map of Uniqueness Development" in `08-content/training_analysis_complete.md` |
 | [unique_business_cooperative.md](./02-strategy/unique_business_cooperative.md) | Cooperative structure |
 | [unique_business_studio_vision.md](./02-strategy/unique_business_studio_vision.md) | Studio vision |
 | [pitch_deck_nuggets.md](./02-strategy/pitch_deck_nuggets.md) | Pitch deck content |
