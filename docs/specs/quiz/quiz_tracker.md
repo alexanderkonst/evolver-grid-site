@@ -1,7 +1,7 @@
 # Where Are You (the transition quiz) — Progress Tracker
 
 **Started:** 2026-07-27
-**Status:** Phase 1: PRODUCT — in progress
+**Status:** Phase 1: PRODUCT — complete, awaiting Sasha at ROAST GATE 1
 
 ---
 
@@ -15,21 +15,31 @@
 
 ---
 
-## PHASE 1: PRODUCT `[■■░░░░░░]` 25%
+## PHASE 1: PRODUCT `[■■■■■■■■]` 100%
 
-- [x] 1.1 Master Result — Defined. "The quiz takes a person from 'something is off and I can't name it' to 'I know exactly where I am on my own journey, which part of my life is holding the rest back, and what moves next.'" Content in `quiz_product_spec.md` §1.1.
-- [ ] 🔥 ROAST 1.1 (Deep: 3×3)
+- [x] 1.1 Master Result — Defined. Content in `quiz_product_spec.md` §1.1.
+- [x] 🔥 ROAST 1.1 (Deep: 3×3) — Rewrote. v2: "The quiz takes you from 'something is off and I can't even say what' to 'I know exactly where I am, what's actually holding me back, and what happens next.'" Plainer, names the actual outputs (stage/bottleneck/next move), still one sentence.
 - [x] 1.2 Sub-Results — 4 defined: Placed, Read, Met, Pointed. Content in `quiz_product_spec.md` §1.2.
-- [ ] 🔥 ROAST 1.2 (Deep: 3×3)
-- [ ] 1.3 Screens ← CURRENT — draft exists in `quiz_product_spec.md` §1.3 (S1-S7 + S3a), not yet roasted
-- [ ] 🔥 ROAST 1.3
-- [ ] 1.4 Screen Details (Heart/Mind/Gut)
-- [ ] 🔥 ROAST 1.4
-- [ ] 1.5 Extensions
-- [ ] 🔥 ROAST 1.5
-- [ ] 1.6 Wireframes
-- [ ] 🔥 ROAST 1.6
-- [ ] 🔥 ROAST GATE 1
+- [x] 🔥 ROAST 1.2 (Deep: 3×3) — No rewrite. One addition: made explicit that Read/Met/Pointed are gated to stages 4-7; stages 1-3 stop after Placed (the not-yet branch), which is honest rather than a missing 5th sub-result.
+- [x] 1.3 Screens — Finalized at 10 screens/variants (S1, S2, S3, S3a-1, S3a-2, S4a, S4b, S4c, S5, S6, S7). Content in `quiz_product_spec.md` §1.3.
+- [x] 🔥 ROAST 1.3 — Resolved all 4 open questions carried from the draft: 9 questions split into 3 screens (one per aspect); stage placement stays 1 question/7 options; free version shows everything (only derivation is paid); S3a is stage-conditional (2 variants, not 1).
+- [x] 1.4 Screen Details (Heart/Mind/Gut) — All 10 screens defined. Content in `quiz_product_spec.md` §1.4.
+- [x] 🔥 ROAST 1.4 — One rewrite: S7's fallback CTA for the "all three at 5" (full liminality) pattern changed from a forced session pitch to "Retake anytime" — forcing a CTA there would break the no-pitch-if-not-ready principle. **Flagged for Sasha below — this may be too conservative for your most valuable segment.**
+- [x] 1.5 Extensions — Artifacts, emotional arc, completion criteria, skip paths, bridges all defined. Content in `quiz_product_spec.md` §1.5.
+- [x] 🔥 ROAST 1.5 — No rewrite. Bridges confirmed as intentionally one-directional (external destinations) except the email nurture loop, which is bidirectional by design.
+- [x] 1.6 Wireframes — ASCII, mobile-first 375px, all 10 screens/variants, CTA above the fold on every one. Content in `quiz_product_spec.md` §1.6.
+- [x] 🔥 ROAST 1.6 — No structural rewrite. Noted for Phase 3: S5 and S7 need generous spacing so the data density doesn't read as a dashboard dump.
+- [x] 🔥 ROAST GATE 1 ← CURRENT — Flow walked screen by screen, no redundant or missing screens found. **Awaiting Sasha's sign-off — see below.**
+
+---
+
+## FOR SASHA AT ROAST GATE 1
+
+Three real forks — everything else in Phase 1 was resolvable from your standing decisions and got resolved inline.
+
+1. **The ripest pattern (all three aspects at 5, full liminality) currently gets NO CTA at S7** — just "Retake anytime," to honor "not-yet doesn't pitch." But this pattern is your most valuable segment (maximum ripeness), not a not-yet case. Is "no CTA" too conservative here, or does full liminality still deserve the same restraint as stages 1-3?
+2. **Route CTA copy/destinations** (Direction Call / 1:1 session / BUILT / node) are named generically in the spec per the diagnostic-engine table — need your confirmation these map to your current live offers and exact names before Phase 2 wires them to real links.
+3. **Does a Stage-1 (Settled) completion get logged at all for the dataset** (Technology 123 feeds), or does "no ask at all" also mean no data capture for that segment? Spec currently assumes a silent record is still written (for the Ripeness Vector dataset) even though the user sees no ask — flag if that's wrong.
 
 ---
 
