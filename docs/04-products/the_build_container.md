@@ -35,7 +35,7 @@ This container is the direct continuation of the Productize Yourself Session. It
 
 ## Where this copy came from
 
-Woven from harvested threshold language (Threshold Language Harvest, `marketing_playbook.md` Part III-B). Load-bearing phrases and their sources: "what is my real offer" · "no more hundred paths" · "no script... from your mind, your spirit, your heart, your experiences" · "spinning wheels" · "we go exactly at your pace" — all verbatim or near-verbatim from the client's own first-read call and Ignition session. The copy law: every persuasive element is a mirror; nothing in it needs the reader's yes.
+Woven from harvested threshold language (Threshold Language Harvest, `marketing_playbook.md` Part III-B). Load-bearing phrases and their sources: "what is my real offer" · "no more hundred paths" · "no script... from your mind, your spirit, your heart, your experiences" · "spinning wheels" · "we go exactly at your pace" — all verbatim or near-verbatim from the client's own first-read call and Productize Yourself session. The copy law: every persuasive element is a mirror; nothing in it needs the reader's yes.
 
 ## Copy laws this offer obeys
 

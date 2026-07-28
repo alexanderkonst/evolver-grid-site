@@ -138,7 +138,7 @@ Traditional business has three departments: build the product, market the produc
 
 Soul-aligned business collapses them into ONE:
 
-| One Ignition Session... | produces... |
+| One Productize Yourself Session... | produces... |
 |------------------------|-------------|
 | The client gets their canvas | **Product** |
 | The story becomes the next episode | **Marketing** |
@@ -165,7 +165,7 @@ The facilitator doesn't teach — they hold a mirror. The client doesn't learn �
 
 | Level | What they get | Precision |
 |-------|--------------|-----------|
-| **Ignition** ($555) | Their entire business on one page. First draft. | ~7 |
+| **Productize Yourself Session** ($555) | Their entire business on one page. First draft. | ~7 |
 | **The Build** ($1,111 + $2,500 rev share) | Every artifact polished. First 10 clients. Operational. | ~9.5+ |
 
 They HOLD the rough sketch. It makes sense. But they can FEEL that it could be sharper. That feeling is the product. The gap is real, not manufactured. Going deeper genuinely takes more time, more witnessing, more iteration.
@@ -174,7 +174,7 @@ They HOLD the rough sketch. It makes sense. But they can FEEL that it could be s
 
 > *"5 phases. Each one is a gate. Don't skip. Don't rush."*
 
-The Build bridges "I have my canvas" (Ignition output) to "I have a $10K+/month income stream." Not a course — a co-creation.
+The Build bridges "I have my canvas" (Productize Yourself Session output) to "I have a $10K+/month income stream." Not a course — a co-creation.
 
 **Pricing:** $1,111 upfront + $2,500 from first $10K revenue. Client keeps $7,500 of first $10K. Year 1 ROI at $10K/mo: 29.9x.
 
@@ -336,7 +336,7 @@ Surface-polishing is **infinite.** There is always one more thing to fix. The bu
 
 ### The Medicine
 
-Every founder who comes through the Ignition will have this blind spot. They will make a beautiful product and wonder why nobody buys. Their instinct will be to polish. The answer is always: stop polishing — **sharpen the decision conditions.**
+Every founder who comes through the Productize Yourself Session will have this blind spot. They will make a beautiful product and wonder why nobody buys. Their instinct will be to polish. The answer is always: stop polishing — **sharpen the decision conditions.**
 
 > **Teach this in Call 2 of The Build:** "Your product isn't your problem. Your client's decision is your problem."
 
@@ -637,7 +637,7 @@ It's not a personality type. It's a cultural infection. The founder who says "I 
 
 ### Why it Matters for the Session
 
-The Ignition Session is, at its core, **a detox.** What actually happens in 90 minutes is not "we name your business." What happens is: the founder STOPS. Sits with another human. Is listened to without agenda. And something emerges that was always there but was buried under the noise of grinding. The session works because it creates the OPPOSITE of the grind environment — it creates **spaciousness.**
+The Productize Yourself Session is, at its core, **a detox.** What actually happens in 90 minutes is not "we name your business." What happens is: the founder STOPS. Sits with another human. Is listened to without agenda. And something emerges that was always there but was buried under the noise of grinding. The session works because it creates the OPPOSITE of the grind environment — it creates **spaciousness.**
 
 ### The Signal Table
 
@@ -1890,7 +1890,7 @@ Every insight in the playbook must eventually find its home in a workflow step. 
   - Each sub-result is a mini hero's journey: mini A → mini B
   - Each can be further broken into a trinity (3×3×3 = 27 for full landing), but for 1st session stay at the first level — 3 only
   - **AI applies holonic 26+ vision** to the Transformational Result to discover the natural trinity already implicit in the promise. The sub-results are not invented — they are DISCOVERED by looking at the transformation from enough perspectives.
-  - **Example (Alexander's Ignition Session):** (1) Name your craft, (2) See your business, (3) Know your first move
+  - **Example (Alexander's Productize Yourself Session):** (1) Name your craft, (2) See your business, (3) Know your first move
   - See: [The Bridge: Pain + Promise → 1st Session](file:///Users/alexanderkonst/evolver-grid-site/docs/03-playbooks/integrated_product_building_workflow.md#-the-bridge-pain--promise--1st-session) for full methodology
 - [ ] **5.7. 1st SESSION DESIGN** → Where guaranteed results are delivered without overwhelming
   - **The 1st session is NOT the full transformation.** It is where guaranteed results meet the tribe without overwhelm.
@@ -2054,9 +2054,9 @@ AI gets the articulation to **9**. The founder's embodied experience — writing
 > [!IMPORTANT]
 > **The playbook creates STRUCTURE. Each founder fills it with their unique MEDICINE.**
 >
-> Alexander's Ignition Session and Oyi's Mirror Session follow the same structural arc — recognition → shadow naming → prescription → invitation to the Build. But the CONTENT is completely different: Alexander uses AI-assisted uniqueness extraction; Oyi uses astrology + human design + first-person testimony. Same 7 artifacts. Same value ladder shape. Same A→B journey structure. Different medicine in every cell.
+> Alexander's Productize Yourself Session and Oyi's Mirror Session follow the same structural arc — recognition → shadow naming → prescription → invitation to the Build. But the CONTENT is completely different: Alexander uses AI-assisted uniqueness extraction; Oyi uses astrology + human design + first-person testimony. Same 7 artifacts. Same value ladder shape. Same A→B journey structure. Different medicine in every cell.
 >
-> | | Alexander's Ignition | Oyi's Mirror |
+> | | Alexander's Productize Yourself Session | Oyi's Mirror |
 > |---|---|---|
 > | **Tool** | AI-assisted uniqueness extraction | Astrology (North/South Node) + Human Design + Storytelling |
 > | **The "wow" moment** | "You just described your business in 60 seconds" | "How does he know that? I didn't say a word" |
@@ -2124,7 +2124,7 @@ This IS the flywheel. It doesn't require a plan. It requires delivery.
 **The Triple-Delivery Principle (discovered March 16, 2026):**
 
 > [!IMPORTANT]
-> **The Ignition Session delivers three things in one sitting: unique product, unique marketing, and unique distribution.**
+> **The Productize Yourself Session delivers three things in one sitting: unique product, unique marketing, and unique distribution.**
 >
 > | Delivery | What the founder walks out with |
 > |----------|--------------------------------|
@@ -2134,7 +2134,7 @@ This IS the flywheel. It doesn't require a plan. It requires delivery.
 >
 > **Why this is one thing, not three:** The Copernican Inversion collapses them. When built from the founder's uniqueness, the product IS the articulated gift, the marketing IS the myth that emanates from that gift, and the distribution IS the channel where the tribe already lives. Three faces of one diamond.
 >
-> **Implication for positioning:** Most founders need three different consultants for product, marketing, and distribution. The Ignition Session replaces all three because they're not three problems — they're one problem refracted through three lenses.
+> **Implication for positioning:** Most founders need three different consultants for product, marketing, and distribution. The Productize Yourself Session replaces all three because they're not three problems — they're one problem refracted through three lenses.
 
 **The Copy Mirror Principle (discovered March 16, 2026 — from Karime's feedback):**
 
@@ -2185,7 +2185,7 @@ This IS the flywheel. It doesn't require a plan. It requires delivery.
 > [!NOTE]
 > **The Artifacts-as-Blueprint principle produces unique session architectures for each founder — same structural logic, completely different medicine.**
 >
-> | | **Alexander's Ignition Session** | **Oyi's Tiny Challenge** |
+> | | **Alexander's Productize Yourself Session** | **Oyi's Tiny Challenge** |
 > |---|---|---|
 > | **Lie named** | "Serious business = market-first, not me-first" | "To succeed you must grow up" |
 > | **What's mirrored** | The polymath gift they can't see from inside | The inner child who was dethroned |
@@ -2821,7 +2821,7 @@ THE DUAL-GATE
     │    └──> Appleseed dynamic output explicitly vectors into ↓
     └── Gate B: "Build a business out of it" ($555)
     ▼
-THE CORE CATALYST (The Ignition Session)
+THE CORE CATALYST (The Productize Yourself Session)
     │ 90 min: Mirror, not Teacher
     │ AI Assistant compiles business infrastructure live
     │ Walk out with: 7.0 Precision Draft (The Sacred Trading Card)
@@ -2864,7 +2864,7 @@ THE DUAL-GATE
     ├── Gate A: "Near instant Zone of Genius reveal" (Quiz / Appleseed)
     └── Gate B: "Build a business out of it" ($555)
     ▼
-THE CORE CATALYST (The Ignition Session)
+THE CORE CATALYST (The Productize Yourself Session)
     │ 90 min: Mirror, not Teacher
     │ AI Assistant compiles business infrastructure live
     │ Walk out with: First draft at ~7.0 precision
@@ -3774,7 +3774,7 @@ Given the completed Unique Business Canvas for [founder name], run the Godfather
 
 The shadow: "He heals playfulness in others but demands seriousness from himself." Somatic confirmation: "Lossum. In the gut. Very primal. Uh-huh."
 
-**This is what the Ignition session IS for:** naming the one thing the person can't see about themselves, the inverted gift that keeps them stuck.
+**This is what the Productize Yourself session IS for:** naming the one thing the person can't see about themselves, the inverted gift that keeps them stuck.
 
 **Precision scores (assigned by client):**
 
@@ -3822,7 +3822,7 @@ The shadow: "He heals playfulness in others but demands seriousness from himself
 | | Strategy | Tactics |
 |---|----------|---------|
 | **What it answers** | WHAT to do. WHO to serve. WHAT to offer | HOW to act. The exact moves. The replicable steps |
-| **Artifact** | The Unique Business Canvas | The Ignition Session SOP + Distribution Flow |
+| **Artifact** | The Unique Business Canvas | The Productize Yourself Session SOP + Distribution Flow |
 | **Unique to whom?** | Unique to EACH business (every canvas is different) | **Highly replicable across all nodes** (the moves are the same) |
 | **When created** | Before tactics. The canvas is the prerequisite | When strategy is ready. Tactics are derived FROM the canvas |
 | **Where P×M×D live** | Separate: product strategy, marketing strategy, distribution strategy | **United as one act.** The session IS the product AND the marketing AND the distribution, simultaneously |
@@ -3851,7 +3851,7 @@ Three separate departments. Three separate budgets. Three separate timelines.
 **The tactical insight:**
 
 ```
-ONE Ignition Session simultaneously:
+ONE Productize Yourself Session simultaneously:
   → IS the product (they get their unique business)
   → IS the marketing (the session story becomes the episode)
   → IS the distribution (the episode attracts the next person)
@@ -3864,7 +3864,7 @@ This is not a clever hack. This is what happens when product, marketing, and dis
 
 ---
 
-## Tactic 1: The Redesigned Ignition Session
+## Tactic 1: The Redesigned Productize Yourself Session
 
 > *Discovered from session data: uniqueness + myth live → 2+ hours. Too long. Too deep for first iteration. The solution: uniqueness live + AI generates everything downstream in real time.*
 
@@ -3998,7 +3998,7 @@ STEP 3: RESPOND TO HAND-RAISERS (Day 3+)
   │
   ▼
 STEP 4: DO THE SESSION (Week 1-2)
-  │  The Redesigned Ignition (Tactic 1). One session = four outputs:
+  │  The Redesigned Productize Yourself Session (Tactic 1). One session = four outputs:
   │    1. TRANSFORMATION (the product)
   │    2. CONTENT (the distribution — episode named by what MOVED)
   │    3. PARTNERSHIP (10% revenue share when they use the protocol)
@@ -4032,7 +4032,7 @@ This distribution flow is **protocol-level.** Once a node has their own Unique B
 - They post THEIR tuning fork (derived from their canvas)
 - They DM THEIR upstream partners (practitioners upstream of them)
 - They reach THEIR warm network with THEIR Sovereign Story
-- They do THEIR sessions using the same Ignition flow
+- They do THEIR sessions using the same Productize Yourself Session flow
 - They post THEIR episodes
 - The loop runs at every node independently
 
@@ -4224,7 +4224,7 @@ Three holding beats EARN the right to name. The naming (Fire) is not fear-monger
 | **Tuning Fork** | LinkedIn/social post | Body responds → DM "ready" |
 | **DM Response** | Personal message | Send landing page link |
 | **Landing Page** | Web page | Video + deliverables + testimonials + booking |
-| **Ignition Session** | Live 90-min call | Canvas built → present The Build |
+| **Productize Yourself Session** | Live 90-min call | Canvas built → present The Build |
 | **The Build** | 3-6 week container | Canvas to 9.9 → first 10 clients |
 | **Venture Studio** | Ongoing advisory | Scale, team, systems |
 
@@ -4323,7 +4323,7 @@ One act per day. Not more. Each act compounds.
 | **10** | Take the session | Product (they get their canvas) |
 | **11** | Name the episode from what MOVED in the session | Marketing (the story IS the content) |
 | **12** | Post/share the episode | Distribution (attracts the next person) |
-| **13** | Offer The Build to Ignition graduates who want to go deeper | Revenue expansion |
+| **13** | Offer The Build to Productize Yourself Session graduates who want to go deeper | Revenue expansion |
 | **14** | Repeat from Step 5 with the new episode as content | The loop runs itself |
 
 ### The Breathing Rhythm
@@ -4357,11 +4357,11 @@ Once the Launch Sequence (Tactic 4) is running, these amplifiers multiply reach.
 
 | Amplifier | What you do | Why it works |
 |-----------|------------|-------------|
-| **Livestream Sessions** | Run Ignition Sessions live for an audience. People watch a real business get built in real time | The audience SEES the methodology in action. Some build along. Some realize they need the mirror. The show IS the marketing |
+| **Livestream Sessions** | Run Productize Yourself Sessions live for an audience. People watch a real business get built in real time | The audience SEES the methodology in action. Some build along. Some realize they need the mirror. The show IS the marketing |
 | **Open-Source the Playbooks** | Publish the full methodology — free PDF, GitHub, landing page | Radical transparency creates trust. The published version is always behind the LIVING version (Phase Shift #40). The book sells the sessions |
 | **The Cinematic Video** | Feed the playbooks to NotebookLM → produce 5-min methodology reveal videos | AI produces it from what's ALREADY WRITTEN. One prompt. One video. Done |
 | **The "I Dare You" Move** | *"I'm publishing the exact playbook I charge $5,000 to implement. Read it. If you can execute at 9.5+ alone — you don't need me"* | The ones who try and hit ~7 precision become the BEST leads — they now FEEL the gap |
-| **The Live Demo** | On a podcast or stage, DO an Ignition Session in real time. Real person, real result | The audience watches the methodology work. The book explains what they witnessed |
+| **The Live Demo** | On a podcast or stage, DO a Productize Yourself Session in real time. Real person, real result | The audience watches the methodology work. The book explains what they witnessed |
 | **ALL OF THE ABOVE simultaneously** | Open-source + film live + publish + dare. Maximum surface area | The boldest expression of the Open Blueprint Paradox at full power |
 
 ### The Livestreaming Discovery — The Movement Amplifier

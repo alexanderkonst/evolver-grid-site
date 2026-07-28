@@ -315,7 +315,7 @@ Each play is described through the three-depths instrument: **❤️ Essence** (
 **🧠 Significance.** This is the **foundation layer that makes all five other plays even possible.** Without paying users at this level, the methodology isn't proven, the case studies don't exist, the cohort can't be referenced, the distributors have nothing to distribute, the venture studio has no ventures to take stakes in. Steps 0-3 of the [Planetary OS Assembly](./planetary_os_assembly.md) all live here. It's also the recursion proof — the master holon takes its own medicine; this is what that medicine looks like delivered to others. Every Specificity Loop conversion happens at this layer first.
 
 **🔥 Implications.**
-- **Pricing:** $555 Mirror/Ignition Session, $5,000 Build (6 weeks), $500/month Container (ongoing) — already locked in the value ladder
+- **Pricing:** $555 Mirror/Productize Yourself Session, $5,000 Build (6 weeks), $500/month Container (ongoing) — already locked in the value ladder
 - **Acquisition:** Friday DM send to warm-tie aligned tribe, three lead magnets as gifts (Top Talent reveal · AI OS · Conscious Impact Playbook), the three voice-of-gift pitches drafted Day 51
 - **Conversion:** matrix v2 doing its work at every reveal (per [Principle 15](../03-playbooks/unique_business_playbook.md))
 - **Margins:** high once volume scales because most of the apparatus is automated (ZoG flow, Specificity Matrix generation, UBB canvas production)

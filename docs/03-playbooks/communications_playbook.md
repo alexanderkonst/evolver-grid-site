@@ -375,7 +375,7 @@ If you take it — I'd genuinely love to hear what came up.
 
 **Critical:** No CTA. No "check it out." No "let me know." The URL is the gift. If they click, they're already in the funnel — because your center pulled, not because you pushed.
 
-**Ignition Session activation:** Every client writes their own version on session day. *"Your session is done. Your business is on one page. Now write your message — and send it to 50 people."*
+**Productize Yourself Session activation:** Every client writes their own version on session day. *"Your session is done. Your business is on one page. Now write your message — and send it to 50 people."*
 
 ### 🔒 LOCKED MASTER TUNING FORK TEXTS (April 6, 2026)
 
@@ -885,7 +885,7 @@ P.S. If you have questions before the session, reply to this email. I read every
 
 ## §8b. POST-SESSION FOLLOW-UP EMAIL
 
-> Sent 24-48 hours after the Ignition Session.
+> Sent 24-48 hours after the Productize Yourself Session.
 
 **Subject:** Your business on one page + what comes next
 

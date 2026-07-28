@@ -80,7 +80,7 @@ Layer 7: AI Metacognition (AI that thinks about thinking)
 Layer 8: Planetary OS (full integration)
 ```
 
-This is a fractal. Each layer contains the whole. The Ignition Session IS the Planetary OS compressed into 2.5 hours for one human. The Planetary OS IS the Ignition Session expanded to civilizational scale. The platform is the code substrate that allows Layer 0 to manifest as Layer 8 without losing coherence.
+This is a fractal. Each layer contains the whole. The Productize Yourself Session IS the Planetary OS compressed into 2.5 hours for one human. The Planetary OS IS the Productize Yourself Session expanded to civilizational scale. The platform is the code substrate that allows Layer 0 to manifest as Layer 8 without losing coherence.
 
 **The structure at the LR level:** A system that connects the interior development of individual humans (their gift, their shadow, their myth) to the exterior production of viable economic entities (businesses), through a shared cultural field (the tribe), running on a technological infrastructure (the platform + AI). This IS a civilization-grade operating system. Not metaphorically. Structurally.
 

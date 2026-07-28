@@ -13,7 +13,7 @@ Scaling Unique Business Distribution via Protocol v6.4
 
 | Dimension | Before | The Switch is ON |
 |-----------|--------|-----------------|
-| The Bottleneck | Reliance on manual, unscalable 2+ hour sessions | 60-75 minute AI-assisted Ignition Session v2.0 |
+| The Bottleneck | Reliance on manual, unscalable 2+ hour sessions | 60-75 minute AI-assisted Productize Yourself Session v2.0 |
 | The Alignment | Three separate strategies pulling in different directions | ONE tactical act that simultaneously executes all three |
 | The Architecture | Sole practitioner hitting a scaling ceiling | A 5-phase pathway from practitioner to Planetary OS |
 | The Moat | Distribution was missing. A lighthouse with no path | A 7-step executable flow ready for day one |
@@ -77,7 +77,7 @@ One session produces four outputs:
 
 | Level | What Happens |
 |-------|-------------|
-| Ignition Session ($555) | Uniqueness at Level 7-8. AI generates first draft. They see the whole map |
+| Productize Yourself Session ($555) | Uniqueness at Level 7-8. AI generates first draft. They see the whole map |
 | **The Vertical Void** | *This gap is where the money lives. They can feel the missing precision because they hold the rough sketch* |
 | The Build ($5K) | 6 weeks. Uniqueness hits 9.9+. Artifact sequence completes. First client acquired |
 
@@ -90,7 +90,7 @@ One session produces four outputs:
 |---|---|
 | Scattered founders | Existing practitioners |
 | "That's me. I have the gift but can't name it" | "That's my client. The ones who hit 'now what?'" |
-| → Raises hand for Ignition | → DMs for Partnership |
+| → Raises hand for Productize Yourself Session | → DMs for Partnership |
 
 **Episodes are not pain cards. Stories attract the solution-curious.**
 

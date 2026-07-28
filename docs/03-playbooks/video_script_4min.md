@@ -345,7 +345,7 @@ you already know
 - **Tone:** Calm, direct. Not hype. Not therapeutic. Just truth.
 - **Length:** 3:30–4:30 max
 - **Setting:** Simple. Face to camera. No slides.
-- **Energy:** The same energy you bring to the first 5 minutes of an Ignition Session.
+- **Energy:** The same energy you bring to the first 5 minutes of a Productize Yourself Session.
 - **The principle:** You're not explaining a product. You're breaking the false completion the quiz created and bridging to the real resolution (the session).
 - **Subtitles:** Not auto-generated. Hand-placed. The subtitle track is its own persuasion layer — it works even on mute. This is how most people will experience the video (Instagram, LinkedIn autoplay = muted).
 - **Channel 1-8 (HD):** When you speak from your identity, you initiate. Your face and voice ARE the product. One take. The imperfection IS the signal.

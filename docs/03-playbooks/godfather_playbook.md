@@ -105,7 +105,7 @@
 ### Revenue Model
 | Source | Price | Monthly Target | Revenue |
 |--------|-------|----------------|---------|
-| Ignition Sessions | $555 | 8 sessions | $4,440 |
+| Productize Yourself Sessions | $555 | 8 sessions | $4,440 |
 | Build upgrades (30% of sessions) | $3,611 | 2 upgrades | $7,222 |
 | **TOTAL** | | | **$11,662** |
 

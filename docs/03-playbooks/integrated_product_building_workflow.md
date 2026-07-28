@@ -178,7 +178,7 @@ TRANSFORMATIONAL RESULT (Master A → B)
 
 > **The AI can assist here** by applying holonic 26+ vision to the Transformational Result, seeing it from all angles and depths to find the natural trinity that's already implicit in the promise. The three sub-results are not invented — they are DISCOVERED by looking at the transformation from enough perspectives.
 
-**Example (Alexander's Ignition Session):**
+**Example (Alexander's Productize Yourself Session):**
 1. **Name your craft** — from "I don't know what I do" to "I see what was always there"
 2. **See your business** — from "I have a gift but no structure" to "I have a clear product, tribe, and path"
 3. **Know your first move** — from "I don't know where to start" to "I know exactly who to talk to and what to say"
