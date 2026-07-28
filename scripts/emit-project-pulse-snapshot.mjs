@@ -94,13 +94,18 @@ function main() {
     // Build the anonymizer from the CRM tracker so the same person gets the
     // same token whether they're mentioned in the CRM offer ledger or in
     // pulse-log prose (e.g. "Sasha to send Gleb the Reflection Proposal...").
-    // Falls back to a no-op scrubber if the tracker can't be read, so a
-    // missing/renamed private ledger degrades to unscrubbed rather than
-    // crashing the build — but that fallback should never be silent in
-    // practice; see docs/07-technology/deploy_pipeline.md.
+    // Also feed in the pulse log's own `who:` / `actors:` fields — some
+    // contacts (e.g. a brand-new one) show up there before they ever reach
+    // the CRM tracker's Master Table. Falls back to a no-op scrubber if the
+    // tracker can't be read, so a missing/renamed private ledger degrades to
+    // unscrubbed rather than crashing the build — but that fallback should
+    // never be silent in practice; see docs/07-technology/deploy_pipeline.md.
+    const extraIdentities = events.flatMap((event) =>
+      [event.who, event.actors].flat().filter((v) => typeof v === "string"),
+    );
     let anonymizer = { scrubDeep: (value) => value };
     try {
-      anonymizer = buildAnonymizer(readBroadcastTracker());
+      anonymizer = buildAnonymizer(readBroadcastTracker(), extraIdentities);
     } catch {
       // CRM tracker unreadable (e.g. private-ledger submodule not checked
       // out in this environment) — proceed without it rather than fail

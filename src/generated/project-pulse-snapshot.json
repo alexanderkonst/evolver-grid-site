@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-28T20:41:31.603Z",
+  "generated_at": "2026-07-28T20:46:07.924Z",
   "source": "docs/09-logs/project_pulse_log.md",
   "eventsCount": 47,
   "latestEvent": {
@@ -34,13 +34,13 @@
   "openNextActions": [
     {
       "date": "2026-07-23",
-      "title": "P-4FA3_precision_riff_P-4083_pdf_flow_marley_parked",
-      "next_action": "Sasha replies to P-4083 with the test-then-PDF flow and a soft pointer to the $1,500 proposal. No action owed on P-4FA3 or Marley."
+      "title": "P-4FA3_precision_riff_P-D62E_pdf_flow_P-4C85_parked",
+      "next_action": "Sasha replies to P-D62E with the test-then-PDF flow and a soft pointer to the $1,500 proposal. No action owed on P-4FA3 or P-4C85."
     },
     {
       "date": "2026-07-23",
-      "title": "P-4083_webinar_proposal_msg3_sent",
-      "next_action": "Wait for P-4083's confirmation and date/time options. Follow up 2026-07-26 if silent. No other action owed."
+      "title": "P-D62E_webinar_proposal_msg3_sent",
+      "next_action": "Wait for P-D62E's confirmation and date/time options. Follow up 2026-07-26 if silent. No other action owed."
     },
     {
       "date": "2026-07-23",
@@ -65,11 +65,11 @@
     {
       "date": "2026-07-28",
       "title": "P-4787_workshop_transcript_verified_ripeness_read",
-      "next_action": "No nudge. P-4787 is integrating a 3-hour session; \"подумаем\" is an honest, open answer, not a soft no. Revisit naturally next time P-9B15 or P-4787 reach out. When he does decide, the ambassadorship conversation is still explicitly sequenced after he's lived the method, per his own line: \"нельзя быть амбассадором того, что не прожил сам.\""
+      "next_action": "No nudge. P-4787 is integrating a 3-hour session; \"подумаем\" is an honest, open answer, not a soft no. Revisit naturally next time P-052F or P-4787 reach out. When he does decide, the ambassadorship conversation is still explicitly sequenced after he's lived the method, per his own line: \"нельзя быть амбассадором того, что не прожил сам.\""
     },
     {
       "date": "2026-07-28",
-      "title": "P-9787_talalaev_new_contact_low_surrender",
+      "title": "P-EB3A_P-C01D_contact_low_surrender",
       "next_action": "No offer, no pursuit. Revisit only if surrender changes — watch for a real rupture/tremors signal rather than assuming one."
     },
     {
