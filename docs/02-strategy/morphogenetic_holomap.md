@@ -3346,3 +3346,61 @@ Day 113:   "Propagation -> Navigation"        -> the map becomes cockpit; pulses
 ## Day 130 addendum (July 20, 2026): Crystallization crossed — the Axiom and the Law
 
 Days 127-130 crossed the Si–Do shock on the myth axis: the myth crystallized into the person-scale axiom («Твоя карьера ограничена степенью понимания себя» / 'Your career is capped by how well you know yourself'), the axiom generalized into the scale-free law ('Nothing grows past how well it knows itself — not a person, not a company, not a civilization'), and the law survived a 27-perspective adversarial panel only in that form. Myth v4.0 locked verbatim. Phase Shift Technologies 113-115 landed: holonic positioning, the wants→products matrix, and articulation as the mechanism of growth (the developmental law of every holon — candidate scientific theory, research brief drafted for Claude Science). The business named its own upper layers: Node Suite, Originals Index (real companies + websites + timestamped reads), funded edges (capital instrument), deep-research scouting arm, timestamp law in force (the proprietary dataset began Day 130). Field state: warm base 85/85 sent, 3/3 community hosts accepted (constraint moved to delivery), first fully funnel-sourced Direction Call delivered, Gleb (a16z-backed founder) inbound-referred and booked within hours of the axiom's first field use, ~$2.2K in pending 1:1 offers. Center reading: Crystallization (P27) active on the myth axis while Propagation continues on the field axis; the live tension: converting crystallized clarity into delivered rooms.
+
+## Day 138 addendum (July 28, 2026): the axiom gets an instrument — Ripeness, Transition, Persuasion
+
+*Days 131-138. No new Si–Do shock crossed this window. What moved is the layer directly underneath the Day 127-130 axiom: the myth said the ceiling is self-knowledge; this arc built the instruments that read where a specific person sits relative to their own ceiling, and rewired sales, category, and product around that read.*
+
+### What advanced
+
+- **Method / Instrument axis — the transition arc becomes measurable.** Four Phase Shift Technologies landed: 123 (**Ripeness Vector** — readiness is a position across nine axes, not a score; Surrender/Means/Currency are multiplicative gates, not additive terms), 124 (**Transition as the interval between two fits** — the seven-stage arc plus a six-flavor shock taxonomy for the 3→4 rupture), 125 (**The Social Physics of the Mirror** — why an unrequested accurate mirror reads as a status claim, not a gift, and the four failure modes/remedies), and 126 (**Persuasion as a Perception Deficit** — persuasion is what fills the gap where accurate seeing is missing; reframes sales spend from persuasion training to diagnostic instrument). The **Transition Holomap** (`docs/holomaps/transition_holomap.md` v1.0) operationalized 124 into a full 10-stage, 3×3, 63-cell instrument — and recovered language already sitting in `/destiny` months earlier, a self-validating sign the map is reading something real rather than inventing it. The library's own name changed to match: "Domains" became "**Technologies**" throughout (numbering unchanged) — every entry is now named as a technology of phase-shifting rather than a subject area.
+- **Tribe — position, not population.** Canvas v4.0 rebuilt Tribe, Pain, Point B, Promise, Method, and Channel on the transition arc. The tribe is now defined as **the ripe position on the arc**, not a demographic description; matching language dropped "two halves filling a gap" for **two wholes sharing one core** (Stella octangula). This is a structural move, not a copy edit — it changes what the sales layer built this same window is allowed to sell.
+- **Sales / Category — the persuasion problem gets a category.** Play Bigger's category-design model was adapted with one inversion: the category here is claimed as **derived** from the underlying physics (the arc, the vector), not invented to differentiate — the credibility asset a copied category can't fake. The classic Schwartz five-rung awareness ladder was crossed against arc position and given a new sixth rung, **"layer-aware"**: the rare reader who already sees the mechanism under the mechanism and needs proof of depth, not persuasion of premise. Both landed across `marketing_playbook.md`, `pain_theory_playbook.md`, and `unique_business_playbook.md` — the sales layer built Days 132-135 (Mirror Selling, the buyer filter, zero-distance × surrender) now has its category story and its full awareness map.
+- **Product — the instrument gets a front door.** The Quiz's Phase 1 (product spec, `docs/specs/quiz/`) is complete and roasted at 3×3 depth; Phase 2 (implementation) started the same day: `/quiz` carries the live legacy quiz, `/quiz2` is the new build's placeholder route, and full trilingual content for all ten screens shipped. This is the Ripeness Vector's first attempt at putting itself in a stranger's hands without Sasha in the room.
+- **Commerce — a real product gets a real price.** Karime's Evolution Portal moved from proposal to priced product: fair market value named at $3,800 against a nine-row competitor comparison, her actual price set at $555 founding node plus $55/month waived until her fifth subscriber. First instance of the ladder's pricing discipline (name the category before the price, price against real alternatives) applied to someone else's offer, not Sasha's own.
+- **Engineering — the mirror gets a floor.** A production bug (`/privacy` white-screening on a `ReferenceError`) was found and fixed, alongside two unrelated type errors; `tsc --noEmit` now runs clean and the build is gated on it. Small in scope, structurally the same law as Phase Shift Technology 16 (the mirror must not lag) applied to the codebase itself rather than to memory: a public-facing surface was silently broken and nothing caught it until this pass.
+- **Revenue — not re-asserted here.** No new revenue figure was recorded in the corpus for this window; the roadmap carries the Day 130 figure forward marked stale, and this addendum does the same rather than guessing. A revenue reconciliation is understood to be in progress separately.
+
+### Marker moves
+
+- **Ripeness Vector -> diagnostic instrument.** The buyer filter (zero distance × surrender, Day 135) generalizes from a two-factor heuristic into a nine-axis instrument with multiplicative gates.
+- **Domain -> Technology.** The library's self-description shifts from "subject areas" to "technologies of phase-shifting" — a naming correction that matches what the entries had already become.
+- **Tribe -> position.** The tribe is no longer a population described from outside; it is a position on the arc, occupied and read.
+- **Category -> derived, not invented.** The category-design claim inverts the standard category-king move: credibility comes from derivation off real physics, not from an invented wedge.
+- **Quiz -> the instrument's front door.** The Ripeness Vector stops being a private diagnostic Sasha runs live and starts becoming a product a stranger can run on themselves.
+
+### Si-Do — Status
+
+| Trigger | Status |
+|---|---|
+| **First fully funnel-sourced Direction Call** | ✅ Day 130 (Kristina); unchanged this window |
+| **First non-English, end-to-end run of the artifact sequence** | ✅ Day 137: Rafael, full Russian-language session, 9 artifacts produced live |
+| **Quiz as a live, stranger-facing instrument** | 🟡 Phase 1 (spec) complete; Phase 2 (implementation) started, `/quiz2` still a placeholder |
+| **Landing page rebuilt around the Quiz as primary CTA** | 🔴 blocked on the Quiz going live at `/quiz` |
+| **Second full-price non-Sasha product priced against real alternatives** | 🆕 ✅ Karime's Evolution Portal ($555 founding node, $3,800 FMV named) |
+
+### Center reading lineage (recent)
+
+```text
+Day 113:   "Propagation -> Navigation"        -> the map becomes cockpit
+Day 130:   Crystallization (P27) crossed on   -> the myth axis; Propagation continues
+           the myth axis                         on the field axis
+Day 138:   (no new center reading)            -> the axiom gets instrumented: Ripeness
+                                                  Vector, Transition Holomap, Persuasion-
+                                                  as-Perception-Deficit; tribe redefined as
+                                                  position; category claimed as derived;
+                                                  Quiz Phase 1 complete / Phase 2 started;
+                                                  one production bug caught and fixed.
+```
+
+### Cross-references updated
+
+- `docs/01-vision/phase_shift_technology_library.md`: Technologies 123-126 added; library-wide "Domain" -> "Technology" rename.
+- `docs/holomaps/transition_holomap.md`: new standalone instrument, v1.0.
+- `docs/02-strategy/unique-businesses/alexanders_unique_business.md`: Canvas v4.0 (Tribe, Pain, Point B, Promise, Method, Channel rebuilt on the transition arc).
+- `docs/03-playbooks/marketing_playbook.md`, `pain_theory_playbook.md`, `unique_business_playbook.md`: category-design section + Schwartz six-rung ladder.
+- `docs/specs/quiz/quiz_product_spec.md`, `quiz_tracker.md`: Phase 1 complete; Phase 2 checklist open.
+- `src/pages/EvolutionPortalKarime.tsx`: priced Evolution Portal proposal.
+- `src/pages/PrivacyPolicy.tsx`: production bug fixed; `tsc --noEmit` clean, gated in the build.
+
+> *Day 138 reading: no new center this window — the instrument caught up to the axiom instead. Day 127-130 named the law (self-knowledge caps growth); Days 131-138 built the things that read where a specific stranger stands relative to their own ceiling and put that read in front of them without Sasha in the room: the Ripeness Vector, the Transition Holomap, the Quiz's first screens. The open tension is the same one Day 130 named — converting crystallized clarity into delivered rooms — except the conversion mechanism is now half-built rather than only understood.*
