@@ -376,6 +376,7 @@ const SpacesRail = ({
     const isDao = skin === "daouniverse";
     const isPlanetir = skin === "planetir";
     const isTechstars = skin === "techstars";
+    const isDefaultYouSkin = !isNS && !isDao && !isPlanetir && !isTechstars;
 
     // Day 54+++ (Sasha 2026-04-28 night): backdrop-filter disabled on touch
     // devices. iOS WebKit's backdrop-filter on a full-viewport-height region
@@ -484,8 +485,12 @@ const SpacesRail = ({
                 backgroundColor: pageOwnsBackground
                     ? "var(--skin-panel-1-bg, rgba(10, 22, 48, 0.96))"
                     : "var(--skin-panel-1-bg, rgba(10, 22, 50, 0.98))",
-                backgroundImage:
-                    "linear-gradient(165deg, rgba(53, 78, 132, 0.34) 0%, rgba(18, 43, 91, 0.12) 34%, rgba(5, 21, 54, 0.44) 100%)",
+                backgroundImage: isDefaultYouSkin
+                    ? "linear-gradient(165deg, rgba(31, 55, 106, 0.16) 0%, rgba(5, 18, 49, 0.18) 58%, rgba(1, 10, 31, 0.30) 100%), url('/assets/shell/lapis-navigation-surface-v3-tall.webp')"
+                    : "linear-gradient(165deg, rgba(53, 78, 132, 0.34) 0%, rgba(18, 43, 91, 0.12) 34%, rgba(5, 21, 54, 0.44) 100%)",
+                backgroundSize: isDefaultYouSkin ? "cover" : undefined,
+                backgroundPosition: isDefaultYouSkin ? "center top" : undefined,
+                backgroundRepeat: isDefaultYouSkin ? "no-repeat" : undefined,
                 // Day 55 (Sasha 2026-04-29): backdrop-filter retired entirely
                 // (was already off on touch). On Chrome desktop too, the
                 // viewport-tall blurred backdrop region was contributing to
@@ -770,12 +775,21 @@ const SpacesRail = ({
                                 This viewport preserves the canonical artwork and
                                 crops around the visible sphere + wordmark. */}
                             <div className="hidden lg:flex h-[104px] w-full items-center justify-center overflow-hidden">
-                                <img
-                                    src={brandLogo}
-                                    alt="YOU — be original."
-                                    className="w-[304px] max-w-none h-auto object-contain brand-breath"
-                                    draggable={false}
-                                />
+                                {isDefaultYouSkin ? (
+                                    <img
+                                        src="/assets/shell/etched-you-logo-on-lapis-v2.webp"
+                                        alt="YOU — be original."
+                                        className="h-full w-full object-cover object-center"
+                                        draggable={false}
+                                    />
+                                ) : (
+                                    <img
+                                        src={brandLogo}
+                                        alt="YOU — be original."
+                                        className="w-[304px] max-w-none h-auto object-contain brand-breath"
+                                        draggable={false}
+                                    />
+                                )}
                             </div>
                         </>
                     )}
