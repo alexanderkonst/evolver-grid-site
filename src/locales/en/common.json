@@ -2283,7 +2283,7 @@
   },
   "ventureDashboard": {
     "header": {
-      "live": "Live · Day 87",
+      "live": "Live · Day 138",
       "titleBefore": "Venture",
       "titleGold": "Growth Dashboard",
       "tagline": "Built in the open. Paid in the open. Open-source methodology."
@@ -2340,7 +2340,7 @@
     },
     "journey": {
       "title": "The Journey",
-      "subtitle": "Eighty-seven days. Seven founders. One emerging field.",
+      "subtitle": "One hundred thirty-eight days. Seven founders. One emerging field.",
       "dayLabel": "Day {{day}}"
     },
     "systemicView": {

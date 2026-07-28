@@ -4524,7 +4524,7 @@
   },
   "ventureDashboard": {
     "header": {
-      "live": "En vivo · Día 87",
+      "live": "En vivo · Día 138",
       "titleBefore": "Panel de crecimiento",
       "titleGold": "de la empresa",
       "tagline": "Construido en abierto. Pagado en abierto. Metodología de código abierto."
@@ -4581,7 +4581,7 @@
     },
     "journey": {
       "title": "El camino",
-      "subtitle": "Ochenta y siete días. Siete fundadores. Un campo emergente.",
+      "subtitle": "Ciento treinta y ocho días. Siete fundadores. Un campo emergente.",
       "dayLabel": "Día {{day}}"
     },
     "systemicView": {
