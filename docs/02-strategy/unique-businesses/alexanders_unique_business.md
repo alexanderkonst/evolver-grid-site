@@ -3,7 +3,8 @@
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
 > *April 3, 2026 · v8.0 — Declaration Phase*
-> *Current version: **v9.9** (April 25, 2026 — Day 51 night · Documentation consolidation pass. All five core corpus docs synchronized to Day 51 state: session_log Day 50 + Day 51 entries appended, roadmap v5.2 stamped, holomap Day 51 addendum with center reading "Codification" + perspective deltas + composite view, playbook bumped to v4.6 with the six business-model plays section added to Principle 15, this file's final consolidation entry below). The architecture is now legible at every layer of the corpus.* Prior versions preserved in the changelog at end of file — nothing deleted, each version additive.*
+> *Current version: **v10.0** (July 28, 2026 — Day 138 · Surfaces Refresh Pass. The top-of-file sections — Business Dashboard, Master Tuning Forks, Tribe, Value Ladder, Current State, Funnel Architecture — now show each artifact's newest version on top, with the file's own convention enforced: newest on top, prior versions preserved as genealogy immediately below or pointed to inline. Nothing moved, nothing deleted. Cross-checked against `roadmap.md` Day 138 Current Status. One open flag: Pain v4.1, referenced in `roadmap.md` as pending, has not yet been located and filed verbatim — see the flag inside §5 Pain.)*
+> *Prior version: **v9.9** (April 25, 2026 — Day 51 night · Documentation consolidation pass. All five core corpus docs synchronized to Day 51 state: session_log Day 50 + Day 51 entries appended, roadmap v5.2 stamped, holomap Day 51 addendum with center reading "Codification" + perspective deltas + composite view, playbook bumped to v4.6 with the six business-model plays section added to Principle 15, this file's final consolidation entry below). The architecture is now legible at every layer of the corpus. Prior versions preserved in the changelog at end of file — nothing deleted, each version additive.*
 > *Playbook: [Unique Business Playbook](../../03-playbooks/unique_business_playbook.md) (v4.6)*
 > *Customer Journey: [Customer Journey Playbook](../../03-playbooks/customer_journey_playbook.md)*
 
@@ -15,7 +16,16 @@
 
 ## 🧭 Business Dashboard
 
-*Day 48 (April 22, 2026). Distilled snapshot. The canvas sprawls below — this is the top-of-the-file glance.*
+*Day 48 (April 22, 2026) original snapshot; **refreshed to Day 138 (July 28, 2026)** below. The canvas sprawls further down — this is the top-of-the-file glance.*
+
+> ### ⭐ Latest State — Day 138 (July 28, 2026)
+>
+> **Tribe (current bullseye):** *The Founder Going Sovereign* — a builder whose form has just ended (company, title, the old answer to "what do you do") and who knows it before anyone else does. Gate structure: has paid for their own transformation before · means present · surrendered to the search · consent arrives from their side (pull, not flip) · a live income vehicle the articulation can feed · chronic identity ache, not acute. Full definition: [Tribe v5.0, §3 below](#3-tribe-icp) and the [Day 138 addendum](#addendum--day-138-july-28-2026-tribe-v50--the-purchase-physics-correction).
+> **Revenue:** Strict received **$2,428** (+ $277 Sergey rev-share contract = **$2,705 tracked**). Source: `roadmap.md` Current Status, recomputed Day 134.
+> **Live Value Ladder:** Direction Call (free, 45 min) → Productize Yourself Session **$555** → BUILT **$1,111** → Node (white-label) **$1,500 + $75/mo**. Karime founding-node variant: $555 + $55/mo, waived until her 5th subscriber. Genealogy and older formats: [Value Ladder, below](#value-ladder-the-path-path).
+> **Active instruments:** the Ripeness Vector (Phase Shift Technology 123, 10-axis) · the Transition Holomap (`docs/holomaps/transition_holomap.md`) · the Uniqueness Holomap v2.0 (`docs/holomaps/uniqueness_holomap.md`) · the Quiz (Phase 2 implementation at `/quiz2`, legacy at `/quiz`), the product that puts the instrument in a stranger's hands.
+> **Current focus:** ship the Quiz (Phase 2 → Phase 3 retrodiction against the 7 known clients), then rebuild the landing page law-first with the Quiz as primary CTA. Session delivery layer (Method Video, prerequisites, close ritual) from the Day 137 Rafael addendum still open.
+> **Source of truth for this box:** `docs/02-strategy/roadmap.md` Current Status + Active Backlog, Days 131-138. Update this box whenever the roadmap's Current Status changes materially.
 
 > **Organizing principle (Day 111): one holonic business, four scales, rooted in specific fit.** Not four businesses (self-knowledge · venture building · matching · civilizational infrastructure) but one kernel running at the person, venture, community, and civilization scales. The Day 110 synthesis named the fit/recognition architecture. Day 111 adds the root myth beneath it: every being is a unique face of eternity, and living systems ripen when those faces become legible enough to find fit, complements, shared work, and sustainable value flow without collapsing into sameness.
 
@@ -25,8 +35,11 @@
 - **Founder domain:** [aleksandrkonstantinov.com](https://aleksandrkonstantinov.com)
 - **Site skins:** Aurora (default · light pearlescent + rainbow highlights) · Navy + Gold (preview at `/preview` · deep navy + gold accents, editorial dark)
 
-### Tribe (9.9/10 precision)
-**Conscious aspiring impact founders** — people who already help others, already have a spark, but are challenged to clearly explain what they do, and therefore can't turn it into something people buy.
+### Tribe — superseded, see Latest State box above and Tribe v5.0 (§3)
+
+*(Original Day 48 line, preserved as genealogy below.)*
+
+**Conscious aspiring impact founders (9.9/10 precision, April 22, 2026)** — people who already help others, already have a spark, but are challenged to clearly explain what they do, and therefore can't turn it into something people buy.
 
 ### Top Talent — 10/10 articulation
 I assist entrepreneurial people in transition to their next-big-thing articulate unique value, monetize it, and build a scalable business structure around it.
@@ -185,7 +198,24 @@ These outputs are also baked into `appleseedGenerator.ts` `CALIBRATION_EXAMPLES`
 
 > *Assist humanity evolve into a consciously coordinated civilization by awakening individual genius, integrating consciousness with technology, and architecting systems that transform human potential into coherent collective flourishing.*
 
-### ⭐ Master Tuning Forks — v1.0 (April 22, 2026)
+### ⭐ Master Tuning Forks — v4.1 (July 23, 2026, Day 133)
+
+*Latest version, Sasha's own wording, logged verbatim. Genealogy: v1.0 (April 22, 2026, below) → v2.0 (Day 85, May 27 — [two-tribe split](#master-tuning-forks-v20)) → v3.0 (Day 127 addendum, [§ vNext artifact set](#day-127-addendum-2-the-vnext-artifact-set-derived-from-the-axiom)) → **v4.0 / v4.1 (Day 133 addendum, [§ The bullseye named](#day-133-addendum-july-23-2026-the-bullseye-named--the-founder-going-sovereign))**. Each version is preserved verbatim in its own section — nothing deleted.*
+
+**v4.1 (refinement, verbatim):**
+> "I assist entrepreneurial people in transition to their next-big-thing articulate unique value, monetize it, and build a scalable business structure around it."
+
+*Three-beat structure = the ladder itself: articulate (call/session) → monetize (offer/first sales) → scalable structure (BUILT/studio).*
+
+**v4.0 (Sasha's own wording, longer form):**
+> "I assist entrepreneurial people in a transition to the next big thing to articulate their unique value to catalyze a burst of new clarity and then rapidly create business structure that monetize that unique value."
+
+**v4.0 (shorter form):**
+> "I help you articulate how you uniquely add value to then monetize your uniqueness, and scale it into a startup."
+
+---
+
+#### Master Tuning Forks — v1.0 (April 22, 2026) — original, preserved as genealogy
 
 *The one-sentence frames of the transformation. Each is the same signal at a different compression. Posted across bios, DMs, life-update posts, About pages.*
 
@@ -205,6 +235,11 @@ These outputs are also baked into `appleseedGenerator.ts` `CALIBRATION_EXAMPLES`
 *Use for:* Life-update post ("what I just focused my life on") · About page opener · Step 6 masthead example · the example-in-playbook that demonstrates the "master tuning fork" substep. **This is the template sentence structure** for anyone producing their own Step 6 tuning fork.
 
 ### Value Ladder (the Path · `/path`)
+
+> **⭐ Live ladder — Day 138 (July 28, 2026):** Direction Call (free, 45 min) → **Productize Yourself Session $555** → **BUILT $1,111** → **Node (white-label) $1,500 + $75/mo**. Karime founding-node variant: $555 + $55/mo, waived until her 5th subscriber (priced and sent, per `roadmap.md` Current Status). The free rung is the Direction Call named Day 124 ([§ addendum below](#addendum--day-124-july-14-2026-the-direction-call-the-missing-rung)), not the old Step-1-of-7 framing. "Ignition Session" / "Top Talent Business Session" is now called the **Productize Yourself Session**.
+
+*(Original Day 48 framing, preserved as genealogy below — the 7-step / $2,555 total-path model has been superseded by the 4-rung ladder above.)*
+
 Step 1 free · Steps 2+3 **$555** · Step 4 **$1,111** · Step 5 **$333** · Step 6 *(format retired — see note)* · Step 7 by invitation. Total entry path to PMF: **$2,555** in 6–8 weeks. Money-back guarantee on every step.
 
 > **✦ Step 6 correction (Day 119, July 9, 2026):** the **$1,111 + ⅓ of first $10k (capped)** format is retired — it was never charged in practice (Sasha, direct). Step 6 awaits re-pricing after the category/threshold/tribe decisions land (see roadmap, digestion phase). The old format is preserved here as genealogy. Note: the skin-in-the-game *instinct* behind the rev-share component is validated and kept — it is the structural answer to the guru-loop pathology documented in [money_holomap.md](../../05-reference/money-studies/money_holomap.md) — only the specific price format is retired.
@@ -222,6 +257,8 @@ This is not hypothetical. Real reachouts are in motion. As of Day 87 (2026-05-29
 When writing or analyzing any outreach, read and reuse from there. Strategy spine behind it: **collab = lead-gen = pilot**; lead with community-ecosystem precision matchmaking; warm relational door before any ask. (Defer cold founder acquisition.)
 
 ### Platform Access Pricing v3.0 — One-Time, Not Subscription (Day 64, May 7, 2026)
+
+> **⭐ Day 138 note:** the entitlement-tier ladder below is the last full pricing spec on record and is not known to be superseded, but the live commercial ladder now in active use (Node white-label at $1,500 + $75/mo, see Value Ladder box above) sits alongside it rather than fully reconciled with the `ignition`/`locked_in`/`founders_50` tiers. Treat the tiers below as the DB-accurate enum reference and the Value Ladder box as the current commercial narrative; reconciling the two is flagged for Sasha, not resolved here.
 
 The platform (UBB module at `/ubb` + deeper Top Talent profile at `/game/me/*`) is a **one-time purchase, not a subscription.** The system was built — the user pays once for access. Token throughput (a real cost on every UBB Improve/Generate call) is metered separately as a monthly budget per tier, but the *access itself* doesn't churn.
 
@@ -266,10 +303,15 @@ The platform is the leverage. Ignition is the human core. Founders 50 is the wed
 > **Re-pricing protocol:** when Founders 50 closes (cohort #50 paid), open a new migration that retires `founders_50` as a settable tier (keep it readable for audit), and update marketing copy. Locked-in stays at $497 forever; future cohort markers (e.g., `bridge_100` for buyers 51–150 at $297) can be added as new enum values via additional migrations.
 
 ### Current State (snapshot)
+
+> **⭐ Day 138 (July 28, 2026):** 7 founders + Rafael (first full Russian-language session, Day 137) in the client ledger. Strict received **$2,428** (+ $277 Sergey rev-share = **$2,705 tracked**). First fully funnel-sourced call has landed and 3/3 community hosts accepted the workshop pitch (Day 127-128); the P27 Si-Do shock (first stranger paying full price through the funnel) is **fired** — see Day 130 addendum, "strangers paying full price through the funnel" listed as 2026 proof. Current bottleneck: shipping the Quiz and the session delivery layer (Method Video, prerequisites), not the first-sale shock. Full detail: `roadmap.md` Current Status.
+
+*(Original Day 48 snapshot, preserved as genealogy below.)*
+
 - **7 founders** (Alexander · Oyi · Sergey · Alexa · Sandra · Karime · Kirill) co-identifying as a collective.
 - **$1,931 total** (cash + in-kind + rev-share contracts through Day 47).
 - **Wednesday launch** (April 22, 2026) — Aurora skin, full funnel live, nurture emails automated.
-- **First $555 stranger pays** = the P27 Si-Do shock still open.
+- **First $555 stranger pays** = the P27 Si-Do shock still open (as of Day 48 — resolved since, see box above).
 
 ### Lived User Journey — Reveal-Anchored Funnel (Day 61, May 4, 2026)
 
@@ -336,6 +378,8 @@ Both branches: paid → platform access. Free → reveal page only. **Funnel mon
 ---
 
 ### Funnel Architecture v2 — Matching-as-Hero (Day 77, May 20, 2026)
+
+> **⭐ Day 138 update:** the funnel's front door is moving again. The Quiz (Phase 2 implementation at `/quiz2`, legacy at `/quiz`) is becoming the primary above-the-fold CTA once Phase 2 ships; the landing rebuild is law-first (Ceiling Law, [§ Myth v4.0](#1-myth)), superseding the two-CTA hero this section describes. Blocked on Quiz Phase 2 completion per `roadmap.md` Q1/Q2. This section's matching-as-hero framing stays valid for the JOURNEY/BUILD space structure; only the landing entry point is changing.
 
 **The reframe:** the hero of the funnel is no longer *"build your unique business."* The hero is **find your collaborators**. The unique-business work becomes the premium layer for members who graduate from matching into venture-building inside Sasha's own community. See also: [`monetization_strategies.md` → Strategic Crystallization](../monetization_strategies.md#strategic-crystallization-day-7677-may-1920-2026).
 
@@ -1550,7 +1594,21 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 
 ### 3. Tribe (ICP)
 
-#### ⭐ v4.0 · July 26, 2026 (Day 136) — The Ripe Position
+#### ⭐ v5.0 · July 28, 2026 (Day 138) — The Purchase Physics Correction
+
+*Supersedes v4.0's implicit qualification-by-alignment below. Full text, the Clock Audit finding, the four de facto mis-segments, the Ideal Client Portrait v2, and Checklist v2 all live verbatim in the [Day 138 addendum at the end of this file](#addendum--day-138-july-28-2026-tribe-v50--the-purchase-physics-correction) — quoted there in full, not paraphrased here. Summary only:*
+
+**The correction:** qualification was happening on alignment (where the gift lights up), never on the conditions that make someone actually collapse into a yes. Zero of five paying clients had a dated ticking clock; every real sale ran on chronic identity-level pain plus months of trust. Four mis-segments named and retired: the Fascinating Mirrors, the Admiring Broke, the Channel People, the Skeptic-Knowers.
+
+**The Ideal Client Portrait v2, in one line:** a builder whose form has just ended — the company, the title, the sentence that used to answer "what do you do" — who has already paid for their own transformation before, has means, has surrendered to the search, and asks what it costs rather than proposing a trade.
+
+**Hard gates (Checklist v2):** paid for own transformation before · means present · surrendered (not "need to execute better") · consent/pull, not flip · a live or nascent income vehicle the articulation can feed · form ended and they know it · can't say what they do in one breath · chronic ache, not acute.
+
+**Relationship to v3.5 and v4.0:** Tribe v3.5's bullseye ("The Founder Going Sovereign," Day 133) stands as the named field-knowledge candidate — v5.0 does not replace that person-shape, it carries the gate structure that decides who, among people who look like that shape, is actually ready to buy.
+
+---
+
+#### v4.0 · July 26, 2026 (Day 136) — The Ripe Position
 
 *Supersedes segment-list definitions. The tribe is no longer described by who people are, but by where they are standing. Instrument: Phase Shift Technology 123 (the Ripeness Vector); the Transition axis is mapped in `docs/holomaps/transition_holomap.md`.*
 
@@ -2144,6 +2202,8 @@ Each platform = three surfaces in one: Presence (profile), Physical (events), Pu
 ---
 
 ### 5. Pain (Point A) — 5-Layer Slicer Per Segment
+
+> **⚑ Flag for Sasha (Day 138):** `roadmap.md` (Active Backlog, item Q3) states a five-layer **Pain v4.1**, built on the transition arc, already exists as a working draft inside the quiz spec (`docs/specs/quiz/quiz_product_spec.md`) but has **not yet been filed into this canvas** as the canonical version. This file's own search of that spec's referenced section did not turn up a cleanly separable v4.1 text to quote verbatim without risk of paraphrasing content Sasha hasn't vetted in this location. Recommend: Sasha (or a follow-up pass) pulls the exact v4.1 text from the quiz spec and files it here above v4.0. Until then, **v4.0 below stands as the canonical, locked Pain artifact.**
 
 #### ⭐ v4.0 · July 26, 2026 (Day 136) — Liminality, from inside
 
