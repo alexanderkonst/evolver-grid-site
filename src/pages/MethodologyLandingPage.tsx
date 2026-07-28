@@ -1,56 +1,24 @@
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import PlaybookHero from "@/components/playbook/PlaybookHero";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
-import { EditorialCta } from "@/components/ui/editorial-cta";
-import { ExpandableTestimonial } from "@/components/ExpandableTestimonial";
-import { TESTIMONIALS } from "@/data/testimonials";
 import SEO from "@/components/SEO";
 
 /**
  * MethodologyLandingPage — the pane-3 content of the JOURNEY space on `/`
  * (and on `/game/journey`, via `JourneyPage`).
  *
- * Rebuilt Day 137 (2026-07-28) around the Ceiling Law, with the Transition
- * Quiz (`/quiz`) as the primary door. Diagnosis-first: the axiom names the
- * law, the map lets a stranger locate themselves before clicking anything,
- * and the quiz is the one action the whole page points at. The Direction
- * Call / Productize Yourself Session / BUILT ladder is the second door,
- * for people the quiz places further along the arc.
+ * Per Sasha's 2026-04-16 directive the landing strips to three things only:
+ *   1. The name  — canonical headline in Cormorant Garamond
+ *   2. The infographic — 7-step animated circle (Mux HLS, rendered by
+ *      `PlaybookHero`, which also owns the CTA)
+ *   3. The CTA — "Find your top talent" → /zone-of-genius
  *
- * Structure (see docs/holomaps/transition_holomap.md for the seven-stage
- * source and docs/02-strategy/unique-businesses/alexanders_unique_business.md
- * for the ladder naming — "Direction Call", "Productize Yourself Session",
- * "BUILT", never "Ignition Session"):
- *   1. Hero — the law, the primary CTA to /quiz
- *   2. The map — all seven stages, one line each
- *   3. The deeper read — recognition list
- *   4. Who is holding the mirror
- *   5. Proof — real testimonials from src/data/testimonials.ts
- *   6. The ladder — Direction Call -> Productize Yourself Session -> BUILT
- *   7. Close — back to the quiz CTA
- *
- * Design system: reuses GOLD_TEXT_STYLE / Ornament (landingDesign),
- * EditorialCta (the site's one CTA grammar), ExpandableTestimonial
- * (compact, light variant), and the same Cormorant Garamond / Source
- * Serif 4 / liquid-glass vocabulary used everywhere else on `/`, `/path`,
- * and `/ignite`. No new visual language introduced.
+ * Shared design tokens (gold gradient, ornament, CTA small-caps) live
+ * in `@/lib/landingDesign` and are reused across the /zone-of-genius
+ * funnel so the visual signature is consistent end-to-end.
  */
-
-const STAGE_KEYS = [1, 2, 3, 4, 5, 6, 7] as const;
-
-const CALCOM_CLARITY_LINK =
-  "https://cal.com/aleksandrkonstantinov/direction-choice-call";
-
-const PROOF_TESTIMONIALS = TESTIMONIALS.filter((t) =>
-  ["Sergey Jay Makarov", "Oyi Sun", "Karime Kuri"].includes(t.name),
-);
-
 const MethodologyLandingPage = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
-
-  const goToQuiz = () => navigate("/quiz");
-
   return (
     <>
       <SEO
@@ -59,397 +27,156 @@ const MethodologyLandingPage = () => {
         path="/"
         ogTitle={t("methodology.seoTitle")}
       />
-      <div className="max-w-[720px] mx-auto px-5 py-6 sm:py-7 md:py-8">
-        {/* ═══════ 1. HERO — THE LAW FIRST ═══════ */}
-        <header className="text-center">
-          <p
-            className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] mb-3"
+    {/* Day 80 (Sasha 2026-05-23): hero typography + container padding
+        shifted one tier down so the full first-viewport stack (eyebrow,
+        echo, manifesto, CTA, trust microcopy, secondary CTA) lands
+        above the fold without scrolling on standard desktop sizes.
+        Previously the manifesto pushed the CTA + trust line below the
+        fold at default zoom; Sasha had to zoom in + center manually
+        to see the target shape. */}
+    <div className="max-w-[720px] mx-auto px-5 py-6 sm:py-7 md:py-8">
+      {/* ═══════ NAME ═══════ */}
+      <header className="text-center">
+        {/* Recognition opener — plain "You", no drop cap (Sasha).
+            Day 54 (Sasha): mb under headline bumped 4 → 6 on mobile so
+            the italic echo doesn't crash into the headline's descender. */}
+        {/* Day 62 (Sasha 2026-05-05): legibility cocktail applied —
+            weight 600→700 (font-bold) for stronger anti-aliasing on
+            both retina + non-retina. Deep halo (white lift + navy
+            under-stroke) deepens edges on bright sun-glare spots.
+            See ui_playbook.md → Legibility section. */}
+        <h1
+          className="text-2xl sm:text-3xl md:text-4xl font-bold leading-[1.1] tracking-[-0.018em] mb-3 sm:mb-4"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            color: "var(--skin-text-primary, #0a1628)",
+            textShadow:
+              "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
+          }}
+        >
+          {t("methodology.headlineBefore")}{" "}
+          <span
+            className="bg-clip-text text-transparent"
             style={{
-              color: "var(--skin-text-secondary, #33415c)",
-              textShadow:
-                "var(--skin-text-halo-strong, 0 0 20px rgba(255,255,255,0.8), 0 1px 2px rgba(255,255,255,0.9))",
+              ...GOLD_TEXT_STYLE,
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
+              fontSize: "0.92em",
             }}
           >
-            {t("methodology.hero.eyebrow")}
-          </p>
+            {t("methodology.headlineClearly")}
+          </span>
+        </h1>
 
-          <h1
-            className="text-2xl sm:text-3xl md:text-4xl font-bold leading-[1.2] tracking-[-0.018em] mb-3 sm:mb-4"
+        {/* Italic echo — whispered consequence of the headline.
+            Day 51 (Sasha): leading 1.25 → 1.32 so the line breathes
+            instead of stacking flat under the headline. */}
+        {/* Day 62 (Sasha 2026-05-05) — THIRD pass: 1.5x amplification.
+            Weight 600→700 (Cormorant max — heavier strokes survive
+            anti-aliasing on busy bg). Letter-spacing 0.005em→0.01em
+            (italic serif at body size needs more breathing room when
+            weight is at max — letters separate cleanly).
+            Halo-deep token strengthened globally (see index.css).
+            Per ui_playbook.md Part VIII "Strong" legibility setting. */}
+        <p
+          className="text-base sm:text-lg md:text-xl leading-[1.32] italic"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 700,
+            letterSpacing: "0.01em",
+            color: "var(--skin-text-primary, #0a1628)",
+            textShadow:
+              "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
+          }}
+        >
+          {t("methodology.echoBefore")}{" "}
+          <span
+            className="not-italic font-semibold bg-clip-text text-transparent"
             style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              color: "var(--skin-text-primary, #0a1628)",
-              textShadow:
-                "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
+              ...GOLD_TEXT_STYLE,
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
+              fontSize: "0.92em",
             }}
           >
-            {t("methodology.hero.headline")}
-          </h1>
+            {t("methodology.echoAlways")}
+          </span>{" "}
+          {t("methodology.echoAfter")}
+        </p>
 
-          <p
-            className="text-base sm:text-lg leading-[1.4] max-w-[560px] mx-auto"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontWeight: 600,
-              color: "var(--skin-text-primary, #0a1628)",
-              textShadow:
-                "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
-            }}
-          >
-            {t("methodology.hero.sub")}
-          </p>
+        {/* Top ornament bookend (bottom bookend retired — CTA emblem
+            carries the gold signature below without competition).
+            Day 54 (Sasha): margin opened up so the ornament reads as a
+            real beat of breath, not a tight visual divider. */}
+        <Ornament className="my-4 sm:my-5" />
 
-          <Ornament className="my-5 sm:my-6" />
-
-          <div className="flex flex-col items-center gap-3">
-            <EditorialCta
-              label={t("methodology.hero.ctaLabel")}
-              onClick={goToQuiz}
-            />
-            <p
-              className="max-w-[420px]"
-              style={{
-                color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
-                textShadow:
-                  "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-                fontSize: "0.72rem",
-                letterSpacing: "0.04em",
-                fontWeight: 500,
-              }}
-            >
-              {t("methodology.hero.ctaMicro")}
-            </p>
-          </div>
-        </header>
-
-        {/* ═══════ 2. THE MAP — ALL SEVEN STAGES ═══════ */}
-        <section className="mt-10 sm:mt-12" aria-label={t("methodology.map.eyebrow")}>
-          <p
-            className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] mb-3 text-center"
-            style={{
-              color: "var(--skin-text-secondary, #33415c)",
-              textShadow:
-                "var(--skin-text-halo-strong, 0 0 20px rgba(255,255,255,0.8), 0 1px 2px rgba(255,255,255,0.9))",
-            }}
-          >
-            {t("methodology.map.eyebrow")}
-          </p>
-
-          <p
-            className="text-sm sm:text-base leading-relaxed text-center max-w-[540px] mx-auto mb-6"
-            style={{
-              fontFamily: "'Source Serif 4', serif",
-              fontStyle: "italic",
-              color: "var(--skin-text-secondary, #33415c)",
-            }}
-          >
-            {t("methodology.map.orientingLine")}
-          </p>
-
-          <div className="space-y-2.5">
-            {STAGE_KEYS.map((n) => (
-              <div
-                key={n}
-                className="liquid-glass rounded-2xl px-4 py-3 flex items-baseline gap-3"
-              >
-                <span
-                  className="flex-shrink-0 text-xs font-semibold w-5 text-right"
-                  style={{
-                    color: "var(--skin-text-muted-soft, rgba(26,30,58,0.4))",
-                  }}
-                >
-                  {n}
-                </span>
-                <div className="min-w-0">
-                  <span
-                    className="font-semibold mr-1.5"
-                    style={{
-                      fontFamily: "'Cormorant Garamond', serif",
-                      fontSize: "1.05em",
-                      color: "var(--skin-text-primary, #0a1628)",
-                    }}
-                  >
-                    {t(`methodology.map.stage${n}Name`)}
-                  </span>
-                  <span
-                    className="text-sm"
-                    style={{
-                      fontFamily: "'Source Serif 4', serif",
-                      color: "var(--skin-text-secondary, #33415c)",
-                    }}
-                  >
-                    {t(`methodology.map.stage${n}Line`)}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ═══════ 3. THE DEEPER READ ═══════ */}
-        <section className="mt-10 sm:mt-12 text-center">
-          <p
-            className="text-lg sm:text-xl leading-[1.4]"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontWeight: 700,
-              color: "var(--skin-text-primary, #0a1628)",
-            }}
-          >
-            {t("methodology.deeperRead.line1")}
-            <br />
-            {t("methodology.deeperRead.line2")}
-          </p>
-
-          <ul className="mt-6 space-y-3 max-w-[480px] mx-auto text-left">
-            {[1, 2, 3, 4].map((n) => (
-              <li
-                key={n}
-                className="text-sm sm:text-base leading-relaxed pl-4 relative"
-                style={{
-                  fontFamily: "'Source Serif 4', serif",
-                  color: "var(--skin-text-secondary, #33415c)",
-                }}
-              >
-                <span
-                  className="absolute left-0"
-                  style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.4))" }}
-                  aria-hidden="true"
-                >
-                  &middot;
-                </span>
-                {t(`methodology.deeperRead.recognition${n}`)}
-              </li>
-            ))}
-          </ul>
-
-          <p
-            className="mt-7 text-xl sm:text-2xl font-bold"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              color: "var(--skin-text-primary, #0a1628)",
-            }}
-          >
-            {t("methodology.deeperRead.closingLine")}
-          </p>
-        </section>
-
-        {/* ═══════ 4. WHO IS HOLDING THE MIRROR ═══════ */}
-        <section className="mt-10 sm:mt-12 text-center max-w-[540px] mx-auto">
-          <p
-            className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] mb-3"
-            style={{
-              color: "var(--skin-text-secondary, #33415c)",
-              textShadow:
-                "var(--skin-text-halo-strong, 0 0 20px rgba(255,255,255,0.8), 0 1px 2px rgba(255,255,255,0.9))",
-            }}
-          >
-            {t("methodology.mirror.eyebrow")}
-          </p>
-          <p
-            className="text-sm sm:text-base leading-relaxed"
-            style={{
-              fontFamily: "'Source Serif 4', serif",
-              color: "var(--skin-text-secondary, #33415c)",
-            }}
-          >
-            {t("methodology.mirror.text")}
-          </p>
-        </section>
-
-        {/* ═══════ 5. PROOF ═══════ */}
-        <section className="mt-10 sm:mt-12">
-          <p
-            className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] mb-3 text-center"
-            style={{
-              color: "var(--skin-text-secondary, #33415c)",
-              textShadow:
-                "var(--skin-text-halo-strong, 0 0 20px rgba(255,255,255,0.8), 0 1px 2px rgba(255,255,255,0.9))",
-            }}
-          >
-            {t("methodology.proof.eyebrow")}
-          </p>
-          <div className="space-y-1 max-w-[560px] mx-auto">
-            {PROOF_TESTIMONIALS.map((testimonial) => (
-              <ExpandableTestimonial
-                key={testimonial.name}
-                t={testimonial}
-                variant="light"
-                compact
-              />
-            ))}
-          </div>
-        </section>
-
-        {/* ═══════ 6. THE LADDER ═══════ */}
-        <section className="mt-10 sm:mt-12">
-          <p
-            className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] mb-4 text-center"
-            style={{
-              color: "var(--skin-text-secondary, #33415c)",
-              textShadow:
-                "var(--skin-text-halo-strong, 0 0 20px rgba(255,255,255,0.8), 0 1px 2px rgba(255,255,255,0.9))",
-            }}
-          >
-            {t("methodology.ladder.eyebrow")}
-          </p>
-
-          <div className="space-y-3 max-w-[560px] mx-auto">
-            {/* Direction Call */}
-            <a
-              href={CALCOM_CLARITY_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="liquid-glass rounded-2xl px-4 py-3.5 flex items-center justify-between gap-3 transition-transform hover:scale-[1.01] active:scale-[0.99]"
-            >
-              <div className="min-w-0">
-                <p
-                  className="font-semibold"
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: "1.1em",
-                    color: "var(--skin-text-primary, #0a1628)",
-                  }}
-                >
-                  {t("methodology.ladder.call.name")}
-                </p>
-                <p
-                  className="text-xs mt-0.5"
-                  style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}
-                >
-                  {t("methodology.ladder.call.meta")}
-                </p>
-                <p
-                  className="text-sm mt-1.5 leading-relaxed"
-                  style={{
-                    fontFamily: "'Source Serif 4', serif",
-                    color: "var(--skin-text-secondary, #33415c)",
-                  }}
-                >
-                  {t("methodology.ladder.call.desc")}
-                </p>
-              </div>
-            </a>
-
-            {/* Productize Yourself Session */}
-            <a
-              href="/ignite"
-              className="liquid-glass rounded-2xl px-4 py-3.5 flex items-center justify-between gap-3 transition-transform hover:scale-[1.01] active:scale-[0.99]"
-            >
-              <div className="min-w-0">
-                <p
-                  className="font-semibold"
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: "1.1em",
-                    color: "var(--skin-text-primary, #0a1628)",
-                  }}
-                >
-                  {t("methodology.ladder.session.name")}
-                </p>
-                <p
-                  className="text-xs mt-0.5"
-                  style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}
-                >
-                  {t("methodology.ladder.session.meta")}
-                </p>
-                <p
-                  className="text-sm mt-1.5 leading-relaxed"
-                  style={{
-                    fontFamily: "'Source Serif 4', serif",
-                    color: "var(--skin-text-secondary, #33415c)",
-                  }}
-                >
-                  {t("methodology.ladder.session.desc")}
-                </p>
-              </div>
-            </a>
-
-            {/* BUILT */}
-            <a
-              href="/products/built"
-              className="liquid-glass rounded-2xl px-4 py-3.5 flex items-center justify-between gap-3 transition-transform hover:scale-[1.01] active:scale-[0.99]"
-            >
-              <div className="min-w-0">
-                <p
-                  className="font-semibold"
-                  style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: "1.1em",
-                    color: "var(--skin-text-primary, #0a1628)",
-                  }}
-                >
-                  {t("methodology.ladder.built.name")}
-                </p>
-                <p
-                  className="text-xs mt-0.5"
-                  style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}
-                >
-                  {t("methodology.ladder.built.meta")}
-                </p>
-                <p
-                  className="text-sm mt-1.5 leading-relaxed"
-                  style={{
-                    fontFamily: "'Source Serif 4', serif",
-                    color: "var(--skin-text-secondary, #33415c)",
-                  }}
-                >
-                  {t("methodology.ladder.built.desc")}
-                </p>
-              </div>
-            </a>
-          </div>
-        </section>
-
-        {/* ═══════ 7. CLOSE — BACK TO THE QUIZ ═══════ */}
-        <section className="mt-12 sm:mt-14 text-center">
-          <Ornament className="mb-6" />
-          <p
-            className="text-lg sm:text-xl leading-[1.4] mb-2"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontWeight: 700,
-              color: "var(--skin-text-primary, #0a1628)",
-            }}
-          >
-            {t("methodology.close.headline")}
-          </p>
-          <p
-            className="text-sm sm:text-base mb-6"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontStyle: "italic",
-              color: "var(--skin-text-secondary, #33415c)",
-            }}
-          >
+        {/* Structure — four accents unified to deep antique-gold.
+            Day 54 (Sasha): vertical rhythm between bullets bumped
+            again (space-y-2.5/3.5 → 4/5) so each bullet sits as its
+            own beat in the manifesto rather than collapsing into a
+            stacked list on mobile. Line-height also opened slightly
+            for in-bullet breathability. */}
+        {/* Day 62 (Sasha 2026-05-05): three-line manifesto — weight
+            500→600 across all three lines for legibility on busy bg
+            (gold particles + sun glare). Deep halo applied via the
+            container so all three inherit. */}
+        <div
+          className="space-y-2.5 sm:space-y-3"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            color: "var(--skin-text-primary, #0a1628)",
+            textShadow:
+              "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
+          }}
+        >
+          <p className="text-lg sm:text-xl md:text-2xl font-bold leading-[1.4] tracking-[-0.005em]">
+            {t("methodology.manifestoLine1Before")}{" "}
             <span
-              className="not-italic font-semibold bg-clip-text text-transparent"
+              className="bg-clip-text text-transparent"
               style={GOLD_TEXT_STYLE}
             >
-              {t("methodology.close.sub")}
+              {t("methodology.manifestoLine1Gold")}
             </span>
+            {t("methodology.manifestoLine1After")}
           </p>
 
-          <div className="flex flex-col items-center gap-3 pb-4">
-            <EditorialCta
-              label={t("methodology.hero.ctaLabel")}
-              onClick={goToQuiz}
-            />
-            <p
-              className="max-w-[420px]"
-              style={{
-                color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
-                textShadow:
-                  "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
-                fontSize: "0.72rem",
-                letterSpacing: "0.04em",
-                fontWeight: 500,
-              }}
+          <p className="text-lg sm:text-xl md:text-2xl font-bold leading-[1.4] tracking-[-0.005em]">
+            <span
+              className="bg-clip-text text-transparent"
+              style={GOLD_TEXT_STYLE}
             >
-              {t("methodology.hero.ctaMicro")}
-            </p>
-          </div>
-        </section>
+              {t("methodology.manifestoLine2Gold")}
+            </span>{" "}
+            {t("methodology.manifestoLine2After")}
+          </p>
+
+          {/* Day 58+ (Sasha 2026-05-03): "Build it. Launch it." line
+              retired from the hero stack — the three-line cadence
+              (Find Your Top Talent / Productize Yourself / Scale your
+              Revenue and Impact) reads cleaner without the
+              imperative-pair interruption between the gerund-form
+              promise lines. */}
+          <p className="text-lg sm:text-xl md:text-2xl font-bold leading-[1.4] tracking-[-0.005em]">
+            <span
+              className="bg-clip-text text-transparent"
+              style={GOLD_TEXT_STYLE}
+            >
+              {t("methodology.manifestoLine3Gold")}
+            </span>{" "}
+            {t("methodology.manifestoLine3After")}
+          </p>
+        </div>
+      </header>
+
+      {/* ═══════ INFOGRAPHIC + CTA ═══════ */}
+      {/* Day 54 (Sasha): mt 6/8 → 10/12 — the manifesto bullets need
+          a real chapter-break before the CTA cluster, not a polite
+          gap. On mobile especially, this is the moment of breath
+          between "what we promise" and "do this." */}
+      <div className="mt-6 sm:mt-7">
+        <PlaybookHero />
       </div>
+    </div>
     </>
   );
 };
