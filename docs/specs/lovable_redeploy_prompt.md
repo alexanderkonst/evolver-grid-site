@@ -25,3 +25,20 @@ the session log) so the file only ever holds what's still pending.
 
 No schema, migration, or config changes are involved — code-only edge
 function updates.
+
+## Pending as of 2026-07-28 (quiz rebuild pass)
+
+4. Run migration `supabase/migrations/20260728180000_transition_quiz_results_add_divergence.sql`
+   and redeploy the edge function `save-quiz-result`. Reason: the rebuilt
+   Transition Quiz engine (`src/modules/transition-quiz/engine.ts`) now
+   cross-checks the self-reported stage (S2) against the stage implied by
+   the mean of the nine aspect-question answers, and surfaces the gap to
+   the user when the two disagree by more than 2 stages (the "Worth
+   noticing" block on the Spread screen, S5) — this is the fix for
+   "confidently wrong read on contradictory answers." This adds two
+   nullable columns to `transition_quiz_results` (`aspect_derived_stage`,
+   `has_stage_gap`) so the same signal reaches the Ripeness Vector dataset,
+   and updates `save-quiz-result` to accept and store them. No existing
+   columns change; this is additive only, nothing breaks if it isn't run
+   immediately — the quiz still works and shows the user-facing gap note
+   either way, it just won't be logged to the dataset until deployed.

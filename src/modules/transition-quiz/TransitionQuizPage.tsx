@@ -210,6 +210,8 @@ const TransitionQuizPage = () => {
       route_shown?: string | null;
       email?: string | null;
       not_yet: boolean;
+      aspect_derived_stage?: number | null;
+      has_stage_gap?: boolean | null;
     }) => {
       supabase.functions
         .invoke("save-quiz-result", { body: { ...payload, locale: i18n.language } })
@@ -237,6 +239,8 @@ const TransitionQuizPage = () => {
         pattern: diagnosis.pattern,
         route_shown: diagnosis.route,
         not_yet: false,
+        aspect_derived_stage: diagnosis.aspectStage,
+        has_stage_gap: diagnosis.hasGap,
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
