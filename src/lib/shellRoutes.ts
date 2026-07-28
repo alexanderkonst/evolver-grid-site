@@ -47,6 +47,10 @@ const HOLDOUT_PREFIX: string[] = [
 /** Paths whose page currently mounts GameShellV2 → layout supplies it instead. */
 const SHELL_EXACT = new Set<string>([
     "/",
+    // Day 137 (Sasha 2026-07-28): /home is a private noindex review surface
+    // for the proposed landing rebuild — same shell chrome as "/" purely so
+    // Sasha can compare them side by side. Not linked from any nav/sitemap.
+    "/home",
     "/ignite",
     "/path",
     "/dashboard",
