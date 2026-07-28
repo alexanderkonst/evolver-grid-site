@@ -777,10 +777,14 @@ const SpacesRail = ({
                             <div className="hidden lg:flex h-[104px] w-full items-center justify-center overflow-hidden">
                                 {isDefaultYouSkin ? (
                                     <img
-                                        src="/assets/shell/etched-you-logo-on-lapis-v2.webp"
+                                        src={brandLogo}
                                         alt="YOU — be original."
-                                        className="h-full w-full object-cover object-center"
+                                        className="w-[304px] max-w-none h-auto object-contain opacity-[0.82]"
                                         draggable={false}
+                                        style={{
+                                            filter:
+                                                "saturate(0.72) contrast(1.08) brightness(0.92) drop-shadow(0 1px 0 rgba(255, 236, 165, 0.28)) drop-shadow(0 -1px 0 rgba(1, 8, 28, 0.82))",
+                                        }}
                                     />
                                 ) : (
                                     <img
