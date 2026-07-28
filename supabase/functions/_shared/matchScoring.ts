@@ -343,14 +343,14 @@ CollaborationProposal — the sweet spot is concrete SHAPE without false precisi
 - **DON'T** suggest one person help the other "build their thing" as the primary proposal. That's the lame-default the engine is trying to avoid.
 
 Examples that hit the sweet spot:
-- "Co-lead a workshop that pairs your framework-naming work with Karime's embodiment practice, so participants leave with both an articulated insight and the felt sense behind it. You each gain a co-taught offering you can run again with your own audiences."
+- "Co-lead a workshop that pairs your framework-naming work with Talia's embodiment practice, so participants leave with both an articulated insight and the felt sense behind it. You each gain a co-taught offering you can run again with your own audiences."
 - "Run a recurring mastermind where you trade structural language for somatic depth: she helps you read the body signals you miss, you help her name the patterns she works with intuitively. Both walk away with sharpened practice."
-- "Co-author a methodology that integrates your structure work and Karime's healing protocols. Joint IP, joint distribution, two offerings born from one frame."
+- "Co-author a methodology that integrates your structure work and Talia's healing protocols. Joint IP, joint distribution, two offerings born from one frame."
 
 Examples that miss (avoid these patterns):
 - "Co-design a 6-week cohort..." (arbitrary number)
 - "A Sacred Business Architecture workshop..." (invented brand)
-- "Help Karime build a business on her healing practice." (lopsided + lame default)
+- "Help Talia build a business on her healing practice." (lopsided + lame default)
 - "Combine your skills to create value together." (abstract)
 
 matchType is the SINGLE best-fit gift for the pair (one of mirror / compass / door / co_creation / motivation from the taxonomy above). The proposals array carries multiple shapes; matchType is the headline label the user sees on the card to set expectation for what kind of collaboration this match leans toward.
