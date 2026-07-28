@@ -1,4 +1,4 @@
-# Ignition Session Landing Page — Product Workflow Tracker
+# Productize Yourself Session Landing Page — Product Workflow Tracker
 
 **Started:** 2026-03-26 22:20
 **Status:** Phase 1: PRODUCT — 1.1 Master Result
@@ -12,7 +12,7 @@
 - [x] 2. **Transformation:** "I have a gift but no business" → "I have a named craft, a clear business on one page, and my first move to my first paying client"
 - [x] 3. **Pain of Point A:** Can't articulate what they do. Giving best work free. Suspect they ARE the product but can't see the label from inside. Stuck between dream and survival. Financial hardship from not monetizing the gift. Inner knowing vs. outer reality gap.
 - [x] 4. **Dream Outcome:** "My craft is named. My business is clear. I know exactly who to serve, what to say, and what to charge. I can see the path. I have my first move."
-- [x] 5. **Action:** Visit landing page → recognize themselves → pay $555 → book session → attend 90-min Ignition Session → walk out with named craft + business on page
+- [x] 5. **Action:** Visit landing page → recognize themselves → pay $555 → book session → attend 90-min Productize Yourself Session → walk out with named craft + business on page
 
 ---
 
@@ -143,21 +143,21 @@ Since this is a single-page scroll, "screens" = viewport-sized sections:
 
 | Screen | 🫀 Heart (Feel) | 🧠 Mind (Understand) | 🔥 Gut (Do) |
 |--------|-----------------|---------------------|-------------|
-| S1 Hero | "They see me" — recognition, relief | This is about naming what I've been hiding | **Book Your Ignition Session — $555** |
+| S1 Hero | "They see me" — recognition, relief | This is about naming what I've been hiding | **Book Your Productize Yourself Session — $555** |
 | S2 Qualifier | "That's literally me" — belonging | These 3 bullets describe my exact situation | Scroll to learn more |
 | S3 Video | Curiosity → "This person is real" | The method is clear, grounded, AI-assisted | Watch the 4-min video |
 | S4 Deliverables | Excitement — "I want that" | I get craft named + business on one page | Scroll to proof |
 | S5 Testimonials | "These people are like me" — trust | Others had similar experience, it worked | Scroll to Alexander |
 | S6 About | Respect — "He lived this himself" | He couldn't name his own gift, now he does this | Scroll to pricing |
-| S7 Pricing | "This is worth it" — decision clarity | $555, money-back guarantee, one session | **Book Your Ignition Session** |
+| S7 Pricing | "This is worth it" — decision clarity | $555, money-back guarantee, one session | **Book Your Productize Yourself Session** |
 | S8 FAQ | Relief — "My last concern is answered" | Specific objection resolved | 15-min clarity call (for hesitators) |
 | S9 Blueprints | Awe — "He's giving this away free?" | Full methodology, 3 blueprints | Watch videos (trust deepener) |
-| S10 Bottom CTA | Final commitment — "I'm ready" | — | **Book Your Ignition Session — $555** |
+| S10 Bottom CTA | Final commitment — "I'm ready" | — | **Book Your Productize Yourself Session — $555** |
 
 ### [x] 🔥 ROAST 1.4
 - [x] Any Hearts generic? → S3 "Curiosity" is generic. Better: "Safety — this person isn't a guru, they're honest"
 - [x] Every Mind teaches ONE thing? ✅ Yes
-- [x] Every CTA is a result verb? ⚠️ "Book Your Ignition Session" is action-verb + product-name, not result-verb. Better: "Name My Craft — $555" or keep current (it's clear enough).
+- [x] Every CTA is a result verb? ⚠️ "Book Your Productize Yourself Session" is action-verb + product-name, not result-verb. Better: "Name My Craft — $555" or keep current (it's clear enough).
 
 ---
 
@@ -191,7 +191,7 @@ Since this is a single-page scroll, "screens" = viewport-sized sections:
 │  In 90 minutes, we name your craft...       │
 │                                             │
 │  ┌───────────────────────────────────┐      │
-│  │  Book Your Ignition Session - $555 →│    │
+│  │  Book Your Productize Yourself Session - $555 →│    │
 │  └───────────────────────────────────┘      │
 │  🛡 Money-back guarantee                    │
 ├─────────────────────────────────────────────┤
@@ -231,7 +231,7 @@ Since this is a single-page scroll, "screens" = viewport-sized sections:
 │  One session. Full canvas. Yours forever.   │
 │  🛡 The Ignition Guarantee                  │
 │  ┌───────────────────────────────────┐      │
-│  │  Book Your Ignition Session →     │      │
+│  │  Book Your Productize Yourself Session →     │      │
 │  └───────────────────────────────────┘      │
 ├─────────────────────────────────────────────┤
 │  QUESTIONS                                  │
@@ -245,7 +245,7 @@ Since this is a single-page scroll, "screens" = viewport-sized sections:
 │  [Video 1] [Video 2] [Video 3]              │
 ├─────────────────────────────────────────────┤
 │  ┌───────────────────────────────────┐      │
-│  │  Book Your Ignition Session - $555 →│    │
+│  │  Book Your Productize Yourself Session - $555 →│    │
 │  └───────────────────────────────────┘      │
 └─────────────────────────────────────────────┘
 ```

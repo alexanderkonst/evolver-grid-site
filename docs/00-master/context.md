@@ -247,7 +247,7 @@ These are the project's operating vocabulary: "Copernican Inversion," "scatter p
 
 ## The 7-Artifact Canvas
 
-Every unique business produces 7 artifacts through a single Ignition Session (~90 min):
+Every unique business produces 7 artifacts through a single Productize Yourself Session (~90 min):
 
 | # | Artifact | Question it answers | Example output |
 |---|----------|--------------------|----|
@@ -257,7 +257,7 @@ Every unique business produces 7 artifacts through a single Ignition Session (~9
 | 4 | **Pain** | "What lie keeps them stuck?" | Forensic pain card (9.95 precision) |
 | 5 | **Promise** | "What transformation do I deliver?" | Master result + 3 sub-results |
 | 6 | **Lead Magnet** | "How do they taste the transformation?" | Recognition trigger + entry content |
-| 7 | **Value Ladder** | "How do they go deeper?" | Mirror Session → The Build → Node License |
+| 7 | **Value Ladder** | "How do they go deeper?" | Direction Call → Productize Yourself Session → BUILT → Node |
 
 **The derivation chain:** Each artifact is derived from the previous one. Change artifact 1 → everything downstream changes automatically. There is no independent design.
 
@@ -265,10 +265,11 @@ Every unique business produces 7 artifacts through a single Ignition Session (~9
 
 | Container | Price | What happens |
 |-----------|-------|-------------|
-| **Mirror Session** (Ignition) | $555 | 90 min: MAP genius → MATCH to business → MOVE with first action |
-| **The Build** | $1,111 + $2,500 rev share | 6 weeks: Canvas → 10 clients → PMF → $10K MRR trajectory |
+| **Direction Call** | Free | 45 min: name the direction, see the ladder |
+| **Productize Yourself Session** | $555 | 90 min: MAP genius → MATCH to business → MOVE with first action |
+| **BUILT** | $1,111 + $2,500 rev share | 3 weeks: Canvas → 10 clients → PMF → $10K MRR trajectory |
 | **Monthly Container** | $500/mo | Ongoing advisory + accountability |
-| **Node License** | 10% revenue share | Facilitator runs the methodology independently |
+| **Node** | 10% revenue share | Facilitator runs the methodology independently, white-label |
 
 ## The Build SOP (5 Gated Phases)
 
@@ -466,7 +467,7 @@ Screen 4: Ignite (/ignite) — IgniteSession.tsx
   → Resonance Permission (HD Emotional Authority)
 
 Screen 5: Post-Payment
-  → Stripe → Cal.com → 90-min Ignition Session booked
+  → Stripe → Cal.com → 90-min Productize Yourself Session booked
 ```
 
 ## Current Revenue
@@ -510,7 +511,7 @@ The pattern that produces results fastest is direct personal outreach to real hu
 | **Pain** | One lie ("the business I want is unrealistic") → 4 wounds: money draining, identity fragmented, relationships strained, self-trust eroding. The Hamster Wheel: spinning, not stuck |
 | **Promise** | "People know who you are." From fog → focus → first clients → revenue → confidence |
 | **Lead Magnet** | The ZoG quiz (4M unique profiles). Pain Card as tuning fork. LinkedIn as primary channel |
-| **Value Ladder** | Mirror Session ($555) → The Build ($1,111 + $2,500 rev share) → Monthly Container ($500/mo) → Node License (10% rev share) |
+| **Value Ladder** | Direction Call (free) → Productize Yourself Session ($555) → BUILT ($1,111 + $2,500 rev share) → Monthly Container ($500/mo) → Node (10% rev share, white-label) |
 
 ## Operating Rhythms
 

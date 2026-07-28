@@ -661,7 +661,7 @@ Highest-yield surfaces get activated first. See [Surface Activation](#9-surface-
 | Container | Price | What they get |
 |-----------|-------|---------------|
 | **ZoG Reveal** | Free | Their genius named. The felt gap. |
-| **Ignition Session** | $555 | 90 min. Canvas built. Business on one page. First move clear. |
+| **Productize Yourself Session** | $555 | 90 min. Canvas built. Business on one page. First move clear. |
 | **The Build** | $1,111 + $2,500 from first $10K | 6 weeks. All artifacts to 9.5+. First 10 clients. Early PMF. |
 | **Venture Studio** | 10% ongoing | Scale, team, systems. Node licensing. |
 
@@ -669,7 +669,7 @@ Highest-yield surfaces get activated first. See [Surface Activation](#9-surface-
 
 | Source | Price | Monthly Target | Revenue |
 |--------|-------|----------------|---------|
-| Ignition Sessions | $555 | 8 sessions | $4,440 |
+| Productize Yourself Sessions | $555 | 8 sessions | $4,440 |
 | Build upgrades (30%) | $3,611 | 2 upgrades | $7,222 |
 | **TOTAL** | | | **$11,662** |
 

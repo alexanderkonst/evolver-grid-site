@@ -70,7 +70,7 @@ The Meta-Segment is already running their dream business — for free. It lives 
 
 They do not need a savior or a new framework. They need a **Mirror** to focus their scattered light and NAME the genius hiding in plain sight.
 
-## Page 8: The Ignition Session (The 90-Minute Compiler)
+## Page 8: The Productize Yourself Session (The 90-Minute Compiler)
 
 Compressing 3 years of scattered pivoting into one sitting.
 

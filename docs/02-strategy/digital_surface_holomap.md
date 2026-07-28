@@ -83,7 +83,7 @@ These are the surfaces where **one unit of effort produces the most signal.** Ac
 | **19** | **LinkedIn DMs to warm contacts** | Push | **126** | Highest conversion channel. Founder-written |
 | **20** | **ZoG past clients email list** | Push | **126** | Warmest email list. They experienced your work |
 | **21** | **LinkedIn professional shift announcement** | Publish | **120** | One-time. Day 1 post. Triggers warm reactions |
-| **22** | **LinkedIn Service Page listing** ⭐ | Presence | **112.5** | Lead-gen + reviews surface. Ignition Session listing |
+| **22** | **LinkedIn Service Page listing** ⭐ | Presence | **112.5** | Lead-gen + reviews surface. Productize Yourself Session listing |
 | **23** | **LinkedIn creator mode / topics** | Presence | **105** | Increases discovery in topic feeds. Set once |
 | **24** | **Tuning fork post (UTF v7.1)** | Publish | **105** | Primary broadcast. UTF at 9.7 precision |
 | **25** | **Telegram channel post** | Publish | **105** | No algorithm. 100% delivery to subscribers |
@@ -110,7 +110,7 @@ These are the surfaces where **one unit of effort produces the most signal.** Ac
 | 8 | Email signature | 3 min | Hero line + landing page link |
 | 9 | Zoom display name + virtual background | 2 min | Name + branded/clean backdrop |
 | 10 | Calendly description | 2 min | Full methodology micro-description |
-| 11 | **LinkedIn Service Page** ⭐ | 5 min | Create with Ignition Session listing |
+| 11 | **LinkedIn Service Page** ⭐ | 5 min | Create with Productize Yourself Session listing |
 | 12 | **Checkout confirmation page** ⭐ | 5 min | Custom "what happens next" |
 | 13 | **Post-purchase email PS** ⭐ | 2 min | Add next-action in confirmation email |
 | 14 | **WhatsApp Business profile** ⭐ | 3 min | Service catalog setup |

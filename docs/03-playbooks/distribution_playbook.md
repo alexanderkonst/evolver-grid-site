@@ -1141,7 +1141,7 @@ STAGES:
   4. VIDEO WATCHED   → 5-min methodology video opened
   5. CONVERSATION    → Active dialog (responded to video)
   6. CALL BOOKED     → Calendly link clicked, session scheduled
-  7. SESSION DONE    → Ignition Session completed
+  7. SESSION DONE    → Productize Yourself Session completed
   8. BUILD OFFERED   → The Build (6-week container) presented
   9. BUILD ACTIVE    → Currently in The Build
 ```
@@ -1275,7 +1275,7 @@ Traditional funnels present menus. The One-Button Engine presents the ONE true n
 ```
 Entry 1: ZoG Reveal (free)          ← "Near instant zone of genius reveal"
     ↓ (after result)
-Entry 2: Ignition Session ($555)    ← "Build a business out of it"
+Entry 2: Productize Yourself Session ($555)    ← "Build a business out of it"
     ↓ (after result)  
 Entry 3: The Build ($1,111)         ← "Scale the outcome"
     ↓ (after result)
@@ -1284,7 +1284,7 @@ Entry 4: Venture Studio             ← "Join the network"
 
 **Principle:** After a person receives a particular result, the NEXT button reveals itself as the founder's recommendation of the best next product. This is sequential initiation, not a menu. Guidance is love.
 
-**Implementation:** Live at `aleksandrkonstantinov.com` ([IgniteSession.tsx](../../src/pages/IgniteSession.tsx)) — "Overqualified? Overprepared." hero section with dual-gate entry (ZoG reveal + Ignition Session).
+**Implementation:** Live at `aleksandrkonstantinov.com` ([IgniteSession.tsx](../../src/pages/IgniteSession.tsx)) — "Overqualified? Overprepared." hero section with dual-gate entry (ZoG reveal + Productize Yourself Session).
 
 ---
 

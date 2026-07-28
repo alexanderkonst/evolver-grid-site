@@ -618,7 +618,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Version | **0.7** (Alpha) |
 | Master Result | "Who are these people?" → Living proof that unique businesses emerge from genius |
 | Start | `/game/marketplace/founders` (in-platform) or `/founders` (public) |
-| End | Inspiration → Book Ignition Session |
+| End | Inspiration → Book Productize Yourself Session |
 | Dependencies | Unique Business Canvas complete |
 
 > **Dual-mode rendering:** In-platform version renders with light-mode styling (white bg, tinted cards). Public version renders with dark starfield and aurora effects. Both share the same component.

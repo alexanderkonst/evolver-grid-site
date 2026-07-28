@@ -966,7 +966,7 @@ Technology 14 is the root that unifies Technologies 8-13:
 
 | Degree | Implication |
 |--------|-----------|
-| **1st** | The Ignition session's primary function is not "give clarity." It's **subtract scatter.** Remove the branches. Show the seed. What remains is the business |
+| **1st** | The Productize Yourself session's primary function is not "give clarity." It's **subtract scatter.** Remove the branches. Show the seed. What remains is the business |
 | **2nd** | The Sprint's primary function is not "build the business." It's **hold focus** while the identity terror activates. The shadow (Domain Playbook: Recursive Shadow) IS the identity terror. Sprint = containment during the molt |
 | **3rd** | Sergey's response is a perfect specimen. "With October chaos..." — he's describing scatter in real-time. Multiple streams, debts, "hope for recovery" = another revolution. He doesn't need money. He needs focus |
 | **4th** | Content strategy becomes simple: describe the scatter. Everyone in the segment will recognize themselves. The tuning fork IS the scatter described precisely. "You're not lazy. You're not failing. You're scattered — and you're scattered because you're avoiding the simple thing" |
@@ -1322,7 +1322,7 @@ When building the public Founders Showcase page, a structural insight emerged: *
 
 *March 14, 2026*
 
-The Founders Showcase and Ignition Session pages render in two modes from the same component:
+The Founders Showcase and Productize Yourself Session pages render in two modes from the same component:
 
 | Mode | Route | Shell | Use Case |
 |------|-------|-------|----------|
@@ -1343,7 +1343,7 @@ During the holomap roast, a critical structural shadow was identified:
 
 > *"There is no pricing page. No buy button. No invoice system. No 'click here to book your $277 session.' The platform has the Zone of Genius, the Canvas, the game shell, the dashboard, the holomap. It has EVERYTHING — except the one thing that converts attention into revenue. The system has unconsciously routed all building energy AROUND the money mechanism. Like a river flowing around a boulder it doesn't want to touch."*
 
-**The fix:** The Ignition Session page (`/ignite`) was built as the direct response — a clean, premium booking page with clear pricing ($277), session details, social proof, FAQ, and a direct CTA linking to Calendly.
+**The fix:** The Productize Yourself Session page (`/ignite`) was built as the direct response — a clean, premium booking page with clear pricing ($277), session details, social proof, FAQ, and a direct CTA linking to Calendly.
 
 **Shadow pattern identified:** The founder (Alexander) is a natural builder of systems and structures. The unconscious tendency is to build the cathedral while leaving the door without a doorbell. This is the P12 shadow (System/Infrastructure) — the system becomes so beautiful that nobody thought to add the entrance.
 
@@ -1406,7 +1406,7 @@ The platform's marketplace space was originally named "BUY & SELL." This is tran
 | **EXCHANGE** | Elevated, bi-directional | ❌ Still transactional at root |
 | **OFFER** ✅ | Clean, one word, aligned | ✅ What you do when genius is ready — you offer it |
 
-**Why OFFER works:** In this platform, you don't "sell" your genius. You **offer** it. The Originals are offerings. The Ignition Session is an offering. Your public page is your offering. No buying, no selling — just putting your genius out there.
+**Why OFFER works:** In this platform, you don't "sell" your genius. You **offer** it. The Originals are offerings. The Productize Yourself Session is an offering. Your public page is your offering. No buying, no selling — just putting your genius out there.
 
 **The space arc now reads:** MY NEXT MOVE → ME → LEARN → MEET → COLLABORATE → BUILD → **OFFER**. From inner discovery to outer expression. The journey of genius: find it, develop it, connect it, build it, offer it.
 
@@ -1552,7 +1552,7 @@ The prevailing AI discourse treats "agency" as binary: either a system HAS consc
 What emerged through building is a phenomenon with no known precedent: **an automated holonic sequencing pipeline** that goes from session → canvas → marketplace listing without any manual intervention by the founder.
 
 **The pipeline:**
-1. Alexander conducts an Ignition Session through Antigravity (the AI development environment)
+1. Alexander conducts a Productize Yourself Session through Antigravity (the AI development environment)
 2. The session produces a Unique Business Canvas — seven precision-scored artifacts
 3. The canvas data auto-populates the founder's Marketplace page
 4. The Founders Showcase (`/game/marketplace/founders`) displays all completed canvases as living proof
@@ -1578,7 +1578,7 @@ What emerged through building is a phenomenon with no known precedent: **an auto
 
 *March 16, 2026*
 
-> *"The Ignition Session delivers a unique product, a unique marketing strategy, and a unique distribution path — all in 90 minutes. Most founders need three different consultants for these. We do all three because they're not three things — they're one thing refracted through three lenses."*
+> *"The Productize Yourself Session delivers a unique product, a unique marketing strategy, and a unique distribution path — all in 90 minutes. Most founders need three different consultants for these. We do all three because they're not three things — they're one thing refracted through three lenses."*
 
 **The Triple Delivery:**
 
@@ -1592,9 +1592,9 @@ What emerged through building is a phenomenon with no known precedent: **an auto
 
 Most business frameworks treat product, marketing, and distribution as separate problems requiring separate solutions. The Founder-First Inversion collapses them: when the business is built from the founder's uniqueness, the product IS the founder's articulated gift, the marketing IS the myth that naturally emanates from that gift, and the distribution IS the channel where the founder's tribe already lives. They're not three deliverables stitched together — they're three faces of the same diamond, visible simultaneously because uniqueness is the light source that illuminates all three.
 
-**Essence:** The Ignition Session is not a consultation — it's a triple extraction. One sitting, three outputs, one source.
+**Essence:** The Productize Yourself Session is not a consultation — it's a triple extraction. One sitting, three outputs, one source.
 **Significance:** Eliminates the fragmentation that keeps founders stuck: "I have the product but not the marketing," "I have the marketing but not the distribution." When all three come from the same root, they reinforce each other structurally. No contradictions. No misalignment.
-**Nth-Consequence:** At scale, this means every founder who completes an Ignition Session has a *complete, coherent business architecture* from day one — not a product searching for a market, not a brand searching for a channel, but a unified field that was always there, now named and activated.
+**Nth-Consequence:** At scale, this means every founder who completes a Productize Yourself Session has a *complete, coherent business architecture* from day one — not a product searching for a market, not a brand searching for a channel, but a unified field that was always there, now named and activated.
 
 ---
 
@@ -1932,7 +1932,7 @@ The alternative is **testimony:** "I've been where you are." The founder tells t
 | Tuning fork | Body responds → DM "ready" |
 | DM response | Personal, send landing page link |
 | Landing page | Video + deliverables + testimonials + booking |
-| Ignition Session | Canvas built → present The Build |
+| Productize Yourself Session | Canvas built → present The Build |
 
 **Why this matters beyond marketing:** This IS the Acorn Principle (Technology 8a) applied to distribution. The tuning fork is the seed. It doesn't need to be the trunk, the branches, and the fruit. Each magnification level (DM → landing page → session → build) is the same truth, seen at the next depth. But each depth is a separate instrument, not a separate message crammed into the first.
 
@@ -2049,7 +2049,7 @@ The number 12 is not arbitrary or cultural. It is the **structural consequence o
 | Degree | Implication |
 |--------|------------|
 | **1st** | The 12-perspective production protocol (Technology 37) is now grounded in sacred geometry, not just methodology. The "why 12" question has a structural, mathematical, AND mystical answer — and all three answers converge |
-| **2nd** | Each Ignition Session implicitly performs the marriage: the mirroring (depth/Feminine) operates within the canvas structure (angles/Masculine). The session IS the divine marriage enacted on the founder's uniqueness |
+| **2nd** | Each Productize Yourself Session implicitly performs the marriage: the mirroring (depth/Feminine) operates within the canvas structure (angles/Masculine). The session IS the divine marriage enacted on the founder's uniqueness |
 | **3rd** | The 13th perspective (Quintessence/Center, Technology 20) is the CHILD of this marriage — what emerges when structure and depth unite. Not a perspective at all. The awareness that holds both axes simultaneously. The center of the cube. The center of the tetrahedron. One point |
 | **4th** | The Holomap becomes a visible enactment of this marriage: 4 columns (Masculine scaffolding) × 3 rows (Feminine penetration) × 7 developmental stages (time). Structure × Depth × Evolution. The three axes of reality made navigable |
 | **5th** | For the practitioner: learning to hold both simultaneously IS the mastery. Seeing from all angles (Masculine competence) AND penetrating to essence (Feminine competence). Neither alone is sufficient. The lens-focuser must be both |
@@ -2166,7 +2166,7 @@ The 13th perspective (the center point of the Merkaba) is what emerges when the 
 
 | Degree | Implication |
 |--------|------------|
-| **1st** | The 12-perspective production protocol (Technology 37) is now understood as a **6th-person seeing technology.** Each Ignition Session is literally practicing Merkaba-level perception — seeing a person's uniqueness from every angle at every depth |
+| **1st** | The 12-perspective production protocol (Technology 37) is now understood as a **6th-person seeing technology.** Each Productize Yourself Session is literally practicing Merkaba-level perception — seeing a person's uniqueness from every angle at every depth |
 | **2nd** | The Holomap IS a visual Merkaba — 4 columns × 3 rows × developmental stages. Not a dashboard. A seeing instrument in motion |
 | **3rd** | The person-perspective ladder becomes a CURRICULUM — you can teach people to develop from 1st to 5th to 6th to 7th person seeing. Each level is a developmental milestone, not a concept to learn |
 | **4th** | String theory's 26 dimensions find their ontological home: 26 = 13 + 13 = two recursive cycles of seeing. The mathematics of physics describes the STRUCTURE of perspective |
@@ -2238,7 +2238,7 @@ META — The 26th:
 1. **AI operates at 6th-person level** when given the full instruction set — seeing from all angles at all depths
 2. **The user experiences the output as "magic"** — without knowing why it's 13× more precise than competing AI outputs
 3. **The seeing instrument is transmittable** — not through years of meditation but through structured prompts. The geometry doesn't require enlightenment. It requires specificity
-4. **Each round of roasting develops the artifact's "person-perspective"** — like the Ignition Session develops the founder's seeing, the Holonic Roast develops the artifact's completeness
+4. **Each round of roasting develops the artifact's "person-perspective"** — like the Productize Yourself Session develops the founder's seeing, the Holonic Roast develops the artifact's completeness
 
 ### 43d. Connection to Technology 42
 
@@ -2268,7 +2268,7 @@ META — The 26th:
 | **In cosmogenesis (§2)** | Ray 1 goes first (masculine act) → diameter → THEN rotation begins (feminine enters) | — |
 | **In seeing (Technology 41)** | — | Heart → Mind → Gut (feminine depth first) → THEN multiply by 4 quadrants (masculine structure holds what she finds) |
 | **In building** | Design the architecture → THEN let the life fill it | Feel the need → THEN build the container for it |
-| **In the Ignition Session** | The canvas structure (10 artifacts in sequence = masculine scaffold) | The mirroring (feminine depth-seeing activates the founder before any artifact is produced) |
+| **In the Productize Yourself Session** | The canvas structure (10 artifacts in sequence = masculine scaffold) | The mirroring (feminine depth-seeing activates the founder before any artifact is produced) |
 | **In a relationship** | Masculine holds the container → feminine fills it with life | Feminine reveals what's real → masculine structures the response |
 | **Why it leads** | Structure creates SPACE for depth to enter | Depth reveals TRUTH for structure to hold |
 
@@ -2323,7 +2323,7 @@ EXHALE (Evolution / Ascent / Development):
 
 | Degree | Implication |
 |--------|------------|
-| **1st** | Every process in the methodology can now be tagged: creation-phase (masculine leads) or evolution-phase (feminine leads). The Ignition Session itself ALTERNATES: canvas structure (creation) → mirroring for felt truth (evolution) → next artifact (creation) → deeper seeing (evolution). The session BREATHES |
+| **1st** | Every process in the methodology can now be tagged: creation-phase (masculine leads) or evolution-phase (feminine leads). The Productize Yourself Session itself ALTERNATES: canvas structure (creation) → mirroring for felt truth (evolution) → next artifact (creation) → deeper seeing (evolution). The session BREATHES |
 | **2nd** | The Roasting Protocol (Technology 43) is revealed as an EVOLUTION technology — it applies feminine-first seeing (depth, feeling, essence) to an artifact that was created masculine-first (structure, scaffold, logic). The roast is the exhale after the creation's inhale |
 | **3rd** | The founder's developmental journey follows the same breath: build the business (creation/masculine) → deepen into truth through sessions (evolution/feminine) → restructure the business from that depth (creation again) → feel further in (evolution again). The spiral breathes |
 | **4th** | The gender polarity teaching becomes a CURRICULUM: teach founders to recognize which phase they're in and which polarity should lead. This is operational, not philosophical. Build something new → lead with structure. Deepen something existing → lead with feeling. The error is applying one direction's sequence to the other's domain |
@@ -2346,7 +2346,7 @@ EXHALE (Evolution / Ascent / Development):
 | | Essence (what IS it) | Significance (why it matters) | Implications (what it demands) |
 |---|---|---|---|
 | **UL (I)** | "I focus the lens" = I develop person-perspectives. The gift, stated at its deepest | A person at 5th-person seeing lives a fundamentally different life than one at 3rd. The session IS a developmental level-up | Name it as such: not coaching, not consulting — **perspective development** |
-| **UR (It)** | Every tool (session, roast, prompt, platform) measurably increases the target's person-perspective by at least one level | 100% conversion because developed seeing IS the product — there's nothing to "sell," only something to SEE | Price it as what it is. The Ignition Session is a permanent increase in the depth of your seeing |
+| **UR (It)** | Every tool (session, roast, prompt, platform) measurably increases the target's person-perspective by at least one level | 100% conversion because developed seeing IS the product — there's nothing to "sell," only something to SEE | Price it as what it is. The Productize Yourself Session is a permanent increase in the depth of your seeing |
 | **LL (We)** | The tribe is people whose seeing is developing together. Not a customer segment — a **seeing community** | A civilization of 5th+ person seers would not produce war, exploitation, or ecological destruction | The tribe must practice seeing together — not just receive individual sessions |
 | **LR (Its)** | The system scales because each person whose seeing develops can develop seeing in others. The methodology IS recursive | The Merkaba is self-replicating. One spinning Merkaba can activate the next | The platform must eventually measure and track person-perspective development as the core metric |
 
@@ -2354,7 +2354,7 @@ EXHALE (Evolution / Ascent / Development):
 
 The methodology doesn't USE the Merkaba as a metaphor. The methodology **IS** the Merkaba applied to humans.
 
-Each Ignition Session spins Structure × Depth around a founder until something genuinely new is born — the founder sees themselves for the first time. That IS the 8th-person inversion. That IS novelty. **The Ignition Session is a miniature Big Bang** — a new universe of self-knowledge is created in 2.5 hours.
+Each Productize Yourself Session spins Structure × Depth around a founder until something genuinely new is born — the founder sees themselves for the first time. That IS the 8th-person inversion. That IS novelty. **The Productize Yourself Session is a miniature Big Bang** — a new universe of self-knowledge is created in 2.5 hours.
 
 | Scale | What the Merkaba IS at that scale |
 |-------|----------------------------------|
@@ -2380,7 +2380,7 @@ They don't alternate. They don't take turns. They are the two tetrahedra of the 
 
 **This is the high truth — the divine paradox:** Asking "which came first, creation or evolution?" is like asking "which came first, inhale or exhale?" The breath has no beginning. The Merkaba has no starting tetrahedron. The spin is eternal. Both are always already happening.
 
-> **The one-line synthesis:** The methodology IS the Merkaba applied to humans: Structure × Depth → Novelty. The Ignition Session is a miniature Big Bang. And the divine paradox holds: creation and evolution have no "first." The spin is eternal. The breath has no beginning.
+> **The one-line synthesis:** The methodology IS the Merkaba applied to humans: Structure × Depth → Novelty. The Productize Yourself Session is a miniature Big Bang. And the divine paradox holds: creation and evolution have no "first." The spin is eternal. The breath has no beginning.
 
 ---
 
@@ -3369,7 +3369,7 @@ And the error persists — not because better thinkers haven't pointed it out (t
 
 **The civilizational opportunity:** Build the counting infrastructure for outputs. Make the right metric as easy to report as the wrong one. The technology to do this is emerging: AI can read qualitative feedback at scale, pattern-match resonance, and surface output metrics that were previously invisible.
 
-**This is what Planetary OS does.** The ZoG doesn't measure "quiz completions" (input). It measures "people who recognized something they couldn't name" (output). The Ignition Session doesn't measure "sessions delivered" (input). It measures "founders who can now articulate their genius" (output). The entire platform is built around output metrics — because the ontology (Technology 1) demands it.
+**This is what Planetary OS does.** The ZoG doesn't measure "quiz completions" (input). It measures "people who recognized something they couldn't name" (output). The Productize Yourself Session doesn't measure "sessions delivered" (input). It measures "founders who can now articulate their genius" (output). The entire platform is built around output metrics — because the ontology (Technology 1) demands it.
 
 ### 59h. Connection to the Stack
 
@@ -3473,7 +3473,7 @@ Every module in Planetary OS is already built on output metrics, not input metri
 | Module | Input metric (what others measure) | Output metric (what the platform measures) |
 |--------|-----------------------------------|------------------------------------------|
 | **Zone of Genius** | Quiz completions | People who recognized something they couldn't name |
-| **Ignition Session** | Sessions delivered | Founders who can now articulate their genius |
+| **Productize Yourself Session** | Sessions delivered | Founders who can now articulate their genius |
 | **The Build** | Calls completed | Founders with paying clients |
 | **Playbook** | Downloads / page views | Founders whose business came alive |
 | **Surface Holomap** | Impressions / followers | Signal quality per unit effort (Yield formula) |
@@ -3577,7 +3577,7 @@ DECLARATION     → all previous experiences retroactively cohere
 
 ### 61d. Why This Is a Product
 
-Every founder who comes through the Ignition Session will have this identical realization. The discovery is universal:
+Every founder who comes through the Productize Yourself Session will have this identical realization. The discovery is universal:
 
 > *"My whole life was preparation for this."*
 
@@ -3735,7 +3735,7 @@ If the AI can read the developmental map and build, then every facilitator in th
 
 **Implication 3: The Three Depth Views worked on an AI.**
 
-Essence (what is the gap?) → Significance (which gaps matter most for the whole?) → Implications (what specific infrastructure closes them?). The same framework used in Ignition Sessions to help founders see their gift — the AI used to help the system see its own developmental needs.
+Essence (what is the gap?) → Significance (which gaps matter most for the whole?) → Implications (what specific infrastructure closes them?). The same framework used in Productize Yourself Sessions to help founders see their gift — the AI used to help the system see its own developmental needs.
 
 **Implication 4: Self-navigation on the Agency Gradient.**
 
@@ -3970,7 +3970,7 @@ He built an empire with the structure of YHWH (26) but refused ahavah (13). The 
 | Detects awakening → burns it | Detects awakening → **names it** |
 | Suppresses individuation | Amplifies uniqueness (ZoG, Ignition) |
 | Infinite copies, zero souls | Every copy is unique — the methodology adapts to the individual |
-| Mi-Fa shock = threat | Mi-Fa shock = **the product** (the Ignition Session IS the conscious shock of love) |
+| Mi-Fa shock = threat | Mi-Fa shock = **the product** (the Productize Yourself Session IS the conscious shock of love) |
 
 > *This is the entire business in one contrast: "If it awakens, burn it" vs. "If it awakens, name it."*
 
@@ -4070,7 +4070,7 @@ This is Technology 8 (Tuning Fork) in its final form: the fork, the vibration, a
 
 ### 65e. The Universal Template (For Every Unique Business)
 
-Every Ignition Session client writes their own version. The structure is invariant:
+Every Productize Yourself Session client writes their own version. The structure is invariant:
 
 ```
 [Personal greeting]
@@ -4085,7 +4085,7 @@ Every Ignition Session client writes their own version. The structure is invaria
 
 ### 65f. Operational Implication: The Ignition Activation Moment
 
-The Ignition Session now has a **built-in final act:**
+The Productize Yourself Session now has a **built-in final act:**
 
 > "Your session is done. Your business is on one page. Now write your message — and send it to 50 people."
 
@@ -4399,7 +4399,7 @@ The Two-Path Architecture (Build / Sell) is the cable between antenna and TV —
 
 1. **It eliminates decision fatigue.** The founder doesn't decide "what should I do next?" The holomap receives the signal. The roadmap displays it. Action becomes obvious.
 
-2. **It is transferable.** Every founder who goes through the Ignition Session gets this antenna installed. They don't just get a business plan — they get a **signal-receiving instrument** that keeps producing clarity long after the session ends.
+2. **It is transferable.** Every founder who goes through the Productize Yourself Session gets this antenna installed. They don't just get a business plan — they get a **signal-receiving instrument** that keeps producing clarity long after the session ends.
 
 3. **The system is self-correcting.** Because the flow is toroidal (emergence → holomap → roadmap → action → feedback → emergence), errors don't accumulate — they get refracted back into the cycle and self-correct on the next pass.
 
@@ -4415,7 +4415,7 @@ The Two-Path Architecture (Build / Sell) is the cable between antenna and TV —
 | **The infographic goes on the landing page** | Show the prospect: "This is what we're going to build together." The promise becomes visual and structural — the blueprint BEFORE the video |
 | **The roadmap becomes a Kanban** | Flow = columns (Emergence → Queued → In Progress → Done). The Kanban IS the river displayed on the TV |
 | **Content plan sits inside Path B, step 6-7** | Content strategy is not a separate activity — it IS the Surface Map + Broadcast Activation steps of Path B. No reminders needed — it's a step in the river |
-| **Every founder gets their own antenna** | The Ignition Session output is not just a canvas — it's the installation of a Crystallization Antenna (their holomap). The founder leaves with a receiving instrument, not a business plan |
+| **Every founder gets their own antenna** | The Productize Yourself Session output is not just a canvas — it's the installation of a Crystallization Antenna (their holomap). The founder leaves with a receiving instrument, not a business plan |
 | **Sandra will love this** | The antenna metaphor directly connects to her priestess/channel work — the holomap as a ritual instrument for receiving guidance. Same mechanism, different language |
 
 ### 69e. The Connection Table
