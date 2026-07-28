@@ -139,6 +139,16 @@ const EvolutionPortalKarime = () => {
             </div>
           </header>
 
+          {/* WHAT THIS ACTUALLY IS */}
+          <section className="max-w-3xl mx-auto rounded-2xl overflow-hidden" style={parchmentCard}>
+            <div className="p-6 md:p-8 space-y-3">
+              <p style={sectionEyebrow}>{t("evolutionPortalKarime.whatEyebrow")}</p>
+              <p style={{ ...sourceSerifBody, fontSize: "15.5px" }}>
+                {t("evolutionPortalKarime.whatBody")}
+              </p>
+            </div>
+          </section>
+
           {/* WHAT YOU SAID YOU NEED */}
           <section className="max-w-3xl mx-auto space-y-5">
             <p className="text-center" style={sectionEyebrow}>
@@ -266,6 +276,112 @@ const EvolutionPortalKarime = () => {
             </div>
           </section>
 
+          {/* HOW THIS COMPARES */}
+          <section className="max-w-4xl mx-auto space-y-5">
+            <div className="text-center space-y-1.5">
+              <p style={sectionEyebrow}>{t("evolutionPortalKarime.compareEyebrow")}</p>
+              <p
+                style={{
+                  ...sourceSerifBody,
+                  fontSize: "14px",
+                  fontStyle: "italic",
+                  opacity: 0.8,
+                }}
+              >
+                {t("evolutionPortalKarime.compareIntro")}
+              </p>
+            </div>
+            <div
+              className="rounded-2xl overflow-x-auto"
+              style={parchmentCard}
+            >
+              <table className="w-full border-collapse" style={{ minWidth: "640px" }}>
+                <thead>
+                  <tr>
+                    <th
+                      className="text-left p-3 md:p-4 align-bottom"
+                      style={{ ...sourceSerifBody, fontSize: "12px", opacity: 0.75 }}
+                    />
+                    {(["compareCol1", "compareCol2", "compareCol3", "compareCol4", "compareCol5"] as const).map(
+                      (key, i) => (
+                        <th
+                          key={key}
+                          className="text-center p-3 md:p-4 align-bottom"
+                          style={{
+                            ...cormorantTitle,
+                            fontSize: "14.5px",
+                            fontWeight: 600,
+                            ...(i === 4
+                              ? {
+                                  color: "var(--skin-accent-gold, #b8860b)",
+                                  background: "rgba(212, 175, 55, 0.10)",
+                                  borderBottom: "2px solid rgba(212, 175, 55, 0.55)",
+                                  borderLeft: "1px solid rgba(212, 175, 55, 0.35)",
+                                  borderRight: "1px solid rgba(212, 175, 55, 0.35)",
+                                }
+                              : {
+                                  borderBottom: "1px solid rgba(212, 175, 55, 0.25)",
+                                }),
+                          }}
+                        >
+                          {t(`evolutionPortalKarime.${key}`)}
+                        </th>
+                      ),
+                    )}
+                  </tr>
+                </thead>
+                <tbody>
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((row, rowIdx, arr) => (
+                    <tr key={row}>
+                      <td
+                        className="p-3 md:p-4"
+                        style={{
+                          ...sourceSerifBody,
+                          fontSize: "13px",
+                          fontWeight: 600,
+                          borderBottom:
+                            rowIdx < arr.length - 1 ? "1px solid rgba(212, 175, 55, 0.18)" : "none",
+                        }}
+                      >
+                        {t(`evolutionPortalKarime.compareRow${row}Label`)}
+                      </td>
+                      {[1, 2, 3, 4, 5].map((col) => (
+                        <td
+                          key={col}
+                          className="text-center p-3 md:p-4"
+                          style={{
+                            ...sourceSerifBody,
+                            fontSize: "13px",
+                            borderBottom:
+                              rowIdx < arr.length - 1
+                                ? "1px solid rgba(212, 175, 55, 0.18)"
+                                : "none",
+                            ...(col === 5
+                              ? {
+                                  fontWeight: 600,
+                                  background: "rgba(212, 175, 55, 0.08)",
+                                  borderLeft: "1px solid rgba(212, 175, 55, 0.35)",
+                                  borderRight: "1px solid rgba(212, 175, 55, 0.35)",
+                                }
+                              : {}),
+                          }}
+                        >
+                          {t(`evolutionPortalKarime.compareRow${row}Col${col}`)}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p
+              className="text-center max-w-2xl mx-auto"
+              style={{ ...sourceSerifBody, fontSize: "14px", fontStyle: "italic", opacity: 0.85 }}
+            >
+              {t("evolutionPortalKarime.compareClosing")}
+            </p>
+          </section>
+
           {/* COMING NEXT */}
           <section className="max-w-3xl mx-auto space-y-5">
             <p className="text-center" style={sectionEyebrow}>
@@ -297,9 +413,18 @@ const EvolutionPortalKarime = () => {
                 <p style={sectionEyebrow}>{t("evolutionPortalKarime.investmentEyebrow")}</p>
                 <p
                   style={{
+                    ...sourceSerifBody,
+                    fontSize: "14px",
+                    opacity: 0.85,
+                  }}
+                >
+                  {t("evolutionPortalKarime.investmentFairValue")}
+                </p>
+                <p
+                  style={{
                     ...cormorantTitle,
                     color: "var(--skin-accent-gold, #b8860b)",
-                    fontSize: "20px",
+                    fontSize: "19px",
                   }}
                 >
                   {t("evolutionPortalKarime.investmentPrice")}
@@ -312,7 +437,7 @@ const EvolutionPortalKarime = () => {
                     opacity: 0.85,
                   }}
                 >
-                  {t("evolutionPortalKarime.investmentNote")}
+                  {t("evolutionPortalKarime.investmentMonthly")}
                 </p>
               </div>
             </div>
