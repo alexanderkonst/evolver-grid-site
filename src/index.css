@@ -6992,3 +6992,126 @@ form.liquid-glass input:-webkit-autofill:active {
     border-radius: 24px;
   }
 }
+
+/* ==========================================================================
+   LAPIS SHELL — QUIET PHYSICAL JOINERY
+   ==========================================================================
+   A nearly subliminal material cue between the three shell planes. These
+   elements are decorative and live inside the existing accessible seam
+   controls / pane wrapper. No new hit targets and no layout participation.
+   ========================================================================== */
+
+.plane-joint {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.22;
+  transition: opacity 220ms ease;
+}
+
+.group:hover > .plane-joint,
+.group:focus-visible > .plane-joint {
+  opacity: 0.42;
+}
+
+.plane-joint--pivot {
+  background:
+    linear-gradient(90deg,
+      rgba(1, 5, 16, 0.18) 0%,
+      transparent 24%,
+      rgba(214, 190, 120, 0.045) 51%,
+      transparent 76%,
+      rgba(1, 5, 16, 0.22) 100%);
+  box-shadow:
+    inset 1px 0 rgba(2, 7, 20, 0.34),
+    inset -1px 0 rgba(214, 190, 120, 0.08);
+}
+
+.plane-joint__pivot {
+  position: absolute;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  background:
+    radial-gradient(circle at 37% 31%,
+      rgba(222, 202, 145, 0.72) 0 8%,
+      rgba(169, 133, 53, 0.68) 19%,
+      rgba(90, 66, 25, 0.78) 48%,
+      rgba(4, 12, 31, 0.92) 72%);
+  box-shadow:
+    0 0 0 3px rgba(1, 7, 22, 0.22),
+    0 1px 2px rgba(0, 0, 0, 0.44),
+    inset 0 1px rgba(255, 237, 179, 0.16);
+}
+
+.plane-joint__pivot--upper {
+  top: 24%;
+}
+
+.plane-joint__pivot--lower {
+  top: 76%;
+}
+
+.plane-joint--rail {
+  left: auto;
+  width: 8px;
+  opacity: 0.18;
+  background:
+    linear-gradient(90deg,
+      rgba(2, 7, 20, 0.34),
+      rgba(214, 190, 120, 0.045) 48%,
+      rgba(2, 7, 20, 0.20));
+}
+
+.plane-joint__rail {
+  position: absolute;
+  top: 13%;
+  bottom: 13%;
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(214, 190, 120, 0.18) 18%,
+    rgba(90, 66, 25, 0.30) 50%,
+    rgba(214, 190, 120, 0.13) 82%,
+    transparent
+  );
+  box-shadow: -1px 0 rgba(0, 4, 14, 0.22);
+}
+
+.plane-joint__carriage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 22px;
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(
+    90deg,
+    rgba(74, 53, 18, 0.62),
+    rgba(214, 190, 120, 0.34),
+    rgba(62, 44, 16, 0.68)
+  );
+  box-shadow:
+    0 0 0 2px rgba(1, 6, 19, 0.16),
+    inset 0 1px rgba(255, 241, 197, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plane-joint {
+    transition: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .plane-joint {
+    display: none;
+  }
+}
