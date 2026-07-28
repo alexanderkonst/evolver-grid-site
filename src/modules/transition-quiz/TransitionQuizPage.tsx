@@ -5,14 +5,19 @@
 // Persistence to Supabase (save-quiz-result) is fire-and-forget, for the
 // Ripeness Vector dataset only — it never gates or delays the free result.
 //
-// Screens: S1 Entry -> S2 Placement -> S3 Stage Read -> branch:
+// Screens: S1 Entry -> S2 Placement -> S3 Stage Read (Recognition) -> branch:
 //   stages 1-3: S3a (Settled | Itch/Tremors "not yet")
-//   stages 4-7: S4a/b/c (Identity/Economy/Fit) -> S5 Spread -> S6 Zoom -> S7 Path
+//   stages 4-7: S4a/b/c (Identity/Economy/Fit) -> S5 Spread (Recognition,
+//     structural) -> S6 Zoom (Consequence) -> S7 Path (Non-optionality ->
+//     Simplicity -> Action), per ITFT Part IX's five-step collapse sequence.
+//
+// Back navigation is static (the flow is linear per branch), preserves all
+// answers already in state, and never clears anything.
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import {
   ASPECTS,
@@ -40,6 +45,33 @@ type Screen =
   | "spread"
   | "zoom"
   | "path";
+
+// Static predecessor map — the flow is linear per branch, so back navigation
+// never needs a real history stack. Going back never clears any answer.
+const BACK_MAP: Partial<Record<Screen, Screen>> = {
+  placement: "entry",
+  stageRead: "placement",
+  notYet: "stageRead",
+  identity: "stageRead",
+  economy: "identity",
+  fit: "economy",
+  spread: "fit",
+  zoom: "spread",
+  path: "zoom",
+};
+
+// Overall progress, 0-1, per screen — shown as a slim bar so the user always
+// knows how much is left. Entry/notYet/path are start/terminal and don't
+// need one.
+const PROGRESS: Partial<Record<Screen, number>> = {
+  placement: 0.15,
+  stageRead: 0.3,
+  identity: 0.45,
+  economy: 0.6,
+  fit: 0.72,
+  spread: 0.85,
+  zoom: 0.94,
+};
 
 const STORAGE_KEY = "evolver_transition_quiz_v1";
 
@@ -126,6 +158,14 @@ const TransitionQuizPage = () => {
     setState((s) => ({ ...s, ...patch, screen: next }));
   }, []);
 
+  const goBack = useCallback(() => {
+    setState((s) => {
+      const prev = BACK_MAP[s.screen];
+      if (!prev) return s;
+      return { ...s, screen: prev };
+    });
+  }, []);
+
   const reset = useCallback(() => {
     try {
       window.localStorage.removeItem(STORAGE_KEY);
@@ -146,7 +186,7 @@ const TransitionQuizPage = () => {
   const allAnswered = (arr: (number | null)[]): arr is number[] => arr.every((v) => v !== null);
 
   const diagnosis = useMemo(() => {
-    if (!allAnswered(state.identity) || !allAnswered(state.economy) || !allAnswered(state.fit)) {
+    if (!stage || !allAnswered(state.identity) || !allAnswered(state.economy) || !allAnswered(state.fit)) {
       return null;
     }
     const answers: AspectAnswers = {
@@ -154,8 +194,8 @@ const TransitionQuizPage = () => {
       economy: state.economy as [number, number, number],
       fit: state.fit as [number, number, number],
     };
-    return diagnose(scoreAllAspects(answers));
-  }, [state.identity, state.economy, state.fit]);
+    return diagnose(scoreAllAspects(answers), stage);
+  }, [state.identity, state.economy, state.fit, stage]);
 
   // ── Fire-and-forget completion logging ──────────────────────────────────
   const logCompletion = useCallback(
@@ -229,16 +269,30 @@ const TransitionQuizPage = () => {
     }
   }, [screen, shareUrl]);
 
+  const progress = PROGRESS[screen];
+  const canGoBack = Boolean(BACK_MAP[screen]);
+
   return (
     <main className="tq-page">
       <Helmet>
         <title>Where Are You — a free diagnostic of your professional transition</title>
         <meta
           name="description"
-          content="A free, three-minute read of exactly where you are in your professional transition: your stage, your bottleneck, and what happens next."
+          content="A free, ninety-second read of exactly where you are in your professional transition: your stage, what's behind, and what happens next."
         />
       </Helmet>
       <div className="tq-shell">
+        {typeof progress === "number" && (
+          <div className="tq-progress-bar" role="progressbar" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}>
+            <div className="tq-progress-bar-fill" style={{ width: `${progress * 100}%` }} />
+          </div>
+        )}
+        {canGoBack && (
+          <button type="button" className="tq-back" onClick={goBack}>
+            <ArrowLeft size={14} /> {t("quiz.back") as string}
+          </button>
+        )}
+
         {screen === "entry" && <EntryScreen t={t} onStart={() => goTo("placement")} />}
 
         {screen === "placement" && (
@@ -315,7 +369,7 @@ const TransitionQuizPage = () => {
         )}
 
         {screen === "spread" && diagnosis && (
-          <SpreadScreen t={t} diagnosis={diagnosis} onContinue={() => goTo("zoom")} />
+          <SpreadScreen t={t} stageNames={stageNames} diagnosis={diagnosis} onContinue={() => goTo("zoom")} />
         )}
 
         {screen === "zoom" && diagnosis && stage && (
@@ -378,7 +432,7 @@ function PlacementScreen({ t, onPick }: { t: (k: string, o?: Record<string, unkn
   );
 }
 
-// ── S3 Stage Read ────────────────────────────────────────────────────────
+// ── S3 Stage Read (Recognition) ─────────────────────────────────────────
 
 function StageReadScreen({
   t,
@@ -593,19 +647,21 @@ function AspectScreen({
   );
 }
 
-// ── S5 The Spread ────────────────────────────────────────────────────────
+// ── S5 The Spread (structural Recognition) ──────────────────────────────
 
 function SpreadScreen({
   t,
+  stageNames,
   diagnosis,
   onContinue,
 }: {
   t: (k: string, o?: Record<string, unknown>) => unknown;
+  stageNames: Record<string, string>;
   diagnosis: ReturnType<typeof diagnose>;
   onContinue: () => void;
 }) {
   const names = t("quiz.aspects.names", { returnObjects: true }) as Record<Aspect, string>;
-  const { scores, bottleneck, driver } = diagnosis;
+  const { scores, bottleneck, driver, hasGap, selfReportStage, aspectStage } = diagnosis;
 
   return (
     <section className="tq-card">
@@ -623,10 +679,10 @@ function SpreadScreen({
               <div className="tq-spread-aspect-head">
                 <span>{names[aspect]}</span>
                 {isBottleneck && (
-                  <span className="tq-spread-tag is-bottleneck">{t("quiz.spread.bottleneckLabel") as string}</span>
+                  <span className="tq-spread-tag is-bottleneck">{t("quiz.spread.whatsBehindLabel") as string}</span>
                 )}
                 {isDriver && (
-                  <span className="tq-spread-tag is-driver">{t("quiz.spread.driverLabel") as string}</span>
+                  <span className="tq-spread-tag is-driver">{t("quiz.spread.whatsAheadLabel") as string}</span>
                 )}
               </div>
               <div className="tq-arc-track">
@@ -644,6 +700,20 @@ function SpreadScreen({
         </div>
       </div>
 
+      {hasGap && (
+        <div className="tq-section tq-gap-note">
+          <p className="tq-label">{t("quiz.spread.gapNoteLabel") as string}</p>
+          <p className="tq-body-text">
+            {
+              t("quiz.spread.gapNote", {
+                selfStage: stageNames[String(selfReportStage)],
+                aspectStage: stageNames[String(aspectStage)],
+              }) as string
+            }
+          </p>
+        </div>
+      )}
+
       <div className="tq-cta-row">
         <button type="button" className="tq-cta tq-cta-primary" onClick={onContinue}>
           {t("quiz.spread.cta") as string}
@@ -653,7 +723,7 @@ function SpreadScreen({
   );
 }
 
-// ── S6 The Zoom ──────────────────────────────────────────────────────────
+// ── S6 The Zoom (Consequence) ────────────────────────────────────────────
 
 function ZoomScreen({
   t,
@@ -674,6 +744,9 @@ function ZoomScreen({
       <h2 className="tq-h1" style={{ fontSize: "1.6rem" }}>
         {t("quiz.zoom.title") as string}
       </h2>
+      <p className="tq-label" style={{ marginTop: 14 }}>
+        {t("quiz.zoom.consequenceFrame") as string}
+      </p>
       <p className="tq-body-text">{reads[stageKey]}</p>
       <div className="tq-cta-row">
         <button type="button" className="tq-cta tq-cta-primary" onClick={onContinue}>
@@ -684,7 +757,7 @@ function ZoomScreen({
   );
 }
 
-// ── S7 The Path ──────────────────────────────────────────────────────────
+// ── S7 The Path (Non-optionality -> Simplicity -> Action) ───────────────
 
 function PathScreen({
   t,
@@ -700,6 +773,7 @@ function PathScreen({
   onRetake: () => void;
 }) {
   const names = t("quiz.aspects.names", { returnObjects: true }) as Record<Aspect, string>;
+  const nonOptionality = t("quiz.path.nonOptionality", { returnObjects: true }) as Record<string, string>;
   const nextMove = t("quiz.path.nextMove", { returnObjects: true }) as Record<string, string>;
   const trap = t("quiz.path.trap", { returnObjects: true }) as Record<string, string>;
   const stageKey = String(Math.max(4, Math.min(7, stage)));
@@ -719,14 +793,19 @@ function PathScreen({
       </div>
 
       <div className="tq-section">
-        <p className="tq-label">{t("quiz.path.bottleneckLabel") as string}</p>
+        <p className="tq-label">{t("quiz.path.behindLabel") as string}</p>
         <p className="tq-body-text" style={{ marginTop: 4, fontWeight: 600 }}>
           {names[bottleneck]}
         </p>
       </div>
 
       <div className="tq-section">
-        <p className="tq-label">{t("quiz.path.nextMoveLabel") as string}</p>
+        <p className="tq-label">{t("quiz.path.nonOptionalityLabel") as string}</p>
+        <p className="tq-body-text">{nonOptionality[stageKey]}</p>
+      </div>
+
+      <div className="tq-section">
+        <p className="tq-label">{t("quiz.path.simplicityLabel") as string}</p>
         <p className="tq-body-text">{nextMove[stageKey]}</p>
       </div>
 

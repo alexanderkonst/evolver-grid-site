@@ -23,18 +23,72 @@
   "methodology": {
     "seoTitle": "Find Your Top Talent. Productize It. Find Your People.",
     "seoDescription": "Coordination infrastructure for conscious innovation. From individual genius to ventures to federated communities. Open-source, forkable.",
-    "headlineBefore": "Can you say what you do so",
-    "headlineClearly": "clearly",
-    "echoBefore": "right people",
-    "echoAlways": "always",
-    "echoAfter": "buy?",
-    "manifestoLine1Before": "Find Your",
-    "manifestoLine1Gold": "Top Talent",
-    "manifestoLine1After": ".",
-    "manifestoLine2Gold": "Productize",
-    "manifestoLine2After": "Yourself.",
-    "manifestoLine3Gold": "Scale",
-    "manifestoLine3After": "your Revenue and Impact."
+    "hero": {
+      "eyebrow": "The Ceiling Law",
+      "headline": "Your career is capped by how well you know yourself.",
+      "sub": "Every strategy, every funnel, every job search runs under that ceiling. It moves the moment your self-understanding does.",
+      "ctaLabel": "Find your stage",
+      "ctaMicro": "90 seconds. Free. Nothing held back. No signup to see your result."
+    },
+    "map": {
+      "eyebrow": "The Map",
+      "orientingLine": "Most people are further along this arc than they think. What feels like falling apart is usually the next stage, not failure.",
+      "stage1Name": "Settled",
+      "stage1Line": "This is what I do. No narration. It's just Tuesday.",
+      "stage2Name": "The Itch",
+      "stage2Line": "I'm fine. Something's just off. Tabs stay open, side interests keep multiplying.",
+      "stage3Name": "Tremors",
+      "stage3Line": "I just need to push through. New niche, new funnel, harder work on the same old form.",
+      "stage4Name": "Rupture",
+      "stage4Line": "It's over. Shock, relief, and shame in the same hour.",
+      "stage5Name": "Liminality",
+      "stage5Line": "I don't know who I am professionally. Maps, tests, teachers, templates, one after another.",
+      "stage6Name": "Reorientation",
+      "stage6Line": "I think I see it. Energy comes back in bursts. The first true sentence gets said out loud.",
+      "stage7Name": "Crossing",
+      "stage7Line": "This is what I do now. Said to a stranger without flinching."
+    },
+    "deeperRead": {
+      "line1": "The form that carried you has ended.",
+      "line2": "The next one has not formed yet.",
+      "recognition1": "You can't answer “what do you do” in one breath anymore.",
+      "recognition2": "You pushed harder and it changed nothing.",
+      "recognition3": "You have a lot of pieces and no offer.",
+      "recognition4": "You hear yourself say “I'm figuring things out” when someone introduces you.",
+      "closingLine": "You are not unfocused. You are unread."
+    },
+    "mirror": {
+      "eyebrow": "Who is holding the mirror",
+      "text": "Alexander Konstantinov built this map from his own transition, then spent months testing it with the founders he works with one on one. He isn't teaching a theory. He named his own fog first, then built the business that came out of naming it."
+    },
+    "proof": {
+      "eyebrow": "What people say after"
+    },
+    "ladder": {
+      "eyebrow": "Where this goes",
+      "call": {
+        "name": "Direction Call",
+        "meta": "Free · 45 minutes",
+        "desc": "You leave seeing your transition clearly: what you're growing out of, what you're growing into, and the direction that follows.",
+        "cta": "Book the Direction Call"
+      },
+      "session": {
+        "name": "Productize Yourself Session",
+        "meta": "2-hour workshop · $555",
+        "desc": "Name the one thing you actually do, then leave with an offer and a page ready to send.",
+        "cta": "See the Productize Yourself Session"
+      },
+      "built": {
+        "name": "BUILT",
+        "meta": "3 weeks · $1,111",
+        "desc": "Build the product, package it, and pick the business model, alongside other founders doing the same.",
+        "cta": "See BUILT"
+      }
+    },
+    "close": {
+      "headline": "Read your stage before you plan the next move.",
+      "sub": "The ceiling moves the moment your self-understanding does."
+    }
   },
   "zogEntry": {
     "toastSaveFailedTitle": "Save Failed",
@@ -7350,10 +7404,11 @@
     "alternatesTitle": "Also worth a look"
   },
   "quiz": {
+    "back": "Back",
     "entry": {
-      "eyebrow": "Free. About 3 minutes.",
-      "title": "See exactly where you are on your own journey.",
-      "subtitle": "No pitch. Just a name for what you already feel.",
+      "eyebrow": "Free. About 90 seconds.",
+      "title": "See exactly where you are right now.",
+      "subtitle": "No pitch. Just an accurate name for what you already feel.",
       "cta": "See where I am"
     },
     "placement": {
@@ -7381,7 +7436,7 @@
     "stageRead": {
       "stageLabel": "Your stage",
       "trueNowLabel": "What's true right now",
-      "ctaStages4to7": "Show me what's behind",
+      "ctaStages4to7": "Show me what's behind it",
       "ctaStages1to3": "See what this usually means",
       "descriptions": {
         "1": "Nothing is asking to change right now. That's not failure. That's just where you are.",
@@ -7397,9 +7452,9 @@
       "settled": {
         "title": "You're settled.",
         "line": "Nothing here needs fixing. When something does start moving, you'll feel it before you can name it, and this quiz will still be here.",
-        "channelsLine": "If you want to see how these mechanics work before you need them, that's what Sasha writes about elsewhere.",
-        "channelsLinkLabel": "Read the thinking behind this",
-        "emailPrompt": "Want a note when something new like this ships? Totally optional.",
+        "channelsLine": "If you ever want to see how this kind of thing works underneath, that's what Sasha writes about.",
+        "channelsLinkLabel": "See where that lives",
+        "emailPrompt": "Want a note if something like this changes for you later? Totally optional.",
         "emailPlaceholder": "you@email.com",
         "emailCta": "Keep me posted",
         "skip": "No thanks, I'm good",
@@ -7415,10 +7470,10 @@
           "sign": "The sign it's becoming real: the pushing stops working and starts costing you sleep, energy, or health. That's when the Itch becomes Tremors."
         },
         "3": {
-          "why": "More effort isn't converting right now because you're adding force to a form that's already at capacity. New niche, new funnel, harder hours, all inside the same container that's already full.",
+          "why": "More effort isn't converting right now because you're adding force to a form that's already full. New niche, new funnel, harder hours, all inside the same container that can't hold more.",
           "next": "What usually comes next is a break, not a breakthrough. Something that was carrying you stops carrying you, often from outside your control. That's not a failure on your part. It's the mechanism."
         },
-        "emailPrompt": "Want the full 7-stage map, so you can meet what's next consciously?",
+        "emailPrompt": "Want the full 7-stage map, so you can meet what's next with your eyes open?",
         "emailPlaceholder": "you@email.com",
         "emailCta": "Send me the full map",
         "skip": "No thanks, I'm good",
@@ -7427,15 +7482,14 @@
       "retake": "Retake anytime"
     },
     "aspects": {
-      "progressLabel": "Reading your {{aspect}}",
       "names": {
-        "identity": "Identity",
-        "economy": "Economy",
-        "fit": "Fit"
+        "identity": "Who you are",
+        "economy": "The money",
+        "fit": "Where you belong"
       },
       "identity": {
-        "title": "Reading your Identity",
-        "cta": "Read my Economy",
+        "title": "Reading who you are in this",
+        "cta": "Now the money",
         "questions": [
           {
             "prompt": "When someone asks what you do, what's true right now?",
@@ -7476,8 +7530,8 @@
         ]
       },
       "economy": {
-        "title": "Reading your Economy",
-        "cta": "Read my Fit",
+        "title": "Reading how the money moves",
+        "cta": "Now where you belong",
         "questions": [
           {
             "prompt": "How does money actually arrive for you right now?",
@@ -7507,7 +7561,7 @@
             "prompt": "What do you actually sell right now?",
             "options": [
               "Whatever the role includes. I don't think about it as \"selling.\"",
-              "A bit of everything, honestly.",
+              "A bit of everything.",
               "Services added on to fix results that aren't landing.",
               "Nothing, really. There's nothing left to sell.",
               "Many pieces, no single offer.",
@@ -7518,7 +7572,7 @@
         ]
       },
       "fit": {
-        "title": "Reading your Fit",
+        "title": "Reading where you belong",
         "cta": "Show me the spread",
         "questions": [
           {
@@ -7563,52 +7617,61 @@
     "spread": {
       "title": "Your spread",
       "subtitle": "The gap between these three is the read.",
-      "bottleneckLabel": "Bottleneck",
-      "driverLabel": "Driver",
-      "cta": "Show me what it's costing me"
+      "whatsBehindLabel": "What's behind",
+      "whatsAheadLabel": "What's ahead",
+      "cta": "Show me what it's costing me",
+      "gapNoteLabel": "Worth noticing",
+      "gapNote": "You called it {{selfStage}}. What you actually described across these nine questions scores closer to {{aspectStage}}. That's not a contradiction to fix, it's two true things: the name you'd give it, and what's actually showing up. Both count."
     },
     "zoom": {
       "title": "What this is costing you",
+      "consequenceFrame": "If this stays exactly like this a while longer, here's what continues:",
       "cta": "Show me what's next",
       "reads": {
         "identity": {
           "4": "The title that used to answer \"what do you do\" has been taken away, and you don't have a substitute yet. Every introduction is now a small negotiation with an answer you don't have. That's what Rupture does to Identity specifically: it removes the label before it hands you a new one.",
           "5": "You're carrying real capability with no name to hang it on. People ask what you do and you watch yourself improvise an answer that doesn't quite land, every time. The cost isn't the discomfort. It's that every framework you try to use here already assumes you know the answer it's asking for, and you don't, yet.",
           "6": "A truer name has started arriving, but you haven't said it to enough people to trust it yet. The cost right now is hesitation: you're sitting on language that's actually true and testing it in private instead of in the room where it would start compounding.",
-          "7": "You can say the new name to a stranger without flinching, but Identity is still your lagging aspect, which means the name hasn't fully become ordinary yet. Some part of you is still proving it instead of just living inside it."
+          "7": "You can say the new name to a stranger without flinching, but Identity is still your slowest aspect, which means the name hasn't fully become ordinary yet. Some part of you is still proving it instead of just living inside it."
         },
         "economy": {
-          "4": "The money that reliably came from the old role has stopped or been cut off, and there's no new mechanism in its place yet. That's the actual event of Rupture on the Economy line: the flow, not just the feeling, has stopped.",
+          "4": "The money that reliably came from the old role has stopped or been cut off, and there's no new mechanism in its place yet. That's the actual event of Rupture on the money side: the flow, not just the feeling, has stopped.",
           "5": "Right now it's savings, odd jobs, whatever patches the month. The clock either rules every decision or you've gone deliberately silent on it, and both cost you. The bottleneck isn't effort, you likely have plenty of that. It's that nothing you're doing yet has become a repeatable way money arrives.",
           "6": "A first dollar from the true thing has shown up, or is close. The cost right now is treating it as a fluke instead of a signal, so you don't yet trust it enough to build the offer around it.",
-          "7": "The new way holds, mostly. Economy is still lagging here, which means the mechanism repeats but hasn't become fully ordinary yet. That last stretch is usually about pricing and repetition, not more proof."
+          "7": "The new way holds, mostly. Money is still your slowest aspect here, which means the mechanism repeats but hasn't become fully ordinary yet. That last stretch is usually about pricing and repetition, not more proof."
         },
         "fit": {
           "4": "You're out of the old room, whether by choice or not, and no new room has opened up yet. Introductions hurt right now because there's no group that recognizes the new version of you to introduce you into.",
-          "5": "You're between tribes. No room fits, and the people closest to you are starting to say the real cost out loud. This is the loneliest part of Liminality, not because you're doing it wrong, but because Fit is structurally the last aspect to resolve. You can't force a room that doesn't exist yet.",
+          "5": "You're between tribes. No room fits, and the people closest to you are starting to say the real cost out loud. This is the loneliest part of Liminality, not because you're doing it wrong, but because belonging is structurally the last thing to resolve. You can't force a room that doesn't exist yet.",
           "6": "You've found the first new room, but it's early, and you're still half performing the old belonging out of habit. The cost is energy spent maintaining a fit you've already outgrown.",
-          "7": "You belong where you actually are without performing, but Fit is still lagging at Crossing, so some part of the old room still gets your loyalty by default. That's usually the last thread to let go."
+          "7": "You belong where you actually are without performing, but belonging is still your slowest aspect at Crossing, so some part of the old room still gets your loyalty by default. That's usually the last thread to let go."
         }
       }
     },
     "path": {
-      "title": "Your read is complete",
+      "title": "Your read",
       "stageLabel": "Your stage",
-      "bottleneckLabel": "Bottleneck",
-      "nextMoveLabel": "What happens next",
-      "trapLabel": "The trap here",
-      "retake": "Retake anytime",
-      "nextMove": {
-        "4": "The next move is to let the old plan finish dying instead of rebuilding it faster. Surrender comes before a new shape, not after.",
-        "5": "The next move is naming what's already true, not inventing something new. Recognition arrives when something real gets a name. It isn't manufactured.",
-        "6": "The next move is saying the true sentence to more people, in public, before you feel fully ready.",
-        "7": "The next move is repetition: say it, sell it, do it again until it's ordinary."
+      "behindLabel": "What's behind it",
+      "nonOptionalityLabel": "What doesn't stay neutral",
+      "nonOptionality": {
+        "4": "This doesn't go back to normal. The old door is already closed, whether or not you've opened a new one yet. The only real question left is how long you stay in the hallway.",
+        "5": "This stage doesn't hold steady if you wait it out. People stuck here too long tend to do one of two things: slide back into a worse copy of the old role, or grab the first solid-looking thing that shows up, which is usually the wrong one. Naming your own answer is the third option, and it's the only one you actually choose.",
+        "6": "This doesn't stay private forever either. A true sentence tested only on people you already trust eventually goes quiet again, the same way it arrived.",
+        "7": "There's no real cost to waiting from here. What's left is repetition, on your own schedule."
       },
+      "simplicityLabel": "The one thing that actually moves this",
+      "nextMove": {
+        "4": "Let the old plan finish dying instead of rebuilding it faster. Surrender comes before a new shape, not after.",
+        "5": "Name what's already true, don't invent something new. Recognition arrives when something real gets a name. It isn't manufactured.",
+        "6": "Say the true sentence to more people, in public, before you feel fully ready.",
+        "7": "Repeat it: say it, sell it, do it again until it's ordinary."
+      },
+      "trapLabel": "Where people get stuck here",
       "trap": {
-        "4": "The trap here is patching the old form with more effort, mistaking speed for progress.",
-        "5": "The trap here is consuming another map, test, or template, hoping one of them hands you the answer instead of your own recognition.",
-        "6": "The trap here is polishing the sentence in private past the point it needs polishing, instead of testing it where it counts.",
-        "7": "The trap here is chasing a bigger crossing before this one has become ordinary."
+        "4": "Patching the old form with more effort, and mistaking speed for progress.",
+        "5": "Consuming another map, test, or template, hoping one of them hands you the answer instead of your own recognition.",
+        "6": "Polishing the sentence in private past the point it needs polishing, instead of testing it where it counts.",
+        "7": "Chasing a bigger crossing before this one has become ordinary."
       },
       "routes": {
         "directionCall": {
@@ -7627,7 +7690,8 @@
           "label": "Find a node",
           "sub": "White-label, for community leaders."
         }
-      }
+      },
+      "retake": "Retake anytime"
     }
   }
 }
