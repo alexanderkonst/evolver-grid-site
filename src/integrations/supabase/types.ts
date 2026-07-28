@@ -2257,6 +2257,63 @@ export type Database = {
         }
         Relationships: []
       }
+      transition_quiz_results: {
+        Row: {
+          aspect_derived_stage: number | null
+          bottleneck_aspect: string | null
+          completed_at: string
+          created_at: string
+          driver_aspect: string | null
+          economy_score: number | null
+          email: string | null
+          fit_score: number | null
+          has_stage_gap: boolean | null
+          id: string
+          identity_score: number | null
+          locale: string | null
+          not_yet: boolean
+          pattern: string | null
+          route_shown: string | null
+          stage: number
+        }
+        Insert: {
+          aspect_derived_stage?: number | null
+          bottleneck_aspect?: string | null
+          completed_at?: string
+          created_at?: string
+          driver_aspect?: string | null
+          economy_score?: number | null
+          email?: string | null
+          fit_score?: number | null
+          has_stage_gap?: boolean | null
+          id?: string
+          identity_score?: number | null
+          locale?: string | null
+          not_yet?: boolean
+          pattern?: string | null
+          route_shown?: string | null
+          stage: number
+        }
+        Update: {
+          aspect_derived_stage?: number | null
+          bottleneck_aspect?: string | null
+          completed_at?: string
+          created_at?: string
+          driver_aspect?: string | null
+          economy_score?: number | null
+          email?: string | null
+          fit_score?: number | null
+          has_stage_gap?: boolean | null
+          id?: string
+          identity_score?: number | null
+          locale?: string | null
+          not_yet?: boolean
+          pattern?: string | null
+          route_shown?: string | null
+          stage?: number
+        }
+        Relationships: []
+      }
       unique_business_dossiers: {
         Row: {
           artifact_snapshot: Json
