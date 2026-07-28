@@ -1594,6 +1594,31 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 
 ### 3. Tribe (ICP)
 
+#### ⭐ The Idealest Client · v2.1 · July 28, 2026 (Day 138)
+
+*The clone at the moment of maximum receptivity. Stress-tested against the tribe corpus (Founder Going Sovereign, Identity-Distance Law, anti-tribe), corrected by Sasha's two calls: the income-vehicle gate replaces "first mountain complete," and the dream-pull is a screen, not a driver. Written by the AI partner's hand, blessed for filing by Sasha's request; roast standing open.*
+
+A builder whose form has just ended: the company, the title, the story that used to answer "what do you do" doesn't work anymore, and they know it before anyone else does. This isn't a fresh wound. It's chronic — there was no single event, no firing, no failure they can explain to a friend over drinks. They just stopped being able to say the sentence and mean it. There is a next vehicle in the picture: their income runs on their own name right now, or the next thing is already being born under their hands — either way, an exact sentence about who they are would start earning within weeks of existing. They have means, and the money isn't the signal. The signal is what they've already spent on themselves: coaches, retreats, ceremony, therapy, teachers — and they'll tell you flat out it was some of the best money they ever spent. They don't blame the market. They say "I can't name it yet," never "there's nothing out there for me." They're holding five threads at once, no sentence that ties them together, and it eats at them, because they know exactly how sharp a good sentence can be and every attempt they've made has fallen short. They haven't given up. They're actively looking, right now, for someone who can see the pattern they can't see themselves. So when you name it back to them, accurately, in the first few minutes — after you've shown you actually see what they built — they don't feel handled. They feel found. And it's them who asks what it costs, not you who pitches them.
+
+**The gates — multiplicative, per the Ripeness Vector. Any one closed, no sale exists, and no other axis can compensate:**
+
+1. **Surrendered to the search** — "I don't know what's next," never "I need to execute better."
+2. **Means present** — capacity to invest in themselves now, not wealth.
+3. **Buying Frame open** — has paid for their own transformation before and calls it good money spent. The single most predictive marker in the ledger to date, and it leaves public traces (interiority markers next to threshold badges) — the Signal Library's primary hunt pattern.
+4. **Pressure live** — chronic identity-level ache, running for a long time with no rescue event coming. (The chronic form of the Ticking Clock: zero of five payers had a dated one.)
+5. **A live income vehicle the articulation feeds** — running now or actively being born; the sentence converts to their income within weeks. (Replaces "first mountain complete" — post-exit vs still-running was never the variable.)
+6. **Consent arrives as a pull** — they ask what it costs; they don't propose a trade.
+
+**Position markers:** form ended and they know it · can't say what they do in one breath, and flinches at their own answer · internal locus · polymath, many real threads, no sentence.
+
+**Character markers:** buys recognition, never remediation · relieved, not threatened, by being seen more clearly — with the named failure mode that high-credential subjects defend instead, unless what they built is honored first · has a recurring, specific dream (screen only: filters the Someday Dreamer; people buy on pain).
+
+**Protocol notes, not traits:** depth-granting is conditional, not inherent — name their built things, then ask consent ("Would it be useful if I reflected back what I'm seeing?") before any mirror. Score the conversation, not the person.
+
+**Geography:** proven payers to date are RU / LatAm / orbit. The US top-5 list is a cold-outreach willingness heuristic and a direction (svoi), not yet a market.
+
+---
+
 #### ⭐ v5.0 · July 28, 2026 (Day 138) — The Purchase Physics Correction
 
 *Supersedes v4.0's implicit qualification-by-alignment below. Full text, the Clock Audit finding, the four de facto mis-segments, the Ideal Client Portrait v2, and Checklist v2 all live verbatim in the [Day 138 addendum at the end of this file](#addendum--day-138-july-28-2026-tribe-v50--the-purchase-physics-correction) — quoted there in full, not paraphrased here. Summary only:*
@@ -2203,9 +2228,42 @@ Each platform = three surfaces in one: Presence (profile), Physical (events), Pu
 
 ### 5. Pain (Point A) — 5-Layer Slicer Per Segment
 
-> **⚑ Flag for Sasha (Day 138):** `roadmap.md` (Active Backlog, item Q3) states a five-layer **Pain v4.1**, built on the transition arc, already exists as a working draft inside the quiz spec (`docs/specs/quiz/quiz_product_spec.md`) but has **not yet been filed into this canvas** as the canonical version. This file's own search of that spec's referenced section did not turn up a cleanly separable v4.1 text to quote verbatim without risk of paraphrasing content Sasha hasn't vetted in this location. Recommend: Sasha (or a follow-up pass) pulls the exact v4.1 text from the quiz spec and files it here above v4.0. Until then, **v4.0 below stands as the canonical, locked Pain artifact.**
+#### ⭐ v4.1 · July 28, 2026 (Day 138) — Run properly through the 5-Layer Slicer
 
-#### ⭐ v4.0 · July 26, 2026 (Day 136) — Liminality, from inside
+*v4.0 was a position statement, not a pain card. Here it is through the actual protocol — outside view + their self-talk per layer. Written in-session Day 137-138, filed Day 138. Sasha's verdict on Layer 4 at the time of writing: "BRILLIANT AF."*
+
+**Layer 1 · Pressure — the closing window and its loop.**
+*Outside:* savings draining or income turned to patchwork; a real clock somewhere (visa, lease, school year, a partner's patience); the professional network's memory of them fading; peers who were behind them now ahead.
+*Self-talk:* "How long can I keep doing this?" · "I said six months and it's been fourteen." · "If nothing lands by [month], I'll have to take something I don't want."
+*The loop:* no clear answer → no offer → no income → financial stress → shrinking energy → less capacity to see clearly → no clear answer. And its social twin: can't explain what I do → fewer introductions → fewer chances → less evidence → less confidence to explain.
+
+**Layer 2 · Consequences — the daily felt texture.**
+*Body:* waking at 4am with the calculation already running; chest tightening before opening the bank app; exhausted by noon having produced nothing.
+*Mind:* tabs open, courses half-finished, tests taken and filed; circling that feels like progress and isn't.
+*Emotions:* the specific shame of "so what are you up to these days?" at a party.
+*Relationships:* the partner's carefully neutral voice; avoiding old colleagues.
+*Identity:* catching yourself saying "I used to..." and hearing how it sounds.
+*Self-talk:* "I'm figuring things out." · "I'm between things." · "It's a transition year."
+
+**Layer 3 · Cost of Inaction.**
+*Outside:* another six months of fragments, another course, another pivot that isn't one — while the runway shortens and the options narrow, until the choice gets made by necessity instead of by them: back into a form that doesn't fit, one rung lower, with less energy than last time.
+*Self-talk:* "I'll just have to take a job." · "I'll end up doing the exact thing I left." · "I'm going to waste this."
+*The deepest cost, and it's structural:* **liminality is the only interval when identity is molten. Wait too long and it hardens around whatever accident is nearest.**
+
+**Layer 4 · Urgency — what's actually at stake.**
+Not money; money is the surface. At stake: the ability to trust your own signal (every failed attempt files as evidence against yourself) · the relationship, because partners can hold uncertainty but not *unnamed* uncertainty indefinitely · the compounding years, which either start now or don't · and the private one nobody says out loud: **the fear that there is no thing — that the sense of carrying something was self-flattery.**
+*Self-talk:* "What if I'm just not that special." · "What if I've been kidding myself this whole time."
+
+**Layer 5 · Struggle Synthesized.**
+> **"I know I carry something real. I can't say what it is. And every method I know for figuring it out already requires the answer as its input."**
+
+That's the trap in one sentence: niche exercises, ideal-client worksheets, funnels, job boards — all of them take the answer as input. So the harder they work, the more clearly they feel that *the work isn't the problem*. Compressed to the line they'd say themselves: **"I'm working hard on the wrong layer, and I can feel it."**
+
+*(Per the playbook's inverse-pain law, Point B v4.0 already inverts this cleanly — a good sign the pain is at real precision.)*
+
+---
+
+#### v4.0 · July 26, 2026 (Day 136) — Liminality, from inside
 
 *Point A is now named as a position on the transition arc (stage 5) rather than as a list of symptoms. Written in the client's own narration.*
 
