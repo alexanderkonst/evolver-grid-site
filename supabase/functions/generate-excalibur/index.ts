@@ -83,7 +83,7 @@ The Genius Business contains these sections:
 `;
 
 const EXCALIBUR_EXAMPLES = `
-EXAMPLE 1: KARIME
+EXAMPLE 1: MAYA
 AppleSeed: Sacred Mirror · Mother Healer · Feminine Leader Midwife. Prime Driver: Reconnect · Restore · Remember
 Excalibur:
 - Offer: "I guide high-performing women out of burnout and back into sovereign, sacred wholeness—so they can lead from deep inner connection, not overextension."
@@ -92,11 +92,11 @@ Excalibur:
 - Who: Women leaders burned out, hyper-responsible, afraid of not being enough
 - Survival Unlock: The need to earn love through doing. Unhooks inner orphan from chasing approval.
 - Aha: "My performance isn't who I am. I am loved as I am."
-- Channel: Instagram @karimeawakens + referrals
+- Channel: Instagram + referrals
 - Hook: "You don't have to keep performing to be loved — come home to the sacred within."
 - Next Step: Reach out to 5 women this week
 
-EXAMPLE 2: TRACEY
+EXAMPLE 2: MEREDITH
 AppleSeed: Network Cartographer • Timing Oracle. Prime Driver: Align Purpose with Position
 Excalibur:
 - Offer: "I work with people between chapters to help them choose the few rooms and roles that are truly theirs, leave what isn't, and step into right settings with warm introductions — so they don't drift into another 2–3-year detour."
@@ -109,7 +109,7 @@ Excalibur:
 - Hook: "You're in many good rooms, but not clearly in your place — let's choose your real game."
 - Next Step: Invite 3–5 people into pilot within 30 days
 
-EXAMPLE 3: TYLOR
+EXAMPLE 3: BRENNAN
 AppleSeed: Temple Builder of Futures · Land Listener · Team Firekeeper. Prime Driver: Forge Sacred Form
 Excalibur:
 - Offer: "For Visionary Stewards whose New Earth land project is stuck between vision and construction, I serve as Sacred Architect to distill a Project Soulprint and translate it into a buildable roadmap."
