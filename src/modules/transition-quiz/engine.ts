@@ -68,6 +68,30 @@ export interface DiagnosticResult {
   driver: Aspect;
   pattern: Pattern;
   route: Route;
+  /** Self-reported stage from S2/S3 — always the displayed stage name. */
+  selfReportStage: Stage;
+  /** Stage implied by the mean of the three aspect scores, independent of
+   *  self-report. Used only to check the self-report against the aspect
+   *  read, never to silently override it (see GAP_THRESHOLD below). */
+  aspectStage: Stage;
+  /** True when the two reads disagree by more than GAP_THRESHOLD stages —
+   *  the sign of a contradictory answer set that a naive placement-only
+   *  read would confidently paper over. */
+  hasGap: boolean;
+}
+
+/** A self-report vs. aspect-score disagreement this large is worth naming
+ *  to the user rather than silently resolving one way or the other — the
+ *  fix for "confidently wrong read on contradictory answers." */
+export const GAP_THRESHOLD = 2;
+
+/** Stage implied by the three aspect scores alone, independent of what the
+ *  person picked at S2. The nine aspect-question answer options are worded
+ *  from the same 63-cell grid as the seven placement statements, so their
+ *  average is a second, independent estimate of the same position. */
+export function deriveStageFromAspects(scores: AspectScores): Stage {
+  const avg = (scores.identity + scores.economy + scores.fit) / 3;
+  return Math.min(7, Math.max(1, Math.round(avg))) as Stage;
 }
 
 /**
@@ -83,8 +107,16 @@ export interface DiagnosticResult {
  *  - All three low, or no clear single bottleneck -> Direction Call as the
  *    universal safe default (stages 4-7 always get the full ladder; see
  *    resolved decision F).
+ *
+ * `selfReportStage` is carried through only to compute the corroboration
+ * check (`hasGap`) — it never changes which pattern/route gets picked. The
+ * displayed stage name always stays the person's own words (S2's seven
+ * first-person statements are, per the holomap, the actual diagnostic —
+ * overriding them would replace their felt read with a number they didn't
+ * say). What the aspect scores get to do is name it out loud when the two
+ * disagree, instead of quietly picking a side.
  */
-export function diagnose(scores: AspectScores): DiagnosticResult {
+export function diagnose(scores: AspectScores, selfReportStage: Stage): DiagnosticResult {
   const { identity, economy, fit } = scores;
   const values = [identity, economy, fit];
   const max = Math.max(...values);
@@ -93,11 +125,15 @@ export function diagnose(scores: AspectScores): DiagnosticResult {
 
   const bottleneck = bottleneckOf(scores);
   const driver = driverOf(scores);
+  const aspectStage = deriveStageFromAspects(scores);
+  const hasGap = Math.abs(aspectStage - selfReportStage) > GAP_THRESHOLD;
+
+  const base = { scores, selfReportStage, aspectStage, hasGap };
 
   // Full liminality: all three clustered near the top (Liminality, stage 5+),
   // no clean single bottleneck to point at.
   if (spread <= 1 && (identity + economy + fit) / 3 >= 4.5) {
-    return { scores, bottleneck, driver, pattern: "full_liminality", route: "directionCall" };
+    return { ...base, bottleneck, driver, pattern: "full_liminality", route: "directionCall" };
   }
 
   // Settled-like pattern (defensive fallback — shouldn't normally be reached
@@ -105,22 +141,22 @@ export function diagnose(scores: AspectScores): DiagnosticResult {
   // 4-7 self-report with a uniformly low aspect read should still get the
   // full ladder per decision F, not be treated as a dead end).
   if (spread <= 1 && (identity + economy + fit) / 3 <= 2) {
-    return { scores, bottleneck, driver, pattern: "settled_pattern", route: "directionCall" };
+    return { ...base, bottleneck, driver, pattern: "settled_pattern", route: "directionCall" };
   }
 
   if (bottleneck === "fit" && fit <= identity - 1 && fit <= economy - 1) {
-    return { scores, bottleneck, driver, pattern: "fit_bottleneck", route: "session" };
+    return { ...base, bottleneck, driver, pattern: "fit_bottleneck", route: "session" };
   }
 
   if (bottleneck === "identity") {
-    return { scores, bottleneck, driver, pattern: "identity_bottleneck", route: "node" };
+    return { ...base, bottleneck, driver, pattern: "identity_bottleneck", route: "node" };
   }
 
   if (bottleneck === "economy") {
-    return { scores, bottleneck, driver, pattern: "economy_bottleneck", route: "directionCall" };
+    return { ...base, bottleneck, driver, pattern: "economy_bottleneck", route: "directionCall" };
   }
 
-  return { scores, bottleneck, driver, pattern: "mixed", route: "directionCall" };
+  return { ...base, bottleneck, driver, pattern: "mixed", route: "directionCall" };
 }
 
 /** Stages 1-3 stop at the not-yet branch (S3a); 4-7 go on to the aspect read. */
