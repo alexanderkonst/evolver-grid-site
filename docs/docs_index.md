@@ -77,7 +77,7 @@ docs/
 | [action_mapping.md](./02-strategy/action_mapping.md) | Action-to-outcome mapping |
 | [impact_mapping.md](./02-strategy/impact_mapping.md) | Impact measurement |
 | [alexanders_operating_system.md](./02-strategy/alexanders_operating_system.md) | Founder's operating system |
-| [alexanders_unique_business.md](./02-strategy/alexanders_unique_business.md) | Alexander's Unique Business Canvas + Venture Architecture. Includes **Lived User Journey — Reveal-Anchored Funnel** section (Day 61) at dashboard level |
+| [alexanders_unique_business.md](./02-strategy/unique-businesses/alexanders_unique_business.md) | Alexander's Unique Business Canvas + Venture Architecture. Top-of-file Dashboard refreshed to Day 138 (Tribe v5.0, live Value Ladder, revenue); includes **Lived User Journey — Reveal-Anchored Funnel** section (Day 61) |
 | [oyis_unique_business.md](./02-strategy/oyis_unique_business.md) | Oyi's Unique Business Canvas (9.9 precision) |
 | [sergeys_unique_business.md](./02-strategy/sergeys_unique_business.md) | Sergey's Unique Business Canvas (in progress) |
 | [unique_business_canvas_template.md](./02-strategy/unique_business_canvas_template.md) | Canvas template v5.0 (session-tested) |
