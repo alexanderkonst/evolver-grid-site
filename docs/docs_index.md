@@ -239,6 +239,7 @@ docs/
 | [zog_language_improvement.md](./07-technology/zog_language_improvement.md) | ZoG language |
 | [onboarding_script.md](./07-technology/onboarding_script.md) | Onboarding scripting |
 | [first_actions.md](./07-technology/first_actions.md) | First actions logic |
+| [deploy_pipeline.md](./07-technology/deploy_pipeline.md) | Deploy mechanism, risk, typecheck gate (see also `.agent/deploy.md`) |
 
 ---
 
