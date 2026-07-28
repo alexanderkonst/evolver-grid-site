@@ -94,6 +94,13 @@ import ActivateTopTalent from "./pages/ActivateTopTalent";
 // is kept for reference only and no longer mounted.
 import MethodologyLandingPage from "./pages/MethodologyLandingPage";
 import JourneyPage from "./pages/JourneyPage";
+// Day 137 (Sasha 2026-07-28): /home is a private, noindex review surface for
+// the proposed landing rebuild that was briefly (and mistakenly) live at `/`
+// before being reverted (commit 6355a908). It renders the preserved copy
+// under the `homeLanding` i18n namespace so Sasha can review it without it
+// being visible to strangers. It is NOT the live homepage — that remains `/`
+// via JourneyPage / MethodologyLandingPage, untouched by this addition.
+const HomeLandingPage = lazy(() => import("./pages/HomeLandingPage"));
 // Day 80 (Sasha 2026-05-23): Karime Kuri's offering page, first
 // in-platform per-founder offer surface. Lives in BUILD space, route
 // is public so the direct URL is shareable cold; sidebar row gated.
@@ -458,6 +465,9 @@ const App = () => (
                   <Route element={<SmartShellLayout />}>
                   {/* ══════ PUBLIC ROUTES (no login required) ══════ */}
                   <Route path="/" element={<JourneyPage />} />
+                  {/* Day 137 (Sasha 2026-07-28): review-only surface, not the
+                      live homepage — see HomeLandingPage.tsx for context. */}
+                  <Route path="/home" element={<HomeLandingPage />} />
                   <Route path="/hero" element={<HeroQuiz />} />
                   <Route path="/build/cockpit" element={<CockpitLanding />} />
                   <Route path="/build/cockpit/dashboard" element={<RequireAdmin><CockpitDashboard /></RequireAdmin>} />
