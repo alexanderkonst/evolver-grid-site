@@ -1,7 +1,7 @@
 # Where Are You (the transition quiz) — Progress Tracker
 
 **Started:** 2026-07-27
-**Status:** Phase 1: PRODUCT — complete, awaiting Sasha at ROAST GATE 1
+**Status:** Phase 2: shipped and live at `/quiz`. Phase 3 (dedicated visual pass) not started — see note at the bottom of Phase 2 below.
 
 ---
 
@@ -43,14 +43,33 @@ Three real forks — everything else in Phase 1 was resolvable from your standin
 
 ---
 
-## PHASE 2: ARCHITECTURE `[░░░░░░░░]` 0%
+## PHASE 2: ARCHITECTURE `[■■■■■■■■]` 100%
 
-- [ ] 2.1 Module Boundaries
-- [ ] 2.2 Routing
-- [ ] 2.3 Data Schema
-- [ ] 2.4 Shell & Layout
-- [ ] 2.5 State Management
-- [ ] 🔥 ROAST GATE 2
+- [x] 2.1 Module Boundaries — `src/modules/transition-quiz/`: `engine.ts` (pure placement/scoring/pattern/route logic + share-state encode/decode, no React/i18n/Supabase), `TransitionQuizPage.tsx` (all 10 screens as one page component with an internal step machine), `TransitionQuizPage.css` (scoped styles, mobile-first).
+- [x] 2.2 Routing — `/quiz` registered in `src/App.tsx`, lazy-loaded. **Route conflict resolved:** `/quiz` was already live, pointing at the legacy Zone-of-Genius 6-question diagnostic (`GeniusQuiz.tsx`, the ZoG result page's secondary CTA, shipped Day 47). That page moved to `/quiz2` (component, i18n keys, and data untouched, only the path changed). Also updated for the split: `src/lib/shellRoutes.ts` (holdout entries for both paths — `/quiz` gets no shell, matching `/destiny`/`/hero`), `scripts/generate-sitemap.ts` (`/quiz` promoted to weekly/0.7, `/quiz2` kept at monthly/0.5), `src/lib/pageTitles.ts` (tab titles for both). Not touched: docs/playbooks that describe the legacy `/quiz` diagnostic historically (`docs/03-playbooks/*`, `docs/09-logs/session_log.md`, roadmap completed-items) — those are historical record and Cowork-lane territory per CLAUDE.md, not live pointers; flagging here rather than silently editing them.
+- [x] 2.3 Data Schema — new table `transition_quiz_results` (migration `supabase/migrations/20260728140000_transition_quiz_results.sql`), RLS on with zero policies (service-role-only, same pattern as `anonymous_genius_results`). New edge function `save-quiz-result` (public, no-auth, `verify_jwt = false` in `supabase/config.toml`), fire-and-forget from the client — logging never gates or delays the free result. **Needs one Lovable prompt to go live**, see `docs/specs/quiz/lovable_prompt.md`.
+- [x] 2.4 Shell & Layout — standalone page, no persistent shell (matches `/destiny`, `/hero`), reuses the app's shared CSS custom properties (`hsl(var(--primary))` etc.) rather than a new palette, Cormorant Garamond headings / DM Sans body per the site's `fontFamily.display`/`fontFamily.sans`.
+- [x] 2.5 State Management — one internal step-machine reducer in `TransitionQuizPage.tsx`. Resumable via `localStorage` (`evolver_transition_quiz_v1`). Shareable via a `?r=` URL param encoding stage + aspect answers as base64 JSON (`encodeShareState`/`decodeShareState` in `engine.ts`) — opening a shared link jumps straight to the result, no server round-trip needed to render it. Supabase is write-only, for the dataset, never read to render the free result.
+- [x] 🔥 ROAST GATE 2 — self-reviewed in place of a separate gate given Sasha's resolved decisions already closed the three open forks from Gate 1. See "Decisions Sasha resolved" below.
+
+### Decisions Sasha resolved (closing the three forks from ROAST GATE 1)
+
+1. **Full liminality (all three aspects at 5) CTA** — resolved: this is the ripest pattern, gets the most direct read and the free Direction Call, not "no CTA." Implemented in `diagnose()` in `engine.ts`.
+2. **Route CTA copy/destinations** — resolved and wired: Direction Call → `https://cal.com/aleksandrkonstantinov/exploration` (free, 45 min), Productize Yourself Session ($555) → `/ignite`, BUILT (3 weeks) → `/products/built`, Node (white-label) → `https://t.me/integralevolution`. "Ignition Session" does not appear anywhere in the new copy.
+3. **Stage-1 (Settled) logging** — resolved: every completion is logged, including Settled, via `save-quiz-result` firing on arrival at the S3a screen (before the user decides on the optional email).
+
+### Decisions I had to make that the spec left open
+
+- **Bottleneck-to-route mapping for the ambiguous middle cases.** The spec's diagnostic table names six specific patterns; real aspect-score combinations don't always land cleanly on one of them. `diagnose()` in `engine.ts` resolves it as: Identity-bottleneck → Node (needs field before 1:1 work), Fit-bottleneck with a clear margin below both others → the direct paid Session ("the purest session case," per the spec's own language), Economy-bottleneck → Direction Call (front door into Session/BUILT), full liminality (all three clustered high) → Direction Call, anything else (ties, no clean bottleneck) → Direction Call as the safe universal default.
+- **Stage 1 (Settled) does get an optional email capture.** The original Phase-1 wireframe/spec had S3a-1 with no email field at all. Resolved decision D explicitly overrides that: Settled gets an honest line, an optional email capture, and a quiet (non-CTA) link to Sasha's channels. Implemented that way.
+- **9 aspect-question answer options.** Written verbatim from the transition holomap's 63-cell grid (each row IS the 7-stage answer set for that sub-aspect), reworded into first-person question options rather than invented fresh. Keeps the read precise and grounded in the existing corpus instead of adding new unvalidated copy.
+- **i18n JSON shape.** Used `returnObjects: true` (arrays/objects in the JSON, e.g. the 7 placement options, the 9×7 aspect-question options) rather than flattening to indexed keys — no existing module in the codebase does this, but react-i18next supports it natively and it was clearly the more maintainable shape for this much content. Verified identical key sets and array lengths across en/ru/es before merging.
+- **CSS approach.** Self-contained page + scoped CSS file (like `HeroQuiz.css`), reusing the app's shared CSS custom properties rather than Tailwind utility soup or a new design system, so it inherits the site's palette/typography automatically and stays in register with `/` and `/dashboard` without duplicating tokens.
+
+### Deferred to Phase 3
+
+- Dedicated visual/UX polish pass (micro-interactions, transition animations between screens, accessibility audit, design critique) — Phase 2 shipped functional, on-brand, mobile-first screens but did not run the full Phase 3 UI checklist (3.1-3.9 in the phase list below).
+- The Lovable prompt in `docs/specs/quiz/lovable_prompt.md` needs to actually be run by Sasha before completions start writing to `transition_quiz_results` — until then the quiz works perfectly for visitors, it just isn't logging to the dataset yet.
 
 ---
 

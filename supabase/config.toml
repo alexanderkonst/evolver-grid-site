@@ -3,6 +3,9 @@ project_id = "jypjttotvastdhanwvrx"
 [functions.send-waitlist-email]
 verify_jwt = false
 
+[functions.save-quiz-result]
+verify_jwt = false
+
 [functions.generate-qol-guidance]
 verify_jwt = true
 
