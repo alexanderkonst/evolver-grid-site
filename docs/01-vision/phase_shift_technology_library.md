@@ -7497,17 +7497,19 @@ Keep the fire, keep the present-continuous tense ('in the making'), and let the 
 | **Maturity** | professional development stage | wire gauge: how much current the circuit carries | stage 6-7 of 16 |
 | **Consent** | willingness to be seen and altered | membrane permeability | high |
 | **Means** | capacity to invest in themselves | available amperage | high (6-7 of 7) |
-| **Currency** | which category of purchase they believe in | what the circuit is wired to power | transformation (6 of 7) |
+| **Ticking Clock** | the rate at which staying the same costs them — whether a dated consequence is already running | discharge rate: how fast the current position is decaying on its own | a real clock exists and is named |
 
 **The mathematics, honestly stated.** A person is a point in R^9; ripeness is proximity to a target vector, weighted. Because axes correlate, the formally correct metric is Mahalanobis distance (inverse-covariance weighting, which stops correlated axes from double-counting); with fewer than ~30 scored cases the honest interim is to name the latent factor by hand where two axes travel together and score it once. **Surrender is not a coordinate but a gain term:** it multiplies rather than adds, which is why a high score on every other axis produces friction rather than conversion when surrender is absent. Same for the two capacity gates. The working form:
 
-> **Ripeness = Surrender(conductivity) × Means × Currency × Fit(the remaining six)**
+> **Ripeness = Surrender(conductivity) × Means × Ticking Clock × Fit(the remaining six)**
 
 Multiplicative terms formalize the field rule: a closed gate can never be compensated by pushing harder on another axis. Voltage without conductivity dissipates as heat, which is the exact felt quality of a high-friction sales conversation.
 
-**Universal vs practice-specific axes.** Transition, Surrender, Distance, Means and Currency are universal to any business selling change. Locus, Uniqueness and Consent are specific to a mirror-product. When this instrument is handed to another founder, the universal five carry over and the last three are re-derived for their business. This is what makes the vector the first genuinely transmissible asset in the method: unlike the mirror itself, it does not require its author to be present.
+**Universal vs practice-specific axes.** Transition, Surrender, Distance, Means and Ticking Clock are universal to any business selling change. Locus, Uniqueness and Consent are specific to a mirror-product. When this instrument is handed to another founder, the universal five carry over and the last three are re-derived for their business. This is what makes the vector the first genuinely transmissible asset in the method: unlike the mirror itself, it does not require its author to be present.
 
 **Field use:** nine scores after any call, ninety seconds. Read the shape, not the total: a 70 with surrender at 2 is a different animal from a 70 with surrender at 9.
+
+**Guardrail on Ticking Clock.** Naming the decay of a person's current position is honest diagnosis when a clock already exists — it makes a real, dated consequence visible to someone who hadn't looked at it squarely. It cannot manufacture readiness where no clock is running. A person with no real cost of delay stays a no, no matter how well the decay is described. Using this axis to invent urgency where none exists is pressure selling, not diagnosis, and is out of bounds.
 
 **Relationship:** Technology 121 (surrender as the buying threshold, here formalized as the conductivity term), Technology 84 (the holomap instrument, which builds each axis), Technology 118 (the seer invariant: one can only read the ripeness one has lived through).
 

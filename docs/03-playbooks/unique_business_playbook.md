@@ -1318,7 +1318,7 @@ Nine axes, each with a target position:
 - **Maturity** — developmental stage high enough to hold a mirror without collapsing into it.
 - **Consent** — has asked for reflection, or will say yes cleanly when asked.
 - **Means** — can actually pay, in money or in a currency the practitioner accepts.
-- **Currency** — the exchange on offer matches what they have to give.
+- **Ticking Clock** — staying the same already costs them something, on a clock, not just in theory.
 
 Surrender and the two capacity gates (Means, Consent) are **multiplicative, not additive**: a closed gate cannot be compensated by pushing harder on the other axes. A ripe person with no means is not ripe yet; a wealthy person who has not surrendered is not ripe yet.
 
