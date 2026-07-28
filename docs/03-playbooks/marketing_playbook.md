@@ -1588,6 +1588,28 @@ Each asset in the funnel serves one rung. Using an asset at the wrong rung waste
 
 ---
 
+### Category Design, adapted (v1.0, July 27, 2026 — from Play Bigger, source-inverted)
+
+**The source approach in one line:** markets pay whoever defines the category rather than whoever competes best inside one, so company, product and category are designed as a single act and marketing teaches the problem instead of selling the product.
+
+**Their three modules, and what we take from each:**
+
+**1. The Point of View.** A narrative naming a problem the world has not yet named; whoever names the missing owns the space of acceptable answers. *What we take:* the discipline of publishing the POV independently of any product and measuring success by whether the market repeats our language back. *Our POV already exists:* "Your career is capped by how well you know yourself." The measurable test is hearing that sentence, or its consequences, come back from someone else's mouth.
+
+**2. The Lightning Strike.** Markets shift by shock rather than by gradient, so resources are accumulated and spent in one concentrated, timed burst that imprints the category in a single blow. *What we take:* stop spreading effort thinly across channels; save for one concentrated moment (the thesis piece, a launch, one large room) rather than dripping. *Caution for this practice:* our sales motion is referral-and-depth driven, so a lightning strike serves category imprint, not pipeline — do not expect a strike to produce clients directly.
+
+**3. The Magic Triangle.** Company, product and category are one artifact seen from three sides; misalignment in any one collapses the other two, which is why excellent products die in wrong categories. *What we take:* whenever the category sentence moves, re-check the product and the company shape against it, and vice versa. This is the same holonic iteration principle already used for modules, applied at business scale.
+
+**The critical inversion (where we diverge, and why it matters).** Their POV is *invented for a market*; ours is *derived from a person*. Same mechanism, opposite source. Consequences: an invented POV can be out-spent and out-shouted by a better-funded competitor, while a derived POV cannot be occupied by anyone else, because occupying it would require being that person. Category design from the outside is a race; category design from the invariant is a moat. This also means our category work is never a positioning exercise to be redone quarterly — it is the articulation of the invariant, and it deepens rather than rotates.
+
+**Practical adoption:**
+- Treat the axiom as the POV and evangelize it independent of any offer (posters, the thesis piece, the quiz).
+- Track category adoption as a metric: how often the language returns from other mouths, unprompted.
+- Before any large spend or launch, check the Magic Triangle: does the category sentence, the current product ladder, and the shape of the business still agree?
+- Keep the lightning-strike budget separate from the pipeline budget, and never confuse imprint metrics with revenue metrics.
+
+---
+
 *Unified: January 27, 2026*
 *Merged from: marketing_playbook.md + marketing_meta_playbook.md*
 *Updated: February 18, 2026 — photon of truth, 3-layer myth depth, segment morphing, confabulation layer, movement layer references*
