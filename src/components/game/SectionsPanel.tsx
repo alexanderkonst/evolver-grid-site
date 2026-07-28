@@ -13,6 +13,7 @@ import { useDeeperAccess } from "@/hooks/useDeeperAccess";
 import { useEntitlement } from "@/hooks/useEntitlement";
 import { useJourneyProgress, type JourneyProgress } from "@/hooks/useJourneyProgress";
 import { useEntryPath } from "@/contexts/EntryPathContext";
+import { useSkin } from "@/contexts/SkinContext";
 import {
     TooltipProvider,
 } from "@/components/ui/tooltip";
@@ -856,6 +857,12 @@ const SectionsPanel = ({
     pageOwnsBackground = false,
     publicProfilePath = "/game/me/profile",
 }: SectionsPanelProps) => {
+    const { skin } = useSkin();
+    const isDefaultYouSkin =
+        skin !== "network-school" &&
+        skin !== "daouniverse" &&
+        skin !== "planetir" &&
+        skin !== "techstars";
     const { t } = useTranslation();
     const location = useLocation();
     const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
@@ -1251,9 +1258,14 @@ const SectionsPanel = ({
             )}
             style={{
                 border: "none",
-                backgroundImage: pageOwnsBackground
-                    ? "linear-gradient(170deg, rgba(27,45,82,0.32) 0%, rgba(6,12,28,0.06) 52%, rgba(2,8,22,0.42) 100%)"
-                    : "linear-gradient(170deg, rgba(68,88,132,0.34) 0%, rgba(31,52,94,0.22) 42%, rgba(12,29,62,0.48) 100%)",
+                backgroundImage: isDefaultYouSkin
+                    ? "linear-gradient(170deg, rgba(17,34,72,0.28) 0%, rgba(3,12,35,0.38) 58%, rgba(1,7,23,0.50) 100%), url('/assets/shell/lapis-secondary-pane-surface-v1-tall.webp')"
+                    : pageOwnsBackground
+                        ? "linear-gradient(170deg, rgba(27,45,82,0.32) 0%, rgba(6,12,28,0.06) 52%, rgba(2,8,22,0.42) 100%)"
+                        : "linear-gradient(170deg, rgba(68,88,132,0.34) 0%, rgba(31,52,94,0.22) 42%, rgba(12,29,62,0.48) 100%)",
+                backgroundSize: isDefaultYouSkin ? "cover" : undefined,
+                backgroundPosition: isDefaultYouSkin ? "center top" : undefined,
+                backgroundRepeat: isDefaultYouSkin ? "no-repeat" : undefined,
                 boxShadow:
                     "2px 0 18px -12px rgba(244, 212, 114, 0.16)",
             }}
