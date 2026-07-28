@@ -7348,5 +7348,286 @@
     "emptyState": "We don't have a specific match yet — browse the full library instead.",
     "heroEyebrow": "Today's pick",
     "alternatesTitle": "Also worth a look"
+  },
+  "quiz": {
+    "entry": {
+      "eyebrow": "Free. About 3 minutes.",
+      "title": "See exactly where you are on your own journey.",
+      "subtitle": "No pitch. Just a name for what you already feel.",
+      "cta": "See where I am"
+    },
+    "placement": {
+      "prompt": "Which one sounds like you right now?",
+      "cta": "That's me",
+      "options": [
+        "\"This is what I do.\" I don't really think about it. It's just Tuesday.",
+        "\"I'm fine. I don't know, something's just off.\" I have tabs open I don't visit and interests I can't explain.",
+        "\"I just need to push through, or fix this one thing.\" I'm patching what I already have: new niche, new funnel, harder hours.",
+        "\"It's over.\" Shock, relief, shame and freedom, sometimes in the same hour.",
+        "\"I don't know who I am professionally.\" I'm consuming maps, tests, teachers, templates, trying to find a name.",
+        "\"I think I see it.\" Energy comes in bursts. I'm testing a sentence on people to see if it holds.",
+        "\"This is what I do now.\" I can say it to a stranger without flinching."
+      ]
+    },
+    "stageNames": {
+      "1": "Settled",
+      "2": "The Itch",
+      "3": "Tremors",
+      "4": "Rupture",
+      "5": "Liminality",
+      "6": "Reorientation",
+      "7": "Crossing"
+    },
+    "stageRead": {
+      "stageLabel": "Your stage",
+      "trueNowLabel": "What's true right now",
+      "ctaStages4to7": "Show me what's behind",
+      "ctaStages1to3": "See what this usually means",
+      "descriptions": {
+        "1": "Nothing is asking to change right now. That's not failure. That's just where you are.",
+        "2": "Something stopped fitting, even though nothing visibly broke. The feeling is real information, not noise.",
+        "3": "You're pushing harder at something that used to work without this much effort. The pushing itself is the tell.",
+        "4": "The thing that was carrying you stopped carrying you. The way back is closed now, whether or not that's obvious yet.",
+        "5": "You don't have a name for who you are professionally right now. That's the actual work of this stage, not a problem to solve fast.",
+        "6": "Something true is showing up in bursts. You're testing a sentence on real people to see if it holds.",
+        "7": "You can say what you do now without flinching. This stage is about making that ordinary."
+      }
+    },
+    "notYet": {
+      "settled": {
+        "title": "You're settled.",
+        "line": "Nothing here needs fixing. When something does start moving, you'll feel it before you can name it, and this quiz will still be here.",
+        "channelsLine": "If you want to see how these mechanics work before you need them, that's what Sasha writes about elsewhere.",
+        "channelsLinkLabel": "Read the thinking behind this",
+        "emailPrompt": "Want a note when something new like this ships? Totally optional.",
+        "emailPlaceholder": "you@email.com",
+        "emailCta": "Keep me posted",
+        "skip": "No thanks, I'm good",
+        "emailSuccess": "Got it. You're on the list."
+      },
+      "itchTremors": {
+        "turnsIntoLabel": "What this usually turns into",
+        "signLabel": "The sign it's becoming real",
+        "whyLabel": "Why more effort isn't converting right now",
+        "nextLabel": "What usually comes next",
+        "2": {
+          "turnsInto": "The itch usually turns into pushing harder at the same thing, not into anything new. Most people patch the old form for months, sometimes years, before it turns into a real shift.",
+          "sign": "The sign it's becoming real: the pushing stops working and starts costing you sleep, energy, or health. That's when the Itch becomes Tremors."
+        },
+        "3": {
+          "why": "More effort isn't converting right now because you're adding force to a form that's already at capacity. New niche, new funnel, harder hours, all inside the same container that's already full.",
+          "next": "What usually comes next is a break, not a breakthrough. Something that was carrying you stops carrying you, often from outside your control. That's not a failure on your part. It's the mechanism."
+        },
+        "emailPrompt": "Want the full 7-stage map, so you can meet what's next consciously?",
+        "emailPlaceholder": "you@email.com",
+        "emailCta": "Send me the full map",
+        "skip": "No thanks, I'm good",
+        "emailSuccess": "Sent. Check your inbox."
+      },
+      "retake": "Retake anytime"
+    },
+    "aspects": {
+      "progressLabel": "Reading your {{aspect}}",
+      "names": {
+        "identity": "Identity",
+        "economy": "Economy",
+        "fit": "Fit"
+      },
+      "identity": {
+        "title": "Reading your Identity",
+        "cta": "Read my Economy",
+        "questions": [
+          {
+            "prompt": "When someone asks what you do, what's true right now?",
+            "options": [
+              "I'm a [title], and I say it without thinking twice.",
+              "I still say the title, but it feels slightly borrowed.",
+              "I say it louder than I believe it these days.",
+              "I don't have a real answer to \"what do you do\" anymore.",
+              "I don't know who I am professionally right now.",
+              "A truer name is starting to show up, one I haven't fully tested yet.",
+              "I say the new name to a stranger without flinching."
+            ]
+          },
+          {
+            "prompt": "How does your energy for the work feel lately?",
+            "options": [
+              "Fully available. I don't think about it.",
+              "It leaks toward other things I can't quite explain.",
+              "I'm running on caffeine and willpower more than desire.",
+              "Flat. Numb. Nothing's really there.",
+              "It flickers, unpredictably, with no pattern I can find.",
+              "It comes back in bursts, usually near the true thing.",
+              "Steady. It renews itself instead of draining."
+            ]
+          },
+          {
+            "prompt": "Where are you with feeling like you're actually good at this?",
+            "options": [
+              "The role grants it. I don't question it.",
+              "A quiet doubt has started: am I still good at this?",
+              "I'm proving it harder, to fewer people who are buying it.",
+              "There's nothing left to hide behind. Full exposure.",
+              "Full impostor. I don't have proof I trust.",
+              "Small proofs are starting to stand in for the old credential.",
+              "I grant it to myself now, and I have the receipts."
+            ]
+          }
+        ]
+      },
+      "economy": {
+        "title": "Reading your Economy",
+        "cta": "Read my Fit",
+        "questions": [
+          {
+            "prompt": "How does money actually arrive for you right now?",
+            "options": [
+              "Reliable, and tied directly to the role.",
+              "Reliable, but it stopped feeling alive.",
+              "The same money, for noticeably more effort.",
+              "It stopped, or got cut off.",
+              "Savings, odd jobs, patchwork. Whatever covers this month.",
+              "The first real money from the new thing just showed up.",
+              "The new way holds. It's not a fluke anymore."
+            ]
+          },
+          {
+            "prompt": "What's your relationship to time and money right now?",
+            "options": [
+              "Invisible. I don't think about the clock.",
+              "I've started quietly counting.",
+              "It enters every decision now.",
+              "It's ticking out loud. Everyone can hear it.",
+              "It either rules everything, or I've deliberately gone silent on it.",
+              "It's started measuring a build instead of a decline.",
+              "Planned. Ordinary. Nothing dramatic about it."
+            ]
+          },
+          {
+            "prompt": "What do you actually sell right now?",
+            "options": [
+              "Whatever the role includes. I don't think about it as \"selling.\"",
+              "A bit of everything, honestly.",
+              "Services added on to fix results that aren't landing.",
+              "Nothing, really. There's nothing left to sell.",
+              "Many pieces, no single offer.",
+              "One offer, and it finally has a name.",
+              "The same thing, sold again and again."
+            ]
+          }
+        ]
+      },
+      "fit": {
+        "title": "Reading your Fit",
+        "cta": "Show me the spread",
+        "questions": [
+          {
+            "prompt": "Where do you actually belong right now?",
+            "options": [
+              "At home, in the old room, without thinking about it.",
+              "I show up, but I'm not really there.",
+              "Working harder at fitting in than it should take.",
+              "Out. By choice or not, I'm out of the old room.",
+              "Between tribes. No room fits yet.",
+              "I've found the first new room.",
+              "I belong where I actually am. No performing required."
+            ]
+          },
+          {
+            "prompt": "When people describe what you do, how does it land?",
+            "options": [
+              "Named close enough. Good enough.",
+              "\"People don't quite get what I do.\"",
+              "I'm correcting them constantly.",
+              "Invisible. Introductions actually hurt.",
+              "\"I'm figuring things out\" is the whole sentence I've got.",
+              "Others are starting to repeat my own sentence back to me.",
+              "Strangers refer me correctly, without my help."
+            ]
+          },
+          {
+            "prompt": "How are the people closest to you responding to this?",
+            "options": [
+              "Supportive, by default. Nothing to react to.",
+              "Quiet worry, not said out loud yet.",
+              "\"How long is this going to take?\" comes up a lot.",
+              "Crisis, or bracing for one.",
+              "The real cost is finally being said out loud.",
+              "A new agreement is forming between us.",
+              "They're allies of the new form now."
+            ]
+          }
+        ]
+      }
+    },
+    "spread": {
+      "title": "Your spread",
+      "subtitle": "The gap between these three is the read.",
+      "bottleneckLabel": "Bottleneck",
+      "driverLabel": "Driver",
+      "cta": "Show me what it's costing me"
+    },
+    "zoom": {
+      "title": "What this is costing you",
+      "cta": "Show me what's next",
+      "reads": {
+        "identity": {
+          "4": "The title that used to answer \"what do you do\" has been taken away, and you don't have a substitute yet. Every introduction is now a small negotiation with an answer you don't have. That's what Rupture does to Identity specifically: it removes the label before it hands you a new one.",
+          "5": "You're carrying real capability with no name to hang it on. People ask what you do and you watch yourself improvise an answer that doesn't quite land, every time. The cost isn't the discomfort. It's that every framework you try to use here already assumes you know the answer it's asking for, and you don't, yet.",
+          "6": "A truer name has started arriving, but you haven't said it to enough people to trust it yet. The cost right now is hesitation: you're sitting on language that's actually true and testing it in private instead of in the room where it would start compounding.",
+          "7": "You can say the new name to a stranger without flinching, but Identity is still your lagging aspect, which means the name hasn't fully become ordinary yet. Some part of you is still proving it instead of just living inside it."
+        },
+        "economy": {
+          "4": "The money that reliably came from the old role has stopped or been cut off, and there's no new mechanism in its place yet. That's the actual event of Rupture on the Economy line: the flow, not just the feeling, has stopped.",
+          "5": "Right now it's savings, odd jobs, whatever patches the month. The clock either rules every decision or you've gone deliberately silent on it, and both cost you. The bottleneck isn't effort, you likely have plenty of that. It's that nothing you're doing yet has become a repeatable way money arrives.",
+          "6": "A first dollar from the true thing has shown up, or is close. The cost right now is treating it as a fluke instead of a signal, so you don't yet trust it enough to build the offer around it.",
+          "7": "The new way holds, mostly. Economy is still lagging here, which means the mechanism repeats but hasn't become fully ordinary yet. That last stretch is usually about pricing and repetition, not more proof."
+        },
+        "fit": {
+          "4": "You're out of the old room, whether by choice or not, and no new room has opened up yet. Introductions hurt right now because there's no group that recognizes the new version of you to introduce you into.",
+          "5": "You're between tribes. No room fits, and the people closest to you are starting to say the real cost out loud. This is the loneliest part of Liminality, not because you're doing it wrong, but because Fit is structurally the last aspect to resolve. You can't force a room that doesn't exist yet.",
+          "6": "You've found the first new room, but it's early, and you're still half performing the old belonging out of habit. The cost is energy spent maintaining a fit you've already outgrown.",
+          "7": "You belong where you actually are without performing, but Fit is still lagging at Crossing, so some part of the old room still gets your loyalty by default. That's usually the last thread to let go."
+        }
+      }
+    },
+    "path": {
+      "title": "Your read is complete",
+      "stageLabel": "Your stage",
+      "bottleneckLabel": "Bottleneck",
+      "nextMoveLabel": "What happens next",
+      "trapLabel": "The trap here",
+      "retake": "Retake anytime",
+      "nextMove": {
+        "4": "The next move is to let the old plan finish dying instead of rebuilding it faster. Surrender comes before a new shape, not after.",
+        "5": "The next move is naming what's already true, not inventing something new. Recognition arrives when something real gets a name. It isn't manufactured.",
+        "6": "The next move is saying the true sentence to more people, in public, before you feel fully ready.",
+        "7": "The next move is repetition: say it, sell it, do it again until it's ordinary."
+      },
+      "trap": {
+        "4": "The trap here is patching the old form with more effort, mistaking speed for progress.",
+        "5": "The trap here is consuming another map, test, or template, hoping one of them hands you the answer instead of your own recognition.",
+        "6": "The trap here is polishing the sentence in private past the point it needs polishing, instead of testing it where it counts.",
+        "7": "The trap here is chasing a bigger crossing before this one has become ordinary."
+      },
+      "routes": {
+        "directionCall": {
+          "label": "Book a Direction Call",
+          "sub": "Free. 45 minutes."
+        },
+        "session": {
+          "label": "See the Productize Yourself Session",
+          "sub": "$555. One working session."
+        },
+        "built": {
+          "label": "Meet BUILT",
+          "sub": "Three weeks, built with you."
+        },
+        "node": {
+          "label": "Find a node",
+          "sub": "White-label, for community leaders."
+        }
+      }
+    }
   }
 }

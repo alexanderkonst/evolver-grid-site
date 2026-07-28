@@ -7341,5 +7341,286 @@
     "emptyState": "Todavía no tenemos una coincidencia exacta — explora la biblioteca completa.",
     "heroEyebrow": "Elección de hoy",
     "alternatesTitle": "También vale la pena"
+  },
+  "quiz": {
+    "entry": {
+      "eyebrow": "Gratis. Unos 3 minutos.",
+      "title": "Descubre exactamente dónde estás en tu propio camino.",
+      "subtitle": "Sin venta. Solo un nombre para lo que ya sientes.",
+      "cta": "Ver dónde estoy"
+    },
+    "placement": {
+      "prompt": "¿Cuál suena más a ti ahora mismo?",
+      "cta": "Esa soy yo",
+      "options": [
+        "«Esto es lo que hago». Ni siquiera lo pienso. Es simplemente martes.",
+        "«Estoy bien. No sé, algo no cuadra». Tengo pestañas abiertas que no visito e intereses que no puedo explicar.",
+        "«Solo necesito empujar más, o arreglar esto». Estoy remendando lo que ya tengo: nuevo nicho, nuevo embudo, más horas.",
+        "«Se acabó». Shock, alivio, vergüenza y libertad, a veces en la misma hora.",
+        "«No sé quién soy profesionalmente». Estoy consumiendo mapas, tests, maestros, plantillas, tratando de encontrar un nombre.",
+        "«Creo que lo estoy viendo». La energía llega en ráfagas. Estoy probando una frase con la gente para ver si aguanta.",
+        "«Esto es lo que hago ahora». Puedo decírselo a un extraño sin titubear."
+      ]
+    },
+    "stageNames": {
+      "1": "Estable",
+      "2": "La Comezón",
+      "3": "Temblores",
+      "4": "Ruptura",
+      "5": "Liminalidad",
+      "6": "Reorientación",
+      "7": "Cruce"
+    },
+    "stageRead": {
+      "stageLabel": "Tu etapa",
+      "trueNowLabel": "Lo que es verdad ahora mismo",
+      "ctaStages4to7": "Mostrarme qué hay detrás",
+      "ctaStages1to3": "Ver qué suele significar esto",
+      "descriptions": {
+        "1": "Ahora mismo nada te pide cambiar. Eso no es un fracaso. Es simplemente donde estás.",
+        "2": "Algo dejó de encajar, aunque nada se rompió visiblemente. La sensación es información real, no ruido.",
+        "3": "Estás empujando más fuerte algo que antes funcionaba sin tanto esfuerzo. El empujón mismo es la señal.",
+        "4": "Lo que te sostenía dejó de sostenerte. El camino de vuelta ya está cerrado, aunque todavía no sea obvio.",
+        "5": "Todavía no tienes un nombre para quién eres profesionalmente. Ese es el verdadero trabajo de esta etapa, no un problema que resolver rápido.",
+        "6": "Algo verdadero está apareciendo en ráfagas. Estás probando una frase real con gente real para ver si aguanta.",
+        "7": "Puedes decir a qué te dedicas ahora sin titubear. Esta etapa consiste en volver eso algo ordinario."
+      }
+    },
+    "notYet": {
+      "settled": {
+        "title": "Estás estable.",
+        "line": "Aquí no hay nada que arreglar. Cuando algo empiece a moverse, lo vas a sentir antes de poder nombrarlo, y este test seguirá aquí.",
+        "channelsLine": "Si quieres ver cómo funcionan estos mecanismos antes de necesitarlos, de eso escribe Sasha en otros lugares.",
+        "channelsLinkLabel": "Leer el pensamiento detrás de esto",
+        "emailPrompt": "¿Quieres un aviso cuando salga algo nuevo como esto? Totalmente opcional.",
+        "emailPlaceholder": "tu@email.com",
+        "emailCta": "Mantenme al tanto",
+        "skip": "No gracias, estoy bien",
+        "emailSuccess": "Listo. Ya estás en la lista."
+      },
+      "itchTremors": {
+        "turnsIntoLabel": "En qué suele convertirse esto",
+        "signLabel": "La señal de que se está volviendo real",
+        "whyLabel": "Por qué más esfuerzo no está funcionando ahora",
+        "nextLabel": "Qué suele venir después",
+        "2": {
+          "turnsInto": "La comezón suele convertirse en empujar más fuerte lo mismo, no en algo nuevo. La mayoría de la gente remienda la forma vieja durante meses, a veces años, antes de que se convierta en un cambio real.",
+          "sign": "La señal de que se está volviendo real: el empujón deja de funcionar y empieza a costarte sueño, energía o salud. Ahí es cuando la Comezón se convierte en Temblores."
+        },
+        "3": {
+          "why": "Más esfuerzo no está funcionando ahora porque le estás metiendo fuerza a una forma que ya está al límite. Nuevo nicho, nuevo embudo, más horas, todo dentro del mismo contenedor que ya está lleno.",
+          "next": "Lo que suele venir después es una ruptura, no un avance. Algo que te sostenía deja de sostenerte, a menudo por causas fuera de tu control. Eso no es un fracaso tuyo. Es el mecanismo."
+        },
+        "emailPrompt": "¿Quieres el mapa completo de las 7 etapas, para encontrarte con lo que viene de forma consciente?",
+        "emailPlaceholder": "tu@email.com",
+        "emailCta": "Envíame el mapa completo",
+        "skip": "No gracias, estoy bien",
+        "emailSuccess": "Enviado. Revisa tu correo."
+      },
+      "retake": "Repite cuando quieras"
+    },
+    "aspects": {
+      "progressLabel": "Leyendo tu {{aspect}}",
+      "names": {
+        "identity": "Identidad",
+        "economy": "Economía",
+        "fit": "Encaje"
+      },
+      "identity": {
+        "title": "Leyendo tu Identidad",
+        "cta": "Leer mi Economía",
+        "questions": [
+          {
+            "prompt": "Cuando alguien te pregunta a qué te dedicas, ¿qué es verdad ahora mismo?",
+            "options": [
+              "Soy [puesto], y lo digo sin pensarlo dos veces.",
+              "Todavía digo el puesto, pero se siente un poco prestado.",
+              "Lo digo más fuerte de lo que lo creo últimamente.",
+              "Ya no tengo una respuesta real a «¿a qué te dedicas?».",
+              "No sé quién soy profesionalmente ahora mismo.",
+              "Está empezando a aparecer un nombre más verdadero, que todavía no he probado del todo.",
+              "Digo el nombre nuevo a un extraño sin titubear."
+            ]
+          },
+          {
+            "prompt": "¿Cómo se siente tu energía para el trabajo últimamente?",
+            "options": [
+              "Totalmente disponible. Ni lo pienso.",
+              "Se filtra hacia otras cosas que no puedo explicar del todo.",
+              "Funciono más con cafeína y fuerza de voluntad que con deseo.",
+              "Plana. Entumecida. En realidad no hay nada ahí.",
+              "Parpadea, impredecible, sin ningún patrón que pueda encontrar.",
+              "Vuelve en ráfagas, casi siempre cerca de lo verdadero.",
+              "Estable. Se renueva sola en vez de agotarse."
+            ]
+          },
+          {
+            "prompt": "¿Cómo te sientes respecto a ser realmente bueno en esto?",
+            "options": [
+              "El puesto lo garantiza. No lo cuestiono.",
+              "Empezó una duda silenciosa: ¿sigo siendo bueno en esto?",
+              "Lo estoy demostrando más, a cada vez menos gente que lo compra.",
+              "Ya no hay nada detrás de qué esconderse. Exposición total.",
+              "Impostor total. No tengo pruebas en las que confíe.",
+              "Pequeñas pruebas están empezando a reemplazar la vieja credencial.",
+              "Ahora me lo otorgo yo mismo, y tengo los comprobantes."
+            ]
+          }
+        ]
+      },
+      "economy": {
+        "title": "Leyendo tu Economía",
+        "cta": "Leer mi Encaje",
+        "questions": [
+          {
+            "prompt": "¿Cómo llega realmente el dinero para ti ahora mismo?",
+            "options": [
+              "Confiable, y atado directamente al puesto.",
+              "Confiable, pero dejó de sentirse vivo.",
+              "El mismo dinero, por notablemente más esfuerzo.",
+              "Se detuvo, o me lo cortaron.",
+              "Ahorros, trabajos sueltos, parches. Lo que sea que cubra este mes.",
+              "Acaba de llegar el primer dinero real de lo nuevo.",
+              "La nueva forma se sostiene. Ya no es casualidad."
+            ]
+          },
+          {
+            "prompt": "¿Cuál es tu relación con el tiempo y el dinero ahora mismo?",
+            "options": [
+              "Invisible. No pienso en el reloj.",
+              "He empezado a contar en silencio.",
+              "Ahora entra en cada decisión.",
+              "Está sonando en voz alta. Todos lo oyen.",
+              "O gobierna todo, o lo he silenciado deliberadamente.",
+              "Ha empezado a medir una construcción en vez de una caída.",
+              "Planeado. Ordinario. Nada dramático."
+            ]
+          },
+          {
+            "prompt": "¿Qué vendes realmente ahora mismo?",
+            "options": [
+              "Lo que sea que incluya el puesto. No lo pienso como «vender».",
+              "Un poco de todo, la verdad.",
+              "Servicios añadidos para arreglar resultados que no funcionan.",
+              "Nada, en realidad. Ya no queda nada que vender.",
+              "Muchas piezas, ninguna oferta única.",
+              "Una sola oferta, y por fin tiene nombre.",
+              "Lo mismo, vendido una y otra vez."
+            ]
+          }
+        ]
+      },
+      "fit": {
+        "title": "Leyendo tu Encaje",
+        "cta": "Mostrarme el mapa",
+        "questions": [
+          {
+            "prompt": "¿A dónde perteneces realmente ahora mismo?",
+            "options": [
+              "En casa, en el cuarto de siempre, sin pensarlo.",
+              "Aparezco, pero en realidad no estoy ahí.",
+              "Trabajando más duro de lo debido solo para encajar.",
+              "Afuera. Por elección o no, ya estoy fuera del cuarto de siempre.",
+              "Entre tribus. Todavía ningún cuarto encaja.",
+              "Encontré el primer cuarto nuevo.",
+              "Pertenezco a donde realmente estoy. Sin actuar."
+            ]
+          },
+          {
+            "prompt": "Cuando la gente describe a qué te dedicas, ¿cómo suena?",
+            "options": [
+              "Nombrado lo suficientemente cerca. Suficientemente bien.",
+              "«La gente no entiende del todo a qué me dedico».",
+              "Los corrijo todo el tiempo.",
+              "Invisible. Las presentaciones realmente duelen.",
+              "«Estoy descubriendo cosas» es toda la frase que tengo.",
+              "Otros empiezan a repetirme mi propia frase.",
+              "Extraños me refieren correctamente, sin mi ayuda."
+            ]
+          },
+          {
+            "prompt": "¿Cómo está reaccionando a esto la gente más cercana a ti?",
+            "options": [
+              "Apoyo por defecto. Nada a lo que reaccionar.",
+              "Preocupación silenciosa, todavía no dicha en voz alta.",
+              "«¿Cuánto va a tardar esto?» sale mucho.",
+              "Crisis, o preparándose para una.",
+              "El costo real finalmente se dice en voz alta.",
+              "Se está formando un nuevo acuerdo entre nosotros.",
+              "Ahora son aliados de la nueva forma."
+            ]
+          }
+        ]
+      }
+    },
+    "spread": {
+      "title": "Tu mapa",
+      "subtitle": "La distancia entre estos tres es el diagnóstico.",
+      "bottleneckLabel": "Cuello de botella",
+      "driverLabel": "Motor",
+      "cta": "Mostrarme qué me está costando"
+    },
+    "zoom": {
+      "title": "Lo que te está costando",
+      "cta": "Mostrarme qué sigue",
+      "reads": {
+        "identity": {
+          "4": "El puesto que solía responder «a qué te dedicas» te lo quitaron, y todavía no tienes un sustituto. Cada presentación es ahora una pequeña negociación con una respuesta que no tienes. Eso es lo que la Ruptura le hace específicamente a la Identidad: quita la etiqueta antes de entregarte una nueva.",
+          "5": "Cargas capacidad real sin un nombre dónde colgarla. La gente pregunta a qué te dedicas y te observas improvisando una respuesta que no termina de encajar, cada vez. El costo no es la incomodidad. Es que cualquier método que intentes usar aquí ya asume que conoces la respuesta que pide, y todavía no la conoces.",
+          "6": "Un nombre más verdadero empezó a llegar, pero todavía no se lo has dicho a suficiente gente como para confiar en él. El costo ahora mismo es la vacilación: tienes un lenguaje que ya es verdadero y lo estás probando en privado en vez del lugar donde empezaría a acumularse.",
+          "7": "Puedes decir el nombre nuevo a un extraño sin titubear, pero si la Identidad sigue siendo tu aspecto rezagado, el nombre todavía no se ha vuelto del todo ordinario. Una parte de ti todavía lo está demostrando, en vez de simplemente vivir en él."
+        },
+        "economy": {
+          "4": "El dinero que llegaba con confianza del puesto anterior se detuvo o te lo cortaron, y todavía no hay un nuevo mecanismo en su lugar. Ese es el evento real de la Ruptura en la línea de la Economía: el flujo se detuvo, no solo la sensación.",
+          "5": "Ahora mismo son ahorros, trabajos sueltos, lo que sea que cubra el mes. El reloj o gobierna cada decisión, o lo has silenciado deliberadamente, y las dos cosas te cuestan. El cuello de botella no es el esfuerzo, de eso probablemente tienes de sobra. Es que nada de lo que haces todavía se ha convertido en una forma repetible de que llegue el dinero.",
+          "6": "Ya apareció, o está cerca, el primer dólar de lo verdadero. El costo ahora mismo es tratarlo como casualidad en vez de señal, así que todavía no confías lo suficiente en ello como para construir la oferta alrededor.",
+          "7": "La nueva forma se sostiene, en su mayoría. Si la Economía sigue rezagada aquí, el mecanismo se repite pero todavía no se ha vuelto del todo ordinario. Ese último tramo suele tratarse de precio y repetición, no de más pruebas."
+        },
+        "fit": {
+          "4": "Estás fuera del cuarto de siempre, por elección o no, y todavía no se ha abierto un cuarto nuevo. Las presentaciones duelen ahora mismo porque no hay un grupo que reconozca la nueva versión de ti para presentarte ahí.",
+          "5": "Estás entre tribus. Ningún cuarto encaja, y la gente más cercana a ti empieza a decir el costo real en voz alta. Esta es la parte más solitaria de la Liminalidad, no porque lo estés haciendo mal, sino porque el Encaje es estructuralmente el último aspecto en resolverse. No puedes forzar un cuarto que todavía no existe.",
+          "6": "Encontraste el primer cuarto nuevo, pero es temprano, y por costumbre todavía actúas a medias la pertenencia vieja. El costo es la energía gastada en mantener un encaje que ya superaste.",
+          "7": "Perteneces a donde realmente estás sin actuar, pero si el Encaje sigue rezagado en el Cruce, una parte de ti todavía le es leal por defecto al cuarto viejo. Esa suele ser la última hebra en soltar."
+        }
+      }
+    },
+    "path": {
+      "title": "Tu lectura está completa",
+      "stageLabel": "Tu etapa",
+      "bottleneckLabel": "Cuello de botella",
+      "nextMoveLabel": "Qué sigue",
+      "trapLabel": "La trampa aquí",
+      "retake": "Repite cuando quieras",
+      "nextMove": {
+        "4": "El próximo paso es dejar que el plan viejo termine de morir en vez de reconstruirlo más rápido. La entrega llega antes de una nueva forma, no después.",
+        "5": "El próximo paso es nombrar lo que ya es verdad, no inventar algo nuevo. El reconocimiento llega cuando algo real recibe un nombre. No se fabrica.",
+        "6": "El próximo paso es decir la frase verdadera a más gente, en público, antes de sentirte totalmente listo.",
+        "7": "El próximo paso es la repetición: decirlo, venderlo, hacerlo otra vez hasta que sea ordinario."
+      },
+      "trap": {
+        "4": "La trampa aquí es remendar la forma vieja con más esfuerzo, confundiendo velocidad con progreso.",
+        "5": "La trampa aquí es consumir otro mapa, test o plantilla, esperando que uno de ellos te dé la respuesta en vez de tu propio reconocimiento.",
+        "6": "La trampa aquí es pulir la frase en privado más allá de lo que hace falta, en vez de probarla donde realmente cuenta.",
+        "7": "La trampa aquí es perseguir un cruce más grande antes de que este se haya vuelto ordinario."
+      },
+      "routes": {
+        "directionCall": {
+          "label": "Reserva una Direction Call",
+          "sub": "Gratis. 45 minutos."
+        },
+        "session": {
+          "label": "Ver la sesión Productize Yourself",
+          "sub": "$555. Una sesión de trabajo."
+        },
+        "built": {
+          "label": "Conoce BUILT",
+          "sub": "Tres semanas, construido contigo."
+        },
+        "node": {
+          "label": "Encuentra un nodo",
+          "sub": "Nodo White-Label, para líderes de comunidad."
+        }
+      }
+    }
   }
 }
