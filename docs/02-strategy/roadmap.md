@@ -14,7 +14,7 @@
 > 3. **Active Backlog item with `started` > 30 days ago and no forward motion** → revisit priority or move to Parked / Future.
 > 4. Items in Weekly Scope that are actually blocked on someone else's move belong in Waiting On, not in the 🔴 active lane. Mis-classification is the #1 source of "feels busy, nothing shipped."
 >
-> *Last updated: 2026-07-20 — **Practitioner Node — first instance Karime: proposal out, awaiting yes; then landing + /products entry** (see `docs/04-products/practitioner_node.md`). New standard path from idea to shipped product also captured: `docs/03-playbooks/product_onboarding_playbook.md`.*
+> *Last updated: 2026-07-28 (Day 138) — **The Quiz gets specced and started; the ladder is renamed; category design lands.** Days 131-138 in one line: the sales layer got written down (`sales_playbook.md` v1.0, Mirror Selling), the buyer filter reached its final form (zero distance × surrender, five ripest segments), `/path` + `/playbook` upgraded to the axiom era, `/data` + `/privacy` + `/terms` shipped, the Transition Holomap was built (7 stages, 3×3 taxonomy, 63-cell grid, Technologies 123-125), library "Domains" renamed to "Technologies," the tribe redefined as a ripe position rather than a population, the 27-Perspective instrument shipped as a free downloadable AI skill, Rafael's session proved the method in Russian end to end, and Day 138 itself shipped the Quiz Phase 1 spec + Phase 2 scaffolding, Technology 126 (Persuasion as a Perception Deficit), Play Bigger category design, the Schwartz awareness ladder (+ a sixth "layer-aware" rung), Karime's priced Evolution Portal proposal, "Ignition Session" retired in favor of "Productize Yourself Session," module taxonomy refreshed to v3.3, and a white-screening `/privacy` bug found and fixed. Full narrative: `session_log.md` Days 131-138. **Practitioner Node — first instance Karime: proposal out, priced ($555 founding node + $55/mo waived to 5th subscriber), awaiting yes** (see `docs/04-products/practitioner_node.md` + `src/pages/EvolutionPortalKarime.tsx`). New standard path from idea to shipped product also captured: `docs/03-playbooks/product_onboarding_playbook.md`.*
 >
 > *Last updated: 2026-06-10 — **Match funnel becomes the default** (the live-demo fork closed). A demo in front of ~20 people exposed that the bare URL still served the OLD build funnel (post-reveal $555/$37 cards) and that a guest's Top Talent completion never unlocked JOURNEY #2 ("Discover your mission" stayed locked right after the reveal). Sasha's call: match flow (reveal → Mission → Assets → matchmaking) is now the default for all cold traffic — directly serves the North Star (collaboration rate) and the triad as matching unit. Sessions funnel preserved behind explicit `?path=build` links (sticky end-to-end), `/ignite` direct links, the $37 power-up at JOURNEY 1.5, and the $555 path at JOURNEY #6 → `/path`. Landing hero at `/` untouched (MethodologyLandingPage stays; MatchHero still needs `?path=match`). Guest gate fixed: on-device reveal now unlocks Mission pre-signup. Funnel-v2 spec §4.1 carries the dated correction. Verified in preview (cold visitor, guest unlock, both overrides, Sign-Up default, clean build). Si–Do unchanged: first $555 stranger from the funnel — the funnel strangers walk is now the one that was designed for them.*
 >
@@ -197,17 +197,17 @@
 
 ## Current Status
 
-> *Refreshed to Day 130 (July 20, 2026). Prior snapshot (Day 47-87 era) preserved in git history; see `session_log.md` Days 123-130 for the full narrative.*
+> *Refreshed to Day 138 (July 28, 2026). Prior snapshot (Day 130, July 20) preserved above in the dated note stack and in git history; see `session_log.md` Days 131-138 for the full narrative. **Note:** no revenue figure was recorded in the corpus for Days 131-138 — the Revenue row below carries forward the last confirmed figure (Day 130) rather than guessing at a new one.*
 
 | Metric | Value |
 |--------|-------|
-| **Phase** | Day 130. The Ceiling Law axiom (Day 127) and Myth v4.0 landed and derived a full vNext artifact set; the investment thesis, Originals Index, Node Suite, and studio are now named (`alexanders_unique_business.md` Day 128/130 addenda). Warm-base outreach wave complete: 85/85 emails sent. 3/3 community-host pitches accepted (Oyi, Will Blakey, Devon) — delivery phase now. First fully funnel-sourced Direction Call delivered (Kristina). Timestamp law in force. |
-| **Cycle** | Day 130 of the active build. Phase Shift Technologies 110-115 landed in the Phase Shift Library. `/communities` landing page shipped to carry the hosted-webinar funnel. Deep-research capital landscape scan received and archived (`docs/02-strategy/capital_landscape_scan_2026-07.md`), independently confirming the vacant category named at Day 128. |
-| **Holomap center** | Practitioners = campaign #1. Ceiling Law stands as the derivation root for the myth, the offer ladder, and the investment thesis. Full lineage in `morphogenetic_holomap.md` and `session_log.md` Days 123-130. |
+| **Phase** | Day 138. Method work moved from the axiom (Days 123-130) into instrumentation: the Ripeness Vector (Technology 123) and the Transition Holomap (Technology 124, `docs/holomaps/transition_holomap.md`) formalize *who* is ready and *where* they stand; the Quiz (`docs/specs/quiz/`) is the product that puts that instrument in a stranger's hands. Phase 1 (product spec) complete; Phase 2 (implementation) started at `/quiz2`, legacy quiz preserved at `/quiz`. The offer ladder has its stable name: Direction Call (free) → Productize Yourself Session ($555) → BUILT → Node. First full non-English run of the method proved out (Rafael, Russian, Day 137). |
+| **Cycle** | Day 138 of the active build. Library "Domains" renamed "Technologies" across all documentation (numbering unchanged); Technologies 117-126 landed over this arc. Module taxonomy refreshed to v3.3 (first full route audit since March). Karime's Evolution Portal proposal is priced and sent ($555 founding node + $55/mo waived to her 5th subscriber; fair market value stated at $3,800). One production bug found and fixed (`/privacy` white-screening); `tsc --noEmit` clean. |
+| **Holomap center** | Transition — the interval between two fits is now a named, instrumented arc (7 stages, extended to 10; 3×3 taxonomy; 63-cell grid), not just a felt pattern. Ceiling Law (Day 127) remains the derivation root underneath it. Full lineage in `morphogenetic_holomap.md`, `docs/holomaps/transition_holomap.md`, and `session_log.md` Days 131-138. |
 | **Location** | Mexico City (Sasha). Founder cohort mostly remote. |
-| **Revenue** | **Strict received: $2,371** (+ $277 Sergey rev-share contract). Patricia's $555 workshop offer and Nia's $1,111 BUILT container offer both sent, pending decision. Gleb (a16z-backed founder, inbound referral) booked for Direction Call Wed July 22. |
-| **Focus** | Webinar delivery (3/3 hosts) + follow-up wave on the warm-base campaign + LinkedIn coaches campaign + strategy v4 Wednesday. |
-| **Key decisions** | Ceiling Law landed as the derivation root. Practitioners = campaign #1. Timestamp law in force. |
+| **Revenue** | **Strict received: $2,371** (+ $277 Sergey rev-share contract) — last confirmed figure, Day 130. No newer figure surfaced in the Days 131-138 record; treat as stale until re-confirmed. Patricia's $555 workshop offer and Nia's $1,111 BUILT container offer remain sent, pending decision as of the last record. Rafael's $111 three-week container link sent at the close of his Day 137 session; awaiting his decision. |
+| **Focus** | Ship the Quiz (Phase 2 implementation → Phase 3 retrodiction against the 7 known clients), then rebuild the landing page around it as the primary CTA. Session delivery layer (Day 137 addendum: Method Video, prerequisites, close ritual) still open. |
+| **Key decisions** | Ceiling Law stands as the derivation root. Tribe redefined as a position on the transition arc, not a population. "Ignition Session" retired for "Productize Yourself Session." Domains renamed Technologies. |
 
 ---
 
@@ -252,6 +252,16 @@
 | **4 · How precision is measured** | 5 min | **I** — the instrument | The resonance scale, and what opens at 9 / 9.5 / 9.9. **The two dials:** resonance reads the light, **charge** reads the shadow (accurate shadow produces recoil, not recognition). Versions, timestamps, the list of nuances. Clarity is earned and ripens — it cannot be squeezed out by the mind. |
 | **5 · The loop you keep** | 4 min | development / time | Words → clarity → new expression → sharper words. A new version replaces the old only if resonance is higher. The document is alive. **This loop is the thing you actually take home.** |
 | **6 · What happens in our session** | 3 min | **We** | The honest outcome (SD5), the prerequisites (SD2), what to bring, how long it takes. One door at the end. |
+
+### Day 138 — Open threads, ordered by leverage
+
+| # | Item | Priority | Notes |
+|---|------|----------|-------|
+| Q1 | **Quiz Phase 2 → Phase 3** — finish implementation at `/quiz2`, then retrodiction-test against the 7 known clients | 🔴 | Phase 1 (product spec) complete: `docs/specs/quiz/quiz_product_spec.md`. Phase 2 (routes + i18n content) started this session; module boundaries, data schema, and shell/layout still open (Phase 2 checklist in `quiz_tracker.md`). Phase 3 is the credibility test — does the 9-axis placement actually predict where the 7 known clients (Oyi, Sergey, Sandra, Alexa, Karime, Kirill, Rafael) landed. Three forks await Sasha at Roast Gate 1, listed in `quiz_tracker.md`. |
+| Q2 | **Landing page rebuild — law-first, quiz as primary CTA** | 🔴 [blocked] | Blocked on Q1 — `/quiz` needs to be live (not `/quiz2` placeholder) before the landing page can point cold traffic at it as the primary door. Once unblocked: rebuild `/` around the Ceiling Law axiom with the quiz as the single above-the-fold CTA, superseding the current two-CTA hero. |
+| Q3 | **Pain v4.1 — file into the canvas** | 🟡 | The quiz spec (`quiz_product_spec.md` §1.3, Pain of Point A) already carries a five-layer Pain v4.1 built on the transition arc, but it has not yet been filed back into `docs/02-strategy/unique-businesses/alexanders_unique_business.md` as the canonical Pain artifact version. Filing it closes the loop between the quiz's working draft and the canvas of record. |
+| Q4 | **Video proof reel — consent messages, then clip extraction** | 🟡 | Seeded Day 134 (`VP1` above): pull Fathom transcripts, identify highest-charge 10-30 second moments with timestamps, cut clips. Sequencing correction from this pass: consent messages to each client go out BEFORE any clip extraction starts, not after — no clip gets cut from a recording without the client's prior yes. |
+| Q5 | **Uniqueness map v2.0** | 🟡 | Referenced as a live open thread; no v2.0 scope or draft found in the corpus as of Day 138 — needs a scoping pass with Sasha before it can move. |
 
 ### UX / Platform Follow-Ups
 
@@ -688,6 +698,30 @@ Sasha asked: "How do people solve for version history of these things? We're cre
 ---
 
 ## ✅ Completed
+
+### Days 131-138 (July 21-28, 2026) — sales layer, instrumentation, Quiz Phase 1
+
+> Full narrative in `session_log.md` Days 131-138. Compressed here to what's load-bearing for the backlog above.
+
+- [x] **Sales Playbook v1.0** — Mirror Selling codified as its own document, plus the Lavender Inversion, sent-copy corpus rule, and pre-call assessment v2.
+- [x] **Distribution Playbook v2** — Sales moved in as a Jobs-to-be-Done triad; Professional Development Map + Identity-Distance Law added to ops.
+- [x] **Bullseye tribe v3.5 ("Founder Going Sovereign")** + Master Tuning Fork v4.0 → v4.1.
+- [x] **`/path` + `/playbook` upgraded to the axiom era** — law-first hero, Direction Call named as its own rung, BUILT naming, First Law banner.
+- [x] **`/data`, `/privacy`, `/terms` shipped** — Domain 110 turned into real policy pages, reskinned to the Evolution Portal visual system.
+- [x] **Buyer filter final form** — zero distance × surrender, five ripest segments (Day 135), direct ancestor of the Ripeness Vector.
+- [x] **Technologies 120-126** landed in the Phase Shift Library — Formed Edge, Surrender as buying threshold, the Ripeness Vector, Transition as the interval between two fits, the Social Physics of the Mirror, Persuasion as a Perception Deficit.
+- [x] **The Transition Holomap v1.0** (`docs/holomaps/transition_holomap.md`) — 7 stages extended to 10, 3×3 taxonomy, 63-cell grid, 54 shifts. Built with the new **holomap-builder skill**.
+- [x] **Canvas v4.0** — Tribe, Pain, Point B, Promise, Method, Channel rebuilt on the transition arc; tribe redefined as a ripe position rather than a population; matching copy reframed as two wholes sharing one core (Stella octangula), not two halves.
+- [x] **Library "Domains" renamed "Technologies"** (numbering unchanged); **`/destiny` unlocked** from `RequireAuth` to public.
+- [x] **The 27-Perspective instrument shipped as a free downloadable AI skill** — Section IX now hands the reader's own AI the same instrument.
+- [x] **Rafael's Ignition Session** (Day 137) — first full Russian-language run of the artifact sequence end to end; see Day 137 backlog block above for the delivery-layer decisions it produced.
+- [x] **Quiz Phase 1 complete** (`docs/specs/quiz/`) — Master Result, Sub-Results, 10 screens/variants, screen details, extensions, wireframes, all roasted at 3×3 depth. Phase 2 (routes, i18n) started same day: `/quiz` (legacy) vs `/quiz2` (new build).
+- [x] **"Ignition Session" retired** for **"Productize Yourself Session"** across living documentation; ladder now reads Direction Call → Productize Yourself Session → BUILT → Node.
+- [x] **Play Bigger category design** adapted into the marketing playbook, with the derived-vs-invented inversion.
+- [x] **Schwartz awareness ladder wired in**, including a named sixth rung, "layer-aware."
+- [x] **Module taxonomy refreshed to v3.3** — first full route audit since March; 7 top-level additions, 1 retirement, new SEEDS section for spec-only items.
+- [x] **Karime's Evolution Portal — priced proposal shipped** (`src/pages/EvolutionPortalKarime.tsx`) — category named, fair market value $3,800, nine-row competitor comparison table, $555 founding-node price + $55/month waived to her fifth subscriber.
+- [x] **Production bug fixed** — `/privacy` was white-screening on a `ReferenceError` (missing `parchmentCard` style object); fixed alongside two unrelated type errors. `tsc --noEmit` clean.
 
 ### Revenue & Business
 - [x] Value ladder v2.0 — three containers ($555 / $1,111+$2.5K / venture)
