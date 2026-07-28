@@ -1132,7 +1132,7 @@ const SpacesRail = ({
                                 // its first painted pixel, not its invisible
                                 // button box, lands on the same vertical axis as
                                 // the painted Space glyphs above.
-                                : "grid grid-cols-[repeat(4,48px)] gap-0 ml-[13px]"
+                                : "grid h-12 grid-cols-[repeat(4,48px)] items-center gap-0 ml-[13px]"
                         )}
                     >
                         {/* Avatar / Profile — hidden for guests on pages that
@@ -1185,7 +1185,7 @@ const SpacesRail = ({
                                                     boxShadow: glowColor ? `0 0 10px 1px ${glowColor}4d` : undefined,
                                                 }}
                                             >
-                                                <span className="flex items-center justify-center h-[26px] w-[26px] rounded-full overflow-hidden bg-[#0a1632]">
+                                                <span className="flex items-center justify-center h-[24px] w-[24px] rounded-full overflow-hidden bg-[#0a1632]">
                                                     {userAvatarUrl ? (
                                                         <img src={userAvatarUrl} alt="" className="h-full w-full object-cover" />
                                                     ) : (
@@ -1194,7 +1194,7 @@ const SpacesRail = ({
                                                 </span>
                                             </span>
                                         ) : userAvatarUrl ? (
-                                            <img src={userAvatarUrl} alt="" className="h-[26px] w-[26px] flex-shrink-0 rounded-full object-cover ring-1 ring-[#f4d472]/30" />
+                                            <img src={userAvatarUrl} alt="" className="h-[24px] w-[24px] flex-shrink-0 rounded-full object-cover ring-1 ring-[#f4d472]/30" />
                                         ) : (
                                             <UserRound className="h-[20px] w-[20px] flex-shrink-0 text-white/55" aria-hidden="true" />
                                         )}
@@ -1239,7 +1239,7 @@ const SpacesRail = ({
                                     type="button"
                                     onClick={() => window.dispatchEvent(new Event(OPEN_CHAT_EVENT))}
                                     className={cn(
-                                        "spaces-rail-chat-cta grid place-items-center rounded-full transition-all duration-300 text-white/55 hover:bg-white/[0.04] hover:text-white/85 hover:ring-1 hover:ring-[#d4af37]/30",
+                                        "grid place-items-center rounded-full transition-all duration-300 text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30",
                                         compact ? "w-[30px] h-[30px]" : "w-[48px] h-[48px]"
                                     )}
                                     aria-label={t('spacesRail.chatTitle')}
@@ -1249,8 +1249,6 @@ const SpacesRail = ({
                                         style={{
                                             width: compact ? 16 : 18,
                                             height: compact ? 16 : 18,
-                                            opacity: 0.8,
-                                            filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
                                         }}
                                         aria-hidden="true"
                                     />
@@ -1270,7 +1268,7 @@ const SpacesRail = ({
                                     <button
                                         onClick={() => setSkin(skin === "aurum" ? "lapis" : "aurum")}
                                         className={cn(
-                                            "grid place-items-center rounded-full transition-all duration-300 text-white/55 hover:bg-white/[0.04] hover:text-white/85 hover:ring-1 hover:ring-[#d4af37]/30",
+                                            "grid place-items-center rounded-full transition-all duration-300 text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30",
                                             compact ? "w-[30px] h-[30px]" : "w-[48px] h-[48px]"
                                         )}
                                         aria-label={skin === "aurum" ? t('spacesRail.themeToggleToLightAria') : t('spacesRail.themeToggleToDarkAria')}
@@ -1282,8 +1280,6 @@ const SpacesRail = ({
                                                 style={{
                                                     width: compact ? 16 : 18,
                                                     height: compact ? 16 : 18,
-                                                    filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
-                                                    opacity: 0.75,
                                                 }}
                                             />
                                         ) : (
@@ -1293,8 +1289,6 @@ const SpacesRail = ({
                                                 style={{
                                                     width: compact ? 16 : 18,
                                                     height: compact ? 16 : 18,
-                                                    filter: "drop-shadow(0 0 4px rgba(244, 212, 114, 0.25))",
-                                                    opacity: 0.75,
                                                 }}
                                             />
                                         )}
