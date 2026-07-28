@@ -18,7 +18,7 @@ const entryFrames = [
   "Finding collaborators / aligned conversations",
   "Productizing yourself from your top talent",
   "Thriving together through collaborative matchmaking within and across communities",
-  "Another entry-page framing Oyi provides",
+  "Another entry-page framing the community leader provides",
 ];
 
 const modules = [
@@ -127,7 +127,7 @@ export default function ProposalForWeGoodOvaHere() {
           <SectionBox>
             <SectionTitle>Community Leader Dashboard</SectionTitle>
             <p className="leading-7 text-[#192033]/78">
-              Oyi can view member results when members have shared them with
+              The community leader can view member results when members have shared them with
               the community, use the data for community design and matchmaking,
               export data for Go High Level import, and send simple email
               campaigns from the built-in campaign tool.
@@ -186,13 +186,13 @@ export default function ProposalForWeGoodOvaHere() {
             <SectionTitle>Revenue Share</SectionTitle>
             <div className="space-y-4 leading-7 text-[#192033]/78">
               <p>
-                Digital products sold through the WeGoodOvaHere node: Oyi keeps
-                90%, and 10% goes back to the platform/network. Example: a $37
-                deeper Top Talent Reveal.
+                Digital products sold through the WeGoodOvaHere node: the
+                community leader keeps 90%, and 10% goes back to the
+                platform/network. Example: a $37 deeper Top Talent Reveal.
               </p>
               <p>
                 Human-led containers delivered by Sasha to people referred from
-                WeGoodOvaHere: 33% referral share to Oyi.
+                WeGoodOvaHere: 33% referral share to the community leader.
               </p>
             </div>
           </SectionBox>

@@ -22,23 +22,23 @@ import { markJourneyVisited } from "@/lib/journeyVisits";
 
 const REVENUE_TIMELINE = [
   { day: 0, date: "Mar 4", total: 0, label: "Day 0" },
-  { day: 4, date: "Mar 7", total: 277, label: "Sergey ($277 rev share)" },
-  { day: 30, date: "Apr 2", total: 327, label: "Oyi $50 gift" },
-  { day: 34, date: "Apr 6", total: 438, label: "Karime $111 gratitude" },
-  { day: 36, date: "Apr 8", total: 954, label: "Oyi $516 gift" },
-  { day: 40, date: "Apr 12", total: 1154, label: "Karime $200 in-kind" },
-  { day: 41, date: "Apr 13", total: 1654, label: "Oyi $500 in-kind" },
-  { day: 44, date: "Apr 18", total: 1654, label: "Kirill joins — 7th founder" },
-  { day: 46, date: "Apr 20", total: 1973, label: "Oyi $319 in-kind (5 gifts)" },
+  { day: 4, date: "Mar 7", total: 277, label: "S. ($277 rev share)" },
+  { day: 30, date: "Apr 2", total: 327, label: "O. $50 gift" },
+  { day: 34, date: "Apr 6", total: 438, label: "K. $111 gratitude" },
+  { day: 36, date: "Apr 8", total: 954, label: "O. $516 gift" },
+  { day: 40, date: "Apr 12", total: 1154, label: "K. $200 in-kind" },
+  { day: 41, date: "Apr 13", total: 1654, label: "O. $500 in-kind" },
+  { day: 44, date: "Apr 18", total: 1654, label: "Ki. joins — 7th founder" },
+  { day: 46, date: "Apr 20", total: 1973, label: "O. $319 in-kind (5 gifts)" },
   { day: 51, date: "Apr 25", total: 1973, label: "Codification — commercial-decentralization model + Specificity Loop shipped, repo publicly fork-ready" },
   { day: 53, date: "Apr 27", total: 1973, label: "AI OS empirical-rating telemetry + UBB founder-doc bulk seed (16/18) + .env hygiene closure" },
   { day: 54, date: "Apr 28", total: 1973, label: "AI OS elevated to its own Space (process / substrate / being); MIT scoped to AI OS scaffold; admin operator-console + magic-link delivery" },
   { day: 58, date: "May 2", total: 1973, label: "Top Talent surface deep restructure: free reveal rebuilt with Top Shadow promoted, ME space restructured to 10 canonical subpages, /activate retired in favor of in-shell Start Here, deep profile schema merged into single Lovable call, second-person voice + no-jargon rule baked into prompts, full editorial PDF rewrite, AAC audio shipped, Aleksandr calibration baked with Sasha's actual data — apparatus now coheres as a transmission" },
   { day: 85, date: "May 27", total: 1973, label: "Collaboration rate named as the North Star metric; the triad and two-tribe strategy locked" },
   { day: 87, date: "May 29", total: 1973, label: "Planetary OS one-pager shipped at /1-pager: the whole project on one shareable page" },
-  { day: 106, date: "Jun 18", total: 2528, label: "Nia $555 cash session" },
-  { day: 114, date: "Jun 26", total: 2548, label: "Roman/Raman $20 gratitude" },
-  { day: 125, date: "Jul 7", total: 2648, label: "Oyi $100 in-kind (Claude Max subscription)" },
+  { day: 106, date: "Jun 18", total: 2528, label: "N. $555 cash session" },
+  { day: 114, date: "Jun 26", total: 2548, label: "Ro. $20 gratitude" },
+  { day: 125, date: "Jul 7", total: 2648, label: "O. $100 in-kind (Claude Max subscription)" },
   { day: 142, date: "Jul 24", total: 2705, label: "$57 cash contribution" },
   { day: 146, date: "Jul 28", total: 2705, label: "Current — as of Jul 28, 2026" },
 ];
@@ -59,7 +59,7 @@ const KPIS = [
     value: "7",
     trend: "+1",
     trendLabel: "Apr 18",
-    detail: "Alexander · Oyi · Sergey · Alexa · Sandra · Karime · Kirill",
+    detail: "Alexander · O. · S. · Al. · Sa. · K. · Ki.",
     gold: false,
   },
   {
@@ -75,17 +75,17 @@ const KPIS = [
 const SECONDARY_STATS = [
   { labelKey: "ventureDashboard.secondaryStats.marketingSpend", value: "$0" },
   { labelKey: "ventureDashboard.secondaryStats.crmContacts", value: "28" },
-  { labelKey: "ventureDashboard.secondaryStats.daysActive", value: "116" },
+  { labelKey: "ventureDashboard.secondaryStats.daysActive", value: "138" },
 ];
 
 // ─── Revenue Breakdown ──────────────────────────────────────────────────────
 
 const REVENUE_BREAKDOWN = [
-  { name: "Oyi", cash: 566, inKind: 919, revShare: 0, type: "Cash + in-kind", status: "received", color: "#a06d08" },
-  { name: "Karime", cash: 111, inKind: 200, revShare: 0, type: "Cash + in-kind", status: "received", color: "#7a5108" },
-  { name: "Sergey", cash: 0, inKind: 0, revShare: 277, type: "Rev share", status: "pending", color: "#b8860b" },
-  { name: "Nia", cash: 555, inKind: 0, revShare: 0, type: "Cash ($555)", status: "received", color: "#d4af37" },
-  { name: "Roman/Raman", cash: 20, inKind: 0, revShare: 0, type: "Cash ($20)", status: "received", color: "#c99322" },
+  { name: "O.", cash: 566, inKind: 919, revShare: 0, type: "Cash + in-kind", status: "received", color: "#a06d08" },
+  { name: "K.", cash: 111, inKind: 200, revShare: 0, type: "Cash + in-kind", status: "received", color: "#7a5108" },
+  { name: "S.", cash: 0, inKind: 0, revShare: 277, type: "Rev share", status: "pending", color: "#b8860b" },
+  { name: "N.", cash: 555, inKind: 0, revShare: 0, type: "Cash ($555)", status: "received", color: "#d4af37" },
+  { name: "Ro.", cash: 20, inKind: 0, revShare: 0, type: "Cash ($20)", status: "received", color: "#c99322" },
   { name: "R.", cash: 57, inKind: 0, revShare: 0, type: "Cash ($57)", status: "received", color: "#e0ac42" },
 ];
 
@@ -93,18 +93,18 @@ const REVENUE_BREAKDOWN = [
 
 const TIMELINE = [
   { day: 1, date: "Mar 4", name: "Alexander", type: "Client Zero", desc: "Built the methodology by applying it to himself first." },
-  { day: 2, date: "Mar 5", name: "Oyi", type: "Gratitude ($566)", desc: "Complete business blueprint. Later sent $566 in gratitude gifts — without being asked." },
-  { day: 4, date: "Mar 7", name: "Sergey", type: "Rev Share ($277)", desc: "Business blueprint created. Revenue share agreement. 3 follow-up sessions delivered." },
-  { day: 9, date: "Mar 12", name: "Alexa", type: "Value Exchange", desc: "Complete blueprint in 2.5 hours — fastest session yet." },
-  { day: 12, date: "Mar 15", name: "Sandra", type: "Rev Share (TBD)", desc: "6 sessions. Core identity, story, and audience crystallized." },
-  { day: 34, date: "Apr 6", name: "Karime", type: "Gratitude ($111)", desc: "Client + referral partner. Introduced 2 new contacts organically." },
-  { day: 40, date: "Apr 12", name: "Karime", type: "In-kind ($200)", desc: "Claude Pro subscription payment. Deepening operational partnership." },
-  { day: 41, date: "Apr 13", name: "Oyi", type: "In-kind ($500)", desc: "Comprehensive support: food, flights, transport. Sustained gratitude." },
-  { day: 43, date: "Apr 17", name: "Oyi", type: "Mexico Intensive Wrap", desc: "4-day Mexico hacker-house / collective venture building concludes. First in-person intensive at length. Oyi: \"This may be the best view in town. I am thankful.\"" },
-  { day: 44, date: "Apr 18", name: "Kirill", type: "7th Founder Joins", desc: "Serial entrepreneur (17 businesses), integral practitioner, neuro-coaching trainer. Building QWATRA + GrowFox. \"The 7th note in the octave — the tension that longs to resolve into something new.\"" },
-  { day: 46, date: "Apr 20", name: "Oyi", type: "In-kind ($319)", desc: "Five gifts totaling $319. Sustained gratitude continues — cumulative in-kind from Oyi now $819." },
-  { day: 106, date: "Jun 18", name: "Nia", type: "Cash ($555)", desc: "The funnel's first paying client: an Oyi referral who booked the 20-min exploratory call, then the session. Walked out with the not-ready loop named, purpose and mission defined, her lifelong pattern in one sentence, a polarizing myth and bio. Productize Yourself Session, $555." },
-  { day: 125, date: "Jul 7", name: "Oyi", type: "In-kind ($100)", desc: "Claude Max subscription. Sustained support continues." },
+  { day: 2, date: "Mar 5", name: "O.", type: "Gratitude ($566)", desc: "Complete business blueprint. Later sent $566 in gratitude gifts — without being asked." },
+  { day: 4, date: "Mar 7", name: "S.", type: "Rev Share ($277)", desc: "Business blueprint created. Revenue share agreement. 3 follow-up sessions delivered." },
+  { day: 9, date: "Mar 12", name: "Al.", type: "Value Exchange", desc: "Complete blueprint in 2.5 hours — fastest session yet." },
+  { day: 12, date: "Mar 15", name: "Sa.", type: "Rev Share (TBD)", desc: "6 sessions. Core identity, story, and audience crystallized." },
+  { day: 34, date: "Apr 6", name: "K.", type: "Gratitude ($111)", desc: "Client + referral partner. Introduced 2 new contacts organically." },
+  { day: 40, date: "Apr 12", name: "K.", type: "In-kind ($200)", desc: "Claude Pro subscription payment. Deepening operational partnership." },
+  { day: 41, date: "Apr 13", name: "O.", type: "In-kind ($500)", desc: "Comprehensive support: food, flights, transport. Sustained gratitude." },
+  { day: 43, date: "Apr 17", name: "O.", type: "Intensive Wrap", desc: "4-day hacker-house / collective venture-building intensive concludes. First in-person intensive at length. O.: \"This may be the best view in town. I am thankful.\"" },
+  { day: 44, date: "Apr 18", name: "Ki.", type: "7th Founder Joins", desc: "Serial entrepreneur, integral practitioner. \"The 7th note in the octave — the tension that longs to resolve into something new.\"" },
+  { day: 46, date: "Apr 20", name: "O.", type: "In-kind ($319)", desc: "Five gifts totaling $319. Sustained gratitude continues — cumulative in-kind from O. now $819." },
+  { day: 106, date: "Jun 18", name: "N.", type: "Cash ($555)", desc: "The funnel's first paying client: an O. referral who booked the 20-min exploratory call, then the session. Walked out with the not-ready loop named, purpose and mission defined, her lifelong pattern in one sentence, a polarizing myth and bio. Productize Yourself Session, $555." },
+  { day: 125, date: "Jul 7", name: "O.", type: "In-kind ($100)", desc: "Claude Max subscription. Sustained support continues." },
   { day: 142, date: "Jul 24", name: "R.", type: "Cash ($57)", desc: "New paying contribution." },
 ];
 
