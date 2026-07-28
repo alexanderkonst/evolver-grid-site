@@ -91,7 +91,7 @@ const TermsOfService = () => {
         </header>
 
         <section className="space-y-5 mb-8">
-          {SECTION_KEYS.filter((k) => k !== "openMethod").map((key) => (
+          {SECTION_KEYS.map((key) => (
             <div key={key} className="rounded-2xl p-6 sm:p-7" style={parchmentCard}>
               <h2 className="text-lg sm:text-xl mb-2" style={cormorantTitle}>
                 {t(`termsofservice.${key}Title`)}

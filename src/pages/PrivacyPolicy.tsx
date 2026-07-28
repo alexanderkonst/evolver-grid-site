@@ -33,6 +33,13 @@ const sourceSerifBody: React.CSSProperties = {
   lineHeight: 1.65,
 };
 
+const parchmentCard: React.CSSProperties = {
+  background: "var(--skin-card-fill, rgba(255, 252, 245, 0.92))",
+  border: "0.5px solid rgba(212, 175, 55, 0.55)",
+  boxShadow:
+    "0 0 22px -8px rgba(212, 175, 55, 0.30), 0 16px 40px -20px rgba(10, 22, 40, 0.22)",
+};
+
 const SECTION_KEYS = [
   "collect",
   "use",
