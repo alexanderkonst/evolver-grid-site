@@ -158,6 +158,25 @@ DENTIST vs PAINKILLER vs VODKA COTTON
 
 **The dentist competes with grandmother's remedy.** Category is irrelevant — the JOB is what matters.
 
+### Awareness × Position: the second axis (v1.0, July 27, 2026)
+
+Awareness level and developmental position are **different axes, and they interact**. A person can be deep in Liminality (transition stage 5, see `docs/holomaps/transition_holomap.md`) and still be problem-unaware: feeling terrible with no name for it. A person at Tremors (stage 3) can be fully solution-aware from having read everything. Position tells you WHERE someone is; awareness tells you WHAT THEY CAN HEAR about it.
+
+**Why almost nobody arrives at layer-awareness alone.** The insight "I am working hard on the wrong layer" requires seeing the layer above the one you are standing inside, which is the subject-to-object move (Phase Shift Technology 115). It rarely happens unassisted. This creates a distinct rung between Schwartz's problem-aware and solution-aware, worth naming explicitly:
+
+| Rung | What they know | What can land |
+|---|---|---|
+| Unaware | nothing is named | symptoms described in their own language; never a solution |
+| Problem-aware | "something is wrong" | the shape and name of the problem |
+| **Layer-aware** | "it is not effort, it is the layer" | which layer, and why effort at the wrong layer fails |
+| Solution-aware | "a thing like this exists" | how this method differs from what they tried |
+| Product-aware | "this specific thing might work" | proof, terms, mechanics |
+| Most-aware | "I want this" | the offer alone |
+
+**The conversion mechanism:** a person who reaches layer-awareness is by definition looking for a solution. So the highest-leverage marketing act is not persuasion but escalation — walking someone up one rung. The quiz module (`docs/specs/quiz/`) is built to do exactly this inside a single sitting.
+
+**The copy law that follows:** message must match rung, not position. The most common expensive error is offering a solution to someone who has not yet named the problem, which reads as noise regardless of how accurate it is.
+
 ---
 
 ## The Pain Mapping Template

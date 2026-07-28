@@ -1571,6 +1571,23 @@ This is **self-organizing infrastructure for mission manifestation**.
 
 ---
 
+### Matching the asset to the awareness rung (v1.0, July 27, 2026)
+
+Each asset in the funnel serves one rung. Using an asset at the wrong rung wastes it.
+
+| Rung | Asset that moves them up one |
+|---|---|
+| Unaware | posters and content that describe the symptom in their own words, with no offer attached |
+| Problem-aware | the hand-raiser post, and the breath-gate lines, which name the problem and invite self-identification |
+| Layer-aware | the quiz: places them, names the bottleneck, names the trap |
+| Solution-aware | the Direction Call: the method demonstrated live rather than described |
+| Product-aware | proof surfaces: verbatim transcripts at /ignite, the video reel, the public playbook |
+| Most-aware | the offer, with price and terms, and nothing else |
+
+**Consequence for sequencing:** never skip a rung. A cold-audience offer converts only the already-most-aware, which is why cold offer-first campaigns look like failures when they are actually just mis-rung. Full model: `pain_theory_playbook.md`, Awareness × Position.
+
+---
+
 *Unified: January 27, 2026*
 *Merged from: marketing_playbook.md + marketing_meta_playbook.md*
 *Updated: February 18, 2026 — photon of truth, 3-layer myth depth, segment morphing, confabulation layer, movement layer references*
