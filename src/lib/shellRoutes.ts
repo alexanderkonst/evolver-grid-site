@@ -33,7 +33,8 @@ const HOLDOUT_EXACT = new Set<string>([
     "/zone-of-genius",       // ZoneOfGeniusEntry (shell config flips per wizard step)
     "/game/journey/start",   // ZoneOfGeniusEntry
     "/zone-of-genius/entry", // ZoneOfGeniusEntry
-    "/quiz",                 // GeniusQuiz (hideNavigation)
+    "/quiz2",                // GeniusQuiz (hideNavigation) — moved from /quiz July 28, 2026
+    "/quiz",                 // TransitionQuizPage — standalone, own layout, no shell
     "/game/settings",        // Settings (showNavigation)
     "/start",                // OnboardingPage → TourStepsScreen (showNavigation)
 ]);
