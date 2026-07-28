@@ -904,7 +904,13 @@ const SpacesRail = ({
                                     // Day 130 (Sasha 2026-07-20): background deepened
                                     // slightly (0.08 → 0.13) to pair with the inset
                                     // shadow — the chip reads as recessed, not just lit.
-                                    ? { backgroundColor: "var(--skin-selected-bg-deep, rgba(212, 175, 55, 0.13))" }
+                                    ? isDefaultYouSkin
+                                        ? {
+                                            backgroundColor: "rgba(15, 35, 76, 0.52)",
+                                            backgroundImage:
+                                                "linear-gradient(135deg, rgba(76, 105, 164, 0.36) 0%, rgba(18, 40, 86, 0.48) 72%, rgba(7, 24, 59, 0.56) 100%)",
+                                        }
+                                        : { backgroundColor: "var(--skin-selected-bg-deep, rgba(212, 175, 55, 0.13))" }
                                     : undefined
                             }
                             // Day 48 iter 16: native `title` attribute retired for

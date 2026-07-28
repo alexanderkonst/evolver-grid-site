@@ -1646,7 +1646,13 @@ const SectionsPanel = ({
                             )}
                             style={
                                 (sectionActive || journeyState === "present") && !hasSubSections && !isLocked
-                                    ? { backgroundColor: "var(--skin-selected-bg, rgba(212, 175, 55, 0.10))" }
+                                    ? isDefaultYouSkin
+                                        ? {
+                                            backgroundColor: "rgba(36, 61, 111, 0.56)",
+                                            backgroundImage:
+                                                "linear-gradient(135deg, rgba(102, 128, 181, 0.30) 0%, rgba(47, 74, 128, 0.42) 68%, rgba(27, 50, 98, 0.48) 100%)",
+                                        }
+                                        : { backgroundColor: "var(--skin-selected-bg, rgba(212, 175, 55, 0.10))" }
                                     : isLocked
                                         ? { opacity: fogOpacity }
                                         : undefined
