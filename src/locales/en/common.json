@@ -2305,7 +2305,7 @@
       }
     },
     "kpi": {
-      "totalRevenue": "Total Revenue",
+      "totalRevenue": "Total Revenue (YTD)",
       "geniusFounders": "Genius Founders",
       "continuationRate": "Continuation Rate"
     },
@@ -2317,7 +2317,7 @@
     "revenue": {
       "timeline": {
         "title": "Revenue Timeline",
-        "subtitle": "Cumulative revenue since Day 1",
+        "subtitle": "Cumulative revenue since Day 1 · as of Jul 28, 2026",
         "legend": "Total Revenue"
       },
       "breakdown": {

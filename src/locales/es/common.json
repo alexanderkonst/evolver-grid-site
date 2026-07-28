@@ -4546,7 +4546,7 @@
       }
     },
     "kpi": {
-      "totalRevenue": "Ingresos totales",
+      "totalRevenue": "Ingresos totales (año en curso)",
       "geniusFounders": "Fundadores genio",
       "continuationRate": "Tasa de continuación"
     },
@@ -4558,7 +4558,7 @@
     "revenue": {
       "timeline": {
         "title": "Línea de tiempo de ingresos",
-        "subtitle": "Ingresos acumulados desde el Día 1",
+        "subtitle": "Ingresos acumulados desde el Día 1 · al 28 de julio de 2026",
         "legend": "Ingresos totales"
       },
       "breakdown": {
