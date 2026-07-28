@@ -1127,7 +1127,12 @@ const SpacesRail = ({
                         className={cn(
                             compact
                                 ? "grid grid-cols-2 gap-1.5 justify-items-center w-fit mx-auto"
-                                : "grid grid-cols-[repeat(4,48px)] gap-0 ml-[3px]"
+                                // The visible profile ring is narrower than the
+                                // 48px utility hit cell. Offset the whole row so
+                                // its first painted pixel, not its invisible
+                                // button box, lands on the same vertical axis as
+                                // the painted Space glyphs above.
+                                : "grid grid-cols-[repeat(4,48px)] gap-0 ml-[13px]"
                         )}
                     >
                         {/* Avatar / Profile — hidden for guests on pages that

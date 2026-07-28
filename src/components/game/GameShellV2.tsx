@@ -52,10 +52,14 @@ import { useToast } from "@/hooks/use-toast";
  * physical relationship, like recessed Japanese cabinetry hardware rather
  * than a game hinge.
  */
-const PlaneJoint = ({ kind }: { kind: "pivot" | "rail" }) => (
+const PlaneJoint = ({ kind, moving = false }: { kind: "pivot" | "rail"; moving?: boolean }) => (
     <span
         aria-hidden="true"
-        className={cn("plane-joint", `plane-joint--${kind}`)}
+        className={cn(
+            "plane-joint",
+            `plane-joint--${kind}`,
+            moving && "plane-joint--moving",
+        )}
     >
         {kind === "pivot" ? (
             <>
@@ -1586,7 +1590,13 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                             : "inset -1px 0 0 var(--skin-rail-toggle-hairline, rgba(212, 175, 55, 0.32)), 2px 0 14px -8px var(--skin-rail-toggle-glow, rgba(244, 212, 114, 0.3))",
                     }}
                 >
-                    {__spaceShipSkin === "lapis" && <PlaneJoint kind="pivot" />}
+                    {__spaceShipSkin === "lapis" && (
+                        <PlaneJoint
+                            key={`rail-joint-${railMinimized ? "compact" : "open"}`}
+                            kind="pivot"
+                            moving
+                        />
+                    )}
                     {/* Day 119 (Sasha 2026-07-09): raw "▶" text glyph
                         replaced with a Lucide ChevronRight — crisper at
                         14px, no font-rendering/baseline quirks across
@@ -1656,7 +1666,13 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         pageOwnsBackground={pageOwnsBackground}
                         publicProfilePath={publicProfilePath}
                     />
-                    {__spaceShipSkin === "lapis" && <PlaneJoint kind="rail" />}
+                    {__spaceShipSkin === "lapis" && (
+                        <PlaneJoint
+                            key={`sections-joint-${sectionsPanelOpen ? "open" : "closed"}`}
+                            kind="rail"
+                            moving
+                        />
+                    )}
                 </div>
 
                 {/* Expand button when Panel 2 is collapsed — Day 48 (Sasha):
@@ -1710,7 +1726,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                                 "inset -1px 0 0 var(--skin-rail-toggle-hairline, rgba(212, 175, 55, 0.32)), 2px 0 14px -8px var(--skin-rail-toggle-glow, rgba(244, 212, 114, 0.3))",
                         }}
                     >
-                        {__spaceShipSkin === "lapis" && <PlaneJoint kind="rail" />}
+                        {__spaceShipSkin === "lapis" && <PlaneJoint kind="rail" moving />}
                         <ChevronRight
                             aria-hidden="true"
                             className="transition-transform"
@@ -1840,6 +1856,13 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         publicProfilePath={publicProfilePath}
                         className="h-dvh"
                     />
+
+                    {__spaceShipSkin === "lapis" && (
+                        <span
+                            aria-hidden="true"
+                            className="mobile-plane-seam"
+                        />
+                    )}
 
                     {/* Panel 2: Sections */}
                     <div className="flex-1">
