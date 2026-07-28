@@ -1259,7 +1259,7 @@ const SectionsPanel = ({
             style={{
                 border: "none",
                 backgroundImage: isDefaultYouSkin
-                    ? "linear-gradient(170deg, rgba(17,34,72,0.28) 0%, rgba(3,12,35,0.38) 58%, rgba(1,7,23,0.50) 100%), url('/assets/shell/lapis-secondary-pane-surface-v1-tall.webp')"
+                    ? "linear-gradient(165deg, rgba(94, 121, 174, 0.50) 0%, rgba(58, 85, 139, 0.44) 52%, rgba(35, 59, 108, 0.42) 100%), url('/assets/shell/lapis-secondary-pane-surface-v1-tall.webp')"
                     : pageOwnsBackground
                         ? "linear-gradient(170deg, rgba(27,45,82,0.32) 0%, rgba(6,12,28,0.06) 52%, rgba(2,8,22,0.42) 100%)"
                         : "linear-gradient(170deg, rgba(68,88,132,0.34) 0%, rgba(31,52,94,0.22) 42%, rgba(12,29,62,0.48) 100%)",
