@@ -30,6 +30,8 @@ interface SaveQuizResultPayload {
   email?: string | null;
   not_yet?: boolean;
   locale?: string | null;
+  aspect_derived_stage?: number | null;
+  has_stage_gap?: boolean | null;
 }
 
 const json = (status: number, body: unknown) =>
@@ -70,6 +72,14 @@ Deno.serve(async (req) => {
       return json(400, { error: "invalid_driver_aspect" });
     }
 
+    if (
+      body.aspect_derived_stage !== undefined &&
+      body.aspect_derived_stage !== null &&
+      !isValidScore(body.aspect_derived_stage)
+    ) {
+      return json(400, { error: "invalid_aspect_derived_stage" });
+    }
+
     const email = body.email ? String(body.email).trim().toLowerCase() : null;
     if (email && !email.includes("@")) {
       return json(400, { error: "invalid_email" });
@@ -100,6 +110,8 @@ Deno.serve(async (req) => {
         email,
         not_yet: notYet,
         locale: body.locale ?? null,
+        aspect_derived_stage: body.aspect_derived_stage ?? null,
+        has_stage_gap: body.has_stage_gap ?? null,
       })
       .select("id")
       .single();
