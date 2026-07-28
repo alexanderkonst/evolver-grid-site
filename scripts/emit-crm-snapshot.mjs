@@ -42,7 +42,10 @@ function main() {
   let payload;
   try {
     const data = readBroadcastTracker();
-    const anonymizer = buildAnonymizer(data);
+    // `data` doubles as the free-text scan source — this is what catches a
+    // Cyrillic full name sitting in a notes/prose field rather than a
+    // structured name column (see scripts/sources/anonymize.mjs).
+    const anonymizer = buildAnonymizer(data, [], data);
     payload = {
       generated_at: new Date().toISOString(),
       version: data.version ?? null,
@@ -68,6 +71,16 @@ function main() {
       // source tracker; anonymized here for the same reason as above.
       offers: anonymizer.scrubDeep(data.offers ?? []),
     };
+
+    // Report, don't silently drop: anything that still looks like a
+    // Cyrillic personal name after scrubbing gets surfaced so a human can
+    // decide whether it needs a manual entry, not lost in the noise.
+    const residualCyrillic = anonymizer.scanForResidualCyrillicNames(payload);
+    if (residualCyrillic.length) {
+      console.warn(
+        `⚠ crm snapshot: ${residualCyrillic.length} Cyrillic token(s) survived scrubbing and could not be attributed to a known contact — review before shipping: ${residualCyrillic.join(", ")}`,
+      );
+    }
   } catch (err) {
     payload = {
       generated_at: new Date().toISOString(),
