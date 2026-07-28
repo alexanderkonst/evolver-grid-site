@@ -11,17 +11,15 @@ the session log) so the file only ever holds what's still pending.
 
 ---
 
-## Pending as of 2026-07-28
+## Pending
 
-1. Redeploy the edge function `suggest-asset-matches` (and its shared
-   dependency `supabase/functions/_shared/matchScoring.ts`, which it imports).
-   Reason: anonymized a real client's name and business details that were
-   hardcoded as a calibration example in the match-rationale prompt.
-2. Redeploy the edge function `proactive-match-proposal`. Reason: anonymized
-   a real person's name used as a subject-line style example in the prompt.
-3. Redeploy the edge function `generate-excalibur`. Reason: anonymized three
-   real clients' names, one real Instagram handle, and their business/pricing
-   details that were hardcoded as calibration examples in the prompt.
+_None._
 
-No schema, migration, or config changes are involved — code-only edge
-function updates.
+## Done
+
+- 2026-07-28 — redeployed `suggest-asset-matches` (with shared
+  `_shared/matchScoring.ts`), `proactive-match-proposal`, and
+  `generate-excalibur` after anonymizing real client names, an Instagram
+  handle, and business/pricing details hardcoded as prompt calibration
+  examples. Code-only; no schema/migration/config changes.
+
