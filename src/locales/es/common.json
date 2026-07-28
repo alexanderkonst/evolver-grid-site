@@ -4834,72 +4834,18 @@
   "methodology": {
     "seoTitle": "Encuentra tu talento principal. Productízalo. Encuentra a tu gente.",
     "seoDescription": "Infraestructura de coordinación para la innovación consciente. Del genio individual a las empresas y a las comunidades federadas. Código abierto, forkeable.",
-    "hero": {
-      "eyebrow": "La Ley del Techo",
-      "headline": "Tu carrera está limitada por lo bien que te conoces a ti mismo.",
-      "sub": "Toda estrategia, todo embudo, toda búsqueda de trabajo corre bajo ese techo. Se mueve en el momento en que se mueve tu autoconocimiento.",
-      "ctaLabel": "Descubre tu etapa",
-      "ctaMicro": "90 segundos. Gratis. Sin nada oculto. No necesitas registrarte para ver tu resultado."
-    },
-    "map": {
-      "eyebrow": "El Mapa",
-      "orientingLine": "La mayoría de la gente está más avanzada en este arco de lo que cree. Lo que se siente como derrumbe suele ser la siguiente etapa, no un fracaso.",
-      "stage1Name": "Asentado",
-      "stage1Line": "Esto es lo que hago. Sin narrarlo. Es simplemente un martes cualquiera.",
-      "stage2Name": "La Comezón",
-      "stage2Line": "Estoy bien. Algo simplemente no encaja. Las pestañas se quedan abiertas, los intereses paralelos se multiplican.",
-      "stage3Name": "Temblores",
-      "stage3Line": "Solo necesito empujar más fuerte. Nuevo nicho, nuevo embudo, más esfuerzo sobre la misma forma vieja.",
-      "stage4Name": "Ruptura",
-      "stage4Line": "Se acabó. Shock, alivio y vergüenza en la misma hora.",
-      "stage5Name": "Liminalidad",
-      "stage5Line": "No sé quién soy profesionalmente. Mapas, tests, maestros, plantillas, uno tras otro.",
-      "stage6Name": "Reorientación",
-      "stage6Line": "Creo que lo veo. La energía regresa en ráfagas. La primera frase verdadera se dice en voz alta.",
-      "stage7Name": "El Cruce",
-      "stage7Line": "Esto es lo que hago ahora. Dicho a un extraño sin titubear."
-    },
-    "deeperRead": {
-      "line1": "La forma que te sostenía ya terminó.",
-      "line2": "La siguiente todavía no se ha formado.",
-      "recognition1": "Ya no puedes responder “a qué te dedicas” en una sola frase.",
-      "recognition2": "Empujaste más fuerte y no cambió nada.",
-      "recognition3": "Tienes muchas piezas sueltas y ninguna oferta.",
-      "recognition4": "Te oyes decir “todavía lo estoy descubriendo” cuando alguien te presenta.",
-      "closingLine": "No estás disperso. Todavía no te han leído."
-    },
-    "mirror": {
-      "eyebrow": "Quién sostiene el espejo",
-      "text": "Alexander Konstantinov construyó este mapa a partir de su propia transición, y luego pasó meses probándolo con los fundadores con los que trabaja uno a uno. No enseña una teoría. Primero nombró su propia niebla, y luego construyó el negocio que surgió de nombrarla."
-    },
-    "proof": {
-      "eyebrow": "Lo que dice la gente después"
-    },
-    "ladder": {
-      "eyebrow": "A dónde lleva esto",
-      "call": {
-        "name": "Direction Call",
-        "meta": "Gratis · 45 minutos",
-        "desc": "Sales viendo tu transición con claridad: de qué estás saliendo, hacia qué estás creciendo, y la dirección que se deriva de eso.",
-        "cta": "Reserva tu Direction Call"
-      },
-      "session": {
-        "name": "Productize Yourself Session",
-        "meta": "Taller de 2 horas · $555",
-        "desc": "Nombra lo único que realmente haces, y sal con una oferta y una página lista para enviar.",
-        "cta": "Ver Productize Yourself Session"
-      },
-      "built": {
-        "name": "BUILT",
-        "meta": "3 semanas · $1,111",
-        "desc": "Construye el producto, empaquétalo y elige el modelo de negocio, junto a otros fundadores haciendo lo mismo.",
-        "cta": "Ver BUILT"
-      }
-    },
-    "close": {
-      "headline": "Descubre tu etapa antes de planear el siguiente paso.",
-      "sub": "El techo se mueve en el momento en que se mueve tu autoconocimiento."
-    }
+    "headlineBefore": "¿Puedes decir lo que haces tan",
+    "headlineClearly": "claramente",
+    "echoBefore": "que las personas correctas",
+    "echoAlways": "siempre",
+    "echoAfter": "compren?",
+    "manifestoLine1Before": "Encuentra tu",
+    "manifestoLine1Gold": "talento principal",
+    "manifestoLine1After": ".",
+    "manifestoLine2Gold": "Productízate",
+    "manifestoLine2After": "a ti mismo.",
+    "manifestoLine3Gold": "Escala",
+    "manifestoLine3After": "tus ingresos y tu impacto."
   },
   "activationLanding": {
     "notFound": "Activación no encontrada:",
@@ -7685,6 +7631,76 @@
         }
       },
       "retake": "Vuelve a hacerlo cuando quieras"
+    }
+  },
+  "homeLanding": {
+    "seoTitle": "Encuentra tu talento principal. Productízalo. Encuentra a tu gente.",
+    "seoDescription": "Infraestructura de coordinación para la innovación consciente. Del genio individual a las empresas y a las comunidades federadas. Código abierto, forkeable.",
+    "hero": {
+      "eyebrow": "La Ley del Techo",
+      "headline": "Tu carrera está limitada por lo bien que te conoces a ti mismo.",
+      "sub": "Toda estrategia, todo embudo, toda búsqueda de trabajo corre bajo ese techo. Se mueve en el momento en que se mueve tu autoconocimiento.",
+      "ctaLabel": "Descubre tu etapa",
+      "ctaMicro": "90 segundos. Gratis. Sin nada oculto. No necesitas registrarte para ver tu resultado."
+    },
+    "map": {
+      "eyebrow": "El Mapa",
+      "orientingLine": "La mayoría de la gente está más avanzada en este arco de lo que cree. Lo que se siente como derrumbe suele ser la siguiente etapa, no un fracaso.",
+      "stage1Name": "Asentado",
+      "stage1Line": "Esto es lo que hago. Sin narrarlo. Es simplemente un martes cualquiera.",
+      "stage2Name": "La Comezón",
+      "stage2Line": "Estoy bien. Algo simplemente no encaja. Las pestañas se quedan abiertas, los intereses paralelos se multiplican.",
+      "stage3Name": "Temblores",
+      "stage3Line": "Solo necesito empujar más fuerte. Nuevo nicho, nuevo embudo, más esfuerzo sobre la misma forma vieja.",
+      "stage4Name": "Ruptura",
+      "stage4Line": "Se acabó. Shock, alivio y vergüenza en la misma hora.",
+      "stage5Name": "Liminalidad",
+      "stage5Line": "No sé quién soy profesionalmente. Mapas, tests, maestros, plantillas, uno tras otro.",
+      "stage6Name": "Reorientación",
+      "stage6Line": "Creo que lo veo. La energía regresa en ráfagas. La primera frase verdadera se dice en voz alta.",
+      "stage7Name": "El Cruce",
+      "stage7Line": "Esto es lo que hago ahora. Dicho a un extraño sin titubear."
+    },
+    "deeperRead": {
+      "line1": "La forma que te sostenía ya terminó.",
+      "line2": "La siguiente todavía no se ha formado.",
+      "recognition1": "Ya no puedes responder “a qué te dedicas” en una sola frase.",
+      "recognition2": "Empujaste más fuerte y no cambió nada.",
+      "recognition3": "Tienes muchas piezas sueltas y ninguna oferta.",
+      "recognition4": "Te oyes decir “todavía lo estoy descubriendo” cuando alguien te presenta.",
+      "closingLine": "No estás disperso. Todavía no te han leído."
+    },
+    "mirror": {
+      "eyebrow": "Quién sostiene el espejo",
+      "text": "Alexander Konstantinov construyó este mapa a partir de su propia transición, y luego pasó meses probándolo con los fundadores con los que trabaja uno a uno. No enseña una teoría. Primero nombró su propia niebla, y luego construyó el negocio que surgió de nombrarla."
+    },
+    "proof": {
+      "eyebrow": "Lo que dice la gente después"
+    },
+    "ladder": {
+      "eyebrow": "A dónde lleva esto",
+      "call": {
+        "name": "Direction Call",
+        "meta": "Gratis · 45 minutos",
+        "desc": "Sales viendo tu transición con claridad: de qué estás saliendo, hacia qué estás creciendo, y la dirección que se deriva de eso.",
+        "cta": "Reserva tu Direction Call"
+      },
+      "session": {
+        "name": "Productize Yourself Session",
+        "meta": "Taller de 2 horas · $555",
+        "desc": "Nombra lo único que realmente haces, y sal con una oferta y una página lista para enviar.",
+        "cta": "Ver Productize Yourself Session"
+      },
+      "built": {
+        "name": "BUILT",
+        "meta": "3 semanas · $1,111",
+        "desc": "Construye el producto, empaquétalo y elige el modelo de negocio, junto a otros fundadores haciendo lo mismo.",
+        "cta": "Ver BUILT"
+      }
+    },
+    "close": {
+      "headline": "Descubre tu etapa antes de planear el siguiente paso.",
+      "sub": "El techo se mueve en el momento en que se mueve tu autoconocimiento."
     }
   }
 }

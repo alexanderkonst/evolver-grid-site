@@ -23,72 +23,18 @@
   "methodology": {
     "seoTitle": "Find Your Top Talent. Productize It. Find Your People.",
     "seoDescription": "Coordination infrastructure for conscious innovation. From individual genius to ventures to federated communities. Open-source, forkable.",
-    "hero": {
-      "eyebrow": "The Ceiling Law",
-      "headline": "Your career is capped by how well you know yourself.",
-      "sub": "Every strategy, every funnel, every job search runs under that ceiling. It moves the moment your self-understanding does.",
-      "ctaLabel": "Find your stage",
-      "ctaMicro": "90 seconds. Free. Nothing held back. No signup to see your result."
-    },
-    "map": {
-      "eyebrow": "The Map",
-      "orientingLine": "Most people are further along this arc than they think. What feels like falling apart is usually the next stage, not failure.",
-      "stage1Name": "Settled",
-      "stage1Line": "This is what I do. No narration. It's just Tuesday.",
-      "stage2Name": "The Itch",
-      "stage2Line": "I'm fine. Something's just off. Tabs stay open, side interests keep multiplying.",
-      "stage3Name": "Tremors",
-      "stage3Line": "I just need to push through. New niche, new funnel, harder work on the same old form.",
-      "stage4Name": "Rupture",
-      "stage4Line": "It's over. Shock, relief, and shame in the same hour.",
-      "stage5Name": "Liminality",
-      "stage5Line": "I don't know who I am professionally. Maps, tests, teachers, templates, one after another.",
-      "stage6Name": "Reorientation",
-      "stage6Line": "I think I see it. Energy comes back in bursts. The first true sentence gets said out loud.",
-      "stage7Name": "Crossing",
-      "stage7Line": "This is what I do now. Said to a stranger without flinching."
-    },
-    "deeperRead": {
-      "line1": "The form that carried you has ended.",
-      "line2": "The next one has not formed yet.",
-      "recognition1": "You can't answer “what do you do” in one breath anymore.",
-      "recognition2": "You pushed harder and it changed nothing.",
-      "recognition3": "You have a lot of pieces and no offer.",
-      "recognition4": "You hear yourself say “I'm figuring things out” when someone introduces you.",
-      "closingLine": "You are not unfocused. You are unread."
-    },
-    "mirror": {
-      "eyebrow": "Who is holding the mirror",
-      "text": "Alexander Konstantinov built this map from his own transition, then spent months testing it with the founders he works with one on one. He isn't teaching a theory. He named his own fog first, then built the business that came out of naming it."
-    },
-    "proof": {
-      "eyebrow": "What people say after"
-    },
-    "ladder": {
-      "eyebrow": "Where this goes",
-      "call": {
-        "name": "Direction Call",
-        "meta": "Free · 45 minutes",
-        "desc": "You leave seeing your transition clearly: what you're growing out of, what you're growing into, and the direction that follows.",
-        "cta": "Book the Direction Call"
-      },
-      "session": {
-        "name": "Productize Yourself Session",
-        "meta": "2-hour workshop · $555",
-        "desc": "Name the one thing you actually do, then leave with an offer and a page ready to send.",
-        "cta": "See the Productize Yourself Session"
-      },
-      "built": {
-        "name": "BUILT",
-        "meta": "3 weeks · $1,111",
-        "desc": "Build the product, package it, and pick the business model, alongside other founders doing the same.",
-        "cta": "See BUILT"
-      }
-    },
-    "close": {
-      "headline": "Read your stage before you plan the next move.",
-      "sub": "The ceiling moves the moment your self-understanding does."
-    }
+    "headlineBefore": "Can you say what you do so",
+    "headlineClearly": "clearly",
+    "echoBefore": "right people",
+    "echoAlways": "always",
+    "echoAfter": "buy?",
+    "manifestoLine1Before": "Find Your",
+    "manifestoLine1Gold": "Top Talent",
+    "manifestoLine1After": ".",
+    "manifestoLine2Gold": "Productize",
+    "manifestoLine2After": "Yourself.",
+    "manifestoLine3Gold": "Scale",
+    "manifestoLine3After": "your Revenue and Impact."
   },
   "zogEntry": {
     "toastSaveFailedTitle": "Save Failed",
@@ -7692,6 +7638,76 @@
         }
       },
       "retake": "Retake anytime"
+    }
+  },
+  "homeLanding": {
+    "seoTitle": "Find Your Top Talent. Productize It. Find Your People.",
+    "seoDescription": "Coordination infrastructure for conscious innovation. From individual genius to ventures to federated communities. Open-source, forkable.",
+    "hero": {
+      "eyebrow": "The Ceiling Law",
+      "headline": "Your career is capped by how well you know yourself.",
+      "sub": "Every strategy, every funnel, every job search runs under that ceiling. It moves the moment your self-understanding does.",
+      "ctaLabel": "Find your stage",
+      "ctaMicro": "90 seconds. Free. Nothing held back. No signup to see your result."
+    },
+    "map": {
+      "eyebrow": "The Map",
+      "orientingLine": "Most people are further along this arc than they think. What feels like falling apart is usually the next stage, not failure.",
+      "stage1Name": "Settled",
+      "stage1Line": "This is what I do. No narration. It's just Tuesday.",
+      "stage2Name": "The Itch",
+      "stage2Line": "I'm fine. Something's just off. Tabs stay open, side interests keep multiplying.",
+      "stage3Name": "Tremors",
+      "stage3Line": "I just need to push through. New niche, new funnel, harder work on the same old form.",
+      "stage4Name": "Rupture",
+      "stage4Line": "It's over. Shock, relief, and shame in the same hour.",
+      "stage5Name": "Liminality",
+      "stage5Line": "I don't know who I am professionally. Maps, tests, teachers, templates, one after another.",
+      "stage6Name": "Reorientation",
+      "stage6Line": "I think I see it. Energy comes back in bursts. The first true sentence gets said out loud.",
+      "stage7Name": "Crossing",
+      "stage7Line": "This is what I do now. Said to a stranger without flinching."
+    },
+    "deeperRead": {
+      "line1": "The form that carried you has ended.",
+      "line2": "The next one has not formed yet.",
+      "recognition1": "You can't answer “what do you do” in one breath anymore.",
+      "recognition2": "You pushed harder and it changed nothing.",
+      "recognition3": "You have a lot of pieces and no offer.",
+      "recognition4": "You hear yourself say “I'm figuring things out” when someone introduces you.",
+      "closingLine": "You are not unfocused. You are unread."
+    },
+    "mirror": {
+      "eyebrow": "Who is holding the mirror",
+      "text": "Alexander Konstantinov built this map from his own transition, then spent months testing it with the founders he works with one on one. He isn't teaching a theory. He named his own fog first, then built the business that came out of naming it."
+    },
+    "proof": {
+      "eyebrow": "What people say after"
+    },
+    "ladder": {
+      "eyebrow": "Where this goes",
+      "call": {
+        "name": "Direction Call",
+        "meta": "Free · 45 minutes",
+        "desc": "You leave seeing your transition clearly: what you're growing out of, what you're growing into, and the direction that follows.",
+        "cta": "Book the Direction Call"
+      },
+      "session": {
+        "name": "Productize Yourself Session",
+        "meta": "2-hour workshop · $555",
+        "desc": "Name the one thing you actually do, then leave with an offer and a page ready to send.",
+        "cta": "See the Productize Yourself Session"
+      },
+      "built": {
+        "name": "BUILT",
+        "meta": "3 weeks · $1,111",
+        "desc": "Build the product, package it, and pick the business model, alongside other founders doing the same.",
+        "cta": "See BUILT"
+      }
+    },
+    "close": {
+      "headline": "Read your stage before you plan the next move.",
+      "sub": "The ceiling moves the moment your self-understanding does."
     }
   }
 }
