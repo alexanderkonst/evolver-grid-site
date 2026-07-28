@@ -1,9 +1,11 @@
 # Module Taxonomy — Holonic Map by Spaces
 
-> **Version:** 3.1
+> **Version:** 3.3
 > **Created:** 2026-01-28
-> **Updated:** 2026-03-16
+> **Updated:** 2026-07-27
 > **Purpose:** Master reference for all modules organized by Spaces + Versioning + Divine Stack Architecture
+
+> **Refreshed July 27, 2026 (Day 137).** Audited against `src/App.tsx` route registrations; shipped vs specified vs seed now distinguished. This pass covers modules and routes shipped since v3.1 (2026-03-16) — Founder Cockpit, legal/trust pages, Communities, Evolution Portal (+ Karime variant), Build Container, `/destiny` unlocked from auth — plus three items that are documented but not yet code (Quiz spec, Originals Index v2, Reflection Proposal automation). See changelog v3.3 at the bottom for the full diff. Submodule-level detail below this pass is as of v3.1 and has not been individually re-verified line by line — treat top-level Version/Status/Route as current, submodule tables as directionally current.
 
 ---
 
@@ -85,7 +87,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | 5 | **BUILD** | Create products | Unique Business, Product Builder, Business Incubator |
 | 6 | **BUY & SELL** | Marketplace | Browse/purchase offerings |
 
-> **Note:** ME Space routes use `/game/grow/*` paths (legacy from "GROW" rename). SpacesRail displays "ME" label.
+> **Note (corrected v3.3):** `/game/grow/*` now redirects to `/game/me/*` in `src/App.tsx` — the ME Space live routes are `/game/me/*`. Route cells below updated accordingly; `/game/grow/*` kept working only as a redirect for old links.
 
 ---
 
@@ -98,17 +100,17 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | **ME** | Unique Gift | 0.9 | MVP | `/zone-of-genius` |
 | **ME** | Quality of Life | 0.9 | MVP | `/quality-of-life-map` |
 | **ME** | Mission Discovery | 0.7 | Alpha | `/mission-discovery` |
-| **ME** | Resource Mapping | 0.7 | Alpha | `/game/grow/assets` |
+| **ME** | Resource Mapping | 0.7 | Alpha | `/game/me/assets` (was `/game/grow/assets`, now redirects) |
 | **ME** | Personality Tests | 0.5 | PoC | `/resources/personality-tests` |
 | **LEARN** | Daily Loop | 0.7 | Alpha | `/game/next-move` |
 | **LEARN** | Library | 0.7 | Alpha | `/library` |
 | **LEARN** | Growth Paths | 0.7 | Alpha | `/game/learn/paths` |
-| **LEARN** | Skill Trees | 0.3 | Prototype | `/game/skill-trees` |
+| **LEARN** | Skill Trees | — | **Retired (v3.3)** — no route in `src/App.tsx` | ~~`/game/skill-trees`~~ |
 | **MEET** | Events | 0.9 | MVP | `/game/meet` |
 | **MEET** | Men's Circle | 1.0 | Commercial | `/mens-circle` |
 | **COLLABORATE** | Matchmaking | 0.7 | Alpha | `/game/collaborate/matches` |
 | **COLLABORATE** | Connections | 0.5 | PoC | `/game/collaborate/connections` |
-| **BUILD** | Unique Business | 0.7 | Alpha | `/game/grow/genius-business` |
+| **BUILD** | Unique Business | 0.7 | Alpha | `/game/me/genius-business` (was `/game/grow/genius-business`, now redirects) |
 | **BUILD** | Unique Business Canvas | 0.5 | PoC | `/game/build/canvas` (planned) |
 | **BUILD** | Product Builder | 0.7 | Alpha | `/game/build/product-builder` |
 | **BUILD** | Business Incubator | 0.3 | Prototype | `/game/build` |
@@ -125,6 +127,23 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | **Standalone** | Art | 0.5 | PoC | `/art` |
 | **Standalone** | Transcriber | 0.5 | PoC | `/transcriber` |
 | **Standalone** | Clock | 0.1 | Concept | — |
+| **System** | Founder Cockpit (Landing) | 0.9 | MVP | `/build/cockpit` |
+| **System** | Founder Cockpit (Dashboard) | 0.9 | MVP | `/build/cockpit/dashboard` |
+| **System** | Founder Cockpit (Offers Board) | 0.7 | Alpha — **dataless in prod** (see note) | `/build/cockpit/offers` |
+| **MEET** | Community Webinar | 0.7 | Alpha | `/communities` |
+| **Trust/Legal** | Your Data, Plainly | 0.9 | MVP | `/data` |
+| **Trust/Legal** | Privacy Policy | 0.9 | MVP | `/privacy` |
+| **Trust/Legal** | Terms of Service | 0.9 | MVP | `/terms` |
+| **BUILD** | Evolution Portal (Practitioner Node) | 0.7 | Alpha | `/products/evolution-portal` |
+| **BUILD** | Evolution Portal — Karime variant | 0.5 | PoC (private, noindex) | `/products/evolution-portal/karime` |
+| **BUILD** | Build Container | 0.5 | PoC | `/products/built` |
+| **Standalone** | Destiny | 0.5 | PoC — now public (auth requirement removed) | `/destiny` |
+| **BUY & SELL** | The Originals (v1, founder list) | 0.5 | PoC — precursor to Originals Index v2 | `/the-originals` |
+| **ME (seed)** | Quiz | 0.1 | **Specified, no code** — `docs/specs/quiz/quiz_product_spec.md` | — |
+| **BUY & SELL (seed)** | Originals Index v2 | 0.1 | **Roadmap seed, no code** — Day 130, see roadmap.md | (planned, extends `/the-originals`) |
+| **System (seed)** | Reflection Proposal automation | 0.1 | **Roadmap seed, no code** — Day 132, see roadmap.md | (planned, post-Direction-Call automation) |
+
+> **Offers Board data note:** `CockpitOffersBoard` and `Admin` both read `src/generated/crm-snapshot.json`, which is gitignored — the component is shipped and renders correctly, but production has no live snapshot committed, so the board is currently empty in prod until a snapshot is generated/committed.
 
 > ¹ Unique Business is routed under `/game/grow` (ME Space) but logically belongs to BUILD Space.
 
@@ -223,7 +242,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 |-------|-------|
 | Version | **0.7** (Alpha) |
 | Master Result | Hidden assets → Visible superpowers ready to share |
-| Start | `/game/grow/assets` |
+| Start | `/game/me/assets` (corrected v3.3; `/game/grow/assets` now redirects) |
 | End | Resources saved |
 | Dependencies | None |
 
@@ -359,15 +378,17 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Full Body Reset | 0.7 | Activation | `available` |
 | Body-Mind Integration | 0.7 | Activation | `available` |
 
-#### Module: Skill Trees — v0.3
+#### Module: Skill Trees — RETIRED (v3.3)
 
 | Field | Value |
 |-------|-------|
-| Version | **0.3** (Prototype) |
+| Version | **0.3** (Prototype) at last audit (v3.1) → **Retired**, no route found in `src/App.tsx` as of 2026-07-27 |
 | Master Result | Plateau → Next level unlocked |
-| Start | `/game/skill-trees` |
+| Start | ~~`/game/skill-trees`~~ (no longer registered) |
 | End | Upgrade complete → XP |
 | Dependencies | Basic onboarding |
+
+> Row kept for genealogy per project convention — do not delete. Concept lives on inside Growth Paths' upgrade system (5 Vectors, above), which superseded this standalone route.
 
 ---
 
@@ -444,6 +465,16 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Stripe Payment | 1.0 | Commercial |
 | Registration Flow | 1.0 | Commercial |
 
+#### Module: Community Webinar — v0.7 (NEW, added v3.3)
+
+| Field | Value |
+|-------|-------|
+| Version | **0.7** (Alpha) |
+| Master Result | Isolated learner → invited into a live community gathering |
+| Start | `/communities` |
+| End | Webinar registered |
+| Dependencies | None |
+
 ---
 
 ### 🛠️ BUILD SPACE (Creation)
@@ -454,11 +485,11 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 |-------|-------|
 | Version | **0.7** (Alpha) |
 | Master Result | Hidden genius → Offer the world wants |
-| Start | `/game/grow/genius-business` |
+| Start | `/game/me/genius-business` (corrected v3.3; `/game/grow/genius-business` now redirects) |
 | End | Business saved |
 | Dependencies | ZoG complete |
 
-> **Route note:** Currently routed under `/game/grow` (ME Space) but logically belongs to BUILD.
+> **Route note:** Currently routed under `/game/me` (ME Space) but logically belongs to BUILD.
 
 **Submodules:**
 | Submodule | Version | Status |
@@ -524,6 +555,36 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 > **v2.2 change:** Upgraded from v0.1 to v0.3 — has a basic BuildSpace page.
 
+#### Module: Evolution Portal (Practitioner Node) — v0.7 (NEW, added v3.3)
+
+| Field | Value |
+|-------|-------|
+| Version | **0.7** (Alpha, base) / **0.5** (PoC, Karime variant) |
+| Master Result | Practitioner without a delivery system → client-facing Evolution Portal |
+| Start | `/products/evolution-portal` |
+| End | Portal configured for a practitioner's clients |
+| Dependencies | None |
+
+**Submodules:**
+| Submodule | Version | Status | Route |
+|-----------|---------|--------|-------|
+| Base landing (public) | 0.7 | Alpha | `/products/evolution-portal` |
+| Karime variant (private, noindex, personalized proposal) | 0.5 | PoC | `/products/evolution-portal/karime` |
+
+> Legacy `/products/evolution-protocol` and `/product/evolution-portal` redirect to the canonical path.
+
+#### Module: Build Container — v0.5 (NEW, added v3.3)
+
+| Field | Value |
+|-------|-------|
+| Version | **0.5** (PoC) |
+| Master Result | Idea with nowhere to live → contained BUILD-space product surface |
+| Start | `/products/built` |
+| End | Container configured |
+| Dependencies | None |
+
+> Legacy `/products/build` redirects to `/products/built`.
+
 ---
 
 ### 🏪 BUY & SELL SPACE
@@ -569,6 +630,18 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Hero Section (reusable) | 0.7 | Alpha |
 | CTA Section (reusable) | 0.7 | Alpha |
 | Dual-mode styling (light/dark) | 0.7 | Alpha |
+
+#### Module: The Originals (v1) — v0.5 (NEW, added v3.3)
+
+| Field | Value |
+|-------|-------|
+| Version | **0.5** (PoC) |
+| Master Result | Hardcoded founder list → living proof of the model, one page |
+| Start | `/the-originals` |
+| End | Continuous — success = list stays current |
+| Dependencies | None |
+
+> **Precursor, not the roadmap seed.** `src/pages/TheOriginalsPage.tsx` is a hardcoded 3-founder list (Alexander, Oyi, Sergey), shipped and in code today. The **Originals Index v2** described in the roadmap (Day 130 seed) — account-linked pages per venture, editable one-paragraph reads, public version history — is a **specified-not-built** upgrade of this page. See the seed row in the Version Matrix above and roadmap.md line ~494.
 
 ---
 
@@ -616,6 +689,27 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | Personal Dashboard | 0.5 | PoC |
 | System Dashboard (meta-view) | 0.3 | Prototype |
 | Founder Progress Cards | 0.5 | PoC |
+
+#### Module: Founder Cockpit — v0.9 (NEW, added v3.3)
+
+| Field | Value |
+|-------|-------|
+| Version | **0.9** (MVP, landing + dashboard) / **0.7** (Alpha, offers board — dataless in prod) |
+| Master Result | Scattered founder-state → one operator console for Sasha's own venture |
+| Start | `/build/cockpit` |
+| End | Continuous — success = daily-driver operator surface |
+| Dependencies | Auth (dashboard: `RequireAuth`), Admin (offers board: `RequireAdmin`) |
+| OS Layer | Holomap OS (reads live Equilibrium + CRM state) |
+
+**Submodules:**
+| Submodule | Version | Status | Route |
+|-----------|---------|--------|-------|
+| Cockpit Landing | 0.9 | MVP | `/build/cockpit` |
+| Cockpit Dashboard (4 primary buttons + `cockpit-ai-lens` reflection) | 0.9 | MVP | `/build/cockpit/dashboard` (RequireAuth) |
+| Cockpit Offers Board | 0.7 | Alpha — ships correctly but reads gitignored `crm-snapshot.json`, empty in prod until a snapshot is committed | `/build/cockpit/offers` (RequireAdmin) |
+| `equilibrium-ai-context` edge fn (machine-readable Equilibrium, agent-token access) | 0.9 | MVP | Supabase edge fn |
+
+> Legacy `/cockpit` and `/cockpit/dashboard` redirect to the `/build/cockpit/*` canonical paths.
 
 ---
 
@@ -787,6 +881,67 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | End | — |
 | Dependencies | None |
 
+### Module: Destiny — v0.5 (NEW, added v3.3)
+
+| Field | Value |
+|-------|-------|
+| Version | **0.5** (PoC) |
+| Master Result | TBD experience, now reachable without login |
+| Start | `/destiny` |
+| End | — |
+| Dependencies | None |
+
+> Route recently unlocked from `RequireAuth` — now public. Audited against `src/App.tsx` line 614 (2026-07-27).
+
+### Module: Trust & Legal Pages — v0.9 (NEW, added v3.3)
+
+| Field | Value |
+|-------|-------|
+| Version | **0.9** (MVP) |
+| Master Result | Vague data promises → plain-language commitments + the legal backing them |
+| Start | `/data` |
+| End | Reader trusts the platform's data handling |
+| Dependencies | None |
+
+**Submodules:**
+| Submodule | Version | Status | Route |
+|-----------|---------|--------|-------|
+| Your Data, Plainly (Day 133 plain-language data promise) | 0.9 | MVP | `/data` |
+| Privacy Policy | 0.9 | MVP | `/privacy` |
+| Terms of Service | 0.9 | MVP | `/terms` |
+
+---
+
+## 🌱 SEEDS — Specified or Roadmapped, Not Yet Built
+
+> Distinguished from the sections above: these have a spec or a roadmap entry but **no code in `src/`**. Included here so the map shows the full pipeline, not just what ships. Do not confuse with `Concept` version-stage modules elsewhere in this doc that already have some code (e.g. Clock) — these three have none.
+
+### Seed: Quiz Module
+
+| Field | Value |
+|-------|-------|
+| Status | **Specified, no code** |
+| Spec | `docs/specs/quiz/quiz_product_spec.md`, `docs/specs/quiz/quiz_tracker.md` |
+| Intended Space | ME |
+
+### Seed: Originals Index v2
+
+| Field | Value |
+|-------|-------|
+| Status | **Roadmap seed, no code** |
+| Source | roadmap.md, Day 130 seed — "each venture in the Index gets an account-linked page; the one-paragraph read is editable by the venture itself; full version history of the paragraph is publicly visible" |
+| Intended Space | BUY & SELL, extends `/the-originals` (see The Originals v1 above) |
+| Sasha's framing | Parked — "not for the next month or two; the time will come soon." |
+
+### Seed: Reflection Proposal Automation
+
+| Field | Value |
+|-------|-------|
+| Status | **Roadmap seed, no code** |
+| Source | roadmap.md, Day 132 seed — automates the post-Direction-Call reflection message from the call transcript (invariant quoted back, buying question, project core, one door) |
+| Intended Space | System (feeds off Direction Call ops) |
+| Sasha's framing | Manual first (ops §4a SOP); automate only after the manual pattern proves itself repeatedly. |
+
 ---
 
 ## 📈 VERSION STATISTICS
@@ -849,6 +1004,20 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 ---
 
 ## 📝 CHANGELOG
+
+### v3.3 (2026-07-27, Day 137)
+- **Refresh pass** — audited the Version Matrix and Standalone/System/BUILD/MEET sections against live `src/App.tsx` route registrations (last audit was v3.1, 2026-03-16 — ~4 months of drift).
+- **Founder Cockpit** added as System-level module (v0.9 landing + dashboard, v0.7 offers board) — `/build/cockpit`, `/build/cockpit/dashboard`, `/build/cockpit/offers`. Offers board flagged **dataless in prod**: reads gitignored `src/generated/crm-snapshot.json`.
+- **Community Webinar** added to MEET (v0.7) — `/communities`.
+- **Trust & Legal Pages** added as Standalone module (v0.9) — Your Data Plainly (`/data`), Privacy Policy (`/privacy`), Terms of Service (`/terms`), all Day 133.
+- **Evolution Portal** added to BUILD (v0.7) with Karime variant (v0.5, private/noindex) — `/products/evolution-portal`, `/products/evolution-portal/karime`.
+- **Build Container** added to BUILD (v0.5) — `/products/built`.
+- **Destiny** added to Standalone (v0.5) — `/destiny`, noted as recently unlocked from `RequireAuth` (now public).
+- **The Originals (v1)** added to BUY & SELL (v0.5) — `/the-originals`, the hardcoded 3-founder precursor to the roadmap's Originals Index v2; explicitly distinguished from the seed below so nobody confuses the two.
+- **New "SEEDS" section** — three items with a spec or roadmap entry but zero code, called out so the map doesn't imply they're built: Quiz module (`docs/specs/quiz/`), Originals Index v2 (roadmap Day 130 seed), Reflection Proposal automation (roadmap Day 132 seed).
+- **Skill Trees retired** — `/game/skill-trees` has no route in `src/App.tsx`; row kept (not deleted) per project genealogy convention, marked Retired.
+- **Route corrections** — `/game/grow/*` now redirects to `/game/me/*` in code; Resource Mapping and Unique Business route cells updated from `/game/grow/assets` and `/game/grow/genius-business` to their live `/game/me/*` equivalents.
+- Module count: 28 → 35 shipped/specified/seed entries (7 new top-level additions, 1 retired, 3 tracked separately as seeds not counted in the shipped total). Submodule-level counts in the Version Statistics table below are unchanged from v3.1 pending a full submodule re-audit.
 
 ### v3.1 (2026-03-16)
 - **Founders Showcase** added to BUY & SELL (v0.7) — dual-mode rendering (light/dark), reusable hero + CTA
