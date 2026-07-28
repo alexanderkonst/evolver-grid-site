@@ -7007,13 +7007,23 @@ form.liquid-glass input:-webkit-autofill:active {
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  opacity: 0.22;
+  opacity: 0.20;
   transition: opacity 220ms ease;
 }
 
 .group:hover > .plane-joint,
 .group:focus-visible > .plane-joint {
-  opacity: 0.42;
+  opacity: 0.35;
+}
+
+.plane-joint--moving {
+  animation: plane-joint-settle 380ms cubic-bezier(0.2, 0.7, 0.25, 1);
+}
+
+@keyframes plane-joint-settle {
+  0% { opacity: 0.18; }
+  42% { opacity: 0.32; }
+  100% { opacity: 0.20; }
 }
 
 .plane-joint--pivot {
@@ -7032,20 +7042,20 @@ form.liquid-glass input:-webkit-autofill:active {
 .plane-joint__pivot {
   position: absolute;
   left: 50%;
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 999px;
   transform: translate(-50%, -50%);
   background:
     radial-gradient(circle at 37% 31%,
-      rgba(222, 202, 145, 0.72) 0 8%,
-      rgba(169, 133, 53, 0.68) 19%,
-      rgba(90, 66, 25, 0.78) 48%,
-      rgba(4, 12, 31, 0.92) 72%);
+      rgba(222, 202, 145, 0.60) 0 7%,
+      rgba(154, 119, 45, 0.60) 17%,
+      rgba(76, 55, 21, 0.82) 42%,
+      rgba(3, 9, 25, 0.96) 68%);
   box-shadow:
-    0 0 0 3px rgba(1, 7, 22, 0.22),
-    0 1px 2px rgba(0, 0, 0, 0.44),
-    inset 0 1px rgba(255, 237, 179, 0.16);
+    0 0 0 4px rgba(1, 7, 22, 0.28),
+    0 1px 2px rgba(0, 0, 0, 0.50),
+    inset 0 1px rgba(255, 237, 179, 0.11);
 }
 
 .plane-joint__pivot--upper {
@@ -7059,7 +7069,7 @@ form.liquid-glass input:-webkit-autofill:active {
 .plane-joint--rail {
   left: auto;
   width: 8px;
-  opacity: 0.18;
+  opacity: 0.16;
   background:
     linear-gradient(90deg,
       rgba(2, 7, 20, 0.34),
@@ -7090,7 +7100,7 @@ form.liquid-glass input:-webkit-autofill:active {
   top: 50%;
   left: 50%;
   width: 3px;
-  height: 22px;
+  height: 15px;
   border-radius: 2px;
   transform: translate(-50%, -50%);
   background: linear-gradient(
@@ -7107,11 +7117,52 @@ form.liquid-glass input:-webkit-autofill:active {
 @media (prefers-reduced-motion: reduce) {
   .plane-joint {
     transition: none;
+    animation: none;
   }
 }
 
 @media (max-width: 1023px) {
   .plane-joint {
     display: none;
+  }
+}
+
+/* Mobile navigation remains physically coherent through a shadow joint only.
+   Literal hardware at phone scale would become ornament. */
+.mobile-plane-seam {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 1px;
+  width: 1px;
+  height: 100%;
+  pointer-events: none;
+  background: rgba(214, 190, 120, 0.08);
+  box-shadow:
+    -1px 0 rgba(1, 6, 19, 0.32),
+    1px 0 rgba(214, 190, 120, 0.035);
+}
+
+/* Tablet has enough physical scale for one recessed datum, but not the full
+   two-pivot desktop mechanism. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .mobile-plane-seam::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+      circle at 37% 31%,
+      rgba(214, 190, 120, 0.46) 0 10%,
+      rgba(112, 83, 31, 0.64) 30%,
+      rgba(3, 9, 25, 0.94) 68%
+    );
+    box-shadow:
+      0 0 0 3px rgba(1, 7, 22, 0.24),
+      0 1px 2px rgba(0, 0, 0, 0.42);
+    opacity: 0.46;
   }
 }
