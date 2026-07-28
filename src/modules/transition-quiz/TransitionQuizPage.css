@@ -1,0 +1,369 @@
+/* Transition Quiz — "Where Are You" — standalone page, own layout, no shell.
+   Mobile-first at 375px. Uses the app's shared token set (hsl(var(--primary))
+   etc from index.css) so it matches the rest of the platform's light/dark
+   register instead of inventing a new palette. Cormorant Garamond for
+   headings, DM Sans for body, matching the site's fontFamily.display/sans. */
+
+.tq-page {
+  position: relative;
+  min-height: 100svh;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  padding: 28px 18px 64px;
+  overflow-x: hidden;
+}
+
+.tq-shell {
+  width: min(560px, 100%);
+  margin: 0 auto;
+}
+
+.tq-eyebrow {
+  margin: 0 0 10px;
+  font: 600 0.72rem/1.3 "DM Sans", sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: hsl(var(--primary));
+}
+
+.tq-h1 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(1.9rem, 7vw, 2.6rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+.tq-sub {
+  margin: 14px 0 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: hsl(var(--foreground) / 0.72);
+}
+
+.tq-cta-row {
+  margin-top: 28px;
+}
+
+.tq-progress {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 22px;
+}
+
+.tq-progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: hsl(var(--foreground) / 0.14);
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.tq-progress-dot.is-filled {
+  background: hsl(var(--primary));
+}
+
+.tq-progress-dot.is-current {
+  transform: scale(1.3);
+}
+
+.tq-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 18px;
+  border: none;
+  background: none;
+  padding: 0;
+  color: hsl(var(--foreground) / 0.55);
+  font: 500 0.8rem/1 "DM Sans", sans-serif;
+  cursor: pointer;
+}
+
+.tq-back:hover {
+  color: hsl(var(--foreground) / 0.85);
+}
+
+.tq-card {
+  border: 1px solid hsl(var(--border));
+  border-radius: 18px;
+  background: hsl(var(--card, var(--background)) / 0.7);
+  backdrop-filter: blur(14px);
+  padding: 22px;
+  box-shadow: 0 12px 40px -24px hsl(var(--foreground) / 0.25);
+}
+
+.tq-card + .tq-card {
+  margin-top: 16px;
+}
+
+.tq-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.tq-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  border: 1px solid hsl(var(--border));
+  border-radius: 14px;
+  background: hsl(var(--background));
+  padding: 14px 16px;
+  font: 400 0.95rem/1.5 "DM Sans", sans-serif;
+  color: hsl(var(--foreground) / 0.88);
+  cursor: pointer;
+  transition: border-color 140ms ease, background 140ms ease, transform 140ms ease;
+}
+
+.tq-option:hover {
+  border-color: hsl(var(--primary) / 0.5);
+  transform: translateY(-1px);
+}
+
+.tq-option.is-selected {
+  border-color: hsl(var(--primary));
+  background: hsl(var(--primary) / 0.08);
+  color: hsl(var(--foreground));
+}
+
+.tq-option-letter {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid hsl(var(--border));
+  font: 600 0.7rem/1 "DM Sans", sans-serif;
+  color: hsl(var(--foreground) / 0.5);
+}
+
+.tq-option.is-selected .tq-option-letter {
+  border-color: hsl(var(--primary));
+  color: hsl(var(--primary));
+  background: hsl(var(--primary) / 0.12);
+}
+
+.tq-stage-name {
+  margin: 4px 0 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 9vw, 2.8rem);
+  line-height: 1.06;
+  color: hsl(var(--primary));
+}
+
+.tq-label {
+  margin: 0;
+  font: 600 0.7rem/1.3 "DM Sans", sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: hsl(var(--foreground) / 0.5);
+}
+
+.tq-body-text {
+  margin: 10px 0 0;
+  font-size: 1.02rem;
+  line-height: 1.68;
+  color: hsl(var(--foreground) / 0.86);
+}
+
+.tq-section {
+  margin-top: 26px;
+}
+
+.tq-spread-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.tq-spread-aspect {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tq-spread-aspect-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font: 600 0.85rem/1.3 "DM Sans", sans-serif;
+}
+
+.tq-spread-tag {
+  font: 600 0.62rem/1.4 "DM Sans", sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.tq-spread-tag.is-bottleneck {
+  color: hsl(20 85% 45%);
+  background: hsl(20 85% 45% / 0.12);
+}
+
+.tq-spread-tag.is-driver {
+  color: hsl(var(--primary));
+  background: hsl(var(--primary) / 0.12);
+}
+
+.tq-arc-track {
+  position: relative;
+  height: 8px;
+  border-radius: 999px;
+  background: hsl(var(--foreground) / 0.1);
+}
+
+.tq-arc-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: hsl(var(--foreground) / 0.28);
+  transition: width 320ms ease;
+}
+
+.tq-arc-fill.is-bottleneck {
+  background: hsl(20 85% 45%);
+}
+
+.tq-arc-fill.is-driver {
+  background: hsl(var(--primary));
+}
+
+.tq-arc-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font: 500 0.62rem/1 "DM Sans", sans-serif;
+  color: hsl(var(--foreground) / 0.4);
+}
+
+.tq-cta {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 15px 22px;
+  font: 600 0.92rem/1 "DM Sans", sans-serif;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 140ms ease, transform 140ms ease;
+}
+
+.tq-cta.tq-cta-primary {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  box-shadow: 0 8px 24px -10px hsl(var(--primary) / 0.55);
+}
+
+.tq-cta.tq-cta-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.tq-cta.tq-cta-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.tq-cta.tq-cta-ghost {
+  background: transparent;
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--foreground) / 0.75);
+}
+
+.tq-cta-sub {
+  margin: 10px 0 0;
+  text-align: center;
+  font-size: 0.78rem;
+  color: hsl(var(--foreground) / 0.5);
+}
+
+.tq-retake {
+  display: block;
+  margin: 18px auto 0;
+  border: none;
+  background: none;
+  padding: 0;
+  font: 500 0.8rem/1 "DM Sans", sans-serif;
+  color: hsl(var(--foreground) / 0.5);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.tq-email-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.tq-email-input {
+  width: 100%;
+  border: 1px solid hsl(var(--border));
+  border-radius: 12px;
+  background: hsl(var(--background));
+  padding: 13px 15px;
+  font: 400 0.95rem/1.4 "DM Sans", sans-serif;
+  color: hsl(var(--foreground));
+}
+
+.tq-email-input:focus {
+  outline: none;
+  border-color: hsl(var(--primary));
+}
+
+.tq-skip {
+  display: block;
+  margin: 4px auto 0;
+  border: none;
+  background: none;
+  padding: 6px;
+  font: 500 0.82rem/1 "DM Sans", sans-serif;
+  color: hsl(var(--foreground) / 0.45);
+  cursor: pointer;
+}
+
+.tq-success {
+  margin-top: 10px;
+  font: 500 0.85rem/1.4 "DM Sans", sans-serif;
+  color: hsl(var(--primary));
+}
+
+.tq-route-block {
+  margin-top: 22px;
+}
+
+.tq-link-quiet {
+  display: inline-flex;
+  margin-top: 14px;
+  font: 500 0.82rem/1.4 "DM Sans", sans-serif;
+  color: hsl(var(--foreground) / 0.55);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 640px) {
+  .tq-page {
+    padding: 48px 24px 88px;
+  }
+
+  .tq-card {
+    padding: 30px;
+  }
+}
