@@ -1,84 +1,8 @@
 {
-  "generated_at": "2026-07-28T22:19:40.030Z",
+  "generated_at": "2026-07-28T23:07:14.663Z",
   "source": "docs/09-logs/project_pulse_log.md",
-  "eventsCount": 48,
-  "latestEvent": {
-    "date": "2026-07-28",
-    "day": "138",
-    "pulse": "P-8B69_looped_in_on_P-0318_peer_positioning",
-    "who": [
-      "Sasha",
-      "P-8B69"
-    ],
-    "what_happened": "Written message to P-8B69 (row 25, \"P-8B69\" — Sasha's teacher of ~6 years, since late 2019, also P-E734's teacher). Context: P-0318, an a16z-backed founder, independently arrived at both Sasha and P-8B69; their client bases have essentially never overlapped before. Sasha had sent P-0318 a long voice-note the previous day (the Jul 28 business/spiritual-integration reflection, row 37) and is now sharing the relevant part with P-8B69 because it concerns him directly. Substance of the message: (1) framed the share as concerning P-8B69 directly; (2) reported P-0318's question — which of Sasha's two offers to take, transformational or business; (3) reported his answer — the question dissolves, there is no separate spirituality hovering apart from the material, the split P-0318 sees between inner work and building something is itself the distortion; (4) named the trap — chasing high vibrations while quietly treating money and matter as less important, expanded and ungrounded, money area of life slowly degrading, almost everyone passes through it at least once; (5) the conclusion — the business path IS the path, going deep into understanding yourself and landing it in structure is about as spiritual as it gets, therefore recommended P-0318 start with the business door and let transformation happen alongside, which it does by itself; (6) positioned P-8B69, verbatim in substance, as one of the deepest people he knows personally and one of the deepest on the planet as far as he can tell; named the guru dynamic explicitly so it stays off the table for all three of them, centering P-0318's sovereignty rather than his dependence; (7) the Formula 1 image — P-0318 as the driver, a driver at that level assembles a world-class crew each expert at one thing, Sasha and P-8B69 are unusual as a pairing since their worlds have barely overlapped, and P-0318 has walked himself to a point where he could have both; (8) the one risk named — expansion without integration — called manageable precisely because either of them would flag the sharp edges; (9) closing line: you never become someone else, you only ever become more yourself. No ask, no offer — informational and relational.",
-    "energy_exchanged": [
-      "one message sent, no payment, no ask",
-      "a potential competitor for the same client elevated as a peer"
-    ],
-    "affected_holons": [
-      "CRM Master Table (row 25, P-8B69 — last contact + status"
-    ],
-    "phase_shift_significance": "notable",
-    "next_action": "None required. Watch for P-8B69's response and for whether the P-0318/P-8B69/Sasha triangle produces a referral in either direction — first time this channel has existed.",
-    "staleness_or_contradictions": "Row 25 spells the name \"P-8B69\"; the Jul 28 P-0318 pulse entry (row 37 notes) spells it \"Uluva\" — same person, transliteration variance, not a new contact. Also note the \"previous day\" voice-note to P-0318 referenced here and the Jul 28-dated P-0318 reflection pulse above appear to be the same event; filed as reported without reconciling the day-offset.",
-    "title": "P-8B69_looped_in_on_P-0318_peer_positioning"
-  },
-  "phaseShiftDistribution": {
-    "minor": 11,
-    "major": 8,
-    "notable": 28,
-    "routine": 1
-  },
-  "openNextActions": [
-    {
-      "date": "2026-07-23",
-      "title": "P-D62E_webinar_proposal_msg3_sent",
-      "next_action": "Wait for P-D62E's confirmation and date/time options. Follow up 2026-07-26 if silent. No other action owed."
-    },
-    {
-      "date": "2026-07-23",
-      "title": "P-0318_call_107min_evolution_lead_P-4FA3_clipping",
-      "next_action": "Sasha to send P-0318 the Reflection Proposal (ops §4a) within 24h, anchoring the BUSINESS door -- risk of being positioned as a free spiritual advisor. Await P-0318's message in ~2 days, follow-up 2026-07-25 if silent. Evolution collab call with P-76AB stays sequenced behind P-0318's own path-walking. Reply to P-4FA3 with the clipping-thread mirror; no offer."
-    },
-    {
-      "date": "2026-07-23",
-      "title": "day133_close_P-E734_tomorrow_learnings",
-      "next_action": "Sasha shows up to the P-E734 call Jul 24. No other action owed."
-    },
-    {
-      "date": "2026-07-24",
-      "title": "P-4787_paid_P-C02F_proposal_P-E734_scope",
-      "next_action": "Deliver P-4787's session Monday, Jul 27. Await P-C02F's confirmation and date/time options, follow-up 2026-07-27 if silent. Sasha to revise and return the priced Evolution Portal proposal to P-E734 with the six new scope facts folded in."
-    },
-    {
-      "date": "2026-07-27",
-      "title": "P-4787_session_delivered_russian_first_run",
-      "next_action": "Record the Method Video (SD1, next two weeks). Add prerequisites to the booking confirmation (SD2) and cut target session length to 90 minutes. Adopt the three-names close (SD4). Redeploy the four edge functions through Lovable so the prose calibration goes live. P-4787 is integrating (normal for this stage, not a stall) — await his decision on the $1,111 container; no nudge."
-    },
-    {
-      "date": "2026-07-28",
-      "title": "P-4787_workshop_transcript_verified_ripeness_read",
-      "next_action": "No nudge. P-4787 is integrating a 3-hour session; \"подумаем\" is an honest, open answer, not a soft no. Revisit naturally next time P-052F or P-4787 reach out. When he does decide, the ambassadorship conversation is still explicitly sequenced after he's lived the method, per his own line: \"нельзя быть амбассадором того, что не прожил сам.\""
-    },
-    {
-      "date": "2026-07-28",
-      "title": "P-EB3A_P-C01D_contact_low_surrender",
-      "next_action": "No offer, no pursuit. Revisit only if surrender changes — watch for a real rupture/tremors signal rather than assuming one."
-    },
-    {
-      "date": "2026-07-28",
-      "title": "P-2296_two_calls_ripeness_read",
-      "next_action": "Follow-up due ~Aug 4 per P-2296's own \"in a week or so.\" Next time, connect the offer to the dated lever (NFT NYC, first week of September) instead of the sovereign-network vision; watch monologue length; leave room for his buying questions to be answered live."
-    },
-    {
-      "date": "2026-07-28",
-      "title": "P-0318_business_spiritual_integration_offer",
-      "next_action": "Await P-0318's decision. Do not nudge. Confirm separately whether the \"session run that morning\" corresponds to unlogged revenue, and ask Sasha for the exact price/date named so the ledger can carry them."
-    },
-    {
-      "date": "2026-07-28",
-      "title": "P-8B69_looped_in_on_P-0318_peer_positioning",
-      "next_action": "None required. Watch for P-8B69's response and for whether the P-0318/P-8B69/Sasha triangle produces a referral in either direction — first time this channel has existed."
-    }
-  ]
+  "eventsCount": 0,
+  "latestEvent": null,
+  "phaseShiftDistribution": {},
+  "openNextActions": []
 }
