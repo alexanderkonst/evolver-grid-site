@@ -7485,7 +7485,7 @@ Keep the fire, keep the present-continuous tense ('in the making'), and let the 
 
 **The reframe.** Marketing normally tries to move people toward readiness. That is slow, expensive, and mostly futile. If readiness is a *region* in a multi-axis space, the work is to find the people already standing in it. The ideal client is a target vector, not a maximum: on several axes, being past the target scores lower than being at it (a person fully embodying their uniqueness is a peer, not a client).
 
-**The nine axes** (each named by what it measures, with its target):
+**The ten axes** (each named by what it measures, with its target):
 
 | Axis | What it measures | Physics analogy | Target |
 |---|---|---|---|
@@ -7498,18 +7498,23 @@ Keep the fire, keep the present-continuous tense ('in the making'), and let the 
 | **Consent** | willingness to be seen and altered | membrane permeability | high |
 | **Means** | capacity to invest in themselves | available amperage | high (6-7 of 7) |
 | **Ticking Clock** | the rate at which staying the same costs them — whether a dated consequence is already running | discharge rate: how fast the current position is decaying on its own | a real clock exists and is named |
+| **Buying Frame** | which category of purchase they believe in | what the circuit is wired to power | transformation (6 of 7) |
 
-**The mathematics, honestly stated.** A person is a point in R^9; ripeness is proximity to a target vector, weighted. Because axes correlate, the formally correct metric is Mahalanobis distance (inverse-covariance weighting, which stops correlated axes from double-counting); with fewer than ~30 scored cases the honest interim is to name the latent factor by hand where two axes travel together and score it once. **Surrender is not a coordinate but a gain term:** it multiplies rather than adds, which is why a high score on every other axis produces friction rather than conversion when surrender is absent. Same for the two capacity gates. The working form:
+One clarifying line on the last axis: someone can have money and a deadline and still not buy, because paying a person for self-understanding is not a purchasable category in their frame. The formed habit of paying for transformation is Buying Frame sitting at target.
 
-> **Ripeness = Surrender(conductivity) × Means × Ticking Clock × Fit(the remaining six)**
+**The mathematics, honestly stated.** A person is a point in R^10; ripeness is proximity to a target vector, weighted. Because axes correlate, the formally correct metric is Mahalanobis distance (inverse-covariance weighting, which stops correlated axes from double-counting); with fewer than ~30 scored cases the honest interim is to name the latent factor by hand where two axes travel together and score it once. **Surrender is not a coordinate but a gain term:** it multiplies rather than adds, which is why a high score on every other axis produces friction rather than conversion when surrender is absent. Same for the other three gates. The working form:
 
-Multiplicative terms formalize the field rule: a closed gate can never be compensated by pushing harder on another axis. Voltage without conductivity dissipates as heat, which is the exact felt quality of a high-friction sales conversation.
+> **Ripeness = Surrender(conductivity) × Means × Ticking Clock × Buying Frame × Fit(the remaining six)**
 
-**Universal vs practice-specific axes.** Transition, Surrender, Distance, Means and Ticking Clock are universal to any business selling change. Locus, Uniqueness and Consent are specific to a mirror-product. When this instrument is handed to another founder, the universal five carry over and the last three are re-derived for their business. This is what makes the vector the first genuinely transmissible asset in the method: unlike the mirror itself, it does not require its author to be present.
+Four multiplicative gates formalize the field rule: a closed gate can never be compensated by pushing harder on another axis. Voltage without conductivity dissipates as heat, which is the exact felt quality of a high-friction sales conversation; and a fully charged circuit still doesn't light if it isn't wired to the socket in question.
 
-**Field use:** nine scores after any call, ninety seconds. Read the shape, not the total: a 70 with surrender at 2 is a different animal from a 70 with surrender at 9.
+**Universal vs practice-specific axes.** Transition, Surrender, Distance, Means, Ticking Clock and Buying Frame are universal to any business selling change. Locus, Uniqueness and Consent are specific to a mirror-product. When this instrument is handed to another founder, the universal six carry over and the last three are re-derived for their business. This is what makes the vector the first genuinely transmissible asset in the method: unlike the mirror itself, it does not require its author to be present.
+
+**Field use:** ten scores after any call, ninety seconds. Read the shape, not the total: a 70 with surrender at 2 is a different animal from a 70 with surrender at 9.
 
 **Guardrail on Ticking Clock.** Naming the decay of a person's current position is honest diagnosis when a clock already exists — it makes a real, dated consequence visible to someone who hadn't looked at it squarely. It cannot manufacture readiness where no clock is running. A person with no real cost of delay stays a no, no matter how well the decay is described. Using this axis to invent urgency where none exists is pressure selling, not diagnosis, and is out of bounds.
+
+**Correction (Day 138, July 28, 2026).** An earlier same-day edit renamed the Currency axis to Ticking Clock, overwriting it instead of adding alongside it. Both stand: Ticking Clock and Buying Frame measure different things — one is whether a dated consequence is running, the other is whether the purchase is even a category the person believes in — and the Clock Audit run the same day (`distribution_playbook.md`, Part IX) is the reason the distinction surfaced. Reading five actual paying clients, none had a clean dated clock; every sale ran on chronic pain and accumulated trust instead. What all five shared was Buying Frame already at target — a standing habit of paying for their own transformation. The vector is ten axes, not nine.
 
 **Relationship:** Technology 121 (surrender as the buying threshold, here formalized as the conductivity term), Technology 84 (the holomap instrument, which builds each axis), Technology 118 (the seer invariant: one can only read the ripeness one has lived through).
 

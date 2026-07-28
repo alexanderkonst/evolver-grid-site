@@ -1340,7 +1340,7 @@ Five moves that hand the other person authorship of the encounter before anythin
 
 The more pressure someone is under, the more concrete and income-denominated the promise must be to reach them at all. Clarity-shaped promises convert the already-converted; people under financial strain regress down the purchase ladder toward mechanical, money-denominated promises. This is not a compromise of the work. It is meeting the rung they are standing on.
 
-**The tenth reading: awareness.** Position determines whether someone can buy; awareness determines what they can hear right now. Score it alongside the nine axes as a separate reading, and let it govern the message rather than the qualification: a ripe person at a low awareness rung is not a bad prospect, they are a prospect who needs the previous rung's asset first. Full model: `pain_theory_playbook.md`, Awareness × Position.
+**The eleventh reading: awareness.** Position determines whether someone can buy; awareness determines what they can hear right now. Score it alongside the ten axes as a separate reading, and let it govern the message rather than the qualification: a ripe person at a low awareness rung is not a bad prospect, they are a prospect who needs the previous rung's asset first. Full model: `pain_theory_playbook.md`, Awareness × Position.
 
 ### The Mask-On-First Principle
 

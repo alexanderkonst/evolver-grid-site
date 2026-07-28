@@ -9469,3 +9469,45 @@ So: the client brings quiz + video + platform onboarding. Sasha brings the deep 
 
 - **Two dials** (resonance for the light, charge for the shadow) — canonized in the playbook's SHADOW section.
 - **Living-prose calibration** — a native writer's anti-example set now attached to artifact generation and the reveal in EN, RU, and ES.
+
+## Addendum — Day 138, July 28, 2026: Tribe v5.0 — The Purchase Physics Correction
+
+*Supersedes Tribe v4.0's implicit qualification-by-alignment. Source: the Ticking Clock Audit (`distribution_playbook.md`, Part IX, Day 138) and the Portrait v2 stress test. Tribe v3.5's bullseye ("The Founder Going Sovereign," Day 133) stands as the named field-knowledge candidate; this addendum carries the gate structure that decides who actually buys.*
+
+**The Clock Audit finding.** Zero of the five paying clients had a dated ticking clock. Every real sale ran on chronic identity-level pain plus months of accumulated trust. The one textbook clock in the CRM — a speaking slot five weeks out — belonged to someone who didn't pay. This isn't evidence the model fails. It's evidence those long, unripe calls were the wrong people, selected by resonance instead of by the conditions that actually make someone collapse into a yes. Full audit: `distribution_playbook.md` Part IX; identified version in the private CRM tracker.
+
+**The four de facto segments actually pursued.** Naming them so they can be seen and stopped:
+- **The Fascinating Mirrors** — brilliant polymaths selected because Sasha's own gift fires in their presence. His firing gets mistaken for their readiness. They want a witness, not a change.
+- **The Admiring Broke** — surrendered, consenting practitioners without Means. They pay in gratitude.
+- **The Channel People** — community leaders treated as buyers when they are distribution. They buy business ROI, a different sale entirely.
+- **The Skeptic-Knowers** — surrender is closed; brilliance hardens the gate instead of opening it (Technology 125).
+
+One mechanism runs under all four: qualification happened on alignment, where the gift lights up, never on the conditions that make someone collapse. The gift chose the targets, not the buyer's readiness to buy.
+
+**The Ideal Client Portrait v2.** A builder whose form has just ended: the company, the title, the story that used to answer "what do you do" doesn't work anymore, and they know it before anyone else does. This isn't a fresh wound. It's been a year, sometimes three, and there was no single event, no firing, no failure they can point to and explain to a friend over drinks. They just stopped being able to say the sentence and mean it. They have money from what they built before, but the money isn't the point. The proof is what they've already spent on themselves: coaches, retreats, ceremony, therapy, teachers, and they'll tell you flat out it was some of the best money they ever spent. That's the real signal, more than the bank balance. They don't blame the market. They say "I can't name it yet," not "there's nothing out there for me." They're holding five threads at once, no sentence that ties them together, and it eats at them, because they know exactly how sharp a good sentence can be and every attempt they've made has fallen short. They haven't given up. They're actively looking, right now, for someone who can see the pattern they can't see themselves. So when you name it back to them, accurately, in the first few minutes, and you've shown you actually see what they built before you say anything else, they don't feel handled. They feel found. And it's them who asks what it costs, not you who pitches them.
+
+**Checklist v2 (post-roast, corrected):**
+
+Hard gates:
+1. Has paid for their own transformation before, and calls it good money spent.
+2. Means present (not wealth — capacity to invest in themselves now).
+3. Surrendered to the search (uses language like "I don't know what's next," not "I need to execute better").
+4. Consent arrives from their side — they ask what it costs (pull), they don't propose a trade (flip).
+
+Position:
+5. **A live income vehicle the articulation feeds — running now or actively being born.** Correction from the stress test: "first mountain complete" was being misread as post-exit-vs-still-running, when the real variable is whether an income vehicle, current or nascent, exists for the articulated self to plug into within weeks. One criterion, and it reconciles the paid ledger (still-running founders, practicing coaches), Gleb (next venture being born), and the Founder Going Sovereign shape all at once.
+6. Form ended and they know it (the recognition line: "I can't answer 'what do you do' anymore").
+7. Can't say what they do in one breath.
+8. Chronic identity ache, not acute — no single rescue event.
+
+Character:
+9. Internal locus.
+10. Polymath — many threads, no sentence.
+11. Buys recognition, not remediation.
+12. Grants depth in first conversation — conditional on the seer naming their expertise and asking consent before reflecting, not an inherent trait of the person.
+13. Relieved, not threatened, by being seen more clearly — watch for the failure mode where high-credential people defend instead, because being known threatens a structure they've built their identity on.
+14. A recurring, specific dream, not just pain — demoted from gate to screen. People buy on pain; the pull only filters out the Someday-Dreamer false positives.
+
+**The master key marker.** A formed habit of paying for one's own transformation — teachers, coaches, retreats, ceremony, therapy, named without embarrassment — is the single most predictive purchase marker in the data so far. It also leaves public traces (interiority markers sitting next to threshold badges), which makes it the Signal Library's primary hunt pattern, replacing clock-hunting for this tribe.
+
+**Open thread.** Merge this portrait with "The Founder Going Sovereign" (Day 133, Tribe v3.5) into one artifact: Day 133 carries the name and the field knowledge, this one carries the gate structure. Pending Sasha's roast of the paragraph.
