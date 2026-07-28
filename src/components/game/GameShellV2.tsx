@@ -44,6 +44,33 @@ import SiteLogo from "@/components/SiteLogo";
 // hls.js is dynamically imported inside MuxVideoBackground to avoid module-level crashes
 import { useToast } from "@/hooks/use-toast";
 
+/**
+ * Quiet architectural joinery for the canonical Lapis shell.
+ *
+ * This is intentionally decorative: the real controls keep their existing
+ * labels and hit areas. The mechanism only gives the three planes a faint
+ * physical relationship, like recessed Japanese cabinetry hardware rather
+ * than a game hinge.
+ */
+const PlaneJoint = ({ kind }: { kind: "pivot" | "rail" }) => (
+    <span
+        aria-hidden="true"
+        className={cn("plane-joint", `plane-joint--${kind}`)}
+    >
+        {kind === "pivot" ? (
+            <>
+                <span className="plane-joint__pivot plane-joint__pivot--upper" />
+                <span className="plane-joint__pivot plane-joint__pivot--lower" />
+            </>
+        ) : (
+            <>
+                <span className="plane-joint__rail" />
+                <span className="plane-joint__carriage" />
+            </>
+        )}
+    </span>
+);
+
 /** Animated video background — Mux HLS stream behind all panels */
 // Day 51 (Sasha 2026-04-25): swapped to new animated cosmic-landscape stream
 // (gold particles, mountain, sunset). Visible behind translucent Pane 2 +
@@ -1559,6 +1586,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                             : "inset -1px 0 0 var(--skin-rail-toggle-hairline, rgba(212, 175, 55, 0.32)), 2px 0 14px -8px var(--skin-rail-toggle-glow, rgba(244, 212, 114, 0.3))",
                     }}
                 >
+                    {__spaceShipSkin === "lapis" && <PlaneJoint kind="pivot" />}
                     {/* Day 119 (Sasha 2026-07-09): raw "▶" text glyph
                         replaced with a Lucide ChevronRight — crisper at
                         14px, no font-rendering/baseline quirks across
@@ -1628,6 +1656,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         pageOwnsBackground={pageOwnsBackground}
                         publicProfilePath={publicProfilePath}
                     />
+                    {__spaceShipSkin === "lapis" && <PlaneJoint kind="rail" />}
                 </div>
 
                 {/* Expand button when Panel 2 is collapsed — Day 48 (Sasha):
@@ -1681,6 +1710,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                                 "inset -1px 0 0 var(--skin-rail-toggle-hairline, rgba(212, 175, 55, 0.32)), 2px 0 14px -8px var(--skin-rail-toggle-glow, rgba(244, 212, 114, 0.3))",
                         }}
                     >
+                        {__spaceShipSkin === "lapis" && <PlaneJoint kind="rail" />}
                         <ChevronRight
                             aria-hidden="true"
                             className="transition-transform"
