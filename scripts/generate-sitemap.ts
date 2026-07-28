@@ -42,7 +42,8 @@ const entries: SitemapEntry[] = [
     { path: "/ai-os/design", changefreq: "weekly", priority: "0.7" },
     { path: "/ai-os/benchmark", changefreq: "monthly", priority: "0.6" },
     { path: "/intelligences", changefreq: "monthly", priority: "0.6" },
-    { path: "/quiz", changefreq: "monthly", priority: "0.6" },
+    { path: "/quiz", changefreq: "weekly", priority: "0.7" },
+    { path: "/quiz2", changefreq: "monthly", priority: "0.5" },
     { path: "/activations", changefreq: "weekly", priority: "0.7" },
 ];
 

@@ -21,6 +21,7 @@ import { SkinProvider } from "@/contexts/SkinContext";
 import SkinPreview from "./pages/SkinPreview";
 import OAuthConsent from "./pages/OAuthConsent";
 import HeroQuiz from "./pages/HeroQuiz";
+const TransitionQuizPage = lazy(() => import("./modules/transition-quiz/TransitionQuizPage"));
 import ProposalForWeGoodOvaHere from "./pages/ProposalForWeGoodOvaHere";
 import CockpitLanding from "./pages/CockpitLanding";
 import CockpitDashboard from "./pages/CockpitDashboard";
@@ -617,8 +618,16 @@ const App = () => (
                   <Route path="/genius-offer" element={<Navigate to="/zone-of-genius/entry" replace />} />
                   {/* Day 47 late pass (Sasha): /quiz is now public. It's the
                       secondary CTA from the ZoG result ("See exactly why this
-                      hasn't turned into income") — auth before that is pure friction. */}
-                  <Route path="/quiz" element={<GeniusQuiz />} />
+                      hasn't turned into income") — auth before that is pure friction.
+                      July 28, 2026: moved from /quiz to /quiz2 — /quiz now hosts
+                      the new Transition Quiz (transition-quiz module) below.
+                      GeniusQuiz itself, its i18n keys, and its data/persistence
+                      are untouched, only the path moved. */}
+                  <Route path="/quiz2" element={<GeniusQuiz />} />
+                  {/* The Transition Quiz — "Where Are You" — public, no auth.
+                      Spec: docs/specs/quiz/quiz_product_spec.md. Phase 2,
+                      July 28, 2026. */}
+                  <Route path="/quiz" element={<TransitionQuizPage />} />
                   <Route path="/genius-offer-intake" element={<RequireAuth><GeniusOfferIntake /></RequireAuth>} />
                   <Route path="/admin/genius-offers" element={<RequireAuth><AdminGeniusOffers /></RequireAuth>} />
                   <Route path="/genius-admin" element={<RequireAuth><AdminGeniusOffers /></RequireAuth>} />

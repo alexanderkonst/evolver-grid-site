@@ -113,14 +113,16 @@ const SoundCloudMinimalPlayer = ({ compact = false }: SoundCloudMinimalPlayerPro
         // left edge aligns with the rest of the rail's icon column.
         // Mobile keeps symmetric `px-3` so `justify-center` still
         // centers the play button cleanly in the 72px column.
-        // The player uses a 15px optical inset. Its bordered circle otherwise
-        // reads a few pixels left of the irregular Space glyph artwork.
+        // The player uses a 21px optical inset. Unlike the utility row, its
+        // play mark is positioned from the player's own content box; the
+        // extra 6px puts the painted circle on the same vertical datum as
+        // the irregular Space glyphs and the profile ring above.
         <div
             className={cn(
                 "transition-all duration-300",
                 compact
                     ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
-                    : "flex items-center gap-3 pl-[15px] pr-3 py-2.5 rounded-2xl w-full justify-center lg:justify-start hover:bg-white/[0.04]"
+                    : "flex items-center gap-3 pl-[21px] pr-3 py-2.5 rounded-2xl w-full justify-center lg:justify-start hover:bg-white/[0.04]"
             )}
         >
             {/* Play / Pause */}
