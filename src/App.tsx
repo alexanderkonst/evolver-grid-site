@@ -76,7 +76,6 @@ import VentureDashboard from "./pages/VentureDashboard";
 import GameShellV2 from "./components/game/GameShellV2";
 import { pathUsesLayoutShell, pathHidesLogo } from "./lib/shellRoutes";
 import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
-import FoundersShowcase from "./pages/FoundersShowcase";
 import IgniteSession from "./pages/IgniteSession";
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
 const EvolutionPortal = lazy(() => import("./pages/EvolutionPortal"));
@@ -461,7 +460,7 @@ const App = () => (
                   <Route path="/" element={<JourneyPage />} />
                   <Route path="/hero" element={<HeroQuiz />} />
                   <Route path="/build/cockpit" element={<CockpitLanding />} />
-                  <Route path="/build/cockpit/dashboard" element={<RequireAuth><CockpitDashboard /></RequireAuth>} />
+                  <Route path="/build/cockpit/dashboard" element={<RequireAdmin><CockpitDashboard /></RequireAdmin>} />
                   <Route path="/build/cockpit/offers" element={<RequireAdmin><CockpitOffersBoard /></RequireAdmin>} />
                   <Route path="/cockpit" element={<Navigate to="/build/cockpit" replace />} />
                   <Route path="/cockpit/dashboard" element={<Navigate to="/build/cockpit/dashboard" replace />} />
@@ -946,7 +945,6 @@ const App = () => (
                   {/* Venture Dashboard */}
                   <Route path="/dashboard" element={<GameShellV2><VentureDashboard /></GameShellV2>} />
                   <Route path="/holomap" element={<RequireAuth><MorphogeneticHolomap /></RequireAuth>} />
-                  <Route path="/founders" element={<RequireAuth><FoundersShowcase /></RequireAuth>} />
                   {/* Day 47 very-late-night (Sasha): skin preview route.
                       /preview forces the Navy+Gold skin while mounted, so
                       Sasha can test the alternate aesthetic without affecting
