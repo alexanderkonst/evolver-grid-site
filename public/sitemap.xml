@@ -93,8 +93,14 @@
   <url>
     <loc>https://findyourtoptalent.com/quiz</loc>
     <lastmod>2026-07-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://findyourtoptalent.com/quiz2</loc>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://findyourtoptalent.com/activations</loc>
