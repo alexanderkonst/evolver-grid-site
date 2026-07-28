@@ -137,11 +137,80 @@ artifact every time `predev`/`prebuild` ran. Untracking a file does not anonymiz
    introduces a small asymmetry between the two snapshots worth Sasha's attention if he
    wants them handled identically.
 
-**Known residual gap.** Name detection is ASCII/Latin-script only
-(`/^[A-Z][a-zA-Z'-]{2,}$/`). At least one Cyrillic name appears in pulse-log prose
-("Женя Валенская") that this pass does **not** scrub — it was not on the list Sasha
-asked to verify, but it is real PII in the same free-text fields. Flagging rather than
-silently claiming full coverage.
+### Follow-up: closing the Cyrillic gap (Jul 28, 2026, same day)
+
+The initial pass flagged Cyrillic names as a known gap rather than a fixed one. Sasha
+confirmed this is structural, not a corner case — a large share of his contacts and
+pulse-log prose are Russian — and authorized closing it. `scripts/sources/anonymize.mjs`
+now handles Cyrillic on three fronts:
+
+1. **Cross-script identity linking.** The same person often appears in both scripts
+   (Gleb / Глеб, Karime / Кариме, Rafael / Рафаэль). Each Cyrillic candidate name is
+   transliterated to Latin (a practical, non-canonical scheme — it only needs to be
+   close enough for matching, not linguistically correct) and fuzzy-matched
+   (Levenshtein distance, ~30%-of-length threshold) against the already-built Latin
+   alias set. A match reuses that person's existing token; no match mints a new one
+   from the transliteration. Two different people sharing a first name are still kept
+   as two identities (same guard as the Latin pass), never merged.
+2. **Russian declension via stemming, not exact-string matching.** Names decline
+   (Глеб/Глеба/Глебу/Глебом/Глебе; Валенская/Валенской/Валенскую). The scrubber strips
+   the longest matching case ending and requires the remaining stem to be **at least 4
+   characters** before accepting the strip; shorter results fall back to matching only
+   the exact nominative form. This is a deliberate trade-off, not an oversight: "Женя"
+   minus the "я" ending would leave the stem "жен", which collides with "жена" (wife),
+   "женщина" (woman), "женский" (feminine) — all plausible words in Sasha's
+   spiritual-business prose. The 4-character floor sacrifices declension coverage for
+   short names in exchange for not corrupting ordinary Russian sentences elsewhere in
+   the same corpus. Two-word full names ("Женя Валенская") are matched and replaced as
+   one unit before any single-word stem pass runs, specifically so a two-word mention
+   collapses to ONE token instead of the same token twice.
+3. **Free-text scanning for names not in any structured column.** "Женя Валенская"
+   never appears in a CRM `name`/`participants` column — it only exists inside a
+   `what_happened` prose sentence. The scrubber now deep-scans every string field (not
+   just structured name columns) for **two consecutive capitalized Cyrillic words** and
+   registers those as high-confidence full names. Lone single capitalized Cyrillic words
+   in free prose are deliberately NOT auto-registered this way — Russian sentences
+   routinely open with a capitalized common word, and treating every one as a candidate
+   name would shred the pulse log's Russian narrative text. Lone first names are only
+   trusted from structured fields (CRM contacts/offers/participants, pulse `who:`/
+   `actors:`), where "this is a name" is a safe assumption.
+4. **Residual reporting, not silent gaps.** After scrubbing, both emit scripts now scan
+   their own output for capitalized-Cyrillic word pairs and lone name-like words that
+   survived, and print them to the console (`⚠ ... Cyrillic token(s) survived
+   scrubbing...`) rather than silently shipping them. This list is intentionally
+   over-inclusive — a live run on this corpus surfaced 11 items (Рада, Посмотрю, Мой,
+   Остальное, Клуб, Погоди, Логически, Трайп, Интересно, Идеальный), all verified by
+   hand to be ordinary Russian words/quoted dialogue openers ("Рада тебя слышать" — "glad
+   to hear from you"; "Мой основной тезис" — "my main thesis"), not missed contacts. The
+   report is a review aid for whoever runs the emit scripts next, not a guarantee of
+   zero false positives or zero false negatives.
+
+**Verified:** zero matches (including declined forms) for Глеб, Карим, Рафаэл, Серге,
+Женя, Валенская, Андрей, Талалаев, Ния, Роман across all four generated artifacts, in
+addition to the original Latin-script list.
+
+**Known residual limits, stated plainly rather than assumed handled:**
+- **Short names (stem would resolve under 4 characters) are matched in nominative form
+  only.** A declined form of a short name that doesn't happen to share the nominative's
+  first 4+ characters can slip through. This is the direct trade-off described in point
+  2 above.
+- **Fuzzy cross-script matching is string-similarity, not identity resolution.** There is
+  no ground-truth link between "Глеб" and "Gleb" beyond "these strings are close after
+  transliteration." Two genuinely different short names could theoretically fall within
+  the match threshold of each other and get merged; there is no way to fully rule this
+  out without a real identity database.
+- **Free-text registration only trusts two-consecutive-capitalized-word sequences.** A
+  Cyrillic name mentioned ALONE in prose (not in a structured field, not paired with
+  another capitalized word) will not be auto-registered from that mention — it will only
+  get scrubbed if it also appears somewhere in a structured field (contacts/offers/
+  participants/who/actors). If a brand-new contact is ever named only once, in passing,
+  as a single word in prose, this pass will miss them. The residual-scan warning is the
+  safety net for exactly this case, but it requires a human to read the console output.
+- **Transliteration is a practical approximation, not a linguistic standard.** It was
+  tuned to make the specific names in this corpus match correctly; an uncommon Cyrillic
+  name with an unusual letter combination could transliterate to something too far (by
+  edit distance) from its Latin counterpart to link automatically — it would still get
+  its own (unlinked) token, just not necessarily the SAME token as its Latin mentions.
 
 **Standing rule.** Any generated artifact derived from a private ledger
 (`docs/09-logs/project_pulse_log.md`, `docs/02-strategy/strategic_crm_outreach_tracker.md`,

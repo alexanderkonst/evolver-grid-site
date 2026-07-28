@@ -103,9 +103,13 @@ function main() {
     const extraIdentities = events.flatMap((event) =>
       [event.who, event.actors].flat().filter((v) => typeof v === "string"),
     );
-    let anonymizer = { scrubDeep: (value) => value };
+    let anonymizer = { scrubDeep: (value) => value, scanForResidualCyrillicNames: () => [] };
     try {
-      anonymizer = buildAnonymizer(readBroadcastTracker(), extraIdentities);
+      // `events` (the full raw array, pre-scrub) doubles as the free-text
+      // source for the high-confidence Cyrillic full-name scan — this is
+      // what catches a name like "Женя Валенская" sitting inside
+      // `what_happened` prose rather than a structured name column.
+      anonymizer = buildAnonymizer(readBroadcastTracker(), extraIdentities, events);
     } catch {
       // CRM tracker unreadable (e.g. private-ledger submodule not checked
       // out in this environment) — proceed without it rather than fail
@@ -113,6 +117,16 @@ function main() {
     }
 
     const scrubbedEvents = anonymizer.scrubDeep(events);
+
+    // Report, don't silently drop: anything that still looks like a
+    // Cyrillic personal name after scrubbing gets surfaced so a human can
+    // decide whether it needs a manual entry, not lost in the noise.
+    const residualCyrillic = anonymizer.scanForResidualCyrillicNames(scrubbedEvents);
+    if (residualCyrillic.length) {
+      console.warn(
+        `⚠ pulse snapshot: ${residualCyrillic.length} Cyrillic token(s) survived scrubbing and could not be attributed to a known contact — review before shipping: ${residualCyrillic.join(", ")}`,
+      );
+    }
 
     payload = {
       generated_at: new Date().toISOString(),
