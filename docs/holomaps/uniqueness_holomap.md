@@ -1,6 +1,6 @@
 # The Uniqueness Holomap — how a gift becomes a voice
 
-> *© 2026 Alexander Konstantinov · CC BY-NC-SA 4.0 · v2.0, July 28, 2026 (Day 138). Built with the holomap-builder method (`.agent/skills/holomap-builder/`). Sibling instrument to the Transition Holomap (`docs/holomaps/transition_holomap.md`, v1.0, Day 136). Theory: Phase Shift Technology 123 (Ripeness Vector — Uniqueness is one of its nine axes) and Technology 124 (Transition — names the ratchet mechanism this map is the ratchet FOR).*
+> *© 2026 Alexander Konstantinov · CC BY-NC-SA 4.0 · v2.0, July 28, 2026 (Day 138). Built with the holomap-builder method (`.agent/skills/holomap-builder/`). Sibling instrument to the Transition Holomap (`docs/holomaps/transition_holomap.md`, v1.0, Day 136). Theory: Phase Shift Technology 123 (Ripeness Vector — Uniqueness is one of its ten axes) and Technology 124 (Transition — names the ratchet mechanism this map is the ratchet FOR).*
 >
 > **Supersedes:** the "Map of Uniqueness Development," a 5-stage curriculum artifact (Unawareness → Initial Exploration → Initiation → Integration → Embodiment), first written in `docs/08-content/training_analysis_complete.md` (line 181, Genius Path module G3, early 2026, never shipped as a product). That map is v1. Its five stage names are preserved below, not discarded — extended into a seven-stage octave with the two structural shocks the v1 curriculum didn't have language for yet, plus a register shift past individual embodiment that v1 never reached at all.
 
@@ -113,7 +113,7 @@ Retrodiction on the boundary itself: Sasha's own case sits at Embodiment-or-high
 
 **8→9** — the instrument gets handed to someone who runs it on a third party without the originator in the room: a licensed practitioner, a trained node, a founder using the vector on their own business.
 
-**9. Propagation** — "Other people are now finding this in each other, without me." The universal five axes of the Ripeness Vector "carry over" to another founder's business by design (Technology 123); the Node Suite, studio, and the Oyi white-label proposal are this stage in motion.
+**9. Propagation** — "Other people are now finding this in each other, without me." The universal six axes of the Ripeness Vector "carry over" to another founder's business by design (Technology 123); the Node Suite, studio, and the Oyi white-label proposal are this stage in motion.
 
 **9→10** — the propagated network's activity and the founder's own uniqueness stop being two things that reference each other and become one field with no seam.
 
