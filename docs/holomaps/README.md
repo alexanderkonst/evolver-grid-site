@@ -21,6 +21,7 @@ A holomap is an integral taxonomy (x-axis) crossed with evolutionary stages or d
 | [Professional Development Map](professional_development_map.md) | 16 stages, Dependent Contributor → Legacy Builder, with inner-growth lines | v1.0 |
 | [Collaboration Gift Taxonomy](collaboration_gift_taxonomy_holomap.md) | 7 aspects × Heart/Mind/Gut: what actually passes between two people when an intro is "exactly right" | v1.0, Day 120 |
 | [Transition Holomap](transition_holomap.md) | 10 stages, the interval between two fits: 3×3 aspects × 7 core stages, 54 shifts, shock taxonomy | v1.0, Day 136 |
+| [Uniqueness Holomap](uniqueness_holomap.md) | 10 stages, Unawareness → Transmission → Symbiosis: Pattern/Direction/Assets 3×3, 63-cell grid, 54 shifts. Sibling to the Transition Holomap — uniqueness is the ratchet, transition is the click. Supersedes the 5-stage "Map of Uniqueness Development" | v2.0, Day 138 |
 
 ## Pointers (maps living elsewhere)
 
