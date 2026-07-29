@@ -5608,6 +5608,10 @@
   "leaveWithConvergence": "Lo raro no es ninguno de ellos por separado. Es que todo converge en una sola sesión, en vez de comprar fragmentos a coaches y consultores durante años.",
   "leaveWithDisclaimer": "Una sesión de trabajo de 2 horas que produce una landing page para tu negocio.",
   "priceAttribution": "2 horas · sesión de trabajo uno a uno",
+  "priceCompareHeading": "Junto a qué se sostienen estos $555.",
+  "priceCompare1": "Un fin de semana de retiro cuesta más que esto, y no entrega el avance en claridad que buscas.",
+  "priceCompare2": "Otros seis meses de “todavía lo estoy descifrando” salen muy caros, y pueden dejarte revuelto.",
+  "priceCompare3": "Y lo que compra es la frase sobre la que corre tu próximo capítulo.",
   "guarantee": "Si no sales con un negocio en una frase en el que te reconoces como tuyo: no pagas.",
   "resonancePermission": "Si tu corazón no resuena con esto, no te inscribas. Esto funciona porque la gente llega cuando está lista, no cuando se la presiona o se la manipula.",
   "ctaBookSession": "Reservar mi sesión — $555",
@@ -7448,6 +7452,7 @@
    "clarityLead": "El próximo movimiento se notaría primero en {{clause}}.",
    "takeWhatNote": "Quédate con lo que aquí es certero. Nota lo que no. El desacuerdo también es información.",
    "continueCta": "Integra tus proyectos “sueltos” en una sola dirección precisa",
+   "selectionNote": "Tus respuestas mostraron que probablemente soy quien más útil puede serte ahora. Solo ofrezco esta llamada en esos casos.",
    "honestEnding": "Esta es la lectura completa. Sin propuesta, sin nada más por desbloquear. Puedes repetir el test cuando quieras si tus respuestas cambian.",
    "chapter": {
     "4": "Algo que te sostenía se terminó. El próximo capítulo aún no se ha organizado, y a estas alturas eso es normal.",

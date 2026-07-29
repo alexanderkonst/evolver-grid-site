@@ -186,6 +186,10 @@
   "leaveWithConvergence": "The rare part isn't any one of them. It's getting all of it in a single sitting, instead of buying fragments from coaches and consultants over years.",
   "leaveWithDisclaimer": "A 2-hour working session that produces a landing page for your business.",
   "priceAttribution": "2 hours · one-on-one working session",
+  "priceCompareHeading": "What $555 stands next to.",
+  "priceCompare1": "One retreat weekend costs more than this, and doesn't deliver the breakthrough in clarity you want.",
+  "priceCompare2": "Another six months of “I'm figuring things out” is very expensive, and can be turmoiled.",
+  "priceCompare3": "And what it buys is the sentence your next chapter runs on.",
   "guarantee": "If you don't leave with a one-sentence business you recognize as yours: you don't pay.",
   "resonancePermission": "If your heart isn't resonating with this, don't sign up. This works because people come when they're ready, not when they're pressured or manipulated.",
   "ctaBookSession": "Book my session — $555",
@@ -7455,6 +7459,7 @@
    "clarityLead": "The right next move would show up first in {{clause}}.",
    "takeWhatNote": "Take what is accurate here. Notice what isn't. The disagreement is information too.",
    "continueCta": "Integrate your “unrelated” projects into one laser-focused direction",
+   "selectionNote": "I offer this call only where I can be most useful. Your answers just did the choosing.",
    "honestEnding": "That's the complete read. No pitch, nothing else to unlock. Retake anytime if your answers change.",
    "chapter": {
     "4": "Something that carried you is over. The next chapter hasn't organized itself yet, and that's expected this soon after.",
