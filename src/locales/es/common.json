@@ -7353,7 +7353,7 @@
   "entry": {
    "eyebrow": "Gratis. Unos dos minutos.",
    "title": "Descubre en qué capítulo estás en realidad.",
-   "subtitle": "Todavía puedes decir a qué te dedicas. Solo que ya no del todo lo crees.",
+   "subtitle": "Cuando alguien te pregunta a qué te dedicas, le das la respuesta genérica para que no se confunda. En realidad, el confundido eres tú.",
    "honestyLine": "Cuatro preguntas breves. Verás en qué capítulo estás, por qué las piezas no encajan y qué podría estar empezando a surgir.",
    "cta": "Ver dónde estoy"
   },
@@ -7374,10 +7374,10 @@
    "1": "Asentado",
    "2": "La comezón",
    "3": "Temblores",
-   "4": "Ruptura",
-   "5": "Liminalidad",
-   "6": "Reorientación",
-   "7": "Cruce"
+   "4": "La ruptura",
+   "5": "El vacío",
+   "6": "Tomando forma",
+   "7": "El nuevo capítulo"
   },
   "notYet": {
    "settled": {
@@ -7398,11 +7398,11 @@
     "nextLabel": "Qué suele venir después",
     "2": {
      "turnsInto": "La comezón suele convertirse en empujar más fuerte sobre lo mismo, no en algo nuevo. La mayoría parcha la forma antigua durante meses, a veces años, antes de que se vuelva un cambio real.",
-     "sign": "La señal de que se está volviendo real: empujar deja de funcionar y empieza a costarte sueño, energía o salud. Ahí es cuando la Comezón se vuelve Temblores."
+     "sign": "Empujar deja de funcionar y empieza a costarte sueño, energía o salud. Ahí es cuando la Comezón se vuelve Temblores."
     },
     "3": {
-     "why": "Más esfuerzo no está funcionando ahora porque estás metiendo fuerza en una forma que ya está llena. Nuevo nicho, nuevo embudo, más horas, todo dentro del mismo contenedor que ya no puede sostener más.",
-     "next": "Lo que suele venir después es una ruptura, no un gran avance. Algo que te sostenía deja de sostenerte, muchas veces por razones fuera de tu control. Eso no es un fracaso tuyo. Es el mecanismo."
+     "why": "Estás metiendo fuerza en una forma que ya está llena. Nuevo nicho, nuevo embudo, más horas, todo dentro del mismo contenedor que ya no puede sostener más.",
+     "next": "Normalmente llega una ruptura antes que cualquier gran avance. Algo que te sostenía deja de sostenerte, muchas veces por razones fuera de tu control. Eso no es un fracaso tuyo. Así es como ocurre el cambio."
     },
     "emailPrompt": "¿Quieres el mapa completo, para encontrarte con lo que sigue con los ojos abiertos?",
     "emailPlaceholder": "tu@email.com",
@@ -7464,12 +7464,12 @@
     "discovery": {
      "heading": "Todavía no necesitas una respuesta final.",
      "body": "La señal está presente, pero aún no se ha repetido lo suficiente como para estar seguro de qué es.",
-     "nextMove": "El movimiento útil ahora no es forzar una identidad de negocio. Es notar para qué te busca la gente una y otra vez, qué se siente inusualmente natural, y qué sigue apareciendo en distintas situaciones."
+     "nextMove": "Todavía no fuerces una identidad de negocio. Nota para qué te busca la gente una y otra vez, qué se siente inusualmente natural, y qué sigue apareciendo en distintas situaciones."
     },
     "recognition": {
      "heading": "El valor ya es real. El patrón todavía no tiene nombre.",
-     "body": "No estás tratando de descubrir si tienes algo valioso. Estás tratando de ver el patrón detrás de lo que ya llevas tiempo haciendo.",
-     "nextMove": "El siguiente paso no es otra lluvia de ideas. Es encontrar el hilo que muestra lo que ha sido cierto en todo tu trabajo, para darle al próximo capítulo un lugar donde empezar."
+     "body": "Ya sabes que aquí hay algo valioso. Lo que todavía no ves es el patrón que hay debajo.",
+     "nextMove": "Otra lluvia de ideas no te va a llevar ahí. El paso es encontrar el hilo que ha sido cierto en todo tu trabajo, para que el próximo capítulo tenga dónde empezar."
     },
     "integration": {
      "heading": "Las piezas ya son maduras. El conjunto todavía es invisible.",
@@ -7483,7 +7483,7 @@
     },
     "transmission": {
      "heading": "La gente lo entiende después de que se lo explicas, no antes.",
-     "body": "El trabajo todavía depende demasiado de tu presencia. Eso no es un defecto. Es simplemente la etapa en la que está el trabajo.",
+     "body": "No hay nada mal en el trabajo. Es simplemente la etapa en la que todavía te necesita a ti en la sala.",
      "nextMove": "El siguiente paso es hacer que el valor sea lo bastante claro para que la gente lo reconozca, lo repita y lo elija sin necesitar una conversación larga primero."
     }
    },
@@ -7501,6 +7501,12 @@
     "current_work": "con qué claridad explicas lo que ya haces",
     "emerging_business": "lo que construyas después",
     "near_term_exchange": "algo que podrías ofrecerle a la gente en las próximas semanas"
+   },
+   "crossedPeer": {
+    "heading": "Cruzaste. Y sigue funcionando.",
+    "body1": "Dijiste la frase, construiste el vehículo, y el dinero responde. El mapa termina aquí, porque tu pregunta ya no es de nombrar. Es de escala: transmisión, alcance, la siguiente octava del mismo patrón.",
+    "body2": "Quienes cruzan a propósito suelen construir junto a otros que también lo hicieron. Esa es una conversación distinta a una Direction Call, y la tengo con gusto.",
+    "cta": "Conozcámonos"
    }
   },
   "buyingFrame": {
@@ -7512,13 +7518,13 @@
     "open_no_history": "No, pero estoy abierto/a a la ayuda correcta",
     "closed": "No, prefiero resolver estas cosas por mi cuenta"
    },
-   "closedEnding": "Tu lectura completa se queda exactamente como está arriba. Sin llamada, sin propuesta, solo lo que puedes guardar o repetir cuando quieras."
+   "closedEnding": "Tu lectura completa se queda exactamente como está arriba. Sin llamada y sin propuesta. Guárdala o repite el test cuando quieras."
   },
   "directionCall": {
-   "line1": "Este test puede ubicar el cruce. No puede ver tu vida lo bastante a fondo como para decirte en qué se convierten estas piezas juntas.",
+   "line1": "Este test puede mostrarte dónde estás. No puede ver tu vida lo bastante a fondo como para decirte en qué se convierten estas piezas juntas.",
    "line2": "Si quieres que mire en qué están tratando de convertirse, para eso es la Direction Call.",
    "cta": "Ver en qué se está convirtiendo esto",
-   "sub": "Gratis · 45 minutos · sin obligación de continuar"
+   "sub": "Gratis. 45 minutos."
   }
  },
  "homeLanding": {

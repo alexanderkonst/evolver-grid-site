@@ -241,7 +241,7 @@ const TransitionQuizPage = () => {
         emerging_work_stage: coreAnswers.emergingWorkStage,
         clarity_unlock: coreAnswers.clarityUnlock,
         direction_call_shown: routing.showBuyingFrame,
-        result_template: coreAnswers.uniqueness,
+        result_template: routing.route === "crossedPeer" ? "crossed_peer" : coreAnswers.uniqueness,
         route_shown: routing.showBuyingFrame ? null : routing.route,
       });
     }
@@ -390,6 +390,7 @@ const TransitionQuizPage = () => {
             stageNames={stageNames}
             answers={coreAnswers}
             showBuyingFrame={routing.showBuyingFrame}
+            route={routing.route}
             onContinue={() => (routing.showBuyingFrame ? goTo("buyingFrame") : undefined)}
             onRetake={reset}
           />
@@ -637,6 +638,7 @@ function ResultScreen({
   stageNames,
   answers,
   showBuyingFrame,
+  route,
   onContinue,
   onRetake,
 }: {
@@ -644,9 +646,39 @@ function ResultScreen({
   stageNames: Record<string, string>;
   answers: CoreAnswers;
   showBuyingFrame: boolean;
+  route: "directionCall" | "crossedPeer" | "none";
   onContinue: () => void;
   onRetake: () => void;
 }) {
+  if (route === "crossedPeer") {
+    return (
+      <section className="tq-card">
+        <p className="tq-label">{t("quiz.result.stageLabel") as string}</p>
+        <h2 className="tq-stage-name" style={{ fontSize: "1.7rem" }}>
+          {stageNames[String(answers.stage)]}
+        </h2>
+
+        <div className="tq-section" style={{ marginTop: 0 }}>
+          <h3 className="tq-beat-heading">{t("quiz.result.crossedPeer.heading") as string}</h3>
+          <p className="tq-body-text">{t("quiz.result.crossedPeer.body1") as string}</p>
+          <p className="tq-body-text">{t("quiz.result.crossedPeer.body2") as string}</p>
+        </div>
+
+        <p className="tq-body-text tq-take-what-note">{t("quiz.result.takeWhatNote") as string}</p>
+
+        <div className="tq-cta-row">
+          <a className="tq-cta tq-cta-primary" href={DIRECTION_CALL_HREF} target="_blank" rel="noreferrer">
+            {t("quiz.result.crossedPeer.cta") as string} <ArrowUpRight size={16} />
+          </a>
+        </div>
+
+        <button type="button" className="tq-retake" onClick={onRetake}>
+          {t("quiz.notYet.retake") as string}
+        </button>
+      </section>
+    );
+  }
+
   const chapter = t(chapterKeyForStage(answers.stage)) as string;
   const beats = t(resultTemplateKey(answers.uniqueness), { returnObjects: true }) as {
     heading: string;
@@ -716,7 +748,7 @@ function BuyingFrameScreen({
   t: (k: string, o?: Record<string, unknown>) => unknown;
   current: BuyingFrame | null;
   onPick: (v: BuyingFrame) => void;
-  route: "directionCall" | "none" | null;
+  route: "directionCall" | "crossedPeer" | "none" | null;
   onRetake: () => void;
 }) {
   const options = t("quiz.buyingFrame.options", { returnObjects: true }) as Record<string, string>;
