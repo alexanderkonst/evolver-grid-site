@@ -40,6 +40,7 @@ docs/
 | [integral_transactional_field_theory.md](./01-vision/integral_transactional_field_theory.md) | Integral field theory |
 | [sacred_transaction_field.md](./01-vision/sacred_transaction_field.md) | Sacred economics |
 | [deep_insights.md](./01-vision/deep_insights.md) | Deep philosophical insights |
+| [word_energetics.md](./01-vision/word_energetics.md) | Word Energetics — the copywriting system (seed v0.1) |
 | [divine_transmissions/](./01-vision/divine_transmissions/) | Channel transmissions |
 
 ---
