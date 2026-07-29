@@ -1168,7 +1168,13 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             // hidden by NON_PUBLIC_SPACE_IDS upstream. See comment at
             // line ~369 for the gating history.
             "collaborate": tmaComplete,                         // After T+M+A complete
-            "buysell": ignitionComplete,                        // After Step 2 — needs offers to sell
+            // Day 139 (Sasha 2026-07-29): OFFER space hidden unconditionally —
+            // flagged as a dataless/messy surface in production (see
+            // docs/02-strategy/module_taxonomy.md, Marketplace v0.5 PoC).
+            // Hide-don't-dim: fully removed from nav rather than gated by
+            // ignitionComplete. Route (/game/marketplace) still resolves for
+            // anyone who navigates directly (e.g. admin); nothing deleted.
+            "buysell": false,
         }
         : {};
 

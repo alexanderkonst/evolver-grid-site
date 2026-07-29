@@ -4,6 +4,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     LogIn,
+    LogOut,
     MessageCircle,
     Moon,
     Settings,
@@ -407,6 +408,16 @@ const SpacesRail = ({
         };
     }, []);
     const effectiveIsAuthed = isAuthenticated ?? isAuthed;
+
+    // Day 139 (Sasha 2026-07-29): persistent Log Out control back in the
+    // rail's SETTINGS/utility group (reversing the Day 128 relocation to
+    // Settings — Sasha's ask this round). Reuses the same
+    // supabase.auth.signOut() + navigate("/") precedent as
+    // ProfileSettingsSection.tsx's Log Out card.
+    const handleLogOut = async () => {
+        await supabase.auth.signOut();
+        navigate("/");
+    };
 
     // Day 119 (Sasha 2026-07-09): label fade on minimize/expand. The rail
     // width animates over 200ms (transition-[width] from GameShellV2), but
@@ -1132,7 +1143,7 @@ const SpacesRail = ({
                                 // its first painted pixel, not its invisible
                                 // button box, lands on the same vertical axis as
                                 // the painted Space glyphs above.
-                                : "grid h-12 grid-cols-[repeat(4,48px)] items-center gap-0 ml-[13px]"
+                                : "grid h-12 grid-cols-[repeat(5,48px)] items-center gap-0 ml-[13px]"
                         )}
                     >
                         {/* Avatar / Profile — hidden for guests on pages that
@@ -1296,6 +1307,37 @@ const SpacesRail = ({
                                 </TooltipTrigger>
                                 <TooltipContent side="top" align="center" sideOffset={10} className="rounded-lg border-none px-2.5 py-1.5 bg-black/85 text-[11px] text-white/90">
                                     {skin === "aurum" ? t('spacesRail.themeToggleToLapisTitle') : t('spacesRail.themeToggleToAurumTitle')}
+                                </TooltipContent>
+                            </Tooltip>
+                        )}
+
+                        {/* Log Out — Day 139 (Sasha 2026-07-29): persistent
+                            control in the settings/utility group, mirroring
+                            the guest Log In button above. Same icon-button
+                            grammar as Settings/Chat/Theme siblings. */}
+                        {effectiveIsAuthed === true && (
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <button
+                                        onClick={handleLogOut}
+                                        className={cn(
+                                            "grid place-items-center rounded-full transition-all duration-300 text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30",
+                                            compact ? "w-[30px] h-[30px]" : "w-[48px] h-[48px]"
+                                        )}
+                                        aria-label={t('spacesRail.logOutTitle')}
+                                    >
+                                        <LogOut
+                                            className="flex-shrink-0"
+                                            aria-hidden="true"
+                                            style={{
+                                                width: compact ? 16 : 18,
+                                                height: compact ? 16 : 18,
+                                            }}
+                                        />
+                                    </button>
+                                </TooltipTrigger>
+                                <TooltipContent side="top" align="center" sideOffset={10} className="rounded-lg border-none px-2.5 py-1.5 bg-black/85 text-[11px] text-white/90">
+                                    {t('spacesRail.logOutLabel')}
                                 </TooltipContent>
                             </Tooltip>
                         )}
