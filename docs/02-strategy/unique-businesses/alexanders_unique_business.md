@@ -24,7 +24,7 @@
 > **Revenue:** Strict received **$2,428** (+ $277 Sergey rev-share contract = **$2,705 tracked**). Source: `roadmap.md` Current Status, recomputed Day 134.
 > **Live Value Ladder:** Direction Call (free, 45 min) → Productize Yourself Session **$555** → BUILT **$1,111** → Node (white-label) **$1,500 + $75/mo**. Karime founding-node variant: $555 + $55/mo, waived until her 5th subscriber. Genealogy and older formats: [Value Ladder, below](#value-ladder-the-path-path).
 > **Active instruments:** the Ripeness Vector (Phase Shift Technology 123, 10-axis) · the Transition Holomap (`docs/holomaps/transition_holomap.md`) · the Uniqueness Holomap v2.0 (`docs/holomaps/uniqueness_holomap.md`) · the Quiz (Phase 2 implementation at `/quiz2`, legacy at `/quiz`), the product that puts the instrument in a stranger's hands.
-> **Current focus:** ship the Quiz (Phase 2 → Phase 3 retrodiction against the 7 known clients), then rebuild the landing page law-first with the Quiz as primary CTA. Session delivery layer (Method Video, prerequisites, close ritual) from the Day 137 Rafael addendum still open.
+> **Current focus:** ship the Quiz (Phase 2 → Phase 3 retrodiction against the 7 known clients), then rebuild the landing page law-first with the Quiz as primary CTA. This is now named **Funnel v3 — The Recognition Funnel** (Day 139, [§ Funnel Architecture](#funnel-v3--the-recognition-funnel-de-facto-day-139-july-29-2026)). Session delivery layer (Method Video, prerequisites, close ritual) from the Day 137 Rafael addendum still open.
 > **Source of truth for this box:** `docs/02-strategy/roadmap.md` Current Status + Active Backlog, Days 131-138. Update this box whenever the roadmap's Current Status changes materially.
 
 > **Organizing principle (Day 111): one holonic business, four scales, rooted in specific fit.** Not four businesses (self-knowledge · venture building · matching · civilizational infrastructure) but one kernel running at the person, venture, community, and civilization scales. The Day 110 synthesis named the fit/recognition architecture. Day 111 adds the root myth beneath it: every being is a unique face of eternity, and living systems ripen when those faces become legible enough to find fit, complements, shared work, and sustainable value flow without collapsing into sameness.
@@ -377,9 +377,41 @@ Both branches: paid → platform access. Free → reveal page only. **Funnel mon
 
 ---
 
-### Funnel Architecture v2 — Matching-as-Hero (Day 77, May 20, 2026)
+#### ⭐ Funnel v3 — The Recognition Funnel (de facto, Day 139, July 29, 2026)
 
-> **⭐ Day 138 update:** the funnel's front door is moving again. The Quiz (Phase 2 implementation at `/quiz2`, legacy at `/quiz`) is becoming the primary above-the-fold CTA once Phase 2 ships; the landing rebuild is law-first (Ceiling Law, [§ Myth v4.0](#1-myth)), superseding the two-CTA hero this section describes. Blocked on Quiz Phase 2 completion per `roadmap.md` Q1/Q2. This section's matching-as-hero framing stays valid for the JOURNEY/BUILD space structure; only the landing entry point is changing.
+*Supersedes the Day 138 pointer note below (folded in here): the Quiz has now become the primary above-the-fold CTA, the landing rebuild is law-first (Ceiling Law, [§ Myth v4.0](#1-myth)), and it supersedes the two-CTA hero of v2. This is that funnel, written up in full.*
+
+One law runs it: recognition before request, at every step. Nothing asks before it has given.
+
+**T0 · The field** — four entry surfaces, each speaking position in its own dialect, all pointing at one door:
+- DM lane: badge × transformation-trace people on LinkedIn (self-declared transition badges filtered by interiority markers). The message recognizes their declared position and gives the quiz. No pitch exists in it.
+- Lattice: alumni and allies carrying the trigger sentence ("not burned out exactly, just no longer inside the old thing") and the quiz link. Referral arrives pre-trusted; fastest conversion per touch.
+- Communities: the hosted workshop as live demonstration of the seeing; members get their words, the host gets the gift and the revenue share, attendees carry out the quiz. A transformation-buying community is a pre-assembled Buying Frame filter: the room itself is qualification.
+- Warm base: the ~150, one honest re-introduction, quiz as the gift instead of a call as the ask.
+
+**T1 · The door — /home.** "Name what's next." Ten seconds of recognition, prices in plain sight, wrong people respectfully sent away. One CTA.
+
+**T2 · The instrument — /quiz.** Four questions, ninety seconds, two hidden engines: the Crossing Read for them (complete, free, nothing withheld) and the Readiness Read for the business (stage, uniqueness class, vehicle, buying frame — logged, never shown). Qualification happens inside the gift, invisibly.
+
+**T3 · The result.** Full diagnosis. Stage 1 leaves blessed, no ask; stages 2-3 leave with their per-stage gift; the ripe crossing sees the selection line («Твои ответы показали, что именно я вероятно буду тебе сейчас максимально полезен. Я предлагаю этот созвон только в таких случаях.» / EN: "I offer this call only where I can be most useful. Your answers just did the choosing.") above one button naming the transformation ("Integrate your 'unrelated' projects into one laser-focused direction"). The CTA's logic is the instrument's honest resolution limit: the map shows the crossing; only a human can see what these particular pieces become.
+
+**T4 · Direction Call.** 45 minutes, free, cap five a week. Relational recognition: their words elicited, buying questions caught and never answered with explanations (Mirror Selling law 3).
+
+**T5 · The Reflection Proposal, same day** (ops §4a). Their own words mirrored back, the seed given generously, one door with the price.
+
+**T6 · Productize Yourself Session, $555.** Two hours: the sentence, the offer, the canvas. Derivation begins.
+
+**T7 · BUILT, $1,111.** Three weeks: the offer packaged, the first ten real conversations, the first exchange.
+
+**T8 · The lattice loop.** Alumni become nodes: referral carriers, rev-share partners, community hosts. Every completed crossing seeds T0. The funnel eats its own output.
+
+**The data spine:** every quiz completion logs both engines; every conversion gets tagged; the Bullseye recomputes from converters versus not. The funnel learns who it is for with every pass, whether or not money moves.
+
+**Versus v2 (Day 77):** matching was the hero then; recognition is the hero now. The quiz replaced the open door, qualification moved from the founder's body into the instrument, and the Direction Call stopped being an entry point anyone can grab and became something the quiz awards.
+
+---
+
+### Funnel Architecture v2 — Matching-as-Hero (Day 77, May 20, 2026)
 
 **The reframe:** the hero of the funnel is no longer *"build your unique business."* The hero is **find your collaborators**. The unique-business work becomes the premium layer for members who graduate from matching into venture-building inside Sasha's own community. See also: [`monetization_strategies.md` → Strategic Crystallization](../monetization_strategies.md#strategic-crystallization-day-7677-may-1920-2026).
 
