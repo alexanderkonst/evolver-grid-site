@@ -2261,11 +2261,15 @@ export type Database = {
         Row: {
           aspect_derived_stage: number | null
           bottleneck_aspect: string | null
+          buying_frame: string | null
+          clarity_unlock: string | null
           completed_at: string
           created_at: string
+          direction_call_shown: boolean | null
           driver_aspect: string | null
           economy_score: number | null
           email: string | null
+          emerging_work_stage: string | null
           fit_score: number | null
           has_stage_gap: boolean | null
           id: string
@@ -2273,17 +2277,23 @@ export type Database = {
           locale: string | null
           not_yet: boolean
           pattern: string | null
+          result_template: string | null
           route_shown: string | null
           stage: number
+          uniqueness_category: string | null
         }
         Insert: {
           aspect_derived_stage?: number | null
           bottleneck_aspect?: string | null
+          buying_frame?: string | null
+          clarity_unlock?: string | null
           completed_at?: string
           created_at?: string
+          direction_call_shown?: boolean | null
           driver_aspect?: string | null
           economy_score?: number | null
           email?: string | null
+          emerging_work_stage?: string | null
           fit_score?: number | null
           has_stage_gap?: boolean | null
           id?: string
@@ -2291,17 +2301,23 @@ export type Database = {
           locale?: string | null
           not_yet?: boolean
           pattern?: string | null
+          result_template?: string | null
           route_shown?: string | null
           stage: number
+          uniqueness_category?: string | null
         }
         Update: {
           aspect_derived_stage?: number | null
           bottleneck_aspect?: string | null
+          buying_frame?: string | null
+          clarity_unlock?: string | null
           completed_at?: string
           created_at?: string
+          direction_call_shown?: boolean | null
           driver_aspect?: string | null
           economy_score?: number | null
           email?: string | null
+          emerging_work_stage?: string | null
           fit_score?: number | null
           has_stage_gap?: boolean | null
           id?: string
@@ -2309,8 +2325,10 @@ export type Database = {
           locale?: string | null
           not_yet?: boolean
           pattern?: string | null
+          result_template?: string | null
           route_shown?: string | null
           stage?: number
+          uniqueness_category?: string | null
         }
         Relationships: []
       }
