@@ -21,6 +21,8 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
+import { EditorialCta } from "@/components/ui/editorial-cta";
 import {
   type BuyingFrame,
   type ClarityUnlock,
@@ -415,15 +417,16 @@ const TransitionQuizPage = () => {
 
 function EntryScreen({ t, onStart }: { t: (k: string, o?: Record<string, unknown>) => unknown; onStart: () => void }) {
   return (
-    <section className="tq-card">
-      <p className="tq-eyebrow">{t("quiz.entry.eyebrow") as string}</p>
+    <section className="tq-card tq-entry-card">
+      <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>
+        {t("quiz.entry.eyebrow") as string}
+      </p>
       <h1 className="tq-h1">{t("quiz.entry.title") as string}</h1>
+      <Ornament className="tq-ornament" />
       <p className="tq-sub">{t("quiz.entry.subtitle") as string}</p>
       <p className="tq-sub tq-quiet-line">{t("quiz.entry.honestyLine") as string}</p>
-      <div className="tq-cta-row">
-        <button type="button" className="tq-cta tq-cta-primary" onClick={onStart}>
-          {t("quiz.entry.cta") as string}
-        </button>
+      <div className="tq-cta-row tq-cta-row-center">
+        <EditorialCta label={t("quiz.entry.cta") as string} onClick={onStart} />
       </div>
     </section>
   );
@@ -443,7 +446,7 @@ function Q1Screen({ t, onPick }: { t: (k: string, o?: Record<string, unknown>) =
   return (
     <section className="tq-card">
       <p className="tq-question-count">{t("quiz.progressLabel", { current: 1, total: 4 }) as string}</p>
-      <p className="tq-label">{t("quiz.q1.prompt") as string}</p>
+      <p className="tq-question-prompt">{t("quiz.q1.prompt") as string}</p>
       <div className="tq-options">
         {options.map((opt, i) => (
           <button
@@ -604,7 +607,7 @@ function ChoiceScreen<V extends string>({
     <section className="tq-card">
       <p className="tq-question-count">{t("quiz.progressLabel", { current: data.order, total: 4 }) as string}</p>
       {data.framing && <p className="tq-quiet-line">{data.framing}</p>}
-      <p className="tq-label" style={data.framing ? { marginTop: 14 } : undefined}>{data.prompt}</p>
+      <p className="tq-question-prompt" style={data.framing ? { marginTop: 14 } : undefined}>{data.prompt}</p>
       <div className="tq-options">
         {values.map((v, i) => (
           <button
@@ -655,11 +658,11 @@ function ResultScreen({
 }) {
   if (route === "crossedPeer") {
     return (
-      <section className="tq-card">
-        <p className="tq-label">{t("quiz.result.stageLabel") as string}</p>
-        <h2 className="tq-stage-name" style={{ fontSize: "1.7rem" }}>
-          {stageNames[String(answers.stage)]}
-        </h2>
+      <section className="tq-card tq-result-card">
+        <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.stageLabel") as string}</p>
+        <h2 className="tq-stage-name">{stageNames[String(answers.stage)]}</h2>
+        <Ornament className="tq-ornament" />
+        <StageArc stage={answers.stage} stageNames={stageNames} crossed />
 
         <div className="tq-section" style={{ marginTop: 0 }}>
           <h3 className="tq-beat-heading">{t("quiz.result.crossedPeer.heading") as string}</h3>
@@ -669,8 +672,8 @@ function ResultScreen({
 
         <p className="tq-body-text tq-take-what-note">{t("quiz.result.takeWhatNote") as string}</p>
 
-        <div className="tq-cta-row">
-          <a className="tq-cta tq-cta-primary" href={DIRECTION_CALL_HREF} target="_blank" rel="noreferrer">
+        <div className="tq-cta-block">
+          <a className="tq-editorial-link-cta" href={DIRECTION_CALL_HREF} target="_blank" rel="noreferrer">
             {t("quiz.result.crossedPeer.cta") as string} <ArrowUpRight size={16} />
           </a>
         </div>
@@ -692,38 +695,36 @@ function ResultScreen({
   const clarityClause = t(clarityClauseKey(answers.clarityUnlock)) as string;
 
   return (
-    <section className="tq-card">
-      <p className="tq-label">{t("quiz.result.stageLabel") as string}</p>
-      <h2 className="tq-stage-name" style={{ fontSize: "1.7rem" }}>
-        {stageNames[String(answers.stage)]}
-      </h2>
-      <p className="tq-body-text">{chapter}</p>
+    <section className="tq-card tq-result-card">
+      <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.stageLabel") as string}</p>
+      <h2 className="tq-stage-name">{stageNames[String(answers.stage)]}</h2>
+      <Ornament className="tq-ornament" />
+      <StageArc stage={answers.stage} stageNames={stageNames} />
+      <p className="tq-body-text tq-measure">{chapter}</p>
 
       <div className="tq-section">
         <h3 className="tq-beat-heading">{beats.heading}</h3>
-        <p className="tq-body-text">{beats.body}</p>
-        <p className="tq-body-text tq-quiet-line">{workClause}</p>
+        <p className="tq-body-text tq-measure">{beats.body}</p>
+        <p className="tq-body-text tq-quiet-line tq-measure">{workClause}</p>
       </div>
 
       <div className="tq-section">
-        <p className="tq-label">{t("quiz.result.nextLabel") as string}</p>
-        <p className="tq-body-text">{beats.nextMove}</p>
-        <p className="tq-body-text tq-quiet-line">
+        <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.nextLabel") as string}</p>
+        <p className="tq-body-text tq-measure">{beats.nextMove}</p>
+        <p className="tq-body-text tq-quiet-line tq-measure">
           {t("quiz.result.clarityLead", { clause: clarityClause }) as string}
         </p>
       </div>
 
       <p className="tq-body-text tq-take-what-note">{t("quiz.result.takeWhatNote") as string}</p>
 
-      <div className="tq-cta-row">
+      <div className="tq-cta-block">
         {showBuyingFrame ? (
           <>
             <p className="tq-body-text tq-quiet-line">
               {t("quiz.result.selectionNote") as string}
             </p>
-            <button type="button" className="tq-cta tq-cta-primary" onClick={onContinue}>
-              {t("quiz.result.continueCta") as string}
-            </button>
+            <EditorialCta label={t("quiz.result.continueCta") as string} onClick={onContinue} />
           </>
         ) : (
           <p className="tq-cta-sub" style={{ marginTop: 0 }}>
@@ -736,6 +737,48 @@ function ResultScreen({
         {t("quiz.notYet.retake") as string}
       </button>
     </section>
+  );
+}
+
+// ── Trajectory arc marker — small horizontal 7-stage arc under the
+// chapter name. The person's stage is marked with a filled gold star;
+// only that stage's name is labeled beneath its marker, in gold
+// smallcaps, per Sasha's result-ceremony spec. ─────────────────────────
+
+function StageArc({
+  stage,
+  stageNames,
+  crossed = false,
+}: {
+  stage: Stage;
+  stageNames: Record<string, string>;
+  crossed?: boolean;
+}) {
+  const activeStage = crossed ? 7 : stage;
+  const stages = [1, 2, 3, 4, 5, 6, 7];
+
+  return (
+    <div className="tq-stage-arc" aria-label={`Stage ${activeStage} of 7`}>
+      <div className="tq-stage-arc-track">
+        {stages.map((n) => (
+          <span
+            key={n}
+            className={`tq-stage-arc-node${n === activeStage ? " is-active" : ""}${
+              crossed && n === 7 ? " is-crossed" : ""
+            }`}
+          >
+            {n === activeStage && <span className="tq-stage-arc-star">✦</span>}
+          </span>
+        ))}
+      </div>
+      <div className="tq-stage-arc-labels">
+        {stages.map((n) => (
+          <span key={n} className="tq-stage-arc-label">
+            {n === activeStage ? stageNames[String(activeStage)] : ""}
+          </span>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -760,7 +803,7 @@ function BuyingFrameScreen({
     return (
       <section className="tq-card">
         <p className="tq-quiet-line">{t("quiz.buyingFrame.transitionLine") as string}</p>
-        <p className="tq-label" style={{ marginTop: 14 }}>
+        <p className="tq-question-prompt" style={{ marginTop: 14 }}>
           {t("quiz.buyingFrame.prompt") as string}
         </p>
         <div className="tq-options">
@@ -780,8 +823,8 @@ function BuyingFrameScreen({
       <section className="tq-card">
         <p className="tq-body-text">{t("quiz.directionCall.line1") as string}</p>
         <p className="tq-body-text">{t("quiz.directionCall.line2") as string}</p>
-        <div className="tq-cta-row">
-          <a className="tq-cta tq-cta-primary" href={DIRECTION_CALL_HREF} target="_blank" rel="noreferrer">
+        <div className="tq-cta-block">
+          <a className="tq-editorial-link-cta" href={DIRECTION_CALL_HREF} target="_blank" rel="noreferrer">
             {t("quiz.directionCall.cta") as string} <ArrowUpRight size={16} />
           </a>
           <p className="tq-cta-sub">{t("quiz.directionCall.sub") as string}</p>

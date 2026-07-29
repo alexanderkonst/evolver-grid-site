@@ -29,6 +29,15 @@ const HomeV2Page = () => {
 
   const goToQuiz = () => navigate("/quiz");
 
+  // The two price sentences in mechanism.para3 read as one dense paragraph.
+  // Split on the natural sentence boundary (". ") so each gets its own line
+  // with breathing room — spacing only, the copy itself is untouched.
+  const para3 = t("homeTruth.mechanism.para3");
+  const priceSentences = para3
+    .split(/(?<=\.)\s+/)
+    .map((s: string) => s.trim())
+    .filter(Boolean);
+
   return (
     <>
       <SEO
@@ -38,7 +47,7 @@ const HomeV2Page = () => {
         ogTitle={t("homeTruth.seoTitle")}
         noIndex
       />
-      <div className="max-w-[720px] mx-auto px-5 py-6 sm:py-7 md:py-8">
+      <div className="max-w-[660px] mx-auto px-5 py-6 sm:py-7 md:py-8">
         {/* ═══════ HERO ═══════ */}
         <header className="text-center">
           <h1
@@ -89,17 +98,16 @@ const HomeV2Page = () => {
           </div>
         </header>
 
+        <Ornament className="my-10 sm:my-12" />
+
         {/* ═══════ WHAT THIS ACTUALLY IS ═══════ */}
-        <section className="mt-10 sm:mt-12 text-center max-w-[560px] mx-auto">
-          <h2
-            className="text-lg sm:text-xl font-bold mb-4"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              color: "var(--skin-text-primary, #0a1628)",
-            }}
+        <section className="text-center max-w-[640px] mx-auto">
+          <p
+            className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.28em] mb-5 bg-clip-text text-transparent"
+            style={GOLD_TEXT_STYLE}
           >
             {t("homeTruth.mechanism.heading")}
-          </h2>
+          </p>
 
           <div className="space-y-4 text-left">
             <p
@@ -120,27 +128,32 @@ const HomeV2Page = () => {
             >
               {t("homeTruth.mechanism.para2")}
             </p>
-            <p
-              className="text-sm sm:text-base leading-relaxed"
-              style={{
-                fontFamily: "'Source Serif 4', serif",
-                color: "var(--skin-text-secondary, #33415c)",
-              }}
-            >
-              {t("homeTruth.mechanism.para3")}
-            </p>
+            {/* The two price sentences get their own lines with breathing
+                room (spacing only — copy is split at its natural sentence
+                boundary, not edited). */}
+            {priceSentences.map((sentence, i) => (
+              <p
+                key={i}
+                className="text-sm sm:text-base leading-relaxed"
+                style={{
+                  fontFamily: "'Source Serif 4', serif",
+                  color: "var(--skin-text-secondary, #33415c)",
+                  marginTop: i === 0 ? undefined : "1.1em",
+                }}
+              >
+                {sentence}
+              </p>
+            ))}
           </div>
         </section>
 
+        <Ornament className="my-10 sm:my-12" />
+
         {/* ═══════ WHO THIS IS FOR ═══════ */}
-        <section className="mt-10 sm:mt-12 text-center max-w-[560px] mx-auto">
+        <section className="text-center max-w-[640px] mx-auto">
           <p
-            className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] mb-4"
-            style={{
-              color: "var(--skin-text-secondary, #33415c)",
-              textShadow:
-                "var(--skin-text-halo-strong, 0 0 20px rgba(255,255,255,0.8), 0 1px 2px rgba(255,255,255,0.9))",
-            }}
+            className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.28em] mb-5 bg-clip-text text-transparent"
+            style={GOLD_TEXT_STYLE}
           >
             {t("homeTruth.whoFor.eyebrow")}
           </p>
@@ -167,8 +180,8 @@ const HomeV2Page = () => {
           </div>
         </section>
 
-        {/* ═══════ CLOSE ═══════ */}
-        <section className="mt-12 sm:mt-14 text-center">
+        {/* ═══════ CLOSE — centered like a colophon ═══════ */}
+        <section className="mt-12 sm:mt-14 text-center max-w-[640px] mx-auto">
           <Ornament className="mb-6" />
           <p
             className="text-lg sm:text-xl leading-[1.4] mb-2"
