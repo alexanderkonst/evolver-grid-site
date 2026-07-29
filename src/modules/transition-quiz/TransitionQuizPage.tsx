@@ -1,18 +1,20 @@
-// Transition Quiz — "Where Are You" — /quiz.
+// Transition Quiz — "Where Are You" — /quiz. vNext (lean 4-question edition).
 //
-// Public, no auth, mobile-first. Spec: docs/specs/quiz/quiz_product_spec.md.
-// Nothing is withheld: every stage gets the complete diagnosis for free.
+// Public, no auth, mobile-first. Design source: the GFOA design conversation
+// ("ChatGPT-Relational Operating Field.md"), final locked SOW §1-18. That
+// SOW supersedes the earlier 17-question design found earlier in the same
+// conversation. Spec record: docs/specs/quiz/quiz_product_spec.md.
+//
+// Screens: S1 Entry -> Q1 stage placement -> branch:
+//   stages 1-3: not-yet ending (settled | itch/tremors), no ask, no CTA;
+//   stages 4-7: Q2 uniqueness -> Q3 emerging-work stage -> Q4 clarity
+//     unlock -> brief loading -> 3-beat result -> (conditionally) the
+//     optional Buying Frame qualifier -> Direction Call bridge or a plain,
+//     honest ending.
+//
+// Nothing is withheld: every path gets the complete result for free.
 // Persistence to Supabase (save-quiz-result) is fire-and-forget, for the
-// Ripeness Vector dataset only — it never gates or delays the free result.
-//
-// Screens: S1 Entry -> S2 Placement -> S3 Stage Read (Recognition) -> branch:
-//   stages 1-3: S3a (Settled | Itch/Tremors "not yet")
-//   stages 4-7: S4a/b/c (Identity/Economy/Fit) -> S5 Spread (Recognition,
-//     structural) -> S6 Zoom (Consequence) -> S7 Path (Non-optionality ->
-//     Simplicity -> Action), per ITFT Part IX's five-step collapse sequence.
-//
-// Back navigation is static (the flow is linear per branch), preserves all
-// answers already in state, and never clears anything.
+// dataset only — it never gates or delays the free result.
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -20,93 +22,98 @@ import { Helmet } from "react-helmet-async";
 import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import {
-  ASPECTS,
-  type Aspect,
-  type AspectAnswers,
+  type BuyingFrame,
+  type ClarityUnlock,
+  type CoreAnswers,
+  type EmergingWorkStage,
   type Stage,
+  type UniquenessCategory,
+  chapterKeyForStage,
+  clarityClauseKey,
+  computeRouting,
   decodeShareState,
-  diagnose,
   encodeShareState,
   isNotYetStage,
   notYetVariant,
-  scoreAllAspects,
-  type Route,
+  resultTemplateKey,
+  routeAfterBuyingFrame,
+  workStageClauseKey,
 } from "./engine";
 import "./TransitionQuizPage.css";
 
 type Screen =
   | "entry"
-  | "placement"
-  | "stageRead"
+  | "q1"
   | "notYet"
-  | "identity"
-  | "economy"
-  | "fit"
-  | "spread"
-  | "zoom"
-  | "path";
+  | "q2"
+  | "q3"
+  | "q4"
+  | "loading"
+  | "result"
+  | "buyingFrame";
 
-// Static predecessor map — the flow is linear per branch, so back navigation
-// never needs a real history stack. Going back never clears any answer.
 const BACK_MAP: Partial<Record<Screen, Screen>> = {
-  placement: "entry",
-  stageRead: "placement",
-  notYet: "stageRead",
-  identity: "stageRead",
-  economy: "identity",
-  fit: "economy",
-  spread: "fit",
-  zoom: "spread",
-  path: "zoom",
+  q1: "entry",
+  notYet: "q1",
+  q2: "q1",
+  q3: "q2",
+  q4: "q3",
+  result: "q4",
+  buyingFrame: "result",
 };
 
-// Overall progress, 0-1, per screen — shown as a slim bar so the user always
-// knows how much is left. Entry/notYet/path are start/terminal and don't
-// need one.
 const PROGRESS: Partial<Record<Screen, number>> = {
-  placement: 0.15,
-  stageRead: 0.3,
-  identity: 0.45,
-  economy: 0.6,
-  fit: 0.72,
-  spread: 0.85,
-  zoom: 0.94,
+  q1: 0.15,
+  q2: 0.4,
+  q3: 0.62,
+  q4: 0.84,
+  loading: 0.95,
 };
 
-const STORAGE_KEY = "evolver_transition_quiz_v1";
+const STORAGE_KEY = "evolver_transition_quiz_v2";
+const DIRECTION_CALL_HREF = "https://cal.com/aleksandrkonstantinov/exploration";
+
+const UNIQUENESS_VALUES: UniquenessCategory[] = [
+  "discovery",
+  "recognition",
+  "integration",
+  "vehicle",
+  "transmission",
+];
+const WORK_STAGE_VALUES: EmergingWorkStage[] = [
+  "not_visible",
+  "fragments",
+  "felt",
+  "named",
+  "built",
+  "working",
+];
+const CLARITY_VALUES: ClarityUnlock[] = [
+  "personal",
+  "direction",
+  "current_work",
+  "emerging_business",
+  "near_term_exchange",
+];
+const BUYING_FRAME_VALUES: BuyingFrame[] = ["open", "mixed", "open_no_history", "closed"];
 
 interface PersistedState {
   screen: Screen;
   stage: Stage | null;
-  identity: (number | null)[];
-  economy: (number | null)[];
-  fit: (number | null)[];
+  uniqueness: UniquenessCategory | null;
+  emergingWorkStage: EmergingWorkStage | null;
+  clarityUnlock: ClarityUnlock | null;
+  buyingFrame: BuyingFrame | null;
 }
-
-const emptyAnswers = (): (number | null)[] => [null, null, null];
 
 const initialState: PersistedState = {
   screen: "entry",
   stage: null,
-  identity: emptyAnswers(),
-  economy: emptyAnswers(),
-  fit: emptyAnswers(),
+  uniqueness: null,
+  emergingWorkStage: null,
+  clarityUnlock: null,
+  buyingFrame: null,
 };
-
-const ROUTE_HREFS: Record<Route, string> = {
-  directionCall: "https://cal.com/aleksandrkonstantinov/exploration",
-  session: "/ignite",
-  built: "/products/built",
-  node: "https://t.me/integralevolution",
-  none: "#",
-};
-
-const EXTERNAL_ROUTES: Route[] = ["directionCall", "node"];
-
-interface QuestionShape {
-  prompt: string;
-  options: string[];
-}
 
 function loadInitial(): PersistedState {
   if (typeof window === "undefined") return initialState;
@@ -116,12 +123,14 @@ function loadInitial(): PersistedState {
   if (shared) {
     const decoded = decodeShareState(shared);
     if (decoded) {
+      const hasCore = Boolean(decoded.uniqueness && decoded.emergingWorkStage && decoded.clarityUnlock);
       return {
-        screen: decoded.identity && decoded.economy && decoded.fit ? "path" : "notYet",
+        screen: hasCore ? "result" : "notYet",
         stage: decoded.stage as Stage,
-        identity: decoded.identity ? [...decoded.identity] : emptyAnswers(),
-        economy: decoded.economy ? [...decoded.economy] : emptyAnswers(),
-        fit: decoded.fit ? [...decoded.fit] : emptyAnswers(),
+        uniqueness: decoded.uniqueness ?? null,
+        emergingWorkStage: decoded.emergingWorkStage ?? null,
+        clarityUnlock: decoded.clarityUnlock ?? null,
+        buyingFrame: decoded.buyingFrame ?? null,
       };
     }
   }
@@ -140,7 +149,7 @@ const TransitionQuizPage = () => {
   const [state, setState] = useState<PersistedState>(loadInitial);
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
-  const loggedRef = useRef<string | null>(null); // guards double-fire of the completion log
+  const loggedRef = useRef<string | null>(null);
 
   useEffect(() => {
     try {
@@ -150,8 +159,7 @@ const TransitionQuizPage = () => {
     }
   }, [state]);
 
-  const { screen, stage } = state;
-
+  const { screen, stage, uniqueness, emergingWorkStage, clarityUnlock, buyingFrame } = state;
   const stageNames = t("quiz.stageNames", { returnObjects: true }) as Record<string, string>;
 
   const goTo = useCallback((next: Screen, patch: Partial<PersistedState> = {}) => {
@@ -182,36 +190,33 @@ const TransitionQuizPage = () => {
     }
   }, []);
 
-  // ── Diagnosis (only meaningful once all three aspects are answered) ────
-  const allAnswered = (arr: (number | null)[]): arr is number[] => arr.every((v) => v !== null);
+  const coreAnswers: CoreAnswers | null = useMemo(() => {
+    if (!stage || !uniqueness || !emergingWorkStage || !clarityUnlock) return null;
+    return { stage, uniqueness, emergingWorkStage, clarityUnlock };
+  }, [stage, uniqueness, emergingWorkStage, clarityUnlock]);
 
-  const diagnosis = useMemo(() => {
-    if (!stage || !allAnswered(state.identity) || !allAnswered(state.economy) || !allAnswered(state.fit)) {
-      return null;
-    }
-    const answers: AspectAnswers = {
-      identity: state.identity as [number, number, number],
-      economy: state.economy as [number, number, number],
-      fit: state.fit as [number, number, number],
-    };
-    return diagnose(scoreAllAspects(answers), stage);
-  }, [state.identity, state.economy, state.fit, stage]);
+  const routing = useMemo(() => (coreAnswers ? computeRouting(coreAnswers) : null), [coreAnswers]);
+
+  const finalRoute = useMemo(() => {
+    if (!routing) return "none" as const;
+    if (!routing.showBuyingFrame) return routing.route;
+    if (!buyingFrame) return routing.route; // not answered yet — provisional
+    return routeAfterBuyingFrame(buyingFrame);
+  }, [routing, buyingFrame]);
 
   // ── Fire-and-forget completion logging ──────────────────────────────────
   const logCompletion = useCallback(
     (payload: {
       stage: number;
-      identity_score?: number | null;
-      economy_score?: number | null;
-      fit_score?: number | null;
-      bottleneck_aspect?: Aspect | null;
-      driver_aspect?: Aspect | null;
-      pattern?: string | null;
+      not_yet: boolean;
+      uniqueness_category?: string | null;
+      emerging_work_stage?: string | null;
+      clarity_unlock?: string | null;
+      buying_frame?: string | null;
+      direction_call_shown?: boolean | null;
+      result_template?: string | null;
       route_shown?: string | null;
       email?: string | null;
-      not_yet: boolean;
-      aspect_derived_stage?: number | null;
-      has_stage_gap?: boolean | null;
     }) => {
       supabase.functions
         .invoke("save-quiz-result", { body: { ...payload, locale: i18n.language } })
@@ -227,24 +232,40 @@ const TransitionQuizPage = () => {
       loggedRef.current = `notyet-${stage}`;
       logCompletion({ stage, not_yet: true });
     }
-    if (screen === "path" && stage && diagnosis && loggedRef.current !== `path-${stage}`) {
-      loggedRef.current = `path-${stage}`;
+    if (screen === "result" && coreAnswers && routing && loggedRef.current !== `result-${stage}`) {
+      loggedRef.current = `result-${stage}`;
       logCompletion({
-        stage,
-        identity_score: diagnosis.scores.identity,
-        economy_score: diagnosis.scores.economy,
-        fit_score: diagnosis.scores.fit,
-        bottleneck_aspect: diagnosis.bottleneck,
-        driver_aspect: diagnosis.driver,
-        pattern: diagnosis.pattern,
-        route_shown: diagnosis.route,
+        stage: coreAnswers.stage,
         not_yet: false,
-        aspect_derived_stage: diagnosis.aspectStage,
-        has_stage_gap: diagnosis.hasGap,
+        uniqueness_category: coreAnswers.uniqueness,
+        emerging_work_stage: coreAnswers.emergingWorkStage,
+        clarity_unlock: coreAnswers.clarityUnlock,
+        direction_call_shown: routing.showBuyingFrame,
+        result_template: coreAnswers.uniqueness,
+        route_shown: routing.showBuyingFrame ? null : routing.route,
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [screen, stage, diagnosis]);
+  }, [screen, stage, coreAnswers, routing]);
+
+  // Log the Buying Frame answer + final route as its own completion event
+  // (additive — doesn't replace the result-completion row above).
+  useEffect(() => {
+    if (screen === "buyingFrame" && buyingFrame && coreAnswers && loggedRef.current !== `bf-${stage}-${buyingFrame}`) {
+      loggedRef.current = `bf-${stage}-${buyingFrame}`;
+      logCompletion({
+        stage: coreAnswers.stage,
+        not_yet: false,
+        uniqueness_category: coreAnswers.uniqueness,
+        emerging_work_stage: coreAnswers.emergingWorkStage,
+        clarity_unlock: coreAnswers.clarityUnlock,
+        buying_frame: buyingFrame,
+        direction_call_shown: true,
+        result_template: coreAnswers.uniqueness,
+        route_shown: routeAfterBuyingFrame(buyingFrame),
+      });
+    }
+  }, [screen, buyingFrame, coreAnswers, logCompletion, stage]);
 
   const submitEmail = useCallback(() => {
     const trimmed = email.trim();
@@ -258,20 +279,30 @@ const TransitionQuizPage = () => {
     if (!stage || typeof window === "undefined") return null;
     const token = encodeShareState({
       stage,
-      identity: allAnswered(state.identity) ? (state.identity as [number, number, number]) : undefined,
-      economy: allAnswered(state.economy) ? (state.economy as [number, number, number]) : undefined,
-      fit: allAnswered(state.fit) ? (state.fit as [number, number, number]) : undefined,
+      uniqueness: uniqueness ?? undefined,
+      emergingWorkStage: emergingWorkStage ?? undefined,
+      clarityUnlock: clarityUnlock ?? undefined,
+      buyingFrame: buyingFrame ?? undefined,
     });
     const url = new URL(window.location.href);
     url.search = `?r=${token}`;
     return url.toString();
-  }, [stage, state.identity, state.economy, state.fit]);
+  }, [stage, uniqueness, emergingWorkStage, clarityUnlock, buyingFrame]);
 
   useEffect(() => {
-    if ((screen === "path" || screen === "notYet") && shareUrl && typeof window !== "undefined") {
+    if ((screen === "result" || screen === "notYet" || screen === "buyingFrame") && shareUrl && typeof window !== "undefined") {
       window.history.replaceState(null, "", shareUrl);
     }
   }, [screen, shareUrl]);
+
+  // Brief loading beat between Q4 and the result (§Roast finding: not its
+  // own atomic screen conceptually, but a short transition so the result
+  // doesn't feel instant/cheap).
+  useEffect(() => {
+    if (screen !== "loading") return;
+    const id = window.setTimeout(() => goTo("result"), 650);
+    return () => window.clearTimeout(id);
+  }, [screen, goTo]);
 
   const progress = PROGRESS[screen];
   const canGoBack = Boolean(BACK_MAP[screen]);
@@ -279,10 +310,10 @@ const TransitionQuizPage = () => {
   return (
     <main className="tq-page">
       <Helmet>
-        <title>Where Are You — a free diagnostic of your professional transition</title>
+        <title>Where Are You — a free read of what chapter you're actually in</title>
         <meta
           name="description"
-          content="A free, ninety-second read of exactly where you are in your professional transition: your stage, what's behind, and what happens next."
+          content="Four questions. A free, honest read of what chapter you're in, why the pieces aren't lining up, and what is trying to happen next."
         />
       </Helmet>
       <div className="tq-shell">
@@ -297,24 +328,15 @@ const TransitionQuizPage = () => {
           </button>
         )}
 
-        {screen === "entry" && <EntryScreen t={t} onStart={() => goTo("placement")} />}
+        {screen === "entry" && <EntryScreen t={t} onStart={() => goTo("q1")} />}
 
-        {screen === "placement" && (
-          <PlacementScreen
+        {screen === "q1" && (
+          <Q1Screen
             t={t}
-            onPick={(value) => {
-              const picked = (value + 1) as Stage;
-              goTo("stageRead", { stage: picked });
+            onPick={(index) => {
+              const picked = (index + 1) as Stage;
+              goTo(isNotYetStage(picked) ? "notYet" : "q2", { stage: picked });
             }}
-          />
-        )}
-
-        {screen === "stageRead" && stage && (
-          <StageReadScreen
-            t={t}
-            stage={stage}
-            stageNames={stageNames}
-            onContinue={() => goTo(isNotYetStage(stage) ? "notYet" : "identity")}
           />
         )}
 
@@ -330,58 +352,57 @@ const TransitionQuizPage = () => {
           />
         )}
 
-        {screen === "identity" && (
-          <AspectScreen
+        {screen === "q2" && (
+          <ChoiceScreen
             t={t}
-            aspect="identity"
-            answers={state.identity}
-            onAnswer={(i, v) => {
-              const next = [...state.identity];
-              next[i] = v;
-              setState((s) => ({ ...s, identity: next }));
-            }}
-            onContinue={() => goTo("economy")}
+            i18nKey="quiz.q2"
+            values={UNIQUENESS_VALUES}
+            current={uniqueness}
+            onPick={(v) => goTo("q3", { uniqueness: v })}
           />
         )}
 
-        {screen === "economy" && (
-          <AspectScreen
+        {screen === "q3" && (
+          <ChoiceScreen
             t={t}
-            aspect="economy"
-            answers={state.economy}
-            onAnswer={(i, v) => {
-              const next = [...state.economy];
-              next[i] = v;
-              setState((s) => ({ ...s, economy: next }));
-            }}
-            onContinue={() => goTo("fit")}
+            i18nKey="quiz.q3"
+            values={WORK_STAGE_VALUES}
+            current={emergingWorkStage}
+            onPick={(v) => goTo("q4", { emergingWorkStage: v })}
           />
         )}
 
-        {screen === "fit" && (
-          <AspectScreen
+        {screen === "q4" && (
+          <ChoiceScreen
             t={t}
-            aspect="fit"
-            answers={state.fit}
-            onAnswer={(i, v) => {
-              const next = [...state.fit];
-              next[i] = v;
-              setState((s) => ({ ...s, fit: next }));
-            }}
-            onContinue={() => goTo("spread")}
+            i18nKey="quiz.q4"
+            values={CLARITY_VALUES}
+            current={clarityUnlock}
+            onPick={(v) => goTo("loading", { clarityUnlock: v })}
           />
         )}
 
-        {screen === "spread" && diagnosis && (
-          <SpreadScreen t={t} stageNames={stageNames} diagnosis={diagnosis} onContinue={() => goTo("zoom")} />
+        {screen === "loading" && <LoadingScreen t={t} />}
+
+        {screen === "result" && coreAnswers && routing && (
+          <ResultScreen
+            t={t}
+            stageNames={stageNames}
+            answers={coreAnswers}
+            showBuyingFrame={routing.showBuyingFrame}
+            onContinue={() => (routing.showBuyingFrame ? goTo("buyingFrame") : undefined)}
+            onRetake={reset}
+          />
         )}
 
-        {screen === "zoom" && diagnosis && stage && (
-          <ZoomScreen t={t} stage={stage} bottleneck={diagnosis.bottleneck} onContinue={() => goTo("path")} />
-        )}
-
-        {screen === "path" && diagnosis && stage && (
-          <PathScreen t={t} stage={stage} stageNames={stageNames} diagnosis={diagnosis} onRetake={reset} />
+        {screen === "buyingFrame" && (
+          <BuyingFrameScreen
+            t={t}
+            current={buyingFrame}
+            onPick={(v) => goTo("buyingFrame", { buyingFrame: v })}
+            route={buyingFrame ? routeAfterBuyingFrame(buyingFrame) : null}
+            onRetake={reset}
+          />
         )}
       </div>
     </main>
@@ -396,6 +417,7 @@ function EntryScreen({ t, onStart }: { t: (k: string, o?: Record<string, unknown
       <p className="tq-eyebrow">{t("quiz.entry.eyebrow") as string}</p>
       <h1 className="tq-h1">{t("quiz.entry.title") as string}</h1>
       <p className="tq-sub">{t("quiz.entry.subtitle") as string}</p>
+      <p className="tq-sub tq-quiet-line">{t("quiz.entry.honestyLine") as string}</p>
       <div className="tq-cta-row">
         <button type="button" className="tq-cta tq-cta-primary" onClick={onStart}>
           {t("quiz.entry.cta") as string}
@@ -405,10 +427,10 @@ function EntryScreen({ t, onStart }: { t: (k: string, o?: Record<string, unknown
   );
 }
 
-// ── S2 Placement ─────────────────────────────────────────────────────────
+// ── Q1 stage placement ──────────────────────────────────────────────────
 
-function PlacementScreen({ t, onPick }: { t: (k: string, o?: Record<string, unknown>) => unknown; onPick: (index: number) => void }) {
-  const options = t("quiz.placement.options", { returnObjects: true }) as string[];
+function Q1Screen({ t, onPick }: { t: (k: string, o?: Record<string, unknown>) => unknown; onPick: (index: number) => void }) {
+  const options = t("quiz.q1.options", { returnObjects: true }) as string[];
   const [selected, setSelected] = useState<number | null>(null);
 
   const handlePick = (index: number) => {
@@ -418,7 +440,8 @@ function PlacementScreen({ t, onPick }: { t: (k: string, o?: Record<string, unkn
 
   return (
     <section className="tq-card">
-      <p className="tq-label">{t("quiz.placement.prompt") as string}</p>
+      <p className="tq-question-count">{t("quiz.progressLabel", { current: 1, total: 4 }) as string}</p>
+      <p className="tq-label">{t("quiz.q1.prompt") as string}</p>
       <div className="tq-options">
         {options.map((opt, i) => (
           <button
@@ -436,39 +459,7 @@ function PlacementScreen({ t, onPick }: { t: (k: string, o?: Record<string, unkn
   );
 }
 
-// ── S3 Stage Read (Recognition) ─────────────────────────────────────────
-
-function StageReadScreen({
-  t,
-  stage,
-  stageNames,
-  onContinue,
-}: {
-  t: (k: string, o?: Record<string, unknown>) => unknown;
-  stage: Stage;
-  stageNames: Record<string, string>;
-  onContinue: () => void;
-}) {
-  const descriptions = t("quiz.stageRead.descriptions", { returnObjects: true }) as Record<string, string>;
-  const notYet = isNotYetStage(stage);
-  return (
-    <section className="tq-card">
-      <p className="tq-label">{t("quiz.stageRead.stageLabel") as string}</p>
-      <h2 className="tq-stage-name">{stageNames[String(stage)]}</h2>
-      <div className="tq-section">
-        <p className="tq-label">{t("quiz.stageRead.trueNowLabel") as string}</p>
-        <p className="tq-body-text">{descriptions[String(stage)]}</p>
-      </div>
-      <div className="tq-cta-row">
-        <button type="button" className="tq-cta tq-cta-primary" onClick={onContinue}>
-          {(notYet ? t("quiz.stageRead.ctaStages1to3") : t("quiz.stageRead.ctaStages4to7")) as string}
-        </button>
-      </div>
-    </section>
-  );
-}
-
-// ── S3a Not-Yet (two variants) ───────────────────────────────────────────
+// ── S3a Not-Yet (stages 1-3 — standing law, carried forward unchanged) ───
 
 function NotYetScreen({
   t,
@@ -499,12 +490,7 @@ function NotYetScreen({
         <p className="tq-sub" style={{ marginTop: 18 }}>
           {t("quiz.notYet.settled.channelsLine") as string}
         </p>
-        <a
-          className="tq-link-quiet"
-          href="https://t.me/integralevolution"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a className="tq-link-quiet" href="https://t.me/integralevolution" target="_blank" rel="noreferrer">
           {t("quiz.notYet.settled.channelsLinkLabel") as string} <ArrowUpRight size={13} />
         </a>
 
@@ -536,7 +522,6 @@ function NotYetScreen({
     );
   }
 
-  // itch (stage 2) / tremors (stage 3)
   const stageKey = String(stage);
   const content = t(`quiz.notYet.itchTremors.${stageKey}`, { returnObjects: true }) as Record<string, string>;
   const isItch = stage === 2;
@@ -585,263 +570,194 @@ function NotYetScreen({
   );
 }
 
-// ── S4a/b/c Aspect Questions ─────────────────────────────────────────────
+// ── Q2 / Q3 / Q4 — generic single-question, single-select screen ────────
 
-function AspectScreen({
+function ChoiceScreen<V extends string>({
   t,
-  aspect,
-  answers,
-  onAnswer,
-  onContinue,
+  i18nKey,
+  values,
+  current,
+  onPick,
 }: {
   t: (k: string, o?: Record<string, unknown>) => unknown;
-  aspect: Aspect;
-  answers: (number | null)[];
-  onAnswer: (questionIndex: number, value: number) => void;
-  onContinue: () => void;
+  i18nKey: string;
+  values: V[];
+  current: V | null;
+  onPick: (value: V) => void;
 }) {
-  const data = t(`quiz.aspects.${aspect}`, { returnObjects: true }) as {
-    title: string;
-    cta: string;
-    questions: QuestionShape[];
+  const data = t(i18nKey, { returnObjects: true }) as {
+    order: number;
+    prompt: string;
+    options: Record<string, string>;
   };
-  const aspectIndex = ASPECTS.indexOf(aspect);
-  const allAnswered = answers.every((v) => v !== null);
+  const [selected, setSelected] = useState<V | null>(current);
+
+  const handlePick = (v: V) => {
+    setSelected(v);
+    window.setTimeout(() => onPick(v), 260);
+  };
 
   return (
     <section className="tq-card">
-      <div className="tq-progress">
-        {ASPECTS.map((a, i) => (
-          <span key={a} className={`tq-progress-dot${i <= aspectIndex ? " is-filled" : ""}`} />
+      <p className="tq-question-count">{t("quiz.progressLabel", { current: data.order, total: 4 }) as string}</p>
+      <p className="tq-label">{data.prompt}</p>
+      <div className="tq-options">
+        {values.map((v, i) => (
+          <button
+            key={v}
+            type="button"
+            className={`tq-option${selected === v ? " is-selected" : ""}`}
+            onClick={() => handlePick(v)}
+          >
+            <span className="tq-option-letter">{selected === v ? <Check size={13} /> : i + 1}</span>
+            <span>{data.options[v]}</span>
+          </button>
         ))}
       </div>
-      <p className="tq-label">{data.title}</p>
-
-      {data.questions.map((q, qi) => (
-        <div className="tq-section" key={qi}>
-          <p className="tq-body-text" style={{ marginTop: 0, fontWeight: 600 }}>
-            {q.prompt}
-          </p>
-          <div className="tq-options">
-            {q.options.map((opt, oi) => {
-              const value = oi + 1;
-              const selected = answers[qi] === value;
-              return (
-                <button
-                  key={oi}
-                  type="button"
-                  className={`tq-option${selected ? " is-selected" : ""}`}
-                  onClick={() => onAnswer(qi, value)}
-                >
-                  <span className="tq-option-letter">{selected ? <Check size={13} /> : value}</span>
-                  <span>{opt}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      ))}
-
-      <div className="tq-cta-row">
-        <button type="button" className="tq-cta tq-cta-primary" disabled={!allAnswered} onClick={onContinue}>
-          {data.cta}
-        </button>
-      </div>
     </section>
   );
 }
 
-// ── S5 The Spread (structural Recognition) ──────────────────────────────
+// ── Loading beat ──────────────────────────────────────────────────────────
 
-function SpreadScreen({
-  t,
-  stageNames,
-  diagnosis,
-  onContinue,
-}: {
-  t: (k: string, o?: Record<string, unknown>) => unknown;
-  stageNames: Record<string, string>;
-  diagnosis: ReturnType<typeof diagnose>;
-  onContinue: () => void;
-}) {
-  const names = t("quiz.aspects.names", { returnObjects: true }) as Record<Aspect, string>;
-  const { scores, bottleneck, driver, hasGap, selfReportStage, aspectStage } = diagnosis;
-
+function LoadingScreen({ t }: { t: (k: string, o?: Record<string, unknown>) => unknown }) {
   return (
-    <section className="tq-card">
-      <h2 className="tq-h1" style={{ fontSize: "1.6rem" }}>
-        {t("quiz.spread.title") as string}
-      </h2>
-      <p className="tq-sub">{t("quiz.spread.subtitle") as string}</p>
-
-      <div className="tq-spread-row">
-        {ASPECTS.map((aspect) => {
-          const isBottleneck = aspect === bottleneck;
-          const isDriver = aspect === driver && driver !== bottleneck;
-          return (
-            <div className="tq-spread-aspect" key={aspect}>
-              <div className="tq-spread-aspect-head">
-                <span>{names[aspect]}</span>
-                {isBottleneck && (
-                  <span className="tq-spread-tag is-bottleneck">{t("quiz.spread.whatsBehindLabel") as string}</span>
-                )}
-                {isDriver && (
-                  <span className="tq-spread-tag is-driver">{t("quiz.spread.whatsAheadLabel") as string}</span>
-                )}
-              </div>
-              <div className="tq-arc-track">
-                <div
-                  className={`tq-arc-fill${isBottleneck ? " is-bottleneck" : ""}${isDriver ? " is-driver" : ""}`}
-                  style={{ width: `${(scores[aspect] / 7) * 100}%` }}
-                />
-              </div>
-            </div>
-          );
-        })}
-        <div className="tq-arc-scale">
-          <span>1</span>
-          <span>7</span>
-        </div>
-      </div>
-
-      {hasGap && (
-        <div className="tq-section tq-gap-note">
-          <p className="tq-label">{t("quiz.spread.gapNoteLabel") as string}</p>
-          <p className="tq-body-text">
-            {
-              t("quiz.spread.gapNote", {
-                selfStage: stageNames[String(selfReportStage)],
-                aspectStage: stageNames[String(aspectStage)],
-              }) as string
-            }
-          </p>
-        </div>
-      )}
-
-      <div className="tq-cta-row">
-        <button type="button" className="tq-cta tq-cta-primary" onClick={onContinue}>
-          {t("quiz.spread.cta") as string}
-        </button>
-      </div>
-    </section>
-  );
-}
-
-// ── S6 The Zoom (Consequence) ────────────────────────────────────────────
-
-function ZoomScreen({
-  t,
-  stage,
-  bottleneck,
-  onContinue,
-}: {
-  t: (k: string, o?: Record<string, unknown>) => unknown;
-  stage: Stage;
-  bottleneck: Aspect;
-  onContinue: () => void;
-}) {
-  const reads = t(`quiz.zoom.reads.${bottleneck}`, { returnObjects: true }) as Record<string, string>;
-  const stageKey = String(Math.max(4, Math.min(7, stage)));
-
-  return (
-    <section className="tq-card">
-      <h2 className="tq-h1" style={{ fontSize: "1.6rem" }}>
-        {t("quiz.zoom.title") as string}
-      </h2>
-      <p className="tq-label" style={{ marginTop: 14 }}>
-        {t("quiz.zoom.consequenceFrame") as string}
+    <section className="tq-card tq-loading-card">
+      <p className="tq-sub" style={{ textAlign: "center" }}>
+        {t("quiz.loading") as string}
       </p>
-      <p className="tq-body-text">{reads[stageKey]}</p>
-      <div className="tq-cta-row">
-        <button type="button" className="tq-cta tq-cta-primary" onClick={onContinue}>
-          {t("quiz.zoom.cta") as string}
-        </button>
-      </div>
     </section>
   );
 }
 
-// ── S7 The Path (Non-optionality -> Simplicity -> Action) ───────────────
+// ── Result: the 3-beat lean architecture (§12) ───────────────────────────
 
-function PathScreen({
+function ResultScreen({
   t,
-  stage,
   stageNames,
-  diagnosis,
+  answers,
+  showBuyingFrame,
+  onContinue,
   onRetake,
 }: {
   t: (k: string, o?: Record<string, unknown>) => unknown;
-  stage: Stage;
   stageNames: Record<string, string>;
-  diagnosis: ReturnType<typeof diagnose>;
+  answers: CoreAnswers;
+  showBuyingFrame: boolean;
+  onContinue: () => void;
   onRetake: () => void;
 }) {
-  const names = t("quiz.aspects.names", { returnObjects: true }) as Record<Aspect, string>;
-  const nonOptionality = t("quiz.path.nonOptionality", { returnObjects: true }) as Record<string, string>;
-  const nextMove = t("quiz.path.nextMove", { returnObjects: true }) as Record<string, string>;
-  const trap = t("quiz.path.trap", { returnObjects: true }) as Record<string, string>;
-  const stageKey = String(Math.max(4, Math.min(7, stage)));
-  const { bottleneck, route } = diagnosis;
-  const routeData = t(`quiz.path.routes.${route}`, { returnObjects: true }) as { label: string; sub: string };
-  const isExternal = EXTERNAL_ROUTES.includes(route);
+  const chapter = t(chapterKeyForStage(answers.stage)) as string;
+  const beats = t(resultTemplateKey(answers.uniqueness), { returnObjects: true }) as {
+    heading: string;
+    body: string;
+    nextMove: string;
+  };
+  const workClause = t(workStageClauseKey(answers.emergingWorkStage)) as string;
+  const clarityClause = t(clarityClauseKey(answers.clarityUnlock)) as string;
 
   return (
     <section className="tq-card">
-      <p className="tq-label">{t("quiz.path.title") as string}</p>
+      <p className="tq-label">{t("quiz.result.stageLabel") as string}</p>
+      <h2 className="tq-stage-name" style={{ fontSize: "1.7rem" }}>
+        {stageNames[String(answers.stage)]}
+      </h2>
+      <p className="tq-body-text">{chapter}</p>
 
-      <div className="tq-section" style={{ marginTop: 10 }}>
-        <p className="tq-label">{t("quiz.path.stageLabel") as string}</p>
-        <h2 className="tq-stage-name" style={{ fontSize: "1.9rem" }}>
-          {stageNames[String(stage)]}
-        </h2>
+      <div className="tq-section">
+        <h3 className="tq-beat-heading">{beats.heading}</h3>
+        <p className="tq-body-text">{beats.body}</p>
+        <p className="tq-body-text tq-quiet-line">{workClause}</p>
       </div>
 
       <div className="tq-section">
-        <p className="tq-label">{t("quiz.path.behindLabel") as string}</p>
-        <p className="tq-body-text" style={{ marginTop: 4, fontWeight: 600 }}>
-          {names[bottleneck]}
+        <p className="tq-label">{t("quiz.result.nextLabel") as string}</p>
+        <p className="tq-body-text">{beats.nextMove}</p>
+        <p className="tq-body-text tq-quiet-line">
+          {t("quiz.result.clarityLead", { clause: clarityClause }) as string}
         </p>
       </div>
 
-      <div className="tq-section">
-        <p className="tq-label">{t("quiz.path.nonOptionalityLabel") as string}</p>
-        <p className="tq-body-text">{nonOptionality[stageKey]}</p>
-      </div>
+      <p className="tq-body-text tq-take-what-note">{t("quiz.result.takeWhatNote") as string}</p>
 
-      <div className="tq-section">
-        <p className="tq-label">{t("quiz.path.simplicityLabel") as string}</p>
-        <p className="tq-body-text">{nextMove[stageKey]}</p>
-      </div>
-
-      <div className="tq-section">
-        <p className="tq-label">{t("quiz.path.trapLabel") as string}</p>
-        <p className="tq-body-text">{trap[stageKey]}</p>
-      </div>
-
-      <div className="tq-route-block">
-        {route !== "none" && (
-          <>
-            {isExternal ? (
-              <a
-                className="tq-cta tq-cta-primary"
-                href={ROUTE_HREFS[route]}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {routeData.label} <ArrowUpRight size={16} />
-              </a>
-            ) : (
-              <a className="tq-cta tq-cta-primary" href={ROUTE_HREFS[route]}>
-                {routeData.label}
-              </a>
-            )}
-            <p className="tq-cta-sub">{routeData.sub}</p>
-          </>
+      <div className="tq-cta-row">
+        {showBuyingFrame ? (
+          <button type="button" className="tq-cta tq-cta-primary" onClick={onContinue}>
+            {t("quiz.result.continueCta") as string}
+          </button>
+        ) : (
+          <p className="tq-cta-sub" style={{ marginTop: 0 }}>
+            {t("quiz.result.honestEnding") as string}
+          </p>
         )}
       </div>
 
       <button type="button" className="tq-retake" onClick={onRetake}>
-        {t("quiz.path.retake") as string}
+        {t("quiz.notYet.retake") as string}
+      </button>
+    </section>
+  );
+}
+
+// ── Optional Buying Frame qualifier + Direction Call bridge (§10, §13) ───
+
+function BuyingFrameScreen({
+  t,
+  current,
+  onPick,
+  route,
+  onRetake,
+}: {
+  t: (k: string, o?: Record<string, unknown>) => unknown;
+  current: BuyingFrame | null;
+  onPick: (v: BuyingFrame) => void;
+  route: "directionCall" | "none" | null;
+  onRetake: () => void;
+}) {
+  const options = t("quiz.buyingFrame.options", { returnObjects: true }) as Record<string, string>;
+
+  if (!current) {
+    return (
+      <section className="tq-card">
+        <p className="tq-quiet-line">{t("quiz.buyingFrame.transitionLine") as string}</p>
+        <p className="tq-label" style={{ marginTop: 14 }}>
+          {t("quiz.buyingFrame.prompt") as string}
+        </p>
+        <div className="tq-options">
+          {BUYING_FRAME_VALUES.map((v, i) => (
+            <button key={v} type="button" className="tq-option" onClick={() => onPick(v)}>
+              <span className="tq-option-letter">{i + 1}</span>
+              <span>{options[v]}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  if (route === "directionCall") {
+    return (
+      <section className="tq-card">
+        <p className="tq-body-text">{t("quiz.directionCall.line1") as string}</p>
+        <p className="tq-body-text">{t("quiz.directionCall.line2") as string}</p>
+        <div className="tq-cta-row">
+          <a className="tq-cta tq-cta-primary" href={DIRECTION_CALL_HREF} target="_blank" rel="noreferrer">
+            {t("quiz.directionCall.cta") as string} <ArrowUpRight size={16} />
+          </a>
+          <p className="tq-cta-sub">{t("quiz.directionCall.sub") as string}</p>
+        </div>
+        <button type="button" className="tq-retake" onClick={onRetake}>
+          {t("quiz.notYet.retake") as string}
+        </button>
+      </section>
+    );
+  }
+
+  return (
+    <section className="tq-card">
+      <p className="tq-body-text">{t("quiz.buyingFrame.closedEnding") as string}</p>
+      <button type="button" className="tq-retake" onClick={onRetake}>
+        {t("quiz.notYet.retake") as string}
       </button>
     </section>
   );

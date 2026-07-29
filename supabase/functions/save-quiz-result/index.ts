@@ -18,6 +18,11 @@ const corsHeaders = {
 const ASPECTS = ["identity", "economy", "fit"] as const;
 type Aspect = (typeof ASPECTS)[number];
 
+const UNIQUENESS_CATEGORIES = ["discovery", "recognition", "integration", "vehicle", "transmission"] as const;
+const EMERGING_WORK_STAGES = ["not_visible", "fragments", "felt", "named", "built", "working"] as const;
+const CLARITY_UNLOCKS = ["personal", "direction", "current_work", "emerging_business", "near_term_exchange"] as const;
+const BUYING_FRAMES = ["open", "mixed", "open_no_history", "closed"] as const;
+
 interface SaveQuizResultPayload {
   stage?: number;
   identity_score?: number | null;
@@ -32,6 +37,14 @@ interface SaveQuizResultPayload {
   locale?: string | null;
   aspect_derived_stage?: number | null;
   has_stage_gap?: boolean | null;
+  // vNext (lean 4-question edition) fields — additive, all optional so the
+  // client keeps working even before this batch's migration has run.
+  uniqueness_category?: (typeof UNIQUENESS_CATEGORIES)[number] | null;
+  emerging_work_stage?: (typeof EMERGING_WORK_STAGES)[number] | null;
+  clarity_unlock?: (typeof CLARITY_UNLOCKS)[number] | null;
+  buying_frame?: (typeof BUYING_FRAMES)[number] | null;
+  direction_call_shown?: boolean | null;
+  result_template?: string | null;
 }
 
 const json = (status: number, body: unknown) =>
@@ -85,6 +98,19 @@ Deno.serve(async (req) => {
       return json(400, { error: "invalid_email" });
     }
 
+    if (body.uniqueness_category && !UNIQUENESS_CATEGORIES.includes(body.uniqueness_category)) {
+      return json(400, { error: "invalid_uniqueness_category" });
+    }
+    if (body.emerging_work_stage && !EMERGING_WORK_STAGES.includes(body.emerging_work_stage)) {
+      return json(400, { error: "invalid_emerging_work_stage" });
+    }
+    if (body.clarity_unlock && !CLARITY_UNLOCKS.includes(body.clarity_unlock)) {
+      return json(400, { error: "invalid_clarity_unlock" });
+    }
+    if (body.buying_frame && !BUYING_FRAMES.includes(body.buying_frame)) {
+      return json(400, { error: "invalid_buying_frame" });
+    }
+
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
     if (!supabaseUrl || !serviceRoleKey) {
@@ -96,25 +122,48 @@ Deno.serve(async (req) => {
       auth: { autoRefreshToken: false, persistSession: false },
     });
 
-    const { data, error } = await admin
+    const baseRow = {
+      stage: body.stage,
+      identity_score: body.identity_score ?? null,
+      economy_score: body.economy_score ?? null,
+      fit_score: body.fit_score ?? null,
+      bottleneck_aspect: body.bottleneck_aspect ?? null,
+      driver_aspect: body.driver_aspect ?? null,
+      pattern: body.pattern ?? null,
+      route_shown: body.route_shown ?? null,
+      email,
+      not_yet: notYet,
+      locale: body.locale ?? null,
+      aspect_derived_stage: body.aspect_derived_stage ?? null,
+      has_stage_gap: body.has_stage_gap ?? null,
+    };
+
+    const vNextRow = {
+      uniqueness_category: body.uniqueness_category ?? null,
+      emerging_work_stage: body.emerging_work_stage ?? null,
+      clarity_unlock: body.clarity_unlock ?? null,
+      buying_frame: body.buying_frame ?? null,
+      direction_call_shown: body.direction_call_shown ?? null,
+      result_template: body.result_template ?? null,
+    };
+
+    let { data, error } = await admin
       .from("transition_quiz_results")
-      .insert({
-        stage: body.stage,
-        identity_score: body.identity_score ?? null,
-        economy_score: body.economy_score ?? null,
-        fit_score: body.fit_score ?? null,
-        bottleneck_aspect: body.bottleneck_aspect ?? null,
-        driver_aspect: body.driver_aspect ?? null,
-        pattern: body.pattern ?? null,
-        route_shown: body.route_shown ?? null,
-        email,
-        not_yet: notYet,
-        locale: body.locale ?? null,
-        aspect_derived_stage: body.aspect_derived_stage ?? null,
-        has_stage_gap: body.has_stage_gap ?? null,
-      })
+      .insert({ ...baseRow, ...vNextRow })
       .select("id")
       .single();
+
+    // Graceful degradation: if the vNext migration hasn't run yet in this
+    // environment, the vNext columns won't exist. Retry with just the base
+    // row rather than losing the completion entirely.
+    if (error && /column .* does not exist/i.test(error.message ?? "")) {
+      console.warn("save-quiz-result: vNext columns missing, retrying without them", error.message);
+      ({ data, error } = await admin
+        .from("transition_quiz_results")
+        .insert(baseRow)
+        .select("id")
+        .single());
+    }
 
     if (error || !data) {
       console.error("save-quiz-result: insert failed", error);

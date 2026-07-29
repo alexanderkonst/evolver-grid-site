@@ -1,165 +1,61 @@
-// Transition Quiz — diagnostic engine.
+// Transition Quiz — diagnostic engine, vNext (lean 4-question edition).
 //
-// Pure functions only: placement, aspect scoring, pattern/bottleneck/driver
-// derivation, and route selection. No i18n, no React, no Supabase here — the
-// page component wires this to copy and persistence.
+// Pure functions only: no i18n, no React, no Supabase here — the page
+// component wires this to copy and persistence.
 //
-// Source of truth: docs/specs/quiz/quiz_product_spec.md ("The diagnostic
-// engine" table) + docs/holomaps/transition_holomap.md (63-cell grid, used
-// verbatim as the seven answer options for each aspect question).
+// Source of truth: the GFOA design conversation's final locked SOW
+// ("WHERE ARE YOU? Lean Quiz Specification, Use Instructions & Build SOW —
+// vNext · Four-Question Edition", sections 1-18). That SOW explicitly
+// supersedes the earlier 17-question / discriminator design that appears
+// earlier in the same conversation — Sasha rejected it as overkill and the
+// four-question design is the one carrying a Definition of Done (§18).
+//
+// Governing sentence (§18): "Four questions are enough to locate the
+// crossing. The conversation exists to see what is actually crossing."
+//
+// Standing laws carried forward from the earlier (superseded) design,
+// per explicit instruction — never revoked by the roast that cut 17
+// questions to 4:
+//  - stages 1-3 get a no-ask ending with a per-stage gift (settled / itch /
+//    tremors), same content as before;
+//  - "Money" not "Economy" in all user-facing copy;
+//  - no internal jargon on screen.
+// The Recognition Delta question from the earlier design was NOT carried
+// into the final SOW (§16, §18) — it is not implemented here.
 
 export type Stage = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
-export type Aspect = "identity" | "economy" | "fit";
+/** §7 — Q2, "What is actually unclear?" (Uniqueness classifier). */
+export type UniquenessCategory =
+  | "discovery"
+  | "recognition"
+  | "integration"
+  | "vehicle"
+  | "transmission";
 
-export const ASPECTS: Aspect[] = ["identity", "economy", "fit"];
+/** §8 — Q3, developmental position of the emerging work.
+ *  absent -> fragmented -> felt -> named -> built -> working */
+export type EmergingWorkStage =
+  | "not_visible"
+  | "fragments"
+  | "felt"
+  | "named"
+  | "built"
+  | "working";
 
-export interface AspectAnswers {
-  identity: [number, number, number];
-  economy: [number, number, number];
-  fit: [number, number, number];
-}
+/** §9 — Q4, live real-world consequence ("clarity unlock"). */
+export type ClarityUnlock =
+  | "personal"
+  | "direction"
+  | "current_work"
+  | "emerging_business"
+  | "near_term_exchange";
 
-export type Pattern =
-  | "identity_bottleneck"
-  | "economy_bottleneck"
-  | "fit_bottleneck"
-  | "full_liminality"
-  | "settled_pattern"
-  | "mixed";
+/** §10 — optional post-result commercial qualifier. */
+export type BuyingFrame = "open" | "mixed" | "open_no_history" | "closed";
 
-export type Route = "directionCall" | "session" | "built" | "node" | "none";
+export type Route = "directionCall" | "none";
 
-export interface AspectScores {
-  identity: number;
-  economy: number;
-  fit: number;
-}
-
-/** Round the average of three 1-7 answers to a clamped 1-7 integer. */
-export function scoreAspect(answers: [number, number, number]): number {
-  const avg = (answers[0] + answers[1] + answers[2]) / 3;
-  return Math.min(7, Math.max(1, Math.round(avg)));
-}
-
-export function scoreAllAspects(answers: AspectAnswers): AspectScores {
-  return {
-    identity: scoreAspect(answers.identity),
-    economy: scoreAspect(answers.economy),
-    fit: scoreAspect(answers.fit),
-  };
-}
-
-/** The lagging aspect (lowest score). Ties break identity > economy > fit. */
-export function bottleneckOf(scores: AspectScores): Aspect {
-  const order: Aspect[] = ["identity", "economy", "fit"];
-  return order.reduce((min, a) => (scores[a] < scores[min] ? a : min), order[0]);
-}
-
-/** The leading aspect (highest score) — the growth driver. */
-export function driverOf(scores: AspectScores): Aspect {
-  const order: Aspect[] = ["identity", "economy", "fit"];
-  return order.reduce((max, a) => (scores[a] > scores[max] ? a : max), order[0]);
-}
-
-export interface DiagnosticResult {
-  scores: AspectScores;
-  bottleneck: Aspect;
-  driver: Aspect;
-  pattern: Pattern;
-  route: Route;
-  /** Self-reported stage from S2/S3 — always the displayed stage name. */
-  selfReportStage: Stage;
-  /** Stage implied by the mean of the three aspect scores, independent of
-   *  self-report. Used only to check the self-report against the aspect
-   *  read, never to silently override it (see GAP_THRESHOLD below). */
-  aspectStage: Stage;
-  /** True when the two reads disagree by more than GAP_THRESHOLD stages —
-   *  the sign of a contradictory answer set that a naive placement-only
-   *  read would confidently paper over. */
-  hasGap: boolean;
-}
-
-/** A self-report vs. aspect-score disagreement this large is worth naming
- *  to the user rather than silently resolving one way or the other — the
- *  fix for "confidently wrong read on contradictory answers." */
-export const GAP_THRESHOLD = 2;
-
-/** Stage implied by the three aspect scores alone, independent of what the
- *  person picked at S2. The nine aspect-question answer options are worded
- *  from the same 63-cell grid as the seven placement statements, so their
- *  average is a second, independent estimate of the same position. */
-export function deriveStageFromAspects(scores: AspectScores): Stage {
-  const avg = (scores.identity + scores.economy + scores.fit) / 3;
-  return Math.min(7, Math.max(1, Math.round(avg))) as Stage;
-}
-
-/**
- * Pattern + route selection. Per the spec's Bridges section:
- *  - Identity-bottleneck (whichever aspect leads) -> node/community: the
- *    person needs field exposure before 1:1 work has traction.
- *  - Fit-bottleneck, and clearly behind both others -> the direct paid
- *    session: "the purest session case."
- *  - Economy-bottleneck -> Direction Call, the free front door into the
- *    session/BUILT ladder.
- *  - All three clustered high (full liminality) -> Direction Call, the
- *    ripest pattern on the map, given the most direct read.
- *  - All three low, or no clear single bottleneck -> Direction Call as the
- *    universal safe default (stages 4-7 always get the full ladder; see
- *    resolved decision F).
- *
- * `selfReportStage` is carried through only to compute the corroboration
- * check (`hasGap`) — it never changes which pattern/route gets picked. The
- * displayed stage name always stays the person's own words (S2's seven
- * first-person statements are, per the holomap, the actual diagnostic —
- * overriding them would replace their felt read with a number they didn't
- * say). What the aspect scores get to do is name it out loud when the two
- * disagree, instead of quietly picking a side.
- */
-export function diagnose(scores: AspectScores, selfReportStage: Stage): DiagnosticResult {
-  const { identity, economy, fit } = scores;
-  const values = [identity, economy, fit];
-  const max = Math.max(...values);
-  const min = Math.min(...values);
-  const spread = max - min;
-
-  const bottleneck = bottleneckOf(scores);
-  const driver = driverOf(scores);
-  const aspectStage = deriveStageFromAspects(scores);
-  const hasGap = Math.abs(aspectStage - selfReportStage) > GAP_THRESHOLD;
-
-  const base = { scores, selfReportStage, aspectStage, hasGap };
-
-  // Full liminality: all three clustered near the top (Liminality, stage 5+),
-  // no clean single bottleneck to point at.
-  if (spread <= 1 && (identity + economy + fit) / 3 >= 4.5) {
-    return { ...base, bottleneck, driver, pattern: "full_liminality", route: "directionCall" };
-  }
-
-  // Settled-like pattern (defensive fallback — shouldn't normally be reached
-  // since stages 1-3 branch away before the aspect questions, but a stage
-  // 4-7 self-report with a uniformly low aspect read should still get the
-  // full ladder per decision F, not be treated as a dead end).
-  if (spread <= 1 && (identity + economy + fit) / 3 <= 2) {
-    return { ...base, bottleneck, driver, pattern: "settled_pattern", route: "directionCall" };
-  }
-
-  if (bottleneck === "fit" && fit <= identity - 1 && fit <= economy - 1) {
-    return { ...base, bottleneck, driver, pattern: "fit_bottleneck", route: "session" };
-  }
-
-  if (bottleneck === "identity") {
-    return { ...base, bottleneck, driver, pattern: "identity_bottleneck", route: "node" };
-  }
-
-  if (bottleneck === "economy") {
-    return { ...base, bottleneck, driver, pattern: "economy_bottleneck", route: "directionCall" };
-  }
-
-  return { ...base, bottleneck, driver, pattern: "mixed", route: "directionCall" };
-}
-
-/** Stages 1-3 stop at the not-yet branch (S3a); 4-7 go on to the aspect read. */
 export function isNotYetStage(stage: Stage): boolean {
   return stage <= 3;
 }
@@ -171,18 +67,96 @@ export function notYetVariant(stage: Stage): "settled" | "itch" | "tremors" | nu
   return null;
 }
 
+export interface CoreAnswers {
+  stage: Stage;
+  uniqueness: UniquenessCategory;
+  emergingWorkStage: EmergingWorkStage;
+  clarityUnlock: ClarityUnlock;
+}
+
+/**
+ * §13 Direction Call Bridge — the pre-qualifier gate. Only when this is
+ * true does the optional Buying Frame question (§10) get shown at all.
+ * All four conditions must hold:
+ *  - Transition is Rupture, Liminality, or Reorientation (stages 4-6);
+ *  - Uniqueness problem is Recognition or Integration;
+ *  - the emerging work is fragmented, felt-but-unnamed, or named-but-unbuilt;
+ *  - the live vehicle is open (an emerging business or near-term exchange).
+ */
+export function meetsDirectionCallGate(answers: CoreAnswers): boolean {
+  const stageInRange = answers.stage >= 4 && answers.stage <= 6;
+  const uniquenessFits = answers.uniqueness === "recognition" || answers.uniqueness === "integration";
+  const workStageFits =
+    answers.emergingWorkStage === "fragments" ||
+    answers.emergingWorkStage === "felt" ||
+    answers.emergingWorkStage === "named";
+  const vehicleOpen =
+    answers.clarityUnlock === "emerging_business" || answers.clarityUnlock === "near_term_exchange";
+  return stageInRange && uniquenessFits && workStageFits && vehicleOpen;
+}
+
+/**
+ * §10 decision rules, once the gate above already holds (i.e. the person
+ * is only ever asked the Buying Frame question after the other four
+ * conditions are already strong — see §10 "Important decision rule"):
+ * every answer except "closed" leads to the Direction Call.
+ */
+export function routeAfterBuyingFrame(buyingFrame: BuyingFrame): Route {
+  return buyingFrame === "closed" ? "none" : "directionCall";
+}
+
+export interface RouteResult {
+  /** Whether the optional Buying Frame qualifier should even be shown. */
+  showBuyingFrame: boolean;
+  /** Route to use before the qualifier is answered (or when there is none
+   *  to ask at all) — "directionCall" once the qualifier resolves it,
+   *  "none" if the gate itself already failed. */
+  route: Route;
+}
+
+/** Full routing decision for a completed core-answer set, before the
+ *  optional qualifier has been answered (or when there is none to ask). */
+export function computeRouting(answers: CoreAnswers): RouteResult {
+  const eligible = meetsDirectionCallGate(answers);
+  return { showBuyingFrame: eligible, route: eligible ? "directionCall" : "none" };
+}
+
+// ── Result copy keys ────────────────────────────────────────────────────
+// The 3-beat lean result architecture (§12): Chapter / Real Problem / What
+// Comes Next. Beat 1 is keyed by stage, Beat 2+3 are keyed by uniqueness
+// category (the strongest signal from §14's authored examples), with a
+// short supporting clause each from emergingWorkStage and clarityUnlock.
+// All actual copy lives in locales; this just picks the keys.
+
+export function chapterKeyForStage(stage: Stage): string {
+  // Stages 1-3 never reach this — they stop at the not-yet branch.
+  return `quiz.result.chapter.${Math.max(4, Math.min(7, stage))}`;
+}
+
+export function resultTemplateKey(uniqueness: UniquenessCategory): string {
+  return `quiz.result.beats.${uniqueness}`;
+}
+
+export function workStageClauseKey(stage: EmergingWorkStage): string {
+  return `quiz.result.workStageClause.${stage}`;
+}
+
+export function clarityClauseKey(clarity: ClarityUnlock): string {
+  return `quiz.result.clarityClause.${clarity}`;
+}
+
 // ── Shareable/resumable encoding ──────────────────────────────────────────
-// The whole quiz state is small enough to round-trip through a URL query
-// param, so a result (or an in-progress answer set) can be shared or
-// resumed with no server round-trip. Persistence to Supabase (below, via
-// the page component) is for the dataset only — never required to render
+// Small enough to round-trip through a URL query param — a result can be
+// shared or resumed with no server round-trip. Supabase persistence (via
+// the page component) is for the dataset only, never required to render
 // the free result.
 
 export interface QuizShareState {
   stage: Stage;
-  identity?: [number, number, number];
-  economy?: [number, number, number];
-  fit?: [number, number, number];
+  uniqueness?: UniquenessCategory;
+  emergingWorkStage?: EmergingWorkStage;
+  clarityUnlock?: ClarityUnlock;
+  buyingFrame?: BuyingFrame;
   email?: string;
 }
 
