@@ -7,8 +7,10 @@ import { TESTIMONIALS } from "@/data/testimonials";
 import SEO from "@/components/SEO";
 
 /**
- * HomeLandingPage — `/home`, a private review surface for the proposed
- * landing rebuild (added July 28, 2026).
+ * HomeLandingPage — `/home2`, a private review surface for the proposed
+ * landing rebuild (added July 28, 2026; moved from `/home` to `/home2`
+ * July 29, 2026 to make room for the approved "Name what's next" truth
+ * landing at `/home` — see HomeV2Page.tsx).
  *
  * Context: this component was briefly and mistakenly deployed as the
  * live homepage at `/`, then reverted (commit 6355a908) back to the
@@ -16,9 +18,9 @@ import SEO from "@/components/SEO";
  * (Ceiling Law hero, seven-stage map, recognition list, mirror-holder
  * section, testimonials, offer ladder, quiz CTA) was worth preserving
  * so Sasha can review it without it being live to strangers — hence
- * this standalone, noindex `/home` route. It is NOT wired into any
+ * this standalone, noindex `/home2` route. It is NOT wired into any
  * nav, sitemap, or shellRoutes indexing path; it renders in the same
- * shell chrome as `/` only because `/home` is listed in shellRoutes'
+ * shell chrome as `/` only because `/home2` is listed in shellRoutes'
  * SHELL_EXACT set, purely for a faithful side-by-side review.
  *
  * Copy lives under the `homeLanding` i18n namespace (src/locales/
@@ -50,7 +52,7 @@ const HomeLandingPage = () => {
       <SEO
         title={t("homeLanding.seoTitle")}
         description={t("homeLanding.seoDescription")}
-        path="/home"
+        path="/home2"
         ogTitle={t("homeLanding.seoTitle")}
         noIndex
       />
