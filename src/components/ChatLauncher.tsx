@@ -37,6 +37,13 @@ const ChatLauncher = () => {
     return () => window.removeEventListener(OPEN_CHAT_EVENT, openChat);
   }, []);
 
+  // The quiz's result ceremony is a tall, content-dense single column at
+  // 375px — the launcher's fixed bottom-right pill sits directly over the
+  // retake link / CTA block there. Suppress it on quiz routes rather than
+  // fighting z-index games on every quiz screen. (Visual-only change; the
+  // launcher still mounts/behaves identically everywhere else.)
+  const isQuizRoute = location.pathname.startsWith("/quiz");
+
   const recordChannelChoice = (channel: Channel) => {
     // Feed a standard dataLayer when analytics is present, without making
     // analytics a dependency or allowing it to interrupt the contact action.
@@ -50,6 +57,8 @@ const ChatLauncher = () => {
     });
     setOpen(false);
   };
+
+  if (isQuizRoute) return null;
 
   return (
     <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 sm:bottom-6 sm:right-6 z-[65]">
