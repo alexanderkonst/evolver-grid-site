@@ -7375,7 +7375,7 @@
    "2": "La comezón",
    "3": "Temblores",
    "4": "La ruptura",
-   "5": "El vacío",
+   "5": "Entre capítulos",
    "6": "Tomando forma",
    "7": "El nuevo capítulo"
   },
@@ -7435,18 +7435,20 @@
     "named": "Puedo decir qué es, pero todavía no se ha convertido en una oferta, negocio o línea de trabajo clara.",
     "built": "Ya existe, pero la gente no lo entiende o no lo elige de forma constante.",
     "working": "Ya está lo bastante claro para ofrecerlo, y personas reales están empezando a responder."
-   }
+   },
+   "framing": "La misma mirada, ahora dirigida hacia adelante: el próximo capítulo de tu trabajo, por más tenue o claro que sea hoy."
   },
   "q4": {
    "order": 4,
-   "prompt": "Si hoy apareciera la frase exacta, ¿qué cambiaría primero?",
+   "prompt": "Si esa frase apareciera hoy, ¿qué cambiaría primero?",
    "options": {
     "personal": "Me entendería mejor a mí mismo/a.",
     "direction": "Sabría qué dirección seguir.",
     "current_work": "Podría explicar mi trabajo actual con más claridad.",
     "emerging_business": "Podría darle forma a un negocio, una práctica o un cuerpo de trabajo que ya estoy construyendo.",
     "near_term_exchange": "Podría empezar a ofrecer, vender o invitar a otros a algo en cuestión de semanas."
-   }
+   },
+   "framing": "El trabajo detrás de este test convierte lo que llevas dentro en una frase exacta: quién eres profesionalmente y cuál es tu próximo capítulo."
   },
   "result": {
    "stageLabel": "Tu capítulo",
@@ -7518,7 +7520,7 @@
   },
   "buyingFrame": {
    "transitionLine": "Cómo has manejado umbrales anteriores también importa aquí.",
-   "prompt": "¿Has invertido antes en apoyo para un umbral personal o profesional importante?",
+   "prompt": "En umbrales grandes anteriores de tu vida, ¿pagaste por ayuda real? Un coach, un terapeuta, un maestro, un retiro.",
    "options": {
     "open": "Sí, y cambió algo importante",
     "mixed": "Sí, con resultados mixtos",
