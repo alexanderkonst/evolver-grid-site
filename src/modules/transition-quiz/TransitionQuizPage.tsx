@@ -79,6 +79,7 @@ const UNIQUENESS_VALUES: UniquenessCategory[] = [
   "integration",
   "vehicle",
   "transmission",
+  "scaling",
 ];
 const WORK_STAGE_VALUES: EmergingWorkStage[] = [
   "not_visible",
@@ -589,6 +590,7 @@ function ChoiceScreen<V extends string>({
   const data = t(i18nKey, { returnObjects: true }) as {
     order: number;
     prompt: string;
+    framing?: string;
     options: Record<string, string>;
   };
   const [selected, setSelected] = useState<V | null>(current);
@@ -601,7 +603,8 @@ function ChoiceScreen<V extends string>({
   return (
     <section className="tq-card">
       <p className="tq-question-count">{t("quiz.progressLabel", { current: data.order, total: 4 }) as string}</p>
-      <p className="tq-label">{data.prompt}</p>
+      {data.framing && <p className="tq-quiet-line">{data.framing}</p>}
+      <p className="tq-label" style={data.framing ? { marginTop: 14 } : undefined}>{data.prompt}</p>
       <div className="tq-options">
         {values.map((v, i) => (
           <button

@@ -7421,13 +7421,15 @@
   },
   "q2": {
    "order": 2,
-   "prompt": "Which feels closest from where you stand today?",
+   "framing": "This one is about your uniqueness itself: your top strengths turning into income. Not a product you built for someone else, not a company you run with co-founders. You.",
+   "prompt": "How far has your uniqueness made it into the world so far?",
    "options": {
     "discovery": "I still don't know what I uniquely bring.",
-    "recognition": "I know there's something real in me, but I can't name the pattern.",
-    "integration": "I have several real strengths or bodies of work, but I can't see what makes them one thing.",
-    "vehicle": "I know what the thing is, but I don't know what to build or sell around it.",
-    "transmission": "I have something real built, but people still don't understand, repeat, refer, or choose it."
+    "recognition": "I know I bring something very valuable, but I can't say it.",
+    "integration": "I have several workstreams, but I can't see what makes them one thing, and if they are one thing.",
+    "vehicle": "I do know exactly what my next chapter is, but I don't know how to create an offer around it, position it, and sell it.",
+    "transmission": "I have a working business, but people still don't see the fullness of what my product and working with me can give them.",
+    "scaling": "I have a growing business, my positioning is focused, my funnel is working. I'm scaling what already works."
    }
   },
   "q3": {
@@ -7492,6 +7494,11 @@
      "heading": "People understand it once you explain it, not before.",
      "body": "Nothing is wrong with the work. It's simply the stage where it still needs you in the room.",
      "nextMove": "The next move is to make the value clear enough that people can recognize it, repeat it, and choose it without a long conversation first."
+    },
+    "scaling": {
+     "heading": "The machine works. The question is changing.",
+     "body": "Your uniqueness already earns, and the funnel proves it. When someone at this stage picks up a map like this, it's usually because the next octave is calling.",
+     "nextMove": "Protect what works, and give the new question its own container instead of squeezing it into the current business."
     }
    },
    "workStageClause": {

@@ -31,7 +31,8 @@ export type UniquenessCategory =
   | "recognition"
   | "integration"
   | "vehicle"
-  | "transmission";
+  | "transmission"
+  | "scaling";
 
 /** §8 — Q3, developmental position of the emerging work.
  *  absent -> fragmented -> felt -> named -> built -> working */
@@ -102,8 +103,14 @@ export function meetsDirectionCallGate(answers: CoreAnswers): boolean {
  * (Q2 = "transmission"), the standard result body, Direction Call bridge,
  * and Buying Frame qualifier are all replaced by the peer ending — a
  * different conversation than a Direction Call, offered as such.
+ *
+ * "scaling" (Q2) is an additional, independent trigger for the same peer
+ * ending: someone whose uniqueness already monetizes, whose positioning is
+ * focused, and whose funnel already works is a peer regardless of what
+ * stage (Q1) they picked.
  */
 export function isCrossedPeer(answers: CoreAnswers): boolean {
+  if (answers.uniqueness === "scaling") return true;
   return (
     answers.stage === 7 &&
     (answers.emergingWorkStage === "working" || answers.uniqueness === "transmission")
