@@ -13,19 +13,14 @@ the session log) so the file only ever holds what's still pending.
 
 ## Pending
 
-1. **Quiz vNext data layer (Day 139, 2026-07-29).** Run migration
-   `supabase/migrations/20260729120000_transition_quiz_vnext_columns.sql`
-   (adds nullable columns `uniqueness_category`, `emerging_work_stage`,
-   `clarity_unlock`, `buying_frame`, `direction_call_shown`,
-   `result_template` to `transition_quiz_results` — additive only, no
-   existing column touched) and redeploy the updated `save-quiz-result`
-   edge function (`supabase/functions/save-quiz-result/index.ts`), which now
-   writes those columns and gracefully falls back to the old row shape if
-   the migration hasn't landed yet. The rebuilt `/quiz` (lean 4-question
-   vNext) works and logs completions either way — this redeploy just turns
-   on the new fields in the dataset.
+*(nothing pending)*
 
 ---
+
+*Previously pending, now deployed (2026-07-29): the quiz vNext data layer —
+`20260729120000_transition_quiz_vnext_columns.sql` applied and
+`save-quiz-result` redeployed, verified with a live POST writing all six
+new columns.*
 
 *Previously pending, now deployed (2026-07-28): the three anonymization
 redeploys and the prior quiz-rebuild pass (transition_quiz_results table +
