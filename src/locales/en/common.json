@@ -7442,18 +7442,20 @@
     "named": "I can say what it is, but it hasn't become a clear offer, business, or body of work.",
     "built": "It exists, but people don't understand it or choose it consistently.",
     "working": "It's clear enough to offer, and real people are starting to respond."
-   }
+   },
+   "framing": "Same lens, now pointed forward: the next chapter of your work, however faint or clear it is today."
   },
   "q4": {
    "order": 4,
-   "prompt": "If the right sentence appeared today, what would it change first?",
+   "prompt": "If that sentence appeared today, what would it change first?",
    "options": {
     "personal": "I would understand myself better.",
     "direction": "I would know which direction to pursue.",
     "current_work": "I would explain my current work more clearly.",
     "emerging_business": "I would shape a business, practice, or body of work I'm already building.",
     "near_term_exchange": "I could start offering, selling, or inviting people into something within weeks."
-   }
+   },
+   "framing": "The work behind this quiz turns what you carry into one exact sentence: who you are professionally, and what your next chapter is."
   },
   "result": {
    "stageLabel": "Your chapter",
@@ -7525,7 +7527,7 @@
   },
   "buyingFrame": {
    "transitionLine": "How you've handled earlier thresholds matters here too.",
-   "prompt": "Have you invested in support for a major personal or professional threshold before?",
+   "prompt": "At earlier big thresholds in your life, did you pay for real help? A coach, a therapist, a teacher, a retreat.",
    "options": {
     "open": "Yes, and it changed something important",
     "mixed": "Yes, with mixed results",
