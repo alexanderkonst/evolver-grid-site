@@ -1626,6 +1626,8 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 
 ### 3. Tribe (ICP)
 
+> **Day 139 law (Technology 127, July 29, 2026):** *"The tribe is not a label. It is a trajectory, and the instrument reads motion, not category."*
+
 #### ⭐ The Idealest Client · v2.1 · July 28, 2026 (Day 138)
 
 *The clone at the moment of maximum receptivity. Stress-tested against the tribe corpus (Founder Going Sovereign, Identity-Distance Law, anti-tribe), corrected by Sasha's two calls: the income-vehicle gate replaces "first mountain complete," and the dream-pull is a screen, not a driver. Written by the AI partner's hand, blessed for filing by Sasha's request; roast standing open.*

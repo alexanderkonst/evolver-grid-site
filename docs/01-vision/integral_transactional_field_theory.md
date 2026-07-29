@@ -129,6 +129,14 @@ It doesn't. Genius implies direction, not target.
 ICP = segment + situation context + attention + pain + purchasing power
 ```
 
+### The Lens Reads Motion (added July 29, 2026 — Technology 127)
+
+The ICP formula above treats the buyer as a still photograph: segment, situation, attention, pain, and purchasing power read as fixed properties, taken at one moment. Technology 127 upgrades the outer lens to read a film instead. Segment stays what it always was: the search term and the dialect, where to look and how to greet. Situation context is the part that expands. It is no longer a static box to check; it becomes a trajectory: what just ended, what stands right now, what is forming next, and at what speed.
+
+The collapse conditions from Part II are then read per-moment along that trajectory, not once at the segment level. This is why the same person converts in one month and is unreachable the next: the segment hasn't changed, but the moment on the arc has.
+
+Cross-reference: Part IX (the collapse sequence assumes a ripe point on the arc, not a ripe category) and Part X, law 5 (the naming machine is a trajectory reader, not a label matcher).
+
 ---
 
 ## Part IV: Actionable Formulas
