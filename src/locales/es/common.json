@@ -7447,7 +7447,7 @@
    "nextLabel": "Qué sigue",
    "clarityLead": "El próximo movimiento se notaría primero en {{clause}}.",
    "takeWhatNote": "Quédate con lo que aquí es certero. Nota lo que no. El desacuerdo también es información.",
-   "continueCta": "Ver si esto encaja",
+   "continueCta": "Integra tus proyectos “sueltos” en una sola dirección precisa",
    "honestEnding": "Esta es la lectura completa. Sin propuesta, sin nada más por desbloquear. Puedes repetir el test cuando quieras si tus respuestas cambian.",
    "chapter": {
     "4": "Algo que te sostenía se terminó. El próximo capítulo aún no se ha organizado, y a estas alturas eso es normal.",
@@ -7584,6 +7584,32 @@
   "close": {
    "headline": "Descubre tu etapa antes de planear el siguiente paso.",
    "sub": "El techo se mueve en el momento en que se mueve tu autoconocimiento."
+  }
+ },
+ "homeTruth": {
+  "seoTitle": "Nombra lo que sigue.",
+  "seoDescription": "Has construido cosas reales. La frase que solía explicarte dejó de ser verdad. Encuentra el patrón detrás de todo lo que has construido y ponle palabras exactas.",
+  "hero": {
+   "headline": "Nombra lo que sigue.",
+   "body": "Has construido cosas reales. Empresas, títulos, cuerpos de trabajo. Y la frase que solía explicarte dejó de ser verdad. El próximo capítulo ya se está formando. Solo que todavía no tiene palabras.",
+   "ctaLabel": "Descubre en qué capítulo estás",
+   "ctaMicro": "90 segundos. Gratis. La lectura completa, sin ocultar nada. Sin registro."
+  },
+  "mechanism": {
+   "heading": "Esto es lo que realmente es.",
+   "para1": "Encuentro el patrón que sostiene todo lo que has construido y le doy palabras exactas. Una frase que lo contiene todo. Quienes escuchan su frase por primera vez suelen quedarse callados un segundo. Después preguntan cuánto cuesta.",
+   "para2": "El diagnóstico es gratis. Todo. El quiz te muestra tu capítulo. La Llamada de Dirección nombra tu transición y la dirección que sigue, 45 minutos, sin costo, y te diré con franqueza si no soy la persona indicada para esto.",
+   "para3": "El trabajo pagado empieza donde el software y una llamada gratuita honestamente terminan: convertir la frase en un negocio. Dos horas para integrar tus proyectos “sin relación” en una sola dirección clara, $555. Tres semanas para construir la oferta y tener las primeras diez conversaciones reales, $1,111."
+  },
+  "whoFor": {
+   "eyebrow": "Para quién es esto",
+   "para1": "Si puedes decir a qué te dedicas en una sola frase y es cierto, no necesitas esto. Disfruta el capítulo en el que estás.",
+   "para2": "Esto es para quienes sostienen cinco hilos reales y ninguna frase. Quienes escuchan falsedad en su propia respuesta en las cenas. Quienes ya han pagado por su propio proceso y lo llamaron buen dinero. No buscan motivación, ni pasión, ni una solución. Buscan a la única persona que puede ver el patrón dentro del cual están parados."
+  },
+  "close": {
+   "line1": "Tu carrera está limitada por lo bien que te conoces a ti mismo.",
+   "line2": "El techo se mueve en el momento en que se mueve tu autoconocimiento.",
+   "ctaLabel": "Nombra lo que sigue"
   }
  }
 }

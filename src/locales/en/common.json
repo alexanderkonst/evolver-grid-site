@@ -7454,7 +7454,7 @@
    "nextLabel": "What comes next",
    "clarityLead": "The right next move would show up first in {{clause}}.",
    "takeWhatNote": "Take what is accurate here. Notice what isn't. The disagreement is information too.",
-   "continueCta": "See if this is a fit",
+   "continueCta": "Integrate your “unrelated” projects into one laser-focused direction",
    "honestEnding": "That's the complete read. No pitch, nothing else to unlock. Retake anytime if your answers change.",
    "chapter": {
     "4": "Something that carried you is over. The next chapter hasn't organized itself yet, and that's expected this soon after.",
@@ -7591,6 +7591,32 @@
   "close": {
    "headline": "Read your stage before you plan the next move.",
    "sub": "The ceiling moves the moment your self-understanding does."
+  }
+ },
+ "homeTruth": {
+  "seoTitle": "Name what's next.",
+  "seoDescription": "You've built real things. The sentence that used to explain you has stopped being true. Find the pattern underneath everything you've built and get exact words for it.",
+  "hero": {
+   "headline": "Name what's next.",
+   "body": "You've built real things. Companies, titles, bodies of work. And the sentence that used to explain you has stopped being true. The next chapter is already forming. It just doesn't have words yet.",
+   "ctaLabel": "See what chapter you're in",
+   "ctaMicro": "90 seconds. Free. The whole read, nothing held back. No signup."
+  },
+  "mechanism": {
+   "heading": "Here is what this actually is.",
+   "para1": "I find the pattern underneath everything you've built and give it exact words. One sentence that holds all of it. People who hear their sentence for the first time usually go quiet for a second. Then they ask what it costs.",
+   "para2": "The diagnosis is free. All of it. The quiz shows you your chapter. The Direction Call names your transition and the direction that follows, 45 minutes, no charge, and I'll tell you plainly if I'm not the right person for it.",
+   "para3": "The paid work starts where software and a free call honestly stop: turning the sentence into a business. Two hours to integrate your “unrelated” projects into one laser-focused direction, $555. Three weeks to build the offer and have the first ten real conversations, $1,111."
+  },
+  "whoFor": {
+   "eyebrow": "Who this is for",
+   "para1": "If you can say what you do in one breath and mean it, you don't need this. Enjoy the chapter you're in.",
+   "para2": "This is for the ones holding five real threads and no sentence. Who hear falseness in their own answer at dinners. Who have paid for their own becoming before and called it good money. Who aren't looking for motivation, or a passion, or a fix. They're looking for the one person who can see the pattern they're standing inside."
+  },
+  "close": {
+   "line1": "Your career is capped by how well you know yourself.",
+   "line2": "The ceiling moves the moment your self-understanding does.",
+   "ctaLabel": "Name what's next"
   }
  }
 }

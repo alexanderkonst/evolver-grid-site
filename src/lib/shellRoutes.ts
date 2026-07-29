@@ -47,10 +47,13 @@ const HOLDOUT_PREFIX: string[] = [
 /** Paths whose page currently mounts GameShellV2 → layout supplies it instead. */
 const SHELL_EXACT = new Set<string>([
     "/",
-    // Day 137 (Sasha 2026-07-28): /home is a private noindex review surface
-    // for the proposed landing rebuild — same shell chrome as "/" purely so
-    // Sasha can compare them side by side. Not linked from any nav/sitemap.
+    // Day 138 (Sasha 2026-07-29): /home now carries the live "Name what's
+    // next" truth-landing copy; /home2 is the prior Ceiling Law draft,
+    // moved there unchanged. Both are private/noindex review surfaces with
+    // the same shell chrome as "/" purely so Sasha can compare side by
+    // side. Neither is linked from any nav/sitemap.
     "/home",
+    "/home2",
     "/ignite",
     "/path",
     "/dashboard",
