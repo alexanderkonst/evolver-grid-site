@@ -7414,13 +7414,15 @@
   },
   "q2": {
    "order": 2,
-   "prompt": "¿Qué se acerca más a donde estás hoy?",
+   "framing": "Esta pregunta es sobre tu singularidad en sí misma: tus mayores fortalezas convirtiéndose en ingresos. No un producto que construiste para otra persona, no una empresa que diriges con cofundadores. Tú.",
+   "prompt": "¿Qué tan lejos ha llegado tu singularidad en el mundo hasta ahora?",
    "options": {
     "discovery": "Todavía no sé qué es lo único que aporto.",
-    "recognition": "Sé que hay algo real en mí, pero no logro nombrar el patrón.",
-    "integration": "Tengo varias fortalezas o líneas de trabajo reales, pero no veo qué las convierte en una sola cosa.",
-    "vehicle": "Sé cuál es la esencia, pero no sé qué construir o vender alrededor de ella.",
-    "transmission": "Ya tengo algo real construido, pero la gente todavía no lo entiende, ni lo repite, ni lo recomienda, ni lo elige."
+    "recognition": "Sé que aporto algo muy valioso, pero no puedo nombrarlo.",
+    "integration": "Tengo varias líneas de trabajo, pero no veo qué las convierte en una sola cosa, ni si lo son.",
+    "vehicle": "Sé exactamente cuál es mi próximo capítulo, pero no sé cómo crear una oferta a su alrededor, posicionarla y venderla.",
+    "transmission": "Tengo un negocio en marcha, pero la gente todavía no ve toda la plenitud de lo que mi producto y trabajar conmigo pueden darles.",
+    "scaling": "Tengo un negocio en crecimiento, mi posicionamiento está enfocado, mi embudo funciona. Estoy escalando lo que ya funciona."
    }
   },
   "q3": {
@@ -7485,6 +7487,11 @@
      "heading": "La gente lo entiende después de que se lo explicas, no antes.",
      "body": "No hay nada mal en el trabajo. Es simplemente la etapa en la que todavía te necesita a ti en la sala.",
      "nextMove": "El siguiente paso es hacer que el valor sea lo bastante claro para que la gente lo reconozca, lo repita y lo elija sin necesitar una conversación larga primero."
+    },
+    "scaling": {
+     "heading": "La máquina funciona. La pregunta está cambiando.",
+     "body": "Tu singularidad ya genera ingresos, y el embudo lo demuestra. Cuando alguien en esta etapa toma un mapa como este, normalmente es porque la siguiente octava está llamando.",
+     "nextMove": "Protege lo que funciona, y dale a la nueva pregunta su propio espacio, en vez de forzarla dentro del negocio actual."
     }
    },
    "workStageClause": {
