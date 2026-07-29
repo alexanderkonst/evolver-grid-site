@@ -358,6 +358,18 @@ const IgniteSession = () => {
             </p>
           </div>
 
+          {/* Price comparison trio */}
+          <div className="max-w-sm mx-auto space-y-2 text-left">
+            <h3 className="text-sm font-semibold text-white/80 text-center">
+              {t('ignite.priceCompareHeading')}
+            </h3>
+            <ul className="space-y-1.5 text-xs text-white/60 leading-relaxed list-disc list-inside">
+              <li>{t('ignite.priceCompare1')}</li>
+              <li>{t('ignite.priceCompare2')}</li>
+              <li>{t('ignite.priceCompare3')}</li>
+            </ul>
+          </div>
+
           {/* Guarantee */}
           <div className="px-4 py-3 max-w-sm mx-auto rounded-xl border border-white/10">
             <div className="flex items-center justify-center gap-2 mb-2">

@@ -682,9 +682,14 @@ function ResultScreen({
 
       <div className="tq-cta-row">
         {showBuyingFrame ? (
-          <button type="button" className="tq-cta tq-cta-primary" onClick={onContinue}>
-            {t("quiz.result.continueCta") as string}
-          </button>
+          <>
+            <p className="tq-body-text tq-quiet-line">
+              {t("quiz.result.selectionNote") as string}
+            </p>
+            <button type="button" className="tq-cta tq-cta-primary" onClick={onContinue}>
+              {t("quiz.result.continueCta") as string}
+            </button>
+          </>
         ) : (
           <p className="tq-cta-sub" style={{ marginTop: 0 }}>
             {t("quiz.result.honestEnding") as string}
