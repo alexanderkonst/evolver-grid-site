@@ -7360,7 +7360,7 @@
   "entry": {
    "eyebrow": "Free. About two minutes.",
    "title": "See what chapter you're actually in.",
-   "subtitle": "You can still say what you do. You just can't quite mean it anymore.",
+   "subtitle": "When someone asks what you do, you give them the vanilla answer so they don't get confused. Truthfully, it's you who's confused.",
    "honestyLine": "Four short questions. You'll see what chapter you're in, why things feel off, and what might already be starting to happen next.",
    "cta": "See where I am"
   },
@@ -7381,10 +7381,10 @@
    "1": "Settled",
    "2": "The Itch",
    "3": "Tremors",
-   "4": "Rupture",
-   "5": "Liminality",
-   "6": "Reorientation",
-   "7": "Crossing"
+   "4": "The Break",
+   "5": "The Gap",
+   "6": "Taking Shape",
+   "7": "The New Chapter"
   },
   "notYet": {
    "settled": {
@@ -7405,11 +7405,11 @@
     "nextLabel": "What usually comes next",
     "2": {
      "turnsInto": "The itch usually turns into pushing harder at the same thing, not into anything new. Most people patch the old form for months, sometimes years, before it turns into a real shift.",
-     "sign": "The sign it's becoming real: the pushing stops working and starts costing you sleep, energy, or health. That's when the Itch becomes Tremors."
+     "sign": "The pushing stops working and starts costing you sleep, energy, or health. That's when the Itch becomes Tremors."
     },
     "3": {
-     "why": "More effort isn't converting right now because you're adding force to a form that's already full. New niche, new funnel, harder hours, all inside the same container that can't hold more.",
-     "next": "What usually comes next is a break, not a breakthrough. Something that was carrying you stops carrying you, often from outside your control. That's not a failure on your part. It's the mechanism."
+     "why": "You're adding force to a form that's already full. New niche, new funnel, harder hours, all inside the same container that can't hold more.",
+     "next": "Usually a break comes before any breakthrough. Something that was carrying you stops carrying you, often from outside your control. That isn't failure on your part. The break is how the shift actually happens."
     },
     "emailPrompt": "Want the full map, so you can meet what's next with your eyes open?",
     "emailPlaceholder": "you@email.com",
@@ -7471,12 +7471,12 @@
     "discovery": {
      "heading": "You don't need a final answer yet.",
      "body": "The signal is present, but it hasn't repeated enough yet to be sure what it is.",
-     "nextMove": "The useful move now isn't forcing a business identity. It's noticing what people keep coming to you for, what feels unusually natural, and what keeps showing up across different situations."
+     "nextMove": "Don't force a business identity yet. Notice what people keep coming to you for, what feels unusually natural, and what keeps showing up across different situations."
     },
     "recognition": {
      "heading": "The value is already real. The pattern is still unnamed.",
-     "body": "You're not trying to discover whether you have something valuable. You're trying to see the pattern underneath what you've already been doing.",
-     "nextMove": "The next move isn't more brainstorming. It's finding the thread that shows what has been true across your work all along, so the next chapter has somewhere to begin."
+     "body": "You already know there's something valuable here. What you can't see yet is the pattern underneath it.",
+     "nextMove": "More brainstorming won't get you there. The move is finding the thread that has been true across your work all along, so the next chapter has somewhere to begin."
     },
     "integration": {
      "heading": "The pieces are mature. The whole is still invisible.",
@@ -7490,7 +7490,7 @@
     },
     "transmission": {
      "heading": "People understand it once you explain it, not before.",
-     "body": "The work still depends too much on you being in the room. That's not a flaw. It's just where this stage of the work is.",
+     "body": "Nothing is wrong with the work. It's simply the stage where it still needs you in the room.",
      "nextMove": "The next move is to make the value clear enough that people can recognize it, repeat it, and choose it without a long conversation first."
     }
    },
@@ -7508,6 +7508,12 @@
     "current_work": "how clearly you can explain what you already do",
     "emerging_business": "what you build next",
     "near_term_exchange": "something you could put in front of people within weeks"
+   },
+   "crossedPeer": {
+    "heading": "Crossed. And it keeps working.",
+    "body1": "You said the sentence, built the vehicle, and money answers. The map ends here, because your question is no longer naming. It is scale: transmission, reach, the next octave of the same pattern.",
+    "body2": "People who crossed deliberately tend to build alongside others who did. That is a different conversation than a Direction Call, and I have it gladly.",
+    "cta": "Let's know each other"
    }
   },
   "buyingFrame": {
@@ -7519,13 +7525,13 @@
     "open_no_history": "No, but I'm open to the right help",
     "closed": "No, I prefer to work these things out myself"
    },
-   "closedEnding": "Your full read stays exactly as it is above. No call, no pitch — just what you can save or retake whenever you want."
+   "closedEnding": "Your full read stays exactly as it is above. No call and no pitch. Save it or retake it whenever you want."
   },
   "directionCall": {
-   "line1": "This quiz can locate the crossing. It cannot see enough of your life to tell you what these particular pieces become together.",
+   "line1": "This quiz can show where you stand. It can't see enough of your life to tell you what these particular pieces become together.",
    "line2": "If you want me to look at what they're trying to become, that's what the Direction Call is for.",
    "cta": "See what this is becoming",
-   "sub": "Free · 45 minutes · no obligation to continue"
+   "sub": "Free. 45 minutes."
   }
  },
  "homeLanding": {

@@ -54,7 +54,7 @@ export type ClarityUnlock =
 /** §10 — optional post-result commercial qualifier. */
 export type BuyingFrame = "open" | "mixed" | "open_no_history" | "closed";
 
-export type Route = "directionCall" | "none";
+export type Route = "directionCall" | "crossedPeer" | "none";
 
 export function isNotYetStage(stage: Stage): boolean {
   return stage <= 3;
@@ -96,6 +96,21 @@ export function meetsDirectionCallGate(answers: CoreAnswers): boolean {
 }
 
 /**
+ * New route (crossed/peer ending): when someone has already crossed into
+ * the new chapter (Q1 = stage 7) AND the work is either already working
+ * (Q3 = "working") or the remaining friction is transmission-shaped
+ * (Q2 = "transmission"), the standard result body, Direction Call bridge,
+ * and Buying Frame qualifier are all replaced by the peer ending — a
+ * different conversation than a Direction Call, offered as such.
+ */
+export function isCrossedPeer(answers: CoreAnswers): boolean {
+  return (
+    answers.stage === 7 &&
+    (answers.emergingWorkStage === "working" || answers.uniqueness === "transmission")
+  );
+}
+
+/**
  * §10 decision rules, once the gate above already holds (i.e. the person
  * is only ever asked the Buying Frame question after the other four
  * conditions are already strong — see §10 "Important decision rule"):
@@ -117,6 +132,9 @@ export interface RouteResult {
 /** Full routing decision for a completed core-answer set, before the
  *  optional qualifier has been answered (or when there is none to ask). */
 export function computeRouting(answers: CoreAnswers): RouteResult {
+  if (isCrossedPeer(answers)) {
+    return { showBuyingFrame: false, route: "crossedPeer" };
+  }
   const eligible = meetsDirectionCallGate(answers);
   return { showBuyingFrame: eligible, route: eligible ? "directionCall" : "none" };
 }
