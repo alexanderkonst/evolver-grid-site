@@ -3,6 +3,8 @@
 *What I must never write. The brand signal is precision; AI-mushy language erodes it instantly.*
 
 > **Companion skill (Day 139, July 29, 2026):** `.agent/skills/humanizer/SKILL.md` (MIT, from blader/humanizer, built on Wikipedia's "Signs of AI writing") — 33 named AI-tell patterns with before/after pairs, plus false-positive guidance so real human quirks don't get scrubbed. Every piece of external copy gets a humanizer pass after this file's bans are applied. The two most load-bearing additions beyond this file: superficial "-ing" analyses tacked onto sentences, and manufactured staccato punchlines. Also installed user-level at `~/.claude/skills/humanizer` for direct invocation.
+>
+> **Storyscope finding (added Day 139, July 29, 2026):** UMD/DeepMind, arXiv 2604.03136: AI writing clusters in a shared region of stylistic space while human writing is diverse. When copy feels safe, it is probably sitting in the cluster. Prefer the line only this author could have written.
 
 ---
 

@@ -72,6 +72,10 @@ Perceived Value Received =
 | **Cognitive Simplicity** 🪞 | How fast they "get it" |
 | **Social Proof & Mirroring** 🧠 | People like them (whom they admire) are buying |
 
+### Rarity & Specificity, upgraded (July 29, 2026 — Technology 127)
+
+The "reads their soul" factor above is trajectory-reading by another name. A label-level read has a low perceived-value ceiling, because labels are common property: everyone in the category has heard them before. A trajectory read, what ended, what stands, what is forming, is singular by construction. That pushes Rarity & Specificity to its maximum, and it is why an accurate ninety-second read outperforms weeks of category-level marketing in perceived value.
+
 ### Tier III: Emotional Modulators (Maintains Value Post-Delivery)
 
 | Factor | Description |
