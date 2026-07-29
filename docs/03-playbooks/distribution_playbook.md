@@ -1552,8 +1552,32 @@ Hand-raiser copy v1 (practitioners segment, EN, drafted July 24, 2026, untested)
 
 ---
 
+### Offer Assembly Laws (v1.0, July 29, 2026 — adopted from an external consultation-funnel module, K.E.)
+
+> Source: a Russian consultation-funnel module by Kirill Emelyanov, processed July 29, 2026 (Day 139). Six mechanics judged gold and adopted. Same rule as the Pull Mechanics section above: steal the invariant, translate the register — the mechanism ports, the voice does not.
+
+**1. The «даже если» clause.** Every result line carries three parts: the result, the named mechanism, and "even if" — the top objection or past failure, pre-dissolved before the reader can raise it. Form: «За время консультации вы (результат) с помощью (особенная технология), даже если (возражение или то, что уже пробовали и не получилось)». Sasha's applied example, kept verbatim: "Two hours to integrate your 'unrelated' projects into one laser-focused direction — even if every framework you've tried demanded you pick one and amputate the rest." Rule: every offer line, quiz result route, and outreach message should carry its own even-if clause, naming that person's own graveyard of almost-purchases.
+
+**2. The Offer Line Test.** Three questions any result-sentence must pass before it ships:
+- Can they apply it once and feel the result?
+- Does it connect to gaining or saving money within weeks?
+- Does the pain grow by the moment while it stays unsolved?
+
+Convergence worth naming: these three gates are the Ripeness Vector's Vehicle, Means-relevance, and chronic-Pressure gates (Phase Shift Technology 123), independently rediscovered by a direct-response practitioner with no exposure to the theory. Two unrelated lineages landing on the same three gates is evidence the gates are structural, not house style.
+
+**3. The application close (status inversion at the door).** The booking flow states the selection honestly: the seller cannot help everyone equally well and chooses whom he can help most directly; applicants answer a question or two; the seller responds if he can be useful, and may send a sample of value before any payment changes hands. Note: the Direction Call funnel already performs this qualification invisibly through the Ripeness Vector and the quiz (§1 above, and Part VII); this law covers the booking surface for people who arrive without the quiz — cold applications, direct booking links, no prior naming. Approved booking copy, kept verbatim: "I take five of these a week and choose the ones I can help most directly. Two questions when you book; if I'm not the right person, I'll say so and point you somewhere better."
+
+**4. The pricing trio.** When a price has to stand alone — ads, booking pages, proposals, anywhere it isn't already carried inside honest prose — give it three mirrors, two sentences each: against what they already spend on themselves; against the cost of inaction (another N months of the same loop); against the size of the result. The number never moves. The three shadows around it do the work of making it small.
+
+**5. The bonus law.** A bonus must instantly repay the investment, and it must never manufacture an objection against the main product. Canonical counter-example, kept as a warning: offering a free week of support as a bonus creates "I'll decide after the free week" — the seller builds the client's own objection with his own hands.
+
+**6. Guarantees and deadline blocks.** Adopted as copyable patterns for when a specific campaign needs them — not standing defaults. A deadline earns its place only where a real clock already exists, per the Ticking Clock guardrail (Technology 123): never manufacture urgency that isn't there.
+
+---
+
 *Codified: January 27, 2026 (Distribution Parts I-VIII, see history above)*
 *Restructured: July 22, 2026 (Day 132) — v2.0, Jobs triad: full original Distribution content preserved as base + Sales appended as final section (moved in whole from the short-lived sales_playbook.md)*
+*Extended: July 29, 2026 (Day 139) — Offer Assembly Laws v1.0 added, adopted from Kirill Emelyanov's consultation-funnel module.*
 
 ---
 
