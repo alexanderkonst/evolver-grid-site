@@ -18,7 +18,7 @@ const corsHeaders = {
 const ASPECTS = ["identity", "economy", "fit"] as const;
 type Aspect = (typeof ASPECTS)[number];
 
-const UNIQUENESS_CATEGORIES = ["discovery", "recognition", "integration", "vehicle", "transmission"] as const;
+const UNIQUENESS_CATEGORIES = ["discovery", "recognition", "integration", "vehicle", "transmission", "scaling"] as const;
 const EMERGING_WORK_STAGES = ["not_visible", "fragments", "felt", "named", "built", "working"] as const;
 const CLARITY_UNLOCKS = ["personal", "direction", "current_work", "emerging_business", "near_term_exchange"] as const;
 const BUYING_FRAMES = ["open", "mixed", "open_no_history", "closed"] as const;
