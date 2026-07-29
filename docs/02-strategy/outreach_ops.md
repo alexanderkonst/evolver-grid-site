@@ -330,6 +330,8 @@ The **"Next follow-up date" column IS the system.** No memory required.
 
 ## 6. Copy bank (reusable snippets)
 
+> Offer-construction mechanics (даже если clause, Offer Line Test, application close, pricing trio, bonus law, guarantee/deadline patterns) live in `distribution_playbook.md` → "Offer Assembly Laws (v1.0, July 29, 2026)". Pull result-line and pricing copy from there before drafting new offer language.
+
 ### 6a. The Axiom copy (Day 127 — derives every other line)
 
 The axiom (Myth v4.0, `alexanders_unique_business.md` §1): **EN "Your career is capped by how well you know yourself."** · **RU «Твоя карьера ограничена степенью понимания себя»** (spoken variant: «…тем, насколько ты понимаешь себя»). The line states the law; the funnel sells the lever. Use it once per message maximum; it is the polarizer, not decoration.
