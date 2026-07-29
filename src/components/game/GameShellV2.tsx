@@ -1464,9 +1464,13 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         className="absolute inset-0 h-full w-full object-cover"
                     />
                 )}
+                {/* Day 139 (Sasha 2026-07-29, "bring it back"): the Jul 26
+                    change (eeacd171) replaced the Lapis video background
+                    with the still webp — Sasha wants the animated video
+                    back on Lapis. The still above now acts as the loading
+                    poster under the video. Aurum stays video-free. */}
                 {!suppressShellBackground &&
-                    __spaceShipSkin !== "aurum" &&
-                    __spaceShipSkin !== "lapis" && <MuxVideoBackground />}
+                    __spaceShipSkin !== "aurum" && <MuxVideoBackground />}
                 {/*
                   Equilibrium clean backdrop (Sasha 2026-05-20). When
                   the Mux video is suppressed for /build/equilibrium,
