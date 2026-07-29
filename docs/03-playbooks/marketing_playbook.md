@@ -109,6 +109,16 @@ The current photon of truth for the whole movement is **fit** (the atom beneath 
 
 ---
 
+## Conscious Unique Marketing (v1.0, July 29, 2026)
+
+All of marketing collapses into a single act: accurately recognizing where a person stands and letting them feel the recognition; everything else is the optics that carry the seeing.
+
+Labels find and greet, they do nothing else. A label (a segment name, a persona, a channel category) exists so the right person can locate the offer and understand it's meant for them. It is not the selling. The selling already happened the moment the recognition landed.
+
+Full doctrine: Technology 129 in `phase_shift_technology_library.md`. Everything below this line, the 7 centers, the pillars, the channels, the copy formulas, is tactics under this doctrine.
+
+---
+
 # Part II: The Three Pillars of Marketing
 
 > These three pillars come first — tactics, channels, and messaging that don't rest on them tend to drift.

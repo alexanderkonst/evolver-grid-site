@@ -2136,6 +2136,17 @@ This IS the flywheel. It doesn't require a plan. It requires delivery.
 >
 > **Implication for positioning:** Most founders need three different consultants for product, marketing, and distribution. The Productize Yourself Session replaces all three because they're not three problems — they're one problem refracted through three lenses.
 
+**The Trajectory Map (v1.0, July 29, 2026):**
+
+> [!IMPORTANT]
+> **The signature artifact of the method, and the physical form of the session's output.** A person's own past reread as one arc, their present position marked, and the next shift named. The quiz draws it coarse and free (four questions, ninety seconds); the Productize Yourself Session draws it fine and paid; and the person keeps it.
+>
+> *"The person keeps a document of their own motion that no assessment on Earth has ever given them."*
+>
+> Assessments describe traits (static). The Trajectory Map describes motion (position, direction, speed). That difference is why it cannot be commoditized by trait-based instruments — a competitor can copy a trait taxonomy; they cannot copy a person's own arc.
+>
+> **Cross-reference:** Technology 127 (trajectory is the tribe), the Uniqueness and Transition holomaps (the map's two axes), Recognition Delta (its quality metric).
+
 **The Copy Mirror Principle (discovered March 16, 2026 — from Karime's feedback):**
 
 > [!TIP]
