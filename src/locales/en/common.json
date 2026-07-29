@@ -7359,22 +7359,22 @@
   "loading": "Reading your answers…",
   "entry": {
    "eyebrow": "Free. About two minutes.",
-   "title": "See what chapter you're actually in.",
+   "title": "See what hero's journey chapter you're actually in.",
    "subtitle": "When someone asks what you do, you give them the vanilla answer so they don't get confused. Truthfully, it's you who's confused.",
    "honestyLine": "Four short questions. You'll see what chapter you're in, why things feel off, and what might already be starting to happen next.",
    "cta": "See where I am"
   },
   "q1": {
    "order": 1,
-   "prompt": "Which sounds most like your life right now?",
+   "prompt": "Which sounds most like your professional life right now?",
    "options": [
-    "What I do still fits. I'm not looking for a new chapter.",
-    "My life still works, but something has started feeling slightly untrue.",
-    "I think the path is still right. I just need to fix, improve, or push through something.",
-    "Something that used to carry me is over, even if nothing dramatic happened.",
-    "I know the old answer is over, but I genuinely don't know what comes next.",
-    "I can feel the next thing, but I can't say it clearly enough yet.",
-    "I know what I do now, and I'm beginning to build real life around it."
+    "What I do works for me. I'm not looking for a new chapter.",
+    "My professional life still works, but something has started feeling slightly untrue.",
+    "I think my overall career path is still right. I just need to fix, improve, or push through something.",
+    "The way to make money I am used to is no longer working the same, even if nothing dramatic happened.",
+    "I know the old chapter is over, but I genuinely don't know what comes next.",
+    "I can feel what the next thing is, but I can't say it clearly enough yet.",
+    "I know what I do now, and I'm beginning to build up real success around it."
    ]
   },
   "stageNames": {
