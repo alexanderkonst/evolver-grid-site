@@ -27,6 +27,20 @@ export type FunnelStep =
   | "zog_email_save"    // Email gate submitted
   | "quiz_start"        // Started /quiz
   | "quiz_complete"     // Completed quiz, viewing result
+  // Transition Quiz (vNext) — Quiz v2.1 (2026-07-29) instrumentation.
+  // quiz_result covers every result variant (full read / crossed-peer /
+  // not-yet is covered by quiz_q1); the template itself (e.g.
+  // "discovery", "crossed_peer") travels as the `source` string passed
+  // to trackPageView, since FunnelStep stays a fixed union.
+  | "quiz_entry"        // Landed on the Transition Quiz entry screen
+  | "quiz_q1"           // Q1 (stage placement) screen mount
+  | "quiz_q2"           // Q2 (uniqueness) screen mount
+  | "quiz_q3"           // Q3 (emerging-work stage) screen mount
+  | "quiz_q4"           // Q4 (clarity unlock) screen mount
+  | "quiz_result"       // Result screen rendered (template travels as `source`)
+  | "quiz_cta_click"    // Any Direction Call / crossed-peer CTA click
+  | "quiz_permalink_saved" // "Save my read" tapped
+  | "quiz_delta_answered"  // Recognition Delta widget answered
   | "ignite_view"       // Landed on /ignite
   | "ignite_video"      // Scrolled to / played video
   | "ignite_pricing"    // Scrolled to pricing section
