@@ -111,6 +111,11 @@ const SiteLogo = () => {
         "/alexander",
         "/aleksandr",
     ];
+    // Day 138 (Sasha 2026-07-29): /home lives inside GameShellV2 (SmartShellLayout),
+    // whose rail already carries the full "YOU be original" lockup. The global
+    // SiteLogo wordmark was rendering a second, smaller mark top-center over the
+    // content pane, doubling up the brand — same fix shape as every other
+    // GameShellV2-hosted route above.
     // Day 87 (Sasha 2026-05-29): /1-pager is the Planetary OS brand surface
     // (not the FYTT funnel), so it ships its own PlanetaryOSWordmark in-page
     // instead of the global FYTT mark. /monetization keeps the FYTT global
@@ -118,7 +123,7 @@ const SiteLogo = () => {
     // Day 107 (Sasha 2026-06-19): /landing (The Uniqueness Economy thesis
     // flag) ships its own in-page wordmark too — suppress the global FYTT
     // mark so it doesn't double up at top-center.
-    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb", "/mdls-preview", "/build/equilibrium", "/equilibrium", "/preview/equilibrium-v2", "/build/karime", "/build/karime/intake", "/proposalforwegoodovahere", "/build/cockpit", "/1-pager", "/landing", "/you"];
+    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb", "/mdls-preview", "/build/equilibrium", "/equilibrium", "/preview/equilibrium-v2", "/build/karime", "/build/karime/intake", "/proposalforwegoodovahere", "/build/cockpit", "/1-pager", "/landing", "/you", "/home"];
     if (hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
 
     return (

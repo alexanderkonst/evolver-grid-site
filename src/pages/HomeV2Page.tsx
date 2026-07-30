@@ -47,7 +47,12 @@ const HomeV2Page = () => {
         ogTitle={t("homeTruth.seoTitle")}
         noIndex
       />
-      <div className="max-w-[660px] mx-auto px-5 py-6 sm:py-7 md:py-8">
+      <div className="max-w-[660px] mx-auto px-5 pt-6 pb-28 sm:pt-7 sm:pb-24 md:pt-8">
+        {/* Round-2 polish (2026-07-29): pb-28/pb-24 clears the fixed
+            bottom-right Chat bubble (ChatLauncher) at every width down to
+            375px — matches the approach already used on /quiz (suppressing
+            the launcher there), but here we keep the bubble and just give
+            the page room instead. */}
         {/* ═══════ HERO ═══════ */}
         <header className="text-center">
           <h1
@@ -98,7 +103,19 @@ const HomeV2Page = () => {
           </div>
         </header>
 
-        <Ornament className="my-10 sm:my-12" />
+        {/* Round-2 polish (2026-07-29): the opening viewport had two star
+            dividers back to back (this one + the one under the hero sub
+            above) — kept the hero one, dropped this one to a plain quiet
+            hairline so the star reads as a single accent, not a repeated
+            motif. */}
+        <div
+          className="my-10 sm:my-12 mx-auto max-w-md h-px"
+          style={{
+            background:
+              "linear-gradient(to right, transparent, var(--skin-ornament-rule, rgba(26,30,58,0.16)), transparent)",
+          }}
+          aria-hidden="true"
+        />
 
         {/* ═══════ WHAT THIS ACTUALLY IS ═══════ */}
         <section className="text-center max-w-[640px] mx-auto">
