@@ -92,7 +92,9 @@ Please apply these changes from the repo, exactly as written, no changes:
    an UPDATE on that row's `recognition_delta` column instead of the
    usual insert. The original insert path is unchanged. Still
    verify_jwt = false (already declared in supabase/config.toml under
-   [functions.save-quiz-result]).
+   [functions.save-quiz-result]). Also accepts the new
+   emerging_work_stage values suspected/delivering (the Q3 rewrite
+   replaced "fragments" with "suspected" and added "delivering").
 
 3. Deploy the new edge function at
    supabase/functions/get-quiz-result/index.ts
