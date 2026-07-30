@@ -51,7 +51,12 @@ interface SaveQuizResultPayload {
   // of inserting a new one.
   id?: string | null;
   recognition_delta?: number | null;
+  // Means companion question (Gate 2), asked post-result after a
+  // non-"closed" Buying Frame answer. Logged on the means completion event.
+  means?: (typeof MEANS_VALUES)[number] | null;
 }
+
+const MEANS_VALUES = ["yes_comfortably", "yes_if_fit", "maybe_depending", "not_now"] as const;
 
 const isValidRecognitionDelta = (n: unknown): n is number =>
   typeof n === "number" && Number.isInteger(n) && n >= 1 && n <= 5;
@@ -155,6 +160,9 @@ Deno.serve(async (req) => {
     if (body.buying_frame && !BUYING_FRAMES.includes(body.buying_frame)) {
       return json(400, { error: "invalid_buying_frame" });
     }
+    if (body.means && !MEANS_VALUES.includes(body.means)) {
+      return json(400, { error: "invalid_means" });
+    }
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
@@ -190,6 +198,7 @@ Deno.serve(async (req) => {
       buying_frame: body.buying_frame ?? null,
       direction_call_shown: body.direction_call_shown ?? null,
       result_template: body.result_template ?? null,
+      means: body.means ?? null,
     };
 
     let { data, error } = await admin
