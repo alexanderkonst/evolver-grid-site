@@ -28,13 +28,12 @@ import { trackPageView, trackCTAClick } from "@/lib/funnelAnalytics";
 import { TESTIMONIALS } from "@/data/testimonials";
 import {
   type BuyingFrame,
-  type ClarityUnlock,
   type CoreAnswers,
   type EmergingWorkStage,
+  type Means,
   type Stage,
   type UniquenessCategory,
   chapterKeyForStage,
-  clarityClauseKey,
   computeRouting,
   decodeShareState,
   encodeShareState,
@@ -52,26 +51,25 @@ type Screen =
   | "notYet"
   | "q2"
   | "q3"
-  | "q4"
   | "loading"
   | "result"
-  | "buyingFrame";
+  | "buyingFrame"
+  | "means";
 
 const BACK_MAP: Partial<Record<Screen, Screen>> = {
   q1: "entry",
   notYet: "q1",
   q2: "q1",
   q3: "q2",
-  q4: "q3",
-  result: "q4",
+  result: "q3",
   buyingFrame: "result",
+  means: "buyingFrame",
 };
 
 const PROGRESS: Partial<Record<Screen, number>> = {
-  q1: 0.15,
-  q2: 0.4,
-  q3: 0.62,
-  q4: 0.84,
+  q1: 0.2,
+  q2: 0.5,
+  q3: 0.82,
   loading: 0.95,
 };
 
@@ -84,7 +82,7 @@ const SCREEN_TO_ANALYTICS_STEP: Partial<Record<Screen, import("@/lib/funnelAnaly
   q1: "quiz_q1",
   q2: "quiz_q2",
   q3: "quiz_q3",
-  q4: "quiz_q4",
+  means: "quiz_means",
 };
 
 const STORAGE_KEY = "evolver_transition_quiz_v2";
@@ -107,22 +105,16 @@ const WORK_STAGE_VALUES: EmergingWorkStage[] = [
   "working",
   "delivering",
 ];
-const CLARITY_VALUES: ClarityUnlock[] = [
-  "personal",
-  "direction",
-  "current_work",
-  "emerging_business",
-  "near_term_exchange",
-];
 const BUYING_FRAME_VALUES: BuyingFrame[] = ["open", "mixed", "open_no_history", "closed"];
+const MEANS_VALUES: Means[] = ["yes_comfortably", "yes_if_fit", "maybe_depending", "not_now"];
 
 interface PersistedState {
   screen: Screen;
   stage: Stage | null;
   uniqueness: UniquenessCategory | null;
   emergingWorkStage: EmergingWorkStage | null;
-  clarityUnlock: ClarityUnlock | null;
   buyingFrame: BuyingFrame | null;
+  means: Means | null;
 }
 
 const initialState: PersistedState = {
@@ -130,8 +122,8 @@ const initialState: PersistedState = {
   stage: null,
   uniqueness: null,
   emergingWorkStage: null,
-  clarityUnlock: null,
   buyingFrame: null,
+  means: null,
 };
 
 function loadInitial(): PersistedState {
@@ -142,14 +134,14 @@ function loadInitial(): PersistedState {
   if (shared) {
     const decoded = decodeShareState(shared);
     if (decoded) {
-      const hasCore = Boolean(decoded.uniqueness && decoded.emergingWorkStage && decoded.clarityUnlock);
+      const hasCore = Boolean(decoded.uniqueness && decoded.emergingWorkStage);
       return {
         screen: hasCore ? "result" : "notYet",
         stage: decoded.stage as Stage,
         uniqueness: decoded.uniqueness ?? null,
         emergingWorkStage: decoded.emergingWorkStage ?? null,
-        clarityUnlock: decoded.clarityUnlock ?? null,
         buyingFrame: decoded.buyingFrame ?? null,
+        means: decoded.means ?? null,
       };
     }
   }
@@ -179,7 +171,7 @@ const TransitionQuizPage = () => {
     }
   }, [state]);
 
-  const { screen, stage, uniqueness, emergingWorkStage, clarityUnlock, buyingFrame } = state;
+  const { screen, stage, uniqueness, emergingWorkStage, buyingFrame, means } = state;
   const stageNames = t("quiz.stageNames", { returnObjects: true }) as Record<string, string>;
 
   const goTo = useCallback((next: Screen, patch: Partial<PersistedState> = {}) => {
@@ -211,9 +203,9 @@ const TransitionQuizPage = () => {
   }, []);
 
   const coreAnswers: CoreAnswers | null = useMemo(() => {
-    if (!stage || !uniqueness || !emergingWorkStage || !clarityUnlock) return null;
-    return { stage, uniqueness, emergingWorkStage, clarityUnlock };
-  }, [stage, uniqueness, emergingWorkStage, clarityUnlock]);
+    if (!stage || !uniqueness || !emergingWorkStage) return null;
+    return { stage, uniqueness, emergingWorkStage };
+  }, [stage, uniqueness, emergingWorkStage]);
 
   const routing = useMemo(() => (coreAnswers ? computeRouting(coreAnswers) : null), [coreAnswers]);
 
@@ -231,8 +223,8 @@ const TransitionQuizPage = () => {
       not_yet: boolean;
       uniqueness_category?: string | null;
       emerging_work_stage?: string | null;
-      clarity_unlock?: string | null;
       buying_frame?: string | null;
+      means?: string | null;
       direction_call_shown?: boolean | null;
       result_template?: string | null;
       route_shown?: string | null;
@@ -267,7 +259,6 @@ const TransitionQuizPage = () => {
         not_yet: false,
         uniqueness_category: coreAnswers.uniqueness,
         emerging_work_stage: coreAnswers.emergingWorkStage,
-        clarity_unlock: coreAnswers.clarityUnlock,
         direction_call_shown: routing.showBuyingFrame,
         result_template: resultTemplate,
         route_shown: routing.showBuyingFrame ? null : routing.route,
@@ -290,7 +281,6 @@ const TransitionQuizPage = () => {
         not_yet: false,
         uniqueness_category: coreAnswers.uniqueness,
         emerging_work_stage: coreAnswers.emergingWorkStage,
-        clarity_unlock: coreAnswers.clarityUnlock,
         buying_frame: buyingFrame,
         direction_call_shown: true,
         result_template: coreAnswers.uniqueness,
@@ -298,6 +288,32 @@ const TransitionQuizPage = () => {
       });
     }
   }, [screen, buyingFrame, coreAnswers, logCompletion, stage]);
+
+  // Log the Means answer as its own completion event (additive — doesn't
+  // replace the Buying Frame row above). Only ever reached on ripe routes
+  // after a non-"closed" Buying Frame answer.
+  useEffect(() => {
+    if (
+      screen === "means" &&
+      means &&
+      buyingFrame &&
+      coreAnswers &&
+      loggedRef.current !== `means-${stage}-${means}`
+    ) {
+      loggedRef.current = `means-${stage}-${means}`;
+      logCompletion({
+        stage: coreAnswers.stage,
+        not_yet: false,
+        uniqueness_category: coreAnswers.uniqueness,
+        emerging_work_stage: coreAnswers.emergingWorkStage,
+        buying_frame: buyingFrame,
+        means,
+        direction_call_shown: true,
+        result_template: coreAnswers.uniqueness,
+        route_shown: routeAfterBuyingFrame(buyingFrame),
+      });
+    }
+  }, [screen, means, buyingFrame, coreAnswers, logCompletion, stage]);
 
   const submitEmail = useCallback(() => {
     const trimmed = email.trim();
@@ -322,13 +338,13 @@ const TransitionQuizPage = () => {
       stage,
       uniqueness: uniqueness ?? undefined,
       emergingWorkStage: emergingWorkStage ?? undefined,
-      clarityUnlock: clarityUnlock ?? undefined,
       buyingFrame: buyingFrame ?? undefined,
+      means: means ?? undefined,
     });
     const url = new URL(window.location.href);
     url.search = `?r=${token}`;
     return url.toString();
-  }, [stage, uniqueness, emergingWorkStage, clarityUnlock, buyingFrame]);
+  }, [stage, uniqueness, emergingWorkStage, buyingFrame, means]);
 
   useEffect(() => {
     if ((screen === "result" || screen === "notYet" || screen === "buyingFrame") && shareUrl && typeof window !== "undefined") {

@@ -22,6 +22,11 @@
 //  - no internal jargon on screen.
 // The Recognition Delta question from the earlier design was NOT carried
 // into the final SOW (§16, §18) — it is not implemented here.
+//
+// 2026-07-29 follow-up: Q4 ("clarity unlock" / "if that sentence appeared
+// today...") was cut entirely, making this a three-question quiz. The
+// clarity_unlock DB column and historical rows are untouched; the client
+// simply stops sending it. See TransitionQuizPage.tsx for the flow change.
 
 export type Stage = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
@@ -81,10 +86,12 @@ export interface CoreAnswers {
  * true does the optional Buying Frame question (§10) get shown at all.
  *
  * Widened (2026-07-29, Quiz v2.1): the CTA now shows for any of stages
- * 4, 5, 6, or 7 — regardless of uniqueness class or clarity_unlock (Q4)
- * answer. Those two answers are still computed and logged for the
- * dataset; they just no longer gate whether the Direction Call appears.
- * The only remaining exclusions are handled elsewhere in computeRouting:
+ * 4, 5, 6, or 7 — regardless of uniqueness class. That answer is still
+ * computed and logged for the dataset; it just no longer gates whether
+ * the Direction Call appears. Q4 (clarity unlock) itself was cut from
+ * the quiz entirely later the same day (three-question edition) — see
+ * the header comment above. The only remaining exclusions are handled
+ * elsewhere in computeRouting:
  * a crossed-peer route (isCrossedPeer) replaces this with the peer door,
  * and a "closed" Buying Frame answer (routeAfterBuyingFrame) still ends
  * in the honest ending instead of the Direction Call.
@@ -149,8 +156,8 @@ export function computeRouting(answers: CoreAnswers): RouteResult {
 // The 3-beat lean result architecture (§12): Chapter / Real Problem / What
 // Comes Next. Beat 1 is keyed by stage, Beat 2+3 are keyed by uniqueness
 // category (the strongest signal from §14's authored examples), with a
-// short supporting clause each from emergingWorkStage and clarityUnlock.
-// All actual copy lives in locales; this just picks the keys.
+// short supporting clause from emergingWorkStage. All actual copy lives
+// in locales; this just picks the keys.
 
 export function chapterKeyForStage(stage: Stage): string {
   // Stages 1-3 never reach this — they stop at the not-yet branch.
