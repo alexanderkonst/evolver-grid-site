@@ -36,6 +36,8 @@
 
 ## Banned patterns
 
+- **Gendered Russian verb forms addressing the reader.** Never «ты мог/могла», «произнёс(ла)», «платил(а)» in external RU copy. Restructure to impersonal or infinitive constructions: «чтобы сказать…», «тебе случалось…», «нужная фраза сказана». Caught three times on Day 138-139 (peer ending, buying frame, ignite hero) — now law.
+
 - **Em-dash cascades inside every sentence.** Use sparingly.
 - **Three-item lists glued by Oxford commas for rhythm.** "Precise, clear, and effective" — once is fine; every paragraph is a tell.
 - **Starting a response with "Great question!" or "Excellent!"** — never.
