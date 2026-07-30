@@ -37,8 +37,18 @@ Please apply these changes from the repo, exactly as written, no changes:
    values) and writes it to the new column. Everything else unchanged.
    Still verify_jwt = false.
 
-Nothing else needs to change. No existing table, function, or policy
-should be touched beyond the two rows/columns named above.
+Nothing else needs to change beyond the items above.
+4. Wire outgoing email on the `save-quiz-email` edge function (the email
+   server is Lovable-managed): when a row arrives with `source` starting
+   with "save_read:", send that address a short branded email containing
+   the permalink https://findyourtoptalent.com/quiz/r/<id> (the id is the
+   part after the colon in `source`). Subject: "Your read — Where Are You".
+   Body: one line ("Here is your saved read, yours to keep:") plus the
+   link. When a row arrives with any other source, no send yet (the
+   seven-chapters map email is a future ask). Keep collection working
+   exactly as it does now either way.
+
+Nothing else needs to change.
 ```
 
 **Verifying it worked**, from any browser console on `findyourtoptalent.com`:
