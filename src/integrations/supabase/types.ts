@@ -2302,6 +2302,7 @@ export type Database = {
           id: string
           identity_score: number | null
           locale: string | null
+          means: string | null
           not_yet: boolean
           pattern: string | null
           recognition_delta: number | null
@@ -2327,6 +2328,7 @@ export type Database = {
           id?: string
           identity_score?: number | null
           locale?: string | null
+          means?: string | null
           not_yet?: boolean
           pattern?: string | null
           recognition_delta?: number | null
@@ -2352,6 +2354,7 @@ export type Database = {
           id?: string
           identity_score?: number | null
           locale?: string | null
+          means?: string | null
           not_yet?: boolean
           pattern?: string | null
           recognition_delta?: number | null
