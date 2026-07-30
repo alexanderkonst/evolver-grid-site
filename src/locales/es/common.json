@@ -7353,7 +7353,7 @@
     "entry": {
       "eyebrow": "Gratis. Unos dos minutos.",
       "title": "Descubre en qué capítulo del viaje del héroe estás en realidad.",
-      "honestyLine": "Cuatro preguntas breves. Verás en qué capítulo estás, por qué las piezas no encajan y qué podría estar empezando a surgir.",
+      "honestyLine": "Tres preguntas cortas. Verás en qué capítulo estás, por qué las cosas se sienten raras y qué podría estar empezando a pasar.",
       "cta": "Ver dónde estoy"
     },
     "q1": {
@@ -7447,22 +7447,9 @@
       },
       "framing": "La misma mirada, ahora dirigida hacia adelante: el próximo capítulo de tu trabajo, por más tenue o claro que sea hoy."
     },
-    "q4": {
-      "order": 4,
-      "prompt": "Si esa frase apareciera hoy, ¿qué cambiaría primero?",
-      "options": {
-        "personal": "Me entendería mejor a mí mismo/a.",
-        "direction": "Sabría qué dirección seguir.",
-        "current_work": "Podría explicar mi trabajo actual con más claridad.",
-        "emerging_business": "Podría darle forma a un negocio, una práctica o un cuerpo de trabajo que ya estoy construyendo.",
-        "near_term_exchange": "Podría empezar a ofrecer, vender o invitar a otros a algo en cuestión de semanas."
-      },
-      "framing": "El trabajo detrás de este test convierte lo que llevas dentro en una frase exacta: quién eres profesionalmente y cuál es tu próximo capítulo."
-    },
     "result": {
       "stageLabel": "Tu capítulo",
       "nextLabel": "Qué sigue",
-      "clarityLead": "El próximo movimiento se notaría primero en {{clause}}.",
       "takeWhatNote": "Quédate con lo que aquí es certero. Nota lo que no. El desacuerdo también es información.",
       "believability": {
         "intro": "De alguien que estuvo en este capítulo:"
@@ -7517,13 +7504,6 @@
         "working": "Ahora mismo, ya está funcionando. La gente está empezando a decir que sí.",
         "delivering": "Ahora mismo, la demanda ya existe. Tu pregunta es de entrega, no de descubrimiento."
       },
-      "clarityClause": {
-        "personal": "cómo te entiendes a ti mismo/a",
-        "direction": "qué dirección eliges seguir",
-        "current_work": "con qué claridad explicas lo que ya haces",
-        "emerging_business": "lo que construyas después",
-        "near_term_exchange": "algo que podrías ofrecerle a la gente en las próximas semanas"
-      },
       "crossedPeer": {
         "heading": "Cruzaste. Y sigue funcionando.",
         "body1": "Dijiste la frase, construiste el vehículo, y el dinero responde. El mapa termina aquí, porque tu pregunta ya no es de nombrar. Es de escala: transmisión, alcance, la siguiente octava del mismo patrón.",
@@ -7562,6 +7542,15 @@
         "5": "Increíblemente exacto"
       },
       "thankYou": "Anotado. Gracias."
+    },
+    "means": {
+      "prompt": "Si encontraras a la persona adecuada para ayudarte a ver y dar forma a lo que viene, ¿invertir en ese apoyo es realista ahora mismo?",
+      "options": {
+        "yes_comfortably": "Sí, con comodidad",
+        "yes_if_fit": "Sí, si el encaje es claramente correcto",
+        "maybe_depending": "Quizá, según la inversión",
+        "not_now": "Ahora mismo no"
+      }
     }
   },
   "homeLanding": {

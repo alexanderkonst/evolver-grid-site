@@ -19,7 +19,7 @@ import {
   isNotYetStage,
   notYetVariant,
 } from "./engine";
-import { ResultScreen } from "./TransitionQuizPage";
+import { ResultScreen, DIRECTION_CALL_HREF } from "./TransitionQuizPage";
 import "./TransitionQuizPage.css";
 
 interface FetchedResult {
@@ -28,7 +28,6 @@ interface FetchedResult {
   not_yet: boolean;
   uniqueness_category: CoreAnswers["uniqueness"] | null;
   emerging_work_stage: CoreAnswers["emergingWorkStage"] | null;
-  clarity_unlock: CoreAnswers["clarityUnlock"] | null;
   result_template: string | null;
 }
 
@@ -149,7 +148,7 @@ function ReconstructedResult({
     );
   }
 
-  if (!result.uniqueness_category || !result.emerging_work_stage || !result.clarity_unlock) {
+  if (!result.uniqueness_category || !result.emerging_work_stage) {
     return (
       <section className="tq-card">
         <p className="tq-body-text">This saved read is incomplete.</p>
@@ -161,7 +160,6 @@ function ReconstructedResult({
     stage,
     uniqueness: result.uniqueness_category,
     emergingWorkStage: result.emerging_work_stage,
-    clarityUnlock: result.clarity_unlock,
   };
   const routing = computeRouting(answers);
 
@@ -170,9 +168,14 @@ function ReconstructedResult({
       t={t}
       stageNames={stageNames}
       answers={answers}
-      showBuyingFrame={false}
+      // A saved read keeps its door: the same Direction Call CTA the live
+      // result earned. On the permalink there is no interactive qualifier
+      // flow, so the button opens the booking page directly.
+      showBuyingFrame={routing.showBuyingFrame}
       route={routing.route}
-      onContinue={() => {}}
+      onContinue={() => {
+        window.open(DIRECTION_CALL_HREF, "_blank", "noopener");
+      }}
       onRetake={() => {
         window.location.href = "/quiz";
       }}

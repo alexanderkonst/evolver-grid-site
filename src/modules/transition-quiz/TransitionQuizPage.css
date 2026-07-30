@@ -295,13 +295,18 @@
   padding: 0;
 }
 
+/* Result ceremony: only the header cluster (eyebrow, chapter name,
+   ornament, arc) is centered; all reading text is left-aligned so the
+   page reads as a document, not a poster. */
 .tq-result-card {
-  text-align: center;
+  text-align: left;
 }
 
-.tq-result-card .tq-section,
-.tq-result-card .tq-take-what-note {
-  text-align: left;
+.tq-result-card > .tq-eyebrow-gold,
+.tq-result-card .tq-stage-name,
+.tq-result-card .tq-ornament,
+.tq-result-card .tq-stage-arc {
+  text-align: center;
 }
 
 .tq-measure {
