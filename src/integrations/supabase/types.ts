@@ -2122,6 +2122,33 @@ export type Database = {
           },
         ]
       }
+      quiz_email_signups: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          locale: string | null
+          source: string
+          stage: number | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          locale?: string | null
+          source?: string
+          stage?: number | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          locale?: string | null
+          source?: string
+          stage?: number | null
+        }
+        Relationships: []
+      }
       resonance_events: {
         Row: {
           artifact_id: string | null
