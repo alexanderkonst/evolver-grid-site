@@ -110,6 +110,10 @@ const SiteLogo = () => {
         // page carries its own identity.
         "/alexander",
         "/aleksandr",
+        // /quiz owns a restrained corridor header so the wordmark, progress
+        // thread, and reading column share one layout. The global fixed mark
+        // used to float over question and result copy while scrolling.
+        "/quiz",
     ];
     // Day 138 (Sasha 2026-07-29): /home lives inside GameShellV2 (SmartShellLayout),
     // whose rail already carries the full "YOU be original" lockup. The global
@@ -126,18 +130,10 @@ const SiteLogo = () => {
     const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb", "/mdls-preview", "/build/equilibrium", "/equilibrium", "/preview/equilibrium-v2", "/build/karime", "/build/karime/intake", "/proposalforwegoodovahere", "/build/cockpit", "/1-pager", "/landing", "/you", "/home"];
     if (hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
 
-    // Day 139 (Sasha 2026-07-30): on /quiz the page scrolls under the fixed
-    // mark (inscribed layout, no card), so the logo sat on top of body text
-    // mid-scroll. A soft frosted parchment pill keeps it legible without
-    // hiding it — scoped to quiz routes only.
-    const onQuiz = location.pathname.startsWith("/quiz");
-
     return (
         <Link
             to="/"
-            className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 group${
-                onQuiz ? " rounded-full px-4 py-1.5 backdrop-blur-md bg-[#faf6ec]/75" : ""
-            }`}
+            className="fixed top-4 left-1/2 -translate-x-1/2 z-50 group"
             aria-label="Find Your Top Talent — home"
         >
             <img
