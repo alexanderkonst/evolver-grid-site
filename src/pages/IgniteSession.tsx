@@ -338,6 +338,17 @@ const IgniteSession = () => {
             className="w-[140px] h-auto mx-auto opacity-80"
           />
 
+          {/* Day 131+ (Sasha 2026-07-30/31): eyebrow moved above the hero
+              heading — the category-line/shelf-key convention used
+              elsewhere on the site puts the shelf line right above the
+              headline, not buried under the subheading. */}
+          <p
+            className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.28em] bg-clip-text text-transparent"
+            style={GOLD_TEXT_STYLE}
+          >
+            {t('ignite.shelfLine')}
+          </p>
+
           <h1
             className="font-serif max-w-2xl mx-auto"
             style={{
@@ -364,16 +375,6 @@ const IgniteSession = () => {
             {t('ignite.heroSubA')}
             <br />
             {t('ignite.heroSubB')}
-          </p>
-
-          {/* Day 118 (2026-07-08): the shelf line — category sentence placing
-              the offer on a known shelf (marketing_playbook.md, "Category
-              Lines: the Shelf Key"). One size smaller than /path per spec. */}
-          <p
-            className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.28em] bg-clip-text text-transparent"
-            style={GOLD_TEXT_STYLE}
-          >
-            {t('ignite.shelfLine')}
           </p>
 
           <Ornament className="my-1" />
