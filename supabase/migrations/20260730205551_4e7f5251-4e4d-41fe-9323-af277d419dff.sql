@@ -1,0 +1,1 @@
+DELETE FROM public.quiz_email_signups WHERE email = 'deploy-check@example.com';
