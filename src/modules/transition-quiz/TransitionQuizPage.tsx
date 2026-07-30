@@ -17,6 +17,7 @@
 // dataset only — it never gates or delays the free result.
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
@@ -274,8 +275,17 @@ const TransitionQuizPage = () => {
     const trimmed = email.trim();
     if (!trimmed || !trimmed.includes("@") || !stage) return;
     logCompletion({ stage, not_yet: isNotYetStage(stage), email: trimmed });
+    // Dedicated email-capture table (quiz_email_signups), separate from the
+    // per-completion dataset row above. Same fire-and-forget contract: if
+    // save-quiz-email isn't deployed yet in this environment, this silently
+    // no-ops and the UI still shows success (graceful fallback).
+    supabase.functions
+      .invoke("save-quiz-email", { body: { email: trimmed, stage, locale: i18n.language } })
+      .catch(() => {
+        /* best-effort — never blocks or alters the UI */
+      });
     setEmailSent(true);
-  }, [email, stage, logCompletion]);
+  }, [email, stage, logCompletion, i18n.language]);
 
   // ── Share link for the finished result ──────────────────────────────────
   const shareUrl = useMemo(() => {
@@ -423,7 +433,6 @@ function EntryScreen({ t, onStart }: { t: (k: string, o?: Record<string, unknown
       </p>
       <h1 className="tq-h1">{t("quiz.entry.title") as string}</h1>
       <Ornament className="tq-ornament" />
-      <p className="tq-sub">{t("quiz.entry.subtitle") as string}</p>
       <p className="tq-sub tq-quiet-line">{t("quiz.entry.honestyLine") as string}</p>
       <div className="tq-cta-row tq-cta-row-center">
         <EditorialCta label={t("quiz.entry.cta") as string} onClick={onStart} />
@@ -499,6 +508,14 @@ function NotYetScreen({
           {t("quiz.notYet.settled.channelsLinkLabel") as string} <ArrowUpRight size={13} />
         </a>
 
+        <p className="tq-sub tq-quiet-line" style={{ marginTop: 14 }}>
+          {t("quiz.notYet.settled.giftLinePre") as string}
+          <Link className="tq-link-quiet" to="/zone-of-genius">
+            {t("quiz.notYet.settled.giftLinkLabel") as string}
+          </Link>
+          {t("quiz.notYet.settled.giftLinePost") as string}
+        </p>
+
         {!emailSent ? (
           <div className="tq-email-row">
             <p className="tq-label" style={{ marginTop: 8 }}>
@@ -545,6 +562,14 @@ function NotYetScreen({
         </p>
         <p className="tq-body-text">{isItch ? content.sign : content.next}</p>
       </div>
+
+      <p className="tq-sub tq-quiet-line">
+        {content.giftPre}
+        <Link className="tq-link-quiet" to="/zone-of-genius">
+          {content.giftLinkLabel}
+        </Link>
+        {content.giftPost}
+      </p>
 
       {!emailSent ? (
         <div className="tq-email-row">

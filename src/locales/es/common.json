@@ -7353,7 +7353,6 @@
   "entry": {
    "eyebrow": "Gratis. Unos dos minutos.",
    "title": "Descubre en qué capítulo del viaje del héroe estás en realidad.",
-   "subtitle": "Cuando alguien te pregunta a qué te dedicas, le das la respuesta genérica para que no se confunda. En realidad, el confundido eres tú.",
    "honestyLine": "Cuatro preguntas breves. Verás en qué capítulo estás, por qué las piezas no encajan y qué podría estar empezando a surgir.",
    "cta": "Ver dónde estoy"
   },
@@ -7382,14 +7381,17 @@
   "notYet": {
    "settled": {
     "title": "Estás asentado.",
-    "line": "Aquí no hay nada que arreglar. Cuando algo empiece a moverse, lo sentirás antes de poder nombrarlo, y este test seguirá aquí.",
-    "channelsLine": "Si alguna vez quieres ver cómo funciona esto por dentro, de eso escribe Sasha.",
-    "channelsLinkLabel": "Ver dónde está",
-    "emailPrompt": "¿Quieres un aviso si esto cambia más adelante? Totalmente opcional.",
+    "line": "Aquí no hay nada que arreglar. Cuando tu trabajo empiece a sentirse distinto, cuando la respuesta a «¿a qué te dedicas?» deje de encajar del todo, lo sentirás antes de poder nombrarlo. Este test seguirá aquí.",
+    "channelsLine": "Aquí es donde publicamos la mecánica más profunda de cómo cambia realmente una carrera, capítulo a capítulo:",
+    "channelsLinkLabel": "Nuestros canales",
+    "giftLinePre": "Y si tienes curiosidad por saber en qué eres realmente bueno mientras todo funciona, ",
+    "giftLinkLabel": "la revelación de tu Top Talent",
+    "giftLinePost": " es gratis.",
+    "emailPrompt": "¿Quieres el mapa de los siete capítulos de todos modos? Es más útil antes de necesitarlo.",
     "emailPlaceholder": "tu@email.com",
-    "emailCta": "Avísame",
+    "emailCta": "Envíame el mapa",
     "skip": "No, gracias, estoy bien",
-    "emailSuccess": "Listo. Ya estás en la lista."
+    "emailSuccess": "Te llegará pronto. Revisa tu correo."
    },
    "itchTremors": {
     "turnsIntoLabel": "En qué suele convertirse esto",
@@ -7398,11 +7400,17 @@
     "nextLabel": "Qué suele venir después",
     "2": {
      "turnsInto": "La comezón suele convertirse en empujar más fuerte sobre lo mismo, no en algo nuevo. La mayoría parcha la forma antigua durante meses, a veces años, antes de que se vuelva un cambio real.",
-     "sign": "Empujar deja de funcionar y empieza a costarte sueño, energía o salud. Ahí es cuando la Comezón se vuelve Temblores."
+     "sign": "Empujar deja de funcionar y empieza a costarte sueño, energía o salud. Ahí es cuando la Comezón se vuelve Temblores.",
+     "giftPre": "Una cosa más. La comezón se aclara cuando puedes ver de qué se trata. La ",
+     "giftLinkLabel": "revelación de tu Top Talent",
+     "giftPost": " gratuita nombra en qué eres bueno, y en este capítulo suele mostrar de qué va la comezón."
     },
     "3": {
-     "why": "Estás metiendo fuerza en una forma que ya está llena. Nuevo nicho, nuevo embudo, más horas, todo dentro del mismo contenedor que ya no puede sostener más.",
-     "next": "Normalmente llega una ruptura antes que cualquier gran avance. Algo que te sostenía deja de sostenerte, muchas veces por razones fuera de tu control. Eso no es un fracaso tuyo. Así es como ocurre el cambio."
+     "why": "Estás metiendo fuerza en un montaje que ya no tiene espacio. Nuevo nicho, nuevo embudo, más horas, todo dentro de la misma forma de trabajar, y ya está al límite.",
+     "next": "Normalmente llega una ruptura antes que cualquier gran avance. Lo que te pagaba o te sostenía se detiene, muchas veces sin que tú lo elijas. Eso no es un fracaso tuyo. Así es como ocurre el cambio.",
+     "giftPre": "Una cosa más. Antes de que algo se rompa, ayuda saber qué está intentando sobrevivir. La ",
+     "giftLinkLabel": "revelación de tu Top Talent",
+     "giftPost": " gratuita nombra en qué eres bueno, para que cuando llegue el cambio sepas qué llevar contigo."
     },
     "emailPrompt": "¿Quieres el mapa completo, para encontrarte con lo que sigue con los ojos abiertos?",
     "emailPlaceholder": "tu@email.com",
