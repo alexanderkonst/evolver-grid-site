@@ -7463,6 +7463,9 @@
    "nextLabel": "Qué sigue",
    "clarityLead": "El próximo movimiento se notaría primero en {{clause}}.",
    "takeWhatNote": "Quédate con lo que aquí es certero. Nota lo que no. El desacuerdo también es información.",
+   "believability": {
+    "intro": "De alguien que estuvo en este capítulo:"
+   },
    "continueCta": "Integra tus proyectos “sueltos” en una sola dirección precisa",
    "selectionNote": "Tus respuestas mostraron que probablemente soy quien más útil puede serte ahora. Solo ofrezco esta llamada en esos casos.",
    "honestEnding": "Esta es la lectura completa. Sin propuesta, sin nada más por desbloquear. Puedes repetir el test cuando quieras si tus respuestas cambian.",

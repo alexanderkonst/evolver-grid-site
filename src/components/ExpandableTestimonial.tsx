@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { GOLD_TEXT_STYLE } from "@/lib/landingDesign";
 
 export interface TestimonialData {
   shortQuote: string;
@@ -13,8 +14,13 @@ export interface TestimonialData {
 
 /**
  * Glass-style expandable testimonial card.
- * variant="light" → LandingPage (light bg)
- * variant="dark"  → IgniteSession (dark / glass bg)
+ * variant="light"  → LandingPage (light bg)
+ * variant="dark"   → legacy dark-glass surfaces
+ * variant="house"  → house parchment look (Cormorant italic quote +
+ *                     gold small-caps name), matching /home's testimony
+ *                     strip. Added Day 131 for the /ignite reskin —
+ *                     purely additive, does not change "light"/"dark"
+ *                     behavior for existing consumers.
  *
  * Day 61 (Sasha 2026-05-04): added `compact` prop. When true, renders
  * the testimonial as a single inline line (quote + name + chevron) by
@@ -28,17 +34,69 @@ export const ExpandableTestimonial = ({
   compact = false,
 }: {
   t: TestimonialData;
-  variant?: "light" | "dark";
+  variant?: "light" | "dark" | "house";
   compact?: boolean;
 }) => {
   const [open, setOpen] = useState(false);
 
   const isLight = variant === "light";
+  const isHouse = variant === "house";
 
   // Day 61 (Sasha 2026-05-04): compact rendering — single-line default,
   // expand to full quote. Skips the "before" label and "after" line
   // (those belong to the heavier card variant).
   if (compact) {
+    if (isHouse) {
+      // House parchment look — Cormorant italic quote, gold small-caps
+      // name, matching /home's testimony strip typography.
+      return (
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          className="w-full text-left rounded-lg px-3 py-2 transition-all duration-200 cursor-pointer group hover:bg-black/[0.03] data-[open=true]:bg-black/[0.03]"
+          data-open={open}
+        >
+          <div className="flex items-baseline justify-between gap-2">
+            <p
+              className="text-xs sm:text-sm leading-snug italic flex-1 min-w-0"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                color: "var(--skin-text-secondary, #33415c)",
+              }}
+            >
+              "{t.shortQuote}"{" "}
+              <span
+                className="not-italic font-semibold bg-clip-text text-transparent"
+                style={{ ...GOLD_TEXT_STYLE, letterSpacing: "0.08em", textTransform: "uppercase", fontSize: "0.82em" }}
+              >
+                — {t.name}
+              </span>
+            </p>
+            <ChevronDown
+              className={`w-3 h-3 flex-shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+              style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.4))" }}
+              aria-hidden="true"
+            />
+          </div>
+
+          {open && (
+            <div className="overflow-hidden mt-2">
+              <p
+                className="text-xs sm:text-sm leading-relaxed italic whitespace-pre-line pt-2 border-t"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  borderColor: "var(--skin-ornament-rule, rgba(26,30,58,0.12))",
+                  color: "var(--skin-text-secondary, #33415c)",
+                }}
+              >
+                "{t.fullQuote}"
+              </p>
+            </div>
+          )}
+        </button>
+      );
+    }
+
     return (
       <button
         type="button"

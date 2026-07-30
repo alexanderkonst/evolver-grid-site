@@ -28,12 +28,14 @@ import SEO from "@/components/SEO";
 // attribution line; clarity-call CTAs no longer use the speech-bubble
 // glyph (now plain italic underline links); DivineTimingCapture
 // removed (called trackFunnelEvent for the divine_timing event).
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import geniusLogo from "@/assets/ignite-logo.png";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import BoldText from "@/components/BoldText";
+import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
+import { cn } from "@/lib/utils";
 
 /* ─── Shared testimonial data (single source of truth) ─── */
 import { TESTIMONIALS } from "@/data/testimonials";
@@ -112,16 +114,111 @@ const LazyYouTube = ({ id, title }: { id: string; title: string }) => {
 const AlreadyPaidLink = () => {
   const { t } = useTranslation();
   return (
-    <Button variant="outline" size="sm" asChild>
+    <a
+      href={CALCOM_BOOKING_LINK}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors hover:bg-black/[0.03]"
+      style={{
+        borderColor: "var(--skin-ornament-rule, rgba(26,30,58,0.18))",
+        color: "var(--skin-text-secondary, #33415c)",
+      }}
+    >
+      <Check className="w-3 h-3" aria-hidden="true" />
+      {t('ignite.alreadyPaidLink')}
+    </a>
+  );
+};
+
+/* ─── House CTA grammar, as an anchor ───────────────────────
+   Day 131 (Sasha 2026-07-30, reskin): `EditorialCta` (the site's
+   canonical primary-CTA component — dark glass pill, rotating
+   ignite-logo emblem, gold-halo small-caps label) only renders a
+   <button>. Ignite's CTAs are real links (Stripe checkout, Cal.com
+   booking) that must stay `<a href>` for hover-preview / ctrl-click /
+   right-click "open in new tab" — swapping to an onClick-driven
+   button would be a structural regression disguised as a visual one.
+   This local anchor replicates the exact same classNames + inline
+   styles as EditorialCta's primary/secondary variants (same
+   `.liquid-glass-dark` / `.liquid-glass` classes from index.css) so
+   the grammar matches pixel-for-pixel, while staying a real link. */
+const IgniteCta = ({
+  href,
+  onClick,
+  children,
+  variant = "primary",
+  className,
+  id,
+}: {
+  href: string;
+  onClick?: () => void;
+  children: ReactNode;
+  variant?: "primary" | "secondary";
+  className?: string;
+  id?: string;
+}) => {
+  if (variant === "secondary") {
+    return (
       <a
-        href={CALCOM_BOOKING_LINK}
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
+        id={id}
+        onClick={onClick}
+        className={cn(
+          "group liquid-glass rounded-full",
+          "inline-flex items-center justify-center gap-2",
+          "px-5 sm:px-6 py-3 max-w-full",
+          "text-sm sm:text-base font-medium",
+          "transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
+          "focus-visible:ring-2 focus-visible:ring-[#0a1628]/30 outline-none",
+          className,
+        )}
+        style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
+          textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+        }}
       >
-        <Check className="w-3 h-3" />
-        {t('ignite.alreadyPaidLink')}
+        <span style={{ textTransform: "uppercase", letterSpacing: "0.12em", fontSize: "0.88em" }}>
+          {children}
+        </span>
       </a>
-    </Button>
+    );
+  }
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      id={id}
+      onClick={onClick}
+      className={cn(
+        "group liquid-glass-dark cta-breath rounded-full",
+        "inline-flex items-center justify-center gap-2",
+        "px-6 sm:px-7 py-3.5 max-w-full",
+        "text-sm sm:text-base font-semibold",
+        "transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]",
+        "focus-visible:ring-2 focus-visible:ring-white/40 outline-none",
+        className,
+      )}
+      style={{
+        fontFamily: "'Cormorant Garamond', serif",
+        color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+        backgroundImage:
+          "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+        boxShadow:
+          "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+        textShadow:
+          "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
+      }}
+    >
+      <span style={{ textTransform: "uppercase", letterSpacing: "0.12em", fontSize: "0.88em" }}>
+        {children}
+      </span>
+      <ArrowRight className="w-4 h-4 ml-0.5 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+    </a>
   );
 };
 
@@ -183,20 +280,29 @@ const IgniteSession = () => {
   }, [location.hash]);
 
   const content = (
-    // `/ignite` uses a static, skin-aware darkroom canvas. The previous
-    // page-owned HLS background and wash were removed so no moving overlay
-    // competes with the purchase decision.
+    // Day 131 (Sasha 2026-07-30) reskin: /ignite now sits on the same
+    // warm parchment field as `/` and `/home` instead of the midnight
+    // "darkroom" canvas. Still a static, self-painted background (no
+    // moving HLS layer) so nothing competes with the purchase decision
+    // — the reskin is a palette + typography change, not a return of
+    // the animated video.
     <div
-      className="relative min-h-dvh text-white overflow-hidden font-sans"
+      className="relative min-h-dvh overflow-hidden font-sans"
       id="ignite-page"
       style={{
+        // NOTE: intentionally NOT `--skin-darkroom-bg` — that token is
+        // already claimed everywhere as an opaque near-black overlay
+        // (see index.css, every skin block), so reusing it here would
+        // silently keep the old midnight canvas on every skin. This is
+        // a new, unclaimed token so it defaults to the parchment field
+        // until a future skin wants to override it specifically.
         background:
-          "linear-gradient(var(--skin-darkroom-bg, rgba(10, 10, 26, 0.96)), var(--skin-darkroom-bg, rgba(10, 10, 26, 0.96))), #0a0a1a",
+          "var(--skin-ignite-bg, linear-gradient(180deg, #fdfaf3 0%, #f6efe0 45%, #fdfaf3 100%))",
       }}
     >
 
       {/* CONTENT LAYER */}
-      <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-16 space-y-14">
+      <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-16 space-y-12">
 
         {/* Day 61 (Sasha 2026-05-04): major copy + structure pass per
             Sasha's "transformational result + button + confirmation"
@@ -232,21 +338,25 @@ const IgniteSession = () => {
           <h1
             className="font-serif max-w-2xl mx-auto"
             style={{
-              fontSize: "clamp(1.85rem, 5vw, 2.75rem)",
-              fontWeight: 600,
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "clamp(1.95rem, 5vw, 2.9rem)",
+              fontWeight: 700,
               lineHeight: 1.15,
               letterSpacing: "-0.018em",
-              color: "rgba(255,255,255,0.96)",
+              color: "var(--skin-text-primary, #0a1628)",
               textShadow:
-                "0 0 30px rgba(255,255,255,0.20), 0 0 60px rgba(255,255,255,0.08)",
+                "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
             {t('ignite.heroTitle')}
           </h1>
 
           <p
-            className="text-base sm:text-lg italic text-white/70 max-w-md mx-auto leading-relaxed"
-            style={{ fontFamily: "'Source Serif 4', serif" }}
+            className="text-base sm:text-lg italic max-w-md mx-auto leading-relaxed"
+            style={{
+              fontFamily: "'Source Serif 4', serif",
+              color: "var(--skin-text-secondary, #33415c)",
+            }}
           >
             {t('ignite.heroSubA')}
             <br />
@@ -256,26 +366,30 @@ const IgniteSession = () => {
           {/* Day 118 (2026-07-08): the shelf line — category sentence placing
               the offer on a known shelf (marketing_playbook.md, "Category
               Lines: the Shelf Key"). One size smaller than /path per spec. */}
-          <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.16em] text-white/60">
+          <p
+            className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.28em] bg-clip-text text-transparent"
+            style={GOLD_TEXT_STYLE}
+          >
             {t('ignite.shelfLine')}
           </p>
 
-          <div className="flex flex-col items-center gap-3 pt-4">
-            <Button size="lg" asChild>
-              <a
-                href={STRIPE_PAYMENT_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackCTAClick('booking_click', 'hero-cta')}
-              >
-                <BoldText className="uppercase">{t('ignite.ctaGetBusiness')}</BoldText>
-                <ArrowRight className="w-4 h-4 ml-1" />
-              </a>
-            </Button>
+          <Ornament className="my-1" />
+
+          <div className="flex flex-col items-center gap-3 pt-2">
+            <IgniteCta
+              href={STRIPE_PAYMENT_LINK}
+              onClick={() => trackCTAClick('booking_click', 'hero-cta')}
+            >
+              {t('ignite.ctaGetBusiness')}
+            </IgniteCta>
 
             <a
               href="#direction-call"
-              className="text-xs text-white/55 hover:text-white/85 italic underline underline-offset-4 decoration-white/15 hover:decoration-white/40 transition-colors"
+              className="text-xs italic underline underline-offset-4 transition-colors"
+              style={{
+                color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+                textDecorationColor: "var(--skin-ornament-rule, rgba(26,30,58,0.25))",
+              }}
               onClick={() => trackCTAClick('clarity_call_click', 'hero-quiet-link')}
             >
               {t('ignite.clarityLinkHero')}
@@ -285,7 +399,10 @@ const IgniteSession = () => {
 
         {/* BLOCK 2 — WHAT YOU LEAVE WITH */}
         <section className="space-y-5 max-w-md mx-auto" aria-label={t('ignite.sectionLeaveWith')}>
-          <p className="text-[10px] text-white/45 uppercase tracking-[0.28em] text-center font-medium">
+          <p
+            className="text-[10px] uppercase tracking-[0.28em] text-center font-bold bg-clip-text text-transparent"
+            style={GOLD_TEXT_STYLE}
+          >
             {t('ignite.leaveWithLabel')}
           </p>
           <div className="space-y-2.5 text-left">
@@ -296,37 +413,45 @@ const IgniteSession = () => {
               t('ignite.leaveWith4'),
             ].map((item, i) => (
               <div key={i} className="flex items-baseline gap-2.5">
-                <span className="text-white/40 text-sm">→</span>
-                <span className="text-sm sm:text-base text-white/85 leading-relaxed">{item}</span>
+                <span className="text-sm bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>→</span>
+                <span
+                  className="text-sm sm:text-base leading-relaxed"
+                  style={{ color: "var(--skin-text-primary, #0a1628)" }}
+                >
+                  {item}
+                </span>
               </div>
             ))}
           </div>
           <p
-            className="text-sm text-white/75 text-center leading-relaxed pt-1 max-w-md mx-auto"
-            style={{ fontFamily: "'Source Serif 4', serif" }}
+            className="text-sm text-center leading-relaxed pt-1 max-w-md mx-auto"
+            style={{
+              fontFamily: "'Source Serif 4', serif",
+              color: "var(--skin-text-secondary, #33415c)",
+            }}
           >
             {t('ignite.leaveWithConvergence')}
           </p>
           <p
-            className="text-xs text-white/55 italic text-center leading-relaxed pt-1 max-w-sm mx-auto"
-            style={{ fontFamily: "'Source Serif 4', serif" }}
+            className="text-xs italic text-center leading-relaxed pt-1 max-w-sm mx-auto"
+            style={{
+              fontFamily: "'Source Serif 4', serif",
+              color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+            }}
           >
             {t('ignite.leaveWithDisclaimer')}
           </p>
           <div className="flex justify-center pt-2">
-            <Button size="lg" asChild>
-              <a
-                href={STRIPE_PAYMENT_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackCTAClick('booking_click', 'block2-cta')}
-              >
-                <BoldText className="uppercase">{t('ignite.ctaGetBusiness')}</BoldText>
-                <ArrowRight className="w-4 h-4 ml-1" />
-              </a>
-            </Button>
+            <IgniteCta
+              href={STRIPE_PAYMENT_LINK}
+              onClick={() => trackCTAClick('booking_click', 'block2-cta')}
+            >
+              {t('ignite.ctaGetBusiness')}
+            </IgniteCta>
           </div>
         </section>
+
+        <Ornament />
 
         {/* BLOCK 3 — PROOF + PRICE + GUARANTEE (booking section) */}
         <section
@@ -336,34 +461,48 @@ const IgniteSession = () => {
         >
           <div id="booking" className="sr-only" aria-hidden="true" />
 
-          {/* Compact testimonials — all of them, expandable single-liners */}
+          {/* Compact testimonials — all of them, expandable single-liners.
+              variant="house" = Cormorant italic quote + gold small-caps
+              name, matching /home's testimony strip. */}
           <div className="space-y-1 max-w-md mx-auto text-left" id="testimonials">
             {testimonials.map((t, i) => (
-              <ExpandableTestimonial key={i} t={t} variant="dark" compact />
+              <ExpandableTestimonial key={i} t={t} variant="house" compact />
             ))}
           </div>
+
+          <Ornament className="my-2" />
 
           {/* Price + attribution */}
           <div className="space-y-2">
             <div className="flex items-baseline justify-center gap-1">
               <span
-                className="text-5xl md:text-6xl text-white tracking-tight font-serif"
-                style={{ fontWeight: 500 }}
+                className="text-5xl md:text-6xl tracking-tight"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontWeight: 600,
+                  color: "var(--skin-text-primary, #0a1628)",
+                }}
               >
                 $555
               </span>
             </div>
-            <p className="text-xs text-white/60">
+            <p className="text-xs" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}>
               {t('ignite.priceAttribution')}
             </p>
           </div>
 
           {/* Price comparison trio */}
           <div className="max-w-sm mx-auto space-y-2 text-left">
-            <h3 className="text-sm font-semibold text-white/80 text-center">
+            <h3
+              className="text-[11px] font-bold uppercase tracking-[0.2em] text-center bg-clip-text text-transparent"
+              style={GOLD_TEXT_STYLE}
+            >
               {t('ignite.priceCompareHeading')}
             </h3>
-            <ul className="space-y-1.5 text-xs text-white/60 leading-relaxed list-disc list-inside">
+            <ul
+              className="space-y-1.5 text-xs leading-relaxed list-disc list-inside"
+              style={{ color: "var(--skin-text-secondary, #33415c)" }}
+            >
               <li>{t('ignite.priceCompare1')}</li>
               <li>{t('ignite.priceCompare2')}</li>
               <li>{t('ignite.priceCompare3')}</li>
@@ -371,37 +510,45 @@ const IgniteSession = () => {
           </div>
 
           {/* Guarantee */}
-          <div className="px-4 py-3 max-w-sm mx-auto rounded-xl border border-white/10">
+          <div
+            className="px-4 py-3 max-w-sm mx-auto rounded-xl border"
+            style={{ borderColor: "var(--skin-ornament-rule, rgba(26,30,58,0.16))" }}
+          >
             <div className="flex items-center justify-center gap-2 mb-2">
-              <ShieldCheck className="w-5 h-5 text-white/55" aria-hidden="true" />
+              <ShieldCheck
+                className="w-5 h-5"
+                style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}
+                aria-hidden="true"
+              />
             </div>
-            <p className="text-sm text-white/90 leading-relaxed font-medium">
+            <p
+              className="text-sm leading-relaxed font-medium"
+              style={{ color: "var(--skin-text-primary, #0a1628)" }}
+            >
               {t('ignite.guarantee')}
             </p>
           </div>
 
           {/* Resonance permission */}
           <p
-            className="text-[11px] text-white/50 italic max-w-xs mx-auto leading-relaxed"
-            style={{ fontFamily: "'Source Serif 4', serif" }}
+            className="text-[11px] italic max-w-xs mx-auto leading-relaxed"
+            style={{
+              fontFamily: "'Source Serif 4', serif",
+              color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))",
+            }}
           >
             {t('ignite.resonancePermission')}
           </p>
 
           {/* Final CTA */}
           <div className="pt-2">
-            <Button size="lg" asChild>
-              <a
-                href={STRIPE_PAYMENT_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                id="book-session-btn"
-                onClick={() => trackCTAClick('booking_click', 'pricing-cta')}
-              >
-                <BoldText className="uppercase">{t('ignite.ctaBookSession')}</BoldText>
-                <ArrowRight className="w-4 h-4 ml-1" />
-              </a>
-            </Button>
+            <IgniteCta
+              href={STRIPE_PAYMENT_LINK}
+              id="book-session-btn"
+              onClick={() => trackCTAClick('booking_click', 'pricing-cta')}
+            >
+              {t('ignite.ctaBookSession')}
+            </IgniteCta>
           </div>
 
           {/* Already-paid escape hatch (kept inline near booking CTA) */}
@@ -419,35 +566,43 @@ const IgniteSession = () => {
           id="direction-call"
           aria-label={t('ignite.directionCallTitle')}
         >
-          <p className="text-[10px] text-white/45 uppercase tracking-[0.28em] text-center font-medium">
+          <p
+            className="text-[10px] uppercase tracking-[0.28em] text-center font-bold bg-clip-text text-transparent"
+            style={GOLD_TEXT_STYLE}
+          >
             {t('ignite.directionCallEyebrow')}
           </p>
           <h2
-            className="font-serif text-white/90"
-            style={{ fontSize: "clamp(1.3rem, 3.5vw, 1.75rem)", fontWeight: 600, letterSpacing: "-0.01em" }}
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "clamp(1.3rem, 3.5vw, 1.75rem)",
+              fontWeight: 700,
+              letterSpacing: "-0.01em",
+              color: "var(--skin-text-primary, #0a1628)",
+            }}
           >
             {t('ignite.directionCallTitle')}
           </h2>
           <p
-            className="text-sm sm:text-base text-white/75 leading-relaxed max-w-md mx-auto"
-            style={{ fontFamily: "'Source Serif 4', serif" }}
+            className="text-sm sm:text-base leading-relaxed max-w-md mx-auto"
+            style={{
+              fontFamily: "'Source Serif 4', serif",
+              color: "var(--skin-text-secondary, #33415c)",
+            }}
           >
             {t('ignite.directionCallPromise')}
           </p>
-          <p className="text-xs text-white/50">
+          <p className="text-xs" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}>
             {t('ignite.directionCallMeta')}
           </p>
           <div className="pt-1">
-            <Button size="lg" variant="outline" asChild>
-              <a
-                href={CALCOM_CLARITY_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackCTAClick('clarity_call_click', 'direction-call-cta')}
-              >
-                {t('ignite.directionCallCta')}
-              </a>
-            </Button>
+            <IgniteCta
+              href={CALCOM_CLARITY_LINK}
+              variant="secondary"
+              onClick={() => trackCTAClick('clarity_call_click', 'direction-call-cta')}
+            >
+              {t('ignite.directionCallCta')}
+            </IgniteCta>
           </div>
         </section>
 
@@ -468,14 +623,20 @@ const IgniteSession = () => {
             ].map((faq, i) => (
               <div key={i} className="liquid-glass rounded-2xl">
                 <button
-                  className="w-full p-4 flex items-center justify-between text-left cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white/50 rounded-2xl"
+                  className="w-full p-4 flex items-center justify-between text-left cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#0a1628]/30 rounded-2xl"
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   aria-expanded={openFaq === i}
                   aria-controls={`faq-answer-${i}`}
                 >
-                  <p className="text-sm text-white/80 font-medium">{faq.q}</p>
+                  <p
+                    className="text-sm font-medium"
+                    style={{ color: "var(--skin-text-primary, #0a1628)" }}
+                  >
+                    {faq.q}
+                  </p>
                   <ChevronDown
-                    className={`w-4 h-4 text-white/45 transition-transform duration-200 flex-shrink-0 ml-2 ${openFaq === i ? "rotate-180" : ""}`}
+                    className={`w-4 h-4 transition-transform duration-200 flex-shrink-0 ml-2 ${openFaq === i ? "rotate-180" : ""}`}
+                    style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.45))" }}
                     aria-hidden="true"
                   />
                 </button>
@@ -485,12 +646,19 @@ const IgniteSession = () => {
                   className={`overflow-hidden transition-all duration-200 ${openFaq === i ? "max-h-60 opacity-100" : "max-h-0 opacity-0"}`}
                 >
                   <div className="px-4 pb-4">
-                    <p className="text-xs text-white/55 leading-relaxed">{faq.a}</p>
+                    <p
+                      className="text-xs leading-relaxed"
+                      style={{ color: "var(--skin-text-secondary, #33415c)" }}
+                    >
+                      {faq.a}
+                    </p>
                   </div>
                 </div>
               </div>
             ))}
           </div>
+
+          <Ornament className="my-2" />
 
           {/* Methodology video — quiet, below FAQ. PRESERVES id="hero-video"
               so external links from GeniusQuiz.tsx and MyResult.tsx
@@ -502,7 +670,10 @@ const IgniteSession = () => {
             aria-label={t('ignite.sectionMethodologyVideo')}
             className="space-y-3 pt-4"
           >
-            <p className="text-[10px] text-white/40 uppercase tracking-[0.28em] text-center font-medium">
+            <p
+              className="text-[10px] uppercase tracking-[0.28em] text-center font-bold bg-clip-text text-transparent"
+              style={GOLD_TEXT_STYLE}
+            >
               {t('ignite.methodologyLabel')}
             </p>
             <div className="liquid-glass rounded-2xl p-1">
