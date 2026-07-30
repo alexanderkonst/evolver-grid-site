@@ -7539,9 +7539,24 @@
   },
   "directionCall": {
    "line1": "Este test puede mostrarte dónde estás. No puede ver tu vida lo bastante a fondo como para decirte en qué se convierten estas piezas juntas.",
-   "line2": "Si quieres que mire en qué están tratando de convertirse, para eso es la Direction Call.",
+   "line2": "Si quieres que mire en qué están tratando de convertirse estas piezas juntas, para eso sirve la Direction Call. Sales sabiendo qué dirección seguir.",
    "cta": "Ver en qué se está convirtiendo esto",
    "sub": "Gratis. 45 minutos."
+  },
+  "saveRead": {
+   "label": "Guardar mi lectura",
+   "confirmation": "Enlace copiado. Es tuyo para siempre."
+  },
+  "recognitionDelta": {
+   "prompt": "¿Qué tan exacto fue esto sobre lo que has estado viviendo?",
+   "options": {
+    "1": "No mucho",
+    "2": "Algo",
+    "3": "Bastante",
+    "4": "Muy exacto",
+    "5": "Increíblemente exacto"
+   },
+   "thankYou": "Anotado. Gracias."
   }
  },
  "homeLanding": {
@@ -7617,6 +7632,9 @@
  "homeTruth": {
   "seoTitle": "Nombra lo que sigue.",
   "seoDescription": "Has construido cosas reales. La frase que solía explicarte dejó de ser verdad. Encuentra el patrón detrás de todo lo que has construido y ponle palabras exactas.",
+  "arcStrip": {
+   "line": "Siete capítulos. Todos están de pie en uno de ellos."
+  },
   "hero": {
    "headline": "Nombra lo que sigue.",
    "body": "Has construido cosas reales. Empresas, títulos, cuerpos de trabajo. Y la frase que solía explicarte dejó de ser verdad. El próximo capítulo ya se está formando. Solo que todavía no tiene palabras.",
@@ -7633,6 +7651,9 @@
    "eyebrow": "Para quién es esto",
    "para1": "Si puedes decir a qué te dedicas en una sola frase y es cierto, no necesitas esto. Disfruta el capítulo en el que estás.",
    "para2": "Esto es para quienes sostienen cinco hilos reales y ninguna frase. Quienes escuchan falsedad en su propia respuesta en las cenas. Quienes ya han pagado por su propio proceso y lo llamaron buen dinero. No buscan motivación, ni pasión, ni una solución. Buscan a la única persona que puede ver el patrón dentro del cual están parados."
+  },
+  "testimony": {
+   "eyebrow": "Quienes cruzaron"
   },
   "close": {
    "line1": "Tu carrera está limitada por lo bien que te conoces a ti mismo.",
