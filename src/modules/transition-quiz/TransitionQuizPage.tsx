@@ -24,6 +24,7 @@ import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { EditorialCta } from "@/components/ui/editorial-cta";
+import { trackPageView, trackCTAClick } from "@/lib/funnelAnalytics";
 import {
   type BuyingFrame,
   type ClarityUnlock,
@@ -71,6 +72,18 @@ const PROGRESS: Partial<Record<Screen, number>> = {
   q3: 0.62,
   q4: 0.84,
   loading: 0.95,
+};
+
+// Quiz v2.1 analytics wiring (§5) — per-screen mount events. "notYet",
+// "loading", and "buyingFrame" are intentionally left unmapped: loading
+// is a transitional beat, buyingFrame's own answer produces the CTA-click
+// event below, and notYet's stage is already implied by quiz_q1.
+const SCREEN_TO_ANALYTICS_STEP: Partial<Record<Screen, import("@/lib/funnelAnalytics").FunnelStep>> = {
+  entry: "quiz_entry",
+  q1: "quiz_q1",
+  q2: "quiz_q2",
+  q3: "quiz_q3",
+  q4: "quiz_q4",
 };
 
 const STORAGE_KEY = "evolver_transition_quiz_v2";
@@ -153,6 +166,7 @@ const TransitionQuizPage = () => {
   const [state, setState] = useState<PersistedState>(loadInitial);
   const [email, setEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
+  const [resultId, setResultId] = useState<string | null>(null);
   const loggedRef = useRef<string | null>(null);
 
   useEffect(() => {
@@ -222,10 +236,14 @@ const TransitionQuizPage = () => {
       route_shown?: string | null;
       email?: string | null;
     }) => {
-      supabase.functions
+      // Returns the invoke promise so callers that need the inserted row's
+      // id (permalink, Recognition Delta) can read it; still fire-and-forget
+      // for everyone else — the .catch here means it never rejects upward.
+      return supabase.functions
         .invoke("save-quiz-result", { body: { ...payload, locale: i18n.language } })
         .catch(() => {
           /* dataset logging is best-effort — never blocks or alters the UI */
+          return null;
         });
     },
     [i18n.language],
@@ -234,10 +252,14 @@ const TransitionQuizPage = () => {
   useEffect(() => {
     if (screen === "notYet" && stage && loggedRef.current !== `notyet-${stage}`) {
       loggedRef.current = `notyet-${stage}`;
-      logCompletion({ stage, not_yet: true });
+      logCompletion({ stage, not_yet: true }).then((res) => {
+        const id = res && "data" in res ? (res.data as { id?: string } | null)?.id : undefined;
+        if (id) setResultId(id);
+      });
     }
     if (screen === "result" && coreAnswers && routing && loggedRef.current !== `result-${stage}`) {
       loggedRef.current = `result-${stage}`;
+      const resultTemplate = routing.route === "crossedPeer" ? "crossed_peer" : coreAnswers.uniqueness;
       logCompletion({
         stage: coreAnswers.stage,
         not_yet: false,
@@ -245,9 +267,13 @@ const TransitionQuizPage = () => {
         emerging_work_stage: coreAnswers.emergingWorkStage,
         clarity_unlock: coreAnswers.clarityUnlock,
         direction_call_shown: routing.showBuyingFrame,
-        result_template: routing.route === "crossedPeer" ? "crossed_peer" : coreAnswers.uniqueness,
+        result_template: resultTemplate,
         route_shown: routing.showBuyingFrame ? null : routing.route,
+      }).then((res) => {
+        const id = res && "data" in res ? (res.data as { id?: string } | null)?.id : undefined;
+        if (id) setResultId(id);
       });
+      trackPageView("quiz_result", `quiz_result_${resultTemplate}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [screen, stage, coreAnswers, routing]);
@@ -317,6 +343,12 @@ const TransitionQuizPage = () => {
     return () => window.clearTimeout(id);
   }, [screen, goTo]);
 
+  // ── Analytics: per-screen mount events (quiz_entry, quiz_q1..quiz_q4) ────
+  useEffect(() => {
+    const step = SCREEN_TO_ANALYTICS_STEP[screen];
+    if (step) trackPageView(step);
+  }, [screen]);
+
   const progress = PROGRESS[screen];
   const canGoBack = Boolean(BACK_MAP[screen]);
 
@@ -362,6 +394,7 @@ const TransitionQuizPage = () => {
             emailSent={emailSent}
             onSubmitEmail={submitEmail}
             onRetake={reset}
+            resultId={resultId}
           />
         )}
 
@@ -404,8 +437,14 @@ const TransitionQuizPage = () => {
             answers={coreAnswers}
             showBuyingFrame={routing.showBuyingFrame}
             route={routing.route}
-            onContinue={() => (routing.showBuyingFrame ? goTo("buyingFrame") : undefined)}
+            onContinue={() => {
+              if (routing.showBuyingFrame) {
+                trackCTAClick("quiz_cta_click", "direction_call_continue");
+                goTo("buyingFrame");
+              }
+            }}
             onRetake={reset}
+            resultId={resultId}
           />
         )}
 
@@ -473,6 +512,86 @@ function Q1Screen({ t, onPick }: { t: (k: string, o?: Record<string, unknown>) =
   );
 }
 
+// ── Save my read (permalink) + Recognition Delta — Quiz v2.1 ────────────
+// Shared across every result variant (full read, not-yet, peer ending).
+// Both degrade silently: no id yet (save-quiz-result hasn't returned, or
+// the environment doesn't have it deployed) means neither widget renders.
+
+function SaveMyRead({ t, resultId }: { t: (k: string, o?: Record<string, unknown>) => unknown; resultId: string | null }) {
+  const [copied, setCopied] = useState(false);
+
+  if (!resultId || typeof window === "undefined") return null;
+
+  const permalink = `${window.location.origin}/quiz/r/${resultId}`;
+
+  const handleSave = async () => {
+    trackCTAClick("quiz_permalink_saved", "save_my_read");
+    try {
+      await navigator.clipboard.writeText(permalink);
+      setCopied(true);
+    } catch {
+      // Fallback: just show the link as text for manual copy.
+      setCopied(true);
+    }
+  };
+
+  return (
+    <div className="tq-save-read" style={{ marginTop: 14 }}>
+      {!copied ? (
+        <button type="button" className="tq-link-quiet" onClick={handleSave} style={{ background: "none", border: "none", cursor: "pointer" }}>
+          {t("quiz.saveRead.label") as string}
+        </button>
+      ) : (
+        <p className="tq-sub tq-quiet-line">
+          {t("quiz.saveRead.confirmation") as string}{" "}
+          <a className="tq-link-quiet" href={permalink}>
+            {permalink}
+          </a>
+        </p>
+      )}
+    </div>
+  );
+}
+
+const RECOGNITION_DELTA_VALUES = [1, 2, 3, 4, 5] as const;
+
+function RecognitionDelta({ t, resultId }: { t: (k: string, o?: Record<string, unknown>) => unknown; resultId: string | null }) {
+  const [answered, setAnswered] = useState(false);
+
+  if (!resultId) return null;
+
+  const options = t("quiz.recognitionDelta.options", { returnObjects: true }) as Record<string, string>;
+
+  const handlePick = (value: number) => {
+    setAnswered(true); // optimistic — low-stakes, thank-you shows regardless
+    trackCTAClick("quiz_delta_answered", "recognition_delta", { value });
+    supabase.functions
+      .invoke("save-quiz-result", { body: { id: resultId, recognition_delta: value } })
+      .catch((err) => {
+        console.warn("recognition_delta: save failed (non-fatal)", err);
+      });
+  };
+
+  return (
+    <div className="tq-section tq-recognition-delta" style={{ marginTop: 18 }}>
+      {answered ? (
+        <p className="tq-sub tq-quiet-line">{t("quiz.recognitionDelta.thankYou") as string}</p>
+      ) : (
+        <>
+          <p className="tq-sub tq-quiet-line">{t("quiz.recognitionDelta.prompt") as string}</p>
+          <div className="tq-options" style={{ marginTop: 8 }}>
+            {RECOGNITION_DELTA_VALUES.map((v) => (
+              <button key={v} type="button" className="tq-option" onClick={() => handlePick(v)}>
+                <span>{options[String(v)]}</span>
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 // ── S3a Not-Yet (stages 1-3 — standing law, carried forward unchanged) ───
 
 function NotYetScreen({
@@ -483,6 +602,7 @@ function NotYetScreen({
   emailSent,
   onSubmitEmail,
   onRetake,
+  resultId,
 }: {
   t: (k: string, o?: Record<string, unknown>) => unknown;
   stage: Stage;
@@ -491,6 +611,7 @@ function NotYetScreen({
   emailSent: boolean;
   onSubmitEmail: () => void;
   onRetake: () => void;
+  resultId: string | null;
 }) {
   const variant = notYetVariant(stage);
 
@@ -536,6 +657,9 @@ function NotYetScreen({
         ) : (
           <p className="tq-success">{t("quiz.notYet.settled.emailSuccess") as string}</p>
         )}
+
+        <RecognitionDelta t={t} resultId={resultId} />
+        <SaveMyRead t={t} resultId={resultId} />
 
         <button type="button" className="tq-retake" onClick={onRetake}>
           {t("quiz.notYet.retake") as string}
@@ -592,6 +716,9 @@ function NotYetScreen({
       ) : (
         <p className="tq-success">{t("quiz.notYet.itchTremors.emailSuccess") as string}</p>
       )}
+
+      <RecognitionDelta t={t} resultId={resultId} />
+      <SaveMyRead t={t} resultId={resultId} />
 
       <button type="button" className="tq-retake" onClick={onRetake}>
         {t("quiz.notYet.retake") as string}
@@ -664,7 +791,7 @@ function LoadingScreen({ t }: { t: (k: string, o?: Record<string, unknown>) => u
 
 // ── Result: the 3-beat lean architecture (§12) ───────────────────────────
 
-function ResultScreen({
+export function ResultScreen({
   t,
   stageNames,
   answers,
@@ -672,6 +799,7 @@ function ResultScreen({
   route,
   onContinue,
   onRetake,
+  resultId = null,
 }: {
   t: (k: string, o?: Record<string, unknown>) => unknown;
   stageNames: Record<string, string>;
@@ -680,6 +808,7 @@ function ResultScreen({
   route: "directionCall" | "crossedPeer" | "none";
   onContinue: () => void;
   onRetake: () => void;
+  resultId?: string | null;
 }) {
   if (route === "crossedPeer") {
     return (
@@ -699,10 +828,19 @@ function ResultScreen({
         <p className="tq-body-text tq-take-what-note">{t("quiz.result.takeWhatNote") as string}</p>
 
         <div className="tq-cta-block">
-          <a className="tq-editorial-link-cta" href={DIRECTION_CALL_HREF} target="_blank" rel="noreferrer">
+          <a
+            className="tq-editorial-link-cta"
+            href={DIRECTION_CALL_HREF}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => trackCTAClick("quiz_cta_click", "crossed_peer_cta")}
+          >
             {t("quiz.result.crossedPeer.cta") as string} <ArrowUpRight size={16} />
           </a>
         </div>
+
+        <RecognitionDelta t={t} resultId={resultId} />
+        <SaveMyRead t={t} resultId={resultId} />
 
         <button type="button" className="tq-retake" onClick={onRetake}>
           {t("quiz.notYet.retake") as string}
@@ -759,6 +897,9 @@ function ResultScreen({
           </p>
         )}
       </div>
+
+      <RecognitionDelta t={t} resultId={resultId} />
+      <SaveMyRead t={t} resultId={resultId} />
 
       <button type="button" className="tq-retake" onClick={onRetake}>
         {t("quiz.notYet.retake") as string}
@@ -851,7 +992,13 @@ function BuyingFrameScreen({
         <p className="tq-body-text">{t("quiz.directionCall.line1") as string}</p>
         <p className="tq-body-text">{t("quiz.directionCall.line2") as string}</p>
         <div className="tq-cta-block">
-          <a className="tq-editorial-link-cta" href={DIRECTION_CALL_HREF} target="_blank" rel="noreferrer">
+          <a
+            className="tq-editorial-link-cta"
+            href={DIRECTION_CALL_HREF}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => trackCTAClick("quiz_cta_click", "direction_call_book")}
+          >
             {t("quiz.directionCall.cta") as string} <ArrowUpRight size={16} />
           </a>
           <p className="tq-cta-sub">{t("quiz.directionCall.sub") as string}</p>

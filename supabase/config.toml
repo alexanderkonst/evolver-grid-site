@@ -12,6 +12,12 @@ verify_jwt = false
 [functions.quiz-results-export]
 verify_jwt = false
 
+# Quiz v2.1 (2026-07-29): public GET, ?id=<uuid> permalink lookup for the
+# ownable-result feature. uuid unguessability is the access control, so
+# no auth is needed — same posture as save-quiz-result.
+[functions.get-quiz-result]
+verify_jwt = false
+
 [functions.generate-qol-guidance]
 verify_jwt = true
 

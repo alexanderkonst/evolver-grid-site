@@ -45,7 +45,18 @@ interface SaveQuizResultPayload {
   buying_frame?: (typeof BUYING_FRAMES)[number] | null;
   direction_call_shown?: boolean | null;
   result_template?: string | null;
+  // Quiz v2.1 Recognition Delta widget — a distinct update branch (see
+  // below), not part of the original insert shape. When `id` +
+  // `recognition_delta` are present, this call updates that row instead
+  // of inserting a new one.
+  id?: string | null;
+  recognition_delta?: number | null;
 }
+
+const isValidRecognitionDelta = (n: unknown): n is number =>
+  typeof n === "number" && Number.isInteger(n) && n >= 1 && n <= 5;
+
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 const json = (status: number, body: unknown) =>
   new Response(JSON.stringify(body), {
@@ -64,6 +75,40 @@ Deno.serve(async (req) => {
 
   try {
     const body = (await req.json()) as SaveQuizResultPayload;
+
+    // Recognition Delta branch: id + recognition_delta only, no stage —
+    // this updates an already-inserted row rather than inserting a new
+    // one. Kept as an early, distinct branch so the main insert path
+    // below stays exactly as it was.
+    if (body.id !== undefined && body.recognition_delta !== undefined && body.stage === undefined) {
+      if (!body.id || !UUID_RE.test(body.id)) {
+        return json(400, { error: "invalid_id" });
+      }
+      if (!isValidRecognitionDelta(body.recognition_delta)) {
+        return json(400, { error: "invalid_recognition_delta" });
+      }
+
+      const supabaseUrl = Deno.env.get("SUPABASE_URL");
+      const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+      if (!supabaseUrl || !serviceRoleKey) {
+        console.error("save-quiz-result: missing env vars");
+        return json(500, { error: "server_misconfigured" });
+      }
+      const admin = createClient(supabaseUrl, serviceRoleKey, {
+        auth: { autoRefreshToken: false, persistSession: false },
+      });
+
+      const { error } = await admin
+        .from("transition_quiz_results")
+        .update({ recognition_delta: body.recognition_delta })
+        .eq("id", body.id);
+
+      if (error) {
+        console.error("save-quiz-result: recognition_delta update failed", error);
+        return json(500, { error: "update_failed", detail: error.message });
+      }
+      return json(200, { ok: true });
+    }
 
     if (!Number.isInteger(body.stage) || body.stage! < 1 || body.stage! > 7) {
       return json(400, { error: "invalid_stage" });

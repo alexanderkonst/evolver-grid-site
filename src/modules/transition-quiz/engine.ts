@@ -78,22 +78,18 @@ export interface CoreAnswers {
 /**
  * §13 Direction Call Bridge — the pre-qualifier gate. Only when this is
  * true does the optional Buying Frame question (§10) get shown at all.
- * All four conditions must hold:
- *  - Transition is Rupture, Liminality, or Reorientation (stages 4-6);
- *  - Uniqueness problem is Recognition or Integration;
- *  - the emerging work is fragmented, felt-but-unnamed, or named-but-unbuilt;
- *  - the live vehicle is open (an emerging business or near-term exchange).
+ *
+ * Widened (2026-07-29, Quiz v2.1): the CTA now shows for any of stages
+ * 4, 5, 6, or 7 — regardless of uniqueness class or clarity_unlock (Q4)
+ * answer. Those two answers are still computed and logged for the
+ * dataset; they just no longer gate whether the Direction Call appears.
+ * The only remaining exclusions are handled elsewhere in computeRouting:
+ * a crossed-peer route (isCrossedPeer) replaces this with the peer door,
+ * and a "closed" Buying Frame answer (routeAfterBuyingFrame) still ends
+ * in the honest ending instead of the Direction Call.
  */
 export function meetsDirectionCallGate(answers: CoreAnswers): boolean {
-  const stageInRange = answers.stage >= 4 && answers.stage <= 6;
-  const uniquenessFits = answers.uniqueness === "recognition" || answers.uniqueness === "integration";
-  const workStageFits =
-    answers.emergingWorkStage === "fragments" ||
-    answers.emergingWorkStage === "felt" ||
-    answers.emergingWorkStage === "named";
-  const vehicleOpen =
-    answers.clarityUnlock === "emerging_business" || answers.clarityUnlock === "near_term_exchange";
-  return stageInRange && uniquenessFits && workStageFits && vehicleOpen;
+  return answers.stage >= 4 && answers.stage <= 7;
 }
 
 /**

@@ -74,6 +74,57 @@ fetch("https://jypjttotvastdhanwvrx.supabase.co/functions/v1/quiz-results-export
 A `{ ok: true, id: "..." }` response confirms email capture; the export
 call should return `{ transition_quiz_results: [...], quiz_email_signups: [...], meta: {...} }`.
 
+### 2. Quiz v2.1: widened call gate, permalink result, recognition delta (2026-07-29)
+
+```
+Please apply these changes from the repo, exactly as written, no changes:
+
+1. Run the migration at
+   supabase/migrations/20260729220000_quiz_recognition_delta.sql
+   It adds one new nullable column, `recognition_delta` (smallint, 1-5),
+   to the existing `transition_quiz_results` table. No changes to any
+   other table or column.
+
+2. Redeploy the edge function at
+   supabase/functions/save-quiz-result/index.ts
+   Same public POST endpoint as before, now with one additive branch:
+   a POST body of exactly `{ id, recognition_delta }` (no `stage`) runs
+   an UPDATE on that row's `recognition_delta` column instead of the
+   usual insert. The original insert path is unchanged. Still
+   verify_jwt = false (already declared in supabase/config.toml under
+   [functions.save-quiz-result]).
+
+3. Deploy the new edge function at
+   supabase/functions/get-quiz-result/index.ts
+   Public, no-auth GET endpoint, `?id=<uuid>`. Returns the result-relevant
+   columns of one transition_quiz_results row (stage, uniqueness_category,
+   emerging_work_stage, clarity_unlock, result_template, etc.) so the new
+   /quiz/r/:id permalink page can reconstruct the identical result screen.
+   404 if the id doesn't exist. Set verify_jwt = false (already declared
+   in supabase/config.toml under [functions.get-quiz-result]).
+
+Nothing else needs to change. No existing table, function, or policy
+should be touched.
+```
+
+**Verifying it worked**, from any browser console on `findyourtoptalent.com`:
+
+```js
+// recognition delta update (replace ID with a real row id)
+fetch("https://jypjttotvastdhanwvrx.supabase.co/functions/v1/save-quiz-result", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ id: "ID", recognition_delta: 4 }),
+}).then(r => r.json()).then(console.log)
+
+// permalink lookup (replace ID with the same row id)
+fetch("https://jypjttotvastdhanwvrx.supabase.co/functions/v1/get-quiz-result?id=ID")
+  .then(r => r.json()).then(console.log)
+```
+
+A `{ ok: true }` response confirms the recognition_delta update; the
+lookup call should return `{ ok: true, result: { id, stage, ... } }`.
+
 ---
 
 *Previously pending, now deployed (2026-07-29): the quiz vNext data layer —

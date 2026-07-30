@@ -22,6 +22,7 @@ import SkinPreview from "./pages/SkinPreview";
 import OAuthConsent from "./pages/OAuthConsent";
 import HeroQuiz from "./pages/HeroQuiz";
 const TransitionQuizPage = lazy(() => import("./modules/transition-quiz/TransitionQuizPage"));
+const TransitionQuizResultPage = lazy(() => import("./modules/transition-quiz/TransitionQuizResultPage"));
 import ProposalForWeGoodOvaHere from "./pages/ProposalForWeGoodOvaHere";
 import CockpitLanding from "./pages/CockpitLanding";
 import CockpitDashboard from "./pages/CockpitDashboard";
@@ -647,6 +648,10 @@ const App = () => (
                       Spec: docs/specs/quiz/quiz_product_spec.md. Phase 2,
                       July 28, 2026. */}
                   <Route path="/quiz" element={<TransitionQuizPage />} />
+                  {/* Quiz v2.1 (2026-07-29): ownable-result permalink. Standalone,
+                      no auth, noindex — same posture as /quiz itself, just keyed
+                      to one saved row via get-quiz-result instead of live state. */}
+                  <Route path="/quiz/r/:id" element={<TransitionQuizResultPage />} />
                   <Route path="/genius-offer-intake" element={<RequireAuth><GeniusOfferIntake /></RequireAuth>} />
                   <Route path="/admin/genius-offers" element={<RequireAuth><AdminGeniusOffers /></RequireAuth>} />
                   <Route path="/genius-admin" element={<RequireAuth><AdminGeniusOffers /></RequireAuth>} />
