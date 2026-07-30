@@ -7,6 +7,7 @@
 // optimistically, this call never gates or delays what the user sees.
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { FROM_NOTIFICATIONS } from "../_shared/senders.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -75,6 +76,48 @@ Deno.serve(async (req) => {
     if (error || !data) {
       console.error("save-quiz-email: insert failed", error);
       return json(500, { error: "insert_failed", detail: error?.message ?? "no row returned" });
+    }
+
+    // Additive: when the capture came from a saved read, email the permalink.
+    const source = body.source ?? "transition_quiz";
+    if (typeof source === "string" && source.startsWith("save_read:")) {
+      const readId = source.slice("save_read:".length).trim();
+      const uuidRe =
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+      const apiKey = Deno.env.get("RESEND_API_KEY");
+      if (readId && uuidRe.test(readId) && apiKey) {
+        const link = `https://findyourtoptalent.com/quiz/r/${readId}`;
+        try {
+          const res = await fetch("https://api.resend.com/emails", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${apiKey}`,
+            },
+            body: JSON.stringify({
+              from: FROM_NOTIFICATIONS,
+              to: [email],
+              subject: "Your read — Where Are You",
+              text: `Here is your saved read, yours to keep:\n\n${link}`,
+              html: `<div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;color:#3a4a5c;line-height:1.6;padding:24px;max-width:520px">
+  <p style="margin:0 0 16px">Here is your saved read, yours to keep:</p>
+  <p style="margin:0"><a href="${link}" style="color:#041a2f">${link}</a></p>
+</div>`,
+            }),
+          });
+          if (!res.ok) {
+            console.error(
+              "save-quiz-email: resend failed",
+              res.status,
+              await res.text(),
+            );
+          }
+        } catch (mailErr) {
+          console.error("save-quiz-email: resend threw", mailErr);
+        }
+      } else {
+        console.warn("save-quiz-email: skipping send, bad read id or no key");
+      }
     }
 
     return json(200, { ok: true, id: data.id });
