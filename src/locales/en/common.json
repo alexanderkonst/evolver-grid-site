@@ -7470,6 +7470,9 @@
    "nextLabel": "What comes next",
    "clarityLead": "The right next move would show up first in {{clause}}.",
    "takeWhatNote": "Take what is accurate here. Notice what isn't. The disagreement is information too.",
+   "believability": {
+    "intro": "From someone who stood in this chapter:"
+   },
    "continueCta": "Integrate your “unrelated” projects into one laser-focused direction",
    "selectionNote": "I offer this call only where I can be most useful. Your answers just did the choosing.",
    "honestEnding": "That's the complete read. No pitch, nothing else to unlock. Retake anytime if your answers change.",

@@ -18,6 +18,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Item 4 (visual harmony pass) — ONE GOLD. The eyebrow gradient
+     (GOLD_GRADIENT in src/lib/landingDesign.tsx) is canonical; every other
+     gold surface in this module (progress thread, arc marker, chip rings)
+     now reads from this single token instead of its own ad hoc gradient. */
+  --tq-gold: #a06d08;
+  --tq-gold-gradient: linear-gradient(135deg, #a06d08 0%, #7a5108 45%, #6b4208 100%);
 }
 
 /* Page-scoped paper grain + soft gold vignette — reproduces the "/" body
@@ -199,8 +205,60 @@
 .tq-progress-bar-fill {
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, #a06d08 0%, #d4af37 60%, #f4d472 100%);
+  background: var(--tq-gold-gradient);
   transition: width 320ms ease;
+}
+
+/* ── Motion (item 3, visual harmony pass) ─────────────────────────────────
+   Screen-to-screen: 200ms crossfade + 6px rise, CSS-only — every `.tq-card`
+   is a fresh mount when the screen state changes (React swaps the section
+   entirely), so an entrance animation on the class replays automatically
+   each time. Chapter-name reveal on the result screen gets its own slower
+   400ms fade-up so it lands as its own beat, not part of the card's
+   entrance. Reduced-motion turns every animation here off. ─────────────── */
+
+@keyframes tq-screen-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tq-chapter-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tq-stage-name {
+  animation: tq-chapter-reveal 400ms ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tq-card,
+  .tq-stage-name {
+    animation: none;
+  }
+
+  .tq-option,
+  .tq-cta.tq-cta-primary,
+  .tq-editorial-link-cta {
+    transition: none;
+  }
+
+  .tq-option:hover,
+  .tq-editorial-link-cta:hover {
+    transform: none;
+  }
 }
 
 /* ── Card / entry / result surfaces ───────────────────────────────────── */
@@ -213,15 +271,28 @@
   backdrop-filter: blur(16px);
   padding: 28px 24px;
   box-shadow: 0 20px 50px -30px rgba(10, 22, 40, 0.28);
+  animation: tq-screen-enter 200ms ease both;
 }
 
 .tq-card + .tq-card {
   margin-top: 16px;
 }
 
+/* Item 2 (visual harmony pass): entry + question screens inscribe directly
+   on the parchment field — no outer card, whitespace does the framing.
+   Option cards (.tq-option) keep their own quiet treatment below. The
+   result screen keeps its card (.tq-result-card overrides back on). */
+.tq-card.tq-inscribed {
+  border: none;
+  background: none;
+  backdrop-filter: none;
+  box-shadow: none;
+  padding: 0;
+}
+
 .tq-entry-card {
   text-align: center;
-  padding: 40px 26px;
+  padding: 0;
 }
 
 .tq-result-card {
@@ -282,17 +353,20 @@
   font: 400 0.95rem/1.5 "DM Sans", sans-serif;
   color: var(--skin-text-secondary, #33415c);
   cursor: pointer;
-  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+  /* Item 3: selection acknowledgment — the gold-fill on .is-selected below
+     completes in ~150ms, landing well before the 260ms JS delay that
+     advances to the next screen. */
+  transition: border-color 150ms ease, background 150ms ease, transform 150ms ease;
 }
 
 .tq-option:hover {
-  border-left-color: #a06d08;
+  border-left-color: var(--tq-gold);
   background: rgba(212, 175, 55, 0.08);
   transform: translateY(-1px);
 }
 
 .tq-option.is-selected {
-  border-left-color: #a06d08;
+  border-left-color: var(--tq-gold);
   border-color: rgba(160, 109, 8, 0.3);
   background: rgba(212, 175, 55, 0.12);
   color: var(--skin-text-primary, #0a1628);
@@ -309,11 +383,11 @@
   border: 1px solid rgba(160, 109, 8, 0.35);
   background: transparent;
   font: 600 0.68rem/1 "DM Sans", sans-serif;
-  color: #a06d08;
+  color: var(--tq-gold);
 }
 
 .tq-option.is-selected .tq-option-letter {
-  border-color: #a06d08;
+  border-color: var(--tq-gold);
   color: #6b4208;
   background: rgba(212, 175, 55, 0.25);
 }
@@ -332,9 +406,12 @@
 
 /* ── Trajectory arc marker ────────────────────────────────────────────── */
 
+/* Item 5 (visual harmony pass): ~20% more size + more vertical air — the
+   trajectory arc is the emotional centerpiece of the result, it should
+   claim more presence than a footnote-scale progress widget. */
 .tq-stage-arc {
-  margin: 20px auto 26px;
-  max-width: 340px;
+  margin: 26px auto 32px;
+  max-width: 408px;
 }
 
 .tq-stage-arc-track {
@@ -342,14 +419,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 14px;
+  height: 17px;
 }
 
 .tq-stage-arc-track::before {
   content: "";
   position: absolute;
-  left: 6px;
-  right: 6px;
+  left: 7px;
+  right: 7px;
   top: 50%;
   height: 1px;
   background: rgba(160, 109, 8, 0.28);
@@ -359,8 +436,8 @@
 .tq-stage-arc-node {
   position: relative;
   z-index: 1;
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 999px;
   border: 1px solid rgba(160, 109, 8, 0.4);
   background: rgba(255, 253, 247, 0.9);
@@ -369,19 +446,19 @@
 }
 
 .tq-stage-arc-node.is-active {
-  width: 15px;
-  height: 15px;
-  border-color: #a06d08;
-  background: linear-gradient(135deg, #f4d472 0%, #d4af37 60%, #a06d08 100%);
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.55);
+  width: 18px;
+  height: 18px;
+  border-color: var(--tq-gold);
+  background: var(--tq-gold-gradient);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.55);
 }
 
 .tq-stage-arc-node.is-crossed {
-  border-color: #a06d08;
+  border-color: var(--tq-gold);
 }
 
 .tq-stage-arc-star {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   color: #4a2e04;
   line-height: 1;
 }
@@ -389,12 +466,12 @@
 .tq-stage-arc-labels {
   display: flex;
   justify-content: space-between;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .tq-stage-arc-label {
   flex: 1;
-  font: 700 0.6rem/1.2 "DM Sans", sans-serif;
+  font: 700 0.66rem/1.2 "DM Sans", sans-serif;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #7a5108;
@@ -441,6 +518,31 @@
   text-wrap: balance;
 }
 
+/* Item 7 — believability line. Quiet serif italic quote, name in gold
+   smallcaps, introduced by a quiet DM Sans line above. */
+.tq-believability-quote {
+  margin: 8px 0 0;
+  padding: 0;
+  border: none;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.62;
+  color: var(--skin-text-primary, #0a1628);
+}
+
+.tq-believability-name {
+  display: block;
+  margin-top: 8px;
+  font-family: "DM Sans", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tq-gold);
+}
+
 .tq-take-what-note {
   margin-top: 8px;
   font-size: 0.85rem;
@@ -467,7 +569,7 @@
   font: 600 0.66rem/1.3 "DM Sans", sans-serif;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #a06d08;
+  color: var(--tq-gold);
   opacity: 0.7;
 }
 
@@ -516,7 +618,7 @@
 }
 
 .tq-cta.tq-cta-ghost:hover {
-  border-color: #a06d08;
+  border-color: var(--tq-gold);
 }
 
 /* Editorial link-styled CTA — matches EditorialCta's dark-glass pill
@@ -586,7 +688,7 @@
 
 .tq-email-input:focus {
   outline: none;
-  border-color: #a06d08;
+  border-color: var(--tq-gold);
   box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.16);
 }
 
@@ -605,7 +707,7 @@
 .tq-success {
   margin-top: 10px;
   font: 500 0.85rem/1.4 "DM Sans", sans-serif;
-  color: #a06d08;
+  color: var(--tq-gold);
 }
 
 .tq-link-quiet {

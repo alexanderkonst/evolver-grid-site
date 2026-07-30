@@ -25,6 +25,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { EditorialCta } from "@/components/ui/editorial-cta";
 import { trackPageView, trackCTAClick } from "@/lib/funnelAnalytics";
+import { TESTIMONIALS } from "@/data/testimonials";
 import {
   type BuyingFrame,
   type ClarityUnlock,
@@ -466,7 +467,7 @@ const TransitionQuizPage = () => {
 
 function EntryScreen({ t, onStart }: { t: (k: string, o?: Record<string, unknown>) => unknown; onStart: () => void }) {
   return (
-    <section className="tq-card tq-entry-card">
+    <section className="tq-card tq-inscribed tq-entry-card">
       <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>
         {t("quiz.entry.eyebrow") as string}
       </p>
@@ -492,7 +493,7 @@ function Q1Screen({ t, onPick }: { t: (k: string, o?: Record<string, unknown>) =
   };
 
   return (
-    <section className="tq-card">
+    <section className="tq-card tq-inscribed">
       <p className="tq-question-count">{t("quiz.progressLabel", { current: 1, total: 4 }) as string}</p>
       <p className="tq-question-prompt">{t("quiz.q1.prompt") as string}</p>
       <div className={`tq-options${options.length >= 6 ? " tq-options--dense" : ""}`}>
@@ -756,7 +757,7 @@ function ChoiceScreen<V extends string>({
   };
 
   return (
-    <section className="tq-card">
+    <section className="tq-card tq-inscribed">
       <p className="tq-question-count">{t("quiz.progressLabel", { current: data.order, total: 4 }) as string}</p>
       {data.framing && <p className="tq-quiet-line">{data.framing}</p>}
       <p className="tq-question-prompt" style={data.framing ? { marginTop: 14 } : undefined}>{data.prompt}</p>
@@ -872,6 +873,8 @@ export function ResultScreen({
         <p className="tq-body-text tq-quiet-line tq-measure">{workClause}</p>
       </div>
 
+      <BelievabilityQuote t={t} stage={answers.stage} />
+
       <div className="tq-section">
         <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.nextLabel") as string}</p>
         <p className="tq-body-text tq-measure">{beats.nextMove}</p>
@@ -946,6 +949,32 @@ function StageArc({
           </span>
         ))}
       </div>
+    </div>
+  );
+}
+
+// ── Believability line (SOW item 5, visual harmony pass) ────────────────
+// Full-read result only (stages 4-7, non-peer). One real quote from
+// src/data/testimonials.ts, chosen per stage range: 4-5 gets the most
+// transition-flavored quote (still crossing), 6-7 gets the most
+// built-flavored one (something already stood up and working). Quotes are
+// rendered verbatim, original language, never machine-translated — only
+// the intro line is localized.
+
+function BelievabilityQuote({ t, stage }: { t: (k: string, o?: Record<string, unknown>) => unknown; stage: Stage }) {
+  // Sergey Jay Makarov (index 0): "applying force, wrong vector, now
+  // everything clicks" — the exact shape of stages 4-5, still crossing.
+  // Alexey Utkin (index 5): "a tool that just plain works" — the built,
+  // already-working shape of stages 6-7.
+  const testimonial = stage <= 5 ? TESTIMONIALS[0] : TESTIMONIALS[5];
+
+  return (
+    <div className="tq-section tq-believability">
+      <p className="tq-quiet-line">{t("quiz.result.believability.intro") as string}</p>
+      <blockquote className="tq-believability-quote">
+        “{testimonial.shortQuote}”
+        <cite className="tq-believability-name">{testimonial.name}</cite>
+      </blockquote>
     </div>
   );
 }
