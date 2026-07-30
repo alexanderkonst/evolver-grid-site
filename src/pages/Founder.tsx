@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import aleksandrPhoto from "@/assets/aleksandr-photo.jpeg";
 import "./Founder.css";
 
-const BOOKING_URL = "https://cal.com/aleksandrkonstantinov/exploration";
+const BOOKING_URL = "https://cal.com/aleksandrkonstantinov/direction-choice-call";
 
 /**
  * /founder — the founder trust page (Domain 100: the Trust rung).
