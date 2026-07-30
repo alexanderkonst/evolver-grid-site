@@ -100,11 +100,12 @@ const UNIQUENESS_VALUES: UniquenessCategory[] = [
 ];
 const WORK_STAGE_VALUES: EmergingWorkStage[] = [
   "not_visible",
-  "fragments",
+  "suspected",
   "felt",
   "named",
   "built",
   "working",
+  "delivering",
 ];
 const CLARITY_VALUES: ClarityUnlock[] = [
   "personal",

@@ -35,14 +35,15 @@ export type UniquenessCategory =
   | "scaling";
 
 /** §8 — Q3, developmental position of the emerging work.
- *  absent -> fragmented -> felt -> named -> built -> working */
+ *  not_visible -> suspected -> felt -> named -> built -> working -> delivering */
 export type EmergingWorkStage =
   | "not_visible"
-  | "fragments"
+  | "suspected"
   | "felt"
   | "named"
   | "built"
-  | "working";
+  | "working"
+  | "delivering";
 
 /** §9 — Q4, live real-world consequence ("clarity unlock"). */
 export type ClarityUnlock =
@@ -109,7 +110,9 @@ export function isCrossedPeer(answers: CoreAnswers): boolean {
   if (answers.uniqueness === "scaling") return true;
   return (
     answers.stage === 7 &&
-    (answers.emergingWorkStage === "working" || answers.uniqueness === "transmission")
+    (answers.emergingWorkStage === "working" ||
+      answers.emergingWorkStage === "delivering" ||
+      answers.uniqueness === "transmission")
   );
 }
 
