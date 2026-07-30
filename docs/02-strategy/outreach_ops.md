@@ -47,7 +47,7 @@ Each campaign below is fully self-contained: verbatim copy, search query, tracki
 >
 > Sasha here. When we worked together, you named [their superpower words]. I went back and reread it before writing this. That work grew into something much more complete: I now help people name what's next professionally and turn it into an offer people actually pay for. Real businesses have launched from it.
 >
-> I run free 45-minute Direction Calls. You leave seeing your transition clearly: what you're growing out of, what you're growing into, and the direction that follows. Most people discover they already knew, and hadn't yet dared to say it out loud. If it lands for where you are right now, grab a time: https://cal.com/aleksandrkonstantinov/direction-call
+> I run free 45-minute Direction Calls. You leave seeing your transition clearly: what you're growing out of, what you're growing into, and the direction that follows. Most people discover they already knew, and hadn't yet dared to say it out loud. If it lands for where you are right now, grab a time: https://cal.com/aleksandrkonstantinov/direction-choice-call
 >
 > If not, all good. Happy to be back in touch either way.
 >
@@ -76,7 +76,7 @@ Each campaign below is fully self-contained: verbatim copy, search query, tracki
 > Hi [Name], saw you're taking a break after [Company]. That in-between stretch, when the last chapter is closed and the next one hasn't named itself yet, is the territory I love most. If it resonates, I'm glad to connect.
 
 **Message 2 — why-free + 2 questions (after accept, verbatim):**
-> Thanks for connecting! I'll be straight about what I do: I run free 45-minute Direction Calls. You leave seeing your transition clearly: what you're growing out of, what you're growing into, and the direction that follows. Most people discover they already knew, and hadn't yet dared to say it out loud. Why free? Because the first 45 minutes is where my work does the most visible good, and it's how I choose who I go deeper with. If we're a fit, I have paid containers and I'll say so in one sentence, not in a pitch. What clients say, from real session transcripts: https://findyourtoptalent.com/ignite. If it lands, grab a time: https://cal.com/aleksandrkonstantinov/direction-call
+> Thanks for connecting! I'll be straight about what I do: I run free 45-minute Direction Calls. You leave seeing your transition clearly: what you're growing out of, what you're growing into, and the direction that follows. Most people discover they already knew, and hadn't yet dared to say it out loud. Why free? Because the first 45 minutes is where my work does the most visible good, and it's how I choose who I go deeper with. If we're a fit, I have paid containers and I'll say so in one sentence, not in a pitch. What clients say, from real session transcripts: https://findyourtoptalent.com/ignite. If it lands, grab a time: https://cal.com/aleksandrkonstantinov/direction-choice-call
 
 **After they book (same channel):**
 > Great. So the 45 minutes go fully into your situation, two quick questions: What's the transition you're in? And what have you tried?
@@ -298,7 +298,7 @@ No follow-up 1/2 (single post, not a DM thread). Engage with comments in each sw
 
 ## 4. Reply playbook (all channels)
 
-- **Yes/curious** → send calendar link https://cal.com/aleksandrkonstantinov/direction-call + the two questions (if not already answered). Log: booked.
+- **Yes/curious** → send calendar link https://cal.com/aleksandrkonstantinov/direction-choice-call + the two questions (if not already answered). Log: booked.
 - **"What's this about?"** → one line: "A working session, not a pitch: 45 minutes on your situation, you leave with your transition named and your strongest next direction. Free because it's how I choose who I go deeper with."
 - **Objection/skeptic** → agree lightly, restate no-strings, leave door open. Never chase.
 - **Silence** → send the campaign's Follow-up 1 at +3 days, Follow-up 2 at +7 days, then close the row.
@@ -352,7 +352,7 @@ The axiom (Myth v4.0, `alexanders_unique_business.md` §1): **EN "Your career is
 - **Why-free line:** "Why free? Because the first 45 minutes is where my work does the most visible good, and it's how I choose who I go deeper with. If we're a fit, I have paid containers and I'll say so in one sentence, not in a pitch."
 - **Proof answer:** point to `docs/04-products/the_build_container.md`.
 - **Testimonials link:** https://findyourtoptalent.com/ignite
-- **Booking link:** https://cal.com/aleksandrkonstantinov/direction-call
+- **Booking link:** https://cal.com/aleksandrkonstantinov/direction-choice-call
 - **Teen product page:** /you
 - **Container product page:** /products/built
 - **Mirror objection disarm (born live on a Direction Call, Jul 22, 2026):** to 'why would you know me better than I know myself?' — «В зеркало себя увидеть проще, чем без зеркала. Это физика.» / EN: 'Seeing yourself in a mirror is easier than without one. That's physics.'
@@ -398,7 +398,7 @@ Type determines the reply move. Typed responses accumulate into the response map
 
 **Sent-copy corpus rule (Day 132):** every final sent wording Sasha reports is archived verbatim in the CRM's Outreach Message Bank → Sent messages (private ledger), tagged with scenario, outcome, and timestamped (date of send recorded at archiving, per the Timestamp Law). This corpus is the calibration set for all future AI-drafted copy: new drafts are checked against what actually got sent and what actually converted.
 
-**Booking flow note:** the cal.com link (https://cal.com/aleksandrkonstantinov/direction-call) goes out in Message 2. The two questions are asked in the SAME channel (LinkedIn DM), after they book, not in the booking form itself.
+**Booking flow note:** the cal.com link (https://cal.com/aleksandrkonstantinov/direction-choice-call) goes out in Message 2. The two questions are asked in the SAME channel (LinkedIn DM), after they book, not in the booking form itself.
 
 **Daily learning rule (Day 133):** every day's pulses end with one learning-of-the-day sentence appended to the Daily Learnings Ledger section of the pulse log. Timestamped by day like everything else.
 
@@ -406,7 +406,7 @@ Type determines the reply move. Typed responses accumulate into the response map
 
 ## Setup still open (once, before first send)
 
-- [x] Calendar link live: https://cal.com/aleksandrkonstantinov/direction-call. The two questions are NOT booking form fields, they go out in Message 2 and get answered in the same channel (LinkedIn DM) after booking.
+- [x] Calendar link live: https://cal.com/aleksandrkonstantinov/direction-choice-call. The two questions are NOT booking form fields, they go out in Message 2 and get answered in the same channel (LinkedIn DM) after booking.
 - [ ] Set профориентация price point.
 - [ ] Confirm LinkedIn profile shows tagline/banner/About (done Day 123).
 
