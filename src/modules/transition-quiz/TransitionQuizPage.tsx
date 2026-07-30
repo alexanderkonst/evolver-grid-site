@@ -86,7 +86,7 @@ const SCREEN_TO_ANALYTICS_STEP: Partial<Record<Screen, import("@/lib/funnelAnaly
 };
 
 const STORAGE_KEY = "evolver_transition_quiz_v2";
-export const DIRECTION_CALL_HREF = "https://cal.com/aleksandrkonstantinov/exploration";
+export const DIRECTION_CALL_HREF = "https://cal.com/aleksandrkonstantinov/direction-call";
 
 const UNIQUENESS_VALUES: UniquenessCategory[] = [
   "discovery",
