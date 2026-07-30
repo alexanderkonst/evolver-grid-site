@@ -7360,7 +7360,6 @@
   "entry": {
    "eyebrow": "Free. About two minutes.",
    "title": "See what hero's journey chapter you're actually in.",
-   "subtitle": "When someone asks what you do, you give them the vanilla answer so they don't get confused. Truthfully, it's you who's confused.",
    "honestyLine": "Four short questions. You'll see what chapter you're in, why things feel off, and what might already be starting to happen next.",
    "cta": "See where I am"
   },
@@ -7389,14 +7388,17 @@
   "notYet": {
    "settled": {
     "title": "You're settled.",
-    "line": "Nothing here needs fixing. When something does start moving, you'll feel it before you can name it, and this quiz will still be here.",
-    "channelsLine": "If you ever want to see how this kind of thing works underneath, that's what Sasha writes about.",
-    "channelsLinkLabel": "See where that lives",
-    "emailPrompt": "Want a note if something like this changes for you later? Totally optional.",
+    "line": "Nothing here needs fixing. When your work starts feeling different, when the answer to 'what do you do' stops sitting quite right, you'll feel it before you can name it. This quiz will still be here.",
+    "channelsLine": "Here's where we post the deeper mechanics of how careers actually shift, chapter to chapter:",
+    "channelsLinkLabel": "Our channels",
+    "giftLinePre": "And if you're curious what you're actually best at while everything works, ",
+    "giftLinkLabel": "the Top Talent reveal",
+    "giftLinePost": " is free.",
+    "emailPrompt": "Want the map of the seven chapters anyway? It's most useful before you need it.",
     "emailPlaceholder": "you@email.com",
-    "emailCta": "Keep me posted",
+    "emailCta": "Send me the map",
     "skip": "No thanks, I'm good",
-    "emailSuccess": "Got it. You're on the list."
+    "emailSuccess": "Sent soon. Watch your inbox."
    },
    "itchTremors": {
     "turnsIntoLabel": "What this usually turns into",
@@ -7405,11 +7407,17 @@
     "nextLabel": "What usually comes next",
     "2": {
      "turnsInto": "The itch usually turns into pushing harder at the same thing, not into anything new. Most people patch the old form for months, sometimes years, before it turns into a real shift.",
-     "sign": "The pushing stops working and starts costing you sleep, energy, or health. That's when the Itch becomes Tremors."
+     "sign": "The pushing stops working and starts costing you sleep, energy, or health. That's when the Itch becomes Tremors.",
+     "giftPre": "One more thing. The itch gets clearer when you can see what's itching. The free ",
+     "giftLinkLabel": "Top Talent reveal",
+     "giftPost": " names what you're best at, and at this chapter it usually shows what the itch is about."
     },
     "3": {
-     "why": "You're adding force to a form that's already full. New niche, new funnel, harder hours, all inside the same container that can't hold more.",
-     "next": "Usually a break comes before any breakthrough. Something that was carrying you stops carrying you, often from outside your control. That isn't failure on your part. The break is how the shift actually happens."
+     "why": "You're pushing harder inside a setup that has no room left. New niche, new funnel, longer hours, all inside the same way of working, and it's already maxed out.",
+     "next": "Usually a break comes before any breakthrough. The thing that was paying you or holding you up stops, often through no choice of your own. That isn't failure on your part. The break is how the shift actually happens.",
+     "giftPre": "One more thing. Before anything breaks, it helps to know what's trying to survive. The free ",
+     "giftLinkLabel": "Top Talent reveal",
+     "giftPost": " names what you're best at, so when the shift comes you know what to carry across."
     },
     "emailPrompt": "Want the full map, so you can meet what's next with your eyes open?",
     "emailPlaceholder": "you@email.com",
