@@ -1,8 +1,83 @@
-# Where Are You (the transition quiz) — Phase 1 Product Spec
+# Where Are You (the transition quiz) — Product Spec
 
 *Module tracker: `docs/specs/quiz/quiz_tracker.md`. Source map: `docs/holomaps/transition_holomap.md` (Phase Shift Technology 124). Feeds the Ripeness Vector, Technology 123. Social physics of the mirror: Technology 125.*
 
 ---
+
+## 0. AS-BUILT — vNext (lean 4-question edition), dated July 29, 2026
+
+**This section describes what is actually live at `/quiz` today.** Everything below §0 (Phase 1 through the wireframes) documents the *original* 7-question / 9-aspect-question design and its roast history. That design was superseded before Phase 2 shipped by a leaner 4-question edition ("vNext") — the earlier content is preserved verbatim below as genealogy (per corpus convention: quote, don't delete), not as the current build. An external quiz architect reading this file should treat §0 as ground truth and everything after it as historical design record.
+
+**Governing sentence** (from the vNext SOW baked into `engine.ts`): *"Four questions are enough to locate the crossing. The conversation exists to see what is actually crossing."*
+
+### 0.1 The four questions
+
+| # | Question | Answer type | Purpose |
+|---|---|---|---|
+| Q1 | Stage placement — 7 first-person statements, pick the one that sounds like now | `Stage` (1-7) | Where they are on the transition arc. Stages 1-3 branch immediately to a no-ask ending (see §0.2); stages 4-7 continue. |
+| Q2 | "What is actually unclear?" — the Uniqueness classifier | `UniquenessCategory`: `discovery` \| `recognition` \| `integration` \| `vehicle` \| `transmission` \| `scaling` | Names which of the six uniqueness-articulation problems is live for them right now. |
+| Q3 | Developmental position of the emerging work | `EmergingWorkStage`: `not_visible` → `fragments` → `felt` → `named` → `built` → `working` | How far the "new thing" has actually gotten, independent of how they feel about it. |
+| Q4 | Live real-world consequence ("clarity unlock") | `ClarityUnlock`: `personal` \| `direction` \| `current_work` \| `emerging_business` \| `near_term_exchange` | What in their actual life the clarity would change, if they had it. |
+
+Q1 alone determines the not-yet branch. Q2-Q4 (asked only at stages 4-7) are the **core answers** (`CoreAnswers` in `engine.ts`) that drive both the result copy and the routing decision.
+
+An optional fifth question — the **Buying Frame** qualifier (`open` \| `mixed` \| `open_no_history` \| `closed`) — appears only when `meetsDirectionCallGate()` already holds (see §0.3); it is never shown to everyone, and every answer except `closed` leads to the Direction Call.
+
+The earlier 17-question / discriminator design (visible in the design conversation this SOW comes from) and the Phase-1 nine-aspect-question design documented from §1 onward in this file were both explicitly rejected by Sasha as overkill in favor of this four-question edition. One thing carried forward unchanged from the earlier design: **"Money" not "Economy"** in all user-facing copy, and no internal jargon on screen.
+
+### 0.2 Endings matrix
+
+Five distinct endings, not one generic result screen:
+
+| Ending | Who gets it | What it looks like |
+|---|---|---|
+| **Settled** (not-yet, stage 1) | Q1 = 1 | One honest line: nothing is broken, no ask, no CTA. Optional low-key email capture ("send me the full map") was added later (see the tracker's "Decisions Sasha resolved" — Settled does get an optional email, contrary to the original Phase-1 wireframe). |
+| **Itch** (not-yet, stage 2) | Q1 = 2 | Stage-matched gift: what the feeling usually turns into + the sign it's becoming real. Optional email, skippable, skipping is a real undamaged exit. |
+| **Tremors** (not-yet, stage 3) | Q1 = 3 | Same shape as Itch, content tuned to stage 3. |
+| **Full-read** (standard result) | Stages 4-7, not crossed-peer | The 3-beat lean result (Chapter / Real Problem / What Comes Next, §0.4) plus, conditionally, the Buying Frame qualifier and a route CTA (Direction Call / paid Session / BUILT / Node / no CTA). |
+| **Crossed-peer** | `isCrossedPeer()` — see below | A different conversation than a Direction Call, offered as such: for someone whose uniqueness already monetizes (`scaling`), or who is at stage 7 with the work already `working` or the remaining friction being `transmission`-shaped. Replaces the standard result body, the Direction Call bridge, and the Buying Frame qualifier entirely. |
+
+`isCrossedPeer()` fires independent of stage when `uniqueness === "scaling"` — someone whose positioning already converts is a peer regardless of which stage statement they picked.
+
+### 0.3 The two engines
+
+Both live in `src/modules/transition-quiz/engine.ts` (pure functions, no React/i18n/Supabase):
+
+1. **Placement + routing engine** — `meetsDirectionCallGate()`, `isCrossedPeer()`, `computeRouting()`, `routeAfterBuyingFrame()`. Decides which of the five endings above applies and whether the optional Buying Frame qualifier gets shown at all. The Direction Call gate requires all four to hold simultaneously: stage 4-6, uniqueness is `recognition` or `integration`, emerging work is `fragments`/`felt`/`named`, and the clarity unlock is `emerging_business` or `near_term_exchange`.
+2. **Result-copy key engine** — `chapterKeyForStage()`, `resultTemplateKey()`, `workStageClauseKey()`, `clarityClauseKey()`. Picks which locale keys to render for the 3-beat result: Beat 1 (Chapter) is keyed by stage, Beats 2-3 (Real Problem / What Comes Next) are keyed by uniqueness category with short supporting clauses from the work-stage and clarity-unlock answers.
+
+A third small utility pair, `encodeShareState()` / `decodeShareState()`, round-trips a completed answer set through a base64 `?r=` URL param so a result can be shared or resumed with no server call — Supabase is write-only, for the dataset, never read to render the free result.
+
+### 0.4 Current copy source
+
+All user-facing text lives in the three locale files, not in code: `src/locales/en/common.json`, `src/locales/ru/common.json`, `src/locales/es/common.json`, under the `quiz.*` key namespace (`quiz.stageNames`, `quiz.result.chapter.<stage>`, `quiz.result.beats.<uniqueness>`, `quiz.result.workStageClause.<stage>`, `quiz.result.clarityClause.<unlock>`, `quiz.notYet.settled.*`, `quiz.notYet.itchTremors.*`). Locale JSON uses `returnObjects: true` (arrays/objects, not flattened indexed keys) — the array lengths and key sets are kept identical across en/ru/es. **Another agent owns locale copy edits concurrently with this spec refresh — this document does not change any locale file.**
+
+### 0.5 Data schema (as-built)
+
+Two Supabase tables feed the dataset, both RLS-on with zero client policies (service-role-only writes via edge functions):
+
+**`transition_quiz_results`** (migration `20260728140000_transition_quiz_results.sql`, extended by `20260729120000_transition_quiz_vnext_columns.sql`) — one row per quiz completion, including not-yet completions:
+- Base columns (Phase-1 design, still populated): `id`, `stage`, `identity_score`, `economy_score`, `fit_score`, `bottleneck_aspect`, `driver_aspect`, `pattern`, `route_shown`, `email`, `not_yet`, `locale`, `completed_at`, `created_at`. The three aspect-score columns are nullable and, in the vNext build, are no longer written by the current UI (they were Phase-1's nine-aspect-question output) — kept for schema continuity with any historical rows and because the edge function still accepts them.
+- vNext columns (additive, all nullable so older deployments degrade gracefully): `uniqueness_category`, `emerging_work_stage`, `clarity_unlock`, `buying_frame`, `direction_call_shown`, `result_template`.
+- Written by the `save-quiz-result` edge function (public, no-auth, `verify_jwt = false`), fire-and-forget from the client at three points: arrival at the not-yet ending, arrival at the full-read result, and (as a separate additive row) the Buying Frame answer.
+
+**`quiz_email_signups`** (new, migration `20260729210000_quiz_email_signups.sql`) — one row per "send me the map" email capture, kept separate from the per-completion dataset above so there is one clean list of emails: `id`, `created_at`, `email` (not null), `stage`, `locale`, `source` (default `'transition_quiz'`). Written by the new `save-quiz-email` edge function, called alongside (not instead of) the existing email-on-completion-row logging, so both records exist independently. Same fire-and-forget contract: the quiz UI shows success optimistically regardless of whether the call lands.
+
+Both tables are readable by the AI partner (never by the browser client) through the token-gated `quiz-results-export` edge function — see `docs/specs/lovable_redeploy_prompt.md` for the token setup.
+
+### 0.6 Reskin note
+
+Phase 3 (the dedicated visual/UX polish pass — micro-interactions, transition animations, accessibility audit, spacing/design-critique) has **not** been run. The vNext build shipped functional, on-brand, mobile-first screens (self-contained page + scoped `TransitionQuizPage.css`, reusing the app's shared CSS custom properties and Cormorant Garamond / DM Sans type) but skipped the full Phase 3 checklist. Anything a quiz architect flags on visual polish, spacing density, or micro-interaction should assume it lands in a future Phase 3 pass, not that it was overlooked in Phase 2.
+
+### 0.7 Per-stage Top Talent reveal gifts (concurrent, in progress)
+
+A parallel workstream (owned by another agent, shipping concurrently with this spec refresh) is adding a **per-stage reveal gift** to the result screens — a small piece of the user's Top Talent profile surfaced at the moment their transition stage is revealed, tuned to that stage, rather than a generic "sign up to see more" prompt. Intent: make the free reveal itself feel like it is already reading them accurately (consistent with the platform's standing pattern of leading with a real, specific insight before any ask — see `docs/03-playbooks/unique_business_playbook.md` Part 0, "Precision Gap IS Product"). This spec does not wait on that work to land and does not describe its final shape — flag to Sasha directly if the architect needs the finished behavior confirmed.
+
+---
+
+## PHASE 1 DESIGN RECORD (historical — superseded by §0 above)
+
+*Everything from here through the wireframes documents the original 7-question / 9-aspect-question design (stage placement + 3 questions each for Identity/Economy/Fit) and its roast history. It shipped once, then was replaced before Phase 2 completed by the leaner vNext 4-question edition described in §0. Preserved verbatim for genealogy — do not treat any screen count, question count, or route name below as current.*
 
 ## 1.1 Master Result
 

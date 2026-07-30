@@ -1,7 +1,13 @@
 # Where Are You (the transition quiz) — Progress Tracker
 
 **Started:** 2026-07-27
-**Status:** Phase 2: shipped and live at `/quiz`. Phase 3 (dedicated visual pass) not started — see note at the bottom of Phase 2 below.
+**Status (July 29, 2026):** The 7-question Phase 1/2 design below shipped once, then was superseded by a leaner **vNext 4-question edition** (`engine.ts` header documents the swap; as-built description now lives in `quiz_product_spec.md` §0). vNext is what's live at `/quiz` today. Everything in this tracker below this line documents the original design's history and is preserved as genealogy, not current status.
+
+**Update (July 29, 2026, Day 139) — infra hardening for external review:**
+- Email capture now writes to its own dedicated table, `quiz_email_signups` (migration `20260729210000_quiz_email_signups.sql`), via a new edge function `save-quiz-email`, called alongside the existing email-on-completion-row logging in `save-quiz-result`. Client wiring in `TransitionQuizPage.tsx`'s `submitEmail()`.
+- New token-gated read endpoint `quiz-results-export` (edge function) lets the AI partner pull both `transition_quiz_results` and `quiz_email_signups` on demand as JSON, since Sasha has no Supabase dashboard access. Same agent-token pattern as `equilibrium-ai-context`.
+- Pending Lovable deploy for all of the above — see `docs/specs/lovable_redeploy_prompt.md`.
+- Spec refresh: `quiz_product_spec.md` §0 now documents the as-built vNext quiz (4 questions, 5 endings, both engines, data schema, copy source) for an external quiz architect review. Prior Phase 1 content preserved verbatim below it.
 
 ---
 
