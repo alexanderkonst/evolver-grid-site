@@ -2304,6 +2304,7 @@ export type Database = {
           locale: string | null
           not_yet: boolean
           pattern: string | null
+          recognition_delta: number | null
           result_template: string | null
           route_shown: string | null
           stage: number
@@ -2328,6 +2329,7 @@ export type Database = {
           locale?: string | null
           not_yet?: boolean
           pattern?: string | null
+          recognition_delta?: number | null
           result_template?: string | null
           route_shown?: string | null
           stage: number
@@ -2352,6 +2354,7 @@ export type Database = {
           locale?: string | null
           not_yet?: boolean
           pattern?: string | null
+          recognition_delta?: number | null
           result_template?: string | null
           route_shown?: string | null
           stage?: number
