@@ -1,0 +1,2 @@
+ALTER TABLE public.transition_quiz_results DROP CONSTRAINT IF EXISTS transition_quiz_results_uniqueness_category_check;
+ALTER TABLE public.transition_quiz_results ADD CONSTRAINT transition_quiz_results_uniqueness_category_check CHECK (uniqueness_category IS NULL OR uniqueness_category IN ('discovery','recognition','integration','vehicle','transmission','scaling'));
