@@ -248,7 +248,7 @@ const IgniteSession = () => {
     // Day 123 (Sasha 2026-07-13): tab title harmonized to the hero's
     // being-wanted register — the old shame-hook headline contradicted
     // the page it opened.
-    document.title = "Leave with a One-Sentence Business — Productize Yourself Session";
+    document.title = "The Tagline Your Next Chapter Runs On | Productize Yourself Session";
     trackPageView('ignite_view');
     return () => { document.title = previousTitle; };
   }, []);
