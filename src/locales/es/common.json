@@ -7457,7 +7457,7 @@
       "selectionNote": "Tus respuestas mostraron que probablemente soy quien más útil puede serte ahora. Solo ofrezco esta llamada en esos casos.",
       "honestEnding": "Esta es la lectura completa. Sin propuesta, sin nada más por desbloquear. Puedes repetir el test cuando quieras si tus respuestas cambian.",
       "chapter": {
-        "4": "Algo que te sostenía se terminó. El próximo capítulo aún no se ha organizado, y a estas alturas eso es normal.",
+        "4": "La forma en que ganabas dinero dejó de funcionar igual. El próximo capítulo aún no se ha organizado, y tan pronto eso es lo esperable.",
         "5": "Estás entre capítulos. La vieja respuesta se terminó, pero la nueva aún no es lo bastante clara como para organizar tus decisiones.",
         "6": "Ya puedes sentir que se está formando el próximo capítulo. Solo que aún no logras decirlo con la claridad necesaria para sostenerlo en público.",
         "7": "El próximo capítulo ya es real. Ya estás construyendo una vida real alrededor de él."
@@ -7529,7 +7529,10 @@
     },
     "saveRead": {
       "label": "Guardar mi lectura",
-      "confirmation": "Enlace copiado. Es tuyo para siempre."
+      "confirmation": "Enlace copiado. Es tuyo para siempre.",
+      "sendCta": "Envíamela por correo",
+      "sentConfirmation": "Va en camino a tu correo.",
+      "orOpenLink": "O ábrela ahora"
     },
     "recognitionDelta": {
       "prompt": "¿Qué tan exacto fue esto sobre lo que has estado viviendo?",

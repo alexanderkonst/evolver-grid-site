@@ -527,35 +527,73 @@ function Q1Screen({ t, onPick }: { t: (k: string, o?: Record<string, unknown>) =
 // Both degrade silently: no id yet (save-quiz-result hasn't returned, or
 // the environment doesn't have it deployed) means neither widget renders.
 
-function SaveMyRead({ t, resultId }: { t: (k: string, o?: Record<string, unknown>) => unknown; resultId: string | null }) {
-  const [copied, setCopied] = useState(false);
+function SaveMyRead({
+  t,
+  resultId,
+  stage,
+}: {
+  t: (k: string, o?: Record<string, unknown>) => unknown;
+  resultId: string | null;
+  stage: Stage | null;
+}) {
+  const { i18n } = useTranslation();
+  const locale = i18n.language;
+  // Day 139 (Sasha 2026-07-30): "Save my read" now asks for an email and
+  // sends the permalink there, matching the map-email pattern elsewhere in
+  // the quiz. The copy-link path stays as a quiet secondary once sent.
+  const [open, setOpen] = useState(false);
+  const [emailValue, setEmailValue] = useState("");
+  const [sent, setSent] = useState(false);
 
   if (!resultId || typeof window === "undefined") return null;
 
   const permalink = `${window.location.origin}/quiz/r/${resultId}`;
 
-  const handleSave = async () => {
-    trackCTAClick("quiz_permalink_saved", "save_my_read");
-    try {
-      await navigator.clipboard.writeText(permalink);
-      setCopied(true);
-    } catch {
-      // Fallback: just show the link as text for manual copy.
-      setCopied(true);
-    }
+  const handleSend = () => {
+    const trimmed = emailValue.trim().toLowerCase();
+    if (!trimmed || !trimmed.includes("@")) return;
+    trackCTAClick("quiz_permalink_saved", "save_my_read_email");
+    // Fire-and-forget, same graceful contract as the map email capture.
+    supabase.functions
+      .invoke("save-quiz-email", {
+        body: { email: trimmed, stage, locale, source: `save_read:${resultId}` },
+      })
+      .catch(() => {});
+    setSent(true);
   };
 
   return (
     <div className="tq-save-read" style={{ marginTop: 14 }}>
-      {!copied ? (
-        <button type="button" className="tq-link-quiet" onClick={handleSave} style={{ background: "none", border: "none", cursor: "pointer" }}>
+      {!open && !sent && (
+        <button
+          type="button"
+          className="tq-link-quiet"
+          onClick={() => setOpen(true)}
+          style={{ background: "none", border: "none", cursor: "pointer" }}
+        >
           {t("quiz.saveRead.label") as string}
         </button>
-      ) : (
+      )}
+      {open && !sent && (
+        <div className="tq-email-row">
+          <input
+            type="email"
+            className="tq-email-input"
+            value={emailValue}
+            placeholder={t("quiz.notYet.settled.emailPlaceholder") as string}
+            onChange={(e) => setEmailValue(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSend()}
+          />
+          <button type="button" className="tq-email-cta" onClick={handleSend}>
+            {t("quiz.saveRead.sendCta") as string}
+          </button>
+        </div>
+      )}
+      {sent && (
         <p className="tq-sub tq-quiet-line">
-          {t("quiz.saveRead.confirmation") as string}{" "}
+          {t("quiz.saveRead.sentConfirmation") as string}{" "}
           <a className="tq-link-quiet" href={permalink}>
-            {permalink}
+            {t("quiz.saveRead.orOpenLink") as string}
           </a>
         </p>
       )}
@@ -669,7 +707,7 @@ function NotYetScreen({
         )}
 
         <RecognitionDelta t={t} resultId={resultId} />
-        <SaveMyRead t={t} resultId={resultId} />
+        <SaveMyRead t={t} resultId={resultId} stage={stage} />
 
         <button type="button" className="tq-retake" onClick={onRetake}>
           {t("quiz.notYet.retake") as string}
@@ -728,7 +766,7 @@ function NotYetScreen({
       )}
 
       <RecognitionDelta t={t} resultId={resultId} />
-      <SaveMyRead t={t} resultId={resultId} />
+      <SaveMyRead t={t} resultId={resultId} stage={stage} />
 
       <button type="button" className="tq-retake" onClick={onRetake}>
         {t("quiz.notYet.retake") as string}
@@ -850,7 +888,7 @@ export function ResultScreen({
         </div>
 
         <RecognitionDelta t={t} resultId={resultId} />
-        <SaveMyRead t={t} resultId={resultId} />
+        <SaveMyRead t={t} resultId={resultId} stage={answers.stage} />
 
         <button type="button" className="tq-retake" onClick={onRetake}>
           {t("quiz.notYet.retake") as string}
@@ -907,7 +945,7 @@ export function ResultScreen({
       </div>
 
       <RecognitionDelta t={t} resultId={resultId} />
-      <SaveMyRead t={t} resultId={resultId} />
+      <SaveMyRead t={t} resultId={resultId} stage={answers.stage} />
 
       <button type="button" className="tq-retake" onClick={onRetake}>
         {t("quiz.notYet.retake") as string}
