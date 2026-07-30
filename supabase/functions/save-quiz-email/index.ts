@@ -7,6 +7,7 @@
 // optimistically, this call never gates or delays what the user sees.
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { FROM_NOTIFICATIONS } from "../_shared/senders.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
