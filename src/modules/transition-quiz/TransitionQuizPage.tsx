@@ -456,7 +456,7 @@ function Q1Screen({ t, onPick }: { t: (k: string, o?: Record<string, unknown>) =
     <section className="tq-card">
       <p className="tq-question-count">{t("quiz.progressLabel", { current: 1, total: 4 }) as string}</p>
       <p className="tq-question-prompt">{t("quiz.q1.prompt") as string}</p>
-      <div className="tq-options">
+      <div className={`tq-options${options.length >= 6 ? " tq-options--dense" : ""}`}>
         {options.map((opt, i) => (
           <button
             key={i}
@@ -633,7 +633,7 @@ function ChoiceScreen<V extends string>({
       <p className="tq-question-count">{t("quiz.progressLabel", { current: data.order, total: 4 }) as string}</p>
       {data.framing && <p className="tq-quiet-line">{data.framing}</p>}
       <p className="tq-question-prompt" style={data.framing ? { marginTop: 14 } : undefined}>{data.prompt}</p>
-      <div className="tq-options">
+      <div className={`tq-options${values.length >= 6 ? " tq-options--dense" : ""}`}>
         {values.map((v, i) => (
           <button
             key={v}
@@ -695,6 +695,7 @@ function ResultScreen({
           <p className="tq-body-text">{t("quiz.result.crossedPeer.body2") as string}</p>
         </div>
 
+        <hr className="tq-take-what-divider" />
         <p className="tq-body-text tq-take-what-note">{t("quiz.result.takeWhatNote") as string}</p>
 
         <div className="tq-cta-block">
@@ -741,6 +742,7 @@ function ResultScreen({
         </p>
       </div>
 
+      <hr className="tq-take-what-divider" />
       <p className="tq-body-text tq-take-what-note">{t("quiz.result.takeWhatNote") as string}</p>
 
       <div className="tq-cta-block">
