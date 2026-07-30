@@ -24,6 +24,7 @@ import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { EditorialCta } from "@/components/ui/editorial-cta";
+import brandLogo from "@/assets/you-be-original-main-lockup.webp";
 import { trackPageView, trackCTAClick } from "@/lib/funnelAnalytics";
 import { TESTIMONIALS } from "@/data/testimonials";
 import {
@@ -162,6 +163,7 @@ const TransitionQuizPage = () => {
   const [emailSent, setEmailSent] = useState(false);
   const [resultId, setResultId] = useState<string | null>(null);
   const loggedRef = useRef<string | null>(null);
+  const screenRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     try {
@@ -367,11 +369,27 @@ const TransitionQuizPage = () => {
     if (step) trackPageView(step);
   }, [screen]);
 
+  useEffect(() => {
+    if (screen === "entry") return;
+    const frame = window.requestAnimationFrame(() => {
+      screenRef.current?.focus({ preventScroll: true });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [screen]);
+
   const progress = PROGRESS[screen];
   const canGoBack = Boolean(BACK_MAP[screen]);
+  const phase =
+    screen === "entry"
+      ? "threshold"
+      : screen === "result" || screen === "notYet" || screen === "loading"
+        ? "reveal"
+        : screen === "buyingFrame" || screen === "means"
+          ? "integration"
+          : "concentration";
 
   return (
-    <main className="tq-page">
+    <main className={`tq-page tq-phase-${phase}`}>
       <Helmet>
         <title>Where Are You — a free read of what chapter you're actually in</title>
         <meta
@@ -380,97 +398,117 @@ const TransitionQuizPage = () => {
         />
       </Helmet>
       <div className="tq-shell">
-        {typeof progress === "number" && (
-          <div className="tq-progress-bar" role="progressbar" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}>
-            <div className="tq-progress-bar-fill" style={{ width: `${progress * 100}%` }} />
-          </div>
-        )}
+        <QuizCorridorHeader progress={progress} />
         {canGoBack && (
           <button type="button" className="tq-back" onClick={goBack}>
             <ArrowLeft size={14} /> {t("quiz.back") as string}
           </button>
         )}
 
-        {screen === "entry" && <EntryScreen t={t} onStart={() => goTo("q1")} />}
+        <div ref={screenRef} className="tq-screen" tabIndex={-1}>
+          {screen === "entry" && <EntryScreen t={t} onStart={() => goTo("q1")} />}
 
-        {screen === "q1" && (
-          <Q1Screen
-            t={t}
-            onPick={(index) => {
-              const picked = (index + 1) as Stage;
-              goTo(isNotYetStage(picked) ? "notYet" : "q2", { stage: picked });
-            }}
-          />
-        )}
+          {screen === "q1" && (
+            <Q1Screen
+              t={t}
+              onPick={(index) => {
+                const picked = (index + 1) as Stage;
+                goTo(isNotYetStage(picked) ? "notYet" : "q2", { stage: picked });
+              }}
+            />
+          )}
 
-        {screen === "notYet" && stage && (
-          <NotYetScreen
-            t={t}
-            stage={stage}
-            email={email}
-            setEmail={setEmail}
-            emailSent={emailSent}
-            onSubmitEmail={submitEmail}
-            onRetake={reset}
-            resultId={resultId}
-          />
-        )}
+          {screen === "notYet" && stage && (
+            <NotYetScreen
+              t={t}
+              stage={stage}
+              email={email}
+              setEmail={setEmail}
+              emailSent={emailSent}
+              onSubmitEmail={submitEmail}
+              onRetake={reset}
+              resultId={resultId}
+            />
+          )}
 
-        {screen === "q2" && (
-          <ChoiceScreen
-            t={t}
-            i18nKey="quiz.q2"
-            values={UNIQUENESS_VALUES}
-            current={uniqueness}
-            onPick={(v) => goTo("q3", { uniqueness: v })}
-          />
-        )}
+          {screen === "q2" && (
+            <ChoiceScreen
+              t={t}
+              i18nKey="quiz.q2"
+              values={UNIQUENESS_VALUES}
+              current={uniqueness}
+              onPick={(v) => goTo("q3", { uniqueness: v })}
+            />
+          )}
 
-        {screen === "q3" && (
-          <ChoiceScreen
-            t={t}
-            i18nKey="quiz.q3"
-            values={WORK_STAGE_VALUES}
-            current={emergingWorkStage}
-            onPick={(v) => goTo("loading", { emergingWorkStage: v })}
-          />
-        )}
+          {screen === "q3" && (
+            <ChoiceScreen
+              t={t}
+              i18nKey="quiz.q3"
+              values={WORK_STAGE_VALUES}
+              current={emergingWorkStage}
+              onPick={(v) => goTo("loading", { emergingWorkStage: v })}
+            />
+          )}
 
-        {screen === "loading" && <LoadingScreen t={t} />}
+          {screen === "loading" && <LoadingScreen t={t} />}
 
-        {screen === "result" && coreAnswers && routing && (
-          <ResultScreen
-            t={t}
-            stageNames={stageNames}
-            answers={coreAnswers}
-            showBuyingFrame={routing.showBuyingFrame}
-            route={routing.route}
-            onContinue={() => {
-              if (routing.showBuyingFrame) {
-                trackCTAClick("quiz_cta_click", "direction_call_continue");
-                goTo("buyingFrame");
-              }
-            }}
-            onRetake={reset}
-            resultId={resultId}
-          />
-        )}
+          {screen === "result" && coreAnswers && routing && (
+            <ResultScreen
+              t={t}
+              stageNames={stageNames}
+              answers={coreAnswers}
+              showBuyingFrame={routing.showBuyingFrame}
+              route={routing.route}
+              onContinue={() => {
+                if (routing.showBuyingFrame) {
+                  trackCTAClick("quiz_cta_click", "direction_call_continue");
+                  goTo("buyingFrame");
+                }
+              }}
+              onRetake={reset}
+              resultId={resultId}
+            />
+          )}
 
-        {screen === "buyingFrame" && (
-          <BuyingFrameScreen
-            t={t}
-            current={buyingFrame}
-            means={means}
-            onPick={(v) => goTo("buyingFrame", { buyingFrame: v })}
-            onPickMeans={(v) => goTo("buyingFrame", { means: v })}
-            route={buyingFrame ? routeAfterBuyingFrame(buyingFrame) : null}
-            onRetake={reset}
-          />
-        )}
+          {screen === "buyingFrame" && (
+            <BuyingFrameScreen
+              t={t}
+              current={buyingFrame}
+              means={means}
+              onPick={(v) => goTo("buyingFrame", { buyingFrame: v })}
+              onPickMeans={(v) => goTo("buyingFrame", { means: v })}
+              route={buyingFrame ? routeAfterBuyingFrame(buyingFrame) : null}
+              onRetake={reset}
+            />
+          )}
+        </div>
       </div>
     </main>
   );
 };
+
+export function QuizCorridorHeader({ progress }: { progress?: number }) {
+  const progressValue = typeof progress === "number" ? Math.round(progress * 100) : null;
+
+  return (
+    <header className="tq-corridor-header">
+      <Link to="/" className="tq-corridor-logo" aria-label="Find Your Top Talent — home">
+        <img src={brandLogo} alt="YOU — be original." draggable={false} />
+      </Link>
+      <div
+        className={`tq-progress-bar${progressValue === null ? " is-idle" : ""}`}
+        role={progressValue === null ? undefined : "progressbar"}
+        aria-valuenow={progressValue ?? undefined}
+        aria-valuemin={progressValue === null ? undefined : 0}
+        aria-valuemax={progressValue === null ? undefined : 100}
+        aria-valuetext={progressValue === null ? undefined : `${progressValue}% complete`}
+      >
+        <div className="tq-progress-bar-fill" style={{ width: `${progressValue ?? 0}%` }} />
+      </div>
+    </header>
+  );
+}
 
 // ── S1 Entry ───────────────────────────────────────────────────────────────
 
@@ -484,7 +522,11 @@ function EntryScreen({ t, onStart }: { t: (k: string, o?: Record<string, unknown
       <Ornament className="tq-ornament" />
       <p className="tq-sub tq-quiet-line">{t("quiz.entry.honestyLine") as string}</p>
       <div className="tq-cta-row tq-cta-row-center">
-        <EditorialCta label={t("quiz.entry.cta") as string} onClick={onStart} />
+        <EditorialCta
+          className="tq-primary-cta"
+          label={t("quiz.entry.cta") as string}
+          onClick={onStart}
+        />
       </div>
     </section>
   );
@@ -512,6 +554,8 @@ function Q1Screen({ t, onPick }: { t: (k: string, o?: Record<string, unknown>) =
             type="button"
             className={`tq-option${selected === i ? " is-selected" : ""}`}
             onClick={() => handlePick(i)}
+            aria-pressed={selected === i}
+            disabled={selected !== null}
           >
             <span className="tq-option-letter">{selected === i ? <Check size={13} /> : i + 1}</span>
             <span>{opt}</span>
@@ -815,6 +859,8 @@ function ChoiceScreen<V extends string>({
             type="button"
             className={`tq-option${selected === v ? " is-selected" : ""}`}
             onClick={() => handlePick(v)}
+            aria-pressed={selected === v}
+            disabled={selected !== null}
           >
             <span className="tq-option-letter">{selected === v ? <Check size={13} /> : i + 1}</span>
             <span>{data.options[v]}</span>
@@ -861,38 +907,43 @@ export function ResultScreen({
   if (route === "crossedPeer") {
     return (
       <section className="tq-card tq-result-card">
-        <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.stageLabel") as string}</p>
-        <h2 className="tq-stage-name">{stageNames[String(answers.stage)]}</h2>
-        <Ornament className="tq-ornament" />
-        <StageArc stage={answers.stage} stageNames={stageNames} crossed />
-
-        <div className="tq-section" style={{ marginTop: 0 }}>
-          <h3 className="tq-beat-heading">{t("quiz.result.crossedPeer.heading") as string}</h3>
-          <p className="tq-body-text">{t("quiz.result.crossedPeer.body1") as string}</p>
-          <p className="tq-body-text">{t("quiz.result.crossedPeer.body2") as string}</p>
+        <div className="tq-reveal">
+          <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.stageLabel") as string}</p>
+          <h2 className="tq-stage-name">{stageNames[String(answers.stage)]}</h2>
+          <Ornament className="tq-ornament" />
+          <StageArc stage={answers.stage} stageNames={stageNames} crossed />
         </div>
 
-        <hr className="tq-take-what-divider" />
-        <p className="tq-body-text tq-take-what-note">{t("quiz.result.takeWhatNote") as string}</p>
+        <div className="tq-integration">
+          <div className="tq-section" style={{ marginTop: 0 }}>
+            <h3 className="tq-beat-heading">{t("quiz.result.crossedPeer.heading") as string}</h3>
+            <p className="tq-body-text">{t("quiz.result.crossedPeer.body1") as string}</p>
+            <p className="tq-body-text">{t("quiz.result.crossedPeer.body2") as string}</p>
+          </div>
 
-        <div className="tq-cta-block">
-          <a
-            className="tq-editorial-link-cta"
-            href={DIRECTION_CALL_HREF}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => trackCTAClick("quiz_cta_click", "crossed_peer_cta")}
-          >
-            {t("quiz.result.crossedPeer.cta") as string} <ArrowUpRight size={16} />
-          </a>
+          <hr className="tq-take-what-divider" />
+          <p className="tq-body-text tq-take-what-note">{t("quiz.result.takeWhatNote") as string}</p>
+
+          <RecognitionDelta t={t} resultId={resultId} />
+
+          <div className="tq-cta-block">
+            <a
+              className="tq-editorial-link-cta tq-door-cta"
+              href={DIRECTION_CALL_HREF}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackCTAClick("quiz_cta_click", "crossed_peer_cta")}
+            >
+              {t("quiz.result.crossedPeer.cta") as string} <ArrowUpRight size={16} />
+            </a>
+          </div>
+
+          <SaveMyRead t={t} resultId={resultId} stage={answers.stage} />
+
+          <button type="button" className="tq-retake" onClick={onRetake}>
+            {t("quiz.notYet.retake") as string}
+          </button>
         </div>
-
-        <RecognitionDelta t={t} resultId={resultId} />
-        <SaveMyRead t={t} resultId={resultId} stage={answers.stage} />
-
-        <button type="button" className="tq-retake" onClick={onRetake}>
-          {t("quiz.notYet.retake") as string}
-        </button>
       </section>
     );
   }
@@ -907,49 +958,59 @@ export function ResultScreen({
 
   return (
     <section className="tq-card tq-result-card">
-      <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.stageLabel") as string}</p>
-      <h2 className="tq-stage-name">{stageNames[String(answers.stage)]}</h2>
-      <Ornament className="tq-ornament" />
-      <StageArc stage={answers.stage} stageNames={stageNames} />
-      <p className="tq-body-text tq-measure">{chapter}</p>
-
-      <div className="tq-section">
-        <h3 className="tq-beat-heading">{beats.heading}</h3>
-        <p className="tq-body-text tq-measure">{beats.body}</p>
-        <p className="tq-body-text tq-quiet-line tq-measure">{workClause}</p>
+      <div className="tq-reveal">
+        <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.stageLabel") as string}</p>
+        <h2 className="tq-stage-name">{stageNames[String(answers.stage)]}</h2>
+        <Ornament className="tq-ornament" />
+        <StageArc stage={answers.stage} stageNames={stageNames} />
+        <p className="tq-body-text tq-measure">{chapter}</p>
       </div>
 
-      <BelievabilityQuote t={t} stage={answers.stage} />
+      <div className="tq-integration">
+        <div className="tq-section">
+          <h3 className="tq-beat-heading">{beats.heading}</h3>
+          <p className="tq-body-text tq-measure">{beats.body}</p>
+          <p className="tq-body-text tq-quiet-line tq-measure">{workClause}</p>
+        </div>
 
-      <div className="tq-section">
-        <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.nextLabel") as string}</p>
-        <p className="tq-body-text tq-measure">{beats.nextMove}</p>
-      </div>
+        <BelievabilityQuote t={t} stage={answers.stage} />
 
-      <hr className="tq-take-what-divider" />
-      <p className="tq-body-text tq-take-what-note">{t("quiz.result.takeWhatNote") as string}</p>
+        <div className="tq-section">
+          <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.nextLabel") as string}</p>
+          <p className="tq-body-text tq-measure">{beats.nextMove}</p>
+        </div>
 
-      <div className="tq-cta-block">
-        {showBuyingFrame ? (
-          <>
-            <p className="tq-body-text tq-quiet-line">
-              {t("quiz.result.selectionNote") as string}
+        <hr className="tq-take-what-divider" />
+        <p className="tq-body-text tq-take-what-note">{t("quiz.result.takeWhatNote") as string}</p>
+
+        <RecognitionDelta t={t} resultId={resultId} />
+
+        <div className="tq-cta-block">
+          {showBuyingFrame ? (
+            <>
+              <p className="tq-body-text tq-quiet-line">
+                {t("quiz.result.selectionNote") as string}
+              </p>
+              <EditorialCta
+                className="tq-door-cta"
+                icon={null}
+                label={t("quiz.result.continueCta") as string}
+                onClick={onContinue}
+              />
+            </>
+          ) : (
+            <p className="tq-cta-sub" style={{ marginTop: 0 }}>
+              {t("quiz.result.honestEnding") as string}
             </p>
-            <EditorialCta label={t("quiz.result.continueCta") as string} onClick={onContinue} />
-          </>
-        ) : (
-          <p className="tq-cta-sub" style={{ marginTop: 0 }}>
-            {t("quiz.result.honestEnding") as string}
-          </p>
-        )}
+          )}
+        </div>
+
+        <SaveMyRead t={t} resultId={resultId} stage={answers.stage} />
+
+        <button type="button" className="tq-retake" onClick={onRetake}>
+          {t("quiz.notYet.retake") as string}
+        </button>
       </div>
-
-      <RecognitionDelta t={t} resultId={resultId} />
-      <SaveMyRead t={t} resultId={resultId} stage={answers.stage} />
-
-      <button type="button" className="tq-retake" onClick={onRetake}>
-        {t("quiz.notYet.retake") as string}
-      </button>
     </section>
   );
 }
@@ -973,10 +1034,12 @@ function StageArc({
 
   return (
     <div className="tq-stage-arc" aria-label={`Stage ${activeStage} of 7`}>
-      <div className="tq-stage-arc-track">
+      <div className="tq-stage-arc-track" role="list">
         {stages.map((n) => (
           <span
             key={n}
+            role="listitem"
+            aria-current={n === activeStage ? "step" : undefined}
             className={`tq-stage-arc-node${n === activeStage ? " is-active" : ""}${
               crossed && n === 7 ? " is-crossed" : ""
             }`}

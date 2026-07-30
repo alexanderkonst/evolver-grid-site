@@ -3,14 +3,14 @@
 // Pure functions only: no i18n, no React, no Supabase here — the page
 // component wires this to copy and persistence.
 //
-// Source of truth: the GFOA design conversation's final locked SOW
-// ("WHERE ARE YOU? Lean Quiz Specification, Use Instructions & Build SOW —
-// vNext · Four-Question Edition", sections 1-18). That SOW explicitly
+// Source of truth: the GFOA design conversation's final locked SOW,
+// subsequently reduced to the three-question edition described below.
+// The original SOW explicitly
 // supersedes the earlier 17-question / discriminator design that appears
 // earlier in the same conversation — Sasha rejected it as overkill and the
-// four-question design is the one carrying a Definition of Done (§18).
+// lean design is the one carrying a Definition of Done (§18).
 //
-// Governing sentence (§18): "Four questions are enough to locate the
+// Governing sentence (§18): "A few questions are enough to locate the
 // crossing. The conversation exists to see what is actually crossing."
 //
 // Standing laws carried forward from the earlier (superseded) design,
@@ -125,7 +125,7 @@ export function isCrossedPeer(answers: CoreAnswers): boolean {
 
 /**
  * §10 decision rules, once the gate above already holds (i.e. the person
- * is only ever asked the Buying Frame question after the other four
+ * is only ever asked the Buying Frame question after the core
  * conditions are already strong — see §10 "Important decision rule"):
  * every answer except "closed" leads to the Direction Call.
  */

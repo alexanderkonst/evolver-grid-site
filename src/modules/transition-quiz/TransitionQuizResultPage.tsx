@@ -19,7 +19,7 @@ import {
   isNotYetStage,
   notYetVariant,
 } from "./engine";
-import { ResultScreen, DIRECTION_CALL_HREF } from "./TransitionQuizPage";
+import { ResultScreen, DIRECTION_CALL_HREF, QuizCorridorHeader } from "./TransitionQuizPage";
 import "./TransitionQuizPage.css";
 
 interface FetchedResult {
@@ -85,13 +85,14 @@ const TransitionQuizResultPage = () => {
   }, [id]);
 
   return (
-    <main className="tq-page">
+    <main className="tq-page tq-phase-reveal">
       <Helmet>
         <title>Where Are You — a saved read</title>
         <meta name="description" content="A saved read of one chapter, from the Where Are You quiz." />
         <meta name="robots" content="noindex,nofollow" />
       </Helmet>
       <div className="tq-shell">
+        <QuizCorridorHeader />
         <Link className="tq-back" to="/quiz">
           <ArrowLeft size={14} /> {t("quiz.back") as string}
         </Link>

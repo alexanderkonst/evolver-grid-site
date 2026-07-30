@@ -1,7 +1,7 @@
 # Where Are You (the transition quiz) — Progress Tracker
 
 **Started:** 2026-07-27
-**Status (July 29, 2026):** The 7-question Phase 1/2 design below shipped once, then was superseded by a leaner **vNext 4-question edition** (`engine.ts` header documents the swap; as-built description now lives in `quiz_product_spec.md` §0). vNext is what's live at `/quiz` today. Everything in this tracker below this line documents the original design's history and is preserved as genealogy, not current status.
+**Status (July 30, 2026):** The historical design below has been superseded by the production **three-question edition** at `/quiz`. The current experience contract, implementation scope, and verification record live in [`quiz_experience_sow.md`](./quiz_experience_sow.md). Everything below the active Phase 3/4 status remains genealogy.
 
 **Update (July 29, 2026, Day 139) — infra hardening for external review:**
 - Email capture now writes to its own dedicated table, `quiz_email_signups` (migration `20260729210000_quiz_email_signups.sql`), via a new edge function `save-quiz-email`, called alongside the existing email-on-completion-row logging in `save-quiz-result`. Client wiring in `TransitionQuizPage.tsx`'s `submitEmail()`.
@@ -79,39 +79,41 @@ Three real forks — everything else in Phase 1 was resolvable from your standin
 
 ---
 
-## PHASE 3: UI `[░░░░░░░░]` 0%
+## PHASE 3: UI `[■■■■■■■■]` 100%
 
-- [ ] 3.1 Visual Rules
-- [ ] 3.2 Building Blocks
-- [ ] 3.3 Layout Templates
-- [ ] 3.4 Brandbook Integration
-- [ ] 3.5 Micro-interactions
-- [ ] 3.6 Accessibility
-- [ ] 3.7 Component States
-- [ ] 3.8 Design Tokens Audit
-- [ ] 3.9 Design Critique
-- [ ] 🔥 ROAST GATE 3
+The production experience contract, implementation scope, and test gate are now defined in [`quiz_experience_sow.md`](./quiz_experience_sow.md). The active visual direction is the four-beat quiz corridor: threshold → concentration → reveal → integration. Copy, scoring, results, routes, persistence, and analytics remain frozen.
+
+- [x] 3.1 Visual Rules
+- [x] 3.2 Building Blocks
+- [x] 3.3 Layout Templates
+- [x] 3.4 Brandbook Integration
+- [x] 3.5 Micro-interactions
+- [x] 3.6 Accessibility
+- [x] 3.7 Component States
+- [x] 3.8 Design Tokens Audit
+- [x] 3.9 Design Critique
+- [x] 🔥 ROAST GATE 3
 
 ---
 
-## PHASE 4: VIBE-CODING `[░░░░░░░░]` 0%
+## PHASE 4: IMPLEMENTATION `[■■■■■■■■]` 100%
 
-- [ ] 4.1 Create Files
-- [ ] 4.2 Implement Screens
-- [ ] 4.3 Connect Routes
-- [ ] 4.4 Connect Data
-- [ ] 4.5 Verification
-- [ ] 4.6 AI Self-Test
-- [ ] 🔥 ROAST GATE 4
+- [x] 4.1 Create Files
+- [x] 4.2 Implement Screens
+- [x] 4.3 Connect Routes
+- [x] 4.4 Preserve Existing Data Contracts
+- [x] 4.5 Verification
+- [x] 4.6 AI Self-Test
+- [x] 🔥 ROAST GATE 4
 
 ---
 
 ## OUTPUT
 
-- [ ] User Journey (spec)
-- [ ] UX/UI (components)
-- [ ] Software Architecture (routes, data)
-- [ ] Working Code (verified)
+- [x] User Journey (spec)
+- [x] UX/UI (components)
+- [x] Software Architecture (routes, data)
+- [x] Working Code (verified)
 
 ---
 
@@ -119,4 +121,4 @@ Three real forks — everything else in Phase 1 was resolvable from your standin
 - Source map this module operationalizes: `docs/holomaps/transition_holomap.md` (Phase Shift Technology 124). Feeds the Ripeness Vector (Technology 123). Social physics of unrequested mirrors: Technology 125.
 - Product spec: `docs/specs/quiz/quiz_product_spec.md`.
 
-**Completed:** _________
+**Completed:** July 30, 2026
