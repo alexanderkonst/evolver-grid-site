@@ -372,9 +372,7 @@ const IgniteSession = () => {
               color: "var(--skin-text-secondary, #33415c)",
             }}
           >
-            {t('ignite.heroSubA')}
-            <br />
-            {t('ignite.heroSubB')}
+            {t('ignite.heroSub')}
           </p>
 
           <Ornament className="my-1" />
