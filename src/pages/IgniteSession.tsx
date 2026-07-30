@@ -32,8 +32,6 @@ import { useState, useRef, useEffect, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import geniusLogo from "@/assets/ignite-logo.png";
 import { supabase } from "@/integrations/supabase/client";
-import { Button } from "@/components/ui/button";
-import BoldText from "@/components/BoldText";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { cn } from "@/lib/utils";
 
@@ -104,7 +102,12 @@ const LazyYouTube = ({ id, title }: { id: string; title: string }) => {
           className="w-full h-full"
         />
       ) : (
-        <div className="w-full h-full flex items-center justify-center text-xs text-white/20 bg-white/5">{t('ignite.videoLoading')}</div>
+        <div
+          className="w-full h-full flex items-center justify-center text-xs"
+          style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.35))", background: "rgba(10,22,40,0.04)" }}
+        >
+          {t('ignite.videoLoading')}
+        </div>
       )}
     </div>
   );
