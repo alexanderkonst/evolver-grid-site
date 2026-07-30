@@ -86,7 +86,7 @@ const SCREEN_TO_ANALYTICS_STEP: Partial<Record<Screen, import("@/lib/funnelAnaly
 };
 
 const STORAGE_KEY = "evolver_transition_quiz_v2";
-const DIRECTION_CALL_HREF = "https://cal.com/aleksandrkonstantinov/exploration";
+export const DIRECTION_CALL_HREF = "https://cal.com/aleksandrkonstantinov/exploration";
 
 const UNIQUENESS_VALUES: UniquenessCategory[] = [
   "discovery",
@@ -294,7 +294,7 @@ const TransitionQuizPage = () => {
   // after a non-"closed" Buying Frame answer.
   useEffect(() => {
     if (
-      screen === "means" &&
+      screen === "buyingFrame" &&
       means &&
       buyingFrame &&
       coreAnswers &&
@@ -352,7 +352,7 @@ const TransitionQuizPage = () => {
     }
   }, [screen, shareUrl]);
 
-  // Brief loading beat between Q4 and the result (§Roast finding: not its
+  // Brief loading beat between Q3 and the result (§Roast finding: not its
   // own atomic screen conceptually, but a short transition so the result
   // doesn't feel instant/cheap).
   useEffect(() => {
@@ -361,7 +361,7 @@ const TransitionQuizPage = () => {
     return () => window.clearTimeout(id);
   }, [screen, goTo]);
 
-  // ── Analytics: per-screen mount events (quiz_entry, quiz_q1..quiz_q4) ────
+  // ── Analytics: per-screen mount events (quiz_entry, quiz_q1..quiz_q3) ────
   useEffect(() => {
     const step = SCREEN_TO_ANALYTICS_STEP[screen];
     if (step) trackPageView(step);
@@ -376,7 +376,7 @@ const TransitionQuizPage = () => {
         <title>Where Are You — a free read of what chapter you're actually in</title>
         <meta
           name="description"
-          content="Four questions. A free, honest read of what chapter you're in, why the pieces aren't lining up, and what is trying to happen next."
+          content="Three questions. A free, honest read of what chapter you're in, why the pieces aren't lining up, and what is trying to happen next."
         />
       </Helmet>
       <div className="tq-shell">
@@ -432,17 +432,7 @@ const TransitionQuizPage = () => {
             i18nKey="quiz.q3"
             values={WORK_STAGE_VALUES}
             current={emergingWorkStage}
-            onPick={(v) => goTo("q4", { emergingWorkStage: v })}
-          />
-        )}
-
-        {screen === "q4" && (
-          <ChoiceScreen
-            t={t}
-            i18nKey="quiz.q4"
-            values={CLARITY_VALUES}
-            current={clarityUnlock}
-            onPick={(v) => goTo("loading", { clarityUnlock: v })}
+            onPick={(v) => goTo("loading", { emergingWorkStage: v })}
           />
         )}
 
@@ -470,7 +460,9 @@ const TransitionQuizPage = () => {
           <BuyingFrameScreen
             t={t}
             current={buyingFrame}
+            means={means}
             onPick={(v) => goTo("buyingFrame", { buyingFrame: v })}
+            onPickMeans={(v) => goTo("buyingFrame", { means: v })}
             route={buyingFrame ? routeAfterBuyingFrame(buyingFrame) : null}
             onRetake={reset}
           />
@@ -511,7 +503,7 @@ function Q1Screen({ t, onPick }: { t: (k: string, o?: Record<string, unknown>) =
 
   return (
     <section className="tq-card tq-inscribed">
-      <p className="tq-question-count">{t("quiz.progressLabel", { current: 1, total: 4 }) as string}</p>
+      <p className="tq-question-count">{t("quiz.progressLabel", { current: 1, total: 3 }) as string}</p>
       <p className="tq-question-prompt">{t("quiz.q1.prompt") as string}</p>
       <div className={`tq-options${options.length >= 6 ? " tq-options--dense" : ""}`}>
         {options.map((opt, i) => (
@@ -775,7 +767,7 @@ function ChoiceScreen<V extends string>({
 
   return (
     <section className="tq-card tq-inscribed">
-      <p className="tq-question-count">{t("quiz.progressLabel", { current: data.order, total: 4 }) as string}</p>
+      <p className="tq-question-count">{t("quiz.progressLabel", { current: data.order, total: 3 }) as string}</p>
       {data.framing && <p className="tq-quiet-line">{data.framing}</p>}
       <p className="tq-question-prompt" style={data.framing ? { marginTop: 14 } : undefined}>{data.prompt}</p>
       <div className={`tq-options${values.length >= 6 ? " tq-options--dense" : ""}`}>
@@ -874,7 +866,6 @@ export function ResultScreen({
     nextMove: string;
   };
   const workClause = t(workStageClauseKey(answers.emergingWorkStage)) as string;
-  const clarityClause = t(clarityClauseKey(answers.clarityUnlock)) as string;
 
   return (
     <section className="tq-card tq-result-card">
@@ -895,9 +886,6 @@ export function ResultScreen({
       <div className="tq-section">
         <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.nextLabel") as string}</p>
         <p className="tq-body-text tq-measure">{beats.nextMove}</p>
-        <p className="tq-body-text tq-quiet-line tq-measure">
-          {t("quiz.result.clarityLead", { clause: clarityClause }) as string}
-        </p>
       </div>
 
       <hr className="tq-take-what-divider" />
@@ -1001,17 +989,22 @@ function BelievabilityQuote({ t, stage }: { t: (k: string, o?: Record<string, un
 function BuyingFrameScreen({
   t,
   current,
+  means,
   onPick,
+  onPickMeans,
   route,
   onRetake,
 }: {
   t: (k: string, o?: Record<string, unknown>) => unknown;
   current: BuyingFrame | null;
+  means: Means | null;
   onPick: (v: BuyingFrame) => void;
+  onPickMeans: (v: Means) => void;
   route: "directionCall" | "crossedPeer" | "none" | null;
   onRetake: () => void;
 }) {
   const options = t("quiz.buyingFrame.options", { returnObjects: true }) as Record<string, string>;
+  const meansOptions = t("quiz.means.options", { returnObjects: true }) as Record<string, string>;
 
   if (!current) {
     return (
@@ -1025,6 +1018,24 @@ function BuyingFrameScreen({
             <button key={v} type="button" className="tq-option" onClick={() => onPick(v)}>
               <span className="tq-option-letter">{i + 1}</span>
               <span>{options[v]}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  // The Means companion question (Gate 2), asked once, after any
+  // non-"closed" Buying Frame answer and before the Direction Call door.
+  if (route === "directionCall" && !means) {
+    return (
+      <section className="tq-card">
+        <p className="tq-question-prompt">{t("quiz.means.prompt") as string}</p>
+        <div className="tq-options">
+          {MEANS_VALUES.map((v, i) => (
+            <button key={v} type="button" className="tq-option" onClick={() => onPickMeans(v)}>
+              <span className="tq-option-letter">{i + 1}</span>
+              <span>{meansOptions[v]}</span>
             </button>
           ))}
         </div>

@@ -7360,7 +7360,7 @@
     "entry": {
       "eyebrow": "Free. About two minutes.",
       "title": "See what hero's journey chapter you're actually in.",
-      "honestyLine": "Four short questions. You'll see what chapter you're in, why things feel off, and what might already be starting to happen next.",
+      "honestyLine": "Three short questions. You'll see what chapter you're in, why things feel off, and what might already be starting to happen next.",
       "cta": "See where I am"
     },
     "q1": {
@@ -7454,22 +7454,9 @@
       },
       "framing": "Same lens, now pointed forward: the next chapter of your work, however faint or clear it is today."
     },
-    "q4": {
-      "order": 4,
-      "prompt": "If that sentence appeared today, what would it change first?",
-      "options": {
-        "personal": "I would understand myself better.",
-        "direction": "I would know which direction to pursue.",
-        "current_work": "I would explain my current work more clearly.",
-        "emerging_business": "I would shape a business, practice, or body of work I'm already building.",
-        "near_term_exchange": "I could start offering, selling, or inviting people into something within weeks."
-      },
-      "framing": "The work behind this quiz turns what you carry into one exact sentence: who you are professionally, and what your next chapter is."
-    },
     "result": {
       "stageLabel": "Your chapter",
       "nextLabel": "What comes next",
-      "clarityLead": "The right next move would show up first in {{clause}}.",
       "takeWhatNote": "Take what is accurate here. Notice what isn't. The disagreement is information too.",
       "believability": {
         "intro": "From someone who stood in this chapter:"
@@ -7524,13 +7511,6 @@
         "working": "Right now, it's already working. People are starting to say yes.",
         "delivering": "Right now, the demand already exists. Your question is delivery, not discovery."
       },
-      "clarityClause": {
-        "personal": "how you understand yourself",
-        "direction": "which direction you actually pursue",
-        "current_work": "how clearly you can explain what you already do",
-        "emerging_business": "what you build next",
-        "near_term_exchange": "something you could put in front of people within weeks"
-      },
       "crossedPeer": {
         "heading": "Crossed. And it keeps working.",
         "body1": "You said the sentence, built the vehicle, and money answers. The map ends here, because your question is no longer naming. It is scale: transmission, reach, the next octave of the same pattern.",
@@ -7569,6 +7549,15 @@
         "5": "Uncannily"
       },
       "thankYou": "Noted. Thank you."
+    },
+    "means": {
+      "prompt": "If you found the right person to help you see and shape what comes next, is investing in that support currently realistic?",
+      "options": {
+        "yes_comfortably": "Yes, comfortably",
+        "yes_if_fit": "Yes, if the fit is clearly right",
+        "maybe_depending": "Maybe, depending on the investment",
+        "not_now": "Not right now"
+      }
     }
   },
   "homeLanding": {
