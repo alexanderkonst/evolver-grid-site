@@ -18,6 +18,11 @@ the session log) so the file only ever holds what's still pending.
 
 ---
 
+*Previously pending, now deployed (2026-07-30): quiz email capture +
+token-gated results export — `20260729210000_quiz_email_signups.sql` applied,
+`save-quiz-email` and `quiz-results-export` deployed, `QUIZ_RESULTS_EXPORT_TOKEN`
+set, all three verified live (test row deleted afterwards).*
+
 *Previously pending, now deployed (2026-07-29): the quiz vNext data layer —
 `20260729120000_transition_quiz_vnext_columns.sql` applied and
 `save-quiz-result` redeployed, verified with a live POST writing all six
