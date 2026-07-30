@@ -6,6 +6,12 @@ verify_jwt = false
 [functions.save-quiz-result]
 verify_jwt = false
 
+[functions.save-quiz-email]
+verify_jwt = false
+
+[functions.quiz-results-export]
+verify_jwt = false
+
 [functions.generate-qol-guidance]
 verify_jwt = true
 
