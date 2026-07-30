@@ -838,7 +838,7 @@ const ZoneOfGeniusEntry = () => {
                                 Rewrite: drop the artificial step counter, name
                                 WHY the top talent comes first (it's the signal)
                                 + what happens next (intros to people whose work
-                                meets yours). The "How do you want to reveal it?"
+                                meets yours). The "Which way?"
                                 question now sits directly above the CTAs as the
                                 interaction prompt, not as a page headline. */}
                             {/* Day 80 Wave 2.12 (Sasha 2026-05-22): copy revision.
@@ -898,7 +898,7 @@ const ZoneOfGeniusEntry = () => {
                                 </div>
                             )}
 
-                            {/* "How do you want to reveal it?" — moved DOWN to sit
+                            {/* "Which way?" — moved DOWN to sit
                                 directly above the two CTAs as the interaction
                                 prompt (not the page headline). Build-path users
                                 see only this question, no orientation paragraph.
