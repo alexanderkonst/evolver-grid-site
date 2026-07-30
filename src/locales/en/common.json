@@ -7546,9 +7546,24 @@
   },
   "directionCall": {
    "line1": "This quiz can show where you stand. It can't see enough of your life to tell you what these particular pieces become together.",
-   "line2": "If you want me to look at what they're trying to become, that's what the Direction Call is for.",
+   "line2": "If you want me to look at what these pieces are trying to become together, that's what the Direction Call is for. You leave knowing which direction to pursue.",
    "cta": "See what this is becoming",
    "sub": "Free. 45 minutes."
+  },
+  "saveRead": {
+   "label": "Save my read",
+   "confirmation": "Link copied. It's yours to keep."
+  },
+  "recognitionDelta": {
+   "prompt": "How accurately did this name what you've been living?",
+   "options": {
+    "1": "Not really",
+    "2": "Somewhat",
+    "3": "Mostly",
+    "4": "Very",
+    "5": "Uncannily"
+   },
+   "thankYou": "Noted. Thank you."
   }
  },
  "homeLanding": {
@@ -7624,6 +7639,9 @@
  "homeTruth": {
   "seoTitle": "Name what's next.",
   "seoDescription": "You've built real things. The sentence that used to explain you has stopped being true. Find the pattern underneath everything you've built and get exact words for it.",
+  "arcStrip": {
+   "line": "Seven chapters. Everyone is standing in one of them."
+  },
   "hero": {
    "headline": "Name what's next.",
    "body": "You've built real things. Companies, titles, bodies of work. And the sentence that used to explain you has stopped being true. The next chapter is already forming. It just doesn't have words yet.",
@@ -7640,6 +7658,9 @@
    "eyebrow": "Who this is for",
    "para1": "If you can say what you do in one breath and mean it, you don't need this. Enjoy the chapter you're in.",
    "para2": "This is for the ones holding five real threads and no sentence. Who hear falseness in their own answer at dinners. Who have paid for their own becoming before and called it good money. Who aren't looking for motivation, or a passion, or a fix. They're looking for the one person who can see the pattern they're standing inside."
+  },
+  "testimony": {
+   "eyebrow": "People who crossed"
   },
   "close": {
    "line1": "Your career is capped by how well you know yourself.",
