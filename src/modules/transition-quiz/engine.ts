@@ -1,4 +1,4 @@
-// Transition Quiz — diagnostic engine, vNext (lean 4-question edition).
+// Transition Quiz — diagnostic engine, vNext (lean 3-question edition).
 //
 // Pure functions only: no i18n, no React, no Supabase here — the page
 // component wires this to copy and persistence.
@@ -45,16 +45,17 @@ export type EmergingWorkStage =
   | "working"
   | "delivering";
 
-/** §9 — Q4, live real-world consequence ("clarity unlock"). */
-export type ClarityUnlock =
-  | "personal"
-  | "direction"
-  | "current_work"
-  | "emerging_business"
-  | "near_term_exchange";
-
 /** §10 — optional post-result commercial qualifier. */
 export type BuyingFrame = "open" | "mixed" | "open_no_history" | "closed";
+
+/**
+ * Means question (2026-07-29, Quiz v2.1 follow-up) — companion to the
+ * Buying Frame qualifier. Shown only on ripe routes, only after a
+ * non-"closed" Buying Frame answer, right before the Direction Call
+ * block reveals. Doesn't change routing — it's logged alongside the
+ * completion, not gated on.
+ */
+export type Means = "yes_comfortably" | "yes_if_fit" | "maybe_depending" | "not_now";
 
 export type Route = "directionCall" | "crossedPeer" | "none";
 
@@ -73,7 +74,6 @@ export interface CoreAnswers {
   stage: Stage;
   uniqueness: UniquenessCategory;
   emergingWorkStage: EmergingWorkStage;
-  clarityUnlock: ClarityUnlock;
 }
 
 /**
@@ -165,10 +165,6 @@ export function workStageClauseKey(stage: EmergingWorkStage): string {
   return `quiz.result.workStageClause.${stage}`;
 }
 
-export function clarityClauseKey(clarity: ClarityUnlock): string {
-  return `quiz.result.clarityClause.${clarity}`;
-}
-
 // ── Shareable/resumable encoding ──────────────────────────────────────────
 // Small enough to round-trip through a URL query param — a result can be
 // shared or resumed with no server round-trip. Supabase persistence (via
@@ -179,8 +175,8 @@ export interface QuizShareState {
   stage: Stage;
   uniqueness?: UniquenessCategory;
   emergingWorkStage?: EmergingWorkStage;
-  clarityUnlock?: ClarityUnlock;
   buyingFrame?: BuyingFrame;
+  means?: Means;
   email?: string;
 }
 

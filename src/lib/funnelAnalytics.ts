@@ -36,8 +36,8 @@ export type FunnelStep =
   | "quiz_q1"           // Q1 (stage placement) screen mount
   | "quiz_q2"           // Q2 (uniqueness) screen mount
   | "quiz_q3"           // Q3 (emerging-work stage) screen mount
-  | "quiz_q4"           // Q4 (clarity unlock) screen mount
   | "quiz_result"       // Result screen rendered (template travels as `source`)
+  | "quiz_means"        // Means question screen mount (post buying-frame, ripe routes only)
   | "quiz_cta_click"    // Any Direction Call / crossed-peer CTA click
   | "quiz_permalink_saved" // "Save my read" tapped
   | "quiz_delta_answered"  // Recognition Delta widget answered
