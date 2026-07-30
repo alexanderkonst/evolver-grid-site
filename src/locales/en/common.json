@@ -7464,7 +7464,7 @@
       "selectionNote": "I offer this call only where I can be most useful. Your answers just did the choosing.",
       "honestEnding": "That's the complete read. No pitch, nothing else to unlock. Retake anytime if your answers change.",
       "chapter": {
-        "4": "Something that carried you is over. The next chapter hasn't organized itself yet, and that's expected this soon after.",
+        "4": "The way you made money stopped working the same. The next chapter hasn't organized itself yet, and that's expected this soon after.",
         "5": "You're between chapters. The old answer is over, but the next one isn't clear enough yet to organize your choices around.",
         "6": "You can feel the next chapter forming. You just can't say it clearly enough yet to stand behind it in public.",
         "7": "The next chapter is already real. You're building actual life around it now."
@@ -7536,7 +7536,10 @@
     },
     "saveRead": {
       "label": "Save my read",
-      "confirmation": "Link copied. It's yours to keep."
+      "confirmation": "Link copied. It's yours to keep.",
+      "sendCta": "Email me my read",
+      "sentConfirmation": "On its way to your inbox.",
+      "orOpenLink": "Or open it now"
     },
     "recognitionDelta": {
       "prompt": "How accurately did this name what you've been living?",
