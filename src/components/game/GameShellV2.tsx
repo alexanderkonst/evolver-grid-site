@@ -1376,17 +1376,18 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         path === "/ai-os/design" ||
         path === "/codex" || // /codex routes through ai-os
         path === "/ai-os/benchmark"; // Day 52: benchmark page owns its own dark canvas
-    // Day 65 (Sasha 2026-05-14): /ignite is an immersive dark page that
-    // mounts its own full-bleed HLS video + dark wash. On mobile, the
-    // shell's <main> previously painted a 16px cream `pt-4` strip + ~55%
-    // cream background that peeked above the page's own video, reading
-    // as a stray light bar between the navy mobile header and the dark
-    // page. We don't want to add /ignite to `pageOwnsBackground` (that
-    // flag also restyles SpacesRail + SectionsPanel, which is /ai-os
-    // specific). Instead, a tighter mobile-only flag suppresses just
-    // the cream pt-4 + main background for immersive dark routes —
-    // panel chrome stays unchanged.
-    const isImmersiveDarkRoute = path === "/ignite";
+    // Day 65 (Sasha 2026-05-14): /ignite used to be an immersive dark page
+    // that mounted its own full-bleed HLS video + dark wash, so the shell
+    // suppressed its own background underneath it (see 0b418c1f "Remove
+    // dynamic overlay from Ignite" — that video is long gone).
+    // Day 131 (Sasha 2026-07-30) reskin put /ignite on the same warm
+    // parchment field as /home, but this flag kept suppressing the
+    // shell's background layer (the lapis texture / Mux dust / pane-3
+    // wash), so /ignite rendered as a flat, textureless cream instead of
+    // matching /home's watercolor field. No route currently needs this
+    // suppression, so it's inert (false) rather than deleted, in case a
+    // future route mounts its own full-bleed background again.
+    const isImmersiveDarkRoute = false;
     // Day 75 (Sasha 2026-05-20): Equilibrium gets a clean static backdrop
     // instead of the Mux cosmic-sunset video. The video was doing ~70% of
     // the chroma work and reading as "yellow on yellow" — Sasha's call:
