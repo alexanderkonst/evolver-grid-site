@@ -1117,7 +1117,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
 
     // ═══ PROGRESSIVE UNLOCK — Fog of War ═══
     // Journey is always open. Other spaces unlock as the user advances through methodology steps.
-    // Step 1 complete (ZoG done)       → ME unlocks
+    // Quiz completion                  → ME begins (local first, claimed cross-device)
     // Step 2 complete (Ignition done)  → BUILD unlocks
     // Step 3+ (advancing)              → LEARN, MEET, COLLABORATE, OFFER unlock progressively
     const zogComplete = ["zog_complete", "qol_started", "qol_complete", "offer_complete", "recipe_complete", "unlocked"].includes(stage);
@@ -1208,7 +1208,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // "Unlocks after Step 1" to the proper product language:
     // "Unlocks after your Find Your Top Talent Reveal." Hovered
     // via the native `title` attribute on the locked chip.
-    // Day 135 (Sasha): ME unlock toast — fires ONCE, ever, the moment T+M+A
+    // Day 135 (Sasha): legacy ME unlock toast — fires ONCE when T+M+A
     // completes (independent of the nudge badge above, which persists until
     // the user actually opens ME; this flag persists forever so a refresh,
     // re-login, or later re-completion never re-fires it). localStorage
