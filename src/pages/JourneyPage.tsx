@@ -1,8 +1,11 @@
-import { useLocation, useNavigationType } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate, useNavigationType } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import MethodologyLandingPage from "@/pages/MethodologyLandingPage";
 import MatchHero from "@/components/landing/MatchHero";
 import { useEntryPath } from "@/contexts/EntryPathContext";
+import { shouldRouteToQuiz, markDoorSeen } from "@/lib/doorRouter";
+import { supabase } from "@/integrations/supabase/client";
 
 /**
  * JourneyPage — the JOURNEY space main page.
@@ -37,9 +40,51 @@ import { useEntryPath } from "@/contexts/EntryPathContext";
  */
 const JourneyPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const navigationType = useNavigationType();
   const { path: entryPath } = useEntryPath();
   const urlPath = new URLSearchParams(location.search).get("path");
+
+  // First-visit door (Sasha 2026-07-30, see src/lib/doorRouter.ts): a
+  // first-time anonymous visitor landing on `/` meets the quiz instead
+  // of the homepage. Flip QUIZ_FIRST_DOOR to false there to roll back.
+  // `checking` guards the homepage from flashing before the redirect
+  // (or before we've confirmed there's no redirect) fires.
+  const [checkingDoor, setCheckingDoor] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    (async () => {
+      let isAuthed = false;
+      try {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        isAuthed = !!session?.user?.id;
+      } catch {
+        isAuthed = false;
+      }
+
+      if (cancelled) return;
+
+      if (shouldRouteToQuiz(location.search, isAuthed)) {
+        markDoorSeen();
+        navigate("/quiz", { replace: true });
+        return;
+      }
+
+      setCheckingDoor(false);
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+    // Only run once per mount of `/` — location.search only matters at
+    // the moment of the check, re-checking on every render would risk
+    // re-firing after the redirect flag is already set.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // URL is always authoritative when it carries an explicit `?path=` value.
   // Without it, behavior depends on how we arrived: fresh load = URL only
@@ -49,6 +94,8 @@ const JourneyPage = () => {
     (urlPath === null &&
       navigationType !== "POP" &&
       entryPath === "match");
+
+  if (checkingDoor) return null;
 
   return (
     <GameShellV2>
