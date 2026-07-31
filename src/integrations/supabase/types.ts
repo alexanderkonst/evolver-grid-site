@@ -2310,6 +2310,7 @@ export type Database = {
           route_shown: string | null
           stage: number
           uniqueness_category: string | null
+          user_id: string | null
         }
         Insert: {
           aspect_derived_stage?: number | null
@@ -2336,6 +2337,7 @@ export type Database = {
           route_shown?: string | null
           stage: number
           uniqueness_category?: string | null
+          user_id?: string | null
         }
         Update: {
           aspect_derived_stage?: number | null
@@ -2362,6 +2364,7 @@ export type Database = {
           route_shown?: string | null
           stage?: number
           uniqueness_category?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }
