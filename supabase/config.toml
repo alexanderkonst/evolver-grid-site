@@ -18,6 +18,13 @@ verify_jwt = false
 [functions.get-quiz-result]
 verify_jwt = false
 
+# Day 138 (2026-07-30): claim path for a saved quiz read. Unlike the rest of
+# the quiz functions, this one IS auth-gated — the caller's own JWT is the
+# identity source (never a client-supplied uid), and it only ever attaches
+# a currently-unowned row to that account.
+[functions.claim-quiz-result]
+verify_jwt = true
+
 [functions.generate-qol-guidance]
 verify_jwt = true
 

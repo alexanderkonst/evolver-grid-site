@@ -12,6 +12,7 @@ import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
 import { useDeeperAccess } from "@/hooks/useDeeperAccess";
 import { useEntitlement } from "@/hooks/useEntitlement";
 import { useJourneyProgress, type JourneyProgress } from "@/hooks/useJourneyProgress";
+import { useLinkedQuizResult, type LinkedQuizResult } from "@/hooks/useLinkedQuizResult";
 import { useEntryPath } from "@/contexts/EntryPathContext";
 import { useSkin } from "@/contexts/SkinContext";
 import {
@@ -88,6 +89,14 @@ interface Section {
      * simplicity; callers pass an empty string.
      */
     isHeader?: boolean;
+    /**
+     * Day 138 (Sasha 2026-07-30): arbitrary content rendered beneath the
+     * row, indented to align with the label. Introduced for JOURNEY Step 0
+     * (the quiz's mini seven-tick arc + "Retake" link) — kept generic so
+     * other panes can reuse the slot without a bespoke field per feature.
+     * Hidden while the row is locked, same as `progress`.
+     */
+    detail?: ReactNode;
 }
 
 interface SpaceSections {
@@ -603,6 +612,77 @@ const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Secti
 
 type EntryPath = "match" | "build" | null;
 
+/**
+ * QuizMiniArc — JOURNEY Step 0's detail slot (Day 138, Sasha 2026-07-30).
+ *
+ * Reuses the Transition Quiz's seven-tick arc VISUAL PATTERN (gold node at
+ * the user's stage, chapter name beneath) without cross-importing from
+ * `src/modules/transition-quiz` — a standalone copy scoped to this file,
+ * per the batch's explicit instruction. Any future visual change to one
+ * doesn't silently ripple to the other; if they need to converge later,
+ * that's a deliberate follow-up, not an accident of a shared import.
+ */
+function QuizMiniArc({
+    stage,
+    stageNames,
+    retakeLabel,
+    onRetake,
+}: {
+    stage: number;
+    stageNames: Record<string, string>;
+    retakeLabel: string;
+    onRetake: () => void;
+}) {
+    const stages = [1, 2, 3, 4, 5, 6, 7];
+    const chapterName = stageNames[String(stage)] ?? "";
+
+    return (
+        <div className="pt-1 pb-0.5">
+            <div className="flex items-center gap-1" aria-label={`Stage ${stage} of 7`}>
+                {stages.map((n) => (
+                    <span
+                        key={n}
+                        className="rounded-full flex-shrink-0"
+                        style={
+                            n === stage
+                                ? {
+                                      width: 8,
+                                      height: 8,
+                                      background: "#f4d472",
+                                      boxShadow: "0 0 6px rgba(244, 212, 114, 0.65)",
+                                  }
+                                : {
+                                      width: 6,
+                                      height: 6,
+                                      background: "rgba(255, 255, 255, 0.18)",
+                                  }
+                        }
+                    />
+                ))}
+            </div>
+            {chapterName && (
+                <p
+                    className="mt-1 text-[13px] italic"
+                    style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        color: "rgba(244, 212, 114, 0.85)",
+                    }}
+                >
+                    {chapterName}
+                </p>
+            )}
+            <button
+                type="button"
+                onClick={onRetake}
+                className="mt-0.5 text-[11px] underline opacity-60 hover:opacity-90 transition-opacity"
+                style={{ color: "var(--skin-sections-text, rgba(255,255,255,0.85))" }}
+            >
+                {retakeLabel}
+            </button>
+        </div>
+    );
+}
+
 const buildJourneySections = (
     t: TFunction,
     _currentPath: string,
@@ -624,6 +704,12 @@ const buildJourneySections = (
     journeyProgress: JourneyProgress = {},
     entryPath: EntryPath = null,
     activationDone: boolean = false,
+    // Day 138 (Sasha 2026-07-30): JOURNEY Step 0 — "See what hero's
+    // journey chapter you're in." Sits above the numbered 1→2→3→4→5 path
+    // (its own unnumbered "Step 0"), links to /quiz, and shows a mini
+    // seven-tick arc + chapter name once the user has a linked result.
+    linkedQuizResult: LinkedQuizResult | null = null,
+    onRetakeQuiz: () => void = () => {},
 ): Section[] => {
     // Funnel v2 (Day 77, Sasha 2026-05-20) + Day 80 path-awareness +
     // Day 79 QoL optionality (Sasha 2026-05-22):
@@ -728,7 +814,27 @@ const buildJourneySections = (
           }
         : null;
 
+    const quizStep0Done = !!linkedQuizResult;
+    const quizStageNames = t("quiz.stageNames", { returnObjects: true }) as Record<string, string>;
+    const quizStep0Item: Section = {
+        id: "journey-quiz-step0",
+        label: t("rail.journey.quizStep0.label"),
+        path: "/quiz",
+        completed: quizStep0Done,
+        detail: quizStep0Done
+            ? (
+                  <QuizMiniArc
+                      stage={linkedQuizResult!.stage}
+                      stageNames={quizStageNames}
+                      retakeLabel={t("rail.journey.quizStep0.retake")}
+                      onRetake={onRetakeQuiz}
+                  />
+              )
+            : undefined,
+    };
+
     return [
+        quizStep0Item,
         {
             id: "journey-start-here",
             label: t("rail.journey.startHere.label"),
@@ -948,6 +1054,13 @@ const SectionsPanel = ({
     // and UBB's 18-artifact completion arc) simply never strike through.
     const { progress: journeyProgress } = useJourneyProgress();
 
+    // Day 138 (Sasha 2026-07-30): JOURNEY Step 0 completion signal — the
+    // user's most recent linked quiz result, if any.
+    const { result: linkedQuizResult } = useLinkedQuizResult();
+    const handleRetakeQuiz = () => {
+        onSectionSelect?.("/quiz");
+    };
+
     // Day 66 wave M (Sasha 2026-05-16): draw-in animation for items
     // that JUST flipped from un-completed to completed during this
     // session (e.g., after the user saves their mission, item #8's
@@ -1020,7 +1133,16 @@ const SectionsPanel = ({
         if (activeSpaceId === "journey") {
             return {
                 ...baseData,
-                sections: buildJourneySections(t, location.pathname, hasDeeperAccess, journeyProgress, entryPath, activationDone),
+                sections: buildJourneySections(
+                    t,
+                    location.pathname,
+                    hasDeeperAccess,
+                    journeyProgress,
+                    entryPath,
+                    activationDone,
+                    linkedQuizResult,
+                    handleRetakeQuiz,
+                ),
             };
         }
 
@@ -1962,6 +2084,10 @@ const SectionsPanel = ({
                                         />
                                     </div>
                                 </div>
+                            )}
+
+                            {section.detail && !isLocked && (
+                                <div className="mx-2 mb-1 px-3">{section.detail}</div>
                             )}
 
                             {/* Sub-sections — Day 52 (Sasha 2026-04-26):

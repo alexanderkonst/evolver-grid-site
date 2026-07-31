@@ -408,6 +408,10 @@
       "lockedCount": "{{locked}} of {{total}} locked"
     },
     "journey": {
+      "quizStep0": {
+        "label": "Step 0 · See what hero's journey chapter you're in",
+        "retake": "Retake"
+      },
       "startHere": {
         "label": "1. Start by finding your top talent"
       },
@@ -7560,6 +7564,13 @@
         "maybe_depending": "Maybe, depending on the investment",
         "not_now": "Not right now"
       }
+    },
+    "claimRead": {
+      "prompt": "Keep this read in my profile",
+      "cta": "Save to profile",
+      "saving": "Saving…",
+      "saved": "Saved to your profile.",
+      "error": "Couldn't save it — try again in a moment."
     }
   },
   "homeLanding": {

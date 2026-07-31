@@ -12,6 +12,7 @@ import { useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 import {
   type CoreAnswers,
   type Stage,
@@ -29,6 +30,83 @@ interface FetchedResult {
   uniqueness_category: CoreAnswers["uniqueness"] | null;
   emerging_work_stage: CoreAnswers["emergingWorkStage"] | null;
   result_template: string | null;
+  // get-quiz-result returns this as a boolean (never the raw user_id, to
+  // avoid leaking an auth uid on a public/no-auth endpoint) — used only to
+  // decide whether to show the claim line (already-owned rows never show it).
+  owned?: boolean;
+}
+
+// Claim path (2026-07-30, JOURNEY Step 0 batch): a quiet line + button
+// shown only when the viewer is logged in AND the fetched row has no
+// user_id yet. Kept as its own component so the loading/notFound/error
+// branches above stay untouched.
+type ClaimState = "idle" | "checking" | "eligible" | "ineligible" | "claiming" | "claimed" | "error";
+
+function ClaimReadLine({ resultId, alreadyOwned }: { resultId: string; alreadyOwned: boolean }) {
+  const { t } = useTranslation();
+  const [state, setState] = useState<ClaimState>("idle");
+
+  useEffect(() => {
+    if (alreadyOwned) {
+      setState("ineligible");
+      return;
+    }
+    let cancelled = false;
+    setState("checking");
+    supabase.auth.getUser().then(({ data }) => {
+      if (cancelled) return;
+      setState(data.user ? "eligible" : "ineligible");
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [alreadyOwned]);
+
+  const handleClaim = async () => {
+    setState("claiming");
+    try {
+      const { data: sessionData } = await supabase.auth.getSession();
+      const token = sessionData.session?.access_token;
+      if (!token) {
+        setState("eligible");
+        return;
+      }
+      const { error } = await supabase.functions.invoke("claim-quiz-result", {
+        body: { id: resultId },
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setState(error ? "error" : "claimed");
+    } catch {
+      setState("error");
+    }
+  };
+
+  if (state === "idle" || state === "checking" || state === "ineligible") return null;
+
+  return (
+    <div className="tq-claim-read">
+      {state === "claimed" ? (
+        <p className="tq-claim-read-line">{t("quiz.claimRead.saved") as string}</p>
+      ) : (
+        <>
+          <p className="tq-claim-read-line">{t("quiz.claimRead.prompt") as string}</p>
+          <button
+            type="button"
+            className="tq-link-quiet"
+            onClick={handleClaim}
+            disabled={state === "claiming"}
+          >
+            {state === "claiming"
+              ? (t("quiz.claimRead.saving") as string)
+              : (t("quiz.claimRead.cta") as string)}
+          </button>
+          {state === "error" && (
+            <p className="tq-claim-read-line tq-claim-read-error">{t("quiz.claimRead.error") as string}</p>
+          )}
+        </>
+      )}
+    </div>
+  );
 }
 
 type LoadState = "loading" | "notFound" | "ready" | "error";
@@ -165,23 +243,26 @@ function ReconstructedResult({
   const routing = computeRouting(answers);
 
   return (
-    <ResultScreen
-      t={t}
-      stageNames={stageNames}
-      answers={answers}
-      // A saved read keeps its door: the same Direction Call CTA the live
-      // result earned. On the permalink there is no interactive qualifier
-      // flow, so the button opens the booking page directly.
-      showBuyingFrame={routing.showBuyingFrame}
-      route={routing.route}
-      onContinue={() => {
-        window.open(DIRECTION_CALL_HREF, "_blank", "noopener");
-      }}
-      onRetake={() => {
-        window.location.href = "/quiz";
-      }}
-      resultId={result.id}
-    />
+    <>
+      <ResultScreen
+        t={t}
+        stageNames={stageNames}
+        answers={answers}
+        // A saved read keeps its door: the same Direction Call CTA the live
+        // result earned. On the permalink there is no interactive qualifier
+        // flow, so the button opens the booking page directly.
+        showBuyingFrame={routing.showBuyingFrame}
+        route={routing.route}
+        onContinue={() => {
+          window.open(DIRECTION_CALL_HREF, "_blank", "noopener");
+        }}
+        onRetake={() => {
+          window.location.href = "/quiz";
+        }}
+        resultId={result.id}
+      />
+      <ClaimReadLine resultId={result.id} alreadyOwned={!!result.owned} />
+    </>
   );
 }
 
