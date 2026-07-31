@@ -24,6 +24,22 @@
      now reads from this single token instead of its own ad hoc gradient. */
   --tq-gold: #a06d08;
   --tq-gold-gradient: linear-gradient(135deg, #a06d08 0%, #7a5108 45%, #6b4208 100%);
+  /* Semantic component tokens. Decorative atmosphere still belongs to the
+     page skin; interaction states consume this smaller, stable contract. */
+  --tq-ink: var(--skin-text-primary, #0a1628);
+  --tq-ink-muted: var(--skin-text-secondary, #33415c);
+  --tq-surface: rgba(255, 253, 247, 0.72);
+  --tq-surface-strong: rgba(255, 253, 247, 0.92);
+  --tq-border: rgba(160, 109, 8, 0.18);
+  --tq-border-strong: rgba(160, 109, 8, 0.42);
+  --tq-focus: rgba(122, 81, 8, 0.82);
+  --tq-danger: #9f3524;
+  --tq-success: #456a54;
+  --tq-shadow-soft: 0 18px 55px rgba(10, 22, 40, 0.08);
+  --tq-radius-card: 24px;
+  --tq-radius-control: 14px;
+  --tq-motion-fast: 160ms;
+  --tq-motion-medium: 320ms;
   transition: background-color 320ms ease;
 }
 
@@ -870,19 +886,81 @@
 /* ── Claim-read line (2026-07-30, JOURNEY Step 0 batch) ─────────────────── */
 .tq-claim-read {
   margin-top: 22px;
+  padding: 15px 18px;
+  border: 1px solid var(--tq-border);
+  border-radius: var(--tq-radius-control);
+  background: var(--tq-surface);
+  box-shadow: var(--tq-shadow-soft);
   text-align: center;
 }
 
 .tq-claim-read-line {
   font: 500 0.82rem/1.5 "DM Sans", sans-serif;
-  color: var(--skin-text-secondary, #33415c);
-  opacity: 0.78;
+  color: var(--tq-ink-muted);
+  opacity: 0.86;
   margin: 0 0 2px;
 }
 
 .tq-claim-read-error {
-  color: #b3432b;
-  opacity: 0.85;
+  color: var(--tq-danger);
+  opacity: 1;
+}
+
+.tq-claim-read-placeholder {
+  display: block;
+  width: min(280px, 72%);
+  height: 12px;
+  margin: 4px auto;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(51, 65, 92, 0.08),
+    rgba(160, 109, 8, 0.16),
+    rgba(51, 65, 92, 0.08)
+  );
+  background-size: 220% 100%;
+  animation: tq-shimmer 1.4s ease-in-out infinite;
+}
+
+.tq-status-card,
+.tq-status-copy {
+  text-align: center;
+}
+
+.tq-status-card {
+  border-color: var(--tq-border);
+  background: var(--tq-surface-strong);
+}
+
+.tq-loading-orbit {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 18px;
+  border: 1px solid var(--tq-border);
+  border-top-color: var(--tq-gold);
+  border-right-color: var(--tq-border-strong);
+  border-radius: 50%;
+  box-shadow: 0 0 24px rgba(160, 109, 8, 0.12);
+  animation: tq-orbit 900ms linear infinite;
+}
+
+@keyframes tq-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tq-shimmer {
+  to {
+    background-position: -220% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tq-loading-orbit,
+  .tq-claim-read-placeholder {
+    animation: none;
+  }
 }
 
 @media (min-width: 640px) {
