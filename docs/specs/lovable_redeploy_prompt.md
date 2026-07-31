@@ -13,87 +13,54 @@ the session log) so the file only ever holds what's still pending.
 
 ## Pending
 
-### 6. Quiz results linked to profiles + claim path (2026-07-30)
+### 7. Combined batch: profile linking, one-row passages, saved-read email (2026-07-30)
 
 ```
-Please run this migration and deploy these three functions — all
-additive, no other table/policy/function should be touched:
+Please apply these changes from the repo, exactly as written — all
+additive, nothing else touched:
 
-1. Run migration `supabase/migrations/20260730220000_quiz_user_link.sql`
-   (adds a nullable `user_id` column + index to `transition_quiz_results`,
-   plus a select policy `transition_quiz_results_select_own` allowing
-   `auth.uid() = user_id` reads).
+1. Run migration supabase/migrations/20260730220000_quiz_user_link.sql
+   (adds nullable `user_id` + index to `transition_quiz_results`, plus a
+   select policy `transition_quiz_results_select_own` allowing
+   auth.uid() = user_id reads).
 
-2. Redeploy `save-quiz-result` (now optionally accepts and writes
-   `user_id` on the insert path; unchanged otherwise).
+2. Redeploy `save-quiz-result` from its current repo source. This single
+   redeploy carries two additive changes: the insert path optionally
+   accepts and writes `user_id`, and the update branch (id present, no
+   stage) now also accepts buying_frame, means, direction_call_shown,
+   and route_shown — validated against the existing whitelists, updating
+   only the fields sent — so one person's passage stays one row.
 
 3. Redeploy `get-quiz-result` (now also returns an `owned` boolean —
-   whether the row already has a user_id — so the permalink page knows
-   whether to show the claim line; never returns the raw user_id).
+   whether the row already has a user_id — never the raw user_id).
 
-4. Deploy `claim-quiz-result` (new function — `verify_jwt = true` in
+4. Deploy `claim-quiz-result` (new function, verify_jwt = true in
    config.toml). Auth-gated: lets a logged-in viewer of a quiz permalink
-   attach that saved read to their own account if it isn't already
-   linked to one.
+   attach that saved read to their own account if it isn't already linked.
+
+5. Wire outgoing email on the existing `save-quiz-email` function (the
+   email server is Lovable-managed): when a row arrives with `source`
+   starting with "save_read:", send that address a short branded email
+   containing the permalink
+   https://findyourtoptalent.com/quiz/r/<id> — the <id> is the part of
+   the `source` value after the colon.
+   Subject: Your read — Where Are You
+   Body: one line ("Here is your saved read, yours to keep:") plus the
+   link. Any other `source` value: no send (the seven-chapters map email
+   is a separate future ask). Collection keeps working as now either way.
 
 Nothing else needs to change.
 ```
 
-**Verifying it worked:** take the quiz while logged in — the JOURNEY pane
-should show "Step 0 · See what hero's journey chapter you're in" as done,
-with a small seven-tick arc and the chapter name. On a permalink
-(`/quiz/r/<id>`) for a result taken while logged out, logging in should
-show a quiet "Keep this read in my profile" line; tapping it should make
-Step 0 pick up that result on next JOURNEY visit.
-
----
-
-### 4. Outgoing email for saved quiz reads (2026-07-30)
-
-```
-Please wire outgoing email on the existing `save-quiz-email` edge function
-(the email server is Lovable-managed). One change, additive:
-
-When a row arrives with `source` starting with "save_read:", send that
-address a short branded email containing the permalink
-https://findyourtoptalent.com/quiz/r/<id> — the <id> is the part of the
-`source` value after the colon.
-
-Subject: Your read — Where Are You
-Body: one line ("Here is your saved read, yours to keep:") plus the link.
-
-When a row arrives with any other `source` value, do not send anything
-(the seven-chapters map email is a separate future ask). Email collection
-must keep working exactly as it does now in both cases.
-
-Nothing else needs to change. No table, policy, or other function should
-be touched.
-```
-
-**Verifying it worked:** take the quiz on findyourtoptalent.com/quiz, tap
-"Save my read", enter a real address — the permalink email should arrive
-within a minute, and the row should still appear in `quiz_email_signups`.
-
----
-
-### 5. Redeploy `save-quiz-result` — one row per passage (2026-07-30, data hygiene #22)
-
-```
-Please redeploy the `save-quiz-result` edge function from its current
-source in the repo. No schema change, no new table.
-
-What changed: the update branch (id present, no stage) now also accepts
-buying_frame, means, direction_call_shown, and route_shown, validated
-against the same whitelists as the rest of the function, updating only
-the fields actually sent. This lets the client update one already-inserted
-completion row instead of inserting a new additive row for each answer,
-so one person's passage through the quiz stays one row.
-```
-
-**Verifying it worked:** take the quiz on findyourtoptalent.com/quiz down
-a ripe path (answer through Buying Frame and Means) — `transition_quiz_results`
-should show one row for that pass with `buying_frame` and `means` both
-filled in, not separate rows.
+**Verifying it worked:**
+- Take the quiz on findyourtoptalent.com/quiz down a ripe path while
+  logged in: `transition_quiz_results` shows ONE row for the pass with
+  buying_frame and means filled in, user_id set; the JOURNEY pane shows
+  Step 0 as done with your chapter on the mini arc.
+- Tap "Save my read" with a real address: the permalink email arrives
+  within a minute, and the row appears in `quiz_email_signups`.
+- Open a logged-out read's permalink while logged in: the "Keep this
+  read in my profile" line appears; clicking it links the row.
 
 ---
 
