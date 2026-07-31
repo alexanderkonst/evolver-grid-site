@@ -54,6 +54,12 @@ interface SaveQuizResultPayload {
   // Means companion question (Gate 2), asked post-result after a
   // non-"closed" Buying Frame answer. Logged on the means completion event.
   means?: (typeof MEANS_VALUES)[number] | null;
+  // Optional account link (2026-07-30, JOURNEY Step 0 batch). Client-supplied
+  // uid on a no-auth endpoint is acceptable here per this function's existing
+  // design posture — the data is non-sensitive self-report, and this is the
+  // same trust boundary the rest of the payload already crosses. Validated
+  // as a UUID; never trusted for anything privileged.
+  user_id?: string | null;
 }
 
 const MEANS_VALUES = ["yes_comfortably", "yes_if_fit", "maybe_depending", "not_now"] as const;
@@ -81,16 +87,47 @@ Deno.serve(async (req) => {
   try {
     const body = (await req.json()) as SaveQuizResultPayload;
 
-    // Recognition Delta branch: id + recognition_delta only, no stage —
-    // this updates an already-inserted row rather than inserting a new
-    // one. Kept as an early, distinct branch so the main insert path
-    // below stays exactly as it was.
-    if (body.id !== undefined && body.recognition_delta !== undefined && body.stage === undefined) {
+    // Update branch: id present, no stage — this updates an
+    // already-inserted row (from the initial completion insert) rather
+    // than inserting a new one. Started with recognition_delta only;
+    // extended 2026-07-30 (data hygiene #22) to also cover buying_frame,
+    // means, direction_call_shown and route_shown, so one person's
+    // passage stays one row instead of fragmenting into additive inserts.
+    // Only fields actually provided are validated and written.
+    if (body.id !== undefined && body.stage === undefined) {
       if (!body.id || !UUID_RE.test(body.id)) {
         return json(400, { error: "invalid_id" });
       }
-      if (!isValidRecognitionDelta(body.recognition_delta)) {
-        return json(400, { error: "invalid_recognition_delta" });
+
+      const updateRow: Record<string, unknown> = {};
+
+      if (body.recognition_delta !== undefined) {
+        if (!isValidRecognitionDelta(body.recognition_delta)) {
+          return json(400, { error: "invalid_recognition_delta" });
+        }
+        updateRow.recognition_delta = body.recognition_delta;
+      }
+      if (body.buying_frame !== undefined) {
+        if (body.buying_frame !== null && !BUYING_FRAMES.includes(body.buying_frame)) {
+          return json(400, { error: "invalid_buying_frame" });
+        }
+        updateRow.buying_frame = body.buying_frame;
+      }
+      if (body.means !== undefined) {
+        if (body.means !== null && !MEANS_VALUES.includes(body.means)) {
+          return json(400, { error: "invalid_means" });
+        }
+        updateRow.means = body.means;
+      }
+      if (body.direction_call_shown !== undefined) {
+        updateRow.direction_call_shown = body.direction_call_shown;
+      }
+      if (body.route_shown !== undefined) {
+        updateRow.route_shown = body.route_shown;
+      }
+
+      if (Object.keys(updateRow).length === 0) {
+        return json(400, { error: "no_fields_to_update" });
       }
 
       const supabaseUrl = Deno.env.get("SUPABASE_URL");
@@ -105,11 +142,11 @@ Deno.serve(async (req) => {
 
       const { error } = await admin
         .from("transition_quiz_results")
-        .update({ recognition_delta: body.recognition_delta })
+        .update(updateRow)
         .eq("id", body.id);
 
       if (error) {
-        console.error("save-quiz-result: recognition_delta update failed", error);
+        console.error("save-quiz-result: update failed", error);
         return json(500, { error: "update_failed", detail: error.message });
       }
       return json(200, { ok: true });
@@ -163,6 +200,9 @@ Deno.serve(async (req) => {
     if (body.means && !MEANS_VALUES.includes(body.means)) {
       return json(400, { error: "invalid_means" });
     }
+    if (body.user_id !== undefined && body.user_id !== null && !UUID_RE.test(body.user_id)) {
+      return json(400, { error: "invalid_user_id" });
+    }
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
@@ -189,6 +229,7 @@ Deno.serve(async (req) => {
       locale: body.locale ?? null,
       aspect_derived_stage: body.aspect_derived_stage ?? null,
       has_stage_gap: body.has_stage_gap ?? null,
+      user_id: body.user_id ?? null,
     };
 
     const vNextRow = {
@@ -215,6 +256,19 @@ Deno.serve(async (req) => {
       ({ data, error } = await admin
         .from("transition_quiz_results")
         .insert(baseRow)
+        .select("id")
+        .single());
+    }
+
+    // Same graceful degradation for user_id (2026-07-30 batch): if that
+    // migration hasn't run yet either, drop it and retry once more rather
+    // than losing the completion entirely.
+    if (error && /column .* does not exist/i.test(error.message ?? "")) {
+      console.warn("save-quiz-result: user_id column missing, retrying without it", error.message);
+      const { user_id: _omit, ...baseRowNoUserId } = baseRow;
+      ({ data, error } = await admin
+        .from("transition_quiz_results")
+        .insert(baseRowNoUserId)
         .select("id")
         .single());
     }

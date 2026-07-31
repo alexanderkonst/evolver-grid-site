@@ -18,6 +18,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { markDoorSeen } from "@/lib/doorRouter";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
@@ -173,6 +174,12 @@ const TransitionQuizPage = () => {
     }
   }, [state]);
 
+  // First-visit door (see src/lib/doorRouter.ts): visiting /quiz directly
+  // counts as "seen" so a subsequent visit to `/` shows the real homepage.
+  useEffect(() => {
+    markDoorSeen();
+  }, []);
+
   const { screen, stage, uniqueness, emergingWorkStage, buyingFrame, means } = state;
   const stageNames = t("quiz.stageNames", { returnObjects: true }) as Record<string, string>;
 
@@ -218,6 +225,27 @@ const TransitionQuizPage = () => {
     return routeAfterBuyingFrame(buyingFrame);
   }, [routing, buyingFrame]);
 
+  // ── Account link (2026-07-30, JOURNEY Step 0 batch) ─────────────────────
+  // If a Supabase session already exists when the quiz completes, thread
+  // the uid into every logCompletion call so the row lands linked to the
+  // account from the start (no separate claim needed for logged-in
+  // takers). Read once on mount — best-effort, never blocks the quiz.
+  const sessionUserIdRef = useRef<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    supabase.auth
+      .getUser()
+      .then(({ data }) => {
+        if (!cancelled) sessionUserIdRef.current = data.user?.id ?? null;
+      })
+      .catch(() => {
+        /* best-effort — anonymous is the safe default */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   // ── Fire-and-forget completion logging ──────────────────────────────────
   const logCompletion = useCallback(
     (payload: {
@@ -236,7 +264,9 @@ const TransitionQuizPage = () => {
       // id (permalink, Recognition Delta) can read it; still fire-and-forget
       // for everyone else — the .catch here means it never rejects upward.
       return supabase.functions
-        .invoke("save-quiz-result", { body: { ...payload, locale: i18n.language } })
+        .invoke("save-quiz-result", {
+          body: { ...payload, locale: i18n.language, user_id: sessionUserIdRef.current },
+        })
         .catch(() => {
           /* dataset logging is best-effort — never blocks or alters the UI */
           return null;
@@ -273,27 +303,43 @@ const TransitionQuizPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [screen, stage, coreAnswers, routing]);
 
-  // Log the Buying Frame answer + final route as its own completion event
-  // (additive — doesn't replace the result-completion row above).
+  // Log the Buying Frame answer + final route onto the SAME row as the
+  // result completion above (data hygiene #22, 2026-07-30): one person's
+  // passage should be one row, not fragments across additive inserts.
+  // Update-in-place when resultId is already known; fall back to the old
+  // additive insert only for the pre-deploy grace window (resultId not
+  // yet returned, or the deployed edge function doesn't support updates).
   useEffect(() => {
     if (screen === "buyingFrame" && buyingFrame && coreAnswers && loggedRef.current !== `bf-${stage}-${buyingFrame}`) {
       loggedRef.current = `bf-${stage}-${buyingFrame}`;
-      logCompletion({
-        stage: coreAnswers.stage,
-        not_yet: false,
-        uniqueness_category: coreAnswers.uniqueness,
-        emerging_work_stage: coreAnswers.emergingWorkStage,
-        buying_frame: buyingFrame,
-        direction_call_shown: true,
-        result_template: coreAnswers.uniqueness,
-        route_shown: routeAfterBuyingFrame(buyingFrame),
-      });
+      if (resultId) {
+        supabase.functions
+          .invoke("save-quiz-result", {
+            body: {
+              id: resultId,
+              buying_frame: buyingFrame,
+              direction_call_shown: true,
+              route_shown: routeAfterBuyingFrame(buyingFrame),
+            },
+          })
+          .catch(() => null);
+      } else {
+        logCompletion({
+          stage: coreAnswers.stage,
+          not_yet: false,
+          uniqueness_category: coreAnswers.uniqueness,
+          emerging_work_stage: coreAnswers.emergingWorkStage,
+          buying_frame: buyingFrame,
+          direction_call_shown: true,
+          result_template: coreAnswers.uniqueness,
+          route_shown: routeAfterBuyingFrame(buyingFrame),
+        });
+      }
     }
-  }, [screen, buyingFrame, coreAnswers, logCompletion, stage]);
+  }, [screen, buyingFrame, coreAnswers, logCompletion, stage, resultId]);
 
-  // Log the Means answer as its own completion event (additive — doesn't
-  // replace the Buying Frame row above). Only ever reached on ripe routes
-  // after a non-"closed" Buying Frame answer.
+  // Log the Means answer onto the same row too (data hygiene #22). Only
+  // ever reached on ripe routes after a non-"closed" Buying Frame answer.
   useEffect(() => {
     if (
       screen === "buyingFrame" &&
@@ -303,19 +349,32 @@ const TransitionQuizPage = () => {
       loggedRef.current !== `means-${stage}-${means}`
     ) {
       loggedRef.current = `means-${stage}-${means}`;
-      logCompletion({
-        stage: coreAnswers.stage,
-        not_yet: false,
-        uniqueness_category: coreAnswers.uniqueness,
-        emerging_work_stage: coreAnswers.emergingWorkStage,
-        buying_frame: buyingFrame,
-        means,
-        direction_call_shown: true,
-        result_template: coreAnswers.uniqueness,
-        route_shown: routeAfterBuyingFrame(buyingFrame),
-      });
+      if (resultId) {
+        supabase.functions
+          .invoke("save-quiz-result", {
+            body: {
+              id: resultId,
+              means,
+              direction_call_shown: true,
+              route_shown: routeAfterBuyingFrame(buyingFrame),
+            },
+          })
+          .catch(() => null);
+      } else {
+        logCompletion({
+          stage: coreAnswers.stage,
+          not_yet: false,
+          uniqueness_category: coreAnswers.uniqueness,
+          emerging_work_stage: coreAnswers.emergingWorkStage,
+          buying_frame: buyingFrame,
+          means,
+          direction_call_shown: true,
+          result_template: coreAnswers.uniqueness,
+          route_shown: routeAfterBuyingFrame(buyingFrame),
+        });
+      }
     }
-  }, [screen, means, buyingFrame, coreAnswers, logCompletion, stage]);
+  }, [screen, means, buyingFrame, coreAnswers, logCompletion, stage, resultId]);
 
   const submitEmail = useCallback(() => {
     const trimmed = email.trim();

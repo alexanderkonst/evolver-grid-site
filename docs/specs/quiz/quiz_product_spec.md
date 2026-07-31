@@ -73,6 +73,14 @@ Phase 3 (the dedicated visual/UX polish pass — micro-interactions, transition 
 
 A parallel workstream (owned by another agent, shipping concurrently with this spec refresh) is adding a **per-stage reveal gift** to the result screens — a small piece of the user's Top Talent profile surfaced at the moment their transition stage is revealed, tuned to that stage, rather than a generic "sign up to see more" prompt. Intent: make the free reveal itself feel like it is already reading them accurately (consistent with the platform's standing pattern of leading with a real, specific insight before any ask — see `docs/03-playbooks/unique_business_playbook.md` Part 0, "Precision Gap IS Product"). This spec does not wait on that work to land and does not describe its final shape — flag to Sasha directly if the architect needs the finished behavior confirmed.
 
+### 0.8 The quiz as sensory membrane (external 27-perspective review, July 30, 2026)
+
+An external review framed the quiz as the platform's threshold organ: it senses a person's developmental position before the system offers a relationship. Standalone design (its own route, its own build, decoupled from the main app shell) is correct for exactly this reason — a membrane has to work before anyone has joined anything.
+
+The review also named the standing shadow-warning for this design, recorded here verbatim as a tripwire to check against on every future change: *"At its worst, it could become a lead qualifier dressed in sacred language."*
+
+The review's crystallization — claimable results seeding JOURNEY state, profile, and platform memory — has already shipped, in the Step 0 / claim / user_id batch (see §0.5 above for the data schema this produced).
+
 ---
 
 ## PHASE 1 DESIGN RECORD (historical — superseded by §0 above)

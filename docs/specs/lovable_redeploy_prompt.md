@@ -41,6 +41,27 @@ within a minute, and the row should still appear in `quiz_email_signups`.
 
 ---
 
+### 5. Redeploy `save-quiz-result` — one row per passage (2026-07-30, data hygiene #22)
+
+```
+Please redeploy the `save-quiz-result` edge function from its current
+source in the repo. No schema change, no new table.
+
+What changed: the update branch (id present, no stage) now also accepts
+buying_frame, means, direction_call_shown, and route_shown, validated
+against the same whitelists as the rest of the function, updating only
+the fields actually sent. This lets the client update one already-inserted
+completion row instead of inserting a new additive row for each answer,
+so one person's passage through the quiz stays one row.
+```
+
+**Verifying it worked:** take the quiz on findyourtoptalent.com/quiz down
+a ripe path (answer through Buying Frame and Means) — `transition_quiz_results`
+should show one row for that pass with `buying_frame` and `means` both
+filled in, not separate rows.
+
+---
+
 *Previously pending, now deployed (2026-07-30): batch #3 — Sergey Jay
 Makarov's testimonial quote restored (Sandra's untouched), `means` column
 added to `transition_quiz_results`, `save-quiz-result` redeployed with
