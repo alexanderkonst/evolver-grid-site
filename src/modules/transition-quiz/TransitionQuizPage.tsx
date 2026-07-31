@@ -309,7 +309,6 @@ const TransitionQuizPage = () => {
       });
       trackPageView("quiz_result", `quiz_result_${resultTemplate}`);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [screen, stage, coreAnswers, routing, logCompletion, rememberAndClaim]);
 
   // Log the Buying Frame answer + final route onto the SAME row as the

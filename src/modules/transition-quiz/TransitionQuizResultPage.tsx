@@ -64,7 +64,7 @@ function ClaimReadLine({ resultId, alreadyOwned }: { resultId: string; alreadyOw
     return () => {
       cancelled = true;
     };
-  }, [alreadyOwned]);
+  }, [alreadyOwned, resultId]);
 
   const handleClaim = useCallback(async () => {
     setState("claiming");
