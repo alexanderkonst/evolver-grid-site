@@ -1226,6 +1226,10 @@
       "lockedCount": "{{locked}} de {{total}} bloqueados"
     },
     "journey": {
+      "quizStep0": {
+        "label": "Paso 0 · Descubre en qué capítulo de tu viaje del héroe estás",
+        "retake": "Repetir"
+      },
       "startHere": {
         "label": "1. Empieza por encontrar tu talento principal"
       },
@@ -7553,6 +7557,13 @@
         "maybe_depending": "Quizá, según la inversión",
         "not_now": "Ahora mismo no"
       }
+    },
+    "claimRead": {
+      "prompt": "Guardar esta lectura en mi perfil",
+      "cta": "Guardar en mi perfil",
+      "saving": "Guardando…",
+      "saved": "Guardado en tu perfil.",
+      "error": "No se pudo guardar — inténtalo de nuevo en un momento."
     }
   },
   "homeLanding": {

@@ -56,7 +56,7 @@ Deno.serve(async (req) => {
     const { data, error } = await admin
       .from("transition_quiz_results")
       .select(
-        "id, stage, not_yet, uniqueness_category, emerging_work_stage, clarity_unlock, result_template, route_shown, direction_call_shown",
+        "id, stage, not_yet, uniqueness_category, emerging_work_stage, clarity_unlock, result_template, route_shown, direction_call_shown, user_id",
       )
       .eq("id", id)
       .maybeSingle();
@@ -69,7 +69,13 @@ Deno.serve(async (req) => {
       return json(404, { error: "not_found" });
     }
 
-    return json(200, { ok: true, result: data });
+    // 2026-07-30 (JOURNEY Step 0 batch): the permalink page needs to know
+    // whether this row is already linked to an account, to decide whether
+    // to show the "keep this in my profile" claim line. Return that as a
+    // boolean, not the raw user_id — this endpoint is public/no-auth and
+    // an auth uid shouldn't leak to anonymous viewers.
+    const { user_id, ...rest } = data as typeof data & { user_id: string | null };
+    return json(200, { ok: true, result: { ...rest, owned: !!user_id } });
   } catch (err) {
     console.error("get-quiz-result: unexpected error", err);
     return json(500, { error: "unexpected_error" });

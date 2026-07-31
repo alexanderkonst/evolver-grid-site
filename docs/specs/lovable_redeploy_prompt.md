@@ -13,6 +13,41 @@ the session log) so the file only ever holds what's still pending.
 
 ## Pending
 
+### 6. Quiz results linked to profiles + claim path (2026-07-30)
+
+```
+Please run this migration and deploy these three functions — all
+additive, no other table/policy/function should be touched:
+
+1. Run migration `supabase/migrations/20260730220000_quiz_user_link.sql`
+   (adds a nullable `user_id` column + index to `transition_quiz_results`,
+   plus a select policy `transition_quiz_results_select_own` allowing
+   `auth.uid() = user_id` reads).
+
+2. Redeploy `save-quiz-result` (now optionally accepts and writes
+   `user_id` on the insert path; unchanged otherwise).
+
+3. Redeploy `get-quiz-result` (now also returns an `owned` boolean —
+   whether the row already has a user_id — so the permalink page knows
+   whether to show the claim line; never returns the raw user_id).
+
+4. Deploy `claim-quiz-result` (new function — `verify_jwt = true` in
+   config.toml). Auth-gated: lets a logged-in viewer of a quiz permalink
+   attach that saved read to their own account if it isn't already
+   linked to one.
+
+Nothing else needs to change.
+```
+
+**Verifying it worked:** take the quiz while logged in — the JOURNEY pane
+should show "Step 0 · See what hero's journey chapter you're in" as done,
+with a small seven-tick arc and the chapter name. On a permalink
+(`/quiz/r/<id>`) for a result taken while logged out, logging in should
+show a quiet "Keep this read in my profile" line; tapping it should make
+Step 0 pick up that result on next JOURNEY visit.
+
+---
+
 ### 4. Outgoing email for saved quiz reads (2026-07-30)
 
 ```

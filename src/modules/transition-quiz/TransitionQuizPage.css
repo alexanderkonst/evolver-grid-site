@@ -856,6 +856,33 @@
   opacity: 0.78;
   text-decoration: underline;
   text-underline-offset: 3px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.tq-link-quiet:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+/* ── Claim-read line (2026-07-30, JOURNEY Step 0 batch) ─────────────────── */
+.tq-claim-read {
+  margin-top: 22px;
+  text-align: center;
+}
+
+.tq-claim-read-line {
+  font: 500 0.82rem/1.5 "DM Sans", sans-serif;
+  color: var(--skin-text-secondary, #33415c);
+  opacity: 0.78;
+  margin: 0 0 2px;
+}
+
+.tq-claim-read-error {
+  color: #b3432b;
+  opacity: 0.85;
 }
 
 @media (min-width: 640px) {
