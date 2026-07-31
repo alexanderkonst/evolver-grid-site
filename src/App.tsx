@@ -427,16 +427,15 @@ const GlobalChrome = () => {
   // minimalism) — the light EN switcher pill is a foreign object there.
   // SiteLogo suppresses itself via its own hidden-paths list.
   const isAlexanderPage = location.pathname === "/alexander" || location.pathname === "/aleksandr";
-  // Day 133 (visual harmony pass): /quiz is a focused single-flow corridor —
-  // the fixed top-right EN pill competes with the progress thread and the
-  // global SiteLogo above it. Same reasoning as /you, /alexander: hide
-  // rather than restyle. Covers /quiz and the /quiz/r/:id permalink.
-  const isQuizCorridor = location.pathname.startsWith("/quiz");
+  // Day 137: the quiz corridor is fully localized (EN/RU/ES), so cold traffic
+  // needs the switcher there — it is the entry point, not a sub-page. Kept the
+  // global pill (guest-only) rather than a bespoke in-page control.
 
   return (
     <>
       {!isHeroQuiz && <SiteLogo />}
-      {!isHeroQuiz && !isYouPage && !isAlexanderPage && !isQuizCorridor && <GlobalLanguageSwitcher />}
+      {!isHeroQuiz && !isYouPage && !isAlexanderPage && <GlobalLanguageSwitcher />}
+
       <TitleManager />
       <ScrollRestoration />
       {!isHeroQuiz && <PreviewBanner />}
