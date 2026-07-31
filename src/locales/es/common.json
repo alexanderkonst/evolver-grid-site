@@ -7559,10 +7559,10 @@
       }
     },
     "claimRead": {
-      "prompt": "Guardar esta lectura en mi perfil",
-      "cta": "Guardar en mi perfil",
+      "prompt": "Conserva tu resultado, vuelve a él desde cualquier lugar y deja que tu recorrido crezca desde aquí.",
+      "cta": "Guardar este capítulo en mi perfil",
       "saving": "Guardando…",
-      "saved": "Guardado en tu perfil.",
+      "saved": "Tu capítulo está guardado en tu perfil.",
       "error": "No se pudo guardar — inténtalo de nuevo en un momento."
     }
   },

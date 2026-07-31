@@ -7,12 +7,13 @@
 // only refetches + reconstructs the CoreAnswers the live page would have
 // had.
 
-import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import { useNavigate, useParams, useSearchParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { buildQuizClaimPath, rememberLocalQuizResult } from "@/lib/quizOwnership";
 import {
   type CoreAnswers,
   type Stage,
@@ -40,13 +41,16 @@ interface FetchedResult {
 // shown only when the viewer is logged in AND the fetched row has no
 // user_id yet. Kept as its own component so the loading/notFound/error
 // branches above stay untouched.
-type ClaimState = "idle" | "checking" | "eligible" | "ineligible" | "claiming" | "claimed" | "error";
+type ClaimState = "idle" | "checking" | "guest" | "eligible" | "ineligible" | "claiming" | "claimed" | "error";
 
 function ClaimReadLine({ resultId, alreadyOwned }: { resultId: string; alreadyOwned: boolean }) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [state, setState] = useState<ClaimState>("idle");
 
   useEffect(() => {
+    rememberLocalQuizResult(resultId);
     if (alreadyOwned) {
       setState("ineligible");
       return;
@@ -55,20 +59,20 @@ function ClaimReadLine({ resultId, alreadyOwned }: { resultId: string; alreadyOw
     setState("checking");
     supabase.auth.getUser().then(({ data }) => {
       if (cancelled) return;
-      setState(data.user ? "eligible" : "ineligible");
+      setState(data.user ? "eligible" : "guest");
     });
     return () => {
       cancelled = true;
     };
   }, [alreadyOwned]);
 
-  const handleClaim = async () => {
+  const handleClaim = useCallback(async () => {
     setState("claiming");
     try {
       const { data: sessionData } = await supabase.auth.getSession();
       const token = sessionData.session?.access_token;
       if (!token) {
-        setState("eligible");
+        setState("guest");
         return;
       }
       const { error } = await supabase.functions.invoke("claim-quiz-result", {
@@ -79,14 +83,44 @@ function ClaimReadLine({ resultId, alreadyOwned }: { resultId: string; alreadyOw
     } catch {
       setState("error");
     }
-  };
+  }, [resultId]);
 
-  if (state === "idle" || state === "checking" || state === "ineligible") return null;
+  // Auth returns to this same public permalink with ?claim=1. Complete the
+  // save automatically so cross-device ownership is one coherent action,
+  // not a second button the person has to rediscover.
+  useEffect(() => {
+    if (state !== "eligible" || searchParams.get("claim") !== "1") return;
+    void handleClaim();
+  }, [handleClaim, searchParams, state]);
+
+  if (state === "idle" || state === "ineligible") return null;
+  if (state === "checking") {
+    return (
+      <div className="tq-claim-read" aria-live="polite" aria-busy="true">
+        <span className="tq-claim-read-placeholder" aria-hidden="true" />
+      </div>
+    );
+  }
 
   return (
-    <div className="tq-claim-read">
+    <div className="tq-claim-read" aria-live="polite">
       {state === "claimed" ? (
         <p className="tq-claim-read-line">{t("quiz.claimRead.saved") as string}</p>
+      ) : state === "guest" ? (
+        <>
+          <p className="tq-claim-read-line">{t("quiz.claimRead.prompt") as string}</p>
+          <button
+            type="button"
+            className="tq-link-quiet"
+            onClick={() =>
+              navigate(
+                `/auth?mode=signup&redirect=${encodeURIComponent(buildQuizClaimPath(resultId))}`,
+              )
+            }
+          >
+            {t("quiz.claimRead.cta") as string}
+          </button>
+        </>
       ) : (
         <>
           <p className="tq-claim-read-line">{t("quiz.claimRead.prompt") as string}</p>
@@ -116,6 +150,7 @@ const TransitionQuizResultPage = () => {
   const { t } = useTranslation();
   const [loadState, setLoadState] = useState<LoadState>("loading");
   const [result, setResult] = useState<FetchedResult | null>(null);
+  const [retryKey, setRetryKey] = useState(0);
   const stageNames = t("quiz.stageNames", { returnObjects: true }) as Record<string, string>;
 
   useEffect(() => {
@@ -160,7 +195,7 @@ const TransitionQuizResultPage = () => {
     return () => {
       cancelled = true;
     };
-  }, [id]);
+  }, [id, retryKey]);
 
   return (
     <main className="tq-page tq-phase-reveal">
@@ -176,19 +211,34 @@ const TransitionQuizResultPage = () => {
         </Link>
 
         {loadState === "loading" && (
-          <section className="tq-card tq-loading-card">
-            <p className="tq-sub" style={{ textAlign: "center" }}>
-              {t("quiz.loading") as string}
-            </p>
+          <section className="tq-card tq-loading-card" aria-live="polite" aria-busy="true">
+            <span className="tq-loading-orbit" aria-hidden="true" />
+            <p className="tq-sub tq-status-copy">{t("quiz.loading") as string}</p>
           </section>
         )}
 
-        {(loadState === "notFound" || loadState === "error") && (
-          <section className="tq-card">
+        {loadState === "notFound" && (
+          <section className="tq-card tq-status-card">
             <p className="tq-body-text">This saved read couldn't be found.</p>
             <Link className="tq-link-quiet" to="/quiz">
               Take the quiz
             </Link>
+          </section>
+        )}
+
+        {loadState === "error" && (
+          <section className="tq-card tq-status-card" role="alert">
+            <p className="tq-body-text">This saved read couldn't load right now.</p>
+            <button
+              type="button"
+              className="tq-link-quiet"
+              onClick={() => {
+                setLoadState("loading");
+                setRetryKey((value) => value + 1);
+              }}
+            >
+              Try again
+            </button>
           </section>
         )}
 

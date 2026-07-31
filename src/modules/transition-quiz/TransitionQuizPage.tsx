@@ -23,6 +23,7 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { rememberLocalQuizResult } from "@/lib/quizOwnership";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { EditorialCta } from "@/components/ui/editorial-cta";
 import brandLogo from "@/assets/you-be-original-main-lockup.webp";
@@ -225,27 +226,6 @@ const TransitionQuizPage = () => {
     return routeAfterBuyingFrame(buyingFrame);
   }, [routing, buyingFrame]);
 
-  // ── Account link (2026-07-30, JOURNEY Step 0 batch) ─────────────────────
-  // If a Supabase session already exists when the quiz completes, thread
-  // the uid into every logCompletion call so the row lands linked to the
-  // account from the start (no separate claim needed for logged-in
-  // takers). Read once on mount — best-effort, never blocks the quiz.
-  const sessionUserIdRef = useRef<string | null>(null);
-  useEffect(() => {
-    let cancelled = false;
-    supabase.auth
-      .getUser()
-      .then(({ data }) => {
-        if (!cancelled) sessionUserIdRef.current = data.user?.id ?? null;
-      })
-      .catch(() => {
-        /* best-effort — anonymous is the safe default */
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
   // ── Fire-and-forget completion logging ──────────────────────────────────
   const logCompletion = useCallback(
     (payload: {
@@ -265,7 +245,7 @@ const TransitionQuizPage = () => {
       // for everyone else — the .catch here means it never rejects upward.
       return supabase.functions
         .invoke("save-quiz-result", {
-          body: { ...payload, locale: i18n.language, user_id: sessionUserIdRef.current },
+          body: { ...payload, locale: i18n.language },
         })
         .catch(() => {
           /* dataset logging is best-effort — never blocks or alters the UI */
@@ -275,16 +255,42 @@ const TransitionQuizPage = () => {
     [i18n.language],
   );
 
+  // Ownership is a separate authenticated action. The public logging
+  // endpoint never accepts a user id; after it returns a row id, this
+  // auth-gated claim attaches it to the caller's own account. Anonymous
+  // completion remains fully useful and is remembered on this browser.
+  const rememberAndClaim = useCallback(async (id?: string) => {
+    rememberLocalQuizResult(id);
+    if (!id) return;
+    try {
+      const { data } = await supabase.auth.getSession();
+      const token = data.session?.access_token;
+      if (!token) return;
+      await supabase.functions.invoke("claim-quiz-result", {
+        body: { id },
+        headers: { Authorization: `Bearer ${token}` },
+      });
+    } catch {
+      // Claiming is best-effort here. The result and its explicit save CTA
+      // remain available even if the network drops at this exact moment.
+    }
+  }, []);
+
   useEffect(() => {
     if (screen === "notYet" && stage && loggedRef.current !== `notyet-${stage}`) {
       loggedRef.current = `notyet-${stage}`;
+      rememberLocalQuizResult();
       logCompletion({ stage, not_yet: true }).then((res) => {
         const id = res && "data" in res ? (res.data as { id?: string } | null)?.id : undefined;
-        if (id) setResultId(id);
+        if (id) {
+          setResultId(id);
+          void rememberAndClaim(id);
+        }
       });
     }
     if (screen === "result" && coreAnswers && routing && loggedRef.current !== `result-${stage}`) {
       loggedRef.current = `result-${stage}`;
+      rememberLocalQuizResult();
       const resultTemplate = routing.route === "crossedPeer" ? "crossed_peer" : coreAnswers.uniqueness;
       logCompletion({
         stage: coreAnswers.stage,
@@ -296,12 +302,15 @@ const TransitionQuizPage = () => {
         route_shown: routing.showBuyingFrame ? null : routing.route,
       }).then((res) => {
         const id = res && "data" in res ? (res.data as { id?: string } | null)?.id : undefined;
-        if (id) setResultId(id);
+        if (id) {
+          setResultId(id);
+          void rememberAndClaim(id);
+        }
       });
       trackPageView("quiz_result", `quiz_result_${resultTemplate}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [screen, stage, coreAnswers, routing]);
+  }, [screen, stage, coreAnswers, routing, logCompletion, rememberAndClaim]);
 
   // Log the Buying Frame answer + final route onto the SAME row as the
   // result completion above (data hygiene #22, 2026-07-30): one person's

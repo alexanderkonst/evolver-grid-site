@@ -65,7 +65,7 @@ Deno.serve(async (req) => {
     // to a different account.
     const { data, error } = await admin
       .from("transition_quiz_results")
-      .update({ user_id: user.id })
+      .update({ user_id: user.id, claimed_at: new Date().toISOString() })
       .eq("id", body.id)
       .is("user_id", null)
       .select("id")
@@ -77,12 +77,27 @@ Deno.serve(async (req) => {
     }
 
     if (!data) {
-      // Either the row doesn't exist, or it's already linked (to this or
-      // another account) — either way, nothing to claim.
-      return json(409, { error: "already_claimed_or_not_found" });
+      // Idempotency matters across double-clicks, auth-return retries, and
+      // two open tabs. A repeat by the same owner is success; another
+      // account can never take it.
+      const { data: existing, error: readError } = await admin
+        .from("transition_quiz_results")
+        .select("user_id")
+        .eq("id", body.id)
+        .maybeSingle();
+
+      if (readError) {
+        console.error("claim-quiz-result: ownership read failed", readError);
+        return json(500, { error: "ownership_read_failed" });
+      }
+      if (!existing) return json(404, { error: "not_found" });
+      if (existing.user_id === user.id) {
+        return json(200, { ok: true, already_claimed: true });
+      }
+      return json(409, { error: "claimed_by_another_account" });
     }
 
-    return json(200, { ok: true });
+    return json(200, { ok: true, already_claimed: false });
   } catch (err) {
     console.error("claim-quiz-result: unexpected error", err);
     return json(500, { error: "unexpected_error" });
