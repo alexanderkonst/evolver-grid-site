@@ -2147,6 +2147,13 @@ This IS the flywheel. It doesn't require a plan. It requires delivery.
 >
 > **Cross-reference:** Technology 127 (trajectory is the tribe), the Uniqueness and Transition holomaps (the map's two axes), Recognition Delta (its quality metric).
 
+> [!NOTE]
+> **v1.1 (July 30, 2026) — the map draws itself.** With quiz results now linked to profiles (JOURNEY Step 0, the claim path, the arc card), every retake over months becomes a recorded movement of the person's star along the arc. The Trajectory Map stops being a session artifact and becomes a longitudinal instrument the platform maintains for free users too.
+>
+> Sasha's law, verbatim: *"Even people who never pay have a real journey here."*
+>
+> **Cross-reference:** Technology 127, the platform's JOURNEY space.
+
 **The Copy Mirror Principle (discovered March 16, 2026 — from Karime's feedback):**
 
 > [!TIP]
