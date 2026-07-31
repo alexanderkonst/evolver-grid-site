@@ -38,6 +38,12 @@ import { initialSkinScope } from "@/lib/skinScope";
 import SpacesRail, { SPACES } from "./SpacesRail";
 import SectionsPanel, { SPACE_SECTIONS, STATIC_LABEL_KEYS } from "./SectionsPanel";
 import { useJourneyProgress } from "@/hooks/useJourneyProgress";
+import { useLinkedQuizResult } from "@/hooks/useLinkedQuizResult";
+import {
+    QUIZ_RESULT_EVENT,
+    readLocalQuizResult,
+    type LocalQuizResult,
+} from "@/lib/quizOwnership";
 import PlayerStatsBadge from "./PlayerStatsBadge";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import SiteLogo from "@/components/SiteLogo";
@@ -589,6 +595,20 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // locked for a beat — then flip unlocked when the profile arrives. We
     // hold back the unlockStatus map until we know for sure.
     const [profileLoaded, setProfileLoaded] = useState(false);
+    const { result: linkedQuizResult } = useLinkedQuizResult();
+    const [localQuizResult, setLocalQuizResult] = useState<LocalQuizResult | null>(() =>
+        readLocalQuizResult(),
+    );
+
+    useEffect(() => {
+        const syncLocalQuizResult = () => setLocalQuizResult(readLocalQuizResult());
+        window.addEventListener(QUIZ_RESULT_EVENT, syncLocalQuizResult);
+        window.addEventListener("storage", syncLocalQuizResult);
+        return () => {
+            window.removeEventListener(QUIZ_RESULT_EVENT, syncLocalQuizResult);
+            window.removeEventListener("storage", syncLocalQuizResult);
+        };
+    }, []);
 
     // Navigation state
     const [activeSpaceId, setActiveSpaceId] = useState<string>("next-move");
@@ -1126,6 +1146,11 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     const missionComplete = missionCompleteStrict || !!journeyProgress["journey-mission-discovery"];
     const assetsComplete = assetsCompleteStrict || !!journeyProgress["journey-asset-mapper"];
     const tmaComplete = topTalentComplete && missionComplete && assetsComplete;
+    // ME is the one progressive space that can begin before account
+    // creation: completing the public quiz creates a browser-local chapter,
+    // and an authenticated claim makes that chapter follow the person across
+    // devices. Established T+M+A users retain their existing access.
+    const meUnlocked = tmaComplete || !!localQuizResult || !!linkedQuizResult;
     const aiOsUnlocked = tmaComplete;
 
     // BUILT BY YOU is part of the post-onboarding world. Entitlement or a
@@ -1146,7 +1171,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             // via MeGate + the rail's own footer profile button, so nothing
             // the user already produced (Top Talent / Mission / Assets) is
             // stranded while this chip is hidden.
-            "grow": tmaComplete,                                // ME — unlocked after T+M+A complete
+            "grow": meUnlocked,                                 // ME — after quiz locally, claimed cross-device, or T+M+A
             // Day 119 (Sasha 2026-07-09): GROW space enabled — id stays
             // "learn" (rail label is now GROW, positioned between
             // COLLABORATE and BUILD). Gate switched from the
@@ -1307,7 +1332,9 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // flag on AiOsPage mount) continues to see the chip thereafter.
     const guestHidden: string[] = __isFullRailScope
         ? [] // show ALL chips on white-label demo surfaces
-        : [...NON_PUBLIC_SPACE_IDS, "ai-os"];
+        : [...NON_PUBLIC_SPACE_IDS, "ai-os"].filter(
+            (spaceId) => spaceId !== "grow" || !localQuizResult,
+        );
 
     const hiddenSpaces: string[] = isGuest
         ? guestHidden
@@ -1319,6 +1346,15 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
 
     // Navigation handlers
     const handleSpaceSelect = (spaceId: string) => {
+        if (isGuest && spaceId === "grow") {
+            navigate(
+                localQuizResult?.resultId
+                    ? `/quiz/r/${encodeURIComponent(localQuizResult.resultId)}`
+                    : "/quiz",
+            );
+            setMobileView("content");
+            return;
+        }
         setActiveSpaceId(spaceId);
         // Mark nudge as seen if this space had one
         if (spaceId === 'build' && nudgeBadges.includes('build')) {

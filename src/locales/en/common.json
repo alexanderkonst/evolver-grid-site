@@ -7566,10 +7566,10 @@
       }
     },
     "claimRead": {
-      "prompt": "Keep this read in my profile",
-      "cta": "Save to profile",
+      "prompt": "Keep your result, revisit it anywhere, and let your journey build from here.",
+      "cta": "Save this chapter to my profile",
       "saving": "Saving…",
-      "saved": "Saved to your profile.",
+      "saved": "Your chapter is saved to your profile.",
       "error": "Couldn't save it — try again in a moment."
     }
   },
