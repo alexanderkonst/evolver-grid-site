@@ -81,6 +81,15 @@ The review also named the standing shadow-warning for this design, recorded here
 
 The review's crystallization — claimable results seeding JOURNEY state, profile, and platform memory — has already shipped, in the Step 0 / claim / user_id batch (see §0.5 above for the data schema this produced).
 
+### 0.9 Input-quality feedback from a paying client (July 31, 2026)
+
+A paying client reported "no resonance" with his written articulation — the recognition click never fired in the moment — then self-authored his own accurate synthesis within 48 hours, unprompted, crediting the session's output as a springboard even though the final words had to be his own. Two product lessons follow, filed as open items, not yet built:
+
+1. **Seed-data quality matters more than model quality.** His read was traced to a thin, resume-shaped import (a couple of factual lines) that skewed the whole articulation sideways. Thin input anchors the read wrong regardless of how good the downstream model is.
+2. **Proposed fix: a free-form self-narration input.** Offer a 30-60 minute free self-narration (voice or text) as an input option alongside or instead of resume-shaped facts, for a "more global study of the person" before generating the articulation.
+
+Open item, not scheduled: evaluate a self-narration input mode against the current fact-import path.
+
 ---
 
 ## PHASE 1 DESIGN RECORD (historical — superseded by §0 above)
