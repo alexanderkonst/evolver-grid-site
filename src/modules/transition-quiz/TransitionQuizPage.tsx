@@ -74,6 +74,11 @@ const PROGRESS: Partial<Record<Screen, number>> = {
   q2: 0.5,
   q3: 0.82,
   loading: 0.95,
+  // The thread completes when the read arrives — the ritual closes at 100%,
+  // it doesn't die at 95%.
+  notYet: 1,
+  result: 1,
+  buyingFrame: 1,
 };
 
 // Quiz v2.1 analytics wiring (§5) — per-screen mount events. "notYet",
@@ -738,10 +743,13 @@ function RecognitionDelta({ t, resultId }: { t: (k: string, o?: Record<string, u
       ) : (
         <>
           <p className="tq-sub tq-quiet-line">{t("quiz.recognitionDelta.prompt") as string}</p>
-          <div className="tq-options" style={{ marginTop: 8 }}>
+          {/* Compact chip row — a quiet reflection, not another quiz question.
+              Full-width option cards here made this widget the tallest block
+              on the page, twice the central read (346px vs 188px measured). */}
+          <div className="tq-delta-chips">
             {RECOGNITION_DELTA_VALUES.map((v) => (
-              <button key={v} type="button" className="tq-option" onClick={() => handlePick(v)}>
-                <span>{options[String(v)]}</span>
+              <button key={v} type="button" className="tq-delta-chip" onClick={() => handlePick(v)}>
+                {options[String(v)]}
               </button>
             ))}
           </div>
@@ -773,10 +781,25 @@ function NotYetScreen({
   resultId: string | null;
 }) {
   const variant = notYetVariant(stage);
+  const stageNames = t("quiz.stageNames", { returnObjects: true }) as Record<string, string>;
+
+  // Stages 1-3 get the same chapter ceremony as the full read — eyebrow,
+  // chapter name, arc. Three of seven entry answers land here; they deserve
+  // to see the name of the chapter they were just placed in. All copy
+  // below the ceremony is unchanged.
+  const ceremony = (
+    <div className="tq-notyet-reveal">
+      <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.stageLabel") as string}</p>
+      <h2 className="tq-stage-name tq-stage-name--compact">{stageNames[String(stage)]}</h2>
+      <Ornament className="tq-ornament" />
+      <StageArc stage={stage} stageNames={stageNames} />
+    </div>
+  );
 
   if (variant === "settled") {
     return (
       <section className="tq-card">
+        {ceremony}
         <h2 className="tq-h1" style={{ fontSize: "1.7rem" }}>
           {t("quiz.notYet.settled.title") as string}
         </h2>
@@ -833,6 +856,7 @@ function NotYetScreen({
 
   return (
     <section className="tq-card">
+      {ceremony}
       <div className="tq-section" style={{ marginTop: 0 }}>
         <p className="tq-label">
           {(isItch ? t("quiz.notYet.itchTremors.turnsIntoLabel") : t("quiz.notYet.itchTremors.whyLabel")) as string}
@@ -982,7 +1006,7 @@ export function ResultScreen({
         </div>
 
         <div className="tq-integration">
-          <div className="tq-section" style={{ marginTop: 0 }}>
+          <div className="tq-section tq-central-read" style={{ marginTop: 0 }}>
             <h3 className="tq-beat-heading">{t("quiz.result.crossedPeer.heading") as string}</h3>
             <p className="tq-body-text">{t("quiz.result.crossedPeer.body1") as string}</p>
             <p className="tq-body-text">{t("quiz.result.crossedPeer.body2") as string}</p>
@@ -1010,6 +1034,8 @@ export function ResultScreen({
           <button type="button" className="tq-retake" onClick={onRetake}>
             {t("quiz.notYet.retake") as string}
           </button>
+
+          <Ornament className="tq-ornament tq-closing-seal" />
         </div>
       </section>
     );
@@ -1034,7 +1060,7 @@ export function ResultScreen({
       </div>
 
       <div className="tq-integration">
-        <div className="tq-section">
+        <div className="tq-section tq-central-read">
           <h3 className="tq-beat-heading">{beats.heading}</h3>
           <p className="tq-body-text tq-measure">{beats.body}</p>
           <p className="tq-body-text tq-quiet-line tq-measure">{workClause}</p>
@@ -1042,7 +1068,7 @@ export function ResultScreen({
 
         <BelievabilityQuote t={t} stage={answers.stage} />
 
-        <div className="tq-section">
+        <div className="tq-section tq-next-door">
           <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.nextLabel") as string}</p>
           <p className="tq-body-text tq-measure">{beats.nextMove}</p>
         </div>
@@ -1077,6 +1103,8 @@ export function ResultScreen({
         <button type="button" className="tq-retake" onClick={onRetake}>
           {t("quiz.notYet.retake") as string}
         </button>
+
+        <Ornament className="tq-ornament tq-closing-seal" />
       </div>
     </section>
   );
@@ -1117,8 +1145,11 @@ function StageArc({
       </div>
       <div className="tq-stage-arc-labels">
         {stages.map((n) => (
-          <span key={n} className="tq-stage-arc-label">
-            {n === activeStage ? stageNames[String(activeStage)] : ""}
+          <span
+            key={n}
+            className={`tq-stage-arc-label${n !== activeStage && Math.abs(n - activeStage) === 1 ? " is-near" : ""}`}
+          >
+            {Math.abs(n - activeStage) <= 1 ? stageNames[String(n)] : ""}
           </span>
         ))}
       </div>

@@ -1003,6 +1003,131 @@
   }
 }
 
+/* ── Result ceremony, act II + III (2026-08-01 harmony pass) ─────────────
+   Three-act structure: the reveal card opens the ceremony (act I, existed);
+   the central read carries it down the page (act II); a closing seal ends
+   it instead of two grey text links dissolving (act III). Form only —
+   every copy atom and all mechanics unchanged. */
+
+/* Arc speaks: previous and next chapter names appear muted beside the
+   active gold label, so the arc reads as a map of the path, not a dot. */
+.tq-stage-arc-label.is-near {
+  color: var(--skin-text-secondary, #33415c);
+  opacity: 0.48;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  white-space: normal;
+  line-height: 1.25;
+}
+
+.tq-stage-arc-label {
+  padding: 0 4px;
+}
+
+/* Act II — the central read gets the one framed body below the fold,
+   carrying the reveal card's ivory + gold down into the reading. */
+.tq-central-read {
+  margin-top: 34px;
+  padding: 22px 22px 20px;
+  border: 1px solid rgba(160, 109, 8, 0.14);
+  border-left: 3px solid rgba(160, 109, 8, 0.4);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(212, 175, 55, 0.07), transparent 52%),
+    rgba(255, 253, 247, 0.55);
+}
+
+/* The witness speaks from the margin — same body, distinct voice. */
+.tq-believability {
+  padding-left: 18px;
+  border-left: 2px solid rgba(160, 109, 8, 0.3);
+}
+
+/* "What comes next" is a door, aligned with the reading, not floating
+   centered above left text. */
+.tq-next-door {
+  margin-top: 30px;
+}
+
+.tq-next-door .tq-eyebrow-gold {
+  text-align: left;
+}
+
+/* Reflection as chips, not another quiz question. */
+.tq-delta-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tq-delta-chip {
+  border: 1px solid rgba(160, 109, 8, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 253, 247, 0.6);
+  padding: 9px 16px;
+  font: 500 0.84rem/1 "DM Sans", sans-serif;
+  color: var(--skin-text-secondary, #33415c);
+  cursor: pointer;
+  transition: border-color 150ms ease, background 150ms ease;
+}
+
+.tq-delta-chip:hover {
+  border-color: var(--tq-gold);
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.tq-delta-chip:focus-visible {
+  outline: 2px solid rgba(122, 81, 8, 0.72);
+  outline-offset: 3px;
+}
+
+/* The door CTA reads as a sentence on a door, not a block of tracked caps —
+   the 4-line uppercase capsule measured 81px tall on 375px viewports. */
+.tq-door-cta {
+  text-transform: none !important;
+  letter-spacing: 0.015em !important;
+  font-size: 1.05rem !important;
+  line-height: 1.4 !important;
+}
+
+/* EditorialCta sets uppercase + tracking as an inline style on its inner
+   span; stylesheet !important outranks inline styles, so the door reads
+   as a sentence without touching the shared component. */
+.tq-door-cta span {
+  text-transform: none !important;
+  letter-spacing: 0.015em !important;
+  font-size: 1em !important;
+}
+
+/* Act III — closing seal. The ceremony ends with the same star it opened
+   with, quiet, instead of dissolving into grey links. */
+.tq-closing-seal {
+  display: block;
+  margin: 34px auto 0;
+  opacity: 0.55;
+}
+
+/* Stages 1-3 mini-ceremony header inside the not-yet card. */
+.tq-notyet-reveal {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.tq-stage-name--compact {
+  font-size: clamp(2rem, 9vw, 2.7rem);
+}
+
+@media (max-width: 639px) {
+  .tq-stage-arc-label.is-near {
+    font-size: 0.58rem;
+  }
+
+  .tq-door-cta {
+    font-size: 0.98rem !important;
+  }
+}
+
 @media (max-width: 639px) {
   .tq-page {
     align-items: flex-start;
