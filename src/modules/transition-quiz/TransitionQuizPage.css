@@ -41,6 +41,23 @@
   --tq-motion-fast: 160ms;
   --tq-motion-medium: 320ms;
   transition: background-color 320ms ease;
+  /* Own stacking context so the lapis field can sit at z:-1 — above the
+     page wash, below the paper grain, phase vignette, and all content. */
+  isolation: isolate;
+}
+
+/* The lapis watercolor field (Day 142 design pass) — the same ground as
+   "/". Fixed so the field holds still while the corridor scrolls through
+   it. The flat --skin-page-wash behind it remains the loading fallback. */
+.tq-field {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
 }
 
 /* Page-scoped paper grain + soft gold vignette — reproduces the "/" body
