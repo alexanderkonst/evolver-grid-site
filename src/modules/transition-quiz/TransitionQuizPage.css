@@ -1108,6 +1108,38 @@
   opacity: 0.55;
 }
 
+/* ── Typographic unification on the read (Day 142) ─────────────────────
+   Client-facing surface: exactly three voices. Display serif (chapter
+   name, beat headings), ONE reading voice (every sentence the person
+   reads: same family, size, color, no opacity steps), ONE smallcaps meta
+   voice (eyebrows, witness name, quiet links). Previously the integration
+   block mixed six sizes and two families — some lines fell through to
+   DM Sans because .tq-quiet-line alone doesn't set a family. */
+.tq-result-card .tq-body-text,
+.tq-result-card .tq-quiet-line,
+.tq-result-card .tq-sub,
+.tq-reveal > .tq-body-text {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.02rem;
+  line-height: 1.68;
+  color: var(--skin-text-secondary, #33415c);
+  opacity: 1;
+}
+
+.tq-result-card .tq-believability-quote {
+  font-size: 1.02rem;
+  line-height: 1.68;
+  color: var(--skin-text-secondary, #33415c);
+}
+
+/* One meta voice: quiet links and retake share one size and weight. */
+.tq-result-card .tq-link-quiet,
+.tq-result-card .tq-retake,
+.tq-result-card .tq-cta-sub {
+  font-size: 0.82rem;
+  opacity: 0.72;
+}
+
 /* Stages 1-3 mini-ceremony header inside the not-yet card. */
 .tq-notyet-reveal {
   text-align: center;
