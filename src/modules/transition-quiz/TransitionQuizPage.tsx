@@ -27,6 +27,7 @@ import { rememberLocalQuizResult } from "@/lib/quizOwnership";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { EditorialCta } from "@/components/ui/editorial-cta";
 import brandLogo from "@/assets/you-be-original-main-lockup.webp";
+import lapisField from "@/assets/lapis-still-background.webp";
 import { trackPageView, trackCTAClick } from "@/lib/funnelAnalytics";
 import { TESTIMONIALS } from "@/data/testimonials";
 import {
@@ -464,6 +465,12 @@ const TransitionQuizPage = () => {
 
   return (
     <main className={`tq-page tq-phase-${phase}`}>
+      {/* The lapis field — the same watercolor + gold-constellation ground
+          the person just left on "/". The funnel is one continuous space;
+          the quiz corridor keeps the field, with its calm ivory center
+          carrying the reading. Sits under the paper grain and the phase
+          vignette (see .tq-field / isolation in the CSS). */}
+      <img className="tq-field" src={lapisField} alt="" aria-hidden="true" draggable={false} />
       <Helmet>
         <title>Where Are You — a free read of what chapter you're actually in</title>
         <meta
