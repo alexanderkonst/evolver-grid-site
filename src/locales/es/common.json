@@ -7457,7 +7457,7 @@
       "believability": {
         "intro": "De alguien que estuvo en este capítulo:"
       },
-      "continueCta": "Integra tus proyectos “sueltos” en una sola dirección precisa",
+      "continueCta": "Reúne tus proyectos en una sola dirección",
       "selectionNote": "Tus respuestas mostraron que probablemente soy quien más útil puede serte ahora. Solo ofrezco esta llamada en esos casos.",
       "honestEnding": "Esta es la lectura completa. Sin propuesta, sin nada más por desbloquear. Puedes repetir el test cuando quieras si tus respuestas cambian.",
       "chapter": {
@@ -7479,7 +7479,7 @@
         },
         "integration": {
           "heading": "Las piezas ya son maduras. El conjunto todavía es invisible.",
-          "body": "No tienes demasiados intereses sin sentido. Tienes varios hilos reales, y todavía nada que muestre de qué son expresión todos juntos. Puedes seguir eligiendo una puerta primero, pero esa puerta debería expresar el conjunto, no fingir que el resto de ti no existe.",
+          "body": "No tienes demasiados intereses. Tienes varios hilos reales, y todavía nada que muestre de qué son expresión todos juntos. Elige una puerta primero, pero que exprese el conjunto.",
           "nextMove": "Esos hilos necesitan convertirse en una sola dirección que puedas explicar, construir y a la que puedas invitar a otros."
         },
         "vehicle": {
@@ -7516,12 +7516,12 @@
     },
     "buyingFrame": {
       "transitionLine": "Cómo has manejado umbrales anteriores también importa aquí.",
-      "prompt": "En umbrales grandes anteriores de tu vida, ¿pagaste por ayuda real? Un coach, un terapeuta, un maestro, un retiro.",
+      "prompt": "Este umbral se cruza solo o con ayuda real. ¿Cómo es para ti?",
       "options": {
-        "open": "Sí, y cambió algo importante",
-        "mixed": "Sí, con resultados mixtos",
-        "open_no_history": "No, pero estoy abierto/a a la ayuda correcta",
-        "closed": "No, prefiero resolver estas cosas por mi cuenta"
+        "open": "He tenido ayuda real antes, y marcó la diferencia",
+        "mixed": "Quizás, según lo que me pida",
+        "open_no_history": "Estoy abierto/a a la ayuda correcta ahora",
+        "closed": "Estas cosas las resuelvo por mi cuenta"
       },
       "closedEnding": "Tu lectura completa se queda exactamente como está arriba. Sin llamada y sin propuesta. Guárdala o repite el test cuando quieras."
     },

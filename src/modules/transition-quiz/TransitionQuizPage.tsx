@@ -113,7 +113,9 @@ const WORK_STAGE_VALUES: EmergingWorkStage[] = [
   "working",
   "delivering",
 ];
-const BUYING_FRAME_VALUES: BuyingFrame[] = ["open", "mixed", "open_no_history", "closed"];
+// Display order: history → openness → conditional → solo. One soft
+// threshold question (Day 142) replaced the two blunt pay/means screens.
+const BUYING_FRAME_VALUES: BuyingFrame[] = ["open", "open_no_history", "mixed", "closed"];
 const MEANS_VALUES: Means[] = ["yes_comfortably", "yes_if_fit", "maybe_depending", "not_now"];
 
 interface PersistedState {
@@ -717,47 +719,10 @@ function SaveMyRead({
   );
 }
 
-const RECOGNITION_DELTA_VALUES = [1, 2, 3, 4, 5] as const;
-
-function RecognitionDelta({ t, resultId }: { t: (k: string, o?: Record<string, unknown>) => unknown; resultId: string | null }) {
-  const [answered, setAnswered] = useState(false);
-
-  if (!resultId) return null;
-
-  const options = t("quiz.recognitionDelta.options", { returnObjects: true }) as Record<string, string>;
-
-  const handlePick = (value: number) => {
-    setAnswered(true); // optimistic — low-stakes, thank-you shows regardless
-    trackCTAClick("quiz_delta_answered", "recognition_delta", { value });
-    supabase.functions
-      .invoke("save-quiz-result", { body: { id: resultId, recognition_delta: value } })
-      .catch((err) => {
-        console.warn("recognition_delta: save failed (non-fatal)", err);
-      });
-  };
-
-  return (
-    <div className="tq-section tq-recognition-delta" style={{ marginTop: 18 }}>
-      {answered ? (
-        <p className="tq-sub tq-quiet-line">{t("quiz.recognitionDelta.thankYou") as string}</p>
-      ) : (
-        <>
-          <p className="tq-sub tq-quiet-line">{t("quiz.recognitionDelta.prompt") as string}</p>
-          {/* Compact chip row — a quiet reflection, not another quiz question.
-              Full-width option cards here made this widget the tallest block
-              on the page, twice the central read (346px vs 188px measured). */}
-          <div className="tq-delta-chips">
-            {RECOGNITION_DELTA_VALUES.map((v) => (
-              <button key={v} type="button" className="tq-delta-chip" onClick={() => handlePick(v)}>
-                {options[String(v)]}
-              </button>
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
+// Recognition Delta widget removed (Sasha, Day 142): the reflection ask ate
+// prime real estate on the read and hedged it ("a halfway excuse"). The
+// recognition_delta column and quiz.recognitionDelta keys remain for the
+// dataset's history; nothing renders it anymore.
 
 // ── S3a Not-Yet (stages 1-3 — standing law, carried forward unchanged) ───
 
@@ -840,7 +805,6 @@ function NotYetScreen({
           <p className="tq-success">{t("quiz.notYet.settled.emailSuccess") as string}</p>
         )}
 
-        <RecognitionDelta t={t} resultId={resultId} />
         <SaveMyRead t={t} resultId={resultId} stage={stage} />
 
         <button type="button" className="tq-retake" onClick={onRetake}>
@@ -900,7 +864,6 @@ function NotYetScreen({
         <p className="tq-success">{t("quiz.notYet.itchTremors.emailSuccess") as string}</p>
       )}
 
-      <RecognitionDelta t={t} resultId={resultId} />
       <SaveMyRead t={t} resultId={resultId} stage={stage} />
 
       <button type="button" className="tq-retake" onClick={onRetake}>
@@ -1012,11 +975,6 @@ export function ResultScreen({
             <p className="tq-body-text">{t("quiz.result.crossedPeer.body2") as string}</p>
           </div>
 
-          <hr className="tq-take-what-divider" />
-          <p className="tq-body-text tq-take-what-note">{t("quiz.result.takeWhatNote") as string}</p>
-
-          <RecognitionDelta t={t} resultId={resultId} />
-
           <div className="tq-cta-block">
             <a
               className="tq-editorial-link-cta tq-door-cta"
@@ -1072,11 +1030,6 @@ export function ResultScreen({
           <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.nextLabel") as string}</p>
           <p className="tq-body-text tq-measure">{beats.nextMove}</p>
         </div>
-
-        <hr className="tq-take-what-divider" />
-        <p className="tq-body-text tq-take-what-note">{t("quiz.result.takeWhatNote") as string}</p>
-
-        <RecognitionDelta t={t} resultId={resultId} />
 
         <div className="tq-cta-block">
           {showBuyingFrame ? (
@@ -1203,13 +1156,16 @@ function BuyingFrameScreen({
   onRetake: () => void;
 }) {
   const options = t("quiz.buyingFrame.options", { returnObjects: true }) as Record<string, string>;
-  const meansOptions = t("quiz.means.options", { returnObjects: true }) as Record<string, string>;
 
+  // One soft threshold question (Day 142). The former two-screen sequence
+  // (paid-help history, then "is investing realistic?") read as "will you
+  // pay me?" twice. History, openness, and means now read from a single
+  // choice; the Means screen no longer renders (quiz.means keys and the
+  // means column stay for the dataset's history).
   if (!current) {
     return (
       <section className="tq-card">
-        <p className="tq-quiet-line">{t("quiz.buyingFrame.transitionLine") as string}</p>
-        <p className="tq-question-prompt" style={{ marginTop: 14 }}>
+        <p className="tq-question-prompt">
           {t("quiz.buyingFrame.prompt") as string}
         </p>
         <div className="tq-options">
@@ -1217,24 +1173,6 @@ function BuyingFrameScreen({
             <button key={v} type="button" className="tq-option" onClick={() => onPick(v)}>
               <span className="tq-option-letter">{i + 1}</span>
               <span>{options[v]}</span>
-            </button>
-          ))}
-        </div>
-      </section>
-    );
-  }
-
-  // The Means companion question (Gate 2), asked once, after any
-  // non-"closed" Buying Frame answer and before the Direction Call door.
-  if (route === "directionCall" && !means) {
-    return (
-      <section className="tq-card">
-        <p className="tq-question-prompt">{t("quiz.means.prompt") as string}</p>
-        <div className="tq-options">
-          {MEANS_VALUES.map((v, i) => (
-            <button key={v} type="button" className="tq-option" onClick={() => onPickMeans(v)}>
-              <span className="tq-option-letter">{i + 1}</span>
-              <span>{meansOptions[v]}</span>
             </button>
           ))}
         </div>
