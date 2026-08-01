@@ -1089,6 +1089,27 @@ function StageArc({
 
   return (
     <div className="tq-stage-arc" aria-label={`Stage ${activeStage} of 7`}>
+      {/* Purely decorative — the field's gold threads gathering into the
+          chapter read, as if the line of chapters continues off-card.
+          Strictly confined to the track's own height band (see CSS): the
+          wrapper is exactly 17px tall, so nothing here can reach the
+          labels or chapter text below. Star dots are separate <span>s,
+          not SVG shapes, so they stay fixed-size at every card width. */}
+      <div className="tq-stage-arc-constellation" aria-hidden="true">
+        <svg viewBox="0 0 100 17" preserveAspectRatio="none">
+          <path
+            className="tq-stage-arc-constellation-line"
+            d="M -12 7.5 Q 1 10.5, 14 8.5"
+          />
+          <path
+            className="tq-stage-arc-constellation-line is-right"
+            d="M 112 6.5 Q 99 9.5, 86 8.5"
+          />
+        </svg>
+        <span className="tq-stage-arc-constellation-star" style={{ left: "2%" }} />
+        <span className="tq-stage-arc-constellation-star" style={{ left: "97%" }} />
+        <span className="tq-stage-arc-constellation-star" style={{ left: "8%", top: 4 }} />
+      </div>
       <div className="tq-stage-arc-track" role="list">
         {stages.map((n) => (
           <span
