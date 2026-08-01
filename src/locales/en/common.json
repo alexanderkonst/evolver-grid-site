@@ -7464,7 +7464,7 @@
       "believability": {
         "intro": "From someone who stood in this chapter:"
       },
-      "continueCta": "Integrate your “unrelated” projects into one laser-focused direction",
+      "continueCta": "Turn your projects into one direction",
       "selectionNote": "I offer this call only where I can be most useful. Your answers just did the choosing.",
       "honestEnding": "That's the complete read. No pitch, nothing else to unlock. Retake anytime if your answers change.",
       "chapter": {
@@ -7486,7 +7486,7 @@
         },
         "integration": {
           "heading": "The pieces are mature. The whole is still invisible.",
-          "body": "You don't have too many meaningless interests. You have several real threads, and nothing yet that shows what they're all expressions of. You may still choose one doorway first, but it should express the whole, not pretend the rest of you doesn't exist.",
+          "body": "You don't have too many interests. You have several real threads, and nothing yet that shows what they're all expressions of. Choose one doorway first, but let it express the whole.",
           "nextMove": "The threads need to become one direction you can explain, build around, and invite people into."
         },
         "vehicle": {
@@ -7523,12 +7523,12 @@
     },
     "buyingFrame": {
       "transitionLine": "How you've handled earlier thresholds matters here too.",
-      "prompt": "At earlier big thresholds in your life, did you pay for real help? A coach, a therapist, a teacher, a retreat.",
+      "prompt": "People cross this threshold alone or with real help. Where are you with that?",
       "options": {
-        "open": "Yes, and it changed something important",
-        "mixed": "Yes, with mixed results",
-        "open_no_history": "No, but I'm open to the right help",
-        "closed": "No, I prefer to work these things out myself"
+        "open": "I've had real help before, and it mattered",
+        "mixed": "Maybe, depending on what it asks of me",
+        "open_no_history": "I'm open to the right help now",
+        "closed": "I work these things out myself"
       },
       "closedEnding": "Your full read stays exactly as it is above. No call and no pitch. Save it or retake it whenever you want."
     },
