@@ -925,7 +925,8 @@ function ChoiceScreen<V extends string>({
             className={`tq-option${selected === v ? " is-selected" : ""}`}
             onClick={() => handlePick(v)}
             aria-pressed={selected === v}
-            disabled={selected !== null}
+            disabled={pending}
+
           >
             <span className="tq-option-letter">{selected === v ? <Check size={13} /> : i + 1}</span>
             <span>{data.options[v]}</span>
