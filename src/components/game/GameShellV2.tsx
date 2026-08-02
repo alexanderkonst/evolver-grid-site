@@ -2206,7 +2206,15 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                                                     // body's dark wash + Mux
                                                     // group-photo through.
                                                     ? "transparent"
-                                                    : "rgba(248, 246, 240, 0.55)",
+                                                    // Day 128 (Sasha 2026-08-02):
+                                                    // the flat 55% cream wash on
+                                                    // mobile landing read as a
+                                                    // beige overlay muddying the
+                                                    // background. Removed — the
+                                                    // per-text halos already carry
+                                                    // legibility.
+                                                    : "transparent",
+
                         }}
                     >
                         <div className="page-transition-enter">
