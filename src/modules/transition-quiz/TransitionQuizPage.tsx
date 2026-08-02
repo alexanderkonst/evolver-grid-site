@@ -902,11 +902,15 @@ function ChoiceScreen<V extends string>({
     options: Record<string, string>;
   };
   const [selected, setSelected] = useState<V | null>(current);
+  const [pending, setPending] = useState(false);
 
   const handlePick = (v: V) => {
+    if (pending) return;
     setSelected(v);
+    setPending(true);
     window.setTimeout(() => onPick(v), 260);
   };
+
 
   return (
     <section className="tq-card tq-inscribed">
