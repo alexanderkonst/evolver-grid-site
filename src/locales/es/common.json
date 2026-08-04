@@ -7564,6 +7564,148 @@
       "saving": "Guardando…",
       "saved": "Tu capítulo está guardado en tu perfil.",
       "error": "No se pudo guardar — inténtalo de nuevo en un momento."
+    },
+    "ext": {
+      "chapter": {
+        "eyebrow": "TU CAPÍTULO",
+        "bullseye": {
+          "5": "El capítulo anterior terminó y el siguiente todavía se está organizando. Ese es el verdadero trabajo de esta etapa, y explica más que cualquier historia sobre un rumbo perdido o una capacidad que se apaga. Sea lo que sea que causó la ruptura, la pregunta ahora es qué te pide a ti."
+        },
+        "arcNote": "Uno puede moverse hacia adelante y hacia atrás por este territorio. Esta es la parte que hoy pesa más."
+      },
+      "evidence": {
+        "heading": "Lo que revelaron tus respuestas",
+        "youSaid": {
+          "5": "Dijiste que el capítulo anterior terminó, pero de verdad no sabes qué sigue."
+        },
+        "youAlsoSaid": {
+          "named": "También dijiste que puedes hablar de cuál es tu próximo capítulo, pero todavía no se ha convertido en una oferta, negocio o línea de trabajo clara.",
+          "built": "También dijiste que tu oferta ya existe, pero la gente todavía no la entiende ni la elige de forma constante."
+        },
+        "and": {
+          "integration": "Y tienes varias líneas de trabajo, pero no ves qué las convierte en una sola cosa, ni si lo son.",
+          "vehicle": "Y sabes exactamente cuál es tu próximo capítulo, pero todavía no sabes cómo construir una oferta a su alrededor, posicionarla o venderla."
+        },
+        "takenTogether": {
+          "coherence": "En conjunto, la dirección no falta. Lo que falta es la relación entre las partes que ya están vivas.",
+          "form": "En conjunto, la dirección no es lo que falta. Lo que falta es una forma que otras personas puedan reconocer, a la que puedan entrar y que puedan elegir."
+        }
+      },
+      "synthesis": {
+        "coherence": "Puede que el problema no sea que te falte foco, disciplina o ideas. Esta combinación suele apuntar a otra cosa: las partes vivas de tu próximo capítulo todavía no tienen una relación de trabajo entre sí, cuál lidera, qué la sostiene, qué está listo para probarse ahora.",
+        "form": "La dirección ya no está del todo oculta. Esta combinación suele apuntar a un problema de forma sin resolver: todavía no se ha convertido en una oferta, página o invitación que otra persona pueda reconocer, usar o a la que pueda responder."
+      },
+      "upgradedQuestion": {
+        "coherence": {
+          "5": "Quizá la pregunta que vale la pena probar sea: ¿qué relación debería tener cada proyecto vivo con la dirección que intentas construir?"
+        },
+        "form": {
+          "5": "Quizá la pregunta que vale la pena probar sea: ¿estoy optimizando la oferta antes de decidir qué es lo que este capítulo realmente viene a llevar?"
+        }
+      },
+      "completionMarker": {
+        "coherence": "El capítulo empieza a cerrarse cuando los proyectos dejan de competir y empiezan a servir a una relación inteligible.",
+        "form": "El capítulo empieza a cerrarse cuando tienes evidencia, no solo resonancia."
+      },
+      "detour": {
+        "workingDownstream": {
+          "heading": "UN DESVÍO FRECUENTE",
+          "body": "Recurres a un embudo, una nueva oferta, branding o un sistema de productividad. Se siente como progreso real porque puedes empezar hoy. Pero nada de eso responde la pregunta previa: alrededor de qué se organiza realmente el próximo capítulo. El costo probable es actividad sin coherencia, mejor ejecución de una dirección que todavía no tiene nombre. Prueba primero la relación entre los proyectos."
+        },
+        "mistakingFocusForAmputation": {
+          "heading": "AQUÍ LA GENTE SUELE PERDER TIEMPO",
+          "body": "Varios proyectos llevan energía real, y te dicen que elijas uno y mates el resto. Eso puede sentirse como cortar partes de ti mismo(a), así que te quedas quieto(a) en vez de elegir. La tarea real es descubrir si las partes necesitan integración, jerarquía, secuencia o separación, sin asumir de entrada que todo debe fundirse en una sola cosa o que algo tiene que morir para hacer espacio."
+        },
+        "buildingBeforeNaming": {
+          "heading": "UN MOVIMIENTO A VIGILAR",
+          "body": "Empiezas a crear ofertas, contenido o un negocio antes de saber lo suficiente: quién es el comprador real, a qué está respondiendo de verdad, qué está respondiendo ya la realidad. Explorar ayuda. Construir mucho antes del contacto suele generar retrabajo, poca resonancia y una historia inventada después, a la medida de lo que ya se construyó. Prueba la oferta en conversaciones pequeñas antes de construir la siguiente capa."
+        }
+      },
+      "fork": {
+        "visibleLayer": "Hay dos formas de usar el próximo tramo de tiempo. Una: seguir puliendo las piezas visibles, la redacción de la oferta, la marca, el embudo. Dos: dar un paso atrás y examinar qué está organizando realmente esas piezas, qué proyecto lidera, para qué sirven los demás, qué está listo para probarse. La primera se siente productiva hoy. La segunda suele ser lo que hace funcionar a la primera.",
+        "evidence": "Dos caminos hacia adelante. Uno: seguir refinando la idea en privado, puliendo el lenguaje hasta que se sienta lista. Dos: crear una pequeña prueba que la realidad pueda responder, una invitación real, la respuesta de una persona real. El refinamiento puede continuar indefinidamente sin cambiar nada de fondo. La evidencia cambia lo que realmente sabes."
+      },
+      "experiment": {
+        "coherence": "Escribe una frase que nombre qué es lo que tus dos o tres proyectos más vivos están tratando de cambiar juntos para otra persona, no lo que hace cada uno por separado, sino el efecto compartido que producen. Luego etiqueta cada uno: lidera, apoya, prueba o completo. Observa qué etiqueta te genera resistencia.",
+        "form": "Pon la dirección que está emergiendo frente a tres personas de confianza, con una invitación concreta. Observa qué entienden sin que se lo expliques. Esa es tu evidencia.",
+        "doorACta": "Primero pruebo esto yo mismo(a)"
+      },
+      "resultComplete": {
+        "line": "Tu resultado está completo.",
+        "divider": "Un siguiente paso, solo si te sirve."
+      },
+      "offer": {
+        "name": "El mapa del próximo capítulo",
+        "masterResult": "Sales con una hipótesis de trabajo sobre qué debería organizar tu próximo capítulo, y con una decisión o experimento del mundo real capaz de ponerla a prueba.",
+        "explanation": {
+          "intro": "Una conversación de trabajo gratuita de 45 minutos para personas que están activamente dentro de este tipo de transición. No vamos a intentar resolver todo tu futuro.",
+          "testFirstIntro": "Prueba esto primero. Vuelve cuando la realidad te dé algo nuevo que examinar. Esta conversación sigue abierta, cuando la necesites.",
+          "examineList": [
+            "qué parece estar terminando",
+            "qué todavía lleva energía",
+            "qué relación entre las partes es más plausible",
+            "qué suposición mantiene el campo sin resolver",
+            "qué pequeña decisión o prueba podría generar evidencia"
+          ],
+          "leaveWithList": [
+            "un mapa de trabajo",
+            "una pregunta de fondo con nombre",
+            "un próximo paso concreto",
+            "una idea más clara de qué evidencia observar"
+          ]
+        },
+        "collaborativeStance": "Juntos vamos a poner todo el campo donde ambos podamos verlo.",
+        "methodAuthority": "Trabajo en la intersección que la mayoría de los consejos sobre transiciones separa: la persona, el cuerpo de trabajo, el mercado y la estructura capaz de sostener los tres.",
+        "transparency": "Vamos a usar el tiempo para trabajar en la transición misma. Si surge otra forma de trabajar juntos que sea relevante, te la explicaré con claridad y la decisión quedará en tus manos.",
+        "ctaPrimary": "Mapear mi próximo capítulo",
+        "ctaMicrocopy": "Gratis · 45 minutos · Una conversación enfocada",
+        "ctaNote": "La reserva se abre en una pestaña nueva."
+      },
+      "preparation": {
+        "heading": "Para que pueda prepararme para la conversación…",
+        "options": {
+          "explainFit": "Puedo explicar cómo encajan las piezas principales",
+          "knowDecision": "Sé qué decisión está manteniendo abierta la transición",
+          "haveTest": "Tengo una prueba real que quiero hacer",
+          "wantPerspective": "Sobre todo quiero otra perspectiva antes de decidir",
+          "somethingElse": "Algo más"
+        },
+        "somethingElsePlaceholder": "Cuéntame un poco más, si quieres."
+      },
+      "save": {
+        "secondaryLabel": "Guardar este resultado",
+        "heading": "Guarda tu resultado",
+        "body": "No tienes que decidir hoy. Deja tu correo y te enviaremos un enlace privado a este resultado exacto, incluyendo tu experimento y la invitación, para que puedas volver cuando algo cambie.",
+        "sendCta": "Enviarme mi enlace de regreso",
+        "microcopy": "Un enlace a tu resultado. Sin necesidad de suscribirte a nada.",
+        "confirmation": "Guardado. Este resultado, y la puerta de regreso a la conversación, van a estar aquí cuando vuelvas."
+      },
+      "disagreement": {
+        "prompt": "¿Algo en esta lectura se siente fuera de lugar?",
+        "options": {
+          "chapterRightProblemNot": "El capítulo se siente correcto, pero el problema no.",
+          "workFurtherAlong": "El trabajo está más avanzado de lo que esto sugiere.",
+          "projectsDontBelong": "Estos proyectos o intereses no van juntos.",
+          "somethingMissing": "Falta algo importante.",
+          "cannotTellYet": "Todavía no puedo saberlo."
+        },
+        "thanks": "Anotado. Esto ayuda a que la lectura sea más precisa con el tiempo."
+      },
+      "savedReturn": {
+        "savedOnLine": "Guardaste este resultado el {{date}}.",
+        "readFromNowLine": "Léelo desde donde estás ahora.",
+        "options": {
+          "stillAccurate": "Esto todavía se siente certero",
+          "somethingShifted": "Algo importante ha cambiado",
+          "readyToTalk": "Estoy listo(a) para hablar"
+        }
+      },
+      "utility": {
+        "shareLabel": "Compartir",
+        "shareCopied": "Enlace copiado.",
+        "retakeLabel": "Repetir",
+        "retakeExplainer": "Repetir el test crea un resultado nuevo. No sobrescribe este."
+      }
     }
   },
   "homeLanding": {

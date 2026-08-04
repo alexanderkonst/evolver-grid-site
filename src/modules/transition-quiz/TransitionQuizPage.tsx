@@ -41,12 +41,14 @@ import {
   computeRouting,
   decodeShareState,
   encodeShareState,
+  isExtEligible,
   isNotYetStage,
   notYetVariant,
   resultTemplateKey,
   routeAfterBuyingFrame,
   workStageClauseKey,
 } from "./engine";
+import { ExtResultScreen } from "./ExtResultScreen";
 import "./TransitionQuizPage.css";
 
 type Screen =
@@ -546,21 +548,35 @@ const TransitionQuizPage = () => {
           {screen === "loading" && <LoadingScreen t={t} />}
 
           {screen === "result" && coreAnswers && routing && (
-            <ResultScreen
-              t={t}
-              stageNames={stageNames}
-              answers={coreAnswers}
-              showBuyingFrame={routing.showBuyingFrame}
-              route={routing.route}
-              onContinue={() => {
-                if (routing.showBuyingFrame) {
-                  trackCTAClick("quiz_cta_click", "direction_call_continue");
-                  goTo("buyingFrame");
-                }
-              }}
-              onRetake={reset}
-              resultId={resultId}
-            />
+            // Result Experience EXT (Day 142) gate — change-map §5. Crossed
+            // peers and every other combination fall through to v1's
+            // ResultScreen, unmodified.
+            routing.route !== "crossedPeer" && isExtEligible(coreAnswers) ? (
+              <ExtResultScreen
+                t={t}
+                stageNames={stageNames}
+                answers={coreAnswers}
+                resultVersion="ext-a"
+                resultId={resultId}
+                onRetake={reset}
+              />
+            ) : (
+              <ResultScreen
+                t={t}
+                stageNames={stageNames}
+                answers={coreAnswers}
+                showBuyingFrame={routing.showBuyingFrame}
+                route={routing.route}
+                onContinue={() => {
+                  if (routing.showBuyingFrame) {
+                    trackCTAClick("quiz_cta_click", "direction_call_continue");
+                    goTo("buyingFrame");
+                  }
+                }}
+                onRetake={reset}
+                resultId={resultId}
+              />
+            )
           )}
 
           {screen === "buyingFrame" && (
@@ -961,6 +977,10 @@ function LoadingScreen({ t }: { t: (k: string, o?: Record<string, unknown>) => u
 }
 
 // ── Result: the 3-beat lean architecture (§12) ───────────────────────────
+// Result Experience v1 — Day 142 (historical, retained for rollback;
+// superseded by ExtResultScreen for the representative pattern). Do not
+// modify beyond this comment — see docs/specs/quiz/ext_implementation_brief.md
+// §2 and docs/specs/quiz/result_experience_v1.md.
 
 export function ResultScreen({
   t,
@@ -1091,7 +1111,7 @@ export function ResultScreen({
 // only that stage's name is labeled beneath its marker, in gold
 // smallcaps, per Sasha's result-ceremony spec. ─────────────────────────
 
-function StageArc({
+export function StageArc({
   stage,
   stageNames,
   crossed = false,

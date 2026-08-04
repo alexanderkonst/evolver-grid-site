@@ -7571,6 +7571,148 @@
       "saving": "Saving…",
       "saved": "Your chapter is saved to your profile.",
       "error": "Couldn't save it — try again in a moment."
+    },
+    "ext": {
+      "chapter": {
+        "eyebrow": "YOUR CHAPTER",
+        "bullseye": {
+          "5": "The old chapter has ended, and the next one is still organizing. That is the real work of this stage, and it explains more than any story about lost direction or fading ability. Whatever caused the break, the question now is what the break requires of you."
+        },
+        "arcNote": "People may move back and forth across this territory. This is the part carrying the most weight now."
+      },
+      "evidence": {
+        "heading": "What your answers revealed",
+        "youSaid": {
+          "5": "You said the old chapter is over, but you genuinely don't know what comes next."
+        },
+        "youAlsoSaid": {
+          "named": "You also said you can talk about what the next chapter is, but it hasn't become a clear offer, business, or body of work.",
+          "built": "You also said your offer already exists, but people don't understand it or choose it consistently yet."
+        },
+        "and": {
+          "integration": "And you have several workstreams, but you can't see what makes them one thing, or whether they are one thing.",
+          "vehicle": "And you know exactly what your next chapter is, but you don't yet know how to build an offer around it, position it, or sell it."
+        },
+        "takenTogether": {
+          "coherence": "Taken together, the direction isn't missing. What's missing is the relationship among the parts that are already alive.",
+          "form": "Taken together, the direction isn't the missing piece. What's missing is a form other people can recognize, enter, and choose."
+        }
+      },
+      "synthesis": {
+        "coherence": "The problem may not be that you lack focus, discipline, or ideas. This combination often points to something else: the live parts of your next chapter don't yet have a working relationship, which one leads, what supports it, what's ready to test now.",
+        "form": "The direction is no longer entirely hidden. This combination often points to an unresolved form problem: it hasn't yet become an offer, page, or invitation another person can recognize, use, or respond to."
+      },
+      "upgradedQuestion": {
+        "coherence": {
+          "5": "The question worth testing may be: what relationship should each live project have to the direction you're trying to build?"
+        },
+        "form": {
+          "5": "The question worth testing may be: am I optimizing the offer before deciding what this chapter is actually here to carry?"
+        }
+      },
+      "completionMarker": {
+        "coherence": "The chapter begins to close when the projects stop competing and begin serving an intelligible relationship.",
+        "form": "The chapter begins to close when you have evidence, not only resonance."
+      },
+      "detour": {
+        "workingDownstream": {
+          "heading": "A COMMON DETOUR",
+          "body": "You reach for a funnel, a new offer, branding, or a productivity system. These feel like real progress because you can start today. But none of them answer the upstream question: what is the next chapter actually organized around. The likely cost is activity without coherence, better execution of a direction that still isn't named. Test the relationship among the projects first."
+        },
+        "mistakingFocusForAmputation": {
+          "heading": "WHERE PEOPLE OFTEN LOSE TIME HERE",
+          "body": "Several projects carry real energy, and you're told to choose one and kill the rest. That can feel like cutting off parts of yourself, so you stall rather than choose. The real task is finding whether the parts need integration, hierarchy, sequence, or separation, without assuming everything must merge into one thing or that anything has to die to make room."
+        },
+        "buildingBeforeNaming": {
+          "heading": "A MOVE TO WATCH",
+          "body": "You start creating offers, content, or a business before enough is known: who the real buyer is, what they're actually responding to, what reality is already answering. Exploration helps. Heavy building before contact usually creates rework, weak resonance, and a story reverse-engineered around what you already built. Test the offer in small conversations before you build the next layer."
+        }
+      },
+      "fork": {
+        "visibleLayer": "Two ways to spend the next stretch of time. One: keep polishing the visible pieces, the offer wording, the brand, the funnel. Two: step back and examine what is actually organizing the pieces, which project leads, what the others are for, what's ready to be tested. The first feels productive today. The second is usually what makes the first one work.",
+        "evidence": "Two ways forward. One: keep refining the idea privately, sharpening the language until it feels ready. Two: create a small test that reality can answer, one real invitation, one real person's response. Refinement can continue indefinitely without changing anything. Evidence changes what you actually know."
+      },
+      "experiment": {
+        "coherence": "Write one sentence that names what your two or three most alive projects are collectively trying to change for another person, not what each one does individually, but the shared effect they produce. Then label each one: lead, support, test, or complete. Notice which label creates resistance.",
+        "form": "Put the emerging direction in front of three people you trust, with one concrete invitation. Notice what they understand without your explanation. That's your evidence.",
+        "doorACta": "I'll test this first"
+      },
+      "resultComplete": {
+        "line": "Your result is complete.",
+        "divider": "A next step, only if useful."
+      },
+      "offer": {
+        "name": "The Next Chapter Map",
+        "masterResult": "Leave with a working hypothesis for what should organize the next chapter, and one real-world decision or experiment that can test it.",
+        "explanation": {
+          "intro": "A free 45-minute working conversation for people actively inside this kind of transition. We will not try to solve your entire future.",
+          "testFirstIntro": "Run the test first. Return when reality gives you something new to examine. This conversation still stays open, whenever you want it.",
+          "examineList": [
+            "what appears to be ending",
+            "what still carries energy",
+            "which relationship among the parts is most plausible",
+            "what assumption is keeping the field unresolved",
+            "what small decision or test could create evidence"
+          ],
+          "leaveWithList": [
+            "a working map",
+            "a named upstream question",
+            "one concrete next move",
+            "a clearer sense of what evidence to watch"
+          ]
+        },
+        "collaborativeStance": "Together, we will place the whole field where both of us can see it.",
+        "methodAuthority": "I work at the intersection most transition advice separates: the person, the body of work, the market, and the structure capable of carrying all three.",
+        "transparency": "We will use the time to work on the transition itself. If another way of working together becomes relevant, I will explain it clearly and leave the decision with you.",
+        "ctaPrimary": "Map my next chapter",
+        "ctaMicrocopy": "Free · 45 minutes · One focused conversation",
+        "ctaNote": "Booking opens in a new tab."
+      },
+      "preparation": {
+        "heading": "So I can prepare for the conversation…",
+        "options": {
+          "explainFit": "I can explain how the main parts fit together",
+          "knowDecision": "I know which decision is keeping the transition open",
+          "haveTest": "I have one real-world test to run",
+          "wantPerspective": "I mainly want another perspective before I decide",
+          "somethingElse": "Something else"
+        },
+        "somethingElsePlaceholder": "Say more, if you want."
+      },
+      "save": {
+        "secondaryLabel": "Keep this result",
+        "heading": "Keep your result",
+        "body": "You do not have to decide today. Enter your email and we will send one private link back to this exact result, including your experiment and the invitation, so you can return when something changes.",
+        "sendCta": "Send my return link",
+        "microcopy": "One result link. No newsletter required.",
+        "confirmation": "Saved. This result, and the door back to the conversation, will be here when you return."
+      },
+      "disagreement": {
+        "prompt": "Something feels off in this read?",
+        "options": {
+          "chapterRightProblemNot": "The chapter feels right, but the problem does not.",
+          "workFurtherAlong": "The work is further along than this suggests.",
+          "projectsDontBelong": "These projects or interests do not belong together.",
+          "somethingMissing": "Something important is missing.",
+          "cannotTellYet": "I cannot tell yet."
+        },
+        "thanks": "Noted. This helps the read get more accurate over time."
+      },
+      "savedReturn": {
+        "savedOnLine": "You saved this result on {{date}}.",
+        "readFromNowLine": "Read it from where you are now.",
+        "options": {
+          "stillAccurate": "This still feels accurate",
+          "somethingShifted": "Something important has shifted",
+          "readyToTalk": "I'm ready to talk"
+        }
+      },
+      "utility": {
+        "shareLabel": "Share",
+        "shareCopied": "Link copied.",
+        "retakeLabel": "Retake",
+        "retakeExplainer": "Retaking creates a new result. It does not overwrite this one."
+      }
     }
   },
   "homeLanding": {

@@ -18,10 +18,12 @@ import {
   type CoreAnswers,
   type Stage,
   computeRouting,
+  isExtEligible,
   isNotYetStage,
   notYetVariant,
 } from "./engine";
 import { ResultScreen, DIRECTION_CALL_HREF, QuizCorridorHeader } from "./TransitionQuizPage";
+import { ExtResultScreen } from "./ExtResultScreen";
 import "./TransitionQuizPage.css";
 
 interface FetchedResult {
@@ -35,6 +37,10 @@ interface FetchedResult {
   // avoid leaking an auth uid on a public/no-auth endpoint) — used only to
   // decide whether to show the claim line (already-owned rows never show it).
   owned?: boolean;
+  /** Result Experience EXT (Day 142) — for the saved-return framing (brief
+   *  §12.3), "You saved this result on [date]". Absent gracefully omits
+   *  that line rather than throwing. */
+  created_at?: string | null;
 }
 
 // Claim path (2026-07-30, JOURNEY Step 0 batch): a quiet line + button
@@ -291,6 +297,41 @@ function ReconstructedResult({
     emergingWorkStage: result.emerging_work_stage,
   };
   const routing = computeRouting(answers);
+
+  // Result Experience EXT gate (Day 142) — mirrors the live-quiz gate in
+  // TransitionQuizPage.tsx. The saved result must never bypass the EXT
+  // decision environment and jump directly to booking (brief §12.3) — it
+  // renders the full ExtResultScreen, same as live, with the saved-return
+  // framing layered on top.
+  if (routing.route !== "crossedPeer" && isExtEligible(answers)) {
+    let savedOnDate: string | null = null;
+    if (result.created_at) {
+      try {
+        savedOnDate = new Intl.DateTimeFormat(undefined, { dateStyle: "long" }).format(
+          new Date(result.created_at),
+        );
+      } catch {
+        savedOnDate = null;
+      }
+    }
+    return (
+      <>
+        <ExtResultScreen
+          t={t}
+          stageNames={stageNames}
+          answers={answers}
+          resultVersion="ext-a"
+          resultId={result.id}
+          onRetake={() => {
+            window.location.href = "/quiz";
+          }}
+          savedOnDate={savedOnDate}
+          bookingContext="saved"
+        />
+        <ClaimReadLine resultId={result.id} alreadyOwned={!!result.owned} />
+      </>
+    );
+  }
 
   return (
     <>

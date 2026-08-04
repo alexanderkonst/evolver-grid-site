@@ -172,6 +172,64 @@ export function workStageClauseKey(stage: EmergingWorkStage): string {
   return `quiz.result.workStageClause.${stage}`;
 }
 
+// ── Result Experience EXT (Day 142+) ────────────────────────────────────
+// Additive only — v1's routing, chapter/beat keying, and ResultScreen stay
+// untouched. See docs/specs/quiz/ext_implementation_brief.md and
+// docs/specs/quiz/ext_change_map.md §5 for the source spec.
+
+/** brief §25 — "v1" is the existing 3-beat architecture (implicit/legacy,
+ *  never written explicitly by new code but kept in the domain for the
+ *  saved-result / analytics "absence means v1" convention, change-map §3). */
+export type ResultVersion = "v1" | "ext-a" | "ext-b";
+
+/** brief §4/§16 item 6 — synthesis family. Prototype only authors
+ *  coherence (uniqueness=integration) and form (uniqueness=vehicle);
+ *  release/contact are named in the brief but out of scope for Phase 3. */
+export type SynthesisFamily = "coherence" | "form";
+
+/**
+ * brief §24 representative-pattern gate / change-map §5: stage 5, plus
+ * uniqueness in {integration, vehicle}, plus emergingWorkStage in
+ * {named, built}, minus crossed peers (crossed-peer keeps its own ending —
+ * brief §20). Callers should still gate on `computeRouting(answers).route
+ * !== "crossedPeer"` themselves (change-map §5) since isCrossedPeer alone
+ * doesn't cover every crossed-peer trigger combination as cleanly as the
+ * routing result does; this function re-checks it directly too so it's
+ * safe to call standalone.
+ */
+export function isExtEligible(answers: CoreAnswers): boolean {
+  if (isCrossedPeer(answers)) return false;
+  const stageEligible = answers.stage === 5;
+  const uniquenessEligible = answers.uniqueness === "integration" || answers.uniqueness === "vehicle";
+  const workStageEligible = answers.emergingWorkStage === "named" || answers.emergingWorkStage === "built";
+  return stageEligible && uniquenessEligible && workStageEligible;
+}
+
+/** brief §4 — integration reaches for coherence, vehicle reaches for form. */
+export function synthesisFamilyFor(answers: CoreAnswers): SynthesisFamily {
+  return answers.uniqueness === "vehicle" ? "form" : "coherence";
+}
+
+/**
+ * brief §25 — deterministic hash-based EXT-A/EXT-B assignment, keyed off
+ * the share-encoded answers string so the same result always lands on the
+ * same variant (stable across reloads/shares). The hash logic is real and
+ * stays wired so this function is switchable later without a rewrite — but
+ * per Phase 3 scope (brief §24, "one complete EXT prototype... before
+ * multiplying the copy system"), only EXT-A copy exists today (EXT-B has
+ * no authored copy module yet), so this short-circuits to "ext-a" until
+ * EXT-B's copy is written.
+ */
+export function extVariantFor(seed: string): "ext-a" | "ext-b" {
+  let hash = 0;
+  for (let i = 0; i < seed.length; i++) {
+    hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
+  }
+  const hashedVariant: "ext-a" | "ext-b" = hash % 2 === 0 ? "ext-a" : "ext-b";
+  void hashedVariant; // computed for future use — see comment above.
+  return "ext-a";
+}
+
 // ── Shareable/resumable encoding ──────────────────────────────────────────
 // Small enough to round-trip through a URL query param — a result can be
 // shared or resumed with no server round-trip. Supabase persistence (via
@@ -185,6 +243,10 @@ export interface QuizShareState {
   buyingFrame?: BuyingFrame;
   means?: Means;
   email?: string;
+  /** Result Experience EXT (Day 142) — optional, additive. Absent on every
+   *  token encoded before this field existed; decodeShareState above never
+   *  throws on its absence, and callers treat "undefined" as "v1". */
+  resultVersion?: "v1" | "ext-a" | "ext-b";
 }
 
 export function encodeShareState(state: QuizShareState): string {
@@ -199,6 +261,9 @@ export function decodeShareState(token: string): QuizShareState | null {
     const parsed = JSON.parse(json);
     if (typeof parsed !== "object" || parsed === null) return null;
     if (typeof parsed.stage !== "number" || parsed.stage < 1 || parsed.stage > 7) return null;
+    // resultVersion is optional (added for Result Experience EXT, Day 142) —
+    // old tokens simply lack the field, decoded here as `undefined`, and
+    // absence is treated as "v1" by convention at the call site. No throw.
     return parsed as QuizShareState;
   } catch {
     return null;
