@@ -4,26 +4,29 @@
 
 ---
 
-## 0. AS-BUILT — vNext (lean 4-question edition), dated July 29, 2026
+## 0. AS-BUILT — vNext (lean 3-question edition), refreshed August 3, 2026 (Day 142)
 
-**This section describes what is actually live at `/quiz` today.** Everything below §0 (Phase 1 through the wireframes) documents the *original* 7-question / 9-aspect-question design and its roast history. That design was superseded before Phase 2 shipped by a leaner 4-question edition ("vNext") — the earlier content is preserved verbatim below as genealogy (per corpus convention: quote, don't delete), not as the current build. An external quiz architect reading this file should treat §0 as ground truth and everything after it as historical design record.
+**This section describes what is actually live at `/quiz` today, verified against `engine.ts` and `TransitionQuizPage.tsx` on Day 142.** Everything below §0 (Phase 1 through the wireframes) documents the *original* 7-question / 9-aspect-question design and its roast history. That design was superseded before Phase 2 shipped by a leaner edition ("vNext") — the earlier content is preserved verbatim below as genealogy (per corpus convention: quote, don't delete), not as the current build. An external quiz architect reading this file should treat §0 as ground truth and everything after it as historical design record.
 
-**Governing sentence** (from the vNext SOW baked into `engine.ts`): *"Four questions are enough to locate the crossing. The conversation exists to see what is actually crossing."*
+**Edition history:** vNext shipped as a 4-question edition (July 29). Q4 (the "clarity unlock" question) was cut the same day, making the live quiz a **three-question** edition. The Day 142 pass then replaced the two-screen commercial qualifier (Buying Frame + Means) with a **single soft threshold question**, removed the Recognition Delta reflection widget, tightened result copy, and ran the visual/UX design pass that §0.6 had previously deferred. This §0 reflects all of that.
 
-### 0.1 The four questions
+**Governing sentence** (from the vNext SOW baked into `engine.ts`): *"A few questions are enough to locate the crossing. The conversation exists to see what is actually crossing."*
+
+### 0.1 The three questions
 
 | # | Question | Answer type | Purpose |
 |---|---|---|---|
 | Q1 | Stage placement — 7 first-person statements, pick the one that sounds like now | `Stage` (1-7) | Where they are on the transition arc. Stages 1-3 branch immediately to a no-ask ending (see §0.2); stages 4-7 continue. |
-| Q2 | "What is actually unclear?" — the Uniqueness classifier | `UniquenessCategory`: `discovery` \| `recognition` \| `integration` \| `vehicle` \| `transmission` \| `scaling` | Names which of the six uniqueness-articulation problems is live for them right now. |
-| Q3 | Developmental position of the emerging work | `EmergingWorkStage`: `not_visible` → `fragments` → `felt` → `named` → `built` → `working` | How far the "new thing" has actually gotten, independent of how they feel about it. |
-| Q4 | Live real-world consequence ("clarity unlock") | `ClarityUnlock`: `personal` \| `direction` \| `current_work` \| `emerging_business` \| `near_term_exchange` | What in their actual life the clarity would change, if they had it. |
+| Q2 | "How far has your uniqueness made it into the world?" — the Uniqueness classifier | `UniquenessCategory`: `discovery` \| `recognition` \| `integration` \| `vehicle` \| `transmission` \| `scaling` | Names which of the six uniqueness-articulation problems is live for them right now. |
+| Q3 | Developmental position of the emerging work | `EmergingWorkStage`: `not_visible` → `suspected` → `felt` → `named` → `built` → `working` → `delivering` (7 values) | How far the "new thing" has actually gotten, independent of how they feel about it. |
 
-Q1 alone determines the not-yet branch. Q2-Q4 (asked only at stages 4-7) are the **core answers** (`CoreAnswers` in `engine.ts`) that drive both the result copy and the routing decision.
+Q1 alone determines the not-yet branch. Q2-Q3 (asked only at stages 4-7) are the **core answers** (`CoreAnswers` in `engine.ts`) that drive both the result copy and the routing decision.
 
-An optional fifth question — the **Buying Frame** qualifier (`open` \| `mixed` \| `open_no_history` \| `closed`) — appears only when `meetsDirectionCallGate()` already holds (see §0.3); it is never shown to everyone, and every answer except `closed` leads to the Direction Call.
+**Q4 was cut** (2026-07-29). The former `ClarityUnlock` question no longer exists in the flow; the `clarity_unlock` DB column and any historical rows are untouched, the client simply stops sending it. Do not treat Q4 as live.
 
-The earlier 17-question / discriminator design (visible in the design conversation this SOW comes from) and the Phase-1 nine-aspect-question design documented from §1 onward in this file were both explicitly rejected by Sasha as overkill in favor of this four-question edition. One thing carried forward unchanged from the earlier design: **"Money" not "Economy"** in all user-facing copy, and no internal jargon on screen.
+A post-result **threshold question** (`BuyingFrame`: `open` \| `open_no_history` \| `mixed` \| `closed`, shown in that order) appears only when `meetsDirectionCallGate()` already holds (see §0.3). It replaced (Day 142) the earlier two-screen sequence — a blunt paid-help-history question followed by a separate "is investing realistic?" Means question — with one soft question ("People cross this threshold alone or with real help. Where are you with that?"). History, openness, and means now read from that single choice. Every answer except `closed` leads to the Direction Call; `closed` ends in the honest no-pitch ending. The `Means` type and its DB column remain in the codebase for dataset continuity but **the Means screen no longer renders**.
+
+The earlier 17-question / discriminator design (visible in the design conversation this SOW comes from) and the Phase-1 nine-aspect-question design documented from §1 onward in this file were both explicitly rejected by Sasha as overkill in favor of this lean edition. One thing carried forward unchanged from the earlier design: **"Money" not "Economy"** in all user-facing copy, and no internal jargon on screen.
 
 ### 0.2 Endings matrix
 
@@ -34,8 +37,8 @@ Five distinct endings, not one generic result screen:
 | **Settled** (not-yet, stage 1) | Q1 = 1 | One honest line: nothing is broken, no ask, no CTA. Optional low-key email capture ("send me the full map") was added later (see the tracker's "Decisions Sasha resolved" — Settled does get an optional email, contrary to the original Phase-1 wireframe). |
 | **Itch** (not-yet, stage 2) | Q1 = 2 | Stage-matched gift: what the feeling usually turns into + the sign it's becoming real. Optional email, skippable, skipping is a real undamaged exit. |
 | **Tremors** (not-yet, stage 3) | Q1 = 3 | Same shape as Itch, content tuned to stage 3. |
-| **Full-read** (standard result) | Stages 4-7, not crossed-peer | The 3-beat lean result (Chapter / Real Problem / What Comes Next, §0.4) plus, conditionally, the Buying Frame qualifier and a route CTA (Direction Call / paid Session / BUILT / Node / no CTA). |
-| **Crossed-peer** | `isCrossedPeer()` — see below | A different conversation than a Direction Call, offered as such: for someone whose uniqueness already monetizes (`scaling`), or who is at stage 7 with the work already `working` or the remaining friction being `transmission`-shaped. Replaces the standard result body, the Direction Call bridge, and the Buying Frame qualifier entirely. |
+| **Full-read** (standard result) | Stages 4-7, not crossed-peer | The 3-beat lean result (Chapter / Real Problem / What Comes Next, §0.4), then the threshold question, then the Direction Call door — unless the threshold answer is `closed`, which ends in the honest no-pitch ending. Because the gate is now `stage >= 4` (see §0.3), every non-peer full-read reaches the threshold question; the "no CTA at the result itself" branch is no longer reachable. |
+| **Crossed-peer** | `isCrossedPeer()` — see below | A different conversation than a Direction Call, offered as such: for someone whose uniqueness already monetizes (`scaling`), or who is at stage 7 with the work already `working` or `delivering`, or the remaining friction being `transmission`-shaped. Replaces the standard result body, the Direction Call bridge, and the threshold question entirely. |
 
 `isCrossedPeer()` fires independent of stage when `uniqueness === "scaling"` — someone whose positioning already converts is a peer regardless of which stage statement they picked.
 
@@ -43,14 +46,14 @@ Five distinct endings, not one generic result screen:
 
 Both live in `src/modules/transition-quiz/engine.ts` (pure functions, no React/i18n/Supabase):
 
-1. **Placement + routing engine** — `meetsDirectionCallGate()`, `isCrossedPeer()`, `computeRouting()`, `routeAfterBuyingFrame()`. Decides which of the five endings above applies and whether the optional Buying Frame qualifier gets shown at all. The Direction Call gate requires all four to hold simultaneously: stage 4-6, uniqueness is `recognition` or `integration`, emerging work is `fragments`/`felt`/`named`, and the clarity unlock is `emerging_business` or `near_term_exchange`.
-2. **Result-copy key engine** — `chapterKeyForStage()`, `resultTemplateKey()`, `workStageClauseKey()`, `clarityClauseKey()`. Picks which locale keys to render for the 3-beat result: Beat 1 (Chapter) is keyed by stage, Beats 2-3 (Real Problem / What Comes Next) are keyed by uniqueness category with short supporting clauses from the work-stage and clarity-unlock answers.
+1. **Placement + routing engine** — `meetsDirectionCallGate()`, `isCrossedPeer()`, `computeRouting()`, `routeAfterBuyingFrame()`. Decides which of the five endings above applies and whether the threshold question gets shown at all. **The Direction Call gate is now simply `stage >= 4 && stage <= 7`** (widened 2026-07-29). It no longer conditions on uniqueness, work stage, or clarity — those are still computed and logged for the dataset, they just no longer gate the Direction Call. `isCrossedPeer()` short-circuits to the peer door before the gate; a `closed` threshold answer routes to `none` (honest ending) via `routeAfterBuyingFrame()`.
+2. **Result-copy key engine** — `chapterKeyForStage()`, `resultTemplateKey()`, `workStageClauseKey()`. Picks which locale keys to render for the 3-beat result: Beat 1 (Chapter) is keyed by stage, Beats 2-3 (Real Problem / What Comes Next) are keyed by uniqueness category with a short supporting clause from the work-stage answer. (The former `clarityClauseKey()` is gone with Q4.)
 
 A third small utility pair, `encodeShareState()` / `decodeShareState()`, round-trips a completed answer set through a base64 `?r=` URL param so a result can be shared or resumed with no server call — Supabase is write-only, for the dataset, never read to render the free result.
 
 ### 0.4 Current copy source
 
-All user-facing text lives in the three locale files, not in code: `src/locales/en/common.json`, `src/locales/ru/common.json`, `src/locales/es/common.json`, under the `quiz.*` key namespace (`quiz.stageNames`, `quiz.result.chapter.<stage>`, `quiz.result.beats.<uniqueness>`, `quiz.result.workStageClause.<stage>`, `quiz.result.clarityClause.<unlock>`, `quiz.notYet.settled.*`, `quiz.notYet.itchTremors.*`). Locale JSON uses `returnObjects: true` (arrays/objects, not flattened indexed keys) — the array lengths and key sets are kept identical across en/ru/es. **Another agent owns locale copy edits concurrently with this spec refresh — this document does not change any locale file.**
+All user-facing text lives in the three locale files, not in code: `src/locales/en/common.json`, `src/locales/ru/common.json`, `src/locales/es/common.json`, under the `quiz.*` key namespace (`quiz.stageNames`, `quiz.result.chapter.<stage>`, `quiz.result.beats.<uniqueness>`, `quiz.result.workStageClause.<workStage>`, `quiz.buyingFrame.*`, `quiz.directionCall.*`, `quiz.notYet.settled.*`, `quiz.notYet.itchTremors.*`, `quiz.crossedPeer.*`). Locale JSON uses `returnObjects: true` (arrays/objects, not flattened indexed keys) — the array lengths and key sets are kept identical across en/ru/es. Day 142 copy edits (shortened integration-beat body, the `continueCta` "Turn your projects into one direction", the reworded threshold `quiz.buyingFrame` prompt/options, and Q1 option 6) were applied across all three locales in sync. Two key sets are now **orphaned** — present in the locale files but no longer rendered: `quiz.result.clarityClause.*` (Q4 cut) and `quiz.recognitionDelta.*` + `quiz.result.takeWhatNote` (delta widget removed, §0.6). Left in place per quote-don't-delete; safe to prune later.
 
 ### 0.5 Data schema (as-built)
 
@@ -58,20 +61,30 @@ Two Supabase tables feed the dataset, both RLS-on with zero client policies (ser
 
 **`transition_quiz_results`** (migration `20260728140000_transition_quiz_results.sql`, extended by `20260729120000_transition_quiz_vnext_columns.sql`) — one row per quiz completion, including not-yet completions:
 - Base columns (Phase-1 design, still populated): `id`, `stage`, `identity_score`, `economy_score`, `fit_score`, `bottleneck_aspect`, `driver_aspect`, `pattern`, `route_shown`, `email`, `not_yet`, `locale`, `completed_at`, `created_at`. The three aspect-score columns are nullable and, in the vNext build, are no longer written by the current UI (they were Phase-1's nine-aspect-question output) — kept for schema continuity with any historical rows and because the edge function still accepts them.
-- vNext columns (additive, all nullable so older deployments degrade gracefully): `uniqueness_category`, `emerging_work_stage`, `clarity_unlock`, `buying_frame`, `direction_call_shown`, `result_template`.
-- Written by the `save-quiz-result` edge function (public, no-auth, `verify_jwt = false`), fire-and-forget from the client at three points: arrival at the not-yet ending, arrival at the full-read result, and (as a separate additive row) the Buying Frame answer.
+- vNext columns (additive, all nullable so older deployments degrade gracefully): `uniqueness_category`, `emerging_work_stage`, `clarity_unlock`, `buying_frame`, `means`, `recognition_delta`, `direction_call_shown`, `result_template`. Of these, `clarity_unlock` (Q4 cut), `means` (Means screen removed), and `recognition_delta` (widget removed, §0.6) are **no longer written by the current UI** — kept for schema/historical-row continuity; the edge function still accepts them.
+- Written by the `save-quiz-result` edge function (public, no-auth, `verify_jwt = false`), fire-and-forget from the client. Since data-hygiene batch #22 (2026-07-30) one person's passage is **one row, updated in place** (not additive inserts): the row is created at the not-yet ending or the full-read result, then updated by `id` when the threshold answer arrives.
 
 **`quiz_email_signups`** (new, migration `20260729210000_quiz_email_signups.sql`) — one row per "send me the map" email capture, kept separate from the per-completion dataset above so there is one clean list of emails: `id`, `created_at`, `email` (not null), `stage`, `locale`, `source` (default `'transition_quiz'`). Written by the new `save-quiz-email` edge function, called alongside (not instead of) the existing email-on-completion-row logging, so both records exist independently. Same fire-and-forget contract: the quiz UI shows success optimistically regardless of whether the call lands.
 
 Both tables are readable by the AI partner (never by the browser client) through the token-gated `quiz-results-export` edge function — see `docs/specs/lovable_redeploy_prompt.md` for the token setup.
 
-### 0.6 Reskin note
+### 0.6 Design pass (Day 142, August 1-3, 2026 — SUPERSEDES the "Phase 3 not run" note)
 
-Phase 3 (the dedicated visual/UX polish pass — micro-interactions, transition animations, accessibility audit, spacing/design-critique) has **not** been run. The vNext build shipped functional, on-brand, mobile-first screens (self-contained page + scoped `TransitionQuizPage.css`, reusing the app's shared CSS custom properties and Cormorant Garamond / DM Sans type) but skipped the full Phase 3 checklist. Anything a quiz architect flags on visual polish, spacing density, or micro-interaction should assume it lands in a future Phase 3 pass, not that it was overlooked in Phase 2.
+The visual/UX pass this section previously deferred **has now been run.** It was scoped by roasting the result page through the 27-perspective instrument (three rounds: meaning, mechanics, aesthetics) before any code, then shipped in five waves. Full detail lives in `quiz_experience_sow.md` → "Design pass (Day 142)"; the summary:
 
-### 0.7 Per-stage Top Talent reveal gifts (concurrent, in progress)
+1. **Result ceremony, three acts.** The result had one visual event (the reveal card) and then a wall of undifferentiated serif. Now: the trajectory arc labels the previous/current/next chapter (was 6 empty label slots); the central read is the one framed body below the fold, carrying the reveal card's ivory + gold down; the witness quote gets its own margin voice; the progress thread completes to 100% on the read (was dying at 95%); a closing star seal ends the page instead of two grey links dissolving. Stages 1-3 gained the same chapter ceremony (name + arc) the full read has.
+2. **Text halved, one soft question.** Result copy went ~230 → ~130 words; the Recognition Delta reflection widget and the "take what is accurate" hedge line were removed entirely (Sasha: "eats prime real estate, a halfway excuse"). The two blunt commercial screens collapsed to one soft threshold question (§0.1).
+3. **Typography unified to three voices.** The client-facing read had mixed six sizes and two families (some lines fell through to DM Sans). Now exactly three: display serif (Cormorant, headings) · one reading voice (Source Serif 4, 1.02rem, one color, no opacity steps) · one smallcaps meta voice (eyebrows, witness name, quiet links).
+4. **The lapis field.** `/quiz` was the only funnel surface on a flat wash while `/` has the house watercolor ground. It now renders the same `lapis-still-background.webp` as a fixed layer under the paper grain and phase vignette — the funnel is one continuous space.
+5. **The field breathes; the arc is a constellation.** The lapis field recedes during questions (opacity ~0.55, desaturated), returns luminous at the reveal, settles at ~0.75 for integration (600ms, reduced-motion-safe). The trajectory arc gains quiet gold hairline threads sweeping in from beyond the reveal card into both ends of the track, with small star dots — the line of chapters reads as continuing past the visible seven.
 
-A parallel workstream (owned by another agent, shipping concurrently with this spec refresh) is adding a **per-stage reveal gift** to the result screens — a small piece of the user's Top Talent profile surfaced at the moment their transition stage is revealed, tuned to that stage, rather than a generic "sign up to see more" prompt. Intent: make the free reveal itself feel like it is already reading them accurately (consistent with the platform's standing pattern of leading with a real, specific insight before any ask — see `docs/03-playbooks/unique_business_playbook.md` Part 0, "Precision Gap IS Product"). This spec does not wait on that work to land and does not describe its final shape — flag to Sasha directly if the architect needs the finished behavior confirmed.
+Design tokens live in `TransitionQuizPage.css` (`--tq-gold` and one gradient; three type voices; `.tq-phase-*` driving the field). Accessibility carried through: `prefers-reduced-motion` disables every animation added here; focus states preserved.
+
+The standing shadow-tripwire (§0.8) governed this pass: the CTA was strengthened only as much as the read was, and no sacred-language dressing was added to the qualifier.
+
+### 0.7 Per-stage Top Talent reveal gift (as-built)
+
+The **not-yet endings (stages 1-3)** each carry a stage-tuned pointer to the free Top Talent reveal (`/zone-of-genius`) — a quiet inline link woven into the ending copy ("the itch gets clearer when you can see what's itching…"), not a generic "sign up to see more" prompt. Intent: make the free reveal itself feel like it is already reading them accurately (see `docs/03-playbooks/unique_business_playbook.md` Part 0, "Precision Gap IS Product"). The **full read (stages 4-7)** does not currently surface a promoted profile element inline — an open backlog item (memory: "promote most-resonant deep-profile element into free Top Talent box") proposes lifting the single most-resonant field into the full read to lift activation, not yet built.
 
 ### 0.8 The quiz as sensory membrane (external 27-perspective review, July 30, 2026)
 
