@@ -56,7 +56,9 @@ Deno.serve(async (req) => {
     const { data, error } = await admin
       .from("transition_quiz_results")
       .select(
-        "id, stage, not_yet, uniqueness_category, emerging_work_stage, clarity_unlock, result_template, route_shown, direction_call_shown, user_id",
+        // created_at feeds the saved-return line ("You saved this result on
+        // …"); the client omits the line gracefully when it is absent.
+        "id, created_at, stage, not_yet, uniqueness_category, emerging_work_stage, clarity_unlock, result_template, route_shown, direction_call_shown, user_id",
       )
       .eq("id", id)
       .maybeSingle();

@@ -98,15 +98,12 @@ export function ExtResultScreen({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // ── Persistence: forward-compatible ext metadata (spec item F) ─────────
-  // The save-quiz-result update branch (supabase/functions/save-quiz-result/
-  // index.ts) whitelists a fixed set of known fields and ignores anything
-  // else on the payload — it is never modified here. `result_version` and
-  // `ext` are additive/unknown fields today; they are sent anyway so the
-  // client contract is forward-compatible once the backend catches up
-  // (adds a result_version column + an ext_metadata jsonb column per
-  // ext_change_map.md §3/§6). Fire-and-forget, same contract as the rest
-  // of this module.
+  // ── Persistence: ext metadata ──────────────────────────────────────────
+  // The save-quiz-result update branch stores `result_version` and merges
+  // `ext` into the ext_metadata jsonb column (migration 20260803140000).
+  // Fire-and-forget, same contract as the rest of this module: if the
+  // backend deploy hasn't landed yet, the fields are simply dropped and
+  // nothing in the UI changes.
   const persistExt = (ext: Record<string, unknown>) => {
     if (!resultId) return;
     supabase.functions
@@ -115,6 +112,18 @@ export function ExtResultScreen({
       })
       .catch(() => null);
   };
+
+  // Record which architecture this person actually saw, even if they never
+  // click anything. Without this we would only learn about visitors who
+  // interacted, which is exactly the wrong sample for judging EXT-A vs
+  // EXT-B. Runs once, as soon as the row id exists (it arrives async).
+  const loggedVersionRef = useRef(false);
+  useEffect(() => {
+    if (!resultId || loggedVersionRef.current) return;
+    loggedVersionRef.current = true;
+    persistExt({});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resultId]);
 
   const handleDoorA = () => {
     setDoorATest(true);

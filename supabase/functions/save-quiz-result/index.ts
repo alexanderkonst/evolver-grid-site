@@ -22,6 +22,8 @@ const UNIQUENESS_CATEGORIES = ["discovery", "recognition", "integration", "vehic
 const EMERGING_WORK_STAGES = ["not_visible", "suspected", "felt", "named", "built", "working", "delivering"] as const;
 const CLARITY_UNLOCKS = ["personal", "direction", "current_work", "emerging_business", "near_term_exchange"] as const;
 const BUYING_FRAMES = ["open", "mixed", "open_no_history", "closed"] as const;
+// Result Experience EXT — which result architecture the visitor saw.
+const RESULT_VERSIONS = ["v1", "ext-a", "ext-b"] as const;
 
 interface SaveQuizResultPayload {
   stage?: number;
@@ -51,6 +53,10 @@ interface SaveQuizResultPayload {
   // of inserting a new one.
   id?: string | null;
   recognition_delta?: number | null;
+  // Result Experience EXT (migration 20260803140000): the architecture the
+  // visitor saw, plus the EXT decision signals merged into ext_metadata.
+  result_version?: (typeof RESULT_VERSIONS)[number] | null;
+  ext?: Record<string, unknown> | null;
   // Means companion question (Gate 2), asked post-result after a
   // non-"closed" Buying Frame answer. Logged on the means completion event.
   means?: (typeof MEANS_VALUES)[number] | null;
@@ -119,6 +125,17 @@ Deno.serve(async (req) => {
       if (body.route_shown !== undefined) {
         updateRow.route_shown = body.route_shown;
       }
+      // Result Experience EXT (migration 20260803140000). The client sends
+      // { result_version, ext: {...} } as the person makes decisions on the
+      // result: synthesis_family, prep_outcome, experiment_selected,
+      // disagreement_reason. `ext` arrives in several separate calls, so it
+      // is MERGED into ext_metadata rather than overwriting it.
+      if (body.result_version !== undefined) {
+        if (body.result_version !== null && !RESULT_VERSIONS.includes(body.result_version)) {
+          return json(400, { error: "invalid_result_version" });
+        }
+        updateRow.result_version = body.result_version;
+      }
       // Email attaches to the existing completion row (data hygiene #22)
       // rather than inserting a duplicate — see submitEmail() in the client.
       if (body.email !== undefined) {
@@ -129,7 +146,9 @@ Deno.serve(async (req) => {
         updateRow.email = em;
       }
 
-      if (Object.keys(updateRow).length === 0) {
+      const hasExt = body.ext !== undefined && body.ext !== null && typeof body.ext === "object";
+
+      if (Object.keys(updateRow).length === 0 && !hasExt) {
         return json(400, { error: "no_fields_to_update" });
       }
 
@@ -142,6 +161,20 @@ Deno.serve(async (req) => {
       const admin = createClient(supabaseUrl, serviceRoleKey, {
         auth: { autoRefreshToken: false, persistSession: false },
       });
+
+      // Merge, don't overwrite: the EXT result posts `ext` several times as
+      // the person decides (prep outcome, then experiment, then
+      // disagreement). Read-modify-write is safe enough here — these are
+      // low-frequency, single-visitor actions on one row.
+      if (hasExt) {
+        const { data: existing } = await admin
+          .from("transition_quiz_results")
+          .select("ext_metadata")
+          .eq("id", body.id)
+          .maybeSingle();
+        const prev = (existing?.ext_metadata ?? {}) as Record<string, unknown>;
+        updateRow.ext_metadata = { ...prev, ...(body.ext as Record<string, unknown>) };
+      }
 
       const { error } = await admin
         .from("transition_quiz_results")
