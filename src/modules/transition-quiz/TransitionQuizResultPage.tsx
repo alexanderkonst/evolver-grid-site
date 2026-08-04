@@ -16,6 +16,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { buildQuizClaimPath, rememberLocalQuizResult } from "@/lib/quizOwnership";
 import {
   type CoreAnswers,
+  type ResultVersion,
   type Stage,
   computeRouting,
   isExtEligible,
@@ -41,6 +42,11 @@ interface FetchedResult {
    *  §12.3), "You saved this result on [date]". Absent gracefully omits
    *  that line rather than throwing. */
   created_at?: string | null;
+  /** Which result architecture this person actually saw. A saved result
+   *  should be faithful to that, not to whatever the gate happens to say
+   *  today — see the gate below. NULL on rows written before the column
+   *  existed, which fall back to recomputing. */
+  result_version?: ResultVersion | null;
 }
 
 // Claim path (2026-07-30, JOURNEY Step 0 batch): a quiet line + button
@@ -313,12 +319,22 @@ function ReconstructedResult({
   };
   const routing = computeRouting(answers);
 
-  // Result Experience EXT gate (Day 142) — mirrors the live-quiz gate in
-  // TransitionQuizPage.tsx. The saved result must never bypass the EXT
-  // decision environment and jump directly to booking (brief §12.3) — it
-  // renders the full ExtResultScreen, same as live, with the saved-return
-  // framing layered on top.
-  if (routing.route !== "crossedPeer" && isExtEligible(answers)) {
+  // Result Experience EXT gate. A saved result should show what the person
+  // actually saw, so the recorded result_version wins when the row has one.
+  // Recomputing the gate is only the fallback for rows written before that
+  // column existed — otherwise widening the gate later would silently
+  // rewrite everyone's saved reads into an architecture they never saw.
+  // The saved result still never bypasses the EXT decision environment to
+  // jump straight to booking (brief §12.3).
+  const recordedVersion = result.result_version ?? null;
+  const savedIsExt =
+    recordedVersion === "ext-a" || recordedVersion === "ext-b"
+      ? true
+      : recordedVersion === "v1"
+        ? false
+        : routing.route !== "crossedPeer" && isExtEligible(answers);
+
+  if (savedIsExt) {
     let savedOnDate: string | null = null;
     if (result.created_at) {
       try {
@@ -335,7 +351,7 @@ function ReconstructedResult({
           t={t}
           stageNames={stageNames}
           answers={answers}
-          resultVersion="ext-a"
+          resultVersion={recordedVersion === "ext-b" ? "ext-b" : "ext-a"}
           resultId={result.id}
           onRetake={() => {
             window.location.href = "/quiz";

@@ -58,7 +58,11 @@ Deno.serve(async (req) => {
       .select(
         // created_at feeds the saved-return line ("You saved this result on
         // …"); the client omits the line gracefully when it is absent.
-        "id, created_at, stage, not_yet, uniqueness_category, emerging_work_stage, clarity_unlock, result_template, route_shown, direction_call_shown, user_id",
+        // result_version lets a saved result render the architecture the
+        // person actually saw instead of recomputing today's gate.
+        // ext_metadata is deliberately NOT returned: it is internal product
+        // learning, not something a public-by-uuid endpoint should expose.
+        "id, created_at, result_version, stage, not_yet, uniqueness_category, emerging_work_stage, clarity_unlock, result_template, route_shown, direction_call_shown, user_id",
       )
       .eq("id", id)
       .maybeSingle();
