@@ -395,7 +395,18 @@ const TransitionQuizPage = () => {
   const submitEmail = useCallback(() => {
     const trimmed = email.trim();
     if (!trimmed || !trimmed.includes("@") || !stage) return;
-    logCompletion({ stage, not_yet: isNotYetStage(stage), email: trimmed });
+    // Data hygiene #22 — one row per person. By the time email capture is
+    // shown, the completion row usually already exists (resultId set by the
+    // notYet/result logging). Attach the email to THAT row via the update
+    // branch instead of inserting a duplicate completion. Fall back to an
+    // insert only when the row id isn't known yet.
+    if (resultId) {
+      supabase.functions
+        .invoke("save-quiz-result", { body: { id: resultId, email: trimmed } })
+        .catch(() => null);
+    } else {
+      logCompletion({ stage, not_yet: isNotYetStage(stage), email: trimmed });
+    }
     // Dedicated email-capture table (quiz_email_signups), separate from the
     // per-completion dataset row above. Same fire-and-forget contract: if
     // save-quiz-email isn't deployed yet in this environment, this silently
@@ -406,7 +417,7 @@ const TransitionQuizPage = () => {
         /* best-effort — never blocks or alters the UI */
       });
     setEmailSent(true);
-  }, [email, stage, logCompletion, i18n.language]);
+  }, [email, stage, resultId, logCompletion, i18n.language]);
 
   // ── Share link for the finished result ──────────────────────────────────
   const shareUrl = useMemo(() => {
