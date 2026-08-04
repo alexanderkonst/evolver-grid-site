@@ -1701,3 +1701,120 @@
     margin-top: 28px;
   }
 }
+
+/* ── Top Talent continuity layer (add-on, brief §4-13) ───────────────────
+   Two distinct treatments: a PRIMARY bridge for stages 1-3 (not-yet — the
+   free Top Talent read is the recommended next step there) and a quiet
+   SECONDARY panel for stages 4-7 / crossed-peer, where the Next Chapter
+   Map stays the one primary action. Same house tokens (--tq-gold,
+   --tq-surface, --tq-border) as the rest of the module — no new palette. */
+
+.tq-toptalent-bridge {
+  margin: 26px 0 6px;
+  padding: 20px 20px 22px;
+  border-radius: var(--tq-radius-control);
+  border: 1px solid var(--tq-border-strong);
+  background: var(--tq-surface-strong);
+  box-shadow: var(--tq-shadow-soft);
+  text-align: center;
+}
+
+.tq-toptalent-bridge-label {
+  margin: 0 0 8px;
+}
+
+.tq-toptalent-bridge-body {
+  margin: 0 0 16px;
+  font: 400 0.96rem/1.55 "Source Serif 4", Georgia, serif;
+  color: var(--tq-ink);
+}
+
+.tq-toptalent-bridge-cta {
+  width: min(100%, 420px) !important;
+  min-height: 44px;
+}
+
+.tq-toptalent-bridge-microcopy {
+  margin: 12px 0 0;
+  font: 500 0.76rem/1.4 "DM Sans", sans-serif;
+  color: var(--tq-ink-muted);
+  opacity: 0.72;
+}
+
+/* Secondary ecosystem panel — quiet ivory/parchment card, thin gold
+   hairline. Deliberately NOT the dark primary pill: a bordered panel with
+   a link-style CTA, so it reads as complementary rather than competing. */
+.tq-toptalent-secondary {
+  margin: 22px 0 0;
+  padding: 18px 20px;
+  border-radius: var(--tq-radius-control);
+  border: 1px solid var(--tq-border);
+  background: rgba(255, 253, 247, 0.55);
+  text-align: left;
+}
+
+.tq-toptalent-secondary-label {
+  display: block;
+  margin: 0 0 6px;
+  font: 600 0.7rem/1 "DM Sans", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--tq-gold);
+  opacity: 0.85;
+}
+
+.tq-toptalent-secondary-title {
+  margin: 0 0 8px;
+  font: 600 1.15rem/1.3 "Cormorant Garamond", Georgia, serif;
+  color: var(--tq-ink);
+}
+
+.tq-toptalent-secondary-body {
+  margin: 0 0 14px;
+  font: 400 0.88rem/1.55 "DM Sans", sans-serif;
+  color: var(--tq-ink-muted);
+}
+
+.tq-toptalent-secondary-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 6px 0;
+  font: 600 0.86rem/1.3 "DM Sans", sans-serif;
+  color: var(--tq-gold);
+  background: none;
+  border: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.tq-toptalent-secondary-cta:hover {
+  opacity: 0.82;
+}
+
+.tq-toptalent-secondary-cta:focus-visible,
+.tq-toptalent-bridge-cta:focus-visible {
+  outline: 2px solid var(--tq-focus);
+  outline-offset: 2px;
+}
+
+.tq-toptalent-secondary-microcopy {
+  margin: 8px 0 0;
+  font: 500 0.74rem/1.4 "DM Sans", sans-serif;
+  color: var(--tq-ink-muted);
+  opacity: 0.68;
+}
+
+/* Peer variant reuses the secondary panel exactly; no extra rules needed. */
+
+@media (max-width: 639px) {
+  .tq-toptalent-bridge {
+    padding: 18px 16px 20px;
+  }
+
+  .tq-toptalent-secondary {
+    padding: 16px 16px;
+  }
+}

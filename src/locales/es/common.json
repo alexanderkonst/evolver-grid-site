@@ -7659,7 +7659,11 @@
         "transparency": "Vamos a usar el tiempo para trabajar en la transición misma. Si surge otra forma de trabajar juntos que sea relevante, te la explicaré con claridad y la decisión quedará en tus manos.",
         "ctaPrimary": "Mapear mi próximo capítulo",
         "ctaMicrocopy": "Gratis · 45 minutos · Una conversación enfocada",
-        "ctaNote": "La reserva se abre en una pestaña nueva."
+        "ctaNote": "La reserva se abre en una pestaña nueva.",
+        "whyNow": {
+          "coherence": "Tus respuestas apuntan a piezas que ya son ciertas por sí solas, esperando ser leídas como una sola forma.",
+          "form": "Tus respuestas apuntan a algo real que todavía no ha encontrado la estructura que lo sostenga."
+        }
       },
       "preparation": {
         "heading": "Para que pueda prepararme para la conversación…",
@@ -7705,6 +7709,38 @@
         "shareCopied": "Enlace copiado.",
         "retakeLabel": "Repetir",
         "retakeExplainer": "Repetir el test crea un resultado nuevo. No sobrescribe este."
+      },
+      "topTalent": {
+        "notYet": {
+          "1": {
+            "label": "La siguiente capa útil",
+            "body": "Puede que un gran cruce todavía no esté activo. Lo útil ahora es nombrar el talento y la contribución que ya existen debajo de tu rol actual.",
+            "cta": "Revelar mi Top Talent"
+          },
+          "2": {
+            "label": "La siguiente capa útil",
+            "body": "El cambio temprano suele aparecer primero como una habilidad, interés o contribución recurrente que pide más espacio. Top Talent le pone nombre a eso.",
+            "cta": "Ver qué sigue pidiendo expresión"
+          },
+          "3": {
+            "label": "La siguiente capa útil",
+            "body": "Antes de forzar una dirección, ayuda ver el talento, los recursos y los hilos de misión que ya se repiten en tu vida y tu trabajo.",
+            "cta": "Mapear lo que ya está emergiendo"
+          },
+          "microcopy": "Gratis · Pocos minutos · Tu propio resultado"
+        },
+        "secondary": {
+          "label": "Otra capa útil",
+          "title": "Tu Top Talent",
+          "body": "Tu capítulo puede cambiar. La forma subyacente de valor que creas suele repetirse. La evaluación gratuita de Top Talent te ayuda a nombrar la habilidad o contribución que continúa a través de roles, ofertas y capítulos profesionales.",
+          "cta": "Revelar mi Top Talent",
+          "microcopy": "Gratis · Pocos minutos · Incluye tu resultado personal"
+        },
+        "peer": {
+          "label": "Un lenguaje más preciso para lo que ya funciona",
+          "body": "Ya conoces tu terreno. Top Talent puede ponerle un nombre más preciso a la capacidad que sigue produciendo los resultados que estás viendo.",
+          "cta": "Nombrarlo con más precisión"
+        }
       }
     }
   },

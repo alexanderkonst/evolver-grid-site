@@ -22,7 +22,7 @@ import {
   isNotYetStage,
   notYetVariant,
 } from "./engine";
-import { ResultScreen, DIRECTION_CALL_HREF, QuizCorridorHeader } from "./TransitionQuizPage";
+import { ResultScreen, DIRECTION_CALL_HREF, QuizCorridorHeader, TopTalentBridge } from "./TransitionQuizPage";
 import { ExtResultScreen } from "./ExtResultScreen";
 import "./TransitionQuizPage.css";
 
@@ -279,6 +279,7 @@ function ReconstructedResult({
     return (
       <section className="tq-card">
         <p className="tq-body-text">{line}</p>
+        <TopTalentBridge t={t} stage={stage as 1 | 2 | 3} saved />
       </section>
     );
   }
@@ -351,6 +352,7 @@ function ReconstructedResult({
           window.location.href = "/quiz";
         }}
         resultId={result.id}
+        saved
       />
       <ClaimReadLine resultId={result.id} alreadyOwned={!!result.owned} />
     </>
