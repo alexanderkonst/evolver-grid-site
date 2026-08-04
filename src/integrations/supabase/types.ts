@@ -2297,6 +2297,7 @@ export type Database = {
           economy_score: number | null
           email: string | null
           emerging_work_stage: string | null
+          ext_metadata: Json | null
           fit_score: number | null
           has_stage_gap: boolean | null
           id: string
@@ -2307,6 +2308,7 @@ export type Database = {
           pattern: string | null
           recognition_delta: number | null
           result_template: string | null
+          result_version: string | null
           route_shown: string | null
           stage: number
           uniqueness_category: string | null
@@ -2324,6 +2326,7 @@ export type Database = {
           economy_score?: number | null
           email?: string | null
           emerging_work_stage?: string | null
+          ext_metadata?: Json | null
           fit_score?: number | null
           has_stage_gap?: boolean | null
           id?: string
@@ -2334,6 +2337,7 @@ export type Database = {
           pattern?: string | null
           recognition_delta?: number | null
           result_template?: string | null
+          result_version?: string | null
           route_shown?: string | null
           stage: number
           uniqueness_category?: string | null
@@ -2351,6 +2355,7 @@ export type Database = {
           economy_score?: number | null
           email?: string | null
           emerging_work_stage?: string | null
+          ext_metadata?: Json | null
           fit_score?: number | null
           has_stage_gap?: boolean | null
           id?: string
@@ -2361,6 +2366,7 @@ export type Database = {
           pattern?: string | null
           recognition_delta?: number | null
           result_template?: string | null
+          result_version?: string | null
           route_shown?: string | null
           stage?: number
           uniqueness_category?: string | null
