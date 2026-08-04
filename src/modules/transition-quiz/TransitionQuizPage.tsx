@@ -758,6 +758,113 @@ function SaveMyRead({
 // recognition_delta column and quiz.recognitionDelta keys remain for the
 // dataset's history; nothing renders it anymore.
 
+// ── Top Talent continuity layer (add-on) ─────────────────────────────────
+// Three shared modules, reused across the live quiz AND the saved-result
+// permalink so the hierarchy brief §12 requires never has to be
+// reimplemented per surface. Stages 1-3 get the PRIMARY bridge (§5);
+// stages 4-7 (both ResultScreen and ExtResultScreen) and crossed-peer get
+// a visually quiet secondary/peer panel (§7/§13).
+
+/** Stages 1-3 — the recommended primary next step after a complete
+ *  not-yet result. `saved` only changes the analytics label suffix. */
+export function TopTalentBridge({
+  t,
+  stage,
+  saved = false,
+}: {
+  t: (k: string, o?: Record<string, unknown>) => unknown;
+  stage: 1 | 2 | 3;
+  saved?: boolean;
+}) {
+  return (
+    <div className="tq-toptalent-bridge">
+      <p className="tq-eyebrow-gold tq-toptalent-bridge-label" style={GOLD_TEXT_STYLE}>
+        {t(`quiz.ext.topTalent.notYet.${stage}.label`) as string}
+      </p>
+      <p className="tq-toptalent-bridge-body">
+        {t(`quiz.ext.topTalent.notYet.${stage}.body`) as string}
+      </p>
+      <Link
+        className="tq-editorial-link-cta tq-door-cta tq-toptalent-bridge-cta"
+        to="/zone-of-genius"
+        onClick={() =>
+          trackCTAClick("quiz_cta_click", `top_talent_notyet_${stage}`, { stage, saved })
+        }
+      >
+        {t(`quiz.ext.topTalent.notYet.${stage}.cta`) as string}
+      </Link>
+      <p className="tq-toptalent-bridge-microcopy">
+        {t("quiz.ext.topTalent.notYet.microcopy") as string}
+      </p>
+    </div>
+  );
+}
+
+/** Stages 4-7 — quiet complementary layer, shown after the Next Chapter
+ *  Map invitation (v1 ResultScreen and ExtResultScreen both use this). */
+export function TopTalentSecondary({
+  t,
+  resultVersion,
+  saved = false,
+}: {
+  t: (k: string, o?: Record<string, unknown>) => unknown;
+  resultVersion?: string;
+  saved?: boolean;
+}) {
+  return (
+    <div className="tq-toptalent-secondary">
+      <span className="tq-toptalent-secondary-label">
+        {t("quiz.ext.topTalent.secondary.label") as string}
+      </span>
+      <h4 className="tq-toptalent-secondary-title">
+        {t("quiz.ext.topTalent.secondary.title") as string}
+      </h4>
+      <p className="tq-toptalent-secondary-body">
+        {t("quiz.ext.topTalent.secondary.body") as string}
+      </p>
+      <Link
+        className="tq-toptalent-secondary-cta"
+        to="/zone-of-genius"
+        onClick={() =>
+          trackCTAClick("quiz_cta_click", "top_talent_secondary", { resultVersion, saved })
+        }
+      >
+        {t("quiz.ext.topTalent.secondary.cta") as string} <ArrowUpRight size={13} />
+      </Link>
+      <p className="tq-toptalent-secondary-microcopy">
+        {t("quiz.ext.topTalent.secondary.microcopy") as string}
+      </p>
+    </div>
+  );
+}
+
+/** Crossed-peer — deeper-language framing, never "discover who you are". */
+export function TopTalentPeer({
+  t,
+  saved = false,
+}: {
+  t: (k: string, o?: Record<string, unknown>) => unknown;
+  saved?: boolean;
+}) {
+  return (
+    <div className="tq-toptalent-secondary">
+      <span className="tq-toptalent-secondary-label">
+        {t("quiz.ext.topTalent.peer.label") as string}
+      </span>
+      <p className="tq-toptalent-secondary-body" style={{ marginTop: 2 }}>
+        {t("quiz.ext.topTalent.peer.body") as string}
+      </p>
+      <Link
+        className="tq-toptalent-secondary-cta"
+        to="/zone-of-genius"
+        onClick={() => trackCTAClick("quiz_cta_click", "top_talent_peer", { saved })}
+      >
+        {t("quiz.ext.topTalent.peer.cta") as string} <ArrowUpRight size={13} />
+      </Link>
+    </div>
+  );
+}
+
 // ── S3a Not-Yet (stages 1-3 — standing law, carried forward unchanged) ───
 
 function NotYetScreen({
@@ -810,13 +917,7 @@ function NotYetScreen({
           {t("quiz.notYet.settled.channelsLinkLabel") as string} <ArrowUpRight size={13} />
         </a>
 
-        <p className="tq-sub tq-quiet-line" style={{ marginTop: 14 }}>
-          {t("quiz.notYet.settled.giftLinePre") as string}
-          <Link className="tq-link-quiet" to="/zone-of-genius">
-            {t("quiz.notYet.settled.giftLinkLabel") as string}
-          </Link>
-          {t("quiz.notYet.settled.giftLinePost") as string}
-        </p>
+        <TopTalentBridge t={t} stage={stage as 1 | 2 | 3} />
 
         {!emailSent ? (
           <div className="tq-email-row">
@@ -868,13 +969,7 @@ function NotYetScreen({
         <p className="tq-body-text">{isItch ? content.sign : content.next}</p>
       </div>
 
-      <p className="tq-sub tq-quiet-line">
-        {content.giftPre}
-        <Link className="tq-link-quiet" to="/zone-of-genius">
-          {content.giftLinkLabel}
-        </Link>
-        {content.giftPost}
-      </p>
+      <TopTalentBridge t={t} stage={stage as 1 | 2 | 3} />
 
       {!emailSent ? (
         <div className="tq-email-row">
@@ -991,6 +1086,7 @@ export function ResultScreen({
   onContinue,
   onRetake,
   resultId = null,
+  saved = false,
 }: {
   t: (k: string, o?: Record<string, unknown>) => unknown;
   stageNames: Record<string, string>;
@@ -1000,6 +1096,9 @@ export function ResultScreen({
   onContinue: () => void;
   onRetake: () => void;
   resultId?: string | null;
+  /** True when rendered from the saved-result permalink — only changes the
+   *  analytics `saved` property on the Top Talent CTA click (brief §14). */
+  saved?: boolean;
 }) {
   if (route === "crossedPeer") {
     return (
@@ -1029,6 +1128,8 @@ export function ResultScreen({
               {t("quiz.result.crossedPeer.cta") as string} <ArrowUpRight size={16} />
             </a>
           </div>
+
+          <TopTalentPeer t={t} saved={saved} />
 
           <SaveMyRead t={t} resultId={resultId} stage={answers.stage} />
 
@@ -1093,6 +1194,8 @@ export function ResultScreen({
             </p>
           )}
         </div>
+
+        <TopTalentSecondary t={t} resultVersion="v1" saved={saved} />
 
         <SaveMyRead t={t} resultId={resultId} stage={answers.stage} />
 

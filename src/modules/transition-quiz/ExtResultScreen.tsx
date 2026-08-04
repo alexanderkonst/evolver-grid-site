@@ -19,7 +19,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { trackCTAClick, trackPageView } from "@/lib/funnelAnalytics";
 import { type CoreAnswers, type ResultVersion, synthesisFamilyFor } from "./engine";
-import { DIRECTION_CALL_HREF, StageArc } from "./TransitionQuizPage";
+import { DIRECTION_CALL_HREF, StageArc, TopTalentSecondary } from "./TransitionQuizPage";
 
 const PREP_OPTION_KEYS = ["explainFit", "knowDecision", "haveTest", "wantPerspective"] as const;
 const DISAGREEMENT_OPTION_KEYS = [
@@ -296,6 +296,12 @@ export function ExtResultScreen({
               ? str(t, "quiz.ext.offer.explanation.testFirstIntro")
               : str(t, "quiz.ext.offer.explanation.intro")}
           </p>
+          {/* "Why now" bridge (brief §6) — the existing explanation.intro is
+              generic ("for people actively inside this kind of transition");
+              this one line grounds relevance in the person's own synthesis
+              family without duplicating the Act I read or the offer copy
+              above. */}
+          <p className="tq-body-text tq-quiet-line">{str(t, `quiz.ext.offer.whyNow.${family}`)}</p>
 
           <ul className="tq-ext-offer-list">
             {examineList.map((item, i) => (
@@ -362,6 +368,8 @@ export function ExtResultScreen({
             <p className="tq-cta-sub">{str(t, "quiz.ext.offer.ctaMicrocopy")}</p>
             <p className="tq-cta-sub">{str(t, "quiz.ext.offer.ctaNote")}</p>
           </div>
+
+          <TopTalentSecondary t={t} resultVersion={resultVersion} saved={bookingContext === "saved"} />
 
           <div className="tq-ext-save">
             {!saveOpen && !saveSent && (

@@ -7666,7 +7666,11 @@
         "transparency": "We will use the time to work on the transition itself. If another way of working together becomes relevant, I will explain it clearly and leave the decision with you.",
         "ctaPrimary": "Map my next chapter",
         "ctaMicrocopy": "Free · 45 minutes · One focused conversation",
-        "ctaNote": "Booking opens in a new tab."
+        "ctaNote": "Booking opens in a new tab.",
+        "whyNow": {
+          "coherence": "Your answers point to pieces that are already true on their own, still waiting to be read as one shape.",
+          "form": "Your answers point to something real that hasn't found the structure to carry it yet."
+        }
       },
       "preparation": {
         "heading": "So I can prepare for the conversation…",
@@ -7712,6 +7716,38 @@
         "shareCopied": "Link copied.",
         "retakeLabel": "Retake",
         "retakeExplainer": "Retaking creates a new result. It does not overwrite this one."
+      },
+      "topTalent": {
+        "notYet": {
+          "1": {
+            "label": "The useful next layer",
+            "body": "A major crossing may not be active yet. The useful move right now is naming the talent and contribution already present beneath your current role.",
+            "cta": "Reveal my Top Talent"
+          },
+          "2": {
+            "label": "The useful next layer",
+            "body": "Early change often shows up first as a recurring ability, interest, or contribution asking for more room. Top Talent names what that is.",
+            "cta": "See what keeps asking for expression"
+          },
+          "3": {
+            "label": "The useful next layer",
+            "body": "Before forcing a direction, it helps to see the talent, resources, and mission threads already repeating across your life and work.",
+            "cta": "Map what is already emerging"
+          },
+          "microcopy": "Free · A few minutes · Your own result"
+        },
+        "secondary": {
+          "label": "Another useful layer",
+          "title": "Your Top Talent",
+          "body": "Your chapter may change. The underlying form of value you create often repeats. The free Top Talent assessment helps you name the ability or contribution that continues across roles, offers, and professional chapters.",
+          "cta": "Reveal my Top Talent",
+          "microcopy": "Free · A few minutes · Includes your personal result"
+        },
+        "peer": {
+          "label": "Deeper language for what is already working",
+          "body": "You already know your terrain. Top Talent can put a sharper name on the capacity that keeps producing the results you're seeing.",
+          "cta": "Name it more precisely"
+        }
       }
     }
   },
