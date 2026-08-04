@@ -1,7 +1,9 @@
 # Where Are You (the transition quiz) — Progress Tracker
 
 **Started:** 2026-07-27
-**Status (July 30, 2026):** The historical design below has been superseded by the production **three-question edition** at `/quiz`. The current experience contract, implementation scope, and verification record live in [`quiz_experience_sow.md`](./quiz_experience_sow.md). Everything below the active Phase 3/4 status remains genealogy.
+**Status (August 3, 2026, Day 142):** The historical design below has been superseded by the production **three-question edition** at `/quiz`, now carrying its **Day 142 design pass** (three-act result ceremony, halved copy, one soft threshold question, unified typography, the lapis field, phase-breathing + constellation arc). The current as-built contract lives in [`quiz_product_spec.md`](./quiz_product_spec.md) §0 (refreshed Day 142) and [`quiz_experience_sow.md`](./quiz_experience_sow.md) → "Design pass (Day 142)". Everything below the active status remains genealogy.
+
+**Update (August 3, 2026, Day 142) — consolidated spec refresh:** the specs were drifting from the code (product-spec §0 still said "4-question" and documented Q4, the old four-condition Direction Call gate, the two-screen qualifier, and "Phase 3 not run"). Refreshed against `engine.ts` + `TransitionQuizPage.tsx`: three questions (Q4 cut), Q3 enum corrected to `not_visible/suspected/felt/named/built/working/delivering`, gate is now `stage >= 4`, one soft threshold question (Means screen removed), Recognition Delta widget removed, and the full Day 142 design pass documented. Orphaned-but-retained locale keys noted (`clarityClause.*`, `recognitionDelta.*`, `takeWhatNote`).
 
 **Update (July 29, 2026, Day 139) — infra hardening for external review:**
 - Email capture now writes to its own dedicated table, `quiz_email_signups` (migration `20260729210000_quiz_email_signups.sql`), via a new edge function `save-quiz-email`, called alongside the existing email-on-completion-row logging in `save-quiz-result`. Client wiring in `TransitionQuizPage.tsx`'s `submitEmail()`.

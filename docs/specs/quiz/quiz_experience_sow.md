@@ -1,8 +1,8 @@
 # Where Are You Quiz — Experience SOW and Definitions of Done
 
-**Status:** implemented and verified July 30, 2026  
+**Status:** implemented and verified July 30, 2026; **design pass shipped August 1-3, 2026 (Day 142)** — see "Design pass (Day 142)" below  
 **Scope:** `/quiz` and saved-result route `/quiz/r/:id`  
-**Frozen:** all user-facing copy, scoring, result selection, CTA destinations, analytics payloads, and persistence behavior
+**Frozen (as of the July 30 freeze):** scoring, result selection logic, CTA destinations, analytics payloads, and persistence behavior. The Day 142 pass deliberately reopened *copy and visual form* (result text shortened, the two-screen qualifier collapsed to one soft question, the reflection widget removed, the full design/UX pass run) with Sasha's sign-off — the north star below governed it and is unchanged.
 
 ## Experience north star
 
@@ -92,6 +92,20 @@ The interface should disappear while the visitor recognizes themselves and appea
 - Browser widths: 375 × 812, 768 × 1024, 1280 × 720, plus overflow assertions.
 - Branches: stage-1 no-ask, stage-5 Direction Call, stage-7 crossed-peer.
 - State: back, answer locking, screen focus, direct share reload, retake, and missing saved-result handling pass.
+
+## Design pass (Day 142) — August 1-3, 2026
+
+The visual/UX pass the original scope deferred to a later "Phase 3" was run here, after Sasha's diagnosis that `/quiz` "was just white — because we never asked ourselves about its design." It was scoped by roasting the result page through the 27-perspective instrument (three rounds: meaning ledger, mechanics/untouchables, aesthetics) before touching code, then shipped in five commits. The north star above was the governing contract throughout; nothing about scoring, routing, or CTA destinations changed.
+
+**What shipped (form and copy only; engine, routes, i18n keys, share token, and Supabase calls untouched):**
+
+1. **Result ceremony, three acts** — arc labels the previous/current/next chapter; central read is the one framed body carrying the reveal card's ivory + gold below the fold; witness quote gets its own margin voice; progress thread completes to 100% on the read; closing star seal ends the page. Stages 1-3 gained the chapter ceremony (name + arc). *(commit: "three-act harmony pass")*
+2. **Text halved + one soft threshold question** — result copy ~230 → ~130 words; Recognition Delta widget and the "take what is accurate" line removed; two blunt commercial screens (paid-help history + Means) collapsed to one soft question, "People cross this threshold alone or with real help. Where are you with that?" All copy edits synced across en/ru/es. *(commit: "halve the text, one soft threshold question")*
+3. **Typography unified to three voices** — display serif · one reading voice (Source Serif 4, 1.02rem, one color, no opacity steps) · one smallcaps meta voice. Removed six mixed sizes / two families on the client-facing read. *(commit: "unify typography to three voices")*
+4. **The lapis field** — `/quiz` now renders the same `lapis-still-background.webp` watercolor + gold-constellation ground as `/`, as a fixed layer under the paper grain and phase vignette. *(commit: "lay the lapis field under the corridor")*
+5. **Field breathes; arc becomes a constellation** — the field recedes during questions (opacity ~0.55, desaturated), returns luminous at reveal, settles at ~0.75 for integration (600ms); the arc gains gold hairline threads sweeping in from beyond the reveal card with small star dots, so the chapter line reads as continuing past the visible seven. Both reduced-motion-safe. Implemented by an orchestrated subagent with one rework cycle on visual QA. *(commit: "field breathes with phase; chapter line extends past the card")*
+
+**Verification (Day 142):** `tsc --noEmit` clean and production build pass on every wave; live in-browser walkthrough of stage-5 full read, stage-2 not-yet, and stage-7 crossed-peer at 375px and 1280px; RU locale spot-checked on the result. Each wave committed and pushed to `main` separately.
 
 ## Ship gate
 
