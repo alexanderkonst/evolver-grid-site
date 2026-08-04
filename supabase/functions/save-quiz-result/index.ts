@@ -119,6 +119,15 @@ Deno.serve(async (req) => {
       if (body.route_shown !== undefined) {
         updateRow.route_shown = body.route_shown;
       }
+      // Email attaches to the existing completion row (data hygiene #22)
+      // rather than inserting a duplicate — see submitEmail() in the client.
+      if (body.email !== undefined) {
+        const em = body.email ? String(body.email).trim().toLowerCase() : null;
+        if (em !== null && !em.includes("@")) {
+          return json(400, { error: "invalid_email" });
+        }
+        updateRow.email = em;
+      }
 
       if (Object.keys(updateRow).length === 0) {
         return json(400, { error: "no_fields_to_update" });
