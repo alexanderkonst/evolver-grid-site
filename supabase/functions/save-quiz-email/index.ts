@@ -85,7 +85,22 @@ Deno.serve(async (req) => {
       const uuidRe =
         /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
       const apiKey = Deno.env.get("RESEND_API_KEY");
-      if (readId && uuidRe.test(readId) && apiKey) {
+
+      // Abuse guard (public no-auth endpoint): the legit "email me my read"
+      // flow sends one link to the address the user just typed. Cap outbound
+      // sends to the same address to a few per short window so this can't be
+      // used to spam an arbitrary recipient. The signup row is still recorded;
+      // only the outbound email is throttled. (Fuller fix = double opt-in.)
+      const tenMinAgo = new Date(Date.now() - 10 * 60 * 1000).toISOString();
+      const { count: recentSends } = await admin
+        .from("quiz_email_signups")
+        .select("id", { count: "exact", head: true })
+        .eq("email", email)
+        .like("source", "save_read:%")
+        .gte("created_at", tenMinAgo);
+      const overLimit = (recentSends ?? 0) > 3;
+
+      if (readId && uuidRe.test(readId) && apiKey && !overLimit) {
         const link = `https://findyourtoptalent.com/quiz/r/${readId}`;
         try {
           const res = await fetch("https://api.resend.com/emails", {
