@@ -41,6 +41,21 @@ export type FunnelStep =
   | "quiz_cta_click"    // Any Direction Call / crossed-peer CTA click
   | "quiz_permalink_saved" // "Save my read" tapped
   | "quiz_delta_answered"  // Recognition Delta widget answered
+  // Result Experience EXT (Day 142) — ext_change_map.md §4. `source`
+  // carries the differentiating value (result version, synthesis family,
+  // detour ids, selected option, etc.) per the existing quiz_* convention.
+  | "quiz_result_version_viewed"  // EXT/v1 result mounted (source = "ext-a_coherence" etc.)
+  | "quiz_detours_displayed"      // Act II detours mounted (source = comma-joined detour ids)
+  | "quiz_experiment_displayed"   // Act II experiment mounted (source = experiment id)
+  | "quiz_experiment_selected"    // Door A "I'll test this first" clicked
+  | "quiz_prep_outcome_selected"  // Preparation-selector option chosen
+  | "quiz_save_opened"            // EXT "Keep this result" opened
+  | "quiz_disagreement_reason"    // Disagreement control option chosen
+  | "quiz_retake"                 // Retake clicked (EXT utility row)
+  | "quiz_share"                  // Share/copy-link clicked (EXT utility row)
+  | "quiz_saved_result_revisited" // /quiz/r/:id mounted for an EXT saved result
+  | "quiz_saved_still_accurate"   // Saved-return "This still feels accurate"
+  | "quiz_saved_something_shifted" // Saved-return "Something important has shifted"
   | "ignite_view"       // Landed on /ignite
   | "ignite_video"      // Scrolled to / played video
   | "ignite_pricing"    // Scrolled to pricing section
