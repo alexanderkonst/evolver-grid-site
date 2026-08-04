@@ -811,30 +811,28 @@ export function TopTalentSecondary({
   resultVersion?: string;
   saved?: boolean;
 }) {
+  // Stages 4-7 get exactly one call to action: the Direction Call. This
+  // used to be a bordered five-part panel that outweighed the button it
+  // sat next to, which is precisely what the add-on brief §11 forbids
+  // ("visible editorial treatment, clearly subordinate"). It is now one
+  // quiet line. The full framing still exists where Top Talent is the
+  // primary route — the stages 1-3 bridge — and the longer copy stays in
+  // the locale files, unused rather than deleted.
   return (
-    <div className="tq-toptalent-secondary">
-      <span className="tq-toptalent-secondary-label">
-        {t("quiz.ext.topTalent.secondary.label") as string}
-      </span>
-      <h4 className="tq-toptalent-secondary-title">
-        {t("quiz.ext.topTalent.secondary.title") as string}
-      </h4>
-      <p className="tq-toptalent-secondary-body">
-        {t("quiz.ext.topTalent.secondary.body") as string}
-      </p>
+    <p className="tq-toptalent-quiet">
+      <span className="tq-toptalent-quiet-label">
+        {t("quiz.ext.topTalent.secondary.label") as string}:
+      </span>{" "}
       <Link
-        className="tq-toptalent-secondary-cta"
+        className="tq-toptalent-quiet-cta"
         to="/zone-of-genius"
         onClick={() =>
           trackCTAClick("quiz_cta_click", "top_talent_secondary", { resultVersion, saved })
         }
       >
-        {t("quiz.ext.topTalent.secondary.cta") as string} <ArrowUpRight size={13} />
+        {t("quiz.ext.topTalent.secondary.cta") as string} <ArrowUpRight size={12} />
       </Link>
-      <p className="tq-toptalent-secondary-microcopy">
-        {t("quiz.ext.topTalent.secondary.microcopy") as string}
-      </p>
-    </div>
+    </p>
   );
 }
 
@@ -1228,27 +1226,6 @@ export function StageArc({
 
   return (
     <div className="tq-stage-arc" aria-label={`Stage ${activeStage} of 7`}>
-      {/* Purely decorative — the field's gold threads gathering into the
-          chapter read, as if the line of chapters continues off-card.
-          Strictly confined to the track's own height band (see CSS): the
-          wrapper is exactly 17px tall, so nothing here can reach the
-          labels or chapter text below. Star dots are separate <span>s,
-          not SVG shapes, so they stay fixed-size at every card width. */}
-      <div className="tq-stage-arc-constellation" aria-hidden="true">
-        <svg viewBox="0 0 100 17" preserveAspectRatio="none">
-          <path
-            className="tq-stage-arc-constellation-line"
-            d="M -12 7.5 Q 1 10.5, 14 8.5"
-          />
-          <path
-            className="tq-stage-arc-constellation-line is-right"
-            d="M 112 6.5 Q 99 9.5, 86 8.5"
-          />
-        </svg>
-        <span className="tq-stage-arc-constellation-star" style={{ left: "2%" }} />
-        <span className="tq-stage-arc-constellation-star" style={{ left: "97%" }} />
-        <span className="tq-stage-arc-constellation-star" style={{ left: "8%", top: 4 }} />
-      </div>
       <div className="tq-stage-arc-track" role="list">
         {stages.map((n) => (
           <span
@@ -1263,15 +1240,20 @@ export function StageArc({
           </span>
         ))}
       </div>
+      {/* Three labels on their own even row: previous, current, next. They
+          used to live in a seven-slot flex where four slots were empty and
+          the three real ones were squeezed into a seventh of the width
+          each, so longer chapter names broke onto two lines. The dot
+          position already says exactly where the person is; these only
+          need to name the neighbourhood. */}
       <div className="tq-stage-arc-labels">
-        {stages.map((n) => (
-          <span
-            key={n}
-            className={`tq-stage-arc-label${n !== activeStage && Math.abs(n - activeStage) === 1 ? " is-near" : ""}`}
-          >
-            {Math.abs(n - activeStage) <= 1 ? stageNames[String(n)] : ""}
-          </span>
-        ))}
+        <span className="tq-stage-arc-label is-near">
+          {activeStage > 1 ? stageNames[String(activeStage - 1)] : ""}
+        </span>
+        <span className="tq-stage-arc-label is-current">{stageNames[String(activeStage)]}</span>
+        <span className="tq-stage-arc-label is-near">
+          {activeStage < 7 ? stageNames[String(activeStage + 1)] : ""}
+        </span>
       </div>
     </div>
   );
