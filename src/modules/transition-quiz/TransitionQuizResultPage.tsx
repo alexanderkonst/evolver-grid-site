@@ -279,7 +279,21 @@ function ReconstructedResult({
     return (
       <section className="tq-card">
         <p className="tq-body-text">{line}</p>
+        {/* Add-on §12: on a saved stage 1-3 result Top Talent stays the
+            primary route (the bridge above), with return/retake quiet and
+            secondary beneath it. Retake was missing here while every other
+            saved branch carried it. */}
         <TopTalentBridge t={t} stage={stage as 1 | 2 | 3} saved />
+        <button
+          type="button"
+          className="tq-retake"
+          onClick={() => {
+            window.location.href = "/quiz";
+          }}
+        >
+          {t("quiz.notYet.retake") as string}
+        </button>
+        <p className="tq-ext-utility-explainer">{t("quiz.ext.utility.retakeExplainer") as string}</p>
       </section>
     );
   }
