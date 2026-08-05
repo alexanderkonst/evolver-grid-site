@@ -7361,7 +7361,7 @@
     "progressLabel": "Question {{current}} of {{total}}",
     "loading": "Reading your answers…",
     "entry": {
-      "eyebrow": "Free. Three short questions",
+      "eyebrow": "Free · Three questions · Two minutes",
       "title": "See what hero's journey chapter you're actually in",
       "honestyLine": "You'll see what chapter you're in, why it feels like you're going in circles, and what might already be starting to happen next",
       "cta": "See where I am"
