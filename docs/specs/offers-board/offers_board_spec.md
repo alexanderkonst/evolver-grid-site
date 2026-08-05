@@ -8,7 +8,7 @@ The board is a projection of the existing Pulse corpus, not a separate tracker:
 
 - `docs/09-logs/project_pulse_log.md` records what moved and when.
 - `docs/02-strategy/strategic_crm_outreach_tracker.md` records current relationship state and contains the structured **Offer Ledger** maintained by Pulse.
-- `scripts/emit-crm-snapshot.mjs` publishes the current projection as committed JSON.
+- `scripts/emit-crm-snapshot.mjs` publishes a minimal, anonymized offers projection as committed JSON.
 
 Sasha reports a movement once through Pulse. The agent updates the Pulse log, CRM row, and Offer Ledger; runs `npm run snapshots:generate`; then commits and pushes the documents and generated snapshots together. The cockpit fetches the latest committed CRM snapshot from `main` at runtime. No duplicate CSV, manual offer form, Supabase table, frontend rebuild, or Lovable publish is required for subsequent data updates.
 
@@ -43,12 +43,14 @@ Make newly committed Pulse offer movements visible after a browser refresh witho
 
 ### Scope of work
 
-1. Fetch the latest committed `src/generated/crm-snapshot.json` from the public GitHub `main` branch at page load with cache bypassing.
+1. Fetch the latest committed `src/generated/crm-offers-runtime.json` from the public GitHub `main` branch at page load with cache bypassing.
 2. Validate and normalize the runtime payload before using it.
 3. Use the same runtime result in the dashboard Offer Cadence section and full Offers Board.
 4. Display source freshness, loading, refresh, and fallback state explicitly.
 5. Retain the bundled snapshot only as a resilient fallback when GitHub is unavailable.
 6. Keep Pulse's write contract atomic: canonical docs + regenerated snapshots + one commit/push.
+
+The full CRM snapshot remains a gitignored build artifact. Only the fields the board needs are committed; names are stable anonymized tokens, free-text notes are removed, and rich ledger statuses are projected into the board's canonical states. If a hosted build cannot access the private CRM source, the emitter preserves the last valid committed runtime projection rather than replacing it with an empty error snapshot.
 
 ### Non-goals
 

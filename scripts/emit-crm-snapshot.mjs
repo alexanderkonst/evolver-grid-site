@@ -18,7 +18,7 @@
  * an `error` field so the dashboard can render gracefully.
  */
 
-import { writeFileSync, mkdirSync } from "node:fs";
+import { existsSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 import { readBroadcastTracker } from "./sources/broadcast-tracker.mjs";
@@ -26,6 +26,10 @@ import { buildAnonymizer } from "./sources/anonymize.mjs";
 
 const REPO_ROOT = join(import.meta.dirname, "..");
 const OUT_PATH = join(REPO_ROOT, "src", "generated", "crm-snapshot.json");
+// Small, anonymized, tracked projection used by the Offers Board at runtime.
+// Unlike the full CRM snapshot, this file is safe to commit and remains
+// available to GitHub raw fetches without requiring a frontend deployment.
+const RUNTIME_OFFERS_OUT_PATH = join(REPO_ROOT, "src", "generated", "crm-offers-runtime.json");
 // Public copy so server-side readers (generate-pulse-brief edge function,
 // equilibrium-telegram-bot edge function) can fetch the same snapshot over
 // HTTP after deploy. Both `OUT_PATH` and `PUBLIC_OUT_PATH` are gitignored —
@@ -35,6 +39,46 @@ const OUT_PATH = join(REPO_ROOT, "src", "generated", "crm-snapshot.json");
 // `OUT_PATH` ships inside the bundled JS and `PUBLIC_OUT_PATH` sits at an
 // unauthenticated public URL — neither is a private surface.
 const PUBLIC_OUT_PATH = join(REPO_ROOT, "public", "generated", "crm-snapshot.json");
+
+function canonicalOfferType(value) {
+  const normalized = String(value ?? "").trim().toLowerCase();
+  if (normalized.startsWith("paid")) return "paid";
+  if (normalized.startsWith("free")) return "free";
+  if (normalized.startsWith("partnership")) return "partnership";
+  return null;
+}
+
+function canonicalOfferStatus(value) {
+  const normalized = String(value ?? "").trim().toLowerCase();
+  if (normalized === "paid" || normalized.includes("paid — delivered")) return "paid";
+  if (normalized.includes("booked")) return "booked";
+  if (
+    normalized.startsWith("closed") ||
+    normalized.startsWith("delivered") ||
+    normalized.startsWith("completed") ||
+    normalized.includes("soft-no")
+  ) return "closed";
+  if (
+    normalized.includes("replied") ||
+    normalized.includes("response received") ||
+    normalized.includes("scope-session-held")
+  ) return "replied";
+  return "waiting";
+}
+
+function toRuntimeOffer(offer) {
+  const offerType = canonicalOfferType(offer.offerType);
+  if (!offerType || !/^\d{4}-\d{2}-\d{2}$/.test(offer.dateSent ?? "") || !offer.name) return null;
+  return {
+    ...offer,
+    offerType,
+    status: canonicalOfferStatus(offer.status),
+    nextFollowupDate: /^\d{4}-\d{2}-\d{2}$/.test(offer.nextFollowupDate ?? "")
+      ? offer.nextFollowupDate
+      : "",
+    notes: "",
+  };
+}
 
 function main() {
   mkdirSync(dirname(OUT_PATH), { recursive: true });
@@ -100,6 +144,17 @@ function main() {
   writeFileSync(OUT_PATH, JSON.stringify(payload, null, 2) + "\n");
   mkdirSync(dirname(PUBLIC_OUT_PATH), { recursive: true });
   writeFileSync(PUBLIC_OUT_PATH, JSON.stringify(payload, null, 2) + "\n");
+
+  if (!payload.error || !existsSync(RUNTIME_OFFERS_OUT_PATH)) {
+    const runtimeOffers = {
+      generated_at: payload.generated_at,
+      offers: (payload.offers ?? []).map(toRuntimeOffer).filter(Boolean),
+    };
+    writeFileSync(RUNTIME_OFFERS_OUT_PATH, JSON.stringify(runtimeOffers, null, 2) + "\n");
+  } else {
+    console.warn(`⚠ kept existing ${RUNTIME_OFFERS_OUT_PATH}; private CRM source is unavailable`);
+  }
+
   const suffix = payload.error ? ` (fallback: ${payload.error})` : "";
   console.log(`✓ wrote ${OUT_PATH}${suffix}`);
 }
