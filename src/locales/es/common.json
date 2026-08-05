@@ -7354,9 +7354,9 @@
     "progressLabel": "Pregunta {{current}} de {{total}}",
     "loading": "Leyendo tus respuestas…",
     "entry": {
-      "eyebrow": "Gratis. Tres preguntas cortas",
-      "title": "Descubre en qué capítulo del viaje del héroe estás en realidad",
-      "honestyLine": "Verás en qué capítulo estás, por qué sientes que das vueltas en círculo y qué podría estar empezando a pasar",
+      "eyebrow": "Gratis · Tres preguntas · Dos minutos",
+      "title": "Descubre en qué capítulo del viaje del héroe estás ahora",
+      "honestyLine": "Verás en qué capítulo estás, por qué sientes que estás dando vueltas, y qué suele pasar justo después",
       "cta": "Ver dónde estoy"
     },
     "q1": {
