@@ -157,7 +157,9 @@
 .tq-corridor-logo {
   grid-area: logo;
   display: block;
-  width: 92px;
+  /* +30% (Sasha, Day 143) — the lockup was reading as a footnote above a
+     ceremonial page. */
+  width: 120px;
   line-height: 0;
   justify-self: center;
   border-radius: 6px;
@@ -1243,7 +1245,7 @@
   }
 
   .tq-corridor-logo {
-    width: 82px;
+    width: 107px;
   }
 
   .tq-card {
