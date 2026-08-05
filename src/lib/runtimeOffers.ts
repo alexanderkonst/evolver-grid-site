@@ -1,8 +1,8 @@
-import bundledSnapshotRaw from "@/generated/crm-snapshot.json";
+import bundledSnapshotRaw from "@/generated/crm-offers-runtime.json";
 import { normalizeOffers, type OutreachOffer } from "@/lib/offersBoard";
 
 export const RUNTIME_CRM_SNAPSHOT_URL =
-  "https://raw.githubusercontent.com/alexanderkonst/evolver-grid-site/main/src/generated/crm-snapshot.json";
+  "https://raw.githubusercontent.com/alexanderkonst/evolver-grid-site/main/src/generated/crm-offers-runtime.json";
 
 export interface OffersSnapshot {
   generated_at?: string;

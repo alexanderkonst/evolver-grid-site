@@ -19,6 +19,14 @@ const validOffer = {
 };
 
 describe("runtime offers", () => {
+  it("loads the tracked, anonymized runtime projection", () => {
+    expect(RUNTIME_CRM_SNAPSHOT_URL).toBe(
+      "https://raw.githubusercontent.com/alexanderkonst/evolver-grid-site/main/src/generated/crm-offers-runtime.json",
+    );
+    expect(getBundledOffers().offers.length).toBeGreaterThan(0);
+    expect(getBundledOffers().offers.every((offer) => offer.notes === "")).toBe(true);
+  });
+
   it("fetches the latest committed snapshot with cache bypassing", async () => {
     const fetcher = vi.fn(async () => new Response(JSON.stringify({
       generated_at: "2026-07-16T00:00:00.000Z",
