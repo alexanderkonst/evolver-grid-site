@@ -182,32 +182,61 @@ export function workStageClauseKey(stage: EmergingWorkStage): string {
  *  saved-result / analytics "absence means v1" convention, change-map §3). */
 export type ResultVersion = "v1" | "ext-a" | "ext-b";
 
-/** brief §4/§16 item 6 — synthesis family. Prototype only authors
- *  coherence (uniqueness=integration) and form (uniqueness=vehicle);
- *  release/contact are named in the brief but out of scope for Phase 3. */
-export type SynthesisFamily = "coherence" | "form";
+/** brief §4/§16 item 6 — synthesis family. Phase 6 widens this to the full
+ *  four-family set named in the brief: coherence, form, release, contact. */
+export type SynthesisFamily = "coherence" | "form" | "release" | "contact";
 
 /**
- * brief §24 representative-pattern gate / change-map §5: stage 5, plus
- * uniqueness in {integration, vehicle}, plus emergingWorkStage in
- * {named, built}, minus crossed peers (crossed-peer keeps its own ending —
- * brief §20). Callers should still gate on `computeRouting(answers).route
- * !== "crossedPeer"` themselves (change-map §5) since isCrossedPeer alone
- * doesn't cover every crossed-peer trigger combination as cleanly as the
- * routing result does; this function re-checks it directly too so it's
- * safe to call standalone.
+ * Phase 6 (brief §4/§20/§27 Phase 6) widens the EXT gate from the single
+ * representative pattern to the full stage 4-7 range, for any uniqueness /
+ * emergingWorkStage combination, still excluding crossed peers.
+ * Crossed-peer already absorbs "scaling" and the mature stage-7 combos
+ * (working/delivering emerging work, or transmission uniqueness at stage 7),
+ * so EXT never sees them — see isCrossedPeer above. Callers should still
+ * gate on `computeRouting(answers).route !== "crossedPeer"` themselves
+ * since isCrossedPeer alone doesn't cover every crossed-peer trigger
+ * combination as cleanly as the routing result does; this function
+ * re-checks it directly too so it's safe to call standalone.
  */
 export function isExtEligible(answers: CoreAnswers): boolean {
-  if (isCrossedPeer(answers)) return false;
-  const stageEligible = answers.stage === 5;
-  const uniquenessEligible = answers.uniqueness === "integration" || answers.uniqueness === "vehicle";
-  const workStageEligible = answers.emergingWorkStage === "named" || answers.emergingWorkStage === "built";
-  return stageEligible && uniquenessEligible && workStageEligible;
+  return !isCrossedPeer(answers) && answers.stage >= 4 && answers.stage <= 7;
 }
 
-/** brief §4 — integration reaches for coherence, vehicle reaches for form. */
+/**
+ * brief §4 — Sasha's product decision (do not improvise). Stage-4 release
+ * rule is checked first, since at stage 4 (The Break) the old identity is
+ * still what's organizing the field regardless of uniqueness, as long as
+ * the person hasn't already named a vehicle or transmission problem.
+ */
 export function synthesisFamilyFor(answers: CoreAnswers): SynthesisFamily {
-  return answers.uniqueness === "vehicle" ? "form" : "coherence";
+  // Stage 4 (The Break): for the three "still forming" uniqueness answers,
+  // the live issue is that the old role/identity is still organizing the
+  // decisions — release, not coherence or form, is the correct read this
+  // early. Checked first per brief §4.
+  if (
+    answers.stage === 4 &&
+    (answers.uniqueness === "discovery" ||
+      answers.uniqueness === "recognition" ||
+      answers.uniqueness === "integration")
+  ) {
+    return "release";
+  }
+  // A named vehicle problem (an offer/market expression that doesn't exist
+  // yet) is always a form problem, at any eligible stage.
+  if (answers.uniqueness === "vehicle") return "form";
+  // A named transmission problem (working business, message not landing) is
+  // always a contact problem: reality hasn't received the direction yet.
+  if (answers.uniqueness === "transmission") return "contact";
+  // Past stage 4, "discovery" (still doesn't know what's unique) is read as
+  // a contact problem too: the direction hasn't met enough reality to
+  // become legible, even to the person themselves.
+  if (answers.uniqueness === "discovery") return "contact";
+  // Past stage 4, "recognition" and "integration" are coherence problems:
+  // the parts are sensed/present but not yet organized into one relationship.
+  if (answers.uniqueness === "recognition" || answers.uniqueness === "integration") return "coherence";
+  // Fallback (should not be reached given the uniqueness union above, but
+  // keeps this total rather than partial).
+  return "coherence";
 }
 
 /**

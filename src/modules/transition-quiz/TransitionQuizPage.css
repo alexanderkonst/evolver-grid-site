@@ -1798,3 +1798,21 @@
   outline-offset: 3px;
   border-radius: 4px;
 }
+
+/* Touch targets. These read as quiet text links by design, so the hit
+   area is grown with padding and centred content rather than by making
+   the type bigger: the visual weight stays exactly as intended while the
+   tappable box clears the 44px minimum (brief §23). */
+.tq-link-quiet,
+.tq-back,
+.tq-retake,
+.tq-skip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.tq-retake,
+.tq-skip {
+  justify-content: center;
+}

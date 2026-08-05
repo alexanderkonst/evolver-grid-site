@@ -7576,48 +7576,86 @@
       "chapter": {
         "eyebrow": "YOUR CHAPTER",
         "bullseye": {
-          "5": "The old chapter has ended, and the next one is still organizing. That is the real work of this stage, and it explains more than any story about lost direction or fading ability. Whatever caused the break, the question now is what the break requires of you."
+          "5": "The old chapter has ended, and the next one is still organizing. That is the real work of this stage, and it explains more than any story about lost direction or fading ability. Whatever caused the break, the question now is what the break requires of you.",
+          "4": "The way you're used to making money has stopped working the way it did, even though nothing dramatic happened. That doesn't mean you did it wrong, or that your ability faded. The old chapter ended. The real work now is finding what comes next, not explaining the ending.",
+          "6": "It's forming now, but it can't yet be said out loud in a way that lands. That's not proof the direction is wrong or that you're stalling. It is what shaping looks like before it becomes something another person can recognize.",
+          "7": "It's real now. You're building a life around it, not just talking about it. That doesn't mean every question is answered, or that doubt proves you chose wrong. Building always outruns certainty. The work now is letting the evidence catch up to the decision you've already made."
         },
         "arcNote": "People may move back and forth across this territory. This is the part carrying the most weight now."
       },
       "evidence": {
         "heading": "What your answers revealed",
         "youSaid": {
-          "5": "You said the old chapter is over, but you genuinely don't know what comes next."
+          "5": "You said the old chapter is over, but you genuinely don't know what comes next.",
+          "4": "You said the way you're used to making money isn't working the same, even though nothing dramatic happened.",
+          "6": "You said you can feel what the next thing is, but you can't yet say what your offer is clearly enough.",
+          "7": "You said you know what you do now, and you're beginning to build real success around it."
         },
         "youAlsoSaid": {
           "named": "You also said you can talk about what the next chapter is, but it hasn't become a clear offer, business, or body of work.",
-          "built": "You also said your offer already exists, but people don't understand it or choose it consistently yet."
+          "built": "You also said your offer already exists, but people don't understand it or choose it consistently yet.",
+          "not_visible": "You also said you don't know what the next version of your work is yet.",
+          "suspected": "You also said you suspect your different projects, strengths, or interests share a common thread.",
+          "felt": "You also said you can feel one deeper direction, but you can't yet put it into concrete words.",
+          "working": "You also said your offer is clear enough now, and real people are starting to respond.",
+          "delivering": "You also said you stopped working on creating demand, and your focus is now on delivering to the demand you already have."
         },
         "and": {
           "integration": "And you have several workstreams, but you can't see what makes them one thing, or whether they are one thing.",
-          "vehicle": "And you know exactly what your next chapter is, but you don't yet know how to build an offer around it, position it, or sell it."
+          "vehicle": "And you know exactly what your next chapter is, but you don't yet know how to build an offer around it, position it, or sell it.",
+          "discovery": "And you still don't know what you uniquely bring.",
+          "recognition": "And you know you bring something valuable, but you can't yet say what it is.",
+          "transmission": "And you have a working business, but people still don't see the fullness of what you can give them."
         },
         "takenTogether": {
           "coherence": "Taken together, the direction isn't missing. What's missing is the relationship among the parts that are already alive.",
-          "form": "Taken together, the direction isn't the missing piece. What's missing is a form other people can recognize, enter, and choose."
+          "form": "Taken together, the direction isn't the missing piece. What's missing is a form other people can recognize, enter, and choose.",
+          "release": "Taken together, the direction may already be visible enough to move toward. What's missing is that the old role hasn't stepped down from organizing the decisions.",
+          "contact": "Taken together, the direction is becoming coherent inside you. What's missing is enough contact with the people who could actually respond to it."
         }
       },
       "synthesis": {
         "coherence": "The problem may not be that you lack focus, discipline, or ideas. This combination often points to something else: the live parts of your next chapter don't yet have a working relationship, which one leads, what supports it, what's ready to test now.",
-        "form": "The direction is no longer entirely hidden. This combination often points to an unresolved form problem: it hasn't yet become an offer, page, or invitation another person can recognize, use, or respond to."
+        "form": "The direction is no longer entirely hidden. This combination often points to an unresolved form problem: it hasn't yet become an offer, page, or invitation another person can recognize, use, or respond to.",
+        "release": "The future may be visible enough to move toward, but the old role still appears to be organizing the decisions. Until that relationship changes, the new work is likely to be built around the needs of the old chapter.",
+        "contact": "The direction is becoming coherent inside you. This combination often points to an unresolved contact problem: it has not yet met enough reality, buyers, collaborators, or users, to become credible outside your own head."
       },
       "upgradedQuestion": {
         "coherence": {
-          "5": "The question worth testing may be: what relationship should each live project have to the direction you're trying to build?"
+          "5": "The question worth testing may be: what relationship should each live project have to the direction you're trying to build?",
+          "4": "The question worth testing may be: is what feels unclear really about you, or about how the parts you're carrying relate to each other?",
+          "6": "The question worth testing may be: does the shape need more polishing, or does it need to meet another person before it's finished?",
+          "7": "The question worth testing may be: which of the several things you're building actually leads, and which ones are support?"
         },
         "form": {
-          "5": "The question worth testing may be: am I optimizing the offer before deciding what this chapter is actually here to carry?"
+          "5": "The question worth testing may be: am I optimizing the offer before deciding what this chapter is actually here to carry?",
+          "4": "The question worth testing may be: am I trying to build an offer before I know what this chapter is even for?",
+          "6": "The question worth testing may be: is the offer unclear, or is it clear and simply untested against real people yet?",
+          "7": "The question worth testing may be: is what's not landing about the offer itself, or about who's hearing it?"
+        },
+        "release": {
+          "4": "The question worth testing may be: what is the old role still deciding on your behalf, without being asked?",
+          "5": "The question worth testing may be: which decisions am I still making as the old role, instead of the new one?",
+          "6": "The question worth testing may be: is the new direction shaping itself, or still shaping itself around what the old role needs?",
+          "7": "The question worth testing may be: does anything from the old chapter still need to be closed, not just outgrown?"
+        },
+        "contact": {
+          "4": "The question worth testing may be: is the world rejecting this, or has it simply not met it yet?",
+          "5": "The question worth testing may be: is the direction actually unclear, or does it just need contact with someone who isn't you?",
+          "6": "The question worth testing may be: is the direction actually unclear, or has it just not been tested with real people?",
+          "7": "The question worth testing may be: is the message wrong, or has it only reached the wrong people so far?"
         }
       },
       "completionMarker": {
         "coherence": "The chapter begins to close when the projects stop competing and begin serving an intelligible relationship.",
-        "form": "The chapter begins to close when you have evidence, not only resonance."
+        "form": "The chapter begins to close when you have evidence, not only resonance.",
+        "release": "The chapter begins to close when you can describe what ended without treating it as proof that you failed.",
+        "contact": "The chapter begins to close when the emerging direction can survive contact with another person."
       },
       "detour": {
         "workingDownstream": {
           "heading": "A COMMON DETOUR",
-          "body": "You reach for a funnel, a new offer, branding, or a productivity system. These feel like real progress because you can start today. But none of them answer the upstream question: what is the next chapter actually organized around. The likely cost is activity without coherence, better execution of a direction that still isn't named. Test the relationship among the projects first."
+          "body": "You reach for a funnel, a new offer, branding, or a productivity system. These feel like real progress because you can start today. But none of them answer the upstream question: what is the next chapter actually organized around. The likely cost is activity without coherence, better execution of a direction that still isn't named. Name what the chapter is organized around before optimizing how it is sold."
         },
         "mistakingFocusForAmputation": {
           "heading": "WHERE PEOPLE OFTEN LOSE TIME HERE",
@@ -7626,16 +7664,35 @@
         "buildingBeforeNaming": {
           "heading": "A MOVE TO WATCH",
           "body": "You start creating offers, content, or a business before enough is known: who the real buyer is, what they're actually responding to, what reality is already answering. Exploration helps. Heavy building before contact usually creates rework, weak resonance, and a story reverse-engineered around what you already built. Test the offer in small conversations before you build the next layer."
+        },
+        "misreadingTheInvitation": {
+          "heading": "A COMMON DETOUR",
+          "body": "You read the transition as proof something is wrong with you, that your past success was accidental, or that the world no longer wants what you offer. That reading feels sensible when you're inside it. What it fails to address is structural, not personal: the old structure may simply no longer be able to hold the life and work now developing. Reframe it as a structure question before treating it as a verdict on you."
+        },
+        "prematureCommitment": {
+          "heading": "A MOVE TO WATCH",
+          "body": "You return to an older, safer role because the uncertainty has become hard to tolerate. That can be a wise, deliberate bridge. The detour happens when it quietly replaces the deeper transition instead of supporting it. A bridge is not betrayal. The useful question is whether the old work is consciously financing the transition, or quietly ending it without a decision."
+        },
+        "waitingUpstream": {
+          "heading": "WHERE PEOPLE OFTEN LOSE TIME HERE",
+          "body": "You keep researching, reflecting, and clarifying before you build, offer, test, or sell anything. Understanding feels like the responsible move, and it postpones the risk of being wrong in public. What it fails to address is that reality teaches things reflection alone cannot. You don't need complete self-understanding before acting. You need one action small enough that reality can help finish the understanding."
+        },
+        "mistakingReliefForDirection": {
+          "heading": "A COMMON DETOUR",
+          "body": "A good conversation, retreat, or insight creates real relief, and relief can feel like progress. But if you leave without a decision, an experiment, or contact with another person, nothing structural has actually changed. The likely cost is repeating the same relief without repeating any evidence. Let this result be one input, not the resolution itself: the resolution still needs one small test in the world."
         }
       },
       "fork": {
         "visibleLayer": "Two ways to spend the next stretch of time. One: keep polishing the visible pieces, the offer wording, the brand, the funnel. Two: step back and examine what is actually organizing the pieces, which project leads, what the others are for, what's ready to be tested. The first feels productive today. The second is usually what makes the first one work.",
-        "evidence": "Two ways forward. One: keep refining the idea privately, sharpening the language until it feels ready. Two: create a small test that reality can answer, one real invitation, one real person's response. Refinement can continue indefinitely without changing anything. Evidence changes what you actually know."
+        "evidence": "Two ways forward. One: keep refining the idea privately, sharpening the language until it feels ready. Two: create a small test that reality can answer, one real invitation, one real person's response. Refinement can continue indefinitely without changing anything. Evidence changes what you actually know.",
+        "identity": "Two ways to spend the next stretch of time. One: keep asking how to preserve the old role, its status, its audience, its promise. Two: decide what relationship the old role should have to the future you're building, still present, in the background, or complete. The old identity may not need to die. It likely needs to stop running the decisions. That's a different question than whether to keep it."
       },
       "experiment": {
         "coherence": "Write one sentence that names what your two or three most alive projects are collectively trying to change for another person, not what each one does individually, but the shared effect they produce. Then label each one: lead, support, test, or complete. Notice which label creates resistance.",
         "form": "Put the emerging direction in front of three people you trust, with one concrete invitation. Notice what they understand without your explanation. That's your evidence.",
-        "doorACta": "I'll test this first"
+        "doorACta": "I'll test this first",
+        "release": "Name one promise from the old chapter, a role, a client, an income source, that is still determining a present decision. Decide whether it should be honored, renegotiated, or considered complete, then write down what changes once it is.",
+        "contact": "Make one small offer or request this week, something someone can respond to with time, money, participation, or a clear no. A real response is the evidence you're missing, not another round of private thinking."
       },
       "resultComplete": {
         "line": "Your result is complete.",
@@ -7669,7 +7726,9 @@
         "ctaNote": "Booking opens in a new tab.",
         "whyNow": {
           "coherence": "Your answers point to pieces that are already true on their own, still waiting to be read as one shape.",
-          "form": "Your answers point to something real that hasn't found the structure to carry it yet."
+          "form": "Your answers point to something real that hasn't found the structure to carry it yet.",
+          "release": "Your answers point to a future that may already be visible enough, still waiting for the old role to step out of the way.",
+          "contact": "Your answers point to a direction becoming clear inside you, still waiting for enough contact with reality to become credible."
         }
       },
       "preparation": {
