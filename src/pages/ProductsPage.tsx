@@ -91,6 +91,8 @@ const CARDS: ProductCardDef[] = [
   { key: "card7", href: TELEGRAM_CONVERSATION, external: true },
   // Day 130: Client Evolution Portal (Practitioner Node).
   { key: "card8", href: "/products/evolution-portal", external: false },
+  // Day 146: The Crossing (2-month transition program).
+  { key: "card9", href: "/products/crossing", external: false },
 ];
 
 const ProductCard = ({ def }: { def: ProductCardDef }) => {

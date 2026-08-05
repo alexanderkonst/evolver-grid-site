@@ -82,6 +82,7 @@ const ProductsPage = lazy(() => import("./pages/ProductsPage"));
 const EvolutionPortal = lazy(() => import("./pages/EvolutionPortal"));
 const EvolutionPortalKarime = lazy(() => import("./pages/EvolutionPortalKarime"));
 const BuildContainer = lazy(() => import("./pages/BuildContainer"));
+const TheCrossing = lazy(() => import("./pages/TheCrossing"));
 const CommunityWebinar = lazy(() => import("./pages/CommunityWebinar"));
 // Day 133: plain-language data promise + legal companions.
 const YourDataPlainly = lazy(() => import("./pages/YourDataPlainly"));
@@ -595,6 +596,7 @@ const App = () => (
                   <Route path="/products/evolution-protocol" element={<Navigate to="/products/evolution-portal" replace />} />
                   <Route path="/product/evolution-portal" element={<Navigate to="/products/evolution-portal" replace />} />
                   <Route path="/products/built" element={<BuildContainer />} />
+                  <Route path="/products/crossing" element={<TheCrossing />} />
                   <Route path="/communities" element={<CommunityWebinar />} />
                   <Route path="/products/build" element={<Navigate to="/products/built" replace />} />
                   {/* Day 133: plain-language data promise + legal companions. */}
