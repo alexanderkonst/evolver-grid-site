@@ -66,13 +66,33 @@ export function ExtResultScreen({
   const locale = i18n.language;
 
   const family = synthesisFamilyFor(answers);
-  const workStageKey = answers.emergingWorkStage === "built" ? "built" : "named";
-  const uniquenessKey = answers.uniqueness === "vehicle" ? "vehicle" : "integration";
+  // Phase 6: stage 4-7 gate now surfaces the full emergingWorkStage and
+  // uniqueness unions (minus "scaling", which only ever occurs on the
+  // crossed-peer route) — both map directly onto locale keys authored for
+  // every value, so no narrowing/fallback is needed here any more.
+  const workStageKey = answers.emergingWorkStage;
+  const uniquenessKey = answers.uniqueness === "scaling" ? "integration" : answers.uniqueness;
+  // Detour pair and fork per synthesis family (brief §8.3/§8.5, Phase 6 wiring).
   const detourIds =
     family === "coherence"
       ? (["workingDownstream", "mistakingFocusForAmputation"] as const)
-      : (["workingDownstream", "buildingBeforeNaming"] as const);
-  const forkId = family === "coherence" ? "visibleLayer" : "evidence";
+      : family === "form"
+        ? (["workingDownstream", "buildingBeforeNaming"] as const)
+        : family === "release"
+          ? (["misreadingTheInvitation", "prematureCommitment"] as const)
+          : (["waitingUpstream", "mistakingReliefForDirection"] as const);
+  const forkId =
+    family === "coherence"
+      ? "visibleLayer"
+      : family === "form"
+        ? "evidence"
+        : family === "release"
+          ? "identity"
+          : "evidence";
+  // Defensive clamp (brief instruction): upgradedQuestion is keyed by
+  // family + stage, and the gate already guarantees stage is 4-7, but this
+  // keeps the lookup total even if a caller passes something out of range.
+  const upgradedQuestionStage = Math.min(7, Math.max(4, answers.stage));
 
   const [doorATest, setDoorATest] = useState(false);
   const [prepOutcome, setPrepOutcome] = useState<string | null>(null);
@@ -253,7 +273,7 @@ export function ExtResultScreen({
       </div>
 
       <div className="tq-ext-act tq-ext-upgraded-question">
-        <p className="tq-ext-question-text">{str(t, `quiz.ext.upgradedQuestion.${family}.${answers.stage}`)}</p>
+        <p className="tq-ext-question-text">{str(t, `quiz.ext.upgradedQuestion.${family}.${upgradedQuestionStage}`)}</p>
       </div>
 
       <p className="tq-ext-completion-marker">{str(t, `quiz.ext.completionMarker.${family}`)}</p>
