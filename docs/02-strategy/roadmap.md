@@ -198,6 +198,8 @@
 ## Current Status
 
 > *Refreshed to Day 138 (July 28, 2026). Prior snapshot (Day 130, July 20) preserved above in the dated note stack and in git history; see `session_log.md` Days 131-138 for the full narrative. **Note:** no revenue figure was recorded in the corpus for Days 131-138 — the Revenue row below carries forward the last confirmed figure (Day 130) rather than guessing at a new one.*
+>
+> **Day 146 delta (August 5, 2026):** «Переход» program proposal sent to Gleb — 2 months, 8 weekly sessions + PYS included, **$2,222**, business phase deferred; awaiting decision, start-call Monday Aug 10. Karime named her trajectory (Day 145: "metabolizing life's most difficult experiences"); her full-blown program design is in homework. Largest single offer currently in flight. Detail: `session_log.md` Day 145-146; private ledger CRM row 37.
 
 | Metric | Value |
 |--------|-------|
