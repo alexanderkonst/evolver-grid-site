@@ -7139,6 +7139,13 @@
       "line": "Un estudio de venture que construye negocios a partir de la unicidad de los fundadores.",
       "body": "Para fundadores cuya próxima empresa debería construirse a partir de quienes son. Primero diseñamos la empresa desde tu unicidad, luego la construimos contigo.",
       "cta": "Empezar una conversación"
+    },
+    "card9": {
+      "name": "El Cruce",
+      "badge": "$2,222 · 2 meses",
+      "line": "Un programa de 2 meses para la transición en la que estás.",
+      "body": "Tu capítulo anterior terminó y el siguiente aún no tiene nombre. El Cruce acelera y estructura la transición misma, para que tome meses en lugar de años, y la atravieses con intención y conciencia en lugar de a la deriva. Ocho sesiones semanales, un taller Productize Yourself de 2 horas a mitad del programa, y tu unicidad nombrada con exactitud al final.",
+      "cta": "Ver el programa"
     }
   },
   "thebuild": {
@@ -7175,6 +7182,56 @@
     "dataLink": "Cómo manejamos tus datos",
     "noScratch": "Nadie empieza de cero conmigo. Cada quien llega con algo ya en marcha, un negocio, un trabajo, un proyecto aparte. Nunca lo desmontamos, no tendría sentido. Sigues con tu línea de trabajo tal como está. Encontramos qué partes son verdaderamente tuyas, las conservamos, las reforzamos, crecemos desde ahí. Lo que no es tuyo se cae solo, poco a poco, mientras la parte alineada empieza a alimentarte.",
     "promise": "Para ser claro sobre lo que prometo: una dirección, tu oferta empaquetada y con precio, lanzada a personas reales. No prometo riqueza rápida ni vendo un esquema. Esto es construcción de negocio sostenible y creación de riqueza, alineada con quien eres. Los resultados vienen de que tú lo trabajes."
+  },
+  "crossing": {
+    "title": "El Cruce",
+    "seoDescription": "Un programa de 2 meses para la transición en la que estás. Ocho sesiones semanales, un taller Productize Yourself, y tu unicidad nombrada con exactitud. $2,222.",
+    "eyebrow": "UN PROGRAMA PARA EL ENTRE-CAPÍTULOS",
+    "heading": "El Cruce",
+    "subheading": "Un programa de 2 meses para la transición en la que estás",
+    "essence": "Tu capítulo anterior terminó y el siguiente aún no tiene nombre. Ese intermedio no es un vacío: tiene estructura, y se puede cruzar con conciencia en lugar de a la deriva. Nadie puede prometer fechas de llegada en una transición, y yo no lo haré. Lo que hace este programa: acelera y estructura el cruce mismo, para que tome meses en lugar de años, y lo atravieses con intención y conciencia, no caóticamente y sin entender qué está pasando y por qué.",
+    "formatHeading": "Formato",
+    "f1": "8 sesiones semanales de 75 minutos",
+    "f2": "más mi taller Productize Yourself de 2 horas a mitad del programa",
+    "f3": "check-ins y preguntas por notas de voz entre sesiones, tantas como necesites dentro de lo razonable; hago lo posible por responder dentro del día",
+    "f4": "usamos mis instrumentos y mapas, construidos e integrados desde muchos enfoques",
+    "f5": "selecciono materiales opcionales de otros guías y expertos, a tu medida",
+    "sequenceHeading": "La secuencia",
+    "sequenceIntro": "Esta es la ruta más probable. Sobre la marcha, la seguimos personalizando para ti.",
+    "s1": {
+      "title": "Sesión 1: Claridad",
+      "body": "Hacemos una medición base de calidad de vida usando una tecnología e instrumento que construí, para tener con qué comparar al final. Empezamos por nombrar tus metas, para que todo lo que sigue trabaje para ti y para ellas. Miramos tu situación a través de un mapa integral del desarrollo humano."
+    },
+    "s2": {
+      "title": "Sesión 2: Aceleración de la transformación",
+      "body": "La fuente de energía, la aceleración del crecimiento, el nuevo modelo del mundo y la transición vertical que muestran tus evaluaciones: pasar el peso a la pierna que ya está firme."
+    },
+    "s3": {
+      "title": "Sesión 3: Diseño de vida",
+      "body": "Convertimos toda esta nueva comprensión en micro-prácticas transformacionales gamificadas, para que la transformación realmente ocurra entre sesiones: cortas, fáciles de sostener, fáciles de integrar a tu vida, con la máxima aceleración por unidad de esfuerzo."
+    },
+    "s4": {
+      "title": "Sesión 4: El espectro que aún no se ha manifestado",
+      "body": "Tus fortalezas y tu unicidad: tanto la parte del espectro con la que ya brillas, como la que aún no se ha manifestado. En lenguaje de founders, esto es encontrar el founder-market fit con tu propia vida."
+    },
+    "s5": {
+      "title": "Sesión 5: Productize Yourself (2 horas)",
+      "body": "Tu unicidad, formulada con una precisión que sientes físicamente. La claridad sobre ti se convierte directamente en claridad sobre tus proyectos: cuáles son verdaderamente tuyos, qué roles te llenan, y obtienes un instrumento siempre disponible para saber a qué decir sí y a qué decir no. La formulación se vuelve un papel tornasol que usarás por años."
+    },
+    "s6": {
+      "title": "Sesiones 6 y 7: Transformación a través del viaje del héroe",
+      "body": "El nuevo modelo del mundo se pone a prueba contra la vida real. Miramos la naturaleza cíclica del viaje del héroe, que es también el viaje del founder, y cómo trabajar con las pruebas del camino para elevarte sobre el tablero de juego, en lugar de ser una pieza que otros mueven o que se agita caóticamente."
+    },
+    "s8": {
+      "title": "Sesión 8: Integración, progreso y resultados",
+      "body": "Trabajamos lo que haya surgido en el camino. Repetimos la medición de calidad de vida de la primera sesión. Hacemos balance y construimos el plan de los siguientes pasos, conmigo o sin mí."
+    },
+    "priceHeading": "Precio y pago",
+    "priceLine": "Total: $2,222",
+    "paymentLine": "50% dentro de los 3 días posteriores a la primera sesión, el 50% restante antes de la sesión 5.",
+    "afterHeading": "Qué viene después",
+    "afterBody": "Planear lo siguiente ahora sería prematuro. En general, después de este trabajo sugiero enfocarse en un híbrido entre construir tu próximo negocio y las siguientes etapas de transformación. Espero que la siguiente etapa también aterrice con fuerza, pero sugiero no discutirla ahora: tendrás dos meses de experiencia directa de lo que este trabajo te da, y para entonces sabrás por ti mismo si quieres ese siguiente paso.",
+    "cta": "Iniciar la conversación"
   },
   "hostpage": {
     "seoTitle": "Organiza un taller de Zona de Genialidad para tu comunidad",

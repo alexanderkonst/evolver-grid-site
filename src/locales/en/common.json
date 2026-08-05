@@ -7146,6 +7146,13 @@
       "line": "For practitioners: your clients, seeing their own evolution.",
       "body": "Your own corner of the platform, in your colors. Your clients take a Quality of Life snapshot, practice with your library inside, and watch their own lines move.",
       "cta": "See the portal"
+    },
+    "card9": {
+      "name": "The Crossing",
+      "badge": "$2,222 · 2 months",
+      "line": "A 2-month program for the transition you are in.",
+      "body": "Your old chapter has ended and the next one has not been named yet. The Crossing accelerates and structures the transition itself, so it takes months instead of years, and you walk it intentionally and consciously instead of drifting through it. Eight weekly sessions, a 2-hour Productize Yourself workshop in the middle, and your uniqueness named exactly by the end.",
+      "cta": "See the program"
     }
   },
   "thebuild": {
@@ -7182,6 +7189,56 @@
     "dataLink": "How we handle your data",
     "noScratch": "Nobody starts from scratch with me. Everybody arrives with something already going, a business, a job, side work. We never dismantle it, that makes no sense. You keep working your line as is. We find which parts are truly yours, keep them, reinforce them, grow from there. What isn't yours falls away on its own, gradually, as the aligned part starts feeding you.",
     "promise": "To be clear about what I promise: one direction, your offer packaged and priced, launched to real people. I'm not promising rapid riches and I'm not selling a scheme. This is sustainable business and wealth creation, aligned with who you are. The results come from you working it."
+  },
+  "crossing": {
+    "title": "The Crossing",
+    "seoDescription": "A 2-month program for the transition you are in. Eight weekly sessions, a Productize Yourself workshop, and your uniqueness named exactly. $2,222.",
+    "eyebrow": "A PROGRAM FOR THE IN-BETWEEN",
+    "heading": "The Crossing",
+    "subheading": "A 2-month program for the transition you are in",
+    "essence": "Your old chapter has ended and the next one has not been named yet. That in-between is not a void: it has a structure, and it can be crossed consciously instead of drifted through. Nobody can promise arrival dates on a transition, and I will not. What this program does is accelerate and structure the crossing itself, so it takes months instead of years, and you walk it intentionally and consciously instead of chaotically and without understanding what is happening and why.",
+    "formatHeading": "Format",
+    "f1": "8 weekly sessions, 75 minutes each",
+    "f2": "plus my 2-hour Productize Yourself workshop in the middle of the program",
+    "f3": "check-ins and voice-note questions between sessions, within reason as many as you need; I do my best to answer within a day",
+    "f4": "we use my instruments and maps, built and integrated from many approaches",
+    "f5": "optional materials from other guides and experts, matched to you",
+    "sequenceHeading": "The sequence",
+    "sequenceIntro": "This is the most likely route. As we go, we keep personalizing it to you.",
+    "s1": {
+      "title": "Session 1: Clarity",
+      "body": "We take a quality-of-life baseline using a technology and instrument I built, so there is something to measure against at the end. We start by naming your goals, so that everything that follows works on you and them. We look at your situation through an integral map of human development."
+    },
+    "s2": {
+      "title": "Session 2: Accelerating transformation",
+      "body": "The source of energy, the acceleration of growth, the new model of the world, and the vertical transition your assessments map: moving the weight onto the leg that is already standing."
+    },
+    "s3": {
+      "title": "Session 3: Life design",
+      "body": "We turn the new understanding into gamified transformational micro-practices, so the transformation actually happens between sessions: short, easy to keep, easy to build into your life, with the highest acceleration per unit of effort."
+    },
+    "s4": {
+      "title": "Session 4: The spectrum that has not shown itself yet",
+      "body": "Your strengths and your uniqueness: both the part of the spectrum you already shine, and the part that has not manifested yet. In founder language, this is finding founder-market fit with your own life."
+    },
+    "s5": {
+      "title": "Session 5: Productize Yourself (2 hours)",
+      "body": "Your uniqueness, formulated with a precision you physically feel. Clarity about yourself translates directly into clarity about your ventures: which of them are truly yours, which roles fill you, and you get an always-available instrument for what to say yes and no to. The formulation becomes a litmus test you will use for years."
+    },
+    "s6": {
+      "title": "Sessions 6 and 7: Transformation through the hero's journey",
+      "body": "The new model of the world gets tested against real life. We look at the cyclical nature of the hero's journey, which is also the founder's journey, and at how to work with the trials on the path so you rise above the playing field instead of being a piece that gets moved or scrambles chaotically."
+    },
+    "s8": {
+      "title": "Session 8: Integration, progress and results",
+      "body": "We work whatever has come up along the way. We repeat the quality-of-life measure from session one. We take stock and build the plan for the next steps, with me or without me."
+    },
+    "priceHeading": "Price and payment",
+    "priceLine": "Total: $2,222",
+    "paymentLine": "50% within 3 days after the first session, the remaining 50% before session 5.",
+    "afterHeading": "What comes after",
+    "afterBody": "Planning the next thing now would be premature. In general, after this work I suggest focusing on a hybrid of building your next business and the next stages of transformation. I expect the next stage will land powerfully too, but I suggest not discussing it now: you will have two months of direct experience of what this work gives you, and by then you will know for yourself whether you want that next step.",
+    "cta": "Start the conversation"
   },
   "hostpage": {
     "seoTitle": "Host a Zone of Genius Workshop for Your Community",
