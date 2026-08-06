@@ -7574,7 +7574,7 @@
       "crossedPeer": {
         "heading": "Crossed. And it keeps working.",
         "body1": "You said the sentence, built the vehicle, and money answers. The map ends here, because your question is no longer naming. It is scale: transmission, reach, the next octave of the same pattern.",
-        "body2": "People who crossed deliberately tend to build alongside others who did. That is a different conversation than a Direction Call, and I have it gladly.",
+        "body2": "That is the territory where I can help most. I build AI workflows that let a unique business like yours scale fast. A conversation is the simplest way to see what fits: collaboration, or me helping you build the scaling machine.",
         "cta": "Let's know each other"
       }
     },
@@ -7843,21 +7843,22 @@
       "topTalent": {
         "notYet": {
           "1": {
-            "label": "The useful next layer",
-            "body": "A major crossing may not be active yet. The useful move right now is naming the talent and contribution already present beneath your current role.",
+            "label": "Your next step",
+            "body": "Your work works. That makes this the best moment to name what makes it work: you. The earlier you can say what you uniquely bring, the more your success compounds, in this chapter and every one after it.",
             "cta": "Reveal my Top Talent"
           },
           "2": {
-            "label": "The useful next layer",
-            "body": "Early change often shows up first as a recurring ability, interest, or contribution asking for more room. Top Talent names what that is.",
-            "cta": "See what keeps asking for expression"
+            "label": "Your next step",
+            "body": "Early change usually shows up as an ability or interest asking for more room. Naming your uniqueness now turns a vague itch into a clear direction, and clarity converts into professional success sooner.",
+            "cta": "Reveal my Top Talent"
           },
           "3": {
-            "label": "The useful next layer",
-            "body": "Before forcing a direction, it helps to see the talent, resources, and mission threads already repeating across your life and work.",
-            "cta": "Map what is already emerging"
+            "label": "Your next step",
+            "body": "Before forcing a direction, see what already repeats across your life and work. The earlier you name your uniqueness and align your work with it, the sooner effort starts converting again.",
+            "cta": "Reveal my Top Talent"
           },
-          "microcopy": "Free · A few minutes · Your own result"
+          "microcopy": "Free · A few minutes · Your own result",
+          "label": "Your next step"
         },
         "secondary": {
           "label": "Another useful layer",
@@ -7870,6 +7871,11 @@
           "label": "Deeper language for what is already working",
           "body": "You already know your terrain. Top Talent can put a sharper name on the capacity that keeps producing the results you're seeing.",
           "cta": "Name it more precisely"
+        },
+        "currentChapter": {
+          "label": "Your next step",
+          "body": "Staying with the chapter that works is a real choice. Naming what you uniquely bring makes the current chapter work even better, and makes the next one easier to see when its time comes.",
+          "cta": "Reveal my Top Talent"
         }
       },
       "labels": {

@@ -7567,7 +7567,7 @@
       "crossedPeer": {
         "heading": "Cruzaste. Y sigue funcionando.",
         "body1": "Dijiste la frase, construiste el vehículo, y el dinero responde. El mapa termina aquí, porque tu pregunta ya no es de nombrar. Es de escala: transmisión, alcance, la siguiente octava del mismo patrón.",
-        "body2": "Quienes cruzan a propósito suelen construir junto a otros que también lo hicieron. Esa es una conversación distinta a una Direction Call, y la tengo con gusto.",
+        "body2": "Ese es el territorio donde más puedo ayudar. Construyo flujos de IA que permiten a un negocio único como el tuyo escalar rápido. Una conversación es la forma más simple de ver qué encaja: colaborar, o que te ayude a construir la máquina de escalado.",
         "cta": "Conozcámonos"
       }
     },
@@ -7836,21 +7836,22 @@
       "topTalent": {
         "notYet": {
           "1": {
-            "label": "La siguiente capa útil",
-            "body": "Puede que un gran cruce todavía no esté activo. Lo útil ahora es nombrar el talento y la contribución que ya existen debajo de tu rol actual.",
+            "label": "Tu siguiente paso",
+            "body": "Tu trabajo funciona. Y ese es el mejor momento para nombrar lo que lo hace funcionar: tú. Cuanto antes puedas decir qué es lo único que aportas, más se acumula tu éxito, en este capítulo y en todos los que vienen.",
             "cta": "Revelar mi Top Talent"
           },
           "2": {
-            "label": "La siguiente capa útil",
-            "body": "El cambio temprano suele aparecer primero como una habilidad, interés o contribución recurrente que pide más espacio. Top Talent le pone nombre a eso.",
-            "cta": "Ver qué sigue pidiendo expresión"
+            "label": "Tu siguiente paso",
+            "body": "El cambio temprano suele aparecer como una habilidad o un interés que pide más espacio. Nombrar tu singularidad ahora convierte una comezón difusa en una dirección clara, y la claridad se convierte antes en éxito profesional.",
+            "cta": "Revelar mi Top Talent"
           },
           "3": {
-            "label": "La siguiente capa útil",
-            "body": "Antes de forzar una dirección, ayuda ver el talento, los recursos y los hilos de misión que ya se repiten en tu vida y tu trabajo.",
-            "cta": "Mapear lo que ya está emergiendo"
+            "label": "Tu siguiente paso",
+            "body": "Antes de forzar una dirección, mira lo que ya se repite en tu vida y tu trabajo. Cuanto antes nombres tu singularidad y alinees tu trabajo con ella, antes vuelve a convertir el esfuerzo.",
+            "cta": "Revelar mi Top Talent"
           },
-          "microcopy": "Gratis · Pocos minutos · Tu propio resultado"
+          "microcopy": "Gratis · Pocos minutos · Tu propio resultado",
+          "label": "Tu siguiente paso"
         },
         "secondary": {
           "label": "Otra capa útil",
@@ -7863,6 +7864,11 @@
           "label": "Un lenguaje más preciso para lo que ya funciona",
           "body": "Ya conoces tu terreno. Top Talent puede ponerle un nombre más preciso a la capacidad que sigue produciendo los resultados que estás viendo.",
           "cta": "Nombrarlo con más precisión"
+        },
+        "currentChapter": {
+          "label": "Tu siguiente paso",
+          "body": "Quedarte en el capítulo que funciona es una elección real. Nombrar lo que aportas de único hace que el capítulo actual funcione aún mejor, y que el siguiente sea más fácil de ver cuando llegue su momento.",
+          "cta": "Revelar mi Top Talent"
         }
       },
       "labels": {

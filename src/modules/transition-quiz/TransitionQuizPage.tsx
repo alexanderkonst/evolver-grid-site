@@ -66,7 +66,7 @@ type Screen =
 
 const BACK_MAP: Partial<Record<Screen, Screen>> = {
   q1: "entry",
-  notYet: "q1",
+  notYet: "q2",
   q2: "q1",
   q3: "q2",
   result: "q3",
@@ -174,8 +174,6 @@ function loadInitial(): PersistedState {
 const TransitionQuizPage = () => {
   const { t, i18n } = useTranslation();
   const [state, setState] = useState<PersistedState>(loadInitial);
-  const [email, setEmail] = useState("");
-  const [emailSent, setEmailSent] = useState(false);
   const [resultId, setResultId] = useState<string | null>(null);
   const loggedRef = useRef<string | null>(null);
   const screenRef = useRef<HTMLDivElement | null>(null);
@@ -215,8 +213,6 @@ const TransitionQuizPage = () => {
     } catch {
       /* ignore */
     }
-    setEmail("");
-    setEmailSent(false);
     setState(initialState);
     if (typeof window !== "undefined") {
       const url = new URL(window.location.href);
@@ -293,7 +289,7 @@ const TransitionQuizPage = () => {
     if (screen === "notYet" && stage && loggedRef.current !== `notyet-${stage}`) {
       loggedRef.current = `notyet-${stage}`;
       rememberLocalQuizResult();
-      logCompletion({ stage, not_yet: true }).then((res) => {
+      logCompletion({ stage, not_yet: true, uniqueness_category: uniqueness ?? null }).then((res) => {
         const id = res && "data" in res ? (res.data as { id?: string } | null)?.id : undefined;
         if (id) {
           setResultId(id);
@@ -397,32 +393,6 @@ const TransitionQuizPage = () => {
     }
   }, [screen, means, buyingFrame, coreAnswers, logCompletion, stage, resultId]);
 
-  const submitEmail = useCallback(() => {
-    const trimmed = email.trim();
-    if (!trimmed || !trimmed.includes("@") || !stage) return;
-    // Data hygiene #22 — one row per person. By the time email capture is
-    // shown, the completion row usually already exists (resultId set by the
-    // notYet/result logging). Attach the email to THAT row via the update
-    // branch instead of inserting a duplicate completion. Fall back to an
-    // insert only when the row id isn't known yet.
-    if (resultId) {
-      supabase.functions
-        .invoke("save-quiz-result", { body: { id: resultId, email: trimmed } })
-        .catch(() => null);
-    } else {
-      logCompletion({ stage, not_yet: isNotYetStage(stage), email: trimmed });
-    }
-    // Dedicated email-capture table (quiz_email_signups), separate from the
-    // per-completion dataset row above. Same fire-and-forget contract: if
-    // save-quiz-email isn't deployed yet in this environment, this silently
-    // no-ops and the UI still shows success (graceful fallback).
-    supabase.functions
-      .invoke("save-quiz-email", { body: { email: trimmed, stage, locale: i18n.language } })
-      .catch(() => {
-        /* best-effort — never blocks or alters the UI */
-      });
-    setEmailSent(true);
-  }, [email, stage, resultId, logCompletion, i18n.language]);
 
   // ── Share link for the finished result ──────────────────────────────────
   const shareUrl = useMemo(() => {
@@ -510,7 +480,13 @@ const TransitionQuizPage = () => {
               t={t}
               onPick={(index) => {
                 const picked = (index + 1) as Stage;
-                goTo(isNotYetStage(picked) ? "notYet" : "q2", { stage: picked });
+                // Everyone answers Q2: for stages 1-3 it primes monetizing
+                // your uniqueness, which is exactly why the Top Talent
+                // reveal on their ending reads as a logical free gift and
+                // not a random link (Sasha, Day 144). Q3 stays
+                // transition-only: asking a person with no next chapter
+                // about their next chapter makes no sense.
+                goTo("q2", { stage: picked });
               }}
             />
           )}
@@ -519,10 +495,6 @@ const TransitionQuizPage = () => {
             <NotYetScreen
               t={t}
               stage={stage}
-              email={email}
-              setEmail={setEmail}
-              emailSent={emailSent}
-              onSubmitEmail={submitEmail}
               onRetake={reset}
               resultId={resultId}
             />
@@ -534,7 +506,9 @@ const TransitionQuizPage = () => {
               i18nKey="quiz.q2"
               values={UNIQUENESS_VALUES}
               current={uniqueness}
-              onPick={(v) => goTo("q3", { uniqueness: v })}
+              onPick={(v) =>
+                goTo(stage && isNotYetStage(stage) ? "notYet" : "q3", { uniqueness: v })
+              }
             />
           )}
 
@@ -882,19 +856,11 @@ export function TopTalentPeer({
 function NotYetScreen({
   t,
   stage,
-  email,
-  setEmail,
-  emailSent,
-  onSubmitEmail,
   onRetake,
   resultId,
 }: {
   t: (k: string, o?: Record<string, unknown>) => unknown;
   stage: Stage;
-  email: string;
-  setEmail: (v: string) => void;
-  emailSent: boolean;
-  onSubmitEmail: () => void;
   onRetake: () => void;
   resultId: string | null;
 }) {
@@ -931,27 +897,6 @@ function NotYetScreen({
 
         <TopTalentBridge t={t} stage={stage as 1 | 2 | 3} />
 
-        {!emailSent ? (
-          <div className="tq-email-row">
-            <p className="tq-label" style={{ marginTop: 8 }}>
-              {t("quiz.notYet.settled.emailPrompt") as string}
-            </p>
-            <input
-              className="tq-email-input"
-              type="email"
-              inputMode="email"
-              placeholder={t("quiz.notYet.settled.emailPlaceholder") as string}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <button type="button" className="tq-cta tq-cta-ghost" onClick={onSubmitEmail}>
-              {t("quiz.notYet.settled.emailCta") as string}
-            </button>
-          </div>
-        ) : (
-          <p className="tq-success">{t("quiz.notYet.settled.emailSuccess") as string}</p>
-        )}
-
         <button type="button" className="tq-retake" onClick={onRetake}>
           {t("quiz.notYet.retake") as string}
         </button>
@@ -980,28 +925,6 @@ function NotYetScreen({
       </div>
 
       <TopTalentBridge t={t} stage={stage as 1 | 2 | 3} />
-
-      {!emailSent ? (
-        <div className="tq-email-row">
-          <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.notYet.itchTremors.emailPrompt") as string}</p>
-          <input
-            className="tq-email-input"
-            type="email"
-            inputMode="email"
-            placeholder={t("quiz.notYet.itchTremors.emailPlaceholder") as string}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <button type="button" className="tq-cta tq-cta-primary" onClick={onSubmitEmail}>
-            {t("quiz.notYet.itchTremors.emailCta") as string}
-          </button>
-          {/* "No thanks, I'm good" removed (Sasha, Day 144): not clicking
-              anything already IS declining — the escape button only added
-              noise. */}
-        </div>
-      ) : (
-        <p className="tq-success">{t("quiz.notYet.itchTremors.emailSuccess") as string}</p>
-      )}
 
       <button type="button" className="tq-retake" onClick={onRetake}>
         {t("quiz.notYet.retake") as string}
@@ -1245,10 +1168,31 @@ export function CurrentChapterScreen({
 
       <div className="tq-integration">
         <div className="tq-section tq-central-read" style={{ marginTop: 0 }}>
-          <p className="tq-body-text tq-measure">{t("quiz.currentChapter.line") as string}</p>
+          <p className="tq-body-text tq-measure tq-notyet-body">{t("quiz.currentChapter.line") as string}</p>
         </div>
 
-        <TopTalentSecondary t={t} resultVersion="current-chapter" />
+        {/* Same logic as the not-yet endings (Sasha, Day 144): this person
+            is not seeking a next chapter, so Top Talent is the one primary
+            next step, framed as the free way to make the current chapter
+            work even better. */}
+        <div className="tq-toptalent-bridge">
+          <p className="tq-eyebrow-gold tq-toptalent-bridge-label" style={GOLD_TEXT_STYLE}>
+            {t("quiz.ext.topTalent.currentChapter.label") as string}
+          </p>
+          <p className="tq-toptalent-bridge-body">
+            {t("quiz.ext.topTalent.currentChapter.body") as string}
+          </p>
+          <Link
+            className="tq-editorial-link-cta tq-door-cta tq-toptalent-bridge-cta"
+            to="/zone-of-genius"
+            onClick={() => trackCTAClick("quiz_cta_click", "top_talent_current_chapter")}
+          >
+            {t("quiz.ext.topTalent.currentChapter.cta") as string}
+          </Link>
+          <p className="tq-toptalent-bridge-microcopy">
+            {t("quiz.ext.topTalent.notYet.microcopy") as string}
+          </p>
+        </div>
 
         <button type="button" className="tq-retake" onClick={onRetake}>
           {t("quiz.notYet.retake") as string}
