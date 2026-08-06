@@ -7418,7 +7418,7 @@
     "progressLabel": "Question {{current}} of {{total}}",
     "loading": "Reading your answers…",
     "entry": {
-      "eyebrow": "Free · Three questions · Two minutes",
+      "eyebrow": "Free · About two minutes",
       "title": "See what hero's journey chapter you're actually in",
       "honestyLine": "You'll see what chapter you're in, why it feels like you're going in circles, and what might already be starting to happen next",
       "cta": "See where I am"
@@ -7574,8 +7574,8 @@
       "crossedPeer": {
         "heading": "Crossed. And it keeps working.",
         "body1": "You said the sentence, built the vehicle, and money answers. The map ends here, because your question is no longer naming. It is scale: transmission, reach, the next octave of the same pattern.",
-        "body2": "That is the territory where I can help most. I build AI workflows that let a unique business like yours scale fast. A conversation is the simplest way to see what fits: collaboration, or me helping you build the scaling machine.",
-        "cta": "Let's know each other"
+        "body2": "This is the territory where I can help most. I have built AI startups and projects for twelve years. What I bring is a playbook from MIT and Silicon Valley plus AI workflows that scale a unique business fast. One conversation shows what fits: collaboration, or me helping you build your scaling machine.",
+        "cta": "See how fast this can scale"
       }
     },
     "buyingFrame": {
