@@ -7624,12 +7624,12 @@
     },
     "ext": {
       "chapter": {
-        "eyebrow": "TU CAPÍTULO",
+        "eyebrow": "TU CAPÍTULO ACTUAL",
         "bullseye": {
-          "5": "El capítulo anterior terminó y el siguiente todavía se está organizando. Ese es el verdadero trabajo de esta etapa, y explica más que cualquier historia sobre un rumbo perdido o una capacidad que se apaga. Sea lo que sea que causó la ruptura, la pregunta ahora es qué te pide a ti.",
-          "4": "La forma en la que solías ganar dinero dejó de funcionar como antes, aunque no pasó nada dramático. Eso no significa que lo hicieras mal, ni que tu capacidad se haya apagado. El capítulo anterior terminó. El verdadero trabajo ahora es encontrar qué sigue, no explicar por qué terminó.",
-          "6": "Se está formando ahora, pero todavía no puede decirse en voz alta de una manera que aterrice. Eso no es prueba de que la dirección esté equivocada ni de que te estés estancando. Así se ve una forma mientras se define, antes de que otra persona pueda reconocerla.",
-          "7": "Ahora es real. Estás construyendo una vida alrededor de esto, no solo hablando de ello. Eso no significa que todas las preguntas tengan respuesta, ni que la duda pruebe que elegiste mal. Construir siempre va por delante de la certeza. El trabajo ahora es dejar que la evidencia alcance la decisión que ya tomaste."
+          "5": "Estás entre capítulos. La respuesta anterior se acabó, y la siguiente aún no está lo bastante clara para construir alrededor de ella.",
+          "4": "La forma en que sueles ganar dinero dejó de funcionar. No significa que lo hicieras mal, ni que perdieras tu filo. Un capítulo terminó. El siguiente todavía no está construido.",
+          "6": "El próximo capítulo ya se está formando. Lo sientes, solo que todavía no puedes decirlo con la claridad suficiente para sostenerlo en público.",
+          "7": "Ahora es real. Estás construyendo una vida alrededor de esto. No todas las preguntas tienen respuesta, y así funciona construir: la evidencia alcanza a la decisión que ya tomaste."
         },
         "arcNote": "Uno puede moverse hacia adelante y hacia atrás por este territorio. Esta es la parte que hoy pesa más."
       },
@@ -7666,34 +7666,34 @@
       },
       "synthesis": {
         "coherence": "Puede que el problema no sea que te falte foco, disciplina o ideas. Esta combinación suele apuntar a otra cosa: las partes vivas de tu próximo capítulo todavía no tienen una relación de trabajo entre sí, cuál lidera, qué la sostiene, qué está listo para probarse ahora.",
-        "form": "La dirección ya no está del todo oculta. Esta combinación suele apuntar a un problema de forma sin resolver: todavía no se ha convertido en una oferta, página o invitación que otra persona pueda reconocer, usar o a la que pueda responder.",
+        "form": "Sabes tu dirección. Lo que todavía no tienes es una oferta que la gente pueda ver, entender y pagar.",
         "contact": "La dirección se está volviendo coherente dentro de ti. Esta combinación suele apuntar a un problema de contacto sin resolver: todavía no se ha encontrado con suficiente realidad, compradores, colaboradores o usuarios, como para volverse creíble fuera de tu propia cabeza.",
         "release": "El futuro puede que ya sea lo bastante visible como para moverse hacia él, pero el rol anterior todavía parece estar organizando las decisiones. Hasta que esa relación cambie, es probable que el nuevo trabajo se construya alrededor de las necesidades del capítulo anterior."
       },
       "upgradedQuestion": {
         "coherence": {
-          "5": "Quizá la pregunta que vale la pena probar sea: ¿qué relación debería tener cada proyecto vivo con la dirección que intentas construir?",
-          "4": "Quizá la pregunta que vale la pena probar sea: ¿lo que se siente confuso es sobre ti, o sobre cómo se relacionan entre sí las partes que estás cargando?",
-          "6": "Quizá la pregunta que vale la pena probar sea: ¿la forma necesita más pulido, o necesita encontrarse con otra persona antes de estar terminada?",
-          "7": "Quizá la pregunta que vale la pena probar sea: ¿cuál de las varias cosas que estás construyendo realmente lidera, y cuáles son apoyo?"
+          "5": "¿Qué relación debería tener cada proyecto vivo con la dirección que intentas construir?",
+          "4": "¿Lo que se siente confuso es sobre ti, o sobre cómo se relacionan entre sí las partes que estás cargando?",
+          "6": "¿La forma necesita más pulido, o necesita encontrarse con otra persona antes de estar terminada?",
+          "7": "¿Cuál de las varias cosas que estás construyendo realmente lidera, y cuáles son apoyo?"
         },
         "form": {
-          "5": "Quizá la pregunta que vale la pena probar sea: ¿estoy optimizando la oferta antes de decidir qué es lo que este capítulo realmente viene a llevar?",
-          "4": "Quizá la pregunta que vale la pena probar sea: ¿estoy tratando de construir una oferta antes de saber para qué sirve realmente este capítulo?",
-          "6": "Quizá la pregunta que vale la pena probar sea: ¿la oferta es realmente confusa, o ya está clara y simplemente no se ha probado con personas reales?",
-          "7": "Quizá la pregunta que vale la pena probar sea: ¿lo que no está aterrizando es la oferta en sí, o quién la está escuchando?"
+          "5": "¿Estoy optimizando la oferta antes de decidir qué es lo que este capítulo realmente viene a llevar?",
+          "4": "¿Estoy tratando de construir una oferta antes de saber para qué sirve realmente este capítulo?",
+          "6": "¿La oferta es realmente confusa, o ya está clara y simplemente no se ha probado con personas reales?",
+          "7": "¿Lo que no está aterrizando es la oferta en sí, o quién la está escuchando?"
         },
         "contact": {
-          "4": "Quizá la pregunta que vale la pena probar sea: ¿el mundo está rechazando esto, o simplemente todavía no se ha encontrado con ello?",
-          "5": "Quizá la pregunta que vale la pena probar sea: ¿la dirección es realmente confusa, o solo necesita contacto con alguien que no seas tú?",
-          "6": "Quizá la pregunta que vale la pena probar sea: ¿la dirección es realmente confusa, o simplemente no se ha probado con personas reales?",
-          "7": "Quizá la pregunta que vale la pena probar sea: ¿el mensaje está mal, o hasta ahora solo ha llegado a las personas equivocadas?"
+          "4": "¿El mundo está rechazando esto, o simplemente todavía no se ha encontrado con ello?",
+          "5": "¿La dirección es realmente confusa, o solo necesita contacto con alguien que no seas tú?",
+          "6": "¿La dirección es realmente confusa, o simplemente no se ha probado con personas reales?",
+          "7": "¿El mensaje está mal, o hasta ahora solo ha llegado a las personas equivocadas?"
         },
         "release": {
-          "4": "Quizá la pregunta que vale la pena probar sea: ¿qué sigue decidiendo el rol anterior por ti, sin que nadie se lo pida?",
-          "5": "Quizá la pregunta que vale la pena probar sea: ¿qué decisiones sigo tomando como el rol anterior, en vez de como el nuevo?",
-          "6": "Quizá la pregunta que vale la pena probar sea: ¿la nueva dirección se está formando a sí misma, o todavía se está formando alrededor de lo que necesita el rol anterior?",
-          "7": "Quizá la pregunta que vale la pena probar sea: ¿queda algo del capítulo anterior que necesite cerrarse de verdad, no solo superarse?"
+          "4": "¿Qué sigue decidiendo el rol anterior por ti, sin que nadie se lo pida?",
+          "5": "¿Qué decisiones sigo tomando como el rol anterior, en vez de como el nuevo?",
+          "6": "¿La nueva dirección se está formando a sí misma, o todavía se está formando alrededor de lo que necesita el rol anterior?",
+          "7": "¿Queda algo del capítulo anterior que necesite cerrarse de verdad, no solo superarse?"
         }
       },
       "completionMarker": {
@@ -7705,7 +7705,7 @@
       "detour": {
         "workingDownstream": {
           "heading": "UN DESVÍO FRECUENTE",
-          "body": "Recurres a un embudo, una nueva oferta, branding o un sistema de productividad. Se siente como progreso real porque puedes empezar hoy. Pero nada de eso responde la pregunta previa: alrededor de qué se organiza realmente el próximo capítulo. El costo probable es actividad sin coherencia, mejor ejecución de una dirección que todavía no tiene nombre. Nombra primero alrededor de qué se organiza el capítulo, y solo después ajusta cómo se vende."
+          "body": "Recurres a un embudo, un rebranding, un nuevo sistema de productividad. Cosas que puedes empezar hoy y que se sienten como progreso. Ninguna toca aquello sobre lo que está construido el trabajo. Un año después el dinero sigue sin volver, gastaste dinero real persiguiéndolo, y la dirección sigue sin nombre. La persona más cercana a ti empieza a preocuparse y a preguntarse en silencio si todo esto fue un error. Y esa duda, de quien debía creer en ti, a veces es lo más pesado de todo. Nombra primero sobre qué está construido este capítulo. Entonces la venta tendrá algo verdadero que llevar."
         },
         "mistakingFocusForAmputation": {
           "heading": "AQUÍ LA GENTE SUELE PERDER TIEMPO",
@@ -7771,15 +7771,22 @@
         "collaborativeStance": "Juntos vamos a poner todo el campo donde ambos podamos verlo.",
         "methodAuthority": "Trabajo en la intersección que la mayoría de los consejos sobre transiciones separa: la persona, el cuerpo de trabajo, el mercado y la estructura capaz de sostener los tres.",
         "transparency": "Vamos a usar el tiempo para trabajar en la transición misma. Si surge otra forma de trabajar juntos que sea relevante, te la explicaré con claridad y la decisión quedará en tus manos.",
-        "ctaPrimary": "Mapear mi próximo capítulo",
-        "ctaMicrocopy": "Gratis · 45 minutos · Una conversación enfocada",
+        "ctaPrimary": "Encontrar mi camino más rápido",
+        "ctaMicrocopy": "Gratis · 45 minutos · Te vas con tu siguiente paso",
         "ctaNote": "La reserva se abre en una pestaña nueva.",
         "whyNow": {
           "coherence": "Tus respuestas apuntan a piezas que ya son ciertas por sí solas, esperando ser leídas como una sola forma.",
           "form": "Tus respuestas apuntan a algo real que todavía no ha encontrado la estructura que lo sostenga.",
           "contact": "Tus respuestas apuntan a una dirección que se está volviendo clara dentro de ti, y que todavía espera suficiente contacto con la realidad para volverse creíble.",
           "release": "Tus respuestas apuntan a un futuro que puede que ya sea lo bastante visible, y que todavía espera que el rol anterior se haga a un lado."
-        }
+        },
+        "hook": {
+          "form": "Ya construiste ingresos una vez. Empujar más fuerte sobre lo que se detuvo no lo va a reactivar.",
+          "coherence": "Tienes piezas reales. Lo que todavía no tienes es el hilo que las vuelve una sola cosa.",
+          "release": "El próximo capítulo se ve. No puede tomar forma mientras el rol anterior sigue dirigiendo tus decisiones.",
+          "contact": "Dentro de ti está claro. Todavía no se ha encontrado lo suficiente con el mundo real como para volverse real."
+        },
+        "promise": "Una llamada gratuita. Miro dónde estás en realidad, nombro qué está de verdad atascado y te muestro el camino más rápido para salir, conmigo o por tu cuenta. Te vas con tu siguiente paso. Hoy, no dentro de meses."
       },
       "preparation": {
         "heading": "Para que pueda prepararme para la conversación…",
@@ -7857,6 +7864,11 @@
           "body": "Ya conoces tu terreno. Top Talent puede ponerle un nombre más preciso a la capacidad que sigue produciendo los resultados que estás viendo.",
           "cta": "Nombrarlo con más precisión"
         }
+      },
+      "labels": {
+        "whatsGoingOn": "LO QUE REALMENTE ESTÁ PASANDO",
+        "theQuestion": "LA PREGUNTA QUE ESTÁ DEBAJO",
+        "theTrap": "LA TRAMPA QUE MÁS TE CUESTA"
       }
     },
     "currentChapter": {
