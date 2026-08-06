@@ -7411,7 +7411,7 @@
     "progressLabel": "Pregunta {{current}} de {{total}}",
     "loading": "Leyendo tus respuestas…",
     "entry": {
-      "eyebrow": "Gratis · Tres preguntas · Dos minutos",
+      "eyebrow": "Gratis · Unos dos minutos",
       "title": "Descubre en qué capítulo del viaje del héroe estás ahora",
       "honestyLine": "Verás en qué capítulo estás, por qué sientes que estás dando vueltas, y qué suele pasar justo después",
       "cta": "Ver dónde estoy"
@@ -7567,8 +7567,8 @@
       "crossedPeer": {
         "heading": "Cruzaste. Y sigue funcionando.",
         "body1": "Dijiste la frase, construiste el vehículo, y el dinero responde. El mapa termina aquí, porque tu pregunta ya no es de nombrar. Es de escala: transmisión, alcance, la siguiente octava del mismo patrón.",
-        "body2": "Ese es el territorio donde más puedo ayudar. Construyo flujos de IA que permiten a un negocio único como el tuyo escalar rápido. Una conversación es la forma más simple de ver qué encaja: colaborar, o que te ayude a construir la máquina de escalado.",
-        "cta": "Conozcámonos"
+        "body2": "Este es el territorio donde más puedo ayudar. Llevo doce años construyendo startups y proyectos de IA. Traigo un playbook de MIT y Silicon Valley más flujos de IA que escalan rápido un negocio único. Una conversación muestra qué encaja: colaborar, o que te ayude a construir tu máquina de escalado.",
+        "cta": "Ver qué tan rápido puede escalar"
       }
     },
     "buyingFrame": {
