@@ -7667,8 +7667,8 @@
       "synthesis": {
         "coherence": "No estás disperso/a, ni te falta disciplina. Tus proyectos simplemente todavía no tienen una relación entre sí: cuál lidera, cuáles lo sostienen, cuál es solo una prueba, cuál quizá ya está terminado.",
         "form": "Sabes tu dirección. Lo que todavía no tienes es una oferta que la gente pueda ver, entender y pagar.",
-        "contact": "La dirección se está volviendo coherente dentro de ti. Esta combinación suele apuntar a un problema de contacto sin resolver: todavía no se ha encontrado con suficiente realidad, compradores, colaboradores o usuarios, como para volverse creíble fuera de tu propia cabeza.",
-        "release": "El futuro puede que ya sea lo bastante visible como para moverse hacia él, pero el rol anterior todavía parece estar organizando las decisiones. Hasta que esa relación cambie, es probable que el nuevo trabajo se construya alrededor de las necesidades del capítulo anterior."
+        "contact": "La dirección se está volviendo clara dentro de ti. Lo que todavía no ha hecho es encontrarse lo suficiente con el mundo real, con compradores, colaboradores, usuarios, como para volverse real fuera de tu cabeza.",
+        "release": "El próximo capítulo ya se ve. Lo que lo frena es que el rol anterior sigue tomando las decisiones, y por eso todo lo nuevo se sigue construyendo alrededor del capítulo que ya terminó."
       },
       "upgradedQuestion": {
         "coherence": {
@@ -7684,16 +7684,16 @@
           "7": "¿Lo que no está aterrizando es la oferta en sí, o quién la está escuchando?"
         },
         "contact": {
-          "4": "¿El mundo está rechazando esto, o simplemente todavía no se ha encontrado con ello?",
-          "5": "¿La dirección es realmente confusa, o solo necesita contacto con alguien que no seas tú?",
-          "6": "¿La dirección es realmente confusa, o simplemente no se ha probado con personas reales?",
-          "7": "¿El mensaje está mal, o hasta ahora solo ha llegado a las personas equivocadas?"
+          "4": "¿El mundo lo está rechazando, o simplemente aún no lo ha conocido?",
+          "5": "¿La dirección es de verdad poco clara, o solo necesita contacto con alguien que no seas tú?",
+          "6": "¿Sigo puliendo esto a solas, cuando necesita una respuesta real para moverse?",
+          "7": "¿El mensaje está mal, o solo ha llegado a las personas equivocadas hasta ahora?"
         },
         "release": {
-          "4": "¿Qué sigue decidiendo el rol anterior por ti, sin que nadie se lo pida?",
-          "5": "¿Qué decisiones sigo tomando como el rol anterior, en vez de como el nuevo?",
-          "6": "¿La nueva dirección se está formando a sí misma, o todavía se está formando alrededor de lo que necesita el rol anterior?",
-          "7": "¿Queda algo del capítulo anterior que necesite cerrarse de verdad, no solo superarse?"
+          "4": "¿Qué sigue decidiendo el rol anterior por ti, sin que se lo pidan?",
+          "5": "¿Qué decisiones sigo tomando como el rol anterior, en vez del nuevo?",
+          "6": "¿La nueva dirección está tomando su propia forma, o todavía se moldea alrededor de lo que necesita el rol anterior?",
+          "7": "¿Hay algo del capítulo anterior que necesita cerrarse, no solo superarse?"
         }
       },
       "completionMarker": {
@@ -7724,11 +7724,11 @@
           "heading": "UN DESVÍO FRECUENTE"
         },
         "prematureCommitment": {
-          "body": "Vuelves a un rol anterior, más seguro, porque la incertidumbre se volvió difícil de tolerar. Eso puede ser un puente sabio y deliberado. El desvío ocurre cuando ese puente reemplaza en silencio la transición más profunda en vez de sostenerla. Un puente no es una traición. La pregunta útil es si el trabajo anterior está financiando conscientemente la transición, o terminándola en silencio sin ninguna decisión.",
+          "body": "La incertidumbre se vuelve difícil de sostener, y vuelves al rol anterior, más seguro. A veces es un puente sabio, una forma de financiar la travesía. Se vuelve la trampa cuando reemplaza la travesía en silencio en vez de financiarla: nunca se toma una decisión, y un año después estás más adentro de un capítulo que ya habías superado, diciéndote que es temporal. Un puente no es una traición. La pregunta real es si el trabajo anterior está pagando conscientemente la transición, o terminándola en silencio. Decídelo a propósito, antes de que la deriva lo decida por ti.",
           "heading": "UN MOVIMIENTO A VIGILAR"
         },
         "waitingUpstream": {
-          "body": "Sigues investigando, reflexionando y aclarando antes de construir, ofrecer, probar o vender algo. Entender se siente como el paso responsable, y pospone el riesgo de equivocarte en público. Lo que no resuelve es que la realidad enseña cosas que la reflexión sola no puede. No necesitas un autoconocimiento completo antes de actuar. Necesitas una acción lo bastante pequeña para que la realidad ayude a terminar de construir ese entendimiento.",
+          "body": "Sigues investigando, reflexionando, afinando, siempre una vuelta más antes de construir, ofrecer o probar. Se siente responsable, y en silencio pospone el riesgo de equivocarte donde otros lo vean. Pero la claridad que esperas solo llega del contacto: la realidad enseña lo que ningún pensamiento enseñará. Y los meses pasan, la idea sigue siendo teoría, y la confianza nunca llega, porque nunca iba a llegar de pensar más. No necesitas entenderlo todo antes de actuar. Necesitas una acción lo bastante pequeña como para que la realidad termine de entenderlo por ti.",
           "heading": "AQUÍ LA GENTE SUELE PERDER TIEMPO"
         }
       },
@@ -7783,7 +7783,7 @@
         "hook": {
           "form": "Ya construiste ingresos una vez. Empujar más fuerte sobre lo que se detuvo no lo va a reactivar.",
           "coherence": "Tienes piezas reales, y no necesitas matar ninguna. Lo que falta es saber cuál de ellas lidera.",
-          "release": "El próximo capítulo se ve. No puede tomar forma mientras el rol anterior sigue dirigiendo tus decisiones.",
+          "release": "El próximo capítulo está justo ahí. No puede tomar forma mientras el rol anterior sigue tomando tus decisiones.",
           "contact": "Dentro de ti está claro. Todavía no se ha encontrado lo suficiente con el mundo real como para volverse real."
         },
         "promise": "Una llamada gratuita. Miro dónde estás en realidad, nombro qué está de verdad atascado y te muestro el camino más rápido para salir, conmigo o por tu cuenta. Te vas con tu siguiente paso. Hoy, no dentro de meses."
