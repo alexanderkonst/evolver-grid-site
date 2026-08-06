@@ -7672,17 +7672,17 @@
         }
       },
       "synthesis": {
-        "coherence": "The problem may not be that you lack focus, discipline, or ideas. This combination often points to something else: the live parts of your next chapter don't yet have a working relationship, which one leads, what supports it, what's ready to test now.",
+        "coherence": "You're not scattered, and you're not undisciplined. Your projects just don't have a relationship yet: which one leads, which support it, which is only a test, which may already be done.",
         "form": "You know your direction. What you don't have yet is an offer people can see, understand, and pay for.",
         "release": "The future may be visible enough to move toward, but the old role still appears to be organizing the decisions. Until that relationship changes, the new work is likely to be built around the needs of the old chapter.",
         "contact": "The direction is becoming coherent inside you. This combination often points to an unresolved contact problem: it has not yet met enough reality, buyers, collaborators, or users, to become credible outside your own head."
       },
       "upgradedQuestion": {
         "coherence": {
-          "5": "What relationship should each live project have to the direction you're trying to build?",
+          "5": "What relationship should each of your projects have to the one direction you're building?",
           "4": "Is what feels unclear really about you, or about how the parts you're carrying relate to each other?",
-          "6": "Does the shape need more polishing, or does it need to meet another person before it's finished?",
-          "7": "Which of the several things you're building actually leads, and which ones are support?"
+          "6": "What is the one thing all your projects are circling that you haven't named yet?",
+          "7": "Which of the things you're building actually leads, and which are support?"
         },
         "form": {
           "5": "Am I optimizing the offer before deciding what this chapter is actually here to carry?",
@@ -7716,7 +7716,7 @@
         },
         "mistakingFocusForAmputation": {
           "heading": "WHERE PEOPLE OFTEN LOSE TIME HERE",
-          "body": "Several projects carry real energy, and you're told to choose one and kill the rest. That can feel like cutting off parts of yourself, so you stall rather than choose. The real task is finding whether the parts need integration, hierarchy, sequence, or separation, without assuming everything must merge into one thing or that anything has to die to make room."
+          "body": "You're told to just focus: pick one, drop the rest. But each one holds something real, so cutting feels like amputating part of yourself, and instead you keep them all half-alive. A year on, every project has crept a little further and none has gone deep enough to pay. The effort is real, the return isn't, and living inside that gap is quietly exhausting. The move isn't to kill the others. It's to decide which one leads and what the rest are for, so your energy finally points one way."
         },
         "buildingBeforeNaming": {
           "heading": "A MOVE TO WATCH",
@@ -7789,7 +7789,7 @@
         },
         "hook": {
           "form": "You built income once. Pushing harder on what stopped won't restart it.",
-          "coherence": "You have real pieces. What you don't have yet is the one thread that makes them one thing.",
+          "coherence": "You have real pieces, and you don't need to kill any of them. What's missing is knowing which one leads.",
           "release": "The next chapter is visible. It can't take shape while the old role still runs your decisions.",
           "contact": "It's clear inside you. It hasn't met enough of the real world yet to become real."
         },

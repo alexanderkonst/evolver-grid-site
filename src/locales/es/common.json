@@ -7665,17 +7665,17 @@
         }
       },
       "synthesis": {
-        "coherence": "Puede que el problema no sea que te falte foco, disciplina o ideas. Esta combinación suele apuntar a otra cosa: las partes vivas de tu próximo capítulo todavía no tienen una relación de trabajo entre sí, cuál lidera, qué la sostiene, qué está listo para probarse ahora.",
+        "coherence": "No estás disperso/a, ni te falta disciplina. Tus proyectos simplemente todavía no tienen una relación entre sí: cuál lidera, cuáles lo sostienen, cuál es solo una prueba, cuál quizá ya está terminado.",
         "form": "Sabes tu dirección. Lo que todavía no tienes es una oferta que la gente pueda ver, entender y pagar.",
         "contact": "La dirección se está volviendo coherente dentro de ti. Esta combinación suele apuntar a un problema de contacto sin resolver: todavía no se ha encontrado con suficiente realidad, compradores, colaboradores o usuarios, como para volverse creíble fuera de tu propia cabeza.",
         "release": "El futuro puede que ya sea lo bastante visible como para moverse hacia él, pero el rol anterior todavía parece estar organizando las decisiones. Hasta que esa relación cambie, es probable que el nuevo trabajo se construya alrededor de las necesidades del capítulo anterior."
       },
       "upgradedQuestion": {
         "coherence": {
-          "5": "¿Qué relación debería tener cada proyecto vivo con la dirección que intentas construir?",
+          "5": "¿Qué relación debería tener cada uno de tus proyectos con la única dirección que estás construyendo?",
           "4": "¿Lo que se siente confuso es sobre ti, o sobre cómo se relacionan entre sí las partes que estás cargando?",
-          "6": "¿La forma necesita más pulido, o necesita encontrarse con otra persona antes de estar terminada?",
-          "7": "¿Cuál de las varias cosas que estás construyendo realmente lidera, y cuáles son apoyo?"
+          "6": "¿Cuál es esa única cosa que todos tus proyectos están rodeando y que aún no has nombrado?",
+          "7": "¿Cuál de las cosas que estás construyendo realmente lidera, y cuáles son apoyo?"
         },
         "form": {
           "5": "¿Estoy optimizando la oferta antes de decidir qué es lo que este capítulo realmente viene a llevar?",
@@ -7709,7 +7709,7 @@
         },
         "mistakingFocusForAmputation": {
           "heading": "AQUÍ LA GENTE SUELE PERDER TIEMPO",
-          "body": "Varios proyectos llevan energía real, y te dicen que elijas uno y mates el resto. Eso puede sentirse como cortar partes de ti mismo(a), así que te quedas quieto(a) en vez de elegir. La tarea real es descubrir si las partes necesitan integración, jerarquía, secuencia o separación, sin asumir de entrada que todo debe fundirse en una sola cosa o que algo tiene que morir para hacer espacio."
+          "body": "Te dicen que simplemente te enfoques: elige uno, suelta el resto. Pero cada uno guarda algo real, así que cortar se siente como amputar una parte de ti, y en vez de elegir los mantienes a todos a medias. Un año después cada proyecto avanzó un poco y ninguno llegó lo bastante hondo como para empezar a pagar. El esfuerzo es real, el retorno no, y vivir dentro de esa distancia agota en silencio. El movimiento no es matar a los demás. Es decidir cuál lidera y para qué sirven los demás, para que tu energía por fin apunte en una sola dirección."
         },
         "buildingBeforeNaming": {
           "heading": "UN MOVIMIENTO A VIGILAR",
@@ -7782,7 +7782,7 @@
         },
         "hook": {
           "form": "Ya construiste ingresos una vez. Empujar más fuerte sobre lo que se detuvo no lo va a reactivar.",
-          "coherence": "Tienes piezas reales. Lo que todavía no tienes es el hilo que las vuelve una sola cosa.",
+          "coherence": "Tienes piezas reales, y no necesitas matar ninguna. Lo que falta es saber cuál de ellas lidera.",
           "release": "El próximo capítulo se ve. No puede tomar forma mientras el rol anterior sigue dirigiendo tus decisiones.",
           "contact": "Dentro de ti está claro. Todavía no se ha encontrado lo suficiente con el mundo real como para volverse real."
         },
