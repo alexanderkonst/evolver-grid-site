@@ -42,6 +42,7 @@ import {
   decodeShareState,
   encodeShareState,
   isExtEligible,
+  isNotSeeking,
   isNotYetStage,
   notYetVariant,
   resultTemplateKey,
@@ -108,6 +109,7 @@ const UNIQUENESS_VALUES: UniquenessCategory[] = [
   "scaling",
 ];
 const WORK_STAGE_VALUES: EmergingWorkStage[] = [
+  "current_chapter",
   "not_visible",
   "suspected",
   "felt",
@@ -548,7 +550,18 @@ const TransitionQuizPage = () => {
           {screen === "loading" && <LoadingScreen t={t} />}
 
           {screen === "result" && coreAnswers && routing && (
-            // Result Experience EXT (Day 142) gate — change-map §5. Crossed
+            // Not-seeking gate: Q3 = "current_chapter" mirrors the stage-1
+            // no-ask branch — no next-chapter read, no Direction Call, no
+            // EXT/crossed-peer machinery. Checked before every other branch.
+            isNotSeeking(coreAnswers) ? (
+              <CurrentChapterScreen
+                t={t}
+                stage={coreAnswers.stage}
+                stageNames={stageNames}
+                resultId={resultId}
+                onRetake={reset}
+              />
+            ) : // Result Experience EXT (Day 142) gate — change-map §5. Crossed
             // peers and every other combination fall through to v1's
             // ResultScreen, unmodified.
             routing.route !== "crossedPeer" && isExtEligible(coreAnswers) ? (
@@ -1035,8 +1048,8 @@ function ChoiceScreen<V extends string>({
   return (
     <section className="tq-card tq-inscribed">
       <p className="tq-question-count">{t("quiz.progressLabel", { current: data.order, total: 3 }) as string}</p>
-      {data.framing && <p className="tq-quiet-line">{data.framing}</p>}
-      <p className="tq-question-prompt" style={data.framing ? { marginTop: 14 } : undefined}>{data.prompt}</p>
+      <p className="tq-question-prompt">{data.prompt}</p>
+      {data.framing && <p className="tq-quiet-line" style={{ marginTop: 10 }}>{data.framing}</p>}
       <div className={`tq-options${values.length >= 6 ? " tq-options--dense" : ""}`}>
         {values.map((v, i) => (
           <button
@@ -1196,6 +1209,53 @@ export function ResultScreen({
         <TopTalentSecondary t={t} resultVersion="v1" saved={saved} />
 
         <SaveMyRead t={t} resultId={resultId} stage={answers.stage} />
+
+        <button type="button" className="tq-retake" onClick={onRetake}>
+          {t("quiz.notYet.retake") as string}
+        </button>
+
+        <Ornament className="tq-ornament tq-closing-seal" />
+      </div>
+    </section>
+  );
+}
+
+// ── Not-seeking ending (Q3 = "current_chapter") ──────────────────────────
+// Mirrors the stage-1 no-ask branch in spirit: the chapter ceremony still
+// shows (they did answer Q1, so their chapter is real information), but no
+// next-chapter read, no Direction Call, no detours, no experiment — a
+// short, no-pressure close instead.
+
+export function CurrentChapterScreen({
+  t,
+  stage,
+  stageNames,
+  resultId,
+  onRetake,
+}: {
+  t: (k: string, o?: Record<string, unknown>) => unknown;
+  stage: Stage;
+  stageNames: Record<string, string>;
+  resultId: string | null;
+  onRetake: () => void;
+}) {
+  return (
+    <section className="tq-card tq-result-card">
+      <div className="tq-reveal">
+        <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.stageLabel") as string}</p>
+        <h2 className="tq-stage-name">{stageNames[String(stage)]}</h2>
+        <Ornament className="tq-ornament" />
+        <StageArc stage={stage} stageNames={stageNames} />
+      </div>
+
+      <div className="tq-integration">
+        <div className="tq-section tq-central-read" style={{ marginTop: 0 }}>
+          <p className="tq-body-text tq-measure">{t("quiz.currentChapter.line") as string}</p>
+        </div>
+
+        <TopTalentSecondary t={t} resultVersion="current-chapter" />
+
+        <SaveMyRead t={t} resultId={resultId} stage={stage} />
 
         <button type="button" className="tq-retake" onClick={onRetake}>
           {t("quiz.notYet.retake") as string}

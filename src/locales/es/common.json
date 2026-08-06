@@ -7418,15 +7418,15 @@
     },
     "q1": {
       "order": 1,
-      "prompt": "¿Qué se parece más a tu vida profesional ahora mismo?",
+      "prompt": "¿Cómo se ve tu vida profesional actual?",
       "options": [
         "Lo que hago me funciona. No busco un capítulo nuevo.",
-        "Mi vida profesional sigue funcionando, pero algo ha empezado a sentirse ligeramente falso.",
-        "La dirección es correcta. Solo necesito empujar más fuerte y con más cabeza.",
-        "La forma de ganar dinero a la que estoy acostumbrado/a ya no funciona igual, aunque nada dramático haya pasado.",
+        "Mi vida profesional funciona bien, pero sí se siente ligeramente falsa respecto a quién soy.",
+        "La dirección de mi carrera es correcta. Solo necesito empujar más fuerte y con más cabeza para llegar adonde quiero.",
+        "Mi forma de ganar dinero ya no funciona igual, aunque nada dramático haya pasado.",
         "Sé que el capítulo anterior se terminó, pero de verdad no sé qué sigue.",
-        "Puedo sentir cuál es lo que viene, pero todavía no logro decirlo con claridad.",
-        "Sé a qué me dedico ahora, y estoy empezando a construir un éxito real alrededor de eso."
+        "Puedo sentir cuál es mi próxima gran cosa, pero todavía no logro decirlo con suficiente claridad.",
+        "Sé con precisión a qué me dedico ahora, y estoy empezando a construir un éxito real alrededor de eso."
       ]
     },
     "stageNames": {
@@ -7482,30 +7482,30 @@
     },
     "q2": {
       "order": 2,
-      "framing": "Esta pregunta es sobre tu singularidad en sí misma: tus mayores fortalezas convirtiéndose en ingresos. No un producto que construiste para otra persona, no una empresa que diriges con cofundadores. Tú.",
-      "prompt": "¿Qué tan lejos ha llegado tu singularidad en el mundo hasta ahora?",
+      "framing": "Esta pregunta es sobre cómo conviertes tus mayores fortalezas en ingresos. No un producto que construiste para otra persona ni un negocio que empezaste con socios. Tú.",
+      "prompt": "¿Ya estás monetizando tu singularidad?",
       "options": {
         "discovery": "Todavía no sé qué es lo único que aporto.",
-        "recognition": "Sé que aporto algo muy valioso, pero no puedo nombrarlo.",
-        "integration": "Tengo varias líneas de trabajo, pero no veo qué las convierte en una sola cosa, ni si lo son.",
-        "vehicle": "Sé exactamente cuál es mi próximo capítulo, pero no sé cómo crear una oferta a su alrededor, posicionarla y venderla.",
-        "transmission": "Tengo un negocio en marcha, pero la gente todavía no ve toda la plenitud de lo que puedo darles.",
-        "scaling": "Tengo un negocio en crecimiento, mi posicionamiento está enfocado, mi embudo funciona. Estoy escalando lo que ya funciona."
+        "recognition": "Sé que aporto algo valioso, pero todavía no puedo formularlo con claridad.",
+        "integration": "Tengo varios proyectos, pero no veo qué los convierte en una sola cosa, ni si lo son.",
+        "vehicle": "Sé cuál es mi próximo capítulo, pero todavía no he creado un negocio a su alrededor, ni lo he posicionado ni vendido.",
+        "transmission": "Ya vendo lo único que aporto, pero la gente solo recibe una fracción de lo que podría obtener de mí si lo supiera.",
+        "scaling": "Estoy monetizando mi singularidad, mi posicionamiento está enfocado, mi embudo funciona. Ahora estoy creciendo y escalando."
       }
     },
     "q3": {
       "order": 3,
-      "prompt": "¿Qué describe mejor la próxima versión de tu trabajo?",
+      "prompt": "¿Qué describe mejor el próximo capítulo de tu carrera profesional?",
       "options": {
-        "not_visible": "Todavía no sé qué es.",
-        "suspected": "Sospecho que mis distintos proyectos, fortalezas o intereses tienen un hilo en común.",
-        "felt": "Puedo sentir esa dirección más profunda, pero todavía no logro ponerla en palabras concretas.",
-        "named": "Puedo hablar de cuál es mi próximo capítulo, pero todavía no se ha convertido en una oferta, negocio o línea de trabajo clara.",
-        "built": "Mi oferta ya existe, pero la gente todavía no la entiende ni la elige de forma constante.",
-        "working": "Mi oferta ya es lo bastante clara, y personas reales están empezando a responder.",
-        "delivering": "Dejé de trabajar en crear demanda; mi foco está en entregar la demanda que ya existe."
-      },
-      "framing": "La misma mirada, ahora dirigida hacia adelante: el próximo capítulo de tu trabajo, por más tenue o claro que sea hoy."
+        "current_chapter": "Estoy totalmente enfocado/a en el capítulo actual.",
+        "not_visible": "Tengo poca idea de qué sigue para mí.",
+        "suspected": "Estoy empezando a sospechar que mis proyectos, fortalezas e intereses actuales podrían tener un hilo en común que los une.",
+        "felt": "Sé que mi próximo capítulo está a la vuelta de la esquina, pero todavía no logro captarlo del todo.",
+        "named": "Puedo explicar cuál es mi próximo capítulo, pero todavía no se ha convertido en una oferta o negocio claro.",
+        "built": "Tengo una oferta, pero los clientes todavía no la entienden ni la compran de forma constante.",
+        "working": "Mi oferta ya es lo bastante clara, y personas reales están respondiendo cada vez más.",
+        "delivering": "Dejé de trabajar en crear demanda de clientes; mi foco está en entregar la demanda que ya existe."
+      }
     },
     "result": {
       "stageLabel": "Tu capítulo",
@@ -7858,6 +7858,9 @@
           "cta": "Nombrarlo con más precisión"
         }
       }
+    },
+    "currentChapter": {
+      "line": "Todavía no estás buscando el próximo capítulo, y esa es una respuesta real, no una evasiva. Algo en tu vida profesional se está moviendo, y estás eligiendo mantener tu atención en el trabajo que ya es tuyo. Esa elección puede sostenerse. Este mapa seguirá aquí cuando la pregunta cambie."
     }
   },
   "homeLanding": {
