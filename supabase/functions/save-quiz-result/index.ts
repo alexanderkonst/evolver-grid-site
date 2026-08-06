@@ -19,7 +19,11 @@ const ASPECTS = ["identity", "economy", "fit"] as const;
 type Aspect = (typeof ASPECTS)[number];
 
 const UNIQUENESS_CATEGORIES = ["discovery", "recognition", "integration", "vehicle", "transmission", "scaling"] as const;
-const EMERGING_WORK_STAGES = ["not_visible", "suspected", "felt", "named", "built", "working", "delivering"] as const;
+// "current_chapter" (Q3's "I am fully focused on the current chapter")
+// must be here as well as in the DB CHECK constraint — the function
+// validates before the insert, so a value the DB now accepts is still
+// dropped with a 400 until this array knows it too.
+const EMERGING_WORK_STAGES = ["not_visible", "suspected", "felt", "named", "built", "working", "delivering", "current_chapter"] as const;
 const CLARITY_UNLOCKS = ["personal", "direction", "current_work", "emerging_business", "near_term_exchange"] as const;
 const BUYING_FRAMES = ["open", "mixed", "open_no_history", "closed"] as const;
 // Result Experience EXT — which result architecture the visitor saw.
