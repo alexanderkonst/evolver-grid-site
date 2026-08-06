@@ -906,9 +906,9 @@ function NotYetScreen({
   // below the ceremony is unchanged.
   const ceremony = (
     <div className="tq-notyet-reveal">
-      <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.stageLabel") as string}</p>
+      <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.ext.chapter.eyebrow") as string}</p>
       <h2 className="tq-stage-name tq-stage-name--compact">{stageNames[String(stage)]}</h2>
-      <Ornament className="tq-ornament" />
+      <img className="tq-ext-mark" src={brandLogo} alt="" aria-hidden="true" draggable={false} />
       <StageArc stage={stage} stageNames={stageNames} />
     </div>
   );
@@ -950,8 +950,6 @@ function NotYetScreen({
         ) : (
           <p className="tq-success">{t("quiz.notYet.settled.emailSuccess") as string}</p>
         )}
-
-        <SaveMyRead t={t} resultId={resultId} stage={stage} />
 
         <button type="button" className="tq-retake" onClick={onRetake}>
           {t("quiz.notYet.retake") as string}
@@ -1003,8 +1001,6 @@ function NotYetScreen({
       ) : (
         <p className="tq-success">{t("quiz.notYet.itchTremors.emailSuccess") as string}</p>
       )}
-
-      <SaveMyRead t={t} resultId={resultId} stage={stage} />
 
       <button type="button" className="tq-retake" onClick={onRetake}>
         {t("quiz.notYet.retake") as string}
@@ -1115,9 +1111,9 @@ export function ResultScreen({
     return (
       <section className="tq-card tq-result-card">
         <div className="tq-reveal">
-          <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.stageLabel") as string}</p>
+          <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.ext.chapter.eyebrow") as string}</p>
           <h2 className="tq-stage-name">{stageNames[String(answers.stage)]}</h2>
-          <Ornament className="tq-ornament" />
+          <img className="tq-ext-mark" src={brandLogo} alt="" aria-hidden="true" draggable={false} />
           <StageArc stage={answers.stage} stageNames={stageNames} crossed />
         </div>
 
@@ -1141,8 +1137,6 @@ export function ResultScreen({
           </div>
 
           <TopTalentPeer t={t} saved={saved} />
-
-          <SaveMyRead t={t} resultId={resultId} stage={answers.stage} />
 
           <button type="button" className="tq-retake" onClick={onRetake}>
             {t("quiz.notYet.retake") as string}
@@ -1242,9 +1236,9 @@ export function CurrentChapterScreen({
   return (
     <section className="tq-card tq-result-card">
       <div className="tq-reveal">
-        <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.result.stageLabel") as string}</p>
+        <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.ext.chapter.eyebrow") as string}</p>
         <h2 className="tq-stage-name">{stageNames[String(stage)]}</h2>
-        <Ornament className="tq-ornament" />
+        <img className="tq-ext-mark" src={brandLogo} alt="" aria-hidden="true" draggable={false} />
         <StageArc stage={stage} stageNames={stageNames} />
       </div>
 
@@ -1254,8 +1248,6 @@ export function CurrentChapterScreen({
         </div>
 
         <TopTalentSecondary t={t} resultVersion="current-chapter" />
-
-        <SaveMyRead t={t} resultId={resultId} stage={stage} />
 
         <button type="button" className="tq-retake" onClick={onRetake}>
           {t("quiz.notYet.retake") as string}
