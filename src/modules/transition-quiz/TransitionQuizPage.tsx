@@ -27,6 +27,7 @@ import { rememberLocalQuizResult } from "@/lib/quizOwnership";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { EditorialCta } from "@/components/ui/editorial-cta";
 import brandLogo from "@/assets/you-be-original-main-lockup.webp";
+import starMark from "@/assets/original-octahedron-mark.png";
 import lapisField from "@/assets/lapis-still-background.webp";
 import { trackPageView, trackCTAClick } from "@/lib/funnelAnalytics";
 import { TESTIMONIALS } from "@/data/testimonials";
@@ -908,7 +909,7 @@ function NotYetScreen({
     <div className="tq-notyet-reveal">
       <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.ext.chapter.eyebrow") as string}</p>
       <h2 className="tq-stage-name tq-stage-name--compact">{stageNames[String(stage)]}</h2>
-      <img className="tq-ext-mark" src={brandLogo} alt="" aria-hidden="true" draggable={false} />
+      <img className="tq-ext-mark" src={starMark} alt="" aria-hidden="true" draggable={false} />
       <StageArc stage={stage} stageNames={stageNames} />
     </div>
   );
@@ -965,24 +966,24 @@ function NotYetScreen({
   return (
     <section className="tq-card">
       {ceremony}
-      <div className="tq-section" style={{ marginTop: 0 }}>
-        <p className="tq-label">
+      <div className="tq-section">
+        <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>
           {(isItch ? t("quiz.notYet.itchTremors.turnsIntoLabel") : t("quiz.notYet.itchTremors.whyLabel")) as string}
         </p>
-        <p className="tq-body-text">{isItch ? content.turnsInto : content.why}</p>
+        <p className="tq-body-text tq-notyet-body">{isItch ? content.turnsInto : content.why}</p>
       </div>
       <div className="tq-section">
-        <p className="tq-label">
+        <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>
           {(isItch ? t("quiz.notYet.itchTremors.signLabel") : t("quiz.notYet.itchTremors.nextLabel")) as string}
         </p>
-        <p className="tq-body-text">{isItch ? content.sign : content.next}</p>
+        <p className="tq-body-text tq-notyet-body">{isItch ? content.sign : content.next}</p>
       </div>
 
       <TopTalentBridge t={t} stage={stage as 1 | 2 | 3} />
 
       {!emailSent ? (
         <div className="tq-email-row">
-          <p className="tq-label">{t("quiz.notYet.itchTremors.emailPrompt") as string}</p>
+          <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.notYet.itchTremors.emailPrompt") as string}</p>
           <input
             className="tq-email-input"
             type="email"
@@ -994,9 +995,9 @@ function NotYetScreen({
           <button type="button" className="tq-cta tq-cta-primary" onClick={onSubmitEmail}>
             {t("quiz.notYet.itchTremors.emailCta") as string}
           </button>
-          <button type="button" className="tq-skip" onClick={onRetake}>
-            {t("quiz.notYet.itchTremors.skip") as string}
-          </button>
+          {/* "No thanks, I'm good" removed (Sasha, Day 144): not clicking
+              anything already IS declining — the escape button only added
+              noise. */}
         </div>
       ) : (
         <p className="tq-success">{t("quiz.notYet.itchTremors.emailSuccess") as string}</p>
@@ -1113,7 +1114,7 @@ export function ResultScreen({
         <div className="tq-reveal">
           <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.ext.chapter.eyebrow") as string}</p>
           <h2 className="tq-stage-name">{stageNames[String(answers.stage)]}</h2>
-          <img className="tq-ext-mark" src={brandLogo} alt="" aria-hidden="true" draggable={false} />
+          <img className="tq-ext-mark" src={starMark} alt="" aria-hidden="true" draggable={false} />
           <StageArc stage={answers.stage} stageNames={stageNames} crossed />
         </div>
 
@@ -1238,7 +1239,7 @@ export function CurrentChapterScreen({
       <div className="tq-reveal">
         <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.ext.chapter.eyebrow") as string}</p>
         <h2 className="tq-stage-name">{stageNames[String(stage)]}</h2>
-        <img className="tq-ext-mark" src={brandLogo} alt="" aria-hidden="true" draggable={false} />
+        <img className="tq-ext-mark" src={starMark} alt="" aria-hidden="true" draggable={false} />
         <StageArc stage={stage} stageNames={stageNames} />
       </div>
 
@@ -1292,20 +1293,29 @@ export function StageArc({
           </span>
         ))}
       </div>
-      {/* Three labels on their own even row: previous, current, next. They
-          used to live in a seven-slot flex where four slots were empty and
-          the three real ones were squeezed into a seventh of the width
-          each, so longer chapter names broke onto two lines. The dot
-          position already says exactly where the person is; these only
-          need to name the neighbourhood. */}
-      <div className="tq-stage-arc-labels">
-        <span className="tq-stage-arc-label is-near">
-          {activeStage > 1 ? stageNames[String(activeStage - 1)] : ""}
-        </span>
-        <span className="tq-stage-arc-label is-current">{stageNames[String(activeStage)]}</span>
-        <span className="tq-stage-arc-label is-near">
-          {activeStage < 7 ? stageNames[String(activeStage + 1)] : ""}
-        </span>
+      {/* Labels mirror the 7-node track exactly (same flex, same order), so
+          each label sits directly under its own dot — the active label lands
+          over the active dot, not spread across the full width. Only the
+          previous / current / next chapters are named; the rest are blank
+          slots that hold their column. nowrap + overflow-visible keeps a long
+          name (e.g. "Taking Shape") on one line, centred on its dot. */}
+      <div className="tq-stage-arc-labels" role="presentation">
+        {stages.map((n) => {
+          const near = Math.abs(n - activeStage) === 1;
+          const isCurrent = n === activeStage;
+          if (!isCurrent && !near) return null;
+          // Anchor each label at its node's position along the track
+          // (nodes are evenly spaced 0%..100% across 7 dots), centred on it.
+          return (
+            <span
+              key={n}
+              className={`tq-stage-arc-label${isCurrent ? " is-current" : ""}${near ? " is-near" : ""}`}
+              style={{ left: `${((n - 1) / 6) * 100}%` }}
+            >
+              {stageNames[String(n)]}
+            </span>
+          );
+        })}
       </div>
     </div>
   );
