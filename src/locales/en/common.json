@@ -7428,12 +7428,12 @@
       "prompt": "Which sounds most like your professional life right now?",
       "options": [
         "What I do works for me. I'm not looking for a new chapter.",
-        "My professional life still works, but something has started feeling slightly untrue.",
-        "The direction is right. I just need to push harder and smarter than I have been.",
-        "The way to make money I am used to is no longer working the same, even if nothing dramatic happened.",
+        "My professional life works fine, but it does feel slightly untrue to who I am.",
+        "My career direction is right. I just need to push harder and smarter to get to where I want.",
+        "My way of making money is no longer working the same, even if nothing dramatic happened.",
         "I know the old chapter is over, but I genuinely don't know what comes next.",
-        "I can feel what the next thing is, but I can't yet say what my offer is clearly enough.",
-        "I know what I do now, and I'm beginning to build up real success around it."
+        "I can feel what my next big thing is, but I can't articulate it clearly enough yet.",
+        "I know precisely what I do now, and I'm beginning to build up real success around it."
       ]
     },
     "stageNames": {
@@ -7489,30 +7489,30 @@
     },
     "q2": {
       "order": 2,
-      "framing": "This one is about your uniqueness itself: your top strengths turning into income. Not a product you built for someone else, not a company you run with co-founders. You.",
-      "prompt": "How far has your uniqueness made it into the world so far?",
+      "framing": "This question is about how you turn your top strengths into income. Not a product you built for someone else or a business you started with partners. You.",
+      "prompt": "Are you monetizing your uniqueness yet?",
       "options": {
         "discovery": "I still don't know what I uniquely bring.",
-        "recognition": "I know I bring something very valuable, but I can't say it.",
-        "integration": "I have several workstreams, but I can't see what makes them one thing, and if they are one thing.",
-        "vehicle": "I do know exactly what my next chapter is, but I don't know how to create an offer around it, position it, and sell it.",
-        "transmission": "I have a working business, but people still don't see the fullness of what I can give them.",
-        "scaling": "I have a growing business, my positioning is focused, my funnel is working. I'm scaling what already works."
+        "recognition": "I know I bring something valuable, but I can't articulate it clearly yet.",
+        "integration": "I have several projects, but I can't see what makes them one thing, and if they are one thing.",
+        "vehicle": "I know what my next chapter is, but I haven't created a business around it, positioned it, and sold it yet.",
+        "transmission": "I already sell what I uniquely bring, but people only receive a fraction of what they could get from me if they knew.",
+        "scaling": "I am monetizing my uniqueness, my positioning is focused, my funnel is working. I'm now growing and scaling."
       }
     },
     "q3": {
       "order": 3,
-      "prompt": "Which best describes the next version of your work?",
+      "prompt": "Which best describes the next chapter of your professional career?",
       "options": {
-        "not_visible": "I don't know what it is yet.",
-        "suspected": "I suspect that my different projects, strengths, or interests have a common thread.",
-        "felt": "I can feel the one deeper direction, but I can't put it into concrete words yet.",
-        "named": "I can talk about what my next chapter is, but it hasn't become a clear offer, business, or body of work.",
-        "built": "My offer exists, but people don't understand it or choose it consistently yet.",
-        "working": "My offer is clear enough, and real people are starting to respond.",
-        "delivering": "I stopped working on creating demand, my focus is on delivering to existing demand."
-      },
-      "framing": "Same lens, now pointed forward: the next chapter of your work, however faint or clear it is today."
+        "current_chapter": "I am fully focused on the current chapter.",
+        "not_visible": "I have little idea of what's next for me.",
+        "suspected": "I am starting to suspect that my current projects, strengths, and interests might have a common thread that links them.",
+        "felt": "I know my next chapter is around the corner, but I can't quite grasp it yet.",
+        "named": "I can explain what my next chapter is, but it hasn't become a clear offer or business yet.",
+        "built": "I have an offer, but clients don't understand it or buy it consistently yet.",
+        "working": "My offer is clear enough, and real people are starting to respond more and more.",
+        "delivering": "I stopped working on creating client demand, my focus is on delivering to existing demand."
+      }
     },
     "result": {
       "stageLabel": "Your chapter",
@@ -7865,6 +7865,9 @@
           "cta": "Name it more precisely"
         }
       }
+    },
+    "currentChapter": {
+      "line": "You're not looking for the next chapter yet, and that is a real answer rather than a dodge. Something in your professional life is moving, and you're choosing to keep your attention on the work that is already yours. That choice can stand. This map will still be here when the question changes."
     }
   },
   "homeLanding": {

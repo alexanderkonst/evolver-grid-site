@@ -20,10 +20,17 @@ import {
   type Stage,
   computeRouting,
   isExtEligible,
+  isNotSeeking,
   isNotYetStage,
   notYetVariant,
 } from "./engine";
-import { ResultScreen, DIRECTION_CALL_HREF, QuizCorridorHeader, TopTalentBridge } from "./TransitionQuizPage";
+import {
+  ResultScreen,
+  DIRECTION_CALL_HREF,
+  QuizCorridorHeader,
+  TopTalentBridge,
+  CurrentChapterScreen,
+} from "./TransitionQuizPage";
 import { ExtResultScreen } from "./ExtResultScreen";
 import "./TransitionQuizPage.css";
 
@@ -317,6 +324,24 @@ function ReconstructedResult({
     uniqueness: result.uniqueness_category,
     emergingWorkStage: result.emerging_work_stage,
   };
+
+  if (isNotSeeking(answers)) {
+    return (
+      <>
+        <CurrentChapterScreen
+          t={t}
+          stage={stage}
+          stageNames={stageNames}
+          resultId={result.id}
+          onRetake={() => {
+            window.location.href = "/quiz";
+          }}
+        />
+        <ClaimReadLine resultId={result.id} alreadyOwned={!!result.owned} />
+      </>
+    );
+  }
+
   const routing = computeRouting(answers);
 
   // Result Experience EXT gate. A saved result should show what the person

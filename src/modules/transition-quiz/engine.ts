@@ -42,6 +42,7 @@ export type UniquenessCategory =
 /** §8 — Q3, developmental position of the emerging work.
  *  not_visible -> suspected -> felt -> named -> built -> working -> delivering */
 export type EmergingWorkStage =
+  | "current_chapter"
   | "not_visible"
   | "suspected"
   | "felt"
@@ -113,6 +114,17 @@ export function meetsDirectionCallGate(answers: CoreAnswers): boolean {
  * focused, and whose funnel already works is a peer regardless of what
  * stage (Q1) they picked.
  */
+/**
+ * New Q3 option (current_chapter), mirroring the stage-1 no-ask branch
+ * ("What I do works for me. I'm not looking for a new chapter."): the
+ * person is explicitly not oriented toward a next chapter, so they must
+ * not get a next-chapter read, and must not be offered the Direction
+ * Call. This check is orthogonal to stage/uniqueness — it always wins.
+ */
+export function isNotSeeking(answers: CoreAnswers): boolean {
+  return answers.emergingWorkStage === "current_chapter";
+}
+
 export function isCrossedPeer(answers: CoreAnswers): boolean {
   if (answers.uniqueness === "scaling") return true;
   return (
@@ -145,6 +157,9 @@ export interface RouteResult {
 /** Full routing decision for a completed core-answer set, before the
  *  optional qualifier has been answered (or when there is none to ask). */
 export function computeRouting(answers: CoreAnswers): RouteResult {
+  if (isNotSeeking(answers)) {
+    return { showBuyingFrame: false, route: "none" };
+  }
   if (isCrossedPeer(answers)) {
     return { showBuyingFrame: false, route: "crossedPeer" };
   }
@@ -199,6 +214,7 @@ export type SynthesisFamily = "coherence" | "form" | "release" | "contact";
  * re-checks it directly too so it's safe to call standalone.
  */
 export function isExtEligible(answers: CoreAnswers): boolean {
+  if (isNotSeeking(answers)) return false;
   return !isCrossedPeer(answers) && answers.stage >= 4 && answers.stage <= 7;
 }
 
