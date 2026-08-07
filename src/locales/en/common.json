@@ -409,7 +409,7 @@
     },
     "journey": {
       "quizStep0": {
-        "label": "Step 0 · See what hero's journey chapter you're in",
+        "label": "Step 0 · See where you are in the entrepreneur's hero's journey",
         "retake": "Retake"
       },
       "startHere": {
@@ -7419,7 +7419,7 @@
     "loading": "Reading your answers…",
     "entry": {
       "eyebrow": "Free · About two minutes",
-      "title": "See what hero's journey chapter you're actually in",
+      "title": "See where you are in the entrepreneur's hero's journey",
       "honestyLine": "You'll see what chapter you're in, why it feels like you're going in circles, and what might already be starting to happen next",
       "cta": "See where I am"
     },
@@ -7437,13 +7437,13 @@
       ]
     },
     "stageNames": {
-      "1": "Settled",
+      "1": "In Flow",
       "2": "The Itch",
-      "3": "Tremors",
-      "4": "The Break",
-      "5": "The Gap",
-      "6": "Taking Shape",
-      "7": "The New Chapter"
+      "3": "The Strain",
+      "4": "The Ending",
+      "5": "The In-Between",
+      "6": "Coming Into Focus",
+      "7": "The Landing"
     },
     "notYet": {
       "settled": {
@@ -7467,14 +7467,14 @@
         "nextLabel": "What usually comes next",
         "2": {
           "turnsInto": "The itch usually turns into pushing harder at the same thing, not into anything new. Most people patch the old form for months, sometimes years, before it turns into a real shift.",
-          "sign": "The pushing stops working and starts costing you sleep, energy, or health. That's when the Itch becomes Tremors.",
+          "sign": "The pushing stops working and starts costing you sleep, energy, or health. That's when The Itch becomes The Strain.",
           "giftPre": "One more thing. The itch gets clearer when you can see what's itching. The free ",
           "giftLinkLabel": "Top Talent reveal",
           "giftPost": " names what you're best at, and at this chapter it usually shows what the itch is about."
         },
         "3": {
           "why": "You're pushing harder inside a setup that has no room left. New niche, new funnel, longer hours, all inside the same way of working, and it's already maxed out.",
-          "next": "Usually a break comes before any breakthrough. The thing that was paying you or holding you up stops, often through no choice of your own. That isn't failure on your part. The break is how the shift actually happens.",
+          "next": "Usually an ending comes before any breakthrough. The thing that was paying you or holding you up stops, often through no choice of your own. That isn't failure on your part. The ending is how the shift actually happens.",
           "giftPre": "One more thing. Before anything breaks, it helps to know what's trying to survive. The free ",
           "giftLinkLabel": "Top Talent reveal",
           "giftPost": " names what you're best at, so when the shift comes you know what to carry across."
@@ -7575,7 +7575,7 @@
         "heading": "Crossed. And it keeps working.",
         "body1": "You said the sentence, built the vehicle, and money answers. The map ends here, because your question is no longer naming. It is scale: transmission, reach, the next octave of the same pattern.",
         "body2": "This is the territory where I can help most. I have built AI startups and projects for twelve years. What I bring is a playbook from MIT and Silicon Valley plus AI workflows that scale a unique business fast. One conversation shows what fits: collaboration, or me helping you build your scaling machine.",
-        "cta": "See how fast this can scale"
+        "cta": "Find out how fast your impact & profit can scale"
       }
     },
     "buyingFrame": {
@@ -7901,19 +7901,19 @@
     "map": {
       "eyebrow": "The Map",
       "orientingLine": "Most people are further along this arc than they think. What feels like falling apart is usually the next stage, not failure.",
-      "stage1Name": "Settled",
+      "stage1Name": "In Flow",
       "stage1Line": "This is what I do. No narration. It's just Tuesday.",
       "stage2Name": "The Itch",
       "stage2Line": "I'm fine. Something's just off. Tabs stay open, side interests keep multiplying.",
-      "stage3Name": "Tremors",
+      "stage3Name": "The Strain",
       "stage3Line": "I just need to push through. New niche, new funnel, harder work on the same old form.",
-      "stage4Name": "Rupture",
+      "stage4Name": "The Ending",
       "stage4Line": "It's over. Shock, relief, and shame in the same hour.",
-      "stage5Name": "Liminality",
+      "stage5Name": "The In-Between",
       "stage5Line": "I don't know who I am professionally. Maps, tests, teachers, templates, one after another.",
-      "stage6Name": "Reorientation",
+      "stage6Name": "Coming Into Focus",
       "stage6Line": "I think I see it. Energy comes back in bursts. The first true sentence gets said out loud.",
-      "stage7Name": "Crossing",
+      "stage7Name": "The Landing",
       "stage7Line": "This is what I do now. Said to a stranger without flinching."
     },
     "deeperRead": {

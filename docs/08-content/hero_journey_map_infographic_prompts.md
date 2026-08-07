@@ -1,8 +1,8 @@
-# The Hero's Journey of a Career — Infographic Series (Prompt Spec)
+# The Entrepreneur's Hero's Journey — Infographic Series (Prompt Spec)
 
 *For Sasha's image agent. The agent already knows the house aesthetic; these prompts specify structure, exact text, and per-slide motif. English first. Day 145.*
 
-**What this is:** the lead-magnet map. 9 slides: cover, 7 chapters, CTA. Posted as a carousel (Instagram first, then everywhere). Funnel: map → "find where you are" → findyourtoptalent.com/quiz.
+**What this is:** the lead-magnet map. 9 slides: cover, 7 chapters, CTA. Posted as a carousel (Instagram first, then everywhere). Funnel: map → "find where you are" → findyourtoptalent.com.
 
 **Canon:** chapter names match the quiz exactly. Do not rename. The 7-dot progress arc is the visual through-line: every chapter slide shows it with that chapter's dot lit. This makes the carousel and the quiz one product.
 
@@ -11,8 +11,8 @@
 ## Global block (prepend to every prompt)
 
 ```
-Square 1080x1080 infographic, one of a 9-slide carousel titled "The
-Hero's Journey of a Career". House aesthetic. Recurring elements on
+Portrait 1080x1350 (4:5) infographic, one of a 9-slide carousel titled
+"The Entrepreneur's Hero's Journey". House aesthetic. Recurring elements on
 every slide: a horizontal 7-dot progress line (small circles connected
 by a hairline), the pointed-star emblem, generous whitespace. Text must
 be rendered exactly as specified, nothing added. Keep all text short
@@ -25,23 +25,23 @@ and large. No stock imagery, no people, no clip art.
 
 ```
 COVER SLIDE.
-Center, large serif: "The Hero's Journey of a Career"
-Below, smaller: "7 chapters. You are in one right now."
+Center, large serif: "The Entrepreneur's Hero's Journey"
+Below, smaller: "Every entrepreneurial journey moves through seven chapters. You’re in one now."
 Bottom: the 7-dot line with no dot lit.
 Motif: the pointed-star emblem above the title.
 ```
 
-## Slide 2 — Chapter 1: Settled
+## Slide 2 — Chapter 1: In Flow
 
 ```
 Eyebrow: "CHAPTER 1 OF 7"
-Title: "Settled"
+Title: "In Flow"
 7-dot line, dot 1 lit.
-One line: "The chapter works."
+One line: "What you do still fits."
 Markers (small, stacked):
-"Work fits."
-"Money flows."
-"No itch."
+"Energy returns."
+"Money moves."
+"Nothing is pulling you elsewhere."
 Motif: a calm, complete circle. Stillness.
 ```
 
@@ -51,76 +51,78 @@ Motif: a calm, complete circle. Stillness.
 Eyebrow: "CHAPTER 2 OF 7"
 Title: "The Itch"
 7-dot line, dot 2 lit.
-One line: "Something feels slightly untrue."
+One line: "One part of you has already moved on."
 Markers:
-"Still works fine."
-"Potential underused."
-"Can't name it yet."
+"Life still works."
+"Your range is bigger."
+"You can feel it, but cannot name it yet."
 Motif: a hairline crack of gold in a smooth surface.
 ```
 
-## Slide 4 — Chapter 3: Tremors
+## Slide 4 — Chapter 3: The Strain
 
 ```
 Eyebrow: "CHAPTER 3 OF 7"
-Title: "Tremors"
+Title: "The Strain"
 7-dot line, dot 3 lit.
-One line: "Pushing harder stops paying."
+One line: "More effort no longer creates more movement."
 Markers:
-"More effort, same results."
-"The setup is maxed out."
+"You push harder."
+"Results stay flat."
+"The old structure has reached its limit."
 Motif: ripples. Vibration under a still surface.
 ```
 
-## Slide 5 — Chapter 4: The Break
+## Slide 5 — Chapter 4: The Ending
 
 ```
 Eyebrow: "CHAPTER 4 OF 7"
-Title: "The Break"
+Title: "The Ending"
 7-dot line, dot 4 lit.
-One line: "The way you made money stops working."
+One line: "The old way can no longer carry you."
 Markers:
-"Nothing dramatic happened."
-"It just stopped."
+"It may look intact."
+"But it has stopped moving."
 Motif: a clean break in a gold line. Not shattered. Ended.
 ```
 
-## Slide 6 — Chapter 5: The Gap
+## Slide 6 — Chapter 5: The In-Between
 
 ```
 Eyebrow: "CHAPTER 5 OF 7"
-Title: "The Gap"
+Title: "The In-Between"
 7-dot line, dot 5 lit.
-One line: "Between chapters."
+One line: "You’ve left the old chapter before the new one has landed."
 Markers:
-"Old answer gone."
-"New one not clear enough to build on."
+"The old answer is gone."
+"The new one is not buildable yet."
 Motif: open space between two shores. The widest whitespace of the series.
 ```
 
-## Slide 7 — Chapter 6: Taking Shape
+## Slide 7 — Chapter 6: Coming Into Focus
 
 ```
 Eyebrow: "CHAPTER 6 OF 7"
-Title: "Taking Shape"
+Title: "Coming Into Focus"
 7-dot line, dot 6 lit.
-One line: "The next thing is forming."
+One line: "The next chapter is becoming visible."
 Markers:
-"You feel it."
-"Can't say it clearly yet."
+"You recognize its energy."
+"The words are still arriving."
 Motif: scattered gold points beginning to form a constellation.
 ```
 
-## Slide 8 — Chapter 7: The New Chapter
+## Slide 8 — Chapter 7: The Landing
 
 ```
 Eyebrow: "CHAPTER 7 OF 7"
-Title: "The New Chapter"
+Title: "The Landing"
 7-dot line, dot 7 lit.
-One line: "It's real now."
+One line: "The new chapter has entered reality."
 Markers:
-"You can say what, for whom, how."
-"Success is compounding."
+"You can name it."
+"Others can enter it."
+"Momentum compounds."
 Motif: the completed constellation, shining as one figure.
 ```
 
@@ -129,8 +131,8 @@ Motif: the completed constellation, shining as one figure.
 ```
 CTA SLIDE.
 Center, serif: "Which chapter are you in?"
-Below: "Free read · About 2 minutes"
-Bottom, quiet: "findyourtoptalent.com/quiz"
+Below: "Find your chapter · Free · About 2 minutes"
+Bottom, quiet: "findyourtoptalent.com"
 7-dot line with all dots faintly lit, none highlighted.
 Motif: the pointed-star emblem.
 ```
