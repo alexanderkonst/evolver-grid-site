@@ -220,12 +220,12 @@ export function isExtEligible(answers: CoreAnswers): boolean {
 
 /**
  * brief §4 — Sasha's product decision (do not improvise). Stage-4 release
- * rule is checked first, since at stage 4 (The Break) the old identity is
+ * rule is checked first, since at stage 4 (The Ending) the old identity is
  * still what's organizing the field regardless of uniqueness, as long as
  * the person hasn't already named a vehicle or transmission problem.
  */
 export function synthesisFamilyFor(answers: CoreAnswers): SynthesisFamily {
-  // Stage 4 (The Break): for the three "still forming" uniqueness answers,
+  // Stage 4 (The Ending): for the three "still forming" uniqueness answers,
   // the live issue is that the old role/identity is still organizing the
   // decisions — release, not coherence or form, is the correct read this
   // early. Checked first per brief §4.

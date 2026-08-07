@@ -1242,7 +1242,7 @@ export function StageArc({
           over the active dot, not spread across the full width. Only the
           previous / current / next chapters are named; the rest are blank
           slots that hold their column. nowrap + overflow-visible keeps a long
-          name (e.g. "Taking Shape") on one line, centred on its dot. */}
+          name (e.g. "Coming Into Focus") on one line, centred on its dot. */}
       <div className="tq-stage-arc-labels" role="presentation">
         {stages.map((n) => {
           const near = Math.abs(n - activeStage) === 1;
