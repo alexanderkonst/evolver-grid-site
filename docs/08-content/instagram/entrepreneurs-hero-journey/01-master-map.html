@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    @font-face { font-family: "Italiana"; src: url("file:///Users/alexanderkonst/.codex/plugins/cache/claude-cowork/anthropic-skills/1.0.0/skills/canvas-design/canvas-fonts/Italiana-Regular.ttf"); }
+    @font-face { font-family: "Outfit"; src: url("file:///Users/alexanderkonst/.codex/plugins/cache/claude-cowork/anthropic-skills/1.0.0/skills/canvas-design/canvas-fonts/Outfit-Regular.ttf"); }
+    @font-face { font-family: "Outfit"; src: url("file:///Users/alexanderkonst/.codex/plugins/cache/claude-cowork/anthropic-skills/1.0.0/skills/canvas-design/canvas-fonts/Outfit-Bold.ttf"); font-weight:700; }
+    * { box-sizing: border-box; }
+    html, body { margin:0; width:1080px; height:1350px; overflow:hidden; }
+    body { color:#092a58; background:#f7f2e8; }
+    .poster {
+      position:relative; width:1080px; height:1350px; overflow:hidden;
+      background:
+        radial-gradient(circle at 82% 12%, rgba(119,157,226,.20), transparent 28%),
+        radial-gradient(circle at 8% 78%, rgba(246,190,120,.18), transparent 31%),
+        linear-gradient(145deg,#fbf8f1 0%,#f3efe8 55%,#edf1f8 100%);
+    }
+    .poster::before {
+      content:""; position:absolute; inset:0; opacity:.20; mix-blend-mode:multiply;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+    }
+    .frame { position:absolute; inset:28px; border:1px solid rgba(164,116,25,.23); border-radius:34px; }
+    header { position:absolute; left:82px; right:82px; top:70px; z-index:2; }
+    .kicker { font:700 17px/1 Outfit,sans-serif; letter-spacing:.28em; color:#a87518; margin-bottom:24px; }
+    h1 { margin:0; width:850px; font:400 73px/.98 Italiana,serif; letter-spacing:-.02em; color:#072b60; }
+    .thesis { margin-top:22px; width:760px; font:400 24px/1.4 Outfit,sans-serif; color:rgba(9,42,88,.70); }
+    .thesis em { font-style:normal; color:#9d6911; }
+    .map { position:absolute; left:74px; top:395px; width:932px; height:760px; }
+    .orbit { position:absolute; border:1px solid rgba(32,76,130,.10); border-radius:50%; }
+    .orbit.one { width:760px; height:760px; left:86px; top:0; }
+    .orbit.two { width:612px; height:612px; left:160px; top:74px; }
+    .orbit.three { width:464px; height:464px; left:234px; top:148px; }
+    .thread { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+    .thread path.base { fill:none; stroke:rgba(7,43,96,.15); stroke-width:8; stroke-linecap:round; }
+    .thread path.gold { fill:none; stroke:url(#gold); stroke-width:3.4; stroke-linecap:round; filter:url(#glow); }
+    .center {
+      position:absolute; left:367px; top:292px; width:198px; height:198px; border-radius:50%;
+      display:grid; place-items:center; text-align:center; padding:22px;
+      background:radial-gradient(circle at 38% 32%,rgba(255,255,255,.95),rgba(228,238,252,.90) 45%,rgba(172,199,234,.75));
+      border:1px solid rgba(163,112,19,.48); box-shadow:0 16px 50px rgba(10,48,95,.14), inset 0 0 0 10px rgba(255,255,255,.25);
+    }
+    .center img { width:58px; height:58px; object-fit:contain; margin-bottom:5px; }
+    .center span { display:block; font:700 13px/1.3 Outfit,sans-serif; letter-spacing:.18em; color:#9c6b16; }
+    .node { position:absolute; width:248px; min-height:82px; display:flex; gap:14px; align-items:center; }
+    .dot { flex:0 0 57px; width:57px; height:57px; border-radius:50%; border:1px solid rgba(162,112,22,.5); box-shadow:0 7px 22px rgba(10,44,90,.13),inset 0 0 0 7px rgba(255,255,255,.28); position:relative; }
+    .dot::after { content:""; position:absolute; width:7px; height:7px; border-radius:50%; background:#fff8df; left:16px; top:13px; box-shadow:0 0 14px #fff; }
+    .label strong { display:block; font:700 12px/1 Outfit,sans-serif; letter-spacing:.19em; color:#a67218; margin-bottom:7px; }
+    .label span { display:block; font:400 20px/1.12 Italiana,serif; color:#082d61; }
+    .n1 { left:337px; top:-5px; }
+    .n2 { left:631px; top:102px; }
+    .n3 { left:700px; top:313px; }
+    .n4 { left:620px; top:566px; }
+    .n5 { left:238px; top:656px; }
+    .n6 { left:0; top:480px; }
+    .n7 { left:11px; top:175px; }
+    .n1 .dot { background:linear-gradient(145deg,#d5e9ee,#77c4c9); }
+    .n2 .dot { background:linear-gradient(145deg,#e7d9f5,#9c80ca); }
+    .n3 .dot { background:linear-gradient(145deg,#d8dff5,#6379bd); }
+    .n4 .dot { background:linear-gradient(145deg,#d4deea,#536778); }
+    .n5 .dot { background:linear-gradient(145deg,#e9cfdb,#a75c7a); }
+    .n6 .dot { background:linear-gradient(145deg,#f4d4bb,#db8b58); }
+    .n7 .dot { background:linear-gradient(145deg,#f4e9b7,#d8b545); }
+    footer { position:absolute; left:82px; right:82px; bottom:56px; height:116px; border-top:1px solid rgba(163,112,19,.30); display:flex; align-items:center; justify-content:space-between; z-index:3; }
+    .cta small { display:block; font:700 13px/1 Outfit,sans-serif; letter-spacing:.21em; color:#a47016; margin-bottom:10px; }
+    .cta strong { display:block; font:400 27px/1.15 Italiana,serif; color:#082d61; }
+    .url { text-align:right; font:700 15px/1.2 Outfit,sans-serif; letter-spacing:.13em; color:#082d61; }
+    .url span { display:block; color:rgba(9,42,88,.54); font-weight:400; margin-top:8px; letter-spacing:.08em; }
+  </style>
+</head>
+<body>
+  <main class="poster">
+    <div class="frame"></div>
+    <header>
+      <div class="kicker">THE MASTER MAP</div>
+      <h1>The Entrepreneur’s<br>Hero’s Journey</h1>
+      <div class="thesis">Life outgrows form, then creates form again. <em>Seven chapters. One recurring movement.</em></div>
+    </header>
+    <section class="map" aria-label="Seven chapters of the entrepreneur's hero's journey">
+      <div class="orbit one"></div><div class="orbit two"></div><div class="orbit three"></div>
+      <svg class="thread" viewBox="0 0 932 760" aria-hidden="true">
+        <defs>
+          <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#edd88f"/><stop offset=".45" stop-color="#ae7417"/><stop offset="1" stop-color="#f2d982"/></linearGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="2.3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <path class="base" d="M470 44 C680 48 833 185 824 378 C816 567 664 704 464 704 C250 704 94 568 108 358 C121 163 279 71 449 126 C604 176 665 319 602 452 C548 568 382 594 292 499 C209 411 242 270 352 224 C456 181 551 241 560 337 C568 419 490 472 418 444 C355 420 351 339 404 309"/>
+        <path class="gold" d="M470 44 C680 48 833 185 824 378 C816 567 664 704 464 704 C250 704 94 568 108 358 C121 163 279 71 449 126 C604 176 665 319 602 452 C548 568 382 594 292 499 C209 411 242 270 352 224 C456 181 551 241 560 337 C568 419 490 472 418 444 C355 420 351 339 404 309"/>
+      </svg>
+      <div class="center"><div><img src="file:///Users/alexanderkonst/evolver-grid-site/src/assets/mc-glow-star.png"/><span>VALUE PERSISTS<br>FORM EVOLVES</span></div></div>
+      <div class="node n1"><div class="dot"></div><div class="label"><strong>01</strong><span>Career-Building</span></div></div>
+      <div class="node n2"><div class="dot"></div><div class="label"><strong>02</strong><span>Dormant Potential</span></div></div>
+      <div class="node n3"><div class="dot"></div><div class="label"><strong>03</strong><span>The Stuckness</span></div></div>
+      <div class="node n4"><div class="dot"></div><div class="label"><strong>04</strong><span>The Breakdown</span></div></div>
+      <div class="node n5"><div class="dot"></div><div class="label"><strong>05</strong><span>The Free Fall</span></div></div>
+      <div class="node n6"><div class="dot"></div><div class="label"><strong>06</strong><span>Metamorphosis</span></div></div>
+      <div class="node n7"><div class="dot"></div><div class="label"><strong>07</strong><span>The New You &amp;<br>The New Chapter</span></div></div>
+    </section>
+    <footer>
+      <div class="cta"><small>FREE QUIZ · ABOUT 2 MINUTES</small><strong>Which chapter are you in?</strong></div>
+      <div class="url">FINDYOURTOPTALENT.COM<span>Find your chapter →</span></div>
+    </footer>
+  </main>
+</body>
+</html>
