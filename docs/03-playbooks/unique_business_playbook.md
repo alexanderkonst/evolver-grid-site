@@ -4790,3 +4790,41 @@ These are not in opposition. They are complementary faces of the same whole. The
 5. **One door** — a single CTA; proof links only where trust is absent (proof in a warm letter treats a friend as a skeptic; omit).
 
 **Sequencing note:** recognition travels in message 1; the offer and conditions travel only after the person leans in.
+
+---
+
+## Addendum — The Recognition Quiz: Design Laws for a Diagnostic Lead Magnet (Day 148, August 7, 2026)
+
+*Generalizes what we learned building Alexander's "Where Are You" transition quiz into a repeatable spec any unique-business founder can follow to build their own. Extends the Quiz-as-Lead-Magnet Principle (which says the quiz IS your lead engine) and the Trajectory Map (which says the arc is the artifact). This addendum is the craft underneath: how to actually design the questions, the result, and the offer so the quiz recognizes rather than tests. Supersedes the old "quiz = post-reveal resistance dissolver" framing where it survives in earlier drafts.*
+
+**What a recognition quiz is.** Not a personality test, not a segmentation gimmick. It is a ninety-second micro-experience of the transformation itself. The person answers a few questions about where they are and receives an accurate read of their position plus one honest next step. Done right, they feel *found*, not funneled. The moment they finish, they are already inside the founder's field. Every other lead magnet describes the medicine; a recognition quiz administers a first dose.
+
+**Law 1 — The dual engine.** Every question serves two readers at once. A **Read for the person** (given fully, free, nothing withheld) and a **Read for the business** (readiness, stage, uniqueness class, buying frame — logged, never shown). Qualification happens *inside the gift*, invisibly. The taker experiences generosity; the founder receives a qualified, tagged lead. Neither reader is aware of the other.
+
+**Law 2 — Questions discriminate; results resonate.** Quiz questions have one job: **discriminate accurately with very little cognitive load.** They should be plain, mutually distinguishable, and easy to answer from lived experience. The result has a different job: make the person feel accurately seen. This is where the methodology's richer phenomenological and literary language belongs — the felt texture, memorable images, and human cadence of the chapter they are living. Do not make questions carry the poetry of the result; do not make results sound like scoring logic.
+
+**Law 3 — Three result logics, each with its own honest CTA.** The result is not one-size. It branches by the person's *readiness*, and every branch carries its own true reason for its call to action. The generalized three:
+1. **In the middle of the transformation** → the paid or relational next step, because a human can now help them cross *faster*. ("Let's talk. I can help you get through this quicker.")
+2. **Not yet ripe** → a free, deeper self-knowledge gift, framed as *"the earlier you name and align with this, the sooner it compounds."* This is not a consolation prize; it primes them for the paid step months later. One free reveal, positioned as obviously valuable.
+3. **Already past it / peers** → collaboration or scaling help. ("You've built the thing. Here's how I help it scale. Let's explore fit.")
+   One CTA per branch. **Never stack two CTAs** — a second door halves the first (funnel monogamy).
+
+**Law 4 — Priming through question order.** Order the questions so an earlier answer makes a later offer feel *inevitable* instead of random. Alexander's quiz asks everyone "are you monetizing your uniqueness yet?" *before* the not-yet result offers a free uniqueness reveal — so the offer lands as the obvious next move, not a stray link. A quiz's question order is **offer design**, not merely data collection. Ask the priming question even of people whose result won't use its data, when asking it sets up the CTA.
+
+**Law 5 — Never ask what the result won't use (except to prime).** Outside of Law 4, only ask a question whose answer changes the result. Do not march someone who has no next chapter through a "describe your next chapter" question — it reads as extractive and breaks trust. Respect beats completeness. Where the entry promise names a question count, keep it honest ("about two minutes" survives a branch that skips a question; "three questions" does not).
+
+**Law 6 — One render path.** The live take and the return-by-link visit are two *entry modes* of a single result component, not two pages. No replicas, no drift between "first time" and "coming back." The map the person saw is the map they return to.
+
+**Law 7 — The copy laws.** Recognition before request, at every step; nothing asks before it has given. The CTA names the *transformation*, not the mechanism ("Find your fastest way through," not "Book a call"). The result must feel complete and free even for the branches that get no ask — a blessing, not a dead end. External copy is humanized: no em-dashes, no "Not X. Y." constructions, no gendered forms in gendered languages. Three type voices maximum (a display serif for the stage name and CTA, one reading serif for all paragraphs, a sans for gold smallcaps labels) so the result reads as one composed object.
+
+**Law 8 — Positioning: awareness upstream, instrument on-site.** The quiz is the *instrument*, not the awareness. Awareness lives upstream as a shareable asset (a carousel, a map, a stage taxonomy people tag themselves into) on social. The quiz lives on-site. Have the person take the quiz *before* you show them the full framework, so their self-report is not primed by the model; the result then locates them inside the larger map. The awareness asset and the quiz must share visual DNA (same progress arc, same marks, same stage names) so they read as one product across surfaces. Critically: if the awareness asset already names the person's stage, the quiz must **not** promise "which stage are you" (already answered) — it promises the *personal way through* the stage. Terrain versus position-and-exit.
+
+**How to build your own (repeatable):**
+1. Find the arc your method already sees — the stages a client moves through from fit to rupture to new form. Name each stage in the client's felt language.
+2. Write the single most diagnostic question per axis: **position** (which stage), **readiness** (how ripe to move), **direction** (where they're heading — only if the branch uses it).
+3. Design the hidden business read: what each answer tells you about qualification, logged silently.
+4. Author one honest result plus one CTA *per readiness branch* (see Law 3). Each CTA states its own true reason for existing.
+5. Order the questions so the offer is primed (Law 4).
+6. Instrument every completion — both engines — so the funnel learns who it is for with each pass, whether or not money moves (the data spine).
+
+**Why this is powerful even before you know exactly how you'll use it.** A recognition quiz is the only lead magnet that is *simultaneously* the transformation's micro-dose, the qualification mechanism, and the data spine — one object doing three jobs. Its taker is already inside the field. Build it well and it keeps paying: it recognizes, it sorts, and it teaches the funnel who converts, all from a single ninety-second gift. Every founder's methodology contains a quiz waiting to be extracted; the arc is already there, waiting to be drawn coarse and free.

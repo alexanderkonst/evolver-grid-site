@@ -9664,3 +9664,49 @@ Character:
 **The master key marker.** A formed habit of paying for one's own transformation — teachers, coaches, retreats, ceremony, therapy, named without embarrassment — is the single most predictive purchase marker in the data so far. It also leaves public traces (interiority markers sitting next to threshold badges), which makes it the Signal Library's primary hunt pattern, replacing clock-hunting for this tribe.
 
 **Open thread.** Merge this portrait with "The Founder Going Sovereign" (Day 133, Tribe v3.5) into one artifact: Day 133 carries the name and the field knowledge, this one carries the gate structure. Pending Sasha's roast of the paragraph.
+
+---
+
+## Addendum — Day 148, August 7, 2026: The "Where Are You" Quiz and the Hero's Journey Map — instrument, three logics, and funnel positions
+
+*Records the current state of the quiz as an instrument and settles where the quiz and the hero's-journey map each sit in the funnel. Refines Funnel v3's T2/T3 ([§ Funnel v3](#funnel-v3--the-recognition-funnel-de-facto-day-139-july-29-2026)) with the actual shipped routing. **Supersedes §VII "The Quiz's True Role"** (the April Godfather-Offer framing where the quiz was a post-reveal "resistance dissolver" and "NOT an entry point") — in current canon the quiz IS the entry instrument (v3 T2). Implementation detail lives in `docs/specs/quiz/quiz_product_spec.md`; the generalized, repeatable design laws live in the playbook ([Addendum — The Recognition Quiz](../../03-playbooks/unique_business_playbook.md)). The map spec is `docs/08-content/hero_journey_map_infographic_prompts.md`.*
+
+### The instrument, as built
+
+The transition quiz at `/quiz` (`TransitionQuizPage`). Three questions, about two minutes, two hidden engines (Crossing Read for the person, Readiness Read for the business — v3 T2 law holds).
+
+- **Q1 — Position.** Which chapter of the seven-chapter arc they are in (the same arc as the map: Career-Building · Dormant Potential · The Stuckness · The Breakdown · The Free Fall · Metamorphosis · The New You). Stages 1-3 are the *not-yet* branch (the old chapter hasn't broken); stages 4-7 are *in transition*.
+- **Q2 — Uniqueness.** Whether they are monetizing their uniqueness yet. **Everyone answers Q2** (Day 145 decision) — not for the data alone, but to *prime*: it plants the idea of monetizing uniqueness so the free Top Talent reveal on the not-yet ending reads as the obvious next step, not a random link.
+- **Q3 — Direction.** Where they are heading. **Transition-only.** Asking someone with no next chapter about their next chapter makes no sense (Day 145), so stages 1-3 route to their ending after Q2 and never see Q3.
+
+### The three result logics (the invariant — Sasha confirmed Day 145)
+
+Each ending carries its own honest reason for its one CTA. This is the product decision that made the whole thing simple enough to be right:
+
+1. **In transition (stages 4-7) → the Direction Call.** "Let's talk. I can help you cross faster." The earlier you name your uniqueness and keep contacting, using, and monetizing it, the faster professional clarity turns into professional success. The Direction Call is the free trust rung (v3 T4) the quiz awards.
+2. **Not yet ready (stages 1-3) → the free Top Talent reveal.** Primed by Q2, the ending says it plainly: *the earlier you name your uniqueness and align your work with it, the sooner clarity converts into professional success.* The Top Talent reveal becomes a logical, sexy free gift — "ooh, know my uniqueness for free" — instead of an arbitrary CTA. One button: "Reveal my Top Talent." No email capture (the map is the external lead magnet; one CTA per stage — funnel monogamy).
+3. **Crossed peers (already scaling) → the collaboration conversation.** "You have a unique business. I have twelve years of building AI startups and projects, a playbook from MIT and Silicon Valley, and AI workflows that scale a unique business fast. Let's talk — collaboration, or I help you build your scaling machine." CTA: "See how fast this can scale." This opens a genuinely new product surface: the playbook-plus-AI-workflows applied to founders who already have a unique business. A high-value audience Sasha can serve or partner with.
+
+### Copy and craft laws in force
+
+Entry eyebrow "Free · About two minutes" (dropped "three questions" — stages 1-3 answer two, so the count promise was no longer exact). Humanizer pass always-on via project hook on any `src/locales/` write. No em-dashes and no "Not X. Y." in any external string, any language; no gendered RU forms. Three type voices (Cormorant Garamond display, Source Serif body, DM Sans gold smallcaps). The pointed-star emblem is the ceremony mark; the seven-dot arc is the through-line, the active chapter's dot lit — shared with the map so both surfaces read as one product.
+
+### Map versus Quiz — the rightful positions and touchpoints
+
+The two assets are not competitors; they are two organs of one funnel, and the split is already implicit in the map spec (line 5). Made explicit:
+
+- **The MAP (Entrepreneur's Hero's Journey, 9-slide carousel) = acquisition / awareness.** It lives *upstream*, on social, before the funnel. Its job: stop the scroll, trigger self-recognition ("that's me, Chapter 3"), and drive to findyourtoptalent.com. It is the shareable, saveable, self-tagging asset — the viral vector (Fractal + Viral growth). It feeds the T0 field.
+- **The QUIZ = the on-site instrument (v3 T2).** Taken *before* the person is shown the full framework, so their self-report is not primed by the model. The result then locates them on the same seven-chapter arc and routes them by the three logics above.
+- **The spoiler resolution.** Because the map already names the person's chapter, the quiz must not promise "which chapter are you in" (already answered upstream) — it promises the **personal way through** the chapter. Map = the terrain and the stages; quiz = your exact position and your exit. Recommended CTA-slide reframing on the map: from "Which chapter are you in?" toward "Your chapter is the map. The quiz gives you your way through." (Sasha's call; held.)
+- **Shared visual DNA** (same arc, same star, same chapter names) is what makes the two read as one product as the person crosses from feed to site.
+- **In-product ordering** (map spec line 5): the quiz precedes the full map inside the product; the result places the person inside the larger journey afterward. Awareness → quiz (unprimed) → placement on the map → the branch's one CTA.
+
+### Brand
+
+**YOU (be original.)** is the brand mark. The site and domain stay **Find Your Top Talent** / findyourtoptalent.com. Two marks, one funnel, deliberate (Sasha, Day 148): the brand is the identity, the domain is the door.
+
+### Open threads
+
+- Small copy fixes on the map canon (tense/typo leaks, "The Stuckness" title register) — surfaced, held for Sasha's call.
+- The map's CTA-slide reframe toward "your way through" — recommended, held.
+- Retire or explicitly label §VII and the stale section-IX value ladder on the next consolidation pass, so the superseded framings stop sitting unlabeled next to current canon.
