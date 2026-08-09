@@ -46,8 +46,9 @@
     .node { position:absolute; width:248px; min-height:82px; display:flex; gap:14px; align-items:center; }
     .dot { flex:0 0 57px; width:57px; height:57px; border-radius:50%; border:1px solid rgba(162,112,22,.5); box-shadow:0 7px 22px rgba(10,44,90,.13),inset 0 0 0 7px rgba(255,255,255,.28); position:relative; }
     .dot::after { content:""; position:absolute; width:7px; height:7px; border-radius:50%; background:#fff8df; left:16px; top:13px; box-shadow:0 0 14px #fff; }
-    .label strong { display:block; font:700 12px/1 Outfit,sans-serif; letter-spacing:.19em; color:#a67218; margin-bottom:7px; }
-    .label span { display:block; font:400 20px/1.12 Italiana,serif; color:#082d61; }
+    .label { position:relative; z-index:2; }
+    .label strong { display:block; width:max-content; padding:3px 6px 2px; margin:0 0 4px -6px; font:700 12px/1 Outfit,sans-serif; letter-spacing:.19em; color:#a67218; background:rgba(247,244,238,.84); }
+    .label span { display:block; width:max-content; max-width:190px; padding:2px 7px 4px; margin-left:-7px; font:400 20px/1.12 Italiana,serif; color:#082d61; background:linear-gradient(90deg,rgba(247,244,238,.94),rgba(247,244,238,.76) 82%,transparent); }
     .n1 { left:337px; top:-5px; }
     .n2 { left:631px; top:102px; }
     .n3 { left:700px; top:313px; }
