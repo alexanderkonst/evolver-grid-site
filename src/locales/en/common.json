@@ -7437,13 +7437,13 @@
       ]
     },
     "stageNames": {
-      "1": "In Flow",
-      "2": "The Itch",
-      "3": "The Strain",
-      "4": "The Ending",
-      "5": "The In-Between",
-      "6": "Coming Into Focus",
-      "7": "The Landing"
+      "1": "Career-Building",
+      "2": "Dormant Potential",
+      "3": "The Stuckness",
+      "4": "The Breakdown",
+      "5": "The Free Fall",
+      "6": "Metamorphosis",
+      "7": "The New You & The New Chapter"
     },
     "notYet": {
       "settled": {
@@ -7467,7 +7467,7 @@
         "nextLabel": "What usually comes next",
         "2": {
           "turnsInto": "The itch usually turns into pushing harder at the same thing, not into anything new. Most people patch the old form for months, sometimes years, before it turns into a real shift.",
-          "sign": "The pushing stops working and starts costing you sleep, energy, or health. That's when The Itch becomes The Strain.",
+          "sign": "The pushing stops working and starts costing you sleep, energy, or health. That's when Dormant Potential becomes The Stuckness.",
           "giftPre": "One more thing. The itch gets clearer when you can see what's itching. The free ",
           "giftLinkLabel": "Top Talent reveal",
           "giftPost": " names what you're best at, and at this chapter it usually shows what the itch is about."
@@ -7901,19 +7901,19 @@
     "map": {
       "eyebrow": "The Map",
       "orientingLine": "Most people are further along this arc than they think. What feels like falling apart is usually the next stage, not failure.",
-      "stage1Name": "In Flow",
+      "stage1Name": "Career-Building",
       "stage1Line": "This is what I do. No narration. It's just Tuesday.",
-      "stage2Name": "The Itch",
+      "stage2Name": "Dormant Potential",
       "stage2Line": "I'm fine. Something's just off. Tabs stay open, side interests keep multiplying.",
-      "stage3Name": "The Strain",
+      "stage3Name": "The Stuckness",
       "stage3Line": "I just need to push through. New niche, new funnel, harder work on the same old form.",
-      "stage4Name": "The Ending",
+      "stage4Name": "The Breakdown",
       "stage4Line": "It's over. Shock, relief, and shame in the same hour.",
-      "stage5Name": "The In-Between",
+      "stage5Name": "The Free Fall",
       "stage5Line": "I don't know who I am professionally. Maps, tests, teachers, templates, one after another.",
-      "stage6Name": "Coming Into Focus",
+      "stage6Name": "Metamorphosis",
       "stage6Line": "I think I see it. Energy comes back in bursts. The first true sentence gets said out loud.",
-      "stage7Name": "The Landing",
+      "stage7Name": "The New You & The New Chapter",
       "stage7Line": "This is what I do now. Said to a stranger without flinching."
     },
     "deeperRead": {

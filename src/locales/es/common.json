@@ -7430,13 +7430,13 @@
       ]
     },
     "stageNames": {
-      "1": "Asentado",
-      "2": "La comezón",
-      "3": "Temblores",
-      "4": "La ruptura",
-      "5": "Entre capítulos",
-      "6": "Tomando forma",
-      "7": "El nuevo capítulo"
+      "1": "Construcción de carrera",
+      "2": "Potencial dormido",
+      "3": "El estancamiento",
+      "4": "El colapso",
+      "5": "La caída libre",
+      "6": "Metamorfosis",
+      "7": "Tu nuevo yo y el nuevo capítulo"
     },
     "notYet": {
       "settled": {
@@ -7460,7 +7460,7 @@
         "nextLabel": "Qué suele venir después",
         "2": {
           "turnsInto": "La comezón suele convertirse en empujar más fuerte sobre lo mismo, no en algo nuevo. La mayoría parcha la forma antigua durante meses, a veces años, antes de que se vuelva un cambio real.",
-          "sign": "Empujar deja de funcionar y empieza a costarte sueño, energía o salud. Ahí es cuando la Comezón se vuelve Temblores.",
+          "sign": "Empujar deja de funcionar y empieza a costarte sueño, energía o salud. Ahí es cuando el Potencial dormido se vuelve Estancamiento.",
           "giftPre": "Una cosa más. La comezón se aclara cuando puedes ver de qué se trata. La ",
           "giftLinkLabel": "revelación de tu Top Talent",
           "giftPost": " gratuita nombra en qué eres bueno, y en este capítulo suele mostrar de qué va la comezón."
@@ -7894,19 +7894,19 @@
     "map": {
       "eyebrow": "El Mapa",
       "orientingLine": "La mayoría de la gente está más avanzada en este arco de lo que cree. Lo que se siente como derrumbe suele ser la siguiente etapa, no un fracaso.",
-      "stage1Name": "Asentado",
+      "stage1Name": "Construcción de carrera",
       "stage1Line": "Esto es lo que hago. Sin narrarlo. Es simplemente un martes cualquiera.",
-      "stage2Name": "La Comezón",
+      "stage2Name": "Potencial dormido",
       "stage2Line": "Estoy bien. Algo simplemente no encaja. Las pestañas se quedan abiertas, los intereses paralelos se multiplican.",
-      "stage3Name": "Temblores",
+      "stage3Name": "El estancamiento",
       "stage3Line": "Solo necesito empujar más fuerte. Nuevo nicho, nuevo embudo, más esfuerzo sobre la misma forma vieja.",
-      "stage4Name": "Ruptura",
+      "stage4Name": "El colapso",
       "stage4Line": "Se acabó. Shock, alivio y vergüenza en la misma hora.",
-      "stage5Name": "Liminalidad",
+      "stage5Name": "La caída libre",
       "stage5Line": "No sé quién soy profesionalmente. Mapas, tests, maestros, plantillas, uno tras otro.",
-      "stage6Name": "Reorientación",
+      "stage6Name": "Metamorfosis",
       "stage6Line": "Creo que lo veo. La energía regresa en ráfagas. La primera frase verdadera se dice en voz alta.",
-      "stage7Name": "El Cruce",
+      "stage7Name": "Tu nuevo yo y el nuevo capítulo",
       "stage7Line": "Esto es lo que hago ahora. Dicho a un extraño sin titubear."
     },
     "deeperRead": {
