@@ -39,13 +39,16 @@ export type UniquenessCategory =
   | "transmission"
   | "scaling";
 
-/** §8 — Q3, developmental position of the emerging work.
- *  not_visible -> suspected -> felt -> named -> built -> working -> delivering */
+/** §8 — Q3, developmental position of the emerging work, low to high
+ *  formedness of the next chapter (Day 148 reorder — "felt" before
+ *  "suspected": a formless pull precedes a content-bearing hypothesis):
+ *  not_visible -> felt -> suspected -> named -> built -> working -> delivering.
+ *  Union order is documentation only; routing and copy key off the value. */
 export type EmergingWorkStage =
   | "current_chapter"
   | "not_visible"
-  | "suspected"
   | "felt"
+  | "suspected"
   | "named"
   | "built"
   | "working"

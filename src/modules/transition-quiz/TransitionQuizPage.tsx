@@ -109,11 +109,18 @@ const UNIQUENESS_VALUES: UniquenessCategory[] = [
   "transmission",
   "scaling",
 ];
+// Display order = developmental formedness of the next chapter, low to high
+// (Sasha, Day 148): a formless felt pull ("felt") is earlier than a
+// content-bearing hypothesis about the thread among existing work
+// ("suspected"), so "felt" precedes "suspected". Copy is looked up by value
+// (ChoiceScreen: data.options[v]) and all routing keys off the value string,
+// so this order only changes what the person sees — never a value↔copy or
+// value↔routing pair.
 const WORK_STAGE_VALUES: EmergingWorkStage[] = [
   "current_chapter",
   "not_visible",
-  "suspected",
   "felt",
+  "suspected",
   "named",
   "built",
   "working",

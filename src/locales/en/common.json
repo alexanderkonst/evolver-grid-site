@@ -7492,26 +7492,26 @@
       "framing": "This question is about how you turn your top strengths into income. Not a product you built for someone else or a business you started with partners. You.",
       "prompt": "Are you monetizing your uniqueness yet?",
       "options": {
-        "discovery": "I still don't know what I uniquely bring.",
-        "recognition": "I know I bring something valuable, but I can't articulate it clearly yet.",
-        "integration": "I have several projects, but I can't see what makes them one thing, and if they are one thing.",
-        "vehicle": "I know what my next chapter is, but I haven't created a business around it, positioned it, and sold it yet.",
-        "transmission": "I already sell what I uniquely bring, but people only receive a fraction of what they could get from me if they knew.",
-        "scaling": "I am monetizing my uniqueness, my positioning is focused, my funnel is working. I'm now growing and scaling."
+        "discovery": "I still don't know what I uniquely bring so I just go with opportunities I see.",
+        "recognition": "I know I bring something valuable, but I can't articulate it clearly yet. When I can, I'll do what I want.",
+        "integration": "I have several projects going, but I can't see what makes them one thing, and if they are one thing.",
+        "vehicle": "I know what the next big thing for me is, but I haven't created a business around it, positioned it, and sold it yet.",
+        "transmission": "I already repeatedly sell what I uniquely bring, but people only receive a fraction of what I could give them.",
+        "scaling": "I am successfully monetizing my uniqueness, my positioning is focused, my funnel is working. I'm now growing and scaling."
       }
     },
     "q3": {
       "order": 3,
-      "prompt": "Which best describes the next chapter of your professional career?",
+      "prompt": "What's coming up next for you professionally?",
       "options": {
         "current_chapter": "I am fully focused on the current chapter.",
-        "not_visible": "I have little idea of what's next for me.",
-        "suspected": "I am starting to suspect that my current projects, strengths, and interests might have a common thread that links them.",
-        "felt": "I know my next chapter is around the corner, but I can't quite grasp it yet.",
-        "named": "I can explain what my next chapter is, but it hasn't become a clear offer or business yet.",
-        "built": "I have an offer, but clients don't understand it or buy it consistently yet.",
-        "working": "My offer is clear enough, and real people are starting to respond more and more.",
-        "delivering": "I stopped working on creating client demand, my focus is on delivering to existing demand."
+        "not_visible": "I am not sure what's next for me yet.",
+        "felt": "I know my next professional upgrade is around the corner, but I can't quite grasp it yet.",
+        "suspected": "I am starting to suspect that my current projects, strengths, and interests might have a common thread that links them. So my next thing is probably that.",
+        "named": "I know what my next chapter is, but I haven't made it into a clear offer or business yet.",
+        "built": "I have built a new offer that I want to make into my main business. But clients don't understand it, or don't buy it consistently yet.",
+        "working": "My offer is clear enough, and clients are starting to buy it.",
+        "delivering": "My business is mature: my focus is now on delivering to existing demand, so I stopped working on creating client demand."
       }
     },
     "result": {
