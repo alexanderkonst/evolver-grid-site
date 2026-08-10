@@ -622,50 +622,43 @@
   place-items: center;
 }
 
+/* Active node: the dot gives way to the pointed star, which is the position
+   indicator itself. Keep the 18px box so the track spacing is unchanged; make
+   it transparent so only the star reads. */
 .tq-stage-arc-node.is-active {
   width: 18px;
   height: 18px;
-  border-color: var(--tq-gold);
-  background: var(--tq-gold-gradient);
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.55);
-}
-
-.tq-stage-arc-node[aria-current="step"] {
-  outline: 2px solid rgba(255, 253, 247, 0.94);
-  outline-offset: -4px;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
 }
 
 .tq-stage-arc-node.is-crossed {
   border-color: var(--tq-gold);
 }
 
+/* The pointed star image, centred over its node and allowed to overflow the
+   18px box so it reads at full size on the track. */
 .tq-stage-arc-star {
-  font-size: 0.7rem;
-  color: #4a2e04;
-  line-height: 1;
+  width: 30px;
+  max-width: none;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.55));
+  pointer-events: none;
 }
 
-/* Three labels — previous, current, next — on one even row. The current
-   chapter is gold and centred; its neighbours sit quietly at the edges.
-   Nothing wraps: a long chapter name truncates rather than breaking onto
-   a second line and unbalancing the arc. */
+/* One label: the active chapter, centred under the star. */
 .tq-stage-arc-labels {
-  position: relative;
-  height: 1.05rem;
-  margin-top: 12px;
+  margin-top: 14px;
+  text-align: center;
 }
 
-/* Each label is absolutely anchored at its node's position (inline `left`)
-   and centred on it, so it lands directly under its own dot. nowrap keeps
-   a long chapter name on one line; it may extend past the arc edge into the
-   card padding, which is fine. */
 .tq-stage-arc-label {
-  position: absolute;
-  top: 0;
-  transform: translateX(-50%);
   white-space: nowrap;
-  font: 600 0.6rem/1.1 "DM Sans", sans-serif;
-  letter-spacing: 0.1em;
+  font: 600 0.62rem/1.1 "DM Sans", sans-serif;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 

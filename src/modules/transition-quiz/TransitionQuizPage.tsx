@@ -27,7 +27,7 @@ import { rememberLocalQuizResult } from "@/lib/quizOwnership";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { EditorialCta } from "@/components/ui/editorial-cta";
 import brandLogo from "@/assets/you-be-original-main-lockup.webp";
-import starMark from "@/assets/original-octahedron-mark.png";
+import glowStar from "@/assets/mc-glow-star.png";
 import lapisField from "@/assets/lapis-still-background.webp";
 import { trackPageView, trackCTAClick } from "@/lib/funnelAnalytics";
 import { TESTIMONIALS } from "@/data/testimonials";
@@ -882,7 +882,6 @@ function NotYetScreen({
     <div className="tq-notyet-reveal">
       <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.ext.chapter.eyebrow") as string}</p>
       <h2 className="tq-stage-name tq-stage-name--compact">{stageNames[String(stage)]}</h2>
-      <img className="tq-ext-mark" src={starMark} alt="" aria-hidden="true" draggable={false} />
       <StageArc stage={stage} stageNames={stageNames} />
     </div>
   );
@@ -1044,7 +1043,6 @@ export function ResultScreen({
         <div className="tq-reveal">
           <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.ext.chapter.eyebrow") as string}</p>
           <h2 className="tq-stage-name">{stageNames[String(answers.stage)]}</h2>
-          <img className="tq-ext-mark" src={starMark} alt="" aria-hidden="true" draggable={false} />
           <StageArc stage={answers.stage} stageNames={stageNames} crossed />
         </div>
 
@@ -1169,7 +1167,6 @@ export function CurrentChapterScreen({
       <div className="tq-reveal">
         <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{t("quiz.ext.chapter.eyebrow") as string}</p>
         <h2 className="tq-stage-name">{stageNames[String(stage)]}</h2>
-        <img className="tq-ext-mark" src={starMark} alt="" aria-hidden="true" draggable={false} />
         <StageArc stage={stage} stageNames={stageNames} />
       </div>
 
@@ -1240,33 +1237,24 @@ export function StageArc({
               crossed && n === 7 ? " is-crossed" : ""
             }`}
           >
-            {n === activeStage && <span className="tq-stage-arc-star">✦</span>}
+            {n === activeStage && (
+              <img
+                className="tq-stage-arc-star"
+                src={glowStar}
+                alt=""
+                aria-hidden={true}
+                draggable={false}
+              />
+            )}
           </span>
         ))}
       </div>
-      {/* Labels mirror the 7-node track exactly (same flex, same order), so
-          each label sits directly under its own dot — the active label lands
-          over the active dot, not spread across the full width. Only the
-          previous / current / next chapters are named; the rest are blank
-          slots that hold their column. nowrap + overflow-visible keeps a long
-          name (e.g. "Coming Into Focus") on one line, centred on its dot. */}
+      {/* Only the active chapter is named, centred under the star. Naming the
+          neighbours as well made three uppercase labels collide on a narrow
+          arc (and clip at the ends for stages 1 and 7); the star already shows
+          the position among the seven, so one centred name is enough. */}
       <div className="tq-stage-arc-labels" role="presentation">
-        {stages.map((n) => {
-          const near = Math.abs(n - activeStage) === 1;
-          const isCurrent = n === activeStage;
-          if (!isCurrent && !near) return null;
-          // Anchor each label at its node's position along the track
-          // (nodes are evenly spaced 0%..100% across 7 dots), centred on it.
-          return (
-            <span
-              key={n}
-              className={`tq-stage-arc-label${isCurrent ? " is-current" : ""}${near ? " is-near" : ""}`}
-              style={{ left: `${((n - 1) / 6) * 100}%` }}
-            >
-              {stageNames[String(n)]}
-            </span>
-          );
-        })}
+        <span className="tq-stage-arc-label is-current">{stageNames[String(activeStage)]}</span>
       </div>
     </div>
   );

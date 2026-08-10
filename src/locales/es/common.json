@@ -7781,12 +7781,12 @@
           "release": "Tus respuestas apuntan a un futuro que puede que ya sea lo bastante visible, y que todavía espera que el rol anterior se haga a un lado."
         },
         "hook": {
-          "form": "Ya construiste ingresos una vez. Empujar más fuerte sobre lo que se detuvo no lo va a reactivar.",
+          "form": "Lo que dejó de funcionar no se reactiva por darte de cabezazos contra la pared hasta agotarte.",
           "coherence": "Tienes piezas reales, y no necesitas matar ninguna. Lo que falta es saber cuál de ellas lidera.",
           "release": "El próximo capítulo está justo ahí. No puede tomar forma mientras el rol anterior sigue tomando tus decisiones.",
           "contact": "Dentro de ti está claro. Todavía no se ha encontrado lo suficiente con el mundo real como para volverse real."
         },
-        "promise": "Una llamada gratuita. Miro dónde estás en realidad, nombro qué está de verdad atascado y te muestro el camino más rápido para salir, conmigo o por tu cuenta. Te vas con tu siguiente paso. Hoy, no dentro de meses."
+        "promise": "¿Te gustaría una llamada gratis donde miramos tu situación exacta, nombramos qué se atascó e identificamos una vía rápida hacia tu nueva forma de ganar dinero?"
       },
       "preparation": {
         "heading": "Para que pueda prepararme para la conversación…",
@@ -7874,7 +7874,7 @@
       "labels": {
         "whatsGoingOn": "LO QUE REALMENTE ESTÁ PASANDO",
         "theQuestion": "LA PREGUNTA QUE ESTÁ DEBAJO",
-        "theTrap": "LA TRAMPA QUE MÁS TE CUESTA"
+        "theTrap": "LA COSTOSA TRAMPA EN LA QUE CAE MUCHA GENTE"
       }
     },
     "currentChapter": {
