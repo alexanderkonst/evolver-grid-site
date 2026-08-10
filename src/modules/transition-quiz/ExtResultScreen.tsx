@@ -19,7 +19,6 @@ import { ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { trackCTAClick, trackPageView } from "@/lib/funnelAnalytics";
-import starMark from "@/assets/original-octahedron-mark.png";
 import { type CoreAnswers, type ResultVersion, synthesisFamilyFor } from "./engine";
 import { DIRECTION_CALL_HREF, StageArc, TopTalentSecondary } from "./TransitionQuizPage";
 
@@ -144,7 +143,6 @@ export function ExtResultScreen({
       <div className="tq-reveal tq-ext-act tq-ext-act-read">
         <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>{str(t, "quiz.ext.chapter.eyebrow")}</p>
         <h2 className="tq-stage-name">{stageNames[String(answers.stage)]}</h2>
-        <img className="tq-ext-mark" src={starMark} alt="" aria-hidden="true" draggable={false} />
         <StageArc stage={answers.stage} stageNames={stageNames} />
         <p className="tq-ext-read tq-measure tq-ext-bullseye">{str(t, `quiz.ext.chapter.bullseye.${answers.stage}`)}</p>
       </div>
