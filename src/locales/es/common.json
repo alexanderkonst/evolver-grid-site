@@ -7485,26 +7485,26 @@
       "framing": "Esta pregunta es sobre cómo conviertes tus mayores fortalezas en ingresos. No un producto que construiste para otra persona ni un negocio que empezaste con socios. Tú.",
       "prompt": "¿Ya estás monetizando tu singularidad?",
       "options": {
-        "discovery": "Todavía no sé qué es lo único que aporto.",
-        "recognition": "Sé que aporto algo valioso, pero todavía no puedo formularlo con claridad.",
-        "integration": "Tengo varios proyectos, pero no veo qué los convierte en una sola cosa, ni si lo son.",
-        "vehicle": "Sé cuál es mi próximo capítulo, pero todavía no he creado un negocio a su alrededor, ni lo he posicionado ni vendido.",
-        "transmission": "Ya vendo lo único que aporto, pero la gente solo recibe una fracción de lo que podría obtener de mí si lo supiera.",
-        "scaling": "Estoy monetizando mi singularidad, mi posicionamiento está enfocado, mi embudo funciona. Ahora estoy creciendo y escalando."
+        "discovery": "Todavía no sé qué es lo único que aporto, así que simplemente sigo las oportunidades que veo.",
+        "recognition": "Sé que aporto algo valioso, pero todavía no puedo formularlo con claridad. Cuando pueda, haré lo que quiera.",
+        "integration": "Tengo varios proyectos en marcha, pero no veo qué los convierte en una sola cosa, ni si lo son.",
+        "vehicle": "Sé cuál es la próxima gran cosa para mí, pero todavía no he creado un negocio a su alrededor, ni lo he posicionado ni vendido.",
+        "transmission": "Ya vendo de forma constante lo único que aporto, pero la gente solo recibe una fracción de lo que yo podría darle.",
+        "scaling": "Estoy monetizando mi singularidad con éxito, mi posicionamiento está enfocado, mi embudo funciona. Ahora estoy creciendo y escalando."
       }
     },
     "q3": {
       "order": 3,
-      "prompt": "¿Qué describe mejor el próximo capítulo de tu carrera profesional?",
+      "prompt": "¿Qué viene ahora para ti a nivel profesional?",
       "options": {
-        "current_chapter": "Estoy totalmente enfocado/a en el capítulo actual.",
-        "not_visible": "Tengo poca idea de qué sigue para mí.",
-        "suspected": "Estoy empezando a sospechar que mis proyectos, fortalezas e intereses actuales podrían tener un hilo en común que los une.",
-        "felt": "Sé que mi próximo capítulo está a la vuelta de la esquina, pero todavía no logro captarlo del todo.",
-        "named": "Puedo explicar cuál es mi próximo capítulo, pero todavía no se ha convertido en una oferta o negocio claro.",
-        "built": "Tengo una oferta, pero los clientes todavía no la entienden ni la compran de forma constante.",
-        "working": "Mi oferta ya es lo bastante clara, y personas reales están respondiendo cada vez más.",
-        "delivering": "Dejé de trabajar en crear demanda de clientes; mi foco está en entregar la demanda que ya existe."
+        "current_chapter": "Toda mi atención está en el capítulo actual.",
+        "not_visible": "Todavía no sé qué sigue para mí.",
+        "felt": "Siento que mi próximo salto profesional está a la vuelta de la esquina, pero aún no logro captarlo.",
+        "suspected": "Empiezo a sospechar que mis proyectos, fortalezas e intereses podrían tener un hilo común que los une. Probablemente eso sea lo que sigue.",
+        "named": "Sé cuál es mi próximo capítulo, pero todavía no lo he convertido en una oferta o negocio claro.",
+        "built": "Ya construí una nueva oferta que quiero convertir en mi negocio principal. Pero los clientes no la entienden, o no la compran de forma constante.",
+        "working": "Mi oferta es lo bastante clara, y los clientes empiezan a comprarla.",
+        "delivering": "Mi negocio está maduro: ahora mi foco está en atender la demanda que ya existe, así que dejé de trabajar en generar nueva demanda."
       }
     },
     "result": {
