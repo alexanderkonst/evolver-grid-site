@@ -38,24 +38,29 @@ A **Pulse Event** is any meaningful movement in the field:
 
 ### Pulse Event Card
 
-Every pulse should resolve into this shape:
+**This is the single canonical schema.** The pulse log header and the `pulse`
+skill reference it; do not restate or fork it anywhere else. Every pulse resolves
+into this shape:
 
 ```yaml
-date:
-day_number:
-title:
-source:
-actors:
-what_happened:
-energy_exchanged: # money, trust, proposal, silence, referral, response, commitment, insight, product decision
-affected_holons: # individual, group/team, community, civilization
-affected_artifacts: # CRM, dashboard, holomap, roadmap, proposal, product spec, session log, etc.
-phase_shift_significance: none | minor | major
-next_action:
-staleness_or_contradictions:
+date:            # YYYY-MM-DD
+day:             # Day N (anchor: Day 146 = 2026-08-05)
+pulse:           # short_snake_case_slug
+who:             # actors involved
+what_happened: > # grounded prose; verbatim quotes where they matter
+energy_exchanged: # money, trust, proposal, silence, referral, commitment, insight, product decision
+affected_holons: # surfaces/artifacts updated: CRM, offer ledger, holomap, roadmap, session log, playbook, etc.
+phase_shift_significance: # routine | notable | major
+next_action: >
+staleness_or_contradictions: >
 ```
 
 The event card is the single source. All other updates are projections from it.
+
+*(Schema reconciled Day 150, 2026-08-09: collapsed to the lean form that practice
+settled on — `day`/`pulse`/`who`, `affected_holons` absorbs artifacts,
+`routine|notable|major`. The prior `day_number`/`title`/`source`/`actors`/
+`affected_artifacts` + `none|minor|major` variant is retired to end schema drift.)*
 
 ---
 
