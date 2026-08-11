@@ -93,7 +93,7 @@ export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
  * row instead. Renders nothing until the session is confirmed absent, so there
  * is no flash for authenticated users.
  */
-export const GlobalLanguageSwitcher = () => {
+export const GlobalLanguageSwitcher = ({ always = false }: { always?: boolean }) => {
   const [isGuest, setIsGuest] = useState(false);
 
   useEffect(() => {
@@ -110,7 +110,10 @@ export const GlobalLanguageSwitcher = () => {
     };
   }, []);
 
-  if (!isGuest) return null;
+  // Guest-only by default. The `always` exception (e.g. the quiz funnel entry)
+  // keeps the switcher visible even for signed-in visitors, since language choice
+  // matters most on a cold entry point.
+  if (!isGuest && !always) return null;
   return <LanguageSwitcher className="fixed top-3 right-3 z-50" />;
 };
 
