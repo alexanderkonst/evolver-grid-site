@@ -429,13 +429,16 @@ const GlobalChrome = () => {
   // SiteLogo suppresses itself via its own hidden-paths list.
   const isAlexanderPage = location.pathname === "/alexander" || location.pathname === "/aleksandr";
   // Day 137: the quiz corridor is fully localized (EN/RU/ES), so cold traffic
-  // needs the switcher there — it is the entry point, not a sub-page. Kept the
-  // global pill (guest-only) rather than a bespoke in-page control.
+  // needs the switcher there — it is the entry point, not a sub-page.
+  // Day 150: show it on the quiz for signed-in visitors too (`always`), not just
+  // guests — language choice matters most on this cold entry, and it kept
+  // vanishing for logged-in testers.
+  const isQuiz = /\/quiz(2)?(\/|$)/.test(location.pathname);
 
   return (
     <>
       {!isHeroQuiz && <SiteLogo />}
-      {!isHeroQuiz && !isYouPage && !isAlexanderPage && <GlobalLanguageSwitcher />}
+      {!isHeroQuiz && !isYouPage && !isAlexanderPage && <GlobalLanguageSwitcher always={isQuiz} />}
 
       <TitleManager />
       <ScrollRestoration />
