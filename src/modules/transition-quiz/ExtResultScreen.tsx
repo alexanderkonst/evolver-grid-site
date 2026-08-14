@@ -15,7 +15,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowRight } from "lucide-react";
+import { EditorialCta } from "@/components/ui/editorial-cta";
 import { supabase } from "@/integrations/supabase/client";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { trackCTAClick, trackPageView } from "@/lib/funnelAnalytics";
@@ -99,6 +99,15 @@ export function ExtResultScreen({
     trackCTAClick("quiz_cta_click", bookingContext === "saved" ? "ext_book_saved" : "ext_book_live");
   };
 
+  // The Direction Call CTA uses the homepage CTA grammar (EditorialCta, a
+  // <button>), so it opens the external booking link itself.
+  const openBooking = () => {
+    handleBooking();
+    if (typeof window !== "undefined") {
+      window.open(DIRECTION_CALL_HREF, "_blank", "noopener,noreferrer");
+    }
+  };
+
   const handleShare = () => {
     trackCTAClick("quiz_share", "ext_utility_share");
     if (typeof window === "undefined") return;
@@ -160,24 +169,24 @@ export function ExtResultScreen({
 
       <div className="tq-ext-block tq-ext-trap">
         <p className="tq-ext-label" style={GOLD_TEXT_STYLE}>{str(t, "quiz.ext.labels.theTrap")}</p>
-        <p className="tq-ext-read">{str(t, `quiz.ext.detour.${trapId}.body`)}</p>
+        {str(t, `quiz.ext.detour.${trapId}.body`)
+          .split("\n\n")
+          .map((para, i) => (
+            <p key={i} className="tq-ext-read">{para}</p>
+          ))}
       </div>
 
       {/* ── The offer: hook + promise + one CTA ─────────────────────────── */}
       <hr className="tq-take-what-divider" />
       <div className="tq-ext-offer" ref={offerRef}>
         <p className="tq-ext-read tq-ext-offer-hook">{str(t, `quiz.ext.offer.hook.${family}`)}</p>
-        <p className="tq-ext-read">{str(t, "quiz.ext.offer.promise")}</p>
+        <p className="tq-ext-read tq-ext-offer-promise">{str(t, "quiz.ext.offer.promise")}</p>
         <div className="tq-cta-block tq-ext-cta-block">
-          <a
-            className="tq-editorial-link-cta tq-door-cta"
-            href={DIRECTION_CALL_HREF}
-            target="_blank"
-            rel="noreferrer"
-            onClick={handleBooking}
-          >
-            {str(t, "quiz.ext.offer.ctaPrimary")} <ArrowRight size={16} />
-          </a>
+          <EditorialCta
+            label={str(t, "quiz.ext.offer.ctaPrimary")}
+            onClick={openBooking}
+            ariaLabel={str(t, "quiz.ext.offer.ctaPrimary")}
+          />
           <p className="tq-cta-sub">{str(t, "quiz.ext.offer.ctaMicrocopy")}</p>
         </div>
       </div>

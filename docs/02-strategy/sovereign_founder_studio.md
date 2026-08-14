@@ -1,10 +1,9 @@
-# The Sovereign Founder Studio
+# The Sovereign Founder Collective
 
 > *Concept doc, started Day 154 (August 13, 2026). Emerged from the Marc Winn
 > call (the "become the capital partner, stop selling" reframe) and worked into a
-> bootstrapped, sovereignty-preserving model. Working name only; the exact word is
-> Sasha's to set (seeds: Origination Studio · Founder Studio · The Original Studio ·
-> Sovereign Founders).*
+> bootstrapped, sovereignty-preserving model. Named the **Sovereign Founder
+> Collective** for now (Sasha, Day 154).*
 
 ## One line
 
@@ -71,15 +70,21 @@ years-long mistake being corrected. Filter with the quiz.*
 Every applicant gets a personal read (where they are, why an offer is or is not
 made), so value is delivered regardless.
 
+**Language note: it is a *read*, not a *measurement*.** A compass, not a ruler.
+Calling it "measuring founder-market-fit" invites false precision and Goodhart
+gaming; the instrument *sees* the fit and reads the trajectory (the line, not the
+dot). Say "read" or "see."
+
 ## The containers (value ladder)
 
 1. **Productize Yourself** — $555, skin in the game, the only from-pocket payment.
    Paying it makes it real for the founder; this is deliberate.
-2. **Build → PMF** — ~6-week guided cohort where the playbook is offloaded and the
-   business is built to first sales. Priced at **10% of the first $100k of revenue,
-   capped at $10,000.** Founder keeps 100%. A free onboarding call each, outsourced
-   to trainers (train-the-trainer) as it scales.
-3. **Scale to $1M** — delivered by a team Sasha assembles (automation/ops
+2. **Product Market Fit** — ~6-week guided cohort where the playbook is offloaded
+   and the business is built to first sales. Priced at **10% of the first $50k of
+   revenue, capped at $5,000.** Founder keeps 100%. A free onboarding call each,
+   outsourced to trainers (train-the-trainer) as it scales. (The fives rhyme: $555
+   in, $5k cap, the fifth element.)
+3. **Scale to $500k** — delivered by a team Sasha assembles (automation/ops
    specialists), not by Sasha personally, paid from the founder's ongoing 10%. The
    one-person AI-run company reaches a well-oiled state.
 4. **Node license (opt-in)** — the founder runs the instrument for their own
@@ -101,11 +106,12 @@ made), so value is delivered regardless.
 
 ## Economics (base case)
 
-Per founder: $555 + up to $10,000 (capped, contingent). A founder at $250k revenue
-still owes only the $10k cap, then keeps $239,445. Cohort of 10 with a realistic
-outcome spread throws off ~$52,500 to Sasha over ~12 months, delivered as one
+Per founder: $555 + up to $5,000 (capped, contingent). A founder at $250k revenue
+still owes only the $5k cap, then keeps $245,445. Cohort of 10 with a realistic
+outcome spread throws off ~$35,500 to Sasha over ~12 months, delivered as one
 6-week group program with low marginal cost (group + AI + outsourced onboarding).
-Full model: `sovereign_founder_studio_model.xlsx` (private scratch).
+Model file `sovereign_founder_studio_model.xlsx` (private scratch) uses the older
+$10k/$100k cap and should be re-run at $5k/$50k.
 
 ## The legal blue ocean (radically simple)
 
@@ -121,6 +127,32 @@ Full model: `sovereign_founder_studio_model.xlsx` (private scratch).
   truly cannot do the $555.
 - Blockchain/tokenized investor instrument: possible but heavy securities law;
   parked, not the MVP.
+
+## Capital and sovereignty (when a founder needs the machine)
+
+Sovereignty ladder, cleanest to least clean:
+**bootstrap (no outside capital) > revenue-based financing (temporary, repaid from
+revenue, capped, then gone) > clean loan (temporary, fixed) > equity (permanent,
+sells a piece of the being).**
+
+- **Equity is the least sovereign.** It gives away a permanent piece of the person's
+  life's work to someone whose incentive is exit/liquidity. A marriage you can't
+  divorce, to a partner who wants to sell the house.
+- **A loan is more sovereign than equity:** capital rented, not a piece sold.
+  Returns whole afterward.
+- **Revenue-based financing is the most sovereign form of capital:** it breathes
+  with the business, is capped, and ends. Capital that comes, does its job, leaves.
+- **Golden-age frame:** capital serves the founder's unfolding; it is a tool the
+  sovereign uses and returns, never a claim on the being. Accelerating growth is
+  not the sickness (life accelerates); accelerating the *outer* while starving the
+  *inner* is (the tree: crown must not outgrow roots).
+
+**Recommendation:** bootstrap to PMF (no capital, non-negotiable). After PMF, if a
+*real* growth constraint exists (the cookie machine), introduce sovereignty-
+preserving capital, RBF or a clean loan, direct founder↔lender; Sasha is the scout
+(finder's fee), out of the money flow. Equity only for the conscious venture-scale
+opt-in with a genuinely aligned partner. Loans/RBF beat equity for sovereignty,
+full stop.
 
 ## Closest existing references
 
