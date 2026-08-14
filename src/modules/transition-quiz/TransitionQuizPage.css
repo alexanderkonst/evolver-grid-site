@@ -638,9 +638,13 @@
   border-color: var(--tq-gold);
 }
 
-/* The pointed star image, centred over its node and allowed to overflow the
-   18px box so it reads at full size on the track. */
+/* The pointed star image, absolutely centred on its node's centre (which sits
+   on the track line), overflowing the 18px box so it reads at full size. */
 .tq-stage-arc-star {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 30px;
   max-width: none;
   height: auto;
@@ -1360,6 +1364,14 @@
   color: var(--skin-text-primary, #0a1628);
 }
 
+/* The promise is the call-to-action line — bolder and a touch larger so it
+   carries the eye into the button. */
+.tq-ext-offer-promise {
+  font-weight: 700;
+  font-size: 1.08rem;
+  color: var(--skin-text-primary, #0a1628);
+}
+
 .tq-ext-offer .tq-ext-read + .tq-ext-read {
   margin-top: 12px;
 }
@@ -1377,9 +1389,11 @@
 .tq-ext-utility {
   margin-top: 18px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 28px;
 }
 
 /* Saved-return framing (permalink only). */
