@@ -93,6 +93,8 @@ const CARDS: ProductCardDef[] = [
   { key: "card8", href: "/products/evolution-portal", external: false },
   // Day 146: The Crossing (2-month transition program).
   { key: "card9", href: "/products/crossing", external: false },
+  // Day 155: The Founder Read (investor-facing instrument).
+  { key: "card10", href: "/products/founder-read", external: false },
 ];
 
 const ProductCard = ({ def }: { def: ProductCardDef }) => {

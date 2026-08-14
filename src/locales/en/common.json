@@ -7153,6 +7153,13 @@
       "line": "A 2-month program for the transition you are in.",
       "body": "Your old chapter has ended and the next one has not been named yet. The Crossing accelerates and structures the transition itself, so it takes months instead of years, and you walk it intentionally and consciously instead of drifting through it. Eight weekly sessions, a 2-hour Productize Yourself workshop in the middle, and your uniqueness named exactly by the end.",
       "cta": "See the program"
+    },
+    "card10": {
+      "name": "The Founder Read",
+      "badge": "For investors",
+      "line": "Read and measure founder-market-fit before you write the check.",
+      "body": "You back the person, not the deck, but you read founder-market-fit on gut. The Founder Read is an instrument that reads and measures a founder's degree of founder-market-fit and their exact chapter on the entrepreneur's hero's journey. Built over years, calibrated on hundreds of founders. Test it on a founder you already backed.",
+      "cta": "See the instrument"
     }
   },
   "thebuild": {
@@ -7239,6 +7246,24 @@
     "afterHeading": "What comes after",
     "afterBody": "Planning the next thing now would be premature. In general, after this work I suggest focusing on a hybrid of building your next business and the next stages of transformation. I expect the next stage will land powerfully too, but I suggest not discussing it now: you will have two months of direct experience of what this work gives you, and by then you will know for yourself whether you want that next step.",
     "cta": "Start the conversation"
+  },
+  "founderRead": {
+    "title": "The Founder Read",
+    "seoDescription": "An instrument for investors who back people: read and measure a founder's degree of founder-market-fit and their chapter on the entrepreneur's journey, before you write the check.",
+    "eyebrow": "FOR INVESTORS WHO BACK PEOPLE",
+    "heading": "The Founder Read",
+    "subheading": "Read and measure a founder's market fit, and their chapter on the entrepreneur's journey, before you write the check.",
+    "problemHeading": "The problem",
+    "problemBody": "You invest in the person, not the deck. But you read founder-market-fit on gut, and gut is slow, biased, and hard to teach. The one variable that most predicts whether a founder wins is the one you cannot yet see clearly.",
+    "whatHeading": "What it is",
+    "whatBody": "An instrument that reads and measures two things about a founder. First, their degree of founder-market-fit: how precisely their business emanates from who they uniquely are. Second, their exact chapter on the entrepreneur's hero's journey: where they are on the arc, and what comes next. Built over years, calibrated on hundreds of founders.",
+    "howHeading": "How it works",
+    "howBody": "The founder spends a few minutes with the instrument. It articulates their uniqueness with precision, places them on the seven-chapter arc, and reads their readiness. You get a clear, structured read instead of a hunch.",
+    "getHeading": "What you get",
+    "get1": "A sharper read on the founder, the variable you already bet on, now legible.",
+    "get2": "A degree of founder-market-fit you can compare across founders.",
+    "get3": "Access to pre-vetted, actively-developed founders from the Sovereign Founder Collective.",
+    "cta": "Book a call"
   },
   "hostpage": {
     "seoTitle": "Host a Zone of Genius Workshop for Your Community",
