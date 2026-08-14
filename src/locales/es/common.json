@@ -7146,6 +7146,13 @@
       "line": "Un programa de 2 meses para la transición en la que estás.",
       "body": "Tu capítulo anterior terminó y el siguiente aún no tiene nombre. El Cruce acelera y estructura la transición misma, para que tome meses en lugar de años, y la atravieses con intención y conciencia en lugar de a la deriva. Ocho sesiones semanales, un taller Productize Yourself de 2 horas a mitad del programa, y tu unicidad nombrada con exactitud al final.",
       "cta": "Ver el programa"
+    },
+    "card10": {
+      "name": "The Founder Read",
+      "badge": "Para inversionistas",
+      "line": "Lee y mide el founder-market fit antes de firmar el cheque.",
+      "body": "Inviertes en la persona, no en el deck, pero lees el founder-market fit a ojo. The Founder Read es un instrumento que lee y mide el grado de founder-market fit de un fundador y su capítulo exacto en el viaje del héroe del emprendedor. Construido a lo largo de años, calibrado con cientos de fundadores. Pruébalo con un fundador en el que ya invertiste.",
+      "cta": "Ver el instrumento"
     }
   },
   "thebuild": {
@@ -7232,6 +7239,24 @@
     "afterHeading": "Qué viene después",
     "afterBody": "Planear lo siguiente ahora sería prematuro. En general, después de este trabajo sugiero enfocarse en un híbrido entre construir tu próximo negocio y las siguientes etapas de transformación. Espero que la siguiente etapa también aterrice con fuerza, pero sugiero no discutirla ahora: tendrás dos meses de experiencia directa de lo que este trabajo te da, y para entonces sabrás por ti mismo si quieres ese siguiente paso.",
     "cta": "Iniciar la conversación"
+  },
+  "founderRead": {
+    "title": "The Founder Read",
+    "seoDescription": "Un instrumento para inversionistas que apuestan por personas: lee y mide el grado de founder-market fit de un fundador y su capítulo en el viaje del emprendedor, antes de firmar el cheque.",
+    "eyebrow": "PARA INVERSIONISTAS QUE APUESTAN POR PERSONAS",
+    "heading": "The Founder Read",
+    "subheading": "Lee y mide el market fit de un fundador, y su capítulo en el viaje del emprendedor, antes de firmar el cheque.",
+    "problemHeading": "El problema",
+    "problemBody": "Inviertes en la persona, no en el deck. Pero lees el founder-market fit a ojo, y el ojo es lento, sesgado y difícil de enseñar. La variable que más predice si un fundador gana es justo la que todavía no puedes ver con claridad.",
+    "whatHeading": "Qué es",
+    "whatBody": "Un instrumento que lee y mide dos cosas sobre un fundador. Primero, su grado de founder-market fit: qué tan precisamente su negocio emana de quién es de manera única. Segundo, su capítulo exacto en el viaje del héroe del emprendedor: dónde está en el arco, y qué sigue. Construido a lo largo de años, calibrado con cientos de fundadores.",
+    "howHeading": "Cómo funciona",
+    "howBody": "El fundador pasa unos minutos con el instrumento. Articula su unicidad con precisión, lo ubica en el arco de siete capítulos, y lee su nivel de preparación. Obtienes una lectura clara y estructurada en lugar de una corazonada.",
+    "getHeading": "Qué obtienes",
+    "get1": "Una lectura más nítida del fundador, la variable en la que ya apostabas, ahora legible.",
+    "get2": "Un grado de founder-market fit que puedes comparar entre fundadores.",
+    "get3": "Acceso a fundadores pre-evaluados y en desarrollo activo del Sovereign Founder Collective.",
+    "cta": "Agendar una llamada"
   },
   "hostpage": {
     "seoTitle": "Organiza un taller de Zona de Genialidad para tu comunidad",
