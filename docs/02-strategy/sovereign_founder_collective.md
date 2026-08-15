@@ -49,7 +49,7 @@ entrepreneurial spine).
 
 Common denominator: **considering their next venture, and ripe to move.**
 
-**Readiness gates (measured by the quiz, not guessed):** surrendered to the search ·
+**Readiness gates (read by the quiz, not guessed):** surrendered to the search ·
 can find the $555 (means) · buying frame open · chronic pull not a whim · consent as
 pull, not push.
 
@@ -60,6 +60,25 @@ coachable · not a tire-kicker.
 wants capital not clarity · no entrepreneurial spine · won't put down the $555 ·
 wants to be talked into it. *Not everybody benefits, and pretending they do is the
 years-long mistake being corrected. Filter with the quiz.*
+
+### Field refinements (learned live, newest on top)
+
+**Day 155 — experience is a hard gate; the very young are usually in their *first*
+chapter, not their next.** The correct test is now stricter: an experienced founder
+or operator, substantial history behind them, a real transition or next-venture
+moment, and a concrete reason the Direction Call could lead to a Sovereign Founder
+Collective engagement. Students and very early builders are out unless they have an
+unusually clear commercial situation and a credible path to act. (Learned when
+Boardy surfaced two very young people: the value would flow one way, a free
+mentorship call, which is neither affordable now nor the goal. Nothing wrong with
+the young, and from one angle younger is even better; but "next chapter"
+presupposes a first one.)
+
+**The upstream-host exception.** A match like Ryan is a fit for a different reason:
+he sits *upstream* of the client funnel, a live community of ~30 solo founders and a
+possible cohort environment. That creates mutual value even if he never becomes a
+studio participant. Community leaders with a cohort are valuable as hosts/nodes
+regardless of whether they enroll.
 
 ## The read (how fit is measured)
 
