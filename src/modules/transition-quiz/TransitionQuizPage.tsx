@@ -1249,12 +1249,23 @@ export function StageArc({
           </span>
         ))}
       </div>
-      {/* Only the active chapter is named, centred under the star. Naming the
-          neighbours as well made three uppercase labels collide on a narrow
-          arc (and clip at the ends for stages 1 and 7); the star already shows
-          the position among the seven, so one centred name is enough. */}
-      <div className="tq-stage-arc-labels" role="presentation">
-        <span className="tq-stage-arc-label is-current">{stageNames[String(activeStage)]}</span>
+      {/* All seven chapters named as a legend beneath the arc, current one
+          gold and bold. Seeing the full sequence (not just your own name)
+          is the point: it shows the journey is a real, ordered map, and
+          places you on it between a named past and a named next chapter.
+          A wrapping flex row stays legible on every width; absolute
+          per-dot labels collided and clipped at the ends. */}
+      <div className="tq-stage-arc-legend" role="list" aria-label="The seven chapters">
+        {stages.map((n) => (
+          <span
+            key={n}
+            role="listitem"
+            aria-current={n === activeStage ? "step" : undefined}
+            className={`tq-stage-arc-legend-item${n === activeStage ? " is-current" : ""}`}
+          >
+            {stageNames[String(n)]}
+          </span>
+        ))}
       </div>
     </div>
   );
