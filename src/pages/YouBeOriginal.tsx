@@ -134,12 +134,6 @@ export default function YouBeOriginal() {
         <p className="you-parents-body">{t("youpage.parentsBody")}</p>
       </section>
 
-      <section className="you-after">
-        <p className="you-after-label">{t("youpage.afterLabel")}</p>
-        <h3>{t("youpage.afterTitle")}</h3>
-        <p>{t("youpage.afterBody")}</p>
-      </section>
-
       <section className="you-final">
         <img src={logo} alt="YOU — be original" />
         <p>{t("youpage.finalLabel")}</p>
