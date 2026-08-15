@@ -1225,48 +1225,42 @@ export function StageArc({
   const activeStage = crossed ? 7 : stage;
   const stages = [1, 2, 3, 4, 5, 6, 7];
 
+  // Vertical stepper. Seven chapter names never fit legibly on one
+  // horizontal line (Day 148 — Sasha: "the names are crammed"); the modern
+  // pattern for a named multi-stage journey with long labels is a vertical
+  // timeline (one row per stage, position marked). It stays legible at any
+  // width, names all seven, and places the person between a named past and
+  // a named next.
   return (
-    <div className="tq-stage-arc" aria-label={`Stage ${activeStage} of 7`}>
-      <div className="tq-stage-arc-track" role="list">
-        {stages.map((n) => (
-          <span
+    <div
+      className="tq-stage-steps"
+      role="list"
+      aria-label={`The seven chapters, you are at stage ${activeStage} of 7`}
+    >
+      {stages.map((n) => {
+        const state = n < activeStage ? "past" : n === activeStage ? "current" : "future";
+        return (
+          <div
             key={n}
             role="listitem"
             aria-current={n === activeStage ? "step" : undefined}
-            className={`tq-stage-arc-node${n === activeStage ? " is-active" : ""}${
-              crossed && n === 7 ? " is-crossed" : ""
-            }`}
+            className={`tq-stage-step is-${state}`}
           >
-            {n === activeStage && (
-              <img
-                className="tq-stage-arc-star"
-                src={glowStar}
-                alt=""
-                aria-hidden={true}
-                draggable={false}
-              />
-            )}
-          </span>
-        ))}
-      </div>
-      {/* All seven chapters named as a legend beneath the arc, current one
-          gold and bold. Seeing the full sequence (not just your own name)
-          is the point: it shows the journey is a real, ordered map, and
-          places you on it between a named past and a named next chapter.
-          A wrapping flex row stays legible on every width; absolute
-          per-dot labels collided and clipped at the ends. */}
-      <div className="tq-stage-arc-legend" role="list" aria-label="The seven chapters">
-        {stages.map((n) => (
-          <span
-            key={n}
-            role="listitem"
-            aria-current={n === activeStage ? "step" : undefined}
-            className={`tq-stage-arc-legend-item${n === activeStage ? " is-current" : ""}`}
-          >
-            {stageNames[String(n)]}
-          </span>
-        ))}
-      </div>
+            <span className="tq-stage-step-marker">
+              {n === activeStage && (
+                <img
+                  className="tq-stage-step-star"
+                  src={glowStar}
+                  alt=""
+                  aria-hidden={true}
+                  draggable={false}
+                />
+              )}
+            </span>
+            <span className="tq-stage-step-name">{stageNames[String(n)]}</span>
+          </div>
+        );
+      })}
     </div>
   );
 }
