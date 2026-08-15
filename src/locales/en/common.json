@@ -7663,7 +7663,13 @@
           "6": "The next chapter is forming. You can feel it, you just can't say it clearly enough yet to stand behind it in public.",
           "7": "It's real now. You're building a life around it. Not every question is answered, and that's how building works: the evidence catches up to the decision you already made."
         },
-        "arcNote": "People may move back and forth across this territory. This is the part carrying the most weight now."
+        "arcNote": "People may move back and forth across this territory. This is the part carrying the most weight now.",
+        "journeyRead": {
+          "4": "Step back, and what feels like a personal failure is a known turn in the road. You came through The Stuckness, where working harder still felt like the answer. Now you are at The Breakdown, the hinge the whole journey turns on, where the old engine stops for real. Ahead lies The Free Fall, the open space between chapters. What carries you across it is naming what your next chapter is truly built on.",
+          "5": "Step back, and this is not you falling apart. The Breakdown is behind you, the new way has not formed yet, and so you are in The Free Fall, the stretch between chapters where savings thin and old titles fade. This is the ground clearing, not the end of you. Ahead is Metamorphosis, and it arrives the moment you can stand in the in-between without grabbing the nearest lifeboat.",
+          "6": "Step back, and you can see it: the falling is over and something new is taking shape. This is Metamorphosis. You can feel the next version of you, even if you cannot say it cleanly yet. Ahead lies The New You and The New Chapter, and it turns real only when this forming vision meets enough of the world to be believed. The work now is to make it concrete.",
+          "7": "Step back, and the arc completes itself. You came through Metamorphosis, and the new direction is real: this is The New You and The New Chapter. You are building again, the way you once did in Career-Building, only now it is conscious and truly yours. Ahead is the same journey at a higher octave. The task is to build the structure that lets it scale without losing the truth at its center."
+        }
       },
       "evidence": {
         "heading": "What your answers revealed",

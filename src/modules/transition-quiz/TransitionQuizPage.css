@@ -653,22 +653,41 @@
   pointer-events: none;
 }
 
-/* One label: the active chapter, centred under the star. */
-.tq-stage-arc-labels {
+/* The seven-chapter legend beneath the arc: every chapter named, current
+   one gold and bold, dot-separated, wrapping to as many lines as the width
+   needs. This is what turns the arc into visible proof of a real, ordered
+   journey. */
+.tq-stage-arc-legend {
   margin-top: 14px;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  row-gap: 4px;
+  max-width: 460px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.tq-stage-arc-label {
-  white-space: nowrap;
-  font: 600 0.62rem/1.1 "DM Sans", sans-serif;
-  letter-spacing: 0.14em;
+.tq-stage-arc-legend-item {
+  font: 500 0.6rem/1.35 "DM Sans", sans-serif;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: var(--skin-text-secondary, #33415c);
+  opacity: 0.5;
+  white-space: nowrap;
 }
 
-.tq-stage-arc-label.is-current {
+.tq-stage-arc-legend-item:not(:last-child)::after {
+  content: "·";
+  margin: 0 7px;
+  opacity: 0.6;
+}
+
+.tq-stage-arc-legend-item.is-current {
   font-weight: 700;
   color: #7a5108;
+  opacity: 1;
 }
 
 .tq-stage-arc-label.is-near {
@@ -1394,6 +1413,14 @@
   align-items: center;
   justify-content: center;
   gap: 28px;
+}
+
+/* Reset the buttons' own auto side-margins (e.g. .tq-retake's `margin:
+   18px auto 0`), which in a flex row absorb free space and shove the two
+   links to opposite sides instead of centering them as a pair. */
+.tq-ext-utility .tq-link-quiet,
+.tq-ext-utility .tq-retake {
+  margin: 0;
 }
 
 /* Saved-return framing (permalink only). */

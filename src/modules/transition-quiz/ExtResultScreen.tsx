@@ -159,7 +159,10 @@ export function ExtResultScreen({
       {/* ── The read: three labelled one-idea blocks ────────────────────── */}
       <div className="tq-ext-block">
         <p className="tq-ext-label" style={GOLD_TEXT_STYLE}>{str(t, "quiz.ext.labels.whatsGoingOn")}</p>
-        <p className="tq-ext-read">{str(t, `quiz.ext.synthesis.${family}`)}</p>
+        {/* The zoom-out read: locate the person on the seven-chapter journey
+            (named past, current hinge, named next), keyed by stage. The
+            family-specific insight lives in the question and trap below. */}
+        <p className="tq-ext-read">{str(t, `quiz.ext.chapter.journeyRead.${answers.stage}`)}</p>
       </div>
 
       <div className="tq-ext-block">

@@ -7656,7 +7656,13 @@
           "6": "El próximo capítulo ya se está formando. Lo sientes, solo que todavía no puedes decirlo con la claridad suficiente para sostenerlo en público.",
           "7": "Ahora es real. Estás construyendo una vida alrededor de esto. No todas las preguntas tienen respuesta, y así funciona construir: la evidencia alcanza a la decisión que ya tomaste."
         },
-        "arcNote": "Uno puede moverse hacia adelante y hacia atrás por este territorio. Esta es la parte que hoy pesa más."
+        "arcNote": "Uno puede moverse hacia adelante y hacia atrás por este territorio. Esta es la parte que hoy pesa más.",
+        "journeyRead": {
+          "4": "Toma distancia, y lo que se siente como un fracaso personal es un giro conocido del camino. Pasaste por El estancamiento, donde trabajar más duro todavía parecía la respuesta. Ahora estás en El colapso, la bisagra sobre la que gira todo el viaje, donde el viejo motor se detiene de verdad. Más adelante está La caída libre, el espacio abierto entre capítulos. Lo que te lleva al otro lado es nombrar sobre qué se construye de verdad tu próximo capítulo.",
+          "5": "Toma distancia, y esto no es que te estés cayendo a pedazos. El colapso quedó atrás, la nueva forma aún no se ha formado, y por eso estás en La caída libre, el tramo entre capítulos donde los ahorros se adelgazan y los viejos títulos se desvanecen. Es el terreno despejándose, no tu final. Más adelante está La metamorfosis, y llega en el momento en que puedes sostenerte en el intervalo sin aferrarte al primer bote salvavidas.",
+          "6": "Toma distancia, y puedes verlo: la caída terminó y algo nuevo está tomando forma. Esto es La metamorfosis. Sientes la próxima versión de ti, aunque todavía no puedas nombrarla con claridad. Más adelante está Tu nuevo yo y el nuevo capítulo, y se vuelve real solo cuando esta visión en formación se encuentra con suficiente mundo como para ser creída. El trabajo ahora es hacerla concreta.",
+          "7": "Toma distancia, y el arco se completa. Pasaste por La metamorfosis, y la nueva dirección es real: esto es Tu nuevo yo y el nuevo capítulo. Estás construyendo de nuevo, como lo hiciste una vez en Construcción de carrera, solo que ahora es consciente y de verdad tuyo. Más adelante está el mismo viaje en una octava más alta. La tarea es construir la estructura que le permita escalar sin perder la verdad en su centro."
+        }
       },
       "evidence": {
         "heading": "Lo que revelaron tus respuestas",
