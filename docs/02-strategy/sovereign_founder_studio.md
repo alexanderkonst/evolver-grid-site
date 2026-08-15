@@ -112,11 +112,11 @@ dot). Say "read" or "see."
 - **Investor (optional, later)** — access to pre-vetted, actively-developed
   founders; when a graduate opts to raise, a direct founder↔investor deal that
   Sasha sources for a finder's fee. No fund, no pooling.
-- **Community host / node (Oyi, Brenda, Club DAO)** — the deal-flow engine that
-  dissolves the distribution bottleneck. Brings a cohort of ripe members, earns a
-  referral slice, community gets activated (dormant potential → businesses →
-  inter-node trade). Lifecycle capstone: graduates become the next hosts and
-  nodes, the regenerative loop.
+- **Community host / node** — a community or network leader who hosts a cohort of
+  their members; the deal-flow engine that dissolves the distribution bottleneck.
+  Brings a cohort of ripe members, earns a referral slice, community gets activated
+  (dormant potential → businesses → inter-node trade). Lifecycle capstone: graduates
+  become the next hosts and nodes, the regenerative loop.
 
 ## Economics (base case)
 
