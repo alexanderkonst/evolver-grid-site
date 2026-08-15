@@ -584,115 +584,97 @@
 /* Item 5 (visual harmony pass): ~20% more size + more vertical air — the
    trajectory arc is the emotional centerpiece of the result, it should
    claim more presence than a footnote-scale progress widget. */
-.tq-stage-arc {
+/* Vertical stepper: the seven chapters as a timeline, one row per stage,
+   the current one marked with the pointed star and gold, past stages filled,
+   upcoming stages hollow. Replaces the horizontal arc, whose seven long
+   names crammed and clipped. Legible at any width. */
+.tq-stage-steps {
   position: relative;
-  margin: 26px auto 32px;
-  max-width: 408px;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 100%;
+  margin: 22px auto 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.tq-stage-arc-track {
+/* The connecting spine, running through the marker centres. */
+.tq-stage-steps::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 15px;
+  bottom: 15px;
+  width: 1px;
+  background: rgba(160, 109, 8, 0.28);
+  z-index: 0;
+}
+
+.tq-stage-step {
   position: relative;
   z-index: 1;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 17px;
+  gap: 13px;
+  min-height: 27px;
 }
 
-.tq-stage-arc-track::before {
-  content: "";
-  position: absolute;
-  left: 7px;
-  right: 7px;
-  top: 50%;
-  height: 1px;
-  background: rgba(160, 109, 8, 0.28);
-  transform: translateY(-50%);
-}
-
-.tq-stage-arc-node {
+.tq-stage-step-marker {
   position: relative;
-  z-index: 1;
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(160, 109, 8, 0.4);
-  background: rgba(255, 253, 247, 0.9);
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
   display: grid;
   place-items: center;
 }
 
-/* Active node: the dot gives way to the pointed star, which is the position
-   indicator itself. Keep the 18px box so the track spacing is unchanged; make
-   it transparent so only the star reads. */
-.tq-stage-arc-node.is-active {
-  width: 18px;
-  height: 18px;
-  border-color: transparent;
-  background: transparent;
-  box-shadow: none;
-  overflow: visible;
+/* Bead for past / upcoming stages; a paper ring masks the spine behind it. */
+.tq-stage-step-marker::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(160, 109, 8, 0.45);
+  background: rgba(255, 253, 247, 0.95);
+  box-shadow: 0 0 0 4px var(--skin-panel-bg, #f4efe3);
 }
 
-.tq-stage-arc-node.is-crossed {
+.tq-stage-step.is-past .tq-stage-step-marker::before {
+  background: var(--tq-gold-gradient);
   border-color: var(--tq-gold);
 }
 
-/* The pointed star image, absolutely centred on its node's centre (which sits
-   on the track line), overflowing the 18px box so it reads at full size. */
-.tq-stage-arc-star {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 30px;
+/* Current stage: the star replaces the bead. */
+.tq-stage-step.is-current .tq-stage-step-marker::before {
+  display: none;
+}
+
+.tq-stage-step-star {
+  width: 26px;
   max-width: none;
   height: auto;
-  display: block;
   filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.55));
   pointer-events: none;
 }
 
-/* The seven-chapter legend beneath the arc: every chapter named, current
-   one gold and bold, dot-separated, wrapping to as many lines as the width
-   needs. This is what turns the arc into visible proof of a real, ordered
-   journey. */
-.tq-stage-arc-legend {
-  margin-top: 14px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: baseline;
-  row-gap: 4px;
-  max-width: 460px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.tq-stage-arc-legend-item {
-  font: 500 0.6rem/1.35 "DM Sans", sans-serif;
-  letter-spacing: 0.08em;
+.tq-stage-step-name {
+  font: 500 0.72rem/1.2 "DM Sans", sans-serif;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--skin-text-secondary, #33415c);
   opacity: 0.5;
-  white-space: nowrap;
 }
 
-.tq-stage-arc-legend-item:not(:last-child)::after {
-  content: "·";
-  margin: 0 7px;
-  opacity: 0.6;
+.tq-stage-step.is-past .tq-stage-step-name {
+  opacity: 0.72;
 }
 
-.tq-stage-arc-legend-item.is-current {
+.tq-stage-step.is-current .tq-stage-step-name {
   font-weight: 700;
+  font-size: 0.82rem;
   color: #7a5108;
   opacity: 1;
-}
-
-.tq-stage-arc-label.is-near {
-  color: var(--skin-text-secondary, #33415c);
-  opacity: 0.42;
 }
 
 /* ── Body copy ─────────────────────────────────────────────────────────── */
@@ -1389,6 +1371,13 @@
   font-weight: 700;
   font-size: 1.08rem;
   color: var(--skin-text-primary, #0a1628);
+}
+
+/* Extra space above the promise so it doesn't crowd the closing diagnostic
+   line before it. Selector is deliberately specific enough to beat the
+   generic `.tq-ext-read + .tq-ext-read` 12px sibling gap. */
+.tq-ext-offer .tq-ext-read + .tq-ext-read.tq-ext-offer-promise {
+  margin-top: 28px;
 }
 
 .tq-ext-offer .tq-ext-read + .tq-ext-read {
