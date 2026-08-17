@@ -51,6 +51,8 @@ import {
   workStageClauseKey,
 } from "./engine";
 import { ExtResultScreen } from "./ExtResultScreen";
+import { SaveMyRead } from "./SaveMyRead";
+
 import "./TransitionQuizPage.css";
 
 type Screen =
@@ -296,7 +298,14 @@ const TransitionQuizPage = () => {
     if (screen === "notYet" && stage && loggedRef.current !== `notyet-${stage}`) {
       loggedRef.current = `notyet-${stage}`;
       rememberLocalQuizResult();
-      logCompletion({ stage, not_yet: true, uniqueness_category: uniqueness ?? null }).then((res) => {
+      logCompletion({
+        stage,
+        not_yet: true,
+        uniqueness_category: uniqueness ?? null,
+        // Early endings are a door too — without this the dataset can't tell
+        // "no route recorded" from "not-yet ending shown" (2026-08-17 audit).
+        route_shown: "notYet",
+      }).then((res) => {
         const id = res && "data" in res ? (res.data as { id?: string } | null)?.id : undefined;
         if (id) {
           setResultId(id);
@@ -315,7 +324,10 @@ const TransitionQuizPage = () => {
         emerging_work_stage: coreAnswers.emergingWorkStage,
         direction_call_shown: routing.showBuyingFrame,
         result_template: resultTemplate,
-        route_shown: routing.showBuyingFrame ? null : routing.route,
+        // Always record the route actually rendered. When the Buying Frame
+        // screen follows, the update branch below refines it to the
+        // post-answer route on the SAME row.
+        route_shown: routing.route,
       }).then((res) => {
         const id = res && "data" in res ? (res.data as { id?: string } | null)?.id : undefined;
         if (id) {
@@ -325,7 +337,8 @@ const TransitionQuizPage = () => {
       });
       trackPageView("quiz_result", `quiz_result_${resultTemplate}`);
     }
-  }, [screen, stage, coreAnswers, routing, logCompletion, rememberAndClaim]);
+  }, [screen, stage, coreAnswers, routing, logCompletion, rememberAndClaim, uniqueness]);
+
 
   // Log the Buying Frame answer + final route onto the SAME row as the
   // result completion above (data hygiene #22, 2026-07-30): one person's
@@ -669,84 +682,11 @@ function Q1Screen({ t, onPick }: { t: (k: string, o?: Record<string, unknown>) =
   );
 }
 
-// ── Save my read (permalink) + Recognition Delta — Quiz v2.1 ────────────
-// Shared across every result variant (full read, not-yet, peer ending).
-// Both degrade silently: no id yet (save-quiz-result hasn't returned, or
-// the environment doesn't have it deployed) means neither widget renders.
+// ── Save my read (permalink) ────────────────────────────────────────────
+// Lives in ./SaveMyRead so ExtResultScreen can use it without a cycle.
 
-function SaveMyRead({
-  t,
-  resultId,
-  stage,
-}: {
-  t: (k: string, o?: Record<string, unknown>) => unknown;
-  resultId: string | null;
-  stage: Stage | null;
-}) {
-  const { i18n } = useTranslation();
-  const locale = i18n.language;
-  // Day 139 (Sasha 2026-07-30): "Save my read" now asks for an email and
-  // sends the permalink there, matching the map-email pattern elsewhere in
-  // the quiz. The copy-link path stays as a quiet secondary once sent.
-  const [open, setOpen] = useState(false);
-  const [emailValue, setEmailValue] = useState("");
-  const [sent, setSent] = useState(false);
 
-  if (!resultId || typeof window === "undefined") return null;
 
-  const permalink = `${window.location.origin}/quiz/r/${resultId}`;
-
-  const handleSend = () => {
-    const trimmed = emailValue.trim().toLowerCase();
-    if (!trimmed || !trimmed.includes("@")) return;
-    trackCTAClick("quiz_permalink_saved", "save_my_read_email");
-    // Fire-and-forget, same graceful contract as the map email capture.
-    supabase.functions
-      .invoke("save-quiz-email", {
-        body: { email: trimmed, stage, locale, source: `save_read:${resultId}` },
-      })
-      .catch(() => {});
-    setSent(true);
-  };
-
-  return (
-    <div className="tq-save-read" style={{ marginTop: 14 }}>
-      {!open && !sent && (
-        <button
-          type="button"
-          className="tq-link-quiet"
-          onClick={() => setOpen(true)}
-          style={{ background: "none", border: "none", cursor: "pointer" }}
-        >
-          {t("quiz.saveRead.label") as string}
-        </button>
-      )}
-      {open && !sent && (
-        <div className="tq-email-row">
-          <input
-            type="email"
-            className="tq-email-input"
-            value={emailValue}
-            placeholder={t("quiz.notYet.settled.emailPlaceholder") as string}
-            onChange={(e) => setEmailValue(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleSend()}
-          />
-          <button type="button" className="tq-email-cta" onClick={handleSend}>
-            {t("quiz.saveRead.sendCta") as string}
-          </button>
-        </div>
-      )}
-      {sent && (
-        <p className="tq-sub tq-quiet-line">
-          {t("quiz.saveRead.sentConfirmation") as string}{" "}
-          <a className="tq-link-quiet" href={permalink}>
-            {t("quiz.saveRead.orOpenLink") as string}
-          </a>
-        </p>
-      )}
-    </div>
-  );
-}
 
 // Recognition Delta widget removed (Sasha, Day 142): the reflection ask ate
 // prime real estate on the read and hedged it ("a halfway excuse"). The

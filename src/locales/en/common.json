@@ -7622,11 +7622,13 @@
     },
     "saveRead": {
       "label": "Save my read",
+      "invite": "Want this read to stay with you? I'll send it as a link you can come back to.",
       "confirmation": "Link copied. It's yours to keep.",
       "sendCta": "Email me my read",
       "sentConfirmation": "On its way to your inbox.",
       "orOpenLink": "Or open it now"
     },
+
     "recognitionDelta": {
       "prompt": "How accurately did this name what you've been living?",
       "options": {

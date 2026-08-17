@@ -1,0 +1,1 @@
+DELETE FROM public.funnel_events WHERE session_id = 'smoke';
