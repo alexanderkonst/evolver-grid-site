@@ -103,11 +103,18 @@ interface QueuedEvent {
   referrer: string;
 }
 
+// The queue is a courtesy for a dropped connection, not an archive. Before
+// funnel_events existed every insert failed and the re-enqueue path grew the
+// stored array without bound (2026-08-17 audit). Cap it, drop the oldest
+// first, and cap the number of flush attempts a single event survives.
+const QUEUE_MAX = 50;
+const MAX_ATTEMPTS = 3;
+
 const enqueue = (event: QueuedEvent) => {
   try {
     const queue: QueuedEvent[] = JSON.parse(localStorage.getItem(QUEUE_KEY) || "[]");
     queue.push(event);
-    localStorage.setItem(QUEUE_KEY, JSON.stringify(queue));
+    localStorage.setItem(QUEUE_KEY, JSON.stringify(queue.slice(-QUEUE_MAX)));
   } catch {
     // Silently fail — analytics should never break UX
   }
@@ -119,22 +126,29 @@ const flushQueue = async () => {
     if (!raw) return;
     const queue: QueuedEvent[] = JSON.parse(raw);
     if (queue.length === 0) return;
-    
+
     localStorage.removeItem(QUEUE_KEY);
-    
+
     const { error } = await (supabase as any)
       .from("funnel_events")
-      .insert(queue);
-    
+      .insert(queue.map(({ attempts: _attempts, ...row }) => row));
+
     if (error) {
-      // Re-enqueue on failure
+      // Re-enqueue on failure, but let events age out instead of accumulating.
+      const retryable = queue
+        .map((e) => ({ ...e, attempts: (e.attempts ?? 0) + 1 }))
+        .filter((e) => (e.attempts ?? 0) < MAX_ATTEMPTS);
       const existing = JSON.parse(localStorage.getItem(QUEUE_KEY) || "[]");
-      localStorage.setItem(QUEUE_KEY, JSON.stringify([...queue, ...existing]));
+      localStorage.setItem(
+        QUEUE_KEY,
+        JSON.stringify([...retryable, ...existing].slice(-QUEUE_MAX)),
+      );
     }
   } catch {
     // Silently fail
   }
 };
+
 
 // ─── Core Tracking Function ─────────────────────────────────────
 
