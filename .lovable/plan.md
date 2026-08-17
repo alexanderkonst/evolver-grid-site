@@ -1,39 +1,41 @@
-## Short answer
+# Квиз: починить измерение и дверь после результата
 
-Yes — but not the whole domain. Lovable never takes over `findyourtoptalent.com` itself. It delegates **one subdomain** to Lovable's nameservers with two NS records added at GoDaddy, and manages SPF/DKIM/MX inside that delegated zone. Your website, root SPF, and everything else in the zone stay untouched.
+Проверено по базе и коду. Ниже — только то, что подтверждено запросами и чтением файлов.
 
-One constraint that decides the subdomain name: `notify.findyourtoptalent.com` is already in use by Resend (verified DKIM + SES SPF, and it is what all 16 app-email functions send from). Lovable NS delegation on that exact host would break Resend. So the new auth-email subdomain must be a different one — **`mail.findyourtoptalent.com`**.
+## Что действительно сломано
 
-End state:
+**1. Воронка не пишется вообще.** Код шлёт события `quiz_entry / quiz_q1 / quiz_q2 / quiz_q3 / quiz_result / quiz_cta_click` в таблицу `funnel_events`. Такой таблицы в базе нет. Insert падает, событие уходит в очередь в localStorage и остаётся там навсегда (при следующей попытке flush снова падает и очередь только растёт). Поэтому мы не знаем ни сколько людей вошло в квиз, ни где они отваливаются — только 277 тех, кто дошёл до конца.
 
-```text
-findyourtoptalent.com            → unchanged (site, root SPF)
-notify.findyourtoptalent.com     → Resend, app emails (16 functions)  [unchanged]
-mail.findyourtoptalent.com       → Lovable, auth emails               [new]
-notify.aleksandrkonstantinov.com → retired once auth is live          [cleanup]
-```
+**2. Email-момент почти невидим.** Единственная точка сбора почты — тихая текстовая ссылка «Save my read» под результатом (`SaveMyRead` в `TransitionQuizPage.tsx`). Результат: 277 прохождений → 1 подписка за 20 дней. Колонка `email` в `transition_quiz_results` не заполняется никогда — почта живёт отдельно в `quiz_email_signups`, связи с ридом нет, кроме строки `source: save_read:<id>`.
 
-## What I do (Lovable side)
+**3. Строка результата неполная у большинства.** `route_shown` пуст у 236 из 277 — он пишется только когда показан экран Buying Frame или ранняя концовка. `uniqueness_category` пуст у 52 (это отвалы на Q2 в первые дни, до фикса блокировки). То есть по «какую дверь человек реально увидел» данных почти нет.
 
-1. Open the email-domain setup dialog for `findyourtoptalent.com` with subdomain `mail`, which generates the exact NS pair for your zone.
-2. Once you have added them and verification flips to active: point the auth sender at `mail.findyourtoptalent.com`, redeploy `auth-email-hook` and `process-email-queue`, and confirm the queue is healthy.
-3. Send a live signup/reset test and read `email_send_log` to confirm delivery from the new sender.
-4. Cleanup: remove the `notify` NS records from the `aleksandrkonstantinov.com` zone.
+**Не баги (проверено в коде):** `recognition_delta`, `means`, `has_stage_gap`, `aspect_derived_stage` пусты потому, что соответствующие экраны и виджеты сознательно убраны на Day 142 — колонки оставлены под историю. Трогать не нужно.
 
-## What you do (GoDaddy — I have no write access to that zone)
+**Сборка:** сейчас зелёная (`bun run build:dev` проходит). Прошлая ошибка — транзиентный сбой чтения файла, кода не касается.
 
-**Step A — fix the two invalid duplicate records first.** Your screenshot shows GoDaddy's bulk delete failing; delete records **one at a time** from the row's ⋯ menu instead of the multi-select checkbox flow. That failure is a known GoDaddy bulk-op quirk, not a permissions problem.
+## Что делаем
 
-- `send.notify.findyourtoptalent.com` TXT — delete `v=spf1 include:dc-fd741b8612._spfm.send.notify.findyourtoptalent.com ~all`, keep `v=spf1 include:amazonses.com ~all`
-- `_dmarc.findyourtoptalent.com` TXT — delete `v=DMARC1; p=none;`, keep `v=DMARC1; p=quarantine; adkim=r; aspf=r; rua=mailto:dmarc_rua@onsecureserver.net;`
+### Шаг 1 — вернуть измерение (главное)
+Создать таблицу `public.funnel_events` (id, session_id, step, source, metadata jsonb, timestamp, page_url, referrer, created_at) с индексами по `step` и `created_at`, GRANT на insert для `anon` и `authenticated`, RLS: анонимная запись разрешена, чтение — только админам. Плюс защита от бесконечной очереди в `funnelAnalytics.ts`: ограничить localStorage-очередь (например, последние 50 событий) и не переочередь при отказе более одного раза.
 
-Until this is done the domain has two SPF records on the sending host (permanent SPF error) and zero DMARC evaluation.
+Итог: через несколько дней у нас будет реальная воронка вход → Q1 → Q2 → Q3 → результат, и мы увидим настоящий процент дохождения, а не только выживших.
 
-**Step B — add the delegation.** Two NS records, Name `mail`, values as shown in Cloud → Emails after step 1. One record per nameserver. Do not add SPF/DKIM/MX for `mail` yourself — Lovable manages those inside the delegated zone.
+### Шаг 2 — сделать email-момент видимым, не закрывая результат
+Результат остаётся полностью бесплатным и открытым (это канон). Меняется только форма приглашения: вместо тихой ссылки — отдельный спокойный блок под ридом, с одной строкой смысла («пришлю твой разбор ссылкой, чтобы вернуться к нему») и полем ввода сразу открытым, без предварительного клика. Одна кнопка, никаких конкурирующих CTA.
 
-**Step C — tell me when it shows verified** (usually minutes, up to 72h) and I finish steps 2–4.
+Дополнительно: при отправке почты писать её же в колонку `email` строки результата (через существующий `save-quiz-result` по `id`), чтобы почта и рид были одной записью, а не двумя разрозненными.
 
-## Notes
+### Шаг 3 — дописывать `route_shown` всегда
+Сейчас он пишется только на ветках с Buying Frame. Добавить запись фактически показанного шаблона на всех ветках (ext-a, current_chapter, not-yet, crossed_peer), чтобы отчёт по дверям был полным.
 
-- Nothing here touches the live app or app-email sending; the switch is auth emails only.
-- If GoDaddy keeps refusing deletions even one-by-one, the alternative is moving DNS hosting to a provider that handles NS records cleanly (Cloudflare free tier, registrar stays GoDaddy).
+### Шаг 4 — отчёт после недели данных
+Когда `funnel_events` наберёт неделю, дам второй отчёт: реальная конверсия по шагам, где именно теряем, и что из этого следует для оффера.
+
+## Технические детали
+
+- Миграция: новая таблица `funnel_events` + GRANT + RLS (anon insert only, select через существующую проверку роли admin).
+- `src/lib/funnelAnalytics.ts`: кап очереди, отсечение повторной переочереди.
+- `src/modules/transition-quiz/TransitionQuizPage.tsx`: переработка блока `SaveMyRead` (презентация), плюс вызов `save-quiz-result` с `{ id, email }` после успешной отправки.
+- `save-quiz-result` уже принимает частичный апдейт по `id`; менять edge-функции не потребуется, если `email` в её whitelist — проверю перед правкой и допишу при необходимости.
+- Ничего не удаляем: колонки Day 142 остаются как есть.
