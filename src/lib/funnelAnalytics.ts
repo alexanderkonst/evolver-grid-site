@@ -101,7 +101,10 @@ interface QueuedEvent {
   timestamp: string;
   page_url: string;
   referrer: string;
+  /** Local-only retry counter; stripped before insert. */
+  attempts?: number;
 }
+
 
 // The queue is a courtesy for a dropped connection, not an archive. Before
 // funnel_events existed every insert failed and the re-enqueue path grew the
