@@ -190,6 +190,23 @@ const ProductsPage = () => {
             </p>
           </header>
 
+          <section
+            className="rounded-2xl p-6 md:p-8 text-center space-y-3"
+            style={parchmentCard}
+            aria-label={t("products.summaryHeading")}
+          >
+            <p style={eyebrowGold}>{t("products.summaryEyebrow")}</p>
+            <h2 style={{ ...cormorantTitle, fontSize: "clamp(1.4rem, 3.5vw, 1.9rem)" }} className="leading-[1.2]">
+              {t("products.summaryHeading")}
+            </h2>
+            <p
+              className="max-w-xl mx-auto"
+              style={{ ...sourceSerifBody, fontSize: "15.5px", lineHeight: 1.65 }}
+            >
+              {t("products.summaryBody")}
+            </p>
+          </section>
+
           <div className="space-y-6 md:space-y-8">
             {CARDS.map((def) => (
               <ProductCard key={def.key} def={def} />
