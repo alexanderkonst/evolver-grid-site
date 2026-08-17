@@ -198,7 +198,12 @@ export function ExtResultScreen({
 
       {/* ── Quiet footer ────────────────────────────────────────────────── */}
       <div className="tq-ext-footer">
+        {/* 2026-08-17 audit: the EXT read is now the dominant variant and had
+            no email capture at all — 277 reads produced one contact. The
+            permalink offer belongs on every result variant. */}
+        <SaveMyRead t={t} resultId={resultId} stage={answers.stage} />
         <TopTalentSecondary t={t} resultVersion={resultVersion} saved={bookingContext === "saved"} />
+
         <div className="tq-ext-utility">
           <button type="button" className="tq-link-quiet" onClick={handleShare}>
             {shareCopied ? str(t, "quiz.ext.utility.shareCopied") : str(t, "quiz.ext.utility.shareLabel")}
