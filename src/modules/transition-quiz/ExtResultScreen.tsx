@@ -21,6 +21,8 @@ import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { trackCTAClick, trackPageView } from "@/lib/funnelAnalytics";
 import { type CoreAnswers, type ResultVersion, synthesisFamilyFor } from "./engine";
 import { DIRECTION_CALL_HREF, StageArc, TopTalentSecondary } from "./TransitionQuizPage";
+import { SaveMyRead } from "./SaveMyRead";
+
 
 type Tx = (k: string, o?: Record<string, unknown>) => unknown;
 const str = (t: Tx, k: string, o?: Record<string, unknown>) => t(k, o) as string;
