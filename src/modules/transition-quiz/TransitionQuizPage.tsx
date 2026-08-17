@@ -680,85 +680,10 @@ function Q1Screen({ t, onPick }: { t: (k: string, o?: Record<string, unknown>) =
   );
 }
 
-// ── Save my read (permalink) + Recognition Delta — Quiz v2.1 ────────────
-// Shared across every result variant (full read, not-yet, peer ending).
-// Both degrade silently: no id yet (save-quiz-result hasn't returned, or
-// the environment doesn't have it deployed) means neither widget renders.
+// ── Save my read (permalink) ────────────────────────────────────────────
+// Lives in ./SaveMyRead so ExtResultScreen can use it without a cycle.
 
-function SaveMyRead({
-  t,
-  resultId,
-  stage,
-}: {
-  t: (k: string, o?: Record<string, unknown>) => unknown;
-  resultId: string | null;
-  stage: Stage | null;
-}) {
-  const { i18n } = useTranslation();
-  const locale = i18n.language;
-  // Day 139 (Sasha 2026-07-30): "Save my read" asks for an email and sends
-  // the permalink there. 2026-08-17 audit: as a quiet text link it produced
-  // 1 email out of 277 completions, so the field is now open by default with
-  // one line of reason above it. The read itself stays completely free — the
-  // invitation is louder, nothing is gated.
-  const [emailValue, setEmailValue] = useState("");
-  const [sent, setSent] = useState(false);
 
-  if (!resultId || typeof window === "undefined") return null;
-
-  const permalink = `${window.location.origin}/quiz/r/${resultId}`;
-
-  const handleSend = () => {
-    const trimmed = emailValue.trim().toLowerCase();
-    if (!trimmed || !trimmed.includes("@")) return;
-    trackCTAClick("quiz_permalink_saved", "save_my_read_email");
-    // Fire-and-forget, same graceful contract as the map email capture.
-    supabase.functions
-      .invoke("save-quiz-email", {
-        body: { email: trimmed, stage, locale, source: `save_read:${resultId}` },
-      })
-      .catch(() => {});
-    // Data hygiene #22: the email belongs on the same row as the read it
-    // came from, not only in the separate signups table.
-    supabase.functions
-      .invoke("save-quiz-result", { body: { id: resultId, email: trimmed } })
-      .catch(() => {});
-    setSent(true);
-  };
-
-  return (
-    <div className="tq-save-read" style={{ marginTop: 18 }}>
-      {!sent && (
-        <>
-          <p className="tq-sub tq-quiet-line" style={{ marginBottom: 8 }}>
-            {t("quiz.saveRead.invite") as string}
-          </p>
-          <div className="tq-email-row">
-            <input
-              type="email"
-              className="tq-email-input"
-              value={emailValue}
-              placeholder={t("quiz.notYet.settled.emailPlaceholder") as string}
-              onChange={(e) => setEmailValue(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleSend()}
-            />
-            <button type="button" className="tq-email-cta" onClick={handleSend}>
-              {t("quiz.saveRead.sendCta") as string}
-            </button>
-          </div>
-        </>
-      )}
-      {sent && (
-        <p className="tq-sub tq-quiet-line">
-          {t("quiz.saveRead.sentConfirmation") as string}{" "}
-          <a className="tq-link-quiet" href={permalink}>
-            {t("quiz.saveRead.orOpenLink") as string}
-          </a>
-        </p>
-      )}
-    </div>
-  );
-}
 
 
 // Recognition Delta widget removed (Sasha, Day 142): the reflection ask ate
