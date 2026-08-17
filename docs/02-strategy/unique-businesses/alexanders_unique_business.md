@@ -14,6 +14,31 @@
 
 ---
 
+## ⟡ Executive Summary & 27-Perspective Synthesis
+
+> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the enduring shape. Live state (revenue, current bullseye, in-flight offers) lives in the Business Dashboard box below and in `roadmap.md` — this synthesis deliberately holds only what does not expire.*
+
+This is the playbook applied to Sasha's own business, and at the same time a compendium of the strategies that fell out of living it. It is the single source of truth for the venture: top talent, myth, tribe, pain, promise, value ladder, and funnel, each artifact versioned with essence, significance, and implications, newest on top with genealogy preserved. The through-line, named Day 111: not four businesses (self-knowledge · venture building · matching · civilizational infrastructure) but one kernel run at four scales — person, venture, community, civilization — rooted in specific fit. The top talent is **Signal-to-Path Shaping**: turning foggy power into a clear path people can use. The founder is client zero; the business is his own self-knowledge crystallized.
+
+**The whole in one line:** *One holonic business — help a person turn the one signal they carry into a business that could only be theirs — run at every scale from person to civilization.*
+
+**Three depths:**
+- ❤️ **Essence** — the founder's own medicine, taken first. Signal-to-Path Shaping applied recursively to himself: the hardest case is client zero, and the venture is his self-knowledge made structural.
+- 🧠 **Significance** — it is template and compendium at once: the proof the playbook works on a real person, and the distilled, reusable strategies any founder can lift.
+- 🔥 **Consequence** — every artifact inherits one signal, so the marketing is the myth and nothing needs translating; state is instrumented (Ripeness Vector, Quiz, Cockpit) rather than guessed.
+
+**Four quadrants:**
+- **I (interior)** — Signal-to-Path Shaping and its shadow (building a bigger plan while avoiding the one paid ask); the daily discipline is to ship the words and let the world answer.
+- **It (form/mechanism)** — the versioned canvas: top talent, myth, tribe (v5.0, trajectory not label), pain, promise, value ladder, funnel — each newest-on-top, prior versions kept as genealogy.
+- **We (culture/meaning)** — the tribe as the founder going sovereign: a builder whose form has just ended and who knows it before anyone else; recognition that lands as being found.
+- **Its (system/scale)** — one kernel at four scales, with the Sovereign Founder Collective as the ownable model: read a founder's uniqueness, build their next business, they keep 100%, aligned by a capped revenue-share.
+
+**◉ The Center (13th):** every being is a unique face of eternity, and living systems ripen when those faces become legible enough to find fit, complements, and value flow without collapsing into sameness. That root myth is the center the four scales rotate around.
+
+**✦ Crystallization (27th):** the canvas is only alive if it stays the single source of truth and the mirror never lags. The one discipline: update the artifact here the moment an insight deepens it — newest on top, nothing deleted — and keep live state in the Dashboard and roadmap, never frozen into this abstract.
+
+---
+
 ## 🧭 Business Dashboard
 
 *Day 48 (April 22, 2026) original snapshot; **refreshed to Day 138 (July 28, 2026)** below. The canvas sprawls further down — this is the top-of-the-file glance.*

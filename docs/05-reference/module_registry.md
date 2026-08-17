@@ -1,5 +1,7 @@
 # Module Registry
 
+> ⚠️ **Superseded (2026-08-16).** This registry is a historical artifact from January 2025, written in the old 12-perspective / "Member Portal" framing before the 27-perspective topology and the current build. **The live module library is [`docs/02-strategy/module_taxonomy.md`](../02-strategy/module_taxonomy.md)** (v3.3, audited against `src/App.tsx`). Kept below for continuity only — do not treat as current.
+
 > LEGO blocks for the Planetary OS — Holonic modules from all aligned projects
 
 ---

@@ -9,6 +9,31 @@
 
 ---
 
+## ⟡ Executive Summary & 27-Perspective Synthesis
+
+> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The matrix below stays the source of truth, audited against `src/App.tsx`.*
+
+This is the master reference for every module in the platform: what exists, at what maturity, on which route. It organizes the whole in two crossing views. Vertically, the **Divine Stack** — Tier 0 cosmogenesis (Prime Radiant, Universal Ontology), Tier 1 operating systems (Uniqueness OS, Holomap OS, Meta-Blueprint OS, Planetary OS), Tier 2 applications running on them. Horizontally, the **six Spaces** of the slogan — ME · LEARN · MEET · COLLABORATE · BUILD · BUY & SELL. Every module carries a semantic version (0.1 concept → 1.0 commercial) and a status honestly marked against shipped code, including what is specified-but-not-built and what has been retired. It is the map that keeps the build legible to itself.
+
+**The whole in one line:** *One nested architecture — cosmogenesis under operating systems under applications — laid across six Spaces, each module placed by what it is, how mature it is, and where it lives in the code.*
+
+**Three depths:**
+- ❤️ **Essence** — the modules are not independent products but applications running on shared infrastructure; the Uniqueness OS feeds Unique Business, Matchmaking, and Transformation, and the Meta-Blueprint OS lets each be codified as an AI-executable blueprint.
+- 🧠 **Significance** — a growing platform stays coherent only when it can see its own interior. This registry is that self-legibility: shipped versus specified versus seed, distinguished on sight, so ambition and reality never blur.
+- 🔥 **Consequence** — anyone (or any AI) can look here and know what to build next, what to reuse, and what is already live, without re-reading the codebase.
+
+**Four quadrants:**
+- **I (interior)** — the SLOGAN as identity: ME · LEARN · MEET · COLLABORATE · BUILD · BUY & SELL is the felt shape of the member's journey.
+- **It (form/mechanism)** — the version matrix: every module with a semantic version, a status, and a verified route.
+- **We (culture/meaning)** — Spaces name the member's world in plain verbs, not feature categories; the platform reads as a place to live, not a toolbox.
+- **Its (system/scale)** — the Divine Stack: applications nested in operating systems nested in cosmogenesis, one architecture from origin pattern to shipped route.
+
+**◉ The Center (13th):** the registry's real function is self-legibility. A platform grows precisely by making its own interior visible to itself (Technology 115), and this document is that operation performed on the product surface.
+
+**✦ Crystallization (27th):** the map is only worth keeping if it stays honest against the code. The one non-negotiable discipline: every refresh re-audits against `src/App.tsx` and marks shipped versus specified versus seed, so the map never quietly leads the territory.
+
+---
+
 ## 🏛️ THE DIVINE STACK — Architecture of the Whole
 
 > **Feb 18, 2026 discovery:** The modules below are **applications** running on top of **operating systems** which emerge from **cosmogenesis.** This is the nested architecture.
