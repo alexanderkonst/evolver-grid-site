@@ -696,10 +696,11 @@ function SaveMyRead({
 }) {
   const { i18n } = useTranslation();
   const locale = i18n.language;
-  // Day 139 (Sasha 2026-07-30): "Save my read" now asks for an email and
-  // sends the permalink there, matching the map-email pattern elsewhere in
-  // the quiz. The copy-link path stays as a quiet secondary once sent.
-  const [open, setOpen] = useState(false);
+  // Day 139 (Sasha 2026-07-30): "Save my read" asks for an email and sends
+  // the permalink there. 2026-08-17 audit: as a quiet text link it produced
+  // 1 email out of 277 completions, so the field is now open by default with
+  // one line of reason above it. The read itself stays completely free — the
+  // invitation is louder, nothing is gated.
   const [emailValue, setEmailValue] = useState("");
   const [sent, setSent] = useState(false);
 
@@ -717,35 +718,35 @@ function SaveMyRead({
         body: { email: trimmed, stage, locale, source: `save_read:${resultId}` },
       })
       .catch(() => {});
+    // Data hygiene #22: the email belongs on the same row as the read it
+    // came from, not only in the separate signups table.
+    supabase.functions
+      .invoke("save-quiz-result", { body: { id: resultId, email: trimmed } })
+      .catch(() => {});
     setSent(true);
   };
 
   return (
-    <div className="tq-save-read" style={{ marginTop: 14 }}>
-      {!open && !sent && (
-        <button
-          type="button"
-          className="tq-link-quiet"
-          onClick={() => setOpen(true)}
-          style={{ background: "none", border: "none", cursor: "pointer" }}
-        >
-          {t("quiz.saveRead.label") as string}
-        </button>
-      )}
-      {open && !sent && (
-        <div className="tq-email-row">
-          <input
-            type="email"
-            className="tq-email-input"
-            value={emailValue}
-            placeholder={t("quiz.notYet.settled.emailPlaceholder") as string}
-            onChange={(e) => setEmailValue(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleSend()}
-          />
-          <button type="button" className="tq-email-cta" onClick={handleSend}>
-            {t("quiz.saveRead.sendCta") as string}
-          </button>
-        </div>
+    <div className="tq-save-read" style={{ marginTop: 18 }}>
+      {!sent && (
+        <>
+          <p className="tq-sub tq-quiet-line" style={{ marginBottom: 8 }}>
+            {t("quiz.saveRead.invite") as string}
+          </p>
+          <div className="tq-email-row">
+            <input
+              type="email"
+              className="tq-email-input"
+              value={emailValue}
+              placeholder={t("quiz.notYet.settled.emailPlaceholder") as string}
+              onChange={(e) => setEmailValue(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSend()}
+            />
+            <button type="button" className="tq-email-cta" onClick={handleSend}>
+              {t("quiz.saveRead.sendCta") as string}
+            </button>
+          </div>
+        </>
       )}
       {sent && (
         <p className="tq-sub tq-quiet-line">
@@ -758,6 +759,7 @@ function SaveMyRead({
     </div>
   );
 }
+
 
 // Recognition Delta widget removed (Sasha, Day 142): the reflection ask ate
 // prime real estate on the read and hedged it ("a halfway excuse"). The
