@@ -7615,11 +7615,13 @@
     },
     "saveRead": {
       "label": "Guardar mi lectura",
+      "invite": "¿Quieres conservar esta lectura? Te envío un enlace al que puedes volver.",
       "confirmation": "Enlace copiado. Es tuyo para siempre.",
       "sendCta": "Envíamela por correo",
       "sentConfirmation": "Va en camino a tu correo.",
       "orOpenLink": "O ábrela ahora"
     },
+
     "recognitionDelta": {
       "prompt": "¿Qué tan exacto fue esto sobre lo que has estado viviendo?",
       "options": {
