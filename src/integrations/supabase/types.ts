@@ -945,6 +945,42 @@ export type Database = {
         }
         Relationships: []
       }
+      funnel_events: {
+        Row: {
+          created_at: string
+          id: string
+          metadata: Json | null
+          page_url: string | null
+          referrer: string | null
+          session_id: string | null
+          source: string | null
+          step: string
+          timestamp: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          page_url?: string | null
+          referrer?: string | null
+          session_id?: string | null
+          source?: string | null
+          step: string
+          timestamp?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          page_url?: string | null
+          referrer?: string | null
+          session_id?: string | null
+          source?: string | null
+          step?: string
+          timestamp?: string | null
+        }
+        Relationships: []
+      }
       game_profiles: {
         Row: {
           access_token: string | null
