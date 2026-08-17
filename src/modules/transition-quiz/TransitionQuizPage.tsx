@@ -296,7 +296,14 @@ const TransitionQuizPage = () => {
     if (screen === "notYet" && stage && loggedRef.current !== `notyet-${stage}`) {
       loggedRef.current = `notyet-${stage}`;
       rememberLocalQuizResult();
-      logCompletion({ stage, not_yet: true, uniqueness_category: uniqueness ?? null }).then((res) => {
+      logCompletion({
+        stage,
+        not_yet: true,
+        uniqueness_category: uniqueness ?? null,
+        // Early endings are a door too — without this the dataset can't tell
+        // "no route recorded" from "not-yet ending shown" (2026-08-17 audit).
+        route_shown: "notYet",
+      }).then((res) => {
         const id = res && "data" in res ? (res.data as { id?: string } | null)?.id : undefined;
         if (id) {
           setResultId(id);
@@ -315,7 +322,10 @@ const TransitionQuizPage = () => {
         emerging_work_stage: coreAnswers.emergingWorkStage,
         direction_call_shown: routing.showBuyingFrame,
         result_template: resultTemplate,
-        route_shown: routing.showBuyingFrame ? null : routing.route,
+        // Always record the route actually rendered. When the Buying Frame
+        // screen follows, the update branch below refines it to the
+        // post-answer route on the SAME row.
+        route_shown: routing.route,
       }).then((res) => {
         const id = res && "data" in res ? (res.data as { id?: string } | null)?.id : undefined;
         if (id) {
@@ -325,7 +335,8 @@ const TransitionQuizPage = () => {
       });
       trackPageView("quiz_result", `quiz_result_${resultTemplate}`);
     }
-  }, [screen, stage, coreAnswers, routing, logCompletion, rememberAndClaim]);
+  }, [screen, stage, coreAnswers, routing, logCompletion, rememberAndClaim, uniqueness]);
+
 
   // Log the Buying Frame answer + final route onto the SAME row as the
   // result completion above (data hygiene #22, 2026-07-30): one person's
