@@ -54,8 +54,16 @@ export async function getOrCreateGameProfileId(): Promise<string> {
 
   const referralId = getReferralId();
 
-  // Check if user is logged in
-  const { data: { user } } = await supabase.auth.getUser();
+  // Check if user is logged in.
+  // Day 148 (Sasha 2026-08-07): getSession() (local, reliable), NOT getUser()
+  // (network). getUser() returns null for a signed-in user on a token-refresh
+  // race / slow connection — which sent this function down the ANONYMOUS
+  // branch and returned a device-based guest profile for a logged-in user.
+  // That mis-routed all reads/writes (empty menu, empty export, lost
+  // progress) to the wrong profile. This is the deepest instance of the bug
+  // fixed across the shell, profile pane, journey progress, and export.
+  const { data: sessionData } = await supabase.auth.getSession();
+  const user = sessionData.session?.user ?? null;
 
   if (user) {
     // User is authenticated - find or create profile linked to user_id

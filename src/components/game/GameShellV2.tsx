@@ -900,7 +900,24 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     };
 
     useEffect(() => {
-        supabase.auth.getUser().then(async ({ data: { user } }) => {
+        // Day 148 (Sasha 2026-08-07): use getSession(), NOT getUser(), for the
+        // initial auth check. getUser() is a NETWORK call that validates the
+        // token server-side; on a slow/flaky connection or a token-refresh
+        // race it returns { user: null } for a genuinely signed-in user. That
+        // flipped the shell to guest mode — menu collapsed to JOURNEY/ME, the
+        // profile pane showed "guest mode", journey progress vanished, and the
+        // else-branch below loaded/created an empty GUEST profile (so the PDF
+        // export came out empty). getSession() reads the stored session
+        // locally and instantly, and transparently refreshes an expired token
+        // — the same reliable object onAuthStateChange already uses just below.
+        const runInitialAuthCheck = async () => {
+            let user = null as import("@supabase/supabase-js").User | null;
+            try {
+                const { data } = await supabase.auth.getSession();
+                user = data.session?.user ?? null;
+            } catch (err) {
+                console.warn("[GameShellV2] getSession failed on initial auth check", err);
+            }
             setUser(user);
             setAuthChecked(true);
             if (user) {
@@ -913,7 +930,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     setProfile(null);
                 }
             }
-        });
+        };
+        runInitialAuthCheck();
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
             setUser(session?.user ?? null);

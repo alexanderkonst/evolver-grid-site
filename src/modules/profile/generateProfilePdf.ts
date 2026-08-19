@@ -151,8 +151,14 @@ async function loadProfileBundle(): Promise<ProfileBundle> {
         missionDiscoveredAt: null,
     };
 
-    // Auth — user identity
-    const { data: { user } } = await supabase.auth.getUser();
+    // Auth — user identity.
+    // Day 148 (Sasha 2026-08-07): getSession() (local, reliable), NOT
+    // getUser() (network). getUser() returns null for a signed-in user on a
+    // token-refresh race / slow connection — which produced an EMPTY export
+    // PDF for a logged-in user (this block skipped, and getOrCreateGameProfileId
+    // below then keyed off a fresh guest profile).
+    const { data: sessionData } = await supabase.auth.getSession();
+    const user = sessionData.session?.user ?? null;
     if (user) {
         bundle.userEmail = user.email ?? null;
         // user_metadata may carry a friendly name; fall back to email-localpart
