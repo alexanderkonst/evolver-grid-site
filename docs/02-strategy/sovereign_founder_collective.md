@@ -63,6 +63,16 @@ years-long mistake being corrected. Filter with the quiz.*
 
 ### Field refinements (learned live, newest on top)
 
+**Day 157 — complement, not mirror.** The clients who pay are not the ones most
+like Sasha. The people who resonate hardest, deep, uniqueness-native, but
+ungrounded, no means, money looked-away-from, are mirrors of his own gift *and*
+shadow; value flows one way and stays free. The paying fit is the **complement**: a
+grounded operator or founder, means present, running a live business that isn't
+truly theirs, who has the material grounding Sasha is still building and needs the
+uniqueness he already has. "Ideal client = someone like me" is a trap; the real fit
+completes the pair. (Grounded in the paid-vs-free spread across recent sessions: the
+grounded transitioners pay; the pure depth-natives stay free.)
+
 **Day 155 — experience is a hard gate; the very young are usually in their *first*
 chapter, not their next.** The correct test is now stricter: an experienced founder
 or operator, substantial history behind them, a real transition or next-venture
