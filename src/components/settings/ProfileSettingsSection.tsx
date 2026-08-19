@@ -127,7 +127,18 @@ const ProfileSettingsSection = () => {
 
     const loadUserData = async () => {
         setIsLoading(true);
-        const { data: { user } } = await supabase.auth.getUser();
+        // Day 148 (Sasha 2026-08-07): getSession() (local, reliable), NOT
+        // getUser() (network). getUser() returns null for a signed-in user on
+        // a token-refresh race / slow connection, which made this pane show
+        // the "guest mode / log in" stub to an already-logged-in user. The
+        // session read is instant and self-heals an expired token.
+        let user = null as import("@supabase/supabase-js").User | null;
+        try {
+            const { data } = await supabase.auth.getSession();
+            user = data.session?.user ?? null;
+        } catch {
+            user = null;
+        }
         if (!user) {
             // Day 48 (Sasha): guests can land on /game/settings (e.g. via
             // the rail Settings button). Don't kick them to /auth — just

@@ -122,8 +122,13 @@ export function useJourneyProgress(): { progress: JourneyProgress; isLoading: bo
       try {
         const visitFlags = readVisitFlags();
 
-        const { data: userRes } = await supabase.auth.getUser();
-        const uid = userRes.user?.id;
+        // Day 148 (Sasha 2026-08-07): getSession() (local, reliable), NOT
+        // getUser() (network). getUser() returns null for a signed-in user on
+        // a token-refresh race / slow connection, which made journey progress
+        // fall back to local-only flags — so completed steps stopped showing
+        // as struck through for a logged-in user (flaky, connection-dependent).
+        const { data: sessionRes } = await supabase.auth.getSession();
+        const uid = sessionRes.session?.user?.id;
         if (!uid) {
           // Unauth: only localStorage signals apply.
           if (!cancelled) setState({ progress: visitFlags, isLoading: false });
