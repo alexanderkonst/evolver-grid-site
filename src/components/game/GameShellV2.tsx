@@ -829,11 +829,19 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // Load profile
     const loadProfile = async (userId: string) => {
         try {
-            const { data } = await supabase
+            const { data, error } = await supabase
                 .from("game_profiles")
                 .select("first_name, last_name, avatar_url, username, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at, level, xp_total, current_streak_days")
                 .eq("user_id", userId)
                 .maybeSingle();
+            // Day 148 (Sasha 2026-08-07): older accounts reported stuck at
+            // step 1 with a partial menu. Supabase does NOT throw on a query
+            // error (RLS / missing column) — it returns { data: null, error }.
+            // This read previously ignored `error`, so a failed read silently
+            // produced profile=null → every space locked. Surface it.
+            if (error) {
+                console.warn("[GameShellV2] game_profiles read error (menu will lock):", error.message, error);
+            }
             setProfile(data || null);
 
             // Check if user has Excalibur (genius offer) in zog_snapshots
@@ -1157,6 +1165,25 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // prior activation must not surface it before the standard Top Talent +
     // Mission + Assets sequence is complete.
     const buildUnlocked = tmaComplete;
+
+    // Day 148 (Sasha 2026-08-07) — TEMP DIAGNOSTIC (remove once the older-
+    // account "stuck at step 1 / partial menu" report is root-caused). Logs
+    // only when an account fails the Step-1 gate, naming exactly which of the
+    // four Top-Talent signals is false, so we can see whether it's null
+    // profile data, un-backfilled pointer columns, or a failing snapshot
+    // probe. Zero behavior change.
+    if (profileLoaded && !topTalentComplete) {
+        console.info("[unlock-debug] Step-1 gate FAILED — account will look stuck", {
+            profileIsNull: !profile,
+            onboarding_stage: (profile as { onboarding_stage?: string | null } | null)?.onboarding_stage ?? null,
+            zogComplete,
+            has_last_zog_snapshot_id: !!profile?.last_zog_snapshot_id,
+            zone_of_genius_completed: !!profile?.zone_of_genius_completed,
+            probe_journey_start_here: !!journeyProgress["journey-start-here"],
+            localQuizResult: !!localQuizResult,
+            linkedQuizResult: !!linkedQuizResult,
+        });
+    }
 
     const unlockStatus: Record<string, boolean> = profileLoaded
         ? {
