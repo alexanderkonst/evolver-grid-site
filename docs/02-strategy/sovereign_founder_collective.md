@@ -63,6 +63,25 @@ years-long mistake being corrected. Filter with the quiz.*
 
 ### Field refinements (learned live, newest on top)
 
+**Day 157 — the ignition cross: sameness × complementarity.** Value ignites on the
+friction between what Sasha has and what the client lacks, not on likeness. Two axes:
+*Sameness* (they resonate, share his worldview/language/values → trust, they want
+the work) × *Complementarity* (they have the material grounding he lacks and lack
+the uniqueness he has → a real gap for value and payment to flow across). Bullseye =
+HIGH-HIGH: resonates AND grounds what he can't. High-sameness / low-complementarity =
+the mirror (bonds, doesn't pay). Low-sameness / high-complementarity = the
+stranger-operator (could pay, no trust, hard to reach). Target the top-right
+quadrant; shared language/culture (e.g. Russian-speaking) is a *sameness lever* that
+raises the aim without lowering complementarity.
+
+**Day 157 — two client types, two doors.** (a) The **complement**: ready now, pays
+now (a grounded transitioner running a business that isn't truly theirs). (b) The
+**mirror**: a superb node *if* they cross, gated on their own soul-decision to enter
+the material, which cannot be made for them; name the door once, then release, never
+subsidize. The mirror's ceiling is high: they can teach the whole thing (become
+teacher-nodes), which most cannot. The offer for the mirror is a group, rapid,
+contract-bound "King-Maker" intensive (see the offer note below).
+
 **Day 157 — complement, not mirror.** The clients who pay are not the ones most
 like Sasha. The people who resonate hardest, deep, uniqueness-native, but
 ungrounded, no means, money looked-away-from, are mirrors of his own gift *and*
@@ -109,10 +128,10 @@ dot). Say "read" or "see."
 1. **Productize Yourself** — $555, skin in the game, the only from-pocket payment.
    Paying it makes it real for the founder; this is deliberate.
 2. **Product Market Fit** — ~6-week guided cohort where the playbook is offloaded
-   and the business is built to first sales. Priced at **10% of the first $50k of
-   revenue, capped at $5,000.** Founder keeps 100%. A free onboarding call each,
+   and the business is built to first sales. Priced at **10% of the first $55,555 of
+   revenue, capped at $5,555.** Founder keeps 100%. A free onboarding call each,
    outsourced to trainers (train-the-trainer) as it scales. (The fives rhyme: $555
-   in, $5k cap, the fifth element.)
+   in, $5,555 cap on the first $55,555, the fifth element.)
 3. **Scale to $500k** — delivered by a team Sasha assembles (automation/ops
    specialists), not by Sasha personally, paid from the founder's ongoing 10%. The
    one-person AI-run company reaches a well-oiled state.
