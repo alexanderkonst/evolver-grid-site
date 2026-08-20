@@ -411,6 +411,40 @@ Lineage: Mirror-Not-Teacher (playbook), Sales as Love (Part VII), MI's Elicit-Pr
 
 ---
 
+## Part XI: The Complementarity Gradient (v1.0, Day 158, August 2026)
+
+Part I said value = energy under constraint. This names *which* constraint does the
+work: the **differential** between two parties. A transaction is a discharge across a
+potential difference, like current across a voltage. Two axes:
+
+- **Complementarity = voltage.** They have what you lack, you have what they lack.
+  Difference is the drive.
+- **Sameness / trust / shared world = conductance.** The low-resistance wire that
+  lets the current pass.
+
+Value (payment) ≈ voltage / resistance. So the **mirror** (high sameness, zero
+complementarity) is a perfect wire with no voltage: maximum resonance, zero current,
+free. The **stranger-operator** (high complementarity, no trust) is high voltage
+across high resistance: a real gap, no path. Only the **bullseye**, high on both,
+carries current. This generalizes the Pain axiom ("differential pressure"): pain is
+one differential; capacity between giver and receiver is another. Shared language
+(e.g. Russian-speaking) is a pure conductance lever. Full statement: Phase Shift
+Technology 130.
+
+## Part XII: Shadow Currency (v1.0, Day 158, August 2026)
+
+Part VII named the field's quality (love). This names the field's hidden leak. Every
+gift generates an inverted shadow (Pain Theory: The Recursive Shadow), and that
+shadow craves a specific **currency**, the felt experience that soothes its belief,
+which the person will work for free, endlessly, to obtain. Gift = making value
+visible → shadow = "my value is invisible" → currency = **recognition**. Connection →
+intimacy; clarity → certainty; building → completion. Most "free work" is not
+generosity but a **hidden transaction**: the practitioner is paid in the shadow's
+currency and accepts it in place of money, unnoticed, because it feels like
+communion, not loss. Naming the currency turns the unconscious trade into a choice.
+The deep reveal gains a layer: Gift → Shadow → Shadow-Currency. Full statement:
+Phase Shift Technology 131.
+
 ## Related Documents
 
 This theory is the **foundational layer** under:
