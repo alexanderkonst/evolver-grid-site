@@ -750,6 +750,21 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
                             </p>
                         </div>
                     )}
+                    {data.topTalentProfile?.shadow_currency && (
+                        <div className="rounded-2xl px-6 py-7 sm:px-8 sm:py-8" style={cardSurface}>
+                            <p style={eyebrowStyle} className="mb-3">{t("zogPerspective.topShadow.currencyEyebrow")}</p>
+                            <p
+                                className="text-base sm:text-lg leading-relaxed"
+                                style={{
+                                    fontFamily: "'Source Serif 4', Georgia, serif",
+                                    color: "var(--skin-text-primary, #0b2a5a)",
+                                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                                }}
+                            >
+                                {data.topTalentProfile.shadow_currency}
+                            </p>
+                        </div>
+                    )}
                 </div>
             );
         },

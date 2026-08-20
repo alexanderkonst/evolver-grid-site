@@ -531,6 +531,12 @@ export function renderTopShadow(b: PdfBuilder, appleseed: AppleseedData) {
     if (paragraph) {
         b.cardBody(flipToSecondPerson(paragraph));
     }
+    // Day 158 — shadow_currency renders RAW (already second-person),
+    // right after the edge_and_traps paragraph. Do not flip.
+    const currency = appleseed.topTalentProfile?.shadow_currency?.trim();
+    if (currency) {
+        b.cardBody(currency);
+    }
     b.sectionGap();
 }
 

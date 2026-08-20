@@ -5112,7 +5112,8 @@
     "topShadow": {
       "title": "Sombra principal",
       "subtitle": "La otra cara de la moneda",
-      "eyebrow": "Mi sombra principal es"
+      "eyebrow": "Mi sombra principal es",
+      "currencyEyebrow": "Con qué te pagan en lugar de dinero"
     },
     "oneAction": {
       "title": "Una acción",
