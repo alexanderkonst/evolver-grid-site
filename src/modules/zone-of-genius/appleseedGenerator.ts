@@ -668,6 +668,8 @@ export interface TopTalentProfile {
    * pre-Day-58 snapshots.
    */
   top_shadow_one_sentence?: string;
+  /** Day 158 — the hidden currency the shadow over-gives the gift to obtain; renders as a body paragraph under the Top Shadow perspective. Optional for back-compat. */
+  shadow_currency?: string;
   ideal_environments: string[];
   career_sweet_spots: string[];
   flywheel_action: string;
@@ -824,6 +826,7 @@ const tryExtractTopTalentProfile = (rawSignal: string): TopTalentProfile | undef
     top_shadow_one_sentence: parsed.top_shadow_one_sentence
         ? String(parsed.top_shadow_one_sentence)
         : undefined,
+    shadow_currency: parsed.shadow_currency ? String(parsed.shadow_currency) : undefined,
     ideal_environments: parsed.ideal_environments.map((t: unknown) => String(t)).filter(Boolean),
     career_sweet_spots: parsed.career_sweet_spots.map((t: unknown) => String(t)).filter(Boolean),
     flywheel_action: String(parsed.flywheel_action || ""),

@@ -3031,7 +3031,8 @@
     "topShadow": {
       "title": "Top Shadow",
       "subtitle": "The other side of the coin",
-      "eyebrow": "My top shadow is"
+      "eyebrow": "My top shadow is",
+      "currencyEyebrow": "What you get paid in instead"
     },
     "oneAction": {
       "title": "One Action",
