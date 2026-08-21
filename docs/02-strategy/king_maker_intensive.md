@@ -54,6 +54,22 @@ to play smaller than you know you can.**
 - A real contract: clear conditions, clear terms. Because with a clear agreement I
   don't have to chase or litigate you, and I won't.
 
+## The weekly rhythm (the reps gate, made literal)
+
+No separate "first session" container. The first session **is step 1** of the arc, nothing extra to buy or gate. Skin in the game stays at entry: **$555, or a donation for a genuine fit who truly cannot** (money is part of the medicine, so the exception is scoped, not the default).
+
+Then the week is the instrument. One weekly cycle, run and re-run, is the tiny-challenge compression turned into a life-rhythm:
+
+- **Monday — See.** Read where you are, name the move, get clear on the one thing.
+- **Tuesday — Build.** Make the thing. The offer, the page, the artifact.
+- **Wednesday — Sell.** Take it to a real person. Communicate it, ask for the sale.
+- **Thursday — Expand.** No touchpoint from me. Yours to widen, integrate, go bigger on your own.
+- **Friday — Pleasure.** Rest, play, receive. The parasympathetic half of the cycle.
+- **Saturday — Estate-keeping (Saturn).** Send the week's results. Structure, accounting, the хозяйство tended. Saturn's day: what got built, what came in, what's real.
+- **Sunday — Ritual.** Cannabis ceremony for whoever chooses to join. Communion, not obligation.
+
+See → Build → Sell three days running is the reps gate: if the reps happen, the container is working; if they stall, that's the honest signal at the two-week checkpoint.
+
 ## The ceiling
 
 You don't just build your own. You become able to teach the whole thing, **a node

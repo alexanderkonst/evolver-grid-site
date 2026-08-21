@@ -63,6 +63,15 @@ years-long mistake being corrected. Filter with the quiz.*
 
 ### Field refinements (learned live, newest on top)
 
+**Day 158 — no separate first-session container; the week is the instrument.** The
+first session is **step 1 of the arc**, not a stand-alone thing to sell or gate. Skin
+in the game stays at entry ($555, or a donation for a genuine fit who truly cannot, so
+"not a separate container" never quietly slides back into free). The delivery rhythm is
+a repeating week: **Mon See · Tue Build · Wed Sell · Thu Expand (no touchpoint) · Fri
+Pleasure · Sat Estate-keeping/Saturn (send week's results, tend the хозяйство) · Sun
+ritual (optional)**. See→Build→Sell three days running is the reps gate. (Full form in
+`king_maker_intensive.md` → "The weekly rhythm.")
+
 **Day 157 — the ignition cross: sameness × complementarity.** Value ignites on the
 friction between what Sasha has and what the client lacks, not on likeness. Two axes:
 *Sameness* (they resonate, share his worldview/language/values → trust, they want
