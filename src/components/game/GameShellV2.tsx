@@ -933,16 +933,56 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         };
         runInitialAuthCheck();
 
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
-            setUser(session?.user ?? null);
-            setAuthChecked(true);
+        // Day 148 v2 (Sasha 2026-08-07): a null session on an auth EVENT is not
+        // trusted on its own. onAuthStateChange emits transient null events
+        // (token refresh in flight, INITIAL_SESSION before restore, a getUser
+        // elsewhere racing a refresh). This listener used to flip straight to
+        // guest on that bare null — which collapsed the rail to JOURNEY + ME
+        // (see guestHidden below), showed the "guest mode" stub in Settings,
+        // and, worst of all, called getOrCreateGameProfileId() and then
+        // loadProfileById(), REPLACING the signed-in user's real profile in
+        // state with an empty device/guest profile — the empty PDF export and
+        // the vanishing journey progress.
+        //
+        // Confirmed against production data: Sasha's game_profiles row is
+        // correctly linked and fully populated (onboarding_stage zog_complete,
+        // all three pointer columns set), so the data layer was never the
+        // problem — this listener was discarding it. Now a null event is
+        // re-verified against getSession() (storage-backed, refreshes an
+        // expired token) before the shell concludes "guest".
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
             if (session?.user) {
+                setUser(session.user);
+                setAuthChecked(true);
                 loadProfile(session.user.id);
-            } else {
+                return;
+            }
+
+            void (async () => {
+                let verified = null as import("@supabase/supabase-js").User | null;
+                try {
+                    const { data } = await supabase.auth.getSession();
+                    verified = data.session?.user ?? null;
+                } catch (err) {
+                    console.warn("[GameShellV2] getSession re-verify failed", err);
+                }
+
+                if (verified) {
+                    // Transient null — the user is still signed in. Keep their
+                    // real profile; do not fall through to the guest branch.
+                    setUser(verified);
+                    setAuthChecked(true);
+                    loadProfile(verified.id);
+                    return;
+                }
+
+                console.info("[GameShellV2] treating as guest after re-verify", { event });
+                setUser(null);
+                setAuthChecked(true);
                 getOrCreateGameProfileId()
                     .then((profileId) => loadProfileById(profileId))
                     .catch(() => setProfile(null));
-            }
+            })();
         });
 
         return () => subscription.unsubscribe();

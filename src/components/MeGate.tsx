@@ -77,8 +77,19 @@ const MeGate = ({ children }: { children: ReactNode }) => {
         supabase.auth.getSession().then(({ data: { session } }) => {
             if (mounted) setStatus(session ? "authed" : "guest");
         });
+        // Day 148 v2 (Sasha 2026-08-07): don't demote to guest on a bare null
+        // auth event — onAuthStateChange emits transient nulls during a token
+        // refresh. Re-verify against getSession() (storage-backed) first, so a
+        // signed-in user isn't bounced out of ME mid-session.
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_evt, session) => {
-            if (mounted) setStatus(session ? "authed" : "guest");
+            if (!mounted) return;
+            if (session) {
+                setStatus("authed");
+                return;
+            }
+            void supabase.auth.getSession().then(({ data }) => {
+                if (mounted) setStatus(data.session ? "authed" : "guest");
+            });
         });
         return () => {
             mounted = false;

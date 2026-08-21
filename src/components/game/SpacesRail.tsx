@@ -399,8 +399,18 @@ const SpacesRail = ({
         supabase.auth.getSession().then(({ data: { session } }) => {
             if (!cancelled) setIsAuthed(!!session?.user);
         });
+        // Day 148 v2 (Sasha 2026-08-07): re-verify before demoting to guest.
+        // A bare null on an auth event is often a transient token-refresh
+        // blip; trusting it flipped the rail to its logged-out state for a
+        // signed-in user.
         const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-            setIsAuthed(!!session?.user);
+            if (session?.user) {
+                setIsAuthed(true);
+                return;
+            }
+            void supabase.auth.getSession().then(({ data }) => {
+                if (!cancelled) setIsAuthed(!!data.session?.user);
+            });
         });
         return () => {
             cancelled = true;
