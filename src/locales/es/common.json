@@ -538,6 +538,9 @@
   "profileSettings": {
     "toastErrorTitle": "Error",
     "toastUpdateFailedDescription": "No se pudo actualizar el perfil. Inténtalo de nuevo.",
+    "notSignedIn": "Por favor inicia sesión de nuevo para guardar tu perfil.",
+    "saveNoRowMessage": "No se pudo encontrar tu perfil para actualizarlo. Recarga la página e inténtalo de nuevo.",
+    "saveUnexpectedError": "Algo salió mal al guardar tu perfil. Inténtalo de nuevo.",
     "toastProfileUpdatedTitle": "Perfil actualizado",
     "toastProfileUpdatedDescription": "Tus cambios se han guardado.",
     "sourceUnknown": "Desconocido",

@@ -3174,6 +3174,9 @@
   "profileSettings": {
     "toastErrorTitle": "Ошибка",
     "toastUpdateFailedDescription": "Не удалось обновить профиль. Попробуй ещё раз.",
+    "notSignedIn": "Войди заново, чтобы сохранить профиль.",
+    "saveNoRowMessage": "Не удалось найти твой профиль для обновления. Перезагрузи страницу и попробуй ещё раз.",
+    "saveUnexpectedError": "Что-то пошло не так при сохранении профиля. Попробуй ещё раз.",
     "toastProfileUpdatedTitle": "Профиль обновлён",
     "toastProfileUpdatedDescription": "Изменения сохранены.",
     "sourceUnknown": "Неизвестно",
