@@ -4063,6 +4063,8 @@
     "updatedTitle": "Foto de perfil actualizada",
     "uploadFailedTitle": "Error al subir",
     "uploadFailedDescription": "No se pudo subir el avatar.",
+    "notSignedIn": "Vuelve a iniciar sesión para cambiar tu foto.",
+    "permissionError": "La subida de la foto fue bloqueada. Si esto persiste, hay que actualizar los permisos de almacenamiento.",
     "avatarAlt": "Avatar de perfil",
     "uploadAriaLabel": "Subir foto de perfil",
     "uploadingButton": "Subiendo...",

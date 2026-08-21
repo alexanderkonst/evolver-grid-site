@@ -84,8 +84,30 @@ const ProfilePictureUpload = ({
 
     setUploading(true);
     try {
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (!session || !session.user) {
+        toast({
+          title: t('profilePicUpload.uploadFailedTitle'),
+          description: t('profilePicUpload.notSignedIn'),
+          variant: "destructive",
+        });
+        setUploading(false);
+        if (inputRef.current) {
+          inputRef.current.value = "";
+        }
+        return;
+      }
+
+      if (session.user.id !== userId) {
+        console.warn(
+          "ProfilePictureUpload: session user id does not match userId prop; using session user id for the storage path to satisfy RLS.",
+        );
+      }
+
+      const uploadOwnerId = session.user.id;
       const blob = await cropToSquare(file, 256);
-      const filePath = `${userId}/${Date.now()}.png`;
+      const filePath = `${uploadOwnerId}/${Date.now()}.png`;
 
       const { error: uploadError } = await supabase.storage
         .from("avatars")
@@ -110,9 +132,15 @@ const ProfilePictureUpload = ({
       onUpload?.(publicUrl);
       toast({ title: t('profilePicUpload.updatedTitle') });
     } catch (error: any) {
+      console.error("ProfilePictureUpload: upload failed", error);
+      const rawMessage: string = error?.message || "";
+      const isPermissionError =
+        rawMessage.includes("row-level security") || rawMessage.includes("Unauthorized");
       toast({
         title: t('profilePicUpload.uploadFailedTitle'),
-        description: error.message || t('profilePicUpload.uploadFailedDescription'),
+        description: isPermissionError
+          ? t('profilePicUpload.permissionError')
+          : rawMessage || t('profilePicUpload.uploadFailedDescription'),
         variant: "destructive",
       });
     } finally {

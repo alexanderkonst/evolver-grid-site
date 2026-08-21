@@ -5906,6 +5906,8 @@
     "updatedTitle": "Profile picture updated",
     "uploadFailedTitle": "Upload failed",
     "uploadFailedDescription": "Unable to upload avatar.",
+    "notSignedIn": "Please sign in again to change your photo.",
+    "permissionError": "Photo upload was blocked. If this persists, the storage permissions need a redeploy.",
     "avatarAlt": "Profile avatar",
     "uploadAriaLabel": "Upload profile picture",
     "uploadingButton": "Uploading...",
