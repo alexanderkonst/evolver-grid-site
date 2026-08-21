@@ -2,13 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { User, CreditCard, Check, Edit2, X, AlertTriangle, ArrowRight, Eye, Globe, Users, Lock, LogOut } from "lucide-react";
-// Day 53 night iter 4 (Sasha 2026-04-27): entitlement tier surfacing.
-// `SettingsTierBadge` (defined below) wraps `EntitlementBadge` to handle
-// the "no tier yet / tasting" case with a friendly placeholder rather
-// than blank space, since Settings is one of the few places where users
-// expect to see SOMETHING in the field.
-import { EntitlementBadge } from "@/components/EntitlementBadge";
-import { useEntitlement, tierLabel } from "@/hooks/useEntitlement";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 // Day 66 (Sasha 2026-05-09): profile photo upload added to Personal
 // Information. Reuses the existing ProfilePictureUpload component
@@ -272,44 +265,61 @@ const ProfileSettingsSection = () => {
 
     const handleSaveProfile = async () => {
         if (!profile) return;
-        const normalizedLanguages = editLanguages
-            .map(normalizeLanguage)
-            .filter(Boolean)
-            .filter((l, i, list) => list.findIndex(v => normalizeKey(v) === normalizeKey(l)) === i);
+        if (!user?.id) {
+            toast({
+                title: t('profileSettings.toastErrorTitle'),
+                description: t('profileSettings.notSignedIn'),
+                variant: "destructive",
+            });
+            return;
+        }
         setIsSaving(true);
-        const requestedUsername = editUsername.trim().toLowerCase();
-        let savedUsername = profile.username;
-        if (requestedUsername !== (profile.username || "")) {
-            const { data: usernameData, error: usernameError } = await supabase.rpc(
-                "set_my_public_profile_username",
-                { p_username: requestedUsername },
-            );
-            if (usernameError) {
-                toast({
-                    title: "Could not save public profile address",
-                    description: usernameError.message,
-                    variant: "destructive",
-                });
-                setIsSaving(false);
+        try {
+            const normalizedLanguages = editLanguages
+                .map(normalizeLanguage)
+                .filter(Boolean)
+                .filter((l, i, list) => list.findIndex(v => normalizeKey(v) === normalizeKey(l)) === i);
+            const requestedUsername = editUsername.trim().toLowerCase();
+            let savedUsername = profile.username;
+            if (requestedUsername !== (profile.username || "")) {
+                const { data: usernameData, error: usernameError } = await supabase.rpc(
+                    "set_my_public_profile_username",
+                    { p_username: requestedUsername },
+                );
+                if (usernameError) {
+                    toast({
+                        title: "Could not save public profile address",
+                        description: usernameError.message,
+                        variant: "destructive",
+                    });
+                    return;
+                }
+                savedUsername = usernameData;
+            }
+            // Day 156: filter by primary key ONLY. RLS on game_profiles is
+            // USING(true), so the .eq("user_id", user.id) filter added no
+            // protection — it only caused 0-row matches (PGRST116) when a
+            // stale/device profile's user_id didn't exactly match the live
+            // session's user.id, which made Save silently fail.
+            const { data, error } = await supabase
+                .from("game_profiles")
+                .update({
+                    first_name: editFirstName.trim() || null,
+                    last_name: editLastName.trim() || null,
+                    spoken_languages: normalizedLanguages,
+                })
+                .eq("id", profile.id)
+                .select("id, first_name, last_name, spoken_languages, avatar_url, username");
+            if (error) {
+                console.error("[ProfileSettingsSection] profile update failed", error);
+                toast({ title: t('profileSettings.toastErrorTitle'), description: error.message || t('profileSettings.toastUpdateFailedDescription'), variant: "destructive" });
                 return;
             }
-            savedUsername = usernameData;
-        }
-        const { error } = await supabase
-            .from("game_profiles")
-            .update({
-                first_name: editFirstName.trim() || null,
-                last_name: editLastName.trim() || null,
-                spoken_languages: normalizedLanguages,
-            })
-            .eq("id", profile.id)
-            .eq("user_id", user.id)
-            .select("id, first_name, last_name, spoken_languages, avatar_url, username")
-            .single();
-        if (error) {
-            console.warn("[ProfileSettingsSection] profile update failed", error);
-            toast({ title: t('profileSettings.toastErrorTitle'), description: error.message || t('profileSettings.toastUpdateFailedDescription'), variant: "destructive" });
-        } else {
+            if (!data || data.length === 0) {
+                console.error("[ProfileSettingsSection] profile update matched 0 rows", { profileId: profile.id });
+                toast({ title: t('profileSettings.toastErrorTitle'), description: t('profileSettings.saveNoRowMessage'), variant: "destructive" });
+                return;
+            }
             setProfile({
                 ...profile,
                 first_name: editFirstName.trim() || null,
@@ -319,8 +329,12 @@ const ProfileSettingsSection = () => {
             });
             setIsEditing(false);
             toast({ title: t('profileSettings.toastProfileUpdatedTitle'), description: t('profileSettings.toastProfileUpdatedDescription') });
+        } catch (err: any) {
+            console.error("[ProfileSettingsSection] unexpected error saving profile", err);
+            toast({ title: t('profileSettings.toastErrorTitle'), description: t('profileSettings.saveUnexpectedError'), variant: "destructive" });
+        } finally {
+            setIsSaving(false);
         }
-        setIsSaving(false);
     };
 
     const handleCancelEdit = () => {
@@ -547,18 +561,6 @@ const ProfileSettingsSection = () => {
                                 <Label>{t('profileSettings.emailLabel')}</Label>
                                 <Input value={user?.email || ""} disabled className="bg-muted" />
                                 <p className="text-xs text-muted-foreground">{t('profileSettings.emailCannotBeChanged')}</p>
-                            </div>
-                            {/* Day 53 night iter 4 (Sasha 2026-04-27): tier
-                                badge surfaces here so the user always knows
-                                what plan they're on without checking Stripe.
-                                Silent on default 'tasting' (most users see
-                                nothing). For gifted_* tiers, shows
-                                "✦ Gifted Builder · gifted by Sasha". */}
-                            <div className="space-y-2">
-                                <Label>{t('profileSettings.accountTierLabel')}</Label>
-                                <div className="rounded-md border bg-muted px-3 py-2.5">
-                                    <SettingsTierBadge />
-                                </div>
                             </div>
                             <div className="space-y-3">
                                 <Label>{t('profileSettings.languagesLabel')}</Label>
@@ -1219,34 +1221,5 @@ const ProfileSettingsSection = () => {
         </div>
     );
 };
-
-/**
- * SettingsTierBadge — wraps `EntitlementBadge` for the Settings surface.
- *
- * `EntitlementBadge` is intentionally silent on `tasting` (default tier)
- * across most surfaces — most users see nothing, only paid/gifted users
- * see their tier. But Settings is the one place where users expect a
- * concrete answer: this card asks "what tier am I on?" and a blank
- * answer is confusing. So this wrapper renders a friendly placeholder
- * for the Tasting case while delegating the rest to EntitlementBadge.
- */
-function SettingsTierBadge() {
-    const { t } = useTranslation();
-    const { tier, isLoading } = useEntitlement();
-    if (isLoading) {
-        return <span className="text-xs text-muted-foreground">{t('profileSettings.tierLoading')}</span>;
-    }
-    if (tier === "tasting") {
-        return (
-            <span className="inline-flex items-baseline gap-2 text-sm">
-                <span className="font-medium text-foreground">{tierLabel(tier)}</span>
-                <span className="text-xs italic text-muted-foreground">
-                    {t('profileSettings.tierTastingNote')}
-                </span>
-            </span>
-        );
-    }
-    return <EntitlementBadge tier={tier} showOnTasting />;
-}
 
 export default ProfileSettingsSection;

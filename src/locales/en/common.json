@@ -3173,6 +3173,9 @@
   "profileSettings": {
     "toastErrorTitle": "Error",
     "toastUpdateFailedDescription": "Failed to update profile. Please try again.",
+    "notSignedIn": "Please sign in again to save your profile.",
+    "saveNoRowMessage": "Your profile could not be found to update. Please reload and try again.",
+    "saveUnexpectedError": "Something went wrong saving your profile. Please try again.",
     "toastProfileUpdatedTitle": "Profile updated",
     "toastProfileUpdatedDescription": "Your changes have been saved.",
     "sourceUnknown": "Unknown",
