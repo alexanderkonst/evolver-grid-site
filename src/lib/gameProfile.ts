@@ -181,6 +181,21 @@ export async function getOrCreateGameProfileId(): Promise<string> {
     return existingId;
   }
 
+  // Day 148 v4 (Sasha 2026-08-24): minting a guest id while a stored auth
+  // token exists is the fingerprint of a failed session validation at boot —
+  // the app is about to read a brand-new EMPTY profile for someone who is
+  // actually signed in (blank name, no progress, empty export). GameShellV2
+  // now recovers or clears the stale token before reaching this point, so this
+  // should not fire; log loudly if it ever does. Deliberately a warning only:
+  // this function has many call sites and must not start throwing.
+  try {
+    if (window.localStorage.getItem("evolver-auth-token")) {
+      console.error(
+        "[gameProfile] Creating a GUEST profile id while a stored auth token exists. The user is probably signed in but their session failed to validate — this will surface as an empty profile.",
+      );
+    }
+  } catch { /* private mode */ }
+
   // Generate a new local UUID for guest (no DB interaction - RLS blocks inserts without user_id)
   const newId = crypto.randomUUID();
   window.localStorage.setItem("game_profile_id", newId);

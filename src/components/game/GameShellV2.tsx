@@ -1010,6 +1010,54 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     return;
                 }
 
+                // Day 148 v4 (Sasha 2026-08-24): a STORED session that fails to
+                // validate at boot used to silently demote to guest, and the
+                // guest branch below then minted a brand-new empty profile id.
+                // Every subsequent read went to that empty profile with the anon
+                // key, producing the exact reported symptom: a rendered email
+                // (stale user object) next to "—" names, no journey progress,
+                // empty export, collapsed rail. Confirmed by a live trace.
+                //
+                // Before giving up, try one explicit refresh — a stale access
+                // token with a still-valid refresh token recovers here and the
+                // user never notices. Only if that also fails do we treat the
+                // session as genuinely dead, and then we clear the stale token
+                // instead of half-living as a guest with a signed-in-looking
+                // UI. That is the manual "sign out fully, sign back in"
+                // workaround, automated.
+                let storedToken: string | null = null;
+                try {
+                    storedToken = window.localStorage.getItem("evolver-auth-token");
+                } catch { /* private mode */ }
+
+                if (storedToken) {
+                    try {
+                        const { data: refreshed, error: refreshError } = await supabase.auth.refreshSession();
+                        if (!refreshError && refreshed.session?.user) {
+                            console.info("[GameShellV2] stale session recovered via refreshSession");
+                            setUser(refreshed.session.user);
+                            setAuthChecked(true);
+                            loadProfile(refreshed.session.user.id);
+                            return;
+                        }
+                        console.error(
+                            "[GameShellV2] stored session failed to validate AND refresh — clearing the stale token and requiring a clean sign-in rather than minting a guest profile",
+                            refreshError,
+                        );
+                    } catch (refreshErr) {
+                        console.error("[GameShellV2] refreshSession threw", refreshErr);
+                    }
+
+                    try {
+                        await supabase.auth.signOut();
+                    } catch { /* best effort — the token is dead either way */ }
+
+                    setUser(null);
+                    setAuthChecked(true);
+                    setProfile(null);
+                    return;
+                }
+
                 console.info("[GameShellV2] treating as guest after re-verify", { event });
                 setUser(null);
                 setAuthChecked(true);
