@@ -993,6 +993,26 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             }
 
             void (async () => {
+                // No session on THIS event. Re-verify once via getSession(),
+                // which reads storage under supabase-js's own lock. Never call
+                // refreshSession() ourselves and never call signOut() here.
+                //
+                // Day 148 v6 (Sasha 2026-08-24) — THE auto-logout fix. The
+                // browser diagnostic showed the auth token was being DELETED
+                // from storage a few seconds after a correct signed-in load
+                // ("I saw myself logged in, then it logged me out by itself").
+                // Cause: the shell mounts 3-4x per load, so several manual
+                // refreshSession() calls fired at once; the first rotated the
+                // refresh token and the rest got `refresh_token_already_used`,
+                // which the v5 code classified as "definitively dead" and
+                // answered with signOut() — deleting a perfectly live session.
+                // That error is a ROTATION RACE, not a dead session. The fix is
+                // to stop competing with supabase-js's internal auto-refresh
+                // entirely: trust getSession(), and let supabase-js own the
+                // token lifecycle. If the session is genuinely dead it emits
+                // SIGNED_OUT and clears storage itself; if this is a transient
+                // event, the token is preserved and the next SIGNED_IN /
+                // TOKEN_REFRESHED event recovers.
                 let verified = null as import("@supabase/supabase-js").User | null;
                 try {
                     const { data } = await supabase.auth.getSession();
@@ -1002,100 +1022,29 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 }
 
                 if (verified) {
-                    // Transient null — the user is still signed in. Keep their
-                    // real profile; do not fall through to the guest branch.
                     setUser(verified);
                     setAuthChecked(true);
                     loadProfile(verified.id);
                     return;
                 }
 
-                // Day 148 v4 (Sasha 2026-08-24): a STORED session that fails to
-                // validate at boot used to silently demote to guest, and the
-                // guest branch below then minted a brand-new empty profile id.
-                // Every subsequent read went to that empty profile with the anon
-                // key, producing the exact reported symptom: a rendered email
-                // (stale user object) next to "—" names, no journey progress,
-                // empty export, collapsed rail. Confirmed by a live trace.
-                //
-                // Before giving up, try one explicit refresh — a stale access
-                // token with a still-valid refresh token recovers here and the
-                // user never notices. Only if that also fails do we treat the
-                // session as genuinely dead, and then we clear the stale token
-                // instead of half-living as a guest with a signed-in-looking
-                // UI. That is the manual "sign out fully, sign back in"
-                // workaround, automated.
-                let storedToken: string | null = null;
+                setAuthChecked(true);
+
+                // A token still present but this event carried no session = a
+                // transient blip (mid-refresh, another tab). Keep whatever is
+                // loaded and wait for the next auth event. Do NOT sign out, do
+                // NOT mint a guest profile — that is what stranded the user.
+                let hasStoredToken = false;
                 try {
-                    storedToken = window.localStorage.getItem("evolver-auth-token");
+                    hasStoredToken = !!window.localStorage.getItem("evolver-auth-token");
                 } catch { /* private mode */ }
-
-                if (storedToken) {
-                    // Day 148 v5 (Sasha 2026-08-24): NEVER destroy a token on a
-                    // transient failure. Lovable's live trace confirmed the v4
-                    // code above was the "login disappears after a bit" bug:
-                    // supabase-js runs its own auto-refresh, so our manual
-                    // refreshSession() can lose that race (or fail on a network
-                    // blip, or a refresh already in flight in another tab), and
-                    // the old code answered that by signing the user out and
-                    // deleting the refresh token. Worse than the pre-fix
-                    // behaviour, where a reload recovered. Now: sign out ONLY on
-                    // a definitive dead-refresh-token error; every other failure
-                    // is a no-op that leaves the live session + loaded profile
-                    // untouched for supabase-js to retry on its own schedule.
-                    let refreshError: unknown = null;
-                    try {
-                        const { data: refreshed, error } = await supabase.auth.refreshSession();
-                        if (!error && refreshed.session?.user) {
-                            console.info("[GameShellV2] stale session recovered via refreshSession");
-                            setUser(refreshed.session.user);
-                            setAuthChecked(true);
-                            loadProfile(refreshed.session.user.id);
-                            return;
-                        }
-                        refreshError = error;
-                    } catch (err) {
-                        refreshError = err;
-                    }
-
-                    const msg = String((refreshError as { message?: string })?.message ?? refreshError ?? "");
-                    const code = String((refreshError as { code?: string })?.code ?? "");
-                    const definitivelyDead =
-                        event === "SIGNED_OUT" ||
-                        /refresh_token_not_found|refresh_token_already_used|invalid_grant|Invalid Refresh Token/i.test(
-                            `${code} ${msg}`,
-                        );
-
-                    if (!definitivelyDead) {
-                        // Transient. Keep the existing session + loaded profile
-                        // exactly as they are; do NOT demote to guest, do NOT
-                        // sign out. authChecked is set so the shell never sticks
-                        // on a loading spinner if this runs before the initial
-                        // check resolved.
-                        console.warn(
-                            "[GameShellV2] transient session re-verify failure — keeping the existing session",
-                            refreshError,
-                        );
-                        setAuthChecked(true);
-                        return;
-                    }
-
-                    console.error(
-                        "[GameShellV2] refresh token is definitively dead — clean sign-in required",
-                        refreshError,
-                    );
-                    try {
-                        await supabase.auth.signOut();
-                    } catch { /* best effort — the token is dead either way */ }
-                    setUser(null);
-                    setAuthChecked(true);
-                    setProfile(null);
+                if (hasStoredToken) {
+                    console.warn("[GameShellV2] no session on event but token present — treating as transient, keeping state", { event });
                     return;
                 }
 
-                console.info("[GameShellV2] treating as guest after re-verify", { event });
+                // Genuinely no token → real guest.
                 setUser(null);
-                setAuthChecked(true);
                 getOrCreateGameProfileId()
                     .then((profileId) => loadProfileById(profileId))
                     .catch(() => setProfile(null));
