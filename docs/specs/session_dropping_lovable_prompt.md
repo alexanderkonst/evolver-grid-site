@@ -5,16 +5,26 @@ Paste the fenced block into Lovable.
 ```
 CURRENT SYMPTOM (still happening after the last round of fixes)
 
-Signed-in users on findyourtoptalent.com:
-- log in successfully, but the login "disappears after a bit" — the session
-  dies WHILE using the app, not only at boot
-- journey progress does not show even while apparently logged in
-- overall it flips between signed-in and guest states — "a mess"
+PRIMARY, PERSISTENT: when I log in, NO game/journey progress shows at all. The
+journey steps are not struck through, the rail does not unlock. This reproduces
+on THREE different accounts:
+  - alexanderkonst@gmail.com  (user d57e77a6-…, profile cb270523-…, zog_complete)
+  - personalytics@gmail.com   (user 20830cf8-…, profile e20f8a34-…, zog_complete)
+  - me@sloan.mit.edu          (please look this one up — user id, profile id,
+                               onboarding_stage, and whether it actually HAS
+                               progress data: last_zog_snapshot_id,
+                               mission_discovered_at, resources_mapped_at,
+                               last_qol_snapshot_id)
 
-This is a SESSION LIFECYCLE problem (a session that works then dies), which is a
-different signal from the earlier empty-profile-at-boot issue. Please focus the
-investigation on the token refresh lifecycle and the server-side session/JWT
-configuration.
+SECONDARY: the login also "disappears after a bit" — the session seems to die
+WHILE using the app, and the UI flips between signed-in and guest.
+
+Working theory: these are ONE root. If the session is unstable (drops or fails
+to refresh mid-use), every authenticated read — the profile AND the journey-
+progress read — intermittently falls back to the guest/empty path, so progress
+never renders reliably. Please focus on (a) is the session stable for the whole
+page lifecycle, and (b) does the journey-progress read actually return the
+completion signals for these accounts when the session IS valid.
 
 PRIME SUSPECT #1 — a client change I made last round that may be CAUSING the
 "disappears after a bit"
@@ -79,13 +89,36 @@ ALREADY VERIFIED — do not re-test (it costs credits)
 - No missing columns otherwise; correct build deployed; no service worker/cache;
   backend healthy (valid anon key, correct clock).
 
+PRIME SUSPECT #3 — the journey-progress read specifically
+
+The progress the user sees comes from the hook src/hooks/useJourneyProgress.ts.
+It reads game_profiles by user_id (via getSession) plus probes zog_snapshots /
+qol_snapshots / user_assets. In a real signed-in browser session for
+personalytics@gmail.com (which has full data), please confirm:
+  - the hook's game_profiles read returns the row (not null) with the pointer
+    columns populated
+  - the zog_snapshots probe (by profile_id) and qol/user_assets probes return
+    rows
+  - the computed progress flags (journey-start-here, journey-mission-discovery,
+    journey-asset-mapper, journey-qol-assess) come out TRUE
+  - and that the value actually reaches the UI (SectionsPanel strikethrough) and
+    is not discarded by a re-render — check whether the flaky auth listener in
+    GameShellV2 is causing repeated remounts/state resets that wipe the loaded
+    progress. Capture whether loadProfile / the journey hook run repeatedly.
+
 WHAT I NEED BACK
 
-1. Whether GameShellV2's refreshSession/signOut path (suspect #1) is firing
+1. me@sloan.mit.edu: its user id, profile id, onboarding_stage, and whether it
+   holds any progress data at all (so we know if "no progress" is expected there
+   or a real defect).
+2. Whether GameShellV2's refreshSession/signOut path (suspect #1) is firing
    during normal use and destroying live sessions — with the captured events.
-2. The configured JWT/access-token expiry, and whether refresh calls succeed.
-3. Whether a "Multiple GoTrueClient" warning appears.
-4. Your recommended fix, as an exact diff to review before you apply it.
+3. Whether the journey-progress read (suspect #3) returns TRUE flags for a
+   full-data account with a stable session, and whether those flags reach the UI
+   or get wiped by re-renders.
+4. The configured JWT/access-token expiry, and whether refresh calls succeed.
+5. Whether a "Multiple GoTrueClient" warning appears.
+6. Your recommended fix, as an exact diff to review before you apply it.
 
 SAFETY
 - Do not delete any auth.users, game_profiles, zog_snapshots, qol_snapshots or
