@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { useToast } from "@/hooks/use-toast";
 import { useStripePortal } from "@/hooks/use-stripe-portal";
 // Day 61 (Sasha 2026-05-04 17:00): Reset Progress wipes the
@@ -142,11 +143,35 @@ const ProfileSettingsSection = () => {
             return;
         }
         setUser(user);
-        const { data: profileData } = await supabase
+        let { data: profileData } = await supabase
             .from("game_profiles")
             .select("id, first_name, last_name, spoken_languages, avatar_url, username")
             .eq("user_id", user.id)
             .maybeSingle();
+        // Day 148 v3 (Sasha 2026-08-07): if no row is visible for a signed-in
+        // user, this pane rendered blank name/languages and Save silently did
+        // nothing. An RLS-blocked SELECT is indistinguishable from a missing
+        // row (both return data:null, error:null), so find-or-create first;
+        // if it is still invisible afterwards, RLS is the cause — say so.
+        if (!profileData) {
+            console.warn("[ProfileSettingsSection] no profile row visible — attempting self-heal");
+            try {
+                const healedId = await getOrCreateGameProfileId();
+                const { data: byId } = await supabase
+                    .from("game_profiles")
+                    .select("id, first_name, last_name, spoken_languages, avatar_url, username")
+                    .eq("id", healedId)
+                    .maybeSingle();
+                profileData = byId ?? null;
+                if (!profileData) {
+                    console.error(
+                        "[ProfileSettingsSection] profile STILL invisible after self-heal — RLS on public.game_profiles is blocking SELECT for the authenticated user.",
+                    );
+                }
+            } catch (healErr) {
+                console.error("[ProfileSettingsSection] profile self-heal failed", healErr);
+            }
+        }
         if (profileData) {
             setProfile(profileData);
             setEditFirstName(profileData.first_name || "");
@@ -264,7 +289,19 @@ const ProfileSettingsSection = () => {
     const normalizeKey = (value: string) => normalizeLanguage(value).toLowerCase();
 
     const handleSaveProfile = async () => {
-        if (!profile) return;
+        // Day 148 v3 (Sasha 2026-08-07): this used to `return` silently when
+        // profile was null — pressing Save appeared to do nothing at all (no
+        // toast, no error), which is exactly what "I cannot add languages, it
+        // doesn't save" looked like. Never fail silently.
+        if (!profile) {
+            console.error("[ProfileSettingsSection] Save pressed with no profile row loaded");
+            toast({
+                title: t('profileSettings.toastErrorTitle'),
+                description: t('profileSettings.saveNoRowMessage'),
+                variant: "destructive",
+            });
+            return;
+        }
         if (!user?.id) {
             toast({
                 title: t('profileSettings.toastErrorTitle'),
