@@ -504,6 +504,18 @@ Every articulation, score, body-score, artifact version, and prediction produced
 
 **Why this matters:** The founder's body-score is the ground truth. When AI re-distills a scored artifact, it makes editorial decisions about what's "important" — often stripping the exact energies that made the founder score it high. In Karime's case, the Return (bringing people home to the heart), Attuned Presence, and Mothering energies were stripped from the canvas distillation, causing all downstream artifacts to miss the heart of her work. Three energies lost → entire canvas at 5/10.
 
+### The Three Public Lines Requirement (v1.0, August 22, 2026)
+
+Every founder running this playbook maintains **three versioned public lines**, tracked together in one place, each with a version number and a date:
+
+1. **Business tagline** — what the business does, the room-facing one-liner (the offer said in one breath).
+2. **Uniqueness tagline** — what only this founder does, their top talent said in one breath.
+3. **Mission** — what it all serves (may hold two registers: an operating mission and a civilizational one).
+
+**Rules:** newest on top, prior versions kept verbatim (never delete a version the founder has spoken), each version dated (the Timestamp Requirement applies). The business tagline is the most volatile — it tracks the current offer and moves as the ladder evolves; the mission is the most stable. Point to the fuller artifact genealogies (uniqueness, myth, tuning forks) rather than re-compressing them here — the line is the spoken surface, the artifact is the full-signal source.
+
+**Why it matters:** these three sentences are what a stranger actually hears at a call, in a bio, on a page. They drift silently as the business matures, and an untracked tagline is the same lost-data-point problem the Timestamp Requirement names, one altitude up. Versioning them makes the maturation visible: Sasha's own business tagline v1.1 is a direct, traceable descendant of Master Tuning Fork v4.1. Reference implementation: the "Public Lines (versioned)" block at the top of `alexanders_unique_business.md`.
+
 ---
 
 ## The Soul-Alignment Test
