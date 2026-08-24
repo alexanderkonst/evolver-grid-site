@@ -1031,27 +1031,62 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 } catch { /* private mode */ }
 
                 if (storedToken) {
+                    // Day 148 v5 (Sasha 2026-08-24): NEVER destroy a token on a
+                    // transient failure. Lovable's live trace confirmed the v4
+                    // code above was the "login disappears after a bit" bug:
+                    // supabase-js runs its own auto-refresh, so our manual
+                    // refreshSession() can lose that race (or fail on a network
+                    // blip, or a refresh already in flight in another tab), and
+                    // the old code answered that by signing the user out and
+                    // deleting the refresh token. Worse than the pre-fix
+                    // behaviour, where a reload recovered. Now: sign out ONLY on
+                    // a definitive dead-refresh-token error; every other failure
+                    // is a no-op that leaves the live session + loaded profile
+                    // untouched for supabase-js to retry on its own schedule.
+                    let refreshError: unknown = null;
                     try {
-                        const { data: refreshed, error: refreshError } = await supabase.auth.refreshSession();
-                        if (!refreshError && refreshed.session?.user) {
+                        const { data: refreshed, error } = await supabase.auth.refreshSession();
+                        if (!error && refreshed.session?.user) {
                             console.info("[GameShellV2] stale session recovered via refreshSession");
                             setUser(refreshed.session.user);
                             setAuthChecked(true);
                             loadProfile(refreshed.session.user.id);
                             return;
                         }
-                        console.error(
-                            "[GameShellV2] stored session failed to validate AND refresh — clearing the stale token and requiring a clean sign-in rather than minting a guest profile",
-                            refreshError,
-                        );
-                    } catch (refreshErr) {
-                        console.error("[GameShellV2] refreshSession threw", refreshErr);
+                        refreshError = error;
+                    } catch (err) {
+                        refreshError = err;
                     }
 
+                    const msg = String((refreshError as { message?: string })?.message ?? refreshError ?? "");
+                    const code = String((refreshError as { code?: string })?.code ?? "");
+                    const definitivelyDead =
+                        event === "SIGNED_OUT" ||
+                        /refresh_token_not_found|refresh_token_already_used|invalid_grant|Invalid Refresh Token/i.test(
+                            `${code} ${msg}`,
+                        );
+
+                    if (!definitivelyDead) {
+                        // Transient. Keep the existing session + loaded profile
+                        // exactly as they are; do NOT demote to guest, do NOT
+                        // sign out. authChecked is set so the shell never sticks
+                        // on a loading spinner if this runs before the initial
+                        // check resolved.
+                        console.warn(
+                            "[GameShellV2] transient session re-verify failure — keeping the existing session",
+                            refreshError,
+                        );
+                        setAuthChecked(true);
+                        return;
+                    }
+
+                    console.error(
+                        "[GameShellV2] refresh token is definitively dead — clean sign-in required",
+                        refreshError,
+                    );
                     try {
                         await supabase.auth.signOut();
                     } catch { /* best effort — the token is dead either way */ }
-
                     setUser(null);
                     setAuthChecked(true);
                     setProfile(null);
