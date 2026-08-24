@@ -1032,6 +1032,8 @@ export type Database = {
           personality_tests: Json | null
           playbook_visited_at: string | null
           practice_count: number
+          preferred_language: string | null
+          preferred_skin: string | null
           profile_visibility: string
           pulse_email_opt_out: boolean
           qol_priorities: Json | null
@@ -1106,6 +1108,8 @@ export type Database = {
           personality_tests?: Json | null
           playbook_visited_at?: string | null
           practice_count?: number
+          preferred_language?: string | null
+          preferred_skin?: string | null
           profile_visibility?: string
           pulse_email_opt_out?: boolean
           qol_priorities?: Json | null
@@ -1180,6 +1184,8 @@ export type Database = {
           personality_tests?: Json | null
           playbook_visited_at?: string | null
           practice_count?: number
+          preferred_language?: string | null
+          preferred_skin?: string | null
           profile_visibility?: string
           pulse_email_opt_out?: boolean
           qol_priorities?: Json | null
