@@ -54,6 +54,39 @@ This is the playbook applied to Sasha's own business, and at the same time a com
 > **In flight (Day 155, August 14, 2026): the Sovereign Founder Collective.** The Marc Winn call ("become the capital partner, stop selling") reframed the whole business into an ownable model, now documented in [`sovereign_founder_collective.md`](../sovereign_founder_collective.md). Core: not a fund, not equity, not capital as the headline. Select ripe founder-material, read their uniqueness, build their next business as a crystallization of who they are, **fully bootstrapped** to first sales, founder keeps 100%, aligned by a capped revenue-share. Ladder becomes: Productize Yourself $555 (skin in the game) → **Product Market Fit** container (10% of first $50k, capped $5k) → Scale to $500k (assembled team, paid from the 10%) → **Node license** (founder trains founders, 10% of 10% of 10% — fractal + viral, BIG IDEA #2). Legal blue ocean: a commercial contract, never pool/hold anyone's money; investors do direct deals with graduated opt-in founders, Sasha scouts for a finder fee. Loans/RBF beat equity for sovereignty (see [business_capital_taxonomy_map.md](../../holomaps/business_capital_taxonomy_map.md)). Ideal client sharpened: experienced founder/operator in a real between-chapters moment (NOT students / first-chapter). Positioning shift landing on LinkedIn (headline "your next business is hidden in what you're already best at," bootstrapped, keep 100%; the mission as filter: a network of sovereign people doing what only they can). New investor-facing product parked: **The Founder Read** (`/products/founder-read`). Full build: session log + private ledger pulses Days 154-155.
 > **Source of truth for this box:** `docs/02-strategy/roadmap.md` Current Status + Active Backlog, Days 131-138. Update this box whenever the roadmap's Current Status changes materially.
 
+### 📣 Public Lines (versioned) — the three sentences said out loud
+
+*The three lines a stranger hears: what the business does, what only Sasha does, and what it all serves. Versioned and dated so drift is visible (playbook Principle 15). Newest on top. The fuller artifacts live in their own genealogies below and are pointed to, not re-compressed (no parallel compression).*
+
+**1. Business tagline** — *what the business does* (the room-facing one-liner)
+
+- **v1.1 — Day 163, August 22, 2026** (current, the ClubDAO line):
+  > "I help entrepreneurs in transition between their old business and their next, articulate the one thing they're uniquely best at, and build their next AI-native business straight out of it.
+  >
+  > That's how a collective of sovereign founders forms, and with it, the Golden Age AI economy."
+  >
+  > *Spoken rule: sentence 1 is the recognition (lead with it, always). Sentence 2 is the myth layer — add it only when the room leans in. Direct descendant of Master Tuning Fork v4.1: "next-big-thing" → "between their old business and their next"; "scalable structure" → "AI-native business".*
+- **v1.0 — earlier:** "Helps build ventures from who you already are." (the compact bio-slot form)
+
+**2. Uniqueness tagline** — *what only Sasha does* (his top talent, said in one breath)
+
+- **Current — Day 62, May 5, 2026** (archetype "Forging" / Essence-to-Words Shaping):
+  > "I turn vague thoughts into exact words people can use to decide and act."
+- **Fuller artifact:** locked **Uniqueness v3.3** ("Professional Clarity for Better-Fit Opportunities," 9.999) — see [Uniqueness genealogy](#) in the artifact table below. The one-liner above is the spoken form; v3.3 is the full-signal source.
+
+**3. Mission** — *what it all serves* (two registers, both current)
+
+- **Operating** — **Master Tuning Fork v4.1, Day 133, July 23, 2026** (Sasha's own words):
+  > "I assist entrepreneurial people in transition to their next-big-thing articulate unique value, monetize it, and build a scalable business structure around it."
+  >
+  > Full genealogy: [Master Tuning Forks v4.1](#-master-tuning-forks--v41-july-23-2026-day-133).
+- **Civilizational** — **Day 66 synthesis, May 16, 2026:**
+  > "Assist humanity evolve into a consciously coordinated civilization by awakening individual genius, integrating consciousness with technology, and architecting systems that transform human potential into coherent collective flourishing."
+  >
+  > Full read: [Personal Mission](#personal-mission-day-66-generated-may-16-2026).
+
+*Update rule: when any of these three changes, bump the version, date it, keep the prior verbatim. The business tagline is the most volatile (it tracks the current offer); the mission is the most stable.*
+
 > **Organizing principle (Day 111): one holonic business, four scales, rooted in specific fit.** Not four businesses (self-knowledge · venture building · matching · civilizational infrastructure) but one kernel running at the person, venture, community, and civilization scales. The Day 110 synthesis named the fit/recognition architecture. Day 111 adds the root myth beneath it: every being is a unique face of eternity, and living systems ripen when those faces become legible enough to find fit, complements, shared work, and sustainable value flow without collapsing into sameness.
 
 ### Name & Surfaces
