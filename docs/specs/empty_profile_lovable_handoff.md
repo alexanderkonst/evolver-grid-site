@@ -44,6 +44,29 @@ WHAT IS ALREADY RULED OUT — please do not re-test these, they cost me credits
    demoting to guest; both profile readers self-heal via
    getOrCreateGameProfileId(); Save no longer fails silently.
 
+7. IMPORTANT: the frontend self-heal IS already deployed. When the app finds
+   no game_profiles row for the signed-in user, it now calls a find-or-create
+   helper and re-reads. So a genuinely MISSING row would already have been
+   created and the profile would work. It still shows empty. Combined with fact
+   2 (a populated row exists for this email), that means the client's lookup by
+   the session's user_id matches nothing WHILE a populated row exists under a
+   different user_id. That is the strongest single pointer to the hypothesis
+   below.
+
+   Side effect to check: because that self-heal has been live, it may ALREADY
+   have created empty duplicate profile rows for whichever user id I am actually
+   logging in as. Please include those in your report so we can fold them into
+   the fix rather than leaving litter behind:
+
+     select id, user_id, first_name, onboarding_stage, created_at
+     from public.game_profiles
+     where first_name is null
+       and last_zog_snapshot_id is null
+       and mission_discovered_at is null
+       and resources_mapped_at is null
+     order by created_at desc
+     limit 20;
+
 LEADING HYPOTHESIS — please test this FIRST
 
 The browser may be signed in as a DIFFERENT auth.users id than the one the
