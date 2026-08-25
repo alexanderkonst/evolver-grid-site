@@ -8496,3 +8496,13 @@ Underneath all four: the way I've been working can't produce what I know is poss
 **Revenue reconciliation.** Prior strict-received baseline was **$2,428** (recomputed Day 134; note: `MEMORY.md`'s "$2,271" was itself stale and is corrected by this pass). Gleb's **$1,000** (50% of the $2,000 Crossing container, received before session 1) is the first program-container payment and lifts strict-received to **$3,428** (+ the $277 Sergey rev-share contract = $3,705 tracked). No other new confirmed payment surfaced in the window; the coaching income belongs to Karime's practice and is not counted here.
 
 **Threads left open at Aug 25:** Gleb's second $1,000 due before session 5; the Boardy conversations (Lola / Peter / Yulia) awaiting Sasha's follow-up shape; the Quiz still at Phase 2 (`/quiz2` build, `/quiz` legacy live) with Phase 3 retrodiction against known clients not yet run; the auth fix in a watch-and-verify state; Karime's own full-blown program still in design (Victoria as the certain buyer).
+
+### Day 166 addendum — the Recursive Unique Business crystallizes
+
+A long artifact-synthesis sequence exposed the governing relational law beneath the whole business. The ideal client is not mirror *or* complement: the ideal client is both the person who recursively resembles Sasha most deeply and a meaningful complement held in trust, at sufficient ripeness for value to move. Canonical formula: `T = Recursive Likeness × Complementarity`; `Value Flow = Trust × Ripeness`.
+
+The transaction's completion condition also became visible: Sasha recognizes himself in another person, reveals the difference the person cannot yet see, and helps the difference become value; the cycle completes when the receiver can perform the same universal act for another through the receiver's own unique gift. AI supplies a living mirror through which the resulting business can recognize its own pattern, learn from reality, and grow faster and more evenly without losing identity.
+
+The one operation was then instantiated as a complete buyer-facing artifact set at four scales: unique individual, unique individual business, unique business collective, and unique planetary coordination. The language rounds produced a governing writing law: **absurd simplicity means complete meaning in ordinary language; a pronoun cannot carry a phenomenon the reader still needs to see.**
+
+Full historical record: `docs/09-logs/2026-08-25_recursive_unique_business_crystallization.md`. Canonical updates: Alexander's unique business Day 166 · ITFT Parts I/XI/XIII · Phase Shift Technologies 134–136 · Unique Business Playbook Principle 17 · Decisions D-2026-08-25-01/02.

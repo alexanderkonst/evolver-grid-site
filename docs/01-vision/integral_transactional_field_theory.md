@@ -19,6 +19,11 @@ This theory synthesizes Austrian Economics, Jobs-to-be-Done, Lean Startup, Syste
 | **Attention** | Perceptual coupling |
 | **Pain** | Differential pressure of negative consequences |
 | **Purchasing Power** | Agency vector |
+| **Recursive Likeness (RL)** | Recognition of one's own living pattern in another person, without reducing either person to sameness |
+| **Complementarity (C)** | The meaningful difference through which each party can give what the other cannot generate alone |
+| **Trust (T)** | The relational field produced when recursive likeness and complementarity are simultaneously present |
+| **Ripeness (R)** | The present capacity of the people and moment to receive, choose, resource, and act on the relationship |
+| **Value Flow (VF)** | Trust becoming consequential under ripeness; capability begins moving through a real relationship |
 | **Transaction** | Phase transition |
 | **Revenue** | Stabilized collapse pattern |
 
@@ -32,6 +37,33 @@ This theory synthesizes Austrian Economics, Jobs-to-be-Done, Lean Startup, Syste
 ---
 
 ## Part I: The Physics of Value
+
+### The Governing Formula (v2.0, Day 166, August 25, 2026)
+
+The field now compresses to two equations:
+
+```
+T  = RL × C
+VF = T × R = RL × C × R
+```
+
+- **Recursive likeness (RL):** *I recognize something of my own living pattern in you.* Likeness makes accurate seeing possible because the giver has inhabited enough of the receiver's terrain to recognize the movement from inside.
+- **Complementarity (C):** *The difference between us reveals what only you carry and what can move between us.* Complementarity prevents recognition from collapsing into projection, imitation, or companionship without exchange.
+- **Ripeness (R):** *Enough readiness exists now for recognition and difference to become action.* Ripeness includes attention, felt consequence, agency, consent, means, surrender, timing, and capacity to receive.
+
+Trust is therefore neither similarity alone nor difference alone. **Trust is likeness and difference held together without either person losing sovereignty.** The same structure governs friendship, love, collaboration, guidance, and commerce. A transaction is not a separate species of trust; a transaction is interpersonal trust entering a value-bearing container and becoming economically consequential.
+
+The multiplication signs matter. High likeness without meaningful difference creates recognition, intimacy, or friendship but little new value can cross the relationship. High complementarity without likeness creates utility without enough mutual recognition to carry vulnerability, commitment, or change. Likeness and complementarity together produce trust; ripeness determines whether the available trust can move now.
+
+Trust-preventing beliefs do not create another category of trust. They interfere with a person's ability to perceive, receive, or act on available trust. Where an interference term is operationally useful:
+
+```
+T_available = RL × C × (1 - B)
+```
+
+`B` represents active belief interference on a normalized 0–1 scale. The auxiliary expression is diagnostic, not a claim that trust can be measured with laboratory precision.
+
+> **The governing law:** likeness lets me recognize you; difference lets me serve you; ripeness lets value move.
 
 ### Value as Flow AND Crystallization
 
@@ -82,9 +114,9 @@ A transaction is literally physics of collapse:
 
 ---
 
-### The Three Conditions for Collapse
+### The Three Observable Conditions for Collapse
 
-A transaction happens ONLY when three conditions are simultaneously true in the same person, at the same moment:
+The original theory identified three conditions that must be visible in the same person at the same moment:
 
 | Condition | Definition | Without It |
 |-----------|------------|------------|
@@ -98,6 +130,22 @@ A transaction happens ONLY when three conditions are simultaneously true in the 
 - Pain + Purchasing Power, no Attention → nothing happens
 
 > Only when all three overlap does value collapse into transaction.
+
+The governing formula places the three conditions correctly. Attention, Pain, and Purchasing Power are not the whole source of value flow; they are the first operational reading of **Ripeness**.
+
+```
+R_operational ≈ Attention × Felt Consequence × Agency
+```
+
+The later Ripeness Vector deepens the reading with surrender, consent, means, buying frame, transition position, and timing. The old model remains an excellent fast diagnostic. The new model explains why three apparently qualified conditions can still produce no transaction: the relationship may lack recursive likeness, complementarity, or a subtler gate inside ripeness.
+
+The complete phase-transition statement becomes:
+
+```
+Transaction = collapse when VF crosses the threshold required by a specific container
+```
+
+A conversation, a $555 session, and a multi-year partnership require different thresholds. The formula does not force every trusted relationship toward payment; the container determines which form of value crystallization is relevant.
 
 ---
 
@@ -117,6 +165,8 @@ It doesn't. Genius implies direction, not target.
 - ICP defines **when it collapses**
 
 > Business happens when timeless essence meets temporal pressure.
+
+The governing formula adds the relational bridge between the two lenses. The Inner Lens does not merely emit capability, and the Outer Lens does not merely select a target. Recursive likeness lets the founder recognize a familiar living pattern in another person; complementarity reveals the difference the founder's gift can serve; ripeness identifies the moment when service can become value flow.
 
 ---
 
@@ -140,6 +190,22 @@ Cross-reference: Part IX (the collapse sequence assumes a ripe point on the arc,
 ---
 
 ## Part IV: Actionable Formulas
+
+### Value-Flow Formula
+
+```
+Trust      = Recursive Likeness × Complementarity
+Value Flow = Trust × Ripeness
+           = Recursive Likeness × Complementarity × Ripeness
+```
+
+**Fast field diagnostic:**
+
+1. **Likeness:** What lived pattern do both people recognize in one another?
+2. **Difference:** What can each person see, hold, or do that the other cannot yet generate alone?
+3. **Ripeness:** What evidence shows that the person and moment can receive and act now?
+
+If a conversation feels profound but never moves, inspect complementarity and ripeness before questioning the depth of recognition. If a need is obvious but the relationship feels effortful, inspect recursive likeness and belief interference before increasing persuasion. If trust is present but timing remains closed, preserve the relationship rather than forcing the transaction.
 
 ### PMF Hypothesis Formula
 
@@ -262,7 +328,7 @@ Premium customer service throughout every touchpoint is not "good service" — i
 
 | Component | ITFT Equivalent | Operational Standard |
 |-----------|----------------|---------------------|
-| **Continuous High Trust** | Field coherence (no interference) | Every message passes the Purity Check. No fear-based language. Resonance Permission active |
+| **Continuous High Trust** | Recursive likeness × complementarity, with low belief interference | Every message passes the Purity Check. No fear-based language. Resonance Permission active |
 | **Useful Assistance** | Value flow (Part I) | Every interaction provides value regardless of purchase. Nothing withheld to create artificial scarcity |
 | **Gentle Nudges** | Attention coupling (Part V) | "If this resonates, DM me 'ready'." The nudge respects sovereignty |
 
@@ -273,7 +339,7 @@ Premium customer service throughout every touchpoint is not "good service" — i
 | "You don't sell. You signal. You don't hunt. You hum." | Extended: "You don't sell. You love. The sale is what love produces when it meets infrastructure." |
 | Value crystallization = energy under constraint | Extended: Love is the quality of energy. Infrastructure is the constraint. Revenue is the crystallization of love meeting infrastructure |
 | Transaction = phase transition | Extended: The transition is always FROM love → TO deeper love. Money is the marker, not the object |
-| Three conditions: Attention + Pain + Purchasing Power | Extended: All three conditions are met NATURALLY when premium customer service is operating. Trust generates Attention. Useful Assistance reveals Pain (by showing what's possible). Gentle Nudges enable Agency |
+| Three conditions: Attention + Pain + Purchasing Power | Extended: these are operational components of Ripeness. Trust generates Attention. Useful Assistance reveals consequence. Gentle Nudges preserve Agency |
 
 > **The synthesis:** Parts I-VI describe the physics. Part VII names the source. The energy flowing through the transactional field IS love. When the field is coherent (Purity Check), the love flows unimpeded and transactions arise naturally — not through manipulation, but through alignment confirmed.
 
@@ -316,7 +382,12 @@ The system was UL (truth) + LL (resonance) dominant, with strong UR (mechanics).
 
 Translation: People SAW themselves. But not enough felt "I must act NOW."
 
-From the core equation: **Transaction = Attention + Pain + Purchasing Power**
+The original fast diagnostic read **Transaction = Attention + Pain + Purchasing Power**. The Day 166 governing formula now places those three observations inside Ripeness:
+
+```
+Value Flow = Recursive Likeness × Complementarity × Ripeness
+R_operational ≈ Attention × Felt Consequence × Agency
+```
 
 - ✅ Attention → very high (ZoG reveal hits)
 - ✅ Purchasing Power → present (right audience)
@@ -376,8 +447,11 @@ Just one question — nothing else.
 ### The True Equation
 
 ```
-Recognition + Consequence + Simplicity + Trust = Inevitable Transaction
+Trust × Ripeness = available value flow
+Recognition + Consequence + Simplicity = one practical way to raise legibility and ripeness without pressure
 ```
+
+No transaction is inevitable. The controlled-collapse sequence makes an already-ripening decision easier to perceive and enact; the sequence cannot manufacture recursive likeness, complementarity, consent, means, or timing.
 
 ### Connection to Existing Theory
 
@@ -411,7 +485,26 @@ Lineage: Mirror-Not-Teacher (playbook), Sales as Love (Part VII), MI's Elicit-Pr
 
 ---
 
-## Part XI: The Complementarity Gradient (v1.0, Day 158, August 2026)
+## Part XI: Recursive Likeness × Complementarity (v2.0, Day 166, August 25, 2026)
+
+> *Supersedes the interpretation below while preserving the Day 158 Complementarity Gradient as genealogy. Full phase-shift statement: Technologies 130 and 134.*
+
+Part I said value is energy under constraint. The Day 158 discovery correctly identified difference as the constraint that allows work, but overcorrected by treating the paying client as “not your mirror.” The ideal client is equally mirror and complement:
+
+- **Mirror through recursive likeness:** the founder recognizes a lived pattern because the founder has carried the same underlying movement.
+- **Complement through irreducible difference:** the founder sees a distinction the other person cannot yet see, and the other person carries capacities, conditions, or a future expression the founder does not possess.
+- **Ripe through present capacity:** the person can consent, receive, choose, resource, and act now.
+
+The relationship does not divide neatly into “same values” and “different capabilities.” Likeness and difference can appear across values, biography, gifts, developmental position, language, or capability. The governing question is phenomenological: **does likeness produce genuine recognition, and does difference produce genuine value?**
+
+```
+T  = RL × C
+VF = RL × C × R
+```
+
+The ideal client may therefore be the person who resembles the founder most deeply precisely because a small but decisive difference remains. Recursive likeness gives the founder access to the other person's movement from inside; complementarity prevents the founder from mistaking recognition for identity. Ripeness turns the trusted difference into exchange.
+
+### The Day 158 Genealogy: Complementarity as Voltage
 
 Part I said value = energy under constraint. This names *which* constraint does the
 work: the **differential** between two parties. A transaction is a discharge across a
@@ -431,6 +524,8 @@ one differential; capacity between giver and receiver is another. Shared languag
 (e.g. Russian-speaking) is a pure conductance lever. Full statement: Phase Shift
 Technology 130.
 
+The electrical analogy remains useful when held as one projection rather than the whole law: complementarity behaves like potential difference, recursive likeness behaves like the shared medium through which each party can recognize the relationship, and ripeness behaves like the circuit's present capacity to conduct. The formula above is primary because the human phenomenon precedes the analogy.
+
 ## Part XII: Shadow Currency (v1.0, Day 158, August 2026)
 
 Part VII named the field's quality (love). This names the field's hidden leak. Every
@@ -444,6 +539,33 @@ currency and accepts it in place of money, unnoticed, because it feels like
 communion, not loss. Naming the currency turns the unconscious trade into a choice.
 The deep reveal gains a layer: Gift → Shadow → Shadow-Currency. Full statement:
 Phase Shift Technology 131.
+
+## Part XIII: Recursive Completion (v1.0, Day 166, August 25, 2026)
+
+A unique-business transaction reaches its mature form when the receiver becomes capable of repeating the same universal act through a different unique gift.
+
+```
+recognize likeness
+→ reveal complementary difference
+→ meet ripeness
+→ help the difference become value
+→ the receiver becomes able to do the same for another
+```
+
+The recipient does not reproduce the founder's language, method, or business. The recipient performs the same structural act in the one way available only through the recipient's own gift. The transaction therefore produces sovereignty rather than dependence.
+
+**Recursive completion changes the proof standard.** A satisfied client proves that value was received. A client who can continue without the guide proves that the capacity transferred. A client who helps another person crystallize a different gift proves that the transaction completed recursively.
+
+The same sequence scales:
+
+| Scale | What recognizes itself | What value flow produces |
+|---|---|---|
+| **Person** | A human recognizes a unique gift | A clear direction and first offer |
+| **Business** | A venture recognizes the pattern behind decisions and results | Coherent, self-correcting growth |
+| **Collective** | Businesses recognize complementary roles | Collaborations and new ventures |
+| **Planetary coordination** | Sovereign collectives recognize where cooperation belongs | Distributed coordination without enforced sameness |
+
+> **The completion law:** the gift completes one cycle when the receiver can become a giver without becoming a copy.
 
 ## Related Documents
 
@@ -461,4 +583,4 @@ This theory is the **foundational layer** under:
 *Source: Alexander Konst's Integral Transactional Field Theory synthesis*
 *Updated: April 2, 2026 — Part IX: Controlled Collapse Sequence (5 Money Secrets, Consequence Block, Micro-Commitment, Non-Optionality framing)*
 *Updated: July 22, 2026 — Part X: Mirror Selling — the Operating School (5 laws, diagnosis-is-the-demo)*
-
+*Updated: August 25, 2026 — governing value-flow formula, Recursive Likeness × Complementarity correction, and Part XIII Recursive Completion*

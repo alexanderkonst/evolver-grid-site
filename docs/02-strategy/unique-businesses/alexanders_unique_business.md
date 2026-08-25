@@ -3,7 +3,8 @@
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
 > *April 3, 2026 · v8.0 — Declaration Phase*
-> *Current version: **v10.0** (July 28, 2026 — Day 138 · Surfaces Refresh Pass. The top-of-file sections — Business Dashboard, Master Tuning Forks, Tribe, Value Ladder, Current State, Funnel Architecture — now show each artifact's newest version on top, with the file's own convention enforced: newest on top, prior versions preserved as genealogy immediately below or pointed to inline. Nothing moved, nothing deleted. Cross-checked against `roadmap.md` Day 138 Current Status. One open flag: Pain v4.1, referenced in `roadmap.md` as pending, has not yet been located and filed verbatim — see the flag inside §5 Pain.)*
+> *Current version: **v10.1** (August 25, 2026 — Day 166 · Recursive Unique Business. Trust and value flow simplified to `T = Recursive Likeness × Complementarity`; `VF = Trust × Ripeness`. The mirror-versus-complement binary is corrected, recursive completion is named, the AI-native self-recognizing business is formalized, and the full commercial artifact chain is projected across individual, business, collective, and planetary coordination. Day 138 remains preserved immediately below as genealogy.)*
+> *Prior version: **v10.0** (July 28, 2026 — Day 138 · Surfaces Refresh Pass. Top-of-file artifacts were reconciled to the Day 138 roadmap state; Pain v4.1 remained an open location flag.)*
 > *Prior version: **v9.9** (April 25, 2026 — Day 51 night · Documentation consolidation pass. All five core corpus docs synchronized to Day 51 state: session_log Day 50 + Day 51 entries appended, roadmap v5.2 stamped, holomap Day 51 addendum with center reading "Codification" + perspective deltas + composite view, playbook bumped to v4.6 with the six business-model plays section added to Principle 15, this file's final consolidation entry below). The architecture is now legible at every layer of the corpus. Prior versions preserved in the changelog at end of file — nothing deleted, each version additive.*
 > *Playbook: [Unique Business Playbook](../../03-playbooks/unique_business_playbook.md) (v4.6)*
 > *Customer Journey: [Customer Journey Playbook](../../03-playbooks/customer_journey_playbook.md)*
@@ -18,9 +19,15 @@
 
 > *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the enduring shape. Live state (revenue, current bullseye, in-flight offers) lives in the Business Dashboard box below and in `roadmap.md` — this synthesis deliberately holds only what does not expire.*
 
+> **Day 166 crown — Recursive Unique Business.** Sasha's business performs one living act at four scales: recognize recursive likeness, reveal the complementary difference, and meet sufficient ripeness for the difference to become value. AI gives the person, business, collective, and planetary field a living mirror, so each can recognize its own pattern and grow without losing sovereignty. Full formula and commercial projection: [Day 166 synthesis](#day-166--the-recursive-unique-business-tuesday-august-25-2026).
+
+**Current compression of the whole business:**
+
+> **I do exactly what life does: I recognize myself in another person, and the differences between us reveal the gift that belongs uniquely to them. When the person is ready, we turn the gift into value through an AI-native business that can recognize its own pattern, learn from reality, and grow without losing itself. The work completes when the founder can continue with healthy pride and, if they choose, perform the same act for another person through their own unique gift. The same living pattern scales from people to businesses, from businesses to collectives, and from collectives to planetary coordination: life flowers through children, crystallizes value through unique businesses, learns cooperation through collectives, and gradually recognizes itself as a planet.**
+
 This is the playbook applied to Sasha's own business, and at the same time a compendium of the strategies that fell out of living it. It is the single source of truth for the venture: top talent, myth, tribe, pain, promise, value ladder, and funnel, each artifact versioned with essence, significance, and implications, newest on top with genealogy preserved. The through-line, named Day 111: not four businesses (self-knowledge · venture building · matching · civilizational infrastructure) but one kernel run at four scales — person, venture, community, civilization — rooted in specific fit. The top talent is **Signal-to-Path Shaping**: turning foggy power into a clear path people can use. The founder is client zero; the business is his own self-knowledge crystallized.
 
-**The whole in one line:** *One holonic business — help a person turn the one signal they carry into a business that could only be theirs — run at every scale from person to civilization.*
+**Day 111 compression, preserved as genealogy:** *One holonic business — help a person turn the one signal they carry into a business that could only be theirs — run at every scale from person to civilization.*
 
 **Three depths:**
 - ❤️ **Essence** — the founder's own medicine, taken first. Signal-to-Path Shaping applied recursively to himself: the hardest case is client zero, and the venture is his self-knowledge made structural.
@@ -41,9 +48,25 @@ This is the playbook applied to Sasha's own business, and at the same time a com
 
 ## 🧭 Business Dashboard
 
-*Day 48 (April 22, 2026) original snapshot; **refreshed to Day 138 (July 28, 2026)** below. The canvas sprawls further down — this is the top-of-the-file glance.*
+*Day 48 (April 22, 2026) original snapshot; refreshed newest-on-top. The canvas sprawls further down — this is the top-of-the-file glance.*
 
-> ### ⭐ Latest State — Day 138 (July 28, 2026)
+> ### ⭐ Latest State — Day 166 (August 25, 2026)
+>
+> **Governing business law:** recognize recursive likeness → reveal complementary difference → meet ripeness → help the difference become value → build a business that can recognize and grow itself → leave the founder able to repeat the act through their own gift.
+>
+> **Tribe:** three streams, each with a distinct gate and door. Stream A: founder in transition, reached through threshold marketing. Stream B: practitioner serving founders with sufficient mirror fidelity, reached through the myth and offered method/platform leverage. Stream C: conscious venture-studio or ecosystem operator, offered infrastructure, licensing, thesis, and aligned edges. Full definition: Tribe v6.1 below; Day 166 formula correction applies.
+>
+> **Revenue:** strict received **$3,428** (+ $277 Sergey rev-share contract = **$3,705 tracked**). Gleb's first $1,000 payment for The Crossing is received; the second $1,000 is due before session 5.
+>
+> **Live commercial doors:** Direction Call (free, 45 min) → Productize Yourself **$555** → BUILT **$1,111** or The Crossing **$2,000 / two months** → node / advisory / revenue-linked business building where fit warrants. Community and planetary doors begin with a bounded workshop, pilot, or architecture conversation rather than the individual quiz.
+>
+> **Active instruments:** Ripeness Vector · Transition Holomap · Uniqueness Holomap · `/quiz` legacy live with `/quiz2` Phase 2 still in build · Founder Read · Founder Cockpit · Equilibrium · community workshop · Planetary OS one-pager.
+>
+> **Current focus:** deliver The Crossing at quality; finish Quiz Phase 2 and retrodiction; follow the Boardy introductions by stream; design Karime's full program; verify the auth fix; reconcile `/ubb` with Shadow, Proof, dependency order, and the phenomenon-naming language guard.
+>
+> **Source of truth for volatile state:** `docs/02-strategy/roadmap.md`, Day 166 Current Status + Weekly Scope. Update the Day 166 box or add a newer box whenever the roadmap changes materially.
+
+> ### Day 138 state — preserved as genealogy (July 28, 2026)
 >
 > **Tribe (current bullseye):** *The Founder Going Sovereign* — a builder whose form has just ended (company, title, the old answer to "what do you do") and who knows it before anyone else does. Gate structure: has paid for their own transformation before · means present · surrendered to the search · consent arrives from their side (pull, not flip) · a live income vehicle the articulation can feed · chronic identity ache, not acute. Full definition: [Tribe v5.0, §3 below](#3-tribe-icp) and the [Day 138 addendum](#addendum--day-138-july-28-2026-tribe-v50--the-purchase-physics-correction). **Day 166 (v6.0): this is Segment A of three.** Segment B (practitioners who serve founders, gated on recognition capacity, reached by identity marketing) is the stated sweet spot; Segment C is conscious venture-studio operators at altitude, an infrastructure and thesis relationship. See [Tribe v6.0, §3](#3-tribe-icp).
 > **Revenue:** Strict received **$2,428** (+ $277 Sergey rev-share contract = **$2,705 tracked**). Source: `roadmap.md` Current Status, recomputed Day 134.
@@ -871,6 +894,149 @@ This is equivalent to one sales call if it works: the members experience value, 
 
 ---
 
+### Day 166 — The Recursive Unique Business (Tuesday, August 25, 2026)
+
+> *Supersedes the Day 110 kernel without deleting it. Day 110 correctly saw one operation repeated at four scales; Day 166 names the relational physics, the completed transaction, and the actual buyer-facing artifacts at every scale. Full session record: [`2026-08-25_recursive_unique_business_crystallization.md`](../../09-logs/2026-08-25_recursive_unique_business_crystallization.md). Theory: ITFT Parts I, XI, XIII. Technologies: 134–136.*
+
+#### Heart, mind, and gut
+
+- **Heart — Signal-to-Path Shaping:** hear the living signal and give the signal a path people can use.
+- **Mind — the trinity of lineages:** integral shamanic mystic; polymath entrepreneur/Merlin; technologist/AI. The three lineages triangulate into phase-shift technology.
+- **Gut — Gift-to-Earth Cultivation (working name):** help a living gift take economic form, root in reality, and grow until the business can sustain and guide itself. The phenomenon is settled; the final name remains open until the body recognizes the same inevitability carried by Signal-to-Path Shaping.
+
+#### The governing physics
+
+```
+T  = RL × C
+VF = T × R = RL × C × R
+BG = VF × MF
+```
+
+- **Recursive likeness:** Sasha recognizes his own living movement in another person.
+- **Complementarity:** the difference between them reveals the other person's irreducible gift and the value that can move.
+- **Ripeness:** the person and moment can receive, choose, resource, and act.
+- **Mirror fidelity:** the person or holon can accurately see identity, structure, results, tensions, and present condition.
+
+The ideal client is equally **the person who resembles Sasha most** and **a complement held in trust**. Likeness without difference creates recognition without enough exchange. Difference without likeness creates utility without enough trust. Ripeness determines whether the trusted difference can become value now.
+
+#### Recursive completion
+
+> **Sasha recognizes himself in another person, sees the difference they cannot yet see, and meets them at sufficient ripeness for trust to become value; the transaction completes when they can do the same for another through their own unique gift.**
+
+“Their own unique gift” means one particular way. A connector helps people find one another. A healer helps pain become medicine. A builder gives an emerging possibility durable form. A writer gives an unnamed life exact language. The universal act repeats; the medicine does not.
+
+The proof ladder changes accordingly: receiving value → continuing without Sasha → helping another person through a distinct gift. Satisfaction proves delivery. Sovereign continuation proves transfer. A new giver proves recursion.
+
+#### Four-scale commercial projection v1.0
+
+Every scale below describes a distinct ideal client and a complete commercial path. The scales mirror one another without sharing interchangeable copy.
+
+##### Scale 1 — Unique individual
+
+- **Ideal client / Tribe:** Your old work no longer feels like yours, but your next direction has not yet taken shape.
+- **Uniqueness:** I recognize the crossing because I have lived through the same kind of crossing; your differences reveal the direction only you can take.
+- **Shadow:** Feeling deeply recognized can feel like payment, so I may continue giving after the work needs a clear paid container.
+- **Myth:** Your work cannot fully express a person you have not yet learned to recognize.
+- **Pain:** You know you carry something valuable, but cannot name the gift clearly enough to choose a direction or make an offer.
+- **Promise:** You leave knowing what you uniquely do, which business can grow from your gift, and who needs the first offer.
+- **Lead magnets:** The Hero's Journey map names the crossing; the quiz locates your present stage; the free modules reveal your strongest talent; the Direction Call names the next step.
+- **Value ladder:** Map and quiz → free modules → Direction Call → $555 Productize Yourself → BUILT or The Crossing → a growing unique business.
+- **Specificity test:** Does the description name your present experience more accurately than you could name the experience alone?
+- **Session bridge:** In 45 minutes, we name the identity ending, the gift emerging, and the direction asking for your commitment.
+- **Packaging:** In two hours, Productize Yourself turns your unique gift into one business, one offer, and one person to approach first.
+- **Core belief:** Your strongest business grows from the value you already create in your own unmistakable way.
+- **Frictionless purchase:** When the promise feels personally true and the moment feels ripe, $555 buys a defined result protected by a guarantee.
+- **Reach:** Find people publicly describing an ending, a pause, a search for direction, or the feeling that their old work no longer fits.
+- **Delivery:** The quiz locates the crossing; the call names the direction; the session creates the offer; the next container helps the offer meet reality.
+- **Spread:** Give each person a sentence accurate enough to share with someone close and ask, “Have you always seen me doing that?”
+- **Surface inventory:** Hero's Journey map · LinkedIn · founder communities · personal DMs · `/quiz` · `/zone-of-genius` · `/ignite`.
+- **Master Tuning Fork:** I help people between one business and the next recognize their unique gift and build the next business around the gift.
+- **Golden DM:** “I know the kind of crossing you seem to be living through, and I may see an emerging gift that remains hard to recognize alone. Would you like my reflection?”
+- **Proof:** The person can name the gift, make a clear offer, receive a real response, and continue without depending on me.
+- **Landing page:** **Your next business begins with what you already do unlike anyone else.**
+
+##### Scale 2 — Unique individual business
+
+- **Ideal client / Tribe:** Your business has real customers and strong capabilities, but the products, story, decisions, and growth no longer form one recognizable whole.
+- **Uniqueness:** I find the living pattern connecting everything the founder has built, then create an AI mirror that keeps the pattern visible.
+- **Shadow:** A beautiful model can become a refuge from the market response needed to prove whether the model is true.
+- **Myth:** A business grows faster and more evenly when every decision can be traced back to the business's deepest pattern.
+- **Pain:** The company keeps moving, but nobody can clearly see which moves belong, which moves work, or where growth should go next.
+- **Promise:** Reveal the pattern already organizing the business, then give founder and AI a living model for learning from reality without losing coherence.
+- **Lead magnets:** Founder Read reveals the pattern; The Originals makes the pattern public; Founder Cockpit makes the business visible; Equilibrium reveals what the present chapter requires.
+- **Value ladder:** Free read → public founder page → AI-native business build → ongoing advisory edge → optional node.
+- **Specificity test:** What single pattern explains why the founder created these particular products, choices, and relationships?
+- **Session bridge:** One Founder Read names the central pattern, present chapter, primary tension, and next coherent move.
+- **Packaging:** Founder Cockpit, AI workflows, and advisory support form a living mirror that becomes more capable as the business learns.
+- **Core belief:** A healthy business should understand itself well enough to make coherent decisions without one founder carrying the entire picture.
+- **Frictionless purchase:** Begin with one concrete reading and continue only when the reading changes an important business decision.
+- **Reach:** Find founder-led businesses with genuine traction whose products and capabilities still fail to tell one clear story.
+- **Delivery:** Read the founder and business → build the living corpus → work through See, Build, and Sell → feed market results back into the mirror.
+- **Spread:** Publish a one-paragraph reading clear enough for customers, collaborators, and similar founders to recognize the business immediately.
+- **Surface inventory:** Founder Read · The Originals · Founder Cockpit · Equilibrium · public founder pages · LinkedIn readings.
+- **Master Tuning Fork:** I help founder-led businesses recognize the pattern behind everything they have built and use AI to grow without losing coherence.
+- **Golden DM:** “I studied what you have built and see one pattern connecting the whole business, along with one place where growth may be pulling away from the pattern. Would you like the read?”
+- **Proof:** The business continues making coherent decisions after Sasha or another adviser leaves the room.
+- **Landing page:** **Your business already has a pattern. The Founder Read makes the pattern visible.**
+
+##### Scale 3 — Unique business collective
+
+- **Ideal client / Tribe:** Your community contains remarkable people, but members still struggle to find the collaborators, projects, and opportunities already present among them.
+- **Uniqueness:** I make every member's contribution clear enough for complementary people inside the community to recognize one another.
+- **Shadow:** More members, events, and content can conceal the absence of relationships that create lasting value.
+- **Myth:** A community becomes valuable when the right members recognize one another and begin creating together.
+- **Pain:** Collaboration still depends on luck, private introductions, or whoever speaks most loudly, while quieter complementarities remain unseen.
+- **Promise:** Make every member's gift, direction, and resources visible, then connect people who have a real reason to build together.
+- **Lead magnets:** The free workshop gives members an immediate discovery; the webinar explains the method; the sample map reveals hidden complementarities; the pilot tests real matches.
+- **Value ladder:** Free workshop → bounded pilot → member onboarding and matching → hosted or white-label platform → venture-building incubator.
+- **Specificity test:** Which members should already know one another but remain strangers because neither person can see the complement?
+- **Session bridge:** In 90 minutes, every member names a unique contribution and sees a clearer professional direction.
+- **Packaging:** A branded community platform gives every member a living profile and proposes complementary relationships through mutual consent.
+- **Core belief:** A community's deepest value lies in what members become able to create together.
+- **Frictionless purchase:** Choose one cohort and one date; expand only after members begin forming valuable relationships.
+- **Reach:** Find leaders who already sense that their communities contain more value than members can currently access.
+- **Delivery:** Members create living profiles → AI proposes one meaningful match → both people consent → both receive a concrete first step → the community observes what grows.
+- **Spread:** Every fruitful collaboration becomes a story members naturally share and a signal attracting the next right member or community.
+- **Surface inventory:** `/communities` · live workshops · webinars · leader conversations · proposals · recordings · host referrals.
+- **Master Tuning Fork:** Your community already contains people who should be building together; I help them recognize one another and begin.
+- **Golden DM:** “Your community already contains remarkable people, and much of the unrealized value may live in relationships nobody can yet see. Would you like to see how we surface those relationships?”
+- **Proof:** Two members recognize the proposed complement, choose the introduction, and begin something neither was likely to start alone.
+- **Landing page:** **Help the right members recognize one another and start building together.**
+
+##### Scale 4 — Unique planetary coordination
+
+- **Ideal client / Tribe:** You steward several communities, institutions, or living systems that need one another but lack a shared way to see how their contributions fit together.
+- **Uniqueness:** I help whole networks reveal what every local system uniquely carries and which relationships are ripe enough to form.
+- **Shadow:** Planetary architecture can remain intellectually beautiful for years while no living community can use the architecture today.
+- **Myth:** Large-scale coordination begins when sovereign people and systems can clearly see what each one contributes, needs, and complements.
+- **Pain:** Resources miss needs, knowledge remains isolated, and cooperation defaults to luck or centralized control because every participant sees only a fragment.
+- **Promise:** Let every local system remain sovereign while becoming able to find its role, complements, and next relationship within the larger whole.
+- **Lead magnets:** The SOHN note explains the governing law; the Planetary OS one-pager shows the architecture; the open corpus and code reveal the method; the live platform demonstrates the working kernel.
+- **Value ladder:** Public thesis → live personal kernel → ecosystem pilot → connected local deployments → increasingly invisible planetary coordination.
+- **Specificity test:** Which relationships between the systems you steward are already possible but remain invisible?
+- **Session bridge:** Map every participating system, name the contribution each system uniquely carries, and identify the first relationship ready to form.
+- **Packaging:** Planetary OS gives sovereign communities a shared way to make people, gifts, needs, resources, and complementarities visible across boundaries.
+- **Core belief:** Planetary coordination can emerge from sovereign local systems learning to recognize and work with one another.
+- **Frictionless purchase:** Begin with one bounded ecosystem pilot, preserve local ownership and data control, and expand only when real relationships produce visible value.
+- **Reach:** Find ecosystem builders, network-state architects, land stewards, and institutional leaders already coordinating across several living systems.
+- **Delivery:** Open methods and code → locally owned instances → shared language and protocols → consent-based relationships → an opt-in learning commons.
+- **Spread:** Every successful local deployment keeps its own character while giving another place a tested pattern to adapt.
+- **Surface inventory:** `/sohn` · `/1-pager` · open repository · public thesis · ecosystem maps · stages and podcasts · peer introductions · pilots.
+- **Master Tuning Fork:** The planet already holds the people, knowledge, and resources required; coordination begins when their differences become visible enough to meet.
+- **Golden DM:** “You already steward several systems that need to coordinate. I have built a way for each system to see what every other system carries and where meaningful relationships can form. Would you like the one-page architecture?”
+- **Proof:** The same act of recognition already works for a person and a business; every functioning community deployment becomes evidence for the next scale.
+- **Landing page:** **Help every part of the planet see where, how, and with whom the part belongs.**
+
+#### Truth boundary
+
+Paid individual transformation is grounded in lived delivery. The Crossing converted and is running. Self-serve products and funnels carry early evidence. Karime's live practice, the first founders, collaboration matches, revenue-share agreements, and ecosystem conversations supply meaningful proof points for the larger recursion. Revenue-share replication, autonomous nodes, and planetary coordination remain frontier hypotheses until independent cycles complete repeatedly. Attention, care, and action show where the living system is trying to grow; autonomous replication will show how far the growth law holds.
+
+#### Language law
+
+Absurd simplicity means complete meaning in ordinary language. Every sentence names the person, tension, action, or result directly. A pronoun cannot carry a phenomenon the reader still needs to see.
+
+---
+
 ### Day 110 — The Holonic Synthesis: One Business, Four Scales (Sunday, June 21, 2026)
 
 > *The breakthrough that resolves the "am I building four businesses?" question. Built on the fit/recognition foundation (captured in [`uniqueness_economy_thesis.md`](../uniqueness_economy_thesis.md) §0.5-0.6) and four independent excavations of the thesis. This is the organizing principle ABOVE the two-tribe model (Days 85-92): it does not replace it, it nests it. Tribe 1 maps to the person + venture scales; Tribe 2 maps to the community + civilization scales. The fit/recognition myth is the single myth that runs at every scale. All prior artifacts (the grind-to-great myth, the three segments, the 4-Layer Positioning Stack, the civilizational frame) are preserved below as genealogy and now sit inside this frame.*
@@ -1688,64 +1854,119 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 
 > **Day 139 law (Technology 127, July 29, 2026):** *"The tribe is not a label. It is a trajectory, and the instrument reads motion, not category."*
 
-#### ⭐ v6.0 · August 25, 2026 (Day 166) — The Three Buyer Positions
+#### ⭐ v6.1 · August 25, 2026 (Day 166) — The Three Streams, and the Mirror-Fidelity Gate
 
-*Sasha's correction, spoken after the Alex Prober and Lola Eniolorunda calls. Supersedes the binary that v4.0 left in place ("stages 8-9 are advisory and node relationships, not clients · stage 10 is peers"), which reads everyone outside the transition arc as a non-buyer. There are three commercial positions, not two, and the second one is the sweet spot.*
-
-**The error being corrected.** v4.0-v5.0 describe one buyer with great precision and then sort everybody else into "not a client." That sorting is what made two excellent calls read as dead ends: both people work with founders, both were placed as peers, and neither was offered either of the two doors that actually fit them. The field is not buyers and non-buyers. It is three positions, each with its own recognition condition and its own marketing mode.
+*Supersedes the same-day v6.0 draft, which named the three segments correctly but left the gate for Segments B and C described only as "recognition capacity," as if it were a personality trait. It is not a trait. It is a measurable term in the growth equation, and naming it that way makes the whole architecture operational.*
 
 ---
 
-**Segment A — The Founder in Transition.** The direct client. Unchanged from v5.0: the Idealest Client v2.1 above, gated by the six multiplicative conditions. Qualification is by **likeness plus enough complementarity** (difference and complementarity are the same word here) — enough sameness that the mirror lands, enough difference that Sasha is not selling them what they already are.
+##### The correction being made
 
-*Reached by:* **threshold marketing** — pain, position, the moment the old form stops working. The quiz is this segment's instrument, and it works.
+Tribe v4.0 through v5.0 describe **one** buyer with great precision, then sort everyone else into "not a client" (*"stages 8-9 are advisory and node relationships, not clients · stage 10 is peers"*). That sorting is what turned two excellent August calls into apparent dead ends: both people work with founders, both were classed as peers, and neither was offered either of the two doors that actually fit them.
 
----
-
-**Segment B — The Practitioner Who Serves Founders. This is the sweet spot.**
-
-People who already work with founders, entrepreneurs, or transitions, and who could themselves learn from Sasha. Sasha's own words: *"if somebody works with me and they work with entrepreneurs that would be honestly my sweet spot."* The leverage is obvious — one practitioner carries the method to their whole client base, which is BIG IDEA #1 (the first holon tests everything) running one level out.
-
-**The gate here is not need. It is recognition capacity.** They must be conscious enough of their own uniqueness to recognize what Sasha's thesis is even about. Someone who has never located their own uniqueness cannot see that self-knowledge sits upstream of the business, because they are living proof to themselves that it doesn't.
-
-**The observed failure mode, twice in one week:** Lola Eniolorunda and Alex Prober both serve founders. Neither could see that they might learn from Sasha. Not because they are closed people — both were generous and both offered something real — but because neither has done the uniqueness work on themselves, so the thesis had nothing to land on. Lola's own tell: she does founder-PRODUCT fit inside an idea the client already brings, and refuses the person who has no idea yet. Alex's tell: he answered a mirror with *"it helps me understand where I need to improve my story when I tell it."*
-
-**The complementarity that makes Segment B valuable:** the builder-operator type, more grounded than Sasha, closer to execution and to ordinary business physics. That difference is the point of the relationship, not a defect in it.
-
-*Reached by:* **identity marketing** — the myth. This is the segment the myth exists for. Not the pain card, not the position read. They arrive by recognizing a worldview, and they recognize it only if they have already met their own uniqueness.
+The field is not buyers and non-buyers. It is **three streams**, each with its own gate, its own marketing mode, its own door, and its own place in the ripeness vector.
 
 ---
 
-**Segment C — The Conscious Venture Studio Founder / Founder-Leader at altitude.**
+##### The growth equation, and where the gate lives
 
-Operators running venture studios, accelerators, or founder programs successfully, at genuine developmental altitude. Not "also works with founders" — that is Segment B. Altitude means they have already crossed into conscious operation of their own vehicle.
+The business runs on one operation, expressed through each person's irreducible gift: **recognize likeness, reveal difference, help that difference take form.** With AI as mirror:
 
-**What Sasha plugs in:** the tools, the technology, the platform, the frameworks, the teachings, the playbooks, and the larger investment thesis. This is an infrastructure and thesis relationship, not a session.
+```
+T  = RL × C          trust = recursive likeness × complementarity
+VF = T  × R          value flow = trust × ripeness
+BG = VF × MF         business growth = value flow × mirror fidelity
+```
 
-*Reached by:* peer recognition at altitude. Sasha knows several such people already and can speak to them directly; this segment is not a cold channel.
+*Day 166 correction:* the first draft expanded `RL`, `C`, and `R` as relational likeness, coherence, and resonance. The governing formula uses **recursive likeness, complementarity, and ripeness**. Technology 134 and ITFT Parts I/XI hold the canonical definitions.
+
+**MF is mirror fidelity:** how accurately a holon can see its own identity, structure, energy flows, results, and present condition. As fidelity rises, growth accelerates because feedback improves, and it balances because neglected dimensions become visible.
+
+**MF is the whole product.** Everything sold here — the articulation, the artifacts, the platform, the quiz, the holomaps — is an instrument for raising a holon's mirror fidelity. That single fact reorganizes the tribe:
+
+> **A person can only buy what they can already see. Someone with low MF cannot perceive an MF-raising offer, because perceiving it requires the very faculty the offer would install.**
+
+This is Technology 126 (persuasion as a perception deficit) run one level deeper. A perception deficit is necessary for a sale. But a deficit so total that the person cannot perceive the deficit itself is not a buyer, it is a not-yet. The buyable zone is where MF is high enough to register its own insufficiency and low enough to hurt.
+
+**Segment A feels low MF as pain.** Segment B and C feel low MF as nothing at all, because their business is working. So A is reached through the pain, and B and C can only be reached through the *thesis* — and the thesis is inaudible below an MF threshold.
 
 ---
 
-#### The two marketing modes (Day 166)
+##### The three streams
 
-| Mode | What it addresses | Who it reaches | Instrument |
-|---|---|---|---|
-| **Threshold marketing** | A position on the arc, and the pain of standing there | Segment A | The quiz, the pain card, the position read |
-| **Identity marketing** | A worldview, through likeness **and** differentiation | Segments B and C | The myth, the public frameworks, the thesis |
+**STREAM A — The Founder in Transition.** *The direct client.*
 
-Both are needed and they are not interchangeable. Threshold marketing aimed at Segment B produces exactly what the Alex call produced: a person who receives a mirror as pitch feedback, because they have no threshold and therefore no gap for the mirror to fill.
+Unchanged from v5.0: the Idealest Client v2.1 below, and its six multiplicative gates. Qualified on **likeness plus enough complementarity** (difference and complementarity are one word here) — enough sameness for the mirror to land, enough difference that Sasha is not selling them what they already are.
 
-#### The recognition gate — the law this segment adds
+- **What they buy:** their own articulation, and the mechanism to keep sharpening it.
+- **Ripeness target:** the canonical one — Transition at Liminality (5), Surrender high, Distance zero, Uniqueness 3-4 of 5, Means high, Buying Frame at transformation.
+- **MF position:** low, and *painful*. The gap is felt as "I can't say what I do."
+- **Marketing mode:** **threshold marketing** — pain, position, the moment the old form stops working.
+- **Instrument:** the quiz (`/quiz`). It works for this stream and only this stream.
+- **Door:** Direction Call → Productize Yourself Session → BUILT.
 
-> **A practitioner can only buy what they have already met in themselves.** Segment B and C do not qualify on need, means, or pain. They qualify on whether they have located their own uniqueness. Until they have, the thesis is inaudible to them, however warm the conversation is.
+---
 
-**Operational consequence:** stop reading "works with founders" as disqualifying, and stop reading it as qualifying. It is neither. The question to ask a practitioner is whether they can name their own uniqueness, and the honest test is whether they light up at the myth or at the tactics.
+**STREAM B — The Practitioner Who Serves Founders.** *The stated sweet spot.*
 
-#### Evidence base
+People already working with founders, entrepreneurs, or transitions, who could themselves learn from Sasha. In his words: *"if somebody works with me and they work with entrepreneurs that would be honestly my sweet spot."* One practitioner carries the method to their entire client base, which is BIG IDEA #1 running one level out from the first holon.
 
-- Alex Prober call, Aug 25, 2026 — Segment B, recognition gate closed. `project_pulse_log.md` Day 166.
-- Lola Eniolorunda call, Aug 24, 2026 — Segment B, recognition gate closed, but a durable referral valve into Segment A. `project_pulse_log.md` Days 165-166.
-- Quiz retrodiction against the original five (Sergey, Oyi, Sandra, Aleksa, Kirill), Day 166 — the instrument produced one true positive and four false positives, and every false positive is a person who became a peer, node, or collaborator rather than nothing. The funnel has two doors and needs three. Full working: `project_pulse_log.md` Day 166.
+- **The gate is MF, not need.** They must have located their own uniqueness. Someone who has never done that work is living proof to themselves that self-knowledge is *not* upstream of the business, so the thesis has nothing to land on.
+- **The tell, in one question:** ask what they uniquely bring. If the answer is their *method*, MF is low. If the answer is *who they are*, MF is high enough.
+- **Ripeness target differs from A on three axes:** Transition is NOT at Liminality (their form is working, and that is fine); Ticking Clock is usually absent and should not be manufactured; Means is high. What replaces the transition pressure is **leverage** — the visible prospect of raising BG across their whole client base.
+- **What they buy:** not relief. Leverage. The method, the frameworks, the platform as an instrument they run for others.
+- **Complementarity worth seeking:** the grounded builder-operator, closer to execution and ordinary business physics than Sasha is. That difference is the point of the relationship, not a defect in it.
+- **Marketing mode:** **identity marketing** — the myth, likeness *and* differentiation. This is the segment the myth exists for.
+- **Door:** currently none. The quiz routes them to `crossedPeer`, which offers a conversation and no container. **This is the open build item.**
+
+*Observed failure mode, twice in one week (Aug 24-25, 2026).* Lola Eniolorunda and Alex Prober both serve founders. Neither could see they might learn from Sasha, and in both cases the reason was legible in their own words. Lola does founder-**product** fit inside an idea the client already brings, and refuses the person who has no idea yet. Alex received a mirror and answered *"it helps me understand where I need to improve my story when I tell it."* Low MF on themselves, high competence in their domain. Good people, wrong readiness. Neither is a failure of the offer.
+
+---
+
+**STREAM C — The Conscious Venture Studio Founder / Founder-Leader at Altitude.**
+
+Operators running venture studios, accelerators, or founder programs successfully, at genuine developmental altitude. **Not "also works with founders"** — that is Stream B. Altitude means they already operate their own vehicle consciously, which is to say their MF is high and they know it is their instrument.
+
+- **What Sasha plugs in:** the tools, the technology, the platform, the frameworks, the teachings, the playbooks, and the larger investment thesis.
+- **Shape of the relationship:** infrastructure, licensing, thesis, and rev-share. Not a session.
+- **Ripeness target:** Means high, Buying Frame at transformation, Uniqueness at 5 of 5 rather than 3-4. Being *past* the target on Uniqueness disqualifies for Stream A and **qualifies** for Stream C — this is the ripeness vector's "target not maximum" rule doing real work.
+- **Marketing mode:** peer recognition at altitude. Not a cold channel; Sasha already knows several.
+- **Door:** node / white-label / infrastructure agreements.
+
+---
+
+##### The two marketing modes
+
+| Mode | What it addresses | Reaches | Instrument | Fails when |
+|---|---|---|---|---|
+| **Threshold marketing** | A position on the arc and the pain of standing there | Stream A | The quiz, the pain card, the position read | Aimed at B or C, where no threshold exists, so the mirror lands as pitch feedback |
+| **Identity marketing** | A worldview, through likeness **and** differentiation | Streams B and C | The myth, the public frameworks, the investment thesis | Aimed at A before rupture, where the worldview is abstract and the pain is not |
+
+Both are needed. They are not interchangeable, and the Alex call is the clean demonstration of what happens when the wrong one is used.
+
+---
+
+##### The law this version adds
+
+> **A practitioner can only buy what they have already met in themselves.**
+>
+> Streams B and C do not qualify on need, means, or pain. They qualify on mirror fidelity. Until a practitioner has located their own uniqueness, the thesis is inaudible, however warm the conversation is.
+
+**Operational consequence.** "Works with founders" is neither qualifying nor disqualifying. It is a stream assignment, not a verdict. The question that decides everything is whether they can name their own uniqueness, and the honest test is whether they light up at the **myth** or at the **tactics**.
+
+##### What this changes, concretely
+
+1. **The quiz has two doors and the business has three.** Stream B currently routes to `isCrossedPeer()`, which correctly declines to sell them a Direction Call and then offers nothing else. A third route is needed.
+2. **The myth now has an assigned commercial job** (reaching B and C) and no dedicated surface. That is the marketing gap this version exposes.
+3. **AI matchmakers become a Stream B and C channel primarily**, not a Stream A channel, unless the brief is written in deficit language. See Technology 133.
+4. **A referral valve does not require MF.** Lola cannot buy and can still route Stream A clients, because routing asks nothing of her self-perception. Low MF closes the buying door and leaves the partnership door open.
+
+##### Evidence base
+
+- Alex Prober call, Aug 25, 2026 — Stream B, MF gate closed, yielded a router. `project_pulse_log.md` Day 166.
+- Lola Eniolorunda call, Aug 24, 2026 — Stream B, MF gate closed, yielded a referral valve into Stream A. `project_pulse_log.md` Days 165-166.
+- Quiz retrodiction against the original five (Sergey, Oyi, Sandra, Aleksa, Kirill), Day 166 — one true positive, four false positives, zero false negatives; every false positive became a peer, node, or collaborator. The instrument misread the **door**, not the value. `project_pulse_log.md` Day 166.
+- Technology 123 (the Ripeness Vector) supplies the axes; this section supplies the per-stream targets.
 
 ---
 

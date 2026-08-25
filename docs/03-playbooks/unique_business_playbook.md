@@ -295,8 +295,10 @@ The love is CONSTANT. The price appears only when the depth of service requires 
 > *"Business is not persuasion. It is the deliberate shaping of conditions under which value collapses into transaction."*
 >
 > *v1.0 · April 2, 2026 — The missing LR (systemic pressure) layer.*
+>
+> *Day 166 correction: the sequence cannot make a transaction inevitable. The sequence makes an already-ripening decision legible and easier to enact. Recursive likeness, complementarity, consent, means, and timing cannot be manufactured by funnel design.*
 
-A unique business funnel is NOT a funnel. It is a **controlled collapse sequence** — a deliberate arrangement of recognition, consequence, non-optionality, simplicity, and action that makes the transaction inevitable rather than persuaded.
+A unique business funnel is not merely a funnel. A **controlled collapse sequence** arranges recognition, consequence, simplicity, and action so an already-ripening transaction can cross the relevant threshold without persuasion.
 
 **The 5-step sequence:**
 
@@ -317,14 +319,16 @@ A unique business funnel is NOT a funnel. It is a **controlled collapse sequence
 - **Identity-Shift CTA:** "I'm done circling this — let's build it." Not "buy now" — this is "I am now the person who acts."
 - **Pressure Line:** "Clarity without structure doesn't compound. It leaks." — the weapon
 
-**The equation:** `Recognition + Consequence + Simplicity + Trust = Inevitable Transaction`
+**Original v1 equation, preserved as genealogy:** `Recognition + Consequence + Simplicity + Trust = Inevitable Transaction`
+
+**Governing equation:** `Value Flow = Recursive Likeness × Complementarity × Ripeness`. Recognition, consequence, and simplicity increase the legibility of the relationship and the decision; none can substitute for a missing factor.
 
 **How this relates to P × M × D = ONE:**
 - Recognition = Product working (the ZoG reveal IS the product)
 - Consequence + Non-optionality = Marketing working (sharpened pain creates conditions)
 - Simplicity + Action = Distribution working (the transaction path has zero friction)
 
-When the collapse sequence is complete, the three collapse into ONE — and the transaction is inevitable.
+When the sequence fits a trusted and ripe relationship, Product, Marketing, and Distribution collapse into one coherent path and the transaction becomes easy to understand and enact.
 
 > **Full theory and implementation details:** [ITFT Part IX](../../01-vision/integral_transactional_field_theory.md)
 
@@ -926,6 +930,90 @@ Successful founders often operate this law instinctively and call it taste, unfa
 ### Facilitator Rule
 
 When resistance appears after high-resonance clarity, do not automatically generate another artifact. Ask whether the system has reached the action threshold. If the next move has energy, simplicity, and aliveness, the work is to act, not refine.
+
+---
+
+## Principle 17: Recursive Value Flow
+
+> *v1.0 · August 25, 2026 (Day 166) — the relational law underneath the ideal client, the transaction, and the four-scale business.*
+
+### The governing formula
+
+```
+T  = RL × C
+VF = T × R = RL × C × R
+```
+
+- **Recursive likeness:** the founder recognizes a lived movement because the founder has inhabited the same underlying terrain.
+- **Complementarity:** the difference between founder and client reveals the client's unique gift and gives value a direction in which to move.
+- **Ripeness:** the person and moment can consent, receive, choose, resource, and act.
+
+The ideal client is not selected by resemblance or complementarity alone. The ideal client is **the person who most truthfully recurs as the founder's lived pattern, carries a meaningful difference the founder can serve, and stands at sufficient ripeness for value to move now.**
+
+### The complete unique-business operation
+
+```
+recognize likeness
+→ reveal uniqueness through difference
+→ read ripeness
+→ crystallize the gift as value
+→ build a business that can recognize and grow itself
+→ leave the founder able to repeat the act through their own gift
+```
+
+The final step is not referral mechanics. The final step is the completion of the original transaction. A client who receives the result proves delivery. A client who continues without the guide proves transfer. A client who helps another person through a distinct gift proves recursion.
+
+### One universal act, one unique way
+
+Never instruct the client to reproduce the facilitator's medicine. Ask how the universal act appears through the client's own gift:
+
+- a connector helps complementary people find one another;
+- a healer helps pain become medicine;
+- a builder gives emerging possibility durable form;
+- a writer gives unnamed experience exact language.
+
+The structural act repeats. The expression must change.
+
+### Four-scale projection protocol
+
+A mature unique business projects the same kernel across four holonic scales. Every scale requires a distinct buyer and a complete artifact chain; copying the individual-level language upward produces abstraction rather than a commercial offer.
+
+| Scale | Recognition subject | Commercial result | Proof condition |
+|---|---|---|---|
+| **Unique individual** | a person and their gift | direction, offer, first value exchange | the person acts without the guide |
+| **Unique individual business** | a venture and its living pattern | coherent, self-correcting growth | decisions remain coherent without the adviser |
+| **Unique business collective** | complementary founders and businesses | collaborations and new ventures | members begin valuable work without central assignment |
+| **Unique planetary coordination** | sovereign communities and systems | distributed cooperation | local deployments coordinate while retaining ownership and difference |
+
+For each scale, derive the full chain anew:
+
+```
+Uniqueness → Shadow → Myth → Tribe → Pain → Promise
+→ Specificity Test → Lead Magnets → Value Ladder → Session Bridge
+→ Core Belief → Packaging → Frictionless Purchase
+→ Reach → Delivery → Spread → Surface Inventory
+→ Master Tuning Fork → Golden DM → Proof → Landing Page
+```
+
+**Compiler consequence.** Shadow and Proof are canonical artifacts even where the current `/ubb` runtime has not yet given them independent screens. Lead Magnet must inherit the Specificity Test rather than precede the test. Surface Inventory should inform Reach, Delivery, Spread, Tuning Fork, and Golden DM rather than appear after those artifacts as an isolated inventory. Runtime implementation remains a separate build task; the derivation law is canonical now.
+
+### The language test
+
+Absurd simplicity is not abbreviation. Absurd simplicity is complete meaning carried by ordinary words.
+
+Before accepting any one-liner, replace every vague `this`, `it`, `thing`, `system`, and `process` with the person, tension, action, object, or result actually carrying the meaning. Keep a pronoun only when the referent is immediate and unmistakable.
+
+> **The artifact test:** can an average human name the exact phenomenon after one reading, without asking what a pronoun refers to?
+
+### Relationship to the existing playbook
+
+- The **Copernican Inversion** supplies the originating gift.
+- **Mirror, Not Teacher** supplies recognition without imposed identity.
+- The **Specificity Loop** increases the fidelity of every articulation.
+- The **Unique Business Accelerator** moves articulation into action.
+- **Recursive Value Flow** names the relationship, timing, exchange, and sovereign completion holding the whole sequence together.
+
+*Canonical theory: `integral_transactional_field_theory.md` Parts I, XI, XIII. Phase shifts: Technologies 134–136. Alexander's full four-scale instance: `alexanders_unique_business.md`, Day 166.*
 
 ---
 
@@ -4865,3 +4953,28 @@ These are not in opposition. They are complementary faces of the same whole. The
 6. Instrument every completion — both engines — so the funnel learns who it is for with each pass, whether or not money moves (the data spine).
 
 **Why this is powerful even before you know exactly how you'll use it.** A recognition quiz is the only lead magnet that is *simultaneously* the transformation's micro-dose, the qualification mechanism, and the data spine — one object doing three jobs. Its taker is already inside the field. Build it well and it keeps paying: it recognizes, it sorts, and it teaches the funnel who converts, all from a single ninety-second gift. Every founder's methodology contains a quiz waiting to be extracted; the arc is already there, waiting to be drawn coarse and free.
+
+
+---
+
+## Tactic: Wire the Articulation Straight Into an AI Matchmaker (Day 166, August 25, 2026)
+
+*Law: Technology 133. Channel detail: `distribution_playbook.md` §10. Segments: Tribe v6.1.*
+
+**Why this belongs in the playbook and not only in the distribution stack.** Every other channel puts a production layer between the articulation and the audience: copy, creative, spend, a following. An AI matchmaker removes that layer entirely. You hand it your written articulation and it searches a population for the complement. **The sentence is the campaign.**
+
+That makes it the first place where this playbook's central claim becomes measurable rather than philosophical. Self-knowledge is upstream of the business; here it is upstream of distribution, mechanically, with a lag of days between "I sharpened the sentence" and "different people arrived." Any founder who has completed Tribe, Pain and Promise at real precision can test the precision of those artifacts through this channel within a week, for free.
+
+**The diagnostic use.** If the matchmaker keeps producing peers — people who do what you do, love the conversation, and never buy — the brief is written in **topic** language and the artifacts are describing a category rather than a deficit. That is not a channel failure. It is the Tribe artifact reading back at you honestly, and it is one of the cheapest precision tests available.
+
+**How to write the brief.**
+
+1. **One brief per segment.** A single description matches a single kind of person.
+2. **Describe the buyer by what they are missing, in their own words.** Verbatim recognition lines beat categories every time, because the match runs on language and the buyer's language is the deficit. *"I have three or four things going and I can't tell if they're one thing"* finds people; "founders seeking clarity" finds peers.
+3. **Say who is a peer.** Name the adjacent practitioners explicitly so they are introduced as partners rather than prospects. This converts the channel's most common output from a disappointment into an asset.
+4. **Attach a qualifier, not a pitch.** Give it a link that does the sorting (a quiz, a diagnostic). The matchmaker then never has to describe your offer, which is where distortion enters.
+5. **Re-brief after every batch.** The brief is the only variable and it is free to change.
+
+**The trap.** Founders judge this channel on client count in the first month. The honest yield curve is peers first, partnership assets second, buyers only after the brief carries deficit language. Killing it early is killing it one iteration before it works.
+
+**The seller's discipline inside the call.** The matchmaker's profile of the person is a lead sheet, not a read — assembled from public and self-reported material, and often stale. Verify anything load-bearing in the room, and score the ripeness axes afterward (Technology 123). The human stays the final judge of every intro (Technology 132).

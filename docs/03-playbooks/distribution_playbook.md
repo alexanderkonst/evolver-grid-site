@@ -1612,3 +1612,46 @@ The one genuinely textbook Ticking Clock in the entire CRM belongs to someone wh
 ---
 
 *Codified: July 28, 2026 (Day 138) — Ticking Clock Audit, sourced from Fathom transcripts, the pulse log, the private CRM tracker, and the per-client private canvases. The identified version — full names, exact figures, and verbatim quotes for every person audited here — lives in the private CRM tracker (`docs/02-strategy/strategic_crm_outreach_tracker.md`, gitignored, not in the public repo); this file uses initials and paraphrase because it is tracked in the public repo.*
+
+
+---
+
+## 10. AI Matchmakers as a Channel (Day 166, August 25, 2026)
+
+*Law: Technology 133 — the matchmaker is a mirror of the brief. Ideal-client definition: Tribe v6.1 (three streams).*
+
+An AI matchmaker (Boardy and its successors) is the first distribution channel where the **articulation itself is the targeting parameter**. There is no creative to produce, no spend to allocate, no audience to accumulate. There is a written brief, and the brief is the whole instrument.
+
+### What the channel actually yields, in order
+
+1. **Peers first.** Matchmakers search on topic and interest similarity, so they surface people who care about what you care about. Those people are peers. They recognize the work, they enjoy the call, and they usually cannot buy, because their own version of the problem is solved.
+2. **Partnership assets second.** Referral valves, distribution nodes, hosts, routers. These are real and worth having. The first four intros in this practice produced three of them and zero clients.
+3. **Buyers last, and only if the brief changes.** The buyer is defined by an absence and absences do not appear on profiles.
+
+**Do not judge this channel on month-one client count.** That kills it one iteration before it works.
+
+### The brief, in three parts
+
+**Segment the brief.** One description produces one kind of match. Carry all three streams:
+
+- **Stream A, the client:** the founder in transition. Describe them by deficit, in verbatim recognition lines — *"I know I have something and I can't say what it is"*, *"I have three or four things going and I can't tell if they're one thing"*. Add the buying-frame marker (has paid for their own development before and calls it good money). Note explicitly that they will not look impressive on a profile.
+- **Stream B, the sweet spot:** practitioners who serve founders **and have done the work on themselves**. The screening question for the matchmaker: can they say what they uniquely bring, or only describe their method? Method-only means not yet.
+- **Stream C:** studio and program operators at altitude. Infrastructure and thesis relationships, not sessions.
+
+**Give it a qualifier link, not a pitch.** A quiz URL lets the matchmaker route without describing the offer. This is the structural fix for the drift where a thin brief causes the matchmaker to invent an angle, and the founder starts hearing their offer described in language they did not write.
+
+**Re-brief after every batch.** The brief is the only variable you control, and it is cheap to change. Treat each set of intros as a read on the brief rather than a read on the channel.
+
+### Pre-call and post-call discipline
+
+- The matchmaker's written profile is a **lead sheet, not a read**. It is assembled from public and self-reported material and goes stale. Verify anything load-bearing in the room. (Observed: a profile carried user and revenue figures the subject contradicted on the call, and an intent he did not hold.)
+- Score the ten ripeness axes after every intro (Technology 123, ninety seconds). Over a handful of intros the scores show which stream the channel is actually serving, which is the fastest available signal on whether the brief is landing.
+- Name the stream in the pulse card. "Peer" alone is not a classification; B and C are commercial positions with doors of their own.
+
+### The compounding property
+
+Because the brief is the articulation, every improvement to the unique-business artifacts improves this channel automatically, with no production step in between. This is the only channel in the stack with that property, and it is the reason it belongs in the distribution playbook rather than in a list of tools.
+
+---
+
+*Codified: August 25, 2026 (Day 166) — from four Boardy intros (Marc Winn, Maciek/Peter, Lola Eniolorunda, Alex Prober) and the same-day quiz retrodiction. Named contacts, verbatim quotes and the sent briefs live in the private CRM tracker; this file stays at the level of the pattern because it is tracked in the public repo.*
