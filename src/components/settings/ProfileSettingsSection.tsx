@@ -143,35 +143,16 @@ const ProfileSettingsSection = () => {
             return;
         }
         setUser(user);
-        let { data: profileData } = await supabase
+        // Day 148 v7 (Sasha 2026-08-24): plain read, no self-heal. The
+        // earlier self-heal (getOrCreateGameProfileId on a null read) helped
+        // drive a token-refresh storm that hit Supabase's 429 rate limit and
+        // logged the user out. Read the row and use it; a transient null is
+        // reloaded on the next auth event.
+        const { data: profileData } = await supabase
             .from("game_profiles")
             .select("id, first_name, last_name, spoken_languages, avatar_url, username")
             .eq("user_id", user.id)
             .maybeSingle();
-        // Day 148 v3 (Sasha 2026-08-07): if no row is visible for a signed-in
-        // user, this pane rendered blank name/languages and Save silently did
-        // nothing. An RLS-blocked SELECT is indistinguishable from a missing
-        // row (both return data:null, error:null), so find-or-create first;
-        // if it is still invisible afterwards, RLS is the cause — say so.
-        if (!profileData) {
-            console.warn("[ProfileSettingsSection] no profile row visible — attempting self-heal");
-            try {
-                const healedId = await getOrCreateGameProfileId();
-                const { data: byId } = await supabase
-                    .from("game_profiles")
-                    .select("id, first_name, last_name, spoken_languages, avatar_url, username")
-                    .eq("id", healedId)
-                    .maybeSingle();
-                profileData = byId ?? null;
-                if (!profileData) {
-                    console.error(
-                        "[ProfileSettingsSection] profile STILL invisible after self-heal — RLS on public.game_profiles is blocking SELECT for the authenticated user.",
-                    );
-                }
-            } catch (healErr) {
-                console.error("[ProfileSettingsSection] profile self-heal failed", healErr);
-            }
-        }
         if (profileData) {
             setProfile(profileData);
             setEditFirstName(profileData.first_name || "");

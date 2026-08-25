@@ -1290,25 +1290,6 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // Mission + Assets sequence is complete.
     const buildUnlocked = tmaComplete;
 
-    // Day 148 (Sasha 2026-08-07) — TEMP DIAGNOSTIC (remove once the older-
-    // account "stuck at step 1 / partial menu" report is root-caused). Logs
-    // only when an account fails the Step-1 gate, naming exactly which of the
-    // four Top-Talent signals is false, so we can see whether it's null
-    // profile data, un-backfilled pointer columns, or a failing snapshot
-    // probe. Zero behavior change.
-    if (profileLoaded && !topTalentComplete) {
-        console.info("[unlock-debug] Step-1 gate FAILED — account will look stuck", {
-            profileIsNull: !profile,
-            onboarding_stage: (profile as { onboarding_stage?: string | null } | null)?.onboarding_stage ?? null,
-            zogComplete,
-            has_last_zog_snapshot_id: !!profile?.last_zog_snapshot_id,
-            zone_of_genius_completed: !!profile?.zone_of_genius_completed,
-            probe_journey_start_here: !!journeyProgress["journey-start-here"],
-            localQuizResult: !!localQuizResult,
-            linkedQuizResult: !!linkedQuizResult,
-        });
-    }
-
     const unlockStatus: Record<string, boolean> = profileLoaded
         ? {
             "journey": true,                                    // Always open — the front door
