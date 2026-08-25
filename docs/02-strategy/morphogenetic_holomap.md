@@ -3432,3 +3432,61 @@ Day 138:   (no new center reading)            -> the axiom gets instrumented: Ri
 - `src/pages/PrivacyPolicy.tsx`: production bug fixed; `tsc --noEmit` clean, gated in the build.
 
 > *Day 138 reading: no new center this window — the instrument caught up to the axiom instead. Day 127-130 named the law (self-knowledge caps growth); Days 131-138 built the things that read where a specific stranger stands relative to their own ceiling and put that read in front of them without Sasha in the room: the Ripeness Vector, the Transition Holomap, the Quiz's first screens. The open tension is the same one Day 130 named — converting crystallized clarity into delivered rooms — except the conversion mechanism is now half-built rather than only understood.*
+
+---
+
+## Day 166 addendum (August 25, 2026): the first program-container delivered — crystallized clarity becomes a paid room
+
+*Days 147-166 (Aug 6-25), reconstructed on Aug 25 from git history + the Fathom call log after a ~20-day session-log gap, and confirmed with Sasha on the points evidence alone couldn't settle. No new Si–Do topology crossed, but the open tension the last two windows named — "converting crystallized clarity into delivered rooms" — resolved for the first time at program scale: the Day 146 «Переход» offer became a paid, running, multi-session container.*
+
+### What advanced
+
+- **Field / Propagation — the first full program-container is sold and running.** Gleb accepted «Переход» (public surface *The Crossing*, `/products/crossing`) at **$2,000 for two months, $1,000 received before session 1**, $1,000 due before session 5; session 3 falls this weekend. This is the first time the Trinity-plus-ripeness stack produced not an offer, not a single session, not a donation, but a delivered, paid, multi-week container — the exact conversion Day 130 and Day 138 both named as the standing open tension. The Aug 17 call shows the container doubles as framework co-development: Gleb is building his own 5-vector model (Spirit/Consciousness, Mind, Emotions, Body, Uniqueness) inside the sessions, so delivery and method R&D run on one track.
+- **Distribution — outbound opens a real intro channel.** For the first time the strategic-outreach lane is fed by an external engine rather than Sasha's own sends. **Boardy** (an AI networking agent) generated three founder-audience intros — Lola Eniolorunda (venture studio for senior-tech founders), Peter Stansbury (exit-first SME advisory), Yulia (her own project, Terra Incognita) — plus two self-sourced strategic conversations: **Marc Winn** (ikigai/small-state ecosystem: distribution, language, funding) and **Brenda Kuri** (positioning to Bitso / CCE corporate leaders). Across them Sasha holds one consistent model description: a founder-market-fit venture studio, light upfront + 10% rev-share to a cap. Tribe-2 motion, now a tracked channel.
+- **Product — the Quiz's front door gets its ceremony.** The result surface was rebuilt over Aug 6-15 into one visual system: three result logics (uniqueness primed early, one coherent CTA per ending), all seven chapters named on the arc, the arc converted to a vertical stepper with a humanized journey read, copy sharpened to "the question that breaks the spell." Two structural funnel moves rode alongside: **studio → collective**, and a stricter ideal-client experience gate. `shadow_currency` shipped into the Top Shadow reveal; email capture was added in EXT and the first live quiz data analyzed. Phase 2 continues; Phase 3 retrodiction against known clients is not yet run.
+- **Engineering — the mirror keeps its floor, under load.** A week-plus firefight (Aug 18-25) root-caused a login-drop that silently demoted users to guest: the chain ran from `getUser`-vs-`getSession`, through RLS blocking the anonymous-profile attach, to a profile self-heal that drove a refresh storm into a 429 — which triggered the auto-logout. Removing the last self-heal closed it. Same law as Phase Shift Technology 16 (the mirror must not lag) applied to the auth layer: the surface that proves a user is "in" was quietly evicting them, and it took a full diagnostic arc to see it.
+- **Replication — the second holon is delivering.** Karime's guiding practice ran a full month of client work (~12 sessions on the shared Fathom account — hers, not Sasha's; the accounts are being separated). Read structurally, the Day 145 replication is live: she named her trajectory (metabolizing difficult experience into medicine) on Aug 4 and her practice was in delivery the same month. Her own full-blown program (Victoria as the certain buyer) is still in design. Lineage note: the Day 138 first live Ripeness Vector read (Chris Milliken / PengWine) came through this same Karime orbit.
+- **Revenue — the first program-container payment (dated snapshot).** As of Aug 25, strict-received is **$3,428**: the prior $2,428 (Day 134) plus Gleb's $1,000. This is the first *program-container* payment recorded — a category shift from sessions and donations to a multi-week paid container. Karime-practice coaching income is hers and not counted. *(The running total is deliberately not held in `MEMORY.md`; source of truth is the Offer Ledger + roadmap Current Status. This addendum states the figure as a dated snapshot, which is what an addendum is for.)*
+
+### Marker moves
+
+- **Offer → delivered container.** The largest offer in flight (Day 146) became the first paid, running program — the conversion the prior two windows named as the open tension.
+- **Sasha's sends → an external channel.** Outbound stops being only Sasha-initiated and gains a live intro engine (Boardy) feeding founder-audience conversations.
+- **Result screen → ceremony.** The Quiz's ending stops being a data readout and becomes a named, staged recognition surface.
+- **Second holon: named → delivering.** Karime moved from naming her trajectory (Day 145) to running a full month of client work.
+
+### Si–Do — Status
+
+| Trigger | Status |
+|---|---|
+| First fully funnel-sourced Direction Call | ✅ Day 130 (Kristina) |
+| First non-English, end-to-end run of the artifact sequence | ✅ Day 137 (Rafael, Russian) |
+| **First full program-container sold AND in delivery** | 🆕 ✅ Day 166 — Gleb / The Crossing ($2,000, $1,000 received, session 3 this weekend) |
+| **First outbound intro channel (external engine) producing founder conversations** | 🆕 ✅ Days 147-166 — Boardy → Lola / Peter / Yulia |
+| Quiz as a live, stranger-facing instrument | 🟡 Phase 2 continues; result ceremony landed; not yet the primary funnel |
+| Landing page rebuilt around the Quiz as primary CTA | 🔴 still blocked on the Quiz going live |
+| Second full-price non-Sasha product priced against real alternatives | ✅ Day 138 (Karime's Evolution Portal) |
+| First $555 stranger from the funnel (Tribe-1 Si–Do) | 🔴 still unfired |
+
+### Center reading lineage (recent)
+
+```text
+Day 130:   Crystallization (P27) crossed on   -> the myth axis; Propagation continues
+           the myth axis                          on the field axis
+Day 138:   (no new center reading)            -> the axiom gets instrumented
+Day 166:   Propagation moves on the field     -> the standing tension ("convert crystallized
+           axis                                   clarity into delivered rooms") resolves for
+                                                  the first time at program scale: the Day 146
+                                                  offer becomes a paid, running container
+                                                  (Gleb / The Crossing). Outbound gains an
+                                                  external channel. The second holon delivers.
+```
+
+### Cross-references updated
+
+- `docs/09-logs/session_log.md`: Days 147-166 entry (full narrative).
+- `docs/02-strategy/roadmap.md`: Current Status (Day 166 delta + Revenue), Weekly Scope (Aug 25-31), Last-updated note.
+- `MEMORY.md`: holomap pointer line bumped to Day 166; revenue **de-pinned** (now points to the Offer Ledger instead of holding a figure).
+- `src/pages/TheCrossing.tsx` / `/products/crossing`: the delivered program surface.
+
+> *Day 166 reading: Propagation, at program scale. Day 130 crystallized the axiom and named the open tension — converting crystallized clarity into delivered rooms. Day 138 built the instruments but left the conversion half-done. Day 166 completed it once, in full: a stranger's transition became a named program, the program became a paid container, and the container is in delivery. This is not yet the Tribe-1 funnel Si–Do (the first $555 stranger from the funnel is still unfired) — it is the first proof that the whole stack, ripeness read → container designed → price held → sessions delivered, closes end to end for money. The next two thresholds are the ones that have been standing: the Quiz live as the funnel's front door, and the landing rebuilt around it.*
