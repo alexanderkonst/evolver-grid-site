@@ -6,6 +6,41 @@
 
 ---
 
+## 2026-08-25 (Day 166)
+
+### D-2026-08-25-01 — Recursive value flow is the governing transaction model
+
+**Decision:** The canonical value-flow model is:
+
+```
+T  = RL × C
+VF = T × R = RL × C × R
+```
+
+`RL` means Recursive Likeness, `C` means Complementarity, and `R` means Ripeness. The paying client is equally the person who resembles the founder most deeply and a complement held in trust. A transaction is interpersonal trust becoming consequential inside a value-bearing container, not a separate species of trust.
+
+**Rationale:** The Day 158 Complementarity Gradient correctly established that difference drives value, but the conclusion “the ideal client is not your mirror” deleted the lived recognition that makes Sasha's work possible. Recursive likeness explains accurate seeing from inside; complementarity explains the meaningful difference that creates exchange; ripeness explains why the same relationship moves now, later, or never. Multiplication encodes non-compensation: a missing factor cannot be repaired by maximizing another.
+
+**Consequence:** ITFT's Attention + Pain + Purchasing Power model becomes an operational reading of Ripeness rather than the full source equation. Technology 130 remains genealogy and is explicitly corrected by Technology 134. Ideal-client work, marketing, product, sales, and matching inherit the three questions: where does the founder's lived pattern recur, what difference creates value, and who can act now?
+
+**Reversibility:** The formula is a phenomenological design law, not a validated psychometric equation. Future field evidence may refine definitions or measurement without restoring the discarded mirror-versus-complement binary. Any revision must preserve prior versions as genealogy.
+
+**Cross-references:** `integral_transactional_field_theory.md` Parts I, II, XI · `phase_shift_technology_library.md` Technologies 130 and 134 · `alexanders_unique_business.md` Day 166 · `2026-08-25_recursive_unique_business_crystallization.md`.
+
+### D-2026-08-25-02 — Recursive completion is the proof standard for a unique business
+
+**Decision:** A unique-business transaction reaches mature completion when the receiver can continue without the original guide and perform the same universal act for another person through the receiver's own distinct gift.
+
+**Rationale:** Satisfaction proves value received but does not prove transferred capacity. Copying the founder proves imitation. Continued dependence proves incomplete transfer. Sovereign continuation followed by original service to another person proves that the gift has become generative.
+
+**Consequence:** Offers should end in authorship; businesses should learn to recognize themselves; collectives should enable members to initiate work without central assignment. Revenue-share nodes and planetary coordination remain hypotheses until independent recursive cycles complete repeatedly.
+
+**Reversibility:** The proof ladder can gain stronger empirical measures. The sovereignty requirement is governing unless later evidence shows dependence creates the intended developmental result.
+
+**Cross-references:** `phase_shift_technology_library.md` Technologies 135–136 · `integral_transactional_field_theory.md` Part XIII · `unique_business_playbook.md` Principle 17.
+
+---
+
 ## 2026-05-04 / 2026-05-05 (Day 61-62)
 
 ### D-2026-05-05-01 — Funnel monogamy as enforced architectural principle

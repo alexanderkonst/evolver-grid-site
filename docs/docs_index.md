@@ -1,7 +1,7 @@
 # Documentation Index
 
 > **Holonic documentation structure — everything in its place**  
-> *Updated: 2026-05-05 (Day 62 — added Master Legibility Parameter to ui_playbook Part VIII; Lived User Journey to alexanders_unique_business; Day 61-62 entries to session_log + holomap + roadmap; architectural decisions to decision_log)*
+> *Updated: 2026-08-25 (Day 166 — Recursive Unique Business crystallization indexed; Alexander's four-scale commercial projection, ITFT value-flow formula, Phase Shift Technologies 134–136, and Playbook Principle 17 synchronized.)*
 
 ---
 
@@ -78,7 +78,7 @@ docs/
 | [action_mapping.md](./02-strategy/action_mapping.md) | Action-to-outcome mapping |
 | [impact_mapping.md](./02-strategy/impact_mapping.md) | Impact measurement |
 | [alexanders_operating_system.md](./02-strategy/alexanders_operating_system.md) | Founder's operating system |
-| [alexanders_unique_business.md](./02-strategy/unique-businesses/alexanders_unique_business.md) | Alexander's Unique Business Canvas + Venture Architecture. Top-of-file Dashboard refreshed to Day 138 (Tribe v5.0, live Value Ladder, revenue); includes **Lived User Journey — Reveal-Anchored Funnel** section (Day 61) |
+| [alexanders_unique_business.md](./02-strategy/unique-businesses/alexanders_unique_business.md) | Alexander's Unique Business Canvas + Venture Architecture. Top-of-file Dashboard and governing synthesis refreshed to Day 166; includes the recursive value-flow law and full four-scale commercial projection |
 | [oyis_unique_business.md](./02-strategy/oyis_unique_business.md) | Oyi's Unique Business Canvas (9.9 precision) |
 | [sergeys_unique_business.md](./02-strategy/sergeys_unique_business.md) | Sergey's Unique Business Canvas (in progress) |
 | [unique_business_canvas_template.md](./02-strategy/unique_business_canvas_template.md) | Canvas template v5.0 (session-tested) |
@@ -93,7 +93,7 @@ docs/
 
 | Doc | Purpose |
 |-----|---------|
-| [unique_business_playbook.md](./03-playbooks/unique_business_playbook.md) | **Master playbook** — Two-Path Architecture, 10+ principles, session-tested |
+| [unique_business_playbook.md](./03-playbooks/unique_business_playbook.md) | **Master playbook** — Two-Path Architecture, session-tested principles, and Recursive Value Flow (Principle 17) |
 | [unique_business_creation_playbook.md](./03-playbooks/unique_business_creation_playbook.md) | Canvas artifact creation (Tribe, Promise, Offer, Value Ladder, etc.) |
 | [marketing_playbook.md](./03-playbooks/marketing_playbook.md) | First principles, 7 centers, copy |
 | [money_studies_sop.md](./03-playbooks/money_studies_sop.md) | Money Studies layer — art/wisdom/practice, 4-quadrant SOP, holomap formats |
@@ -268,6 +268,7 @@ docs/
 |-----|---------|
 | [session_log.md](./09-logs/session_log.md) | Development session log |
 | [decision_log.md](./09-logs/decision_log.md) | Key decisions |
+| [2026-08-25_recursive_unique_business_crystallization.md](./09-logs/2026-08-25_recursive_unique_business_crystallization.md) | Trust equation, recursive completion, self-recognizing business, and four-scale commercial projection |
 | [hackathon_log_2026_01_24.md](./09-logs/hackathon_log_2026_01_24.md) | Hackathon log |
 | [hackathon_synthesis_2026_01_24.md](./09-logs/hackathon_synthesis_2026_01_24.md) | Hackathon synthesis |
 | [session_handoff_2026_01_14.md](./09-logs/session_handoff_2026_01_14.md) | Session handoff |

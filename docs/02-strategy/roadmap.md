@@ -93,6 +93,8 @@
 | C5 | **Marc Winn / Brenda Kuri** | Tribe 2 / Distribution | 🟡 open | Marc Winn (ikigai/small-state ecosystem — distribution, language, funding). Brenda Kuri (positioning to Bitso / CCE corporate leaders). Both exploratory; decide whether either warrants a concrete next step |
 | C6 | **Karime — full-blown program design** | Build (her holon) | 🟢 ongoing | Her practice is live (~12 Aug client sessions). Homework from Day 145: design her full program with Victoria as the certain buyer, pricing after the product exists. Sasha guides; her clients are hers |
 | C7 | **Fathom account separation** | Infra / hygiene | 🟡 Sasha's move | Split Karime's Fathom from Sasha's so client rosters and future reconciliations don't cross streams |
+| C8 | **UBB artifact-chain reconciliation** | Methodology / Product | 🟡 open | Canonical chain now includes Shadow and Proof; Specificity Test must precede Lead Magnet; Surface Inventory must feed Reach / Delivery / Spread / Tuning Fork / DM. Reconcile runtime only after reviewing current `/ubb` dependencies; do not create a parallel spec |
+| C9 | **UBB phenomenon-naming language guard** | Methodology / Product | 🟡 open | Add the Day 166 language law to generation + improve prompts: vague `this` / `it` / `thing` / `system` / `process` cannot conceal a load-bearing person, tension, action, object, or result |
 
 ---
 
@@ -701,6 +703,15 @@ Sasha asked: "How do people solve for version history of these things? We're cre
 ---
 
 ## ✅ Completed
+
+### Day 166 (August 25, 2026) — Recursive Unique Business crystallization
+
+- [x] **Trust and value flow simplified:** `T = Recursive Likeness × Complementarity`; `VF = Trust × Ripeness`.
+- [x] **Ideal-client correction:** the paying client is equally the person who resembles Sasha most and a complement held in trust, at sufficient ripeness.
+- [x] **Recursive completion named:** the transaction completes when the receiver can perform the same universal act for another through their own unique gift.
+- [x] **Self-recognizing business named:** AI raises mirror fidelity so the business can learn from reality and grow faster and more evenly without losing identity.
+- [x] **Four-scale commercial projection completed:** actual buyer, offer, marketing, distribution, communication, proof, and landing artifacts for individual, business, collective, and planetary coordination.
+- [x] **Canonical documentation updated:** session crystallization record; Alexander's unique business; Integral Transactional Field Theory; Phase Shift Technologies 134–136; Unique Business Playbook Principle 17; decision and session ledgers.
 
 ### Days 131-138 (July 21-28, 2026) — sales layer, instrumentation, Quiz Phase 1
 
