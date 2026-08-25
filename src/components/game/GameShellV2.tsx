@@ -843,39 +843,13 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 console.warn("[GameShellV2] game_profiles read error (menu will lock):", error.message, error);
             }
 
-            // Day 148 v3 (Sasha 2026-08-07): a signed-in user whose profile row
-            // isn't visible here ends up with profile=null, which empties the
-            // name/languages, silently no-ops Save, hides journey progress,
-            // exports an empty PDF, and locks the rail. Two very different
-            // causes look IDENTICAL from the client, because an RLS-blocked
-            // SELECT returns { data: null, error: null } exactly like a genuinely
-            // missing row:
-            //   (a) the row really doesn't exist  -> create it
-            //   (b) the row exists but RLS hides it from the authenticated user
-            // getOrCreateGameProfileId() find-or-creates, so it fixes (a). If we
-            // still can't see a row afterwards, that is proof of (b) — the
-            // insert would have hit UNIQUE(user_id) — so we say so loudly
-            // instead of silently rendering an empty profile.
-            let row = data;
-            if (!row) {
-                console.warn("[GameShellV2] signed in but no profile row visible — attempting self-heal");
-                try {
-                    const healedId = await getOrCreateGameProfileId();
-                    const { data: byId } = await supabase
-                        .from("game_profiles")
-                        .select("first_name, last_name, avatar_url, username, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at, level, xp_total, current_streak_days")
-                        .eq("id", healedId)
-                        .maybeSingle();
-                    row = byId ?? null;
-                    if (!row) {
-                        console.error(
-                            "[GameShellV2] profile STILL invisible after self-heal. The row exists but the authenticated user cannot SELECT it — RLS on public.game_profiles is blocking reads. This is a database policy problem, not a client bug.",
-                        );
-                    }
-                } catch (healErr) {
-                    console.error("[GameShellV2] profile self-heal failed", healErr);
-                }
-            }
+            // Day 148 v7 (Sasha 2026-08-24): NO self-heal. The console trace
+            // proved the self-heal (getOrCreateGameProfileId -> getSession/
+            // getUser on every null read) drove a token-refresh STORM into
+            // Supabase's 429 rate limit, at which point supabase-js removed the
+            // session and logged the user out. Just read the row; a transient
+            // null is reloaded by the next auth event.
+            const row = data;
             setProfile(row || null);
 
             // Check if user has Excalibur (genius offer) in zog_snapshots
