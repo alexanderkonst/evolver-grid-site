@@ -45,7 +45,7 @@ This is the playbook applied to Sasha's own business, and at the same time a com
 
 > ### ⭐ Latest State — Day 138 (July 28, 2026)
 >
-> **Tribe (current bullseye):** *The Founder Going Sovereign* — a builder whose form has just ended (company, title, the old answer to "what do you do") and who knows it before anyone else does. Gate structure: has paid for their own transformation before · means present · surrendered to the search · consent arrives from their side (pull, not flip) · a live income vehicle the articulation can feed · chronic identity ache, not acute. Full definition: [Tribe v5.0, §3 below](#3-tribe-icp) and the [Day 138 addendum](#addendum--day-138-july-28-2026-tribe-v50--the-purchase-physics-correction).
+> **Tribe (current bullseye):** *The Founder Going Sovereign* — a builder whose form has just ended (company, title, the old answer to "what do you do") and who knows it before anyone else does. Gate structure: has paid for their own transformation before · means present · surrendered to the search · consent arrives from their side (pull, not flip) · a live income vehicle the articulation can feed · chronic identity ache, not acute. Full definition: [Tribe v5.0, §3 below](#3-tribe-icp) and the [Day 138 addendum](#addendum--day-138-july-28-2026-tribe-v50--the-purchase-physics-correction). **Day 166 (v6.0): this is Segment A of three.** Segment B (practitioners who serve founders, gated on recognition capacity, reached by identity marketing) is the stated sweet spot; Segment C is conscious venture-studio operators at altitude, an infrastructure and thesis relationship. See [Tribe v6.0, §3](#3-tribe-icp).
 > **Revenue:** Strict received **$2,428** (+ $277 Sergey rev-share contract = **$2,705 tracked**). Source: `roadmap.md` Current Status, recomputed Day 134.
 > **Live Value Ladder:** Direction Call (free, 45 min) → Productize Yourself Session **$555** → BUILT **$1,111** → Node (white-label) **$1,500 + $75/mo**. Karime founding-node variant: $555 + $55/mo, waived until her 5th subscriber. Genealogy and older formats: [Value Ladder, below](#value-ladder-the-path-path).
 > **Active instruments:** the Ripeness Vector (Phase Shift Technology 123, 10-axis) · the Transition Holomap (`docs/holomaps/transition_holomap.md`) · the Uniqueness Holomap v2.0 (`docs/holomaps/uniqueness_holomap.md`) · the Quiz (Phase 2 implementation at `/quiz2`, legacy at `/quiz`), the product that puts the instrument in a stranger's hands.
@@ -1687,6 +1687,67 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 ### 3. Tribe (ICP)
 
 > **Day 139 law (Technology 127, July 29, 2026):** *"The tribe is not a label. It is a trajectory, and the instrument reads motion, not category."*
+
+#### ⭐ v6.0 · August 25, 2026 (Day 166) — The Three Buyer Positions
+
+*Sasha's correction, spoken after the Alex Prober and Lola Eniolorunda calls. Supersedes the binary that v4.0 left in place ("stages 8-9 are advisory and node relationships, not clients · stage 10 is peers"), which reads everyone outside the transition arc as a non-buyer. There are three commercial positions, not two, and the second one is the sweet spot.*
+
+**The error being corrected.** v4.0-v5.0 describe one buyer with great precision and then sort everybody else into "not a client." That sorting is what made two excellent calls read as dead ends: both people work with founders, both were placed as peers, and neither was offered either of the two doors that actually fit them. The field is not buyers and non-buyers. It is three positions, each with its own recognition condition and its own marketing mode.
+
+---
+
+**Segment A — The Founder in Transition.** The direct client. Unchanged from v5.0: the Idealest Client v2.1 above, gated by the six multiplicative conditions. Qualification is by **likeness plus enough complementarity** (difference and complementarity are the same word here) — enough sameness that the mirror lands, enough difference that Sasha is not selling them what they already are.
+
+*Reached by:* **threshold marketing** — pain, position, the moment the old form stops working. The quiz is this segment's instrument, and it works.
+
+---
+
+**Segment B — The Practitioner Who Serves Founders. This is the sweet spot.**
+
+People who already work with founders, entrepreneurs, or transitions, and who could themselves learn from Sasha. Sasha's own words: *"if somebody works with me and they work with entrepreneurs that would be honestly my sweet spot."* The leverage is obvious — one practitioner carries the method to their whole client base, which is BIG IDEA #1 (the first holon tests everything) running one level out.
+
+**The gate here is not need. It is recognition capacity.** They must be conscious enough of their own uniqueness to recognize what Sasha's thesis is even about. Someone who has never located their own uniqueness cannot see that self-knowledge sits upstream of the business, because they are living proof to themselves that it doesn't.
+
+**The observed failure mode, twice in one week:** Lola Eniolorunda and Alex Prober both serve founders. Neither could see that they might learn from Sasha. Not because they are closed people — both were generous and both offered something real — but because neither has done the uniqueness work on themselves, so the thesis had nothing to land on. Lola's own tell: she does founder-PRODUCT fit inside an idea the client already brings, and refuses the person who has no idea yet. Alex's tell: he answered a mirror with *"it helps me understand where I need to improve my story when I tell it."*
+
+**The complementarity that makes Segment B valuable:** the builder-operator type, more grounded than Sasha, closer to execution and to ordinary business physics. That difference is the point of the relationship, not a defect in it.
+
+*Reached by:* **identity marketing** — the myth. This is the segment the myth exists for. Not the pain card, not the position read. They arrive by recognizing a worldview, and they recognize it only if they have already met their own uniqueness.
+
+---
+
+**Segment C — The Conscious Venture Studio Founder / Founder-Leader at altitude.**
+
+Operators running venture studios, accelerators, or founder programs successfully, at genuine developmental altitude. Not "also works with founders" — that is Segment B. Altitude means they have already crossed into conscious operation of their own vehicle.
+
+**What Sasha plugs in:** the tools, the technology, the platform, the frameworks, the teachings, the playbooks, and the larger investment thesis. This is an infrastructure and thesis relationship, not a session.
+
+*Reached by:* peer recognition at altitude. Sasha knows several such people already and can speak to them directly; this segment is not a cold channel.
+
+---
+
+#### The two marketing modes (Day 166)
+
+| Mode | What it addresses | Who it reaches | Instrument |
+|---|---|---|---|
+| **Threshold marketing** | A position on the arc, and the pain of standing there | Segment A | The quiz, the pain card, the position read |
+| **Identity marketing** | A worldview, through likeness **and** differentiation | Segments B and C | The myth, the public frameworks, the thesis |
+
+Both are needed and they are not interchangeable. Threshold marketing aimed at Segment B produces exactly what the Alex call produced: a person who receives a mirror as pitch feedback, because they have no threshold and therefore no gap for the mirror to fill.
+
+#### The recognition gate — the law this segment adds
+
+> **A practitioner can only buy what they have already met in themselves.** Segment B and C do not qualify on need, means, or pain. They qualify on whether they have located their own uniqueness. Until they have, the thesis is inaudible to them, however warm the conversation is.
+
+**Operational consequence:** stop reading "works with founders" as disqualifying, and stop reading it as qualifying. It is neither. The question to ask a practitioner is whether they can name their own uniqueness, and the honest test is whether they light up at the myth or at the tactics.
+
+#### Evidence base
+
+- Alex Prober call, Aug 25, 2026 — Segment B, recognition gate closed. `project_pulse_log.md` Day 166.
+- Lola Eniolorunda call, Aug 24, 2026 — Segment B, recognition gate closed, but a durable referral valve into Segment A. `project_pulse_log.md` Days 165-166.
+- Quiz retrodiction against the original five (Sergey, Oyi, Sandra, Aleksa, Kirill), Day 166 — the instrument produced one true positive and four false positives, and every false positive is a person who became a peer, node, or collaborator rather than nothing. The funnel has two doors and needs three. Full working: `project_pulse_log.md` Day 166.
+
+---
 
 #### ⭐ The Idealest Client · v2.1 · July 28, 2026 (Day 138)
 
