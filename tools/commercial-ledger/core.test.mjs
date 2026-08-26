@@ -1,0 +1,15 @@
+import assert from "node:assert/strict";
+import { aggregateOutcomes, envelope, mergeLedgerRecords, readEnvelope } from "./core.mjs";
+const prospect = { id: "linkedin:u1", profileUrn: "u1", icpId: "founders", source: { mechanism: "icp_search", foundByIcpId: "founders", searchTerm: "former founder" }, commercial: { stage: "prospect" } };
+const paid = { id: "linkedin:u1", profileUrn: "u1", channels: ["linkedin", "email"], commercial: { stage: "paid", repliedAt: "2026-08-01", callAt: "2026-08-03", offerAt: "2026-08-03", paymentAt: "2026-08-04", amountUsd: 555 } };
+const merged = mergeLedgerRecords([prospect], [paid]);
+assert.equal(merged.length, 1);
+assert.equal(merged[0].commercial.stage, "paid");
+assert.equal(merged[0].source.searchTerm, "former founder");
+const packet = envelope(merged, { producer: "relationship-hub" });
+assert.equal(readEnvelope(packet).records.length, 1);
+const outcome = aggregateOutcomes(merged)[0];
+assert.equal(outcome.replied, 1);
+assert.equal(outcome.paid, 1);
+assert.equal(outcome.cashUsd, 555);
+console.log("Canonical commercial ledger: round-trip tests passed");
