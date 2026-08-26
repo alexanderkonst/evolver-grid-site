@@ -46,7 +46,7 @@ export const ICPS = [
 ];
 
 const roleRules = [
-  [/(co-?founder|owner|chief executive|\bceo\b|managing director|principal)/i, 30, "decision-maker"],
+  [/(founder|co-?founder|owner|chief executive|\bceo\b|managing director|principal)/i, 30, "decision-maker"],
   [/(partnerships?|business development|alliances?|ecosystem lead)/i, 28, "partnership owner"],
   [/(general manager|\bgm\b|director|head of|\bvp\b|vice president)/i, 18, "senior leader"]
 ];
