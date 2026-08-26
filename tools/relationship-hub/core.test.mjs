@@ -1,0 +1,14 @@
+import assert from "node:assert/strict";
+import { applyBookedSnooze, deterministicTriage, followupScore, mergeContacts, stableKey, structuralStatus } from "./core.mjs";
+assert.equal(stableKey({ name: "Ada Lovelace", email: "ada@example.com" }), "nm:ada lovelace");
+const email = { name: "Ada Lovelace", email: "ada@example.com", channels: ["email"], emailActivity: { ts: "2026-08-15T00:00:00Z", lastMine: true, thread: [{ mine: true, text: "Checking in" }] }, state: { category: "lead" } };
+const li = { name: "Ada Lovelace", profileUrn: "u1", channels: ["linkedin"], linkedinActivity: { ts: "2026-08-18T00:00:00Z", lastMine: false, thread: [{ mine: false, text: "Thanks" }] } };
+const merged = mergeContacts([email], [li])[0];
+assert.deepEqual(merged.channels.sort(), ["email", "linkedin"]);
+assert.equal(structuralStatus(merged, Date.UTC(2026, 7, 25)).status, "turn");
+assert.equal(deterministicTriage(merged).state, "needs_followup");
+const booked = { ...merged, linkedinActivity: { ts: "2026-08-24T00:00:00Z", lastMine: false, thread: [{ mine: false, text: "Booked via cal.com, looking forward to our call" }] } };
+assert.equal(deterministicTriage(booked).state, "meeting_scheduled");
+assert.ok(applyBookedSnooze(booked, deterministicTriage(booked), Date.UTC(2026, 7, 25)).state.snoozeUntil);
+assert.ok(followupScore(merged, Date.UTC(2026, 7, 25)) > followupScore(booked, Date.UTC(2026, 7, 25)));
+console.log("Relationship Hub core: all tests passed");
