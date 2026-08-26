@@ -1,5 +1,7 @@
 # Canonical Commercial System — Activation Runbook
 
+Read COMMERCIAL_SYSTEM_DODS.md first. Source-complete, connector-bound, feature-parity and operationally-live are separate release gates.
+
 ## One ledger, three operating views
 
 1. ICP Prospector discovers and qualifies people.
