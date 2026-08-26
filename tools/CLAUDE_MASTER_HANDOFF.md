@@ -28,6 +28,7 @@ The work is successful only when one real/test-safe person can travel through th
 
 ### Canonical architecture and activation
 
+- COMMERCIAL_SYSTEM_DODS.md
 - COMMERCIAL_SYSTEM_RUNBOOK.md
 - commercial-ledger/SCHEMA.md
 - commercial-ledger/core.mjs
