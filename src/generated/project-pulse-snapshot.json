@@ -1,39 +1,39 @@
 {
-  "generated_at": "2026-08-26T02:31:17.548Z",
+  "generated_at": "2026-08-27T20:23:13.752Z",
   "source": "docs/09-logs/project_pulse_log.md",
-  "eventsCount": 50,
+  "eventsCount": 51,
   "latestEvent": {
-    "date": "2026-07-31",
-    "day": "141",
-    "pulse": "P-4787_voicenote_workshop_no_resonance_self_authored_synthesis",
+    "date": "2026-08-27",
+    "day": "168",
+    "pulse": "P-8E86_founder_community_referral_blurb_sent",
     "who": [
       "Sasha",
-      "P-4787"
+      "P-8E86"
     ],
-    "what_happened": "A 10-minute voicenote arrived from P-4787, following the Jul 27 (Day 137) Productize Yourself session where the $1,111 BUILT container was offered and his answer was \"подумаем.\" Five things in order: (1) He reports \"no resonance\" with the workshop's written articulation — the click-cascade of true recognition (\"вот это я!\") never fired. (2) He attributes this to corrupted seed data: the neuronka import fed thin facts (\"учитель английского, руководил лагерями\") that skewed the whole read; his phrase, verbatim: «а что если изначально информация получена неправильно?» (3) Within ~48h of the session he meditated and his OWN phrase arrived — «похожая, но чуть-чуть другая» — giving him and P-052F murashki. His landing, verbatim: «Для себя — исследователь, для других — учитель. Всё.» (4) He explicitly credits the work as a springboard, not a dead end: «я отталкиваюсь от этой информации» and «Видишь, как мне очень всё это помогает» — useful, качественная, but the final synthesis had to be self-authored. (5) Product feedback: input should be a 30-60 min free self-narration loaded into the model, not resume-shaped facts; he wants \"более глобальное изучение персоны.\" Partnership signal: he wants to integrate Find Your Top Talent into his own course (\"Философия ясности\") and refer people into it, but only at massage-therapist-level certainty — he refers only where he is 100/100 sure — and asked for Sasha's feedback and to stay in touch.",
+    "what_happened": "After a good conversation, Sasha sent P-8E86 — a holder of a founder community — a compact blurb explicitly designed to be forwarded. The message names the live founder-between-chapters threshold in two forms: an experienced founder can feel the next venture but cannot yet articulate its value and buyer, or has several real projects with no honest way to decide which should lead. It describes Sasha's work as finding the single thread, sharpening it into a tagline capable of organizing a business, and building the offer from there. It transparently names the current ladder: a $250, 90-minute Founder–Product Fit session, followed when appropriate by the $555, two-hour Productize Yourself workshop and an optional longer build relationship. It routes referrals first to findyourtoptalent.com/quiz and explicitly says the micro-quiz will disqualify people whose problem is different. The sent version kept a personal wrapper — the shared-name joke and Alex's coming birthday — around the forwardable commercial core.",
     "energy_exchanged": [
-      "no payment; BUILT container still \"подумаем,\" now effectively"
+      "one warm founder-community referral invitation sent",
+      "the current individual offer ladder and qualification boundaries made explicit",
+      "trust extended through transparent prices, exclusions, and an honest quiz door",
+      "no reply, forward, introduction, booking, or payment yet"
     ],
     "affected_holons": [
-      "CRM Master Table (row 39, P-4787 — status + next step"
+      "Project Pulse Log",
+      "CRM Master Table (new P-8E86 row)",
+      "Outreach Message Bank (verbatim sent copy)"
     ],
     "phase_shift_significance": "notable",
-    "next_action": "Sasha owes P-4787 a reply (draft prepared) — receive the \"no resonance\" report as complete information, not a rejection to fix; address the seed-data/self-narration feedback; respond to the course-integration and referral offer at whatever pace fits P-4787's own certainty bar. No BUILT nudge.",
-    "staleness_or_contradictions": "None. This directly updates and supersedes the Day 137 \"подумаем\" read: the mirror completed in springboard mode (his own sentence arrived within 48h after the session, not during it) — read as a success mode of Mirror-not-Teacher (client became the hero), not as a product failure, though the seed-data thinness he named is a real, actionable defect.",
-    "title": "P-4787_voicenote_workshop_no_resonance_self_authored_synthesis"
+    "next_action": "Await Alex's response and any actual forward or introduction. Do not count the send itself as distribution proof. Keep the birthday relationship human and separate from a commercial nudge; if Alex refers someone, track the referral source through quiz, booking, and payment so this upstream-community path can be evaluated from field evidence.",
+    "staleness_or_contradictions": "The canonical Pulse and CRM surfaces previously ended at Day 141 (2026-07-31), creating a 27-day continuity gap before this Day 168 event. This pulse repairs the current Alex movement but does not reconstruct unreported events from the gap. The message contains the typo \"mulitple-choice\" as sent; preserved verbatim in the Message Bank rather than silently correcting history.",
+    "title": "P-8E86_founder_community_referral_blurb_sent"
   },
   "phaseShiftDistribution": {
     "minor": 11,
     "major": 8,
-    "notable": 30,
+    "notable": 31,
     "routine": 1
   },
   "openNextActions": [
-    {
-      "date": "2026-07-23",
-      "title": "day133_close_P-E734_tomorrow_learnings",
-      "next_action": "Sasha shows up to the P-E734 call Jul 24. No other action owed."
-    },
     {
       "date": "2026-07-24",
       "title": "P-4787_paid_P-C02F_proposal_P-E734_scope",
@@ -78,6 +78,11 @@
       "date": "2026-07-31",
       "title": "P-4787_voicenote_workshop_no_resonance_self_authored_synthesis",
       "next_action": "Sasha owes P-4787 a reply (draft prepared) — receive the \"no resonance\" report as complete information, not a rejection to fix; address the seed-data/self-narration feedback; respond to the course-integration and referral offer at whatever pace fits P-4787's own certainty bar. No BUILT nudge."
+    },
+    {
+      "date": "2026-08-27",
+      "title": "P-8E86_founder_community_referral_blurb_sent",
+      "next_action": "Await Alex's response and any actual forward or introduction. Do not count the send itself as distribution proof. Keep the birthday relationship human and separate from a commercial nudge; if Alex refers someone, track the referral source through quiz, booking, and payment so this upstream-community path can be evaluated from field evidence."
     }
   ]
 }
