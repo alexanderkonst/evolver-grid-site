@@ -7687,6 +7687,8 @@ Matchmakers default to topic and interest similarity, because that is what profi
 
 **Guardrail.** The matchmaker's profile of a person is a lead sheet, not a read. It is assembled from public and self-reported material and goes stale. Verify anything load-bearing in the room; never let it stand in for the read.
 
+**The brief itself** lives in one place, versioned: [`docs/02-strategy/ai_matchmaker_brief.md`](../02-strategy/ai_matchmaker_brief.md). Every matchmaker, one file.
+
 **Relationship:** Technology 123 (the Ripeness Vector — what the brief should actually be describing), Technology 126 (persuasion as a perception deficit — the buyer's defining absence), Technology 129 (Conscious Unique Marketing / Recognition Marketing — the same recognition mechanism, here automated), Technology 130 (the Complementarity Gradient — what makes a peer a peer), Technology 132 (AI reads humans better than it reads AI — why the human stays the final judge of every intro), Tribe v6.1 in `alexanders_unique_business.md` (the three streams the brief must carry).
 
 
