@@ -1630,6 +1630,8 @@ An AI matchmaker (Boardy and its successors) is the first distribution channel w
 
 **Do not judge this channel on month-one client count.** That kills it one iteration before it works.
 
+**The live brief, versioned, lives at [`docs/02-strategy/ai_matchmaker_brief.md`](../02-strategy/ai_matchmaker_brief.md).** Send from there; do not re-draft it here or per tool.
+
 ### The brief, in three parts
 
 **Segment the brief.** One description produces one kind of match. Carry all three streams:
