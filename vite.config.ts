@@ -13,7 +13,8 @@ const commercialOsAssets = () => {
   const sourceRoot = path.resolve(__dirname, "commercial-tools/app");
   const files = (dir = sourceRoot): string[] => fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const absolute = path.join(dir, entry.name);
-    return entry.isDirectory() ? files(absolute) : [absolute];
+    if (entry.isDirectory()) return entry.name === "proxy" ? [] : files(absolute);
+    return entry.name.endsWith(".test.mjs") || entry.name === "README.md" ? [] : [absolute];
   });
   const mime: Record<string, string> = { ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".json": "application/json; charset=utf-8" };
   return {
