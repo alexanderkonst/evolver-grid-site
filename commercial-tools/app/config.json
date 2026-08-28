@@ -1,20 +1,168 @@
 {
   "icps": [
-    {"id":"post_exit_founders","name":"Post-exit founders","strong":["former founder","ex-founder","post-exit","sabbatical","career break","next chapter","exploring what's next","recovering founder"],"weak":["founder","entrepreneur","advisor","board member"],"terms":["former founder sabbatical","ex-founder career break","founder exploring what's next","post-exit founder advisor"]},
-    {"id":"fractional_executives","name":"Fractional executives","strong":["fractional","portfolio career","fractional cmo","fractional coo","fractional cto","fractional chief"],"weak":["consultant","advisor","independent","interim"],"terms":["fractional executive founder","fractional cmo consultant","fractional coo advisor","portfolio executive independent"]},
-    {"id":"coaches_solopreneurs","name":"Coaches & solopreneurs","strong":["executive coach","founder coach","leadership coach","solopreneur","independent coach","career coach"],"weak":["coach","facilitator","mentor","consultant"],"terms":["executive coach solopreneur","founder coach independent","leadership coach consultant","business coach positioning"]},
-    {"id":"consultants_transition","name":"Big Four / MBB transition","strong":["mckinsey","bcg","bain","deloitte","pwc","ey","kpmg","ex-consultant"],"weak":["strategy consultant","management consultant","principal","engagement manager"],"terms":["McKinsey engagement manager career break","BCG principal transition","Bain consultant next chapter","Deloitte director independent"]},
-    {"id":"community_holders","name":"Community & ecosystem holders","strong":["community founder","ecosystem lead","community director","network founder","venture studio","accelerator director"],"weak":["community","ecosystem","network","accelerator","incubator","membership"],"terms":["founder community director","entrepreneur community founder","venture studio ecosystem lead","accelerator community director"]}
+    {
+      "id": "post_exit_founders",
+      "name": "Post-exit founders",
+      "strong": [
+        "former founder",
+        "ex-founder",
+        "post-exit",
+        "sabbatical",
+        "career break",
+        "next chapter",
+        "exploring what's next",
+        "recovering founder"
+      ],
+      "weak": [
+        "founder",
+        "entrepreneur",
+        "advisor",
+        "board member"
+      ],
+      "terms": [
+        "former founder sabbatical",
+        "ex-founder career break",
+        "founder exploring what's next",
+        "post-exit founder advisor"
+      ]
+    },
+    {
+      "id": "fractional_executives",
+      "name": "Fractional executives",
+      "strong": [
+        "fractional",
+        "portfolio career",
+        "fractional cmo",
+        "fractional coo",
+        "fractional cto",
+        "fractional chief"
+      ],
+      "weak": [
+        "consultant",
+        "advisor",
+        "independent",
+        "interim"
+      ],
+      "terms": [
+        "fractional executive founder",
+        "fractional cmo consultant",
+        "fractional coo advisor",
+        "portfolio executive independent"
+      ]
+    },
+    {
+      "id": "coaches_solopreneurs",
+      "name": "Coaches & solopreneurs",
+      "strong": [
+        "executive coach",
+        "founder coach",
+        "leadership coach",
+        "solopreneur",
+        "independent coach",
+        "career coach"
+      ],
+      "weak": [
+        "coach",
+        "facilitator",
+        "mentor",
+        "consultant"
+      ],
+      "terms": [
+        "executive coach solopreneur",
+        "founder coach independent",
+        "leadership coach consultant",
+        "business coach positioning"
+      ]
+    },
+    {
+      "id": "consultants_transition",
+      "name": "Big Four / MBB transition",
+      "strong": [
+        "mckinsey",
+        "bcg",
+        "bain",
+        "deloitte",
+        "pwc",
+        "ey",
+        "kpmg",
+        "ex-consultant"
+      ],
+      "weak": [
+        "strategy consultant",
+        "management consultant",
+        "principal",
+        "engagement manager"
+      ],
+      "terms": [
+        "McKinsey engagement manager career break",
+        "BCG principal transition",
+        "Bain consultant next chapter",
+        "Deloitte director independent"
+      ]
+    },
+    {
+      "id": "community_holders",
+      "name": "Community & ecosystem holders",
+      "strong": [
+        "community founder",
+        "ecosystem lead",
+        "community director",
+        "network founder",
+        "venture studio",
+        "accelerator director"
+      ],
+      "weak": [
+        "community",
+        "ecosystem",
+        "network",
+        "accelerator",
+        "incubator",
+        "membership"
+      ],
+      "terms": [
+        "founder community director",
+        "entrepreneur community founder",
+        "venture studio ecosystem lead",
+        "accelerator community director"
+      ]
+    }
   ],
-  "scoreWeights": {"strongKeyword":40,"weakKeyword":20,"searchSource":10,"decisionMaker":30,"partnerships":28,"seniorLeader":18,"roleUnclear":5,"reach2nd":15,"reach1st":8,"reachOther":3,"globalRegion":10,"regionMatch":15,"regionMiss":3,"transition":10,"topMarket":5,"penalty":-15},
-  "templates": {
-    "default":"Hi {first},\n\nYour work[[company: at {company}]] stood out. I help highly capable people name what's next professionally and package their distinctive value into a clear offer.\n\nWould a free 45-minute Direction Call be useful?\n\n— Sasha",
-    "post_exit_founders":"Hi {first}, real respect for what you built[[company: at {company}]] — closing a founder chapter is no small thing. The “what’s next” after an exit is its own puzzle. I help post-exit founders name the next thing and package their distinctive value into one clear offer. If useful, I run a free 45-min Direction Call — no pitch, just clarity. Open to it?\n\n— Sasha",
-    "fractional_executives":"Hi {first}, a fractional/portfolio path[[company: like your work with {company}]] gives real range — and makes positioning genuinely hard. I help fractional operators sharpen that into one precise, buyable offer. Happy to think it through on a free 45-min Direction Call if useful.\n\n— Sasha",
-    "coaches_solopreneurs":"Hi {first}, your work[[company: at {company}]] stands out. A lot of excellent coaches and solopreneurs stay abstract in how they describe what they do, which quietly costs them the right clients. Naming it precisely is most of the game. A free 45-min Direction Call is an easy place to start if you’re curious.\n\n— Sasha",
-    "consultants_transition":"Hi {first}, moving from[[company: {company}]] a top consulting seat into your own thing is a real threshold. I help people at that transition name what’s next and package it into a clear offer. Free 45-min Direction Call if useful — no pitch.\n\n— Sasha",
-    "community_holders":"Hi {first}, what you’re building[[company: at {company}]] is rare — you’re holding genuine trust in a community. I help ecosystem builders turn that into a clear, distinctive offer. If useful, I’d enjoy comparing notes on a free 45-min Direction Call.\n\n— Sasha"
+  "scoreWeights": {
+    "strongKeyword": 40,
+    "weakKeyword": 20,
+    "searchSource": 10,
+    "decisionMaker": 30,
+    "partnerships": 28,
+    "seniorLeader": 18,
+    "roleUnclear": 5,
+    "reach2nd": 15,
+    "reach1st": 8,
+    "reachOther": 3,
+    "globalRegion": 10,
+    "regionMatch": 15,
+    "regionMiss": 3,
+    "transition": 10,
+    "topMarket": 5,
+    "penalty": -15
   },
-  "caps": {"perWeek":80,"perDay":20},
-  "features": {"gmail":false}
+  "templates": {
+    "default": "Hi {first},\n\nYour work[[company: at {company}]] stood out. I help highly capable people name what's next professionally and package their distinctive value into a clear offer.\n\nWould a free 45-minute Direction Call be useful?\n\n— Sasha",
+    "post_exit_founders": "Hi {first}, real respect for what you built[[company: at {company}]] — closing a founder chapter is no small thing. The “what’s next” after an exit is its own puzzle. I help post-exit founders name the next thing and package their distinctive value into one clear offer. If useful, I run a free 45-min Direction Call — no pitch, just clarity. Open to it?\n\n— Sasha",
+    "fractional_executives": "Hi {first}, a fractional/portfolio path[[company: like your work with {company}]] gives real range — and makes positioning genuinely hard. I help fractional operators sharpen that into one precise, buyable offer. Happy to think it through on a free 45-min Direction Call if useful.\n\n— Sasha",
+    "coaches_solopreneurs": "Hi {first}, your work[[company: at {company}]] stands out. A lot of excellent coaches and solopreneurs stay abstract in how they describe what they do, which quietly costs them the right clients. Naming it precisely is most of the game. A free 45-min Direction Call is an easy place to start if you’re curious.\n\n— Sasha",
+    "consultants_transition": "Hi {first}, moving from[[company: {company}]] a top consulting seat into your own thing is a real threshold. I help people at that transition name what’s next and package it into a clear offer. Free 45-min Direction Call if useful — no pitch.\n\n— Sasha",
+    "community_holders": "Hi {first}, what you’re building[[company: at {company}]] is rare — you’re holding genuine trust in a community. I help ecosystem builders turn that into a clear, distinctive offer. If useful, I’d enjoy comparing notes on a free 45-min Direction Call.\n\n— Sasha"
+  },
+  "caps": {
+    "perWeek": 80,
+    "perDay": 20
+  },
+  "features": {
+    "gmail": false
+  },
+  "adapter": {
+    "url": "https://jypjttotvastdhanwvrx.supabase.co/functions/v1/connectsafely-mcp",
+    "anonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp5cGp0dG90dmFzdGRoYW53dnJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMwOTQ5MTQsImV4cCI6MjA3ODY3MDkxNH0.fVSXHJ_eqvMfblTD2SbNcYDrkulhqVCzv_7dXMenKc8"
+  },
+  "readOnly": true
 }
