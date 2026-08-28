@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/((?!api|assets|equilibrium|karime|.*\\..*$).*)",
+      "source": "/((?!api|assets|commercial-os|equilibrium|karime|.*\\..*$).*)",
       "destination": "/index.html"
     }
   ],
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "source": "/((?!api|assets|equilibrium|.*\\..*$).*)",
+      "source": "/((?!api|assets|commercial-os|equilibrium|.*\\..*$).*)",
       "headers": [
         {
           "key": "Cache-Control",
