@@ -46,7 +46,7 @@ async function reconnect(show = true) {
     if (!list[0]) throw new Error('No LinkedIn account returned');
     store.commit(x => { x.settings.accountId = list[0].id; x.settings.ownerName = [list[0].firstName, list[0].lastName].filter(Boolean).join(' ') || list[0].name || ''; });
     setPill(`Connected · ${store.state.settings.ownerName}`.trim(), true);
-    if (show) notice('ConnectSafely connected. Read-only sync is ready.');
+    notice('ConnectSafely connected. Read-only sync is ready.');
   } catch (error) { setPill('Unreachable'); notice(error.message, true); }
 }
 
