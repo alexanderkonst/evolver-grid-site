@@ -1810,6 +1810,20 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 
 ---
 
+#### v1.2 · August 28, 2026 — The Missionary (the recursive shadow at relational scale)
+
+> **Collapsed sentence:** I can love someone so much that I impose the reflection they did not ask for, and keep offering it — taking blows "in the name of love" — long after the door has closed.
+
+*This is the same root shadow (refining/holding the mirror instead of releasing it) turned outward onto another person. The gift is the Mirror: reflecting people to themselves until they self-recognize. The recursive shadow is the Mirror inverted — imposing the reflection on someone whose recognition capacity is sealed, which cancels the free looking that reflection depends on. Full law: `docs/01-vision/phase_shift_technology_library.md` Technology 137 (The Sealed Mirror).*
+
+**How it shows up:** encountering an advanced thinker who has locked their frame with a true-but-final meta-belief, and feeling the pull to "shatter the illusion" because my view is more loving or more wise — "which it may even be" is exactly the hook. A better perspective, held as unrevisable and pressed on someone who did not ask, is structurally the same act as the seal it means to break. The tell that the shadow is active: evaluative heat arrives right as the other contradicts my frame, and I stay to take blows instead of shaking the dust.
+
+**The medicine — and it is my own Path of Mastery endpoint, in the relational domain.** Self-Use Discipline is: ship the words, let the world answer. Applied to people: offer the mirror once, cleanly, and release the outcome. The proof I am not in the prison too is not that my view is better; it is that I can put it down and walk away from someone who will not take it. Releasing the unready is not a failure of love — it is love correctly calibrated, and it is the method's own last stage, not an exception to it. Spend the gift on the lotuses rising toward the surface (Ripeness Vector, banana/strawberry rule); let the mud-lotuses be, without contempt and without abandonment.
+
+**Distinction I hold underneath it:** conviction is held about the world and closes to protect a claim; commitment is held toward a course and survives being wrong about facts; devotion is held toward a source greater than me and can change shape without losing direction. My method runs on versions and resonance scores — a new articulation replaces the old only if resonance is higher. A conviction cannot run that loop. A devotion can. So the disproof of "you are merely convinced" is structural: my frame is built to be revised. I am not convinced. I am devoted.
+
+---
+
 #### v1.1 · June 24, 2026 — Value Held Back From Movement
 
 > **Collapsed sentence:** I can articulate value so beautifully that I keep it inside architecture, language, and possibility instead of letting it move into the relationships, containers, and exchanges where it can become alive work.
