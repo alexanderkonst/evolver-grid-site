@@ -1,0 +1,200 @@
+<title>Relationship Hub</title>
+<style>
+:root{font:14px Inter,ui-sans-serif,system-ui;color:#24231f;background:#f3f1eb}*{box-sizing:border-box}body{margin:0;background:#f3f1eb;color:#24231f}.shell{max-width:1450px;margin:auto;padding:28px}h1{font:600 34px Georgia,serif;margin:4px 0}.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#766f63}.sub,.muted{color:#766f63}.muted{font-size:12px}.card{background:#fff;border:1px solid #ddd7cb;border-radius:15px;padding:16px;margin-top:14px;box-shadow:0 3px 16px #362d1d0a}.row,.tabs,.actions,.chips{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.grow{flex:1}.status{padding:10px 13px;border-radius:10px;background:#efede6}.status.error{background:#ffefec;color:#92271d}.status.ok{background:#e7f4ea;color:#1c6b37}button,.button,input,select,textarea{font:inherit}button,.button{border:1px solid #c8c0b2;background:#fff;color:#24231f;border-radius:8px;padding:8px 11px;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}button.active,.primary{background:#25241f;color:#fff;border-color:#25241f}input,select,textarea{border:1px solid #d2ccbf;border-radius:8px;padding:8px;background:#fff;color:#24231f}.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:14px}.stat{background:#fff;border:1px solid #ddd7cb;border-radius:12px;padding:12px}.stat span{font-size:11px;color:#766f63;text-transform:uppercase;letter-spacing:.06em}.stat b{display:block;font-size:22px}.filters{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:9px;margin:12px 0}.contact{display:grid;grid-template-columns:44px 1.25fr .85fr 1fr auto;gap:12px;border-top:1px solid #eeeae2;padding:14px 0;align-items:start}.avatar{width:40px;height:40px;border-radius:50%;background:#e9e5dc;display:grid;place-items:center;font-weight:700;color:#5a5346}.name{font-weight:700;color:#24231f;text-decoration:none}.tag,.channel,.triage{display:inline-block;padding:3px 7px;border-radius:8px;background:#efede7;font-size:11px}.channel{background:#e5edf7;color:#2c4a72}.triage.meeting_scheduled{background:#e1f0e7;color:#1c6b37}.triage.needs_followup{background:#fff0c9;color:#815d00}.triage.closed{background:#eee;color:#666}.triage.awaiting_them{background:#eef;color:#3355aa}.drawer{grid-column:1/-1;background:#f8f6f1;border:1px solid #e7e1d4;padding:12px;border-radius:10px;margin-top:8px}.hidden{display:none}textarea{width:100%;min-height:96px}pre.diag{white-space:pre-wrap;font:12px ui-monospace,Menlo,monospace;background:#faf8f2;border:1px solid #e7e1d4;border-radius:9px;padding:11px;margin:0;overflow:auto;max-height:300px}pre.ctx{white-space:pre-wrap;margin:0;font:12px ui-monospace,Menlo,monospace;max-height:200px;overflow:auto}.kanban{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;overflow-x:auto}.kcol{background:#faf8f2;border:1px solid #e7e1d4;border-radius:10px;padding:8px;min-width:150px}.kcol h4{margin:2px 0 8px;font-size:12px;text-transform:uppercase;color:#766f63}.kcard{background:#fff;border:1px solid #e7e1d4;border-radius:8px;padding:7px;margin-bottom:6px;font-size:12px}@media(max-width:900px){.stats{grid-template-columns:repeat(3,1fr)}.filters{grid-template-columns:1fr 1fr}.contact{grid-template-columns:44px 1fr}.contact>*:not(.avatar):not(.drawer){grid-column:2}.kanban{grid-template-columns:1fr}.shell{padding:15px}}
+</style>
+<main class="shell">
+<div class="eyebrow">Canonical commercial ledger · Tool 3</div><h1>Relationship Hub</h1>
+<div class="sub">One next relationship move across LinkedIn and email, grounded in the full commercial journey. Drafts are yours to approve — email creates a draft, LinkedIn sends only on confirmation.</div>
+<div id="status" class="card status">Checking connectors (up to 9s)…</div>
+<details id="diagCard" class="card"><summary style="cursor:pointer;font-weight:600">Connector diagnostics</summary><div class="row" style="margin:8px 0"><button id="rediag">Re-run diagnostics</button><button id="copydiag">Copy diagnostics</button><span class="muted">Checks ConnectSafely.AI + Gmail; each call bounded.</span></div><pre id="diag" class="diag"></pre></details>
+<div id="stats" class="stats"></div>
+<section class="card"><div class="row"><b>Identity</b><label>My Gmail <input id="ownerEmail" placeholder="you@gmail.com" style="width:200px"></label><label>Exclude teammates (comma-sep) <input id="teamEmails" placeholder="teammate@…" style="width:220px"></label><button id="saveIdentity">Save</button></div>
+<div class="row" style="margin-top:10px"><b>Data</b><label class="button">Import Tool 2<input id="import" type="file" accept="application/json" hidden></label><button id="emailSync">Sync Gmail</button><button id="liSync">Sync LinkedIn</button><button id="stopSync">Stop</button><span id="dataNote" class="muted grow"></span><button id="backup">Save backup</button><label class="button">Restore<input id="restore" type="file" accept="application/json" hidden></label><button id="export">Export ledger</button></div>
+<div class="meter" style="height:6px;background:#e9e5dc;border-radius:9px;overflow:hidden;margin-top:10px"><i id="progress" style="display:block;height:100%;background:#282722;width:0"></i></div></section>
+<section class="card"><div id="tabs" class="tabs"></div>
+<div class="filters"><input id="search" placeholder="Search person, company, notes"><select id="category"><option value="">All categories</option><option>lead</option><option>client</option><option>investor</option><option>personal</option><option>promotional</option><option>unlabeled</option></select><select id="channel"><option value="">All channels</option><option value="linkedin">LinkedIn</option><option value="email">Email</option></select><select id="sort"><option value="followup">Follow-up first</option><option value="recent">Recent</option><option value="name">Name</option></select></div>
+<div id="list"></div><div id="kanban" class="kanban hidden"></div><div id="empty" class="status">Import your Tool 2 ledger to build the unified field. Gmail/LinkedIn history fills in as it syncs.</div></section>
+</main><script>
+(()=>{'use strict';
+const KEY='evolver_relationship_hub_v1';
+const CS='ConnectSafely.AI', GM='Gmail';
+const T_ACCT='list-linkedin-accounts',T_CONVOS='list-conversations',T_MSGS='get-conversation-messages',T_LISEND='conversations-send-message';
+const T_SEARCH='search_threads',T_DRAFT='create_draft',T_LABELS='list_labels';
+const WINDOWS={lead:4,client:7,investor:6,personal:14,unlabeled:5,promotional:1/0};
+const TABS={active:'Active',followup:'Need follow-up',pipeline:'Pipeline',snoozed:'Snoozed',closed:'Closed'};
+const CATS=['lead','client','investor','personal','promotional','unlabeled'];
+const $=s=>document.querySelector(s),enc=encodeURIComponent,dec=s=>decodeURIComponent(s),esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const norm=s=>String(s||'').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,' ').trim();
+const emailOf=s=>{const m=String(s||'').match(/<([^>]+)>/);return (m?m[1]:String(s||'')).trim().toLowerCase().replace(/^.*\s/,'')};
+const nameOf=s=>{const m=String(s||'').match(/^\s*"?([^"<]+?)"?\s*</);return m?m[1].trim():''};
+let state={contacts:[],saved:{},triage:{},tab:'active',identity:{ownerEmail:'personalytics@gmail.com',teamEmails:[]},ownerId:'',ownerName:'',emailPageToken:null};
+try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');state={...state,...s,identity:{...state.identity,...(s.identity||{})}}}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state));return true}catch(e){show('Storage is full — Save a backup now.',true);return false}};
+const show=(m,kind='')=>{const b=$('#status');b.textContent=m;b.className='card status'+(kind===true?' error':kind?' '+kind:'')};
+
+/* ── Runtime capabilities (two servers) ──────────────────────────────────── */
+let mcp=null,dl=null,csOK=false,gmOK=false,DIAG=[];const CALL_TO=25000;
+function readPayload(r){if(r&&r.payload!==undefined)return r.payload;if(r&&r.structuredContent)return r.structuredContent;let t=r&&r.content&&r.content[0]&&r.content[0].text;if(t){try{return JSON.parse(t)}catch(e){return{text:t}}}return r||{}}
+function fmt(e){if(e==null)return'unknown';if(typeof e==='string')return e;try{return (e.code?('code='+e.code+' '):'')+(e.message||JSON.stringify(e))}catch(_){return String(e)}}
+function withTimeout(p,ms){return Promise.race([Promise.resolve(p).then(v=>({ok:true,v}),e=>({ok:false,e})),new Promise(r=>setTimeout(()=>r({timeout:true}),ms))])}
+function mcpMsg(e){const c=e&&e.code||'';const m={needs_reauth:'Reconnect the connector in claude.ai → Settings → Connectors.',server_not_connected:'Add the connector in claude.ai → Settings → Connectors.',selection_required:'Choose the account when claude.ai prompts.',not_in_manifest:'This artifact is not permitted to call that tool.',rate_limited:'Rate limit — wait, then retry.',server_unavailable:'Connector briefly unreachable — retry shortly.',tool_error:'Rejected: '+(e&&e.message||'')};return m[c]||('Connector error'+(e&&(e.code||e.message)?' ('+(e.code||e.message)+')':'')+'.')}
+async function mcpCall(server,tool,input){if(!mcp)throw{code:'offline',message:'Connector unavailable'};const r=await mcp.callTool(server,tool,input,{cache:false});return readPayload(r)}
+function diagPush(l){DIAG.push(l);const d=$('#diag');if(d)d.textContent=DIAG.join('\n')}
+function setDataButtons(){$('#liSync').disabled=!csOK;$('#emailSync').disabled=!gmOK}
+async function tryCall(server,tool,input){let r=await withTimeout(mcp.callTool(server,tool,input,{cache:false}),CALL_TO);if(r.timeout){r=await withTimeout(mcp.callTool(server,tool,input,{cache:false}),CALL_TO)}return r}
+async function diagnose(){
+  DIAG=[];const d=$('#diag');if(d)d.textContent='';csOK=gmOK=false;setDataButtons();
+  diagPush('— Connector diagnostics @ '+new Date().toISOString()+' —');
+  const has=!!(window.claude&&typeof window.claude.use==='function');diagPush('window.claude.use present: '+has);
+  if(!has){diagPush('→ Not inside claude.ai. Open from the artifact CARD in chat.');show('Offline — open from the artifact card inside claude.ai. Restore a backup to review.',true);render();return}
+  const dm=await withTimeout(window.claude.use('downloads'),9000);dl=dm.ok?dm.v:null;diagPush('use("downloads"): '+(dm.timeout?'TIMEOUT':dm.ok?(dl?'available':'null'):'error'));
+  const rm=await withTimeout(window.claude.use('mcp'),9000);
+  if(rm.timeout){diagPush('use("mcp"): TIMEOUT(9s)');show('mcp did not respond within 9 s — approve the connectors, then Re-run.',true);render();return}
+  if(!rm.ok){diagPush('use("mcp"): REJECTED — '+fmt(rm.e));show('mcp capability rejected: '+fmt(rm.e),true);render();return}
+  mcp=rm.v;diagPush('use("mcp"): '+(mcp?'resolved':'null'));
+  if(!mcp){diagPush('→ Approve the connectors for this artifact, then Re-run.');show('mcp is null — connectors not granted to this artifact.',true);render();return}
+  diagPush('… listTools() …');let lt=await withTimeout(mcp.listTools(),CALL_TO);if(lt.timeout){diagPush('listTools(): TIMEOUT — retry…');lt=await withTimeout(mcp.listTools(),CALL_TO)}
+  let servers=[];if(lt.timeout)diagPush('listTools(): TIMEOUT');else if(!lt.ok)diagPush('listTools(): ERROR '+fmt(lt.e));else{servers=(lt.v&&lt.v.servers)||[];diagPush('listTools(): '+servers.length+' server(s):');servers.forEach(s=>diagPush('   • '+s.server+' [auth:'+s.authStatus+'; tools: '+((s.tools||[]).map(t=>t.name).join(', ')||'none')+']'))}
+  // ConnectSafely (LinkedIn)
+  const csName=(servers.find(s=>(s.tools||[]).some(t=>/^(list-linkedin-accounts|list-conversations)$/.test(t.name)))||{}).server||CS;
+  diagPush('… '+csName+' → list-linkedin-accounts …');let cr=await tryCall(csName,T_ACCT,{});
+  if(cr.timeout)diagPush('   ↳ TIMEOUT');else if(!cr.ok)diagPush('   ↳ '+fmt(cr.e));else{const pay=readPayload(cr.v),a=Array.isArray(pay)?pay:((pay&&(pay.accounts||pay.people))||[]);if(a[0]){csOK=true;window.__CS=csName;state.ownerId=state.ownerId;state.ownerName=((a[0].firstName||'')+' '+(a[0].lastName||'')).trim();window.__ACCT=a[0].id||'';diagPush('   ↳ OK — '+state.ownerName+' ('+(a[0].id||'?')+')')}else diagPush('   ↳ no account')}
+  // Gmail
+  const gmName=(servers.find(s=>(s.tools||[]).some(t=>/^(search_threads|list_labels|create_draft)$/.test(t.name)))||{}).server||GM;
+  diagPush('… '+gmName+' → list_labels …');let gr=await tryCall(gmName,T_LABELS,{});
+  if(gr.timeout)diagPush('   ↳ TIMEOUT');else if(!gr.ok)diagPush('   ↳ '+fmt(gr.e)+' (email features will stay off)');else{gmOK=true;window.__GM=gmName;const labs=readPayload(gr.v);diagPush('   ↳ OK — Gmail reachable ('+(((labs&&labs.labels)||[]).length||'?')+' labels)')}
+  save();setDataButtons();
+  const parts=[csOK?('LinkedIn ready ('+(state.ownerName||'account')+')'):'LinkedIn unavailable',gmOK?'Gmail ready':'Gmail unavailable'];
+  show(parts.join(' · ')+'. Import Tool 2, then Sync.',csOK||gmOK?'ok':true);render();
+}
+const ACCT=()=>window.__ACCT||'';const CSSRV=()=>window.__CS||CS;const GMSRV=()=>window.__GM||GM;
+
+/* ── Merge / identity keys (stable, cross-source adoption) ────────────────── */
+function stableKey(c){const n=norm(c.name);if(n.split(' ').filter(Boolean).length>=2)return'nm:'+n;if(c.email)return'em:'+String(c.email).toLowerCase();if(c.profileUrn||c.profileId)return'li:'+(c.profileUrn||c.profileId);return'nm:'+n}
+function sourceKeys(c){return [c.email&&'em:'+String(c.email).toLowerCase(),(c.profileUrn||c.profileId)&&'li:'+(c.profileUrn||c.profileId)].filter(Boolean)}
+function newer(a,b){if(!a)return b;if(!b)return a;return +new Date(b.ts||0)>=+new Date(a.ts||0)?b:a}
+function canonical(raw){const li=raw.linkedinActivity||(raw.conversation?{ts:raw.conversation.lastActivityAt,lastMine:raw.conversation.direction==='mine',thread:(raw.conversation.messages||[]).map(m=>({mine:m.dir==='mine',text:m.text})),conversationUrn:raw.conversationUrn}:null);
+  const c={key:raw.key||stableKey(raw),name:raw.name||raw.fullName||[raw.firstName,raw.lastName].filter(Boolean).join(' ')||'Unknown',email:(raw.email||'').toLowerCase(),profileUrn:raw.profileUrn||'',profileId:raw.profileId||'',profileUrl:raw.profileUrl||'',headline:raw.headline||'',company:raw.company||'',source:raw.source||{},icpId:raw.icpId,emailActivity:raw.emailActivity||null,linkedinActivity:li,commercial:raw.commercial||{stage:'prospect'},state:raw.state||{category:'unlabeled',note:'',snoozeUntil:null,closed:false}};
+  c.channels=[...new Set([...(raw.channels||[]),raw.channel,(c.profileUrn||c.profileId)&&'linkedin',c.email&&'email'].filter(Boolean))];c.sourceKeys=sourceKeys(c);return c}
+function adoptSaved(c){if(state.saved[c.key])return{...c,state:{...c.state,...state.saved[c.key]}};for(const k of c.sourceKeys||[])if(state.saved[k])return{...c,state:{...c.state,...state.saved[k]}};return c}
+function merge(rows){const stages=['prospect','connection_requested','connected','contacted','replied','call','offered','paid','delivered','expanded'];const m=new Map(state.contacts.map(c=>[c.key,c]));
+  rows.forEach(raw=>{let c=adoptSaved(canonical(raw));const o=m.get(c.key);if(!o){m.set(c.key,c);return}const commercial={...o.commercial,...c.commercial};const os=o.commercial&&o.commercial.stage||'prospect',ns=c.commercial&&c.commercial.stage||'prospect';commercial.stage=stages.indexOf(ns)>stages.indexOf(os)?ns:os;
+    m.set(c.key,{...o,...c,source:(o.source&&Object.keys(o.source).length)?o.source:c.source,channels:[...new Set([...(o.channels||[]),...(c.channels||[])])],sourceKeys:[...new Set([...(o.sourceKeys||[]),...(c.sourceKeys||[])])],emailActivity:newer(o.emailActivity,c.emailActivity),linkedinActivity:newer(o.linkedinActivity,c.linkedinActivity),commercial,state:{...o.state,...c.state}})});
+  state.contacts=[...m.values()]}
+function persistSaved(){state.contacts.forEach(c=>{state.saved[c.key]={category:c.state.category,note:c.state.note,snoozeUntil:c.state.snoozeUntil,closed:c.state.closed,autoSnoozed:c.state.autoSnoozed}})}
+
+/* ── Triage / scoring ────────────────────────────────────────────────────── */
+function activity(c){return newer(c.emailActivity,c.linkedinActivity)||{ts:null,lastMine:false,thread:[]}}
+function structural(c){const a=activity(c);if(!a.ts)return{status:'ok',days:null,due:false};const days=Math.max(0,Math.floor((Date.now()-new Date(a.ts))/864e5)),cat=c.state.category||'unlabeled',win=a.lastMine?(WINDOWS[cat]||5):2;return{status:a.lastMine?'wait':'turn',days,due:days>=win}}
+const bookRe=/\b(booked|calendly|cal\.com|calendar invite|invite sent|scheduled|confirmed for|looking forward to (our|the) (call|chat|meeting)|see you (then|on|tuesday|wednesday|thursday|friday|monday))\b/i;
+const closedRe=/\b(not (a fit|interested|right now)|pass for now|no thanks|will not proceed|closed the loop)\b/i;
+function triage(c){const a=activity(c),msgs=a.thread||[],joined=msgs.slice(-8).map(m=>m.text||m.body||m.content||'').join('\n');
+  if(closedRe.test(joined))return{state:'closed',reason:'Explicit close language'};
+  if(bookRe.test(joined)){const marks=msgs.map(m=>bookRe.test(m.text||m.body||m.content||''));const last=marks.lastIndexOf(true);const fresh=msgs.slice(last+1).some(m=>m.mine&&/\?/.test(m.text||m.body||m.content||''));if(!fresh)return{state:'meeting_scheduled',reason:'Booking signal'}}
+  const s=structural(c);if(!s.due)return{state:a.lastMine?'awaiting_them':'active',reason:'Inside follow-up window'};return{state:'needs_followup',reason:s.status==='turn'?'Their reply is waiting':'Follow-up window elapsed'}}
+function applyTriage(c){const t=triage(c);state.triage[c.key]={ts:activity(c).ts,...t};if(t.state==='meeting_scheduled'&&!c.state.closed){const proposed=Date.now()+14*864e5,cur=+new Date(c.state.snoozeUntil||0);if(cur<proposed){c.state.snoozeUntil=new Date(proposed).toISOString();c.state.autoSnoozed=true}}return t}
+function fscore(c){const s=structural(c),t=state.triage[c.key]||applyTriage(c),w={investor:35,lead:30,client:25,personal:5,promotional:-100,unlabeled:10};if(c.state.closed||t.state==='closed'||t.state==='meeting_scheduled')return -10000;const back=c.state.snoozeUntil&&new Date(c.state.snoozeUntil)<=Date.now()?50:0;return (s.days||0)*3+(s.status==='turn'?35:0)+(t.state==='needs_followup'?60:0)+(w[c.state.category]||10)+back}
+function snoozed(c){return c.state.snoozeUntil&&new Date(c.state.snoozeUntil)>Date.now()}
+function inTab(c){const t=state.triage[c.key]||applyTriage(c);if(state.tab==='closed')return c.state.closed;if(state.tab==='snoozed')return !c.state.closed&&snoozed(c);if(state.tab==='followup')return !c.state.closed&&!snoozed(c)&&t.state==='needs_followup';if(state.tab==='pipeline')return !c.state.closed;return !c.state.closed&&!snoozed(c)}
+
+/* ── Gmail sync (in:sent, paginate, per-participant, exclusions) ─────────── */
+let stopping=false;
+function isJunk(e){return /(no-?reply|notifications?@|mailer|newsletter|beehiiv|@mail\.)/i.test(e)}
+function isExternal(e){const own=(state.identity.ownerEmail||'').toLowerCase();return e&&e!==own&&!(state.identity.teamEmails||[]).includes(e)&&!isJunk(e)}
+async function syncEmail(){if(!gmOK)return show('Gmail not connected.',true);stopping=false;
+  try{show('Syncing sent Gmail…');let token=null,pages=0,contacts=[];
+    while(pages<10&&!stopping){const d=await mcpCall(GMSRV(),T_SEARCH,token?{query:'in:sent newer_than:120d',pageSize:50,pageToken:token}:{query:'in:sent newer_than:120d',pageSize:50});
+      const threads=d.threads||d.results||d.items||[];
+      threads.forEach(t=>{const msgs=(t.messages||[]).slice().sort((a,b)=>+new Date(a.date||a.internalDate)-+new Date(b.date||b.internalDate)),last=msgs[msgs.length-1]||{};
+        const own=(state.identity.ownerEmail||'').toLowerCase();
+        const addrs=[];msgs.forEach(m=>{[].concat(m.sender||m.from||[],m.toRecipients||m.to||[],m.ccRecipients||m.cc||[]).forEach(a=>addrs.push(a))});
+        const uniq=new Map();addrs.forEach(a=>{const e=emailOf(a);if(isExternal(e))uniq.set(e,a)});
+        const mine=emailOf(last.sender||last.from)===own;
+        uniq.forEach((a,e)=>{contacts.push({name:nameOf(a)||e.split('@')[0],email:e,channels:['email'],emailActivity:{ts:last.date||last.internalDate,lastMine:mine,thread:msgs.slice(-14).map(m=>({mine:emailOf(m.sender||m.from)===own,text:m.snippet||m.subject||''})),threadId:t.id,lastMsgId:last.id,subject:t.subject||''}})});
+      });
+      pages++;token=d.nextPageToken||null;$('#progress').style.width=(pages*10)+'%';if(!token)break;
+    }
+    merge(contacts);persistSaved();save();render();$('#progress').style.width='0';
+    show(contacts.length?('Merged '+contacts.length+' Gmail participants.'):'No sent Gmail in the last 120 days yet — email will fill in as you send.','ok');
+  }catch(e){$('#progress').style.width='0';show('Gmail sync failed — '+mcpMsg(e),true)}}
+
+/* ── LinkedIn sync (cursor, serial, defensive direction) ─────────────────── */
+function liDir(m){const sid=String(m.senderId||(m.sender&&m.sender.id)||'');const sn=norm(m.senderName||(m.sender&&m.sender.name)||'');if(sid){return (state.ownerId&&(sid===state.ownerId||sid.endsWith(':'+state.ownerId)))?true:false}if(sn&&state.ownerName)return sn===norm(state.ownerName);return false}
+async function syncLinkedIn(){if(!csOK)return show('LinkedIn (ConnectSafely) not connected.',true);stopping=false;
+  try{show('Loading LinkedIn conversations…');let cursor=null,threads=[],pages=0,seen=new Set();
+    while(pages<8){const d=await mcpCall(CSSRV(),T_CONVOS,cursor?{accountId:ACCT(),count:50,nextCursor:cursor}:{accountId:ACCT(),count:50});const batch=d.conversations||d.items||[];let fresh=0;batch.forEach(t=>{const u=t.conversationUrn||t.id;if(u&&!seen.has(u)){seen.add(u);threads.push(t);fresh++}});pages++;cursor=d.nextCursor||null;if(!cursor||fresh===0)break}
+    if(!threads.length){show('No LinkedIn conversations in the connector cache yet.','ok');return}
+    if(!state.ownerId){for(const t of threads){const m=String(t.conversationUrn||t.id||'').match(/msg_conversation:\(urn:li:fsd_profile:([^,]+)/);if(m){state.ownerId=m[1];break}}}
+    const limit=Math.min(threads.length,160);let done=0,contacts=[];
+    for(let i=0;i<limit&&!stopping;i++){const t=threads[i],urn=t.conversationUrn||t.id;if(!urn)continue;show('Reading LinkedIn '+(i+1)+'/'+limit+'…');$('#progress').style.width=((i+1)/limit*100)+'%';
+      try{const md=await mcpCall(CSSRV(),T_MSGS,{conversationUrn:urn,accountId:ACCT()}),ms=(md.messages||md.items||[]).slice().sort((a,b)=>+new Date(a.createdAt||a.sentAt||a.timestamp)-+new Date(b.createdAt||b.sentAt||b.timestamp)),last=ms[ms.length-1]||{},part=(t.participants||[]).find(p=>!String(p.profileUrn||p.participantUrn||'').includes(state.ownerId))||t.participant||{};
+        contacts.push({name:part.name||[part.firstName,part.lastName].filter(Boolean).join(' '),profileUrn:part.profileUrn||part.participantUrn,profileUrl:part.profileUrl||'',headline:part.headline||'',channels:['linkedin'],linkedinActivity:{ts:last.createdAt||last.sentAt||last.timestamp,lastMine:liDir(last),thread:ms.slice(-14).map(m=>({mine:liDir(m),text:m.text||m.body||m.content||''})),conversationUrn:urn}});done++;
+      }catch(e){}
+      await new Promise(r=>setTimeout(r,900+Math.random()*600));
+    }
+    merge(contacts);persistSaved();save();render();$('#progress').style.width='0';show('Merged '+done+' LinkedIn conversations.','ok');
+  }catch(e){$('#progress').style.width='0';show('LinkedIn sync failed — '+mcpMsg(e),true)}}
+
+/* ── Draft + send/draft (inline confirm, never auto) ─────────────────────── */
+function draftText(c){const first=(c.name||'').split(' ')[0]||'there';const co=c.company||'';const comp=co?(' Given what you\'re building at '+co+', I suspect there\'s something useful here for you.'):'';return 'Hi '+first+',\n\nPicking this back up properly. I\'ve been focused on one thing lately: helping capable people name what\'s next and package their distinctive value into a clear, buyable offer.'+comp+'\n\nIf it\'s worth a short conversation, I run a free 45-minute Direction Call — no pitch, just clarity on the next concrete move. Want me to share a couple of times?\n\n— Sasha'}
+function summarise(c){const a=activity(c),d=structural(c),last=(a.thread&&a.thread.length?a.thread[a.thread.length-1]:{});return [c.name+(c.company?(' · '+c.company):'')+(c.headline?(' — '+c.headline):''),'Channels: '+c.channels.join(', ')+' · stage: '+(c.commercial.stage||'prospect')+' · category: '+(c.state.category||'unlabeled'),a.ts?('Last: '+(a.lastMine?'you':'them')+' · '+d.days+'d ago'):'No activity recorded',last.text?('Last message: '+String(last.text).slice(0,200)):''].filter(Boolean).join('\n')}
+function confirmInline(box,text,onYes){const bar=document.createElement('div');bar.className='status';bar.style.marginTop='8px';bar.innerHTML=esc(text)+' ';const y=document.createElement('button');y.className='primary';y.textContent='Yes';const n=document.createElement('button');n.textContent='No';bar.append(y,n);box.append(bar);y.onclick=()=>{bar.remove();onYes()};n.onclick=()=>bar.remove()}
+function find(k){return state.contacts.find(c=>c.key===k)}
+function openDrawer(k,mode){const c=find(k),box=document.getElementById('d-'+enc(k)),a=activity(c);box.classList.remove('hidden');
+  if(mode==='preview'){box.innerHTML='<b>Recent context</b><pre class="ctx">'+esc((a.thread||[]).slice(-14).map(m=>(m.mine?'You: ':'Them: ')+(m.text||m.body||m.content||'')).join('\n\n')||'No messages loaded.')+'</pre><div class="row" style="margin-top:8px"><textarea placeholder="Notes">'+esc(c.state.note||'')+'</textarea></div><button data-note="'+enc(k)+'">Save notes</button>';box.querySelector('[data-note]').onclick=()=>{c.state.note=box.querySelector('textarea').value;persistSaved();save();show('Notes saved for '+c.name,'ok')};return}
+  if(mode==='summary'){box.innerHTML='<b>Summary</b><pre class="ctx">'+esc(summarise(c))+'</pre>';return}
+  // draft
+  const emailPreferred=a===c.emailActivity||(!c.linkedinActivity&&!!c.email);
+  box.innerHTML='<textarea id="dt-'+enc(k)+'">'+esc(draftText(c))+'</textarea><div class="actions" style="margin-top:8px"><button class="primary" data-send="'+enc(k)+'">'+(emailPreferred?'Create Gmail draft (not sent)':'Send LinkedIn with confirmation')+'</button><span class="muted">'+(emailPreferred?'Email creates a reply draft in Gmail for you to review & send.':'LinkedIn sends only after you confirm.')+'</span></div>';
+  box.querySelector('[data-send]').onclick=()=>{const text=box.querySelector('textarea').value;if(emailPreferred){confirmInline(box,'Create a Gmail reply draft for '+c.name+'? (Nothing is sent.)',()=>createEmailDraft(c,text,box))}else{confirmInline(box,'Send this LinkedIn message to '+c.name+'?',()=>sendLinkedIn(c,text,box))}};}
+async function createEmailDraft(c,text,box){if(!gmOK)return show('Gmail not connected.',true);const a=c.emailActivity;try{await mcpCall(GMSRV(),T_DRAFT,{to:[c.email],body:text,replyToMessageId:a&&a.lastMsgId});c.state.followedUpAt=new Date().toISOString();persistSaved();save();show('Gmail draft created for '+c.name+' — review & send it from Gmail. Nothing was sent.','ok')}catch(e){show('Draft failed — '+mcpMsg(e),true)}}
+async function sendLinkedIn(c,text,box){if(!csOK)return show('LinkedIn not connected.',true);const urn=c.linkedinActivity&&c.linkedinActivity.conversationUrn,targets=[];if(urn)targets.push({conversationUrn:urn});if(c.profileUrn)targets.push({recipientProfileUrn:c.profileUrn});if(c.profileId)targets.push({recipientProfileId:c.profileId});if(!targets.length)return show('No LinkedIn address for '+c.name,true);const errs=[];
+  for(const tgt of targets)for(const ch of ['linkedin_inbox','auto']){try{await mcpCall(CSSRV(),T_LISEND,{accountId:ACCT(),messagingChannel:ch,message:text,...tgt});c.state.followedUpAt=new Date().toISOString();if(c.commercial.stage==='prospect'||c.commercial.stage==='connected')c.commercial.stage='contacted';persistSaved();save();render();show('LinkedIn message sent to '+c.name+'.','ok');return}catch(e){errs.push(Object.keys(tgt)[0]+'/'+ch+': '+fmt(e))}}
+  show('All send attempts failed — '+errs.join(' | '),true)}
+
+/* ── Render ──────────────────────────────────────────────────────────────── */
+function setDataNote(t){$('#dataNote').textContent=t}
+function initials(n){return String(n||'?').split(' ').slice(0,2).map(x=>x[0]||'').join('').toUpperCase()}
+function render(){state.contacts.forEach(applyTriage);
+  const counts={active:0,followup:0,snoozed:0,closed:0,lead:0,client:0};
+  state.contacts.forEach(c=>{const t=state.triage[c.key]||{};if(c.state.closed)counts.closed++;else if(snoozed(c))counts.snoozed++;else{counts.active++;if(t.state==='needs_followup')counts.followup++}if(!c.state.closed&&c.state.category==='lead')counts.lead++;if(!c.state.closed&&c.state.category==='client')counts.client++});
+  $('#stats').innerHTML=[['Active',counts.active],['Need follow-up',counts.followup],['Leads',counts.lead],['Clients',counts.client],['Snoozed',counts.snoozed],['Closed',counts.closed]].map(([k,v])=>'<div class="stat"><span>'+k+'</span><b>'+v+'</b></div>').join('');
+  $('#tabs').innerHTML=Object.keys(TABS).map(id=>'<button data-tab="'+id+'" class="'+(state.tab===id?'active':'')+'">'+TABS[id]+(counts[id]!=null?' <small>'+counts[id]+'</small>':'')+'</button>').join('');
+  document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{state.tab=b.dataset.tab;save();render()});
+  const q=norm($('#search').value),cat=$('#category').value,ch=$('#channel').value;
+  let rows=state.contacts.filter(c=>inTab(c)&&(!q||norm([c.name,c.company,c.headline,c.state.note].join(' ')).includes(q))&&(!cat||c.state.category===cat)&&(!ch||c.channels.includes(ch)));
+  const s=$('#sort').value;if(s==='recent')rows.sort((a,b)=>+new Date(activity(b).ts||0)-+new Date(activity(a).ts||0));else if(s==='name')rows.sort((a,b)=>a.name.localeCompare(b.name));else rows.sort((a,b)=>fscore(b)-fscore(a));
+  const kb=state.tab==='pipeline';$('#kanban').classList.toggle('hidden',!kb);$('#list').classList.toggle('hidden',kb);
+  if(kb){$('#kanban').innerHTML=CATS.map(cat=>'<div class="kcol"><h4>'+cat+' ('+rows.filter(c=>c.state.category===cat).length+')</h4>'+rows.filter(c=>c.state.category===cat).map(c=>'<div class="kcard"><b>'+esc(c.name)+'</b><div class="muted">'+esc(c.company||c.headline||'')+'</div><select data-cat="'+enc(c.key)+'">'+CATS.map(x=>'<option'+(x===c.state.category?' selected':'')+'>'+x+'</option>').join('')+'</select></div>').join('')+'</div>').join('');
+    document.querySelectorAll('#kanban [data-cat]').forEach(x=>x.onchange=()=>{find(dec(x.dataset.cat)).state.category=x.value;persistSaved();save();render()});$('#empty').classList.add('hidden');return}
+  $('#list').innerHTML=rows.map(c=>{const k=enc(c.key),a=activity(c),d=structural(c),t=state.triage[c.key]||{state:'active',reason:''};
+    return '<article class="contact"><div class="avatar">'+initials(c.name)+'</div>'+
+    '<div><a class="name" href="'+(c.profileUrl||'#')+'" target="_blank" rel="noopener">'+esc(c.name)+'</a><div class="muted">'+esc(c.headline||c.company||c.email||'')+'</div><div class="chips">'+c.channels.map(x=>'<span class="channel">'+x+'</span>').join('')+(c.state.autoSnoozed&&snoozed(c)?'<span class="tag">📅 Meeting booked</span>':'')+'</div></div>'+
+    '<div><select data-cat="'+k+'">'+CATS.map(x=>'<option'+(x===c.state.category?' selected':'')+'>'+x+'</option>').join('')+'</select><div class="muted" style="margin-top:4px">'+esc(c.commercial.stage||'prospect')+'</div></div>'+
+    '<div><span class="triage '+t.state+'">'+String(t.state).replace(/_/g,' ')+'</span><div class="muted">'+esc(t.reason)+' · '+(d.days===null?'no activity':d.days+'d')+'</div><div class="muted">'+esc(((a.thread&&a.thread.length?a.thread[a.thread.length-1].text:'')||'').slice(0,140))+'</div></div>'+
+    '<div class="actions"><button data-preview="'+k+'">Preview</button><button data-summary="'+k+'">Summarise</button><button data-draft="'+k+'">Draft</button><select data-snooze="'+k+'"><option value="">Snooze…</option><option value="3">3 days</option><option value="7">1 week</option><option value="14">2 weeks</option><option value="30">1 month</option></select><button data-done="'+k+'">'+(c.state.closed?'Reopen':'Close')+'</button></div>'+
+    '<div id="d-'+k+'" class="drawer hidden"></div></article>'}).join('');
+  $('#empty').classList.toggle('hidden',rows.length>0);
+  document.querySelectorAll('#list [data-cat]').forEach(x=>x.onchange=()=>{find(dec(x.dataset.cat)).state.category=x.value;persistSaved();save();render()});
+  document.querySelectorAll('[data-preview]').forEach(b=>b.onclick=()=>openDrawer(dec(b.dataset.preview),'preview'));
+  document.querySelectorAll('[data-summary]').forEach(b=>b.onclick=()=>openDrawer(dec(b.dataset.summary),'summary'));
+  document.querySelectorAll('[data-draft]').forEach(b=>b.onclick=()=>openDrawer(dec(b.dataset.draft),'draft'));
+  document.querySelectorAll('[data-snooze]').forEach(x=>x.onchange=()=>{const days=+x.value;if(days){const c=find(dec(x.dataset.snooze));c.state.snoozeUntil=new Date(Date.now()+days*864e5).toISOString();c.state.autoSnoozed=false;persistSaved();save();render()}});
+  document.querySelectorAll('[data-done]').forEach(b=>b.onclick=()=>{const c=find(dec(b.dataset.done));c.state.closed=!c.state.closed;persistSaved();save();render()});
+}
+
+/* ── Outcomes + I/O ──────────────────────────────────────────────────────── */
+function outcomes(){const map={};state.contacts.forEach(c=>{const src=c.source||{},k=(src.foundByIcpId||c.icpId||'unknown')+'::'+(src.searchTerm||'unknown'),b=map[k]||(map[k]={icpId:src.foundByIcpId||c.icpId||'unknown',searchTerm:src.searchTerm||'unknown',found:0,contacted:0,replied:0,calls:0,offers:0,paid:0,cashUsd:0,delivered:0,expanded:0}),m=c.commercial||{},at=st=>['contacted','replied','call','offered','paid','delivered','expanded'].indexOf(m.stage)>=['contacted','replied','call','offered','paid','delivered','expanded'].indexOf(st);b.found++;if(m.contactedAt||at('contacted'))b.contacted++;if(m.repliedAt||at('replied'))b.replied++;if(m.callAt||at('call'))b.calls++;if(m.offerAt||at('offered'))b.offers++;if(m.paymentAt||at('paid'))b.paid++;b.cashUsd+=Number(m.amountUsd||0);if(m.deliveredAt||at('delivered'))b.delivered++;if(m.expansionAt||m.stage==='expanded')b.expanded++});return Object.values(map)}
+async function saveFile(name,data){const json=JSON.stringify(data,null,2);if(dl){try{await dl.save({filename:name,data:json});show('Saved '+name+' — confirm the download.','ok');return}catch(e){if(e&&e.code==='declined')return show('Download cancelled.',true)}}try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([json],{type:'application/json'}));a.download=name;a.click();URL.revokeObjectURL(a.href)}catch(e){show('This view cannot download. Open inside claude.ai.',true)}}
+function exportLedger(){return{schema:'evolver-commercial-ledger',version:1,producer:'relationship-hub',exportedAt:new Date().toISOString(),records:state.contacts,outcomes:outcomes()}}
+function loadIdentity(){$('#ownerEmail').value=state.identity.ownerEmail||'';$('#teamEmails').value=(state.identity.teamEmails||[]).join(', ')}
+$('#saveIdentity').onclick=()=>{state.identity.ownerEmail=($('#ownerEmail').value||'').trim().toLowerCase();state.identity.teamEmails=($('#teamEmails').value||'').split(',').map(x=>x.trim().toLowerCase()).filter(Boolean);save();show('Identity saved.','ok')};
+$('#import').onchange=async e=>{try{const x=JSON.parse(await e.target.files[0].text());merge(x.records||x.people||x.contacts||[]);persistSaved();save();render();show('Tool 2 ledger imported ('+state.contacts.length+' contacts).','ok')}catch(err){show('Import failed: '+err.message,true)}finally{e.target.value=''}};
+$('#restore').onchange=async e=>{try{const x=JSON.parse(await e.target.files[0].text());merge(x.records||x.contacts||[]);state.saved={...state.saved,...(x.saved||{})};save();render();show('Backup merged.','ok')}catch(err){show('Restore failed: '+err.message,true)}finally{e.target.value=''}};
+$('#emailSync').onclick=syncEmail;$('#liSync').onclick=syncLinkedIn;$('#stopSync').onclick=()=>{stopping=true};
+$('#backup').onclick=()=>saveFile('relationship-hub-backup.json',state);$('#export').onclick=()=>saveFile('canonical-commercial-ledger.json',exportLedger());
+$('#rediag').onclick=diagnose;$('#copydiag').onclick=async()=>{try{await navigator.clipboard.writeText(DIAG.join('\n'));show('Diagnostics copied.','ok')}catch(e){show('Select the panel text to copy.',true)}};
+['search','category','channel','sort'].forEach(id=>$('#'+id).oninput=render);
+loadIdentity();render();diagnose();
+})();
+</script>

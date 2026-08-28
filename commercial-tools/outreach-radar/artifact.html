@@ -1,0 +1,214 @@
+<title>Outreach Radar</title>
+<style>
+:root{font:14px Inter,ui-sans-serif,system-ui;color:#24231f;background:#f4f2ec}*{box-sizing:border-box}body{margin:0;background:#f4f2ec;color:#24231f}.shell{max-width:1400px;margin:auto;padding:28px}h1{font:600 34px Georgia,serif;margin:4px 0}.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#766f63}.sub,.muted{color:#766f63}.muted{font-size:12px}.card{background:#fff;border:1px solid #ddd7cb;border-radius:15px;padding:16px;margin-top:14px;box-shadow:0 3px 16px #362d1d0a}.row,.tabs,.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.grow{flex:1}.status{padding:10px 13px;border-radius:10px;background:#efede6}.status.error{background:#ffefec;color:#92271d}.status.ok{background:#e7f4ea;color:#1c6b37}button,.button,input,select,textarea{font:inherit}button,.button{border:1px solid #c8c0b2;background:#fff;color:#24231f;border-radius:8px;padding:8px 11px;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}button.active,.primary{background:#25241f;color:#fff;border-color:#25241f}input,select,textarea{border:1px solid #d2ccbf;border-radius:8px;padding:8px;background:#fff;color:#24231f}.tabs button small{opacity:.6}.filters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:9px;margin:12px 0}.person{display:grid;grid-template-columns:44px 1.3fr 1fr 1fr auto;gap:12px;border-top:1px solid #eeeae2;padding:14px 0;align-items:start}.avatar{width:40px;height:40px;border-radius:50%;background:#e9e5dc;display:grid;place-items:center;font-weight:700;color:#5a5346}.name{font-weight:700;color:#24231f;text-decoration:none}.score{display:inline-block;padding:2px 7px;border-radius:8px;background:#e2f1e5;color:#176a35;font-weight:600}.s-mid{background:#fff0c9;color:#815d00}.s-low{background:#eee;color:#666}.tag{display:inline-block;padding:3px 7px;border-radius:999px;background:#efede7;font-size:11px}.mk{font-size:11px;padding:2px 6px;border-radius:6px;background:#eef;color:#3355aa;margin-left:4px}.mine{color:#195e9b}.theirs{color:#a15c00}.none{color:#5a7d5a}.unknown,.unverified{color:#976e21}.drawer{grid-column:1/-1;background:#f8f6f1;border:1px solid #e7e1d4;padding:12px;border-radius:10px;margin-top:8px}.hidden{display:none}textarea{width:100%;min-height:104px}pre.diag{white-space:pre-wrap;font:12px ui-monospace,Menlo,monospace;background:#faf8f2;border:1px solid #e7e1d4;border-radius:9px;padding:11px;margin:0;overflow:auto;max-height:300px}.seg button{border-radius:0}.seg button:first-child{border-radius:8px 0 0 8px}.seg button:last-child{border-radius:0 8px 8px 0}@media(max-width:850px){.person{grid-template-columns:44px 1fr}.person>*:not(.avatar):not(.drawer){grid-column:2}.filters{grid-template-columns:1fr 1fr}.shell{padding:15px}}
+</style>
+<main class="shell">
+<div class="eyebrow">Canonical commercial ledger · Tool 2</div><h1>Outreach Radar</h1>
+<div class="sub">Reconcile prospects, connections and conversations before outreach. Draft in your voice. Send only with confirmation — never automatically.</div>
+<div id="status" class="card status">Checking the Connect Safely connector (up to 9s)…</div>
+<details id="diagCard" class="card" open><summary style="cursor:pointer;font-weight:600">Connector diagnostics</summary><div class="row" style="margin:8px 0"><button id="rediag">Re-run diagnostics</button><button id="copydiag">Copy diagnostics</button><span class="muted">use("mcp") capped at 9 s; live connector calls up to 25 s ×2.</span></div><pre id="diag" class="diag"></pre></details>
+<section class="card"><div class="row"><b>Data</b>
+<label class="button">Import Tool 1<input id="import" type="file" accept="application/json" hidden></label>
+<button id="crawl">Crawl next 250 connections</button><button id="crawlall">Crawl everything</button><button id="stopcrawl">Stop</button>
+<button id="sync">Refresh conversations</button><button id="verifyvis">Verify visible</button>
+<span id="dataNote" class="muted grow"></span>
+<button id="backup">Save backup</button><label class="button">Restore<input id="restore" type="file" accept="application/json" hidden></label><button id="export">Export ledger</button></div>
+<div class="meter" style="height:6px;background:#e9e5dc;border-radius:9px;overflow:hidden;margin-top:10px"><i id="progress" style="display:block;height:100%;background:#282722;width:0"></i></div></section>
+<section class="card"><details><summary style="cursor:pointer;font-weight:600">Message templates (editable, per ICP)</summary>
+<div class="row" style="margin:10px 0"><label>ICP <select id="tplIcp"></select></label><div class="seg row" style="gap:0"><button id="tplModeMsg" class="active">Preview</button><button id="tplModeRaw">Template</button></div><span class="muted grow"></span><button id="tplReset">Restore default</button><button id="tplSave" class="primary">Save template</button></div>
+<textarea id="tplText"></textarea><div class="muted">Tokens: <code>{first}</code> <code>{name}</code> <code>{company}</code> · conditional <code>[[company: …{company}… ]]</code> renders only when a company was parsed. Edit a real draft below, then "Update template" promotes your wording back here.</div>
+</details></section>
+<section class="card"><div id="tabs" class="tabs"></div>
+<div class="filters"><input id="search" placeholder="Search people, headline, ICP"><select id="sort"><option value="score">Best fit</option><option value="oldest">Oldest touch</option><option value="newest">Newest touch</option><option value="name">Name</option></select><select id="icpFilter"><option value="">All ICPs</option></select><label><input id="verified" type="checkbox"> Verified only</label></div>
+<div id="list"></div><div id="empty" class="status">Import your Tool 1 ledger, or crawl connections to begin.</div></section>
+</main><script>
+(()=>{'use strict';
+const KEY='evolver_outreach_radar_v1';
+const SERVER0='ConnectSafely.AI';
+const T_ACCT='list-linkedin-accounts',T_CONNS='get-connections',T_CONVOS='list-conversations',T_MSGS='get-conversation-messages',T_EXISTS='conversation-exists',T_SEND='conversations-send-message';
+let SERVER=SERVER0, ACCOUNT='', OWNER_NAME='';
+const ICPS=[
+{id:'post_exit_founders',name:'Post-exit founders',strong:['former founder','ex-founder','post-exit','sabbatical','career break','next chapter',"exploring what's next",'recovering founder'],weak:['founder','entrepreneur','advisor','board member']},
+{id:'fractional_executives',name:'Fractional executives',strong:['fractional','portfolio career','fractional cmo','fractional coo','fractional cto','fractional chief'],weak:['consultant','advisor','independent','interim']},
+{id:'coaches_solopreneurs',name:'Coaches & solopreneurs',strong:['executive coach','founder coach','leadership coach','solopreneur','independent coach','career coach'],weak:['coach','facilitator','mentor','consultant']},
+{id:'consultants_transition',name:'Big Four / MBB transition',strong:['mckinsey','bcg','bain','deloitte','pwc','ey','kpmg','ex-consultant'],weak:['strategy consultant','management consultant','principal','engagement manager']},
+{id:'community_holders',name:'Community & ecosystem holders',strong:['community founder','ecosystem lead','community director','network founder','venture studio','accelerator director'],weak:['community','ecosystem','network','accelerator','incubator','membership']}
+];
+const DEFAULT_TPL="Hi {first},\n\nYour work[[company: at {company}]] stood out. I help highly capable people name what's next professionally and package their distinctive value into a clear offer.\n\nWould a 45-minute Direction Call be useful?\n\n— Sasha";
+const TPL_DEFAULTS={
+default:DEFAULT_TPL,
+post_exit_founders:"Hi {first}, real respect for what you built[[company: at {company}]] — closing a founder chapter is no small thing. The \"what's next\" after an exit is its own puzzle: enormous range, and range can be paralysing. I help post-exit founders name the next thing and package their distinctive value into one clear offer. If it's useful, I run a free 45-min Direction Call — no pitch, just clarity. Open to it?\n\n— Sasha",
+fractional_executives:"Hi {first}, a fractional/portfolio path[[company: like your work with {company}]] gives real range — and makes positioning genuinely hard, because you can do so much for so many. I help fractional operators sharpen that into one precise, buyable offer so the right clients self-select. Happy to think it through on a free 45-min Direction Call if that's useful.\n\n— Sasha",
+coaches_solopreneurs:"Hi {first}, your work[[company: at {company}]] stands out — and I notice a lot of excellent coaches and solopreneurs stay a little abstract in how they describe what they do, which quietly costs them the right clients. Naming it precisely is most of the game. That's exactly what I help with; a free 45-min Direction Call is an easy place to start if you're curious.\n\n— Sasha",
+consultants_transition:"Hi {first}, moving from[[company: {company}]] a top consulting seat into your own thing is a real threshold — huge capability, and the hard part is choosing the one thing to build on. I help people at exactly that transition name what's next and package it into a clear offer. Free 45-min Direction Call if you'd find it useful — no pitch.\n\n— Sasha",
+community_holders:"Hi {first}, what you're building[[company: at {company}]] is rare — you're holding genuine trust in a community. I help ecosystem and community builders turn that into a clear, distinctive offer (and, down the line, sharper ways to match the right people inside your network). If it's useful, I'd enjoy comparing notes on a free 45-min Direction Call.\n\n— Sasha"
+};
+const $=s=>document.querySelector(s), norm=s=>String(s||'').toLowerCase().replace(/[’‘]/g,"'").replace(/\s+/g,' ').trim();
+const enc=encodeURIComponent, dec=s=>decodeURIComponent(s), esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+let state={people:[],templates:{...TPL_DEFAULTS},tplEdited:{},tab:'recommended',sort:'score',offset:0,crawlDone:false,ownerId:'',convCursor:null,seenConv:{},tplMode:'msg',tplIcpSel:'default'};
+try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');state={...state,...s,templates:{...state.templates,...(s.templates||{})}}}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state));return true}catch(e){show('Storage is full — Save a backup now; new data is only in memory until you do.',true);return false}};
+const show=(m,kind='')=>{const b=$('#status');b.textContent=m;b.className='card status'+(kind===true?' error':kind?' '+kind:'')};
+
+/* ── Runtime capabilities ────────────────────────────────────────────────── */
+let mcp=null,dl=null,connectorOK=false,DIAG=[];const CALL_TO=25000;
+function readPayload(r){if(r&&r.payload!==undefined)return r.payload;if(r&&r.structuredContent)return r.structuredContent;let t=r&&r.content&&r.content[0]&&r.content[0].text;if(t){try{return JSON.parse(t)}catch(e){return{text:t}}}return r||{}}
+function fmt(e){if(e==null)return'unknown';if(typeof e==='string')return e;try{return (e.code?('code='+e.code+' '):'')+(e.message||JSON.stringify(e))}catch(_){return String(e)}}
+function withTimeout(p,ms){return Promise.race([Promise.resolve(p).then(v=>({ok:true,v}),e=>({ok:false,e})),new Promise(r=>setTimeout(()=>r({timeout:true}),ms))])}
+function mcpMsg(e){const c=e&&e.code||'';const m={needs_reauth:'Reconnect ConnectSafely in claude.ai → Settings → Connectors.',server_not_connected:'Add ConnectSafely in claude.ai → Settings → Connectors.',selection_required:'Choose your ConnectSafely account when claude.ai prompts.',not_in_manifest:'This artifact is not permitted to call that tool.',rate_limited:'ConnectSafely rate limit — wait, then retry.',server_unavailable:'ConnectSafely briefly unreachable — retry shortly.',tool_error:'LinkedIn rejected the call: '+(e&&e.message||''),blocked_by_policy:'Org policy blocks this tool.'};return m[c]||('Connector error'+(e&&(e.code||e.message)?' ('+(e.code||e.message)+')':'')+'.')}
+async function mcpCall(tool,input){if(!mcp)throw{code:'offline',message:'Connector unavailable'};const r=await mcp.callTool(SERVER,tool,input,{cache:false});return readPayload(r)}
+function diagPush(l){DIAG.push(l);const d=$('#diag');if(d)d.textContent=DIAG.join('\n')}
+function finishDiag(ok,msg){connectorOK=ok;show(msg,ok?'ok':true);setDataButtons();render()}
+function setDataButtons(){['#crawl','#crawlall','#sync','#verifyvis'].forEach(s=>{const b=$(s);if(b)b.disabled=!connectorOK})}
+async function diagnose(){
+  DIAG=[];const d=$('#diag');if(d)d.textContent='';connectorOK=false;setDataButtons();
+  diagPush('— Connector diagnostics @ '+new Date().toISOString()+' —');
+  const has=!!(window.claude&&typeof window.claude.use==='function');diagPush('window.claude.use present: '+has);
+  if(!has){diagPush('→ Not inside claude.ai. Open from the artifact CARD in chat.');return finishDiag(false,'Offline — open this tool from its card inside claude.ai. Restore a backup for read-only review.')}
+  const dm=await withTimeout(window.claude.use('downloads'),9000);dl=dm.ok?dm.v:null;diagPush('claude.use("downloads"): '+(dm.timeout?'TIMEOUT':dm.ok?(dl?'available':'null'):'error'));
+  const rm=await withTimeout(window.claude.use('mcp'),9000);
+  if(rm.timeout){diagPush('claude.use("mcp"): TIMEOUT(9s)');return finishDiag(false,'Connector did not respond within 9 s — mcp grant likely not approved. See diagnostics.')}
+  if(!rm.ok){diagPush('claude.use("mcp"): REJECTED — '+fmt(rm.e));return finishDiag(false,'Connector capability rejected: '+fmt(rm.e))}
+  mcp=rm.v;diagPush('claude.use("mcp"): '+(mcp?'resolved':'null'));
+  if(!mcp){diagPush('→ Approve the ConnectSafely connector for this artifact, then Re-run.');return finishDiag(false,'mcp is null — connector not granted to this artifact.')}
+  diagPush('… listTools() …');let lt=await withTimeout(mcp.listTools(),CALL_TO);if(lt.timeout){diagPush('listTools(): TIMEOUT — retry…');lt=await withTimeout(mcp.listTools(),CALL_TO)}
+  let servers=[];
+  if(lt.timeout)diagPush('listTools(): TIMEOUT(25s)');else if(!lt.ok)diagPush('listTools(): ERROR '+fmt(lt.e));
+  else{servers=(lt.v&&lt.v.servers)||[];diagPush('listTools(): '+servers.length+' server(s):');servers.forEach(s=>diagPush('   • '+s.server+' [auth:'+s.authStatus+'; tools: '+((s.tools||[]).map(t=>t.name).join(', ')||'none')+']'))}
+  const disc=servers.find(s=>(s.tools||[]).some(t=>/^(list-linkedin-accounts|get-connections)$/.test(t.name)));
+  const cands=[...new Set([disc&&disc.server,SERVER,'ConnectSafely.AI','ConnectSafely_AI','ConnectSafely AI'].filter(Boolean))];
+  diagPush('connector name(s) to try: '+cands.join(' | '));
+  for(const name of cands){
+    diagPush('… callTool("'+name+'","list-linkedin-accounts") …');
+    let rr=await withTimeout(mcp.callTool(name,T_ACCT,{}),CALL_TO);if(rr.timeout){diagPush('   ↳ TIMEOUT — retry…');rr=await withTimeout(mcp.callTool(name,T_ACCT,{}),CALL_TO)}
+    if(rr.timeout){diagPush('   ↳ TIMEOUT again on "'+name+'"');continue}
+    if(!rr.ok){diagPush('   ↳ '+fmt(rr.e)+' on "'+name+'"');continue}
+    const pay=readPayload(rr.v),accts=Array.isArray(pay)?pay:((pay&&(pay.accounts||pay.people))||[]);
+    SERVER=name;if(accts[0]){ACCOUNT=accts[0].id||ACCOUNT;OWNER_NAME=((accts[0].firstName||'')+' '+(accts[0].lastName||'')).trim()||OWNER_NAME}
+    diagPush('list-linkedin-accounts OK via "'+name+'" — '+accts.length+' account(s): '+accts.map(a=>((a.firstName||'')+' '+(a.lastName||'')).trim()+' ('+(a.id||'?')+')').join('; '));
+    save();return finishDiag(accts.length>0, accts.length>0?('Connector ready — '+OWNER_NAME+'. Import Tool 1 or crawl connections.'):'Connector reachable but no account returned.');
+  }
+  finishDiag(false,'Live read failed on all connector names (tried: '+cands.join(', ')+'). Copy diagnostics to Claude.');
+}
+
+/* ── Domain: scoring, canonical, merge, conversation, tabs, templates ─────── */
+function score(p){let text=norm([p.headline,p.currentPosition,p.location].join(' ')),best={n:0,icp:ICPS[0],match:'connection'};ICPS.forEach(icp=>{let st=icp.strong.find(x=>text.includes(norm(x))),wk=icp.weak.find(x=>text.includes(norm(x))),n=st?40:wk?20:0;if(n>best.n)best={n,icp,match:st||wk||'connection'}});let rr=[[/founder|co-?founder|owner|chief executive|\bceo\b|managing director|principal/i,30,'decision-maker'],[/partnerships?|business development|alliances?|ecosystem lead/i,28,'partnership owner'],[/general manager|\bgm\b|director|head of|\bvp\b|vice president/i,18,'senior leader']].find(x=>x[0].test(text))||[null,5,'role unclear'];let deg=norm(p.connectionDegree||'1st'),reach=deg.includes('2nd')?15:deg.includes('1st')?8:3,trans=/(career break|sabbatical|next chapter|in transition|exploring|reinventing|pivoting|former|ex-founder|post-exit)/i.test(text)?10:0,market=/(united states|\busa\b|canada|united kingdom|\buk\b|australia|singapore|dubai|new york|san francisco|london)/i.test(p.location||'')?5:0,pen=/(open\s*to\s*work|student|intern(ship)?|recruiter|talent acquisition)/i.test(text)?-15:0,total=Math.max(0,Math.min(100,best.n+rr[1]+reach+10+trans+market+pen));return{score:total,icpId:best.n?best.icp.id:'unclassified',icpName:best.n?best.icp.name:'Unclassified',reason:[best.match,rr[2],trans?'visible transition':''].filter(Boolean).join(' · ')}}
+function parseCompany(h){var m=String(h||'').match(/(?:\bat\b|@)\s+([^|·,—]+?)(?=\s*[|·,—]|$)/i)||String(h||'').match(/(?:founder|co-founder|owner|ceo|principal)\s+(?:of\s+)?([^|·,—]+?)(?=\s*[|·,—]|$)/i);return m?m[1].trim():''}
+function slug(url){var m=String(url||'').match(/linkedin\.com\/in\/([^/?#]+)/i);return m?m[1]:''}
+function canonical(r,mechanism){const u=r.profileUrn||r.participantUrn||r.profileId||r.profileUrl;if(!u)return null;const hasScore=r.score!=null&&r.icpId;const sc=hasScore?{score:Number(r.score||0),icpId:r.icpId||'unclassified',icpName:r.icpName||'Unclassified',reason:r.reason||'Imported'}:score(r);return{id:'linkedin:'+u,profileUrn:u,profileId:r.profileId||slug(r.profileUrl),name:r.name||r.fullName||[r.firstName,r.lastName].filter(Boolean).join(' ')||'Unknown',firstName:r.firstName||'',lastName:r.lastName||'',headline:r.headline||r.currentPosition||'',location:r.location||'',profileUrl:r.profileUrl||'',company:r.company||parseCompany(r.headline),score:sc.score,icpId:sc.icpId,icpName:sc.icpName,reason:sc.reason,source:r.source||{channel:'linkedin',mechanism:mechanism||'connection',capturedAt:new Date().toISOString()},commercial:r.commercial||{stage:'prospect',connectionRequestedAt:null,connectedAt:null,contactedAt:null,repliedAt:null,callAt:null,offerAt:null,paymentAt:null,deliveredAt:null,expansionAt:null,amountUsd:0},conversation:r.conversation||{verified:false,direction:'unknown',messageCount:0,lastActivityAt:null},conversationUrn:r.conversationUrn||'',draft:r.draft||'',sentAt:r.sentAt||null,done:!!r.done,unread:!!r.unread,recovered:!!r.recovered}}
+function merge(rows){const m=new Map(state.people.map(p=>[p.profileUrn,p]));rows.forEach(raw=>{const p=canonical(raw,raw.source&&raw.source.mechanism);if(!p)return;const o=m.get(p.profileUrn);if(!o){m.set(p.profileUrn,p);return}const newer=+new Date((p.conversation&&p.conversation.lastActivityAt)||0)>=+new Date((o.conversation&&o.conversation.lastActivityAt)||0)?p.conversation:o.conversation;m.set(p.profileUrn,{...o,...p,score:Math.max(o.score||0,p.score||0),source:o.source,commercial:{...o.commercial,...p.commercial},conversation:(newer&&newer.verified)?newer:(o.conversation.verified?o.conversation:newer),conversationUrn:p.conversationUrn||o.conversationUrn,draft:p.draft||o.draft,done:p.done||o.done,recovered:p.recovered||o.recovered})});state.people=[...m.values()]}
+function directionOf(last){const sid=String(last.senderId||last.sender&&last.sender.id||'');const sname=norm(last.senderName||(last.sender&&last.sender.name)||'');if(sid){if(sid===state.ownerId||sid.endsWith(':'+state.ownerId))return'mine';return'theirs'}if(sname&&OWNER_NAME&&sname===norm(OWNER_NAME))return'mine';if(sname)return'theirs';return'unknown'}
+function conversation(messages){const a=(messages||[]).slice().sort((x,y)=>+new Date(x.createdAt||x.sentAt||x.timestamp)-+new Date(y.createdAt||y.sentAt||y.timestamp));const last=a[a.length-1];if(!last)return{verified:true,direction:'none',messageCount:0,lastActivityAt:null};const ts=last.createdAt||last.sentAt||last.timestamp;return{verified:true,direction:directionOf(last),messageCount:a.length,lastActivityAt:ts,lastText:last.text||last.body||last.content||'',unread:a.some(x=>x.unread),messages:a.slice(-14).map(x=>({dir:directionOf(x),text:x.text||x.body||x.content||'',ts:x.createdAt||x.sentAt||x.timestamp}))}}
+function advance(p){const c=p.conversation||{},k=p.commercial;if(k.paymentAt)k.stage='paid';else if(k.offerAt)k.stage='offered';else if(k.callAt)k.stage='call';else if(c.direction==='theirs'){k.stage='replied';k.repliedAt=k.repliedAt||c.lastActivityAt}else if(p.sentAt||(c.direction==='mine'&&c.messageCount)){k.stage='contacted';k.contactedAt=k.contactedAt||c.lastActivityAt||p.sentAt}}
+function daysAgo(ts){return ts?Math.max(0,Math.floor((Date.now()-new Date(ts).getTime())/864e5)):null}
+function flags(p){const c=p.conversation||{},d=daysAgo(c.lastActivityAt);return{recommended:p.score>=60&&!p.done,high_priority:p.score>=60&&c.messageCount>0&&!p.done,never_messaged:c.verified&&c.messageCount===0&&!p.sentAt&&!p.done,all_conversations:c.messageCount>0&&!p.done,owe_reply:c.direction==='theirs'&&!p.done,waiting:c.direction==='mine'&&d!==null&&d>=5&&!p.done,drafts:!!p.draft&&!p.done,sent:!!p.sentAt&&!p.done,done:!!p.done}}
+const TABS={recommended:'Recommended',high_priority:'High priority',never_messaged:'Never messaged',all_conversations:'All conversations',owe_reply:'You owe a reply',waiting:'Waiting on them',drafts:'Drafts',sent:'Sent',done:'Done'};
+function convLabel(p){const c=p.conversation||{};if(!c.verified)return{cls:'unverified',t:'Unverified'};if(!c.messageCount)return{cls:'none',t:'No conversation — confirmed'};const d=daysAgo(c.lastActivityAt);return{cls:c.direction==='mine'?'mine':'theirs',t:(c.direction==='mine'?'You sent last':c.direction==='theirs'?'They replied last':'Conversation')+' · '+d+'d ago · '+c.messageCount+' msgs'}}
+function renderTpl(t,p){const company=p.company||'';return String(t).replace(/\[\[company:\s*([\s\S]*?)\]\]/g,company?(_,x)=>x.replaceAll('{company}',company):'').replaceAll('{first}',p.firstName||(p.name||'').split(' ')[0]||'there').replaceAll('{name}',p.name||'').replaceAll('{company}',company)}
+function tplFor(p){return state.templates[p.icpId]||state.templates.default}
+function updateTemplateFromDraft(p,draft){let t=draft;const company=(p.company||'').trim(),name=(p.name||'').trim(),first=(p.firstName||name.split(' ')[0]||'').trim();const subs=[];function rep(val,tok){if(val&&val.length>1){const re=new RegExp(val.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g');if(re.test(t)){t=t.replace(re,tok);subs.push(val+' → '+tok)}}}
+  rep(company,'{company}');rep(name,'{name}');rep(first,'{first}');return{template:t,subs}}
+
+/* ── Crawl connections (12/page, resume, endOfList, retry 502) ───────────── */
+let stopping=false;
+async function crawlBatch(cap){if(!connectorOK)return show('Connector not ready.',true);stopping=false;let added=0,calls=0;show('Crawling connections…');
+  while(!stopping&&(cap===0||added<cap)&&!state.crawlDone){
+    let d,tries=0;
+    while(true){try{d=await mcpCall(T_CONNS,{accountId:ACCOUNT,startIndex:state.offset,limit:12});break}catch(e){tries++;if(tries<3&&/CONNECTIONS_UNAVAILABLE|502|server_unavailable/i.test(fmt(e))){await new Promise(r=>setTimeout(r,1500));continue}return show('Crawl failed — '+mcpMsg(e),true)}}
+    const rows=d.connections||d.people||d.results||[];merge(rows.map(r=>({...r,source:{channel:'linkedin',mechanism:'connection',capturedAt:new Date().toISOString()}})));
+    state.offset+=rows.length;added+=rows.length;calls++;
+    if(d.endOfList){state.crawlDone=true}
+    $('#progress').style.width=Math.min(100,(added/(cap||added+12))*100)+'%';
+    setDataNote('+'+added+' this run · '+state.people.length+' people total'+(state.crawlDone?' · reached end of list':''));
+    if(calls%3===0){save();render()}
+    if(rows.length===0&&!d.endOfList){await new Promise(r=>setTimeout(r,1200))}
+  }
+  save();render();$('#progress').style.width='0';show(state.crawlDone?('Crawl complete — '+state.people.length+' connections cached.'):('Merged '+added+' connections ('+state.people.length+' total). Click again for more.'),'ok')}
+
+/* ── Sync conversations (cursor, dedupe, serial messages, cache) ─────────── */
+async function syncConversations(cap){if(!connectorOK)return show('Connector not ready.',true);stopping=false;
+  try{show('Loading conversation list…');let cursor=null,threads=[],pages=0,seen=new Set();
+    while(pages<8){const d=await mcpCall(T_CONVOS,cursor?{accountId:ACCOUNT,count:50,nextCursor:cursor}:{accountId:ACCOUNT,count:50});const batch=d.conversations||d.items||d.results||[];let fresh=0;batch.forEach(t=>{const urn=t.conversationUrn||t.id;if(urn&&!seen.has(urn)){seen.add(urn);threads.push(t);fresh++}});pages++;cursor=d.nextCursor||null;if(!cursor||fresh===0)break}
+    if(!threads.length){show('No conversations in the connector cache yet. LinkedIn message history syncs into ConnectSafely over time; connections + Verify still work.','ok');return}
+    if(!state.ownerId){for(const t of threads){const m=String(t.conversationUrn||t.id||'').match(/msg_conversation:\(urn:li:fsd_profile:([^,]+)/);if(m){state.ownerId=m[1];break}}}
+    const limit=Math.min(threads.length,cap||160);let done=0;
+    for(let i=0;i<limit&&!stopping;i++){const t=threads[i],urn=t.conversationUrn||t.id;if(!urn)continue;
+      if(state.seenConv[urn]&&state.seenConv[urn]===String(t.lastActivityAt||'')){done++;continue}
+      show('Reading conversation '+(i+1)+'/'+limit+'…');$('#progress').style.width=((i+1)/limit*100)+'%';
+      try{const md=await mcpCall(T_MSGS,{conversationUrn:urn,accountId:ACCOUNT}),msgs=md.messages||md.items||[];
+        const part=(t.participants||[]).find(x=>!String(x.profileUrn||x.participantUrn||'').includes(state.ownerId))||t.participant||{};
+        const conv=conversation(msgs);merge([{...part,conversationUrn:urn,conversation:conv}]);
+        const person=state.people.find(p=>p.conversationUrn===urn);if(person)advance(person);
+        state.seenConv[urn]=String(t.lastActivityAt||'');done++;
+      }catch(e){/* skip a bad thread, keep going */}
+      if(i%4===0){save();render()}
+      await new Promise(r=>setTimeout(r,900+Math.random()*600));
+    }
+    save();render();$('#progress').style.width='0';show('Reconciled '+done+' conversations.','ok');
+  }catch(e){$('#progress').style.width='0';show('Conversation sync failed — '+mcpMsg(e),true)}}
+
+/* ── Verify (single + bulk visible) ──────────────────────────────────────── */
+async function verify(u,silent){const p=state.people.find(x=>x.profileUrn===u);if(!p)return;const id=p.profileId||slug(p.profileUrl);if(!id){if(!silent)show('No vanity slug to verify '+p.name,true);return}
+  try{if(!silent)show('Verifying '+p.name+'…');const d=await mcpCall(T_EXISTS,{accountId:ACCOUNT,profileId:id}),urn=d.conversationUrn||(d.conversation&&d.conversation.conversationUrn);
+    if(urn){if(!state.ownerId){const m=String(urn).match(/msg_conversation:\(urn:li:fsd_profile:([^,]+)/);if(m)state.ownerId=m[1]}const md=await mcpCall(T_MSGS,{conversationUrn:urn,accountId:ACCOUNT});p.conversationUrn=urn;p.conversation=conversation(md.messages||md.items||[]);if(!p.conversation.messageCount)p.conversation.verified=true;p.recovered=true;advance(p)}
+    else p.conversation={verified:true,direction:'none',messageCount:0,lastActivityAt:null};
+    save();if(!silent){render();show(p.name+': '+convLabel(p).t,'ok')}}catch(e){if(!silent)show('Verify failed — '+mcpMsg(e),true)}}
+async function verifyVisible(){if(!connectorOK)return show('Connector not ready.',true);const rows=visible().slice(0,40);show('Verifying '+rows.length+' visible rows…');for(let i=0;i<rows.length&&!stopping;i++){$('#progress').style.width=((i+1)/rows.length*100)+'%';await verify(rows[i].profileUrn,true);if(i%5===0)render();await new Promise(r=>setTimeout(r,900+Math.random()*500))}render();$('#progress').style.width='0';show('Verified '+rows.length+' visible rows.','ok')}
+
+/* ── Draft + send (inline confirm, defensive, never auto) ────────────────── */
+function openDraft(u){const p=state.people.find(x=>x.profileUrn===u);if(!p)return;const box=document.getElementById('d-'+enc(u));box.classList.remove('hidden');if(!p.draft)p.draft=renderTpl(tplFor(p),p);
+  const msgs=(p.conversation&&p.conversation.messages)||[];
+  box.innerHTML='<div class="muted" style="margin-bottom:6px"><b>Recent thread</b></div>'+(msgs.length?msgs.map(m=>'<div class="muted" style="margin:2px 0"><span class="'+(m.dir==='mine'?'mine':'theirs')+'">'+(m.dir==='mine'?'You':'Them')+':</span> '+esc((m.text||'').slice(0,160))+'</div>').join(''):'<div class="muted">No messages loaded. Click Verify first.</div>')+
+    '<textarea id="dt-'+enc(u)+'">'+esc(p.draft)+'</textarea>'+
+    '<div class="actions" style="margin-top:8px"><button data-save="'+enc(u)+'">Save draft</button><button data-updtpl="'+enc(u)+'">Update template</button><button class="primary" data-send="'+enc(u)+'">Send with confirmation</button><span class="muted" id="sendhint-'+enc(u)+'"></span></div>';
+  box.querySelector('[data-save]').onclick=()=>{p.draft=box.querySelector('textarea').value;save();show('Draft saved for '+p.name,'ok')};
+  box.querySelector('[data-updtpl]').onclick=()=>{const r=updateTemplateFromDraft(p,box.querySelector('textarea').value);if(!r.subs.length)return show('Nothing to tokenize — no name/company found in the draft.',true);if(!confirmInline(box,'Promote to '+p.icpName+' template? '+r.subs.join(', ')+'. (A [[company: …]] conditional must be re-added in Template view.)',()=>{state.templates[p.icpId]=r.template;state.tplEdited[p.icpId]=true;save();buildTplPanel();show('Template updated for '+p.icpName+'.','ok')}))return};
+  box.querySelector('[data-send]').onclick=()=>askSend(p,box);}
+function confirmInline(box,text,onYes){const bar=document.createElement('div');bar.className='status';bar.style.marginTop='8px';bar.innerHTML=esc(text)+' ';const y=document.createElement('button');y.className='primary';y.textContent='Yes';const n=document.createElement('button');n.textContent='No';bar.appendChild(y);bar.appendChild(n);box.appendChild(bar);y.onclick=()=>{bar.remove();onYes()};n.onclick=()=>bar.remove();return true}
+function askSend(p,box){const text=box.querySelector('textarea').value;confirmInline(box,'Send this LinkedIn message to '+p.name+'? "'+text.slice(0,90)+(text.length>90?'…':'')+'"',()=>doSend(p,text,box))}
+async function doSend(p,text,box){if(!connectorOK)return show('Connector not ready.',true);const hint=$('#sendhint-'+enc(p.profileUrn));const targets=[];if(p.conversationUrn)targets.push({conversationUrn:p.conversationUrn});if(p.profileUrn)targets.push({recipientProfileUrn:p.profileUrn});if(p.profileId)targets.push({recipientProfileId:p.profileId});const errors=[];
+  for(const tgt of targets)for(const channel of ['linkedin_inbox','auto']){try{if(hint)hint.textContent='Sending via '+Object.keys(tgt)[0]+'/'+channel+'…';await mcpCall(T_SEND,{accountId:ACCOUNT,messagingChannel:channel,message:text,...tgt});p.sentAt=new Date().toISOString();p.draft='';p.commercial.stage='contacted';p.commercial.contactedAt=p.sentAt;save();render();show('Message sent to '+p.name+'. Refresh conversations to confirm.','ok');return}catch(e){errors.push(Object.keys(tgt)[0]+'/'+channel+': '+fmt(e))}}
+  if(hint)hint.textContent='';show('All send attempts failed — '+errors.join(' | '),true)}
+
+/* ── Rendering ───────────────────────────────────────────────────────────── */
+function setDataNote(t){$('#dataNote').textContent=t}
+function visible(){const q=norm($('#search').value),icp=$('#icpFilter').value,vonly=$('#verified').checked;let a=state.people.filter(p=>flags(p)[state.tab]&&(!q||norm([p.name,p.headline,p.icpName].join(' ')).includes(q))&&(!icp||p.icpId===icp)&&(!vonly||(p.conversation&&p.conversation.verified)));const s=state.sort;if(s==='name')a.sort((x,y)=>x.name.localeCompare(y.name));else if(s==='oldest')a.sort((x,y)=>+new Date(x.conversation.lastActivityAt||0)-+new Date(y.conversation.lastActivityAt||0));else if(s==='newest')a.sort((x,y)=>+new Date(y.conversation.lastActivityAt||0)-+new Date(x.conversation.lastActivityAt||0));else a.sort((x,y)=>y.score-x.score);return a}
+function initials(n){return String(n||'?').split(' ').slice(0,2).map(x=>x[0]||'').join('').toUpperCase()}
+function render(){const counts={};Object.keys(TABS).forEach(id=>counts[id]=state.people.filter(p=>flags(p)[id]).length);
+  $('#tabs').innerHTML=Object.keys(TABS).map(id=>'<button data-tab="'+id+'" class="'+(state.tab===id?'active':'')+'">'+TABS[id]+' <small>'+counts[id]+'</small></button>').join('');
+  document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{state.tab=b.dataset.tab;save();render()});
+  const rows=visible();
+  $('#list').innerHTML=rows.map(p=>{const key=enc(p.profileUrn),cl=convLabel(p),sc=p.score>=75?'score':p.score>=60?'score s-mid':'score s-low';
+    const mk=[p.recovered?'<span class="mk">recovered</span>':'',p.conversation&&p.conversation.unread?'<span class="mk">unread</span>':'',p.draft?'<span class="mk">draft</span>':'',p.score>=60?'<span class="mk">priority</span>':''].join('');
+    return '<article class="person"><div class="avatar">'+initials(p.name)+'</div>'+
+    '<div><a class="name" href="'+(p.profileUrl||'#')+'" target="_blank" rel="noopener">'+esc(p.name)+'</a> <span class="'+sc+'">'+p.score+'</span>'+mk+'<div>'+esc(p.headline)+'</div><div class="muted">'+esc(p.location||'')+(p.company?' · '+esc(p.company):'')+'</div></div>'+
+    '<div><div class="'+cl.cls+'">'+cl.t+'</div><span class="tag">'+esc(p.icpName)+'</span><div class="muted">'+esc(p.reason)+'</div></div>'+
+    '<div><span class="tag">'+esc(p.commercial.stage)+'</span><div class="muted" style="margin-top:4px">'+esc(((p.conversation&&p.conversation.lastText)||'').slice(0,150))+'</div></div>'+
+    '<div class="actions"><button data-verify="'+key+'">Verify</button><button data-draft="'+key+'">Draft</button><button data-done="'+key+'">'+(p.done?'Reopen':'Done')+'</button></div>'+
+    '<div id="d-'+key+'" class="drawer hidden"></div></article>'}).join('');
+  $('#empty').classList.toggle('hidden',rows.length>0);
+  document.querySelectorAll('[data-verify]').forEach(b=>b.onclick=()=>verify(dec(b.dataset.verify)));
+  document.querySelectorAll('[data-draft]').forEach(b=>b.onclick=()=>openDraft(dec(b.dataset.draft)));
+  document.querySelectorAll('[data-done]').forEach(b=>b.onclick=()=>{const p=state.people.find(x=>x.profileUrn===dec(b.dataset.done));p.done=!p.done;save();render()});
+}
+function buildIcpFilter(){$('#icpFilter').innerHTML='<option value="">All ICPs</option>'+ICPS.map(i=>'<option value="'+i.id+'">'+i.name+'</option>').join('')+'<option value="unclassified">Unclassified</option>'}
+function buildTplPanel(){const sel=$('#tplIcp');sel.innerHTML='<option value="default">Default (all)</option>'+ICPS.map(i=>'<option value="'+i.id+'">'+i.name+(state.tplEdited[i.id]?' ✎':'')+'</option>').join('');sel.value=state.tplIcpSel;renderTplText()}
+function renderTplText(){const id=state.tplIcpSel,raw=state.templates[id]||state.templates.default;if(state.tplMode==='raw'){$('#tplText').value=raw;$('#tplModeRaw').classList.add('active');$('#tplModeMsg').classList.remove('active')}else{const sample={firstName:'Alex',name:'Alex Rivera',company:'Northstar'};$('#tplText').value=renderTpl(raw,sample);$('#tplModeMsg').classList.add('active');$('#tplModeRaw').classList.remove('active')}$('#tplText').readOnly=state.tplMode==='msg'}
+
+/* ── I/O ─────────────────────────────────────────────────────────────────── */
+async function saveFile(name,data){const json=JSON.stringify(data,null,2);if(dl){try{await dl.save({filename:name,data:json});show('Saved '+name+' — confirm the download.','ok');return}catch(e){if(e&&e.code==='declined')return show('Download cancelled.',true)}}try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([json],{type:'application/json'}));a.download=name;a.click();URL.revokeObjectURL(a.href)}catch(e){show('This view cannot download. Open inside claude.ai.',true)}}
+function exportLedger(){return{schema:'evolver-commercial-ledger',version:1,producer:'outreach-radar',exportedAt:new Date().toISOString(),records:state.people}}
+$('#import').onchange=async e=>{try{const x=JSON.parse(await e.target.files[0].text());merge(x.records||x.people||[]);save();render();show('Tool 1 ledger imported and merged ('+state.people.length+' people).','ok')}catch(err){show('Import failed: '+err.message,true)}finally{e.target.value=''}};
+$('#restore').onchange=async e=>{try{const x=JSON.parse(await e.target.files[0].text());merge(x.records||x.people||[]);state.templates={...state.templates,...(x.templates||{})};state.tplEdited={...state.tplEdited,...(x.tplEdited||{})};if(typeof x.offset==='number')state.offset=Math.max(state.offset,x.offset);save();render();buildTplPanel();show('Backup merged.','ok')}catch(err){show('Restore failed: '+err.message,true)}finally{e.target.value=''}};
+$('#crawl').onclick=()=>crawlBatch(250);$('#crawlall').onclick=()=>crawlBatch(0);$('#stopcrawl').onclick=()=>{stopping=true};
+$('#sync').onclick=()=>syncConversations(160);$('#verifyvis').onclick=verifyVisible;
+$('#backup').onclick=()=>saveFile('outreach-radar-backup.json',state);$('#export').onclick=()=>saveFile('canonical-commercial-ledger-linkedin.json',exportLedger());
+$('#rediag').onclick=diagnose;$('#copydiag').onclick=async()=>{try{await navigator.clipboard.writeText(DIAG.join('\n'));show('Diagnostics copied.','ok')}catch(e){show('Select the panel text to copy.',true)}};
+['search','sort','verified','icpFilter'].forEach(id=>$('#'+id).oninput=()=>{state.sort=$('#sort').value;render()});
+$('#tplIcp').onchange=()=>{state.tplIcpSel=$('#tplIcp').value;renderTplText()};
+$('#tplModeMsg').onclick=()=>{state.tplMode='msg';renderTplText()};$('#tplModeRaw').onclick=()=>{state.tplMode='raw';renderTplText()};
+$('#tplReset').onclick=()=>{delete state.templates[state.tplIcpSel];delete state.tplEdited[state.tplIcpSel];if(state.tplIcpSel==='default')state.templates.default=DEFAULT_TPL;save();buildTplPanel();show('Template restored to default.','ok')};
+$('#tplSave').onclick=()=>{if(state.tplMode!=='raw'){state.tplMode='raw';return renderTplText()}state.templates[state.tplIcpSel]=$('#tplText').value;if(state.tplIcpSel!=='default')state.tplEdited[state.tplIcpSel]=true;save();buildTplPanel();show('Template saved.','ok')};
+buildIcpFilter();buildTplPanel();render();diagnose();
+})();
+</script>
