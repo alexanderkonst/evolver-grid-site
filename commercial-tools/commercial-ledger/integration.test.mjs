@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
-import { canonicalPerson } from "../linkedin-icp-prospector/core.mjs";
-import { canonicalLinkedInPerson, mergePeople, advanceCommercial } from "../linkedin-outreach-radar/core.mjs";
+import { canonicalPerson } from "../icp-prospector/core.mjs";
+import { canonicalLinkedInPerson, mergePeople, advanceCommercial } from "../outreach-radar/core.mjs";
 import { mergeContacts } from "../relationship-hub/core.mjs";
 import { envelope, readEnvelope, mergeLedgerRecords, aggregateOutcomes } from "./core.mjs";
 
