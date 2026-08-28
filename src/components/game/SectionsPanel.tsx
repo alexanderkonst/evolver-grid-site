@@ -331,6 +331,7 @@ const SPACE_SECTIONS: SpaceSections = {
         sections: [
             { id: "build-header-founder-tools", label: "Founder Tools", path: "", isHeader: true },
             { id: "equilibrium-v2", label: "Equilibrium", path: "/build/equilibrium" },
+            { id: "commercial-os", label: "Commercial OS", path: "/built-by-you/commercial-os" },
             {
                 id: "ubb-v2",
                 label: "Automated Venture Builder",
