@@ -102,8 +102,6 @@ verify_jwt = false
 [functions.generate-excalibur]
 verify_jwt = false
 
-[functions.create-test-user]
-verify_jwt = false
 
 [functions.deepen-icp]
 verify_jwt = false
