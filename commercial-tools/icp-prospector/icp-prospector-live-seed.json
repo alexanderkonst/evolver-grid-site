@@ -1,0 +1,258 @@
+{
+  "schema": "evolver-commercial-ledger",
+  "version": 1,
+  "producer": "icp-prospector",
+  "exportedAt": "2026-08-28T02:55:23.331Z",
+  "records": [
+    {
+      "id": "linkedin:urn:li:fsd_profile:ACoAAAROH3YBz_0GQMPwqQe8AsBAtRfFeMOnwH4",
+      "profileUrn": "urn:li:fsd_profile:ACoAAAROH3YBz_0GQMPwqQe8AsBAtRfFeMOnwH4",
+      "firstName": "Simon",
+      "lastName": "Saradzhyan",
+      "name": "Simon Saradzhyan",
+      "headline": "Ph.D., project director at Harvard's Belfer Center",
+      "currentPosition": "Ph.D., project director at Harvard's Belfer Center",
+      "location": "Cambridge, Massachusetts, United States",
+      "connectionDegree": "2nd",
+      "profileUrl": "https://www.linkedin.com/in/simon-saradzhyan/",
+      "source": {
+        "channel": "linkedin",
+        "mechanism": "icp_search",
+        "searchTerm": "former founder sabbatical",
+        "foundByIcpId": "post_exit_founders",
+        "capturedAt": "2026-08-28T02:55:23.329Z"
+      },
+      "commercial": {
+        "stage": "prospect",
+        "repliedAt": null,
+        "callAt": null,
+        "offerAt": null,
+        "paymentAt": null,
+        "deliveredAt": null,
+        "expansionAt": null
+      },
+      "score": 58,
+      "icpId": "post_exit_founders",
+      "icpName": "Post-exit founders",
+      "reason": "search-source only · senior leader",
+      "breakdown": {
+        "keyword": 10,
+        "role": 18,
+        "reachability": 15,
+        "region": 10,
+        "transition": 0,
+        "market": 5,
+        "penalty": 0
+      },
+      "searches": [
+        "former founder sabbatical"
+      ]
+    },
+    {
+      "id": "linkedin:urn:li:fsd_profile:ACoAAACZ8S0B2qmTvEIYd34Qu0mpPeT0gGe89VI",
+      "profileUrn": "urn:li:fsd_profile:ACoAAACZ8S0B2qmTvEIYd34Qu0mpPeT0gGe89VI",
+      "firstName": "Richard",
+      "lastName": "Allen",
+      "name": "Richard Allen",
+      "headline": "Director, AFiO Group",
+      "currentPosition": "Director, AFiO Group",
+      "location": "Coffs Harbour, New South Wales, Australia",
+      "connectionDegree": "2nd",
+      "profileUrl": "https://www.linkedin.com/in/richard-allen-in-aus/",
+      "source": {
+        "channel": "linkedin",
+        "mechanism": "icp_search",
+        "searchTerm": "former founder sabbatical",
+        "foundByIcpId": "post_exit_founders",
+        "capturedAt": "2026-08-28T02:55:23.330Z"
+      },
+      "commercial": {
+        "stage": "prospect",
+        "repliedAt": null,
+        "callAt": null,
+        "offerAt": null,
+        "paymentAt": null,
+        "deliveredAt": null,
+        "expansionAt": null
+      },
+      "score": 58,
+      "icpId": "post_exit_founders",
+      "icpName": "Post-exit founders",
+      "reason": "search-source only · senior leader",
+      "breakdown": {
+        "keyword": 10,
+        "role": 18,
+        "reachability": 15,
+        "region": 10,
+        "transition": 0,
+        "market": 5,
+        "penalty": 0
+      },
+      "searches": [
+        "former founder sabbatical"
+      ]
+    },
+    {
+      "id": "linkedin:urn:li:fsd_profile:ACoAAAAEOQoBDj9exsk0V2vgawBFgL8QzqMgkq4",
+      "profileUrn": "urn:li:fsd_profile:ACoAAAAEOQoBDj9exsk0V2vgawBFgL8QzqMgkq4",
+      "firstName": "Antonio",
+      "lastName": "Quirarte",
+      "name": "Antonio Quirarte",
+      "headline": "Founder and CEO",
+      "currentPosition": "Founder and CEO",
+      "location": "Mexico City, Mexico",
+      "connectionDegree": "2nd",
+      "profileUrl": "https://www.linkedin.com/in/quirarte/",
+      "source": {
+        "channel": "linkedin",
+        "mechanism": "icp_search",
+        "searchTerm": "former founder sabbatical",
+        "foundByIcpId": "post_exit_founders",
+        "capturedAt": "2026-08-28T02:55:23.330Z"
+      },
+      "commercial": {
+        "stage": "prospect",
+        "repliedAt": null,
+        "callAt": null,
+        "offerAt": null,
+        "paymentAt": null,
+        "deliveredAt": null,
+        "expansionAt": null
+      },
+      "score": 75,
+      "icpId": "post_exit_founders",
+      "icpName": "Post-exit founders",
+      "reason": "founder · decision-maker",
+      "breakdown": {
+        "keyword": 20,
+        "role": 30,
+        "reachability": 15,
+        "region": 10,
+        "transition": 0,
+        "market": 0,
+        "penalty": 0
+      },
+      "searches": [
+        "former founder sabbatical"
+      ]
+    },
+    {
+      "id": "linkedin:urn:li:fsd_profile:ACoAAABeB3gBgI5jCjMgpR_MvR6ggQLOyqInAP4",
+      "profileUrn": "urn:li:fsd_profile:ACoAAABeB3gBgI5jCjMgpR_MvR6ggQLOyqInAP4",
+      "firstName": "Adil",
+      "lastName": "Wali",
+      "name": "Adil Wali",
+      "headline": "Board Member, Investor, and AI Enthusiast",
+      "currentPosition": "Board Member, Investor, and AI Enthusiast",
+      "location": "Seattle, Washington, United States",
+      "connectionDegree": "2nd",
+      "profileUrl": "https://www.linkedin.com/in/adilwali/",
+      "source": {
+        "channel": "linkedin",
+        "mechanism": "icp_search",
+        "searchTerm": "former founder sabbatical",
+        "foundByIcpId": "post_exit_founders",
+        "capturedAt": "2026-08-28T02:55:23.330Z"
+      },
+      "commercial": {
+        "stage": "prospect",
+        "repliedAt": null,
+        "callAt": null,
+        "offerAt": null,
+        "paymentAt": null,
+        "deliveredAt": null,
+        "expansionAt": null
+      },
+      "score": 55,
+      "icpId": "post_exit_founders",
+      "icpName": "Post-exit founders",
+      "reason": "board member · role unclear",
+      "breakdown": {
+        "keyword": 20,
+        "role": 5,
+        "reachability": 15,
+        "region": 10,
+        "transition": 0,
+        "market": 5,
+        "penalty": 0
+      },
+      "searches": [
+        "former founder sabbatical"
+      ]
+    },
+    {
+      "id": "linkedin:urn:li:fsd_profile:ACoAAACIw_EBazv9cfUznSYTn64hbbfaQBB51xw",
+      "profileUrn": "urn:li:fsd_profile:ACoAAACIw_EBazv9cfUznSYTn64hbbfaQBB51xw",
+      "firstName": "Jeff",
+      "lastName": "Warren",
+      "name": "Jeff Warren",
+      "headline": "Founder, CEO, Board Director and Advisor. I love building the ways that people use technology to explore their world in urban mobility, travel and sustainability.",
+      "currentPosition": "Founder, CEO, Board Director and Advisor.",
+      "location": "Seattle, Washington, United States",
+      "connectionDegree": "2nd",
+      "profileUrl": "https://www.linkedin.com/in/jeff-warren-b550023/",
+      "source": {
+        "channel": "linkedin",
+        "mechanism": "icp_search",
+        "searchTerm": "former founder sabbatical",
+        "foundByIcpId": "post_exit_founders",
+        "capturedAt": "2026-08-28T02:55:23.331Z"
+      },
+      "commercial": {
+        "stage": "prospect",
+        "repliedAt": null,
+        "callAt": null,
+        "offerAt": null,
+        "paymentAt": null,
+        "deliveredAt": null,
+        "expansionAt": null
+      },
+      "score": 80,
+      "icpId": "post_exit_founders",
+      "icpName": "Post-exit founders",
+      "reason": "founder · decision-maker",
+      "breakdown": {
+        "keyword": 20,
+        "role": 30,
+        "reachability": 15,
+        "region": 10,
+        "transition": 0,
+        "market": 5,
+        "penalty": 0
+      },
+      "searches": [
+        "former founder sabbatical"
+      ]
+    }
+  ],
+  "usedTerms": [
+    {
+      "term": "former founder sabbatical",
+      "icpId": "post_exit_founders",
+      "ranAt": "2026-08-28T02:55:23.331Z",
+      "found": 5
+    }
+  ],
+  "termStats": {
+    "former founder sabbatical": {
+      "found": 5,
+      "highQuality": 2
+    }
+  },
+  "outcomes": [
+    {
+      "icpId": "post_exit_founders",
+      "searchTerm": "former founder sabbatical",
+      "found": 5,
+      "connectionRequested": 0,
+      "contacted": 0,
+      "replied": 0,
+      "calls": 0,
+      "offers": 0,
+      "paid": 0,
+      "cashUsd": 0,
+      "delivered": 0,
+      "expanded": 0
+    }
+  ]
+}
