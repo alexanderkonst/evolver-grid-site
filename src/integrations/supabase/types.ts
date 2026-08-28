@@ -2880,6 +2880,7 @@ export type Database = {
       }
     }
     Functions: {
+      admin_founder_states: { Args: never; Returns: Json }
       admin_lookup_entitlement: {
         Args: { p_email: string }
         Returns: {
