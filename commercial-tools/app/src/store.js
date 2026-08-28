@@ -4,7 +4,7 @@ export const STORE_KEY = 'evolver_commercial_app_v1';
 export const STORE_SCHEMA = 'evolver-commercial-app';
 
 export function initialState(config = {}) {
-  return { schema: STORE_SCHEMA, version: 1, people: [], actions: [], settings: { connectorMode: 'rest', apiBaseUrl: '', accountId: '', ownerId: '', ownerName: '', region: 'Global' }, config, crawl: { offset: 0, done: false }, ui: { tab: 'find' } };
+  return { schema: STORE_SCHEMA, version: 1, people: [], actions: [], settings: { connectorMode: 'adapter', apiBaseUrl: '', adapterUrl: '', anonKey: '', accountId: '', ownerId: '', ownerName: '', region: 'Global' }, config, crawl: { offset: 0, done: false }, ui: { tab: 'find' } };
 }
 
 export function createStore(storage = globalThis.localStorage, onError = () => {}) {

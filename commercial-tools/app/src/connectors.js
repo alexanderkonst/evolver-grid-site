@@ -9,6 +9,9 @@ const TOOLS = {
   sendMessage: ['POST', '/messaging/conversations/send', 'conversations-send-message']
 };
 
+/** Phase 1 is read only end-to-end: the adapter rejects these with 403 too. */
+export const READ_ONLY_OPS = ['listAccounts', 'accountStatus', 'accountQuota', 'accountPremium', 'searchPeople', 'getConnections', 'listConversations', 'getConversationMessages', 'conversationExists'];
+
 export class ConnectorError extends Error {
   constructor(message, details = {}) { super(message); this.name = 'ConnectorError'; Object.assign(this, details); }
 }
@@ -52,6 +55,36 @@ export function createRestConnector({ baseUrl, apiKey, fetchImpl = fetch, timeou
   return Object.fromEntries(Object.keys(TOOLS).map(name => [name, input => call(name, input)]));
 }
 
+/**
+ * Server-side adapter connector — the mode the deployed site uses.
+ *
+ * All credentials live in the Supabase Edge Function (CONNECTSAFELY_MCP_URL);
+ * the browser only sends the operation name plus its input, authenticated with
+ * the signed-in owner's Supabase access token.
+ */
+export function createAdapterConnector({ adapterUrl, anonKey, getToken = () => null, fetchImpl = fetch, timeoutMs = 45000 }) {
+  if (!adapterUrl) throw new ConnectorError('Server adapter is not configured');
+  async function post(op, input = {}) {
+    return guardedCall(async signal => {
+      const token = await getToken();
+      const response = await fetchImpl(adapterUrl, {
+        method: 'POST', signal,
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json', ...(anonKey ? { apikey: anonKey } : {}), ...(token ? { Authorization: `Bearer ${token}` } : {}) },
+        body: JSON.stringify({ op, input })
+      });
+      const body = await response.text(); let data; try { data = body ? JSON.parse(body) : {}; } catch { data = { text: body }; }
+      if (!response.ok) throw new ConnectorError(data.error || `Adapter ${response.status}`, { status: response.status, data });
+      return data;
+    }, { timeoutMs, retries: 1, retryIf: error => error.name === 'AbortError' || error.status === 502 || /network|fetch/i.test(error.message || '') });
+  }
+  const connector = Object.fromEntries(READ_ONLY_OPS.map(op => [op, input => post(op, input).then(result => result.payload ?? {})]));
+  connector.status = () => post('status');
+  for (const blocked of ['sendConnectionRequest', 'sendMessage']) {
+    connector[blocked] = async () => { throw new ConnectorError('Phase 1 is read only. Sending is disabled.'); };
+  }
+  return connector;
+}
+
 export async function createMcpConnector({ timeoutMs = 25000 } = {}) {
   if (!globalThis.window?.claude?.use) throw new ConnectorError('Claude MCP bridge is unavailable');
   const mcp = await guardedCall(() => window.claude.use('mcp'), { timeoutMs: 9000, retries: 0 });
@@ -60,9 +93,10 @@ export async function createMcpConnector({ timeoutMs = 25000 } = {}) {
   return Object.fromEntries(Object.keys(TOOLS).map(name => [name, input => call(name, input)]));
 }
 
-export async function createConnector(settings) {
+export async function createConnector(settings, deps = {}) {
   if (settings.connectorMode === 'mcp') return createMcpConnector(settings);
-  return createRestConnector({ baseUrl: settings.apiBaseUrl, apiKey: sessionStorage.getItem('connectsafely_api_key') || '', timeoutMs: settings.timeoutMs });
+  if (settings.connectorMode === 'rest' && settings.apiBaseUrl) return createRestConnector({ baseUrl: settings.apiBaseUrl, apiKey: sessionStorage.getItem('connectsafely_api_key') || '', timeoutMs: settings.timeoutMs });
+  return createAdapterConnector({ adapterUrl: settings.adapterUrl, anonKey: settings.anonKey, getToken: deps.getToken, timeoutMs: settings.timeoutMs });
 }
 
 export const gmailConnector = Object.freeze({ enabled: false, searchThreads: async () => { throw new ConnectorError('Gmail is disabled in v1'); }, createDraft: async () => { throw new ConnectorError('Gmail is disabled in v1'); } });

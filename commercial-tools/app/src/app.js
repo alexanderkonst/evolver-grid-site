@@ -7,13 +7,48 @@ const initials = name => String(name || '?').split(/\s+/).slice(0,2).map(x => x[
 const store = createStore(localStorage, error => notice(error.message, true));
 let connector = null, busy = false;
 
-async function boot() { const config = await fetch('./config.json').then(r => { if (!r.ok) throw new Error('config.json could not be loaded'); return r.json(); }); store.load(config); if (!globalThis.window?.claude?.use && store.state.settings.connectorMode === 'mcp') store.commit(s => { s.settings.connectorMode = 'rest'; }); bindGlobal(); await reconnect(false); if (!connector && !store.state.settings.apiBaseUrl) notice('Portable app ready. Add the ConnectSafely secure connection in Settings to go live.'); render(); }
+/**
+ * Owner identity bridge. The Commercial OS runs inside the signed-in
+ * /built-by-you/commercial-os page; that page hands us its Supabase access
+ * token over postMessage so the server-side adapter can verify the caller.
+ * No credential of any kind is stored or typed inside this app.
+ */
+let ownerToken = null, tokenWaiter = null;
+function bindTokenBridge() {
+  window.addEventListener('message', event => {
+    if (event.source !== window.parent || event.data?.type !== 'commercial-os:token') return;
+    ownerToken = event.data.token || null;
+    tokenWaiter?.(ownerToken); tokenWaiter = null;
+  });
+  try { window.parent?.postMessage({ type: 'commercial-os:ready' }, '*'); } catch { /* standalone use */ }
+}
+function getToken() {
+  if (ownerToken) return Promise.resolve(ownerToken);
+  try { window.parent?.postMessage({ type: 'commercial-os:ready' }, '*'); } catch { /* standalone use */ }
+  return new Promise(resolve => { tokenWaiter = resolve; setTimeout(() => { if (tokenWaiter === resolve) { tokenWaiter = null; resolve(ownerToken); } }, 2500); });
+}
+
+async function boot() { const config = await fetch('./config.json').then(r => { if (!r.ok) throw new Error('config.json could not be loaded'); return r.json(); }); store.load(config); store.commit(s => { s.settings.connectorMode = 'adapter'; s.settings.adapterUrl = config.adapter?.url || ''; s.settings.anonKey = config.adapter?.anonKey || ''; }); bindTokenBridge(); bindGlobal(); await reconnect(false); render(); }
+
 function notice(text, error = false) { $('#notice').textContent = text; $('#notice').classList.toggle('error', error); }
 function findPerson(urn) { return store.state.people.find(p => p.profileUrn === urn); }
 function actionCountSince(floor) { return store.state.actions.filter(a => ['connect','message'].includes(a.type) && ['queued','sent','sending'].includes(a.status) && +new Date(a.queuedAt || a.sentAt) >= floor).length; }
 function capStatus() { const now = new Date(), day = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()), week = new Date(day), dow = week.getUTCDay(); week.setUTCDate(week.getUTCDate() - (dow === 0 ? 6 : dow - 1)); return { daily: actionCountSince(day), weekly: actionCountSince(+week), dailyCap: store.state.config.caps.perDay, weeklyCap: store.state.config.caps.perWeek }; }
 function assertCap() { const c = capStatus(); if (c.daily >= c.dailyCap) throw new Error(`Daily safety cap (${c.dailyCap}) reached.`); if (c.weekly >= c.weeklyCap) throw new Error(`Weekly safety cap (${c.weeklyCap}) reached.`); }
-async function reconnect(show = true) { connector = null; const s = store.state.settings; try { connector = await createConnector(s); const accounts = await connector.listAccounts({}); const list = Array.isArray(accounts) ? accounts : accounts.accounts || accounts.people || []; if (!list[0]) throw new Error('No LinkedIn account returned'); store.commit(x => { x.settings.accountId = list[0].id; x.settings.ownerName = [list[0].firstName, list[0].lastName].filter(Boolean).join(' '); }); $('#connector-pill').textContent = `Live · ${store.state.settings.ownerName}`; $('#connector-pill').className = 'pill ok'; if (show) notice('ConnectSafely connected. Read-only sync is ready.'); } catch (error) { $('#connector-pill').textContent = 'Offline'; $('#connector-pill').className = 'pill'; if (show || s.apiBaseUrl) notice(error.message, true); } }
+function setPill(text, ok = false) { $('#connector-pill').textContent = text; $('#connector-pill').className = ok ? 'pill ok' : 'pill'; }
+async function reconnect(show = true) {
+  connector = null; const s = store.state.settings;
+  try {
+    connector = await createConnector(s, { getToken });
+    if (connector.status) { const health = await connector.status(); if (!health.configured) { setPill('Not configured'); notice('ConnectSafely is not configured on the server yet.', true); connector = null; return; } if (!health.reachable) { setPill('Unreachable'); notice(`ConnectSafely is unreachable: ${health.error || 'no response'}`, true); connector = null; return; } }
+    const accounts = await connector.listAccounts({});
+    const list = Array.isArray(accounts) ? accounts : accounts.accounts || accounts.people || [];
+    if (!list[0]) throw new Error('No LinkedIn account returned');
+    store.commit(x => { x.settings.accountId = list[0].id; x.settings.ownerName = [list[0].firstName, list[0].lastName].filter(Boolean).join(' ') || list[0].name || ''; });
+    setPill(`Connected · ${store.state.settings.ownerName}`.trim(), true);
+    if (show) notice('ConnectSafely connected. Read-only sync is ready.');
+  } catch (error) { setPill('Unreachable'); notice(error.message, true); }
+}
 
 function bindGlobal() { $('#tabs').onclick = e => { const tab = e.target.dataset.tab; if (tab) store.commit(s => s.ui.tab = tab); render(); }; document.body.addEventListener('click', handleAction); $('#restore').onchange = async e => { const file = e.target.files[0]; if (!file) return; try { store.restore(await file.text()); notice('Backup restored.'); render(); } catch (error) { notice(error.message, true); } }; $('#save-settings').onclick = e => { e.preventDefault(); try { const config = JSON.parse($('#config-editor').value); if (!Array.isArray(config.icps) || !config.templates || !config.caps) throw new Error('Config requires icps, templates and caps'); sessionStorage.setItem('connectsafely_api_key', $('#api-key').value); store.commit(s => { s.settings.connectorMode = $('#connector-mode').value; s.settings.apiBaseUrl = $('#api-base').value.trim(); s.config = config; }); $('#settings-dialog').close(); reconnect().then(render); } catch (error) { notice(`Config not saved: ${error.message}`, true); } }; store.subscribe(render); }
 function openSettings() { const mode = $('#connector-mode'); const hasClaudeBridge = Boolean(globalThis.window?.claude?.use); if (hasClaudeBridge && !mode.querySelector('option[value="mcp"]')) mode.add(new Option('Claude MCP (artifact runtime)', 'mcp')); if (!hasClaudeBridge) mode.querySelector('option[value="mcp"]')?.remove(); mode.value = hasClaudeBridge ? store.state.settings.connectorMode : 'rest'; $('#api-base').value = store.state.settings.apiBaseUrl; $('#api-key').value = sessionStorage.getItem('connectsafely_api_key') || ''; $('#config-editor').value = JSON.stringify(store.state.config, null, 2); $('#settings-dialog').showModal(); }
