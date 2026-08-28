@@ -9,7 +9,7 @@ const LOVABLE_CLOUD_URL = "https://jypjttotvastdhanwvrx.supabase.co";
 const LOVABLE_CLOUD_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp5cGp0dG90dmFzdGRoYW53dnJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMwOTQ5MTQsImV4cCI6MjA3ODY3MDkxNH0.fVSXHJ_eqvMfblTD2SbNcYDrkulhqVCzv_7dXMenKc8";
 
 /** Serve and emit the standalone Commercial OS without keeping a second copy. */
-const commercialOsAssets = () => {
+const commercialOsAssets = (): Plugin => {
   const sourceRoot = path.resolve(__dirname, "commercial-tools/app");
   const files = (dir = sourceRoot): string[] => fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const absolute = path.join(dir, entry.name);
