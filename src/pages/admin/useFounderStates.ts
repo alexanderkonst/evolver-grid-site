@@ -76,12 +76,10 @@ export function useFounderStates(): UseFounderStatesResult {
 
   const load = useCallback(async (): Promise<void> => {
     setState((prev) => ({ ...prev, loading: true, error: null }));
-    const { data, error } = await supabase
-      // The view isn't in the generated types yet; cast through `any` at
-      // the `.from()` boundary only. The row shape is enforced below.
-      .from("founder_state_v1" as never)
-      .select("*")
-      .order("last_touch_at", { ascending: false });
+    // Admin-only RPC. The underlying `founder_state_v1` view is no longer
+    // readable by the `authenticated` role (it joins auth.users); the RPC
+    // re-checks has_role(auth.uid(),'admin') server-side.
+    const { data, error } = await supabase.rpc("admin_founder_states" as never);
     if (error) {
       // Day 80 Wave 2.22: preserve previous `founders` on refetch error.
       // The first load lands an empty array (no prior snapshot to keep).
@@ -102,10 +100,7 @@ export function useFounderStates(): UseFounderStatesResult {
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const { data, error } = await supabase
-        .from("founder_state_v1" as never)
-        .select("*")
-        .order("last_touch_at", { ascending: false });
+      const { data, error } = await supabase.rpc("admin_founder_states" as never);
       if (cancelled) return;
       if (error) {
         setState({ loading: false, error: error.message, founders: [] });
