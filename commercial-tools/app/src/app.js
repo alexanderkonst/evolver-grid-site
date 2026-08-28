@@ -7,7 +7,29 @@ const initials = name => String(name || '?').split(/\s+/).slice(0,2).map(x => x[
 const store = createStore(localStorage, error => notice(error.message, true));
 let connector = null, busy = false;
 
-async function boot() { const config = await fetch('./config.json').then(r => { if (!r.ok) throw new Error('config.json could not be loaded'); return r.json(); }); store.load(config); if (!globalThis.window?.claude?.use && store.state.settings.connectorMode === 'mcp') store.commit(s => { s.settings.connectorMode = 'rest'; }); bindGlobal(); await reconnect(false); if (!connector && !store.state.settings.apiBaseUrl) notice('Portable app ready. Add the ConnectSafely secure connection in Settings to go live.'); render(); }
+/**
+ * Owner identity bridge. The Commercial OS runs inside the signed-in
+ * /built-by-you/commercial-os page; that page hands us its Supabase access
+ * token over postMessage so the server-side adapter can verify the caller.
+ * No credential of any kind is stored or typed inside this app.
+ */
+let ownerToken = null, tokenWaiter = null;
+function bindTokenBridge() {
+  window.addEventListener('message', event => {
+    if (event.source !== window.parent || event.data?.type !== 'commercial-os:token') return;
+    ownerToken = event.data.token || null;
+    tokenWaiter?.(ownerToken); tokenWaiter = null;
+  });
+  try { window.parent?.postMessage({ type: 'commercial-os:ready' }, '*'); } catch { /* standalone use */ }
+}
+function getToken() {
+  if (ownerToken) return Promise.resolve(ownerToken);
+  try { window.parent?.postMessage({ type: 'commercial-os:ready' }, '*'); } catch { /* standalone use */ }
+  return new Promise(resolve => { tokenWaiter = resolve; setTimeout(() => { if (tokenWaiter === resolve) { tokenWaiter = null; resolve(ownerToken); } }, 2500); });
+}
+
+async function boot() { const config = await fetch('./config.json').then(r => { if (!r.ok) throw new Error('config.json could not be loaded'); return r.json(); }); store.load(config); store.commit(s => { s.settings.connectorMode = 'adapter'; s.settings.adapterUrl = config.adapter?.url || ''; s.settings.anonKey = config.adapter?.anonKey || ''; }); bindTokenBridge(); bindGlobal(); await reconnect(false); render(); }
+
 function notice(text, error = false) { $('#notice').textContent = text; $('#notice').classList.toggle('error', error); }
 function findPerson(urn) { return store.state.people.find(p => p.profileUrn === urn); }
 function actionCountSince(floor) { return store.state.actions.filter(a => ['connect','message'].includes(a.type) && ['queued','sent','sending'].includes(a.status) && +new Date(a.queuedAt || a.sentAt) >= floor).length; }
