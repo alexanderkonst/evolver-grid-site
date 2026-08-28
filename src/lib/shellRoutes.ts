@@ -95,6 +95,7 @@ const SHELL_EXACT = new Set<string>([
 const SHELL_PREFIX: string[] = [
     "/ai-os",
     "/ubb",
+    "/built-by-you",
     "/playbook",
     "/library",
     "/asset-mapping",
@@ -126,6 +127,7 @@ const HIDE_LOGO_EXACT = new Set<string>([
 
 const HIDE_LOGO_PREFIX: string[] = [
     "/ubb",
+    "/built-by-you",
     "/quality-of-life-map",
     "/game/me/zone-of-genius",
 ];

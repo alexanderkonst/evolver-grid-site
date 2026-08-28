@@ -270,6 +270,7 @@ import UbbLandingPageScreen from "./modules/unique-business-builder/screens/Land
 import DossierScreen from "./modules/unique-business-builder/screens/DossierScreen";
 import PublicDossier from "./pages/PublicDossier";
 import PublicLandingPage from "./pages/PublicLandingPage";
+import CommercialOS from "./pages/CommercialOS";
 // AiOs module — Sasha's prompt library at /ai-os (imported from
 // github.com/alexanderkonst/metaprompt and adapted to evolver patterns 2026-04-24).
 // Day 53 evening (2026-04-27): retired AiOsAuthPage / AiOsProfilePage /
@@ -745,6 +746,7 @@ const App = () => (
                     <Route path="step-3" element={<Step3OrderTalents />} />
                     <Route path="step-4" element={<Step4GenerateSnapshot />} />
                   </Route>
+                  <Route path="/built-by-you/commercial-os" element={<MeGate><CommercialOS /></MeGate>} />
                   {/* Legacy redirects */}
                   <Route path="/game/transformation" element={<Navigate to="/game/learn" replace />} />
                   <Route path="/game/transformation/*" element={<Navigate to="/game/learn" replace />} />

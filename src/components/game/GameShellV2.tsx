@@ -702,6 +702,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         // re-resolves to BUILD's section list. The UBB nav itself
         // becoming pane 2 (deeper integration) is a separate refactor.
         if (pathname === "/ubb" || pathname.startsWith("/ubb/")) return "build";
+        if (pathname === "/built-by-you" || pathname.startsWith("/built-by-you/")) return "build";
         // Day 65 (Sasha 2026-05-15): /build/equilibrium added — Equilibrium
         // v2 ("Biologic Watch") is a sibling entry in BUILD-space pane 2
         // alongside Automated Venture Builder. Without this mapping pane 2
@@ -1557,6 +1558,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         path.startsWith("/path") ||
         path.startsWith("/game/settings") ||
         path.startsWith("/ubb") ||
+        path.startsWith("/built-by-you") ||
         path.startsWith("/ai-os/profile") ||
         path.startsWith("/ai-os/pricing") ||
         path.startsWith("/ai-os/auth");
