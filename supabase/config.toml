@@ -164,6 +164,12 @@ verify_jwt = true
 [functions.sync-founder-corpus]
 verify_jwt = false
 
+# agent-db (2026-08-28): scoped token-gated data read/write channel. Auth is the
+# x-agent-token header vs AGENT_DB_TOKEN, so the JWT gate is off (same posture as
+# sync-founder-corpus). Table+op allowlist inside the function is the real guard.
+[functions.agent-db]
+verify_jwt = false
+
 [functions.auth-email-hook]
 verify_jwt = false
 
