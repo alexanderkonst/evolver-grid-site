@@ -74,6 +74,34 @@ Every self-knowledge community has practitioners who deliver diagnosis but hit a
 
 > **Generalized principle:** Every unique business has its own radically simple distribution channel that emerges from the myth and meta-position. When you know where you sit in the ecosystem, the upstream partners become obvious.
 
+### When the myth is audible, and to whom (Day 169)
+
+The principle above says distribution emerges from the myth. Technology 138 adds the constraint that decides whether it lands: **a myth is only audible to someone whose faculty is developed enough to receive it.** Below that line the same words register as vocabulary rather than recognition, which is why excellent myth copy converts brilliantly with one audience and produces nothing with another. It was never a quality problem.
+
+This splits distribution into two modes that are not interchangeable:
+
+| Mode | Addresses | Faculty required | Channel implication |
+|---|---|---|---|
+| **Threshold distribution** | a position on the arc and the pain of standing there | none. Pain is felt without any organ of self-recognition | works cold, works in marketplaces, works on strangers. The quiz, the pain card, the position read |
+| **Myth distribution** | a worldview, through likeness and differentiation | yes, and it is inaudible below the line | works only where the audience is pre-filtered for the faculty. Partner channels, communities, referrals, matched intros |
+
+**The operational consequence: the faculty is findable before the conversation.** People describe themselves in the vocabulary of the faculties they have developed, unprompted, in their own public bio. So every practice can derive its own **faculty-marker set** and use it to route: myth register where the markers are present, threshold register where they are absent or unknown.
+
+**Deriving the marker set** (four steps, repeatable for any practice):
+
+| Step | What it derives |
+|---|---|
+| 1 · Name the faculty your myth requires, as an organ rather than a belief | **the gate** — what must already exist for the myth to be audible |
+| 2 · List the vocabulary that faculty generates when people describe themselves unprompted | **the candidates** — raw markers, unweighted |
+| 3 · Tier by precision: near-zero-false-positive · strong-but-noisy · untested hypothesis | **the confidence** — what to act on versus what to test |
+| 4 · Measure yield per marker against real outcomes and demote the ones that return peers | **the correction** — the only step producing truth rather than hypothesis |
+
+**Both failure modes are live.** Used alone the marker set **returns peers**, because a peer has the faculty in abundance and nothing to buy — it is the highest-resonance filter available, so it fails faster than a vague one. Ignored entirely, it spends the practitioner's working life on the **not-yet**: someone in genuine pain who cannot perceive the offer. The set must be crossed multiplicatively with the deficit signals, never trusted on its own.
+
+**A diagnostic worth running on yourself:** if you cannot derive markers for your own myth's faculty, the myth is probably not yet naming a real organ. That is a finding about the myth, not about the method.
+
+*Law: [Technology 138 — The Faculty Precedes the Fidelity](../01-vision/phase_shift_technology_library.md). Worked instance and the live marker set: [`docs/specs/commercial-os/scope_of_work.md`](../specs/commercial-os/scope_of_work.md) §5b and `commercial-tools/app/config.json`.*
+
 ---
 
 ## Master Result

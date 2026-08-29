@@ -1017,6 +1017,43 @@ Before accepting any one-liner, replace every vague `this`, `it`, `thing`, `syst
 
 ---
 
+## Principle 18: You Are Stream 0
+
+> *"The method is run on its author first. Not as a rehearsal — as the floor everything above it stands on."*
+
+Every unique business has four scales, and the one almost every founder omits is the one they are standing on.
+
+| Scale | Who | Function |
+|---|---|---|
+| **0** | **you** | the proving ground |
+| **A** | individuals | the beachhead market |
+| **B** | practitioners who serve those individuals | upstream leverage |
+| **C** | collectives, then the coordination of collectives | systemic |
+
+**Stream 0 is not a preparation phase.** It is not something completed before the business starts. It is the floor the other three permanently rest on, and it keeps growing the entire time the others do. A founder who stops running the method on themselves loses the ground their offer stands on, however large the business above it has become.
+
+**Two mistakes this principle prevents, and they are opposite.**
+
+The first is **skipping the floor**: selling an articulation practice without having survived one, a health practice without a body, a money practice without having faced the money. The market is slow to punish this and eventually merciless, because the practitioner cannot read a ripeness they have never lived (Technology 118). The offer works on paper and lands as theory.
+
+The second is **never leaving the floor**: treating Stream 0 as a gate that must be fully passed before touching anyone. It never fully passes. There is no version of you finished enough to begin, and waiting for one is the growth-shaped form of the builder's shadow (Principle 10). At some point the floor is load-bearing enough to stand on, and the only way to find out is to stand.
+
+**How the layers actually relate.** Sequence and simultaneity are both true: the scales open in order and grow all at once, the way a plant puts out roots, then trunk, then leaves, while none of them ever stops growing. The sequence is not a schedule. It is a **load order** — a statement about what may bear weight, not about what starts when.
+
+**The readiness test, because "it will feel right" does not discriminate.** Rushing and stalling feel identical from the inside; both present as "not yet." The observable test:
+
+> **A scale is ready to open when the layer beneath it produces surplus without you in the room.**
+
+Not finished. Not perfect. Running, and generating more than it consumes, while you are absent. A client getting results you were not present for opens B. A practitioner running the method with their own clients opens C.
+
+**And the feedback runs downward, not only up.** Working at scale A sharpens Stream 0 — every client encounter returns language, objections, and precision that improve the founder's own articulation. This is why the layers must keep growing concurrently rather than being graduated from: **each opened scale feeds the one beneath it.** The root system thickens because there are leaves, not despite them.
+
+**Practical instruction.** Name which scale you are currently proving. Name what surplus the layer beneath it has produced, with a date. If you cannot name that surplus, the next scale is a hypothesis you have standing to test, not territory you hold — and saying so out loud is worth more than a plan.
+
+*Full law: [Technology 139 — The Load Order](../01-vision/phase_shift_technology_library.md). The faculty each scale requires: [Technology 138](../01-vision/phase_shift_technology_library.md).*
+
+---
+
 ## The Transmission Principle: Medicine, Not Information
 
 > *"A reveal written as a report informs. The same reveal written as transmission opens. Same words, different organ."*
