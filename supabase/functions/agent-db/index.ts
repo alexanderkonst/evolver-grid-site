@@ -34,15 +34,40 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 type Operation = "select" | "insert" | "update" | "upsert" | "delete";
 
 // ── ALLOWLIST ──────────────────────────────────────────────────────────────
-// The whole security boundary. Add a table + the ops you actually need, no more.
-// Seeded conservatively: game_profiles is read-only (it carries roles/tiers).
+// The whole security boundary — all names verified against the live migrations.
+// `delete` is OFF everywhere by default; add it per-table only when you need it.
+// Sensitive tables (roles, money, entitlements) are read-only on purpose.
+// NOTE: changing this map currently needs a redeploy. Ask Fable about the
+// DB-driven allowlist upgrade if you want allowlist edits to be prompt-free too.
 const ALLOWED: Record<string, Operation[]> = {
-  game_profiles:       ["select"],
-  zog_snapshots:       ["select", "insert", "update", "upsert"],
-  qol_snapshots:       ["select", "insert", "update", "upsert"],
-  quiz_results:        ["select", "insert", "update", "upsert"],
-  founder_corpus_docs: ["select", "insert", "update", "upsert"],
-  resonance_events:    ["select", "insert"],
+  // — read + write: operational data —
+  transition_quiz_results: ["select", "insert", "update", "upsert"],
+  quiz_email_signups:      ["select", "insert"],
+  zog_snapshots:           ["select", "insert", "update", "upsert"],
+  qol_snapshots:           ["select", "insert", "update", "upsert"],
+  canvas_snapshots:        ["select", "insert", "update", "upsert"],
+  founder_corpus_docs:     ["select", "insert", "update", "upsert"],
+  resonance_events:        ["select", "insert"],
+  funnel_events:           ["select", "insert"],
+  action_events:           ["select", "insert"],
+  offer_pulses:            ["select", "insert", "update", "upsert"],
+  pulse_briefs:            ["select", "insert"],
+  session_testimonials:    ["select", "insert", "update"],
+  testimonials:            ["select", "insert", "update"],
+  // — read + write: Founder Cockpit / Equilibrium —
+  equilibrium_state:       ["select", "insert", "update", "upsert"],
+  equilibrium_strategies:  ["select", "insert", "update", "upsert"],
+  equilibrium_workstreams: ["select", "insert", "update", "upsert"],
+  equilibrium_tasks:       ["select", "insert", "update", "upsert"],
+  equilibrium_focus:       ["select", "insert", "update", "upsert"],
+  // — read-only: sensitive (roles, money, entitlements, identity) —
+  game_profiles:           ["select"],
+  profiles:                ["select"],
+  user_roles:              ["select"],
+  entitlement_grants:      ["select"],
+  premium_subscriptions:   ["select"],
+  missions:                ["select"],
+  connections:             ["select"],
 };
 // ─────────────────────────────────────────────────────────────────────────────
 
