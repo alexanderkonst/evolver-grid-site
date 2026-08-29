@@ -10,6 +10,66 @@
 
 ---
 
+## v3.1 — August 28, 2026 (Day 169) · DRAFT, awaiting Sasha's carve
+
+**What changed and why.** v3.0 told the matchmaker who to *find*. It never told it who to *avoid*, and the class that costs the most is the one a good matchmaker will send most confidently: someone in a real transition who cannot yet receive an accurate description of themselves. Every one of those is a good conversation and a lost afternoon, and nothing in the intro looks wrong.
+
+v3.1 adds two things and changes nothing else:
+
+1. **A positive marker set the matchmaker can actually see.** People describe themselves in the vocabulary of the faculties they have developed, unprompted, in their own bio. That vocabulary is evidence about the person rather than a topic of interest. Law: [Technology 138 — The Faculty Precedes the Fidelity](../01-vision/phase_shift_technology_library.md).
+2. **The not-yet exclusion.** Real pain, no faculty to perceive the offer. Named so it can be avoided.
+
+Plus one flag that is deliberately not a judgment.
+
+---
+
+### Sendable text (v3.1 draft)
+
+> One update. The last brief was right about who I want, and missing the thing that costs me most: a kind of person who looks perfect and cannot buy.
+>
+> **The expensive miss.** Someone whose company just ended, genuinely between chapters, in real pain, actively looking. Everything I asked you for. And they cannot use what I do, because using it means being able to take in an accurate description of yourself and act on it, and that capacity is not there yet. The call is good. Nothing follows. I have lost more time to this person than to any obviously wrong match, because nothing about the intro looks wrong.
+>
+> So here is how to tell the difference, and it is visible in their own words.
+>
+> **What tells you the capacity is present.** People describe themselves in the vocabulary of what they have actually developed. When someone writes any of these about themselves, unprompted, treat it as evidence about the person, not as a topic I like:
+>
+> holonic · integral · evolutionary · polymath · zone of genius · sovereignty
+>
+> Slightly noisier, still strong: conscious · conscious tech · conscious deep tech · visionary · system architect · mystic · sacred geometry · new earth
+>
+> Weaker and unproven, send them but tell me you are testing: decentralization · web3 · modular · social or impact entrepreneurship. My honest read is that some of these people are still more aspirational than developed, and I would rather find out than assume.
+>
+> **Now the important part: never send me those words on their own.** Someone with the vocabulary and no transition is my peer, and peers are exactly what the first six intros were. The words are one of three things and I need all three in the same person:
+>
+> 1. the vocabulary, which says the capacity is there
+> 2. income that already runs on their own name
+> 3. a form that is actually ending
+>
+> Any one of the three missing and it is not my client. All three present and it is worth an introduction even if their profile looks unimpressive, which it usually will.
+>
+> **Words that mark a different conversation.** Venture studio, founder collective, accelerator, startup studio. These people have the capacity and are running their own vehicle. That is not a session, it is infrastructure and thesis. Send them, and tell me that is what they are.
+>
+> **One flag, and I do not want you to judge it.** If someone works publicly in cannabis or plant medicine, show me regardless of everything above. Saying that under your own name on LinkedIn costs something, and I want to see who is willing to pay it. I will decide what it means.
+>
+> **Still true from last time:** exclude anyone building their own typology, personality or human-categorization system. Use findyourtoptalent.com/quiz rather than my offer when you describe me. Practitioners who serve founders are peers and partners, never prospects, and the question that sorts them is what they uniquely bring, not what their method is.
+
+---
+
+### Why each addition is there
+
+| Element | Origin |
+|---|---|
+| The faculty marker set | Technology 138. The faculty leaves public traces because people use the vocabulary their developed organs generate |
+| "Evidence about the person, not a topic I like" | Technology 133. A thin brief makes the matchmaker improvise an angle; naming the *function* of the words prevents topic-matching on them |
+| The three-way cross, stated as a hard requirement | The v3.0 lesson generalized. Resonance alone returns peers, and the marker set is the strongest resonance filter available, so alone it fails faster |
+| The not-yet exclusion | Tribe v6.1: someone with low faculty cannot perceive an MF-raising offer, because perceiving it requires the faculty the offer would install |
+| Tier-3 words sent under an explicit test flag | Sasha's own caution: impact and social entrepreneurs "may be too rational still. Or aspirational." Aspiration is not fidelity |
+| The cannabis flag with judgment withheld | A costly public signal reads on Consent (Technology 123, axis 7), not on faculty. Different axis, so a different instruction |
+
+**Draft status.** Written by Fable, Day 169, from Technology 138 and the Commercial OS build of the same day. Sasha carves the final wording before this is sent. The tool's `config.json` carries the same marker set, so both channels move together.
+
+---
+
 ## v3.0 — August 27, 2026 (Day 168)
 
 **What changed and why.** v1 and v2 described the work by topic ("founders, self-knowledge, unique business"). Six intros later that produced six substantial conversations and zero clients, because **topic-similarity matching returns peers.** Someone who cares about what you care about has usually already solved their own version of it.
@@ -93,6 +153,7 @@ Killing the channel early is killing it one iteration before it works.
 
 | Version | Date | Change |
 |---|---|---|
+| **v3.1** | 2026-08-28 (Day 169) | *Draft, awaiting carve.* Adds the faculty marker set as a positive filter the matchmaker can read off a profile, the three-way cross stated as a hard requirement, the not-yet exclusion (real transition, no faculty), tier-3 words flagged as under test, and the cannabis/plant-medicine flag with judgment deliberately withheld. Law: Technology 138. |
 | **v3.0** | 2026-08-27 (Day 168) | Three streams; deficit-language client description with verbatim lines; the "what do you uniquely bring" screening question; typology-builder exclusion; quiz link replaces pitch. Written after six intros produced zero clients and one real seam. |
 | v2 | 2026-08-25 (Day 166) | First segmented attempt. Superseded within two days: it demoted the channel to distribution-only on the mistaken reasoning that peers cannot buy. |
 | v1 | ~2026-08 (Days 154-158) | Topic description: founders, self-knowledge, unique business, founder-market fit. Produced peers reliably. Boardy improvised angles where the brief was thin. |

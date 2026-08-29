@@ -8,9 +8,40 @@ const roleRules = [
   [/(general manager|\bgm\b|director|head of|\bvp\b|vice president)/i, 'seniorLeader', 'senior leader']
 ];
 const penaltyRe = /(open\s*to\s*work|student|intern(ship)?|recruiter|talent acquisition)/i;
-const transitionRe = /(career break|sabbatical|next chapter|in transition|between ventures|exploring|reinventing|pivoting|former|ex-founder|post-exit|what's next|rebuilding)/i;
+const transitionRe = /(career break|sabbatical|next chapter|in transition|between ventures|between chapters|exploring|reinventing|pivoting|former|ex-founder|post-exit|what'?s next|what is next|figuring out|stepping back|stepped back|wound down|shutting down|shut down|rebuilding|on pause)/i;
 // "Three or four real things going and cannot say what makes them one thing" — the deficit, read off a headline.
 const severalThings = (headline = '') => (String(headline).match(/[·|•]|\s\+\s|\s&\s/g) || []).length >= 2;
+// Mirror fidelity, read off the person's own vocabulary (Tribe v6.1).
+// Not a measure of consciousness. A measure of whether an MF-raising offer is perceivable at all.
+export function mfRead(text, config) {
+  const lex = config.mfLexicon || { tiers: [] };
+  const hits = [];
+  let points = 0, best = 0;
+  for (const tier of lex.tiers || []) {
+    for (const term of tier.terms) {
+      if (norm(text).includes(norm(term))) { hits.push(term); points = Math.max(points, tier.weight); best = best ? Math.min(best, tier.tier) : tier.tier; }
+    }
+  }
+  const octave = (lex.streamMarkers?.terms || []).find(term => norm(text).includes(norm(term))) || null;
+  return { points, tier: best || null, hits, octave };
+}
+
+// The cross. Three factors, multiplied, mirroring the gate structure of Technology 123:
+// a zero on any one of them is not compensated by pushing harder on another.
+//   MF         - can they perceive an offer of this kind at all
+//   Identity   - does income already run on their own name
+//   Transition - is the form that carried them actually ending
+export function crossRead({ mf, identity, transition, octave }) {
+  const band = value => value >= 2 ? 2 : value >= 1 ? 1 : 0;
+  const m = band(mf), i = band(identity), t = band(transition);
+  if (octave && m) return { klass: 'operator', register: 'myth', label: 'next octave · studio or collective' };
+  if (m && i && t) return { klass: 'bullseye', register: 'myth', label: 'MF x own name x transition' };
+  if (m && i && !t) return { klass: 'peer_partner', register: 'myth', label: 'faculty present, form still working' };
+  if (m && !i) return { klass: 'peer', register: 'myth', label: 'resonance only, returns a peer' };
+  if (!m && i && t) return { klass: 'not_yet', register: 'plain', label: 'real pain, no faculty to perceive the offer' };
+  return { klass: 'cold', register: 'plain', label: 'no read' };
+}
+
 // Brief v3.0: exclusions are config data, not code, so a new one is a config edit and not a deploy.
 const excludedBy = (text, config) => (config.exclusions || []).find(rule => new RegExp(rule.pattern, 'i').test(text));
 const marketRe = /(united states|\busa\b|canada|united kingdom|\buk\b|australia|singapore|dubai|new york|san francisco|london|toronto|sydney|melbourne)/i;
@@ -28,10 +59,14 @@ export function scorePerson(person, foundByIcpId, config, region = 'Global') {
   const transition = transitionRe.test(text) ? w.transition : 0, market = region === 'Global' && marketRe.test(person.location || '') ? w.topMarket : 0;
   const several = severalThings(person.headline || person.currentPosition || '') ? (w.severalThings || 0) : 0;
   const penalty = (person.isOpenToWork || penaltyRe.test(text)) ? w.penalty : 0;
+  const mf = mfRead(text, config);
+  const identityStrength = /(founder|co-?founder|owner|chief executive|\bceo\b|managing partner)/i.test(text) ? 2 : /(independent|self-?employed|fractional|portfolio career|solopreneur|freelance|own practice|consultant)/i.test(text) ? 1 : 0;
+  const cross = crossRead({ mf: mf.tier ? (mf.tier <= 2 ? 2 : 1) : 0, identity: identityStrength, transition: transition ? 2 : 0, octave: mf.octave });
+  const watch = (config.watchlist?.terms || []).find(term => norm(text).includes(norm(term))) || null;
   const rule = excludedBy(text, config);
   const exclusion = rule ? (w.exclusion || -45) : 0;
   const rolePoints = role ? w[role[1]] : w.roleUnclear;
-  return { score: Math.max(0, Math.min(100, best.points + rolePoints + reach + regionPoints + transition + several + market + penalty + exclusion)), icpId: best.icp.id, icpName: best.icp.name, streamRole: best.icp.relationship || 'client', excluded: Boolean(rule), reason: [rule ? `EXCLUDED · ${rule.label}` : '', best.match, role?.[2] || 'role unclear', transition ? 'visible transition' : '', several ? 'several things going' : ''].filter(Boolean).join(' · '), breakdown: { keyword: best.points, role: rolePoints, reach, region: regionPoints, transition, several, market, penalty, exclusion } };
+  return { score: Math.max(0, Math.min(100, best.points + rolePoints + reach + regionPoints + transition + several + market + mf.points + penalty + exclusion)), icpId: best.icp.id, icpName: best.icp.name, streamRole: best.icp.relationship || 'client', excluded: Boolean(rule), watch, mf: { points: mf.points, tier: mf.tier, hits: mf.hits, octave: mf.octave }, klass: cross.klass, register: cross.register, crossLabel: cross.label, reason: [rule ? `EXCLUDED · ${rule.label}` : '', best.match, role?.[2] || 'role unclear', transition ? 'visible transition' : '', mf.hits.length ? `MF: ${mf.hits.slice(0,3).join(', ')}` : '', watch ? `WATCH · says "${watch}" in public` : '', cross.label, several ? 'several things going' : ''].filter(Boolean).join(' · '), breakdown: { keyword: best.points, role: rolePoints, reach, region: regionPoints, transition, several, market, mf: mf.points, penalty, exclusion } };
 }
 
 export function canonicalPerson(raw, foundByIcpId, searchTerm, config, region = 'Global', mechanism = 'icp_search') {

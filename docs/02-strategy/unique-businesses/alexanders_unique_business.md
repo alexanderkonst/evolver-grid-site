@@ -1894,7 +1894,9 @@ BG = VF × MF         business growth = value flow × mirror fidelity
 
 *Day 166 correction:* the first draft expanded `RL`, `C`, and `R` as relational likeness, coherence, and resonance. The governing formula uses **recursive likeness, complementarity, and ripeness**. Technology 134 and ITFT Parts I/XI hold the canonical definitions.
 
-**MF is mirror fidelity:** how accurately a holon can see its own identity, structure, energy flows, results, and present condition. As fidelity rises, growth accelerates because feedback improves, and it balances because neglected dimensions become visible.
+**MF is mirror fidelity:** how accurately a holon can see its own identity, structure, energy flows, results, and present condition.
+
+> *Day 169 refinement — see [Technology 138, The Faculty Precedes the Fidelity](../../01-vision/phase_shift_technology_library.md).* MF as used below carries two variables that were later separated: the **faculty** (the organ that receives a reflection and acts on it) and the **fidelity** (how accurate the current reading is). The buyable zone described in this section — "high enough to register its own insufficiency and low enough to hurt" — is precisely **high faculty, low fidelity**. The split matters operationally because the faculty leaves public traces in a person's own vocabulary and can therefore be read before the conversation, while fidelity cannot. The two marketing modes below are faculty-gated (myth) and faculty-independent (threshold). Nothing in this section is retracted; Technology 138 states its mechanism. As fidelity rises, growth accelerates because feedback improves, and it balances because neglected dimensions become visible.
 
 **MF is the whole product.** Everything sold here — the articulation, the artifacts, the platform, the quiz, the holomaps — is an instrument for raising a holon's mirror fidelity. That single fact reorganizes the tribe:
 

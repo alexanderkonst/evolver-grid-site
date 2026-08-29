@@ -34,6 +34,46 @@ test('every stream has a template and the client template routes to the quiz ins
   assert.match(config.templates.practitioner_partners, /what do you uniquely bring/i);
 });
 
+test('the cross: MF x identity x transition routes to a class, and one zero is not compensated', () => {
+  const mk = (headline, degree='2nd') => canonicalPerson({ profileUrn: headline.slice(0,8), firstName: 'X', headline, connectionDegree: degree, location: 'London' }, 'client_founder_in_transition', 't', config);
+
+  const bullseye = mk('Integral entrepreneur · former founder · exploring what is next');
+  assert.equal(bullseye.klass, 'bullseye');
+  assert.equal(bullseye.register, 'myth');
+
+  const peer = mk('Holonic systems thinker and writer on consciousness');
+  assert.equal(peer.klass, 'peer');
+
+  const partner = mk('Conscious leadership coach · founder of Northline');
+  assert.equal(partner.klass, 'peer_partner');
+
+  const octave = mk('Managing partner · conscious venture studio');
+  assert.equal(octave.klass, 'operator');
+
+  // The class Sasha has been losing time to: real pain, no faculty to perceive the offer.
+  const notYet = mk('Founder · stepping back after shutting the company · figuring out what is next');
+  assert.equal(notYet.klass, 'not_yet');
+  assert.equal(notYet.register, 'plain');
+
+  // MF alone must not outrank the full cross — resonance-only returns peers.
+  assert.ok(bullseye.score > peer.score);
+});
+
+test('lexicon tiers are ordered by precision and the octave markers never read as client', () => {
+  const t1 = config.mfLexicon.tiers.find(t => t.tier === 1);
+  const t3 = config.mfLexicon.tiers.find(t => t.tier === 3);
+  assert.ok(t1.weight > t3.weight, 'tier 1 must outweigh the under-test tier');
+  assert.ok(t3.caution, 'the under-test tier must carry its caution');
+  assert.ok(config.mfLexicon.streamMarkers.terms.includes('venture studio'));
+});
+
+test('the watchlist surfaces for human review and never opens a cold door', () => {
+  const p = canonicalPerson({ profileUrn: 'w1', firstName: 'K', headline: 'Founder · cannabis and integrative wellness', connectionDegree: '2nd', location: 'Denver' }, 'client_founder_in_transition', 't', config);
+  assert.equal(p.watch, 'cannabis');
+  assert.match(p.reason, /WATCH/);
+  assert.ok(config.watchlist.action.includes('manual'));
+});
+
 test('direction falls back to owner name and stage never downgrades', () => {
   const c = conversationState([{ senderName: 'Sasha K', text: 'Hello', sentAt: '2026-01-01' }], '', 'Sasha K');
   assert.equal(c.direction, 'mine');
