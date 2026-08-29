@@ -7865,11 +7865,58 @@ And in every case the faculty leaves public traces, because **people describe th
 
 **The two failure modes, both real.** The marker set is a faculty detector, not a ripeness detector, and confusing them fails in opposite directions. **Used alone it returns peers**, because a peer has the faculty in abundance — this is Technology 133's topic-similarity trap wearing better clothes. **Ignored, it wastes the practitioner's life on the not-yet**, who presents with real pain and cannot hear the offer. The marker set must therefore be crossed with the deficit signals, multiplicatively, in the manner of Technology 123's gates: faculty × identity × transition, where a zero on any one is never compensated by the others.
 
+**Marker sets decay, and the decay is predictable.** A word's precision is a function of how costly it is to wear without the organ. As a vocabulary becomes fashionable it is adopted decoratively, false positives rise, and a tier-one marker drifts toward tier two. *Conscious* has already made part of that journey; *holonic* has not, because it is too obscure to be worn for status. This yields a counterintuitive selection rule: **prefer the markers that are slightly costly, unfashionable, or effortful to use correctly**, and expect any marker that enters general business vocabulary to lose precision within a few years. The set is therefore not a fixed asset but a maintained one, and step 4 is what maintains it.
+
 **Field note (Day 169).** The first such set derived in practice, for this business: *holonic · integral · evolutionary · polymath · zone of genius · sovereignty* at tier one; *conscious · conscious tech · visionary · system architect · mystic · sacred geometry · new earth · noosphere* at tier two; *decentralization · web3 · modular · social and impact entrepreneurship* held as untested hypotheses, with the founder's own caution attached that aspiration is not fidelity. Terms naming a vehicle rather than a faculty — *venture studio, founder collective, accelerator* — mark the second octave and route to the peer-and-operator streams, never to the client door. Implemented in `commercial-tools/app/config.json`; reasoning in `docs/specs/commercial-os/scope_of_work.md` §5b.
 
 **ESC.** *Essence:* a reading needs an organ, and the organ is older than the reading. *Significance:* it moves the hardest gate in a mirror business from something learned in conversation to something legible before the conversation, which is what makes the myth addressable. *Consequence:* derive the marker set, tier it by precision, cross it with the deficit rather than trusting it alone, and treat every term as a hypothesis the field will confirm or demote.
 
 **Relationship:** Technology 136 (mirror fidelity as growth — this splits the variable that one names), Tribe v6.1 in `alexanders_unique_business.md` (the buyable zone and the two marketing modes, here given their mechanism), Technology 123 (the Ripeness Vector — the faculty marker is a legible proxy for Buying Frame, the axis the Day 138 Clock Audit found all five paying clients shared), Technology 126 (persuasion as a perception deficit — below the faculty line there is no perceivable deficit to address), Technology 124 (the transition arc the 2×2 maps onto), Technology 133 (the matchmaker mirrors the brief — the marker set is what a brief has been missing), Technology 118 (the seer invariant — one can only read the faculty one has developed), Technology 137 (the Sealed Mirror — high faculty with fidelity sealed from above).
+
+---
+
+## Technology 139: The Load Order (Scales Grow Concurrently, Open Sequentially) (Day 169, August 28, 2026)
+
+**The law in one sentence: the scales of a holonic business are a load order rather than a schedule — every layer keeps growing from the moment it starts, and the next scale opens not when a plan says so but when the layer beneath it produces surplus without the founder in the room.**
+
+**The plant, which is the accurate image.** A seed puts out a root, then a trunk, then leaves. The sequence is real and cannot be reordered. But the root does not stop when the trunk begins, and the trunk does not stop when the leaves arrive. Everything continues growing at once, forever, at different rates. Sequence and simultaneity are not competing descriptions of growth. Sequence describes what may bear weight; simultaneity describes what is alive.
+
+Applied to a holonic venture, this dissolves a question that has no answer in its original form. "Should I finish building my own business before I work with people, or do both at once?" is a false alternative. Both, and the sequence is not about *start times*. It is about *load*.
+
+**The four scales as a load order.** Naming the floor is what makes the rest legible:
+
+| Scale | Who | Function | What proves the layer |
+|---|---|---|---|
+| **0** | the founder | the proving ground. The method is run on its author first | the founder's own articulation holds and produces work |
+| **A** | individuals | the beachhead market | clients get results the founder is not present for |
+| **B** | practitioners who serve individuals | upstream leverage. The method carried by someone else | a practitioner runs it with their own clients |
+| **C** | collectives, and then the coordination of collectives | systemic | a collective runs it without the founder |
+
+Scale 0 is not a fourth category alongside the others. It is the **floor the other three inherit from**, and adding it changes what they mean: A is a beachhead rather than the whole business, B is leverage rather than a nice-to-have, C is systemic rather than aspirational.
+
+**The seer invariant, one level up.** Technology 118 holds that one can only read the ripeness one has lived through. At the scale level this generalizes:
+
+> **You can only serve at scale N once you have been served at scale N.**
+
+This is not a moral rule about authenticity. It is the same perceptual constraint: an unlived scale cannot be read, so its ripeness cannot be assessed, its pain cannot be named, and its offer cannot be shaped. It is also why the ladder cannot be skipped by ambition or by capital.
+
+**The readiness criterion, and why it must be behavioral.** Every founder eventually asks the tree's question: how does it know when to put out a branch? The felt answer — *it knows by being* — is true and operationally useless, because **rushing and stagnating feel identical from the inside.** Both present as "not yet." One is patience and one is avoidance, and no amount of introspection separates them, since the faculty doing the introspecting is the one with the stake.
+
+The discriminator must therefore be external and behavioral:
+
+> **A scale is ready to open when the layer beneath it produces surplus without the founder in the room.**
+
+Not when the layer is finished. Not when it is perfect. When it runs, and generates more than it consumes, while its author is absent. This criterion is falsifiable within a week, and it is immune to the founder's shadow in both directions: the shadow can always argue a layer is "not ready enough," and it cannot argue with whether something ran while nobody was watching it.
+
+**The two failure modes, symmetrical.**
+- **Premature opening.** Scale C pursued while B has produced no surplus. Looks like ambition, costs the layer beneath it, and typically ends with the founder personally carrying a system that was supposed to carry itself.
+- **Permanent preparation.** The layer is judged not-yet-ready indefinitely, because readiness is being sought as a feeling rather than measured as an output. This is the growth-shaped form of the builder's shadow: refining the root system while claiming to honor natural timing.
+
+*Note that "let it grow at its own pace" is one word away from the second failure. The corrective is not more urgency; it is the surplus test, which converts a felt judgment into an observable event.*
+
+**ESC.** *Essence:* growth is concurrent in time and sequential in load. *Significance:* it replaces the unanswerable question of when to scale with an observable one, and it names the floor — the founder's own instance — that every higher scale silently rests on. *Consequence:* keep every opened layer growing rather than graduating from it, refuse to open the next scale until the current one runs in your absence, and treat an untested scale as a live hypothesis rather than as territory already held.
+
+**Relationship:** Technology 118 (the seer invariant this generalizes), BIG IDEA #1 (the first holon tests everything before the network — this is that idea's growth law), the Day 111 organizing principle in `alexanders_unique_business.md` (one kernel run at four scales), `planetary_os_assembly.md` (the 12-step emergence sequence, which this reframes as load order rather than schedule), Tribe v6.1 (Streams A, B and C, here given their floor at Stream 0), Technology 84 (holomap instrument), Technology 123 (ripeness at the scale of the person; this is ripeness at the scale of the venture).
 
 ---
 
