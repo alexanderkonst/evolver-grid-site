@@ -1,5 +1,5 @@
 {
-  "briefVersion": "ai_matchmaker_brief.md v3.0 (Day 168, 2026-08-27)",
+  "briefVersion": "ai_matchmaker_brief.md v3.1 draft (Day 169, 2026-08-28)",
   "briefNote": "Three streams, held separately. The client is described by a deficit, not a topic. Topic-similarity matching returns peers, and peers have already solved their own version of it. A qualifier link replaces the pitch: the tool routes, the quiz sorts.",
   "icps": [
     {
@@ -137,13 +137,21 @@
     "severalThings": 6,
     "topMarket": 5,
     "penalty": -15,
-    "exclusion": -45
+    "exclusion": -45,
+    "mfTier1": 30,
+    "mfTier2": 20,
+    "mfTier3": 8
   },
   "templates": {
     "default": "Hi {first},\n\nI work with founders in the stretch between the thing that has ended and the thing that has not started yet.\n\nIf that is where you are, there is a short quiz that sorts it honestly: findyourtoptalent.com/quiz. If it is not your problem, it says so and stops.\n\nNo pitch either way.\n\n— Sasha",
-    "client_founder_in_transition": "Hi {first},\n\nI work with founders in the stretch between the thing that has ended and the thing that has not started yet. The line I hear most often is \"I have several things going and I can't tell if they're one thing.\"\n\nIf that lands, there is a short quiz that sorts it honestly: findyourtoptalent.com/quiz. If it is not your problem, it says so and stops.\n\nNo pitch either way.\n\n— Sasha",
+    "client_founder_in_transition": "Hi {first},\n\nI work with experienced founders between chapters. Track record behind them, and the next thing has no line that clicks yet, or several real projects running with no honest way to pick one.\n\nThe line I hear most is \"I have several things going and I can't tell if they're one thing.\"\n\nEasiest place to start: findyourtoptalent.com/quiz. Three questions, and it tells you whether this is even your problem. If it isn't, it says so and stops.\n\nNo pitch either way.\n\n— Sasha",
     "practitioner_partners": "Hi {first},\n\nYou work with founders[[company: at {company}]], and it reads like you have done your own version of the work rather than only teaching it.\n\nI build the layer underneath that: helping a person name the one thing they are uniquely best at, precisely enough to build a business on.\n\nOne question I ask everyone in this line of work, and I am genuinely curious about your answer: what do you uniquely bring, apart from your method?\n\nComparing notes, not selling anything.\n\n— Sasha",
-    "operators_at_altitude": "Hi {first},\n\nRunning a founder program well is rare. Running it consciously is rarer[[company:, and {company} reads that way]].\n\nWhat I bring sits underneath the program: an instrument for reading a founder's uniqueness, the platform it runs on, and the frameworks and thesis around it.\n\nWorth a conversation at that level?\n\n— Sasha"
+    "operators_at_altitude": "Hi {first},\n\nRunning a founder program well is rare. Running it consciously is rarer[[company:, and {company} reads that way]].\n\nWhat I bring sits underneath the program: an instrument for reading a founder's uniqueness, the platform it runs on, and the frameworks and thesis around it.\n\nWorth a conversation at that level?\n\n— Sasha",
+    "_note": "Architecture per the Message Bank pattern (strategic_crm_outreach_tracker.md): recognition opener -> shelf line (category before myth) -> shared core -> precise bridge -> peer close with experiential link. Laws: peer not vendor; no price or title at the cold door; warm door before any ask; honest exclusions carry the trust signal. SCAFFOLDS ONLY - Sasha carves the final line.",
+    "client_founder_in_transition__myth": "Hi {first},\n\nYour language gives you away, so I will skip the translation.\n\nI work with founders in the interval where the form that carried them has ended and the next one has not taken shape yet. The one place where the invariant is actually visible, because the thing that was hiding it dissolved.\n\nThe line I hear most is \"I have several things going and I can't tell if they're one thing.\"\n\nIf that is where you are: findyourtoptalent.com/quiz. Three questions. It tells you whether this is even your problem, and says so plainly when it isn't.\n\nNo pitch either way.\n\n— Sasha",
+    "practitioner_partners__myth": "Hi {first},\n\nYou work with founders[[company: at {company}]], and from your own words it reads like you have done the work on yourself rather than only running it on others.\n\nWhat I build sits one layer under the method: helping a person name the one thing they are uniquely best at, precisely enough that a business can be organized around it. The way someone naturally thinks, creates and solves is their actual market value, and precision is the whole game.\n\nOne question, and I am genuinely curious about your answer: what do you uniquely bring, apart from your method?\n\nDifferent ends of one thesis, I suspect. Worth a short call?\n\n— Sasha",
+    "operators_at_altitude__myth": "Hi {first},\n\nRunning a founder vehicle well is rare. Running it consciously is rarer[[company:, and {company} reads that way]].\n\nWhat I bring plugs in underneath: the instrument for reading a founder's uniqueness, the platform it runs on, the frameworks, and the thesis around them. Ecosystems nesting inside each other without losing sovereignty, rather than one absorbing the other.\n\nNot a session. A different end of the same thesis.\n\nWorth a conversation at that level?\n\n— Sasha",
+    "not_yet": "HOLD. High transition, low mirror fidelity: the pain is real and the offer is not yet perceivable. Tribe v6.1 calls this a not-yet, not a buyer. Do not send. Set a re-touch date or let be."
   },
   "caps": {
     "perWeek": 80,
@@ -156,5 +164,81 @@
     "url": "https://jypjttotvastdhanwvrx.supabase.co/functions/v1/connectsafely-mcp",
     "anonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp5cGp0dG90dmFzdGRoYW53dnJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMwOTQ5MTQsImV4cCI6MjA3ODY3MDkxNH0.fVSXHJ_eqvMfblTD2SbNcYDrkulhqVCzv_7dXMenKc8"
   },
-  "readOnly": false
+  "readOnly": false,
+  "mfLexicon": {
+    "note": "Mirror-fidelity signal. Tribe v6.1: MF is the whole product, and a person can only buy what they can already see. These words are a person's own public evidence that the faculty is present. Tier 1 is near-zero false positive. Tier 3 is hypothesis under test — measure yield per term before trusting it.",
+    "tiers": [
+      {
+        "tier": 1,
+        "weight": 30,
+        "label": "high mirror fidelity",
+        "terms": [
+          "holonic",
+          "integral",
+          "evolutionary",
+          "polymath",
+          "zone of genius",
+          "sovereignty",
+          "regenerative"
+        ]
+      },
+      {
+        "tier": 2,
+        "weight": 20,
+        "label": "conscious register",
+        "terms": [
+          "conscious",
+          "conscious tech",
+          "conscious deep tech",
+          "visionary",
+          "system architect",
+          "systems architect",
+          "mystic",
+          "sacred geometry",
+          "new earth",
+          "noosphere",
+          "consciousness"
+        ]
+      },
+      {
+        "tier": 3,
+        "weight": 8,
+        "label": "adjacent, under test",
+        "terms": [
+          "decentralization",
+          "decentralized",
+          "web3",
+          "modular",
+          "social entrepreneurship",
+          "impact entrepreneur",
+          "purpose-driven",
+          "regenerative business"
+        ],
+        "caution": "Sasha's own flag: impact/social entrepreneurs may be too rational or aspirational. Aspiration is not fidelity. Hold as hypothesis until the bench measures yield."
+      }
+    ],
+    "streamMarkers": {
+      "note": "These read high on MF but mark the next octave, not the client. They route to stream 3, never to the client template.",
+      "terms": [
+        "venture studio",
+        "founder collective",
+        "accelerator",
+        "startup studio",
+        "syndicate"
+      ]
+    },
+    "law": "Technology 138 — The Faculty Precedes the Fidelity. The lexicon detects the faculty (the organ), not the fidelity (the reading it produces). A peer has the organ too, which is why the cross is required."
+  },
+  "watchlist": {
+    "note": "Not a score and not a class. These words flag a profile for Sasha's own eyes: open it, watch them speak, decide. A word here is a costly public signal - someone willing to say a socially expensive true thing under their own name - which reads on Consent (Technology 123, axis 7: willingness to be seen and altered), not on faculty. Never auto-templated, never auto-connected.",
+    "terms": [
+      "cannabis",
+      "plant medicine",
+      "psychedelic",
+      "entheogen",
+      "ayahuasca",
+      "psilocybin"
+    ],
+    "action": "surface for manual review"
+  }
 }

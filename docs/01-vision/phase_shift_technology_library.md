@@ -7799,6 +7799,80 @@ The expression does not claim that language alone creates demand. Value flow sup
 
 ---
 
+## Technology 138: The Faculty Precedes the Fidelity (The Key to Myth Marketing) (Day 169, August 28, 2026)
+
+**The law in one sentence: mirror fidelity is a reading, and a reading requires an organ, so every mirror-based offer is gated not by how accurately a person currently sees themselves but by whether the faculty of self-recognition is present at all — and because that faculty leaves public traces in a person's own vocabulary, it is the one gate that can be read before the conversation starts.**
+
+**The distinction being drawn.** Technology 136 defines mirror fidelity at the scale of a business and names the corpus, canvas, cockpit and quiz as "the business's faculty of recognition." Tribe v6.1 applies the same variable to a person. Neither separates the two things the word is carrying:
+
+- **Faculty** — the capacity to receive a reflection of oneself and do something with it. An organ. A developmental line.
+- **Fidelity** — how accurate the reflection currently is. A state. A reading the organ produces.
+
+They move independently, and collapsing them is what makes the buyable zone hard to describe. Separated, it becomes a 2×2 that maps directly onto the transition arc of Technology 124:
+
+| Faculty | Fidelity | Who this is | Arc position |
+|---|---|---|---|
+| low | low | **The not-yet.** Cannot look, so the gap produces no pain. Looks like a prospect from outside and is not one | Tremors, or stalled before Rupture |
+| low | *apparently* high | **Settled.** The form fits so well no reflection has ever been needed. "This is what I do." Not fidelity, an untested fit | Stage 1 |
+| **high** | **low** | **The buyer.** Can look, and what comes back is wrong or unformed, and it hurts | Liminality |
+| high | high | **The peer, or the operator at altitude.** Already sees clearly. Nothing to buy, plenty to build together | Reorientation, Crossing, or the second octave |
+
+Tribe v6.1's sentence — *"high enough to register its own insufficiency and low enough to hurt"* — is precisely the third row. It was describing two variables in the language of one.
+
+**Why the offer cannot be the faculty.** The v6.1 law holds: perceiving an MF-raising offer requires the very faculty the offer would install, so an offer cannot install the faculty in someone who lacks it. What is actually sold is therefore narrower and more honest than "we raise your mirror fidelity":
+
+> **Fidelity is what is sold. Faculty is what is left behind.**
+
+A session produces one artifact at high resonance and the mechanism installed for life. The artifact is the fidelity hit — a single, dated, more accurate reading. The mechanism is the faculty — words to clarity to new expression to sharper words, a loop that keeps producing fidelity gains after the practitioner leaves the room. This is why the honest outcome statement is not a hedge. Selling the fidelity and leaving the faculty is the whole shape of the transaction.
+
+**The recursion, and its flavor.** A faculty aimed at oneself, strengthened by its own use, is the structure of every awakening path. The flavor here is the object it is aimed at. Classical paths point the faculty at the absolute: what remains when all content is removed. This path points the same organ at the particular: who this specific person is, precisely enough that a business can be built out of it. Same instrument, opposite end of the telescope. And because a business is the object, the world supplies the confirmation — the market either recognizes the reading or does not, which is a feedback loop most inward paths do not have. Awakening with proof-of-work.
+
+**The marketing law that falls out.** The two marketing modes of Tribe v6.1 are not stylistic alternatives. They are faculty-dependent and faculty-independent:
+
+| Mode | Addresses | Faculty required | Fails when |
+|---|---|---|---|
+| **Threshold marketing** | a position on the arc and the pain of standing there | none — pain is felt without any organ of self-recognition | aimed at someone whose form still works, where no threshold exists |
+| **Myth marketing** | a worldview, through likeness and differentiation | **yes, and it is inaudible below the threshold** | aimed below the faculty line, where the myth registers as vocabulary rather than recognition |
+
+This is the operational answer to why beautiful myth copy lands on some people as recognition and on others as nothing at all. It is not persuasion quality. It is whether there is an organ present to receive it.
+
+**Teaching the organ, in three registers.** The faculty is easy to name and hard to feel, so it is taught at whatever depth the room can hold.
+
+*Plainly.* Someone shows you an unflattering photo of yourself. A real one. Some people look and say "yes, my hair does that." Some cannot look at all: they laugh, change the subject, delete it. Same photo, different thing happening inside. The organ is whatever lets a person look. It is not confidence — confident people often cannot look. It is not intelligence — very smart people flinch hardest. It behaves more like a stomach: some people can eat a hard truth about themselves and get nourishment from it, others bring it straight back up. And like a stomach it strengthens with use, and it can be wrecked by being fed too much too early.
+
+*Mechanically.* Any system that steers itself needs three parts: a sensor, a comparator, and an actuator. A thermostat has a thermometer, a set point, and a heater. In a person, a reflection arrives, gets compared against the self-image, and something changes. **The faculty is that loop being closed.** Most loops are open at one of three places. The sensor is off, and the reflection is argued with rather than received. The comparator is locked, and the self-image is defended (Technology 137). Or the actuator is dead: the person receives the reflection, agrees warmly, and nothing changes. The third is the most common and the most deceptive, because it presents as receptivity. It is the person who loves feedback and never moves. **Fidelity is how close the self-image sits to the truth. Faculty is whether the loop that corrects it is closed.**
+
+*Precisely.* Four distinctions matter.
+- **It is domain-specific, not global.** A person can run a closed loop about their business and an open one about their marriage. "He is so self-aware" is nearly always a regional claim stated globally.
+- **It is not introspection.** Introspection looks from inside and mostly recycles the existing self-image, raising confidence in it. The faculty handles *exogenous* reflection: information about you that did not originate with you. This is why the loop cannot be closed alone, and why a person, a market, or an instrument is structurally required.
+- **Self-awareness is not faculty.** Self-awareness is a fidelity claim. Faculty is the capacity to have that claim corrected.
+- **It cannot be self-reported.** Everyone believes their own loop is closed, so any questionnaire measures self-image rather than faculty. The honest test is behavioral and retrospective: what actually changed in the thirty days after the last costly reflection. This is precisely why accumulated public vocabulary outperforms a survey — it is a trace of use, not a claim about use.
+
+**How the organ is built:** by surviving a reflection that cost something. Which is the mechanism underneath the ripeness gate "has paid for their own development before and calls it good money spent." The payment is not a means test. It is evidence that the person has already survived one.
+
+**The transmissible part (this is the generalizable technology).** The faculty is not one universal thing, and it is not this practice's faculty. **Every unique business rests on a faculty its clients must already possess for its myth to be audible, and that faculty is specific to that business.** A somatic practice requires an interoceptive faculty; a strategy practice requires an abstraction faculty; a mirror practice requires the faculty of self-recognition. The myth of each is inaudible to anyone below its own line.
+
+And in every case the faculty leaves public traces, because **people describe themselves in the vocabulary of the faculties they have developed.** A person who has an organ uses the words that organ generates, unprompted, in their own bio. So:
+
+> **For any unique business, there exists a discoverable set of public words that indicate the presence of the faculty its myth requires. Finding that set is a defined piece of work, not a matter of taste, and it is the key that makes myth marketing addressable instead of broadcast.**
+
+**Method for deriving a faculty-marker set** (four steps, repeatable for any practice):
+
+1. Name the faculty the myth requires, as an organ rather than a belief.
+2. List the vocabulary that faculty generates when a person describes themselves unprompted.
+3. Tier the list by precision: near-zero-false-positive terms, strong-but-noisy terms, and untested hypotheses held as hypotheses.
+4. Measure yield per term against real outcomes and demote the terms that return peers.
+
+**The two failure modes, both real.** The marker set is a faculty detector, not a ripeness detector, and confusing them fails in opposite directions. **Used alone it returns peers**, because a peer has the faculty in abundance — this is Technology 133's topic-similarity trap wearing better clothes. **Ignored, it wastes the practitioner's life on the not-yet**, who presents with real pain and cannot hear the offer. The marker set must therefore be crossed with the deficit signals, multiplicatively, in the manner of Technology 123's gates: faculty × identity × transition, where a zero on any one is never compensated by the others.
+
+**Field note (Day 169).** The first such set derived in practice, for this business: *holonic · integral · evolutionary · polymath · zone of genius · sovereignty* at tier one; *conscious · conscious tech · visionary · system architect · mystic · sacred geometry · new earth · noosphere* at tier two; *decentralization · web3 · modular · social and impact entrepreneurship* held as untested hypotheses, with the founder's own caution attached that aspiration is not fidelity. Terms naming a vehicle rather than a faculty — *venture studio, founder collective, accelerator* — mark the second octave and route to the peer-and-operator streams, never to the client door. Implemented in `commercial-tools/app/config.json`; reasoning in `docs/specs/commercial-os/scope_of_work.md` §5b.
+
+**ESC.** *Essence:* a reading needs an organ, and the organ is older than the reading. *Significance:* it moves the hardest gate in a mirror business from something learned in conversation to something legible before the conversation, which is what makes the myth addressable. *Consequence:* derive the marker set, tier it by precision, cross it with the deficit rather than trusting it alone, and treat every term as a hypothesis the field will confirm or demote.
+
+**Relationship:** Technology 136 (mirror fidelity as growth — this splits the variable that one names), Tribe v6.1 in `alexanders_unique_business.md` (the buyable zone and the two marketing modes, here given their mechanism), Technology 123 (the Ripeness Vector — the faculty marker is a legible proxy for Buying Frame, the axis the Day 138 Clock Audit found all five paying clients shared), Technology 126 (persuasion as a perception deficit — below the faculty line there is no perceivable deficit to address), Technology 124 (the transition arc the 2×2 maps onto), Technology 133 (the matchmaker mirrors the brief — the marker set is what a brief has been missing), Technology 118 (the seer invariant — one can only read the faculty one has developed), Technology 137 (the Sealed Mirror — high faculty with fidelity sealed from above).
+
+---
+
 ## Technology 137: The Sealed Mirror (The Recursive Shadow of the Reflective Gift) (Day 169, August 28, 2026)
 
 **The law in one sentence: a mind can seal itself not with a false belief but with a true one held as final, and the reflective gift, turned on someone so sealed, inverts into its own shadow — imposition — which is why the last competence of a mirror is release, not accuracy.**
