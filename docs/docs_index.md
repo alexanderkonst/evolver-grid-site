@@ -67,6 +67,7 @@ docs/
 | [pitch_deck_nuggets.md](./02-strategy/pitch_deck_nuggets.md) | Pitch deck content |
 | [guerrilla_marketing_hacks.md](./02-strategy/guerrilla_marketing_hacks.md) | Marketing tactics |
 | [landing_page_copywriting_framework.md](./02-strategy/landing_page_copywriting_framework.md) | Copy framework |
+| [specs/commercial-os/scope_of_work.md](./specs/commercial-os/scope_of_work.md) | **Commercial OS v2** (Day 169) — the LinkedIn channel rebuilt around the Ripeness Vector: reading tiers, the retrodiction bench scored off the existing corpus, learning on ripeness yield instead of reply rate |
 | [matchmaking_strategy.md](./02-strategy/matchmaking_strategy.md) | Matchmaking go-to-market + algorithm v3 canonical spec (§3-§5, Day 80) |
 | [white_label_strategy.md](./02-strategy/white_label_strategy.md) | White-label approach |
 | [community_whitelabel_spec.md](./02-strategy/community_whitelabel_spec.md) | Community white-label |

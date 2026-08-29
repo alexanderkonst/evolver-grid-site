@@ -259,6 +259,18 @@
 | **5 · The loop you keep** | 4 min | development / time | Words → clarity → new expression → sharper words. A new version replaces the old only if resonance is higher. The document is alive. **This loop is the thing you actually take home.** |
 | **6 · What happens in our session** | 3 min | **We** | The honest outcome (SD5), the prerequisites (SD2), what to bring, how long it takes. One door at the end. |
 
+### Day 169 — Commercial OS v2 (the ripeness bench)
+
+> Spec: [`docs/specs/commercial-os/scope_of_work.md`](../specs/commercial-os/scope_of_work.md). Written after a 27-perspective pass on v1. The structural finding: the tool scores profiles, the business reads ripeness, and a headline cannot carry an absence — the brief says so in its own words.
+
+| # | Item | Priority | Notes |
+|---|------|----------|-------|
+| CO1 | **The retrodiction bench — score the corpus that already exists** | 🔴 **first** | Ten Ripeness Vector axes (Technology 123) scored retrospectively on the encounters already documented: Fathom transcripts, the Offer Ledger, session log Days 100-169, the nine client canvases, the six Boardy intros. ~20-30 cases, ninety seconds each, outcome attached. Answers whether the vector retrodicts, which axis actually carried the signal (the Day 138 Clock Audit suggests Buying Frame over Ticking Clock), and whether a quiz placement can stand in for a hand read. **This is the same bench Q1 Phase 3 needs — one bench, two consumers, not duplicate work.** Nothing else in CO ships until this produces a signal, including a negative one. |
+| CO2 | **Reading tiers + the ninety-second capture drawer** | 🟡 [blocked on CO1] | Every record stamped with where its number came from: lead sheet (headline regex) · self-placement (quiz) · read (ten axes) · ground truth (what happened). A Tier-0 guess can never render in the same slot as a real read. Axis *shape* displayed, not just a total — a 70 with Surrender at 2 is a different animal. Plus "let be" as a primary button at equal weight to "Draft": choosing not to pursue is a correct output of the instrument, not a hidden failure state. |
+| CO3 | **Quiz round-trip — token out, placement back** | 🟡 [blocked on CO1] | Outbound link carries the ledger row id; quiz completion writes stage + email back. Justified only if CO1 shows quiz placement tracks the hand-scored Transition axis. |
+| CO4 | **Learn on ripeness yield, not reply rate** | 🟡 [blocked on CO2] | Six intros produced six good conversations and zero clients, so reply rate was never the bottleneck. Rank searches, streams and brief versions by mean ripeness and gate-open rate. Reply rate stays visible and demoted. |
+| CO5 | **The mirror — the tool proposes its own next brief version** | ⚪ [later] | The brief is the product of this channel (Technology 133). The tool's real output is a sharper brief, not messages. Same loop Sasha runs on a client's articulation, run on the instrument itself. |
+
 ### Day 138 — Open threads, ordered by leverage
 
 | # | Item | Priority | Notes |
