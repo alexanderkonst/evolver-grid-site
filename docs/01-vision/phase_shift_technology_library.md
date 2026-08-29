@@ -7900,6 +7900,13 @@ Scale 0 is not a fourth category alongside the others. It is the **floor the oth
 
 This is not a moral rule about authenticity. It is the same perceptual constraint: an unlived scale cannot be read, so its ripeness cannot be assessed, its pain cannot be named, and its offer cannot be shaped. It is also why the ladder cannot be skipped by ambition or by capital.
 
+**Two gates, not one (Day 169 refinement).** "Served at scale N" and "selling at scale N" are separate conditions, and conflating them misreads a founder's actual blocker.
+
+- **The perception gate** — have you been *inside* that scale as a member and been changed by it? This is the Technology 118 constraint and it is a developmental question. It is satisfied slowly, over years, and usually long before it is noticed.
+- **The commercial gate** — has anyone at that scale ever bought, and does the layer beneath produce surplus without you? This is a market question, satisfied by making an offer.
+
+A founder who has passed the perception gate and not the commercial gate is not underdeveloped. They have simply never made the offer. The two feel identical from inside — both read as "I'm not ready for that scale" — and they call for opposite responses: the first needs living, the second needs asking. **Diagnose which gate is closed before concluding anything about readiness**, because the perception gate is usually the one that is already open and quietly uncounted, having been passed inside institutions, cohorts and communities that were never filed as professional experience.
+
 **The readiness criterion, and why it must be behavioral.** Every founder eventually asks the tree's question: how does it know when to put out a branch? The felt answer — *it knows by being* — is true and operationally useless, because **rushing and stagnating feel identical from the inside.** Both present as "not yet." One is patience and one is avoidance, and no amount of introspection separates them, since the faculty doing the introspecting is the one with the stake.
 
 The discriminator must therefore be external and behavioral:
