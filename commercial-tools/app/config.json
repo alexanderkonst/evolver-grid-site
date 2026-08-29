@@ -1,8 +1,12 @@
 {
+  "briefVersion": "ai_matchmaker_brief.md v3.0 (Day 168, 2026-08-27)",
+  "briefNote": "Three streams, held separately. The client is described by a deficit, not a topic. Topic-similarity matching returns peers, and peers have already solved their own version of it. A qualifier link replaces the pitch: the tool routes, the quiz sorts.",
   "icps": [
     {
-      "id": "post_exit_founders",
-      "name": "Post-exit founders",
+      "id": "client_founder_in_transition",
+      "name": "Client · Founder in transition",
+      "relationship": "client",
+      "note": "The form that carried them has ended and they know it before anyone else does. Income runs on their own name, or the next thing is being born under their hands. Three or four real things going and no sentence that makes them one thing. They do not look impressive on a profile. They look stuck. That is the signal. Do not pitch. Route to the quiz.",
       "strong": [
         "former founder",
         "ex-founder",
@@ -11,129 +15,117 @@
         "career break",
         "next chapter",
         "exploring what's next",
-        "recovering founder"
+        "recovering founder",
+        "between ventures",
+        "in transition",
+        "fractional",
+        "portfolio career",
+        "solopreneur"
       ],
       "weak": [
         "founder",
         "entrepreneur",
+        "owner",
+        "independent",
+        "self-employed",
+        "interim",
         "advisor",
-        "board member"
+        "consultant",
+        "freelance"
       ],
       "terms": [
         "former founder sabbatical",
         "ex-founder career break",
         "founder exploring what's next",
-        "post-exit founder advisor"
-      ]
-    },
-    {
-      "id": "fractional_executives",
-      "name": "Fractional executives",
-      "strong": [
-        "fractional",
-        "portfolio career",
-        "fractional cmo",
-        "fractional coo",
-        "fractional cto",
-        "fractional chief"
-      ],
-      "weak": [
-        "consultant",
-        "advisor",
-        "independent",
-        "interim"
-      ],
-      "terms": [
+        "founder between ventures",
+        "founder next chapter",
         "fractional executive founder",
-        "fractional cmo consultant",
-        "fractional coo advisor",
-        "portfolio executive independent"
+        "portfolio career independent operator",
+        "solopreneur founder independent"
       ]
     },
     {
-      "id": "coaches_solopreneurs",
-      "name": "Coaches & solopreneurs",
+      "id": "practitioner_partners",
+      "name": "Sweet spot · Practitioners who serve founders",
+      "relationship": "partner",
+      "note": "Coaches, studio operators, accelerator leads, community builders, agency founders who have done the work on themselves. Peers and partners, never prospects. The screening question decides everything: ask what they uniquely bring. A process answer means not ready. A who-they-are answer means ready. One yes here carries the method to a whole client base. The complementary shape wanted most is the grounded builder-operator, closer to execution and ordinary business physics.",
       "strong": [
-        "executive coach",
         "founder coach",
+        "executive coach",
         "leadership coach",
-        "solopreneur",
-        "independent coach",
-        "career coach"
+        "community builder",
+        "community founder",
+        "agency founder",
+        "studio operator",
+        "accelerator lead",
+        "program director"
       ],
       "weak": [
         "coach",
         "facilitator",
         "mentor",
-        "consultant"
-      ],
-      "terms": [
-        "executive coach solopreneur",
-        "founder coach independent",
-        "leadership coach consultant",
-        "business coach positioning"
-      ]
-    },
-    {
-      "id": "consultants_transition",
-      "name": "Big Four / MBB transition",
-      "strong": [
-        "mckinsey",
-        "bcg",
-        "bain",
-        "deloitte",
-        "pwc",
-        "ey",
-        "kpmg",
-        "ex-consultant"
-      ],
-      "weak": [
-        "strategy consultant",
-        "management consultant",
-        "principal",
-        "engagement manager"
-      ],
-      "terms": [
-        "McKinsey engagement manager career break",
-        "BCG principal transition",
-        "Bain consultant next chapter",
-        "Deloitte director independent"
-      ]
-    },
-    {
-      "id": "community_holders",
-      "name": "Community & ecosystem holders",
-      "strong": [
-        "community founder",
-        "ecosystem lead",
-        "community director",
-        "network founder",
-        "venture studio",
-        "accelerator director"
-      ],
-      "weak": [
         "community",
-        "ecosystem",
-        "network",
         "accelerator",
         "incubator",
-        "membership"
+        "agency",
+        "advisor"
       ],
       "terms": [
-        "founder community director",
-        "entrepreneur community founder",
-        "venture studio ecosystem lead",
-        "accelerator community director"
+        "founder coach independent",
+        "executive coach founders",
+        "founder community builder",
+        "agency founder positioning",
+        "accelerator program lead founders",
+        "studio operator founders"
       ]
+    },
+    {
+      "id": "operators_at_altitude",
+      "name": "Altitude · Studio & program operators",
+      "relationship": "operator",
+      "note": "Running a venture studio, accelerator, or founder program successfully, and conscious about how they run it. Not a session. The technology, the platform, the frameworks, the investment thesis. Rare, and mostly already known. Flag one when it appears.",
+      "strong": [
+        "venture studio",
+        "startup studio",
+        "accelerator director",
+        "founder program",
+        "ecosystem lead",
+        "managing partner",
+        "programme director"
+      ],
+      "weak": [
+        "studio",
+        "accelerator",
+        "incubator",
+        "ecosystem",
+        "network founder",
+        "partner"
+      ],
+      "terms": [
+        "venture studio managing partner",
+        "startup studio founder",
+        "accelerator director founders",
+        "founder program director",
+        "innovation ecosystem lead partnerships"
+      ]
+    }
+  ],
+  "exclusions": [
+    {
+      "id": "typology_builders",
+      "label": "builds their own typology system",
+      "pattern": "typology|psychometric|personality (test|system|profil|assessment)|human design|enneagram|\\bmbti\\b|16personalities|astrolog|archetype system|profiling system|assessment tool|categorization system|talent assessment",
+      "note": "Day 167, Yulia Winslow. The closest match on topic and structurally unable to buy: their premise is that self-report is unreliable, which is the premise the whole offer rests on."
     }
   ],
   "scoreWeights": {
     "strongKeyword": 40,
     "weakKeyword": 20,
     "searchSource": 10,
-    "decisionMaker": 30,
-    "partnerships": 28,
-    "seniorLeader": 18,
+    "decisionMaker": 25,
+    "partnerships": 25,
+    "ownName": 20,
+    "seniorLeader": 12,
     "roleUnclear": 5,
     "reach2nd": 15,
     "reach1st": 8,
@@ -141,17 +133,17 @@
     "globalRegion": 10,
     "regionMatch": 15,
     "regionMiss": 3,
-    "transition": 10,
+    "transition": 12,
+    "severalThings": 6,
     "topMarket": 5,
-    "penalty": -15
+    "penalty": -15,
+    "exclusion": -45
   },
   "templates": {
-    "default": "Hi {first},\n\nYour work[[company: at {company}]] stood out. I help highly capable people name what's next professionally and package their distinctive value into a clear offer.\n\nWould a free 45-minute Direction Call be useful?\n\n— Sasha",
-    "post_exit_founders": "Hi {first}, real respect for what you built[[company: at {company}]] — closing a founder chapter is no small thing. The “what’s next” after an exit is its own puzzle. I help post-exit founders name the next thing and package their distinctive value into one clear offer. If useful, I run a free 45-min Direction Call — no pitch, just clarity. Open to it?\n\n— Sasha",
-    "fractional_executives": "Hi {first}, a fractional/portfolio path[[company: like your work with {company}]] gives real range — and makes positioning genuinely hard. I help fractional operators sharpen that into one precise, buyable offer. Happy to think it through on a free 45-min Direction Call if useful.\n\n— Sasha",
-    "coaches_solopreneurs": "Hi {first}, your work[[company: at {company}]] stands out. A lot of excellent coaches and solopreneurs stay abstract in how they describe what they do, which quietly costs them the right clients. Naming it precisely is most of the game. A free 45-min Direction Call is an easy place to start if you’re curious.\n\n— Sasha",
-    "consultants_transition": "Hi {first}, moving from[[company: {company}]] a top consulting seat into your own thing is a real threshold. I help people at that transition name what’s next and package it into a clear offer. Free 45-min Direction Call if useful — no pitch.\n\n— Sasha",
-    "community_holders": "Hi {first}, what you’re building[[company: at {company}]] is rare — you’re holding genuine trust in a community. I help ecosystem builders turn that into a clear, distinctive offer. If useful, I’d enjoy comparing notes on a free 45-min Direction Call.\n\n— Sasha"
+    "default": "Hi {first},\n\nI work with founders in the stretch between the thing that has ended and the thing that has not started yet.\n\nIf that is where you are, there is a short quiz that sorts it honestly: findyourtoptalent.com/quiz. If it is not your problem, it says so and stops.\n\nNo pitch either way.\n\n— Sasha",
+    "client_founder_in_transition": "Hi {first},\n\nI work with founders in the stretch between the thing that has ended and the thing that has not started yet. The line I hear most often is \"I have several things going and I can't tell if they're one thing.\"\n\nIf that lands, there is a short quiz that sorts it honestly: findyourtoptalent.com/quiz. If it is not your problem, it says so and stops.\n\nNo pitch either way.\n\n— Sasha",
+    "practitioner_partners": "Hi {first},\n\nYou work with founders[[company: at {company}]], and it reads like you have done your own version of the work rather than only teaching it.\n\nI build the layer underneath that: helping a person name the one thing they are uniquely best at, precisely enough to build a business on.\n\nOne question I ask everyone in this line of work, and I am genuinely curious about your answer: what do you uniquely bring, apart from your method?\n\nComparing notes, not selling anything.\n\n— Sasha",
+    "operators_at_altitude": "Hi {first},\n\nRunning a founder program well is rare. Running it consciously is rarer[[company:, and {company} reads that way]].\n\nWhat I bring sits underneath the program: an instrument for reading a founder's uniqueness, the platform it runs on, and the frameworks and thesis around it.\n\nWorth a conversation at that level?\n\n— Sasha"
   },
   "caps": {
     "perWeek": 80,
