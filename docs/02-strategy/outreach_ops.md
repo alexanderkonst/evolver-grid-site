@@ -6,6 +6,48 @@
 
 ---
 
+## 0. Day 169 revision (August 28, 2026) — read this before §1-§14
+
+> *Everything below §1 is the July execution layer and stays as written except where this section overrides it. Strategy source is now `outreach_strategy_2026-07.md` **v4.0**. Nothing is deleted; overrides are named explicitly so genealogy stays readable.*
+
+### 0.1 What overrides what
+
+| Topic | July (§1-§14) | Day 169 override |
+|---|---|---|
+| **Cold door** | free Direction Call | **findyourtoptalent.com/quiz**. The Direction Call is what the quiz routes into. Warm and referred contacts still go straight to the call |
+| **Segments** | 5 LinkedIn campaigns (§3.2-3.5) | **3 streams** + the cross. Mapping below |
+| **§3.5 Big4 / MBB** | active, 25 invites | **RETIRED.** Employees: income does not run on their own name, so the Identity factor reads zero. Copy preserved as genealogy |
+| **§3.4 Coaches** | pitched a Direction Call | **Stream B, register inverted.** Peers and partners, never prospects. The screening question replaces the pitch |
+| **Prospect scorecard** | 5-point checklist, send at ≥4/5 | **The cross**, computed by the tool: faculty × identity × transition, plus the not-yet block. The 5-point list remains a useful manual fallback when the tool is not open |
+| **Invite caps** | 10-15/day, hard cap 70/week | unchanged and **binding**. Tool config aligned down to match (was 20/day, 80/week) |
+
+### 0.2 The campaign set, remapped
+
+| Stream | Who | Boolean (People tab, US first, 2nd degree) | Register | Door |
+|---|---|---|---|---|
+| **A · client** | founders in transition, income on their own name | `("sabbatical" OR "career break" OR "between ventures" OR "next chapter" OR "former founder") AND (founder OR "ex-founder" OR fractional)` | threshold, or myth if markers present | quiz |
+| **A · faculty-first** | the same person, found by vocabulary | `(holonic OR integral OR "conscious entrepreneur" OR polymath OR evolutionary) AND (founder OR "ex-founder")` | myth | quiz |
+| **B · partner** | practitioners who serve founders | `("founder coach" OR "executive coach" OR "community builder" OR "agency founder") AND (founders OR entrepreneurs)` | myth, peer | the screening question, then a call. **No pitch, no ladder** |
+| **C · operator** | studio / program at altitude | `("venture studio" OR "startup studio" OR "founder program" OR accelerator) AND ("managing partner" OR director OR founder)` | myth, peer at altitude | conversation about infrastructure and thesis |
+| **watch** | costly public signal | `(cannabis OR "plant medicine") AND founder` | none. Open the profile, watch them speak, decide | Sasha's judgment only |
+
+The tool holds these verbatim in `commercial-tools/app/config.json` and they stay in sync with this table.
+
+### 0.3 The automation question — unresolved, needs Sasha's call
+
+**§2 of this file says: "Never use automation tools on the account. Everything manual."** The Commercial OS sends connection requests and messages through the ConnectSafely connector. That is a direct contradiction between the canonical safety rule and the shipped tool, and it should be decided rather than left ambient.
+
+The tool's current posture sits between the two: every send is human-reviewed and human-triggered, one at a time, with a confirm step, and it never auto-sends or bulk-sends. That is closer to §11's co-pilot runbook ("agent never sends, SASHA clicks send") than to bulk automation, but it is not the same as "everything manual" either, because the requests leave through an API rather than the browser UI.
+
+Three options, and it is Sasha's decision:
+1. **Keep as-is** and rewrite §2 to say what is actually true: no bulk automation, API-assisted sends with per-message human confirmation, inside the 15/day and 70/week caps.
+2. **Drafting only** — the tool scores, routes and drafts; every send happens by hand in the LinkedIn UI. Slowest, zero account risk.
+3. **Connector for messages to existing connections only**, hand-sent invites. Invites carry most of the account risk; messages to 1st-degree carry much less.
+
+*No sends should go out through the connector until this is decided.*
+
+---
+
 ## 1. Daily rhythm (fixed schedule, not memory)
 
 | Time | Block | What happens |
@@ -293,6 +335,56 @@ No follow-up 1/2 (single post, not a DM thread). Engage with comments in each sw
 - Open each post's likers and commenters.
 - Whoever ALSO carries a threshold badge on their profile (career break, "fractional," Big4 title) gets an invite that references the post: "saw your comment on X's post about..." This beats pure cold, same daily budget.
 - Also join 1-2 Fractional-executive LinkedIn groups and comment there before ever DMing anyone from the group.
+
+---
+
+## 3b. The CRM ↔ Commercial OS contract (Day 169)
+
+> **Where the CRM lives, since it goes missing regularly:** `docs/02-strategy/strategic_crm_outreach_tracker.md`. It is **gitignored on purpose** (`.gitignore` line 49, "Private data — lives in evolver-private-ledger"), so it never appears on GitHub or in any git-based view. It is local-only, and the sibling repo is `~/evolver-private-ledger`. If it looks like it vanished, it did not; it is simply invisible to anything reading the public repo.
+
+### Division of labour
+
+| | Commercial OS | CRM & Offer Ledger |
+|---|---|---|
+| **Holds** | strangers, leads, scores, drafts, sends, replies | relationships, offers, money, decisions, history |
+| **Reading tiers** | Tier 0 (lead sheet), Tier 1 (quiz), Tier 2 (ripeness read) | **Tier 3 — ground truth** |
+| **Lifespan** | a person is in it until they become a relationship | permanent |
+| **Storage** | browser-local + Supabase | one private markdown file |
+| **Truth about revenue** | never | **always** |
+
+**The rule in one line: the tool owns acquisition, the CRM owns the relationship, and nothing about money is ever true in the tool.**
+
+### Downstream — tool to CRM (every touch)
+
+1. A send, a reply, or an outcome happens in the tool.
+2. It is reported to Claude per §8, the clerk protocol, unchanged.
+3. Pulse writes: the CRM Master Table row, the Offer Ledger row **if an offer was made**, and the pulse card.
+4. **The pulse card names the stream** (`client_founder_in_transition` · `practitioner_partners` · `operators_at_altitude` · `not_yet` · `watch`). "Peer" alone is not a classification, and the two vocabularies must stay identical or reconciliation silently drifts.
+
+A person graduates out of the tool's active list the moment they have a CRM row. After that the CRM leads and the tool holds only the acquisition history.
+
+### Upstream — CRM to tool (the loop that makes the tool learn)
+
+The Offer Ledger is the only place where "what actually happened" is recorded. That makes it the **source of every Tier-3 label**, and therefore the training set for everything the tool guesses:
+
+- Which faculty markers preceded a real sale, and which only produced pleasant conversations. This is step 4 of the marker derivation, and without the Ledger it cannot run.
+- Which ripeness shapes converted, feeding the retrodiction bench (`docs/specs/commercial-os/scope_of_work.md` §5).
+- Which brief version produced ripe people, since every send is stamped with one.
+
+**Without this direction, the tool is a guessing machine that never finds out if it was right.** The Ledger is what closes the loop.
+
+### The privacy law, non-negotiable
+
+CRM content is private client data and stays that way.
+
+- Never paste CRM rows, names, or amounts into `config.json`, the spec, the roadmap, or anything else in the public repo.
+- Tool exports (`learnings.json`, the ledger export) stay on the local machine.
+- What may cross into the public repo is **aggregate and anonymous only**: marker yield rates, gate-open rates, class distributions. Never a person.
+- The existing `scripts/emit-crm-snapshot.mjs` scrubbing pipeline is the pattern; anything new follows it.
+
+### Missing piece, worth building (CO2 scope)
+
+The tool should emit a **pulse-ready block** per person, copy-pasteable straight into chat: name, profile URL, stream, class, what was sent, reply verbatim, response type. Today reporting is retyped by hand, which is the actual reason logging lags. One button removes the friction that breaks the loop.
 
 ---
 

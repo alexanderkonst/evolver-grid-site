@@ -34,14 +34,11 @@
         "freelance"
       ],
       "terms": [
-        "former founder sabbatical",
-        "ex-founder career break",
-        "founder exploring what's next",
-        "founder between ventures",
-        "founder next chapter",
-        "fractional executive founder",
-        "portfolio career independent operator",
-        "solopreneur founder independent"
+        "(\"sabbatical\" OR \"career break\") AND (founder OR \"ex-founder\")",
+        "(\"between ventures\" OR \"next chapter\" OR \"former founder\") AND founder",
+        "(holonic OR integral OR \"conscious entrepreneur\" OR polymath OR evolutionary) AND (founder OR \"ex-founder\")",
+        "\"fractional\" AND (CMO OR COO OR CTO OR CPO)",
+        "\"ex-founder\" AND (advisor OR angel)"
       ]
     },
     {
@@ -71,12 +68,9 @@
         "advisor"
       ],
       "terms": [
-        "founder coach independent",
-        "executive coach founders",
-        "founder community builder",
-        "agency founder positioning",
-        "accelerator program lead founders",
-        "studio operator founders"
+        "(\"founder coach\" OR \"executive coach\") AND (founders OR entrepreneurs)",
+        "(\"community builder\" OR \"community founder\") AND founders",
+        "\"agency founder\" AND positioning"
       ]
     },
     {
@@ -102,11 +96,9 @@
         "partner"
       ],
       "terms": [
-        "venture studio managing partner",
-        "startup studio founder",
-        "accelerator director founders",
-        "founder program director",
-        "innovation ecosystem lead partnerships"
+        "(\"venture studio\" OR \"startup studio\") AND (\"managing partner\" OR founder)",
+        "(\"founder program\" OR accelerator) AND director",
+        "\"ecosystem lead\" AND partnerships"
       ]
     }
   ],
@@ -154,8 +146,9 @@
     "not_yet": "HOLD. High transition, low mirror fidelity: the pain is real and the offer is not yet perceivable. Tribe v6.1 calls this a not-yet, not a buyer. Do not send. Set a re-touch date or let be."
   },
   "caps": {
-    "perWeek": 80,
-    "perDay": 20
+    "perWeek": 70,
+    "perDay": 15,
+    "note": "Canonical source: outreach_ops.md §2. Invites 10/day week 1, ramp to 15/day max, hard cap 70/week. The tool follows the ops doc, not the other way round."
   },
   "features": {
     "gmail": false
@@ -240,5 +233,7 @@
       "psilocybin"
     ],
     "action": "surface for manual review"
-  }
+  },
+  "opsSource": "outreach_ops.md §0.2 (campaign set) and §2 (safety caps). Strategy: outreach_strategy_2026-07.md v4.0. Brief: ai_matchmaker_brief.md v3.1 draft.",
+  "crmContract": "outreach_ops.md §3b. The tool owns acquisition; the CRM Offer Ledger (private, gitignored) owns relationships and money and supplies every Tier-3 label. Never paste CRM content into this file."
 }
