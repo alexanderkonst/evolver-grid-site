@@ -3,6 +3,71 @@
 > *© 2026 Alexander Konstantinov · CC BY-NC-SA 4.0*
 > **v3.0 — July 13, 2026 (Day 123).** Roasted via Strategy Iteration Button; Sasha's verdict: strategy holds, run ALL engines as a parallel experiment portfolio. Objections raised in the crash-test are now hypotheses the tests measure, not reasons to pre-kill channels. The single strategy document: bullets only, precise and concise. Execution logs: `tribe_outreach_tracker.md` (reachouts), `strategic_crm_outreach_tracker.md` (relationships).
 
+## v4.0 — August 28, 2026 (Day 169) · the faculty layer and the three streams
+
+> *v3.0 below is preserved verbatim as genealogy. It is a July document and it was right for July. What changed since: Tribe v6.1 replaced "one buyer plus non-buyers" with three streams (Day 166); Technology 138 named the faculty gate and made it readable off a public profile; Technology 139 named the load order and Stream 0; the Quiz replaced the pitch as the cold door; and six Boardy intros produced six good conversations and zero clients, which is what forced the correction.*
+
+### What changed, in one line
+
+**v3.0 ran ten initiatives against five keyword segments, all landing on a free Direction Call. v4.0 runs three streams against one cross, landing on the quiz, with a named class of person we now deliberately decline.**
+
+### The cross replaces the segment list
+
+Segments were keyword buckets. The cross is three factors, multiplied, where a zero on any one is not compensated by the others (Technology 138, gate structure of Technology 123):
+
+> **Lead = Faculty (their own vocabulary) × Identity (income on their own name) × Transition (the form is ending)**
+
+| Old segment (v3.0) | New home | Why |
+|---|---|---|
+| Post-exit / sabbatical founders | **Stream A** | Faculty varies, identity and transition strong. Best-converting shape |
+| Fractional executives | **Stream A** | Income already on their own name; transition often present |
+| Coaches / solopreneurs in limbo | **Stream B**, and the register changes completely | They serve founders. Peers and partners, **never prospects** |
+| Big4 / MBB consultants | **RETIRED** | Employees. Identity axis reads zero: income does not run on their own name, and most are first-chapter. The probe was a fair test and the model now explains why it was never going to convert |
+| Communities / hosts | **Stream B or C** by altitude | "Also works with founders" is B. Running their own vehicle consciously is C |
+| Web3 / conscious builders (parked in v3.0) | **UNPARKED, into the faculty layer** | The vocabulary that got this segment parked as "mixed energy" is now readable as signal. Faculty markers make it filterable rather than diffuse |
+
+### The class we now decline on purpose
+
+**Not-yet: real transition, no faculty.** Someone whose company just ended, genuinely between chapters, in visible pain, actively looking. Every v3.0 filter passes them. They cannot use the work, because using it requires being able to receive an accurate description of yourself and act on it, and that organ is not developed yet.
+
+This is the most expensive class in the funnel, because nothing about the intro looks wrong. v4.0 declines it at the top rather than discovering it on call twelve. Not a judgment of the person: the offer is inaudible from where they stand, and insisting is the failure the whole method exists to avoid.
+
+### The door changed
+
+- **v3.0:** every cold and warm 1:1 route lands on the free Direction Call.
+- **v4.0:** every **cold** route lands on **findyourtoptalent.com/quiz**. The Direction Call is what the quiz routes into, not what a stranger is offered.
+
+Reason: a thin brief makes any channel improvise an angle, and a pitch at the cold door forces Sasha's work to be described in words he did not write. The quiz sorts honestly and says "not your problem" when it isn't. Warm and referred contacts still go straight to the call.
+
+### Registers, now faculty-gated (Technology 138)
+
+| Mode | Works on | Faculty required | Where |
+|---|---|---|---|
+| **Threshold** — the position on the arc and the pain of standing there | anyone in enough pain | none | cold outreach, marketplaces, the quiz, the landing page |
+| **Myth** — the worldview, through likeness and differentiation | **yes, inaudible below the line** | high | contacts carrying faculty markers, partner channels, referrals, matched intros |
+
+The tool selects the register per person from the marker read. This is the operational form of v3.0's "per-segment register" law, with a mechanism under it.
+
+### The instrument stack, ordered
+
+1. **Commercial OS** (`/built-by-you/commercial-os`) — find, score against the cross, route, draft, send, log.
+2. **The quiz** — the cold door and the self-placement instrument.
+3. **The Ripeness Vector** — ten axes, scored after every call, ninety seconds.
+4. **The CRM & Offer Ledger** (private) — the commercial record of truth and the source of Tier-3 outcomes.
+5. **The AI-matchmaker brief** — one file, briefing Boardy and the tool from the same source.
+
+### What carries forward from v3.0 unchanged
+
+The warm base first, before all cold. Host workshops and the community-leader value ladder (§5, §5c). The teen продориентация product as a separate funnel. OMTM as the weekly meter. The copy laws. The Deep-Research Scouting Arm and its law: research scouts only channels already proven manually. Engine 5 (paid EIR / advisor rooms) stays live and now reads as a Stream C surface.
+
+### Open, and Sasha's call
+
+- **Reddit and the noisy bases:** untouched by this revision, still v3.0 terms.
+- **Engine 5** now looks like Stream C outreach rather than a job search. Worth deciding whether it is repositioned as such.
+- **The automation question** (see `outreach_ops.md` §2, Day 169 note) is a live contradiction between the stated safety rule and the shipped tool.
+
+---
+
 ## 0. The strategy, structured
 
 - **What we sell free:** one threshold, two sizes — solo Direction Call (45 min, cap 5/wk) · group workshop (~90 min).
