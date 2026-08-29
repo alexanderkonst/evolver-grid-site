@@ -285,6 +285,36 @@ export type Database = {
           },
         ]
       }
+      commercial_outbound_actions: {
+        Row: {
+          action_type: string
+          completed_at: string | null
+          created_at: string
+          error: string | null
+          id: string
+          status: string
+          target_id: string
+        }
+        Insert: {
+          action_type: string
+          completed_at?: string | null
+          created_at?: string
+          error?: string | null
+          id?: string
+          status?: string
+          target_id: string
+        }
+        Update: {
+          action_type?: string
+          completed_at?: string | null
+          created_at?: string
+          error?: string | null
+          id?: string
+          status?: string
+          target_id?: string
+        }
+        Relationships: []
+      }
       communities: {
         Row: {
           created_at: string | null
@@ -2993,6 +3023,15 @@ export type Database = {
           msg_id: number
           read_ct: number
         }[]
+      }
+      reserve_commercial_outbound_action: {
+        Args: {
+          p_action_type: string
+          p_daily_cap?: number
+          p_target_id: string
+          p_weekly_cap?: number
+        }
+        Returns: string
       }
       revert_expired_entitlement_grants: {
         Args: never
