@@ -9,8 +9,9 @@ const TOOLS = {
   sendMessage: ['POST', '/messaging/conversations/send', 'conversations-send-message']
 };
 
-/** Phase 1 is read only end-to-end: the adapter rejects these with 403 too. */
+/** Read operations exposed by the adapter. */
 export const READ_ONLY_OPS = ['listAccounts', 'accountStatus', 'accountQuota', 'accountPremium', 'searchPeople', 'getConnections', 'listConversations', 'getConversationMessages', 'conversationExists'];
+export const WRITE_OPS = ['sendConnectionRequest', 'sendMessage'];
 
 export class ConnectorError extends Error {
   constructor(message, details = {}) { super(message); this.name = 'ConnectorError'; Object.assign(this, details); }
@@ -77,11 +78,8 @@ export function createAdapterConnector({ adapterUrl, anonKey, getToken = () => n
       return data;
     }, { timeoutMs, retries: 1, retryIf: error => error.name === 'AbortError' || error.status === 502 || /network|fetch/i.test(error.message || '') });
   }
-  const connector = Object.fromEntries(READ_ONLY_OPS.map(op => [op, input => post(op, input).then(result => result.payload ?? {})]));
+  const connector = Object.fromEntries([...READ_ONLY_OPS, ...WRITE_OPS].map(op => [op, input => post(op, input).then(result => result.payload ?? {})]));
   connector.status = () => post('status');
-  for (const blocked of ['sendConnectionRequest', 'sendMessage']) {
-    connector[blocked] = async () => { throw new ConnectorError('Phase 1 is read only. Sending is disabled.'); };
-  }
   return connector;
 }
 
