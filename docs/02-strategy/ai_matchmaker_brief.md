@@ -4,6 +4,8 @@
 >
 > **Law:** [Technology 133 — The Matchmaker Is a Mirror of the Brief](../01-vision/phase_shift_technology_library.md). **Channel operations:** [`distribution_playbook.md` §10](../03-playbooks/distribution_playbook.md). **Who the streams are:** [Tribe v6.1](./unique-businesses/alexanders_unique_business.md).
 >
+> **The LinkedIn channel runs on this same brief.** Commercial OS (`/built-by-you/commercial-os`, source: `commercial-tools/app/config.json`) encodes the three streams, the typology exclusion, and the quiz-instead-of-pitch rule as its targeting and copy. When this file gets a new version, that config gets the same version stamp.
+>
 > **How to use:** the block under "Sendable text" is what goes to the matchmaker, verbatim. Everything else is why it says what it says. Re-brief after every batch of intros; the brief is the only variable under control and it is free to change.
 
 ---

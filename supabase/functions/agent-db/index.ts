@@ -35,32 +35,36 @@ type Operation = "select" | "insert" | "update" | "upsert" | "delete";
 
 // ── ALLOWLIST ──────────────────────────────────────────────────────────────
 // The whole security boundary — all names verified against the live migrations.
-// `delete` is OFF everywhere by default; add it per-table only when you need it.
-// Sensitive tables (roles, money, entitlements) are read-only on purpose.
-// NOTE: changing this map currently needs a redeploy. Ask Fable about the
-// DB-driven allowlist upgrade if you want allowlist edits to be prompt-free too.
+//
+// SAFETY POSTURE: READ-ONLY (2026-08-28). Every table is ["select"] only, so
+// this function physically cannot alter production data. Full read visibility,
+// zero write risk. To enable a write later, add the op(s) to ONE table's array
+// (e.g. transition_quiz_results: ["select", "insert", "update", "upsert"]) and
+// redeploy — deliberately, one table at a time. `delete` should stay off unless
+// truly needed. Ask Fable about the DB-driven allowlist if you want future
+// allowlist edits to be prompt-free too.
 const ALLOWED: Record<string, Operation[]> = {
-  // — read + write: operational data —
-  transition_quiz_results: ["select", "insert", "update", "upsert"],
-  quiz_email_signups:      ["select", "insert"],
-  zog_snapshots:           ["select", "insert", "update", "upsert"],
-  qol_snapshots:           ["select", "insert", "update", "upsert"],
-  canvas_snapshots:        ["select", "insert", "update", "upsert"],
-  founder_corpus_docs:     ["select", "insert", "update", "upsert"],
-  resonance_events:        ["select", "insert"],
-  funnel_events:           ["select", "insert"],
-  action_events:           ["select", "insert"],
-  offer_pulses:            ["select", "insert", "update", "upsert"],
-  pulse_briefs:            ["select", "insert"],
-  session_testimonials:    ["select", "insert", "update"],
-  testimonials:            ["select", "insert", "update"],
-  // — read + write: Founder Cockpit / Equilibrium —
-  equilibrium_state:       ["select", "insert", "update", "upsert"],
-  equilibrium_strategies:  ["select", "insert", "update", "upsert"],
-  equilibrium_workstreams: ["select", "insert", "update", "upsert"],
-  equilibrium_tasks:       ["select", "insert", "update", "upsert"],
-  equilibrium_focus:       ["select", "insert", "update", "upsert"],
-  // — read-only: sensitive (roles, money, entitlements, identity) —
+  // — operational data —
+  transition_quiz_results: ["select"],
+  quiz_email_signups:      ["select"],
+  zog_snapshots:           ["select"],
+  qol_snapshots:           ["select"],
+  canvas_snapshots:        ["select"],
+  founder_corpus_docs:     ["select"],
+  resonance_events:        ["select"],
+  funnel_events:           ["select"],
+  action_events:           ["select"],
+  offer_pulses:            ["select"],
+  pulse_briefs:            ["select"],
+  session_testimonials:    ["select"],
+  testimonials:            ["select"],
+  // — Founder Cockpit / Equilibrium —
+  equilibrium_state:       ["select"],
+  equilibrium_strategies:  ["select"],
+  equilibrium_workstreams: ["select"],
+  equilibrium_tasks:       ["select"],
+  equilibrium_focus:       ["select"],
+  // — sensitive (roles, money, entitlements, identity) —
   game_profiles:           ["select"],
   profiles:                ["select"],
   user_roles:              ["select"],

@@ -2,12 +2,17 @@ import { STAGES, emptyCommercial, normalizeRecord, profileIdFromUrl, renderTempl
 
 const norm = value => String(value || '').toLowerCase().replace(/[’‘]/g, "'").replace(/\s+/g, ' ').trim();
 const roleRules = [
-  [/(founder|co-?founder|owner|chief executive|\bceo\b|managing director|principal)/i, 'decisionMaker', 'decision-maker'],
-  [/(partnerships?|business development|alliances?|ecosystem lead)/i, 'partnerships', 'partnership owner'],
+  [/(founder|co-?founder|owner|chief executive|\bceo\b|managing director|managing partner|principal)/i, 'decisionMaker', 'decision-maker'],
+  [/(venture studio|startup studio|accelerator|community (founder|builder|director)|partnerships?|business development|alliances?|ecosystem lead)/i, 'partnerships', 'holds a room of founders'],
+  [/(independent|self-?employed|fractional|portfolio career|solopreneur|freelance|own practice)/i, 'ownName', 'income on their own name'],
   [/(general manager|\bgm\b|director|head of|\bvp\b|vice president)/i, 'seniorLeader', 'senior leader']
 ];
 const penaltyRe = /(open\s*to\s*work|student|intern(ship)?|recruiter|talent acquisition)/i;
-const transitionRe = /(career break|sabbatical|next chapter|in transition|exploring|reinventing|pivoting|former|ex-founder|post-exit)/i;
+const transitionRe = /(career break|sabbatical|next chapter|in transition|between ventures|exploring|reinventing|pivoting|former|ex-founder|post-exit|what's next|rebuilding)/i;
+// "Three or four real things going and cannot say what makes them one thing" — the deficit, read off a headline.
+const severalThings = (headline = '') => (String(headline).match(/[·|•]|\s\+\s|\s&\s/g) || []).length >= 2;
+// Brief v3.0: exclusions are config data, not code, so a new one is a config edit and not a deploy.
+const excludedBy = (text, config) => (config.exclusions || []).find(rule => new RegExp(rule.pattern, 'i').test(text));
 const marketRe = /(united states|\busa\b|canada|united kingdom|\buk\b|australia|singapore|dubai|new york|san francisco|london|toronto|sydney|melbourne)/i;
 export const OUTCOMES = ['awaiting', 'replied', 'positive', 'negative', 'no_reply'];
 
@@ -21,9 +26,12 @@ export function scorePerson(person, foundByIcpId, config, region = 'Global') {
   const degree = norm(person.connectionDegree), reach = degree.includes('2nd') ? w.reach2nd : degree.includes('1st') ? w.reach1st : w.reachOther;
   const regionPoints = region === 'Global' ? w.globalRegion : norm(person.location).includes(norm(region)) ? w.regionMatch : w.regionMiss;
   const transition = transitionRe.test(text) ? w.transition : 0, market = region === 'Global' && marketRe.test(person.location || '') ? w.topMarket : 0;
+  const several = severalThings(person.headline || person.currentPosition || '') ? (w.severalThings || 0) : 0;
   const penalty = (person.isOpenToWork || penaltyRe.test(text)) ? w.penalty : 0;
+  const rule = excludedBy(text, config);
+  const exclusion = rule ? (w.exclusion || -45) : 0;
   const rolePoints = role ? w[role[1]] : w.roleUnclear;
-  return { score: Math.max(0, Math.min(100, best.points + rolePoints + reach + regionPoints + transition + market + penalty)), icpId: best.icp.id, icpName: best.icp.name, reason: [best.match, role?.[2] || 'role unclear', transition ? 'visible transition' : ''].filter(Boolean).join(' · '), breakdown: { keyword: best.points, role: rolePoints, reach, region: regionPoints, transition, market, penalty } };
+  return { score: Math.max(0, Math.min(100, best.points + rolePoints + reach + regionPoints + transition + several + market + penalty + exclusion)), icpId: best.icp.id, icpName: best.icp.name, streamRole: best.icp.relationship || 'client', excluded: Boolean(rule), reason: [rule ? `EXCLUDED · ${rule.label}` : '', best.match, role?.[2] || 'role unclear', transition ? 'visible transition' : '', several ? 'several things going' : ''].filter(Boolean).join(' · '), breakdown: { keyword: best.points, role: rolePoints, reach, region: regionPoints, transition, several, market, penalty, exclusion } };
 }
 
 export function canonicalPerson(raw, foundByIcpId, searchTerm, config, region = 'Global', mechanism = 'icp_search') {

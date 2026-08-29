@@ -7,10 +7,31 @@ import { canonicalPerson, conversationState, advanceStage, suggestOutcome, learn
 const config = JSON.parse(await fs.readFile(new URL('./config.json', import.meta.url)));
 
 test('config-driven scoring uses live open-to-work penalty', () => {
-  const strong = canonicalPerson({ profileUrn: 'one', firstName: 'Ada', headline: 'Former Founder · Next chapter', connectionDegree: '2nd', location: 'London' }, 'post_exit_founders', 'former founder', config);
-  const penalized = canonicalPerson({ profileUrn: 'two', firstName: 'R', headline: 'Recruiter', isOpenToWork: true, connectionDegree: '1st' }, 'post_exit_founders', 'founder', config);
+  const strong = canonicalPerson({ profileUrn: 'one', firstName: 'Ada', headline: 'Former Founder · Next chapter', connectionDegree: '2nd', location: 'London' }, 'client_founder_in_transition', 'former founder', config);
+  const penalized = canonicalPerson({ profileUrn: 'two', firstName: 'R', headline: 'Recruiter', isOpenToWork: true, connectionDegree: '1st' }, 'client_founder_in_transition', 'founder', config);
   assert.ok(strong.score > penalized.score);
   assert.equal(penalized.breakdown.penalty, -15);
+});
+
+test('brief v3.0 · deficit signals score up and the typology exclusion sinks a topic-perfect match', () => {
+  const inTransition = canonicalPerson({ profileUrn: 'd1', firstName: 'Ava', headline: "Former Founder · Fractional COO · Exploring what's next", connectionDegree: '2nd', location: 'London' }, 'client_founder_in_transition', 'founder next chapter', config);
+  assert.equal(inTransition.streamRole, 'client');
+  assert.equal(inTransition.breakdown.several, 6);
+  assert.equal(inTransition.breakdown.transition, 12);
+
+  const typologyBuilder = canonicalPerson({ profileUrn: 'd2', firstName: 'Y', headline: 'Founder · building a personality assessment system for teams', connectionDegree: '2nd', location: 'London' }, 'client_founder_in_transition', 'founder', config);
+  assert.equal(typologyBuilder.excluded, true);
+  assert.equal(typologyBuilder.breakdown.exclusion, -45);
+  assert.match(typologyBuilder.reason, /^EXCLUDED/);
+  assert.ok(typologyBuilder.score < inTransition.score);
+});
+
+test('every stream has a template and the client template routes to the quiz instead of pitching', () => {
+  for (const icp of config.icps) assert.ok(config.templates[icp.id], `missing template for ${icp.id}`);
+  const client = config.templates.client_founder_in_transition;
+  assert.match(client, /findyourtoptalent\.com\/quiz/);
+  assert.doesNotMatch(client, /Direction Call/);
+  assert.match(config.templates.practitioner_partners, /what do you uniquely bring/i);
 });
 
 test('direction falls back to owner name and stage never downgrades', () => {
