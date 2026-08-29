@@ -1,4 +1,4 @@
-// Commercial OS ↔ ConnectSafely MCP bridge (Phase 1: READ ONLY).
+// Commercial OS ↔ ConnectSafely MCP bridge.
 //
 // The frontend (static Commercial OS app served at /commercial-os/) never sees
 // the ConnectSafely credential. It posts { op, input } here; this function
@@ -10,12 +10,13 @@
 // Only the Commercial OS owner (admin role) may reach LinkedIn data.
 
 import { corsHeaders } from "npm:@supabase/supabase-js@2/cors";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 import { requireAdmin } from "../_shared/requireAdmin.ts";
 
 const MCP_URL = Deno.env.get("CONNECTSAFELY_MCP_URL") ?? "";
 const PROTOCOL_VERSION = "2025-06-18";
 
-/** Phase 1 allow-list. Every entry is a pure read; nothing here mutates LinkedIn. */
+/** Read allow-list. */
 const READ_TOOLS: Record<string, string> = {
   listAccounts: "list-linkedin-accounts",
   accountStatus: "get-account-status-by-id",
@@ -28,10 +29,13 @@ const READ_TOOLS: Record<string, string> = {
   conversationExists: "conversation-exists",
 };
 
-/** Explicitly rejected even if the frontend asks — Phase 1 is read only. */
-const MUTATION_OPS = new Set([
-  "sendConnectionRequest",
-  "sendMessage",
+const WRITE_TOOLS: Record<string, { tool: string; actionType: "connection_request" | "message" }> = {
+  sendConnectionRequest: { tool: "send-connection-request", actionType: "connection_request" },
+  sendMessage: { tool: "conversations-send-message", actionType: "message" },
+};
+
+/** Mutations outside the two controlled outreach actions stay forbidden. */
+const BLOCKED_MUTATION_OPS = new Set([
   "conversationsSendMessage",
   "createPost",
   "commentOnPost",
@@ -165,7 +169,7 @@ async function status() {
     toolsDiscovered: 0,
     readToolsAvailable: [] as string[],
     ready: false,
-    writesEnabled: false,
+    writesEnabled: true,
     gmailEnabled: false,
     error: null as string | null,
   };
@@ -189,6 +193,24 @@ async function status() {
   return report;
 }
 
+function outboundTarget(input: Record<string, unknown>): string {
+  return String(input.conversationUrn || input.recipientProfileUrn || input.recipientProfileId || input.profileUrn || "").trim();
+}
+
+async function reserveOutbound(actionType: "connection_request" | "message", targetId: string): Promise<string> {
+  const url = Deno.env.get("SUPABASE_URL") ?? "";
+  const key = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
+  const admin = createClient(url, key);
+  const { data, error } = await admin.rpc("reserve_commercial_outbound_action", { p_action_type: actionType, p_target_id: targetId, p_daily_cap: 20, p_weekly_cap: 80 });
+  if (error || !data) throw new Error(sanitize(error?.message || "Could not reserve outbound action"));
+  return String(data);
+}
+
+async function finishOutbound(id: string, statusValue: "sent" | "failed", error?: string) {
+  const admin = createClient(Deno.env.get("SUPABASE_URL") ?? "", Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "");
+  await admin.from("commercial_outbound_actions").update({ status: statusValue, completed_at: new Date().toISOString(), error: error ? sanitize(error) : null }).eq("id", id);
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
@@ -203,20 +225,31 @@ Deno.serve(async (req) => {
 
   if (!op || op === "status") return json(await status());
 
-  if (MUTATION_OPS.has(op) || /send|create|post|delete|withdraw|react|follow|comment|endorse|upload|repost/i.test(op)) {
-    return json({ error: "Phase 1 is read only. Write operations are disabled server-side." }, 403);
+  if (BLOCKED_MUTATION_OPS.has(op) || (!WRITE_TOOLS[op] && /send|create|post|delete|withdraw|react|follow|comment|endorse|upload|repost/i.test(op))) {
+    return json({ error: "This write operation is not permitted." }, 403);
   }
 
-  const tool = READ_TOOLS[op];
+  const write = WRITE_TOOLS[op];
+  const tool = READ_TOOLS[op] || write?.tool;
   if (!tool) return json({ error: `Unsupported operation: ${op}` }, 403);
 
   if (!MCP_URL) return json({ error: "CONNECTSAFELY_MCP_URL is not configured" }, 503);
 
+  let reservationId: string | null = null;
   try {
+    if (write) {
+      if (body.input?.confirmed !== true) return json({ error: "Explicit confirmation is required for every outbound action." }, 400);
+      const target = outboundTarget(body.input ?? {});
+      if (!target) return json({ error: "A verified LinkedIn target is required." }, 400);
+      const safeInput = { ...(body.input ?? {}) }; delete safeInput.confirmed; body.input = safeInput;
+      reservationId = await reserveOutbound(write.actionType, target);
+    }
     const payload = await callTool(tool, body.input ?? {});
+    if (reservationId) await finishOutbound(reservationId, "sent");
     return json({ ok: true, op, tool, payload });
   } catch (error) {
     const message = sanitize(error instanceof Error ? error.message : error);
+    if (reservationId) await finishOutbound(reservationId, "failed", message);
     console.error("connectsafely-mcp failure", { op, tool, message });
     return json({ error: message, op, tool }, 502);
   }
