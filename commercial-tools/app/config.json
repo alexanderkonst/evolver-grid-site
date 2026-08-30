@@ -38,7 +38,17 @@
         "(\"between ventures\" OR \"next chapter\" OR \"former founder\") AND founder",
         "(holonic OR integral OR \"conscious entrepreneur\" OR polymath OR evolutionary) AND (founder OR \"ex-founder\")",
         "\"fractional\" AND (CMO OR COO OR CTO OR CPO)",
-        "\"ex-founder\" AND (advisor OR angel)"
+        "\"ex-founder\" AND (advisor OR angel)",
+        "(\"conscious tech\" OR \"conscious deep tech\") AND (founder OR building)",
+        "(visionary OR \"systems architect\" OR \"system architect\") AND founder",
+        "(\"what's next\" OR \"figuring out\") AND (\"former founder\" OR \"ex-founder\")",
+        "(regenerative OR sovereignty OR \"new earth\") AND (founder OR entrepreneur)",
+        "(\"stepped back\" OR \"wound down\" OR \"shut down\") AND founder",
+        "(polymath OR \"multi-passionate\") AND (entrepreneur OR founder)",
+        "\"integral\" AND (entrepreneur OR coach OR founder)",
+        "(web3 OR decentralized OR DAO) AND (\"ex-founder\" OR \"between\")",
+        "\"solopreneur\" AND (\"next chapter\" OR pivoting OR reinventing)",
+        "(\"portfolio career\" OR \"independent operator\") AND founder"
       ]
     },
     {
@@ -70,7 +80,11 @@
       "terms": [
         "(\"founder coach\" OR \"executive coach\") AND (founders OR entrepreneurs)",
         "(\"community builder\" OR \"community founder\") AND founders",
-        "\"agency founder\" AND positioning"
+        "\"agency founder\" AND positioning",
+        "(conscious OR integral OR holonic) AND (coach OR facilitator)",
+        "(\"leadership coach\" OR \"transformational coach\") AND entrepreneurs",
+        "\"program director\" AND (founders OR entrepreneurship)",
+        "(mentor OR advisor) AND (\"zone of genius\" OR uniqueness)"
       ]
     },
     {
@@ -98,7 +112,10 @@
       "terms": [
         "(\"venture studio\" OR \"startup studio\") AND (\"managing partner\" OR founder)",
         "(\"founder program\" OR accelerator) AND director",
-        "\"ecosystem lead\" AND partnerships"
+        "\"ecosystem lead\" AND partnerships",
+        "(\"founder collective\" OR \"founders collective\") AND (partner OR founder)",
+        "(conscious OR regenerative OR evolutionary) AND \"venture studio\"",
+        "\"incubator\" AND (\"managing director\" OR \"programme director\")"
       ]
     }
   ],
@@ -234,8 +251,20 @@
       "ayahuasca",
       "psilocybin"
     ],
-    "action": "surface for manual review"
+    "action": "surface for manual review",
+    "searchTerms": [
+      "(cannabis OR \"plant medicine\") AND (founder OR entrepreneur)",
+      "(\"psychedelic\" OR psilocybin OR entheogen) AND (founder OR \"venture\" OR builder)",
+      "\"plant medicine\" AND (facilitator OR guide OR practitioner)",
+      "(ayahuasca OR \"sacred medicine\") AND (founder OR community)"
+    ],
+    "howToRun": "These are not in the stream dropdown by design: the watch lane is judged by Sasha, not scored. Paste one into the search-term field, run it, then open the profiles the tool sorts to the top."
   },
   "opsSource": "outreach_ops.md §0.2 (campaign set) and §2 (safety caps). Strategy: outreach_strategy_2026-07.md v4.0. Brief: ai_matchmaker_brief.md v3.1 draft.",
-  "crmContract": "outreach_ops.md §3b. The tool owns acquisition; the CRM Offer Ledger (private, gitignored) owns relationships and money and supplies every Tier-3 label. Never paste CRM content into this file."
+  "crmContract": "outreach_ops.md §3b. The tool owns acquisition; the CRM Offer Ledger (private, gitignored) owns relationships and money and supplies every Tier-3 label. Never paste CRM content into this file.",
+  "queryRotation": {
+    "note": "Per-query exhaustion is the real ceiling, not pool size. LinkedIn returns roughly 100 results per query without Sales Navigator, and a repeat run returns the same people. Rotate: run 4-6 terms per sitting, not all of them, and watch the Learnings tab by search term. When a term's new-people count collapses, it is spent; retire it and add a variant.",
+    "termsPerSitting": "4-6",
+    "retireWhen": "new-people yield on a re-run drops below ~20% of its first run"
+  }
 }
