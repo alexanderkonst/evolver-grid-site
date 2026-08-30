@@ -19,7 +19,7 @@
 | **§3.5 Big4 / MBB** | active, 25 invites | **RETIRED.** Employees: income does not run on their own name, so the Identity factor reads zero. Copy preserved as genealogy |
 | **§3.4 Coaches** | pitched a Direction Call | **Stream B, register inverted.** Peers and partners, never prospects. The screening question replaces the pitch |
 | **Prospect scorecard** | 5-point checklist, send at ≥4/5 | **The cross**, computed by the tool: faculty × identity × transition, plus the not-yet block. The 5-point list remains a useful manual fallback when the tool is not open |
-| **Invite caps** | 10-15/day, hard cap 70/week | unchanged and **binding**. Tool config aligned down to match (was 20/day, 80/week) |
+| **Invite caps** | 10-15/day, hard cap 70/week | **20/day, 80/week** (ramp 12/day week 1). See §2 v2.0. Acceptance rate is the guard, floor 35% |
 
 ### 0.2 The campaign set, remapped
 
@@ -33,18 +33,15 @@
 
 The tool holds these verbatim in `commercial-tools/app/config.json` and they stay in sync with this table.
 
-### 0.3 The automation question — unresolved, needs Sasha's call
+### 0.3 The automation question — RESOLVED, Day 169
 
-**§2 of this file says: "Never use automation tools on the account. Everything manual."** The Commercial OS sends connection requests and messages through the ConnectSafely connector. That is a direct contradiction between the canonical safety rule and the shipped tool, and it should be decided rather than left ambient.
+§2 said "never use automation tools on the account." The Commercial OS sends through the ConnectSafely connector. The contradiction was real and is now settled.
 
-The tool's current posture sits between the two: every send is human-reviewed and human-triggered, one at a time, with a confirm step, and it never auto-sends or bulk-sends. That is closer to §11's co-pilot runbook ("agent never sends, SASHA clicks send") than to bulk automation, but it is not the same as "everything manual" either, because the requests leave through an API rather than the browser UI.
+**Sasha's call: option 1.** The tool's posture is the wiser one and §2 was describing intent rather than practice. §2 is rewritten to say what is actually true: no bulk automation, no unattended sequences, API-assisted sends with per-message human confirmation, inside the caps.
 
-Three options, and it is Sasha's decision:
-1. **Keep as-is** and rewrite §2 to say what is actually true: no bulk automation, API-assisted sends with per-message human confirmation, inside the 15/day and 70/week caps.
-2. **Drafting only** — the tool scores, routes and drafts; every send happens by hand in the LinkedIn UI. Slowest, zero account risk.
-3. **Connector for messages to existing connections only**, hand-sent invites. Invites carry most of the account risk; messages to 1st-degree carry much less.
+**Caps set at 20/day, 80/week**, ramping at 12/day the first week on new copy. The weekly binds before the daily. Acceptance rate, not volume, is the health signal, with a 35% floor surfaced in the tool.
 
-*No sends should go out through the connector until this is decided.*
+Options not taken: drafting-only (slowest, zero risk) and connector-for-1st-degree-messages-only. Either remains available if account health ever warrants stepping down.
 
 ---
 
@@ -61,12 +58,31 @@ Three options, and it is Sasha's decision:
 
 ---
 
-## 2. LinkedIn safety budget
+## 2. LinkedIn safety budget (v2.0, Day 169 — supersedes the July version below)
 
-- Invites: **10/day week 1**, ramp to **15/day max** after. Hard cap **70/week**.
-- Messages to existing connections: **≤30/day**.
-- **Never use automation tools on the account.** Everything manual, week 1. Week 2: supervised Chrome-assist only, still no bulk automation (ToS/account risk).
-- Spread sends across the day, not one burst — mix into the response sweeps, don't dump 15 invites in five minutes.
+**The posture, stated accurately.** Every send is reviewed and triggered by a human, one at a time, with a confirm step. Nothing is queued in bulk, nothing fires on a schedule, and no sequence runs unattended. Sends leave through the ConnectSafely connector rather than the browser UI, which is the one respect in which this is not "everything manual." It is the §11 co-pilot rule with an API underneath it: **the agent scores, routes and drafts; Sasha decides and sends.**
+
+*This replaces the July line "never use automation tools on the account," which described the intent correctly and the practice inaccurately once the tool existed. Sasha's call, Day 169.*
+
+**Budget:**
+- Invites: **ramp at 12/day the first week on new copy**, then **20/day max**. Weekly ceiling **80**.
+- **The weekly binds before the daily.** Four days at 20 spends the whole week. 80 sits under LinkedIn's observed ~100/week platform limit with headroom; that limit is unpublished and runs lower on newer or less-active accounts.
+- Messages to existing connections: **≤30/day**. Far lower account risk than invites.
+- Invite note ≤300 characters.
+- Spread sends across the day. Never one burst, never machine-even intervals. Mix them into the response sweeps.
+
+**The real health metric is acceptance rate, not volume.** Restrictions come from low acceptance and "I don't know this person" reports far more than from raw count. The tool shows accept rate on requests older than 7 days and warns below **35%**.
+
+> **Below 35%: cut volume, do not push.** A falling accept rate means the targeting is wrong, and sending more of a wrong thing is what gets accounts restricted. Fix the cross or the copy first.
+
+**Why 80 is safer now than 70 was in July:** the cross (faculty × identity × transition) sends to far better-matched people. Volume with good targeting is a smaller risk than lower volume with keyword targeting. The likely binding constraint is not the cap at all — it is how many cross-qualified people the searches actually surface, which may well be fewer than 80 a week.
+
+### July version, preserved as genealogy
+
+- Invites: 10/day week 1, ramp to 15/day max. Hard cap 70/week.
+- Messages to existing connections: ≤30/day.
+- Never use automation tools on the account. Everything manual, week 1. Week 2: supervised Chrome-assist only, still no bulk automation (ToS/account risk).
+- Spread sends across the day, not one burst.
 - Invite note ≤300 characters.
 
 ---
