@@ -10,7 +10,7 @@
 
 ---
 
-## v3.1 — August 28, 2026 (Day 169) · DRAFT, awaiting Sasha's carve
+## v3.1 — August 28, 2026 (Day 169) · awaiting Sasha's carve, otherwise complete
 
 **What changed and why.** v3.0 told the matchmaker who to *find*. It never told it who to *avoid*, and the class that costs the most is the one a good matchmaker will send most confidently: someone in a real transition who cannot yet receive an accurate description of themselves. Every one of those is a good conversation and a lost afternoon, and nothing in the intro looks wrong.
 
@@ -51,6 +51,12 @@ Plus one flag that is deliberately not a judgment.
 >
 > **One flag, and I do not want you to judge it.** If someone works publicly in cannabis or plant medicine, show me regardless of everything above. Saying that under your own name on LinkedIn costs something, and I want to see who is willing to pay it. I will decide what it means.
 >
+> **Do not try to read their inner state.** Surface people on what is observable: the words they use about themselves, whether income runs on their own name, whether the form they were in is ending. I do the readiness screen myself after the intro. Guessing at "ripe" or "not ripe" from a profile is my job, not yours, and the three signals above are the whole of what I need you to see.
+>
+> **On volume: send more, not fewer.** The three signals are a sorting rule, not a scarcity rule. There are far more of these people than either of us has been finding, and the first six intros were too few to learn from. I would rather score twenty and be wrong about twelve than receive three perfect ones a month.
+>
+> **Studio and program operators are actively wanted.** Last brief called them rare and said flag one when you see it. Sharper now: I want them. Not as a session, as infrastructure and thesis. If someone runs a venture studio, an accelerator or a founder program and runs it consciously, that is a conversation I am ready for, and I have spent twenty years inside collectives of exactly that shape.
+>
 > **Still true from last time:** exclude anyone building their own typology, personality or human-categorization system. Use findyourtoptalent.com/quiz rather than my offer when you describe me. Practitioners who serve founders are peers and partners, never prospects, and the question that sorts them is what they uniquely bring, not what their method is.
 
 ---
@@ -66,7 +72,7 @@ Plus one flag that is deliberately not a judgment.
 | Tier-3 words sent under an explicit test flag | Sasha's own caution: impact and social entrepreneurs "may be too rational still. Or aspirational." Aspiration is not fidelity |
 | The cannabis flag with judgment withheld | A costly public signal reads on Consent (Technology 123, axis 7), not on faculty. Different axis, so a different instruction |
 
-**Draft status.** Written by Fable, Day 169, from Technology 138 and the Commercial OS build of the same day. Sasha carves the final wording before this is sent. The tool's `config.json` carries the same marker set, so both channels move together.
+**Status.** Written by Fable, Day 169, from Technology 138 and the Commercial OS build of the same day; revised the same evening to add the observable-signals-only instruction, the send-more-not-fewer correction, and the sharpened wanting of Stream C (Sasha has been served inside collectives of that shape repeatedly — the perception gate is long passed, only the commercial gate is open). Sasha carves the final wording before this is sent. The tool's `config.json` carries the same marker set, so both channels move together.
 
 ---
 

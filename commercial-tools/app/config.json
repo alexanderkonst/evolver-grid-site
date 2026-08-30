@@ -1,5 +1,5 @@
 {
-  "briefVersion": "ai_matchmaker_brief.md v3.1 draft (Day 169, 2026-08-28)",
+  "briefVersion": "ai_matchmaker_brief.md v3.1 (Day 169, 2026-08-28)",
   "briefNote": "Three streams, held separately. The client is described by a deficit, not a topic. Topic-similarity matching returns peers, and peers have already solved their own version of it. A qualifier link replaces the pitch: the tool routes, the quiz sorts.",
   "icps": [
     {
