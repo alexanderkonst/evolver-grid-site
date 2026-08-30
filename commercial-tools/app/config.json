@@ -146,9 +146,11 @@
     "not_yet": "HOLD. High transition, low mirror fidelity: the pain is real and the offer is not yet perceivable. Tribe v6.1 calls this a not-yet, not a buyer. Do not send. Set a re-touch date or let be."
   },
   "caps": {
-    "perWeek": 70,
-    "perDay": 15,
-    "note": "Canonical source: outreach_ops.md §2. Invites 10/day week 1, ramp to 15/day max, hard cap 70/week. The tool follows the ops doc, not the other way round."
+    "perWeek": 80,
+    "perDay": 20,
+    "acceptRateFloor": 0.35,
+    "rampFirstWeek": 12,
+    "note": "Day 169, Sasha's call. 80/week sits under LinkedIn's observed ~100/week platform ceiling; the weekly binds before the daily (4 days at 20 spends the week). Real risk is acceptance rate, not volume: below acceptRateFloor, cut volume rather than push. Ramp the first week on new copy (rampFirstWeek/day) before running at 20."
   },
   "features": {
     "gmail": false
