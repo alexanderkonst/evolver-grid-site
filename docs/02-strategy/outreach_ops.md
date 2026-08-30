@@ -43,6 +43,39 @@ The tool holds these verbatim in `commercial-tools/app/config.json` and they sta
 
 Options not taken: drafting-only (slowest, zero risk) and connector-for-1st-degree-messages-only. Either remains available if account health ever warrants stepping down.
 
+### 0.4 First-session runbook — start here when you sit down
+
+*Written Day 169 so the first real session is execution, not decisions. Roughly 90 minutes.*
+
+**Before anything: confirm the tool is running today's build.** Open `https://findyourtoptalent.com/commercial-os/config.json` and check that `briefVersion` says **v3.1** and that `mfLexicon` is present. If it still says v3.0, the deploy has not landed and the tool will score on the old keyword model. Redeploy first; everything below depends on it.
+
+**Step 1 · Connect (once).** Open `/built-by-you/commercial-os`. Settings → connector mode, confirm the account is listed and the accountId resolves. If the connector reports not-configured or unreachable, stop: nothing else works.
+
+**Step 2 · Crawl your own connections first (before any cold search).** "Crawl 60 connections", repeat until done. Reason: your existing network gets scored by the cross for free, costs zero invite budget, and 1st-degree messages carry a fraction of the account risk of invites. **The first bullseye is more likely already in your network than in a cold search.**
+
+**Step 3 · Run 4-6 search terms, not all of them.** Pick from one stream per sitting. Terms live in `config.json` and mirror §0.2. Query exhaustion, not pool size, is the real ceiling: a repeat run of a spent term returns the same people.
+
+**Step 4 · Read the list by class, not by score.** The table sorts by readiness: watch → bullseye → peer_partner → operator → peer → not_yet → cold. Only the first four are actionable today.
+
+- **watch** — open the profile, watch them speak, decide yourself. No template.
+- **bullseye** — the client. Quiz door.
+- **peer_partner** — peer register, the screening question, no ladder and no pitch.
+- **operator** — infrastructure and thesis, not a session.
+- **not_yet** — the tool blocks the door on purpose. Leave it blocked.
+
+**Step 5 · Write the first ten yourself.** The templates are scaffolds and the register split is untested. Your own first sends are the calibration set the tool learns from; the "promote winner" button exists to pull your best phrasing back into the template once a thread goes positive.
+
+**Step 6 · Pace it.** 12/day the first week while the copy is new. Spread across the day, never machine-even intervals. Weekly ceiling 80, and the weekly binds before the daily.
+
+**Step 7 · Report to Pulse the same evening** (§8). Name the stream in every card. That is what feeds the Offer Ledger, which is the only source of ground truth the tool ever gets back.
+
+**What to bring back after the first batch** — these three numbers are the first real evidence:
+1. **Accept rate** (the tool computes it after 7 days). Below 35%, cut volume and fix targeting.
+2. **Class distribution** — how many bullseye vs peer vs not_yet the searches actually returned. This tests whether the cross discriminates.
+3. **Which marker terms produced which class.** This is step 4 of the marker derivation and the only thing that tells you whether the sixteen words earned their weights.
+
+---
+
 ---
 
 ## 1. Daily rhythm (fixed schedule, not memory)
