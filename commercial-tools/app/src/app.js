@@ -6,6 +6,7 @@ const $ = selector => document.querySelector(selector), esc = value => String(va
 const initials = name => String(name || '?').split(/\s+/).slice(0,2).map(x => x[0] || '').join('').toUpperCase();
 const store = createStore(localStorage, error => notice(error.message, true));
 let connector = null, busy = false;
+let lastConnectorError = null;
 
 /**
  * Owner identity bridge. The Commercial OS runs inside the signed-in
@@ -34,14 +35,17 @@ function notice(text, error = false) { $('#notice').textContent = text; $('#noti
 function findPerson(urn) { return store.state.people.find(p => p.profileUrn === urn); }
 function actionCountSince(floor) { return store.state.actions.filter(a => ['connect','message'].includes(a.type) && ['queued','sent','sending'].includes(a.status) && +new Date(a.queuedAt || a.sentAt) >= floor).length; }
 // Acceptance rate is the account-health signal that matters; raw volume is not.
-// A request is counted as accepted once that person shows up as a 1st-degree connection.
+// Sends live in state.actions (type 'connect'), and a crawl advances an accepted
+// person's stage past connection_requested, which is how acceptance is detected.
+const ACCEPTED_STAGES = ['connected', 'contacted', 'replied', 'call', 'offered', 'paid', 'delivered', 'expanded'];
 function acceptanceRate(minAgeDays = 7) {
   const cutoff = Date.now() - minAgeDays * 86400000;
-  const mature = store.state.requests.filter(r => r.status === 'sent' && +new Date(r.sentAt || r.queuedAt) <= cutoff);
+  const mature = (store.state.actions || []).filter(a => a.type === 'connect' && a.status === 'sent' && +new Date(a.sentAt || a.queuedAt) <= cutoff);
   if (!mature.length) return null;
-  const accepted = mature.filter(r => {
-    const p = store.state.people.find(x => x.profileUrn === r.profileUrn);
-    return p && String(p.connectionDegree || '').includes('1st');
+  const people = store.state.people || [];
+  const accepted = mature.filter(a => {
+    const p = people.find(x => x.profileUrn === a.profileUrn);
+    return Boolean(p) && (ACCEPTED_STAGES.includes(p.commercial?.stage) || String(p.connectionDegree || '').includes('1st'));
   }).length;
   return { rate: accepted / mature.length, accepted, of: mature.length };
 }
@@ -52,7 +56,7 @@ async function reconnect(show = true) {
   connector = null; const s = store.state.settings;
   try {
     connector = await createConnector(s, { getToken });
-    if (connector.status) { const health = await connector.status(); if (!health.configured) { setPill('Not configured'); notice('ConnectSafely is not configured on the server yet.', true); connector = null; return; } if (!health.reachable) { setPill('Unreachable'); notice(`ConnectSafely is unreachable: ${health.error || 'no response'}`, true); connector = null; return; } }
+    if (connector.status) { const health = await connector.status(); if (!health.configured) { setPill('Not configured'); lastConnectorError = 'ConnectSafely is not configured on the server yet (CONNECTSAFELY_MCP_URL missing).'; notice(lastConnectorError, true); connector = null; return; } if (!health.reachable) { setPill('Unreachable'); lastConnectorError = `ConnectSafely is unreachable: ${health.error || 'no response from the upstream MCP endpoint'}`; notice(lastConnectorError, true); connector = null; return; } }
     const accounts = await connector.listAccounts({});
     const list = Array.isArray(accounts) ? accounts : accounts.accounts || accounts.people || [];
     if (!list[0]) throw new Error('No LinkedIn account returned');
@@ -88,7 +92,8 @@ function promote(person) { if (person.outcome !== 'positive' || !person.draft) t
 function render() { const tab = store.state.ui.tab; document.querySelectorAll('[data-tab]').forEach(b => b.classList.toggle('active', b.dataset.tab === tab)); const views = { find: renderFind, connections: renderConnections, relationships: renderRelationships, learnings: renderLearnings }; $('#view').innerHTML = views[tab](); bindView(); }
 const KLASS_ORDER = { bullseye: 0, peer_partner: 1, operator: 2, peer: 3, not_yet: 4, cold: 5 };
 const readinessRank = p => (p.excluded ? 9 : p.watch ? -1 : KLASS_ORDER[p.klass] ?? 5);
-function renderFind() { const c = capStatus(), prospects = [...store.state.people].sort((a,b)=>readinessRank(a)-readinessRank(b) || (b.score||0)-(a.score||0)); return `<div class="panel"><div class="metric-grid"><div class="metric"><span>People</span><b>${prospects.length}</b></div><div class="metric"><span>Today</span><b>${c.daily}/${c.dailyCap}</b></div><div class="metric"><span>7 days</span><b>${c.weekly}/${c.weeklyCap}</b></div><div class="metric"><span>Connection crawl</span><b>${store.state.crawl.done?'Done':store.state.crawl.offset}</b></div>${(()=>{const a=acceptanceRate();const floor=store.state.config.caps.acceptRateFloor??0.35;if(!a)return '<div class="metric"><span>Accept rate</span><b>—</b></div>';const low=a.rate<floor;return `<div class="metric"><span>Accept rate${low?' ⚠':''}</span><b>${Math.round(a.rate*100)}% <span class="muted">(${a.accepted}/${a.of})</span></b>${low?`<div class="muted">below ${Math.round(floor*100)}% — cut volume, do not push</div>`:''}</div>`;})()}</div></div><div class="panel"><div class="toolbar"><select id="find-icp">${store.state.config.icps.map(i=>`<option value="${esc(i.id)}">${esc(i.name)}</option>`).join('')}</select><input id="find-term" placeholder="LinkedIn search phrase"><button data-action="search" class="primary">Run search</button><button data-action="crawl">Crawl 60 connections</button></div>${peopleTable(prospects, 'find')}</div>`; }
+function connectorBanner() { return connector || !lastConnectorError ? '' : `<div class="panel status error"><b>Connector offline.</b> ${esc(lastConnectorError)}<div class="muted">Scoring, drafting, backup and restore still work. Searching, crawling and sending do not.</div></div>`; }
+function renderFind() { const c = capStatus(), prospects = [...store.state.people].sort((a,b)=>readinessRank(a)-readinessRank(b) || (b.score||0)-(a.score||0)); return `${connectorBanner()}<div class="panel"><div class="metric-grid"><div class="metric"><span>People</span><b>${prospects.length}</b></div><div class="metric"><span>Today</span><b>${c.daily}/${c.dailyCap}</b></div><div class="metric"><span>7 days</span><b>${c.weekly}/${c.weeklyCap}</b></div><div class="metric"><span>Connection crawl</span><b>${store.state.crawl.done?'Done':store.state.crawl.offset}</b></div>${(()=>{const a=acceptanceRate();const floor=store.state.config?.caps?.acceptRateFloor??0.35;if(!a)return '<div class="metric"><span>Accept rate</span><b>—</b></div>';const low=a.rate<floor;return `<div class="metric"><span>Accept rate${low?' ⚠':''}</span><b>${Math.round(a.rate*100)}% <span class="muted">(${a.accepted}/${a.of})</span></b>${low?`<div class="muted">below ${Math.round(floor*100)}% — cut volume, do not push</div>`:''}</div>`;})()}</div></div><div class="panel"><div class="toolbar"><select id="find-icp">${store.state.config.icps.map(i=>`<option value="${esc(i.id)}">${esc(i.name)}</option>`).join('')}</select><input id="find-term" placeholder="LinkedIn search phrase"><button data-action="search" class="primary">Run search</button><button data-action="crawl">Crawl 60 connections</button></div>${peopleTable(prospects, 'find')}</div>`; }
 function renderConnections() { const people = store.state.people.filter(p => p.commercial.stage !== 'prospect' || p.conversation?.verified).sort((a,b)=>(b.score||0)-(a.score||0)); return `<div class="panel"><div class="toolbar"><button data-action="sync" class="primary">Sync conversations</button><span class="muted">Messages are available only for connected people or verified threads. Every send requires confirmation.</span></div>${people.map(p=>personCard(p,'connections')).join('') || '<p>No connections yet. Crawl them from Find.</p>'}</div>`; }
 function renderRelationships() { const people = store.state.people.map(hydrateRelationship).filter(p=>!p.relationship.closed).sort((a,b)=>(b.followupScore||0)-(a.followupScore||0)); return `<div class="panel"><div class="toolbar"><button data-action="sync" class="primary">Sync & triage</button><span class="muted">Booking and close signals are deterministic; booked calls snooze 14 days unless a fresh question follows.</span></div>${people.map(p=>personCard(p,'relationships')).join('') || '<p>No relationships yet.</p>'}</div>`; }
 function renderLearnings() { const mode = store.state.ui.learningMode || 'template', rows = learningRows(store.state.people, mode); return `<div class="panel"><div class="toolbar"><select id="learning-mode"><option value="template" ${mode==='template'?'selected':''}>By template</option><option value="icp" ${mode==='icp'?'selected':''}>By ICP</option><option value="term" ${mode==='term'?'selected':''}>By search term</option></select><button data-action="export-learnings">Export learnings.json</button></div><div class="table-wrap"><table><thead><tr><th>${mode}</th><th>Sent</th><th>Replied</th><th>Positive</th><th>Reply rate</th><th>Positive rate</th><th>Signal</th></tr></thead><tbody>${rows.map((r,i)=>`<tr><td>${esc(r.key)}</td><td>${r.sent}</td><td>${r.replied}</td><td>${r.positive}</td><td>${(r.replyRate*100).toFixed(1)}%</td><td>${(r.positiveRate*100).toFixed(1)}%</td><td>${rows.length>1?(i===0?'Top':i===rows.length-1?'Bottom':'—'):'—'}</td></tr>`).join('')}</tbody></table></div></div>`; }
