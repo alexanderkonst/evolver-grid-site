@@ -31,7 +31,11 @@
         "interim",
         "advisor",
         "consultant",
-        "freelance"
+        "freelance",
+        "own business",
+        "independent consultant",
+        "building my own",
+        "working for myself"
       ],
       "terms": [
         "(\"sabbatical\" OR \"career break\") AND (founder OR \"ex-founder\")",
@@ -268,11 +272,16 @@
     "retireWhen": "new-people yield on a re-run drops below ~20% of its first run"
   },
   "searchBehaviour": {
-    "finding": "Verified live Day 171 against the ConnectSafely API. Two facts that change how the terms must be written.",
-    "booleanUnsupported": "Boolean syntax (AND / OR / parentheses / quoted phrases) returns ZERO results through the API. It works only in LinkedIn's own top-bar search. The §0.2 Boolean strings are for the manual UI path.",
-    "fullProfileMatch": "The API matches the WHOLE profile, not the headline. A person can be returned for 'holonic' with no trace of it in their headline. The scorer reads the headline, so it credits a marker present in the query at half weight (see domain.js).",
-    "lowYield": "A single-word query returned 7 results, unfiltered and noisy. Expect low volume and low precision through the connector; the manual UI path is materially better today.",
-    "useSingleTerms": "Through the connector, use ONE distinctive term per search. Multi-word queries fuzz badly."
+    "verified": "Day 171, live against the ConnectSafely API.",
+    "commercialUseLimit": "Every query returns exactly 7 results with hasMore:false and the requested count ignored, regardless of terms, geo-biased to the account's own city. ConnectSafely quota is clean (SEARCH_PEOPLE 5/1000), so the truncation is LinkedIn's own Commercial Use Limit. It is monthly and resets on the 1st.",
+    "booleanCorrection": "An earlier note here said Boolean syntax is unsupported. That was wrong: the zero-result test had a connectionDegree filter applied that the other tests did not. Boolean runs; it is simply truncated like everything else, and the fuzzy matching means marker terms are weakly honoured.",
+    "waysThrough": [
+      "Sales Navigator search URL pasted into the tool (full Boolean and filters, separate 2500/day quota, no commercial-use cap) — requires a Sales Nav license, which this account does not currently have",
+      "Google X-ray: site:linkedin.com/in \"holonic\" founder — real Boolean, public About text indexed, no cap",
+      "Crawl your own connections — unaffected by the limit",
+      "Wait for the monthly reset"
+    ],
+    "accountFacts": "Premium RECRUITER, hasSalesNavigator false. ConnectSafely enforces CONNECT 90/week against LinkedIn's 100; the tool's 80/week sits under both."
   },
   "apiSearchTerms": {
     "note": "Single distinctive terms for the connector path. The Boolean strings in each stream's `terms` stay as-is for the manual LinkedIn UI path.",
@@ -283,6 +292,9 @@
       "evolutionary",
       "sovereignty",
       "conscious entrepreneur",
+      "self-employed",
+      "solopreneur",
+      "independent consultant",
       "ex-founder",
       "sabbatical",
       "career break",
@@ -306,5 +318,11 @@
       "psychedelic",
       "ayahuasca"
     ]
+  },
+  "brief": {
+    "version": "v3.1 (Day 169)",
+    "source": "docs/02-strategy/ai_matchmaker_brief.md — newest on top, one file, do not fork",
+    "status": "awaiting Sasha's carve before it goes to Boardy",
+    "sendableText": "One update. The last brief was right about who I want, and missing the thing that costs me most: a kind of person who looks perfect and cannot buy.\n\n**The expensive miss.** Someone whose company just ended, genuinely between chapters, in real pain, actively looking. Everything I asked you for. And they cannot use what I do, because using it means being able to take in an accurate description of yourself and act on it, and that capacity is not there yet. The call is good. Nothing follows. I have lost more time to this person than to any obviously wrong match, because nothing about the intro looks wrong.\n\nSo here is how to tell the difference, and it is visible in their own words.\n\n**What tells you the capacity is present.** People describe themselves in the vocabulary of what they have actually developed. When someone writes any of these about themselves, unprompted, treat it as evidence about the person, not as a topic I like:\n\nholonic · integral · evolutionary · polymath · zone of genius · sovereignty\n\nSlightly noisier, still strong: conscious · conscious tech · conscious deep tech · visionary · system architect · mystic · sacred geometry · new earth\n\nWeaker and unproven, send them but tell me you are testing: decentralization · web3 · modular · social or impact entrepreneurship. My honest read is that some of these people are still more aspirational than developed, and I would rather find out than assume.\n\n**Now the important part: never send me those words on their own.** Someone with the vocabulary and no transition is my peer, and peers are exactly what the first six intros were. The words are one of three things and I need all three in the same person:\n\n1. the vocabulary, which says the capacity is there\n2. income that already runs on their own name\n3. a form that is actually ending\n\nAny one of the three missing and it is not my client. All three present and it is worth an introduction even if their profile looks unimpressive, which it usually will.\n\n**Words that mark a different conversation.** Venture studio, founder collective, accelerator, startup studio. These people have the capacity and are running their own vehicle. That is not a session, it is infrastructure and thesis. Send them, and tell me that is what they are.\n\n**One flag, and I do not want you to judge it.** If someone works publicly in cannabis or plant medicine, show me regardless of everything above. Saying that under your own name on LinkedIn costs something, and I want to see who is willing to pay it. I will decide what it means.\n\n**Do not try to read their inner state.** Surface people on what is observable: the words they use about themselves, whether income runs on their own name, whether the form they were in is ending. I do the readiness screen myself after the intro. Guessing at \"ripe\" or \"not ripe\" from a profile is my job, not yours, and the three signals above are the whole of what I need you to see.\n\n**On volume: send more, not fewer.** The three signals are a sorting rule, not a scarcity rule. There are far more of these people than either of us has been finding, and the first six intros were too few to learn from. I would rather score twenty and be wrong about twelve than receive three perfect ones a month.\n\n**Studio and program operators are actively wanted.** Last brief called them rare and said flag one when you see it. Sharper now: I want them. Not as a session, as infrastructure and thesis. If someone runs a venture studio, an accelerator or a founder program and runs it consciously, that is a conversation I am ready for, and I have spent twenty years inside collectives of exactly that shape.\n\n**Still true from last time:** exclude anyone building their own typology, personality or human-categorization system. Use findyourtoptalent.com/quiz rather than my offer when you describe me. Practitioners who serve founders are peers and partners, never prospects, and the question that sorts them is what they uniquely bring, not what their method is."
   }
 }
