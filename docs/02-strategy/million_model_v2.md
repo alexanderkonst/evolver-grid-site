@@ -6,14 +6,16 @@
 
 ## Executive summary
 
-**$1M a year = ~100 attributing founders = ~$10M of founder revenue under the model.** That equation is the whole business.
+**Revenue = attributing founders × their revenue × 10%.** At the $1M mark that reads: ~100 attributing founders, ~$10M of founder revenue under the model.
+
+*$1M is an arbitrary mark on the ruler, useful only because it makes the mechanism legible. The model is the mechanism and its rates; the number is a readout.*
 
 Five findings from running the arithmetic:
 
 1. **Reaching 100 attributing founders takes ~300 sessions, not 100.** At a 33% attribution rate, the session count and the outcome count are separated by a ratio of three.
 2. **The share is collected from the founder's first dollar, not from $55,556.** The PMF container is 10% *of* the first $55,555, capped at $5,555. Cash therefore begins roughly 3-6 months after a session rather than 12-18. This pulls the $1M run-rate to **month 14-18**, not 20-26.
 3. **Session capacity is no longer the binding constraint. Demand is.** At 10 sessions a week the constraint moves entirely to the top of the funnel.
-4. **Cold LinkedIn supplies ~2.5 sessions a month, which is 6% of what the volume tier needs.** At 20 connection requests a day, the platform ceiling, the funnel yields one session per ~240 requests. **Three community hosts a month is the entire answer.** Everything else is a rounding error at this volume.
+4. **Cold LinkedIn supports ~10 sessions a month** at a 20% reply rate and 20 requests a day. That is 2-3 a week: a real engine for the founder layer and roughly a quarter of the eventual volume tier. The reply rate is the top-of-funnel lever; the request cap is not movable.
 5. **Volume sets the clock; attribution and founder revenue set the ceiling.** Doubling sessions halves time-to-$1M. It does not raise the $1M. Only the attribution rate and average founder revenue do that.
 
 
@@ -32,7 +34,7 @@ Five findings from running the arithmetic:
 
 The founder keeps 100%. No equity, no fund. The only from-pocket payments are rungs 0, 1 and 1b.
 
-**Untested:** the $1,111 group form of the 8-week container. Gleb's is 1:1 at $2,000. The group version is a working assumption.
+**Note on the group container:** Sasha has run group containers repeatedly, including the current one. The $1,111 group form of the 8-week container is not untested delivery; it is a known format at a new price point with normal expected learnings.
 
 ---
 
@@ -87,37 +89,33 @@ The same shape as the node arrangement, one layer down. Consequences: no separat
 
 ---
 
-## Exhibit 4 — The demand engine (the real work)
+## Exhibit 4 — The demand engine
 
-Target: **40 Productize Yourself sessions a month.** Rates below are Sasha's own, not industry averages.
+Sequence: **connection request first, message only after acceptance.** Every target hand-selected. That makes the reply rate a warm-message rate, not a cold-InMail rate, and it is the number the whole funnel turns on.
 
-| Step | Rate | Of 100 requests |
+| Step | Working rate | Range |
 |---|---|---|
-| Connection request accepted | 50% | 50 |
-| Accepted → reply with buying intent | 5% | 2.5 |
-| Reply → quiz → Direction Call | 33% | 0.83 |
-| Direction Call → paid session | 50% | **0.41** |
+| Connection request accepted | 50% | 40-60% |
+| Accepted → reply with buying intent | **20%** | 15-25% |
+| Reply → quiz → Direction Call | 33% | 30-40% |
+| Direction Call → paid session | 50% | 40-50% |
 
-**One session per ~240 connection requests.**
+**Sensitivity to the reply rate alone**, at LinkedIn's 20 requests a day (600/month):
 
-LinkedIn permits **20 requests a day**. At 30 days that is 600 a month:
-
-> **Cold LinkedIn ceiling: ~2.5 sessions a month. That is 6% of the 40 needed.**
-
-The 5% reply rate is what dominates. Even a doubled reply rate only reaches 5 sessions a month, so no amount of message-craft closes this gap. It is a channel-shape problem, not a copy problem.
-
-### Where the other 37.5 come from
-
-| Channel | Sessions/mo at scale | Basis |
+| Reply rate | Requests per session | Sessions/month |
 |---|---|---|
-| Cold LinkedIn | **2.5** | Hard-capped at 20 requests/day |
-| Boardy warm intros | **0 → 6** | 2 intros/day ≈ 60/mo. Observed to date: 6 intros, 0 clients. Requires a brief rewritten for buyer intent, not peer conversation |
-| **Community hosts** | **30** | **The answer.** One host with ~30 members yields ~10 sessions. Three hosts a month closes the gap |
-| Referrals from attributing founders | 0 → 10+ | Nil in year 1, compounds hard from year 2 |
+| 5% | 242 | 2.5 |
+| 15% | 81 | 7.4 |
+| **20%** | **61** | **9.9** |
+| 25% | 48 | 12.4 |
 
-**Conclusion: the volume tier is a host-acquisition business.** The operative target is not 180 touches a day. It is **three community hosts a month**, and the daily outreach effort should be aimed at host operators rather than at individual founders.
+> **Working case: ~10 sessions a month from cold LinkedIn alone, at ~60 requests per session.**
 
-**The $250 lever.** Cold outreach converts better to a $250 uniqueness session than to a $555 one, and that session is itself a qualification event with a far higher hand-off rate to Productize Yourself than a Direction Call. It also delegates immediately. Worth testing as the cold-channel entry point, though it does not change the host conclusion.
+That is 2-3 sessions a week, which is a real starting engine and roughly a quarter of the eventual volume tier. **The reply rate is the highest-leverage number at the top of the funnel** and it is a copy-and-targeting variable, unlike the request cap.
+
+Three sources sit outside this arithmetic and are not counted above: the existing network, which can be messaged without spending a request and is a one-time reservoir; inbound from posts and profile views; and warm intros. Boardy currently produces peers rather than buyers (six intros, zero clients), which is a brief problem.
+
+**The later tier.** Community hosts change the volume ceiling substantially, since one host with ~30 members can supply a full cohort. That belongs after founder-level proof, not before it. Do not build the host offer until founders have been served and the model has run at the individual layer.
 
 ---
 
@@ -142,9 +140,9 @@ Effect on year-3 revenue of moving one input alone:
 | Risk | Severity | Mitigation |
 |---|---|---|
 | **Attribution decay.** Founders cross and do not attribute it, or exit the arrangement | **Critical** | Selection, not enforcement. Ripeness read at intake. See Technology 140 |
-| **Host channel does not open** | **Critical** | Without it, volume caps near 2-3 sessions a *month* and $1M slips years |
+| Reply rate lands nearer 5% than 20% | High | Would cut the engine from ~10 sessions/month to ~2.5. Measure it in the first 200 requests |
 | **Practitioner cash gap** | High | Deliverers are paid before founders earn. See Exhibit 3b |
-| Group container unproven | Medium | $1,111 group form is untested. Gleb's 1:1 is the only data point |
+| Group container at a new price point | Low | Group delivery is well-practised. The $1,111 price and the 8-week shape carry normal expected learnings |
 | Delegation dilutes quality | Medium | Uniqueness sessions delegate cleanly; PYS is the risk. Record the block first |
 | $100k average founder revenue is a guess | Medium | Test against the nine existing canvases |
 
@@ -158,7 +156,7 @@ The category name. Node license terms. The purpose-entity threshold (~25 nodes, 
 
 ## What the model says to do next
 
-1. **Open the host channel. Target three hosts a month.** It is 75% of the volume tier and nothing substitutes for it. Point daily outreach at host operators, not at individual founders.
+1. **Fire the LinkedIn system and serve founders.** ~600 requests a month at a 20% reply rate is ~10 sessions a month. Prove the model at the individual layer before touching the host channel.
 2. **Record the teaching block.** It is the precondition for delegating anything.
 3. **Rewrite the Boardy brief for buyer intent.** Six intros produced six good conversations and zero clients; the brief is currently producing peers.
 4. **Price the integration container** and attach its share, per Exhibit 3b.
