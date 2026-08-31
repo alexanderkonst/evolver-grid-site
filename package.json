@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "predev": "node scripts/emit-crm-snapshot.mjs && node scripts/emit-project-pulse-snapshot.mjs && node scripts/emit-public-skills.mjs && bunx tsx scripts/generate-sitemap.ts",
-    "prebuild": "node scripts/emit-crm-snapshot.mjs && node scripts/emit-project-pulse-snapshot.mjs && node scripts/emit-public-skills.mjs && bunx tsx scripts/generate-sitemap.ts",
+    "predev": "node scripts/sync-brief-to-tool.mjs && node scripts/emit-crm-snapshot.mjs && node scripts/emit-project-pulse-snapshot.mjs && node scripts/emit-public-skills.mjs && bunx tsx scripts/generate-sitemap.ts",
+    "prebuild": "node scripts/sync-brief-to-tool.mjs && node scripts/emit-crm-snapshot.mjs && node scripts/emit-project-pulse-snapshot.mjs && node scripts/emit-public-skills.mjs && bunx tsx scripts/generate-sitemap.ts",
     "typecheck": "tsc --noEmit -p tsconfig.app.json",
     "build": "npm run typecheck && vite build",
     "sitemap:generate": "bunx tsx scripts/generate-sitemap.ts",
@@ -22,7 +22,8 @@
     "holomap:update": "node scripts/holomap-update/index.mjs",
     "dashboard:update": "node scripts/dashboard-update/index.mjs",
     "test": "vitest run",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "brief": "node scripts/sync-brief-to-tool.mjs"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
