@@ -53,7 +53,12 @@ Options not taken: drafting-only (slowest, zero risk) and connector-for-1st-degr
 
 **Step 2 · Crawl your own connections first (before any cold search).** "Crawl 60 connections", repeat until done. Reason: your existing network gets scored by the cross for free, costs zero invite budget, and 1st-degree messages carry a fraction of the account risk of invites. **The first bullseye is more likely already in your network than in a cold search.**
 
-**Step 3 · Run 4-6 search terms, not all of them.** Pick from one stream per sitting. Terms live in `config.json` and mirror §0.2. Query exhaustion, not pool size, is the real ceiling: a repeat run of a spent term returns the same people.
+**Step 3 · Two search paths, and they do not behave the same.** Verified live Day 171:
+
+- **Manual, LinkedIn's top-bar search** — Boolean works. The §0.2 strings are written for this path. **Higher yield and far higher precision. Use this one.**
+- **Connector, inside the tool** — Boolean returns **zero**; the API ignores it. Use ONE distinctive term per search (`config.apiSearchTerms`). It also matches the *whole profile*, so someone can be returned for "holonic" with no trace of it in their headline. The scorer credits a marker found via the query at half weight, but expect lower volume and more noise than the manual path.
+
+Run 4-6 terms per sitting either way. Query exhaustion, not pool size, is the ceiling: a repeat run of a spent term returns the same people.
 
 **Step 4 · Read the list by class, not by score.** The table sorts by readiness: watch → bullseye → peer_partner → operator → peer → not_yet → cold. Only the first four are actionable today.
 
