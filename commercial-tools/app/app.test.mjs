@@ -74,6 +74,15 @@ test('the watchlist surfaces for human review and never opens a cold door', () =
   assert.ok(config.watchlist.action.includes('manual'));
 });
 
+test('app.js only reads state fields that initialState actually defines', async () => {
+  const source = await fs.readFile(new URL('./src/app.js', import.meta.url), 'utf8');
+  const { initialState } = await import('./src/store.js');
+  const keys = new Set(Object.keys(initialState({})));
+  const read = [...source.matchAll(/store\.state\.([a-zA-Z_$][\w$]*)/g)].map(m => m[1]);
+  const missing = [...new Set(read)].filter(k => !keys.has(k));
+  assert.deepEqual(missing, [], `app.js reads state fields that do not exist: ${missing.join(', ')}`);
+});
+
 test('direction falls back to owner name and stage never downgrades', () => {
   const c = conversationState([{ senderName: 'Sasha K', text: 'Hello', sentAt: '2026-01-01' }], '', 'Sasha K');
   assert.equal(c.direction, 'mine');
