@@ -31,19 +31,25 @@ Plus one flag that is deliberately not a judgment.
 >
 > So here is how to tell the difference, and it is visible in their own words.
 >
+> **When you describe me, use this sentence, verbatim.** "He works with founders between chapters, and finds the single thread connecting everything they have built." Then the quiz link. If you need a second sentence, there isn't one. Every time a brief of mine has been thin, the description that came back was one I would not have written.
+>
 > **What tells you the capacity is present.** People describe themselves in the vocabulary of what they have actually developed. When someone writes any of these about themselves, unprompted, treat it as evidence about the person, not as a topic I like:
 >
-> holonic · integral · evolutionary · polymath · zone of genius · sovereignty
+> "spiral dynamics" · "integral theory" · "integral coach" · "zone of genius" · "conscious leadership" · polymath · regenerative · sovereignty
 >
-> Slightly noisier, still strong: conscious · conscious tech · conscious deep tech · visionary · system architect · mystic · sacred geometry · new earth
+> Slightly noisier, still strong: conscious entrepreneur · conscious tech · visionary · systems architect · mystic · new earth
+>
+> **One warning on two of these, learned the hard way this week.** Take "holonic" and "integral" only in the multi-word forms above. On their own they are traps: "holonic" mostly finds people who work at a company called Holonic, and "integral" catches ordinary English, as in "an integral part of the team." The phrases only an insider would use are the ones that work. A word that is merely rare is not the same as a word that is unambiguous.
 >
 > Weaker and unproven, send them but tell me you are testing: decentralization · web3 · modular · social or impact entrepreneurship. My honest read is that some of these people are still more aspirational than developed, and I would rather find out than assume.
 >
 > **Now the important part: never send me those words on their own.** Someone with the vocabulary and no transition is my peer, and peers are exactly what the first six intros were. The words are one of three things and I need all three in the same person:
 >
 > 1. the vocabulary, which says the capacity is there
-> 2. income that already runs on their own name
+> 2. income that already runs on their own name, which shows up as self-employed, solopreneur, independent, fractional, founder, or their own practice
 > 3. a form that is actually ending
+>
+> And one shape to recognise as a peer rather than a client: **if they already teach this**, if their own offer is about helping people find their gift or their genius, they are a colleague. Good to know, lovely to meet, nothing to buy. Send them as a peer.
 >
 > Any one of the three missing and it is not my client. All three present and it is worth an introduction even if their profile looks unimpressive, which it usually will.
 >
@@ -57,7 +63,7 @@ Plus one flag that is deliberately not a judgment.
 >
 > **Studio and program operators are actively wanted.** Last brief called them rare and said flag one when you see it. Sharper now: I want them. Not as a session, as infrastructure and thesis. If someone runs a venture studio, an accelerator or a founder program and runs it consciously, that is a conversation I am ready for, and I have spent twenty years inside collectives of exactly that shape.
 >
-> **Still true from last time:** exclude anyone building their own typology, personality or human-categorization system. Use findyourtoptalent.com/quiz rather than my offer when you describe me. Practitioners who serve founders are peers and partners, never prospects, and the question that sorts them is what they uniquely bring, not what their method is.
+> **Still true from last time:** exclude anyone building their own typology, personality or human-categorization system. A live example from this week, so the shape is unmistakable: someone whose profile says they built a personality test, grounded in years of research, to help people find their zone of genius. Every word of that overlaps with me, and they cannot buy, because their premise is that a test reads a person better than the person does, and my whole offer rests on the opposite. Use findyourtoptalent.com/quiz rather than my offer when you describe me. Practitioners who serve founders are peers and partners, never prospects, and the question that sorts them is what they uniquely bring, not what their method is.
 
 ---
 
