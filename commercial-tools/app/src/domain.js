@@ -47,7 +47,7 @@ const excludedBy = (text, config) => (config.exclusions || []).find(rule => new 
 const marketRe = /(united states|\busa\b|canada|united kingdom|\buk\b|australia|singapore|dubai|new york|san francisco|london|toronto|sydney|melbourne)/i;
 export const OUTCOMES = ['awaiting', 'replied', 'positive', 'negative', 'no_reply'];
 
-export function scorePerson(person, foundByIcpId, config, region = 'Global') {
+export function scorePerson(person, foundByIcpId, config, region = 'Global', searchTerm = '') {
   const w = config.scoreWeights, text = [person.headline, person.currentPosition, person.location].filter(Boolean).join(' · ');
   const best = config.icps.map(icp => {
     const strong = icp.strong.find(x => norm(text).includes(norm(x))), weak = icp.weak.find(x => norm(text).includes(norm(x)));
@@ -59,7 +59,19 @@ export function scorePerson(person, foundByIcpId, config, region = 'Global') {
   const transition = transitionRe.test(text) ? w.transition : 0, market = region === 'Global' && marketRe.test(person.location || '') ? w.topMarket : 0;
   const several = severalThings(person.headline || person.currentPosition || '') ? (w.severalThings || 0) : 0;
   const penalty = (person.isOpenToWork || penaltyRe.test(text)) ? w.penalty : 0;
+  // LinkedIn's people search matches the WHOLE profile, not the headline, so a marker
+  // can be the reason a person was returned while being invisible in the headline the
+  // scorer reads. Credit a marker present in the query that found them, at half weight:
+  // it is real evidence the word is somewhere on their profile, and weaker evidence than
+  // the same word chosen for the headline, which is the costliest slot they own.
   const mf = mfRead(text, config);
+  const viaTerm = mfRead(String(searchTerm || ''), config);
+  if (viaTerm.tier && (!mf.tier || viaTerm.tier < mf.tier)) {
+    mf.tier = viaTerm.tier;
+    mf.points = Math.max(mf.points, Math.round(viaTerm.points / 2));
+    mf.hits = [...new Set([...mf.hits, ...viaTerm.hits.map(h => h + ' (in profile)')])];
+    mf.octave = mf.octave || viaTerm.octave;
+  }
   const identityStrength = /(founder|co-?founder|owner|chief executive|\bceo\b|managing partner)/i.test(text) ? 2 : /(independent|self-?employed|fractional|portfolio career|solopreneur|freelance|own practice|consultant)/i.test(text) ? 1 : 0;
   const cross = crossRead({ mf: mf.tier ? (mf.tier <= 2 ? 2 : 1) : 0, identity: identityStrength, transition: transition ? 2 : 0, octave: mf.octave });
   const watch = (config.watchlist?.terms || []).find(term => norm(text).includes(norm(term))) || null;
@@ -72,7 +84,7 @@ export function scorePerson(person, foundByIcpId, config, region = 'Global') {
 export function canonicalPerson(raw, foundByIcpId, searchTerm, config, region = 'Global', mechanism = 'icp_search') {
   const profileUrn = raw.profileUrn || raw.participantUrn || raw.profileId || raw.profileUrl;
   if (!profileUrn) throw new Error('LinkedIn person has no stable identity');
-  const scored = raw.score != null && raw.icpId ? raw : scorePerson(raw, foundByIcpId, config, region);
+  const scored = raw.score != null && raw.icpId ? raw : scorePerson(raw, foundByIcpId, config, region, searchTerm);
   return normalizeRecord({ ...raw, id: `linkedin:${profileUrn}`, profileUrn, profileId: raw.profileId || profileIdFromUrl(raw.profileUrl), name: raw.name || [raw.firstName, raw.lastName].filter(Boolean).join(' ') || 'Unknown', firstName: raw.firstName || '', lastName: raw.lastName || '', headline: raw.headline || raw.currentPosition || '', company: raw.company || parseCompany(raw.headline), ...scored, source: raw.source || { channel: 'linkedin', mechanism, searchTerm: searchTerm || null, foundByIcpId: foundByIcpId || scored.icpId, capturedAt: new Date().toISOString() }, commercial: { ...emptyCommercial(), ...(raw.commercial || {}) }, conversation: raw.conversation || { verified: false, direction: 'unknown', messageCount: 0, messages: [] }, relationship: { category: 'unlabeled', note: '', snoozeUntil: null, closed: false, ...(raw.relationship || {}) } });
 }
 

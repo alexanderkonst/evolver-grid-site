@@ -266,5 +266,45 @@
     "note": "Per-query exhaustion is the real ceiling, not pool size. LinkedIn returns roughly 100 results per query without Sales Navigator, and a repeat run returns the same people. Rotate: run 4-6 terms per sitting, not all of them, and watch the Learnings tab by search term. When a term's new-people count collapses, it is spent; retire it and add a variant.",
     "termsPerSitting": "4-6",
     "retireWhen": "new-people yield on a re-run drops below ~20% of its first run"
+  },
+  "searchBehaviour": {
+    "finding": "Verified live Day 171 against the ConnectSafely API. Two facts that change how the terms must be written.",
+    "booleanUnsupported": "Boolean syntax (AND / OR / parentheses / quoted phrases) returns ZERO results through the API. It works only in LinkedIn's own top-bar search. The §0.2 Boolean strings are for the manual UI path.",
+    "fullProfileMatch": "The API matches the WHOLE profile, not the headline. A person can be returned for 'holonic' with no trace of it in their headline. The scorer reads the headline, so it credits a marker present in the query at half weight (see domain.js).",
+    "lowYield": "A single-word query returned 7 results, unfiltered and noisy. Expect low volume and low precision through the connector; the manual UI path is materially better today.",
+    "useSingleTerms": "Through the connector, use ONE distinctive term per search. Multi-word queries fuzz badly."
+  },
+  "apiSearchTerms": {
+    "note": "Single distinctive terms for the connector path. The Boolean strings in each stream's `terms` stay as-is for the manual LinkedIn UI path.",
+    "client_founder_in_transition": [
+      "holonic",
+      "integral",
+      "polymath",
+      "evolutionary",
+      "sovereignty",
+      "conscious entrepreneur",
+      "ex-founder",
+      "sabbatical",
+      "career break",
+      "fractional"
+    ],
+    "practitioner_partners": [
+      "founder coach",
+      "community builder",
+      "executive coach",
+      "agency founder"
+    ],
+    "operators_at_altitude": [
+      "venture studio",
+      "startup studio",
+      "founder collective",
+      "accelerator director"
+    ],
+    "watch": [
+      "cannabis",
+      "plant medicine",
+      "psychedelic",
+      "ayahuasca"
+    ]
   }
 }
