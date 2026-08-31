@@ -7952,3 +7952,38 @@ Not when the layer is finished. Not when it is perfect. When it runs, and genera
 **The porousness test (the one that catches the subtlest cell).** "My view is wider / more inclusive" is the most sophisticated seal available, because it can never be falsified from inside — it has the identical structure to any other meta-lock ("I have understood people," "people don't change"). Being able to articulate *why* yours includes theirs is not the test; the ego builds that articulation beautifully. The real test is porousness: a genuinely wider frame can inhabit the narrower one, find exactly where it is *true*, and be changed by it at least a little. If inclusion runs one way only — if your wider view has nothing to learn from theirs — it is not wider, it is yours wearing a crown. The behavioral proof stays the same: the wider frame releases, the sealed frame imposes. Stand in the seeing; keep it porous; let release, not eloquence, be the evidence.
 
 **Relationship:** Technology 136 (mirror fidelity — this is fidelity sealed from above), Technology 123 (the Ripeness Vector and the banana/strawberry amendment — who is a mud-lotus vs a rising one), Technology 126 (perception deficit — the Sealed have no perceivable deficit, by construction), Technology 118 (the seer invariant — one reads the ripeness one has lived, including this one), the Mirror-Not-Teacher principle in `unique_business_playbook.md` (the law the Missionary violates), and the conviction/commitment/devotion distinction (only devotion updates without collapsing; a method built on revising its own articulations is devotion, not conviction). Personal instance for the founder: `alexanders_unique_business.md` §2B Shadow (The Missionary).
+
+---
+
+## Technology 140: The Attribution Rate (What Success-Coupled Pricing Actually Collects) (Day 170, August 29, 2026)
+
+**The law in one sentence: when a business is paid out of its clients' future success, its revenue is not set by how many clients succeed but by how many *attribute* that success to the work and act on the attribution, and that rate is fixed at intake by selection rather than afterwards by contract.**
+
+**The failure the law corrects.** A success-coupled model looks like it rests on efficacy. Get people results, get paid a share of the results. So the operator optimizes for efficacy, and reads a revenue shortfall as a delivery problem. But between "the client succeeded" and "the operator is paid" sits a step that efficacy does not touch: the client must *credit the work* for the success, out of everything else that was also happening in their life.
+
+That step has an obvious incentive against it. Crediting the work costs money. Crediting the market, the timing, one's own effort, a new contact, or a job offer costs nothing. Both readings are usually available, because both are usually partly true.
+
+**Why capability is nearly free and attribution is not.** Over a long enough horizon, most capable people in a developed market reach a modest revenue threshold anyway. Some reach it through a salary they will never count as business revenue at all. So a threshold-based trigger is a weak instrument on its own: it eventually fires for almost everyone, which means the operator's economics rest almost entirely on the *interpretation* of the firing, not the firing.
+
+This inverts the intuitive priority. **Efficacy is necessary and close to sufficient for the client. Attribution is what is necessary for the business.**
+
+**Why the answer cannot be enforcement.** A contract can compel disclosure and payment where causation is clean and observable. Here it is neither. The work operated on the person's self-understanding, and its effects propagate through every subsequent decision they make, which is precisely what makes them impossible to isolate. Tightening the instrument produces adversarial reporting rather than payment, and it corrodes the relationship the model depends on for referrals and node formation. **An arrangement that must be enforced against a client has already lost the revenue it is enforcing for.**
+
+**The answer is selection, which means the rate is set before delivery begins.** What is being read at intake is not only ripeness to change but a specific maturity: the capacity to hold that one's own success was co-produced, and to keep faith with an agreement after the moment of need has passed. This is a developmental threshold, not a character judgment, and it is visible in advance to a practitioner trained to look for it.
+
+Hence:
+
+> **The attribution rate is a selection metric, not a delivery metric. It is decided at intake and merely revealed at the crossing.**
+
+**What follows operationally.**
+- Reading maturity at intake is not a filter placed in front of the business. It **is** the collection mechanism, and years of psychological work on thresholds and transitions turn out to have been building the revenue instrument.
+- The rate belongs in the model as an explicit input, with its own sensitivity analysis, ranked above delivery quality in leverage.
+- Improving it means improving *who is admitted*, not tightening what is signed.
+- A visible, continuous relationship after the session raises attribution structurally, because the causal thread stays legible to the client rather than fading into general life.
+- The rate is also an honest instrument against the operator's self-deception: a low rate that is blamed on client integrity is more often evidence of loose intake.
+
+**The generalized form.** Any business paid from a share of an outcome it does not solely produce, and cannot cleanly observe, is collecting on attribution rather than on results. Revenue-share consulting, affiliate arrangements, coaching with success fees, scouting, and most talent economics sit here. Each has the same structure and the same only-real-lever: choose the counterparty for the maturity to credit accurately, because no downstream mechanism recovers what intake gave away.
+
+**ESC.** *Essence:* success-coupled revenue is collected on attribution, not on outcomes. *Significance:* it moves the highest-leverage variable in the model from delivery to selection, and explains why a business can be highly effective and still under-collect. *Consequence:* rank intake maturity above delivery quality when forecasting, model the attribution rate as an explicit sensitivity, keep the causal thread visible after delivery, and never attempt to recover through enforcement what selection failed to secure.
+
+**Relationship:** Technology 121 (Surrender Is the Buying Threshold — the same intake read, one gate earlier), Technology 123 (The Ripeness Vector — the instrument that performs this reading), Technology 118 (The Seer Invariant — one can only read the maturity one has lived), Technology 135 (The Transaction Completes Recursively — sovereignty as the proof), `sovereign_founder_collective.md` (the containers this governs), `million_model_v2.md` (Exhibit 5, where it is the top sensitivity).
