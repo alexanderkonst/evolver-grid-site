@@ -6,9 +6,9 @@
 >
 > **The LinkedIn channel runs on this same brief.** Commercial OS (`/built-by-you/commercial-os`, source: `commercial-tools/app/config.json`) encodes the three streams, the typology exclusion, and the quiz-instead-of-pitch rule as its targeting and copy. When this file gets a new version, that config gets the same version stamp.
 >
-> **One file, one current version, no side updates.** The block under "Sendable text" at the top is always the complete, standalone brief. It never reads as a diff against an earlier version, because it goes to readers who have no memory of one. Older versions stay below as genealogy and are never sent.
+> **The sendable brief is a versioned file, not a section of this one.** Each version is complete and standalone: `briefs/matchmaker_brief_v3.1.md`, and the next one is `_v3.2.md` beside it. Highest version number is current. This file keeps the reasoning, the yield curve, and the genealogy; it is never the thing you send.
 >
-> **The tool does not hold its own copy.** `commercial-tools/app/config.json` carries a projection of this file, written by `scripts/sync-brief-to-tool.mjs`. Edit the brief here, run the script, and the prospector tool and the matchmaker are briefed from the same words. A test fails the build if the two ever drift.
+> **One vocabulary, everything else derived.** `commercial-tools/app/config.json` → `mfLexicon` is the only marker list. `scripts/sync-brief-to-tool.mjs` copies the current brief into the tool and regenerates the search queries from that lexicon. A test fails if the brief names a phrase the lexicon does not carry, or if the queries drift from it. Edit the brief file or the lexicon, run the script, and every surface agrees.
 >
 > **How to use:** the block under "Sendable text" is what goes to the matchmaker, verbatim. Everything else is why it says what it says. Re-brief after every batch of intros; the brief is the only variable under control and it is free to change.
 
