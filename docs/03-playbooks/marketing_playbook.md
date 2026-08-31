@@ -334,6 +334,37 @@ Every piece of copy is written in one of two registers:
 
 **When it matters most:** launch waves and low-revenue moments — exactly when the wanting register creeps in under pressure. Standing gate: every launch draft (Reddit, Substack, outreach) passes the one-question test before it ships.
 
+### Step 0.5: Capture Before You Create — the Unclaimed Category
+
+> *Added August 29, 2026 (Day 170). Sits before Step 0.6 because it changes which category you are reconciling. Full law: [Technology 141](../01-vision/phase_shift_technology_library.md).*
+
+Before creating a category, check whether one is lying unclaimed. Many are, and they cost a fraction to take.
+
+**The condition.** A term already coined, already evangelized, already believed by your exact market — and owned by nobody, because it circulates as a **verdict nobody has converted into a method.** The education bill was paid by someone else. You inherit a market that already believes the problem is real.
+
+**The four-question audit.** Run it on every term your buyers already use:
+
+1. Do they use it unprompted?
+2. Do they already believe it matters?
+3. Is having it described as *discovered* rather than *built*?
+4. Does "how to [term]" return generic advice rather than a named method?
+
+Four yeses is an unclaimed category.
+
+**The claim is one semantic move.** Not louder usage. **Convert the term from a verdict into a process.** Before: a property some people happen to have, judged by an observer. After: an outcome that is produced, by a method, with an instrument that measures it. Everything else serves that move.
+
+**Own five things.** Theory (why it exists), Definition (the text others cite), Instrument (the measurement), Method (what produces it), Proof (named unit-level cases). Most claimants have one or two. The category goes to whoever has all five.
+
+**Give the definition away, sell the production.** The owner is whoever wrote the definition people cite, not whoever coined the phrase. Every free reuse carries your frame into someone else's material, and the frame is what makes your method necessary. Gate nothing about the definition; gate only the process that produces the outcome.
+
+**Language discipline, stated plainly:** use the exact same words every time, because a category is a phrase people must remember, and every synonym splits the memory in two.
+
+**Check the inherited frame.** A captured term arrives with the posture of whoever has been using it. If that posture judges your buyer, move the subject of the term: keep the words, change what they are about — from a verdict on the person to a property of the thing they are building.
+
+**Worked example:** *founder-market fit*. Coined and evangelized in venture culture, universally believed, and existing only as an investor's screening verdict with no method behind it. The capture: it is not a verdict on the founder, it is a property of the business, and it can be built in. See [`founder_market_fit.md`](../02-strategy/founder_market_fit.md).
+
+---
+
 ### Step 0.6: Shelf and Cathedral — the Category Reconciliation
 
 > *Added July 9, 2026 — Money Studies. Resolves the two competing pressures of category-creating businesses: (1) people buy what they can name from a known shelf; (2) new categories have no competition and no attached price tag, but demand education, and education at the sales moment kills sales.*
