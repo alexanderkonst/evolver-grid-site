@@ -7987,3 +7987,49 @@ Hence:
 **ESC.** *Essence:* success-coupled revenue is collected on attribution, not on outcomes. *Significance:* it moves the highest-leverage variable in the model from delivery to selection, and explains why a business can be highly effective and still under-collect. *Consequence:* rank intake maturity above delivery quality when forecasting, model the attribution rate as an explicit sensitivity, keep the causal thread visible after delivery, and never attempt to recover through enforcement what selection failed to secure.
 
 **Relationship:** Technology 121 (Surrender Is the Buying Threshold — the same intake read, one gate earlier), Technology 123 (The Ripeness Vector — the instrument that performs this reading), Technology 118 (The Seer Invariant — one can only read the maturity one has lived), Technology 135 (The Transaction Completes Recursively — sovereignty as the proof), `sovereign_founder_collective.md` (the containers this governs), `million_model_v2.md` (Exhibit 5, where it is the top sensitivity).
+
+---
+
+## Technology 141: The Unclaimed Category (Capture Beats Creation When a Verdict Has No Method) (Day 170, August 29, 2026)
+
+**The law in one sentence: some categories are already coined, evangelized and believed, yet owned by nobody, because the term circulates as a verdict that no one has converted into a method — and capturing one of these costs a fraction of creating a new category, since the market has already paid for its own education.**
+
+**The move category design usually misses.** Category creation, as taught, assumes an empty space: name a problem nobody has named, evangelize it, become synonymous with it. It works, and it is expensive, because the creator funds the market's belief before selling anything. Salesforce ran "The End of Software" for years. HubSpot taught "inbound marketing" to an industry that had no word for it.
+
+But there is a second condition, and it is far more common than the literature suggests: **the term already exists, everyone in the target market uses it, everyone agrees it matters — and no one owns it.** The education bill has already been paid, by someone else, on the market's behalf.
+
+**The tell: a verdict with no method attached.** These terms circulate as diagnoses. People assess the thing, argue about who has it, use it to explain outcomes after the fact. Nobody sells a process that produces it. The category is a noun where it should be a verb.
+
+Test any candidate term against four questions:
+
+1. Does the target market already use it unprompted?
+2. Do they already believe it matters?
+3. When someone has it, is it described as *discovered* rather than *built*?
+4. Search the term plus "how to" — is the answer generic advice rather than a named method?
+
+Four yeses is an unclaimed category.
+
+**The claim is a semantic move, not a marketing campaign.** Capture does not mean using the word more loudly than others. It means **converting the term from a verdict into a process**, which changes what it refers to:
+
+> Before: a property some people happen to have, judged by an observer.
+> After: an outcome that can be produced, by a method, with an instrument that measures it.
+
+That conversion *is* the claim. Everything else — the definition, the proof, the language discipline — serves it.
+
+**Why the owner is not the coiner.** Categories are owned by whoever writes the definition people cite, not by whoever said the words first. Coining is cheap and unenforceable. Defining is expensive and sticky, because a definition that gets reused carries its author's frame into every reuse. This is why the correct posture is to **give the definition away and sell the production**: every free use of the definition spreads the frame that makes the method necessary.
+
+**The five possessions.** A category is held by whoever supplies all of these; most claimants have one or two:
+
+| Possession | Function |
+|---|---|
+| **Theory** | why the thing exists and how it forms — makes the claim legitimate rather than promotional |
+| **Definition** | the canonical text others cite |
+| **Instrument** | the measurement, which converts opinion into reading |
+| **Method** | the repeatable process that produces the outcome |
+| **Proof** | named unit-level cases where it was produced rather than found |
+
+**The inherited-frame risk.** A captured term arrives with the frame of whoever has been using it. If that frame casts the buyer as the object being judged, the capture inherits an evaluative posture the buyer will feel. The corrective is to **move the subject of the term**: keep the words, change what they are about, from a verdict on the person to a property of the thing they are building.
+
+**ESC.** *Essence:* an evangelized term with no method behind it is an unowned category available for capture. *Significance:* it removes the largest cost of category design, market education, and replaces category creation's multi-year evangelism with a definitional act. *Consequence:* audit adjacent vocabulary for verdicts-without-methods, claim by publishing the canonical definition and the instrument, give the definition away and monetize the production, and move the subject of the term if its inherited frame judges the buyer.
+
+**Relationship:** `marketing_playbook.md` Step 0.6 (Shelf and Cathedral — the capture play is Step 0.6's cheaper sibling), Technology 128 (The Name Is the Result — functional naming), Technology 129 (Conscious Unique Marketing), Technology 126 (Persuasion as a Perception Deficit), Play Bigger's derived-not-invented discipline, `founder_market_fit.md` (the first application).
