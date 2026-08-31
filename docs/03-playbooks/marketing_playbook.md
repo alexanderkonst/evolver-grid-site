@@ -361,6 +361,26 @@ Four yeses is an unclaimed category.
 
 **Check the inherited frame.** A captured term arrives with the posture of whoever has been using it. If that posture judges your buyer, move the subject of the term: keep the words, change what they are about — from a verdict on the person to a property of the thing they are building.
 
+**Candidate scan (August 2026).** Terms that pass the four-question audit in the founder and self-knowledge space. Ownership status is a judgement from public visibility, not a trademark search — verify before claiming.
+
+| Term | Coined by | Evangelism | Method exists? | Owner | Note |
+|---|---|---|---|---|---|
+| **Founder-market fit** | venture culture, diffuse | very high | none | **none** | Buyer uses it at the moment of deciding. Strongest |
+| **Specific knowledge** | Naval Ravikant | very high | none | **none** | Enormous reach, zero process, founder-native. Very strong |
+| **Zone of Genius** | Gay Hendricks | very high | none | **none** | Huge belief; coaching-coded, which caps price |
+| **Personal monopoly** | creator-economy diffuse | medium | none | **none** | Founder-native, unclaimed |
+| **Idea maze** | Balaji Srinivasan | medium | none | **none** | Respected, never operationalised |
+| **Unfair advantage** | Ali & Kubba (book) | medium | partial | weak | A book exists; no live method business |
+| **Talent stack** | Scott Adams | medium | none | **none** | Believed, never systematised |
+| **Ikigai** | Zuzunaga diagram + Winn's 2014 relabel | extreme | none | **none** | Maximum reach; wellness-coded |
+| **Earned secret** | Thiel-adjacent | medium | none | **none** | Investor-coded |
+| **Founder mode** | Paul Graham, 2024 | high | none | shadowed | Too recent, and PG's shadow is long |
+| Unique ability | Dan Sullivan | high | yes | **claimed** | Strategic Coach owns it. Excluded |
+| Positioning | Ries & Trout, April Dunford | high | yes | **claimed** | Excluded |
+| Category design | Play Bigger | high | yes | **claimed** | Excluded |
+
+The two exclusion rows are kept deliberately: they show what a *claimed* category looks like, which is what a captured one should look like afterwards.
+
 **Worked example:** *founder-market fit*. Coined and evangelized in venture culture, universally believed, and existing only as an investor's screening verdict with no method behind it. The capture: it is not a verdict on the founder, it is a property of the business, and it can be built in. See [`founder_market_fit.md`](../02-strategy/founder_market_fit.md).
 
 ---

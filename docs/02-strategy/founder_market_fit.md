@@ -1,6 +1,6 @@
 # Founder-Market Fit
 
-> *Canonical definition, v0.1 draft — Day 170, August 29, 2026. The category-capture claim per [Technology 141](../01-vision/phase_shift_technology_library.md). Free to reuse with attribution. Not yet published.*
+> *Canonical definition, v0.2 draft — Day 170, August 29, 2026. The category-capture claim per [Technology 141](../01-vision/phase_shift_technology_library.md). Free to reuse with attribution. Not yet published.*
 
 ---
 
@@ -13,11 +13,26 @@ Low fit: anyone could have built it, so it competes on execution alone.
 
 ---
 
-## The three parts
+## The scale
 
-1. **Articulation.** The founder can say what they uniquely do in one sentence, without flinching.
-2. **Derivation.** The offer, the market and the message follow from that sentence rather than from a trend.
-3. **Endurance.** They still want to build it on the worst day, because it is not a strategy. It is them.
+Fit is a degree, not a yes or no. Read it on ten.
+
+| | |
+|---|---|
+| **0-2** | The business has nothing to do with you. You picked it off a market, not out of yourself. |
+| **3-5** | You are good at it and replaceable. Your history explains why you are *qualified*, never why it is *yours*. |
+| **6-8** | You show up in the work. A stranger senses a person behind it, but the offer would survive without you. |
+| **9-10** | Only you could have built it. Remove you and it stops being the same thing. |
+
+---
+
+## The three tests
+
+1. **The sentence test.** Can you say what you uniquely do, in one sentence, without flinching?
+2. **The derivation test.** Did your offer come out of that sentence, or off a shelf?
+3. **The worst-day test.** Would you still build it on the worst day?
+
+Three yeses is high fit. The tests are in order: the second is impossible without the first, and the third is what tells you the first two were honest.
 
 ---
 

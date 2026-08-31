@@ -83,15 +83,29 @@ test('app.js only reads state fields that initialState actually defines', async 
   assert.deepEqual(missing, [], `app.js reads state fields that do not exist: ${missing.join(', ')}`);
 });
 
-test('the tool carries the current brief and cannot drift from the file', async () => {
-  const { extractBrief } = await import('../../scripts/sync-brief-to-tool.mjs');
-  const md = await fs.readFile(new URL('../../docs/02-strategy/ai_matchmaker_brief.md', import.meta.url), 'utf8');
-  const { version, text } = extractBrief(md);
-  assert.equal(config.brief?.sendableText, text, 'config.brief is stale — run: node scripts/sync-brief-to-tool.mjs');
-  assert.equal(config.brief.version, `v${version}`);
-  // It must stand alone: no references back to a previous version.
-  assert.doesNotMatch(text, /last brief|last time|previous brief|One update/i, 'the sendable brief must not read as a diff against an earlier version');
-  assert.match(text, /findyourtoptalent\.com\/quiz/);
+test('one vocabulary, one current brief, everything else derived', async () => {
+  const { currentBrief, deriveQueries } = await import('../../scripts/sync-brief-to-tool.mjs');
+  const briefsDir = new URL('../../docs/02-strategy/briefs', import.meta.url).pathname;
+  const brief = currentBrief(briefsDir);
+
+  // the tool holds a projection of the current brief file, never its own copy
+  assert.equal(config.brief?.sendableText, brief.text, 'stale — run: node scripts/sync-brief-to-tool.mjs');
+  assert.equal(config.brief.version, `v${brief.version}`);
+  assert.doesNotMatch(brief.text, /last brief|last time|previous brief|One update/i, 'the sendable brief must stand alone');
+  assert.match(brief.text, /findyourtoptalent\.com\/quiz/);
+
+  // search surfaces are generated from the lexicon, so the words cannot disagree
+  const derived = deriveQueries({ ...config.mfLexicon, watchTerms: config.watchlist?.terms });
+  assert.deepEqual(config.xrayQueries, derived.xrayQueries, 'xrayQueries drifted from mfLexicon');
+  assert.deepEqual(config.apiSearchTerms, derived.apiSearchTerms, 'apiSearchTerms drifted from mfLexicon');
+
+  // every insider phrase the brief tells Boardy to look for must exist in the lexicon
+  const lexTerms = config.mfLexicon.tiers.flatMap(t => t.terms.map(x => x.toLowerCase()));
+  for (const quoted of [...brief.text.matchAll(/"([a-z][a-z ]{4,30})"/g)].map(m => m[1].toLowerCase())) {
+    if (quoted.includes(' ') && !quoted.includes('.') && lexTerms.some(t => t.includes(quoted.split(' ')[0]))) {
+      assert.ok(lexTerms.includes(quoted), `brief names "${quoted}" but mfLexicon does not carry it`);
+    }
+  }
 });
 
 test('direction falls back to owner name and stage never downgrades', () => {

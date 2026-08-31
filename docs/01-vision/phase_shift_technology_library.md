@@ -8033,3 +8033,34 @@ That conversion *is* the claim. Everything else — the definition, the proof, t
 **ESC.** *Essence:* an evangelized term with no method behind it is an unowned category available for capture. *Significance:* it removes the largest cost of category design, market education, and replaces category creation's multi-year evangelism with a definitional act. *Consequence:* audit adjacent vocabulary for verdicts-without-methods, claim by publishing the canonical definition and the instrument, give the definition away and monetize the production, and move the subject of the term if its inherited frame judges the buyer.
 
 **Relationship:** `marketing_playbook.md` Step 0.6 (Shelf and Cathedral — the capture play is Step 0.6's cheaper sibling), Technology 128 (The Name Is the Result — functional naming), Technology 129 (Conscious Unique Marketing), Technology 126 (Persuasion as a Perception Deficit), Play Bigger's derived-not-invented discipline, `founder_market_fit.md` (the first application).
+
+---
+
+## Technology 142: Only You Should Be Able to Build It (The Derivation Test) (Day 170, August 29, 2026)
+
+**The law in one sentence: a business that anyone could have built competes on execution, and execution is won by whoever has more money — so the only durable position is a business that stops being itself when its founder is removed.**
+
+**The principle, in the founder's own ear:**
+
+> *Your business should only be buildable by you. If anyone could build it, you are competing on execution against people with more money.*
+
+**Why this is structural rather than motivational.** A business assembled from a market opportunity is, by construction, available to everyone who sees the same opportunity. Its only defensible variables are speed, capital, distribution and operational quality, all of which scale with resources. A better-funded competitor wins that contest eventually and by default. The founder's uniqueness is the one input that cannot be outspent, because it cannot be purchased at any price.
+
+This reframes derivation from a matter of authenticity to a matter of **competitive structure**. It is not that a derived business feels better. It is that an underived business has signed up for a fight decided by balance sheet.
+
+**The four degrees, and the decision each one makes imminent.** Read the degree, and the next decision is determined. So is the truth being avoided, which is why the decision has not been made.
+
+| Degree | State | The imminent decision | The avoided truth |
+|---|---|---|---|
+| **0-2** | The business has nothing to do with you | Whether to keep building this at all | You already know it is not yours. You are hoping traction will make it yours. It will not — traction on a borrowed business only buys a longer sentence |
+| **3-5** | Competent and replaceable | Narrow to the part only you can do, and cut the rest | Your competence is what is hiding you. You were good enough at the generic version that you never had to find the specific one |
+| **6-8** | Present but detachable | Put yourself into the offer explicitly, and price on that part | You are keeping yourself out of it to stay safe, and the safety is costing you the premium |
+| **9-10** | Only you | Distribution, and whether to let others carry it | The thing is finished and you are still refining it, because shipping means being seen as exactly who you are |
+
+Note the symmetry at the ends: at 0-2 the fear is that the work is not yours, and at 9-10 the fear is that it unmistakably is. **The middle degrees hide; the extremes expose.** Which is why founders stall hardest at 3-5, where competence supplies a permanent excuse not to look.
+
+**The diagnostic use.** Because the degree is legible from how a person describes their own work, it can be read from public self-description before any conversation occurs. Generic self-description is not a writing failure; it is the observable surface of low derivation. This makes the scale a targeting instrument as well as a diagnostic one.
+
+**ESC.** *Essence:* uniqueness is the only input a better-funded competitor cannot buy. *Significance:* it converts derivation from a values question into a competitive-structure question, and makes the fear behind a stalled founder predictable from their degree. *Consequence:* read the degree first, name the imminent decision rather than the general advice, and expect resistance proportional to how exposed the next move makes the founder.
+
+**Relationship:** `founder_market_fit.md` (the definition this principle grounds), Technology 141 (The Unclaimed Category — this is the substance behind that capture), Technology 123 (The Ripeness Vector), Technology 121 (Surrender Is the Buying Threshold), Technology 115 (Articulation Is the Mechanism of Growth).

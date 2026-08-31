@@ -1,5 +1,5 @@
 {
-  "briefVersion": "ai_matchmaker_brief.md v3.1",
+  "briefVersion": "matchmaker_brief_v3.1.md",
   "briefNote": "Three streams, held separately. The client is described by a deficit, not a topic. Topic-similarity matching returns peers, and peers have already solved their own version of it. A qualifier link replaces the pitch: the tool routes, the quiz sorts.",
   "icps": [
     {
@@ -36,23 +36,6 @@
         "independent consultant",
         "building my own",
         "working for myself"
-      ],
-      "terms": [
-        "(\"sabbatical\" OR \"career break\") AND (founder OR \"ex-founder\")",
-        "(\"between ventures\" OR \"next chapter\" OR \"former founder\") AND founder",
-        "(holonic OR integral OR \"conscious entrepreneur\" OR polymath OR evolutionary) AND (founder OR \"ex-founder\")",
-        "\"fractional\" AND (CMO OR COO OR CTO OR CPO)",
-        "\"ex-founder\" AND (advisor OR angel)",
-        "(\"conscious tech\" OR \"conscious deep tech\") AND (founder OR building)",
-        "(visionary OR \"systems architect\" OR \"system architect\") AND founder",
-        "(\"what's next\" OR \"figuring out\") AND (\"former founder\" OR \"ex-founder\")",
-        "(regenerative OR sovereignty OR \"new earth\") AND (founder OR entrepreneur)",
-        "(\"stepped back\" OR \"wound down\" OR \"shut down\") AND founder",
-        "(polymath OR \"multi-passionate\") AND (entrepreneur OR founder)",
-        "\"integral\" AND (entrepreneur OR coach OR founder)",
-        "(web3 OR decentralized OR DAO) AND (\"ex-founder\" OR \"between\")",
-        "\"solopreneur\" AND (\"next chapter\" OR pivoting OR reinventing)",
-        "(\"portfolio career\" OR \"independent operator\") AND founder"
       ]
     },
     {
@@ -80,15 +63,6 @@
         "incubator",
         "agency",
         "advisor"
-      ],
-      "terms": [
-        "(\"founder coach\" OR \"executive coach\") AND (founders OR entrepreneurs)",
-        "(\"community builder\" OR \"community founder\") AND founders",
-        "\"agency founder\" AND positioning",
-        "(conscious OR integral OR holonic) AND (coach OR facilitator)",
-        "(\"leadership coach\" OR \"transformational coach\") AND entrepreneurs",
-        "\"program director\" AND (founders OR entrepreneurship)",
-        "(mentor OR advisor) AND (\"zone of genius\" OR uniqueness)"
       ]
     },
     {
@@ -112,14 +86,6 @@
         "ecosystem",
         "network founder",
         "partner"
-      ],
-      "terms": [
-        "(\"venture studio\" OR \"startup studio\") AND (\"managing partner\" OR founder)",
-        "(\"founder program\" OR accelerator) AND director",
-        "\"ecosystem lead\" AND partnerships",
-        "(\"founder collective\" OR \"founders collective\") AND (partner OR founder)",
-        "(conscious OR regenerative OR evolutionary) AND \"venture studio\"",
-        "\"incubator\" AND (\"managing director\" OR \"programme director\")"
       ]
     }
   ],
@@ -182,20 +148,24 @@
   },
   "readOnly": false,
   "mfLexicon": {
-    "note": "Mirror-fidelity signal. Tribe v6.1: MF is the whole product, and a person can only buy what they can already see. These words are a person's own public evidence that the faculty is present. Tier 1 is near-zero false positive. Tier 3 is hypothesis under test — measure yield per term before trusting it.",
+    "note": "THE single vocabulary source. Scoring reads all of it. The search surfaces (apiSearchTerms, xrayQueries) are DERIVED from it by scripts/sync-brief-to-tool.mjs and only take the multi-word phrases, because bare 'holonic' finds employees of a company called Holonic and bare 'integral' catches ordinary English. On a headline the bare words are still real signal; in a query they are not. The brief names the same phrases, and a test fails if it names one this list does not carry.",
     "tiers": [
       {
         "tier": 1,
         "weight": 30,
         "label": "high mirror fidelity",
         "terms": [
+          "spiral dynamics",
+          "integral theory",
+          "integral coach",
+          "zone of genius",
+          "conscious leadership",
+          "polymath",
+          "regenerative",
+          "sovereignty",
           "holonic",
           "integral",
-          "evolutionary",
-          "polymath",
-          "zone of genius",
-          "sovereignty",
-          "regenerative"
+          "evolutionary"
         ]
       },
       {
@@ -203,16 +173,17 @@
         "weight": 20,
         "label": "conscious register",
         "terms": [
-          "conscious",
+          "conscious entrepreneur",
           "conscious tech",
           "conscious deep tech",
-          "visionary",
-          "system architect",
           "systems architect",
+          "system architect",
+          "visionary",
           "mystic",
           "sacred geometry",
           "new earth",
           "noosphere",
+          "conscious",
           "consciousness"
         ]
       },
@@ -285,69 +256,103 @@
     "accountFacts": "Premium RECRUITER, hasSalesNavigator false. ConnectSafely enforces CONNECT 90/week against LinkedIn's 100; the tool's 80/week sits under both."
   },
   "apiSearchTerms": {
-    "note": "Single distinctive terms for the connector path. The Boolean strings in each stream's `terms` stay as-is for the manual LinkedIn UI path.",
-    "client_founder_in_transition": [
+    "note": "Single terms for the connector path: the API ignores Boolean and truncates to ~7 results per query, so volume comes from MANY queries, not deeper pages.",
+    "client": [
+      "spiral dynamics",
+      "integral theory",
+      "integral coach",
+      "zone of genius",
+      "conscious leadership",
+      "conscious entrepreneur",
+      "conscious tech",
+      "conscious deep tech",
+      "systems architect",
+      "system architect",
+      "sacred geometry",
+      "new earth",
+      "polymath",
+      "regenerative",
+      "sovereignty",
       "holonic",
       "integral",
-      "polymath",
       "evolutionary",
-      "sovereignty",
-      "conscious entrepreneur",
+      "visionary",
+      "mystic",
+      "noosphere",
+      "conscious",
+      "consciousness",
       "self-employed",
       "solopreneur",
-      "independent consultant",
       "ex-founder",
       "sabbatical",
       "career break",
       "fractional"
     ],
-    "practitioner_partners": [
+    "partner": [
       "founder coach",
-      "community builder",
       "executive coach",
+      "community builder",
       "agency founder"
     ],
-    "operators_at_altitude": [
+    "operator": [
       "venture studio",
-      "startup studio",
       "founder collective",
-      "accelerator director"
-    ],
-    "watch": [
-      "cannabis",
-      "plant medicine",
-      "psychedelic",
-      "ayahuasca"
+      "accelerator",
+      "startup studio",
+      "syndicate"
     ]
   },
   "brief": {
     "version": "v3.1",
-    "source": "docs/02-strategy/ai_matchmaker_brief.md — the only source. Do not edit the brief inside this config; edit the file and re-run scripts/sync-brief-to-tool.mjs.",
+    "source": "docs/02-strategy/briefs/matchmaker_brief_v3.1.md — the only source. Edit that file, then re-run this script.",
     "standalone": true,
+    "supersedes": [],
     "sendableText": "Here is who I want to meet, in full. Nothing here depends on anything I have told you before.\n\n**When you describe me, use this sentence, verbatim:** \"He works with founders between chapters, and finds the single thread connecting everything they have built.\" Then send them to findyourtoptalent.com/quiz. Use the quiz rather than my offer, and if you need a second sentence, there isn't one. Every time a brief of mine has been thin, the description that came back was one I would not have written.\n\nThere are three kinds of people I want. They are not the same and I need you to hold them separately.\n\n---\n\n**1. My client: the founder in transition.**\n\nThe form that carried them has ended and they know it before anyone else does. Their income runs on their own name, or the next thing is being born under their hands. They have three or four real things going and cannot say what makes them one thing. They have paid for their own development before and call it good money spent.\n\nIn their own words they sound like this:\n\"I know I have something and I can't say what it is.\"\n\"I have several things going and I can't tell if they're one thing.\"\n\"I pushed harder and it changed nothing.\"\n\"I can't answer 'what do you do' anymore.\"\n\n**This person does not look impressive on a profile. They look stuck.** That is the signal, not a disqualifier. Do not pitch them. Send them to the quiz and let it sort them honestly. If it is not their problem, it says so and stops.\n\n**The three signals, and I need all three in the same person:**\n\n1. **The vocabulary**, which says the capacity is there. Detail below.\n2. **Income that already runs on their own name**: self-employed, solopreneur, independent, fractional, founder, their own practice.\n3. **A form that is actually ending**: between ventures, career break, sabbatical, former founder, stepped back, wound down, figuring out what is next.\n\nAny one of the three missing and it is not my client. All three present and it is worth an introduction even if the profile looks unimpressive, which it usually will.\n\n**The expensive miss, and please help me avoid it.** Someone whose company just ended, genuinely between chapters, in real pain, actively looking, and *without* the vocabulary. Signals two and three, not one. They cannot use what I do, because using it means being able to take in an accurate description of yourself and act on it, and that capacity is not there yet. The call is good. Nothing follows. I have lost more time to this person than to any obviously wrong match, because nothing about the intro looks wrong.\n\n---\n\n**2. My sweet spot: practitioners who serve founders.**\n\nCoaches, studio operators, accelerator leads, community builders, agency founders who have done the work on themselves. Not all of them. Only the ones who can say what they personally uniquely bring, rather than describing their method.\n\n**The screening question, and it decides everything: ask what they uniquely bring.** If they answer with their process, they are not ready. If they answer with who they are, they are. One of these carries my method to their entire client base, so a single yes here is worth ten client sales.\n\nThe complementary shape I want most is the grounded builder-operator, closer to execution and ordinary business physics than I am. That difference is the point of the relationship.\n\nIntroduce these people as peers and partners. Never as prospects.\n\n---\n\n**3. Studio and program operators at altitude. Actively wanted.**\n\nRunning a venture studio, accelerator, or founder program successfully, and conscious about how they run it. Words that mark this conversation: venture studio, startup studio, founder collective, accelerator, founder program.\n\nWith them it is not a session. I bring the technology, the platform, the frameworks and the investment thesis. This is infrastructure and thesis, and I want more of these than I have been getting. I have spent twenty years inside collectives of exactly that shape.\n\n---\n\n**The vocabulary that tells you the capacity is present.**\n\nPeople describe themselves in the words of what they have actually developed. When someone writes any of these about themselves, unprompted, treat it as evidence about the person, not as a topic I happen to like:\n\n\"spiral dynamics\" · \"integral theory\" · \"integral coach\" · \"zone of genius\" · \"conscious leadership\" · polymath · regenerative · sovereignty\n\nSlightly noisier, still strong: conscious entrepreneur · conscious tech · visionary · systems architect · mystic · new earth\n\nWeaker and unproven, send them but tell me you are testing: decentralization · web3 · modular · social or impact entrepreneurship. My honest read is that some of these people are still more aspirational than developed, and I would rather find out than assume.\n\n**A warning on two words.** Take \"holonic\" and \"integral\" only in the multi-word forms above. Alone they are traps: \"holonic\" mostly finds people who work at a company called Holonic, and \"integral\" catches ordinary English, as in \"an integral part of the team.\" The phrases only an insider would use are the ones that work. A word that is merely rare is not the same as a word that is unambiguous.\n\n**And never send me the vocabulary on its own.** Someone with the words and no transition is my peer. Peers are pleasant, and they have nothing to buy, because they already solved their own version of it.\n\n---\n\n**Two shapes to recognise and route differently.**\n\n**The colleague.** If they already teach this, if their own offer is about helping people find their gift or their genius, they are a peer. Good to know, lovely to meet, nothing to buy. Send them as a peer and say so.\n\n**The exclusion: anyone building their own typology, personality or human-categorization system.** They will look like the closest match you can find. A live example so the shape is unmistakable: someone whose profile says they built a personality test, grounded in years of research, to help people find their zone of genius. Every word of that overlaps with me, and they cannot buy, because their premise is that a test reads a person better than the person does, and my whole offer rests on the opposite.\n\n---\n\n**One flag, and I do not want you to judge it.** If someone works publicly in cannabis or plant medicine, show me regardless of everything above. Saying that under your own name costs something, and I want to see who is willing to pay it. I will decide what it means.\n\n**Do not try to read their inner state.** Surface people on what is observable: the words they use about themselves, whether income runs on their own name, whether the form they were in is ending. I do the readiness screen myself after the intro. Guessing at ripe or not ripe from a profile is my job, not yours.\n\n**On volume: send more, not fewer.** The three signals are a sorting rule, not a scarcity rule. There are far more of these people than either of us has been finding. I would rather score twenty and be wrong about twelve than receive three perfect ones a month."
   },
   "xrayQueries": {
-    "note": "Google X-ray. Real Boolean, indexes the full About text where markers actually live, and no commercial-use cap. Paste into Google, open profiles by hand. Disambiguated forms only.",
-    "stream_a_client": [
-      "site:linkedin.com/in \"spiral dynamics\" founder \"what's next\"",
-      "site:linkedin.com/in \"conscious entrepreneur\" \"between ventures\"",
-      "site:linkedin.com/in \"former founder\" \"zone of genius\"",
-      "site:linkedin.com/in \"self-employed\" founder \"next chapter\"",
-      "site:linkedin.com/in \"polymath\" founder \"figuring out\""
+    "note": "Google X-ray: real Boolean, indexes the About text, no commercial-use cap. Generated from mfLexicon — do not edit by hand.",
+    "client": [
+      "site:linkedin.com/in \"spiral dynamics\" founder \"what's next\" OR \"between ventures\"",
+      "site:linkedin.com/in \"integral theory\" founder \"what's next\" OR \"between ventures\"",
+      "site:linkedin.com/in \"integral coach\" founder \"what's next\" OR \"between ventures\"",
+      "site:linkedin.com/in \"zone of genius\" founder \"what's next\" OR \"between ventures\"",
+      "site:linkedin.com/in \"conscious leadership\" founder \"what's next\" OR \"between ventures\"",
+      "site:linkedin.com/in \"conscious entrepreneur\" founder \"what's next\" OR \"between ventures\"",
+      "site:linkedin.com/in \"conscious tech\" founder \"what's next\" OR \"between ventures\"",
+      "site:linkedin.com/in \"conscious deep tech\" founder \"what's next\" OR \"between ventures\"",
+      "site:linkedin.com/in \"systems architect\" founder \"what's next\" OR \"between ventures\"",
+      "site:linkedin.com/in \"system architect\" founder \"what's next\" OR \"between ventures\"",
+      "site:linkedin.com/in \"sacred geometry\" founder \"what's next\" OR \"between ventures\"",
+      "site:linkedin.com/in \"new earth\" founder \"what's next\" OR \"between ventures\""
     ],
-    "stream_b_partner": [
-      "site:linkedin.com/in \"integral coach\" OR \"integral master coach\"",
-      "site:linkedin.com/in \"spiral dynamics\" founder coach",
+    "partner": [
+      "site:linkedin.com/in \"spiral dynamics\" coach founders",
+      "site:linkedin.com/in \"integral theory\" coach founders",
+      "site:linkedin.com/in \"integral coach\" coach founders",
+      "site:linkedin.com/in \"zone of genius\" coach founders",
       "site:linkedin.com/in \"conscious leadership\" coach founders",
-      "site:linkedin.com/in \"zone of genius\" coach founders"
+      "site:linkedin.com/in \"conscious entrepreneur\" coach founders",
+      "site:linkedin.com/in \"conscious tech\" coach founders",
+      "site:linkedin.com/in \"conscious deep tech\" coach founders",
+      "site:linkedin.com/in \"systems architect\" coach founders",
+      "site:linkedin.com/in \"system architect\" coach founders",
+      "site:linkedin.com/in \"sacred geometry\" coach founders",
+      "site:linkedin.com/in \"new earth\" coach founders"
     ],
-    "stream_c_operator": [
-      "site:linkedin.com/in \"venture studio\" \"conscious\" OR \"regenerative\"",
-      "site:linkedin.com/in \"founder collective\" managing partner"
+    "operator": [
+      "site:linkedin.com/in \"venture studio\" \"managing partner\" OR director",
+      "site:linkedin.com/in \"founder collective\" \"managing partner\" OR director",
+      "site:linkedin.com/in \"accelerator\" \"managing partner\" OR director",
+      "site:linkedin.com/in \"startup studio\" \"managing partner\" OR director",
+      "site:linkedin.com/in \"syndicate\" \"managing partner\" OR director"
     ],
     "watch": [
+      "site:linkedin.com/in \"cannabis\" founder",
       "site:linkedin.com/in \"plant medicine\" founder",
-      "site:linkedin.com/in cannabis founder \"conscious\""
+      "site:linkedin.com/in \"psychedelic\" founder",
+      "site:linkedin.com/in \"entheogen\" founder",
+      "site:linkedin.com/in \"ayahuasca\" founder",
+      "site:linkedin.com/in \"psilocybin\" founder"
     ]
   }
 }
