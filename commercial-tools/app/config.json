@@ -169,6 +169,23 @@
         ]
       },
       {
+        "tier": 1,
+        "weight": 30,
+        "label": "depth work, faculty-building",
+        "terms": [
+          "plant medicine",
+          "psychedelic integration",
+          "entheogen",
+          "ayahuasca",
+          "psilocybin",
+          "microdosing",
+          "somatic experiencing",
+          "breathwork facilitator",
+          "shadow work"
+        ],
+        "caution": "High faculty, and disproportionately Stream B facilitators rather than clients. Expect peers unless transition and own-name income are present too. The cross already enforces that. Kept in the watchlist as well, so these still surface for Sasha's own eyes rather than being auto-templated."
+      },
+      {
         "tier": 2,
         "weight": 20,
         "label": "conscious register",
