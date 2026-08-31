@@ -83,6 +83,17 @@ test('app.js only reads state fields that initialState actually defines', async 
   assert.deepEqual(missing, [], `app.js reads state fields that do not exist: ${missing.join(', ')}`);
 });
 
+test('the tool carries the current brief and cannot drift from the file', async () => {
+  const { extractBrief } = await import('../../scripts/sync-brief-to-tool.mjs');
+  const md = await fs.readFile(new URL('../../docs/02-strategy/ai_matchmaker_brief.md', import.meta.url), 'utf8');
+  const { version, text } = extractBrief(md);
+  assert.equal(config.brief?.sendableText, text, 'config.brief is stale — run: node scripts/sync-brief-to-tool.mjs');
+  assert.equal(config.brief.version, `v${version}`);
+  // It must stand alone: no references back to a previous version.
+  assert.doesNotMatch(text, /last brief|last time|previous brief|One update/i, 'the sendable brief must not read as a diff against an earlier version');
+  assert.match(text, /findyourtoptalent\.com\/quiz/);
+});
+
 test('direction falls back to owner name and stage never downgrades', () => {
   const c = conversationState([{ senderName: 'Sasha K', text: 'Hello', sentAt: '2026-01-01' }], '', 'Sasha K');
   assert.equal(c.direction, 'mine');
