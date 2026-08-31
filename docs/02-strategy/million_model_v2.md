@@ -89,29 +89,35 @@ The same shape as the node arrangement, one layer down. Consequences: no separat
 
 ## Exhibit 4 — The demand engine (the real work)
 
-Target: **40 Productize Yourself sessions a month.** Working backwards, using LinkedIn industry rates multiplied 2-3x for precision of targeting:
+Target: **40 Productize Yourself sessions a month.** Rates below are Sasha's own, not industry averages.
 
-| Step | Industry | At his precision | Of 100 |
-|---|---|---|---|
-| Connection request accepted | 25-30% | 50-60% | 55 |
-| Accepted → real conversation | 5-10% | 15-20% | 10 |
-| Conversation → Direction Call | — | ~30% | 3 |
-| Direction Call → paid session | — | ~35% | **1** |
-
-**~100 cold touches per session sold.** For 40 sessions a month that is 4,000 touches, or ~180 a day.
-
-**LinkedIn permits roughly 100-200 connection requests per week.** So cold LinkedIn supports **1-2 sessions a week at absolute ceiling.** The other 8 cannot come from there.
-
-Where they come from:
-
-| Channel | Sessions/mo at scale | Notes |
+| Step | Rate | Of 100 requests |
 |---|---|---|
-| Cold LinkedIn | 4-8 | Hard-capped by platform limits |
-| Warm intros (Boardy etc.) | 4-8 | Highest conversion of any source; volume-limited |
-| **Community hosts** | **20-30** | **The unlock.** One host with 30 members can supply a full cohort |
-| Referrals from attributing founders | 0 → 10+ | Nil in year 1, compounds hard after |
+| Connection request accepted | 50% | 50 |
+| Accepted → reply with buying intent | 5% | 2.5 |
+| Reply → quiz → Direction Call | 33% | 0.83 |
+| Direction Call → paid session | 50% | **0.41** |
 
-**The arithmetic forces the host channel.** Two hosts a month closes the gap; nothing else does at this volume.
+**One session per ~240 connection requests.**
+
+LinkedIn permits **20 requests a day**. At 30 days that is 600 a month:
+
+> **Cold LinkedIn ceiling: ~2.5 sessions a month. That is 6% of the 40 needed.**
+
+The 5% reply rate is what dominates. Even a doubled reply rate only reaches 5 sessions a month, so no amount of message-craft closes this gap. It is a channel-shape problem, not a copy problem.
+
+### Where the other 37.5 come from
+
+| Channel | Sessions/mo at scale | Basis |
+|---|---|---|
+| Cold LinkedIn | **2.5** | Hard-capped at 20 requests/day |
+| Boardy warm intros | **0 → 6** | 2 intros/day ≈ 60/mo. Observed to date: 6 intros, 0 clients. Requires a brief rewritten for buyer intent, not peer conversation |
+| **Community hosts** | **30** | **The answer.** One host with ~30 members yields ~10 sessions. Three hosts a month closes the gap |
+| Referrals from attributing founders | 0 → 10+ | Nil in year 1, compounds hard from year 2 |
+
+**Conclusion: the volume tier is a host-acquisition business.** The operative target is not 180 touches a day. It is **three community hosts a month**, and the daily outreach effort should be aimed at host operators rather than at individual founders.
+
+**The $250 lever.** Cold outreach converts better to a $250 uniqueness session than to a $555 one, and that session is itself a qualification event with a far higher hand-off rate to Productize Yourself than a Direction Call. It also delegates immediately. Worth testing as the cold-channel entry point, though it does not change the host conclusion.
 
 ---
 
@@ -136,7 +142,8 @@ Effect on year-3 revenue of moving one input alone:
 | Risk | Severity | Mitigation |
 |---|---|---|
 | **Attribution decay.** Founders cross and do not attribute it, or exit the arrangement | **Critical** | Selection, not enforcement. Ripeness read at intake. See Technology 140 |
-| **Host channel does not open** | **Critical** | Without it, volume caps near 2-3 sessions/week and $1M slips years |
+| **Host channel does not open** | **Critical** | Without it, volume caps near 2-3 sessions a *month* and $1M slips years |
+| **Practitioner cash gap** | High | Deliverers are paid before founders earn. See Exhibit 3b |
 | Group container unproven | Medium | $1,111 group form is untested. Gleb's 1:1 is the only data point |
 | Delegation dilutes quality | Medium | Uniqueness sessions delegate cleanly; PYS is the risk. Record the block first |
 | $100k average founder revenue is a guess | Medium | Test against the nine existing canvases |
@@ -151,6 +158,8 @@ The category name. Node license terms. The purpose-entity threshold (~25 nodes, 
 
 ## What the model says to do next
 
-1. **Open the host channel.** It is the only input that unlocks the volume tier, and nothing else substitutes for it.
+1. **Open the host channel. Target three hosts a month.** It is 75% of the volume tier and nothing substitutes for it. Point daily outreach at host operators, not at individual founders.
 2. **Record the teaching block.** It is the precondition for delegating anything.
-3. **Test the attribution rate against the nine existing canvases** so 33% stops being an estimate.
+3. **Rewrite the Boardy brief for buyer intent.** Six intros produced six good conversations and zero clients; the brief is currently producing peers.
+4. **Price the integration container** and attach its share, per Exhibit 3b.
+5. **Test the attribution rate against the nine existing canvases** so 33% stops being an estimate.
