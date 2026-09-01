@@ -7485,10 +7485,6 @@
         "emailSuccess": "Te llegará pronto. Revisa tu correo."
       },
       "itchTremors": {
-        "turnsIntoLabel": "En qué suele convertirse esto",
-        "signLabel": "La señal de que se está volviendo real",
-        "whyLabel": "Por qué más esfuerzo no está funcionando ahora",
-        "nextLabel": "Qué suele venir después",
         "2": {
           "turnsInto": "La comezón suele convertirse en empujar más fuerte sobre lo mismo, no en algo nuevo. La mayoría parcha la forma antigua durante meses, a veces años, antes de que se vuelva un cambio real.",
           "sign": "Empujar deja de funcionar y empieza a costarte sueño, energía o salud. Ahí es cuando el Potencial dormido se vuelve Estancamiento.",
@@ -7503,6 +7499,10 @@
           "giftLinkLabel": "revelación de tu Top Talent",
           "giftPost": " gratuita nombra en qué eres bueno, para que cuando llegue el cambio sepas qué llevar contigo."
         },
+        "turnsIntoLabel": "En qué suele convertirse esto",
+        "signLabel": "La señal de que se está volviendo real",
+        "whyLabel": "Por qué más esfuerzo no está funcionando ahora",
+        "nextLabel": "Qué suele venir después",
         "emailPrompt": "¿Quieres el mapa completo, para encontrarte con lo que sigue con los ojos abiertos?",
         "emailPlaceholder": "tu@email.com",
         "emailCta": "Envíame el mapa completo",
@@ -7627,7 +7627,6 @@
       "sentConfirmation": "Va en camino a tu correo.",
       "orOpenLink": "O ábrela ahora"
     },
-
     "recognitionDelta": {
       "prompt": "¿Qué tan exacto fue esto sobre lo que has estado viviendo?",
       "options": {
@@ -7659,8 +7658,8 @@
       "chapter": {
         "eyebrow": "TU CAPÍTULO ACTUAL",
         "bullseye": {
-          "5": "Estás entre capítulos. La respuesta anterior se acabó, y la siguiente aún no está lo bastante clara para construir alrededor de ella.",
           "4": "La forma en que sueles ganar dinero dejó de funcionar. No significa que lo hicieras mal, ni que perdieras tu filo. Un capítulo terminó. El siguiente todavía no está construido.",
+          "5": "Estás entre capítulos. La respuesta anterior se acabó, y la siguiente aún no está lo bastante clara para construir alrededor de ella.",
           "6": "El próximo capítulo ya se está formando. Lo sientes, solo que todavía no puedes decirlo con la claridad suficiente para sostenerlo en público.",
           "7": "Ahora es real. Estás construyendo una vida alrededor de esto. No todas las preguntas tienen respuesta, y así funciona construir: la evidencia alcanza a la decisión que ya tomaste."
         },
@@ -7675,8 +7674,8 @@
       "evidence": {
         "heading": "Lo que revelaron tus respuestas",
         "youSaid": {
-          "5": "Dijiste que el capítulo anterior terminó, pero de verdad no sabes qué sigue.",
           "4": "Dijiste que la forma en la que sueles ganar dinero ya no funciona igual, aunque no pasó nada dramático.",
+          "5": "Dijiste que el capítulo anterior terminó, pero de verdad no sabes qué sigue.",
           "6": "Dijiste que puedes sentir cuál es el siguiente paso, pero todavía no puedes decir tu oferta con suficiente claridad.",
           "7": "Dijiste que sabes a qué te dedicas ahora, y que estás empezando a construir un éxito real alrededor de eso."
         },
@@ -7711,14 +7710,14 @@
       },
       "upgradedQuestion": {
         "coherence": {
-          "5": "¿Qué relación debería tener cada uno de tus proyectos con la única dirección que estás construyendo?",
           "4": "¿Lo que se siente confuso es sobre ti, o sobre cómo se relacionan entre sí las partes que estás cargando?",
+          "5": "¿Qué relación debería tener cada uno de tus proyectos con la única dirección que estás construyendo?",
           "6": "¿Cuál es esa única cosa que todos tus proyectos están rodeando y que aún no has nombrado?",
           "7": "¿Cuál de las cosas que estás construyendo realmente lidera, y cuáles son apoyo?"
         },
         "form": {
-          "5": "¿Estoy optimizando la oferta antes de decidir qué es lo que este capítulo realmente viene a llevar?",
           "4": "¿Estoy buscando una pastilla mágica en lugar de tener claridad sobre lo que quiere emerger de mí?",
+          "5": "¿Estoy optimizando la oferta antes de decidir qué es lo que este capítulo realmente viene a llevar?",
           "6": "¿La oferta es realmente confusa, o ya está clara y simplemente no se ha probado con personas reales?",
           "7": "¿Lo que no está aterrizando es la oferta en sí, o quién la está escuchando?"
         },
@@ -8021,5 +8020,176 @@
       "line2": "El techo se mueve en el momento en que se mueve tu autoconocimiento.",
       "ctaLabel": "Nombra lo que sigue"
     }
+  },
+  "fmfCategory": {
+    "seoTitle": "Founder-Market Fit",
+    "seoDescription": "El founder-market fit es el grado en que un negocio se deriva de quien el fundador realmente es. La definición, la escala, las pruebas y el método. Libre de reutilizar con atribución.",
+    "eyebrow": "FOUNDER-MARKET FIT",
+    "heroDefinition": "El founder-market fit es el grado en que un negocio se deriva de quien el fundador realmente es.",
+    "heroHigh": "Grado alto: el negocio solo podría haberlo construido esta persona.",
+    "heroLow": "Grado bajo: cualquiera podría haberlo construido, así que compite solo por ejecución.",
+    "heroReuse": "Libre de reutilizar con atribución.",
+    "navDefinition": "Definición",
+    "navTheory": "Teoría",
+    "navInstrument": "Instrumento",
+    "navMethod": "Método",
+    "navProof": "Prueba",
+    "definitionLabel": "01 · Definición",
+    "definitionHeading": "La definición",
+    "scaleIntro": "El fit es un grado, no un sí o un no. Léelo sobre diez.",
+    "scale": [
+      {
+        "range": "0–2",
+        "text": "El negocio no tiene nada que ver contigo. Lo elegiste de un mercado, no de ti mismo."
+      },
+      {
+        "range": "3–5",
+        "text": "Eres bueno en ello y reemplazable. Tu historia explica por qué estás calificado, nunca por qué es tuyo."
+      },
+      {
+        "range": "6–8",
+        "text": "Apareces en el trabajo. Un desconocido intuye a una persona detrás, pero la oferta sobreviviría sin ti."
+      },
+      {
+        "range": "9–10",
+        "text": "Solo tú podrías haberlo construido. Quítate y deja de ser lo mismo."
+      }
+    ],
+    "degreesLabel": "La prueba de derivación",
+    "degreesHeading": "Lee tu grado. Encuentra tu próxima decisión.",
+    "degreesIntro": "Lee el grado, y la próxima decisión queda determinada. También la verdad que se evita, y por eso la decisión no se ha tomado.",
+    "degreesDecisionLabel": "La decisión inminente",
+    "degreesTruthLabel": "La verdad evitada",
+    "degrees": [
+      {
+        "degree": "0–2",
+        "state": "El negocio no tiene nada que ver contigo",
+        "decision": "Si seguir construyendo esto o no",
+        "truth": "Ya sabes que no es tuyo. Esperas que la tracción lo haga tuyo. No lo hará. La tracción sobre un negocio prestado solo compra una condena más larga."
+      },
+      {
+        "degree": "3–5",
+        "state": "Competente y reemplazable",
+        "decision": "Reducir a la parte que solo tú puedes hacer, y cortar el resto",
+        "truth": "Tu competencia es lo que te esconde. Eras lo bastante bueno en la versión genérica como para no tener que encontrar la específica."
+      },
+      {
+        "degree": "6–8",
+        "state": "Presente pero separable",
+        "decision": "Ponerte en la oferta de forma explícita, y cobrar por esa parte",
+        "truth": "Te mantienes fuera para estar a salvo, y esa seguridad te cuesta la prima."
+      },
+      {
+        "degree": "9–10",
+        "state": "Solo tú",
+        "decision": "Distribución, y si dejar que otros lo lleven",
+        "truth": "La cosa está terminada y sigues puliéndola, porque publicarla significa ser visto como exactamente quien eres."
+      }
+    ],
+    "degreesNote": "Los grados intermedios esconden; los extremos exponen. Los fundadores se estancan más en el 3–5, donde la competencia da una excusa permanente para no mirar.",
+    "testsLabel": "Las tres pruebas",
+    "testsIntro": "Puedes hacértelas a ti mismo, sin ayuda, en menos de un minuto.",
+    "tests": [
+      {
+        "name": "La prueba de la frase",
+        "q": "¿Puedes decir lo que haces de forma única, en una frase, sin titubear?"
+      },
+      {
+        "name": "La prueba de derivación",
+        "q": "¿Tu oferta salió de esa frase, o de un estante?"
+      },
+      {
+        "name": "La prueba del peor día",
+        "q": "¿Lo construirías igual en el peor día?"
+      }
+    ],
+    "testsClose": "Tres síes es fit alto. Las pruebas van en orden: la segunda es imposible sin la primera, y la tercera te dice si las dos primeras fueron honestas.",
+    "notLabel": "Lo que no es",
+    "notBody": "No es pasión. No son credenciales. No son años en la industria. Eso son ingredientes. El founder-market fit es si el negocio se derivó de verdad de ellos.",
+    "knowLabel": "Cómo lo sabes",
+    "know": [
+      "La frase del fundador y su oferta son lo mismo dicho a dos alturas.",
+      "Un desconocido reconoce al fundador solo por la oferta.",
+      "Un competidor no puede copiar la oferta sin volverse otra persona."
+    ],
+    "claimLabel": "La afirmación",
+    "claimBody1": "El founder-market fit se trata en todas partes como un veredicto. Los inversores juzgan si un fundador lo tiene. Los fundadores esperan tenerlo.",
+    "claimBody2": "No es un veredicto. Es una propiedad del negocio, y se puede construir dentro.",
+    "claimBody3": "Esa es toda la diferencia. Un veredicto es sobre ti y lo decide otro. Una propiedad es sobre lo que construyes y lo decides tú.",
+    "founderFacing": "Tu negocio solo deberías poder construirlo tú. Si cualquiera puede construirlo, compites por ejecución contra gente con más dinero.",
+    "theoryLabel": "02 · Teoría",
+    "theoryHeading": "Por qué el fit es estructural y no de motivación",
+    "theory1": "Un negocio ensamblado a partir de una oportunidad de mercado está, por construcción, disponible para todos los que ven la misma oportunidad. Sus únicas variables defendibles son velocidad, capital, distribución y calidad operativa, y todas escalan con los recursos. Un competidor mejor financiado gana esa contienda tarde o temprano, por defecto.",
+    "theory2": "La singularidad del fundador es el único insumo que no se puede superar con gasto, porque no se puede comprar a ningún precio. No es que un negocio derivado se sienta mejor. Es que un negocio no derivado se ha apuntado a una pelea que decide el balance.",
+    "theory3": "Así el término se desplaza. De un veredicto sobre la persona, que emite un observador, a una propiedad de lo que la persona construye, una que un método puede producir.",
+    "instrumentLabel": "03 · Instrumento",
+    "instrumentHeading": "El fit se lee, no se adivina",
+    "instrumentIntro": "Tres lecturas producen la lectura.",
+    "instrument": [
+      {
+        "name": "La lectura de singularidad",
+        "reads": "lo que el fundador hace de forma única, dicho en una frase"
+      },
+      {
+        "name": "La lectura de madurez",
+        "reads": "si está listo para construir a partir de ello ahora"
+      },
+      {
+        "name": "La lectura de transición",
+        "reads": "dónde está entre su último fit y el siguiente"
+      }
+    ],
+    "methodLabel": "04 · Método",
+    "methodHeading": "La lectura no es el producto. El producto es producir el fit.",
+    "methodIntro": "Cinco posesiones sostienen la categoría. Una categoría pertenece a quien aporta las cinco. La mayoría de los que la reclaman aporta una.",
+    "possessions": [
+      {
+        "name": "Teoría",
+        "what": "por qué un negocio es la forma externa de una persona, y cómo se forma el fit"
+      },
+      {
+        "name": "Definición",
+        "what": "este documento"
+      },
+      {
+        "name": "Instrumento",
+        "what": "las lecturas de singularidad, madurez y transición"
+      },
+      {
+        "name": "Método",
+        "what": "el playbook de Unique Business y el lienzo: el proceso repetible, y el artefacto estándar que produce"
+      },
+      {
+        "name": "Entrega",
+        "what": "los flujos de IA, lo que hace el método reproducible por alguien que no sea su autor"
+      }
+    ],
+    "methodLinkPrefix": "El método es el playbook de Unique Business y su lienzo de siete artefactos. Es el proceso repetible que produce el fit, y el artefacto estándar que genera.",
+    "methodLink": "Ver el método",
+    "proofLabel": "05 · Prueba",
+    "proofHeading": "Se prueba de un fundador a la vez",
+    "proofIntro": "Una afirmación de este tipo se prueba a nivel de unidad, un fundador nombrado a la vez. Cada caso muestra las mismas cuatro cosas:",
+    "proof": [
+      {
+        "n": "Antes",
+        "text": "Cómo describía su negocio, con sus propias palabras, al principio."
+      },
+      {
+        "n": "La frase",
+        "text": "Lo que se nombró."
+      },
+      {
+        "n": "Después",
+        "text": "La oferta, la página, el mercado que se derivó de ella."
+      },
+      {
+        "n": "El resultado",
+        "text": "Lo que pasó comercialmente, con fechas y cifras."
+      }
+    ],
+    "proofPending": "Casos pendientes. Existen nueve lienzos y ninguno se ha publicado aún como prueba. Este es el hueco entre la afirmación y su evidencia, y es el próximo trabajo.",
+    "reuseLabel": "Sobre la reutilización",
+    "reuseBody": "Usa esta definición. Enséñala, cítala, ponla en tus propios materiales, construye sobre ella. Es libre y está hecha para viajar.",
+    "reuseDiscipline": "Di founder-market fit, exactamente esas palabras, cada vez. No founder/market fit, no founder-market alignment. Una categoría es una frase que la gente tiene que recordar, y cada sinónimo parte la memoria en dos."
   }
 }

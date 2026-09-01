@@ -1,6 +1,6 @@
 # Founder-Market Fit
 
-> *Canonical definition, v0.2 draft — Day 170, August 29, 2026. The category-capture claim per [Technology 141](../01-vision/phase_shift_technology_library.md). Free to reuse with attribution. Not yet published.*
+> *Canonical definition, v0.3 draft — Day 170, August 29, 2026. The category-capture claim per [Technology 141](../01-vision/phase_shift_technology_library.md). Free to reuse with attribution. Not yet published.*
 
 ---
 
@@ -26,6 +26,16 @@ Fit is a degree, not a yes or no. Read it on ten.
 
 ---
 
+## What the scale is actually measuring
+
+Not the quality of the business. **How much of yourself you have agreed to be seen as.**
+
+That is why both ends of the scale are uncomfortable. At the bottom the fear is *this is not me.* At the top the fear is *this is unmistakably me.* Same fear, opposite directions. A business with none of you in it protects you, because there is nothing there to look at. A business only you could build removes the protection and puts your name on it.
+
+It is also why capable people stall in the middle. You are good enough at the generic version that nothing forces the question. Being good at a business that is not yours is what stops you finding the one that is.
+
+---
+
 ## The three tests
 
 1. **The sentence test.** Can you say what you uniquely do, in one sentence, without flinching?
@@ -47,6 +57,26 @@ Not passion. Not credentials. Not years in the industry. Those are ingredients. 
 - The founder's sentence and their offer are the same thing said at two altitudes.
 - A stranger recognizes the founder from the offer alone.
 - A competitor cannot copy the offer without becoming a different person.
+
+---
+
+## The chain it sits in
+
+Founder-market fit is the middle term of three, and each one is capped by the one before it.
+
+| | Reading | The question |
+|---|---|---|
+| **Uniqueness** | how much of yourself you have agreed to be seen as | who am I, in public? |
+| **Fit** | how many people recognize themselves needing exactly that | does it land on anyone? |
+| **Cashflow** | how many of them acted | did they pay? |
+
+Exposure, then recognition, then exchange. Three ways it breaks:
+
+- **Exposed and unmet.** Unmistakably yours, reaching nobody who needed it. Looks like a marketing problem. It is an aim problem.
+- **Met and replaceable.** People want it and anyone can supply it, so the fight reverts to money. Looks like a competition problem. It is an exposure problem.
+- **Working and hollow.** Revenue arrives and you are absent from your own business. Looks like a scaling problem. It is a derivation problem, and scale makes it worse.
+
+Money is not the point and it is the only unarguable reading. You can be wrong about how exposed you are and wrong about who needs you. You cannot be wrong about whether a stranger paid.
 
 ---
 
