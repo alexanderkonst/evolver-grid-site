@@ -84,6 +84,7 @@ const EvolutionPortalKarime = lazy(() => import("./pages/EvolutionPortalKarime")
 const BuildContainer = lazy(() => import("./pages/BuildContainer"));
 const TheCrossing = lazy(() => import("./pages/TheCrossing"));
 const FounderRead = lazy(() => import("./pages/FounderRead"));
+const FounderMarketFitCategory = lazy(() => import("./pages/FounderMarketFitCategory"));
 const CommunityWebinar = lazy(() => import("./pages/CommunityWebinar"));
 // Day 133: plain-language data promise + legal companions.
 const YourDataPlainly = lazy(() => import("./pages/YourDataPlainly"));
@@ -975,8 +976,11 @@ const App = () => (
                   <Route path="/monetization" element={<Monetization />} />
                   {/* SOHN seminal note · /sohn · standalone, the abstract (seed) + a link to the live platform (the proof). */}
                   <Route path="/sohn" element={<Sohn />} />
-                  {/* Founder-Market Fit Landing Page */}
-                  <Route path="/founder-market-fit" element={<RequireAuth><FounderMarketFit /></RequireAuth>} />
+                  {/* Founder-Market Fit — the free, ungated category surface (Tech 141) owns the canonical URL. */}
+                  <Route path="/founder-market-fit" element={<FounderMarketFitCategory />} />
+                  {/* Human-Market Fit — the paid diagnostic sales page, relocated here from /founder-market-fit.
+                      /fmf kept pointing here to preserve existing shared/booking links. */}
+                  <Route path="/human-market-fit" element={<RequireAuth><FounderMarketFit /></RequireAuth>} />
                   <Route path="/fmf" element={<RequireAuth><FounderMarketFit /></RequireAuth>} />
                   {/* Community Pages */}
                   <Route path="/the-originals" element={<RequireAuth><TheOriginalsPage /></RequireAuth>} />

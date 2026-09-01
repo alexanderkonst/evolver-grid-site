@@ -7492,10 +7492,6 @@
         "emailSuccess": "Sent soon. Watch your inbox."
       },
       "itchTremors": {
-        "turnsIntoLabel": "What this usually turns into",
-        "signLabel": "The sign it's becoming real",
-        "whyLabel": "Why more effort isn't converting right now",
-        "nextLabel": "What usually comes next",
         "2": {
           "turnsInto": "The itch usually turns into pushing harder at the same thing, not into anything new. Most people patch the old form for months, sometimes years, before it turns into a real shift.",
           "sign": "The pushing stops working and starts costing you sleep, energy, or health. That's when Dormant Potential becomes The Stuckness.",
@@ -7510,6 +7506,10 @@
           "giftLinkLabel": "Top Talent reveal",
           "giftPost": " names what you're best at, so when the shift comes you know what to carry across."
         },
+        "turnsIntoLabel": "What this usually turns into",
+        "signLabel": "The sign it's becoming real",
+        "whyLabel": "Why more effort isn't converting right now",
+        "nextLabel": "What usually comes next",
         "emailPrompt": "Want the full map, so you can meet what's next with your eyes open?",
         "emailPlaceholder": "you@email.com",
         "emailCta": "Send me the full map",
@@ -7634,7 +7634,6 @@
       "sentConfirmation": "On its way to your inbox.",
       "orOpenLink": "Or open it now"
     },
-
     "recognitionDelta": {
       "prompt": "How accurately did this name what you've been living?",
       "options": {
@@ -7666,8 +7665,8 @@
       "chapter": {
         "eyebrow": "YOUR CURRENT CHAPTER",
         "bullseye": {
-          "5": "You're between chapters. The old answer is over, and the next one isn't clear enough yet to build around.",
           "4": "The way you make money stopped working. That's not a sign you did it wrong, or that you lost your edge. One chapter ended. The next one isn't built yet.",
+          "5": "You're between chapters. The old answer is over, and the next one isn't clear enough yet to build around.",
           "6": "The next chapter is forming. You can feel it, you just can't say it clearly enough yet to stand behind it in public.",
           "7": "It's real now. You're building a life around it. Not every question is answered, and that's how building works: the evidence catches up to the decision you already made."
         },
@@ -7682,8 +7681,8 @@
       "evidence": {
         "heading": "What your answers revealed",
         "youSaid": {
-          "5": "You said the old chapter is over, but you genuinely don't know what comes next.",
           "4": "You said the way you're used to making money isn't working the same, even though nothing dramatic happened.",
+          "5": "You said the old chapter is over, but you genuinely don't know what comes next.",
           "6": "You said you can feel what the next thing is, but you can't yet say what your offer is clearly enough.",
           "7": "You said you know what you do now, and you're beginning to build real success around it."
         },
@@ -7718,14 +7717,14 @@
       },
       "upgradedQuestion": {
         "coherence": {
-          "5": "What relationship should each of your projects have to the one direction you're building?",
           "4": "Is what feels unclear really about you, or about how the parts you're carrying relate to each other?",
+          "5": "What relationship should each of your projects have to the one direction you're building?",
           "6": "What is the one thing all your projects are circling that you haven't named yet?",
           "7": "Which of the things you're building actually leads, and which are support?"
         },
         "form": {
-          "5": "Am I optimizing the offer before deciding what this chapter is actually here to carry?",
           "4": "Am I looking for a magic pill instead of getting clarity on what wants to emerge from me?",
+          "5": "Am I optimizing the offer before deciding what this chapter is actually here to carry?",
           "6": "Is the offer unclear, or is it clear and simply untested against real people yet?",
           "7": "Is what's not landing about the offer itself, or about who's hearing it?"
         },
@@ -8028,5 +8027,176 @@
       "line2": "The ceiling moves the moment your self-understanding does.",
       "ctaLabel": "Name what's next"
     }
+  },
+  "fmfCategory": {
+    "seoTitle": "Founder-Market Fit",
+    "seoDescription": "Founder-market fit is the degree to which a business is derived from who the founder actually is. The definition, the scale, the tests, and the method. Free to reuse with attribution.",
+    "eyebrow": "FOUNDER-MARKET FIT",
+    "heroDefinition": "Founder-market fit is the degree to which a business is derived from who the founder actually is.",
+    "heroHigh": "High fit: the business could only have been built by this person.",
+    "heroLow": "Low fit: anyone could have built it, so it competes on execution alone.",
+    "heroReuse": "Free to reuse with attribution.",
+    "navDefinition": "Definition",
+    "navTheory": "Theory",
+    "navInstrument": "Instrument",
+    "navMethod": "Method",
+    "navProof": "Proof",
+    "definitionLabel": "01 · Definition",
+    "definitionHeading": "The definition",
+    "scaleIntro": "Fit is a degree, not a yes or no. Read it on ten.",
+    "scale": [
+      {
+        "range": "0–2",
+        "text": "The business has nothing to do with you. You picked it off a market, not out of yourself."
+      },
+      {
+        "range": "3–5",
+        "text": "You are good at it and replaceable. Your history explains why you are qualified, never why it is yours."
+      },
+      {
+        "range": "6–8",
+        "text": "You show up in the work. A stranger senses a person behind it, but the offer would survive without you."
+      },
+      {
+        "range": "9–10",
+        "text": "Only you could have built it. Remove you and it stops being the same thing."
+      }
+    ],
+    "degreesLabel": "The derivation test",
+    "degreesHeading": "Read your degree. Meet your next decision.",
+    "degreesIntro": "Read the degree, and the next decision is determined. So is the truth being avoided, which is why the decision has not been made.",
+    "degreesDecisionLabel": "The imminent decision",
+    "degreesTruthLabel": "The avoided truth",
+    "degrees": [
+      {
+        "degree": "0–2",
+        "state": "The business has nothing to do with you",
+        "decision": "Whether to keep building this at all",
+        "truth": "You already know it is not yours. You are hoping traction will make it yours. It will not. Traction on a borrowed business only buys a longer sentence."
+      },
+      {
+        "degree": "3–5",
+        "state": "Competent and replaceable",
+        "decision": "Narrow to the part only you can do, and cut the rest",
+        "truth": "Your competence is what is hiding you. You were good enough at the generic version that you never had to find the specific one."
+      },
+      {
+        "degree": "6–8",
+        "state": "Present but detachable",
+        "decision": "Put yourself into the offer explicitly, and price on that part",
+        "truth": "You are keeping yourself out of it to stay safe, and the safety is costing you the premium."
+      },
+      {
+        "degree": "9–10",
+        "state": "Only you",
+        "decision": "Distribution, and whether to let others carry it",
+        "truth": "The thing is finished and you are still refining it, because shipping means being seen as exactly who you are."
+      }
+    ],
+    "degreesNote": "The middle degrees hide; the extremes expose. Founders stall hardest at 3–5, where competence supplies a permanent excuse not to look.",
+    "testsLabel": "The three tests",
+    "testsIntro": "You can run these on yourself, unaided, in under a minute.",
+    "tests": [
+      {
+        "name": "The sentence test",
+        "q": "Can you say what you uniquely do, in one sentence, without flinching?"
+      },
+      {
+        "name": "The derivation test",
+        "q": "Did your offer come out of that sentence, or off a shelf?"
+      },
+      {
+        "name": "The worst-day test",
+        "q": "Would you still build it on the worst day?"
+      }
+    ],
+    "testsClose": "Three yeses is high fit. The tests are in order: the second is impossible without the first, and the third is what tells you the first two were honest.",
+    "notLabel": "What it is not",
+    "notBody": "Not passion. Not credentials. Not years in the industry. Those are ingredients. Founder-market fit is whether the business was actually derived from them.",
+    "knowLabel": "How you know",
+    "know": [
+      "The founder’s sentence and their offer are the same thing said at two altitudes.",
+      "A stranger recognizes the founder from the offer alone.",
+      "A competitor cannot copy the offer without becoming a different person."
+    ],
+    "claimLabel": "The claim",
+    "claimBody1": "Founder-market fit is treated everywhere as a verdict. Investors judge whether a founder has it. Founders hope they do.",
+    "claimBody2": "It is not a verdict. It is a property of the business, and it can be built in.",
+    "claimBody3": "That is the whole difference. A verdict is about you and someone else decides it. A property is about what you are building and you decide it.",
+    "founderFacing": "Your business should only be buildable by you. If anyone could build it, you are competing on execution against people with more money.",
+    "theoryLabel": "02 · Theory",
+    "theoryHeading": "Why fit is structural rather than motivational",
+    "theory1": "A business assembled from a market opportunity is, by construction, available to everyone who sees the same opportunity. Its only defensible variables are speed, capital, distribution and operational quality, all of which scale with resources. A better-funded competitor wins that contest eventually and by default.",
+    "theory2": "The founder’s uniqueness is the one input that cannot be outspent, because it cannot be purchased at any price. It is not that a derived business feels better. It is that an underived business has signed up for a fight decided by balance sheet.",
+    "theory3": "So the term moves. From a verdict on the person, judged by an observer, to a property of the thing they are building, one that a method can produce.",
+    "instrumentLabel": "03 · Instrument",
+    "instrumentHeading": "Fit is read, not guessed",
+    "instrumentIntro": "Three reads produce the reading.",
+    "instrument": [
+      {
+        "name": "The uniqueness read",
+        "reads": "what the founder uniquely does, stated in one sentence"
+      },
+      {
+        "name": "The ripeness read",
+        "reads": "whether they are ready to build from it now"
+      },
+      {
+        "name": "The transition read",
+        "reads": "where they stand between their last fit and their next"
+      }
+    ],
+    "methodLabel": "04 · Method",
+    "methodHeading": "The reading is not the product. Producing fit is.",
+    "methodIntro": "Five possessions carry the category. A category belongs to whoever supplies all five. Most claimants supply one.",
+    "possessions": [
+      {
+        "name": "Theory",
+        "what": "why a business is the outer form of a person, and how fit forms"
+      },
+      {
+        "name": "Definition",
+        "what": "this document"
+      },
+      {
+        "name": "Instrument",
+        "what": "the uniqueness, ripeness and transition reads"
+      },
+      {
+        "name": "Method",
+        "what": "the Unique Business playbook and canvas: the repeatable process, and the standard artifact it outputs"
+      },
+      {
+        "name": "Delivery",
+        "what": "the AI workflows, what makes the method reproducible by someone other than its author"
+      }
+    ],
+    "methodLinkPrefix": "The method is the Unique Business playbook and its seven-artifact canvas. It is the repeatable process that produces fit, and the standard artifact it outputs.",
+    "methodLink": "See the method",
+    "proofLabel": "05 · Proof",
+    "proofHeading": "Proved one founder at a time",
+    "proofIntro": "A claim of this kind is proved at the unit level, one named founder at a time. Each case shows the same four things:",
+    "proof": [
+      {
+        "n": "Before",
+        "text": "How they described their business, in their own words, at the start."
+      },
+      {
+        "n": "The sentence",
+        "text": "What was named."
+      },
+      {
+        "n": "After",
+        "text": "The offer, the page, the market that was derived from it."
+      },
+      {
+        "n": "The result",
+        "text": "What happened commercially, with dates and figures."
+      }
+    ],
+    "proofPending": "Cases pending. Nine canvases exist and none has yet been published as proof. This is the gap between the claim and its evidence, and it is the next work.",
+    "reuseLabel": "On reuse",
+    "reuseBody": "Use this definition. Teach it, quote it, put it in your own materials, build on it. It is free and it is meant to travel.",
+    "reuseDiscipline": "Say founder-market fit, exactly those words, every time. Not founder/market fit, not founder-market alignment. A category is a phrase people have to remember, and every synonym splits the memory in two."
   }
 }
