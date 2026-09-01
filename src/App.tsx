@@ -979,9 +979,10 @@ const App = () => (
                   {/* Founder-Market Fit — the free, ungated category surface (Tech 141) owns the canonical URL. */}
                   <Route path="/founder-market-fit" element={<FounderMarketFitCategory />} />
                   {/* Human-Market Fit — the paid diagnostic sales page, relocated here from /founder-market-fit.
+                      Public (un-gated): a cold sales landing with a booking link should not sit behind auth.
                       /fmf kept pointing here to preserve existing shared/booking links. */}
-                  <Route path="/human-market-fit" element={<RequireAuth><FounderMarketFit /></RequireAuth>} />
-                  <Route path="/fmf" element={<RequireAuth><FounderMarketFit /></RequireAuth>} />
+                  <Route path="/human-market-fit" element={<FounderMarketFit />} />
+                  <Route path="/fmf" element={<FounderMarketFit />} />
                   {/* Community Pages */}
                   <Route path="/the-originals" element={<RequireAuth><TheOriginalsPage /></RequireAuth>} />
                   {/* Venture Dashboard */}
