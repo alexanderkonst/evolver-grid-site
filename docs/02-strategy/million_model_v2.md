@@ -15,7 +15,7 @@ Five findings from running the arithmetic:
 1. **Reaching 100 attributing founders takes ~300 sessions, not 100.** At a 33% attribution rate, the session count and the outcome count are separated by a ratio of three.
 2. **The share is collected from the founder's first dollar, not from $55,556.** The PMF container is 10% *of* the first $55,555, capped at $5,555. Cash therefore begins roughly 3-6 months after a session rather than 12-18. This pulls the $1M run-rate to **month 14-18**, not 20-26.
 3. **Session capacity is no longer the binding constraint. Demand is.** At 10 sessions a week the constraint moves entirely to the top of the funnel.
-4. **Cold LinkedIn supports ~10 sessions a month** at a 20% reply rate and 20 requests a day. That is 2-3 a week: a real engine for the founder layer and roughly a quarter of the eventual volume tier. The reply rate is the top-of-funnel lever; the request cap is not movable.
+4. **Demand runs at ~19% of capacity.** Baseline cold LinkedIn supplies 7 sessions a month against a 37/month delivery capacity. The constraint is not the calendar, the method or the price. It is the top of the funnel, and the reply rate is the one lever inside it.
 5. **Volume sets the clock; attribution and founder revenue set the ceiling.** Doubling sessions halves time-to-$1M. It does not raise the $1M. Only the attribution rate and average founder revenue do that.
 
 
@@ -109,11 +109,23 @@ Sequence: **connection request first, message only after acceptance.** Every tar
 | **20%** | **61** | **9.9** |
 | 25% | 48 | 12.4 |
 
-> **Working case: ~10 sessions a month from cold LinkedIn alone, at ~60 requests per session.**
+### The three cases
 
-That is 2-3 sessions a week, which is a real starting engine and roughly a quarter of the eventual volume tier. **The reply rate is the highest-leverage number at the top of the funnel** and it is a copy-and-targeting variable, unlike the request cap.
+| Case | Reply rate | Sessions/mo | Sessions/yr | Attributing founders/yr | Years to 100 |
+|---|---|---|---|---|---|
+| **Conservative** | 5% | **2.5** | 30 | 10 | 10.1 |
+| **Baseline** | 15% | **7** | 84 | 28 | **3.6** |
+| **Optimistic** | 25% | **12** | 144 | 48 | 2.1 |
 
-Three sources sit outside this arithmetic and are not counted above: the existing network, which can be messaged without spending a request and is a one-time reservoir; inbound from posts and profile views; and warm intros. Boardy currently produces peers rather than buyers (six intros, zero clients), which is a brief problem.
+**The finding this exposes: at every case, demand runs far below capacity.** Sasha can deliver 440 sessions a year. Baseline LinkedIn supplies 84, which is **19% of capacity.** The constraint is not his calendar, his method, or his pricing. It is entirely the top of the funnel.
+
+Consequences, stated plainly:
+
+- **Cold LinkedIn alone reaches $1M in roughly four years at baseline**, and never at the conservative case. It is a real engine and not a sufficient one.
+- **The reply rate is worth more than any other single improvement at this stage.** Moving 15% to 25% cuts 1.5 years off the timeline and costs nothing but targeting and copy.
+- Every additional channel is pure compression. There are 356 sessions a year of unused capacity waiting for them.
+
+Three sources sit outside this arithmetic and are not counted: the existing network, which can be messaged without spending a request and is a one-time reservoir; inbound from posts and profile views; and warm intros. Boardy currently produces peers rather than buyers (six intros, zero clients), which is a brief problem.
 
 **The later tier.** Community hosts change the volume ceiling substantially, since one host with ~30 members can supply a full cohort. That belongs after founder-level proof, not before it. Do not build the host offer until founders have been served and the model has run at the individual layer.
 
@@ -140,7 +152,7 @@ Effect on year-3 revenue of moving one input alone:
 | Risk | Severity | Mitigation |
 |---|---|---|
 | **Attribution decay.** Founders cross and do not attribute it, or exit the arrangement | **Critical** | Selection, not enforcement. Ripeness read at intake. See Technology 140 |
-| Reply rate lands nearer 5% than 20% | High | Would cut the engine from ~10 sessions/month to ~2.5. Measure it in the first 200 requests |
+| Reply rate lands at 5% not 15% | **Critical** | Conservative case never reaches 100 attributing founders. Measure it over the first 200 requests before anything else is decided |
 | **Practitioner cash gap** | High | Deliverers are paid before founders earn. See Exhibit 3b |
 | Group container at a new price point | Low | Group delivery is well-practised. The $1,111 price and the 8-week shape carry normal expected learnings |
 | Delegation dilutes quality | Medium | Uniqueness sessions delegate cleanly; PYS is the risk. Record the block first |
@@ -156,7 +168,7 @@ The category name. Node license terms. The purpose-entity threshold (~25 nodes, 
 
 ## What the model says to do next
 
-1. **Fire the LinkedIn system and serve founders.** ~600 requests a month at a 20% reply rate is ~10 sessions a month. Prove the model at the individual layer before touching the host channel.
+1. **Fire the LinkedIn system and log the reply rate over the first 200 requests.** The whole model swings between 2.5 and 12 sessions a month on that one number, and it is currently an estimate. Prove the model at the individual layer before touching the host channel.
 2. **Record the teaching block.** It is the precondition for delegating anything.
 3. **Rewrite the Boardy brief for buyer intent.** Six intros produced six good conversations and zero clients; the brief is currently producing peers.
 4. **Price the integration container** and attach its share, per Exhibit 3b.
