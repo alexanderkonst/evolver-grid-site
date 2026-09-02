@@ -1,6 +1,6 @@
 # Bug brief — Commercial OS renders a stale config forever
 
-**Status:** diagnosed, not fixed. For an implementing agent.
+**Status:** FIXED (Option B), 2026-09-02. Verified locally — all suites pass (`node app.test.mjs` 16/16, `node deployment.test.mjs` 2/2) plus a real-browser repro: seeding the poisoned five-ICP snapshot then reloading shows the three v4.0 streams, drops the `config` key from storage, and preserves people/settings/crawl. Acceptance #5 (Safari + Chrome on the *live* site) pending production deploy.
 **Severity:** blocking. The tool cannot receive any config change, so every brief, lexicon, stream and archetype update is invisible in the browser.
 **Repo:** `evolver-grid-site` · **Files:** `commercial-tools/app/src/store.js`, `commercial-tools/app/src/app.js`
 
