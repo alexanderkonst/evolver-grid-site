@@ -101,8 +101,12 @@ test('one vocabulary, one current brief, everything else derived', async () => {
 
   // every insider phrase the brief tells Boardy to look for must exist in the lexicon
   const lexTerms = config.mfLexicon.tiers.flatMap(t => t.terms.map(x => x.toLowerCase()));
+  // Markers are 2-3 words. Longer quoted strings are prose examples ("an integral part of
+  // the team"), not vocabulary, so they are not checked.
   for (const quoted of [...brief.text.matchAll(/"([a-z][a-z ]{4,30})"/g)].map(m => m[1].toLowerCase())) {
-    if (quoted.includes(' ') && !quoted.includes('.') && lexTerms.some(t => t.includes(quoted.split(' ')[0]))) {
+    const words = quoted.split(' ');
+    if (words.length < 2 || words.length > 3) continue;
+    if (lexTerms.some(t => t.includes(words[0]))) {
       assert.ok(lexTerms.includes(quoted), `brief names "${quoted}" but mfLexicon does not carry it`);
     }
   }
