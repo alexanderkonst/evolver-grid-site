@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { createRestConnector } from './src/connectors.js';
 import { canonicalPerson, conversationState, advanceStage, suggestOutcome, learningRows } from './src/domain.js';
+import { createStore, STORE_KEY, configDiff } from './src/store.js';
 
 const config = JSON.parse(await fs.readFile(new URL('./config.json', import.meta.url)));
 
@@ -142,4 +143,91 @@ test('every network call gets one retry', async () => {
   const connector = createRestConnector({ baseUrl: 'https://proxy.test', fetchImpl: async () => { attempts++; if (attempts === 1) throw new TypeError('fetch failed'); return new Response('{}'); } });
   await connector.listAccounts();
   assert.equal(attempts, 2);
+});
+
+// --- BUGFIX_stale_config: config.json is server-owned; localStorage must not pin it ---
+
+function mockStorage(initial = {}) {
+  const map = new Map(Object.entries(initial));
+  return { getItem: k => (map.has(k) ? map.get(k) : null), setItem: (k, v) => map.set(k, String(v)), removeItem: k => map.delete(k) };
+}
+
+test('stale saved config is neutralised: fetched config wins, user data survives, poisoned key removed', () => {
+  const stale = {
+    schema: 'evolver-commercial-app', version: 1,
+    people: [{ profileUrn: 'p1', name: 'Kept Person', commercial: { stage: 'prospect' } }],
+    actions: [{ id: 'a1', type: 'connect' }],
+    settings: { connectorMode: 'adapter', apiBaseUrl: '', adapterUrl: '', anonKey: '', accountId: 'ACCT-KEEP', ownerId: '', ownerName: 'Sasha', region: 'Global' },
+    // the poison: a full pre-v4.0 five-ICP snapshot with a stale briefVersion
+    config: { briefVersion: 'ai_matchmaker_brief.md v3.0 (Day 168, 2026-08-27)', icps: [{ id: 'post_exit_founders' }, { id: 'fractional_executives' }, { id: 'coaches_solopreneurs' }, { id: 'consultants_transition' }, { id: 'community_holders' }], templates: {}, caps: {}, archetypes: [] },
+    crawl: { offset: 42, done: true }, ui: { tab: 'ledger' },
+  };
+  const storage = mockStorage({ [STORE_KEY]: JSON.stringify(stale) });
+  const store = createStore(storage);
+  const state = store.load(config);
+
+  // fetched (server-owned) config wins — acceptance #1
+  assert.equal(state.config.briefVersion, config.briefVersion);
+  assert.deepEqual(state.config.icps.map(i => i.id), config.icps.map(i => i.id));
+  assert.deepEqual(state.config.archetypes, config.archetypes);
+
+  // user-owned data survives — acceptance #2 (no ledger loss)
+  assert.equal(state.people.length, 1);
+  assert.equal(state.people[0].name, 'Kept Person');
+  assert.equal(state.actions.length, 1);
+  assert.equal(state.settings.accountId, 'ACCT-KEEP');
+  assert.equal(state.crawl.offset, 42);
+  assert.equal(state.ui.tab, 'ledger');
+
+  // migration: the poisoned config is physically gone from storage, data intact
+  const persisted = JSON.parse(storage.getItem(STORE_KEY));
+  assert.equal(persisted.config, undefined);
+  assert.equal(persisted.people.length, 1);
+});
+
+test('deliberate Settings edit persists as a small override and does not block later deploys', () => {
+  const storage = mockStorage();
+  createStore(storage).load(config); // first run establishes clean state
+  const store = createStore(storage);
+  store.load(config);
+
+  const edited = JSON.parse(JSON.stringify(store.state.config));
+  edited.caps = { ...edited.caps, dailyConnections: 999 };
+  store.applyConfigEdit(edited);
+
+  assert.equal(store.state.config.caps.dailyConnections, 999);
+  assert.deepEqual(Object.keys(store.state.configOverrides), ['caps']); // only the changed top-level key
+
+  // a later deploy ships new icps; the override must not block them
+  const next = JSON.parse(JSON.stringify(config));
+  next.icps = [{ id: 'brand_new_stream', name: 'New' }];
+  const reloaded = createStore(storage);
+  reloaded.load(next);
+  assert.deepEqual(reloaded.state.config.icps.map(i => i.id), ['brand_new_stream']); // fetched flows through
+  assert.equal(reloaded.state.config.caps.dailyConnections, 999); // deliberate override kept
+});
+
+test('configDiff returns only top-level keys that differ from the server base', () => {
+  const base = { a: 1, b: { x: 1 }, c: [1, 2] };
+  assert.deepEqual(configDiff({ a: 1, b: { x: 1 }, c: [1, 2] }, base), {});
+  assert.deepEqual(configDiff({ a: 2, b: { x: 1 }, c: [1, 2] }, base), { a: 2 });
+  assert.deepEqual(configDiff({ a: 1, b: { x: 9 }, c: [1, 2] }, base), { b: { x: 9 } });
+});
+
+test('restore keeps the live server config; an old backup cannot re-pin stale config', () => {
+  const storage = mockStorage();
+  const store = createStore(storage);
+  store.load(config); // live server config is fresh v4.0
+
+  // an OLD backup carrying a stale five-ICP config and real user data
+  const oldBackup = JSON.stringify({
+    schema: 'evolver-commercial-app', version: 1, exportedAt: '2026-08-01T00:00:00.000Z',
+    state: { schema: 'evolver-commercial-app', version: 1, people: [{ profileUrn: 'q1', name: 'Backup Person', commercial: { stage: 'connected' } }], actions: [], settings: { accountId: 'FROM-BACKUP' }, config: { briefVersion: 'v3.0', icps: [{ id: 'post_exit_founders' }], templates: {}, caps: {} }, crawl: { offset: 0, done: false }, ui: { tab: 'find' } },
+  });
+  store.restore(oldBackup);
+
+  assert.equal(store.state.config.briefVersion, config.briefVersion); // live config, not the backup's
+  assert.deepEqual(store.state.config.icps.map(i => i.id), config.icps.map(i => i.id));
+  assert.equal(store.state.people[0].name, 'Backup Person'); // user data restored
+  assert.equal(store.state.settings.accountId, 'FROM-BACKUP');
 });
