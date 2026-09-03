@@ -76,7 +76,40 @@ async function handleAction(e) { const button = e.target.closest('[data-action]'
   if (action === 'search') return runSearch(); if (action === 'crawl') return crawlConnections(); if (action === 'sync') return syncConversations(); if (action === 'connect') return connectPerson(findPerson(urn)); if (action === 'draft') return toggleDraft(urn); if (action === 'send') return sendMessage(findPerson(urn)); if (action === 'close') return store.commit(s => { const p = s.people.find(x => x.profileUrn === urn); p.relationship.closed = !p.relationship.closed; }); if (action === 'promote') return promote(findPerson(urn)); if (action === 'export-learnings') return download('learnings.json', JSON.stringify({ exportedAt: new Date().toISOString(), byTemplate: learningRows(store.state.people,'template'), byIcp: learningRows(store.state.people,'icp'), bySearchTerm: learningRows(store.state.people,'term'), byArchetype: learningRows(store.state.people,'archetype') }, null, 2));
 } catch (error) { notice(error.message, true); } }
 
-async function runSearch() { if (!connector) throw new Error('Connect the REST API in Settings first.'); const icpId = $('#find-icp').value, icp = store.state.config.icps.find(x => x.id === icpId), term = $('#find-term').value.trim(), navUrl = ($('#find-url')?.value || '').trim(); if (!term && !navUrl) throw new Error('Enter a search term, or paste a Sales Navigator search URL.'); const label = navUrl || term; busy = true; notice(`Searching LinkedIn for \u201c${label}\u201d\u2026`); try { const args = navUrl ? { accountId: store.state.settings.accountId, url: navUrl, count: 50 } : { accountId: store.state.settings.accountId, keywords: term, count: 50 }; const data = await connector.searchPeople(args); const rows = data.people || data.results || data.items || []; store.mergePeople(rows.map(p => canonicalPerson(p, icpId, label, store.state.config, store.state.settings.region))); store.commit(s => { s.ui.lastSearch = { term: label, returned: rows.length, hasMore: Boolean(data.hasMore), viaSalesNav: Boolean(navUrl), at: new Date().toISOString() }; }); notice(`Merged ${rows.length} results from ${icp.name}.`); } finally { busy = false; } }
+async function runSearch() {
+  if (!connector) throw new Error('Connect the REST API in Settings first.');
+  const icpId = $('#find-icp').value, icp = store.state.config.icps.find(x => x.id === icpId);
+  const term = $('#find-term').value.trim(), navUrl = ($('#find-url')?.value || '').trim();
+  if (!term && !navUrl) throw new Error('Enter a search term, or paste a Sales Navigator search URL.');
+  const label = navUrl || term;
+  // LinkedIn returns a fixed small page regardless of `count`, and reports hasMore:false even
+  // when more pages exist. So we page explicitly by `start` and stop when a page stops
+  // returning anyone new, rather than trusting hasMore.
+  const maxPages = store.state.config.search?.maxPages ?? 12;
+  const delayMs = store.state.config.search?.pageDelayMs ?? 600;
+  const urnOf = r => r.profileUrn || r.participantUrn || r.profileId || r.profileUrl;
+  const seen = new Set();
+  let start = 0, pages = 0, total = 0;
+  busy = true;
+  try {
+    for (; pages < maxPages; pages++) {
+      notice(`Searching \u201c${label}\u201d \u2014 page ${pages + 1}\u2026`);
+      const args = { accountId: store.state.settings.accountId, count: 50, start };
+      const data = await connector.searchPeople(navUrl ? { ...args, url: navUrl } : { ...args, keywords: term });
+      const rows = data.people || data.results || data.items || [];
+      if (!rows.length) break;
+      const fresh = rows.filter(r => urnOf(r) && !seen.has(urnOf(r)));
+      fresh.forEach(r => seen.add(urnOf(r)));
+      if (!fresh.length) break;
+      store.mergePeople(fresh.map(p => canonicalPerson(p, icpId, label, store.state.config, store.state.settings.region)));
+      total += fresh.length;
+      start += rows.length;
+      if (pages + 1 < maxPages) await new Promise(r => setTimeout(r, delayMs));
+    }
+    store.commit(s => { s.ui.lastSearch = { term: label, returned: total, pages, viaSalesNav: Boolean(navUrl), at: new Date().toISOString() }; });
+    notice(`${total} people over ${pages} page${pages === 1 ? '' : 's'} from ${icp.name}.`);
+  } finally { busy = false; }
+}
 
 async function crawlConnections() { if (!connector) throw new Error('Connect the REST API in Settings first.'); busy = true; let added = 0; try { while (!store.state.crawl.done && added < 60) { const data = await connector.getConnections({ accountId: store.state.settings.accountId, startIndex: store.state.crawl.offset, limit: 12 }); const rows = data.connections || data.people || data.results || []; store.mergePeople(rows.map(p => { const row = canonicalPerson(p, null, null, store.state.config, store.state.settings.region, 'connection'); advanceStage(row, 'connected'); return row; })); store.commit(s => { s.crawl.offset += rows.length; s.crawl.done = Boolean(data.endOfList); }); added += rows.length; if (!rows.length && !data.endOfList) break; } notice(`Merged ${added} connections${store.state.crawl.done ? ' · end reached' : ''}.`); } finally { busy = false; } }
 async function syncConversations() { if (!connector) throw new Error('Connect the REST API in Settings first.'); busy = true; try { let cursor = null, threads = [], seen = new Set(); for (let page = 0; page < 8; page++) { const data = await connector.listConversations({ accountId: store.state.settings.accountId, count: 50, ...(cursor ? { nextCursor: cursor } : {}) }); let fresh = 0; for (const t of data.conversations || data.items || []) { const id = t.conversationUrn || t.id; if (id && !seen.has(id)) { seen.add(id); threads.push(t); fresh++; } } cursor = data.nextCursor; if (!cursor || !fresh) break; }
@@ -95,8 +128,8 @@ const KLASS_ORDER = { bullseye: 0, peer_partner: 1, operator: 2, peer: 3, not_ye
 const readinessRank = p => (p.excluded ? 9 : p.watch ? -1 : KLASS_ORDER[p.klass] ?? 5);
 function truncationBanner() {
   const t = store.state.ui?.lastSearch;
-  if (!t || t.returned > 10 || t.hasMore) return '';
-  return `<div class="panel status error"><b>Search looks capped.</b> “${esc(t.term)}” returned ${t.returned} results with no further pages, and the requested count was ignored. That is LinkedIn's Commercial Use Limit, not a bad query: it truncates people-search for accounts without Sales Navigator and resets on the 1st of the month.<div class="muted">Ways through: paste a Sales Navigator search URL above · use Google X-ray (<code>site:linkedin.com/in "holonic" founder</code>) and open profiles by hand · crawl your own connections, which is unaffected · or wait for the monthly reset.</div></div>`;
+  if (!t || t.returned > 20) return '';
+  return `<div class="panel status error"><b>Search looks capped.</b> “${esc(t.term)}” returned only ${t.returned} people across ${t.pages} page${t.pages===1?'':'s'}. That is LinkedIn's Commercial Use Limit, not a bad query: it truncates people-search for accounts without Sales Navigator and resets on the 1st of the month.<div class="muted">Ways through: paste a Sales Navigator search URL above · use Google X-ray (<code>site:linkedin.com/in "holonic" founder</code>) and open profiles by hand · crawl your own connections, which is unaffected · or wait for the monthly reset.</div></div>`;
 }
 function connectorBanner() { return connector || !lastConnectorError ? '' : `<div class="panel status error"><b>Connector offline.</b> ${esc(lastConnectorError)}<div class="muted">Scoring, drafting, backup and restore still work. Searching, crawling and sending do not.</div></div>`; }
 function renderFind() { const c = capStatus(), prospects = [...store.state.people].sort((a,b)=>readinessRank(a)-readinessRank(b) || (b.score||0)-(a.score||0)); return `${connectorBanner()}<div class="panel"><div class="metric-grid"><div class="metric"><span>People</span><b>${prospects.length}</b></div><div class="metric"><span>Today</span><b>${c.daily}/${c.dailyCap}</b></div><div class="metric"><span>7 days</span><b>${c.weekly}/${c.weeklyCap}</b></div><div class="metric"><span>Connection crawl</span><b>${store.state.crawl.done?'Done':store.state.crawl.offset}</b></div>${(()=>{const a=acceptanceRate();const floor=store.state.config?.caps?.acceptRateFloor??0.35;if(!a)return '<div class="metric"><span>Accept rate</span><b>—</b></div>';const low=a.rate<floor;return `<div class="metric"><span>Accept rate${low?' ⚠':''}</span><b>${Math.round(a.rate*100)}% <span class="muted">(${a.accepted}/${a.of})</span></b>${low?`<div class="muted">below ${Math.round(floor*100)}% — cut volume, do not push</div>`:''}</div>`;})()}</div></div><div class="panel"><div class="toolbar"><select id="find-icp">${store.state.config.icps.map(i=>`<option value="${esc(i.id)}">${esc(i.name)}</option>`).join('')}</select><input id="find-term" placeholder="LinkedIn search phrase"><button data-action="search" class="primary">Run search</button><button data-action="crawl">Crawl 60 connections</button></div><div class="toolbar"><input id="find-url" placeholder="…or paste a Sales Navigator search URL (full Boolean + filters, no commercial-use cap)" style="flex:1"><span class="muted">Sales Nav license required</span></div>${truncationBanner()}${peopleTable(prospects, 'find')}</div>`; }
