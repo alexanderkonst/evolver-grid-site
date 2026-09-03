@@ -8,7 +8,6 @@
       "relationship": "client",
       "note": "The form that carried them has ended and they know it before anyone else does. Income runs on their own name, or the next thing is being born under their hands. Three or four real things going and no sentence that makes them one thing. They do not look impressive on a profile. They look stuck. That is the signal. Do not pitch. Route to the quiz.",
       "strong": [
-        "former founder",
         "ex-founder",
         "post-exit",
         "sabbatical",
@@ -449,5 +448,10 @@
         "caution": "Not a client. Worth several times more as a door than as a prospect, and only when THEIR clients are your clients. Idea-proximity makes conversation; client-proximity makes referral."
       }
     ]
+  },
+  "search": {
+    "maxPages": 12,
+    "pageDelayMs": 600,
+    "note": "LinkedIn returns a small fixed page (about 7) regardless of count, and reports hasMore:false even when more pages exist. The tool pages by start and stops when a page returns nobody new. 12 pages is roughly 80 people per term and costs 12 of the 1000 daily SEARCH_PEOPLE calls."
   }
 }
