@@ -390,7 +390,10 @@
           "no current company and no urgency about it",
           "speaks in seasons, soil, shedding",
           "avoids growth and scale language"
-        ]
+        ],
+        "shadow": "Mistaking the pause for the destination.",
+        "advances": "Naming what wants to grow, and separating the old engine from desire itself.",
+        "why": "The shadow says wanting is what got me here. The advance shows what changed was the source, not the appetite."
       },
       {
         "id": "unstrung_loom",
@@ -403,7 +406,10 @@
           "says and where others say or",
           "describes projects by what they touch",
           "never idle"
-        ]
+        ],
+        "shadow": "Believing the work is to choose.",
+        "advances": "Finding the thread beneath, rather than choosing among them.",
+        "why": "The shadow is a false binary: pick one or stay scattered. The unity was never a subset, and naming it costs nothing, which is exactly what the shadow says is impossible."
       },
       {
         "id": "standing_wreck",
@@ -417,7 +423,10 @@
           "passive voice where they were most active",
           "founder hours with no company"
         ],
-        "caution": "Frequently stage 3 wearing stage 4's clothes. Check surrender before anything else. Usually the largest complementarity on offer."
+        "caution": "Frequently stage 3 wearing stage 4's clothes. Check surrender before anything else. Usually the largest complementarity on offer.",
+        "shadow": "Defending the last form.",
+        "advances": "Letting the old thing have been wrong.",
+        "why": "The shadow spends its whole budget litigating a past that cannot change. The advance returns the exact capacity needed to build."
       },
       {
         "id": "sealed_room",
@@ -431,7 +440,10 @@
           "we where I belongs",
           "register changes audibly at one topic"
         ],
-        "caution": "Reads as arc 1 and usually sits at 2-3. Slow, and converts hard when it converts."
+        "caution": "Reads as arc 1 and usually sits at 2-3. Slow, and converts hard when it converts.",
+        "shadow": "Competence as proof of fit.",
+        "advances": "Letting the private thing into the professional room once, in public.",
+        "why": "The shadow keeps two rooms so neither is ever tested. One act of visible incongruence proves the wall was optional."
       },
       {
         "id": "finished_cathedral",
@@ -445,13 +457,42 @@
           "fluent about transition itself",
           "rarely says I don't know about their domain"
         ],
-        "caution": "Not a client. Worth several times more as a door than as a prospect, and only when THEIR clients are your clients. Idea-proximity makes conversation; client-proximity makes referral."
+        "caution": "Not a client. Worth several times more as a door than as a prospect, and only when THEIR clients are your clients. Idea-proximity makes conversation; client-proximity makes referral.",
+        "shadow": "Fluency mistaken for porousness.",
+        "advances": "Being visibly changed by a narrower frame, once.",
+        "why": "The shadow metabolises arguments, so it cannot be argued with. Only being genuinely altered by something smaller interrupts it."
       }
-    ]
+    ],
+    "shadowNote": "The shadow is what prevents the next step, so naming it IS the recognition message. Name it as a structure, never as a diagnosis of the person: 'this is what the pattern does' lands, 'here is your shadow' triggers the defence you are trying to bypass."
   },
   "search": {
     "maxPages": 12,
     "pageDelayMs": 600,
     "note": "LinkedIn returns a small fixed page (about 7) regardless of count, and reports hasMore:false even when more pages exist. The tool pages by start and stops when a page returns nobody new. 12 pages is roughly 80 people per term and costs 12 of the 1000 daily SEARCH_PEOPLE calls."
+  },
+  "searchGrammar": {
+    "law": "Day 173. Pair a faculty word with an IDENTITY NOUN to find clients; pair it with a SERVICE VERB and you find practitioners. Same vocabulary, opposite stream. Verified: 'conscious entrepreneur' returned Pedro Quinzanos and Emiliano Zazzini on page one, both Stream A. 'zone of genius' returned coaches.",
+    "clientShaped": [
+      "conscious entrepreneur",
+      "regenerative entrepreneur founder",
+      "integral entrepreneur",
+      "evolutionary entrepreneur",
+      "conscious founder",
+      "plant medicine founder",
+      "psychedelic founder",
+      "conscious tech founder",
+      "sovereign entrepreneur",
+      "polymath founder"
+    ],
+    "practitionerShaped": [
+      "zone of genius",
+      "spiral dynamics",
+      "integral coach",
+      "conscious leadership",
+      "founder coach",
+      "executive coach founders"
+    ],
+    "phraseNotWord": "Distinctive multi-word phrases work. Single common words do not: 'polymath' alone returned Mexico City product managers, because a word matching too many profiles lets proximity ranking decide, and the proximity is the account's own city.",
+    "reachCeiling": "Results are drawn from the account's reachable network, so a narrow phrase can genuinely exhaust at one page. 'conscious entrepreneur' returned the same seven at start 0 and start 7; 'zone of genius' returned seven different people. Exhaustion is real scarcity, not a cap."
   }
 }

@@ -11,6 +11,15 @@ const penaltyRe = /(open\s*to\s*work|student|intern(ship)?|recruiter|talent acqu
 const transitionRe = /(career break|sabbatical|next chapter|in transition|between ventures|between chapters|exploring|reinventing|pivoting|former|ex-founder|post-exit|what'?s next|what is next|figuring out|stepping back|stepped back|wound down|shutting down|shut down|rebuilding|on pause)/i;
 // "Three or four real things going and cannot say what makes them one thing" — the deficit, read off a headline.
 const severalThings = (headline = '') => (String(headline).match(/[·|•]|\s\+\s|\s&\s/g) || []).length >= 2;
+// Day 173. The same marker word means opposite things depending on where it sits.
+// "Conscious and Sustainable Entrepreneur" is an identity claim, so the person IS that.
+// "Helping experts convey their genius" is an offer, so the person SELLS that.
+// Identity position finds Stream A. Offer position finds Stream B, by construction.
+const offerPositionRe = /(helping|i help|helps |we help|coach for|coaching for|consultant to|advisor to|mentor to|for founders|for leaders|for executives|for entrepreneurs|unlock your|maximizing your|empowering|guiding|i work with|clients)/i;
+export function markerPosition(text) {
+  return offerPositionRe.test(String(text)) ? 'offer' : 'identity';
+}
+
 // Mirror fidelity, read off the person's own vocabulary (Tribe v6.1).
 // Not a measure of consciousness. A measure of whether an MF-raising offer is perceivable at all.
 export function mfRead(text, config) {
@@ -73,12 +82,20 @@ export function scorePerson(person, foundByIcpId, config, region = 'Global', sea
     mf.octave = mf.octave || viaTerm.octave;
   }
   const identityStrength = /(founder|co-?founder|owner|chief executive|\bceo\b|managing partner)/i.test(text) ? 2 : /(independent|self-?employed|fractional|portfolio career|solopreneur|freelance|own practice|consultant)/i.test(text) ? 1 : 0;
-  const cross = crossRead({ mf: mf.tier ? (mf.tier <= 2 ? 2 : 1) : 0, identity: identityStrength, transition: transition ? 2 : 0, octave: mf.octave });
+  // A marker in offer position is evidence they sell the language, not that they live it,
+  // so it counts toward faculty at reduced weight and pushes the read toward partner.
+  const position = markerPosition(text);
+  const mfBand = mf.tier ? (mf.tier <= 2 ? 2 : 1) : 0;
+    // Plurality IS a transition signal. "Four real ventures and no sentence that makes them
+  // one" is the Unstrung Loom, whose arc position is stated by the multiplicity itself
+  // rather than by any transition word. Without this, the clearest client reads as a peer.
+  const transitionBand = transition ? 2 : (several ? 1 : 0);
+  const cross = crossRead({ mf: position === 'offer' && mfBand ? 1 : mfBand, identity: identityStrength, transition: transitionBand, octave: mf.octave });
   const watch = (config.watchlist?.terms || []).find(term => norm(text).includes(norm(term))) || null;
   const rule = excludedBy(text, config);
   const exclusion = rule ? (w.exclusion || -45) : 0;
   const rolePoints = role ? w[role[1]] : w.roleUnclear;
-  return { score: Math.max(0, Math.min(100, best.points + rolePoints + reach + regionPoints + transition + several + market + mf.points + penalty + exclusion)), icpId: best.icp.id, icpName: best.icp.name, streamRole: best.icp.relationship || 'client', excluded: Boolean(rule), watch, mf: { points: mf.points, tier: mf.tier, hits: mf.hits, octave: mf.octave }, klass: cross.klass, register: cross.register, crossLabel: cross.label, reason: [rule ? `EXCLUDED · ${rule.label}` : '', best.match, role?.[2] || 'role unclear', transition ? 'visible transition' : '', mf.hits.length ? `MF: ${mf.hits.slice(0,3).join(', ')}` : '', watch ? `WATCH · says "${watch}" in public` : '', cross.label, several ? 'several things going' : ''].filter(Boolean).join(' · '), breakdown: { keyword: best.points, role: rolePoints, reach, region: regionPoints, transition, several, market, mf: mf.points, penalty, exclusion } };
+  return { score: Math.max(0, Math.min(100, best.points + rolePoints + reach + regionPoints + transition + several + market + mf.points + penalty + exclusion)), icpId: best.icp.id, icpName: best.icp.name, streamRole: best.icp.relationship || 'client', excluded: Boolean(rule), watch, markerPosition: position, mf: { points: mf.points, tier: mf.tier, hits: mf.hits, octave: mf.octave }, klass: cross.klass, register: cross.register, crossLabel: cross.label, reason: [rule ? `EXCLUDED · ${rule.label}` : '', best.match, role?.[2] || 'role unclear', transition ? 'visible transition' : '', mf.hits.length ? `MF: ${mf.hits.slice(0,3).join(', ')}${position === 'offer' ? ' (sells it)' : ' (is it)'}` : '', watch ? `WATCH · says "${watch}" in public` : '', cross.label, several ? 'several things going' : ''].filter(Boolean).join(' · '), breakdown: { keyword: best.points, role: rolePoints, reach, region: regionPoints, transition, several, market, mf: mf.points, penalty, exclusion } };
 }
 
 export function canonicalPerson(raw, foundByIcpId, searchTerm, config, region = 'Global', mechanism = 'icp_search') {
