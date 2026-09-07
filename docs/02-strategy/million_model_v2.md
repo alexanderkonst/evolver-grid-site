@@ -173,3 +173,34 @@ The category name. Node license terms. The purpose-entity threshold (~25 nodes, 
 3. **Rewrite the Boardy brief for buyer intent.** Six intros produced six good conversations and zero clients; the brief is currently producing peers.
 4. **Price the integration container** and attach its share, per Exhibit 3b.
 5. **Test the attribution rate against the nine existing canvases** so 33% stops being an estimate.
+
+---
+
+## Exhibit 5 — Assumptions vs Actuals (the live ledger)
+
+> Added Day 177, September 7, 2026. Exhibit 4 states the working rates the whole forecast turns on. This exhibit is where those assumptions meet real numbers, append-only. **The rule that keeps it honest: a single data point never moves the line. An assumption moves only when the sample is large enough to trust and the actual sits outside the stated range.** The headline forecast recomputes only from a *moved* assumption, never from one encounter.
+
+### The scoreboard
+
+| Funnel step | Assumption (working · range) | Actual | n | Read | Moved? |
+|---|---|---|---|---|---|
+| Connection request accepted | 50% · 40-60% | **45%** | 11 | within range, just under the working point | No — inside range, n too small |
+| Accepted → reply (buying intent) | 20% · 15-25% | — | 0 | not yet measured; 3 messages sent 2026-09-07, replies pending | — |
+| Reply → quiz → Direction Call | 33% · 30-40% | — | 0 | pending | — |
+| Direction Call → paid session | 50% · 40-50% | — | 0 | pending | — |
+
+**Forecast status: UNCHANGED.** Two honest reasons:
+
+1. The one number we have (accept **45%**) is *within* the assumed band and slightly *under* the 50% working point — not above it. It clears the **35% ops floor** (so volume holds), but the 35% floor is a safety guard, not the forecast's assumption. Against the forecast's own number (50%), 45% is a small miss, not a beat.
+2. The forecast swings almost entirely on the **reply rate** (Exhibit 4 sensitivity: 5% → 25% moves sessions/month from 2.5 to 12.4). That number has **zero data** — the first messages went out today. Moving the $1M timeline on an accept rate that isn't even a beat would be inventing a win.
+
+### Change-log (append-only)
+
+**2026-09-07 (Day 177) — first actuals logged, forecast held.**
+- **Accept rate: 45% (5 of 11), Wave 1.** Above the 35% floor, below the 50% working assumption, inside the 40-60% range. Assumption unchanged; n=11 is too small to move a rate.
+- **Reply rate: still unmeasured.** First three warm messages sent today (14:24 Danil, 14:58 Javier, 15:58 Emiliano). The clock on the load-bearing number starts now.
+- **Action: none on the forecast.** Ledger opened. Next review when accept n ≥ 30, or the first 5 replies land, whichever comes first.
+
+### How this becomes the game
+
+Every real number is a bet against its assumption. When a rate has enough sample and lands outside its band, it moves, the move is logged here, and the headline forecast (sessions/month, years-to-$1M) recomputes from the moved rate. Green when actual beats assumption, red when it misses, and the $1M clock visibly speeds up or slows down. The one rule that makes it a real game rather than a flattering one: **single data points never move the line — only a stable sample outside the range does.**
