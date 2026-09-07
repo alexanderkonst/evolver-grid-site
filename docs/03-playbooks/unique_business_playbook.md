@@ -1054,6 +1054,30 @@ Not finished. Not perfect. Running, and generating more than it consumes, while 
 
 ---
 
+## Principle 19: The Mirror Opener
+
+> *"Researched, personal, non-templated outreach that leads with a mirror and asks consent."*
+
+The formula for a first message to a stranger whose profile you have actually read. Five moves, in order. Derived live, Day 177, from a message that was written intuitively and only afterwards read back.
+
+**1. Say how you found them, plainly.** This removes the unspoken *how did you get here, and why me*, which otherwise sits under every cold message and quietly costs you the reader. It is also the strongest hook available, because it is true and specific.
+
+**2. Open as a person, with one real detail.** Not formal, not brotherly. The register is someone on your block you would want to be friends with. One genuine shared thing — a mutual world, a common history — does more than three sentences of warmth.
+
+**3. Give the mirror.** A read of where they actually stand, specific enough that it could not have been sent to anyone else. **Name the two nodes that are strong before the one that is stuck.** Credit first is not politeness; it is what makes the third observation land as recognition rather than judgment.
+
+**4. Name the limitation without diagnosing or solving.** Say what you see, frankly and briefly. No prescription, no framework, no offer. The moment you attach a solution you have converted a mirror into a pitch, and they will feel the switch.
+
+**5. Ask consent.** *"If this is not off the mark, I can share how I got out of it."* Permission to offer, not the offer itself. This is the up-front contract, and it is what keeps the whole move clean rather than intrusive: you have not mirrored anyone who did not ask for the next part.
+
+**Why it cannot be templated.** The mirror is the message, and a mirror is specific by definition. There is no reusable body — only a reusable *shape*. What preparation buys is not a draft; it is the ability to write the bespoke thing in minutes rather than an hour.
+
+**What it demands of the sender.** A real read of the profile, and enough lived experience of the same stuck place to have something honest to offer at step five. Without the second, step four becomes criticism.
+
+*Related: [Technology 125](../01-vision/phase_shift_technology_library.md) (the social physics of the mirror — consent is the constraint on when seeing may be offered) · [Technology 138](../01-vision/phase_shift_technology_library.md) (the faculty that makes a mirror receivable at all) · Principle 4 (The Mirror, Not the Teacher).*
+
+---
+
 ## The Transmission Principle: Medicine, Not Information
 
 > *"A reveal written as a report informs. The same reveal written as transmission opens. Same words, different organ."*
