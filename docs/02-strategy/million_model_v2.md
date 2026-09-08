@@ -185,7 +185,7 @@ The category name. Node license terms. The purpose-entity threshold (~25 nodes, 
 | Funnel step | Assumption (working · range) | Actual | n | Read | Moved? |
 |---|---|---|---|---|---|
 | Connection request accepted | 50% · 40-60% | **45%** | 11 | within range, just under the working point | No — inside range, n too small |
-| Accepted → reply (buying intent) | 20% · 15-25% | — | 0 | not yet measured; 3 messages sent 2026-09-07, replies pending | — |
+| Accepted → reply (buying intent) | 20% · 15-25% | **1 reply** | 4 sent | first reply ~2h (Danil, positive); n far too small, and sends are not uniform (mirror-delivered vs deferred) | No |
 | Reply → quiz → Direction Call | 33% · 30-40% | — | 0 | pending | — |
 | Direction Call → paid session | 50% · 40-50% | — | 0 | pending | — |
 
@@ -200,6 +200,12 @@ The category name. Node license terms. The purpose-entity threshold (~25 nodes, 
 - **Accept rate: 45% (5 of 11), Wave 1.** Above the 35% floor, below the 50% working assumption, inside the 40-60% range. Assumption unchanged; n=11 is too small to move a rate.
 - **Reply rate: still unmeasured.** First three warm messages sent today (14:24 Danil, 14:58 Javier, 15:58 Emiliano). The clock on the load-bearing number starts now.
 - **Action: none on the forecast.** Ledger opened. Next review when accept n ≥ 30, or the first 5 replies land, whichever comes first.
+
+**2026-09-07/08 (Day 177-178) — first reply landed; forecast still held.**
+- **Danil replied ~2 hours after first contact, positive and engaged.** He confirmed the mirror ("оно действительно плохо скейлится 😁"), asked how the method works, and asked for the story. First reply-with-buying-intent of the wave, and it came from the ripest, most-complementary target (the A/B hybrid).
+- **Reply rate now has its first data point: 1 of 4 first-messages sent** (Danil, Javier, Emiliano, Juan). Three are under two days old and the sends are **not a clean sample** — message structure varies per person by design (mirror-delivered for Danil, mirror-deferred/consent-first for Juan), so reply rate must be read per message-type, not pooled. No computation yet; n=4.
+- **Accepts: four of five now identified** (Danil, Emiliano, Javier, Juan). If Juan's acceptance postdates the firm "5" count, accepts = 6 and accept rate = ~55% (6/11); pending Sasha's confirmation. Accept assumption still unmoved either way (both inside the 40-60% band).
+- **Action: forecast held.** The reply-rate clock is now genuinely running. The first signal is encouraging — fast, positive, from the best target — but n=4 with a confounded sample is nowhere near a move. Logged as signal, not as a forecast change.
 
 ### How this becomes the game
 
