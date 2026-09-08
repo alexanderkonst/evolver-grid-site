@@ -1078,6 +1078,44 @@ The formula for a first message to a stranger whose profile you have actually re
 
 ---
 
+## Principle 20: The Hexagram — Artifacts Make Capacities, and the Cycle Turns
+
+> *"Clarity is not something you develop. It is what happens when uniqueness gets articulated."*
+>
+> *v1.0 · Day 178, September 8, 2026 · arrived at independently in the work before it was drawn.*
+
+Six positions, alternating between things you make and things you gain:
+
+**uniqueness → clarity → fit → strategy → action → cash flow → (uniqueness)**
+
+Artifact, capacity, artifact, capacity, artifact, capacity. Two interlocking triangles: the three artifacts on one, the three capacities on the other, and the path walks the rim touching each in turn.
+
+### The direction of the arrows
+
+The first two run artifact → capacity. **Articulating uniqueness produces clarity. Reconstructing fit produces strategy.** These are recognitions: you look hard at something that already exists, and a capacity appears that was not there before.
+
+The third arrow flips. **Action produces cash flow** — capacity → artifact. This is a discharge, not a recognition. It has to flip, because the first half of the cycle is seeing and the second half is doing. Cash flow is the only vertex on the hexagram that requires another person to move.
+
+### The diagnostic
+
+Because capacities are downstream, they are evidence, not skills.
+
+- **No strategy** does not mean the client needs strategy training. It means fit was never reconstructed.
+- **No clarity** does not mean the client needs to think harder. It means the uniqueness was never actually put into words.
+- **No cash flow** with clarity and strategy present means only one node is jammed: action.
+
+You never treat a missing capacity directly. You go back one position and look at whether the artifact upstream got made.
+
+### Why it closes
+
+Cash flow is not the end of the line. Money that arrives is the first reading of your uniqueness taken by someone other than you. A stranger paying full price is a fact about your articulation that no amount of further articulating can produce. So the sixth position feeds the first, and the next turn of the cycle starts from a sharper read than the last.
+
+**One turn is a business. Repeated turns are a practice.** This is why the work does not finish — each lap makes the uniqueness more precise, which makes the fit narrower, which makes the strategy simpler, which makes cash flow larger and the next read sharper again.
+
+*Related: Principle 5 (The Precision Gap IS the Product) · Principle 4 (The Mirror, Not the Teacher — you mirror the artifact, never coach the capacity) · [Technology 138](../01-vision/phase_shift_technology_library.md) (faculty precedes fidelity — the same upstream/downstream law, one level deeper) · [Technology 139](../01-vision/phase_shift_technology_library.md) (The Load Order — how the cycle behaves across scales).*
+
+---
+
 ## The Transmission Principle: Medicine, Not Information
 
 > *"A reveal written as a report informs. The same reveal written as transmission opens. Same words, different organ."*
