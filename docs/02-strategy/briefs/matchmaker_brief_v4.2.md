@@ -2,7 +2,7 @@
      Vocabulary and archetypes derive from commercial-tools/app/config.json (mfLexicon, archetypes).
      After editing, run: node scripts/sync-brief-to-tool.mjs  (also runs on every predev/prebuild) -->
 
-# Matchmaker Brief v4.1
+# Matchmaker Brief v4.2
 
 Here is who I want to meet, in full. Nothing here depends on anything I have told you before.
 
@@ -28,7 +28,11 @@ Any one missing and it is not my client. All three present and it is worth an in
 
 My vocabulary is *practitioner* language. So if you search for the words, you surface my **peers** — the people who coach, teach and write about this — not my **clients**, the founders in transition who would never advertise inner work on a profile. Search the words alone and you hand me a room full of Finished Cathedrals: pleasant, and nothing to buy.
 
+**The discriminator is not the vocabulary, it is the grammatical position the vocabulary sits in.** A coach writes it in *offer* position: "I help founders find their genius", "guiding leaders into clarity", "for entrepreneurs who". A client writes it in *identity* position, next to a vehicle they actually run: "Fintech Solutions | Conscious Transformation Facilitator". Identical words. Completely different person. If the phrase describes who they serve, it is a peer; if it describes who they are, it is a candidate.
+
 To find clients, lead with the **transition** and the **income-on-their-own-name**, and let the vocabulary be the *confirmation*, not the query. A founder "between chapters", "ex-founder", "figuring out what's next", "operator turned founder", with several unrelated things in one headline — that is the shape. Then check whether any inner-work vocabulary is present. Transition first, words second.
+
+**The one-line test that settles it:** is this person running a vehicle — a company, a fund, a product, a pivot — and describing it in a tangle? Or is their whole headline a promise about what they do for other people? The coach who says "I help founders find their genius" has already named their own thread; that is why they can sell it. The founder who has not named theirs is the one I was built for.
 
 ---
 
@@ -86,6 +90,8 @@ This second group is not an adjacent lifestyle interest. It is evidence of a ref
 **One warning.** Take "holonic" and "integral" only in the multi-word forms above. Alone they are traps: "holonic" mostly finds people employed at a company called Holonic, and "integral" catches ordinary English as in "an integral part of the team". A word that is merely rare is not the same as a word that is unambiguous.
 
 **A useful extra:** a paid certification, coach training, a retreat, a programme they funded themselves. It shows a standing habit of paying for their own development, which every client I have ever had turned out to share.
+
+**Another, independent one: cosmopolitan.** Several countries in one history, three or more languages, a life run across continents, a diaspora hub as the current location. This is not evidence of transition — moving country is not the crossing I am describing, and I do not want it counted as one. It is evidence about *identity*: the capacity to hold several worlds at once without needing one of them to win. It raises the match on its own, it is durable rather than staged, and someone can be thoroughly cosmopolitan and thoroughly settled in their vocation at the same time. That person is a peer. One qualifier among many, no heavier than the rest.
 
 **Words that mark a different conversation:** venture studio, startup studio, founder collective, accelerator, founder programme. These people run their own vehicle consciously. That is infrastructure and thesis, not a session, and I actively want more of them.
 
