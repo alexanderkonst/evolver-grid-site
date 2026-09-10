@@ -184,7 +184,7 @@ The category name. Node license terms. The purpose-entity threshold (~25 nodes, 
 
 | Funnel step | Assumption (working · range) | Actual | n | Read | Moved? |
 |---|---|---|---|---|---|
-| Connection request accepted | 50% · 40-60% | **45%** | 11 | within range, just under the working point | No — inside range, n too small |
+| Connection request accepted | 50% · 40-60% | **42%** | 12 | within range, under the working point (reconciled via get-sent-invitations) | No — inside range, n small |
 | Accepted → reply (buying intent) | 20% · 15-25% | **1 reply** | 4 sent | first reply ~2h (Danil, positive); n far too small, and sends are not uniform (mirror-delivered vs deferred) | No |
 | Reply → quiz → Direction Call | 33% · 30-40% | — | 0 | pending | — |
 | Direction Call → paid session | 50% · 40-50% | — | 0 | pending | — |
@@ -206,6 +206,10 @@ The category name. Node license terms. The purpose-entity threshold (~25 nodes, 
 - **Reply rate now has its first data point: 1 of 4 first-messages sent** (Danil, Javier, Emiliano, Juan). Three are under two days old and the sends are **not a clean sample** — message structure varies per person by design (mirror-delivered for Danil, mirror-deferred/consent-first for Juan), so reply rate must be read per message-type, not pooled. No computation yet; n=4.
 - **Accepts: four of five now identified** (Danil, Emiliano, Javier, Juan). If Juan's acceptance postdates the firm "5" count, accepts = 6 and accept rate = ~55% (6/11); pending Sasha's confirmation. Accept assumption still unmoved either way (both inside the 40-60% band).
 - **Action: forecast held.** The reply-rate clock is now genuinely running. The first signal is encouraging — fast, positive, from the best target — but n=4 with a confounded sample is nowhere near a move. Logged as signal, not as a forecast change.
+
+**2026-09-09 — full connector reconcile of the denominator.** `get-sent-invitations` shows the settled campaign is **12 sends**, not 11 (added Cesar Esquinca, previously un-logged; Pedro confirmed pending / not accepted). Accept rate corrects from 5/11 (45%) to **5/12 (~42%)** — still inside the 40-60% band, still under the 50% working point, still above the 35% floor. Assumption unmoved. Four new sends today (Sep 9) are pending and too fresh to count. Method note: Sasha sends invites by hand in the LinkedIn UI, so the connector's CONNECT quota reads 0 and cannot count them; the reliable counter is get-sent-invitations timestamps.
+
+**2026-09-10 (Day 180) — fresh-cohort accepts running hot, settled rate unmoved.** The Sep-9 batch of 9 now shows **6 accepted within 1-2 days (Diana Chapman, Sophie Vo, Scott Britton, Ron Hill, Ernesto Cacho, Alejandro Morales Heimlich) — ~67%**, well above the 40-60% band. Per this ledger's own rule, a fast early run on a 9-person cohort is signal, not a mover: too fresh (most under 48h) and too small to trust over the settled number. **Settled accept rate holds at 5/12 (~42%).** Reply rate still has n=1 (Danil, Day 177) — three more targets accepted and unmessaged (Toni Mascaró 5 days overdue; the 6 fresh accepts still inside grace) so the reply clock has more denominator waiting than numerator. **Two accepts (Michael Logan Shur, Leonard Khirug) surfaced with no matching sent-invitation record** — untracked sends from outside this session's visible window, not folded into any rate. **Four off-sequence sends found** (Cesar Esquinca, Carlos Quintero — both unaccepted 2nd-degree, messaged anyway; Angel Hernandez, Jeff Cherry — outside the logged Wave 1 target list) — these break Exhibit 4's request-then-message sequence and are excluded from both the accept-rate and reply-rate denominators pending Sasha's call on whether to count them. **Action: forecast held**, nothing here clears the bar to move an assumption.
 
 ### How this becomes the game
 
