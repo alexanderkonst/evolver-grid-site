@@ -1082,6 +1082,52 @@ The formula for a first message to a stranger whose profile you have actually re
 
 > *"Clarity is not something you develop. It is what happens when uniqueness gets articulated."*
 >
+> *v1.1 · Day 180, September 10, 2026 · order corrected by Sasha: strategy begets fit, not the other way around. v1.0 kept below as genealogy.*
+
+Six positions, alternating between things you make and things you gain:
+
+**uniqueness → clarity → strategy → fit → action → cash flow → (uniqueness)**
+
+Made: uniqueness, strategy, action. Gained: clarity, fit, cash flow. Two interlocking triangles, and the path walks the rim touching each in turn.
+
+### Every arrow runs the same way
+
+You make something, it gives you a capacity, and the capacity lets you make the next thing.
+
+- **Articulating uniqueness produces clarity.**
+- **Clarity lets you make a strategy. Making the strategy produces fit.** Once you know who you are aiming at and why, the specific people who need exactly you become findable.
+- **Fit lets you act on the right people. Acting produces cash flow.**
+
+Worked example, Day 177: a high-precision brief (strategy) surfaced Danil (fit) before a single message was written. The DM (action) came after, and the reply came because the aim was right.
+
+### What "fit" means at this position
+
+Fit is the specific people who need exactly what you carry, located. It is not the options that feel possible once you are clear; that is clarity. It is not a stranger who has already paid; that is cash flow. Technology 143 reads fit one step later, as those people recognizing themselves once you are exposed to them. The two readings meet when the action lands.
+
+### The diagnostic
+
+Capacities are downstream, so they are evidence, not skills.
+
+- **No clarity** does not mean the client needs to think harder. The uniqueness was never actually put into words.
+- **No fit** does not mean the client needs better targeting. The strategy was never actually made: no clear who, no clear why.
+- **No cash flow** with clarity and fit present means only one node is jammed: action.
+
+You never treat a missing capacity directly. You go back one position and look at whether the thing upstream got made.
+
+### Why it closes
+
+Cash flow is not the end of the line. Money that arrives is the first reading of your uniqueness taken by someone other than you. A stranger paying full price is a fact about your articulation that no amount of further articulating can produce. So the sixth position feeds the first, and the next turn starts from a sharper read than the last.
+
+The loop is learned by running it once, end to end, as fast as possible. Then it is run again and again.
+
+*Related: Principle 5 (The Precision Gap IS the Product) · Principle 4 (The Mirror, Not the Teacher — you mirror the artifact, never coach the capacity) · Principle 18 (You Are Stream 0) · [Technology 138](../01-vision/phase_shift_technology_library.md) (faculty precedes fidelity) · [Technology 139](../01-vision/phase_shift_technology_library.md) (The Load Order) · [Technology 143](../01-vision/phase_shift_technology_library.md) (The Exposure Law).*
+
+### Genealogy — v1.0 (Day 178, September 8, 2026), superseded
+
+> *Superseded by v1.1 on Day 180. v1.0 ran fit before strategy and made the last arrow flip. Its closing line ("One turn is a business. Repeated turns are a practice.") was cut in v1.1 as unclear (Sasha, Day 180). Kept verbatim below.*
+
+> *"Clarity is not something you develop. It is what happens when uniqueness gets articulated."*
+>
 > *v1.0 · Day 178, September 8, 2026 · arrived at independently in the work before it was drawn.*
 
 Six positions, alternating between things you make and things you gain:
@@ -1090,13 +1136,13 @@ Six positions, alternating between things you make and things you gain:
 
 Artifact, capacity, artifact, capacity, artifact, capacity. Two interlocking triangles: the three artifacts on one, the three capacities on the other, and the path walks the rim touching each in turn.
 
-### The direction of the arrows
+#### The direction of the arrows
 
 The first two run artifact → capacity. **Articulating uniqueness produces clarity. Reconstructing fit produces strategy.** These are recognitions: you look hard at something that already exists, and a capacity appears that was not there before.
 
 The third arrow flips. **Action produces cash flow** — capacity → artifact. This is a discharge, not a recognition. It has to flip, because the first half of the cycle is seeing and the second half is doing. Cash flow is the only vertex on the hexagram that requires another person to move.
 
-### The diagnostic
+#### The diagnostic
 
 Because capacities are downstream, they are evidence, not skills.
 
@@ -1106,7 +1152,7 @@ Because capacities are downstream, they are evidence, not skills.
 
 You never treat a missing capacity directly. You go back one position and look at whether the artifact upstream got made.
 
-### Why it closes
+#### Why it closes
 
 Cash flow is not the end of the line. Money that arrives is the first reading of your uniqueness taken by someone other than you. A stranger paying full price is a fact about your articulation that no amount of further articulating can produce. So the sixth position feeds the first, and the next turn of the cycle starts from a sharper read than the last.
 
