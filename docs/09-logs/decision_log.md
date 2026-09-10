@@ -6,6 +6,22 @@
 
 ---
 
+## 2026-09-10 (Day 180)
+
+### D-2026-09-10-01 — Hexagram order: strategy begets fit
+
+**Decision:** The hexagram (Playbook Principle 20) runs **uniqueness → clarity → strategy → fit → action → cash flow → (uniqueness)**. Supersedes the Day 178 order, which placed fit before strategy.
+
+**Rationale:** Sasha's call, choosing option A over B (B placed action before fit). Strategy is the aim; making it is what makes the specific people who need you findable. Field evidence: on Day 177 the high-precision brief surfaced Danil before any message was written. The new order also makes the made/gained alternation hold on every arrow, which removes the v1.0 "the third arrow flips" exception.
+
+**Consequence:** Principle 20 v1.1 written, v1.0 kept as genealogy. Diagnostic changes: missing fit now points back to strategy, not clarity. The v1.0 closing line ("Repeated turns are a practice") cut as unclear. New closing line in Sasha's words: learn the loop by running it once, fast, then run it again and again.
+
+**Reversibility:** Doctrinal, easy to revise. Any revision keeps v1.0 and v1.1 as genealogy.
+
+**Cross-references:** `unique_business_playbook.md` Principle 20 · `phase_shift_technology_library.md` Technology 143 · `docs/specs/corpus-sync/scope_of_work.md` §5 D1, D3.
+
+---
+
 ## 2026-08-25 (Day 166)
 
 ### D-2026-08-25-01 — Recursive value flow is the governing transaction model

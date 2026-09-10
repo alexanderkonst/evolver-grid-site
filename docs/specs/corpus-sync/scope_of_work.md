@@ -55,7 +55,7 @@ Every fact below has exactly one owner. All other surfaces quote it with a date,
 | F5 | **Index is behind.** Dated Aug 25. Zero mentions of Technologies 137–143 or Principles 18–20. 17 dead links (`04-specs/*` now lives in `05-specs/`; `oyis_`/`sergeys_` canvases moved to `unique-businesses/`). ~216 of ~338 live `.md` files unindexed. Folders `00-intro kit`, `00-master`, `06-modules`, `10-workshops`, `holomaps`, `specs` missing from the tree; `04-exports` is empty. | link check script, §8 | 🟠 |
 | F6 | **Playbook internal breaks.** Two different "Principle 13"s (Highest-Rated Version Rule, Grind Addiction Diagnosis). Header says v4.6, changelog ends at v4.2. P20 contradicts itself on which triangle action and cash flow sit on. P20 contains the line "One turn is a business. Repeated turns are a practice." (flagged by Sasha as unclear, §5 D3). | `unique_business_playbook.md` L484, L655, L1081–1117, L4963 | 🟠 |
 | F7 | **Three competing artifact sequences.** Playbook/canvas: 7 steps + Shadow 1.5. Principle 17: a 21-artifact chain. UBB runtime: 18/19 artifacts. No doc says which is canonical for which use. | playbook L1990, L977; canvas L1288; UBB | 🟠 |
-| F8 | **Decision log stops May 7.** Since then: match funnel as default, "Ignition" retired for "Productize Yourself", Domains → Technologies, Tribe as position not population, Sovereign Founder Collective, The Crossing pricing. These live only inside session log and roadmap prose. | `decision_log.md` L271 | 🟡 |
+| F8 | **Decision log has gaps.** It is newest-on-top and current through Day 166, but decisions between May and August (match funnel as default, "Ignition" retired for "Productize Yourself", Domains → Technologies, Tribe as position not population, Sovereign Founder Collective, The Crossing pricing) live only in session log and roadmap prose. Needs a check entry by entry. | `decision_log.md` | 🟡 |
 | F9 | **Holomap last addendum Day 166.** `MEMORY.md` live line also Day 166. | `morphogenetic_holomap.md` L3438 | 🟡 |
 | F10 | **Stale "WE ARE HERE."** Planetary OS Assembly marks Step 2 (word of mouth, 8/10). Reality is past Step 3 (charging) with Step 6 (others facilitating: Karime) live. | `planetary_os_assembly.md` L89 | 🟡 |
 | F11 | **Retired names in live sections.** "Ignition Session" appears in 26 non-archive files. Only live/current sections should change (law 2.2). | grep | 🟡 |
@@ -70,9 +70,9 @@ Every fact below has exactly one owner. All other surfaces quote it with a date,
 
 | # | Question | Options | Recommendation |
 |---|---|---|---|
-| D1 | Hexagram order. Sasha: strategy begets fit. | **A** uniqueness → clarity → strategy → fit → action → cash flow. **B** uniqueness → clarity → strategy → action → fit → cash flow. | See §5.1. |
+| D1 | Hexagram order. Sasha: strategy begets fit. | **A** uniqueness → clarity → strategy → fit → action → cash flow. **B** uniqueness → clarity → strategy → action → fit → cash flow. | ✅ **Decided Day 180: A.** Written into P20 v1.1 + `D-2026-09-10-01`. |
 | D2 | Loop doctrine: "learn and run the loop once, as fast as possible; then run it again and again." Where does it live? | Amend P18 · a line in the playbook's executive summary · both | Both: one line in the summary, the full form in P18 |
-| D3 | The "practice" line in P20. | Cut · rewrite when clear | Cut now, leave a placeholder note |
+| D3 | The "practice" line in P20. | Cut · rewrite when clear | ✅ **Decided Day 180: cut.** Done in P20 v1.1, kept only in v1.0 genealogy. |
 | D4 | Which artifact sequence is canonical for what. | One table naming the 7-step (session), 21-chain (four-scale projection), UBB 18 (software) | One table in the playbook, pointed to from canvas + UBB |
 | D5 | Duplicates in F14. | Merge · label one as superseded · leave | Label, don't merge, in this pass |
 | D6 | Backfill depth for Days 167–180. | Full narrative from git + Fathom + LinkedIn · short summary per day | Short summary, one entry for the window, like Days 147–166 |
@@ -87,6 +87,8 @@ Every fact below has exactly one owner. All other surfaces quote it with a date,
 Sasha's correction uses proven fit, which is the stronger and more market-true meaning. The open question is whether proven fit needs action first. Technology 143 says fit is a reading of exposure. Danil recognized himself only after a DM went out. That points to **B**.
 
 Either way, P20's "artifact, capacity, artifact, capacity" alternation has to be re-derived. It already contradicts itself about action and cash flow.
+
+**Resolution (Day 180):** Sasha chose **A**. At this position fit means the right people located by the strategy, before action; Technology 143's recognition reading follows one step later. A also makes the alternation hold cleanly: made = uniqueness, strategy, action; gained = clarity, fit, cash flow.
 
 ---
 
@@ -110,8 +112,9 @@ Sasha answers D1–D6. **DoD:** answers recorded in `decision_log.md` with dates
 
 **DoD:** every commit since Aug 25 that changed doctrine has a session log line. Every F8 decision has an ID.
 
-### WP3 — Method (blocked on WP0)
-- Playbook: renumber the duplicate Principle 13 (keep both texts; the second gets a new number and a redirect note). Version header and changelog brought to one version. P20 rewritten per D1 and D3. D2 line added. D4 table added.
+### WP3 — Method (partly unblocked)
+- ✅ P20 rewritten per D1 and D3 (Day 180, v1.1).
+- Playbook: renumber the duplicate Principle 13 (keep both texts; the second gets a new number and a redirect note). Version header and changelog brought to one version. D2 line added. D4 table added.
 - Technology library: re-sequence 137 into order (move the block, change nothing inside it).
 
 **DoD:** no duplicate principle numbers. Version header equals the latest changelog entry. P20 consistent with Technology 143.
