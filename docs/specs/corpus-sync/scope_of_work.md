@@ -1,6 +1,6 @@
 # Corpus Sync — Scope of Work
 
-> *v0.1 · September 10, 2026 (Day 180). Plan only. Nothing in this spec has been executed.*
+> *v0.1 · September 10, 2026 (Day 180). **Executed Day 180-181 (corpus-sync pass).** WP1 (owners), WP2 (logs), WP3 (method), WP4 (derived surfaces), WP5 (holomap), WP6 (index + contract), and §7 (Mirror Map) are done and committed. WP0 decisions D1-D6 resolved (D1/D3 Day 180; D2/D4/D5/D6 Day 181, see `decision_log.md`). One item deferred to Sasha: **F14 duplicate-labelling** — needs a canonical call per pair, and the Karime canvases are held (law 2.6). A strict per-number Technology/Principle index (verification 8.3) is not hand-maintained; the ranges (1-143, 1-21) are named in the index footer instead.*
 > *Goal: bring the corpus back to one coherent, current body, where every fact has one owner and every other surface points to it.*
 
 ---
