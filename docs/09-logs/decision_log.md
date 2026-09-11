@@ -6,6 +6,38 @@
 
 ---
 
+## 2026-09-11 (Day 181)
+
+### D-2026-09-11-01 — Loop doctrine lives in two places (corpus-sync D2)
+
+**Decision:** The loop doctrine ("learn the loop by running it once, as fast as possible; then run it again and again") lives both as a one-line entry in the playbook's executive summary and in full form in Principle 18.
+
+**Rationale:** Sasha's call (D2 = both). The summary gives it visibility at the top; Principle 18 (You Are Stream 0 / the load order) carries the full statement, where it connects to the downward-feedback and "stand before you are ready" material.
+
+**Reversibility:** Doctrinal, easily revised; keeps genealogy.
+
+**Cross-references:** `unique_business_playbook.md` Executive Summary + Principle 18 · `docs/specs/corpus-sync/scope_of_work.md` §5 D2.
+
+### D-2026-09-11-02 — The three artifact sequences are one method at three resolutions (corpus-sync D4)
+
+**Decision:** The 7-step canvas (session), the 21-artifact chain (canonical four-scale derivation), and the UBB 18/19 runtime (software) are not competing lists — they are one method at three resolutions. The 21-artifact chain in Principle 17 is canonical; the 7-step is its session-scale core; the UBB runtime is its implementation, downstream and catching up. When they disagree, the chain wins and the runtime is the build task. Recorded as a "which sequence, which use" table inside Principle 17, pointed to from the canvas and UBB.
+
+**Rationale:** Sasha asked for a re-derivation rather than adopting the SoW recommendation verbatim. Re-derivation confirmed Principle 17 already owns the reconciliation (the four-scale projection + the compiler-consequence note), so the table extends the owner rather than creating a parallel section.
+
+**Reversibility:** Doctrinal; the mapping refines as the runtime catches up to the canonical chain.
+
+**Cross-references:** `unique_business_playbook.md` Principle 17 · `alexanders_unique_business.md` Artifact Status · `docs/specs/corpus-sync/scope_of_work.md` §5 D4.
+
+### D-2026-09-11-03 — Process calls (corpus-sync D5, D6)
+
+**Decision:** D5 — duplicate/fork docs (F14) are **labelled, not merged**, in this pass; the canonical-vs-superseded call per pair is deferred to Sasha, and the Karime canvases are flagged only (held per law 2.6). D6 — the Days 167-180 backfill is **one window entry**, same shape as Days 147-166 (done in WP2).
+
+**Reversibility:** Process; revisit when Sasha makes the F14 canonical calls.
+
+**Cross-references:** `docs/specs/corpus-sync/scope_of_work.md` §5 D5, D6, §6 WP2.
+
+---
+
 ## 2026-09-10 (Day 180)
 
 ### D-2026-09-10-01 — Hexagram order: strategy begets fit
