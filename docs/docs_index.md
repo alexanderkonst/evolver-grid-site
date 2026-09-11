@@ -1,7 +1,7 @@
 # Documentation Index
 
 > **Holonic documentation structure — everything in its place**  
-> *Updated: 2026-08-25 (Day 166 — Recursive Unique Business crystallization indexed; Alexander's four-scale commercial projection, ITFT value-flow formula, Phase Shift Technologies 134–136, and Playbook Principle 17 synchronized.)*
+> *Updated: 2026-09-11 (Day 180 — corpus-sync WP6: 17 dead links fixed (04-specs → 05-specs; oyis/sergeys canvases → unique-businesses/), folder tree brought to the 20 live folders, doc count refreshed (~341), Technology range extended to 143 and Principle range to 21. Prior: Day 166 — Recursive Unique Business crystallization indexed; four-scale projection, ITFT value-flow formula, Technologies 134–136, Playbook Principle 17 synchronized.)*
 
 ---
 
@@ -9,17 +9,28 @@
 
 ```
 docs/
-├── 01-vision/         # Why we exist (11 files)
-├── 02-strategy/       # What we're building (25 files)
-├── 03-playbooks/      # How we build (14 files)
-├── 04-specs/          # Module specs (25+ files)
-├── 05-reference/      # Standards & templates (12 files)
-├── 06-architecture/   # Technical architecture (6 files)
-├── 07-technology/     # Core tech systems (12 files)
-├── 08-content/        # Content & curriculum (10 files)
-├── 09-logs/           # Session & decision logs (9 files)
+├── 00-intro kit/      # Onboarding kit for new readers
+├── 00-master/         # context.md — the single-doc synthesis (start here)
+├── 01-vision/         # Why we exist — ontology, transmissions, revelations
+├── 02-strategy/       # What we're building — roadmap, canvases, CRM, holomap
+├── 03-playbooks/      # How we build — the method
+├── 04-products/       # Living product instruments
+├── 04-workflows/      # Standard operating procedures
+├── 04-exports/        # Generated exports
+├── 05-reference/      # Standards & templates
+├── 05-specs/          # Module specs (renamed from 04-specs)
+├── 06-architecture/   # Technical architecture
+├── 06-modules/        # Per-module docs
+├── 07-technology/     # Core tech systems
+├── 08-content/        # Content & curriculum
+├── 09-logs/           # Session & decision logs, pulse log
+├── 10-workshops/      # Workshop materials
+├── holomaps/          # Transition + uniqueness holomaps
+├── specs/             # Feature specs (quiz, i18n, corpus-sync, ...)
+├── assets/            # Shared assets
 └── archive/           # Deprecated docs
 ```
+> *Structure current to Day 180 (Sep 11, 2026). Per-folder file counts intentionally omitted — they go stale; see the footer for the live total.*
 
 ---
 
@@ -41,7 +52,9 @@ docs/
 | [sacred_transaction_field.md](./01-vision/sacred_transaction_field.md) | Sacred economics |
 | [deep_insights.md](./01-vision/deep_insights.md) | Deep philosophical insights |
 | [word_energetics.md](./01-vision/word_energetics.md) | Word Energetics — the copywriting system (seed v0.1) |
+| [phase_shift_technology_library.md](./01-vision/phase_shift_technology_library.md) | **The laws** — Phase Shift Technologies 1-143, the discovery layer of the method |
 | [divine_transmissions/](./01-vision/divine_transmissions/) | Channel transmissions |
+| [revelations/](./01-vision/revelations/) | Important revelations + ally medicine (Topaz first) |
 
 ---
 
@@ -80,8 +93,8 @@ docs/
 | [impact_mapping.md](./02-strategy/impact_mapping.md) | Impact measurement |
 | [alexanders_operating_system.md](./02-strategy/alexanders_operating_system.md) | Founder's operating system |
 | [alexanders_unique_business.md](./02-strategy/unique-businesses/alexanders_unique_business.md) | Alexander's Unique Business Canvas + Venture Architecture. Top-of-file Dashboard and governing synthesis refreshed to Day 166; includes the recursive value-flow law and full four-scale commercial projection |
-| [oyis_unique_business.md](./02-strategy/oyis_unique_business.md) | Oyi's Unique Business Canvas (9.9 precision) |
-| [sergeys_unique_business.md](./02-strategy/sergeys_unique_business.md) | Sergey's Unique Business Canvas (in progress) |
+| [oyis_unique_business.md](./02-strategy/unique-businesses/oyis_unique_business.md) | Oyi's Unique Business Canvas (9.9 precision) |
+| [sergeys_unique_business.md](./02-strategy/unique-businesses/sergeys_unique_business.md) | Sergey's Unique Business Canvas (in progress) |
 | [unique_business_canvas_template.md](./02-strategy/unique_business_canvas_template.md) | Canvas template v5.0 (session-tested) |
 
 ---
@@ -161,33 +174,33 @@ docs/
 *Detailed specs for each module.*
 
 ### Onboarding
-- [onboarding_product_spec.md](./04-specs/onboarding/onboarding_product_spec.md)
-- [onboarding_architecture_spec.md](./04-specs/onboarding/onboarding_architecture_spec.md)
-- [onboarding_implementation_checklist.md](./04-specs/onboarding/onboarding_implementation_checklist.md)
+- [onboarding_product_spec.md](./05-specs/onboarding/onboarding_product_spec.md)
+- [onboarding_architecture_spec.md](./05-specs/onboarding/onboarding_architecture_spec.md)
+- [onboarding_implementation_checklist.md](./05-specs/onboarding/onboarding_implementation_checklist.md)
 
 ### Daily Loop / My Next Move
-- [daily_loop_product_spec.md](./04-specs/daily-loop/daily_loop_product_spec.md)
-- [daily_loop_product_roast.md](./04-specs/daily-loop/daily_loop_product_roast.md)
-- [my-next-move/](./04-specs/my-next-move/)
+- [daily_loop_product_spec.md](./05-specs/daily-loop/daily_loop_product_spec.md)
+- [daily_loop_product_roast.md](./05-specs/daily-loop/daily_loop_product_roast.md)
+- [my-next-move/](./05-specs/my-next-move/)
 
 ### Unique Gift
-- [zone-of-genius/](./04-specs/zone-of-genius/)
-- [zog-profile/](./04-specs/zog-profile/)
+- [zone-of-genius/](./05-specs/zone-of-genius/)
+- [zog-profile/](./05-specs/zog-profile/)
 
 ### Quality of Life
-- [quality-of-life/](./04-specs/quality-of-life/)
+- [quality-of-life/](./05-specs/quality-of-life/)
 
 ### Cross-Module
-- [customer_journey_map.md](./04-specs/customer_journey_map.md)
-- [customer_journey_progression.md](./04-specs/customer_journey_progression.md)
-- [complete_product_stack.md](./04-specs/complete_product_stack.md)
-- [framework_integration_map.md](./04-specs/framework_integration_map.md)
-- [user_flows.md](./04-specs/user_flows.md)
-- [wireframes.md](./04-specs/wireframes.md)
-- [game_design_principles.md](./04-specs/game_design_principles.md)
-- [assessment_integration_plan.md](./04-specs/assessment_integration_plan.md)
-- [evolver_ui_application.md](./04-specs/evolver_ui_application.md)
-- [onboarding_redesign.md](./04-specs/onboarding_redesign.md)
+- [customer_journey_map.md](./05-specs/customer_journey_map.md)
+- [customer_journey_progression.md](./05-specs/customer_journey_progression.md)
+- [complete_product_stack.md](./05-specs/complete_product_stack.md)
+- [framework_integration_map.md](./05-specs/framework_integration_map.md)
+- [user_flows.md](./05-specs/user_flows.md)
+- [wireframes.md](./05-specs/wireframes.md)
+- [game_design_principles.md](./05-specs/game_design_principles.md)
+- [assessment_integration_plan.md](./05-specs/assessment_integration_plan.md)
+- [evolver_ui_application.md](./05-specs/evolver_ui_application.md)
+- [onboarding_redesign.md](./05-specs/onboarding_redesign.md)
 
 ---
 
@@ -304,4 +317,4 @@ docs/
 ---
 
 *Holonic docs — part AND whole*  
-*Total: 97+ documents organized into 9 categories*
+*Total: ~341 live documents across 20 folders (Day 180, Sep 11, 2026). The method's laws live in `01-vision/phase_shift_technology_library.md` (Technologies 1-143) and `03-playbooks/unique_business_playbook.md` (Principles 1-21); a strict per-number sub-index is not maintained here.*
