@@ -6,7 +6,7 @@
 > *"Work seen as sacred, executed as ceremony."*
 
 **Version:** 4.8  
-**Created:** February 2026 · Last updated: June 19, 2026 (Day 102: *Part I gains "The Loop: Self-Knowledge and Business Co-Arise" plus its cross-cultural mythic lineage: the bidirectional, recognition-hinged reading of "business is crystallized self-knowledge," surfaced live during the first paid stranger session. Prior: Day 94 Transmission Principle.*)  
+**Created:** February 2026 · Last updated: September 10, 2026 (Day 180: *corpus-sync — the loop doctrine landed in the executive summary + Principle 18 (D2); Principle 17 gained the "which sequence, which use" table reconciling the 7-step, 21-chain, and UBB runtime (D4); the duplicate Principle 13 was renumbered to Principle 21; changelog aligned to v4.8.*)  
 **Purpose:** The master playbook for AI-assisted genius-based venture building  
 **Execution:** [Customer Journey Playbook](./customer_journey_playbook.md) — the operational map from first touchpoint to paid session
 
@@ -46,6 +46,8 @@ This is the master method: how to build a business that is structurally the foun
 **◉ The Center (13th):** the six frames say it whole — Ceiling, Waterfall, Loop, Two Fuels, Ladder, Network. Nothing grows past how well it knows itself; words open the doors, walking through them moves the ceiling.
 
 **✦ Crystallization (27th):** the improve loop is the guarantee — specificity must trend up or the artifact does not ship. The one irreversible discipline: refuse to ship low-precision output, and let the Precision Gap stay the product.
+
+**⟳ The Loop:** learn the loop by running it once, as fast as possible; then run it again, and again. The first full turn teaches what no planning can; the compounding is in the repetition, not in the first turn's polish. (Full form: Principle 18.)
 
 ---
 
@@ -652,8 +654,10 @@ This is the bridge between the Methodology (mystical/visionary) and the Technolo
 
 ---
 
-## Principle 13: The Grind Addiction Diagnosis
+## Principle 21: The Grind Addiction Diagnosis
 
+> *Renumbered from a duplicate "Principle 13" in the Day 180 corpus-sync, kept in its original position between 13 and 14 for thematic adjacency. Principle 13 is The Highest-Rated Version Rule.*
+>
 > *"The person most committed to success is the person most structurally preventing it."*
 >
 > *v1.0 · April 8, 2026 — Phase Shift Technology 14f + Phase Shift Technology 75. The unifying diagnosis beneath scatter, burnout, and misalignment.*
@@ -694,7 +698,7 @@ The Productize Yourself Session is, at its core, **a detox.** What actually happ
 
 > *"Grind is like a mind virus. When it kicks in, it runs like one of those drills on the street, drilling the ground. The mind knows how to drill — so it says 'I'm gonna figure it out.' But that only makes things worse. One can go deeper and deeper into that grinding hole."* — Sasha, April 15, 2026, Oluwa + Oyi transmission
 
-Principle 13 originally diagnosed grind addiction clinically: a structural misidentification of what creates results. The April 15 transmission added the phenomenology — grind is a **drilling program** the mind runs when it doesn't know what else to do. The drill *feels* productive because it produces a hole. The hole is deeper than before. **It is not closer to the answer.**
+Principle 21 (Grind Addiction, formerly numbered 13) originally diagnosed it clinically: a structural misidentification of what creates results. The April 15 transmission added the phenomenology — grind is a **drilling program** the mind runs when it doesn't know what else to do. The drill *feels* productive because it produces a hole. The hole is deeper than before. **It is not closer to the answer.**
 
 The answer — when it actually arrives — was always simple, always nearby, usually available in under 30 seconds once the drill is off.
 
@@ -767,7 +771,7 @@ The resistance IS the invitation. Work the clarity, not the resistance.
 
 ### Why This Matters for the Methodology
 
-Principle 14 is the antidote to a common misread of Principle 13 (Grind Addiction): *"If I'm not supposed to grind, but I feel resistance, what am I supposed to do?"*
+Principle 14 is the antidote to a common misread of Principle 21 (Grind Addiction): *"If I'm not supposed to grind, but I feel resistance, what am I supposed to do?"*
 
 Answer: the resistance is the signal of the next clarity required. Sit with it, name what's foggy, articulate until the fog lifts. The resistance dissolves when the clarity lands — not when the push succeeds.
 
@@ -775,7 +779,7 @@ Answer: the resistance is the signal of the next clarity required. Sit with it, 
 
 When a client brings a challenge, don't help them push through. Ask: *"What is this challenge trying to clarify for you?"* The client will usually answer themselves within 2 minutes. The clarity was always the actual work; the challenge was the messenger.
 
-> *Relates to: Principle 13 (Grind Addiction) — this is the *what to do instead of push* corollary. Phase Shift Library candidate: Phase Shift Technology 80 (Challenge Ordering).*
+> *Relates to: Principle 21 (Grind Addiction) — this is the *what to do instead of push* corollary. Phase Shift Library candidate: Phase Shift Technology 80 (Challenge Ordering).*
 
 ---
 
@@ -997,6 +1001,18 @@ Uniqueness → Shadow → Myth → Tribe → Pain → Promise
 
 **Compiler consequence.** Shadow and Proof are canonical artifacts even where the current `/ubb` runtime has not yet given them independent screens. Lead Magnet must inherit the Specificity Test rather than precede the test. Surface Inventory should inform Reach, Delivery, Spread, Tuning Fork, and Golden DM rather than appear after those artifacts as an isolated inventory. Runtime implementation remains a separate build task; the derivation law is canonical now.
 
+### Which sequence, which use
+
+The corpus carries the artifact sequence at three resolutions. They are one method, not three competing lists (this table resolves corpus-sync D4).
+
+| Sequence | Resolution | Canonical for | Relationship |
+|---|---|---|---|
+| **7-step canvas** (Uniqueness · Shadow · Myth · Tribe · Pain · Promise · Offer, plus Shadow 1.5) | the **session** | what a facilitator produces live with one founder: the core identity-and-offer artifacts | the practical compression of the full chain at the individual scale |
+| **21-artifact chain** (this principle, above) | the **canonical derivation** | the complete method: the full artifact set, derived anew per scale (four-scale projection) | the superset, and the source of truth for what artifacts exist |
+| **UBB 18/19 runtime** (`/ubb`) | the **software** | the product's current artifact screens | the 21-chain as built so far — Shadow and Proof screens pending, Lead Magnet / Specificity ordering per the compiler consequence above |
+
+The 21-artifact chain is canonical. The 7-step is its session-scale core; the UBB runtime is its implementation, downstream and catching up. When they disagree, this chain wins and the runtime is the build task. Pointed to from `alexanders_unique_business.md` (Artifact Status) and the `/ubb` runtime.
+
 ### The language test
 
 Absurd simplicity is not abbreviation. Absurd simplicity is complete meaning carried by ordinary words.
@@ -1049,6 +1065,8 @@ Not finished. Not perfect. Running, and generating more than it consumes, while 
 **And the feedback runs downward, not only up.** Working at scale A sharpens Stream 0 — every client encounter returns language, objections, and precision that improve the founder's own articulation. This is why the layers must keep growing concurrently rather than being graduated from: **each opened scale feeds the one beneath it.** The root system thickens because there are leaves, not despite them.
 
 **Practical instruction.** Name which scale you are currently proving. Name what surplus the layer beneath it has produced, with a date. If you cannot name that surplus, the next scale is a hypothesis you have standing to test, not territory you hold — and saying so out loud is worth more than a plan.
+
+**The loop doctrine.** You do not perfect the loop before running it. Learn it by running it once, as fast as possible, end to end; then run it again, and again. Each turn returns language, objections, and precision the last turn could not (the downward feedback above), so the fastest way to a good loop is a complete rough one, repeated. This is the same movement Principle 20 names as the cycle turning: one full turn teaches the shape, and the compounding lives in the repetition, not in the first turn's polish. Rushing and stalling both hide here — the fix for both is the same, a complete turn now over a perfect turn later.
 
 *Full law: [Technology 139 — The Load Order](../01-vision/phase_shift_technology_library.md). The faculty each scale requires: [Technology 138](../01-vision/phase_shift_technology_library.md).*
 
@@ -5010,6 +5028,7 @@ These are not in opposition. They are complementary faces of the same whole. The
 *The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.*
 
 **Changelog:**
+- **v4.3 → v4.8:** *(consolidated, backfilled Day 180 corpus-sync — per-version deltas were not recorded between April and September, so the landmarks are grouped rather than split by point release.)* The Integrated Stack unifying frame (v4.6, the "one continuous machine" section, Technology 83). Part I gained "The Loop: Self-Knowledge and Business Co-Arise" (Day 102). Principles 14-21 added: 14 (Hero's Journey Challenge Ordering), 15 (The Specificity Loop), 16 (The Unique Business Accelerator), 17 (Recursive Value Flow — four-scale projection + the "which sequence, which use" artifact table, D4), 18 (You Are Stream 0 + the loop doctrine, D2), 19 (The Mirror Opener), 20 (The Hexagram — order A per D1, "practice" line cut per D3), 21 (The Grind Addiction Diagnosis, renumbered from a duplicate Principle 13). Phase Shift Technologies 134-143 referenced (recursive value flow, mirror fidelity, the faculty layer, the load order, the exposure law). Public Lines, the Timestamp Requirement, and the phenomenon-naming language test codified.
 - **v4.2:** Funnel Hearing Principle (April 3, 2026). New operational infrastructure: the funnel can now HEAR. `src/lib/funnelAnalytics.ts` wires 17 typed event types across the entire ZoG → Quiz → /ignite → Booking conversion pipeline. Events tracked: page views, step transitions, email saves, CTA clicks, quiz completions (with archetype), divine timing captures, and booking link clicks. Anonymous session IDs, localStorage queue fallback for offline resilience, Supabase `funnel_events` target table. This is the first LR (systemic) infrastructure for measuring encounter — without it, every decision about the funnel is assumption-based. PageLoader dark glass fix deployed: Suspense fallback now matches the liquid glass aesthetic (bg-[#0a0a1a] + white/30 spinner). Cross-references: Roadmap analytics wiring, Session Log Day 34 afternoon.
 - **v4.1:** PageRank Principle (Phase Shift Technology 60) codified — the platform's moat is not making the product but owning the standard that RANKS the products. Google doesn't make websites, Michelin doesn't cook, Moody's doesn't lend. ZoG maps genius → whoever controls that mapping controls demand allocation. Zero-Friction Viral Sharing architecture: sharing reframed from "validation-seeking" to "identity expression." Copy: "This is how I naturally create value." Share is a non-blocking tertiary side-channel, collapsed by default, triggered only after emotional recognition. Premium UI deployed as operational proof: dark liquid glass across ALL ZoG screens, gradient.jpg unification, glassmorphism blueprint applied to quiz, auto-scroll on step transitions, SiteLogo (toroidal field) deployed site-wide. Guarantee landed: "If you don't leave with a one-sentence business you recognize as yours: you don't pay." Cross-references: Phase Shift Technology Library Technology 60, Customer Journey Playbook Section 20.
 - **v4.0:** Principle 11 (Campfire Networking & The Resonance Metric) added — events are physical broadcast surfaces activated by communication, not presence. Campfire protocol: join group → listen → contribute → let 1:1s form from resonance. The Resonance Metric (Phase Shift Technology 58): the events industry measures the wrong thing (contacts made vs resonant connections self-formed from signal). Pattern generalizes across ALL industries: wrong metric = volume at input, right metric = quality at output. Event-based encounter tactic (#14) upgraded with Campfire protocol. Physical delivery format scored. Physical Community Platforms (InterNations, MATES, Meetup, CDMX Expats, Latitud) added to Wave 4 in Surface Holomap.
