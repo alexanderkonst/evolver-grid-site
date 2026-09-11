@@ -340,4 +340,24 @@ If a verb is ambiguous, I use AskUserQuestion (multi-select when possible) rathe
 
 ---
 
+## Mirror Map — when X changes, update Y, in this order (Day 180)
+
+*From the corpus-sync SoW §3. The source-of-truth map turned into a checklist. Run it at "log this session" time, not as a separate ritual. Load order: owners first, then logs, then method, then derived surfaces, then index/contract last — each reads everything above it.*
+
+| When this changes | Owner (edit first) | Then these mirrors, in order |
+|---|---|---|
+| **Revenue / offers / payments** | Offer Ledger (`strategic_crm_outreach_tracker.md`, gitignored/local) | roadmap Current Status → canvas Dashboard → holomap addenda → cohort/million briefs. Never quote a figure the Ledger doesn't hold. |
+| **Current state / focus / weekly scope** | roadmap Current Status + This Week's Scope | canvas Dashboard → `MEMORY.md` holomap line |
+| **A decision** | `decision_log.md` (give it an ID) | reference it from the session-log entry |
+| **Something happened** | `session_log.md` (dated entry) | holomap addendum (if big) → roadmap Completed |
+| **A law / discovery** | `phase_shift_technology_library.md` (next Technology number, in order) | playbook principle → index |
+| **The method (a principle / sequence)** | `unique_business_playbook.md` (bump the version header AND the changelog together) | canvas template → UBB prompts → CLAUDE.md |
+| **Business artifacts (uniqueness → ladder)** | `unique-businesses/alexanders_unique_business.md` | Artifact Status table (same file) → Public Lines → playbook examples |
+| **Structural state of the venture** | `morphogenetic_holomap.md` (dated addendum) + `MEMORY.md` (live line) | roadmap Current Status |
+| **A file moved / added** | `docs_index.md` | CLAUDE.md corpus map |
+
+**Three laws that keep it honest:** (1) the owner is edited first and always; a mirror never carries a fact its owner lacks. (2) Historical and dated sections are frozen — only live sections (dashboards, Current Status, "we are here" markers, indexes, status tables) get edited. (3) `MEMORY.md` carries volatile live state but never a running revenue total; it points to the Ledger.
+
+---
+
 *This file is my operating manual. Sits under `.agent/` alongside `RULES.md` and `anti-ai-style.md`. Update when a new verb or pattern emerges.*
