@@ -13,6 +13,15 @@
 
 ---
 
+> **v6.0 additions (Day 180).** The live method gained five laws since v5.0; fold them into every canvas:
+> - **Shadow — two dials.** The Shadow artifact carries a synthesized one-line form *and* a full paragraph; score both. (Playbook Principle 5; `unique-businesses/alexanders_unique_business.md` §2B.)
+> - **Public Lines (versioned).** The tagline, bio, and one-liner a stranger actually hears are artifacts; version them like any other. (Playbook Principle 13, The Highest-Rated Version Rule.)
+> - **Timestamp Requirement.** Every artifact version carries a date; the proprietary dataset is the timestamped trail of the maturation.
+> - **Ripeness read.** Alongside uniqueness, read whether the person can build from it now — the 9-axis Ripeness Vector, with Surrender / Means / Ticking-Clock as multiplicative gates. (Technology 123.)
+> - **Stream 0.** The method is run on its author first; the four scales (0/A/B/C) open in a load order. (Playbook Principle 18.)
+>
+> Full per-artifact template sections for these can follow; this note makes the current method's laws canonical in the template now.
+
 ## 🧭 Business Dashboard
 
 *Distilled snapshot. Top-of-file glance — the canvas sprawls below. Pattern originated Day 48 (April 22, 2026) in Sasha's canvas; codified here as a template for every founder building their own unique business.*
@@ -309,5 +318,5 @@
 
 ---
 
-*Template v5.0 — March 12, 2026 (Laylat al-Qadr)*
+*Template v6.0 — September 11, 2026 (Day 180). v5.0 (March 12, Laylat al-Qadr) preserved as genealogy; v6.0 adds the five laws the live method gained since April — see the "v6.0 additions" note at the top.*
 *Added: Artifact Status table, Unique Business Canvas, two-form principle (full-signal + universal language), 5-Layer Pain Slicer structure, inverse pain → promise methodology, value ladder with first action step. Reorganized to match proven session flow.*

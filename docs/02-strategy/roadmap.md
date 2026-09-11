@@ -432,7 +432,7 @@ A unique face of eternity.
 | 4 | Patricia Reed: ZoG result follow-up | Sales | 🔴 |
 | 5 | José da Veiga: guide to ZoG quiz | Sales | 🔴 |
 | **REVENUE** |
-| 6 | First $555 Ignition Session | Growth | 🔴 |
+| 6 | First $555 Productize Yourself Session | Growth | 🔴 |
 | 7 | Sandra revenue share agreement (33% from first $10K) | Business | 🔴 |
 | 8 | Taylor & Tracy checkpoint conversation | Business | 🔴 |
 | 9 | Sergey — communicate Build boundary (3 paid sessions) | Business | 🔴 |
@@ -465,8 +465,8 @@ A unique face of eternity.
 | 23 | Module landings (every module) | Marketing | 🟡 |
 | 24 | Videos (explainer, onboarding, module intros) | Content | 🟡 |
 | **TRIGGERS** |
-| 25 | The Originals Circle — activate after 5 Ignition Sessions | Community | ⏸️ |
-| 26 | The Build: Group Container — activate after 4 Ignition graduates | Product | ⏸️ |
+| 25 | The Originals Circle — activate after 5 Productize Yourself Sessions | Community | ⏸️ |
+| 26 | The Build: Group Container — activate after 4 Productize Yourself Session graduates | Product | ⏸️ |
 | **UX / PLATFORM** |
 | 27 | ~~**Hero + playbook-circle rework on `/`** — above-fold guarantee + 7-step legibility + ME-inactive at fresh state.~~ → **✅ DONE Day 47** — circle retired on landing, top-nav chips on `/playbook` carry the step visualization with full vetted names, ME shows locked until ZoG, CTAs stacked equal-width, hero copy + gradients (v4 neon) + dark text + light-pearl halo locked | Funnel / UX | ✅ Day 47 |
 | 28 | ~~**Profile Settings → Settings consolidation**~~ → **✅ DONE Day 47** — `ProfileSettingsSection` extracted, `Settings.tsx` rewritten with Tabs (Profile + Appearance), legacy `/settings` + `/game/me/settings` redirect to `/game/settings?tab=profile`, ME overview link removed | UX / Platform | ✅ Day 47 |
