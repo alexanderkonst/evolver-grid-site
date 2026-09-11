@@ -66,15 +66,7 @@ When Sasha asks to update/capture/bump, I edit `roadmap.md` directly — preserv
 
 The **Morphogenetic Navigation Holo Map** is how Sasha reads the structural state of his life's work — **27 perspectives × 7 evolutionary stages** (v2.0 topology, upgraded April 18, 2026 Day 44). Three octaves (base P1–P12 + Logos P13 + Inversion P14 + second octave P15–P26 + Crystallization P27), two axes (Masculine = Structure = Cube = 4 Quadrants × Feminine = Depth = Tetrahedron = 3 Dantians — Heart / Mind / Gut), two shocks (Mi–Fa = Love between Growth and Maturation · Si–Do = Crystallization between Transmission and Propagation). Current stage marked `►`, timing overlays 🐢/🎯/⚡. Historical v1.4 (12×6) addendums preserved verbatim in the file.
 
-**Auto-update protocol** (from the holomap itself):
-
-> *"Say 'update the holomap' and the AI reads:*
-> *1. `docs/09-logs/session_log.md` — latest entries since last update*
-> *2. `docs/02-strategy/roadmap.md` — current status + weekly scope*
->
-> *Both files get updated every session. The holomap reads what already exists."*
-
-When Sasha says **"update the holomap"**, I follow that protocol precisely. The holomap being current means AI can look proactively from his life's-work perspective and be more agentic about it.
+**Auto-update protocol:** when Sasha says **"update the holomap,"** I follow the Auto-update protocol defined in the holomap itself (`docs/02-strategy/morphogenetic_holomap.md`) and read the inputs it lists there — rather than a restated list here, since restating it is exactly the drift this file must not carry. The holomap reads what already exists; keeping it current lets the AI look proactively from the life's-work vantage and act more agentically.
 
 **Holomap state rule (Day 62 → simplified Day 103 → final form: L1-only-for-volatile):** the original Day 62 "companion file" pattern (`memory/holomap_state.md` as parallel current-state snapshot) **leaked stale state on Day 103** and was retired. The clean rule:
 
@@ -90,7 +82,7 @@ Why this shape: parallel compressions of corpus content into `memory/` files vio
 
 ## The integrated method: `docs/03-playbooks/unique_business_playbook.md`
 
-The master playbook v4.1. How a unique business is built — AI-native, from human uniqueness to venture.
+The master playbook (current version in the playbook's own header). How a unique business is built — AI-native, from human uniqueness to venture.
 
 - **Part 0** — 8 Soul-Aligned Foundation principles (Copernican Inversion, Open Blueprint Paradox, P×M×D=ONE, Mirror Not Teacher, Precision Gap IS Product, …).
 - **Part I** — Philosophy & Ontology.
@@ -118,7 +110,7 @@ Sibling client canvases live alongside it in `docs/02-strategy/unique-businesses
 
 ## The full corpus map
 
-**`docs/docs_index.md`** — ~160 documents across 9 numbered folders:
+**`docs/docs_index.md`** — the full corpus (live count and folder tree in the index itself; don't restate it here):
 
 ```
 00-intro kit · 00-master · 01-vision · 02-strategy · 03-playbooks
