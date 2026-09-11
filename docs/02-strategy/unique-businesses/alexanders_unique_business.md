@@ -460,6 +460,54 @@ Both branches: paid → platform access. Free → reveal page only. **Funnel mon
 
 ---
 
+#### ⭐ Funnel v4 — My Funnel Is Their Client Journey of Transformation (Day 181, September 11, 2026)
+
+*Sasha's eight-step structure, Day 181, enriched with the micro-steps from the same day's working session. Segment: founders who assist founders (coaches, consultants, studios, accelerators, incubators). Supersedes Funnel v3 as the live path for this segment; v3 stays below as genealogy and still describes the quiz lane.*
+
+**The law under it:** recognition before request, at every step. Every step gives double value: they receive it for themselves, and they learn to give it to the founders they serve.
+
+**1. Cold reachout to my ICP via LinkedIn.** *They are found.*
+- Search with the practitioner grammar: a faculty word next to a service verb ("help founders", "work with founders") finds people who assist founders.
+- Read the profile and call the archetype before contact. Plurality in the headline is the tell. A complete coined framework means Finished Cathedral: a door, not a buyer.
+- Connection request. Caps: 12 a day, 80 a week. Guard: accept rate stays above 35%.
+
+**2. When they add me, I mirror back their current stuckness and ask consent.** *They are seen.*
+- Read two things: their current stage of uniqueness, and how ready their USP is.
+- Five moves: say how I found them → one real personal detail → credit two strong things (how they articulate their uniqueness, how they articulate their value proposition) → name the stuck thing without solving it → ask consent to share what worked for me.
+- The stuck thing is read fresh from each profile. Studio or accelerator: thesis clarity. Coach: they sell the promise of clarity, but the founder never walks out with the sentence. Many threads: no sentence that makes them one, so nobody can pass them along.
+- What they feel: *"How did he see that?"* That is the buying signal in this market.
+
+**3. They reply and give their consent.** *They choose.*
+- The reply is the ripeness filter, at zero cost. No reply: not in the window. A pleasant reply with no ask: not now. Converting my terms into theirs: a Cathedral, route to referral.
+
+**4. Their stuckness gets a short answer through my story, and an invite to the webinar.** *They recognize someone who walked it first.*
+- Three lines: how I got out → what changed → I now do this with people like them, plus the webinar invite.
+- One door only: the webinar.
+
+**5. The webinar delivers a taste of what's possible and offers the 2-day paid workshop, plus a private uniqueness session, followed up by email or a messenger bot.** *They taste it.*
+- My story → they feel clarity live, in the room → the playbook, from high level down to low, in short infographics → my canvas as proof that the method builds a real business.
+- The workshop is the main offer. The private uniqueness session is for people who want 1:1 or can't make the dates.
+- Follow-up runs in the email chain or a messenger bot.
+
+**6. The 2-day paid virtual workshop is delivered; the BUILT container is offered at the end.** *They own their fit.*
+- Rungs 1–3 in two days: The Invisible Gemstone → So What Do You Do? → Founder-Market Fit Vortex.
+- They leave with their own canvas, knowing which founders they serve and what they actually do for them.
+
+**7. The BUILT container is delivered; they get invited into the Sovereign Founder Collective.** *They make it real.*
+- Two months to PMF, bootstrapped: inner hiking, the unique PMF strategy, their own AI skill set up, the first real sales loop.
+- They run the method on their own founders. The recursion completes.
+- Price: $5,555 of the first $55,555 in revenue (capped rev share, zero equity), or $1,111 one-time.
+
+**8. Training to accompany the license to run this themselves.** *They pass it on.*
+- They carry the method to their own founders, under their own name, through their own gift.
+- Load Order: this opens once a graduate has delivered a client without me in the room.
+
+**Eight steps: an octave with its return.** Seven notes take them from found to made real. The eighth, the license, is the Do of their own octave: where their founders begin.
+
+**Open before it runs:** the three-line answer for step 4 (drafted in chat, Day 181, not yet approved) · workshop price, and confirm two days · private uniqueness session price ($333, 75 min, per the ladder in Business Model v1.1?) · webinar date · license price and terms.
+
+---
+
 #### ⭐ Funnel v3 — The Recognition Funnel (de facto, Day 139, July 29, 2026)
 
 *Supersedes the Day 138 pointer note below (folded in here): the Quiz has now become the primary above-the-fold CTA, the landing rebuild is law-first (Ceiling Law, [§ Myth v4.0](#1-myth)), and it supersedes the two-CTA hero of v2. This is that funnel, written up in full.*
