@@ -86,7 +86,7 @@ Oyi and Sergey were the first two people to go through the full process with me.
 
 7 out of 10 spots are already filled organically. 5 founders fully through the canvas. The river is flowing.
 
-**Status:** 🔄 **← WE ARE HERE** (expanding rapidly — 8/10)
+**Status:** ✅ Largely complete (Day 180) — word of mouth filled the early pipeline; the motion has moved downstream to charging and replication.
 
 ---
 
@@ -94,6 +94,8 @@ Oyi and Sergey were the first two people to go through the full process with me.
 > *Clients 8, 9, and 10 are the first paid ones.*
 
 After 7 people have gone through the process and proven it works, the next 3 pay for it.
+
+**Status (Day 180):** 🔄 **← WE ARE HERE.** Charging is live and proven: Gleb's The Crossing container is fully paid ($2,000), alongside paid sessions and donations (Rafael, Karime, Nia, Roman). Revenue figure per the Offer Ledger.
 
 **Pricing:**
 - Mirror Session: $555
@@ -150,6 +152,8 @@ This isn't linear — it's compounding. Session 10 is dramatically better than s
 > *The best facilitators are people who've been through it themselves.*
 
 Some people who went through the process will naturally want to help others do the same thing. They don't need to be trained from scratch — they lived it. They are the proof.
+
+**Status (Day 180):** 🔄 Live — Karime is running her own guiding practice (the second holon): the first instance of someone who went through the work now delivering it through her own gift.
 
 **Two paths emerge:**
 
@@ -220,6 +224,8 @@ When you have all 7 layers for each person, the AI can find collaborations and c
 
 ### Step 9: Turn Expertise Into Products
 > *Go beyond 1-on-1. Package what you know.*
+
+**Status (Day 180):** 🌱 Emerging, not yet the main motion — Karime's Evolution Portal, The Crossing as a productized container, and the Quiz as a stranger-facing instrument are the first product surfaces.
 
 Once someone has their business blueprint, the next step is to turn it into a product:
 - Their story → marketing copy → landing page
@@ -386,8 +392,8 @@ The code is open-source. Not because of ideology, but because the connective tis
 ```
  ✅ Step 0:  Did it myself
  ✅ Step 1:  Tested with 2 people (both succeeded)
-→🔄 Step 2:  Growing through word of mouth (8/10 pipeline)  ← HERE
- 🔄 Step 3:  First paid clients (revenue ≠ $0 — multiple structures active)
+ ✅ Step 2:  Grew through word of mouth (early pipeline filled)
+→🔄 Step 3:  Charging live — The Crossing fully paid, paid sessions + donations  ← HERE
  ✅ Step 4:  Community launched
  🔄 Step 5:  Process improving with each session
  🔄 Step 6:  First facilitators emerging (Oyi: distribution layer)
