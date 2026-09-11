@@ -1677,6 +1677,18 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 
 ### 2. Unique Gift
 
+#### ⭐ v4.0 candidate · Day 180, September 10, 2026 — Integrated Uniqueness of Mastery Lineages (unscored)
+
+> **АРХАЗМ: Ether Architect who perceives the invisible order and gives it form so that life can become more sovereign.**
+
+*Source: Sasha's own Business Model v1.0 / v1.1, written from scratch, Day 180. Lineage: АРХАЗМ in `05-reference/brandbook.md` ("the one becoming a vessel for Logos transmission through the act of sacred creation").*
+
+**Status: candidate, not yet scored.** Under the Highest-Rated Version Rule, Uniqueness v3.3 ("Professional Clarity for Better-Fit Opportunities", 9.999) stays the derivation source for all downstream artifacts until this version is scored higher. Score it dated.
+
+**Paired shadow:** Reality Controller (see 2B, v2.0 candidate). The pair is an exact inversion: *gives form* ↔ *imposes form*; *so life can become more sovereign* ↔ *so life conforms to his vision*.
+
+---
+
 #### v1.0 · Feb 17, 2026
 
 | Element | Content |
@@ -1793,6 +1805,18 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 ---
 
 ### 2B. Shadow
+
+#### ⭐ v2.0 candidate · Day 180, September 10, 2026 — Compacted Inverted Uniqueness, aka Alter Ego (unscored)
+
+> **The Reality Controller perceives the invisible order and imposes form upon it so that life conforms to his vision.**
+
+*Source: Sasha's Business Model v1.0 / v1.1, Day 180. Written as the exact inversion of Uniqueness v4.0 candidate (Ether Architect).*
+
+**Status: candidate, not yet scored.** Shadow v1.4 ("Deepening Clarity After Enough Clarity Exists", 9.999) stays locked until this scores higher. Score on both dials: resonance, and **charge** (how much it stings, how much you want to argue with it). A shadow is landed when charge is high and ownership holds a minute later.
+
+**Field evidence, same day:** Sasha named that he had been describing a smaller version of himself, because he did not dare describe who he knows himself to be. Once he did, the description of himself became the description of his ideal client (founders who assist founders). The shadow had been setting the size of the tribe.
+
+---
 
 #### v1.0 · June 24, 2026 — Holonic Shadow Across Scales
 
@@ -2621,6 +2645,29 @@ Each platform = three surfaces in one: Presence (profile), Physical (events), Pu
 ---
 
 ### 5. Pain (Point A) — 5-Layer Slicer Per Segment
+
+#### ⭐ v5.0 · Day 180, September 10, 2026 — What it actually costs them (six costs, chronic not acute)
+
+*Filed at Sasha's request, Day 180, from an AI working session ("LATEST IN MY UNIQUE BUSINESS v1.0"). Written for the Unstrung Loom archetype (several real threads, no sentence that makes them one), and it holds for founders who assist founders. v4.1 below stays as the full 5-Layer Slicer run.*
+
+**Self-talk (Sasha's own, Business Model v1.1):** *"I can't just kill most of my projects but I am supposed to focus on just one thing so that it really ignites, right? So I guess I have no better option than to keep switching between them... How come I cannot see this thing for so long when clarity is what I myself excel at giving others? My savings are melting down, success feels around the corner but that's what I told myself last time."*
+
+**The six costs:**
+
+1. **Every thread underperforms.** Four things at 25% attention each, so cash flow per unit of effort is the lowest it will ever be. Each thread looks fine on its own, which is why the problem stays invisible.
+2. **They cannot be referred.** A person who can't be described in one sentence can't be passed along by a third party. Their whole pipeline is people who met them directly, and it gets worse as they get more accomplished, because each new thread makes the sentence harder.
+3. **They can't hire.** You can't write a job description for a role whose purpose you can't state. So they stay the bottleneck.
+4. **They price by time, not transformation.** No named outcome, no premium. They sell hours while someone less capable sells a container at $5,000.
+5. **Everything they build is unsellable.** No thesis, no acquirer, no partner at altitude, no fund. The equity value of four unconnected threads is close to zero.
+6. **Privately: the suspicion of a wasted decade.** They can't tell whether they have been building one thing slowly or five things badly, and that question doesn't go quiet.
+
+Four of the six are money. This is a painkiller, not a vitamin.
+
+**The mechanism: chronic pain, sold through diagnosis.** The pain is chronic, so it has been normalized. They think they have a marketing, discipline, focus or systems problem. Nobody has told them it is an articulation problem. Naming it accurately turns chronic pain into acute pain, because it becomes solvable. **You don't sell the fix. You sell the diagnosis.** The buying signal in this market is not "please help me." It is **"how did you see that?"**
+
+**Where to see it on a profile:** plurality is involuntary. Nobody chooses six threads. They accumulate when you can't say no, and you can't say no when you don't know what you are. The tangle in the headline is the tell; self-reported struggle is rare.
+
+---
 
 #### ⭐ v4.1 · July 28, 2026 (Day 138) — Run properly through the 5-Layer Slicer
 
