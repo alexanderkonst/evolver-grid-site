@@ -1263,18 +1263,20 @@ Business is the middle octave between family and civilization. It is more struct
 
 ## Artifact Status
 
+> *Reconciled to the Latest State box (Day 180 corpus-sync, WP1). Version names quoted from the newest form already in this file; nothing re-scored. Rows still marked "pending Sasha score" await his lock, not a mechanical update.*
+
 | Artifact | Version | Precision | Status |
 |----------|---------|-----------|--------|
 | Uniqueness | **v2.0 preserved** → **v3.0** (Holonic Uniqueness Across Scales, 9.99) → **v3.1** (Unique Value Into Alive Work, 9.992) → **v3.2** (Professional Clarity Reveals High-Fit Business Opportunities, 9.993) → **v3.3** (Professional Clarity for Better-Fit Opportunities) | **9.999** | ✅ Locked |
 | Shadow | **v1.0** (Holonic Shadow Across Scales, 9.99) → **v1.1 seed** (Value Held Back From Movement) → **v1.2 seed** (Opportunities Obscured by Over-Articulation) → **v1.3** (System Refinement Instead of Market Visibility, 9.999) → **v1.4** (Deepening Clarity After Enough Clarity Exists) | **9.999** | ✅ Locked |
 | Myth | **v2.1 preserved** (grind is a lie / uniqueness IS your business) → **v3.0** (Recognition Economics for Professional Clarity + Holonic Physics Layer) | **9.999** | ✅ Locked |
-| Tribe | **v3.0 preserved** (Signal-First: Awakened Practitioners Who Can't Name Their Fire) → **v3.1 seed** (Capable, Trusted, Under-Placed) → **v3.2 working seed** (Overqualified, Under-Articulated, Under-Placed) | **pending Sasha score** | 🔄 Tribe opening in progress |
+| Tribe | v3.0 → v3.2 preserved below → **v5.0** (The Founder Going Sovereign + purchase physics, Day 138) → **v6.0 / v6.1** (three streams — founder in transition · practitioner serving founders · venture-studio operator — plus "the cross," Day 166) | — | ✅ Current: Tribe v6.1 (§3) |
 | Pain | **v3.1 preserved** (5-layer slicer per segment, 9.95 calibration) → **v3.2 seed** (Partial Recognition Caps the Field) → **v3.3 working seed** (Unrecognized Value Becomes Unused Capacity) | **pending Sasha score** | 🔄 Pain refinement in progress |
 | Dream Outcome | **v2.0** (inverse pain → integrated state) | — | ✅ Landed |
 | Promise | **v2.0 preserved** (collapsed from roasting) → **v3.0 seed** (Professional Clarity Expands the Field) | **pending Sasha score** | 🔄 Day 112 promise seed ready |
 | Strategy | **v1.0** (absurdly simple: DM → session → build) | — | ✅ Operational |
 | Lead Magnet | **v3 preserved** (NotebookLM video) → **v4 seed** (Professional Field Diagnostic) | **pending Sasha score** | 🔄 Day 112 diagnostic seed ready |
-| Value Ladder | **v2.0** (3 containers: $27 → $555 → $5K+) | — | ✅ Defined |
+| Value Ladder | **current live** (Day 166): Direction Call (free) → Productize Yourself **$555** → BUILT **$1,111** or The Crossing **$2,000/2mo** → Node **$1,500 + $75/mo**. Genealogy (v2.0 $27→$555→$5K+, v3.0 7-step mapping) preserved below | — | ✅ Current |
 | Method | **v1.0** (MAP → MATCH → MOVE) | — | ✅ Articulated |
 | Proof | **v1.1** | — | 🔄 Building (live sessions in progress) |
 | Transformation Snapshot | **v1.0** (one-sentence identity shift) | — | ✅ Landed |
