@@ -8527,7 +8527,7 @@ Full historical record: `docs/09-logs/2026-08-25_recursive_unique_business_cryst
 
 **One collaboration conversation** (Aug 26, Fathom): an exploratory session with a collaborator who frames himself as an "air-traffic controller" / orchestrator seeking a curator role in the ecosystem — GTM path for Find Your Top Talent, packaging frameworks, near-term activation (webinar, podcast, stress-test).
 
-**Revenue.** No new payment beyond Gleb's $1,000 (already counted). This window's revenue work was hygiene: the Offer Ledger (the owner) was found lagging its own mirrors at $2,428 and brought current to **$3,428** in this sync (WP1). Ledger is gitignored (private); the public mirrors — roadmap Current Status, canvas Dashboard — quote it with a date.
+**Revenue.** Two payments landed in the window: Gleb's **final $1,000** (~Sep 6) — The Crossing fully paid at **$2,000** — and Karime's **300 MXN (≈$16)** donation for her business session. Strict received rises to **$4,444**. The Offer Ledger (the owner) was also found lagging its own mirrors at $2,428 and brought fully current in this sync (WP1). Ledger is gitignored (private); the public mirrors — roadmap Current Status, canvas Dashboard — quote it with a date.
 
 **Corpus-sync opened.** Day 180: the `corpus-sync` SoW written (`docs/specs/corpus-sync/scope_of_work.md`) after an audit found the corpus disagreeing with itself (revenue owner behind mirrors, session log stopped at Day 166, index behind, playbook internal breaks). This entry is WP2 of that pass.
 

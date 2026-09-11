@@ -56,7 +56,7 @@ This is the playbook applied to Sasha's own business, and at the same time a com
 >
 > **Tribe:** three streams, each with a distinct gate and door. Stream A: founder in transition, reached through threshold marketing. Stream B: practitioner serving founders with sufficient mirror fidelity, reached through the myth and offered method/platform leverage. Stream C: conscious venture-studio or ecosystem operator, offered infrastructure, licensing, thesis, and aligned edges. Full definition: Tribe v6.1 below; Day 166 formula correction applies.
 >
-> **Revenue:** strict received **$3,428** (+ $277 Sergey rev-share contract = **$3,705 tracked**). Gleb's first $1,000 payment for The Crossing is received; the second $1,000 is due before session 5.
+> **Revenue:** strict received **$4,444** (+ $277 Sergey rev-share contract = **$4,721 tracked**). Gleb's The Crossing is fully paid ($2,000; final $1,000 ~Sep 6); Karime sent a 300 MXN (≈$16) business-session donation. Owner: Offer Ledger (`strategic_crm_outreach_tracker.md`).
 >
 > **Live commercial doors:** Direction Call (free, 45 min) → Productize Yourself **$555** → BUILT **$1,111** or The Crossing **$2,000 / two months** → node / advisory / revenue-linked business building where fit warrants. Community and planetary doors begin with a bounded workshop, pilot, or architecture conversation rather than the individual quiz.
 >
