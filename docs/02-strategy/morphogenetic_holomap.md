@@ -3490,3 +3490,58 @@ Day 166:   Propagation moves on the field     -> the standing tension ("convert 
 - `src/pages/TheCrossing.tsx` / `/products/crossing`: the delivered program surface.
 
 > *Day 166 reading: Propagation, at program scale. Day 130 crystallized the axiom and named the open tension — converting crystallized clarity into delivered rooms. Day 138 built the instruments but left the conversion half-done. Day 166 completed it once, in full: a stranger's transition became a named program, the program became a paid container, and the container is in delivery. This is not yet the Tribe-1 funnel Si–Do (the first $555 stranger from the funnel is still unfired) — it is the first proof that the whole stack, ripeness read → container designed → price held → sessions delivered, closes end to end for money. The next two thresholds are the ones that have been standing: the Quiz live as the funnel's front door, and the landing rebuilt around it.*
+
+---
+
+## Day 180 addendum (September 10-11, 2026): the instrument goes cold — outreach operationalized, the method layer deepens
+
+*Days 167-180 (Aug 26 - Sep 10), written in the corpus-sync pass (WP5), sourced from the session log Days 167-180, git, and Fathom. No new Si–Do crossing. Propagation continues on the field axis: the instrument built over Days 131-166 is now pointed at strangers, and the first cold conversation landed. The layer directly under the Day 127-130 axiom finished building — the faculty layer, the load order, the hexagram.*
+
+### What advanced
+
+- **Field / Propagation — the instrument goes cold.** The three-stream outreach system got a full contract: Outreach strategy v4.0 (streams A/B/C + "the cross" + the CRM contract binding search to record) and ops §2 v2.0 (posture, caps, accept-rate guard). The matchmaker brief iterated v3.1 → v4.2 (verbatim self-description, disambiguated markers, cosmopolitan as an identity qualifier, marker position as the peer/client discriminator). The Commercial OS tool runs the searches (query rotation, watch-lane, first-session runbook), after a reality check — search is whole-profile, not Boolean. On **Day 177 the high-precision brief surfaced Danil before any message was written**: the first cold conversation, and the field evidence that decided the hexagram order (D1). Warm relationships are no longer the only fuel.
+- **Method — the faculty layer finishes.** Technologies 137-143 landed under the axiom: the Sealed Mirror (137), the Faculty Precedes the Fidelity (138), the Load Order (139), and the Exposure Law (143), among them. Principles 18-21: You Are Stream 0 (18, the load order in the founder's own life), the Mirror Opener (19), the Hexagram (20 — artifacts make capacities and the cycle turns, order A per D1), and the Grind Addiction Diagnosis renumbered to 21. The loop doctrine crystallized: learn the loop by running it once, fast, then again and again.
+- **Delivery — the first container completes its payment.** Gleb's The Crossing ran three sessions in the window (Fathom: Aug 30, Sep 3, Sep 8), moving toward articulating his own Founder-Market Fit while he winds down Aspect Health (~$10M raised). The container is now **fully paid at $2,000** (final $1,000 ~Sep 6).
+- **Engineering — the mirror keeps its floor.** The Commercial OS stale-config bug (each browser pinned to its first-run config) was diagnosed and fixed (Option B, server config wins, poisoned snapshot neutralized on load).
+- **Corpus — the mirror stops lagging.** The corpus-sync pass itself: the revenue owner (Offer Ledger) was found behind its mirrors and brought current; the session and decision logs were carried to Day 180; the method was reconciled (duplicate principle renumbered, artifact-sequence table added, version aligned). Technology 16 (the mirror must not lag) applied to the corpus, not just to memory.
+- **Revenue — $4,444.** Gleb's full $2,000 + Karime's 300 MXN (≈$16) business-session donation, on top of the prior $2,428. Owner: the Offer Ledger (gitignored/local); mirrors quote it dated.
+
+### Marker moves
+
+- **Warm → cold.** Outbound stops being only warm-relationship motion and touches a stranger the instrument located.
+- **Offer → fully paid.** The Crossing moves from half-paid to complete ($2,000).
+- **Axiom → operating sequence.** The faculty layer and the load order turn the Day 127 axiom from a named law into a sequence a stranger can be moved through.
+
+### Si–Do — Status
+
+| Trigger | Status |
+|---|---|
+| First program-container sold AND in delivery | ✅ Day 166 — now **fully paid** (Day 180) |
+| First outbound intro channel (external engine) | ✅ Days 147-166 (Boardy) |
+| **First cold conversation the outreach system located** | 🆕 ✅ Day 177 — Danil, surfaced by the brief before a message was sent |
+| First non-English, end-to-end run of the artifact sequence | ✅ Day 137 (Rafael) |
+| Quiz as a live, stranger-facing instrument | 🟡 Phase 2 continues |
+| Landing rebuilt around the Quiz as primary CTA | 🔴 still blocked on the Quiz going live |
+| First $555 stranger from the funnel (Tribe-1 Si–Do) | 🔴 still unfired |
+
+### Center reading lineage (recent)
+
+```text
+Day 130:   Crystallization (P27) on the myth axis   -> axiom + law; Propagation on the field axis
+Day 138:   (no new center)                           -> the axiom gets instrumented
+Day 166:   Propagation, at program scale             -> first paid container delivered
+Day 180:   Propagation goes cold                      -> the instrument touches a stranger it
+                                                          located (Danil, Day 177); the faculty
+                                                          layer under the axiom finishes; the
+                                                          container completes its payment.
+```
+
+### Cross-references updated
+
+- `docs/09-logs/session_log.md`: Days 167-180 entry.
+- `docs/02-strategy/roadmap.md`: Current Status (Day 180) + Weekly Scope (Sep 8-14).
+- `docs/03-playbooks/unique_business_playbook.md`: Principles 17-21, the loop doctrine, the artifact-sequence table.
+- `docs/01-vision/phase_shift_technology_library.md`: Technologies 137-143 (137 re-sequenced into order).
+- `MEMORY.md`: holomap line bumped to Day 180.
+
+> *Day 180 reading: Propagation, gone cold. Day 166 proved the whole stack closes end to end for one warm stranger. Day 180's move is smaller in feeling and larger in consequence: the instrument that used to need a warm relationship to point at now points itself — it located Danil from public signal before a word was sent, and the founder's own faculty layer (Stream 0, the load order, the hexagram) is built enough that a stranger can be moved through it without the founder carrying every step. The standing thresholds are unchanged — the Quiz live, the landing rebuilt, the first $555 funnel stranger — but the machine that will fire them is now assembled and running warm.*
