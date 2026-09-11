@@ -22,6 +22,25 @@
 
 ---
 
+### D-2026-09-10-02 — Backfill: doctrine decisions that lived only in session-log / roadmap prose (F8)
+
+**Decision:** Give an ID and a pointer to six decisions made between June and August that were shipped in the corpus but never recorded here. This is a bookkeeping act (the corpus-sync WP2, F8); the full rationale lives at each pointer and is not re-summarized (Highest-Rated Version Rule).
+
+| ID | Date | Decision | Recorded in |
+|----|------|----------|-------------|
+| `D-2026-06-10-01` | 2026-06-10 | The match funnel (reveal → Mission → Assets → matchmaking) becomes the default for all cold traffic; the sessions/build funnel stays behind explicit `?path=build` links | `roadmap.md` note stack (2026-06-10) |
+| `D-2026-07-28-01` | 2026-07-28 (Day 138) | "Ignition Session" retired for "Productize Yourself Session"; ladder language becomes Direction Call → Productize Yourself Session → BUILT → Node | `session_log.md` Day 138 · roadmap |
+| `D-2026-07-28-02` | 2026-07-28 (Day 138) | Library "Domains" renamed "Technologies" throughout (numbering unchanged) | `session_log.md` Day 138 · `phase_shift_technology_library.md` |
+| `D-2026-07-28-03` | 2026-07-28 (Day 138) | Tribe redefined as a **position on the transition arc**, not a population (Canvas v4.0) | `session_log.md` Day 138 · `alexanders_unique_business.md` |
+| `D-2026-08-05-01` | 2026-08-05 → 2026-08-25 | The Crossing / «Переход» pricing: proposed $2,222, closed at **$2,000 / two months**, 50% before session 1 + 50% before session 5 | `session_log.md` Days 145-146, 147-166 · Offer Ledger |
+| `D-2026-08-25-03` | 2026-08-25 (Day 166) | Tribe becomes **three streams** (founder in transition · practitioner · venture-studio operator) plus "the cross"; the Sovereign Founder Collective ladder sits alongside the individual ladder | `session_log.md` Days 147-166 · `alexanders_unique_business.md` Tribe v6.0/v6.1 |
+
+**Reversibility:** Bookkeeping only; each underlying decision keeps its own reversibility at its pointer. If any is later revised, the new entry references both the original date and this backfill ID.
+
+**Cross-references:** `docs/specs/corpus-sync/scope_of_work.md` §4 F8, §6 WP2.
+
+---
+
 ## 2026-08-25 (Day 166)
 
 ### D-2026-08-25-01 — Recursive value flow is the governing transaction model
