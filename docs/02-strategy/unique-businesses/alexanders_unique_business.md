@@ -46,6 +46,59 @@ This is the playbook applied to Sasha's own business, and at the same time a com
 
 ---
 
+## ⭐ Unique Business Canvas — One Sentence per Artifact (v1.2, Day 181, September 11, 2026)
+
+*The half-page cockpit. Built from Sasha's Business Model v1.1 (written from scratch, Days 180-181) and the artifacts in this file. One sentence per artifact, arranged in the canvas geometry: the center, then the four quadrants. Source tags: **v1.1** = Sasha's own words (lightly compressed where it ran long), **locked** = scored version in this file, **draft** = written Day 180-181 in session, not yet scored. Full genealogy for every artifact lives further down this file.*
+
+### Center — the source
+
+| Artifact | One sentence | Source |
+|---|---|---|
+| **Uniqueness** | АРХАЗМ: Ether Architect who perceives the invisible order and gives it form so that life can become more sovereign. | v1.1 · candidate v4.0, unscored (v3.3 stays the derivation source until scored) |
+| **Shadow** | The Reality Controller perceives the invisible order and imposes form upon it so that life conforms to his vision. | v1.1 · candidate v2.0, unscored |
+
+### I — My ideal client is myself
+
+| Artifact | One sentence | Source |
+|---|---|---|
+| **Story** | Uniqueness becomes clarity of professional focus, and a unique business is the crystal of one's effort that reflects that uniqueness to the current degree of clarity. | v1.1 |
+| **Identity** | Founders who assist other founders: an entrepreneurial track record, well-travelled, English/Russian/Spanish-speaking, impact-driven, inner work done, and a pull to activate the dormant potential they see around them. | v1.1 |
+| **Metamorphosis (pain)** | Several real projects and no sentence that makes them one, so each grows slowly, nobody can pass them along, and savings melt while success keeps feeling around the corner. | v1.1 quote + Pain v5.0 |
+| **Complementarity** | They hold what I have not built yet (operators, capital, traction, their own clients), and I hold the sentence that makes all of it compound. | draft |
+
+### It — What they get
+
+| Artifact | One sentence | Source |
+|---|---|---|
+| **Promise** | From many real threads that nobody can pass along, to one sentence only you could say, one product built on it, and strangers paying for it, with an AI skill to run the same loop for the founders you serve. | draft (prior locked form, v4.0: "You enter in limbo, you leave with one working path.") |
+| **Value ladder** | Five rungs from free to shared revenue: see the gemstone you carry (free), name it (free, or $333 private), find your founder-market fit ($555 private, $222 group), build it in BUILT ($5,555 of the first $55,555, or $1,111 once), and grow the collective (collective revenue share). | v1.1 |
+| **Method** | One loop and an AI skill to run it well: read your signal, name it until it stings, derive the business from that sentence, mirror it to a stranger with consent, let reciprocated money report back, re-articulate. | v1.1 |
+| **Proof** | The Crossing sold at $2,000 and running, a second practitioner delivering the method to her own clients, and this canvas, built by running the method on myself first. | draft |
+
+### We — What it means, and how I speak
+
+| Artifact | One sentence | Source |
+|---|---|---|
+| **Myth** | Your career is capped by how well you know yourself, and the ceiling moves the moment your self-understanding does. | locked · Myth v4.0 (two lines of the approved stanza, joined) |
+| **Unique value proposition** | I assist founders who assist other founders to compact the one thing they're uniquely best at into a scalable product with an inevitable PMF, then scale it with a step-by-step AI skill, alongside founders self-organizing into a sovereign founder collective of collectives. | v1.1 (two sentences joined) |
+| **Marketing** | I talk to myself in a mirror: how I found you, one real detail, two strong things, the stuck thing left unsolved, then consent, and the first offer only after you lean in. | v1.1 |
+
+### Its — How it reaches people
+
+| Artifact | One sentence | Source |
+|---|---|---|
+| **Channel** | LinkedIn, where I would most likely be messaged about this myself. | v1.1 |
+| **Hook** | What do you want most, professionally? | v1.1 |
+| **Qualifiers** | Professional clarity as a faculty, a live stuck point, and likeness to me. | v1.1 |
+| **Filter** | Means to pay. | v1.1 |
+| **Enhancers** | They have paid for transformation before, and their complementarity to me is already visible. | v1.1 |
+| **Funnel** | Eight steps from found to licensed: reachout, mirror, consent, my story, webinar, 2-day workshop, BUILT, then the collective and the license to run it themselves. | v1.1 · full form: Funnel v4 below |
+| **Aligned collaborations** | South Park Commons and Entrepreneur First. | v1.1 |
+
+**Still to write:** the business tagline for this segment (Public Line v1.1 still speaks to founders in transition, not founders who assist founders) · the myth's lie in this segment's words · scores for every draft and candidate above.
+
+---
+
 ## 🧭 Business Dashboard
 
 *Day 48 (April 22, 2026) original snapshot; refreshed newest-on-top. The canvas sprawls further down — this is the top-of-the-file glance.*
@@ -465,6 +518,19 @@ Both branches: paid → platform access. Free → reveal page only. **Funnel mon
 *Sasha's eight-step structure, Day 181, enriched with the micro-steps from the same day's working session. Segment: founders who assist founders (coaches, consultants, studios, accelerators, incubators). Supersedes Funnel v3 as the live path for this segment; v3 stays below as genealogy and still describes the quiz lane.*
 
 **The law under it:** recognition before request, at every step. Every step gives double value: they receive it for themselves, and they learn to give it to the founders they serve.
+
+**The phases: the eight steps grouped as the value ladder they experience.**
+
+| Phase | What they experience | Steps | Ladder rung |
+|---|---|---|---|
+| 0 · Being found | Nothing yet; a stranger with a real reason to connect | 1 | before the ladder |
+| 1 · Being seen | Their chronic stuckness gets a name for the first time | 2, 3, 4 | The Invisible Gemstone |
+| 2 · Feeling clarity | Their own thread, named live, in the room | 5 | So What Do You Do? |
+| 3 · Owning their fit | Which founders they serve, and what they actually do for them | 6 | Founder-Market Fit Vortex |
+| 4 · Making it real | Strangers pay; they run the method on their own founders | 7 | BUILT |
+| 5 · Belonging and passing it on | The collective, then the license to run it themselves | 7 (invite), 8 | Sovereign Founder Collective |
+
+**Seen → feel clarity → own their fit → make it real → belong.** Five verbs: the value ladder, from their side.
 
 **1. Cold reachout to my ICP via LinkedIn.** *They are found.*
 - Search with the practitioner grammar: a faculty word next to a service verb ("help founders", "work with founders") finds people who assist founders.
