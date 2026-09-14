@@ -99,6 +99,57 @@ This is the playbook applied to Sasha's own business, and at the same time a com
 
 ---
 
+## ⭐ Канвас уникального бизнеса — одно предложение на артефакт (RU, v1.2, День 184, 14 сентября 2026)
+
+*Русская версия канваса v1.2 выше. Переведено на энергетическую точность, а не дословно: тот же сигнал, минимум шума. Термины без устойчивого русского аналога (PMF, founder-market fit, BUILT, revenue share) оставлены как есть. Статусы источников те же, что в английской версии.*
+
+### Центр: источник
+
+| Артефакт | Одно предложение |
+|---|---|
+| **Уникальность** | АРХАЗМ: Архитектор эфира, который видит невидимый порядок и даёт ему форму, чтобы жизнь становилась суверенней. |
+| **Тень** | Контролёр реальности видит невидимый порядок и навязывает ему форму, чтобы жизнь подчинялась его замыслу. |
+
+### I: мой идеальный клиент это я
+
+| Артефакт | Одно предложение |
+|---|---|
+| **История** | Уникальность рождает ясность профессионального фокуса, а уникальный бизнес это кристалл усилий, который отражает уникальность ровно в той мере, в какой она уже ясна. |
+| **Идентичность** | Основатели, которые помогают другим основателям: предпринимательский путь за плечами, жизнь в разных странах, английский, русский и испанский, ставка на импакт и рост, пройденная внутренняя работа и тяга будить спящий потенциал, который они видят вокруг. |
+| **Метаморфоза (боль)** | Несколько настоящих проектов и ни одного предложения, которое делает их одним целым: каждый растёт медленно, никто не может тебя порекомендовать, сбережения тают, а успех всё так же кажется за углом. |
+| **Комплементарность** | У них есть то, чего я ещё не построил (команда, капитал, трекшн, свои клиенты), а у меня есть предложение, от которого всё это начинает приумножаться. |
+
+### It: что они получают
+
+| Артефакт | Одно предложение |
+|---|---|
+| **Обещание** | Из множества настоящих нитей, которые никто не может передать дальше, в одно предложение, которое мог бы сказать только ты, один продукт на нём и незнакомых людей, которые за него платят, плюс ИИ-скилл, чтобы проводить ту же петлю для своих основателей. |
+| **Лестница ценности** | Пять ступеней от бесплатного до общей выручки: увидеть невидимый самоцвет, который ты носишь (бесплатно), назвать его (бесплатно или $333 лично), найти свой founder-market fit ($555 лично, $222 в группе), построить его в BUILT ($5 555 с первых $55 555 выручки или $1 111 разово) и растить коллектив (общий revenue share). |
+| **Метод** | Одна петля и ИИ-скилл, чтобы проходить её хорошо: считать свой сигнал, называть его, пока не заденет, вывести бизнес из этого одного предложения, с согласия отразить его незнакомому человеку, дать встречным деньгам вернуть обратную связь и переформулировать. |
+| **Доказательство** | «Переход» продан за $2 000 и идёт, второй практик ведёт метод со своими клиентами, а этот канвас построен методом, который я сначала прогнал на себе. |
+
+### We: что это значит и как я говорю
+
+| Артефакт | Одно предложение |
+|---|---|
+| **Миф** | Твоя карьера ограничена степенью понимания себя, и потолок сдвигается в тот момент, когда сдвигается понимание себя. |
+| **Уникальное ценностное предложение** | Я помогаю основателям, которые помогают другим основателям, спрессовать то одно, в чём они уникально сильнее всех, в масштабируемый продукт с неизбежным PMF, а затем масштабировать его пошаговым ИИ-скиллом, вместе с основателями, которые самоорганизуются в суверенный коллектив коллективов. |
+| **Маркетинг** | Я говорю с собой в зеркале: как я тебя нашёл, одна живая деталь, две сильные стороны, то место, где ты застреваешь, без решения, затем согласие, и первое предложение только когда появляется встречный интерес. |
+
+### Its: как это доходит до людей
+
+| Артефакт | Одно предложение |
+|---|---|
+| **Канал** | LinkedIn: там, где мне самому скорее всего написали бы о таком. |
+| **Крючок** | Чего ты желаешь больше всего профессионально? |
+| **Квалификаторы** | Профессиональная ясность как способность, живая точка застревания и сходство со мной. |
+| **Фильтр** | Есть чем заплатить. |
+| **Усилители** | Уже платили за трансформацию, и их комплементарность мне уже видна. |
+| **Воронка** | Восемь шагов от первого контакта до лицензии: сообщение, зеркало, согласие, моя история, вебинар, двухдневный воркшоп, BUILT, затем коллектив и лицензия вести это самим. |
+| **Союзы** | South Park Commons и Entrepreneur First. |
+
+---
+
 ## 🧭 Business Dashboard
 
 *Day 48 (April 22, 2026) original snapshot; refreshed newest-on-top. The canvas sprawls further down — this is the top-of-the-file glance.*
@@ -3156,6 +3207,83 @@ Not angry pain. Quiet exhaustion. The ache of the unnamed.
 ---
 
 ### 9. The Absurdly Simple Strategy
+
+#### ⭐ v3.0 · Day 184, September 14, 2026 — Founders Who Assist Founders (three lanes)
+
+*Supersedes v2.0 (the Equilibrium strategy, kept verbatim below). Same format as v2.0: a TLDR, then who, wedge, mechanism, immediate motion, success signal. Lane 1 is adopted. Lanes 2 and 3 are proposals, not yet adopted.*
+
+##### Lane 1 · The main strategy (adopted)
+
+**TLDR:** One founder, with a second holon already delivering, converts founders who assist founders into a webinar → 2-day workshop → BUILT ladder by opening every conversation with a mirror instead of a pitch, sent from one LinkedIn account at a steady daily cadence.
+
+**Who and what.** Sasha sells the one-sentence articulation, and the business derived from it, to founders who assist other founders: coaches, consultants, studio and accelerator operators, incubators. The segment moved up an octave from v2.0: from people at a transition to the people who serve people at a transition. Every step gives them double value, for themselves and for the founders they serve. Finished Cathedrals (complete coined frameworks) are routed to referral and later licensing, not sold to.
+
+**Wedge.** A free webinar where they feel clarity live, preceded by a mirror message that names their stuckness more precisely than they could name it themselves. The buying signal is *"How did you see that?"*
+
+**Mechanism.** Practitioner-grammar LinkedIn search (a faculty word next to a service verb) → connection request → Mirror Opener (how I found you → one real detail → two strong things → the stuck thing, unsolved → consent) → their consent → three-line answer through my story → webinar → 2-day paid workshop (rungs 1-3), or a private uniqueness session ($333, 75 min) → BUILT ($5,555 of the first $55,555, or $1,111 once) → the Sovereign Founder Collective → training and a license to run it themselves. Full form: Funnel v4, top of this file.
+
+**Immediate motion.** Message every accepted-but-unmessaged connection (Toni Mascaró is overdue; Diana Chapman, Sophie Vo, Scott Britton, Ron Hill, Ernesto Cacho, Alejandro Morales Heimlich are fresh). Set the webinar date. Price the 2-day workshop. Approve the three-line answer. Hold the send cadence inside the ops caps (12 a day, 80 a week) while the accept rate stays above 35%. Keep Boardy running as the second intro channel.
+
+**Success signal.** Accepts → replies → consents → webinar seats → first workshop sale. **OMTM: consents per week** (a consent is a reply that says yes to "want me to share what worked for me?").
+
+##### Lane 2 · Collaborating with the most aligned collectives (proposal)
+
+**TLDR:** Enter the two or three collectives whose thesis already says what mine says, starting with Entrepreneur First and South Park Commons, as a founder and a peer, never as a vendor.
+
+**The selection lever: thesis alignment at the collective level.** A collective qualifies when its public thesis and the uniqueness myth are the same claim in different words. Entrepreneur First backs individuals before they have an idea and builds teams from complementary founders: uniqueness first, complementarity second. South Park Commons is a home for people exploring before they know what to build: the liminal stage, held as a community. *Program details to verify at source before any application; they change.*
+
+**Mechanism.** The Mirror Opener, run on an organization: credit two strong things in their model, name the one gap without solving it, ask consent. The likely gap at both: they select or host founders by *edge* or *curiosity*, and that edge is rarely articulated precisely enough for members to be matched, referred, or funded by it. Enter through their front door as a founder (applications, fellowships, EIR, partner roles), then open the conversation about running the upstream articulation for a cohort.
+
+**Qualifiers for a collective:** thesis alignment · a cohort of founders in or near transition · complementarity (capital, brand, reach, members) · means.
+
+**Success signal.** One application submitted, one conversation with a program lead, one cohort session offered.
+
+**Separate lane, unchanged:** the AI-training income game (v2.0 below) is a bounded cash lane, not a collective strategy. It stays as written until Sasha decides otherwise.
+
+##### Lane 3 · A product for the most aligned collectives (proposal)
+
+**TLDR:** Offer collectives the instrument, not the method: a member-onboarding read that gives every member their one sentence and surfaces who should build with whom, delivered in the collective's own skin as a capped free pilot that converts to a license.
+
+**What changed since v2.0.** The Finished Cathedral finding: a collective with its own framework will not buy a method, but it will license an instrument that sharpens its intake at no cost to its identity. The skin system is proven (30-60 minutes to build a skin). The pilot shrinks from 30-50 members to about 10, so it can start this month.
+
+**Mechanism.** Skin the platform in their logo, colors, fonts and background → free pilot, capped at about 10 members → every member receives their sentence, the collective receives a map of complementarities → measure two things: members scoring their sentence 8+ and collaborations started → conversation about a platform license or partnership.
+
+**Order.** Lane 2 opens the door, Lane 3 is what walks through it. The Leonardo-style patron route (Balaji Srinivasan, Foster Gamble) stays, deferred until one pilot has a result to show. Load Order: a collective pilot is scale three, so it runs as a test inside Lane 1's surplus, not in place of it.
+
+**Success signal.** One pilot signed, ten sentences delivered, one collaboration started without Sasha in the room.
+
+---
+
+#### v2.0 · August 2026 (lived in Equilibrium; exact date not recorded) — superseded genealogy
+
+*Captured verbatim from Equilibrium on Day 184. Superseded by v3.0.*
+
+**Main strategy:**
+
+> TLDR: One man converts threshold-moment professionals into a $555→$1,111 ladder by offering one free threshold (solo call / group workshop) through nine segment-matched channels launched across two send days.
+>
+> Sasha, solo, sells professional next-chapter clarity to people at a visible transition (fractional execs, coaches in limbo, sabbatical founders, Big4 up-or-outs, warm alumni, communities, RU teens via parents). Wedge: a free 45-minute Direction Call (or its group form, a hosted workshop) promising "your transition named, your strongest direction on the table." Mechanism: threshold-recognition copy in the prospect's own harvested words → two-question filter → call → $555 session → $1,111 BUILT. Immediate motion: Tuesday/Wednesday — warm email to 150, 70 cold LinkedIn invites across three segments, host pitches, one Reddit post, VK teen DMs, 2-3 EIR applications. Success signal: accepts → replies → ≥2 booked calls per segment → first paid within two weeks, OMTM as the meter.
+
+**Aligned positions and AI training:**
+
+> Apply for optimal fit open positions: 1) AI companies, 2) venture-building, 3) match-making (they by definition have the budget): use AI to turn self-knowledge into aligned open positions and have conversations with the founder mentorship and venture studio angle to ecosystems like FounderOS, EntrepreneurFirst etc. On Training AI: Train AI to close the income gap for $50+ per hour and solve for immediate income needs while continuing with other strategies: a bounded game — maximum cash from AI training, cleverly, no venture — played across the premium tier as a portfolio, not one platform (Mercor, Surge, Handshake, Invisible), skipping generalist queues entirely. Drop the stories that burned off in testing — AI-orchestration (banned on tool-free assessments), polymath breadth (matchers reward specificity, not range), and a guaranteed premium ceiling (the $150–250 lanes need unaided senior code or a medical/legal license you don't hold) — and bet instead on the two things that survived every pass: that you score well and work reliably, applied in the lanes your unaided judgment genuinely dominates (strategy/rubric evaluation, reasoning quality, and Russian — Spanish being abundant and geo-arbitraged from Mexico City, so expect mid rates there). Win it on mechanics that generalize across all four: a complete, specifically-headlined profile; apply only to the highest-rate listings you truly qualify for; ace the scored interview (situation-action-result, concrete, use your retakes); never touch AI on assessments; set up payments day one; over-invest in the first 2–4 weeks to lock the quality score that unlocks better-paid work; run two or three contracts in parallel; be online Monday–Tuesday for premium batches. And accept the real conclusion of all this iteration — the analysis is essentially done and what's left is empirical: enter now, let actual offers across these platforms set your true rate and reveal your best lane, then optimize from real data rather than estimates, treating Mercor's 20% recurring referral on qualified colleagues as later opportunistic upside, not a product.
+
+**Ecosystem product:**
+
+> Position as "member deep data creating member onboarding module for your ecosystem" and/or as precision professional matching platform: seek aligned patronage by leading with the community-ecosystem precision-match-making for collaboration (defer cold founder acquisition). 1) pitch as a founder, 2) sell a product as a founder, and 3) offer an ongoing partnership through a Leonardo-like strategy adapted to 2026 for possible aligned patrons such as Balaji Srinivasav or Foster Gamble. And also send it to aligned ecosystems in their skins (logo, colors, fonts, background image) so that they plug it into their systems, offer a free pilot to them (capped at ~10 people perhaps?), and then enter in a conversation of a platform licensing agreement, or a partnership or else.
+>
+> This is the tactic for this strategy: Strategy (the spine): Don't acquire cold. Plug into people who already hold your tribe, where each collab is your lead-gen AND your pilot at once. Land cheap, prove collaboration rate, expand to recurring. Turn the money on in order: people now, communities next, carry later (in-loop only), license eventually.
+>
+> Tactics (next 2-4 weeks):
+>
+> List 5-10 warm upstream partners (self-knowledge practitioners + community holders). Offer: be "the now-what" their people are missing, free for their community or on referral rev-share.
+> Land 1-2 community pilots (Balaji/Silvana shape): free or cheap 90-day, onboard ~30-50 members, measure collaboration rate. One pilot = lead flood + first recurring deal.
+> Let the funnel convert: free reveal, curiosity-gap share (no link), $37, $555. Put 80% of energy on warm.
+>
+> Go for places where collaboration/professional precision matching satisfies a prominent need of a professionally oriented ecosystem.
+
+---
+
 
 *Version: v1.0 · Feb 24, 2026 — the collapse of everything into radical simplicity*
 
