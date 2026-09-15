@@ -73,7 +73,7 @@ This is the playbook applied to Sasha's own business, and at the same time a com
 | **Promise** | From many real threads that nobody can pass along, to one sentence only you could say, one product built on it, and strangers paying for it, with an AI skill to run the same loop for the founders you serve. | draft (prior locked form, v4.0: "You enter in limbo, you leave with one working path.") |
 | **Value ladder** | Five rungs from free to shared revenue: see the gemstone you carry (free), name it (free, or $333 private), find your founder-market fit ($555 private, $222 group), build it in BUILT ($5,555 of the first $55,555, or $1,111 once), and grow the collective (collective revenue share). | v1.1 |
 | **Method** | One loop and an AI skill to run it well: read your signal, name it until it stings, derive the business from that sentence, mirror it to a stranger with consent, let reciprocated money report back, re-articulate. | v1.1 |
-| **Proof** | The Crossing sold at $2,000 and running, a second practitioner delivering the method to her own clients, and this canvas, built by running the method on myself first. | draft |
+| **Proof** | The Crossing sold at $2,000 and running, and this canvas, built by running the method on myself first. | draft |
 
 ### We — What it means, and how I speak
 
@@ -126,7 +126,7 @@ This is the playbook applied to Sasha's own business, and at the same time a com
 | **Обещание** | Из множества настоящих нитей, которые никто не может передать дальше, в одно предложение, которое мог бы сказать только ты, один продукт на нём и незнакомых людей, которые за него платят, плюс ИИ-скилл, чтобы проводить ту же петлю для своих основателей. |
 | **Лестница ценности** | Пять ступеней от бесплатного до общей выручки: увидеть невидимый самоцвет, который ты носишь (бесплатно), назвать его (бесплатно или $333 лично), найти свой founder-market fit ($555 лично, $222 в группе), построить его в BUILT ($5 555 с первых $55 555 выручки или $1 111 разово) и растить коллектив (общий revenue share). |
 | **Метод** | Одна петля и ИИ-скилл, чтобы проходить её хорошо: считать свой сигнал, называть его, пока не заденет, вывести бизнес из этого одного предложения, с согласия отразить его незнакомому человеку, дать встречным деньгам вернуть обратную связь и переформулировать. |
-| **Доказательство** | «Переход» продан за $2 000 и идёт, второй практик ведёт метод со своими клиентами, а этот канвас построен методом, который я сначала прогнал на себе. |
+| **Доказательство** | «Переход» продан за $2 000 и идёт, а этот канвас построен методом, который я сначала прогнал на себе. |
 
 ### We: что это значит и как я говорю
 
@@ -3214,7 +3214,7 @@ Not angry pain. Quiet exhaustion. The ache of the unnamed.
 
 ##### Lane 1 · The main strategy (adopted)
 
-**TLDR:** One founder, with a second holon already delivering, converts founders who assist founders into a webinar → 2-day workshop → BUILT ladder by opening every conversation with a mirror instead of a pitch, sent from one LinkedIn account at a steady daily cadence.
+**TLDR:** I invite founders who assist founders into a webinar → 2-day workshop → BUILT ladder, opening every conversation with a mirror instead of a pitch, from one LinkedIn account at a steady daily cadence.
 
 **Who and what.** Sasha sells the one-sentence articulation, and the business derived from it, to founders who assist other founders: coaches, consultants, studio and accelerator operators, incubators. The segment moved up an octave from v2.0: from people at a transition to the people who serve people at a transition. Every step gives them double value, for themselves and for the founders they serve. Finished Cathedrals (complete coined frameworks) are routed to referral and later licensing, not sold to.
 
