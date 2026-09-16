@@ -46,6 +46,79 @@ This is the playbook applied to Sasha's own business, and at the same time a com
 
 ---
 
+## ⭐ Канвас уникального бизнеса — v2.0 (Sasha's own, filed Day 186, September 16, 2026)
+
+*Sasha's own revision, same day as v1.0. Current version. v1.0 is preserved immediately below as genealogy. Changes are listed at the end of this block.*
+
+**1. ЧЕТКО СФОРМУЛИРОВАННОЕ САМОПОНИМАНИЕ**
+
+- **1.1 Уникальность** (*мой основной врожденный талант, то есть то, как я естественным образом создаю ценность*): **я вижу невидимый порядок и придаю ему форму, чтобы субъекты становились сувереннее**
+- **1.2 Супертень** (*мое альтер эго*): **Контролер реальности: вижу невидимый порядок и навязываю ему форму, чтобы жизнь подчинялась моему замыслу**
+
+**2. ИДЕАЛЬНЫЙ КЛИЕНТ** — *зеркальное отражение меня: моей идентичности, моей метаморфозы, и моей главной жизненной установки*
+
+- **2.1 Идентичность:** Предприниматели, которые помогают другим предпринимателям: предпринимательский путь за плечами, жизнь и путешествия в разных странах, свободное владение несколькими языками, ставка на импакт и рост, проделанная внутренняя работа и тяга будить нераскрытый потенциал, который они видят вокруг.
+- **2.2 Ключевая жизненная установка** (*мудрость, даруемая через испытания на пути героя*): Мой основной врожденный талант формирует мое дело жизни через мои жизненные приключения и кратчайшим путем ведет к моей реализации.
+- **2.3 Метаморфоза:** Сразу несколько визионерских проектов: каждый проект растёт но очень медленно. Твое окружение едва понимает в чем их суть, а значит и не может порекомендовать другим или понять с кем сделать интро. Перманентно кажется что успех вот-вот за углом, но невозможно не видеть, что сбережения тают, что муж/жена теряет веру, что нетворк потихоньку забывает наработанную профессиональную репутацию. Человек начинает сам серьезно сомневаться в себе. Вариант убить все проекты кроме одного ощущается как пойти на ампутацию частей тела. Профессиональный переходный период затягивается, и тревожность растет. Кажущийся "свет в конце туннеля" ощущается как вредный мираж и тело тихо сжимается в ужасе от неопределенности и страха все потерять.
+
+**3. ТРАНСФОРМАЦИОННОЕ ОБЕЩАНИЕ**
+
+> Ты четко назовешь словами свой основной врожденный талант, разглядишь уникальный масштабируемый продукт который из него естественным образом формируется, и построишь растущий, плодовитый и благой бизнес в рекордные для себя сроки через радостный интенсивный труд который ощущается как игра, а не как изматывающая ненавистная работа.
+
+**4. ПРОДУКТ — как пошагово происходит трансформация** *(7 ступеней; v1.0 had 5)*
+
+| # | Ступень | Цена |
+|---|---|---|
+| 1 | **Невидимый кристалл** — увидеть свой основной врожденный талант, четко назвать его, быстро подрасти соответственно этой ясности | $37 на сайте · $333 индивидуально |
+| 2 | **Founder-Market Fit** | $555 лично · $222 в группе |
+| 3 | **BUILT TO PMF** — строим уникальный масштабируемый продукт за 1 месяц | $3,333 индивидуально · $1,111 в группе · или $5,555 с первых $55,555 выручки |
+| 4 | **Entrepreneur's Evolution** — поддержка на пути героя и мягкое ускорение роста | to be announced |
+| 5 | **Sovereign Founder Collective** | 10% revenue share; требует уникального продукта с PMF |
+| 6 | **Unique Business Creation as a Service** — я провожу эту программу для их клиентов | TBD |
+| 7 | **Rapid Incubation of Unique Businesses** — тренинг и лицензия вести программу самим | TBD |
+
+**5. МЕТОД** *(5 technologies; v1.0 had 4)*
+
+- **5.1 Appleseed** — технология высокоточного считывания сигнала уникальности. *Результат:* считать свой сигнал и облечь его в слова, вызывающие резонансную реакцию в теле.
+- **5.2 Excalibur** — технология перевода сигнала уникальности в высокоточное описание уникального бизнеса. *Результат:* уникальный бизнес в одном предложении и один заполненный business canvas.
+- **5.3 Hero's Journey Vortex** — повторяемая последовательность из 5 действий, которая запускает спираль роста и всё больше ускоряет вихрь энергии.
+- **5.4 Sovereign Founder AI OS** — ИИ-скилл для экспоненциального и оптимального построения уникального бизнеса.
+- **5.5 The Great Transition: Entrepreneur's Evolution** — программа развития для предпринимателей.
+
+**6. УЦП** — *left blank by Sasha in v2.0. English draft below, awaiting his rewrite.*
+
+> **Draft (EN, Day 186, not yet approved):** I help founders who help other founders name the one thing they were born doing, turn it into a scalable product that reaches its market in about a month, and then run the same process for their own clients under license, alongside a collective of founders who each keep 100% of what they build.
+
+**7. МАРКЕТИНГОВАЯ СТРАТЕГИЯ** — *как мои резонансные клиенты узнают, что им даёт этот продукт*
+
+> Я говорю с ними как с собой в зеркале: как я тебя нашёл (ИИ искал людей похожих на меня, и при этом полезно дополняющих меня), живо и неформально делюсь одной деталью которая нас объединяет, подсвечиваю сильные стороны их самих и их бизнеса, и стоимость застревания в этом месте которую я сам был вынужден заплатить, и стоимость откладывания решения ситуации, запрашиваю согласие поделиться тем, что сработало для меня. И когда появляется встречный интерес, приглашаю на бесплатный трансформирующий опыт в формате бесплатного зум звонка где они переживают трансформацию и улучшение их ситуации. В конце звонка описываю какая будет дальше трансформация у них, и предлагаю свои услуги провести их коротким путем.
+
+**8. СТРАТЕГИЯ ПРОДАЖ** — *как это доходит до людей*
+
+- **8.1 Канал:** LinkedIn — там, где мне самому скорее всего написали бы о таком.
+- **8.2 Hook:** отражение текущей профессиональной ситуации человека и стоимость бездействия.
+- **8.3 Квалификаторы:** развитая способность профессиональной ясности · развитая способность упаковывать свой собственный бизнес · нахождение в переходном периоде · сходство со мной.
+- **8.4 Фильтр:** есть бюджет.
+- **8.5 Усилители:** насколько человек ценит собственную трансформацию · насколько видна и высока комплементарность.
+- **8.6 Воронка (12 шагов):** 1) ИИ находит профиль по высокоточному уникальному запросу · 2) запрос на добавление в LinkedIn · 3) отражаю текущую ситуацию и стоимость бездействия · 4) запрашиваю согласие поделиться тем, как я это решил для себя · 5) даю ответ через мою историю в 1-2 фразах · 6) человек реагирует · 7) приглашаю на бесплатный трансформационный вебинар · 8) на вебинаре продаю двухдневный воркшоп FMF · 9) на FMF воркшопе продаю BUILT TO PMF · 10) после BUILT TO PMF приглашаю в суверенный коллектив фаундеров · 11) предлагаю проводить эту программу для их клиентов · 12) предлагаю тренинг и лицензию вести её самим.
+
+**9. СОЮЗНИКИ** — South Park Commons · Entrepreneur First
+
+### What changed from v1.0 (same day)
+
+| Section | v1.0 | v2.0 |
+|---|---|---|
+| **Product** | 5 rungs, PMF as its own rung | **7 rungs.** BUILT and PMF merge into **BUILT TO PMF** (one month, three price options). Two new top rungs: **done-for-their-clients** and **licensed training**. New rung 4: **Entrepreneur's Evolution**, price open |
+| **Method** | 4 technologies | **5** — adds *The Great Transition: Entrepreneur's Evolution* |
+| **Hook** | "Чего ты желаешь больше всего профессионально?" | **The mirror plus the cost of inaction** — the hook is now the reflection itself |
+| **Qualifiers** | 3 | **4** — adds *the ability to package their own business* (the Stream B marker) |
+| **Enhancers** | paid for transformation before · complementarity visible | **how much they value their own transformation** · how high the complementarity is |
+| **Marketing** | five moves ending in consent | Consent now leads to a **free transformational Zoom experience**, and the offer is made at the end of that call |
+| **Funnel** | 8 steps | **12 steps**, ending in licensing |
+| **UVP** | full sentence | **blank**, awaiting rewrite (English draft above) |
+
+---
+
 ## ⭐ Канвас уникального бизнеса — v1.0 (Sasha's own, filed Day 186, September 16, 2026)
 
 *Sasha wrote this himself in Russian as UNIQUE BUSINESS CANVAS v1.0. It is the current canvas and supersedes the v1.2 one-sentence tables below, which stay as genealogy. Nine sections, newest prices, and the method named in four technologies for the first time. Filed verbatim; the English mirror follows.*
@@ -2040,6 +2113,17 @@ Every grind-culture message — iterate more, hustle harder, follow the playbook
 **Status: candidate, not yet scored.** Shadow v1.4 ("Deepening Clarity After Enough Clarity Exists", 9.999) stays locked until this scores higher. Score on both dials: resonance, and **charge** (how much it stings, how much you want to argue with it). A shadow is landed when charge is high and ownership holds a minute later.
 
 **Field evidence, same day:** Sasha named that he had been describing a smaller version of himself, because he did not dare describe who he knows himself to be. Once he did, the description of himself became the description of his ideal client (founders who assist founders). The shadow had been setting the size of the tribe.
+
+**Root evidence — the parasite pattern (Sasha's own words, Day 186, September 16, 2026, filed verbatim).** *This is the mechanism underneath the Reality Controller: not the behaviour, but what the behaviour is defending against. Kept in Russian as written; do not paraphrase.*
+
+> Мой паразит включается, когда мне страшно просто оставить происходящее как есть: я не знаю, что обо мне подумают, останутся ли со мной, не испортятся ли отношения, правильно ли я поступаю и что вообще будет дальше. Вместо того чтобы выдержать это «я не знаю» и остаться с тем, что я на самом деле чувствую, я начинаю выворачиваться: что-то доказывать себе или другим, становиться нужным и полезным, винить себя, терпеть, откладывать решение, жертвовать собой — лишь бы хоть как-то повлиять на происходящее. Так я покупаю себе ощущение, что всё ещё могу что-то сделать и что я хороший, нужный, любимый — или хотя бы виноватый, а значит, происходящее можно объяснить. Потому что под всем этим живёт древний, животный ужас: ничего не делать ощущается как остаться совершенно беззащитным и позволить собственной гибели произойти — как будто, если я не начну что-нибудь делать, меня просто не станет.
+
+**Three depths of the same pattern** (read Day 186):
+
+- ❤️ **Essence:** doing is proof of existence. Not-doing is experienced as annihilation, so any action is preferable to holding «я не знаю».
+- 🧠 **Significance:** uncertainty is converted into something explicable — usefulness, responsibility, or guilt — because an explained world feels controllable. Worth is then purchased with being needed.
+- 🔥 **Consequence:** the observable business cost. Work is invented after the send, because waiting is unbearable. Asks are postponed and articulations are refined in their place. Free explanation runs long past the container. Deadlines get refused as a frame («нет дедлайна, дедлайн сейчас»). Sessions extend beyond what was contracted. Money arrives late because the plain ask arrives late.
+- ✦ **Integrated form:** the same capacity without the terror — which is the Ether Architect exactly as stated in Uniqueness v4.0: *gives form so that subjects become more sovereign*, and then lets go of whether the form is taken up. The observable markers of integration: a price and a date can be named, and then nothing is done until the other person moves; giving is chosen rather than bought; guilt is no longer used as an explanation.
 
 ---
 
