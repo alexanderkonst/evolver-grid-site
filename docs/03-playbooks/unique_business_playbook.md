@@ -5142,3 +5142,28 @@ That makes it the first place where this playbook's central claim becomes measur
 **The trap.** Founders judge this channel on client count in the first month. The honest yield curve is peers first, partnership assets second, buyers only after the brief carries deficit language. Killing it early is killing it one iteration before it works.
 
 **The seller's discipline inside the call.** The matchmaker's profile of the person is a lead sheet, not a read — assembled from public and self-reported material, and often stale. Verify anything load-bearing in the room, and score the ripeness axes afterward (Technology 123). The human stays the final judge of every intro (Technology 132).
+
+
+---
+
+## Tactic: The Activation Webinar — Container Structure (Day 186, September 16, 2026)
+
+*Reverse-engineered from a working container (Daniel Raphael's identity activation, Sep 15, 2026) and mapped onto this playbook's own funnel. The webinar is step 5 of Funnel v4: the free rung where recognition happens in a room instead of a DM.*
+
+**The seven beats.**
+
+1. **Story.** The founder's own stuck period, told in the exact words the audience lives in. Not credentials.
+2. **The mechanism.** One law, stated flat. Here: your career is capped by how well you know yourself; uniqueness, then fit, then cash flow.
+3. **Proof.** What the method has produced. Artifacts beat percentages.
+4. **The taste.** Twenty minutes in which the audience *feels* the transformation rather than hears about it. For this method: a body-led recall of a moment when the work was effortless, the quality named in one word, then one sentence of articulation, scored 1-10 for resonance — and when it lands at 9, the 9-to-10 scale opening underneath it.
+5. **The check-in.** Two or three people say their sentence out loud. A stranger recognizing themselves in front of the room sells what no slide can.
+6. **The artifact.** Show the filled canvas. The audience wants the thing they cannot produce alone; showing a completed one is stronger than describing a protocol.
+7. **One door.** A single offer, single price, and the logistics answered plainly.
+
+**Three cautions.**
+
+- **The taste must be experienced, not explained.** The most common failure for a framework-rich founder is to narrate the map for ninety minutes. One framework per room, maximum.
+- **Do not import the scarcity stack.** "Only time I run this live," countdown pricing, and large percentage claims are standard in this container and are ruled out by the Purity Check (fear-free copy). The structure travels; the pressure devices do not.
+- **Funnel monogamy still applies.** If a private session is mentioned alongside the workshop, the workshop is the door and the private session is the exception for those who ask.
+
+*Related: Funnel v4 (`alexanders_unique_business.md`) step 5 · the Transmission Principle (medicine, not information) · Principle 5 (the Precision Gap IS the Product).*

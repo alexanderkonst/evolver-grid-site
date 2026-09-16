@@ -38,6 +38,34 @@
 
 ---
 
+## 2026-09-16 (Day 186)
+
+### D-2026-09-16-01 — Value ladder repriced; PMF becomes its own rung
+
+**Decision:** The ladder is now five rungs: Invisible Crystal ($37 self-serve / $333 private session) → Founder-Market Fit ($555 private / $222 group) → BUILT, one month ($3,333 individual / $1,111 group) → Product-Market Fit ($5,555 of the first $55,555 in revenue, or $2,222 once) → Sovereign Founder Collective (10% revenue share, requires a unique product at PMF). Source: Sasha's UNIQUE BUSINESS CANVAS v1.0.
+
+**Rationale:** Three changes carry weight. A $37 self-serve rung gives the free reveal a paid first step. BUILT shortens from two months to one and splits by format. PMF, previously folded into BUILT, becomes its own rung, which separates "the product exists" from "the product sells" — the distinction the hexagram makes between action and cash flow.
+
+**Consequence:** Prior prices (Productize Yourself $555, BUILT $1,111 or $5,555 of first $55,555, Crossing $2,000) remain valid for clients already inside those containers. Funnel v4 step 6-7 language needs the new prices; the quiz and landing surfaces do too.
+
+**Reversibility:** Pricing is a live variable; each change gets a dated entry.
+
+**Cross-references:** `alexanders_unique_business.md` → Канвас v1.0 · Funnel v4 · `session_log.md` Days 181-186.
+
+### D-2026-09-16-02 — Hands-on healing belongs to the in-person intensive, not the remote container
+
+**Decision:** The "remove the inertia before the articulation" layer (body work, ceremony, the purge week) is delivered in the in-person intensive, not inside remote BUILT. Remote containers keep a light release practice only.
+
+**Rationale:** The practitioners who carry that layer work hands-on and in person (Justin Vinokur's acupuncture; Karime's ceremony work). Field evidence for the thesis is real — a client of Justin's returned the day after a session with a complete business plan — but it does not travel over Zoom. This also gives the in-person intensive a reason to be the premium tier.
+
+**Consequence:** The intensive becomes a distinct product with its own price, not a feature of BUILT. Practitioner agreements (rev share or fee) are needed before it is sold.
+
+**Reversibility:** Straightforward; if a remote equivalent proves out, the layer can be reinstated.
+
+**Cross-references:** `session_log.md` Days 181-186 (Justin) · Funnel v4.
+
+---
+
 ## 2026-09-10 (Day 180)
 
 ### D-2026-09-10-01 — Hexagram order: strategy begets fit

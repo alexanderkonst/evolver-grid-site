@@ -46,6 +46,66 @@ This is the playbook applied to Sasha's own business, and at the same time a com
 
 ---
 
+## ⭐ Канвас уникального бизнеса — v1.0 (Sasha's own, filed Day 186, September 16, 2026)
+
+*Sasha wrote this himself in Russian as UNIQUE BUSINESS CANVAS v1.0. It is the current canvas and supersedes the v1.2 one-sentence tables below, which stay as genealogy. Nine sections, newest prices, and the method named in four technologies for the first time. Filed verbatim; the English mirror follows.*
+
+**1. ЧЕТКО СФОРМУЛИРОВАННОЕ САМОПОНИМАНИЕ**
+
+- **1.1 Уникальность** (*мой основной врожденный талант, то есть то, как я естественным образом создаю ценность*): **я вижу невидимый порядок и придаю ему форму, чтобы субъекты становились сувереннее**
+- **1.2 Супертень** (*мое альтер эго*): **Контролер реальности: вижу невидимый порядок и навязываю ему форму, чтобы жизнь подчинялась моему замыслу**
+
+**2. ИДЕАЛЬНЫЙ КЛИЕНТ** — *зеркальное отражение моей идентичности, моей метаморфозы, и моей главной жизненной установки*
+
+- **2.1 Идентичность:** Предприниматели, которые помогают другим предпринимателям: предпринимательский путь за плечами, жизнь и путешествия в разных странах, свободное владение несколькими языками, ставка на импакт и рост, проделанная внутренняя работа и тяга будить нераскрытый потенциал, который они видят вокруг.
+- **2.2 Ключевая жизненная установка** (*мудрость, даруемая через испытания на пути героя*): **Мой основной врожденный талант формирует мое дело жизни через мои жизненные приключения и кратчайшим путем ведет к моей реализации.**
+- **2.3 Метаморфоза:** Сразу несколько визионерских проектов: каждый проект растёт но очень медленно. Твое окружение едва понимает в чем их суть, а значит и не может порекомендовать другим или понять с кем сделать интро. Перманентно кажется что успех вот-вот за углом, но невозможно не видеть, что сбережения тают, что муж/жена теряет веру, что нетворк потихоньку забывает наработанную профессиональную репутацию. Человек начинает сам серьезно сомневаться в себе. Вариант убить все проекты кроме одного ощущается как пойти на ампутацию частей тела. Профессиональный переходный период затягивается, и тревожность растет. Кажущийся "свет в конце туннеля" ощущается как вредный мираж и тело тихо сжимается в ужасе от неопределенности и страха все потерять.
+
+**3. ТРАНСФОРМАЦИОННОЕ ОБЕЩАНИЕ**
+
+> Ты четко назовешь словами свой основной врожденный талант, разглядишь уникальный масштабируемый продукт который из него естественным образом формируется, и построишь растущий, плодовитый и благой бизнес в рекордные для себя сроки через радостный интенсивный труд который ощущается как игра, а не как изматывающая ненавистная работа.
+
+**4. ПРОДУКТ — как пошагово происходит трансформация**
+
+| # | Ступень | Цена |
+|---|---|---|
+| 1 | **Невидимый кристалл** — увидеть свой основной врожденный талант, четко назвать его, подрасти соответственно этой ясности | $37 на сайте · $333 индивидуальная сессия |
+| 2 | **Founder-Market Fit** — найти свой founder-market fit | $555 лично · $222 в группе |
+| 3 | **BUILT** — построить уникальный масштабируемый продукт за 1 месяц | $3,333 индивидуально · $1,111 в группе |
+| 4 | **Product-Market Fit** — довести продукт до PMF | $5,555 с первых $55,555 выручки · или $2,222 разово |
+| 5 | **Sovereign Founder Collective** | 10% revenue share, требует уникального продукта с PMF |
+
+**5. МЕТОД** — named in four technologies for the first time
+
+- **5.1 Appleseed** — технология высокоточного считывания сигнала уникальности человека. *Результат:* считать свой сигнал и облечь его в слова, вызывающие резонансную реакцию в теле.
+- **5.2 Excalibur** — технология перевода сигнала уникальности в высокоточное описание уникального бизнеса. *Результат:* уникальный бизнес в одном предложении и один заполненный business canvas.
+- **5.3 Hero's Journey Vortex** — повторяемая последовательность из 5 действий, которая запускает спираль роста и всё больше ускоряет вихрь энергии.
+- **5.4 Sovereign Founder AI OS** — ИИ-скилл для экспоненциального и оптимального построения уникального бизнеса.
+
+**6. УЦП** — Я помогаю основателям, которые помогают другим основателям, спрессовать то одно, в чём они уникально сильнее всех, в масштабируемый продукт с неизбежным PMF, а затем масштабировать его пошаговым ИИ-скиллом, вместе с основателями, которые самоорганизуются в суверенный коллектив коллективов.
+
+**7. МАРКЕТИНГОВАЯ СТРАТЕГИЯ** — Я говорю с собой в зеркале: как я тебя нашёл, одна живая деталь, две сильные стороны, то место, где ты застреваешь, без решения, затем согласие, и первое предложение только когда появляется встречный интерес.
+
+**8. СТРАТЕГИЯ ПРОДАЖ** — **Канал:** LinkedIn. **Hook:** Чего ты желаешь больше всего профессионально? **Квалификаторы:** профессиональная ясность как способность · живая точка застревания · сходство со мной. **Фильтр:** есть чем заплатить. **Усилители:** уже платили за трансформацию · их комплементарность мне уже видна. **Воронка:** восемь шагов от первого контакта до лицензии — сообщение, зеркало, согласие, моя история, вебинар, двухдневный воркшоп FMF, BUILT, PMF, затем коллектив и лицензия вести это самим.
+
+**9. СОЮЗНИКИ** — South Park Commons · Entrepreneur First
+
+### What changed from v1.2 (Day 181)
+
+| Artifact | v1.2 | v1.0 canvas (current) |
+|---|---|---|
+| **Uniqueness** | "АРХАЗМ: Ether Architect who perceives the invisible order and gives it form so that life can become more sovereign" | Same law, in Russian, tightened: **субъекты становятся сувереннее** — subjects, not "life" |
+| **Myth** | Ceiling Law (locked v4.0) | Stated as the client's **key life belief**: the innate talent shapes the life's work through the adventures and leads by the shortest path to realization |
+| **Pain** | six costs (v5.0) | A full metamorphosis paragraph in the person's own felt language: the partner losing faith, the network forgetting the reputation, killing projects felt as amputation |
+| **Promise** | "one sentence only you could say…" | Names the *quality of the work itself*: joyful intense effort that feels like a game, not exhausting hated work |
+| **Ladder** | 5 rungs, $333 / $555 / $222 / $5,555-or-$1,111 | 5 rungs **repriced**: $37 self-serve added, BUILT split to $3,333 / $1,111 and shortened to one month, **PMF becomes its own rung** ($5,555 of first $55,555, or $2,222), collective at 10% |
+| **Method** | "one loop and an AI skill" | **Four named technologies:** Appleseed · Excalibur · Hero's Journey Vortex · Sovereign Founder AI OS |
+| **Proof** | draft | still absent from the canvas |
+
+**Still open:** Proof section · the business tagline for this segment · scores for uniqueness and shadow (both still unscored candidates).
+
+---
+
 ## ⭐ Unique Business Canvas — One Sentence per Artifact (v1.2, Day 181, September 11, 2026)
 
 *The half-page cockpit. Built from Sasha's Business Model v1.1 (written from scratch, Days 180-181) and the artifacts in this file. One sentence per artifact, arranged in the canvas geometry: the center, then the four quadrants. Source tags: **v1.1** = Sasha's own words (lightly compressed where it ran long), **locked** = scored version in this file, **draft** = written Day 180-181 in session, not yet scored. Full genealogy for every artifact lives further down this file.*
