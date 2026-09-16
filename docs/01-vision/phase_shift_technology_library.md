@@ -8147,3 +8147,82 @@ Money remains the marker rather than the object (`integral_transactional_field_t
 **ESC.** *Essence:* one quantity, agreed self-exposure, read at three depths as uniqueness, fit and cashflow. *Significance:* it makes the inner work commercially load-bearing rather than adjacent, and it correctly re-diagnoses the three common stalls, each of which is routinely treated at the wrong depth. *Consequence:* read all three depths before prescribing anything, never treat a fit problem as a marketing problem or a competition problem as a strategy problem, and understand that no intervention at the gut raises a ceiling set at the heart.
 
 **Relationship:** Technology 142 (Only You Should Be Able to Build It — the exposure ladder made operational), Technology 115 (Articulation Is the Mechanism of Growth), Technology 141 (The Unclaimed Category), the founding axiom in `alexanders_unique_business.md`, `founder_market_fit.md`, the three-dantian depth axis of the morphogenetic holomap.
+
+---
+
+## Technology 144: The Ask Lag (Revenue Tracks Asks, Not Insight) (Day 186, September 16, 2026)
+
+**The law in one sentence: money appears only in the cycles where asks went out, and it lands roughly two cycles after the articulation it depends on — so the honest forecast instrument for cash is the send log, never the insight log.**
+
+**The evidence.** Nine lunar cycles of this corpus, read end to end (Jan 4 to Sep 16, 2026; cycle boundaries anchored on the moon markers logged in `session_log.md` — Feb 2 full moon, Mar 3-4 "last day of moon cycle", Apr 6 new moon "harvesting and celebration complete" — and derived from those anchors elsewhere).
+
+- **Revenue appeared in cycles 3, 7, 8 and 9.** Every one of them is a cycle in which offers went out.
+- **Cycles 5 and 6 produced no revenue at all**, and they are among the deepest of the year: Funnel v2, the North Star, the Planetary OS one-pager, the Uniqueness Economy thesis, FIT excavated, the four-scale synthesis. Depth without asks produced zero.
+- **The yield of any cycle is an articulation; the cash for it arrives about two cycles later.** Cycle 2 produced the first canvas, cycle 3 the first payments. Cycle 6 named FIT, cycle 8 sold the container built on it.
+- **Cash roughly doubles every two cycles once a ladder exists:** $0 → $677 → $2,428 → $4,444.
+- **The largest yields cluster in cycles containing live rooms** (sessions, intensives, in-person work). Solo cycles produce documents. Relational cycles produce documents *and* money.
+
+**Why it holds.** Articulation raises the ceiling (Technology 143: exposure, then recognition, then exchange), but only an ask converts recognition into exchange. Insight has no transaction surface. This is why a founder can have a record-breaking month of clarity and a zero month of revenue and experience the two as unrelated: they are related, with a two-cycle delay and an ask in between.
+
+**Field use.**
+1. **Plan the zero cycles on purpose.** A cycle with no asks in it will not produce money. That is fine when chosen and corrosive when discovered afterwards.
+2. **Date the asks, not the insights.** The send log is the leading indicator; the insight log is the lagging explanation.
+3. **When forecasting cash, look two cycles back** at what was articulated, and at whether it was ever asked for.
+4. **Raise the number of live rooms**, not the number of working hours, when a cycle needs to yield.
+
+**Guardrail.** This is a pattern in one founder's record over nine cycles, not a validated law across founders. The direction is unambiguous in the data; the exact lag and doubling rate are this venture's, and should be re-derived per founder rather than assumed.
+
+**Relationship:** Technology 143 (The Exposure Law — this is its timing layer), Technology 115 (Articulation Is the Mechanism of Growth), the Moon Cycle Intention Framework in `alexanders_unique_business.md` (the week-4 fold, which held in all nine cycles), Technology 146 (the parasite, which supplies the reason asks get postponed).
+
+---
+
+## Technology 145: Terms Once, Attribution Cheapest (The Commons Bedrock) (Day 186, September 16, 2026)
+
+**The law in one sentence: knowledge cannot be owned, so a shared body of work runs on three rules — the gift is free, the system and the facilitation are paid, and the name is permanent.**
+
+**The question underneath.** Authorship, economic links and licensing are not three problems. They are three faces of one: *on what terms does a part take part in a whole without dissolving into it?* Authorship is the recognition of the part. Economic links are the flow between part and whole. Licensing is the terms on which the part may be used inside another whole.
+
+**The three moves.**
+
+1. **Licensing is consent given in advance, with boundaries stated once.** Consent is per-instance: you ask, I answer. A license is the standing answer, which is why it scales and per-use consent does not. Its form: what you may do without asking, what still needs a conversation, what is never permitted.
+2. **Attribution must be the cheapest path.** Citation built into the structure, so naming the source costs less effort than stripping it. Enforcement is not the mechanism; asymmetry of effort is.
+3. **Beyond the boundary, what escapes is a gift, not a theft.** A system that chases leakage spends itself on enforcement. That chase is the Reality Controller in institutional form (Technology 146).
+
+**What is actually scarce.** Ideas copy at no cost and lose nothing in the copying. What stays scarce is the artifact (this file, this code, this expression), the name (who is known as the source), the person (the judgment that produced it), and the implementation (the thing built and maintained). Payment therefore attaches to commercial use of an artifact, or to a person's work — never to the idea.
+
+**Instrument choice.** Royalties price the idea and are the wrong instrument. **Revenue share prices the collaboration**, is bounded in time and project, needs no cost accounting, and leaves sovereignty intact. **Equity transfers the part itself** and is excluded by the law: it converts a holon into a possession.
+
+**Provenance is not permission.** A ledger (typed edges, citations held inside the structure, auditable reasoning) records what happened. It does not decide what may happen. The record and the rights are separate objects and a working commons needs both: the ledger beneath, the terms on top.
+
+**ESC.** *Essence:* a part gives what it chooses, on terms stated once, and keeps its name forever. *Significance:* it dissolves the three questions that reliably break conscious collectives into one rule they can adopt in an afternoon. *Consequence:* the ontology layer is commons and free; implementations, facilitation and anything sold carry revenue share; attribution never expires and is never conditional on payment.
+
+**Relationship:** the Noble = Free antidote in `alexanders_unique_business.md` (gift free, system paid — this is that principle one scale up), `monetization_strategies.md` and the Distributor Agreement (the outbound half), Technology 111 (edge-carried alignment among sovereigns), the Day 186 session with Justin Vinokur (`session_log.md`) where the ledger and the terms were separated.
+
+---
+
+## Technology 146: Doing as Proof of Existence (The Uncertainty Parasite) (Day 186, September 16, 2026)
+
+**The law in one sentence: where a founder's body codes uncertainty as danger, not-doing is experienced as annihilation, so uncertainty converts into activity that looks like work — and the activity reliably arrives in the gap where waiting belonged.**
+
+**Named by the founder, filed verbatim** in `alexanders_unique_business.md` §2B (Shadow): *«...под всем этим живёт древний, животный ужас: ничего не делать ощущается как остаться совершенно беззащитным и позволить собственной гибели произойти — как будто, если я не начну что-нибудь делать, меня просто не станет.»*
+
+**The three depths.**
+
+- ❤️ **Essence:** doing is proof of existence. The body cannot distinguish *nothing is required of me* from *I have been left, and I am about to not exist.* It is a prediction error learned before language, not a belief.
+- 🧠 **Significance:** uncertainty is converted into something explicable — usefulness, responsibility, or guilt — because an explained world feels controllable. Worth is then purchased with being needed. Guilt is chosen over not-knowing because guilt at least has a cause.
+- 🔥 **Consequence:** work invented after the send. The ask postponed and the articulation refined in its place. Free explanation running past the container. Deadlines refused as a frame. Sessions extending beyond what was contracted. Money arriving late because the plain ask arrives late.
+
+**Integrated form.** The same capacity without the terror: form given, then released. For this founder that is the Ether Architect exactly as written — *gives form so that subjects become more sovereign* — with the addition that the giver lets go of whether the form is taken up. Observable markers: a price and a date can be named, then nothing is done until the other person moves; giving is chosen rather than bought; guilt is no longer used as an explanation.
+
+**The antidote is structural and somatic, not conceptual.** Understanding changes little; repetition changes it. Titrate — small doses of safe not-doing, often.
+
+1. Say the state out loud when it starts: *I don't know what happens next, and nothing needs to be done right now.*
+2. Schedule the next action at the moment of sending, and give that thread nothing in between.
+3. No new artifact while an ask is outstanding.
+4. The 24-hour test: is this the next move, or is not-doing unbearable? If the second, wait a day.
+5. Meet it in the body for ninety seconds without fixing anything.
+6. Let someone else hold a boundary; external structure reduces self-invented work.
+
+**Why it belongs in this library rather than only in a shadow file.** It is the mechanism that makes Technology 144 true. The ask lag exists because the gap between exposure and response is exactly where this pattern lives, and the pattern fills the gap with work rather than waiting.
+
+**Relationship:** Shadow v2.0 candidate (The Reality Controller — this is its root), Shadow v1.4 (deepening clarity after enough clarity exists — its most respectable disguise), Technology 143 (The Exposure Law), Technology 144 (The Ask Lag), Technology 14f (Grind Addiction — the same physics at the level of effort rather than uncertainty).
