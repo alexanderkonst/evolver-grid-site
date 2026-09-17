@@ -191,6 +191,22 @@ This is the playbook applied to Sasha's own business, and at the same time a com
 
 ---
 
+### The Recognition Round — my version of funnel step 7 (Day 186, September 16, 2026)
+
+*Full spec: [`docs/03-playbooks/unique_business_playbook.md`](../../03-playbooks/unique_business_playbook.md) → "Tactic: The Recognition Round — Container Spec v2.0". Not re-compressed here — this is the pointer plus what it is in my own words.*
+
+The free rung of the funnel is **not a webinar and not a talk.** It is a working room where I am the instrument and the participants are the subject, because my talent is reading, not narrating. A story-shaped container would put me in the subject position, inflate me, and make every clearing feel like handling.
+
+> **The invitation:** come with nothing prepared. Leave with clarity on your business and your unique value — one sentence you can say, and a pitch you can make to a collaborator.
+
+20-25 people, all of them serving founders. Two sentences each, one for them and one for their business, roughly ninety seconds. I ask questions where I sense the biggest bottleneck or the largest area of growth, and I hand every naming back for approval. A teaching graphic comes out only when the room hits the thing it explains. Consent to the recording and the AI matchmaking pass is stated aloud before the round begins.
+
+The door is not a pitch but a **prediction**: this sentence will hold about a week, then you will see a soft spot you cannot see today, and here is what closes it. Afterwards the matchmaker runs over the transcript and everyone receives proposed collaborations as a gift, which is where the wobble prediction naturally sits.
+
+**Why it works structurally:** twenty-five adjacent people discover in one hour that similarity and complementarity coexist — the overlap lets them recognize each other, the differences make them useful to each other. Nobody has to be persuaded the Sovereign Founder Collective is a good idea. They spend an hour inside one. That, and four other effects, are named only at the end (see the spec) — named in advance each becomes a promise to deliver.
+
+---
+
 ### The Three Terms — how I work with anyone on shared work (Day 186, September 16, 2026)
 
 *Full artifact: [`docs/05-reference/the_three_terms.md`](../../05-reference/the_three_terms.md). Law: Phase Shift Technology 144. Not re-compressed here — this is the pointer plus the spoken form.*

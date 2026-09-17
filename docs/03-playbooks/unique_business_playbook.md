@@ -5146,11 +5146,74 @@ That makes it the first place where this playbook's central claim becomes measur
 
 ---
 
-## Tactic: The Activation Webinar — Container Structure (Day 186, September 16, 2026)
+## Tactic: The Recognition Round — Container Spec v2.0 (Day 186, September 16, 2026)
 
-*Reverse-engineered from a working container (Daniel Raphael's identity activation, Sep 15, 2026) and mapped onto this playbook's own funnel. The webinar is step 5 of Funnel v4: the free rung where recognition happens in a room instead of a DM.*
+*Step 5 of Funnel v4: the free rung where recognition happens in a room instead of a DM. **v2.0 supersedes the seven-beat Activation Webinar spec (v1.0, preserved below).** The change is not cosmetic: v1.0 was a talk with a taste inside it, and the founder was the subject. v2.0 is a working room in which the participants are the subject and the founder is the instrument. Designed by Sasha, Day 186.*
 
-**The seven beats.**
+**The premise.** This method's talent is reading, not narrating. A format built on story forces the founder into the subject position, which inflates him and makes every clearing feel like handling. A format built on live reading puts the room's own material at the center, and the founder disappears into the instrument. Use the founder's own gift as the container's shape.
+
+### The contract, stated in the invitation
+
+> Come with nothing prepared. Leave with clarity on your business and your unique value — one sentence you can say, and a pitch you can make to a collaborator.
+
+Do not call it a webinar. "Webinar" promises a talk, which then has to be not-given. The name sets the contract; make the name accurate.
+
+### The spec
+
+| | Element | Rule |
+|---|---|---|
+| **Room** | 20-25 people, all serving founders | Hard cap. Past ~25 the round becomes a show and the design collapses. Small is the feature |
+| **Prep** | None, required of anyone | Prepped taglines defeat the entire container. "Unprepped" is load-bearing, not a nicety |
+| **Pre-video** | Short, optional | Carries the information load so the room can stay experiential. If the room only works for people who did homework, it is not a clean container |
+| **Consent** | Said aloud before the round | "I'll record this and run it through a matchmaker afterward, then send you who you should talk to. If you'd rather not be included, say so." Consent given in advance — the licence principle applied to the founder's own room |
+| **The round** | Two sentences each: one for them, one for their business. ~90 seconds | Two sentences, not four minutes. Nobody can hide inside context; everyone is equally exposed and equally fast; the room gets 25 comparable objects side by side |
+| **The work** | The founder asks questions where he senses the biggest bottleneck or the largest area of growth | Questions before naming. Name only when they genuinely cannot get there |
+| **The hand-back** | "Does that fit in your mouth?" | Always return the words for approval. If they change one, it is theirs. This is the whole difference between being read and being labeled |
+| **Teaching** | Pull up one infographic, only when the room hits the thing it explains | Never ahead of the need. Teaching early puts the founder back in the subject position |
+| **The door** | The wobble prediction | See below |
+| **After** | The AI matchmaking pass, delivered as a gift | See below |
+
+### The door: predict the wobble
+
+Do not close by selling. Close by predicting, accurately:
+
+> This sentence will hold for about a week. Then you'll see a soft spot in it that you can't see today. That isn't failure — it's the next layer arriving. When it happens, here's what closes it.
+
+No urgency, no scarcity, no countdown. The offer is a **prediction**, and when it comes true in four days the participant comes back on their own. This is taste-first / terms-second (see The Three Terms, sequencing law) working exactly as designed: the gift has been felt before any term is spoken.
+
+### After: the matchmaking pass
+
+Twenty-five machine-readable sentences from a room already warm. Run the matchmaker brief over them and send each person their proposed collaborations a day or two later. The post-session message is therefore **not a sales follow-up** — it is the founder giving something else away. The gift is free, demonstrated rather than explained. The wobble prediction sits naturally inside that same message.
+
+The reconvene then builds itself. No community has to be invented; the door just stays open.
+
+### What to name only afterwards
+
+The container delivers several things that must **not** appear on the agenda. Named in advance each becomes a promise to deliver; named at the end, in one sentence each, they are simply accurate descriptions of what the room went through:
+
+- **Similarity and complementarity coexisting.** Twenty-five adjacent people discovering they are not competitors — the overlap is what lets them recognize each other, the differences are what make them useful to each other. This is the venture's thesis demonstrated instead of argued. Nobody has to believe the Sovereign Founder Collective is a good idea; they have just spent an hour inside one.
+- **That articulation is a capacity, not a document.** They watched twenty-five sentences get sharper in real time and can now feel the difference between a vague one and an exact one.
+- **That being seen accurately is fast.** Ninety seconds and a few questions. The belief that self-definition takes months dies quietly.
+- **That their own clients could receive this.** Every person in the room serves founders. They have just been handed a working demonstration of a thing they could run, which is the licence rung seeding itself without a pitch.
+- **That the bottleneck was never the market.** Each person watched their own growth edge get named from two sentences about themselves — evidence that the locus of attention belongs on the signal, not on the market.
+
+### Three cautions (carried forward from v1.0)
+
+- **The taste must be experienced, not explained.** The most common failure for a framework-rich founder is narrating the map. One framework per room, maximum.
+- **Do not import the scarcity stack.** "Only time I run this live," countdown pricing, and large percentage claims are ruled out by the Purity Check (fear-free copy). The structure travels; the pressure devices do not.
+- **Funnel monogamy still applies.** One door. If a private session is mentioned alongside the workshop, the workshop is the door and the private session is the exception for those who ask.
+
+### One failure mode to prepare for
+
+A live read will occasionally not land — a participant who is opaque or defended. Have the honest move ready: *"I don't have it yet. Here's what I'd need."* A founder naming the gap in public is itself a demonstration of the method, and is stronger proof than a clean read.
+
+*Related: Funnel v4 (`alexanders_unique_business.md`) step 5 · The Three Terms and its sequencing law · the Transmission Principle (medicine, not information) · Principle 5 (the Precision Gap IS the Product) · the matchmaker brief (`strategic_crm_outreach_tracker.md` and the outreach strategy docs).*
+
+---
+
+### v1.0 — The Activation Webinar, seven beats (superseded, preserved as genealogy)
+
+*Reverse-engineered from a working container (Daniel Raphael's identity activation, Sep 15, 2026). Superseded the same day by v2.0 above, for the reason stated there: it is the right structure for a narrative instrument and the wrong one for a reading instrument.*
 
 1. **Story.** The founder's own stuck period, told in the exact words the audience lives in. Not credentials.
 2. **The mechanism.** One law, stated flat. Here: your career is capped by how well you know yourself; uniqueness, then fit, then cash flow.
@@ -5159,14 +5222,6 @@ That makes it the first place where this playbook's central claim becomes measur
 5. **The check-in.** Two or three people say their sentence out loud. A stranger recognizing themselves in front of the room sells what no slide can.
 6. **The artifact.** Show the filled canvas. The audience wants the thing they cannot produce alone; showing a completed one is stronger than describing a protocol.
 7. **One door.** A single offer, single price, and the logistics answered plainly.
-
-**Three cautions.**
-
-- **The taste must be experienced, not explained.** The most common failure for a framework-rich founder is to narrate the map for ninety minutes. One framework per room, maximum.
-- **Do not import the scarcity stack.** "Only time I run this live," countdown pricing, and large percentage claims are standard in this container and are ruled out by the Purity Check (fear-free copy). The structure travels; the pressure devices do not.
-- **Funnel monogamy still applies.** If a private session is mentioned alongside the workshop, the workshop is the door and the private session is the exception for those who ask.
-
-*Related: Funnel v4 (`alexanders_unique_business.md`) step 5 · the Transmission Principle (medicine, not information) · Principle 5 (the Precision Gap IS the Product).*
 
 ---
 
