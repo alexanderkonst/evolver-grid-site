@@ -5167,3 +5167,22 @@ That makes it the first place where this playbook's central claim becomes measur
 - **Funnel monogamy still applies.** If a private session is mentioned alongside the workshop, the workshop is the door and the private session is the exception for those who ask.
 
 *Related: Funnel v4 (`alexanders_unique_business.md`) step 5 · the Transmission Principle (medicine, not information) · Principle 5 (the Precision Gap IS the Product).*
+
+---
+
+## The Three Terms — Terms for Shared Work (Day 186, September 16, 2026)
+
+*Shareable artifact: [`docs/05-reference/the_three_terms.md`](../05-reference/the_three_terms.md). Underlying law: Phase Shift Technology 144 (Terms Once, Attribution Cheapest).*
+
+Every collective of capable people hits the same three questions, usually late and usually at once: who owns what we make, who gets paid, and what may anyone do with it afterwards. Most groups break here rather than on vision. The three are one question — *on what terms does a part take part in a whole without dissolving into it* — and they collapse into one line a founder can say out loud:
+
+> **The gift is free. The system is paid. The name is permanent.**
+
+**How to use it in the method.** A founder running this playbook needs these terms twice: once for their own body of work (what they publish versus what they sell), and once for every collaboration they enter. Give it to them at the same moment as the value ladder, because it is the ladder's mirror: the ladder says what a client buys, the terms say what a collaborator may take.
+
+- **Licence = consent given in advance**, stated once, in three columns: free · ask · never.
+- **Attribution is designed, not enforced.** Make citing cheaper than stripping. Beyond the boundary, treat what escapes as a gift rather than chasing it as theft.
+- **Instrument:** revenue share, bounded to a project. Royalties price the idea and are wrong. Equity transfers the part itself and is excluded.
+- **Provenance is not permission.** A ledger records what happened; terms decide what may happen. A commons needs both.
+
+*Related: the Noble = Free antidote (`alexanders_unique_business.md`) — these terms are that principle at collective scale · `DISTRIBUTOR_AGREEMENT.md` · `monetization_strategies.md`.*

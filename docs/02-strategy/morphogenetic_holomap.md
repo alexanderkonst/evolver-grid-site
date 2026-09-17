@@ -3545,3 +3545,153 @@ Day 180:   Propagation goes cold                      -> the instrument touches 
 - `MEMORY.md`: holomap line bumped to Day 180.
 
 > *Day 180 reading: Propagation, gone cold. Day 166 proved the whole stack closes end to end for one warm stranger. Day 180's move is smaller in feeling and larger in consequence: the instrument that used to need a warm relationship to point at now points itself — it located Danil from public signal before a word was sent, and the founder's own faculty layer (Stream 0, the load order, the hexagram) is built enough that a stranger can be moved through it without the founder carrying every step. The standing thresholds are unchanged — the Quiz live, the landing rebuilt, the first $555 funnel stranger — but the machine that will fire them is now assembled and running warm.*
+
+
+---
+
+## Day 186 addendum (September 16, 2026): the lunar clock, re-anchored — nine cycles of gestation, and the Mi–Fa interval ahead
+
+> *This addendum adds a **time base** to the instrument. The holomap reads structure (what is present, at which stage). The lunar record reads tempo (when it moved, and what it cost). Filed after a full re-reading of the corpus against the actual lunar calendar.*
+
+### The correction that made it legible
+
+The cycle boundary is **not** the new moon. Per Equilibrium's own wheel (`04-products/equilibrium_user_manual.md`), a cycle runs **Planning (Last Quarter) → Clearing (New Moon) → … → Harvesting (Full Moon) → Celebrating (Waning Gibbous)**, and **Celebrating is last**. The boundary is therefore the **Last Quarter**, where the next intention surfaces.
+
+Last quarters, computed (mean synodic month, ±1 day): **Dec 12 · Jan 11 · Feb 10 · Mar 11 · Apr 9 · May 9 · Jun 7 · Jul 7 · Aug 5 · Sep 4 · Oct 3 · Nov 2.**
+
+Two validations from the corpus itself:
+- The **Feb 2 full moon** logged in the Bali entry is exactly correct.
+- The **April 6 entry** ("harvesting and celebration complete") was labelled "New Moon" but describes Waning Gibbous — the Celebrating phase, which is precisely where April 6 falls. The phase content was right; only the name was wrong. Markers in the early corpus were logged by feel, not by calendar.
+
+**And the birth date lands on a harvest.** Full moon January 3, birthday January 4, Day 0 of the sprint. The corpus did not begin at a planning phase. It began at a Harvesting.
+
+### The ten cycles and their phase shifts
+
+| # | Last Quarter → Last Quarter | Harvest | Phase shift |
+|---|---|---|---|
+| 1 | Dec 12 – Jan 10 | Jan 3 | **Nothing → a body.** Birth on the harvest moon: Day 0, birthday, sprint begins |
+| 2 | Jan 11 – Feb 9 | Feb 2 | **Incubator → artifact.** Hackathon, platform live, Network School closes, Bali |
+| 3 | Feb 10 – Mar 10 | Mar 3 | **Artifact → offer.** Sacred Fire, tribe and pain forged, first two offers sent on the full moon itself |
+| 4 | Mar 11 – Apr 8 | Apr 2 | **Offer → system.** Laylat al-Qadr canvas, ceremony night, distribution architecture, Epicenter Broadcast, the 27th perspective |
+| 5 | Apr 9 – May 8 | May 1 | **One → several.** $677 in, Mexico intensive, the collective names itself, the license stack, surface rebuilt |
+| 6 | May 9 – Jun 6 | May 31 | **Inward → outward.** Matching as hero, the one-pager, Balaji and Silvana sent, transmission not report |
+| 7 | Jun 7 – Jul 6 | Jun 30 | **Practice → thesis.** First funnel-sourced payment ($555), the Uniqueness Economy, FIT excavated, the Cockpit |
+| 8 | Jul 7 – Aug 4 | Jul 29 | **Thesis → law, and law → asks.** The Ceiling Law, the warm-base campaign, the Ripeness Vector, the Transition Holomap |
+| 9 | Aug 5 – Sep 3 | Aug 28 | **Law → instrument in the world.** The container sold on day one of the cycle, the Recursive Unique Business, the cold system built and fired |
+| 10 | **Sep 4 – Oct 2 (current)** | **Sep 26** | in progress: container fully paid, first cold reply, the complements arriving, the canvas on one page |
+
+**Nine complete cycles ran from birth (Dec 12) to September 3** — the length of a human gestation, noticed by Sasha in the cycle it completed.
+
+### The octave reading
+
+**Cycle 8 (Jul 7 – Aug 4) was the Si–Do shock.** The axiom (the Ceiling Law) landed and the warm-base ask campaign went out inside the same cycle: the seeing became an act. Everything before cycle 8 built the instrument; everything after runs it.
+
+- **Octave 1 = cycles 1–7** (Dec 12 – Jul 6).
+- **Octave 2 = cycles 8–14** (Jul 7 – ~Jan 27, 2027).
+- **Position now: cycle 10 = Mi.**
+
+**Life-level synchrony, noted by Sasha (Day 186):** the octave shift at Jul 7 coincided with the close of the Mexico City chapter, the move to San Pancho, and the permanent-residency application. The venture's octave turned in the same week the founder's ground did.
+
+### The prediction this produces
+
+**The Mi–Fa interval falls at the cycle 10 → 11 boundary, October 3.** In this instrument the Mi–Fa shock is **love: the collective begins holding what the founder was holding alone** (LL quadrant self-organizing). So the predicted stall is not financial. By early October the method needs a carrier who is not Sasha — a room, a webinar group, or a practitioner delivering it to their own client. Revenue alone will not clear that interval.
+
+Timing note: the harvest of cycle 10 is **September 26**, celebration runs to about September 30, and the cycle closes October 2. The October 1 financial boundary agreed with Karime therefore falls **inside the celebration phase**, two days before the turn — the harvest is due before the accounting.
+
+### How the two instruments join
+
+| | Morphogenetic holomap | Lunar record |
+|---|---|---|
+| Reads | Structure: 27 perspectives × 7 stages | Tempo: what shifted, when, at what cost |
+| Answers | *What* is ripe | *When* it moved |
+| Blind to | Time base | Perspective resolution |
+
+**Integration protocol (proposed, not yet run):** one center reading per cycle rather than per session. At each **Last Quarter**, read the holomap and name the center word for the cycle ahead. At each **Celebrating** phase, log the yield and the phase shift actually observed. Four columns: cycle · center reading at open · yield at close · phase shift observed. Drift between what the holomap predicted and what the cycle delivered then becomes visible at every turn.
+
+### Cross-references
+
+- `docs/04-products/equilibrium_user_manual.md` — the wheel and the phase definitions this anchoring follows.
+- `docs/02-strategy/unique-businesses/alexanders_unique_business.md` — Moon Cycle Intention Framework (the week-4 fold, which held across all nine cycles).
+- `docs/09-logs/session_log.md` — the dated record the phase shifts were read from.
+
+---
+
+## Day 186 addendum, part 2 (September 16, 2026): the two instruments married — structure × tempo
+
+> *Part 1 re-anchored the lunar clock. This part joins it to the holomap so they operate as one instrument rather than two readings of the same venture.*
+
+### Why they join at all
+
+Both run on the Law of Seven. The holomap uses it **vertically**: seven evolutionary stages through which each of the 27 perspectives matures. The lunar record uses it **horizontally**: seven cycles through which the whole holon moves before it must shift octave. Same law, two axes — which is why the two shocks appear in both, and why the join is structural rather than decorative.
+
+| | Morphogenetic holomap | Lunar octave |
+|---|---|---|
+| Axis | Depth — 27 perspectives × 7 stages | Time — 7 cycles per octave |
+| Answers | **What** is present and ripe | **When** it moves, and what it cost |
+| Shocks | Mi–Fa (Love, P7→P8) · Si–Do (Crystallization, P26→P27) | Mi–Fa (cycle 3→4 of the octave) · Si–Do (cycle 7→next Do) |
+| Fidelity | near-certain (the oak is in the acorn) | probabilistic (timing varies, structure does not) |
+| Blind to | time base | perspective resolution |
+
+**The join:** the holomap names *which perspective* needs the shock. The lunar clock names *when the interval arrives*. Neither can do the other's half.
+
+### The joined operating protocol
+
+One reading per cycle, not per session:
+
+1. **At the Last Quarter (cycle opens, Planning):** read the holomap, name the **center word** for the cycle ahead, and record the **note** the octave is on.
+2. **During the cycle:** normal work. No re-reading — a plateau read mid-cycle produces a false low (the week-4 fold).
+3. **At Celebrating (cycle closes, ~3 days after the Full Moon):** log the **yield** and the **phase shift actually observed** (X → Y), plus money received.
+4. **At an interval (Mi–Fa or Si–Do):** name the shock explicitly and what supplied it. If nothing supplied it, say so — a stalled interval repeats the note.
+
+**The log is four columns plus a flag:** cycle · center reading at open · note · yield at close · phase shift observed · [shock supplied? by what?]
+
+This is what makes drift visible: when the holomap predicts ripeness and the cycle delivers nothing, the gap is in the record within 29 days instead of in hindsight six months later.
+
+### Octave 1 — Making the instrument (Dec 12, 2025 → Jul 6, 2026)
+
+| Note | Cycle | Phase shift | Shock |
+|---|---|---|---|
+| Do | 1 · Dec 12 – Jan 10 | Nothing → a body (birth on the harvest moon) | — |
+| Re | 2 · Jan 11 – Feb 9 | Incubator → artifact | — |
+| Mi | 3 · Feb 10 – Mar 10 | Artifact → offer | — |
+| — | — | — | **Mi–Fa supplied:** Laylat al-Qadr + ceremony night. The breakthroughs arrived in rooms with other people |
+| Fa | 4 · Mar 11 – Apr 8 | Offer → system | — |
+| Sol | 5 · Apr 9 – May 8 | One → several | — |
+| La | 6 · May 9 – Jun 6 | Inward → outward | — |
+| Si | 7 · Jun 7 – Jul 6 | Practice → thesis | — |
+| — | — | — | **Si–Do supplied:** the Ceiling Law and 85 asks inside one cycle. Seeing became act |
+
+### Octave 2 — Running it on strangers (Jul 7, 2026 → Jan 29, 2027)
+
+| Note | Cycle | Status | Phase shift (observed or projected) |
+|---|---|---|---|
+| Do | 8 · Jul 7 – Aug 4 | observed | Thesis → law, and law → asks |
+| Re | 9 · Aug 5 – Sep 3 | observed | Law → instrument in the world (container sold day one; cold system fired; auth firefight as the resistance) |
+| **Mi** | **10 · Sep 4 – Oct 2** | **current** | Refinement, not new ground: canvas to one page, complements arrive, the parasite seen |
+| — | **Oct 3** | interval | **Mi–Fa due.** Required shock: someone other than Sasha carries the method — a room, a group, a practitioner delivering |
+| Fa | 11 · Oct 3 – Nov 1 | projected | Method leaves his hands; first group delivery |
+| Sol | 12 · Nov 2 – Nov 30 | projected | It runs: repeatable sales without reinvention |
+| La | 13 · Dec 1 – Dec 30 | projected | Integration: others deliver; revenue arrives from work he didn't do |
+| Si | 14 · Dec 31 – Jan 29 | projected | Method packaged as transferable; licence terms real |
+| — | **~Jan 30, 2027** | interval | **Si–Do due:** the first licence granted — someone runs it under their own name |
+
+### The three lines across octave 2
+
+- **Essence (what gets seen):** self → a room → other people's clients → packaged to work without him.
+- **Significance (who it is for):** practitioners → their rooms → their clients → their licensees.
+- **Consequence (what it earns):** cold conversations → first group sales → recurring containers → revenue share from others' delivery → licence income.
+
+### Octaves ahead
+
+- **Octave 3 — the instrument in other hands (Jan 30 → ~Aug 23, 2027).** *Essence:* the method stops needing its author. *Significance:* uniqueness stops being the bottleneck and becomes the seed; the Sovereign Founder Collective becomes a population rather than a design. *Consequence:* income decouples from his hours — licence fees, node revenue, collective share.
+- **Octave 4 (from ~Aug 24, 2027):** nodes producing nodes. The collective of collectives the thesis always pointed at.
+
+### Falsifiers (what would prove this reading wrong)
+
+1. **Cycle 11 passes with Sasha still the only carrier** → the octave stalled at Mi–Fa, regardless of revenue. Sharpest near-term test.
+2. **Money arrives in cycle 11 but nobody else delivers** → Fa financially, Mi structurally. The ceiling has not moved.
+3. **Cycle 12 produces no repeat buyers** → Sol has not started; the octave is running a cycle behind the calendar.
+
+### Standing caveat
+
+Structure is near-certain; timing is probabilistic. A cycle lived at half strength repeats its note rather than advancing. Dates here are computed from the mean synodic month (±1 day) and should be replaced with observed last quarters whenever they are to hand.

@@ -212,6 +212,7 @@ docs/
 |-----|---------|
 | [brandbook.md](./05-reference/brandbook.md) | Visual identity, voice, colors |
 | [money-studies/money_holomap.md](./05-reference/money-studies/money_holomap.md) | Living money holomap (8 modules × 7 stages) + source studies in `sources/` |
+| [the_three_terms.md](./05-reference/the_three_terms.md) | **The Three Terms** — the shareable one-pager for shared work: the gift is free, the system is paid, the name is permanent. One-page form of Phase Shift Technology 144 |
 | [design_system.md](./05-reference/design_system.md) | CSS variables, components |
 | [roasting_protocol.md](./05-reference/roasting_protocol.md) | 3-cycle critique methodology |
 | [module_implementation_checklist.md](./05-reference/module_implementation_checklist.md) | Universal checklist template |
