@@ -62,6 +62,20 @@ Ready to paste into a message:
 
 > Here's how I work with people on shared work. The underlying method is free and stays free — take it, use it, teach it, cite it. Anything we build together that earns money runs on a revenue share, bounded to that project, no equity and no pooled funds. Your name stays on whatever you brought, permanently, whether or not it ever earns. If you want to take the method to your own clients, that's a licence conversation, and it's a short one.
 
+## When to say it: taste first, terms second
+
+**These terms are a closer, not an opener.** They land only with someone who has already felt what the gift does. Offered to someone who has not, the free half reads as worthless, and a second or third offering of it reads as a discount — which cheapens the paid half too.
+
+The failure is specific and it has been lived: a free method offered three times to a collaborator who had never experienced it, after which nothing downstream could move. The terms were right. The sequence was wrong.
+
+So the order is fixed:
+
+1. **They experience the transformation** (the free webinar, the session, the room).
+2. **They recognize in hindsight what just happened to them.**
+3. **Then the terms are said** — and they no longer sound like a pitch, because the person is describing something they already hold.
+
+The practical rule: **do not explain the gift to anyone who has not tasted it.** One offer, then silence. If they want it, the next door is the same door everyone else walks through, not a private exception built for them.
+
 ## Where this comes from
 
 The principle beneath it is older than the terms: **the gift is not yours to sell, and the system you built to deliver it is** (the Noble = Free antidote, `docs/02-strategy/unique-businesses/alexanders_unique_business.md`). These three terms are that principle at collective scale.

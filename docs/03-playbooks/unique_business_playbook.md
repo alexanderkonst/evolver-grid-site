@@ -5185,4 +5185,8 @@ Every collective of capable people hits the same three questions, usually late a
 - **Instrument:** revenue share, bounded to a project. Royalties price the idea and are wrong. Equity transfers the part itself and is excluded.
 - **Provenance is not permission.** A ledger records what happened; terms decide what may happen. A commons needs both.
 
+**Sequencing law: taste first, terms second (added Day 186).** The terms are a closer, not an opener. A free gift offered to someone who has not felt it reads as worthless, and offering it a second or third time reads as a discount — which devalues the paid half as well. Lived failure: a method offered three times to a collaborator who had never experienced it; everything downstream jammed, and the block was sequence, not terms.
+
+The order that works: they experience the transformation → they recognize in hindsight what happened → then the terms are spoken, and sound like a description of something they already hold rather than a pitch. This is the structural argument for the free webinar sitting where it does in the funnel. Practical rule: **never explain the gift to someone who has not tasted it.** One offer, then silence. The next door for them is the same door everyone walks through, not a private exception.
+
 *Related: the Noble = Free antidote (`alexanders_unique_business.md`) — these terms are that principle at collective scale · `DISTRIBUTOR_AGREEMENT.md` · `monetization_strategies.md`.*
