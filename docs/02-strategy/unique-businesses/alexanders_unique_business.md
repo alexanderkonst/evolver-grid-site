@@ -119,6 +119,22 @@ This is the playbook applied to Sasha's own business, and at the same time a com
 
 ---
 
+### The Three Terms — how I work with anyone on shared work (Day 186, September 16, 2026)
+
+*Full artifact: [`docs/05-reference/the_three_terms.md`](../../05-reference/the_three_terms.md). Law: Phase Shift Technology 144. Not re-compressed here — this is the pointer plus the spoken form.*
+
+> **The gift is free. The system is paid. The name is permanent.**
+
+- **Free** — the method, the ontology, the insight. Published, usable, cites welcome. It cannot be owned.
+- **Paid** — the artifact, the implementation, the facilitation, the maintenance. Revenue share bounded to the project. No equity, no pooled funds.
+- **Permanent** — attribution never expires and is never conditional on payment.
+
+A licence is consent given in advance with boundaries stated once: what you may do without asking, what needs a conversation, what is never permitted. Attribution is designed to be cheaper than its removal, and whatever escapes the boundary is treated as a gift rather than chased as theft.
+
+This is the collective-scale form of the Noble = Free antidote: the gift is not mine to sell, the system I built to deliver it is.
+
+---
+
 ## ⭐ Канвас уникального бизнеса — v1.0 (Sasha's own, filed Day 186, September 16, 2026)
 
 *Sasha wrote this himself in Russian as UNIQUE BUSINESS CANVAS v1.0. It is the current canvas and supersedes the v1.2 one-sentence tables below, which stay as genealogy. Nine sections, newest prices, and the method named in four technologies for the first time. Filed verbatim; the English mirror follows.*
