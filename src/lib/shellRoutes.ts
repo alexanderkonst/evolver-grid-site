@@ -44,6 +44,12 @@ const HOLDOUT_PREFIX: string[] = [
     "/build/karime",              // KarimeOffer / KarimeIntake (hideLogo + defaultRailMinimized)
 ];
 
+/** Public offer pages that share Ignite's journey shell. */
+const PRODUCT_LANDING_ROUTES = ["/products", "/products/crossing", "/products/built"];
+
+export const isProductLandingRoute = (pathname: string): boolean =>
+    PRODUCT_LANDING_ROUTES.includes(pathname);
+
 /** Paths whose page currently mounts GameShellV2 → layout supplies it instead. */
 const SHELL_EXACT = new Set<string>([
     "/",
@@ -55,6 +61,7 @@ const SHELL_EXACT = new Set<string>([
     "/home",
     "/home2",
     "/ignite",
+    ...PRODUCT_LANDING_ROUTES,
     "/path",
     "/dashboard",
     "/mission-discovery",
@@ -113,6 +120,7 @@ const SHELL_PREFIX: string[] = [
 
 /** Paths that should render with the top-right home/logo tile HIDDEN. */
 const HIDE_LOGO_EXACT = new Set<string>([
+    ...PRODUCT_LANDING_ROUTES,
     "/path",
     "/ai-os/work-with-us",
     "/mission-discovery",
