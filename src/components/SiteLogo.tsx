@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { isProductLandingRoute } from "@/lib/shellRoutes";
 // Day 48 (Sasha): the brand logo (orb + FIND YOUR TOP TALENT wordmark).
 // Same asset used by the SpacesRail and the top-right shell icon.
 import brandLogo from "@/assets/you-be-original-main-lockup.webp"; // Day 123 (Sasha 2026-07-13): main brand -> YOU be original
@@ -128,7 +129,7 @@ const SiteLogo = () => {
     // flag) ships its own in-page wordmark too — suppress the global FYTT
     // mark so it doesn't double up at top-center.
     const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb", "/mdls-preview", "/build/equilibrium", "/equilibrium", "/preview/equilibrium-v2", "/build/karime", "/build/karime/intake", "/proposalforwegoodovahere", "/build/cockpit", "/1-pager", "/landing", "/you", "/home"];
-    if (hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
+    if (isProductLandingRoute(location.pathname) || hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
 
     return (
         <Link

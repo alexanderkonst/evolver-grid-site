@@ -32,6 +32,7 @@ import { useSkin } from "@/contexts/SkinContext";
 // Skin VALUE no longer implies demo scope now that Aurum is a
 // persistable user theme — see __isFullRailScope below.
 import { initialSkinScope } from "@/lib/skinScope";
+import { isProductLandingRoute } from "@/lib/shellRoutes";
 // Day 80 Wave 2.11: useEntryPath import retired — the video background
 // now checks the URL directly at mount (see comment in MuxVideoBackground
 // below) so sessionStorage-cached match flags don't poison fresh loads.
@@ -639,7 +640,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         if (typeof window === 'undefined') return true;
         const p = window.location.pathname;
         const isLandingPage = p === '/' || p.startsWith('/game/journey');
-        const isIgnitePage = p === '/ignite';
+        const isIgnitePage = p === '/ignite' || isProductLandingRoute(p);
         const isEquilibriumPage =
             p === '/build/equilibrium' ||
             p === '/equilibrium' ||
@@ -794,7 +795,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         // has no pane-2 content — and Sasha got pane 1 + pane 3 only,
         // no contextual nav. Same shape of fix as the Day 64 QoL entry.
         const buildSharedPaths = ["/playbook", "/path", "/dashboard", "/ignite"];
-        const isBuildSharedPath = buildSharedPaths.some(
+        const isBuildSharedPath = isProductLandingRoute(location.pathname) || buildSharedPaths.some(
             (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
         );
         if (activeSpaceId === "build" && isBuildSharedPath) {
@@ -807,7 +808,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         }
 
         const journeyPaths = ["/", "/playbook", "/path", "/my-artifacts", "/zone-of-genius", "/game/settings", "/dashboard", "/ignite", "/quality-of-life-map", "/asset-mapping", "/activate-top-talent"];
-        const isJourneyFamily = journeyPaths.some(
+        const isJourneyFamily = isProductLandingRoute(location.pathname) || journeyPaths.some(
             (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
         );
         if (isJourneyFamily || location.pathname.startsWith("/game/journey")) {
