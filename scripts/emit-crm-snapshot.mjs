@@ -145,7 +145,7 @@ function main() {
   writeFileSync(OUT_PATH, JSON.stringify(payload, null, 2) + "\n");
   writeFileSync(
     MODULE_OUT_PATH,
-    `const crmSnapshot = ${JSON.stringify(payload, null, 2)} as const;\n\nexport default crmSnapshot;\n`,
+    `const crmSnapshot = ${JSON.stringify(payload, null, 2)};\n\nexport default crmSnapshot;\n`,
   );
   mkdirSync(dirname(PUBLIC_OUT_PATH), { recursive: true });
   writeFileSync(PUBLIC_OUT_PATH, JSON.stringify(payload, null, 2) + "\n");
