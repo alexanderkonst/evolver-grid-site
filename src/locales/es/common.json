@@ -1016,7 +1016,9 @@
     "build": "CREADO POR TI",
     "offer": "OFRECER",
     "lockedLabel": "{{space}}, bloqueado",
-    "lockedHeader": "{{space}} · Bloqueado"
+    "lockedHeader": "{{space}} · Bloqueado",
+    "themeToggleToOnyxAria": "Cambiar al tema en blanco y negro",
+    "themeToggleToOnyxTitle": "Cambiar a Ónix, el tema en blanco y negro"
   },
   "navigation": {
     "accountFallback": "Cuenta",
@@ -1875,7 +1877,9 @@
     "footerCommercialLine": "¿Vas a lo comercial? 10% de los ingresos, te quedas con tu marca.",
     "sourceOnGithub": "Código fuente en GitHub",
     "languageRowTitle": "Idioma",
-    "languageRowHint": "Elige el idioma de la interfaz."
+    "languageRowHint": "Elige el idioma de la interfaz.",
+    "skinOnyxLabel": "Ónix",
+    "skinOnyxTagline": "Blanco y negro · monocromo editorial"
   },
   "today": {
     "toastErrorTitle": "Error",

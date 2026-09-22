@@ -698,6 +698,149 @@
   --skin-strike-color: rgba(10, 10, 10, 0.65);
 }
 
+/* ==========================================================================
+   ONYX SKIN — Day 190 (Sasha 2026-09-21)
+   ==========================================================================
+   The third first-class PLATFORM theme, sibling to Lapis (light) and Aurum
+   (dark): pure black-on-white editorial. Mirrors the /ns (network-school)
+   b&w palette, but as a persistable platform skin offered in the Settings
+   and Pane-1 theme switchers — not route-scoped like network-school.
+   Selected via `<html data-skin="onyx">`.
+   Keep in sync with network-school if that palette changes.
+   ========================================================================== */
+
+[data-skin="onyx"] {
+  /* ── Text — pure editorial black on white. */
+  --skin-text-primary: #0a0a0a;
+  --skin-text-body: rgba(10, 10, 10, 0.92);
+  --skin-text-muted: rgba(10, 10, 10, 0.62);
+  --skin-text-muted-soft: rgba(10, 10, 10, 0.48);
+
+  --skin-sections-text: rgba(10, 10, 10, 0.80);
+
+  /* Halos flat — no glow in editorial register. */
+  --skin-text-halo-strong: none;
+  --skin-text-halo-subtle: none;
+  --skin-text-halo-soft: none;
+  --skin-text-halo-deep: none;
+
+  /* Panel washes — Pane 1 a barely-perceptible off-white nav surface;
+     Panes 2+3 pure white; stronger hairlines demarcate all three. */
+  --skin-panel-1-bg: #fafafa;
+  --skin-panel-2-bg: #ffffff;
+  --skin-panel-wash: rgba(255, 255, 255, 1);
+  --skin-panel-wash-quiet: rgba(255, 255, 255, 1);
+
+  /* Ornaments — solid black, no glow. */
+  --skin-ornament-rule:  rgba(10, 10, 10, 0.15);
+  --skin-ornament-star:  #0a0a0a;
+  --skin-ornament-shadow: none;
+
+  /* Primary CTA — pure black pill, white text, minimal shadow. */
+  --skin-cta-bg: #0a0a0a;
+  --skin-cta-text: #ffffff;
+  --skin-cta-border: transparent;
+  --skin-cta-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --skin-cta-text-shadow: none;
+  --skin-cta-icon: #ffffff;
+  --skin-cta-icon-shadow: none;
+
+  /* Gradient accents — monochrome black (held as flat gradients so
+     background-image consumers keep working). */
+  --skin-accent-1-bg: linear-gradient(135deg, #0a0a0a 0%, #0a0a0a 100%);
+  --skin-accent-1-glow: none;
+  --skin-accent-2-bg: linear-gradient(135deg, #1c1c1c 0%, #1c1c1c 100%);
+  --skin-accent-2-glow: none;
+  --skin-accent-3-bg: linear-gradient(135deg, #2a2a2a 0%, #2a2a2a 100%);
+  --skin-accent-3-glow: none;
+
+  --skin-link-secondary: rgba(10, 10, 10, 0.72);
+
+  /* Editorial prose density. */
+  --skin-text-strong: rgba(10, 10, 10, 0.96);
+  --skin-text-faint:  rgba(10, 10, 10, 0.55);
+  --skin-text-hint:   rgba(10, 10, 10, 0.40);
+
+  /* Rules — hairline grays only. */
+  --skin-rule-strong:   rgba(10, 10, 10, 0.18);
+  --skin-rule-medium:   rgba(10, 10, 10, 0.12);
+  --skin-rule-hairline: rgba(10, 10, 10, 0.07);
+  --skin-rule-faint:    rgba(10, 10, 10, 0.04);
+
+  /* Links — editorial black with quiet underline. */
+  --skin-link-color:        #0a0a0a;
+  --skin-link-hover:        rgba(10, 10, 10, 0.65);
+  --skin-link-underline:    rgba(10, 10, 10, 0.35);
+
+  /* Cards — white surface, hairline border, minimal shadow. */
+  --skin-card-bg:       #ffffff;
+  --skin-card-border:   rgba(10, 10, 10, 0.08);
+  --skin-card-shadow:   0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px -12px rgba(0, 0, 0, 0.08);
+
+  /* Tints — minimal gray washes (no violet, no gold). */
+  --skin-tint-violet-soft: linear-gradient(135deg, rgba(0,0,0,0.02), rgba(0,0,0,0.005));
+  --skin-tint-gold-soft:   linear-gradient(135deg, rgba(0,0,0,0.02), rgba(0,0,0,0.005));
+
+  /* Single accent — pure black, no glow. */
+  --skin-accent-gold:        #0a0a0a;
+  --skin-accent-gold-glow:   none;
+
+  /* Selected state — light gray, no color. */
+  --skin-selected-bg:     rgba(10, 10, 10, 0.06);
+  --skin-selected-border: rgba(10, 10, 10, 0.25);
+  --skin-selected-text:   #0a0a0a;
+
+  /* Form inputs — white, hairline border, black text. */
+  --skin-input-bg:      #ffffff;
+  --skin-input-border:  rgba(10, 10, 10, 0.18);
+  --skin-input-text:    #0a0a0a;
+  --skin-input-placeholder: rgba(10, 10, 10, 0.40);
+
+  /* Darkroom — pure black with white text (editorial hero pattern). */
+  --skin-darkroom-bg:     rgba(10, 10, 10, 0.96);
+  --skin-darkroom-text:   rgba(255, 255, 255, 0.96);
+  --skin-darkroom-muted:  rgba(255, 255, 255, 0.72);
+  --skin-darkroom-border: rgba(255, 255, 255, 0.12);
+
+  /* Callout — flat black gradient (GOLD_GRADIENT helper needs a gradient). */
+  --skin-callout-bg:     linear-gradient(135deg, #0a0a0a 0%, #0a0a0a 100%);
+  --skin-callout-glow:   none;
+
+  /* Music player tokens — mono palette. */
+  --skin-music-play-bg:     transparent;
+  --skin-music-play-border: rgba(10, 10, 10, 0.25);
+  --skin-music-play-shadow: none;
+  --skin-music-icon:        #0a0a0a;
+  --skin-music-text:        rgba(10, 10, 10, 0.78);
+  --skin-music-meta:        rgba(10, 10, 10, 0.55);
+
+  /* Locked/completed strikethrough — near-black. */
+  --skin-strike-color: rgba(10, 10, 10, 0.65);
+}
+
+/* Onyx typography — mirrors the network-school editorial register:
+   transitional serif headlines + serif body. */
+[data-skin="onyx"] h1,
+[data-skin="onyx"] h2,
+[data-skin="onyx"] h3,
+[data-skin="onyx"] h4,
+[data-skin="onyx"] .font-display,
+[data-skin="onyx"] .font-serif {
+  font-family: "Newsreader", "Source Serif Pro", "Source Serif 4", Georgia, serif !important;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
+[data-skin="onyx"] body,
+[data-skin="onyx"] p,
+[data-skin="onyx"] li,
+[data-skin="onyx"] blockquote {
+  font-family: "Newsreader", "Source Serif Pro", Georgia, serif !important;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
 /* ───────────────────────────────────────────────────────────────────
    KARIME SKIN — Day 81 (Sasha 2026-05-23)
    ───────────────────────────────────────────────────────────────────

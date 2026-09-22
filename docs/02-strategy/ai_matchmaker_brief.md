@@ -1,16 +1,48 @@
-# AI Matchmaker Brief
+# AI Matchmaker Brief — Index & Genealogy
 
-> **The single home for every AI-matchmaker brief.** Boardy today, its successors tomorrow. One file, versioned, newest first. Do not fork this into per-tool documents.
+> **Current sendable brief: [v4.3](briefs/matchmaker_brief_v4.3.md), September 21, 2026.** Each numbered file is complete and standalone; the highest version is current. This index preserves rationale and history. Send the current versioned file, not the historical blocks below.
 >
-> **Law:** [Technology 133 — The Matchmaker Is a Mirror of the Brief](../01-vision/phase_shift_technology_library.md). **Channel operations:** [`distribution_playbook.md` §10](../03-playbooks/distribution_playbook.md). **Who the streams are:** [Tribe v6.1](./unique-businesses/alexanders_unique_business.md).
+> **Source hierarchy:** Sasha's UBC v1.11 and September 17–21 invitation/sovereignty exploration inform v4.3. Earlier briefs and outreach strategy v4.0 remain genealogy where they conflict with it. Technology 133 supplies the principle: the matchmaker mirrors the precision of the brief.
 >
-> **The LinkedIn channel runs on this same brief.** Commercial OS (`/built-by-you/commercial-os`, source: `commercial-tools/app/config.json`) encodes the three streams, the typology exclusion, and the quiz-instead-of-pitch rule as its targeting and copy. When this file gets a new version, that config gets the same version stamp.
+> **Tool projection:** `scripts/sync-brief-to-tool.mjs` copies the current brief into `commercial-tools/app/config.json` and regenerates search queries from `mfLexicon`. It does not migrate scoring, exclusions, routing, or templates. The tool's stored brief can be current while those behaviors still implement v4.2-era assumptions. Do not treat a version stamp as behavioral migration.
 >
-> **The sendable brief is a versioned file, not a section of this one.** Each version is complete and standalone: `briefs/matchmaker_brief_v3.1.md`, and the next one is `_v3.2.md` beside it. Highest version number is current. This file keeps the reasoning, the yield curve, and the genealogy; it is never the thing you send.
->
-> **One vocabulary, everything else derived.** `commercial-tools/app/config.json` → `mfLexicon` is the only marker list. `scripts/sync-brief-to-tool.mjs` copies the current brief into the tool and regenerates the search queries from that lexicon. A test fails if the brief names a phrase the lexicon does not carry, or if the queries drift from it. Edit the brief file or the lexicon, run the script, and every surface agrees.
->
-> **How to use:** the block under "Sendable text" is what goes to the matchmaker, verbatim. Everything else is why it says what it says. Re-brief after every batch of intros; the brief is the only variable under control and it is free to change.
+> **Vocabulary:** `commercial-tools/app/config.json` → `mfLexicon` remains the shared marker inventory. v4.3 changes how markers are interpreted: evidence of affinity, not proof of capacity or a hard exclusion when absent.
+
+---
+
+## v4.3 — September 21, 2026 · invitation and sovereign discovery
+
+**Current artifact:** [Matchmaker Brief v4.3](briefs/matchmaker_brief_v4.3.md).
+
+The canvas centers experienced founders who serve founders. The invitation exploration changes how we meet them: offer a grounded possibility, allow correction, and let the next movement be chosen. The brief must implement both changes without turning every interesting person into a prospect.
+
+### What changed and why
+
+- **Primary audience:** founders serving founders. v4.2's automatic practitioner-to-non-buyer route could exclude the current ideal client.
+- **Opening:** includes a fuller expression of an existing business, not only a form ending. A current practice can work and still have a specific next development.
+- **Evidence:** vocabulary supports affinity; its absence cannot establish incapacity. Missing evidence stays unknown. Entrepreneurial history, audience, and concrete opening keep the search selective.
+- **Relationships:** own-business client, delivery/method partner, host/operator, and peer are provisional and can overlap. Neither an existing framework nor an assessment business determines buying intent.
+- **Output:** linked quotes, current offer, a grounded opportunity hypothesis, counterevidence, and an unresolved question. AI supports Sasha's seeing rather than issuing a verdict about the person.
+- **Entry:** a relevant conversation can precede the quiz. The Recognition Round is a possible next container, not an automatically available event. Samples remain gifts; paid service has explicit terms.
+- **Learning:** distinguish recognition from purchase and record corrections to hypotheses. The new brief is a testable strategy, not a claim of improved conversion already achieved.
+
+### Review cases used to check the brief
+
+| Case | Expected treatment |
+|---|---|
+| Experienced founder adviser with a generic public offer and relevant history | Primary candidate; inspect the offer page before inferring an opening |
+| Fluent practitioner with their own method and an explicit wish to productize | Possible client and method partner; no automatic “Finished Cathedral” exclusion |
+| Founder in transition with strong business evidence but no inner-work vocabulary | Exploratory lane; resonance unknown, no incapacity diagnosis |
+| Many projects, already coherently explained on their website | Withdraw the missing-thread hypothesis; find another real opening or pass |
+| Studio operator with an identified cohort need and no personal transition | Relevant operator/host route; confirm scope and purchasing authority later |
+| Plant-medicine professional with no founder audience or commercial opening | Separate watch-only result; not a qualified lead |
+| Aligned peer with no own-business need or concrete complementary use | Peer exploration only, or outside commercial shortlist |
+
+### Runtime boundary after the brief sync
+
+The Commercial OS still contains legacy hard gates, typology exclusions, partner-only routing, transition-oriented queries, and quiz-first message templates. Migrating those is an implementation task beyond this brief revision. Until then, use the standalone v4.3 brief for matching and manually review tool classifications against it; do not present legacy drafts as v4.3 invitation copy.
+
+v4.2 and earlier numbered files are preserved unchanged. No external matchmaker has been re-briefed and no outreach is authorized by this document update.
 
 ---
 

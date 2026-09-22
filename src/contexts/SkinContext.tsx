@@ -35,7 +35,7 @@ import { supabase } from "@/integrations/supabase/client";
 // the blue stone veined with gold) and "aurum" (dark, gold-on-near-
 // black; formerly the route-scoped "darktheme" preview). Legacy slugs
 // stored in localStorage are migrated on read (see getPersistedSkin).
-export type Skin = "lapis" | "navy-gold" | "network-school" | "karime" | "daouniverse" | "planetir" | "aurum" | "techstars";
+export type Skin = "lapis" | "navy-gold" | "network-school" | "karime" | "daouniverse" | "planetir" | "aurum" | "techstars" | "onyx";
 
 interface SkinContextValue {
   skin: Skin;
@@ -49,7 +49,7 @@ interface SkinContextValue {
 }
 
 const STORAGE_KEY = "app-skin";
-const VALID_SKINS: Skin[] = ["lapis", "navy-gold", "network-school", "karime", "daouniverse", "planetir", "aurum", "techstars"];
+const VALID_SKINS: Skin[] = ["lapis", "navy-gold", "network-school", "karime", "daouniverse", "planetir", "aurum", "techstars", "onyx"];
 
 /** One-time slug migration for choices persisted before the Day 91
  *  rename. Without this, the VALID_SKINS gate would silently discard

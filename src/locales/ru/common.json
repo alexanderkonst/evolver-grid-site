@@ -1312,7 +1312,9 @@
     "footerCommercialLine": "Идёшь в коммерцию? 10% от выручки, бренд остаётся твоим.",
     "sourceOnGithub": "Исходники на GitHub",
     "languageRowTitle": "Язык",
-    "languageRowHint": "Выбери язык интерфейса."
+    "languageRowHint": "Выбери язык интерфейса.",
+    "skinOnyxLabel": "Оникс",
+    "skinOnyxTagline": "Чёрное на белом · редакционный моно"
   },
   "zogOverview": {
     "emptyImageAlt": "Главный талант",
@@ -3169,7 +3171,9 @@
     "build": "СОЗДАНО ТОБОЙ",
     "offer": "ПРЕДЛОЖИТЬ",
     "lockedLabel": "{{space}}, закрыто",
-    "lockedHeader": "{{space}} · Закрыто"
+    "lockedHeader": "{{space}} · Закрыто",
+    "themeToggleToOnyxAria": "Переключить на чёрно-белую тему",
+    "themeToggleToOnyxTitle": "Переключить на «Оникс», чёрно-белую тему"
   },
   "profileSettings": {
     "toastErrorTitle": "Ошибка",
