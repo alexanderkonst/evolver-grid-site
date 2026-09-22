@@ -49,6 +49,10 @@ export interface ExtResultScreenProps {
   /** "live" (default) or "saved" — only changes the analytics source
    *  suffix on the booking-click event. */
   bookingContext?: "live" | "saved";
+  /** True once the hard email gate captured an address for this passage —
+   *  the quiet footer SaveMyRead is then redundant and hidden. Permalink
+   *  viewers arrive with this false and still see the capture. */
+  emailCaptured?: boolean;
 }
 
 export function ExtResultScreen({
@@ -60,6 +64,7 @@ export function ExtResultScreen({
   onRetake,
   savedOnDate = null,
   bookingContext = "live",
+  emailCaptured = false,
 }: ExtResultScreenProps) {
   const { i18n } = useTranslation();
   void i18n;
@@ -201,7 +206,7 @@ export function ExtResultScreen({
         {/* 2026-08-17 audit: the EXT read is now the dominant variant and had
             no email capture at all — 277 reads produced one contact. The
             permalink offer belongs on every result variant. */}
-        <SaveMyRead t={t} resultId={resultId} stage={answers.stage} />
+        {!emailCaptured && <SaveMyRead t={t} resultId={resultId} stage={answers.stage} />}
         <TopTalentSecondary t={t} resultVersion={resultVersion} saved={bookingContext === "saved"} />
 
         <div className="tq-ext-utility">

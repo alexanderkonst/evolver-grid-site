@@ -7921,6 +7921,14 @@
     },
     "currentChapter": {
       "line": "Todavía no estás buscando el próximo capítulo, y esa es una respuesta real, no una evasiva. Algo en tu vida profesional se está moviendo, y estás eligiendo mantener tu atención en el trabajo que ya es tuyo. Esa elección puede sostenerse. Este mapa seguirá aquí cuando la pregunta cambie."
+    },
+    "emailGate": {
+      "eyebrow": "Tu lectura está lista",
+      "title": "Un paso para abrirla",
+      "body": "Escribe tu correo y tu lectura completa se abrirá aquí. También te guardo un enlace para que puedas volver a ella después.",
+      "placeholder": "tu@email.com",
+      "cta": "Abrir mi lectura",
+      "privacy": "Sin spam. Puedes darte de baja cuando quieras."
     }
   },
   "homeLanding": {

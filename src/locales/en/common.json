@@ -7928,6 +7928,14 @@
     },
     "currentChapter": {
       "line": "You're not looking for the next chapter yet, and that is a real answer rather than a dodge. Something in your professional life is moving, and you're choosing to keep your attention on the work that is already yours. That choice can stand. This map will still be here when the question changes."
+    },
+    "emailGate": {
+      "eyebrow": "The read is ready",
+      "title": "One step to open it",
+      "body": "Enter your email and your full read opens here. I'll also save you a link so you can come back to it.",
+      "placeholder": "you@email.com",
+      "cta": "Open my read",
+      "privacy": "No spam. Unsubscribe anytime."
     }
   },
   "homeLanding": {
