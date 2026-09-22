@@ -62,6 +62,7 @@ type Screen =
   | "q2"
   | "q3"
   | "loading"
+  | "emailGate"
   | "result"
   | "buyingFrame"
   | "means";
@@ -81,6 +82,8 @@ const PROGRESS: Partial<Record<Screen, number>> = {
   q2: 0.5,
   q3: 0.82,
   loading: 0.95,
+  // The read is computed; the email step is the last beat before it opens.
+  emailGate: 0.97,
   // The thread completes when the read arrives — the ritual closes at 100%,
   // it doesn't die at 95%.
   notYet: 1,
@@ -140,6 +143,14 @@ interface PersistedState {
   emergingWorkStage: EmergingWorkStage | null;
   buyingFrame: BuyingFrame | null;
   means: Means | null;
+  // Hard email gate (2026-09-22, Sasha). The read is gated behind an
+  // email ask — no money, just the address — so the person is captured
+  // before the read and the address can pre-fill Top Talent signup.
+  // `pendingRead` is where the gate hands off after a valid email:
+  // "result" (stages 4-7) or "notYet" (stages 1-3). `capturedEmail` is
+  // null for permalink/shared viewers, who are never gated.
+  capturedEmail: string | null;
+  pendingRead: "result" | "notYet" | null;
 }
 
 const initialState: PersistedState = {
@@ -149,6 +160,8 @@ const initialState: PersistedState = {
   emergingWorkStage: null,
   buyingFrame: null,
   means: null,
+  capturedEmail: null,
+  pendingRead: null,
 };
 
 function loadInitial(): PersistedState {
@@ -167,6 +180,11 @@ function loadInitial(): PersistedState {
         emergingWorkStage: decoded.emergingWorkStage ?? null,
         buyingFrame: decoded.buyingFrame ?? null,
         means: decoded.means ?? null,
+        // A shared read opens straight to the result — the viewer didn't
+        // take the quiz here, so they are not gated. The quiet per-screen
+        // SaveMyRead still offers them capture.
+        capturedEmail: null,
+        pendingRead: null,
       };
     }
   }
@@ -201,7 +219,7 @@ const TransitionQuizPage = () => {
     markDoorSeen();
   }, []);
 
-  const { screen, stage, uniqueness, emergingWorkStage, buyingFrame, means } = state;
+  const { screen, stage, uniqueness, emergingWorkStage, buyingFrame, means, capturedEmail, pendingRead } = state;
   const stageNames = t("quiz.stageNames", { returnObjects: true }) as Record<string, string>;
 
   const goTo = useCallback((next: Screen, patch: Partial<PersistedState> = {}) => {
@@ -305,6 +323,8 @@ const TransitionQuizPage = () => {
         // Early endings are a door too — without this the dataset can't tell
         // "no route recorded" from "not-yet ending shown" (2026-08-17 audit).
         route_shown: "notYet",
+        // Gate email lands on the same row as the read it opened (hygiene #22).
+        email: capturedEmail ?? null,
       }).then((res) => {
         const id = res && "data" in res ? (res.data as { id?: string } | null)?.id : undefined;
         if (id) {
@@ -328,6 +348,8 @@ const TransitionQuizPage = () => {
         // screen follows, the update branch below refines it to the
         // post-answer route on the SAME row.
         route_shown: routing.route,
+        // Gate email lands on the same row as the read it opened (hygiene #22).
+        email: capturedEmail ?? null,
       }).then((res) => {
         const id = res && "data" in res ? (res.data as { id?: string } | null)?.id : undefined;
         if (id) {
@@ -337,7 +359,7 @@ const TransitionQuizPage = () => {
       });
       trackPageView("quiz_result", `quiz_result_${resultTemplate}`);
     }
-  }, [screen, stage, coreAnswers, routing, logCompletion, rememberAndClaim, uniqueness]);
+  }, [screen, stage, coreAnswers, routing, logCompletion, rememberAndClaim, uniqueness, capturedEmail]);
 
 
   // Log the Buying Frame answer + final route onto the SAME row as the
@@ -440,9 +462,13 @@ const TransitionQuizPage = () => {
   // doesn't feel instant/cheap).
   useEffect(() => {
     if (screen !== "loading") return;
-    const id = window.setTimeout(() => goTo("result"), 650);
+    // After the analysis beat, the read is ready — but it opens behind the
+    // email gate (hard gate, Sasha 2026-09-22). Already-captured people
+    // (e.g. resuming) skip straight to the read.
+    const next: Screen = capturedEmail ? "result" : "emailGate";
+    const id = window.setTimeout(() => goTo(next, { pendingRead: "result" }), 650);
     return () => window.clearTimeout(id);
-  }, [screen, goTo]);
+  }, [screen, goTo, capturedEmail]);
 
   // ── Analytics: per-screen mount events (quiz_entry, quiz_q1..quiz_q3) ────
   useEffect(() => {
@@ -526,9 +552,15 @@ const TransitionQuizPage = () => {
               i18nKey="quiz.q2"
               values={UNIQUENESS_VALUES}
               current={uniqueness}
-              onPick={(v) =>
-                goTo(stage && isNotYetStage(stage) ? "notYet" : "q3", { uniqueness: v })
-              }
+              onPick={(v) => {
+                // Stages 1-3 end here (not-yet read). Gate it behind email
+                // too, unless already captured (resume). Stages 4-7 go on to Q3.
+                if (stage && isNotYetStage(stage)) {
+                  goTo(capturedEmail ? "notYet" : "emailGate", { uniqueness: v, pendingRead: "notYet" });
+                } else {
+                  goTo("q3", { uniqueness: v });
+                }
+              }}
             />
           )}
 
@@ -543,6 +575,16 @@ const TransitionQuizPage = () => {
           )}
 
           {screen === "loading" && <LoadingScreen t={t} />}
+
+          {screen === "emailGate" && (
+            <EmailGateScreen
+              t={t}
+              stage={stage}
+              onSubmit={(email) => {
+                goTo(pendingRead ?? "result", { capturedEmail: email });
+              }}
+            />
+          )}
 
           {screen === "result" && coreAnswers && routing && (
             // Not-seeking gate: Q3 = "current_chapter" mirrors the stage-1
@@ -567,6 +609,7 @@ const TransitionQuizPage = () => {
                 resultVersion="ext-a"
                 resultId={resultId}
                 onRetake={reset}
+                emailCaptured={Boolean(capturedEmail)}
               />
             ) : (
               <ResultScreen
@@ -583,6 +626,7 @@ const TransitionQuizPage = () => {
                 }}
                 onRetake={reset}
                 resultId={resultId}
+                emailCaptured={Boolean(capturedEmail)}
               />
             )
           )}
@@ -948,6 +992,86 @@ function LoadingScreen({ t }: { t: (k: string, o?: Record<string, unknown>) => u
   );
 }
 
+// ── Email gate (hard gate before the read, Sasha 2026-09-22) ─────────────
+// The read is computed but opens only after an email — no money ask. The
+// address is written onto the result row (via the parent's completion log),
+// added to the nurture list, and stashed under `prefill_email` so the Top
+// Talent signup can pre-populate it (the account-creation on-ramp Sasha
+// asked for). Robust by design: an invalid address just disables submit,
+// and the background sends are fire-and-forget so a network blip never
+// traps the person behind the gate.
+function EmailGateScreen({
+  t,
+  stage,
+  onSubmit,
+}: {
+  t: (k: string, o?: Record<string, unknown>) => unknown;
+  stage: Stage | null;
+  onSubmit: (email: string) => void;
+}) {
+  const { i18n } = useTranslation();
+  const [value, setValue] = useState("");
+  const trimmed = value.trim().toLowerCase();
+  const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+
+  useEffect(() => {
+    trackCTAClick("quiz_cta_click", "email_gate_view", { stage });
+  }, [stage]);
+
+  const submit = () => {
+    if (!valid) return;
+    trackCTAClick("quiz_cta_click", "email_gate_submit", { stage });
+    // Nurture list — same graceful, fire-and-forget contract as SaveMyRead.
+    supabase.functions
+      .invoke("save-quiz-email", {
+        body: { email: trimmed, stage, locale: i18n.language, source: "email_gate" },
+      })
+      .catch(() => {});
+    // Seed Top Talent signup so the account is one field lighter to create.
+    try {
+      window.localStorage.setItem("prefill_email", trimmed);
+    } catch {
+      /* private mode — prefill just won't populate, non-fatal */
+    }
+    onSubmit(trimmed);
+  };
+
+  return (
+    <section className="tq-card tq-emailgate-card">
+      <div className="tq-reveal">
+        <p className="tq-eyebrow-gold" style={GOLD_TEXT_STYLE}>
+          {t("quiz.emailGate.eyebrow") as string}
+        </p>
+        <h2 className="tq-h1" style={{ fontSize: "1.9rem" }}>
+          {t("quiz.emailGate.title") as string}
+        </h2>
+        <p className="tq-body-text tq-measure" style={{ marginTop: 10 }}>
+          {t("quiz.emailGate.body") as string}
+        </p>
+      </div>
+      <div className="tq-email-row" style={{ marginTop: 20 }}>
+        <input
+          type="email"
+          className="tq-email-input"
+          value={value}
+          placeholder={t("quiz.emailGate.placeholder") as string}
+          autoFocus
+          autoComplete="email"
+          inputMode="email"
+          onChange={(e) => setValue(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && submit()}
+        />
+        <button type="button" className="tq-email-cta" onClick={submit} disabled={!valid}>
+          {t("quiz.emailGate.cta") as string}
+        </button>
+      </div>
+      <p className="tq-sub tq-quiet-line" style={{ marginTop: 12, textAlign: "center" }}>
+        {t("quiz.emailGate.privacy") as string}
+      </p>
+    </section>
+  );
+}
+
 // ── Result: the 3-beat lean architecture (§12) ───────────────────────────
 // Result Experience v1 — Day 142 (historical, retained for rollback;
 // superseded by ExtResultScreen for the representative pattern). Do not
@@ -964,6 +1088,7 @@ export function ResultScreen({
   onRetake,
   resultId = null,
   saved = false,
+  emailCaptured = false,
 }: {
   t: (k: string, o?: Record<string, unknown>) => unknown;
   stageNames: Record<string, string>;
@@ -976,6 +1101,10 @@ export function ResultScreen({
   /** True when rendered from the saved-result permalink — only changes the
    *  analytics `saved` property on the Top Talent CTA click (brief §14). */
   saved?: boolean;
+  /** True once the email gate captured an address for this passage — the
+   *  quiet per-screen SaveMyRead is then redundant and hidden. Permalink
+   *  viewers arrive with this false, so they still see the capture. */
+  emailCaptured?: boolean;
 }) {
   if (route === "crossedPeer") {
     return (
@@ -1071,7 +1200,7 @@ export function ResultScreen({
 
         <TopTalentSecondary t={t} resultVersion="v1" saved={saved} />
 
-        <SaveMyRead t={t} resultId={resultId} stage={answers.stage} />
+        {!emailCaptured && <SaveMyRead t={t} resultId={resultId} stage={answers.stage} />}
 
         <button type="button" className="tq-retake" onClick={onRetake}>
           {t("quiz.notYet.retake") as string}
