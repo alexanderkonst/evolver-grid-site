@@ -3784,6 +3784,20 @@
   font-weight: 400;
   letter-spacing: 0;
 }
+
+/* "The Dao" active rail-chip fill — the rail's active chip reads this var
+   inline (SpacesRail). Undefined elsewhere → falls back to gold; here it's
+   a soft near-black so the selected space reads as recessed in b&w. */
+[data-skin="dao"] {
+  --skin-selected-bg-deep: rgba(10, 10, 10, 0.06);
+}
+
+/* The soft accent-tinted cursor blob (CustomCursor) is a warm glow in
+   Lapis/Aurum; under the b&w editorial skin it degrades to a grey smudge.
+   Suppress it — the native cursor is never hidden, so nothing is lost. */
+[data-skin="dao"] [data-cursor-blob] {
+  display: none !important;
+}
 /* Tab list "Log In / Sign Up" gold-rgba surround → neutral hairline. */
 [data-skin="network-school"] article.liquid-glass-strong [role="tablist"],
 [data-skin="dao"] article.liquid-glass-strong [role="tablist"] {
@@ -4092,6 +4106,20 @@
 [data-skin="dao"] .liquid-glass.h-dvh span[style*="place-items:center"] {
   color: #0a0a0a !important;
   text-shadow: none !important;
+}
+
+/* V7 (dao, 2026-09-22) — SvgGlyphIcon (COLLABORATE / GROW / BUILT-BY-YOU
+   rail glyphs) centers via a CLASS, not an inline style, so the V6
+   fingerprint above misses it; its glow is an inline
+   `filter: drop-shadow(<hsl color>)`, not a text-shadow. Result: those
+   glyphs kept their pink / gold color + glow under the b&w skin. Target
+   them by the inline drop-shadow (unique to SvgGlyphIcon in the rail) and
+   neutralize to a flat black line-glyph — matching the GlyphIcon siblings.
+   `currentColor` strokes, so `color` blackens the glyph itself. */
+[data-skin="network-school"] .liquid-glass.h-dvh span[style*="drop-shadow"],
+[data-skin="dao"] .liquid-glass.h-dvh span[style*="drop-shadow"] {
+  color: #0a0a0a !important;
+  filter: none !important;
 }
 
 /* Pane 2 close button (the X in the upper-right of Pane 2 header) —

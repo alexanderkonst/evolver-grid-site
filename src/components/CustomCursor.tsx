@@ -87,6 +87,7 @@ const CustomCursor = () => {
 
   return (
     <div
+      data-cursor-blob
       className="fixed pointer-events-none z-cursor transition-transform duration-150 ease-out"
       style={{
         left: `${position.x}px`,
