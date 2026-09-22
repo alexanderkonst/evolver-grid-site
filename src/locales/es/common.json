@@ -1017,8 +1017,8 @@
     "offer": "OFRECER",
     "lockedLabel": "{{space}}, bloqueado",
     "lockedHeader": "{{space}} · Bloqueado",
-    "themeToggleToOnyxAria": "Cambiar al tema en blanco y negro",
-    "themeToggleToOnyxTitle": "Cambiar a Ónix, el tema en blanco y negro"
+    "themeToggleToDaoAria": "Cambiar al tema en blanco y negro",
+    "themeToggleToDaoTitle": "Cambiar a The Dao, el tema en blanco y negro"
   },
   "navigation": {
     "accountFallback": "Cuenta",
@@ -1878,8 +1878,8 @@
     "sourceOnGithub": "Código fuente en GitHub",
     "languageRowTitle": "Idioma",
     "languageRowHint": "Elige el idioma de la interfaz.",
-    "skinOnyxLabel": "Ónix",
-    "skinOnyxTagline": "Blanco y negro · monocromo editorial"
+    "skinDaoLabel": "The Dao",
+    "skinDaoTagline": "Blanco y negro · monocromo editorial"
   },
   "today": {
     "toastErrorTitle": "Error",

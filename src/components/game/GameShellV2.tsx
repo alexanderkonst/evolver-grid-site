@@ -25,7 +25,7 @@ import latamPyramidMark from "@/assets/latam-impact-pyramid.png";
 import planetirLogoMark from "@/assets/planetir-logo.png";
 // Day 91 (Sasha 2026-06-08): Techstars wordmark for mobile pill.
 import techstarsLogoMark from "@/assets/techstars-logo.png";
-import lapisStillBackground from "@/assets/lapis-still-background.webp";
+import lapisStillBackground from "@/assets/lapis-parchment.webp";
 import { useSkin } from "@/contexts/SkinContext";
 // Day 91 (Sasha 2026-06-09): route-scope detection for demo-only
 // behavior (full guest rail on /aurum and the white-label prefixes).

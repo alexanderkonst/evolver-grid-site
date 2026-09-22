@@ -1313,8 +1313,8 @@
     "sourceOnGithub": "Исходники на GitHub",
     "languageRowTitle": "Язык",
     "languageRowHint": "Выбери язык интерфейса.",
-    "skinOnyxLabel": "Оникс",
-    "skinOnyxTagline": "Чёрное на белом · редакционный моно"
+    "skinDaoLabel": "The Dao",
+    "skinDaoTagline": "Чёрное на белом · редакционный моно"
   },
   "zogOverview": {
     "emptyImageAlt": "Главный талант",
@@ -3172,8 +3172,8 @@
     "offer": "ПРЕДЛОЖИТЬ",
     "lockedLabel": "{{space}}, закрыто",
     "lockedHeader": "{{space}} · Закрыто",
-    "themeToggleToOnyxAria": "Переключить на чёрно-белую тему",
-    "themeToggleToOnyxTitle": "Переключить на «Оникс», чёрно-белую тему"
+    "themeToggleToDaoAria": "Переключить на чёрно-белую тему",
+    "themeToggleToDaoTitle": "Переключить на The Dao, чёрно-белую тему"
   },
   "profileSettings": {
     "toastErrorTitle": "Ошибка",

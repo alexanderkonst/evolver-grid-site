@@ -1316,8 +1316,8 @@
     "sourceOnGithub": "Source on GitHub",
     "languageRowTitle": "Language",
     "languageRowHint": "Choose the language for the interface.",
-    "skinOnyxLabel": "Onyx",
-    "skinOnyxTagline": "Black and white · editorial mono"
+    "skinDaoLabel": "The Dao",
+    "skinDaoTagline": "Black and white · editorial mono"
   },
   "zogOverview": {
     "emptyImageAlt": "Top Talent",
@@ -3171,8 +3171,8 @@
     "offer": "OFFER",
     "lockedLabel": "{{space}}, locked",
     "lockedHeader": "{{space}} · Locked",
-    "themeToggleToOnyxAria": "Switch to black-and-white theme",
-    "themeToggleToOnyxTitle": "Switch to Onyx, the black-and-white theme"
+    "themeToggleToDaoAria": "Switch to black-and-white theme",
+    "themeToggleToDaoTitle": "Switch to The Dao, the black-and-white theme"
   },
   "profileSettings": {
     "toastErrorTitle": "Error",

@@ -91,9 +91,9 @@ const SKIN_OPTIONS: SkinOption[] = [
         ),
     },
     {
-        id: "onyx",
-        labelKey: "settings.skinOnyxLabel",
-        taglineKey: "settings.skinOnyxTagline",
+        id: "dao",
+        labelKey: "settings.skinDaoLabel",
+        taglineKey: "settings.skinDaoTagline",
         swatchBackground:
             "linear-gradient(135deg, #ffffff 0%, #ededed 42%, #141414 100%)",
         swatchOverlay: (
