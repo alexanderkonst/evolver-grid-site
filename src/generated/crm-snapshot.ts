@@ -10,6 +10,6 @@ const crmSnapshot = {
   "upcomingEvents": [],
   "openItemsCount": 0,
   "offers": []
-} as const;
+};
 
 export default crmSnapshot;
