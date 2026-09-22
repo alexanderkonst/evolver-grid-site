@@ -31,7 +31,7 @@ import {
   type CockpitLensResult,
   runCockpitLens,
 } from "@/lib/cockpitLenses";
-import crmSnapshotRaw from "@/generated/crm-snapshot.json";
+import crmSnapshotRaw from "@/generated/crm-snapshot";
 import pulseSnapshotRaw from "@/generated/project-pulse-snapshot.json";
 import {
   calculateOffersBoardMetrics,

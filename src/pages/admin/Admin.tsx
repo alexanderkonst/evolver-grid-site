@@ -51,7 +51,7 @@ import { useToast } from "@/hooks/use-toast";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { supabase } from "@/integrations/supabase/client";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
-import crmSnapshot from "@/generated/crm-snapshot.json";
+import crmSnapshot from "@/generated/crm-snapshot";
 
 // ─────────────────────────────────────────────────────────────────────
 // Types
