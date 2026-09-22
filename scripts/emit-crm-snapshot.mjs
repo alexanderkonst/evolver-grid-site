@@ -26,6 +26,7 @@ import { buildAnonymizer } from "./sources/anonymize.mjs";
 
 const REPO_ROOT = join(import.meta.dirname, "..");
 const OUT_PATH = join(REPO_ROOT, "src", "generated", "crm-snapshot.json");
+const MODULE_OUT_PATH = join(REPO_ROOT, "src", "generated", "crm-snapshot.ts");
 // Small, anonymized, tracked projection used by the Offers Board at runtime.
 // Unlike the full CRM snapshot, this file is safe to commit and remains
 // available to GitHub raw fetches without requiring a frontend deployment.
@@ -142,6 +143,10 @@ function main() {
   }
 
   writeFileSync(OUT_PATH, JSON.stringify(payload, null, 2) + "\n");
+  writeFileSync(
+    MODULE_OUT_PATH,
+    `const crmSnapshot = ${JSON.stringify(payload, null, 2)} as const;\n\nexport default crmSnapshot;\n`,
+  );
   mkdirSync(dirname(PUBLIC_OUT_PATH), { recursive: true });
   writeFileSync(PUBLIC_OUT_PATH, JSON.stringify(payload, null, 2) + "\n");
 
