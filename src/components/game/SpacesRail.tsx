@@ -1284,16 +1284,16 @@ const SpacesRail = ({
                         {/* Theme toggle — Day 91: Lapis/Aurum only, the
                             white-label skins own their look. Restored here
                             from the Day 128 removal (git show 72afcdb1). */}
-                        {(skin === "lapis" || skin === "aurum" || skin === "onyx") && (
+                        {(skin === "lapis" || skin === "aurum" || skin === "dao") && (
                             <Tooltip>
                                 <TooltipTrigger asChild>
                                     <button
-                                        onClick={() => setSkin(skin === "lapis" ? "aurum" : skin === "aurum" ? "onyx" : "lapis")}
+                                        onClick={() => setSkin(skin === "lapis" ? "aurum" : skin === "aurum" ? "dao" : "lapis")}
                                         className={cn(
                                             "grid place-items-center rounded-full transition-all duration-300 text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30",
                                             compact ? "w-[30px] h-[30px]" : "w-[48px] h-[48px]"
                                         )}
-                                        aria-label={skin === "lapis" ? t('spacesRail.themeToggleToDarkAria') : skin === "aurum" ? t('spacesRail.themeToggleToOnyxAria') : t('spacesRail.themeToggleToLightAria')}
+                                        aria-label={skin === "lapis" ? t('spacesRail.themeToggleToDarkAria') : skin === "aurum" ? t('spacesRail.themeToggleToDaoAria') : t('spacesRail.themeToggleToLightAria')}
                                     >
                                         {skin === "lapis" ? (
                                             <Moon
@@ -1317,7 +1317,7 @@ const SpacesRail = ({
                                     </button>
                                 </TooltipTrigger>
                                 <TooltipContent side="top" align="center" sideOffset={10} className="rounded-lg border-none px-2.5 py-1.5 bg-black/85 text-[11px] text-white/90">
-                                    {skin === "lapis" ? t('spacesRail.themeToggleToAurumTitle') : skin === "aurum" ? t('spacesRail.themeToggleToOnyxTitle') : t('spacesRail.themeToggleToLapisTitle')}
+                                    {skin === "lapis" ? t('spacesRail.themeToggleToAurumTitle') : skin === "aurum" ? t('spacesRail.themeToggleToDaoTitle') : t('spacesRail.themeToggleToLapisTitle')}
                                 </TooltipContent>
                             </Tooltip>
                         )}

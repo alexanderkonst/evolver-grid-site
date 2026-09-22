@@ -13,6 +13,16 @@
    lesson (synthetic italic on display fonts reads janky). */
 @import url('https://fonts.googleapis.com/css2?family=Lexend:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* Syntheos Hand — custom hand-drawn display face for the "The Dao" (dao) skin's
+   headlines. Self-hosted (public/fonts). Day 190 (Sasha 2026-09-21). */
+@font-face {
+  font-family: "Syntheos Hand";
+  src: url("/fonts/SyntheosHand-Complete.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -572,7 +582,7 @@
    ========================================================================== */
 
 [data-skin="network-school"],
-[data-skin="onyx"] {
+[data-skin="dao"] {
   /* ── Text — pure editorial black on white. */
   --skin-text-primary: #0a0a0a;
   --skin-text-body: rgba(10, 10, 10, 0.92);
@@ -3497,32 +3507,33 @@
 
 /* Display headlines — Newsreader, high-contrast transitional. */
 [data-skin="network-school"] h1,
-[data-skin="onyx"] h1,
+[data-skin="dao"] h1,
 [data-skin="network-school"] h2,
-[data-skin="onyx"] h2,
+[data-skin="dao"] h2,
 [data-skin="network-school"] h3,
-[data-skin="onyx"] h3,
+[data-skin="dao"] h3,
 [data-skin="network-school"] h4,
-[data-skin="onyx"] h4,
+[data-skin="dao"] h4,
 [data-skin="network-school"] .font-display,
-[data-skin="onyx"] .font-display,
+[data-skin="dao"] .font-display,
 [data-skin="network-school"] .font-serif,
-[data-skin="onyx"] .font-serif {
+[data-skin="dao"] .font-serif {
   font-family: "Newsreader", "Source Serif Pro", "Source Serif 4", Georgia, serif !important;
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.12;
 }
 
+
 /* Body content — serif, lighter weight, generous line-height. */
 [data-skin="network-school"] body,
-[data-skin="onyx"] body,
+[data-skin="dao"] body,
 [data-skin="network-school"] p,
-[data-skin="onyx"] p,
+[data-skin="dao"] p,
 [data-skin="network-school"] li,
-[data-skin="onyx"] li,
+[data-skin="dao"] li,
 [data-skin="network-school"] blockquote,
-[data-skin="onyx"] blockquote {
+[data-skin="dao"] blockquote {
   font-family: "Newsreader", "Source Serif Pro", Georgia, serif !important;
   font-weight: 400;
   line-height: 1.6;
@@ -3531,31 +3542,31 @@
 /* UI chrome — rail labels, Pane 2 section titles, buttons, form
    controls — Inter (clean grotesque sans, matches NS's APPLY/LOG IN). */
 [data-skin="network-school"] .liquid-glass.h-dvh,
-[data-skin="onyx"] .liquid-glass.h-dvh,
+[data-skin="dao"] .liquid-glass.h-dvh,
 [data-skin="network-school"] .liquid-glass.h-dvh button,
-[data-skin="onyx"] .liquid-glass.h-dvh button,
+[data-skin="dao"] .liquid-glass.h-dvh button,
 [data-skin="network-school"] .liquid-glass.h-dvh a,
-[data-skin="onyx"] .liquid-glass.h-dvh a,
+[data-skin="dao"] .liquid-glass.h-dvh a,
 [data-skin="network-school"] .liquid-glass.h-dvh span,
-[data-skin="onyx"] .liquid-glass.h-dvh span,
+[data-skin="dao"] .liquid-glass.h-dvh span,
 [data-skin="network-school"] .group[class*="rounded-2xl"],
-[data-skin="onyx"] .group[class*="rounded-2xl"],
+[data-skin="dao"] .group[class*="rounded-2xl"],
 [data-skin="network-school"] button.liquid-glass-dark,
-[data-skin="onyx"] button.liquid-glass-dark,
+[data-skin="dao"] button.liquid-glass-dark,
 [data-skin="network-school"] button.liquid-glass,
-[data-skin="onyx"] button.liquid-glass,
+[data-skin="dao"] button.liquid-glass,
 [data-skin="network-school"] input,
-[data-skin="onyx"] input,
+[data-skin="dao"] input,
 [data-skin="network-school"] textarea,
-[data-skin="onyx"] textarea,
+[data-skin="dao"] textarea,
 [data-skin="network-school"] select,
-[data-skin="onyx"] select,
+[data-skin="dao"] select,
 [data-skin="network-school"] label,
-[data-skin="onyx"] label,
+[data-skin="dao"] label,
 [data-skin="network-school"] [class*="text-xs"],
-[data-skin="onyx"] [class*="text-xs"],
+[data-skin="dao"] [class*="text-xs"],
 [data-skin="network-school"] [class*="uppercase"],
-[data-skin="onyx"] [class*="uppercase"] {
+[data-skin="dao"] [class*="uppercase"] {
   font-family: "Inter", system-ui, sans-serif !important;
   letter-spacing: normal;
 }
@@ -3564,9 +3575,9 @@
    it Inter sans, all-caps editorial tracking. NS APPLY button reads
    uppercase clean grotesque. */
 [data-skin="network-school"] button.liquid-glass-dark,
-[data-skin="onyx"] button.liquid-glass-dark,
+[data-skin="dao"] button.liquid-glass-dark,
 [data-skin="network-school"] a.liquid-glass-dark,
-[data-skin="onyx"] a.liquid-glass-dark {
+[data-skin="dao"] a.liquid-glass-dark {
   font-family: "Inter", system-ui, sans-serif !important;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -3574,9 +3585,9 @@
 
 /* Liquid-glass effects flattened — NS is editorial, no glassmorphism. */
 [data-skin="network-school"] .liquid-glass,
-[data-skin="onyx"] .liquid-glass,
+[data-skin="dao"] .liquid-glass,
 [data-skin="network-school"] .liquid-glass-strong,
-[data-skin="onyx"] .liquid-glass-strong {
+[data-skin="dao"] .liquid-glass-strong {
   background: #ffffff;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
@@ -3584,13 +3595,13 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px -12px rgba(0, 0, 0, 0.08);
 }
 [data-skin="network-school"] .liquid-glass::before,
-[data-skin="onyx"] .liquid-glass::before,
+[data-skin="dao"] .liquid-glass::before,
 [data-skin="network-school"] .liquid-glass-strong::before,
-[data-skin="onyx"] .liquid-glass-strong::before {
+[data-skin="dao"] .liquid-glass-strong::before {
   display: none;
 }
 [data-skin="network-school"] .liquid-glass-dark,
-[data-skin="onyx"] .liquid-glass-dark {
+[data-skin="dao"] .liquid-glass-dark {
   background: #0a0a0a;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
@@ -3599,39 +3610,39 @@
   color: #ffffff;
 }
 [data-skin="network-school"] .liquid-glass-dark::before,
-[data-skin="onyx"] .liquid-glass-dark::before {
+[data-skin="dao"] .liquid-glass-dark::before {
   display: none;
 }
 
 /* Kill the Mux HLS video background — NS is clean, no motion. */
 [data-skin="network-school"] video[autoplay][muted],
-[data-skin="onyx"] video[autoplay][muted],
+[data-skin="dao"] video[autoplay][muted],
 [data-skin="network-school"] video.absolute,
-[data-skin="onyx"] video.absolute,
+[data-skin="dao"] video.absolute,
 [data-skin="network-school"] [data-mux-background],
-[data-skin="onyx"] [data-mux-background],
+[data-skin="dao"] [data-mux-background],
 [data-skin="network-school"] video[playsinline],
-[data-skin="onyx"] video[playsinline] {
+[data-skin="dao"] video[playsinline] {
   display: none !important;
 }
 
 /* Logo treatment — convert the gold-glow brand mark to pure black silhouette. */
 [data-skin="network-school"] img[alt="Find Your Top Talent"],
-[data-skin="onyx"] img[alt="Find Your Top Talent"] {
+[data-skin="dao"] img[alt="Find Your Top Talent"] {
   filter: brightness(0) saturate(100%) !important;
 }
 
 /* Strip residual gold/violet drop-shadows on logo wrappers. */
 [data-skin="network-school"] a[aria-label*="home"] img,
-[data-skin="onyx"] a[aria-label*="home"] img,
+[data-skin="dao"] a[aria-label*="home"] img,
 [data-skin="network-school"] a[aria-label*="Home"] img,
-[data-skin="onyx"] a[aria-label*="Home"] img {
+[data-skin="dao"] a[aria-label*="Home"] img {
   filter: brightness(0) saturate(100%) !important;
 }
 
 /* Body background — pure white, no cream tint. */
 [data-skin="network-school"] body,
-[data-skin="onyx"] body {
+[data-skin="dao"] body {
   background: #ffffff;
   color: #0a0a0a;
 }
@@ -3643,28 +3654,28 @@
    the editorial register holds end-to-end without per-component refactor.
    Catches the opacity variants (`/65`, `/80`, etc.) via attribute substring. */
 [data-skin="network-school"] [class*="bg-[#0a0a1a]"],
-[data-skin="onyx"] [class*="bg-[#0a0a1a]"] {
+[data-skin="dao"] [class*="bg-[#0a0a1a]"] {
   background-color: transparent !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
 [data-skin="network-school"] .bg-\[\#0a0a1a\],
-[data-skin="onyx"] .bg-\[\#0a0a1a\] {
+[data-skin="dao"] .bg-\[\#0a0a1a\] {
   background-color: #ffffff !important;
 }
 
 /* Same for the cosmic loader spinner border on dark backdrops. */
 [data-skin="network-school"] .border-white\/30,
-[data-skin="onyx"] .border-white\/30 {
+[data-skin="dao"] .border-white\/30 {
   border-color: rgba(10, 10, 10, 0.25) !important;
 }
 
 /* Gold "spine" right-edge accent on SpacesRail — kill the gold drop-shadow
    that the rail applies inline (Day 48 iter 7, see SpacesRail.tsx). */
 [data-skin="network-school"] aside[role="navigation"],
-[data-skin="onyx"] aside[role="navigation"],
+[data-skin="dao"] aside[role="navigation"],
 [data-skin="network-school"] [class*="liquid-glass"][class*="h-dvh"],
-[data-skin="onyx"] [class*="liquid-glass"][class*="h-dvh"] {
+[data-skin="dao"] [class*="liquid-glass"][class*="h-dvh"] {
   box-shadow: none !important;
 }
 
@@ -3672,7 +3683,7 @@
    silhouette under NS skin. Drop-shadows that the Ornament inlines also
    get neutralized so no warm glow leaks into the editorial register. */
 [data-skin="network-school"] .ornament-spin,
-[data-skin="onyx"] .ornament-spin {
+[data-skin="dao"] .ornament-spin {
   filter: brightness(0) saturate(0) !important;
 }
 
@@ -3680,9 +3691,9 @@
    inside it. Same brightness-zero treatment so the emblem reads white
    inside the black pill via CSS invert. */
 [data-skin="network-school"] button img.ornament-spin,
-[data-skin="onyx"] button img.ornament-spin,
+[data-skin="dao"] button img.ornament-spin,
 [data-skin="network-school"] a img.ornament-spin,
-[data-skin="onyx"] a img.ornament-spin {
+[data-skin="dao"] a img.ornament-spin {
   filter: brightness(0) invert(1) !important;
 }
 
@@ -3690,13 +3701,13 @@
    on interactive surfaces under NS. They reappear under any other
    skin because the rules are scoped to [data-skin="network-school"]. */
 [data-skin="network-school"] [class*="ring-[#d4af37"],
-[data-skin="onyx"] [class*="ring-[#d4af37"],
+[data-skin="dao"] [class*="ring-[#d4af37"],
 [data-skin="network-school"] [class*="ring-[#f4d472"],
-[data-skin="onyx"] [class*="ring-[#f4d472"] {
+[data-skin="dao"] [class*="ring-[#f4d472"] {
   --tw-ring-color: rgba(10, 10, 10, 0.18) !important;
 }
 [data-skin="network-school"] [class*="shadow-[0_0_16px_-4px_rgba(244,212,114"],
-[data-skin="onyx"] [class*="shadow-[0_0_16px_-4px_rgba(244,212,114"] {
+[data-skin="dao"] [class*="shadow-[0_0_16px_-4px_rgba(244,212,114"] {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
 }
 
@@ -3710,7 +3721,7 @@
    gap). `border-style: double` requires `border-width >= 3px` to render
    as two lines instead of one. */
 [data-skin="network-school"] .liquid-glass.h-dvh,
-[data-skin="onyx"] .liquid-glass.h-dvh {
+[data-skin="dao"] .liquid-glass.h-dvh {
   border-right: 3px double rgba(10, 10, 10, 0.14) !important;
 }
 
@@ -3719,9 +3730,9 @@
    of the rail). Stronger hairline so all three panes register as
    distinct surfaces under the SaaS-dashboard vibe Sasha called for. */
 [data-skin="network-school"] div[data-pane="2"],
-[data-skin="onyx"] div[data-pane="2"],
+[data-skin="dao"] div[data-pane="2"],
 [data-skin="network-school"] aside[data-pane="2"],
-[data-skin="onyx"] aside[data-pane="2"] {
+[data-skin="dao"] aside[data-pane="2"] {
   border-right: 1px solid rgba(10, 10, 10, 0.10) !important;
   background-color: #ffffff !important;
 }
@@ -3733,7 +3744,7 @@
    default pt-4 (16px) into the right band for a 48px hero font — the
    text middle sits within a few px of the chip centers. */
 [data-skin="network-school"] main.flex-1.min-h-dvh,
-[data-skin="onyx"] main.flex-1.min-h-dvh {
+[data-skin="dao"] main.flex-1.min-h-dvh {
   padding-top: 2.5rem !important;
 }
 
@@ -3742,40 +3753,58 @@
    style by the cascade rules, so we can force the editorial register
    here without editing every span in Auth.tsx. */
 [data-skin="network-school"] article.liquid-glass-strong h1,
-[data-skin="onyx"] article.liquid-glass-strong h1,
+[data-skin="dao"] article.liquid-glass-strong h1,
 [data-skin="network-school"] article.liquid-glass-strong h1 *,
-[data-skin="onyx"] article.liquid-glass-strong h1 *,
+[data-skin="dao"] article.liquid-glass-strong h1 *,
 [data-skin="network-school"] article.liquid-glass-strong p,
-[data-skin="onyx"] article.liquid-glass-strong p,
+[data-skin="dao"] article.liquid-glass-strong p,
 [data-skin="network-school"] article.liquid-glass-strong label,
-[data-skin="onyx"] article.liquid-glass-strong label,
+[data-skin="dao"] article.liquid-glass-strong label,
 [data-skin="network-school"] article.liquid-glass-strong button,
-[data-skin="onyx"] article.liquid-glass-strong button,
+[data-skin="dao"] article.liquid-glass-strong button,
 [data-skin="network-school"] article.liquid-glass-strong input,
-[data-skin="onyx"] article.liquid-glass-strong input {
+[data-skin="dao"] article.liquid-glass-strong input {
   font-family: "Newsreader", "Source Serif Pro", Georgia, serif !important;
+}
+
+/* "The Dao" (dao) title font — Syntheos Hand on headlines ONLY; body stays serif.
+   Placed after all network-school/dao editorial rules so it wins by source order,
+   and it carries the article-context selectors so content-pane titles switch too.
+   The hand face wants its own tracking/weight, so those are reset. */
+[data-skin="dao"] h1,
+[data-skin="dao"] h2,
+[data-skin="dao"] h3,
+[data-skin="dao"] h4,
+[data-skin="dao"] .font-display,
+[data-skin="dao"] article.liquid-glass-strong h1,
+[data-skin="dao"] article.liquid-glass-strong h1 *,
+[data-skin="dao"] article.liquid-glass-strong h2,
+[data-skin="dao"] article.liquid-glass-strong h3 {
+  font-family: "Syntheos Hand", "Newsreader", Georgia, serif !important;
+  font-weight: 400;
+  letter-spacing: 0;
 }
 /* Tab list "Log In / Sign Up" gold-rgba surround → neutral hairline. */
 [data-skin="network-school"] article.liquid-glass-strong [role="tablist"],
-[data-skin="onyx"] article.liquid-glass-strong [role="tablist"] {
+[data-skin="dao"] article.liquid-glass-strong [role="tablist"] {
   background-color: rgba(10, 10, 10, 0.04) !important;
   border-color: rgba(10, 10, 10, 0.10) !important;
 }
 /* Active tab gold pill → near-black ink-on-white. */
 [data-skin="network-school"] article.liquid-glass-strong [role="tab"][data-state="active"],
-[data-skin="onyx"] article.liquid-glass-strong [role="tab"][data-state="active"] {
+[data-skin="dao"] article.liquid-glass-strong [role="tab"][data-state="active"] {
   background-color: #ffffff !important;
   color: #0a0a0a !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
 }
 /* Inactive tab text. */
 [data-skin="network-school"] article.liquid-glass-strong [role="tab"]:not([data-state="active"]),
-[data-skin="onyx"] article.liquid-glass-strong [role="tab"]:not([data-state="active"]) {
+[data-skin="dao"] article.liquid-glass-strong [role="tab"]:not([data-state="active"]) {
   color: rgba(10, 10, 10, 0.55) !important;
 }
 /* Article shadow gold halo → editorial neutral. */
 [data-skin="network-school"] article.liquid-glass-strong,
-[data-skin="onyx"] article.liquid-glass-strong {
+[data-skin="dao"] article.liquid-glass-strong {
   box-shadow:
     0 4px 14px -6px rgba(0, 0, 0, 0.08),
     0 24px 60px -24px rgba(0, 0, 0, 0.10),
@@ -3783,19 +3812,19 @@
 }
 /* Inputs default to gold-tinted on Aurora; neutralize on NS. */
 [data-skin="network-school"] article.liquid-glass-strong input,
-[data-skin="onyx"] article.liquid-glass-strong input {
+[data-skin="dao"] article.liquid-glass-strong input {
   background-color: #ffffff !important;
   border-color: rgba(10, 10, 10, 0.18) !important;
   color: #0a0a0a !important;
   font-family: "Inter", system-ui, sans-serif !important;
 }
 [data-skin="network-school"] article.liquid-glass-strong input::placeholder,
-[data-skin="onyx"] article.liquid-glass-strong input::placeholder {
+[data-skin="dao"] article.liquid-glass-strong input::placeholder {
   color: rgba(10, 10, 10, 0.40) !important;
 }
 /* Primary submit button (`Log In`/`Sign Up`) — was navy gradient. */
 [data-skin="network-school"] article.liquid-glass-strong form button[type="submit"],
-[data-skin="onyx"] article.liquid-glass-strong form button[type="submit"] {
+[data-skin="dao"] article.liquid-glass-strong form button[type="submit"] {
   background: #0a0a0a !important;
   color: #ffffff !important;
   border-color: transparent !important;
@@ -3808,7 +3837,7 @@
    Hits both SpacesRail JOURNEY/AI OS/ME/BUILD chips AND SectionsPanel
    row cards because both set backgroundColor: var(--skin-selected-bg). */
 [data-skin="network-school"] [style*="--skin-selected-bg"],
-[data-skin="onyx"] [style*="--skin-selected-bg"] {
+[data-skin="dao"] [style*="--skin-selected-bg"] {
   box-shadow: inset 3px 0 0 0 #0a0a0a !important;
 }
 
@@ -3817,9 +3846,9 @@
    Also covers the SectionsPanel rows (Pane 2) which use white-with-
    opacity text classes. */
 [data-skin="network-school"] .liquid-glass.h-dvh,
-[data-skin="onyx"] .liquid-glass.h-dvh,
+[data-skin="dao"] .liquid-glass.h-dvh,
 [data-skin="network-school"] .liquid-glass.h-dvh [class*="text-white"],
-[data-skin="onyx"] .liquid-glass.h-dvh [class*="text-white"] {
+[data-skin="dao"] .liquid-glass.h-dvh [class*="text-white"] {
   color: #0a0a0a !important;
 }
 
@@ -3828,43 +3857,43 @@
    which read as near-invisible on the white NS background. Override to
    a soft dark wash so the row tells the user it's interactive. */
 [data-skin="network-school"] .liquid-glass.h-dvh button:hover,
-[data-skin="onyx"] .liquid-glass.h-dvh button:hover,
+[data-skin="dao"] .liquid-glass.h-dvh button:hover,
 [data-skin="network-school"] .liquid-glass.h-dvh a:hover,
-[data-skin="onyx"] .liquid-glass.h-dvh a:hover,
+[data-skin="dao"] .liquid-glass.h-dvh a:hover,
 [data-skin="network-school"] .liquid-glass.h-dvh .group:hover,
-[data-skin="onyx"] .liquid-glass.h-dvh .group:hover {
+[data-skin="dao"] .liquid-glass.h-dvh .group:hover {
   background-color: rgba(10, 10, 10, 0.05) !important;
 }
 [data-skin="network-school"] [class*="w-[260px]"] .group:hover,
-[data-skin="onyx"] [class*="w-[260px]"] .group:hover,
+[data-skin="dao"] [class*="w-[260px]"] .group:hover,
 [data-skin="network-school"] aside[data-pane="2"] .group:hover,
-[data-skin="onyx"] aside[data-pane="2"] .group:hover {
+[data-skin="dao"] aside[data-pane="2"] .group:hover {
   background-color: rgba(10, 10, 10, 0.05) !important;
 }
 [data-skin="network-school"] .liquid-glass.h-dvh [class*="bg-white\\/\\["],
-[data-skin="onyx"] .liquid-glass.h-dvh [class*="bg-white\\/\\["],
+[data-skin="dao"] .liquid-glass.h-dvh [class*="bg-white\\/\\["],
 [data-skin="network-school"] .liquid-glass.h-dvh [class*="bg-white/["],
-[data-skin="onyx"] .liquid-glass.h-dvh [class*="bg-white/["] {
+[data-skin="dao"] .liquid-glass.h-dvh [class*="bg-white/["] {
   background-color: transparent !important;
 }
 /* Pane 2 — same conversion for text + the bg-white/[0.04] etc. baseline. */
 [data-skin="network-school"] [data-pane="2"] [class*="text-white"],
-[data-skin="onyx"] [data-pane="2"] [class*="text-white"],
+[data-skin="dao"] [data-pane="2"] [class*="text-white"],
 [data-skin="network-school"] [data-pane="2"],
-[data-skin="onyx"] [data-pane="2"] {
+[data-skin="dao"] [data-pane="2"] {
   color: #0a0a0a !important;
 }
 /* Catch-all for SectionsPanel rows whose container isn't yet tagged
    with data-pane — they're identifiable by the rounded-2xl + group +
    mx-2 pattern with bg-white/[0.05] background. */
 [data-skin="network-school"] .group[class*="bg-white\\/\\[0.05\\]"],
-[data-skin="onyx"] .group[class*="bg-white\\/\\[0.05\\]"],
+[data-skin="dao"] .group[class*="bg-white\\/\\[0.05\\]"],
 [data-skin="network-school"] .group[class*="bg-white/[0.05]"],
-[data-skin="onyx"] .group[class*="bg-white/[0.05]"],
+[data-skin="dao"] .group[class*="bg-white/[0.05]"],
 [data-skin="network-school"] .group[class*="bg-white\\/\\[0.04\\]"],
-[data-skin="onyx"] .group[class*="bg-white\\/\\[0.04\\]"],
+[data-skin="dao"] .group[class*="bg-white\\/\\[0.04\\]"],
 [data-skin="network-school"] .group[class*="bg-white/[0.04]"],
-[data-skin="onyx"] .group[class*="bg-white/[0.04]"] {
+[data-skin="dao"] .group[class*="bg-white/[0.04]"] {
   background-color: transparent !important;
   color: #0a0a0a !important;
 }
@@ -3878,9 +3907,9 @@
    rows also get dark text on NS, while letting the gold ring +
    subtle gold tint remain for the editorial accent. */
 [data-skin="network-school"] .group[class*="bg-[rgba(212,175,55"],
-[data-skin="onyx"] .group[class*="bg-[rgba(212,175,55"],
+[data-skin="dao"] .group[class*="bg-[rgba(212,175,55"],
 [data-skin="network-school"] .group[class*="bg-[rgba(212,175,55"] span,
-[data-skin="onyx"] .group[class*="bg-[rgba(212,175,55"] span {
+[data-skin="dao"] .group[class*="bg-[rgba(212,175,55"] span {
   color: #0a0a0a !important;
 }
 
@@ -3889,21 +3918,21 @@
    shadow — both targeted via attribute substring selector so the rule
    catches every variant. */
 [data-skin="network-school"] [class*="ring-[#d4af37"],
-[data-skin="onyx"] [class*="ring-[#d4af37"] {
+[data-skin="dao"] [class*="ring-[#d4af37"] {
   --tw-ring-color: transparent !important;
 }
 [data-skin="network-school"] [class*="rgba(244,212,114"],
-[data-skin="onyx"] [class*="rgba(244,212,114"],
+[data-skin="dao"] [class*="rgba(244,212,114"],
 [data-skin="network-school"] [class*="rgba(212,175,55"],
-[data-skin="onyx"] [class*="rgba(212,175,55"] {
+[data-skin="dao"] [class*="rgba(212,175,55"] {
   box-shadow: none !important;
 }
 /* Re-assert the black left-bar after the shadow nuke above (specificity
    tie — last wins). */
 [data-skin="network-school"] [style*="--skin-selected-bg"][class*="ring-[#d4af37"],
-[data-skin="onyx"] [style*="--skin-selected-bg"][class*="ring-[#d4af37"],
+[data-skin="dao"] [style*="--skin-selected-bg"][class*="ring-[#d4af37"],
 [data-skin="network-school"] [style*="--skin-selected-bg"][class*="rgba(244,212,114"],
-[data-skin="onyx"] [style*="--skin-selected-bg"][class*="rgba(244,212,114"] {
+[data-skin="dao"] [style*="--skin-selected-bg"][class*="rgba(244,212,114"] {
   box-shadow: inset 3px 0 0 0 #0a0a0a !important;
 }
 
@@ -3911,18 +3940,18 @@
    Equilibrium WatchModeToggle ACTIVE pill + SectionAnchorNav active
    chip + SectionSkeleton. Under NS we want near-black, not navy. */
 [data-skin="network-school"] .bg-\[\#0a1628\],
-[data-skin="onyx"] .bg-\[\#0a1628\] {
+[data-skin="dao"] .bg-\[\#0a1628\] {
   background-color: #0a0a0a !important;
 }
 [data-skin="network-school"] [class*="bg-[#0a1628]/"],
-[data-skin="onyx"] [class*="bg-[#0a1628]/"] {
+[data-skin="dao"] [class*="bg-[#0a1628]/"] {
   background-color: rgba(10, 10, 10, 0.10) !important;
 }
 
 /* `text-[#0a1628]/85` — Equilibrium subtitle "Biologic Watch and Action
    Compass" uses this. Under NS render as body text, not faded navy. */
 [data-skin="network-school"] [class*="text-[#0a1628]"],
-[data-skin="onyx"] [class*="text-[#0a1628]"] {
+[data-skin="dao"] [class*="text-[#0a1628]"] {
   color: var(--skin-text-body, rgba(10, 10, 10, 0.92)) !important;
 }
 
@@ -3932,14 +3961,14 @@
    color — but the long-form step-name text should match NS register.
    Target the h1 > span pattern inside the playbook article. */
 [data-skin="network-school"] article.liquid-glass-strong h1 > span,
-[data-skin="onyx"] article.liquid-glass-strong h1 > span {
+[data-skin="dao"] article.liquid-glass-strong h1 > span {
   color: var(--skin-text-primary, #0a0a0a) !important;
   text-shadow: none !important;
 }
 /* Same step has a transformationalResult quote with a neon left-rule.
    Convert to a neutral hairline under NS. */
 [data-skin="network-school"] article.liquid-glass-strong header p,
-[data-skin="onyx"] article.liquid-glass-strong header p {
+[data-skin="dao"] article.liquid-glass-strong header p {
   border-left-color: var(--skin-rule-strong, rgba(10, 10, 10, 0.18)) !important;
 }
 
@@ -3947,7 +3976,7 @@
    with the step's neon radial gradient + color-mixed text. Under NS:
    plain hairline circle with black numeral. */
 [data-skin="network-school"] article.liquid-glass-strong button[class*="rounded-full"],
-[data-skin="onyx"] article.liquid-glass-strong button[class*="rounded-full"] {
+[data-skin="dao"] article.liquid-glass-strong button[class*="rounded-full"] {
   background-image: none !important;
   background-color: #ffffff !important;
   border: 1px solid var(--skin-rule-strong, rgba(10, 10, 10, 0.18)) !important;
@@ -3963,9 +3992,9 @@
    with gold gradients. Catch all of them via attribute substring match on
    the gold rgba literal that appears in every variant. */
 [data-skin="network-school"] [style*="rgba(244, 212, 114"],
-[data-skin="onyx"] [style*="rgba(244, 212, 114"],
+[data-skin="dao"] [style*="rgba(244, 212, 114"],
 [data-skin="network-school"] [style*="rgba(212, 175, 55"],
-[data-skin="onyx"] [style*="rgba(212, 175, 55"] {
+[data-skin="dao"] [style*="rgba(212, 175, 55"] {
   background: transparent !important;
   background-image: none !important;
   color: var(--skin-text-primary, #0a0a0a) !important;
@@ -3977,7 +4006,7 @@
 /* Tailwind arbitrary `bg-[#d4af37]` (gold solid) — used by the active-row
    left-pill marker in SectionsPanel. Under NS render as solid black. */
 [data-skin="network-school"] .bg-\[\#d4af37\],
-[data-skin="onyx"] .bg-\[\#d4af37\] {
+[data-skin="dao"] .bg-\[\#d4af37\] {
   background-color: #0a0a0a !important;
   box-shadow: none !important;
 }
@@ -3986,22 +4015,22 @@
    shadow-[..rgba(244,212,114..]  rule above, but reassert for variants
    that use rgba(212,175,55,…) too. */
 [data-skin="network-school"] [class*="shadow-\[0_0_22px"],
-[data-skin="onyx"] [class*="shadow-\[0_0_22px"],
+[data-skin="dao"] [class*="shadow-\[0_0_22px"],
 [data-skin="network-school"] [class*="shadow-[0_0_22px"],
-[data-skin="onyx"] [class*="shadow-[0_0_22px"] {
+[data-skin="dao"] [class*="shadow-[0_0_22px"] {
   box-shadow: none !important;
 }
 
 /* V3 buttons (Sasha 2026-05-19) — NS uses tight-radius rectangles, not
    pills. `.liquid-glass-dark .rounded-full` → 8px radius under NS. */
 [data-skin="network-school"] button.liquid-glass-dark.rounded-full,
-[data-skin="onyx"] button.liquid-glass-dark.rounded-full,
+[data-skin="dao"] button.liquid-glass-dark.rounded-full,
 [data-skin="network-school"] a.liquid-glass-dark.rounded-full,
-[data-skin="onyx"] a.liquid-glass-dark.rounded-full,
+[data-skin="dao"] a.liquid-glass-dark.rounded-full,
 [data-skin="network-school"] button.rounded-full.liquid-glass-dark,
-[data-skin="onyx"] button.rounded-full.liquid-glass-dark,
+[data-skin="dao"] button.rounded-full.liquid-glass-dark,
 [data-skin="network-school"] .liquid-glass-dark[class*="rounded-full"],
-[data-skin="onyx"] .liquid-glass-dark[class*="rounded-full"] {
+[data-skin="dao"] .liquid-glass-dark[class*="rounded-full"] {
   border-radius: 8px !important;
 }
 
@@ -4009,13 +4038,13 @@
    Hide the ✦/star/ignite-logo image that sits inside our CTA buttons.
    Targets the first <img> inside a liquid-glass-dark control. */
 [data-skin="network-school"] button.liquid-glass-dark > img:first-of-type,
-[data-skin="onyx"] button.liquid-glass-dark > img:first-of-type,
+[data-skin="dao"] button.liquid-glass-dark > img:first-of-type,
 [data-skin="network-school"] a.liquid-glass-dark > img:first-of-type,
-[data-skin="onyx"] a.liquid-glass-dark > img:first-of-type,
+[data-skin="dao"] a.liquid-glass-dark > img:first-of-type,
 [data-skin="network-school"] button.liquid-glass-dark .ornament-spin,
-[data-skin="onyx"] button.liquid-glass-dark .ornament-spin,
+[data-skin="dao"] button.liquid-glass-dark .ornament-spin,
 [data-skin="network-school"] a.liquid-glass-dark .ornament-spin,
-[data-skin="onyx"] a.liquid-glass-dark .ornament-spin {
+[data-skin="dao"] a.liquid-glass-dark .ornament-spin {
   display: none !important;
 }
 
@@ -4027,7 +4056,7 @@
    V3 width:64% / max-height:80px rule is retired (it was inflating the
    image to ~154×77, breaking the chip-column alignment). */
 [data-skin="network-school"] .liquid-glass.h-dvh img[alt="Network School"],
-[data-skin="onyx"] .liquid-glass.h-dvh img[alt="Network School"] {
+[data-skin="dao"] .liquid-glass.h-dvh img[alt="Network School"] {
   filter: none !important;
   animation: none !important;
 }
@@ -4038,15 +4067,15 @@
    EXCLUDES the brand logo lockup which renders as-is (black flag + ns.com
    wordmark, no filter). */
 [data-skin="network-school"] .liquid-glass.h-dvh img[alt="Journey"],
-[data-skin="onyx"] .liquid-glass.h-dvh img[alt="Journey"],
+[data-skin="dao"] .liquid-glass.h-dvh img[alt="Journey"],
 [data-skin="network-school"] .liquid-glass.h-dvh img[alt="AI OS"],
-[data-skin="onyx"] .liquid-glass.h-dvh img[alt="AI OS"],
+[data-skin="dao"] .liquid-glass.h-dvh img[alt="AI OS"],
 [data-skin="network-school"] .liquid-glass.h-dvh img[alt="Me"],
-[data-skin="onyx"] .liquid-glass.h-dvh img[alt="Me"],
+[data-skin="dao"] .liquid-glass.h-dvh img[alt="Me"],
 [data-skin="network-school"] .liquid-glass.h-dvh img[alt="Build"],
-[data-skin="onyx"] .liquid-glass.h-dvh img[alt="Build"],
+[data-skin="dao"] .liquid-glass.h-dvh img[alt="Build"],
 [data-skin="network-school"] .liquid-glass.h-dvh img[src*="settings-icon"],
-[data-skin="onyx"] .liquid-glass.h-dvh img[src*="settings-icon"] {
+[data-skin="dao"] .liquid-glass.h-dvh img[src*="settings-icon"] {
   filter: grayscale(1) brightness(0.55) contrast(0.95) !important;
 }
 
@@ -4058,9 +4087,9 @@
    inline by GlyphIcon and by no other rail element. Catches all 5
    variants in one rule regardless of color format. */
 [data-skin="network-school"] .liquid-glass.h-dvh span[style*="place-items: center"],
-[data-skin="onyx"] .liquid-glass.h-dvh span[style*="place-items: center"],
+[data-skin="dao"] .liquid-glass.h-dvh span[style*="place-items: center"],
 [data-skin="network-school"] .liquid-glass.h-dvh span[style*="place-items:center"],
-[data-skin="onyx"] .liquid-glass.h-dvh span[style*="place-items:center"] {
+[data-skin="dao"] .liquid-glass.h-dvh span[style*="place-items:center"] {
   color: #0a0a0a !important;
   text-shadow: none !important;
 }
@@ -4069,15 +4098,15 @@
    was text-white/50 which is invisible on the V2 white Pane 2 bg.
    Force near-black under NS. */
 [data-skin="network-school"] aside[data-pane="2"] button[aria-label="Hide sidebar"],
-[data-skin="onyx"] aside[data-pane="2"] button[aria-label="Hide sidebar"],
+[data-skin="dao"] aside[data-pane="2"] button[aria-label="Hide sidebar"],
 [data-skin="network-school"] div[data-pane="2"] button[aria-label="Hide sidebar"],
-[data-skin="onyx"] div[data-pane="2"] button[aria-label="Hide sidebar"],
+[data-skin="dao"] div[data-pane="2"] button[aria-label="Hide sidebar"],
 [data-skin="network-school"] button[aria-label="Hide sidebar"],
-[data-skin="onyx"] button[aria-label="Hide sidebar"] {
+[data-skin="dao"] button[aria-label="Hide sidebar"] {
   color: #0a0a0a !important;
 }
 [data-skin="network-school"] button[aria-label="Hide sidebar"]:hover,
-[data-skin="onyx"] button[aria-label="Hide sidebar"]:hover {
+[data-skin="dao"] button[aria-label="Hide sidebar"]:hover {
   background-color: rgba(10, 10, 10, 0.06) !important;
 }
 
@@ -4086,7 +4115,7 @@
    the "spaces ↑ / utility ↓" hierarchy still registers in editorial
    register. Sasha asked for a more visible separator here. */
 [data-skin="network-school"] .liquid-glass.h-dvh .h-px[style*="rgba(212, 175, 55"],
-[data-skin="onyx"] .liquid-glass.h-dvh .h-px[style*="rgba(212, 175, 55"] {
+[data-skin="dao"] .liquid-glass.h-dvh .h-px[style*="rgba(212, 175, 55"] {
   background-image: linear-gradient(
     90deg,
     transparent 0%,
@@ -4103,9 +4132,9 @@
    at ~48px block height; pane 2 default h-16 = 64px doesn't visually
    match). */
 [data-skin="network-school"] [class*="w-[260px]"] > div.h-16:first-child,
-[data-skin="onyx"] [class*="w-[260px]"] > div.h-16:first-child,
+[data-skin="dao"] [class*="w-[260px]"] > div.h-16:first-child,
 [data-skin="network-school"] aside[data-pane="2"] > div.h-16:first-child,
-[data-skin="onyx"] aside[data-pane="2"] > div.h-16:first-child {
+[data-skin="dao"] aside[data-pane="2"] > div.h-16:first-child {
   height: 48px !important;
   border-bottom-color: rgba(10, 10, 10, 0.08) !important;
 }
@@ -4125,15 +4154,15 @@
    to dark equivalents via attribute-substring selectors, neutralize
    the gradient-clipped headlines. Specificity comes from the
    compound `[data-skin="network-school"] [data-ai-os]` selector,
-   compound `[data-skin="onyx"] [data-ai-os]` selector,
+   compound `[data-skin="dao"] [data-ai-os]` selector,
    which beats `[data-ai-os]` alone.
    ────────────────────────────────────────────────────────────────────── */
 
 /* Reset the AI OS root background + ambient overlays. */
 [data-skin="network-school"] [data-ai-os].ai-os-root,
-[data-skin="onyx"] [data-ai-os].ai-os-root,
+[data-skin="dao"] [data-ai-os].ai-os-root,
 [data-skin="network-school"] [data-ai-os],
-[data-skin="onyx"] [data-ai-os] {
+[data-skin="dao"] [data-ai-os] {
   background: #ffffff !important;
   color: #0a0a0a !important;
 }
@@ -4143,13 +4172,13 @@
    catch the fallback poster <img> + the four pointer-events-none
    fixed overlays that the page paints above it. */
 [data-skin="network-school"] [data-ai-os] > img[aria-hidden="true"][class*="fixed"],
-[data-skin="onyx"] [data-ai-os] > img[aria-hidden="true"][class*="fixed"],
+[data-skin="dao"] [data-ai-os] > img[aria-hidden="true"][class*="fixed"],
 [data-skin="network-school"] [data-ai-os] > div.pointer-events-none.fixed,
-[data-skin="onyx"] [data-ai-os] > div.pointer-events-none.fixed,
+[data-skin="dao"] [data-ai-os] > div.pointer-events-none.fixed,
 [data-skin="network-school"] [data-ai-os] .vignette-overlay,
-[data-skin="onyx"] [data-ai-os] .vignette-overlay,
+[data-skin="dao"] [data-ai-os] .vignette-overlay,
 [data-skin="network-school"] [data-ai-os] .noise-overlay,
-[data-skin="onyx"] [data-ai-os] .noise-overlay {
+[data-skin="dao"] [data-ai-os] .noise-overlay {
   display: none !important;
 }
 
@@ -4158,9 +4187,9 @@
    higher attribute specificity. Re-flatten to NS editorial under the
    combined skin selector. */
 [data-skin="network-school"] [data-ai-os] .liquid-glass,
-[data-skin="onyx"] [data-ai-os] .liquid-glass,
+[data-skin="dao"] [data-ai-os] .liquid-glass,
 [data-skin="network-school"] [data-ai-os] .liquid-glass-strong,
-[data-skin="onyx"] [data-ai-os] .liquid-glass-strong {
+[data-skin="dao"] [data-ai-os] .liquid-glass-strong {
   background: #ffffff !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
@@ -4169,13 +4198,13 @@
   color: #0a0a0a !important;
 }
 [data-skin="network-school"] [data-ai-os] .liquid-glass::before,
-[data-skin="onyx"] [data-ai-os] .liquid-glass::before,
+[data-skin="dao"] [data-ai-os] .liquid-glass::before,
 [data-skin="network-school"] [data-ai-os] .liquid-glass-strong::before,
-[data-skin="onyx"] [data-ai-os] .liquid-glass-strong::before {
+[data-skin="dao"] [data-ai-os] .liquid-glass-strong::before {
   display: none !important;
 }
 [data-skin="network-school"] [data-ai-os] .wabi-card,
-[data-skin="onyx"] [data-ai-os] .wabi-card {
+[data-skin="dao"] [data-ai-os] .wabi-card {
   background: #ffffff !important;
   border: 1px solid rgba(10, 10, 10, 0.08) !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px -12px rgba(0, 0, 0, 0.08) !important;
@@ -4188,13 +4217,13 @@
    Force a solid black fill by re-revealing the text color and stripping
    the gradient. Targets the inline pattern via attribute substring. */
 [data-skin="network-school"] [data-ai-os] h1[style*="background-clip"],
-[data-skin="onyx"] [data-ai-os] h1[style*="background-clip"],
+[data-skin="dao"] [data-ai-os] h1[style*="background-clip"],
 [data-skin="network-school"] [data-ai-os] h2[style*="background-clip"],
-[data-skin="onyx"] [data-ai-os] h2[style*="background-clip"],
+[data-skin="dao"] [data-ai-os] h2[style*="background-clip"],
 [data-skin="network-school"] [data-ai-os] h3[style*="background-clip"],
-[data-skin="onyx"] [data-ai-os] h3[style*="background-clip"],
+[data-skin="dao"] [data-ai-os] h3[style*="background-clip"],
 [data-skin="network-school"] [data-ai-os] [style*="-webkit-background-clip"],
-[data-skin="onyx"] [data-ai-os] [style*="-webkit-background-clip"] {
+[data-skin="dao"] [data-ai-os] [style*="-webkit-background-clip"] {
   background: none !important;
   background-image: none !important;
   -webkit-background-clip: initial !important;
@@ -4206,11 +4235,11 @@
 /* Kill the desktop drop-shadow + mobile text-shadow halos on the
    hero glow text utilities. NS is flat editorial — no glow. */
 [data-skin="network-school"] [data-ai-os] .ai-os-glow-text-strong,
-[data-skin="onyx"] [data-ai-os] .ai-os-glow-text-strong,
+[data-skin="dao"] [data-ai-os] .ai-os-glow-text-strong,
 [data-skin="network-school"] [data-ai-os] .ai-os-glow-text-medium,
-[data-skin="onyx"] [data-ai-os] .ai-os-glow-text-medium,
+[data-skin="dao"] [data-ai-os] .ai-os-glow-text-medium,
 [data-skin="network-school"] [data-ai-os] .ai-os-glow-text-knoware,
-[data-skin="onyx"] [data-ai-os] .ai-os-glow-text-knoware {
+[data-skin="dao"] [data-ai-os] .ai-os-glow-text-knoware {
   filter: none !important;
   text-shadow: none !important;
 }
@@ -4220,13 +4249,13 @@
    via attribute substring — the rgba/hsl literal is canonical in the
    page source. */
 [data-skin="network-school"] [data-ai-os] [style*="hsl(0 0% 100%"],
-[data-skin="onyx"] [data-ai-os] [style*="hsl(0 0% 100%"],
+[data-skin="dao"] [data-ai-os] [style*="hsl(0 0% 100%"],
 [data-skin="network-school"] [data-ai-os] [style*="hsl(0,0%,100%"],
-[data-skin="onyx"] [data-ai-os] [style*="hsl(0,0%,100%"],
+[data-skin="dao"] [data-ai-os] [style*="hsl(0,0%,100%"],
 [data-skin="network-school"] [data-ai-os] [style*="hsla(0, 0%, 100%"],
-[data-skin="onyx"] [data-ai-os] [style*="hsla(0, 0%, 100%"],
+[data-skin="dao"] [data-ai-os] [style*="hsla(0, 0%, 100%"],
 [data-skin="network-school"] [data-ai-os] [style*="hsla(0,0%,100%"],
-[data-skin="onyx"] [data-ai-os] [style*="hsla(0,0%,100%"] {
+[data-skin="dao"] [data-ai-os] [style*="hsla(0,0%,100%"] {
   color: #0a0a0a !important;
   text-shadow: none !important;
 }
@@ -4234,17 +4263,17 @@
    "Additional power-ups" eyebrow and the italic "Same model.
    Different conversation." subtitle. Under NS render as muted black. */
 [data-skin="network-school"] [data-ai-os] [style*="hsla(242,"],
-[data-skin="onyx"] [data-ai-os] [style*="hsla(242,"],
+[data-skin="dao"] [data-ai-os] [style*="hsla(242,"],
 [data-skin="network-school"] [data-ai-os] [style*="hsl(242"],
-[data-skin="onyx"] [data-ai-os] [style*="hsl(242"],
+[data-skin="dao"] [data-ai-os] [style*="hsl(242"],
 [data-skin="network-school"] [data-ai-os] [style*="hsla(290,"],
-[data-skin="onyx"] [data-ai-os] [style*="hsla(290,"],
+[data-skin="dao"] [data-ai-os] [style*="hsla(290,"],
 [data-skin="network-school"] [data-ai-os] [style*="hsl(290"],
-[data-skin="onyx"] [data-ai-os] [style*="hsl(290"],
+[data-skin="dao"] [data-ai-os] [style*="hsl(290"],
 [data-skin="network-school"] [data-ai-os] [style*="hsla(40 70%"],
-[data-skin="onyx"] [data-ai-os] [style*="hsla(40 70%"],
+[data-skin="dao"] [data-ai-os] [style*="hsla(40 70%"],
 [data-skin="network-school"] [data-ai-os] [style*="hsl(40 70%"],
-[data-skin="onyx"] [data-ai-os] [style*="hsl(40 70%"] {
+[data-skin="dao"] [data-ai-os] [style*="hsl(40 70%"] {
   color: rgba(10, 10, 10, 0.62) !important;
   text-shadow: none !important;
 }
@@ -4256,9 +4285,9 @@
    the pastel-on-pastel chip becomes near-invisible. Override to
    neutral ink-on-white pill. */
 [data-skin="network-school"] [data-ai-os] a.group[class*="rounded-2xl"][style*="text-shadow"],
-[data-skin="onyx"] [data-ai-os] a.group[class*="rounded-2xl"][style*="text-shadow"],
+[data-skin="dao"] [data-ai-os] a.group[class*="rounded-2xl"][style*="text-shadow"],
 [data-skin="network-school"] [data-ai-os] a.group[class*="rounded-2xl"][style*="background"],
-[data-skin="onyx"] [data-ai-os] a.group[class*="rounded-2xl"][style*="background"] {
+[data-skin="dao"] [data-ai-os] a.group[class*="rounded-2xl"][style*="background"] {
   color: #0a0a0a !important;
   background: #ffffff !important;
   border: 1px solid rgba(10, 10, 10, 0.18) !important;
@@ -4266,7 +4295,7 @@
   text-shadow: none !important;
 }
 [data-skin="network-school"] [data-ai-os] a.group[class*="rounded-2xl"]:hover,
-[data-skin="onyx"] [data-ai-os] a.group[class*="rounded-2xl"]:hover {
+[data-skin="dao"] [data-ai-os] a.group[class*="rounded-2xl"]:hover {
   background: rgba(10, 10, 10, 0.04) !important;
   border-color: rgba(10, 10, 10, 0.32) !important;
 }
@@ -4275,7 +4304,7 @@
    defined as low-alpha pastel gradients via CSS vars under `[data-ai-os]`
    ~ line 2704. Under NS those wash to invisible; force flat white. */
 [data-skin="network-school"] [data-ai-os] [class*="section-gradient-"],
-[data-skin="onyx"] [data-ai-os] [class*="section-gradient-"] {
+[data-skin="dao"] [data-ai-os] [class*="section-gradient-"] {
   background: #ffffff !important;
 }
 
@@ -4285,13 +4314,13 @@
    background; pattern-matched via inline radial-gradient containing
    `rgba(132,96,234`. */
 [data-skin="network-school"] [data-ai-os] [style*="rgba(132,96,234"],
-[data-skin="onyx"] [data-ai-os] [style*="rgba(132,96,234"],
+[data-skin="dao"] [data-ai-os] [style*="rgba(132,96,234"],
 [data-skin="network-school"] [data-ai-os] [style*="rgba(132, 96, 234"],
-[data-skin="onyx"] [data-ai-os] [style*="rgba(132, 96, 234"],
+[data-skin="dao"] [data-ai-os] [style*="rgba(132, 96, 234"],
 [data-skin="network-school"] [data-ai-os] [style*="rgba(180,140,255"],
-[data-skin="onyx"] [data-ai-os] [style*="rgba(180,140,255"],
+[data-skin="dao"] [data-ai-os] [style*="rgba(180,140,255"],
 [data-skin="network-school"] [data-ai-os] [style*="rgba(180, 140, 255"],
-[data-skin="onyx"] [data-ai-os] [style*="rgba(180, 140, 255"] {
+[data-skin="dao"] [data-ai-os] [style*="rgba(180, 140, 255"] {
   background: none !important;
   box-shadow: none !important;
   text-shadow: none !important;
@@ -4477,7 +4506,7 @@ All colors MUST be HSL.
      so Cards, Inputs, Buttons, etc. auto-adapt without per-component branches.
      Activated by `/ns/*` route prefix via NSScopeLock. */
   [data-skin="network-school"],
-  [data-skin="onyx"] {
+  [data-skin="dao"] {
     --background: 0 0% 100%;           /* pure white page */
     --foreground: 0 0% 4%;             /* near-black text */
     --card: 0 0% 100%;
@@ -4684,11 +4713,11 @@ All colors MUST be HSL.
   }
   /* Network-School: editorial flat — no paper grain, no texture, no glow. */
   [data-skin="network-school"] body::before,
-  [data-skin="onyx"] body::before {
+  [data-skin="dao"] body::before {
     display: none;
   }
   [data-skin="network-school"] ::selection,
-  [data-skin="onyx"] ::selection {
+  [data-skin="dao"] ::selection {
     background: rgba(10, 10, 10, 0.18);
     color: #0a0a0a;
   }
