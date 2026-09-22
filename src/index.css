@@ -571,7 +571,8 @@
    inside the `/ns/*` route prefix).
    ========================================================================== */
 
-[data-skin="network-school"] {
+[data-skin="network-school"],
+[data-skin="onyx"] {
   /* ── Text — pure editorial black on white. */
   --skin-text-primary: #0a0a0a;
   --skin-text-body: rgba(10, 10, 10, 0.92);
@@ -696,149 +697,6 @@
      `.fytt-strikethrough` (overlay) + the SectionsPanel native
      line-through `textDecorationColor` once that's tokenized. */
   --skin-strike-color: rgba(10, 10, 10, 0.65);
-}
-
-/* ==========================================================================
-   ONYX SKIN — Day 190 (Sasha 2026-09-21)
-   ==========================================================================
-   The third first-class PLATFORM theme, sibling to Lapis (light) and Aurum
-   (dark): pure black-on-white editorial. Mirrors the /ns (network-school)
-   b&w palette, but as a persistable platform skin offered in the Settings
-   and Pane-1 theme switchers — not route-scoped like network-school.
-   Selected via `<html data-skin="onyx">`.
-   Keep in sync with network-school if that palette changes.
-   ========================================================================== */
-
-[data-skin="onyx"] {
-  /* ── Text — pure editorial black on white. */
-  --skin-text-primary: #0a0a0a;
-  --skin-text-body: rgba(10, 10, 10, 0.92);
-  --skin-text-muted: rgba(10, 10, 10, 0.62);
-  --skin-text-muted-soft: rgba(10, 10, 10, 0.48);
-
-  --skin-sections-text: rgba(10, 10, 10, 0.80);
-
-  /* Halos flat — no glow in editorial register. */
-  --skin-text-halo-strong: none;
-  --skin-text-halo-subtle: none;
-  --skin-text-halo-soft: none;
-  --skin-text-halo-deep: none;
-
-  /* Panel washes — Pane 1 a barely-perceptible off-white nav surface;
-     Panes 2+3 pure white; stronger hairlines demarcate all three. */
-  --skin-panel-1-bg: #fafafa;
-  --skin-panel-2-bg: #ffffff;
-  --skin-panel-wash: rgba(255, 255, 255, 1);
-  --skin-panel-wash-quiet: rgba(255, 255, 255, 1);
-
-  /* Ornaments — solid black, no glow. */
-  --skin-ornament-rule:  rgba(10, 10, 10, 0.15);
-  --skin-ornament-star:  #0a0a0a;
-  --skin-ornament-shadow: none;
-
-  /* Primary CTA — pure black pill, white text, minimal shadow. */
-  --skin-cta-bg: #0a0a0a;
-  --skin-cta-text: #ffffff;
-  --skin-cta-border: transparent;
-  --skin-cta-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-  --skin-cta-text-shadow: none;
-  --skin-cta-icon: #ffffff;
-  --skin-cta-icon-shadow: none;
-
-  /* Gradient accents — monochrome black (held as flat gradients so
-     background-image consumers keep working). */
-  --skin-accent-1-bg: linear-gradient(135deg, #0a0a0a 0%, #0a0a0a 100%);
-  --skin-accent-1-glow: none;
-  --skin-accent-2-bg: linear-gradient(135deg, #1c1c1c 0%, #1c1c1c 100%);
-  --skin-accent-2-glow: none;
-  --skin-accent-3-bg: linear-gradient(135deg, #2a2a2a 0%, #2a2a2a 100%);
-  --skin-accent-3-glow: none;
-
-  --skin-link-secondary: rgba(10, 10, 10, 0.72);
-
-  /* Editorial prose density. */
-  --skin-text-strong: rgba(10, 10, 10, 0.96);
-  --skin-text-faint:  rgba(10, 10, 10, 0.55);
-  --skin-text-hint:   rgba(10, 10, 10, 0.40);
-
-  /* Rules — hairline grays only. */
-  --skin-rule-strong:   rgba(10, 10, 10, 0.18);
-  --skin-rule-medium:   rgba(10, 10, 10, 0.12);
-  --skin-rule-hairline: rgba(10, 10, 10, 0.07);
-  --skin-rule-faint:    rgba(10, 10, 10, 0.04);
-
-  /* Links — editorial black with quiet underline. */
-  --skin-link-color:        #0a0a0a;
-  --skin-link-hover:        rgba(10, 10, 10, 0.65);
-  --skin-link-underline:    rgba(10, 10, 10, 0.35);
-
-  /* Cards — white surface, hairline border, minimal shadow. */
-  --skin-card-bg:       #ffffff;
-  --skin-card-border:   rgba(10, 10, 10, 0.08);
-  --skin-card-shadow:   0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px -12px rgba(0, 0, 0, 0.08);
-
-  /* Tints — minimal gray washes (no violet, no gold). */
-  --skin-tint-violet-soft: linear-gradient(135deg, rgba(0,0,0,0.02), rgba(0,0,0,0.005));
-  --skin-tint-gold-soft:   linear-gradient(135deg, rgba(0,0,0,0.02), rgba(0,0,0,0.005));
-
-  /* Single accent — pure black, no glow. */
-  --skin-accent-gold:        #0a0a0a;
-  --skin-accent-gold-glow:   none;
-
-  /* Selected state — light gray, no color. */
-  --skin-selected-bg:     rgba(10, 10, 10, 0.06);
-  --skin-selected-border: rgba(10, 10, 10, 0.25);
-  --skin-selected-text:   #0a0a0a;
-
-  /* Form inputs — white, hairline border, black text. */
-  --skin-input-bg:      #ffffff;
-  --skin-input-border:  rgba(10, 10, 10, 0.18);
-  --skin-input-text:    #0a0a0a;
-  --skin-input-placeholder: rgba(10, 10, 10, 0.40);
-
-  /* Darkroom — pure black with white text (editorial hero pattern). */
-  --skin-darkroom-bg:     rgba(10, 10, 10, 0.96);
-  --skin-darkroom-text:   rgba(255, 255, 255, 0.96);
-  --skin-darkroom-muted:  rgba(255, 255, 255, 0.72);
-  --skin-darkroom-border: rgba(255, 255, 255, 0.12);
-
-  /* Callout — flat black gradient (GOLD_GRADIENT helper needs a gradient). */
-  --skin-callout-bg:     linear-gradient(135deg, #0a0a0a 0%, #0a0a0a 100%);
-  --skin-callout-glow:   none;
-
-  /* Music player tokens — mono palette. */
-  --skin-music-play-bg:     transparent;
-  --skin-music-play-border: rgba(10, 10, 10, 0.25);
-  --skin-music-play-shadow: none;
-  --skin-music-icon:        #0a0a0a;
-  --skin-music-text:        rgba(10, 10, 10, 0.78);
-  --skin-music-meta:        rgba(10, 10, 10, 0.55);
-
-  /* Locked/completed strikethrough — near-black. */
-  --skin-strike-color: rgba(10, 10, 10, 0.65);
-}
-
-/* Onyx typography — mirrors the network-school editorial register:
-   transitional serif headlines + serif body. */
-[data-skin="onyx"] h1,
-[data-skin="onyx"] h2,
-[data-skin="onyx"] h3,
-[data-skin="onyx"] h4,
-[data-skin="onyx"] .font-display,
-[data-skin="onyx"] .font-serif {
-  font-family: "Newsreader", "Source Serif Pro", "Source Serif 4", Georgia, serif !important;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.12;
-}
-
-[data-skin="onyx"] body,
-[data-skin="onyx"] p,
-[data-skin="onyx"] li,
-[data-skin="onyx"] blockquote {
-  font-family: "Newsreader", "Source Serif Pro", Georgia, serif !important;
-  font-weight: 400;
-  line-height: 1.6;
 }
 
 /* ───────────────────────────────────────────────────────────────────
@@ -3639,11 +3497,17 @@
 
 /* Display headlines — Newsreader, high-contrast transitional. */
 [data-skin="network-school"] h1,
+[data-skin="onyx"] h1,
 [data-skin="network-school"] h2,
+[data-skin="onyx"] h2,
 [data-skin="network-school"] h3,
+[data-skin="onyx"] h3,
 [data-skin="network-school"] h4,
+[data-skin="onyx"] h4,
 [data-skin="network-school"] .font-display,
-[data-skin="network-school"] .font-serif {
+[data-skin="onyx"] .font-display,
+[data-skin="network-school"] .font-serif,
+[data-skin="onyx"] .font-serif {
   font-family: "Newsreader", "Source Serif Pro", "Source Serif 4", Georgia, serif !important;
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -3652,9 +3516,13 @@
 
 /* Body content — serif, lighter weight, generous line-height. */
 [data-skin="network-school"] body,
+[data-skin="onyx"] body,
 [data-skin="network-school"] p,
+[data-skin="onyx"] p,
 [data-skin="network-school"] li,
-[data-skin="network-school"] blockquote {
+[data-skin="onyx"] li,
+[data-skin="network-school"] blockquote,
+[data-skin="onyx"] blockquote {
   font-family: "Newsreader", "Source Serif Pro", Georgia, serif !important;
   font-weight: 400;
   line-height: 1.6;
@@ -3663,18 +3531,31 @@
 /* UI chrome — rail labels, Pane 2 section titles, buttons, form
    controls — Inter (clean grotesque sans, matches NS's APPLY/LOG IN). */
 [data-skin="network-school"] .liquid-glass.h-dvh,
+[data-skin="onyx"] .liquid-glass.h-dvh,
 [data-skin="network-school"] .liquid-glass.h-dvh button,
+[data-skin="onyx"] .liquid-glass.h-dvh button,
 [data-skin="network-school"] .liquid-glass.h-dvh a,
+[data-skin="onyx"] .liquid-glass.h-dvh a,
 [data-skin="network-school"] .liquid-glass.h-dvh span,
+[data-skin="onyx"] .liquid-glass.h-dvh span,
 [data-skin="network-school"] .group[class*="rounded-2xl"],
+[data-skin="onyx"] .group[class*="rounded-2xl"],
 [data-skin="network-school"] button.liquid-glass-dark,
+[data-skin="onyx"] button.liquid-glass-dark,
 [data-skin="network-school"] button.liquid-glass,
+[data-skin="onyx"] button.liquid-glass,
 [data-skin="network-school"] input,
+[data-skin="onyx"] input,
 [data-skin="network-school"] textarea,
+[data-skin="onyx"] textarea,
 [data-skin="network-school"] select,
+[data-skin="onyx"] select,
 [data-skin="network-school"] label,
+[data-skin="onyx"] label,
 [data-skin="network-school"] [class*="text-xs"],
-[data-skin="network-school"] [class*="uppercase"] {
+[data-skin="onyx"] [class*="text-xs"],
+[data-skin="network-school"] [class*="uppercase"],
+[data-skin="onyx"] [class*="uppercase"] {
   font-family: "Inter", system-ui, sans-serif !important;
   letter-spacing: normal;
 }
@@ -3683,7 +3564,9 @@
    it Inter sans, all-caps editorial tracking. NS APPLY button reads
    uppercase clean grotesque. */
 [data-skin="network-school"] button.liquid-glass-dark,
-[data-skin="network-school"] a.liquid-glass-dark {
+[data-skin="onyx"] button.liquid-glass-dark,
+[data-skin="network-school"] a.liquid-glass-dark,
+[data-skin="onyx"] a.liquid-glass-dark {
   font-family: "Inter", system-ui, sans-serif !important;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -3691,7 +3574,9 @@
 
 /* Liquid-glass effects flattened — NS is editorial, no glassmorphism. */
 [data-skin="network-school"] .liquid-glass,
-[data-skin="network-school"] .liquid-glass-strong {
+[data-skin="onyx"] .liquid-glass,
+[data-skin="network-school"] .liquid-glass-strong,
+[data-skin="onyx"] .liquid-glass-strong {
   background: #ffffff;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
@@ -3699,10 +3584,13 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px -12px rgba(0, 0, 0, 0.08);
 }
 [data-skin="network-school"] .liquid-glass::before,
-[data-skin="network-school"] .liquid-glass-strong::before {
+[data-skin="onyx"] .liquid-glass::before,
+[data-skin="network-school"] .liquid-glass-strong::before,
+[data-skin="onyx"] .liquid-glass-strong::before {
   display: none;
 }
-[data-skin="network-school"] .liquid-glass-dark {
+[data-skin="network-school"] .liquid-glass-dark,
+[data-skin="onyx"] .liquid-glass-dark {
   background: #0a0a0a;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
@@ -3710,31 +3598,40 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
   color: #ffffff;
 }
-[data-skin="network-school"] .liquid-glass-dark::before {
+[data-skin="network-school"] .liquid-glass-dark::before,
+[data-skin="onyx"] .liquid-glass-dark::before {
   display: none;
 }
 
 /* Kill the Mux HLS video background — NS is clean, no motion. */
 [data-skin="network-school"] video[autoplay][muted],
+[data-skin="onyx"] video[autoplay][muted],
 [data-skin="network-school"] video.absolute,
+[data-skin="onyx"] video.absolute,
 [data-skin="network-school"] [data-mux-background],
-[data-skin="network-school"] video[playsinline] {
+[data-skin="onyx"] [data-mux-background],
+[data-skin="network-school"] video[playsinline],
+[data-skin="onyx"] video[playsinline] {
   display: none !important;
 }
 
 /* Logo treatment — convert the gold-glow brand mark to pure black silhouette. */
-[data-skin="network-school"] img[alt="Find Your Top Talent"] {
+[data-skin="network-school"] img[alt="Find Your Top Talent"],
+[data-skin="onyx"] img[alt="Find Your Top Talent"] {
   filter: brightness(0) saturate(100%) !important;
 }
 
 /* Strip residual gold/violet drop-shadows on logo wrappers. */
 [data-skin="network-school"] a[aria-label*="home"] img,
-[data-skin="network-school"] a[aria-label*="Home"] img {
+[data-skin="onyx"] a[aria-label*="home"] img,
+[data-skin="network-school"] a[aria-label*="Home"] img,
+[data-skin="onyx"] a[aria-label*="Home"] img {
   filter: brightness(0) saturate(100%) !important;
 }
 
 /* Body background — pure white, no cream tint. */
-[data-skin="network-school"] body {
+[data-skin="network-school"] body,
+[data-skin="onyx"] body {
   background: #ffffff;
   color: #0a0a0a;
 }
@@ -3745,31 +3642,37 @@
    ZoneOfGeniusEntry). Override to pure white under network-school so
    the editorial register holds end-to-end without per-component refactor.
    Catches the opacity variants (`/65`, `/80`, etc.) via attribute substring. */
-[data-skin="network-school"] [class*="bg-[#0a0a1a]"] {
+[data-skin="network-school"] [class*="bg-[#0a0a1a]"],
+[data-skin="onyx"] [class*="bg-[#0a0a1a]"] {
   background-color: transparent !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
-[data-skin="network-school"] .bg-\[\#0a0a1a\] {
+[data-skin="network-school"] .bg-\[\#0a0a1a\],
+[data-skin="onyx"] .bg-\[\#0a0a1a\] {
   background-color: #ffffff !important;
 }
 
 /* Same for the cosmic loader spinner border on dark backdrops. */
-[data-skin="network-school"] .border-white\/30 {
+[data-skin="network-school"] .border-white\/30,
+[data-skin="onyx"] .border-white\/30 {
   border-color: rgba(10, 10, 10, 0.25) !important;
 }
 
 /* Gold "spine" right-edge accent on SpacesRail — kill the gold drop-shadow
    that the rail applies inline (Day 48 iter 7, see SpacesRail.tsx). */
 [data-skin="network-school"] aside[role="navigation"],
-[data-skin="network-school"] [class*="liquid-glass"][class*="h-dvh"] {
+[data-skin="onyx"] aside[role="navigation"],
+[data-skin="network-school"] [class*="liquid-glass"][class*="h-dvh"],
+[data-skin="onyx"] [class*="liquid-glass"][class*="h-dvh"] {
   box-shadow: none !important;
 }
 
 /* Ornament emblem (ignite-logo, gold by default) — render as flat black
    silhouette under NS skin. Drop-shadows that the Ornament inlines also
    get neutralized so no warm glow leaks into the editorial register. */
-[data-skin="network-school"] .ornament-spin {
+[data-skin="network-school"] .ornament-spin,
+[data-skin="onyx"] .ornament-spin {
   filter: brightness(0) saturate(0) !important;
 }
 
@@ -3777,7 +3680,9 @@
    inside it. Same brightness-zero treatment so the emblem reads white
    inside the black pill via CSS invert. */
 [data-skin="network-school"] button img.ornament-spin,
-[data-skin="network-school"] a img.ornament-spin {
+[data-skin="onyx"] button img.ornament-spin,
+[data-skin="network-school"] a img.ornament-spin,
+[data-skin="onyx"] a img.ornament-spin {
   filter: brightness(0) invert(1) !important;
 }
 
@@ -3785,10 +3690,13 @@
    on interactive surfaces under NS. They reappear under any other
    skin because the rules are scoped to [data-skin="network-school"]. */
 [data-skin="network-school"] [class*="ring-[#d4af37"],
-[data-skin="network-school"] [class*="ring-[#f4d472"] {
+[data-skin="onyx"] [class*="ring-[#d4af37"],
+[data-skin="network-school"] [class*="ring-[#f4d472"],
+[data-skin="onyx"] [class*="ring-[#f4d472"] {
   --tw-ring-color: rgba(10, 10, 10, 0.18) !important;
 }
-[data-skin="network-school"] [class*="shadow-[0_0_16px_-4px_rgba(244,212,114"] {
+[data-skin="network-school"] [class*="shadow-[0_0_16px_-4px_rgba(244,212,114"],
+[data-skin="onyx"] [class*="shadow-[0_0_16px_-4px_rgba(244,212,114"] {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
 }
 
@@ -3801,7 +3709,8 @@
    double rule for editorial weight (two parallel hairlines with a thin
    gap). `border-style: double` requires `border-width >= 3px` to render
    as two lines instead of one. */
-[data-skin="network-school"] .liquid-glass.h-dvh {
+[data-skin="network-school"] .liquid-glass.h-dvh,
+[data-skin="onyx"] .liquid-glass.h-dvh {
   border-right: 3px double rgba(10, 10, 10, 0.14) !important;
 }
 
@@ -3810,7 +3719,9 @@
    of the rail). Stronger hairline so all three panes register as
    distinct surfaces under the SaaS-dashboard vibe Sasha called for. */
 [data-skin="network-school"] div[data-pane="2"],
-[data-skin="network-school"] aside[data-pane="2"] {
+[data-skin="onyx"] div[data-pane="2"],
+[data-skin="network-school"] aside[data-pane="2"],
+[data-skin="onyx"] aside[data-pane="2"] {
   border-right: 1px solid rgba(10, 10, 10, 0.10) !important;
   background-color: #ffffff !important;
 }
@@ -3821,7 +3732,8 @@
    center (both at y~105 at 1280px width). 2.5rem (40px) shifts the
    default pt-4 (16px) into the right band for a 48px hero font — the
    text middle sits within a few px of the chip centers. */
-[data-skin="network-school"] main.flex-1.min-h-dvh {
+[data-skin="network-school"] main.flex-1.min-h-dvh,
+[data-skin="onyx"] main.flex-1.min-h-dvh {
   padding-top: 2.5rem !important;
 }
 
@@ -3830,47 +3742,60 @@
    style by the cascade rules, so we can force the editorial register
    here without editing every span in Auth.tsx. */
 [data-skin="network-school"] article.liquid-glass-strong h1,
+[data-skin="onyx"] article.liquid-glass-strong h1,
 [data-skin="network-school"] article.liquid-glass-strong h1 *,
+[data-skin="onyx"] article.liquid-glass-strong h1 *,
 [data-skin="network-school"] article.liquid-glass-strong p,
+[data-skin="onyx"] article.liquid-glass-strong p,
 [data-skin="network-school"] article.liquid-glass-strong label,
+[data-skin="onyx"] article.liquid-glass-strong label,
 [data-skin="network-school"] article.liquid-glass-strong button,
-[data-skin="network-school"] article.liquid-glass-strong input {
+[data-skin="onyx"] article.liquid-glass-strong button,
+[data-skin="network-school"] article.liquid-glass-strong input,
+[data-skin="onyx"] article.liquid-glass-strong input {
   font-family: "Newsreader", "Source Serif Pro", Georgia, serif !important;
 }
 /* Tab list "Log In / Sign Up" gold-rgba surround → neutral hairline. */
-[data-skin="network-school"] article.liquid-glass-strong [role="tablist"] {
+[data-skin="network-school"] article.liquid-glass-strong [role="tablist"],
+[data-skin="onyx"] article.liquid-glass-strong [role="tablist"] {
   background-color: rgba(10, 10, 10, 0.04) !important;
   border-color: rgba(10, 10, 10, 0.10) !important;
 }
 /* Active tab gold pill → near-black ink-on-white. */
-[data-skin="network-school"] article.liquid-glass-strong [role="tab"][data-state="active"] {
+[data-skin="network-school"] article.liquid-glass-strong [role="tab"][data-state="active"],
+[data-skin="onyx"] article.liquid-glass-strong [role="tab"][data-state="active"] {
   background-color: #ffffff !important;
   color: #0a0a0a !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
 }
 /* Inactive tab text. */
-[data-skin="network-school"] article.liquid-glass-strong [role="tab"]:not([data-state="active"]) {
+[data-skin="network-school"] article.liquid-glass-strong [role="tab"]:not([data-state="active"]),
+[data-skin="onyx"] article.liquid-glass-strong [role="tab"]:not([data-state="active"]) {
   color: rgba(10, 10, 10, 0.55) !important;
 }
 /* Article shadow gold halo → editorial neutral. */
-[data-skin="network-school"] article.liquid-glass-strong {
+[data-skin="network-school"] article.liquid-glass-strong,
+[data-skin="onyx"] article.liquid-glass-strong {
   box-shadow:
     0 4px 14px -6px rgba(0, 0, 0, 0.08),
     0 24px 60px -24px rgba(0, 0, 0, 0.10),
     0 0 0 1px rgba(10, 10, 10, 0.06) !important;
 }
 /* Inputs default to gold-tinted on Aurora; neutralize on NS. */
-[data-skin="network-school"] article.liquid-glass-strong input {
+[data-skin="network-school"] article.liquid-glass-strong input,
+[data-skin="onyx"] article.liquid-glass-strong input {
   background-color: #ffffff !important;
   border-color: rgba(10, 10, 10, 0.18) !important;
   color: #0a0a0a !important;
   font-family: "Inter", system-ui, sans-serif !important;
 }
-[data-skin="network-school"] article.liquid-glass-strong input::placeholder {
+[data-skin="network-school"] article.liquid-glass-strong input::placeholder,
+[data-skin="onyx"] article.liquid-glass-strong input::placeholder {
   color: rgba(10, 10, 10, 0.40) !important;
 }
 /* Primary submit button (`Log In`/`Sign Up`) — was navy gradient. */
-[data-skin="network-school"] article.liquid-glass-strong form button[type="submit"] {
+[data-skin="network-school"] article.liquid-glass-strong form button[type="submit"],
+[data-skin="onyx"] article.liquid-glass-strong form button[type="submit"] {
   background: #0a0a0a !important;
   color: #ffffff !important;
   border-color: transparent !important;
@@ -3882,7 +3807,8 @@
    on any element whose inline style references --skin-selected-bg.
    Hits both SpacesRail JOURNEY/AI OS/ME/BUILD chips AND SectionsPanel
    row cards because both set backgroundColor: var(--skin-selected-bg). */
-[data-skin="network-school"] [style*="--skin-selected-bg"] {
+[data-skin="network-school"] [style*="--skin-selected-bg"],
+[data-skin="onyx"] [style*="--skin-selected-bg"] {
   box-shadow: inset 3px 0 0 0 #0a0a0a !important;
 }
 
@@ -3891,7 +3817,9 @@
    Also covers the SectionsPanel rows (Pane 2) which use white-with-
    opacity text classes. */
 [data-skin="network-school"] .liquid-glass.h-dvh,
-[data-skin="network-school"] .liquid-glass.h-dvh [class*="text-white"] {
+[data-skin="onyx"] .liquid-glass.h-dvh,
+[data-skin="network-school"] .liquid-glass.h-dvh [class*="text-white"],
+[data-skin="onyx"] .liquid-glass.h-dvh [class*="text-white"] {
   color: #0a0a0a !important;
 }
 
@@ -3900,30 +3828,43 @@
    which read as near-invisible on the white NS background. Override to
    a soft dark wash so the row tells the user it's interactive. */
 [data-skin="network-school"] .liquid-glass.h-dvh button:hover,
+[data-skin="onyx"] .liquid-glass.h-dvh button:hover,
 [data-skin="network-school"] .liquid-glass.h-dvh a:hover,
-[data-skin="network-school"] .liquid-glass.h-dvh .group:hover {
+[data-skin="onyx"] .liquid-glass.h-dvh a:hover,
+[data-skin="network-school"] .liquid-glass.h-dvh .group:hover,
+[data-skin="onyx"] .liquid-glass.h-dvh .group:hover {
   background-color: rgba(10, 10, 10, 0.05) !important;
 }
 [data-skin="network-school"] [class*="w-[260px]"] .group:hover,
-[data-skin="network-school"] aside[data-pane="2"] .group:hover {
+[data-skin="onyx"] [class*="w-[260px]"] .group:hover,
+[data-skin="network-school"] aside[data-pane="2"] .group:hover,
+[data-skin="onyx"] aside[data-pane="2"] .group:hover {
   background-color: rgba(10, 10, 10, 0.05) !important;
 }
 [data-skin="network-school"] .liquid-glass.h-dvh [class*="bg-white\\/\\["],
-[data-skin="network-school"] .liquid-glass.h-dvh [class*="bg-white/["] {
+[data-skin="onyx"] .liquid-glass.h-dvh [class*="bg-white\\/\\["],
+[data-skin="network-school"] .liquid-glass.h-dvh [class*="bg-white/["],
+[data-skin="onyx"] .liquid-glass.h-dvh [class*="bg-white/["] {
   background-color: transparent !important;
 }
 /* Pane 2 — same conversion for text + the bg-white/[0.04] etc. baseline. */
 [data-skin="network-school"] [data-pane="2"] [class*="text-white"],
-[data-skin="network-school"] [data-pane="2"] {
+[data-skin="onyx"] [data-pane="2"] [class*="text-white"],
+[data-skin="network-school"] [data-pane="2"],
+[data-skin="onyx"] [data-pane="2"] {
   color: #0a0a0a !important;
 }
 /* Catch-all for SectionsPanel rows whose container isn't yet tagged
    with data-pane — they're identifiable by the rounded-2xl + group +
    mx-2 pattern with bg-white/[0.05] background. */
 [data-skin="network-school"] .group[class*="bg-white\\/\\[0.05\\]"],
+[data-skin="onyx"] .group[class*="bg-white\\/\\[0.05\\]"],
 [data-skin="network-school"] .group[class*="bg-white/[0.05]"],
+[data-skin="onyx"] .group[class*="bg-white/[0.05]"],
 [data-skin="network-school"] .group[class*="bg-white\\/\\[0.04\\]"],
-[data-skin="network-school"] .group[class*="bg-white/[0.04]"] {
+[data-skin="onyx"] .group[class*="bg-white\\/\\[0.04\\]"],
+[data-skin="network-school"] .group[class*="bg-white/[0.04]"],
+[data-skin="onyx"] .group[class*="bg-white/[0.04]"] {
   background-color: transparent !important;
   color: #0a0a0a !important;
 }
@@ -3937,7 +3878,9 @@
    rows also get dark text on NS, while letting the gold ring +
    subtle gold tint remain for the editorial accent. */
 [data-skin="network-school"] .group[class*="bg-[rgba(212,175,55"],
-[data-skin="network-school"] .group[class*="bg-[rgba(212,175,55"] span {
+[data-skin="onyx"] .group[class*="bg-[rgba(212,175,55"],
+[data-skin="network-school"] .group[class*="bg-[rgba(212,175,55"] span,
+[data-skin="onyx"] .group[class*="bg-[rgba(212,175,55"] span {
   color: #0a0a0a !important;
 }
 
@@ -3945,33 +3888,41 @@
    patterns include the literal `[#d4af37]` and the rgba(244,212,114,...)
    shadow — both targeted via attribute substring selector so the rule
    catches every variant. */
-[data-skin="network-school"] [class*="ring-[#d4af37"] {
+[data-skin="network-school"] [class*="ring-[#d4af37"],
+[data-skin="onyx"] [class*="ring-[#d4af37"] {
   --tw-ring-color: transparent !important;
 }
 [data-skin="network-school"] [class*="rgba(244,212,114"],
-[data-skin="network-school"] [class*="rgba(212,175,55"] {
+[data-skin="onyx"] [class*="rgba(244,212,114"],
+[data-skin="network-school"] [class*="rgba(212,175,55"],
+[data-skin="onyx"] [class*="rgba(212,175,55"] {
   box-shadow: none !important;
 }
 /* Re-assert the black left-bar after the shadow nuke above (specificity
    tie — last wins). */
 [data-skin="network-school"] [style*="--skin-selected-bg"][class*="ring-[#d4af37"],
-[data-skin="network-school"] [style*="--skin-selected-bg"][class*="rgba(244,212,114"] {
+[data-skin="onyx"] [style*="--skin-selected-bg"][class*="ring-[#d4af37"],
+[data-skin="network-school"] [style*="--skin-selected-bg"][class*="rgba(244,212,114"],
+[data-skin="onyx"] [style*="--skin-selected-bg"][class*="rgba(244,212,114"] {
   box-shadow: inset 3px 0 0 0 #0a0a0a !important;
 }
 
 /* Tailwind-arbitrary `bg-[#0a1628]` (deep navy) is used by the
    Equilibrium WatchModeToggle ACTIVE pill + SectionAnchorNav active
    chip + SectionSkeleton. Under NS we want near-black, not navy. */
-[data-skin="network-school"] .bg-\[\#0a1628\] {
+[data-skin="network-school"] .bg-\[\#0a1628\],
+[data-skin="onyx"] .bg-\[\#0a1628\] {
   background-color: #0a0a0a !important;
 }
-[data-skin="network-school"] [class*="bg-[#0a1628]/"] {
+[data-skin="network-school"] [class*="bg-[#0a1628]/"],
+[data-skin="onyx"] [class*="bg-[#0a1628]/"] {
   background-color: rgba(10, 10, 10, 0.10) !important;
 }
 
 /* `text-[#0a1628]/85` — Equilibrium subtitle "Biologic Watch and Action
    Compass" uses this. Under NS render as body text, not faded navy. */
-[data-skin="network-school"] [class*="text-[#0a1628]"] {
+[data-skin="network-school"] [class*="text-[#0a1628]"],
+[data-skin="onyx"] [class*="text-[#0a1628]"] {
   color: var(--skin-text-body, rgba(10, 10, 10, 0.92)) !important;
 }
 
@@ -3980,20 +3931,23 @@
    "rainbow round steps stay" rule above, the CIRCLES preserve their
    color — but the long-form step-name text should match NS register.
    Target the h1 > span pattern inside the playbook article. */
-[data-skin="network-school"] article.liquid-glass-strong h1 > span {
+[data-skin="network-school"] article.liquid-glass-strong h1 > span,
+[data-skin="onyx"] article.liquid-glass-strong h1 > span {
   color: var(--skin-text-primary, #0a0a0a) !important;
   text-shadow: none !important;
 }
 /* Same step has a transformationalResult quote with a neon left-rule.
    Convert to a neutral hairline under NS. */
-[data-skin="network-school"] article.liquid-glass-strong header p {
+[data-skin="network-school"] article.liquid-glass-strong header p,
+[data-skin="onyx"] article.liquid-glass-strong header p {
   border-left-color: var(--skin-rule-strong, rgba(10, 10, 10, 0.18)) !important;
 }
 
 /* Substep numbered chips inside StepCard use inline backgroundImage
    with the step's neon radial gradient + color-mixed text. Under NS:
    plain hairline circle with black numeral. */
-[data-skin="network-school"] article.liquid-glass-strong button[class*="rounded-full"] {
+[data-skin="network-school"] article.liquid-glass-strong button[class*="rounded-full"],
+[data-skin="onyx"] article.liquid-glass-strong button[class*="rounded-full"] {
   background-image: none !important;
   background-color: #ffffff !important;
   border: 1px solid var(--skin-rule-strong, rgba(10, 10, 10, 0.18)) !important;
@@ -4009,7 +3963,9 @@
    with gold gradients. Catch all of them via attribute substring match on
    the gold rgba literal that appears in every variant. */
 [data-skin="network-school"] [style*="rgba(244, 212, 114"],
-[data-skin="network-school"] [style*="rgba(212, 175, 55"] {
+[data-skin="onyx"] [style*="rgba(244, 212, 114"],
+[data-skin="network-school"] [style*="rgba(212, 175, 55"],
+[data-skin="onyx"] [style*="rgba(212, 175, 55"] {
   background: transparent !important;
   background-image: none !important;
   color: var(--skin-text-primary, #0a0a0a) !important;
@@ -4020,7 +3976,8 @@
 
 /* Tailwind arbitrary `bg-[#d4af37]` (gold solid) — used by the active-row
    left-pill marker in SectionsPanel. Under NS render as solid black. */
-[data-skin="network-school"] .bg-\[\#d4af37\] {
+[data-skin="network-school"] .bg-\[\#d4af37\],
+[data-skin="onyx"] .bg-\[\#d4af37\] {
   background-color: #0a0a0a !important;
   box-shadow: none !important;
 }
@@ -4029,16 +3986,22 @@
    shadow-[..rgba(244,212,114..]  rule above, but reassert for variants
    that use rgba(212,175,55,…) too. */
 [data-skin="network-school"] [class*="shadow-\[0_0_22px"],
-[data-skin="network-school"] [class*="shadow-[0_0_22px"] {
+[data-skin="onyx"] [class*="shadow-\[0_0_22px"],
+[data-skin="network-school"] [class*="shadow-[0_0_22px"],
+[data-skin="onyx"] [class*="shadow-[0_0_22px"] {
   box-shadow: none !important;
 }
 
 /* V3 buttons (Sasha 2026-05-19) — NS uses tight-radius rectangles, not
    pills. `.liquid-glass-dark .rounded-full` → 8px radius under NS. */
 [data-skin="network-school"] button.liquid-glass-dark.rounded-full,
+[data-skin="onyx"] button.liquid-glass-dark.rounded-full,
 [data-skin="network-school"] a.liquid-glass-dark.rounded-full,
+[data-skin="onyx"] a.liquid-glass-dark.rounded-full,
 [data-skin="network-school"] button.rounded-full.liquid-glass-dark,
-[data-skin="network-school"] .liquid-glass-dark[class*="rounded-full"] {
+[data-skin="onyx"] button.rounded-full.liquid-glass-dark,
+[data-skin="network-school"] .liquid-glass-dark[class*="rounded-full"],
+[data-skin="onyx"] .liquid-glass-dark[class*="rounded-full"] {
   border-radius: 8px !important;
 }
 
@@ -4046,9 +4009,13 @@
    Hide the ✦/star/ignite-logo image that sits inside our CTA buttons.
    Targets the first <img> inside a liquid-glass-dark control. */
 [data-skin="network-school"] button.liquid-glass-dark > img:first-of-type,
+[data-skin="onyx"] button.liquid-glass-dark > img:first-of-type,
 [data-skin="network-school"] a.liquid-glass-dark > img:first-of-type,
+[data-skin="onyx"] a.liquid-glass-dark > img:first-of-type,
 [data-skin="network-school"] button.liquid-glass-dark .ornament-spin,
-[data-skin="network-school"] a.liquid-glass-dark .ornament-spin {
+[data-skin="onyx"] button.liquid-glass-dark .ornament-spin,
+[data-skin="network-school"] a.liquid-glass-dark .ornament-spin,
+[data-skin="onyx"] a.liquid-glass-dark .ornament-spin {
   display: none !important;
 }
 
@@ -4059,7 +4026,8 @@
    we only need to kill the inherited drop-shadow + animation. The old
    V3 width:64% / max-height:80px rule is retired (it was inflating the
    image to ~154×77, breaking the chip-column alignment). */
-[data-skin="network-school"] .liquid-glass.h-dvh img[alt="Network School"] {
+[data-skin="network-school"] .liquid-glass.h-dvh img[alt="Network School"],
+[data-skin="onyx"] .liquid-glass.h-dvh img[alt="Network School"] {
   filter: none !important;
   animation: none !important;
 }
@@ -4070,10 +4038,15 @@
    EXCLUDES the brand logo lockup which renders as-is (black flag + ns.com
    wordmark, no filter). */
 [data-skin="network-school"] .liquid-glass.h-dvh img[alt="Journey"],
+[data-skin="onyx"] .liquid-glass.h-dvh img[alt="Journey"],
 [data-skin="network-school"] .liquid-glass.h-dvh img[alt="AI OS"],
+[data-skin="onyx"] .liquid-glass.h-dvh img[alt="AI OS"],
 [data-skin="network-school"] .liquid-glass.h-dvh img[alt="Me"],
+[data-skin="onyx"] .liquid-glass.h-dvh img[alt="Me"],
 [data-skin="network-school"] .liquid-glass.h-dvh img[alt="Build"],
-[data-skin="network-school"] .liquid-glass.h-dvh img[src*="settings-icon"] {
+[data-skin="onyx"] .liquid-glass.h-dvh img[alt="Build"],
+[data-skin="network-school"] .liquid-glass.h-dvh img[src*="settings-icon"],
+[data-skin="onyx"] .liquid-glass.h-dvh img[src*="settings-icon"] {
   filter: grayscale(1) brightness(0.55) contrast(0.95) !important;
 }
 
@@ -4085,7 +4058,9 @@
    inline by GlyphIcon and by no other rail element. Catches all 5
    variants in one rule regardless of color format. */
 [data-skin="network-school"] .liquid-glass.h-dvh span[style*="place-items: center"],
-[data-skin="network-school"] .liquid-glass.h-dvh span[style*="place-items:center"] {
+[data-skin="onyx"] .liquid-glass.h-dvh span[style*="place-items: center"],
+[data-skin="network-school"] .liquid-glass.h-dvh span[style*="place-items:center"],
+[data-skin="onyx"] .liquid-glass.h-dvh span[style*="place-items:center"] {
   color: #0a0a0a !important;
   text-shadow: none !important;
 }
@@ -4094,11 +4069,15 @@
    was text-white/50 which is invisible on the V2 white Pane 2 bg.
    Force near-black under NS. */
 [data-skin="network-school"] aside[data-pane="2"] button[aria-label="Hide sidebar"],
+[data-skin="onyx"] aside[data-pane="2"] button[aria-label="Hide sidebar"],
 [data-skin="network-school"] div[data-pane="2"] button[aria-label="Hide sidebar"],
-[data-skin="network-school"] button[aria-label="Hide sidebar"] {
+[data-skin="onyx"] div[data-pane="2"] button[aria-label="Hide sidebar"],
+[data-skin="network-school"] button[aria-label="Hide sidebar"],
+[data-skin="onyx"] button[aria-label="Hide sidebar"] {
   color: #0a0a0a !important;
 }
-[data-skin="network-school"] button[aria-label="Hide sidebar"]:hover {
+[data-skin="network-school"] button[aria-label="Hide sidebar"]:hover,
+[data-skin="onyx"] button[aria-label="Hide sidebar"]:hover {
   background-color: rgba(10, 10, 10, 0.06) !important;
 }
 
@@ -4106,7 +4085,8 @@
    reads as gold under NS. Convert to a strong neutral hairline so
    the "spaces ↑ / utility ↓" hierarchy still registers in editorial
    register. Sasha asked for a more visible separator here. */
-[data-skin="network-school"] .liquid-glass.h-dvh .h-px[style*="rgba(212, 175, 55"] {
+[data-skin="network-school"] .liquid-glass.h-dvh .h-px[style*="rgba(212, 175, 55"],
+[data-skin="onyx"] .liquid-glass.h-dvh .h-px[style*="rgba(212, 175, 55"] {
   background-image: linear-gradient(
     90deg,
     transparent 0%,
@@ -4123,7 +4103,9 @@
    at ~48px block height; pane 2 default h-16 = 64px doesn't visually
    match). */
 [data-skin="network-school"] [class*="w-[260px]"] > div.h-16:first-child,
-[data-skin="network-school"] aside[data-pane="2"] > div.h-16:first-child {
+[data-skin="onyx"] [class*="w-[260px]"] > div.h-16:first-child,
+[data-skin="network-school"] aside[data-pane="2"] > div.h-16:first-child,
+[data-skin="onyx"] aside[data-pane="2"] > div.h-16:first-child {
   height: 48px !important;
   border-bottom-color: rgba(10, 10, 10, 0.08) !important;
 }
@@ -4143,12 +4125,15 @@
    to dark equivalents via attribute-substring selectors, neutralize
    the gradient-clipped headlines. Specificity comes from the
    compound `[data-skin="network-school"] [data-ai-os]` selector,
+   compound `[data-skin="onyx"] [data-ai-os]` selector,
    which beats `[data-ai-os]` alone.
    ────────────────────────────────────────────────────────────────────── */
 
 /* Reset the AI OS root background + ambient overlays. */
 [data-skin="network-school"] [data-ai-os].ai-os-root,
-[data-skin="network-school"] [data-ai-os] {
+[data-skin="onyx"] [data-ai-os].ai-os-root,
+[data-skin="network-school"] [data-ai-os],
+[data-skin="onyx"] [data-ai-os] {
   background: #ffffff !important;
   color: #0a0a0a !important;
 }
@@ -4158,9 +4143,13 @@
    catch the fallback poster <img> + the four pointer-events-none
    fixed overlays that the page paints above it. */
 [data-skin="network-school"] [data-ai-os] > img[aria-hidden="true"][class*="fixed"],
+[data-skin="onyx"] [data-ai-os] > img[aria-hidden="true"][class*="fixed"],
 [data-skin="network-school"] [data-ai-os] > div.pointer-events-none.fixed,
+[data-skin="onyx"] [data-ai-os] > div.pointer-events-none.fixed,
 [data-skin="network-school"] [data-ai-os] .vignette-overlay,
-[data-skin="network-school"] [data-ai-os] .noise-overlay {
+[data-skin="onyx"] [data-ai-os] .vignette-overlay,
+[data-skin="network-school"] [data-ai-os] .noise-overlay,
+[data-skin="onyx"] [data-ai-os] .noise-overlay {
   display: none !important;
 }
 
@@ -4169,7 +4158,9 @@
    higher attribute specificity. Re-flatten to NS editorial under the
    combined skin selector. */
 [data-skin="network-school"] [data-ai-os] .liquid-glass,
-[data-skin="network-school"] [data-ai-os] .liquid-glass-strong {
+[data-skin="onyx"] [data-ai-os] .liquid-glass,
+[data-skin="network-school"] [data-ai-os] .liquid-glass-strong,
+[data-skin="onyx"] [data-ai-os] .liquid-glass-strong {
   background: #ffffff !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
@@ -4178,10 +4169,13 @@
   color: #0a0a0a !important;
 }
 [data-skin="network-school"] [data-ai-os] .liquid-glass::before,
-[data-skin="network-school"] [data-ai-os] .liquid-glass-strong::before {
+[data-skin="onyx"] [data-ai-os] .liquid-glass::before,
+[data-skin="network-school"] [data-ai-os] .liquid-glass-strong::before,
+[data-skin="onyx"] [data-ai-os] .liquid-glass-strong::before {
   display: none !important;
 }
-[data-skin="network-school"] [data-ai-os] .wabi-card {
+[data-skin="network-school"] [data-ai-os] .wabi-card,
+[data-skin="onyx"] [data-ai-os] .wabi-card {
   background: #ffffff !important;
   border: 1px solid rgba(10, 10, 10, 0.08) !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 24px -12px rgba(0, 0, 0, 0.08) !important;
@@ -4194,9 +4188,13 @@
    Force a solid black fill by re-revealing the text color and stripping
    the gradient. Targets the inline pattern via attribute substring. */
 [data-skin="network-school"] [data-ai-os] h1[style*="background-clip"],
+[data-skin="onyx"] [data-ai-os] h1[style*="background-clip"],
 [data-skin="network-school"] [data-ai-os] h2[style*="background-clip"],
+[data-skin="onyx"] [data-ai-os] h2[style*="background-clip"],
 [data-skin="network-school"] [data-ai-os] h3[style*="background-clip"],
-[data-skin="network-school"] [data-ai-os] [style*="-webkit-background-clip"] {
+[data-skin="onyx"] [data-ai-os] h3[style*="background-clip"],
+[data-skin="network-school"] [data-ai-os] [style*="-webkit-background-clip"],
+[data-skin="onyx"] [data-ai-os] [style*="-webkit-background-clip"] {
   background: none !important;
   background-image: none !important;
   -webkit-background-clip: initial !important;
@@ -4208,8 +4206,11 @@
 /* Kill the desktop drop-shadow + mobile text-shadow halos on the
    hero glow text utilities. NS is flat editorial — no glow. */
 [data-skin="network-school"] [data-ai-os] .ai-os-glow-text-strong,
+[data-skin="onyx"] [data-ai-os] .ai-os-glow-text-strong,
 [data-skin="network-school"] [data-ai-os] .ai-os-glow-text-medium,
-[data-skin="network-school"] [data-ai-os] .ai-os-glow-text-knoware {
+[data-skin="onyx"] [data-ai-os] .ai-os-glow-text-medium,
+[data-skin="network-school"] [data-ai-os] .ai-os-glow-text-knoware,
+[data-skin="onyx"] [data-ai-os] .ai-os-glow-text-knoware {
   filter: none !important;
   text-shadow: none !important;
 }
@@ -4219,9 +4220,13 @@
    via attribute substring — the rgba/hsl literal is canonical in the
    page source. */
 [data-skin="network-school"] [data-ai-os] [style*="hsl(0 0% 100%"],
+[data-skin="onyx"] [data-ai-os] [style*="hsl(0 0% 100%"],
 [data-skin="network-school"] [data-ai-os] [style*="hsl(0,0%,100%"],
+[data-skin="onyx"] [data-ai-os] [style*="hsl(0,0%,100%"],
 [data-skin="network-school"] [data-ai-os] [style*="hsla(0, 0%, 100%"],
-[data-skin="network-school"] [data-ai-os] [style*="hsla(0,0%,100%"] {
+[data-skin="onyx"] [data-ai-os] [style*="hsla(0, 0%, 100%"],
+[data-skin="network-school"] [data-ai-os] [style*="hsla(0,0%,100%"],
+[data-skin="onyx"] [data-ai-os] [style*="hsla(0,0%,100%"] {
   color: #0a0a0a !important;
   text-shadow: none !important;
 }
@@ -4229,11 +4234,17 @@
    "Additional power-ups" eyebrow and the italic "Same model.
    Different conversation." subtitle. Under NS render as muted black. */
 [data-skin="network-school"] [data-ai-os] [style*="hsla(242,"],
+[data-skin="onyx"] [data-ai-os] [style*="hsla(242,"],
 [data-skin="network-school"] [data-ai-os] [style*="hsl(242"],
+[data-skin="onyx"] [data-ai-os] [style*="hsl(242"],
 [data-skin="network-school"] [data-ai-os] [style*="hsla(290,"],
+[data-skin="onyx"] [data-ai-os] [style*="hsla(290,"],
 [data-skin="network-school"] [data-ai-os] [style*="hsl(290"],
+[data-skin="onyx"] [data-ai-os] [style*="hsl(290"],
 [data-skin="network-school"] [data-ai-os] [style*="hsla(40 70%"],
-[data-skin="network-school"] [data-ai-os] [style*="hsl(40 70%"] {
+[data-skin="onyx"] [data-ai-os] [style*="hsla(40 70%"],
+[data-skin="network-school"] [data-ai-os] [style*="hsl(40 70%"],
+[data-skin="onyx"] [data-ai-os] [style*="hsl(40 70%"] {
   color: rgba(10, 10, 10, 0.62) !important;
   text-shadow: none !important;
 }
@@ -4245,14 +4256,17 @@
    the pastel-on-pastel chip becomes near-invisible. Override to
    neutral ink-on-white pill. */
 [data-skin="network-school"] [data-ai-os] a.group[class*="rounded-2xl"][style*="text-shadow"],
-[data-skin="network-school"] [data-ai-os] a.group[class*="rounded-2xl"][style*="background"] {
+[data-skin="onyx"] [data-ai-os] a.group[class*="rounded-2xl"][style*="text-shadow"],
+[data-skin="network-school"] [data-ai-os] a.group[class*="rounded-2xl"][style*="background"],
+[data-skin="onyx"] [data-ai-os] a.group[class*="rounded-2xl"][style*="background"] {
   color: #0a0a0a !important;
   background: #ffffff !important;
   border: 1px solid rgba(10, 10, 10, 0.18) !important;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
   text-shadow: none !important;
 }
-[data-skin="network-school"] [data-ai-os] a.group[class*="rounded-2xl"]:hover {
+[data-skin="network-school"] [data-ai-os] a.group[class*="rounded-2xl"]:hover,
+[data-skin="onyx"] [data-ai-os] a.group[class*="rounded-2xl"]:hover {
   background: rgba(10, 10, 10, 0.04) !important;
   border-color: rgba(10, 10, 10, 0.32) !important;
 }
@@ -4260,7 +4274,8 @@
 /* Section-gradient backgrounds (`.section-gradient-clarity`, etc.) are
    defined as low-alpha pastel gradients via CSS vars under `[data-ai-os]`
    ~ line 2704. Under NS those wash to invisible; force flat white. */
-[data-skin="network-school"] [data-ai-os] [class*="section-gradient-"] {
+[data-skin="network-school"] [data-ai-os] [class*="section-gradient-"],
+[data-skin="onyx"] [data-ai-os] [class*="section-gradient-"] {
   background: #ffffff !important;
 }
 
@@ -4270,9 +4285,13 @@
    background; pattern-matched via inline radial-gradient containing
    `rgba(132,96,234`. */
 [data-skin="network-school"] [data-ai-os] [style*="rgba(132,96,234"],
+[data-skin="onyx"] [data-ai-os] [style*="rgba(132,96,234"],
 [data-skin="network-school"] [data-ai-os] [style*="rgba(132, 96, 234"],
+[data-skin="onyx"] [data-ai-os] [style*="rgba(132, 96, 234"],
 [data-skin="network-school"] [data-ai-os] [style*="rgba(180,140,255"],
-[data-skin="network-school"] [data-ai-os] [style*="rgba(180, 140, 255"] {
+[data-skin="onyx"] [data-ai-os] [style*="rgba(180,140,255"],
+[data-skin="network-school"] [data-ai-os] [style*="rgba(180, 140, 255"],
+[data-skin="onyx"] [data-ai-os] [style*="rgba(180, 140, 255"] {
   background: none !important;
   box-shadow: none !important;
   text-shadow: none !important;
@@ -4457,7 +4476,8 @@ All colors MUST be HSL.
   /* Network-School — pure editorial monochrome. Black/white shadcn palette
      so Cards, Inputs, Buttons, etc. auto-adapt without per-component branches.
      Activated by `/ns/*` route prefix via NSScopeLock. */
-  [data-skin="network-school"] {
+  [data-skin="network-school"],
+  [data-skin="onyx"] {
     --background: 0 0% 100%;           /* pure white page */
     --foreground: 0 0% 4%;             /* near-black text */
     --card: 0 0% 100%;
@@ -4663,10 +4683,12 @@ All colors MUST be HSL.
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96  0 0 0 0 0.95  0 0 0 0 0.91  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   }
   /* Network-School: editorial flat — no paper grain, no texture, no glow. */
-  [data-skin="network-school"] body::before {
+  [data-skin="network-school"] body::before,
+  [data-skin="onyx"] body::before {
     display: none;
   }
-  [data-skin="network-school"] ::selection {
+  [data-skin="network-school"] ::selection,
+  [data-skin="onyx"] ::selection {
     background: rgba(10, 10, 10, 0.18);
     color: #0a0a0a;
   }
