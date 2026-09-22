@@ -376,6 +376,14 @@ const SpacesRail = ({
     const { skin, setSkin } = useSkin();
     const isNS = skin === "network-school";
     const isDao = skin === "daouniverse";
+    // "The Dao" (dao) — a first-class YOU platform skin (keeps the YOU
+    // logo/branding, so it stays inside isDefaultYouSkin), but styled
+    // b&w editorial like network-school. It must NOT inherit the navy
+    // "spaceship" visuals: the rail bg is overridden white by the
+    // co-selected NS css, but the active-chip navy gradient is inline
+    // (JS-gated) and can't be reached by css — so gate it out here.
+    // NB: `isDao` above is the *daouniverse* white-label, a different skin.
+    const isTheDao = skin === "dao";
     const isPlanetir = skin === "planetir";
     const isTechstars = skin === "techstars";
     const isDefaultYouSkin = !isNS && !isDao && !isPlanetir && !isTechstars;
@@ -926,7 +934,7 @@ const SpacesRail = ({
                                     // Day 130 (Sasha 2026-07-20): background deepened
                                     // slightly (0.08 → 0.13) to pair with the inset
                                     // shadow — the chip reads as recessed, not just lit.
-                                    ? isDefaultYouSkin
+                                    ? isDefaultYouSkin && !isTheDao
                                         ? {
                                             backgroundColor: "rgba(15, 35, 76, 0.52)",
                                             backgroundImage:
