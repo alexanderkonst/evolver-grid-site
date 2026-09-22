@@ -1,8 +1,8 @@
 # AI Matchmaker Brief — Index & Genealogy
 
-> **Current sendable brief: [v4.3](briefs/matchmaker_brief_v4.3.md), September 21, 2026.** Each numbered file is complete and standalone; the highest version is current. This index preserves rationale and history. Send the current versioned file, not the historical blocks below.
+> **Current sendable brief: [v4.31](briefs/matchmaker_brief_v4.31.md), September 21, 2026.** Each numbered file is complete and standalone; the highest version is current. This index preserves rationale and history. Send the current versioned file, not the historical blocks below.
 >
-> **Source hierarchy:** Sasha's UBC v1.11 and September 17–21 invitation/sovereignty exploration inform v4.3. Earlier briefs and outreach strategy v4.0 remain genealogy where they conflict with it. Technology 133 supplies the principle: the matchmaker mirrors the precision of the brief.
+> **Source hierarchy:** Sasha's UBC v1.11 and September 17–21 invitation/sovereignty exploration inform v4.3; Boardy’s operational feedback informs v4.31. Earlier briefs and outreach strategy v4.0 remain genealogy where they conflict with it. Technology 133 supplies the principle: the matchmaker mirrors the precision of the brief.
 >
 > **Tool projection:** `scripts/sync-brief-to-tool.mjs` copies the current brief into `commercial-tools/app/config.json` and regenerates search queries from `mfLexicon`. It does not migrate scoring, exclusions, routing, or templates. The tool's stored brief can be current while those behaviors still implement v4.2-era assumptions. Do not treat a version stamp as behavioral migration.
 >
@@ -10,9 +10,28 @@
 
 ---
 
+## v4.31 — September 21, 2026 · commercial purpose and operational matching
+
+**Current artifact:** [Matchmaker Brief v4.31](briefs/matchmaker_brief_v4.31.md). v4.3 remains unchanged.
+
+Boardy's feedback identifies a real risk: an accurate affinity list can still lack a reason anyone would pay. This revision keeps sovereignty and evidence discipline while making the commercial hypothesis explicit.
+
+- Lead with self-understanding translated into direction, offer and experiment. Founder-serving founders remain the primary search territory; a concrete opening and resonance outrank titles within it.
+- First test a specific paid-delivery use for an existing founder audience. Keep direct-client work wherever there is an actual desired development. Do not assume capable practitioners have no needs or must become partners.
+- Distinguish who benefits, who might pay, and the proposed outcome. A paid delivery pilot, hosted free experience, direct engagement and later method licensing are separate arrangements.
+- Return six to eight strong candidates by default, with twenty only a ceiling or an explicitly requested research batch. Separate peer-only connections from commercial hypotheses.
+- Distinguish commissioned introduction services, which can check a candidate's openness, from research assistants, which cannot infer outreach authorization from a shortlist request.
+- Measure movement from research through introductions and paid agreements. Test the purchase/hosting reason before treating affinity as demand.
+
+**Review cases:** a capable coach with a named cohort use should reach the commercial list; a perfect-title peer with no use should not. A hosted session must not be reported as a paid partnership. A licensing opportunity must not be presented as ready delivery. A request for twenty researched names must not become twenty unsolicited messages.
+
+**Runtime boundary:** the sync refreshes the stored brief only. Existing scoring gates, exclusions, routing and message templates still require a separate migration. This document revision sends nothing to Boardy or any candidate.
+
+---
+
 ## v4.3 — September 21, 2026 · invitation and sovereign discovery
 
-**Current artifact:** [Matchmaker Brief v4.3](briefs/matchmaker_brief_v4.3.md).
+**Historical artifact:** [Matchmaker Brief v4.3](briefs/matchmaker_brief_v4.3.md).
 
 The canvas centers experienced founders who serve founders. The invitation exploration changes how we meet them: offer a grounded possibility, allow correction, and let the next movement be chosen. The brief must implement both changes without turning every interesting person into a prospect.
 
