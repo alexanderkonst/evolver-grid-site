@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
+    Contrast,
     LogIn,
     LogOut,
     MessageCircle,
@@ -1283,40 +1284,40 @@ const SpacesRail = ({
                         {/* Theme toggle — Day 91: Lapis/Aurum only, the
                             white-label skins own their look. Restored here
                             from the Day 128 removal (git show 72afcdb1). */}
-                        {(skin === "lapis" || skin === "aurum") && (
+                        {(skin === "lapis" || skin === "aurum" || skin === "onyx") && (
                             <Tooltip>
                                 <TooltipTrigger asChild>
                                     <button
-                                        onClick={() => setSkin(skin === "aurum" ? "lapis" : "aurum")}
+                                        onClick={() => setSkin(skin === "lapis" ? "aurum" : skin === "aurum" ? "onyx" : "lapis")}
                                         className={cn(
                                             "grid place-items-center rounded-full transition-all duration-300 text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30",
                                             compact ? "w-[30px] h-[30px]" : "w-[48px] h-[48px]"
                                         )}
-                                        aria-label={skin === "aurum" ? t('spacesRail.themeToggleToLightAria') : t('spacesRail.themeToggleToDarkAria')}
+                                        aria-label={skin === "lapis" ? t('spacesRail.themeToggleToDarkAria') : skin === "aurum" ? t('spacesRail.themeToggleToOnyxAria') : t('spacesRail.themeToggleToLightAria')}
                                     >
-                                        {skin === "aurum" ? (
-                                            <Sun
-                                                className="flex-shrink-0"
-                                                aria-hidden="true"
-                                                style={{
-                                                    width: compact ? 16 : 18,
-                                                    height: compact ? 16 : 18,
-                                                }}
-                                            />
-                                        ) : (
+                                        {skin === "lapis" ? (
                                             <Moon
                                                 className="flex-shrink-0"
                                                 aria-hidden="true"
-                                                style={{
-                                                    width: compact ? 16 : 18,
-                                                    height: compact ? 16 : 18,
-                                                }}
+                                                style={{ width: compact ? 16 : 18, height: compact ? 16 : 18 }}
+                                            />
+                                        ) : skin === "aurum" ? (
+                                            <Contrast
+                                                className="flex-shrink-0"
+                                                aria-hidden="true"
+                                                style={{ width: compact ? 16 : 18, height: compact ? 16 : 18 }}
+                                            />
+                                        ) : (
+                                            <Sun
+                                                className="flex-shrink-0"
+                                                aria-hidden="true"
+                                                style={{ width: compact ? 16 : 18, height: compact ? 16 : 18 }}
                                             />
                                         )}
                                     </button>
                                 </TooltipTrigger>
                                 <TooltipContent side="top" align="center" sideOffset={10} className="rounded-lg border-none px-2.5 py-1.5 bg-black/85 text-[11px] text-white/90">
-                                    {skin === "aurum" ? t('spacesRail.themeToggleToLapisTitle') : t('spacesRail.themeToggleToAurumTitle')}
+                                    {skin === "lapis" ? t('spacesRail.themeToggleToAurumTitle') : skin === "aurum" ? t('spacesRail.themeToggleToOnyxTitle') : t('spacesRail.themeToggleToLapisTitle')}
                                 </TooltipContent>
                             </Tooltip>
                         )}

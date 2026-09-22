@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-02T18:12:33.569Z",
+  "generated_at": "2026-09-22T00:22:09.224Z",
   "offers": [
     {
       "dateSent": "2026-05-29",
@@ -272,6 +272,18 @@
       "channel": "Call (verbal, at session close)",
       "offerType": "paid",
       "amountUsd": 1111,
+      "status": "waiting",
+      "nextFollowupDate": "",
+      "quantity": 1,
+      "notes": ""
+    },
+    {
+      "dateSent": "2026-09-18",
+      "name": "P-4177ć",
+      "segmentOrCampaign": "2-month individual container (P-0318-model)",
+      "channel": "Zoom/Fathom",
+      "offerType": "paid",
+      "amountUsd": 2222,
       "status": "waiting",
       "nextFollowupDate": "",
       "quantity": 1,

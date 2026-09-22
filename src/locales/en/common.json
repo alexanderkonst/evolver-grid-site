@@ -1315,7 +1315,9 @@
     "footerCommercialLine": "Going commercial? 10% revenue share, you keep your brand.",
     "sourceOnGithub": "Source on GitHub",
     "languageRowTitle": "Language",
-    "languageRowHint": "Choose the language for the interface."
+    "languageRowHint": "Choose the language for the interface.",
+    "skinOnyxLabel": "Onyx",
+    "skinOnyxTagline": "Black and white · editorial mono"
   },
   "zogOverview": {
     "emptyImageAlt": "Top Talent",
@@ -3168,7 +3170,9 @@
     "build": "BUILT BY YOU",
     "offer": "OFFER",
     "lockedLabel": "{{space}}, locked",
-    "lockedHeader": "{{space}} · Locked"
+    "lockedHeader": "{{space}} · Locked",
+    "themeToggleToOnyxAria": "Switch to black-and-white theme",
+    "themeToggleToOnyxTitle": "Switch to Onyx, the black-and-white theme"
   },
   "profileSettings": {
     "toastErrorTitle": "Error",

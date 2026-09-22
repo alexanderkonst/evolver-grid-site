@@ -90,6 +90,25 @@ const SKIN_OPTIONS: SkinOption[] = [
             </span>
         ),
     },
+    {
+        id: "onyx",
+        labelKey: "settings.skinOnyxLabel",
+        taglineKey: "settings.skinOnyxTagline",
+        swatchBackground:
+            "linear-gradient(135deg, #ffffff 0%, #ededed 42%, #141414 100%)",
+        swatchOverlay: (
+            <span
+                aria-hidden="true"
+                className="absolute inset-0 flex items-center justify-center text-lg"
+                style={{
+                    color: "#0a0a0a",
+                    textShadow: "0 0 6px rgba(255,255,255,0.6)",
+                }}
+            >
+                ✦
+            </span>
+        ),
+    },
 ];
 
 const AppearanceTab = () => {
