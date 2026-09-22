@@ -1607,7 +1607,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         src={lapisStillBackground}
                         alt=""
                         aria-hidden="true"
-                        className="absolute inset-0 h-full w-full object-cover"
+                        className="absolute inset-0 h-full w-full object-cover object-right-bottom"
                     />
                 )}
                 {!suppressShellBackground &&

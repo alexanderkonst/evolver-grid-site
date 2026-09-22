@@ -12,7 +12,9 @@
 
 ## v4.31 — September 21, 2026 · commercial purpose and operational matching
 
-**Current artifact:** [Matchmaker Brief v4.31](briefs/matchmaker_brief_v4.31.md). v4.3 remains unchanged.
+**Current artifact:** [Matchmaker Brief v4.31](briefs/matchmaker_brief_v4.31.md). v4.3 remains unchanged. Preservation review completed September 22, 2026; v4.31 updated in place.
+
+**Preservation audit:** [Source-by-source review](research/matchmaker_v4.31_preservation_audit_2026-09-22.md). Restored quiet transitions, the four recognition patterns as hypotheses, first-person recognition examples, audience access versus idea affinity, operator infrastructure scope, practical search paths and post-conversation learning. Kept the current commercial and sovereignty corrections; obsolete exclusions were not reinstated. The audit records which early originals could and could not be recovered.
 
 Boardy's feedback identifies a real risk: an accurate affinity list can still lack a reason anyone would pay. This revision keeps sovereignty and evidence discipline while making the commercial hypothesis explicit.
 
