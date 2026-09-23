@@ -22,7 +22,93 @@
 | Tribe | — | — | 🔄 Implicit from current copy: people in delicate life moments (heartbreak, grief, burnout, relationship pain, family crisis, impossible decisions); not yet formally articulated |
 | Pain | — | — | 🔄 Implicit: *"still holding everything together while quietly falling apart inside"* (live hero copy) |
 | Promise | — | — | 🔄 Implicit: *"you do not have to carry this alone"* (live H1) |
+| Container (3-month group program) | — | — | 🧾 Designed by Karime and brought to the Sep 22, 2026 session; see "Business session vol. 5" below. $1,333 group price, 3 months, small batches, 1:1 time included. Not yet written up, priced formally, or launched. |
+| Faculty | — | — | 🧾 Named by Karime in the Sep 22, 2026 session: the faculty to recognize that there are teachings in life's experiences. |
 | Value Ladder | — | — | 🔄 Two rungs visible: free 20-min fit call → first paid 1hr session → 3-month engagement (pricing bespoke, set during the first paid session) |
+
+---
+
+## Business session vol. 5 — container design captured (September 22, 2026)
+
+*Source: session transcript (`Karime biz session vol5.md`, ~29k words) plus a photograph of Karime's handwritten container design, brought by her to the session. Recorded verbatim where quoted. This section is a record of what was said and written in that session; it does not revise the artifacts above.*
+
+### 1. The handwritten container design (transcribed as written)
+
+Karime wrote the left column and labelled each line herself in the right column.
+
+| Her line | Her label |
+|---|---|
+| 3-month program / container | length |
+| learn to turn venom into medicine | purpose |
+| bring a challenging life experience you're traversing | life context |
+| you metabolize it into lessons, medicine, gifts | purpose |
+| best tools & practices / secret magical tools & protocols | methodology |
+| bold | quality |
+| three healers: SM, Rose, blue lotus | methodology |
+| teaching about relating to anything through these plants | results |
+| ritual, identity shift, forgiveness protocol, reconnection to Divine M & F, learning packages, water & fire rituals, integration, nervous system regulation | methodology / results |
+| 1:1 time with me | container details |
+| $1333 | group price |
+
+In the session she added: three months, **group only** — *"I actually don't wanna do it individually. I wanna do it in in small group batches."*
+
+### 2. Her four homework insights (her own numbering)
+
+The homework was to look at her business through the business-structure framework Sasha had shown her (products, prices, quantity, cross-sell, LTV).
+
+1. **No product inventory.** *"I don't know my product how many products I have. I actually don't... I don't have an inventory of my products. Which is why making a one pager for Marianne... has been difficult."*
+2. **No balance sheet since March.** *"Since January no, since March I don't do my balance sheet. I was super dedicated to it. And my business was growing when I was dedicated to it... So I actually don't know how much money I make through my business."* She had kept it monthly for a full year prior.
+3. **No revenue ratio per product.** *"My most product sold is coaching but I don't know out of my hundred percent of my business, what percentage is coaching, what percentage is actually ceremonial work... So how can I have a strategy to grow what I love most?"*
+4. **No client base or list.** *"I do not have a base of clients, a database."* Prompted by a question from Adrian the previous day about where her clients come from; her answer was referral plus a small community she sends ceremony invitations to.
+
+### 3. Her own naming of the state
+
+- *"I'm just giving my energy in reaction to whatever the external asks from me in my work. I haven't driven the vehicle of my work."*
+- *"Feels like a leaky bucket. Like a bucket that has a lot of holes. And I just keep pouring water into and it's just leaking. But instead of fixing the holes, I just keep pouring water to fill it up."*
+- *"It feels like I have a bunch of seeds, but there's no garden that I can plant them in."*
+- *"I have the river flowing... I want to build a riverbank to direct all of that."*
+- *"It's like the bread I have already baked, so it's like easier for me to dispatch than go and create a new recipe."*
+- On creative energy: *"my creative energy doesn't have a place to land... there's no receptor, no womb where that can land."*
+- On watching peers ship: *"that's what brings a lot of my bitterness when I watch others doing things that I want to be doing or that are on my notebooks."* Example given: a peer who now runs a second-year cohort of ~70 people, from a conversation the two of them had in a park two years ago.
+
+### 4. The structure-first block, named in session
+
+> *"I feel like I need to have all those things up and running so I can offer the container of my dreams. So I can offer the bold offering that I've been hiding from for years because I don't have those structures. Maybe yeah, I'm trapped there."*
+
+This came immediately after she had said she was *not* trapped by needing a lot of structure before coming out.
+
+### 5. Faculty — arrived at in the session
+
+Sasha introduced faculty as a qualifier (his own example: a person's degree of self-understanding about their uniqueness). Karime named hers:
+
+> *"I want them to have the faculty to recognize that there is... teachings in life's experiences. Because if they don't know that I will need to start educating them on that. And I don't want to educate people on that."*
+
+She then applied it to a specific person and concluded that person does not have the faculty. She also asked whether faculty levels map to products; the answer given was that products can be streamlined to cater to different levels of the same faculty.
+
+### 6. Canvas rows: what the container design covers and what it does not
+
+Mapping her handwritten sheet against the unique-business canvas rows, as discussed in the session:
+
+- **Present:** metamorphosis (a challenging life experience being traversed) · promise (metabolize it into lessons, medicine, gifts) · method · product format and length · group price · voice/quality ("bold") · faculty (added live, §5).
+- **Absent:** client identity — Sasha noted the sheet says nothing about who they are or how they would describe themselves; Karime: *"No, because I'm unclear on that. That's almost always the thing I'm unclear about."* Also absent: uniqueness, shadow, marketing, distribution.
+
+### 7. What she asked for, and the agreed next step
+
+Her stated desired outcome: *"if I could have like a clear action plan to build my container and launch it."*
+
+Her stated objection to producing another document: *"For me it means nothing to have another great document about myself. I don't know what to do with something like that."* And: *"This is the moment where you perceive that and you can help me understand the value of the canvas... if you eat your broccoli, something great is on the other side. So what's on the other side?"*
+
+Her own projection of launching the container the way she has launched before (Word doc, PDF, WhatsApp messages, no landing page): *"Maybe I run it once with the people that responded. Maybe I don't even run it at all. Or maybe I run it once and then it dies because I don't have any way to scale it from there."* And: *"I'm not doing it like that again... first because it's not scalable, second because it's not in line with the rest of the things I have."*
+
+**Agreed next step:** a further session to list what is still missing from the container description — framed by Sasha as the gaps *"without which you'll fail"* — after which the unique business canvas would be opened against that list. Karime's materials for it, as she listed them herself: the transcript of the container description, Sasha's canvas as a reference example, and her unique business document from March/April.
+
+### 8. Also stated in the session
+
+- Sasha's litmus line, raised at the end: *"Can you say what you do so clearly the right people always buy?"* Karime read it differently on first pass (as *"can you say what you do so clearly"* applying to the doing, not the saying) and flagged the ambiguity as possibly a translation effect from Spanish.
+- Sasha raised the point that a scalable container almost certainly requires reaching people she does not already know, since her existing client base is small and, in her words, contextual: *"who knows if out of my hundred clients only two are traversing something like that?"*
+- Karime asked Sasha to stop referencing past tools built for her that she has not used.
+- Karime asked three times during the session to be allowed to finish a thought.
+
 
 ---
 
