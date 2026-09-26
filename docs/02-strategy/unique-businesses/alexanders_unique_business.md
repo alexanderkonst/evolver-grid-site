@@ -10606,3 +10606,23 @@ The two assets are not competitors; they are two organs of one funnel, and the s
 - Small copy fixes on the map canon (tense/typo leaks, "The Stuckness" title register) — surfaced, held for Sasha's call.
 - The map's CTA-slide reframe toward "your way through" — recommended, held.
 - Retire or explicitly label §VII and the stale section-IX value ladder on the next consolidation pass, so the superseded framings stop sitting unlabeled next to current canon.
+
+---
+
+## Addendum — Day 195, September 25, 2026: The Objection Bank — the thesis stress-test
+
+*Source: a 56-min peer call with Alex Pustov (friend, the Gleb referrer). Alex, an operator-skeptic, threw his honest resistances to the core thesis ("business flows from the founder; the answers are inside; articulated uniqueness radically simplifies building the business"). Sasha's read afterward: these are not idle objections, they are Alex's own unresolved constructs shaping his whole professional life, and Gleb pays $2,000 to have exactly these worked through — so Sasha deliberately did not turn a free peer call into a free session. **The discipline (stated by Sasha):** "I'd be imposing illumination on him if I started giving the answers. That's not how I roll anymore. If there's no request, my mouth won't open." So this bank is Sasha's own arsenal for when a real request exists — not a script to fire at anyone who resists. The same content lands as wisdom when it rides a live request and as guru-hype when broadcast as a claim.*
+
+**Discipline note:** the answers below are one-sentence "destroyers" — reframes, not arguments. They win by relocating the question, never by needing to prove the thesis. Raw internal drafts in Sasha's register; humanize before any external use. Order = the seven resistances as Alex brought them.
+
+| # | The objection (the resistance a rational peer/buyer brings) | One-sentence destroyer (reframe, not argument) |
+|---|---|---|
+| 1 | **"Show me the evidence / prove the model first."** | The proof is your own track record read honestly: the work you're proudest of is where you ran on your own nature, and the flat years are where you performed someone else's model, so you're asking me to prove the one law your whole career already demonstrates. |
+| 2 | **"There are too many other variables — it's not just uniqueness."** | There are a hundred variables and exactly one sits upstream of the rest, which is who you are named precisely: miss it and optimizing the other ninety-nine never converges, hit it and most of them resolve on their own. |
+| 3 | **"You'd have to be a clean vessel first, and nobody is."** | You never needed a clean vessel, only a truer one: purity here is an asymptote, not a gate, and you don't finish purifying before you start, you purify by starting from exactly where you are. |
+| 4 | **"Find yourself professionally and you still lose your soul — the status game destroys people."** | The people who won the status and lost their lives didn't pursue themselves too hard, they abandoned themselves for a borrowed definition of winning: building from who you actually are is the one kind of success that doesn't bill you your life to keep it. |
+| 5 | **"Being a founder means sacrificing your kids' childhood."** | "Founder equals absent father" is an inherited rule you have never actually tested: a business that is an expression of you carries your fatherhood inside it instead of competing with it, and the men who had to choose were building something that was never theirs. |
+| 6 | **"Isn't this just another coaching service on a spectrum?"** | Coaching makes you better at a game you already chose; this decides which game was yours to begin with, so it is not a rung on the coaching ladder, it is the upstream move that picks the ladder. |
+| 7 | **"Simplicity and repetition win; nobody values deep complexity."** | Simplicity wins, but there are two of them, the cheap simplicity of a repeated slogan and the earned simplicity on the far side of complexity: I don't sell more complexity, I sell the single sentence only the full depth can produce, which is exactly why almost no one has it. |
+
+**How to use it:** these are answers held in reserve, deployed only into a live request (a paying container, or an explicit "tell me"). With a non-asking friend, the move is presence, not the bank — the same call showed Sasha holding silence over a friend's confusion rather than converting it into a free session, and naming that as a passed sovereignty test. When a real buyer brings these (they will, every rational one does), the bank turns a defended objection into a relocated question in one line.
