@@ -1633,11 +1633,17 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                       // wash was a hard light-leak island behind the frosted
                       // cards — swap to a near-black gradient so the module
                       // reads as part of the dark register, not a window.
+                      // Day 75 wash → parchment (Sasha 2026-09-28): the light
+                      // skins now use the same dry-clay parchment texture as
+                      // the main page so Equilibrium shares the platform's
+                      // warm editorial ground (mobile + desktop). Dark skins
+                      // keep their near-black gradient so the frosted cards
+                      // don't sit on a light-leak island.
                       background: __isAurumShell
                         ? "radial-gradient(ellipse 120% 100% at 50% 0%, #0b0b10 0%, #07070a 45%, #020203 100%)"
                         : __isTechstarsShell
                           ? "radial-gradient(ellipse 120% 100% at 50% 0%, #0a0c0f 0%, #07080a 45%, #02030a 100%)"
-                          : "radial-gradient(ellipse 120% 100% at 50% 0%, #f1f5fb 0%, #e5e9f2 45%, #dfe3ec 100%)",
+                          : `#e8e0d2 url(${lapisStillBackground}) center center / cover no-repeat`,
                     }}
                   />
                 )}

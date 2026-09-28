@@ -36,18 +36,29 @@ interface MoonOrbProps {
 }
 
 /**
- * SVG path for the LIT region of the moon at the given phase, in a
- * coordinate system where the moon is centered at (0, 0) with radius r.
+ * SVG path for the LIT region of the moon at the given phase, in ABSOLUTE
+ * coordinates centered at (cx, cy) with radius r.
+ *
+ * The coordinates are baked in on purpose: an earlier version returned the
+ * path around (0,0) and re-centered it with a `transform` attribute on the
+ * `<clipPath>` element. iOS/Safari WebKit mishandles `transform` on
+ * `<clipPath>` — it dropped the clip entirely, so the full-brightness lit
+ * `<image>` showed unclipped and every phase rendered as a full moon on
+ * mobile (desktop Chromium honored the transform, so it looked correct
+ * there). Emitting absolute path data removes the transform and renders the
+ * same on every engine.
  *
  *   • New Moon (0): empty path (no lit area).
  *   • Full Moon (4): the full circle.
  *   • Other phases: two arcs — moon's outer edge on the lit side +
  *     terminator ellipse arc closing back.
  */
-function getLitRegionPath(phaseIndex: number, r: number): string {
+function getLitRegionPath(phaseIndex: number, r: number, cx: number, cy: number): string {
+  const top = cy - r;
+  const bottom = cy + r;
   if (phaseIndex === 0) return "";
   if (phaseIndex === 4) {
-    return `M 0 ${-r} A ${r} ${r} 0 1 1 0 ${r} A ${r} ${r} 0 1 1 0 ${-r} Z`;
+    return `M ${cx} ${top} A ${r} ${r} 0 1 1 ${cx} ${bottom} A ${r} ${r} 0 1 1 ${cx} ${top} Z`;
   }
 
   const phaseFraction = phaseIndex / 8;
@@ -73,7 +84,7 @@ function getLitRegionPath(phaseIndex: number, r: number): string {
     innerSweep = isCrescent ? 1 : 0;
   }
 
-  return `M 0 ${-r} A ${r} ${r} 0 0 ${outerSweep} 0 ${r} A ${terminatorRx} ${r} 0 0 ${innerSweep} 0 ${-r} Z`;
+  return `M ${cx} ${top} A ${r} ${r} 0 0 ${outerSweep} ${cx} ${bottom} A ${terminatorRx} ${r} 0 0 ${innerSweep} ${cx} ${top} Z`;
 }
 
 export const MoonOrb = ({ phaseIndex, size = 44 }: MoonOrbProps) => {
@@ -84,7 +95,7 @@ export const MoonOrb = ({ phaseIndex, size = 44 }: MoonOrbProps) => {
   const r = (size * 0.46) / 1; // moon radius slightly smaller than the orb radius
   const cx = size / 2;
   const cy = size / 2;
-  const litPath = getLitRegionPath(phaseIndex, r);
+  const litPath = getLitRegionPath(phaseIndex, r, cx, cy);
 
   return (
     <svg
@@ -99,9 +110,11 @@ export const MoonOrb = ({ phaseIndex, size = 44 }: MoonOrbProps) => {
         <clipPath id={moonClipId}>
           <circle cx={cx} cy={cy} r={r} />
         </clipPath>
-        {/* Clip for the LIT portion of the current phase. */}
+        {/* Clip for the LIT portion of the current phase. Path is in
+            absolute coords (centered at cx,cy) so no clipPath transform is
+            needed — see getLitRegionPath for the iOS/WebKit reason. */}
         {litPath && (
-          <clipPath id={litClipId} transform={`translate(${cx} ${cy})`}>
+          <clipPath id={litClipId}>
             <path d={litPath} />
           </clipPath>
         )}
