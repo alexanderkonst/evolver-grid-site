@@ -116,6 +116,7 @@ const HomeV2Page = lazy(() => import("./pages/HomeV2Page"));
 // in-platform per-founder offer surface. Lives in BUILD space, route
 // is public so the direct URL is shareable cold; sidebar row gated.
 import KarimeOffer from "./pages/KarimeOffer";
+import KarimeIntroduction from "./pages/KarimeIntroduction";
 // Day 81 (Sasha 2026-05-23): Karime's preparatory page — Sasha sends
 // this URL manually on WhatsApp after the initial inbound from the
 // landing's CTA. Not in sidebar; reachable only by URL.
@@ -944,6 +945,12 @@ const App = () => (
                       Public route. Sasha sends URL manually on WhatsApp
                       after initial inbound. No sidebar entry. */}
                   <Route path="/build/karime/intake" element={<KarimeIntake />} />
+                  {/* Day 188 (Sasha + Karime 2026-09-29): the warm-referral
+                      one-pager, built first for the Marianne Williamson
+                      introduction. Public, no auth. Optional ?from=Name
+                      renders the referrer line. /build/karime stays the cold
+                      funnel front door; this is the high-trust introduction. */}
+                  <Route path="/meet-karime" element={<KarimeIntroduction />} />
                   {/* Day 102 (Sasha): clean URL -> static Blue Lotus microsite (public/karime/bluelotus) */}
                   <Route path="/karime/bluelotus" element={<ExternalRedirect to="/karime/bluelotus/index.html" />} />
                   <Route path="/karime/bluelotus/*" element={<ExternalRedirect to="/karime/bluelotus/index.html" />} />

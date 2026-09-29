@@ -26,7 +26,503 @@
 | Promise | **v1.2** | — | 🔄 Steel to new tissue (session #3), full artifact in the *Deep Artifacts* section below. Live-copy version: *"you do not have to carry this alone."* |
 | Container (3-month group program) | — | — | 🧾 Designed by Karime and brought to the Sep 22, 2026 session; see "Business session vol. 5" below. $1,333 group price, 3 months, small batches, 1:1 time included. Not yet written up, priced formally, or launched. |
 | Faculty | **v1.0** (7 stages) | — | 🧾 **"Turning Venom into Medicine" — 7-stage map built Sep 23, 2026** (see Faculty Stages section below). Named by Karime in the Sep 22 session: the faculty to recognize that life's experiences carry teachings. |
+| **Unique Business Canvas** | **v1.2** (Sep 29, 2026) | — | 🧾 **The one-page canvas.** Ten sections + four versions of the one sentence. v1.2: promise rewritten as phenomenology (faculty gain is internal, never client-facing); identity maximized vs. faculty/threshold as Goldilocks zones; ladder mapped to faculty stage. Changelog in the section; v1.0/v1.1 in git history |
 | Value Ladder | **v1.2** | — | 🔄 Deep-Artifacts version: Recognition → Ceremony → Return → Temple (session #3, folded in below). Live funnel version: free 20-min fit call → first paid 1hr session → 3-month engagement (pricing bespoke). Two versions to reconcile — Sasha's call. |
+
+---
+
+## UNIQUE BUSINESS CANVAS v1.3 — Karime Kuri (September 29, 2026)
+
+> *Sources: business sessions vol. 5, 6 and 7 · deep artifacts from Ignition sessions #1–3 · Faculty Stages v1.0 (full text) · category/shelf work (July 2026) · her Current Product Portfolio (Sep 28) · her Top Talent profile, findyourtoptalent.com (Self-Betrayal Reversing, Sep 29) · her LinkedIn (Sep 29). Format mirrors Sasha's Unique Business Canvas v1.11.*
+>
+> **v1.2 corrects three things in v1.1.** (1) The transformational result was written as "more faculty," which is the internal truth and not what a client buys. §3 is now written entirely as how life looks, feels and goes when a person has more of it. (2) The three client axes were treated alike. They are not: **faculty and threshold are Goldilocks zones with a floor and a ceiling; identity is maximized toward 10.** (3) The product ladder was not mapped to faculty stage. It is now. Changelog at the end; v1.0 and v1.1 in git history.
+
+---
+
+### 0. THE INTERSECTION NOBODY ELSE OCCUPIES
+
+*Read this first. Everything below is downstream of it.*
+
+There are many gifted healers. There are many accomplished women in international policy. There is almost nobody who is both.
+
+Karime holds an Oxford policy master's, ran national digital and net-neutrality policy for Mexico, and was selected for the World Economic Forum's Global Leadership Fellows program at a 0.3% admittance rate. She has also kept a sacred bond with Santa María for 22 years, guiding hundreds of ceremonies across 3 continents and 7 countries.
+
+Her ideal client lives in exactly that gap and currently has nowhere to go. She is too intellectually serious for most healers and too spiritually serious for most therapists. She will not bring her real crisis to someone who cannot meet both halves of her.
+
+**Karime is the only room where that woman does not have to split herself in two.** That is the business.
+
+---
+
+### 1. CLEARLY ARTICULATED SELF-UNDERSTANDING
+
+**1.1 UNIQUENESS**
+*Her core innate talent. The way she naturally creates value.*
+
+**She catches the exact moment a person trades themselves away to keep the peace, names it without shame, and walks them back to what they actually need.**
+
+Her own platform reading calls it **Self-Betrayal Reversing**: *"I bring people back to their own needs before they trade themselves for peace."* Three talents inside it:
+
+1. **Spotting the self-trade.** She hears the swap underneath the story, fast. Someone talks about burnout, anxiety, relationship pain, and she catches where they gave up sleep, honesty, anger, or a limit to keep things smooth.
+2. **Lowering the guard.** Through warmth, pacing and emotional precision she drops the pressure in the room until being defended stops being necessary. People arrive over-adapted and careful. They leave softer and able to say what they actually feel.
+3. **Turning insight into boundaries.** She makes the big emotional opening usable on a Tuesday. One boundary, one conversation, one rest decision. Not a memory, a new way of treating yourself.
+
+This is the same act she has performed in every room of her life. At the Forum and at the Instituto Federal she was the confidante, the one who found the unnamed dynamic and said it to the person who could act on it. In ceremony she does the same thing with a sacred container around it. The setting changes. The act does not.
+
+**Why this is sharper than "turning venom into medicine."** Venom into medicine is the **faculty the client brings** and the **result they leave with**. It is not what she uniquely does. What she uniquely does is catch the self-trade and reverse it, and that is precisely why the medicine lands instead of staying a concept. The people stuck at stage 3 are stuck because the self-trade is still running underneath the insight.
+
+**1.2 SUPERSHADOW**
+*Her alter ego. The exact inversion of the gift.*
+
+**The Orphan Medicine Woman: she reverses everyone else's self-betrayal and commits her own quietly, every day, because being the one who holds is safer than being held.**
+
+Her platform reading says it plainly: *"Holding everyone else's feelings while abandoning myself in small, quiet ways."* The deep artifacts from session #2 name the same thing as **The Abandoned Self**, with its epicenter: *"Life doesn't hold me."* It does. She has not let it.
+
+The recursion is the whole thing: **her talent is the reversal of the exact betrayal she performs on herself.** She can see the self-trade in anyone within minutes and cannot see her own. The belief underneath whispers that if her care pauses, connection breaks.
+
+**Its live business form, surfaced September 29.** *"There's a fear that there's not enough of them."* Turned back on herself she named it exactly: *"my work isn't valuable enough to them. If I return it to me it's about my value, my worth."*
+
+That is the self-trade at business scale. It is why the bold offering has stayed unlaunched for years, why there is no client list, and why the group container is priced at $1,333.
+
+**Her mission, as her own profile states it:** help people heal self-abandonment and return to embodied love, truth and sacred relationship with life, by creating spaces that reconnect the heart with itself, others, nature and the divine.
+
+---
+
+### 2. IDEAL CLIENT
+
+*A mirror of her, read on three separate axes. **Two are Goldilocks zones. One is maximized.** Getting this distinction wrong is what makes a client roster feel random.*
+
+| Axis | Shape | Target | What it answers |
+|---|---|---|---|
+| **Identity** | Maximize | **As close to 10 as possible** | Can they receive her at all, and can she speak without translating herself |
+| **Faculty** | Goldilocks | **Stages 4–5** (floor 3, ceiling 6) | How much can they receive |
+| **Threshold** | Goldilocks | **8–9** (floor 7, ceiling below total collapse) | Is now the time |
+
+**2.1 IDENTITY — maximize toward 10** *(her own formulation, September 29)*
+
+A highly educated woman carrying a great deal of responsibility, personal and professional. Spiritually oriented, and has already done real inner or therapeutic work. International rather than confined to one local bubble. She cares about the success of the planet and acts on it: she sees systemically, makes real choices, and gets things done.
+
+Not the martyr who skips meals for the cause. Not the doom-and-metacrisis narrator. Karime is direct: *"I don't like people with all these narratives about the world sinking. I prefer not to have that type of client."*
+
+**There is no ceiling here.** A perfect 10 would be a clone of her, and that would be ideal. Closeness is pure gain: shared vocabulary, shared world, no climbing, and the psychological opening she named herself, *"I'm not a complete stranger to them. I'm one of them somehow."*
+
+Her own calibration, 1–10: Brit 10 · Constanza 9 · Gabby 7–8 · Michelle 7 · Catalina 5 · a generic woman carrying her family 3 · a tech founder 1 · a Soviet farmer 0.
+
+**Where this woman actually is:** on LinkedIn. She is a Forum, Oxford or governance-program alumna. Karime already holds a live professional identity in that world and has not been using it as a door.
+
+**2.2 FACULTY — Goldilocks, stages 4–5**
+
+The capacity to meet a painful experience and metabolize it into initiation, lesson, medicine, rather than only escape it. Score 1–7. *(Full stage descriptions with client voice lines: see the Faculty Stages section below.)*
+
+- **Stages 1–2, below the floor.** She would be educating them into the premise. She refuses. *"If they don't know that, I will need to start educating them on that. And I don't want to educate people on that."*
+- **Stage 3, the floor.** Says it beautifully, cannot find it in the body. The shadow here is obsessive meaning-making. Reachable, but expensive. This is where most spiritually-interested people actually sit.
+- **Stages 4–5, the gold.** Stage 4 has done the turn before with a hand to hold and will lean in. Stage 5 names the initiation as it is happening and walks in alone. Maximum reception.
+- **Stage 6, the ceiling — with a real exception.** Already reflexive, already holding the fire for others. Approaching peer, so normally collaboration rather than a container. **But stage 6 does not mean they cannot receive.** Sasha's correction, Sep 29: when a stage-6 is themselves mid-threshold, they can receive an enormous amount, precisely because they know what is being offered. Karime named Clara, Solara and Lara as people at 6 or 7 who would sit with her, and Lara who once sought a process out. Her own framing of the boundary: *"those are more circumstantial than me reaching out to them. They aren't my target audience as in me reaching out to them."* So: **welcome them when they come; do not build outreach around them.**
+- **Stage 7, above it.** Peer and lineage. Nothing to sell.
+
+**Why it is a ceiling and not a target:** at 6 and 7 they cannot receive much, because they already do this. Selling up here is selling someone what they already own.
+
+**2.3 THRESHOLD — Goldilocks, 8–9**
+
+They are inside a live, major passage right now. Not remembering a wound from age fifteen.
+
+- **1, the floor.** *"I just don't want to feel this way, I want to feel like myself again,"* with nothing actually happening. That is therapy, not initiation.
+- **8–9, the zone.** One clear passage they can name themselves. Brenda at 9-plus: *"this is repeated, what the fuck is happening, I have to transcend this."* Marta 8. Gabby 8, arriving with the thyroid and the leadership crisis as one thing.
+- **The ceiling, and this is the correction.** Karime first described a 10 as Elizabeth drowning, then scored Elizabeth a **7**: *"the threshold was really clear, but it was many things. All her life was falling apart. I don't know if I want to work with all life falling apart. It's a lot of work for me."*
+
+**So the threshold ceiling is real.** Total collapse is not the best client. It is the most expensive one. Sasha's second example: a stage-4 cancer, or anything where the crisis has become so large that the passage stops being workable. Past a point, more crisis stops being a better fit and starts being a worse one.
+
+The sweet spot is **one named passage, live, with enough ground still under the person to walk through it.** Severity is not the variable. Singularity and self-naming are.
+
+**Two passages, not one compound passage.** Karime's correction, Sep 29: heartbreak and illness are *"two different life experiences,"* not a single "heartbreak-and-illness" client. Copy should always read *heartbreak **or** illness*. (Her own working hypothesis, held as a separate conversation: illness often arrives through unhealed heartbreak. Useful inside the room; not a claim to make in public copy.)
+
+**A heartbreak is not only a breakup.** Some of the deepest ones happen inside a relationship that is still standing. Karime named her own: the heart breaking over a long stretch while she was angry and cataloguing the ways it had been broken, instead of tending to the breaking.
+
+**The width question, settled in session:** heartbreak and illness as the two named passages. Narrower than "difficult life situations," which is fluffy and brings her the stage-1 traffic she does not want. Wider than "heartbreak only," which cuts work she wants to do. Her own live test, on Instagram: *"turn heartbreak / disease into healing and spiritual initiation."*
+
+**2.4 CORE LIFE STANCE — this is her myth** *(the wisdom her own trials granted her)*
+
+> Every venomous experience life hands me is an initiation. When I go through it instead of around it, it turns into medicine. That is not merely the shortest path to becoming who I am meant to become. It is the only one.
+
+Sasha named what this row actually is, Sep 29: **the faculty turned into a claim about the world.** Her whole life is the hypothesis, tested on herself, and the gifts arrive as she proves it. It is a deep claim on reality, and it is supposed to magnetize some people and repel others. That is the job.
+
+Karime's own upgrade in session: not only the shortest path, the **only** path.
+
+**The distinction that keeps the copy honest.** What people *want* is alleviation, to stop suffering. What they *get*, if they walk it, is evolution: becoming who they were meant to become. Lead with alleviation, because that is what is being bought. Deliver the evolution, because that is what is actually happening.
+
+**2.5 METAMORPHOSIS** *(written in the client's own felt language)*
+
+You have carried a lot, and you have carried it well. The degrees, the work that mattered, the people who lean on you. You did the therapy. You read the books. You know, in principle, that life teaches through what it takes.
+
+Then something lands that you cannot manage your way out of. A diagnosis. A marriage that ended, or one that has not ended and is quietly taking you apart. A body that stopped cooperating. And you notice this shape has come around before.
+
+You can still say the wise thing about it out loud. In your body you cannot find it. There is nowhere to fall apart, because you are the one people fall apart on. Everyone keeps telling you how strong you are, and every time they say it you feel more alone.
+
+So you do what you have always done. You hold it together for everyone else and you postpone yourself one more time. You take the appointment, you take the advice, you manage. And somewhere in there you stop being able to say what you actually need, or even feel it.
+
+The doctors hand you a protocol. Your friends hand you advice. Nobody is treating this as what you quietly suspect it is. And the people who might, the ones who work in this register, cannot meet your mind, so you never bring them the real thing.
+
+What frightens you most is that it is happening now, at this altitude, after all the work you have already done. And that if you cannot turn this one, maybe none of it was real. The nights are the worst part.
+
+---
+
+### 3. TRANSFORMATIONAL PROMISE
+
+*Internally, the result is one stage of faculty. **Never say that to a client.** What a client buys is how life looks, feels and goes when they have more of it. Lead with what stops, because people move away from loss faster than they move toward gain.*
+
+**What stops**
+
+The thing stops running your days. You stop waking at three in the morning with it. You stop bracing against your own life. You stop postponing yourself to keep everyone else steady. You stop managing everyone's reaction to what is happening to you. And the spinning stops: you stop explaining the meaning of it to yourself over and over as a way of not feeling it.
+
+**What your days actually look like**
+
+You sleep. You eat. Your body lets go of the clench it has been holding for months. You say the true thing in a conversation you would have smoothed over before, and it does not blow up. You hold one or two limits without needing a speech to justify them. You can sit with your own grief for twenty minutes and come out the other side of it instead of going around. The people closest to you notice before you tell them.
+
+**What becomes possible**
+
+You stop waiting for this to be over before you start living again. You make the decision you have been circling for a year. You are in your own life while it is happening, not narrating it from a distance.
+
+And the strange part, the part nobody believes at the beginning: you would not give this back. The thing that was breaking you turns out to have been carrying something, and you are the one holding it now.
+
+**What happens the next time**
+
+There will be a next one. Life does not stop handing these out. The difference is that you will recognize it early, you will know it is an initiation while you are inside it, and you will not need anyone holding your hand to walk in.
+
+That last line is the honest measure of the work: **she is finished when you no longer need her.**
+
+**Her own version, September 29:** *"Turning venom into medicine yields way more ease, way more peace, way more openness to the life experience, way more capacity to move through it as opposed to resisting it and getting stuck in it."*
+
+**The single word for what people are actually buying:** alleviation.
+
+---
+
+### 4. PRODUCT
+
+*Each rung moves someone one stage. The result is the public name. The method stays backstage.*
+*Prices are **proposals**, anchored on her own platform reading ($350 intro · $2,400 six-week signature · $900/mo retainer) and on the leadership shelf her credential unlocks. Every one needs her yes.*
+
+| # | Public name (the result) | Faculty move | Backstage (the method) | Proposed price |
+|---|---|---|---|---|
+| 1 | **The recognition** | Reads their stage; wakes a 2, unsticks a 3 | The placing question, a conversation, a voice note | $0 |
+| 2 | **The moment you left yourself** | 3 → 4 · the first turn, all the way through | One 90-min healing session. Find the self-trade, name the swallowed need, leave with one sentence to say and one limit to set this week | **$350** |
+| 3 | **A first passage** | 3 → 4, or a stuck 4 unlocked | One ceremony, 1:1, prepared and integrated. Santa María · mushroom · Triple Goddess | **$555–888** |
+| 4 | **Three months through it** | 4 → 5 · from needing a hand to walking in yourself | Coaching, cannabis, microdosing protocol, recorded practices. Individual, online and hybrid | **$2,800–3,600** |
+| 5 | **Three months through it, together** ⭐ | 4 → 5 in a circle, where the others are also mid-venom | *Turning Venom into Medicine.* Flower medicine study, ritual, nervous system regulation, meditations, energy activations, group coaching, microdosing, 1:1 time included | **$2,222** (up from $1,333) |
+| 6 | **The ongoing circle** | 5 → 6 · keeps the faculty alive between passages | *PRACTICANNABIS.* Standing community of practice | **$111–222 / month** |
+| 7 | **Couples** | Both partners, 4 → 5, on the same venom | MDMA and cannabis assisted containers for resentment and distance. Her named growth edge | to set |
+| 8 | **Harmonization of spaces and family-business situations** | Faculty applied to a system rather than a person | Constellations | **leadership shelf: $5,000+ per engagement** |
+
+**What the ladder says about her roster.** Rungs 2 and 3 are where a stage-3 becomes a stage-4. Rungs 4 and 5 are her gold. Rung 6 is what keeps a stage-5 from drifting back. Anyone at stage 1 or 2 belongs with someone else, and she can refer them out with a clear conscience. Her own line, and Sasha's: *"thank you for working with the people I don't want to work with."*
+
+**Two notes that matter more than the numbers.**
+
+**On rung 5.** $1,333 for three months of group work with 1:1 time included is her shadow setting the price. It is roughly four intro sessions. Her own profile proposes $2,400 for a six-week individual arc. The container is worth more than she is charging, and the number is a symptom, not a strategy.
+
+**On rung 8.** The only offer that reaches an organizational budget rather than a personal one, and the least developed thing she has. Her Forum credential legitimately places it on the leadership shelf, where a day of work is priced in the thousands. Same gift, roughly twenty times the price, purely by which shelf it sits on.
+
+---
+
+### 5. METHOD
+
+*Her ingredients are complete. Her own words: "I don't feel like I need to create new methodologies or new frameworks. They're there. It's a matter of blending them and communicating them." This section is for her, not for the buyer.*
+
+**5.1 PLACE THEM** — the Faculty Map and the threshold read. Decides whether to work with them at all, and what they can receive.
+
+**5.2 BUILD THE CONTAINER** — a space where the walls drop and people feel permission to be real. They feel it before she speaks.
+
+**5.3 SENSE THE INVISIBLE** — what is actually happening under what is being said. The grief behind the smile. The self-trade the story is built to hide.
+
+**5.4 LOWER THE GUARD** — warmth, pacing, silence, breath, timing. The nervous system settles far enough that the person can feel what they actually feel.
+
+**5.5 OPEN THE PASSAGE** — the plant allies and the ritual stack, where the container calls for them. Santa María (22 years). Sacred mushrooms (over a decade). Blue lotus. MDMA as the one new field she wants to study. Identity shift, forgiveness protocol, reconnection to the Divine Mother and Father, water and fire rituals, energy activations, microdosing protocol design.
+
+**5.6 GUIDE THROUGH** — she does not hold space and wait. She walks the person all the way to the other side.
+
+**5.7 LAND IT ON A TUESDAY** — the opening becomes one boundary, one conversation, one daily change. Recorded practices, integration, follow-up. Without this step the ceremony is a memory rather than a new way of treating yourself.
+
+---
+
+### 6. THE ONE SENTENCE
+
+**Primary — ✅ signed off by Karime and Sasha, September 29:**
+
+> **I work with accomplished women who are in the middle of a heartbreak or an illness so that instead of only surviving it they become initiated into spiritual advancement and the next phase of womanhood and leadership.**
+
+*How it was arrived at.* Karime refused to name the destination until she could answer it honestly from her own life: *"What is it that these things really initiate us into? I can't just make shit up with big turns. I need to be really honest."* Her answer, from the passage she is in now: the next version of her womanhood, and the unlocking of her spirituality. And the decision underneath it: *"I'm done pretending I'm a coach. Really I'm helping people advance spiritually."*
+
+**Deliberately not "grief."** Karime ruled the word out: naming it draws people with dying family members into a container built for a different passage. *"It's a risky space to name oneself in."*
+
+**Short, for a room:**
+
+> I help high-achieving women going through a heartbreak or an illness come out of it with the gift instead of the damage.
+
+**The credibility opener, for LinkedIn and for Marianne Williamson:**
+
+> I spent a decade in international policy and twenty-two years in ceremony. I work with accomplished women going through a heartbreak or an illness who need someone who can meet both halves of them.
+
+**The mechanism version, when someone asks how:**
+
+> I catch the exact moment a woman trades herself away to keep the peace, and I walk her back. Over three months, through ceremony, ritual and sacred plant work.
+
+---
+
+### 7. PROOF
+
+**Credential proof.** Oxford MPP. World Economic Forum Global Leadership Fellow, 0.3% admittance rate, taught with Columbia, LBS, Oxford, Wharton and INSEAD. Led Mexico's net-neutrality policy, MVNO regulation and IoT roadmap. Sofia University transformational life coaching certification.
+
+**Practice proof.** 22 years with Santa María. Hundreds of ceremonies. 3 continents, 7 countries. Over a decade with sacred mushrooms, initiated in traditions of Mexico and Latin America. Lived in 7 countries. Three languages.
+
+**Lived proof, and the strongest of the three.** She is her own first client. She is inside this exact passage right now and meeting it the way she asks her clients to: *"whether I do surgery or not is irrelevant. I'm turning it into medicine. A rite of passage into woman."* She sits on the 6→7 edge of her own map.
+
+**Client proof, missing, and the first gap to close.** Elizabeth, Marta and Brit completed the turn. Nobody has asked them for consent to say so. Three short quotes would change every surface she has.
+
+---
+
+### 8. MARKETING STRATEGY
+
+She speaks to these women as to herself in the mirror, because that is what they are. She names the threshold plainly, in the language they already use, and she names the cost of treating it as a malfunction to be fixed. She does not educate anyone into the premise. Either they already suspect their pain is carrying something, or they are not hers.
+
+She leads with the result and the alleviation, never with the modality. Cannabis, mushrooms and constellations stay inside the container. On the outside it is heartbreak, illness, initiation, peace.
+
+**The placing question doubles as marketing.** The seven client-voice lines from the Faculty Map are an answer set: *"Which of these sounds most true about how you meet difficulty right now?"* The line someone picks is their stage, read from their own mouth rather than guessed. It qualifies before a call is ever booked, and it is a piece of content in its own right.
+
+**The one repeatable act, from her own profile:** each week, guide one person or small group into a more honest conversation with themselves, then write one short post naming the one feeling they were starving to admit. That is her content engine. It costs nothing and it is exactly her gift performed in public.
+
+**Two category words to fix.**
+- **"New Earth"** narrows her to one subculture and costs her the identity layer she actually wants. Flagged in session; no replacement yet.
+- **Her LinkedIn headline** (*"Forging conscious leadership | Inner integral transformation | Raise of collective consciousness through humane governance"*) is written for organizations, not for the woman in crisis. Abstract where it needs to be specific. Highest-leverage single edit available to her right now, and it takes ten minutes.
+
+---
+
+### 9. SALES STRATEGY
+
+**9.1 Channels**
+1. **Referral, her real engine.** Michelle, Gabby and Constanza all know each other. These women travel in the same circles and recommend each other. Referral only compounds once she can say the one sentence, because then *they* can repeat it.
+2. **LinkedIn, for the identity layer.** Identity is visible there; threshold is not. So LinkedIn finds the right kind of woman and warms her, and the threshold surfaces in conversation. She already has the profile, the credentials and the audience.
+3. **Alumni networks** — Oxford, WEF, and the governance programs she named herself: *"just think of all the governance programs in the high universities of the planet and their alumni."*
+4. **Her existing community list,** which currently receives ceremony invitations only.
+
+**9.2 Hook**
+The threshold named out loud, plus what it costs to keep treating it as a malfunction.
+
+**9.3 The three-axis scorecard** *(the qualifying instrument)*
+
+| | Floor | Target | Ceiling |
+|---|---|---|---|
+| Identity | 7 | **as close to 10 as possible** | none |
+| Faculty | 3 | **4–5** | 6 |
+| Threshold | 7 | **8–9** | below total collapse |
+
+**9.4 Filter**
+Surrender (open to being helped, not "I'll handle it myself") · openness to transformational work · budget. Her line: working for free is not an option, with rare exceptions.
+
+**9.5 Amplifiers**
+How much she values her own transformation · how visible the complementarity is · whether she is already inside Karime's referral circles.
+
+**9.6 Funnel**
+1. Referral, or she finds a woman matching the identity
+2. She reflects the threshold back and names the cost of staying in it
+3. She asks permission to share what worked for her
+4. She answers through her own story, in one or two sentences
+5. Free transformational experience, where the woman actually feels something shift
+6. At the end she names what the next stretch of the passage looks like, and offers to walk it
+7. Rung 2 or rung 3
+8. The three-month container
+9. The ongoing circle
+
+---
+
+### 10. ALLIES
+
+- **Marianne Williamson** — the live one-pager target
+- **A steady operations-and-sales partner.** Her own profile names this as the complementary partner she needs: someone who turns her work into a clear schedule, clean boundaries and consistent income, who does not flinch at follow-ups, contracts and logistics. She supplies the depth; they supply the reliability. The missing client list, the missing balance sheet and the underpriced container are all one missing function
+- Oxford and WEF alumni networks
+- Governance and international-development alumni networks
+- Retreat and ceremony circles she is already inside
+- Her highest-fit past clients as referrers: Brit, Constanza, Michelle
+- **Rabbit Whole** and **Relate.** — two vehicles she already co-founded that sit on the leadership shelf
+
+---
+
+### Changelog
+
+**v1.3 (September 29, 2026 — from the live review with Karime)**
+
+| # | Change |
+|---|---|
+| 1 | **The one sentence is settled.** Both signed off. The destination is named honestly: spiritual advancement and the next phase of womanhood and leadership. "Grief" deliberately excluded |
+| 2 | **§2.4 reframed as her myth**, per Sasha: the faculty turned into a claim about the world. Karime's upgrade: not the shortest path, the **only** path. Added the alleviation-versus-evolution distinction that keeps the copy honest |
+| 3 | **Stage 6 is not an automatic disqualifier.** A stage-6 mid-threshold can receive a great deal. Welcome them; do not build outreach around them |
+| 4 | **Threshold ceiling given a second example** (a stage-4 cancer). Past a point more crisis is a worse fit, not a better one |
+| 5 | **Heartbreak and illness are two passages, not one compound one.** Copy always reads "or." Added: a heartbreak is not only a breakup |
+| 6 | **§1.1 uniqueness flagged as internal only.** Karime did not resonate with the self-trade as front-door language: *"that's what we uncover in the process of her initiation. That's not what they come to me for."* It stays a diagnostic. Sasha: *"the uniqueness is not the important part of the canvas"* |
+
+**Open for the next pass, named in the review:** §2.5 and §3 are too long and read as artificially blended; compress to one short paragraph each. §3 needs to be stage-specific (A to B, for a named starting stage) rather than generic. §4's ladder is *"forced into the framework"* and needs rebuilding from her real sequence. §5's method is *"the invisible architecture, pretty relevant"* but not yet what she actually does. §§8–9 not reviewed, too early.
+
+**v1.2 (September 29, 2026)**
+
+| # | Correction |
+|---|---|
+| 1 | **§3 rewritten as phenomenology.** The result is one stage of faculty, and that is an internal instrument, never client-facing. The promise now describes what stops, what a day looks like, what becomes possible, and what happens the next time. Loss-aversion framing leads, per the session |
+| 2 | **The three axes given their true shapes.** Identity is maximized toward 10 with no ceiling. Faculty is a Goldilocks zone, 4–5. Threshold is also a Goldilocks zone, 8–9, and v1.1's "8 or above" was wrong: Karime scored Elizabeth a 7 precisely because *"all her life was falling apart, it's a lot of work for me."* Total collapse is a ceiling, not a target. Added as a table in §2 and a scorecard in §9.3 |
+| 3 | **Product ladder mapped to faculty stage.** Each rung now names the stage move it produces, which answers her vol-5 question about whether products map to faculty levels |
+| 4 | Placing question promoted into §8 as a qualifying and marketing instrument |
+
+**v1.1 (September 29, 2026)** — uniqueness separated from client-faculty (Self-Betrayal Reversing, from her Top Talent profile) · professional identity restored as §0, the unoccupied intersection · prices anchored instead of "to set" · three shadow versions unified and the recursion named · "Turning Venom into Medicine" returned to backstage · Proof section added · method turned from a list into a seven-step sequence.
+
+**v1.0 (September 29, 2026)** — first full pass from sessions vol. 5–7, deep artifacts and portfolio.
+
+### Open items — Sasha's call
+
+| # | Item |
+|---|---|
+| 1 | **Myth reconciliation.** Sessions #1–3 give "The Steel and the Broken Heart." September gives "turning venom into medicine." Likely resolution: **the steel *is* the self-trade** made permanent, and heartbreak is one venom among several. That unifies all three artifact generations under §1.1. Not yet confirmed with her |
+| 2 | Every price in §4 needs her yes, and rung 5 needs the conversation about why it was $1,333 |
+| 3 | Replacement for "New Earth," and the LinkedIn headline rewrite |
+| 4 | Client proof: consent from Elizabeth, Marta and Brit |
+| 5 | No client list, no balance sheet since March, no revenue split per product. Named by her in vol. 5. Caps everything downstream, and is the ops-partner-shaped hole in §10 |
+
+---
+
+## The Marianne Williamson one-pager (v1.0, September 29, 2026)
+
+> *Status: **shipped as a live page at `/meet-karime`** (Day 188, Sep 29). Component: `src/pages/KarimeIntroduction.tsx`. Optional `?from=Name` renders the referrer line, so the same page serves any warm introduction, not only this one.*
+>
+> **Copy rebuilt in v2 after the Sep 29 review.** The self-trade mechanism is cut from the front door (Karime: *"that's not what they come to me for"*). "Grief" never appears. The promise is stated as what the passage initiates, per the signed-off one sentence. The page leads with the policy career and lets the ceremony be the surprise.
+>
+> *Still needed before sending to Williamson: the referrer's name for `?from=`, one client quote with consent, and a check on whether Karime has actually read* Tears to Triumph *(the letter version claims she has; the page does not claim it at all).*
+
+---
+
+### 1. The situation, stated plainly
+
+A client of Karime's who has done substantial work with her has a direct line to Marianne Williamson and has spoken about Karime. **Williamson is curious.** She asked to see something.
+
+That is a warm, referral-backed, pre-qualified opening. It is also fragile. Curiosity has a short half-life and converts to a meeting or to nothing.
+
+### 2. Who is receiving this
+
+Marianne Williamson: author of *A Return to Love*, the book that put *A Course in Miracles* into mainstream American life. Founded Project Angel Food in 1989. Wrote *A Woman's Worth* and *Tears to Triumph*. Ran for the Democratic presidential nomination twice. Campaigned for a U.S. Department of Peace.
+
+Four things follow from that, and they shape everything below.
+
+**She has heard the spiritual vocabulary ten thousand times.** Sacred container. Holding space. Reconnecting to source. Conscious leadership. New Earth. To her this is wallpaper. Any document that leads with it files Karime with the hundreds of healers who approach her every year.
+
+**She is flattered constantly.** Praise is the fastest disqualifier. One precise reference to her actual work beats a paragraph of admiration.
+
+**Her own thesis is unusually close to Karime's.** *Tears to Triumph* argues that despair is a spiritual passage rather than a disorder, and that medicating it robs people of the initiation inside it. That is Karime's faculty, stated at the level of argument. Karime does the same thing at the level of the body. This is real resonance, not a hook, and it should be named once.
+
+**She works at the seam Karime straddles.** Williamson's whole public project is the inner life brought to bear on public life. Karime ran national policy and guides ceremony. That is the same seam, at a different altitude. It is the rarest thing Karime has and Williamson is one of the few people alive who would immediately see why it matters.
+
+### 3. Intention and expected outcome
+
+**Intention: one meeting.** Nothing else.
+
+**Definition of a win:** Williamson replies, or tells the referrer to set something up.
+
+**What this document is not for.** Not to sell. Not to ask for referrals, an endorsement, a platform, or a speaking slot. Not to propose a collaboration. Any of those may follow from a conversation. None of them survive being asked for in a first document. Williamson asked to *see something*, not to receive a pitch.
+
+**Secondary outcomes, all acceptable, none pursued:** she points someone toward Karime · she remembers the name · the referrer's standing goes up for having made a good introduction · nothing happens and the door stays open.
+
+### 4. Optimization goals
+
+| # | Goal | Why |
+|---|---|---|
+| 1 | **She reads to the end** | An unread one-pager scores zero. This governs length and first line |
+| 2 | **She cannot file Karime with the other healers** | Differentiation must come from what is *not* spiritually generic: the policy career, the Forum, the 22 years, the specific mechanism |
+| 3 | **Peer register, never supplicant** | Williamson only engages people who are standing up. Karime has a real claim: Oxford, Forum at 0.3%, national policy, 22 years of ceremony |
+| 4 | **The referrer does the trust work** | Warm-intro physics. The referrer's name belongs in the first line, not the last |
+| 5 | **Specificity over register** | One concrete mechanism beats five beautiful abstractions |
+| 6 | **One page** | Respect for her attention is itself a signal |
+
+### 5. The strategic inversion
+
+**Every healer who approaches Marianne Williamson leads with the spirituality. Karime should lead with the career she walked away from, and let the ceremony be the surprise.**
+
+This is not a trick. It is the accurate order of what makes her rare. And it is Karime's own instinct, said in session on September 29: *"I'm not doing this work as a hippie medicine woman. I care about the leadership and this planet. Because she cares about that too."*
+
+**The design constraint that matters most.** Karime's shadow is the self-trade: she abandons her own needs to keep the peace, and its business form is *"my work isn't valuable enough to them."* If this document is written from the supplicant position, the shadow wrote it, and Williamson will feel it in the first two sentences. **The document must not commit the betrayal it is about.** That is also the argument for naming the plant work plainly rather than hiding it.
+
+### 6. Decisions needed before sending
+
+| # | Decision | Recommendation |
+|---|---|---|
+| 1 | **Who is the referrer?** Their name goes in line one | Needed from Karime |
+| 2 | **Name the plant medicine, or not?** | **Name it.** It is 22 years and it is central. Hiding it is the exact self-trade her work reverses, and a half-disclosed practitioner reads as unsure. State it without evangelizing. Sasha's call if there is a reason to think Williamson's audience makes this costly |
+| 3 | **Has Karime actually read *Tears to Triumph*?** | If not, cut that paragraph or replace it with a book she has read. Never put a claim in her mouth |
+| 4 | **Mention her current health passage?** | Her strongest proof of integrity, and the riskiest line. It can read as lived authority or as fragility. **Karime's call.** Drafted as one restrained optional line |
+| 5 | **Client proof** | The one real gap. One sentence from Elizabeth, Marta or Brit, with consent, would be the strongest line in the document |
+| 6 | **First person or brochure?** | **First person letter.** A brochure gets skimmed. A letter gets read |
+| 7 | **Verify the Williamson facts** | I know her work from training, not from a source read today. Sanity-check any claim about her before sending |
+
+### 7. Definition of done
+
+| # | Criterion | Status |
+|---|---|---|
+| 1 | Fits one page, under 450 words | ✅ ~410 |
+| 2 | Referrer named in the first two lines | ⬜ awaiting name |
+| 3 | Leads with the non-spiritual credentials | ✅ |
+| 4 | The mechanism stated concretely, not in register | ✅ the self-trade |
+| 5 | The result stated phenomenologically, per canvas §3 | ✅ sleeping, saying what she needs |
+| 6 | Exactly one reference to Williamson's work, no flattery | ✅ one paragraph |
+| 7 | No prices, no ladder, no products, no methodology sold | ✅ |
+| 8 | Ask is the smallest possible, with an easy out | ✅ |
+| 9 | Karime's voice, plain, no AI tells, no em-dashes | ✅ |
+| 10 | At least one line of client proof | ⬜ blocked on consent |
+| 11 | Karime reads it and recognizes herself | ⬜ hers to judge |
+
+---
+
+### 8. THE DRAFT
+
+*First person. Send as the body of an email or a single-page PDF.*
+
+---
+
+Dear Marianne,
+
+[REFERRER] told me she had spoken with you about my work and that you were curious. So, briefly.
+
+I spent a decade in international policy. A master's in public policy from Oxford, then Mexico's telecommunications regulator, where I directed digital development and led our net neutrality policy and the national roadmap for connected technology. Then the World Economic Forum, where I was selected as a Global Leadership Fellow and led the work on the internet of things, robotics and smart cities.
+
+Then I left.
+
+What was never on that résumé is that for twenty-two years, running alongside all of it, I have been a ceremonialist. I have guided hundreds of ceremonies with sacred plants across three continents and seven countries. Both halves were always there. At some point I stopped hiding one of them.
+
+Now I work with women who look a great deal like the woman I was. Accomplished, carrying a great deal, spiritually serious, and in the middle of something they cannot manage their way out of. A diagnosis. A marriage ending. A body that stopped cooperating.
+
+What I actually do is narrow. I catch the exact moment a woman trades herself away to keep the peace, and I name it without making her wrong. That trade is usually years old and invisible to her, and almost everything else follows from seeing it. Then I walk her through the passage instead of around it, with ceremony and ritual where the work calls for it. And we land it in something ordinary. One boundary. One conversation. One honest sentence she can actually say on a Tuesday.
+
+They come out sleeping again, able to say what they need, and holding whatever the thing came to give them. That last part is what nobody believes at the beginning.
+
+I read *Tears to Triumph* some years ago and recognized the argument before I could have made it myself. I have spent my working life on the practical end of that claim, with women who were handed a prescription for a passage.
+
+[CLIENT LINE, WITH CONSENT.]
+
+[OPTIONAL: I am in the middle of one of these myself as I write this. I am treating it the way I ask my clients to.]
+
+If any of this interests you, I would welcome a conversation. If not, thank you for the curiosity, and it was good of [REFERRER] to make the introduction.
+
+With respect,
+Karime Kuri Tiscareño
+
+---
+
+### 9. Why each beat is there
+
+| Beat | Job |
+|---|---|
+| Referrer in line one | Transfers the trust before Williamson decides whether to keep reading |
+| "So, briefly." | Promises the read is short. Buys the next paragraph |
+| The policy résumé | The inversion. Separates her from the field in four seconds |
+| **"Then I left."** | One line alone on the page. It is the hinge, and it makes Williamson want the reason |
+| Twenty-two years in parallel | The reveal. Reframes the résumé as half a life rather than a past career |
+| "Both halves were always there" | Answers the unasked question about why someone leaves the Forum |
+| Who she works with | Williamson recognizes these women. She has written books for them |
+| The self-trade | The one concrete mechanism. Not available in generic spiritual language |
+| The Tuesday | Integration. Signals she is not selling a peak experience |
+| "Sleeping again" | The result as a body, not as a concept. Canvas §3 |
+| *Tears to Triumph* | Shows she has read her. One paragraph, no praise |
+| The ask | Smallest possible, with a graceful exit, which is what makes it easy to say yes to |
 
 ---
 
