@@ -44,12 +44,12 @@
 **1.1 UNIQUENESS**
 *my core innate talent, the way I naturally create value*
 
-I take the experiences that poison a life and turn them into initiation, and I can hold that passage open for another woman while she walks it herself. I have been doing this since I was nine. What makes it rare is not the alchemy alone: it is that I can meet a woman in that passage with a serious mind and a serious ceremony at the same time, and almost nobody occupies both.
+I take the experiences that poison a life and turn them into initiation, and I can hold that passage open for another woman while she walks it herself. I have been doing this since I was nine. What makes it rare is that I can do it without asking her to leave her intelligence at the door. I can meet her mind and the world she works in, and I can also take her into real ceremony. Almost nobody does both.
 
 **1.2 SUPERSHADOW**
 *my alter ego*
 
-The Orphan Medicine Woman: I metabolize everyone else's poison and carry my own alone, because being the one who holds is safer than being held. In the business it speaks as *"there aren't enough of them"*, which turned around is *"my work isn't valuable enough to them."*
+The Orphan Medicine Woman: I metabolize everyone else's poison and carry my own alone, because being the one who holds feels safer than being held.
 
 ---
 
@@ -61,13 +61,13 @@ The Orphan Medicine Woman: I metabolize everyone else's poison and carry my own 
 
 **2.2 Key life stance** *(= the wisdom granted through the trials of the hero's journey):* Every venomous experience life hands me is an initiation. When I walk through it instead of around it, it becomes medicine. That is not only the shortest path to becoming who I am meant to become. It is the only one.
 
-**2.3 Metamorphosis:** Something has landed that you cannot manage your way out of. A diagnosis. A marriage ending, or one that has not ended and is quietly taking you apart. You have done the therapy and read the books, and still, in your body, you cannot find the meaning everyone insists is in there. You are the one other people lean on, so there is nowhere for you to fall apart. They keep telling you how strong you are, and every time they say it you feel more alone. And you notice this has come around before. If you look for someone intellectually serious you get a doctor and a protocol. If you look for someone spiritually serious you get someone who cannot meet your mind, your work, or the real weight of what you carry. So you do what you have always done. You hold it together for everyone else and postpone yourself one more time.
+**2.3 Metamorphosis:** Something has landed that you cannot manage your way out of. A diagnosis. A marriage ending, or one that has not ended and is quietly taking you apart. You have done the therapy and read the books, and still, in your body, you cannot find the meaning you know is supposed to be in there. You are the one other people lean on, so there is nowhere for you to fall apart. They keep telling you how strong you are, and every time they say it you feel more alone. And you notice this has come around before. Go to medicine and it gets treated as a malfunction: a protocol, a timeline, nothing about what it might mean. Go to the healing world and someone will finally treat it as meaningful, but they cannot meet your mind or the world you work in, so you leave the room realigned and then you are alone again with your job, your family and everything you are responsible for. So you do what you have always done. You hold it together for everyone else and postpone yourself one more time.
 
 ---
 
 ### 3. TRANSFORMATIONAL PROMISE
 
-You stop only surviving it. The thing stops running your days, you sleep again, and you can say what you need without apologizing for it. And you come out further along than you went in: the passage hands over what it came to give, your spirituality opens where it had been shut, and you step into the next phase of your womanhood and your leadership. The pattern stops repeating, because what it kept asking for has finally been given.
+You stop just getting through it. You sleep again. You can say what you need without apologizing for it, and the thing stops running your days. And you do not come out the same person. Something that was closed in you opens. You come out further into your own womanhood and further into your leadership. The pattern stops coming back, because you finally gave it what it had been asking for.
 
 ---
 
@@ -157,7 +157,7 @@ I speak to these women the way I would speak to myself, because that is what the
 
 > **Provisional.**
 
-Marianne Williamson. Oxford, World Economic Forum and governance-programme alumni networks. The retreat and ceremony circles I already sit in. My highest-fit past clients as referrers. And the operations-and-sales partner I do not yet have, who would turn this into a schedule, clean boundaries and steady income, which is the single missing function behind the absent client list, the absent balance sheet and the underpriced container.
+Marianne Williamson. Oxford, World Economic Forum and governance-programme alumni networks. The retreat and ceremony circles I already sit in. My highest-fit past clients as referrers.
 
 ---
 

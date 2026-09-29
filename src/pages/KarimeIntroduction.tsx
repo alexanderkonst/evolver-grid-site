@@ -98,7 +98,7 @@ const SECTIONS: { heading: string; paragraphs: string[] }[] = [
   {
     heading: "Who I work with.",
     paragraphs: [
-      "Accomplished women in the middle of a heartbreak or an illness. Women who carry a great deal, who have done the therapy and read the books, and who are now inside something they cannot manage their way out of.",
+      "Accomplished women in the middle of a heartbreak or an illness. Women who carry a great deal, who have done the therapy and read the books, and who still cannot find, in their own body, the meaning they know is supposed to be in there.",
       "A heartbreak is not only a breakup. Some of the deepest ones happen inside a relationship that is still standing.",
       "She is the one everyone else leans on, so there is nowhere for her to fall apart. They keep telling her how strong she is, and every time it is said she feels more alone. And she notices this has come around before.",
     ],
@@ -106,8 +106,8 @@ const SECTIONS: { heading: string; paragraphs: string[] }[] = [
   {
     heading: "Why there is usually nowhere to go.",
     paragraphs: [
-      "If she looks for someone intellectually serious, she gets a doctor and a protocol.",
-      "If she looks for someone spiritually serious, she usually gets someone who cannot meet her mind, her work, or the real weight of what she carries. She leaves the room realigned, and then she is on her own with her actual life.",
+      "Go to medicine and it gets treated as a malfunction. A protocol, a timeline, nothing about what it might mean.",
+      "Go to the healing world and someone will finally treat it as meaningful, but they cannot meet her mind or the world she works in. She leaves the room realigned, and then she is alone again with her job, her family, and everything she is responsible for.",
       "So she does what she has always done. She holds it together for everyone else and postpones herself one more time.",
     ],
   },
@@ -115,8 +115,8 @@ const SECTIONS: { heading: string; paragraphs: string[] }[] = [
     heading: "What happens instead.",
     paragraphs: [
       "I walk her through the passage rather than around it. Ceremony and ritual where the work calls for it, which is what the twenty-two years are for. And then the ordinary part that most of this world skips: one boundary, one conversation, one honest sentence she can actually say on a Tuesday.",
-      "She stops only surviving it. She sleeps again, and she can say what she needs without apologizing for it.",
-      "And she comes out further along than she went in. Her spirituality opens where it had been shut, and she steps into the next phase of her womanhood and her leadership. The pattern stops repeating, because what it kept asking for has finally been given.",
+      "She stops just getting through it. She sleeps again. She can say what she needs without apologizing for it, and the thing stops running her days.",
+      "And she does not come out the same person. Something that was closed in her opens. She comes out further into her own womanhood and further into her leadership. The pattern stops coming back, because she finally gave it what it had been asking for.",
       "I am in one of these passages myself as I write this, and I am meeting it the way I ask my clients to.",
     ],
   },
