@@ -43,6 +43,13 @@ import { useSkin } from "@/contexts/SkinContext";
  *      advancement · the next phase of womanhood and leadership), per the
  *      one sentence both she and Sasha signed off on.
  *
+ * A SCAFFOLD, NOT A FINISHED LETTER. Karime rewrites this in her own voice
+ * before it is sent. Her call, Sep 29: "Marianne Williamson will not read my
+ * one pager through words. She will read it through transmission." And her
+ * worry about the first draft: too many layers overlaid, at risk of sending a
+ * confusing signal. So this version holds five beats instead of seven and
+ * names one thread at a time. If it grows again, that is the bug.
+ *
  * ENGLISH ONLY, by design. This is a personal letter to named individuals,
  * not a funnel surface, so it is not wired into i18n. If it ever becomes a
  * public acquisition page, move the copy into locales first.
@@ -77,53 +84,40 @@ const SECTIONS: { heading: string; paragraphs: string[] }[] = [
   {
     heading: "Who I am, in the order that matters.",
     paragraphs: [
-      "I spent a decade in international policy. A master's in public policy from Oxford. Then Mexico's telecommunications regulator, where I directed digital development and led our net neutrality policy. Then the World Economic Forum, where I was selected as a Global Leadership Fellow.",
+      "I was born in Mexico. I spent a decade in international policy. A master's in public policy from Oxford. Then Mexico's telecommunications regulator, where I directed digital development and led our net neutrality policy. Then the World Economic Forum, where I was selected as a Global Leadership Fellow.",
     ],
   },
   {
     heading: "",
     paragraphs: [
-      "What was never on that résumé is that for twenty-two years, running alongside all of it, I have been a ceremonialist. Hundreds of ceremonies with sacred plants, across three continents and seven countries.",
-      "Both halves were always there. At some point I stopped hiding one of them.",
+      "What was never on that résumé is that for twenty-two years, running alongside all of it, I have been a ceremonialist. Hundreds of ceremonies with sacred plants, across three continents and seven countries. I was instructed and initiated in the traditions of Mexico and other Indigenous peoples of Latin America.",
+      "My longest work is with cannabis, which I know as Santa María. One of the missions of my life is to return her to her original place on the altar of the master plants.",
+      "Both halves were always there. At some point I stopped hiding one of them, and I stopped accepting that they belong in separate rooms.",
     ],
   },
   {
     heading: "Who I work with.",
     paragraphs: [
-      "Accomplished women, carrying a great deal, who are in the middle of something they cannot manage their way out of. A diagnosis. A marriage ending, or one that has not ended and is quietly taking them apart. A body that stopped cooperating.",
-      "They have done the therapy. They have read the books. They are the one everyone else leans on, which means there is nowhere for them to fall apart. Everyone keeps telling them how strong they are, and every time it is said they feel more alone.",
-      "And they notice the pattern has come around before.",
+      "Accomplished women in the middle of a heartbreak or an illness. Women who carry a great deal, who have done the therapy and read the books, and who are now inside something they cannot manage their way out of.",
+      "A heartbreak is not only a breakup. Some of the deepest ones happen inside a relationship that is still standing.",
+      "She is the one everyone else leans on, so there is nowhere for her to fall apart. They keep telling her how strong she is, and every time it is said she feels more alone. And she notices this has come around before.",
     ],
   },
   {
     heading: "Why there is usually nowhere to go.",
     paragraphs: [
-      "If she wants someone intellectually serious, she gets a doctor, and she gets a protocol.",
-      "If she wants someone spiritually serious, she usually gets someone who cannot meet her mind, her work, or the real weight of what she carries. She leaves the room realigned, and then she is on her own with her actual life.",
-      "So she does what she has always done. She holds it together for everyone else and postpones herself one more time. And then one more time.",
+      "If she looks for someone intellectually serious, she gets a doctor and a protocol.",
+      "If she looks for someone spiritually serious, she usually gets someone who cannot meet her mind, her work, or the real weight of what she carries. She leaves the room realigned, and then she is on her own with her actual life.",
+      "So she does what she has always done. She holds it together for everyone else and postpones herself one more time.",
     ],
   },
   {
-    heading: "What I do instead.",
+    heading: "What happens instead.",
     paragraphs: [
-      "I walk her through the passage rather than around it.",
-      "Not to make the pain stop sooner. To make sure that when it is over she is not simply back where she started, one more scar in, waiting for the pattern to return.",
-      "Ceremony and ritual where the work calls for it, which is what the twenty-two years are for. And then the ordinary part that most of this world skips: one boundary, one conversation, one honest sentence she can actually say on a Tuesday.",
-    ],
-  },
-  {
-    heading: "What it initiates.",
-    paragraphs: [
-      "She comes out at peace. Sleeping again. Able to say what she needs without apologizing for it.",
-      "And she comes out further along than she went in. Spiritually, which I have stopped being shy about saying plainly. And in her womanhood and her leadership, which is usually the part she could not see coming.",
-      "The pattern stops repeating, because the thing it kept asking for has finally been given.",
-    ],
-  },
-  {
-    heading: "One more thing worth saying.",
-    paragraphs: [
-      "A heartbreak is not only a breakup. Some of the deepest ones happen inside a relationship that is still standing.",
-      "I am also in one of these passages myself as I write this, and I am meeting it the way I ask my clients to.",
+      "I walk her through the passage rather than around it. Ceremony and ritual where the work calls for it, which is what the twenty-two years are for. And then the ordinary part that most of this world skips: one boundary, one conversation, one honest sentence she can actually say on a Tuesday.",
+      "She stops only surviving it. She sleeps again, and she can say what she needs without apologizing for it.",
+      "And she comes out further along than she went in. Her spirituality opens where it had been shut, and she steps into the next phase of her womanhood and her leadership. The pattern stops repeating, because what it kept asking for has finally been given.",
+      "I am in one of these passages myself as I write this, and I am meeting it the way I ask my clients to.",
     ],
   },
 ];
@@ -152,7 +146,7 @@ const KarimeIntroduction = () => {
     <GameShellV2 hideNavigation hideLogo defaultRailMinimized>
       <SEO
         title="Karime Kuri · An introduction"
-        description="A decade in international policy. Twenty-two years in ceremony. I work with accomplished women in the middle of a heartbreak or an illness, so that instead of only surviving it they are initiated by it."
+        description="A decade in international policy. Twenty-two years in ceremony. I work with accomplished women in the middle of a heartbreak or an illness so that instead of only surviving it they become initiated into spiritual advancement and the next phase of womanhood and leadership."
         path="/meet-karime"
         ogTitle="It is not a problem. It is an initiation."
       />
