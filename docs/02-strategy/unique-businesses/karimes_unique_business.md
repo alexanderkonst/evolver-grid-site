@@ -181,7 +181,9 @@ Marianne Williamson. Oxford, World Economic Forum and governance-programme alumn
 >
 > **Deliberately still omitted from the page, and each is Karime's to overrule:** "quantum healer" (her own label; it reads as unserious to precisely the half of the reader this page is engineered to hold) · the modality list, intuitive herbalism, energetic harmonization, heart intelligence, chakra alignment (the fluffy register the whole strategy avoids) · "New Earth Movement" (already flagged as the category word to replace) · "reconnect humans with the essential Source of Love" (true, and the exact generic spiritual register that files her with everyone else, though notably resonant with Williamson's own title).
 >
-> *Still needed before sending to Williamson: the referrer's name for `?from=`, one client quote with consent, and a check on whether Karime has actually read* Tears to Triumph *(the letter version claims she has; the page does not claim it at all).*
+> *Still needed before sending to Williamson: the referrer's name for `?from=`, and one client quote with consent.*
+>
+> **The *Tears to Triumph* beat was dropped from both the page and the letter** (it survives only as strategy notes in §2 and §9 below). Two reasons: it claimed a reading Karime has not confirmed, and it added a layer to a document she is already worried is over-layered. If she has read it, one honest sentence about it is the strongest paragraph available to her, and she should add it in her own words.
 
 ---
 
@@ -240,7 +242,7 @@ This is not a trick. It is the accurate order of what makes her rare. And it is 
 |---|---|---|
 | 1 | **Who is the referrer?** Their name goes in line one | Needed from Karime |
 | 2 | **Name the plant medicine, or not?** | **Name it.** It is 22 years and it is central. Hiding it is the exact self-trade her work reverses, and a half-disclosed practitioner reads as unsure. State it without evangelizing. Sasha's call if there is a reason to think Williamson's audience makes this costly |
-| 3 | **Has Karime actually read *Tears to Triumph*?** | If not, cut that paragraph or replace it with a book she has read. Never put a claim in her mouth |
+| 3 | **Has Karime actually read *Tears to Triumph*?** | **Resolved by dropping it** from the shipped page and letter — never put a claim in her mouth. Reopen only if she says yes, in her own words |
 | 4 | **Mention her current health passage?** | Her strongest proof of integrity, and the riskiest line. It can read as lived authority or as fragility. **Karime's call.** Drafted as one restrained optional line |
 | 5 | **Client proof** | The one real gap. One sentence from Elizabeth, Marta or Brit, with consent, would be the strongest line in the document |
 | 6 | **First person or brochure?** | **First person letter.** A brochure gets skimmed. A letter gets read |
@@ -266,31 +268,45 @@ This is not a trick. It is the accurate order of what makes her rare. And it is 
 
 ### 8. THE DRAFT
 
-*First person. Send as the body of an email or a single-page PDF.*
+*Plain-text mirror of the live page at `/meet-karime`, for pasting into an email, WhatsApp or chat. **Kept in sync with `src/pages/KarimeIntroduction.tsx` by hand — if the page changes, change this too.** Karime rewrites this in her own voice before it is sent; it is a scaffold, not a finished letter.*
 
 ---
 
 Dear Marianne,
 
-[REFERRER] told me she had spoken with you about my work and that you were curious. So, briefly.
+[REFERRER] told me she had spoken with you about my work, and that you were curious. So, briefly.
 
-I spent a decade in international policy. A master's in public policy from Oxford, then Mexico's telecommunications regulator, where I directed digital development and led our net neutrality policy and the national roadmap for connected technology. Then the World Economic Forum, where I was selected as a Global Leadership Fellow and led the work on the internet of things, robotics and smart cities.
+I was born in Mexico. I spent a decade in international policy. A master's in public policy from Oxford. Then Mexico's telecommunications regulator, where I directed digital development and led our net neutrality policy. Then the World Economic Forum, where I was selected as a Global Leadership Fellow.
 
 Then I left.
 
-What was never on that résumé is that for twenty-two years, running alongside all of it, I have been a ceremonialist. I have guided hundreds of ceremonies with sacred plants across three continents and seven countries. Both halves were always there. At some point I stopped hiding one of them.
+What was never on that résumé is that for twenty-two years, running alongside all of it, I have been a ceremonialist. Hundreds of ceremonies with sacred plants, across three continents and seven countries. I was instructed and initiated in the traditions of Mexico and other Indigenous peoples of Latin America.
 
-Now I work with women who look a great deal like the woman I was. Accomplished, carrying a great deal, spiritually serious, and in the middle of something they cannot manage their way out of. A diagnosis. A marriage ending. A body that stopped cooperating.
+My longest work is with cannabis, which I know as Santa María. One of the missions of my life is to return her to her original place on the altar of the master plants.
 
-What I actually do is narrow. I catch the exact moment a woman trades herself away to keep the peace, and I name it without making her wrong. That trade is usually years old and invisible to her, and almost everything else follows from seeing it. Then I walk her through the passage instead of around it, with ceremony and ritual where the work calls for it. And we land it in something ordinary. One boundary. One conversation. One honest sentence she can actually say on a Tuesday.
+Both halves were always there. At some point I stopped hiding one of them, and I stopped accepting that they belong in separate rooms.
 
-They come out sleeping again, able to say what they need, and holding whatever the thing came to give them. That last part is what nobody believes at the beginning.
+I work with accomplished women in the middle of a heartbreak or an illness. Women who carry a great deal, who have done the therapy and read the books, and who still cannot find, in their own body, the meaning they know is supposed to be in there.
 
-I read *Tears to Triumph* some years ago and recognized the argument before I could have made it myself. I have spent my working life on the practical end of that claim, with women who were handed a prescription for a passage.
+A heartbreak is not only a breakup. Some of the deepest ones happen inside a relationship that is still standing.
+
+She is the one everyone else leans on, so there is nowhere for her to fall apart. They keep telling her how strong she is, and every time it is said she feels more alone. And she notices this has come around before.
+
+Go to medicine and it gets treated as a malfunction. A protocol, a timeline, nothing about what it might mean.
+
+Go to the healing world and someone will finally treat it as meaningful, but they cannot meet her mind or the world she works in. She leaves the room realigned, and then she is alone again with her job, her family, and everything she is responsible for.
+
+So she does what she has always done. She holds it together for everyone else and postpones herself one more time.
+
+I walk her through the passage rather than around it. Ceremony and ritual where the work calls for it, which is what the twenty-two years are for. And then the ordinary part that most of this world skips: one boundary, one conversation, one honest sentence she can actually say on a Tuesday.
+
+She stops just getting through it. She sleeps again. She can say what she needs without apologizing for it, and the thing stops running her days.
+
+And she does not come out the same person. Something that was closed in her opens. She comes out further into her own womanhood and further into her leadership. The pattern stops coming back, because she finally gave it what it had been asking for.
+
+I am in one of these passages myself as I write this, and I am meeting it the way I ask my clients to.
 
 [CLIENT LINE, WITH CONSENT.]
-
-[OPTIONAL: I am in the middle of one of these myself as I write this. I am treating it the way I ask my clients to.]
 
 If any of this interests you, I would welcome a conversation. If not, thank you for the curiosity, and it was good of [REFERRER] to make the introduction.
 
@@ -313,7 +329,7 @@ Karime Kuri Tiscareño
 | The self-trade | The one concrete mechanism. Not available in generic spiritual language |
 | The Tuesday | Integration. Signals she is not selling a peak experience |
 | "Sleeping again" | The result as a body, not as a concept. Canvas §3 |
-| *Tears to Triumph* | Shows she has read her. One paragraph, no praise |
+| *Tears to Triumph* | **Dropped from the shipped copy** — see the status note at the top. Kept here because if Karime has read it, one honest sentence is the strongest paragraph available to her |
 | The ask | Smallest possible, with a graceful exit, which is what makes it easy to say yes to |
 
 ---
