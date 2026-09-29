@@ -151,16 +151,20 @@ dot). Say "read" or "see."
 ## Growth properties (part of the case)
 
 - **Fractal.** Self-similar at every scale: a founder becomes a node who trains
-  founders who become nodes. The same shape repeats down the tree (10% of 10% of
-  10%). Fractality is about *structure* (self-similarity), which tends to *produce*
-  power-law outcomes (a few nodes and founders dominate the returns), but the two
-  are not the same thing: fractal = the shape, power-law = the distribution it
-  throws off.
+  founders who become nodes. Each node can create its own offerings, cultivate
+  its own network, and become a new center of value creation and attraction.
+  Agreed revenue shares connect these businesses and support the infrastructure
+  and services they use. Fractality describes this repeatable generative
+  structure; it does not determine the distribution of returns or guarantee
+  exponential growth.
 - **Viral.** Growth spreads through **resonant invites** (people bring the right
   people because the work landed in them) rather than paid acquisition. This is
   BIG IDEA #2 (Fractal + Viral: Resonant Invites + Viral Vectors) made concrete.
-- **Net:** the collective grows itself, cheaply, in a self-similar shape, with
-  concentration of value at the top, growth that is structural, not bought.
+- **Net:** the architecture supports value creation and attraction at every
+  holonic layer, with contributions toward shared infrastructure. Each node can
+  grow its own business and relationships while retaining ownership of what it
+  builds. The design aims for mutual benefit; actual outcomes depend on useful
+  work, fair agreements, costs, and voluntary participation.
 
 ## The three key stakeholders
 

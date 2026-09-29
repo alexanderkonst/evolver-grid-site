@@ -44,6 +44,12 @@ const ChatLauncher = () => {
   // launcher still mounts/behaves identically everywhere else.)
   const isQuizRoute = location.pathname.startsWith("/quiz");
 
+  // Day 188 (Sasha 2026-09-29): /meet-karime is a personal letter sent to
+  // named people by warm introduction. A floating "Chat with us" support
+  // pill reframes it as a company landing page and undercuts the register
+  // the page depends on. The page carries its own contact line.
+  const isPersonalLetterRoute = location.pathname.startsWith("/meet-karime");
+
   const recordChannelChoice = (channel: Channel) => {
     // Feed a standard dataLayer when analytics is present, without making
     // analytics a dependency or allowing it to interrupt the contact action.
@@ -58,7 +64,7 @@ const ChatLauncher = () => {
     setOpen(false);
   };
 
-  if (isQuizRoute) return null;
+  if (isQuizRoute || isPersonalLetterRoute) return null;
 
   return (
     <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 sm:bottom-6 sm:right-6 z-[65]">
