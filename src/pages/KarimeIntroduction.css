@@ -80,11 +80,10 @@
 .ki-header-contact:hover { background: var(--ki-ivory); }
 .ki-hero-content { padding-block: 76px 64px; flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
 .ki-referrer { max-width: 580px; overflow-wrap: anywhere; }
-.karime-introduction h1 { font-size: clamp(76px, 8.4vw, 122px); line-height: .88; letter-spacing: -.045em; margin-top: 32px; max-width: 740px; }
+.karime-introduction h1 { font-size: clamp(52px, 5.4vw, 78px); line-height: 1.04; letter-spacing: -.045em; margin-top: 0; max-width: 830px; }
 .karime-introduction h1 span { display: block; }
-.karime-introduction h1 .ki-title-first { font-size: .59em; line-height: 1.1; letter-spacing: -.025em; margin-bottom: 14px; }
+.karime-introduction h1 .ki-title-first { font-size: .65em; line-height: 1.1; letter-spacing: -.025em; margin-bottom: 24px; }
 .karime-introduction h1 em { display: block; line-height: 1.02; }
-.karime-introduction .ki-hero-description { max-width: 400px; margin-top: 28px; font-size: 16px; line-height: 1.75; }
 .karime-introduction .ki-button {
   display: inline-flex;
   justify-content: center;
@@ -110,9 +109,9 @@
 .ki-hero-bottom { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block: 24px 30px; border-top: 1px solid rgba(71,50,31,.2); }
 .ki-hero-bottom p { font-size: 12px; line-height: 1.8; }
 .ki-hero-bottom p span { color: #61503f; }
-.ki-scroll-link { display: flex; gap: 20px; align-items: center; min-height: 44px; font-size: 10px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; margin-right: 170px; }
+.ki-scroll-link { display: flex; gap: 20px; align-items: center; min-height: 44px; font-size: 10px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; margin-right: 0; }
 .ki-scroll-link:hover { text-decoration: underline; text-underline-offset: 6px; }
-.ki-motion-toggle { position: absolute; z-index: 2; bottom: 30px; right: max(56px, calc((100% - 1200px) / 2)); display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 12px; color: #35291f; background: rgba(245,240,232,.88); border: 1px solid rgba(71,50,31,.3); font-size: 10px; letter-spacing: .05em; cursor: pointer; transition: background-color 200ms ease; }
+.ki-motion-toggle { position: relative; z-index: 2; display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 12px; color: #35291f; background: rgba(245,240,232,.88); border: 1px solid rgba(71,50,31,.3); font-size: 10px; letter-spacing: .05em; cursor: pointer; transition: background-color 200ms ease; }
 .ki-motion-toggle:hover { background: var(--ki-ivory); }
 
 /* Reading sections keep the letter intact, with deliberate changes in pace. */
@@ -126,7 +125,6 @@
 .ki-prose { font-size: 16px; line-height: 1.85; }
 .ki-prose > p + p { margin-top: 24px; }
 .ki-prose .ki-hinge { font-size: 52px; line-height: 1.1; font-style: italic; color: var(--ki-clay); margin-block: 32px; }
-.karime-introduction .ki-story-close { max-width: 940px; margin: 80px auto 56px; text-align: center; font-size: clamp(30px, 3.2vw, 44px); line-height: 1.2; letter-spacing: -.02em; text-wrap: pretty; }
 .ki-credentials { list-style: none; padding: 30px 0 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ki-rule); gap: 24px; }
 .ki-credentials li { padding-right: 16px; }
 .ki-credentials li + li { padding-left: 24px; border-left: 1px solid var(--ki-rule); }
@@ -134,17 +132,6 @@
 .ki-credentials small { display: block; margin-top: 8px; color: var(--ki-muted); font-size: 11px; line-height: 1.6; }
 .ki-editorial-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 100px; }
 .ki-for-you { background: var(--ki-sand); }
-.ki-prose .ki-lead { font-size: 20px; line-height: 1.7; letter-spacing: -.01em; }
-.ki-intimate-note { border-top: 1px solid #baaa96; padding-top: 26px; font-family: "Cormorant Garamond", "Karime Cormorant", Georgia, serif; font-size: 30px; line-height: 1.3; font-style: italic; }
-.ki-gap { background: var(--ki-dark); color: #eee3d6; }
-.ki-gap .ki-eyebrow { color: #cbbbA5; }
-.ki-gap h2 em { color: #d0ad86; }
-.ki-gap-copy > p + p { padding-top: 26px; border-top: 1px solid #665447; }
-.ki-gap-copy .ki-gap-conclusion { font-size: 20px; line-height: 1.65; color: #dec3a2; }
-.ki-becoming { margin-top: 80px; padding: 56px 60px; border-block: 1px solid var(--ki-rule); text-align: center; }
-.ki-becoming > p:last-child { max-width: 880px; margin: 24px auto 0; font-family: "Cormorant Garamond", "Karime Cormorant", Georgia, serif; font-size: clamp(28px, 3vw, 42px); line-height: 1.3; letter-spacing: -.018em; text-wrap: pretty; }
-.ki-personal-close { max-width: 530px; margin: 48px auto 0; text-align: center; font-size: 16px; }
-.ki-signature { display: inline-block; margin-top: 20px; font-size: 42px; font-style: italic; line-height: 1.2; color: var(--ki-clay); }
 .ki-contact { position: relative; background: #e7d9c5; isolation: isolate; overflow: hidden; }
 .ki-contact::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(rgba(238,226,209,.92), rgba(238,226,209,.92)), url("/karime/introduction/sanctuary.webp") center 58% / cover; }
 .ki-contact-inner { text-align: center; }
@@ -165,7 +152,6 @@
   .ki-section { padding-block: 88px; }
   .ki-story-grid, .ki-editorial-grid { gap: 56px; }
   .ki-hero { min-height: 820px; }
-  .ki-motion-toggle { right: 40px; }
   .ki-credentials { gap: 16px; }
   .ki-credentials li + li { padding-left: 16px; }
 }
@@ -182,15 +168,11 @@
   .ki-hero::before { background: linear-gradient(90deg, rgba(245,240,232,.96), rgba(245,240,232,.87) 45%, rgba(245,240,232,.60)), linear-gradient(0deg, rgba(245,240,232,.72), transparent 35%); }
   .ki-atmosphere :is(img, video) { object-position: 59% center; }
   .ki-hero-content { padding-block: 68px 64px; }
-  .karime-introduction h1 { font-size: clamp(72px, 13vw, 100px); margin-top: 30px; }
-  .karime-introduction h1 .ki-title-first { font-size: .55em; margin-bottom: 16px; }
-  .karime-introduction .ki-hero-description { max-width: 350px; margin-top: 24px; }
+  .karime-introduction h1 { font-size: clamp(42px, 7.8vw, 60px); margin-top: 0; }
+  .karime-introduction h1 .ki-title-first { font-size: .72em; margin-bottom: 16px; }
   .ki-hero-bottom { padding-block: 20px 26px; }
   .ki-hero-bottom p { font-size: 11px; }
   .ki-scroll-link { display: none; }
-  .ki-motion-toggle { right: 24px; bottom: 26px; }
-  .ki-motion-toggle span { display: none; }
-  .ki-motion-toggle { width: 44px; justify-content: center; }
   .ki-section-heading h2 { margin-top: 20px; font-size: clamp(42px, 8vw, 58px); }
   .ki-story-grid, .ki-editorial-grid { grid-template-columns: 1fr; gap: 36px; }
   .ki-story-grid { margin-top: 36px; }
@@ -198,19 +180,11 @@
   .ki-portrait img { aspect-ratio: 1 / 1; }
   .ki-prose { font-size: 16px; line-height: 1.8; }
   .ki-prose .ki-hinge { font-size: 46px; margin-block: 28px; }
-  .karime-introduction .ki-story-close { margin-block: 48px 36px; font-size: 32px; text-align: left; }
   .ki-credentials { grid-template-columns: 1fr 1fr; gap: 24px 16px; padding-top: 26px; }
   .ki-credentials li { padding-right: 0; }
   .ki-credentials li + li { padding-left: 0; border-left: 0; }
   .ki-credentials span { font-size: 22px; }
   .ki-credentials small { font-size: 11px; margin-top: 6px; }
-  .ki-prose .ki-lead { font-size: 18px; }
-  .ki-intimate-note { font-size: 28px; }
-  .ki-gap h2 br:nth-of-type(2) { display: none; }
-  .ki-gap-copy .ki-gap-conclusion { font-size: 18px; }
-  .ki-becoming { margin-top: 48px; padding: 32px 0; text-align: left; }
-  .ki-becoming > p:last-child { font-size: 30px; line-height: 1.3; }
-  .ki-personal-close { margin-top: 36px; }
   .ki-contact h2 { font-size: clamp(36px, 7vw, 48px); margin-block: 24px 32px; }
   .ki-contact h2 br { display: none; }
   .ki-footer-inner { flex-wrap: wrap; gap: 24px; }
@@ -222,11 +196,54 @@
   .ki-container { width: calc(100% - 40px); }
   .ki-wordmark span { font-size: 7px; }
   .ki-header-contact { padding-inline: 9px; gap: 6px; }
-  .karime-introduction h1 { font-size: 70px; }
-  .ki-motion-toggle { right: 20px; }
+  .karime-introduction h1 { font-size: 40px; }
   .ki-footer-inner { flex-direction: column; align-items: flex-start; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .karime-introduction *, .karime-introduction *::before, .karime-introduction *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+.ki-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.ki-motion-toggle { font-size: 11px; }
+.ki-header { padding-block: 18px 24px; }
+.ki-referrer { margin-bottom: 24px !important; }
+.ki-about .ki-section-heading h2 { max-width: 1000px; font-size: clamp(40px, 4.4vw, 62px); }
+.ki-credentials { margin-bottom: 72px; padding-block: 0 32px; border-top: 0; border-bottom: 1px solid var(--ki-rule); align-items: center; }
+.ki-logo { height: 82px; display: flex; align-items: center; }
+.ki-logo img { display: block; max-width: 165px; width: auto; max-height: 72px; object-fit: contain; }
+.ki-logo-sofia { background: var(--ki-dark); padding: 12px; max-width: 190px; }
+.ki-logo-sofia img { width: 100%; }
+.ki-credentials small { margin-top: 16px; }
+.ki-audience-copy p { font-family: "DM Sans", sans-serif; font-size: 18px; line-height: 1.8; font-style: normal; }
+.ki-work { background: #3e3027; color: #f2e8dc; }
+.ki-work .ki-eyebrow { color: #d0bca5; }
+.ki-work h2 em { color: #ddbb95; }
+.ki-section-intro { margin-top: 28px !important; font-size: 16px; line-height: 1.8; max-width: 390px; }
+.ki-steps { list-style: none; counter-reset: step; margin: 0; padding: 0; }
+.ki-steps li { position: relative; counter-increment: step; padding: 28px 0 28px 42px; border-top: 1px solid #75604e; }
+.ki-steps li:first-child { padding-top: 0; border-top: 0; }
+.ki-steps li:last-child { padding-bottom: 0; }
+.ki-steps li::before { content: "0" counter(step); position: absolute; left: 0; top: 32px; font-size: 11px; letter-spacing: .1em; color: #ddbb95; }
+.ki-steps li:first-child::before { top: 4px; }
+.karime-introduction h3 { margin: 0 0 12px; font-family: "DM Sans", sans-serif; font-size: 18px; font-weight: 500; line-height: 1.4; }
+.ki-steps p, .ki-formats p { font-size: 15px; line-height: 1.85; }
+.ki-steps p { color: #e0d1c0; }
+.ki-formats { display: grid; grid-template-columns: 1fr 1fr; column-gap: 80px; margin-top: 56px; }
+.ki-formats > div { padding-block: 28px; border-top: 1px solid var(--ki-rule); }
+.ki-formats p { color: var(--ki-muted); }
+.ki-contact h2 { max-width: 960px; }
+@media (max-width: 760px) {
+  .ki-header { align-items: flex-end; gap: 10px; }
+  .ki-header-contact { margin-bottom: 8px; }
+  .ki-brand { gap: 12px; }
+  .ki-hero-content { padding-block: 48px; }
+  .ki-credentials { margin-bottom: 48px; row-gap: 28px; }
+  .ki-logo img { max-width: 140px; }
+  .ki-logo-sofia img { max-width: 100%; }
+  .ki-logo span { font-size: 24px; }
+  .ki-audience-copy p { font-size: 16px; }
+  .ki-formats { grid-template-columns: 1fr; margin-top: 36px; }
+  .ki-section-intro { max-width: none; }
+  .ki-steps li { padding-left: 34px; }
 }
