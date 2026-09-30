@@ -130,11 +130,11 @@ const KarimeIntroduction = () => {
               )}
               <div className="ki-section-heading">
                 <p className="ki-eyebrow">01 / Meet Karime</p>
-                <h2 id="ki-about-heading">Who I am,<br /><em>in the order that matters.</em></h2>
+                <h2 id="ki-about-heading">Who I am,{" "}<br /><em>in the order that matters.</em></h2>
               </div>
               <div className="ki-story-grid">
                 <figure className="ki-portrait">
-                  <img src={PORTRAIT} alt="Karime Kuri Tiscareño holding ceremonial feathers in warm candlelight" width="1241" height="1268" loading="lazy" decoding="async" />
+                  <img src={PORTRAIT} alt="Karime Kuri Tiscareño holding ceremonial feathers in warm light" width="1241" height="1268" loading="lazy" decoding="async" />
                   <figcaption>
                     <span>Karime Kuri Tiscareño</span>
                     <span>Born in Mexico. Working worldwide.</span>
@@ -161,7 +161,7 @@ const KarimeIntroduction = () => {
             <div className="ki-container ki-editorial-grid">
               <div className="ki-section-heading">
                 <p className="ki-eyebrow">02 / The women I meet</p>
-                <h2 id="ki-for-you-heading">Who I<br /><em>work with.</em></h2>
+                <h2 id="ki-for-you-heading">Who I{" "}<br /><em>work with.</em></h2>
               </div>
               <div className="ki-prose ki-audience-copy">
                 <p className="ki-lead">{SECTIONS[2].paragraphs[0]}</p>
@@ -175,7 +175,7 @@ const KarimeIntroduction = () => {
             <div className="ki-container ki-editorial-grid">
               <div className="ki-section-heading">
                 <p className="ki-eyebrow">03 / Between two worlds</p>
-                <h2 id="ki-gap-heading">Why there is<br />usually<br /><em>nowhere to go.</em></h2>
+                <h2 id="ki-gap-heading">Why there is{" "}<br />usually{" "}<br /><em>nowhere to go.</em></h2>
               </div>
               <div className="ki-prose ki-gap-copy">
                 <p>{SECTIONS[3].paragraphs[0]}</p>
@@ -190,7 +190,7 @@ const KarimeIntroduction = () => {
               <div className="ki-editorial-grid">
                 <div className="ki-section-heading">
                   <p className="ki-eyebrow">04 / The passage</p>
-                  <h2 id="ki-work-heading">What happens<br /><em>instead.</em></h2>
+                  <h2 id="ki-work-heading">What happens{" "}<br /><em>instead.</em></h2>
                 </div>
                 <div className="ki-prose">
                   <p className="ki-lead">{SECTIONS[4].paragraphs[0]}</p>
@@ -211,7 +211,7 @@ const KarimeIntroduction = () => {
           <section id="ki-contact" className="ki-contact ki-section" aria-labelledby="ki-contact-heading">
             <div className="ki-container ki-contact-inner">
               <p className="ki-eyebrow">05 / An invitation</p>
-              <h2 id="ki-contact-heading">If any of this interests you,<br /><em>I would welcome a conversation.</em></h2>
+              <h2 id="ki-contact-heading">If any of this interests you,{" "}<br /><em>I would welcome a conversation.</em></h2>
               <a className="ki-button" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
                 Speak with Karime <ArrowUpRight size={18} aria-hidden="true" />
               </a>

@@ -36,13 +36,18 @@ export default function KarimeIntroductionBackground() {
     };
     video.addEventListener("loadedmetadata", playWhenReady);
 
-    if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = SOURCE;
-    } else {
-      void import("hls.js").then(({ default: Hls }) => {
+    void import("hls.js").then(({ default: Hls }) => {
         if (disposed) return;
         if (!Hls.isSupported()) {
-          setFailed(true);
+          if (video.canPlayType("application/vnd.apple.mpegurl")) {
+            video.src = SOURCE;
+            // preload=none otherwise waits for playback, while the metadata
+            // handler waits for loading: explicitly start the native path.
+            video.load();
+            playWhenReady();
+          } else {
+            setFailed(true);
+          }
           return;
         }
         const hls = new Hls({ autoStartLoad: true, maxBufferLength: 15 });
@@ -56,7 +61,6 @@ export default function KarimeIntroductionBackground() {
         hls.loadSource(SOURCE);
         hls.attachMedia(video);
       }).catch(() => { if (!disposed) setFailed(true); });
-    }
 
     return () => {
       disposed = true;
@@ -87,7 +91,7 @@ export default function KarimeIntroductionBackground() {
           ref={videoRef}
           poster={POSTER}
           muted loop playsInline preload="none"
-          onPlay={() => setPlaying(true)}
+          onPlaying={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
           onError={() => setFailed(true)}
           style={{ opacity: failed ? 0 : undefined }}
