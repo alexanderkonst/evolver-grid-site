@@ -94,6 +94,20 @@ const KarimeIntroduction = () => {
         </section>
 
         <main id="ki-main" tabIndex={-1}>
+          <section id="ki-for-you" className="ki-for-you ki-section" aria-labelledby="ki-for-you-heading">
+            <div className="ki-container ki-editorial-grid">
+              <div className="ki-section-heading">
+                <p className="ki-eyebrow">01 / The women I meet</p>
+                <h2 id="ki-for-you-heading">Who I{" "}<br /><em>work with</em></h2>
+              </div>
+              <div className="ki-prose ki-audience-copy">
+                <p>{SECTIONS[2].paragraphs[0]}</p>
+                <p>{SECTIONS[2].paragraphs[2]}</p>
+                <p>{SECTIONS[2].paragraphs[1]}</p>
+              </div>
+            </div>
+          </section>
+
           <section id="ki-about" className="ki-about ki-section" aria-labelledby="ki-about-heading">
             <div className="ki-container">
               {referrer && (
@@ -108,8 +122,9 @@ const KarimeIntroduction = () => {
                 <li><div className="ki-logo"><span>Twenty-two years</span></div><small>Ceremony across seven countries</small></li>
               </ul>
               <div className="ki-section-heading">
-                <p className="ki-eyebrow">01 / Meet Karima</p>
-                <h2 id="ki-about-heading">A curandera &amp; a ceremonialist <em>who is also an ex-WEF Global Fellow, and an Oxford alum</em></h2>
+                <p className="ki-eyebrow">02 / Meet Karima</p>
+                <h2 id="ki-about-heading">A curandera &amp; <em>a ceremonialist</em></h2>
+                <p className="ki-heading-support">Also an ex-WEF Global Fellow and an Oxford alum</p>
               </div>
               <div className="ki-story-grid">
                 <figure className="ki-portrait">
@@ -130,20 +145,6 @@ const KarimeIntroduction = () => {
             </div>
           </section>
 
-          <section id="ki-for-you" className="ki-for-you ki-section" aria-labelledby="ki-for-you-heading">
-            <div className="ki-container ki-editorial-grid">
-              <div className="ki-section-heading">
-                <p className="ki-eyebrow">02 / The women I meet</p>
-                <h2 id="ki-for-you-heading">Who I{" "}<br /><em>work with</em></h2>
-              </div>
-              <div className="ki-prose ki-audience-copy">
-                <p >{SECTIONS[2].paragraphs[0]}</p>
-                <p>{SECTIONS[2].paragraphs[2]}</p>
-                <p >{SECTIONS[2].paragraphs[1]}</p>
-              </div>
-            </div>
-          </section>
-
           <section id="ki-work" className="ki-work ki-section" aria-labelledby="ki-work-heading">
             <div className="ki-container ki-editorial-grid">
               <div className="ki-section-heading">
@@ -153,9 +154,9 @@ const KarimeIntroduction = () => {
               </div>
               <ol className="ki-steps">
                 <li><h3>A chemistry conversation</h3><p>In a free 30-minute call, we look at what is happening in your life, what you are seeking, and whether this is the right time for us to work together.</p></li>
-                <li><h3>A place to bring what is difficult</h3><p>You bring a topic to a one-to-one healing session, online or in person. I listen for what is happening beneath the words and guide you through it. For ongoing support, we can work together in a three- to six-month online coaching programme.</p></li>
-                <li><h3>Ceremony, with preparation</h3><p>When ceremony belongs in the work, we prepare for it together. I hold Santa María, Triple Goddess and mushroom ceremonies in person, and Santa María rituals online. The next step follows your readiness.</p></li>
-                <li><h3>Time to integrate</h3><p>We make space to understand what comes up and bring it into daily life. Recorded practices in ritual, meditation, nervous system regulation, forgiveness and identity work support you between sessions.</p></li>
+                <li><h3>A place to bring what is difficult</h3><p>You bring a topic you want to work through. I listen for what is happening beneath the words and guide you through it. Together, we explore the form of support that fits this passage.</p></li>
+                <li><h3>Ceremony, with preparation</h3><p>When ceremony belongs in the work, we prepare for it together. The lighter work prepares you for the deeper work, and the next step follows your readiness.</p></li>
+                <li><h3>Time to integrate</h3><p>We make space to understand what comes up and bring it into daily life. Integration continues through conversation and practices you can return to between sessions.</p></li>
               </ol>
             </div>
           </section>
@@ -165,12 +166,13 @@ const KarimeIntroduction = () => {
               <div className="ki-editorial-grid">
                 <div className="ki-section-heading">
                   <p className="ki-eyebrow">04 / What to expect</p>
-                  <h2 id="ki-expectations-heading">A rhythm of conversation, <em>practice and integration</em></h2>
+                  <h2 id="ki-expectations-heading">The practical <em>details</em></h2>
                 </div>
                 <div className="ki-prose">
-                  <p>There is room for a single topic and for a longer passage. We agree on the form of support together: a session, ongoing coaching, or a deeper combination of coaching and ceremony.</p>
-                  <p>Some of the work happens in conversation. Some happens through ritual and practice. Between sessions, you have recorded practices to return to, so the work has a place in your everyday life.</p>
-                  <p>Most one-to-one coaching happens online. In-person ceremonies and hybrid journeys are arranged individually.</p>
+                  <p><strong>Your first conversation</strong><br />A free 30-minute chemistry call to look at your situation and whether now is the time to work together.</p>
+                  <p><strong>Individual sessions and ongoing support</strong><br />Healing sessions take place online or in person. One-to-one coaching takes place online over three to six months.</p>
+                  <p><strong>Ceremony</strong><br />Santa María, Triple Goddess and mushroom ceremonies take place in person. Santa María rituals are also available online.</p>
+                  <p><strong>Between sessions</strong><br />Recorded practices include ritual, meditation, nervous system regulation, energy activation, forgiveness and identity work.</p>
                 </div>
               </div>
               <div className="ki-formats">
@@ -185,7 +187,8 @@ const KarimeIntroduction = () => {
           <section id="ki-contact" className="ki-contact ki-section" aria-labelledby="ki-contact-heading">
             <div className="ki-container ki-contact-inner">
               <p className="ki-eyebrow">05 / An invitation</p>
-              <h2 id="ki-contact-heading">If this describes you, <em>book a free 30-min chemistry call where we look at your situation</em></h2>
+              <h2 id="ki-contact-heading">If this describes you, <em>let’s talk</em></h2>
+              <p className="ki-invitation-copy">Book a free 30-min chemistry call where we look at your situation</p>
               <a className="ki-button" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
                 Arrange my free chemistry call <ArrowUpRight size={18} aria-hidden="true" />
               </a>
