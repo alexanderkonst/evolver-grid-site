@@ -8,22 +8,10 @@ const POSTER = "/karime/introduction/sanctuary.webp";
 
 export default function KarimeIntroductionBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const wantsPlayback = useRef(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const wantsPlayback = useRef(true);
   const [shouldLoad, setShouldLoad] = useState(wantsPlayback.current);
   const [playing, setPlaying] = useState(false);
   const [failed, setFailed] = useState(false);
-
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const onPreferenceChange = () => {
-      if (media.matches) {
-        wantsPlayback.current = false;
-        videoRef.current?.pause();
-      }
-    };
-    media.addEventListener("change", onPreferenceChange);
-    return () => media.removeEventListener("change", onPreferenceChange);
-  }, []);
 
   useEffect(() => {
     if (!shouldLoad) return;
@@ -90,7 +78,7 @@ export default function KarimeIntroductionBackground() {
         <video
           ref={videoRef}
           poster={POSTER}
-          muted loop playsInline preload="none"
+          autoPlay muted loop playsInline preload="none"
           onPlaying={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
           onError={() => setFailed(true)}
