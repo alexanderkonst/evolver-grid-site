@@ -30,9 +30,9 @@ const SECTIONS: { heading: string; paragraphs: string[] }[] = [
   {
     heading: "Who I work with.",
     paragraphs: [
-      "Accomplished women in the middle of a heartbreak or an illness. Women who carry a great deal, who have done the therapy and read the books, and who still cannot find, in their own body, the meaning they know is supposed to be in there.",
+      "Accomplished women facing heartbreak or illness. Women who carry a great deal, have done the therapy and read the books, yet still feel alone in what they are living through.",
       "A heartbreak is not only a breakup. Some of the deepest ones happen inside a relationship that is still standing.",
-      "She is the one everyone else leans on, so there is nowhere for her to fall apart. They keep telling her how strong she is, and every time it is said she feels more alone. And she notices this has come around before.",
+      "Women ready to look honestly at old narratives, false identities and ways of protecting themselves that no longer serve them.",
     ],
   },
 
@@ -80,6 +80,7 @@ const KarimeIntroduction = () => {
               <span className="ki-title-first">A heartbreak or an illness is not a problem to fix</span>{" "}
               <span>It is an <em>initiation into womanhood and self-leadership</em></span>
             </h1>
+            <p className="ki-hero-support">How we meet our own pain shapes how we lead, love and hold responsibility for others.</p>
             <a className="ki-button" href="#ki-contact">
               Book a free chemistry call <ArrowDown size={17} aria-hidden="true" />
             </a>
@@ -118,7 +119,7 @@ const KarimeIntroduction = () => {
               <ul className="ki-credentials" aria-label="Background and qualifications">
                 <li><div className="ki-logo"><img src="/karime/introduction/logos/oxford.svg" alt="University of Oxford" loading="lazy" /></div><small>Master’s in Public Policy</small></li>
                 <li><div className="ki-logo"><img src="/karime/introduction/logos/wef.svg" alt="World Economic Forum" loading="lazy" /></div><small>Global Leadership Fellow</small></li>
-                <li><div className="ki-logo ki-logo-sofia"><img src="/karime/introduction/logos/sofia.png" alt="Sofia University" loading="lazy" /></div><small>Transformational Life Coach</small></li>
+                <li><div className="ki-logo ki-logo-sofia"><span className="ki-sofia-art"><img src="/karime/introduction/logos/sofia.png" alt="Sofia University" loading="lazy" /><img className="ki-sofia-lettering" src="/karime/introduction/logos/sofia.png" alt="" aria-hidden="true" loading="lazy" /></span></div><small>Transformational Life Coach</small></li>
                 <li><div className="ki-logo"><span>Twenty-two years</span></div><small>Ceremony across seven countries</small></li>
               </ul>
               <div className="ki-section-heading">
@@ -141,7 +142,10 @@ const KarimeIntroduction = () => {
                   <p>{SECTIONS[1].paragraphs[1]}</p>
                 </div>
               </div>
-
+              <div className="ki-conviction">
+                <blockquote>“The way we lead ourselves through the pain and the confusion is the way we will lead others through the chaos and the uncertainty.”</blockquote>
+                <p>My work is to accompany that passage: staying present with what hurts, questioning what no longer serves, and making room for a more open way of living and leading.</p>
+              </div>
             </div>
           </section>
 
@@ -150,13 +154,13 @@ const KarimeIntroduction = () => {
               <div className="ki-section-heading">
                 <p className="ki-eyebrow">03 / How the work happens</p>
                 <h2 id="ki-work-heading">We begin with <em>where you are</em></h2>
-                <p className="ki-section-intro">The form of the work follows what you need and what you are ready for. We begin gently, with deeper work built on preparation.</p>
+                <p className="ki-section-intro">Through coaching, healing sessions and ceremony, we follow what you need and what you are ready for.</p>
               </div>
               <ol className="ki-steps">
-                <li><h3>A chemistry conversation</h3><p>In a free 30-minute call, we look at what is happening in your life, what you are seeking, and whether this is the right time for us to work together.</p></li>
-                <li><h3>A place to bring what is difficult</h3><p>You bring a topic you want to work through. I listen for what is happening beneath the words and guide you through it. Together, we explore the form of support that fits this passage.</p></li>
-                <li><h3>Ceremony, with preparation</h3><p>When ceremony belongs in the work, we prepare for it together. The lighter work prepares you for the deeper work, and the next step follows your readiness.</p></li>
-                <li><h3>Time to integrate</h3><p>We make space to understand what comes up and bring it into daily life. Integration continues through conversation and practices you can return to between sessions.</p></li>
+                <li><h3>Name what hurts</h3><p>Bring what you are living through. I listen for what is happening beneath the words.</p></li>
+                <li><h3>Meet it with presence</h3><p>It takes courage to stay with a breaking heart. We make space for what you feel, at your pace.</p></li>
+                <li><h3>Examine old narratives</h3><p>We look at the identities and strategies you have outgrown. When ceremony belongs in the work, we prepare for it together.</p></li>
+                <li><h3>Practice a different way of living</h3><p>Through conversation and practices between sessions, we bring what you discover into how you live and lead.</p></li>
               </ol>
             </div>
           </section>
@@ -187,8 +191,8 @@ const KarimeIntroduction = () => {
           <section id="ki-contact" className="ki-contact ki-section" aria-labelledby="ki-contact-heading">
             <div className="ki-container ki-contact-inner">
               <p className="ki-eyebrow">05 / An invitation</p>
-              <h2 id="ki-contact-heading">If this describes you, <em>let’s talk</em></h2>
-              <p className="ki-invitation-copy">Book a free 30-min chemistry call where we look at your situation</p>
+              <p className="ki-manifesto-close">Every venom can be turned into medicine</p>
+              <h2 id="ki-contact-heading">Book a free 30-min chemistry call <em>where we look at your situation</em></h2>
               <a className="ki-button" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
                 Arrange my free chemistry call <ArrowUpRight size={18} aria-hidden="true" />
               </a>

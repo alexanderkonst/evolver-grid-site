@@ -1,16 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { Pause, Play } from "lucide-react";
 
 // The existing Karime sanctuary film, kept within this page's hero so its
-// presentation and motion controls do not change the other Karime routes.
+// presentation do not change the other Karime routes.
 const SOURCE = "https://stream.mux.com/RN6nrCkZx7xuer6WM01801KKJCARsy6GZuTTA00PiIzNsc.m3u8";
 const POSTER = "/karime/introduction/sanctuary.webp";
 
 export default function KarimeIntroductionBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const wantsPlayback = useRef(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  const [shouldLoad, setShouldLoad] = useState(wantsPlayback.current);
-  const [playing, setPlaying] = useState(false);
+  const [shouldLoad] = useState(wantsPlayback.current);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
@@ -32,7 +30,7 @@ export default function KarimeIntroductionBackground() {
     let disposed = false;
     let destroy: (() => void) | undefined;
     const playWhenReady = () => {
-      if (wantsPlayback.current) void video.play().catch(() => setPlaying(false));
+      if (wantsPlayback.current) void video.play().catch(() => { /* Keep the poster if autoplay is blocked. */ });
     };
     video.addEventListener("loadedmetadata", playWhenReady);
 
@@ -72,17 +70,6 @@ export default function KarimeIntroductionBackground() {
     };
   }, [shouldLoad]);
 
-  const togglePlayback = () => {
-    if (playing) {
-      wantsPlayback.current = false;
-      videoRef.current?.pause();
-    } else {
-      wantsPlayback.current = true;
-      if (!shouldLoad) setShouldLoad(true);
-      else void videoRef.current?.play().catch(() => setPlaying(false));
-    }
-  };
-
   return (
     <>
       <div className="ki-atmosphere" aria-hidden="true">
@@ -91,19 +78,10 @@ export default function KarimeIntroductionBackground() {
           ref={videoRef}
           poster={POSTER}
           muted loop playsInline preload="none"
-          onPlaying={() => setPlaying(true)}
-          onPause={() => setPlaying(false)}
           onError={() => setFailed(true)}
           style={{ opacity: failed ? 0 : undefined }}
         />
       </div>
-      {!failed && (
-        <button className="ki-motion-toggle" type="button" onClick={togglePlayback}
-          aria-label={playing ? "Pause background video" : "Play background video"}>
-          {playing ? <Pause size={14} aria-hidden="true" /> : <Play size={14} aria-hidden="true" />}
-          <span>{playing ? "Pause motion" : "Play motion"}</span>
-        </button>
-      )}
     </>
   );
 }
