@@ -37,6 +37,23 @@ const syncLanguageToProfile = async (lng: string): Promise<void> => {
 /** On sign-in, reconcile the active locale from the profile. */
 const reconcileLanguageFromProfile = async (userId: string): Promise<void> => {
   try {
+    // This device's explicit switcher choice (localStorage) is the source of
+    // truth for THIS device. localStorage is written only by an explicit
+    // changeLanguage — never during init (the handler is registered after
+    // init) — so a non-null value means a real choice, not a default.
+    //
+    // Bug (2026-10-01, Sasha): the stored profile language was overriding a
+    // just-made choice. A signed-in visitor who picked RU/ES on the bare
+    // /quiz URL got snapped back to their profile's language ("jumps back to
+    // English"). The device's explicit choice must win; the profile only
+    // fills the gap on a device that has made no choice yet.
+    let localChoice: string | null = null;
+    try {
+      localChoice = window.localStorage.getItem(LOCALE_STORAGE_KEY);
+    } catch {
+      // ignore
+    }
+
     const { data } = await (supabase as any)
       .from("game_profiles")
       .select("preferred_language")
@@ -44,23 +61,22 @@ const reconcileLanguageFromProfile = async (userId: string): Promise<void> => {
       .maybeSingle();
     const remote = (data as { preferred_language?: string | null } | null)
       ?.preferred_language;
+
+    if (isSupportedLng(localChoice)) {
+      // Explicit local choice wins. Push it up when the profile is absent or
+      // stale, so the choice still follows the person to fresh devices.
+      if (localChoice !== remote) void syncLanguageToProfile(localChoice as string);
+      return;
+    }
+
+    // No explicit choice on this device — adopt the person's saved language
+    // (the cross-device path). A URL locale prefix already owns the session,
+    // so only apply when no prefix is forcing the language.
     if (isSupportedLng(remote)) {
-      // A URL locale prefix (/ru, /es) is explicit and owns the session;
-      // only apply the remote choice when no prefix is forcing the language.
       if (!initialLocaleScope && remote !== i18n.resolvedLanguage) {
         await i18n.changeLanguage(remote as string);
       }
-      return;
     }
-    // Remote empty: push up this device's explicit choice, if any.
-    let hasExplicitLocal = false;
-    try {
-      hasExplicitLocal =
-        window.localStorage.getItem(LOCALE_STORAGE_KEY) !== null;
-    } catch {
-      // ignore
-    }
-    if (hasExplicitLocal) void syncLanguageToProfile(i18n.resolvedLanguage || "en");
   } catch {
     // column migration pending / offline — local persistence stands
   }
