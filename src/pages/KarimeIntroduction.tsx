@@ -16,13 +16,13 @@ const PORTRAIT = "/karime/introduction/karima-soft-portrait.png";
 const BIOGRAPHY = [
   "I was born in Mexico. For over a decade, I worked in international policy: shaping national policies for digital development and technological inclusion within the Mexican government, and leading global technology governance projects at the World Economic Forum. I was selected as a Global Leadership Fellow and hold a master’s in public policy from Oxford.",
   "Alongside my leadership in policy, I have spent twenty-two years in the healing arts, leading hundreds of sacred plant ceremonies across three continents and seven countries. I have been instructed and initiated in the traditions of Mexico and other Indigenous peoples of Latin America.",
-  "Today, my focus is conscious, heart-centered leadership. I see life’s ruptures as openings for initiation. In helping people turn difficulty into purpose, I hold the larger picture: leaders with the courage and wisdom to guide themselves and their communities through change.",
+  "Today, my focus is conscious, heart-centered leadership. I see life’s ruptures as openings for initiation. In helping people turn difficulty into purpose, I hold a larger picture: leaders with the courage and wisdom to guide themselves and their communities through inevitable and difficult change.",
 ];
 
 const AUDIENCE = [
   "I am currently guided to serve accomplished individuals facing heartbreak or illness. People who carry a great deal of responsibility, yet feel alone in what they are living through.",
   "Individuals who recognize that vulnerable experiences can become rites of passage, and seek to turn difficulty into a fuller expression of who they are. As leaders, they see the same possibility in the collective: rupture can open a path to evolution.",
-  "A heartbreak is not only a breakup. Some of the deepest ones happen inside a relationship that is still standing.",
+  "A heartbreak is not only a breakup. Some of the deepest ones happen inside a relationship that is still standing, through a project ending, a life chapter closing, or a cherished dream falling away.",
   "I am also available to serve individuals navigating other life circumstances, as well as couples and groups.",
 ];
 
@@ -84,6 +84,16 @@ const KarimeIntroduction = () => {
         </section>
 
         <main id="ki-main" tabIndex={-1}>
+          <div className="ki-credential-band">
+            <div className="ki-container">
+              <ul className="ki-credentials" aria-label="Background and qualifications">
+                <li><div className="ki-logo"><img src="/karime/introduction/logos/oxford.svg" alt="University of Oxford" loading="lazy" /></div><small>Master’s in Public Policy</small></li>
+                <li><div className="ki-logo"><img src="/karime/introduction/logos/wef.svg" alt="World Economic Forum" loading="lazy" /></div><small>Global Leadership Fellow</small></li>
+                <li><div className="ki-logo ki-logo-sofia"><span className="ki-sofia-art"><img src="/karime/introduction/logos/sofia.png" alt="Sofia University" loading="lazy" /><img className="ki-sofia-lettering" src="/karime/introduction/logos/sofia.png" alt="" aria-hidden="true" loading="lazy" /></span></div><small>Transformational Life Coach</small></li>
+                <li><div className="ki-logo"><span className="ki-healing-mark"><b>22</b><span>Years in the healing arts</span></span></div><small>Across three continents and seven countries</small></li>
+              </ul>
+            </div>
+          </div>
           <section id="ki-for-you" className="ki-for-you ki-section" aria-labelledby="ki-for-you-heading">
             <div className="ki-container ki-audience-layout">
               <div className="ki-section-heading">
@@ -106,12 +116,7 @@ const KarimeIntroduction = () => {
                   {referrer} told me she had spoken with you about my work, and that you were curious. So, briefly.
                 </p>
               )}
-              <ul className="ki-credentials" aria-label="Background and qualifications">
-                <li><div className="ki-logo"><img src="/karime/introduction/logos/oxford.svg" alt="University of Oxford" loading="lazy" /></div><small>Master’s in Public Policy</small></li>
-                <li><div className="ki-logo"><img src="/karime/introduction/logos/wef.svg" alt="World Economic Forum" loading="lazy" /></div><small>Global Leadership Fellow</small></li>
-                <li><div className="ki-logo ki-logo-sofia"><span className="ki-sofia-art"><img src="/karime/introduction/logos/sofia.png" alt="Sofia University" loading="lazy" /><img className="ki-sofia-lettering" src="/karime/introduction/logos/sofia.png" alt="" aria-hidden="true" loading="lazy" /></span></div><small>Transformational Life Coach</small></li>
-                <li><div className="ki-logo"><span className="ki-healing-mark"><b>22</b><span>Years in the healing arts</span></span></div><small>Across three continents and seven countries</small></li>
-              </ul>
+
               <div className="ki-section-heading">
                 <p className="ki-eyebrow">02 / Meet Karima</p>
                 <h2 id="ki-about-heading">A curandera &amp; <em>a ceremonialist</em></h2>
@@ -130,8 +135,8 @@ const KarimeIntroduction = () => {
                 </div>
               </div>
               <div className="ki-conviction">
-                <blockquote>“The way we lead ourselves through the pain and the confusion is the way we will lead others through the chaos and the uncertainty.”</blockquote>
-                <p>My work is to assist people through life’s difficult passages: tending to the deeper layers of the hurt, shedding false identities that block connection to spirit, and making room for a more loving way of living and leading.</p>
+                <blockquote>“The way we lead ourselves through pain and confusion is the way we will lead others through chaos and uncertainty.”</blockquote>
+                <p>My work is to assist people through life’s difficult passages: tending to the deeper layers of the hurt, shedding false identities that block connection to Spirit, and making room for a more loving way of living and leading.</p>
               </div>
             </div>
           </section>
@@ -143,12 +148,12 @@ const KarimeIntroduction = () => {
                 <h2 id="ki-work-heading">Shamanic <em>healing arts</em></h2>
               </div>
               <div className="ki-healing-components">
-                <div><h3>Ceremony with ancient flowers</h3><p>Sacred cannabis, quantum rose and blue lotus. Through deep relaxation, presence and an open heart, these ceremonies invite connection with the Divine Mother within, remembrance of the womb–heart–crown connection, and a fuller claiming of the phase of womanhood each woman inhabits.</p></div>
+                <div><h3>Ceremony with ancient flowers</h3><p>Sacred cannabis, quantum rose and blue lotus. Through deep relaxation, presence and an open heart, these ceremonies invite connection with the Divine Mother and Divine Father, remembrance of the womb–heart–crown connection, and a fuller claiming of the phase of womanhood and manhood each individual is stepping into.</p></div>
                 <div><h3>Ceremony with sacred mushrooms</h3><p>Rooted in the Indigenous traditions of Mexico, these ceremonies aim to create loving spaces for remembering our true nature, feeling interconnected with all that is, and opening to unity consciousness.</p></div>
                 <div><h3>Microdosing protocols</h3><p>With the intention of supporting nervous system regulation, healing and spiritual stabilization.</p></div>
                 <div><h3>Shamanic limpias</h3><p>Cleansing work assisted by the elemental energies of fire and water, tobacco, sacred smokes and herbal remedies.</p></div>
               </div>
-              <div className="ki-coaching-component ki-editorial-grid">
+              <div className="ki-coaching-component ki-section-heading">
                 <h2>Transpersonal <em>coaching</em></h2>
                 <p>Working with the mental, emotional, energetic, physical and spiritual bodies as a whole. These containers aim to purify, harmonize and reconnect a person with their true essence, supporting the metabolization of difficult life experiences and stabilization through the passage.</p>
               </div>
@@ -161,10 +166,11 @@ const KarimeIntroduction = () => {
                 <p className="ki-eyebrow">04 / Ways of working together</p>
                 <h2 id="ki-expectations-heading">Individuals, couples <em>and groups</em></h2>
               </div>
+              <p className="ki-journeys-intro">Personalized journeys and containers, blending ceremonial work, healing sessions and transpersonal coaching.</p>
               <ul className="ki-container-types">
-                <li>One-to-one containers</li>
-                <li>Couple ceremonies</li>
-                <li>Group ceremonies<span>Women only and mixed groups</span></li>
+                <li>One-on-one</li>
+                <li>Couples</li>
+                <li>Groups<span>Women only and mixed groups</span></li>
               </ul>
             </div>
           </section>
