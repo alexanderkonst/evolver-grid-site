@@ -84,11 +84,14 @@ const KarimeIntroduction = () => {
 
         <main id="ki-main" tabIndex={-1}>
           <section id="ki-for-you" className="ki-for-you ki-section" aria-labelledby="ki-for-you-heading">
-            <div className="ki-container ki-editorial-grid">
+            <div className="ki-container ki-audience-layout">
               <div className="ki-section-heading">
                 <p className="ki-eyebrow">01 / Who I serve</p>
                 <h2 id="ki-for-you-heading">Who I{" "}<br /><em>work with</em></h2>
               </div>
+              <figure className="ki-audience-portrait">
+                <img src="/karime/introduction/karima-open-ceremony.jpg" alt="Karima seated with her arms raised, surrounded by flowers, candles and tropical greenery" width="2829" height="4241" loading="lazy" decoding="async" />
+              </figure>
               <div className="ki-prose ki-audience-copy">
                 {AUDIENCE.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               </div>
