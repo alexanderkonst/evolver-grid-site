@@ -1,36 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 
 // The existing Karime sanctuary film, kept within this page's hero so its
-// presentation do not change the other Karime routes.
+// presentation does not change the other Karime routes.
 const SOURCE = "https://stream.mux.com/RN6nrCkZx7xuer6WM01801KKJCARsy6GZuTTA00PiIzNsc.m3u8";
 const POSTER = "/karime/introduction/sanctuary.webp";
 
 export default function KarimeIntroductionBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const wantsPlayback = useRef(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  const [shouldLoad] = useState(wantsPlayback.current);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
-    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const onChange = () => {
-      if (preference.matches) {
-        wantsPlayback.current = false;
-        videoRef.current?.pause();
-      }
-    };
-    preference.addEventListener("change", onChange);
-    return () => preference.removeEventListener("change", onChange);
-  }, []);
-
-  useEffect(() => {
-    if (!shouldLoad) return;
     const video = videoRef.current;
     if (!video) return;
     let disposed = false;
     let destroy: (() => void) | undefined;
     const playWhenReady = () => {
-      if (wantsPlayback.current) void video.play().catch(() => { /* Keep the poster if autoplay is blocked. */ });
+      void video.play().catch(() => { /* Keep the poster if autoplay is blocked. */ });
     };
     video.addEventListener("loadedmetadata", playWhenReady);
 
@@ -68,7 +53,7 @@ export default function KarimeIntroductionBackground() {
       video.removeAttribute("src");
       video.load();
     };
-  }, [shouldLoad]);
+  }, []);
 
   return (
     <>
@@ -77,7 +62,7 @@ export default function KarimeIntroductionBackground() {
         <video
           ref={videoRef}
           poster={POSTER}
-          muted loop playsInline preload="none"
+          autoPlay muted loop playsInline preload="none"
           onError={() => setFailed(true)}
           style={{ opacity: failed ? 0 : undefined }}
         />
