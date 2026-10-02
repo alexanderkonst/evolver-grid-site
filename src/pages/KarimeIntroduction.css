@@ -269,7 +269,9 @@
 .ki-healing-components > div { border-top: 1px solid #75604e; padding-top: 24px; }
 .ki-healing-components p, .ki-coaching-component p { font-size: 16px; line-height: 1.85; color: #e0d1c0; }
 .ki-coaching-component { margin-top: 56px; padding-top: 40px; border-top: 1px solid #75604e; }
-.ki-coaching-component h2 { font-size: clamp(36px, 4vw, 54px); line-height: 1.1; }
+.ki-coaching-component h2 { margin-top: 0; }
+.ki-coaching-component p { max-width: 760px; margin-top: 28px; }
+.ki-journeys-intro { max-width: 760px; margin-top: 28px !important; font-size: 17px; line-height: 1.8; }
 .ki-container-types { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
 .ki-container-types li { border-top: 1px solid var(--ki-rule); padding-top: 20px; font-size: 18px; }
 .ki-container-types span { display: block; margin-top: 8px; font-size: 14px; color: var(--ki-muted); }
@@ -300,3 +302,7 @@
   .ki-brand-logo { width: 52px; height: 52px; }
   .ki-header-contact { margin-left: auto; margin-bottom: 0; }
 }
+
+.ki-credential-band { padding-block: 40px; background: var(--ki-ivory); }
+.ki-credential-band .ki-credentials { margin: 0; padding: 0; border: 0; }
+@media (max-width: 760px) { .ki-credential-band { padding-block: 32px; } }
