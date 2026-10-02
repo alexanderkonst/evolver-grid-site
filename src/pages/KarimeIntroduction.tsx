@@ -16,13 +16,14 @@ const PORTRAIT = "/karime/bluelotus/assets/karime.jpg";
 const BIOGRAPHY = [
   "I was born in Mexico. For over a decade, I worked in international policy: shaping national policies for digital development and technological inclusion within the Mexican government, and leading global technology governance projects at the World Economic Forum. I was selected as a Global Leadership Fellow and hold a master’s in public policy from Oxford.",
   "Alongside my leadership in policy, I have spent twenty-two years in the healing arts, leading hundreds of sacred plant ceremonies across three continents and seven countries. I have been instructed and initiated in the traditions of Mexico and other Indigenous peoples of Latin America.",
-  "Today, my focus is conscious, heart-centered leadership. I see life’s ruptures as openings for initiation. In helping women turn difficulty into purpose, I hold the larger picture: leaders with the courage and wisdom to guide themselves and their communities through change.",
+  "Today, my focus is conscious, heart-centered leadership. I see life’s ruptures as openings for initiation. In helping people turn difficulty into purpose, I hold the larger picture: leaders with the courage and wisdom to guide themselves and their communities through change.",
 ];
 
 const AUDIENCE = [
-  "Accomplished women facing heartbreak or illness. Women who carry a great deal of responsibility, have done the therapy and read the books, yet still feel alone in what they are living through.",
+  "I am currently guided to serve accomplished women facing heartbreak or illness. Women who carry a great deal of responsibility, yet feel alone in what they are living through.",
   "Women who recognize that vulnerable experiences can become rites of passage, and seek to turn difficulty into a fuller expression of who they are. As leaders, they see the same possibility in the collective: rupture can open a path to evolution.",
   "A heartbreak is not only a breakup. Some of the deepest ones happen inside a relationship that is still standing.",
+  "I am also available to serve men and people navigating other life circumstances, individually, as couples or in groups.",
 ];
 
 const KarimeIntroduction = () => {
@@ -85,7 +86,7 @@ const KarimeIntroduction = () => {
           <section id="ki-for-you" className="ki-for-you ki-section" aria-labelledby="ki-for-you-heading">
             <div className="ki-container ki-editorial-grid">
               <div className="ki-section-heading">
-                <p className="ki-eyebrow">01 / The women I serve</p>
+                <p className="ki-eyebrow">01 / Who I serve</p>
                 <h2 id="ki-for-you-heading">Who I{" "}<br /><em>work with</em></h2>
               </div>
               <div className="ki-prose ki-audience-copy">
@@ -126,7 +127,7 @@ const KarimeIntroduction = () => {
               </div>
               <div className="ki-conviction">
                 <blockquote>“The way we lead ourselves through the pain and the confusion is the way we will lead others through the chaos and the uncertainty.”</blockquote>
-                <p>My work is to assist women through heartbreak and illness as rites of passage: tending to the deeper layers of the hurt, shedding false identities that block connection to spirit, and making room for a more loving way of living and leading.</p>
+                <p>My work is to assist people through life’s difficult passages: tending to the deeper layers of the hurt, shedding false identities that block connection to spirit, and making room for a more loving way of living and leading.</p>
               </div>
             </div>
           </section>
