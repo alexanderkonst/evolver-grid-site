@@ -13,29 +13,16 @@ const WHATSAPP_URL =
 const TELEGRAM_HANDLE_URL = "https://t.me/integralevolution";
 const PORTRAIT = "/karime/bluelotus/assets/karime.jpg";
 
-const SECTIONS: { heading: string; paragraphs: string[] }[] = [
-  {
-    heading: "Who I am, in the order that matters.",
-    paragraphs: [
-      "I was born in Mexico. I spent a decade in international policy. A master's in public policy from Oxford. Then Mexico's telecommunications regulator, where I directed digital development and led internet neutrality policy. Then the World Economic Forum, where I was selected as a Global Leadership Fellow.",
-    ],
-  },
-  {
-    heading: "",
-    paragraphs: [
-      "What was never on that résumé is that for twenty-two years, running alongside all of it, I have been a ceremonialist. Hundreds of ceremonies with sacred plants, across three continents and seven countries. I was instructed and initiated in the traditions of Mexico and other Indigenous peoples of Latin America.",
-      "My longest work is with cannabis, which I know as Santa María. One of the missions of my life is to return her to her original place on the altar of the master plants.",
-    ],
-  },
-  {
-    heading: "Who I work with.",
-    paragraphs: [
-      "Accomplished women facing heartbreak or illness. Women who carry a great deal, have done the therapy and read the books, yet still feel alone in what they are living through.",
-      "A heartbreak is not only a breakup. Some of the deepest ones happen inside a relationship that is still standing.",
-      "Women ready to look honestly at old narratives, false identities and ways of protecting themselves that no longer serve them.",
-    ],
-  },
+const BIOGRAPHY = [
+  "I was born in Mexico. For over a decade, I worked in international policy: shaping national policies for digital development and technological inclusion within the Mexican government, and leading global technology governance projects at the World Economic Forum. I was selected as a Global Leadership Fellow and hold a master’s in public policy from Oxford.",
+  "Alongside my leadership in policy, I have spent twenty-two years in the healing arts, leading hundreds of sacred plant ceremonies across three continents and seven countries. I have been instructed and initiated in the traditions of Mexico and other Indigenous peoples of Latin America.",
+  "Today, my focus is conscious, heart-centered leadership. I see life’s ruptures as openings for initiation. In helping women turn difficulty into purpose, I hold the larger picture: leaders with the courage and wisdom to guide themselves and their communities through change.",
+];
 
+const AUDIENCE = [
+  "Accomplished women facing heartbreak or illness. Women who carry a great deal of responsibility, have done the therapy and read the books, yet still feel alone in what they are living through.",
+  "Women who recognize that vulnerable experiences can become rites of passage, and seek to turn difficulty into a fuller expression of who they are. As leaders, they see the same possibility in the collective: rupture can open a path to evolution.",
+  "A heartbreak is not only a breakup. Some of the deepest ones happen inside a relationship that is still standing.",
 ];
 
 const KarimeIntroduction = () => {
@@ -49,9 +36,9 @@ const KarimeIntroduction = () => {
     <GameShellV2 hideNavigation hideLogo defaultRailMinimized>
       <SEO
         title="Karima Kuri · An introduction"
-        description="A decade in international policy. Twenty-two years in ceremony. I work with accomplished women in the middle of a heartbreak or an illness so that instead of only surviving it they become initiated into spiritual advancement and the next phase of womanhood and leadership."
+        description="Karima Kuri brings international policy, shamanic healing arts and transpersonal coaching together in service of conscious, heart-centered leadership."
         path="/meet-karime"
-        ogTitle="An initiation into womanhood and self-leadership"
+        ogTitle="An initiation into a spiritually connected and heart-centered life"
         ogImage="https://findyourtoptalent.com/karime/bluelotus/assets/karime.jpg"
         ogImageAlt="Karima Kuri Tiscareño in ceremony"
       />
@@ -78,16 +65,16 @@ const KarimeIntroduction = () => {
             {referrer && <p className="ki-eyebrow ki-referrer">An introduction, by way of {referrer}</p>}
             <h1 id="ki-title">
               <span className="ki-title-first">A heartbreak or an illness is not a problem to fix</span>{" "}
-              <span>It is an <em>initiation into womanhood and self-leadership</em></span>
+              <span>It is an <em>initiation into a spiritually connected and heart-centered life</em></span>
             </h1>
-            <p className="ki-hero-support">How we meet our own pain shapes how we lead, love and hold responsibility for others.</p>
+            <p className="ki-hero-support">How we meet our own most difficult life moments shapes how we lead, love and hold the field for others.</p>
             <a className="ki-button" href="#ki-contact">
               Book a free chemistry call <ArrowDown size={17} aria-hidden="true" />
             </a>
           </div>
 
           <div className="ki-hero-bottom ki-container">
-            <p>A decade in international policy.<br /><span>Twenty-two years in ceremony.</span></p>
+            <p>15+ years in international policy and systems change.<br /><span>Twenty-two years in healing arts and ceremony.</span></p>
             <a href="#ki-about" className="ki-scroll-link">
               <span>The introduction</span><ArrowDown size={18} aria-hidden="true" />
             </a>
@@ -98,13 +85,11 @@ const KarimeIntroduction = () => {
           <section id="ki-for-you" className="ki-for-you ki-section" aria-labelledby="ki-for-you-heading">
             <div className="ki-container ki-editorial-grid">
               <div className="ki-section-heading">
-                <p className="ki-eyebrow">01 / The women I meet</p>
+                <p className="ki-eyebrow">01 / The women I serve</p>
                 <h2 id="ki-for-you-heading">Who I{" "}<br /><em>work with</em></h2>
               </div>
               <div className="ki-prose ki-audience-copy">
-                <p>{SECTIONS[2].paragraphs[0]}</p>
-                <p>{SECTIONS[2].paragraphs[2]}</p>
-                <p>{SECTIONS[2].paragraphs[1]}</p>
+                {AUDIENCE.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               </div>
             </div>
           </section>
@@ -120,12 +105,12 @@ const KarimeIntroduction = () => {
                 <li><div className="ki-logo"><img src="/karime/introduction/logos/oxford.svg" alt="University of Oxford" loading="lazy" /></div><small>Master’s in Public Policy</small></li>
                 <li><div className="ki-logo"><img src="/karime/introduction/logos/wef.svg" alt="World Economic Forum" loading="lazy" /></div><small>Global Leadership Fellow</small></li>
                 <li><div className="ki-logo ki-logo-sofia"><span className="ki-sofia-art"><img src="/karime/introduction/logos/sofia.png" alt="Sofia University" loading="lazy" /><img className="ki-sofia-lettering" src="/karime/introduction/logos/sofia.png" alt="" aria-hidden="true" loading="lazy" /></span></div><small>Transformational Life Coach</small></li>
-                <li><div className="ki-logo"><span>Twenty-two years</span></div><small>Ceremony across seven countries</small></li>
+                <li><div className="ki-logo"><span className="ki-healing-mark"><b>22</b><span>Years in the healing arts</span></span></div><small>Across three continents and seven countries</small></li>
               </ul>
               <div className="ki-section-heading">
                 <p className="ki-eyebrow">02 / Meet Karima</p>
                 <h2 id="ki-about-heading">A curandera &amp; <em>a ceremonialist</em></h2>
-                <p className="ki-heading-support">Also an ex-WEF Global Fellow and an Oxford alum</p>
+                <p className="ki-heading-support">Also a former Global Leadership Fellow at the World Economic Forum and an Oxford alum</p>
               </div>
               <div className="ki-story-grid">
                 <figure className="ki-portrait">
@@ -136,67 +121,57 @@ const KarimeIntroduction = () => {
                   </figcaption>
                 </figure>
                 <div className="ki-prose ki-story">
-                  <p>{SECTIONS[0].paragraphs[0]}</p>
-                  <p className="ki-hinge">Then I left.</p>
-                  <p>{SECTIONS[1].paragraphs[0]}</p>
-                  <p>{SECTIONS[1].paragraphs[1]}</p>
+                  {BIOGRAPHY.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                 </div>
               </div>
               <div className="ki-conviction">
                 <blockquote>“The way we lead ourselves through the pain and the confusion is the way we will lead others through the chaos and the uncertainty.”</blockquote>
-                <p>My work is to accompany that passage: staying present with what hurts, questioning what no longer serves, and making room for a more open way of living and leading.</p>
+                <p>My work is to assist women through heartbreak and illness as rites of passage: tending to the deeper layers of the hurt, shedding false identities that block connection to spirit, and making room for a more loving way of living and leading.</p>
               </div>
             </div>
           </section>
 
           <section id="ki-work" className="ki-work ki-section" aria-labelledby="ki-work-heading">
-            <div className="ki-container ki-editorial-grid">
+            <div className="ki-container">
               <div className="ki-section-heading">
-                <p className="ki-eyebrow">03 / How the work happens</p>
-                <h2 id="ki-work-heading">We begin with <em>where you are</em></h2>
-                <p className="ki-section-intro">Through coaching, healing sessions and ceremony, we follow what you need and what you are ready for.</p>
+                <p className="ki-eyebrow">03 / The components of this work</p>
+                <h2 id="ki-work-heading">Shamanic <em>healing arts</em></h2>
               </div>
-              <ol className="ki-steps">
-                <li><h3>Name what hurts</h3><p>Bring what you are living through. I listen for what is happening beneath the words.</p></li>
-                <li><h3>Meet it with presence</h3><p>It takes courage to stay with a breaking heart. We make space for what you feel, at your pace.</p></li>
-                <li><h3>Examine old narratives</h3><p>We look at the identities and strategies you have outgrown. When ceremony belongs in the work, we prepare for it together.</p></li>
-                <li><h3>Practice a different way of living</h3><p>Through conversation and practices between sessions, we bring what you discover into how you live and lead.</p></li>
-              </ol>
+              <div className="ki-healing-components">
+                <div><h3>Ceremony with ancient flowers</h3><p>Sacred cannabis, quantum rose and blue lotus. Through deep relaxation, presence and an open heart, these ceremonies invite connection with the Divine Mother within, remembrance of the womb–heart–crown connection, and a fuller claiming of the phase of womanhood each woman inhabits.</p></div>
+                <div><h3>Ceremony with sacred mushrooms</h3><p>Rooted in the Indigenous traditions of Mexico, these ceremonies aim to create loving spaces for remembering our true nature, feeling interconnected with all that is, and opening to unity consciousness.</p></div>
+                <div><h3>Microdosing protocols</h3><p>With the intention of supporting nervous system regulation, healing and spiritual stabilization.</p></div>
+                <div><h3>Shamanic limpias</h3><p>Cleansing work assisted by the elemental energies of fire and water, tobacco, sacred smokes and herbal remedies.</p></div>
+              </div>
+              <div className="ki-coaching-component ki-editorial-grid">
+                <h2>Transpersonal <em>coaching</em></h2>
+                <p>Working with the mental, emotional, energetic, physical and spiritual bodies as a whole. These containers aim to purify, harmonize and reconnect a person with their true essence, supporting the metabolization of difficult life experiences and stabilization through the passage.</p>
+              </div>
             </div>
           </section>
 
           <section id="ki-expectations" className="ki-expectations ki-section" aria-labelledby="ki-expectations-heading">
             <div className="ki-container">
-              <div className="ki-editorial-grid">
-                <div className="ki-section-heading">
-                  <p className="ki-eyebrow">04 / What to expect</p>
-                  <h2 id="ki-expectations-heading">The practical <em>details</em></h2>
-                </div>
-                <div className="ki-prose">
-                  <p><strong>Your first conversation</strong><br />A free 30-minute chemistry call to look at your situation and whether now is the time to work together.</p>
-                  <p><strong>Individual sessions and ongoing support</strong><br />Healing sessions take place online or in person. One-to-one coaching takes place online over three to six months.</p>
-                  <p><strong>Ceremony</strong><br />Santa María, Triple Goddess and mushroom ceremonies take place in person. Santa María rituals are also available online.</p>
-                  <p><strong>Between sessions</strong><br />Recorded practices include ritual, meditation, nervous system regulation, energy activation, forgiveness and identity work.</p>
-                </div>
+              <div className="ki-section-heading">
+                <p className="ki-eyebrow">04 / Ways of working together</p>
+                <h2 id="ki-expectations-heading">Individuals, couples <em>and groups</em></h2>
               </div>
-              <div className="ki-formats">
-                <div><h3>Six-month microdosing support</h3><p>A personal protocol, medicines, integration sessions and recorded practices, brought into the coaching work.</p></div>
-                <div><h3>Metamorphosis · Seven months</h3><p>My most comprehensive individual journey combines mushroom ceremony, a microdosing protocol, coaching and recorded practices, online and in person.</p></div>
-                <div><h3>Shared ceremonial spaces</h3><p>In-person Santa María ceremonies for groups and couples, and mushroom ceremonies for women’s groups or mixed groups.</p></div>
-                <div><h3>Homes, businesses and families</h3><p>Harmonization work with spaces and family-business situations, arranged around the people and place involved.</p></div>
-              </div>
+              <ul className="ki-container-types">
+                <li>One-to-one containers</li>
+                <li>Couple ceremonies</li>
+                <li>Group ceremonies<span>Women only and mixed groups</span></li>
+              </ul>
             </div>
           </section>
 
           <section id="ki-contact" className="ki-contact ki-section" aria-labelledby="ki-contact-heading">
             <div className="ki-container ki-contact-inner">
               <p className="ki-eyebrow">05 / An invitation</p>
-              <p className="ki-manifesto-close">Every venom can be turned into medicine</p>
-              <h2 id="ki-contact-heading">Book a free 30-min chemistry call <em>where we look at your situation</em></h2>
+              <p className="ki-manifesto-close">Every venom can be turned into medicine<br />Every rupture can become a spiritual initiation</p>
+              <h2 id="ki-contact-heading">Book a free 30-min <em>chemistry call</em></h2>
               <a className="ki-button" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
                 Arrange my free chemistry call <ArrowUpRight size={18} aria-hidden="true" />
               </a>
-              <p className="ki-contact-details">30 minutes · No cost · Arrange via WhatsApp<br />Online worldwide · In person by arrangement</p>
             </div>
           </section>
         </main>
