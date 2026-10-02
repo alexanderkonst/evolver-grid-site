@@ -44,11 +44,11 @@ const ChatLauncher = () => {
   // launcher still mounts/behaves identically everywhere else.)
   const isQuizRoute = location.pathname.startsWith("/quiz");
 
-  // Day 188 (Sasha 2026-09-29): /meet-karime is a personal letter sent to
+  // Day 188 (Sasha 2026-09-29): /karima is a personal letter sent to
   // named people by warm introduction. A floating "Chat with us" support
   // pill reframes it as a company landing page and undercuts the register
   // the page depends on. The page carries its own contact line.
-  const isPersonalLetterRoute = location.pathname.startsWith("/meet-karime");
+  const isPersonalLetterRoute = location.pathname.startsWith("/karima");
 
   const recordChannelChoice = (channel: Channel) => {
     // Feed a standard dataLayer when analytics is present, without making

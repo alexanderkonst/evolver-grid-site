@@ -117,7 +117,7 @@
 .ki-section-heading .ki-eyebrow { color: var(--ki-muted); }
 .ki-personal-note { max-width: 700px; padding-bottom: 48px; margin-bottom: 48px !important; border-bottom: 1px solid var(--ki-rule); font-size: 18px; overflow-wrap: anywhere; }
 .ki-story-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 100px; align-items: start; margin-top: 56px; }
-.ki-portrait img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 52% center; }
+.ki-portrait img { display: block; width: 100%; height: auto; }
 .ki-portrait figcaption { display: flex; flex-direction: column; gap: 2px; padding-top: 18px; font-size: 12px; line-height: 1.65; }
 .ki-portrait figcaption span:last-child { color: var(--ki-muted); font-size: 11px; }
 .ki-prose { font-size: 16px; line-height: 1.85; }
@@ -175,7 +175,6 @@
   .ki-story-grid, .ki-editorial-grid { grid-template-columns: 1fr; gap: 36px; }
   .ki-story-grid { margin-top: 36px; }
   .ki-portrait { max-width: 480px; }
-  .ki-portrait img { aspect-ratio: 1 / 1; }
   .ki-prose { font-size: 16px; line-height: 1.8; }
   .ki-prose .ki-hinge { font-size: 46px; margin-block: 28px; }
   .ki-credentials { grid-template-columns: 1fr 1fr; gap: 24px 16px; padding-top: 26px; }
@@ -263,7 +262,6 @@
 }
 
 /* Karima’s introduction: healing arts and global leadership. */
-.ki-portrait img { filter: brightness(1.22) contrast(.94); }
 .ki-credentials .ki-healing-mark { display: flex; flex-direction: column; align-items: center; gap: 3px; }
 .ki-healing-mark b { font-family: "Cormorant Garamond", "Karime Cormorant", Georgia, serif; font-size: 42px; font-weight: 400; line-height: 56px; width: 58px; height: 58px; border: 1px solid var(--ki-rule); border-radius: 50%; }
 .ki-credentials .ki-healing-mark span { font-family: "DM Sans", sans-serif; font-size: 10px; line-height: 1.4; text-transform: uppercase; letter-spacing: .1em; }

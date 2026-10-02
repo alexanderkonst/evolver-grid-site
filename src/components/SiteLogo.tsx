@@ -115,11 +115,11 @@ const SiteLogo = () => {
         // thread, and reading column share one layout. The global fixed mark
         // used to float over question and result copy while scrolling.
         "/quiz",
-        // Day 188 (Sasha 2026-09-29): /meet-karime is Karime's own letter,
+        // Day 188 (Sasha 2026-09-29): /karima is Karime's own letter,
         // sent by warm introduction to named people. The FYTT wordmark at
         // top-center puts Sasha's brand on her personal introduction and
         // reframes it as a company page. Same suppression as /build/karime.
-        "/meet-karime",
+        "/karima",
     ];
     // Day 138 (Sasha 2026-07-29): /home lives inside GameShellV2 (SmartShellLayout),
     // whose rail already carries the full "YOU be original" lockup. The global
@@ -133,7 +133,7 @@ const SiteLogo = () => {
     // Day 107 (Sasha 2026-06-19): /landing (The Uniqueness Economy thesis
     // flag) ships its own in-page wordmark too — suppress the global FYTT
     // mark so it doesn't double up at top-center.
-    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb", "/mdls-preview", "/build/equilibrium", "/equilibrium", "/preview/equilibrium-v2", "/build/karime", "/build/karime/intake", "/meet-karime", "/proposalforwegoodovahere", "/build/cockpit", "/1-pager", "/landing", "/you", "/home"];
+    const exactHidden = ["/", "/ignite", "/my-result", "/path", "/auth", "/dashboard", "/ai-os", "/library", "/prompt", "/ubb", "/mdls-preview", "/build/equilibrium", "/equilibrium", "/preview/equilibrium-v2", "/build/karime", "/build/karime/intake", "/karima", "/proposalforwegoodovahere", "/build/cockpit", "/1-pager", "/landing", "/you", "/home"];
     if (isProductLandingRoute(location.pathname) || hidden.some(p => location.pathname.startsWith(p)) || exactHidden.includes(location.pathname)) return null;
 
     return (
