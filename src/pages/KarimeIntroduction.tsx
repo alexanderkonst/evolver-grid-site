@@ -9,7 +9,7 @@ import "./KarimeIntroduction.css";
 
 // Direct contact with Karima.
 const WHATSAPP_URL =
-  "https://wa.me/14157070563?text=Hi%20Karima%2C%20I%20would%20like%20to%20arrange%20a%20free%2030-minute%20chemistry%20call%20with%20you.";
+  "https://wa.me/14157070563?text=Hi%20Karima%2C%20I%27d%20love%20to%20arrange%20a%20free%20chemistry%20call%20with%20you%2C%20can%20you%20send%20me%20the%20calendar%20link%20please%3F";
 const TELEGRAM_HANDLE_URL = "https://t.me/doctoraquantum";
 const PORTRAIT = "/karime/introduction/karima-soft-portrait.png";
 
@@ -186,7 +186,7 @@ const KarimeIntroduction = () => {
             <p>Ceremony · Healing Arts · Leadership</p>
             <div className="ki-footer-links">
               <a href={TELEGRAM_HANDLE_URL} target="_blank" rel="noopener noreferrer">Telegram <ArrowUpRight size={14} aria-hidden="true" /></a>
-              <a href="https://wa.me/14157070563" target="_blank" rel="noopener noreferrer">WhatsApp <ArrowUpRight size={14} aria-hidden="true" /></a>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">WhatsApp <ArrowUpRight size={14} aria-hidden="true" /></a>
             </div>
           </div>
         </footer>
