@@ -291,3 +291,12 @@
   .ki-audience-layout .ki-section-heading, .ki-audience-layout .ki-audience-copy, .ki-audience-portrait { grid-column: 1; grid-row: auto; }
   .ki-audience-portrait { width: 100%; max-width: 480px; justify-self: center; }
 }
+
+.ki-brand-link { display: inline-flex; align-items: center; gap: 16px; }
+.ki-brand-logo { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+@media (max-width: 760px) {
+  .ki-header { flex-wrap: wrap; align-items: center; }
+  .ki-brand-link { gap: 12px; }
+  .ki-brand-logo { width: 52px; height: 52px; }
+  .ki-header-contact { margin-left: auto; margin-bottom: 0; }
+}

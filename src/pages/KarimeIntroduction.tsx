@@ -49,9 +49,10 @@ const KarimeIntroduction = () => {
           <header className="ki-header ki-container">
             <div className="ki-brand">
               <KarimeIntroductionBackground />
-            <a href="#" className="ki-wordmark" aria-label="Karima Kuri, back to top">
-              Karima Kuri<span>Ceremony · Healing Arts · Leadership</span>
-            </a>
+              <a href="#" className="ki-brand-link" aria-label="Karima Kuri, back to top">
+                <img className="ki-brand-logo" src="/karime/introduction/karima-logo.jpeg" alt="" width="64" height="64" />
+                <div className="ki-wordmark">Karima Kuri<span>Ceremony · Healing Arts · Leadership</span></div>
+              </a>
             </div>
             <nav className="ki-nav" aria-label="Karima’s introduction">
               <a href="#ki-about">Meet Karima</a>
