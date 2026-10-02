@@ -90,12 +90,30 @@ function getLitRegionPath(phaseIndex: number, r: number, cx: number, cy: number)
 export const MoonOrb = ({ phaseIndex, size = 44 }: MoonOrbProps) => {
   const uid = useId().replace(/:/g, "");
   const moonClipId = `moon-circle-${uid}`;
-  const litClipId = `moon-lit-${uid}-${phaseIndex}`;
 
   const r = (size * 0.46) / 1; // moon radius slightly smaller than the orb radius
   const cx = size / 2;
   const cy = size / 2;
+  const top = cy - r;
+  const bottom = cy + r;
+
+  // iOS/WebKit does NOT reliably apply a PATH-based <clipPath> to an
+  // <image> (the circle clip works — the disc renders round — but the
+  // lit-region path clip was silently dropped, so the full bright photo
+  // showed and every phase looked like a full moon on mobile; desktop
+  // Chromium clipped correctly). So we no longer clip an image to the lit
+  // path. Instead: paint ONE full-bright moon (circle clip only, which
+  // iOS honors), then lay the shadow over the unlit side as a plain
+  // filled <path> — the full disc with the lit region punched out via
+  // fill-rule evenodd. A filled path needs no clipPath and no filter, so
+  // it renders identically on every engine.
+  const fullCircle = `M ${cx} ${top} A ${r} ${r} 0 1 1 ${cx} ${bottom} A ${r} ${r} 0 1 1 ${cx} ${top} Z`;
   const litPath = getLitRegionPath(phaseIndex, r, cx, cy);
+  // Shadow = full circle MINUS lit region. evenodd makes the lit sub-path
+  // a hole. New moon: litPath is "" → whole disc shadowed. Full moon:
+  // litPath === fullCircle → the two cancel → no shadow. Both fall out of
+  // the same expression, no special-casing needed.
+  const shadowPath = `${fullCircle} ${litPath}`.trim();
 
   return (
     <svg
@@ -106,44 +124,30 @@ export const MoonOrb = ({ phaseIndex, size = 44 }: MoonOrbProps) => {
       aria-hidden="true"
     >
       <defs>
-        {/* Circular clip for the full moon disc (used by the dim base). */}
+        {/* Circular clip for the full moon disc. */}
         <clipPath id={moonClipId}>
           <circle cx={cx} cy={cy} r={r} />
         </clipPath>
-        {/* Clip for the LIT portion of the current phase. Path is in
-            absolute coords (centered at cx,cy) so no clipPath transform is
-            needed — see getLitRegionPath for the iOS/WebKit reason. */}
-        {litPath && (
-          <clipPath id={litClipId}>
-            <path d={litPath} />
-          </clipPath>
-        )}
       </defs>
 
-      {/* Dim base — earthshine effect on the unlit side. */}
+      {/* Full-brightness moon, clipped to the disc. */}
       <image
         href={MOON_PHOTO_URL}
+        xlinkHref={MOON_PHOTO_URL}
         x={cx - r}
         y={cy - r}
         width={r * 2}
         height={r * 2}
         clipPath={`url(#${moonClipId})`}
-        style={{ filter: "brightness(0.16) contrast(0.85) saturate(0.6)" }}
+        style={{ filter: "brightness(1.05) contrast(1.05)" }}
         preserveAspectRatio="xMidYMid slice"
       />
 
-      {/* Lit overlay — full-brightness photo clipped to the lit region. */}
-      {litPath && (
-        <image
-          href={MOON_PHOTO_URL}
-          x={cx - r}
-          y={cy - r}
-          width={r * 2}
-          height={r * 2}
-          clipPath={`url(#${litClipId})`}
-          style={{ filter: "brightness(1.05) contrast(1.05)" }}
-          preserveAspectRatio="xMidYMid slice"
-        />
+      {/* Shadow over the unlit side — a filled path (no clipPath). Kept
+          semi-transparent so the surface stays faintly visible in shadow
+          (earthshine), matching the prior look. */}
+      {phaseIndex !== 4 && (
+        <path d={shadowPath} fillRule="evenodd" fill="rgba(7, 9, 18, 0.86)" />
       )}
     </svg>
   );
