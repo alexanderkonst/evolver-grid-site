@@ -7,10 +7,10 @@ import KarimeIntroductionBackground from "@/components/landing/KarimeIntroductio
 import { useSkin } from "@/contexts/SkinContext";
 import "./KarimeIntroduction.css";
 
-// The contact links intentionally arrange introductions through Sasha.
+// Direct contact with Karima.
 const WHATSAPP_URL =
-  "https://wa.me/14157073432?text=Hi%20Sasha%2C%20I%20would%20like%20to%20arrange%20a%20free%2030-minute%20chemistry%20call%20with%20Karima.";
-const TELEGRAM_HANDLE_URL = "https://t.me/integralevolution";
+  "https://wa.me/14157070563?text=Hi%20Karima%2C%20I%20would%20like%20to%20arrange%20a%20free%2030-minute%20chemistry%20call%20with%20you.";
+const TELEGRAM_HANDLE_URL = "https://t.me/doctoraquantum";
 const PORTRAIT = "/karime/introduction/karima-soft-portrait.png";
 
 const BIOGRAPHY = [
@@ -186,7 +186,7 @@ const KarimeIntroduction = () => {
             <p>Ceremony · Healing Arts · Leadership</p>
             <div className="ki-footer-links">
               <a href={TELEGRAM_HANDLE_URL} target="_blank" rel="noopener noreferrer">Telegram <ArrowUpRight size={14} aria-hidden="true" /></a>
-              <a href="https://wa.me/14157073432" target="_blank" rel="noopener noreferrer">WhatsApp <ArrowUpRight size={14} aria-hidden="true" /></a>
+              <a href="https://wa.me/14157070563" target="_blank" rel="noopener noreferrer">WhatsApp <ArrowUpRight size={14} aria-hidden="true" /></a>
             </div>
           </div>
         </footer>
