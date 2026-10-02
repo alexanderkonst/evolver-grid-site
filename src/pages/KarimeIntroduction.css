@@ -277,3 +277,17 @@
   .ki-healing-components, .ki-container-types { grid-template-columns: 1fr; gap: 28px; }
   .ki-coaching-component { margin-top: 36px; }
 }
+
+/* A welcoming portrait introduces the people Karima serves. */
+.ki-audience-layout { display: grid; grid-template-columns: .95fr 1.05fr; column-gap: 80px; row-gap: 28px; align-items: start; }
+.ki-audience-layout .ki-section-heading { grid-column: 2; align-self: end; }
+.ki-audience-layout .ki-audience-copy { grid-column: 2; }
+.ki-audience-portrait { grid-column: 1; grid-row: 1 / 3; position: relative; overflow: hidden; align-self: center; }
+.ki-audience-portrait img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 54%; }
+.ki-audience-portrait::after { content: ""; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 42px 8px rgba(233,223,209,.22); background: linear-gradient(0deg, rgba(233,223,209,.18), transparent 24%); }
+@media (max-width: 1100px) { .ki-audience-layout { column-gap: 40px; } }
+@media (max-width: 760px) {
+  .ki-audience-layout { grid-template-columns: 1fr; gap: 32px; }
+  .ki-audience-layout .ki-section-heading, .ki-audience-layout .ki-audience-copy, .ki-audience-portrait { grid-column: 1; grid-row: auto; }
+  .ki-audience-portrait { width: 100%; max-width: 480px; justify-self: center; }
+}
