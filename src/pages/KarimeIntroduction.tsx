@@ -11,7 +11,7 @@ import "./KarimeIntroduction.css";
 const WHATSAPP_URL =
   "https://wa.me/14157073432?text=Hi%20Sasha%2C%20I%20would%20like%20to%20arrange%20a%20free%2030-minute%20chemistry%20call%20with%20Karima.";
 const TELEGRAM_HANDLE_URL = "https://t.me/integralevolution";
-const PORTRAIT = "/karime/bluelotus/assets/karime.jpg";
+const PORTRAIT = "/karime/introduction/karima-soft-portrait.png";
 
 const BIOGRAPHY = [
   "I was born in Mexico. For over a decade, I worked in international policy: shaping national policies for digital development and technological inclusion within the Mexican government, and leading global technology governance projects at the World Economic Forum. I was selected as a Global Leadership Fellow and hold a master’s in public policy from Oxford.",
@@ -20,10 +20,10 @@ const BIOGRAPHY = [
 ];
 
 const AUDIENCE = [
-  "I am currently guided to serve accomplished women facing heartbreak or illness. Women who carry a great deal of responsibility, yet feel alone in what they are living through.",
-  "Women who recognize that vulnerable experiences can become rites of passage, and seek to turn difficulty into a fuller expression of who they are. As leaders, they see the same possibility in the collective: rupture can open a path to evolution.",
+  "I am currently guided to serve accomplished individuals facing heartbreak or illness. People who carry a great deal of responsibility, yet feel alone in what they are living through.",
+  "Individuals who recognize that vulnerable experiences can become rites of passage, and seek to turn difficulty into a fuller expression of who they are. As leaders, they see the same possibility in the collective: rupture can open a path to evolution.",
   "A heartbreak is not only a breakup. Some of the deepest ones happen inside a relationship that is still standing.",
-  "I am also available to serve men and people navigating other life circumstances, individually, as couples or in groups.",
+  "I am also available to serve individuals navigating other life circumstances, as well as couples and groups.",
 ];
 
 const KarimeIntroduction = () => {
@@ -38,9 +38,9 @@ const KarimeIntroduction = () => {
       <SEO
         title="Karima Kuri · An introduction"
         description="Karima Kuri brings international policy, shamanic healing arts and transpersonal coaching together in service of conscious, heart-centered leadership."
-        path="/meet-karime"
+        path="/karima"
         ogTitle="An initiation into a spiritually connected and heart-centered life"
-        ogImage="https://findyourtoptalent.com/karime/bluelotus/assets/karime.jpg"
+        ogImage="https://findyourtoptalent.com/karime/introduction/karima-soft-portrait.png"
         ogImageAlt="Karima Kuri Tiscareño in ceremony"
       />
       <div className="karime-introduction" lang="en">
@@ -50,7 +50,7 @@ const KarimeIntroduction = () => {
             <div className="ki-brand">
               <KarimeIntroductionBackground />
             <a href="#" className="ki-wordmark" aria-label="Karima Kuri, back to top">
-              Karima Kuri<span>Ceremony · Womanhood · Leadership</span>
+              Karima Kuri<span>Ceremony · Healing Arts · Leadership</span>
             </a>
             </div>
             <nav className="ki-nav" aria-label="Karima’s introduction">
@@ -180,7 +180,7 @@ const KarimeIntroduction = () => {
         <footer className="ki-footer">
           <div className="ki-container ki-footer-inner">
             <a href="#" className="ki-wordmark">Karima Kuri<span>Tiscareño</span></a>
-            <p>Ceremony · Womanhood · Leadership</p>
+            <p>Ceremony · Healing Arts · Leadership</p>
             <div className="ki-footer-links">
               <a href={TELEGRAM_HANDLE_URL} target="_blank" rel="noopener noreferrer">Telegram <ArrowUpRight size={14} aria-hidden="true" /></a>
               <a href="https://wa.me/14157073432" target="_blank" rel="noopener noreferrer">WhatsApp <ArrowUpRight size={14} aria-hidden="true" /></a>

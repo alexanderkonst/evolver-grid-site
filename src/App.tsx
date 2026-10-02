@@ -433,7 +433,7 @@ const GlobalChrome = () => {
   // SiteLogo suppresses itself via its own hidden-paths list.
   const isAlexanderPage = location.pathname === "/alexander" || location.pathname === "/aleksandr";
   // This personal introduction is intentionally English-only and owns its header.
-  const isKarimeIntroduction = location.pathname === "/meet-karime";
+  const isKarimeIntroduction = location.pathname === "/karima";
   // Day 137: the quiz corridor is fully localized (EN/RU/ES), so cold traffic
   // needs the switcher there — it is the entry point, not a sub-page.
   // Day 150: show it on the quiz for signed-in visitors too (`always`), not just
@@ -952,7 +952,9 @@ const App = () => (
                       introduction. Public, no auth. Optional ?from=Name
                       renders the referrer line. /build/karime stays the cold
                       funnel front door; this is the high-trust introduction. */}
-                  <Route path="/meet-karime" element={<KarimeIntroduction />} />
+                  <Route path="/karima" element={<KarimeIntroduction />} />
+                  <Route path="/meet-karima" element={<Navigate to={`/karima${location.search}${location.hash}`} replace />} />
+                  <Route path="/meet-karime" element={<Navigate to={`/karima${location.search}${location.hash}`} replace />} />
                   {/* Day 102 (Sasha): clean URL -> static Blue Lotus microsite (public/karime/bluelotus) */}
                   <Route path="/karime/bluelotus" element={<ExternalRedirect to="/karime/bluelotus/index.html" />} />
                   <Route path="/karime/bluelotus/*" element={<ExternalRedirect to="/karime/bluelotus/index.html" />} />
