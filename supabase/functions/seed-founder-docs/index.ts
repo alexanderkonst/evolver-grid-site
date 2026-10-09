@@ -107,13 +107,13 @@ Extract the "${config.label}" artifact (key: ${artifact_key}) per the schema and
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
+        model: "openai/gpt-6-astra",
+        reasoning_effort: "low",
         messages: [
           { role: "system", content: systemPrompt },
-          { role: "user", content: userPrompt },
+          { role: "user", content: `${userPrompt}\n\nReturn a single valid JSON object only.` },
         ],
         response_format: { type: "json_object" },
-        max_completion_tokens: 8000,
       }),
     });
 
@@ -137,7 +137,7 @@ Extract the "${config.label}" artifact (key: ${artifact_key}) per the schema and
 
     // Stamp migration provenance
     extracted._migration_source = `${founder.md_path} @ 2026-04-26`;
-    extracted._migration_method = "seed-founder-docs edge function (google/gemini-2.5-flash)";
+    extracted._migration_method = "seed-founder-docs edge function (openai/gpt-6-astra)";
 
     if (dry_run) {
       return new Response(
