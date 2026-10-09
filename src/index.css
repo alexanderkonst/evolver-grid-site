@@ -3792,10 +3792,14 @@
   --skin-selected-bg-deep: rgba(10, 10, 10, 0.06);
 }
 
-/* The soft accent-tinted cursor blob (CustomCursor) is a warm glow in
-   Lapis/Aurum; under the b&w editorial skin it degrades to a grey smudge.
-   Suppress it — the native cursor is never hidden, so nothing is lost. */
-[data-skin="dao"] [data-cursor-blob] {
+/* The soft accent-tinted cursor blob (CustomCursor) reads fine over a dark
+   backdrop (Aurum's video), but over a LIGHT background it degrades to a
+   stray smudge: a grey one under the b&w Dao skin, and a cool blue one under
+   Lapis (accent resolves to ~rgba(60,127,221) there) which stains the warm
+   parchment. Suppress it on both light skins — the native cursor is never
+   hidden, so nothing is lost. */
+[data-skin="dao"] [data-cursor-blob],
+[data-skin="lapis"] [data-cursor-blob] {
   display: none !important;
 }
 /* Tab list "Log In / Sign Up" gold-rgba surround → neutral hairline. */
