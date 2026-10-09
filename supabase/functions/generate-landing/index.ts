@@ -99,7 +99,7 @@ Make it specific enough that they can repeat your offer to a friend after one re
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                model: "google/gemini-2.5-flash-lite",
+                model: "google/gemini-3.1-flash-lite",
                 messages: [
                     { role: "system", content: GENERATE_LANDING_PROMPT + languageDirective(outputLanguage) },
                     { role: "user", content: `Generate landing page copy:\n\n${context}` }

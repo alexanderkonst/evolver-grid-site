@@ -587,7 +587,7 @@ async function processUser(args: {
 }
 
 const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-const COPY_MODEL_ID = "google/gemini-2.5-flash-lite";
+const COPY_MODEL_ID = "google/gemini-3.1-flash-lite";
 
 function sanitizeDashes(s: string): string {
     return s.replace(/\s*—\s*/g, ", ").replace(/\s*–\s*/g, ", ");
