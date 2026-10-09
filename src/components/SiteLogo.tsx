@@ -105,10 +105,11 @@ const SiteLogo = () => {
         // page's centered "Professional orientation for teenagers" text —
         // a real overlap, not a false alarm. Suppress here.
         "/you",
-        // Day 127: /alexander is a self-contained cinematic dark profile
+        // Day 127: the founder route is a self-contained cinematic dark profile
         // page (mythic minimalism). The global wordmark collides with the
         // octahedron geometry apex behind the name — suppress here; the
         // page carries its own identity.
+        "/sasha",
         "/alexander",
         "/aleksandr",
         // /quiz owns a restrained corridor header so the wordmark, progress
