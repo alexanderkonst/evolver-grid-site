@@ -1328,14 +1328,13 @@
     "emptyCta": "Start Assessment",
     "heroLabel": "My top talent",
     "threeTalentsLabel": "My three talents",
-    "pdfHint": "Give the PDF to your AI so it can know more about you.",
+    "pdfHint": "Give the PDF to your AI to find you an aligned job, or people to reach out to",
     "pdfButtonBuilding": "Preparing your PDF…",
     "pdfButtonReady": "Download Full PDF",
     "pdfButtonGenerating": "Generating PDF data…",
-    "funnelLine1": "We do it together in 2 hours.",
-    "funnelLine2": "Or you don't pay.",
+    "funnelLine1": "In one 2 hour coaching session, we understand who your client is, what product you can offer to them, and how to package that into a business.",
     "ctaPrimary": "Build a business off your top talent",
-    "methodologyBridge": "Or read the methodology first:",
+    "methodologyBridge": "Or Do-It-Yourself:",
     "ctaSecondary": "See the exact playbook"
   },
   "canvasOverview": {

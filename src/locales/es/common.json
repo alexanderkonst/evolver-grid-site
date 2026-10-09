@@ -3453,14 +3453,13 @@
     "emptyCta": "Empezar la evaluación",
     "heroLabel": "Mi talento principal",
     "threeTalentsLabel": "Mis tres talentos",
-    "pdfHint": "Dale el PDF a tu IA para que pueda conocerte mejor.",
+    "pdfHint": "Dale el PDF a tu IA para que te encuentre un trabajo alineado o personas a las que escribir",
     "pdfButtonBuilding": "Preparando tu PDF…",
     "pdfButtonReady": "Descargar PDF completo",
     "pdfButtonGenerating": "Generando los datos del PDF…",
-    "funnelLine1": "Lo hacemos juntos en 2 horas.",
-    "funnelLine2": "O no pagas.",
+    "funnelLine1": "En una sesión de coaching de dos horas entendemos quién es tu cliente, qué producto puedes ofrecerle y cómo convertir eso en un negocio.",
     "ctaPrimary": "Construye un negocio a partir de tu talento principal",
-    "methodologyBridge": "O lee primero la metodología:",
+    "methodologyBridge": "O por tu cuenta:",
     "ctaSecondary": "Ver el playbook exacto"
   },
   "missionSelection": {

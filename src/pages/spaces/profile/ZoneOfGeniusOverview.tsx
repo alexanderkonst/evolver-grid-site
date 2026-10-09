@@ -700,15 +700,6 @@ const ZoneOfGeniusOverview = () => {
                     same next-move logic they saw post-reveal — visual
                     + verbal coherence across the whole funnel. ═══ */}
                 <section className="liquid-glass-strong rounded-2xl p-6 text-center space-y-4 max-w-md mx-auto">
-                    <div className="space-y-1">
-                        <p className="text-sm sm:text-base font-medium" style={{ color: INK_BODY }}>
-                            {t('zogOverview.funnelLine1')}
-                        </p>
-                        <p className="text-sm sm:text-base font-medium" style={{ color: INK_BODY }}>
-                            {t('zogOverview.funnelLine2')}
-                        </p>
-                    </div>
-
                     {/* PRIMARY — Productize Yourself Session */}
                     <a
                         href="/ignite"
@@ -745,6 +736,12 @@ const ZoneOfGeniusOverview = () => {
                             className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
                         />
                     </a>
+
+                    {/* Paid-session explainer — sits directly UNDER its CTA
+                        (Sasha 2026-10-09, moved from above the button). */}
+                    <p className="text-sm sm:text-base font-medium" style={{ color: INK_BODY }}>
+                        {t('zogOverview.funnelLine1')}
+                    </p>
 
                     {/* Day 61 (Sasha 2026-05-04): legibility — text-xs
                         italic → text-sm italic + muted (was muted-soft)
