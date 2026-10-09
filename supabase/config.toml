@@ -193,3 +193,9 @@ verify_jwt = false
 # request to the Edge Function" with no useful diagnostics.
 [functions.delete-account]
 verify_jwt = false
+
+# 2026-10-09 (Sasha): ME · Saved Assets "Remove duplicates & synthesize".
+# Logged-in-only, calls the flagship model — gate it so only authenticated
+# users can invoke it (same posture as the other logged-in LLM functions).
+[functions.remove-duplicate-assets]
+verify_jwt = true
