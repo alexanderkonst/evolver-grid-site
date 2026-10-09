@@ -1189,7 +1189,7 @@ my energies, score them correctly, and put them all back into the sentence?
 If they cannot, the synthesis was simplistic — return to it.
 `.trim();
 
-export const MODEL = "google/gemini-2.5-flash-lite";
+export const MODEL = "openai/gpt-6-astra";
 export const AI_GATEWAY_URL = "https://ai.gateway.lovable.dev/v1/chat/completions";
 
 // ============================================================================

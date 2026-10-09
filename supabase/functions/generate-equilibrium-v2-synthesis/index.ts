@@ -188,7 +188,7 @@ serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
+        model: "openai/gpt-6-astra",
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
           { role: "user", content: userMessage },
@@ -197,7 +197,7 @@ serve(async (req) => {
         // adherence to the mandatory opener structure + concrete
         // activity-type language. Earlier higher temperature was
         // letting the model drift into invented grand-narrative fluff.
-        temperature: 0.6,
+        reasoning_effort: "low",
       }),
     });
 

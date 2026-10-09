@@ -206,6 +206,7 @@ vocabulary appears nowhere in any string field except the quadrant codes.`;
       },
       body: JSON.stringify({
         model: MODEL,
+        reasoning_effort: "low",
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: userPrompt },

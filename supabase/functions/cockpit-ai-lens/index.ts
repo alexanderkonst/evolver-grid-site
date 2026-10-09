@@ -184,12 +184,12 @@ ${compact(context)}
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
+        model: "openai/gpt-6-astra",
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
           { role: "user", content: userMessage },
         ],
-        temperature: 0.45,
+        reasoning_effort: "low",
       }),
     });
 
