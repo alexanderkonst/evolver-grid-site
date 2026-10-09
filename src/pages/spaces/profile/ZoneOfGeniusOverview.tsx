@@ -34,7 +34,7 @@ import {
 import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
 import CardActions from "@/components/sharing/CardActions";
 import ReadNextSectionButton from "@/components/profile/ReadNextSectionButton";
-import { flipToSecondPerson } from "@/lib/zogProfileVoice";
+import { flipToSecondPerson, flipToFirstPerson } from "@/lib/zogProfileVoice";
 // Day 119 (Sasha 2026-07-09): inside-layer brand signature (see the
 // matching placement in RevelatoryHero).
 import youLockup from "@/assets/you-be-original-lockup.webp";
@@ -66,7 +66,10 @@ const buildOverviewShareText = (
     topThreeTalents: string[] | undefined,
 ): string => {
     let text = `This is how I naturally create value:\n\n`;
-    text += `${archetype}\n`;
+    // Blank line between the archetype name and the one-sentence bullseye so
+    // the two don't run together and read as one confused statement (Sasha
+    // 2026-10-09).
+    text += `${archetype}\n\n`;
     if (bullseye) text += `I ${formatBullseye(bullseye)}\n\n`;
     // Day 61 (Sasha 2026-05-04): include the compact three talents in
     // the share text so the saved Top Talent page shares the same
@@ -75,8 +78,12 @@ const buildOverviewShareText = (
     if (topThreeTalents && topThreeTalents.length > 0) {
         text += `My three talents: ${topThreeTalents.join(" · ")}.\n\n`;
     }
-    if (corePattern) text += `${corePattern}\n\n`;
-    text += `Curious what you see.\n\n→ FindYourTopTalent.Com`;
+    // The share text is a FIRST-PERSON post the person makes about
+    // themselves, so the core-pattern paragraph reads "I recognize…", not
+    // the on-page second-person "You recognize…". Normalize legacy
+    // third-person via flipToSecondPerson, then flip to first person.
+    if (corePattern) text += `${flipToFirstPerson(flipToSecondPerson(corePattern))}\n\n`;
+    text += `Curious if you see me in this description.\n\n→ FindYourTopTalent.Com`;
     return text;
 };
 

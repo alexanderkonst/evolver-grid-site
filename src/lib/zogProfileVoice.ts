@@ -163,3 +163,34 @@ export function flipToFirstPersonReflexive(text: string | null | undefined): str
         .replace(/\bYours\b/g, "Mine")
         .replace(/\byours\b/g, "mine");
 }
+
+/**
+ * flipToFirstPerson — full second-person → first-person flip, for places
+ * where the person SHARES their own profile as a first-person post (e.g.
+ * the overview share text: "I recognize the distinctive organizing
+ * principle…"). The on-page profile stays second-person ("you"); this is
+ * only for copy the reader is meant to say about themselves.
+ *
+ * Apply AFTER flipToSecondPerson so a legacy third-person snapshot is first
+ * normalized to "you" (with the dual-actor guard preserving other people's
+ * they/them), then flipped here to "I". Because every "you" reaching this
+ * step already refers to the subject, a straight you→I / your→my flip is
+ * safe. Scope to subject-focused body fields (core_pattern,
+ * how_genius_shows_up, edge_and_traps) — the same ones flipToSecondPerson
+ * is safe on. Known limit: an object-position "you" would become "I" rather
+ * than "me"; these fields are written with the subject as the actor, so
+ * that case does not occur in practice.
+ */
+export function flipToFirstPerson(text: string | null | undefined): string {
+    if (!text) return "";
+    return text
+        .replace(/\bYourself\b/g, "Myself")
+        .replace(/\byourself\b/g, "myself")
+        .replace(/\bYours\b/g, "Mine")
+        .replace(/\byours\b/g, "mine")
+        // "I" is always capitalized, so both You and you become "I".
+        .replace(/\bYou\b/g, "I")
+        .replace(/\byou\b/g, "I")
+        .replace(/\bYour\b/g, "My")
+        .replace(/\byour\b/g, "my");
+}

@@ -3593,7 +3593,7 @@
     "shareTitleLine": "My top talent is {{title}}.",
     "shareBullseyeLine": "I {{statement}}.",
     "shareTalentsLine": "My three talents: {{talents}}.",
-    "shareClosing": "Curious what you see."
+    "shareClosing": "Curious if you see me in this description."
   },
   "matchExplainer": {
     "title": "How introductions work",

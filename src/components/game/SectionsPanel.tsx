@@ -1011,41 +1011,13 @@ const SectionsPanel = ({
     // buildJourneySections.
     const { path: entryPath } = useEntryPath();
 
-    // Day 79 (Sasha 2026-05-22): one-shot expansion of ME → Top Talent
-    // sub-list right after the user unlocks the deeper view.
-    // Default for top-talent is now collapsed (was: auto-expand
-    // whenever any sub-route was active). Sasha's call: the 12-item
-    // sub-list is visual noise on every ME visit; the only moment it
-    // should pop open is the first time after activation, when the
-    // user is meant to discover what they just gained access to.
-    // Sessionstorage flag survives navigation inside the tab but
-    // resets on a new tab / new session, so a second login session
-    // gets one fresh reveal too. User's explicit chevron toggle
-    // (recorded in `expandedSections`) always wins.
-    const TT_DROPDOWN_REVEALED_KEY = "fytt:tt-dropdown-revealed";
-    useEffect(() => {
-        if (typeof window === "undefined") return;
-        if (!deepProfileActivated) return;
-        if (activeSpaceId !== "grow") return;
-        try {
-            if (window.sessionStorage.getItem(TT_DROPDOWN_REVEALED_KEY) === "true") return;
-        } catch {
-            return;
-        }
-        setExpandedSections((prev) => {
-            // Respect explicit user toggle — only auto-expand if the
-            // user hasn't touched the chevron yet this session.
-            if (prev["top-talent"] !== undefined) return prev;
-            try {
-                window.sessionStorage.setItem(TT_DROPDOWN_REVEALED_KEY, "true");
-            } catch {
-                // localStorage / sessionStorage can throw in private mode —
-                // accept the flag won't persist and just expand once for
-                // this render cycle.
-            }
-            return { ...prev, "top-talent": true };
-        });
-    }, [deepProfileActivated, activeSpaceId]);
+    // ME → Top Talent sub-list stays COLLAPSED by default and opens only
+    // when the person clicks the row (Sasha 2026-10-09). The earlier
+    // Day-79 one-shot auto-expand after activation was removed — the
+    // 12-item list popping open on its own read as noise and hid the fact
+    // that the chevron is a control. `defaultExpanded` for top-talent is
+    // false, so with no stored toggle the group renders closed; the user's
+    // explicit chevron click (recorded in `expandedSections`) opens it.
 
     // Day 65 (Sasha 2026-05-15): per-item progress for the JOURNEY pane.
     // Drives the strikethrough on rows the user has accomplished
@@ -1803,9 +1775,9 @@ const SectionsPanel = ({
                             <span className="w-[22px] h-[22px] flex items-center justify-center">
                                 {hasSubSections ? (
                                     isExpanded ? (
-                                        <ChevronDown className="w-3.5 h-3.5" />
+                                        <ChevronDown className="w-4 h-4" strokeWidth={2.5} />
                                     ) : (
-                                        <ChevronRight className="w-3.5 h-3.5" />
+                                        <ChevronRight className="w-4 h-4" strokeWidth={2.5} />
                                     )
                                 ) : section.completed && activeSpaceId === "journey" ? (
                                     <span
