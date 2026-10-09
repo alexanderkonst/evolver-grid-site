@@ -1,5 +1,5 @@
 const crmSnapshot = {
-  "generated_at": "2026-10-09T21:28:45.144Z",
+  "generated_at": "2026-10-09T21:54:50.450Z",
   "version": "v5.0",
   "contactsCount": 44,
   "stageDistribution": {
