@@ -81,11 +81,20 @@ verify_jwt = true
 # required" — that was always the intent, just never wired into config.
 verify_jwt = false
 
+# 2026-10-09 (Sasha) — cost-leak fix. These were gateway-open (verify_jwt
+# = false) but are only ever reached from logged-in surfaces:
+# COLLABORATE/matching (/game/collaborate/matches, RequireAuth) and the
+# Unique Business Builder (/game/build/product-builder, RequireAuth). Open,
+# they let anyone with the public anon key invoke the LLM pipeline on our
+# credits with no account. verify_jwt = true now rejects anonymous callers
+# at the gateway, before any model runs. The one server-to-server caller
+# (proactive-match-proposal -> suggest-asset-matches) uses the service-role
+# key, which still passes. The frontend sends the user's JWT automatically.
 [functions.match-missions]
-verify_jwt = false
+verify_jwt = true
 
 [functions.match-assets]
-verify_jwt = false
+verify_jwt = true
 
 [functions.sync-mission-data]
 verify_jwt = false
@@ -104,25 +113,27 @@ verify_jwt = false
 
 
 [functions.deepen-icp]
-verify_jwt = false
+verify_jwt = true
 
 [functions.deepen-pain]
-verify_jwt = false
+verify_jwt = true
 
 [functions.deepen-tp]
-verify_jwt = false
+verify_jwt = true
 
 [functions.generate-blueprint]
-verify_jwt = false
+verify_jwt = true
 
 [functions.generate-landing]
-verify_jwt = false
+verify_jwt = true
 
 [functions.youtube-transcript]
 verify_jwt = false
 
+# The worst offender: public, uses the expensive gpt-5.2 in a per-candidate
+# loop, no rate limit. Logged-in matching feature — gate it.
 [functions.suggest-asset-matches]
-verify_jwt = false
+verify_jwt = true
 
 [functions.generate-equilibrium-insight]
 verify_jwt = false
