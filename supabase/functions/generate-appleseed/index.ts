@@ -35,7 +35,7 @@ serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "openai/gpt-5.2",
+        model: "openai/gpt-6-astra",
         // Day 62 (Sasha 2026-05-05): temperature pinned LOW for
         // determinism. Backstory: Sasha's friend hit a divergence
         // bug — the post-assessment reveal showed one archetype, the
@@ -56,7 +56,7 @@ serve(async (req) => {
         // back. Acceptable register because the prompt is highly
         // structured (JSON schema + calibration examples) — creative
         // variety isn't the goal, repeatable distillation is.
-        temperature: 0.3,
+        reasoning_effort: "low",
         messages: [
           {
             role: "system",
