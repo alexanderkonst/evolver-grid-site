@@ -174,8 +174,10 @@ const CardActions = ({
             // (transforms, box-shadow, gradient backgrounds on
             // zero-sized elements). Test path: take quiz → reveal →
             // click Save → PNG downloads cleanly to ~/Downloads.
-            const canvas = await html2canvas(el, {
-                scale: 2,
+            // Rendered on demand so Save can retry at a lower scale if the
+            // first export comes back empty (see the retry below).
+            const captureAtScale = (scale: number) => html2canvas(el, {
+                scale,
                 useCORS: true,
                 logging: false,
                 backgroundColor: darkMode ? "#0a162a" : "#fdf6e3",
@@ -261,9 +263,29 @@ const CardActions = ({
             // `href="data:"` anchors → user gets a 0-byte file with no
             // error. Blob URLs have no size cap, so Save reliably
             // produces a real PNG even for tall portrait captures.
-            const blob: Blob | null = await new Promise((resolve) =>
-                canvas.toBlob((b) => resolve(b), "image/png"),
-            );
+            const toBlobOf = (c: HTMLCanvasElement) =>
+                new Promise<Blob | null>((resolve) =>
+                    c.toBlob((b) => resolve(b), "image/png"),
+                );
+            // Day ... (2026-10-09, Sasha reported "Canvas produced no image
+            // data" on the Top Talent reveal Save). That toast fires when
+            // toBlob returns null. The reveal card has no cross-origin image,
+            // so it isn't a tainted canvas — on Chrome a null blob here is an
+            // OVERSIZED canvas: scale:2 on a long portrait reveal pushes the
+            // bitmap past the browser's export limit. Render at scale:2 for
+            // quality first; if the export is empty, re-render at scale:1
+            // (a quarter of the pixels) so Save still produces a real PNG.
+            // Cards that already export are untouched — they succeed on the
+            // first pass and never reach the retry.
+            let canvas = await captureAtScale(2);
+            let blob = await toBlobOf(canvas);
+            if (!blob) {
+                console.warn(
+                    "[CardActions] scale:2 export was empty (likely oversized canvas); retrying at scale:1",
+                );
+                canvas = await captureAtScale(1);
+                blob = await toBlobOf(canvas);
+            }
             if (!blob) {
                 throw new Error("Canvas produced no image data");
             }
