@@ -157,6 +157,7 @@ mandatory, not optional.`;
       },
       body: JSON.stringify({
         model: MODEL,
+        reasoning_effort: "low",
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: userPrompt },
