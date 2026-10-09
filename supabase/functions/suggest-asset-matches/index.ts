@@ -46,11 +46,11 @@ const corsHeaders = {
 // Day 80 (Sasha 2026-05-22): the single point of model control. Swap
 // here to upgrade the matching model via Lovable AI Gateway. Anything
 // the gateway supports is valid. Examples:
-//   "google/gemini-2.5-flash-lite"    — current cheap default
+//   "google/gemini-3.1-flash-lite"    — current cheap default
 //   "google/gemini-2.5-pro"           — reasoning step-change
 //   "anthropic/claude-sonnet-4-5"     — best editorial voice fit
 //   "openai/gpt-4o"                   — strong all-rounder
-const MODEL_ID = "google/gemini-2.5-flash-lite";
+const MODEL_ID = "google/gemini-3.1-flash-lite";
 
 serve(async (req) => {
     if (req.method === "OPTIONS") {
