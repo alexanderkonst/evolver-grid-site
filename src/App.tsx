@@ -428,10 +428,13 @@ const GlobalChrome = () => {
   // /you suppression above — the global fixed top-right pill would collide
   // with the page's own "BOOK THE SESSION" header CTA in the same corner.
   const isYouPage = location.pathname === "/you";
-  // Day 127: /alexander is a self-contained dark composition (mythic
+  // Day 127: the founder profile is a self-contained dark composition (mythic
   // minimalism) — the light EN switcher pill is a foreign object there.
   // SiteLogo suppresses itself via its own hidden-paths list.
-  const isAlexanderPage = location.pathname === "/alexander" || location.pathname === "/aleksandr";
+  const isAlexanderPage =
+    location.pathname === "/sasha" ||
+    location.pathname === "/alexander" ||
+    location.pathname === "/aleksandr";
   // This personal introduction is intentionally English-only and owns its header.
   const isKarimeIntroduction = location.pathname === "/karima";
   // Day 137: the quiz corridor is fully localized (EN/RU/ES), so cold traffic
@@ -977,11 +980,12 @@ const App = () => (
                   {/* Founder trust page · /founder · standalone (no shell). Copy from Message Bank artifacts. */}
                   <Route path="/founder" element={<Founder />} />
                   <Route path="/about/meet-the-founder" element={<Founder />} />
-                  {/* Aleksandr's public platform profile · /aleksandr · standalone (no shell).
+                  {/* Sasha's public platform profile · /sasha · standalone (no shell).
                       "The platform's profile, in public." One CTA: create your own profile. */}
-                  <Route path="/aleksandr" element={<GameShellV2 spaceOverride="grow" defaultRailMinimized defaultSectionsPanelClosed><AlexanderProfile /></GameShellV2>} />
-                  <Route path="/alexander" element={<Navigate to="/aleksandr" replace />} />
-                  <Route path="/integralevolution" element={<Navigate to="/aleksandr" replace />} />
+                  <Route path="/sasha" element={<GameShellV2 spaceOverride="grow" defaultRailMinimized defaultSectionsPanelClosed><AlexanderProfile /></GameShellV2>} />
+                  <Route path="/aleksandr" element={<Navigate to="/sasha" replace />} />
+                  <Route path="/alexander" element={<Navigate to="/sasha" replace />} />
+                  <Route path="/integralevolution" element={<Navigate to="/sasha" replace />} />
                   {/* Public monetization explainer · /monetization · standalone (no shell),
                       radical-transparency framing, Liquid Glass register. */}
                   <Route path="/monetization" element={<Monetization />} />

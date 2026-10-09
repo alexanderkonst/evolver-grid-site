@@ -540,8 +540,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     const [archetypeTitle, setArchetypeTitle] = useState<string | null>(null);
     const publicProfilePath = profile?.username
         ? `/${profile.username}`
-        : location.pathname === "/aleksandr"
-            ? "/aleksandr"
+        : location.pathname === "/sasha" || location.pathname === "/aleksandr"
+            ? "/sasha"
             : "/game/me/profile";
     // Day 63 → Day 87 — COLLABORATE space gating history:
     //
@@ -802,7 +802,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             return;
         }
 
-        if (location.pathname === "/aleksandr") {
+        if (location.pathname === "/sasha" || location.pathname === "/aleksandr") {
             setActiveSpaceId("grow");
             return;
         }
