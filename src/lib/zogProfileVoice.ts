@@ -92,7 +92,15 @@ function flipPronoun(
     pattern: RegExp,
     replacement: string
 ): string {
-    return text.replace(pattern, (match, _grp, offset) => {
+    // The flip patterns carry NO capture group, so String.replace calls this
+    // back as (match, offset, string) — the match offset is the SECOND arg.
+    // A long-standing bug read it as the third arg (which is the whole
+    // string), so `typeof offset === "number"` was always false and the
+    // dual-actor preservation below NEVER ran: every they/them/their was
+    // flipped to you/your, collapsing the other actor into the reader
+    // ("a founder … they bring you" → "you bring you"). Reading the offset
+    // from the correct position revives the Day-62 antecedent guard.
+    return text.replace(pattern, (match: string, offset: number) => {
         if (typeof offset === "number" && hasOtherActorAntecedent(text, offset)) {
             return match;
         }
