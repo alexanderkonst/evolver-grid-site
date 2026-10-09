@@ -20,7 +20,7 @@ const AI_GATEWAY_URL = "https://ai.gateway.lovable.dev/v1/chat/completions";
 
 // Matches the platform default. Tunable: bump to a sharper model for a tougher
 // adversary if the crash-test reads soft.
-const DEFAULT_VIABILITY_MODEL = "google/gemini-2.5-flash-lite";
+const DEFAULT_VIABILITY_MODEL = "google/gemini-3.1-flash-lite";
 
 // The category-error guard. Essence-class artifacts are exempt: crash-testing a
 // founder's soul-signal against "will a stranger buy this" is the wrong axis on
