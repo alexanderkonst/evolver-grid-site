@@ -3442,7 +3442,9 @@
     "complementaryGeniusEmpty": "Aún no hay matches complementarios.",
     "similarMissionTitle": "Misión similar",
     "similarMissionCopy": "Personas alineadas con tu misión actual.",
-    "similarMissionEmpty": "Aún no hay matches de misión."
+    "similarMissionEmpty": "Aún no hay matches de misión.",
+    "matchingTitle": "Buscando tus coincidencias",
+    "matchingBody": "Estamos comparando tu trabajo con el de los demás para encontrar las mejores conexiones. Tardará unos momentos."
   },
   "zogOverview": {
     "emptyImageAlt": "Talento Principal",
