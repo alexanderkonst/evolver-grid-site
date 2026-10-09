@@ -766,7 +766,9 @@
     "complementaryGeniusEmpty": "No complementary matches yet.",
     "similarMissionTitle": "Similar Mission",
     "similarMissionCopy": "People aligned with your current mission.",
-    "similarMissionEmpty": "No mission matches yet."
+    "similarMissionEmpty": "No mission matches yet.",
+    "matchingTitle": "Finding your matches",
+    "matchingBody": "We're reading your work against everyone else's to find the strongest fits. Give it a few moments."
   },
   "intros": {
     "hero": {

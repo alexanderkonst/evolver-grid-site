@@ -924,6 +924,50 @@ const Matchmaking = () => {
             arrived if the auth/profile fetch was slow. */}
         {assetMatchesLoading && assetMatches.length === 0 && !error && (
           <div className="space-y-4">
+            {/* Explicit "working" state. The matching engine compares the
+                person's work against everyone else's (an LLM pass per
+                candidate), so it genuinely takes a few seconds — blank
+                skeletons alone read as an empty page. A named, patient
+                message tells people it's running and to wait. */}
+            <div
+              className="flex flex-col items-center gap-3 px-5 py-8 text-center"
+              role="status"
+              aria-live="polite"
+            >
+              <span
+                aria-hidden="true"
+                className="inline-block h-6 w-6 animate-spin rounded-full"
+                style={{
+                  border: "2px solid rgba(10, 22, 40, 0.15)",
+                  borderTopColor: "var(--skin-accent-gold, rgba(184, 148, 30, 0.9))",
+                }}
+              />
+              <p
+                style={{
+                  fontFamily: "'Source Serif 4', serif",
+                  fontStyle: "italic",
+                  fontWeight: 700,
+                  fontSize: "18px",
+                  color: "var(--skin-text-primary, rgba(10, 22, 40, 0.95))",
+                  textShadow:
+                    "var(--skin-text-halo-strong, 0 0 12px rgba(255,255,255,0.55), 0 1px 1px rgba(255,255,255,0.85))",
+                }}
+              >
+                {t('matchmaking.matchingTitle')}
+              </p>
+              <p
+                className="max-w-md"
+                style={{
+                  fontSize: "14px",
+                  lineHeight: 1.6,
+                  color: "var(--skin-text-muted, rgba(10, 22, 40, 0.65))",
+                  textShadow:
+                    "var(--skin-text-halo, 0 1px 1px rgba(255,255,255,0.7))",
+                }}
+              >
+                {t('matchmaking.matchingBody')}
+              </p>
+            </div>
             <Skeleton className="h-48 w-full" />
             <Skeleton className="h-32 w-full" />
           </div>

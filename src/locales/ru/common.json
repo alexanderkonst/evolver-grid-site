@@ -767,7 +767,9 @@
     "complementaryGeniusEmpty": "Пока нет дополняющих мэтчей.",
     "similarMissionTitle": "Похожая миссия",
     "similarMissionCopy": "Люди, созвучные твоей текущей миссии.",
-    "similarMissionEmpty": "Пока нет мэтчей по миссии."
+    "similarMissionEmpty": "Пока нет мэтчей по миссии.",
+    "matchingTitle": "Подбираем совпадения",
+    "matchingBody": "Сравниваем твою работу с работой других, чтобы найти самые точные совпадения. Это займёт несколько мгновений."
   },
   "intros": {
     "hero": {
