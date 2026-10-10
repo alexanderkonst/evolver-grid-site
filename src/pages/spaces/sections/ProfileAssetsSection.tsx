@@ -14,14 +14,15 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { Boxes, ChevronDown, ChevronUp, Users, Plus, ArrowRight, RefreshCw, Loader2, Copy, Check, Pencil, Trash2 } from "lucide-react";
+import { Boxes, ChevronDown, ChevronUp, Users, Plus, ArrowRight, RefreshCw, Loader2, Copy, Check, Pencil, Trash2, Sparkles, FileDown } from "lucide-react";
 import { toast } from "sonner";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { supabase } from "@/integrations/supabase/client";
 import { ASSET_TYPES } from "@/modules/asset-mapping/data/assetTypes";
 import { ASSET_SUB_TYPES } from "@/modules/asset-mapping/data/assetSubtypes";
 import { useLocalizedAssetCategories } from "@/modules/asset-mapping/data/assetCategories";
-import { loadAndSyncAssets, updateAsset, deleteAsset, type SavedAsset } from "@/modules/asset-mapping/assetSync";
+import { loadAndSyncAssets, updateAsset, deleteAsset, replaceAllAssets, type SavedAsset } from "@/modules/asset-mapping/assetSync";
+import { generateAssetsPdf } from "@/modules/asset-mapping/generateAssetsPdf";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import {
     Dialog,
@@ -150,6 +151,7 @@ const ProfileAssetsSection = () => {
     //   3. Show a small loading dot while reload is in flight.
     const [isReloading, setIsReloading] = useState(false);
     const [justCopied, setJustCopied] = useState(false);
+    const [isMerging, setIsMerging] = useState(false);
 
     // Per-row Edit/Delete (2026-07-11): only db-backed rows (asset.id set)
     // get action buttons — localStorage-only rows have no id to key on.
@@ -273,6 +275,81 @@ const ProfileAssetsSection = () => {
             toast.error(t('profileAssets.toastCopyBlocked'));
         }
     }, [savedAssets]);
+
+    // Merge duplicates — AI pass that merges duplicates/near-duplicates,
+    // synthesizes without losing specifics, and ranks most-valuable-first.
+    // Auto-applies (overwrites the list) with an Undo that restores the
+    // pre-merge snapshot.
+    const mergeDuplicates = useCallback(async () => {
+        if (savedAssets.length < 2 || isMerging) return;
+        setIsMerging(true);
+        const snapshot = savedAssets.map((a) => ({ ...a }));
+        try {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) return;
+            const { data, error } = await supabase.functions.invoke("remove-duplicate-assets", {
+                body: {
+                    assets: savedAssets.map((a) => ({
+                        typeId: a.typeId,
+                        subTypeId: a.subTypeId,
+                        categoryId: a.categoryId,
+                        title: a.title,
+                        description: a.description,
+                    })),
+                },
+            });
+            const returned = (data as { assets?: unknown } | null)?.assets;
+            if (error || !Array.isArray(returned) || returned.length === 0) {
+                toast.error(t('profileAssets.toastMergeFailed'));
+                return;
+            }
+            const merged: SavedAsset[] = (returned as Array<Record<string, unknown>>).map((a) => ({
+                typeId: String(a.typeId || "other"),
+                subTypeId: a.subTypeId ? String(a.subTypeId) : undefined,
+                categoryId: a.categoryId ? String(a.categoryId) : undefined,
+                title: String(a.title || "").trim(),
+                description: a.description ? String(a.description) : undefined,
+                savedAt: new Date().toISOString(),
+                source: "merge",
+            })).filter((a) => a.title);
+            if (merged.length === 0) {
+                toast.error(t('profileAssets.toastMergeFailed'));
+                return;
+            }
+            const result = await replaceAllAssets(user.id, merged);
+            setSavedAssets(result);
+            const removed = Math.max(0, snapshot.length - result.length);
+            toast.success(
+                t('profileAssets.toastMergeDone', { removed, after: result.length }),
+                {
+                    duration: 12000,
+                    action: {
+                        label: t('profileAssets.undo'),
+                        onClick: async () => {
+                            const restored = await replaceAllAssets(user.id, snapshot);
+                            setSavedAssets(restored);
+                            toast.success(t('profileAssets.toastUndone'));
+                        },
+                    },
+                },
+            );
+        } catch (e) {
+            console.error("mergeDuplicates failed:", e);
+            toast.error(t('profileAssets.toastMergeFailed'));
+        } finally {
+            setIsMerging(false);
+        }
+    }, [savedAssets, isMerging, t]);
+
+    const savePdf = useCallback(() => {
+        if (savedAssets.length === 0) return;
+        try {
+            generateAssetsPdf(savedAssets);
+        } catch (e) {
+            console.error("assets PDF failed:", e);
+            toast.error(t('profileAssets.toastPdfFailed'));
+        }
+    }, [savedAssets, t]);
 
 
     useEffect(() => {
@@ -496,6 +573,48 @@ const ProfileAssetsSection = () => {
                                     <RefreshCw className="w-3 h-3" />
                                 )}
                                 {isReloading ? t('profileAssets.refreshing') : t('profileAssets.refresh')}
+                            </button>
+                            {/* Merge duplicates — AI dedupe + synthesize + rank. */}
+                            <button
+                                onClick={mergeDuplicates}
+                                disabled={savedAssets.length < 2 || isMerging}
+                                className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-all duration-200 hover:translate-y-[-0.5px] disabled:opacity-50 disabled:cursor-not-allowed"
+                                style={{
+                                    fontFamily: "'DM Sans', system-ui, sans-serif",
+                                    fontSize: "11px",
+                                    letterSpacing: "0.10em",
+                                    textTransform: "uppercase",
+                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
+                                    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
+                                    border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
+                                }}
+                                title={t('profileAssets.mergeButtonTitle')}
+                            >
+                                {isMerging ? (
+                                    <Loader2 className="w-3 h-3 animate-spin" />
+                                ) : (
+                                    <Sparkles className="w-3 h-3" />
+                                )}
+                                {isMerging ? t('profileAssets.merging') : t('profileAssets.merge')}
+                            </button>
+                            {/* Save the assets as a PDF to take elsewhere. */}
+                            <button
+                                onClick={savePdf}
+                                disabled={savedAssets.length === 0}
+                                className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-all duration-200 hover:translate-y-[-0.5px] disabled:opacity-50 disabled:cursor-not-allowed"
+                                style={{
+                                    fontFamily: "'DM Sans', system-ui, sans-serif",
+                                    fontSize: "11px",
+                                    letterSpacing: "0.10em",
+                                    textTransform: "uppercase",
+                                    color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
+                                    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
+                                    border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
+                                }}
+                                title={t('profileAssets.savePdfTitle')}
+                            >
+                                <FileDown className="w-3 h-3" />
+                                {t('profileAssets.savePdf')}
                             </button>
                             <button
                                 onClick={() => setShowAssets(!showAssets)}

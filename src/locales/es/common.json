@@ -2855,7 +2855,17 @@
     "toastUpdated": "Activo actualizado",
     "toastDeleted": "Activo eliminado",
     "toastSaveFailed": "No se pudo guardar — intenta de nuevo",
-    "toastDuplicate": "Ya existe un activo parecido"
+    "toastDuplicate": "Ya existe un activo parecido",
+    "merge": "Fusionar duplicados",
+    "merging": "Fusionando…",
+    "mergeButtonTitle": "Fusiona duplicados y casi-duplicados, sintetiza sin perder nada importante y pone tus activos más fuertes primero.",
+    "savePdf": "Guardar PDF",
+    "savePdfTitle": "Descarga tus activos en PDF",
+    "toastMergeDone": "Listo. Se quitaron {{removed}} duplicados, quedan {{after}} activos, los más fuertes primero.",
+    "toastMergeFailed": "No se pudo fusionar ahora. Inténtalo de nuevo en un momento.",
+    "undo": "Deshacer",
+    "toastUndone": "Se restauraron tus activos anteriores.",
+    "toastPdfFailed": "No se pudo crear el PDF. Inténtalo de nuevo."
   },
   "revelatoryHero": {
     "logoAlt": "Talento Principal",
