@@ -11,11 +11,16 @@ const corsHeaders = {
  *
  * Assets accrete over multiple mapping passes, so the list fills with exact
  * and near-duplicate entries. This function takes the current list, merges
- * duplicates and near-duplicates, tightens wording, and returns a cleaned
- * list — WITHOUT dropping anything important. It is STATELESS: the client
- * sends its current assets and writes the returned set back itself (DB +
+ * duplicates and near-duplicates, tightens wording, and RANKS the result
+ * most-valuable-first (power · practical usefulness · ease of monetization)
+ * — WITHOUT dropping anything important. It is STATELESS: the client sends
+ * its current assets and writes the returned set back itself (DB +
  * localStorage mirror), which keeps the one authority for the write on the
  * client and lets the UI offer Undo.
+ *
+ * ORDER MATTERS: the returned array order is the ranking, so the client must
+ * persist and display assets in exactly the returned order (the frontend
+ * half will carry a position so the on-page order survives a reload).
  *
  * Flagship model on purpose (openai/gpt-6-astra): this is a quality- and
  * data-sensitive synthesis over the person's real assets, not a bulk cheap
@@ -37,6 +42,12 @@ WHAT NOT TO DO:
 - Do NOT summarize the whole list down to a few generic lines.
 - Do NOT strip specifics to make entries look cleaner.
 - Do NOT invent new typeId / subTypeId / categoryId values. For each kept asset, reuse the ids from its most representative source asset exactly as given.
+
+THEN RANK the merged list, most valuable first. Order the output array so the strongest assets come first and the weakest last, judged by:
+- raw power / leverage: how much this asset can actually move the needle;
+- practical usefulness: how directly it can be put to work right now;
+- ease of monetization: how readily it converts into income (a clear buyer, a clear offer, low lift to sell).
+The asset that is the most powerful, the most practically useful, and the most easily monetized goes first. Keep every asset — this reorders, it does not cut. The order of the output array IS the ranking.
 
 For every asset in your output, carry forward: typeId, subTypeId, categoryId, title, description.
 
