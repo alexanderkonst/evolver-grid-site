@@ -3582,7 +3582,17 @@
     "toastUpdated": "Asset updated",
     "toastDeleted": "Asset deleted",
     "toastSaveFailed": "Couldn't save — try again",
-    "toastDuplicate": "An asset like this already exists"
+    "toastDuplicate": "An asset like this already exists",
+    "merge": "Merge duplicates",
+    "merging": "Merging…",
+    "mergeButtonTitle": "Merge duplicates and near-duplicates, synthesize without losing anything important, and put your strongest assets first.",
+    "savePdf": "Save PDF",
+    "savePdfTitle": "Download your assets as a PDF",
+    "toastMergeDone": "Done. Removed {{removed}} duplicates, {{after}} assets left, strongest first.",
+    "toastMergeFailed": "Couldn't merge right now. Try again in a moment.",
+    "undo": "Undo",
+    "toastUndone": "Reverted to your previous assets.",
+    "toastPdfFailed": "Couldn't create the PDF. Try again."
   },
   "revelatoryHero": {
     "logoAlt": "Top Talent",
