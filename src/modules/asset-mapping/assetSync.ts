@@ -382,3 +382,68 @@ export const deleteAsset = async (
   notifyJourneyProgressRefresh();
   return { error: null };
 };
+
+/**
+ * Replace the ENTIRE asset set for a user, preserving the given order.
+ *
+ * Backs the "Merge duplicates" flow and its Undo: the AI pass returns a
+ * deduped, synthesized, value-ranked list and we swap the whole set at once.
+ * Rank is persisted by writing an incrementing created_at per index
+ * (loadAndSyncAssets orders by created_at ascending), so index 0 renders
+ * first — no new schema column required. The local mirror is cleared FIRST
+ * so loadAndSyncAssets's backfill can't re-insert the stale pre-merge rows.
+ *
+ * `assets` is expected in display order (index 0 = shown first).
+ */
+export const replaceAllAssets = async (
+  userId: string,
+  assets: SavedAsset[],
+): Promise<SavedAsset[]> => {
+  // Rank-preserving timestamps, kept in the past so they never read as
+  // future-dated. Earliest timestamp = first in the list.
+  const base = Date.now() - assets.length * 1000;
+  const stamp = (i: number) => new Date(base + i * 1000).toISOString();
+  const rows = assets.map((a, i) => ({
+    user_id: userId,
+    type_id: a.typeId,
+    sub_type_id: a.subTypeId || null,
+    category_id: a.categoryId || null,
+    title: a.title,
+    description: a.description || null,
+    source: a.source || "merge",
+    created_at: stamp(i),
+  }));
+
+  // Clear the mirror first so the sync step can't re-add stale rows.
+  writeLocalAssets(userId, []);
+
+  try {
+    const del = await withRetry(() =>
+      (supabase as any).from("user_assets").delete().eq("user_id", userId),
+    );
+    if (del.error) throw del.error;
+
+    if (rows.length > 0) {
+      const ins = await withRetry(() =>
+        (supabase as any).from("user_assets").insert(rows),
+      );
+      if (ins.error) throw ins.error;
+    }
+
+    // Canonical reload (DB ids + created_at order), rewrites the mirror.
+    const result = await loadAndSyncAssets(userId);
+    notifyJourneyProgressRefresh();
+    return result;
+  } catch (e) {
+    // DB unavailable (e.g. table missing) — mirror-only fallback so the UI
+    // still reflects the change. The array order is preserved.
+    console.warn("replaceAllAssets DB path failed, using localStorage:", e);
+    const localized: SavedAsset[] = assets.map((a, i) => ({
+      ...a,
+      savedAt: stamp(i),
+    }));
+    writeLocalAssets(userId, localized);
+    notifyJourneyProgressRefresh();
+    return localized;
+  }
+};
