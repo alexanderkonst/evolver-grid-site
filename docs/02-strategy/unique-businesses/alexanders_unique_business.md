@@ -6650,13 +6650,15 @@ Each level runs the same pattern at its own scale. The first holon (Alexander) m
 
 ### The Mapping
 
+> **✦ Price correction (Day 133, July 23, 2026):** Step 4 is **$1,111** and Step 5 is **$333**, matching the live `/path` ladder and `PLAYBOOK_STEPS` (see [Value Ladder (the Path · `/path`)](#value-ladder-the-path--path)). The Build "$1,111 upfront + $2.5K capped rev share" format below is genealogy. This table is the source the Corpus Drift Check (C1) reads.
+
 | UI Step | Canonical Subtitle | Commercial Container | Price | Delivery | Output |
 |---|---|---|---|---|---|
 | **1** | Name Your Top Talent | Free ZoG reveal | **Free** | Async (quiz + AI reflection) | "I can name my top talent out loud." |
 | **2** | Articulate it with Precision | **Ignition bundle** — Step 2+3 in one payment | **$555** (bundled with Step 3) | 1 live session (~60 min, first half of Ignition arc) | "I can describe my business in one sentence." |
 | **3** | Enhance it with Business Structure | **Ignition bundle** — Step 2+3 in one payment | **$555** (bundled with Step 2) | 1 live session (~90 min, second half of Ignition arc) | "I know the shape of my business." |
-| **4** | Build your First Unique Product | **Build cohort** — Step 4+5 in one container | **$1,111 + rev share** (bundled with Step 5; full terms: $1,111 upfront + $2.5K capped from first $10K revenue) | 4-week cohort (3 live + 1 integration) | "My first product exists — I can hand it to someone." |
-| **5** | Beta-Test That Everything Works by Gifting and/or Selling | **Build cohort** — Step 4+5 in one container | **$1,111 + rev share** (bundled with Step 4) | Integration call + async group support inside the cohort | "People who got it say yes to more." |
+| **4** | Build your First Unique Product | **Build cohort** — Step 4+5 in one container | **$1,111** (bundled with Step 5; repriced Day 133, July 23, 2026) | 4-week cohort (3 live + 1 integration) | "My first product exists — I can hand it to someone." |
+| **5** | Beta-Test That Everything Works by Gifting and/or Selling | **Build cohort** — Step 4+5 in one container | **$333** (bundled with Step 4; repriced Day 133, July 23, 2026) | Integration call + async group support inside the cohort | "People who got it say yes to more." |
 | **6** | Laser-Focus Tactically and Go Live | TBD — likely a light "Go-Live Intensive" or embedded in the Build epilogue | TBD | TBD | "I have my first paying client." |
 | **7** | Turn Organic Growth into Scaling Impact and Revenue | **Venture Studio** | 10% rev share or equity | Ongoing | "My income is organically growing without me pushing." |
 
@@ -6689,7 +6691,7 @@ Reinforced by lived reality (2026-04-18): Sasha is currently running 1:1 session
 ### UI Implementation Notes
 
 - `PLAYBOOK_STEPS[1].price = "$555"` with `bundleWith: [3]`; `PLAYBOOK_STEPS[2].price = "$555"` with `bundleWith: [2]` — same Stripe checkout, displayed on two steps.
-- `PLAYBOOK_STEPS[3].price = "$1,111 + rev share"` with `bundleWith: [5]`; `PLAYBOOK_STEPS[4]` mirrors with `bundleWith: [4]`.
+- `PLAYBOOK_STEPS[3].price = "$1,111"` with `bundleWith: [5]`; `PLAYBOOK_STEPS[4].price = "$333"` with `bundleWith: [4]` (repriced Day 133, July 23, 2026; originally both `"$1,111 + rev share"`).
 - Popover eyebrow renders "Bundled with Step N" when `bundleWith` is set — communicates the shared payment without collapsing the methodology step.
 - `useJourneyProgression.stageToStep()` semantics: `offer_complete` / `recipe_complete` → Step 4 active (Ignition bundle done → Build cohort active). No intermediate "Step 3 active" state — the two halves of Ignition are atomic.
 - Each step has a `ctaText` — the outcome-voice button label ("Sharpen Your Top Talent to 9+/10 in 60 mins", "Create Your Unique Business Structure at 9+/10 Resonance in 90 mins", etc.) — rendered in the circle popover and on the StepCard primary CTA.
