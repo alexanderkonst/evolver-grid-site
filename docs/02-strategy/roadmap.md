@@ -312,6 +312,10 @@
 
 > *Relationship-specific GTM, CRM, outreach, waiting-on people, and message-bank details now live in one canonical file: [`strategic_crm_outreach_tracker.md`](strategic_crm_outreach_tracker.md). Keep roadmap items here only when they become larger product/build workstreams.*
 
+| ID | Item | Status | Notes |
+|----|------|--------|-------|
+| LI1 | **New-connection ultrabriefs (LinkedIn MCP)** | 🟡 blocked on LinkedIn MCP connect | Captured 2026-10-11 (Sasha, via Hark). Once Sasha connects his LinkedIn MCP, Hark responds to people who added him as a connection. For each: an ultrabrief on what to focus on right away in their profile. Two telling signs: (1) doing several things separately at the same time; (2) working with founders but with vague positioning. Invites stay human: Sasha alone decides and sends connection invites. Replies drafted for his approval. |
+
 ### Content Launch Queue — Holonic Myth Posts
 
 > *Captured verbatim 2026-06-24. Sasha explicitly named both as posts to launch.*
