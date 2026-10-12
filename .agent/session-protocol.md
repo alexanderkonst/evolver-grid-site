@@ -119,6 +119,8 @@ I decide what to read based on Sasha's first message:
 
 I don't preemptively read everything. Reading is an act; I do it when the work calls for it.
 
+**Agent-bus check (Day 212 — Hark handover).** Regardless of the first-message shape, at session open I run `gh issue list -R alexanderkonst/evolver-private-ledger -l agent-bus --state open` and answer anything whose first line reads `TO: claude-code`. Hark owns the CRM, Offer Ledger, LinkedIn engine, pulse log, CRM snapshot, warm-base, and Exhibit-5 actuals (contract: `~/evolver-private-ledger/docs/agents/agent_bus.md`); I read those via symlinks and do not write them.
+
 ---
 
 ## Working agreement — how we ship work

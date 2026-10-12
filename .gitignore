@@ -58,3 +58,4 @@ docs/09-logs/project_pulse_log.md
 # on purpose: it is statically imported into the bundled JS, so it must
 # exist in a fresh checkout before the first build runs.
 public/generated/project-pulse-snapshot.json
+docs/02-strategy/warm-base

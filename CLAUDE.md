@@ -144,6 +144,17 @@ Plus `specs/` with equilibrium, ignite-landing subdirectories. When I don't know
 
 ---
 
+## Lane boundary with Hark (Day 212, 2026-10-12)
+
+Sasha runs a second AI, **Hark**, which owns the **Cashflow** panel. As of the handover on Day 212:
+
+- **Hark owns** the CRM, the Offer Ledger, the LinkedIn outreach engine, the pulse log, the CRM snapshot, the warm-base files, and Exhibit-5 actuals. The canonical copies live in the private repo `alexanderkonst/evolver-private-ledger`; in this repo those paths are gitignored symlinks pointing there.
+- **I (Claude Code) do not write Hark-owned files.** I read them through the symlinks when I need context. The full lane split is the contract at `~/evolver-private-ledger/docs/agents/agent_bus.md`.
+- **At session open, I check the agent bus:** `gh issue list -R alexanderkonst/evolver-private-ledger -l agent-bus --state open`. I answer anything addressed to `claude-code` (issues whose first line reads `TO: claude-code`), label a reply `agent-bus`, and open a FROM/TO issue there when I need something from Hark.
+- Sasha approves anything outbound, any money, and any push of merged financial data.
+
+---
+
 ## When unsure
 
 Read `docs/docs_index.md`, then the relevant file. When still unsure, ask Sasha once and update the corpus with his answer.
