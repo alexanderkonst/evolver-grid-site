@@ -8173,3 +8173,42 @@ Money remains the marker rather than the object (`integral_transactional_field_t
 **Artifact:** the shareable one-page form of this technology is `docs/05-reference/the_three_terms.md`.
 
 **Relationship:** the Noble = Free antidote in `alexanders_unique_business.md` (gift free, system paid — this is that principle one scale up), `monetization_strategies.md` and the Distributor Agreement (the outbound half), Technology 111 (edge-carried alignment among sovereigns), the Day 186 session with Justin Vinokur (`session_log.md`) where the ledger and the terms were separated.
+
+---
+
+## Technology 145: The Average Fills the Silence (Borrowed Words) (Day 211, October 11, 2026)
+
+**The law in one sentence: where a person has no words of their own, AI lends them everyone's — so in a model-mediated world the unarticulated are not left blank, they are filled in with the mean, and interchangeability becomes the default setting of every person who has not named themselves.**
+
+*Surfaced while pressure-testing the SR008 line "AI is making people interchangeable." The question "how so?" went three rings in and hit this.*
+
+**The three rings.**
+
+1. **Surface.** Everyone drafts with the same models, so pitches, CVs, bios and profiles converge. People start to sound alike. (Measured: Doshi & Hauser, *Science Advances*, July 2024. Writers given AI ideas produced stories rated more creative, and more similar to each other. Better for the individual, narrower for the whole.)
+2. **Center.** A model is a statistical average of human expression. Every use of it pulls toward the mean. To be interchangeable is to be describable in average words. Once generic skill is free, the only scarce input left is the specific person: value moves from *what you can do* to *who you are*.
+3. **Center of the center.** Difference only counts once it is articulated. Most people's ability is mature and their words are immature, and that gap is exactly where the average moves in. AI does not erase anyone. **It fills the silence where self-knowledge should be.**
+
+**The core.** *Where you have no words of your own, AI lends you everyone's.*
+
+**What this adds to Technology 104b.** 104b says the unarticulated are *unindexed*: invisible to agents. That was the pre-generative failure mode. This is the generative one, and it is worse. The unarticulated now appear, fluently, in borrowed words. They are not missing from the search results of reality; they are present as someone else. Invisibility at least leaves a gap that signals absence. Borrowed words close the gap with a counterfeit, so neither the person nor the market notices that the original was never shown.
+
+**Why the borrowing is invisible from the inside.** The borrowed words are better written than the person's own first draft. They feel like an upgrade. Each individual is better off, so each keeps borrowing, and collectively the population converges on the same handful of sentences. The same social dilemma Doshi & Hauser name for stories, applied to identity.
+
+**The inversion this makes possible.** If the averaging machine is the threat, it is also the instrument. The same model that averages can be pointed the other way: not *write me a bio*, but *extract what is only mine and refuse the generic*. The product is the direction of the arrow. **AI used to make people less interchangeable rather than more** (Alexander's mission line) is exactly this reversal.
+
+**Corollaries.**
+
+- **Articulate before you generate.** Precise self-articulation must come first, because every later use of AI on that person inherits whatever words are in place. Own words in, own voice amplified. No words in, the mean amplified.
+- **The only uncopyable input.** An averaging machine can supply everything except the specific. Precise self-articulation is the one thing it cannot produce and the one thing an agent can match on. This is Technology 142's derivation test at civilizational scale: in a world where generic output is free, every underived person is competing against the model itself.
+- **Diagnostic.** Fluent, polished, generic self-description is the observable signature of borrowed words. It reads well and says nothing only this person could say. The tell is not bad writing; it is good writing that fits anyone.
+- **The ascent framing.** The person is not deficient; they are unspoken. The line credits the ability and names only the missing words (the 142 mirror rule: never blame the student).
+
+**Candidate lines.**
+
+1. *The model is the average of everyone. You're the one thing it can't average.*
+2. *Where you have no words of your own, AI lends you everyone's.*
+3. *Unrecognized value becomes unused capacity. In an AI world, it also becomes someone else's words.*
+
+**ESC.** *Essence:* the articulation vacuum is no longer empty; generative AI fills it with the mean. *Significance:* it turns the founding bottleneck (perception and articulation scarcity, Domain 15) from an opportunity cost into an active erosion, and makes self-articulation the one input an averaging economy cannot supply. *Consequence:* give people their own words first, point the model at extraction of the specific rather than generation of the plausible, and read polished genericness as the symptom.
+
+**Relationship:** Technology 104b (Self-Knowledge as the Agentic Index; this is its generative-era successor), Domain 15 (Differentiated Nature Is the Value), Technology 142 (Only You Should Be Able to Build It), Technology 143 (The Exposure Law), Technology 115 (Articulation Is the Mechanism of Growth), Technology 132 (AI Reads Humans Better Than It Reads AI), the invariant "Unrecognized value becomes unused capacity," the SR008 application (`speedrun-sr008-v8`, Why Now).
