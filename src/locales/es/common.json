@@ -4570,7 +4570,7 @@
       }
     },
     "kpi": {
-      "totalRevenue": "Ingresos totales (año en curso)",
+      "totalRevenue": "Recibido estricto (año en curso)",
       "geniusFounders": "Fundadores genio",
       "continuationRate": "Tasa de continuación"
     },
