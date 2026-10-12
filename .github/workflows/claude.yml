@@ -46,8 +46,10 @@ jobs:
           # Optional: Add claude_args to customize behavior and configuration
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
           # or https://code.claude.com/docs/en/cli-reference for available options
-          # Model: label an issue/PR `model:opus` for heavy strategy work; default is sonnet (cheaper on the Pro plan).
+          # Model (Sasha, 2026-10-12, token management on the $20 Pro plan): coding runs on Opus 4.8 at effort high by default.
+          # Label `model:sonnet` for small cheap tasks; `model:latest` only for strategy work (latest Opus alias).
           claude_args: >-
-            --model ${{ (contains(github.event.issue.labels.*.name, 'model:opus') || contains(github.event.pull_request.labels.*.name, 'model:opus')) && 'opus' || 'sonnet' }}
+            --model ${{ (contains(github.event.issue.labels.*.name, 'model:latest') || contains(github.event.pull_request.labels.*.name, 'model:latest')) && 'opus' || ((contains(github.event.issue.labels.*.name, 'model:sonnet') || contains(github.event.pull_request.labels.*.name, 'model:sonnet')) && 'sonnet' || 'claude-opus-4-8') }}
+            --effort high
             --allowedTools "Bash(npm ci),Bash(npm install),Bash(npm run build),Bash(npm run lint),Bash(gh pr create:*),Bash(gh pr view:*),Bash(git:*)"
 
