@@ -2315,7 +2315,7 @@
       }
     },
     "kpi": {
-      "totalRevenue": "Total Revenue (YTD)",
+      "totalRevenue": "Strict Received (YTD)",
       "geniusFounders": "Genius Founders",
       "continuationRate": "Continuation Rate"
     },

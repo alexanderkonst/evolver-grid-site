@@ -51,10 +51,12 @@ const REVENUE_TIMELINE = [
 const KPIS = [
   {
     labelKey: "ventureDashboard.kpi.totalRevenue",
-    value: "$4,721",
+    value: "$4,444",
+    subline: "$3,325 cash · $1,119 in-kind",
     trend: "+$2,016",
     trendLabel: "Sep 6",
-    detail: "Strict received (YTD): $4,444 · Rev share: $277",
+    detail: "Tracked relationship revenue: $4,721 ($4,444 + $277 rev share, pending)",
+    stamp: "as of 2026-10-12 · reconciled",
     gold: true,
   },
   {
@@ -77,7 +79,7 @@ const KPIS = [
 
 const SECONDARY_STATS = [
   { labelKey: "ventureDashboard.secondaryStats.marketingSpend", value: "$0" },
-  { labelKey: "ventureDashboard.secondaryStats.crmContacts", value: "30" },
+  { labelKey: "ventureDashboard.secondaryStats.crmContacts", value: "44" },
   { labelKey: "ventureDashboard.secondaryStats.daysActive", value: "186" },
 ];
 
@@ -85,7 +87,9 @@ const SECONDARY_STATS = [
 
 const REVENUE_BREAKDOWN = [
   { name: "O.", cash: 566, inKind: 919, revShare: 0, type: "Cash + in-kind", status: "received", color: "#a06d08" },
-  { name: "K.", cash: 127, inKind: 200, revShare: 0, type: "Cash + in-kind", status: "received", color: "#7a5108" },
+  { name: "K.", cash: 111, inKind: 0, revShare: 0, type: "Cash ($111) · Apr 6", status: "received", color: "#7a5108" },
+  { name: "K.", cash: 0, inKind: 200, revShare: 0, type: "In-kind ($200) · Apr 12", status: "received", color: "#7a5108" },
+  { name: "K.", cash: 16, inKind: 0, revShare: 0, type: "Cash ($16) · Sep 10", status: "received", color: "#7a5108" },
   { name: "S.", cash: 0, inKind: 0, revShare: 277, type: "Rev share", status: "pending", color: "#b8860b" },
   { name: "N.", cash: 555, inKind: 0, revShare: 0, type: "Cash ($555)", status: "received", color: "#d4af37" },
   { name: "Ro.", cash: 20, inKind: 0, revShare: 0, type: "Cash ($20)", status: "received", color: "#c99322" },
@@ -363,6 +367,11 @@ const VentureDashboard = () => {
                   kpi.value
                 )}
               </div>
+              {kpi.subline && (
+                <div className="text-[11px] mb-2 text-center" style={{ ...numerals, ...textMuted }}>
+                  {kpi.subline}
+                </div>
+              )}
               <div className="flex items-center justify-center gap-2">
                 {kpi.trend && (
                   <span
@@ -380,6 +389,11 @@ const VentureDashboard = () => {
               {kpi.detail && (
                 <div className="text-[10px] mt-2 leading-relaxed text-center" style={textMutedSoft}>
                   {kpi.detail}
+                </div>
+              )}
+              {kpi.stamp && (
+                <div className="text-[10px] mt-2 uppercase tracking-[0.18em] text-center" style={textMutedSoft}>
+                  {kpi.stamp}
                 </div>
               )}
             </div>
@@ -463,7 +477,7 @@ const VentureDashboard = () => {
                 const rTotal = r.cash + r.inKind + r.revShare;
                 const pct = totalAll > 0 ? (rTotal / totalAll) * 100 : 0;
                 return (
-                  <div key={r.name}>
+                  <div key={`${r.name}-${r.type}`}>
                     <div className="flex items-center justify-between mb-1.5">
                       <div className="flex items-center gap-2">
                         <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: r.color }} />
