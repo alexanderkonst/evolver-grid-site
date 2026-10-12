@@ -46,5 +46,7 @@ jobs:
           # Optional: Add claude_args to customize behavior and configuration
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
           # or https://code.claude.com/docs/en/cli-reference for available options
-          # claude_args: '--allowed-tools Bash(gh pr *)'
+          # Model: label an issue/PR `model:opus` for heavy strategy work; default is sonnet (cheaper on the Pro plan).
+          claude_args: >-
+            --model ${{ (contains(github.event.issue.labels.*.name, 'model:opus') || contains(github.event.pull_request.labels.*.name, 'model:opus')) && 'opus' || 'sonnet' }}
 
