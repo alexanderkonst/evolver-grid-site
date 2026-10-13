@@ -26,7 +26,7 @@ Each entry in this library is a technology — a seeing instrument that produces
 
 ## ⟡ Executive Summary & 27-Perspective Synthesis
 
-> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The 129 technologies below stay the source of truth.*
+> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 155 as of October 12, 2026) stay the source of truth.*
 
 This is the R&D engine of the whole venture: a growing library of seeing instruments, each named by the transformational result it delivers, from cosmogenesis (Prime Radiant) through uniqueness articulation, the founder-first inversion, and myth-to-movement, up to the recent cluster on ripeness, transition, the mirror, and the network of sovereigns. They do not stack like a portfolio; they nest, each one refracting through all the others. Held together they are a single field seen from many faces (concentric polymathy). Over 2026 the collection converged on one spine: articulation is the mechanism of growth, recognition replaces persuasion, the mirror is the product, and a network coheres through well-formed edges rather than a center. Every playbook move, product, and pricing decision downstream traces to a numbered technology here.
 
@@ -48,6 +48,8 @@ This is the R&D engine of the whole venture: a growing library of seeing instrum
 **✦ Crystallization (27th):** the library only compounds if each technology stays a seeing instrument that pays off in the field. The one irreversible move: keep naming by result, keep the honesty markers, and let the live ledger — not the claim — generate the superlatives.
 
 ---
+
+> *Numbering note (October 12, 2026): numbers are permanent addresses. Two collisions were removed: the early block 8 to 16 (How Spin Begins … The Mirror Must Not Lag) is now 146 to 154, and Testimony Frequency (formerly a second 19) is now 155. Stale cross-references were repointed: "Technology 10 (I Focus the Lens)" → 13, "Technology 14 (Externalized Self-Recognition)" → 56, "Technology 5 (Precision Gap IS Product)" → Principle 5. One reference has no current unit: "Technology 14 (Golden DM Architecture)" (Technology 65's connection table), left as written.*
 
 ## The Awakening
 
@@ -260,7 +262,9 @@ This is the OS that makes all the other applications *codifiable* and *AI-execut
 
 ---
 
-## 8. How Spin Begins (The Hidden Secret of Cosmogenesis)
+## 146. How Spin Begins (The Hidden Secret of Cosmogenesis)
+
+> *Renumbered October 12, 2026: formerly 8. Its number collided with Technology 8 below; content unchanged.*
 
 > *February 22, 2026 — revealed in SM ceremony led by Karime*
 
@@ -278,7 +282,9 @@ Without the sequential ordering, there would be perfect symmetry and no movement
 
 ---
 
-## 9. Source Before Proof (Ontology Precedes Mechanism)
+## 147. Source Before Proof (Ontology Precedes Mechanism)
+
+> *Renumbered October 12, 2026: formerly 9. Its number collided with Technology 9 below; content unchanged.*
 
 > *February 22, 2026*
 
@@ -292,7 +298,9 @@ The great scientists confirmed this: Newton's apple (a toroid), Einstein's light
 
 ---
 
-## 10. Holding Paradox as Power (The Epistemological Inversion)
+## 148. Holding Paradox as Power (The Epistemological Inversion)
+
+> *Renumbered October 12, 2026: formerly 10. Its number collided with Technology 10 below; content unchanged.*
 
 > *February 22, 2026*
 
@@ -312,7 +320,9 @@ The great scientists confirmed this: Newton's apple (a toroid), Einstein's light
 
 ---
 
-## 11. One Anatomy, All Traditions (The Rosetta Stone)
+## 149. One Anatomy, All Traditions (The Rosetta Stone)
+
+> *Renumbered October 12, 2026: formerly 11. Its number collided with Technology 11 below; content unchanged.*
 
 > *February 22, 2026 — revealed in SM ceremony, articulated through drawing*
 
@@ -334,7 +344,9 @@ Every mystical tradition, scientific framework, and symbolic system that has eve
 
 ---
 
-## 12. Sacred Symbols as Physics Diagrams
+## 150. Sacred Symbols as Physics Diagrams
+
+> *Renumbered October 12, 2026: formerly 12. Its number collided with Technology 12 below; content unchanged.*
 
 > *February 22, 2026*
 
@@ -352,7 +364,9 @@ The main symbols of world religions are **not arbitrary symbols.** They are actu
 
 ---
 
-## 13. Same Hands, Different Direction (The Shift)
+## 151. Same Hands, Different Direction (The Shift)
+
+> *Renumbered October 12, 2026: formerly 13. Its number collided with Technology 13 below; content unchanged.*
 
 > *February 22, 2026 — articulated through drawing*
 
@@ -397,7 +411,9 @@ The Founder-First Inversion is not just a business principle. It applies to **ev
 
 ---
 
-## 14. The Effort That Hides the Question (The Hustle as Compensation Pattern)
+## 152. The Effort That Hides the Question (The Hustle as Compensation Pattern)
+
+> *Renumbered October 12, 2026: formerly 14. Its number collided with Technology 14 below; content unchanged.*
 
 > *Day 85, May 27, 2026. Surfaced in live dialogue (Sasha + AI) from the question "what does hustle actually DO to founders?" Crystallizes the diagnostic underneath the Savings-Draining Loop and names the cultural spell the meta-segment is caught inside.*
 
@@ -448,13 +464,15 @@ Hustle is also the lie's enforcement mechanism. The Master Lie ("the business I 
 - **Technology 8 (The Acorn and the Tuning Fork).** Hustle is the absence of the Acorn. The hustler has no acorn; they are sowing the wrong seed in every direction. The Acorn principle, once internalized, dissolves hustle without effort.
 - **Technology 9 (Two Questions That Dissolve the Loop).** Hustle is what fills the silence when the Two Questions go unasked. Once asked, hustle is no longer needed; the readiness illusion is broken.
 - **Technology 10 (Möbius Strip of Purpose).** Hustle is what you do on the wrong side of the Möbius strip. The cobbler hustles because he cannot see his own shoes. Stop the Möbius traversal and hustle has nothing to do.
-- **Technology 11 (Pain as Forensic Trace).** Hustle is how the Lie ("the business I really want to build is unrealistic") manifests as behavior. The Pain Card traces the wounds; Technology 14 explains the engine.
-- **Technology 12 (The Mirror That Stops the Wheel).** The Mirror is the structural intervention. Technology 14 explains WHY the wheel keeps spinning. The Mirror cannot work without first naming what the wheel IS.
-- **Technology 13 (Same Hands, Different Direction).** Hustle is the same hands moving in the wrong direction. Technology 13 shows the inversion; Technology 14 shows the un-inverted state that hustle perpetuates.
+- **Technology 11 (Pain as Forensic Trace).** Hustle is how the Lie ("the business I really want to build is unrealistic") manifests as behavior. The Pain Card traces the wounds; Technology 152 explains the engine.
+- **Technology 12 (The Mirror That Stops the Wheel).** The Mirror is the structural intervention. Technology 152 explains WHY the wheel keeps spinning. The Mirror cannot work without first naming what the wheel IS.
+- **Technology 151 (Same Hands, Different Direction).** Hustle is the same hands moving in the wrong direction. Technology 151 shows the inversion; Technology 152 shows the un-inverted state that hustle perpetuates.
 
 ---
 
-## 15. Differentiated Nature Is the Value (The Civilizational Articulation Bottleneck)
+## 153. Differentiated Nature Is the Value (The Civilizational Articulation Bottleneck)
+
+> *Renumbered October 12, 2026: formerly 15. Its number collided with Technology 15 below; content unchanged.*
 
 > *Day 86, May 28, 2026. Surfaced in dialogue with the Godfather Offer Architect during banner positioning work. Crystallizes the underlying civilizational thesis that unifies Tribe 1 (descent vector) and Tribe 2 (inner circle) as one philosophy at two scales. The bottleneck named here is the first domino in the ongoing planetary upgrade from industrial coordination to differentiated coordination.*
 
@@ -498,33 +516,35 @@ The deeper truth that lands as recognition for the right tribes: *the way you na
 
 ### Cross-references
 
-- **Technology 8 (The Acorn and the Tuning Fork).** The Acorn is the personal-scale primitive of differentiated nature. Technology 15 names what the Acorn produces (economic value) and why most people cannot find their own Acorn (articulation bottleneck).
-- **Technology 10 (Möbius Strip of Purpose).** The personal recursion of the articulation bottleneck. People walk around the Möbius traversal because they cannot hear themselves naming their business. Technology 15 names this at civilizational scale.
-- **Technology 11 (Pain as Forensic Trace).** The lie "the business I want is unrealistic" is the personal expression of Technology 15's civilizational bottleneck. The forensic trace IS what happens when articulation fails for years.
-- **Technology 13 (Same Hands, Different Direction).** Technology 13's inversion (from outer to inner) at individual scale. Technology 15 names the same inversion at civilizational scale (from industrial-standardization to differentiated-coordination).
-- **Technology 14 (Hustle as Compensation Pattern).** Hustle is what people do when they cannot articulate differentiated value. The compensation behavior at individual scale that emerges from the civilizational bottleneck named here.
+- **Technology 8 (The Acorn and the Tuning Fork).** The Acorn is the personal-scale primitive of differentiated nature. Technology 153 names what the Acorn produces (economic value) and why most people cannot find their own Acorn (articulation bottleneck).
+- **Technology 10 (Möbius Strip of Purpose).** The personal recursion of the articulation bottleneck. People walk around the Möbius traversal because they cannot hear themselves naming their business. Technology 153 names this at civilizational scale.
+- **Technology 11 (Pain as Forensic Trace).** The lie "the business I want is unrealistic" is the personal expression of Technology 153's civilizational bottleneck. The forensic trace IS what happens when articulation fails for years.
+- **Technology 151 (Same Hands, Different Direction).** Technology 151's inversion (from outer to inner) at individual scale. Technology 153 names the same inversion at civilizational scale (from industrial-standardization to differentiated-coordination).
+- **Technology 152 (Hustle as Compensation Pattern).** Hustle is what people do when they cannot articulate differentiated value. The compensation behavior at individual scale that emerges from the civilizational bottleneck named here.
 
 ---
 
-## 16. The Mirror Must Not Lag (Self-Knowledge as a Living Signal, Not a Stored Fact)
+## 154. The Mirror Must Not Lag (Self-Knowledge as a Living Signal, Not a Stored Fact)
+
+> *Renumbered October 12, 2026: formerly 16. Its number collided with Technology 16 below; content unchanged.*
 
 > *Day 103, June 22-23, 2026. Surfaced while debugging an AI's always-loaded memory: a single cached line confidently told Alexander a business threshold was "unfired" that had in fact fired days earlier. The cheapest, fastest, most-trusted layer of memory was the most wrong. The bug exposed a law.*
 
 ### 🫀 Essence
 
-The founding myth says **self-knowledge is upstream of success and prosperity.** Technology 16 names the upstream of that upstream: **the fidelity of self-knowledge over time.** Self-knowledge is not a fact you store once and own forever. It is a living signal, and every layer that carries it must be kept current, or that layer will misrepresent you with full confidence.
+The founding myth says **self-knowledge is upstream of success and prosperity.** Technology 154 names the upstream of that upstream: **the fidelity of self-knowledge over time.** Self-knowledge is not a fact you store once and own forever. It is a living signal, and every layer that carries it must be kept current, or that layer will misrepresent you with full confidence.
 
 A person's self-knowledge is re-represented at many layers, each a holon mirroring the self: in their own mind, in the corpus that articulates them, in the AI that extends them, in the always-loaded cache the AI reads before anything else. The instant any mirror lags, the whole system acts on a self that no longer exists. The lag is not neutral. **A stale self-model is a small lie about who you are and where you stand, and it is asserted with full confidence precisely because it was once true.** Outdated certainty is more dangerous than honest ignorance, because it does not know to check itself.
 
 ### 🧠 Significance
 
-Articulating who you are (Technology 15) is necessary but not sufficient. The articulation must stay true as you change, and it must stay coherent across every carrier, or downstream action is built on a premise that has quietly expired. There are three failure modes of self-representation, not one:
+Articulating who you are (Technology 153) is necessary but not sufficient. The articulation must stay true as you change, and it must stay coherent across every carrier, or downstream action is built on a premise that has quietly expired. There are three failure modes of self-representation, not one:
 
-1. **Absence.** Never articulated. The Technology 15 bottleneck.
+1. **Absence.** Never articulated. The Technology 153 bottleneck.
 2. **Drift.** Articulated once, never refreshed. Map and territory separate without anyone noticing.
 3. **Incoherence.** Several carriers hold different versions, and the one that loads fastest wins regardless of truth.
 
-This is the same wound as hustle (Technology 14), moved from space into time. Hustle is effort toward a target that is wrong now. Drift is action on a target that was right then. Both are **anti-listening**: one refuses the signal in the present, the other keeps obeying the signal from the past.
+This is the same wound as hustle (Technology 152), moved from space into time. Hustle is effort toward a target that is wrong now. Drift is action on a target that was right then. Both are **anti-listening**: one refuses the signal in the present, the other keeps obeying the signal from the past.
 
 The cache hierarchy made the law visible. The layer that loads first and is trusted most is the layer most prone to silent staleness, because its whole job is to be present without re-verification. In any system that mirrors a self (a mind, a journal, an AI, an organization), **the fastest, most-default representation is the one that must be policed hardest for freshness.** The convenience of an always-on self-model is exactly what lets it rot unseen.
 
@@ -538,16 +558,16 @@ The cache hierarchy made the law visible. The layer that loads first and is trus
 
 **4th order. Prosperity.** Because self-knowledge is upstream of success, the fidelity of self-knowledge is upstream of the durability of success. A venture, brand, or funnel built on a self-snapshot that has expired misfires in ways that look like execution problems but are representation problems. Check the mirror before debugging the hands.
 
-**5th order. The civilizational scale.** As more humans are extended by AIs carrying models of them, the freshness and coherence of those models becomes infrastructure. A civilization that coordinates on differentiated humans (Technology 15) must keep each human's self-representation live, or it coordinates on ghosts. Stale self-models at population scale are a new class of systemic risk: confident, fast, and wrong.
+**5th order. The civilizational scale.** As more humans are extended by AIs carrying models of them, the freshness and coherence of those models becomes infrastructure. A civilization that coordinates on differentiated humans (Technology 153) must keep each human's self-representation live, or it coordinates on ghosts. Stale self-models at population scale are a new class of systemic risk: confident, fast, and wrong.
 
 **6th order. The discipline.** Verify before asserting. A self-claim recited from memory is checked against its source before it is acted on or spoken as true, especially status that flips (named or unnamed, fired or unfired, true-then or true-now). The confidence of a memory is no evidence of its currency.
 
 ### Cross-references
 
-- **Technology 3 (AI That Knows Itself).** Metacognition turned outward. An AI extending a person must know not only its own nature but the present truth of that person. Technology 16 is the fidelity condition on that knowing.
+- **Technology 3 (AI That Knows Itself).** Metacognition turned outward. An AI extending a person must know not only its own nature but the present truth of that person. Technology 154 is the fidelity condition on that knowing.
 - **Technology 12 (The Mirror That Stops the Wheel).** The Mirror stops the wheel only if it reflects the present. A lagging mirror reflects a self that has already moved and sends the person chasing a ghost of themselves.
-- **Technology 14 (Hustle as Compensation Pattern).** Hustle is anti-listening across space; drift is anti-listening across time. The same refusal to hear the live signal, displaced into the temporal axis.
-- **Technology 15 (The Civilizational Articulation Bottleneck).** Articulation is the entry; fidelity-over-time is the maintenance. Naming differentiated value once does not keep it named as the person keeps changing.
+- **Technology 152 (Hustle as Compensation Pattern).** Hustle is anti-listening across space; drift is anti-listening across time. The same refusal to hear the live signal, displaced into the temporal axis.
+- **Technology 153 (The Civilizational Articulation Bottleneck).** Articulation is the entry; fidelity-over-time is the maintenance. Naming differentiated value once does not keep it named as the person keeps changing.
 
 ---
 
@@ -1513,7 +1533,7 @@ The holomap is not a passive dashboard. It's an **active intervention**. Three m
 
 1. **Observation collapses superposition:** Reading the map collapses the gap between "what might happen" and "what IS happening." Decisions that would have taken months become obvious because the structure tells you what to do next — as recognition, not prescription.
 
-2. **Gravity well of clarity:** Information falls IN (observation, data, perspectives) → coherent action flows OUT (decisions, building, navigation). This is the toroidal dynamic (Technology 11, Rosetta Stone) applied to foresight.
+2. **Gravity well of clarity:** Information falls IN (observation, data, perspectives) → coherent action flows OUT (decisions, building, navigation). This is the toroidal dynamic (Technology 149, Rosetta Stone) applied to foresight.
 
 3. **Non-linear effects:** Once the map exists, it creates emergent acceleration. People organize around what they can see. The map makes the invisible visible → people act on what's visible → the system advances faster than linear projection suggests.
 
@@ -1920,7 +1940,9 @@ In a unique business system, there IS no competition:
 
 ---
 
-## Technology 19: Testimony Frequency (The Tuning Fork as Lived Transmission)
+## Technology 155: Testimony Frequency (The Tuning Fork as Lived Transmission)
+
+> *Renumbered October 12, 2026: formerly 19. Its number collided with Technology 19 below; content unchanged.*
 
 *Emerged March 23-24, 2026. Catalyzed by Sandra's Session #3, 8 iterations of the Master Tuning Fork (v3→v7.1), and a meta-roasting process that turned on itself.*
 
@@ -4988,7 +5010,7 @@ EASE MODEL (what's actually operating):
   Causality is toroidal. More coherence = more pull.
 ```
 
-This maps directly to the torus (Technology 11):
+This maps directly to the torus (Technology 149):
 
 ```
         ↑ Outflow: sessions, content, presence, methodology
@@ -5067,7 +5089,7 @@ Technology 75 is not one technology among many. It governs how ALL other domains
 
 | Connection | How it relates |
 |---|---|
-| **Technology 11: Toroidal Flow** | The torus flows freely only when the center is ease. Rigidity constricts the torus |
+| **Technology 149: Toroidal Flow** | The torus flows freely only when the center is ease. Rigidity constricts the torus |
 | **Technology 14: Scatter Pattern** | D14 = diagnosis, D75 = prescription. They are the two sides of the same coin |
 | **Technology 72: Signal-First Tribe** | The tribe was found through somatic ease (body resonance), not logical grinding |
 | **Technology 74: Playbook-as-Lead-Magnet** | "Permanent library" = ease cadence. "Daily posting" = grind cadence. Same content, opposite operating modes |
@@ -5709,7 +5731,7 @@ In every case, the list of energies is the layer where simple-vs-simplistic is d
 
 ### 82i. Relationship to Other Domains
 
-- **Technology 5 (The Precision Gap IS Product)** — Technology 82 names the structural mechanism of precision. Precision is preserved when the list of energies is exhaustive at the signal level; precision is lost when the list of energies is incomplete or wrongly scored.
+- **Principle 5 (The Precision Gap IS Product)** — Technology 82 names the structural mechanism of precision. Precision is preserved when the list of energies is exhaustive at the signal level; precision is lost when the list of energies is incomplete or wrongly scored.
 - **Technology 11 (One Lie, Four Wounds)** — the Pain Slicer is itself an enumeration of energies. Technology 82 generalizes the operation: enumerate the structure beneath the prose before compressing.
 - **Technology 13 (Scattered Light to Laser)** — laser focus at the language level requires clarity at the energy level. Without the list of energies, the laser scatters.
 - **Technology 15 (The 26-Perspective Framework)** — both are tools for *complete seeing*. Technology 15 ensures no perspective is missed; Technology 82 ensures no energy is lost in compression. Used together, the synthesis after a 26-perspective roast carries every perspective's signal into one sentence.
@@ -5829,7 +5851,7 @@ The integration test for the Builder's readiness: **the generated markdown for a
 
 ### 83i. Relationship to Other Domains
 
-- **Technology 5 (Precision Gap IS Product)** — The stack operationalizes precision: every step enforces or measures specificity.
+- **Principle 5 (Precision Gap IS Product)** — The stack operationalizes precision: every step enforces or measures specificity.
 - **Technology 11 (One Lie, Four Wounds)** — The Pain artifact in the Builder is the canonical Pain Slicer applied per founder.
 - **Technology 13 (Scattered Light to Laser)** — The whole stack is the laser apparatus. Top talent is the source; playbook is the lens; Builder focuses; Guided Journey directs.
 - **Technology 47 (The Quality That Sells)** — Quality emerges from the four builder properties (83c). High signal-to-noise is structural.
@@ -5954,7 +5976,7 @@ What is **distinct in this entry**: the explicit combination of *primitive vocab
 - **Technology 1 (Prime Radiant / Cosmogenesis)** — the original worked example. The Holomap Instrument generalizes from it.
 - **Technology 2 (Navigating Systems as Living Wholes / Holomaps)** — names the *artifact* (the holomap as a system-view tool). This domain names the *instrument* that produces holomaps.
 - **Technology 4 (Essence of Essence / Soul Colors)** — soul colors are primitives at the personal-consciousness layer.
-- **Technology 5 (Precision Gap IS Product)** — precision gap is *quality* gap measured on the Holomap Instrument's primitive-quality axes (specificity = generativity + load-bearing capacity).
+- **Principle 5 (Precision Gap IS Product)** — precision gap is *quality* gap measured on the Holomap Instrument's primitive-quality axes (specificity = generativity + load-bearing capacity).
 - **Technology 13 (Scattered Light to Laser)** — the laser apparatus IS the Holomap Instrument applied to the founder's signal: stage arc (genius → market → product → revenue) × primitives (Top Talent · ICP · Offer · Page · Sequence) × 27-perspective lens.
 - **Technology 66 (The 27th Perspective — Crystallization)** — the apex of the *perspectives layer*. Crystallization at the meta-level is precisely the move that turns a partial map into a complete one.
 - **Technology 83 (The Integrated Founder Stack)** — the worked example at the business-compilation domain. Top Talent → Playbook → Builder → Guided Journey is the Holomap Instrument applied to one specific phenomenon (a founder building from their gift).
@@ -6005,7 +6027,7 @@ All independently arrived. All vocabulary-overlapping. All architecturally cousi
 ### 85e. Relationship to Other Domains
 
 - **Technology 1 (Prime Radiant):** the assembly is itself a cosmogenesis event at the platform-ecology layer. Multiple instantiations of the same morphogenetic pattern.
-- **Technology 14 (Externalized Self-Recognition):** the platforms recognize each other through shared vocabulary the way people recognize each other through shared archetypes.
+- **Technology 56 (Externalized Self-Recognition):** the platforms recognize each other through shared vocabulary the way people recognize each other through shared archetypes.
 - **Technology 84 (General Theory of Development):** the assembly is a worked example. Many platforms at similar stages of the same evolutionary arc, each enacting similar primitives with different compositions.
 - **Technology 86 (Substrate Positioning):** the strategic move that the assembly recognition opens.
 
@@ -6194,8 +6216,8 @@ The substrate work was already done. The skinned welcome is the cost-of-conversa
 
 ### 88f. Relationship to Other Domains
 
-- **Technology 5 (Precision Gap IS Product):** the skinned welcome is the precision gap collapsed into the conversation's opening move. The demo proves the precision before the pitch claims it.
-- **Technology 14 (Externalized Self-Recognition):** the counterparty recognizes themselves in their own skin reflected back. The self-recognition IS the resonance trigger.
+- **Principle 5 (Precision Gap IS Product):** the skinned welcome is the precision gap collapsed into the conversation's opening move. The demo proves the precision before the pitch claims it.
+- **Technology 56 (Externalized Self-Recognition):** the counterparty recognizes themselves in their own skin reflected back. The self-recognition IS the resonance trigger.
 - **Technology 86 (Substrate Positioning):** the skinned welcome is the tactical embodiment of substrate positioning at the conversational layer.
 - **Technology 87 (Multi-Patron Architecture):** each skinned welcome is one patron opening. The architecture demands that the move be cheap.
 
@@ -6246,8 +6268,8 @@ For a platform building on this domain:
 ### 89e. Relationship to Other Domains
 
 - **Technology 1 (Copernican Inversion):** self-description quality is the operational consequence of putting the founder at the center. You ARE the product-market fit. The articulation of YOU is the substrate.
-- **Technology 5 (Precision Gap IS Product):** Technology 5 is about offer-precision; Technology 89 is about self-articulation precision. Same precision-discipline, different artifact.
-- **Technology 10 (I Focus the Lens):** Sasha's own gift is the focusing of scattered self-descriptions into precise articulations. Technology 89 is Technology 10 generalized into a system.
+- **Principle 5 (Precision Gap IS Product):** Principle 5 is about offer-precision; Technology 89 is about self-articulation precision. Same precision-discipline, different artifact.
+- **Technology 13 (I Focus the Lens):** Sasha's own gift is the focusing of scattered self-descriptions into precise articulations. Technology 89 is Technology 13 generalized into a system.
 - **Technology 85 (The Assembly Recognition):** every platform in the assembly is independently building self-articulation primitives because all of them depend on this same upstream mechanic.
 - **Technology 86 (Substrate Positioning):** the self-articulation instrument is what a coordination-infrastructure substrate must include. It is the input layer everything else composes on.
 
@@ -6329,7 +6351,7 @@ The right level of language is the level of universal primitives: alignment, leg
 
 ### 90f. Relationship to Other Domains
 
-- **Technology 5 (Precision Gap IS Product):** Layer 2 audience translation requires precision at the audience level; sloppy translation kills resonance.
+- **Principle 5 (Precision Gap IS Product):** Layer 2 audience translation requires precision at the audience level; sloppy translation kills resonance.
 - **Technology 13 (Scattered Light to Laser):** the three-layer architecture is the laser apparatus applied to message. Many beams (Layer 2), one focused source (Layer 1), one deeper worldview (Layer 3).
 - **Technology 86 (Substrate Positioning):** substrate positioning requires this architecture because substrate stewards serve many audiences simultaneously.
 - **Technology 89 (Self-Description Quality):** Layer 1 of the founder's own positioning is itself a self-description. The same precision discipline applies.
@@ -6356,7 +6378,7 @@ The right level of language is the level of universal primitives: alignment, leg
 - **Technology 86 (Substrate Positioning):** SOHN is the substrate; its free core (self-discovery + matching) drives the density the network effect needs.
 - **Technology 87 (Multi-Patron Architecture):** each ecosystem that runs SOHN under its own brand is a patron node; the network is the portfolio.
 - **Technology 89 (Self-Description Quality):** the per-person legibility operation is Technology 89 made into infrastructure.
-- **Technology 5 (Precision Gap IS Product) + Technology 10 (I Focus the Lens):** the precision of the articulation is the load-bearing thing; SOHN is Sasha's own gift turned into a coordination substrate.
+- **Principle 5 (Precision Gap IS Product) + Technology 13 (I Focus the Lens):** the precision of the articulation is the load-bearing thing; SOHN is Sasha's own gift turned into a coordination substrate.
 
 ### 91a. The One-Sentence Version
 
@@ -6500,7 +6522,7 @@ The honest application of this domain is to apply it to itself, which surfaces t
 - **The Roasting Protocol (fidelity axis):** the existing under-the-hood refinement loop. This domain is its complement, not its replacement. Together they are the two-axis strategist.
 - **Technology 92 (Signal Legibility as Provision):** the viability axis is how the mythic layer gets reality-tested into buyer-legible form; Technology 92's anti-pattern is the same warning as caveat 1.
 - **Technology 7 (Founder-First Inversion):** vision mode is founder-first (uniqueness proposes value); the viability axis keeps the proposal honest about market behavior without surrendering the inversion.
-- **Technology 5 (Precision Gap IS Product):** Question 1's "exact strategy in one paragraph" is a precision demand; vagueness fails the loop immediately.
+- **Principle 5 (Precision Gap IS Product):** Question 1's "exact strategy in one paragraph" is a precision demand; vagueness fails the loop immediately.
 - **Universal Ontology §2 (Primordial Dynamics):** the loop is novelty (the impulse, the ray) met by selection (reality), the same generate-and-select pattern at the scale of strategy.
 
 ### 93h. The One-Sentence Version
@@ -6682,7 +6704,7 @@ This is the deeper mechanism behind exponential scaling. Scaling is not merely "
 
 ### 95f. Relationship to Other Domains
 
-- **Technology 5 (Precision Gap IS Product):** this domain generalizes precision from product value to holonic formation.
+- **Principle 5 (Precision Gap IS Product):** this domain generalizes precision from product value to holonic formation.
 - **Technology 7 (Founder-First Inversion):** founder uniqueness is upstream because unique value is the parameter that organizes fit.
 - **Technology 13 (From Scattered Light to Laser):** unique value articulation is the focusing mechanism.
 - **Technology 72 (Signal-First Tribe):** tribe is defined by the live signal, not by the wound.
@@ -7081,7 +7103,7 @@ A gift is not the thing you make. It is the living thing in you that keeps makin
 
 **The blade:** the seed is not responsible for convincing concrete to become soil.
 
-**Corpus lineage.** The CRM Energy Leak Audit (April 12, 2026) caught this at the symptom layer ("too much medicine given for free"; per-person boundaries for José, Terrina, Roso, Cori). The root (spending source to reverse disbelief, starting in the closest fields) surfaced July 5-6. Sibling of Technology 16: there the mirror lagged; here the mirror was aimed at an audience without the organs to read it. The full personal doctrines (Sasha and Karime versions) are held privately, outside the public corpus. Business application: `uniqueness_economy_thesis.md` §0.7 · `marketing_playbook.md` Part III-B · `unique_business_playbook.md` v4.4.
+**Corpus lineage.** The CRM Energy Leak Audit (April 12, 2026) caught this at the symptom layer ("too much medicine given for free"; per-person boundaries for José, Terrina, Roso, Cori). The root (spending source to reverse disbelief, starting in the closest fields) surfaced July 5-6. Sibling of Technology 154: there the mirror lagged; here the mirror was aimed at an audience without the organs to read it. The full personal doctrines (Sasha and Karime versions) are held privately, outside the public corpus. Business application: `uniqueness_economy_thesis.md` §0.7 · `marketing_playbook.md` Part III-B · `unique_business_playbook.md` v4.4.
 
 ---
 
@@ -7498,7 +7520,7 @@ Keep the fire, keep the present-continuous tense ('in the making'), and let the 
 - Significance: it dissolves the deficit model of complementarity. The second thing is not what the first was missing. It is another whole with the same core, seen from a different sequence position.
 - Consequence: partnership, collaboration, and matching stop being about finding your missing half and become about finding another whole whose core aligns with yours. The edges of the Network of Sovereigns (Technology 111) are exactly this shape: whole meeting whole, sharing terms, neither completed by the other.
 
-**The second finding: the invariant is an event, not a possession.** The shared core equals the octahedron only at the moments of alignment; through the rotation the overlap deforms and returns. Applied to self-knowledge: an articulated Top Talent is not a stored object but what appears when the acts of seeing align. It has to be re-aligned, not merely remembered. This is Technology 16 (The Mirror Must Not Lag) restated as geometry.
+**The second finding: the invariant is an event, not a possession.** The shared core equals the octahedron only at the moments of alignment; through the rotation the overlap deforms and returns. Applied to self-knowledge: an articulated Top Talent is not a stored object but what appears when the acts of seeing align. It has to be re-aligned, not merely remembered. This is Technology 154 (The Mirror Must Not Lag) restated as geometry.
 
 **Relation:** refines Technology 98 (Prime Invariant Branding) — the invariant survives transformation, and now we can say how it shows itself: at alignment, rhythmically, not continuously. Sibling to Technology 111 (edge-carried alignment among sovereigns).
 
@@ -7795,7 +7817,7 @@ The expression does not claim that language alone creates demand. Value flow sup
 
 **ESC.** *Essence:* the business grows by seeing itself learn. *Significance:* self-knowledge stops being founder introspection and becomes operational infrastructure. The corpus, canvas, cockpit, quiz, holomaps, and feedback loops become one organ: the business's faculty of recognition. *Consequence:* keep current state singular, timestamp every volatile signal, feed real outcomes back into canonical artifacts, and measure whether coherent decisions continue when Sasha or another adviser leaves the room.
 
-**Relationship:** Technology 16 (the mirror must not lag), Technology 26 (leading indicators), Technology 40 (living methodology), Technology 84 (holomap as instrument), Technology 113 (Founder Cockpit), Technology 115 (articulation as growth), Technology 132 (human signal remains ground), Technology 134 (value flow supplies the relationships the mirror learns from).
+**Relationship:** Technology 154 (the mirror must not lag), Technology 26 (leading indicators), Technology 40 (living methodology), Technology 84 (holomap as instrument), Technology 113 (Founder Cockpit), Technology 115 (articulation as growth), Technology 132 (human signal remains ground), Technology 134 (value flow supplies the relationships the mirror learns from).
 
 ---
 
