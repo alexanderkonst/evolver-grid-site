@@ -49,7 +49,7 @@ This is the R&D engine of the whole venture: a growing library of seeing instrum
 
 ---
 
-> *Numbering note (October 12, 2026): numbers are permanent addresses. Two collisions were removed: the early block 8 to 16 (How Spin Begins … The Mirror Must Not Lag) is now 146 to 154, and Testimony Frequency (formerly a second 19) is now 155. Stale cross-references were repointed: "Technology 10 (I Focus the Lens)" → 13, "Technology 14 (Externalized Self-Recognition)" → 56, "Technology 5 (Precision Gap IS Product)" → Principle 5. The Golden DM reference in Technology 65 ("Technology 14 (Golden DM Architecture)") had no unit in this library; it now points to the Golden DM in the Distribution Playbook.*
+> *Numbering note (October 12, 2026): numbers are permanent addresses. Two collisions were removed: the early block 8 to 16 (How Spin Begins … The Mirror Must Not Lag) is now 146 to 154, and Testimony Frequency (formerly a second 19) is now 155. Stale cross-references were repointed: "Technology 10 (I Focus the Lens)" → 13, "Technology 14 (Externalized Self-Recognition)" → 56, "Technology 5 (Precision Gap IS Product)" → Principle 5. "Technology 14 (Golden DM Architecture)" in Technology 65 never existed: the Golden DM is a conversation starter, whatever comes up, with no fixed architecture (Sasha, October 13, 2026).*
 
 ## The Awakening
 
@@ -4066,7 +4066,7 @@ This is Technology 62 (Morphogenetic Agent) at the individual level. And Technol
 
 ## Technology 65: The Epicenter Broadcast (The Founder's First Act of Coherent Radiation)
 
-> *Added April 3, 2026 — Live download. The moment distribution stopped being a separate problem. Cascaded from the Golden DM ([Distribution Playbook](../03-playbooks/distribution_playbook.md), §The Golden DM Handwriting Principle) + Technology 8 (Acorn/Tuning Fork) + the live Russian DM to Andrey that crystallized the pattern.*
+> *Added April 3, 2026 — Live download. The moment distribution stopped being a separate problem. Cascaded from the Golden DM (a conversation starter, whatever comes up) + Technology 8 (Acorn/Tuning Fork) + the live Russian DM to Andrey that crystallized the pattern.*
 
 ### 65a. The Discovery
 
@@ -4143,7 +4143,7 @@ The methodology doesn't just produce a business — it produces the founder's **
 | Domain | How 65 extends it |
 |--------|-------------------|
 | **8: Acorn / Tuning Fork** | The broadcast IS the tuning fork vibrating. The founder hits their note — and the resonant ones hear it |
-| **Golden DM ([Distribution Playbook](../03-playbooks/distribution_playbook.md))** | The Golden DM = the architecture of a 1:1 message. Technology 65 = the architecture of a 1:many broadcast. Same DNA, different scale |
+| **Golden DM** | The Golden DM = a 1:1 conversation starter, whatever comes up. Technology 65 = the architecture of a 1:many broadcast. Same DNA, different scale |
 | **47: Quality That Sells** | The broadcast works because it's measuring the RIGHT output: "did they resonate?" — not impressions, not opens, not clicks |
 | **55: Builder's Blind Spot** | Builders think distribution is a system to build. It's not. It's a truth to speak. The blind spot was thinking the engine was missing — the engine was always the founder standing at center |
 | **59: The Measurement Inversion** | The broadcast doesn't optimize for reach (input metric). It optimizes for resonance (output metric). One message to 50 people who know you > 10,000 impressions from strangers |
