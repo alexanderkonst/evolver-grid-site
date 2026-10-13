@@ -21,6 +21,7 @@ type Operation =
   | "upsert_strategy"
   | "create_workstream"
   | "rename_workstream"
+  | "delete_workstream"
   | "create_task"
   | "rename_task"
   | "complete_task"
@@ -46,6 +47,7 @@ const allowedOperations = new Set<Operation>([
   "upsert_strategy",
   "create_workstream",
   "rename_workstream",
+  "delete_workstream",
   "create_task",
   "rename_task",
   "complete_task",
@@ -688,6 +690,54 @@ serve(async (req) => {
       }
       result = { target: "equilibrium_tasks", task_id: taskId, deleted: !dryRun };
       summary = `deleted task ${taskId}`;
+    } else if (operation === "delete_workstream") {
+      // Hard delete — equilibrium_workstreams has no archived_at that we
+      // honor for removal here. A workstream that still has tasks is refused
+      // with 409 unless payload.force === true, in which case its tasks are
+      // cascaded first (deleting each task cascades its focus rows via FK).
+      const workstreamId = cleanUuid(payload.workstream_id, "payload.workstream_id");
+      const force = payload.force === true;
+      await getOwnedWorkstream(admin, userId, workstreamId);
+
+      const { data: taskRows, error: taskError } = await admin
+        .from("equilibrium_tasks")
+        .select("id")
+        .eq("workstream_id", workstreamId);
+      if (taskError) throw new Error(`Could not read workstream tasks: ${taskError.message}`);
+      const tasks = Array.isArray(taskRows) ? taskRows as any[] : [];
+      const taskCount = tasks.length;
+
+      if (taskCount > 0 && !force) {
+        return jsonResponse({
+          error: `Workstream still has ${taskCount} task(s). Delete them first or pass payload.force = true to cascade.`,
+          source: "equilibrium-agent-write",
+          workstream_id: workstreamId,
+          task_count: taskCount,
+        }, 409);
+      }
+
+      if (!dryRun) {
+        if (taskCount > 0) {
+          const { error: tasksDeleteError } = await admin
+            .from("equilibrium_tasks")
+            .delete()
+            .eq("workstream_id", workstreamId);
+          if (tasksDeleteError) throw new Error(`Could not cascade workstream tasks: ${tasksDeleteError.message}`);
+        }
+        const { error: deleteError } = await admin
+          .from("equilibrium_workstreams")
+          .delete()
+          .eq("id", workstreamId);
+        if (deleteError) throw new Error(`Could not delete workstream: ${deleteError.message}`);
+      }
+      result = {
+        target: "equilibrium_workstreams",
+        workstream_id: workstreamId,
+        deleted: !dryRun,
+        cascaded_tasks: taskCount,
+        forced: force,
+      };
+      summary = `deleted workstream ${workstreamId}${taskCount > 0 ? ` (cascaded ${taskCount} task(s))` : ""}`;
     } else if (operation === "promote_task_to_focus") {
       const taskId = cleanUuid(payload.task_id, "payload.task_id");
       const position = cleanPosition(payload.position ?? 1, "payload.position", MAX_FOCUS);
