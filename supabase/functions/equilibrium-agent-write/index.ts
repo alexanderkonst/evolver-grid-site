@@ -14,6 +14,7 @@ const MAX_TASKS = 7;
 const MAX_FOCUS = 3;
 
 type Operation =
+  | "read_state"
   | "set_lifelong_dedication"
   | "set_role"
   | "set_moon_focus"
@@ -23,6 +24,7 @@ type Operation =
   | "create_task"
   | "rename_task"
   | "complete_task"
+  | "delete_task"
   | "promote_task_to_focus"
   | "append_synthesis_log";
 
@@ -37,6 +39,7 @@ interface AgentWriteRequest {
 type SupabaseAdmin = any;
 
 const allowedOperations = new Set<Operation>([
+  "read_state",
   "set_lifelong_dedication",
   "set_role",
   "set_moon_focus",
@@ -46,6 +49,7 @@ const allowedOperations = new Set<Operation>([
   "create_task",
   "rename_task",
   "complete_task",
+  "delete_task",
   "promote_task_to_focus",
   "append_synthesis_log",
 ]);
@@ -252,6 +256,198 @@ async function appendSynthesisState(
   return { last_synthesis_at: now, log_id: data?.id ?? null };
 }
 
+// ─── LUNAR PHASE (server-side) ─────────────────────────────────────
+//
+// Faithful inline port of `getLunarState` from
+// src/lib/equilibrium-cycles/index.ts. The frontend module is pure math
+// but lives outside this Deno function's bundle, so the needed pieces are
+// reproduced here (Meeus AA ch. 47 main terms → true lunar elongation).
+// Phase = 45° of elongation; the 8 activity names + jobs mirror the app's
+// locked lunar wisdom map. Keep in sync with the frontend if that changes.
+
+const DAY_MS = 86_400_000;
+const RAD = Math.PI / 180;
+const J2000_JD = 2451545.0;
+const UNIX_EPOCH_JD = 2440587.5;
+const SYNODIC_MONTH_DAYS = 29.530588853;
+const PHASE_DEG = 45;
+
+// Index = floor(elongation / 45°). name/job mirror MOON_PHASES[].energy
+// lead word + guidance in the frontend module.
+const LUNAR_PHASES: { name: string; job: string }[] = [
+  { name: "Clearing", job: "Release fear. Cry, don't complain. The how is not yours yet." },
+  { name: "Gathering", job: "Say yes. Take meetings. Receive resources." },
+  { name: "Seeing", job: "The how reveals. Write it down. Capture before it drifts." },
+  { name: "Leading", job: "Prep for harvest. Set up infrastructure. Get the help." },
+  { name: "Harvesting", job: "Reap what's ripe. Cut. Receive the fruits of labor." },
+  { name: "Celebrating", job: "Announce the harvest. Thank. Feel the gratitude." },
+  { name: "Planning", job: "The next intention surfaces. Receive it. Name it." },
+  { name: "Planting", job: "The 1–3 strategies reveal. Write them down." },
+];
+
+function deg360(x: number) {
+  return ((x % 360) + 360) % 360;
+}
+
+function deltaTSeconds(yearApprox: number) {
+  const y = yearApprox - 2005;
+  return 62.92 + 0.32217 * y + 0.005589 * y * y;
+}
+
+function julianCenturiesTT(nowMs: number) {
+  const jdUTC = nowMs / DAY_MS + UNIX_EPOCH_JD;
+  const yearApprox = (jdUTC - J2000_JD) / 365.25 + 2000;
+  const ttJd = jdUTC + deltaTSeconds(yearApprox) / 86400;
+  return (ttJd - J2000_JD) / 36525;
+}
+
+function lunarElongationDeg(nowMs: number) {
+  const T = julianCenturiesTT(nowMs);
+  const D = deg360(297.8501921 + 445267.1114034 * T - 0.0018819 * T * T + (T * T * T) / 545868 - (T * T * T * T) / 113065000);
+  const M = deg360(357.5291092 + 35999.0502909 * T - 0.0001536 * T * T + (T * T * T) / 24490000);
+  const Mp = deg360(134.9633964 + 477198.8675055 * T + 0.0087414 * T * T + (T * T * T) / 69699 - (T * T * T * T) / 14712000);
+  const F = deg360(93.272095 + 483202.0175233 * T - 0.0036539 * T * T - (T * T * T) / 3526000 + (T * T * T * T) / 863310000);
+  const E = 1 - 0.002516 * T - 0.0000074 * T * T;
+  const D_ = D * RAD, M_ = M * RAD, Mp_ = Mp * RAD, F_ = F * RAD;
+
+  let dL = 0;
+  dL += 6.288774 * Math.sin(Mp_);
+  dL += 1.274027 * Math.sin(2 * D_ - Mp_);
+  dL += 0.658314 * Math.sin(2 * D_);
+  dL += 0.213618 * Math.sin(2 * Mp_);
+  dL -= 0.185116 * Math.sin(M_) * E;
+  dL -= 0.114332 * Math.sin(2 * F_);
+  dL += 0.058793 * Math.sin(2 * D_ - 2 * Mp_);
+  dL += 0.057066 * Math.sin(2 * D_ - M_ - Mp_) * E;
+  dL += 0.053322 * Math.sin(2 * D_ + Mp_);
+  dL += 0.045758 * Math.sin(2 * D_ - M_) * E;
+  dL -= 0.040923 * Math.sin(M_ - Mp_) * E;
+  dL -= 0.034720 * Math.sin(D_);
+  dL -= 0.030383 * Math.sin(M_ + Mp_) * E;
+  dL += 0.015327 * Math.sin(2 * D_ - 2 * F_);
+  dL -= 0.012528 * Math.sin(Mp_ + 2 * F_);
+
+  const sunEoC =
+    (1.914602 - 0.004817 * T - 0.000014 * T * T) * Math.sin(M_) +
+    (0.019993 - 0.000101 * T) * Math.sin(2 * M_) +
+    0.000289 * Math.sin(3 * M_);
+
+  return deg360(D + dL - sunEoC);
+}
+
+function daysUntilElongationReaches(nowMs: number, currentDeg: number, targetDeg: number) {
+  const later = lunarElongationDeg(nowMs + DAY_MS);
+  let ratePerDay = later - currentDeg;
+  if (ratePerDay < -180) ratePerDay += 360;
+  if (ratePerDay <= 0) ratePerDay = 360 / SYNODIC_MONTH_DAYS;
+  let deltaDeg = targetDeg - currentDeg;
+  while (deltaDeg <= 0) deltaDeg += 360;
+  return deltaDeg / ratePerDay;
+}
+
+function computeLunar(nowMs: number) {
+  const elongationDeg = lunarElongationDeg(nowMs);
+  const segmentIndex = Math.min(7, Math.floor(elongationDeg / PHASE_DEG));
+  const phase = LUNAR_PHASES[segmentIndex];
+  const nextBoundaryWrapped = ((segmentIndex + 1) * PHASE_DEG) % 360;
+  const daysLeft = daysUntilElongationReaches(nowMs, elongationDeg, nextBoundaryWrapped);
+  const phaseEndMs = nowMs + daysLeft * DAY_MS;
+  return {
+    phase: phase.name,
+    job: phase.job,
+    phase_end: new Date(phaseEndMs).toISOString(),
+    days_left: Math.round(daysLeft * 10) / 10,
+  };
+}
+
+// Split an agent-authored task string ("Name — body") back into a short
+// name + full text. create_task stores `${taskName} — ${textBody}`.
+function taskNameFromText(text: string) {
+  const idx = text.indexOf(" — ");
+  return idx > 0 ? text.slice(0, idx).trim() : text.trim();
+}
+
+async function buildReadState(admin: SupabaseAdmin, userId: string) {
+  const [stateRes, strategiesRes, workstreamsRes, focusRes] = await Promise.all([
+    admin.from("equilibrium_state").select("*").eq("user_id", userId).maybeSingle(),
+    admin.from("equilibrium_strategies").select("position, text, alignment_score").eq("user_id", userId).order("position", { ascending: true }),
+    admin.from("equilibrium_workstreams").select("id, title, position").eq("user_id", userId).is("archived_at", null).order("position", { ascending: true }),
+    admin.from("equilibrium_focus").select("position, task_id").eq("user_id", userId).order("position", { ascending: true }),
+  ]);
+
+  if (stateRes.error) throw new Error(`Could not read state: ${stateRes.error.message}`);
+  if (strategiesRes.error) throw new Error(`Could not read strategies: ${strategiesRes.error.message}`);
+  if (workstreamsRes.error) throw new Error(`Could not read workstreams: ${workstreamsRes.error.message}`);
+  if (focusRes.error) throw new Error(`Could not read focus: ${focusRes.error.message}`);
+
+  const state = (stateRes.data ?? {}) as any;
+  const workstreamRows = Array.isArray(workstreamsRes.data) ? workstreamsRes.data as any[] : [];
+  const focusRows = Array.isArray(focusRes.data) ? focusRes.data as any[] : [];
+  const focusTaskIds = new Set(focusRows.map((row) => row.task_id));
+
+  const workstreamIds = workstreamRows.map((row) => row.id).filter(Boolean);
+  let taskRows: any[] = [];
+  if (workstreamIds.length) {
+    const { data, error } = await admin
+      .from("equilibrium_tasks")
+      .select("id, workstream_id, position, text, status, do_now_at, created_at")
+      .in("workstream_id", workstreamIds)
+      .eq("status", "active")
+      .order("position", { ascending: true });
+    if (error) throw new Error(`Could not read tasks: ${error.message}`);
+    taskRows = Array.isArray(data) ? data as any[] : [];
+  }
+
+  const workstreams = workstreamRows.map((workstream) => ({
+    id: workstream.id,
+    title: workstream.title,
+    position: workstream.position,
+    tasks: taskRows
+      .filter((task) => task.workstream_id === workstream.id)
+      .map((task) => ({
+        id: task.id,
+        name: taskNameFromText(String(task.text ?? "")),
+        text: task.text,
+        status: task.status,
+        is_focus: focusTaskIds.has(task.id),
+        created_at: task.created_at,
+      })),
+  }));
+
+  // do_now = the active task in the lowest-numbered focus slot (position 1
+  // is "recommended" per the DOING NOW section).
+  let doNow: { id: string; name: string; workstream_title: string | null } | null = null;
+  const titleById = new Map(workstreamRows.map((w) => [w.id, w.title] as const));
+  for (const focusRow of focusRows) {
+    const task = taskRows.find((t) => t.id === focusRow.task_id);
+    if (task) {
+      doNow = {
+        id: task.id,
+        name: taskNameFromText(String(task.text ?? "")),
+        workstream_title: titleById.get(task.workstream_id) ?? null,
+      };
+      break;
+    }
+  }
+
+  return {
+    source: "equilibrium-agent-write",
+    operation: "read_state",
+    moon_focus: state.moon_focus_text ?? null,
+    lifelong_dedication: state.mission_override_text ?? null,
+    role: state.role_override_text ?? null,
+    strategies: (Array.isArray(strategiesRes.data) ? strategiesRes.data as any[] : []).map((s) => ({
+      position: s.position,
+      text: s.text,
+      alignment_score: s.alignment_score ?? null,
+    })),
+    workstreams,
+    do_now: doNow,
+    lunar: computeLunar(Date.now()),
+    generated_at: new Date().toISOString(),
+  };
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
   if (req.method !== "POST") return jsonResponse({ error: "Method not allowed." }, 405);
@@ -287,6 +483,11 @@ serve(async (req) => {
     const idempotencyKey = optionalString(rawBody.idempotency_key, 180);
     const dryRun = rawBody.dry_run === true;
     const admin = createClient(supabaseUrl, serviceKey);
+
+    // read_state is read-only: no idempotency, no audit log, ignores dry_run.
+    if (operation === "read_state") {
+      return jsonResponse(await buildReadState(admin, userId));
+    }
 
     const existing = await findIdempotentResult(admin, userId, idempotencyKey);
     if (existing && !dryRun) {
@@ -472,6 +673,21 @@ serve(async (req) => {
       }
       result = { target: "equilibrium_tasks", task_id: taskId, status: "done", done_at: now };
       summary = `completed task ${taskId}`;
+    } else if (operation === "delete_task") {
+      // Hard delete — equilibrium_tasks has no archived_at column. Any
+      // equilibrium_focus rows referencing this task are removed by the
+      // ON DELETE CASCADE foreign key.
+      const taskId = cleanUuid(payload.task_id, "payload.task_id");
+      await getOwnedTask(admin, userId, taskId);
+      if (!dryRun) {
+        const { error } = await admin
+          .from("equilibrium_tasks")
+          .delete()
+          .eq("id", taskId);
+        if (error) throw new Error(`Could not delete task: ${error.message}`);
+      }
+      result = { target: "equilibrium_tasks", task_id: taskId, deleted: !dryRun };
+      summary = `deleted task ${taskId}`;
     } else if (operation === "promote_task_to_focus") {
       const taskId = cleanUuid(payload.task_id, "payload.task_id");
       const position = cleanPosition(payload.position ?? 1, "payload.position", MAX_FOCUS);

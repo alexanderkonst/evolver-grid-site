@@ -41,6 +41,7 @@ External-agent approval happens in the agent surface. Example: Claude drafts a t
 
 The endpoint supports only allowlisted operations:
 
+- `read_state` (read-only — returns the full Equilibrium snapshot; no payload, ignores `dry_run`, not audit-logged)
 - `set_lifelong_dedication`
 - `set_role`
 - `set_moon_focus`
@@ -50,8 +51,18 @@ The endpoint supports only allowlisted operations:
 - `create_task`
 - `rename_task`
 - `complete_task`
+- `delete_task` (hard delete — `equilibrium_tasks` has no `archived_at`; focus rows cascade)
 - `promote_task_to_focus`
 - `append_synthesis_log`
+
+`read_state` powers Hark's Equilibrium Home panel (issue #39): the site stays
+the single source of truth and nothing is duplicated — Hark reads live. The
+response includes `moon_focus`, `lifelong_dedication`, `role`; `strategies`
+(`position`, `text`, `alignment_score`); `workstreams` (each with active
+`tasks`: `id`, `name`, `text`, `status`, `is_focus`, `created_at`); `do_now`
+(the recommended focus task `{id, name, workstream_title}` or null); and
+`lunar` (current `phase` name, `job`, `phase_end` ISO, `days_left`) computed
+with the same elongation math as `src/lib/equilibrium-cycles/getLunarState`.
 
 Security contract:
 
