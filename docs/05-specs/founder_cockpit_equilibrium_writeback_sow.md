@@ -48,6 +48,7 @@ The endpoint supports only allowlisted operations:
 - `upsert_strategy`
 - `create_workstream`
 - `rename_workstream`
+- `delete_workstream` (hard delete; refuses with 409 if the workstream still has tasks unless `payload.force = true`, which cascades its tasks first)
 - `create_task`
 - `rename_task`
 - `complete_task`
