@@ -1603,12 +1603,27 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     the video fresh. The [data-skin="aurum"] video-kill
                     CSS stays as belt-and-suspenders. */}
                 {!suppressShellBackground && __spaceShipSkin === "lapis" && (
-                    <img
-                        src={lapisStillBackground}
-                        alt=""
-                        aria-hidden="true"
-                        className="absolute inset-0 h-full w-full object-cover object-right-bottom"
-                    />
+                    <>
+                        <img
+                            src={lapisStillBackground}
+                            alt=""
+                            aria-hidden="true"
+                            className="absolute inset-0 h-full w-full object-cover object-right-bottom"
+                            style={{ filter: "saturate(0.6)" }}
+                        />
+                        {/* Day ... (Sasha 2026-10-12): the parchment reads much
+                            lighter now — a near-white scrim fades it to ~38%
+                            presence (so it looks ~62% transparent) and, with
+                            the saturate() above, pulls the warm color down.
+                            Sits over the image but under all content (z-0), so
+                            text/cards keep full contrast. Site-wide: the
+                            Equilibrium backdrop gets the matching treatment. */}
+                        <div
+                            aria-hidden="true"
+                            className="absolute inset-0"
+                            style={{ background: "rgba(247, 246, 243, 0.62)" }}
+                        />
+                    </>
                 )}
                 {!suppressShellBackground &&
                     __spaceShipSkin !== "aurum" &&
@@ -1639,11 +1654,17 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                       // warm editorial ground (mobile + desktop). Dark skins
                       // keep their near-black gradient so the frosted cards
                       // don't sit on a light-leak island.
+                      // Day ... (Sasha 2026-10-12): match the lighter, less
+                      // colorful parchment used on the main shell — a ~62%
+                      // near-white overlay fades the texture and saturate()
+                      // mutes its warmth (light skins only).
                       background: __isAurumShell
                         ? "radial-gradient(ellipse 120% 100% at 50% 0%, #0b0b10 0%, #07070a 45%, #020203 100%)"
                         : __isTechstarsShell
                           ? "radial-gradient(ellipse 120% 100% at 50% 0%, #0a0c0f 0%, #07080a 45%, #02030a 100%)"
-                          : `#e8e0d2 url(${lapisStillBackground}) center center / cover no-repeat`,
+                          : `linear-gradient(rgba(247, 246, 243, 0.62), rgba(247, 246, 243, 0.62)), #f4f2ec url(${lapisStillBackground}) center center / cover no-repeat`,
+                      filter:
+                        __isAurumShell || __isTechstarsShell ? undefined : "saturate(0.6)",
                     }}
                   />
                 )}
