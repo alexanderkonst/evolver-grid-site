@@ -26,7 +26,7 @@ Each entry in this library is a technology — a seeing instrument that produces
 
 ## ⟡ Executive Summary & 27-Perspective Synthesis
 
-> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 160 as of October 12, 2026) stay the source of truth.*
+> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 159 as of October 12, 2026) stay the source of truth.*
 
 This is the R&D engine of the whole venture: a growing library of seeing instruments, each named by the transformational result it delivers, from cosmogenesis (Prime Radiant) through uniqueness articulation, the founder-first inversion, and myth-to-movement, up to the recent cluster on ripeness, transition, the mirror, and the network of sovereigns. They do not stack like a portfolio; they nest, each one refracting through all the others. Held together they are a single field seen from many faces (concentric polymathy). Over 2026 the collection converged on one spine: articulation is the mechanism of growth, recognition replaces persuasion, the mirror is the product, and a network coheres through well-formed edges rather than a center. Every playbook move, product, and pricing decision downstream traces to a numbered technology here.
 
@@ -8297,6 +8297,51 @@ Money remains the marker rather than the object (`integral_transactional_field_t
 
    *(translation)* "… hunger is either there or not … Emotions too: either I'm angry or I'm not. But the main thing is the feeling plane, the connection with subtler things."
 
+### 🫀 Feeling Doesn't Shout (чувствование не кричит) — in Sasha's words
+
+> *Merged from candidate Technology 160 by Sasha, 2026-10-13: the quiet of feeling against the noise of the mind is the evidence that feeling is wider than emotion.*
+
+1. > «Почему в медитации бегает в принципе внимание? … потому что ум воспален. … Мы слишком много думаем … Постоянно такая воспаленная активность»
+   > — *[01:02:46–01:03:13] · call of 2026-08-30*
+
+   *(translation)* "Why does attention run around in meditation at all? … because the mind is inflamed. We think too much … a constant inflamed activity."
+
+2. > «Мединация, такой спокойная озера, гладь. … И поэтому становится просто лучше видно.»
+   > — *[01:03:30–01:03:36] · call of 2026-08-30*
+
+   *(translation)* "Meditation is the calm surface of a lake. And so it simply becomes easier to see."
+
+   *Note (AI): ASR: «Мединация» = медитация.*
+
+3. > «С одной стороны выясняется, что они сами по себе вызникают, что, типа, как бы, айджинси в этом нет.»
+   > — *[01:04:00] · call of 2026-08-30*
+
+   *(translation)* "On the one hand it turns out that [thoughts] arise by themselves, that there is no agency in it."
+
+4. > «как только начинаем что-то рассуждать, то чувствование, то как бы у нас нет ресурсов, внутреннего, еще и параллельно чувствовать … внимания, у него пропустная способность … как только мы начинаем размышлять, то мы уже практически нету пропускной способности именно чувствовать.»
+   > — *[00:41:00–00:42:00] · call of 2026-09-03*
+
+   *(translation)* "As soon as we start reasoning, we have no inner resources left to also feel in parallel … attention has a bandwidth … as soon as we start thinking it over, we have practically no bandwidth left to actually feel."
+
+5. > «мы очень часто говорим вещи, которые на самом деле не идут. … из не через сердце идут, а не идут из просто из какого-то там ментального мусора очень часто … И оно просто вот выходит, оно как будто звенит, вибрирует, резонирует с правдой»
+   > — *[00:45:33–00:46:37] · call of 2026-09-03*
+
+   *(translation)* "Very often we say things that don't come through the heart but simply from some mental garbage … [When it comes through the heart] it just comes out, as if it rings, vibrates, resonates with truth."
+
+6. > «потому что будет больше успокаиваться ум, он не будет фирверки таким огромного количества рендом мысли запускать. … объедженная ложь, которая там следует и знает, что у нее с хозяином один как бы путь»
+   > — *[01:05:00–01:05:10] · call of 2026-09-03*
+
+   *(translation)* "… because the mind will calm down more; it won't launch fireworks of a huge number of random thoughts. … [like] a broken-in horse that follows along and knows that it and its rider share one path."
+
+   *Note (AI): ASR: «фирверки» = фейерверки; «объедженная ложь» = объезженная лошадь (broken-in horse).*
+
+7. > «Да, чувствование оно не кричит, как у нас только громко-какума, но не борется за место под солнцем, оно просто чувствует.»
+   > — *[01:19:05] · call of 2026-09-03*
+
+   *(translation)* "Yes, feeling doesn't shout, unlike the mind, which is loud; it doesn't fight for a place in the sun, it just feels."
+
+   *Note (AI): ASR: «как у нас только громко-какума» is garbled; read as «в отличие от ума, который громкий». Sasha to confirm the wording.*
+
 ### 🧠 Significance — AI draft
 
 *AI draft, for Sasha to rewrite in his voice:* Most people use one word for two things. Sasha separates them: emotion is one band inside a much wider field of feeling (body sensations, impulses, pain and pleasure, emotions, the room's atmosphere, the subtle plane). Hunger and emotions are coarse, on/off signals; the part that matters for growth is the subtle plane.
@@ -8316,6 +8361,11 @@ Money remains the marker rather than the object (`integral_transactional_field_t
 - No written counterpart in the crosswalk (all six members classified *oral_only*).
 - Nearest written, via neighbouring oral clusters: **21. Heart Before Mind Before Gut (Trinity Correction)** (cluster *Feeling precedes knowing*, same_as); UO concept **Masculine and Feminine** (cluster *Two dials: awareness and sensing*); UO concepts **Toroidal Field** and **Essential Center** (cluster *The heart as portal*, which carries the heart rung of this ladder).
 - Oral neighbours: *Two dials: awareness and sensing*; *One dial: pain and pleasure*; *Training intuition*; candidate 160 below (*Feeling Doesn't Shout*).
+
+From the merged *Feeling Doesn't Shout* material:
+- No written counterpart in the crosswalk (all five members *oral_only*).
+- Nearest written, via neighbouring cluster *The elevator: practice and sovereignty* (the horse line sits inside the elevator passage): **Technology 102: The Guru Loop and the Skin-in-the-Game Antidote** (FW *The Guru Loop (three mechanisms)*, applies).
+- Oral neighbours: *Active thinking, passive thinking, feeling*; *Two dials: awareness and sensing*; candidates 156 (feeling) and 158 (integration).
 
 ## Technology 157: Cleaning the Lens (весь процесс развития мышления — очищение линзы) (oral, Aug 16 – Aug 30, 2026)
 
@@ -8577,71 +8627,3 @@ Money remains the marker rather than the object (`integral_transactional_field_t
 
 - No written counterpart in the crosswalk (all six members *oral_only*).
 - Oral neighbours, all also *oral_only*: *One dial: pain and pleasure* (the same dial muted for the unpleasant mutes the pleasant, 2026-08-16 01:38:40, right after this passage); *Emotional contracts and autonomy* (continues the same passage); *Practice: go into what surfaces*; candidate 156.
-
-## Technology 160: Feeling Doesn't Shout (чувствование не кричит) (oral, Aug 30 – Sep 3, 2026)
-
-> *Oral candidate · Crosswalk cluster C081 · Mental noise vs the quiet of feeling · oral, Aug 30 – Sep 3, 2026 · 2 calls.*
-> *Name: Title is Sasha's own sentence (2026-09-03 01:19:05), rendered in English. Name confirmed by Sasha 2026-10-13.*
-
-### 🫀 Essence — in Sasha's words
-
-1. > «Почему в медитации бегает в принципе внимание? … потому что ум воспален. … Мы слишком много думаем … Постоянно такая воспаленная активность»
-   > — *[01:02:46–01:03:13] · call of 2026-08-30*
-
-   *(translation)* "Why does attention run around in meditation at all? … because the mind is inflamed. We think too much … a constant inflamed activity."
-
-2. > «Мединация, такой спокойная озера, гладь. … И поэтому становится просто лучше видно.»
-   > — *[01:03:30–01:03:36] · call of 2026-08-30*
-
-   *(translation)* "Meditation is the calm surface of a lake. And so it simply becomes easier to see."
-
-   *Note (AI): ASR: «Мединация» = медитация.*
-
-3. > «С одной стороны выясняется, что они сами по себе вызникают, что, типа, как бы, айджинси в этом нет.»
-   > — *[01:04:00] · call of 2026-08-30*
-
-   *(translation)* "On the one hand it turns out that [thoughts] arise by themselves, that there is no agency in it."
-
-4. > «как только начинаем что-то рассуждать, то чувствование, то как бы у нас нет ресурсов, внутреннего, еще и параллельно чувствовать … внимания, у него пропустная способность … как только мы начинаем размышлять, то мы уже практически нету пропускной способности именно чувствовать.»
-   > — *[00:41:00–00:42:00] · call of 2026-09-03*
-
-   *(translation)* "As soon as we start reasoning, we have no inner resources left to also feel in parallel … attention has a bandwidth … as soon as we start thinking it over, we have practically no bandwidth left to actually feel."
-
-5. > «мы очень часто говорим вещи, которые на самом деле не идут. … из не через сердце идут, а не идут из просто из какого-то там ментального мусора очень часто … И оно просто вот выходит, оно как будто звенит, вибрирует, резонирует с правдой»
-   > — *[00:45:33–00:46:37] · call of 2026-09-03*
-
-   *(translation)* "Very often we say things that don't come through the heart but simply from some mental garbage … [When it comes through the heart] it just comes out, as if it rings, vibrates, resonates with truth."
-
-6. > «потому что будет больше успокаиваться ум, он не будет фирверки таким огромного количества рендом мысли запускать. … объедженная ложь, которая там следует и знает, что у нее с хозяином один как бы путь»
-   > — *[01:05:00–01:05:10] · call of 2026-09-03*
-
-   *(translation)* "… because the mind will calm down more; it won't launch fireworks of a huge number of random thoughts. … [like] a broken-in horse that follows along and knows that it and its rider share one path."
-
-   *Note (AI): ASR: «фирверки» = фейерверки; «объедженная ложь» = объезженная лошадь (broken-in horse).*
-
-7. > «Да, чувствование оно не кричит, как у нас только громко-какума, но не борется за место под солнцем, оно просто чувствует.»
-   > — *[01:19:05] · call of 2026-09-03*
-
-   *(translation)* "Yes, feeling doesn't shout, unlike the mind, which is loud; it doesn't fight for a place in the sun, it just feels."
-
-   *Note (AI): ASR: «как у нас только громко-какума» is garbled; read as «в отличие от ума, который громкий». Sasha to confirm the wording.*
-
-### 🧠 Significance — AI draft
-
-*AI draft, for Sasha to rewrite in his voice:* Thinking and feeling share one channel of attention. When the mind is inflamed (random thoughts, no agency in them), there is no bandwidth left to feel, and speech comes from mental garbage rather than the heart. Feeling is quiet and does not compete, so it is only heard once the mind settles; a trained mind is a broken-in horse, not an absent one.
-
-### 🔥 Implications — AI draft
-
-- **1st order.** Trying to understand a feeling by reasoning about it uses up the bandwidth the feeling needs.
-- **2nd order.** Speech that comes through the heart is recognisable: it rings true. That gives a test for one's own words.
-
-### Shape
-
-- **Shape:** **Polarity** (loud mind / quiet feeling), with an **equation** variant (one attention bandwidth: thinking crowds out feeling).
-- **Infographic (one line):** Loud megaphone head vs a quiet listening heart; beneath, one pipe of attention where a thick 'thinking' stream leaves a trickle for 'feeling'. (from O235 + O214)
-
-### Cross-references — Connects to
-
-- No written counterpart in the crosswalk (all five members *oral_only*).
-- Nearest written, via neighbouring cluster *The elevator: practice and sovereignty* (the horse line sits inside the elevator passage): **Technology 102: The Guru Loop and the Skin-in-the-Game Antidote** (FW *The Guru Loop (three mechanisms)*, applies).
-- Oral neighbours: *Active thinking, passive thinking, feeling*; *Two dials: awareness and sensing*; candidates 156 (feeling) and 158 (integration).
