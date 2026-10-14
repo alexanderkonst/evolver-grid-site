@@ -26,7 +26,7 @@ Each entry in this library is a technology — a seeing instrument that produces
 
 ## ⟡ Executive Summary & 27-Perspective Synthesis
 
-> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 155 as of October 12, 2026) stay the source of truth.*
+> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 160 as of October 12, 2026) stay the source of truth.*
 
 This is the R&D engine of the whole venture: a growing library of seeing instruments, each named by the transformational result it delivers, from cosmogenesis (Prime Radiant) through uniqueness articulation, the founder-first inversion, and myth-to-movement, up to the recent cluster on ripeness, transition, the mirror, and the network of sovereigns. They do not stack like a portfolio; they nest, each one refracting through all the others. Held together they are a single field seen from many faces (concentric polymathy). Over 2026 the collection converged on one spine: articulation is the mechanism of growth, recognition replaces persuasion, the mirror is the product, and a network coheres through well-formed edges rather than a center. Every playbook move, product, and pricing decision downstream traces to a numbered technology here.
 
@@ -8234,3 +8234,414 @@ Money remains the marker rather than the object (`integral_transactional_field_t
 **ESC.** *Essence:* the articulation vacuum is no longer empty; generative AI fills it with the mean. *Significance:* it turns the founding bottleneck (perception and articulation scarcity, Domain 15) from an opportunity cost into an active erosion, and makes self-articulation the one input an averaging economy cannot supply. *Consequence:* give people their own words first, point the model at extraction of the specific rather than generation of the plausible, and read polished genericness as the symptom.
 
 **Relationship:** Technology 104b (Self-Knowledge as the Agentic Index; this is its generative-era successor), Domain 15 (Differentiated Nature Is the Value), Technology 142 (Only You Should Be Able to Build It), Technology 143 (The Exposure Law), Technology 115 (Articulation Is the Mechanism of Growth), Technology 132 (AI Reads Humans Better Than It Reads AI), the invariant "Unrecognized value becomes unused capacity," the SR008 application (`speedrun-sr008-v8`, Why Now).
+
+---
+
+## Technology 156: Emotion Is a Subset of Feeling (Эмоция — subset чувствования) (oral, Aug 16 – Sep 3, 2026)
+
+> *Oral candidate · Crosswalk cluster C052 · Feeling is wider than emotion (map of feeling) · oral, Aug 16 – Sep 3, 2026 · 3 calls.*
+> *Name: Title is Sasha's own sentence (2026-08-30 01:05:36, 2026-09-03 00:42:27), rendered in English. Name confirmed by Sasha 2026-10-13.*
+
+### 🫀 Essence — in Sasha's words
+
+1. > «часто не понимают разницу между эмоциями и чувствованиями. … На самом деле это две разные вещи. … А чувствование это шире.»
+   > — *[00:43:00–00:43:14] · call of 2026-08-16*
+
+   *(translation)* "People often don't understand the difference between emotions and feeling. In fact these are two different things. Feeling is wider."
+
+2. > «То есть мы чувствуем эмоции, но, по-моему, этого чувствуем огромное количество других вещей. … Эмоции это просто очень маленький сапсет, чего того, чего мы можем почувствовать.»
+   > — *[00:43:18–00:43:23] · call of 2026-08-16*
+
+   *(translation)* "We feel emotions, but besides that we feel a huge number of other things. Emotions are just a very small subset of what we can feel."
+
+   *Note (AI): ASR: «сапсет» = subset.*
+
+3. > «Например, когда в теле что-то там колят или чешется, то как мы об этом узнаем? … Мы чувствуем это. … когда заходим в комнату, там такой висит какой-то вайп, такой неприятный … Мы об этом не думаем, что оно просто как бы чувствуется.»
+   > — *[00:43:29–00:43:50] · call of 2026-08-16*
+
+   *(translation)* "For example, when something in the body tingles or itches, how do we know? We feel it. … when we walk into a room and some unpleasant vibe is hanging there … We don't think about it; it is simply felt."
+
+4. > «Это вообще самый, как сказать, такой – это Истер Эг, который спрятан перед нашим носом.»
+   > — *[00:44:50] · call of 2026-08-16*
+
+   *(translation)* "It is, how to put it, an Easter egg hidden right in front of our nose."
+
+   *Note (AI): Said of feeling (sensing), right after the passage above.*
+
+5. > «Эмоция – subset чувствования. … Но мы в том числе чувствуем огромное количество других вещей. … Ну, первое, что мы чувствуем, это какие-то телесные вещи.»
+   > — *[01:05:36–01:05:50] · call of 2026-08-30*
+
+   *(translation)* "Emotion is a subset of feeling. But we also feel a huge number of other things. The first thing we feel is bodily things."
+
+6. > «а есть еще импульсы, там голод, сексуальный импульс … есть еще боль, есть еще удовольствие, и эмоции тоже … то есть это уже называется тонкое чувствование или тонкий план»
+   > — *[01:06:00–01:08:00] · call of 2026-08-30*
+
+   *(translation)* "… and there are also impulses: hunger, the sexual impulse … there is also pain, there is also pleasure, and emotions too … this is already called subtle feeling, or the subtle plane."
+
+   *Note (AI): Sasha's layering on 2026-08-30: body → impulses → pain/pleasure → emotions (a spectrum by vibration) → subtle plane.*
+
+7. > «самая основная ошибка, что люди путают чувствование эмоции, а эмоции это subset чувствование, можно чувствовать эмоции, а может чувствовать огромный качество других вещей»
+   > — *[00:42:27] · call of 2026-09-03*
+
+   *(translation)* "The most basic mistake is that people confuse feeling with emotion, while emotions are a subset of feeling: you can feel emotions, and you can feel a huge number of other things."
+
+8. > «можно даже сказать, что это пирамидо некое … Вал, интересный, прям, вырисовывается, фрейморг … поэтому чувствование, как важное во всех в плане роста человека, развитие человека, это именно чувствование всех этих аспектов более тонких реальности.»
+   > — *[00:42:27–00:45:18] · call of 2026-09-03*
+
+   *(translation)* "… you could even say it is a kind of pyramid … Wow, an interesting framework is taking shape right now … so feeling, as what matters in human growth and development, is precisely the feeling of all these subtler aspects of reality."
+
+   *Note (AI): The pyramid is laid out on the chakras: evolutionary impulses (sex, hunger, thirst, danger) → emotions → solar plexus (impulses, motivation) → heart (subtle feeling) → throat (speaking one's truth) → third eye (seeing the invisible) → crown (unity with all that is).*
+
+9. > «какой голод он либо есть либо его нет … Эмоции тоже, как бы я либо зол, либо я не зол, но самое главное это чувственный план, это коннект с более тонкими вещами.»
+   > — *[00:48:00–00:49:01] · call of 2026-09-03*
+
+   *(translation)* "… hunger is either there or not … Emotions too: either I'm angry or I'm not. But the main thing is the feeling plane, the connection with subtler things."
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* Most people use one word for two things. Sasha separates them: emotion is one band inside a much wider field of feeling (body sensations, impulses, pain and pleasure, emotions, the room's atmosphere, the subtle plane). Hunger and emotions are coarse, on/off signals; the part that matters for growth is the subtle plane.
+
+### 🔥 Implications — AI draft
+
+- **1st order.** "I feel" stops meaning "I have an emotion". A person can feel a room, a body signal or something subtle with no emotion present.
+- **2nd order.** Training feeling becomes trainable by layer, from coarse to subtle, instead of one vague "be more in touch with your feelings".
+
+### Shape
+
+- **Shape:** **Nested** (a large circle *feeling* holding a small circle *emotions* plus other dots), with a **ladder** variant (the chakra pyramid, 2026-09-03).
+- **Infographic (one line):** Large circle 'feeling' with a small inner circle 'emotions', plus other dots: body itch, room vibe, tension between people, hunger, the subtle plane. (from O109 / O215)
+
+### Cross-references — Connects to
+
+- No written counterpart in the crosswalk (all six members classified *oral_only*).
+- Nearest written, via neighbouring oral clusters: **21. Heart Before Mind Before Gut (Trinity Correction)** (cluster *Feeling precedes knowing*, same_as); UO concept **Masculine and Feminine** (cluster *Two dials: awareness and sensing*); UO concepts **Toroidal Field** and **Essential Center** (cluster *The heart as portal*, which carries the heart rung of this ladder).
+- Oral neighbours: *Two dials: awareness and sensing*; *One dial: pain and pleasure*; *Training intuition*; candidate 160 below (*Feeling Doesn't Shout*).
+
+## Technology 157: Cleaning the Lens (весь процесс развития мышления — очищение линзы) (oral, Aug 16 – Aug 30, 2026)
+
+> *Oral candidate · Crosswalk cluster C056 · Mind as lens and interpreter · oral, Aug 16 – Aug 30, 2026 · 2 calls.*
+> *Name: Built from Sasha's sentence of 2026-08-16 01:10:24; "Cleaning the Lens" as a title is*
+
+### 🫀 Essence — in Sasha's words
+
+1. > «Суть в том, что у нас есть мозг, и у нас есть ум, который мыслит. … самое важное слово, которому бы это писало, это интерпретация реальности.»
+   > — *[01:07:38–01:07:45] · call of 2026-08-16*
+
+   *(translation)* "The point is that we have a brain, and we have a mind that thinks. … the most important word that describes it is interpretation of reality."
+
+2. > «все это, по сути, просто колебания элементарных частиц и какие-то там волны. … С точки зрения, они как-бы нейтральные. … Просто происходит что-то происходящее, мы есть происходящее. … А дальше формируется способность, как-то это вообще интерпретировать»
+   > — *[01:08:05–01:08:44] · call of 2026-08-16*
+
+   *(translation)* "… all of it is, in essence, just vibrations of elementary particles and some waves. From that point of view they are neutral. [As small children] something is simply happening, we are what is happening. Then the capacity forms to interpret it somehow."
+
+3. > «Соответственно, это как такая линза, которая все происходящая, приломляет и какую-то информацию с этого извлекает, да?»
+   > — *[01:09:35] · call of 2026-08-16*
+
+   *(translation)* "So it is like a lens that refracts everything that happens and extracts some information from it."
+
+4. > «весь процесс развития мышления, это просто очищения этой линзы, и у этого очищения есть хорошо описанные стадии. … самое главное, что мы через это видим мир, а второй – это то, что мы через это видим вообще все.»
+   > — *[01:10:24–01:10:36] · call of 2026-08-16*
+
+   *(translation)* "The whole process of the development of thinking is simply the cleaning of this lens, and this cleaning has well-described stages. … the main thing is that we see the world through it, and second, that we see absolutely everything through it."
+
+5. > «ума-то, приломляющая линза и она либо в каких-то аспектах, либо выпукла, либо вогнутая. … Тогда у нас появляется инструмент, как это у себя внутри отполировать, отбалансировать. … Это как инструмент калибровки или балансировки своей линзы своего мышления.»
+   > — *[01:14:30–01:18:00] · call of 2026-08-16*
+
+   *(translation)* "The mind is a refracting lens, and in some aspects it is either convex or concave. … Then we get a tool to polish it, to balance it inside ourselves. … It is a tool for calibrating or balancing the lens of one's thinking."
+
+   *Note (AI): Convex/concave = grasping (addiction) vs rejecting (allergy), per stage: food, sex/pleasure, power, belonging, money/achievement, impact, wholeness.*
+
+6. > «Ума это пространство, в котором подсвечиваются что-то. … мозг — это физическое биологическое воплощение, через которое он может существовать в человеке.»
+   > — *[01:16:26–01:16:35] · call of 2026-08-16*
+
+   *(translation)* "Mind is the space in which something is lit up. The brain is the physical, biological embodiment through which it can exist in a human being."
+
+   *Note (AI): Speaker check: an answer to a mind-vs-brain question; content reads as Sasha's, though the lines around it defer the question to someone else. Sasha to confirm.*
+
+7. > «ум и вообще вас в восприятии человеком реальности, оно очень устанаправленный фонарик. … Он видит только очень маленькую часть того, что есть.»
+   > — *[00:12:09–00:12:24] · call of 2026-08-30*
+
+   *(translation)* "The mind, and human perception of reality generally, is a very narrowly aimed flashlight. It sees only a very small part of what is."
+
+8. > «относительно истинно, это ум приломляет то, что он видит и создаёт какую-то картину мира … но это не абсолютно истинно, это всегда приломленная истинно»
+   > — *[00:13:00] · call of 2026-08-30*
+
+   *(translation)* "Relative truth is the mind refracting what it sees and creating some picture of the world … but it is not absolute truth; it is always refracted truth."
+
+9. > «он как бы устраивает, как-то картограф, он устраивает тебе картинку территории, а территория у нее как бы глубина, на порядке, порядке, порядке, глубже, чем то, что видит ум»
+   > — *[00:15:00] · call of 2026-08-30*
+
+   *(translation)* "It works like a cartographer, it builds you a picture of the territory, and the territory has a depth orders and orders of magnitude deeper than what the mind sees."
+
+   *Note (AI): Same passage: Fog of War / LiDAR scan as the image.*
+
+10. > «это предсказательная машина, да, он постоянно кито ожидания строит, то и должно быть там вот так, а на самом деле оно по факту есть только то, как оно есть.»
+   > — *[00:50:00] · call of 2026-08-30*
+
+   *(translation)* "It is a prediction machine: it is constantly building expectations that things should be like this, while in fact there is only what is, as it is."
+
+11. > «Он на импут работает, а не на аутпут. … То есть я все интерпретирую, придаю значение»
+   > — *[00:52:03–00:52:11] · call of 2026-08-30*
+
+   *(translation)* "It works on input, not on output. That is, I interpret everything, I give it meaning."
+
+   *Note (AI): Context: the mind as a computer running a program, not a machine writing code.*
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* The mind does not show reality; it interprets it. Sasha's image is a lens that refracts neutral events into meaning. Development of thinking is then not adding content but cleaning the lens, and the stages of that cleaning are already mapped. The lens also has a limit: it lights a narrow band, while the territory is far deeper.
+
+### 🔥 Implications — AI draft
+
+- **1st order.** Disagreements between people and between levels read as different lenses, not different facts.
+- **2nd order.** Each stage has its own distortion (grasping or rejecting), which turns the stage models into a calibration tool you can use on yourself.
+
+### Shape
+
+- **Shape:** **Sequence** (the same lens, from smudged to clear), with a **polarity** variant (mind vs territory; prediction vs what is).
+- **Infographic (one line):** Sequence of the same lens from smudged to clear, the world image behind it sharpening at each stage. (from O119)
+
+### Cross-references — Connects to
+
+- **21. Heart Before Mind Before Gut (Trinity Correction)**: *refines* (O118, "Mind = interpretation of reality", strong). The unit gives the mind's role (meaning-making) its mechanism.
+- Via the neighbouring cluster *Maturation of the mind-lens*: FW **Simple vs. Simplistic** (same_as), UO concepts **Integral Theory (Wilber)** and **Observer and Observed**.
+- Via *Seeing depth: subject becomes object*: **Technology 118: The Seer Invariant — Development and Seeing Are One Act** (same_as).
+- Oral neighbours: *Evolutionary address*; *Active thinking, passive thinking, feeling*; candidate 156 (feeling as perception beyond the mind).
+
+## Technology 158: It Descends into the Body (опускается в тело) (oral, Jul 23 – Sep 8, 2026)
+
+> *Oral candidate · Crosswalk cluster C037 · Integration: let clarity settle and descend into the body · oral, Jul 23 – Sep 8, 2026 · 4 calls.*
+> *Name: "Опускается в тело" and "интеграция" are Sasha's words (2026-07-23, 2026-09-03). The English title is*
+
+### 🫀 Essence — in Sasha's words
+
+1. > «потому что должна пройти интеграции … и там у них все это опустается, к телу, отсвету знания и появляется вырастает, как грипто, новая ясность.»
+   > — *[01:25:26] · call of 2026-07-23*
+
+   *(translation)* "… because integration has to happen … and there it all descends into the body, the knowledge settles, and a new clarity appears, grows like a mushroom."
+
+   *Note (AI): ASR: «как грипто» = как гриб (like a mushroom). Context: what happens in the days after a session.*
+
+2. > «может быть вообще отдохнуть и дать какую-то новую ясности подняться и станет в какой-то момент просто ясно.»
+   > — *[01:37:00] · call of 2026-07-23*
+
+   *(translation)* "… maybe just rest and let some new clarity rise, and at some point it will simply become clear."
+
+3. > «что карты – в голове, само концептуальное понимание, но не меняет жизнь, самом деле, жизнь меняется, когда мы эти карты испытываем на собственном опыте … если это не внедрить жизнь, то тоже результат как бы нулевой … Это обязательно нужно заземлить, чтобы получить результаты, чтобы жизнь менялась.»
+   > — *[01:53:00–01:54:09] · call of 2026-08-16*
+
+   *(translation)* "Maps are in the head, conceptual understanding as such; it doesn't actually change life. Life changes when we test these maps in our own experience … if it isn't brought into life, the result is again basically zero … It has to be grounded to get results, for life to change."
+
+   *Note (AI): Speaker check: the 01:53:24 line is labelled Gleb in the transcript, but it continues Sasha's sentence (map → experience → bringing into life). Included as Sasha's; Sasha to confirm or drop.*
+
+4. > «это такой типа шок для мозга … скорее всего это буду стаканиться, эта информация и я какой-то свои выводы там сделаю … сразу же не раскладывать по полочкам, не делать вывод в дате, там говорится, дать этому время»
+   > — *[00:09:00] · call of 2026-09-03*
+
+   *(translation)* "… it is a kind of shock for the brain … most likely this information will settle and I'll draw some conclusions of my own … don't sort it onto shelves straight away, don't draw conclusions on the spot; as they say, give it time."
+
+   *Note (AI): ASR: «буду стаканиться» = будет устаканиваться (will settle).*
+
+5. > «настоящая понимания, это прошу-то и опыт. … Полное понимание, упускается в тело.»
+   > — *[00:35:38–00:36:01] · call of 2026-09-03*
+
+   *(translation)* "Real understanding is lived experience. Full understanding descends into the body."
+
+   *Note (AI): ASR: «прошу-то и опыт» is garbled; most likely «прожитый опыт» (lived experience). Sasha to confirm.*
+
+6. > «Это означает, что это сначала концептуальность, что это что-то я увидел, чего я не видел. … После этого я начинаю чувствовать, я начинаю с этим входить в контакт, чувственному уровню, чувственную плане. … настолько начать украиняться, во мне»
+   > — *[00:36:39–00:36:52] · call of 2026-09-03*
+
+   *(translation)* "It means that first it is conceptual: I saw something I hadn't seen. After that I start to feel; I start to come into contact with it on the feeling level, the feeling plane. [Then it] begins to take root in me so much …"
+
+   *Note (AI): ASR: «украиняться» = укореняться (take root).*
+
+7. > «и прикидываться, что я понял, что значит опускается в тело, но это как бы контрпродуктивно»
+   > — *[00:37:00] · call of 2026-09-03*
+
+   *(translation)* "… and to pretend that I understood what "descends into the body" means is counterproductive."
+
+8. > «это делиться после практики ощущениями, очень полезно, потому что это часть интеграции»
+   > — *[01:19:32] · call of 2026-09-03*
+
+   *(translation)* "Sharing sensations after a practice is very useful, because it is part of integration."
+
+9. > «мы, как бы, выстраиваем такую концептуальную структуру и она, в какой-то момент созреет и, как бы, озариться светом, заработает»
+   > — *[00:57:18] · call of 2026-09-08*
+
+   *(translation)* "We build a conceptual structure, and at some point it ripens, lights up, and starts working."
+
+   *Note (AI): Same passage: screwing in a light bulb that then lights by itself.*
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* Understanding has three stages in Sasha's account: concept (I saw what I hadn't seen), feeling contact, then rooting in the body and in life. Each stage needs time; drawing conclusions early or pretending to understand blocks the descent. New clarity is then not produced, it rises.
+
+### 🔥 Implications — AI draft
+
+- **1st order.** After a session or insight, the right move is often a pause, not more analysis.
+- **2nd order.** A teaching or offer that stops at the concept leaves the result near zero; integration (sharing, practice, time) is part of the work, not an extra.
+
+### Shape
+
+- **Shape:** **Sequence**: concept → feeling contact → rooting (in the body, in life).
+- **Infographic (one line):** Vertical diagram: a knowledge cloud at head level sinking down into the body, a mushroom of clarity sprouting from the ground. (from O60)
+
+### Cross-references — Connects to
+
+- FW **The Trinity Stack: Mind, Heart, Gut** (Technology 97): *applies* (O87, map → experience → embodiment). AI inference: the three stages map onto mind → heart → gut.
+- **148. Holding Paradox as Power (The Epistemological Inversion)**: *applies* (O198, let new information settle before concluding; listed in the crosswalk under its former number 10).
+- Oral neighbours: *Practice: go into what surfaces*; *The elevator: practice and sovereignty*; candidate 156 (the feeling plane is the middle stage).
+
+## Technology 159: One Whole Package (один целый такой пакет) (oral, Aug 16 – Sep 3, 2026)
+
+> *Oral candidate · Crosswalk cluster C066 · Emotions as a frozen multi-dimensional package · oral, Aug 16 – Sep 3, 2026 · 2 calls.*
+> *Name: "Один целый такой пакет" and "замораживается на всех этих уровнях" are Sasha's phrases (2026-08-16). The English title is*
+
+### 🫀 Essence — in Sasha's words
+
+1. > «Много слов других существует для этого вектора. … Работа с травмой, это оно. … Работа стенью, это оно. … Блоки, энергетические блоки.»
+   > — *[01:33:00–01:33:14] · call of 2026-08-16*
+
+   *(translation)* "Many other words exist for this vector. Trauma work: that's it. Shadow work: that's it. … Blocks, energy blocks."
+
+   *Note (AI): ASR: «стенью» = с тенью (shadow).*
+
+2. > «Все энергия, да? … Если не интерпретировать с мозгом. … просто мы как бы в океане энергии … вот эмоции, это элемент воды»
+   > — *[01:33:52–01:34:00] · call of 2026-08-16*
+
+   *(translation)* "Everything is energy, right? If you don't interpret it with the brain … we are simply in an ocean of energy … emotions are the element of water."
+
+3. > «и так как наша психика в тот момент не готова, она говорит типа, нет, это я чувствовать не хочу … он себе выкручивает ручку чувствования, … вниз, насколько-то запрещая себя чувствовать и определённую эмоцию»
+   > — *[01:34:00–01:35:00] · call of 2026-08-16*
+
+   *(translation)* "… and since our psyche isn't ready at that moment, it says: no, I don't want to feel this … the person turns the feeling dial down, to some extent forbidding themselves to feel a particular emotion."
+
+   *Note (AI): Context: an event, mostly in childhood.*
+
+4. > «И, соответственно, он сам, человек сам себе создает некий такой энергетический барьер. … И он себе блокирует жизненную энергию на всевозможных уровнях, на всех измерениях своего существа.»
+   > — *[01:35:12–01:35:20] · call of 2026-08-16*
+
+   *(translation)* "And so the person creates a kind of energy barrier for themselves. And blocks their life energy on all possible levels, in all dimensions of their being."
+
+5. > «оно как-то замораживается на всех этих уровнях. … То есть и физическое мы как-бы закрылись, забыли раскрыться. … Дальше эмоция, которую мы не захотели почувствовать, она как-бы запряталась либо внутренний орган, либо в мышцу, либо в фасцию в основном. … Дальше мы для этого себе какую-то историю создали, ментально, как-то это объяснили. … Следующий, поднимаемся вверх, отментального, дальше аркетип, то есть это наша душа.»
+   > — *[01:36:07–01:37:54] · call of 2026-08-16*
+
+   *(translation)* "… it somehow freezes on all these levels. Physically we closed and forgot to open again. … Then the emotion we didn't want to feel hides in an internal organ, or a muscle, or mostly the fascia. … Then we created some story for it, mentally, explained it somehow. … Next, going up from the mental, there is the archetype, that is, our soul."
+
+   *Note (AI): Levels named in order: physical body → hormonal background → organ/muscle/fascia (trigger point) → mental story → archetype (soul).*
+
+6. > «в общем, один целый такой пакет получается. … Меша измеренческий.»
+   > — *[01:38:08–01:38:14] · call of 2026-08-16*
+
+   *(translation)* "… in short, one whole package comes out. Multi-dimensional."
+
+   *Note (AI): ASR: «Меша измеренческий» most likely = многомерный / multi-dimensional. Sasha to confirm.*
+
+7. > «чем больше измерений мы одновременно задействуем, тем проще убрать эти зажимы.»
+   > — *[01:38:16] · call of 2026-08-16*
+
+   *(translation)* "The more dimensions we engage at once, the easier it is to release these clamps."
+
+8. > «короче мы ее блокируем эту эмоцию, она где-то в теле, соответственно, там в виде там какого-то небольшого, какого-то напряжения откладывает. … Это напряжение, на протяжении времени, врастает в триггерную точку. … Тригерная точка создает кинетическую цепь, которая чуть-чуть там как-то зажата или передвинут.»
+   > — *[02:16:28–02:17:07] · call of 2026-09-03*
+
+   *(translation)* "In short, we block this emotion, and it is deposited somewhere in the body as a small tension. Over time this tension grows into a trigger point. The trigger point creates a kinetic chain that is slightly clamped or shifted."
+
+9. > «Короче, вся система, едина, все эти уровня, они нигде-то там отдельно существуют. … Это все единая энергетическая система.»
+   > — *[02:17:21–02:17:27] · call of 2026-09-03*
+
+   *(translation)* "In short, the whole system is one; these levels don't exist anywhere separately. It is all one energy system."
+
+10. > «Либо мысль, либо эмоция возникает, чувствуется, либо блок, чувствуешь где-то в теле, что-то мешает»
+   > — *[02:19:29] · call of 2026-09-03*
+
+   *(translation)* "Either a thought or an emotion arises and is felt, or a block: you feel something in the body getting in the way."
+
+   *Note (AI): How the package shows up in the moment (bridge to *Practice: go into what surfaces*).*
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* What trauma work, shadow work, triggers and energy blocks each name is, for Sasha, one vector. A feeling refused at a moment the psyche wasn't ready freezes on every level at once: body, hormones, muscle and fascia, a mental story, the soul's archetypal path. It is one package, so release is easier the more of its dimensions are engaged together.
+
+### 🔥 Implications — AI draft
+
+- **1st order.** Single-layer methods (talk only, body only) work on one face of the package; combining layers is the lever.
+- **2nd order.** Any one face (a thought, an emotion, a spot of tension, a posture) is an entry point to the whole package.
+
+### Shape
+
+- **Shape:** **Nested** (one package, five dimensions), with a **sequence** variant (the repression cascade) and an **equation** (release ease rises with dimensions engaged).
+- **Infographic (one line):** Comic strip: child + painful event → hand turning a 'feeling' dial down → a wall appears → life-energy flow blocked; beside it a simple rising line: release ease ∝ dimensions engaged. (from O131 + O133)
+
+### Cross-references — Connects to
+
+- No written counterpart in the crosswalk (all six members *oral_only*).
+- Oral neighbours, all also *oral_only*: *One dial: pain and pleasure* (the same dial muted for the unpleasant mutes the pleasant, 2026-08-16 01:38:40, right after this passage); *Emotional contracts and autonomy* (continues the same passage); *Practice: go into what surfaces*; candidate 156.
+
+## Technology 160: Feeling Doesn't Shout (чувствование не кричит) (oral, Aug 30 – Sep 3, 2026)
+
+> *Oral candidate · Crosswalk cluster C081 · Mental noise vs the quiet of feeling · oral, Aug 30 – Sep 3, 2026 · 2 calls.*
+> *Name: Title is Sasha's own sentence (2026-09-03 01:19:05), rendered in English. Name confirmed by Sasha 2026-10-13.*
+
+### 🫀 Essence — in Sasha's words
+
+1. > «Почему в медитации бегает в принципе внимание? … потому что ум воспален. … Мы слишком много думаем … Постоянно такая воспаленная активность»
+   > — *[01:02:46–01:03:13] · call of 2026-08-30*
+
+   *(translation)* "Why does attention run around in meditation at all? … because the mind is inflamed. We think too much … a constant inflamed activity."
+
+2. > «Мединация, такой спокойная озера, гладь. … И поэтому становится просто лучше видно.»
+   > — *[01:03:30–01:03:36] · call of 2026-08-30*
+
+   *(translation)* "Meditation is the calm surface of a lake. And so it simply becomes easier to see."
+
+   *Note (AI): ASR: «Мединация» = медитация.*
+
+3. > «С одной стороны выясняется, что они сами по себе вызникают, что, типа, как бы, айджинси в этом нет.»
+   > — *[01:04:00] · call of 2026-08-30*
+
+   *(translation)* "On the one hand it turns out that [thoughts] arise by themselves, that there is no agency in it."
+
+4. > «как только начинаем что-то рассуждать, то чувствование, то как бы у нас нет ресурсов, внутреннего, еще и параллельно чувствовать … внимания, у него пропустная способность … как только мы начинаем размышлять, то мы уже практически нету пропускной способности именно чувствовать.»
+   > — *[00:41:00–00:42:00] · call of 2026-09-03*
+
+   *(translation)* "As soon as we start reasoning, we have no inner resources left to also feel in parallel … attention has a bandwidth … as soon as we start thinking it over, we have practically no bandwidth left to actually feel."
+
+5. > «мы очень часто говорим вещи, которые на самом деле не идут. … из не через сердце идут, а не идут из просто из какого-то там ментального мусора очень часто … И оно просто вот выходит, оно как будто звенит, вибрирует, резонирует с правдой»
+   > — *[00:45:33–00:46:37] · call of 2026-09-03*
+
+   *(translation)* "Very often we say things that don't come through the heart but simply from some mental garbage … [When it comes through the heart] it just comes out, as if it rings, vibrates, resonates with truth."
+
+6. > «потому что будет больше успокаиваться ум, он не будет фирверки таким огромного количества рендом мысли запускать. … объедженная ложь, которая там следует и знает, что у нее с хозяином один как бы путь»
+   > — *[01:05:00–01:05:10] · call of 2026-09-03*
+
+   *(translation)* "… because the mind will calm down more; it won't launch fireworks of a huge number of random thoughts. … [like] a broken-in horse that follows along and knows that it and its rider share one path."
+
+   *Note (AI): ASR: «фирверки» = фейерверки; «объедженная ложь» = объезженная лошадь (broken-in horse).*
+
+7. > «Да, чувствование оно не кричит, как у нас только громко-какума, но не борется за место под солнцем, оно просто чувствует.»
+   > — *[01:19:05] · call of 2026-09-03*
+
+   *(translation)* "Yes, feeling doesn't shout, unlike the mind, which is loud; it doesn't fight for a place in the sun, it just feels."
+
+   *Note (AI): ASR: «как у нас только громко-какума» is garbled; read as «в отличие от ума, который громкий». Sasha to confirm the wording.*
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* Thinking and feeling share one channel of attention. When the mind is inflamed (random thoughts, no agency in them), there is no bandwidth left to feel, and speech comes from mental garbage rather than the heart. Feeling is quiet and does not compete, so it is only heard once the mind settles; a trained mind is a broken-in horse, not an absent one.
+
+### 🔥 Implications — AI draft
+
+- **1st order.** Trying to understand a feeling by reasoning about it uses up the bandwidth the feeling needs.
+- **2nd order.** Speech that comes through the heart is recognisable: it rings true. That gives a test for one's own words.
+
+### Shape
+
+- **Shape:** **Polarity** (loud mind / quiet feeling), with an **equation** variant (one attention bandwidth: thinking crowds out feeling).
+- **Infographic (one line):** Loud megaphone head vs a quiet listening heart; beneath, one pipe of attention where a thick 'thinking' stream leaves a trickle for 'feeling'. (from O235 + O214)
+
+### Cross-references — Connects to
+
+- No written counterpart in the crosswalk (all five members *oral_only*).
+- Nearest written, via neighbouring cluster *The elevator: practice and sovereignty* (the horse line sits inside the elevator passage): **Technology 102: The Guru Loop and the Skin-in-the-Game Antidote** (FW *The Guru Loop (three mechanisms)*, applies).
+- Oral neighbours: *Active thinking, passive thinking, feeling*; *Two dials: awareness and sensing*; candidates 156 (feeling) and 158 (integration).
