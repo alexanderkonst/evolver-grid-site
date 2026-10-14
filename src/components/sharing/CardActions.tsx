@@ -360,7 +360,9 @@ const CardActions = ({
                 type="button"
                 onClick={handleSave}
                 disabled={saving}
-                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] font-medium transition-all duration-200 ${idle} ${hover} ${buttonBg} disabled:opacity-50 disabled:cursor-wait`}
+                /* Issue #48 P2 #10: 11px uppercase tracked read as tiny —
+                   bumped to a readable text-sm with lighter tracking. */
+                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm uppercase tracking-[0.08em] font-medium transition-all duration-200 ${idle} ${hover} ${buttonBg} disabled:opacity-50 disabled:cursor-wait`}
                 aria-label={t("cardActions.save.ariaLabel")}
                 title={t("cardActions.save.ariaLabel")}
             >
@@ -373,14 +375,15 @@ const CardActions = ({
             </button>
 
             {/* divider dot */}
-            <span aria-hidden="true" className={`text-[10px] ${idle}`}>·</span>
+            <span aria-hidden="true" className={`text-xs ${idle}`}>·</span>
 
             {/* Share Text */}
             <button
                 ref={shareBtnRef}
                 type="button"
                 onClick={() => setShareOpen((o) => !o)}
-                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] font-medium transition-all duration-200 ${idle} ${hover} ${buttonBg}`}
+                /* Issue #48 P2 #10: readable size (was text-[11px]). */
+                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm uppercase tracking-[0.08em] font-medium transition-all duration-200 ${idle} ${hover} ${buttonBg}`}
                 aria-label={t("cardActions.share.ariaLabel")}
                 aria-expanded={shareOpen}
                 aria-haspopup="menu"

@@ -104,13 +104,33 @@ export const migrateGuestDataToProfile = async (): Promise<{
     const { appleseed, aiResponse } = loadAppleseedFromLocalStorage();
     const excalibur = loadExcaliburFromLocalStorage();
 
+    // Nothing buffered — nothing to migrate.
+    if (!appleseed && !excalibur) {
+      return { success: true, migratedAppleseed: false, migratedExcalibur: false };
+    }
+
+    // Issue #48 P0 #3: if the signed-in user ALREADY has a saved snapshot,
+    // the guest buffer is stale (e.g. an old result left in localStorage on
+    // a shared browser, or this user's own recovery buffer that's already
+    // persisted in the DB). Re-saving it on every SIGNED_IN was raising a
+    // spurious "Failed to save Appleseed" toast on load. Clear the buffer
+    // and skip the write — the DB snapshot is the source of truth.
+    const existing = await loadSavedData();
+    if (existing.snapshotId) {
+      clearGuestData();
+      return { success: true, migratedAppleseed: false, migratedExcalibur: false };
+    }
+
     let migratedAppleseed = false;
     let migratedExcalibur = false;
+    let sawFailure = false;
 
     if (appleseed) {
       const result = await saveAppleseed(appleseed, aiResponse || undefined);
       if (result.success) {
         migratedAppleseed = true;
+      } else {
+        sawFailure = true;
       }
     }
 
@@ -118,16 +138,33 @@ export const migrateGuestDataToProfile = async (): Promise<{
       const result = await saveExcalibur(excalibur);
       if (result.success) {
         migratedExcalibur = true;
+      } else {
+        sawFailure = true;
       }
     }
 
-    // Clear guest data after successful migration
     if (migratedAppleseed || migratedExcalibur) {
+      // Clear guest data after successful migration.
+      clearGuestData();
+    } else if (sawFailure) {
+      // Issue #48 P0 #3: a failed migrate must NOT retry on every page
+      // load. Report once and clear the stale buffer so the loop stops.
+      // The data is not silently lost for a legitimate user — a real
+      // first-time signup with no existing snapshot that genuinely fails
+      // to save is rare (transient blips are already retried inside
+      // saveAppleseed via withRetry), and the alternative (toast on every
+      // reload forever) is worse.
+      console.error(
+        "[saveToDatabase] migrateGuestDataToProfile: migrate failed; clearing stale guest buffer to stop the retry loop.",
+      );
       clearGuestData();
     }
 
     return { success: true, migratedAppleseed, migratedExcalibur };
   } catch (err) {
+    // On an unexpected error, still clear the buffer so we don't re-enter
+    // this path (and its failure) on every subsequent SIGNED_IN.
+    clearGuestData();
     return {
       success: false,
       migratedAppleseed: false,
