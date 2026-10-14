@@ -733,7 +733,7 @@
     "saving": "Guardando…",
     "saveMyMission": "Guardar mi misión",
     "savedEyebrow": "Mi misión",
-    "edit": "Editar",
+    "edit": "Editar misión",
     "seeOnProfile": "Ver en el perfil",
     "startOverLink": "Descubrir una nueva misión desde cero",
     "toastNoSummaryTitle": "No se encontró un resumen en una sola frase",
@@ -4544,7 +4544,12 @@
     "pasteSubtitle": "La respuesta completa: extraeremos tu patrón de ella",
     "pastePlaceholder": "Pega aquí la respuesta de tu IA...",
     "ctaRevealing": "Revelando...",
-    "ctaRevealTopTalent": "Revelar mi talento principal"
+    "ctaRevealTopTalent": "Revelar mi talento principal",
+    "retakeLink": "Repetir la Zona de Genio",
+    "retakeDialogTitle": "¿Empezar de nuevo?",
+    "retakeDialogDesc": "Esto reemplaza tu talento principal actual con una nueva revelación. Tu resultado guardado se mantiene hasta que termines y guardes el nuevo.",
+    "retakeDialogKeep": "Mantener mi resultado actual",
+    "retakeDialogConfirm": "Sí, empezar de nuevo"
   },
   "ventureDashboard": {
     "header": {

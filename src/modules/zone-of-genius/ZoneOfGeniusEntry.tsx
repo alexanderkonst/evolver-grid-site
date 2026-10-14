@@ -37,6 +37,17 @@ import AppleseedDisplay from "./AppleseedDisplay";
 import AppleseedRitualLoading from "./AppleseedRitualLoading";
 import ExcaliburDisplay from "./ExcaliburDisplay";
 import TopTalentAuthGate from "./TopTalentAuthGate";
+import { clearGuestBuffers, freshRetakeState } from "./retake";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import SignupModal from "@/components/auth/SignupModal";
 import { useToast } from "@/hooks/use-toast";
 import { toast as systemToast } from "sonner";
@@ -136,6 +147,8 @@ const ZoneOfGeniusEntry = () => {
     const [excalibur, setExcalibur] = useState<ExcaliburData | null>(null);
     const hasSavedAppleseed = useRef(false);
     const stepContentRef = useRef<HTMLDivElement>(null);
+    // Issue #48 P0 #1: overwrite-confirm for an explicit ZoG retake.
+    const [retakeDialogOpen, setRetakeDialogOpen] = useState(false);
 
     // Anonymous-claim banner state: when a guest comes from the landing-page
     // "Claim your gift" CTA, Auth.tsx stashes their email in sessionStorage
@@ -249,6 +262,11 @@ const ZoneOfGeniusEntry = () => {
 
                         if (snapshot?.appleseed_data) {
                             setAppleseed(snapshot.appleseed_data as unknown as AppleseedData);
+                            // Issue #48 P0 #3: this appleseed was LOADED from the
+                            // DB, not freshly generated — mark it already-saved so
+                            // the auto-save effect doesn't re-write it on mount and
+                            // raise a spurious "Failed to save Appleseed" toast.
+                            hasSavedAppleseed.current = true;
                             setStep("appleseed-result");
                             return; // entry mode handled, skip the rest
                         }
@@ -277,6 +295,8 @@ const ZoneOfGeniusEntry = () => {
                     const { appleseed: dbAppleseed, excalibur: dbExcalibur } = await loadSavedData();
                     if (dbAppleseed) {
                         setAppleseed(dbAppleseed);
+                        // Issue #48 P0 #3: loaded from DB → already saved.
+                        hasSavedAppleseed.current = true;
                         if (dbExcalibur) {
                             setExcalibur(dbExcalibur);
                             setStep("excalibur-result");
@@ -324,6 +344,8 @@ const ZoneOfGeniusEntry = () => {
             // before identity capture.
             if (user && savedAppleseed && hasReturnParam) {
                 setAppleseed(savedAppleseed);
+                // Issue #48 P0 #3: restored from storage/DB → already saved.
+                hasSavedAppleseed.current = true;
                 if (savedExcalibur) {
                     setExcalibur(savedExcalibur);
                     setStep("excalibur-result");
@@ -443,6 +465,28 @@ const ZoneOfGeniusEntry = () => {
         hasPostedAnonymous.current = false;
         setAnonymousSave({ status: "idle" });
         navigate("/auth?claim=true&next=/zone-of-genius");
+    };
+
+    // Issue #48 P0 #1: explicit "Retake Zone of Genius". Mirrors Mission
+    // Discovery's overwrite-confirm ("Keep my current / Yes, start fresh").
+    // On confirm we clear the guest recovery buffers and reset to the
+    // Faster/Guided choice fresh. The saved snapshot in the DB is left
+    // intact until the user finishes and saves the new reveal (the
+    // auto-save effect overwrites it only once a fresh appleseed exists).
+    const handleRetakeConfirm = () => {
+        setRetakeDialogOpen(false);
+        if (typeof window !== "undefined") {
+            clearGuestBuffers(window.localStorage);
+        }
+        const fresh = freshRetakeState();
+        hasSavedAppleseed.current = fresh.hasSavedAppleseed;
+        setAppleseed(fresh.appleseed);
+        setExcalibur(fresh.excalibur);
+        setAiResponse(fresh.aiResponse);
+        setError(fresh.error);
+        setIsSaved(fresh.isSaved);
+        setGuestRevealUnlocked(fresh.guestRevealUnlocked);
+        setStep(fresh.step);
     };
 
     const handleCopyPrompt = async () => {
@@ -610,6 +654,44 @@ const ZoneOfGeniusEntry = () => {
         }
     };
 
+    // Issue #48 P0 #1: shared "Retake Zone of Genius" affordance + its
+    // overwrite-confirm dialog, rendered on the result screens. Kept as a
+    // quiet tertiary link so the result card stays the single primary
+    // focus of the screen.
+    const retakeControl = (
+        <>
+            <div className="w-full flex justify-center pt-2 pb-6">
+                <button
+                    type="button"
+                    onClick={() => setRetakeDialogOpen(true)}
+                    className="text-[13px] italic underline underline-offset-4 transition-opacity duration-200 hover:opacity-80"
+                    style={{
+                        fontFamily: "'Source Serif 4', Georgia, serif",
+                        color: "var(--skin-text-muted, rgba(26,30,58,0.6))",
+                    }}
+                >
+                    {t("zogEntry.retakeLink")}
+                </button>
+            </div>
+            <AlertDialog open={retakeDialogOpen} onOpenChange={setRetakeDialogOpen}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>{t("zogEntry.retakeDialogTitle")}</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            {t("zogEntry.retakeDialogDesc")}
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel>{t("zogEntry.retakeDialogKeep")}</AlertDialogCancel>
+                        <AlertDialogAction onClick={handleRetakeConfirm}>
+                            {t("zogEntry.retakeDialogConfirm")}
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
+        </>
+    );
+
     // Step: Generating Appleseed (Ritual Loading)
     if (step === "generating-appleseed") {
         return (
@@ -685,6 +767,7 @@ const ZoneOfGeniusEntry = () => {
                     build-path users — AppleseedDisplay's existing CTAs are
                     the only thing they see. */}
                 <MatchFlowCta step="top-talent" />
+                {retakeControl}
                     </>
                 )}
             </GameShellV2>
@@ -755,6 +838,7 @@ const ZoneOfGeniusEntry = () => {
                     onLaunchProductBuilder={() => navigate("/product-builder")}
                     showProductBuilderButton={true}
                 />
+                {retakeControl}
             </GameShellV2>
         );
     }

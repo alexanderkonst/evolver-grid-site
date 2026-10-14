@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { Sparkles, ArrowRight, RotateCcw } from "lucide-react";
 import type { ZogSnapshotLite } from "@/modules/profile-space/types";
+import { ZOG_RETAKE_PATH } from "@/modules/zone-of-genius/retake";
 import { cardShell, ceremonialPill, ceremonialPillPrimary, cormorantTitle, labelMuted, sourceSerifBody } from "./styles";
 
 interface TopTalentCardProps {
@@ -60,7 +61,11 @@ const TopTalentCard = ({ zog }: TopTalentCardProps) => {
                             <ArrowRight className="w-3 h-3" />
                         </button>
                         <button
-                            onClick={() => navigate("/zone-of-genius/assessment")}
+                            // Issue #48 #2: the ZoG retake now points at the
+                            // canonical retake entry (clears guest buffers +
+                            // reopens the Faster/Guided choice fresh) instead
+                            // of jumping straight into the Guided top-10 select.
+                            onClick={() => navigate(ZOG_RETAKE_PATH)}
                             className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 transition-all duration-200 hover:translate-y-[-0.5px]"
                             style={ceremonialPill}
                         >

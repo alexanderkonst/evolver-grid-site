@@ -7,6 +7,7 @@ import GameShellV2 from "@/components/game/GameShellV2";
 import { EditorialCta } from "@/components/ui/editorial-cta";
 import { Ornament } from "@/lib/landingDesign";
 import { supabase } from "@/integrations/supabase/client";
+import { resolveMissionSavedDate } from "@/modules/mission-discovery/missionSynthesis";
 
 /**
  * ProfileMissionSection — ME → Mission (/game/me/mission).
@@ -41,7 +42,16 @@ const ProfileMissionSection = () => {
     const navigate = useNavigate();
     const [missionStatement, setMissionStatement] = useState<string | null>(null);
     const [missionDiscoveredAt, setMissionDiscoveredAt] = useState<string | null>(null);
+    // Issue #48 P1 #6: `updated_at` is bumped on every mission save, so it
+    // reflects the latest save (unlike first-write-wins mission_discovered_at).
+    const [missionUpdatedAt, setMissionUpdatedAt] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+
+    // Prefer the last-saved timestamp; fall back to the discovery date.
+    const missionSavedAt = resolveMissionSavedDate({
+        updatedAt: missionUpdatedAt,
+        discoveredAt: missionDiscoveredAt,
+    });
 
     useEffect(() => {
         let cancelled = false;
@@ -54,12 +64,13 @@ const ProfileMissionSection = () => {
                 }
                 const { data } = await (supabase as any)
                     .from("game_profiles")
-                    .select("mission_statement, mission_discovered_at")
+                    .select("mission_statement, mission_discovered_at, updated_at")
                     .eq("user_id", userRes.user.id)
                     .maybeSingle();
                 if (cancelled) return;
                 setMissionStatement(data?.mission_statement ?? null);
                 setMissionDiscoveredAt(data?.mission_discovered_at ?? null);
+                setMissionUpdatedAt(data?.updated_at ?? null);
             } catch (err) {
                 // Silent — empty state is the safe default. Console-log
                 // for ops visibility; toast would be noise on a passive
@@ -90,7 +101,7 @@ const ProfileMissionSection = () => {
                             textShadow: HALO_DEEP,
                         }}
                     >{t("profileMission.heading")}</h1>
-                    {missionDiscoveredAt && (
+                    {missionSavedAt && (
                         <p
                             className="italic"
                             style={{
@@ -100,7 +111,7 @@ const ProfileMissionSection = () => {
                             }}
                         >
                             {t("profileMission.savedOn", {
-                                date: formatDate(missionDiscoveredAt, {
+                                date: formatDate(missionSavedAt, {
                                     month: "long",
                                     day: "numeric",
                                     year: "numeric",

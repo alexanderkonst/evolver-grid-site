@@ -70,6 +70,7 @@ import { useEntryPath } from "@/contexts/EntryPathContext";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { withRetry } from "@/lib/withRetry";
 import { useToast } from "@/hooks/use-toast";
+import { resolveMissionSentence } from "./missionSynthesis";
 
 // ─── Editorial-register tokens (per docs/03-playbooks/ui_playbook.md) ──
 // Mirror ZoneOfGeniusOverview / QoL Results. Dark ink on light glass,
@@ -89,87 +90,12 @@ const INK_MUTED = "var(--skin-text-muted, rgba(11,42,90,0.93))";
 const HALO_SOFT =
     "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))";
 
-// ─── One-sentence-synthesis extractor ──────────────────────────────────
+// ─── One-sentence-synthesis extraction ─────────────────────────────────
 //
-// The prompt mandates the AI ends its response with a single line:
-//   1 sentence synthesis: <sentence>
-//
-// Real-world responses include emphasis variants like:
-//   **1 sentence synthesis:** <sentence>
-//   One-sentence synthesis: <sentence>
-//   1-sentence synthesis: <sentence>
-//   > 1 sentence synthesis: <sentence>   (markdown blockquote)
-//
-// The regex is intentionally tolerant.
-//
-// We use the GLOBAL flag and take the LAST match because the prompt
-// itself now embeds Sasha's example (which contains the marker), and
-// the AI may echo that example's marker line earlier in its response
-// before producing its own. The LAST occurrence is always the AI's
-// final synthesis for the user.
-//
-// If extraction fails we leave the editable textarea empty + toast
-// asks the user to type their one sentence. Never blocks the save.
-
-const SYNTHESIS_REGEX =
-    /(?:\*{0,2})\s*(?:1|one)[\s\-–]?sentence\s+synthesis\s*[:\-—]\s*(?:\*{0,2})\s*(.+?)\s*(?:\*{0,2})\s*$/gim;
-
-const stripMarkdown = (s: string): string =>
-    s.trim().replace(/^[\s>*]+|[\s>*]+$/g, "");
-
-// Day 80 Wave 2.16 (Sasha 2026-05-22): the prompt now asks for a JSON
-// object with `mission_analysis` + `mission_one_sentence` fields,
-// matching the shape of the ZoneOfGenius and AssetMapping prompts.
-// Extraction is JSON-first; if parsing fails (user pasted markdown,
-// AI ignored the JSON instruction, or it's an old-style response
-// with the "1 sentence synthesis:" marker), the legacy regex picks
-// up as fallback. We pull from the LAST JSON object in the paste —
-// the AI may echo the example earlier in its response before
-// emitting its own.
-const extractJsonOneSentence = (raw: string): string | null => {
-    // Greedy match captures the final {...} block in the paste.
-    // Multiline `s` flag so \n inside the JSON is fine.
-    const jsonMatches = raw.match(/\{[\s\S]*\}/g);
-    if (!jsonMatches || jsonMatches.length === 0) return null;
-    // Try each candidate from last to first — the AI's actual output is
-    // typically the last well-formed JSON block.
-    for (let i = jsonMatches.length - 1; i >= 0; i--) {
-        try {
-            const parsed = JSON.parse(jsonMatches[i]);
-            const sentence =
-                typeof parsed?.mission_one_sentence === "string"
-                    ? parsed.mission_one_sentence.trim()
-                    : null;
-            if (sentence) return sentence;
-        } catch {
-            // not valid JSON — keep trying
-        }
-    }
-    return null;
-};
-
-const extractOneSentence = (raw: string): string | null => {
-    if (!raw) return null;
-    const trimmed = raw.trim();
-
-    // 1) JSON-first (new prompt shape).
-    const fromJson = extractJsonOneSentence(trimmed);
-    if (fromJson) return stripMarkdown(fromJson);
-
-    // 2) Legacy fallback — the "1 sentence synthesis:" marker convention
-    // from the pre-Wave-2.16 prompt. Take the LAST match (the AI's
-    // actual final synthesis, not an echo of the prompt example).
-    SYNTHESIS_REGEX.lastIndex = 0;
-    const matches: string[] = [];
-    let m: RegExpExecArray | null;
-    while ((m = SYNTHESIS_REGEX.exec(trimmed)) !== null) {
-        if (m[1]) matches.push(m[1]);
-    }
-    if (matches.length > 0) {
-        return stripMarkdown(matches[matches.length - 1]);
-    }
-    return null;
-};
+// The parsing rules (JSON-first → legacy "1 sentence synthesis:" marker →
+// Issue #48 bare-single-sentence fallback) live in `missionSynthesis.ts`
+// so they're unit-testable without rendering this component. See that
+// module for the rationale on each layer.
 
 type State = "prompt" | "confirm" | "saved";
 
@@ -287,15 +213,20 @@ const MissionDiscoveryLanding = () => {
     };
 
     const handleExtract = () => {
-        const extracted = extractOneSentence(aiResponse);
-        if (extracted) {
-            setSentence(extracted);
+        // Issue #48 P1 #5: resolveMissionSentence also accepts a bare
+        // single sentence (no JSON, no "1 sentence synthesis:" label) as
+        // the mission directly, so pasting just the sentence no longer
+        // dead-ends on the "no summary" toast.
+        const resolved = resolveMissionSentence(aiResponse);
+        if (resolved) {
+            setSentence(resolved);
         } else {
-            // No marker found. Empty sentence; ask the user to type the
-            // one sentence they want to save. We deliberately do NOT
-            // pre-fill with the full paste — that would dump a long
-            // multi-paragraph essay into a textarea sized for one
-            // sentence and force the user to delete most of it.
+            // Still nothing usable (e.g. a long multi-paragraph essay with
+            // no marker). Empty sentence; ask the user to type the one
+            // sentence they want to save. We deliberately do NOT pre-fill
+            // with the full paste — that would dump the essay into a
+            // textarea sized for one sentence and force the user to delete
+            // most of it.
             setSentence("");
             toast({
                 title: t("missionLanding.toastNoSummaryTitle"),

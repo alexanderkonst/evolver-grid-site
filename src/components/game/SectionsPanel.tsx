@@ -837,9 +837,14 @@ const buildJourneySections = (
     return [
         quizStep0Item,
         {
+            // Issue #48 P1 #4: route to the Zone-of-Genius entry, not "/"
+            // (the marketing homepage). A signed-in user clicking "Start by
+            // finding your top talent" should land on the reveal flow — the
+            // entry shows their saved result if they have one, or the
+            // Faster/Guided choice if they don't.
             id: "journey-start-here",
             label: t("rail.journey.startHere.label"),
-            path: "/",
+            path: "/zone-of-genius",
             completed: topTalentDone,
         },
         {

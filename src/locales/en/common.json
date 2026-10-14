@@ -83,7 +83,12 @@
     "pasteSubtitle": "The full response — we'll extract your pattern from it",
     "pastePlaceholder": "Paste your AI's response here...",
     "ctaRevealing": "Revealing...",
-    "ctaRevealTopTalent": "Reveal my top talent"
+    "ctaRevealTopTalent": "Reveal my top talent",
+    "retakeLink": "Retake the Zone of Genius",
+    "retakeDialogTitle": "Start a fresh reveal?",
+    "retakeDialogDesc": "This replaces your current Top Talent with a new reveal. Your saved result stays until you finish and save the new one.",
+    "retakeDialogKeep": "Keep my current result",
+    "retakeDialogConfirm": "Yes, start fresh"
   },
   "matchCta": {
     "topTalent": {
@@ -305,7 +310,7 @@
     "saving": "Saving…",
     "saveMyMission": "Save my mission",
     "savedEyebrow": "My mission",
-    "edit": "Edit",
+    "edit": "Edit mission",
     "seeOnProfile": "See on profile",
     "startOverLink": "Discover a new mission from scratch",
     "toastNoSummaryTitle": "Couldn't find a single-sentence summary",
