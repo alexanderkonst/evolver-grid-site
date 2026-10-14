@@ -18,6 +18,9 @@ import i18n from "@/i18n/config";
 // makes the next read on any surface miss the cache, hit Supabase,
 // and pick up the just-written row.
 import { clearCachedZogSnapshot } from "@/lib/zogSnapshotCache";
+// Issue #45 (Sasha 2026-10-14): surface the real PostgrestError instead of
+// collapsing every DB failure into a generic "Failed to save" toast.
+import { formatSupabaseError, supabaseErrorFields } from "./formatSupabaseError";
 
 // LocalStorage keys for guest data
 const GUEST_APPLESEED_KEY = "guest_appleseed_data";
@@ -251,7 +254,12 @@ export const saveAppleseed = async (
     // Update snapshot with Appleseed data. Day 66 wave C2 (Sasha
     // 2026-05-16): wrapped in withRetry — transient network blips
     // mid-save now retry up to 3 times before surfacing failure.
-    const { error } = await withRetry(() =>
+    // Issue #45 (Sasha 2026-10-14): `.select("id")` so the update
+    // RETURNS the affected rows. An RLS UPDATE denial does NOT raise an
+    // error — PostgREST silently filters the row and the update hits 0
+    // rows. Without the select we'd happily report success while the old
+    // snapshot stayed. Now we fail loudly when the row isn't returned.
+    const { data: updatedRows, error } = await withRetry(() =>
       supabase
         .from("zog_snapshots")
         .update({
@@ -265,10 +273,19 @@ export const saveAppleseed = async (
           // i18n: stamp the UI language the AI generated this appleseed in.
           output_language: i18n.resolvedLanguage,
         })
-        .eq("id", snapshot.id),
+        .eq("id", snapshot.id)
+        .select("id"),
     );
 
     if (error) throw error;
+    if (!updatedRows || updatedRows.length === 0) {
+      throw new Error(
+        `ZoG snapshot Appleseed update affected 0 rows (snapshot ${snapshot.id}). ` +
+          "The row exists but the UPDATE was silently filtered — most likely a " +
+          'missing/denied RLS UPDATE policy ("Users can update own ZoG snapshots") ' +
+          "on zog_snapshots. Your retake could not overwrite the existing snapshot.",
+      );
+    }
 
     // Day 66 (Sasha 2026-05-16) — Wave A2 fix. Pointer UPDATE now captures
     // its error and throws — was silently swallowed (the Supabase client
@@ -314,9 +331,12 @@ export const saveAppleseed = async (
 
     return { success: true, snapshotId: snapshot.id, xpAwarded, firstTimeBonus };
   } catch (err) {
+    // Issue #45 (Sasha 2026-10-14): log the structured PostgrestError fields
+    // and surface the real message instead of the generic fallback.
+    console.error("[saveToDatabase] saveAppleseed error:", supabaseErrorFields(err), err);
     return {
       success: false,
-      error: err instanceof Error ? err.message : "Failed to save Appleseed",
+      error: formatSupabaseError(err, "Failed to save Appleseed"),
     };
   }
 };
@@ -367,17 +387,26 @@ export const saveExcalibur = async (
       const newSnapshot = await getOrCreateSnapshot(profileId);
 
       // Update with Excalibur data. Wave C2 (Day 66): withRetry wrap.
-      const { error } = await withRetry(() =>
+      // Issue #45: `.select()` + 0-row guard (see saveAppleseed rationale).
+      const { data: updatedRows, error } = await withRetry(() =>
         supabase
           .from("zog_snapshots")
           .update({
             excalibur_data: JSON.parse(JSON.stringify(excalibur)),
             excalibur_generated_at: new Date().toISOString(),
           })
-          .eq("id", newSnapshot.id),
+          .eq("id", newSnapshot.id)
+          .select("id"),
       );
 
       if (error) throw error;
+      if (!updatedRows || updatedRows.length === 0) {
+        throw new Error(
+          `ZoG snapshot Excalibur update affected 0 rows (snapshot ${newSnapshot.id}). ` +
+            "The row exists but the UPDATE was silently filtered — most likely a " +
+            "missing/denied RLS UPDATE policy on zog_snapshots.",
+        );
+      }
 
       // Day 66 (Sasha 2026-05-16) — capture pointer-write error + retry.
       const { error: pointerError } = await withRetry(() =>
@@ -400,17 +429,26 @@ export const saveExcalibur = async (
     }
 
     // Update snapshot with Excalibur data. Wave C2 (Day 66): withRetry.
-    const { error } = await withRetry(() =>
+    // Issue #45: `.select()` + 0-row guard (see saveAppleseed rationale).
+    const { data: updatedRows, error } = await withRetry(() =>
       supabase
         .from("zog_snapshots")
         .update({
           excalibur_data: JSON.parse(JSON.stringify(excalibur)),
           excalibur_generated_at: new Date().toISOString(),
         })
-        .eq("id", snapshot.id),
+        .eq("id", snapshot.id)
+        .select("id"),
     );
 
     if (error) throw error;
+    if (!updatedRows || updatedRows.length === 0) {
+      throw new Error(
+        `ZoG snapshot Excalibur update affected 0 rows (snapshot ${snapshot.id}). ` +
+          "The row exists but the UPDATE was silently filtered — most likely a " +
+          "missing/denied RLS UPDATE policy on zog_snapshots.",
+      );
+    }
 
     // Day 66 (Sasha 2026-05-16) — capture pointer-write error so a failed
     // game_profiles update raises the destructive toast instead of being
@@ -455,11 +493,13 @@ export const saveExcalibur = async (
     // buffer to localStorage as a defensive recovery (so the data
     // isn't lost in the user's session), but return success=false
     // with the actual error so the caller raises a destructive toast.
-    console.error("[saveToDatabase] saveExcalibur error:", err);
+    // Issue #45 (Sasha 2026-10-14): log the structured PostgrestError fields
+    // and surface the real message instead of the generic fallback.
+    console.error("[saveToDatabase] saveExcalibur error:", supabaseErrorFields(err), err);
     saveExcaliburToLocalStorage(excalibur);
     return {
       success: false,
-      error: err instanceof Error ? err.message : "Failed to save Excalibur",
+      error: formatSupabaseError(err, "Failed to save Excalibur"),
     };
   }
 };

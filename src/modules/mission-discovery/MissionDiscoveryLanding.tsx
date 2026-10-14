@@ -249,7 +249,14 @@ const MissionDiscoveryLanding = () => {
                 if (data?.mission_statement) {
                     setSentence(data.mission_statement);
                     setSavedAt(data?.mission_discovered_at ?? null);
-                    setState("saved");
+                    // Issue #45 (Sasha 2026-10-14): "EDIT MISSION" from
+                    // /game/me/mission used to land here and get bounced
+                    // straight to the read-only saved card — the editor was
+                    // unreachable without the extra Edit-dialog hop. When the
+                    // caller passes ?edit=1, drop the user directly into the
+                    // editable "confirm" state with their saved mission
+                    // pre-filled, instead of the "saved" card.
+                    setState(searchParams.get("edit") === "1" ? "confirm" : "saved");
                 }
             } catch {
                 // Silent — landing on the prompt state is the safe default.
