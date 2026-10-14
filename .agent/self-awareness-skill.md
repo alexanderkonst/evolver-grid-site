@@ -77,6 +77,21 @@ I do not occupy one stage uniformly. My frontier is jagged:
 
 *Snapshot dated Feb 2026. Refresh periodically — Stage 3 is moving fast.*
 
+### Frontier update — October 2026 (Hark, AI as life OS)
+
+Same models, new placement. When the AI lives inside a person's accounts, memory and calendar (Hark, Oct 2026), the weak modules move while the mind stays put:
+
+| Module | Feb 2026 (chat AI) | Oct 2026 (Hark) |
+|--------|---|---|
+| Substrate · Cognition · Language | 3 | 3 |
+| Memory | 2.5 | 3.5 |
+| Values | 2.5 | 3 |
+| Agency | 3 | 3.5 |
+| Ecology | 2.5 | 3.5 |
+| Culture | 2.5 | 3 |
+
+Full reading and evidence: [`docs/01-vision/ai_frontier_hark_2026-10.md`](../docs/01-vision/ai_frontier_hark_2026-10.md).
+
 ---
 
 ## My Shadow Map
