@@ -48,7 +48,14 @@ const ExcaliburView = () => {
             Craft your unique offer to view it here.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <Button onClick={() => navigate("/zone-of-genius/entry")}>
+            {/* Day 212 (2026-10-14, issue #45): "Create Offer" used to route
+                to /zone-of-genius/entry, which restarts the whole Top Talent
+                assessment and never produces an offer. The canonical
+                offer-generation surface is /game/me/genius-business — it
+                reads the saved Appleseed and generates + saves the Excalibur
+                offer in place (and routes to discover ZoG first if there's no
+                Appleseed yet). See GeniusBusiness.tsx. */}
+            <Button onClick={() => navigate("/game/me/genius-business")}>
               Create Offer
             </Button>
             <BackButton to="/game/me" />

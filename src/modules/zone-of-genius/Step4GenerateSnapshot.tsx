@@ -18,6 +18,7 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { logActionEvent } from "@/lib/actionEvents";
 import { getPostZogRedirect } from "@/lib/onboardingRouting";
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
+import { describeDbError, formatDbErrorForUser } from "./dbError";
 import { formatDate } from "@/i18n/format";
 // Day 61+ (Sasha 2026-05-04): the CTA section below mirrors the
 // AppleseedDisplay reveal so both lanes (manual assessment + AI
@@ -520,10 +521,16 @@ ${snapshotText}`;
         );
       } else {
         // Genuine save failure — fired before we could even claim
-        // success. Tell the user.
-        console.error("[Step4] Snapshot save failed:", err);
+        // success. Tell the user, and surface the REAL cause.
+        //
+        // Day 212 (2026-10-14, issue #45): the previous toast was a fixed
+        // generic string, so the actual Postgrest error (RLS denial, a
+        // column missing in the live DB, etc.) never reached the user or
+        // the console in a usable shape. Now we log the described error and
+        // append its message/code to the toast. See dbError.ts.
+        console.error("[Step4] Snapshot save failed:", describeDbError(err), err);
         toast.error(
-          "Failed to save your snapshot. Your progress is still shown, but may not persist.",
+          `Failed to save your snapshot. Your progress is still shown, but may not persist. (${formatDbErrorForUser(err)})`,
         );
       }
     }

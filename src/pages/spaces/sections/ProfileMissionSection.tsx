@@ -147,7 +147,10 @@ const ProfileMissionSection = () => {
                             <EditorialCta
                                 variant="secondary"
                                 label={t("profileMission.editMission")}
-                                onClick={() => navigate("/mission-discovery")}
+                                // Day 212 (2026-10-14, issue #45): ?edit=true so
+                                // the landing opens straight in the editor
+                                // (pre-filled), not the read-only result card.
+                                onClick={() => navigate("/mission-discovery?edit=true")}
                                 icon={<Pencil className="w-4 h-4" />}
                                 rightIcon={null}
                             />

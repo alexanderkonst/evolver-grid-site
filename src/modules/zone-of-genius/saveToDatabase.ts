@@ -6,6 +6,7 @@ import { withRetry } from "@/lib/withRetry";
 import { AppleseedData } from "./appleseedGenerator";
 import { ExcaliburData } from "./excaliburGenerator";
 import { SNAPSHOT_PENDING_SENTINEL } from "./snapshotSentinel";
+import { describeDbError, formatDbErrorForUser } from "./dbError";
 import i18n from "@/i18n/config";
 // Day 62 (Sasha 2026-05-05): cache invalidation on every successful
 // snapshot write. The zogSnapshotCache (in-memory + sessionStorage,
@@ -314,9 +315,15 @@ export const saveAppleseed = async (
 
     return { success: true, snapshotId: snapshot.id, xpAwarded, firstTimeBonus };
   } catch (err) {
+    // Day 212 (2026-10-14, issue #45): surface the REAL Postgrest error
+    // instead of masking it behind the generic "Failed to save Appleseed"
+    // string. A Supabase error is a plain object (not an Error instance),
+    // so the old `err instanceof Error` check discarded the actual
+    // message/code — hiding RLS denials and prod schema drift. See dbError.ts.
+    console.error("[saveToDatabase] saveAppleseed error:", describeDbError(err), err);
     return {
       success: false,
-      error: err instanceof Error ? err.message : "Failed to save Appleseed",
+      error: formatDbErrorForUser(err),
     };
   }
 };
@@ -455,11 +462,13 @@ export const saveExcalibur = async (
     // buffer to localStorage as a defensive recovery (so the data
     // isn't lost in the user's session), but return success=false
     // with the actual error so the caller raises a destructive toast.
-    console.error("[saveToDatabase] saveExcalibur error:", err);
+    // Day 212 (2026-10-14, issue #45): surface the real Postgrest error —
+    // see the matching comment in saveAppleseed and dbError.ts.
+    console.error("[saveToDatabase] saveExcalibur error:", describeDbError(err), err);
     saveExcaliburToLocalStorage(excalibur);
     return {
       success: false,
-      error: err instanceof Error ? err.message : "Failed to save Excalibur",
+      error: formatDbErrorForUser(err),
     };
   }
 };

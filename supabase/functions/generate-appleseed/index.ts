@@ -56,6 +56,15 @@ serve(async (req) => {
         // back. Acceptable register because the prompt is highly
         // structured (JSON schema + calibration examples) — creative
         // variety isn't the goal, repeatable distillation is.
+        //
+        // Day 212 (2026-10-14, issue #45): the field above was described
+        // in this comment but NEVER actually sent — only `model` +
+        // `reasoning_effort` were in the body, so the gateway kept
+        // defaulting to ~1.0. That's why the SAME Top 3 produced
+        // different Appleseeds across runs ("Architecting Coherent
+        // Truth" vs "Architecting Intellectual Blueprints"). Now the
+        // field is actually present.
+        temperature: 0.3,
         reasoning_effort: "low",
         messages: [
           {

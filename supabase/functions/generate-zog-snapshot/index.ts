@@ -41,6 +41,12 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         model: 'google/gemini-3.1-flash-lite',
+        // Day 212 (2026-10-14, issue #45): pin temperature low so the
+        // guided-lane snapshot (and the Appleseed derived from it) stays
+        // stable across retakes for the same Top 3. Mirrors the
+        // generate-appleseed fix — structured distillation, not creative
+        // variety, so repeatability is the goal.
+        temperature: 0.3,
         messages: [
           {
             role: 'user',
