@@ -147,7 +147,11 @@ const ProfileMissionSection = () => {
                             <EditorialCta
                                 variant="secondary"
                                 label={t("profileMission.editMission")}
-                                onClick={() => navigate("/mission-discovery")}
+                                // Issue #45 (Sasha 2026-10-14): ?edit=1 so the
+                                // landing drops the user into the editor instead
+                                // of its read-only saved card (see mount effect
+                                // in MissionDiscoveryLanding).
+                                onClick={() => navigate("/mission-discovery?edit=1")}
                                 icon={<Pencil className="w-4 h-4" />}
                                 rightIcon={null}
                             />

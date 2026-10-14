@@ -18,6 +18,9 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { logActionEvent } from "@/lib/actionEvents";
 import { getPostZogRedirect } from "@/lib/onboardingRouting";
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
+// Issue #45 (Sasha 2026-10-14): surface the real PostgrestError instead of
+// collapsing every DB failure into a generic "save failed" toast.
+import { formatSupabaseError, supabaseErrorFields } from "./formatSupabaseError";
 import { formatDate } from "@/i18n/format";
 // Day 61+ (Sasha 2026-05-04): the CTA section below mirrors the
 // AppleseedDisplay reveal so both lanes (manual assessment + AI
@@ -388,17 +391,33 @@ ${snapshotText}`;
           // Make available to buildSavePayload — when user clicks "save email"
           // after this resolves, the email funnel uses the real AppleseedData.
           setAppleseed(appleseedData);
-          await supabase
+          // Issue #45 (Sasha 2026-10-14): `.select("id")` + error surfacing.
+          // This update was fully silent — if an RLS UPDATE denial filtered
+          // the row, the 12-perspective appleseed_data never landed and the
+          // old snapshot's basic columns stayed, with no signal anywhere.
+          const { data: updatedRows, error: updateError } = await supabase
             .from('zog_snapshots')
             .update({
               appleseed_data: appleseedData as unknown as Json,
               appleseed_generated_at: new Date().toISOString(),
               ai_response_raw: guidedRawSignal,
             })
-            .eq('id', snapshotData.id);
+            .eq('id', snapshotData.id)
+            .select('id');
+          if (updateError) throw updateError;
+          if (!updatedRows || updatedRows.length === 0) {
+            throw new Error(
+              `Guided-lane appleseed update affected 0 rows (snapshot ${snapshotData.id}) — ` +
+                "likely an RLS UPDATE denial on zog_snapshots.",
+            );
+          }
         })
         .catch((err) => {
-          console.warn("[Step4] Guided-lane appleseed processing failed (non-fatal):", err);
+          console.warn(
+            "[Step4] Guided-lane appleseed processing failed (non-fatal):",
+            supabaseErrorFields(err),
+            err,
+          );
         });
 
       if (!snapshotData.xp_awarded) {
@@ -520,10 +539,16 @@ ${snapshotText}`;
         );
       } else {
         // Genuine save failure — fired before we could even claim
-        // success. Tell the user.
-        console.error("[Step4] Snapshot save failed:", err);
+        // success. Tell the user. Issue #45 (Sasha 2026-10-14): log the
+        // structured PostgrestError fields (code/details/hint) and put the
+        // real message in the toast so the actual cause is visible instead
+        // of the generic "may not persist" line.
+        console.error("[Step4] Snapshot save failed:", supabaseErrorFields(err), err);
         toast.error(
-          "Failed to save your snapshot. Your progress is still shown, but may not persist.",
+          formatSupabaseError(
+            err,
+            "Failed to save your snapshot. Your progress is still shown, but may not persist.",
+          ),
         );
       }
     }
