@@ -25,12 +25,19 @@ docs/
 ├── 08-content/        # Content & curriculum
 ├── 09-logs/           # Session & decision logs, pulse log
 ├── 10-workshops/      # Workshop materials
+├── ai/               # AI hub — one map of everything about AI itself
 ├── holomaps/          # Transition + uniqueness holomaps
 ├── specs/             # Feature specs (quiz, i18n, corpus-sync, ...)
 ├── assets/            # Shared assets
 └── archive/           # Deprecated docs
 ```
 > *Structure current to Day 180 (Sep 11, 2026). Per-folder file counts intentionally omitted — they go stale; see the footer for the live total.*
+
+---
+
+## 🤖 AI (hub)
+
+Everything about AI itself (AI OS, benchmark, the Hark leap, self-awareness map, operating layer, trainings) is mapped in **[ai/README.md](./ai/README.md)**.
 
 ---
 
