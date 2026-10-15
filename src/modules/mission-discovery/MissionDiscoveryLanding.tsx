@@ -306,6 +306,19 @@ const MissionDiscoveryLanding = () => {
                 // Non-fatal — dialog falls back to the generic phrasing.
             }
 
+            // Issue #52 (Sasha 2026-10-15): when the user arrived via the
+            // "EDIT MISSION" entry (?edit=1 from /game/me/mission), SAVE MY
+            // MISSION gave no confirmation and left them on the discovery
+            // page. Show an explicit "Mission saved" toast and return them
+            // to the Mission section they came from. Still refresh the
+            // JOURNEY progress so item #8 stays in sync.
+            if (searchParams.get("edit") === "1") {
+                window.dispatchEvent(new CustomEvent("fytt:refresh-journey-progress"));
+                toast({ title: t("missionLanding.toastSavedTitle") });
+                navigate("/game/me/mission");
+                return;
+            }
+
             setState("saved");
 
             // ── Post-save side effects ──

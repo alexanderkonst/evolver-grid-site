@@ -234,7 +234,7 @@
     "checkInboxDesc": "Мы отправили ссылку для подтверждения на {{email}}. Нажми её, чтобы завершить регистрацию.",
     "signUpFailedTitle": "Не удалось зарегистрироваться",
     "welcomeBackTitle": "С возвращением!",
-    "redirecting": "Перенаправляем...",
+    "redirecting": "Вы вошли в аккаунт.",
     "loginFailedTitle": "Не удалось войти",
     "testLoginFailedTitle": "Тестовый вход не удался",
     "emailAddressRequiredDesc": "Введи свой email.",
@@ -328,6 +328,7 @@
     "toastEmptyDesc": "Поле миссии не может быть пустым.",
     "toastNoProfileTitle": "Не удалось найти твой профиль",
     "toastNoProfileDesc": "Обнови страницу и попробуй ещё раз.",
+    "toastSavedTitle": "Миссия сохранена",
     "toastSaveSchemaTitle": "Сохранение миссии временно недоступно",
     "toastSaveSchemaDesc": "Базе данных платформы нужно разовое обновление. Мы уже занимаемся этим — попробуй ещё раз чуть позже.",
     "toastSaveFailedTitle": "Не удалось сохранить миссию",
@@ -425,7 +426,7 @@
     "journey": {
       "quizStep0": {
         "label": "Шаг 0 · Узнай, в какой главе своего пути ты сейчас",
-        "retake": "Пройти заново"
+        "retake": "Пройти тест заново"
       },
       "startHere": {
         "label": "1. Начни с поиска своего главного таланта"
@@ -3035,7 +3036,7 @@
   },
   "zogPerspective": {
     "startHere": {
-      "title": "Ты в деле. Начнём.",
+      "title": "Начни здесь",
       "subtitle": "Три шага."
     },
     "howItShowsUp": {
