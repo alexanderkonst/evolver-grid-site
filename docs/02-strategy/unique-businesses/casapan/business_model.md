@@ -2,7 +2,7 @@
 
 > *Living document. Consulting engagement, Alexander Konstantinov × Benjamin (Casa Pan, San Pancho, Nayarit).*
 > *v0.1 · Oct 15, 2026 · seeded from Session 1 (Oct 14) + Sasha's price corrections + Hark's brief.*
-> *Spreadsheet: `casapan_modelo_v0.1.xlsx` (tabs: Modelo, Supuestos, Canales, Registro diario, Compras, ROI). This doc explains; the sheet calculates.*
+> *Live Google Sheets: [Modelo](https://docs.google.com/spreadsheets/d/1HHBJErcnpXEVsYBe3ILiHMDF1tD7ddCQJwlFjw1830M/edit) · [Registro diario](https://docs.google.com/spreadsheets/d/1HuSxHDZ80hcjRC-5LdeCYK7LDG7wR_M8Hi0Z5tBoa40/edit). Offline full version (6 tabs incl. ROI): `casapan_modelo_v0.1.xlsx` (tabs: Modelo, Supuestos, Canales, Registro diario, Compras, ROI). This doc explains; the sheet calculates.*
 > *Rule: Session 1 numbers are treated as ground truth until real data replaces them. Every number carries its source.*
 
 ---

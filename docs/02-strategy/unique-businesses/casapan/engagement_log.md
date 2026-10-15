@@ -2,6 +2,25 @@
 
 > *Our process with Benjamin. Newest entry on top.*
 
+## ▶ NEXT CALL PREP (read this first)
+
+*Updated Oct 15. When Sasha asks "current state", start here.*
+
+**Ask him:**
+1. "¿Cuánto pagas de renta al mes?" Rent is hidden inside the 30 MXN/loaf, calculated at 400–500 loaves/week. At ~78/week each loaf carries far more rent, so the real break-even is higher (e.g. rent 10k → ~55 MXN/loaf → ~110 loaves/week). Once known, rent moves into the sheet's "Otros gastos fijos" and comes out of the per-loaf cost.
+2. "¿Te queda alguna deuda?" He borrowed for rent last season; status unknown. Don't assume debt.
+3. The most loaves he can bake alone in one day (capacity check in the sheet).
+
+**Collect:** his monthly number, supplier history (flour, butter), daily log (baked / sold / sell-out time), past daily records if he has them.
+
+**Don't:** send a correction about "pura ganancia" (decided Oct 15; it was basically right). Don't raise psychology or money unless he does.
+
+**Sheets (in Sasha's Drive, not shared with Ben yet):** [Modelo](https://docs.google.com/spreadsheets/d/1HHBJErcnpXEVsYBe3ILiHMDF1tD7ddCQJwlFjw1830M/edit) · [Registro diario](https://docs.google.com/spreadsheets/d/1HuSxHDZ80hcjRC-5LdeCYK7LDG7wR_M8Hi0Z5tBoa40/edit).
+
+**Open items:** ROI tab not yet in Google (lives in the xlsx; add once the log has data). Fix the sheet's rent line after he answers #1, and warn him that the number goes up.
+
+---
+
 ## Stance
 
 - He calls the play. My role is not to convince him.
@@ -63,7 +82,7 @@ Adjustments: confirm the 30 MXN includes rent; restaurant loaves leave 80 (break
 
 - `casapan_modelo_v0.1.xlsx`: Modelo (inputs → break-even, capacity check), Supuestos (every number + source), Canales, Registro diario (his daily log; computes leftovers, profit, waste $), Compras (supplier history), ROI (weekly roll-up from the log: waste %, waitlist orders, extra profit from the list).
 - Splits his monthly need into salary / debts / other fixed costs, which fixes the "pura ganancia" mismatch.
-- Not yet in Google Drive (the connector can't take the file from disk).
+- In Drive as two Google Sheets, formulas verified (Modelo shows 78): [Modelo](https://docs.google.com/spreadsheets/d/1HHBJErcnpXEVsYBe3ILiHMDF1tD7ddCQJwlFjw1830M/edit) · [Registro diario](https://docs.google.com/spreadsheets/d/1HuSxHDZ80hcjRC-5LdeCYK7LDG7wR_M8Hi0Z5tBoa40/edit).
 
 ## 2026-10-15 · Message 01 SENT ✅
 
