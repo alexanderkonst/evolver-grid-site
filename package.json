@@ -22,6 +22,8 @@
     "holomap:update": "node scripts/holomap-update/index.mjs",
     "dashboard:update": "node scripts/dashboard-update/index.mjs",
     "test": "vitest run",
+    "check:schema-drift": "node scripts/check-schema-drift.mjs",
+    "check:schema-drift:strict": "node scripts/check-schema-drift.mjs --strict",
     "preview": "vite preview",
     "brief": "node scripts/sync-brief-to-tool.mjs"
   },

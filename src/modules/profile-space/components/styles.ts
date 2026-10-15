@@ -56,7 +56,10 @@ export const ceremonialPill: CSSProperties = {
     fontWeight: 600,
     letterSpacing: "0.14em",
     textTransform: "uppercase",
-    fontSize: "12px",
+    // Issue #50 item 3: 12 → 13px so the "Retake" secondary action on the
+    // Top Talent / Mission cards is readable and consistent with the ZoG
+    // result-screen retake link (also 13px).
+    fontSize: "13px",
     color: "var(--skin-text-primary, #0b2a5a)",
     background: "var(--skin-card-fill, rgba(255, 255, 255, 0.72))",
     border: "0.5px solid rgba(212, 175, 55, 0.55)",
@@ -68,7 +71,9 @@ export const ceremonialPillPrimary: CSSProperties = {
     fontWeight: 600,
     letterSpacing: "0.14em",
     textTransform: "uppercase",
-    fontSize: "12px",
+    // Issue #50 item 3: match ceremonialPill (13px) so the paired primary /
+    // secondary pills stay the same size.
+    fontSize: "13px",
     background:
         "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(18,28,56,0.85) 50%, rgba(10,22,40,0.92) 100%))",
     color: "var(--skin-cta-text, rgba(245, 245, 250, 0.98))",

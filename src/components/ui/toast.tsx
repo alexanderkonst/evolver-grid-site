@@ -68,7 +68,11 @@ const ToastClose = React.forwardRef<
     ref={ref}
     aria-label="Close notification"
     className={cn(
-      "absolute right-2 top-2 rounded-md p-1 text-[#2c3150]/60 opacity-0 transition-opacity group-hover:opacity-100 hover:text-[#8460ea] focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-[#8460ea] group-[.destructive]:text-red-400 group-[.destructive]:hover:text-red-600 group-[.destructive]:focus:ring-red-300",
+      // Issue #50 item 4: the close X used to be `opacity-0` until
+      // `group-hover` — invisible on touch devices, so the "Your ME space is
+      // open" notice (and every other toast) looked undismissable on mobile.
+      // Now always visible (slightly dimmed), brightening on hover/focus.
+      "absolute right-2 top-2 rounded-md p-1 text-[#2c3150]/60 opacity-70 transition-opacity hover:opacity-100 hover:text-[#8460ea] focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-[#8460ea] group-[.destructive]:text-red-400 group-[.destructive]:hover:text-red-600 group-[.destructive]:focus:ring-red-300",
       className,
     )}
     toast-close=""
