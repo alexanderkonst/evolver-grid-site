@@ -20,7 +20,8 @@ import { getPostZogRedirect } from "@/lib/onboardingRouting";
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
 // Issue #45 (Sasha 2026-10-14): surface the real PostgrestError instead of
 // collapsing every DB failure into a generic "save failed" toast.
-import { formatSupabaseError, supabaseErrorFields } from "./formatSupabaseError";
+import { formatSupabaseError, isSchemaDriftError, supabaseErrorFields } from "./formatSupabaseError";
+import { SaveErrorToastBody } from "@/components/ui/save-error-toast";
 import { formatDate } from "@/i18n/format";
 // Day 61+ (Sasha 2026-05-04): the CTA section below mirrors the
 // AppleseedDisplay reveal so both lanes (manual assessment + AI
@@ -543,12 +544,17 @@ ${snapshotText}`;
         // structured PostgrestError fields (code/details/hint) and put the
         // real message in the toast so the actual cause is visible instead
         // of the generic "may not persist" line.
+        // Issue #50: friendly line in the toast + raw diagnostic behind a
+        // <details> disclosure; the structured fields stay in console above.
         console.error("[Step4] Snapshot save failed:", supabaseErrorFields(err), err);
         toast.error(
-          formatSupabaseError(
-            err,
-            "Failed to save your snapshot. Your progress is still shown, but may not persist.",
-          ),
+          <SaveErrorToastBody
+            detail={formatSupabaseError(
+              err,
+              "Failed to save your snapshot. Your progress is still shown, but may not persist.",
+            )}
+            isSchemaDrift={isSchemaDriftError(err)}
+          />,
         );
       }
     }

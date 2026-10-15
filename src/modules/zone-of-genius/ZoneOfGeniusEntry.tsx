@@ -38,6 +38,8 @@ import AppleseedRitualLoading from "./AppleseedRitualLoading";
 import ExcaliburDisplay from "./ExcaliburDisplay";
 import TopTalentAuthGate from "./TopTalentAuthGate";
 import { clearGuestBuffers, freshRetakeState } from "./retake";
+import { formatSupabaseError, isSchemaDriftError } from "./formatSupabaseError";
+import { SaveErrorToastBody } from "@/components/ui/save-error-toast";
 import {
     AlertDialog,
     AlertDialogAction,
@@ -399,10 +401,18 @@ const ZoneOfGeniusEntry = () => {
                         setIsSaved(true);
                         console.log("[ZoneOfGeniusEntry] Auto-saved appleseed for auth user");
                     } else {
+                        // Issue #50: friendly line in the toast, raw diagnostic
+                        // behind a <details> disclosure; the raw string stays in
+                        // console above.
                         console.error("[ZoneOfGeniusEntry] Auto-save returned failure:", result.error);
                         toast({
                             title: t('zogEntry.toastSaveFailedTitle'),
-                            description: result.error || t('zogEntry.toastAutoSaveFailedDesc'),
+                            description: (
+                                <SaveErrorToastBody
+                                    detail={formatSupabaseError(result.error, t('zogEntry.toastAutoSaveFailedDesc'))}
+                                    isSchemaDrift={isSchemaDriftError(result.error)}
+                                />
+                            ),
                             variant: "destructive",
                         });
                     }
@@ -410,7 +420,12 @@ const ZoneOfGeniusEntry = () => {
                     console.error("[ZoneOfGeniusEntry] Auto-save threw:", err);
                     toast({
                         title: t('zogEntry.toastSaveFailedTitle'),
-                        description: err instanceof Error ? err.message : t('zogEntry.toastTapSaveToRetry'),
+                        description: (
+                            <SaveErrorToastBody
+                                detail={formatSupabaseError(err, t('zogEntry.toastTapSaveToRetry'))}
+                                isSchemaDrift={isSchemaDriftError(err)}
+                            />
+                        ),
                         variant: "destructive",
                     });
                 }
@@ -555,9 +570,15 @@ const ZoneOfGeniusEntry = () => {
                     setTimeout(() => navigate(redirectPath), 600);
                 }
             } else {
+                console.error("[ZoneOfGeniusEntry] Save failed:", result.error);
                 toast({
                     title: t('zogEntry.toastSaveFailedTitle'),
-                    description: result.error || t('zogEntry.toastCouldNotSaveProfile'),
+                    description: (
+                        <SaveErrorToastBody
+                            detail={formatSupabaseError(result.error, t('zogEntry.toastCouldNotSaveProfile'))}
+                            isSchemaDrift={isSchemaDriftError(result.error)}
+                        />
+                    ),
                     variant: "destructive",
                 });
             }
@@ -637,9 +658,15 @@ const ZoneOfGeniusEntry = () => {
                 // Navigate back to profile after short delay
                 setTimeout(() => navigate(returnPath), 1000);
             } else {
+                console.error("[ZoneOfGeniusEntry] Excalibur save failed:", result.error);
                 toast({
                     title: t('zogEntry.toastSaveFailedTitle'),
-                    description: result.error || t('zogEntry.toastCouldNotSaveOffer'),
+                    description: (
+                        <SaveErrorToastBody
+                            detail={formatSupabaseError(result.error, t('zogEntry.toastCouldNotSaveOffer'))}
+                            isSchemaDrift={isSchemaDriftError(result.error)}
+                        />
+                    ),
                     variant: "destructive",
                 });
             }

@@ -70,6 +70,7 @@ import { useEntryPath } from "@/contexts/EntryPathContext";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { withRetry } from "@/lib/withRetry";
 import { useToast } from "@/hooks/use-toast";
+import { SaveErrorToastBody } from "@/components/ui/save-error-toast";
 import { resolveMissionSentence } from "./missionSynthesis";
 
 // ─── Editorial-register tokens (per docs/03-playbooks/ui_playbook.md) ──
@@ -370,16 +371,20 @@ const MissionDiscoveryLanding = () => {
                 raw: err,
             });
 
-            const isSchemaError = errCode === "42703" || errCode === "42P01" || errCode === "PGRST204";
+            // Issue #50: never surface the raw PostgREST line in the toast
+            // body. Friendly line up top (schema-drift gets its own); the raw
+            // `[code] message — details` sits behind a <details> disclosure.
+            const isSchemaError = errCode === "42703" || errCode === "42P01" || errCode === "PGRST204" || errCode === "PGRST205";
+            const detail = [errCode ? `[${errCode}] ${errMessage}` : errMessage, errDetails, errHint && `hint: ${errHint}`]
+                .filter(Boolean)
+                .join(" — ");
             toast({
                 title: isSchemaError
                     ? t("missionLanding.toastSaveSchemaTitle")
                     : t("missionLanding.toastSaveFailedTitle"),
-                description: isSchemaError
-                    ? t("missionLanding.toastSaveSchemaDesc")
-                    : errCode
-                        ? `${errMessage} (${errCode})`
-                        : errMessage,
+                description: (
+                    <SaveErrorToastBody detail={detail} isSchemaDrift={isSchemaError} />
+                ),
                 variant: "destructive",
             });
         } finally {

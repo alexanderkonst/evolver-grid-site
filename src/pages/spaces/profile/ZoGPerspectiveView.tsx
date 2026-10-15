@@ -15,6 +15,7 @@ import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import ActivationSteps from "@/components/ActivationSteps";
 import ReadNextSectionButton from "@/components/profile/ReadNextSectionButton";
 import { flipToSecondPerson, flipToFirstPersonReflexive } from "@/lib/zogProfileVoice";
+import { LanguageMismatchNotice } from "@/modules/zone-of-genius/LanguageMismatchNotice";
 import { Target, Sparkles, Users, TrendingUp, Briefcase, DollarSign, Eye, Palette, MessageSquare, Heart, Zap, Quote, ArrowRight, ChevronDown } from "lucide-react";
 
 // Day 54+ (Sasha 2026-04-28 night): full restyle of the ME · Top Talent
@@ -1306,6 +1307,9 @@ const ZoGPerspectiveView = () => {
     // for the privacy guarantee. See zogSnapshotCache.ts Day 80 note.
     const [loading, setLoading] = useState(true);
     const [appleseedData, setAppleseedData] = useState<AppleseedData | null>(null);
+    // Issue #50 item 2: the language the saved reading's AI text was written
+    // in, so we can surface a notice when it differs from the current UI.
+    const [outputLanguage, setOutputLanguage] = useState<string | null>(null);
     // Tracks whether the fetch confirmed there's no snapshot (so we can
     // show the empty-state copy AFTER the load completes — never during).
     const [snapshotMissing, setSnapshotMissing] = useState(false);
@@ -1333,6 +1337,7 @@ const ZoGPerspectiveView = () => {
                 const cached = getCachedZogSnapshot(user.id, profileId);
                 if (cached?.appleseedData) {
                     setAppleseedData(cached.appleseedData);
+                    setOutputLanguage(cached.outputLanguage ?? null);
                     setLoading(false);
                     return;
                 }
@@ -1381,13 +1386,15 @@ const ZoGPerspectiveView = () => {
 
                 const { data: snapshotData } = await supabase
                     .from("zog_snapshots")
-                    .select("appleseed_data, excalibur_data, archetype_title, core_pattern, top_three_talents")
+                    .select("appleseed_data, excalibur_data, archetype_title, core_pattern, top_three_talents, output_language")
                     .eq("id", snapshotId)
                     .single();
 
                 const apple = (snapshotData?.appleseed_data ?? null) as unknown as AppleseedData | null;
+                const snapLanguage = (snapshotData?.output_language as string | null) ?? null;
                 if (apple) {
                     setAppleseedData(apple);
+                    setOutputLanguage(snapLanguage);
                 } else {
                     setSnapshotMissing(true);
                 }
@@ -1399,6 +1406,7 @@ const ZoGPerspectiveView = () => {
                     archetypeTitle: (snapshotData?.archetype_title as string | null) ?? null,
                     corePattern: (snapshotData?.core_pattern as string | null) ?? null,
                     topThreeTalentsLong: (snapshotData?.top_three_talents as string[] | null) ?? null,
+                    outputLanguage: snapLanguage,
                 });
             } catch (err) {
                 console.error("Error loading perspective data:", err);
@@ -1482,6 +1490,14 @@ const ZoGPerspectiveView = () => {
     return (
         <GameShellV2>
             <div className="max-w-3xl mx-auto px-5 py-8 lg:py-10 space-y-8">
+                {/* Issue #50 item 2: when the saved reading was generated in a
+                    different UI language than the one now active, name it and
+                    offer to regenerate. Renders nothing when they match. */}
+                {appleseedData && (
+                    <div className="flex justify-center">
+                        <LanguageMismatchNotice snapshotLanguage={outputLanguage} />
+                    </div>
+                )}
                 {/* Header — Day 58 (Sasha 2026-05-02): the gold medallion
                     + Lucide icon was replaced with a single Ornament rule
                     above the title. Editorial reads cleaner without per-

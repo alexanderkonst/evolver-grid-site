@@ -62,6 +62,13 @@ export interface CachedZogSnapshot {
      * reveal-box section uses the compact field via appleseedData.
      */
     topThreeTalentsLong: string[] | null;
+    /**
+     * Issue #50 (Sasha 2026-10-14): the UI language the AI generated this
+     * snapshot's text in (`zog_snapshots.output_language`, e.g. "en" / "ru").
+     * Optional so pre-existing cache entries (written before this field) stay
+     * valid — a missing value just means "don't show the language notice".
+     */
+    outputLanguage?: string | null;
 }
 
 // sessionStorage key — namespaced so it can't collide with anything

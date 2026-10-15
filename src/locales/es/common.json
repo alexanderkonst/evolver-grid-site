@@ -1,4 +1,13 @@
 {
+  "errors": {
+    "saveGenericBody": "No pudimos guardar eso ahora mismo. Inténtalo de nuevo en un momento.",
+    "schemaDriftBody": "Estamos actualizando esta parte de la app. Inténtalo de nuevo en breve. Tu trabajo está a salvo.",
+    "detailsLabel": "Detalles"
+  },
+  "zogLanguageNotice": {
+    "label": "Generado en {{lang}}",
+    "regenerate": "Regenerar en {{lang}}"
+  },
   "language": {
     "label": "Idioma"
   },

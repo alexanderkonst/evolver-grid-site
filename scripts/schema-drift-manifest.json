@@ -1,0 +1,25 @@
+{
+  "_comment": "Issue #50 item 5 — the lightest migration-drift guard. Each entry lists columns that src WRITES on a save path; check-schema-drift.mjs probes the live PostgREST schema cache for each one and fails if any is missing (i.e. a migration exists in the repo but was never applied to prod — the Issue #49 root cause, where zog_snapshots.output_language was missing for months). Add a column here whenever a new save path depends on it.",
+  "tables": {
+    "zog_snapshots": [
+      "profile_id",
+      "appleseed_data",
+      "excalibur_data",
+      "archetype_title",
+      "core_pattern",
+      "top_ten_talents",
+      "top_three_talents",
+      "xp_awarded",
+      "appleseed_generated_at",
+      "excalibur_generated_at",
+      "ai_response_raw",
+      "output_language"
+    ],
+    "game_profiles": [
+      "last_zog_snapshot_id",
+      "zone_of_genius_completed",
+      "onboarding_stage",
+      "excalibur_data"
+    ]
+  }
+}
