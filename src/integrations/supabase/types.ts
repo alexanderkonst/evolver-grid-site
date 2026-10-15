@@ -2583,6 +2583,7 @@ export type Database = {
           created_at: string
           id: string
           is_locked: boolean
+          output_language: string | null
           parent_version_id: string | null
           precision_score: number | null
           roast_findings: Json | null
@@ -2600,6 +2601,7 @@ export type Database = {
           created_at?: string
           id?: string
           is_locked?: boolean
+          output_language?: string | null
           parent_version_id?: string | null
           precision_score?: number | null
           roast_findings?: Json | null
@@ -2617,6 +2619,7 @@ export type Database = {
           created_at?: string
           id?: string
           is_locked?: boolean
+          output_language?: string | null
           parent_version_id?: string | null
           precision_score?: number | null
           roast_findings?: Json | null
@@ -2738,6 +2741,7 @@ export type Database = {
           excalibur_generated_at: string | null
           id: string
           mastery_action: string | null
+          output_language: string | null
           profile_id: string | null
           resonance_rating: number | null
           share_slug: string | null
@@ -2756,6 +2760,7 @@ export type Database = {
           excalibur_generated_at?: string | null
           id?: string
           mastery_action?: string | null
+          output_language?: string | null
           profile_id?: string | null
           resonance_rating?: number | null
           share_slug?: string | null
@@ -2774,6 +2779,7 @@ export type Database = {
           excalibur_generated_at?: string | null
           id?: string
           mastery_action?: string | null
+          output_language?: string | null
           profile_id?: string | null
           resonance_rating?: number | null
           share_slug?: string | null
