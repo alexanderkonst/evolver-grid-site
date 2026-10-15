@@ -21,13 +21,23 @@
  *
  *   - "ready"       → appleseed_data is present; render the perspective.
  *   - "regenerable" → a real saved snapshot exists (non-sentinel archetype)
- *                     and we hold the raw signal to re-run generation, but
- *                     `appleseed_data` is missing. Offer a visible
+ *                     but `appleseed_data` is missing. Offer a visible
  *                     "Generate deeper view" button (wires the existing
  *                     generateAppleseed + saveAppleseed path — no new
  *                     generation logic).
- *   - "empty"       → genuinely nothing saved yet (or no way to regenerate);
- *                     show the "complete the assessment first" empty state.
+ *   - "empty"       → genuinely nothing saved yet; show the "complete the
+ *                     assessment first" empty state.
+ *
+ * Issue #53 follow-up (Sasha 2026-10-15): `"regenerable"` no longer requires
+ * `ai_response_raw`. Sasha's pre-#54 snapshot has a real archetype (the main
+ * card renders it from the basic columns) but a null `ai_response_raw`, so the
+ * old helper returned `"empty"` → "Complete the assessment first", no button.
+ * A real snapshot can ALWAYS be recovered: when the stored raw signal is
+ * absent we synthesize one from the SAME basic columns the overview renders
+ * (`archetype_title` / `core_pattern` / `top_three_talents`) — see
+ * `buildRecoveryRawSignal`. So the decision now keys only on "is there a real
+ * snapshot?". The raw signal, when present, is merely the richer source the
+ * recovery handler prefers.
  */
 
 import { hasRealArchetype } from "./snapshotSentinel";
@@ -40,24 +50,57 @@ export interface DeeperViewInputs {
   appleseedData: AppleseedData | null;
   /** The snapshot's archetype_title column (may be the "Pending" sentinel). */
   archetypeTitle: string | null;
-  /** The stored raw signal we can re-run generation from, or null. */
-  aiResponseRaw: string | null;
+  /**
+   * The stored raw signal we can re-run generation from, if any. No longer
+   * required for `"regenerable"` — kept on the inputs so callers that DO hold
+   * it can prefer it over the synthesized fallback. See module header.
+   */
+  aiResponseRaw?: string | null;
 }
 
 export const resolveDeeperViewState = ({
   appleseedData,
   archetypeTitle,
-  aiResponseRaw,
 }: DeeperViewInputs): DeeperViewState => {
   // The saved result is already here — render it.
   if (appleseedData) return "ready";
 
-  // A real snapshot exists and we can re-run generation from its stored raw
-  // signal → offer recovery instead of a dead-end empty state.
-  if (hasRealArchetype(archetypeTitle) && !!aiResponseRaw && aiResponseRaw.trim() !== "") {
-    return "regenerable";
-  }
+  // A real saved snapshot exists but its deeper layer is missing. We can
+  // always re-run generation (from the stored raw signal, or from a signal
+  // synthesized out of the basic columns) → offer recovery, never the
+  // dead-end empty state.
+  if (hasRealArchetype(archetypeTitle)) return "regenerable";
 
-  // Nothing to render and nothing to regenerate from.
+  // Nothing saved at all — genuine empty state.
   return "empty";
+};
+
+/**
+ * Build a recovery raw signal from the basic snapshot columns when the stored
+ * `ai_response_raw` is absent (pre-#54 snapshots never persisted it). These
+ * are the user's OWN saved Top Talent fields — the same ones the overview card
+ * renders — reassembled into the plain-text shape `generateAppleseed` already
+ * accepts. This is wiring only: no prompt or generation-logic change, just a
+ * source for the existing path. Returns null when there's nothing usable.
+ */
+export const buildRecoveryRawSignal = (
+  archetypeTitle: string | null,
+  corePattern: string | null,
+  topThreeTalents: string[] | null,
+): string | null => {
+  if (!hasRealArchetype(archetypeTitle)) return null;
+
+  const lines: string[] = [`Top Talent: ${archetypeTitle!.trim()}`];
+  if (corePattern && corePattern.trim() !== "") {
+    lines.push(`Core pattern: ${corePattern.trim()}`);
+  }
+  const talents = (topThreeTalents ?? [])
+    .map((t) => (typeof t === "string" ? t.trim() : ""))
+    .filter(Boolean);
+  if (talents.length > 0) {
+    lines.push(
+      `Three talents:\n${talents.map((t, i) => `${i + 1}. ${t}`).join("\n")}`,
+    );
+  }
+  return lines.join("\n\n");
 };
