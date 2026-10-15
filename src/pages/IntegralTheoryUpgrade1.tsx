@@ -811,15 +811,24 @@ export default function IntegralTheoryUpgrade1() {
                 : 'Эта работа распространяется по лицензии Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0). Вы можете свободно делиться и адаптировать этот материал с указанием авторства, в некоммерческих целях, на условиях той же лицензии.'
               }
             </p>
-            <a
-              href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block text-white/30 text-xs underline underline-offset-2 hover:text-white/50 transition-colors"
-              style={{ fontFamily: "'Poppins', sans-serif" }}
-            >
-              CC BY-NC-SA 4.0
-            </a>
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+              <a
+                href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block text-white/30 text-xs underline underline-offset-2 hover:text-white/50 transition-colors"
+                style={{ fontFamily: "'Poppins', sans-serif" }}
+              >
+                CC BY-NC-SA 4.0
+              </a>
+              <a
+                href="/license"
+                className="inline-block text-white/30 text-xs underline underline-offset-2 hover:text-white/50 transition-colors"
+                style={{ fontFamily: "'Poppins', sans-serif" }}
+              >
+                {lang === 'en' ? 'Commercial license' : 'Коммерческая лицензия'}
+              </a>
+            </div>
             <div className="h-px w-12 bg-white/5 mx-auto my-4" />
             <p className="text-white/40 text-sm leading-relaxed italic" style={{ fontFamily: "'Source Serif 4', serif" }}>
               {lang === 'en'

@@ -32,6 +32,12 @@ const Footer = () => {
             >
               Terms
             </Link>
+            <Link
+              to="/license"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              License
+            </Link>
             <a
               href="https://www.youtube.com/@IntegralEvolution"
               target="_blank"

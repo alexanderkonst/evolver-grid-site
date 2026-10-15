@@ -258,6 +258,7 @@ import ArtPage from "./pages/game/ArtPiecePage";
 import FounderMarketFit from "./pages/FounderMarketFit";
 import TheOriginalsPage from "./pages/TheOriginalsPage";
 import IntegralTheoryUpgrade1 from "./pages/IntegralTheoryUpgrade1";
+import License from "./pages/License";
 import Intros from "./pages/Intros";
 import YouBeOriginal from "./pages/YouBeOriginal";
 import Web3Commons from "./pages/Web3Commons";
@@ -523,6 +524,9 @@ const App = () => (
                       Old path kept as redirect so any shared links stay alive. */}
                   <Route path="/27" element={<IntegralTheoryUpgrade1 />} />
                   <Route path="/integral_theory_upgrade1" element={<Navigate to="/27" replace />} />
+                  {/* Commercial License page (Sasha 2026-10-14, IP map v0) —
+                      public, EN + RU with in-page language toggle. */}
+                  <Route path="/license" element={<License />} />
                   <Route path="/intros" element={<Intros />} />
                   <Route path="/profile/:userId" element={<PublicProfile />} />
                   <Route path="/u/:username" element={<LegacyPublicProfileRedirect />} />
