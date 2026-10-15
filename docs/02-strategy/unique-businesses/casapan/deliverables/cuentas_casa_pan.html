@@ -1,0 +1,118 @@
+<title>Las cuentas de Casa Pan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Layout: one narrow phone-first column, a calculator card in the middle as the single set-off object. */
+:root{
+  --bg:#eef0ec; --fg:#1f2420; --muted:#5b625c; --line:#cfd4cd;
+  --card:#ffffff; --accent:#6b3f22; --accent-soft:#f1e6dc; --good:#2f6b46;
+  --display:"Gloock", Georgia, "Times New Roman", serif;
+  --body:"Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#171a18; --fg:#e8ebe6; --muted:#a2a9a3; --line:#323833;
+  --card:#202421; --accent:#e0a77c; --accent-soft:#33271f; --good:#7fc79a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#171a18; --fg:#e8ebe6; --muted:#a2a9a3; --line:#323833;
+  --card:#202421; --accent:#e0a77c; --accent-soft:#33271f; --good:#7fc79a; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:620px;margin:0 auto;padding-inline:18px;padding-block:28px 56px;display:grid;gap:34px}
+h1,h2{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0}
+h1{font-size:2.2rem;line-height:1.1}
+h2{font-size:1.45rem;line-height:1.2}
+p{margin:0}
+section{display:grid;gap:12px;min-width:0}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.quote{font-family:var(--display);font-size:1.3rem;color:var(--accent)}
+.muted{color:var(--muted);font-size:.92rem}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.8rem;color:var(--muted);font-weight:700}
+td.n{text-align:right;white-space:nowrap}
+.big{font-weight:700;color:var(--accent)}
+.calc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 18px;display:grid;gap:14px}
+label{font-weight:700}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+input{font:inherit;font-size:1.2rem;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--fg);width:11ch;font-variant-numeric:tabular-nums}
+input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.result{font-family:var(--display);font-size:2.6rem;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.compare{background:var(--accent-soft);border-radius:10px;padding:12px 14px}
+ul,ol{margin:0;padding-left:1.2em;display:grid;gap:8px}
+.rule{font-family:var(--display);font-size:1.5rem;line-height:1.25}
+.ok{color:var(--good);font-weight:700}
+footer{color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:14px}
+</style>
+
+<main class="wrap">
+  <header style="display:grid;gap:10px">
+    <p class="eyebrow">Casa Pan · Temporada 2026–27 · Borrador 1</p>
+    <h1>¿Cuánto hay que vender para que funcione?</h1>
+    <p>Las cuentas con tus propios números. Cuando lleguen tus datos reales, las ajustamos juntos.</p>
+  </header>
+
+  <section>
+    <h2>Lo que te deja cada pan</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>Producto</th><th>Precio</th><th>Costo*</th><th>Te queda</th></tr></thead>
+      <tbody>
+        <tr><td>Pan, venta directa</td><td class="n">$120</td><td class="n">~$30</td><td class="n big">~$90</td></tr>
+        <tr><td>Pan, restaurantes</td><td class="n">$110</td><td class="n">~$30</td><td class="n big">~$80</td></tr>
+        <tr><td>Croissant / pan de chocolate</td><td class="n">$45</td><td class="n">?</td><td class="n">por calcular</td></tr>
+      </tbody>
+    </table></div>
+    <p class="muted">*Materia prima, renta y gas, según lo que me contaste.</p>
+    <div class="compare">
+      <p>El pan que sobra te cuesta <b>$30</b>.<br>El pan que te faltó en el mercado te costó <b>$90</b>.<br>Quedarte sin pan sale 3 veces más caro que tirarlo.</p>
+    </div>
+  </section>
+
+  <section class="calc" aria-labelledby="calc-h">
+    <h2 id="calc-h">Tu número</h2>
+    <label for="need">¿Cuánto necesitas al mes? (tu sueldo, deudas y gastos fijos)</label>
+    <div class="row"><span>$</span><input id="need" type="number" inputmode="numeric" min="0" step="1000" value="30000"></div>
+    <p>Panes que necesitas vender por semana:</p>
+    <p class="result" id="out">78</p>
+    <p class="muted">La cuenta: lo que necesitas al mes ÷ 4.3 semanas ÷ $90 por pan. El 30,000 es un ejemplo. Pon tu número.</p>
+    <p class="compare" id="cmp">En tu mejor temporada vendías 400 a 500 panes por semana.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">La regla de esta temporada</p>
+    <p class="rule">Gastos para la semana floja. Pan según los pedidos.</p>
+    <ul>
+      <li><b>Gastos fijos</b> (sueldos, máquinas, renta adelantada): calcúlalos para una semana floja. Eso fue lo que pesó la temporada pasada.</li>
+      <li><b>Harina y pan:</b> esos sí se mueven cada semana. Si hay más pedidos, horneas más.</li>
+      <li>En el mercado, cuando se acaba el pan, sacas una lista: <span class="quote" style="font-size:1.05rem">"apúntate y mañana te horneo uno"</span>. La idea es tuya.</li>
+      <li>En WhatsApp, pedidos hasta una hora fija. Lo que llegue después es para el otro día.</li>
+    </ul>
+    <p>Así horneas lo que ya está vendido, más un poquito. Y la gente que se iba sin pan se vuelve pedido seguro.</p>
+  </section>
+
+  <section>
+    <h2>Para la próxima vez</h2>
+    <ol>
+      <li><b>Cuánto necesitas al mes</b> (renta, luz, gas, deudas, y cuánto quieres ganar tú).<br><span class="muted">Para qué: el número de arriba deja de ser un ejemplo y se vuelve tu número.</span></li>
+      <li><b>Historial de compras</b> de harina y mantequilla.<br><span class="muted">Para qué: ver cómo sube y baja tu temporada mes a mes, y saber cuánto hornear en cada época.</span></li>
+      <li><b>Cada día que vendes, una línea:</b> cuántos horneaste, cuántos vendiste, a qué hora se acabó. Por producto.<br><span class="muted">Para qué: la hora en que se acaba muestra cuánta gente se quedó con ganas. Con unas semanas de esto, ya puedes saber cuánto hornear en lugar de adivinar.</span></li>
+    </ol>
+  </section>
+
+  <footer>Preparado por Sasha para Benjamin · octubre 2026 · los números se actualizan con tus datos.</footer>
+</main>
+
+<script>
+(function(){
+  var inp=document.getElementById('need'),out=document.getElementById('out'),cmp=document.getElementById('cmp');
+  function calc(){
+    var v=parseFloat(inp.value);
+    if(!(v>0)){out.textContent='—';cmp.textContent='Escribe cuánto necesitas al mes.';return;}
+    var n=Math.ceil(v/4.3/90);
+    out.textContent=n.toLocaleString('es-MX');
+    var pct=Math.round(n/450*100);
+    cmp.innerHTML='En tu mejor temporada vendías 400 a 500 panes por semana. Esto es <span class="ok">cerca del '+pct+'%</span> de eso.';
+  }
+  inp.addEventListener('input',calc);calc();
+})();
+</script>
