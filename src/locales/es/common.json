@@ -5252,7 +5252,13 @@
     },
     "unknownPerspective": "Perspectiva desconocida.",
     "noDataYet": "Aún no hay datos de Talento Principal. Completa primero la evaluación.",
-    "loading": "Cargando…"
+    "loading": "Cargando…",
+    "generateDeeper": {
+      "body": "Tu resultado está guardado. La vista profunda necesita un paso más para mostrarse.",
+      "cta": "Generar vista profunda",
+      "building": "Generando tu vista profunda…",
+      "error": "No funcionó. Inténtalo de nuevo."
+    }
   },
   "destiny": {
     "nav": {

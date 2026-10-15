@@ -3154,7 +3154,13 @@
     },
     "unknownPerspective": "Unknown perspective.",
     "noDataYet": "No Top Talent data found yet. Complete the assessment first.",
-    "loading": "Loading…"
+    "loading": "Loading…",
+    "generateDeeper": {
+      "body": "Your result is saved. The deeper view needs one more step before it shows.",
+      "cta": "Generate deeper view",
+      "building": "Generating your deeper view…",
+      "error": "That didn't work. Please try again."
+    }
   },
   "spacesRail": {
     "logoutToastTitle": "You're logged out",
