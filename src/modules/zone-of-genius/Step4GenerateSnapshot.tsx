@@ -38,6 +38,11 @@ import { useEntryPath } from "@/contexts/EntryPathContext";
 // 3-box layout (hero + character card + superpowers).
 import RevelatoryHero from "@/components/game/RevelatoryHero";
 import TopTalentAuthGate from "./TopTalentAuthGate";
+// Issue #52 (Sasha 2026-10-15), item 9: the "Generated in…" language notice
+// (from #51) was only wired into the deeper per-perspective view. Surface it
+// on the Step-4 reveal too — the guided lane stamps output_language on save,
+// so the just-generated snapshot is in the current UI language.
+import { LanguageMismatchNotice } from "./LanguageMismatchNotice";
 
 // Stripe checkout link for the $37 Activation product. Mirrors
 // AppleseedDisplay.STRIPE_ACTIVATE_LINK — keep in sync.
@@ -829,6 +834,14 @@ ${snapshotText}`;
                   topShadow={undefined}
                   darkMode={false}
                 />
+              </div>
+
+              {/* Issue #52 item 9: "Generated in {language}" transparency
+                  label. The guided lane stamps output_language =
+                  i18n.resolvedLanguage at save time, so this reveal is in the
+                  current UI language (no regenerate link on a match). */}
+              <div className="flex justify-center">
+                <LanguageMismatchNotice snapshotLanguage={i18n.resolvedLanguage} />
               </div>
 
               {/* Day 61+ (Sasha 2026-05-04): Edge / Thrives / Mastery

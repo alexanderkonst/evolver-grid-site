@@ -89,7 +89,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get("return");
-  const { answers, reset, isComplete, isLoading } = useQolAssessment();
+  const { answers, reset, isComplete, isLoading, snapshotCreatedAt, history } = useQolAssessment();
   const snapshotRef = useRef<HTMLDivElement | null>(null);
   const { toast } = useToast();
 
@@ -135,24 +135,37 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
       // and mark saved. Makes results-page revisits idempotent
       // (refresh, navigate-back, etc.) while still producing a fresh
       // row when the user actually retakes with new answers.
-      const { data: lastProfile } = await supabase
-        .from('game_profiles')
-        .select('last_qol_snapshot_id')
-        .eq('id', profileId)
+      //
+      // Issue #52 (Sasha 2026-10-15): compare against the NEWEST snapshot by
+      // created_at, not the `last_qol_snapshot_id` pointer. The context now
+      // loads answers from the newest snapshot (item 11); if the pointer were
+      // stale, a pointer-based guard would see a mismatch and insert a
+      // duplicate of the already-latest result. Reading newest-by-created_at
+      // keeps both sides consistent.
+      const { data: prior } = await supabase
+        .from('qol_snapshots')
+        .select('id, wealth_stage, health_stage, happiness_stage, love_relationships_stage, impact_stage, growth_stage, social_ties_stage, home_stage')
+        .eq('profile_id', profileId)
+        .order('created_at', { ascending: false })
+        .limit(1)
         .maybeSingle();
 
-      if (lastProfile?.last_qol_snapshot_id) {
-        const { data: prior } = await supabase
-          .from('qol_snapshots')
-          .select('wealth_stage, health_stage, happiness_stage, love_relationships_stage, impact_stage, growth_stage, social_ties_stage, home_stage')
-          .eq('id', lastProfile.last_qol_snapshot_id)
+      if (prior && answersMatchSnapshot(answers, prior)) {
+        // Same answers as the latest save — no-op. Heal the pointer in case
+        // it drifted off the newest row, so pointer-based readers agree.
+        const { data: lastProfile } = await supabase
+          .from('game_profiles')
+          .select('last_qol_snapshot_id')
+          .eq('id', profileId)
           .maybeSingle();
-
-        if (prior && answersMatchSnapshot(answers, prior)) {
-          // Same answers as last save — no-op
-          setIsSaved(true);
-          return;
+        if (lastProfile && lastProfile.last_qol_snapshot_id !== prior.id) {
+          await supabase
+            .from('game_profiles')
+            .update({ last_qol_snapshot_id: prior.id, updated_at: new Date().toISOString() })
+            .eq('id', profileId);
         }
+        setIsSaved(true);
+        return;
       }
 
       // Day 64 (Sasha 2026-05-07): SMOKING GUN. The table schema (per
@@ -410,11 +423,14 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
     y += 8;
 
     // ─── Date (helvetica, italic, muted) ───────────────────────────
+    // Issue #52 (Sasha 2026-10-15), item 10: stamp the result's OWN date
+    // (the snapshot's created_at), not the export date. Falls back to today
+    // only for an unsaved in-progress result (no created_at yet).
     pdf.setFont("helvetica", "italic");
     pdf.setFontSize(10);
     pdf.setTextColor(...MUTED);
     pdf.text(
-      formatDate(new Date(), { year: "numeric", month: "long", day: "numeric" }),
+      formatDate(snapshotCreatedAt ?? new Date(), { year: "numeric", month: "long", day: "numeric" }),
       pageWidth / 2,
       y,
       { align: "center" }
@@ -597,7 +613,12 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
 
     // pdf is non-null at this point — either rasterized or fallback.
     try {
-      pdf.save(`quality-of-life-${new Date().toISOString().slice(0, 10)}.pdf`);
+      // Issue #52 item 10: name the file after the result's own date, not the
+      // export date (falls back to today for an unsaved in-progress result).
+      const fileDate = (snapshotCreatedAt ? new Date(snapshotCreatedAt) : new Date())
+        .toISOString()
+        .slice(0, 10);
+      pdf.save(`quality-of-life-${fileDate}.pdf`);
       toast({ title: t('qolResults.toastPdfDownloadedTitle'), description: t('qolResults.toastPdfDownloadedDesc') });
     } catch (err) {
       const e = err as { message?: string };
@@ -900,6 +921,50 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
           className="w-full"
         />
       </div>
+
+      {/* Issue #52 (Sasha 2026-10-15), item 11: earlier results as history.
+          The hero above shows the latest snapshot (newest by created_at); the
+          list below is every prior snapshot, newest first, with its own date
+          and overall score. Hidden when there's only one result. */}
+      {history.length > 1 && (
+        <div className="liquid-glass rounded-3xl p-6 sm:p-8">
+          <p style={heroEyebrowStyle} className="mb-5">
+            {t('qolResults.historyHeading')}
+          </p>
+          <div className="space-y-3">
+            {history.slice(1).map((entry) => (
+              <div
+                key={entry.id}
+                className="flex items-center justify-between py-2 border-b last:border-b-0"
+                style={{ borderColor: "var(--skin-hairline, rgba(26,30,58,0.08))" }}
+              >
+                <span
+                  style={{
+                    fontFamily: "'Source Serif 4', serif",
+                    fontSize: "15px",
+                    fontWeight: 500,
+                    color: "rgba(11, 42, 90, 0.88)",
+                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.85))",
+                  }}
+                >
+                  {formatDate(entry.createdAt, { year: "numeric", month: "short", day: "numeric" })}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'DM Sans', system-ui, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "16px",
+                    color: "#b8860b",
+                    fontVariantNumeric: "tabular-nums",
+                  }}
+                >
+                  {entry.score.toFixed(1)} / 10
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Funnel v2 (§4.4.4): match-path "See your refined matches →"
           CTA below the utility action row. Build-path users see only
