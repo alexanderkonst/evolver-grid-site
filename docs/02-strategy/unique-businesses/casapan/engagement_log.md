@@ -15,7 +15,7 @@
 
 **Don't:** send a correction about "pura ganancia" (decided Oct 15; it was basically right). Don't raise psychology or money unless he does.
 
-**Sheets (in Sasha's Drive, not shared with Ben yet):** [Modelo](https://docs.google.com/spreadsheets/d/1HHBJErcnpXEVsYBe3ILiHMDF1tD7ddCQJwlFjw1830M/edit) · [Registro diario](https://docs.google.com/spreadsheets/d/1HuSxHDZ80hcjRC-5LdeCYK7LDG7wR_M8Hi0Z5tBoa40/edit).
+**Sheets (in Sasha's Drive, not shared with Ben yet):** [Modelo v0.2](https://docs.google.com/spreadsheets/d/10gEkf7eHIEtOrtMoc8cy5-cmi4chjZUeEoiRp4TFaCc/edit) · [Registro diario](https://docs.google.com/spreadsheets/d/1HuSxHDZ80hcjRC-5LdeCYK7LDG7wR_M8Hi0Z5tBoa40/edit).
 
 **Open items:** ROI tab not yet in Google (lives in the xlsx; add once the log has data). Fix the sheet's rent line after he answers #1, and warn him that the number goes up.
 
@@ -78,11 +78,21 @@ Adjustments: confirm the 30 MXN includes rent; restaurant loaves leave 80 (break
 
 ---
 
+## 2026-10-15 · Milestone reframe
+
+- Sasha: **500 loaves/week is the next stable milestone**, with lots of potential above it. Pastry comes on top (not in the 400-500): restaurant channel + a premium pastry line for high-end restaurants. Logged in `business_model.md` §10c. Sheet's upside column still says 450 bread-only; update in the next sheet version.
+
+## 2026-10-15 · Modelo v0.2 + upside
+
+- Modelo v0.2 in Drive adds column C: **upside scenario, first draft** (450 loaves/week, price 150, 30-week season). Assumptions flagged; helper cost pending. v0.1 sheet is superseded (Sasha can delete it).
+- Captured in `parked.md`: testimonial wall (P11), name stand at the bakery (P12), the wrapper as sexy as the bread (P13).
+- To verify: Sasha's read that 400-500/week holds most of the year vs Ben's "70% leave with the heat".
+
 ## 2026-10-15 · Business model spreadsheet v0.1
 
 - `casapan_modelo_v0.1.xlsx`: Modelo (inputs → break-even, capacity check), Supuestos (every number + source), Canales, Registro diario (his daily log; computes leftovers, profit, waste $), Compras (supplier history), ROI (weekly roll-up from the log: waste %, waitlist orders, extra profit from the list).
 - Splits his monthly need into salary / debts / other fixed costs, which fixes the "pura ganancia" mismatch.
-- In Drive as two Google Sheets, formulas verified (Modelo shows 78): [Modelo](https://docs.google.com/spreadsheets/d/1HHBJErcnpXEVsYBe3ILiHMDF1tD7ddCQJwlFjw1830M/edit) · [Registro diario](https://docs.google.com/spreadsheets/d/1HuSxHDZ80hcjRC-5LdeCYK7LDG7wR_M8Hi0Z5tBoa40/edit).
+- In Drive as two Google Sheets, formulas verified (Modelo shows 78): [Modelo v0.2](https://docs.google.com/spreadsheets/d/10gEkf7eHIEtOrtMoc8cy5-cmi4chjZUeEoiRp4TFaCc/edit) · [Registro diario](https://docs.google.com/spreadsheets/d/1HuSxHDZ80hcjRC-5LdeCYK7LDG7wR_M8Hi0Z5tBoa40/edit).
 
 ## 2026-10-15 · Message 01 SENT ✅
 

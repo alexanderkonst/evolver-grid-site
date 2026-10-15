@@ -13,4 +13,7 @@
 | P7 | **Location** | Hidden spot, little foot traffic. Maybe more public. | S1 [1:27:04] |
 | P8 | **Partner** | Wants someone for numbers, clients, PR. | S1 [1:27:04] |
 | P9 | **Vision** | Work he loves, ample time to rest and be with family, grow into something bonito. Vertical/ecosystem growth (Bali cluster). Appetite comes once basics are covered. | Sasha + S1 [1:19:41] |
+| P11 | **Testimonial wall** | The most impactful, poetic customer testimonials, printed and hung on the bakery wall, and posted to socials. | Sasha, Oct 15 |
+| P12 | **A name stand at the bakery** | A visible sign next to the bakery, so it's no longer a hidden entrance. Ties to P7 (location). | Sasha, Oct 15 |
+| P13 | **The wrapper as sexy as the bread** | Elegant design, his look, sales as a ritual ("every purchase like an original iPhone"). Supports a price premium (upside scenario uses 150). | Sasha, Oct 15 |
 | P10 | **Credit / modernization** | Never borrowed; afraid a loan meets a bad season. | S1 [29:56] |

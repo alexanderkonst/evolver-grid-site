@@ -2,7 +2,7 @@
 
 > *Living document. Consulting engagement, Alexander Konstantinov × Benjamin (Casa Pan, San Pancho, Nayarit).*
 > *v0.1 · Oct 15, 2026 · seeded from Session 1 (Oct 14) + Sasha's price corrections + Hark's brief.*
-> *Live Google Sheets: [Modelo](https://docs.google.com/spreadsheets/d/1HHBJErcnpXEVsYBe3ILiHMDF1tD7ddCQJwlFjw1830M/edit) · [Registro diario](https://docs.google.com/spreadsheets/d/1HuSxHDZ80hcjRC-5LdeCYK7LDG7wR_M8Hi0Z5tBoa40/edit). Offline full version (6 tabs incl. ROI): `casapan_modelo_v0.1.xlsx` (tabs: Modelo, Supuestos, Canales, Registro diario, Compras, ROI). This doc explains; the sheet calculates.*
+> *Live Google Sheets: [Modelo v0.2](https://docs.google.com/spreadsheets/d/10gEkf7eHIEtOrtMoc8cy5-cmi4chjZUeEoiRp4TFaCc/edit) · [Registro diario](https://docs.google.com/spreadsheets/d/1HuSxHDZ80hcjRC-5LdeCYK7LDG7wR_M8Hi0Z5tBoa40/edit). Offline full version (6 tabs incl. ROI): `casapan_modelo_v0.1.xlsx` (tabs: Modelo, Supuestos, Canales, Registro diario, Compras, ROI). This doc explains; the sheet calculates.*
 > *Rule: Session 1 numbers are treated as ground truth until real data replaces them. Every number carries its source.*
 
 ---
@@ -101,6 +101,12 @@ Croissant ↔ pan de chocolate and white ↔ rye flip week to week. Rye and kamu
 - **Fixed vs flexible.** The season rule ("fixed costs at the low case") applies to wages, machines, prepaid rent. Flour and batch size are flexible: bought weekly (100–200 kg), so a busy week just means a bigger order.
 - **Flour shelf life.** In his heat and humidity, bugs arrive in ~7–10 days on the floor (Benjamin, S1 [26:39]). General guide, cool and dry: white flour keeps months; whole-grain and rye much less (their oils go rancid). Not the limiter while he buys weekly; matters for rye/kamut (10–15 day lead time from Chihuahua) and for any bulk-buy discount.
 - **Likely real ceiling: his own hands and oven, alone.** No staff this season. If demand surges, the cap is how many loaves one person can shape and bake per day. The waitlist moves surplus demand to the next day, inside that cap. Measure: max loaves/day he can bake alone (to ask).
+
+## 10c. Milestones (Sasha, Oct 15)
+
+- **Floor:** ~78 loaves/week = his "tranquilo" number (30k MXN/month, before rent correction).
+- **Next stable milestone: 500 loaves/week.** Reframed from "best season" to the next level to hold steady, with a lot of potential above it.
+- **Pastry is on top of this, and not counted in the 400-500.** Upside: many restaurants in the area; a **premium pastry line** for the high-end ones. Unknowns: pastry cost per piece, what sells, at what price. First test idea: a sample box to 2-3 high-end restaurants, then ask for a standing weekly order.
 
 ## 11. Data plan
 
