@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { resolveDeeperViewState } from "../deeperViewState";
+import { resolveDeeperViewState, buildRecoveryRawSignal } from "../deeperViewState";
 import { SNAPSHOT_PENDING_SENTINEL } from "../snapshotSentinel";
 import type { AppleseedData } from "../appleseedGenerator";
 
@@ -9,10 +9,16 @@ import type { AppleseedData } from "../appleseedGenerator";
  * saved archetype. The divergence: deeper tabs read only `appleseed_data`,
  * which the guided lane writes asynchronously (and can fail silently).
  *
+ * Issue #53 follow-up (Sasha 2026-10-15): a real saved snapshot with NO
+ * `ai_response_raw` (pre-#54 rows) must still offer recovery — the main card
+ * renders fine from the basic columns, so the deeper view must never show
+ * "Complete the assessment first" for the same row. The recovery signal is
+ * synthesized from those basic columns when the raw signal is absent.
+ *
  * These lock in the three-way recovery decision:
- *   - appleseed present            → "ready" (render the saved result)
- *   - real archetype + raw signal  → "regenerable" (offer "Generate deeper view")
- *   - nothing usable               → "empty" (take the assessment)
+ *   - appleseed present   → "ready" (render the saved result)
+ *   - real archetype      → "regenerable" (offer "Generate deeper view")
+ *   - nothing saved       → "empty" (take the assessment)
  */
 
 // Minimal stand-in; only presence/absence matters to the resolver.
@@ -51,24 +57,26 @@ describe("resolveDeeperViewState — Issue #53", () => {
     ).toBe("regenerable");
   });
 
-  it("falls back to empty when there is no raw signal to regenerate from", () => {
+  it("offers regeneration for a real snapshot even when the raw signal is missing", () => {
+    // Issue #53 follow-up: Sasha's pre-#54 row. Main card renders from the
+    // basic columns; the deeper view must offer recovery, never "empty".
     expect(
       resolveDeeperViewState({
         appleseedData: null,
         archetypeTitle: "Architecting Coherent Truth",
         aiResponseRaw: null,
       }),
-    ).toBe("empty");
+    ).toBe("regenerable");
   });
 
-  it("falls back to empty when the raw signal is only whitespace", () => {
+  it("offers regeneration for a real snapshot when the raw signal is only whitespace", () => {
     expect(
       resolveDeeperViewState({
         appleseedData: null,
         archetypeTitle: "Architecting Coherent Truth",
         aiResponseRaw: "   \n  ",
       }),
-    ).toBe("empty");
+    ).toBe("regenerable");
   });
 
   it("treats the Pending sentinel as no real snapshot (empty, not regenerable)", () => {
@@ -89,5 +97,36 @@ describe("resolveDeeperViewState — Issue #53", () => {
         aiResponseRaw: null,
       }),
     ).toBe("empty");
+  });
+});
+
+describe("buildRecoveryRawSignal — Issue #53 follow-up", () => {
+  it("synthesizes a signal from archetype + core pattern + talents", () => {
+    const signal = buildRecoveryRawSignal(
+      "Architecting Coherent Truth",
+      "You listen until the living point reveals itself, then build the structure.",
+      ["Hearing the real point", "Building nested clarity", "Making usable artifacts"],
+    );
+    expect(signal).toContain("Architecting Coherent Truth");
+    expect(signal).toContain("living point");
+    expect(signal).toContain("1. Hearing the real point");
+    expect(signal).toContain("3. Making usable artifacts");
+  });
+
+  it("returns a signal from the archetype alone when the other columns are absent", () => {
+    const signal = buildRecoveryRawSignal("Architecting Coherent Truth", null, null);
+    expect(signal).toBe("Top Talent: Architecting Coherent Truth");
+  });
+
+  it("drops blank talents and trims the archetype", () => {
+    const signal = buildRecoveryRawSignal("  Constellation Mapping  ", "", ["", "  ", "Map the field"]);
+    expect(signal).toContain("Top Talent: Constellation Mapping");
+    expect(signal).toContain("1. Map the field");
+    expect(signal).not.toContain("Core pattern:");
+  });
+
+  it("returns null when there is no real archetype to recover from", () => {
+    expect(buildRecoveryRawSignal(null, "something", ["a"])).toBeNull();
+    expect(buildRecoveryRawSignal(SNAPSHOT_PENDING_SENTINEL, "something", ["a"])).toBeNull();
   });
 });

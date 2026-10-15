@@ -8,7 +8,7 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { AppleseedData, UnifyingRoleProfile, generateAppleseed } from "@/modules/zone-of-genius/appleseedGenerator";
 import type { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 import { saveAppleseed } from "@/modules/zone-of-genius/saveToDatabase";
-import { resolveDeeperViewState } from "@/modules/zone-of-genius/deeperViewState";
+import { resolveDeeperViewState, buildRecoveryRawSignal } from "@/modules/zone-of-genius/deeperViewState";
 import {
     getCachedZogSnapshot,
     setCachedZogSnapshot,
@@ -1322,6 +1322,11 @@ const ZoGPerspectiveView = () => {
     // state — it re-runs the existing generateAppleseed + saveAppleseed path.
     const [archetypeTitle, setArchetypeTitle] = useState<string | null>(null);
     const [aiResponseRaw, setAiResponseRaw] = useState<string | null>(null);
+    // Issue #53 follow-up: the basic columns the overview renders. When a real
+    // snapshot exists but ai_response_raw is null (pre-#54 rows), these let the
+    // recovery handler synthesize a raw signal to regenerate the deeper view.
+    const [corePattern, setCorePattern] = useState<string | null>(null);
+    const [topThreeTalents, setTopThreeTalents] = useState<string[] | null>(null);
     const [regenerating, setRegenerating] = useState(false);
     const [regenError, setRegenError] = useState(false);
 
@@ -1405,18 +1410,24 @@ const ZoGPerspectiveView = () => {
                 const snapLanguage = (snapshotData?.output_language as string | null) ?? null;
                 const snapArchetype = (snapshotData?.archetype_title as string | null) ?? null;
                 const snapRawSignal = (snapshotData?.ai_response_raw as string | null) ?? null;
+                const snapCorePattern = (snapshotData?.core_pattern as string | null) ?? null;
+                const snapTopThreeTalents = (snapshotData?.top_three_talents as string[] | null) ?? null;
                 // Issue #53: keep the basic columns around so the deeper view
                 // can decide between "render", "offer regeneration", and the
-                // genuine empty state (see resolveDeeperViewState).
+                // genuine empty state (see resolveDeeperViewState), and so the
+                // recovery handler can synthesize a signal when ai_response_raw
+                // is absent (pre-#54 rows like Sasha's existing snapshot).
                 setArchetypeTitle(snapArchetype);
                 setAiResponseRaw(snapRawSignal);
+                setCorePattern(snapCorePattern);
+                setTopThreeTalents(snapTopThreeTalents);
                 if (apple) {
                     setAppleseedData(apple);
                     setOutputLanguage(snapLanguage);
                 } else {
-                    // Only a true dead-end (no real snapshot / no raw signal to
-                    // regenerate from) should flip the empty-state flag; a
-                    // regenerable snapshot renders the recovery button instead.
+                    // Only a genuine dead-end (no real snapshot at all) flips the
+                    // empty-state flag; a real snapshot without appleseed_data is
+                    // "regenerable" and renders the recovery button instead.
                     const state = resolveDeeperViewState({
                         appleseedData: null,
                         archetypeTitle: snapArchetype,
@@ -1452,12 +1463,20 @@ const ZoGPerspectiveView = () => {
     // saveAppleseed, the same two calls the original lanes use. saveAppleseed
     // updates the latest snapshot row in place and invalidates the cache.
     const handleGenerateDeeperView = async () => {
-        if (!aiResponseRaw || regenerating) return;
+        if (regenerating) return;
+        // Prefer the persisted raw signal; fall back to one synthesized from
+        // the basic columns (Sasha's pre-#54 row has no ai_response_raw but a
+        // real archetype + core_pattern + talents the overview already shows).
+        const rawSignal =
+            aiResponseRaw && aiResponseRaw.trim() !== ""
+                ? aiResponseRaw
+                : buildRecoveryRawSignal(archetypeTitle, corePattern, topThreeTalents);
+        if (!rawSignal) return;
         setRegenerating(true);
         setRegenError(false);
         try {
-            const generated = await generateAppleseed(aiResponseRaw);
-            const result = await saveAppleseed(generated, aiResponseRaw);
+            const generated = await generateAppleseed(rawSignal);
+            const result = await saveAppleseed(generated, rawSignal);
             if (!result.success) {
                 throw new Error(result.error || "save failed");
             }
