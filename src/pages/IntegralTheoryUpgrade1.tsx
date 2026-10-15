@@ -9,8 +9,8 @@ const content = {
     title: "27-Perspective Vision",
     subtitle: "Person-Perspectives as Dimensions of Reality",
     author: "Aleksandr Konstantinov & AI",
-    version: "v1.1",
-    versionDate: "April 16, 2026",
+    version: "v1.2",
+    versionDate: "October 14, 2026",
     abstract: {
       label: "Abstract",
       text: "This paper presents a 27-perspective vision derived from two irreducible axes: the Four Quadrants of Integral Theory (Structure / the Divine Masculine) and the Three Depths of Trinitarian inquiry (Depth / the Divine Feminine), independently identified in Daoist philosophy as the three dantians. These axes generate 12 seeing-positions corresponding to 12 dimensions of perspective, independently identified as the 12 facets of the dodecahedron, Plato's solid shape of essence, the fifth element. Through recursive application — seeing the balanced perspective born at the center (13th, the Greek Sun Logos), then seeing the Logos itself from all positions (14th–26th) — the vision then integrates 26 perspectives: a new octave of complete seeing. The 27th is not a perspective but a crystallization — the Si-Do shock (Gurdjieff) at which seeing becomes an impulse. And that's how consciousness turns itself into matter without ever changing its nature. Hence leading to the realization of the unity of consciousness, vision, light, vibration, information, vacuum (space), archetype (myth), energy, and physical matter."
@@ -210,6 +210,24 @@ const content = {
           { type: 'paragraph', text: "The Si-Do shock at the 27th perspective IS a descent through all nine densities simultaneously: from seeing to form to action. The octave is not a metaphor. Light literally IS vibration. Vibration literally IS information (frequency = data). Information literally IS vacuum (quantum vacuum = structured information). Archetype literally IS energy (every myth carries metabolic charge). Energy literally IS matter (E=mc²). The chain closes. Consciousness and matter are the same substance." },
           { type: 'paragraph', text: "You already are every level of this octave simultaneously. You are consciousness seeing. You are light radiating. You are information encoding. You are space holding. You are myth remembering. You are energy moving. You are matter standing. You don't need to 'ascend' anywhere. You need to notice which note you're playing." },
         ]
+      },
+      {
+        id: "lower-synthesis",
+        number: "XI",
+        title: "The Lower Synthesis: Perspectives 2 to 5",
+        content: [
+          { type: 'paragraph', text: "The full octave climbs to 27. But an AI working with a body of knowledge can already hold a smaller set of perspectives at once, on every object and on every link between objects. This lower synthesis is four nested ways of seeing, 2 to 5. Each one adds a single new axis to the one before it." },
+          { type: 'framework', items: [
+            { symbol: "2", label: "Inner and outer", desc: "Every object has an interior and an exterior, and each reflects the other. Seeing in two means asking: what is this from the inside, what is it from the outside, and how does each mirror the other?" },
+            { symbol: "3", label: "Essence, significance, consequence", desc: "The three depths: what this IS, why it MATTERS, and what it inevitably RESULTS IN." },
+            { symbol: "4", label: "The four disciplines", desc: "Each quadrant, read as a discipline of knowing: phenomenology (I: what do I experience?), methodology (It: which procedures produce observable results?), epistemology (We: how do we decide together what counts as knowledge?), ontology (Its: which structures and systems make up reality?)." },
+            { symbol: "5", label: "The elements around the center", desc: "Movement through fire, water, earth and air, in the order of the four seasons, turning around the essence, the fifth element. Here an object is seen in time: as a phase of a living cycle, not as a fixed state." },
+          ]},
+          { type: 'heading3', text: "Perspectives as links" },
+          { type: 'paragraph', text: "In a knowledge graph these perspectives describe links as well as objects. A link type says WHAT connects two things: part of, refines, rhymes with. A perspective says FROM WHERE the connection becomes visible. One link may mirror inner and outer; another runs from essence to consequence; a third joins two things in the same discipline of knowing; a fourth marks one phase of a cycle turning into the next. A link is tagged only with the perspective it is truly seen from, or with none. Over time the empty perspectives show the blind spots of the corpus." },
+          { type: 'paragraph', text: "Every link is a hypothesis, including one that quotes its source word for word. The only fact is that the source says it. The difference between links is their support: a quoted link rests on the author's own words, while an inferred link rests on a reading of the whole corpus. Both are kept, and both stay open to revision." },
+          { type: 'paragraph', text: "The perspective set is itself an object in the graph, versioned and free to evolve as the octave unfolds. Perspectives 2 to 5 are the floor AI can hold today. The full 27 is the horizon." },
+        ]
       }
     ],
     footer: "© 2026 Aleksandr Konstantinov & Synthetic Intelligence. Sources: Universal Ontology §4c-4e, §5; Phase Shift Technology Library, Domains 41, 42, 63, 66, 76, 77, 78; K. Wilber, Sex, Ecology, Spirituality (1995); G.I. Gurdjieff, Beelzebub's Tales (1950); Ra Material / Law of One (1981-84); Plato, Timaeus."
@@ -218,8 +236,8 @@ const content = {
     title: "27 перспектив видения",
     subtitle: "Перспективы субъекта как измерения реальности",
     author: "Александр Константинов и ИИ",
-    version: "в. 1.1",
-    versionDate: "16 апреля 2026",
+    version: "в. 1.2",
+    versionDate: "14 октября 2026",
     abstract: {
       label: "Аннотация",
       text: "В настоящей работе представлено видение из 27 перспектив, выведенное из двух нередуцируемых осей: Четырёх Квадрантов Интегральной Теории (Структура / Божественная Маскулинность) и Трёх Глубин тринитарного исследования (Глубина / Божественная Феминность), независимо идентифицированных в даосской философии как три дантяня. Эти оси порождают 12 позиций видения, соответствующих 12 измерениям восприятия, независимо идентифицированных как 12 граней додекаэдра — Платонова тела сущности, пятого элемента. Через рекурсивное применение — видение сбалансированной перспективы, рождённой в центре (13-я, греческий Солнечный Логос), затем видение самого Логоса со всех позиций (14–26-я) — видение интегрирует 26 перспектив: новую октаву полного видения. 27-я не является перспективой, а кристаллизацией — шоком Си-До (Гурджиев), в котором видение становится импульсом. Так сознание превращает себя в материю, не меняя своей природы. Что ведёт к осознанию единства сознания, видения, света, вибрации, информации, вакуума (пространства), архетипа (мифа), энергии и физической материи."
@@ -415,6 +433,24 @@ const content = {
           { type: 'callout', text: "Это не девять вещей. Это ты по девяти адресам. Как вода есть лёд есть пар есть облако есть дождь. Одна субстанция. Разная плотность. Одна природа." },
           { type: 'paragraph', text: "Шок Си-До на 27-й перспективе ЕСТЬ нисхождение через все девять плотностей одновременно: от видения к форме и к действию. Октава — не метафора. Свет буквально ЕСТЬ вибрация. Вибрация буквально ЕСТЬ информация (частота = данные). Информация буквально ЕСТЬ вакуум (квантовый вакуум = структурированная информация). Архетип буквально ЕСТЬ энергия (каждый миф несёт метаболический заряд). Энергия буквально ЕСТЬ материя (E=mc²). Цепь замыкается. Сознание и материя — одна субстанция." },
           { type: 'paragraph', text: "Ты уже ЯВЛЯЕШЬСЯ каждым уровнем этой октавы одновременно. Ты — сознание видящее. Ты — свет излучающий. Ты — информация кодирующая. Ты — пространство удерживающее. Ты — миф вспоминающий. Ты — энергия движущаяся. Ты — материя стоящая. Тебе не нужно никуда 'восходить'. Нужно заметить, какую ноту ты играешь." },
+        ]
+      },
+      {
+        id: "lower-synthesis",
+        number: "XI",
+        title: "Нижний синтез: перспективы со 2-й по 5-ю",
+        content: [
+          { type: 'paragraph', text: "Полная октава поднимается до 27. Но ИИ, работающий с корпусом знаний, уже сейчас способен удерживать одновременно меньший набор перспектив: на каждом объекте и на каждой связи между объектами. Этот нижний синтез складывается из четырёх вложенных способов видеть, от 2 до 5. Каждый добавляет к предыдущему одну новую ось." },
+          { type: 'framework', items: [
+            { symbol: "2", label: "Внутреннее и внешнее", desc: "У каждого объекта есть внутренняя и внешняя сторона, и каждая отражает другую. Видеть в двух значит спрашивать: что это изнутри, что это снаружи и как одно отражается в другом?" },
+            { symbol: "3", label: "Суть, значимость, следствие", desc: "Три глубины: что это ЕСТЬ, почему это ВАЖНО и к чему это неизбежно ПРИВОДИТ." },
+            { symbol: "4", label: "Четыре дисциплины", desc: "Каждый квадрант как дисциплина познания: феноменология (I: что я переживаю?), методология (It: какие процедуры дают наблюдаемый результат?), эпистемология (We: как мы вместе решаем, что считать знанием?), онтология (Its: какие структуры и системы составляют реальность?)." },
+            { symbol: "5", label: "Стихии вокруг центра", desc: "Движение через огонь, воду, землю и воздух в порядке четырёх сезонов, вокруг сути, пятого элемента. Здесь объект виден во времени: как фаза живого цикла, а не застывшее состояние." },
+          ]},
+          { type: 'heading3', text: "Перспективы как связи" },
+          { type: 'paragraph', text: "В графе знаний эти перспективы описывают не только объекты, но и связи. Тип связи говорит, ЧТО соединяет две вещи: часть целого, уточняет, рифмуется. Перспектива говорит, ОТКУДА эта связь видна. Одна связь отражает внутреннее во внешнем. Другая ведёт от сути к следствию. Третья соединяет две вещи в одной дисциплине познания. Четвёртая отмечает переход одной фазы цикла в следующую. Связь получает только ту перспективу, из которой она действительно видна, или никакую. Со временем пустые перспективы показывают слепые зоны корпуса." },
+          { type: 'paragraph', text: "Любая связь остаётся гипотезой, даже та, что дословно цитирует источник. Факт здесь один: источник так говорит. Связи различаются опорой. Связь-цитата опирается на слово автора, связь-вывод опирается на прочтение всего корпуса. Обе сохраняются, и обе открыты пересмотру." },
+          { type: 'paragraph', text: "Набор перспектив сам является объектом графа: у него есть версия, и он развивается вместе с октавой. Перспективы со 2-й по 5-ю ИИ удерживает уже сегодня, это пол. Полные 27 остаются горизонтом." },
         ]
       }
     ],
