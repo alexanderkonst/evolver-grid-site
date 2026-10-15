@@ -16,4 +16,5 @@
 | P11 | **Testimonial wall** | The most impactful, poetic customer testimonials, printed and hung on the bakery wall, and posted to socials. | Sasha, Oct 15 |
 | P12 | **A name stand at the bakery** | A visible sign next to the bakery, so it's no longer a hidden entrance. Ties to P7 (location). | Sasha, Oct 15 |
 | P13 | **The wrapper as sexy as the bread** | Elegant design, his look, sales as a ritual ("every purchase like an original iPhone"). Supports a price premium (upside scenario uses 150). | Sasha, Oct 15 |
+| P14 | **Premium line** | Bread for everyone, premium to make it sexy and make money. ~70 MXN premium pastry. Candidates: bread club subscription (prepaid weekly), Rosca de Reyes / holiday specials, retreat & Airbnb breakfast boxes, sourdough workshops for visitors, starter jar + recipe card. | Sasha + Claude, Oct 15 |
 | P10 | **Credit / modernization** | Never borrowed; afraid a loan meets a bad season. | S1 [29:56] |

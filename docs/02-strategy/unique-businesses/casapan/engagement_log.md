@@ -10,6 +10,7 @@
 1. "¿Cuánto pagas de renta al mes?" Rent is hidden inside the 30 MXN/loaf, calculated at 400–500 loaves/week. At ~78/week each loaf carries far more rent, so the real break-even is higher (e.g. rent 10k → ~55 MXN/loaf → ~110 loaves/week). Once known, rent moves into the sheet's "Otros gastos fijos" and comes out of the per-loaf cost.
 2. "¿Te queda alguna deuda?" He borrowed for rent last season; status unknown. Don't assume debt.
 3. The most loaves he can bake alone in one day (capacity check in the sheet).
+4. **Pastry cost per piece** (croissant, pan de chocolate), and how long a batch takes him. Needed before any premium price (Sasha's target: ~70 MXN premium pastry for high-end restaurants and retail).
 
 **Collect:** his monthly number, supplier history (flour, butter), daily log (baked / sold / sell-out time), past daily records if he has them.
 
