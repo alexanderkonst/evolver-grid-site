@@ -349,31 +349,20 @@ const Step4GenerateSnapshot = () => {
       const top3TalentNames = top3Talents.map(t => t.name);
       const top10TalentNames = top10Talents.map(t => t.name);
 
-      const { data: snapshotData, error: snapshotError } = await supabase
-        .from('zog_snapshots')
-        .insert({
-          profile_id: profileId,
-          archetype_title: parsed.archetypeTitle,
-          core_pattern: parsed.description,
-          top_three_talents: top3TalentNames,
-          top_ten_talents: top10TalentNames,
-          mastery_action: parsed.masteryAction || null,
-          xp_awarded: false,
-          // i18n: stamp the UI language the AI generated this snapshot in.
-          output_language: i18n.resolvedLanguage,
-        })
-        .select('id, xp_awarded')
-        .single();
-
-      if (snapshotError) {
-        throw snapshotError;
-      }
-
       // Wire fix (2026-04-24): pass guided-lane result through the appleseed
       // pipeline so this lane also produces full AppleseedData (12-perspective
       // JSON), not just plain-text snapshot. Runs in background, non-blocking
       // — UI flow continues unchanged. Same row is updated when appleseed
       // completes. This closes the parity gap with the AI lane.
+      //
+      // Issue #53 (Sasha 2026-10-14): build the raw signal BEFORE the insert
+      // and persist it on the row immediately (ai_response_raw). The deeper
+      // ZoG tabs render only from appleseed_data, which this lane fills in a
+      // fire-and-forget background task below. If that task is still running
+      // (or failed — it swallows errors as non-fatal), the deeper view used
+      // to dead-end on "No Top Talent data found yet." Persisting the signal
+      // up front lets ZoGPerspectiveView offer a "Generate deeper view"
+      // recovery button that re-runs the exact same generation.
       const guidedRawSignal = `TOP TALENT — GUIDED ASSESSMENT (talent-selection lane)
 
 The user completed a structured assessment, selecting their Top 10 talents from a curated bank, then ordering their Top 3.
@@ -386,6 +375,30 @@ ${JSON.stringify(top3Talents.map(t => ({ name: t.name, description: t.descriptio
 
 FIRST-PASS SNAPSHOT (already synthesized from the talent selection):
 ${snapshotText}`;
+
+      const { data: snapshotData, error: snapshotError } = await supabase
+        .from('zog_snapshots')
+        .insert({
+          profile_id: profileId,
+          archetype_title: parsed.archetypeTitle,
+          core_pattern: parsed.description,
+          top_three_talents: top3TalentNames,
+          top_ten_talents: top10TalentNames,
+          mastery_action: parsed.masteryAction || null,
+          xp_awarded: false,
+          // Issue #53: persist the regenerable signal up front so the deeper
+          // view can always recover, even if the background appleseed job
+          // below never completes.
+          ai_response_raw: guidedRawSignal,
+          // i18n: stamp the UI language the AI generated this snapshot in.
+          output_language: i18n.resolvedLanguage,
+        })
+        .select('id, xp_awarded')
+        .single();
+
+      if (snapshotError) {
+        throw snapshotError;
+      }
 
       void generateAppleseed(guidedRawSignal)
         .then(async (appleseedData) => {

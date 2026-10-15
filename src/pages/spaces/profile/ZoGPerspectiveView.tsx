@@ -5,8 +5,10 @@ import type { TFunction } from "i18next";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
-import { AppleseedData, UnifyingRoleProfile } from "@/modules/zone-of-genius/appleseedGenerator";
+import { AppleseedData, UnifyingRoleProfile, generateAppleseed } from "@/modules/zone-of-genius/appleseedGenerator";
 import type { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
+import { saveAppleseed } from "@/modules/zone-of-genius/saveToDatabase";
+import { resolveDeeperViewState } from "@/modules/zone-of-genius/deeperViewState";
 import {
     getCachedZogSnapshot,
     setCachedZogSnapshot,
@@ -16,7 +18,7 @@ import ActivationSteps from "@/components/ActivationSteps";
 import ReadNextSectionButton from "@/components/profile/ReadNextSectionButton";
 import { flipToSecondPerson, flipToFirstPersonReflexive } from "@/lib/zogProfileVoice";
 import { LanguageMismatchNotice } from "@/modules/zone-of-genius/LanguageMismatchNotice";
-import { Target, Sparkles, Users, TrendingUp, Briefcase, DollarSign, Eye, Palette, MessageSquare, Heart, Zap, Quote, ArrowRight, ChevronDown } from "lucide-react";
+import { Target, Sparkles, Users, TrendingUp, Briefcase, DollarSign, Eye, Palette, MessageSquare, Heart, Zap, Quote, ArrowRight, ChevronDown, Loader2 } from "lucide-react";
 
 // Day 54+ (Sasha 2026-04-28 night): full restyle of the ME · Top Talent
 // perspective views. Was a violet/purple palette (#8460ea, #a4a3d0,
@@ -1313,6 +1315,15 @@ const ZoGPerspectiveView = () => {
     // Tracks whether the fetch confirmed there's no snapshot (so we can
     // show the empty-state copy AFTER the load completes — never during).
     const [snapshotMissing, setSnapshotMissing] = useState(false);
+    // Issue #53: the latest snapshot's archetype_title + raw signal. When a
+    // real snapshot exists but appleseed_data hasn't landed (guided-lane
+    // background job still running or failed), these let us offer a
+    // "Generate deeper view" recovery button instead of the dead-end empty
+    // state — it re-runs the existing generateAppleseed + saveAppleseed path.
+    const [archetypeTitle, setArchetypeTitle] = useState<string | null>(null);
+    const [aiResponseRaw, setAiResponseRaw] = useState<string | null>(null);
+    const [regenerating, setRegenerating] = useState(false);
+    const [regenError, setRegenError] = useState(false);
 
     useEffect(() => {
         const loadData = async () => {
@@ -1386,17 +1397,32 @@ const ZoGPerspectiveView = () => {
 
                 const { data: snapshotData } = await supabase
                     .from("zog_snapshots")
-                    .select("appleseed_data, excalibur_data, archetype_title, core_pattern, top_three_talents, output_language")
+                    .select("appleseed_data, excalibur_data, archetype_title, core_pattern, top_three_talents, output_language, ai_response_raw")
                     .eq("id", snapshotId)
                     .single();
 
                 const apple = (snapshotData?.appleseed_data ?? null) as unknown as AppleseedData | null;
                 const snapLanguage = (snapshotData?.output_language as string | null) ?? null;
+                const snapArchetype = (snapshotData?.archetype_title as string | null) ?? null;
+                const snapRawSignal = (snapshotData?.ai_response_raw as string | null) ?? null;
+                // Issue #53: keep the basic columns around so the deeper view
+                // can decide between "render", "offer regeneration", and the
+                // genuine empty state (see resolveDeeperViewState).
+                setArchetypeTitle(snapArchetype);
+                setAiResponseRaw(snapRawSignal);
                 if (apple) {
                     setAppleseedData(apple);
                     setOutputLanguage(snapLanguage);
                 } else {
-                    setSnapshotMissing(true);
+                    // Only a true dead-end (no real snapshot / no raw signal to
+                    // regenerate from) should flip the empty-state flag; a
+                    // regenerable snapshot renders the recovery button instead.
+                    const state = resolveDeeperViewState({
+                        appleseedData: null,
+                        archetypeTitle: snapArchetype,
+                        aiResponseRaw: snapRawSignal,
+                    });
+                    if (state === "empty") setSnapshotMissing(true);
                 }
                 setCachedZogSnapshot({
                     userId: user.id,
@@ -1417,6 +1443,33 @@ const ZoGPerspectiveView = () => {
         };
         loadData();
     }, []);
+
+    // Issue #53: "Generate deeper view" recovery. When a real snapshot exists
+    // but appleseed_data never landed (the guided lane writes it in a
+    // fire-and-forget background job that can still be running or have failed),
+    // re-run the EXACT same generation path from the persisted raw signal and
+    // save it. No new generation logic — this wires generateAppleseed +
+    // saveAppleseed, the same two calls the original lanes use. saveAppleseed
+    // updates the latest snapshot row in place and invalidates the cache.
+    const handleGenerateDeeperView = async () => {
+        if (!aiResponseRaw || regenerating) return;
+        setRegenerating(true);
+        setRegenError(false);
+        try {
+            const generated = await generateAppleseed(aiResponseRaw);
+            const result = await saveAppleseed(generated, aiResponseRaw);
+            if (!result.success) {
+                throw new Error(result.error || "save failed");
+            }
+            setAppleseedData(generated);
+            setSnapshotMissing(false);
+        } catch (err) {
+            console.error("[ZoGPerspectiveView] Generate deeper view failed:", err);
+            setRegenError(true);
+        } finally {
+            setRegenerating(false);
+        }
+    };
 
     const config = perspectiveId ? PERSPECTIVES[perspectiveId] : null;
 
@@ -1471,6 +1524,70 @@ const ZoGPerspectiveView = () => {
                     className="rounded-2xl animate-pulse"
                     style={{ ...cardSurface, height: "8rem", opacity: 0.5 }}
                 />
+            </div>
+        );
+    } else if (
+        needsData &&
+        !appleseedData &&
+        resolveDeeperViewState({ appleseedData, archetypeTitle, aiResponseRaw }) === "regenerable"
+    ) {
+        // Issue #53: a real saved snapshot exists but its deeper (appleseed)
+        // layer hasn't landed. Offer a visible recovery button instead of the
+        // dead-end "No Top Talent data found yet" empty state.
+        body = (
+            <div
+                className="rounded-2xl px-6 py-8 sm:px-8 sm:py-10 text-center space-y-5"
+                style={accentCardSurface}
+            >
+                <p
+                    className="text-base sm:text-lg leading-relaxed"
+                    style={{
+                        fontFamily: "'Source Serif 4', Georgia, serif",
+                        color: "var(--skin-text-primary, #0b2a5a)",
+                        textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                    }}
+                >
+                    {t("zogPerspective.generateDeeper.body")}
+                </p>
+                <div className="flex justify-center">
+                    <button
+                        type="button"
+                        onClick={handleGenerateDeeperView}
+                        disabled={regenerating}
+                        aria-busy={regenerating}
+                        className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:cursor-wait"
+                        style={{
+                            fontFamily: "'Cormorant Garamond', serif",
+                            color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                            backgroundImage:
+                                "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(26,30,58,0.85) 50%, rgba(10,22,40,0.92) 100%))",
+                            boxShadow:
+                                "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                            textShadow:
+                                "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
+                            letterSpacing: "0.02em",
+                        }}
+                    >
+                        {regenerating ? (
+                            <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
+                        ) : (
+                            <Sparkles className="w-4 h-4" aria-hidden="true" />
+                        )}
+                        <span>
+                            {regenerating
+                                ? t("zogPerspective.generateDeeper.building")
+                                : t("zogPerspective.generateDeeper.cta")}
+                        </span>
+                    </button>
+                </div>
+                {regenError && (
+                    <p
+                        className="text-sm italic"
+                        style={{ color: "var(--skin-text-muted, rgba(11,42,90,0.86))" }}
+                    >
+                        {t("zogPerspective.generateDeeper.error")}
+                    </p>
+                )}
             </div>
         );
     } else if (needsData && !appleseedData) {
