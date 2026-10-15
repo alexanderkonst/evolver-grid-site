@@ -675,7 +675,7 @@ function QuizMiniArc({
             <button
                 type="button"
                 onClick={onRetake}
-                className="mt-0.5 text-[11px] underline opacity-60 hover:opacity-90 transition-opacity"
+                className="mt-0.5 text-[13px] underline opacity-80 hover:opacity-100 transition-opacity"
                 style={{ color: "var(--skin-sections-text, rgba(255,255,255,0.85))" }}
             >
                 {retakeLabel}

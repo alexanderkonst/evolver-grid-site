@@ -751,6 +751,7 @@
     "toastEmptyDesc": "El campo de misión no puede estar vacío.",
     "toastNoProfileTitle": "No se encontró tu perfil",
     "toastNoProfileDesc": "Actualiza la página e inténtalo de nuevo.",
+    "toastSavedTitle": "Misión guardada",
     "toastSaveSchemaTitle": "Guardar la misión no está disponible temporalmente",
     "toastSaveSchemaDesc": "La base de datos de la plataforma necesita una actualización única. Estamos en ello — inténtalo de nuevo en un momento.",
     "toastSaveFailedTitle": "No se pudo guardar tu misión",
@@ -1242,7 +1243,7 @@
     "journey": {
       "quizStep0": {
         "label": "Paso 0 · Descubre en qué capítulo de tu viaje del héroe estás",
-        "retake": "Repetir"
+        "retake": "Repetir el test"
       },
       "startHere": {
         "label": "1. Empieza por encontrar tu talento principal"
@@ -2509,7 +2510,7 @@
     "checkInboxDesc": "Enviamos un enlace de confirmación a {{email}}. Haz clic en él para terminar de registrarte.",
     "signUpFailedTitle": "Falló el registro",
     "welcomeBackTitle": "¡Bienvenido de vuelta!",
-    "redirecting": "Redirigiendo...",
+    "redirecting": "Has iniciado sesión.",
     "loginFailedTitle": "Falló el inicio de sesión",
     "testLoginFailedTitle": "Falló el inicio de sesión de prueba",
     "emailAddressRequiredDesc": "Por favor, ingresa tu dirección de email.",
@@ -5132,7 +5133,7 @@
   },
   "zogPerspective": {
     "startHere": {
-      "title": "Estás dentro. Empecemos.",
+      "title": "Empieza aquí",
       "subtitle": "Tres movimientos."
     },
     "howItShowsUp": {

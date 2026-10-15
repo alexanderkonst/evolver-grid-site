@@ -674,12 +674,17 @@ const ZoneOfGeniusOverview = () => {
                     >
                         {t('zogOverview.pdfHint')}
                     </p>
+                    {/* Issue #52 (Sasha 2026-10-15): demoted from a solid
+                        liquid-glass pill to a quiet underlined text link so
+                        the gold "Build a business" CTA below is the single
+                        primary action on the page — the PDF download reads as
+                        the secondary utility it is. */}
                     <button
                         onClick={handleDownloadPdf}
                         disabled={!fullAppleseed || pdfBuilding}
                         aria-busy={pdfBuilding}
-                        className="liquid-glass-strong inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 hover:scale-[1.02] active:scale-95 disabled:opacity-60 disabled:cursor-wait"
-                        style={{ color: INK }}
+                        className="inline-flex items-center gap-1.5 text-sm font-medium underline underline-offset-4 transition-opacity duration-300 hover:opacity-80 disabled:opacity-50 disabled:cursor-wait"
+                        style={{ color: INK_MUTED }}
                     >
                         {pdfBuilding ? (
                             <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />

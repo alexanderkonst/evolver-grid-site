@@ -234,7 +234,7 @@
     "checkInboxDesc": "We sent a confirmation link to {{email}}. Click it to finish signing up.",
     "signUpFailedTitle": "Sign up failed",
     "welcomeBackTitle": "Welcome back!",
-    "redirecting": "Redirecting...",
+    "redirecting": "You're signed in.",
     "loginFailedTitle": "Login failed",
     "testLoginFailedTitle": "Test login failed",
     "emailAddressRequiredDesc": "Please enter your email address.",
@@ -328,6 +328,7 @@
     "toastEmptyDesc": "The mission field can't be empty.",
     "toastNoProfileTitle": "Couldn't find your profile",
     "toastNoProfileDesc": "Please refresh and try again.",
+    "toastSavedTitle": "Mission saved",
     "toastSaveSchemaTitle": "Mission save is temporarily unavailable",
     "toastSaveSchemaDesc": "The platform's database needs a one-time update. We're on it — please try again shortly.",
     "toastSaveFailedTitle": "Couldn't save your mission",
@@ -424,7 +425,7 @@
     "journey": {
       "quizStep0": {
         "label": "Step 0 · See where you are in the entrepreneur's hero's journey",
-        "retake": "Retake"
+        "retake": "Retake journey quiz"
       },
       "startHere": {
         "label": "1. Start by finding your top talent"
@@ -1346,7 +1347,7 @@
     "pdfButtonBuilding": "Preparing your PDF…",
     "pdfButtonReady": "Download Full PDF",
     "pdfButtonGenerating": "Generating PDF data…",
-    "funnelLine1": "In one 2 hour coaching session, we understand who your client is, what product you can offer to them, and how to package that into a business.",
+    "funnelLine1": "In one 2-hour coaching session, we understand who your client is, what product you can offer to them, and how to package that into a business.",
     "ctaPrimary": "Build a business off your top talent",
     "methodologyBridge": "Or Do-It-Yourself:",
     "ctaSecondary": "See the exact playbook"
@@ -3034,7 +3035,7 @@
   },
   "zogPerspective": {
     "startHere": {
-      "title": "You're in. Let's begin.",
+      "title": "Start Here",
       "subtitle": "Three moves."
     },
     "howItShowsUp": {
