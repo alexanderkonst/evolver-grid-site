@@ -2,7 +2,8 @@
 /**
  * Emits a JSON snapshot of the CRM state for the admin dashboard.
  *
- * The CRM lives in `docs/02-strategy/strategic_crm_outreach_tracker.md` (human-edited). The
+ * The CRM lives in `docs/02-strategy/strategic_crm_outreach_tracker.md` (human-edited)
+ * plus its v6.0 siblings in `docs/02-strategy/crm/`. The
  * parser at `scripts/sources/broadcast-tracker.mjs` turns it into structured
  * data. That parser is Node-only (uses fs). To expose it to the React
  * dashboard without reimplementing the parser in the UI layer (explicit hard
@@ -112,6 +113,11 @@ function main() {
           .slice(0, 5),
       ),
       openItemsCount: (data.openItems ?? []).filter((x) => !x.done).length,
+      // Aggregate funnel (by cohort) from the core file's METRICS block plus
+      // the history series from crm/metrics-history.csv — counts only, no
+      // contact names.
+      funnel: data.funnel ?? [],
+      metricsHistory: data.metricsHistory ?? [],
       // `offers[].name` and `offers[].notes` carry real contact names in the
       // source tracker; anonymized here for the same reason as above.
       offers: anonymizer.scrubDeep(data.offers ?? []),
@@ -138,6 +144,8 @@ function main() {
       revShareContractsUsd: null,
       upcomingEvents: [],
       openItemsCount: 0,
+      funnel: [],
+      metricsHistory: [],
       offers: [],
     };
   }
