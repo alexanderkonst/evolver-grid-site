@@ -357,9 +357,55 @@ function computeLunar(nowMs: number) {
   return {
     phase: phase.name,
     job: phase.job,
+    segment_index: segmentIndex,
     phase_end: new Date(phaseEndMs).toISOString(),
     days_left: Math.round(daysLeft * 10) / 10,
   };
+}
+
+// ─── PHASE-AWARE READINESS (server mirror of src/modules/equilibrium/
+// phasePlan.ts — issue #63). Keep in sync with that file: the semantic
+// 1-8 position mapping and the per-layer due-positions must match.
+//
+//   layer        due at phase (position)
+//   focus        Planning    (1)
+//   strategies   Planting    (2)
+//   workstreams  Seeing      (5)
+//   tasks        Seeing      (5)
+//   doNow        Harvesting  (7)
+//
+// A layer is due from its position onward (the cycle only restarts at
+// Planning), so a filled layer always reads "filled" even if filled early.
+type EqLayerKey = "focus" | "strategies" | "workstreams" | "tasks" | "doNow";
+type LayerReadiness = "filled" | "due_empty" | "not_due";
+const EQ_LAYER_KEYS: EqLayerKey[] = ["focus", "strategies", "workstreams", "tasks", "doNow"];
+const LAYER_DUE_AT: Record<EqLayerKey, number> = {
+  focus: 1,
+  strategies: 2,
+  workstreams: 5,
+  tasks: 5,
+  doNow: 7,
+};
+
+// Semantic cycle position (1-8) from the astronomical segment index
+// (0-7). LUNAR_PHASES above is astronomically ordered (index 0 = Clearing
+// = New Moon), so this is the same closed form as phasePlan.ts.
+function semanticPositionFromLunarIndex(segmentIndex: number): number {
+  const idx = ((segmentIndex % 8) + 8) % 8;
+  return ((idx + 2) % 8) + 1;
+}
+
+function computePhaseReadiness(segmentIndex: number, filled: Record<EqLayerKey, boolean>) {
+  const position = semanticPositionFromLunarIndex(segmentIndex);
+  const layers = {} as Record<EqLayerKey, LayerReadiness>;
+  for (const key of EQ_LAYER_KEYS) {
+    layers[key] = filled[key]
+      ? "filled"
+      : position >= LAYER_DUE_AT[key]
+        ? "due_empty"
+        : "not_due";
+  }
+  return { phase: LUNAR_PHASES[segmentIndex].name, position, layers };
 }
 
 // Split an agent-authored task string ("Name — body") back into a short
@@ -432,20 +478,32 @@ async function buildReadState(admin: SupabaseAdmin, userId: string) {
     }
   }
 
+  const strategies = (Array.isArray(strategiesRes.data) ? strategiesRes.data as any[] : []).map((s) => ({
+    position: s.position,
+    text: s.text,
+    alignment_score: s.alignment_score ?? null,
+  }));
+
+  const lunar = computeLunar(Date.now());
+  const phaseReadiness = computePhaseReadiness(lunar.segment_index, {
+    focus: Boolean(String(state.moon_focus_text ?? "").trim()),
+    strategies: strategies.length > 0,
+    workstreams: workstreams.length > 0,
+    tasks: workstreams.some((w) => w.tasks.length > 0),
+    doNow: doNow !== null,
+  });
+
   return {
     source: "equilibrium-agent-write",
     operation: "read_state",
     moon_focus: state.moon_focus_text ?? null,
     lifelong_dedication: state.mission_override_text ?? null,
     role: state.role_override_text ?? null,
-    strategies: (Array.isArray(strategiesRes.data) ? strategiesRes.data as any[] : []).map((s) => ({
-      position: s.position,
-      text: s.text,
-      alignment_score: s.alignment_score ?? null,
-    })),
+    strategies,
     workstreams,
     do_now: doNow,
-    lunar: computeLunar(Date.now()),
+    lunar,
+    phase_readiness: phaseReadiness,
     generated_at: new Date().toISOString(),
   };
 }
