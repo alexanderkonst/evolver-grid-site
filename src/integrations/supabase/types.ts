@@ -2949,15 +2949,6 @@ export type Database = {
           previous_tier: Database["public"]["Enums"]["entitlement_tier"]
         }[]
       }
-      delete_email: {
-        Args: { message_id: number; queue_name: string }
-        Returns: boolean
-      }
-      email_queue_dispatch: { Args: never; Returns: undefined }
-      enqueue_email: {
-        Args: { payload: Json; queue_name: string }
-        Returns: number
-      }
       eq_complete_task: { Args: { p_task_id: string }; Returns: undefined }
       generate_profile_username: {
         Args: {
@@ -3004,15 +2995,6 @@ export type Database = {
         }
         Returns: boolean
       }
-      move_to_dlq: {
-        Args: {
-          dlq_name: string
-          message_id: number
-          payload: Json
-          source_queue: string
-        }
-        Returns: number
-      }
       normalize_profile_username: { Args: { p_value: string }; Returns: string }
       profile_username_is_reserved: {
         Args: { p_username: string }
@@ -3021,14 +3003,6 @@ export type Database = {
       profile_username_is_valid: {
         Args: { p_username: string }
         Returns: boolean
-      }
-      read_email_batch: {
-        Args: { batch_size: number; queue_name: string; vt: number }
-        Returns: {
-          message: Json
-          msg_id: number
-          read_ct: number
-        }[]
       }
       reserve_commercial_outbound_action: {
         Args: {
