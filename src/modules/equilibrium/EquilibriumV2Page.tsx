@@ -24,8 +24,11 @@ import { SynthesisCard } from "./components/SynthesisCard";
 import { SectionAnchorNav } from "./components/SectionAnchorNav";
 import { WatchModeToggle, type WatchMode } from "./components/WatchModeToggle";
 import { ActiveFocusBanner } from "./components/ActiveFocusBanner";
+import { PhaseReadinessPanel } from "./components/PhaseReadinessPanel";
+import { PhaseGate } from "./components/PhaseGate";
 import { useEquilibriumV2 } from "./hooks/useEquilibriumV2";
 import { generateEquilibriumPdf } from "./generateEquilibriumPdf";
+import { getUpcomingPhaseStarts } from "@/lib/equilibrium-cycles";
 import {
   DAY_OF_WEEK_SEGMENTS,
   LUNAR_SEGMENTS,
@@ -33,6 +36,14 @@ import {
   ZODIAC_SEGMENTS,
   lunarDisplayIndex,
 } from "./cycleSegments";
+import {
+  EQ_LAYERS,
+  computePhaseReadiness,
+  phaseByPosition,
+  semanticPositionFromLunarIndex,
+  type EqLayerKey,
+  type LayerReadiness,
+} from "./phasePlan";
 import { SECTION_IDS } from "./types";
 import { EQ_INFO_COPY } from "./equilibriumCopy";
 
@@ -89,7 +100,7 @@ export const EquilibriumV2Page = () => {
   // if (isMdls) return <EquilibriumMDLSPage />;
 
   const eq = useEquilibriumV2();
-  const { cycles } = useCycles(eq.birthday ?? undefined);
+  const { cycles, nowMs } = useCycles(eq.birthday ?? undefined);
   const [mode, setMode] = useWatchMode();
   const [exportingPdf, setExportingPdf] = useState(false);
   const isAttune = mode === "attune";
@@ -109,6 +120,44 @@ export const EquilibriumV2Page = () => {
     }
     return map;
   }, [eq.tasksByWorkstream]);
+
+  // ── Phase-aware readiness (issue #63) ──────────────────────────────
+  // Where are we in Sasha's 1-8 cycle, which write layers are due, and
+  // which are legitimately "not yet"? All config-driven from phasePlan.ts.
+  const currentPosition = semanticPositionFromLunarIndex(cycles.lunar.segmentIndex);
+  const layersFilled = useMemo<Record<EqLayerKey, boolean>>(
+    () => ({
+      focus: Boolean(eq.state?.moon_focus_text?.trim()),
+      strategies: eq.strategies.length > 0,
+      workstreams: eq.workstreams.length > 0,
+      tasks: Object.values(eq.tasksByWorkstream).some((tasks) => tasks.length > 0),
+      doNow: eq.focusedTaskIds.length > 0,
+    }),
+    [eq.state?.moon_focus_text, eq.strategies, eq.workstreams, eq.tasksByWorkstream, eq.focusedTaskIds],
+  );
+  const readiness = useMemo(
+    () => computePhaseReadiness(currentPosition, layersFilled),
+    [currentPosition, layersFilled],
+  );
+  // Next-start timestamp for each lunar phase — dates the collapsed
+  // "<layer> come(s) at <phase> · <date>" hints. Heavy-ish; memo on the
+  // cycle tick anchor so it only recomputes when the watch ticks.
+  const phaseStarts = useMemo(() => getUpcomingPhaseStarts(nowMs), [nowMs]);
+  const comesAtLine = (key: EqLayerKey): string => {
+    const layer = EQ_LAYERS[key];
+    const duePhase = phaseByPosition(layer.dueAtPosition);
+    const startMs = phaseStarts[duePhase.astronomicalIndex];
+    const when = Number.isFinite(startMs)
+      ? new Date(startMs).toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" })
+      : null;
+    const verb = key === "doNow" ? "comes" : "come";
+    return `${layer.label} ${verb} at ${duePhase.name}${when ? ` · ${when}` : ""}`;
+  };
+  // While the state is still loading we don't collapse anything — the
+  // sections carry their own skeletons and an empty array mustn't read as
+  // "not due" before the real data lands.
+  const gateState = (key: EqLayerKey): LayerReadiness =>
+    eq.loading ? "filled" : readiness[key];
 
   const handleSavePdf = async () => {
     setExportingPdf(true);
@@ -348,6 +397,20 @@ export const EquilibriumV2Page = () => {
           />
         )}
 
+        {/* Phase-aware readiness header (issue #63) — where we are in the
+            lunar cycle, what's due, what's legitimately "not yet". Reads
+            the same cycle math the ATTUNE lunar box uses. */}
+        {!isAttune && (
+          <EquilibriumSectionCard id="phase-readiness">
+            <PhaseReadinessPanel
+              currentPosition={currentPosition}
+              readiness={readiness}
+              phaseEndMs={cycles.lunar.phaseEndMs}
+              daysRemainingInPhase={cycles.lunar.daysRemainingInPhase}
+            />
+          </EquilibriumSectionCard>
+        )}
+
         {/* Lifelong Dedication — North Star (first in ACT order)
             "Mission" renamed to "Lifelong Dedication" in Equilibrium UI
             only (backend stays mission_*). Purpose = being; Dedication =
@@ -444,37 +507,39 @@ export const EquilibriumV2Page = () => {
               centered title so the title stays centered (Sasha
               2026-05-19), right-aligned.
             */}
-            <div className="mt-2 flex justify-end">
-              <button
-                type="button"
-                onClick={() => void eq.scoreStrategies()}
-                disabled={
-                  eq.scoringStrategies ||
-                  eq.strategies.length === 0 ||
-                  (!eq.missionDisplay && !eq.roleDisplay)
-                }
-                title={
-                  eq.strategies.length === 0
-                    ? "Add a strategy first"
-                    : !eq.missionDisplay && !eq.roleDisplay
-                      ? "Set your Lifelong Dedication or Role first"
-                      : "Score each strategy 0–100 on alignment with your Lifelong Dedication + Role"
-                }
-                className="rounded-full border border-[#0a1628]/15 bg-white/60 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#0a1628]/85 backdrop-blur-sm transition hover:bg-white/85 hover:text-[#0a1628] disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                {eq.scoringStrategies ? "Scoring…" : "Score alignment"}
-              </button>
-            </div>
-            <StrategiesSection
-              strategies={eq.strategies}
-              loading={eq.loading}
-              onUpsert={eq.upsertStrategy}
-              onReorder={eq.reorderStrategies}
-              onComplete={eq.completeStrategy}
-              onDelete={(position) => eq.upsertStrategy(position, null)}
-              onIterate={eq.iterateStrategy}
-              iteratingPosition={eq.iteratingStrategyPosition}
-            />
+            <PhaseGate readiness={gateState("strategies")} comesAt={comesAtLine("strategies")}>
+              <div className="mt-2 flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => void eq.scoreStrategies()}
+                  disabled={
+                    eq.scoringStrategies ||
+                    eq.strategies.length === 0 ||
+                    (!eq.missionDisplay && !eq.roleDisplay)
+                  }
+                  title={
+                    eq.strategies.length === 0
+                      ? "Add a strategy first"
+                      : !eq.missionDisplay && !eq.roleDisplay
+                        ? "Set your Lifelong Dedication or Role first"
+                        : "Score each strategy 0–100 on alignment with your Lifelong Dedication + Role"
+                  }
+                  className="rounded-full border border-[#0a1628]/15 bg-white/60 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#0a1628]/85 backdrop-blur-sm transition hover:bg-white/85 hover:text-[#0a1628] disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  {eq.scoringStrategies ? "Scoring…" : "Score alignment"}
+                </button>
+              </div>
+              <StrategiesSection
+                strategies={eq.strategies}
+                loading={eq.loading}
+                onUpsert={eq.upsertStrategy}
+                onReorder={eq.reorderStrategies}
+                onComplete={eq.completeStrategy}
+                onDelete={(position) => eq.upsertStrategy(position, null)}
+                onIterate={eq.iterateStrategy}
+                iteratingPosition={eq.iteratingStrategyPosition}
+              />
+            </PhaseGate>
           </EquilibriumSectionCard>
         )}
 
@@ -491,19 +556,21 @@ export const EquilibriumV2Page = () => {
               title="Workstreams"
               infoIconCopy={EQ_INFO_COPY.workstreams}
             />
-            <WorkstreamsSection
-              workstreams={eq.workstreams}
-              archivedWorkstreams={eq.archivedWorkstreams}
-              activeId={eq.activeWorkstreamId}
-              loading={eq.loading}
-              onSelect={eq.setActiveWorkstreamId}
-              onAdd={eq.addWorkstream}
-              onRename={eq.renameWorkstream}
-              onDelete={eq.deleteWorkstream}
-              onComplete={eq.completeWorkstream}
-              onRestore={eq.restoreWorkstream}
-              onReorder={eq.reorderWorkstreams}
-            />
+            <PhaseGate readiness={gateState("workstreams")} comesAt={comesAtLine("workstreams")}>
+              <WorkstreamsSection
+                workstreams={eq.workstreams}
+                archivedWorkstreams={eq.archivedWorkstreams}
+                activeId={eq.activeWorkstreamId}
+                loading={eq.loading}
+                onSelect={eq.setActiveWorkstreamId}
+                onAdd={eq.addWorkstream}
+                onRename={eq.renameWorkstream}
+                onDelete={eq.deleteWorkstream}
+                onComplete={eq.completeWorkstream}
+                onRestore={eq.restoreWorkstream}
+                onReorder={eq.reorderWorkstreams}
+              />
+            </PhaseGate>
           </EquilibriumSectionCard>
         )}
 
@@ -521,24 +588,26 @@ export const EquilibriumV2Page = () => {
               title="Intuitive Tasks"
               infoIconCopy={EQ_INFO_COPY.goals}
             />
-            <SmartGoalsSection
-              workstreamTitle={activeWorkstream?.title ?? null}
-              tasks={activeTasks}
-              focusedTaskIds={eq.focusedTaskIds}
-              loading={eq.loading}
-              onAddTask={(text) =>
-                activeWorkstream && eq.addTask(activeWorkstream.id, text)
-              }
-              onRenameTask={eq.renameTask}
-              onDeleteTask={eq.deleteTask}
-              onReorderTasks={(ids) =>
-                activeWorkstream && eq.reorderTasks(activeWorkstream.id, ids)
-              }
-              onPromoteToDoNow={(id) => { void eq.promoteToDoNow(id); }}
-              onDemoteFromDoNow={eq.demoteFromDoNow}
-              onCompleteTask={eq.completeTask}
-              onUncompleteTask={eq.uncompleteTask}
-            />
+            <PhaseGate readiness={gateState("tasks")} comesAt={comesAtLine("tasks")}>
+              <SmartGoalsSection
+                workstreamTitle={activeWorkstream?.title ?? null}
+                tasks={activeTasks}
+                focusedTaskIds={eq.focusedTaskIds}
+                loading={eq.loading}
+                onAddTask={(text) =>
+                  activeWorkstream && eq.addTask(activeWorkstream.id, text)
+                }
+                onRenameTask={eq.renameTask}
+                onDeleteTask={eq.deleteTask}
+                onReorderTasks={(ids) =>
+                  activeWorkstream && eq.reorderTasks(activeWorkstream.id, ids)
+                }
+                onPromoteToDoNow={(id) => { void eq.promoteToDoNow(id); }}
+                onDemoteFromDoNow={eq.demoteFromDoNow}
+                onCompleteTask={eq.completeTask}
+                onUncompleteTask={eq.uncompleteTask}
+              />
+            </PhaseGate>
           </EquilibriumSectionCard>
         )}
 
@@ -565,14 +634,16 @@ export const EquilibriumV2Page = () => {
               title="DOING NOW"
               infoIconCopy={EQ_INFO_COPY.doNow}
             />
-            <DoNowSection
-              focusedTaskIds={eq.focusedTaskIds}
-              taskById={taskById}
-              loading={eq.loading}
-              onCompleteTask={eq.completeTask}
-              onDemoteFromDoNow={eq.demoteFromDoNow}
-              onReorder={eq.reorderFocus}
-            />
+            <PhaseGate readiness={gateState("doNow")} comesAt={comesAtLine("doNow")}>
+              <DoNowSection
+                focusedTaskIds={eq.focusedTaskIds}
+                taskById={taskById}
+                loading={eq.loading}
+                onCompleteTask={eq.completeTask}
+                onDemoteFromDoNow={eq.demoteFromDoNow}
+                onReorder={eq.reorderFocus}
+              />
+            </PhaseGate>
           </EquilibriumSectionCard>
         )}
 

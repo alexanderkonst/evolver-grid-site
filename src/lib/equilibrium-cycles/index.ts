@@ -1039,6 +1039,49 @@ export function getLunarState(now: number): LunarState {
   };
 }
 
+/**
+ * For each of the 8 lunar phases (astronomical index 0-7), the ms
+ * timestamp when that phase NEXT begins. The phase currently in progress
+ * maps to `now`. Used by the phase-aware readiness UI (issue #63) to date
+ * collapsed "Workstreams come at Seeing · Sun Oct 18" hints.
+ *
+ * Method mirrors UpcomingTransitions: step forward in 30-minute intervals
+ * detecting segmentIndex changes, then binary-refine each boundary to
+ * ~1-minute resolution. Over a 30-day sweep every phase is encountered at
+ * least once (synodic month ≈ 29.53 days), so all 8 entries resolve.
+ */
+export function getUpcomingPhaseStarts(now: number): number[] {
+  const STEP_MS = 30 * 60 * 1000;
+  const MAX_STEPS = (30 * 24 * 60) / 30; // 30 days
+  const starts = new Array<number>(8).fill(NaN);
+
+  let prevIdx = getLunarState(now).segmentIndex;
+  starts[prevIdx] = now;
+  let found = 1;
+
+  for (let step = 1; step <= MAX_STEPS && found < 8; step++) {
+    const tMs = now + step * STEP_MS;
+    const idx = getLunarState(tMs).segmentIndex;
+    if (idx !== prevIdx) {
+      if (Number.isNaN(starts[idx])) {
+        // Boundary lies in (tMs - STEP_MS, tMs]. Binary refine.
+        let lo = tMs - STEP_MS;
+        let hi = tMs;
+        for (let i = 0; i < 20 && hi - lo >= 60_000; i++) {
+          const mid = Math.floor((lo + hi) / 2);
+          if (getLunarState(mid).segmentIndex === prevIdx) lo = mid;
+          else hi = mid;
+        }
+        starts[idx] = hi;
+        found++;
+      }
+      prevIdx = idx;
+    }
+  }
+
+  return starts;
+}
+
 // ─── DAY-OF-WEEK (Planetary Days) ──────────────────
 
 export interface PlanetaryDayInfo {
