@@ -150,8 +150,6 @@ verify_jwt = false
 [functions.save-zog-result]
 verify_jwt = false
 
-[functions.process-email-queue]
-verify_jwt = true
 
 # Day 47 late pass (Sasha): nurture-sequence dispatcher. Invoked by pg_cron
 # every 10 min (see migration 20260422010000_nurture_email_queue.sql).
