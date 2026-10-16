@@ -51,5 +51,5 @@ jobs:
           claude_args: >-
             --model ${{ (contains(github.event.issue.labels.*.name, 'model:opus') || contains(github.event.pull_request.labels.*.name, 'model:opus') || contains(github.event.issue.labels.*.name, 'model:latest') || contains(github.event.pull_request.labels.*.name, 'model:latest')) && 'opus' || ((contains(github.event.issue.labels.*.name, 'model:haiku') || contains(github.event.pull_request.labels.*.name, 'model:haiku')) && 'haiku' || 'sonnet') }}
             --effort high
-            --allowedTools "Bash(npm ci),Bash(npm install),Bash(npm run build),Bash(npm run lint),Bash(gh pr create:*),Bash(gh pr view:*),Bash(git:*)"
+            --allowedTools "Bash(npm ci),Bash(npm install),Bash(npm run build),Bash(npm run lint),Bash(gh pr create:*),Bash(gh pr view:*),Bash(git:*),WebFetch,WebSearch"
 
