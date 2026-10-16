@@ -5,8 +5,17 @@ import {
   filterBySegment,
 } from "./broadcast-tracker.mjs";
 
-describe("readBroadcastTracker", () => {
-  const tracker = readBroadcastTracker();
+// These assertions run against Sasha's real (gitignored) CRM. Where it isn't
+// mounted (CI, fresh checkout) they skip; the fixture test covers the parser.
+let live = null;
+try {
+  live = readBroadcastTracker();
+} catch {
+  live = null;
+}
+
+describe.skipIf(!live)("readBroadcastTracker (live private CRM)", () => {
+  const tracker = live;
 
   it("parses the Master Table with all contacts", () => {
     expect(tracker.contacts.length).toBeGreaterThan(20);
@@ -76,8 +85,10 @@ describe("readBroadcastTracker", () => {
     expect(facebook).toBeTruthy();
   });
 
-  it("parses Pipeline Analytics rows", () => {
-    expect(tracker.pipelineAnalytics.length).toBeGreaterThan(0);
+  it("parses the v6.0 funnel block and history series", () => {
+    expect(tracker.funnel.length).toBeGreaterThan(0);
+    expect(tracker.funnel[0]).toHaveProperty("cohort");
+    expect(Array.isArray(tracker.metricsHistory)).toBe(true);
   });
 
   it("parses Content Pillars", () => {
