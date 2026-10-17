@@ -10628,3 +10628,17 @@ The two assets are not competitors; they are two organs of one funnel, and the s
 | 7 | **"Simplicity and repetition win; nobody values deep complexity."** | Simplicity wins, but there are two of them, the cheap simplicity of a repeated slogan and the earned simplicity on the far side of complexity: I don't sell more complexity, I sell the single sentence only the full depth can produce, which is exactly why almost no one has it. |
 
 **How to use it:** these are answers held in reserve, deployed only into a live request (a paying container, or an explicit "tell me"). With a non-asking friend, the move is presence, not the bank — the same call showed Sasha holding silence over a friend's confusion rather than converting it into a free session, and naming that as a passed sovereignty test. When a real buyer brings these (they will, every rational one does), the bank turns a defended objection into a relocated question in one line.
+
+---
+
+## Addendum (October 17, 2026): Function, not form
+
+*Applies the playbook's new section ([Function, not form: configurations of a Unique Business](../../03-playbooks/unique_business_playbook.md#function-not-form-configurations-of-a-unique-business)) to this canvas. Principle level only.*
+
+**The principle.** This unique business is a function, not a company. The function is seeing founders who build from their uniqueness, and connecting them with the people, capital, and rooms their work needs. It also connects the ecosystems those founders move between. That function is the constant. Everything else on this canvas (FindYourTopTalent, the sessions, the Builder, the value ladder, the network of nodes) is one configuration of it.
+
+**What changes.** Nothing in the articulation changes: the center, the myth, the tribe, and the Public Lines stay as filed. What widens is the list of places the function can run. Alongside FindYourTopTalent as the own-venture and product configurations, the function can also run inside an existing ecosystem, as an embedded role that connects ecosystems from within and uses that organisation's resources, or across ecosystems as a connector between networks. Each is a valid home for the same function.
+
+**How the choice is made.** By the playbook's five questions, asked of the current season: resources needed, autonomy, speed to impact, income stability, fit with the season. The configurations are not rivals. The function can run in two at once, and each one feeds the other: an ecosystem role shows the function more founders and more rooms, and the own venture holds the method, the corpus, and the name.
+
+**Consequence for the canvas.** The canvas keeps working unchanged as the source of truth for the function. Where it says "venture," "business," or "startup" in describing how the function reaches people, read it as the configuration chosen for the season. The Identity-Distance Law (Day 132) still describes who pays cash for articulation. It says nothing against the function running inside an organisation.
