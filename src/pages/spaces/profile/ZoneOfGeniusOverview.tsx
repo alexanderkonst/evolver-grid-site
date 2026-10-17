@@ -20,10 +20,25 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Download, ArrowRight, Loader2 } from "lucide-react";
+import { Sparkles, Download, ArrowRight, Loader2, RotateCcw } from "lucide-react";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { generateZogPdf } from "@/modules/zone-of-genius/generateZogPdf";
+// Issue #52 (Sasha 2026-10-15): the canonical ZoG retake path + its
+// overwrite-confirm, and the "Generated in…" language notice — both were
+// previously unreachable on this (the saved-result) surface.
+import { ZOG_RETAKE_PATH } from "@/modules/zone-of-genius/retake";
+import { LanguageMismatchNotice } from "@/modules/zone-of-genius/LanguageMismatchNotice";
 import type { AppleseedData as FullAppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { hasRealArchetype } from "@/modules/zone-of-genius/snapshotSentinel";
 import type { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
@@ -212,6 +227,12 @@ const ZoneOfGeniusOverview = () => {
     const [appleseedData, setAppleseedData] = useState<AppleseedData | null>(null);
     const [fullAppleseed, setFullAppleseed] = useState<FullAppleseedData | null>(null);
     const [excaliburData, setExcaliburData] = useState<ExcaliburData | null>(null);
+    // Issue #52 item 9: the UI language the saved snapshot was generated in,
+    // so the "Generated in…" notice can render here too.
+    const [outputLanguage, setOutputLanguage] = useState<string | null>(null);
+    // Issue #52 item 7: overwrite-confirm for an explicit "Retake Zone of
+    // Genius" on this (the saved-result) page. Mirrors the entry-screen dialog.
+    const [retakeDialogOpen, setRetakeDialogOpen] = useState(false);
     // Day 58 (Sasha 2026-05-02): the PDF generation is async (font fetch
     // + html2canvas) and takes 1-3 seconds with no visible feedback —
     // users were clicking again, thinking it was broken. This flag
@@ -227,6 +248,15 @@ const ZoneOfGeniusOverview = () => {
         } finally {
             setPdfBuilding(false);
         }
+    };
+
+    // Issue #52 item 7: confirmed "Retake Zone of Genius". Routes to the
+    // canonical retake path (`?redo=true`), which clears the guest buffers and
+    // reopens the Faster/Guided choice fresh. The saved snapshot stays intact
+    // until the user finishes and saves a new reveal.
+    const handleRetakeConfirm = () => {
+        setRetakeDialogOpen(false);
+        navigate(ZOG_RETAKE_PATH);
     };
 
     useEffect(() => {
@@ -253,6 +283,7 @@ const ZoneOfGeniusOverview = () => {
                 // eagerly clears it and returns null.
                 const cached = getCachedZogSnapshot(user.id, resolvedProfileId);
                 if (cached) {
+                    setOutputLanguage(cached.outputLanguage ?? null);
                     const apple = cached.appleseedData as FullAppleseedData | null;
                     if (apple) {
                         setAppleseedData(apple as unknown as AppleseedData);
@@ -337,6 +368,7 @@ const ZoneOfGeniusOverview = () => {
                         archetypeTitle: null,
                         corePattern: null,
                         topThreeTalentsLong: null,
+                        outputLanguage: null,
                     });
                     setLoading(false);
                     return;
@@ -344,7 +376,7 @@ const ZoneOfGeniusOverview = () => {
 
                 const { data: snapshotData } = await supabase
                     .from("zog_snapshots")
-                    .select("appleseed_data, excalibur_data, archetype_title, core_pattern, top_three_talents")
+                    .select("appleseed_data, excalibur_data, archetype_title, core_pattern, top_three_talents, output_language")
                     .eq("id", snapshotId)
                     .single();
 
@@ -363,6 +395,10 @@ const ZoneOfGeniusOverview = () => {
                 const topThreeTalents = (snapshotData?.top_three_talents as
                     | string[]
                     | null) ?? null;
+                const snapshotLanguage = (snapshotData?.output_language as
+                    | string
+                    | null) ?? null;
+                setOutputLanguage(snapshotLanguage);
 
                 if (apple) {
                     setAppleseedData(apple as unknown as AppleseedData);
@@ -400,6 +436,7 @@ const ZoneOfGeniusOverview = () => {
                     // the legacy long-form sentences from the
                     // top_three_talents Supabase column.
                     topThreeTalentsLong: topThreeTalents,
+                    outputLanguage: snapshotLanguage,
                 });
             } catch (err) {
                 console.error("Error loading Top Talent data:", err);
@@ -631,6 +668,14 @@ const ZoneOfGeniusOverview = () => {
                     </article>
                 </div>
 
+                {/* Issue #52 item 9: "Generated in {language}" notice — shows
+                    whenever the saved snapshot carries an output_language, with
+                    a quiet "Regenerate in {ui language}" link when the reading's
+                    language differs from the current UI. */}
+                <div className="flex justify-center">
+                    <LanguageMismatchNotice snapshotLanguage={outputLanguage} />
+                </div>
+
                 {/* Core pattern — Day 58 (Sasha 2026-05-02 evening):
                     moved out of the hero box so the hero fits one
                     viewport. Reads as the "deeper layer" of the
@@ -784,6 +829,41 @@ const ZoneOfGeniusOverview = () => {
                         {t('zogOverview.ctaSecondary')}
                     </a>
                 </section>
+
+                {/* Issue #52 item 7: visible "Retake the Zone of Genius" with
+                    an overwrite-confirm. Kept as a quiet tertiary link so the
+                    saved result stays the primary focus of the page. Reuses the
+                    entry-screen dialog copy (zogEntry.retake*). */}
+                <div className="w-full flex justify-center pt-2">
+                    <button
+                        type="button"
+                        onClick={() => setRetakeDialogOpen(true)}
+                        className="inline-flex items-center gap-1.5 text-[13px] italic underline underline-offset-4 transition-opacity duration-200 hover:opacity-80"
+                        style={{
+                            fontFamily: "'Source Serif 4', Georgia, serif",
+                            color: INK_MUTED,
+                        }}
+                    >
+                        <RotateCcw className="w-3.5 h-3.5" aria-hidden="true" />
+                        {t("zogEntry.retakeLink")}
+                    </button>
+                </div>
+                <AlertDialog open={retakeDialogOpen} onOpenChange={setRetakeDialogOpen}>
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                            <AlertDialogTitle>{t("zogEntry.retakeDialogTitle")}</AlertDialogTitle>
+                            <AlertDialogDescription>
+                                {t("zogEntry.retakeDialogDesc")}
+                            </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                            <AlertDialogCancel>{t("zogEntry.retakeDialogKeep")}</AlertDialogCancel>
+                            <AlertDialogAction onClick={handleRetakeConfirm}>
+                                {t("zogEntry.retakeDialogConfirm")}
+                            </AlertDialogAction>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialog>
 
                 {/* Day 119 (Sasha 2026-07-09): YOU · be original — the
                     inside-layer brand signature (FYTT = door, YOU =

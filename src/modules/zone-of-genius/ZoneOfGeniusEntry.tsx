@@ -151,6 +151,14 @@ const ZoneOfGeniusEntry = () => {
     const stepContentRef = useRef<HTMLDivElement>(null);
     // Issue #48 P0 #1: overwrite-confirm for an explicit ZoG retake.
     const [retakeDialogOpen, setRetakeDialogOpen] = useState(false);
+    // Issue #52 item 8: entering the Guided assessment with an existing saved
+    // result used to overwrite it silently (Step 4 inserts a new snapshot and
+    // repoints last_zog_snapshot_id). Gate the Guided card behind an
+    // overwrite-confirm when a saved result exists and the user hasn't already
+    // chosen to redo (`?redo=true`, or the in-page retake confirm).
+    const [hasExistingResult, setHasExistingResult] = useState(false);
+    const [guidedConfirmOpen, setGuidedConfirmOpen] = useState(false);
+    const isRedoing = searchParams.get("redo") === "true";
 
     // Anonymous-claim banner state: when a guest comes from the landing-page
     // "Claim your gift" CTA, Auth.tsx stashes their email in sessionStorage
@@ -371,6 +379,28 @@ const ZoneOfGeniusEntry = () => {
         };
     }, []);
 
+    // Issue #52 item 8: detect whether an authed user already has a saved ZoG
+    // result, so the Guided card can confirm before overwriting it. Skipped in
+    // redo mode — the user already chose to start fresh.
+    useEffect(() => {
+        if (isRedoing) return;
+        let active = true;
+        (async () => {
+            try {
+                const { data: { user } } = await supabase.auth.getUser();
+                if (!user) return;
+                const { appleseed: dbAppleseed } = await loadSavedData();
+                if (active && dbAppleseed) setHasExistingResult(true);
+            } catch {
+                // Non-fatal — if we can't tell, fall back to no confirm
+                // (preserves the pre-existing behavior).
+            }
+        })();
+        return () => {
+            active = false;
+        };
+    }, [isRedoing]);
+
     // Check if user is guest (no session)
     useEffect(() => {
         supabase.auth.getSession().then(({ data: { session } }) => {
@@ -490,6 +520,10 @@ const ZoneOfGeniusEntry = () => {
     // auto-save effect overwrites it only once a fresh appleseed exists).
     const handleRetakeConfirm = () => {
         setRetakeDialogOpen(false);
+        // Issue #52 item 8: the user has explicitly chosen to start fresh, so
+        // the subsequent Guided/Faster pick must not ask to confirm the
+        // overwrite again.
+        setHasExistingResult(false);
         if (typeof window !== "undefined") {
             clearGuestBuffers(window.localStorage);
         }
@@ -511,8 +545,25 @@ const ZoneOfGeniusEntry = () => {
         setTimeout(() => setCopied(false), 2000);
     };
 
-    const handleStartManualAssessment = () => {
+    const proceedToManualAssessment = () => {
         navigate(`/zone-of-genius/assessment?return=${encodeURIComponent(returnPath)}`);
+    };
+
+    const handleStartManualAssessment = () => {
+        // Issue #52 item 8: confirm before a Guided run silently overwrites an
+        // existing saved result. In redo mode (or after the retake confirm) the
+        // user has already opted in, so go straight through.
+        if (hasExistingResult && !isRedoing) {
+            setGuidedConfirmOpen(true);
+            return;
+        }
+        proceedToManualAssessment();
+    };
+
+    const handleGuidedConfirm = () => {
+        setGuidedConfirmOpen(false);
+        setHasExistingResult(false);
+        proceedToManualAssessment();
     };
 
     const handleGenerateAppleseed = async () => {
@@ -1340,6 +1391,27 @@ const ZoneOfGeniusEntry = () => {
                 onOpenChange={setShowSignupModal}
                 onSuccess={handleSignupSuccess}
             />
+
+            {/* Issue #52 item 8: Guided overwrite-confirm. Reuses the retake
+                dialog copy — "This replaces your current Top Talent with a new
+                reveal. Your saved result stays until you finish and save the new
+                one." */}
+            <AlertDialog open={guidedConfirmOpen} onOpenChange={setGuidedConfirmOpen}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>{t("zogEntry.retakeDialogTitle")}</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            {t("zogEntry.retakeDialogDesc")}
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel>{t("zogEntry.retakeDialogKeep")}</AlertDialogCancel>
+                        <AlertDialogAction onClick={handleGuidedConfirm}>
+                            {t("zogEntry.retakeDialogConfirm")}
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </GameShellV2>
         </>
     );
