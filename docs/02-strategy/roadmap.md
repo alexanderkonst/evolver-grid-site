@@ -86,6 +86,7 @@
 
 | # | Item | Path | Status | Notes |
 |---|------|------|--------|-------|
+| C0 | **Equilibrium Task Flow — top priority (Sasha, 2026-10-16)** | Product / Founder OS | 🔴 top priority | Subtask level (unlimited) under Tasks; DO NOW split by owner (HUMAN = 1, AI = unlimited); caps 3 workstreams × 3 tasks; Equilibrium becomes the single source of truth for the Hark panels EQUILIBRIUM and AI WORK IN PROGRESS, promote to Do Now from the panel. Phases: 1 backend + ops, 2 app UI (`@claude`), 3 Hark panels (Hark), 4 lunar integration. Open decisions D1–D10 (incl. workstreams 4 → 3). Spec: [`equilibrium_task_flow_spec.md`](../04-products/equilibrium_task_flow_spec.md) |
 | C1 | **Run the three streams — convert first cold conversations** | GTM / Outreach | 🔴 the live edge | Streams A/B/C + "the cross." Commercial OS tool runs the searches (query rotation, watch-lane). First cold conversation: Danil (Day 177). Follow the first-session runbook; log outcomes to the CRM contract. Strategy: `outreach_strategy.md` v4.0, ops v2.0 |
 | C2 | **Gleb / The Crossing — continue delivery** | Delivery | 🟢 running | $2,000/2mo, $1,000 received, $1,000 due before session 5. Deliver at quality; keep the 5-vector framework co-development inside the container. Surface: `/products/crossing` |
 | C3 | **Corpus sync (this SoW) — WP3-WP6** | Corpus | 🟡 in progress | WP1 (owners) + WP2 (logs) done this pass. WP3 (method) gated on D2/D4. WP4-WP6 follow. Spec: `docs/specs/corpus-sync/scope_of_work.md` |
