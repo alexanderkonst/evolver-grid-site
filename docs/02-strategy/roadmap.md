@@ -527,6 +527,9 @@ A unique face of eternity.
 
 ## 🔮 Parked / Future
 
+### Parked (2026-10-16) — Founder Cockpit kitchen scene with Viktor Tsoi (AI video)
+Sasha tells the Founder Cockpit story (kitchen version: scattered map, the network, flying in fog, the root-network forest) to Viktor Tsoi, in English, in a Soviet kitchen over vodka, pickles and fish on a newspaper. One video, reusable across channels and the landing page. Source copy: Hark chat 2026-10-16 ("Founder Cockpit: kitchen version"). Constraint: zero budget, free tiers only. Real-likeness caveat: mainstream generators refuse a real person's face, so Tsoi likely as silhouette/back-to-camera/stylized figure. **Restore condition:** Sasha says "let's make the Tsoi video".
+
 ### Captured (2026-10-14) — Evolutionary Book of Life (infographic book)
 A book with infographics that teaches every topic Sasha has learned: an evolutionary book of a human life. One of the outputs the Knowledge Graph should be able to generate. Vision note: knowledgegraph `20 Maps/Граф знаний — видение.md`. Not scheduled.
 
