@@ -112,6 +112,12 @@ Agent PRs merge themselves the moment they are green. Event-driven (`workflow_ru
 
 **Maintenance:** the `workflow_run` trigger lists workflows by name; add each new workflow's `name:` there (never the auto-merge workflow itself, that loops). Every decision is one line in the job summary. Changes to this workflow touch `.github/workflows/**`, so Hark merges them by hand.
 
+## Agent PR auto-open (`.github/workflows/agent-open-pr.yml`)
+
+> **Install (Hark):** staged as `.agent/pending/agent-open-pr.yml` (the Claude GitHub App cannot write to `.github/workflows/`). Run `git mv .agent/pending/agent-open-pr.yml .github/workflows/agent-open-pr.yml` and `git mv -f .agent/pending/agent-automerge.yml .github/workflows/agent-automerge.yml` (the update only adds `"Agent Open PR"` to its `workflow_run` list). Also enable repo setting *Actions → General → Allow GitHub Actions to create and approve pull requests*. Then remove this note.
+
+On `push` to `claude/**`, if the branch has no open PR and is ahead of `main`, the workflow opens one: title = first line of the last commit, body = rest of the commit message + `Closes #N` (from `claude/issue-N-*`). `GITHUB_TOKEN` PRs fire no `pull_request` workflows, so it then dispatches every active workflow that listens to `pull_request` **and** declares `workflow_dispatch` on the branch ref; those runs carry the head SHA, so auto-merge counts them. **A PR-check workflow must declare `workflow_dispatch`**, or it never runs on auto-opened PRs. Agents: open the PR yourself when your permissions allow; this is the safety net.
+
 ## Definition of Done — Before AND After
 
 This section pairs with `.agent/session-protocol.md` (Working agreement section) (the contract). The DoD pattern has two halves; both are mandatory on non-trivial tasks.
