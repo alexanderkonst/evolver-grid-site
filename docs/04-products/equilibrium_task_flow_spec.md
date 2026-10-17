@@ -43,9 +43,9 @@ Phases 1 and 2 are `@claude` issues; each issue carries its own 5–20 row DoD w
 |---|---|---|---|
 | 1 | Spec committed to main | this file at a commit SHA on main | ✅ |
 | 2 | Roadmap row C0 links this spec | `docs/02-strategy/roadmap.md` This Week's Scope, row C0 | ✅ |
-| 3 | Phase 1 issue open (`@claude`, Codex fallback) | issue URL in §10 | ⬜ |
-| 4 | Phase 2 issue open (`@claude`, Codex fallback) | issue URL in §10 | ⬜ |
-| 5 | Equilibrium task "Equilibrium Task Flow (spec + build)" exists in Founder OS | `read_state` shows it; task id in §10 | ⬜ |
+| 3 | Phase 1 issue open (`@claude`, Codex fallback) | issue URL in §10 | ✅ |
+| 4 | Phase 2 issue open (`@claude`, Codex fallback) | issue URL in §10 | ✅ |
+| 5 | Equilibrium task "Equilibrium Task Flow (spec + build)" exists in Founder OS | `read_state` shows it; task id in §10 | ✅ |
 | 6 | `equilibrium_subtasks` + `equilibrium_do_now` live, RLS owner-only | migration file merged; Lovable deploy report; `read_state` returns `subtasks` | ⬜ |
 | 7 | HUMAN Do Now cap = 1 enforced in the DB | second human insert fails on the unique index (test output) | ⬜ |
 | 8 | Workstream cap 3 and task cap 3 enforced in agent-write and UI | `create_workstream` / `create_task` at cap → 400 with cap message; UI add row hidden at 3 | ⬜ |
@@ -204,9 +204,9 @@ Existing fields stay. Added fields:
           "status": "active", "owner": "human", "is_focus": false, "do_now": null,
           "subtasks": [
             {
-              "id": "…", "text": "Phase 1: backend + ops (#N)", "owner": "ai",
+              "id": "…", "text": "Phase 1: backend + ops (#71)", "owner": "ai",
               "status": "waiting", "waiting_on": "claude", "priority": 1,
-              "external_ref": "https://github.com/alexanderkonst/evolver-grid-site/issues/N",
+              "external_ref": "https://github.com/alexanderkonst/evolver-grid-site/issues/71",
               "note": "Gate 1 plan due", "do_now": "ai", "created_by": "hark",
               "created_at": "…", "updated_at": "…", "done_at": null
             }
@@ -317,8 +317,8 @@ Each build phase follows the three-gate rule: Planning DoD comment → "go" from
 
 | Phase | Owner | What | Depends on | Tracking |
 |---|---|---|---|---|
-| **1. Backend + ops** | Claude Code (Codex fallback) | Migration (§4), `eq_promote_do_now` RPC, agent-write ops (§5.2), caps 3 × 3 in agent-write, `read_state` v2 (§5.3), op docs in the writeback SOW, tests. Hark deploys via Lovable after merge (pre-approved for `supabase/`). | — (coordinates with #46 on the cap constants) | issue in §10 |
-| **2. App UI** | Claude Code (Codex fallback) | §7 | Phase 1 merged + deployed; #46 merged | issue in §10 |
+| **1. Backend + ops** | Claude Code (Codex fallback) | Migration (§4), `eq_promote_do_now` RPC, agent-write ops (§5.2), caps 3 × 3 in agent-write, `read_state` v2 (§5.3), op docs in the writeback SOW, tests. Hark deploys via Lovable after merge (pre-approved for `supabase/`). | — (coordinates with #46 on the cap constants) | #71 |
+| **2. App UI** | Claude Code (Codex fallback) | §7 | Phase 1 merged + deployed; #46 merged | #72 |
 | **3. Hark panels read/write** | Hark | §6: EQUILIBRIUM v2, AI WORK IN PROGRESS sourced from subtasks, Do now buttons, PULSE/turn feeder, one-time migration of open panel items | Phase 1 deployed (not Phase 2) | this spec, no issue |
 | **4. Cycle integration** | Claude Code + Hark | (a) HUMAN DO NOW block shows the current lunar phase, days left and the phase job line; (b) at each of the 8 phase transitions Hark runs a synthesis pass: ≤3 workstreams, ≤3 tasks, proposes merges/conversions as a decision sheet for Sasha; (c) Planning: prompt for Moon Focus; Planting: strategies; Seeing: workstreams/tasks (user manual sequence); (d) Celebrating: list of subtasks and tasks done this cycle for the announce/thank step; (e) D7 yearly focus if approved. | #69 merged (Planning anchored to the new moon); Phases 1–3 | issue opened after Phase 2 merges |
 
@@ -330,9 +330,9 @@ Phase 3 can start as soon as Phase 1 is live, in parallel with Phase 2.
 
 | Item | Link / id |
 |---|---|
-| Phase 1 issue | _filled after issue creation_ |
-| Phase 2 issue | _filled after issue creation_ |
-| Equilibrium task | _filled after creation_ |
+| Phase 1 issue | [#71](https://github.com/alexanderkonst/evolver-grid-site/issues/71) |
+| Phase 2 issue | [#72](https://github.com/alexanderkonst/evolver-grid-site/issues/72) (starts after #71 deployed and #46 merged) |
+| Equilibrium task | `7bac4f82-605c-47c2-b839-2c715e82cda9`, workstream Founder OS (`dbe0b90d-…`), created 2026-10-16 via `create_task` |
 
 ---
 
