@@ -55,6 +55,11 @@ The endpoint supports only allowlisted operations:
 - `delete_task` (hard delete — `equilibrium_tasks` has no `archived_at`; focus rows cascade)
 - `promote_task_to_focus`
 - `append_synthesis_log`
+- `park_strategy` `{position}` (copies the strategy's text, alignment score and position into `equilibrium_parked` as kind `strategy`, then deletes it from `equilibrium_strategies`; 400 if the slot is empty)
+- `park_item` `{kind, title, body?}` (inserts a parked row; `kind` is `strategy`, `workstream`, `task` or `idea`)
+- `unpark_strategy` `{parked_id, position?}` (restores a parked strategy into `equilibrium_strategies`, upserting at `position` — overwriting any strategy already there, same as `upsert_strategy` — or at its `source_position` if omitted, then removes it from parked)
+
+The three Parked operations honor `dry_run`, `idempotency_key` and the audit log like every other write. They need the `equilibrium_parked` table from `supabase/migrations/20260829000000_equilibrium_parked.sql`. Parked items are shown as the last block of the ACT section in the cockpit (5 at a time, newest first).
 
 `read_state` powers Hark's Equilibrium Home panel (issue #39): the site stays
 the single source of truth and nothing is duplicated — Hark reads live. The
@@ -64,6 +69,9 @@ response includes `moon_focus`, `lifelong_dedication`, `role`; `strategies`
 (the recommended focus task `{id, name, workstream_title}` or null); and
 `lunar` (current `phase` name, `job`, `phase_end` ISO, `days_left`) computed
 with the same elongation math as `src/lib/equilibrium-cycles/getLunarState`.
+`parked` lists set-aside items (`id`, `kind`, `title`, `body`, `parked_at`),
+newest first, at most 50; it is `[]` until the `equilibrium_parked` migration
+is applied.
 
 Security contract:
 

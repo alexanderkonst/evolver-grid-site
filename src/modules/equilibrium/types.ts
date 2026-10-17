@@ -67,6 +67,26 @@ export interface EquilibriumStrategyCompletion {
   alignment_reasoning: string | null;
 }
 
+/**
+ * Parked item — a row in `equilibrium_parked` (issue #66). Strategies,
+ * workstreams, tasks and ideas that are set aside but stay visible. Shown
+ * at the end of the ACT section; parked by agents via equilibrium-agent-write.
+ */
+export type EquilibriumParkedKind = "strategy" | "workstream" | "task" | "idea";
+
+export interface EquilibriumParkedItem {
+  id: string;
+  user_id: string;
+  kind: EquilibriumParkedKind;
+  title: string;
+  body: string | null;
+  /** The 1/2/3 slot a parked strategy came from. */
+  source_position: number | null;
+  alignment_score: number | null;
+  parked_at: string;
+  parked_by: string | null;
+}
+
 // ─── Workstreams (up to 7 active per user) ─────────────────────────────
 
 export interface EquilibriumWorkstream {
@@ -155,6 +175,8 @@ export const SECTION_IDS = {
   // receive the fruits of labor." Replaces the per-workstream
   // siloed done-piles for the cross-stream celebration view.
   harvest: "harvest",
+  // Issue #66: items set aside but kept visible — last block of ACT.
+  parked: "parked",
 } as const;
 
 export type SectionId = (typeof SECTION_IDS)[keyof typeof SECTION_IDS];
