@@ -19,9 +19,9 @@ export const EQ_INFO_COPY = {
   strategies:
     "The 1–3 directions translating your Lifelong Dedication into action. One sentence each, action verb first. Set when you have clarity.",
   workstreams:
-    "The streams of work the strategies open. Up to 7. Drag to reorder. Capture during the Seeing phase (First Quarter) when the 'how' becomes obvious — write it down before clarity drifts.",
+    "The streams of work the strategies open. Up to 3. Drag to reorder. Capture during the Seeing phase (First Quarter) when the 'how' becomes obvious — write it down before clarity drifts.",
   goals:
-    "The concrete moves under each workstream. Up to 7 per stream. Drag to reorder. Press DO NOW on a task to promote it into your active focus.",
+    "The concrete moves under each workstream. Up to 3 per stream. Drag to reorder. Press DO NOW on a task to promote it into your active focus.",
   doNow:
     "The chosen action — everything above collapses into one move. Up to 3 tasks, ONE recommended. Promote tasks here with the DO NOW button on a workstream task. Check the box to complete; it cascades back to the workstream's done-pile.",
   harvest:

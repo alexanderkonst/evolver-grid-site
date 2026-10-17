@@ -130,7 +130,7 @@ export const PHASE_PLAN: EqPhaseSpec[] = [
     name: "Seeing",
     moonName: "First Quarter",
     astronomicalIndex: 2,
-    asks: "The how reveals. Write Workstreams (≤7) and Intuitive Tasks (≤7 each), fast.",
+    asks: "The how reveals. Write Workstreams (≤3) and Intuitive Tasks (≤3 each), fast.",
     trap: "Don't postpone writing. Capture before the clarity drifts.",
     writes: ["workstreams", "tasks"],
     writeLabel: "Workstreams + Tasks",

@@ -16,8 +16,8 @@ const corsHeaders = {
 };
 
 const MAX_BODY_BYTES = 25_000;
-const MAX_WORKSTREAMS = 7;
-const MAX_TASKS = 7;
+const MAX_WORKSTREAMS = 3;
+const MAX_TASKS = 3;
 const MAX_FOCUS = 3;
 
 type Operation =

@@ -107,6 +107,8 @@ export const WorkstreamsSection = ({
   };
 
   const atCap = workstreams.length >= MAX_WORKSTREAMS;
+  // Over-cap data (#46): rows past the cap stay visible but read-only.
+  const isOverCap = workstreams.length > MAX_WORKSTREAMS;
   const hasNoActive = workstreams.length > 0 && !activeId;
 
   return (
@@ -123,7 +125,7 @@ export const WorkstreamsSection = ({
         onDragEnd={handleDragEnd}
       >
         <SortableContext
-          items={workstreams.map((w) => w.id)}
+          items={workstreams.slice(0, MAX_WORKSTREAMS).map((w) => w.id)}
           strategy={verticalListSortingStrategy}
         >
           <ul className="flex flex-col gap-2">
@@ -133,6 +135,7 @@ export const WorkstreamsSection = ({
                 workstream={w}
                 index={idx}
                 isActive={w.id === activeId}
+                readOnly={idx >= MAX_WORKSTREAMS}
                 loading={loading}
                 onSelect={() => handleSelect(w.id)}
                 onRename={(title) => onRename(w.id, title)}
@@ -143,6 +146,13 @@ export const WorkstreamsSection = ({
           </ul>
         </SortableContext>
       </DndContext>
+
+      {isOverCap && (
+        <p className="mt-2 px-2 text-xs italic text-[#0a1628]/90">
+          Over the {MAX_WORKSTREAMS} cap. Extra items are read-only until the
+          list is back to {MAX_WORKSTREAMS}.
+        </p>
+      )}
 
       {atCap ? (
         <p className="mt-3 px-2 text-xs italic text-[#0a1628]/90">
@@ -213,6 +223,8 @@ interface SortableWorkstreamChipProps {
   workstream: EquilibriumWorkstream;
   index: number;
   isActive: boolean;
+  /** Past the cap: no rename, no drag. Complete + delete stay (they shrink the list). */
+  readOnly: boolean;
   loading: boolean;
   onSelect: () => void;
   onRename: (title: string) => Promise<void> | void;
@@ -250,6 +262,7 @@ const SortableWorkstreamChip = ({
   workstream,
   index,
   isActive,
+  readOnly,
   loading,
   onSelect,
   onRename,
@@ -257,7 +270,7 @@ const SortableWorkstreamChip = ({
   onComplete,
 }: SortableWorkstreamChipProps) => {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
-    useSortable({ id: workstream.id });
+    useSortable({ id: workstream.id, disabled: readOnly });
 
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(workstream.title);
@@ -424,24 +437,26 @@ const SortableWorkstreamChip = ({
           {/* Pencil — dedicated edit affordance. Always discoverable on
               the active row + visible on hover for inactive rows so it
               doesn't clutter the resting list. */}
-          <button
-            type="button"
-            onClick={startEdit}
-            disabled={loading}
-            aria-label={`Rename workstream ${index + 1}`}
-            title="Rename"
-            className={cn(
-              "shrink-0 rounded p-1.5 text-[#0a1628]/55 transition hover:bg-[#0a1628]/5 hover:text-[#0a1628]",
-              // Mobile fallback (Sasha 2026-05-29): partial opacity on
-              // touch so the rename affordance is discoverable without
-              // hover. Same pattern as complete + delete buttons.
-              isActive
-                ? "opacity-100"
-                : "opacity-0 group-hover:opacity-100 focus-visible:opacity-100 max-sm:opacity-60",
-            )}
-          >
-            <Pencil size={13} />
-          </button>
+          {!readOnly && (
+            <button
+              type="button"
+              onClick={startEdit}
+              disabled={loading}
+              aria-label={`Rename workstream ${index + 1}`}
+              title="Rename"
+              className={cn(
+                "shrink-0 rounded p-1.5 text-[#0a1628]/55 transition hover:bg-[#0a1628]/5 hover:text-[#0a1628]",
+                // Mobile fallback (Sasha 2026-05-29): partial opacity on
+                // touch so the rename affordance is discoverable without
+                // hover. Same pattern as complete + delete buttons.
+                isActive
+                  ? "opacity-100"
+                  : "opacity-0 group-hover:opacity-100 focus-visible:opacity-100 max-sm:opacity-60",
+              )}
+            >
+              <Pencil size={13} />
+            </button>
+          )}
         </div>
       )}
 
@@ -543,7 +558,7 @@ const SortableWorkstreamChip = ({
 
       {/* Drag handle on the RIGHT. Hidden during edit (no reorder
           while typing — avoids accidental drags grabbing focus). */}
-      {!editing && (
+      {!editing && !readOnly && (
         <button
           type="button"
           aria-label="Drag to reorder"
