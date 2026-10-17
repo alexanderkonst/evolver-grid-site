@@ -1,0 +1,130 @@
+name: Docs Sync
+
+# Weekly loop: compare PRs merged to main in the last 7 days with docs/
+# (manuals, specs, Equilibrium manual). If docs lag the code, open ONE PR.
+# If nothing changed, do nothing (no Claude call, no PR).
+#
+# PRs opened with the default GITHUB_TOKEN do not trigger other workflows.
+# To get checks (and the claude-review critic) on the docs PR, add a repo
+# secret DOCS_SYNC_TOKEN (fine-grained PAT or app token with contents +
+# pull-requests write). It is used automatically when present.
+
+on:
+  schedule:
+    - cron: "0 15 * * 1" # Monday 15:00 UTC
+  workflow_dispatch: {}
+
+concurrency:
+  group: docs-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    env:
+      GH_TOKEN: ${{ secrets.DOCS_SYNC_TOKEN || github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.DOCS_SYNC_TOKEN || github.token }}
+
+      - name: Collect PRs merged in the last 7 days
+        id: prs
+        run: |
+          set -euo pipefail
+          mkdir -p .agent-ctx
+          since=$(date -u -d '7 days ago' +%Y-%m-%d)
+
+          # An open docs-sync PR already exists -> ONE PR rule, do nothing.
+          open=$(gh pr list --state open --json headRefName --jq '[.[] | select(.headRefName | startswith("docs-sync/"))] | length')
+          if [ "$open" != "0" ]; then
+            echo "A docs-sync PR is already open; skipping."
+            echo "run=false" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+
+          # Merged PRs that touched anything outside docs/ (docs-only PRs and
+          # our own docs-sync PRs cannot make docs lag).
+          gh pr list --state merged --base main --search "merged:>=$since" --limit 100 \
+            --json number,title,url,mergedAt,headRefName,files \
+            --jq '[.[]
+                   | select(.headRefName | startswith("docs-sync/") | not)
+                   | select(any(.files[]; .path | startswith("docs/") | not))
+                   | {number, title, url, mergedAt, files: [.files[].path]}]' \
+            > .agent-ctx/merged-prs.json
+
+          n=$(jq length .agent-ctx/merged-prs.json)
+          echo "Found $n candidate PR(s) since $since"
+          if [ "$n" = "0" ]; then echo "run=false" >> "$GITHUB_OUTPUT"; else echo "run=true" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Claude docs sync
+        if: steps.prs.outputs.run == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            Weekly docs sync. .agent-ctx/merged-prs.json lists PRs merged to main in the last 7 days
+            (number, title, url, changed file paths). Read it, then read CLAUDE.md and docs/docs_index.md.
+
+            Goal: find places where docs/ lag behind that code, and fix them. In scope:
+            - user and operator manuals (e.g. docs/04-products/equilibrium_user_manual.md,
+              docs/04-products/equilibrium_task_engine_manual.md, docs/04-products/equilibrium_task_flow_spec.md)
+            - module and feature specs (docs/05-specs, docs/06-modules, docs/specs)
+            - technical reference (docs/06-architecture, docs/05-reference)
+
+            Out of scope, never edit: docs/02-strategy (roadmap, holomap, canvases), docs/01-vision,
+            docs/03-playbooks, docs/09-logs, docs/archive, and any locked master text
+            (quote, don't paraphrase). Do not invent names, principles or codenames.
+            Do not touch files outside docs/ except .agent-ctx/.
+
+            Method: for each PR, use `git log`/`git show` on its files (and `gh pr view <n>` for its
+            description) to learn what changed in behaviour, then grep docs/ for the feature. Edit a doc
+            only when it is demonstrably stale or missing something a reader needs (changed route,
+            flag, copy, flow, schema field, price). Make the smallest accurate edit; match the doc's
+            existing tone. English only.
+
+            If every doc is already accurate, change nothing and write no file. That is a valid outcome.
+
+            If you edited anything, also write .agent-ctx/pr-body.md:
+            - one-paragraph summary of what was brought back in line
+            - a "Source PRs" list, `- #<n> <title>` per PR that caused an edit, and per doc which PR(s) drove it
+            - the line "Opened by the weekly docs-sync workflow."
+            You cannot commit or open the PR yourself; the workflow does that after you finish.
+          claude_args: >-
+            --model sonnet
+            --max-turns 30
+            --allowedTools "Read,Glob,Grep,Bash(git log:*),Bash(git show:*),Bash(git diff:*),Bash(gh pr view:*),Edit(docs/**),Write(docs/**),Edit(.agent-ctx/**),Write(.agent-ctx/**)"
+
+      - name: Open the docs PR (only if docs changed)
+        if: steps.prs.outputs.run == 'true'
+        run: |
+          set -euo pipefail
+          if [ -z "$(git status --porcelain -- docs)" ]; then
+            echo "Docs already in sync; nothing to do."; exit 0
+          fi
+          # Safety net: only docs/ may change.
+          if [ -n "$(git status --porcelain | grep -v -e ' docs/' -e '\.agent-ctx/' || true)" ]; then
+            echo "::error::Changes outside docs/ detected; refusing to commit."; git status --porcelain; exit 1
+          fi
+
+          branch="docs-sync/$(date -u +%Y-%m-%d)"
+          git config user.name "claude[bot]"
+          git config user.email "noreply@anthropic.com"
+          git checkout -b "$branch"
+          git add docs
+          git commit -m "docs: weekly sync with code merged in the last 7 days" \
+                     -m "Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>"
+          git push origin "$branch"
+
+          body=".agent-ctx/pr-body.md"
+          [ -s "$body" ] || echo "Weekly docs sync. Source PRs: see .agent-ctx output in the workflow run. Opened by the weekly docs-sync workflow." > "$body"
+          printf '\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n' >> "$body"
+          gh pr create --base main --head "$branch" \
+            --title "docs: weekly sync $(date -u +%Y-%m-%d)" \
+            --body-file "$body"

@@ -1,0 +1,104 @@
+name: Post-merge Verify
+
+# After a merge to main, wait for the Vercel deploy, then smoke-check production:
+# home, /build/equilibrium and one route touched by the merge. Each must return
+# HTTP 200 with no error text. On failure, open an issue labeled `regression`
+# naming the commit. No rollback. No model call: this job is plain curl.
+
+on:
+  push:
+    branches: [main]
+    # Docs-only / agent-config-only merges cannot change production.
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+      - ".agent/**"
+      - "notebooklm_sources/**"
+      - ".github/**"
+
+concurrency:
+  group: post-merge-verify
+  cancel-in-progress: false
+
+env:
+  SITE: https://findyourtoptalent.com
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Pick the route touched by this merge
+        id: route
+        run: |
+          set -euo pipefail
+          before="${{ github.event.before }}"
+          # New branch / force push: before is all zeros, fall back to the last commit.
+          if [ -z "$before" ] || [ "$before" = "0000000000000000000000000000000000000000" ]; then before="HEAD~1"; fi
+          route=$(git diff --name-only "$before" "${{ github.sha }}" | node scripts/ci/touched-route.mjs || true)
+          echo "route=$route" >> "$GITHUB_OUTPUT"
+          echo "Touched route: ${route:-none}"
+
+      - name: Wait for the deploy
+        run: sleep 300
+
+      - name: Smoke-check production
+        id: smoke
+        run: |
+          set -uo pipefail
+          paths="/ /build/equilibrium"
+          touched="${{ steps.route.outputs.route }}"
+          if [ -n "$touched" ]; then paths="$paths $touched"; fi
+
+          # Error text a broken deploy or crashed shell would serve with a 200.
+          bad='application error|internal server error|this page could not be found|deployment_not_found|function_invocation_failed|bad gateway|service unavailable|something went wrong|cannot get /'
+
+          : > failures.txt
+          for p in $paths; do
+            code=$(curl -sS -L --max-time 30 --retry 3 --retry-delay 20 --retry-all-errors \
+                     -o body.html -w '%{http_code}' "$SITE$p" || echo "000")
+            if [ "$code" != "200" ]; then
+              echo "- \`$p\`: HTTP $code (expected 200)" >> failures.txt
+            elif hit=$(grep -ioE "$bad" body.html | head -1) && [ -n "$hit" ]; then
+              echo "- \`$p\`: HTTP 200 but page contains error text: \"$hit\"" >> failures.txt
+            else
+              echo "ok  $p"
+            fi
+          done
+
+          if [ -s failures.txt ]; then
+            echo "failed=true" >> "$GITHUB_OUTPUT"
+            cat failures.txt
+          fi
+
+      - name: Open a regression issue
+        if: steps.smoke.outputs.failed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ github.sha }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          short="${SHA:0:7}"
+          gh label create regression --color B60205 --description "Post-merge smoke check failed" 2>/dev/null || true
+          {
+            echo "Post-merge smoke check against $SITE failed for commit \`$short\` ([${SHA}](${{ github.server_url }}/${{ github.repository }}/commit/${SHA}))."
+            echo
+            echo "### Failures"
+            cat failures.txt
+            echo
+            echo "Touched route checked: \`${{ steps.route.outputs.route }}\` (empty = none mapped)."
+            echo "Workflow run: $RUN_URL"
+            echo
+            echo "No rollback was performed. Revert or fix forward."
+          } > issue-body.md
+          gh issue create --label regression \
+            --title "Regression after merge $short: production smoke check failed" \
+            --body-file issue-body.md

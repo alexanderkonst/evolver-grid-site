@@ -232,6 +232,7 @@ Everything about AI itself (AI OS, benchmark, the Hark leap, self-awareness map,
 | [refactor_plan.md](./05-reference/refactor_plan.md) | Refactoring plan |
 | [lint_baseline_plan.md](./05-reference/lint_baseline_plan.md) | Lint config |
 | [codex_handoff_onboarding.md](./05-reference/codex_handoff_onboarding.md) | Codex AI handoff |
+| [agent_ops.md](./05-reference/agent_ops.md) | Agent ops: PR critic, weekly docs sync, post-merge verifier (GitHub Actions) |
 
 ---
 
