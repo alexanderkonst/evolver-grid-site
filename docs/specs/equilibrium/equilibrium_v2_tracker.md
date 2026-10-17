@@ -1,5 +1,7 @@
 # "Equilibrium" Biologic Watch (v2) — Progress Tracker
 
+> **Amendment 2026-10-13 (Sasha):** ACT caps are now up to 3 Workstreams × 3 Intuitive Tasks per workstream (was 7 × 7). Strategies stay 1–3, DO NOW stays ≤3. Sections below that say 7 predate this.
+
 **Started:** 2026-05-15
 **Status:** ✅ **IMPLEMENTATION COMPLETE 2026-05-15** — Functional build live at `/build/equilibrium`; BUILD chip surfaces in SpacesRail; Equilibrium entry in BUILD SectionsPanel; all 11 sections wired. Awaiting Sasha's voice pass + sign-in dogfood.
 **Setup complete:** files renamed v1.1–v1.6, spec + tracker scaffolded, references updated across docs/ (2026-05-15)

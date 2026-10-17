@@ -55,7 +55,9 @@ Planned tasks come from the mind under pressure. Intuitive tasks come from a min
 
 ## Why seven, and not more
 
-Up to **7 workstreams**. Up to **7 tasks** per stream.
+> *2026-10-13: caps lowered from 7 to 3 (Sasha). The reasoning below was written for seven; Sasha to rewrite.*
+
+Up to **3 workstreams**. Up to **3 tasks** per stream.
 
 Seven is roughly what a human holds in view at once. Past that, a list stops being a field you choose from and becomes a backlog you feel guilty about. A backlog is the grind in storage.
 
