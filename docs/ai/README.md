@@ -40,6 +40,7 @@
 | [.agent/vibe-synthesis.md](../../.agent/vibe-synthesis.md) · [moonshot-pre-prompt.md](../../.agent/moonshot-pre-prompt.md) | How we show up · what the venture principle is |
 | [.agent/anti-ai-style.md](../../.agent/anti-ai-style.md) · `.agent/skills/humanizer/` | Voice guardrails for external copy |
 | `.agent/skills/holonic-seeing/` (public: [public/skills/holonic-seeing.md](../../public/skills/holonic-seeing.md)) · `holomap-builder/` · `zone-of-genius.md` | Thinking skills |
+| [03-playbooks/personal_intelligence_setup_playbook.md](../03-playbooks/personal_intelligence_setup_playbook.md) | **Setup playbook**: the seven agentic routines (PR critic, event triggers, docs-sync, post-merge verify, graph sync, check-ins, learning loops) as a copyable template |
 | [05-reference/codex_handoff_onboarding.md](../05-reference/codex_handoff_onboarding.md) · [05-specs/claude_code_handoff_playbook_funnel.md](../05-specs/claude_code_handoff_playbook_funnel.md) | Handoffs to Codex and Claude Code |
 
 ## 5. Public voice — content about AI
