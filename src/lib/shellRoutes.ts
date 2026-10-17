@@ -45,7 +45,7 @@ const HOLDOUT_PREFIX: string[] = [
 ];
 
 /** Public offer pages that share Ignite's journey shell. */
-const PRODUCT_LANDING_ROUTES = ["/products", "/products/crossing", "/products/built"];
+const PRODUCT_LANDING_ROUTES = ["/products", "/products/crossing", "/products/built", "/zone-of-genius/articulation"];
 
 export const isProductLandingRoute = (pathname: string): boolean =>
     PRODUCT_LANDING_ROUTES.includes(pathname);

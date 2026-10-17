@@ -83,6 +83,7 @@ const EvolutionPortal = lazy(() => import("./pages/EvolutionPortal"));
 const EvolutionPortalKarime = lazy(() => import("./pages/EvolutionPortalKarime"));
 const BuildContainer = lazy(() => import("./pages/BuildContainer"));
 const TheCrossing = lazy(() => import("./pages/TheCrossing"));
+const ZoneOfGeniusArticulation = lazy(() => import("./pages/ZoneOfGeniusArticulation"));
 const FounderRead = lazy(() => import("./pages/FounderRead"));
 const FounderMarketFitCategory = lazy(() => import("./pages/FounderMarketFitCategory"));
 const CommunityWebinar = lazy(() => import("./pages/CommunityWebinar"));
@@ -613,6 +614,9 @@ const App = () => (
                   <Route path="/product/evolution-portal" element={<Navigate to="/products/evolution-portal" replace />} />
                   <Route path="/products/built" element={<BuildContainer />} />
                   <Route path="/products/crossing" element={<TheCrossing />} />
+                  {/* Product page for the $333 ZoG Articulation session. Bare
+                      /zone-of-genius stays the free Top Talent entry. */}
+                  <Route path="/zone-of-genius/articulation" element={<ZoneOfGeniusArticulation />} />
                   <Route path="/products/founder-read" element={<FounderRead />} />
                   <Route path="/communities" element={<CommunityWebinar />} />
                   <Route path="/products/build" element={<Navigate to="/products/built" replace />} />

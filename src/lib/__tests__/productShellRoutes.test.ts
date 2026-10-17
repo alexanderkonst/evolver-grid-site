@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { isProductLandingRoute, pathHidesLogo, pathUsesLayoutShell } from "../shellRoutes";
 
 describe("public product shell routes", () => {
-  it.each(["/products", "/products/crossing", "/products/built"])("supplies the persistent shell without duplicate branding on %s", path => {
+  it.each(["/products", "/products/crossing", "/products/built", "/zone-of-genius/articulation"])("supplies the persistent shell without duplicate branding on %s", path => {
     expect(isProductLandingRoute(path)).toBe(true);
     expect(pathUsesLayoutShell(path)).toBe(true);
     expect(pathHidesLogo(path)).toBe(true);
@@ -12,6 +12,11 @@ describe("public product shell routes", () => {
     expect(isProductLandingRoute(path)).toBe(false);
     expect(pathUsesLayoutShell(path)).toBe(false);
     expect(pathHidesLogo(path)).toBe(false);
+  });
+
+  it("keeps the free ZoG entry as a holdout", () => {
+    expect(isProductLandingRoute("/zone-of-genius")).toBe(false);
+    expect(pathUsesLayoutShell("/zone-of-genius")).toBe(false);
   });
 
   it("preserves Ignite and the quiz holdout", () => {
