@@ -26,7 +26,7 @@ Each entry in this library is a technology — a seeing instrument that produces
 
 ## ⟡ Executive Summary & 27-Perspective Synthesis
 
-> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 159 as of October 12, 2026) stay the source of truth.*
+> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 160 as of October 17, 2026) stay the source of truth.*
 
 This is the R&D engine of the whole venture: a growing library of seeing instruments, each named by the transformational result it delivers, from cosmogenesis (Prime Radiant) through uniqueness articulation, the founder-first inversion, and myth-to-movement, up to the recent cluster on ripeness, transition, the mirror, and the network of sovereigns. They do not stack like a portfolio; they nest, each one refracting through all the others. Held together they are a single field seen from many faces (concentric polymathy). Over 2026 the collection converged on one spine: articulation is the mechanism of growth, recognition replaces persuasion, the mirror is the product, and a network coheres through well-formed edges rather than a center. Every playbook move, product, and pricing decision downstream traces to a numbered technology here.
 
@@ -8627,3 +8627,58 @@ From the merged *Feeling Doesn't Shout* material:
 
 - No written counterpart in the crosswalk (all six members *oral_only*).
 - Oral neighbours, all also *oral_only*: *One dial: pain and pleasure* (the same dial muted for the unpleasant mutes the pleasant, 2026-08-16 01:38:40, right after this passage); *Emotional contracts and autonomy* (continues the same passage); *Practice: go into what surfaces*; candidate 156.
+
+---
+
+## Technology 160: Function, Not Form (уникальный бизнес — это функция) (oral, Oct 17, 2026)
+
+> *Oral · Day 219, October 17, 2026 · chat with Hark. Sasha named it a phase-shift technology the same day («это стопудово технология смены фазы»). Title is Hark's English rendering; "функция" is Sasha's word, which he chose over "роль".*
+
+### 🫀 Essence — in Sasha's words
+
+1. > «уникальные бизнес, но они могут в нём работать как один на один, так и в систему, так и идти upstream, так и в систему входить, соединять экосистемы, и в том числе действовать изнутри экосистемы, пользуясь их ресурсами. И вот это, например, вариант, который я не следовал до этого.»
+   > — *chat of 2026-10-17, 13:27 CST (lightly cleaned from voice dictation)*
+
+   *(translation)* "A unique business can be worked 1:1, as a system, upstream, or by entering a system and connecting ecosystems, including acting from inside an ecosystem and using its resources. That is a path I hadn't followed before."
+
+2. > «What if I can join an existing ecosystem and do my thing from there? Salaried?»
+   > — *chat of 2026-10-17, 13:27 CST*
+
+3. > «уникальный бизнес — эта функция, не обязательно свой стартап. Функция… это ещё лучше слово, чем роль.»
+   > — *chat of 2026-10-17, ~13:40 CST*
+
+   *(translation)* "A unique business is a function, not necessarily your own startup. Function is an even better word than role."
+
+4. > «для нас тоже очень важное понимание… большое значение для моего уникального бизнеса, сильно расширяет панораму, и вообще для всех уникальных бизнесов.»
+   > — *chat of 2026-10-17*
+
+   *(translation)* "An important understanding for us… it matters a lot for my unique business, it widens the panorama a great deal, and for all unique businesses."
+
+5. > «Более того, это стопудово технология смены фазы.»
+   > — *chat of 2026-10-17*
+
+   *(translation)* "More than that, this is definitely a phase-shift technology."
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* A Unique Business is the invariant: a person's unique way of creating value. "My own startup" is only one vehicle for it. The same function can run 1:1, as a product or system, upstream as one's own venture, embedded inside an existing ecosystem (salaried, using its resources), or across ecosystems as a connector. The phase shift: the question moves from "how do I build my company?" to "where does my function run best this season?" Configurations that looked like a retreat (a job) become a full expression of the same business. Semantics and vehicle do not change essence.
+
+### 🔥 Implications — AI draft
+
+- **1st order.** The panorama widens: every founder-shaped person gets more legitimate paths, including joining an organisation that has already named the need their function meets.
+- **2nd order.** Choosing a configuration becomes a fit decision (resources, autonomy, speed to impact, income stability, season) instead of an identity verdict. Ecosystem-embedded roles become a channel for the network of sovereigns: one function, several ecosystems connected through formed edges.
+- **3rd order.** The playbook, ICP and offers stop assuming "unique business = own startup"; Unique Business discovery outputs a function plus a menu of vehicles.
+
+### Shape
+
+- **Shape:** **Radial**: one invariant (the function) at the centre, five configurations around it (1:1 · system/product · upstream venture · inside an ecosystem · across ecosystems).
+- **Infographic (one line):** A single glowing core labelled "function" with five spokes to different vessels (a handshake, a machine, a rocket, a building with a door, a bridge between islands); caption: same light, different lamp.
+
+### Cross-references — Connects to
+
+- *Technology 10: The Business You're Already Standing On*: the function already exists before any vehicle.
+- *Technology 87: Multi-Patron Architecture*: patrons and host organisations as vehicles for one function.
+- *Technology 98: Prime Invariant Branding* and *Technology 118: The Seer Invariant*: invariant before projection.
+- *Technology 111: The Network of Sovereigns* and *Technology 120: The Formed Edge*: embedded roles as edges between ecosystems.
+- *Technology 128: The Name Is the Result*: the function is named by the result it delivers, not the container.
+- Playbook section "Function, not form" (evolver-grid-site issue #75).
