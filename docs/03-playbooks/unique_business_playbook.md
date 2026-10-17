@@ -2573,6 +2573,8 @@ The program has two layers:
 > - **The founder discovers the modules through doing** — gift sessions reveal which "Worlds" activate most frequently
 > - **Pricing maps naturally:** SR1 (setup) = entry ($0-$1K), SR2 (spiral modules) = recurring ($5K-$15K/module), bonus (team rollout) = advisory ($2-5K/mo)
 >
+> **Setup stage (СРЕДА) in practice:** the agentic routines that make the environment run on its own are in [personal_intelligence_setup_playbook.md](./personal_intelligence_setup_playbook.md).
+>
 > **Operational principle:** When a founder designs their Product Kernel, ask: "Is SR3 truly core, or is it a bonus for later?" In most cases, the core is SR1 (setup) + SR2 (repeating transformation for ONE person). Everything else scales AFTER the 1-on-1 spiral is validated.
 
 **The Sovereignty Principle — Same Word at Every Scale (discovered March 30, 2026 — Sandra Session #5):**

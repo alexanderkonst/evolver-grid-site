@@ -144,6 +144,7 @@ Everything about AI itself (AI OS, benchmark, the Hark leap, self-awareness map,
 | [telemetry_playbook.md](./03-playbooks/telemetry_playbook.md) | Analytics & tracking |
 | [mission_control.md](./03-playbooks/mission_control.md) | Mission control dashboard |
 | [natural_work_rhythms.md](./03-playbooks/natural_work_rhythms.md) | Work rhythm patterns |
+| [personal_intelligence_setup_playbook.md](./03-playbooks/personal_intelligence_setup_playbook.md) | **Personal Intelligence (AI) setup** — agentic routines as a copyable template (trigger + context + steer/verify), then Sasha's instance. Expected savings are a hypothesis until measured |
 | [notebooklm_workflow.md](./03-playbooks/notebooklm_workflow.md) | NotebookLM workflow |
 
 ---
