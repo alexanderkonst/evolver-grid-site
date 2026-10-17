@@ -1,0 +1,98 @@
+# INSTALL: git mv .agent/pending/agent-open-pr.yml .github/workflows/agent-open-pr.yml
+# (shipped here because the Claude GitHub App cannot write to .github/workflows/)
+name: Agent Open PR
+
+# Agents often finish by pushing a claude/* branch with a "Create PR" link instead of opening the PR,
+# so Agent Auto-merge never sees it. This opens the PR for them.
+# Rule + guards are documented in .agent/RULES.md -> "Agent PR auto-open".
+#
+# Why the explicit dispatch step: PRs created with GITHUB_TOKEN do not fire `pull_request` workflows
+# (GitHub's recursion guard), so a freshly opened PR would sit with "no checks reported yet" forever.
+# After creating the PR we dispatch every PR-check workflow on the branch ref. A dispatched run carries
+# the branch head SHA, so Agent Auto-merge counts it, and its completion fires the auto-merge sweep via
+# `workflow_run`. No PAT / app-token secret needed.
+
+on:
+  push:
+    branches: ["claude/**"]
+
+concurrency:
+  group: agent-open-pr-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pull-requests: write # open the PR (repo setting "Allow GitHub Actions to create and approve pull requests" must be on)
+  actions: write # dispatch the PR-check workflows
+
+jobs:
+  open-pr:
+    name: agent-open-pr
+    if: github.event.deleted != true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open PR if none exists, then kick the PR checks
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const branch = context.ref.replace(/^refs\/heads\//, '');
+            const base = context.payload.repository.default_branch;
+            const SELF_PATH = '.github/workflows/agent-open-pr.yml';
+            const AUTOMERGE_PATH = '.github/workflows/agent-automerge.yml';
+
+            // 1. Already has an open PR? Nothing to do (a later push to it is handled by `pull_request: synchronize`).
+            const existing = await github.rest.pulls.list({ owner, repo, state: 'open', head: `${owner}:${branch}`, per_page: 1 });
+            if (existing.data.length > 0) {
+              core.info(`PR #${existing.data[0].number} already open for ${branch}`);
+              return;
+            }
+
+            // 2. Nothing to propose (the agent action pushes the bare branch before it commits).
+            const cmp = await github.rest.repos.compareCommitsWithBasehead({ owner, repo, basehead: `${base}...${branch}` });
+            if (cmp.data.ahead_by === 0) {
+              core.info(`${branch} has no commits ahead of ${base}, not opening a PR`);
+              return;
+            }
+
+            // 3. Title/body from the last commit; "Closes #N" from claude/issue-N-*.
+            const message = context.payload.head_commit?.message
+              ?? cmp.data.commits[cmp.data.commits.length - 1].commit.message;
+            const [firstLine, ...rest] = message.trim().split('\n');
+            const title = firstLine.trim().slice(0, 200) || branch;
+            const details = rest.join('\n').trim();
+            const issue = /^claude\/issue-(\d+)-/.exec(branch)?.[1];
+            const body = [
+              details,
+              issue ? `Closes #${issue}` : '',
+              '🤖 Generated with [Claude Code](https://claude.com/claude-code)',
+              '_Opened automatically by `agent-open-pr.yml` because the branch was pushed without a PR._',
+            ].filter(Boolean).join('\n\n');
+
+            const pr = (await github.rest.pulls.create({ owner, repo, head: branch, base, title, body })).data;
+            core.info(`opened #${pr.number}: ${title}`);
+            const lines = [`- opened #${pr.number} (${branch} -> ${base})`];
+
+            // 4. GITHUB_TOKEN-created PRs fire no `pull_request` workflows: dispatch the PR-check workflows by hand.
+            //    A PR-check workflow = active, listens to `pull_request` AND declares `workflow_dispatch`.
+            const workflows = await github.paginate(github.rest.actions.listRepoWorkflows, { owner, repo, per_page: 100 });
+            for (const w of workflows) {
+              if (w.state !== 'active' || w.path === SELF_PATH || w.path === AUTOMERGE_PATH) continue;
+              try {
+                const file = await github.rest.repos.getContent({ owner, repo, path: w.path, ref: branch });
+                const text = Buffer.from(file.data.content, 'base64').toString('utf8');
+                if (!/^\s*pull_request\s*:/m.test(text)) continue;
+                if (!/^\s*workflow_dispatch\s*:/m.test(text)) {
+                  lines.push(`- ${w.name}: runs on pull_request but has no workflow_dispatch, NOT triggered (add it)`);
+                  continue;
+                }
+                await github.rest.actions.createWorkflowDispatch({ owner, repo, workflow_id: w.id, ref: branch });
+                lines.push(`- dispatched ${w.name} on ${branch}`);
+              } catch (e) {
+                lines.push(`- ${w.name}: dispatch failed: ${e.message}`);
+              }
+            }
+            // No explicit auto-merge dispatch: Agent Auto-merge listens to `workflow_run` for the check workflows
+            // above AND for this one ("Agent Open PR"), so the sweep fires when they finish.
+
+            await core.summary.addHeading('Agent open-PR', 3).addRaw(lines.join('\n'), true).write();
