@@ -1,5 +1,12 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
+import {
+  cleanParkedKind,
+  parkItem,
+  parkStrategy,
+  readParked,
+  unparkStrategy,
+} from "./parked.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -27,7 +34,10 @@ type Operation =
   | "complete_task"
   | "delete_task"
   | "promote_task_to_focus"
-  | "append_synthesis_log";
+  | "append_synthesis_log"
+  | "park_strategy"
+  | "park_item"
+  | "unpark_strategy";
 
 interface AgentWriteRequest {
   operation?: Operation;
@@ -54,6 +64,9 @@ const allowedOperations = new Set<Operation>([
   "delete_task",
   "promote_task_to_focus",
   "append_synthesis_log",
+  "park_strategy",
+  "park_item",
+  "unpark_strategy",
 ]);
 
 function jsonResponse(body: unknown, status = 200) {
@@ -416,11 +429,12 @@ function taskNameFromText(text: string) {
 }
 
 async function buildReadState(admin: SupabaseAdmin, userId: string) {
-  const [stateRes, strategiesRes, workstreamsRes, focusRes] = await Promise.all([
+  const [stateRes, strategiesRes, workstreamsRes, focusRes, parked] = await Promise.all([
     admin.from("equilibrium_state").select("*").eq("user_id", userId).maybeSingle(),
     admin.from("equilibrium_strategies").select("position, text, alignment_score").eq("user_id", userId).order("position", { ascending: true }),
     admin.from("equilibrium_workstreams").select("id, title, position").eq("user_id", userId).is("archived_at", null).order("position", { ascending: true }),
     admin.from("equilibrium_focus").select("position, task_id").eq("user_id", userId).order("position", { ascending: true }),
+    readParked(admin, userId),
   ]);
 
   if (stateRes.error) throw new Error(`Could not read state: ${stateRes.error.message}`);
@@ -502,6 +516,7 @@ async function buildReadState(admin: SupabaseAdmin, userId: string) {
     strategies,
     workstreams,
     do_now: doNow,
+    parked,
     lunar,
     phase_readiness: phaseReadiness,
     generated_at: new Date().toISOString(),
@@ -819,6 +834,20 @@ serve(async (req) => {
       }
       result = { target: "equilibrium_focus", task_id: taskId, position, promoted_at: now };
       summary = `promoted task ${taskId} to focus slot ${position}`;
+    } else if (operation === "park_strategy") {
+      const position = cleanPosition(payload.position, "payload.position", 3);
+      ({ result, summary } = await parkStrategy(admin, userId, { position, agentName, dryRun }));
+    } else if (operation === "park_item") {
+      const kind = cleanParkedKind(payload.kind);
+      const title = cleanString(payload.title, "payload.title", 180);
+      const body = optionalString(payload.body, 4000);
+      ({ result, summary } = await parkItem(admin, userId, { kind, title, body, agentName, dryRun }));
+    } else if (operation === "unpark_strategy") {
+      const parkedId = cleanUuid(payload.parked_id, "payload.parked_id");
+      const position = payload.position === undefined || payload.position === null
+        ? undefined
+        : cleanPosition(payload.position, "payload.position", 3);
+      ({ result, summary } = await unparkStrategy(admin, userId, { parkedId, position, dryRun }));
     } else {
       const text = cleanString(payload.text, "payload.text", 6000);
       result = await appendSynthesisState(admin, userId, text, dryRun);

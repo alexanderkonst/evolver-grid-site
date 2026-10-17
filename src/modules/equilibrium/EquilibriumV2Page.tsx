@@ -19,6 +19,7 @@ import { WorkstreamsSection } from "./components/WorkstreamsSection";
 import { SmartGoalsSection } from "./components/SmartGoalsSection";
 import { DoNowSection } from "./components/DoNowSection";
 import { HarvestSection } from "./components/HarvestSection";
+import { ParkedSection } from "./components/ParkedSection";
 import { PhaseTransitionEyebrow } from "./components/PhaseTransitionEyebrow";
 import { SynthesisCard } from "./components/SynthesisCard";
 import { SectionAnchorNav } from "./components/SectionAnchorNav";
@@ -669,6 +670,15 @@ export const EquilibriumV2Page = () => {
               loading={eq.loading}
               onUncompleteTask={eq.uncompleteTask}
             />
+          </EquilibriumSectionCard>
+        )}
+
+        {/* Parked — last block of ACT (issue #66): things set aside but
+            kept visible. Read-only; agents park/unpark. */}
+        {!isAttune && (
+          <EquilibriumSectionCard id={SECTION_IDS.parked}>
+            <SectionHeader title="Parked" />
+            <ParkedSection parked={eq.parked} loading={eq.loading} />
           </EquilibriumSectionCard>
         )}
 

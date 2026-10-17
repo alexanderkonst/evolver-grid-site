@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { MISSIONS } from "@/modules/mission-discovery/data/missions";
 import type {
   EquilibriumFocus,
+  EquilibriumParkedItem,
   EquilibriumState,
   EquilibriumStrategy,
   EquilibriumStrategyCompletion,
@@ -85,6 +86,8 @@ export interface EquilibriumV2Data {
   completeStrategy: (position: 1 | 2 | 3) => Promise<void>;
   /** All completed strategies, newest first. Powers the Harvest union. */
   completedStrategies: EquilibriumStrategyCompletion[];
+  /** Parked items (issue #66), newest first. Read-only in the UI. */
+  parked: EquilibriumParkedItem[];
   /**
    * Score each filled strategy 0-100 against the user's "highest
    * expression" (Lifelong Dedication + Role). Calls the
@@ -165,6 +168,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
 
   const [strategies, setStrategies] = useState<EquilibriumStrategy[]>([]);
   const [completedStrategies, setCompletedStrategies] = useState<EquilibriumStrategyCompletion[]>([]);
+  const [parked, setParked] = useState<EquilibriumParkedItem[]>([]);
   const [workstreams, setWorkstreams] = useState<EquilibriumWorkstream[]>([]);
   const [archivedWorkstreams, setArchivedWorkstreams] = useState<EquilibriumWorkstream[]>([]);
   const [tasks, setTasks] = useState<EquilibriumTask[]>([]);
@@ -224,6 +228,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
       setBirthday(null);
       setStrategies([]);
       setCompletedStrategies([]);
+      setParked([]);
       setWorkstreams([]);
       setTasks([]);
       setFocus([]);
@@ -241,6 +246,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
       strategyCompletionsRes,
       workstreamsRes,
       focusRes,
+      parkedRes,
     ] = await Promise.all([
       eqAny.from("equilibrium_state").select("*").eq("user_id", user.id).maybeSingle(),
       supabase
@@ -268,6 +274,11 @@ export function useEquilibriumV2(): EquilibriumV2Data {
         .order("done_at", { ascending: false }),
       eqAny.from("equilibrium_workstreams").select("*").eq("user_id", user.id),
       eqAny.from("equilibrium_focus").select("*").eq("user_id", user.id),
+      eqAny
+        .from("equilibrium_parked")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("parked_at", { ascending: false }),
     ]);
 
     const stateRow = (stateRes.data as
@@ -362,6 +373,8 @@ export function useEquilibriumV2(): EquilibriumV2Data {
       (strategyCompletionsRes.data as EquilibriumStrategyCompletion[] | null) ??
         [],
     );
+    // A failed read (e.g. migration not applied yet) leaves Parked empty.
+    setParked((parkedRes.data as EquilibriumParkedItem[] | null) ?? []);
 
     const allWs = ((workstreamsRes.data as EquilibriumWorkstream[] | null) ?? []);
     const wsList = allWs
@@ -1387,6 +1400,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     reorderStrategies,
     completeStrategy,
     completedStrategies,
+    parked,
     scoreStrategies,
     scoringStrategies,
     iterateStrategy,
