@@ -8632,7 +8632,7 @@ From the merged *Feeling Doesn't Shout* material:
 
 ## Technology 160: Function, Not Form (уникальный бизнес — это функция) (oral, Oct 17, 2026)
 
-> *Oral · Day 219, October 17, 2026 · chat with Hark. Sasha named it a phase-shift technology the same day («это стопудово технология смены фазы»). Title is Hark's English rendering; "функция" is Sasha's word, which he chose over "роль".*
+> *Oral · Day 219, October 17, 2026 · chat with Hark. Sasha named it a phase-shift technology the same day («это стопудово технология смены фазы»). Title is Hark's English rendering; "Функция" surfaced in Hark's framing of his message; Sasha took it up as a better word than "роль" («это ещё лучше слово, чем роль»).*
 
 ### 🫀 Essence — in Sasha's words
 
