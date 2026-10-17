@@ -34,7 +34,8 @@ Add a separate `equilibrium-agent-write` Supabase Edge Function for external AI 
 - Current Strategy slots 1-3 (`equilibrium_strategies`)
 - Workstreams (`equilibrium_workstreams`)
 - Tasks / Intuitive SMART Goals (`equilibrium_tasks`)
-- DO NOW focus slots (`equilibrium_focus`)
+- Subtasks (`equilibrium_subtasks`) and the owner-split DO NOW (`equilibrium_do_now`: HUMAN = 1, AI = unlimited) — Task Flow, issue #71
+- Legacy DO NOW focus slots (`equilibrium_focus`, no longer written by agent-write; kept, not dropped)
 - Synthesis/audit notes (`equilibrium_synthesis_log`)
 
 External-agent approval happens in the agent surface. Example: Claude drafts a task, Sasha approves the tool call in Claude, and Claude calls `equilibrium-agent-write`. The cockpit UI remains useful for reviewing project state, but it is no longer the only approval surface.
@@ -49,15 +50,25 @@ The endpoint supports only allowlisted operations:
 - `create_workstream`
 - `rename_workstream`
 - `delete_workstream` (hard delete; refuses with 409 if the workstream still has tasks unless `payload.force = true`, which cascades its tasks first)
-- `create_task`
+- `create_task` (optional `owner`: `human` default, or `ai`; 400 at the 3-task cap)
 - `rename_task`
-- `complete_task`
-- `delete_task` (hard delete — `equilibrium_tasks` has no `archived_at`; focus rows cascade)
-- `promote_task_to_focus`
+- `complete_task` (alias of `complete` with `item = {type: "task", id: task_id}`)
+- `delete_task` (hard delete — `equilibrium_tasks` has no `archived_at`; Do Now and subtask rows cascade)
+- `promote_task_to_focus` (alias of `promote_do_now` with `owner: "human"`; `position` is ignored; writes `equilibrium_do_now`, not `equilibrium_focus`)
 - `append_synthesis_log`
+- `add_subtask` `{task_id, text, owner?, status?, waiting_on?, priority?, external_ref?, note?}` (`owner` defaults to `ai`, `status` to `todo`; `waiting_on` is kept only while `status = waiting`; inserted at the end of the task's subtasks; an active subtask with the same normalized text under the same task is reused, `created: false`; `created_by` = `agent_name`)
+- `update_subtask` `{subtask_id, text?, owner?, status?, waiting_on?, priority?, external_ref?, note?, position?}` (partial; `null` clears `waiting_on`, `priority`, `external_ref`, `note`; `done`/`dropped` stamp `done_at` and remove the Do Now row; a status other than `waiting` clears `waiting_on`)
+- `delete_subtask` `{subtask_id}` (hard delete; its Do Now row cascades)
+- `promote_do_now` `{item: {type: "task"|"subtask", id}, owner?}` (`owner` defaults to the item's owner. `human`: replaces the current human item, if different, and returns `replaced: {type, id, text}`; `ai`: appended at the end, no cap. Re-promoting to the same owner is a no-op (`unchanged: true`); an item in the other owner's list moves. `done`/`dropped` items → 400)
+- `demote` `{item}` (removes the Do Now row; the item stays where it lives; `demoted: false`, 200, if it was not in Do Now)
+- `complete` `{item}` (task: `status = done`, `done_at`, `workstream_title_snapshot`, Do Now row removed; its open subtasks stay open. Subtask: `status = done`, `done_at`, Do Now row removed)
+- `move_task` `{task_id, workstream_id}` (moves the task, with its subtasks, to the end of another workstream; 400 if the target already has 3 active tasks)
+- `convert_task_to_subtask` `{task_id, parent_task_id, owner?}` (creates a subtask under `parent_task_id` carrying the task's text, status — `active` → `todo`, `done` → `done` — and `created_at`; re-parents the task's own subtasks; moves its Do Now row to the new subtask; then deletes the task. Run with `dry_run` first: it returns the plan and writes nothing)
 - `park_strategy` `{position}` (copies the strategy's text, alignment score and position into `equilibrium_parked` as kind `strategy`, then deletes it from `equilibrium_strategies`; 400 if the slot is empty)
 - `park_item` `{kind, title, body?}` (inserts a parked row; `kind` is `strategy`, `workstream`, `task` or `idea`)
 - `unpark_strategy` `{parked_id, position?}` (restores a parked strategy into `equilibrium_strategies`, upserting at `position` — overwriting any strategy already there, same as `upsert_strategy` — or at its `source_position` if omitted, then removes it from parked)
+
+The eight Task Flow operations (`add_subtask`, `update_subtask`, `delete_subtask`, `promote_do_now`, `demote`, `complete`, `move_task`, `convert_task_to_subtask`) and the two aliases honor `dry_run`, `idempotency_key` and the audit log like every other write; the audit row keeps the operation name that was called. Caps: 3 active workstreams, 3 active tasks per workstream (create and `move_task`; existing over-cap data still loads); subtasks have no cap. The cap errors name `move_task` / `convert_task_to_subtask` as the way out. They need `supabase/migrations/20261017000000_equilibrium_task_flow.sql`: **apply the migration before deploying the function**, because `read_state` reads the new tables and `equilibrium_tasks.owner`. Spec: `docs/04-products/equilibrium_task_flow_spec.md` §4–§5.
 
 The three Parked operations honor `dry_run`, `idempotency_key` and the audit log like every other write. They need the `equilibrium_parked` table from `supabase/migrations/20260829000000_equilibrium_parked.sql`. Parked items are shown as the last block of the ACT section in the cockpit (5 at a time, newest first).
 
@@ -65,13 +76,28 @@ The three Parked operations honor `dry_run`, `idempotency_key` and the audit log
 the single source of truth and nothing is duplicated — Hark reads live. The
 response includes `moon_focus`, `lifelong_dedication`, `role`; `strategies`
 (`position`, `text`, `alignment_score`); `workstreams` (each with active
-`tasks`: `id`, `name`, `text`, `status`, `is_focus`, `created_at`); `do_now`
-(the recommended focus task `{id, name, workstream_title}` or null); and
+`tasks`: `id`, `name`, `text`, `status`, `owner`, `is_focus`, `do_now`,
+`created_at`, `subtasks`; each workstream also has `over_cap`); `do_now`
+(legacy: the HUMAN Do Now `{id, name, workstream_title}` or null — for a
+subtask, `id` is the parent task id and `name` the subtask text); and
 `lunar` (current `phase` name, `job`, `phase_end` ISO, `days_left`) computed
 with the same elongation math as `src/lib/equilibrium-cycles/getLunarState`.
 `parked` lists set-aside items (`id`, `kind`, `title`, `body`, `parked_at`),
 newest first, at most 50; it is `[]` until the `equilibrium_parked` migration
 is applied.
+
+`read_state` v2 (Task Flow, issue #71) adds, with the legacy fields unchanged
+in shape:
+
+- `caps`: `{workstreams: 3, tasks_per_workstream: 3, human_do_now: 1}`.
+- `workstreams[].over_cap`: true when the workstream sits at position 3+ or has more than 3 active tasks.
+- `workstreams[].tasks[]`: `owner` (`human`|`ai`), `is_focus` (the task has any Do Now row), `do_now` (`human`|`ai`|null) and `subtasks[]` — every non-terminal subtask plus those closed in the last 48 h, open ones by position, then closed ones newest first. A subtask has `id`, `text`, `owner`, `status` (`todo`|`in_progress`|`waiting`|`done`|`dropped`), `waiting_on`, `priority` (1-3 or null), `external_ref`, `note`, `do_now` (`human`|`ai`|null), `created_by`, `created_at`, `updated_at`, `done_at`.
+- `do_now_v2`: `human` (`{type, id, text, path, promoted_at}` or null) and `ai` (list of `{type, id, text, path, status, waiting_on}` by position). `path` is `[workstream, task name]` for a subtask, `[workstream]` for a task.
+- `waiting_on_human`: subtasks with `status = waiting` and `waiting_on = sasha` (`{type, id, text, path}`), priority first.
+- `subtask_counts`: `todo`, `in_progress`, `waiting`, `waiting_on_human`, `done_today`, `dropped_today`. "Today" is the America/Mexico_City day (UTC-06:00).
+- `phase_readiness.layers.doNow` reads the HUMAN Do Now row. `equilibrium_focus` is no longer read.
+
+Until the app UI moves to `equilibrium_do_now` (Phase 2), a task promoted in the app (still `equilibrium_focus`) does not show in `do_now` / `is_focus`, and an agent promote does not show in the app.
 
 Security contract:
 
