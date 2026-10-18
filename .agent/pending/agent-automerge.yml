@@ -1,5 +1,6 @@
 # INSTALL: git mv -f .agent/pending/agent-automerge.yml .github/workflows/agent-automerge.yml
-# (update: adds "Agent Open PR" to the workflow_run list; replaces the installed copy)
+# (update: adds "Agent Open PR" and "Claude Review" to the workflow_run list, and blocks on a
+#  `REVIEW: CHANGES` critic comment; replaces the installed copy)
 # (shipped here because the Claude GitHub App cannot write to .github/workflows/)
 name: Agent Auto-merge
 
@@ -11,7 +12,7 @@ on:
   workflow_run:
     # Every OTHER workflow in this repo. Do NOT list "Agent Auto-merge" here: it would re-trigger itself forever.
     # When you add a workflow, add its `name:` to this list.
-    workflows: ["Claude Code", "Corpus Drift Check", "Agent Open PR"]
+    workflows: ["Claude Code", "Corpus Drift Check", "Agent Open PR", "Claude Review"]
     types: [completed]
   check_suite:
     types: [completed]
@@ -138,6 +139,10 @@ jobs:
               for (const [who, r] of latestBot) {
                 if (/verdict\W{0,5}(changes[ _-]requested|request[ _-]changes)/i.test(r.body || '')) return `PR-critic (${who}) verdict: changes requested`;
               }
+              // claude-review.yml keeps ONE sticky comment; its first line after the marker is the verdict.
+              const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number: pr.number, per_page: 100 });
+              const critic = comments.find((c) => (c.body || '').startsWith('<!-- claude-review -->'));
+              if (critic && /^<!-- claude-review -->\s*\n\s*REVIEW: CHANGES\b/.test(critic.body)) return 'PR-critic comment verdict: REVIEW: CHANGES';
               return null;
             };
 
