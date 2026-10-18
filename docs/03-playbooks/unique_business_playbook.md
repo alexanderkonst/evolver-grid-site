@@ -5,8 +5,8 @@
 
 > *"Work seen as sacred, executed as ceremony."*
 
-**Version:** 4.8  
-**Created:** February 2026 · Last updated: September 10, 2026 (Day 180: *corpus-sync — the loop doctrine landed in the executive summary + Principle 18 (D2); Principle 17 gained the "which sequence, which use" table reconciling the 7-step, 21-chain, and UBB runtime (D4); the duplicate Principle 13 was renumbered to Principle 21; changelog aligned to v4.8.*)  
+**Version:** 4.9  
+**Created:** February 2026 · Last updated: October 17, 2026 (*added "Function, not form: configurations of a Unique Business" to Part I*). Previously: September 10, 2026 (Day 180: *corpus-sync — the loop doctrine landed in the executive summary + Principle 18 (D2); Principle 17 gained the "which sequence, which use" table reconciling the 7-step, 21-chain, and UBB runtime (D4); the duplicate Principle 13 was renumbered to Principle 21; changelog aligned to v4.8.*)  
 **Purpose:** The master playbook for AI-assisted genius-based venture building  
 **Execution:** [Customer Journey Playbook](./customer_journey_playbook.md) — the operational map from first touchpoint to paid session
 
@@ -113,6 +113,7 @@ The pricing tiers map directly onto this spectrum. See Phase Shift Technology 83
 ## Where to look next
 
 - **Operating the methodology in your own life:** continue with Part 0 onward.
+- **Choosing a vehicle for the function (startup, 1:1, product, ecosystem role, connector):** [Function, not form](#function-not-form-configurations-of-a-unique-business), in Part I.
 - **Operating the Builder:** the artifact prompts in `supabase/functions/_shared/ubb-prompts.ts` are this playbook compiled into machine instructions.
 - **The two paths through the stack and the source-of-truth architecture:** Phase Shift Technology Library, Technology 83.
 - **Linguistic Synthesis (the simple-vs-simplistic guarantee at every distillation):** Phase Shift Technology Library, Technology 82.
@@ -1871,6 +1872,69 @@ Planetary OS, Unique Gift → Excalibur → Product Builder → the whole stack 
 
 ---
 
+## Function, not form: configurations of a Unique Business
+
+> *Added October 17, 2026, approved by Sasha. Source technology: [Technology 160: Function, Not Form](../01-vision/phase_shift_technology_library.md#technology-160-function-not-form-уникальный-бизнес--это-функция-oral-oct-17-2026). Related axiom: configuration (semantics) does not change essence.*
+
+**A Unique Business is a function, not necessarily one's own startup.** The function is a person's unique way of creating value. It can run in more than one configuration, and the configuration is a vehicle chosen to fit the season. The essence stays constant. You do not have to build a startup to live your function.
+
+### The configurations
+
+| # | Configuration | How the function runs |
+|---|---|---|
+| 1 | **1:1** | Individual clients receive the function directly: sessions, consulting, mentoring. |
+| 2 | **System or product** | The function is encoded once and reaches many: a tool, a course, a method, a platform (one-to-many). |
+| 3 | **Upstream / own venture** | The function becomes a company: its own team, capital, and brand, with the founder at the root. |
+| 4 | **Inside an existing ecosystem** | A salaried or embedded role that connects ecosystems from within, using that organisation's resources. Example archetype: a partnerships or ecosystem lead at a corporate AI fund, connecting VCs, accelerators, labs, and founders. |
+| 5 | **Across ecosystems** | A connector between networks, belonging to none of them and serving several: an independent bridge, an advisor, a convener. |
+
+One person can run several at once, and can move between them as the years turn. The first three are the forms this playbook has described most fully. Configurations 4 and 5 are equally valid homes for the same function, and for some people they are the faster, lighter, or more fitting home.
+
+### A short test for choosing a configuration
+
+Ask five questions about the season you are in now, not about the person you will be in ten years.
+
+1. **Resources needed.** What does the function need to reach people (capital, brand, distribution, a team, access to rooms)? Which configuration already has those, and which would you have to build?
+2. **Autonomy.** How much freedom over what you say, who you serve, and what you build does the function need in order to stay true? Where is that freedom available today?
+3. **Speed to impact.** Where does the function touch real people soonest? An embedded role can reach hundreds of founders in a month. A new venture may need a year before the first one.
+4. **Income stability.** What does your life need in income and in how steady it is? Pick a configuration whose economics you can hold without bending the function to pay for it.
+5. **Fit with the current season.** Is this a season for building, for learning from inside a system, for recovery, or for harvest? The right vehicle is the one that matches.
+
+Read the five answers together. When one configuration serves four or five of them, run it. When the answers split, run two configurations in parallel for a season and watch which one the function chooses.
+
+The test is a diagnostic, not a ranking. No configuration is higher than another. A fitting vehicle expresses the function with the least distortion.
+
+### How the existing steps map onto each configuration
+
+The method has three movements: **discovery** (reveal the top talent), **articulation** (name the unique value, the offer, the people it serves), and **productize** (give the function a repeatable form). The first two are identical in every configuration. The third changes shape.
+
+| Configuration | Discovery | Articulation | Productize |
+|---|---|---|---|
+| **1:1** | Same | Offer, ideal client, and promise stated for one person at a time | A repeatable session format and a small value ladder |
+| **System or product** | Same | Same, with the result stated so a stranger can self-select | The product, landing page, and funnel (the Product Compiler path) |
+| **Upstream / own venture** | Same | Same, plus myth and tribe at company scale | Venture structure, team, capital, distribution |
+| **Inside an ecosystem** | Same | The function written as a role: what it connects, for whom, and what the host organisation gains | The role itself: a mandate, a scope, and the habits and rooms through which the function repeats inside the organisation |
+| **Across ecosystems** | Same | The function written as a bridge: which networks, which kind of exchange | A repeatable convening or introduction practice, with the edges between networks as the product |
+
+For an ecosystem role, "productize" means making the function legible and repeatable to the host. The same canvas that feeds a landing page feeds a role description, a conversation with a hiring lead, or an internal proposal. The artifacts are the same; the reader is different.
+
+### Where this meets the Identity-Distance Law
+
+The Identity-Distance Law (see `alexanders_unique_business.md`, Day 132 addendum) predicts who can pay cash for articulation within weeks. It is a statement about purchase behaviour, not about whether a salaried or embedded role can carry a function. A person inside an ecosystem role can still run their unique business; the law only says how quickly articulation converts into personal income.
+
+### The outcome menu
+
+When a person finishes discovery and asks where to take their top talent next, the menu has more than one door:
+
+- **Build a business from it** (configurations 1, 2, 3).
+- **Carry it into an ecosystem role** (configuration 4): use the articulation to find or shape a role whose resources already reach the people the function serves.
+- **Become a connector between networks** (configuration 5).
+- **Hold it for now and use it where you already are**: no new vehicle, a clearer function.
+
+Facilitators present these as peers. The question is which vehicle fits this season.
+
+---
+
 ## The Monetization Evolution Ladder
 
 Everyone already monetizes something. The question is: what, and how consciously?
@@ -1924,6 +1988,8 @@ ZONE OF GENIUS → UNIQUE OFFER → BUSINESS MODEL → SALES → SCALE
 | 3 | **Pain Theory** | Deep ICP + TP |
 | 4 | **Product Compiler** | Landing page + blueprint |
 | 5 | **Venture Studio** | Funded, scaling venture |
+
+> Phase 5 is one configuration of the function, not the only destination. See [Function, not form](#function-not-form-configurations-of-a-unique-business): the same Appleseed and Excalibur output can also run as a 1:1 practice, a product, an ecosystem role, or a bridge between networks.
 
 ---
 
@@ -5030,6 +5096,7 @@ These are not in opposition. They are complementary faces of the same whole. The
 *The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.*
 
 **Changelog:**
+- **v4.8 → v4.9 (October 17, 2026):** Part I gained "Function, not form: configurations of a Unique Business". The function stays constant; the configuration (1:1, system or product, own venture, inside an ecosystem, across ecosystems) is chosen to fit the season. Includes a five-question selection test, the mapping of discovery, articulation, and productize onto each configuration, and an ecosystem-role door in the outcome menu.
 - **v4.3 → v4.8:** *(consolidated, backfilled Day 180 corpus-sync — per-version deltas were not recorded between April and September, so the landmarks are grouped rather than split by point release.)* The Integrated Stack unifying frame (v4.6, the "one continuous machine" section, Technology 83). Part I gained "The Loop: Self-Knowledge and Business Co-Arise" (Day 102). Principles 14-21 added: 14 (Hero's Journey Challenge Ordering), 15 (The Specificity Loop), 16 (The Unique Business Accelerator), 17 (Recursive Value Flow — four-scale projection + the "which sequence, which use" artifact table, D4), 18 (You Are Stream 0 + the loop doctrine, D2), 19 (The Mirror Opener), 20 (The Hexagram — order A per D1, "practice" line cut per D3), 21 (The Grind Addiction Diagnosis, renumbered from a duplicate Principle 13). Phase Shift Technologies 134-143 referenced (recursive value flow, mirror fidelity, the faculty layer, the load order, the exposure law). Public Lines, the Timestamp Requirement, and the phenomenon-naming language test codified.
 - **v4.2:** Funnel Hearing Principle (April 3, 2026). New operational infrastructure: the funnel can now HEAR. `src/lib/funnelAnalytics.ts` wires 17 typed event types across the entire ZoG → Quiz → /ignite → Booking conversion pipeline. Events tracked: page views, step transitions, email saves, CTA clicks, quiz completions (with archetype), divine timing captures, and booking link clicks. Anonymous session IDs, localStorage queue fallback for offline resilience, Supabase `funnel_events` target table. This is the first LR (systemic) infrastructure for measuring encounter — without it, every decision about the funnel is assumption-based. PageLoader dark glass fix deployed: Suspense fallback now matches the liquid glass aesthetic (bg-[#0a0a1a] + white/30 spinner). Cross-references: Roadmap analytics wiring, Session Log Day 34 afternoon.
 - **v4.1:** PageRank Principle (Phase Shift Technology 60) codified — the platform's moat is not making the product but owning the standard that RANKS the products. Google doesn't make websites, Michelin doesn't cook, Moody's doesn't lend. ZoG maps genius → whoever controls that mapping controls demand allocation. Zero-Friction Viral Sharing architecture: sharing reframed from "validation-seeking" to "identity expression." Copy: "This is how I naturally create value." Share is a non-blocking tertiary side-channel, collapsed by default, triggered only after emotional recognition. Premium UI deployed as operational proof: dark liquid glass across ALL ZoG screens, gradient.jpg unification, glassmorphism blueprint applied to quiz, auto-scroll on step transitions, SiteLogo (toroidal field) deployed site-wide. Guarantee landed: "If you don't leave with a one-sentence business you recognize as yours: you don't pay." Cross-references: Phase Shift Technology Library Technology 60, Customer Journey Playbook Section 20.
