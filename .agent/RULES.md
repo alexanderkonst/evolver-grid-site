@@ -102,7 +102,7 @@ Agent PRs merge themselves the moment they are green. Event-driven (`workflow_ru
 - Not draft; mergeable; `mergeable_state` not blocking (behind, blocked, unknown).
 - Every check run, workflow run and commit status on the head SHA is success / neutral / skipped (none pending, none failed). No checks reported yet counts as not green.
 - No `hold` or `needs-sasha` label.
-- No PR-critic review with "changes requested" (a `CHANGES_REQUESTED` review, or a bot review whose body says `Verdict: changes requested`).
+- No PR-critic review with "changes requested" (a `CHANGES_REQUESTED` review, or a bot review whose body says `Verdict: changes requested`, or the sticky `claude-review.yml` comment whose verdict line is `REVIEW: CHANGES`).
 
 **Never auto-merged** (the PR gets label `needs-sasha` plus a one-line comment): touches `supabase/migrations/**`, `.github/workflows/**`, secrets (`.env*`, `*secret*`, `*credential*`, `*.pem`, `*.key`), billing/payment code, or deletes more than 20 files.
 
@@ -114,7 +114,7 @@ Agent PRs merge themselves the moment they are green. Event-driven (`workflow_ru
 
 ## Agent PR auto-open (`.github/workflows/agent-open-pr.yml`)
 
-> **Install (Hark):** staged as `.agent/pending/agent-open-pr.yml` (the Claude GitHub App cannot write to `.github/workflows/`). Run `git mv .agent/pending/agent-open-pr.yml .github/workflows/agent-open-pr.yml` and `git mv -f .agent/pending/agent-automerge.yml .github/workflows/agent-automerge.yml` (the update only adds `"Agent Open PR"` to its `workflow_run` list). Also enable repo setting *Actions → General → Allow GitHub Actions to create and approve pull requests*. Then remove this note.
+> **Install (Hark):** staged as `.agent/pending/agent-open-pr.yml` (the Claude GitHub App cannot write to `.github/workflows/`). Run `git mv .agent/pending/agent-open-pr.yml .github/workflows/agent-open-pr.yml` and `git mv -f .agent/pending/agent-automerge.yml .github/workflows/agent-automerge.yml` (the update adds `"Agent Open PR"` and `"Claude Review"` to its `workflow_run` list and makes it honour the `REVIEW: CHANGES` critic comment). Also enable repo setting *Actions → General → Allow GitHub Actions to create and approve pull requests*. Then remove this note.
 
 On `push` to `claude/**`, if the branch has no open PR and is ahead of `main`, the workflow opens one: title = first line of the last commit, body = rest of the commit message + `Closes #N` (from `claude/issue-N-*`). `GITHUB_TOKEN` PRs fire no `pull_request` workflows, so it then dispatches every active workflow that listens to `pull_request` **and** declares `workflow_dispatch` on the branch ref; those runs carry the head SHA, so auto-merge counts them. **A PR-check workflow must declare `workflow_dispatch`**, or it never runs on auto-opened PRs. Agents: open the PR yourself when your permissions allow; this is the safety net.
 

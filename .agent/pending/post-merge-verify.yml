@@ -15,6 +15,9 @@ on:
       - ".agent/**"
       - "notebooklm_sources/**"
       - ".github/**"
+  # agent-automerge.yml dispatches this on main after it merges a PR (GITHUB_TOKEN merges fire no
+  # push workflows). paths-ignore does not apply to dispatch, so the route step re-applies it.
+  workflow_dispatch: {}
 
 concurrency:
   group: post-merge-verify
@@ -42,14 +45,25 @@ jobs:
           before="${{ github.event.before }}"
           # New branch / force push: before is all zeros, fall back to the last commit.
           if [ -z "$before" ] || [ "$before" = "0000000000000000000000000000000000000000" ]; then before="HEAD~1"; fi
-          route=$(git diff --name-only "$before" "${{ github.sha }}" | node scripts/ci/touched-route.mjs || true)
+          git diff --name-only "$before" "${{ github.sha }}" > changed.txt
+
+          # Dispatched runs bypass paths-ignore: skip when every changed file is docs / agent config.
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] \
+             && ! grep -qvE '^(docs/|\.agent/|notebooklm_sources/|\.github/)|\.md$' changed.txt; then
+            echo "Only docs / agent files changed; skipping."
+            echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+
+          route=$(node scripts/ci/touched-route.mjs < changed.txt || true)
           echo "route=$route" >> "$GITHUB_OUTPUT"
           echo "Touched route: ${route:-none}"
 
       - name: Wait for the deploy
+        if: steps.route.outputs.skip != 'true'
         run: sleep 300
 
       - name: Smoke-check production
+        if: steps.route.outputs.skip != 'true'
         id: smoke
         run: |
           set -uo pipefail

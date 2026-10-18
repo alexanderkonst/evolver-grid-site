@@ -12,7 +12,12 @@ name: Docs Sync
 on:
   schedule:
     - cron: "0 15 * * 1" # Monday 15:00 UTC
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Run now. Leave unticked and the run is a no-op: agent-automerge.yml dispatches every workflow named like docs-sync after each merge, and this one is weekly."
+        type: boolean
+        default: false
 
 concurrency:
   group: docs-sync
@@ -41,6 +46,11 @@ jobs:
           set -euo pipefail
           mkdir -p .agent-ctx
           since=$(date -u -d '7 days ago' +%Y-%m-%d)
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force }}" != "true" ]; then
+            echo "Dispatched without 'force' (post-merge hook); weekly workflow, skipping."
+            echo "run=false" >> "$GITHUB_OUTPUT"; exit 0
+          fi
 
           # An open docs-sync PR already exists -> ONE PR rule, do nothing.
           open=$(gh pr list --state open --json headRefName --jq '[.[] | select(.headRefName | startswith("docs-sync/"))] | length')

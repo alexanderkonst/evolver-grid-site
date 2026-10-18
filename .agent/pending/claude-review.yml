@@ -6,18 +6,23 @@ name: Claude Review
 # Review only: Claude gets read-only tools and can write only to .agent-ctx/;
 # the comment is posted by a deterministic step below. Nothing is ever pushed.
 # Skip a PR by labeling it `no-review`.
+#
+# workflow_dispatch exists for agent-open-pr.yml: PRs it opens with GITHUB_TOKEN fire no
+# `pull_request` workflows, so it dispatches this one on the branch ref. A dispatched run
+# resolves its PR from the branch name and carries the branch head SHA, so auto-merge counts it.
 
 on:
   pull_request:
     types: [opened, synchronize]
+  workflow_dispatch: {}
 
 concurrency:
-  group: claude-review-${{ github.event.pull_request.number }}
+  group: claude-review-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
   review:
-    if: ${{ !contains(github.event.pull_request.labels.*.name, 'no-review') }}
+    if: ${{ github.event_name != 'pull_request' || !contains(github.event.pull_request.labels.*.name, 'no-review') }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -29,16 +34,29 @@ jobs:
       - name: Checkout PR head
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
 
       - name: Collect review context
+        id: ctx
         uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs');
             const { execFileSync } = require('child_process');
-            const pr = context.payload.pull_request;
+            let pr = context.payload.pull_request;
+            if (!pr) {
+              // workflow_dispatch: find the open PR for this branch.
+              const branch = context.ref.replace('refs/heads/', '');
+              const { data } = await github.rest.pulls.list({
+                ...context.repo, state: 'open', head: `${context.repo.owner}:${branch}`,
+              });
+              pr = data[0];
+              if (!pr) { core.notice(`No open PR for ${branch}; nothing to review.`); core.setOutput('skip', 'true'); return; }
+              if (pr.labels.some(l => l.name === 'no-review')) { core.notice('Labeled no-review; skipping.'); core.setOutput('skip', 'true'); return; }
+            }
+            core.setOutput('number', String(pr.number));
+            core.setOutput('sha', pr.head.sha);
             fs.mkdirSync('.agent-ctx', { recursive: true });
 
             // Diff against the merge base, capped so a huge PR stays cheap.
@@ -70,12 +88,13 @@ jobs:
             fs.writeFileSync('.agent-ctx/pr.md', `# PR #${pr.number}: ${pr.title}\n\nBase: ${pr.base.ref}  Head: ${pr.head.ref}\n\n${pr.body || '(empty)'}\n`);
 
       - name: Claude critic
+        if: ${{ steps.ctx.outputs.skip != 'true' }}
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           prompt: |
             You are the CRITIC in a generator/critic pair. Review pull request
-            #${{ github.event.pull_request.number }}. You review only: you cannot and must not
+            #${{ steps.ctx.outputs.number }}. You review only: you cannot and must not
             push, commit, or edit repo files.
 
             Inputs (already prepared in the workspace, which is checked out at the PR head):
@@ -115,13 +134,14 @@ jobs:
             --allowedTools "Read,Glob,Grep,Bash(git diff:*),Bash(git log:*),Bash(git show:*),Write(.agent-ctx/**),Edit(.agent-ctx/**)"
 
       - name: Post sticky review comment
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && steps.ctx.outputs.number != '' }}
         uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs');
             const MARKER = '<!-- claude-review -->';
-            const sha = context.payload.pull_request.head.sha.slice(0, 7);
+            const sha = '${{ steps.ctx.outputs.sha }}'.slice(0, 7);
+            const number = ${{ steps.ctx.outputs.number || 0 }};
             let body = '';
             try { body = fs.readFileSync('.agent-ctx/review.md', 'utf8').trim(); } catch (e) {}
 
@@ -134,11 +154,11 @@ jobs:
             body = `${MARKER}\n${body}\n\n<sub>Claude critic on \`${sha}\`. Re-runs on every push and edits this comment. Add the \`no-review\` label to skip.</sub>`;
 
             const { data: comments } = await github.rest.issues.listComments({
-              ...context.repo, issue_number: context.issue.number, per_page: 100,
+              ...context.repo, issue_number: number, per_page: 100,
             });
             const mine = comments.find(c => c.body && c.body.startsWith(MARKER));
             if (mine) {
               await github.rest.issues.updateComment({ ...context.repo, comment_id: mine.id, body });
             } else {
-              await github.rest.issues.createComment({ ...context.repo, issue_number: context.issue.number, body });
+              await github.rest.issues.createComment({ ...context.repo, issue_number: number, body });
             }
