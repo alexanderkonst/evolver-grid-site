@@ -10633,7 +10633,7 @@ The two assets are not competitors; they are two organs of one funnel, and the s
 
 ## Addendum (October 17, 2026): Function, not form
 
-*Applies the playbook's new section ([Function, not form: configurations of a Unique Business](../../03-playbooks/unique_business_playbook.md#function-not-form-configurations-of-a-unique-business)) to this canvas. Principle level only.*
+*Applies the playbook's new section ([Function, not form: configurations of a Unique Business](../../03-playbooks/unique_business_playbook.md#function-not-form-configurations-of-a-unique-business)) to this canvas. Source technology: [Technology 160: Function, Not Form](../../01-vision/phase_shift_technology_library.md#technology-160-function-not-form-уникальный-бизнес--это-функция-oral-oct-17-2026). Principle level only.*
 
 **The principle.** This unique business is a function, not a company. The function is seeing founders who build from their uniqueness, and connecting them with the people, capital, and rooms their work needs. It also connects the ecosystems those founders move between. That function is the constant. Everything else on this canvas (FindYourTopTalent, the sessions, the Builder, the value ladder, the network of nodes) is one configuration of it.
 

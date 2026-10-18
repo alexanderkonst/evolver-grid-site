@@ -1874,7 +1874,7 @@ Planetary OS, Unique Gift → Excalibur → Product Builder → the whole stack 
 
 ## Function, not form: configurations of a Unique Business
 
-> *Added October 17, 2026, approved by Sasha. Related axiom: configuration (semantics) does not change essence.*
+> *Added October 17, 2026, approved by Sasha. Source technology: [Technology 160: Function, Not Form](../01-vision/phase_shift_technology_library.md#technology-160-function-not-form-уникальный-бизнес--это-функция-oral-oct-17-2026). Related axiom: configuration (semantics) does not change essence.*
 
 **A Unique Business is a function, not necessarily one's own startup.** The function is a person's unique way of creating value. It can run in more than one configuration, and the configuration is a vehicle chosen to fit the season. The essence stays constant. You do not have to build a startup to live your function.
 
