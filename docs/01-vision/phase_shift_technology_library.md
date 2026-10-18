@@ -26,7 +26,7 @@ Each entry in this library is a technology — a seeing instrument that produces
 
 ## ⟡ Executive Summary & 27-Perspective Synthesis
 
-> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 160 as of October 17, 2026) stay the source of truth.*
+> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 161 as of October 17, 2026) stay the source of truth.*
 
 This is the R&D engine of the whole venture: a growing library of seeing instruments, each named by the transformational result it delivers, from cosmogenesis (Prime Radiant) through uniqueness articulation, the founder-first inversion, and myth-to-movement, up to the recent cluster on ripeness, transition, the mirror, and the network of sovereigns. They do not stack like a portfolio; they nest, each one refracting through all the others. Held together they are a single field seen from many faces (concentric polymathy). Over 2026 the collection converged on one spine: articulation is the mechanism of growth, recognition replaces persuasion, the mirror is the product, and a network coheres through well-formed edges rather than a center. Every playbook move, product, and pricing decision downstream traces to a numbered technology here.
 
@@ -8681,4 +8681,62 @@ From the merged *Feeling Doesn't Shout* material:
 - *Technology 98: Prime Invariant Branding* and *Technology 118: The Seer Invariant*: invariant before projection.
 - *Technology 111: The Network of Sovereigns* and *Technology 120: The Formed Edge*: embedded roles as edges between ecosystems.
 - *Technology 128: The Name Is the Result*: the function is named by the result it delivers, not the container.
+- *Technology 161: The Six-Step Cycle of Embodiment*: the meta-technology through which this one was reached ("role" → "function" at step 3, the job post at step 4).
 - Playbook section "Function, not form" (evolver-grid-site issue #75).
+
+---
+
+## Technology 161: The Six-Step Cycle of Embodiment (The Blueprint of Blueprints) (Oct 17, 2026)
+
+> *Day 219, October 17, 2026 · recorded from evolver-grid-site issue #82. Sasha's discovery; he calls it a meta-method, "the Blueprint of Blueprints", a phase-shift technology, and a system function of self-organization of every holon and of the knowledge graph. Title is the issue's wording. The Significance and Implications below are Hark's reflection (agreed by Sasha) and AI formalization; the six steps are Sasha's own words.*
+
+**A meta-technology.** Most technologies in this library are lenses on one situation. This one is about how any lens comes to exist: how anything emergent (a technology, a role, a product, a name) goes from a felt essence to a living, grounded form. Other technologies grow out of it, and it describes the path by which they were themselves produced (Technology 160 is a worked example, below).
+
+### 🫀 Essence — in Sasha's words
+
+The six-step cycle of how anything emergent comes into being:
+
+1. I first feel, on the subtle plane, the essence of what is emerging (a fifth sense).
+2. First words come: first attempts at formulation.
+3. The formulation starts to live: self-polishes, gains depth, reveals details, sees semantic distinctions.
+4. Then, and this matters, reality on the ground reveals the structure, dynamics, composition, function.
+5. This enriches the template; it gets digitized and gains new life and growth.
+6. The flywheel of the pendulum spins up into a vortex.
+
+*(Recorded as given in issue #82; the original voice message or chat line was not attached, so no timestamp is cited.)*
+
+### 🧠 Significance — Hark's reflection (agreed) and AI formalization
+
+- **Time added to the map.** The existing essence/articulation model (L1/L2) is a static map. This cycle adds time: how essence incarnates.
+- **Words are a membrane, not the truth.** Articulation sits between two sources of truth: subtle sensing above (step 1) and ground reality below (step 4).
+- **A loop or spiral, not a line.** On each turn the essence stays and the form gets richer.
+- **Holon = structure; this cycle = movement.** (See Universal Ontology §7b.)
+- **A lead label is a stage marker.** It is expected to change during steps 2 to 4; a label that has stopped changing has probably been frozen early.
+- **Forks are resolved by function on the ground (step 4), not by argument.** Closing a fork at step 2 is reductionist.
+- **Live example, same day.** "Role" became "function" (step 3). "Venture studio" was a past lead label (steps 2 to 3). The Google AI Futures Fund job post showed the function in reality (step 4). The outcome is Technology 160.
+
+### 🔥 Implications — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:*
+
+- **1st order.** When naming anything new, ask which step it is at. A step-2 phrase held as final is a premature closure; a step-3 phrase still gaining distinctions should be left open.
+- **2nd order.** Ground reality is a required input, not a later validation: the structure, dynamics, composition and function of a thing are read from the field (step 4), then fed back into the template (step 5).
+- **3rd order.** If this is a self-organization function of every holon and of the knowledge graph, as Sasha holds, then the corpus itself should show its entries at different steps, and revisions are the normal sign of life rather than a correction.
+
+### Hypotheses (held as hypotheses, not claims)
+
+- **Possible mapping to Equilibrium's lunar phases.** Hypothesis only. The cycle has six steps and the lunar wisdom map has eight phases (`docs/specs/equilibrium/lunar_wisdom_map.md`), so any mapping is not one-to-one and has not been worked out. Not to be built into the product on this basis.
+- **Relation to the Holon Cycle (Universal Ontology §7) and to the 27-perspective instrument.** Not yet established; to be read through Sasha's confirmation.
+
+### Shape
+
+- **Shape:** **Spiral** (a six-step loop, essence constant, form richer on every turn), with a **membrane** variant (words between subtle sensing above and ground reality below).
+- **Infographic (one line):** A spiral climbing six marked stations; a thin membrane labelled "words" between a light above ("feel") and soil below ("ground"); the last station opens into a vortex.
+
+### Cross-references — Connects to
+
+- *Technology 160: Function, Not Form*: the live example; "role" → "function" is step 3, the job post is step 4.
+- *Technology 82: Linguistic Synthesis*: the articulation side of the cycle (steps 2 to 3).
+- *Technology 10: The Business You're Already Standing On*: the function is already present before it is named.
+- *Technology 128: The Name Is the Result*: a name as a stage marker.
+- Universal Ontology §7b (`docs/01-vision/universal_ontology.md`): the dynamic counterpart of the holon.

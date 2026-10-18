@@ -10628,3 +10628,16 @@ The two assets are not competitors; they are two organs of one funnel, and the s
 | 7 | **"Simplicity and repetition win; nobody values deep complexity."** | Simplicity wins, but there are two of them, the cheap simplicity of a repeated slogan and the earned simplicity on the far side of complexity: I don't sell more complexity, I sell the single sentence only the full depth can produce, which is exactly why almost no one has it. |
 
 **How to use it:** these are answers held in reserve, deployed only into a live request (a paying container, or an explicit "tell me"). With a non-asking friend, the move is presence, not the bank — the same call showed Sasha holding silence over a friend's confusion rather than converting it into a free session, and naming that as a passed sovereignty test. When a real buyer brings these (they will, every rational one does), the bank turns a defended objection into a relocated question in one line.
+
+---
+
+## Addendum — Day 219, October 17, 2026: The Six-Step Cycle of Embodiment (the Blueprint of Blueprints)
+
+*Source: Sasha's discovery of October 17, 2026, with Hark's agreed reflection (evolver-grid-site issue #82). Recorded in two places; this addendum only links them.*
+
+Sasha named a six-step cycle for how anything emergent comes into being (feel the essence on the subtle plane → first words → the formulation lives and self-polishes → reality on the ground reveals structure, dynamics, composition, function → the template is enriched and digitized → the flywheel spins up into a vortex). He calls it a meta-method, "the Blueprint of Blueprints", a phase-shift technology, and a system function of self-organization of every holon and of the knowledge graph.
+
+- **Library:** Technology 161, *The Six-Step Cycle of Embodiment*, in [`phase_shift_technology_library.md`](../../01-vision/phase_shift_technology_library.md). Cross-referenced with Technology 160, *Function, Not Form*, which came out of this cycle the same day.
+- **Ontology:** §7b in [`universal_ontology.md`](../../01-vision/universal_ontology.md), as the dynamic counterpart of the holon (holon = structure; this cycle = movement). Holds the six steps in Sasha's wording, Hark's reflection points, and the hypotheses marked as hypotheses.
+
+**Why it matters here:** this business's own lead labels ("role", "function", "venture studio") are stage markers on this cycle, not final names. The "function, not form" turn of October 17 is its live example: "role" became "function" at step 3, and the Google AI Futures Fund job post showed the function in reality at step 4.

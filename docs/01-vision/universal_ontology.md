@@ -921,6 +921,45 @@ No product is never "done" — it evolves.
 
 ---
 
+## 7b. THE SIX-STEP CYCLE OF EMBODIMENT — The Blueprint of Blueprints
+
+> *Added October 18, 2026, from Sasha's discovery of October 17, 2026 (evolver-grid-site issue #82). The six steps are Sasha's wording. The reflection points are Hark's (agreed). Hypotheses are marked as such. Library entry: Technology 161 in `phase_shift_technology_library.md`.*
+
+*How anything emergent comes into being: the dynamic counterpart of the holon.*
+
+§4 to §6 give the holon as **structure**. §7 gives the holon's cycle of energy. This section names the **movement** by which any form, a holon included, comes to exist: from a felt essence to a grounded, growing form. Sasha calls it a meta-method, "the Blueprint of Blueprints", a phase-shift technology, and a system function of self-organization of every holon and of the knowledge graph.
+
+### The six steps (Sasha's words)
+
+1. I first feel, on the subtle plane, the essence of what is emerging (a fifth sense).
+2. First words come: first attempts at formulation.
+3. The formulation starts to live: self-polishes, gains depth, reveals details, sees semantic distinctions.
+4. Then, and this matters, reality on the ground reveals the structure, dynamics, composition, function.
+5. This enriches the template; it gets digitized and gains new life and growth.
+6. The flywheel of the pendulum spins up into a vortex.
+
+### Reflection points (Hark, agreed)
+
+- **Static map plus time.** The existing essence/articulation model (L1/L2) is a static map; this cycle adds time, that is, how essence incarnates.
+- **Words are a membrane.** They sit between two sources of truth, subtle sensing above (step 1) and ground reality below (step 4). The words are not the truth.
+- **A loop or spiral, not a line.** On each turn the essence stays; the form gets richer.
+- **Holon = structure; this cycle = movement.**
+- **A lead label is a stage marker.** It must change during steps 2 to 4.
+- **Forks are resolved by function on the ground (step 4), not by argument.** Closing a fork at step 2 is reductionist.
+- **Live example, October 17, 2026.** "Role" became "function" (step 3). "Venture studio" was a past lead label (steps 2 to 3). The Google AI Futures Fund job post showed the function in reality (step 4). See Technology 160, "Function, Not Form".
+
+### How it sits with the rest of the ontology
+
+- **With §7.** The Holon Cycle (impulse, emanation, materialization, digestion, enrichment, next impulse) describes the energy flow through one holon's quadrants. How the two cycles relate (whether step 4 corresponds to digestion, step 5 to enrichment) is **not yet established** and is not asserted here.
+- **With §2b, ontology precedes mechanism.** The cycle fits the document's own method of recognition before proof: steps 1 to 3 are recognition and articulation, step 4 is where the field answers. Whether it should be read as a formal instance of that method is left to Sasha.
+
+### Hypotheses (not claims)
+
+- **Hypothesis only: a mapping to Equilibrium's lunar phases.** The cycle has six steps and the lunar wisdom map (`docs/specs/equilibrium/lunar_wisdom_map.md`) has eight phases, so a mapping is not one-to-one and has not been worked out. Nothing in the product should be built on it until it is tested.
+- **Hypothesis: the cycle is a self-organization function of the knowledge graph itself**, so that corpus entries sit at different steps and revisions are the normal sign of life. This is Sasha's framing; no mechanism is claimed beyond it.
+
+---
+
 ## 9. THE CREATIVE ACT
 
 *Work seen as sacred, executed as ceremony.*
