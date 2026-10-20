@@ -122,6 +122,17 @@ export interface EquilibriumTask {
   workstream_title_snapshot: string | null;
 }
 
+// ─── Subtask tags (issue #91) ──────────────────────────────────────────
+
+export type SubtaskKind = "research" | "build" | "outreach" | "ops";
+
+/** Cost + type shown before a subtask is promoted. Both nullable. */
+export interface SubtaskTags {
+  /** Free text, e.g. "15m" or "1 credit". */
+  effort: string | null;
+  kind: SubtaskKind | null;
+}
+
 // ─── DO NOW focus slot (up to 3 promoted task IDs per user) ────────────
 
 export interface EquilibriumFocus {

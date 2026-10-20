@@ -695,8 +695,10 @@ export type Database = {
           created_at: string
           created_by: string
           done_at: string | null
+          effort: string | null
           external_ref: string | null
           id: string
+          kind: string | null
           note: string | null
           owner: string
           position: number
@@ -712,8 +714,10 @@ export type Database = {
           created_at?: string
           created_by?: string
           done_at?: string | null
+          effort?: string | null
           external_ref?: string | null
           id?: string
+          kind?: string | null
           note?: string | null
           owner?: string
           position?: number
@@ -729,8 +733,10 @@ export type Database = {
           created_at?: string
           created_by?: string
           done_at?: string | null
+          effort?: string | null
           external_ref?: string | null
           id?: string
+          kind?: string | null
           note?: string | null
           owner?: string
           position?: number

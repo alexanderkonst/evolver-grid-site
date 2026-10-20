@@ -18,6 +18,8 @@ export const OWNERS = ["human", "ai"] as const;
 export type Owner = (typeof OWNERS)[number];
 export const SUBTASK_STATUSES = ["todo", "in_progress", "waiting", "done", "dropped"] as const;
 export type SubtaskStatus = (typeof SUBTASK_STATUSES)[number];
+export const SUBTASK_KINDS = ["research", "build", "outreach", "ops"] as const;
+export type SubtaskKind = (typeof SUBTASK_KINDS)[number];
 const ACTIVE_SUBTASK_STATUSES = ["todo", "in_progress", "waiting"];
 const TERMINAL_SUBTASK_STATUSES = ["done", "dropped"];
 
@@ -69,6 +71,13 @@ export function cleanSubtaskStatus(value: unknown, field = "payload.status"): Su
   return value as SubtaskStatus;
 }
 
+export function cleanSubtaskKind(value: unknown, field = "payload.kind"): SubtaskKind {
+  if (typeof value !== "string" || !(SUBTASK_KINDS as readonly string[]).includes(value)) {
+    throw new Error(`${field} must be one of: ${SUBTASK_KINDS.join(", ")}.`);
+  }
+  return value as SubtaskKind;
+}
+
 export function cleanPriority(value: unknown, field = "payload.priority") {
   const num = typeof value === "number" ? value : Number(value);
   if (!Number.isInteger(num) || num < 1 || num > 3) {
@@ -100,6 +109,11 @@ function optionalPriority(payload: Row) {
   return payload.priority === null ? null : cleanPriority(payload.priority);
 }
 
+function optionalKind(payload: Row) {
+  if (!("kind" in payload) || payload.kind === undefined) return undefined;
+  return payload.kind === null ? null : cleanSubtaskKind(payload.kind);
+}
+
 export function parseAddSubtask(payload: Row) {
   const status = payload.status === undefined ? "todo" : cleanSubtaskStatus(payload.status);
   const waitingOn = optionalClearable(payload, "waiting_on", 120);
@@ -112,6 +126,8 @@ export function parseAddSubtask(payload: Row) {
     priority: optionalPriority(payload) ?? null,
     externalRef: optionalClearable(payload, "external_ref", 2000) ?? null,
     note: optionalClearable(payload, "note", 1000) ?? null,
+    effort: optionalClearable(payload, "effort", 40) ?? null,
+    kind: optionalKind(payload) ?? null,
   };
 }
 
@@ -123,6 +139,8 @@ export type SubtaskPatch = {
   priority?: number | null;
   external_ref?: string | null;
   note?: string | null;
+  effort?: string | null;
+  kind?: SubtaskKind | null;
   position?: number;
 };
 
@@ -139,6 +157,10 @@ export function parseSubtaskPatch(payload: Row): SubtaskPatch {
   if (externalRef !== undefined) patch.external_ref = externalRef;
   const note = optionalClearable(payload, "note", 1000);
   if (note !== undefined) patch.note = note;
+  const effort = optionalClearable(payload, "effort", 40);
+  if (effort !== undefined) patch.effort = effort;
+  const kind = optionalKind(payload);
+  if (kind !== undefined) patch.kind = kind;
   if (payload.position !== undefined) {
     const pos = Number(payload.position);
     if (!Number.isInteger(pos) || pos < 0) throw new Error("payload.position must be an integer >= 0.");
@@ -286,6 +308,8 @@ export async function addSubtask(
     priority: params.priority,
     external_ref: params.externalRef,
     note: params.note,
+    effort: params.effort,
+    kind: params.kind,
     created_by: agentName,
     ...(terminal ? { done_at: new Date().toISOString() } : {}),
   };
@@ -742,7 +766,7 @@ export async function convertTaskToSubtask(
 // ─── read_state v2 ──────────────────────────────────────────────────
 
 export const SUBTASK_COLUMNS =
-  "id, task_id, position, text, owner, status, waiting_on, priority, external_ref, note, created_by, created_at, updated_at, done_at";
+  "id, task_id, position, text, owner, status, waiting_on, priority, external_ref, note, effort, kind, created_by, created_at, updated_at, done_at";
 
 // Subtasks the read needs: every non-terminal one plus terminal ones closed in
 // the last 48 h (the panel's done list).
@@ -811,6 +835,8 @@ export function shapeTaskFlowState(input: {
     priority: s.priority ?? null,
     external_ref: s.external_ref ?? null,
     note: s.note ?? null,
+    effort: s.effort ?? null,
+    kind: s.kind ?? null,
     do_now: doNowBySubtask.get(s.id)?.owner ?? null,
     created_by: s.created_by,
     created_at: s.created_at,
@@ -851,11 +877,11 @@ export function shapeTaskFlowState(input: {
     if (row.task_id) {
       const task = taskById.get(row.task_id);
       if (!task) return null;
-      return { type: "task", id: task.id, text: String(task.text ?? ""), path: taskPath(task), status: String(task.status ?? "active"), waiting_on: null };
+      return { type: "task", id: task.id, text: String(task.text ?? ""), path: taskPath(task), status: String(task.status ?? "active"), waiting_on: null, effort: null, kind: null };
     }
     const subtask = subtaskById.get(row.subtask_id);
     if (!subtask) return null;
-    return { type: "subtask", id: subtask.id, text: String(subtask.text ?? ""), path: subtaskPath(subtask), status: String(subtask.status), waiting_on: subtask.waiting_on ?? null };
+    return { type: "subtask", id: subtask.id, text: String(subtask.text ?? ""), path: subtaskPath(subtask), status: String(subtask.status), waiting_on: subtask.waiting_on ?? null, effort: subtask.effort ?? null, kind: subtask.kind ?? null };
   };
 
   const humanRow = input.doNow.find((r) => r.owner === "human") ?? null;
@@ -901,9 +927,9 @@ export function shapeTaskFlowState(input: {
     doNow: legacyDoNow,
     do_now_v2: {
       human: humanEntry
-        ? { type: humanEntry.type, id: humanEntry.id, text: humanEntry.text, path: humanEntry.path, promoted_at: humanRow!.promoted_at }
+        ? { type: humanEntry.type, id: humanEntry.id, text: humanEntry.text, path: humanEntry.path, effort: humanEntry.effort, kind: humanEntry.kind, promoted_at: humanRow!.promoted_at }
         : null,
-      ai: aiEntries.map((e) => ({ type: e.type, id: e.id, text: e.text, path: e.path, status: e.status, waiting_on: e.waiting_on })),
+      ai: aiEntries.map((e) => ({ type: e.type, id: e.id, text: e.text, path: e.path, status: e.status, waiting_on: e.waiting_on, effort: e.effort, kind: e.kind })),
     },
     waiting_on_human: waitingOnHuman,
     subtask_counts: {

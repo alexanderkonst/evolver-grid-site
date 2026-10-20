@@ -16,6 +16,7 @@ import {
   cleanItemRef,
   cleanOwner,
   cleanPriority,
+  cleanSubtaskKind,
   cleanSubtaskStatus,
   complete,
   convertTaskToSubtask,
@@ -157,7 +158,7 @@ const task = (id: string, workstream_id: string, text: string, extra: Row = {}):
 });
 const sub = (id: string, task_id: string, text: string, extra: Row = {}): Row => ({
   id, user_id: USER, task_id, position: 0, text, owner: "ai", status: "todo", waiting_on: null,
-  priority: null, external_ref: null, note: null, created_by: "hark",
+  priority: null, external_ref: null, note: null, effort: null, kind: null, created_by: "hark",
   created_at: "2026-10-02T00:00:00.000Z", updated_at: "2026-10-02T00:00:00.000Z", done_at: null, ...extra,
 });
 const doNow = (extra: Row): Row => ({
@@ -197,6 +198,18 @@ describe("validators", () => {
     expect(parseAddSubtask({ task_id: T1, text: "x", status: "waiting", waiting_on: "claude" }).waitingOn).toBe("claude");
   });
 
+  it("effort and kind are optional; kind is one of research|build|outreach|ops", () => {
+    expect(parseAddSubtask({ task_id: T1, text: "x" })).toMatchObject({ effort: null, kind: null });
+    expect(parseAddSubtask({ task_id: T1, text: "x", effort: " 15m ", kind: "research" })).toMatchObject({ effort: "15m", kind: "research" });
+    expect(cleanSubtaskKind("ops")).toBe("ops");
+    expect(() => cleanSubtaskKind("design")).toThrow(/must be one of: research, build, outreach, ops/);
+    expect(() => parseAddSubtask({ task_id: T1, text: "x", kind: "design" })).toThrow(/payload\.kind/);
+    expect(() => parseAddSubtask({ task_id: T1, text: "x", effort: "y".repeat(41) })).toThrow(/too long/);
+    expect(parseSubtaskPatch({ effort: "1 credit", kind: "build" })).toEqual({ effort: "1 credit", kind: "build" });
+    expect(parseSubtaskPatch({ effort: null, kind: null })).toEqual({ effort: null, kind: null });
+    expect(parseSubtaskPatch({ effort: "" })).toEqual({ effort: null });
+  });
+
   it("update patch needs at least one field and lets null clear", () => {
     expect(() => parseSubtaskPatch({ subtask_id: S1 })).toThrow(/at least one field/);
     expect(parseSubtaskPatch({ priority: null, note: "" })).toEqual({ priority: null, note: null });
@@ -218,6 +231,14 @@ describe("add_subtask", () => {
     });
     expect(result).toEqual({ target: "equilibrium_subtasks", subtask_id: row.id, created: true, task_id: T1, owner: "ai", status: "waiting" });
     expect(summary).toBe('created subtask "Phase 1 PR review"');
+  });
+
+  it("stores effort and kind when given, null when not", async () => {
+    const admin = fakeAdmin(base());
+    await addSubtask(admin, USER, { ...parseAddSubtask({ task_id: T1, text: "Tagged", effort: "15m", kind: "outreach" }), agentName: "hark", dryRun: false });
+    await addSubtask(admin, USER, { ...parseAddSubtask({ task_id: T1, text: "Untagged" }), agentName: "hark", dryRun: false });
+    expect(admin.tables.equilibrium_subtasks[0]).toMatchObject({ effort: "15m", kind: "outreach" });
+    expect(admin.tables.equilibrium_subtasks[1]).toMatchObject({ effort: null, kind: null });
   });
 
   it("reuses an active subtask with the same normalized text", async () => {
@@ -542,7 +563,7 @@ describe("read_state v2 shaping", () => {
     task(T2, WS_A, "Knowledge graph", { position: 1 }),
   ];
   const subtasks = [
-    sub(S1, T1, "Phase 1 backend", { status: "waiting", waiting_on: "claude", priority: 1, external_ref: "https://example.test/71", position: 0 }),
+    sub(S1, T1, "Phase 1 backend", { status: "waiting", waiting_on: "claude", priority: 1, external_ref: "https://example.test/71", effort: "1 credit", kind: "build", position: 0 }),
     sub(S2, T1, "Your review of the plan", { status: "waiting", waiting_on: "Sasha", priority: 2, position: 1 }),
     sub(S3, T1, "Spec committed", { status: "done", done_at: "2026-10-17T07:00:00.000Z" }),
     sub("c0000000-0000-4000-8000-000000000004", T1, "Old and done", { status: "done", done_at: "2026-10-10T00:00:00.000Z" }),
@@ -570,7 +591,7 @@ describe("read_state v2 shaping", () => {
     expect(t1.subtasks.map((s) => s.text)).toEqual(["Phase 1 backend", "Your review of the plan", "Spec committed", "Declined yesterday"]);
     expect(t1.subtasks[0]).toEqual({
       id: S1, text: "Phase 1 backend", owner: "ai", status: "waiting", waiting_on: "claude", priority: 1,
-      external_ref: "https://example.test/71", note: null, do_now: "human", created_by: "hark",
+      external_ref: "https://example.test/71", note: null, effort: "1 credit", kind: "build", do_now: "human", created_by: "hark",
       created_at: "2026-10-02T00:00:00.000Z", updated_at: "2026-10-02T00:00:00.000Z", done_at: null,
     });
 
@@ -580,10 +601,10 @@ describe("read_state v2 shaping", () => {
 
     expect(state.do_now_v2.human).toEqual({
       type: "subtask", id: S1, text: "Phase 1 backend",
-      path: ["Founder OS", "Equilibrium Task Flow"], promoted_at: "2026-10-17T10:00:00.000Z",
+      path: ["Founder OS", "Equilibrium Task Flow"], effort: "1 credit", kind: "build", promoted_at: "2026-10-17T10:00:00.000Z",
     });
     expect(state.do_now_v2.ai).toEqual([
-      { type: "task", id: T2, text: "Knowledge graph", path: ["Founder OS"], status: "active", waiting_on: null },
+      { type: "task", id: T2, text: "Knowledge graph", path: ["Founder OS"], status: "active", waiting_on: null, effort: null, kind: null },
     ]);
     expect(state.waiting_on_human).toEqual([
       { type: "subtask", id: S2, text: "Your review of the plan", path: ["Founder OS", "Equilibrium Task Flow"] },
