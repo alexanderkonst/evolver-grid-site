@@ -127,8 +127,8 @@ The info icon reminds: *set when you have clarity*. If a strategy hasn't shown u
 
 By First Quarter, the *how* becomes obvious. Write it down before it drifts.
 
-- **Workstreams** — the streams of work the strategies open. Up to 7. Drag to reorder.
-- **Intuitive Tasks** — the concrete moves under each workstream. Up to 7 per stream.
+- **Workstreams** — the streams of work the strategies open. Up to 3. Drag to reorder.
+- **Intuitive Tasks** — the concrete moves under each workstream. Up to 3 per stream.
 
 ### DO NOW → **Harvesting / any execution day**
 
@@ -137,6 +137,56 @@ The chosen action collapses everything above into one move.
 - Up to 3 tasks. **1 is recommended.**
 - Each task on the Workstream list has a **DO NOW** button — promote it here.
 - Check the box → animates complete, cascades back to the workstream's done-pile.
+
+---
+
+## The eight phases: essence, ACT, trap
+
+**Inner half: the seed ("the how is none of your business")**
+
+### 1. Planning · Last Quarter · 🔥
+- **Essence:** after the harvest it goes quiet, and the next intention rises out of that quiet by itself. You don't invent it. You notice it.
+- **ACT:** **Moon Focus**, 1–3 words. Write it down as soon as the intention is obvious.
+- **Trap:** running a goal-setting workshop on yourself.
+
+### 2. Planting · Waning Crescent · 💧
+- **Essence:** in the dark, 1–3 directions show through: how the intention will be lived. This is recognition, not construction.
+- **ACT:** **Current Strategy**, one to three. Write them down as they come. If they haven't come, don't push.
+- **Trap:** missing the revelation because "the goal isn't written yet".
+
+### 3. Clearing · New Moon · 💧
+- **Essence:** the intention is bigger than the old you, and the mind panics: "how?" Fear comes up, and the old self builds limiting beliefs out of it. The work is to let the fear pass through without shaping it into beliefs. Crying releases. Complaining locks it in.
+- **ACT:** **don't touch.** No workstreams or tasks out of panic.
+- **Trap:** inventing the "how" while afraid, or taking it out on other people.
+
+### 4. Gathering · Waxing Crescent · 🌍
+- **Essence:** first light. People, leads, coincidences and raw material arrive ("FedEx"). You don't grab them, you receive them. Say yes as a ritual, and speak kindly. The "how" is still none of your business.
+- **ACT:** build nothing new. Collect whatever arrives as raw material for Seeing.
+- **Trap:** filtering and saying no too early.
+
+**Outer half: manifestation**
+
+### 5. Seeing · First Quarter · 🌍
+- **Essence:** first clarity. Suddenly you can see the concrete moves that will make it happen, but the clarity is fragile and dissolves within hours.
+- **ACT:** **Workstreams** (up to 3) and **Intuitive Tasks** (up to 3 per workstream). Write them down quickly. You can still adjust Moon Focus and the strategies if they came late.
+- **Trap:** putting the writing off until later.
+
+### 6. Leading · Waxing Gibbous · 🌬️
+- **Essence:** the farmer before the harvest. Storehouse, tools, helpers. The tension of readiness, not of doing.
+- **ACT:** put the task list in order, sequence the workstreams, set the focus tasks. Book blocks for Harvesting, set up your systems, ask for help.
+- **Trap:** starting to execute.
+
+### 7. Harvesting · Full Moon · 🌬️
+- **Essence:** the peak. Doing and receiving merge: ship, close, gather what has ripened. What isn't ripe stays on the vine.
+- **ACT:** **DO NOW**, 1 task (max 3). A finished task moves to done, then the next one comes in.
+- **Trap:** starting something new, or planning.
+
+### 8. Celebrating · Waning Gibbous · 🔥
+- **Essence:** the circle closes. Say the win out loud, without shame, and give thanks. Gratitude becomes the fuel for the next Planning.
+- **ACT:** look at what got done, give thanks, and clear what's spent. Don't write the new Moon Focus yet.
+- **Trap:** jumping from the harvest straight into planning.
+
+**Elements in pairs:** 🔥 will (Celebrating + Planning) · 💧 emanation (Planting + Clearing) · 🌍 digestion (Gathering + Seeing) · 🌬️ enrichment (Leading + Harvesting).
 
 ---
 

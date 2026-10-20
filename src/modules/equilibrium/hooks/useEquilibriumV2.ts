@@ -26,8 +26,8 @@ const eqAny = supabase as unknown as {
   rpc: (fn: string, args: Record<string, unknown>) => Promise<{ error: unknown }>;
 };
 
-const MAX_WORKSTREAMS = 7;
-const MAX_TASKS = 7;
+const MAX_WORKSTREAMS = 3;
+const MAX_TASKS = 3;
 const MAX_DONE_VISIBLE = 7;
 const MAX_FOCUS = 3;
 
@@ -839,6 +839,11 @@ export function useEquilibriumV2(): EquilibriumV2Data {
     async (id: string) => {
       const target = archivedWorkstreams.find((w) => w.id === id);
       if (!target) return;
+      // Cap (#46): restoring adds an active workstream, so it obeys the cap.
+      if (workstreams.length >= MAX_WORKSTREAMS) {
+        toast.error("group your workstreams to avoid very high context switching costs");
+        return;
+      }
       const res = await eqAny
         .from("equilibrium_workstreams")
         .update({ archived_at: null })
@@ -854,7 +859,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
         ),
       );
     },
-    [archivedWorkstreams],
+    [archivedWorkstreams, workstreams],
   );
 
   const reorderWorkstreams = useCallback(
@@ -1135,6 +1140,11 @@ export function useEquilibriumV2(): EquilibriumV2Data {
       const siblingActive = tasks.filter(
         (t) => t.workstream_id === target.workstream_id && t.status === "active",
       );
+      // Cap (#46): un-completing adds an active task, so it obeys the cap.
+      if (siblingActive.length >= MAX_TASKS) {
+        toast.error("group your tasks to avoid very high context switching costs");
+        return;
+      }
       const newPosition = siblingActive.length;
       const res = await eqAny
         .from("equilibrium_tasks")

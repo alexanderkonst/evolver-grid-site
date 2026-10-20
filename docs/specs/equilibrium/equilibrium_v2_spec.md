@@ -6,6 +6,8 @@
 >
 > Internal versioning: **v2**. Public/UX framing: **"Equilibrium" Biologic Watch**. File paths preserve v2.
 
+> **Amendment 2026-10-13 (Sasha):** ACT caps are now up to 3 Workstreams × 3 Intuitive Tasks per workstream (was 7 × 7). Strategies stay 1–3, DO NOW stays ≤3. Sections below that say 7 predate this.
+
 **Started:** 2026-05-15
 **Tracker:** [equilibrium_v2_tracker.md](./equilibrium_v2_tracker.md)
 **Previous versions:** [v1.6](./equilibrium_v1.6_spec.md) · [v1.2](./equilibrium_v1.2_product_spec.md) · [v1.1](./equilibrium_v1.1_product_spec.md)

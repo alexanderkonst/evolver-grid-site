@@ -87,7 +87,7 @@ export interface EquilibriumParkedItem {
   parked_by: string | null;
 }
 
-// ─── Workstreams (up to 7 active per user) ─────────────────────────────
+// ─── Workstreams (up to 3 active per user) ─────────────────────────────
 
 export interface EquilibriumWorkstream {
   id: string;
@@ -98,7 +98,7 @@ export interface EquilibriumWorkstream {
   archived_at: string | null;
 }
 
-// ─── Tasks (per workstream, up to 7 active + done overflow) ────────────
+// ─── Tasks (per workstream, up to 3 active + done overflow) ────────────
 
 export type TaskStatus = "active" | "done";
 

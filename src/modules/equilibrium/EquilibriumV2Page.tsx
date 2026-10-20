@@ -551,7 +551,7 @@ export const EquilibriumV2Page = () => {
           >
             {/* Info copy 2026-05-19 — paraphrased from
                 docs/04-products/equilibrium_user_manual.md → "Workstreams
-                — the streams of work the strategies open. Up to 7. Drag
+                — the streams of work the strategies open. Up to 3. Drag
                 to reorder." Phase note: surface during Seeing onward. */}
             <SectionHeader
               title="Workstreams"
@@ -582,7 +582,7 @@ export const EquilibriumV2Page = () => {
           >
             {/* Info copy 2026-05-19 — paraphrased from
                 docs/04-products/equilibrium_user_manual.md → "Intuitive
-                Tasks — the concrete moves under each workstream. Up to 7
+                Tasks — the concrete moves under each workstream. Up to 3
                 per stream." Promote button surfaces the chosen one into
                 DOING NOW. */}
             <SectionHeader
