@@ -1,6 +1,12 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 import {
+  cleanDigestDate,
+  cleanDigestItems,
+  readCockpitSettings,
+  writeDigest,
+} from "./cockpit.ts";
+import {
   cleanParkedKind,
   parkItem,
   parkStrategy,
@@ -60,7 +66,9 @@ type Operation =
   | "complete"
   | "move_task"
   | "convert_task_to_subtask"
-  | "delete_subtask";
+  | "delete_subtask"
+  | "settings_read"
+  | "digest_write";
 
 interface AgentWriteRequest {
   operation?: Operation;
@@ -98,6 +106,8 @@ const allowedOperations = new Set<Operation>([
   "move_task",
   "convert_task_to_subtask",
   "delete_subtask",
+  "settings_read",
+  "digest_write",
 ]);
 
 function jsonResponse(body: unknown, status = 200) {
@@ -454,13 +464,14 @@ function computePhaseReadiness(segmentIndex: number, filled: Record<EqLayerKey, 
 
 async function buildReadState(admin: SupabaseAdmin, userId: string) {
   const nowMs = Date.now();
-  const [stateRes, strategiesRes, workstreamsRes, doNowRes, subtaskRows, parked] = await Promise.all([
+  const [stateRes, strategiesRes, workstreamsRes, doNowRes, subtaskRows, parked, cockpitSettings] = await Promise.all([
     admin.from("equilibrium_state").select("*").eq("user_id", userId).maybeSingle(),
     admin.from("equilibrium_strategies").select("position, text, alignment_score").eq("user_id", userId).order("position", { ascending: true }),
     admin.from("equilibrium_workstreams").select("id, title, position").eq("user_id", userId).is("archived_at", null).order("position", { ascending: true }),
     admin.from("equilibrium_do_now").select("*").eq("user_id", userId).order("position", { ascending: true }),
     readSubtasks(admin, userId, nowMs),
     readParked(admin, userId),
+    readCockpitSettings(admin, userId),
   ]);
 
   if (stateRes.error) throw new Error(`Could not read state: ${stateRes.error.message}`);
@@ -538,6 +549,8 @@ async function buildReadState(admin: SupabaseAdmin, userId: string) {
     waiting_on_human: taskFlow.waiting_on_human,
     subtask_counts: taskFlow.subtask_counts,
     parked,
+    // The Pause switch: agents must not start new work while true.
+    agents_paused: cockpitSettings.agents_paused,
     lunar,
     phase_readiness: phaseReadiness,
     generated_at: new Date().toISOString(),
@@ -580,9 +593,18 @@ serve(async (req) => {
     const dryRun = rawBody.dry_run === true;
     const admin = createClient(supabaseUrl, serviceKey);
 
-    // read_state is read-only: no idempotency, no audit log, ignores dry_run.
+    // read_state and settings_read are read-only: no idempotency, no audit
+    // log, ignore dry_run.
     if (operation === "read_state") {
       return jsonResponse(await buildReadState(admin, userId));
+    }
+    if (operation === "settings_read") {
+      return jsonResponse({
+        source: "equilibrium-agent-write",
+        operation: "settings_read",
+        ...(await readCockpitSettings(admin, userId)),
+        generated_at: new Date().toISOString(),
+      });
     }
 
     const existing = await findIdempotentResult(admin, userId, idempotencyKey);
@@ -853,6 +875,13 @@ serve(async (req) => {
       const parentTaskId = cleanUuid(payload.parent_task_id, "payload.parent_task_id");
       const owner = payload.owner === undefined ? undefined : cleanOwner(payload.owner);
       ({ result, summary } = await convertTaskToSubtask(admin, userId, { taskId, parentTaskId, owner, agentName, dryRun }));
+    } else if (operation === "digest_write") {
+      const summaryMd = cleanString(payload.summary_md, "payload.summary_md", 6000);
+      const items = cleanDigestItems(payload.items);
+      const date = payload.date === undefined || payload.date === null
+        ? undefined
+        : cleanDigestDate(payload.date);
+      ({ result, summary } = await writeDigest(admin, userId, { summaryMd, items, date, nowMs: Date.now(), dryRun }));
     } else if (operation === "park_strategy") {
       const position = cleanPosition(payload.position, "payload.position", 3);
       ({ result, summary } = await parkStrategy(admin, userId, { position, agentName, dryRun }));

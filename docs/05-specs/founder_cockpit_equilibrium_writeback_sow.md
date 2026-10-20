@@ -72,6 +72,13 @@ The eight Task Flow operations (`add_subtask`, `update_subtask`, `delete_subtask
 
 The three Parked operations honor `dry_run`, `idempotency_key` and the audit log like every other write. They need the `equilibrium_parked` table from `supabase/migrations/20260829000000_equilibrium_parked.sql`. Parked items are shown as the last block of the ACT section in the cockpit (5 at a time, newest first).
 
+**Daily agent cycle (issue #90).** One Pause switch stops every agent; a morning digest tells the founder what happened. Two tables in `supabase/migrations/20261020000000_cockpit_daily_cycle.sql` (not deployed; apply before `digest_write` is used): `cockpit_settings` (one row per owner: `agents_paused` default `false`, `digest_time` default `08:00`, `timezone` default `America/Mexico_City`) and `cockpit_digests` (`date`, `summary_md`, `items` jsonb; one row per owner per day). Two operations:
+
+- `settings_read` (read-only, like `read_state`: no payload, ignores `dry_run`, not audit-logged) returns `agents_paused`, `digest_time`, `timezone`, `updated_at`. Defaults apply when there is no row or the migration is not applied yet.
+- `digest_write` `{summary_md, items?, date?}` upserts the digest for `date` (`YYYY-MM-DD`, default today in the owner's timezone), so a second run on the same day replaces the first. `items` is a list of up to 50 `{section: "moved"|"waiting"|"outbox", text, ref?}`; the cockpit groups them and shows the Outbox count from `section: "outbox"` items. Honors `dry_run`, `idempotency_key` and the audit log.
+
+`read_state` now also returns `agents_paused`. **Agents check it (or `settings_read`) at the start of every cycle and do no new work while it is `true`.** The server does not block other writes while paused, and `digest_write` stays allowed so a paused agent can still report. The Founder Cockpit shows a **Pause agents / Resume** toggle and a **Morning digest** card at the top (founder only); the toggle writes `cockpit_settings` under owner-only RLS. Cockpit RLS gives the owner read access to digests and read/insert/update on settings; digests are written only through this function.
+
 `read_state` powers Hark's Equilibrium Home panel (issue #39): the site stays
 the single source of truth and nothing is duplicated — Hark reads live. The
 response includes `moon_focus`, `lifelong_dedication`, `role`; `strategies`

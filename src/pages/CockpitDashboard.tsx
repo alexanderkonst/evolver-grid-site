@@ -38,6 +38,7 @@ import {
   type OutreachOffer,
 } from "@/lib/offersBoard";
 import { useRuntimeOffers } from "@/hooks/useRuntimeOffers";
+import DailyCycleCard from "@/components/cockpit/DailyCycleCard";
 
 type CockpitAction = "movement" | "followups" | "bottlenecks" | "leverage";
 
@@ -552,6 +553,8 @@ export default function CockpitDashboard() {
             Refresh
           </button>
         </header>
+
+        {isFounder && <DailyCycleCard />}
 
         <section className="mb-5 rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5">
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
