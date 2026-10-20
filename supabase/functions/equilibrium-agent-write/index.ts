@@ -7,6 +7,22 @@ import {
   readParked,
   unparkStrategy,
 } from "./parked.ts";
+import {
+  addSubtask,
+  cleanItemRef,
+  cleanOwner,
+  complete,
+  convertTaskToSubtask,
+  deleteSubtask,
+  demote,
+  moveTask,
+  parseAddSubtask,
+  parseSubtaskPatch,
+  promoteDoNow,
+  readSubtasks,
+  shapeTaskFlowState,
+  updateSubtask,
+} from "./taskflow.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -18,7 +34,6 @@ const corsHeaders = {
 const MAX_BODY_BYTES = 25_000;
 const MAX_WORKSTREAMS = 3;
 const MAX_TASKS = 3;
-const MAX_FOCUS = 3;
 
 type Operation =
   | "read_state"
@@ -37,7 +52,15 @@ type Operation =
   | "append_synthesis_log"
   | "park_strategy"
   | "park_item"
-  | "unpark_strategy";
+  | "unpark_strategy"
+  | "add_subtask"
+  | "update_subtask"
+  | "promote_do_now"
+  | "demote"
+  | "complete"
+  | "move_task"
+  | "convert_task_to_subtask"
+  | "delete_subtask";
 
 interface AgentWriteRequest {
   operation?: Operation;
@@ -67,6 +90,14 @@ const allowedOperations = new Set<Operation>([
   "park_strategy",
   "park_item",
   "unpark_strategy",
+  "add_subtask",
+  "update_subtask",
+  "promote_do_now",
+  "demote",
+  "complete",
+  "move_task",
+  "convert_task_to_subtask",
+  "delete_subtask",
 ]);
 
 function jsonResponse(body: unknown, status = 200) {
@@ -202,7 +233,7 @@ async function ensureWorkstream(
   const rows = Array.isArray(data) ? data as any[] : [];
   const existing = rows.find((row) => normalizeText(String(row.title ?? "")) === normalizeText(title));
   if (existing) return { workstream: existing, created: false };
-  if (rows.length >= MAX_WORKSTREAMS) throw new Error(`Cannot create workstream: active workstream cap is ${MAX_WORKSTREAMS}.`);
+  if (rows.length >= MAX_WORKSTREAMS) throw new Error(`Cannot create workstream: active workstream cap is ${MAX_WORKSTREAMS}. Make room by moving its tasks with move_task or convert_task_to_subtask, then delete the emptied workstream.`);
 
   const planned = {
     user_id: userId,
@@ -421,38 +452,31 @@ function computePhaseReadiness(segmentIndex: number, filled: Record<EqLayerKey, 
   return { phase: LUNAR_PHASES[segmentIndex].name, position, layers };
 }
 
-// Split an agent-authored task string ("Name — body") back into a short
-// name + full text. create_task stores `${taskName} — ${textBody}`.
-function taskNameFromText(text: string) {
-  const idx = text.indexOf(" — ");
-  return idx > 0 ? text.slice(0, idx).trim() : text.trim();
-}
-
 async function buildReadState(admin: SupabaseAdmin, userId: string) {
-  const [stateRes, strategiesRes, workstreamsRes, focusRes, parked] = await Promise.all([
+  const nowMs = Date.now();
+  const [stateRes, strategiesRes, workstreamsRes, doNowRes, subtaskRows, parked] = await Promise.all([
     admin.from("equilibrium_state").select("*").eq("user_id", userId).maybeSingle(),
     admin.from("equilibrium_strategies").select("position, text, alignment_score").eq("user_id", userId).order("position", { ascending: true }),
     admin.from("equilibrium_workstreams").select("id, title, position").eq("user_id", userId).is("archived_at", null).order("position", { ascending: true }),
-    admin.from("equilibrium_focus").select("position, task_id").eq("user_id", userId).order("position", { ascending: true }),
+    admin.from("equilibrium_do_now").select("*").eq("user_id", userId).order("position", { ascending: true }),
+    readSubtasks(admin, userId, nowMs),
     readParked(admin, userId),
   ]);
 
   if (stateRes.error) throw new Error(`Could not read state: ${stateRes.error.message}`);
   if (strategiesRes.error) throw new Error(`Could not read strategies: ${strategiesRes.error.message}`);
   if (workstreamsRes.error) throw new Error(`Could not read workstreams: ${workstreamsRes.error.message}`);
-  if (focusRes.error) throw new Error(`Could not read focus: ${focusRes.error.message}`);
+  if (doNowRes.error) throw new Error(`Could not read Do Now: ${doNowRes.error.message}`);
 
   const state = (stateRes.data ?? {}) as any;
   const workstreamRows = Array.isArray(workstreamsRes.data) ? workstreamsRes.data as any[] : [];
-  const focusRows = Array.isArray(focusRes.data) ? focusRes.data as any[] : [];
-  const focusTaskIds = new Set(focusRows.map((row) => row.task_id));
 
   const workstreamIds = workstreamRows.map((row) => row.id).filter(Boolean);
   let taskRows: any[] = [];
   if (workstreamIds.length) {
     const { data, error } = await admin
       .from("equilibrium_tasks")
-      .select("id, workstream_id, position, text, status, do_now_at, created_at")
+      .select("id, workstream_id, position, text, status, owner, do_now_at, created_at")
       .in("workstream_id", workstreamIds)
       .eq("status", "active")
       .order("position", { ascending: true });
@@ -460,37 +484,30 @@ async function buildReadState(admin: SupabaseAdmin, userId: string) {
     taskRows = Array.isArray(data) ? data as any[] : [];
   }
 
-  const workstreams = workstreamRows.map((workstream) => ({
-    id: workstream.id,
-    title: workstream.title,
-    position: workstream.position,
-    tasks: taskRows
-      .filter((task) => task.workstream_id === workstream.id)
-      .map((task) => ({
-        id: task.id,
-        name: taskNameFromText(String(task.text ?? "")),
-        text: task.text,
-        status: task.status,
-        is_focus: focusTaskIds.has(task.id),
-        created_at: task.created_at,
-      })),
-  }));
-
-  // do_now = the active task in the lowest-numbered focus slot (position 1
-  // is "recommended" per the DOING NOW section).
-  let doNow: { id: string; name: string; workstream_title: string | null } | null = null;
-  const titleById = new Map(workstreamRows.map((w) => [w.id, w.title] as const));
-  for (const focusRow of focusRows) {
-    const task = taskRows.find((t) => t.id === focusRow.task_id);
-    if (task) {
-      doNow = {
-        id: task.id,
-        name: taskNameFromText(String(task.text ?? "")),
-        workstream_title: titleById.get(task.workstream_id) ?? null,
-      };
-      break;
-    }
+  // Subtasks of tasks that are no longer active (D4) still need their parent
+  // so `path` resolves.
+  const activeTaskIds = new Set(taskRows.map((t) => t.id));
+  const missingParentIds = [...new Set(subtaskRows.map((s) => s.task_id))].filter((id) => !activeTaskIds.has(id));
+  let parentTasks: any[] = [];
+  if (missingParentIds.length) {
+    const { data, error } = await admin
+      .from("equilibrium_tasks")
+      .select("id, workstream_id, text")
+      .in("id", missingParentIds);
+    if (error) throw new Error(`Could not read parent tasks: ${error.message}`);
+    parentTasks = Array.isArray(data) ? data as any[] : [];
   }
+
+  const taskFlow = shapeTaskFlowState({
+    workstreams: workstreamRows,
+    tasks: taskRows,
+    parentTasks,
+    subtasks: subtaskRows,
+    doNow: Array.isArray(doNowRes.data) ? doNowRes.data as any[] : [],
+    caps: { workstreams: MAX_WORKSTREAMS, tasksPerWorkstream: MAX_TASKS },
+    nowMs,
+  });
+  const { workstreams, doNow } = taskFlow;
 
   const strategies = (Array.isArray(strategiesRes.data) ? strategiesRes.data as any[] : []).map((s) => ({
     position: s.position,
@@ -504,7 +521,7 @@ async function buildReadState(admin: SupabaseAdmin, userId: string) {
     strategies: strategies.length > 0,
     workstreams: workstreams.length > 0,
     tasks: workstreams.some((w) => w.tasks.length > 0),
-    doNow: doNow !== null,
+    doNow: taskFlow.humanDoNowFilled,
   });
 
   return {
@@ -516,6 +533,10 @@ async function buildReadState(admin: SupabaseAdmin, userId: string) {
     strategies,
     workstreams,
     do_now: doNow,
+    caps: taskFlow.caps,
+    do_now_v2: taskFlow.do_now_v2,
+    waiting_on_human: taskFlow.waiting_on_human,
+    subtask_counts: taskFlow.subtask_counts,
     parked,
     lunar,
     phase_readiness: phaseReadiness,
@@ -676,12 +697,15 @@ serve(async (req) => {
         };
         summary = `reused existing task "${existingTask.text}"`;
       } else {
-        if (activeTasks.length >= MAX_TASKS) throw new Error(`Cannot create task: active task cap is ${MAX_TASKS} for this workstream.`);
+        if (activeTasks.length >= MAX_TASKS) throw new Error(`Cannot create task: active task cap is ${MAX_TASKS} for this workstream. Make room with move_task or convert_task_to_subtask.`);
         const planned = {
           workstream_id: workstream.id,
           position: activeTasks.length,
           text: taskText,
           status: "active",
+          // Only sent when given, so create_task keeps working before the
+          // Task Flow migration is applied.
+          ...(payload.owner === undefined ? {} : { owner: cleanOwner(payload.owner) }),
         };
         if (dryRun) {
           result = {
@@ -729,25 +753,12 @@ serve(async (req) => {
       }
       result = { target: "equilibrium_tasks", task_id: taskId, text };
       summary = `renamed task ${taskId}`;
-    } else if (operation === "complete_task") {
-      const taskId = cleanUuid(payload.task_id, "payload.task_id");
-      await getOwnedTask(admin, userId, taskId);
-      const now = new Date().toISOString();
-      if (!dryRun) {
-        const { error: updateError } = await admin
-          .from("equilibrium_tasks")
-          .update({ status: "done", done_at: now, do_now_at: null })
-          .eq("id", taskId);
-        if (updateError) throw new Error(`Could not complete task: ${updateError.message}`);
-        const { error: focusError } = await admin
-          .from("equilibrium_focus")
-          .delete()
-          .eq("user_id", userId)
-          .eq("task_id", taskId);
-        if (focusError) throw new Error(`Could not remove completed task from focus: ${focusError.message}`);
-      }
-      result = { target: "equilibrium_tasks", task_id: taskId, status: "done", done_at: now };
-      summary = `completed task ${taskId}`;
+    } else if (operation === "complete" || operation === "complete_task") {
+      // complete_task is the alias of complete with item.type = "task".
+      const ref = operation === "complete_task"
+        ? { type: "task" as const, id: cleanUuid(payload.task_id, "payload.task_id") }
+        : cleanItemRef(payload.item);
+      ({ result, summary } = await complete(admin, userId, { ref, dryRun }));
     } else if (operation === "delete_task") {
       // Hard delete — equilibrium_tasks has no archived_at column. Any
       // equilibrium_focus rows referencing this task are removed by the
@@ -811,29 +822,37 @@ serve(async (req) => {
         forced: force,
       };
       summary = `deleted workstream ${workstreamId}${taskCount > 0 ? ` (cascaded ${taskCount} task(s))` : ""}`;
-    } else if (operation === "promote_task_to_focus") {
-      const taskId = cleanUuid(payload.task_id, "payload.task_id");
-      const position = cleanPosition(payload.position ?? 1, "payload.position", MAX_FOCUS);
-      await getOwnedTask(admin, userId, taskId);
-      const now = new Date().toISOString();
-      if (!dryRun) {
-        const { error: focusError } = await admin
-          .from("equilibrium_focus")
-          .upsert({
-            user_id: userId,
-            position,
-            task_id: taskId,
-            promoted_at: now,
-          }, { onConflict: "user_id,position" });
-        if (focusError) throw new Error(`Could not promote task to focus: ${focusError.message}`);
-        const { error: taskError } = await admin
-          .from("equilibrium_tasks")
-          .update({ do_now_at: now })
-          .eq("id", taskId);
-        if (taskError) throw new Error(`Could not stamp focus time on task: ${taskError.message}`);
+    } else if (operation === "promote_do_now" || operation === "promote_task_to_focus") {
+      // promote_task_to_focus is the alias of promote_do_now with owner human;
+      // its `position` is ignored and it writes equilibrium_do_now.
+      if (operation === "promote_task_to_focus") {
+        const ref = { type: "task" as const, id: cleanUuid(payload.task_id, "payload.task_id") };
+        ({ result, summary } = await promoteDoNow(admin, userId, { ref, owner: "human", agentName, dryRun }));
+        result = { ...result, task_id: ref.id };
+      } else {
+        const ref = cleanItemRef(payload.item);
+        const owner = payload.owner === undefined ? undefined : cleanOwner(payload.owner);
+        ({ result, summary } = await promoteDoNow(admin, userId, { ref, owner, agentName, dryRun }));
       }
-      result = { target: "equilibrium_focus", task_id: taskId, position, promoted_at: now };
-      summary = `promoted task ${taskId} to focus slot ${position}`;
+    } else if (operation === "demote") {
+      ({ result, summary } = await demote(admin, userId, { ref: cleanItemRef(payload.item), dryRun }));
+    } else if (operation === "add_subtask") {
+      ({ result, summary } = await addSubtask(admin, userId, { ...parseAddSubtask(payload), agentName, dryRun }));
+    } else if (operation === "update_subtask") {
+      const subtaskId = cleanUuid(payload.subtask_id, "payload.subtask_id");
+      ({ result, summary } = await updateSubtask(admin, userId, { subtaskId, patch: parseSubtaskPatch(payload), dryRun }));
+    } else if (operation === "delete_subtask") {
+      const subtaskId = cleanUuid(payload.subtask_id, "payload.subtask_id");
+      ({ result, summary } = await deleteSubtask(admin, userId, { subtaskId, dryRun }));
+    } else if (operation === "move_task") {
+      const taskId = cleanUuid(payload.task_id, "payload.task_id");
+      const workstreamId = cleanUuid(payload.workstream_id, "payload.workstream_id");
+      ({ result, summary } = await moveTask(admin, userId, { taskId, workstreamId, maxTasks: MAX_TASKS, dryRun }));
+    } else if (operation === "convert_task_to_subtask") {
+      const taskId = cleanUuid(payload.task_id, "payload.task_id");
+      const parentTaskId = cleanUuid(payload.parent_task_id, "payload.parent_task_id");
+      const owner = payload.owner === undefined ? undefined : cleanOwner(payload.owner);
+      ({ result, summary } = await convertTaskToSubtask(admin, userId, { taskId, parentTaskId, owner, agentName, dryRun }));
     } else if (operation === "park_strategy") {
       const position = cleanPosition(payload.position, "payload.position", 3);
       ({ result, summary } = await parkStrategy(admin, userId, { position, agentName, dryRun }));
