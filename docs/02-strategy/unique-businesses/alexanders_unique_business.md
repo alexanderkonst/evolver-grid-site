@@ -46,6 +46,24 @@ This is the playbook applied to Sasha's own business, and at the same time a com
 
 ---
 
+## ⭐ Funnel v5 — Reading-first (Sasha, October 19, 2026)
+
+*Filed from Sasha's own words in chat, October 19, 2026 (22:45–23:31 MST). Supersedes the 12-step funnel in canvas v3.0 §8.6 for the LinkedIn channel; the canvases below stay as genealogy.*
+
+**Product names (public):** **Zero-to-One, a PMF OS** · **Founder Cockpit, a business automation OS**. Never "Founder OS".
+
+**The flow**
+1. **Find.** Evolver (Aleksandr Konstantinov's symbiotic intelligence) finds ICP profiles on LinkedIn and sends connection requests from Sasha's own account. 80% of outreach goes to the ICP; **20% goes to people closest to Sasha's thesis** (The New Economy, 7 stages).
+2. **Read.** For each person who accepts, Evolver reads the profile and their site and runs the Appleseed / Zone of Genius prompts to synthesize **one uniqueness sentence** (the bullseye: present-tense verb, concrete object, for whom, 5-second-friend test).
+3. **Message 1.** "*My AI shows that you bring value by <bullseye>. Want to know what scalable product this ability naturally turns into?*" No shadow: nobody is eager to see their shadow; the product question is about their future money.
+4. **Yes → free 20-minute call** ([cal.com/aleksandrkonstantinov/20](https://cal.com/aleksandrkonstantinov/20)). We get acquainted and Sasha reveals the cards: on the infographic, how this ability turns into a product.
+5. **Founder-Market Fit session — 1–2 hours, paid, $555.** Offered only to people who came through the 20-minute call. Together we make the product concrete and see the outline of their unique business.
+6. **Group build.** After FMF, Sasha offers to build it together in a group.
+
+**Guardrails:** max 10 messages a day, no bulk sends; no separate AI LinkedIn account. The first 10 readings Sasha sees and edits; after that Evolver sends on its own with a daily digest.
+
+**Spec and drafts:** private ledger, `docs/evolver/reading-first-outreach.md`.
+
 ## ⭐ Канвас уникального бизнеса — v3.0 (Sasha's own, filed Day 186, September 16, 2026)
 
 *Sasha's own revision, same day as v1.0 and v2.0. **Current version.** v2.0 and v1.0 preserved below as genealogy. Three real changes: the uniqueness line now names the form (containers), the metamorphosis names the merged-project trap, and the UVP is filled in both languages.*
