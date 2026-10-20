@@ -92,6 +92,32 @@ Alexander has consolidated onto the Claude ecosystem. Two Claude surfaces, one a
 - **gstack** (`~/.claude/skills/gstack/`): Slash-command skills available in Claude Code Mac app — `/plan-ceo-review`, `/review`, `/qa`, `/ship`, `/investigate`, `/retro`, etc. Global install. NOT connected to this project's `CLAUDE.md` (that's intentional — preserves pointer-only contract). Namespaced as `/gstack-*` to avoid collision.
 - **UI/UX Pro Max** (`.agent/skills/ui-ux-pro-max/`): Local project skill. Read `SKILL.md` before any UI work.
 
+## Agent PR auto-merge (`.github/workflows/agent-automerge.yml`)
+
+> **Install (Hark):** the Claude GitHub App cannot write to `.github/workflows/`, so the file ships as `.agent/pending/agent-automerge.yml`. Install with `git mv .agent/pending/agent-automerge.yml .github/workflows/agent-automerge.yml`, commit, merge. Then remove this note.
+
+Agent PRs merge themselves the moment they are green. Event-driven (`workflow_run`, `check_suite`, `pull_request`, `pull_request_review`), no polling. Each event sweeps every open agent PR and merges with `gh pr merge --squash --delete-branch` only if **all** hold:
+
+- Author is the Claude bot, or the head branch is `claude/*` in this repo.
+- Not draft; mergeable; `mergeable_state` not blocking (behind, blocked, unknown).
+- Every check run, workflow run and commit status on the head SHA is success / neutral / skipped (none pending, none failed). No checks reported yet counts as not green.
+- No `hold` or `needs-sasha` label.
+- No PR-critic review with "changes requested" (a `CHANGES_REQUESTED` review, or a bot review whose body says `Verdict: changes requested`, or the sticky `claude-review.yml` comment whose verdict line is `REVIEW: CHANGES`).
+
+**Never auto-merged** (the PR gets label `needs-sasha` plus a one-line comment): touches `supabase/migrations/**`, `.github/workflows/**`, secrets (`.env*`, `*secret*`, `*credential*`, `*.pem`, `*.key`), billing/payment code, or deletes more than 20 files.
+
+**Conflicts:** one comment, `@claude please rebase on main and resolve conflicts`, never repeated. Comments from `GITHUB_TOKEN` do not trigger `claude.yml`; set the optional repo secret `AGENT_AUTOMERGE_COMMENT_TOKEN` (PAT or app token) so that comment actually wakes the agent.
+
+**After a merge** the workflow dispatches (`--ref main`) any active workflow named like `verify`, `docs-sync` or `post-merge` that has `workflow_dispatch`, because `GITHUB_TOKEN` merges do not fire push workflows. Such a workflow must declare `workflow_dispatch`.
+
+**Maintenance:** the `workflow_run` trigger lists workflows by name; add each new workflow's `name:` there (never the auto-merge workflow itself, that loops). Every decision is one line in the job summary. Changes to this workflow touch `.github/workflows/**`, so Hark merges them by hand.
+
+## Agent PR auto-open (`.github/workflows/agent-open-pr.yml`)
+
+> **Install (Hark):** staged as `.agent/pending/agent-open-pr.yml` (the Claude GitHub App cannot write to `.github/workflows/`). Run `git mv .agent/pending/agent-open-pr.yml .github/workflows/agent-open-pr.yml` and `git mv -f .agent/pending/agent-automerge.yml .github/workflows/agent-automerge.yml` (the update adds `"Agent Open PR"` and `"Claude Review"` to its `workflow_run` list and makes it honour the `REVIEW: CHANGES` critic comment). Also enable repo setting *Actions → General → Allow GitHub Actions to create and approve pull requests*. Then remove this note.
+
+On `push` to `claude/**`, if the branch has no open PR and is ahead of `main`, the workflow opens one: title = first line of the last commit, body = rest of the commit message + `Closes #N` (from `claude/issue-N-*`). `GITHUB_TOKEN` PRs fire no `pull_request` workflows, so it then dispatches every active workflow that listens to `pull_request` **and** declares `workflow_dispatch` on the branch ref; those runs carry the head SHA, so auto-merge counts them. **A PR-check workflow must declare `workflow_dispatch`**, or it never runs on auto-opened PRs. Agents: open the PR yourself when your permissions allow; this is the safety net.
+
 ## Definition of Done — Before AND After
 
 This section pairs with `.agent/session-protocol.md` (Working agreement section) (the contract). The DoD pattern has two halves; both are mandatory on non-trivial tasks.

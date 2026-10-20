@@ -52,7 +52,7 @@ interface SmartGoalsSectionProps {
  * to Box 11. Checkbox marks complete via eq_complete_task RPC; done tasks
  * appear underneath separated by a divider (max 7 shown).
  *
- * Cap at 7 active tasks with verbatim cap copy (mirroring workstream wording
+ * Cap at 3 active tasks with verbatim cap copy (mirroring workstream wording
  * — "tasks" substituted per Sasha's approval).
  */
 export const SmartGoalsSection = ({
@@ -77,6 +77,8 @@ export const SmartGoalsSection = ({
   const active = tasks.filter((t) => t.status === "active");
   const done = tasks.filter((t) => t.status === "done");
   const atCap = active.length >= MAX_TASKS;
+  // Over-cap data (#46): rows past the cap stay visible but read-only.
+  const isOverCap = active.length > MAX_TASKS;
 
   if (!workstreamTitle) {
     return (
@@ -131,15 +133,16 @@ export const SmartGoalsSection = ({
         onDragEnd={handleDragEnd}
       >
         <SortableContext
-          items={active.map((t) => t.id)}
+          items={active.slice(0, MAX_TASKS).map((t) => t.id)}
           strategy={verticalListSortingStrategy}
         >
           <ul className="flex flex-col gap-2">
-            {active.map((t) => (
+            {active.map((t, idx) => (
               <SortableTaskBar
                 key={t.id}
                 task={t}
                 inFocus={focusedTaskIds.includes(t.id)}
+                readOnly={idx >= MAX_TASKS}
                 loading={loading}
                 onRename={(text) => onRenameTask(t.id, text)}
                 onDelete={() => onDeleteTask(t.id)}
@@ -151,6 +154,13 @@ export const SmartGoalsSection = ({
           </ul>
         </SortableContext>
       </DndContext>
+
+      {isOverCap && (
+        <p className="mt-2 px-2 text-xs italic text-[#0a1628]/90">
+          Over the {MAX_TASKS} cap. Extra items are read-only until the list is
+          back to {MAX_TASKS}.
+        </p>
+      )}
 
       {atCap ? (
         <p className="mt-3 px-2 text-xs italic text-[#0a1628]/90">
@@ -214,6 +224,8 @@ export const SmartGoalsSection = ({
 interface SortableTaskBarProps {
   task: EquilibriumTask;
   inFocus: boolean;
+  /** Past the cap: no rename, no drag, no DO NOW promote. Complete + delete stay. */
+  readOnly: boolean;
   loading: boolean;
   onRename: (text: string) => Promise<void> | void;
   onDelete: () => Promise<void> | void;
@@ -231,6 +243,7 @@ interface SortableTaskBarProps {
 const SortableTaskBar = ({
   task,
   inFocus,
+  readOnly,
   loading,
   onRename,
   onDelete,
@@ -239,7 +252,7 @@ const SortableTaskBar = ({
   onComplete,
 }: SortableTaskBarProps) => {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
-    useSortable({ id: task.id });
+    useSortable({ id: task.id, disabled: readOnly });
 
   return (
     <li
@@ -285,7 +298,7 @@ const SortableTaskBar = ({
         <InlineEditableText
           value={task.text}
           size="body"
-          disabled={loading}
+          disabled={loading || readOnly}
           emptyPlaceholder="—"
           onSave={(text) => onRename(text ?? "Untitled task")}
         />
@@ -303,33 +316,37 @@ const SortableTaskBar = ({
         resting state stays emerald — task is still in good standing,
         we're not implying anything destructive.
       */}
-      <button
-        type="button"
-        aria-label={inFocus ? "Release from DOING NOW back to workstream" : "Promote to DOING NOW"}
-        title={
-          inFocus
-            ? "Release this task back to the workstream"
-            : "Promote this task to DOING NOW"
-        }
-        onClick={inFocus ? onDemote : onPromote}
-        className={cn(
-          "group/pill relative shrink-0 rounded-full px-3 py-1.5 text-xs font-medium uppercase tracking-wider transition max-sm:col-start-2 max-sm:row-start-2 max-sm:justify-self-start",
-          inFocus
-            ? "bg-emerald-100 text-emerald-700 hover:bg-rose-100 hover:text-rose-700"
-            : "bg-[#0a1628] text-white hover:bg-[#0a1628]/85",
-        )}
-      >
-        {inFocus ? (
-          <>
-            {/* Default label: "in focus". Hover swaps to "release ↶"
-                so the user knows the click action releases the task. */}
-            <span className="group-hover/pill:hidden">in focus</span>
-            <span className="hidden group-hover/pill:inline">release ↶</span>
-          </>
-        ) : (
-          "do now"
-        )}
-      </button>
+      {/* Read-only (past the cap): no promote. An already-focused task keeps
+          its release control so the user can still pull it out. */}
+      {(!readOnly || inFocus) && (
+        <button
+          type="button"
+          aria-label={inFocus ? "Release from DOING NOW back to workstream" : "Promote to DOING NOW"}
+          title={
+            inFocus
+              ? "Release this task back to the workstream"
+              : "Promote this task to DOING NOW"
+          }
+          onClick={inFocus ? onDemote : onPromote}
+          className={cn(
+            "group/pill relative shrink-0 rounded-full px-3 py-1.5 text-xs font-medium uppercase tracking-wider transition max-sm:col-start-2 max-sm:row-start-2 max-sm:justify-self-start",
+            inFocus
+              ? "bg-emerald-100 text-emerald-700 hover:bg-rose-100 hover:text-rose-700"
+              : "bg-[#0a1628] text-white hover:bg-[#0a1628]/85",
+          )}
+        >
+          {inFocus ? (
+            <>
+              {/* Default label: "in focus". Hover swaps to "release ↶"
+                  so the user knows the click action releases the task. */}
+              <span className="group-hover/pill:hidden">in focus</span>
+              <span className="hidden group-hover/pill:inline">release ↶</span>
+            </>
+          ) : (
+            "do now"
+          )}
+        </button>
+      )}
 
       {/* Hover-revealed on desktop, partial opacity on mobile
           (max-sm:opacity-60) so touch users can find it without
@@ -343,15 +360,17 @@ const SortableTaskBar = ({
         <Trash2 size={14} />
       </button>
 
-      <button
-        type="button"
-        aria-label="Drag to reorder"
-        className="cursor-grab touch-none p-2 mr-1 text-[#0a1628]/95 hover:text-[#0a1628]/90 active:cursor-grabbing max-sm:col-start-4 max-sm:row-start-2 max-sm:mr-0"
-        {...attributes}
-        {...listeners}
-      >
-        <GripVertical size={16} />
-      </button>
+      {!readOnly && (
+        <button
+          type="button"
+          aria-label="Drag to reorder"
+          className="cursor-grab touch-none p-2 mr-1 text-[#0a1628]/95 hover:text-[#0a1628]/90 active:cursor-grabbing max-sm:col-start-4 max-sm:row-start-2 max-sm:mr-0"
+          {...attributes}
+          {...listeners}
+        >
+          <GripVertical size={16} />
+        </button>
+      )}
     </li>
   );
 };

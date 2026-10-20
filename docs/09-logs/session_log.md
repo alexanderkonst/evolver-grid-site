@@ -8559,3 +8559,13 @@ Full historical record: `docs/09-logs/2026-08-25_recursive_unique_business_cryst
 **Correction filed (Day 186).** An earlier note in this session described stewardship as "dynamic ownership that decays by design." Sasha corrected it: stewardship and ownership are opposites, not a soft and hard version of the same thing. Ownership assumes the thing can be owned; stewardship assumes it cannot, and that someone carries responsibility for it for a time. What decays by design is the **role and its rights**, never ownership. Two different equilibria. The corrected formulation is the one to use in any institute or licensing document.
 
 **Threads open at Day 186:** the branch sentence to Karime before October 1 · Gleb's next session (his two challenges, and a verifiable 30-day field test) · one defined rev-share project with Vladimir rather than the social-network vision · the webinar date and the workshop price · Proof still absent from the canvas · uniqueness and shadow candidates still unscored.
+
+---
+
+## Day 217 — October 17, 2026: Equilibrium ACT caps drop to 3 × 3
+
+> Source: issue #46 (Sasha's decision of 2026-10-13, go given 2026-10-17). Equilibrium Task Flow Phase 2 (#71) depends on it.
+
+The ACT caps in Equilibrium went from up to 7 Workstreams × 7 Intuitive Tasks to up to 3 × 3, in the UI hook and in `equilibrium-agent-write`. Strategies stay 1-3, DO NOW stays ≤3. A user who already has more than 3 keeps everything: all items render, items 1-3 stay editable, items 4+ are read-only (complete and delete still work, since both only shrink the list). Restore-from-completed and un-complete now stop at the cap. The user manual gained the eight-phase section (essence, ACT, trap per phase) in Sasha's approved wording. The spec and tracker carry one dated amendment line each; the task engine manual's "Why seven" reasoning is left for Sasha to rewrite.
+
+Done — Equilibrium ACT caps 7×7 → 3×3 (UI + equilibrium-agent-write) and 8-phase manual section. Over-cap items stay visible read-only; no data or DB changed.

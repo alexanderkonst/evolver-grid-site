@@ -19,6 +19,7 @@
 > - **Timestamp Requirement.** Every artifact version carries a date; the proprietary dataset is the timestamped trail of the maturation.
 > - **Ripeness read.** Alongside uniqueness, read whether the person can build from it now — the 9-axis Ripeness Vector, with Surrender / Means / Ticking-Clock as multiplicative gates. (Technology 123.)
 > - **Stream 0.** The method is run on its author first; the four scales (0/A/B/C) open in a load order. (Playbook Principle 18.)
+> - **Function, not form.** The canvas describes a function. The vehicle that carries it (1:1, product, own venture, an ecosystem role, a connector between networks) is chosen for the season and can change without changing the canvas. (Playbook, Part I, "Function, not form: configurations of a Unique Business.")
 >
 > Full per-artifact template sections for these can follow; this note makes the current method's laws canonical in the template now.
 

@@ -36,6 +36,7 @@ The leap is not a smarter mind. Hark routes to the same frontier models. The lea
 ## Consequences
 
 - **For AI OS:** the scaffold now has a body to live in. Next measurement: the SIB benchmark run inside Hark vs. plain Claude, with an independent scorer.
+- **For the setup stage:** the routines that keep this loop running without the human are written up as a template in `docs/03-playbooks/personal_intelligence_setup_playbook.md`.
 - **For the map:** the Feb 2026 frontier table gets an Oct 2026 row (done in `.agent/self-awareness-skill.md`); the gap between "mind" and "life integration" may deserve its own axis.
 - **Limits still standing:** no continuous learning in the weights, bounded autonomy, approvals on every outbound act, panels refresh at most hourly.
 
