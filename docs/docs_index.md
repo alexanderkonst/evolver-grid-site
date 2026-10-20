@@ -157,6 +157,7 @@ Everything about AI itself (AI OS, benchmark, the Hark leap, self-awareness map,
 |-----|---------|
 | [equilibrium_user_manual.md](./04-products/equilibrium_user_manual.md) | Equilibrium user manual — biological time OS |
 | [equilibrium_task_flow_spec.md](./04-products/equilibrium_task_flow_spec.md) | Equilibrium Task Flow — subtasks, HUMAN/AI DO NOW, 3 × 3 caps, Hark panels as the simplified interface (spec, 2026-10-16) |
+| [founder_cockpit_outbox.md](./04-products/founder_cockpit_outbox.md) | Founder Cockpit Outbox — outbound drafts with Send / Edit / Delete; Send approves, Hark sends (issue #89, 2026-10-20) |
 | [morphogenetic_navigation.md](./04-products/morphogenetic_navigation.md) | Morphogenetic navigation — 27-perspective venture navigation instrument |
 | [living_project_holograph.md](./04-products/living_project_holograph.md) | Living Project Holograph / Project Pulse — one lived event enters once, every relevant mirror updates from it |
 

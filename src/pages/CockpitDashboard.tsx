@@ -38,6 +38,7 @@ import {
   type OutreachOffer,
 } from "@/lib/offersBoard";
 import { useRuntimeOffers } from "@/hooks/useRuntimeOffers";
+import OutboxSection from "@/components/cockpit/OutboxSection";
 
 type CockpitAction = "movement" | "followups" | "bottlenecks" | "leverage";
 
@@ -719,6 +720,8 @@ export default function CockpitDashboard() {
             </div>
           )}
         </section>
+
+        {isFounder && <OutboxSection />}
 
         <div className="mb-5 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
           <section className="rounded-2xl border border-[#d6a84d]/25 bg-[#0d1117] p-5 shadow-[0_0_50px_-30px_rgba(214,168,77,0.8)]">

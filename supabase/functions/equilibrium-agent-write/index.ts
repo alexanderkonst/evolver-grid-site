@@ -1,6 +1,14 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 import {
+  addOutboxDraft,
+  cleanOutboxChannel,
+  cleanOutboxLimit,
+  cleanOutboxStatus,
+  listOutbox,
+  markOutboxSent,
+} from "./outbox.ts";
+import {
   cleanParkedKind,
   parkItem,
   parkStrategy,
@@ -60,7 +68,10 @@ type Operation =
   | "complete"
   | "move_task"
   | "convert_task_to_subtask"
-  | "delete_subtask";
+  | "delete_subtask"
+  | "outbox_add_draft"
+  | "outbox_list"
+  | "outbox_mark_sent";
 
 interface AgentWriteRequest {
   operation?: Operation;
@@ -98,6 +109,9 @@ const allowedOperations = new Set<Operation>([
   "move_task",
   "convert_task_to_subtask",
   "delete_subtask",
+  "outbox_add_draft",
+  "outbox_list",
+  "outbox_mark_sent",
 ]);
 
 function jsonResponse(body: unknown, status = 200) {
@@ -585,6 +599,22 @@ serve(async (req) => {
       return jsonResponse(await buildReadState(admin, userId));
     }
 
+    // outbox_list is read-only too: no idempotency, no audit log, ignores dry_run.
+    if (operation === "outbox_list") {
+      const items = await listOutbox(admin, userId, {
+        status: payload.status === undefined ? undefined : cleanOutboxStatus(payload.status),
+        channel: payload.channel === undefined ? undefined : cleanOutboxChannel(payload.channel),
+        limit: cleanOutboxLimit(payload.limit),
+      });
+      return jsonResponse({
+        source: "equilibrium-agent-write",
+        operation: "outbox_list",
+        count: items.length,
+        items,
+        generated_at: new Date().toISOString(),
+      });
+    }
+
     const existing = await findIdempotentResult(admin, userId, idempotencyKey);
     if (existing && !dryRun) {
       return jsonResponse({
@@ -867,6 +897,20 @@ serve(async (req) => {
         ? undefined
         : cleanPosition(payload.position, "payload.position", 3);
       ({ result, summary } = await unparkStrategy(admin, userId, { parkedId, position, dryRun }));
+    } else if (operation === "outbox_add_draft") {
+      ({ result, summary } = await addOutboxDraft(admin, userId, {
+        channel: cleanOutboxChannel(payload.channel),
+        recipientName: optionalString(payload.recipient_name, 180),
+        recipientRef: optionalString(payload.recipient_ref, 500),
+        body: cleanString(payload.body, "payload.body", 8000),
+        dryRun,
+      }));
+    } else if (operation === "outbox_mark_sent") {
+      ({ result, summary } = await markOutboxSent(admin, userId, {
+        outboxId: cleanUuid(payload.outbox_id, "payload.outbox_id"),
+        sentResult: optionalString(payload.sent_result, 2000),
+        dryRun,
+      }));
     } else {
       const text = cleanString(payload.text, "payload.text", 6000);
       result = await appendSynthesisState(admin, userId, text, dryRun);
