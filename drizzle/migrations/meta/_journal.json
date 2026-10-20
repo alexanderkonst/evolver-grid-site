@@ -8,6 +8,13 @@
       "when": 1792023395642,
       "tag": "0000_add_output_language",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792478795670,
+      "tag": "0001_equilibrium_task_flow",
+      "breakpoints": true
     }
   ]
 }

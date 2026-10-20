@@ -517,6 +517,54 @@ export type Database = {
           },
         ]
       }
+      equilibrium_do_now: {
+        Row: {
+          id: string
+          owner: string
+          position: number
+          promoted_at: string
+          promoted_by: string
+          subtask_id: string | null
+          task_id: string | null
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          owner: string
+          position?: number
+          promoted_at?: string
+          promoted_by?: string
+          subtask_id?: string | null
+          task_id?: string | null
+          user_id: string
+        }
+        Update: {
+          id?: string
+          owner?: string
+          position?: number
+          promoted_at?: string
+          promoted_by?: string
+          subtask_id?: string | null
+          task_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "equilibrium_do_now_subtask_id_fkey"
+            columns: ["subtask_id"]
+            isOneToOne: false
+            referencedRelation: "equilibrium_subtasks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "equilibrium_do_now_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "equilibrium_tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       equilibrium_focus: {
         Row: {
           position: number
@@ -642,6 +690,68 @@ export type Database = {
         }
         Relationships: []
       }
+      equilibrium_subtasks: {
+        Row: {
+          created_at: string
+          created_by: string
+          done_at: string | null
+          external_ref: string | null
+          id: string
+          note: string | null
+          owner: string
+          position: number
+          priority: number | null
+          status: string
+          task_id: string
+          text: string
+          updated_at: string
+          user_id: string
+          waiting_on: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string
+          done_at?: string | null
+          external_ref?: string | null
+          id?: string
+          note?: string | null
+          owner?: string
+          position?: number
+          priority?: number | null
+          status?: string
+          task_id: string
+          text: string
+          updated_at?: string
+          user_id: string
+          waiting_on?: string | null
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          done_at?: string | null
+          external_ref?: string | null
+          id?: string
+          note?: string | null
+          owner?: string
+          position?: number
+          priority?: number | null
+          status?: string
+          task_id?: string
+          text?: string
+          updated_at?: string
+          user_id?: string
+          waiting_on?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "equilibrium_subtasks_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "equilibrium_tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       equilibrium_synthesis_log: {
         Row: {
           cycle_snapshot_json: Json
@@ -672,6 +782,7 @@ export type Database = {
           do_now_at: string | null
           done_at: string | null
           id: string
+          owner: string
           position: number
           status: string
           text: string
@@ -682,6 +793,7 @@ export type Database = {
           do_now_at?: string | null
           done_at?: string | null
           id?: string
+          owner?: string
           position: number
           status?: string
           text: string
@@ -692,6 +804,7 @@ export type Database = {
           do_now_at?: string | null
           done_at?: string | null
           id?: string
+          owner?: string
           position?: number
           status?: string
           text?: string
@@ -2950,6 +3063,10 @@ export type Database = {
         }[]
       }
       eq_complete_task: { Args: { p_task_id: string }; Returns: undefined }
+      eq_promote_do_now: {
+        Args: { p_item_id: string; p_item_type: string; p_owner: string }
+        Returns: Json
+      }
       generate_profile_username: {
         Args: {
           p_first_name: string
