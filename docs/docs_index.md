@@ -159,6 +159,7 @@ Everything about AI itself (AI OS, benchmark, the Hark leap, self-awareness map,
 | [equilibrium_task_flow_spec.md](./04-products/equilibrium_task_flow_spec.md) | Equilibrium Task Flow — subtasks, HUMAN/AI DO NOW, 3 × 3 caps, Hark panels as the simplified interface (spec, 2026-10-16) |
 | [morphogenetic_navigation.md](./04-products/morphogenetic_navigation.md) | Morphogenetic navigation — 27-perspective venture navigation instrument |
 | [living_project_holograph.md](./04-products/living_project_holograph.md) | Living Project Holograph / Project Pulse — one lived event enters once, every relevant mirror updates from it |
+| [zero_to_one_generator_spec.md](./04-products/zero_to_one_generator_spec.md) | Zero-to-One, a PMF OS — post-FMF generator spec: Appleseed bullseye → Founder Brief, Market Research, Mission, Roadmap, landing draft; "Do not invent" brief (spec, 2026-10-20) |
 
 ---
 
