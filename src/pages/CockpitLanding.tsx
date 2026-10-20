@@ -2,36 +2,36 @@ import { Link } from "react-router-dom";
 
 const cockpitModules = [
   {
-    title: "Project blueprint",
-    body: "See how your product, offers, relationships, and strategy are trying to become one living system.",
+    title: "Dynamic daily brief",
+    body: "Not a digest. Rebuilt every morning from what moved: deals, relationships, money, commitments, and the one move that matters today.",
   },
   {
-    title: "Founder journey mirror",
-    body: "Notice what the business is asking you to become before you mistake it for a marketing or product problem.",
+    title: "Business cockpit",
+    body: "Offers, pipeline, relationships, ledger, strategy. The whole business on one surface, readable by you and by AI.",
   },
   {
-    title: "Energy exchange ledger",
-    body: "Track where money, trust, attention, silence, proposals, referrals, and commitments are actually moving.",
+    title: "Founder as CEO",
+    body: "Strategy, vision, final decisions. You own the signal. Nothing goes out without your yes.",
   },
   {
-    title: "Strategic oracle",
-    body: "Read the shape of the project for growth drivers, bottlenecks, timing, leverage, and the move that matters now.",
+    title: "AI as COO",
+    body: "Finds your ideal clients, drafts every message, tracks each one through your funnel. Built to run your inbox and outreach while you sleep, and hand you a recap in the morning.",
   },
   {
-    title: "Readiness signal",
-    body: "Know when clarity is still ripening and when the next move has energy now.",
+    title: "Founder-market fit first",
+    body: "Most founders start from an idea. “Idea” covers everything from a full business plan to a hunch, so it tells you nothing. The Cockpit starts from you.",
   },
   {
-    title: "Relationship radar",
-    body: "See which loops are warm, stale, opening, closing, or ready for a clean follow-up.",
+    title: "Zone of Genius → the business",
+    body: "Your Zone of Genius, read precisely. The market it fits. The business only you should build. A process you can steer, not a bet.",
   },
   {
-    title: "Attention surfaces",
-    body: "Find the rooms, people, partners, and conversations where your life’s work can meet its field.",
+    title: "The blind spot",
+    body: "Top investors sense founder-market fit by intuition, after the fact. This method is built to read it before you build, and to reproduce it.",
   },
   {
-    title: "Next-move synthesis",
-    body: "Stop managing scattered pieces and start navigating one living system.",
+    title: "Radically simpler",
+    body: "Templates and blueprints instead of headcount. Radically simpler, so radically cheaper to run.",
   },
 ];
 
@@ -75,25 +75,25 @@ export default function CockpitLanding() {
                 className="mb-5 text-[12px] font-semibold uppercase tracking-[0.24em] text-[#9a6a23]"
                 style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
               >
-                Founder Life&apos;s Work Navigation
+                Founder Cockpit
               </p>
               <h1
                 className="max-w-4xl text-[clamp(52px,8.5vw,112px)] font-semibold leading-[0.9] text-[#111827]"
                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
               >
-                Your project has a life of its own.
+                Run the business only you should build.
               </h1>
               <p
                 className="mt-7 max-w-2xl text-[clamp(22px,3vw,36px)] leading-[1.08] text-[#1f2937]"
                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
               >
-                Does it speak to you?
+                An integral business management system: a dynamic daily brief and the cockpit of your whole business, on one surface.
               </p>
               <p
                 className="mt-5 max-w-2xl text-[clamp(24px,3.2vw,42px)] italic leading-[1.08] text-[#1f2937]"
                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
               >
-                Get a good cockpit for your life&apos;s work.
+                You lead. AI operates.
               </p>
               <div className="mt-9 flex flex-wrap items-center gap-3">
                 <Link
@@ -107,7 +107,7 @@ export default function CockpitLanding() {
                   className="text-[13px] text-[#1f2937]/60"
                   style={{ fontFamily: "'Source Serif 4', serif" }}
                 >
-                  For founders whose project has a life of its own.
+                  For founders who build from who they are.
                 </span>
               </div>
             </section>
@@ -118,13 +118,13 @@ export default function CockpitLanding() {
                   className="text-[13px] font-semibold uppercase tracking-[0.2em] text-[#9a6a23]"
                   style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
                 >
-                  What changes
+                  What changed
                 </p>
                 <p
                   className="mt-4 text-[clamp(24px,3vw,38px)] leading-[1.02] text-[#111827]"
                   style={{ fontFamily: "'Cormorant Garamond', serif" }}
                 >
-                  You stop managing scattered pieces and start navigating one living system.
+                  A company used to need a team, assembled and aligned, before it could move. AI plus blueprints make it one founder&apos;s job.
                 </p>
               </div>
             </aside>
