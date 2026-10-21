@@ -20,6 +20,7 @@ import type {
   QolSnapshotLite,
   ZogSnapshotLite,
 } from "./types";
+import { HISTORY_MISSION_MAX, truncateAtWord } from "@/modules/profile/profilePdfText";
 
 const TITLE_KEYS = {
   zog: "profileSpace.history.zog",
@@ -133,7 +134,7 @@ function buildQolEvents(history: QolSnapshotLite[]): HistoryEvent[] {
 
 function buildMissionEvents(mission: ProfileSpaceData["mission"]): HistoryEvent[] {
   if (!mission.statement || !mission.discoveredAt) return [];
-  const changeLine = mission.statement.slice(0, 90);
+  const changeLine = truncateAtWord(mission.statement, HISTORY_MISSION_MAX);
   return [
     {
       kind: "mission",

@@ -23,12 +23,19 @@
  *   • Quality of Life  — qol_snapshots latest 8-domain stages, text-
  *                        based bar render (radar-chart rasterization
  *                        deferred to Wave 2).
+ *   • Equilibrium Focus — optional: equilibrium_state.moon_focus_text +
+ *                        tasks currently in equilibrium_focus.
+ *   • Unique Business  — optional: latest locked version of each UBB
+ *                        artifact (user_business_artifacts.is_locked).
+ *   • Profile History  — optional: progression timeline.
  *   • Footer           — page N of M, brand.
  *
- * Empty-section handling: if a data source is missing for the user,
+ * Empty-section handling: if a core data source is missing for the user,
  * that section renders with an editorial "Not yet completed — start
  * here" line instead of being skipped. Keeps the PDF continuous; the
- * user sees what they have AND what's available to fill in.
+ * user sees what they have AND what's available to fill in. The optional
+ * sections above (Equilibrium, Unique Business, Profile History) are
+ * skipped entirely when empty, and left out of the Contents.
  *
  * Entry point: button on Settings → Export tab. Future mount points
  * (Top Talent Overview footer, etc.) call the same function — no
@@ -46,6 +53,9 @@ import type { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator"
 import { ASSET_TYPES, type AssetTypeId } from "@/modules/asset-mapping/data/assetTypes";
 import { mapTalentsJson } from "@/modules/profile-space/useProfileSpaceData";
 import { buildHistoryEvents } from "@/modules/profile-space/changeLines";
+import { ALL_ARTIFACT_KEYS, type ArtifactKey } from "@/modules/unique-business-builder/types";
+import { ARTIFACT_LABELS } from "@/modules/unique-business-builder/constants";
+import { artifactToText, buildAssetCardLines, truncateAtWord } from "./profilePdfText";
 import type {
     AssetLite as HistoryAssetLite,
     HistoryEvent,
@@ -108,6 +118,22 @@ interface QolData {
     created_at: string;
 }
 
+// Equilibrium focus — moon-focus line plus the tasks currently promoted
+// into Focus (done tasks excluded).
+interface EquilibriumData {
+    moonFocus: string | null;
+    focusTasks: string[];
+}
+
+// A locked UBB artifact (latest locked version per artifact key).
+interface UbbArtifactRow {
+    key: ArtifactKey;
+    label: string;
+    text: string;
+}
+
+const UBB_ARTIFACT_MAX_CHARS = 600;
+
 interface ProfileBundle {
     userName: string | null;
     userEmail: string | null;
@@ -130,6 +156,9 @@ interface ProfileBundle {
     zogHistory: HistoryZogSnapshotLite[];
     qolHistory: HistoryQolSnapshotLite[];
     missionDiscoveredAt: string | null;
+    // Optional sections — rendered only when the user has data.
+    equilibrium: EquilibriumData | null;
+    ubbArtifacts: UbbArtifactRow[];
 }
 
 // ─────────────────────────────────────────────────────────────────────
@@ -149,6 +178,8 @@ async function loadProfileBundle(): Promise<ProfileBundle> {
         zogHistory: [],
         qolHistory: [],
         missionDiscoveredAt: null,
+        equilibrium: null,
+        ubbArtifacts: [],
     };
 
     // Auth — user identity.
@@ -393,6 +424,75 @@ async function loadProfileBundle(): Promise<ProfileBundle> {
         console.warn("[generateProfilePdf] qol history fetch threw:", err);
     }
 
+    // Equilibrium focus + locked UBB artifacts — both keyed by auth user id
+    // and both optional: an anonymous/guest profile has neither, and each
+    // read is isolated so a failure can't take down the rest of the export.
+    if (user?.id) {
+        try {
+            const { data: stateRow } = await supabase
+                .from("equilibrium_state")
+                .select("moon_focus_text")
+                .eq("user_id", user.id)
+                .maybeSingle();
+            const moonFocus = stateRow?.moon_focus_text?.trim() || null;
+
+            const { data: focusRows } = await supabase
+                .from("equilibrium_focus")
+                .select("task_id, position")
+                .eq("user_id", user.id)
+                .order("position", { ascending: true });
+            const taskIds = (focusRows ?? []).map((r) => r.task_id);
+
+            let focusTasks: string[] = [];
+            if (taskIds.length > 0) {
+                const { data: taskRows } = await supabase
+                    .from("equilibrium_tasks")
+                    .select("id, text, status")
+                    .in("id", taskIds);
+                const byId = new Map(
+                    (taskRows ?? [])
+                        .filter((t) => t.status !== "done")
+                        .map((t): [string, string] => [t.id, t.text]),
+                );
+                focusTasks = taskIds
+                    .map((id) => byId.get(id)?.trim())
+                    .filter((text): text is string => !!text);
+            }
+
+            if (moonFocus || focusTasks.length > 0) {
+                bundle.equilibrium = { moonFocus, focusTasks };
+            }
+        } catch (err) {
+            console.warn("[generateProfilePdf] Equilibrium fetch failed:", err);
+        }
+
+        try {
+            const { data: artifactRows } = await supabase
+                .from("user_business_artifacts")
+                .select("artifact_key, content, content_json, created_at")
+                .eq("user_id", user.id)
+                .eq("is_locked", true)
+                .order("created_at", { ascending: false });
+            // Newest-first, so the first row seen per key is its latest
+            // locked version.
+            const latestByKey = new Map<string, string>();
+            for (const row of artifactRows ?? []) {
+                if (latestByKey.has(row.artifact_key)) continue;
+                const text = artifactToText(row.content_json ?? row.content);
+                if (text) latestByKey.set(row.artifact_key, text);
+            }
+            bundle.ubbArtifacts = ALL_ARTIFACT_KEYS.filter((key) => latestByKey.has(key)).map(
+                (key) => ({
+                    key,
+                    label: ARTIFACT_LABELS[key],
+                    text: truncateAtWord(latestByKey.get(key)!, UBB_ARTIFACT_MAX_CHARS),
+                }),
+            );
+        } catch (err) {
+            console.warn("[generateProfilePdf] UBB artifacts fetch failed:", err);
+        }
+    }
+
     return bundle;
 }
 
@@ -561,10 +661,7 @@ function renderAssetsSection(b: PdfBuilder, assets: AssetRow[]) {
         b.y += 1;
 
         for (const a of group) {
-            const lines: string[] = [a.title];
-            if (a.description) lines.push(a.description);
-            if (a.source) lines.push(`Source: ${a.source}`);
-            b.cardBody(lines.join("\n"));
+            b.cardBody(buildAssetCardLines(a).join("\n"));
             b.y += 3;
         }
         b.y += SECTION_GAP / 2;
@@ -657,6 +754,39 @@ function renderQolSection(b: PdfBuilder, qol: QolData | null) {
         `Overall stage: ${avg.toFixed(1)} / ${QOL_MAX_STAGE}.`,
         { italic: true, color: C.muted, center: true },
     );
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// Equilibrium focus + locked UBB artifacts — optional sections. The
+// caller only invokes these when the bundle has data (skipped when empty).
+// ─────────────────────────────────────────────────────────────────────
+
+function renderEquilibriumSection(b: PdfBuilder, eq: EquilibriumData) {
+    renderSectionHeader(b, "Equilibrium", "Your Focus");
+
+    if (eq.moonFocus) {
+        b.eyebrow("Moon focus");
+        b.y += 1;
+        b.cardBody(eq.moonFocus, { tinted: true });
+        b.y += SECTION_GAP;
+    }
+
+    if (eq.focusTasks.length > 0) {
+        b.eyebrow("In focus now");
+        b.y += 1;
+        eq.focusTasks.forEach((task) => b.bulletCard(task));
+    }
+}
+
+function renderUbbSection(b: PdfBuilder, artifacts: UbbArtifactRow[]) {
+    renderSectionHeader(b, "Unique Business", "Your Locked Artifacts");
+
+    for (const a of artifacts) {
+        b.eyebrow(a.label);
+        b.y += 1;
+        b.cardBody(a.text);
+        b.y += 3;
+    }
 }
 
 // ─────────────────────────────────────────────────────────────────────
@@ -846,6 +976,19 @@ export async function generateProfilePdf(): Promise<void> {
 
     // ── Quality of Life ───────────────────────────────────────────
     recordSection("Quality of Life", () => renderQolSection(b, bundle.qol));
+
+    // ── Equilibrium focus — optional, skipped when the user has no data
+    if (bundle.equilibrium) {
+        const eq = bundle.equilibrium;
+        recordSection("Equilibrium Focus", () => renderEquilibriumSection(b, eq));
+    }
+
+    // ── Locked UBB artifacts — optional, skipped when none are locked
+    if (bundle.ubbArtifacts.length > 0) {
+        recordSection("Unique Business Artifacts", () =>
+            renderUbbSection(b, bundle.ubbArtifacts),
+        );
+    }
 
     // ── Profile history (D5) — only recorded if it actually rendered
     // (renderProfileHistorySection no-ops when there are no events, and
