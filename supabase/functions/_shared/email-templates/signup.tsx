@@ -28,6 +28,7 @@ import {
   footerWrap,
   footer,
 } from './_shared-styles.ts'
+import { BRAND_NAME, BRAND_TAGLINE } from '../senders.ts'
 
 interface SignupEmailProps {
   siteName: string
@@ -69,7 +70,7 @@ export const SignupEmail = ({
         </Section>
         <Section style={footerWrap}>
           <Text style={footer}>
-            Sent by {siteName} — your unique business, decoded.
+            Sent by {BRAND_NAME} — {BRAND_TAGLINE}
           </Text>
         </Section>
       </Container>

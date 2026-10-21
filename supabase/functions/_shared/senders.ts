@@ -16,5 +16,7 @@
 // individual functions.
 
 export const BRAND_NAME = "Find Your Top Talent";
+export const BRAND_TAGLINE =
+  "bring the full force of who you are to what you build.";
 export const SENDER_DOMAIN = "notify.findyourtoptalent.com";
 export const FROM_NOTIFICATIONS = `${BRAND_NAME} <notifications@${SENDER_DOMAIN}>`;

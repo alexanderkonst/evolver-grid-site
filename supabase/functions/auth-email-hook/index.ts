@@ -7,6 +7,7 @@ import { MagicLinkEmail } from '../_shared/email-templates/magic-link.tsx'
 import { RecoveryEmail } from '../_shared/email-templates/recovery.tsx'
 import { EmailChangeEmail } from '../_shared/email-templates/email-change.tsx'
 import { ReauthenticationEmail } from '../_shared/email-templates/reauthentication.tsx'
+import { BRAND_NAME } from '../_shared/senders.ts'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -15,7 +16,7 @@ const corsHeaders = {
 }
 
 // Configuration
-const SITE_NAME = "Evolver"
+const SITE_NAME = BRAND_NAME
 const SENDER_DOMAIN = "notify.findyourtoptalent.com"
 const ROOT_DOMAIN = "findyourtoptalent.com"
 const FROM_DOMAIN = "findyourtoptalent.com"

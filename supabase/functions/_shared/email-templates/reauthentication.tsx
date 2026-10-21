@@ -25,6 +25,7 @@ import {
   footerWrap,
   footer,
 } from './_shared-styles.ts'
+import { BRAND_NAME, BRAND_TAGLINE } from '../senders.ts'
 
 interface ReauthenticationEmailProps {
   token: string
@@ -49,7 +50,9 @@ export const ReauthenticationEmail = ({ token }: ReauthenticationEmailProps) => 
           </Text>
         </Section>
         <Section style={footerWrap}>
-          <Text style={footer}>Find Your Top Talent — the unique gift only you can deliver.</Text>
+          <Text style={footer}>
+            Sent by {BRAND_NAME} — {BRAND_TAGLINE}
+          </Text>
         </Section>
       </Container>
     </Body>
