@@ -5,7 +5,7 @@ import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import { ArrowRight, Copy, Check, Bot, ClipboardList, Sword } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PremiumButton } from "@/components/ui/PremiumButton";
-import { Textarea } from "@/components/ui/textarea";
+import { PasteTextarea, type PasteTextareaHandle } from "@/components/ui/paste-textarea";
 import GameShellV2 from "@/components/game/GameShellV2";
 import SEO from "@/components/SEO";
 import { ZONE_OF_GENIUS_PROMPT } from "@/prompts";
@@ -138,7 +138,12 @@ const ZoneOfGeniusEntry = () => {
     // snapshot) overrides in the loadExisting effect still jump straight
     // to the appleseed-result step — unaffected.
     const [step, setStep] = useState<Step>("choice-route");
+    // `aiResponse` is the last SUBMITTED paste (used by the save paths). The
+    // paste box itself is uncontrolled and read on submit, so typing or
+    // pasting a long response never round-trips through React state.
     const [aiResponse, setAiResponse] = useState("");
+    const pasteRef = useRef<PasteTextareaHandle>(null);
+    const [hasPasteText, setHasPasteText] = useState(false);
     const [copied, setCopied] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -567,7 +572,10 @@ const ZoneOfGeniusEntry = () => {
     };
 
     const handleGenerateAppleseed = async () => {
-        if (!aiResponse.trim()) return;
+        // Read the textarea's real value at submit time.
+        const pastedResponse = pasteRef.current?.getValue() ?? "";
+        if (!pastedResponse.trim()) return;
+        setAiResponse(pastedResponse);
 
         setIsProcessing(true);
         setError(null);
@@ -575,11 +583,11 @@ const ZoneOfGeniusEntry = () => {
 
         try {
             // Generate Appleseed from raw AI response
-            const result = await generateAppleseed(aiResponse);
+            const result = await generateAppleseed(pastedResponse);
             setAppleseed(result);
 
             // Recovery buffer only. Guests now authenticate before seeing the reveal.
-            saveAppleseedToLocalStorage(result, aiResponse);
+            saveAppleseedToLocalStorage(result, pastedResponse);
 
             // Auto-save for AUTHED users is handled by the existing
             // useEffect at line ~322 (fires on step → "appleseed-result").
@@ -1334,9 +1342,10 @@ const ZoneOfGeniusEntry = () => {
                             </p>
                         </div>
 
-                        <Textarea
-                            value={aiResponse}
-                            onChange={(e) => setAiResponse(e.target.value)}
+                        <PasteTextarea
+                            ref={pasteRef}
+                            initialValue={aiResponse}
+                            onHasTextChange={setHasPasteText}
                             placeholder={t('zogEntry.pastePlaceholder')}
                             className="min-h-[200px] font-mono text-sm rounded-2xl focus:ring-1 transition-all duration-300"
                             style={{
@@ -1362,7 +1371,7 @@ const ZoneOfGeniusEntry = () => {
                                         "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
                                 }}
                                 onClick={handleGenerateAppleseed}
-                                disabled={isProcessing || !aiResponse.trim()}
+                                disabled={isProcessing || !hasPasteText}
                             >
                                 <img
                                     src={igniteLogo}

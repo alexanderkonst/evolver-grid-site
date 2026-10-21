@@ -544,6 +544,20 @@
     "ctaInstall": "Instalar AI OS",
     "ctaReplicate": "Replicar / consulta comercial"
   },
+  "authLinkError": {
+    "expiredTitle": "Este enlace ha caducado",
+    "expiredDescription": "Los enlaces del correo dejan de funcionar pasado un tiempo corto o tras usarse una vez. Solicita un nuevo correo de confirmación abajo.",
+    "failedTitle": "Este enlace no funcionó",
+    "failedDescription": "No pudimos verificar el enlace del correo. Solicita un nuevo correo de confirmación abajo.",
+    "stillSignedIn": "Sigues con la sesión iniciada como {{email}}.",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "tu@ejemplo.com",
+    "resendButton": "Reenviar correo de confirmación",
+    "resending": "Enviando…",
+    "resentTitle": "Correo de confirmación enviado",
+    "resentDescription": "Enviamos un enlace nuevo a {{email}}.",
+    "resendFailedTitle": "No se pudo reenviar el correo"
+  },
   "profileSettings": {
     "toastErrorTitle": "Error",
     "toastUpdateFailedDescription": "No se pudo actualizar el perfil. Inténtalo de nuevo.",

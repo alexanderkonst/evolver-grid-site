@@ -3197,6 +3197,20 @@
     "themeToggleToDaoAria": "Switch to black-and-white theme",
     "themeToggleToDaoTitle": "Switch to The Dao, the black-and-white theme"
   },
+  "authLinkError": {
+    "expiredTitle": "This link expired",
+    "expiredDescription": "Email links stop working after a short time or after one use. Request a new confirmation email below.",
+    "failedTitle": "This link didn't work",
+    "failedDescription": "We couldn't verify that email link. Request a new confirmation email below.",
+    "stillSignedIn": "You're still signed in as {{email}}.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "resendButton": "Resend confirmation email",
+    "resending": "Sending…",
+    "resentTitle": "Confirmation email sent",
+    "resentDescription": "We sent a new link to {{email}}.",
+    "resendFailedTitle": "Couldn't resend the email"
+  },
   "profileSettings": {
     "toastErrorTitle": "Error",
     "toastUpdateFailedDescription": "Failed to update profile. Please try again.",
