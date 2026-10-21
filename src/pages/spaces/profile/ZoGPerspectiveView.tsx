@@ -804,7 +804,7 @@ const PERSPECTIVES: Partial<Record<PerspectiveId, PerspectiveConfig>> = {
                     className="text-2xl sm:text-3xl leading-relaxed font-medium"
                     style={titleStyle}
                 >
-                    {t("zogPerspective.bullseye.iPrefix")} {data.bullseyeSentence}
+                    {`${t("zogPerspective.bullseye.iPrefix")} ${data.bullseyeSentence.trim()}`}
                 </p>
             </div>
         ),

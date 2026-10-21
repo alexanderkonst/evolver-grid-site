@@ -4,6 +4,7 @@ import type { TFunction } from "i18next";
 import CardActions from "@/components/sharing/CardActions";
 import { QRCodeCanvas } from "qrcode.react";
 import { Ornament } from "@/lib/landingDesign";
+import { formatBullseye, formatBullseyeLine } from "@/modules/zone-of-genius/bullseye";
 // Day 61 (Sasha 2026-05-04 12:45): brand torus mark used in the
 // in-card footer so the saved/shared image carries identifiable
 // branding + the source URL. The torus IS the brand mark; we use
@@ -62,8 +63,9 @@ const stripDecorativeGlyphs = (name: string): string =>
  * Format the bullseye sentence in editorial sentence case, no trailing
  * period — matches the platform register. Day 58 (Sasha 2026-05-02).
  */
-const formatBullseye = (sentence: string): string =>
-    sentence.toLowerCase().replace(/\.\s*$/, "").trim();
+// formatBullseye / formatBullseyeLine live in zone-of-genius/bullseye.ts
+// (Issue #93: the "I" prefix must be part of one string, never a
+// separate text node, or html2canvas drops the space).
 
 /**
  * Build the share text used by the in-card Save · Share affordance.
@@ -258,7 +260,7 @@ const RevelatoryHero = ({
                             textShadow: `0 0 40px ${palette.glowColor}, 0 0 12px rgba(255,255,255,0.12)`,
                         }}
                     >
-                        {t("revelatoryHero.bullseyePrefix")} {formatBullseye(actionStatement)}
+                        {formatBullseyeLine(actionStatement, t("revelatoryHero.bullseyePrefix"))}
                     </p>
                 )}
 
