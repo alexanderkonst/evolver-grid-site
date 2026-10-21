@@ -3435,6 +3435,7 @@
     "signInToView": "Inicia sesión para ver tus matches.",
     "youFallback": "Tú",
     "loadSnag": "Tuvimos un problema cargando los matches. Inténtalo de nuevo en un momento.",
+    "timeoutNotice": "Aún no hay matches. Te avisaremos cuando encontremos uno.",
     "couldNotLoadMore": "No se pudieron cargar más matches.",
     "signInToExpressInterest": "Inicia sesión para expresar interés en un match.",
     "headsupSent": "Aviso enviado por email a {{name}}. Os presentaremos a ambos si dice que sí.",

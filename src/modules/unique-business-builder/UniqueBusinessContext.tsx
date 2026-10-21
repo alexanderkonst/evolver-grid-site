@@ -39,6 +39,7 @@ import { ARTIFACT_LABELS, ERROR_MESSAGES, nextVersionString } from "./constants"
 import { PARENTS, getDownstream } from "./dependencyTree";
 import { PROMPT_VERSION } from "./promptVersions";
 import { inputVersionHash, type RootContextShape } from "./inputHash";
+import { friendlyArtifactError, insertWithOptionalColumns } from "./artifactInsert";
 
 // ============================================================================
 // Helpers
@@ -72,45 +73,9 @@ type DbRow = {
   input_version_at_lock?: string | null;
 };
 
-// Day 80 Wave 2.20 (Sasha 2026-05-22): defensive bridge for the
-// prompt_version_at_lock column. The Day 74 migration
-// (20260522222511_ubb_prompt_version_at_lock.sql) adds this column to
-// user_business_artifacts, but until Lovable's Supabase pipeline picks
-// it up + PostgREST refreshes its schema cache, fresh inserts hit
-// "Could not find the 'prompt_version_at_lock' column ... in the schema
-// cache" and the whole Generate Uniqueness / Improve / Restore flows
-// fail. This module-level latch trips on the first such error in a
-// session and strips the field from all subsequent inserts — so the
-// staleness Phase 2 feature degrades gracefully (rows get NULL prompt
-// versions, treated as "unknown" / no flag) instead of blocking the
-// canvas entirely. The latch resets per page-load, so once Supabase
-// catches up the next session resumes stamping prompt versions.
-let promptVersionColumnAvailable = true;
-const isPromptVersionSchemaCacheMiss = (err: unknown): boolean => {
-  if (!err || typeof err !== "object") return false;
-  const msg = ((err as { message?: string }).message ?? "") + "";
-  return /prompt_version_at_lock/.test(msg) && /schema cache/i.test(msg);
-};
-const stripPromptVersion = <T extends Record<string, unknown>>(payload: T): Omit<T, "prompt_version_at_lock"> => {
-  const { prompt_version_at_lock: _drop, ...rest } = payload;
-  return rest;
-};
-
-// Day 78 Phase 4 (Sasha 2026-05-21): parallel defensive bridge for the
-// input_version_at_lock column. Same pattern, same shape, same lifetime as
-// promptVersionColumnAvailable above. When the column hasn't propagated yet,
-// strip it from the insert and let the row write with NULL — staleness Phase
-// 4b (frontend mirror + compute) reads NULL as "unknown" / no flag.
-let inputVersionColumnAvailable = true;
-const isInputVersionSchemaCacheMiss = (err: unknown): boolean => {
-  if (!err || typeof err !== "object") return false;
-  const msg = ((err as { message?: string }).message ?? "") + "";
-  return /input_version_at_lock/.test(msg) && /schema cache/i.test(msg);
-};
-const stripInputVersion = <T extends Record<string, unknown>>(payload: T): Omit<T, "input_version_at_lock"> => {
-  const { input_version_at_lock: _drop, ...rest } = payload;
-  return rest;
-};
+// Schema-cache tolerance for the later-added optional columns
+// (prompt_version_at_lock, input_version_at_lock, output_language) lives in
+// ./artifactInsert — inserts strip any column the DB does not know yet.
 
 function rowToVersion(row: DbRow): VersionRow {
   return {
@@ -587,37 +552,11 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
           // frontend mirror lands (Phase 4b).
           input_version_at_lock: result.input_version_at_lock,
         };
-        let inserted: DbRow | null = null;
-        let insertError: any = null;
-        {
-          let firstPayload: any = basePayload;
-          if (!promptVersionColumnAvailable) firstPayload = stripPromptVersion(firstPayload);
-          if (!inputVersionColumnAvailable) firstPayload = stripInputVersion(firstPayload);
-          const r1 = await (supabase as any)
-            .from("user_business_artifacts")
-            .insert(firstPayload)
-            .select("*")
-            .single();
-          const promptMiss = r1.error && isPromptVersionSchemaCacheMiss(r1.error);
-          const inputMiss = r1.error && isInputVersionSchemaCacheMiss(r1.error);
-          if (promptMiss || inputMiss) {
-            if (promptMiss) promptVersionColumnAvailable = false;
-            if (inputMiss) inputVersionColumnAvailable = false;
-            let retryPayload: any = basePayload;
-            if (!promptVersionColumnAvailable) retryPayload = stripPromptVersion(retryPayload);
-            if (!inputVersionColumnAvailable) retryPayload = stripInputVersion(retryPayload);
-            const r2 = await (supabase as any)
-              .from("user_business_artifacts")
-              .insert(retryPayload)
-              .select("*")
-              .single();
-            inserted = r2.data as DbRow | null;
-            insertError = r2.error;
-          } else {
-            inserted = r1.data as DbRow | null;
-            insertError = r1.error;
-          }
-        }
+        const { data: inserted, error: insertError } = await insertWithOptionalColumns<DbRow>(
+          basePayload,
+          (payload) =>
+            (supabase as any).from("user_business_artifacts").insert(payload).select("*").single()
+        );
 
         if (insertError) {
           // 23505 = Postgres unique_violation. Row already exists for
@@ -666,7 +605,7 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         toast.success(`${key}: first draft ready.`);
       } catch (e: any) {
         console.error("generateArtifact failed:", e);
-        toast.error(e?.message || ERROR_MESSAGES.model_error);
+        toast.error(friendlyArtifactError(e, "Couldn't save your artifact. Please retry in a moment."));
       } finally {
         setIsGenerating(null);
       }
@@ -718,7 +657,7 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         setPendingImprovement({ artifact_key: key, result });
       } catch (e: any) {
         console.error("improveArtifact failed:", e);
-        toast.error(e?.message || ERROR_MESSAGES.model_error);
+        toast.error(friendlyArtifactError(e, ERROR_MESSAGES.model_error));
       } finally {
         setIsImproving(null);
       }
@@ -761,37 +700,12 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         // for this improve. See generateArtifact for full context.
         input_version_at_lock: result.input_version_at_lock,
       };
-      let inserted: DbRow | null = null;
-      {
-        let firstPayload: any = improvePayload;
-        if (!promptVersionColumnAvailable) firstPayload = stripPromptVersion(firstPayload);
-        if (!inputVersionColumnAvailable) firstPayload = stripInputVersion(firstPayload);
-        const r1 = await (supabase as any)
-          .from("user_business_artifacts")
-          .insert(firstPayload)
-          .select("*")
-          .single();
-        const promptMiss = r1.error && isPromptVersionSchemaCacheMiss(r1.error);
-        const inputMiss = r1.error && isInputVersionSchemaCacheMiss(r1.error);
-        if (promptMiss || inputMiss) {
-          if (promptMiss) promptVersionColumnAvailable = false;
-          if (inputMiss) inputVersionColumnAvailable = false;
-          let retryPayload: any = improvePayload;
-          if (!promptVersionColumnAvailable) retryPayload = stripPromptVersion(retryPayload);
-          if (!inputVersionColumnAvailable) retryPayload = stripInputVersion(retryPayload);
-          const r2 = await (supabase as any)
-            .from("user_business_artifacts")
-            .insert(retryPayload)
-            .select("*")
-            .single();
-          if (r2.error) throw r2.error;
-          inserted = r2.data as DbRow | null;
-        } else if (r1.error) {
-          throw r1.error;
-        } else {
-          inserted = r1.data as DbRow | null;
-        }
-      }
+      const { data: inserted, error: insertError } = await insertWithOptionalColumns<DbRow>(
+        improvePayload,
+        (payload) =>
+          (supabase as any).from("user_business_artifacts").insert(payload).select("*").single()
+      );
+      if (insertError) throw insertError;
 
       // Optimistic local state update — Day 51 (Sasha 2026-04-25): same
       // pattern as generateArtifact. Don't rely on realtime to flip state.
@@ -850,7 +764,7 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
             ? {
                 ...prev,
                 current: null,
-                failed: [...prev.failed, { key: artifact_key, message: e?.message || "save failed" }],
+                failed: [...prev.failed, { key: artifact_key, message: friendlyArtifactError(e, "save failed") }],
               }
             : null
         );
@@ -965,37 +879,12 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
           // 4b closes the third insert site.
           input_version_at_lock: inputVersionHash(rootContext, key),
         };
-        let inserted: DbRow | null = null;
-        {
-          let firstPayload: any = restorePayload;
-          if (!promptVersionColumnAvailable) firstPayload = stripPromptVersion(firstPayload);
-          if (!inputVersionColumnAvailable) firstPayload = stripInputVersion(firstPayload);
-          const r1 = await (supabase as any)
-            .from("user_business_artifacts")
-            .insert(firstPayload)
-            .select("*")
-            .single();
-          const promptMiss = r1.error && isPromptVersionSchemaCacheMiss(r1.error);
-          const inputMiss = r1.error && isInputVersionSchemaCacheMiss(r1.error);
-          if (promptMiss || inputMiss) {
-            if (promptMiss) promptVersionColumnAvailable = false;
-            if (inputMiss) inputVersionColumnAvailable = false;
-            let retryPayload: any = restorePayload;
-            if (!promptVersionColumnAvailable) retryPayload = stripPromptVersion(retryPayload);
-            if (!inputVersionColumnAvailable) retryPayload = stripInputVersion(retryPayload);
-            const r2 = await (supabase as any)
-              .from("user_business_artifacts")
-              .insert(retryPayload)
-              .select("*")
-              .single();
-            if (r2.error) throw r2.error;
-            inserted = r2.data as DbRow | null;
-          } else if (r1.error) {
-            throw r1.error;
-          } else {
-            inserted = r1.data as DbRow | null;
-          }
-        }
+        const { data: inserted, error: insertError } = await insertWithOptionalColumns<DbRow>(
+          restorePayload,
+          (payload) =>
+            (supabase as any).from("user_business_artifacts").insert(payload).select("*").single()
+        );
+        if (insertError) throw insertError;
 
         // Optimistic local update — same pattern as acceptImprovement.
         if (inserted) {
@@ -1018,7 +907,7 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         toast.success(`${key}: restored to v1 content (now v${current.version + 1}).`);
       } catch (e: any) {
         console.error("restoreToV1 failed:", e);
-        toast.error(e?.message || "Couldn't restore to v1 — please retry.");
+        toast.error(friendlyArtifactError(e, "Couldn't restore to v1 — please retry."));
       }
     },
     [userId, artifacts, rootContext]
