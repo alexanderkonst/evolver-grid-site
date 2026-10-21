@@ -211,7 +211,7 @@
     "faq2Q": "What if there's no actual business in what I do?",
     "faq2A": "Every top talent is monetizable. Nature doesn't waste them. If yours exists, it's because it's useful, helpful, and valuable to other people. The only question is how it translates into something they'll pay for. The session names the three pieces (what you do, who pays for it, why) and pulls them into one sentence.",
     "methodologyLabel": "Methodology overview · 6 min",
-    "methodologyVideoTitle": "The Productize Yourself Session — Methodology Overview",
+    "methodologyVideoTitle": "The Founder-Market Fit Workshop — Methodology Overview",
     "logoAlt": "Find Your Top Talent",
     "sectionLeaveWith": "What you leave with",
     "sectionBook": "Book your session",
@@ -631,7 +631,7 @@
         "label": "Roadmap"
       },
       "ignite": {
-        "label": "Productize Yourself Signature Workshop"
+        "label": "Founder-Market Fit Workshop"
       },
       "products": {
         "label": "Products"
@@ -654,7 +654,7 @@
         "label": "My Products"
       },
       "ignite": {
-        "label": "Productize Yourself Session"
+        "label": "Founder-Market Fit Workshop"
       },
       "publicPage": {
         "label": "My Public Page"
@@ -1968,7 +1968,7 @@
     "ctaTitleLine1": "Your Uniqueness IS",
     "ctaTitleLine2": "Your Business",
     "ctaSubtitle": "One session. Your myth discovered. Your canvas complete. The business you were always meant to build — revealed.",
-    "ctaButton": "Book Your Productize Yourself Session — $555",
+    "ctaButton": "Book Your Founder-Market Fit Workshop — $555",
     "footerJoinCommunity": "Join the community →"
   },
   "monetization": {
@@ -2240,7 +2240,7 @@
   },
   "feedback": {
     "sessionType": {
-      "ignition": "Productize Yourself Session (90 min)",
+      "ignition": "Founder-Market Fit Workshop (90 min)",
       "build": "The Build (multi-session)",
       "group": "Group Build",
       "other": "Other"
@@ -2359,7 +2359,7 @@
     },
     "nextMilestone": {
       "eyebrow": "Next Milestone",
-      "title": "First $555 Productize Yourself Session from Funnel",
+      "title": "First $555 Founder-Market Fit Workshop from Funnel",
       "stat1": "$1,696 received (cash + in-kind)",
       "stat2": "3 canvases to N=10",
       "stat3": "3/9 surfaces live"
@@ -2836,7 +2836,7 @@
     },
     "cta": {
       "primary": "Start free with Step 1",
-      "secondary": "Book your Productize Yourself Session"
+      "secondary": "Book your Founder-Market Fit Workshop"
     },
     "close": {
       "optional": "Every step is optional. Every step delivers a complete transformation in itself."
@@ -3357,7 +3357,7 @@
     "essayHindsight": "In hindsight it always looks obvious. Like you've always known it.",
     "essayMorePeople": "The more people get there, the easier it becomes for the next.",
     "essayPivotLine": "And one more thing: you can't pivot away from yourself. That's why this works.",
-    "essayBookSession": "Book a Productize Yourself Session",
+    "essayBookSession": "Book a Founder-Market Fit Workshop",
     "essayShortcutAfter": "if you'd like to take the shortcut.",
     "stepLabel": "Step {{number}}:",
     "byTheEnd": "By the end:",
@@ -3438,8 +3438,8 @@
     "loading": "Loading canvas…",
     "empty": {
       "title": "Unique Business Canvas",
-      "subtitle": "The Canvas is built during a facilitated Productize Yourself Session — 60–90 minutes where we discover your uniqueness, forge your myth, identify your tribe, and design your business around who you already are.",
-      "cta": "Book Productize Yourself Session — $555",
+      "subtitle": "The Canvas is built during a facilitated Founder-Market Fit Workshop — 60–90 minutes where we discover your uniqueness, forge your myth, identify your tribe, and design your business around who you already are.",
+      "cta": "Book Founder-Market Fit Workshop — $555",
       "ctaCaption": "60–90 minutes · Full 7-artifact Canvas · AI-compiled in real time",
       "alreadyHaveProduct": "Already have a product?",
       "goToProductBuilder": "Go to Product Builder"
@@ -7152,7 +7152,7 @@
     "closingLink": "Telegram conversation",
     "closingAfter": " sorts it.",
     "card1": {
-      "name": "Productize Yourself Session",
+      "name": "Founder-Market Fit Workshop",
       "badge": "$555",
       "line": "Next-chapter positioning strategy for founders, from an MIT-trained founder.",
       "body": "One working session. We take what you already know about yourself and turn it into exact words: what you offer, to whom, and why you. You leave with language precise enough to price, pitch, and build on.",
@@ -7211,7 +7211,7 @@
       "name": "The Crossing",
       "badge": "$2,222 · 2 months",
       "line": "A 2-month program for the transition you are in.",
-      "body": "Your old chapter has ended and the next one has not been named yet. The Crossing accelerates and structures the transition itself, so it takes months instead of years, and you walk it intentionally and consciously instead of drifting through it. Eight weekly sessions, a 2-hour Productize Yourself workshop in the middle, and your uniqueness named exactly by the end.",
+      "body": "Your old chapter has ended and the next one has not been named yet. The Crossing accelerates and structures the transition itself, so it takes months instead of years, and you walk it intentionally and consciously instead of drifting through it. Eight weekly sessions, a 2-hour Founder-Market Fit Workshop in the middle, and your uniqueness named exactly by the end.",
       "cta": "See the program"
     },
     "card10": {
@@ -7242,10 +7242,10 @@
     "format2": "check-ins through chat between sessions",
     "format3": "one clear expected result per week",
     "priceLabel": "Price",
-    "priceBody": "This container is the direct continuation of the Productize Yourself Session. It's a cohort program where we build together as a group.",
+    "priceBody": "This container is the direct continuation of the Founder-Market Fit Workshop. It's a cohort program where we build together as a group.",
     "closing": "Let me know how this lands.",
     "cta": "Message Sasha on WhatsApp",
-    "routerBefore": "Haven't done the Productize Yourself Session yet?",
+    "routerBefore": "Haven't done the Founder-Market Fit Workshop yet?",
     "routerLink": "Start there",
     "routerAfter": ": the BUILT picks up where it leaves off.",
     "storiesEyebrow": "What changed for them",
@@ -7259,14 +7259,14 @@
   },
   "crossing": {
     "title": "The Crossing",
-    "seoDescription": "A 2-month program for the transition you are in. Eight weekly sessions, a Productize Yourself workshop, and your uniqueness named exactly. $2,222.",
+    "seoDescription": "A 2-month program for the transition you are in. Eight weekly sessions, a Founder-Market Fit Workshop, and your uniqueness named exactly. $2,222.",
     "eyebrow": "A PROGRAM FOR THE IN-BETWEEN",
     "heading": "The Crossing",
     "subheading": "A 2-month program for the transition you are in",
     "essence": "Your old chapter has ended and the next one has not been named yet. That in-between is not a void: it has a structure, and it can be crossed consciously instead of drifted through. Nobody can promise arrival dates on a transition, and I will not. What this program does is accelerate and structure the crossing itself, so it takes months instead of years, and you walk it intentionally and consciously instead of chaotically and without understanding what is happening and why.",
     "formatHeading": "Format",
     "f1": "8 weekly sessions, 75 minutes each",
-    "f2": "plus my 2-hour Productize Yourself workshop in the middle of the program",
+    "f2": "plus my 2-hour Founder-Market Fit Workshop in the middle of the program",
     "f3": "check-ins and voice-note questions between sessions, within reason as many as you need; I do my best to answer within a day",
     "f4": "we use my instruments and maps, built and integrated from many approaches",
     "f5": "optional materials from other guides and experts, matched to you",
@@ -7289,7 +7289,7 @@
       "body": "Your strengths and your uniqueness: both the part of the spectrum you already shine, and the part that has not manifested yet. In founder language, this is finding founder-market fit with your own life."
     },
     "s5": {
-      "title": "Session 5: Productize Yourself (2 hours)",
+      "title": "Session 5: Founder-Market Fit Workshop (2 hours)",
       "body": "Your uniqueness, formulated with a precision you physically feel. Clarity about yourself translates directly into clarity about your ventures: which of them are truly yours, which roles fill you, and you get an always-available instrument for what to say yes and no to. The formulation becomes a litmus test you will use for years."
     },
     "s6": {
@@ -8040,10 +8040,10 @@
         "cta": "Book the Direction Call"
       },
       "session": {
-        "name": "Productize Yourself Session",
+        "name": "Founder-Market Fit Workshop",
         "meta": "2-hour workshop · $555",
         "desc": "Name the one thing you actually do, then leave with an offer and a page ready to send.",
-        "cta": "See the Productize Yourself Session"
+        "cta": "See the Founder-Market Fit Workshop"
       },
       "built": {
         "name": "BUILT",

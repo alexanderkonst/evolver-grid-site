@@ -350,7 +350,7 @@ const SPACE_SECTIONS: SpaceSections = {
             { id: "build-header-incubation", label: "Unique Startup Incubation", path: "", isHeader: true },
             { id: "build-playbook",   label: "Playbook",                                path: "/playbook" },
             { id: "build-path",       label: "Roadmap",                                 path: "/path" },
-            { id: "build-ignite",     label: "Productize Yourself Signature Workshop",   path: "/ignite" },
+            { id: "build-ignite",     label: "Founder-Market Fit Workshop",              path: "/ignite" },
             { id: "build-products",   label: "Products",                                path: "/products" },
             { id: "build-dashboard",  label: "Dashboard",                               path: "/dashboard" },
             { id: "build-holomap",    label: "Holomap",                                 path: "/holomap" },
@@ -362,7 +362,7 @@ const SPACE_SECTIONS: SpaceSections = {
         sections: [
             { id: "overview", label: "Overview", path: "/game/marketplace" },
             { id: "my-products", label: "My Products", path: "/game/marketplace/my-products" },
-            { id: "ignite", label: "Productize Yourself Session", path: "/game/marketplace/ignite" },
+            { id: "ignite", label: "Founder-Market Fit Workshop", path: "/game/marketplace/ignite" },
             { id: "public-page", label: "My Public Page", path: "/marketplace/create-page" },
         ],
     },

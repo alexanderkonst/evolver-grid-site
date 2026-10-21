@@ -94,8 +94,8 @@ const Pricing = () => {
 
           {/* Section intro — Day 55 (Sasha 2026-04-29): the previous
               "three paths" framing (Use / Tip / Work-with-us) conflated
-              tipping with partnership and made the Productize Yourself
-              Session look like the only real way to engage. Re-framed as
+              tipping with partnership and made the Founder-Market Fit
+              Workshop look like the only real way to engage. Re-framed as
               three concrete partnership shapes — each with its own clear
               next step — so a visitor doesn't have to invent how to
               propose a partnership. "Use it free" + tip moved to a quiet
@@ -113,7 +113,7 @@ const Pricing = () => {
 
           <div className="grid gap-5">
 
-            {/* Partnership I — Productize Yourself Session (1:1) */}
+            {/* Partnership I — Founder-Market Fit Workshop (1:1) */}
             <article
               className="rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:scale-[1.01] relative"
               style={{
@@ -130,7 +130,7 @@ const Pricing = () => {
                 <div className="flex-1">
                   <p className="text-[10px] tracking-[0.25em] uppercase font-medium mb-1" style={{ color: 'hsl(40 50% 75% / 0.75)' }}>For individuals · 1:1</p>
                   <h3 className="text-lg sm:text-xl font-display italic font-normal mb-2" style={{ color: 'hsl(0 0% 100% / 0.95)' }}>
-                    Productize Yourself Session
+                    Founder-Market Fit Workshop
                   </h3>
                   <p className="text-sm font-light leading-relaxed mb-4" style={{ color: 'hsl(0 0% 100% / 0.78)' }}>
                     90 minutes, 1:1 with Aleksandr. Name your craft, find the business built on who you already are, leave with your first easy move. $555 with money-back guarantee.

@@ -83,7 +83,7 @@ const buildEmail = (founder: Founder, allFounders: Founder[]): string => {
     </div>
 
     <p class="body-text">
-      Since your Productize Yourself Session, ${otherList} also went through the process.
+      Since your Founder-Market Fit Workshop, ${otherList} also went through the process.
     </p>
 
     <p class="body-text">
@@ -109,7 +109,7 @@ const buildEmail = (founder: Founder, allFounders: Founder[]): string => {
     </p>
 
     <div class="footer">
-      You're receiving this because you completed a Productize Yourself Session.<br/>
+      You're receiving this because you completed a Founder-Market Fit Workshop.<br/>
       This is a one-time message. No subscription needed.
     </div>
   </div>

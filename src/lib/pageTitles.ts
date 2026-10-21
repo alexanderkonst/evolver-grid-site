@@ -54,7 +54,7 @@ const titleRules: TitleRule[] = [
   { match: (path) => path.startsWith("/map"), title: "Game Map" },
   { match: (path) => path === "/holomap", title: "Morphogenetic Holo Map" },
   { match: (path) => path === "/founders", title: "The Originals — Founders" },
-  { match: (path) => path === "/ignite", title: "Productize Yourself Session" },
+  { match: (path) => path === "/ignite", title: "Founder-Market Fit Workshop" },
   { match: (path) => path === "/quiz", title: "Where Are You" },
   { match: (path) => path === "/quiz2", title: "Top Talent Diagnostic" },
 ];

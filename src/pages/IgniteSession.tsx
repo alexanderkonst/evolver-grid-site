@@ -1,13 +1,14 @@
 /**
- * /ignite — purchase page for the **Productize Yourself Session**
+ * /ignite — purchase page for the **Founder-Market Fit Workshop**
  *           (formerly "Ignition Session" → "Top Talent Business Session"
- *           → final canonical name as of Day 55, Sasha 2026-04-29).
+ *           → "Productize Yourself Session" (Day 55, Sasha 2026-04-29)
+ *           → "Founder-Market Fit Workshop" (Sasha 2026-10-21)).
  *
- * Day 55 (Sasha 2026-04-29): canonical product name is now
- * **Productize Yourself Session**. The /ignite route, file name, and
+ * Sasha 2026-10-21: canonical product name is now
+ * **Founder-Market Fit Workshop**. The /ignite route, file name, and
  * the `igniteLogo` asset are kept for URL stability + asset import
- * coherence; user-facing copy and all post-Day-55 references should use
- * "Productize Yourself Session." Price: $555. Length: 2 hours.
+ * coherence; user-facing copy should use
+ * "Founder-Market Fit Workshop." Price: $555. Length: 2 hours.
  * Guarantee: or you don't pay.
  *
  * Entry points to this page:
@@ -248,7 +249,7 @@ const IgniteSession = () => {
     // Day 123 (Sasha 2026-07-13): tab title harmonized to the hero's
     // being-wanted register — the old shame-hook headline contradicted
     // the page it opened.
-    document.title = "The Tagline Your Next Chapter Runs On | Productize Yourself Session";
+    document.title = "The Tagline Your Next Chapter Runs On | Founder-Market Fit Workshop";
     trackPageView('ignite_view');
     return () => { document.title = previousTitle; };
   }, []);
@@ -700,14 +701,14 @@ const IgniteSession = () => {
   return (
     <>
       <SEO
-        title="Next-Chapter Positioning Session — $555 | Find Your Top Talent"
-        description="A 2-hour 1:1 working session with Aleksandr for $555. Name your top talent in one exact sentence, see the direction it points to, and leave with a clear next step."
+        title="Founder-Market Fit Workshop — $555 · 2 hours | Find Your Top Talent"
+        description="The Founder-Market Fit Workshop: a 2-hour 1:1 working session with Aleksandr for $555. Name your top talent in one exact sentence, see the direction it points to, and leave with a clear next step."
         path="/ignite"
         ogTitle="Find your professional direction in one 2-hour session."
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Next-Chapter Positioning Session",
+          name: "Founder-Market Fit Workshop",
           provider: { "@type": "Person", name: "Alexander Konstantinov" },
           areaServed: "Worldwide",
           description: "2-hour 1:1 session to name your top talent and see the professional direction it points to.",

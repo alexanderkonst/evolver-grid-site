@@ -1393,7 +1393,7 @@ ${snapshotText}`;
                   </h3>
                   <p style={{ fontSize: '13px', color: '#2c3150', marginBottom: '8px', lineHeight: 1.7 }}>
                     You've named your Top Talent. The next step is structuring it into something people
-                    can buy. Aleksandr runs a focused Productize Yourself Session to compile your entire
+                    can buy. Aleksandr runs a focused Founder-Market Fit Workshop to compile your entire
                     unique business on one page.
                   </p>
                   <p style={{ fontSize: '13px', fontWeight: 700, color: '#2c3150' }}>

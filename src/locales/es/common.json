@@ -3801,7 +3801,7 @@
     "essayHindsight": "En retrospectiva siempre parece obvio. Como si siempre lo hubieras sabido.",
     "essayMorePeople": "Cuantas más personas llegan ahí, más fácil se vuelve para la siguiente.",
     "essayPivotLine": "Y una cosa más: no puedes pivotar lejos de ti mismo. Por eso esto funciona.",
-    "essayBookSession": "Reserva una sesión Productize Yourself",
+    "essayBookSession": "Reserva un taller Founder-Market Fit",
     "essayShortcutAfter": "si quieres tomar el atajo.",
     "stepLabel": "Paso {{number}}:",
     "byTheEnd": "Al final:",
@@ -4627,7 +4627,7 @@
     },
     "nextMilestone": {
       "eyebrow": "Próximo hito",
-      "title": "Primera Sesión Productize Yourself de $555 desde el embudo",
+      "title": "Primer taller Founder-Market Fit de $555 desde el embudo",
       "stat1": "$1.696 recibidos (efectivo + en especie)",
       "stat2": "3 canvas hasta N=10",
       "stat3": "3/9 superficies en vivo"
@@ -5487,7 +5487,7 @@
     },
     "cta": {
       "primary": "Empieza gratis con el Paso 1",
-      "secondary": "Reserva tu sesión Productize Yourself"
+      "secondary": "Reserva tu taller Founder-Market Fit"
     },
     "close": {
       "optional": "Cada paso es opcional. Cada paso entrega por sí mismo una transformación completa."
@@ -7152,7 +7152,7 @@
     "closingLink": "conversación por Telegram",
     "closingAfter": " lo resuelve.",
     "card1": {
-      "name": "Sesión Productize Yourself",
+      "name": "Taller Founder-Market Fit",
       "badge": "$555",
       "line": "Estrategia de posicionamiento para el siguiente capítulo de fundadores. Formación MIT.",
       "body": "Una sesión de trabajo. Tomamos lo que ya sabes de ti mismo y lo convertimos en palabras exactas: qué ofreces, a quién y por qué tú. Sales con un lenguaje lo bastante preciso para poner precio, presentar y construir.",
@@ -7204,7 +7204,7 @@
       "name": "El Cruce",
       "badge": "$2,222 · 2 meses",
       "line": "Un programa de 2 meses para la transición en la que estás.",
-      "body": "Tu capítulo anterior terminó y el siguiente aún no tiene nombre. El Cruce acelera y estructura la transición misma, para que tome meses en lugar de años, y la atravieses con intención y conciencia en lugar de a la deriva. Ocho sesiones semanales, un taller Productize Yourself de 2 horas a mitad del programa, y tu unicidad nombrada con exactitud al final.",
+      "body": "Tu capítulo anterior terminó y el siguiente aún no tiene nombre. El Cruce acelera y estructura la transición misma, para que tome meses en lugar de años, y la atravieses con intención y conciencia en lugar de a la deriva. Ocho sesiones semanales, un taller Founder-Market Fit de 2 horas a mitad del programa, y tu unicidad nombrada con exactitud al final.",
       "cta": "Ver el programa"
     },
     "card10": {
@@ -7235,10 +7235,10 @@
     "format2": "check-ins por chat entre sesiones",
     "format3": "un resultado esperado claro por semana",
     "priceLabel": "Precio",
-    "priceBody": "Este contenedor es la continuación directa de la sesión Productize Yourself. Está diseñado como programa de cohorte; hasta que el grupo se forme, lo recibes uno a uno: asesoría estratégica privada al precio de un asiento de cohorte. Y uno a uno significa que vamos exactamente a tu ritmo. Si dos pagos de $600 funcionan mejor con tu flujo de caja, también se puede.",
+    "priceBody": "Este contenedor es la continuación directa del taller Founder-Market Fit. Está diseñado como programa de cohorte; hasta que el grupo se forme, lo recibes uno a uno: asesoría estratégica privada al precio de un asiento de cohorte. Y uno a uno significa que vamos exactamente a tu ritmo. Si dos pagos de $600 funcionan mejor con tu flujo de caja, también se puede.",
     "closing": "Dime cómo te llega esto.",
     "cta": "Escribir a Sasha por WhatsApp",
-    "routerBefore": "¿Aún no hiciste la sesión Productize Yourself?",
+    "routerBefore": "¿Aún no hiciste el taller Founder-Market Fit?",
     "routerLink": "Empieza ahí",
     "routerAfter": ": el BUILT continúa justo donde ella termina.",
     "storiesEyebrow": "Personas reales, caminos reales",
@@ -7252,14 +7252,14 @@
   },
   "crossing": {
     "title": "El Cruce",
-    "seoDescription": "Un programa de 2 meses para la transición en la que estás. Ocho sesiones semanales, un taller Productize Yourself, y tu unicidad nombrada con exactitud. $2,222.",
+    "seoDescription": "Un programa de 2 meses para la transición en la que estás. Ocho sesiones semanales, un taller Founder-Market Fit, y tu unicidad nombrada con exactitud. $2,222.",
     "eyebrow": "UN PROGRAMA PARA EL ENTRE-CAPÍTULOS",
     "heading": "El Cruce",
     "subheading": "Un programa de 2 meses para la transición en la que estás",
     "essence": "Tu capítulo anterior terminó y el siguiente aún no tiene nombre. Ese intermedio no es un vacío: tiene estructura, y se puede cruzar con conciencia en lugar de a la deriva. Nadie puede prometer fechas de llegada en una transición, y yo no lo haré. Lo que hace este programa: acelera y estructura el cruce mismo, para que tome meses en lugar de años, y lo atravieses con intención y conciencia, no caóticamente y sin entender qué está pasando y por qué.",
     "formatHeading": "Formato",
     "f1": "8 sesiones semanales de 75 minutos",
-    "f2": "más mi taller Productize Yourself de 2 horas a mitad del programa",
+    "f2": "más mi taller Founder-Market Fit de 2 horas a mitad del programa",
     "f3": "check-ins y preguntas por notas de voz entre sesiones, tantas como necesites dentro de lo razonable; hago lo posible por responder dentro del día",
     "f4": "usamos mis instrumentos y mapas, construidos e integrados desde muchos enfoques",
     "f5": "selecciono materiales opcionales de otros guías y expertos, a tu medida",
@@ -7282,7 +7282,7 @@
       "body": "Tus fortalezas y tu unicidad: tanto la parte del espectro con la que ya brillas, como la que aún no se ha manifestado. En lenguaje de founders, esto es encontrar el founder-market fit con tu propia vida."
     },
     "s5": {
-      "title": "Sesión 5: Productize Yourself (2 horas)",
+      "title": "Sesión 5: Founder-Market Fit (2 horas)",
       "body": "Tu unicidad, formulada con una precisión que sientes físicamente. La claridad sobre ti se convierte directamente en claridad sobre tus proyectos: cuáles son verdaderamente tuyos, qué roles te llenan, y obtienes un instrumento siempre disponible para saber a qué decir sí y a qué decir no. La formulación se vuelve un papel tornasol que usarás por años."
     },
     "s6": {
@@ -8033,10 +8033,10 @@
         "cta": "Reserva tu Direction Call"
       },
       "session": {
-        "name": "Productize Yourself Session",
+        "name": "Founder-Market Fit Workshop",
         "meta": "Taller de 2 horas · $555",
         "desc": "Nombra lo único que realmente haces, y sal con una oferta y una página lista para enviar.",
-        "cta": "Ver Productize Yourself Session"
+        "cta": "Ver Founder-Market Fit Workshop"
       },
       "built": {
         "name": "BUILT",
