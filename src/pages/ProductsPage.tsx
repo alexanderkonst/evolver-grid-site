@@ -19,7 +19,7 @@ interface ProductCardDef {
   links: ProductLinkDef[];
 }
 
-// Order, names, prices and links follow docs/02-strategy/partners/vladimir_product_architecture_brief.md:
+// Order, names, prices and links follow docs/04-products/product_brief.md:
 // the eight-step transformational path first, then the other offers. A card with no link has none in the brief.
 const CARDS: ProductCardDef[] = [
   { key: "quiz", links: [{ href: "/quiz", external: false, ctaKey: "cta" }] },
@@ -39,7 +39,6 @@ const CARDS: ProductCardDef[] = [
   { key: "profile", links: [{ href: "/", external: false, ctaKey: "cta" }] },
   { key: "matchmaking", links: [{ href: "/game/collaborate/matches", external: false, ctaKey: "cta" }] },
   { key: "whiteLabel", links: [{ href: "/proposalforwegoodovahere", external: false, ctaKey: "cta" }] },
-  { key: "cannabis", links: [] },
   { key: "aiTraining", links: [] },
   { key: "equilibrium", links: [{ href: "/build/equilibrium", external: false, ctaKey: "cta" }] },
   { key: "mystery", links: [{ href: "https://nas.com/founder-academy/products/pugb/view", external: true, ctaKey: "cta" }] },
