@@ -12,12 +12,12 @@
  *   • AppleseedDisplay / ZoG ME-space — typography scale + chip styling
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import i18n from "@/i18n/config";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowRight, Brain, ListChecks, Clipboard, Check, Loader2 } from "lucide-react";
-import { Textarea } from "@/components/ui/textarea";
+import { PasteTextarea, type PasteTextareaHandle } from "@/components/ui/paste-textarea";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { ASSET_TYPES } from "./data/assetTypes";
@@ -320,6 +320,15 @@ const tertiaryPill: React.CSSProperties = {
     color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
 };
 
+// Visible disabled state for the ceremonial CTA: the navy gradient and gold
+// glow otherwise read as "enabled" even at reduced opacity.
+const disabledCta: React.CSSProperties = {
+    opacity: 0.45,
+    filter: "grayscale(0.8)",
+    boxShadow: "none",
+    cursor: "not-allowed",
+};
+
 const AssetMappingLanding = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
@@ -327,7 +336,13 @@ const AssetMappingLanding = () => {
     const returnPath = searchParams.get("return") || "/game/me";
 
     const [step, setStep] = useState<Step>("choice");
-    const [aiResponse, setAiResponse] = useState("");
+    // The pasted AI response lives in the (uncontrolled) textarea and is read
+    // on submit. Mirroring a multi-KB paste into state on every keystroke
+    // re-rendered this whole page and garbled fast typing / large pastes.
+    // `hasAiText` only flips when the box goes empty <-> non-empty.
+    const pasteRef = useRef<PasteTextareaHandle>(null);
+    const lastPasteRef = useRef("");
+    const [hasAiText, setHasAiText] = useState(false);
     const [copied, setCopied] = useState(false);
     const [isMatching, setIsMatching] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
@@ -497,6 +512,10 @@ const AssetMappingLanding = () => {
     // leverage_score / expresses_root / is_offer / is_power_node)
     // are silently ignored if the user's AI still emits them.
     const handleMatchAssets = async () => {
+        // Read the textarea's real value at submit time.
+        const aiResponse = pasteRef.current?.getValue() ?? "";
+        if (!aiResponse.trim()) return;
+        lastPasteRef.current = aiResponse;
         setIsMatching(true);
 
         const aiMatches = await fetchAssetMatches(aiResponse);
@@ -606,6 +625,8 @@ const AssetMappingLanding = () => {
         setMatchedAssets(sorted.slice(0, 50));
         setStep("matched");
     };
+
+    const extractDisabled = !hasAiText || isMatching;
 
     return (
         // Day 63 (Sasha 2026-05-07): wrapper no longer paints WASH_BG —
@@ -798,9 +819,10 @@ const AssetMappingLanding = () => {
                             <label style={labelMuted}>
                                 {t('assetLanding.pasteLabel')}
                             </label>
-                            <Textarea
-                                value={aiResponse}
-                                onChange={(e) => setAiResponse(e.target.value)}
+                            <PasteTextarea
+                                ref={pasteRef}
+                                initialValue={lastPasteRef.current}
+                                onHasTextChange={setHasAiText}
                                 placeholder={t('assetLanding.pastePlaceholder')}
                                 className="min-h-[200px]"
                                 style={{
@@ -826,12 +848,15 @@ const AssetMappingLanding = () => {
                             </button>
                             <button
                                 onClick={handleMatchAssets}
-                                disabled={!aiResponse.trim() || isMatching}
-                                className="group relative inline-flex items-center gap-2.5 rounded-full px-6 py-3 transition-all duration-300 hover:translate-y-[-1px] disabled:cursor-not-allowed disabled:opacity-50"
+                                disabled={extractDisabled}
+                                className="group relative inline-flex items-center gap-2.5 rounded-full px-6 py-3 transition-all duration-300 hover:translate-y-[-1px] disabled:hover:translate-y-0"
                                 style={{
                                     ...ceremonialCta,
                                     backdropFilter: "blur(14px) saturate(160%)",
                                     WebkitBackdropFilter: "blur(14px) saturate(160%)",
+                                    // Inline styles beat the disabled: utility classes, so the
+                                    // disabled look is applied here: greyed, flat, no gold glow.
+                                    ...(extractDisabled ? disabledCta : {}),
                                 }}
                             >
                                 {isMatching ? (

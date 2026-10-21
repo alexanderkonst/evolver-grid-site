@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
 import GameShellV2 from "@/components/game/GameShellV2";
 import ProfileSettingsSection from "@/components/settings/ProfileSettingsSection";
+import AuthLinkErrorNotice from "@/components/settings/AuthLinkErrorNotice";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { useSkin, type Skin } from "@/contexts/SkinContext";
 import { useToast } from "@/hooks/use-toast";
@@ -750,6 +751,9 @@ const Settings = () => {
 
                         <Ornament className="my-5 sm:my-6" />
                     </header>
+
+                    {/* Expired / invalid email-confirmation link. */}
+                    <AuthLinkErrorNotice />
 
                     <Tabs value={activeTab} onValueChange={handleTabChange}>
                         {/* Day 56 (Sasha 2026-05-02): tabs harmonized

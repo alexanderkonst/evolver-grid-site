@@ -3198,6 +3198,20 @@
     "themeToggleToDaoAria": "Переключить на чёрно-белую тему",
     "themeToggleToDaoTitle": "Переключить на The Dao, чёрно-белую тему"
   },
+  "authLinkError": {
+    "expiredTitle": "Срок действия ссылки истёк",
+    "expiredDescription": "Ссылка из письма перестаёт работать через короткое время или после первого использования. Запросите новое письмо с подтверждением ниже.",
+    "failedTitle": "Ссылка не сработала",
+    "failedDescription": "Не удалось проверить ссылку из письма. Запросите новое письмо с подтверждением ниже.",
+    "stillSignedIn": "Вы по-прежнему вошли как {{email}}.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "resendButton": "Отправить письмо с подтверждением ещё раз",
+    "resending": "Отправляем…",
+    "resentTitle": "Письмо отправлено",
+    "resentDescription": "Новая ссылка отправлена на {{email}}.",
+    "resendFailedTitle": "Не удалось отправить письмо"
+  },
   "profileSettings": {
     "toastErrorTitle": "Ошибка",
     "toastUpdateFailedDescription": "Не удалось обновить профиль. Попробуй ещё раз.",
