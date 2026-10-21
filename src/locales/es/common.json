@@ -7146,54 +7146,122 @@
     "title": "Productos",
     "intro": "Distintas puertas, un mismo punto de partida: tu unicidad, formulada con la precisión suficiente para construir sobre ella. Empieza donde estás.",
     "summaryEyebrow": "Todo en un solo aliento",
-    "summaryHeading": "Diez puertas, un método.",
-    "summaryBody": "Cada producto aquí hace el mismo trabajo esencial, a una escala distinta. Encuentra la señal que ya llevas dentro y la vuelve lo bastante clara para actuar. Una llamada gratuita para encontrar tu dirección. Una sesión para convertir tu talento en una oferta. Una construcción completa del negocio en sí. Un portal o un nodo para llevar el trabajo a las personas a tu alrededor. Empiezas donde estás y llegas tan lejos como quieras.",
-    "seoDescription": "Siete propuestas, un mismo punto de partida: tu unicidad formulada con la precisión suficiente para construir sobre ella. Sesiones, descubrimiento de talento, matchmaking e infraestructura para comunidades y fundadores.",
+    "summaryHeading": "Un método, muchas puertas.",
+    "summaryBody": "Cada producto aquí hace el mismo trabajo esencial, a una escala distinta. Encuentra la señal que ya llevas dentro y la vuelve lo bastante clara para actuar. Un test gratuito muestra dónde estás en el viaje del héroe. Las sesiones nombran tu genialidad y tu founder-market fit. Una construcción de un mes lleva el producto al mercado. Los programas y un colectivo llevan el trabajo más lejos, y las herramientas y la infraestructura white-label sirven a las comunidades. Empiezas donde estás y llegas tan lejos como quieras.",
+    "seoDescription": "Desde un test gratuito del viaje del héroe hasta founder-market fit, product-market fit, matchmaking e infraestructura para comunidades: propuestas construidas sobre tu unicidad.",
     "closingBefore": "¿No sabes cuál es tu puerta? Una ",
     "closingLink": "conversación por Telegram",
     "closingAfter": " lo resuelve.",
-    "card1": {
-      "name": "Sesión Productize Yourself",
-      "badge": "$555",
-      "line": "Estrategia de posicionamiento para el siguiente capítulo de fundadores. Formación MIT.",
-      "body": "Una sesión de trabajo. Tomamos lo que ya sabes de ti mismo y lo convertimos en palabras exactas: qué ofreces, a quién y por qué tú. Sales con un lenguaje lo bastante preciso para poner precio, presentar y construir.",
+    "quiz": {
+      "name": "Test «¿Dónde estoy en el viaje del héroe?»",
+      "badge": "Gratis",
+      "line": "Un test de tres preguntas que muestra dónde estás en el viaje del héroe.",
+      "body": "Respondes tres preguntas de opción múltiple y dejas tu correo. Ves en qué punto del viaje del héroe estás, los principales obstáculos de esta etapa, cuál es la siguiente etapa y qué tiene que pasar para que avances.",
+      "cta": "Hacer el test"
+    },
+    "zog": {
+      "name": "Descubrimiento de la Zona de Genialidad",
+      "badge": "$37 en el sitio · $222–333 individual · $1,000 taller para equipos",
+      "line": "Ves tu principal talento innato con un nuevo nivel de claridad y lo nombras con palabras exactas.",
+      "body": "Ves tu principal talento innato con más claridad que antes, lo nombras con precisión y obtienes una nueva claridad sobre cómo monetizarlo. Esa claridad acelera el crecimiento de tu maestría en tu propio camino.",
+      "cta": "Ver el programa",
+      "cta2": "Sesión en vivo"
+    },
+    "fmf": {
+      "name": "Founder-Market Fit",
+      "badge": "$555 individual · $222 en grupo",
+      "line": "Antes se llamaba Productize Yourself. En 2 horas encuentras tu founder-market fit.",
+      "body": "Juntos nombramos el valor que creas simplemente siendo tú, tu cliente ideal, su dolor, la promesa transformacional, el contorno del producto y tu propuesta única de valor en una sola frase.",
       "cta": "Reservar la sesión"
     },
-    "card2": {
-      "name": "Find Your Top Talent",
-      "badge": "Gratis para empezar",
-      "line": "Descubrimiento preciso de talento para profesionales.",
-      "body": "Una revelación guiada que nombra tu talento principal con palabras que puedes usar de verdad. En vez de otra etiqueta de personalidad, obtienes la frase exacta que la gente necesita para elegirte. Gratis para empezar. La profundidad completa se activa por $37.",
-      "cta": "Empezar la revelación"
+    "pmf": {
+      "name": "Product-Market Fit",
+      "badge": "$5,555 individual · $1,111 en grupo · o $5,555 a partir de tus primeros $55,555 de ingresos",
+      "line": "Un producto escalable construido en un mes.",
+      "body": "En un mes construimos la estrategia de marketing y ventas, el MVP, la prueba beta y la primera venta."
     },
-    "card3": {
-      "name": "Nodo White-Label",
-      "badge": "Para líderes de comunidad",
-      "line": "Infraestructura de incorporación y emparejamiento de miembros para líderes de comunidad.",
-      "body": "Tu comunidad, funcionando sobre esta plataforma. Cada miembro recibe la revelación de su talento, un perfil vivo y presentaciones con los colaboradores adecuados dentro de tu espacio. Tú sigues siendo el anfitrión. La infraestructura trabaja por debajo.",
-      "cta": "Escribir por Telegram"
+    "evolution": {
+      "name": "Entrepreneur's Evolution",
+      "badge": "$2,222 individual",
+      "line": "Acompañamiento en el viaje del héroe: un programa de 2 meses.",
+      "body": "Ocho sesiones semanales en línea de hora y media, más acompañamiento por chat. Estructura y acelera la transición profesional, para que construir tu propia marca (un negocio único) tome meses y no años.",
+      "cta": "Ver el programa"
     },
-    "card4": {
-      "name": "Matchmaking colaborativo",
-      "badge": "Incluido en la plataforma",
-      "line": "Emparejamiento preciso de colaboradores para quienes construyen.",
-      "body": "La plataforma lee quién eres y qué necesitas, y hace la presentación. Una propuesta a la vez, por correo, con un primer paso concreto. Ambas partes dicen que sí antes de que nadie quede expuesto.",
-      "cta": "Empieza con tu revelación gratuita"
+    "collective": {
+      "name": "Sovereign Founder Collective",
+      "badge": "El 10% de los ingresos va a una tesorería descentralizada",
+      "line": "Una artel de emprendedores.",
+      "body": "Construimos negocios únicos juntos, nos apoyamos y nos autoorganizamos."
     },
-    "card5": {
+    "forClients": {
+      "name": "Guío esta secuencia para tus clientes",
+      "badge": "Reparto de ingresos: 50% tuyo, 50% mío",
+      "line": "La misma secuencia de pasos, guiada por mí para tus clientes.",
+      "body": "Si trabajas con emprendedores, llevo a tus clientes por los pasos anteriores y repartimos los ingresos."
+    },
+    "license": {
+      "name": "Licencia para impartir este programa tú mismo",
+      "badge": "Reparto de ingresos: 90% tuyo, 10% para Sovereign Founder Collective",
+      "line": "El derecho a impartir este programa con tus propios clientes.",
+      "body": "Impartes el programa tú mismo. El 90% de los ingresos se queda contigo y el 10% va a Sovereign Founder Collective."
+    },
+    "profile": {
+      "name": "Perfil de Negocio de Alta Precisión",
+      "badge": "Gratis por ahora",
+      "line": "Un perfil de negocio personal, como una página de LinkedIn, en 5–10 minutos.",
+      "body": "Lo creas de forma semiautomática y puedes descargarlo. Sirve para hiperpersonalizar la IA, encontrar oportunidades profesionales que encajen mejor y encontrar cofundadores.",
+      "cta": "Crear tu perfil"
+    },
+    "matchmaking": {
+      "name": "Matchmaking de Alta Precisión para Emprendedores",
+      "badge": "Pruebas gratuitas por ahora",
+      "line": "Emparejamiento de cofundadores para negocios únicos.",
+      "body": "Lee el perfil de una persona y lo que necesita, y hace la presentación. Los perfiles son automatizados y estandarizados. Es un módulo gratuito dentro de la plataforma.",
+      "cta": "Probar el matchmaking"
+    },
+    "whiteLabel": {
+      "name": "White-label Professional Onboarding & Profile Creation For Entrepreneurial Communities",
+      "badge": "A convenir",
+      "line": "Para líderes de comunidad: el talento de cada miembro revelado, un perfil vivo y emparejamiento dentro de tu espacio.",
+      "body": "Cada miembro de tu comunidad recibe la revelación de su talento y un perfil vivo, y la plataforma empareja a los miembros entre sí dentro de tu espacio. Existe una propuesta lista.",
+      "cta": "Ver una propuesta de ejemplo"
+    },
+    "cannabis": {
+      "name": "Spiritual Practice with Cannabis",
+      "badge": "~$100 por lugar",
+      "line": "Una práctica grupal para la calidad de vida, el estado interior y la vitalidad.",
+      "body": "Mejora la calidad de vida, el estado interior y la vitalidad, y abre experiencias místicas profundas. Más de 100 grupos realizados, solo o junto con mi esposa."
+    },
+    "aiTraining": {
+      "name": "Deep AI training for individuals and organizations",
+      "badge": "$800 por un taller de 2 horas",
+      "line": "Una comprensión profunda de la IA que seguirá vigente durante años.",
+      "body": "Una comprensión profunda de la IA que seguirá vigente durante años, y mejores prácticas. Se han realizado 3 talleres para organizaciones y 3 para grupos, con unos 1,500 participantes en total."
+    },
+    "equilibrium": {
       "name": "Equilibrium",
-      "badge": "Acceso anticipado",
-      "line": "Una brújula de tiempo: planifica según los ciclos de la vida, no solo el calendario.",
-      "body": "El trabajo tiene temporadas. Equilibrium lee las tuyas y te dice para qué sirve realmente esta semana. Una planificación que empieza en el cuerpo y el ciclo, y luego se encuentra con el calendario.",
-      "cta": "Preguntar por el acceso anticipado"
+      "badge": "Pruebas gratuitas por ahora",
+      "line": "Una herramienta de productividad para fundadores.",
+      "body": "Dos cosas: planificación según ciclos naturales y un gestor de tareas radicalmente simplificado.",
+      "cta": "Probar Equilibrium"
     },
-    "card6": {
+    "mystery": {
+      "name": "Mystery School for Founders",
+      "badge": "$111–$222",
+      "line": "La mayoría de mis productos en un solo combo, para grupos.",
+      "body": "Se han realizado dos cohortes de un mes cada una, con 32 y 13 participantes.",
+      "cta": "Ver el producto"
+    },
+    "cockpit": {
       "name": "Founder Cockpit",
-      "badge": "Acceso anticipado",
-      "line": "Un instrumento de navegación en vivo para fundadores que llevan una empresa.",
-      "body": "Una pantalla que lee tu empresa y a ti como un solo sistema: estrategia, relaciones, energía. Pregúntale qué hacer después y responde desde el cuadro completo, incluyendo lo que todo panel de control ignora: el fundador.",
-      "cta": "Preguntar por el acceso anticipado"
+      "badge": "Pruebas gratuitas por ahora",
+      "line": "Un instrumento de navegación en vivo para fundadores que llevan su propia empresa.",
+      "body": "Una pantalla que lee la empresa y a la persona como un solo sistema: estrategia, relaciones, energía. Pregunta qué hacer después y responde desde el cuadro completo, incluyendo lo que todo panel de control ignora: el fundador.",
+      "cta": "Abrir el Cockpit"
     },
+    "rdEyebrow": "Investigación y desarrollo",
+    "rdHeading": "R&D",
+    "rdIntro": "Todavía en investigación y desarrollo. Se muestra aquí para que se vea el cuadro completo.",
     "card7": {
       "name": "Venture Studio",
       "badge": "Por invitación",
@@ -7201,12 +7269,12 @@
       "body": "Para fundadores cuya próxima empresa debería construirse a partir de quienes son. Primero diseñamos la empresa desde tu unicidad, luego la construimos contigo.",
       "cta": "Empezar una conversación"
     },
-    "card9": {
-      "name": "El Cruce",
-      "badge": "$2,222 · 2 meses",
-      "line": "Un programa de 2 meses para la transición en la que estás.",
-      "body": "Tu capítulo anterior terminó y el siguiente aún no tiene nombre. El Cruce acelera y estructura la transición misma, para que tome meses en lugar de años, y la atravieses con intención y conciencia en lugar de a la deriva. Ocho sesiones semanales, un taller Productize Yourself de 2 horas a mitad del programa, y tu unicidad nombrada con exactitud al final.",
-      "cta": "Ver el programa"
+    "card8": {
+      "name": "Client Evolution Portal",
+      "badge": "Para profesionales",
+      "line": "Para profesionales: tus clientes viendo su propia evolución.",
+      "body": "Tu propio rincón de la plataforma, en tus colores. Tus clientes hacen una instantánea de Calidad de Vida, practican con tu biblioteca dentro y ven moverse sus propias líneas.",
+      "cta": "Ver el portal"
     },
     "card10": {
       "name": "The Founder Read",

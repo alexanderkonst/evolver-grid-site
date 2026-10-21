@@ -4,44 +4,79 @@ import { ChevronDown } from "lucide-react";
 import SEO from "@/components/SEO";
 import { ProductCta, ProductEyebrow, ProductHero, ProductLanding } from "@/components/products/ProductLanding";
 import { Ornament } from "@/lib/landingDesign";
+import { cn } from "@/lib/utils";
 
 const TELEGRAM_CONVERSATION = "https://t.me/integralevolution";
 
-interface ProductCardDef {
-  key: string;
+interface ProductLinkDef {
   href: string;
   external: boolean;
+  ctaKey: "cta" | "cta2";
 }
 
-// Preserve the catalogue's existing order and destinations.
+interface ProductCardDef {
+  key: string;
+  links: ProductLinkDef[];
+}
+
+// Order, names, prices and links follow docs/02-strategy/partners/vladimir_product_architecture_brief.md:
+// the eight-step transformational path first, then the other offers. A card with no link has none in the brief.
 const CARDS: ProductCardDef[] = [
-  { key: "card1", href: "/ignite", external: false },
-  { key: "card2", href: "/zone-of-genius", external: false },
-  { key: "card3", href: TELEGRAM_CONVERSATION, external: true },
-  { key: "card4", href: "/zone-of-genius", external: false },
-  { key: "card5", href: TELEGRAM_CONVERSATION, external: true },
-  { key: "card6", href: TELEGRAM_CONVERSATION, external: true },
-  { key: "card7", href: TELEGRAM_CONVERSATION, external: true },
-  { key: "card8", href: "/products/evolution-portal", external: false },
-  { key: "card9", href: "/products/crossing", external: false },
-  { key: "card10", href: "/products/founder-read", external: false },
+  { key: "quiz", links: [{ href: "/quiz", external: false, ctaKey: "cta" }] },
+  {
+    key: "zog",
+    links: [
+      { href: "https://ancient-william-0f8.notion.site/THE-ZONE-OF-GENIUS-PROGRAM-10981c75c23680cdb971df7314d07eda", external: true, ctaKey: "cta" },
+      { href: "https://nas.com/founder-academy/sessions/zone-of-genius-live-session", external: true, ctaKey: "cta2" },
+    ],
+  },
+  { key: "fmf", links: [{ href: "/ignite", external: false, ctaKey: "cta" }] },
+  { key: "pmf", links: [] },
+  { key: "evolution", links: [{ href: "/products/crossing", external: false, ctaKey: "cta" }] },
+  { key: "collective", links: [] },
+  { key: "forClients", links: [] },
+  { key: "license", links: [] },
+  { key: "profile", links: [{ href: "/", external: false, ctaKey: "cta" }] },
+  { key: "matchmaking", links: [{ href: "/game/collaborate/matches", external: false, ctaKey: "cta" }] },
+  { key: "whiteLabel", links: [{ href: "/proposalforwegoodovahere", external: false, ctaKey: "cta" }] },
+  { key: "cannabis", links: [] },
+  { key: "aiTraining", links: [] },
+  { key: "equilibrium", links: [{ href: "/build/equilibrium", external: false, ctaKey: "cta" }] },
+  { key: "mystery", links: [{ href: "https://nas.com/founder-academy/products/pugb/view", external: true, ctaKey: "cta" }] },
+  { key: "cockpit", links: [{ href: "/build/cockpit", external: false, ctaKey: "cta" }] },
 ];
 
-const ProductCard = ({ def }: { def: ProductCardDef }) => {
+// Products that were on /products before the brief and are not in it. Kept as-is, shown muted, no CTA.
+const RD_CARDS: ProductCardDef[] = [
+  { key: "card7", links: [] },
+  { key: "card8", links: [] },
+  { key: "card10", links: [] },
+];
+
+const ProductCard = ({ def, muted = false }: { def: ProductCardDef; muted?: boolean }) => {
   const { t } = useTranslation();
   const name = t(`products.${def.key}.name`);
 
   return (
-    <article className="liquid-glass-strong rounded-[2.5rem] p-7 md:p-9 space-y-5" aria-labelledby={`${def.key}-title`}>
+    <article
+      className={cn("liquid-glass-strong rounded-[2.5rem] p-7 md:p-9 space-y-5", muted && "opacity-60")}
+      aria-labelledby={`${def.key}-title`}
+    >
       <div className="space-y-3">
         <ProductEyebrow>{t(`products.${def.key}.badge`)}</ProductEyebrow>
         <h2 id={`${def.key}-title`} className="product-title text-2xl sm:text-3xl">{name}</h2>
         <p className="product-body text-base italic">{t(`products.${def.key}.line`)}</p>
       </div>
       <p className="product-body text-base">{t(`products.${def.key}.body`)}</p>
-      <div className="pt-1">
-        <ProductCta href={def.href} external={def.external}>{t(`products.${def.key}.cta`)}</ProductCta>
-      </div>
+      {def.links.length > 0 && (
+        <div className="pt-1 flex flex-wrap gap-3">
+          {def.links.map(link => (
+            <ProductCta key={link.ctaKey} href={link.href} external={link.external}>
+              {t(`products.${def.key}.${link.ctaKey}`)}
+            </ProductCta>
+          ))}
+        </div>
+      )}
     </article>
   );
 };
@@ -75,6 +110,15 @@ const ProductsPage = () => {
         <div className="space-y-6 md:space-y-8">
           {CARDS.map(def => <ProductCard key={def.key} def={def} />)}
         </div>
+
+        <section className="space-y-6 md:space-y-8" aria-labelledby="products-rd">
+          <div className="text-center space-y-3">
+            <ProductEyebrow>{t("products.rdEyebrow")}</ProductEyebrow>
+            <h2 id="products-rd" className="product-title text-3xl">{t("products.rdHeading")}</h2>
+            <p className="product-body text-base italic max-w-md mx-auto">{t("products.rdIntro")}</p>
+          </div>
+          {RD_CARDS.map(def => <ProductCard key={def.key} def={def} muted />)}
+        </section>
 
         <footer className="text-center space-y-6 pb-8">
           <Ornament />
