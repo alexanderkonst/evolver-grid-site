@@ -14,13 +14,13 @@ const FounderMarketFit = () => {
         const metaDesc = document.querySelector('meta[name="description"]') || document.createElement('meta');
         const origDesc = metaDesc.getAttribute('content') || '';
         metaDesc.setAttribute('name', 'description');
-        metaDesc.setAttribute('content', 'Map where your unique value coheres with a real market need. 90-minute human-market fit diagnostic for founders and builders. $197.');
+        metaDesc.setAttribute('content', 'Map where your unique value coheres with a real market need. 2-hour human-market fit diagnostic for founders and builders. $555.');
         if (!metaDesc.parentNode) document.head.appendChild(metaDesc);
 
         // OG tags — update existing or create new
         const ogTags: Record<string, string> = {
             'og:title': 'Human-Market Fit | Alexander Konstantinov',
-            'og:description': 'Your unique value is already seeking a market. Map the coherence in a 90-minute diagnostic for founders and builders.',
+            'og:description': 'Your unique value is already seeking a market. Map the coherence in a 2-hour diagnostic for founders and builders.',
             'og:type': 'website',
             'og:url': 'https://evolver.team/fmf',
             'twitter:card': 'summary_large_image',
@@ -194,7 +194,7 @@ const FounderMarketFit = () => {
                 </div>
             </section>
 
-            {/* ===== 5. METHOD — see yours in 90 minutes ===== */}
+            {/* ===== 5. METHOD — see yours in 2 hours ===== */}
             <section className="fmf-section fmf-solution">
                 <div className="fmf-container">
                     <h2 className="fmf-h2">{t('founderMarketFit.methodHeading')}</h2>
@@ -347,7 +347,7 @@ const FounderMarketFit = () => {
                         </div>
                         <div className="fmf-book-detail">
                             <span className="fmf-book-icon">💰</span>
-                            <span><s className="fmf-original-price">$397</s> <strong className="fmf-pilot-price">$197</strong> <span className="fmf-pilot-label">{t('founderMarketFit.bookFoundingRate')}</span></span>
+                            <span><strong className="fmf-pilot-price">$555</strong></span>
                         </div>
                     </div>
                     <a
