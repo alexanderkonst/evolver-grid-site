@@ -10,10 +10,10 @@ interface RuntimeOffersState extends RuntimeOffersResult {
   error: string | null;
 }
 
-export const useRuntimeOffers = () => {
+export const useRuntimeOffers = (enabled = true) => {
   const [state, setState] = useState<RuntimeOffersState>(() => ({
     ...getBundledOffers(),
-    loading: true,
+    loading: enabled,
     error: null,
   }));
 
@@ -32,8 +32,8 @@ export const useRuntimeOffers = () => {
   }, []);
 
   useEffect(() => {
-    void refresh();
-  }, [refresh]);
+    if (enabled) void refresh();
+  }, [enabled, refresh]);
 
   return { ...state, refresh };
 };

@@ -162,7 +162,7 @@ export default function CockpitDashboard() {
   const [pulseGenKind, setPulseGenKind] = useState<PulseBriefKind | null>(null);
   const [pulseError, setPulseError] = useState<string | null>(null);
   const [activePulseKind, setActivePulseKind] = useState<PulseBriefKind>("daily");
-  const offerRuntime = useRuntimeOffers();
+  const offerRuntime = useRuntimeOffers(isFounder);
   const offers = offerRuntime.offers;
   const offerMetrics = useMemo(() => calculateOffersBoardMetrics(offers), [offers]);
   const offerRecent = useMemo(
@@ -177,7 +177,8 @@ export default function CockpitDashboard() {
       "equilibrium-ai-context",
     );
     if (invokeError) {
-      setError(invokeError.message);
+      // Non-founders get a plain-language message, never the raw function error.
+      setError(isFounder ? invokeError.message : "Your Equilibrium data could not be loaded right now. Try Refresh in a moment.");
       setEquilibrium(null);
     } else {
       setEquilibrium(data as EquilibriumContext);
@@ -220,8 +221,12 @@ export default function CockpitDashboard() {
 
   useEffect(() => {
     void loadContext();
-    void loadPulseBriefs();
   }, []);
+
+  // Pulse briefs are the owner's (admin-only RLS); don't query for other users.
+  useEffect(() => {
+    if (isFounder) void loadPulseBriefs();
+  }, [isFounder]);
 
   useEffect(() => {
     setPrimaryResult(null);
@@ -456,7 +461,7 @@ export default function CockpitDashboard() {
   }> = [
     {
       label: "Mission Vector",
-      value: "97%",
+      value: isFounder ? "97%" : "N/A",
       signal: clipped(model.mission, 118),
       icon: Compass,
       tone: "gold",
@@ -464,7 +469,9 @@ export default function CockpitDashboard() {
     {
       label: "Founder State",
       value: `${equilibrium?.summary?.focus_count ?? 0}/3`,
-      signal: "Focus slots active; force must stay selective.",
+      signal: isFounder
+        ? "Focus slots active; force must stay selective."
+        : "Set focus slots in Equilibrium and they show up here.",
       icon: Gauge,
       tone: "teal",
     },
@@ -488,29 +495,37 @@ export default function CockpitDashboard() {
     },
     {
       label: "Strategic Oracle",
-      value: "2 lanes",
-      signal: "Cash-now and community-infrastructure must fly separately.",
+      value: isFounder ? "2 lanes" : "N/A",
+      signal: isFounder
+        ? "Cash-now and community-infrastructure must fly separately."
+        : "Fills in as you build your venture.",
       icon: Sparkles,
       tone: "gold",
     },
     {
       label: "Readiness Signal",
-      value: "Alive",
-      signal: "The next move is not more theory; it is selective crystallization.",
+      value: isFounder ? "Alive" : "N/A",
+      signal: isFounder
+        ? "The next move is not more theory; it is selective crystallization."
+        : "Fills in as you build your venture.",
       icon: Signal,
       tone: "teal",
     },
     {
       label: "Next Move Engine",
-      value: "3 moves",
-      signal: "One cash action, one proof action, one product action.",
+      value: isFounder ? "3 moves" : "N/A",
+      signal: isFounder
+        ? "One cash action, one proof action, one product action."
+        : "Fills in as you build your venture.",
       icon: Crosshair,
       tone: "blue",
     },
     {
       label: "Field Coherence",
-      value: "Good",
-      signal: "Mission, product, CRM, and pulse are converging around living-project navigation.",
+      value: isFounder ? "Good" : "N/A",
+      signal: isFounder
+        ? "Mission, product, CRM, and pulse are converging around living-project navigation."
+        : "Fills in as you build your venture.",
       icon: Zap,
       tone: "gold",
     },
@@ -773,7 +788,7 @@ export default function CockpitDashboard() {
               <div className="flex items-end justify-between gap-4">
                 <div>
                   <p className="text-sm text-[#9ea7b3]">True north alignment</p>
-                  <p className="mt-2 text-5xl font-semibold text-[#f6d58a]">97%</p>
+                  <p className="mt-2 text-5xl font-semibold text-[#f6d58a]">{isFounder ? "97%" : "N/A"}</p>
                 </div>
                 <Compass className="h-16 w-16 text-[#f6d58a]" />
               </div>
