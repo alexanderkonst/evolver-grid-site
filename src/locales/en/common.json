@@ -7146,54 +7146,122 @@
     "title": "Products",
     "intro": "Different doors, one starting point: your uniqueness, made precise enough to build on. Start where you are.",
     "summaryEyebrow": "The whole, in one breath",
-    "summaryHeading": "Ten doors, one method.",
-    "summaryBody": "Each product here does the same core work at a different scale. It finds the signal you already carry and makes it clear enough to act on. A free call to find your direction. A session to turn your talent into an offer. A full build for the business itself. A portal or a node to carry the work to the people around you. You start where you are, and go as far as you want.",
-    "seoDescription": "Seven offers, one starting point: your uniqueness made precise enough to build on. Sessions, talent discovery, matchmaking, and infrastructure for communities and founders.",
+    "summaryHeading": "One method, many doors.",
+    "summaryBody": "Each product here does the same core work at a different scale. It finds the signal you already carry and makes it clear enough to act on. A free quiz shows where you are on the hero's journey. Sessions name your genius and your founder-market fit. A month-long build takes the product to market. Programs and a collective carry the work further, and tools and white-label infrastructure serve communities. You start where you are, and go as far as you want.",
+    "seoDescription": "From a free hero's-journey quiz to founder-market fit, product-market fit, matchmaking, and infrastructure for communities: offers built on your uniqueness.",
     "closingBefore": "Unsure which door is yours? A ",
     "closingLink": "Telegram conversation",
     "closingAfter": " sorts it.",
-    "card1": {
-      "name": "Productize Yourself Session",
-      "badge": "$555",
-      "line": "Next-chapter positioning strategy for founders, from an MIT-trained founder.",
-      "body": "One working session. We take what you already know about yourself and turn it into exact words: what you offer, to whom, and why you. You leave with language precise enough to price, pitch, and build on.",
+    "quiz": {
+      "name": "Where Am I on the Hero's Journey",
+      "badge": "Free",
+      "line": "A three-question test that shows where you are on the hero's journey.",
+      "body": "Answer three multiple-choice questions and leave your email. You see which point of the hero's journey you are at, the main obstacles of this stage, which stage comes next, and what has to happen for you to move forward.",
+      "cta": "Take the quiz"
+    },
+    "zog": {
+      "name": "Zone of Genius Discovery",
+      "badge": "$37 online · $222–333 one-on-one · $1,000 team workshop",
+      "line": "See your main innate talent at a new level of clarity and name it in exact words.",
+      "body": "You see your main innate talent more clearly than before, name it precisely, and get a new clarity about how to monetize it. That clarity speeds up the growth of your mastery on your own path.",
+      "cta": "See the program",
+      "cta2": "Live session"
+    },
+    "fmf": {
+      "name": "Founder-Market Fit",
+      "badge": "$555 one-on-one · $222 in a group",
+      "line": "Formerly Productize Yourself. In 2 hours you find your founder-market fit.",
+      "body": "Together we name the value you create simply by being yourself, your ideal client, their pain, the transformational promise, the outline of the product, and your unique selling proposition in one sentence.",
       "cta": "Book the session"
     },
-    "card2": {
-      "name": "Find Your Top Talent",
-      "badge": "Free to start",
-      "line": "Precision talent discovery for professionals.",
-      "body": "A guided reveal that names your top talent in words you can actually use. Instead of another personality label, you get the exact line people need in order to choose you. Free to start. Full depth activates for $37.",
-      "cta": "Start the reveal"
+    "pmf": {
+      "name": "Product-Market Fit",
+      "badge": "$5,555 one-on-one · $1,111 in a group · or $5,555 from your first $55,555 of revenue",
+      "line": "A scalable product built in one month.",
+      "body": "In a month we build the marketing and sales strategy, the MVP, the beta test, and the first sale."
     },
-    "card3": {
-      "name": "White-Label Node",
-      "badge": "For community leaders",
-      "line": "Member onboarding and matching infrastructure for community leaders.",
-      "body": "Your community, running on this platform. Every member gets their talent revealed, a living profile, and introductions to the right collaborators inside your space. You stay the host. The infrastructure works underneath.",
-      "cta": "Message on Telegram"
+    "evolution": {
+      "name": "Entrepreneur's Evolution",
+      "badge": "$2,222 one-on-one",
+      "line": "A companion on the hero's journey: a 2-month program.",
+      "body": "Eight weekly online sessions of an hour and a half, plus support in chat. It structures and speeds up the career transition, so building your own brand (a unique business) takes months, not years.",
+      "cta": "See the program"
     },
-    "card4": {
-      "name": "Collaborative Matchmaking",
-      "badge": "Included in the platform",
-      "line": "Precision collaborator matching for builders.",
-      "body": "The platform reads who you are and what you need, then makes the introduction. One proposal at a time, by email, with a concrete first step. Both sides say yes before anyone is exposed.",
-      "cta": "Start with your free reveal"
+    "collective": {
+      "name": "Sovereign Founder Collective",
+      "badge": "10% revenue share goes into a decentralized treasury",
+      "line": "An entrepreneurs' artel.",
+      "body": "We build unique businesses together, support each other, and self-organize."
     },
-    "card5": {
+    "forClients": {
+      "name": "Running this sequence for your clients",
+      "badge": "Revenue share: 50% yours, 50% mine",
+      "line": "The same sequence of steps, run by me for your clients.",
+      "body": "If you work with entrepreneurs, I take your clients through the steps above, and we split the revenue."
+    },
+    "license": {
+      "name": "License to run this program yourself",
+      "badge": "Revenue share: 90% yours, 10% to the Sovereign Founder Collective",
+      "line": "The right to run this program with your own clients.",
+      "body": "You run the program yourself. 90% of the revenue stays with you, and 10% goes to the Sovereign Founder Collective."
+    },
+    "profile": {
+      "name": "High-Precision Business Profile",
+      "badge": "Free for now",
+      "line": "A personal business profile, like a LinkedIn page, made in 5–10 minutes.",
+      "body": "You build it semi-automatically and can download it. Use it to personalize AI for yourself, to find better-fitting professional opportunities, and to find co-founders.",
+      "cta": "Create your profile"
+    },
+    "matchmaking": {
+      "name": "High-Precision Matchmaking for Entrepreneurs",
+      "badge": "Free testing for now",
+      "line": "Co-founder matching for unique businesses.",
+      "body": "It reads a person's profile and what they need, and makes an introduction. Profiles are automated and standardized. It is a free module inside the platform.",
+      "cta": "Try matchmaking"
+    },
+    "whiteLabel": {
+      "name": "White-label Professional Onboarding & Profile Creation For Entrepreneurial Communities",
+      "badge": "By arrangement",
+      "line": "For community leaders: every member's talent revealed, a living profile, and matching inside your space.",
+      "body": "Each member of your community gets their talent revealed and a living profile, and the platform matches members with each other inside your space. A ready proposal exists.",
+      "cta": "See an example proposal"
+    },
+    "cannabis": {
+      "name": "Spiritual Practice with Cannabis",
+      "badge": "~$100 per seat",
+      "line": "A group practice for quality of life, inner state, and vitality.",
+      "body": "It supports quality of life, inner state, and vitality, and opens deep mystical experiences. Over 100 groups held, alone or together with my wife."
+    },
+    "aiTraining": {
+      "name": "Deep AI training for individuals and organizations",
+      "badge": "$800 for a 2-hour workshop",
+      "line": "A deep understanding of AI that stays relevant for years.",
+      "body": "A deep understanding of AI that stays relevant for years ahead, and best practices. Held 3 workshops for organizations and 3 for groups, about 1,500 participants in total."
+    },
+    "equilibrium": {
       "name": "Equilibrium",
-      "badge": "Early access",
-      "line": "A timing compass: plan by life's cycles, not just calendars.",
-      "body": "Work has seasons. Equilibrium reads yours and tells you what this week is actually for. Planning that starts from the body and the cycle, then meets the calendar.",
-      "cta": "Ask about early access"
+      "badge": "Free testing for now",
+      "line": "A founder's productivity tool.",
+      "body": "Two things: planning by natural cycles, and a radically simplified task manager.",
+      "cta": "Try Equilibrium"
     },
-    "card6": {
+    "mystery": {
+      "name": "Mystery School for Founders",
+      "badge": "$111–$222",
+      "line": "Most of my products in one combo, for groups.",
+      "body": "Two cohorts held, one month each, with 32 and 13 participants.",
+      "cta": "See the product"
+    },
+    "cockpit": {
       "name": "Founder Cockpit",
-      "badge": "Early access",
-      "line": "A live navigation instrument for founders running a venture.",
-      "body": "One screen that reads your venture and you as one system: strategy, relationships, energy. Ask it what to do next and it answers from the whole picture, including the part every dashboard ignores: the founder.",
-      "cta": "Ask about early access"
+      "badge": "Free testing for now",
+      "line": "A live navigation instrument for a founder running their own venture.",
+      "body": "One screen that reads the venture and the person as one system: strategy, relationships, energy. Ask what to do next and it answers from the whole picture, including what any dashboard ignores: the founder.",
+      "cta": "Open the Cockpit"
     },
+    "rdEyebrow": "Research & development",
+    "rdHeading": "R&D",
+    "rdIntro": "Still in research and development. Shown here so the full picture is visible.",
     "card7": {
       "name": "Venture Studio",
       "badge": "By invitation",
@@ -7207,13 +7275,6 @@
       "line": "For practitioners: your clients, seeing their own evolution.",
       "body": "Your own corner of the platform, in your colors. Your clients take a Quality of Life snapshot, practice with your library inside, and watch their own lines move.",
       "cta": "See the portal"
-    },
-    "card9": {
-      "name": "The Crossing",
-      "badge": "$2,222 · 2 months",
-      "line": "A 2-month program for the transition you are in.",
-      "body": "Your old chapter has ended and the next one has not been named yet. The Crossing accelerates and structures the transition itself, so it takes months instead of years, and you walk it intentionally and consciously instead of drifting through it. Eight weekly sessions, a 2-hour Productize Yourself workshop in the middle, and your uniqueness named exactly by the end.",
-      "cta": "See the program"
     },
     "card10": {
       "name": "The Founder Read",
