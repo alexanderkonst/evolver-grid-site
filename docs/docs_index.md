@@ -247,6 +247,7 @@ Everything about AI itself (AI OS, benchmark, the Hark leap, self-awareness map,
 | [software_architecture.md](./06-architecture/software_architecture.md) | Software patterns |
 | [integration_layer_manifesto.md](./06-architecture/integration_layer_manifesto.md) | Integration layer |
 | [matchmaking_architecture.md](./06-architecture/matchmaking_architecture.md) | Matchmaking arch |
+| [mcp.md](./06-architecture/mcp.md) | MCP server: tool list, auth flow for external agents, example session |
 
 ---
 
