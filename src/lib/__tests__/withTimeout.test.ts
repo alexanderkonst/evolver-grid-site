@@ -2,7 +2,9 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { TimeoutError, withTimeout } from "../withTimeout";
 
 describe("withTimeout", () => {
-  afterEach(() => vi.useRealTimers());
+  afterEach(() => {
+    vi.useRealTimers();
+  });
 
   it("resolves when the promise settles in time", async () => {
     await expect(withTimeout(Promise.resolve(7), 100)).resolves.toBe(7);
