@@ -5314,3 +5314,10 @@ Every collective of capable people hits the same three questions, usually late a
 The order that works: they experience the transformation → they recognize in hindsight what happened → then the terms are spoken, and sound like a description of something they already hold rather than a pitch. This is the structural argument for the free webinar sitting where it does in the funnel. Practical rule: **never explain the gift to someone who has not tasted it.** One offer, then silence. The next door for them is the same door everyone walks through, not a private exception.
 
 *Related: the Noble = Free antidote (`alexanders_unique_business.md`) — these terms are that principle at collective scale · `DISTRIBUTOR_AGREEMENT.md` · `monetization_strategies.md`.*
+
+
+---
+
+## The Hexagon Cycle of a Unique Business (October 21, 2026)
+
+A Unique Business does not move in a straight line from articulation to revenue. It turns in cycles of six steps, alternating DO and BE: (1) DO connect with Uniqueness and articulate a new layer; (2) BE clarity lights up the fit; (3) DO pack energy into focus; (4) BE strategy takes shape; (5) DO massive action meets reality (offers, clients, features, campaigns); (6) BE new flows and potential ripen from that contact. The founder and the product each have their own Uniqueness and their own cycle. In practice: name the step before planning the week; act hard on DO steps, don't force BE steps. Full technology: Phase Shift Technology Library, Technology 161.

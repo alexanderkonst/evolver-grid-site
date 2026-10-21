@@ -8682,3 +8682,44 @@ From the merged *Feeling Doesn't Shout* material:
 - *Technology 111: The Network of Sovereigns* and *Technology 120: The Formed Edge*: embedded roles as edges between ecosystems.
 - *Technology 128: The Name Is the Result*: the function is named by the result it delivers, not the container.
 - Playbook section "Function, not form" (evolver-grid-site issue #75).
+
+
+---
+
+## Technology 161: The Hexagon Cycle (два треугольника: BE и DO) (oral, Oct 21, 2026)
+
+### 🫀 Essence — in Sasha's words
+
+Every cycle of work is two interlocking triangles: the merkaba, the hexagon, the octahedron seen from above (also the Evolver logo). One triangle is feminine: nothing needs doing, it unfolds by itself. The other is masculine: it comes through doing, effort, the direction of focused energy. Uniqueness can belong to a person or to a product; each person and each product moves through its own cycles.
+
+Six steps (prism 6):
+1. **DO.** A deepening connection with Uniqueness illuminates, through articulating new layers of expression.
+2. **BE.** A new clarity appears that lights up the **fit**.
+3. **DO.** Energy is packed into **focus**.
+4. **BE.** A **strategy** takes shape.
+5. **DO.** Massive action and execution meet reality: new offers, clients, features, campaigns.
+6. **BE.** From contact with reality and others, flows of new life bubble up (information, money, creations, new structure) and new potential ripens. Then the cycle turns again from a deeper connection with Uniqueness.
+
+Other prisms of the same cycle: **4** (seasons, elements); **8** (7+1, two squares: the eight lunar phases of Equilibrium).
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* Most friction in a cycle comes from mismatched energy: forcing the BE steps (clarity, strategy, results) and coasting on the DO steps. Naming the step a stream is in tells you which energy it wants: focused effort, or space and receptivity. Matching energy to step removes the friction, which is what makes the shift rapid.
+
+### 🔥 Implications — AI draft
+
+- **1st order.** Before any work window: name the step of each stream and each product. DO steps get focused, concrete actions; BE steps are not forced, only prepared for (record, listen, create contact with reality).
+- **2nd order.** A product has its own Uniqueness and its own cycle, so a founder runs several hexagons at once (self, product, venture, network), each at a different step.
+- **3rd order.** Equilibrium's eight phases and the Unique Business journey become two views of one cycle; tools can show the current step per holon.
+
+### Shape
+
+- **Shape:** **Hexagram**: two interlocking triangles, BE (receptive) and DO (directed), six vertices alternating.
+- **Infographic (one line):** A six-pointed star, three points glowing soft (fit, strategy, new potential) and three sharp (Uniqueness, focus, action), an arrow circling; caption: push where it's DO, allow where it's BE.
+
+### Cross-references — Connects to
+
+- *Holonic Cycles* (docs/01-vision/holonic_cycles.md): cycles at every holon.
+- *Technology 160: Function, Not Form*: the Uniqueness at the centre can be a person's or a product's.
+- Equilibrium: the eight lunar phases as prism 8 of the same cycle.
+- Unique Business Playbook, section "The Hexagon Cycle of a Unique Business".
