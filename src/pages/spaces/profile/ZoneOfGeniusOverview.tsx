@@ -38,6 +38,7 @@ import { generateZogPdf } from "@/modules/zone-of-genius/generateZogPdf";
 // overwrite-confirm, and the "Generated in…" language notice — both were
 // previously unreachable on this (the saved-result) surface.
 import { ZOG_RETAKE_PATH } from "@/modules/zone-of-genius/retake";
+import { formatBullseyeLine } from "@/modules/zone-of-genius/bullseye";
 import { LanguageMismatchNotice } from "@/modules/zone-of-genius/LanguageMismatchNotice";
 import type { AppleseedData as FullAppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { hasRealArchetype } from "@/modules/zone-of-genius/snapshotSentinel";
@@ -65,8 +66,6 @@ const stripDecorativeGlyphs = (name: string): string =>
  * Render the bullseye sentence in editorial sentence case, no trailing
  * period — matches the landing register. Day 58 (Sasha 2026-05-02).
  */
-const formatBullseye = (sentence: string): string =>
-    sentence.toLowerCase().replace(/\.\s*$/, "").trim();
 
 /**
  * Share text for the overview hero CardActions. Same shape as
@@ -85,7 +84,7 @@ const buildOverviewShareText = (
     // the two don't run together and read as one confused statement (Sasha
     // 2026-10-09).
     text += `${archetype}\n\n`;
-    if (bullseye) text += `I ${formatBullseye(bullseye)}\n\n`;
+    if (bullseye) text += `${formatBullseyeLine(bullseye)}\n\n`;
     // Day 61 (Sasha 2026-05-04): include the compact three talents in
     // the share text so the saved Top Talent page shares the same
     // shape as the post-assessment reveal. Bullet-separated single
@@ -589,7 +588,7 @@ const ZoneOfGeniusOverview = () => {
                                     color: INK_BODY,
                                 }}
                             >
-                                I {formatBullseye(appleseedData.bullseyeSentence)}
+                                {formatBullseyeLine(appleseedData.bullseyeSentence)}
                             </p>
                         )}
 

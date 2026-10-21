@@ -430,6 +430,10 @@ const ZoneOfGeniusEntry = () => {
                     if (result.success) {
                         setIsSaved(true);
                         console.log("[ZoneOfGeniusEntry] Auto-saved appleseed for auth user");
+                        // Issue #93: same confirmation the Guided path shows.
+                        systemToast.success(t("zogEntry.bannerResultSaved"), {
+                            duration: 5000,
+                        });
                     } else {
                         // Issue #50: friendly line in the toast, raw diagnostic
                         // behind a <details> disclosure; the raw string stays in
@@ -592,9 +596,12 @@ const ZoneOfGeniusEntry = () => {
             // returning the pre-save snapshot from sessionStorage.
             // Day 62 (Sasha 2026-05-05).
             const { data: { session } } = await supabase.auth.getSession();
-            if (!session?.user) {
-                setIsGuest(true);
-            }
+            // Issue #93: set both ways. isGuest defaults to true and is only
+            // refreshed by the mount-time session check / auth listener; if
+            // that hasn't landed, a signed-in user stayed "guest" here and the
+            // auto-save effect (which requires !isGuest) never persisted the
+            // Faster-path result.
+            setIsGuest(!session?.user);
             setStep("appleseed-result");
         } catch (err) {
             const errorMsg = err instanceof Error ? err.message : t('zogEntry.errorGeneric');
