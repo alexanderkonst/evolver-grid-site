@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
+import { parseBirthdate } from "../lib/parseBirthdate";
 
 interface BirthdayPromptProps {
   /** Currently-known BD from equilibrium_state. When null, the prompt renders. */
@@ -59,8 +60,12 @@ export const BirthdayPrompt = ({
 
   if (loading || !userId || birthday) return null;
 
+  const parsed = parseBirthdate(value);
+  const showInvalid = value.trim().length >= 8 && !parsed;
+
   const save = async () => {
-    if (!value || saving) return;
+    if (!parsed || saving) return;
+    const value = parsed;
     setSaving(true);
 
     // 1) ALWAYS write to localStorage first. This unblocks the user
@@ -146,24 +151,43 @@ export const BirthdayPrompt = ({
           never shown.
         </p>
 
+        {/* Onboarding QA (2026-10-21): was <input type="date">, which can't
+            be pasted into and makes typing a full year fiddly. A text
+            field parsed by parseBirthdate accepts typed or pasted dates
+            (1990-03-25, 25.03.1990, 25/03/1990). */}
         <input
-          type="date"
+          type="text"
+          inputMode="numeric"
+          autoComplete="bday"
+          placeholder="YYYY-MM-DD"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          max={new Date().toISOString().split("T")[0]}
-          min="1900-01-01"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && parsed) void save();
+          }}
+          aria-invalid={showInvalid}
+          aria-describedby={showInvalid ? "bd-prompt-hint" : undefined}
           autoFocus
-          className="mb-4 w-full rounded-xl border border-[#0a1628]/15 bg-white/85 px-4 py-3 text-center text-base text-[#0a1628] outline-none focus:border-[#0a1628]/40"
+          className="mb-2 w-full rounded-xl border border-[#0a1628]/15 bg-white/85 px-4 py-3 text-center text-base text-[#0a1628] outline-none focus:border-[#0a1628]/40"
           style={{
             boxShadow:
               "inset 0 2px 4px rgba(10,22,40,0.08), inset 0 -1px 0 rgba(255,255,255,0.8)",
           }}
         />
+        <p
+          id="bd-prompt-hint"
+          className="eq-text-halo mb-2 min-h-[1.25rem] text-xs text-[#0a1628]/80"
+          role={showInvalid ? "alert" : undefined}
+        >
+          {showInvalid
+            ? "Use year-month-day, like 1990-03-25."
+            : "Type or paste your full date."}
+        </p>
 
         <button
           type="button"
           onClick={save}
-          disabled={!value || saving}
+          disabled={!parsed || saving}
           className="liquid-glass-dark mt-2 w-full rounded-full px-6 py-3 font-semibold text-white transition hover:scale-[1.02] active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {saving ? "Saving…" : "Continue"}

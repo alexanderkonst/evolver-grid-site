@@ -741,6 +741,7 @@
     "signInToView": "Sign in to view matches.",
     "youFallback": "You",
     "loadSnag": "We hit a snag loading matches. Try again in a moment.",
+    "timeoutNotice": "No matches yet. We'll notify you when we find one.",
     "couldNotLoadMore": "Could not load more matches.",
     "signInToExpressInterest": "Sign in to express interest in a match.",
     "headsupSent": "Heads-up email sent to {{name}}. We'll introduce you both if they say yes.",

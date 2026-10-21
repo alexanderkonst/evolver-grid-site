@@ -12,6 +12,10 @@ import { supabase } from "@/integrations/supabase/client";
 import MatchCard from "@/components/matchmaking/MatchCard";
 import MatchExplainer, { useMatchExplainerState } from "@/components/matchmaking/MatchExplainer";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
+import { TimeoutError, withTimeout } from "@/lib/withTimeout";
+
+// Ceiling for the matching engine call (LLM pass per candidate).
+const ASSET_MATCHES_TIMEOUT_MS = 45_000;
 
 // ─────────────────────────────────────────────────────────────────────
 // Day 63 night (Sasha 2026-05-07) — Aurora register reskin + Strong
@@ -474,12 +478,20 @@ const Matchmaking = () => {
 
       setAssetMatchesLoading(true);
       try {
-        const { data, error } = await supabase.functions.invoke("suggest-asset-matches", {
-          body: { userId: user.id },
-        });
+        // Onboarding QA (2026-10-21): the engine runs an LLM pass per
+        // candidate and can hang; without a ceiling the "Finding your
+        // matches…" spinner never resolved. On timeout we fall through to
+        // the empty state with a "we'll notify you" message.
+        const { data, error } = await withTimeout(
+          supabase.functions.invoke("suggest-asset-matches", {
+            body: { userId: user.id },
+          }),
+          ASSET_MATCHES_TIMEOUT_MS,
+          "suggest-asset-matches",
+        );
 
         if (error) {
-          console.warn("[AssetMatching] Edge function error:", error.message);
+          console.error("[AssetMatching] Edge function error:", error.message);
           setMatchesMessage(t('matchmaking.loadSnag'));
           return;
         }
@@ -510,7 +522,10 @@ const Matchmaking = () => {
           setAssetMatches(enriched);
         }
       } catch (err) {
-        console.warn("[AssetMatching] Exception:", err);
+        console.error("[AssetMatching] Failed:", err);
+        setMatchesMessage(
+          err instanceof TimeoutError ? t('matchmaking.timeoutNotice') : t('matchmaking.loadSnag'),
+        );
       } finally {
         setAssetMatchesLoading(false);
       }

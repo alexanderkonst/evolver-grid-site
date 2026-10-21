@@ -5,6 +5,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useLocation } from "react-router-dom";
 import { Check, ChevronRight, ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { filterAdminOnlyRows } from "./adminOnlyRows";
 import { supabase } from "@/integrations/supabase/client";
 import { PLAYBOOK_STEPS } from "@/data/playbookSteps";
 import { GROWTH_STEPS } from "@/modules/library/growthSteps";
@@ -1102,8 +1103,18 @@ const SectionsPanel = ({
 
     // Build sections with conditional items based on user
     const getSections = () => {
-        const baseData = SPACE_SECTIONS[activeSpaceId];
-        if (!baseData) return null;
+        const rawBaseData = SPACE_SECTIONS[activeSpaceId];
+        if (!rawBaseData) return null;
+        // Onboarding QA (2026-10-21): hide admin-only BUILD rows from
+        // everyone else instead of letting them hit a silent redirect
+        // (Cockpit dashboard) or a "Forbidden" banner (Commercial OS).
+        const baseData =
+            activeSpaceId === "build"
+                ? {
+                      ...rawBaseData,
+                      sections: filterAdminOnlyRows(rawBaseData.sections, userEmail),
+                  }
+                : rawBaseData;
 
         // JOURNEY → fixed trio (Start Here · The Playbook · The Path).
         // Day 48 (Sasha): same list for guests and authed users. No
