@@ -499,10 +499,14 @@ const App = () => (
                   <Route path="/home2" element={<HomeLandingPage />} />
                   <Route path="/hero" element={<HeroQuiz />} />
                   <Route path="/build/cockpit" element={<CockpitLanding />} />
-                  <Route path="/build/cockpit/dashboard" element={<RequireAdmin><CockpitDashboard /></RequireAdmin>} />
+                  {/* Cockpit dashboard: any signed-in user. Founder-only data (the owner's
+                      CRM/pulse snapshots, offers, AI lenses) is gated inside the page;
+                      the offers board below stays admin-only. */}
+                  <Route path="/build/cockpit/dashboard" element={<RequireAuth><CockpitDashboard /></RequireAuth>} />
                   <Route path="/build/cockpit/offers" element={<RequireAdmin><CockpitOffersBoard /></RequireAdmin>} />
                   <Route path="/cockpit" element={<Navigate to="/build/cockpit" replace />} />
                   <Route path="/cockpit/dashboard" element={<Navigate to="/build/cockpit/dashboard" replace />} />
+                  <Route path="/game/cockpit" element={<Navigate to="/build/cockpit/dashboard" replace />} />
                   <Route path="/proposalforwegoodovahere" element={<ProposalForWeGoodOvaHere />} />
                   <Route path="/zone-of-genius" element={<ZoneOfGeniusEntry />} />
                   <Route path="/auth" element={<Auth />} />
