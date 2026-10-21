@@ -7926,6 +7926,8 @@
       "utility": {
         "shareLabel": "Share",
         "shareCopied": "Link copied.",
+        "copyLinkLabel": "Copy link to your read",
+        "copyLinkCopied": "Link copied.",
         "retakeLabel": "Retake",
         "retakeExplainer": "Retaking creates a new result. It does not overwrite this one."
       },
@@ -7979,7 +7981,7 @@
     "emailGate": {
       "eyebrow": "The read is ready",
       "title": "One step to open it",
-      "body": "Enter your email and your full read opens here. I'll also save you a link so you can come back to it.",
+      "body": "Enter your email and your full read opens here. You can copy a link back to it from the results page.",
       "placeholder": "you@email.com",
       "cta": "Open my read",
       "privacy": "No spam. Unsubscribe anytime."

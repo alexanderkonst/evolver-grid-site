@@ -20,7 +20,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { trackCTAClick, trackPageView } from "@/lib/funnelAnalytics";
 import { type CoreAnswers, type ResultVersion, synthesisFamilyFor } from "./engine";
-import { DIRECTION_CALL_HREF, StageArc, TopTalentSecondary } from "./TransitionQuizPage";
+import { directionCallHref, StageArc, TopTalentSecondary } from "./TransitionQuizPage";
 import { SaveMyRead } from "./SaveMyRead";
 
 
@@ -53,6 +53,8 @@ export interface ExtResultScreenProps {
    *  the quiet footer SaveMyRead is then redundant and hidden. Permalink
    *  viewers arrive with this false and still see the capture. */
   emailCaptured?: boolean;
+  /** The gate-captured address, used to prefill the Direction Call booking. */
+  email?: string | null;
 }
 
 export function ExtResultScreen({
@@ -65,6 +67,7 @@ export function ExtResultScreen({
   savedOnDate = null,
   bookingContext = "live",
   emailCaptured = false,
+  email = null,
 }: ExtResultScreenProps) {
   const { i18n } = useTranslation();
   void i18n;
@@ -76,6 +79,7 @@ export function ExtResultScreen({
   const questionStage = Math.min(7, Math.max(4, answers.stage));
 
   const [shareCopied, setShareCopied] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
   const offerRef = useRef<HTMLDivElement | null>(null);
 
   // ── Analytics: fire-and-forget mount event ─────────────────────────────
@@ -111,19 +115,28 @@ export function ExtResultScreen({
   const openBooking = () => {
     handleBooking();
     if (typeof window !== "undefined") {
-      window.open(DIRECTION_CALL_HREF, "_blank", "noopener,noreferrer");
+      window.open(directionCallHref({ email }), "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const copyReadLink = (onCopied: () => void) => {
+    if (typeof window === "undefined") return;
+    const url = resultId ? `${window.location.origin}/quiz/r/${resultId}` : window.location.href;
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(url).then(onCopied).catch(() => {});
+    } else {
+      onCopied();
     }
   };
 
   const handleShare = () => {
     trackCTAClick("quiz_share", "ext_utility_share");
-    if (typeof window === "undefined") return;
-    const url = resultId ? `${window.location.origin}/quiz/r/${resultId}` : window.location.href;
-    if (navigator.clipboard?.writeText) {
-      navigator.clipboard.writeText(url).then(() => setShareCopied(true)).catch(() => {});
-    } else {
-      setShareCopied(true);
-    }
+    copyReadLink(() => setShareCopied(true));
+  };
+
+  const handleCopyLink = () => {
+    trackCTAClick("quiz_copy_link", "ext_utility_copy_link");
+    copyReadLink(() => setLinkCopied(true));
   };
 
   const handleRetake = () => {
@@ -212,6 +225,9 @@ export function ExtResultScreen({
         <div className="tq-ext-utility">
           <button type="button" className="tq-link-quiet" onClick={handleShare}>
             {shareCopied ? str(t, "quiz.ext.utility.shareCopied") : str(t, "quiz.ext.utility.shareLabel")}
+          </button>
+          <button type="button" className="tq-link-quiet" onClick={handleCopyLink}>
+            {linkCopied ? str(t, "quiz.ext.utility.copyLinkCopied") : str(t, "quiz.ext.utility.copyLinkLabel")}
           </button>
           <button type="button" className="tq-retake" onClick={handleRetake}>
             {str(t, "quiz.ext.utility.retakeLabel")}

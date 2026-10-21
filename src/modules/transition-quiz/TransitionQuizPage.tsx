@@ -106,6 +106,16 @@ const SCREEN_TO_ANALYTICS_STEP: Partial<Record<Screen, import("@/lib/funnelAnaly
 const STORAGE_KEY = "evolver_transition_quiz_v2";
 export const DIRECTION_CALL_HREF = "https://cal.com/aleksandrkonstantinov/direction-choice-call";
 
+/** Direction Choice Call link with Cal.com's `?name=&email=` prefill for
+ *  whatever we already know about the visitor (the email gate captures the
+ *  address; the quiz never asks for a name). */
+export function directionCallHref({ name, email }: { name?: string | null; email?: string | null } = {}): string {
+  const url = new URL(DIRECTION_CALL_HREF);
+  if (name?.trim()) url.searchParams.set("name", name.trim());
+  if (email?.trim()) url.searchParams.set("email", email.trim());
+  return url.toString();
+}
+
 const UNIQUENESS_VALUES: UniquenessCategory[] = [
   "discovery",
   "recognition",
@@ -610,6 +620,7 @@ const TransitionQuizPage = () => {
                 resultId={resultId}
                 onRetake={reset}
                 emailCaptured={Boolean(capturedEmail)}
+                email={capturedEmail}
               />
             ) : (
               <ResultScreen

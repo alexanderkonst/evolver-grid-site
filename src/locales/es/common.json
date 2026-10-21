@@ -7919,6 +7919,8 @@
       "utility": {
         "shareLabel": "Compartir",
         "shareCopied": "Enlace copiado.",
+        "copyLinkLabel": "Copiar el enlace de tu lectura",
+        "copyLinkCopied": "Enlace copiado.",
         "retakeLabel": "Repetir",
         "retakeExplainer": "Repetir el test crea un resultado nuevo. No sobrescribe este."
       },
@@ -7972,7 +7974,7 @@
     "emailGate": {
       "eyebrow": "Tu lectura está lista",
       "title": "Un paso para abrirla",
-      "body": "Escribe tu correo y tu lectura completa se abrirá aquí. También te guardo un enlace para que puedas volver a ella después.",
+      "body": "Escribe tu correo y tu lectura completa se abrirá aquí. Desde la página de resultados podrás copiar un enlace para volver a ella.",
       "placeholder": "tu@email.com",
       "cta": "Abrir mi lectura",
       "privacy": "Sin spam. Puedes darte de baja cuando quieras."

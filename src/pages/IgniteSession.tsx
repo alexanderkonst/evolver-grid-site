@@ -700,18 +700,18 @@ const IgniteSession = () => {
   return (
     <>
       <SEO
-        title="Professional Direction Session — Free 45 min | Find Your Top Talent"
-        description="A free 45-minute 1:1 with Aleksandr. Name your top talent in one exact sentence, see the direction it points to, and leave with a clear next step."
+        title="Next-Chapter Positioning Session — $555 | Find Your Top Talent"
+        description="A 2-hour 1:1 working session with Aleksandr for $555. Name your top talent in one exact sentence, see the direction it points to, and leave with a clear next step."
         path="/ignite"
-        ogTitle="Find your professional direction in 45 minutes."
+        ogTitle="Find your professional direction in one 2-hour session."
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Professional Direction Session",
+          name: "Next-Chapter Positioning Session",
           provider: { "@type": "Person", name: "Alexander Konstantinov" },
           areaServed: "Worldwide",
-          description: "Free 45-minute 1:1 session to name your top talent and see the professional direction it points to.",
-          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          description: "2-hour 1:1 session to name your top talent and see the professional direction it points to.",
+          offers: { "@type": "Offer", price: "555", priceCurrency: "USD" },
         }}
       />
       <GameShellV2 hideLogo>{content}</GameShellV2>
