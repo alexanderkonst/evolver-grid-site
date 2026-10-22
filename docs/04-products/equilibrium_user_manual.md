@@ -65,11 +65,11 @@ The current zodiac sign and its quality. A flavor layer.
 | Phase | Astronomical | Job |
 |---|---|---|
 | Planning | Last Quarter | The next intention surfaces. Notice it. Name it. |
-| Planting | Waning Crescent | The 1–3 strategies reveal. Write them down. |
+| Planting | Waning Crescent | First glimpses of the 1–3 strategies. Note them, don't lock them. |
 | Clearing | New Moon | Release fear. Cry, don't complain. The how is not yours yet. |
 | Gathering | Waxing Crescent | Say yes to whatever arrives. Take meetings. |
-| Seeing | First Quarter | The how reveals. Write it down before clarity drifts. |
-| Leading | Waxing Gibbous | Prep for harvest. Set up tools, helpers, storage. |
+| Seeing (Clarity) | First Quarter | The strategy crystallizes by the end of the phase. On its last day, lock it. |
+| Prep for Harvest | Waxing Gibbous | First DO NOW: write the Workstreams and Tasks. Then set up tools, helpers, infrastructure. |
 | Harvesting | Full Moon | Reap what's ripe. Ship. Cut. Receive. |
 | Celebrating | Waning Gibbous | Announce. Thank. Feel the gratitude. |
 
@@ -99,6 +99,8 @@ The wisdom: **don't run the whole week as one mode.** Honor each day at least a 
 
 ## ACT — six sections, filled as clarity arrives
 
+> *2026-10-21 (Sasha): strategy now crystallizes through Seeing and is locked at its end; Workstreams + Tasks move to Prep for Harvest (formerly Leading), whose first DO NOW is writing them.*
+
 The order below matches the lunar fill sequence. If a section is empty, leave it. Clarity has not arrived yet.
 
 ### Lifelong Dedication *(rarely changes)*
@@ -117,20 +119,20 @@ One sentence. Synced from ZoG / Top Talent. Your current Top Talent in plain wor
 
 1–3 words. The cycle's intention. (Captured in ATTUNE mode under Lunar Energy — same input.)
 
-### Current Strategy → **Planting phase**
+### Current Strategy → **Planting through Seeing, locked at the end of Seeing**
 
-1–3 strategies that translate the intention into directions. Capture them as they reveal themselves through Planting (and through Seeing, if late).
+1–3 strategies that translate the intention into directions. First glimpses come in Planting; the strategy keeps taking shape through Clearing and Gathering and crystallizes by the end of Seeing (Clarity). On the last day of Seeing the watch reminds you: *lock the strategy you arrived at.*
 
 The info icon reminds: *set when you have clarity*. If a strategy hasn't shown up, don't force it.
 
-### Workstreams + Intuitive Tasks → **Seeing phase onward**
+### Workstreams + Intuitive Tasks → **Prep for Harvest phase**
 
-By First Quarter, the *how* becomes obvious. Write it down before it drifts.
+Once the strategy is locked, the first DO NOW of Prep for Harvest is to write out the Workstreams and Tasks the harvest will need: what to prepare, who to invite, what infrastructure to build, what role each tool plays. Not earlier: before the strategy is clear, workstreams are guesses.
 
 - **Workstreams** — the streams of work the strategies open. Up to 3. Drag to reorder.
 - **Intuitive Tasks** — the concrete moves under each workstream. Up to 3 per stream.
 
-### DO NOW → **Harvesting / any execution day**
+### DO NOW → **from Prep for Harvest through Harvesting**
 
 The chosen action collapses everything above into one move.
 
@@ -150,8 +152,8 @@ The chosen action collapses everything above into one move.
 - **Trap:** running a goal-setting workshop on yourself.
 
 ### 2. Planting · Waning Crescent · 💧
-- **Essence:** in the dark, 1–3 directions show through: how the intention will be lived. This is recognition, not construction.
-- **ACT:** **Current Strategy**, one to three. Write them down as they come. If they haven't come, don't push.
+- **Essence:** in the dark, 1–3 directions start to show through: how the intention will be lived. This is recognition, not construction.
+- **ACT:** note first glimpses of **Current Strategy** as they come. Don't lock them; the strategy keeps ripening until the end of Seeing. If nothing has come, don't push.
 - **Trap:** missing the revelation because "the goal isn't written yet".
 
 ### 3. Clearing · New Moon · 💧
@@ -166,15 +168,15 @@ The chosen action collapses everything above into one move.
 
 **Outer half: manifestation**
 
-### 5. Seeing · First Quarter · 🌍
-- **Essence:** first clarity. Suddenly you can see the concrete moves that will make it happen, but the clarity is fragile and dissolves within hours.
-- **ACT:** **Workstreams** (up to 3) and **Intuitive Tasks** (up to 3 per workstream). Write them down quickly. You can still adjust Moon Focus and the strategies if they came late.
-- **Trap:** putting the writing off until later.
+### 5. Seeing (Clarity) · First Quarter · 🌍
+- **Essence:** clarity. Everything gathered so far clicks into one picture, and the strategy crystallizes, often only in the last hours of the phase, sometimes seen together with others.
+- **ACT:** **Current Strategy**: write the strategy you arrived at, and lock it on the last day of Seeing. Moon Focus can still be adjusted. No workstreams or tasks yet.
+- **Trap:** jumping to workstreams and tasks before the strategy has crystallized, or letting the clarity drift unwritten.
 
-### 6. Leading · Waxing Gibbous · 🌬️
-- **Essence:** the farmer before the harvest. Storehouse, tools, helpers. The tension of readiness, not of doing.
-- **ACT:** put the task list in order, sequence the workstreams, set the focus tasks. Book blocks for Harvesting, set up your systems, ask for help.
-- **Trap:** starting to execute.
+### 6. Prep for Harvest · Waxing Gibbous · 🌬️ *(working name; formerly Leading)*
+- **Essence:** the farmer before the harvest. The crop is coming and the gathering will take real work: storehouse, tools, helpers to hire, everything aimed. The tension of readiness.
+- **ACT:** the **first DO NOW** is to write the **Workstreams** (up to 3) and **Intuitive Tasks** (up to 3 per workstream) the harvest needs. Then work them: prepare the offer, invite the people, build the sales infrastructure, decide what role each tool plays. Book blocks for Harvesting, ask for help.
+- **Trap:** improvising the harvest without preparing for it, or reopening the strategy.
 
 ### 7. Harvesting · Full Moon · 🌬️
 - **Essence:** the peak. Doing and receiving merge: ship, close, gather what has ripened. What isn't ripe stays on the vine.
@@ -186,7 +188,7 @@ The chosen action collapses everything above into one move.
 - **ACT:** look at what got done, give thanks, and clear what's spent. Don't write the new Moon Focus yet.
 - **Trap:** jumping from the harvest straight into planning.
 
-**Elements in pairs:** 🔥 will (Celebrating + Planning) · 💧 emanation (Planting + Clearing) · 🌍 digestion (Gathering + Seeing) · 🌬️ enrichment (Leading + Harvesting).
+**Elements in pairs:** 🔥 will (Celebrating + Planning) · 💧 emanation (Planting + Clearing) · 🌍 digestion (Gathering + Seeing) · 🌬️ enrichment (Prep for Harvest + Harvesting).
 
 ---
 
@@ -197,11 +199,11 @@ Full Moon          ─► Harvesting     · ship what's ripe · use DO NOW
 Waning Gibbous     ─► Celebrating    · announce · thank · feel gratitude
                                        ╲╲ cycle closes here ╲╲
 Last Quarter       ─► PLANNING       · intention surfaces  → Moon Focus
-Waning Crescent    ─► PLANTING       · strategies reveal   → Current Strategy
+Waning Crescent    ─► PLANTING       · first strategy glimpses (not locked)
 New Moon           ─► CLEARING       · release fear; don't engineer the how
 Waxing Crescent    ─► GATHERING      · say yes; resources arrive
-First Quarter      ─► SEEING         · the how reveals     → Workstreams + Tasks
-Waxing Gibbous     ─► LEADING        · prep for harvest    → set up the system
+First Quarter      ─► SEEING         · clarity; strategy crystallizes → lock Current Strategy
+Waxing Gibbous     ─► PREP FOR HARVEST · first DO NOW: Workstreams + Tasks → set up the system
 Full Moon          ─► HARVESTING     · ship · cut · receive  → DO NOW
 Waning Gibbous     ─► CELEBRATING    · close the cycle
 ```
@@ -217,7 +219,7 @@ Waning Gibbous     ─► CELEBRATING    · close the cycle
 5. Flip to ACT.
 6. Look at **DO NOW**. If empty, promote one task from a workstream. If full, do the work and check the box when done.
 
-That's a complete session. The fill-out work happens on Planning / Planting / Seeing days — not every day.
+That's a complete session. The fill-out work happens on Planning, Seeing and Prep for Harvest days, not every day.
 
 ---
 
