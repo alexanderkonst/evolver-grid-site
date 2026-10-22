@@ -56,6 +56,23 @@ const ACTIVATION_COUPON_CODES = new Set([
     "appleseed",
 ]);
 
+// Issue #115 (Sasha 2026-10-22): free live session offered on the calm
+// "AI unavailable" state (shown on 402/429 from generate-zog-snapshot).
+const LIVE_SESSION_URL = "https://lu.ma/qpogt17o";
+
+// supabase-js surfaces non-2xx edge responses as FunctionsHttpError with a
+// generic message; the real status lives on `error.context` (a Response).
+// Fall back to message matching for any wrapper that flattens it.
+const getErrorStatus = (error: unknown): number | undefined =>
+  (error as { context?: { status?: number } } | null)?.context?.status;
+
+const isCapacityError = (error: unknown): boolean => {
+  const status = getErrorStatus(error);
+  if (status === 402 || status === 429) return true;
+  const message = (error as { message?: string } | null)?.message ?? "";
+  return /\b(402|429)\b|Payment|Rate limit/i.test(message);
+};
+
 const Step4GenerateSnapshot = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -73,6 +90,9 @@ const Step4GenerateSnapshot = () => {
   } = useZoneOfGenius();
 
   const [isGenerating, setIsGenerating] = useState(false);
+  // Issue #115: true when generation was refused for capacity reasons
+  // (402/429). Renders a calm in-page state instead of a billing toast.
+  const [aiUnavailable, setAiUnavailable] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [profileId, setProfileId] = useState<string | null>(null);
   const [isLoadingProfile, setIsLoadingProfile] = useState(true);
@@ -268,10 +288,10 @@ const Step4GenerateSnapshot = () => {
       return;
     }
 
-    if (!snapshotMarkdown && !isLoadingProfile && profileId) {
+    if (!snapshotMarkdown && !isLoadingProfile && profileId && !aiUnavailable) {
       handleGenerate();
     }
-  }, [orderedTalentIds, snapshotMarkdown, navigate, isLoadingProfile, profileId, basePath]);
+  }, [orderedTalentIds, snapshotMarkdown, navigate, isLoadingProfile, profileId, basePath, aiUnavailable]);
 
   const top10Talents = TALENTS.filter(t => selectedTop10TalentIds.includes(t.id));
   const top3Talents = orderedTalentIds.map(id => TALENTS.find(t => t.id === id)!).filter(Boolean);
@@ -293,10 +313,10 @@ const Step4GenerateSnapshot = () => {
       });
 
       if (error) {
-        if (error.message?.includes("429") || error.message?.includes("Rate limit")) {
-          toast.error("Rate limits exceeded, please try again later.");
-        } else if (error.message?.includes("402") || error.message?.includes("Payment")) {
-          toast.error("Payment required. Please add funds to your workspace.");
+        if (isCapacityError(error)) {
+          // Issue #115: never surface workspace/billing wording to visitors.
+          setAiUnavailable(true);
+          void logAiUnavailable(error);
         } else {
           throw error;
         }
@@ -325,6 +345,30 @@ const Step4GenerateSnapshot = () => {
       }
     } finally {
       setIsGenerating(false);
+    }
+  };
+
+  // Issue #115: count affected users via the existing action-event log (no new
+  // tables). The talent selections ride along in metadata so the user's answers
+  // are persisted server-side even though the in-memory flow state is not.
+  const logAiUnavailable = async (error: unknown) => {
+    if (!profileId) return;
+    try {
+      await logActionEvent({
+        actionId: "zog-snapshot-ai-unavailable",
+        profileId,
+        source: "src/modules/zone-of-genius/Step4GenerateSnapshot.tsx",
+        loop: "profile",
+        selectedAt: new Date().toISOString(),
+        metadata: {
+          intent: "zog_snapshot_ai_unavailable",
+          http_status: getErrorStatus(error) ?? null,
+          top_three_talents: top3Talents.map((t) => t.name),
+          top_ten_talents: top10Talents.map((t) => t.name),
+        },
+      });
+    } catch (telemetryErr) {
+      console.warn("[Step4] logActionEvent failed (non-fatal):", telemetryErr);
     }
   };
 
@@ -767,6 +811,72 @@ ${snapshotText}`;
         {isGenerating ? (
           <div className="flex flex-col items-center justify-center py-16 space-y-4">
             <PremiumLoader size="lg" text="Discovering your Top Talent..." />
+          </div>
+        ) : aiUnavailable ? (
+          <div className="max-w-lg mx-auto">
+            <div
+              className="liquid-glass-strong rounded-3xl p-6 sm:p-8 text-center space-y-5"
+              style={{ border: "1px solid rgba(212, 175, 55, 0.32)" }}
+              role="status"
+            >
+              <h2
+                className="leading-[1.15] tracking-[-0.005em]"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "clamp(1.5rem, 4vw, 1.95rem)",
+                  fontWeight: 600,
+                  color: "var(--skin-text-primary, #0a1628)",
+                }}
+              >
+                Your answers are saved.
+              </h2>
+              <p
+                className="text-base sm:text-lg leading-relaxed"
+                style={{
+                  fontFamily: "'Source Serif 4', serif",
+                  fontWeight: 500,
+                  color: "var(--skin-text-muted, rgba(11,42,90,0.78))",
+                }}
+              >
+                Our genius engine is catching its breath right now. Your snapshot will be ready here when you come back.
+              </p>
+              <a
+                href={LIVE_SESSION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackCTAClick("live_session_click", "step4_ai_unavailable")}
+                className="group liquid-glass-dark cta-breath relative w-full rounded-full inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                  backgroundImage:
+                    "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+                  boxShadow:
+                    "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                  textShadow:
+                    "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
+                }}
+              >
+                <span style={CTA_SMALL_CAPS_STYLE}>Join the free live session</span>
+                <ArrowRight
+                  aria-hidden="true"
+                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
+                />
+              </a>
+              <a
+                href="/"
+                className="inline-block text-sm underline underline-offset-4 transition-opacity duration-200 hover:opacity-100"
+                style={{
+                  fontFamily: "'Source Serif 4', serif",
+                  fontWeight: 500,
+                  color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
+                  textDecorationColor: "rgba(11,42,90,0.35)",
+                  opacity: 0.95,
+                }}
+              >
+                Back to home
+              </a>
+            </div>
           </div>
         ) : parsedSnapshot ? (
           isGuest && !guestRevealUnlocked ? (
