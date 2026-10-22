@@ -1842,6 +1842,20 @@ have no more grinding uncertainty, scattered energy, or identity paradox.
 
 ### 1. Myth
 
+#### ⭐ v5.0 · October 21, 2026 — Light Your Fire
+
+*Locked by Sasha, October 21, 2026 («так и оставим»). Forged live with Hark: Danko turn (each of us is the Danko of our own truth; the world changes not when one hero burns for everyone, but when each builds from their own fire), read against Step 0 of the Unique Business Creation Playbook and Myth v4.0. Ceiling Law v4.0 stays as the law underneath; v5.0 is the photon on top. Abundance framing, never scarcity.*
+
+> **Light your fire. Let it guide you. Gather your people.**
+
+Three beats, one act: name your inner fire (self-knowledge), live and build from it (the venture), and your people gather at its light (tribe: complements, not sameness).
+
+- **RU:** «Зажги свой огонь. Дай ему вести тебя. Собери своих.»
+- **For a teenager:** «Внутри тебя уже есть то, что тебя ведёт. Назови это, строй из этого свою жизнь и найди тех, рядом с кем твой огонь горит ярче.»
+- **Fusion form:** «Зажги то, что у тебя внутри, и по этому свету тебя найдут свои.»
+
+---
+
 #### ⭐ v4.0 · July 17, 2026 (Day 127) — The Ceiling Law
 
 *Derived from the axiom landed Day 127 ("Your career is capped by how well you know yourself" / «Твоя карьера ограничена степенью понимания себя»). Sasha's verdict on the stanza: approved verbatim. v2.1 and v3.0 preserved below as genealogy; the three-layer structure updates: Attack (unchanged) · Law (the axiom, stated flat, replaces the hypothetical reframe) · Invitation ("Raise the ceiling. Name it, choose the direction, build from it.").*
