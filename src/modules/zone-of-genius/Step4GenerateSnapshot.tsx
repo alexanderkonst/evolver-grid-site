@@ -56,6 +56,26 @@ const ACTIVATION_COUPON_CODES = new Set([
     "appleseed",
 ]);
 
+// Issue #115 (Hark 2026-10-21): free live session offered when the AI
+// generator is unavailable (402 / 429).
+const LIVE_SESSION_URL = "https://lu.ma/qpogt17o";
+
+// supabase.functions.invoke surfaces non-2xx as a FunctionsHttpError whose
+// message is generic ("Edge Function returned a non-2xx status code"); the
+// real HTTP status lives on error.context.status. Check both.
+const isGeneratorUnavailable = (error: unknown): { unavailable: boolean; status?: number } => {
+  const status =
+    typeof error === "object" && error && "context" in error
+      ? (error as { context?: { status?: number } }).context?.status
+      : undefined;
+  const message = error instanceof Error ? error.message : "";
+  const unavailable =
+    status === 402 ||
+    status === 429 ||
+    /\b(402|429)\b|Payment|Rate limit/i.test(message);
+  return { unavailable, status };
+};
+
 const Step4GenerateSnapshot = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -73,6 +93,9 @@ const Step4GenerateSnapshot = () => {
   } = useZoneOfGenius();
 
   const [isGenerating, setIsGenerating] = useState(false);
+  // Issue #115: generator returned 402/429 — show a calm in-page state
+  // instead of leaking billing wording in a toast.
+  const [generationDeferred, setGenerationDeferred] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
   const [profileId, setProfileId] = useState<string | null>(null);
   const [isLoadingProfile, setIsLoadingProfile] = useState(true);
@@ -268,10 +291,10 @@ const Step4GenerateSnapshot = () => {
       return;
     }
 
-    if (!snapshotMarkdown && !isLoadingProfile && profileId) {
+    if (!snapshotMarkdown && !isLoadingProfile && profileId && !generationDeferred) {
       handleGenerate();
     }
-  }, [orderedTalentIds, snapshotMarkdown, navigate, isLoadingProfile, profileId, basePath]);
+  }, [orderedTalentIds, snapshotMarkdown, navigate, isLoadingProfile, profileId, basePath, generationDeferred]);
 
   const top10Talents = TALENTS.filter(t => selectedTop10TalentIds.includes(t.id));
   const top3Talents = orderedTalentIds.map(id => TALENTS.find(t => t.id === id)!).filter(Boolean);
@@ -293,13 +316,26 @@ const Step4GenerateSnapshot = () => {
       });
 
       if (error) {
-        if (error.message?.includes("429") || error.message?.includes("Rate limit")) {
-          toast.error("Rate limits exceeded, please try again later.");
-        } else if (error.message?.includes("402") || error.message?.includes("Payment")) {
-          toast.error("Payment required. Please add funds to your workspace.");
-        } else {
-          throw error;
-        }
+        const { unavailable, status } = isGeneratorUnavailable(error);
+        if (!unavailable) throw error;
+        setGenerationDeferred(true);
+        // Best-effort telemetry (never throws). The metadata carries the
+        // user's picks so the snapshot can be finished by hand — the picks
+        // otherwise live only in React state.
+        void logActionEvent({
+          actionId: `zog-snapshot-deferred:${profileId}`,
+          profileId: profileId!,
+          source: "src/modules/zone-of-genius/Step4GenerateSnapshot.tsx",
+          loop: "profile",
+          selectedAt: new Date().toISOString(),
+          metadata: {
+            intent: "zog_snapshot_deferred",
+            http_status: status ?? null,
+            top_three_talents: top3Talents.map((t) => t.name),
+            top_ten_talents: top10Talents.map((t) => t.name),
+            output_language: i18n.resolvedLanguage,
+          },
+        });
         return;
       }
 
@@ -767,6 +803,72 @@ ${snapshotText}`;
         {isGenerating ? (
           <div className="flex flex-col items-center justify-center py-16 space-y-4">
             <PremiumLoader size="lg" text="Discovering your Top Talent..." />
+          </div>
+        ) : generationDeferred ? (
+          <div className="max-w-lg mx-auto">
+            <div
+              role="status"
+              className="liquid-glass-strong rounded-3xl p-6 sm:p-8 text-center space-y-5"
+              style={{ border: "1px solid rgba(212, 175, 55, 0.32)" }}
+            >
+              <h2
+                className="leading-[1.15] tracking-[-0.005em]"
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "clamp(1.5rem, 4vw, 1.95rem)",
+                  fontWeight: 600,
+                  color: "var(--skin-text-primary, #0a1628)",
+                }}
+              >
+                Your answers are saved.
+              </h2>
+              <p
+                className="italic text-base sm:text-lg leading-snug"
+                style={{
+                  fontFamily: "'Source Serif 4', serif",
+                  fontWeight: 500,
+                  color: "var(--skin-text-muted, rgba(11,42,90,0.78))",
+                }}
+              >
+                Our genius engine is catching its breath. We'll finish your snapshot and email it to you shortly.
+              </p>
+              <div className="space-y-3 pt-2">
+                <a
+                  href={LIVE_SESSION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group liquid-glass-dark cta-breath relative w-full rounded-full inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+                    backgroundImage:
+                      "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
+                    boxShadow:
+                      "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                    textShadow:
+                      "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
+                  }}
+                >
+                  <span style={CTA_SMALL_CAPS_STYLE}>Join the free live session</span>
+                  <ArrowRight
+                    aria-hidden="true"
+                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 flex-shrink-0"
+                  />
+                </a>
+                <button
+                  type="button"
+                  onClick={() => navigate("/")}
+                  className="w-full rounded-full liquid-glass px-5 py-3 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    color: "var(--skin-text-primary, #0a1628)",
+                    border: "1.5px solid rgba(11,42,90,0.32)",
+                  }}
+                >
+                  <span style={CTA_SMALL_CAPS_STYLE}>Back to home</span>
+                </button>
+              </div>
+            </div>
           </div>
         ) : parsedSnapshot ? (
           isGuest && !guestRevealUnlocked ? (
