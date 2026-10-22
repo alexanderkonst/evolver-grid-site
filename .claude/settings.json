@@ -115,14 +115,7 @@
       "Edit(tailwind.config.*)",
       "Edit(postcss.config.*)",
       "Edit(eslint.config.*)",
-      "Edit(vercel.json)",
-      "Write(src/**)",
-      "Write(supabase/**)",
-      "Write(docs/**)",
-      "Write(public/**)",
-      "Write(.agent/**)",
-      "Write(.claude/**)",
-      "Write(scripts/**)"
+      "Edit(vercel.json)"
     ],
     "deny": [
       "Bash(rm -rf:*)",
@@ -137,8 +130,6 @@
       "Bash(npm uninstall:*)",
       "Edit(.env)",
       "Edit(.env.*)",
-      "Write(.env)",
-      "Write(.env.*)",
       "Read(.env)",
       "Read(.env.*)"
     ]
