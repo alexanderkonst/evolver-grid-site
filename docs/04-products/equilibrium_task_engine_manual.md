@@ -42,10 +42,11 @@ Equilibrium doesn't ask you to plan the how. It asks you to *notice* it.
 
 The lunar sequence enforces this:
 
-- **Planting** gives you strategies: *what direction.*
+- **Planting** gives first glimpses of strategy: *what direction.*
 - **Clearing** tells you to release fear and *not* engineer the how. It isn't yours yet.
 - **Gathering** brings people, resources, meetings.
-- **Seeing** (First Quarter): the how reveals itself. *Now* you write Workstreams and Tasks, fast, before clarity drifts.
+- **Seeing** (Clarity, First Quarter): the strategy crystallizes. Lock it on the last day.
+- **Prep for Harvest** (Waxing Gibbous, formerly Leading): the first DO NOW is writing Workstreams and Tasks for the harvest. *Now* the how is visible.
 
 Planned tasks come from the mind under pressure. Intuitive tasks come from a mind that waited until the terrain was visible. The first kind produces long lists you resent. The second produces short lists you actually want to do.
 
@@ -81,7 +82,7 @@ The **DO NOW** button on a task is a *command* ("start this"). The section is ca
 
 Equilibrium has no "high / medium / low." Priority isn't a label on a task; it's the act of promoting one task to DO NOW.
 
-Timing doesn't live in the task either. It lives in the cycles: the lunar phase says *what kind* of work is native now (Seeing writes, Leading sets up, Harvesting ships), the weekday says *what mode* (Tuesday acts, Wednesday communicates, Saturday closes out). A task that fights its day can wait for the day it belongs to.
+Timing doesn't live in the task either. It lives in the cycles: the lunar phase says *what kind* of work is native now (Seeing locks the strategy, Prep for Harvest writes the workstreams and sets up, Harvesting ships), the weekday says *what mode* (Tuesday acts, Wednesday communicates, Saturday closes out). A task that fights its day can wait for the day it belongs to.
 
 ---
 
@@ -112,7 +113,7 @@ Same chain, same limits, same rules for it as for you. If a task the AI proposes
 ## The task engine in five rules
 
 1. **Top before bottom.** Direction before moves.
-2. **Notice, don't engineer.** Write tasks when the how reveals (Seeing), not before.
+2. **Notice, don't engineer.** Write workstreams and tasks once the strategy is locked (Prep for Harvest), not before.
 3. **Seven is the ceiling.** Past seven is guilt, not a list.
 4. **One DO NOW.** Choosing is the work.
 5. **Finish, then feel it.** The done-pile feeds the next cycle.
