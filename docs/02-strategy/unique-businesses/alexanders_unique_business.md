@@ -239,30 +239,45 @@ Invites sent by channel · registration rate · show rate · Mastermind conversi
 2. Do no-shows get the full recording or a short summary?
 3. The community host's name and spelling ("William Blake").
 
-### 11. Sales forecast v1 — pipeline + engine, Nov 2026 – Feb 2027 (October 23, 2026)
-A living model in Sasha's private Google Sheet "Sales Forecast Nov 2026 – Feb 2027" (names stay there, not here). Tabs: Pipeline (each open CRM deal × stage probability), Webinar funnel, Forecast (low / base / high), Curve vs actual, Assumptions (every formula reads from it).
+### 11. Sales forecast v2 — pipeline + engine, Nov 2026 – Feb 2027 (October 23, 2026)
+A living model in Sasha's private Google Sheet "Sales Forecast Nov 2026 – Feb 2027" (names stay there, not here). Tabs: Pipeline (each open CRM deal × stage probability), Webinar funnel (the engine), Forecast (low / base / high), Curve vs actual, Assumptions (every formula reads from it).
 
 **Principle (Sasha, Oct 23):** a forecast runs on planned assumptions only. What has already happened (registrations to date, cash received) is ledger, not forecast input; actuals go into the Actual column and are compared with the forecast.
 
-**Expected cash by month, v1**
+**Expected cash by month, v2**
 | Month | Low | Base | High |
 |---|---|---|---|
-| Nov 2026 | $202 | $549 | $1,380 |
-| Dec 2026 | $330 | $931 | $2,359 |
-| Jan 2027 | $409 | $1,186 | $3,174 |
-| Feb 2027 | $135 | $764 | $3,161 |
-| **Total** | **$1,076** | **$3,429** | **$10,073** |
-Base = $1,958 from 13 open deals (probability-weighted) + $1,471 from the webinar engine.
+| Nov 2026 | $702 | $1,754 | $3,266 |
+| Dec 2026 | $1,172 | $2,921 | $5,430 |
+| Jan 2027 | $385 | $769 | $1,154 |
+| Feb 2027 | $111 | $222 | $333 |
+| **Total** | **$2,370** | **$5,666** | **$10,184** |
+Base = $1,958 from 13 open deals (probability-weighted, unchanged) + $3,708 from the webinar engine. Low / high = pipeline × 0.5 / × 1.5 plus the engine's low ($1,391) / high ($7,247).
 
-**Stage probabilities (defaults):** idea 2% · interest 10% · stalled 5% · fresh offer 20% · verbal yes 40% · committed 80%; each deal's adjustment is reasoned in the sheet.
+**Engine structure (the §9 plan, as modelled)**
+| Step | Low | Base | High |
+|---|---|---|---|
+| Webinar 1, Oct 28: registrations | 5 | 10 | 20 |
+| Webinar 2, Nov 18 (~200 invites): registrations | 37 | 46 | 56 |
+| Show-up, both | 45% | 45% | 45% |
+| Attendee → Mastermind ($222, both runs) | 12.5% | 25% | 36% |
+| Mastermind buyers, Nov 9–10 + Nov 24–25 | 2.4 | 6.3 | 12.3 |
+| Mastermind cash (Nov) | $524 | $1,399 | $2,733 |
+| Alumni → month-long group container, Jan 7 – Feb 5, $1,111 | 33% | 33% | 33% |
+| Container buyers | 0.8 | 2.1 | 4.1 |
+| Container cash (Dec by default; toggle splits Dec/Jan) | $866 | $2,310 | $4,514 |
+| **Engine total** | **$1,391** | **$3,708** | **$7,247** |
+Base conversion 25% is Evolver's midpoint of §9's floor (12.5%) and target (36%), not Sasha's figure. Webinar 2 registrations = 200 invites × 18.5% floor / 28% target, base the midpoint. After Feb 5 the engine pauses: nothing new in Feb.
 
-**Biggest levers on the base:** webinar registrations per run (plan 10, range 5–20; at 20: +$1,471) · the largest open container deal closing (35% → 75%: +$889) · attendee → Mastermind conversion (10% → 15%: +$736).
+**Container minimum (flag, not modelled):** expected buyers reach the group minimum of 4 only in the high case. In low and base the group may not run; those people get $555 Founder-Market Fit sessions instead, which would turn the base container line from ≈$2,310 into ≈$1,154. Founding seats offered at Mastermind 1 (§9, improvement 1) are what lifts this.
 
-**Against the growth curve:** exponential fit of cash received (doubling ~92 days, R² 0.92). On Oct 23 cash received was ~15% below the curve; if the base case lands, Feb ends ~$6k below it. Closing the gap needs the high-case levers, not the base.
+**Biggest levers on the base:** attendee → Mastermind conversion (25% → 36%: +$1,632, the container scales with it) · the largest open container deal closing (35% → 75%: +$889) · registrations for either webinar at the high end (+$662 each).
 
-**Relation to §9 four-month plan:** §9 counts the engine alone (floor ≈$1.8k / target ≈$7.3k); this forecast is probability-weighted and adds the deal pipeline. Show-up (48%) and conversion (10%) are benchmarks until run 1 gives our own rates; later Mastermind price ($333) is a benchmark, not Sasha's decision.
+**Against the growth curve:** exponential fit of cash received (doubling ~92 days, R² 0.92). On Oct 23 cash received was ~15% below the curve. In the base case Nov and Dec run above the curve's monthly target (Mastermind cash, then container cash), Jan and Feb below it as the engine pauses; Feb ends ~$3.8k below the curve ($10.2k cumulative vs $14.0k), against ~$6k in v1. Closing it needs the high-case levers or new revenue in Jan–Feb.
 
-**Open for v2 (Sasha: "the numbers are weird, the structure is right, keep improving"):** recalibrate after Oct 28 with real rates; Sasha marks which numbers look off.
+**Relation to §9 four-month plan:** §9 counts the engine alone at floor (≈$1.8k) and target (≈$7.3k); the engine's low/high here land at $1.4k / $7.2k because they are probability-weighted (fractional buyers, no rounding up). Run 1 gives our own show-up and conversion rates; recalibrate before the run-2 invites go out (Nov 11).
+
+v1 (same day) wrongly modelled one webinar per month without the container; corrected at Sasha's catch.
 
 ---
 
