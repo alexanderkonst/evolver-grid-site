@@ -103,16 +103,18 @@ const Mastermind = () => {
       />
       <GameShellV2 hideLogo>
         <div
-          className="relative min-h-dvh overflow-x-hidden font-sans"
+          // -mt-4 cancels the shell's pane-3 `pt-4` (desktop and mobile <main>)
+          // so the card starts flush at the top of the pane, no beige strip.
+          className="relative min-h-dvh overflow-x-hidden font-sans -mt-4"
           id="mastermind-page"
           style={{
             background:
               "var(--skin-ignite-bg, linear-gradient(180deg, #fdfaf3 0%, #f6efe0 45%, #fdfaf3 100%))",
           }}
         >
-          <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 py-16 space-y-12">
+          <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 pt-8 pb-16 space-y-12">
             {/* HERO */}
-            <header className="text-center space-y-6 pt-4 pb-2">
+            <header className="text-center space-y-6 pb-2">
               <img src={geniusLogo} alt="" className="w-[140px] h-auto mx-auto opacity-80" />
               <p
                 className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.28em] bg-clip-text text-transparent"
