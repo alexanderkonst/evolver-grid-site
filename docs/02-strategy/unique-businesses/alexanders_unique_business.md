@@ -239,6 +239,31 @@ Invites sent by channel · registration rate · show rate · Mastermind conversi
 2. Do no-shows get the full recording or a short summary?
 3. The community host's name and spelling ("William Blake").
 
+### 11. Sales forecast v1 — pipeline + engine, Nov 2026 – Feb 2027 (October 23, 2026)
+A living model in Sasha's private Google Sheet "Sales Forecast Nov 2026 – Feb 2027" (names stay there, not here). Tabs: Pipeline (each open CRM deal × stage probability), Webinar funnel, Forecast (low / base / high), Curve vs actual, Assumptions (every formula reads from it).
+
+**Principle (Sasha, Oct 23):** a forecast runs on planned assumptions only. What has already happened (registrations to date, cash received) is ledger, not forecast input; actuals go into the Actual column and are compared with the forecast.
+
+**Expected cash by month, v1**
+| Month | Low | Base | High |
+|---|---|---|---|
+| Nov 2026 | $202 | $549 | $1,380 |
+| Dec 2026 | $330 | $931 | $2,359 |
+| Jan 2027 | $409 | $1,186 | $3,174 |
+| Feb 2027 | $135 | $764 | $3,161 |
+| **Total** | **$1,076** | **$3,429** | **$10,073** |
+Base = $1,958 from 13 open deals (probability-weighted) + $1,471 from the webinar engine.
+
+**Stage probabilities (defaults):** idea 2% · interest 10% · stalled 5% · fresh offer 20% · verbal yes 40% · committed 80%; each deal's adjustment is reasoned in the sheet.
+
+**Biggest levers on the base:** webinar registrations per run (plan 10, range 5–20; at 20: +$1,471) · the largest open container deal closing (35% → 75%: +$889) · attendee → Mastermind conversion (10% → 15%: +$736).
+
+**Against the growth curve:** exponential fit of cash received (doubling ~92 days, R² 0.92). On Oct 23 cash received was ~15% below the curve; if the base case lands, Feb ends ~$6k below it. Closing the gap needs the high-case levers, not the base.
+
+**Relation to §9 four-month plan:** §9 counts the engine alone (floor ≈$1.8k / target ≈$7.3k); this forecast is probability-weighted and adds the deal pipeline. Show-up (48%) and conversion (10%) are benchmarks until run 1 gives our own rates; later Mastermind price ($333) is a benchmark, not Sasha's decision.
+
+**Open for v2 (Sasha: "the numbers are weird, the structure is right, keep improving"):** recalibrate after Oct 28 with real rates; Sasha marks which numbers look off.
+
 ---
 
 ## ⭐ Funnel v5 — Reading-first (Sasha, October 19, 2026)
