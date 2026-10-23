@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-13T04:39:11.319Z",
+  "generated_at": "2026-10-23T22:44:17.986Z",
   "offers": [
     {
       "dateSent": "2026-05-29",
@@ -286,6 +286,54 @@
       "amountUsd": 2222,
       "status": "waiting",
       "nextFollowupDate": "",
+      "quantity": 1,
+      "notes": ""
+    },
+    {
+      "dateSent": "2026-10-12",
+      "name": "P-DB03 \"Ty\" Williams / The Collective Solution",
+      "segmentOrCampaign": "Guest Founder-Market Fit workshop (club of 103 / Bali)",
+      "channel": "Call + email/Telegram follow-up",
+      "offerType": "partnership",
+      "amountUsd": 0,
+      "status": "waiting",
+      "nextFollowupDate": "2026-10-19",
+      "quantity": 1,
+      "notes": ""
+    },
+    {
+      "dateSent": "2026-10-12",
+      "name": "P-1F3F",
+      "segmentOrCampaign": "Peer / founder-coach (Stream B)",
+      "channel": "LinkedIn",
+      "offerType": "free",
+      "amountUsd": 0,
+      "status": "waiting",
+      "nextFollowupDate": "2026-10-16",
+      "quantity": 1,
+      "notes": ""
+    },
+    {
+      "dateSent": "2026-10-14",
+      "name": "P-FE09 (\"Ben\") / P-CC3B",
+      "segmentOrCampaign": "Ops / supply-chain read for a local bakery (San Pancho)",
+      "channel": "In person (recorded)",
+      "offerType": "free",
+      "amountUsd": 0,
+      "status": "waiting",
+      "nextFollowupDate": "2026-10-19",
+      "quantity": 1,
+      "notes": ""
+    },
+    {
+      "dateSent": "2026-10-16",
+      "name": "P-2C9F Hernández Stockder",
+      "segmentOrCampaign": "LinkedIn cold wave 1 → free exploration call",
+      "channel": "Call (Google Meet)",
+      "offerType": "paid",
+      "amountUsd": 555,
+      "status": "waiting",
+      "nextFollowupDate": "2026-10-23",
       "quantity": 1,
       "notes": ""
     }
