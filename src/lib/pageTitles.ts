@@ -55,7 +55,7 @@ const titleRules: TitleRule[] = [
   { match: (path) => path === "/holomap", title: "Morphogenetic Holo Map" },
   { match: (path) => path === "/founders", title: "The Originals — Founders" },
   { match: (path) => path === "/ignite", title: "Productize Yourself Session" },
-  { match: (path) => path === "/mastermind", title: "Founder-Market Fit Discovery Mastermind" },
+  { match: (path) => path === "/build/mastermind", title: "Founder-Market Fit Discovery Mastermind" },
   { match: (path) => path === "/quiz", title: "Where Are You" },
   { match: (path) => path === "/quiz2", title: "Top Talent Diagnostic" },
 ];

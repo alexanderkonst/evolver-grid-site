@@ -61,7 +61,7 @@ const SHELL_EXACT = new Set<string>([
     "/home",
     "/home2",
     "/ignite",
-    "/mastermind",
+    "/build/mastermind",
     ...PRODUCT_LANDING_ROUTES,
     "/path",
     "/dashboard",

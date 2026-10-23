@@ -608,7 +608,10 @@ const App = () => (
                   {/* Day 47 (Sasha): /ignite is now public — the ZoG result CTA lands
                       here directly. Auth at the pricing step was redundant funnel friction. */}
                   <Route path="/ignite" element={<IgniteSession />} />
-                  <Route path="/mastermind" element={<Mastermind />} />
+                  {/* Oct 23 (Sasha): Mastermind lives in the BUILD space so the rail + pane 2
+                      render. /mastermind stays alive for old email/Luma links. */}
+                  <Route path="/build/mastermind" element={<Mastermind />} />
+                  <Route path="/mastermind" element={<Navigate to="/build/mastermind" replace />} />
                   <Route path="/products" element={<ProductsPage />} />
                   {/* Day 130: Client Evolution Portal (Practitioner Node) landing — public. */}
                   <Route path="/products/evolution-portal" element={<EvolutionPortal />} />
