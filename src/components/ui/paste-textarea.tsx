@@ -27,6 +27,24 @@ export interface PasteTextareaProps
  * autocorrect and writing-assistant extensions are switched off because they
  * rewrite text in place. Read the value through the ref handle on submit.
  */
+/**
+ * The app shell renders each page twice (a desktop pane and a mobile pane, one
+ * hidden by CSS). A page that owns a single `ref` for its paste box therefore
+ * has that ref attached to BOTH boxes, and the last one mounted (the hidden,
+ * empty one) wins. Reading it returned "" and the submit button silently did
+ * nothing. Track every mounted box so the handle can resolve to the visible one.
+ */
+const mountedBoxes = new Set<HTMLTextAreaElement>();
+
+/** The box the person is actually looking at: own box if shown, else a visible sibling. */
+function resolveVisibleBox(own: HTMLTextAreaElement | null): HTMLTextAreaElement | null {
+  if (own && own.offsetParent !== null) return own;
+  for (const box of mountedBoxes) {
+    if (box.offsetParent !== null) return box;
+  }
+  return own;
+}
+
 const PasteTextarea = React.forwardRef<PasteTextareaHandle, PasteTextareaProps>(
   ({ initialValue = "", onHasTextChange, onInput, ...props }, ref) => {
     const textareaRef = React.useRef<HTMLTextAreaElement>(null);
@@ -45,8 +63,10 @@ const PasteTextarea = React.forwardRef<PasteTextareaHandle, PasteTextareaProps>(
     React.useImperativeHandle(
       ref,
       () => ({
-        getValue: () => textareaRef.current?.value ?? "",
+        getValue: () => resolveVisibleBox(textareaRef.current)?.value ?? "",
         clear: () => {
+          const box = resolveVisibleBox(textareaRef.current);
+          if (box) box.value = "";
           if (textareaRef.current) textareaRef.current.value = "";
           syncHasText();
         },
@@ -57,8 +77,15 @@ const PasteTextarea = React.forwardRef<PasteTextareaHandle, PasteTextareaProps>(
     // Set the text explicitly on mount so nothing the browser restored into
     // the field (form-state restore after a reload) survives.
     React.useEffect(() => {
-      if (textareaRef.current) textareaRef.current.value = initialValue;
+      const box = textareaRef.current;
+      if (box) {
+        box.value = initialValue;
+        mountedBoxes.add(box);
+      }
       syncHasText();
+      return () => {
+        if (box) mountedBoxes.delete(box);
+      };
       // Mount-only: later changes to initialValue must not overwrite what the user typed.
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
