@@ -79,6 +79,7 @@ import { pathUsesLayoutShell, pathHidesLogo } from "./lib/shellRoutes";
 import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
 import IgniteSession from "./pages/IgniteSession";
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
+const Mastermind = lazy(() => import("./pages/Mastermind"));
 const EvolutionPortal = lazy(() => import("./pages/EvolutionPortal"));
 const EvolutionPortalKarime = lazy(() => import("./pages/EvolutionPortalKarime"));
 const BuildContainer = lazy(() => import("./pages/BuildContainer"));
@@ -607,6 +608,7 @@ const App = () => (
                   {/* Day 47 (Sasha): /ignite is now public — the ZoG result CTA lands
                       here directly. Auth at the pricing step was redundant funnel friction. */}
                   <Route path="/ignite" element={<IgniteSession />} />
+                  <Route path="/mastermind" element={<Mastermind />} />
                   <Route path="/products" element={<ProductsPage />} />
                   {/* Day 130: Client Evolution Portal (Practitioner Node) landing — public. */}
                   <Route path="/products/evolution-portal" element={<EvolutionPortal />} />
