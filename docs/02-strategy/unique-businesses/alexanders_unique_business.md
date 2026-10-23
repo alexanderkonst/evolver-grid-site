@@ -114,7 +114,60 @@ Who has joined the Mastermind drops out of A2–A3 immediately.
 - **Payment:** Stripe (Sasha). **Landing:** findyourtoptalent.com/mastermind. **Session:** Zoom. **Infographics:** our established infographic style, click-through deck or PDF.
 - **Binding rule:** each step's output is the next step's input: invite → Luma registration → CRM row → sequence branch → Mastermind page → Stripe → Mastermind roster → next-rung offer.
 
-### 8. Unit economics — hypothesis for the first cycle (to calibrate after Oct 28)
+### 8. Unit economics v2 — the first run, Sasha's numbers + market benchmarks (October 22, 2026)
+
+*Sasha's model from chat, Oct 22, 2026 (18:28 CDMX), checked against published benchmarks and our own funnel data. Supersedes the v1 hypothesis table, kept below as genealogy.*
+
+**The invite pool for run 1 (Oct 28): ~85 people, then stop inviting**
+| Pool | People |
+|---|---|
+| New LinkedIn connections Sasha added recently | ~30 |
+| Existing LinkedIn contacts who fit the ICP | ~15–20 |
+| Warm contacts (Evolver's shortlist) | ~20 |
+| Sasha's intuitive list | ~20 |
+| **Total** | **~85** |
+
+**Market benchmarks (published 2024–2026)**
+- Personal LinkedIn message → reply, per person: median **18.5%** (our integrated research, Oct 16). Used here as the proxy for invite → registration.
+- Registration → live attendance: **41.6%** median (Contrast, 12,400 B2B webinars), **47.7%** (Livestorm 2025), 40–48% across platforms. We use **45%**.
+- Market invite → attend therefore ≈ 18.5% × 45% ≈ **8.3%**. Sasha's pocket figure of 10% sits right on it.
+- Attendee → paid offer: 2–10% for most offers, **5–20% for high-ticket coaching**; midpoint ≈ **12.5%**.
+- Replays: 10–20% of registrants who missed live watch the replay, and nurtured replay viewers buy at 60–70% of the live rate.
+
+**Our precision boost (where we have real data)**
+| Step | Ours | Market | Boost |
+|---|---|---|---|
+| LinkedIn acceptance, all requests | ~42% | 26.6% | ×1.6 |
+| LinkedIn acceptance, targeted | ~89% | 26.6% | ×3.3 |
+| Paid L1 → paid L2 (Mystery School, 13/33) | 39% | ~12.5% | ×3.1 |
+| Connection request → call | — | 0.44% | ×7.5 (sample too small, excluded) |
+
+Average of the three solid steps ≈ **×2.7**. Honest counterweight: cold LinkedIn reply was 0/5 in the engine cohorts (Oct 21), so the boost is proven on precision and on the warm base, not yet on cold replies. We therefore apply a **conservative ×1.5** to the invite step and the measured ~×3 to the paid step.
+
+**Run 1, three scenarios (85 invites)**
+| Stage | Market | Ours, conservative | Sasha's model |
+|---|---|---|---|
+| Registered | 16 (18.5%) | 24 (×1.5 = 28%) | — |
+| Live attendees | 7 (45%) | 11 (45%) | 8 (10% of invites) |
+| Mastermind, $222 | 1 (12.5%) | 4 (39%) | 4 (50%) |
+| Replay buyers, $222 | 0 | 0–1 | — |
+| Mastermind revenue | $222 | $888–1,110 | $888 (≈$880 after drop-off) |
+| Next program after Mastermind, $1,111 (≈33% continue) | 0 | 1–2 | 2 |
+| Next-program revenue | $0 | $1,111–2,222 | $2,222 |
+| **Run total** | **≈$222** | **≈$2,000–3,300** | **≈$3,100** |
+
+**Reading:** even on market averages the run pays for itself; with our measured precision it lands where Sasha's model does, about **$3,000 per run**. The core of the money is not the $222 seat but the next program the Mastermind opens.
+
+**Repeatability**
+- Cadence: up to **two runs a month**.
+- Supply of invites: Evolver adds ~15 connections a day (within the LinkedIn-safe ≤90/week), so each two-week cycle refills a fresh ~85 without reusing anyone.
+- Community multiplier: one community host reported ~100 registered → ~30 on the call (≈30% show-up, below the 45% benchmark, as expected for a broadcast list). One such send alone ≈ 3× our personal-invite room.
+- Run 1 gives our own real registration and show-up rates; from run 2 we replace the benchmarks with them.
+
+**Not yet counted (lifetime value)**
+The $555 Founder-Market Fit session, the group build, the Sovereign Founder Collective, and the license to run the program for their own clients. Each run also moves people toward unique businesses and grows the collective of founders who do this together, which is the point of the whole engine.
+
+### 8.v1 Unit economics — hypothesis for the first cycle (genealogy, Oct 22, 2026)
 | Stage | Conservative | Good |
 |---|---|---|
 | Personal invites sent | 60 | 100 |
