@@ -46,6 +46,97 @@ This is the playbook applied to Sasha's own business, and at the same time a com
 
 ---
 
+## ⭐ Business Case — The Webinar Engine v1 (Sasha, October 22, 2026)
+
+*Filed from Sasha's own words in chat, October 22, 2026 (18:10 CDMX). This is the group lane of the business; Funnel v5 (Reading-first, below) stays the 1:1 LinkedIn lane, and the two feed each other. First run: the free live session on **Wed Oct 28, 2026, 9:00–10:30 CDMX** (Luma qpogt17o) → **Founder-Market Fit Discovery Mastermind, Mon–Tue Nov 9–10, 2026, $222, recording included**. Goal: make this a repeatable engine, run cycle after cycle, with more and more ways to fill the room (communities first).*
+
+### 1. The case in one paragraph
+Sasha personally reads a person's potential and invites them to a free live session built for people who work with entrepreneurs. The session gives a real taste of founder-market fit; those for whom it lands join a paid two-day Mastermind; from the Mastermind the natural next rungs are the $555 Founder-Market Fit session (2 hours, 1:1) and the group build. Every cycle sharpens the infographics, the copy and the list of host communities, so the cost of filling the next room falls while the value of the room rises.
+
+### 2. Segment and promise
+- **Who:** people who in some form work with entrepreneurs: investors in founders, coaches and mentors of founders, consultants, accelerators, studios, community hosts.
+- **Why they come (named in every invite):** "This is built specifically for people who work with entrepreneurs. In your case, you invest in founders / coach founders / … The session is focused, among other things, on bringing value to your business of working with other entrepreneurs and businesses." The person must feel: *this is about me.*
+- **Tone:** phenomenological and human, never abstract; abundance, never scarcity; no pushing or closing tactics.
+
+### 3. Acquisition channels
+| Channel | How | Who acts |
+|---|---|---|
+| A. LinkedIn | Evolver sends connection requests (≤90/week, 60/20/20 across the three lines); after accept Sasha writes the personal invite | Evolver finds and connects · Sasha writes |
+| B. Warm contacts | Shortlist with a reason and a resonance hook per person, prepared by Evolver | Evolver lists · Sasha writes |
+| C. Communities | Community host sends a short sequence to their members through the host's own mailing system; Sasha writes it, Evolver drafts and packages a host kit | Host sends · Sasha approves copy |
+| D. Later | Sasha's socials (public post + last call), Boardy intros, partner hosts | Sasha |
+
+First community host: the host who already offered to plug a Sasha-written sequence into his own mailing system (named in chat as "William Blake"; name to confirm).
+
+### 4. The flow, step by step
+1. **Find.** Channel A/B/C as above.
+2. **Read.** Sasha gives a free-form reading of the person's potential, in whatever shape will resonate with that particular person (Evolver can pre-read the profile on request; Sasha decides the words).
+3. **Invite.** Personal message: their potential → their segment named → "in your case…" benefit for their business → one webinar infographic so they can see in 10 seconds that this is serious and interesting → Luma link. Invite-only feel; "bring your co-founder, and definitely bring your AI."
+4. **Register.** The person registers on Luma (qpogt17o). We get their email.
+5. **Into the database.** Each registrant lands in the CRM (private ledger) with: name, email, channel, segment, invited-by, status (registered → attended / no-show → Mastermind / FMF).
+6. **Before the session:** a short, clean pre-sequence (§5).
+7. **The live session** (60 or 90 min; run-of-show is Sasha's).
+8. **Split.** Attended and no-show get different follow-ups (§5).
+9. **Mastermind page** (/mastermind): what they are invited into, Nov 9–10, $222, recording included; payment by Stripe (Sasha connects Stripe himself).
+10. **Mastermind → next rungs:** $555 Founder-Market Fit session (2 h), group build, and later the license to run it for their own clients.
+
+### 5. Communication: the energetically clean sequence
+**Principle (Sasha):** reminding people is clean; sending too many messages is not. So: every message gives something real (an insight, an infographic, the link they need), one clear call to action at most, no countdown pressure, no "last chance", easy to step away. **Hard cap: at most 3 messages before the session and at most 3 after, then silence.** A non-reply means it is not their moment.
+
+| # | When | To whom | What it gives | CTA |
+|---|---|---|---|---|
+| P1 | On registration | All registrants | Welcome + the webinar infographic + what to bring (your current question, co-founder, your AI) | Add to calendar (Luma) |
+| P2 | 24 h before | All registrants | One question to sit with before the session | None |
+| P3 | 1 h before | All registrants | The link (Luma's own reminder; we don't double it) | Join |
+| A1 | Same day, ~2 h after | Attended | Thank you + the key infographic + what the Mastermind is | Mastermind page |
+| A2 | +2–3 days | Attended | One insight from the room / answer to the most common question | Mastermind page (soft) |
+| A3 | 2 days before Nov 9 | Attended who have not joined | "We start Monday. If it's yours, here is the link." Calm, no scarcity | Mastermind page |
+| N1 | Same day | No-show | "We missed you" + recording or a 3-minute summary + infographic | Watch |
+| N2 | +3 days | No-show | Invitation to the next live session or a free 20-min call | Next session / cal.com 20 |
+
+Who has joined the Mastermind drops out of A2–A3 immediately.
+
+### 6. Touchpoints and assets (checklist)
+- [ ] Invite message template, with a segment line for each sub-segment (investor / coach / consultant / accelerator / community host)
+- [ ] Webinar infographic (one-pager) for the invite and for P1, built from Sasha's ordered sketches
+- [x] Luma event page (qpogt17o) — copy provisional until the session container is final
+- [ ] Email copy P1–P2, A1–A3, N1–N2
+- [ ] CRM fields and statuses for webinar registrants
+- [ ] Mastermind landing page /mastermind (currently shows "Profile Private"; fix in progress)
+- [ ] Stripe $222 payment link (Sasha)
+- [ ] Recording delivery (for attendees, and for no-shows in N1)
+- [ ] Community host kit: 2–3 message sequence + infographic + Luma link, ready for the host's own mailing system
+
+### 7. Infrastructure and bindings
+- **Registration and reminders:** Luma (built-in confirmation and reminders; guest list with emails exportable). Zero-cost by default (no tool budget until first revenue).
+- **Sending P1–A3–N2:** zero-cost options to choose from — Luma's own guest emails (if they allow segmenting attended vs. registered: to verify), or Gmail from Sasha's address. Paid mailing tools only after revenue.
+- **Database:** CRM in the private ledger; Luma export → CRM after each step.
+- **Payment:** Stripe (Sasha). **Landing:** findyourtoptalent.com/mastermind. **Session:** Zoom. **Infographics:** our established infographic style, click-through deck or PDF.
+- **Binding rule:** each step's output is the next step's input: invite → Luma registration → CRM row → sequence branch → Mastermind page → Stripe → Mastermind roster → next-rung offer.
+
+### 8. Unit economics — hypothesis for the first cycle (to calibrate after Oct 28)
+| Stage | Conservative | Good |
+|---|---|---|
+| Personal invites sent | 60 | 100 |
+| Registered | 12 (20%) | 25 (25%) |
+| Attended | 6 (50%) | 13 (50%) |
+| Mastermind at $222 | 2 (33%) | 5 (39%) |
+| Mastermind revenue | $444 | $1,110 |
+| $555 FMF sessions after | 0–1 | 1–2 |
+| **Cycle revenue** | **$444–999** | **$1,665–2,220** |
+
+Anchor in our own history: in the Integral Mystery School cohorts, 13 of 33 Level 1 participants went on to Level 2 (≈39%). A community host can add a whole room in one send; that is the main lever for scaling this engine, more than more personal invites. Sasha's time per cycle: invites (personal), the live session, the Mastermind; everything else is Evolver's.
+
+### 9. Metrics per cycle
+Invites sent by channel · registration rate · show rate · Mastermind conversion · revenue · $555 follow-ons · unsubscribes or "too many messages" signals (target: zero) · which channel brought the people who paid.
+
+### 10. Open forks for Sasha
+1. Sender for P1–N2: Luma's own emails or Gmail from your address?
+2. Do no-shows get the full recording or a short summary?
+3. The community host's name and spelling ("William Blake").
+
+---
+
 ## ⭐ Funnel v5 — Reading-first (Sasha, October 19, 2026)
 
 *Filed from Sasha's own words in chat, October 19, 2026 (22:45–23:31 MST). Supersedes the 12-step funnel in canvas v3.0 §8.6 for the LinkedIn channel; the canvases below stay as genealogy.*
