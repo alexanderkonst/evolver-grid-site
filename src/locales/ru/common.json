@@ -625,6 +625,9 @@
       "founderCockpitDashboard": {
         "label": "Войти в кабину"
       },
+      "founderMastermind": {
+        "label": "Founder Mastermind"
+      },
       "playbook": {
         "label": "Плейбук"
       },
