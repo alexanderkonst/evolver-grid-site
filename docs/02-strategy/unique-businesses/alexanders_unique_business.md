@@ -167,6 +167,57 @@ Average of the three solid steps ≈ **×2.7**. Honest counterweight: cold Linke
 **Not yet counted (lifetime value)**
 The $555 Founder-Market Fit session, the group build, the Sovereign Founder Collective, and the license to run the program for their own clients. Each run also moves people toward unique businesses and grows the collective of founders who do this together, which is the point of the whole engine.
 
+### 9. Four-month plan v1 — two runs, one container, lunar timing, energy (October 22, 2026)
+
+*Sasha's frame from chat, Oct 22, 2026 (19:57 CDMX): two webinars, two Masterminds, one month-long group container, then a pause and the next level (venture studio). Evolver's calculation and adjustments. Moon times in CDMX.*
+
+**Moon, Oct 2026 – Feb 2027:** Full Oct 25 · New **Nov 9 01:02** · Full **Nov 24 08:53** · New Dec 8 · Full Dec 23 · New **Jan 7 14:24** · Full Jan 22 · New **Feb 6 09:56**.
+
+**Calendar**
+| Dates | Step | Moon |
+|---|---|---|
+| Oct 28 (Wed) | Webinar 1, 85 invites | waning after Full Oct 25 |
+| Nov 9–10 (Mon–Tue) | Mastermind 1 (already on Luma/site) | **New Moon Nov 9**: seeding |
+| Nov 11–14 | 4 days: rest, container founding seats, infra, invites for webinar 2 | waxing |
+| Nov 18 (Wed) | Webinar 2, ~200 invites | just after First Quarter Nov 17: action |
+| Nov 24–25 (Tue–Wed) | Mastermind 2 | **Full Moon Nov 24**: culmination, visibility |
+| Nov 26 – Dec 11 | Container enrollment and integration (one window, no pressure) | waning: completion |
+| Dec 15 – Jan 6 | **Off** (Sasha's yearly rest) | — |
+| Jan 7 – Feb 5 | Month-long group container, "build" | **New Moon Jan 7 → New Moon Feb 6**: one full cycle |
+| Feb 6 onward | Pause, then next level: venture studio | New Moon Feb 6 |
+
+**Why not the original order:** with the container starting about a week after Mastermind 2 (≈Dec 2–8), its month would run straight into Dec 15 – Jan 6. Moving it to Jan 7 keeps the rest intact, and opens the container with full energy on a new moon, one lunar cycle exactly. Mastermind 1 stays Nov 9–10 (not Nov 4–5): it is already published and falls on the New Moon.
+
+**Energy:** the dense stretch is Oct 28 – Nov 25 (2 webinars + 2 Masterminds in four weeks). Dec 1–14 stays light: enrollment talks only, no new builds. This uses the last of the year's reserve where it pays most, and leaves nothing open over the break.
+
+**Business case, run 2 (200 invites)**
+A larger list includes more cold contacts, so the invite step uses the market rate as the floor and our ×1.5 as the target.
+| Stage | Floor (market) | Target (ours) |
+|---|---|---|
+| Registered | 37 (18.5%) | 56 (28%) |
+| Live | 17 (45%) | 25 (45%) |
+| Mastermind 2, $222 | 2 (12.5%) | 9 (36%, as run 1 target) |
+| Revenue | $444 | ~$2,000 |
+
+**Container (Jan 7 – Feb 5), $1,111**
+Alumni of both Masterminds: floor 3, target ~13. At ~33% continuing: floor 1, target 4. Revenue: floor $1,111, target ~$4,400. Minimum for a group: 4. Below that, the same people get $555 Founder-Market Fit sessions instead.
+
+**Four-month total**
+| | Floor | Target |
+|---|---|---|
+| Mastermind 1 | $222 | $888 |
+| Mastermind 2 | $444 | ~$2,000 |
+| Container | $1,111 | ~$4,400 |
+| **Total, Oct 28 – Feb 5** | **≈$1,800** | **≈$7,300** |
+Not counted: $555 sessions, venture-studio entry, licensing.
+
+**Improvements**
+1. Offer container founding seats already at Mastermind 1, so Mastermind 2 fills the group rather than starts it.
+2. 200 personal invites in 4 days is ~50 messages a day, too much by hand. Split: ~100 personal from Sasha, ~100 through one community host's mailing (host kit, §7).
+3. Webinar 1 recording and its infographic become the preview for webinar 2 invites.
+4. The container has one clear outcome per week, and ends on Feb 5 with the venture-studio invitation to graduates.
+5. After run 1, replace benchmarks with our real rates before the run-2 invites go out (Nov 11).
+
 ### 8.v1 Unit economics — hypothesis for the first cycle (genealogy, Oct 22, 2026)
 | Stage | Conservative | Good |
 |---|---|---|
