@@ -29,6 +29,13 @@
       "when": 1792873932401,
       "tag": "0003_ubb_input_version_at_lock",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1792873947321,
+      "tag": "0004_reserve_mastermind_username",
+      "breakpoints": true
     }
   ]
 }
