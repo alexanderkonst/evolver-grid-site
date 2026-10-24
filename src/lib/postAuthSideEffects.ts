@@ -48,6 +48,8 @@
 import { supabase } from "@/integrations/supabase/client";
 import { clearCachedZogSnapshot } from "@/lib/zogSnapshotCache";
 import { migrateGuestDataToProfile } from "@/modules/zone-of-genius/saveToDatabase";
+// 2026-10-24 incident: claims go through the ownership guard (see file).
+import { claimAnonymousZogIfAllowed } from "@/lib/anonClaimGuard";
 
 // Track which user IDs have had `claim-anonymous-zog` invoked for them
 // in this browser session. Prevents redundant calls when SIGNED_IN
@@ -87,8 +89,9 @@ async function attemptClaimWithRetry(userId: string): Promise<void> {
 
     for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
         try {
-            await supabase.functions.invoke("claim-anonymous-zog");
-            return; // success — done
+            const result = await claimAnonymousZogIfAllowed("postAuth");
+            if (result === "error") throw new Error("claim-anonymous-zog failed");
+            return; // success (or deliberately skipped) — done
         } catch (err) {
             console.warn(
                 `[postAuthSideEffects] claim attempt ${attempt}/${MAX_ATTEMPTS} failed:`,

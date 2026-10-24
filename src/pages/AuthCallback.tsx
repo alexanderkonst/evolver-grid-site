@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { AlertTriangle, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { claimAnonymousZogIfAllowed } from "@/lib/anonClaimGuard";
 
 // Terminal page in the magic-link flow. Supabase's client parses the tokens
 // out of the URL fragment (detectSessionInUrl: true in client.ts), we wait for
@@ -58,14 +59,9 @@ const AuthCallback = () => {
       // point that forgets to await explicitly. Dedup set in
       // postAuthSideEffects prevents duplicate work for the same
       // user.
-      try {
-        const { error } = await supabase.functions.invoke("claim-anonymous-zog");
-        if (error) {
-          console.warn("[AuthCallback] claim-anonymous-zog returned error", error);
-        }
-      } catch (err) {
-        console.warn("[AuthCallback] claim-anonymous-zog threw", err);
-      }
+      // 2026-10-24: guarded — never overwrites an existing Top Talent with
+      // a guest result saved on another device (see lib/anonClaimGuard.ts).
+      await claimAnonymousZogIfAllowed("AuthCallback");
 
       if (typeof window !== "undefined") {
         window.sessionStorage.removeItem(PENDING_CLAIM_EMAIL_KEY);

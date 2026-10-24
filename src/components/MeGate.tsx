@@ -3,6 +3,7 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { claimAnonymousZogIfAllowed } from "@/lib/anonClaimGuard";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -166,12 +167,7 @@ const MeGate = ({ children }: { children: ReactNode }) => {
                         } catch (err) {
                             console.warn("[MeGate post-payment] migrateGuestDataToProfile failed", err);
                         }
-                        try {
-                            const { error } = await supabase.functions.invoke("claim-anonymous-zog");
-                            if (error) console.warn("[MeGate post-payment] claim-anonymous-zog returned error", error);
-                        } catch (err) {
-                            console.warn("[MeGate post-payment] claim-anonymous-zog threw", err);
-                        }
+                        await claimAnonymousZogIfAllowed("MeGate post-payment");
                         // Day 95 (Sasha 2026-06-13): now that the buyer has
                         // an account, durably unlock the $37 deeper view —
                         // we do it HERE (not after navigate) because the
@@ -295,14 +291,7 @@ const MeGate = ({ children }: { children: ReactNode }) => {
                     // email captured server-side via save-anonymous-zog).
                     // Idempotent + no-op when there's nothing to claim, so
                     // safe to call regardless of which path the user took.
-                    try {
-                        const { error } = await supabase.functions.invoke("claim-anonymous-zog");
-                        if (error) {
-                            console.warn("[MeGate] claim-anonymous-zog returned error", error);
-                        }
-                    } catch (err) {
-                        console.warn("[MeGate] claim-anonymous-zog threw", err);
-                    }
+                    await claimAnonymousZogIfAllowed("MeGate");
                     // Day 61 (Sasha 2026-05-04): always navigate to the
                     // canonical Start Here activation home (was: back to
                     // wherever the user hit the gate, which often

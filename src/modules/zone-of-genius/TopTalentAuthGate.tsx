@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import { Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { markAnonymousZogSaved } from "@/lib/anonClaimGuard";
 import { localizedOrigin } from "@/i18n/localeScope";
 
 type TopTalentAuthGateProps = {
@@ -120,6 +121,9 @@ const TopTalentAuthGate = ({
         }
       }
 
+      // This browser saved the guest result for this email → it may later
+      // claim it even over an existing Top Talent (lib/anonClaimGuard.ts).
+      markAnonymousZogSaved(normalizedEmail);
       if (typeof window !== "undefined") {
         window.sessionStorage.setItem(PENDING_CLAIM_EMAIL_KEY, normalizedEmail);
         window.sessionStorage.setItem(PENDING_CLAIM_SAVED_EMAIL_KEY, normalizedEmail);

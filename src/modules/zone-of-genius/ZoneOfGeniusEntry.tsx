@@ -58,6 +58,7 @@ import { getPostZogRedirect } from "@/lib/onboardingRouting";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { saveResonanceRating } from "@/lib/saveResonanceRating";
 import { supabase } from "@/integrations/supabase/client";
+import { markAnonymousZogSaved } from "@/lib/anonClaimGuard";
 import Hls from "hls.js";
 
 const HLS_VIDEO_URL = "https://stream.mux.com/8DFxbzBL8jIJYpaZv3s6kDx4AfPkVI1gH4bBh38GNw8.m3u8";
@@ -503,6 +504,7 @@ const ZoneOfGeniusEntry = () => {
                     hasPostedAnonymous.current = false; // allow retry on next render
                     return;
                 }
+                markAnonymousZogSaved(pendingEmail);
                 setAnonymousSave({ status: "sent", email: pendingEmail });
             } catch (err) {
                 console.error("[ZoneOfGeniusEntry] save-anonymous-zog threw", err);

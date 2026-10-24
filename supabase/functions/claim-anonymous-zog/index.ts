@@ -149,6 +149,19 @@ Deno.serve(async (req) => {
     const user = userResult.user;
     const email = user.email!.trim().toLowerCase();
 
+    // 2026-10-24 incident guard. save-anonymous-zog is public and accepts ANY
+    // email, so a guest result can be filed under someone else's address.
+    // Never let such a row overwrite an EXISTING Top Talent unless the client
+    // proves this browser saved it (allow_existing: true, see
+    // src/lib/anonClaimGuard.ts). New users (no snapshot) still claim as before.
+    let allowExisting = false;
+    try {
+      const body = await req.json();
+      allowExisting = body?.allow_existing === true;
+    } catch {
+      // no/invalid body → strict default
+    }
+
     // ── Find most recent unclaimed row for this normalized email ────
     const { data: anon, error: findError } = await admin
       .from("anonymous_genius_results")
@@ -179,6 +192,22 @@ Deno.serve(async (req) => {
         error: "profile_resolution_failed",
         detail: err instanceof Error ? err.message : String(err),
       });
+    }
+
+    if (!allowExisting) {
+      const { data: prof } = await admin
+        .from("game_profiles")
+        .select("last_zog_snapshot_id")
+        .eq("id", profileId)
+        .maybeSingle();
+      const { count: existingCount } = await admin
+        .from("zog_snapshots")
+        .select("id", { count: "exact", head: true })
+        .eq("profile_id", profileId);
+      if (prof?.last_zog_snapshot_id || (existingCount ?? 0) > 0) {
+        // Leave the anonymous row unclaimed; touch nothing of the user's.
+        return json(200, { claimed: false, reason: "existing_snapshot_protected" });
+      }
     }
 
     // Reserve this anonymous row before inserting the snapshot. AuthCallback
