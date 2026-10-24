@@ -2695,6 +2695,7 @@ export type Database = {
           content_json: Json | null
           created_at: string
           id: string
+          input_version_at_lock: string | null
           is_locked: boolean
           output_language: string | null
           parent_version_id: string | null
@@ -2714,6 +2715,7 @@ export type Database = {
           content_json?: Json | null
           created_at?: string
           id?: string
+          input_version_at_lock?: string | null
           is_locked?: boolean
           output_language?: string | null
           parent_version_id?: string | null
@@ -2733,6 +2735,7 @@ export type Database = {
           content_json?: Json | null
           created_at?: string
           id?: string
+          input_version_at_lock?: string | null
           is_locked?: boolean
           output_language?: string | null
           parent_version_id?: string | null
