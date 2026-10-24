@@ -2699,6 +2699,7 @@ export type Database = {
           output_language: string | null
           parent_version_id: string | null
           precision_score: number | null
+          prompt_version_at_lock: string | null
           roast_findings: Json | null
           specificity_score: number | null
           step_number: number
@@ -2717,6 +2718,7 @@ export type Database = {
           output_language?: string | null
           parent_version_id?: string | null
           precision_score?: number | null
+          prompt_version_at_lock?: string | null
           roast_findings?: Json | null
           specificity_score?: number | null
           step_number: number
@@ -2735,6 +2737,7 @@ export type Database = {
           output_language?: string | null
           parent_version_id?: string | null
           precision_score?: number | null
+          prompt_version_at_lock?: string | null
           roast_findings?: Json | null
           specificity_score?: number | null
           step_number?: number

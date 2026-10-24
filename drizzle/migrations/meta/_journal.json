@@ -15,6 +15,13 @@
       "when": 1792478795670,
       "tag": "0001_equilibrium_task_flow",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792873916899,
+      "tag": "0002_ubb_prompt_version_at_lock",
+      "breakpoints": true
     }
   ]
 }
