@@ -171,10 +171,11 @@ function useDeepData(userId: string | null, isOpen: boolean): DeepData {
         // key off it, not user_id).
         const { data: profile } = await (supabase as any)
           .from("game_profiles")
-          .select("id")
+          .select("id, last_zog_snapshot_id")
           .eq("user_id", userId)
           .maybeSingle();
         const profileId = profile?.id ?? null;
+        const pointerId: string | null = profile?.last_zog_snapshot_id ?? null;
 
         if (!profileId) {
           if (!cancelled) {
@@ -191,15 +192,28 @@ function useDeepData(userId: string | null, isOpen: boolean): DeepData {
         // Fetch latest zog snapshot and all nurture queue rows in
         // parallel — both are profile-scoped, so neither blocks the other.
         const [zogRes, nurtureRes] = await Promise.all([
-          (supabase as any)
-            .from("zog_snapshots")
-            .select(
-              "id, profile_id, archetype_title, core_pattern, resonance_rating, appleseed_data, created_at",
-            )
-            .eq("profile_id", profileId)
-            .order("created_at", { ascending: false })
-            .limit(1)
-            .maybeSingle(),
+          // Current Top Talent = last_zog_snapshot_id when set (a
+          // restored version may be older than the newest row).
+          (async () => {
+            const cols =
+              "id, profile_id, archetype_title, core_pattern, resonance_rating, appleseed_data, created_at";
+            if (pointerId) {
+              const pointed = await (supabase as any)
+                .from("zog_snapshots")
+                .select(cols)
+                .eq("id", pointerId)
+                .eq("profile_id", profileId)
+                .maybeSingle();
+              if (pointed?.data) return pointed;
+            }
+            return (supabase as any)
+              .from("zog_snapshots")
+              .select(cols)
+              .eq("profile_id", profileId)
+              .order("created_at", { ascending: false })
+              .limit(1)
+              .maybeSingle();
+          })(),
           (supabase as any)
             .from("nurture_email_queue")
             .select(

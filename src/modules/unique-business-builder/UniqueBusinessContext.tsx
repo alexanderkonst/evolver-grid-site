@@ -322,12 +322,33 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         try {
           const profileId = await getOrCreateGameProfileId();
           if (cancelled) return;
-          const { data: zogRows } = await (supabase as any)
-            .from("zog_snapshots")
-            .select("*")
-            .eq("profile_id", profileId)
-            .order("created_at", { ascending: false })
-            .limit(1);
+          // Current Top Talent = game_profiles.last_zog_snapshot_id when
+          // set (a restored version may be older than the newest row);
+          // newest snapshot otherwise.
+          const { data: ptrRow } = await (supabase as any)
+            .from("game_profiles")
+            .select("last_zog_snapshot_id")
+            .eq("id", profileId)
+            .maybeSingle();
+          let zogRows: any[] | null = null;
+          if (ptrRow?.last_zog_snapshot_id) {
+            const { data } = await (supabase as any)
+              .from("zog_snapshots")
+              .select("*")
+              .eq("id", ptrRow.last_zog_snapshot_id)
+              .eq("profile_id", profileId)
+              .limit(1);
+            zogRows = data ?? null;
+          }
+          if (!zogRows || !zogRows[0]) {
+            const { data } = await (supabase as any)
+              .from("zog_snapshots")
+              .select("*")
+              .eq("profile_id", profileId)
+              .order("created_at", { ascending: false })
+              .limit(1);
+            zogRows = data ?? null;
+          }
           if (cancelled) return;
           if (zogRows && zogRows[0]) {
             setZogSnapshot(zogRows[0]);
