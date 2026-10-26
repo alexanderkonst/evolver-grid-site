@@ -1,9 +1,10 @@
 ---
-title: Paths of Growth — mini-course, full transcripts
-version: 1.1 (Emotions module fixed: 4 episodes; module 6 = Genius / Uniqueness; renamed from "Planetary OS v1.0 / Stages of Development")
+title: Activate Your Dormant Potential — mini-course, full transcripts
+version: 1.2 (renamed to Activate Your Dormant Potential; content unchanged from 1.1: 6 modules, 38 episodes, Emotions = 4 episodes, module 6 = Genius / Uniqueness)
+formerly: Paths of Growth (Oct 26, 2026)
 date: 2026-10-26
 author: Aleksandr Konstantinov (NotebookLM-voiced videos generated from this corpus)
-tagline: grow whole — spirit, mind, emotions, body and your unique genius
+tagline: how to master your spirit, mind, emotions, body and unique genius
 sources:
   - docs/08-content/transformation_content.md
   - docs/08-content/transformation_modules_extended.md
@@ -12,7 +13,7 @@ sources:
 google_doc: https://docs.google.com/document/d/19zd9GbadDnmViIjvtaGAJkaNeFVyTZjv9IIQ_PAjJdY/edit
 ---
 
-# Paths of Growth — full transcripts
+# Activate Your Dormant Potential — full transcripts
 
 6 modules · 38 episodes · 1:17:47
 

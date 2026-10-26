@@ -7,7 +7,7 @@
 
 ---
 
-> **2026-10-26:** course renamed **Paths of Growth** (mini-course; tagline: grow whole — spirit, mind, emotions, body and your unique genius). "Planetary OS" dropped from titles; seasons are called modules; module 6 = Genius / Uniqueness; Emotions = 4 episodes (E01E01 The Emotional Slider). Final list + transcripts: `paths_of_growth_transcripts.md`.
+> **2026-10-26:** course renamed **Activate Your Dormant Potential** (mini-course; tagline: how to master your spirit, mind, emotions, body and unique genius). Earlier working titles dropped; seasons are called modules; 6 modules, 38 episodes, 1:17:47; module 6 = Genius / Uniqueness; Emotions = 4 episodes (E01E01 The Emotional Slider). Final list + transcripts: `activate_your_dormant_potential_transcripts.md`.
 
 ## 🎬 Naming Convention (TV Series Style)
 
