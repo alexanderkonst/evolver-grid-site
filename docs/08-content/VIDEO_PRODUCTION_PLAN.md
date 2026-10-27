@@ -29,11 +29,14 @@
 
 ### Application 2: "Consciousness Meets Science" (Mystery School intro) — draft, awaiting Sasha
 Source: Sasha's Medium article *Consciousness Meets Science: How Inner Experiences and Science Co-Reveal the Nature of Reality* (EN; RU version «Сознание и наука» on the same Medium). The article already carries its structure; Step 1 = adopt it, Sasha adjusts.
-Season code **C** (Consciousness). ~14 episodes, ~25 min total.
+Season code **C** (Consciousness). ~15 episodes, ~27 min total.
+
+**Core idea, the paradigm shift the whole article rests on (Sasha, 2026-10-27):** historically, mystics were the ones who found the new and pushed the edges of what we know about the world. Then science arrived, pushed mysticism out and cast it into ostracism, and forgot that insights come from within first, and only afterwards are shaped, formalized, proven and applied. Humanity got confused and lost its direction. What is happening now is the return of mysticism to its original role: expanding the edges of the known about the Universe and about the present moment. Every module serves this idea; the course opens and closes on it.
 
 | Module | Episode | Idea (article section) |
 |---|---|---|
-| 1. Two sides of one coin (Foundational, Sasha writes) | C01E01 | The thesis: inner experience and science co-reveal reality; the invitation |
+| 1. Two sides of one coin (Foundational, Sasha writes) | C01E00 | Mystics first: insight is born within, then science shapes, proves and applies it; why we lost direction and why mysticism returns |
+| | C01E01 | The thesis: inner experience and science co-reveal reality; the invitation |
 | | C01E02 | Inner experience as data: first-person truth, why it can't be fully relayed |
 | 2. Eight shared experiences | C02E01 | Sacred geometry visions · expanded, interconnected awareness |
 | | C02E02 | Third-eye vision and intuitive insight · enhanced bodily awareness |
@@ -46,7 +49,7 @@ Season code **C** (Consciousness). ~14 episodes, ~25 min total.
 | | C04E03 | Neuroscience of meditation; philosophy of mind (panpsychism, IIT, Orch-OR) |
 | 5. An integral theory of everything | C05E01 | The Integral Map of cutting-edge sciences (4 domains) |
 | | C05E02 | The meta-model: Planck "pixels", toroidal dynamos, zero-point field, holonic whole |
-| | C05E03 | Implications and call: experience it yourself (Outro → live Fire Circle evening) |
+| | C05E03 | Implications and call: the mystic's role returns, and it is yours; experience it yourself (Outro → live Fire Circle evening) |
 
 Open for Sasha: final structure; who writes Module 1; episode count; RU, EN or both.
 
