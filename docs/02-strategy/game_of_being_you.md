@@ -4,7 +4,7 @@
 > *Created: 2026-10-26 (Day 225). Owner: Aleksandr Konstantinov. Keeper: Evolver (Hark).*
 > Related: [game_spaces.md](./game_spaces.md) (what you can do in each space), [module_taxonomy.md](./module_taxonomy.md), [../05-reference/brandbook.md](../05-reference/brandbook.md).
 
-**Subtitle:** Game of Self-Discovery, Quality of Life, Monetizing Your Uniqueness, and Finding Your Tribe.
+**Subtitle:** Self-Discovery · Quality of Life · Uniqueness · Growth · Tribe (Sasha, 2026-10-26).
 **Tagline:** *Bring the full force of who you are to what you build.*
 **Moonshot (Sasha, 2026-10-26):** make a cult game, a "candy": polished, simple, hard to forget. We already have plenty of mystery, ritual and content; the work now is craft and form.
 
@@ -50,7 +50,7 @@ Open: the reading method (prompt + validation against the cases where colors wer
 ## 4. Title screen (homepage)
 
 - Full-bleed cinematic frame: a **clear, faintly ice-blue topaz** dodecahedron hovers over a still black mountain lake before dawn. A thin white beam enters from the left, and a soft real spectrum exits to the right and is reflected in the water.
-- Label: `FINDYOURTOPTALENT.COM PRESENTS` → title **THE GAME OF BEING YOU** → subtitle → tagline.
+- Title **THE GAME OF BEING YOU** → subtitle → tagline. (No "presents" label; removed by Sasha 2026-10-26.)
 - Vertical menu (mono, keyboard Up/Down/Enter + hover; sublabel on hover):
   - `NEW GAME` → Discover your Uniqueness (Zone of Genius entry, character creation)
   - `LOAD GAME` → continue your journey (sign in)
@@ -162,6 +162,7 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 - 2026-10-26: "The game is the blueprint": the whole product is designed as a game.
 - 2026-10-26: Goal = QoL; level = bottleneck domain; leveling down exists (Current vs Peak); input via Save Point.
 - 2026-10-26: Game design almanac started: invariant = scope of player authorship; 7 stages; Si–Do = life as the game ([game_design_almanac.md](./game_design_almanac.md)).
+- 2026-10-26: Subtitle → "Self-Discovery · Quality of Life · Uniqueness · Growth · Tribe"; "FindYourTopTalent.com presents" removed.
 - 2026-10-26: Fifth Element = quintessence = Uniqueness; proposed as the game's name (§11).
 
 ## Assets
