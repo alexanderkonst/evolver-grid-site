@@ -433,31 +433,31 @@
       },
       "activation": {
         "label": "Find out how to monetize your top talent (power-up, $37)",
-        "lockedHint": "Articulate your top talent first."
+        "lockedHint": "Opens when your top talent is saved. Inside: how to turn it into income."
       },
       "missionDiscovery": {
         "label": "2. Discover your mission",
-        "lockedHint": "Unlocks after you find your top talent."
-      },
-      "assetMapper": {
-        "label": "3. Map your assets",
-        "lockedHint": "Unlocks after you discover your mission."
+        "lockedHint": "Opens when your top talent is saved. Inside: what is yours to do in the world."
       },
       "qolAssess": {
-        "label": "4. Assess your quality of life (optional)",
-        "lockedHint": "Unlocks after you map your assets."
+        "label": "3. Assess your quality of life (optional)",
+        "lockedHint": "Opens when your mission is saved. Inside: your real level, private to you."
+      },
+      "assetMapper": {
+        "label": "4. Map your assets",
+        "lockedHint": "Opens when your mission is saved. Inside: your inventory of everything you can build with."
       },
       "findCollaborators": {
         "label": "5. Find collaborators",
-        "lockedHint": "Unlocks after you map your assets."
+        "lockedHint": "Opens when your assets are mapped. Inside: people who match your talent and mission."
       },
       "buildBusinessTerminus": {
         "label": "5. Build a business off your top talent",
-        "lockedHint": "Unlocks after you find your top talent."
+        "lockedHint": "Opens when your top talent is saved. Inside: your uniqueness in one phrase, then your tagline."
       },
       "buildBusinessSix": {
         "label": "6. Build a business off your top talent",
-        "lockedHint": "Unlocks after you activate your top talent or complete your collaboration profile."
+        "lockedHint": "Opens when your top talent, mission and assets are saved. Inside: your uniqueness in one phrase, then your tagline."
       }
     },
     "aiOs": {
@@ -7057,8 +7057,10 @@
       "buildBusiness": "Build a business off your top talent",
       "discoverMission": "Discover your mission",
       "locked": {
-        "buildBusiness": "Unlocks after activation.",
-        "discoverMission": "Unlocks after you build a business off your top talent."
+        "discoverMission": "Opens when your top talent is saved. Inside: what is yours to do in the world.",
+        "assessQol": "Opens when your mission is saved. Inside: your real level, private to you.",
+        "mapAssets": "Opens when your mission is saved. Inside: your inventory of everything you can build with.",
+        "buildBusiness": "Opens when your top talent, mission and assets are saved. Inside: your uniqueness in one phrase, then your tagline."
       }
     },
     "victories": {

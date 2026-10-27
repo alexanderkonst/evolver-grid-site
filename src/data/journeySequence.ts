@@ -11,8 +11,12 @@
  * reads from this file and overlays UI state (locked, completed, active).
  *
  * Companion: `src/hooks/useJourneyCompletion.ts` evaluates predicates and
- * returns a `{id → boolean}` completion map. Companion: `useDeepProfileActivated`
- * still gates item #7 dynamically; that lock is computed in the builder, not here.
+ * returns a `{id → boolean}` completion map.
+ *
+ * WP-13 (2026-10-27): order follows game_of_being_you.md §14.2 (Mission before
+ * business). The JOURNEY pane (`SectionsPanel.buildJourneySections`) and Your House
+ * (`useCharacterSheet`) both read `JOURNEY_MAIN`; the rail's MAIN QUEST entry opens
+ * that pane.
  *
  * Conventions:
  *   - `id` is a stable string used by the completion map, the localStorage
@@ -25,9 +29,9 @@
  *     on archive instead of redo" feature has the data ready. Today the row
  *     still routes to `path` even when completed (per the design call:
  *     completion is a visual layer, not a redirect).
- *   - To rearrange: move the entry in `JOURNEY_SEQUENCE`. To add/remove an
- *     item: add/remove the entry; the builder + hook adapt automatically as
- *     long as the new `id` is added to `JourneyItemId`.
+ *   - To rearrange: move the entry in `JOURNEY_SEQUENCE`. To add/remove a main
+ *     item: add/remove the entry and its row in `buildJourneySections`; the
+ *     new `id` must be added to `JourneyItemId`.
  */
 
 import type { SupabaseClient } from "@supabase/supabase-js";
@@ -54,13 +58,17 @@ export type CompletionPredicate = (ctx: CompletionContext) => Promise<boolean>;
 
 export type JourneyItem = {
     id: JourneyItemId;
+    /** "main" = a step of the Journey (§14.2); "extra" = tutorial lore, off the main path. */
+    kind: "main" | "extra";
     label: string;
     path: string;
     /** When set, defines what "done" means for this item. Undefined = never auto-completes. */
     completionPredicate?: CompletionPredicate;
     /** Where the completed artifact lives in ME / BUILD. Informational. */
     completionHome?: string;
-    /** Hint shown in the locked-row popover when the item is locked. */
+    /** Items that must be done first. Drives the closed state in Your House. */
+    requires?: JourneyItemId[];
+    /** Line shown while the item is closed: «Opens when <real event>. Inside: <result>.» (§14.3). */
     lockedHint?: string;
 };
 
@@ -82,9 +90,19 @@ const anyRowExists = async (
     return (count ?? 0) > 0;
 };
 
+/**
+ * The order below is the canonical Journey (docs/02-strategy/game_of_being_you.md
+ * §14.2, decided 2026-10-27, §14.10): Mission before business.
+ * Top talent → Mission → QoL → Assets → Business (uniqueness, then tagline).
+ *
+ * `lockedHint` follows the §14.3 line: «Opens when <real event>. Inside: <result>.»
+ * Hints here are English fallbacks; the pane reads `rail.journey.*` and Your House
+ * reads `characterSheet.quests.locked.*` first. Keep the three in step.
+ */
 export const JOURNEY_SEQUENCE: JourneyItem[] = [
     {
         id: "find-top-talent",
+        kind: "main",
         label: "1. Start by finding your top talent",
         path: "/",
         completionHome: "/game/me/zone-of-genius",
@@ -92,58 +110,77 @@ export const JOURNEY_SEQUENCE: JourneyItem[] = [
             profileId ? anyRowExists(supabase, "zog_snapshots", "profile_id", profileId) : false,
     },
     {
-        id: "take-playbook",
-        label: "2. Take the exact playbook",
-        path: "/playbook",
-        // No predicate Wave 1 — "visited the playbook" is a localStorage signal
-        // we haven't wired yet. Row will not auto-complete; user navigates freely.
-    },
-    {
-        id: "see-path",
-        label: "3. See the shortcut path to your business",
-        path: "/path",
-    },
-    {
-        id: "see-dashboard",
-        label: "4. See how we're building this",
-        path: "/dashboard",
-    },
-    {
-        id: "map-assets",
-        label: "5. Map your assets",
-        path: "/asset-mapping",
-        completionHome: "/game/me/assets",
-        completionPredicate: async ({ supabase, userId }) =>
-            userId ? anyRowExists(supabase, "user_assets", "user_id", userId) : false,
+        id: "discover-mission",
+        kind: "main",
+        label: "2. Discover your mission",
+        path: "/mission-discovery",
+        requires: ["find-top-talent"],
+        lockedHint: "Opens when your top talent is saved. Inside: what is yours to do in the world.",
+        // No predicate: a committed mission (mission_participants) is the artifact
+        // that satisfies it, and `useCharacterSheet` reads that row.
     },
     {
         id: "assess-qol",
-        label: "6. Assess your quality of life",
+        kind: "main",
+        label: "3. Assess your quality of life",
         path: "/quality-of-life-map/assessment",
         completionHome: "/game/me/quality-of-life",
+        requires: ["discover-mission"],
+        lockedHint: "Opens when your mission is saved. Inside: your real level, private to you.",
         completionPredicate: async ({ supabase, profileId }) =>
             profileId ? anyRowExists(supabase, "qol_snapshots", "profile_id", profileId) : false,
     },
     {
-        id: "build-business",
-        label: "7. Build a business off your top talent",
-        path: "/ubb",
-        // Lock is dynamic (computed in the builder from useDeepProfileActivated)
-        // — not in the data file so the file stays pure data with no hook deps.
-        lockedHint: "Unlocks after activation.",
-        // Completion = "UBB canvas reached PMF threshold" — definition TBD,
-        // not wired Wave 1.
+        id: "map-assets",
+        kind: "main",
+        label: "4. Map your assets",
+        path: "/asset-mapping",
+        completionHome: "/game/me/assets",
+        requires: ["discover-mission"],
+        lockedHint: "Opens when your mission is saved. Inside: your inventory of everything you can build with.",
+        completionPredicate: async ({ supabase, userId }) =>
+            userId ? anyRowExists(supabase, "user_assets", "user_id", userId) : false,
     },
     {
-        id: "discover-mission",
-        label: "8. Discover your mission",
-        path: "/mission-discovery",
-        // Static-locked at the builder level (always true today).
-        lockedHint: "Unlocks after you build a business off your top talent.",
-        // Completion = mission artifact exists; the mission feature itself
-        // isn't built yet, so no predicate.
+        id: "build-business",
+        kind: "main",
+        label: "5. Build a business off your top talent",
+        path: "/ubb",
+        requires: ["find-top-talent", "discover-mission", "map-assets"],
+        lockedHint:
+            "Opens when your top talent, mission and assets are saved. Inside: your uniqueness in one phrase, then your tagline.",
+        // The JOURNEY pane also opens this row on activation (useDeepProfileActivated);
+        // that OR is computed in the builder, not here, so this file stays pure data.
+        // Completion = "UBB canvas reached PMF threshold" — definition TBD, not wired.
+        // Journey steps 6 (uniqueness) and 7 (tagline) of §14.2 live inside this item.
+    },
+    // Tutorial lore, not Journey steps (§14.2). The pages stay; they only leave
+    // the main sequence, the pane and Your House.
+    {
+        id: "take-playbook",
+        kind: "extra",
+        label: "Take the exact playbook",
+        path: "/playbook",
+    },
+    {
+        id: "see-path",
+        kind: "extra",
+        label: "See the shortcut path to your business",
+        path: "/path",
+    },
+    {
+        id: "see-dashboard",
+        kind: "extra",
+        label: "See how we're building this",
+        path: "/dashboard",
     },
 ];
+
+/** The Journey proper, in §14.2 order. Everything that renders Journey order reads this. */
+export const JOURNEY_MAIN: JourneyItem[] = JOURNEY_SEQUENCE.filter((i) => i.kind === "main");
+
+/** Tutorial / extras: stay in the completion map, never rendered as Journey steps. */
+export const JOURNEY_EXTRAS: JourneyItem[] = JOURNEY_SEQUENCE.filter((i) => i.kind === "extra");
 
 /**
  * localStorage key for the "last-seen completion state" cache.

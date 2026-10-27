@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { filterAdminOnlyRows } from "./adminOnlyRows";
 import { supabase } from "@/integrations/supabase/client";
 import { PLAYBOOK_STEPS } from "@/data/playbookSteps";
+import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
 import { GROWTH_STEPS } from "@/modules/library/growthSteps";
 import { COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
 import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
@@ -738,18 +739,24 @@ const buildJourneySections = (
     linkedQuizResult: LinkedQuizResult | null = null,
     onRetakeQuiz: () => void = () => {},
 ): Section[] => {
+    // WP-13 (2026-10-27): ORDER comes from `JOURNEY_MAIN` (journeySequence.ts,
+    // game_of_being_you.md §14.2: Mission before business). The row objects
+    // below carry the pane-specific parts (i18n label, route, lock, progress
+    // flag); the final sort at the bottom lays them out in the sequence's
+    // order, so reordering the Journey is a one-line move in that file.
+    //
     // Funnel v2 (Day 77, Sasha 2026-05-20) + Day 80 path-awareness +
     // Day 79 QoL optionality (Sasha 2026-05-22):
     // JOURNEY structured as the matching-onboarding sequence
-    // (T → optional Activation → M → A → optional QoL → Build OR Find Collaborators).
+    // (T → optional Activation → M → optional QoL → A → Build OR Find Collaborators).
     //
-    //   1.  Start by finding your top talent  : entry, always unlocked
+    //   1.  Start by finding your top talent  : entry, always open
     //   1.5 Activate your top talent ($37)    : OPTIONAL paid deepening
-    //                                           (locked until T)
-    //   2.  Discover your mission             : locked until #1 completes
-    //   3.  Map your assets                   : locked until #2 completes
-    //   4.  Assess your quality of life       : OPTIONAL, no lock, no
-    //                                           downstream dependencies
+    //                                           (closed until T)
+    //   2.  Discover your mission             : closed until #1 completes
+    //   3.  Assess your quality of life       : OPTIONAL; closed until #2
+    //                                           completes, no downstream deps
+    //   4.  Map your assets                   : closed until #2 completes
     //   5.  PATH-AWARE TERMINUS:
     //        build path: "Build a business off your top talent" → /path
     //                    (lock: !topTalentDone)
@@ -860,7 +867,7 @@ const buildJourneySections = (
             : undefined,
     };
 
-    return [
+    const rows: Section[] = [
         quizStep0Item,
         {
             // Issue #48 P1 #4: route to the Zone-of-Genius entry, not "/"
@@ -965,17 +972,19 @@ const buildJourneySections = (
             //
             // Day 80 Wave 2.13 (Sasha 2026-05-22): unlock REVERTED. QoL
             // stays labeled "(optional)" — that signal is right — but
-            // the sequence-gate comes back on assets-done. Reason: even
-            // though QoL doesn't technically gate anything downstream,
-            // showing it unlocked while #3 is still locked confuses the
+            // the sequence-gate comes back. Reason: even though QoL
+            // doesn't technically gate anything downstream, showing it
+            // open while the step before it is still closed confuses the
             // 1→2→3→4→5 reading order. The fix is sequencing pressure,
             // not blocking access — users can still navigate directly
             // to /quality-of-life-map/assessment if they want; the lock
             // is advisory (visual + popover hint), not access-gating.
+            // WP-13 (2026-10-27): QoL now sits right after Mission (§14.2),
+            // so it opens on mission-done instead of assets-done.
             id: "journey-qol-assess",
             label: t("rail.journey.qolAssess.label"),
             path: "/quality-of-life-map/assessment",
-            locked: !assetsDone,
+            locked: !missionDone,
             lockedHint: t("rail.journey.qolAssess.lockedHint"),
             completed: !!journeyProgress["journey-qol-assess"],
         },
@@ -985,6 +994,25 @@ const buildJourneySections = (
         // as its #5 terminus).
         ...(buildBusinessItem ? [buildBusinessItem] : []),
     ];
+
+    // Lay the rows out in JOURNEY_MAIN order. Rows that belong to a step
+    // share its rank (the $37 power-up sits after top talent; Find
+    // collaborators sits before Build a business); Array.sort is stable, so
+    // equal ranks keep the order they have above. Step 0 (quiz) ranks -1.
+    const journeyIdByRow: Record<string, JourneyItemId> = {
+        "journey-start-here": "find-top-talent",
+        "journey-activation": "find-top-talent",
+        "journey-mission-discovery": "discover-mission",
+        "journey-qol-assess": "assess-qol",
+        "journey-asset-mapper": "map-assets",
+        "journey-find-collaborators": "build-business",
+        "journey-build-business": "build-business",
+    };
+    const rankOf = (row: Section): number => {
+        const journeyId = journeyIdByRow[row.id];
+        return journeyId ? JOURNEY_MAIN.findIndex((item) => item.id === journeyId) : -1;
+    };
+    return [...rows].sort((a, b) => rankOf(a) - rankOf(b));
 };
 
 const SectionsPanel = ({
