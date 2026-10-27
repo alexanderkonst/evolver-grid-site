@@ -42,13 +42,13 @@ export const COURSE_MODULES: CourseModule[] = [
     {
         id: "welcome",
         title: "Welcome",
-        episodes: [{ code: "00", title: "Welcome", youtubeId: "TBD-00" }],
+        episodes: [{ code: "00", title: "Welcome", youtubeId: "S9WVr-8CkwE" }],
     },
     {
         id: "foundations",
         title: "Foundations",
         episodes: [
-            { code: "F00", title: "Foundations: Introduction", youtubeId: "TBD-F00" },
+            { code: "F00", title: "Foundations: Introduction", youtubeId: "eVQvfsD36lA" },
             { code: "F01E01", title: "The Obvious Secrets of Growth", youtubeId: "cb5ANfGAtJo" },
             { code: "F01E02", title: "Dormant Potential", youtubeId: "3UUwOXDKMUw" },
             { code: "F01E03", title: "Growth Acceleration Cycle", youtubeId: "4BqbNTKfrXc" },
@@ -59,14 +59,14 @@ export const COURSE_MODULES: CourseModule[] = [
             { code: "F01E08", title: "The Genius Path", youtubeId: "LW7MT427bls" },
             { code: "F01E09", title: "Architecture of Spirit", youtubeId: "ZjzigAPA-LM" },
             { code: "F01E10", title: "Balanced Growth", youtubeId: "zLihfsE9M18" },
-            { code: "F01E11", title: "Continue? Yes or No", youtubeId: "TBD-F11" },
+            { code: "F01E11", title: "Continue? Yes or No", youtubeId: "my9SDKCbKPk" },
         ],
     },
     {
         id: "spirit",
         title: "Spirit",
         episodes: [
-            { code: "S00", title: "Spirit: Introduction", youtubeId: "TBD-S00" },
+            { code: "S00", title: "Spirit: Introduction", youtubeId: "b3G9SFXzC3s" },
             { code: "S01E01", title: "The Meta-Abilities of Spirit", youtubeId: "DXO3qGGFEvk" },
             { code: "S01E02", title: "The Foundation of Presence", youtubeId: "jYRS2d6W0Gs" },
             { code: "S01E03", title: "Perceiving Quality", youtubeId: "SeypsSrhzqY" },
@@ -83,7 +83,7 @@ export const COURSE_MODULES: CourseModule[] = [
         id: "mind",
         title: "Mind",
         episodes: [
-            { code: "M00", title: "Mind: Introduction", youtubeId: "TBD-M00" },
+            { code: "M00", title: "Mind: Introduction", youtubeId: "cu_6K9gK9NM" },
             { code: "M01E01", title: "What is Mind?", youtubeId: "6sK_LBoONZw" },
             { code: "M01E02", title: "Lenses of Perception", youtubeId: "f2j2iEjSNCo" },
             { code: "M01E03", title: "Recognizing Your Stage", youtubeId: "RCZ2Iw1l22Q" },
@@ -95,7 +95,7 @@ export const COURSE_MODULES: CourseModule[] = [
         id: "emotions",
         title: "Emotions",
         episodes: [
-            { code: "E00", title: "Emotions: Introduction", youtubeId: "TBD-E00" },
+            { code: "E00", title: "Emotions: Introduction", youtubeId: "Hxp4T2DNHNY" },
             { code: "E01E01", title: "The Emotional Slider", youtubeId: "dnpYK7zQgak" },
             { code: "E01E02", title: "Recognizing Your Patterns", youtubeId: "Ms2cKJgZnoQ" },
             { code: "E01E03", title: "Processing Your Emotions", youtubeId: "6kUyXRDfip0" },
@@ -106,7 +106,7 @@ export const COURSE_MODULES: CourseModule[] = [
         id: "body",
         title: "Body",
         episodes: [
-            { code: "B00", title: "Body: Introduction", youtubeId: "TBD-B00" },
+            { code: "B00", title: "Body: Introduction", youtubeId: "PKlgvZMAx-c" },
             { code: "B01E01", title: "Body Path: Your Foundation", youtubeId: "A3en7avoljE" },
             { code: "B01E02", title: "Physical Mastery Foundations", youtubeId: "-XzXV9TR9z4" },
             { code: "B01E03", title: "Listening to Your Body", youtubeId: "Pr5E3a1oz5U" },
@@ -116,7 +116,7 @@ export const COURSE_MODULES: CourseModule[] = [
         id: "genius",
         title: "Genius",
         episodes: [
-            { code: "G00", title: "Genius: Introduction", youtubeId: "TBD-G00" },
+            { code: "G00", title: "Genius: Introduction", youtubeId: "Cz8kX6vzzmY" },
             { code: "G01E01", title: "The Architecture of Genius", youtubeId: "RVJqfZ7Z2Vk" },
             { code: "G01E02", title: "Finding Your Zone of Genius", youtubeId: "4p-9HA_6Weg" },
             { code: "G01E03", title: "Forging Your Genius Offer", youtubeId: "Ja710hx_46A" },
@@ -128,7 +128,7 @@ export const COURSE_MODULES: CourseModule[] = [
     {
         id: "closing",
         title: "Closing",
-        episodes: [{ code: "Z01", title: "How to Integrate This Knowledge", youtubeId: "TBD-Z01" }],
+        episodes: [{ code: "Z01", title: "How to Integrate This Knowledge", youtubeId: "4h89Z7yshtc" }],
     },
 ];
 
