@@ -351,3 +351,59 @@ The world is a sovereign village on the main screen, built from real photos of p
 | Town Hall | resident | your first sale is recorded (the Slipper) |
 
 Inferred, to confirm in review: Oracle and Café thresholds. Town Hall stays faded for everyone until their own first sale; its public face (residents' income) is readable from the Investor Room meanwhile.
+
+### 14.3 Map: every route → place → loop step → decision
+
+Loop: **Reception** (character creation) → **Zone of Genius** (class) → **Your House** (mission, person, offer) → **Quest Board** (first conversation, first price, first sale) → **Fire Circle** (live event) → **Mastermind** (season / guild, $222; webinar Wed Nov 4). Decisions: **keep** (as is, tokens only) · **reskin** (one skin + lock state) · **merge** (into the place's canonical route; old path redirects) · **hide** (unlisted/redirect/admin) · **build** (missing connection, never a new module).
+
+| Route(s) today | Place | Loop step | Comes from → leads to | Decision |
+|---|---|---|---|---|
+| `/` GameTitle | Title (outside the world) | door | direct, ads → NEW GAME `/village/reception`; LOAD GAME `/village`; ABOUT `/investor` | keep; NEW GAME goes to the Reception scene, not straight to the test (close #127, shipped) |
+| `/village/:place?` | the map | the one menu | title, rail, every place's «← Village» → any open place | build: `PlaceState` lock states, «what changed» line; replaces guest invitation overlay |
+| `/zone-of-genius/entry`, `/zone-of-genius`, `/game/journey/start`, `/zone-of-genius/assessment/*` | Reception | character creation, class | Reception ENTER → result → «Save your character» (sign up) → village with House open | merge: one public canonical `/zone-of-genius/entry`; auth asked at save, not at the door; drop the duplicate `/zone-of-genius` declaration |
+| `/auth`, `/auth/*` | Reception desk | save game / load game | «Save your character», LOAD GAME → back to where you were, else `/village` | reskin (lavender → night); no rail, no music on auth |
+| `/game/me/overview` (Character Sheet #137) | Your House | mission, person, offer | village → rooms below; each room returns here with the victory | keep (good); rooms use `PlaceState`; becomes LOAD GAME's landing once House is open |
+| `/game/me/zone-of-genius/*`, `/game/me/mission`, `/mission-discovery/*`, `/game/me/assets`, `/asset-mapping/*`, `/game/me/quality-of-life`, `/quality-of-life-map/*`, `/game/learn/qol-*`, `/game/me/art`, `/game/me/profile`, `/game/me/settings` | rooms of Your House | character quests | House → room → House | reskin; QoL stays private |
+| `/game/me/genius-business/*`, `/ubb`, `/game/build/*`, `/product-builder/*`, `/playbook/*` | Workshop | the offer | House (Mission saved) → Workshop → Market (offer saved) | keep `/ubb` as canonical; merge `/game/build/*`, `/product-builder` into it |
+| Venture Builder sub-items (Canvas…Landing Page, all → `/zone-of-genius`) | Workshop | — | — | hide until each has a real screen |
+| `/build/cockpit/dashboard`, `/build/cockpit` | Workshop, the founder's desk | running the venture | Workshop → desk | keep (quality bar); remove «Live from GitHub main» and «not wired» buttons; open to all = #102 |
+| `/build/equilibrium`, `/equilibrium`, Commercial OS | Workshop, the founder's desk | running the venture | desk → tool | keep; one name across auth states («Commercial OS») |
+| `/game/journey`, `/journey`, `/game/next-move` (empty), `/game/next-move-v2`, `/game/learn/today`, `/today`, `/game/transformation/*` | Quest Board | first conversation, first price, first sale | village, House «next» → the quest's place | merge into one Quest Board at `/game/journey`; `/game/next-move*` redirect; journey chain = first quest chain (§13) |
+| `/ai-os/*`, `/codex/*`, `/prompt/*` | Oracle | ask your AI | village → Oracle | reskin; public product pages stay public as the Oracle's outside |
+| `/game/meet/*`, `/game/events/*`, `/events/*`, `/communities` | Café | meet people | village (Mission saved) → events, people | merge into `/game/meet` |
+| `/game/collaborate/*`, `/game/matches`, `/connections`, `/genius-layer-matching`, `/community/people` | Co-working | partners for the work | village (offer saved) | merge into `/game/collaborate/matches` |
+| `/build/mastermind`, `/mastermind`, `/mens-circle`, webinar page | Fire Circle | live event → season/guild | title MULTIPLAYER, village, Quest Board → webinar Wed Nov 4 → seat $222 | reskin (parchment → night); `live` state; real checkout instead of `mailto:`; date fix (#124, #119) |
+| `/game/learn/*`, `/library/*`, `/grow/activate-your-dormant-potential`, `/growth-paths`, `/game/learn/paths`, `/27`, `/skills` | Academy | grow (optional, never a gate) | title TUTORIAL, village → course → «Discover your uniqueness» (Reception) | merge under Academy; Founder Academy / Mystery School become `closed` rooms with their real condition; renumber (no skipped 3, 5) |
+| `/game/marketplace/*`, `/marketplace/*`, `/p/:slug`, `/mp/:slug`, `/founders/*` | Market | your stall, first sale | village (offer saved) → stall → sale recorded → Town Hall opens | keep; your stall = your published offer |
+| `/ignite`, `/game/marketplace/ignite`, `/library/work-1-on-1` | Market, Sasha's stall | paid session, $555 / 2 h | Market, Academy «Work with me», ZoG result → Stripe | reskin; fix title/SEO («Free 45 min» → the $555 2-hour session), fix or remove the hanging video (#100) |
+| `/game/coop` (→ `/ubb` today) | Town Hall | a voice, earned | village (first sale) | build: Town Hall v0 = residents' income + your voice (see WP-12); until then `closed` everywhere |
+| `/investor` | outside the world (About) | about the village | title ABOUT → «Play the game» `/` | reskin to tokens; shows residents' income (the village's one number) |
+| `/:username`, `/profile/:userId`, `/dossier/:slug`, `/page/:slug` | a resident's house, seen from the street | — | Market, Café → the resident | reskin; never shows QoL |
+| `/contact` | Reception desk | help | footer, chat | merge into the Chat launcher (WhatsApp/Telegram); route redirects |
+| `/modules`, `/modules/:slug` | — | — | — | hide (admin only): internal backlog |
+| `/map` (→ `/village`), unrouted `GameMap.tsx`, `/game/test-nav`, `/home`, `/home2`, `/hero`, `/landing`, `/preview/*`, `/quiz`, `/quiz2`, `/mdls-preview`, `/tools` | — | — | — | hide: redirect to `/` or keep unlisted for live links; delete dead files |
+| personal/partner pages (`/karime/*`, `/sandra`, `/sergey`, `/oyi`, `/sasha`, skin scopes) | guest pages, outside | — | direct links | keep unlisted, untouched |
+| `/privacy`, `/terms`, `/license`, `/data` | legal | — | footer | keep |
+| `/admin/*` | — | — | — | keep (admin) |
+| Global: `PlayerStatsBadge` (Level · XP) in GameShellV2 | — | — | — | hide (violates §10a) |
+| Global: SoundCloud player (rail, auth, every page) | — | — | — | merge: one quiet sound toggle in the world, off on auth and checkout |
+| Global: old top nav (`Navigation.tsx`), auth rail | — | — | — | merge into the one shell (14.1 #1) |
+
+### 14.4 Canonical player path (guest → resident → first sale → voice)
+
+| # | Screen | Player does | World changes | Next |
+|---|---|---|---|---|
+| 1 | `/` title | NEW GAME | — | `/village/reception` |
+| 2 | `/village/reception` (scene; the rest of the map visible, open places in color, others faded with their line) | ENTER | — | test |
+| 3 | `/zone-of-genius/entry` (guest allowed) | Faster or Guided test | — | result |
+| 4 | result: your class (top talent) + soul colors | «Save your character» | — | `/auth` sign up (night skin) |
+| 5 | `/village` | sees Your House, Quest Board, Oracle turn from faded to color (`new`) | Victory 1: entered the village (congratulate, 1–10) | Your House |
+| 6 | `/game/me/overview` | rooms: Mission → QoL (private level) → Assets | each room lights a facet; Mission opens Workshop + Café | Workshop |
+| 7 | `/ubb` Workshop | uniqueness in one phrase, tagline, offer | Victories 3–4; offer saved opens Market + Co-working | Market |
+| 8 | Market: your stall | publish your offer | your stall stands in the Market | Quest Board |
+| 9 | `/game/journey` Quest Board | real-world quests: first conversation, name your price (Victory 8), first sale | the board shows only the next one | Fire Circle when live |
+| 10 | Fire Circle (`live`) | webinar Wed Nov 4 → Mastermind seat $222 (checkout) | Victories 5–6; your season/guild | back to the board |
+| 11 | sale recorded (self-reported, then from checkout where we have it) | — | Victory 9, the Slipper; your house on the map lights for everyone; residents' income grows | Town Hall |
+| 12 | Town Hall (`new`) | your voice | governance earned | — |
+
+LOAD GAME at any time: signed out → `/auth` → back to the last place; signed in → `/village` with the «what changed» line on top.
