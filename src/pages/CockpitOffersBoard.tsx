@@ -87,7 +87,7 @@ export default function CockpitOffersBoard() {
             </p>
           </div>
           <div className="w-fit border-l-2 border-[#d6a84d] pl-3 text-sm leading-6 text-[#9ea7b3]">
-            <p>{runtime.source === "runtime" ? "Live from GitHub main" : "Bundled fallback"}</p>
+            {runtime.source !== "runtime" && <p>Bundled fallback</p>}
             <p>{runtime.generatedAt ? `Snapshot ${runtime.generatedAt.slice(0, 10)}` : "Generation time unavailable"}</p>
             <button
               type="button"

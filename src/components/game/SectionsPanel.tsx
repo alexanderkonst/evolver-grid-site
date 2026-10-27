@@ -338,14 +338,9 @@ const SPACE_SECTIONS: SpaceSections = {
                 id: "ubb-v2",
                 label: "Automated Venture Builder",
                 path: "/ubb",
-                subSections: [
-                    { id: "ubb-canvas",         label: "Canvas",         path: "/ubb" },
-                    { id: "ubb-session",        label: "1st Session",    path: "/ubb/session" },
-                    { id: "ubb-marketing",      label: "Marketing",      path: "/ubb/marketing" },
-                    { id: "ubb-distribution",   label: "Distribution",   path: "/ubb/distribution" },
-                    { id: "ubb-communications", label: "Communications", path: "/ubb/communications" },
-                    { id: "ubb-landing",        label: "Landing Page",   path: "/ubb/landing-page" },
-                ],
+                // WP-14 (Scope of Work §14.8): the six phase sub-items are
+                // hidden from the rail; this single entry is the real one.
+                // The /ubb/* routes themselves are untouched.
             },
             { id: "founder-cockpit", label: "Founder Cockpit", path: "/build/cockpit" },
             { id: "founder-cockpit-dashboard", label: "Enter the Cockpit", path: "/build/cockpit/dashboard" },
