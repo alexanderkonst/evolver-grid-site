@@ -51,10 +51,16 @@
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(to bottom, rgba(7, 8, 10, 0) 58%, rgba(7, 8, 10, 0.78) 78%, var(--gt-bg) 100%);
 }
-.gt-screen__copy { position: relative; z-index: 1; padding: 0 24px 96px; width: 100%; max-width: 980px; }
+.gt-screen__copy {
+  /* two zones around the crystal: title in the sky, menu on the lake; the crystal keeps the middle */
+  position: relative; z-index: 1; flex: 1; width: 100%; max-width: 980px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: clamp(48px, 8vh, 120px) 24px clamp(36px, 6vh, 88px);
+}
+.gt-screen__head, .gt-menu-wrap { text-shadow: 0 1px 24px rgba(5, 6, 8, 0.65); }
 .gt-screen h1 {
   font-family: var(--gt-serif); font-weight: 300; text-transform: uppercase;
-  font-size: clamp(38px, 6.4vw, 92px); line-height: 1.02; letter-spacing: 0.06em;
+  font-size: clamp(32px, min(5.4vw, 7.6vh), 84px); line-height: 1.02; letter-spacing: 0.06em;
   margin: 0 0 18px; color: var(--gt-ink); text-wrap: balance;
 }
 .gt-sub {
@@ -64,10 +70,10 @@
 
 .gt-menu-wrap { opacity: 0; animation: gt-fade 1.6s ease-out 1.2s forwards; }
 @keyframes gt-fade { to { opacity: 1; } }
-.gt-menu { list-style: none; margin: 44px auto 0; padding: 0; display: inline-block; text-align: left; }
+.gt-menu { list-style: none; margin: 0 auto; padding: 0; display: inline-block; text-align: left; }
 .gt-menu li { margin: 0; }
 .gt-menu a {
-  display: flex; align-items: center; min-height: 44px; padding: 0 12px 0 0;
+  display: flex; align-items: center; min-height: clamp(36px, 5vh, 44px); padding: 0 12px 0 0;
   font-family: var(--gt-mono); font-weight: 300; font-size: 16px; letter-spacing: 0.24em;
   text-transform: uppercase; color: var(--gt-ink-3); text-decoration: none;
   transition: color 0.6s ease;
@@ -207,7 +213,10 @@
   .gt-menu { display: block; width: 100%; max-width: 420px; }
   .gt-menu a { font-size: 14px; letter-spacing: 0.18em; padding: 0 16px; border: 1px solid var(--gt-hair); margin-top: 8px; justify-content: flex-start; }
   .gt-menu li.is-active a { border-color: var(--gt-accent); }
-  .gt-screen__copy { padding-bottom: 80px; }
+  .gt-screen__copy { padding: 72px 20px 48px; }
+  .gt-menu a { min-height: 40px; margin-top: 6px; }
+  .gt-hint { display: none; }
+  .gt-sub { white-space: normal; line-height: 1.7; max-width: 30ch; margin: 0 auto; }
   .gt-levels li { gap: 18px; }
   .gt-about { padding-top: 104px; }
 }

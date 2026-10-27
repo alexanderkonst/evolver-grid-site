@@ -334,8 +334,10 @@ const GameTitle = () => {
             style={reduceMotion ? { animation: "none" } : undefined}
           />
           <div className="gt-screen__copy">
+            <header className="gt-screen__head">
             <h1>The Game of Being&nbsp;You</h1>
             <p className="gt-sub">Self-Discovery · Quality of Life · Uniqueness · Growth · Tribe</p>
+            </header>
             <nav className="gt-menu-wrap" aria-label="Game menu">
               <ul className="gt-menu">
                 {items.map((item, i) => {
