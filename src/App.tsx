@@ -100,6 +100,7 @@ import ActivateTopTalent from "./pages/ActivateTopTalent";
 // is kept for reference only and no longer mounted.
 import MethodologyLandingPage from "./pages/MethodologyLandingPage";
 import JourneyPage from "./pages/JourneyPage";
+import GameTitle from "./pages/GameTitle";
 // Day 137 (Sasha 2026-07-28): /home2 is a private, noindex review surface for
 // the proposed landing rebuild that was briefly (and mistakenly) live at `/`
 // before being reverted (commit 6355a908). It renders the preserved copy
@@ -398,7 +399,7 @@ const SmartShellLayout = () => {
       // single persistent instance across in-shell routes), so this does
       // not force minimization when navigating to "/" from elsewhere in
       // the same session, and other routes' defaults are untouched.
-      <GameShellV2 hideLogo={pathHidesLogo(location.pathname)} defaultRailMinimized={location.pathname === "/"}>
+      <GameShellV2 hideLogo={pathHidesLogo(location.pathname)} defaultRailMinimized={location.pathname === "/journey"}>
         <Outlet />
       </GameShellV2>
     );
@@ -492,7 +493,11 @@ const App = () => (
                       lifted out of per-page mounts so it persists across nav. */}
                   <Route element={<SmartShellLayout />}>
                   {/* ══════ PUBLIC ROUTES (no login required) ══════ */}
-                  <Route path="/" element={<JourneyPage />} />
+                  {/* Issue #127 (Sasha 2026-10-27): THE GAME OF BEING YOU title screen is
+                      now the homepage. The previous homepage (JourneyPage) stays
+                      reachable at /journey (and still at /game/journey). */}
+                  <Route path="/" element={<GameTitle />} />
+                  <Route path="/journey" element={<JourneyPage />} />
                   {/* Day 138 (Sasha 2026-07-29): /home carries the approved
                       truth-landing copy — see HomeV2Page.tsx for context. */}
                   <Route path="/home" element={<HomeV2Page />} />
