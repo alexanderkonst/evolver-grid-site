@@ -60,6 +60,7 @@ Open: the reading method (prompt + validation against the cases where colors wer
 - Idle: slow Ken Burns zoom, breathing beam, then a slowly blinking `PRESS START` that disappears on input.
 - Hover (target state): the hovered item lights the corresponding ray or solid.
 - Mobile: static hero frame, full-width buttons.
+- Second screen opens with the headline **"You Are The Fifth Element"** (Sasha, 2026-10-26, «давай пока так»).
 - Below the fold: "How the game works" (4 levels: Know your character → Forge your unique business → Enter multiplayer → Work, play & grow together), "Five paths. One crystal." (wireframe solids, slow rotation), About → Investor Room.
 
 **Final hero production:** a Blender Cycles render and a short loop (flat gold YOU logo turns into the 3D crystal → white light enters → the player's spectrum leaves → the menu appears). The current frames are AI stills, for direction only.
@@ -148,6 +149,7 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 **Evolver's read (open fork, his decision):**
 - The mythos is exact and should be canon: the four elements orbit, the fifth sits in the center, light passes through it, and "find your fifth element" is the core quest.
 - The name collides: Luc Besson's film *The Fifth Element* (Gaumont, 1997) and its 1998 video game (Kalisto) sit in the same entertainment/games classes. That brings trademark risk and searches that land on the film.
+- **Decision for now (Sasha, 2026-10-26: «давай пока так»):** option (a). Name stays THE GAME OF BEING YOU; "You Are The Fifth Element" is the headline of the second screen. Trademark facts: Gaumont US reg. 2621600 THE FIFTH ELEMENT (class 9, renewed 2023); pending application serial 50125666 THE FIFTH ELEMENT, class 42 software, filed 2026-09-23 by Wild Woman Haus, LLC (Tempe, AZ). The concept itself (Plato, aether) is public domain.
 - Options: (a) title stays THE GAME OF BEING YOU, and "The Fifth Element" becomes the central chapter and quest ("Discover your Fifth Element"); (b) a distinct word for the same meaning: *Quintessence*, *Aether*, *The Fifth*; (c) take the name anyway after a trademark check.
 
 **Visual consequence:** the axis hero (light from source → through the center of the crystal → grounded into earth, spectrum radiating 360°) already shows the fifth element as the medium through which source light becomes a personal spectrum.
@@ -164,6 +166,7 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 - 2026-10-26: Game design almanac started: invariant = scope of player authorship; 7 stages; Si–Do = life as the game ([game_design_almanac.md](./game_design_almanac.md)).
 - 2026-10-26: Subtitle → "Self-Discovery · Quality of Life · Uniqueness · Growth · Tribe"; "FindYourTopTalent.com presents" removed.
 - 2026-10-26: Fifth Element = quintessence = Uniqueness; proposed as the game's name (§11).
+- 2026-10-26: For now: name stays; "You Are The Fifth Element" = second-screen headline (§11).
 
 ## Assets
 
