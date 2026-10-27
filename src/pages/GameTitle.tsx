@@ -354,7 +354,7 @@ const TitleScreen = () => {
           <div className="gt-screen__copy">
             <header className="gt-screen__head">
             <h1>The Game of Being&nbsp;You</h1>
-            <p className="gt-sub">Self-Discovery · Quality of Life · Uniqueness · Growth · Tribe</p>
+            <p className="gt-sub">Self-Discovery · Growth · Quality of Life · Uniqueness · Tribe · Village · Collective</p>
             </header>
             <nav className="gt-menu-wrap" aria-label="Game menu">
               <ul className="gt-menu">
