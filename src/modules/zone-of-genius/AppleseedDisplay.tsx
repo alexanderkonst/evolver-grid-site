@@ -206,7 +206,7 @@ const AppleseedDisplay = ({
     // (liquid-glass body + cream text) so the card stays in the skin's
     // family. Day 91 (Sasha 2026-06-09): aurum joins navy-gold now that
     // dark is a persistable first-class theme.
-    const useDarkHero = skin === "navy-gold" || skin === "aurum";
+    const useDarkHero = skin === "navy-gold" || skin === "aurum" || skin === "lunar";
 
     // Email gate state
     const [email, setEmail] = useState('');

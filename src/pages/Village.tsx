@@ -10,6 +10,7 @@ import {
   sceneObjectPosition,
   type VillagePlace,
 } from "@/data/villagePlaces";
+import { LunarWorldSync } from "@/components/skin/LunarWorld";
 import "./Village.css";
 
 /**
@@ -176,6 +177,8 @@ const Village = () => {
   return (
     <div className="vl-root" data-view={place ? "place" : "map"}>
       <div className="vl-grain" aria-hidden="true" />
+      {/* Lunar only: the player's soul colors and the sky, read from the save (§14.11). */}
+      <LunarWorldSync />
 
       <main>
         <section className={`vl-layer vl-map${place ? "" : " is-on"}`} aria-label="Digital Village map">

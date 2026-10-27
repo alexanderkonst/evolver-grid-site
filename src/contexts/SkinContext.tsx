@@ -41,7 +41,7 @@ import { supabase } from "@/integrations/supabase/client";
 // the blue stone veined with gold) and "aurum" (dark, gold-on-near-
 // black; formerly the route-scoped "darktheme" preview). Legacy slugs
 // stored in localStorage are migrated on read (see getPersistedSkin).
-export type Skin = "lapis" | "navy-gold" | "network-school" | "karime" | "daouniverse" | "planetir" | "aurum" | "techstars" | "dao";
+export type Skin = "lunar" | "lapis" | "navy-gold" | "network-school" | "karime" | "daouniverse" | "planetir" | "aurum" | "techstars" | "dao";
 
 interface SkinContextValue {
   skin: Skin;
@@ -55,7 +55,13 @@ interface SkinContextValue {
 }
 
 const STORAGE_KEY = "app-skin";
-const VALID_SKINS: Skin[] = ["lapis", "navy-gold", "network-school", "karime", "daouniverse", "planetir", "aurum", "techstars", "dao"];
+
+/** WP-2 (game_of_being_you.md §14.10 decision 1): Lunar is the default for
+ *  new players. Only a player with no stored choice lands here; anyone who
+ *  already picked a skin keeps it (getPersistedSkin reads storage first).
+ *  The same default is inlined in index.html's pre-paint script. */
+const DEFAULT_SKIN: Skin = "lunar";
+const VALID_SKINS: Skin[] = ["lunar", "lapis", "navy-gold", "network-school", "karime", "daouniverse", "planetir", "aurum", "techstars", "dao"];
 
 /** One-time slug migration for choices persisted before the Day 91
  *  rename. Without this, the VALID_SKINS gate would silently discard
@@ -72,7 +78,7 @@ const LEGACY_SKIN_MIGRATIONS: Record<string, Skin> = {
  *  like PreviewBanner's Exit can restore the user's actual choice
  *  instead of hard-resetting to the default. */
 export const getPersistedSkin = (): Skin => {
-  if (typeof window === "undefined") return "lapis";
+  if (typeof window === "undefined") return DEFAULT_SKIN;
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     const stored = raw && LEGACY_SKIN_MIGRATIONS[raw] ? LEGACY_SKIN_MIGRATIONS[raw] : raw;
@@ -89,7 +95,7 @@ export const getPersistedSkin = (): Skin => {
   } catch {
     // localStorage unavailable (e.g. private mode) — fall through.
   }
-  return "lapis";
+  return DEFAULT_SKIN;
 };
 
 const readStoredSkin = getPersistedSkin;
@@ -99,10 +105,10 @@ const applySkinToDocument = (skin: Skin) => {
   document.documentElement.dataset.skin = skin;
 };
 
-/** Only the two first-class themes follow the person across devices.
+/** Only the first-class themes follow the person across devices.
  *  White-label demo skins are route-scoped and never sync; navy-gold
- *  is an internal preview. Day 91 (Sasha 2026-06-10). */
-const SYNCABLE_SKINS: ReadonlyArray<Skin> = ["lapis", "aurum"];
+ *  is an internal preview. Day 91 (Sasha 2026-06-10); lunar joined in WP-2. */
+const SYNCABLE_SKINS: ReadonlyArray<Skin> = ["lunar", "lapis", "aurum"];
 
 /** Fire-and-forget: persist the choice to the user's profile so it
  *  follows them across devices. Guests no-op (localStorage covers the
@@ -126,7 +132,7 @@ const syncSkinToProfile = async (next: Skin) => {
 };
 
 const SkinContext = createContext<SkinContextValue>({
-  skin: "lapis",
+  skin: DEFAULT_SKIN,
   setSkin: () => {},
   pushTemporarySkin: () => () => {},
 });

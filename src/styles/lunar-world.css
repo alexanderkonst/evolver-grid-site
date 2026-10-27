@@ -1,0 +1,293 @@
+/* ==========================================================================
+   LUNAR WORLD — WP-2 (game_of_being_you.md §14.8, §14.11)
+   ==========================================================================
+   The world layer of the Lunar skin. Tokens and surface re-tones are in
+   `src/index.css` ([data-skin="lunar"]) and `theme-tokens.css`; this file is
+   what turns the Journey screens into a silver moonlit world where color
+   enters as you play. Every rule is scoped to [data-skin="lunar"]: no other
+   skin changes. Loaded after theme-tokens.css (see main.tsx).
+
+   1. Scenes      grayscale via filter, optional halftone texture
+   2. Sky         deep night → pre-dawn as the Journey fills (`--lunar-dawn`)
+   3. Places      the five states on the map, on a place scene, in the list
+   4. Paths       glow between colored places
+   5. Mobile      aura size and ring on a phone
+
+   Tokens ready for the stall (§14.12) and badges: `--soul-1..3`,
+   `--unearned-fill` (silver) and `--earned-fill` (soul colors), in
+   theme-tokens.css. Neither the stall nor badges are built here.
+
+   The contract with WP-3's PlaceState: it sets `data-place-state` to one of
+   closed | open | next | done | live on the element that IS the place (map
+   pin `.vl-pin`, scene `.vl-place`, list row `li`). The three numbers it
+   implies (`--place-saturation`, `--place-glow`, `--place-shade`) come from
+   theme-tokens.css. Nothing below needs a counter or a number on screen.
+
+   Soul colors: `--soul-1..3`, written on <html> from `useCharacterSheet` by
+   src/lib/lunarWorld.ts (until Spectrum Reading exists: the top talent
+   archetype colors). They are silver until the player has any.
+   ========================================================================== */
+
+/* ── 1. Scenes ───────────────────────────────────────────────────────────
+   Art stays in the repo in color; Lunar greys it with a filter. `.scene-art`
+   is the hook for any other scene image (Module Intro / Outro, Your House). */
+[data-skin="lunar"] .gt-screen__img,
+[data-skin="lunar"] .vl-map-img,
+[data-skin="lunar"] .vl-place__img,
+[data-skin="lunar"] .scene-art {
+  filter: var(--scene-filter);
+}
+
+/* Halftone: decorative on every scene, denser on a closed place (below). The
+   overlay never takes pointer events and never covers text (copy sits above). */
+[data-skin="lunar"] .gt-screen::before,
+[data-skin="lunar"] .vl-place::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: var(--scene-halftone);
+  background-size: var(--scene-halftone-size);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+/* ── 2. Sky ──────────────────────────────────────────────────────────────
+   One layer over the map: a pre-dawn glow along the horizon whose strength is
+   `--lunar-dawn` (0 at the start, 1 on a full Journey = first light). With the
+   halftone it makes the frame's overlay. Never shown as a bar or a number. */
+[data-skin="lunar"] .vl-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to bottom,
+      rgba(120, 160, 205, 0) 0%,
+      rgba(120, 160, 205, calc(var(--lunar-dawn, 0) * 0.18)) 34%,
+      rgba(150, 185, 225, calc(var(--lunar-dawn, 0) * 0.3)) 46%,
+      rgba(120, 160, 205, 0) 62%),
+    var(--scene-halftone);
+  background-size: 100% 100%, var(--scene-halftone-size);
+  mix-blend-mode: screen;
+}
+
+/* ── 3. Places ───────────────────────────────────────────────────────────
+   Map: the buildings are one image, so a place is lit by an aura laid over its
+   pin: ::before = light or shade (screen / multiply), ::after = soul color
+   (color blend), both sized to the whole building, not to its label.
+   The pin list loses its own stacking context so the auras blend with the
+   map image underneath. */
+[data-skin="lunar"] .vl-pins {
+  z-index: auto;
+}
+[data-skin="lunar"] .vl-pin {
+  --vl-aura: calc(max(100vw, 100svh * var(--vl-ratio, 1)) * 0.14);
+}
+[data-skin="lunar"] .vl-pin[data-place-state]::before,
+[data-skin="lunar"] .vl-pin[data-place-state]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--vl-aura);
+  height: var(--vl-aura);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+[data-skin="lunar"] .vl-pin[data-place-state] .vl-pin__link {
+  z-index: 1; /* the label stays above the auras, uncolored */
+}
+
+/* light / shade layer. Open: bright silver, soft moonlight. */
+[data-skin="lunar"] .vl-pin[data-place-state]::before {
+  background: radial-gradient(closest-side,
+    rgba(232, 240, 250, 0.5) 0%,
+    rgba(214, 226, 240, 0.24) 50%,
+    transparent 100%);
+  mix-blend-mode: screen;
+  opacity: var(--place-glow);
+}
+/* closed: a dark silhouette, windows unlit. Multiply darkens the buildings. */
+[data-skin="lunar"] .vl-pin[data-place-state="closed"]::before {
+  background: radial-gradient(closest-side,
+    rgba(3, 6, 10, 0.86) 0%,
+    rgba(3, 6, 10, 0.6) 62%,
+    transparent 100%);
+  mix-blend-mode: multiply;
+  opacity: var(--place-shade);
+}
+/* next: open + a teal rim of light. */
+[data-skin="lunar"] .vl-pin[data-place-state="next"]::before {
+  background:
+    radial-gradient(closest-side, transparent 58%, rgba(var(--accent-rgb), 0.34) 86%, transparent 100%),
+    radial-gradient(closest-side, rgba(232, 240, 250, 0.54) 0%, rgba(214, 226, 240, 0.26) 50%, transparent 100%);
+}
+/* done / live: the place is lit from inside; warm light in the windows. */
+[data-skin="lunar"] .vl-pin[data-place-state="done"]::before,
+[data-skin="lunar"] .vl-pin[data-place-state="live"]::before {
+  background:
+    radial-gradient(closest-side, rgba(var(--place-window-lit), 0.55) 0%, rgba(var(--place-window-lit), 0.2) 42%, transparent 78%),
+    radial-gradient(closest-side, rgba(232, 240, 250, 0.3) 0%, rgba(214, 226, 240, 0.12) 55%, transparent 100%);
+}
+/* the color layer: the place takes on the player's soul colors. */
+[data-skin="lunar"] .vl-pin[data-place-state="done"]::after,
+[data-skin="lunar"] .vl-pin[data-place-state="live"]::after {
+  background: radial-gradient(closest-side,
+    var(--soul-1) 0%,
+    var(--soul-2) 52%,
+    var(--soul-3) 78%,
+    transparent 100%);
+  mix-blend-mode: color;
+  opacity: calc(var(--place-saturation) * 0.82);
+}
+/* live: done + a slow pulse (webinar, Mastermind). */
+[data-skin="lunar"] .vl-pin[data-place-state="live"]::before {
+  animation: lunar-place-pulse 4.8s ease-in-out infinite;
+}
+@keyframes lunar-place-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.94); opacity: calc(var(--place-glow) * 0.7); }
+  50%      { transform: translate(-50%, -50%) scale(1.1);  opacity: var(--place-glow); }
+}
+
+/* marker + label per state */
+[data-skin="lunar"] .vl-pin[data-place-state="closed"] .vl-dot::before {
+  opacity: 0.35;
+  box-shadow: none;
+}
+[data-skin="lunar"] .vl-pin[data-place-state="closed"] .vl-dot::after {
+  display: none;
+}
+[data-skin="lunar"] .vl-pin[data-place-state="closed"] .vl-pin__name {
+  color: rgba(var(--scene-ink-rgb), 0.38);
+}
+[data-skin="lunar"] .vl-pin[data-place-state="next"] .vl-dot::before {
+  background: var(--open-accent);
+  box-shadow: 0 0 10px 2px rgba(var(--accent-rgb), 0.8), 0 0 30px 8px rgba(var(--accent-rgb), 0.3);
+}
+/* next: the teal ring marker around the place (outline, not a fill). */
+[data-skin="lunar"] .vl-pin[data-place-state="next"] .vl-dot::after {
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  border: 1.5px solid var(--open-accent);
+  box-shadow: 0 0 14px rgba(var(--accent-rgb), 0.5);
+  opacity: 0.95;
+  animation: lunar-ring 3.6s ease-in-out infinite;
+  animation-delay: var(--vl-d, 0s);
+}
+@keyframes lunar-ring {
+  0%, 100% { transform: scale(1);    opacity: 0.95; }
+  50%      { transform: scale(1.12); opacity: 0.6; }
+}
+[data-skin="lunar"] .vl-pin[data-place-state="next"] .vl-pin__name {
+  color: var(--accent-text);
+}
+[data-skin="lunar"] .vl-pin[data-place-state="done"] .vl-dot::before,
+[data-skin="lunar"] .vl-pin[data-place-state="live"] .vl-dot::before {
+  background: rgb(var(--place-window-lit));
+  opacity: 1;
+  box-shadow: 0 0 10px 2px rgba(var(--place-window-lit), 0.8), 0 0 30px 8px rgba(var(--place-window-lit), 0.3);
+}
+[data-skin="lunar"] .vl-pin[data-place-state="done"] .vl-pin__name,
+[data-skin="lunar"] .vl-pin[data-place-state="live"] .vl-pin__name {
+  color: var(--vl-ink);
+}
+
+/* A place scene (/village/:place): the whole scene takes the state. */
+[data-skin="lunar"] .vl-place[data-place-state="closed"] .vl-place__img {
+  filter: var(--scene-filter) brightness(0.5);
+}
+[data-skin="lunar"] .vl-place[data-place-state="closed"]::before {
+  background-size: 3px 3px;
+  opacity: 1;
+}
+[data-skin="lunar"] .vl-place[data-place-state="open"] .vl-place__img,
+[data-skin="lunar"] .vl-place[data-place-state="next"] .vl-place__img {
+  filter: var(--scene-filter) brightness(1.1);
+}
+/* done / live: the scene takes the soul colors (halftone gives way to color). */
+[data-skin="lunar"] .vl-place[data-place-state="done"]::before,
+[data-skin="lunar"] .vl-place[data-place-state="live"]::before {
+  background: linear-gradient(135deg, var(--soul-1) 0%, var(--soul-2) 55%, var(--soul-3) 100%);
+  mix-blend-mode: color;
+  opacity: calc(var(--place-saturation) * 0.7);
+}
+[data-skin="lunar"] .vl-place[data-place-state="done"] .vl-place__img,
+[data-skin="lunar"] .vl-place[data-place-state="live"] .vl-place__img {
+  filter: var(--scene-filter) brightness(1.1);
+}
+[data-skin="lunar"] .vl-place[data-place-state="next"] .vl-enter {
+  box-shadow: 0 0 22px -4px rgba(var(--accent-rgb), 0.55);
+}
+
+/* Mobile list: the same five states, in type rather than light. */
+[data-skin="lunar"] .vl-list li[data-place-state="closed"] .vl-list__name,
+[data-skin="lunar"] .vl-list li[data-place-state="closed"] .vl-list__line {
+  opacity: var(--lock-dim);
+  color: rgba(var(--scene-ink-rgb), 0.5);
+}
+[data-skin="lunar"] .vl-list li[data-place-state="next"] .vl-list__name {
+  color: var(--accent-text);
+}
+[data-skin="lunar"] .vl-list li[data-place-state="done"] .vl-list__name,
+[data-skin="lunar"] .vl-list li[data-place-state="live"] .vl-list__name {
+  color: var(--soul-1);
+}
+
+/* ── 4. Paths ────────────────────────────────────────────────────────────
+   A path between two colored places glows, so the colored part of the map is
+   the shape of the journey (§14.11 step 3). Markup contract for the map:
+     <svg class="vl-paths" viewBox="0 0 100 100" preserveAspectRatio="none">
+       <path data-lit="true" d="M x1 y1 …" />
+     </svg>
+   inside `.vl-drift`, coordinates in the same % as villagePlaces.ts. A path is
+   `data-lit="true"` when both of its places are `done` / `live`. */
+[data-skin="lunar"] .vl-paths {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+[data-skin="lunar"] .vl-paths path {
+  fill: none;
+  stroke: var(--soul-1);
+  stroke-width: 0.5;
+  stroke-linecap: round;
+  stroke-dasharray: 0.6 1.4;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+[data-skin="lunar"] .vl-paths path[data-lit="true"] {
+  opacity: 0.85;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 5px var(--soul-1)) drop-shadow(0 0 14px var(--soul-2));
+}
+
+/* ── 5. Mobile ───────────────────────────────────────────────────────────
+   The map is exactly the viewport wide on a phone. */
+@media (max-width: 767px) {
+  [data-skin="lunar"] .vl-pin {
+    --vl-aura: calc(100vw * 0.2);
+  }
+  [data-skin="lunar"] .vl-pin[data-place-state="next"] .vl-dot::after {
+    width: 34px;
+    height: 34px;
+    margin: -17px 0 0 -17px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-skin="lunar"] .vl-pin[data-place-state="live"]::before,
+  [data-skin="lunar"] .vl-pin[data-place-state="next"] .vl-dot::after {
+    animation: none;
+  }
+  [data-skin="lunar"] .vl-paths path {
+    transition: none;
+  }
+}

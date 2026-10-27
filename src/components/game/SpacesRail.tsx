@@ -1291,8 +1291,11 @@ const SpacesRail = ({
 
                         {/* Theme toggle — Day 91: Lapis/Aurum only, the
                             white-label skins own their look. Restored here
-                            from the Day 128 removal (git show 72afcdb1). */}
-                        {(skin === "lapis" || skin === "aurum" || skin === "dao") && (
+                            from the Day 128 removal (git show 72afcdb1).
+                            WP-2: Lunar (the default for new players) joins the
+                            cycle as an entry point that steps to Lapis; Lunar
+                            itself is picked in Settings. */}
+                        {(skin === "lunar" || skin === "lapis" || skin === "aurum" || skin === "dao") && (
                             <Tooltip>
                                 <TooltipTrigger asChild>
                                     <button

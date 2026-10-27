@@ -498,7 +498,9 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // swap. The mobile content-scroll bg fix DOES apply (Lapis cream
     // wash → transparent so the body bg's near-black + amber-radial
     // shows through).
-    const __isAurumShell = __spaceShipSkin === "aurum";
+    // WP-2: Lunar is a dark noir register too, so it takes the same shell
+    // treatment as Aurum (near-black backdrop, transparent mobile scroll wash).
+    const __isAurumShell = __spaceShipSkin === "aurum" || __spaceShipSkin === "lunar";
     // Day 91 (Sasha 2026-06-08): techstars white-label demo. Same mobile
     // content-scroll rule (Aurora cream wash → transparent so the Mux
     // photo bg shows through), same full-rail inclusion.
@@ -1631,6 +1633,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 )}
                 {!suppressShellBackground &&
                     __spaceShipSkin !== "aurum" &&
+                    __spaceShipSkin !== "lunar" &&
                     __spaceShipSkin !== "lapis" && <MuxVideoBackground />}
                 {/*
                   Equilibrium clean backdrop (Sasha 2026-05-20). When

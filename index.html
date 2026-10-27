@@ -27,10 +27,13 @@
           var s = localStorage.getItem("app-skin");
           if (s === "darktheme") s = "aurum";
           if (s === "aurora") s = "lapis";
-          var valid = ["lapis", "navy-gold", "network-school", "karime", "daouniverse", "planetir", "aurum", "techstars", "dao"];
-          if (s && valid.indexOf(s) !== -1) {
-            document.documentElement.setAttribute("data-skin", s);
-          }
+          var valid = ["lunar", "lapis", "navy-gold", "network-school", "karime", "daouniverse", "planetir", "aurum", "techstars", "dao"];
+          // WP-2: Lunar is the default for new players (no stored choice).
+          // Keep in sync with DEFAULT_SKIN in SkinContext.tsx.
+          document.documentElement.setAttribute(
+            "data-skin",
+            s && valid.indexOf(s) !== -1 ? s : "lunar"
+          );
         } catch (e) { /* private mode etc. - default register applies */ }
       })();
     </script>

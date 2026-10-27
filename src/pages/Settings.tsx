@@ -52,6 +52,27 @@ interface SkinOption {
 // "Aurora" option was renamed Lapis with the platform-wide slug
 // rename (localStorage migrates automatically).
 const SKIN_OPTIONS: SkinOption[] = [
+    // WP-2: Lunar is the default for new players (game_of_being_you.md §14.10).
+    {
+        id: "lunar",
+        labelKey: "settings.skinLunarLabel",
+        taglineKey: "settings.skinLunarTagline",
+        swatchBackground:
+            "linear-gradient(135deg, #0b1017 0%, #1a2430 55%, #5b6b7c 100%)",
+        swatchOverlay: (
+            <span
+                aria-hidden="true"
+                className="absolute inset-0 flex items-center justify-center text-lg"
+                style={{
+                    color: "#e6ebf2",
+                    textShadow:
+                        "0 0 10px rgba(94,200,189,0.75), 0 0 3px rgba(230,235,242,0.85)",
+                }}
+            >
+                ☾
+            </span>
+        ),
+    },
     {
         id: "lapis",
         labelKey: "settings.skinLapisLabel",
@@ -254,7 +275,7 @@ const AppearanceTab = () => {
                                         >
                                             <Check
                                                 className="w-3 h-3"
-                                                style={{ color: skin === "aurum" ? "#0a0a0c" : "#ffffff" }}
+                                                style={{ color: skin === "aurum" || skin === "lunar" ? "#0a0a0c" : "#ffffff" }}
                                             />
                                         </span>
                                     )}
