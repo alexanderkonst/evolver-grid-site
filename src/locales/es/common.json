@@ -6990,6 +6990,63 @@
       "mission": "Mi misión"
     }
   },
+  "characterSheet": {
+    "eyebrow": "Tu casa",
+    "playerFallback": "Jugador",
+    "character": {
+      "photoInvite": "Añade tu foto real",
+      "talentLabel": "Talento principal",
+      "talentEmpty": "Aún sin descubrir",
+      "talentCta": "Encuentra tu talento principal",
+      "missionLabel": "Misión",
+      "missionEmpty": "Aún sin elegir",
+      "missionCta": "Descubre tu misión"
+    },
+    "level": {
+      "title": "Nivel",
+      "private": "Solo tú ves esto.",
+      "weakest": "Lo marca tu área más débil: {{domain}}",
+      "empty": "Aún sin medir",
+      "cta": "Mapea tu calidad de vida"
+    },
+    "inventory": {
+      "title": "Inventario",
+      "summary": "Activos mapeados: {{total}}",
+      "open": "Abrir inventario",
+      "empty": "Vacío",
+      "cta": "Mapea tus activos"
+    },
+    "quests": {
+      "title": "Primera cadena de misiones",
+      "unlocked": "Desbloqueado",
+      "findTopTalent": "Encuentra tu talento principal",
+      "takePlaybook": "Toma el playbook",
+      "seePath": "Mira el atajo",
+      "seeDashboard": "Mira cómo lo estamos construyendo",
+      "mapAssets": "Mapea tus activos",
+      "assessQol": "Evalúa tu calidad de vida",
+      "buildBusiness": "Construye un negocio sobre tu talento principal",
+      "discoverMission": "Descubre tu misión",
+      "locked": {
+        "buildBusiness": "Se desbloquea tras la activación.",
+        "discoverMission": "Se desbloquea cuando construyas un negocio sobre tu talento principal."
+      }
+    },
+    "victories": {
+      "title": "Victorias",
+      "note": "Logros reales, desde el primer día.",
+      "empty": "Tu primera victoria está a una misión de distancia.",
+      "cta": "Empieza la primera misión",
+      "findTopTalent": "Superaste la prueba de unicidad y entraste en el pueblo",
+      "takePlaybook": "Tomaste el playbook",
+      "seePath": "Viste el atajo hacia tu negocio",
+      "seeDashboard": "Viste cómo se construye el juego",
+      "mapAssets": "Mapeaste tus activos",
+      "assessQol": "Evaluaste tu calidad de vida",
+      "buildBusiness": "Construiste un negocio sobre tu talento principal",
+      "discoverMission": "Descubriste tu misión"
+    }
+  },
   "myProducts": {
     "toast": {
       "copied": {
