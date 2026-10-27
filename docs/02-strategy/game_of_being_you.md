@@ -447,7 +447,7 @@ Sizes: S ≤ 4 h, M 5–10 h, L > 10 h of Claude Code work; review = Hark review
 | **WP-13 Journey in code** | `JOURNEY_SEQUENCE` reordered and relabelled to 14.2 (after fork 2); playbook / path / dashboard → Tutorial lore; one source drives hints, rail, House | 1 | `journeySequence.ts`, `useJourneyCompletion.ts` | S · 4 · 1.5 | fork 2 | the same order on the map, the rail and in the House | — |
 | **WP-14 Surface hygiene on the Journey** | `/modules` admin-only; «Live from GitHub main» copy; hide dead Venture Builder items; redirect `/game/next-move`; drop duplicate `/zone-of-genius` | 10 | `App.tsx`, `CockpitDashboard.tsx`, `CockpitOffersBoard.tsx`, `SpacesRail.tsx` | S · 3 · 1 | — | no internal language on public screens | — |
 
-**Total: 121 h Claude Code + 42 h review = 163 h** (14 WPs; 3 L, 7 M, 4 S).
+**Total: 121 h Claude Code + 42 h review = 163 h** (14 WPs; 4 L, 7 M, 3 S).
 
 **Waves:**
 - **Wave 0, now (before Wed Nov 4):** WP-10 date/copy fix (~1 h, counted in WP-10).
