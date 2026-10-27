@@ -391,13 +391,24 @@ const GameTitle = () => {
             <ul className="gt-paths">
               {PATHS.map((p, i) => (
                 <li key={p.solid} className={p.unique ? "is-unique" : undefined}>
-                  <PlatonicSolid
-                    solid={p.solid}
-                    label={`Wireframe ${SOLID_NAMES[p.solid]}`}
-                    index={i}
-                    accent={!!p.unique}
-                    reduceMotion={reduceMotion}
-                  />
+                  <div className="gt-solid">
+                    <img
+                      className="gt-gem"
+                      src={`/game/gems/gem_${p.solid}.webp`}
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                      decoding="async"
+                      style={{ animationDelay: `${-i * 1.7}s` }}
+                    />
+                    <PlatonicSolid
+                      solid={p.solid}
+                      label={`Crystal ${SOLID_NAMES[p.solid]} inside its rotating wireframe`}
+                      index={i}
+                      accent={!!p.unique}
+                      reduceMotion={reduceMotion}
+                    />
+                  </div>
                   <span className="gt-mono">{p.name}</span>
                   <span className="gt-mono gt-element">{p.element}</span>
                   <p>{p.line}</p>
