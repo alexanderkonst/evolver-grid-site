@@ -722,7 +722,7 @@ export default function CockpitDashboard() {
                 <p className={`mt-3 text-xs ${offerRuntime.error ? "text-[#ffc0a5]" : "text-[#9ea7b3]"}`}>
                   {offerRuntime.error
                     ? `Live source unavailable; showing bundled fallback. ${offerRuntime.error}`
-                    : `Live from GitHub main · generated ${formatDate(offerRuntime.generatedAt)}`}
+                    : `Generated ${formatDate(offerRuntime.generatedAt)}`}
                 </p>
                 <Link
                   to="/build/cockpit/offers"

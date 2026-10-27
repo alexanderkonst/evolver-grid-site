@@ -172,7 +172,6 @@ import QualityOfLifeMapAssessment from "./pages/QualityOfLifeMapAssessment";
 // imports retired — pages no longer routed (see route block below). Files
 // preserved in src/pages/ as dead code.
 import QolLayout from "./modules/quality-of-life-map/QolLayout";
-import ZoneOfGeniusLandingPage from "./modules/zone-of-genius/ZoneOfGeniusLandingPage";
 import ZoneOfGeniusAssessmentLayout from "./modules/zone-of-genius/ZoneOfGeniusAssessmentLayout";
 import Step1SelectTop10Talents from "./modules/zone-of-genius/Step1SelectTop10Talents";
 import Step2SelectTop3CoreTalents from "./modules/zone-of-genius/Step2SelectTop3CoreTalents";
@@ -213,7 +212,6 @@ import PeopleDirectory from "./pages/PeopleDirectory";
 import MissionSelection from "./pages/MissionSelection";
 import PublicProfile from "./pages/PublicProfile";
 // Core Loop
-import CoreLoopHome from "./pages/CoreLoopHome";
 // Mission Discovery — Day 66 wave M (Sasha 2026-05-16): Wizard
 // retired from active code (component stays in tree as genealogy;
 // /mission-discovery/wizard route now redirects to the landing).
@@ -716,7 +714,7 @@ const App = () => (
                   {/* Game Routes */}
                   {/* /game is retired — always redirect to /game/journey (or just `/` landing) */}
                   <Route path="/game" element={<Navigate to="/game/journey" replace />} />
-                  <Route path="/game/next-move" element={<RequireAuth><CoreLoopHome /></RequireAuth>} />
+                  <Route path="/game/next-move" element={<Navigate to="/village" replace />} />
                   <Route path="/game/next-move-v2" element={<RequireAuth><DailyLoopV2 /></RequireAuth>} />
                   {/* ME Space (was Grow, was Profile) */}
                   {/* Day 47 late pass (Sasha): /game/me is now a single-focus
@@ -907,8 +905,7 @@ const App = () => (
                   <Route path="/game/me/quality-of-life" element={<RequireAuth><QolLayout /></RequireAuth>}>
                     <Route index element={<QualityOfLifeMapResults />} />
                   </Route>
-                  <Route path="/zone-of-genius" element={<RequireAuth><ZoneOfGeniusLandingPage /></RequireAuth>} />
-                  <Route path="/zone-of-genius/appleseed" element={<RequireAuth><AppleseedView /></RequireAuth>} />
+                                    <Route path="/zone-of-genius/appleseed" element={<RequireAuth><AppleseedView /></RequireAuth>} />
                   <Route path="/zone-of-genius/excalibur" element={<RequireAuth><ExcaliburView /></RequireAuth>} />
                   <Route path="/zone-of-genius/entry" element={<RequireAuth><ZoneOfGeniusEntry /></RequireAuth>} />
                   {/* Day 47 (Sasha): assessment is now public — no login gate. Log-in
@@ -922,8 +919,8 @@ const App = () => (
                     <Route path="step-4" element={<Step4GenerateSnapshot />} />
                   </Route>
                   <Route path="/m/:slug" element={<RequireAuth><ModuleDetail /></RequireAuth>} />
-                  <Route path="/modules" element={<RequireAuth><HolonicModulesPage /></RequireAuth>} />
-                  <Route path="/modules/:slug" element={<RequireAuth><ModuleLandingPage /></RequireAuth>} />
+                  <Route path="/modules" element={<RequireAdmin><HolonicModulesPage /></RequireAdmin>} />
+                  <Route path="/modules/:slug" element={<RequireAdmin><ModuleLandingPage /></RequireAdmin>} />
                   {/* Mission Discovery
                       Day 65 wave 8 (Sasha 2026-05-15): wrapped in GameShellV2
                       so the SPACES rail + ME pane appear consistently with
