@@ -172,6 +172,7 @@ Stage-7+ mechanics that pass the test (proposed, Evolver):
 
 ## 12. Ideas & findings log (append-only)
 
+- 2026-10-27: Game masters' principles judged by Sasha (§15): Miyamoto wordless first minute («genius»), Miyazaki → leave a particle of yourself (new kind of testimonial), Eguchi real-moon village («fire ×3», lunar macro loop + solar daily loop of stacked habits), Chen → real multiplayer presence, Sid Meier real-choice ending, Koster facet check; McGonigal dark guardian parked.
 - 2026-10-27: Sasha («ЗОЛОТО!»): design rule is to enter stage 8 while staying compatible with 9 and 10 (see almanac). *The game that sends you back to your life* is directly Jane McGonigal's thesis; he will pitch building it with her.
 - 2026-10-27: Sasha rejected «Raids» («убери, ты шутишь? Убери все упоминания»): events stay Events/Meet; no raid vocabulary anywhere.
 - 2026-10-26: Sasha: games are a way to live, potentially more useful than people imagine. Engagement-built games amplify addiction and are linked to loneliness and social anxiety because they substitute artificial achievement for real life and screen contact for people. The fidelity principle is the antidote: when the game is your life, playing more means living more, and the party is real people. Working line: *the game that sends you back to your life.*
@@ -526,3 +527,48 @@ From the first visit the Market holds **your spot**: an empty stall frame with y
 Before J7 the stall is visible only to you (a preview, «under construction» feel without the words). From J7 others see it in the Market. The Outro of each step shows the new part landing on the stall; the Village «what changed» line names it («A banner went up on your stall»). Data: derived from `useCharacterSheet` + offer record; no new storage until the sales migration (WP-11/12). Lands in WP-9 (J6/J7 parts), WP-12 (stall view, publish, lamp), WP-6 (what-changed line).
 
 **Badges (Sasha, 2026-10-27: «бейджи прикольно покажут прогресс, они же празднования, они же финальный результат экрана»).** Every module Outro awards one badge, and the badge *is* the result: the Mission badge carries your mission line, the Top Talent badge your talent, the First Sale badge the buyer's first name and date. One badge per Journey step (J1–J12), no counts, no levels, no score, no rarity. Where it lives: on the Outro it is the centrepiece of the celebration; then it goes to the shelf in Your House (the Victories room, §14.7 q4) and the matching part lands on your stall (table above). Not yet earned badges show as faint outlines on the shelf with their «Opens when…» line, the same closed state as places. Lunar: badges are silver until earned, earned ones take your soul colors. Lands in WP-5 (badge in ModuleOutro), WP-8 (shelf), WP-12 (stall).
+
+## 15. Game masters' principles — Sasha's verdicts (2026-10-27)
+
+*Seven principles from game masters (Jane McGonigal, Jenova Chen, Shigeru Miyamoto, Hidetaka Miyazaki, Sid Meier, Raph Koster, Katsuya Eguchi), brought by Evolver and judged by Sasha. Each is recorded with his verdict and his extension. All sit inside the rules above: fidelity (§10a), no XP or numbers (§14.1.7), one module form (§14.4), the lock rule and Lunar color (§14.3, §14.11).*
+
+| # | Master · principle | Sasha's verdict | What it becomes in our game | Build |
+|---|---|---|---|---|
+| 15.1 | **Jane McGonigal** · name the enemy, call allies | **Parked** (return at the right moment) | In each module the player names their *dark guardian* (a fear, someone else's belief, a habit) and calls one ally from the village; allies live in the Fire Circle. | not now |
+| 15.2 | **Jenova Chen** · the quiet companion (*Journey*) | **Yes, expanded:** «incredibly cool, real multiplayer» | **Real multiplayer presence:** when more than one person is playing in the same village right now, their avatars show inside the place they are in. A glow or sign of others: *you don't walk alone.* | WP-21, spec only, larger; privacy fork |
+| 15.3 | **Shigeru Miyamoto** · teach without words (*World 1-1*) | **Yes, «genius»** | **The wordless first minute:** the first screen tells nothing; one movement and the first place lights up. The player discovers that the world answers. | WP-18, now |
+| 15.4 | **Hidetaka Miyazaki** · messages left for those who come after | **Yes, reframed** | After the Outro the player **leaves a particle of themselves** at the place for those who come after. Not a review line («here I first heard myself») but filling others with good energy: a unique particle of you. It also becomes a completely new kind of testimonial: notes left after Outros give people social proof *without a social network*. | WP-17, now |
+| 15.5 | **Sid Meier** · a game is a series of interesting decisions | **Yes** | Every module ends with **a real life choice, not a test** («What do you stop doing this week?»). The badge (§14.12) records the decision, not the viewing. | WP-19, after WP-16–18 |
+| 15.6 | **Raph Koster** · fun is learning; boredom is a mastered pattern | **Fire** | Finished places go to the shelf (Your House) and the stall (Market). Design check: **each next place must reveal a new facet of the self, not the same mechanic recolored.** Checklist in 15.8. | WP-20 = this checklist (doc, not code) |
+| 15.7 | **Katsuya Eguchi** · the world lives on real time (*Animal Crossing*) | **Fire ×3** | **The village lives by the real moon.** New moon: dark sky, an invitation to let go. Full moon: harvest. Ties to the Equilibrium lunar cycle without counting anything. | WP-16, now |
+
+### 15.7a Two loops: the moon and the sun (Sasha's extension)
+
+- **Macro loop = the lunar–earth cycle** (~29.5 days): the village sky follows the real moon (new moon → let go, waxing → build, full moon → harvest, waning → digest). Read from the date, no input, no counter. Same source of truth as Equilibrium (`src/lib/equilibrium-cycles`, `getLunarState`).
+- **Daily loop = the solar–earth cycle** (one Earth rotation): familiar to everyone and underused. The key is **stacked daily habits**: small practices that attach to the day's natural moments (waking, midday, dusk, night), so the day itself is the loop. Connects to §10 daily 5-minute quests (approved) and the Equilibrium solar cycle (`getSolarState`). Design of the daily loop is the next step after WP-16; not yet specified.
+- **Layering with §14.11:** the Journey still moves the horizon from night toward first light (your progress); the real moon sets the sky's phase and mood (shared time). Two independent layers: the moon is the same for every resident tonight, the dawn is yours.
+
+### 15.8 Koster facet check (design checklist for every new place or module)
+
+Before a place, room or module is specified, answer in one line each. If any answer is «no» or «same as …», redesign before building.
+1. **New facet:** which facet of the self does this reveal that no earlier place did (talent, mission, colors, level, assets, voice, price…)?
+2. **New verb:** what does the player *do* here that they did not do before (not the same form with new words)?
+3. **Real result:** what true thing about the player's life is now visible that was not (§10a test)?
+4. **Not a recolor:** name the closest earlier place. What is different besides color, copy and art?
+5. **Where it lands:** what goes to the shelf (badge) and what appears on the stall (§14.12)?
+6. **Real choice at the end:** what life decision does its Outro ask for (15.5)?
+7. **World answers:** how does the village visibly change after it (place color, a path lights, a particle left)?
+
+Applied first to the Journey modules J1–J12 when WP-5 lands; Evolver keeps the filled table here.
+
+### 15.9 Build order (2026-10-27)
+
+- **Now (Claude Code building):** WP-16 Real-moon sky (#148), WP-17 Leave a particle (#144), WP-18 Wordless first minute (#145). All three need only WP-1 (shipped); WP-16 is strongest once WP-2 Lunar lands.
+- **After those (queued):** WP-19 Real-choice ending, badge = the decision (#147, after WP-5); WP-20 Koster facet check (#146, 15.8, doc, Evolver); WP-21 Multiplayer presence (#149, spec first; needs Sasha's fork on privacy and visibility, see below).
+- These sit beside the §14.8 waves: they add to the village and the module form, and do not replace any WP-1…WP-15.
+- **Parked:** 15.1 dark guardian + ally.
+
+**Forks for Sasha:**
+- *Multiplayer presence (WP-21):* who appears to whom (everyone in the village / only your Fire Circle / opt-in), what an avatar shows (silhouette and glow only / name / face), whether guests appear, and whether presence is on by default.
+- *Particles (WP-17):* anonymous by default or signed with first name; whether particles are public to guests or only to residents. Default in the build until he decides: first name optional, shown to everyone, nothing else about the person.
+- *Storage consent:* particles and choices need new tables (WP-17, WP-19). Same open consent as §14.10.4: PRs that add a migration wait for his yes before merging.
