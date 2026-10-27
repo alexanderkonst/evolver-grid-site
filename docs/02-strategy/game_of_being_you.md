@@ -8,6 +8,7 @@
 **Tagline:** *Bring the full force of who you are to what you build.*
 **Moonshot (Sasha, 2026-10-26):** make a cult game, a "candy": polished, simple, hard to forget. We already have plenty of mystery, ritual and content; the work now is craft and form.
 
+
 ---
 
 ## 1. Core metaphor: one light in, your spectrum out
