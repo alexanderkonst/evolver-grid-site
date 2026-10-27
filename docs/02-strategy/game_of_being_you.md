@@ -620,6 +620,7 @@ Applied first to the Journey modules J1–J12 when WP-5 lands; Evolver keeps the
 - **Within a month (November 2026):** the Journey works end to end. Prepare a pilot cohort of 5–10 local practitioners and a first live circle around the November full moon. The partnership proposal to San Pancho Life waits until the platform is ready.
 - **Medium term (3–6 months):** Village #1 is live. Physical QR codes are on real stalls, real-choice endings lead into the town, there is a co-branded "unique business" mark on directory listings, and part of the revenue goes to Community Projects. The format is copied to a second village (Sayulita is next door).
 - **Long term (6–24 months):** a federation of villages (Mexican Pacific coast, Tulum, Bali), each a fork of the open method with its own Town Hall. Together they form the Collective, which is the stage-8 on-ramp (§12, almanac). It stays a horizon, never a pitch promise.
+- **Scale ladder (Sasha, 2026-10-27):** digital twins of cities, in our case villages first, then bioregions. Robert Kirkpatrick works on digital twins: a potential ally to explore.
 
 ### 16.6 Status: accepted, converging (Sasha, 2026-10-27)
 *Sasha on §16.1–16.5: «Да, все так! По ходу касания реальности будет проявляться реальная форма… Конвергируем!»* The plan stands as written. Its real form will come from contact with reality, not from more planning up front.
