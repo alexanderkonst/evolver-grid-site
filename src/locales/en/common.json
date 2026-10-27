@@ -1792,6 +1792,25 @@
       }
     }
   },
+  "course": {
+    "eyebrow": "Free mini-course",
+    "tagline": "How to master your spirit, mind, emotions, body and unique genius.",
+    "episodeOf": "Episode {{current}} of {{total}}",
+    "prev": "Previous",
+    "next": "Next",
+    "markWatched": "Mark as watched",
+    "watched": "Watched",
+    "progress": "{{done}} of {{total}} watched",
+    "contents": "Course contents",
+    "infographic": "Infographic",
+    "infographicAlt": "Infographic for {{title}}",
+    "practices": "Practices",
+    "practicesHint": "Short audio practices you can do at any point in the course.",
+    "ctaTitle": "You've completed the course",
+    "ctaBody": "Now find out what you are uniquely built to do.",
+    "ctaButton": "Discover your Zone of Genius",
+    "videoTitle": "Video: {{title}}"
+  },
   "library": {
     "filterAll": "All",
     "durationMinutes": "{{count}} min",
@@ -5278,7 +5297,8 @@
         "description": "Master yourself",
         "modules": {
           "library": "Practice Library",
-          "paths": "Growth Paths"
+          "paths": "Growth Paths",
+          "dormantPotential": "Activate Your Dormant Potential"
         }
       },
       "marketplace": {

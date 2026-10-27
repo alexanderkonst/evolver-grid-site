@@ -62,6 +62,7 @@ import CelebrationModalListener from "@/components/celebration/CelebrationModalL
 import FeedbackPage from "./pages/FeedbackPage";
 import ContactNew from "./pages/ContactNew";
 import Library from "./pages/Library";
+import ActivateYourDormantPotential from "./pages/ActivateYourDormantPotential";
 import ModuleDetail from "./pages/ModuleDetail";
 import ModuleLandingPage from "./pages/ModuleLandingPage";
 import AIUpgrade from "./pages/AIUpgrade";
@@ -647,6 +648,8 @@ const App = () => (
                   <Route path="/activate" element={<Navigate to="/game/me/zone-of-genius/start-here" replace />} />
                   <Route path="/library" element={<Library />} />
                   <Route path="/library/:stepId" element={<Library />} />
+                  {/* Free entry course — public, no auth. GROW space (shell supplied by SmartShellLayout). */}
+                  <Route path="/grow/activate-your-dormant-potential" element={<ActivateYourDormantPotential />} />
                   <Route path="/contact" element={<RequireAuth><ContactNew /></RequireAuth>} />
                   <Route path="/feedback" element={<RequireAuth><FeedbackPage /></RequireAuth>} />
                   <Route path="/tools" element={<RequireAuth><ToolsRedirect /></RequireAuth>} />

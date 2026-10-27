@@ -9,6 +9,7 @@ import { filterAdminOnlyRows } from "./adminOnlyRows";
 import { supabase } from "@/integrations/supabase/client";
 import { PLAYBOOK_STEPS } from "@/data/playbookSteps";
 import { GROWTH_STEPS } from "@/modules/library/growthSteps";
+import { COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
 import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
 import { useDeeperAccess } from "@/hooks/useDeeperAccess";
 import { useEntitlement } from "@/hooks/useEntitlement";
@@ -603,6 +604,13 @@ const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Secti
         path: pathBase,
     };
 
+    // Free entry course (public). Same path in both scopes: the page is not auth-gated.
+    const dormantPotentialRow: Section = {
+        id: "activate-your-dormant-potential",
+        label: "Activate Your Dormant Potential",
+        path: COURSE_PATH,
+    };
+
     const stepRows: Section[] = GROWTH_STEPS.map((step) => ({
         id: `learn-step-${step.id}`,
         label: `${step.number}. ${step.shortLabel}`,
@@ -611,7 +619,7 @@ const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Secti
         lockedHint: step.lockedHint,
     }));
 
-    return [libraryOverviewRow, ...stepRows];
+    return [libraryOverviewRow, dormantPotentialRow, ...stepRows];
 };
 
 type EntryPath = "match" | "build" | null;

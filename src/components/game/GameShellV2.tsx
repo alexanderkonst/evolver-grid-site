@@ -721,6 +721,10 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         // so a public visitor sees the same pane 2 navigation as an authed
         // user inside /game/learn/library.
         if (pathname === "/library" || pathname.startsWith("/library/")) return "learn";
+        // /grow/* are public GROW-space pages (e.g. the free
+        // Activate Your Dormant Potential course). Distinct from /game/grow,
+        // which is the legacy alias for the ME space.
+        if (pathname === "/grow" || pathname.startsWith("/grow/")) return "learn";
         // Day 63 (Sasha 2026-05-07 night): /asset-mapping belongs to JOURNEY
         // (it's step #7 in the journey sequence per SectionsPanel's
         // buildJourneySections). Mapping it here in addition to the
