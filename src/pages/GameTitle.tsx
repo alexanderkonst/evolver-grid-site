@@ -15,7 +15,7 @@ import "./GameTitle.css";
 const FONTS_HREF =
   "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&display=swap";
 
-const HERO_SRC = "/game/hero_axis_radiant.png";
+const HERO_SRC = "/game/hero_five_elements.png";
 const INVESTOR_HREF = "mailto:alexanderkonst@gmail.com?subject=Investor%20Room";
 
 type MenuItem = {
@@ -329,7 +329,7 @@ const GameTitle = () => {
           <img
             className="gt-screen__img"
             src={HERO_SRC}
-            alt="A vertical beam of light descends from the sky through the center of a crystal and into the earth, while a spectrum radiates from the crystal in every direction"
+            alt="A vertical beam of light descends through a crystal dodecahedron over a moonlit mountain lake; four small crystal solids (tetrahedron, icosahedron, cube, octahedron) rest on the misty horizon, catching its spectrum"
             decoding="async"
             style={reduceMotion ? { animation: "none" } : undefined}
           />
