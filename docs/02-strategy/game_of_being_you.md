@@ -229,3 +229,20 @@ Stage-7+ mechanics that pass the test (proposed, Evolver):
 3. **The slipper: a finale you can't fake.** Act IV is the first real yes from the world, recorded in TRADING POST. No points; the footprint is real, so the transformation is permanent. Mood and XP go up and down (Current vs Peak); the slipper stays.
 
 Status: map v0, waiting for Sasha's corrections before any issue.
+
+### 13.1 The Digital Village (Sasha, 2026-10-27: «ЦИФРОВАЯ ДЕРЕВНЯ!!!!!»)
+The world is a sovereign village on the main screen, built from real photos of places Sasha sends (Villas Paradise as the example of what's possible) plus our own secret sauce. The journey is the *first* quest chain, not the only one. Places map onto modules that already exist:
+
+| Place | Module | What you do there |
+|---|---|---|
+| Gate | NEW GAME → Top Talent | arrive, find out who you are |
+| Your House | CHARACTER | your crystal, assets, QoL, mission: the save file |
+| Quest Board (square) | MAIN QUEST | today's quest; journey = first chain |
+| Oracle | AI OS | «go ask your AI» |
+| Café / Bar | MEET | meet people |
+| Co-working | PARTY & GUILD | matchmaking, business partners |
+| Fire Circle | MULTIPLAYER / Mastermind | your circle |
+| Academy (school for adults) | TRAINING | grow |
+| Workshop | THE FORGE (UBB) | craft your offer |
+| Market | TRADING POST | your shop and others' |
+| Town Hall | Venture Co-op | build ventures together |
