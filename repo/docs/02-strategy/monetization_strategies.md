@@ -1,0 +1,690 @@
+# Monetization Strategies
+
+> *Open-source platform · sovereign distributors · steward-owned commons · per-founder voice generation*
+
+> *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
+
+> *v2.2 · April 25, 2026 (Day 51 night) — Brand-name dropped (Path A). The earlier name "Holonic Franchise" was retired same day for two reasons: (1) **legal exposure** — calling a model "franchise" in the US can trigger the FTC Franchise Rule + state franchise statutes (FDD requirements, registration, etc.), regardless of whether the underlying economics actually warrant franchise classification; (2) **accessibility** — "holonic" is opaque outside Wilber/integral circles. Going forward this doc describes the model functionally. The handle "**Sovereign Network**" is preserved as a soft brand for marketing moments where a memorable phrase helps; otherwise the model is described by what it IS: an open-source platform with sovereign distributors operating under their own brand and contributing 10% of platform revenue to a shared commons. Single canonical doc for both the architectural pattern AND the dynamic, sequenced business-monetization strategies that operate within it. Supersedes v2.1 (rename to `monetization_strategies.md`) + v2.0 (the prior merge from `monetization_strategy.md`) + v1.0 of the predecessor `holonic_franchise_model.md` — all consolidated here so there's one source of truth.*
+>
+> **Status:** living document. Always work from the latest version. Each addition is additive (changelog at end of file); nothing is deleted, but the *current shape* is whatever the latest version describes.
+>
+> **Cross-references:** [Unique Business Playbook — Principle 15](../03-playbooks/unique_business_playbook.md) (the conversion mechanism every play leverages) · [Phase Shift Library Technology 81](../01-vision/phase_shift_technology_library.md) (the discovery in research-grade form) · [Distributor Agreement v0.1](../../DISTRIBUTOR_AGREEMENT.md) (the legal instrument) · [Integration Layer Manifesto](../06-architecture/integration_layer_manifesto.md) (the architectural rationale for plays #3 and #5) · [Planetary OS Assembly](./planetary_os_assembly.md) (the 12-step growth path the plays map to) · [Roadmap](./roadmap.md) (current sprint status) · [Alexander's Unique Business](./unique-businesses/alexanders_unique_business.md) (the master holon's lived state)
+
+---
+
+## The One-Line Version
+
+> **PolyForm NC code + 10% rev-share license + forkable kit + opt-in commons + per-founder voice generation = the model.**
+>
+> A new commercial-decentralization pattern: forkable open-source apparatus + per-founder voice generation + opt-in shared data commons + 10% revenue share that funds a governed purpose entity over time (see [`commons_treasury_evolution.md`](./commons_treasury_evolution.md)). Distributors become **sovereign nodes** operating under their own brand, contributing back through a transparent revenue share, and benefiting from a public dataset that compounds in value as the network grows. **Six commercial layers** sit on top of this foundation, sequenced across **four phases**, designed to compound rather than compete.
+>
+> Soft brand for marketing moments: **the Sovereign Network**. Otherwise the model is described by what it IS, not by a trade name.
+
+---
+
+## What This Document Is
+
+This is the operational model that emerged on Day 51 from three converging needs:
+
+1. **Sasha's commitment to decentralization** (per [Integration Layer Manifesto](../06-architecture/integration_layer_manifesto.md) and [Planetary OS Assembly](./planetary_os_assembly.md) Steps 11-12) — the system must be forkable, not a walled garden.
+2. **The reality of years of methodology work** — pure giveaway under MIT or AGPL leaves the founder uncompensated when the network scales.
+3. **The Specificity Loop discovery** ([Principle 15](../03-playbooks/unique_business_playbook.md)) — per-founder matrix generation became technically possible Day 51, which made true sovereignty of distributors operationally real.
+
+Combined, these three forces produced a model that doesn't fit cleanly into existing categories (open-source, franchise, cooperative, platform-as-a-service). The earlier brand name "Holonic Franchise" was retired Day 51 night for legal and accessibility reasons (see *On Naming* below). The model now travels by what it IS — *open-source platform with sovereign distributors and a 10% revenue share that evolves into a governed purpose entity* — with **the Sovereign Network** kept as a soft brand for marketing moments where a memorable phrase helps.
+
+This doc serves five jobs:
+
+1. **Names and explains the architecture** — the five ingredients, why they combine to something new, comparison to other models.
+2. **Shows how the venture earns money across all of its commercial layers** — the six plays through Heart/Mind/Gut, with each play's economics and infrastructure.
+3. **Tracks the sequenced rollout** — four phases, explicit exit criteria, what stays in pocket vs. what's offered publicly.
+4. **Tracks decisions in flight** — every play has open questions enumerated and visible at a glance.
+5. **Records implementation status** — what's shipped, what's drafted, what's not yet started, per play and overall.
+
+When a candidate distributor, community partner, investor, counsel, or future Claude session asks *"how do you make money?"* — this is the answer. When a decision changes, this is where it gets updated.
+
+---
+
+## The Whole System (Synthesis + Plain Language)
+
+> *Front-door synthesis added 2026-05-29 (Day 87). The discrete revenue lines, how they relate (by category and by sequence), the system they form, and the whole thing in plain language. The detailed six-plays and four-phase treatment lives below; this is the map of the map.*
+
+### 1. The discrete revenue lines (non-overlapping, by unit of money)
+
+Six distinct ways money enters, each a different "who pays for what":
+
+1. **Individual ladder** (Play #1) — a person pays for their own depth: free profile, then a **$37 deeper talent view** (a low-ticket preliminary step that warms toward the session), then $555 session, $5K build, $500/month container.
+2. **Facilitator tool** (Play #2) — a coach or guide pays to run it with their own clients.
+3. **Forked operator** (Play #3) — a sovereign operator self-hosts their own branded copy and sends back 10% of revenue above a $1,000/month free tier.
+4. **Hosted community** (Play #5) — an organization pays (per active member plus an onboarding fee) to run the whole thing for its membership under its own brand. Example shape: a ~300-member network at $2K/90-day pilot, then ~$2.25K/month; communities generally $5-50K/year or $5-20/member/month.
+5. **Venture carry** (Play #4) — the platform keeps a small, lasting share (equity or persistent rev-share, ~5-10%) of ventures born through it.
+6. **Teaching license** (Play #6) — institutions pay to teach the method: a per-trainer certification fee ($1-5K), annual maintenance ($500-2K), and a per-student fee.
+
+A free kernel sits underneath all six: the 2-minute talent profile, given away on purpose so it spreads. Nobody is charged for the seed; the six lines are charges on what grows from it.
+
+### 2. How they relate
+
+**By category (what is actually being sold):**
+
+- **Access, "use it":** lines 1, 2, 3, 4. People and groups pay to use the coordination layer at four scales (one person, one coach's practice, one sovereign fork, one whole community).
+- **Outcome, "share in what it makes":** line 5. The platform shares in the ventures it births. The asymmetric upside, where one success can outweigh a hundred subscriptions.
+- **Rights, "teach it":** line 6. Others pay for the right to certify and teach the method.
+
+**By sequence (the order they switch on as the project matures):**
+
+- **Now (Phase 1):** individuals direct (proven) plus first facilitators. In parallel, per this doc's "lead with community" positioning, the first hosted-community pilots (the current ecosystem outreach). The self-host fork option is available but rare (~5% of cases).
+- **Next (Phase 2):** scale hosted communities into the steady recurring engine. Exit when at least one community deal is signed and several operators are active.
+- **Later (Phase 3):** venture carry, invitation-only, once standout ventures form.
+- **Eventually (Phase 4):** teaching license, once the method is a recognized category.
+- **Discipline:** later layers stay in pocket, not promised; the free entry layer stays clean of equity asks or institutional politics until its phase opens.
+
+### 3. The system
+
+Give a free kernel away so it spreads as widely as possible (low adoption cost protects its neutrality and drives reach). On top of that seed, money enters on three layers, **Access, Outcome, Rights**, which turn on in **sequence** (individual, then community, then venture-share, then teaching-license), each earlier layer funding and proving the next. It runs as a **portfolio of aligned patrons** (many communities and operators under their own brands), not a chase for one big deal. Every layer ultimately prices against one number, **collaboration rate**: how many members actually find their people and start building. And the delivery that needs Sasha in the room today gets productized into **playbooks plus a certified-facilitator layer**, which removes him as the bottleneck and is exactly what lets the recurring, carry, and license layers scale without him.
+
+### 3.1 Buyer-legible wedge (Day 92)
+
+The sharp commercial doorway is **founder-market-fit infrastructure for high-agency ecosystems**.
+
+The problem is not that high-agency communities lack impressive members. The problem is that most of them function as directories, social theaters, or inspiration fields, not coordination systems. Members can admire each other for months without the right collaborations forming. The expensive failure is low collaboration throughput.
+
+The product sells against that failure:
+
+- discover what role each member is naturally here to play
+- map mission, resources, direction, and collaboration compatibility
+- route the right people toward each other
+- measure whether collaborations, ventures, and projects actually form
+
+This is the buyer-facing translation of SOHN. PlanetaryOS remains the engine under the hood; collaboration rate is the metric the ecosystem leader can buy.
+
+The first module is **Community Member Onboarding**: precision purpose discovery, precision mission discovery, and precision resource mapping. A 5-10 member test should reveal collaboration hypotheses the community is currently missing.
+
+### 4. In plain language (no jargon)
+
+You give away a free thing: a 2-minute profile that shows a person what they are naturally great at. It is free on purpose, so it spreads far and wide. That is the seed. You do not make money on the seed. You make money on what grows from it, in three honest ways.
+
+**One: people and groups pay to use it.** A single person can pay to go deeper (a session to turn their talent into a real business, then help building it). A coach can pay to use the tool with their own clients. A whole community (a network, a group, a school) can pay a regular fee to run the entire thing for all its members, with their own name on it. And someone who wants full control can run their own copy and send back a small slice once they are truly making money. All of this is just "pay to use it." It is the bread and butter.
+
+**Two: you share in the businesses it gives birth to.** When two people meet through it and build something real, you keep a small, lasting piece, because that business would not exist without the platform. You only win when they win. This is the part that can get big: one real success can be worth more than a hundred subscriptions.
+
+**Three: others pay to teach the method.** Eventually, once enough people know this works, schools and programs pay to be certified to teach it themselves, like a yoga or coaching certification.
+
+The order matters. You turn them on as the thing grows. First (now): people pay you directly, one at a time, which proves it works and brings the first real money. Next (a couple of months out): communities pay to run it for their members, the steady repeating income, and the exact door your outreach opened today. Later: you share in the businesses born through it. Eventually: you license others to teach the method.
+
+The idea holding it together: you stay small, and the thing underneath gets big. You earn by helping people succeed and taking a fair slice, never by trapping them. And the one number it is all really about is simple: how many people find their people and start building together. Every way you make money is just a different way of getting paid for making that happen.
+
+The honest catch you already named: the exact prices, and the exact way of charging, are still a blank you fill in with the first real pilot. The shape is clear; the precise settings come from the market, not the whiteboard.
+
+### 5. Who pays for the free core, and the name (clarified Day 87)
+
+**Who pays.** "Free" means free *to the member*, never free to provide (the AI has a real cost). The core (self-discovery + matching) stays free to members always, because a member paywall on the core kills the density the network effect runs on. The **ecosystem leader pays** (a per-active-member fee, or a flat community fee). That is what "subsidize" means: the leader covers the cost so members get it free. They do it because a coordinated, collaborating, venture-forming ecosystem makes their community more valuable, stickier, and more alive. They are not buying a tool; they are buying a more valuable community plus a premium revenue line. The leader's only optionality is *how* they cover the fee (absorb it, fold it into existing dues, find a sponsor) and *how much premium* they layer on (where they keep 90%). It is **not** "charge members for the core or not." For a pilot, the core is free to everyone (absorbed, or a free pilot) to prove collaboration rate; the leader-subsidized recurring model kicks in after.
+
+**The name.** The human-facing name for this whole thing is the **Self-Organizing Human Network (SOHN)**. `PlanetaryOS` / the `Kernel` stay the engine under the hood; SOHN is what gets published, spoken, and put on the seminal page (`/sohn`). The thesis abstract lives there.
+
+---
+
+## Strategic Crystallization (Day 76–77, May 19–20, 2026)
+
+The deepest reframe captured this week:
+
+**Matching is the product. Unique-business methodology is the engine underneath.**
+
+Not two products — the same arc seen from different ends. Self-knowledge is the IP; precision matching is the product the market buys; the unique-business work becomes the premium layer for those who graduate from matching into venture-building.
+
+### The two-question framing
+
+When AI makes everyone a CEO (Balaji's framing), two questions emerge:
+
+1. **WHO to work with** → the matching layer answers this. Broad enough to cover short-term collabs through long-term co-founders. Mechanism is straightforward; market is ready.
+2. **WHAT to build** → the unique-business methodology answers this. Mechanism is novel; market needs education.
+
+Sasha addresses both, in this order: **who first, what second.** Who is the universal product. What is the deeper premium layer.
+
+### Implications across the Six Plays
+
+- **Play #1 (User)** reframes: members enter via matching; the unique-business path becomes the premium layer inside Sasha's own venture studio community.
+- **Play #5 (Community White-Label)** becomes the **primary commercial channel**, not a Phase 2 add-on. Community ecosystem leaders are the natural beachhead — acute need, repeatable buying motion, attribution-hungry outcomes.
+- **Plays #2 + #3** stay valid but lower-priority for now.
+- **Play #4 (Venture Studio)** deferred until matching is proven at scale.
+- **Play #6 (System License)** remains a Phase 4 maturity play.
+
+### Business model — directional shape (specific numbers TBD)
+
+The directional model:
+
+- **Onboarding fee per new member** (one-time, on profile creation) — covers AI cost of generating Talent + Mission + Assets + QoL profile + first match wave, plus margin
+- **Monthly subscription per active member** — *active* = made themselves matchable in the month (logged in / accepted-or-declined a match / updated profile)
+
+Solves the "value is mostly upfront" problem inherent to matching products. Onboarding captures the high-value moment; monthly captures the ongoing coordination substrate.
+
+**Specific dollar amounts are deliberately not locked.** Pricing is bespoke per engagement at this stage. Real pilots will reveal the right shape — commercial communities (venture studios, Network States, founder communities) can sustain higher pricing because their ROI math is clear (matched ventures → carry, equity, thesis validation). Conscious / non-commercial communities need a different shape (smaller fees, or flat community fee, or sliding-scale gift contribution).
+
+The existing 10% revenue-share Distributor Agreement (Path B) stays in place for rare fork-and-self-host operators. The *primary* commercial model for the matching product is hosted subscription (Path A) — per engagement, structurally per-active-member with onboarding fee.
+
+### Parallel beachhead targets (run alongside NS pilot)
+
+| Segment | Why | Buy shape |
+|---|---|---|
+| **Network State / Network School** (Balaji) | Coordination problem named publicly; ~300 high-agency members; long-termer conversion KPI alignment | $2K/90-day pilot → ~$2.25K/mo at scale |
+| **Venture studios** (Atomic, Antler, Founders Inc, eFounders, Mistletoe) | Cohorts + budget + co-founder matching is their bottleneck | Enterprise contract per cohort |
+| **Conscious communities** (Carolina/dance, Esalen-adjacent, Wisdom 2.0) | Have stage 5 (gathering) without stages 1–3 (matching) | Per-active-member |
+| **Network State experiments** (Praxis, smaller polities) | Follow NS if Balaji moves | Per-active-member, smaller volume |
+| **Co-founder matchmaking platforms** (YC CFM, FoundersList) | Surface without depth | Partner / API integrate, not compete |
+
+### Structural frame: substrate positioning + multi-patron architecture
+
+The monetization plays in this doc operate within two perception-shifts formally captured in [`docs/01-vision/phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md):
+
+- **Phase Shift Technology 86 — Substrate Positioning:** Find Your Top Talent operates as coordination substrate, not as a competing platform. The org stays small while the substrate compounds large. Revenue is a lagging indicator of adoption, not a leading one. Pricing models that optimize for adoption-cost approaching zero (Distributor Agreement, free under threshold) protect the substrate's neutrality and therefore its adoption velocity.
+- **Phase Shift Technology 87 — Multi-Patron Architecture:** the commercial shape is portfolio-of-aligned-patrons, not pursuit-of-one-big-deal. Each white-label deployment is a patron-shaped relationship. Revenue is distributed and lower-variance. Founder identity is tied to the substrate working, not to any single deal closing.
+
+The six plays in this doc are different shapes of monetization within this frame, not alternative theories of the business.
+
+---
+
+### Positioning lean: community ecosystem path > individual founder cold acquisition
+
+Lead with **community ecosystem path (B2B)**. Community leaders are easier to find, have acute need, repeatable buying motion. Sasha has 10+ ecosystem-leader contacts he can reach within a week.
+
+**Individual founder cold acquisition (B2C) is harder; few people are ready cold.** Founders become customers downstream — they graduate from community-deployed matching into Sasha's venture studio premium tier after finding their co-founder.
+
+### Language for the Balaji-tier audience (not web3)
+
+Avoid *"web3 networking"* — Balaji has moved past that framing. Better:
+
+- *"Coordination infrastructure for high-agency networks"*
+- *"Founder-market-fit infrastructure for high-agency ecosystems"*
+- *"The discovery protocol your network never had"*
+- *"The primitive your network state thesis requires"*
+- *"Most communities are directories of high-agency people. This turns them into coordination systems."*
+
+### 90-day NS pilot structure (Reply-ready)
+
+- **Days 1–30:** long-termers onboard (30–50 volunteers, 10–15 min each: T-M-A-Q profile)
+- **Days 31–60:** monthly cohort layered in during standard NS intake
+- **Days 61–90:** full system + outcome measurement
+- **Success metric:** long-termer conversion uplift (tuned to existing NS KPI of ~10/mo), time-to-first-collaboration, ventures-formed
+- **Cost:** free first phase; ongoing pricing bespoke (settled after the pilot reveals what the model should look like at NS scale)
+
+Full reply-ready arsenal: [`leonardo_strategy_instances/balaji_srinivasan.md` → Reply-Ready Arsenal](../03-playbooks/leonardo_strategy_instances/balaji_srinivasan.md).
+
+---
+
+---
+
+## The Five Ingredients (The Architectural Foundation)
+
+The model is the assembly of five components. None is novel on its own; the **specific combination, applied to AI-native human-development infrastructure, is what's new.**
+
+### 1. PolyForm Noncommercial code license
+The codebase ships under [PolyForm Noncommercial 1.0.0](../../LICENSE). Personal and small-community forks are free; commercial deployment requires a Distributor Agreement. Software-native equivalent of the docs license's "ShareAlike + NonCommercial" intent.
+
+### 2. CC BY-NC-SA 4.0 documentation license
+Methodology, playbook, frameworks under [CC BY-NC-SA 4.0](../../LICENSE.md). Free to study, adapt, share with attribution for non-commercial use; commercial use of the methodology requires permission.
+
+### 3. Distributor Agreement with 10% revenue share
+[Distributor Agreement v0.1](../../DISTRIBUTOR_AGREEMENT.md) governs commercial use:
+- 10% of platform revenue (gross), free under USD $1,000/month
+- Stripe Connect Express auto-split as preferred mechanism (when wired)
+- Distributor keeps 90%, operates under their own brand
+- No upfront fee, no minimum quota, no certification cost
+
+### 4. Per-founder Specificity Matrix (operational identity sovereignty)
+The `specificity_matrix` UBB artifact (Day 51, [Playbook Principle 15](../03-playbooks/unique_business_playbook.md)) generates each distributor's voice for every reveal in their funnel. Their funnel speaks in their idiom, not Sasha's. Full identity sovereignty operationally, not just nominally.
+
+### 5. Opt-in commons (asset mappings, mission discoveries, anonymized artifacts)
+Each distributor's users explicitly choose at the artifact level whether their (anonymized) data flows into the public commons. The commons is released under CC BY 4.0 — usable as a public good across all distributors and any aligned external project. Network effects compound for everyone in the network without forced extraction.
+
+---
+
+## Comparison to Existing Models
+
+This model sits at a specific intersection. None of the rows below is the same model — each shares some properties, none combines all.
+
+| Model | Forkable code | Distributor brand sovereignty | Per-founder voice | Shared commons | Tithe back | Decentralized |
+|-------|:---:|:---:|:---:|:---:|:---:|:---:|
+| Multi-tenant SaaS (Skool, Circle, Mighty) | ❌ | partial (theming only) | ❌ | ❌ | n/a | ❌ |
+| Open-source + commercial license (Sentry, Plausible, Cal.com) | ✅ | partial (forks aren't branded distributors) | ❌ | ❌ | ❌ | partial |
+| Classic franchise (McDonald's, Subway) | ❌ | ❌ (master brand) | ❌ | ❌ | ✅ (5-15%) | ❌ |
+| Worker cooperative (Mondragon) | n/a | n/a | ❌ | partial | n/a | partial |
+| Federated commons (Mastodon, fediverse) | ✅ | ✅ | ❌ | ❌ (no commercial rail) | ❌ | ✅ |
+| Platform cooperative (Stocksy, Resonate) | partial | ❌ | ❌ | ❌ | n/a | partial |
+| Nas.io / Patreon (creator platforms) | ❌ | ✅ | ❌ | ❌ | ✅ (8-30%) | ❌ |
+| **This model (the Sovereign Network)** | **✅** | **✅** | **✅** | **✅** | **✅ (10%)** | **✅** |
+
+**What's genuinely novel** is the per-founder voice generation (#3 in the row above) and the combination of all six properties simultaneously. The other components are well-precedented; the architecture that holds them together is new.
+
+---
+
+## Why This Resolves the Alignment Problem (Without Tokens)
+
+Web3 attempted commercial decentralization through token incentives and largely failed because token speculation polluted alignment — value extraction became the game. This model achieves the same goal through three mundane mechanisms:
+
+1. **Tithe pattern** — anthropologically robust, used by every long-running religious and franchise system. 10% is generous enough to feel ownership-preserving, meaningful enough to fund the commons.
+2. **Brand sovereignty** — distributors don't compete for attention with a master brand. Their identity is intact. They build their own house.
+3. **Compounding commons** — every distributor's contribution makes the commons more valuable to every other distributor. Self-reinforcing without requiring belief in a token's future value.
+
+No speculation surface. No need for blockchain. No volatile alignment.
+
+---
+
+## How the Plays Grow Holonically
+
+The six plays are not six different products. They are **the same pattern repeated at one nesting level larger each time.** Each play wraps the previous level inside a bigger holon. Same DNA, different scale.
+
+| Play | Holon Sasha serves | Sasha's role |
+|------|--------------------|--------------|
+| **#1 User** | One person | Operator (he delivers) |
+| **#2 Coach** | A coach + their clientele | Enabler (he equips a deliverer) |
+| **#3 Distributor** | A founder + their tribe | Architect (he provides the apparatus the deliverer runs sovereignly) |
+| **#5 Community** | A community of founders + their members | Architect-of-architects (the apparatus is adopted as community infrastructure) |
+| **#4 Venture Studio** | The ventures grown inside #1–#5 | Co-creator (equity stake in select ventures) |
+| **#6 System License** | Institutions teaching it as a methodology category | Category steward (the methodology itself becomes the commons-shared infrastructure) |
+
+**The same DNA at every layer:**
+- Specificity Loop conversion mechanism (per [Principle 15](../03-playbooks/unique_business_playbook.md))
+- Per-X voice generation (per-founder, per-coach, per-community, per-institution)
+- Tithe back to commons
+- Brand sovereignty preserved at each layer
+
+**Sasha's role evolves but doesn't replace itself.** He stays the master holon at the center; the network grows around him. He moves from delivering, to equipping, to providing apparatus, to providing infrastructure-of-infrastructure, to co-creating ventures, to stewarding a category — without abandoning any prior role. Each new play wraps the prior plays in a larger holon.
+
+**Revenue follows the size of the holon being served:**
+- Play #1: revenue per individual served
+- Play #2: revenue per coach × their clientele
+- Play #3: revenue per distributor × their tribe (10% of their tribe's payments)
+- Play #5: revenue per community × all members × all internal commerce
+- Play #4: revenue per portfolio venture × that venture's lifetime growth (equity)
+- Play #6: revenue per institution × all students × all certifications
+
+Each play has higher revenue ceiling than the previous one because the holon being served is structurally larger. **Together, the six plays describe how Sasha's work scales without his hours scaling.**
+
+This is **Big Idea #1 (master holon prototypes everything before the network) and Big Idea #2 (fractal + viral growth)** made into commercial reality.
+
+---
+
+## The Six Plays — Heart / Mind / Gut
+
+Each play is described through the three-depths instrument: **❤️ Essence** (what IS this), **🧠 Significance** (why it matters in this venture's context), **🔥 Implications** (consequences, pricing, infrastructure, sequencing position).
+
+---
+
+### 1. Conscious Entrepreneur Play — User
+
+**❤️ Essence.** The individual founder who comes to the platform to find their unique gift and turn it into a sellable venture. They are the **customer of the original promise** — the journey ZoG → Excalibur → UBB → first clients. Sasha is their guide and the platform is their apparatus. The relationship is direct: they pay him, he serves them.
+
+**🧠 Significance.** This is the **foundation layer that makes all five other plays even possible.** Without paying users at this level, the methodology isn't proven, the case studies don't exist, the cohort can't be referenced, the distributors have nothing to distribute, the venture studio has no ventures to take stakes in. Steps 0-3 of the [Planetary OS Assembly](./planetary_os_assembly.md) all live here. It's also the recursion proof — the master holon takes its own medicine; this is what that medicine looks like delivered to others. Every Specificity Loop conversion happens at this layer first.
+
+**🔥 Implications.**
+- **Pricing:** $555 Mirror/Productize Yourself Session, $5,000 Build (6 weeks), $500/month Container (ongoing) — already locked in the value ladder
+- **Acquisition:** Friday DM send to warm-tie aligned tribe, three lead magnets as gifts (Top Talent reveal · AI OS · Conscious Impact Playbook), the three voice-of-gift pitches drafted Day 51
+- **Conversion:** matrix v2 doing its work at every reveal (per [Principle 15](../03-playbooks/unique_business_playbook.md))
+- **Margins:** high once volume scales because most of the apparatus is automated (ZoG flow, Specificity Matrix generation, UBB canvas production)
+- **Risk:** scales only with Sasha's hours unless he delegates delivery to facilitators (#2) or distributors (#3). Capacity ceiling: ~100-200 paying users per year while he remains the deliverer
+- **Status:** ✅ **Active**. The play is live and proven. Six founders through partial or full canvas (Oyi, Sergey, Sandra, Alexa, Karime, Kirill).
+- **Sequencing position:** Phase 1 (always-on). This play **must always be running** — it's the proof engine for everything else.
+
+---
+
+### 2. Purpose Coach Play
+
+**❤️ Essence.** Existing facilitators (coaches, healers, purpose mentors, integrative practitioners) who **already have clients** and a delivery practice. They adopt the platform's tools to use *with their existing clients in their existing practice*. They're not building a venture — they're augmenting one. They keep their brand, their relationships, their identity. They use ZoG / UBB / Specificity Matrix as a backstage instrument.
+
+**🧠 Significance.** This is **Step 6 of the [Assembly](./planetary_os_assembly.md) realized at the lowest friction level**. Coaches already do the hard part (selling, holding sessions, building trust). What they lack is leverage — they're stuck doing 1:1 work with no system multiplier. The platform gives them the system; they give the master holon reach into their existing client base without Sasha needing to acquire anyone. **Most natural low-friction distribution channel** because the demand already exists; the platform is just supplying the apparatus.
+
+**🔥 Implications.**
+- **Pricing model — critically different from #3** because most coaches won't fork the codebase; they want to log into a hosted version with their client and run a session together. Three candidate models:
+  - **Flat fee:** $99-299/month — simplest to scale, but doesn't align with the coach's actual usage economics
+  - **Per-session pay:** ~$50 per ZoG generation — aligns better with their economics, but adds friction at the moment of use
+  - **Rev-share:** 10-20% on session revenue — aligns most with this model's steward-ownership philosophy (see [`commons_treasury_evolution.md`](./commons_treasury_evolution.md)), but hardest to enforce without integrated billing
+- **Critical decision (open):** is this a different commercial layer from the Distributor Agreement, or do coaches sign the same agreement at the lowest tier? Probably the former — it's a different *product* (use, not deploy)
+- **Infrastructure needed:** a "facilitator console" that doesn't exist yet — a logged-in surface where a coach can run a session for a client and see their results. Likely 1-2 weeks of focused build work
+- **Acquisition:** warm referrals from existing cohort + Sasha's network of integrative practitioners + the Knoware article reaching AI-curious coaches who haven't yet realized they want a system
+- **Risk:** if the facilitator console is too generic, coaches use it to dilute the methodology. If it's too prescriptive, coaches feel constrained and don't adopt. The console design needs the same care as a product launch
+- **Status:** 🔄 **Conceptual.** No facilitator console exists yet. Pricing model not chosen. No coaches signed up.
+- **Sequencing position:** Phase 1 (alongside #1 and #3). Build the facilitator console once #3's Day-1 distributor experience is proven manually — the same provisioning + auth pattern can underlie both.
+
+---
+
+### 3. Platform Distribution Play
+
+**❤️ Essence.** This is the foundational architecture itself made commercially explicit. Founders / orgs **fork the entire platform** under their own brand, on their own infrastructure, charge their own clients. They become **sovereign nodes** in the network. The 10% revenue share (routed to the founder steward in v0.1, to a governed purpose entity at Phase 2 threshold — see [`commons_treasury_evolution.md`](./commons_treasury_evolution.md)) is the one structural commitment they make. Specificity Matrix in their voice means their funnel speaks like them, not like Sasha.
+
+**🧠 Significance.** This is **Step 11 of the [Assembly](./planetary_os_assembly.md)** — other communities adopting the tools — at the highest level of distributor sovereignty. It's the play that activates the fractal scaling mechanism. Each distributor is a complete holon. Theoretically infinite. The commons effect compounds: every distributor's anonymized contributions make the public dataset more valuable for every other distributor and any aligned external project. **This is the play that makes the [Integration Layer Manifesto](../06-architecture/integration_layer_manifesto.md) commercially real, not aspirational.**
+
+**🔥 Implications.**
+- **Pricing model is locked:** 10% rev share on platform revenue (gross), $1K/month free tier, distributor keeps 90%. Codified in [Distributor Agreement v0.1](../../DISTRIBUTOR_AGREEMENT.md).
+- **Infrastructure debt is real** — provisioning automation + brand wizard + Stripe Connect Express need to be built before this can run "Skool-easy". Estimated 4-5 weeks of focused work, much less with Sasha + Lovable. Until then, distribution is hands-on per-distributor (only Oyi/Sergey-level technical founders can manage it on their own).
+- **Long-tail expectation:** with 50 distributors averaging $3K/month each = $150K/month platform revenue × 10% = $15K/month to commons (Sasha). With 500 distributors at the same average = $150K/month to commons. The math gets serious only at network scale.
+- **Critical risk:** if the per-founder Specificity Matrix experience isn't excellent, the whole sovereignty premise collapses — distributors will feel like they're using Sasha's brand badly relabeled. Quality of voice generation is load-bearing.
+- **Acquisition:** the cohort first (Oyi, Sergey are technical enough to do manual setup with Sasha's help; Sandra, Karime, Kirill need the kit before they can adopt). Then weak-tie aligned tribe via the three lead magnets (some users will graduate from #1 to #3 naturally).
+- **Status:** ✅ **Legal layer shipped Day 51** (PolyForm NC + Distributor Agreement v0.1 + README rewrite + repo public links). 🔄 **Technical layer not shipped** (provisioning automation + brand wizard + Stripe Connect Express). 🔄 **No commercial distributors signed yet.**
+- **Sequencing position:** Phase 1 (alongside #1 and #2). Pilot one real distributor manually (Oyi-level) before building the kit; let real walk-through inform what to automate.
+
+#### What Each Distributor Gets
+
+The full pitch to a candidate distributor (Oyi, Sergey, Sandra, Kirill, Karime, future founders):
+
+**Apparatus:** production-ready ZoG → Excalibur → UBB → published landing flow. ~6-12 months of engineering work, free.
+**Methodology:** battle-tested 18-artifact canvas + 15 named principles + Specificity Loop. ~2-3 years of R&D, free.
+**Sovereignty:** their domain, their brand, their Supabase, their Stripe. They own everything.
+**Voice:** per-founder Specificity Matrix in their idiom. The funnel sounds like them, not like Sasha.
+**Commons access:** full read of the public asset/mission database. Cross-tribe matching surface.
+**Updates:** when upstream improves, they pull. R&D effectively shared.
+**Friction-free start:** free under $1K/month revenue. No upfront fee.
+**Keep 90%:** they're owners of their venture, not licensees of someone else's product.
+**Optional dual-license path:** if enterprise clients require it later.
+
+What they trade for this: 10% of revenue once they cross $1K/month. That's the revenue share — destined for the governed purpose entity at Phase 2 (see [`commons_treasury_evolution.md`](./commons_treasury_evolution.md)).
+
+---
+
+### 4. Venture Studio Play — 10% on Everything on the Platform
+
+**❤️ Essence.** Sasha takes **equity or persistent rev share in the ventures themselves** that founders create using the platform. Sasha is not just renting tools or licensing methodology — he's a **structural co-creator** of every venture born here. The 10% (or 5%, or whatever number) follows the venture **after** they leave the platform, into their independent operations forever, because the venture wouldn't exist without the master holon.
+
+**🧠 Significance.** This is the **highest-upside play** by orders of magnitude. If even one founder using the platform builds a $10M ARR business, the platform's 10% perpetual share is $1M/year from a single founder. That's bigger than 50 distributors paying revenue share. It's also the play that aligns most with traditional venture economics — Sasha is an early co-creator and benefactor of value, he should share in the upside. And it captures value that #3 (platform distribution) misses entirely: someone who learns the methodology, leaves, and builds a $50M company under MIT-licensed code is structurally a free rider on Sasha's years of work; the venture studio play prevents that.
+
+**🔥 Implications.**
+- **This is the most politically charged play.** Conscious entrepreneurs typically resist giving equity to a methodology provider — it feels like a startup tax. Compare to: *would you pay 10% of your venture forever to the person who taught you the Lean Startup methodology?* Most founders would say no — and the methodology there is more well-known than Sasha's.
+- **So this play needs careful framing:** it's not *"the platform owns 10% of everything you build"* (extractive); it's *"if you opt into the studio tier, we co-found together, you get deeper investment of attention and infrastructure, and we share long-term upside."*
+- **Probably structured as:** a SAFE / advisory equity grant in exchange for: deeper hands-on involvement, brand association, network introductions, and ongoing platform updates
+- **Should be opt-in and clearly priced relative to the cheaper alternatives:** free tier, $555 ignition, $5K build, OR studio tier (5-10% equity, no upfront fee, full white-glove). This is a **CHOICE**, not a default.
+- **Critical risk:** offering this too publicly turns away conscious entrepreneurs at the entry layer. Must stay **quiet, by invitation only**, until at least 3-5 venture-studio deals are proven.
+- **Acquisition:** founders who came in via #1 (Conscious Entrepreneur), whose ventures look exceptional, whose founders feel aligned — Sasha invites them to upgrade to the studio tier privately.
+- **Status:** 🔭 **Not started.** Concept named, terms not formalized, no founder offered this tier yet.
+- **Sequencing position:** Phase 3 (after #1, #2, #3, and #5 have track record). Premature to offer until at least one notable venture has emerged through #1.
+
+---
+
+### 5. Community White-Label Play
+
+**❤️ Essence.** A **collective** (Holo Movement, Symbiosis cohort, a regenerative network, a Y Combinator-style accelerator, a religious community, a corporate L&D department) deploys the platform under **their community's brand** for their members. The community is the customer, not the individuals. Members use the apparatus internally; the community handles billing, onboarding, and member relationships.
+
+**🧠 Significance.** This is the **[Integration Layer Manifesto](../06-architecture/integration_layer_manifesto.md) play in commercial form**. The communities Sasha has already been involved with (Compart's circle, Adam Apollo's Core Nexus, Symbiosis, Gaia Union, Holo Movement) become the first customers. Each community keeps its identity; the underlying tools are shared. This is also **Step 12 of the [Assembly](./planetary_os_assembly.md) enacted commercially** — connective tissue not as a free public good but as paid infrastructure that funds the commons. **The easiest sales cycle of all six plays** because communities have purchasing budgets and decision-makers; one signed deal = many active users.
+
+**🔥 Implications.**
+- **Pricing model** is closer to **enterprise B2B SaaS** than to either #3 or #4. Three candidate structures:
+  - **Annual flat fee per community:** $5-50K depending on size
+  - **Per-member fee:** $5-20/member/month
+  - **Revenue share** on what the community generates from members through the platform
+- **Probably a tiered offering:** small communities (≤25 members) free, medium ($X/year), large ($Y/year). Free tier for small communities aligns with the Integration Layer Manifesto's "12-person value" framing.
+- **Critical decision (open):** does the community get its own data isolation, or does it share the commons? Probably opt-in commons participation per community; some networks (corporate L&D) absolutely won't share their members' data.
+- **The integration with the public commons is the unique value proposition** that distinguishes this from generic LMS / community tools.
+- **Different from #3** because the deployment is hosted-by-Sasha (or self-hosted by them) for an organizational customer, not a single founder going commercial.
+- **Acquisition:** Sasha's existing network of community architects (Adam Apollo, Jacob Griscom, Jan Andrea, Holo Movement leadership, Felipe Leal). Direct conversations, not marketing.
+- **Status:** 🔭 **Not started.** Concept aligned with existing relationships; no community deal pursued yet.
+- **Sequencing position:** Phase 2 (after #1, #2, #3 have track record but before #4). Sales cycle is longer than #1 but contract values are 10-100x larger.
+
+---
+
+### 6. Unique Business System License Play
+
+**❤️ Essence.** Pure IP licensing. The methodology itself — the playbook, the 18-artifact canvas, the Specificity Loop, the 27-perspective roast, the principles — gets licensed to **third parties who teach or deliver it under their own brand**. Training schools, consulting firms, MBA programs, accelerators, certified coaches. **Decoupled from the code and platform entirely.** Like Strategyzer's Business Model Canvas being licensed to consultancies, or Lean Startup methodology being licensed in trainings.
+
+**🧠 Significance.** This is the **maximum-value extraction layer for the methodology IP independently of the platform**. The platform is one delivery vehicle; the methodology can outlive the platform. Universities, accelerators, large consulting firms have budgets that dwarf individual founders or even communities. They want **named, defensible, certifiable systems** they can teach and put in their curriculum. If the playbook becomes the canonical *"AI-native unique business"* methodology in a few institutions, it becomes self-perpetuating IP with permanent revenue. It's also what protects from the docs being "open" — CC BY-NC-SA already requires commercial use to be permission-based; this play formalizes the commercial permission as a structured license.
+
+**🔥 Implications.**
+- **Probably needs a certification program for quality control** — otherwise people teach a watered-down version and dilute the brand
+- **Pricing structure:** per-certified-trainer license fee ($1-5K), annual maintenance ($500-2K), maybe per-student fee for accreditation
+- **Could attract:** Y Combinator (would they teach UBB to their cohorts?), executive education programs, regenerative leadership schools (Esalen, etc.), Acumen, Reos Partners, etc.
+- **Risk:** if the methodology becomes too widely taught, it loses the rare-edge feeling that makes the master holon special. Mitigated by: certification gates, master holon stays canonical reference, certified trainers required to attribute.
+- **Tension with #2 (Purpose Coaches):** the system license is more formal than the coach play. Maybe coaches can pay a small fee to get the right to *call themselves Find Your Top Talent–certified* — that bridges the two, but the boundary needs to be drawn clearly.
+- **Status:** 🔭 **Not started.** Methodology not yet referenced widely enough to defend as IP at scale.
+- **Sequencing position:** Phase 4 (the maturity play). Comes only after the methodology has been referenced widely enough that institutional customers want the formalized license.
+
+---
+
+## Tensions, Combinations, Non-Overlap
+
+| Play | Customer | Primary economic mechanism | Key tension |
+|------|----------|----------------------------|-------------|
+| #1 User | Individual founder | Direct payment ($555/$5K/$500-mo value ladder) | None — foundational |
+| #2 Coach | Existing facilitator with clients | Subscription / per-use / rev-share *(open)* | With #6 (system license) — both involve third parties using methodology; needs clear separation between *hosted-tool-use* (coach) and *certified-teaching-rights* (system) |
+| #3 Distributor | Sovereign founder running their own instance | 10% rev-share on platform revenue | With #5 (community white-label) — both are "fork" plays at different scales; needs different agreements + different infra |
+| #4 Venture Studio | Exceptional founder coming through #1 | SAFE / advisory equity / persistent rev-share | With #1 (user) — adding equity ask to user pricing changes conversion psychology entirely; must be opt-in tier, not default |
+| #5 Community | Collective / organization | Annual fee / per-member / rev-share *(open)* | With #3 — overlap in deployment model; community is "many users under one banner," distributor is "one user as their own brand" |
+| #6 System License | Training school / accelerator / certified trainer | Certification fee + annual + per-student | With #2 (coach) — who has the right to call themselves a teacher/practitioner of the system |
+
+**Non-overlap test:** can a single customer reasonably belong to multiple plays at the same time? Mostly yes, and that's healthy:
+- A user (#1) can graduate to a distributor (#3)
+- A coach (#2) can also adopt distributor instance (#3) for their bigger practice
+- A community (#5) can have individual members on plays #1 or #2 inside the community context
+- A certified trainer (#6) can also operate as a distributor (#3) under their own brand
+
+**The plays compound; they don't compete.** The architecture is designed for that.
+
+---
+
+## Sequenced Rollout — Four Phases
+
+The plays come online in a deliberate sequence. **Phase 1 must mature before Phase 2 begins. Plays in later phases stay in pocket — not promised — until their phase opens.**
+
+### Phase 1 — Foundation (now → 4-8 weeks)
+- **Plays active:** #1 + #2 + #3
+- **Status:** #1 active and proven. #3 legal layer shipped Day 51; technical layer (provisioning + brand wizard + Stripe Connect Express) builds in this phase informed by first real distributor walk-through. #2 facilitator console builds in this phase.
+- **First commercial distributor target:** Oyi or Sergey (technical enough to do manual setup with Sasha's help). Real-world learning loop before automation.
+- **Public messaging:** the foundation is what's offered. #4-#6 stay in pocket.
+- **Exit criterion to Phase 2:** at least one signed Distributor Agreement (#3) AND at least one paying coach (#2).
+
+### Phase 2 — Community Adoption (next 2-3 months)
+- **Plays added:** #5 (Community White-Label)
+- **Status:** Sales conversations with one or two pre-aligned communities (Holo Movement, Symbiosis, Core Nexus). Pricing model decided based on what they need. Pilot one community deal.
+- **Public messaging:** *"For aligned founders → Distributor Agreement. For aligned communities → Community White-Label deal."* Two clear paths.
+- **Exit criterion to Phase 3:** at least one signed Community White-Label deal AND 3-5 active distributors from Phase 1.
+
+### Phase 3 — Selective Co-Founding (3-6 months out)
+- **Plays added:** #4 (Venture Studio, opt-in tier)
+- **Status:** Identify 3-5 standout founders from #1 / #3 whose ventures look exceptional. Offer the studio tier privately as an upgrade path. Formalize SAFE / advisory structure with counsel. Use early studio deals to refine terms before publicizing.
+- **Public messaging:** unchanged from Phase 2. The studio tier is invitation-only, never on the menu.
+- **Exit criterion to Phase 4:** at least one studio tier deal AND methodology referenced commonly enough in the network to attract institutional interest.
+
+### Phase 4 — Maximum IP Extraction (6-12 months out)
+- **Plays added:** #6 (Unique Business System License)
+- **Status:** Build certification program structure. Approach 1-2 accelerators or training schools as anchor licensees. IP licensing as the long-game maximum extraction layer.
+- **Public messaging:** the methodology becomes a licensable system. The platform stays open-source-via-PolyForm-NC; the methodology becomes commercially licensable for institutional teaching.
+
+### Phase Discipline
+
+**Plays in later phases are NOT publicly mentioned.** They are plays in pocket, not promises made. This is critical for:
+- Avoiding premature complexity in the offer
+- Allowing each phase to mature without dilution
+- Preserving optionality (the plays might evolve before their phase opens)
+- Keeping the conscious-entrepreneur entry layer (#1) clean of equity asks (#4) or institutional politics (#5, #6)
+
+When a phase opens, this document gets updated with the new public messaging. Until then, only the active phase's plays are visible to outside operators.
+
+---
+
+## What the Commons Becomes Over Time
+
+Every distributor's users choose at the artifact level whether to contribute (default: off). When they do contribute, anonymized artifacts join the public commons:
+
+- **Asset Mappings** — what each tribe member has (skills, capital, networks, time)
+- **Mission Discoveries** — what each tribe member is called toward
+- **Unique Gift profiles** — anonymized at appropriate granularity
+- **Tribe membership signals** — who belongs to which tribe (with consent)
+
+Over time, this becomes the **first cross-tribe coordination commons** — a public dataset that any aligned project (not just our distributors) can query. Practical uses:
+
+- A distributor running on this code can match their member with someone in another distributor's instance whose missions complement
+- A researcher can study how tribes form and what assets predict thriving
+- A new project can build on top of the commons rather than starting from zero
+- The commons becomes the **integration layer** described in [integration_layer_manifesto.md](../06-architecture/integration_layer_manifesto.md) — emerging from data sharing, not engineered top-down
+
+This is also where the model's long-term moat lives. **Forkable code is forkable; the commons is the irreplaceable asset.**
+
+---
+
+## Implementation Status
+
+### Per-play status (high level)
+
+| # | Play | Legal | Pricing | Infrastructure | Customers | Active phase |
+|---|------|-------|---------|----------------|-----------|--------------|
+| 1 | Conscious Entrepreneur | n/a — direct customer | ✅ $555 / $5K / $500-mo | ✅ ZoG → Excalibur → UBB → first clients flow | 6 founders (Oyi, Sergey, Sandra, Alexa, Karime, Kirill) | Phase 1 ✅ |
+| 2 | Purpose Coach | 🔄 separate agreement *(open)* | 🔄 model *(open)* | 🔄 facilitator console *(not built)* | 0 | Phase 1 🔄 |
+| 3 | Platform Distribution | ✅ PolyForm NC + Distributor Agreement v0.1 | ✅ 10% rev share, $1K/mo free tier | 🔄 provisioning automation + brand wizard + Stripe Connect Express *(not built)* | 0 | Phase 1 🔄 |
+| 4 | Venture Studio | 🔭 SAFE template *(not drafted)* | 🔭 split *(not decided)* | 🔭 nothing yet | 0 | Phase 3 🔭 |
+| 5 | Community White-Label | 🔭 enterprise contract template *(not drafted)* | 🔭 model *(open)* | 🔭 nothing yet | 0 | Phase 2 🔭 |
+| 6 | Unique Business System License | 🔭 certification + license template *(not drafted)* | 🔭 fee structure *(open)* | 🔭 certification program *(not built)* | 0 | Phase 4 🔭 |
+
+**Legend:** ✅ shipped · 🔄 in progress / open decision · 🔭 not started
+
+### What shipped on Day 51 (foundation layer)
+
+- ✅ [LICENSE](../../LICENSE) — PolyForm Noncommercial 1.0.0 (canonical text)
+- ✅ [LICENSE.md](../../LICENSE.md) — CC BY-NC-SA 4.0 with scope clarified
+- ✅ [DISTRIBUTOR_AGREEMENT.md](../../DISTRIBUTOR_AGREEMENT.md) v0.1
+- ✅ [README.md](../../README.md) — three-license explanation + self-hosting section + forkable framing
+- ✅ [CONTRIBUTING.md](../../CONTRIBUTING.md) — low-maintenance expectations + license alignment
+- ✅ Per-founder Specificity Matrix as UBB artifact #19 (`specificity_matrix`)
+- ✅ Runtime fallback hook (`useResonanceMessage` reads per-founder matrix when present, falls back to MASTER_MATRIX)
+- ✅ Repo link surfaced in three platform locations (Settings, /playbook footer, /codex footer)
+- ✅ `resonance_events` table migration spec drafted for Lovable to apply
+
+### Drafted, awaiting Sasha's manual completion
+
+- ⏳ `.env.example` (sandbox blocked Claude from writing .env*; Sasha creates manually)
+- ⏳ `git rm --cached .env` (Sasha runs locally)
+- ⏳ Apply `resonance_events` migration via Lovable session
+
+### Not yet shipped — sequencing decisions for Phase 1 completion
+
+- ⏳ **Provisioning automation** — Supabase Management API + Vercel API integration to one-click deploy a distributor instance. Needed for "Skool-easy" onboarding.
+- ⏳ **Brand wizard** — UI capturing distributor's brand assets (logo, colors, name) and writing them to a `branding` config table on the fresh instance.
+- ⏳ **Stripe Connect Express integration** — Sasha sets up as Stripe Platform; OAuth flow integrates Stripe Connect into distributor instances; auto-split routing sends 90% to distributor, 10% to commons.
+- ⏳ **Distributor onboarding flow** — guided wizard route at `findyourtoptalent.com/become-distributor` that orchestrates the above.
+- ⏳ **Facilitator console** — for play #2; logged-in surface where coaches run sessions for clients.
+- ⏳ **Commons publication** — read API + UI surface for the anonymized commons; opt-in checkboxes wired into each artifact-generation flow.
+- ⏳ **AI Credits MVP** — schema + debit middleware + Settings page. Tightly related: low-rating regenerate triggers offer "Try a sharper version (1 credit)?" — monetization rail for the Highest-Rated Version Rule.
+
+### Strategic build sequencing
+
+The natural order for the Phase 1 unbuilt pieces:
+
+1. **First commercial distributor** (Oyi or Sergey level — technical enough to do manual setup with Sasha helping). Real-world learning loop before automation. ~1-2 weeks.
+2. **Provisioning automation + brand wizard** — only after at least one real distributor flow has been walked through manually. ~3 weeks.
+3. **Stripe Connect Express** — once provisioning is working, payments are the next blocker. ~2 weeks.
+4. **Facilitator console** (play #2) — same provisioning + auth foundation can underlie both. ~1-2 weeks.
+5. **Public "Become a distributor" + "Become a facilitator" landings** — only after all of the above is real. Then Sasha can mention either option in any conversation without it being a paper promise.
+6. **Commons publication + AI Credits MVP** — parallel after the above. The commons makes the network compound; AI Credits monetize the regenerate-for-higher-resonance loop.
+
+---
+
+## Open Decisions (16 tracked)
+
+These are the decisions that must be made before each play moves from concept to commercial reality. Documented here so they're visible at a glance.
+
+### For Play #2 (Purpose Coach)
+1. **Pricing model:** flat fee / per-use / rev-share — which one
+2. **Commercial layer:** separate agreement or lowest-tier of Distributor Agreement
+3. **Facilitator console scope:** what minimum surface lets a coach run a session for a client
+
+### For Play #3 (Platform Distribution)
+1. **Tier 2 ("Sasha live") definition:** when Sasha is "in the room" for a distributor's clients, the split shifts from 10/90 to 40/60. Exact definition of *"in the room"* needs sharpening — full session per client? Quarterly group? Named in marketing?
+2. **Soft pricing floor for distributors:** should there be a minimum price (e.g. "no fire-sale pricing — minimum $X — to protect category-level perception")?
+3. **Brand attribution default:** *"Powered by Find Your Top Talent"* in distributor footer — soft requirement or fully optional?
+4. **Anonymization spec for commons:** the data classes that flow into the public commons need a written spec
+5. **Governing law for Distributor Agreement:** currently placeholder; likely Delaware, USA or another neutral common-law jurisdiction
+6. **Tier 1.5 (brand-borrowing) tier:** distributor under their own brand but explicitly references Sasha's methodology in marketing. Could be 20/80 between platform-only (10%) and Sasha-live (40%). Optional — depends on whether brand-borrowing equity proves to be a meaningful asset transfer in practice.
+
+### For Play #4 (Venture Studio)
+1. **Equity vs. perpetual rev-share:** which structure aligns better with conscious entrepreneurs
+2. **Percentage:** 5% vs 10% (lower is more conscious-entrepreneur-friendly; higher captures more upside)
+3. **Trigger events:** equity activates immediately on opt-in, or vests on milestones
+
+### For Play #5 (Community White-Label)
+1. **Pricing structure:** annual flat fee vs. per-member vs. rev-share
+2. **Free tier definition:** size threshold (≤25 members? ≤50? ≤12 per the manifesto?)
+3. **Data isolation defaults:** does community data flow into public commons by default, opt-in, or opt-out
+
+### For Play #6 (Unique Business System License)
+1. **Certification structure:** how is quality control enforced
+2. **Master holon's role:** Sasha as final approver of certifications, or institutional partner does it
+3. **Use-case fees vs. flat fees:** per-student royalty vs. flat per-trainer license
+
+---
+
+## On Naming (Day 51 Night Decision)
+
+The earlier brand name "Holonic Franchise" was retired same day for two real reasons:
+
+**1. Legal exposure.** In the US, the FTC Franchise Rule attaches when three elements are present in a commercial relationship: trademark license + significant control or assistance + required payment. Our model arguably triggers all three (methodology brand association + matrix generator + 10% rev share). Calling the model a "franchise" is gasoline on this fire — it doesn't change the underlying economics, but it gives a regulator the easy hook to treat us as one and require Franchise Disclosure Documents (FDD), state registrations, and a long compliance tail. Several US states (California, NY, Illinois, others) have additional franchise statutes that bite hard. EU and Canadian provincial regimes have analogous exposure. Renaming away from "franchise" now is genuinely prudent, not cosmetic.
+
+**2. Accessibility.** "Holonic" is a strong technical term inside Wilber/Koestler integral-theory circles and inaccessible outside them. A Y Combinator partner, a corporate L&D buyer, a counsel reviewing the Distributor Agreement — all hit "holonic" and either skim past or assume the work is too esoteric to take seriously. Distributors hear the phrase before they hear the substance.
+
+**The Path A decision (Sasha, Day 51 night):** drop the formal brand name. Describe the model functionally everywhere — *open-source platform with sovereign distributors and a 10% revenue share evolving into a governed purpose entity*. Keep the soft brand handle **the Sovereign Network** in 1-2 evocative spots (README's *what it becomes when you fork* table, the distributor onboarding wizard's headline) for marketing moments where a memorable phrase helps.
+
+This avoids the lock-in problem of branding a category before having sold one of it. It lets the right name emerge from real distributor conversations rather than be imposed. If "Sovereign Network" proves sticky in real deals, it gets promoted to the formal name in v3.0. If it doesn't, the model stays descriptive forever.
+
+**Names considered and rejected:**
+- *Holonic Franchise* (the prior name) — legal exposure (franchise) + accessibility (holonic)
+- *Holonic Cooperative* — implies shared governance the model doesn't have
+- *Sovereign Distributor Network* — accurate, but bulky
+- *Open Franchise* — still triggers franchise law
+- *Fractal Franchise* — same legal exposure
+- *Mutualist Network* — anarchist-coded baggage
+- *The Tithe Network* — religious-adjacent (could be plus or minus depending on tribe; in pocket as a fallback)
+
+The pattern is more important than the name. If you're describing the model to someone, lead with what it IS, not with a label.
+
+---
+
+## What This Means for Sasha
+
+Strategically, this model converts Sasha's role from:
+
+**Old:** sole provider of a methodology and platform → bottleneck to growth, dependent on his time
+
+**New:** master holon of a network of holons, each running the same apparatus in their own voice → growth proportional to the number of distributors, not to his hours
+
+The 10% revenue share means earnings scale with the network's success rather than with his personal labor. The per-founder Specificity Matrix means each distributor's success doesn't dilute his voice — they have their own. The commons means the value he created keeps compounding even when he's not actively building. The Phase 2/3 transition into a governed purpose entity (see [`commons_treasury_evolution.md`](./commons_treasury_evolution.md)) ensures the venture remains structurally unsellable as it scales — sovereignty intact at the network treasury layer, matching the consent-token sovereignty primitive at the user layer.
+
+This is **Big Idea #1 (master holon prototypes everything before the network) and Big Idea #2 (fractal + viral growth)** made into commercial reality.
+
+---
+
+## Changelog
+
+### v2.2 — April 25, 2026 (Day 51 night, third pass)
+- **Brand name "Holonic Franchise" retired (Path A).** Two reasons: legal exposure (calling the model a "franchise" can trigger US FTC Franchise Rule + state franchise statutes regardless of underlying economics) + accessibility ("holonic" is opaque outside Wilber/integral circles). Going forward: model described functionally; soft brand handle **the Sovereign Network** preserved in 1-2 evocative spots only.
+- Title changed: *Monetization Strategies — The Holonic Franchise* → *Monetization Strategies* (with subtitle: *open-source platform · sovereign distributors · steward-owned commons · per-founder voice generation*).
+- *On Naming* section rewritten to capture the Path A rationale, names considered and rejected, and the principle of letting a brand emerge from real distributor conversations rather than imposing one before having sold one of these.
+- All inline mentions of "Holonic Franchise" replaced with functional descriptions ("the model", "this commercial-decentralization pattern", "the foundational architecture", etc.) — except in changelog entries and the *On Naming* section where the historical name is preserved as record.
+- Cross-references updated across the corpus: `unique_business_playbook.md` (Principle 15), `alexanders_unique_business.md`, `roadmap.md`, `session_log.md`, `morphogenetic_holomap.md`, `README.md`, `DISTRIBUTOR_AGREEMENT.md`, `AiOsPage.tsx`.
+
+### v2.1 — April 25, 2026 (Day 51 night, second pass)
+- **File renamed** `holonic_franchise_model.md` → `monetization_strategies.md` (Sasha's call: this is what the file functionally tracks). Title still carried "Holonic Franchise" at this stage; the brand-name retirement happened next in v2.2.
+
+### v2.0 — April 25, 2026 (Day 51 night, first pass)
+- **Merged** the short-lived `monetization_strategy.md` into the predecessor `holonic_franchise_model.md`. The two docs were redundant — both described the architecture, plays, status, sequencing, and open questions.
+- Added: *How the Plays Grow Holonically* (one-table radically-simple synthesis of how each play wraps the prior layer in a larger holon, Sasha's role evolution, revenue scaling with holon size).
+- Added: full Heart/Mind/Gut treatment for all six plays (was only narrative description before).
+- Added: tensions/combinations/non-overlap matrix.
+- Added: four-phase sequenced rollout with explicit exit criteria + phase discipline note.
+- Added: per-play implementation status table.
+- Reorganized: open questions grouped by play (now 16 tracked across all 6 plays, vs 6 generic ones before).
+- All cross-references redirected to point at this single doc.
+
+### v1.0 — April 25, 2026 (Day 51)
+- Document created. Codified the operational model that emerged when matrix v2 + license decisions + distributor terms collapsed into a single coherent commercial-decentralization pattern. Five ingredients, comparison table, alignment-without-tokens reasoning, implementation status, strategic sequencing, six open questions.
+
+### Future versions
+- **v2.3** — when the first commercial distributor signs (Play #3 first deal). Update Open Decisions answered. Update Implementation Status. Capture lessons learned.
+- **v2.4** — when the facilitator console ships and the first paying coach signs up (Play #2 first deal).
+- **v3.0** — when Phase 2 opens (first community white-label deal). Public messaging shifts from foundation-only to foundation + community. *Possible:* if "Sovereign Network" has caught on in real distributor conversations by this point, promote from soft brand to formal name.
+- **v4.0** — when Phase 3 opens (first venture studio deal).
+- **v5.0** — when Phase 4 opens (first system license deal).
+
+---
+
+### v2.3 — May 19, 2026 (Day 76)
+- **All "tithe" language replaced** with "revenue share" (the 10% mechanism) and "commons contribution" (the resulting purpose-entity flow). The metaphor was creating a conflation between the *data commons* (§7 of Distributor Agreement, opt-in anonymized artifacts) and a *revenue commons* (the purpose-entity treasury that didn't legally exist yet in v0.1).
+- **Companion doc created:** [`commons_treasury_evolution.md`](./commons_treasury_evolution.md). Declares the three-phase trajectory — founder steward (now, v0.1) → purpose entity at ~25 distributors → distributor council governance at 50+. Steward-ownership trajectory (Chouinard / Patagonia / Ecosia / Bosch family), not Linus path. Architecture committed to be structurally unsellable from the start.
+- **Distributor Agreement bumped to v0.4** — preamble transparency note added; §16 spirit clause updated; cross-link to treasury evolution doc.
+- **README updated** — same word replacements; cross-links added.
+- Subtitle changed: *commons tithe* → *steward-owned commons*.
+
+---
+
+*v2.3 · May 19, 2026 (Day 76) · Single canonical doc for the dynamic, sequenced six-play monetization strategy. Six plays. One foundation. Four phases. Sixteen open decisions tracked. The plays compound; they don't compete. The 10% revenue share is now explicitly trajectoried into a governed purpose entity at Phase 2 threshold (~25 distributors) — see companion doc [`commons_treasury_evolution.md`](./commons_treasury_evolution.md). Sovereignty primitive consistent at every scale: consent token (user) → fork (distributor) → CC BY-NC-SA (methodology) → steward-ownership (network treasury). **Soft brand for marketing moments: the Sovereign Network.** Otherwise the model travels by what it IS.*
