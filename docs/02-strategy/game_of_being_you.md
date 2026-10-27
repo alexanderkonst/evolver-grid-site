@@ -199,3 +199,33 @@ Stage-7+ mechanics that pass the test (proposed, Evolver):
 - `hero_synthesis.png`: v0.1 amber-topaz synthesis frame (superseded)
 - `hero_topaz_black.png`: rejected direction (Dark Side of the Moon risk)
 - `homepage_mockup_v0.2.html`: clickable mockup of the title screen and homepage
+
+## 13. Quest map over the existing modules (2026-10-27)
+
+*Sasha: «ты поехал строить из ничего… у нас же есть куча модульных игр внутри уже», «нам нужно сделать магические движения, и превратить Золушку в принцессу, перманентно». Rule: no new modules. Everything below already exists; only the connections are new.*
+
+**Why play.** Cinderella was never turned into a princess; she was recognized. The slipper fits one foot only. The game is being recognized for who you are, and paid for it. Four desires, each already served by a module:
+- **See yourself** (mystery): Top Talent / ZoG, soul colors in CHARACTER.
+- **Grow in what matters most** (mastery): QoL map, TRAINING.
+- **Be recognized by your people** (the ball): MEET, PARTY & GUILD, Mastermind.
+- **Be paid for being you** (the slipper): playbook, THE FORGE (UBB), TRADING POST.
+
+**The world (already built):** title menu (NEW GAME, LOAD GAME, TUTORIAL, MULTIPLAYER, ABOUT) → rail: MAIN QUEST, CHARACTER, MEET, PARTY & GUILD, TRAINING, THE FORGE, TRADING POST, AI OS. Save file = the profile corpus (zog_snapshots, user_assets, qol_snapshots, offers…). Main quest chain = `src/data/journeySequence.ts`.
+
+| Act | Quest (journey step) | Where | Writes to the save | Lights up |
+|---|---|---|---|---|
+| I. The ashes | 1. Find your top talent | NEW GAME → ZoG | zog_snapshots | crystal + soul colors (CHARACTER) |
+| | 2–4. Playbook, the path, how we're building this | TUTORIAL | (lore, no state) | the map of the game |
+| II. The godmother | 5. Map your assets | CHARACTER | user_assets | inventory |
+| | 6. Assess your quality of life | CHARACTER / TRAINING | qol_snapshots | stats; level = weakest domain (core loop v0.1) |
+| III. The ball | 7. Build a business from your top talent | THE FORGE | UBB offer | your offer, crafted |
+| | 8. Discover your mission | CHARACTER | mission | your calling |
+| | Meet your people | MEET, PARTY & GUILD, MULTIPLAYER | matches, mastermind seat | your party |
+| IV. The slipper | First real yes from the world: a paid client or a collaboration on your offer | TRADING POST | first sale or deal | permanent: proof lives in the world, not in the game |
+
+**The three magic moves (connections, not modules):**
+1. **The pumpkin becomes a coach: one quest chain.** Rewrite the 8 journey labels as quests in the four acts above. Steps 2–4 collapse into TUTORIAL lore so the chain reads as a story, not a funnel. Copy and order only.
+2. **The dress: every quest lights the crystal.** `JOURNEY_ITEM_COMPLETED_EVENT` already fires with no listener. CHARACTER listens to it: each completion lights a facet of the player's crystal in their soul colors, and LOAD GAME opens on that crystal. The save file becomes visible.
+3. **The slipper: a finale you can't fake.** Act IV is the first real yes from the world, recorded in TRADING POST. No points; the footprint is real, so the transformation is permanent. Mood and XP go up and down (Current vs Peak); the slipper stays.
+
+Status: map v0, waiting for Sasha's corrections before any issue.
