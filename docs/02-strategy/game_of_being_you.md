@@ -426,3 +426,56 @@ Inferred, to confirm in review: the Oracle and Co-working thresholds.
 7. Soul colors before Spectrum Reading exists: a faded room, a placeholder, or hidden?
 8. The scene: the same night house in every theme, or a Lunar version for Lunar?
 
+### 14.8 Scope of Work (main estimate: Journey only)
+
+Sizes: S ≤ 4 h, M 5–10 h, L > 10 h of Claude Code work; review = Hark review + QA in the browser. Consent marks: **[migration]** and **[Lovable]** need Sasha's yes (migrations have been applied through Lovable); **[Stripe]** = Sasha (Stripe is his); **[money]** none planned.
+
+| WP | What | Why (principle) | Files / routes | Size · CC h · review h | Depends | Done when | Consent |
+|---|---|---|---|---|---|---|---|
+| **WP-1 Theme tokens foundation** | one semantic token layer (surface, text, accent, scene, lock, live) mapped in every existing skin, unchanged look; move hardcoded Journey screens onto it: title, village, Your House, auth, ZoG, Mission, QoL, Assets, UBB slices, Mastermind, Market, `/ignite` | 8 | `index.css`, `tailwind.config.ts`, `SkinContext.tsx`, `ThemeContext.tsx`, `GameTitle.css`, `Village.css`, Journey pages | M · 10 · 3 | — | every Journey screen switches with the skin; existing skins pixel-equal on their own pages | — |
+| **WP-2 Lunar theme** | new skin `lunar`: moonlight monochrome / silver, grayscale scenes via filter, optional halftone/ASCII layer (decorative and for closed state); in the theme switcher; open = brighter silver + one accent | 8, 5 | `index.css` `[data-skin="lunar"]`, `SkinContext.tsx` (`VALID_SKINS`, `index.html` pre-paint map) | M · 8 · 2 | WP-1 | every Journey screen readable in Lunar, lock states distinct | — |
+| **WP-3 Lock/unlock state** | `PlaceState` component + `placeState(place, save)` + per-theme lock tokens; replaces guest overlay, greyed Academy rooms, $37 item | 5, 6 | `villagePlaces.ts`, `Village.tsx`, `journeySequence.ts`, `useCharacterSheet.ts`, new `src/lib/placeState.ts` | M · 8 · 3 | WP-1 | 4 states in all skins; closed lines read from data; no barrier words | — |
+| **WP-4 One shell, one menu** | rail = the 11 places (map order, names, states); retire `Navigation.tsx` top nav and auth rail; remove `PlayerStatsBadge`; music off on auth/checkout | 2, 7 | `GameShellV2.tsx`, `SpacesRail.tsx`, `SectionsPanel.tsx`, `Navigation.tsx`, `shellRoutes.ts`, `App.tsx` | L · 12 · 4 | WP-1, WP-3 | one nav model on every Journey screen; no XP anywhere | — |
+| **WP-5 Module form** | `ModuleIntro` / `ModuleOutro` (14.4); applied to the Journey modules J1–J12; victory + 1–10 recorded; back to village | 4, 1 | new `src/components/game/ModuleIntro.tsx`, `ModuleOutro.tsx`; ZoG, Mission, QoL, Assets, UBB slices, webinar, Mastermind, Quest Board | L · 14 · 5 | WP-1, WP-3 | each Journey module: Intro with one button, Outro with ritual, returns to `/village` | **[migration]** to store 1–10 ratings |
+| **WP-6 Village = game screen** | next-move hint (place + result), «what changed» line, `new` reveal | 3, 1 | `Village.tsx`, `Village.css`, `placeState.ts` | M · 8 · 3 | WP-3, WP-5 | a returning player always sees one next move and what it gives | — |
+| **WP-7 Reception** | NEW GAME → Reception scene; one public `/zone-of-genius/entry` with one button; auth at «Save your character»; remove duplicate route | 4, 2 | `GameTitle.tsx`, `App.tsx`, `ZoneOfGeniusEntry`, `Auth.tsx`, `shellRoutes.ts` | M · 6 · 3 | WP-1, WP-5 | guest walks title → scene → test → save → village; no auth hole | — |
+| **WP-8 Your House, made beautiful** | design and build the Character Sheet from Sasha's answers to 14.7 | 7, 1 | `ProfileOverview.tsx`, `useCharacterSheet.ts`, House rooms | L · 16 · 6 | WP-1, WP-3, WP-5, Sasha's answers | Sasha says yes to the House | depends on answers |
+| **WP-9 Workshop slices** | uniqueness phrase and tagline as two Journey modules inside `/ubb`; rest of UBB untouched | 4 | `src/modules/unique-business-builder/*` (uniqueness, tagline screens) | M · 6 · 2 | WP-5 | J6, J7 each Intro → button → Outro; Market opens after J7 | — |
+| **WP-10 Fire Circle** | webinar Wed Nov 4 date and copy now (#124, #119); `live` state; real checkout for $222; Intro/Outro; tokens | 9, 4 | `Mastermind.tsx`, webinar link | S · 4 · 1.5 | date: none; rest WP-1, WP-5 | correct date live; seat bought in one step | **[Stripe]** payment link |
+| **WP-11 Quest Board + real-world victories** | one Quest Board at `/game/journey` (merge `/game/next-move*`, `/today`); quests J10–J12 with «I did it» Outro; first sale opens Town Hall and lights your house on the map | 6, 7 | `JourneyPage.tsx`, `CoreLoopHome.tsx`, `App.tsx`, `placeState.ts` | M · 10 · 3 | WP-3, WP-5 | first price and first sale recorded as victories; Town Hall opens | **[migration]** victories / sales record |
+| **WP-12 Market + Town Hall v0** | your stall = published offer; `/ignite` title and video (#100); Town Hall v0 = residents' income + your voice; Investor Room shows the same number | 6, 7, 9 | `Marketplace*`, `IgniteSession.tsx`, `/game/coop` route, `InvestorRoom.tsx` | L · 12 · 4 | WP-11 | Town Hall reachable only after a first sale; one public number shown | **[migration]** aggregate / voice |
+| **WP-13 Journey in code** | `JOURNEY_SEQUENCE` reordered and relabelled to 14.2 (after fork 2); playbook / path / dashboard → Tutorial lore; one source drives hints, rail, House | 1 | `journeySequence.ts`, `useJourneyCompletion.ts` | S · 4 · 1.5 | fork 2 | the same order on the map, the rail and in the House | — |
+| **WP-14 Surface hygiene on the Journey** | `/modules` admin-only; «Live from GitHub main» copy; hide dead Venture Builder items; redirect `/game/next-move`; drop duplicate `/zone-of-genius` | 10 | `App.tsx`, `CockpitDashboard.tsx`, `CockpitOffersBoard.tsx`, `SpacesRail.tsx` | S · 3 · 1 | — | no internal language on public screens | — |
+
+**Total: 121 h Claude Code + 42 h review = 163 h** (14 WPs; 3 L, 7 M, 4 S).
+
+**Waves:**
+- **Wave 0, now (before Wed Nov 4):** WP-10 date/copy fix (~1 h, counted in WP-10).
+- **Wave 1, foundation:** WP-1, WP-3, WP-4, WP-13, WP-14 — 37 h + 12.5 h.
+- **Wave 2, the game screen and the form:** WP-5, WP-6, WP-7, WP-2 (Lunar) — 36 h + 13 h.
+- **Wave 3, inside the village:** WP-8 (Your House, after answers), WP-9, WP-10 rest — 26 h + 9.5 h.
+- **Wave 4, economy → voice:** WP-11, WP-12 — 22 h + 7 h.
+
+Process per WP (§13 modus operandi): @claude issue with this table row as the DoD → PR → Hark review and merge once checks pass; anything marked [migration] / [Lovable] / [Stripe] waits for Sasha.
+
+### 14.9 Extras / later (outside the Journey; not in the estimate)
+
+Rough sizes for later planning only. Each stays as it is until its turn; none blocks the Journey.
+- **Academy consolidation:** `/library/*`, `/grow/activate-your-dormant-potential`, `/growth-paths`, `/game/learn/*`, `/27` under one Academy; Founder Academy / Mystery School as closed rooms; renumber (no skipped 3, 5). ~M.
+- **Café and Co-working:** merge `/game/meet`, `/events/*`, `/communities` → Café; `/game/collaborate/*`, `/connections`, `/genius-layer-matching` → Co-working. ~M.
+- **Oracle (AI OS):** `/ai-os/*`, `/codex/*`, `/prompt/*` on tokens. ~S.
+- **Founder's desk:** cockpit open to all (#102), Equilibrium / Commercial OS one name, half-built lens buttons. ~M.
+- **Character-development pages outside the Journey:** `/game/me/zone-of-genius/*` perspectives, `/game/me/genius-business/*`, `/game/me/art`, daily loop, skill trees, transformation, tests. ~M, after WP-8.
+- **Legacy routes and dead files:** `/home`, `/home2`, `/hero`, `/landing`, `/preview/*`, `/quiz`, `/quiz2`, `/mdls-preview`, `/tools`, `/game/test-nav`, unrouted `GameMap.tsx`, `/contact` → chat launcher. ~S.
+- **Public faces:** `/:username`, `/profile/:userId`, `/dossier/:slug`, `/page/:slug` on tokens; never QoL. ~S.
+- **Investor Room on tokens** (its income number lands with WP-12). ~S.
+- **Lunar scene renders:** dedicated halftone/ASCII versions of `public/game/village/*` (WP-2 ships filters first). ~M + image generation.
+- **Untouched:** partner skins and personal pages (`/ns`, `/techstars`, `/karime/*`, `/sandra`, …), legal, admin.
+
+### 14.10 Open forks for Sasha (color is closed)
+
+1. **Default theme** for new players: `lapis` (today's light default), `aurum`, the night navy-gold of the new title/village screens, or the new **Lunar**?
+2. **Journey order:** today's code runs business (`/ubb`) before Mission; §13.3/13.4 put Mission in Your House before the Workshop. Take §13.4 (my recommendation: it matches «Your House → Workshop → Market») or keep the code order?
+3. **Consents for the Journey's real-world record:** one migration for victories, 1–10 ratings and recorded sales (WP-5, WP-11, WP-12), and a Stripe payment link for the $222 Mastermind seat (WP-10). Yes now, or Journey v1 without them (self-report kept on device, Mastermind stays email)?
+
+Rail labels: place names (Your House, Workshop, Market…) follow from principle 2 and supersede the game-vocabulary labels of #128/#129 (CHARACTER, THE FORGE, TRADING POST). Proposed: close #128/#129 as superseded when WP-4 lands.
