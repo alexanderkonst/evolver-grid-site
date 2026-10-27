@@ -342,7 +342,7 @@ Source: §13.4 victories v1 (Sasha), §13.3, the loop Reception → Zone of Geni
 | 13 | Your voice | Town Hall | `/game/coop` (today a wrong redirect) | — | — |
 | opt | Oracle Reading, $37 deep reveal, Scroll to inventory | Oracle | `$37` power-up (disabled today) | — | — |
 
-Code steps `take-playbook`, `see-path`, `see-dashboard` collapse into Tutorial lore (§13, magic move 1): extras, not Journey steps. The order J2→J7 vs today's code order (business before mission) is fork 2 in 14.10.
+Code steps `take-playbook`, `see-path`, `see-dashboard` collapse into Tutorial lore (§13, magic move 1): extras, not Journey steps. Order decided 2026-10-27: §13.4, Mission before business (14.10).
 
 **Transitions:** every Outro returns to `/village`, where the next step's place carries the hint. LOAD GAME: signed out → `/auth` → back to the last place; signed in → `/village`. Title ABOUT → Investor Room (outside the world) → «Play the game» → `/`.
 
@@ -473,10 +473,11 @@ Rough sizes for later planning only. Each stays as it is until its turn; none bl
 - **Lunar scene renders:** dedicated halftone/ASCII versions of `public/game/village/*` (WP-2 ships filters first). ~M + image generation.
 - **Untouched:** partner skins and personal pages (`/ns`, `/techstars`, `/karime/*`, `/sandra`, …), legal, admin.
 
-### 14.10 Open forks for Sasha (color is closed)
+### 14.10 Decisions (Sasha, 2026-10-27 15:16) and what stays open
 
-1. **Default theme** for new players: `lapis` (today's light default), `aurum`, the night navy-gold of the new title/village screens, or the new **Lunar**?
-2. **Journey order:** today's code runs business (`/ubb`) before Mission; §13.3/13.4 put Mission in Your House before the Workshop. Take §13.4 (my recommendation: it matches «Your House → Workshop → Market») or keep the code order?
-3. **Consents for the Journey's real-world record:** one migration for victories, 1–10 ratings and recorded sales (WP-5, WP-11, WP-12), and a Stripe payment link for the $222 Mastermind seat (WP-10). Yes now, or Journey v1 without them (self-report kept on device, Mastermind stays email)?
+1. **Default theme = Lunar.** WP-2 builds the `lunar` skin and makes it the default for new players (pre-paint map in `index.html`, `SkinContext` default). Existing skins stay selectable.
+2. **Journey order: Hark decides (Sasha: «реши сам») → §13.4.** Mission (Your House) before the Workshop: J1 Top Talent → J2 Mission → J4 QoL → J5 Assets → J6 uniqueness → J7 tagline → … It matches the unlock order «Your House → Workshop → Market»: you know what is yours before you build the business. WP-13 reorders `JOURNEY_SEQUENCE` to 14.2.
+3. **Stripe link for the $222 seat:** Sasha makes it later; it does not block. WP-10 ships with the CTA wired to a single constant, swapped when the link exists.
+4. **Still open:** consent for the one migration (victories, 1–10 ratings, recorded sales) needed by WP-5 / WP-11 / WP-12. Until then those WPs store nothing new server-side.
 
 Rail labels: place names (Your House, Workshop, Market…) follow from principle 2 and supersede the game-vocabulary labels of #128/#129 (CHARACTER, THE FORGE, TRADING POST). Proposed: close #128/#129 as superseded when WP-4 lands.
