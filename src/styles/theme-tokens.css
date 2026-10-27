@@ -94,6 +94,15 @@
   --scene-dot: #f3ecd9;
   --scene-dot-active: #ffffff;
 
+  /* ── Sky (WP-16): the shared real-moon layer over the night scenes ──
+     Village.tsx sets --sky-moon-illumination (0..1) and the disc shape vars on
+     .vl-root; these tokens only decide how the sky is tinted. The art is night
+     in every skin, so light skins keep the default cool moon on near-black. ── */
+  --sky-moon-rgb: 238, 234, 226;       /* moon disc and moonlight */
+  --sky-dim-rgb: 5, 6, 8;              /* night veil: strongest at new moon */
+  --sky-dim-max: 0.34;                 /* veil alpha at new moon, 0 at full */
+  --sky-glow-max: 0.16;                /* moonlight halo alpha at full moon */
+
   /* ── Lock / open / live (WP-3 reads these) ── */
   --lock-filter: grayscale(0.9) saturate(0.6);
   --lock-dim: 0.55;
@@ -178,6 +187,16 @@
   --lock-filter: grayscale(0.9) saturate(0.5) brightness(0.85);
   --lock-dim: 0.45;
   --live-accent: hsl(15 88% 62%);
+}
+
+/* Sky tint (WP-16) for the dark skins: moonlight takes the skin's ink, the veil its shadow. */
+[data-skin="navy-gold"],
+[data-skin="aurum"],
+[data-skin="daouniverse"],
+[data-skin="planetir"],
+[data-skin="techstars"] {
+  --sky-moon-rgb: var(--scene-ink-rgb);
+  --sky-dim-rgb: var(--scene-shadow-rgb);
 }
 
 /* ── Network School + The Dao: editorial black on white ── */

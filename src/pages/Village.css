@@ -78,8 +78,46 @@
   font-size: clamp(26px, min(3.6vw, 5.4vh), 56px); line-height: 1.04; letter-spacing: 0.06em;
   margin: 14px 0 0; color: var(--vl-ink); text-wrap: balance;
 }
+.vl-moonline { margin: 14px 0 0; text-transform: none; letter-spacing: 0.14em; font-size: 13px; color: var(--vl-ink-2); }
 .vl-intro { opacity: 0; animation: vl-fade-in 1.6s ease-out 0.4s forwards; }
 @keyframes vl-fade-in { to { opacity: 1; } }
+
+/* ---------- Sky: the real moon (WP-16) ----------
+ * Shared layer, same for every resident tonight. Driven only by --sky-moon-* set on
+ * .vl-root from getVillageSky(); tinted by the --sky-* tokens, so every skin carries it.
+ * Independent of the Journey's own dawn at the horizon (§14.11), which gets its own layer.
+ * Nothing here is shown as a number. */
+.vl-sky-veil {
+  position: absolute; inset: 0; pointer-events: none;
+  background: rgba(var(--sky-dim-rgb), calc((1 - var(--sky-moon-illumination, 0.5)) * var(--sky-dim-max)));
+  transition: background-color var(--vl-fade) ease;
+}
+.vl-moon {
+  --vl-moon-lit: rgb(var(--sky-moon-rgb));
+  --vl-moon-dark: color-mix(in srgb, rgb(var(--sky-moon-rgb)) 9%, rgb(var(--sky-dim-rgb)));
+  position: absolute; z-index: 1; pointer-events: none;
+  top: clamp(28px, 6vh, 72px); right: clamp(24px, 5vw, 80px);
+  width: clamp(34px, 4.4vw, 60px); aspect-ratio: 1;
+}
+.vl-moon__glow {
+  position: absolute; inset: -130%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--sky-moon-rgb), calc(var(--sky-moon-illumination, 0.5) * var(--sky-glow-max))) 0%, rgba(var(--sky-moon-rgb), 0) 62%);
+  animation: vl-moon-breathe 9s ease-in-out infinite alternate;
+}
+@keyframes vl-moon-breathe { from { opacity: 0.75; } to { opacity: 1; } }
+.vl-moon__disc {
+  position: relative; width: 100%; height: 100%; border-radius: 50%; overflow: hidden;
+  background: var(--vl-moon-dark); box-shadow: 0 0 0 1px rgba(var(--sky-moon-rgb), 0.16);
+}
+/* Waning: the same shapes, mirrored (the lit limb is on the left). */
+.vl-moon[data-waxing="false"] .vl-moon__disc { transform: scaleX(-1); }
+.vl-moon__lit { position: absolute; top: 0; bottom: 0; right: 0; width: 50%; background: var(--vl-moon-lit); }
+/* The terminator: an ellipse as wide as |cos(phase)|. Dark over the lit half = crescent; lit over the dark half = gibbous. */
+.vl-moon__term {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%;
+  background: var(--vl-moon-dark); transform: scaleX(var(--sky-moon-squeeze, 1));
+}
+.vl-moon[data-gibbous="true"] .vl-moon__term { background: var(--vl-moon-lit); }
 
 /* markers: small glowing points, name in title-screen type */
 .vl-pins { list-style: none; margin: 0; padding: 0; position: absolute; inset: 0; z-index: 2; }
@@ -219,7 +257,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .vl-layer, .vl-layer.is-on { transition: none; }
-  .vl-drift, .vl-place__img, .vl-dot::after, .vl-hint { animation: none; }
+  .vl-drift, .vl-place__img, .vl-dot::after, .vl-hint, .vl-moon__glow { animation: none; }
+  .vl-sky-veil { transition: none; }
   .vl-dot::after { display: none; }
   .vl-intro { animation: none; opacity: 1; }
   .vl-dot::before, .vl-pin__name, .vl-enter, .vl-back, .vl-corner, .vl-signin { transition: none; }

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from "re
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { FONTS_HREF } from "@/lib/gameFonts";
+import { getVillageSky, type VillageSky } from "@/lib/villageSky";
 import {
   RECEPTION,
   VILLAGE_MAP,
@@ -94,8 +95,53 @@ const useSignedIn = () => {
   return signedIn;
 };
 
+/** The real moon tonight. Re-read every ten minutes so a tab left open follows the sky. */
+const useVillageSky = (): VillageSky => {
+  const [sky, setSky] = useState(() => getVillageSky());
+  useEffect(() => {
+    const id = window.setInterval(() => setSky(getVillageSky()), 10 * 60 * 1000);
+    return () => window.clearInterval(id);
+  }, []);
+  return sky;
+};
+
+/**
+ * Sky custom properties, set once on .vl-root. The moon is the shared layer (same for
+ * every resident tonight); the Journey's dawn at the horizon (§14.11 step 6) is the
+ * player's own and will be a separate layer with its own variables. Keep them apart.
+ * Decorative values only: none of these is ever rendered as text.
+ */
+const skyVars = (sky: VillageSky): CSSProperties =>
+  ({
+    "--sky-moon-illumination": sky.illumination.toFixed(3),
+    "--sky-moon-phase": sky.cycle.toFixed(3),
+    // Width of the terminator ellipse relative to the disc: 1 at new/full, 0 at the quarters.
+    "--sky-moon-squeeze": Math.abs(Math.cos(sky.cycle * 2 * Math.PI)).toFixed(3),
+  }) as CSSProperties;
+
+/** Night veil over a scene: darkest at new moon, gone at full moon. */
+const SkyVeil = () => <div className="vl-sky-veil" aria-hidden="true" />;
+
+/** The moon disc with its real phase shape; lit on the right while waxing, the left while waning. */
+const SkyMoon = ({ sky }: { sky: VillageSky }) => (
+  <div
+    className="vl-moon"
+    data-phase={sky.phase}
+    data-waxing={sky.cycle < 0.5}
+    data-gibbous={Math.cos(sky.cycle * 2 * Math.PI) < 0}
+    aria-hidden="true"
+  >
+    <div className="vl-moon__glow" />
+    <div className="vl-moon__disc">
+      <div className="vl-moon__lit" />
+      <div className="vl-moon__term" />
+    </div>
+  </div>
+);
+
 const Village = () => {
   const { place: placeKey } = useParams<{ place?: string }>();
+  const sky = useVillageSky();
   const place = getVillagePlace(placeKey);
   const navigate = useNavigate();
   const mobile = useIsMobile();
@@ -174,7 +220,7 @@ const Village = () => {
   const current = active !== null ? VILLAGE_PLACES[active] : null;
 
   return (
-    <div className="vl-root" data-view={place ? "place" : "map"}>
+    <div className="vl-root" data-view={place ? "place" : "map"} style={skyVars(sky)}>
       <div className="vl-grain" aria-hidden="true" />
 
       <main>
@@ -182,6 +228,7 @@ const Village = () => {
           <header className="vl-head vl-intro">
             <p className="vl-mono">The Game of Being You</p>
             <h1>The Digital Village</h1>
+            <p className="vl-mono vl-moonline">{sky.mood}</p>
           </header>
 
           <div className="vl-frame" style={MAP_STAGE}>
@@ -195,6 +242,7 @@ const Village = () => {
                   height={VILLAGE_MAP.height}
                   decoding="async"
                 />
+                <SkyVeil />
                 <ul className="vl-pins">
                   {VILLAGE_PLACES.map((p, i) => {
                     const style = {
@@ -231,6 +279,7 @@ const Village = () => {
               </div>
             </div>
             <div className="vl-vignette" aria-hidden="true" />
+            <SkyMoon sky={sky} />
           </div>
 
           <div className="vl-foot vl-intro">
@@ -273,6 +322,8 @@ const Village = () => {
                 transformOrigin: sceneObjectPosition(lastPlace),
               }}
             />
+            <SkyVeil />
+            <SkyMoon sky={sky} />
             <Link className="vl-mono vl-back" to="/village">← Village</Link>
             <div className="vl-place__copy">
               <h2>{lastPlace.name}</h2>
