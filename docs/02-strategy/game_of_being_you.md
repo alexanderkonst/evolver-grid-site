@@ -119,24 +119,25 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 
 ## 10. Core loop v0.1: goal, levels, XP (2026-10-26)
 
-**Goal of the game:** a high quality of life, as defined by the Quality of Life Map (8 domains × 10 stages: Wealth, Health, Happiness, Love & Relationships, Impact, Growth, Social Ties, Home; `src/modules/quality-of-life-map/qolConfig.ts`).
+**Goal of the game** (Sasha, 2026-10-26: «прикольно»)**:** a high quality of life, as defined by the Quality of Life Map (8 domains × 10 stages: Wealth, Health, Happiness, Love & Relationships, Impact, Growth, Social Ties, Home; `src/modules/quality-of-life-map/qolConfig.ts`).
 
 - **Level = your bottleneck:** the lowest stage across all 8 domains. To level up, the whole map has to move up at least one stage (Sasha: "a level is at least one transition across the whole map"). Theory of Constraints / Liebig's barrel.
-- **Main quest = the bottleneck domain**, generated automatically. The game always knows what to do next.
-- **XP = progress inside a stage** toward the next one: completed quests and practices, evidence, a peer's witness. The five paths (Body, Emotions, Mind, Spirit, Uniqueness) are the skill tree; their practices feed XP into domains.
+- **Main quest = suggested from the bottleneck, confirmed by the player.** Life is rarely black and white, so the game proposes the bottleneck domain as the main quest and the player confirms or picks another (Sasha, 2026-10-26: «не всегда будет черно белое… только если игрок подтверждает»).
+- **XP = progress inside a stage** toward the next one: completed quests and practices. The five paths (Body, Emotions, Mind, Spirit, Uniqueness) are the skill tree; their practices feed XP into domains.
 - **Leveling down is real** (life goes down too), so two meters: **Current level** (can fall, shown as weather, not punishment) and **Peak** (best level reached, kept). A drop opens a **Comeback quest** with bonus XP.
-- **Input:** a 60-second weekly **Save Point** ritual (each domain: up / same / down + one line), a full map re-take each season, evidence from completed quests, peer witness from the party.
+- **Input:** a 60-second weekly **Save Point** ritual (each domain: up / same / down + one line) and a full map re-take each season.
+- **Rejected (Sasha, 2026-10-26: «ерунда! Не сработает»):** evidence from quests and peer witness from the party as XP/input.
 - **The crystal shows the level:** clarity and brightness of the player's spectrum grow with level; new facets unlock (Spectrum insights).
 
 ### Motivation mechanics
-1. Bottleneck = clear main quest (no decision paralysis).
+1. Bottleneck suggests the main quest; the player confirms it (no forced black-and-white).
 2. Crystal brightens with level: visible identity progression.
-3. Daily 5-minute quests (practices), gentle streak with freezes.
+3. ✅ **Approved (Sasha, 2026-10-26).** Daily 5-minute quests (practices), gentle streak with freezes.
 4. Party / guild = Mastermind: shared season raid, XP for helping others (feeds Impact and Social Ties).
 5. Seasons of ~6 weeks: Masterclass opens a season; a closing ceremony shows the before/after map.
-6. Real loot: first income from your unique offer is a boss drop.
-7. Bosses = real-life thresholds (first sale, a move, a hard conversation).
-8. Compare only with your past self. No QoL leaderboard; if any leaderboard, only for contribution to others.
+6. ✅ **Approved.** Real loot: first income from your unique offer is a boss drop.
+7. ✅ **Approved.** Bosses = real-life thresholds (first sale, a move, a hard conversation).
+8. ✅ **Approved.** Compare only with your past self. No QoL leaderboard; if any leaderboard, only for contribution to others.
 9. Variable reward: new Spectrum insights and crystal facets.
 
 
@@ -166,6 +167,7 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 - 2026-10-26: Game design almanac started: invariant = scope of player authorship; 7 stages; Si–Do = life as the game ([game_design_almanac.md](./game_design_almanac.md)).
 - 2026-10-26: Subtitle → "Self-Discovery · Quality of Life · Uniqueness · Growth · Tribe"; "FindYourTopTalent.com presents" removed.
 - 2026-10-26: Fifth Element = quintessence = Uniqueness; proposed as the game's name (§11).
+- 2026-10-26: Core loop review (Sasha): approved goal = QoL, daily 5-min quests with freezable soft streak, real loot (first unique-offer income = boss drop), bosses = real thresholds, compare only with past self (leaderboard only for contribution). Rejected: evidence from quests + party witness. Changed: bottleneck main quest only when the player confirms.
 - 2026-10-26: For now: name stays; "You Are The Fifth Element" = second-screen headline (§11).
 
 ## Assets
