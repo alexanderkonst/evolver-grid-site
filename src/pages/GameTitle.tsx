@@ -16,7 +16,7 @@ const FONTS_HREF =
   "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&display=swap";
 
 const HERO_SRC = "/game/hero_forest.webp";
-const INVESTOR_HREF = "https://t.me/integralevolution";
+const INVESTOR_TO = "/investor";
 
 type MenuItem = {
   key: string;
@@ -448,8 +448,7 @@ const GameTitle = () => {
             <p className="gt-body">
               FindYourTopTalent turns self-discovery into a game you actually want to play — and a business that pays you for being who you are. Created by Aleksandr Konstantinov and built with Evolver, an AI co-founder.
             </p>
-            {/* No investor page exists yet; mailto until one does. */}
-            <a className="gt-enter" href={INVESTOR_HREF} target="_blank" rel="noopener noreferrer">ENTER THE INVESTOR ROOM →</a>
+            <Link className="gt-enter" to={INVESTOR_TO}>ENTER THE INVESTOR ROOM →</Link>
           </div>
         </section>
       </main>

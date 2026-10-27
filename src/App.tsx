@@ -80,6 +80,7 @@ import { pathUsesLayoutShell, pathHidesLogo } from "./lib/shellRoutes";
 import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
 import IgniteSession from "./pages/IgniteSession";
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
+const InvestorRoom = lazy(() => import("./pages/InvestorRoom"));
 const Mastermind = lazy(() => import("./pages/Mastermind"));
 const EvolutionPortal = lazy(() => import("./pages/EvolutionPortal"));
 const EvolutionPortalKarime = lazy(() => import("./pages/EvolutionPortalKarime"));
@@ -497,6 +498,8 @@ const App = () => (
                       now the homepage. The previous homepage (JourneyPage) stays
                       reachable at /journey (and still at /game/journey). */}
                   <Route path="/" element={<GameTitle />} />
+                  {/* Issue #135: Investor Room, a public place in the Digital Village. */}
+                  <Route path="/investor" element={<InvestorRoom />} />
                   <Route path="/journey" element={<JourneyPage />} />
                   {/* Day 138 (Sasha 2026-07-29): /home carries the approved
                       truth-landing copy — see HomeV2Page.tsx for context. */}
