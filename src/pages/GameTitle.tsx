@@ -157,6 +157,22 @@ const PlatonicSolid = ({
     let dpr = 1;
     let raf = 0;
 
+    // Stroke colours come from the semantic scene tokens so the wireframes
+    // follow the skin (WP-1). Re-read when <html data-skin> changes.
+    let accentRgb = "188, 215, 230";
+    let inkRgb = "238, 234, 226";
+    const readSceneColors = () => {
+      const styles = getComputedStyle(canvas);
+      accentRgb = styles.getPropertyValue("--scene-accent-rgb").trim() || accentRgb;
+      inkRgb = styles.getPropertyValue("--scene-ink-rgb").trim() || inkRgb;
+    };
+    readSceneColors();
+    const skinObserver = new MutationObserver(() => {
+      readSceneColors();
+      if (!raf) draw(0); // paused or reduced-motion: repaint the static frame
+    });
+    skinObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-skin"] });
+
     const draw = (t: number) => {
       if (!size) return;
       const a = phase + t * speed;
@@ -179,8 +195,8 @@ const PlatonicSolid = ({
         const p = pts[i], q = pts[j];
         const alpha = 0.55 - ((p.z + q.z) / 2) * 0.3;
         ctx.strokeStyle = accent
-          ? `rgba(188,215,230,${alpha})`
-          : `rgba(238,234,226,${alpha * 0.85})`;
+          ? `rgba(${accentRgb},${alpha})`
+          : `rgba(${inkRgb},${alpha * 0.85})`;
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
         ctx.lineTo(q.x, q.y);
@@ -226,6 +242,7 @@ const PlatonicSolid = ({
       stop();
       ro.disconnect();
       io?.disconnect();
+      skinObserver.disconnect();
     };
   }, [solid, index, accent, reduceMotion]);
 

@@ -104,7 +104,7 @@ const LazyYouTube = ({ id, title }: { id: string; title: string }) => {
       ) : (
         <div
           className="w-full h-full flex items-center justify-center text-xs"
-          style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.35))", background: "rgba(10,22,40,0.04)" }}
+          style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.35))", background: "rgba(var(--shadow-rgb),0.04)" }}
         >
           {t('ignite.videoLoading')}
         </div>
@@ -124,7 +124,7 @@ const AlreadyPaidLink = () => {
       className="inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors hover:bg-black/[0.03]"
       style={{
         borderColor: "var(--skin-ornament-rule, rgba(26,30,58,0.18))",
-        color: "var(--skin-text-secondary, #33415c)",
+        color: "var(--text-secondary)",
       }}
     >
       <Check className="w-3 h-3" aria-hidden="true" />
@@ -174,7 +174,7 @@ const IgniteCta = ({
           "px-5 sm:px-6 py-3 max-w-full",
           "text-sm sm:text-base font-medium",
           "transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]",
-          "focus-visible:ring-2 focus-visible:ring-[#0a1628]/30 outline-none",
+          "focus-visible:ring-2 focus-visible:ring-[color:rgba(var(--focus-rgb),0.3)] outline-none",
           className,
         )}
         style={{
@@ -300,7 +300,7 @@ const IgniteSession = () => {
         // a new, unclaimed token so it defaults to the parchment field
         // until a future skin wants to override it specifically.
         background:
-          "var(--skin-ignite-bg, linear-gradient(180deg, #fdfaf3 0%, #f6efe0 45%, #fdfaf3 100%))",
+          "var(--surface-page)",
       }}
     >
 
@@ -369,7 +369,7 @@ const IgniteSession = () => {
             className="text-base sm:text-lg italic max-w-md mx-auto leading-relaxed"
             style={{
               fontFamily: "'Source Serif 4', serif",
-              color: "var(--skin-text-secondary, #33415c)",
+              color: "var(--text-secondary)",
             }}
           >
             {t('ignite.heroSub')}
@@ -429,7 +429,7 @@ const IgniteSession = () => {
             className="text-sm text-center leading-relaxed pt-1 max-w-md mx-auto"
             style={{
               fontFamily: "'Source Serif 4', serif",
-              color: "var(--skin-text-secondary, #33415c)",
+              color: "var(--text-secondary)",
             }}
           >
             {t('ignite.leaveWithConvergence')}
@@ -503,7 +503,7 @@ const IgniteSession = () => {
             </h3>
             <ul
               className="space-y-1.5 text-xs leading-relaxed list-disc list-inside"
-              style={{ color: "var(--skin-text-secondary, #33415c)" }}
+              style={{ color: "var(--text-secondary)" }}
             >
               <li>{t('ignite.priceCompare1')}</li>
               <li>{t('ignite.priceCompare2')}</li>
@@ -589,7 +589,7 @@ const IgniteSession = () => {
             className="text-sm sm:text-base leading-relaxed max-w-md mx-auto"
             style={{
               fontFamily: "'Source Serif 4', serif",
-              color: "var(--skin-text-secondary, #33415c)",
+              color: "var(--text-secondary)",
             }}
           >
             {t('ignite.directionCallPromise')}
@@ -625,7 +625,7 @@ const IgniteSession = () => {
             ].map((faq, i) => (
               <div key={i} className="liquid-glass rounded-2xl">
                 <button
-                  className="w-full p-4 flex items-center justify-between text-left cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#0a1628]/30 rounded-2xl"
+                  className="w-full p-4 flex items-center justify-between text-left cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[color:rgba(var(--focus-rgb),0.3)] rounded-2xl"
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   aria-expanded={openFaq === i}
                   aria-controls={`faq-answer-${i}`}
@@ -650,7 +650,7 @@ const IgniteSession = () => {
                   <div className="px-4 pb-4">
                     <p
                       className="text-xs leading-relaxed"
-                      style={{ color: "var(--skin-text-secondary, #33415c)" }}
+                      style={{ color: "var(--text-secondary)" }}
                     >
                       {faq.a}
                     </p>

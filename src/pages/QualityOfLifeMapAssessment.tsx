@@ -237,9 +237,9 @@ const QualityOfLifeMapAssessment = ({
                   "h-2 rounded-full transition-all",
                   idx === currentIndex ? "w-8" : "w-2",
                   idx < currentIndex
-                    ? "bg-[#b8860b]"
+                    ? "bg-[color:var(--accent-gold)]"
                     : idx === currentIndex
-                      ? "bg-[#b8860b]/60"
+                      ? "bg-[color:color-mix(in_srgb,var(--accent-gold)_60%,transparent)]"
                       : "bg-[var(--wabi-text-muted)]/20"
                 )}
               />
@@ -337,11 +337,11 @@ const QualityOfLifeMapAssessment = ({
                   "relative p-6 rounded-2xl text-left transition-all duration-200",
                   "border-2 hover:scale-[1.02]",
                   isSelected
-                    ? "border-[#b8860b] bg-[#b8860b]/10"
+                    ? "border-[color:var(--accent-gold)] bg-[color:color-mix(in_srgb,var(--accent-gold)_10%,transparent)]"
                     // Day 91 (Sasha 2026-06-09): bg-white/[0.85] tokenized for
                     // Aurum — the unselected stage cards ARE the page and were
                     // a full light-leak under the dark skins.
-                    : "border-[var(--wabi-text-muted)]/20 bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] hover:border-[#b8860b]/40"
+                    : "border-[var(--wabi-text-muted)]/20 bg-[var(--skin-card-fill,rgba(var(--paper-rgb),0.85))] hover:border-[color:color-mix(in_srgb,var(--accent-gold)_40%,transparent)]"
                 )}
               >
                 <div className="flex items-start gap-4">
@@ -350,7 +350,7 @@ const QualityOfLifeMapAssessment = ({
                     className={cn(
                       "flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all",
                       isSelected
-                        ? "bg-[#b8860b] text-white shadow-[0_0_18px_-4px_rgba(184,134,11,0.55)]"
+                        ? "bg-[color:var(--accent-gold)] text-white shadow-[0_0_18px_-4px_color-mix(in_srgb,var(--accent-gold)_55%,transparent)]"
                         : "bg-[var(--wabi-text-muted)]/10 text-[var(--wabi-text-muted)]"
                     )}
                   >
@@ -429,7 +429,7 @@ const QualityOfLifeMapAssessment = ({
         {/* Day 91 (Sasha 2026-06-09): bg-white/90 tokenized for Aurum — the
             sticky footer was a bright white band over the dark page. */}
         <div
-          className="sm:hidden fixed bottom-0 left-0 right-0 bg-[var(--skin-card-fill,rgba(255,255,255,0.9))] backdrop-blur-md border-t border-[var(--wabi-text-muted)]/10 px-4 pt-4 shadow-lg z-above"
+          className="sm:hidden fixed bottom-0 left-0 right-0 bg-[var(--skin-card-fill,rgba(var(--paper-rgb),0.9))] backdrop-blur-md border-t border-[var(--wabi-text-muted)]/10 px-4 pt-4 shadow-lg z-above"
           style={{ paddingBottom: "max(16px, env(safe-area-inset-bottom))" }}
         >
           <div className="flex items-center justify-between gap-3">

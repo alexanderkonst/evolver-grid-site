@@ -16,6 +16,12 @@
  * via inline styles. Components that are NOT yet skin-aware simply keep
  * their hardcoded colors — they render as Aurora regardless of skin.
  * That's deliberate: it lets us migrate progressively without risk.
+ *
+ * WP-1 (game_of_being_you.md §14.8): the Journey screens read the semantic
+ * layer in `src/styles/theme-tokens.css` (surface / text / accent / scene /
+ * lock / live), which maps onto these `--skin-*` tokens and adds per-skin
+ * values where none existed. Adding a skin = one `[data-skin]` block in
+ * index.css plus one in theme-tokens.css.
  */
 
 import {

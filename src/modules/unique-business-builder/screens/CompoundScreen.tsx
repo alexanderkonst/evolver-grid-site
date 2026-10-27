@@ -147,7 +147,7 @@ export default function CompoundScreen() {
           className="h-px w-full"
           style={{
             background:
-              "linear-gradient(90deg, rgba(212, 175, 55, 0.45) 0%, rgba(212, 175, 55, 0.18) 25%, rgba(26, 30, 58, 0.08) 70%, rgba(26, 30, 58, 0) 100%)",
+              "linear-gradient(90deg, rgba(var(--accent-rgb), 0.45) 0%, rgba(var(--accent-rgb), 0.18) 25%, rgba(var(--ink-soft-rgb), 0.08) 70%, rgba(var(--ink-soft-rgb), 0) 100%)",
           }}
         />
       </header>
@@ -222,7 +222,7 @@ const navPillStyle: React.CSSProperties = {
   textTransform: "uppercase",
   fontSize: "11.5px",
   color: "var(--skin-text-primary, #0b2a5a)",
-  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
+  background: "var(--skin-card-fill, rgba(var(--paper-rgb), 0.68))",
   border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
 };
 
@@ -233,9 +233,9 @@ const navPillStyleStrong: React.CSSProperties = {
   textTransform: "uppercase",
   fontSize: "12.5px",
   color: "var(--skin-text-primary, #0b2a5a)",
-  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
-  border: "0.5px solid rgba(212, 175, 55, 0.55)",
-  boxShadow: "0 0 14px -4px rgba(212, 175, 55, 0.32)",
+  background: "var(--skin-card-fill, rgba(var(--paper-rgb), 0.68))",
+  border: "0.5px solid rgba(var(--accent-rgb), 0.55)",
+  boxShadow: "0 0 14px -4px rgba(var(--accent-rgb), 0.32)",
 };
 
 /* ─── Sub-artifact card ──────────────────────────────────────────── */
@@ -268,7 +268,7 @@ function SubArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
       className="relative rounded-2xl p-5"
       style={{
         background: "var(--skin-card-bg, rgba(255, 255, 255, 0.68))",
-        border: "0.5px solid var(--skin-hairline, rgba(26, 30, 58, 0.08))",
+        border: "0.5px solid var(--skin-hairline, rgba(var(--ink-soft-rgb), 0.08))",
         boxShadow:
           "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
       }}
@@ -375,7 +375,7 @@ function SubArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
             <div
               className="mb-4 pl-4 py-1"
               style={{
-                borderLeft: "1.5px solid rgba(212, 175, 55, 0.55)",
+                borderLeft: "1.5px solid rgba(var(--accent-rgb), 0.55)",
               }}
             >
               <CompactContent content={latest.content} />
@@ -400,9 +400,9 @@ function SubArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
                     textTransform: "uppercase",
                     fontSize: "12px",
                     color: "var(--skin-text-primary, #0b2a5a)",
-                    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
-                    border: "0.5px solid rgba(212, 175, 55, 0.55)",
-                    boxShadow: "0 0 14px -4px rgba(212, 175, 55, 0.32)",
+                    background: "var(--skin-card-fill, rgba(var(--paper-rgb), 0.68))",
+                    border: "0.5px solid rgba(var(--accent-rgb), 0.55)",
+                    boxShadow: "0 0 14px -4px rgba(var(--accent-rgb), 0.32)",
                   }}
                 >
                   <span aria-hidden="true" style={{ color: "var(--skin-accent-gold, #b8860b)" }}>✓</span>

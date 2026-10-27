@@ -72,12 +72,12 @@ const ZoneOfGeniusLandingPage = () => {
                     className="p-6 rounded-2xl text-center"
                     style={{
                       backgroundImage:
-                        "linear-gradient(135deg, rgba(244, 212, 114, 0.10), rgba(212, 175, 55, 0.04))",
-                      border: "1px solid rgba(212, 175, 55, 0.25)",
+                        "linear-gradient(135deg, rgba(var(--accent-bright-rgb), 0.10), rgba(var(--accent-rgb), 0.04))",
+                      border: "1px solid rgba(var(--accent-rgb), 0.25)",
                     }}
                   >
-                    <h3 className="text-lg font-semibold text-[#2c3150] mb-2">Your Unique Offer</h3>
-                    <p className="text-[rgba(44,49,80,0.7)] mb-4">
+                    <h3 className="text-lg font-semibold text-[color:var(--text-ink)] mb-2">Your Unique Offer</h3>
+                    <p className="text-[rgba(var(--text-ink-rgb),0.7)] mb-4">
                       You know who you are. Now discover what you can offer.
                     </p>
                     <button
@@ -97,7 +97,7 @@ const ZoneOfGeniusLandingPage = () => {
                         alt=""
                         aria-hidden="true"
                         className="h-3.5 w-auto opacity-80 transition-opacity group-hover:opacity-100"
-                        style={{ filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))" }}
+                        style={{ filter: "drop-shadow(0 0 6px rgba(var(--accent-bright-rgb), 0.45))" }}
                         draggable={false}
                       />
                       <span style={CTA_SMALL_CAPS_STYLE}>Create my unique offer</span>
@@ -164,7 +164,7 @@ const ZoneOfGeniusLandingPage = () => {
                 alt=""
                 aria-hidden="true"
                 className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100"
-                style={{ filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))" }}
+                style={{ filter: "drop-shadow(0 0 6px rgba(var(--accent-bright-rgb), 0.45))" }}
                 draggable={false}
               />
               <span style={CTA_SMALL_CAPS_STYLE}>Start my snapshot</span>
@@ -295,7 +295,7 @@ const ZoneOfGeniusLandingPage = () => {
                   alt=""
                   aria-hidden="true"
                   className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100"
-                  style={{ filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))" }}
+                  style={{ filter: "drop-shadow(0 0 6px rgba(var(--accent-bright-rgb), 0.45))" }}
                   draggable={false}
                 />
                 <span style={CTA_SMALL_CAPS_STYLE}>Get my snapshot</span>
@@ -540,7 +540,7 @@ const ZoneOfGeniusLandingPage = () => {
                 alt=""
                 aria-hidden="true"
                 className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100"
-                style={{ filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))" }}
+                style={{ filter: "drop-shadow(0 0 6px rgba(var(--accent-bright-rgb), 0.45))" }}
                 draggable={false}
               />
               <span style={CTA_SMALL_CAPS_STYLE}>Start my snapshot</span>
@@ -579,7 +579,7 @@ const ZoneOfGeniusLandingPage = () => {
             alt=""
             aria-hidden="true"
             className="h-3.5 w-auto opacity-80"
-            style={{ filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))" }}
+            style={{ filter: "drop-shadow(0 0 6px rgba(var(--accent-bright-rgb), 0.45))" }}
             draggable={false}
           />
           <span style={CTA_SMALL_CAPS_STYLE}>Start free assessment</span>

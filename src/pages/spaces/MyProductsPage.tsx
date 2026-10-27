@@ -41,7 +41,7 @@ const MyProductsPage = () => {
                     </div>
 
                     {business ? (
-                        <div className="rounded-xl border border-border bg-white/85 backdrop-blur-sm p-5 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
+                        <div className="rounded-xl border border-border bg-[color:rgba(var(--paper-rgb),0.85)] backdrop-blur-sm p-5 shadow-[0_4px_16px_rgba(var(--text-ink-rgb),0.06)]">
                             <div className="flex items-start justify-between mb-3">
                                 <div className="flex items-start gap-3">
                                     <div className="p-2 rounded-lg bg-primary/20">

@@ -454,7 +454,7 @@ const MissionDiscoveryLanding = () => {
                     {/* ─ Step 1: copy the prompt ─ */}
                     <div
                         className="liquid-glass rounded-2xl p-5 sm:p-6"
-                        style={{ background: "rgba(255,255,255,0.84)" }}
+                        style={{ background: "rgba(var(--paper-rgb),0.84)" }}
                     >
                         <div className="flex items-start justify-between mb-3 gap-3">
                             <div>
@@ -466,8 +466,8 @@ const MissionDiscoveryLanding = () => {
                                         fontSize: "11px",
                                         letterSpacing: "0.22em",
                                         textTransform: "uppercase",
-                                        color: "#755000",
-                                        textShadow: "0 1px 0 rgba(255,255,255,0.9)",
+                                        color: "var(--accent-text-strong)",
+                                        textShadow: "0 1px 0 rgba(var(--paper-rgb),0.9)",
                                     }}
                                 >
                                     {t("missionLanding.step1Eyebrow")}
@@ -503,9 +503,9 @@ const MissionDiscoveryLanding = () => {
                                     textTransform: "uppercase",
                                     padding: "8px 14px",
                                     color: INK,
-                                    background: "linear-gradient(135deg, rgba(244,212,114,0.22) 0%, rgba(212,175,55,0.12) 100%)",
-                                    border: "0.5px solid rgba(212,175,55,0.55)",
-                                    boxShadow: "0 0 10px -2px rgba(244,212,114,0.35), inset 0 0 6px -2px rgba(244,212,114,0.20)",
+                                    background: "linear-gradient(135deg, rgba(var(--accent-bright-rgb),0.22) 0%, rgba(var(--accent-rgb),0.12) 100%)",
+                                    border: "0.5px solid rgba(var(--accent-rgb),0.55)",
+                                    boxShadow: "0 0 10px -2px rgba(var(--accent-bright-rgb),0.35), inset 0 0 6px -2px rgba(var(--accent-bright-rgb),0.20)",
                                 }}
                             >
                                 {copied ? <Check className="w-3.5 h-3.5" /> : <Clipboard className="w-3.5 h-3.5" />}
@@ -516,9 +516,9 @@ const MissionDiscoveryLanding = () => {
                             className="text-xs whitespace-pre-wrap p-3 rounded-lg max-h-40 overflow-y-auto"
                             style={{
                                 fontFamily: "'JetBrains Mono', ui-monospace, monospace",
-                                backgroundColor: "var(--skin-input-fill, rgba(255, 255, 255, 0.45))",
+                                backgroundColor: "var(--skin-input-fill, rgba(var(--paper-rgb), 0.45))",
                                 color: INK_MUTED,
-                                border: "0.5px solid var(--skin-hairline, rgba(11,42,90,0.10))",
+                                border: "0.5px solid var(--skin-hairline, rgba(var(--ink-rgb),0.10))",
                             }}
                         >
                             {MISSION_DISCOVERY_PROMPT}
@@ -534,9 +534,9 @@ const MissionDiscoveryLanding = () => {
                         ref={pasteSectionRef}
                         className="liquid-glass rounded-2xl p-5 sm:p-6 transition-shadow duration-700"
                         style={{
-                            background: "rgba(255,255,255,0.84)",
+                            background: "rgba(var(--paper-rgb),0.84)",
                             boxShadow: pulsePasteCard
-                                ? "0 0 0 2px rgba(244,212,114,0.55), 0 0 32px -4px rgba(244,212,114,0.45)"
+                                ? "0 0 0 2px rgba(var(--accent-bright-rgb),0.55), 0 0 32px -4px rgba(var(--accent-bright-rgb),0.45)"
                                 : undefined,
                         }}
                     >
@@ -548,8 +548,8 @@ const MissionDiscoveryLanding = () => {
                                 fontSize: "11px",
                                 letterSpacing: "0.22em",
                                 textTransform: "uppercase",
-                                color: "#755000",
-                                textShadow: "0 1px 0 rgba(255,255,255,0.9)",
+                                color: "var(--accent-text-strong)",
+                                textShadow: "0 1px 0 rgba(var(--paper-rgb),0.9)",
                             }}
                         >
                             {t("missionLanding.step2Eyebrow")}
@@ -597,7 +597,7 @@ const MissionDiscoveryLanding = () => {
             {state === "confirm" && (
                 <div className="space-y-6">
                     <div className="liquid-glass-strong rounded-2xl p-6 sm:p-8 text-center"
-                         style={{ border: "1px solid rgba(212, 175, 55, 0.32)" }}>
+                         style={{ border: "1px solid rgba(var(--accent-rgb), 0.32)" }}>
                         <p
                             className="text-[10px] uppercase tracking-[0.32em] font-medium mb-4 flex items-center justify-center gap-1.5"
                             style={{ color: "var(--skin-accent-gold, #b8860b)" }}
@@ -618,16 +618,16 @@ const MissionDiscoveryLanding = () => {
                             value={sentence}
                             onChange={(e) => setSentence(e.target.value)}
                             placeholder={t("missionLanding.confirmPlaceholder")}
-                            className="min-h-[120px] text-center resize-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/55 transition-shadow"
+                            className="min-h-[120px] text-center resize-none focus-visible:ring-2 focus-visible:ring-[color:rgba(var(--accent-rgb),0.55)] transition-shadow"
                             style={{
                                 fontFamily: "'Cormorant Garamond', serif",
                                 fontWeight: 600,
                                 fontSize: "clamp(1.15rem, 2.4vw, 1.5rem)",
                                 color: INK,
                                 lineHeight: 1.4,
-                                background: "var(--skin-input-fill, rgba(255, 252, 245, 0.78))",
-                                border: "0.5px solid rgba(212, 175, 55, 0.45)",
-                                boxShadow: "inset 0 1px 2px rgba(10,22,40,0.06)",
+                                background: "var(--skin-input-fill, rgba(var(--paper-warm-rgb), 0.78))",
+                                border: "0.5px solid rgba(var(--accent-rgb), 0.45)",
+                                boxShadow: "inset 0 1px 2px rgba(var(--shadow-rgb),0.06)",
                                 cursor: "text",
                             }}
                         />
@@ -675,7 +675,7 @@ const MissionDiscoveryLanding = () => {
             {state === "saved" && (
                 <div className="space-y-6">
                     <div className="liquid-glass-strong rounded-2xl p-6 sm:p-8 text-center"
-                         style={{ border: "1px solid rgba(212, 175, 55, 0.32)" }}>
+                         style={{ border: "1px solid rgba(var(--accent-rgb), 0.32)" }}>
                         <p
                             className="text-[10px] uppercase tracking-[0.32em] font-medium mb-4"
                             style={{ color: "var(--skin-accent-gold, #b8860b)" }}

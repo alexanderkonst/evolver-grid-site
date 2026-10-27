@@ -199,24 +199,25 @@ const fetchAssetMatches = async (text: string): Promise<MatchedAsset[] | null> =
 // Cream + gold-glow wash. Same gradient family as `/page/:slug` published
 // landing pages — sun-glare top-right, settling cream below. Renders as
 // the page background since /asset-mapping is not inside GameShellV2.
-const WASH_BG =
-    "radial-gradient(ellipse 95% 105% at 95% 5%, rgba(255, 200, 130, 0.55) 0%, rgba(255, 218, 170, 0.45) 18%, rgba(252, 232, 200, 0.75) 38%, rgba(248, 240, 220, 0.92) 65%, rgba(245, 242, 235, 0.98) 88%)";
+// WP-1: this was the lapis `--skin-panel-wash-quiet` value verbatim, so it now
+// reads the token and follows the skin.
+const WASH_BG = "var(--skin-panel-wash-quiet)";
 
 // Parchment card surface — cream with gold hairline + soft shadow.
 // Mirrors DossierScreen / FounderDetailDrawer card backgrounds.
 const parchmentCard: React.CSSProperties = {
-    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
-    border: "0.5px solid rgba(212, 175, 55, 0.45)",
+    background: "var(--skin-card-fill, rgba(var(--paper-rgb), 0.68))",
+    border: "0.5px solid rgba(var(--accent-rgb), 0.45)",
     boxShadow:
-        "0 0 22px -8px rgba(212, 175, 55, 0.25), 0 16px 40px -20px rgba(10, 22, 40, 0.18)",
+        "0 0 22px -8px rgba(var(--accent-rgb), 0.25), 0 16px 40px -20px rgba(var(--shadow-rgb), 0.18)",
 };
 
 // Day 91 (Sasha 2026-06-09): tokenized for Aurum — raw white fills in the
 // style consts below now read skin tokens; exact literals kept as fallbacks.
 const parchmentCardSubtle: React.CSSProperties = {
-    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
-    border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.10))",
-    boxShadow: "0 4px 16px -8px rgba(10, 22, 40, 0.10)",
+    background: "var(--skin-card-fill, rgba(var(--paper-rgb), 0.55))",
+    border: "0.5px solid var(--skin-rule-hairline, rgba(var(--ink-soft-rgb), 0.10))",
+    boxShadow: "0 4px 16px -8px rgba(var(--shadow-rgb), 0.10)",
 };
 
 // Day 63 (Sasha 2026-05-07 evening) — LEGIBILITY PASS per
@@ -305,17 +306,17 @@ const secondaryPill: React.CSSProperties = {
     textTransform: "uppercase",
     fontSize: "11.5px",
     color: "var(--skin-text-primary, #0b2a5a)",
-    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
-    border: "0.5px solid rgba(212, 175, 55, 0.55)",
-    boxShadow: "0 0 14px -4px rgba(212, 175, 55, 0.32)",
+    background: "var(--skin-card-fill, rgba(var(--paper-rgb), 0.68))",
+    border: "0.5px solid rgba(var(--accent-rgb), 0.55)",
+    boxShadow: "0 0 14px -4px rgba(var(--accent-rgb), 0.32)",
 };
 
 // Soft pill — neutral border, used for "Add more manually" tertiary
 // option so the page hierarchy reads primary > secondary > tertiary.
 const tertiaryPill: React.CSSProperties = {
     ...secondaryPill,
-    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.55))",
-    border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
+    background: "var(--skin-card-fill, rgba(var(--paper-rgb), 0.55))",
+    border: "0.5px solid var(--skin-rule-medium, rgba(var(--ink-soft-rgb), 0.15))",
     boxShadow: "none",
     color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
 };
@@ -695,7 +696,7 @@ const AssetMappingLanding = () => {
                         <div className="grid gap-4 sm:grid-cols-2">
                             <button
                                 onClick={() => setStep("has-ai")}
-                                className="rounded-2xl px-5 py-6 text-left transition-all duration-200 hover:translate-y-[-1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/50"
+                                className="rounded-2xl px-5 py-6 text-left transition-all duration-200 hover:translate-y-[-1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:rgba(var(--accent-rgb),0.5)]"
                                 style={parchmentCard}
                             >
                                 <div
@@ -728,7 +729,7 @@ const AssetMappingLanding = () => {
 
                             <button
                                 onClick={handleGoToWizard}
-                                className="rounded-2xl px-5 py-6 text-left transition-all duration-200 hover:translate-y-[-1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/50"
+                                className="rounded-2xl px-5 py-6 text-left transition-all duration-200 hover:translate-y-[-1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:rgba(var(--accent-rgb),0.5)]"
                                 style={parchmentCard}
                             >
                                 <div
@@ -805,9 +806,9 @@ const AssetMappingLanding = () => {
                                     fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
                                     fontSize: "11.5px",
                                     lineHeight: 1.55,
-                                    background: "var(--skin-input-fill, rgba(255, 252, 245, 0.85))",
+                                    background: "var(--skin-input-fill, rgba(var(--paper-warm-rgb), 0.85))",
                                     color: "var(--skin-text-primary, #0b2a5a)",
-                                    border: "0.5px solid rgba(212, 175, 55, 0.20)",
+                                    border: "0.5px solid rgba(var(--accent-rgb), 0.20)",
                                 }}
                             >
                                 {ASSET_MAPPING_PROMPT}
@@ -830,8 +831,8 @@ const AssetMappingLanding = () => {
                                     fontSize: "14.5px",
                                     lineHeight: 1.55,
                                     color: "var(--skin-text-primary, #0b2a5a)",
-                                    background: "var(--skin-input-fill, rgba(255, 255, 255, 0.85))",
-                                    border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
+                                    background: "var(--skin-input-fill, rgba(var(--paper-rgb), 0.85))",
+                                    border: "0.5px solid var(--skin-rule-medium, rgba(var(--ink-soft-rgb), 0.15))",
                                 }}
                             />
                         </div>
@@ -942,8 +943,8 @@ const AssetMappingLanding = () => {
                                         style={
                                             asset.maturity === "symbolic_only"
                                                 ? {
-                                                    background: "var(--skin-card-fill, rgba(255, 255, 255, 0.30))",
-                                                    border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.06))",
+                                                    background: "var(--skin-card-fill, rgba(var(--paper-rgb), 0.30))",
+                                                    border: "0.5px solid var(--skin-rule-hairline, rgba(var(--ink-soft-rgb), 0.06))",
                                                     boxShadow: "none",
                                                     opacity: 0.78,
                                                 }
@@ -955,9 +956,9 @@ const AssetMappingLanding = () => {
                                                 <span
                                                     style={{
                                                         ...labelMuted,
-                                                        background: "rgba(212, 175, 55, 0.10)",
-                                                        border: "0.5px solid rgba(212, 175, 55, 0.30)",
-                                                        color: "var(--skin-goldDeep, #5d4307)",
+                                                        background: "rgba(var(--accent-rgb), 0.10)",
+                                                        border: "0.5px solid rgba(var(--accent-rgb), 0.30)",
+                                                        color: "var(--skin-goldDeep, var(--accent-ink))",
                                                         padding: "1px 8px",
                                                         borderRadius: "999px",
                                                     }}
@@ -1176,20 +1177,20 @@ function MaturityBadge({ maturity }: { maturity: AssetMaturity }) {
             }
             : maturity === "usable_but_needs_packaging"
             ? {
-                color: "var(--skin-goldDeep, #5d4307)",
-                background: "rgba(212, 175, 55, 0.10)",
-                borderColor: "rgba(212, 175, 55, 0.40)",
+                color: "var(--skin-goldDeep, var(--accent-ink))",
+                background: "rgba(var(--accent-rgb), 0.10)",
+                borderColor: "rgba(var(--accent-rgb), 0.40)",
             }
             : maturity === "symbolic_only"
             ? {
                 color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
-                background: "rgba(11, 42, 90, 0.04)",
-                borderColor: "rgba(11, 42, 90, 0.12)",
+                background: "rgba(var(--ink-rgb), 0.04)",
+                borderColor: "rgba(var(--ink-rgb), 0.12)",
             }
             : {
                 color: "var(--skin-text-muted, rgba(11, 42, 90, 0.93))",
-                background: "rgba(11, 42, 90, 0.06)",
-                borderColor: "rgba(11, 42, 90, 0.18)",
+                background: "rgba(var(--ink-rgb), 0.06)",
+                borderColor: "rgba(var(--ink-rgb), 0.18)",
             };
     return (
         <span

@@ -532,11 +532,10 @@ const Auth = () => {
         <article
           className="relative z-20 w-full max-w-md rounded-3xl px-6 sm:px-9 py-10 sm:py-12"
           style={{
-            background:
-              "linear-gradient(145deg, rgba(255, 253, 248, 0.96) 0%, rgba(248, 247, 244, 0.92) 100%)",
-            border: "1px solid rgba(212, 175, 55, 0.22)",
+            background: "var(--surface-panel)",
+            border: "1px solid rgba(var(--accent-rgb), 0.22)",
             boxShadow:
-              "0 8px 24px -10px rgba(10, 22, 40, 0.18), 0 24px 60px -24px rgba(10, 22, 40, 0.22), 0 0 0 1px rgba(212, 175, 55, 0.10)",
+              "0 8px 24px -10px rgba(var(--shadow-rgb), 0.18), 0 24px 60px -24px rgba(var(--shadow-rgb), 0.22), 0 0 0 1px rgba(var(--accent-rgb), 0.10)",
           }}
         >
           {/* Header — Cormorant title + italic subtitle.
@@ -584,20 +583,20 @@ const Auth = () => {
             <TabsList
               className="grid w-full grid-cols-2 mb-6 rounded-full p-1"
               style={{
-                backgroundColor: "rgba(212, 175, 55, 0.08)",
-                border: "1px solid rgba(212, 175, 55, 0.18)",
+                backgroundColor: "rgba(var(--accent-rgb), 0.08)",
+                border: "1px solid rgba(var(--accent-rgb), 0.18)",
               }}
             >
               <TabsTrigger
                 value="login"
-                className="rounded-full text-[11px] uppercase tracking-[0.18em] font-semibold data-[state=active]:bg-[rgba(212,175,55,0.18)] data-[state=active]:text-[#0a1628] data-[state=active]:shadow-[0_0_14px_-4px_rgba(244,212,114,0.45)]"
+                className="rounded-full text-[11px] uppercase tracking-[0.18em] font-semibold data-[state=active]:bg-[color:rgba(var(--accent-rgb),0.18)] data-[state=active]:text-[color:var(--text-link)] data-[state=active]:shadow-[0_0_14px_-4px_rgba(var(--accent-bright-rgb),0.45)]"
                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
               >
                 {t('auth.tabLogIn')}
               </TabsTrigger>
               <TabsTrigger
                 value="signup"
-                className="rounded-full text-[11px] uppercase tracking-[0.18em] font-semibold data-[state=active]:bg-[rgba(212,175,55,0.18)] data-[state=active]:text-[#0a1628] data-[state=active]:shadow-[0_0_14px_-4px_rgba(244,212,114,0.45)]"
+                className="rounded-full text-[11px] uppercase tracking-[0.18em] font-semibold data-[state=active]:bg-[color:rgba(var(--accent-rgb),0.18)] data-[state=active]:text-[color:var(--text-link)] data-[state=active]:shadow-[0_0_14px_-4px_rgba(var(--accent-bright-rgb),0.45)]"
                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
               >
                 {t('auth.tabSignUp')}
