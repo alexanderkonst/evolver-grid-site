@@ -254,3 +254,13 @@ The world is a sovereign village on the main screen, built from real photos of p
 - **Level = your real QoL score, not invented levels.** E.g. 6.1 out of 10, the weakest domain sets it. **Private:** only the player sees their own level, to track progress and look at their life soberly. No public levels, no leaderboards.
 - **Party = Mastermind, Guild = Venture Co-op.** Game names only where they serve.
 - **Cult game, not a generic game.** «Игры бывают разные! Нам не нужно перенимать всякую дребедень.» Take from games only what serves real transformation; no borrowed junk mechanics (no arbitrary points, no public status ladders, no grind).
+
+### 13.3 First quest chain: the path of uniqueness (Sasha, 2026-10-27)
+- **Gate = the uniqueness test.** Passing the Top Talent test is the entry to the village: this is how the Digital Village gets to know a new person. Test passed, then you enter.
+- **Your House = keep describing your character.** Each next quest opens something new about you (Mission, soul colors, private QoL level, assets). No points: each quest lights a face of the crystal.
+- **Oracle Reading = optional side quest.** The $37 deep Top Talent reveal is an optional quest and power-up, never a gate; the path works without it (already built that way). Its fruit goes to the inventory as a Scroll.
+- **Academy (optional):** a foundational course on how the path of uniqueness works, or a Hero's Journey quiz.
+- **Profile complete → Café (MEET) opens: matching**, both professional and simply human. Profile gets self-added interests and a free «About me» field.
+- **Threshold guardians, not bosses.** Each stage ends with a real-world threshold you pass (no combat vocabulary); passing it is the power-up.
+- **The Slipper (finale, cannot be pictured):** the Ball is the first real «yes» from the world: the first paying client or collaboration on your own offer. No points, a trace in reality.
+- Scope for now: stop here (Sasha: «На этом пока ограничимся»).
