@@ -118,14 +118,14 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 5. Blender hero render + loop.
 
 
-## 10. Core loop v0.1: goal, levels, XP (2026-10-26)
+## 10. Core loop v0.1: goal and levels (2026-10-26)
 
 **Goal of the game** (Sasha, 2026-10-26: «прикольно»)**:** a high quality of life, as defined by the Quality of Life Map (8 domains × 10 stages: Wealth, Health, Happiness, Love & Relationships, Impact, Growth, Social Ties, Home; `src/modules/quality-of-life-map/qolConfig.ts`).
 
 - **Level = your bottleneck:** the lowest stage across all 8 domains. To level up, the whole map has to move up at least one stage (Sasha: "a level is at least one transition across the whole map"). Theory of Constraints / Liebig's barrel.
 - **Main quest = suggested from the bottleneck, confirmed by the player.** Life is rarely black and white, so the game proposes the bottleneck domain as the main quest and the player confirms or picks another (Sasha, 2026-10-26: «не всегда будет черно белое… только если игрок подтверждает»).
-- **No artificial XP (Sasha, 2026-10-26: «может просто наша цель — точно показать саму жизнь? А не придумывать искусственные XP? Мы же саму жизнь артикулируем»).** Progress is the player's real movement on the QoL map, read from life, not points. What matters to people is what the platform shows, as far as possible. The five paths (Body, Emotions, Mind, Spirit, Uniqueness) are the skill tree; their practices feed XP into domains.
-- **Leveling down is real** (life goes down too), so two meters: **Current level** (can fall, shown as weather, not punishment) and **Peak** (best level reached, kept). A drop opens a **Comeback quest** with bonus XP.
+- **No artificial XP (Sasha, 2026-10-26: «может просто наша цель — точно показать саму жизнь? А не придумывать искусственные XP? Мы же саму жизнь артикулируем»).** Progress is the player's real movement on the QoL map, read from life, not points. What matters to people is what the platform shows, as far as possible. The five paths (Body, Emotions, Mind, Spirit, Uniqueness) are the skill tree; their practices move the player's real level in each domain.
+- **Leveling down is real** (life goes down too), so two meters: **Current level** (can fall, shown as weather, not punishment) and **Peak** (best level reached, kept). A drop opens a **Comeback quest**; its reward is the real recovery.
 - **Input (confirmed):** a 60-second weekly **Save Point** ritual (each domain: up / same / down + one line) and a full map re-take each season.
 - **Rejected (Sasha, 2026-10-26: «ерунда! Не сработает»):** evidence from quests and peer witness from the party as XP/input.
 - **The crystal shows the level:** clarity and brightness of the player's spectrum grow with level; new facets unlock (Spectrum insights).
@@ -229,7 +229,7 @@ Stage-7+ mechanics that pass the test (proposed, Evolver):
 **The three magic moves (connections, not modules):**
 1. **The pumpkin becomes a coach: one quest chain.** Rewrite the 8 journey labels as quests in the four acts above. Steps 2–4 collapse into TUTORIAL lore so the chain reads as a story, not a funnel. Copy and order only.
 2. **The dress: every quest lights the crystal.** `JOURNEY_ITEM_COMPLETED_EVENT` already fires with no listener. CHARACTER listens to it: each completion lights a facet of the player's crystal in their soul colors, and LOAD GAME opens on that crystal. The save file becomes visible.
-3. **The slipper: a finale you can't fake.** Act IV is the first real yes from the world, recorded in TRADING POST. No points; the footprint is real, so the transformation is permanent. Mood and XP go up and down (Current vs Peak); the slipper stays.
+3. **The slipper: a finale you can't fake.** Act IV is the first real yes from the world, recorded in TRADING POST. No points; the footprint is real, so the transformation is permanent. Mood and level go up and down (Current vs Peak); the slipper stays.
 
 Status: map v0, waiting for Sasha's corrections before any issue.
 
