@@ -85,7 +85,7 @@ Experience and a personal result first, never "leave your email".
 | Character creator / class quiz | Uniqueness test + Spectrum Reading |
 | Shareware / free first episode | Free course (Tutorial) |
 | Demo / prologue | 6-minute tutorial |
-| Live event / raid | Masterclass |
+| Live event | Masterclass |
 | Closed beta / invitation | Multiplayer by invitation |
 | Free weekend | Open trial Mastermind sessions |
 
@@ -133,7 +133,7 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 1. Bottleneck suggests the main quest; the player confirms it (no forced black-and-white).
 2. Crystal brightens with level: visible identity progression.
 3. ✅ **Approved (Sasha, 2026-10-26).** Daily 5-minute quests (practices), gentle streak with freezes.
-4. Party / guild = Mastermind: shared season raid, XP for helping others (feeds Impact and Social Ties).
+4. Party / guild = Mastermind: shared season quest, contribution to others (feeds Impact and Social Ties).
 5. Seasons of ~6 weeks: Masterclass opens a season; a closing ceremony shows the before/after map.
 6. ✅ **Approved.** Real loot: first income from your unique offer is a boss drop.
 7. ✅ **Approved.** Bosses = real-life thresholds (first sale, a move, a hard conversation).
@@ -172,6 +172,7 @@ Stage-7+ mechanics that pass the test (proposed, Evolver):
 
 ## 12. Ideas & findings log (append-only)
 
+- 2026-10-27: Sasha rejected «Raids» («убери, ты шутишь? Убери все упоминания»): events stay Events/Meet; no raid vocabulary anywhere.
 - 2026-10-26: Sasha: games are a way to live, potentially more useful than people imagine. Engagement-built games amplify addiction and are linked to loneliness and social anxiety because they substitute artificial achievement for real life and screen contact for people. The fidelity principle is the antidote: when the game is your life, playing more means living more, and the party is real people. Working line: *the game that sends you back to your life.*
 - 2026-10-26: Compatibility with stages 9–10 (Evolver): built on primitives that do not need replacing at higher scales: uniqueness as the unit (stage 10 = civilization as a character made of unique players), no artificial points (proof as a byproduct of real outcomes scales to civic mechanisms), rules authored by players (open method, forkable per community, Collective revenue share and treasury). Keep 9–10 as horizon, never as a pitch promise.
 - 2026-10-26: Synthesis point of the three visual directions = one real object under real light (cinema = space, prism = object and the only color, paperback = type and paper).
@@ -185,7 +186,7 @@ Stage-7+ mechanics that pass the test (proposed, Evolver):
 - 2026-10-26: Subtitle → "Self-Discovery · Quality of Life · Uniqueness · Growth · Tribe"; "FindYourTopTalent.com presents" removed.
 - 2026-10-26: Fifth Element = quintessence = Uniqueness; proposed as the game's name (§11).
 - 2026-10-26: Fidelity principle (§10a): no artificial XP; the game shows life itself; what matters to people is in the platform. Save Point + seasonal re-take confirmed.
-- 2026-10-26: Sasha: «называем открыто игрой де-факто игру» — the platform already lives under /game/*; next step = game vocabulary for existing spaces (labels only, routes unchanged). Proposed map: Me→Character, ZoG→Character Creation, QoL assessment→Save Point & Level, Today→Daily Quests, Paths→Skill Tree, Grow→Training, Build→The Forge, Marketplace→Trading Post, Collaborate/Coop→Party & Guild, Events→Raids, Journey→Main Quest. Awaiting his yes.
+- 2026-10-26: Sasha: «называем открыто игрой де-факто игру» — the platform already lives under /game/*; next step = game vocabulary for existing spaces (labels only, routes unchanged). Proposed map: Me→Character, ZoG→Character Creation, QoL assessment→Save Point & Level, Today→Daily Quests, Paths→Skill Tree, Grow→Training, Build→The Forge, Marketplace→Trading Post, Collaborate/Coop→Party & Guild, Journey→Main Quest. Awaiting his yes.
 - 2026-10-26: Almanac v0.2: stages 1–7 confirmed («Бинго!»); fidelity axis (games chase reality until 7, then reality approaches the game); forecast 8 Shared Reality, 9 Civilization Game. Our game = stage 7 with a stage-8 on-ramp.
 - 2026-10-26: Core loop review (Sasha): approved goal = QoL, daily 5-min quests with freezable soft streak, real loot (first unique-offer income = boss drop), bosses = real thresholds, compare only with past self (leaderboard only for contribution). Rejected: evidence from quests + party witness. Changed: bottleneck main quest only when the player confirms.
 - 2026-10-26: For now: name stays; "You Are The Fifth Element" = second-screen headline (§11).

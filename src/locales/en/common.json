@@ -3210,7 +3210,7 @@
     "aiOs": "AI OS",
     "me": "CHARACTER",
     "learn": "LEARN",
-    "meet": "RAIDS",
+    "meet": "MEET",
     "collaborate": "PARTY & GUILD",
     "grow": "TRAINING",
     "build": "THE FORGE",
@@ -5323,7 +5323,7 @@
         }
       },
       "events": {
-        "label": "Raids",
+        "label": "Events",
         "description": "Gatherings and Experiences"
       },
       "coop": {
@@ -5335,7 +5335,7 @@
       "teams": "Complete your Zone of Genius to unlock Party & Guild.",
       "marketplace": "Create your Genius Offer to unlock Trading Post.",
       "coop": "Create your Genius Offer to unlock The Forge.",
-      "events": "Complete your Zone of Genius to unlock Raids."
+      "events": "Complete your Zone of Genius to unlock Events."
     },
     "toast": {
       "lockedTitle": "Locked",
@@ -5366,7 +5366,7 @@
       "description": "Map your Quality of Life, choose your growth path, and access transformational content. This is where you grow."
     },
     "meet": {
-      "title": "Raids",
+      "title": "Meet",
       "tagline": "Find your people",
       "description": "Connect with aligned people through genius matchmaking. Find partners, mentors, and collaborators who complement your gifts."
     },
@@ -7039,8 +7039,8 @@
     }
   },
   "eventsSpace": {
-    "title": "Raids",
-    "subtitle": "Events: gatherings and experiences",
+    "title": "Events",
+    "subtitle": "Gatherings and experiences",
     "otherLocations": "Other locations",
     "filter": "Filter",
     "filterAll": "All Events",

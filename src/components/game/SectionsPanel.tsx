@@ -274,7 +274,7 @@ const SPACE_SECTIONS: SpaceSections = {
     },
     // MEET Space (was Events)
     meet: {
-        title: "RAIDS",
+        title: "MEET",
         sections: [
             { id: "browse", label: "Browse Events", path: "/game/meet" },
             { id: "my-rsvps", label: "My RSVPs", path: "/game/meet/my-rsvps" },

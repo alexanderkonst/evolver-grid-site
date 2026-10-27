@@ -214,7 +214,7 @@ const SPACES: SpaceItem[] = [
     },
     {
         id: "meet",
-        label: "RAIDS",
+        label: "MEET",
         labelKey: "spacesRail.meet",
         icon: <GlyphIcon glyph="⚭" color="hsl(145, 65%, 60%)" />,
         path: "/game/meet",
