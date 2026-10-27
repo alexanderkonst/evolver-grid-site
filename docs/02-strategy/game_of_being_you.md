@@ -108,6 +108,7 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 - 2026-10-26: "Genius" → "Uniqueness" in all copy; Spirit = tetrahedron (fire), Uniqueness = dodecahedron (aether).
 - 2026-10-26: soul colors become the core Spectrum mechanic; profile page to be designed around the player's crystal.
 - 2026-10-26: build the real homepage from mockup v0.2 (GitHub issue).
+- 2026-10-27: San Pancho is Village #1: the Digital Village gets a physical twin; build first, then partner with the community network and individual shop owners (§16).
 
 ## 9. Next
 
@@ -173,6 +174,7 @@ Stage-7+ mechanics that pass the test (proposed, Evolver):
 
 ## 12. Ideas & findings log (append-only)
 
+- 2026-10-27: The village already exists offline: San Pancho's community directory holds ~115 local businesses, one in five in wellness/transformation, with uniqueness written in their reviews. «Мы уже не с нуля действуем» (§16).
 - 2026-10-27: Game masters' principles judged by Sasha (§15): Miyamoto wordless first minute («genius»), Miyazaki → leave a particle of yourself (new kind of testimonial), Eguchi real-moon village («fire ×3», lunar macro loop + solar daily loop of stacked habits), Chen → real multiplayer presence, Sid Meier real-choice ending, Koster facet check; McGonigal dark guardian parked.
 - 2026-10-27: Sasha («ЗОЛОТО!»): design rule is to enter stage 8 while staying compatible with 9 and 10 (see almanac). *The game that sends you back to your life* is directly Jane McGonigal's thesis; he will pitch building it with her.
 - 2026-10-27: Sasha rejected «Raids» («убери, ты шутишь? Убери все упоминания»): events stay Events/Meet; no raid vocabulary anywhere.
@@ -249,6 +251,8 @@ The world is a sovereign village on the main screen, built from real photos of p
 | Workshop | THE FORGE (UBB) | craft your offer |
 | Market | TRADING POST | your shop and others' |
 | Town Hall | Venture Co-op | build ventures together |
+
+Physical twin: San Pancho as Village #1 (§16).
 
 ### 13.2 Design decisions (Sasha, 2026-10-27: «Все записываем!!! это и есть работа, мы дизайним игру!!!»)
 - **The engine is already built.** The modules are working game systems; designing the game = naming, ordering and connecting them.
@@ -576,3 +580,48 @@ Applied first to the Journey modules J1–J12 when WP-5 lands; Evolver keeps the
 - *Storage consent:* particles and choices need new tables (WP-17, WP-19). Same open consent as §14.10.4: PRs that add a migration wait for his yes before merging.
 
 > **Decided 2026-10-27 (Sasha):** new DB tables for particles (#144) and real-choice endings (#147) approved. Particles are never anonymous: real name (player may choose the display name), real profile photo, real uniqueness; visible to everyone, guests included.
+
+## 16. The real village: San Pancho as Village #1 (Sasha, 2026-10-27)
+
+*Sasha: «мы уже не с нуля действуем… существующие плеяды бизнесов, уникальных, уже объединённых в определённые сети… это просто космос».* The Digital Village (§13.1) gets a physical twin. We build on our side, inspired by what the San Pancho community has already unlocked, then ask what potential comes next, prepare the platform for it, and only then offer partnership to the network and to individual shop owners.
+
+### 16.1 What already exists (snapshot, 2026-10-27)
+- **San Pancho Life** (sanpancholife.com) is a community-first directory for San Francisco (San Pancho), Nayarit. It lists about 115 local businesses, about 65 rentals, events, a marketplace, Radio San Pancho and Community Projects. Its mission: *"a network connecting the people of San Pancho to guide the town's growth in a community-first direction"*. Part of its advertising profit funds local causes.
+- **About one listing in five is health, wellness or transformation:** somatic coaching, breathwork, Feldenkrais, astrology, holistic centers, yoga, a "place for truth, connection and transformation". Lessons, catering, galleries and a coworking garden make up most of the rest. This is our ICP, already gathered in one place.
+- **A typical listing:** one practitioner, a generic description, the price hidden ("ask for prices"). The real asset is the reviews, which carry a uniqueness nobody has put into words yet.
+- **Reference case (kept private, no names here):** a local swim teacher has 22 five-star reviews, and ten of them describe the same miracle: a child who was afraid of water swims within 3–4 lessons. Her Zone of Genius and her signature offer are already written by her clients. The listing shows neither a package nor a price.
+
+### 16.2 Mapping: game place → real place
+| Game place (§13.1) | Real counterpart in San Pancho |
+|---|---|
+| Market / your stall (§14.12) | the directory listing + the artisan market; the stall's QR code sits in the physical shop |
+| Fire Circle | a real fire on the beach: a full-moon circle for the Mastermind |
+| Co-working | the coworking garden: meet partners in person |
+| Café | a real café: multiplayer presence turns into "three villagers are here, coffee?" |
+| Academy | the local lessons and workshops already listed |
+| Town Hall | Community Projects and the community gym association: where income becomes voice |
+
+### 16.3 Rules (inherit everything above)
+1. **Fidelity (§10a) gets physical.** A real-choice ending (WP-19) can point into the town: book a local practitioner, come to the circle, put your offer on the market. The badge is still the decision.
+2. **The first-sale boss is a neighbor.** In a real village the first buyer often lives two houses away. J11 counts a local sale the same as an online one.
+3. **The lunar loop in the flesh.** Full moon: a real harvest circle where stalls are shown in person. New moon: a quiet circle. The game's moon (WP-16) and the town's moon are the same moon.
+4. **Particles = real faces of the town.** A particle (WP-17) left by a San Pancho resident is a real name, a real photo and a real shop, visible on that person's stall and through the QR code.
+5. **The village owns its own data.** No scraping of the directory into the platform. Practitioners bring their own listing, reviews and voice when they join. Partnership is invitation, never extraction.
+6. **Town Hall's one public number** (§14.1.7) becomes tangible: the income of the village's residents.
+
+### 16.4 Sequence (Sasha's order)
+1. **Build on our side.** We take inspiration from the directory and the community and finish the Journey (§14.8 waves), so a practitioner can go from top talent to a priced stall.
+2. **Think the next potential.** What can San Pancho unlock next? Practitioners turned into unique businesses with clear offers and prices, a living market between them, and a circle that refers clients to each other.
+3. **Prepare the platform.** We add a village notion: places with an optional real-world counterpart and a QR code to a stall. That is design only for now; a migration needs Sasha's yes.
+4. **Offer the partnership,** first to the network (San Pancho Life), then to individual shop owners: walk the Uniqueness path and grow your shop. No outreach before Sasha decides the platform is ready.
+
+### 16.5 Horizons
+- **Now (this week):** this section, plus a private demo built from public reviews of how a practitioner's uniqueness and offer could read. It is not shown to anyone yet.
+- **Within a month (November 2026):** the Journey works end to end. Prepare a pilot cohort of 5–10 local practitioners and a first live circle around the November full moon. The partnership proposal to San Pancho Life waits until the platform is ready.
+- **Medium term (3–6 months):** Village #1 is live. Physical QR codes are on real stalls, real-choice endings lead into the town, there is a co-branded "unique business" mark on directory listings, and part of the revenue goes to Community Projects. The format is copied to a second village (Sayulita is next door).
+- **Long term (6–24 months):** a federation of villages (Mexican Pacific coast, Tulum, Bali), each a fork of the open method with its own Town Hall. Together they form the Collective, which is the stage-8 on-ramp (§12, almanac). It stays a horizon, never a pitch promise.
+
+### 16.6 Open forks for Sasha
+- Is the pilot cohort free in exchange for honest feedback and a particle, or paid at a local price? (Money: his call.)
+- Who makes the first contact with San Pancho Life and with the first practitioners: Sasha in person or a draft from Evolver?
+- Where are the circles held: a fire on the beach, a host venue, or both?
