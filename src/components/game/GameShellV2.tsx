@@ -48,6 +48,7 @@ import {
 import PlayerStatsBadge from "./PlayerStatsBadge";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import SiteLogo from "@/components/SiteLogo";
+import { WORLD_ACCENT_STORAGE_KEY, isHex, normalizeSoulColors } from "@/lib/crystal";
 // hls.js is dynamically imported inside MuxVideoBackground to avoid module-level crashes
 import { useToast } from "@/hooks/use-toast";
 
@@ -538,6 +539,22 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // zog_snapshot — used as the deterministic hash seed for the soul-color
     // ring when no explicit `soul_colors` are set yet.
     const [archetypeTitle, setArchetypeTitle] = useState<string | null>(null);
+    // Your Crystal: the world takes the player's dominant soul color on game
+    // screens. Profile colors win; the value stored at the reveal covers the
+    // gap before the profile loads.
+    const worldAccent = normalizeSoulColors(profile?.soul_colors)?.[0] ?? null;
+    useEffect(() => {
+        let accent = worldAccent;
+        if (!accent) {
+            try {
+                const stored = window.localStorage.getItem(WORLD_ACCENT_STORAGE_KEY);
+                accent = stored && isHex(stored) ? stored : null;
+            } catch {
+                accent = null;
+            }
+        }
+        if (accent) document.documentElement.style.setProperty("--gt-accent", accent);
+    }, [worldAccent]);
     const publicProfilePath = profile?.username
         ? `/${profile.username}`
         : location.pathname === "/sasha" || location.pathname === "/aleksandr"

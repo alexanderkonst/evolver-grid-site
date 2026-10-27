@@ -38,5 +38,9 @@ export const getPostZogRedirect = (returnPath: string | null): string | null => 
   if (returnPath === "/start") {
     return "/start";
   }
+  // NEW GAME on the title screen: the character-creation reveal comes next.
+  if (returnPath === "/game/crystal") {
+    return "/game/crystal";
+  }
   return null;
 };

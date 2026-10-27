@@ -243,7 +243,7 @@ const GameTitle = () => {
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   const items: MenuItem[] = [
-    { key: "new", label: "New Game", hint: "Discover your Uniqueness", to: "/zone-of-genius/entry" },
+    { key: "new", label: "New Game", hint: "Discover your Uniqueness", to: "/zone-of-genius/entry?return=%2Fgame%2Fcrystal" },
     { key: "load", label: "Load Game", hint: "Continue your journey", to: loadTo },
     { key: "tutorial", label: "Tutorial", hint: "Free course · Activate Your Dormant Potential", to: "/grow/activate-your-dormant-potential" },
     { key: "multi", label: "Multiplayer", hint: "Mastermind & co-creation", to: "/build/mastermind" },

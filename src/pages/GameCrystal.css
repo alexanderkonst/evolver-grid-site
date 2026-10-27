@@ -1,0 +1,116 @@
+/*
+ * GameCrystal — "Your Crystal" reveal (/game/crystal).
+ * Shares the GameTitle tokens (.gt-root, .gt-grain, .gt-mono); everything
+ * here is scoped under .gc-* and tinted by --gt-accent (the player's
+ * dominant soul color once the spectrum is revealed).
+ */
+.gc-root { display: flex; flex-direction: column; align-items: center; }
+.gc-main {
+  position: relative; z-index: 1; width: 100%; max-width: 520px;
+  padding: 40px 24px 96px; display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+
+/* ---------- Stage: crystal, beam, spectrum ---------- */
+.gc-stage {
+  position: relative; width: min(100%, 340px); aspect-ratio: 1 / 1.25; margin: 0 auto 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.gc-beam {
+  position: absolute; left: 50%; top: -40px; width: 2px; height: calc(40% + 40px); transform: translateX(-50%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85));
+  opacity: 0; animation: gc-beam-in 1.4s ease-out 0.2s forwards;
+}
+@keyframes gc-beam-in { to { opacity: 1; } }
+.gc-spectrum {
+  position: absolute; left: 50%; top: 40%; width: 150%; aspect-ratio: 1; transform: translate(-50%, -50%);
+  border-radius: 50%; pointer-events: none; opacity: 0;
+  -webkit-mask-image: radial-gradient(circle, #000 0%, rgba(0, 0, 0, 0.55) 38%, transparent 70%);
+  mask-image: radial-gradient(circle, #000 0%, rgba(0, 0, 0, 0.55) 38%, transparent 70%);
+  transition: opacity 2.4s ease-out;
+}
+.gc-spectrum--white { background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 60%); opacity: 0.6; transition: opacity 1.6s ease; }
+.gc-spectrum--white.is-gone { opacity: 0; }
+.gc-spectrum--color { animation: gc-turn 90s linear infinite; }
+.gc-spectrum--color.is-on { opacity: 0.8; }
+@keyframes gc-turn { to { transform: translate(-50%, -50%) rotate(360deg); } }
+.gc-gem {
+  position: relative; z-index: 1; width: 62%; height: auto; margin-top: 8%;
+  filter: drop-shadow(0 0 28px var(--gc-glow, rgba(190, 225, 255, 0.2)));
+  animation: gt-gem-float 7s ease-in-out infinite;
+}
+.gc-ritual {
+  position: absolute; left: 0; right: 0; bottom: 4%; z-index: 2; margin: 0;
+  font-family: var(--gt-mono); font-weight: 300; font-size: 12px; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--gt-ink-3); animation: gt-pulse 2.4s ease-in-out infinite;
+}
+
+/* ---------- Identity ---------- */
+.gc-reveal { width: 100%; opacity: 0; transform: translateY(8px); transition: opacity 1.4s ease, transform 1.4s ease; }
+.gc-reveal.is-on { opacity: 1; transform: none; }
+.gc-name {
+  font-family: var(--gt-serif); font-weight: 300; text-transform: uppercase; letter-spacing: 0.06em;
+  font-size: clamp(30px, 8vw, 44px); line-height: 1.05; margin: 8px 0 0; color: var(--gt-ink); text-wrap: balance;
+}
+.gc-rule { width: 56px; height: 1px; background: var(--gt-accent); border: 0; margin: 22px auto 18px; opacity: 0.8; }
+.gc-essence {
+  font-family: var(--gt-serif); font-style: italic; font-weight: 300; font-size: 21px; line-height: 1.45;
+  color: var(--gt-ink-2); margin: 0 auto; max-width: 30ch; text-wrap: balance;
+}
+.gc-colors { list-style: none; margin: 28px 0 0; padding: 0; display: flex; justify-content: center; gap: 22px; flex-wrap: wrap; }
+.gc-colors li { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.gc-chip { width: 14px; height: 14px; border-radius: 50%; display: block; }
+.gc-hex { font-family: var(--gt-mono); font-weight: 300; font-size: 12px; letter-spacing: 0.16em; color: var(--gt-ink-2); }
+
+/* ---------- Sections ---------- */
+.gc-sec { width: 100%; margin-top: 56px; }
+.gc-sec h2 {
+  font-family: var(--gt-serif); font-weight: 300; font-size: clamp(26px, 6.4vw, 34px); line-height: 1.15;
+  margin: 14px 0 0; color: var(--gt-ink); text-wrap: balance;
+}
+.gc-form { margin: 22px 0 0; display: flex; flex-direction: column; gap: 14px; }
+.gc-input {
+  width: 100%; box-sizing: border-box; resize: none; min-height: 96px; padding: 14px 16px;
+  background: rgba(238, 234, 226, 0.03); border: 1px solid var(--gt-hair); border-radius: 0;
+  font-family: var(--gt-serif); font-size: 20px; line-height: 1.4; color: var(--gt-ink); text-align: left;
+}
+.gc-input::placeholder { color: var(--gt-ink-3); font-style: italic; }
+.gc-input:focus { outline: none; border-color: var(--gt-accent); }
+.gc-count { font-family: var(--gt-mono); font-weight: 300; font-size: 11px; letter-spacing: 0.16em; color: var(--gt-ink-3); text-align: right; margin: -6px 0 0; }
+.gc-btn {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px;
+  background: transparent; border: 1px solid var(--gt-accent); color: var(--gt-ink); cursor: pointer;
+  font-family: var(--gt-mono); font-weight: 300; font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase;
+  text-decoration: none; transition: background 0.5s ease, color 0.5s ease, opacity 0.5s ease;
+}
+.gc-btn:hover:not(:disabled) { background: var(--gt-accent); color: var(--gt-bg); }
+.gc-btn:focus-visible { outline: 1px solid var(--gt-accent); outline-offset: 3px; }
+.gc-btn:disabled { opacity: 0.35; cursor: default; }
+.gc-btn--quiet { border-color: var(--gt-hair); color: var(--gt-ink-2); }
+.gc-link {
+  background: none; border: 0; padding: 8px; cursor: pointer; color: var(--gt-ink-3);
+  font-family: var(--gt-mono); font-weight: 300; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
+}
+.gc-link:hover { color: var(--gt-ink); }
+.gc-quest {
+  margin: 22px 0 0; padding: 18px 16px; border: 1px solid var(--gt-hair); border-left: 1px solid var(--gt-accent);
+  font-family: var(--gt-serif); font-size: 22px; line-height: 1.4; color: var(--gt-ink); text-align: left;
+}
+.gc-note { font-family: var(--gt-mono); font-weight: 300; font-size: 11px; letter-spacing: 0.12em; color: var(--gt-ink-3); margin: 10px 0 0; }
+
+/* ---------- Share card preview (4:5, fits 375px) ---------- */
+.gc-card { display: block; width: 100%; max-width: 320px; aspect-ratio: 4 / 5; margin: 26px auto 0; border: 1px solid var(--gt-hair); background: var(--gt-paper); }
+.gc-card--wait { display: flex; align-items: center; justify-content: center; }
+.gc-actions { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 22px; }
+.gc-continue { margin-top: 64px; }
+
+/* ---------- Reduced motion: everything lands at once ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .gc-beam, .gc-gem, .gc-ritual, .gc-spectrum--color { animation: none; }
+  .gc-beam { opacity: 1; }
+  .gc-spectrum, .gc-reveal { transition: none; }
+  .gc-reveal { transform: none; }
+}
+@media (max-width: 400px) {
+  .gc-main { padding: 28px 20px 80px; }
+  .gc-colors { gap: 16px; }
+}

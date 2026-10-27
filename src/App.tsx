@@ -101,6 +101,7 @@ import ActivateTopTalent from "./pages/ActivateTopTalent";
 import MethodologyLandingPage from "./pages/MethodologyLandingPage";
 import JourneyPage from "./pages/JourneyPage";
 import GameTitle from "./pages/GameTitle";
+import GameCrystal from "./pages/GameCrystal";
 // Day 137 (Sasha 2026-07-28): /home2 is a private, noindex review surface for
 // the proposed landing rebuild that was briefly (and mistakenly) live at `/`
 // before being reverted (commit 6355a908). It renders the preserved copy
@@ -711,6 +712,8 @@ const App = () => (
                   {/* Game Routes */}
                   {/* /game is retired — always redirect to /game/journey (or just `/` landing) */}
                   <Route path="/game" element={<Navigate to="/game/journey" replace />} />
+                  {/* Your Crystal: the character-creation reveal after NEW GAME + ZoG. */}
+                  <Route path="/game/crystal" element={<RequireAuth><GameCrystal /></RequireAuth>} />
                   <Route path="/game/next-move" element={<RequireAuth><CoreLoopHome /></RequireAuth>} />
                   <Route path="/game/next-move-v2" element={<RequireAuth><DailyLoopV2 /></RequireAuth>} />
                   {/* ME Space (was Grow, was Profile) */}
