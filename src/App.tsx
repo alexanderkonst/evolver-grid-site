@@ -399,7 +399,7 @@ const SmartShellLayout = () => {
       // single persistent instance across in-shell routes), so this does
       // not force minimization when navigating to "/" from elsewhere in
       // the same session, and other routes' defaults are untouched.
-      <GameShellV2 hideLogo={pathHidesLogo(location.pathname)} defaultRailMinimized={location.pathname === "/"}>
+      <GameShellV2 hideLogo={pathHidesLogo(location.pathname)} defaultRailMinimized={location.pathname === "/journey"}>
         <Outlet />
       </GameShellV2>
     );
@@ -493,7 +493,11 @@ const App = () => (
                       lifted out of per-page mounts so it persists across nav. */}
                   <Route element={<SmartShellLayout />}>
                   {/* ══════ PUBLIC ROUTES (no login required) ══════ */}
-                  <Route path="/" element={<JourneyPage />} />
+                  {/* Issue #127 (Sasha 2026-10-27): THE GAME OF BEING YOU title screen is
+                      now the homepage. The previous homepage (JourneyPage) stays
+                      reachable at /journey (and still at /game/journey). */}
+                  <Route path="/" element={<GameTitle />} />
+                  <Route path="/journey" element={<JourneyPage />} />
                   {/* Day 138 (Sasha 2026-07-29): /home carries the approved
                       truth-landing copy — see HomeV2Page.tsx for context. */}
                   <Route path="/home" element={<HomeV2Page />} />
@@ -705,10 +709,7 @@ const App = () => (
                   <Route path="/intelligences" element={<RequireAuth><MultipleIntelligences /></RequireAuth>} />
                   <Route path="/genius-layer-matching" element={<RequireAuth><GeniusLayerMatching /></RequireAuth>} />
                   {/* Game Routes */}
-                  {/* Issue #127 (Sasha 2026-10-27): /game now serves the THE GAME OF
-                      BEING YOU title screen as a preview; `/` stays JourneyPage until
-                      review. It used to redirect to /game/journey — see GameTitle.tsx. */}
-                  <Route path="/game" element={<GameTitle />} />
+                  <Route path="/game" element={<Navigate to="/game/journey" replace />} />
                   <Route path="/game/next-move" element={<RequireAuth><CoreLoopHome /></RequireAuth>} />
                   <Route path="/game/next-move-v2" element={<RequireAuth><DailyLoopV2 /></RequireAuth>} />
                   {/* ME Space (was Grow, was Profile) */}

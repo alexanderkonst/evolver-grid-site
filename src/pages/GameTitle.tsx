@@ -4,12 +4,12 @@ import { supabase } from "@/integrations/supabase/client";
 import "./GameTitle.css";
 
 /**
- * GameTitle — "THE GAME OF BEING YOU" title screen, served at /game (preview).
+ * GameTitle — "THE GAME OF BEING YOU" title screen, the homepage at `/`.
  *
  * Source of truth: docs/02-strategy/game_of_being_you.md (§2, §4, §5).
  * Reference mockup: docs/assets/game-of-being-you/homepage_mockup_v0.2.html.
  * Copy says "Uniqueness", never "Genius" (route paths keep their old names).
- * `/` (JourneyPage) is deliberately untouched until Sasha reviews this page.
+ * The previous homepage (JourneyPage) stays reachable at `/journey`.
  */
 
 const FONTS_HREF =
@@ -237,8 +237,8 @@ const GameTitle = () => {
   const reduceMotion = usePrefersReducedMotion();
   const [active, setActive] = useState(0);
   const [started, setStarted] = useState(false);
-  // LOAD GAME → /auth, or straight into the game (what /game used to resolve
-  // to) when a session already exists.
+  // LOAD GAME → /auth, or straight into the game (/game/journey, where /game
+  // redirects) when a session already exists.
   const [loadTo, setLoadTo] = useState("/auth");
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
