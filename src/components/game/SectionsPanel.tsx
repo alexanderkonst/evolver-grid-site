@@ -116,7 +116,7 @@ const SPACE_SECTIONS: SpaceSections = {
     // static entry is intentionally empty (keeping the key alive so the
     // lookup doesn't return null). See `buildJourneySections()` below.
     journey: {
-        title: "JOURNEY",
+        title: "MAIN QUEST",
         sections: [],
     },
     // AI OS Space — Day 54 (Sasha 2026-04-28): elevated from JOURNEY
@@ -173,7 +173,7 @@ const SPACE_SECTIONS: SpaceSections = {
     // URL paths kept as `/game/me/zone-of-genius/*` for backwards compat;
     // UI labels renamed to "Top Talent" per the rename pass.
     grow: {
-        title: "ME",
+        title: "CHARACTER",
         sections: [
             // Day 119 (Sasha 2026-07-09): Profile Space — the assembled
             // profile (identity, talents, mission, assets, QoL, collab
@@ -181,7 +181,7 @@ const SPACE_SECTIONS: SpaceSections = {
             // Spec: docs/specs/profile-space/sow_and_dods.md.
             {
                 id: "me-profile",
-                label: "Profile",
+                label: "Character",
                 path: "/game/me/profile",
             },
             {
@@ -237,7 +237,7 @@ const SPACE_SECTIONS: SpaceSections = {
             // docs/specs/quality-of-life-map/results_revamp_spec.md.
             {
                 id: "qol-results",
-                label: "Quality of Life",
+                label: "Save Point / Level",
                 path: "/game/me/quality-of-life",
             },
             // Day 63 (Sasha 2026-05-07): "My Assets" added as a THIRD
@@ -269,12 +269,12 @@ const SPACE_SECTIONS: SpaceSections = {
     // there's a single source of truth for the steps (also read by Library.tsx
     // when rendering the active step's content in pane 3).
     learn: {
-        title: "LEARN",
+        title: "TRAINING",
         sections: [],
     },
     // MEET Space (was Events)
     meet: {
-        title: "MEET",
+        title: "RAIDS",
         sections: [
             { id: "browse", label: "Browse Events", path: "/game/meet" },
             { id: "my-rsvps", label: "My RSVPs", path: "/game/meet/my-rsvps" },
@@ -291,7 +291,7 @@ const SPACE_SECTIONS: SpaceSections = {
     // (see GameShellV2.tsx unlockStatus). Within an unlocked space, only
     // Genius Match is currently usable.
     collaborate: {
-        title: "COLLABORATE",
+        title: "PARTY & GUILD",
         sections: [
             { id: "genius-match", label: "Find Collaborators", path: "/game/collaborate" },
             {
@@ -329,7 +329,7 @@ const SPACE_SECTIONS: SpaceSections = {
     // Karime's per-founder offer row still injects into the second group
     // (see getSections below). No more branching on location.pathname.
     build: {
-        title: "BUILD",
+        title: "THE FORGE",
         sections: [
             { id: "build-header-founder-tools", label: "Founder Tools", path: "", isHeader: true },
             { id: "equilibrium-v2", label: "Equilibrium", path: "/build/equilibrium" },
@@ -361,7 +361,7 @@ const SPACE_SECTIONS: SpaceSections = {
     },
     // OFFER Space (was Marketplace)
     buysell: {
-        title: "OFFER",
+        title: "TRADING POST",
         sections: [
             { id: "overview", label: "Overview", path: "/game/marketplace" },
             { id: "my-products", label: "My Products", path: "/game/marketplace/my-products" },
@@ -401,6 +401,21 @@ export const SPACE_TITLE_KEYS: Record<string, string> = {
     collaborate: "spacesRail.collaborate",
     build: "spacesRail.build",
     offer: "spacesRail.offer",
+    // The rail's OFFER space id is "buysell"; without this entry its pane
+    // header fell back to the static English title instead of the catalog.
+    buysell: "spacesRail.offer",
+};
+
+/** Space id -> i18n key for the short plain-language subtitle shown under the
+ * pane-2 title (game vocabulary, issue #129). Same id mapping as SPACE_TITLE_KEYS. */
+export const SPACE_SUBTITLE_KEYS: Record<string, string> = {
+    journey: "spacesRail.subtitle.journey",
+    learn: "spacesRail.subtitle.grow",
+    grow: "spacesRail.subtitle.me",
+    meet: "spacesRail.subtitle.meet",
+    collaborate: "spacesRail.subtitle.collaborate",
+    build: "spacesRail.subtitle.build",
+    buysell: "spacesRail.subtitle.offer",
 };
 
 export const STATIC_LABEL_KEYS: Record<string, { label: string; lockedHint?: string }> = {
@@ -1428,18 +1443,27 @@ const SectionsPanel = ({
                 header at its natural Y, and align the top-right
                 rotating logo to *this* Y instead. */}
             <div className="h-16 px-4 flex items-center justify-between">
-                <span
-                    className="text-[11px] font-semibold"
-                    style={{
-                        fontFamily: "'Cormorant Garamond', serif",
-                        color: "#f4d472",
-                        letterSpacing: "0.22em",
-                        textTransform: "uppercase",
-                        textShadow: "0 0 12px rgba(244, 212, 114, 0.35)",
-                    }}
-                >
-                    {SPACE_TITLE_KEYS[activeSpaceId] ? t(SPACE_TITLE_KEYS[activeSpaceId], { defaultValue: spaceData.title }) : spaceData.title}
-                </span>
+                <div className="min-w-0">
+                    <span
+                        className="block text-[11px] font-semibold"
+                        style={{
+                            fontFamily: "'Cormorant Garamond', serif",
+                            color: "#f4d472",
+                            letterSpacing: "0.22em",
+                            textTransform: "uppercase",
+                            textShadow: "0 0 12px rgba(244, 212, 114, 0.35)",
+                        }}
+                    >
+                        {SPACE_TITLE_KEYS[activeSpaceId] ? t(SPACE_TITLE_KEYS[activeSpaceId], { defaultValue: spaceData.title }) : spaceData.title}
+                    </span>
+                    {/* Game vocabulary (issue #129): plain-language subtitle
+                        under the game-style space name so meaning stays clear. */}
+                    {SPACE_SUBTITLE_KEYS[activeSpaceId] && (
+                        <span className="block mt-0.5 text-[12px] italic text-white/60 truncate">
+                            {t(SPACE_SUBTITLE_KEYS[activeSpaceId])}
+                        </span>
+                    )}
+                </div>
                 {onClose && (
                     <button
                         onClick={onClose}

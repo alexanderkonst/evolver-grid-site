@@ -396,11 +396,11 @@
   },
   "qolResults": {
     "loading": "Loading your results...",
-    "emptyEyebrow": "Quality of Life Map",
+    "emptyEyebrow": "Level (Quality of Life Map)",
     "emptyHeadline": "Complete Your Assessment",
     "emptySubhead": "Answer all 8 domains to see your results.",
     "startAssessmentCta": "Start Assessment",
-    "heroEyebrow": "Quality of Life",
+    "heroEyebrow": "Level (Quality of Life)",
     "heroSubhead": "Now you know where to focus your growth.",
     "lifeAreasHeading": "8 Life Areas",
     "retakeCta": "Retake",
@@ -488,7 +488,7 @@
     },
     "me": {
       "profile": {
-        "label": "Profile"
+        "label": "Character"
       },
       "topTalent": {
         "label": "Top Talent"
@@ -533,7 +533,7 @@
         "label": "Mission"
       },
       "qol": {
-        "label": "Quality of Life"
+        "label": "Save Point / Level"
       },
       "assets": {
         "label": "Assets"
@@ -674,7 +674,7 @@
       "assessQol": "Assess your quality of life",
       "buildBusiness": "Build a business off your top talent",
       "discoverMission": "Discover your mission",
-      "spaceFallback": "Journey"
+      "spaceFallback": "Main Quest"
     },
     "unlockHints": {
       "nextMove": "Unlocks after Step 1",
@@ -947,7 +947,7 @@
   },
   "growthPaths": {
     "back": "Back",
-    "heading": "Growth Paths",
+    "heading": "Skill Tree",
     "subheading": "Sequences of transformational upgrades — how you develop yourself",
     "upgradeCount": "{{count}} upgrades",
     "upgradeCount_one": "{{count}} upgrade",
@@ -1420,7 +1420,7 @@
     "introTitle": "Grow every day",
     "introSubtitle": "One practice. Five paths. Consistent progress.",
     "introCta": "Show Me Today's Practice",
-    "pageTitle": "Today",
+    "pageTitle": "Daily Quests",
     "dayStreak": "{{count}} day streak",
     "level": "Level {{level}}",
     "xp": "{{xp}} XP",
@@ -2752,7 +2752,7 @@
     "brand": "Find Your Top Talent"
   },
   "qolAssessment": {
-    "introEyebrow": "Quality of Life Map",
+    "introEyebrow": "Save Point (Quality of Life Map)",
     "introHeadline": "Rate 8 life areas",
     "introSubhead": "See where you're thriving and where to grow.",
     "introCta": "Map My Life",
@@ -3206,15 +3206,24 @@
     "logOutLabel": "log out",
     "logInTitle": "Log In",
     "logInLabel": "Log In",
-    "journey": "JOURNEY",
+    "journey": "MAIN QUEST",
     "aiOs": "AI OS",
-    "me": "ME",
+    "me": "CHARACTER",
     "learn": "LEARN",
-    "meet": "MEET",
-    "collaborate": "COLLABORATE",
-    "grow": "GROW",
-    "build": "BUILT BY YOU",
-    "offer": "OFFER",
+    "meet": "RAIDS",
+    "collaborate": "PARTY & GUILD",
+    "grow": "TRAINING",
+    "build": "THE FORGE",
+    "offer": "TRADING POST",
+    "subtitle": {
+      "journey": "Your step-by-step path",
+      "me": "Your profile, talents and mission",
+      "grow": "Practices and daily growth",
+      "meet": "Events and gatherings",
+      "collaborate": "Find partners and collaborators",
+      "build": "Build your unique business",
+      "offer": "Marketplace: offer and buy"
+    },
     "lockedLabel": "{{space}}, locked",
     "lockedHeader": "{{space}} · Locked",
     "themeToggleToDaoAria": "Switch to black-and-white theme",
@@ -5285,48 +5294,48 @@
     "brand": "Genius Business",
     "nav": {
       "profile": {
-        "label": "Profile",
+        "label": "Character",
         "description": "Know yourself",
         "modules": {
-          "zog": "Zone of Genius",
-          "qol": "Quality of Life"
+          "zog": "Character Creation",
+          "qol": "Save Point / Level"
         }
       },
       "transformation": {
-        "label": "Transformation",
+        "label": "Training",
         "description": "Master yourself",
         "modules": {
           "library": "Practice Library",
-          "paths": "Growth Paths",
+          "paths": "Skill Tree",
           "dormantPotential": "Activate Your Dormant Potential"
         }
       },
       "marketplace": {
-        "label": "Marketplace",
+        "label": "Trading Post",
         "description": "Monetize your genius"
       },
       "teams": {
-        "label": "Teams",
+        "label": "Party & Guild",
         "description": "Find your people",
         "modules": {
-          "matches": "Matches",
+          "matches": "Party & Guild",
           "people": "People Directory"
         }
       },
       "events": {
-        "label": "Events",
+        "label": "Raids",
         "description": "Gatherings and Experiences"
       },
       "coop": {
-        "label": "Business Incubator",
-        "description": "Build together"
+        "label": "The Forge",
+        "description": "Build your unique business"
       }
     },
     "unlockHints": {
-      "teams": "Complete your Zone of Genius to unlock Teams.",
-      "marketplace": "Create your Genius Offer to unlock Marketplace.",
-      "coop": "Create your Genius Offer to unlock Business Incubator.",
-      "events": "Complete your Zone of Genius to unlock Events."
+      "teams": "Complete your Zone of Genius to unlock Party & Guild.",
+      "marketplace": "Create your Genius Offer to unlock Trading Post.",
+      "coop": "Create your Genius Offer to unlock The Forge.",
+      "events": "Complete your Zone of Genius to unlock Raids."
     },
     "toast": {
       "lockedTitle": "Locked",
@@ -5347,32 +5356,32 @@
   },
   "tourSteps": {
     "me": {
-      "title": "Me",
+      "title": "Character",
       "tagline": "Your Zone of Genius lives here",
       "description": "This is you — your Zone of Genius, your story, your unique gifts. Everything you discover about yourself gets saved here."
     },
     "learn": {
-      "title": "Grow",
+      "title": "Training",
       "tagline": "Your path of transformation",
       "description": "Map your Quality of Life, choose your growth path, and access transformational content. This is where you grow."
     },
     "meet": {
-      "title": "Meet",
+      "title": "Raids",
       "tagline": "Find your people",
       "description": "Connect with aligned people through genius matchmaking. Find partners, mentors, and collaborators who complement your gifts."
     },
     "collaborate": {
-      "title": "Collaborate",
+      "title": "Party & Guild",
       "tagline": "Work together",
       "description": "Join forces with others on shared projects and missions. This is where individual genius becomes collective impact."
     },
     "build": {
-      "title": "Build",
+      "title": "The Forge",
       "tagline": "Turn genius into income",
       "description": "Create your unique offer, build your landing page, and launch your genius business to the world."
     },
     "offer": {
-      "title": "Offer",
+      "title": "Trading Post",
       "tagline": "The marketplace",
       "description": "Browse and purchase offers from other creators, or list your own. This is where genius gets exchanged."
     },
@@ -5993,7 +6002,7 @@
   },
   "dailyLoopLayout": {
     "me": {
-      "title": "Me",
+      "title": "Character",
       "welcomeBack": "Welcome back",
       "playerFallback": "Player",
       "levelXp": "Level {{level}} · {{xp}} XP",
@@ -7030,8 +7039,8 @@
     }
   },
   "eventsSpace": {
-    "title": "Events",
-    "subtitle": "Gatherings and experiences",
+    "title": "Raids",
+    "subtitle": "Events: gatherings and experiences",
     "otherLocations": "Other locations",
     "filter": "Filter",
     "filterAll": "All Events",
@@ -7572,8 +7581,8 @@
     "viewPrivacy": "View Privacy Policy"
   },
   "todaysPractice": {
-    "title": "Today's Practice",
-    "subtitle": "Your personalized practice recommendation",
+    "title": "Daily Quests",
+    "subtitle": "Today's practice: your personalized recommendation",
     "goToNextMove": "Go to My Next Move",
     "loading": "Finding your practice...",
     "emptyState": "We don't have a specific match yet — browse the full library instead.",

@@ -22,7 +22,16 @@ const titleRules: TitleRule[] = [
   { match: (path) => path === "/build/cockpit/dashboard", title: "Founder Cockpit" },
   { match: (path) => path === "/build/cockpit/offers", title: "Offers Board" },
   { match: (path) => path === "/build/cockpit", title: "Founder Cockpit" },
-  { match: (path) => path === "/ubb" || path.startsWith("/ubb/"), title: "Build a Business" },
+  { match: (path) => path === "/ubb" || path.startsWith("/ubb/"), title: "The Forge" },
+  { match: (path) => path === "/game/build" || path.startsWith("/game/build/"), title: "The Forge" },
+  // Game vocabulary (Sasha 2026-10-26, issue #129): labels only. Specific
+  // /game/learn/* pages come before the generic Training rule.
+  { match: (path) => path === "/game/journey" || path.startsWith("/game/journey/"), title: "Main Quest" },
+  { match: (path) => path.startsWith("/game/learn/genius-assessment"), title: "Character Creation" },
+  { match: (path) => path.startsWith("/game/learn/qol-assessment") || path.startsWith("/game/learn/qol-results"), title: "Save Point / Level" },
+  { match: (path) => path.startsWith("/game/learn/today"), title: "Daily Quests" },
+  { match: (path) => path.startsWith("/game/learn/paths"), title: "Skill Tree" },
+  { match: (path) => path === "/game/learn" || path.startsWith("/game/learn/"), title: "Training" },
   { match: (path) => path === "/built-by-you/commercial-os", title: "Commercial OS" },
   // Day 55 (Sasha 2026-04-29): tab titles aligned with the new nav
   // vocabulary (noun cores of the action+outcome phrases).
@@ -31,8 +40,8 @@ const titleRules: TitleRule[] = [
 
   // ME space → all collapsed to "Top Talent" (single-focus per Day 47).
   { match: (path) => path.startsWith("/zone-of-genius"), title: "Top Talent" },
-  { match: (path) => path === "/game/me" || path.startsWith("/game/me/"), title: "Top Talent" },
-  { match: (path) => path.startsWith("/game/profile"), title: "Top Talent" },
+  { match: (path) => path === "/game/me" || path.startsWith("/game/me/"), title: "Character" },
+  { match: (path) => path.startsWith("/game/profile"), title: "Character" },
 
   // Other surfaces.
   { match: (path) => path === "/library" || path.startsWith("/library/"), title: "Library" },
@@ -40,12 +49,14 @@ const titleRules: TitleRule[] = [
   { match: (path) => path === "/contact", title: "Contact" },
   { match: (path) => path === "/start", title: "Onboarding" },
   { match: (path) => path.startsWith("/quality-of-life-map"), title: "Quality of Life" },
-  { match: (path) => path.startsWith("/game/transformation"), title: "Transformation" },
-  { match: (path) => path.startsWith("/game/marketplace"), title: "Marketplace" },
-  { match: (path) => path.startsWith("/game/teams"), title: "Teams" },
-  { match: (path) => path.startsWith("/game/matches"), title: "Matches" },
-  { match: (path) => path.startsWith("/game/events"), title: "Gatherings" },
-  { match: (path) => path.startsWith("/game/coop"), title: "Business Incubator" },
+  { match: (path) => path.startsWith("/game/transformation"), title: "Training" },
+  { match: (path) => path.startsWith("/game/marketplace"), title: "Trading Post" },
+  { match: (path) => path.startsWith("/game/teams"), title: "Party & Guild" },
+  { match: (path) => path.startsWith("/game/matches"), title: "Party & Guild" },
+  { match: (path) => path.startsWith("/game/collaborate"), title: "Party & Guild" },
+  { match: (path) => path.startsWith("/game/events"), title: "Raids" },
+  { match: (path) => path.startsWith("/game/meet"), title: "Raids" },
+  { match: (path) => path.startsWith("/game/coop"), title: "The Forge" },
   { match: (path) => path.startsWith("/game/next-move"), title: "Next Move" },
   { match: (path) => path === "/game", title: "Game" },
   { match: (path) => path.startsWith("/resources/personality-tests"), title: "Personality Tests" },

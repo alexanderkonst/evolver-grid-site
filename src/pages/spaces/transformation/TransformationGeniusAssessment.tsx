@@ -18,9 +18,12 @@ const TransformationGeniusAssessment = () => {
         <div className="py-8 px-4 sm:px-6 lg:px-8">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-8">
-              <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-6">
-                Discover Your Zone of Genius Now:
+              <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-2">
+                Character Creation
               </h1>
+              <p className="text-base sm:text-lg text-muted-foreground mb-6">
+                Discover your Zone of Genius
+              </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm">
                 {steps.map((step, idx) => (

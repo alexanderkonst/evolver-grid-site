@@ -14,8 +14,21 @@ describe("getPageTitle", () => {
     expect(getPageTitle("/library/breathwork")).toBe("Library");
   });
 
-  it("returns Top Talent for ME profile routes (Day 47 single-focus)", () => {
-    expect(getPageTitle("/game/me")).toBe("Top Talent");
+  it("returns Character for the ME space routes (game vocabulary, issue #129)", () => {
+    expect(getPageTitle("/game/me")).toBe("Character");
+  });
+
+  it("uses game vocabulary for the renamed spaces (issue #129)", () => {
+    expect(getPageTitle("/game/journey")).toBe("Main Quest");
+    expect(getPageTitle("/game/learn/genius-assessment/step-1")).toBe("Character Creation");
+    expect(getPageTitle("/game/learn/qol-results")).toBe("Save Point / Level");
+    expect(getPageTitle("/game/learn/today")).toBe("Daily Quests");
+    expect(getPageTitle("/game/learn/paths")).toBe("Skill Tree");
+    expect(getPageTitle("/game/learn")).toBe("Training");
+    expect(getPageTitle("/game/marketplace")).toBe("Trading Post");
+    expect(getPageTitle("/game/collaborate/matches")).toBe("Party & Guild");
+    expect(getPageTitle("/game/meet")).toBe("Raids");
+    expect(getPageTitle("/ubb")).toBe("The Forge");
   });
 
   it("returns Playbook for /playbook", () => {
