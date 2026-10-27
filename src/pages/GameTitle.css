@@ -103,6 +103,7 @@
 /* ---------- The Fifth Element (first section below the title screen) ---------- */
 .gt-fifth { padding: 200px 0 160px; }
 .gt-fifth__inner { max-width: 880px; margin: 0 auto; padding: 0 28px; text-align: center; }
+.gt-fifth .gt-paths { margin-top: 112px; }
 .gt-sec.gt-fifth h2 { margin: 0; font-size: clamp(44px, 7vw, 92px); line-height: 1.04; letter-spacing: 0.005em; }
 .gt-fifth__line {
   font-family: var(--gt-serif); font-style: italic; font-size: clamp(20px, 2.2vw, 26px); line-height: 1.5;

@@ -386,11 +386,24 @@ const GameTitle = () => {
         </section>
 
         <section className="gt-sec gt-fifth" id="fifth" aria-labelledby="gt-fifth-h">
-          <div className="gt-fifth__inner">
+          <div className="gt-center">
             <h2 id="gt-fifth-h">You Are The Fifth Element</h2>
-            <p className="gt-fifth__line">
-              Earth, water, air and fire move through you. Your uniqueness is the fifth: the quintessence.
-            </p>
+            <ul className="gt-paths">
+              {PATHS.map((p, i) => (
+                <li key={p.solid} className={p.unique ? "is-unique" : undefined}>
+                  <PlatonicSolid
+                    solid={p.solid}
+                    label={`Wireframe ${SOLID_NAMES[p.solid]}`}
+                    index={i}
+                    accent={!!p.unique}
+                    reduceMotion={reduceMotion}
+                  />
+                  <span className="gt-mono">{p.name}</span>
+                  <span className="gt-mono gt-element">{p.element}</span>
+                  <p>{p.line}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
@@ -412,29 +425,6 @@ const GameTitle = () => {
               ))}
             </ol>
             <p className="gt-mono gt-folio">— 1 —</p>
-          </div>
-        </section>
-
-        <section className="gt-sec" id="paths" aria-labelledby="gt-paths-h">
-          <div className="gt-center">
-            <p className="gt-mono">The Five Paths</p>
-            <h2 id="gt-paths-h">Five paths. One crystal.</h2>
-            <ul className="gt-paths">
-              {PATHS.map((p, i) => (
-                <li key={p.solid} className={p.unique ? "is-unique" : undefined}>
-                  <PlatonicSolid
-                    solid={p.solid}
-                    label={`Wireframe ${SOLID_NAMES[p.solid]}`}
-                    index={i}
-                    accent={!!p.unique}
-                    reduceMotion={reduceMotion}
-                  />
-                  <span className="gt-mono">{p.name}</span>
-                  <span className="gt-mono gt-element">{p.element}</span>
-                  <p>{p.line}</p>
-                </li>
-              ))}
-            </ul>
           </div>
         </section>
 
