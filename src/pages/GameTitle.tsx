@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { FONTS_HREF } from "@/lib/gameFonts";
 import "./GameTitle.css";
 
 /**
@@ -11,9 +12,6 @@ import "./GameTitle.css";
  * Copy says "Uniqueness", never "Genius" (route paths keep their old names).
  * The previous homepage (JourneyPage) stays reachable at `/journey`.
  */
-
-const FONTS_HREF =
-  "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&display=swap";
 
 const HERO_SRC = "/game/hero_forest.webp";
 const INVESTOR_HREF = "https://t.me/integralevolution";
@@ -237,8 +235,8 @@ const GameTitle = () => {
   const reduceMotion = usePrefersReducedMotion();
   const [active, setActive] = useState(0);
   const [started, setStarted] = useState(false);
-  // LOAD GAME → /auth, or straight into the game (/game/journey, where /game
-  // redirects) when a session already exists.
+  // LOAD GAME → /auth, or into the Digital Village (/village) when a session
+  // already exists.
   const [loadTo, setLoadTo] = useState("/auth");
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
@@ -270,7 +268,7 @@ const GameTitle = () => {
     supabase.auth
       .getSession()
       .then(({ data }) => {
-        if (!cancelled && data.session?.user?.id) setLoadTo("/game/journey");
+        if (!cancelled && data.session?.user?.id) setLoadTo("/village");
       })
       .catch(() => {});
     return () => {

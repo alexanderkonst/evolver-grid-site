@@ -151,7 +151,7 @@ import AuthCallback from "./pages/AuthCallback";
 import ResetPassword from "./pages/ResetPassword";
 import GeniusLayerMatching from "./pages/GeniusLayerMatching";
 import GrowthPathsPage from "./pages/GrowthPathsPage";
-import GameMap from "./pages/GameMap";
+import Village from "./pages/Village";
 import ProfileMissionSection from "./pages/spaces/sections/ProfileMissionSection";
 import ProfileAssetsSection from "./pages/spaces/sections/ProfileAssetsSection";
 import ProfileOverview from "./pages/spaces/sections/ProfileOverview";
@@ -874,7 +874,10 @@ const App = () => (
                   <Route path="/game/test-nav" element={<RequireAuth><TestNavigation /></RequireAuth>} />
                   <Route path="/today" element={<RequireAuth><Today /></RequireAuth>} />
                   <Route path="/character" element={<RequireAuth><Today /></RequireAuth>} />
-                  <Route path="/map" element={<RequireAuth><GameMap /></RequireAuth>} />
+                  {/* The old XP-based GameMap is unrouted; /map now opens the Digital Village. */}
+                  <Route path="/map" element={<Navigate to="/village" replace />} />
+                  {/* One element for map and place so the two layers can crossfade. */}
+                  <Route path="/village/:place?" element={<Village />} />
                   <Route path="/skills" element={<RequireAuth><GrowthPathsPage /></RequireAuth>} />
                   <Route path="/growth-paths" element={<RequireAuth><GrowthPathsPage /></RequireAuth>} />
                   <Route path="/resources/zog-intro-video" element={<RequireAuth><ResourcesZogIntroVideo /></RequireAuth>} />
