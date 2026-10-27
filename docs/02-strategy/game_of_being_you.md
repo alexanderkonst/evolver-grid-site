@@ -621,7 +621,12 @@ Applied first to the Journey modules J1–J12 when WP-5 lands; Evolver keeps the
 - **Medium term (3–6 months):** Village #1 is live. Physical QR codes are on real stalls, real-choice endings lead into the town, there is a co-branded "unique business" mark on directory listings, and part of the revenue goes to Community Projects. The format is copied to a second village (Sayulita is next door).
 - **Long term (6–24 months):** a federation of villages (Mexican Pacific coast, Tulum, Bali), each a fork of the open method with its own Town Hall. Together they form the Collective, which is the stage-8 on-ramp (§12, almanac). It stays a horizon, never a pitch promise.
 
-### 16.6 Open forks for Sasha
-- Is the pilot cohort free in exchange for honest feedback and a particle, or paid at a local price? (Money: his call.)
-- Who makes the first contact with San Pancho Life and with the first practitioners: Sasha in person or a draft from Evolver?
-- Where are the circles held: a fire on the beach, a host venue, or both?
+### 16.6 Status: accepted, converging (Sasha, 2026-10-27)
+*Sasha on §16.1–16.5: «Да, все так! По ходу касания реальности будет проявляться реальная форма… Конвергируем!»* The plan stands as written. Its real form will come from contact with reality, not from more planning up front.
+
+**Parked as premature** (Sasha: «решения… преждевременны. Двигаемся дальше пока без них»). We move on without deciding these; they come back only when reality asks:
+- pilot cohort free for feedback and a particle, or paid at a local price;
+- first contact with San Pancho Life and practitioners: Sasha in person or an Evolver draft;
+- circle venue: a fire on the beach, a host venue, or both.
+
+**Open proposal (2026-10-27):** load the public directory into a private layer only, so each practitioner gets a pre-built, unpublished stall shown to them at first contact as a gift ("this is you, want to claim it?"). It becomes public only when its owner claims it. This would refine rule 5 (§16.3) from "no scraping" to "private import, public by claim". Awaiting Sasha.
