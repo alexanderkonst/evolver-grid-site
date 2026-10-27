@@ -51,7 +51,7 @@ const MASTERMIND_COPY = {
   priceNote: "First 10 seats (beta). Regular price later.",
   ctaLabel: "Reserve my place",
   bridgeLead: "Want to meet me first?",
-  bridgeLink: "Join the live session on Wed Oct 28, 9:00 CDMX",
+  bridgeLink: "Join the live session on Wed Nov 4, 9:00 CDMX",
   seoTitle: "Founder-Market Fit Discovery Mastermind — Nov 9–10 | Find Your Top Talent",
   seoDescription:
     "Two live 90-minute sessions (Nov 9 and 10) plus a week of integration. Find where your uniqueness meets the market and leave with a clear offer for your first clients.",
