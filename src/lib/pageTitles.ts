@@ -63,7 +63,7 @@ const titleRules: TitleRule[] = [
   { match: (path) => path.startsWith("/resources/zog-intro-video"), title: "ZoG Intro" },
   { match: (path) => path.startsWith("/genius-offer"), title: "Genius Offer" },
   { match: (path) => path.startsWith("/intelligences"), title: "Multiple Intelligences" },
-  { match: (path) => path.startsWith("/map"), title: "Game Map" },
+  { match: (path) => path === "/village" || path.startsWith("/village/"), title: "Digital Village" },
   { match: (path) => path === "/holomap", title: "Morphogenetic Holo Map" },
   { match: (path) => path === "/founders", title: "The Originals — Founders" },
   { match: (path) => path === "/ignite", title: "Productize Yourself Session" },
