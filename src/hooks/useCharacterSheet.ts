@@ -51,6 +51,8 @@ export type CharacterSheetData = {
     /** Weakest-domain level + 8 domain scores; null = no QoL snapshot yet. */
     qol: QolLevel | null;
     assets: { count: number; top: CharacterSheetAsset[] };
+    /** An offer / tagline artifact is saved in the UBB (opens Market and Co-working, §14.3). */
+    offerSaved: boolean;
 };
 
 const EMPTY: CharacterSheetData = {
@@ -63,9 +65,17 @@ const EMPTY: CharacterSheetData = {
     missionTitle: null,
     qol: null,
     assets: { count: 0, top: [] },
+    offerSaved: false,
 };
 
 const TOP_ASSETS = 3;
+
+/**
+ * UBB artifacts that count as «offer / tagline saved» (§14.3, J7). The tagline step is
+ * not its own artifact yet (WP-9); the promise and the value ladder are the nearest
+ * saved forms of the offer. Narrow this list when WP-9 lands.
+ */
+const OFFER_ARTIFACT_KEYS = ["promise", "value_ladder"];
 
 const readLastSeen = (): Partial<Record<JourneyItemId, boolean>> | null => {
     try {
@@ -101,7 +111,7 @@ async function loadSheet(): Promise<CharacterSheetData> {
     // soul_colors is not in the generated types (CharacterHub casts the same way).
     const row = (profile ?? {}) as { first_name?: string | null; avatar_url?: string | null; soul_colors?: string[] | null };
 
-    const [zog, qol, assets, mission] = await Promise.all([
+    const [zog, qol, assets, mission, offer] = await Promise.all([
         profileId
             ? supabase
                   .from("zog_snapshots")
@@ -133,6 +143,11 @@ async function loadSheet(): Promise<CharacterSheetData> {
             .order("created_at", { ascending: false })
             .limit(1)
             .maybeSingle(),
+        supabase
+            .from("user_business_artifacts")
+            .select("id", { count: "exact", head: true })
+            .eq("user_id", user.id)
+            .in("artifact_key", OFFER_ARTIFACT_KEYS),
     ]);
 
     return {
@@ -148,6 +163,7 @@ async function loadSheet(): Promise<CharacterSheetData> {
             count: assets.count ?? assets.data?.length ?? 0,
             top: (assets.data ?? []).map((a) => ({ id: a.id, title: a.title })),
         },
+        offerSaved: !offer.error && (offer.count ?? 0) > 0,
     };
 }
 

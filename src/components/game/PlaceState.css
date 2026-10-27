@@ -1,0 +1,66 @@
+/*
+ * PlaceState — the five states of a place, room or item (closed · open · next · done · live).
+ * Design: docs/02-strategy/game_of_being_you.md §14.3, §14.11.
+ *
+ * Everything reads the lock/live tokens of src/styles/theme-tokens.css, so every
+ * skin renders every state; nothing here is skin-specific. The state lives in
+ * `data-place-state` on the root so a skin can map it further (Lunar, WP-2:
+ * `--place-saturation`, `--place-glow`).
+ *
+ * Parts that fade while closed carry `.ps-fade`. The line and the state word do not:
+ * a closed place is never colour-only.
+ */
+
+.ps-fade { transition: filter 0.6s ease, opacity 0.6s ease; }
+
+/* closed: desaturated, dimmed, still */
+.ps[data-place-state="closed"] .ps-fade {
+  filter: var(--lock-filter);
+  opacity: var(--lock-dim);
+}
+.ps[data-place-state="closed"] .ps-fade,
+.ps[data-place-state="closed"] .ps-fade *,
+.ps[data-place-state="closed"] .ps-fade::before,
+.ps[data-place-state="closed"] .ps-fade::after,
+.ps[data-place-state="closed"] .ps-fade *::before,
+.ps[data-place-state="closed"] .ps-fade *::after {
+  animation: none;
+}
+
+/* the one line */
+.ps-line { margin: 0.9em 0 0; font-style: italic; }
+
+/* the state as a word: Next · Done · Live (closed is for screen readers) */
+.ps-tag {
+  display: inline-block;
+  margin-top: 0.9em;
+  font-family: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-style: normal;
+}
+.ps-tag--next { color: var(--open-accent); }
+.ps-tag--done { color: var(--open-accent); }
+.ps-tag--done::before { content: "\2713\00a0"; }
+.ps-tag--live { color: var(--live-accent); }
+.ps-tag--live::before {
+  content: "";
+  display: inline-block;
+  width: 7px; height: 7px; margin-right: 8px; border-radius: 50%;
+  background: var(--live-accent);
+  vertical-align: 1px;
+  animation: ps-pulse 2.4s ease-in-out infinite;
+}
+.ps-tag--closed {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+@keyframes ps-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .ps-fade { transition: none; }
+  .ps-tag--live::before { animation: none; }
+}
