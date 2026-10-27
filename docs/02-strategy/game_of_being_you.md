@@ -447,13 +447,15 @@ Sizes: S ≤ 4 h, M 5–10 h, L > 10 h of Claude Code work; review = Hark review
 | **WP-12 Market + Town Hall v0** | your stall = published offer; `/ignite` title and video (#100); Town Hall v0 = residents' income + your voice; Investor Room shows the same number | 6, 7, 9 | `Marketplace*`, `IgniteSession.tsx`, `/game/coop` route, `InvestorRoom.tsx` | L · 12 · 4 | WP-11 | Town Hall reachable only after a first sale; one public number shown | **[migration]** aggregate / voice |
 | **WP-13 Journey in code** | `JOURNEY_SEQUENCE` reordered and relabelled to 14.2 (after fork 2); playbook / path / dashboard → Tutorial lore; one source drives hints, rail, House | 1 | `journeySequence.ts`, `useJourneyCompletion.ts` | S · 4 · 1.5 | fork 2 | the same order on the map, the rail and in the House | — |
 | **WP-14 Surface hygiene on the Journey** | `/modules` admin-only; «Live from GitHub main» copy; hide dead Venture Builder items; redirect `/game/next-move`; drop duplicate `/zone-of-genius` | 10 | `App.tsx`, `CockpitDashboard.tsx`, `CockpitOffersBoard.tsx`, `SpacesRail.tsx` | S · 3 · 1 | — | no internal language on public screens | — |
+| **WP-15 Motion and visual harmony** | one transition language between screens (title → Reception → village → place → Intro → module → Outro → village): motion tokens (duration, easing, enter/exit), scene cross-fades and zoom into a place, reveal of a newly opened place, `prefers-reduced-motion`; then a visual-harmony pass on every Journey screen in each theme (spacing scale, type scale, one accent, contrast, mobile), screenshots reviewed side by side | 2, 3, 8 | new `src/lib/motion.ts`, motion tokens in `index.css`, `GameShellV2.tsx`, `Village.tsx`, `ModuleIntro/Outro`, Journey pages | L · 12 · 5 | WP-1, WP-4, WP-5 | moving through the Journey feels like one continuous world; every Journey screen passes the harmony checklist in Lunar and the default skin | — |
 
-**Total: 121 h Claude Code + 42 h review = 163 h** (14 WPs; 4 L, 7 M, 3 S).
+**Total: 133 h Claude Code + 47 h review = 180 h** (15 WPs; 5 L, 7 M, 3 S). *WP-15 added Oct 27 after Sasha asked whether transitions, visual design and UX/UI harmony were counted: visual design was inside WP-1/2/3/8, screen transitions and a harmony pass were not.* Upper bound; shrinks after the code inventory.
 
 **Waves:**
 - **Wave 0, now (before Wed Nov 4):** WP-10 date/copy fix (~1 h, counted in WP-10).
 - **Wave 1, foundation:** WP-1, WP-3, WP-4, WP-13, WP-14 — 37 h + 12.5 h.
 - **Wave 2, the game screen and the form:** WP-5, WP-6, WP-7, WP-2 (Lunar) — 36 h + 13 h.
+- **Wave 2b, motion and harmony:** WP-15 once WP-4 and WP-5 land — 12 h + 5 h.
 - **Wave 3, inside the village:** WP-8 (Your House, after answers), WP-9, WP-10 rest — 26 h + 9.5 h.
 - **Wave 4, economy → voice:** WP-11, WP-12 — 22 h + 7 h.
 
