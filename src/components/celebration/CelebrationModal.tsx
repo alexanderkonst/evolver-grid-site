@@ -38,10 +38,13 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
+import { useEffect } from "react";
 import { Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useEntryPath } from "@/contexts/EntryPathContext";
+import LeaveParticle from "@/components/game/LeaveParticle";
+import { markParticleInvite, useVillageParticles } from "@/hooks/useVillageParticles";
 
 export type CelebrationPrimitive = "talent" | "mission" | "assets";
 export type CelebrationVariant = "regular" | "graduation";
@@ -95,10 +98,25 @@ const REGULAR_COPY: Record<CelebrationPrimitive, CopyBlock> = {
     },
 };
 
+/** Where each primitive lives in the Digital Village (WP-17: the place to leave a particle). */
+const PRIMITIVE_PLACE: Record<CelebrationPrimitive, string> = {
+    talent: "reception",
+    mission: "house",
+    assets: "house",
+};
+
 const CelebrationModal = ({ payload, open, onClose }: CelebrationModalProps) => {
     const navigate = useNavigate();
     const { t } = useTranslation();
     const { path: entryPath } = useEntryPath();
+
+    // WP-17: after the Outro, an optional particle for whoever comes next. Idle until open.
+    const particlePlace = open && payload ? PRIMITIVE_PLACE[payload.primitive] : null;
+    const particles = useVillageParticles(particlePlace);
+    useEffect(() => {
+        // If the prompt is skipped here, the place screen offers it once more.
+        if (particlePlace) markParticleInvite(particlePlace);
+    }, [particlePlace]);
 
     if (!payload) return null;
 
@@ -257,6 +275,16 @@ const CelebrationModal = ({ payload, open, onClose }: CelebrationModalProps) => 
                         {t("celebrationModal.continueYourJourney")} →
                     </button>
                 </div>
+
+                {/* Optional and quiet: never stands between the player and the way on. */}
+                {particlePlace && (
+                    <LeaveParticle
+                        key={particlePlace}
+                        placeKey={particlePlace}
+                        api={particles}
+                        variant="card"
+                    />
+                )}
             </DialogContent>
         </Dialog>
     );

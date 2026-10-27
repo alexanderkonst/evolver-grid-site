@@ -10,6 +10,9 @@ import {
   sceneObjectPosition,
   type VillagePlace,
 } from "@/data/villagePlaces";
+import LeaveParticle from "@/components/game/LeaveParticle";
+import PlaceParticles from "@/components/game/PlaceParticles";
+import { hasParticleInvite, useVillageParticles } from "@/hooks/useVillageParticles";
 import "./Village.css";
 
 /**
@@ -106,6 +109,8 @@ const Village = () => {
   if (place && place !== lastPlace) setLastPlace(place);
   const pinRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const enterRef = useRef<HTMLAnchorElement>(null);
+  // Particles left here by earlier players (WP-17). Follows the last scene so they fade with it.
+  const particles = useVillageParticles(lastPlace?.key ?? null);
 
   // Fonts + tab title, scoped to this page.
   useEffect(() => {
@@ -139,6 +144,8 @@ const Village = () => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       if (place) {
         if (e.key === "Escape") {
+          const el = document.activeElement;
+          if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) return; // typing a particle
           e.preventDefault();
           navigate("/village");
         } else if (e.key === "Enter") {
@@ -274,6 +281,7 @@ const Village = () => {
               }}
             />
             <Link className="vl-mono vl-back" to="/village">← Village</Link>
+            <PlaceParticles particles={particles.particles} />
             <div className="vl-place__copy">
               <h2>{lastPlace.name}</h2>
               <p className="vl-place__line">{lastPlace.line}</p>
@@ -298,6 +306,14 @@ const Village = () => {
                 >
                   ENTER
                 </Link>
+              )}
+              {!invited && (
+                <LeaveParticle
+                  key={lastPlace.key}
+                  placeKey={lastPlace.key}
+                  api={particles}
+                  startOpen={hasParticleInvite(lastPlace.key)}
+                />
               )}
             </div>
           </section>

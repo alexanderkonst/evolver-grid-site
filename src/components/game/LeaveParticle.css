@@ -1,0 +1,49 @@
+/*
+ * LeaveParticle (WP-17). Two looks, one component:
+ *   .lp--scene  the dark place screen, reads the village tokens (--vl-*)
+ *   .lp--card   the light celebration modal, reads the skin tokens
+ */
+.lp { --lp-ink: var(--vl-ink, var(--skin-text-primary, #0b2a5a)); --lp-ink-2: var(--vl-ink-2, var(--skin-text-muted, rgba(11, 42, 90, 0.72))); --lp-accent: var(--vl-accent, #b8860b); --lp-hair: var(--vl-hair, rgba(11, 42, 90, 0.2)); --lp-bg: var(--vl-bg, #fffcf5); }
+
+.lp__open {
+  display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; padding: 0 12px;
+  background: transparent; border: none; cursor: pointer;
+  font-family: var(--vl-serif, "Cormorant Garamond", Georgia, serif); font-style: italic; font-weight: 300;
+  font-size: 18px; color: var(--lp-ink-2); text-decoration: underline; text-underline-offset: 4px;
+  text-decoration-color: var(--lp-hair); transition: color 0.6s ease;
+}
+.lp__open:hover, .lp__open:focus-visible { color: var(--lp-ink); outline: none; text-decoration-color: var(--lp-accent); }
+
+.lp__form { display: flex; flex-direction: column; align-items: center; gap: 10px; width: min(420px, 100%); margin: 18px auto 0; }
+.lp__label { font-family: var(--vl-serif, "Cormorant Garamond", Georgia, serif); font-style: italic; font-weight: 300; font-size: 20px; color: var(--lp-ink); }
+.lp__input {
+  width: 100%; min-height: 44px; padding: 0 14px; box-sizing: border-box; border-radius: 0;
+  font-family: var(--vl-serif, "Cormorant Garamond", Georgia, serif); font-size: 18px; color: var(--lp-ink);
+  background: rgba(0, 0, 0, 0.18); border: 1px solid var(--lp-hair); text-align: center; text-shadow: none;
+}
+.lp__input::placeholder { color: var(--lp-ink-2); opacity: 0.8; font-style: italic; }
+.lp__input:focus-visible { outline: 1px solid var(--lp-accent); outline-offset: 2px; border-color: var(--lp-accent); }
+.lp__input--name { min-height: 40px; font-size: 16px; }
+.lp__note { margin: 0; font-style: italic; font-size: 16px; color: var(--lp-ink); max-width: 36ch; text-wrap: balance; }
+.lp__actions { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.lp__go, .lp__skip {
+  min-height: 44px; padding: 0 22px; cursor: pointer; text-shadow: none;
+  font-family: var(--vl-mono, "IBM Plex Mono", ui-monospace, monospace); font-weight: 300; font-size: 12px;
+  letter-spacing: 0.26em; text-transform: uppercase; transition: background-color 0.6s ease, color 0.6s ease;
+}
+.lp__go { color: var(--lp-ink); background: transparent; border: 1px solid var(--lp-accent); }
+.lp__go:hover:not(:disabled), .lp__go:focus-visible { background: var(--lp-accent); color: var(--lp-bg); outline: none; }
+.lp__go:disabled { opacity: 0.5; cursor: default; }
+.lp__skip { color: var(--lp-ink-2); background: transparent; border: none; }
+.lp__skip:hover, .lp__skip:focus-visible { color: var(--lp-ink); outline: none; }
+.lp__thanks { margin: 14px 0 0; font-family: var(--vl-serif, "Cormorant Garamond", Georgia, serif); font-style: italic; font-weight: 300; font-size: 20px; color: var(--lp-ink-2); }
+
+/* Light card inside the celebration modal */
+.lp--card { --lp-bg: #fffdf6; --lp-accent: #b8860b; }
+.lp--card .lp__input { background: rgba(255, 255, 255, 0.7); }
+.lp--card.lp__form { margin-top: 20px; padding-top: 16px; border-top: 0.5px solid rgba(212, 175, 55, 0.4); }
+.lp--card.lp__open { margin-top: 4px; font-size: 15px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lp__open, .lp__go, .lp__skip { transition: none; }
+}
