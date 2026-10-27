@@ -9,6 +9,49 @@
 
 > **2026-10-26:** course renamed **Activate Your Dormant Potential** (mini-course; tagline: how to master your spirit, mind, emotions, body and unique genius). Earlier working titles dropped; seasons are called modules; 6 modules, 38 episodes, 1:17:47; module 6 = Genius / Uniqueness; Emotions = 4 episodes (E01E01 The Emotional Slider). Final list + transcripts: `activate_your_dormant_potential_transcripts.md`.
 
+## 🧭 Course-from-Source Template (how Activate Your Dormant Potential was built)
+
+> **Added:** 2026-10-27, in Sasha's words, as the reusable way to turn any body of his work (workshops, an article, infographics) into a mini-course. A living course: it keeps improving after release.
+
+### The 6 steps
+1. **Structure first.** Sasha sets the course structure himself. For ADP it is the six-path map (Foundational, Spirit, Mind, Emotions, Body, Genius) that has evolved over ~6 years. The structure is the spine; content hangs on it, never the other way round.
+2. **Harvest insights from the source.** Give AI the source material on the relevant themes (for ADP: recordings/transcripts of Sasha's workshops). Extract the most powerful, biggest insights.
+3. **Distribute by theme.** Sort the insights into the structure's themes. Result: dense material per theme.
+4. **Episodes and modules in NotebookLM.** Put the material into NotebookLM with clear instructions to break it into modules and episodes (text per episode).
+5. **Video Overview per episode.** For each episode, give NotebookLM that episode's text and ask for a Video Overview of **90–120 seconds** (see Video Configuration Prompts below).
+6. **Authorship check.** The Foundational module is written by Sasha himself, almost word for word. The other modules are mostly AI-written, but Sasha signs under practically every word. Nothing ships that he would not sign.
+
+### Rules of thumb
+- One episode = one idea, 90–120 s (about 220–300 spoken words).
+- Module = a theme of the structure; course = a short, self-paced experience with Intro, Outro and one badge (Game of Being You rules).
+- Keep the source of each episode traceable (which workshop/paragraph) so the course can be improved live.
+- Mark claims honestly: established vs. hypothesis (esp. for science).
+
+### Application 2: "Consciousness Meets Science" (Mystery School intro) — draft, awaiting Sasha
+Source: Sasha's Medium article *Consciousness Meets Science: How Inner Experiences and Science Co-Reveal the Nature of Reality* (EN; RU version «Сознание и наука» on the same Medium). The article already carries its structure; Step 1 = adopt it, Sasha adjusts.
+Season code **C** (Consciousness). ~14 episodes, ~25 min total.
+
+| Module | Episode | Idea (article section) |
+|---|---|---|
+| 1. Two sides of one coin (Foundational, Sasha writes) | C01E01 | The thesis: inner experience and science co-reveal reality; the invitation |
+| | C01E02 | Inner experience as data: first-person truth, why it can't be fully relayed |
+| 2. Eight shared experiences | C02E01 | Sacred geometry visions · expanded, interconnected awareness |
+| | C02E02 | Third-eye vision and intuitive insight · enhanced bodily awareness |
+| | C02E03 | Receiving messages · the spiritual heart as a pulsating point |
+| | C02E04 | Tunnels and wormholes · being a toroidal field |
+| 3. Paths in | C03E01 | Four doors: vision quest, psychedelic renaissance (with safety), meditation, NDE and spontaneous awakening |
+| | C03E02 | Public voices (Jim Carrey, Russell Brand, Tony Robbins): you are not alone |
+| 4. Science that rhymes | C04E01 | Holographic principle, fractals and scale invariance, complexity and emergence |
+| | C04E02 | Quantum fields and entanglement; strings as hypothesis |
+| | C04E03 | Neuroscience of meditation; philosophy of mind (panpsychism, IIT, Orch-OR) |
+| 5. An integral theory of everything | C05E01 | The Integral Map of cutting-edge sciences (4 domains) |
+| | C05E02 | The meta-model: Planck "pixels", toroidal dynamos, zero-point field, holonic whole |
+| | C05E03 | Implications and call: experience it yourself (Outro → live Fire Circle evening) |
+
+Open for Sasha: final structure; who writes Module 1; episode count; RU, EN or both.
+
+---
+
 ## 🎬 Naming Convention (TV Series Style)
 
 ### Format
