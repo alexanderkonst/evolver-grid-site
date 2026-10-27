@@ -2821,6 +2821,36 @@ export type Database = {
           },
         ]
       }
+      village_particles: {
+        Row: {
+          created_at: string
+          first_name: string | null
+          id: string
+          place_key: string
+          status: string
+          text: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          first_name?: string | null
+          id?: string
+          place_key: string
+          status?: string
+          text: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          first_name?: string | null
+          id?: string
+          place_key?: string
+          status?: string
+          text?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       visibility_settings: {
         Row: {
           created_at: string
