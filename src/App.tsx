@@ -100,6 +100,7 @@ import ActivateTopTalent from "./pages/ActivateTopTalent";
 // is kept for reference only and no longer mounted.
 import MethodologyLandingPage from "./pages/MethodologyLandingPage";
 import JourneyPage from "./pages/JourneyPage";
+import GameTitle from "./pages/GameTitle";
 // Day 137 (Sasha 2026-07-28): /home2 is a private, noindex review surface for
 // the proposed landing rebuild that was briefly (and mistakenly) live at `/`
 // before being reverted (commit 6355a908). It renders the preserved copy
@@ -704,8 +705,10 @@ const App = () => (
                   <Route path="/intelligences" element={<RequireAuth><MultipleIntelligences /></RequireAuth>} />
                   <Route path="/genius-layer-matching" element={<RequireAuth><GeniusLayerMatching /></RequireAuth>} />
                   {/* Game Routes */}
-                  {/* /game is retired — always redirect to /game/journey (or just `/` landing) */}
-                  <Route path="/game" element={<Navigate to="/game/journey" replace />} />
+                  {/* Issue #127 (Sasha 2026-10-27): /game now serves the THE GAME OF
+                      BEING YOU title screen as a preview; `/` stays JourneyPage until
+                      review. It used to redirect to /game/journey — see GameTitle.tsx. */}
+                  <Route path="/game" element={<GameTitle />} />
                   <Route path="/game/next-move" element={<RequireAuth><CoreLoopHome /></RequireAuth>} />
                   <Route path="/game/next-move-v2" element={<RequireAuth><DailyLoopV2 /></RequireAuth>} />
                   {/* ME Space (was Grow, was Profile) */}
