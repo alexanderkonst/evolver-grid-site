@@ -90,3 +90,31 @@ Sasha's line for her:
 *(Exact wording confirmed by Sasha, 2026-10-27: ether = aether, the fifth element, the quintessence.)*
 
 Status: no contact made yet. Routes: X @avantgame (she says she's most likely to reply there), jmcgonigal@iftf.org, IFTF Urgent Optimists.
+
+## The invariant through the three-lens (2026-10-27, draft v0.3)
+
+*Sasha's three-lens: essence (heart), significance (mind), consequence (gut). Draft by Evolver, waiting for his reaction.*
+
+- **Essence: the author.** Who authors the play.
+- **Significance: the stake.** What the play puts at risk and what it means.
+- **Consequence: the footprint.** What the play leaves in reality.
+
+| # | Stage | Essence: the author | Significance: the stake | Consequence: the footprint |
+|---|---|---|---|---|
+| 1 | Rules & Fate | gods and tradition; the player makes moves | fate and order | verdict, ritual, status |
+| 2 | Designed Systems | the designer; the player plays strategy in their model | understanding the world | trained officers, the lesson of rent |
+| 3 | Machine Reflex | the machine as referee; the player is reflex | mastery | a skill and a score |
+| 4 | Character & Story | the player as a mask | who I am in a story | imagination, empathy |
+| 5 | Worlds & Emergence | the player as pathfinder | freedom | emergent cultures |
+| 6 | Platforms & Creators | the player as creator for others | recognition and income | real economies and careers |
+| 7 | Life as the Game | the player as himself | the quality of his own life | changed health, income, relationships |
+| 8 | Shared Reality | "we", the party and the tribe | belonging, a shared destiny | ventures, places, communities |
+| 9 | Civilization Game | citizens as rule authors | justice and the commons | institutions, money, cities |
+| 10 | The Self-Playing World | the world as its own author | the meaning of the whole | a living planet |
+
+Per lens:
+- **Essence:** the author passes from the gods to the player and through him to the world.
+- **Significance:** the stake grows from fate to the meaning of the whole.
+- **Consequence:** the footprint grows from a symbol into a planet, and from stage 7 it lies in reality itself.
+
+**Synthesis:** a game is the handing of authorship from the gods to the player, until the author, the meaning and the result coincide: a world that plays itself.
