@@ -6,6 +6,20 @@
 
 ---
 
+## 2026-10-26 (Day 225)
+
+### D-2026-10-26-01: The product is a game; the game is the blueprint
+
+**Decision:** findyourtoptalent.com is designed as THE GAME OF BEING YOU. The homepage is a title screen (NEW GAME / LOAD GAME / TUTORIAL / MULTIPLAYER / ABOUT → Investor Room). Goal = high Quality of Life on the 8-domain map; level = bottleneck domain; soul colors = the player's Spectrum. "Genius" is renamed "Uniqueness". Spirit = tetrahedron/fire, Uniqueness = dodecahedron/aether (the fifth element, at the center). The new homepage goes straight onto `/`.
+
+**Rationale:** Sasha: «Игра — это blueprint… стало настолько проще». The game frame unifies course, test, Mastermind, Masterclass and marketplace into one coherent loop, and makes the cult/viral mechanics native.
+
+**Reversibility:** Doctrinal and visual; the homepage swap is reversible (old page kept at `/journey`). The name (The 5th Element vs THE GAME OF BEING YOU) is an open fork.
+
+**Cross-references:** `docs/02-strategy/game_of_being_you.md` · `docs/02-strategy/game_design_almanac.md` · issue #127 · `docs/assets/game-of-being-you/`.
+
+---
+
 ## 2026-09-11 (Day 181)
 
 ### D-2026-09-11-01 — Loop doctrine lives in two places (corpus-sync D2)

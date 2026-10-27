@@ -138,6 +138,32 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 8. Compare only with your past self. No QoL leaderboard; if any leaderboard, only for contribution to others.
 9. Variable reward: new Spectrum insights and crystal facets.
 
+
+## 11. The Fifth Element (2026-10-26, Sasha)
+
+**Insight:** the dodecahedron is Plato's fifth solid. Plato's *Timaeus* uses it for the cosmos as a whole; Aristotle's fifth element is aether, which later tradition calls *quintessentia*, "the fifth essence". In our map it is **Uniqueness**. So the player's uniqueness is literally their quintessence: the fifth element that the four (Body/earth, Emotions/water, Mind/air, Spirit/fire) are held by and refracted through.
+
+**Proposal (Sasha):** name the game **The 5th Element**, with tagline **"the game of being you"**.
+
+**Evolver's read (open fork, his decision):**
+- The mythos is exact and should be canon: the four elements orbit, the fifth sits in the center, light passes through it, and "find your fifth element" is the core quest.
+- The name collides: Luc Besson's film *The Fifth Element* (Gaumont, 1997) and its 1998 video game (Kalisto) sit in the same entertainment/games classes. That brings trademark risk and searches that land on the film.
+- Options: (a) title stays THE GAME OF BEING YOU, and "The Fifth Element" becomes the central chapter and quest ("Discover your Fifth Element"); (b) a distinct word for the same meaning: *Quintessence*, *Aether*, *The Fifth*; (c) take the name anyway after a trademark check.
+
+**Visual consequence:** the axis hero (light from source → through the center of the crystal → grounded into earth, spectrum radiating 360°) already shows the fifth element as the medium through which source light becomes a personal spectrum.
+
+## 12. Ideas & findings log (append-only)
+
+- 2026-10-26: Synthesis point of the three visual directions = one real object under real light (cinema = space, prism = object and the only color, paperback = type and paper).
+- 2026-10-26: Topaz-on-black reads as *Dark Side of the Moon*; rejected. Amber topaz → clear, faintly ice-blue topaz.
+- 2026-10-26: Light should not be a sideways prism beam: it comes from the source above, passes through the center of the being, grounds into the earth, and the spectrum radiates in all directions ("most true to the nature of things").
+- 2026-10-26: Spirit = tetrahedron/fire; Uniqueness = dodecahedron/aether; "Genius" → "Uniqueness".
+- 2026-10-26: Soul colors can be read from uniqueness (confirmed independently by several people), so they become the Spectrum mechanic, the profile and the card.
+- 2026-10-26: "The game is the blueprint": the whole product is designed as a game.
+- 2026-10-26: Goal = QoL; level = bottleneck domain; leveling down exists (Current vs Peak); input via Save Point.
+- 2026-10-26: Game design almanac started: invariant = scope of player authorship; 7 stages; Si–Do = life as the game ([game_design_almanac.md](./game_design_almanac.md)).
+- 2026-10-26: Fifth Element = quintessence = Uniqueness; proposed as the game's name (§11).
+
 ## Assets
 
 `docs/assets/game-of-being-you/`:
