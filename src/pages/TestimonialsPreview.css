@@ -1,0 +1,62 @@
+/* TestimonialsPreview (/preview/testimonials) — same night world as InvestorRoom. Scoped under .tp-root. */
+.tp-root {
+  --tp-bg: #07080a;
+  --tp-accent: #bcd7e6;
+  --tp-ink: rgba(238, 234, 226, 0.92);
+  --tp-ink-2: rgba(238, 234, 226, 0.66);
+  --tp-ink-3: rgba(238, 234, 226, 0.5);
+  --tp-hair: rgba(238, 234, 226, 0.14);
+  --tp-serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --tp-mono-f: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
+  min-height: 100vh;
+  background: var(--tp-bg);
+  color: var(--tp-ink);
+  font-family: var(--tp-serif);
+}
+.tp-inner { max-width: 1040px; margin: 0 auto; padding: 72px 24px 96px; }
+.tp-mono {
+  font-family: var(--tp-mono-f); font-weight: 300; text-transform: uppercase;
+  letter-spacing: 0.24em; font-size: 11px; color: var(--tp-ink-3); margin: 0;
+}
+.tp-hero h1 { font-weight: 300; font-size: clamp(40px, 6vw, 64px); margin: 14px 0 12px; letter-spacing: 0.01em; }
+.tp-lede { font-size: 20px; line-height: 1.5; color: var(--tp-ink-2); max-width: 680px; margin: 0; }
+.tp-section { margin-top: 72px; }
+.tp-section h2 { font-weight: 300; font-size: 30px; margin: 8px 0 18px; }
+
+.tp-card__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+.tp-card__head h2, .tp-card__head h3 { margin: 6px 0 0; }
+.tp-card__head h3 { font-weight: 400; font-size: 24px; margin: 0 0 4px; }
+
+.tp-toggle { display: inline-flex; border: 1px solid var(--tp-hair); border-radius: 999px; padding: 3px; flex: none; }
+.tp-toggle button {
+  font-family: var(--tp-mono-f); font-size: 11px; letter-spacing: 0.12em; color: var(--tp-ink-3);
+  background: transparent; border: 0; border-radius: 999px; padding: 6px 12px; cursor: pointer;
+}
+.tp-toggle button.is-on { background: var(--tp-accent); color: var(--tp-bg); }
+
+.tp-frame { width: 100%; background: #000; border-radius: 10px; overflow: hidden; border: 1px solid var(--tp-hair); }
+.tp-frame video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+.tp-frame--v { max-width: 360px; margin: 0 auto; }
+.tp-frame--v video { aspect-ratio: 9 / 16; }
+
+.tp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); gap: 40px 32px; margin-top: 18px; }
+@media (max-width: 520px) { .tp-grid { grid-template-columns: 1fr; } }
+.tp-card { border-top: 1px solid var(--tp-hair); padding-top: 18px; }
+.tp-quote { font-style: italic; font-size: 20px; line-height: 1.45; color: var(--tp-ink); margin: 16px 0 0; padding: 0; }
+.tp-note { font-family: var(--tp-mono-f); font-size: 11px; line-height: 1.6; color: var(--tp-accent); margin: 10px 0 0; }
+.tp-original { font-size: 15px; line-height: 1.45; color: var(--tp-ink-3); margin: 8px 0 0; }
+
+/* Outro mock */
+.tp-outro { position: relative; isolation: isolate; overflow: hidden; border-radius: 14px; border: 1px solid var(--tp-hair); margin-top: 24px; }
+.tp-outro__scene { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.tp-outro__veil { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(7,8,10,0.88) 0%, rgba(7,8,10,0.6) 55%, rgba(7,8,10,0.35) 100%); }
+.tp-outro__body { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 48px clamp(20px, 5vw, 56px); flex-wrap: wrap; }
+.tp-outro__text { flex: 1 1 320px; max-width: 460px; }
+.tp-outro__text h3 { font-weight: 300; font-size: clamp(30px, 4vw, 42px); margin: 12px 0 14px; }
+.tp-outro__line { font-size: 19px; line-height: 1.5; color: var(--tp-ink-2); margin: 0 0 18px; }
+.tp-outro__who { font-style: italic; font-size: 17px; color: var(--tp-accent); margin: 0 0 28px; }
+.tp-outro__back { font-family: var(--tp-mono-f); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--tp-ink); border-bottom: 1px solid var(--tp-hair); padding-bottom: 4px; }
+.tp-outro__clip { flex: 0 0 240px; margin: 0 auto; }
+.tp-outro__clip video { display: block; width: 240px; aspect-ratio: 9 / 16; border-radius: 12px; background: #000; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+
+.tp-foot { margin-top: 80px; text-align: center; }
