@@ -80,7 +80,7 @@ const ProfileOverviewContent = () => {
     }
 
     const doneSlots = sheet.chain.filter((s) => s.done);
-    const nextSlot = sheet.chain.find((s) => !s.done && !s.lockedHint);
+    const nextSlot = sheet.chain.find((s) => !s.done && !s.locked);
     const name = sheet.firstName ?? t("characterSheet.playerFallback");
 
     return (
@@ -228,7 +228,7 @@ const ProfileOverviewContent = () => {
                     <ol className="cs-list">
                         {sheet.chain.map((slot, i) => {
                             const lit = slot.done ? sheet.chain.slice(0, i + 1).filter((s) => s.done).length - 1 : 0;
-                            const locked = !slot.done && !!slot.lockedHint;
+                            const locked = slot.locked;
                             const cls = ["cs-slot", slot.done && "is-lit", slot.justCompleted && "is-fresh"]
                                 .filter(Boolean)
                                 .join(" ");

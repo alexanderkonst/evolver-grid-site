@@ -1264,31 +1264,31 @@
       },
       "activation": {
         "label": "Descubre cómo monetizar tu talento principal (power-up, $37)",
-        "lockedHint": "Primero articula tu talento principal."
+        "lockedHint": "Se abre cuando tu talento principal está guardado. Dentro: cómo convertirlo en ingresos."
       },
       "missionDiscovery": {
         "label": "2. Descubre tu misión",
-        "lockedHint": "Se desbloquea cuando encuentras tu talento principal."
-      },
-      "assetMapper": {
-        "label": "3. Mapea tus activos",
-        "lockedHint": "Se desbloquea cuando descubres tu misión."
+        "lockedHint": "Se abre cuando tu talento principal está guardado. Dentro: lo que te toca hacer en el mundo."
       },
       "qolAssess": {
-        "label": "4. Evalúa tu calidad de vida (opcional)",
-        "lockedHint": "Se desbloquea cuando mapeas tus activos."
+        "label": "3. Evalúa tu calidad de vida (opcional)",
+        "lockedHint": "Se abre cuando tu misión está guardada. Dentro: tu nivel real, privado para ti."
+      },
+      "assetMapper": {
+        "label": "4. Mapea tus activos",
+        "lockedHint": "Se abre cuando tu misión está guardada. Dentro: tu inventario de todo con lo que puedes construir."
       },
       "findCollaborators": {
         "label": "5. Encuentra colaboradores",
-        "lockedHint": "Se desbloquea cuando mapeas tus activos."
+        "lockedHint": "Se abre cuando tus activos están mapeados. Dentro: personas que encajan con tu talento y tu misión."
       },
       "buildBusinessTerminus": {
         "label": "5. Construye un negocio sobre tu talento principal",
-        "lockedHint": "Se desbloquea cuando encuentras tu talento principal."
+        "lockedHint": "Se abre cuando tu talento principal está guardado. Dentro: tu singularidad en una frase y luego tu eslogan."
       },
       "buildBusinessSix": {
         "label": "6. Construye un negocio sobre tu talento principal",
-        "lockedHint": "Se desbloquea cuando activas tu talento principal o completas tu perfil de colaboración."
+        "lockedHint": "Se abre cuando tu talento principal, tu misión y tus activos están guardados. Dentro: tu singularidad en una frase y luego tu eslogan."
       }
     },
     "aiOs": {
@@ -7028,8 +7028,10 @@
       "buildBusiness": "Construye un negocio sobre tu talento principal",
       "discoverMission": "Descubre tu misión",
       "locked": {
-        "buildBusiness": "Se desbloquea tras la activación.",
-        "discoverMission": "Se desbloquea cuando construyas un negocio sobre tu talento principal."
+        "discoverMission": "Se abre cuando tu talento principal está guardado. Dentro: lo que te toca hacer en el mundo.",
+        "assessQol": "Se abre cuando tu misión está guardada. Dentro: tu nivel real, privado para ti.",
+        "mapAssets": "Se abre cuando tu misión está guardada. Dentro: tu inventario de todo con lo que puedes construir.",
+        "buildBusiness": "Se abre cuando tu talento principal, tu misión y tus activos están guardados. Dentro: tu singularidad en una frase y luego tu eslogan."
       }
     },
     "victories": {

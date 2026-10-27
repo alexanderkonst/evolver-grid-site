@@ -4,6 +4,7 @@ import { useJourneyCompletion } from "@/hooks/useJourneyCompletion";
 import {
     JOURNEY_ITEM_COMPLETED_EVENT,
     JOURNEY_LAST_SEEN_KEY,
+    JOURNEY_MAIN,
     JOURNEY_SEQUENCE,
     type JourneyItemId,
 } from "@/data/journeySequence";
@@ -29,7 +30,9 @@ export type CharacterSheetSlot = {
     label: string;
     path: string;
     done: boolean;
-    /** Shown for quiet slots that cannot be started yet. */
+    /** True while a required earlier step is not done: faded, not enterable (§14.3). */
+    locked: boolean;
+    /** «Opens when <real event>. Inside: <result>.» Set only while `locked`. */
     lockedHint?: string;
     /** True once, right after this slot flips to done. Drives the one-time glow. */
     justCompleted: boolean;
@@ -193,16 +196,25 @@ export function useCharacterSheet() {
         writeLastSeen(completion);
     }, [completion, chainLoading]);
 
-    const chain: CharacterSheetSlot[] = JOURNEY_SEQUENCE.map((item) => ({
-        id: item.id,
-        label: item.label,
-        path: item.path,
+    // Same order as the JOURNEY pane: the main sequence only (§14.2). Extras stay out.
+    const isDone = (id: JourneyItemId) =>
         // "Discover your mission" has no predicate in journeySequence; a committed
         // mission is the artifact that satisfies it.
-        done: completion[item.id] || (item.id === "discover-mission" && !!data.missionTitle),
-        lockedHint: item.lockedHint,
-        justCompleted: justCompleted.has(item.id),
-    }));
+        completion[id] || (id === "discover-mission" && !!data.missionTitle);
+    const chain: CharacterSheetSlot[] = JOURNEY_MAIN.map((item) => {
+        const done = isDone(item.id);
+        // Closed = a required step is not done yet (§14.3). Reads the sequence, not a flag.
+        const locked = !done && (item.requires ?? []).some((id) => !isDone(id));
+        return {
+            id: item.id,
+            label: item.label,
+            path: item.path,
+            done,
+            locked,
+            lockedHint: locked ? item.lockedHint : undefined,
+            justCompleted: justCompleted.has(item.id),
+        };
+    });
 
     return { ...data, chain, isLoading: isLoading || chainLoading, refresh };
 }
