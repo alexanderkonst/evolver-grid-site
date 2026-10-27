@@ -21,9 +21,9 @@ const GrowthPaths = () => {
                 <div className="mb-8">
                     <div className="flex items-center gap-3 mb-2">
                         <TrendingUp className="w-6 h-6 text-foreground" />
-                        <h1 className="text-2xl font-bold text-foreground">5 Growth Paths</h1>
+                        <h1 className="text-2xl font-bold text-foreground">Skill Tree</h1>
                     </div>
-                    <p className="text-muted-foreground">Body, Emotions, Mind, Genius, Spirit</p>
+                    <p className="text-muted-foreground">5 growth paths: Body, Emotions, Mind, Genius, Spirit</p>
                 </div>
 
                 {/* Paths Grid */}
