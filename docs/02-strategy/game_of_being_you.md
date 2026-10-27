@@ -483,3 +483,27 @@ Rough sizes for later planning only. Each stays as it is until its turn; none bl
 4. **Still open:** consent for the one migration (victories, 1–10 ratings, recorded sales) needed by WP-5 / WP-11 / WP-12. Until then those WPs store nothing new server-side.
 
 Rail labels: place names (Your House, Workshop, Market…) follow from principle 2 and supersede the game-vocabulary labels of #128/#129 (CHARACTER, THE FORGE, TRADING POST). Proposed: close #128/#129 as superseded when WP-4 lands.
+
+### 14.11 Lunar: how color enters as you play (Sasha, 2026-10-27: «продумай как именно добавляются краски по мере прохождения»)
+
+Reference mockups: `docs/assets/lunar/lunar-sheet.jpg` (title, village map, module Intro, module Outro). Fonts in the mockups are reference only.
+
+Lunar starts as a readable silver moonlit world (never a punishing black-and-white). Color is not a reward currency and has no counter: it is **your** color arriving in the places you have actually lived through. One rule, five steps:
+
+| State | Look in Lunar | When |
+|---|---|---|
+| closed | dark silhouette, unlit windows, label at low contrast; the «Opens when… Inside:…» line on hover/tap | its condition is not met |
+| open | bright silver, soft moonlight, gentle motion | condition met, module not done |
+| next | open + the one teal accent (outline, ring marker) | the single next move |
+| done | **the place takes on color**: your soul colors as the dominant hue, warm lit windows | its module's Outro reached |
+| live | done + a slow pulse | something happening now (webinar, Mastermind) |
+
+The arc:
+1. **Reception** done (Top Talent found) → the first color in the world appears on **Your House**: your soul colors (until Spectrum Reading exists: the colors of your top talent archetype). The first color is you.
+2. **Mission** done → your house's windows light warm; the path from your house to the Workshop lights up.
+3. Each further module done → its place turns to color; the paths between colored places glow, so the colored part of the map is literally the shape of your journey.
+4. **First sale** → your stall in the Market takes color and **your house shows in color on other residents' maps**; Town Hall opens.
+5. Residents: other houses in color = people who have walked the road. The village's color is collective.
+6. Sky: as the Journey fills, the sky moves from deep night toward pre-dawn blue at the horizon; full Journey = first light. Subtle, never a progress bar.
+
+Outro moment: the color fills into the place on screen (the «what opened» beat, WP-15 motion). Other skins: the same 5 states via lock/live tokens; only Lunar uses saturation as the carrier. Implementation: `placeState` gains `done`; Lunar CSS maps `closed/open/next/done/live` to filter + tokens (`--place-saturation`, `--place-glow`); soul colors read from `useCharacterSheet`. Lands in WP-2 + WP-3 (state) and WP-6/WP-15 (reveal).
