@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Game of Being You · FindYourTopTalent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&display=swap"
+    />
+    <link rel="stylesheet" href="hark.css" />
+    <link rel="stylesheet" href="hark-hero.css" />
+    <style>
+      :root {
+        --x-bg: #07080a;
+        --x-paper: #0e0d0b;
+        --x-amber: #bcd7e6;
+        --x-ink: rgba(238, 234, 226, 0.92);
+        --x-ink-2: rgba(238, 234, 226, 0.62);
+        --x-ink-3: rgba(238, 234, 226, 0.5);
+        --x-hair: rgba(238, 234, 226, 0.14);
+        --x-serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+        --x-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
+      }
+      html, body { background: var(--x-bg); color: var(--x-ink); }
+      body { font-family: var(--x-serif); }
+      ::selection { background: var(--x-amber); color: var(--x-bg); }
+
+      /* film grain over everything */
+      .x-grain {
+        position: fixed; inset: -50%; z-index: 100; pointer-events: none; opacity: 0.04;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+
+      /* break out of the page frame: full bleed */
+      .x-bleed { width: 100vw; margin-left: calc(50% - 50vw); }
+
+      .x-mono {
+        font-family: var(--x-mono); font-weight: 300; text-transform: uppercase;
+        letter-spacing: 0.32em; font-size: 12px; color: var(--x-ink-3);
+      }
+
+      /* ---------- Title screen ---------- */
+      .x-screen {
+        position: relative; min-height: 100vh; min-height: 100svh; overflow: hidden;
+        margin-top: -12px; display: flex; flex-direction: column; justify-content: flex-end;
+        align-items: center; text-align: center; background: var(--x-bg);
+      }
+      .x-screen__img {
+        position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+        transform-origin: 50% 45%; animation: x-burns 30s ease-in-out infinite alternate;
+      }
+      @keyframes x-burns { from { transform: scale(1); } to { transform: scale(1.06); } }
+      .x-screen::after {
+        content: ""; position: absolute; inset: 0; pointer-events: none;
+        background: linear-gradient(to bottom, rgba(7, 8, 10, 0) 58%, rgba(7, 8, 10, 0.78) 78%, var(--x-bg) 100%);
+      }
+      .x-screen__copy { position: relative; z-index: 1; padding: 0 24px 96px; width: 100%; max-width: 980px; }
+      .x-screen h1 {
+        font-family: var(--x-serif); font-weight: 300; text-transform: uppercase;
+        font-size: clamp(38px, 6.4vw, 92px); line-height: 1.02; letter-spacing: 0.06em;
+        margin: 18px 0 18px; color: var(--x-ink); text-wrap: balance;
+      }
+      .x-sub {
+        font-family: var(--x-mono); font-weight: 300; font-size: 12px; letter-spacing: 0.14em;
+        color: var(--x-ink-2); margin: 0; white-space: nowrap;
+      }
+      .x-sub span { color: var(--x-ink-3); padding: 0 0.6em; }
+
+      .x-menu-wrap { opacity: 0; animation: x-fade 1.6s var(--ease-out, ease-out) 1.2s forwards; }
+      @keyframes x-fade { to { opacity: 1; } }
+      .x-menu { list-style: none; margin: 44px auto 0; padding: 0; display: inline-block; text-align: left; }
+      .x-menu li { margin: 0; }
+      .x-menu a {
+        display: flex; align-items: center; min-height: var(--tap, 44px); padding: 0 12px 0 0;
+        font-family: var(--x-mono); font-weight: 300; font-size: 16px; letter-spacing: 0.24em;
+        text-transform: uppercase; color: var(--x-ink-3); text-decoration: none;
+        transition: color 0.6s ease;
+      }
+      .x-menu a:focus { outline: none; }
+      .x-menu a:focus-visible { outline: 1px solid var(--x-amber); outline-offset: 2px; }
+      .x-cur { width: 2em; color: var(--x-amber); opacity: 0; transition: opacity 0.4s ease; }
+      .x-menu li.is-active a { color: var(--x-ink); }
+      .x-menu li.is-active .x-cur { opacity: 1; animation: x-blink 2.4s ease-in-out infinite; }
+      @keyframes x-blink { 50% { opacity: 0.35; } }
+      .x-hint {
+        min-height: 20px; margin: 14px 0 0; font-family: var(--x-mono); font-weight: 300;
+        font-size: 12px; letter-spacing: 0.12em; color: var(--x-ink-3); transition: opacity 0.5s ease;
+      }
+      .x-rule { width: 56px; height: 1px; background: var(--x-amber); border: 0; margin: 30px auto 16px; opacity: 0.8; }
+      .x-tagline { font-family: var(--x-serif); font-style: italic; font-weight: 300; font-size: 19px; color: var(--x-ink-2); margin: 0; }
+
+      .x-start {
+        position: absolute; left: 50%; bottom: 30px; transform: translateX(-50%); z-index: 1; margin: 0;
+        font-family: var(--x-mono); font-weight: 300; font-size: 12px; letter-spacing: 0.42em;
+        color: var(--x-ink-2); animation: x-pulse 2.4s ease-in-out infinite; transition: opacity 0.8s ease;
+      }
+      @keyframes x-pulse { 0%, 100% { opacity: 0.15; } 50% { opacity: 0.8; } }
+      .x-start.is-gone { animation: none; opacity: 0; }
+
+      /* ---------- Shared section frame ---------- */
+      .x-sec { padding: 160px 0; }
+      .x-sec h2 {
+        font-family: var(--x-serif); font-weight: 300; font-size: clamp(32px, 4.2vw, 54px);
+        line-height: 1.1; letter-spacing: 0.01em; margin: 22px 0 0; color: var(--x-ink); text-wrap: balance;
+      }
+
+      /* ---------- Book page ---------- */
+      .x-book {
+        position: relative; background: var(--x-paper); border-top: 1px solid var(--x-hair);
+        border-bottom: 1px solid var(--x-hair); overflow: hidden;
+      }
+      .x-book::before {
+        content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.09;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.04 0.6' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0.9 0 0 0 0 0.8 0 0 0 0 0.6 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+      }
+      .x-book__inner { position: relative; max-width: 640px; margin: 0 auto; padding: 0 28px; }
+      .x-chapter { display: flex; align-items: center; gap: 18px; }
+      .x-chapter::after { content: ""; flex: 1; height: 1px; background: var(--x-hair); }
+      .x-book .x-label { margin-top: 56px; color: var(--x-amber); opacity: 0.85; }
+      .x-book .x-label + h2 { margin-top: 14px; }
+      .x-dropcap {
+        font-size: 21px; line-height: 1.6; color: var(--x-ink-2); margin: 36px 0 0;
+      }
+
+      .x-levels { list-style: none; margin: 72px 0 0; padding: 0; }
+      .x-levels li { position: relative; display: grid; grid-template-columns: 44px 1fr; gap: 28px; padding-bottom: 52px; }
+      .x-levels li:last-child { padding-bottom: 0; }
+      .x-levels li:not(:last-child)::before {
+        content: ""; position: absolute; left: 21.5px; top: 44px; bottom: 0; width: 1px; background: var(--x-hair);
+      }
+      .x-node {
+        width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--x-ink-3);
+        display: grid; place-items: center; font-family: var(--x-mono); font-weight: 300;
+        font-size: 12px; letter-spacing: 0.08em; color: var(--x-ink-2); background: var(--x-paper);
+      }
+      .x-levels li.is-current .x-node { border-color: var(--x-amber); color: var(--x-amber); }
+      .x-levels h3 {
+        font-family: var(--x-serif); font-weight: 400; font-size: 27px; line-height: 1.2; margin: 6px 0 8px; color: var(--x-ink);
+      }
+      .x-levels p { font-family: var(--x-serif); font-size: 19px; line-height: 1.55; color: var(--x-ink-2); margin: 0; }
+      .x-levels .x-mono { display: block; margin-top: 12px; font-size: 12px; }
+      .x-levels li.is-current .x-mono { color: var(--x-amber); }
+      .x-folio { margin-top: 88px; text-align: center; }
+
+      /* ---------- Five paths ---------- */
+      .x-center { text-align: center; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+      .x-paths {
+        list-style: none; margin: 96px 0 0; padding: 0; display: grid;
+        grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr; align-items: end; gap: 24px;
+      }
+      .x-paths li { display: flex; flex-direction: column; align-items: center; }
+      .x-paths canvas { width: 100%; max-width: 180px; aspect-ratio: 1; display: block; }
+      .x-paths li.is-unique canvas { max-width: 270px; }
+      .x-paths .x-mono { margin-top: 22px; color: var(--x-ink); letter-spacing: 0.36em; }
+      .x-paths li.is-unique .x-mono { color: var(--x-amber); }
+      .x-paths .x-mono.x-element { margin-top: 6px; font-size: 12px; letter-spacing: 0.3em; color: var(--x-ink-3); }
+      .x-paths li.is-unique .x-mono.x-element { color: var(--x-amber); opacity: 0.75; }
+      .x-paths p { font-family: var(--x-serif); font-style: italic; font-size: 18px; line-height: 1.4; color: var(--x-ink-2); margin: 10px 0 0; max-width: 18ch; }
+
+      /* ---------- About ---------- */
+      .x-about { max-width: 680px; margin: 0 auto; padding: 0 28px; text-align: center; border-top: 1px solid var(--x-hair); padding-top: 140px; }
+      .x-about p.x-body { font-size: 21px; line-height: 1.6; color: var(--x-ink-2); margin: 32px auto 0; }
+      .x-enter {
+        display: inline-flex; align-items: center; min-height: var(--tap, 44px); margin-top: 52px; padding: 0 26px;
+        border: 1px solid var(--x-amber); border-radius: 0; font-family: var(--x-mono); font-weight: 300;
+        font-size: 12px; letter-spacing: 0.3em; color: var(--x-ink); text-decoration: none;
+        transition: background-color 0.8s ease, color 0.8s ease;
+      }
+      .x-enter:hover, .x-enter:focus-visible { background: var(--x-amber); color: var(--x-bg); outline: none; }
+
+      .x-foot { padding: 120px 0 48px; text-align: center; }
+      .x-foot p { margin: 0; font-size: 12px; letter-spacing: 0.2em; }
+
+      @media (max-width: 900px) {
+        .x-paths { grid-template-columns: 1fr 1fr; gap: 56px 24px; }
+        .x-paths li.is-unique { grid-column: 1 / -1; order: -1; }
+        .x-sub { white-space: normal; line-height: 2; }
+      }
+      @media (max-width: 560px) {
+        .x-sec { padding: 104px 0; }
+        .x-menu a { font-size: 14px; letter-spacing: 0.18em; }
+        .x-screen__copy { padding-bottom: 80px; }
+        .x-levels li { gap: 18px; }
+        .x-about { padding-top: 104px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .x-screen__img, .x-start, .x-menu li.is-active .x-cur { animation: none; }
+        .x-menu-wrap { animation-duration: 0.01s; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="x-grain" aria-hidden="true"></div>
+    <div class="page" id="top">
+      <main class="main">
+        <section class="x-screen x-bleed" aria-label="Title screen">
+          <img class="x-screen__img" src="hero_clear_topaz.png" alt="A clear, faintly blue topaz dodecahedron hovering over a still black mountain lake; a white beam enters from the left and leaves as a spectrum on the right" />
+          <div class="x-screen__copy">
+            <p class="x-mono">FindYourTopTalent.com presents</p>
+            <h1>The Game of Being&nbsp;You</h1>
+            <p class="x-sub">Self-Discovery<span>·</span>Quality of Life<span>·</span>Monetizing Your Uniqueness<span>·</span>Finding Your Tribe</p>
+            <nav class="x-menu-wrap" aria-label="Game menu">
+              <ul class="x-menu" id="menu">
+                <li class="is-active"><a href="https://findyourtoptalent.com/zone-of-genius/entry" data-hint="Discover your Uniqueness"><span class="x-cur" aria-hidden="true">▸</span>New Game</a></li>
+                <li><a href="https://findyourtoptalent.com/auth" data-hint="Continue your journey"><span class="x-cur" aria-hidden="true">▸</span>Load Game</a></li>
+                <li><a href="https://findyourtoptalent.com/grow/activate-your-dormant-potential" data-hint="Free course · Activate Your Dormant Potential"><span class="x-cur" aria-hidden="true">▸</span>Tutorial</a></li>
+                <li><a href="https://findyourtoptalent.com/build/mastermind" data-hint="Mastermind &amp; co-creation"><span class="x-cur" aria-hidden="true">▸</span>Multiplayer</a></li>
+                <li><a href="#about" data-hint="The story · Investor Room"><span class="x-cur" aria-hidden="true">▸</span>About</a></li>
+              </ul>
+              <p class="x-hint" id="hint" aria-live="polite">Discover your Uniqueness</p>
+              <hr class="x-rule" />
+              <p class="x-tagline">Bring the full force of who you are to what you build.</p>
+            </nav>
+          </div>
+          <p class="x-start" id="start" aria-hidden="true">PRESS START</p>
+        </section>
+
+        <section class="x-book x-bleed x-sec" id="how" aria-labelledby="how-h">
+          <div class="x-book__inner">
+            <p class="x-mono x-chapter">Chapter 01</p>
+            <p class="x-mono x-label">Single Player → Multiplayer</p>
+            <h2 id="how-h">Four levels. One light, refracted into you.</h2>
+            <ol class="x-levels">
+              <li class="is-current">
+                <span class="x-node">01</span>
+                <div>
+                  <h3>Know your character</h3>
+                  <p>Describe your talents, resources, dedication, craft and quality of life.</p>
+                  <span class="x-mono">Level 01 · You are here</span>
+                </div>
+              </li>
+              <li>
+                <span class="x-node">02</span>
+                <div>
+                  <h3>Forge your unique business</h3>
+                  <p>Turn who you are into a scalable offer only you can make.</p>
+                </div>
+              </li>
+              <li>
+                <span class="x-node">03</span>
+                <div>
+                  <h3>Enter multiplayer</h3>
+                  <p>Join collaborations with other players of the Golden Age.</p>
+                </div>
+              </li>
+              <li>
+                <span class="x-node">04</span>
+                <div>
+                  <h3>Work, play &amp; grow together</h3>
+                  <p>Co-create, compound results, raise your quality of life.</p>
+                </div>
+              </li>
+            </ol>
+            <p class="x-mono x-folio">— 1 —</p>
+          </div>
+        </section>
+
+        <section class="x-sec" id="paths" aria-labelledby="paths-h">
+          <div class="x-center">
+            <p class="x-mono">The Five Paths</p>
+            <h2 id="paths-h">Five paths. One crystal.</h2>
+            <ul class="x-paths">
+              <li><canvas data-solid="cube" role="img" aria-label="Wireframe cube"></canvas><span class="x-mono">Body</span><span class="x-mono x-element">Earth</span><p>Vitality and foundation</p></li>
+              <li><canvas data-solid="icosa" role="img" aria-label="Wireframe icosahedron"></canvas><span class="x-mono">Emotions</span><span class="x-mono x-element">Water</span><p>Mastery of inner weather</p></li>
+              <li class="is-unique"><canvas data-solid="dodeca" data-amber role="img" aria-label="Wireframe dodecahedron"></canvas><span class="x-mono">Uniqueness</span><span class="x-mono x-element">Aether</span><p>Your unique gift, refracted into the world</p></li>
+              <li><canvas data-solid="octa" role="img" aria-label="Wireframe octahedron"></canvas><span class="x-mono">Mind</span><span class="x-mono x-element">Air</span><p>Clarity and perception</p></li>
+              <li><canvas data-solid="tetra" role="img" aria-label="Wireframe tetrahedron"></canvas><span class="x-mono">Spirit</span><span class="x-mono x-element">Fire</span><p>The fire that moves you</p></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="x-sec" id="about" aria-labelledby="about-h">
+          <div class="x-about">
+            <p class="x-mono">About</p>
+            <h2 id="about-h">A game designed to make you more yourself.</h2>
+            <p class="x-body">FindYourTopTalent turns self-discovery into a game you actually want to play — and a business that pays you for being who you are. Created by Aleksandr Konstantinov and built with Evolver, an AI co-founder.</p>
+            <a class="x-enter" href="https://findyourtoptalent.com/investors">ENTER THE INVESTOR ROOM →</a>
+          </div>
+        </section>
+      </main>
+      <footer class="x-foot">
+        <p class="x-mono">© 2026 FindYourTopTalent · Mockup v0.1</p>
+      </footer>
+    </div>
+    <script src="hark.js"></script>
+    <script>
+      (function () {
+        /* ---------- Game menu ---------- */
+        var items = Array.prototype.slice.call(document.querySelectorAll("#menu li"));
+        var hint = document.getElementById("hint");
+        var start = document.getElementById("start");
+        var idx = 0;
+        function hideStart() { start.classList.add("is-gone"); }
+        function setActive(i, focus) {
+          idx = (i + items.length) % items.length;
+          items.forEach(function (li, n) { li.classList.toggle("is-active", n === idx); });
+          var a = items[idx].querySelector("a");
+          hint.textContent = a.getAttribute("data-hint");
+          if (focus) a.focus({ preventScroll: true });
+        }
+        items.forEach(function (li, n) {
+          var a = li.querySelector("a");
+          a.addEventListener("mouseenter", function () { if (n !== idx) hideStart(); setActive(n); });
+          a.addEventListener("focus", function () { setActive(n); });
+        });
+        document.addEventListener("keydown", function (e) {
+          if (window.scrollY > window.innerHeight * 0.6) return;
+          if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+            e.preventDefault();
+            hideStart();
+            setActive(idx + (e.key === "ArrowDown" ? 1 : -1), true);
+          } else if (e.key === "Enter" && !(document.activeElement && document.activeElement.closest("#menu"))) {
+            e.preventDefault();
+            items[idx].querySelector("a").click();
+          }
+        });
+        window.addEventListener("scroll", function () { if (window.scrollY > 8) hideStart(); }, { passive: true });
+
+        /* ---------- Rotating Platonic solids ---------- */
+        var P = (1 + Math.sqrt(5)) / 2, Q = 1 / P;
+        function cyc(list) {
+          var out = [];
+          list.forEach(function (v) { out.push(v, [v[1], v[2], v[0]], [v[2], v[0], v[1]]); });
+          return out;
+        }
+        function signs(v) {
+          var out = [];
+          [1, -1].forEach(function (a) { [1, -1].forEach(function (b) { [1, -1].forEach(function (c) {
+            var w = [v[0] * a, v[1] * b, v[2] * c];
+            if (!out.some(function (u) { return u[0] === w[0] && u[1] === w[1] && u[2] === w[2]; })) out.push(w);
+          }); }); });
+          return out;
+        }
+        var cube = signs([1, 1, 1]);
+        var solids = {
+          cube: cube,
+          tetra: [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]],
+          octa: [[1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]],
+          icosa: cyc(signs([0, 1, P])),
+          dodeca: cube.concat(cyc(signs([0, Q, P])))
+        };
+        function build(verts) {
+          var r = Math.max.apply(null, verts.map(function (v) { return Math.hypot(v[0], v[1], v[2]); }));
+          verts = verts.map(function (v) { return [v[0] / r, v[1] / r, v[2] / r]; });
+          var min = Infinity, edges = [];
+          for (var i = 0; i < verts.length; i++) for (var j = i + 1; j < verts.length; j++) {
+            var d = Math.hypot(verts[i][0] - verts[j][0], verts[i][1] - verts[j][1], verts[i][2] - verts[j][2]);
+            if (d < min - 1e-6) min = d;
+          }
+          for (i = 0; i < verts.length; i++) for (j = i + 1; j < verts.length; j++) {
+            d = Math.hypot(verts[i][0] - verts[j][0], verts[i][1] - verts[j][1], verts[i][2] - verts[j][2]);
+            if (Math.abs(d - min) < 1e-4) edges.push([i, j]);
+          }
+          return { v: verts, e: edges };
+        }
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var views = Array.prototype.slice.call(document.querySelectorAll("canvas[data-solid]")).map(function (c, k) {
+          return { c: c, ctx: c.getContext("2d"), s: build(solids[c.getAttribute("data-solid")]),
+            amber: c.hasAttribute("data-amber"), phase: k * 1.3, speed: 0.00009 + k * 0.000012 };
+        });
+        function size() {
+          var dpr = Math.min(window.devicePixelRatio || 1, 2);
+          views.forEach(function (o) {
+            var w = o.c.clientWidth;
+            o.c.width = Math.round(w * dpr); o.c.height = Math.round(w * dpr);
+            o.dpr = dpr; o.w = w;
+          });
+        }
+        function draw(t) {
+          views.forEach(function (o) {
+            var ctx = o.ctx, w = o.w, a = o.phase + t * o.speed, b = 0.5 + Math.sin(t * 0.00005 + o.phase) * 0.35;
+            var ca = Math.cos(a), sa = Math.sin(a), cb = Math.cos(b), sb = Math.sin(b);
+            var R = w * 0.36, cx = w / 2, cy = w / 2;
+            var pts = o.s.v.map(function (v) {
+              var x = v[0] * ca + v[2] * sa, z = -v[0] * sa + v[2] * ca;
+              var y = v[1] * cb - z * sb; z = v[1] * sb + z * cb;
+              var f = 3.2 / (3.2 + z);
+              return [cx + x * R * f, cy + y * R * f, z];
+            });
+            ctx.setTransform(o.dpr, 0, 0, o.dpr, 0, 0);
+            ctx.clearRect(0, 0, w, w);
+            ctx.lineWidth = 1;
+            o.s.e.forEach(function (e) {
+              var p = pts[e[0]], q = pts[e[1]], depth = (p[2] + q[2]) / 2;
+              var alpha = 0.55 + depth * -0.3;
+              ctx.strokeStyle = o.amber ? "rgba(188,215,230," + alpha + ")" : "rgba(238,234,226," + (alpha * 0.85) + ")";
+              ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.stroke();
+            });
+          });
+        }
+        function loop(t) { draw(t); requestAnimationFrame(loop); }
+        size();
+        window.addEventListener("resize", function () { size(); if (reduce) draw(0); });
+        if (reduce) draw(0); else requestAnimationFrame(loop);
+      })();
+    </script>
+  </body>
+</html>
