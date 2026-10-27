@@ -115,6 +115,29 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 4. Profile page design around the crystal and spectrum.
 5. Blender hero render + loop.
 
+
+## 10. Core loop v0.1: goal, levels, XP (2026-10-26)
+
+**Goal of the game:** a high quality of life, as defined by the Quality of Life Map (8 domains × 10 stages: Wealth, Health, Happiness, Love & Relationships, Impact, Growth, Social Ties, Home; `src/modules/quality-of-life-map/qolConfig.ts`).
+
+- **Level = your bottleneck:** the lowest stage across all 8 domains. To level up, the whole map has to move up at least one stage (Sasha: "a level is at least one transition across the whole map"). Theory of Constraints / Liebig's barrel.
+- **Main quest = the bottleneck domain**, generated automatically. The game always knows what to do next.
+- **XP = progress inside a stage** toward the next one: completed quests and practices, evidence, a peer's witness. The five paths (Body, Emotions, Mind, Spirit, Uniqueness) are the skill tree; their practices feed XP into domains.
+- **Leveling down is real** (life goes down too), so two meters: **Current level** (can fall, shown as weather, not punishment) and **Peak** (best level reached, kept). A drop opens a **Comeback quest** with bonus XP.
+- **Input:** a 60-second weekly **Save Point** ritual (each domain: up / same / down + one line), a full map re-take each season, evidence from completed quests, peer witness from the party.
+- **The crystal shows the level:** clarity and brightness of the player's spectrum grow with level; new facets unlock (Spectrum insights).
+
+### Motivation mechanics
+1. Bottleneck = clear main quest (no decision paralysis).
+2. Crystal brightens with level: visible identity progression.
+3. Daily 5-minute quests (practices), gentle streak with freezes.
+4. Party / guild = Mastermind: shared season raid, XP for helping others (feeds Impact and Social Ties).
+5. Seasons of ~6 weeks: Masterclass opens a season; a closing ceremony shows the before/after map.
+6. Real loot: first income from your unique offer is a boss drop.
+7. Bosses = real-life thresholds (first sale, a move, a hard conversation).
+8. Compare only with your past self. No QoL leaderboard; if any leaderboard, only for contribution to others.
+9. Variable reward: new Spectrum insights and crystal facets.
+
 ## Assets
 
 `docs/assets/game-of-being-you/`:
