@@ -101,6 +101,7 @@ import ActivateTopTalent from "./pages/ActivateTopTalent";
 import MethodologyLandingPage from "./pages/MethodologyLandingPage";
 import JourneyPage from "./pages/JourneyPage";
 import GameTitle from "./pages/GameTitle";
+import InvestorRoom from "./pages/InvestorRoom";
 // Day 137 (Sasha 2026-07-28): /home2 is a private, noindex review surface for
 // the proposed landing rebuild that was briefly (and mistakenly) live at `/`
 // before being reverted (commit 6355a908). It renders the preserved copy
@@ -497,6 +498,10 @@ const App = () => (
                       now the homepage. The previous homepage (JourneyPage) stays
                       reachable at /journey (and still at /game/journey). */}
                   <Route path="/" element={<GameTitle />} />
+                  {/* Issue #135 (Sasha 2026-10-27): public Investor Room, information
+                      ABOUT the Digital Village. Not a door into it: «Play the game»
+                      leads back to the title screen at `/`. */}
+                  <Route path="/investor" element={<InvestorRoom />} />
                   <Route path="/journey" element={<JourneyPage />} />
                   {/* Day 138 (Sasha 2026-07-29): /home carries the approved
                       truth-landing copy — see HomeV2Page.tsx for context. */}
