@@ -52,7 +52,10 @@ export const isProductLandingRoute = (pathname: string): boolean =>
 
 /** Paths whose page currently mounts GameShellV2 → layout supplies it instead. */
 const SHELL_EXACT = new Set<string>([
-    "/",
+    // Issue #127 (Sasha 2026-10-27): "/" is now the full-bleed GameTitle
+    // screen (no shell). The previous homepage (JourneyPage) moved to
+    // /journey and keeps the shell it had at "/".
+    "/journey",
     // Day 138 (Sasha 2026-07-29): /home now carries the live "Name what's
     // next" truth-landing copy; /home2 is the prior Ceiling Law draft,
     // moved there unchanged. Both are private/noindex review surfaces with
