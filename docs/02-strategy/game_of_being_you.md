@@ -507,3 +507,20 @@ The arc:
 6. Sky: as the Journey fills, the sky moves from deep night toward pre-dawn blue at the horizon; full Journey = first light. Subtle, never a progress bar.
 
 Outro moment: the color fills into the place on screen (the «what opened» beat, WP-15 motion). Other skins: the same 5 states via lock/live tokens; only Lunar uses saturation as the carrier. Implementation: `placeState` gains `done`; Lunar CSS maps `closed/open/next/done/live` to filter + tokens (`--place-saturation`, `--place-glow`); soul colors read from `useCharacterSheet`. Lands in WP-2 + WP-3 (state) and WP-6/WP-15 (reveal).
+
+### 14.12 Your stall assembles itself as you play (Sasha, 2026-10-27: «человек открывает свой магазин по ходу дела»)
+
+From the first visit the Market holds **your spot**: an empty stall frame with your name, dark like any closed place. Every Journey result is a physical part of the stall; nothing is typed twice, the stall reads the same data the House shows.
+
+| Journey step | What appears on your stall |
+|---|---|
+| J1 Top Talent | the frame stands; your top talent carved on the post |
+| J2 Mission | the banner over the stall: your mission line |
+| J4 QoL / J5 Assets | shelves: what you have to give (skills, experience, network) as objects |
+| J6 Uniqueness | the stall's name: your uniqueness phrase |
+| J7 Tagline | the signboard: your tagline. The Market opens (place state `open`) |
+| J8–J9 Webinar / Mastermind | the first visitors stop by: people from the Fire Circle can see your stall |
+| J10 First price | a price tag on your offer; the stall is publishable |
+| J11 First sale | the lamp lights: stall in full color, your house colored on other maps, Town Hall opens |
+
+Before J7 the stall is visible only to you (a preview, «under construction» feel without the words). From J7 others see it in the Market. The Outro of each step shows the new part landing on the stall; the Village «what changed» line names it («A banner went up on your stall»). Data: derived from `useCharacterSheet` + offer record; no new storage until the sales migration (WP-11/12). Lands in WP-9 (J6/J7 parts), WP-12 (stall view, publish, lamp), WP-6 (what-changed line).
