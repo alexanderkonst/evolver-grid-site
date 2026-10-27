@@ -1,0 +1,58 @@
+/**
+ * firstVisit — who gets the wordless first minute on `/` (WP-18).
+ *
+ * Design: docs/02-strategy/game_of_being_you.md §14.2 (Journey J0). The intro is for
+ * a browser that has never been here: no flag, no signed-in session, no guest save.
+ * Everyone else goes straight to the title menu.
+ *
+ * The check is synchronous (localStorage only) so a returning player never sees the
+ * intro flash. A signed-in player whose token is somewhere unexpected is caught by the
+ * async session check in WordlessIntro. All storage access is guarded: private mode
+ * and blocked storage must never break the homepage.
+ */
+
+export const INTRO_SEEN_KEY = "fytt:wordless-intro-seen:v1";
+
+/**
+ * Any of these means this browser already holds a player: a Supabase session, a guest
+ * profile, or a saved Top Talent result.
+ */
+const SAVED_GAME_KEYS = [
+  "evolver-auth-token",
+  "game_profile_id",
+  "fytt:transition-quiz-result:v1",
+  "guest_appleseed_data",
+] as const;
+
+export function hasSavedGame(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return SAVED_GAME_KEYS.some((key) => !!window.localStorage.getItem(key));
+  } catch {
+    return false;
+  }
+}
+
+export function hasSeenIntro(): boolean {
+  if (typeof window === "undefined") return true;
+  try {
+    return !!window.localStorage.getItem(INTRO_SEEN_KEY);
+  } catch {
+    // Storage blocked: we cannot remember, so do not trap the player in the intro.
+    return true;
+  }
+}
+
+export function markIntroSeen(): void {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(INTRO_SEEN_KEY, "1");
+  } catch {
+    /* private mode: the intro may show again, nothing breaks */
+  }
+}
+
+/** True only for a fresh browser: no flag, no saved game, no stored session. */
+export function shouldShowWordlessIntro(): boolean {
+  return !hasSeenIntro() && !hasSavedGame();
+}
