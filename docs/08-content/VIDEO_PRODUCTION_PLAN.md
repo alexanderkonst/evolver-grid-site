@@ -53,6 +53,8 @@ Season code **C** (Consciousness). ~15 episodes, ~27 min total.
 
 Open for Sasha: final structure; who writes Module 1; episode count; RU, EN or both.
 
+**Ready-to-load episode texts + NotebookLM prompts (EN, 15 episodes, 2026-10-27):** `consciousness_meets_science_course.md`.
+
 ---
 
 ## 🎬 Naming Convention (TV Series Style)
