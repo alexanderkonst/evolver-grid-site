@@ -288,3 +288,66 @@ The world is a sovereign village on the main screen, built from real photos of p
 | optional | Oracle Reading ($37 deep Top Talent reveal), its Scroll goes to the inventory | Oracle | Digital |
 
 **Now vs later.** Steps 5 to 7 are live trainings today; they can be digitized later. The order may be refined; the victories and the congratulate-and-ask ritual are fixed.
+
+## 14. Platform coherence: the whole site as one game (2026-10-27)
+
+*Sasha, 2026-10-27: «составим смету работ: привести всю платформу, весь сайт в порядок, чтобы действия пользователя были согласованы с визуалом, с игровыми механиками, с модулями, которые уже созданы, с логичными переходами между ними». Rule from §13 holds: no new modules; we name, order, connect and reskin what exists. Sources: live audit of 22 routes (2026-10-27 morning), `src/App.tsx`, `src/lib/shellRoutes.ts`, `src/data/villagePlaces.ts`, `src/components/game/*`, `src/index.css` at main `7feebd8`.*
+
+**Thesis.** Economy first, governance after. *A village is people who already feed each other. Governance is what they earn.* The Market (first sale) comes before the Town Hall (a voice). The village's one public number is its residents' income. This is a game, not a funnel.
+
+**What is true today (facts that drive the rules below).**
+- Three navigation models on one domain: the title menu (`/`), the GameShellV2 rail (MAIN QUEST · AI OS · CHARACTER · MEET · PARTY & GUILD · TRAINING · THE FORGE · TRADING POST), and the old top nav in `Navigation.tsx` (game of life / tools / library / contact / donate); plus the bare auth rail. The village map (`/village`, 11 places) is a fourth way to move and is not wired to the other three.
+- Four skins: night navy + gold (title, village, Your House, Investor Room), navy rail (`--skin-panel-*` in `index.css`), light lavender auth (`#a4a3d0`, `#8460ea`), parchment (`/ignite`, `/build/mastermind`). The cockpit (`/build/cockpit/dashboard`: near-black, serif heads, bespoke radial view) is the best screen and the quality bar.
+- Artificial progress is still on screen: `PlayerStatsBadge` («Level 6 · 500 XP») is mounted in GameShellV2, against §10a.
+- Dev internals are public: `/modules` (version badges v0.1–v1.0), «Live from GitHub main» (`CockpitDashboard.tsx:725`, `CockpitOffersBoard.tsx:90`), lens buttons that say «do not write back yet».
+- Dead or misleading doors: Founder Academy, Mystery School and the $37 power-up are greyed with `cursor-not-allowed` and no reason; the six Venture Builder items all land on `/zone-of-genius`; `/game/next-move` is empty; `/game/coop` (Town Hall) redirects to `/ubb`; Mastermind «Reserve» is `mailto:`; `/ignite` sells $555 / 2 h under the title «Free 45 min» and its video hangs on «Loading…»; Mastermind page still says webinar Wed Oct 28 (real: Wed Nov 4, #124).
+- Gating disagrees with itself: `/zone-of-genius` is public, `/zone-of-genius/entry` (the NEW GAME target) requires auth, and `App.tsx` declares `/zone-of-genius` twice (public line 523, auth line 910).
+- The village has no lock state: every place has ENTER; guests get an invitation overlay. `useCharacterSheet` already carries `lockedHint` per slot: the seed of one lock rule.
+
+### 14.1 Principles (absurdly simple)
+
+1. **One world, one map, one menu.** The village is the navigation. The rail is the same 11 places in the same order with the same names as the map; the title screen is the only door in. Anything that is not on the map is not in the menu.
+2. **A screen is a place, or it is not public.** Every public route belongs to a place in the village (or to the title screen, the Investor Room, or legal). Everything else is hidden, redirected or admin-only.
+3. **Open is in color; closed is faded.** The world is in full color. A place or possibility the player cannot enter yet is desaturated (grayscale allowed), cannot be entered, and says in one line what opens it and what is inside. One component, one rule for every place, room, quest and module. No «disabled», «coming soon», «locked», «paywall», «unlock» words: the state reads from the picture, the line reads like the world («Opens when your offer is crafted»).
+4. **Every screen answers three questions:** where am I (place name + scene), what do I do next (one primary action), what changed in the world (the place that just opened, the last victory).
+5. **Progress is visible in the world, never in numbers.** No XP, no public levels, no dashboard score cards for players. The only personal number is the real QoL level, private to the player (§13.2). The only public number is the village's: residents' income.
+6. **Places open in the order life earns them.** Reception → Your House → Workshop → Market → Town Hall. Market before Town Hall: you get a voice after you have fed someone (first sale).
+7. **Every door that asks for money is a real checkout in one step**, and its title says the same price and length as the page. No `mailto:` for a seat, no «free» headline over a paid offer.
+8. **One skin.** Night village palette and type as tokens, cockpit-grade craft as the bar. Light lavender and parchment skins retire.
+9. **Nothing internal on the surface.** No repo names, version numbers, maturity stages, «not wired yet» buttons. Half-built features are faded places with a line, or absent.
+
+### 14.2 The lock rule (Sasha's decision, 2026-10-27: closes the color fork)
+
+*Sasha: the world is in color; the «color is earned through the prism» metaphor and an all-black-and-white world are not taken. Normal game mechanics: closed places are dim/desaturated, cannot be entered, and it is immediately obvious «not yet», with what will open it.*
+
+**Four states, one component (`PlaceState`), one source of truth (`villagePlaces.ts` + the save file):**
+
+| State | Look | Behavior | Line |
+|---|---|---|---|
+| `open` | full color, alive (lights, subtle motion) | ENTER works | the place's line («Craft your offer.») |
+| `closed` | desaturated / grayscale, dimmed, no motion; optional halftone/ASCII texture as a decorative closed-state treatment only | no ENTER; click shows the scene faded + one line | «Opens when <real event>. Inside: <what you'll do>.» |
+| `new` | the color arrives (a one-time desaturate→color transition) | ENTER + the §13.4 ritual: congratulate, ask 1–10, record the victory | «Open now.» |
+| `live` | open + a live marker | ENTER goes to the live thing | «Live now: Webinar, Wed Nov 4.» |
+
+- **Unlock conditions are real events read from the save file** (zog_snapshots, mission, user_assets, qol_snapshots, UBB offer, sales), never points. A pure function `placeState(place, save)` decides; the map, the rail, the place screen and every in-page room use it.
+- **Same rule below the place level:** rooms in Your House (Mission, QoL, Assets), Academy rooms (Founder Academy, Mystery School), the $37 Oracle Reading, Town Hall.
+- **Guests see the whole village in color where it is open to them** (Reception, Academy, Fire Circle, the Investor Room outside), and the rest faded with what opens it. The invitation overlay is replaced by this rule.
+- **Copy:** never «locked/disabled/coming soon/paywall/unlock». Accessibility: the closed state also carries `aria-disabled` and the line as text, so it does not depend on color perception.
+
+**Unlock order (v0, real events only):**
+
+| Place | Open for | Opens when |
+|---|---|---|
+| Reception | everyone | always |
+| Academy | everyone | always (Tutorial is free) |
+| Fire Circle | everyone | always (live events, Mastermind seats) |
+| Your House | resident | you passed Reception (Top Talent saved to your account) |
+| Quest Board | resident | with Your House |
+| Oracle | resident | with Your House (it answers about *your* character) |
+| Café | resident | your character is described (Mission saved) — §13.3 «profile complete → Café opens» |
+| Workshop | resident | your uniqueness is in one phrase (Mission saved) |
+| Co-working | resident | your offer is crafted (UBB offer saved) |
+| Market | resident | your offer is crafted (your stall appears) |
+| Town Hall | resident | your first sale is recorded (the Slipper) |
+
+Inferred, to confirm in review: Oracle and Café thresholds. Town Hall stays faded for everyone until their own first sale; its public face (residents' income) is readable from the Investor Room meanwhile.
