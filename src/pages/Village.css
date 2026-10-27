@@ -49,10 +49,16 @@
 /* ---------- Map ---------- */
 .vl-map { position: relative; height: 100vh; height: 100svh; overflow: hidden; }
 .vl-frame { position: absolute; inset: 0; overflow: hidden; background: var(--vl-bg); }
-/* object-fit: cover, done as a box so % markers stay glued to the buildings */
+/*
+ * object-fit: cover, done as a box so % markers stay glued to the buildings.
+ * Ratio and focal point come from VILLAGE_MAP (--vl-ar, --vl-ratio, --vl-fx/fy, set on
+ * .vl-frame): the box is pinned so the focal point of the image sits at the same
+ * fraction of the screen, exactly what object-position does. Never stretched.
+ */
 .vl-cover {
-  position: absolute; left: 50%; top: 50%; aspect-ratio: 1376 / 768;
-  width: max(100%, calc(100svh * 1376 / 768)); transform: translate(-50%, -50%);
+  position: absolute; left: var(--vl-fx, 50%); top: var(--vl-fy, 50%); aspect-ratio: var(--vl-ar, 1);
+  width: max(100%, calc(100svh * var(--vl-ratio, 1)));
+  transform: translate(calc(-1 * var(--vl-fx, 50%)), calc(-1 * var(--vl-fy, 50%)));
 }
 .vl-drift { position: absolute; inset: 0; transform-origin: 50% 40%; animation: vl-burns 40s ease-in-out infinite alternate; }
 @keyframes vl-burns { from { transform: scale(1); } to { transform: scale(1.04); } }
@@ -130,7 +136,8 @@
 .vl-place { position: fixed; inset: 0; z-index: 3; background: var(--vl-bg); }
 .vl-place__img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  transform-origin: 50% 45%; animation: vl-burns 36s ease-in-out infinite alternate;
+  /* object-position and transform-origin come per scene from its focal point */
+  animation: vl-burns 36s ease-in-out infinite alternate;
 }
 .vl-place::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
@@ -183,7 +190,7 @@
   .vl-map { height: auto; overflow: visible; }
   .vl-head { position: relative; top: auto; left: auto; padding: 44px 24px 22px; }
   .vl-head h1 { font-size: 30px; margin-top: 12px; }
-  .vl-frame { position: relative; inset: auto; width: 100%; aspect-ratio: 1376 / 768; }
+  .vl-frame { position: relative; inset: auto; width: 100%; aspect-ratio: var(--vl-ar, 1); }
   .vl-cover { left: 0; top: 0; width: 100%; transform: none; }
   .vl-drift { animation: none; }
   .vl-vignette {

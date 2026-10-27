@@ -7,6 +7,7 @@ import {
   VILLAGE_MAP,
   VILLAGE_PLACES,
   getVillagePlace,
+  sceneObjectPosition,
   type VillagePlace,
 } from "@/data/villagePlaces";
 import "./Village.css";
@@ -29,6 +30,14 @@ type Direction = "left" | "right" | "up" | "down";
 
 const RECEPTION_INDEX = VILLAGE_PLACES.findIndex((p) => p.key === "reception");
 const ASPECT = VILLAGE_MAP.width / VILLAGE_MAP.height;
+
+/** Map stage geometry for the CSS: image ratio and focal point (see .vl-cover). */
+const MAP_STAGE = {
+  "--vl-ar": `${VILLAGE_MAP.width} / ${VILLAGE_MAP.height}`,
+  "--vl-ratio": ASPECT,
+  "--vl-fx": `${VILLAGE_MAP.focus.x}%`,
+  "--vl-fy": `${VILLAGE_MAP.focus.y}%`,
+} as CSSProperties;
 
 /** Nearest place in a direction on the map; stays put when nothing lies that way. */
 const neighbour = (from: number, dir: Direction): number => {
@@ -175,7 +184,7 @@ const Village = () => {
             <h1>The Digital Village</h1>
           </header>
 
-          <div className="vl-frame">
+          <div className="vl-frame" style={MAP_STAGE}>
             <div className="vl-cover">
               <div className="vl-drift">
                 <img
@@ -259,6 +268,10 @@ const Village = () => {
               src={lastPlace.image}
               alt={lastPlace.alt}
               decoding="async"
+              style={{
+                objectPosition: sceneObjectPosition(lastPlace),
+                transformOrigin: sceneObjectPosition(lastPlace),
+              }}
             />
             <Link className="vl-mono vl-back" to="/village">← Village</Link>
             <div className="vl-place__copy">
