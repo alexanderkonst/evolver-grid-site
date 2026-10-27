@@ -606,7 +606,7 @@ Applied first to the Journey modules J1–J12 when WP-5 lands; Evolver keeps the
 2. **The first-sale boss is a neighbor.** In a real village the first buyer often lives two houses away. J11 counts a local sale the same as an online one.
 3. **The lunar loop in the flesh.** Full moon: a real harvest circle where stalls are shown in person. New moon: a quiet circle. The game's moon (WP-16) and the town's moon are the same moon.
 4. **Particles = real faces of the town.** A particle (WP-17) left by a San Pancho resident is a real name, a real photo and a real shop, visible on that person's stall and through the QR code.
-5. **The village owns its own data.** No scraping of the directory into the platform. Practitioners bring their own listing, reviews and voice when they join. Partnership is invitation, never extraction.
+5. **The village owns its own data.** Private import only (§16.6); nothing is public until its owner claims it. Practitioners bring their own listing, reviews and voice when they join. Partnership is invitation, never extraction.
 6. **Town Hall's one public number** (§14.1.7) becomes tangible: the income of the village's residents.
 
 ### 16.4 Sequence (Sasha's order)
@@ -630,4 +630,4 @@ Applied first to the Journey modules J1–J12 when WP-5 lands; Evolver keeps the
 - first contact with San Pancho Life and practitioners: Sasha in person or an Evolver draft;
 - circle venue: a fire on the beach, a host venue, or both.
 
-**Open proposal (2026-10-27):** load the public directory into a private layer only, so each practitioner gets a pre-built, unpublished stall shown to them at first contact as a gift ("this is you, want to claim it?"). It becomes public only when its owner claims it. This would refine rule 5 (§16.3) from "no scraping" to "private import, public by claim". Awaiting Sasha.
+**Accepted (Sasha, 2026-10-27: «Давай пока так»):** load the public directory into a private layer only, so each practitioner gets a pre-built, unpublished stall shown to them at first contact as a gift ("this is you, want to claim it?"). It becomes public only when its owner claims it. This refines rule 5 (§16.3) to "private import, public by claim". First step: a private preview of the unclaimed stalls for Sasha; the data stays out of this public repo.
