@@ -1,14 +1,23 @@
 import { useId, useState, type FormEvent, type KeyboardEvent } from "react";
-import { PARTICLE_MAX, FIRST_NAME_MAX } from "@/lib/particleGuard";
-import { clearParticleInvite, type VillageParticlesApi } from "@/hooks/useVillageParticles";
+import { Link } from "react-router-dom";
+import { PARTICLE_MAX } from "@/lib/particleGuard";
+import {
+  PROFILE_SETTINGS_PATH,
+  clearParticleInvite,
+  type VillageParticlesApi,
+} from "@/hooks/useVillageParticles";
 import "./LeaveParticle.css";
 
 /**
  * LeaveParticle — the optional prompt after an Outro (WP-17).
  *
- * «Leave something here for the one who comes next.» One short line, an
- * optional first name, «Leave it» and «Not now». It never blocks anything: it
- * sits beside the way back to the village and can be ignored.
+ * «Leave something here for the one who comes next.» One short line,
+ * «Leave it» and «Not now». It never blocks anything: it sits beside the way
+ * back to the village and can be ignored.
+ *
+ * No anonymity: the particle is shown with the player's real name and photo,
+ * so the form says so, and a player without a name or photo is sent to their
+ * profile to add one first (no field is offered until they have).
  *
  * Renders nothing for guests, when the player already left a particle here, or
  * while the table is not available (the feature degrades to «no prompt»).
@@ -27,10 +36,9 @@ type Props = {
 };
 
 const LeaveParticle = ({ placeKey, api, variant = "scene", startOpen = false }: Props) => {
-  const { signedIn, available, hasLeft, leave } = api;
+  const { signedIn, available, hasLeft, identity, leave } = api;
   const [open, setOpen] = useState(startOpen);
   const [text, setText] = useState("");
-  const [name, setName] = useState("");
   const [note, setNote] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [thanked, setThanked] = useState(false);
@@ -61,7 +69,7 @@ const LeaveParticle = ({ placeKey, api, variant = "scene", startOpen = false }: 
     e.preventDefault();
     if (busy) return;
     setBusy(true);
-    const res = await leave(text, name);
+    const res = await leave(text);
     setBusy(false);
     if (res.ok === false) {
       setNote(res.message);
@@ -87,6 +95,31 @@ const LeaveParticle = ({ placeKey, api, variant = "scene", startOpen = false }: 
     );
   }
 
+  // Still reading the profile: show nothing rather than a form that may not be allowed.
+  if (!identity) return null;
+
+  // No name or photo yet: ask for it first. Particles are never anonymous.
+  if (identity.missing) {
+    const what =
+      identity.missing === "both" ? "name and photo" : identity.missing === "name" ? "name" : "photo";
+    return (
+      <div className={`lp lp--${variant} lp__form`} onKeyDown={onKeyDown}>
+        <p className="lp__label">Leave something here for the one who comes next.</p>
+        <p className="lp__note">
+          What you leave is shown with your real {what}. Add your {what} to your profile first.
+        </p>
+        <div className="lp__actions">
+          <Link className="lp__go" to={PROFILE_SETTINGS_PATH}>
+            Add {what}
+          </Link>
+          <button type="button" className="lp__skip" onClick={notNow}>
+            Not now
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <form className={`lp lp--${variant} lp__form`} onSubmit={submit} onKeyDown={onKeyDown} noValidate>
       <label className="lp__label" htmlFor={fieldId}>
@@ -106,16 +139,10 @@ const LeaveParticle = ({ placeKey, api, variant = "scene", startOpen = false }: 
           if (note) setNote(null);
         }}
       />
-      <input
-        className="lp__input lp__input--name"
-        type="text"
-        value={name}
-        maxLength={FIRST_NAME_MAX}
-        placeholder="First name (optional)"
-        aria-label="First name (optional)"
-        autoComplete="off"
-        onChange={(e) => setName(e.target.value)}
-      />
+      <p className="lp__as">
+        {identity.avatarUrl && <img className="lp__face" src={identity.avatarUrl} alt="" />}
+        <span>Shown as {identity.name}, with your photo.</span>
+      </p>
       {note && (
         <p className="lp__note" role="alert">
           {note}

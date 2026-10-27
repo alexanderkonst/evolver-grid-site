@@ -14,7 +14,6 @@
 
 export const PARTICLE_MIN = 3;
 export const PARTICLE_MAX = 140;
-export const FIRST_NAME_MAX = 30;
 
 export type ParticleRejection = "too_short" | "too_long" | "profanity";
 
@@ -157,21 +156,6 @@ export function checkParticle(raw: string): ParticleCheck {
   if (size > PARTICLE_MAX) return reject("too_long");
   if (containsProfanity(text)) return reject("profanity");
   return { ok: true, text };
-}
-
-/**
- * Optional first name: letters, spaces, hyphen, apostrophe, up to 30. Returns
- * null when empty, or when it fails the same guards (we drop it, never block).
- */
-export function cleanFirstName(raw: string): string | null {
-  const name = stripContactDetails(raw)
-    .replace(/[^\p{L}\p{M}' -]+/gu, "")
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, FIRST_NAME_MAX)
-    .trim();
-  if (!name || containsProfanity(name)) return null;
-  return name;
 }
 
 function reject(reason: ParticleRejection): ParticleCheck {

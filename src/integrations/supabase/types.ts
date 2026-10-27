@@ -2823,30 +2823,36 @@ export type Database = {
       }
       village_particles: {
         Row: {
+          avatar_url: string
           created_at: string
-          first_name: string | null
+          display_name: string
           id: string
           place_key: string
           status: string
           text: string
+          uniqueness: string | null
           user_id: string
         }
         Insert: {
+          avatar_url: string
           created_at?: string
-          first_name?: string | null
+          display_name: string
           id?: string
           place_key: string
           status?: string
           text: string
+          uniqueness?: string | null
           user_id: string
         }
         Update: {
+          avatar_url?: string
           created_at?: string
-          first_name?: string | null
+          display_name?: string
           id?: string
           place_key?: string
           status?: string
           text?: string
+          uniqueness?: string | null
           user_id?: string
         }
         Relationships: []

@@ -198,11 +198,13 @@
 .vl-mote.is-fading { opacity: 0; }
 /* The body drifts and arrives once; the shell above handles the swaps. */
 .vl-mote__body { display: block; opacity: 0; animation: vl-mote-in 2.2s ease forwards, vl-mote-float 11s ease-in-out infinite alternate; }
-.vl-mote__body::before {
-  content: ""; display: block; width: 5px; height: 5px; margin: 0 auto 8px; border-radius: 50%;
-  background: var(--vl-accent); box-shadow: 0 0 10px 2px var(--vl-accent); opacity: 0.8;
+/* Never anonymous: the real photo glows like a small light above the line. */
+.vl-mote__face {
+  display: block; width: 38px; height: 38px; margin: 0 auto 8px; border-radius: 50%; object-fit: cover;
+  border: 1px solid var(--vl-accent); box-shadow: 0 0 14px 2px rgba(var(--scene-shadow-rgb), 0.6), 0 0 12px 1px var(--vl-accent);
 }
-.vl-mote__name { display: block; margin-top: 4px; font-style: normal; font-family: var(--vl-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--vl-ink-3); }
+.vl-mote__name { display: block; margin-top: 6px; font-style: normal; font-family: var(--vl-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--vl-ink-2); }
+.vl-mote__unique { display: block; margin-top: 2px; font-size: 14px; color: var(--vl-ink-3); }
 .vl-mote--0 { top: 15%; left: 7%; }
 .vl-mote--1 { top: 29%; right: 7%; }
 .vl-mote--2 { top: 43%; left: 15%; }

@@ -23,7 +23,8 @@
 }
 .lp__input::placeholder { color: var(--lp-ink-2); opacity: 0.8; font-style: italic; }
 .lp__input:focus-visible { outline: 1px solid var(--lp-accent); outline-offset: 2px; border-color: var(--lp-accent); }
-.lp__input--name { min-height: 40px; font-size: 16px; }
+.lp__as { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0; font-style: italic; font-size: 15px; color: var(--lp-ink-2); }
+.lp__face { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; border: 1px solid var(--lp-hair); }
 .lp__note { margin: 0; font-style: italic; font-size: 16px; color: var(--lp-ink); max-width: 36ch; text-wrap: balance; }
 .lp__actions { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
 .lp__go, .lp__skip {
@@ -33,6 +34,7 @@
 }
 .lp__go { color: var(--lp-ink); background: transparent; border: 1px solid var(--lp-accent); }
 .lp__go:hover:not(:disabled), .lp__go:focus-visible { background: var(--lp-accent); color: var(--lp-bg); outline: none; }
+a.lp__go { display: inline-flex; align-items: center; text-decoration: none; }
 .lp__go:disabled { opacity: 0.5; cursor: default; }
 .lp__skip { color: var(--lp-ink-2); background: transparent; border: none; }
 .lp__skip:hover, .lp__skip:focus-visible { color: var(--lp-ink); outline: none; }

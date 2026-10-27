@@ -3,7 +3,6 @@ import {
   PARTICLE_MAX,
   PARTICLE_MIN,
   checkParticle,
-  cleanFirstName,
   containsProfanity,
   stripContactDetails,
 } from "@/lib/particleGuard";
@@ -101,29 +100,5 @@ describe("checkParticle", () => {
     const res = checkParticle("this place is shit");
     expect(res).toMatchObject({ ok: false, reason: "profanity" });
     expect(res).toMatchObject({ message: expect.stringMatching(/another way/i) });
-  });
-});
-
-describe("cleanFirstName", () => {
-  it("returns null when empty", () => {
-    expect(cleanFirstName("   ")).toBeNull();
-  });
-
-  it("keeps a plain first name", () => {
-    expect(cleanFirstName(" Анна ")).toBe("Анна");
-    expect(cleanFirstName("María-José")).toBe("María-José");
-  });
-
-  it("drops links, digits and symbols", () => {
-    expect(cleanFirstName("Sam 555 123 4567")).toBe("Sam");
-    expect(cleanFirstName("Lu<script>")).toBe("Luscript");
-  });
-
-  it("drops a name that fails the profanity guard instead of blocking", () => {
-    expect(cleanFirstName("fuck")).toBeNull();
-  });
-
-  it("caps the length", () => {
-    expect(cleanFirstName("a".repeat(80))?.length).toBe(30);
   });
 });
