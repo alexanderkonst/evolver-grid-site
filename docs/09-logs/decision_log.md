@@ -8,6 +8,18 @@
 
 ## 2026-10-26 (Day 225)
 
+### D-2026-10-26-02: Fidelity principle — the game shows life itself, no artificial XP
+
+**Decision:** THE GAME OF BEING YOU has no invented points economy. Progress is the player's real movement on the QoL map (Current vs Peak, weekly Save Point, seasonal re-take). Every mechanic must show something true about the player's life; what matters to people is what the platform shows, as far as possible.
+
+**Rationale:** Sasha: «может просто наша цель — точно показать саму жизнь? А не придумывать искусственные XP? Мы же саму жизнь артикулируем». Stage 7 of the game design almanac: the game state is real life.
+
+**Reversibility:** Doctrinal; mechanics can be added later only if they pass the fidelity test.
+
+**Cross-references:** `docs/02-strategy/game_of_being_you.md` §10, §10a · `docs/02-strategy/game_design_almanac.md`.
+
+---
+
 ### D-2026-10-26-01: The product is a game; the game is the blueprint
 
 **Decision:** findyourtoptalent.com is designed as THE GAME OF BEING YOU. The homepage is a title screen (NEW GAME / LOAD GAME / TUTORIAL / MULTIPLAYER / ABOUT → Investor Room). Goal = high Quality of Life on the 8-domain map; level = bottleneck domain; soul colors = the player's Spectrum. "Genius" is renamed "Uniqueness". Spirit = tetrahedron/fire, Uniqueness = dodecahedron/aether (the fifth element, at the center). The new homepage goes straight onto `/`.

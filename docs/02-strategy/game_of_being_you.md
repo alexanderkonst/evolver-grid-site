@@ -123,9 +123,9 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 
 - **Level = your bottleneck:** the lowest stage across all 8 domains. To level up, the whole map has to move up at least one stage (Sasha: "a level is at least one transition across the whole map"). Theory of Constraints / Liebig's barrel.
 - **Main quest = suggested from the bottleneck, confirmed by the player.** Life is rarely black and white, so the game proposes the bottleneck domain as the main quest and the player confirms or picks another (Sasha, 2026-10-26: «не всегда будет черно белое… только если игрок подтверждает»).
-- **XP = progress inside a stage** toward the next one: completed quests and practices. The five paths (Body, Emotions, Mind, Spirit, Uniqueness) are the skill tree; their practices feed XP into domains.
+- **No artificial XP (Sasha, 2026-10-26: «может просто наша цель — точно показать саму жизнь? А не придумывать искусственные XP? Мы же саму жизнь артикулируем»).** Progress is the player's real movement on the QoL map, read from life, not points. What matters to people is what the platform shows, as far as possible. The five paths (Body, Emotions, Mind, Spirit, Uniqueness) are the skill tree; their practices feed XP into domains.
 - **Leveling down is real** (life goes down too), so two meters: **Current level** (can fall, shown as weather, not punishment) and **Peak** (best level reached, kept). A drop opens a **Comeback quest** with bonus XP.
-- **Input:** a 60-second weekly **Save Point** ritual (each domain: up / same / down + one line) and a full map re-take each season.
+- **Input (confirmed):** a 60-second weekly **Save Point** ritual (each domain: up / same / down + one line) and a full map re-take each season.
 - **Rejected (Sasha, 2026-10-26: «ерунда! Не сработает»):** evidence from quests and peer witness from the party as XP/input.
 - **The crystal shows the level:** clarity and brightness of the player's spectrum grow with level; new facets unlock (Spectrum insights).
 
@@ -140,6 +140,21 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 8. ✅ **Approved.** Compare only with your past self. No QoL leaderboard; if any leaderboard, only for contribution to others.
 9. Variable reward: new Spectrum insights and crystal facets.
 
+
+## 10a. Fidelity principle (2026-10-26, Sasha)
+
+**The game articulates life itself.** It does not invent a parallel economy of points; it mirrors the player's real state as precisely as possible and makes it legible, beautiful and playable. Test for any mechanic: *does it show something true about the player's life, or does it add something artificial?* Only the first passes. This is the stage-7 move in the almanac: fidelity = 100%, nothing is simulated.
+
+Stage-7+ mechanics that pass the test (proposed, Evolver):
+1. **Character sheet = the QoL map**, Current vs Peak: the HUD is your life.
+2. **Main quest = a real intention** the player names (bottleneck suggests, player confirms); completion = a real event.
+3. **Loot = real outcomes**: income, a relationship, a home, health markers.
+4. **Bosses = real thresholds** (first sale, a move, a hard conversation).
+5. **Fog of war = the next stage's description**: the map reveals what the next level of a domain looks like, so the path is visible without invented tasks.
+6. **AI game master narrates your real life**: season recaps, patterns noticed across Save Points, the story of your chapter (the generative GM of stage 7).
+7. **Spectrum insights = real self-knowledge** unlocked as you play (soul colors, Uniqueness).
+8. **Seasons = real life rhythms**, closed with a before/after map.
+9. **Party = real people** walking real quests together (stage-8 on-ramp).
 
 ## 11. The Fifth Element (2026-10-26, Sasha)
 
@@ -167,6 +182,7 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 - 2026-10-26: Game design almanac started: invariant = scope of player authorship; 7 stages; Si–Do = life as the game ([game_design_almanac.md](./game_design_almanac.md)).
 - 2026-10-26: Subtitle → "Self-Discovery · Quality of Life · Uniqueness · Growth · Tribe"; "FindYourTopTalent.com presents" removed.
 - 2026-10-26: Fifth Element = quintessence = Uniqueness; proposed as the game's name (§11).
+- 2026-10-26: Fidelity principle (§10a): no artificial XP; the game shows life itself; what matters to people is in the platform. Save Point + seasonal re-take confirmed.
 - 2026-10-26: Sasha: «называем открыто игрой де-факто игру» — the platform already lives under /game/*; next step = game vocabulary for existing spaces (labels only, routes unchanged). Proposed map: Me→Character, ZoG→Character Creation, QoL assessment→Save Point & Level, Today→Daily Quests, Paths→Skill Tree, Grow→Training, Build→The Forge, Marketplace→Trading Post, Collaborate/Coop→Party & Guild, Events→Raids, Journey→Main Quest. Awaiting his yes.
 - 2026-10-26: Almanac v0.2: stages 1–7 confirmed («Бинго!»); fidelity axis (games chase reality until 7, then reality approaches the game); forecast 8 Shared Reality, 9 Civilization Game. Our game = stage 7 with a stage-8 on-ramp.
 - 2026-10-26: Core loop review (Sasha): approved goal = QoL, daily 5-min quests with freezable soft streak, real loot (first unique-offer income = boss drop), bosses = real thresholds, compare only with past self (leaderboard only for contribution). Rejected: evidence from quests + party witness. Changed: bottleneck main quest only when the player confirms.
