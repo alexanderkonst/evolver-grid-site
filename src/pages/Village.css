@@ -225,6 +225,33 @@
 .vl-signin:hover, .vl-signin:focus-visible { color: var(--vl-ink); }
 .vl-back:focus-visible, .vl-corner:focus-visible, .vl-signin:focus-visible { outline: 1px solid var(--vl-accent); outline-offset: 2px; }
 
+/* ---------- Particles: what earlier players left at the place (WP-17) ---------- */
+.vl-motes { position: absolute; z-index: 1; inset: 0; pointer-events: none; }
+.vl-mote {
+  position: absolute; margin: 0; max-width: min(30ch, 34vw); text-align: center;
+  font-family: var(--vl-serif); font-style: italic; font-weight: 300; font-size: clamp(17px, 1.5vw, 22px); line-height: 1.35;
+  color: var(--vl-ink); text-shadow: 0 0 18px rgba(var(--scene-shadow-rgb), 0.9), 0 0 36px rgba(var(--scene-shadow-rgb), 0.6);
+  opacity: 0.88; transition: opacity 1.4s ease; /* swapping a light: fade out, change the line, fade in */
+}
+.vl-mote.is-fading { opacity: 0; }
+/* The body drifts and arrives once; the shell above handles the swaps. */
+.vl-mote__body { display: block; opacity: 0; animation: vl-mote-in 2.2s ease forwards, vl-mote-float 11s ease-in-out infinite alternate; }
+/* Never anonymous: the real photo glows like a small light above the line. */
+.vl-mote__face {
+  display: block; width: 38px; height: 38px; margin: 0 auto 8px; border-radius: 50%; object-fit: cover;
+  border: 1px solid var(--vl-accent); box-shadow: 0 0 14px 2px rgba(var(--scene-shadow-rgb), 0.6), 0 0 12px 1px var(--vl-accent);
+}
+.vl-mote__name { display: block; margin-top: 6px; font-style: normal; font-family: var(--vl-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--vl-ink-2); }
+.vl-mote__unique { display: block; margin-top: 2px; font-size: 14px; color: var(--vl-ink-3); }
+.vl-mote--0 { top: 15%; left: 7%; }
+.vl-mote--1 { top: 29%; right: 7%; }
+.vl-mote--2 { top: 43%; left: 15%; }
+.vl-mote--0 .vl-mote__body { animation-delay: 0.6s, 0s; }
+.vl-mote--1 .vl-mote__body { animation-delay: 2.4s, -3.5s; }
+.vl-mote--2 .vl-mote__body { animation-delay: 4.2s, -7s; }
+@keyframes vl-mote-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes vl-mote-float { from { translate: 0 -5px; } to { translate: 0 6px; } }
+
 /* ---------- Mobile: map as hero, places as a menu list below ---------- */
 @media (max-width: 767px) {
   .vl-map { height: auto; overflow: visible; }
@@ -253,6 +280,10 @@
   .vl-list a:focus-visible .vl-list__name { outline: 1px solid var(--vl-accent); outline-offset: 4px; }
   .vl-place__img { animation: none; }
   .vl-place__copy { padding-bottom: 56px; }
+  .vl-mote { max-width: 62vw; font-size: 17px; }
+  .vl-mote--0 { top: 12%; left: 6%; }
+  .vl-mote--1 { top: 22%; right: 6%; }
+  .vl-mote--2 { top: 32%; left: 10%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -262,4 +293,6 @@
   .vl-dot::after { display: none; }
   .vl-intro { animation: none; opacity: 1; }
   .vl-dot::before, .vl-pin__name, .vl-enter, .vl-back, .vl-corner, .vl-signin { transition: none; }
+  .vl-mote { transition: none; }
+  .vl-mote__body { animation: none; opacity: 1; }
 }
