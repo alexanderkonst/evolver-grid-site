@@ -8,7 +8,7 @@
  */
 
 export type VillagePlaceKey =
-  | "gate"
+  | "reception"
   | "house"
   | "quest-board"
   | "oracle"
@@ -46,12 +46,13 @@ export const VILLAGE_MAP = {
 
 export const VILLAGE_PLACES: VillagePlace[] = [
   {
-    key: "gate",
-    name: "Gate",
-    line: "Arrive. Discover your uniqueness.",
+    key: "reception",
+    name: "Reception",
+    line: "Welcome, guest. Discover your uniqueness.",
     to: "/zone-of-genius/entry",
+    // The scene file is still named gate.webp; kept until a Reception scene is made.
     image: "/game/village/gate.webp",
-    alt: "A grand marble stair lined with lanterns and candles rises to the village gate, an arched doorway glowing warm gold, a crystal dodecahedron shining above it in the night sky",
+    alt: "A grand marble stair lined with lanterns and candles rises to a welcoming arched doorway glowing warm gold, a crystal dodecahedron shining above it in the night sky",
     x: 15.5,
     y: 62,
   },
@@ -159,6 +160,9 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     y: 27,
   },
 ];
+
+/** Where every guest's stay begins; signed-out visitors are invited here. */
+export const RECEPTION = VILLAGE_PLACES.find((p) => p.key === "reception")!;
 
 export const getVillagePlace = (key: string | undefined) =>
   VILLAGE_PLACES.find((p) => p.key === key);

@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { FONTS_HREF } from "@/lib/gameFonts";
 import {
+  RECEPTION,
   VILLAGE_MAP,
   VILLAGE_PLACES,
   getVillagePlace,
@@ -18,13 +19,15 @@ import "./Village.css";
  * src/data/villagePlaces.ts. Source of truth:
  * docs/02-strategy/game_of_being_you.md §13.1–§13.4 (no XP, no points, no levels).
  *
- * The map is public. ENTER on any place except the Gate sends a signed-out
- * player to /auth (same `?redirect=` contract as RequireAuth).
+ * The map and every scene are public. A signed-out guest who opens a place
+ * other than Reception finds a warm invitation over the scene instead of ENTER:
+ * their stay begins at Reception, or "I already live here" leads to /auth
+ * (same `?redirect=` contract as RequireAuth). No barrier language.
  */
 
 type Direction = "left" | "right" | "up" | "down";
 
-const GATE_INDEX = VILLAGE_PLACES.findIndex((p) => p.key === "gate");
+const RECEPTION_INDEX = VILLAGE_PLACES.findIndex((p) => p.key === "reception");
 const ASPECT = VILLAGE_MAP.width / VILLAGE_MAP.height;
 
 /** Nearest place in a direction on the map; stays put when nothing lies that way. */
@@ -62,11 +65,32 @@ const useIsMobile = () => {
   return mobile;
 };
 
+/** null while the session is still being read. */
+const useSignedIn = () => {
+  const [signedIn, setSignedIn] = useState<boolean | null>(null);
+  useEffect(() => {
+    let live = true;
+    supabase.auth
+      .getSession()
+      .then(({ data }) => live && setSignedIn(!!data.session))
+      .catch(() => live && setSignedIn(false));
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (live) setSignedIn(!!session);
+    });
+    return () => {
+      live = false;
+      sub.subscription.unsubscribe();
+    };
+  }, []);
+  return signedIn;
+};
+
 const Village = () => {
   const { place: placeKey } = useParams<{ place?: string }>();
   const place = getVillagePlace(placeKey);
   const navigate = useNavigate();
   const mobile = useIsMobile();
+  const signedIn = useSignedIn();
   const [active, setActive] = useState<number | null>(null);
   // Keep the last scene mounted after leaving it, so map ← place can crossfade too.
   const [lastPlace, setLastPlace] = useState<VillagePlace | undefined>(place);
@@ -122,7 +146,7 @@ const Village = () => {
         : e.key === "ArrowDown" ? "down" : e.key === "ArrowUp" ? "up" : null;
       if (dir) {
         e.preventDefault();
-        select(active === null ? GATE_INDEX : neighbour(active, dir), true);
+        select(active === null ? RECEPTION_INDEX : neighbour(active, dir), true);
       } else if (e.key === "Enter" && active !== null) {
         const el = document.activeElement;
         if (el && el !== document.body) return; // a focused link activates natively
@@ -134,24 +158,10 @@ const Village = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, [place, mobile, active, select, navigate]);
 
-  const enter = useCallback(
-    async (e: MouseEvent<HTMLAnchorElement>, target: VillagePlace) => {
-      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      e.preventDefault();
-      if (target.key !== "gate") {
-        const { data } = await supabase.auth.getSession().catch(() => ({ data: { session: null } }));
-        if (!data.session) {
-          navigate(`/auth?redirect=${encodeURIComponent(target.to)}`);
-          return;
-        }
-      }
-      navigate(target.to);
-    },
-    [navigate],
-  );
-
   if (placeKey && !place) return <Navigate to="/village" replace />;
 
+  // Signed-out guests get the invitation everywhere except Reception itself.
+  const invited = signedIn === false && !!lastPlace && lastPlace.key !== RECEPTION.key;
   const current = active !== null ? VILLAGE_PLACES[active] : null;
 
   return (
@@ -254,14 +264,28 @@ const Village = () => {
             <div className="vl-place__copy">
               <h2>{lastPlace.name}</h2>
               <p className="vl-place__line">{lastPlace.line}</p>
-              <a
-                ref={enterRef}
-                className="vl-enter"
-                href={lastPlace.to}
-                onClick={(e) => enter(e, lastPlace)}
-              >
-                ENTER
-              </a>
+              {invited ? (
+                <div className="vl-invite">
+                  <p className="vl-invite__text">You&rsquo;re our guest. Your stay begins at Reception.</p>
+                  <Link ref={enterRef} className="vl-enter" to={`/village/${RECEPTION.key}`}>
+                    GO TO RECEPTION
+                  </Link>
+                  <Link
+                    className="vl-mono vl-signin"
+                    to={`/auth?redirect=${encodeURIComponent(lastPlace.to)}`}
+                  >
+                    I already live here &rarr; sign in
+                  </Link>
+                </div>
+              ) : (
+                <Link
+                  ref={enterRef}
+                  className={`vl-enter${signedIn === null && lastPlace.key !== RECEPTION.key ? " is-pending" : ""}`}
+                  to={lastPlace.to}
+                >
+                  ENTER
+                </Link>
+              )}
             </div>
           </section>
         )}
