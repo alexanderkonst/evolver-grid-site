@@ -63,7 +63,7 @@ const CTA_OPENS_NEW_TAB = Boolean(MASTERMIND_CTA_URL);
 const SERIF = { fontFamily: "'Cormorant Garamond', serif" } as const;
 const BODY_SERIF = {
   fontFamily: "'Source Serif 4', serif",
-  color: "var(--skin-text-secondary, #33415c)",
+  color: "var(--text-secondary)",
 } as const;
 
 const SectionLabel = ({ children }: { children: string }) => (
@@ -109,7 +109,7 @@ const Mastermind = () => {
           id="mastermind-page"
           style={{
             background:
-              "var(--skin-ignite-bg, linear-gradient(180deg, #fdfaf3 0%, #f6efe0 45%, #fdfaf3 100%))",
+              "var(--surface-page)",
           }}
         >
           <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 pt-8 pb-16 space-y-12">

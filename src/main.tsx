@@ -3,6 +3,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { I18nextProvider } from "react-i18next";
 import App from "./App.tsx";
 import "./index.css";
+import "./styles/theme-tokens.css";
 import i18n from "@/i18n/config";
 import { installLanguageProfileSync } from "@/i18n/languageSync";
 import { installPostAuthSideEffects } from "@/lib/postAuthSideEffects";

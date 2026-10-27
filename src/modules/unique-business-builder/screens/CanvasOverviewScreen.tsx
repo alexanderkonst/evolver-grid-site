@@ -165,9 +165,9 @@ export default function CanvasOverviewScreen() {
             className="relative overflow-hidden rounded-2xl px-7 py-8 text-center"
             style={{
               background: "var(--skin-card-bg, rgba(255, 255, 255, 0.65))",
-              border: "0.5px solid rgba(212, 175, 55, 0.45)",
+              border: "0.5px solid rgba(var(--accent-rgb), 0.45)",
               boxShadow:
-                "0 0 24px -8px rgba(212, 175, 55, 0.30), 0 16px 40px -20px rgba(10, 22, 40, 0.18)",
+                "0 0 24px -8px rgba(var(--accent-rgb), 0.30), 0 16px 40px -20px rgba(var(--shadow-rgb), 0.18)",
             }}
           >
             {/* Soft gold radial glow behind the begin card */}
@@ -176,7 +176,7 @@ export default function CanvasOverviewScreen() {
               className="pointer-events-none absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(ellipse 60% 80% at 50% 50%, rgba(244, 212, 114, 0.10) 0%, rgba(244, 212, 114, 0) 70%)",
+                  "radial-gradient(ellipse 60% 80% at 50% 50%, rgba(var(--accent-bright-rgb), 0.10) 0%, rgba(var(--accent-bright-rgb), 0) 70%)",
               }}
             />
             <div className="relative space-y-5">
@@ -355,7 +355,7 @@ export default function CanvasOverviewScreen() {
             className="relative overflow-hidden rounded-2xl px-5 py-4"
             style={{
               background: "var(--skin-card-bg, rgba(255, 255, 255, 0.45))",
-              border: "0.5px solid var(--skin-hairline, rgba(26, 30, 58, 0.08))",
+              border: "0.5px solid var(--skin-hairline, rgba(var(--ink-soft-rgb), 0.08))",
               boxShadow: "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
             }}
           >
@@ -397,9 +397,9 @@ export default function CanvasOverviewScreen() {
                   textTransform: "uppercase",
                   fontSize: "11.5px",
                   color: "var(--skin-text-primary, #0b2a5a)",
-                  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.68))",
-                  border: "0.5px solid rgba(212, 175, 55, 0.45)",
-                  boxShadow: "0 0 12px -4px rgba(212, 175, 55, 0.30)",
+                  background: "var(--skin-card-fill, rgba(var(--paper-rgb), 0.68))",
+                  border: "0.5px solid rgba(var(--accent-rgb), 0.45)",
+                  boxShadow: "0 0 12px -4px rgba(var(--accent-rgb), 0.30)",
                 }}
               >
                 Open Dossier
@@ -475,7 +475,7 @@ function CanvasOverviewSkeleton() {
     height: h,
     width: w,
     background:
-      "linear-gradient(90deg, rgba(11, 42, 90, 0.04) 0%, rgba(11, 42, 90, 0.10) 50%, rgba(11, 42, 90, 0.04) 100%)",
+      "linear-gradient(90deg, rgba(var(--ink-rgb), 0.04) 0%, rgba(var(--ink-rgb), 0.10) 50%, rgba(var(--ink-rgb), 0.04) 100%)",
     borderRadius: "8px",
     opacity,
   });
@@ -499,7 +499,7 @@ function CanvasOverviewSkeleton() {
             className="h-px w-full"
             style={{
               background:
-                "linear-gradient(90deg, rgba(212, 175, 55, 0.20) 0%, rgba(26, 30, 58, 0.05) 70%, rgba(26, 30, 58, 0) 100%)",
+                "linear-gradient(90deg, rgba(var(--accent-rgb), 0.20) 0%, rgba(var(--ink-soft-rgb), 0.05) 70%, rgba(var(--ink-soft-rgb), 0) 100%)",
             }}
           />
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 pt-1">
@@ -573,7 +573,7 @@ function PhaseSection({ title, keys }: { title: string; keys: readonly ArtifactK
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
                   color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))",
-                  background: "var(--skin-card-fill, rgba(255, 255, 255, 0.45))",
+                  background: "var(--skin-card-fill, rgba(var(--paper-rgb), 0.45))",
                   border: "0.5px solid var(--skin-rule-medium, rgba(26, 30, 58, 0.15))",
                 }}
                 title={`This phase implements Playbook Step ${sl.number} — ${sl.appName}`}
@@ -590,7 +590,7 @@ function PhaseSection({ title, keys }: { title: string; keys: readonly ArtifactK
         className="h-px w-full"
         style={{
           background:
-            "linear-gradient(90deg, rgba(212, 175, 55, 0.45) 0%, rgba(212, 175, 55, 0.18) 25%, rgba(26, 30, 58, 0.08) 70%, rgba(26, 30, 58, 0) 100%)",
+            "linear-gradient(90deg, rgba(var(--accent-rgb), 0.45) 0%, rgba(var(--accent-rgb), 0.18) 25%, rgba(var(--ink-soft-rgb), 0.08) 70%, rgba(var(--ink-soft-rgb), 0) 100%)",
         }}
       />
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -635,7 +635,7 @@ function ArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
       className="group relative block rounded-xl p-4 transition-all duration-300 hover:translate-y-[-1px]"
       style={{
         background: "var(--skin-card-bg, rgba(255, 255, 255, 0.68))",
-        border: "0.5px solid var(--skin-hairline, rgba(26, 30, 58, 0.08))",
+        border: "0.5px solid var(--skin-hairline, rgba(var(--ink-soft-rgb), 0.08))",
         boxShadow:
           "var(--skin-card-shadow, 0 4px 16px -8px rgba(10, 22, 40, 0.12), 0 16px 40px -20px rgba(10, 22, 40, 0.18))",
       }}
@@ -645,8 +645,8 @@ function ArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
-          border: "0.5px solid rgba(212, 175, 55, 0.55)",
-          boxShadow: "0 0 18px -6px rgba(244, 212, 114, 0.40)",
+          border: "0.5px solid rgba(var(--accent-rgb), 0.55)",
+          boxShadow: "0 0 18px -6px rgba(var(--accent-bright-rgb), 0.40)",
         }}
       />
       <div className="relative flex items-start justify-between gap-3">
@@ -734,9 +734,9 @@ function ArtifactCard({ artifactKey }: { artifactKey: ArtifactKey }) {
                 fontWeight: 500,
                 letterSpacing: "0.04em",
                 textTransform: "uppercase",
-                color: "#9a7a1f",
-                background: "rgba(244, 212, 114, 0.18)",
-                border: "0.5px solid rgba(212, 175, 55, 0.55)",
+                color: "var(--accent-chip-text)",
+                background: "rgba(var(--accent-bright-rgb), 0.18)",
+                border: "0.5px solid rgba(var(--accent-rgb), 0.55)",
                 borderRadius: "9999px",
                 padding: "2px 8px",
                 whiteSpace: "nowrap",

@@ -1,0 +1,349 @@
+/* ==========================================================================
+   SEMANTIC TOKEN LAYER — WP-1 (Scope of Work §14.8, game_of_being_you.md)
+   ==========================================================================
+   One vocabulary for the Journey screens: surface · text · accent · scene ·
+   lock · live. Every screen reads these names; every skin maps them.
+
+   Loaded after `src/index.css` (see main.tsx). It extends the skin system,
+   it does not replace it:
+     • Aliases    — `--text-*`, `--surface-*`, `--accent-gold`, `--cta-*` point
+       at the existing `--skin-*` tokens, so every skin already feeds them.
+     • New values — tokens with no `--skin-*` counterpart (secondary text, page
+       surface, RGB triples for tinted fills, the night-scene palette, lock and
+       live) are set here: lapis literals in the :root block, then one
+       override block per skin below.
+   The lapis values are the exact colours the screens hardcoded before, so the
+   default skin renders pixel-equal. RGB triples (`--accent-rgb`, …) are
+   consumed as `rgba(var(--accent-rgb), 0.22)`.
+
+   Scene tokens (`--scene-*`) feed the night-art screens (title, village,
+   Your House). Under lapis (the default) they keep the night navy / ice-blue
+   register those screens had; the default theme for new players is Sasha's
+   call (§14.10 fork 1), so it is not changed here.
+
+   Lock/live tokens (`--lock-filter`, `--lock-dim`, `--open-accent`,
+   `--live-accent`) are defined per skin now so WP-3 can build `PlaceState`
+   on them. Coloured skins: desaturate + dim. Usage:
+     .closed { filter: var(--lock-filter); opacity: var(--lock-dim); }
+   ========================================================================== */
+
+:root {
+  /* ── Text ── */
+  --text-primary: var(--skin-text-primary);
+  --text-body: var(--skin-text-body);
+  --text-muted: var(--skin-text-muted);
+  --text-faint: var(--skin-text-faint);
+  --text-hint: var(--skin-text-hint);
+  --text-link: var(--skin-link-color);
+  --text-secondary: #33415c;
+  --text-ink: #2c3150;                 /* Aurora headline / dense ink */
+  --text-ink-rgb: 44, 49, 80;
+
+  /* ── Surface ── */
+  --surface-page: linear-gradient(180deg, #fdfaf3 0%, #f6efe0 45%, #fdfaf3 100%);
+  --surface-panel: linear-gradient(145deg, rgba(255, 253, 248, 0.96) 0%, rgba(248, 247, 244, 0.92) 100%);
+  --surface-card: var(--skin-card-bg);
+  --surface-card-border: var(--skin-card-border);
+  --surface-card-shadow: var(--skin-card-shadow);
+  --surface-input: var(--skin-input-bg);
+  --surface-input-border: var(--skin-input-border);
+  --surface-input-text: var(--skin-input-text);
+  --surface-selected: var(--skin-selected-bg);
+  --surface-selected-border: var(--skin-selected-border);
+  --surface-selected-text: var(--skin-selected-text);
+
+  /* ── Accent ── */
+  --accent-gold: var(--skin-accent-gold);
+  --accent-bright: #f4d472;
+  --accent-text: #7a5108;
+  --accent-text-hover: #a06d08;
+  --accent-text-strong: #755000;
+  --accent-ink: #5d4307;               /* deepest gold: chip text on a tint */
+  --accent-chip-text: #9a7a1f;         /* "stale" chip text */
+  --accent-rgb: 212, 175, 55;         /* gold tints, rings, hairlines */
+  --accent-bright-rgb: 244, 212, 114;  /* gold glows, drop-shadows */
+  --accent-deep-rgb: 160, 109, 8;      /* deep gold: gradients, spinners */
+  --accent-text-rgb: 122, 81, 8;       /* gold ink: rings at an alpha */
+  --ink-rgb: 11, 42, 90;               /* body ink at an alpha */
+  --ink-soft-rgb: 26, 30, 58;          /* hairlines, rules at an alpha */
+  --shadow-rgb: 10, 22, 40;            /* elevation shadows */
+  --paper-rgb: 255, 255, 255;          /* card / input fills at an alpha */
+  --paper-warm-rgb: 255, 252, 245;     /* warm input fills at an alpha */
+  --focus-rgb: 10, 22, 40;             /* focus rings / outlines at an alpha */
+
+  /* ── Primary CTA ── */
+  --cta-bg: var(--skin-cta-bg);
+  --cta-text: var(--skin-cta-text);
+  --cta-border: var(--skin-cta-border);
+  --cta-shadow: var(--skin-cta-shadow);
+  --cta-text-shadow: var(--skin-cta-text-shadow);
+  --cta-icon: var(--skin-cta-icon);
+  --cta-text-soft: rgba(245, 245, 250, 0.65);
+
+  /* ── Scene (night art: title, village, Your House) ── */
+  --scene-bg: #07080a;
+  --scene-bg-rgb: 7, 8, 10;
+  --scene-shadow-rgb: 5, 6, 8;
+  --scene-paper: #0e0d0b;
+  --scene-accent: #bcd7e6;
+  --scene-accent-rgb: 188, 215, 230;
+  --scene-ink-rgb: 238, 234, 226;
+  --scene-glow-rgb: 255, 226, 170;
+  --scene-glow-warm-rgb: 255, 214, 140;
+  --scene-glow-hot-rgb: 255, 240, 200;
+  --scene-dot: #f3ecd9;
+  --scene-dot-active: #ffffff;
+
+  /* ── Lock / open / live (WP-3 reads these) ── */
+  --lock-filter: grayscale(0.9) saturate(0.6);
+  --lock-dim: 0.55;
+  --open-accent: var(--skin-accent-gold);
+  --live-accent: hsl(15 80% 46%);
+}
+
+/* Raised panel (auth card, dialogs): every non-lapis skin builds it from its own paper colour. */
+:root[data-skin]:not([data-skin="lapis"]) {
+  --text-ink: var(--skin-text-primary);
+  --text-ink-rgb: var(--ink-rgb);
+  --accent-deep-rgb: var(--accent-rgb);
+  --accent-text-rgb: var(--accent-rgb);
+  --accent-ink: var(--accent-text);
+  --accent-chip-text: var(--accent-text);
+  --paper-warm-rgb: var(--paper-rgb);
+  --cta-text-soft: color-mix(in srgb, var(--skin-cta-text) 65%, transparent);
+  --surface-panel: linear-gradient(145deg, rgba(var(--paper-rgb), 0.96) 0%, rgba(var(--paper-rgb), 0.92) 100%);
+}
+
+/* ── Navy + Gold: deep navy, gold metal ── */
+[data-skin="navy-gold"] {
+  --text-secondary: rgba(245, 241, 232, 0.78);
+  --surface-page: linear-gradient(180deg, #0a1a38 0%, #081226 45%, #0a1a38 100%);
+  --accent-bright: #f4d472;
+  --accent-text: #f4d472;
+  --accent-text-hover: #ffe9a3;
+  --accent-text-strong: #f4d472;
+  --accent-rgb: 212, 175, 55;
+  --accent-bright-rgb: 244, 212, 114;
+  --ink-rgb: 245, 241, 232;
+  --ink-soft-rgb: 245, 241, 232;
+  --shadow-rgb: 0, 0, 0;
+  --paper-rgb: 12, 22, 44;
+  --focus-rgb: 212, 175, 55;
+
+  --scene-bg: #081226;
+  --scene-bg-rgb: 8, 18, 38;
+  --scene-shadow-rgb: 4, 10, 24;
+  --scene-paper: #0c162c;
+  --scene-accent: #d4af37;
+  --scene-accent-rgb: 212, 175, 55;
+  --scene-ink-rgb: 245, 241, 232;
+  --scene-glow-rgb: 244, 212, 114;
+  --scene-glow-warm-rgb: 212, 175, 55;
+  --scene-glow-hot-rgb: 255, 236, 180;
+  --scene-dot: #f5ecd0;
+
+  --lock-filter: grayscale(0.85) saturate(0.6) brightness(0.9);
+  --lock-dim: 0.5;
+  --live-accent: hsl(15 88% 62%);
+}
+
+/* ── Aurum: near-black, amber candleflame ── */
+[data-skin="aurum"] {
+  --text-secondary: rgba(240, 230, 208, 0.78);
+  --surface-page: linear-gradient(180deg, #0b0b10 0%, #060608 45%, #0b0b10 100%);
+  --accent-bright: #f0c870;
+  --accent-text: #f0c870;
+  --accent-text-hover: #f5d890;
+  --accent-text-strong: #f0c870;
+  --accent-rgb: 212, 168, 58;
+  --accent-bright-rgb: 240, 200, 112;
+  --ink-rgb: 240, 230, 208;
+  --ink-soft-rgb: 240, 230, 208;
+  --shadow-rgb: 0, 0, 0;
+  --paper-rgb: 11, 11, 16;
+  --focus-rgb: 212, 168, 58;
+
+  --scene-bg: #060608;
+  --scene-bg-rgb: 6, 6, 8;
+  --scene-shadow-rgb: 3, 3, 5;
+  --scene-paper: #0b0b10;
+  --scene-accent: #d4a83a;
+  --scene-accent-rgb: 212, 168, 58;
+  --scene-ink-rgb: 240, 230, 208;
+  --scene-glow-rgb: 240, 200, 112;
+  --scene-glow-warm-rgb: 212, 168, 58;
+  --scene-glow-hot-rgb: 255, 230, 160;
+  --scene-dot: #f0e6d0;
+
+  --lock-filter: grayscale(0.9) saturate(0.5) brightness(0.85);
+  --lock-dim: 0.45;
+  --live-accent: hsl(15 88% 62%);
+}
+
+/* ── Network School + The Dao: editorial black on white ── */
+[data-skin="network-school"],
+[data-skin="dao"] {
+  --text-secondary: rgba(10, 10, 10, 0.72);
+  --surface-page: #ffffff;
+  --accent-bright: #0a0a0a;
+  --accent-text: #0a0a0a;
+  --accent-text-hover: rgba(10, 10, 10, 0.7);
+  --accent-text-strong: #0a0a0a;
+  --accent-rgb: 10, 10, 10;
+  --accent-bright-rgb: 10, 10, 10;
+  --ink-rgb: 10, 10, 10;
+  --ink-soft-rgb: 10, 10, 10;
+  --shadow-rgb: 0, 0, 0;
+  --paper-rgb: 255, 255, 255;
+  --focus-rgb: 10, 10, 10;
+
+  --scene-bg: #ffffff;
+  --scene-bg-rgb: 255, 255, 255;
+  --scene-shadow-rgb: 255, 255, 255;
+  --scene-paper: #fafafa;
+  --scene-accent: #0a0a0a;
+  --scene-accent-rgb: 10, 10, 10;
+  --scene-ink-rgb: 10, 10, 10;
+  --scene-glow-rgb: 10, 10, 10;
+  --scene-glow-warm-rgb: 10, 10, 10;
+  --scene-glow-hot-rgb: 0, 0, 0;
+  --scene-dot: #0a0a0a;
+  --scene-dot-active: #000000;
+
+  --lock-filter: grayscale(1);
+  --lock-dim: 0.4;
+  --live-accent: hsl(15 80% 46%);
+}
+
+/* ── Karime: warm cream, charcoal ink ── */
+[data-skin="karime"] {
+  --text-secondary: rgba(26, 26, 26, 0.85);
+  --surface-page: linear-gradient(180deg, #f6ede0 0%, #efe3d2 45%, #f6ede0 100%);
+  --accent-bright: #c48a4a;
+  --accent-text: #5b2a0b;
+  --accent-text-hover: #7a3a12;
+  --accent-text-strong: #5b2a0b;
+  --accent-rgb: 160, 100, 50;
+  --accent-bright-rgb: 220, 170, 110;
+  --ink-rgb: 26, 26, 26;
+  --ink-soft-rgb: 26, 26, 26;
+  --shadow-rgb: 31, 26, 21;
+  --paper-rgb: 255, 250, 242;
+  --focus-rgb: 26, 26, 26;
+
+  --scene-bg: #f6ede0;
+  --scene-bg-rgb: 246, 237, 224;
+  --scene-shadow-rgb: 255, 240, 220;
+  --scene-paper: #efe3d2;
+  --scene-accent: #5b2a0b;
+  --scene-accent-rgb: 91, 42, 11;
+  --scene-ink-rgb: 26, 26, 26;
+  --scene-glow-rgb: 91, 42, 11;
+  --scene-glow-warm-rgb: 160, 100, 50;
+  --scene-glow-hot-rgb: 26, 26, 26;
+  --scene-dot: #3a2a1c;
+  --scene-dot-active: #1a1a1a;
+
+  --lock-filter: grayscale(0.9) saturate(0.6);
+  --lock-dim: 0.5;
+  --live-accent: hsl(15 80% 46%);
+}
+
+/* ── Daouniverse: deep forest, antique gold ── */
+[data-skin="daouniverse"] {
+  --text-secondary: rgba(240, 230, 210, 0.78);
+  --surface-page: linear-gradient(180deg, #14261c 0%, #0d1912 45%, #14261c 100%);
+  --accent-bright: #d4a83a;
+  --accent-text: #d4a83a;
+  --accent-text-hover: #f0c870;
+  --accent-text-strong: #d4a83a;
+  --accent-rgb: 196, 163, 92;
+  --accent-bright-rgb: 212, 168, 58;
+  --ink-rgb: 240, 230, 210;
+  --ink-soft-rgb: 240, 230, 210;
+  --shadow-rgb: 0, 0, 0;
+  --paper-rgb: 20, 38, 28;
+  --focus-rgb: 196, 163, 92;
+
+  --scene-bg: #0d1912;
+  --scene-bg-rgb: 13, 25, 18;
+  --scene-shadow-rgb: 6, 12, 8;
+  --scene-paper: #14261c;
+  --scene-accent: #c4a35c;
+  --scene-accent-rgb: 196, 163, 92;
+  --scene-ink-rgb: 240, 230, 210;
+  --scene-glow-rgb: 212, 168, 58;
+  --scene-glow-warm-rgb: 196, 163, 92;
+  --scene-glow-hot-rgb: 245, 232, 190;
+  --scene-dot: #f0e6d2;
+
+  --lock-filter: grayscale(0.9) saturate(0.5) brightness(0.85);
+  --lock-dim: 0.45;
+  --live-accent: hsl(15 88% 62%);
+}
+
+/* ── Planetir: black-green, white ink, antique gold ── */
+[data-skin="planetir"] {
+  --text-secondary: rgba(245, 245, 240, 0.78);
+  --surface-page: linear-gradient(180deg, #141f12 0%, #080e0a 45%, #141f12 100%);
+  --accent-bright: #c4a35c;
+  --accent-text: #c4a35c;
+  --accent-text-hover: #e0c27a;
+  --accent-text-strong: #c4a35c;
+  --accent-rgb: 196, 163, 92;
+  --accent-bright-rgb: 196, 163, 92;
+  --ink-rgb: 255, 255, 255;
+  --ink-soft-rgb: 245, 245, 240;
+  --shadow-rgb: 0, 0, 0;
+  --paper-rgb: 26, 38, 22;
+  --focus-rgb: 196, 163, 92;
+
+  --scene-bg: #080e0a;
+  --scene-bg-rgb: 8, 14, 10;
+  --scene-shadow-rgb: 3, 6, 4;
+  --scene-paper: #141f12;
+  --scene-accent: #c4a35c;
+  --scene-accent-rgb: 196, 163, 92;
+  --scene-ink-rgb: 255, 255, 255;
+  --scene-glow-rgb: 196, 163, 92;
+  --scene-glow-warm-rgb: 196, 163, 92;
+  --scene-glow-hot-rgb: 255, 255, 255;
+  --scene-dot: #ffffff;
+
+  --lock-filter: grayscale(0.9) saturate(0.5) brightness(0.85);
+  --lock-dim: 0.45;
+  --live-accent: hsl(15 88% 62%);
+}
+
+/* ── Techstars: black, one green ── */
+[data-skin="techstars"] {
+  --text-secondary: rgba(255, 255, 255, 0.78);
+  --surface-page: linear-gradient(180deg, #0a0c0e 0%, #000000 45%, #0a0c0e 100%);
+  --accent-bright: #3dcc4a;
+  --accent-text: #3dcc4a;
+  --accent-text-hover: #6be077;
+  --accent-text-strong: #3dcc4a;
+  --accent-rgb: 61, 204, 74;
+  --accent-bright-rgb: 61, 204, 74;
+  --ink-rgb: 255, 255, 255;
+  --ink-soft-rgb: 255, 255, 255;
+  --shadow-rgb: 0, 0, 0;
+  --paper-rgb: 10, 12, 14;
+  --focus-rgb: 61, 204, 74;
+
+  --scene-bg: #000000;
+  --scene-bg-rgb: 0, 0, 0;
+  --scene-shadow-rgb: 0, 0, 0;
+  --scene-paper: #0a0c0e;
+  --scene-accent: #3dcc4a;
+  --scene-accent-rgb: 61, 204, 74;
+  --scene-ink-rgb: 255, 255, 255;
+  --scene-glow-rgb: 61, 204, 74;
+  --scene-glow-warm-rgb: 61, 204, 74;
+  --scene-glow-hot-rgb: 200, 255, 205;
+  --scene-dot: #ffffff;
+
+  --lock-filter: grayscale(1) brightness(0.85);
+  --lock-dim: 0.45;
+  --live-accent: hsl(15 88% 62%);
+}

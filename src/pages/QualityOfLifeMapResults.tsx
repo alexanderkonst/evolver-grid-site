@@ -676,7 +676,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
             fontWeight: 600,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
-            color: "#0a1628",
+            color: "var(--text-link)",
             // Day 91 (Sasha 2026-06-09): halo tokenized for Aurum (color is
             // already re-toned by the dark-skin .liquid-glass override).
             textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.85))",
@@ -692,7 +692,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
             fontSize: "clamp(28px, 3.5vw, 36px)",
             letterSpacing: "-0.005em",
             lineHeight: 1.1,
-            color: "#0a1628",
+            color: "var(--text-link)",
             textShadow: "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.85), 0 2px 12px rgba(26,30,58,0.18))",
           }}
           className="mb-3"
@@ -709,7 +709,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
             // Day 91 (Sasha 2026-06-09): halo tokenized for Aurum (color is
             // covered by the dark-skin .liquid-glass override; left literal
             // so lapis stays pixel-identical).
-            color: "rgba(11, 42, 90, 0.88)",
+            color: "rgba(var(--ink-rgb), 0.88)",
             textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
           }}
           className="mb-7"
@@ -759,7 +759,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
     fontWeight: 700, // Cormorant max — heaviest stroke for small uppercase tracking
     letterSpacing: "0.22em",
     textTransform: "uppercase",
-    color: "#0a1628",
+    color: "var(--text-link)",
     textShadow: haloDeep,
   };
   const content = (
@@ -782,7 +782,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
                 fontSize: "clamp(56px, 8vw, 80px)",
                 lineHeight: 1,
                 letterSpacing: "-0.02em",
-                color: "#0a1628",
+                color: "var(--text-link)",
                 textShadow: haloDeep,
               }}
             >
@@ -793,7 +793,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 500,
                 fontSize: "20px",
-                color: "rgba(26,30,58,0.5)",
+                color: "rgba(var(--ink-soft-rgb), 0.5)",
               }}
             >
               / 10
@@ -809,7 +809,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
               // per ui_playbook.md Part VIII Strong cocktail lever 2.
               // Day 91 (Sasha 2026-06-09): halo tokenized for Aurum (color is
               // covered by the dark-skin .liquid-glass override).
-              color: "rgba(11, 42, 90, 0.88)",
+              color: "rgba(var(--ink-rgb), 0.88)",
               textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
             }}
           >
@@ -859,7 +859,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
                       fontWeight: 600,
                       // Day 91 (Sasha 2026-06-09): halo tokenized for Aurum
                       // (color is covered by the dark-skin glass override).
-                      color: "rgba(11, 42, 90, 0.94)",
+                      color: "rgba(var(--ink-rgb), 0.94)",
                       textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.85), 0 0 1px rgba(11,42,90,0.4))",
                     }}
                   >
@@ -871,7 +871,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
                     fontFamily: "'DM Sans', system-ui, sans-serif",
                     fontWeight: 600,
                     fontSize: "17px",
-                    color: "#b8860b",
+                    color: "var(--accent-gold)",
                     fontVariantNumeric: "tabular-nums",
                   }}
                 >
@@ -908,7 +908,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
           variant="secondary"
           label={t('qolResults.retakeCta')}
           onClick={handleRetake}
-          icon={<RefreshCw className="w-4 h-4" style={{ color: "#b8860b" }} />}
+          icon={<RefreshCw className="w-4 h-4" style={{ color: "var(--accent-gold)" }} />}
           rightIcon={null}
           className="w-full"
         />
@@ -916,7 +916,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
           variant="secondary"
           label={t('qolResults.downloadPdfCta')}
           onClick={handleDownloadPdf}
-          icon={<Download className="w-4 h-4" style={{ color: "#b8860b" }} />}
+          icon={<Download className="w-4 h-4" style={{ color: "var(--accent-gold)" }} />}
           rightIcon={null}
           className="w-full"
         />
@@ -943,7 +943,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
                     fontFamily: "'Source Serif 4', serif",
                     fontSize: "15px",
                     fontWeight: 500,
-                    color: "rgba(11, 42, 90, 0.88)",
+                    color: "rgba(var(--ink-rgb), 0.88)",
                     textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.85))",
                   }}
                 >
@@ -954,7 +954,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
                     fontFamily: "'DM Sans', system-ui, sans-serif",
                     fontWeight: 600,
                     fontSize: "16px",
-                    color: "#b8860b",
+                    color: "var(--accent-gold)",
                     fontVariantNumeric: "tabular-nums",
                   }}
                 >

@@ -820,9 +820,9 @@ const ZoneOfGeniusEntry = () => {
                             <div
                                 className="rounded-xl px-5 py-4 text-sm"
                                 style={{
-                                    color: "var(--skin-text-primary, #2c3150)",
-                                    backgroundColor: "rgba(212, 175, 55, 0.10)",
-                                    border: "1px solid rgba(212, 175, 55, 0.22)",
+                                    color: "var(--text-ink)",
+                                    backgroundColor: "rgba(var(--accent-rgb), 0.10)",
+                                    border: "1px solid rgba(var(--accent-rgb), 0.22)",
                                 }}
                             >
                                 {t('zogEntry.bannerSavingTo')} <strong>{anonymousSave.email}</strong>…
@@ -831,14 +831,14 @@ const ZoneOfGeniusEntry = () => {
                         {anonymousSave.status === "error" && (
                             <div
                                 className="rounded-xl bg-red-500/10 border border-red-500/20 px-5 py-4 text-sm"
-                                style={{ color: "var(--skin-text-primary, #2c3150)" }}
+                                style={{ color: "var(--text-ink)" }}
                             >
                                 <p>
                                     {t('zogEntry.bannerCouldNotSaveTo')} <strong>{anonymousSave.email}</strong>.{" "}
                                     <button
                                         type="button"
                                         onClick={handleRedoClaimEmail}
-                                        className="underline text-[#7a5108] hover:text-[#a06d08]"
+                                        className="underline text-[color:var(--accent-text)] hover:text-[color:var(--accent-text-hover)]"
                                     >
                                         {t('zogEntry.bannerTryDifferentEmail')}
                                     </button>
@@ -879,27 +879,27 @@ const ZoneOfGeniusEntry = () => {
                     same visual language as the landing and CTA. */}
                 <div className="min-h-dvh flex flex-col items-center justify-center p-8">
                     <div className="relative w-32 h-32 mb-8">
-                        <div className="absolute inset-0 border-2 border-[#d4af37]/25 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
-                        <div className="absolute inset-4 border-2 border-[#a06d08]/35 rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
-                        <div className="absolute inset-8 border-2 border-[#7a5108]/55 rounded-full animate-spin" style={{ animationDuration: '4s' }} />
-                        <div className="absolute inset-12 bg-gradient-to-br from-[#f4d472]/25 to-[#a06d08]/20 rounded-full animate-pulse flex items-center justify-center backdrop-blur-sm">
-                            <Sword className="w-6 h-6" style={{ color: "#7a5108" }} />
+                        <div className="absolute inset-0 border-2 border-[color:rgba(var(--accent-rgb),0.25)] rounded-full animate-spin" style={{ animationDuration: '8s' }} />
+                        <div className="absolute inset-4 border-2 border-[color:rgba(var(--accent-deep-rgb),0.35)] rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
+                        <div className="absolute inset-8 border-2 border-[color:rgba(var(--accent-text-rgb),0.55)] rounded-full animate-spin" style={{ animationDuration: '4s' }} />
+                        <div className="absolute inset-12 bg-gradient-to-br from-[rgba(var(--accent-bright-rgb),0.25)] to-[rgba(var(--accent-deep-rgb),0.20)] rounded-full animate-pulse flex items-center justify-center backdrop-blur-sm">
+                            <Sword className="w-6 h-6" style={{ color: "var(--accent-text)" }} />
                         </div>
                     </div>
-                    <p className="text-lg text-[#2c3150]/60 animate-pulse">
+                    <p className="text-lg text-[color:rgba(var(--text-ink-rgb),0.6)] animate-pulse">
                         {t('zogEntry.excaliburLoadingTitle')}
                     </p>
-                    <p className="mt-4 text-sm text-[#2c3150]/40">
+                    <p className="mt-4 text-sm text-[color:rgba(var(--text-ink-rgb),0.4)]">
                         {t('zogEntry.excaliburLoadingSubtitle')}
                     </p>
 
                     {/* Progress Bar */}
                     <div className="w-full max-w-xs mt-6">
-                        <div className="h-1.5 bg-[#d4af37]/15 rounded-full overflow-hidden backdrop-blur-sm">
+                        <div className="h-1.5 bg-[color:rgba(var(--accent-rgb),0.15)] rounded-full overflow-hidden backdrop-blur-sm">
                             <div
                                 className="h-full rounded-full"
                                 style={{
-                                    backgroundImage: "linear-gradient(90deg, rgba(160,109,8,0.65) 0%, rgba(212,175,55,0.50) 100%)",
+                                    backgroundImage: "linear-gradient(90deg, rgba(var(--accent-deep-rgb),0.65) 0%, rgba(var(--accent-rgb),0.50) 100%)",
                                     animation: 'progress-bar 3s ease-in-out infinite',
                                     width: '100%',
                                 }}
@@ -1123,9 +1123,9 @@ const ZoneOfGeniusEntry = () => {
                                 <div className="flex items-center gap-4">
                                     <div
                                         className="p-3 rounded-full shrink-0 transition-colors duration-300"
-                                        style={{ backgroundColor: "rgba(244, 212, 114, 0.18)" }}
+                                        style={{ backgroundColor: "rgba(var(--accent-bright-rgb), 0.18)" }}
                                     >
-                                        <Bot className="w-5 h-5" style={{ color: "#f4d472" }} />
+                                        <Bot className="w-5 h-5" style={{ color: "var(--accent-bright)" }} />
                                     </div>
                                     <div>
                                         <p
@@ -1144,7 +1144,7 @@ const ZoneOfGeniusEntry = () => {
                                             className="text-xs mt-0.5 leading-relaxed"
                                             style={{
                                                 fontFamily: "'Source Serif 4', Georgia, serif",
-                                                color: "rgba(245,245,250,0.65)",
+                                                color: "var(--cta-text-soft)",
                                             }}
                                         >
                                             {t('zogEntry.cardFasterSubtitle')}
@@ -1168,9 +1168,9 @@ const ZoneOfGeniusEntry = () => {
                                 <div className="flex items-center gap-4">
                                     <div
                                         className="p-3 rounded-full shrink-0 transition-colors duration-300"
-                                        style={{ backgroundColor: "rgba(244, 212, 114, 0.18)" }}
+                                        style={{ backgroundColor: "rgba(var(--accent-bright-rgb), 0.18)" }}
                                     >
-                                        <ClipboardList className="w-5 h-5" style={{ color: "#f4d472" }} />
+                                        <ClipboardList className="w-5 h-5" style={{ color: "var(--accent-bright)" }} />
                                     </div>
                                     <div>
                                         <p
@@ -1187,7 +1187,7 @@ const ZoneOfGeniusEntry = () => {
                                             className="text-xs mt-0.5 leading-relaxed"
                                             style={{
                                                 fontFamily: "'Source Serif 4', Georgia, serif",
-                                                color: "rgba(245,245,250,0.65)",
+                                                color: "var(--cta-text-soft)",
                                             }}
                                         >
                                             {t('zogEntry.cardGuidedSubtitle')}
@@ -1245,7 +1245,7 @@ const ZoneOfGeniusEntry = () => {
                             }}
                         >
                             <pre
-                                className="text-[11px] whitespace-pre-wrap font-mono leading-snug max-h-36 overflow-y-auto p-4 pr-16 selection:bg-[#d4af37]/25"
+                                className="text-[11px] whitespace-pre-wrap font-mono leading-snug max-h-36 overflow-y-auto p-4 pr-16 selection:bg-[color:rgba(var(--accent-rgb),0.25)]"
                                 style={{ color: "var(--skin-darkroom-muted, rgba(245,245,250,0.7))" }}
                             >
                                 {ZONE_OF_GENIUS_PROMPT}
@@ -1297,7 +1297,7 @@ const ZoneOfGeniusEntry = () => {
                                     aria-hidden="true"
                                     className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100"
                                     style={{
-                                        filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))",
+                                        filter: "drop-shadow(0 0 6px rgba(var(--accent-bright-rgb), 0.45))",
                                     }}
                                     draggable={false}
                                 />
@@ -1388,7 +1388,7 @@ const ZoneOfGeniusEntry = () => {
                                     aria-hidden="true"
                                     className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100"
                                     style={{
-                                        filter: "drop-shadow(0 0 6px rgba(244, 212, 114, 0.45))",
+                                        filter: "drop-shadow(0 0 6px rgba(var(--accent-bright-rgb), 0.45))",
                                     }}
                                     draggable={false}
                                 />

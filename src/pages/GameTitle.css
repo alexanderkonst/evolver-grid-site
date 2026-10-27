@@ -6,13 +6,15 @@
  * Everything is scoped under .gt-root so nothing leaks into other pages.
  */
 .gt-root {
-  --gt-bg: #07080a;
-  --gt-paper: #0e0d0b;
-  --gt-accent: #bcd7e6;
-  --gt-ink: rgba(238, 234, 226, 0.92);
-  --gt-ink-2: rgba(238, 234, 226, 0.62);
-  --gt-ink-3: rgba(238, 234, 226, 0.5);
-  --gt-hair: rgba(238, 234, 226, 0.14);
+  /* WP-1: palette comes from the semantic scene tokens (src/styles/theme-tokens.css),
+     so the title follows the skin. Lapis keeps the original night values. */
+  --gt-bg: var(--scene-bg);
+  --gt-paper: var(--scene-paper);
+  --gt-accent: var(--scene-accent);
+  --gt-ink: rgba(var(--scene-ink-rgb), 0.92);
+  --gt-ink-2: rgba(var(--scene-ink-rgb), 0.62);
+  --gt-ink-3: rgba(var(--scene-ink-rgb), 0.5);
+  --gt-hair: rgba(var(--scene-ink-rgb), 0.14);
   --gt-serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
   --gt-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
   position: relative;
@@ -49,7 +51,7 @@
 @keyframes gt-burns { from { transform: scale(1); } to { transform: scale(1.06); } }
 .gt-screen::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(to bottom, rgba(7, 8, 10, 0) 58%, rgba(7, 8, 10, 0.78) 78%, var(--gt-bg) 100%);
+  background: linear-gradient(to bottom, rgba(var(--scene-bg-rgb), 0) 58%, rgba(var(--scene-bg-rgb), 0.78) 78%, var(--gt-bg) 100%);
 }
 .gt-screen__copy {
   /* two zones around the crystal: title in the sky, menu on the lake; the crystal keeps the middle */
@@ -57,7 +59,7 @@
   display: flex; flex-direction: column; justify-content: space-between;
   padding: clamp(48px, 8vh, 120px) 24px clamp(36px, 6vh, 88px);
 }
-.gt-screen__head, .gt-menu-wrap { text-shadow: 0 1px 24px rgba(5, 6, 8, 0.65); }
+.gt-screen__head, .gt-menu-wrap { text-shadow: 0 1px 24px rgba(var(--scene-shadow-rgb), 0.65); }
 .gt-screen h1 {
   font-family: var(--gt-serif); font-weight: 300; text-transform: uppercase;
   font-size: clamp(32px, min(5.4vw, 7.6vh), 84px); line-height: 1.02; letter-spacing: 0.06em;
