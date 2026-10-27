@@ -106,6 +106,7 @@ const SHELL_PREFIX: string[] = [
     "/built-by-you",
     "/playbook",
     "/library",
+    "/grow",
     "/asset-mapping",
     "/quality-of-life-map",
     "/game/me",

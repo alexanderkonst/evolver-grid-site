@@ -1789,6 +1789,25 @@
       }
     }
   },
+  "course": {
+    "eyebrow": "Бесплатный мини-курс",
+    "tagline": "Как овладеть духом, умом, эмоциями, телом и своим уникальным гением.",
+    "episodeOf": "Эпизод {{current}} из {{total}}",
+    "prev": "Назад",
+    "next": "Далее",
+    "markWatched": "Отметить просмотренным",
+    "watched": "Просмотрено",
+    "progress": "Просмотрено {{done}} из {{total}}",
+    "contents": "Содержание курса",
+    "infographic": "Инфографика",
+    "infographicAlt": "Инфографика: {{title}}",
+    "practices": "Практики",
+    "practicesHint": "Короткие аудиопрактики. Их можно делать в любой момент курса.",
+    "ctaTitle": "Вы прошли курс",
+    "ctaBody": "Теперь узнайте, для чего вы уникально созданы.",
+    "ctaButton": "Откройте свою Зону гения",
+    "videoTitle": "Видео: {{title}}"
+  },
   "library": {
     "filterAll": "Все",
     "durationMinutes": "{{count}} мин",
@@ -5280,7 +5299,8 @@
         "description": "Овладей собой",
         "modules": {
           "library": "Библиотека практик",
-          "paths": "Пути роста"
+          "paths": "Пути роста",
+          "dormantPotential": "Пробудите свой спящий потенциал"
         }
       },
       "marketplace": {

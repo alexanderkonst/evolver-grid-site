@@ -22,6 +22,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { useToast } from "@/hooks/use-toast";
+import { COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
 
 interface ModuleItem {
     id: string;
@@ -66,7 +67,8 @@ const SPACES: NavItem[] = [
         descriptionKey: "gameShell.nav.transformation.description",
         modules: [
             { id: "library", labelKey: "gameShell.nav.transformation.modules.library", path: "/library" },
-            { id: "paths", labelKey: "gameShell.nav.transformation.modules.paths", path: "/growth-paths" }
+            { id: "paths", labelKey: "gameShell.nav.transformation.modules.paths", path: "/growth-paths" },
+            { id: "dormant-potential", labelKey: "gameShell.nav.transformation.modules.dormantPotential", path: COURSE_PATH }
         ]
     },
     {
