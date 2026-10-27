@@ -4,7 +4,7 @@
 > *Created: 2026-10-26 (Day 225). Owner: Aleksandr Konstantinov. Keeper: Evolver (Hark).*
 > Related: [game_spaces.md](./game_spaces.md) (what you can do in each space), [module_taxonomy.md](./module_taxonomy.md), [../05-reference/brandbook.md](../05-reference/brandbook.md).
 
-**Subtitle:** Self-Discovery · Quality of Life · Uniqueness · Growth · Tribe (Sasha, 2026-10-26).
+**Subtitle:** Self-Discovery · Growth · Quality of Life · Uniqueness · Tribe · Village · Collective (Sasha, 2026-10-27; was «Self-Discovery · Quality of Life · Uniqueness · Growth · Tribe», 2026-10-26).
 **Tagline:** *Bring the full force of who you are to what you build.*
 **Moonshot (Sasha, 2026-10-26):** make a cult game, a "candy": polished, simple, hard to forget. We already have plenty of mystery, ritual and content; the work now is craft and form.
 
@@ -186,6 +186,7 @@ Stage-7+ mechanics that pass the test (proposed, Evolver):
 - 2026-10-26: Goal = QoL; level = bottleneck domain; leveling down exists (Current vs Peak); input via Save Point.
 - 2026-10-26: Game design almanac started: invariant = scope of player authorship; 7 stages; Si–Do = life as the game ([game_design_almanac.md](./game_design_almanac.md)).
 - 2026-10-26: Subtitle → "Self-Discovery · Quality of Life · Uniqueness · Growth · Tribe"; "FindYourTopTalent.com presents" removed.
+- 2026-10-27: Subtitle → "Self-Discovery · Growth · Quality of Life · Uniqueness · Tribe · Village · Collective".
 - 2026-10-26: Fifth Element = quintessence = Uniqueness; proposed as the game's name (§11).
 - 2026-10-26: Fidelity principle (§10a): no artificial XP; the game shows life itself; what matters to people is in the platform. Save Point + seasonal re-take confirmed.
 - 2026-10-26: Sasha: «называем открыто игрой де-факто игру» — the platform already lives under /game/*; next step = game vocabulary for existing spaces (labels only, routes unchanged). Proposed map: Me→Character, ZoG→Character Creation, QoL assessment→Save Point & Level, Today→Daily Quests, Paths→Skill Tree, Grow→Training, Build→The Forge, Marketplace→Trading Post, Collaborate/Coop→Party & Guild, Journey→Main Quest. Awaiting his yes.
