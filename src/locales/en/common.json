@@ -396,11 +396,11 @@
   },
   "qolResults": {
     "loading": "Loading your results...",
-    "emptyEyebrow": "Quality of Life Map",
+    "emptyEyebrow": "Save Point · Quality of Life Map",
     "emptyHeadline": "Complete Your Assessment",
     "emptySubhead": "Answer all 8 domains to see your results.",
     "startAssessmentCta": "Start Assessment",
-    "heroEyebrow": "Quality of Life",
+    "heroEyebrow": "Level · Quality of Life",
     "heroSubhead": "Now you know where to focus your growth.",
     "lifeAreasHeading": "8 Life Areas",
     "retakeCta": "Retake",
@@ -429,7 +429,7 @@
         "retake": "Retake journey quiz"
       },
       "startHere": {
-        "label": "1. Start by finding your top talent"
+        "label": "1. Character Creation · find your top talent"
       },
       "activation": {
         "label": "Find out how to monetize your top talent (power-up, $37)",
@@ -444,7 +444,7 @@
         "lockedHint": "Unlocks after you discover your mission."
       },
       "qolAssess": {
-        "label": "4. Assess your quality of life (optional)",
+        "label": "4. Save Point · assess your quality of life (optional)",
         "lockedHint": "Unlocks after you map your assets."
       },
       "findCollaborators": {
@@ -488,7 +488,7 @@
     },
     "me": {
       "profile": {
-        "label": "Profile"
+        "label": "Character"
       },
       "topTalent": {
         "label": "Top Talent"
@@ -533,7 +533,7 @@
         "label": "Mission"
       },
       "qol": {
-        "label": "Quality of Life"
+        "label": "Level · quality of life"
       },
       "assets": {
         "label": "Assets"
@@ -561,13 +561,13 @@
     },
     "meet": {
       "browse": {
-        "label": "Browse Events"
+        "label": "Browse Raids"
       },
       "myRsvps": {
         "label": "My RSVPs"
       },
       "create": {
-        "label": "Create Event"
+        "label": "Create Raid"
       }
     },
     "collaborate": {
@@ -671,10 +671,10 @@
       "seePath": "See the shortcut path to your business",
       "seeDashboard": "See how we're building this",
       "mapAssets": "Map your assets",
-      "assessQol": "Assess your quality of life",
+      "assessQol": "Save Point · assess your quality of life",
       "buildBusiness": "Build a business off your top talent",
       "discoverMission": "Discover your mission",
-      "spaceFallback": "Journey"
+      "spaceFallback": "Main Quest"
     },
     "unlockHints": {
       "nextMove": "Unlocks after Step 1",
@@ -686,7 +686,7 @@
       "buysell": "Unlocks after Step 2"
     },
     "meUnlockToast": {
-      "title": "Your ME space is open.",
+      "title": "Your Character space is open.",
       "body": "Everything you've discovered now lives in one place."
     },
     "rail": {
@@ -740,7 +740,7 @@
     "headlineCollaborators": "collaborators",
     "headlineAnd": "and",
     "headlineCoFounders": "co-founders",
-    "subtitle": "People whose work complements yours",
+    "subtitle": "Party & Guild · people whose work complements yours",
     "signInToView": "Sign in to view matches.",
     "youFallback": "You",
     "loadSnag": "We hit a snag loading matches. Try again in a moment.",
@@ -947,8 +947,8 @@
   },
   "growthPaths": {
     "back": "Back",
-    "heading": "Growth Paths",
-    "subheading": "Sequences of transformational upgrades — how you develop yourself",
+    "heading": "Skill Tree",
+    "subheading": "Growth paths · sequences of transformational upgrades for developing yourself",
     "upgradeCount": "{{count}} upgrades",
     "upgradeCount_one": "{{count}} upgrade",
     "upgradeCount_few": "{{count}} upgrades",
@@ -2752,7 +2752,7 @@
     "brand": "Find Your Top Talent"
   },
   "qolAssessment": {
-    "introEyebrow": "Quality of Life Map",
+    "introEyebrow": "Save Point · Quality of Life Map",
     "introHeadline": "Rate 8 life areas",
     "introSubhead": "See where you're thriving and where to grow.",
     "introCta": "Map My Life",
@@ -3206,15 +3206,15 @@
     "logOutLabel": "log out",
     "logInTitle": "Log In",
     "logInLabel": "Log In",
-    "journey": "JOURNEY",
+    "journey": "MAIN QUEST",
     "aiOs": "AI OS",
-    "me": "ME",
-    "learn": "LEARN",
-    "meet": "MEET",
-    "collaborate": "COLLABORATE",
-    "grow": "GROW",
-    "build": "BUILT BY YOU",
-    "offer": "OFFER",
+    "me": "CHARACTER",
+    "learn": "TRAINING",
+    "meet": "RAIDS",
+    "collaborate": "PARTY & GUILD",
+    "grow": "TRAINING",
+    "build": "THE FORGE",
+    "offer": "TRADING POST",
     "lockedLabel": "{{space}}, locked",
     "lockedHeader": "{{space}} · Locked",
     "themeToggleToDaoAria": "Switch to black-and-white theme",
@@ -7030,20 +7030,20 @@
     }
   },
   "eventsSpace": {
-    "title": "Events",
-    "subtitle": "Gatherings and experiences",
+    "title": "Raids",
+    "subtitle": "Events · gatherings and experiences",
     "otherLocations": "Other locations",
     "filter": "Filter",
-    "filterAll": "All Events",
+    "filterAll": "All Raids",
     "filterByLocation": "By Location",
     "filterByCommunity": "By Community",
     "community": "Community",
     "allCommunities": "All Communities",
     "viewPage": "View page",
-    "emptyTitle": "No events yet",
+    "emptyTitle": "No raids yet",
     "emptyDescAuthed": "Check back soon or create your own community gathering.",
     "emptyDescGuest": "Check back soon for upcoming community gatherings.",
-    "createEvent": "Create Event"
+    "createEvent": "Create Raid"
   },
   "appleseedView": {
     "empty": {
@@ -7572,8 +7572,8 @@
     "viewPrivacy": "View Privacy Policy"
   },
   "todaysPractice": {
-    "title": "Today's Practice",
-    "subtitle": "Your personalized practice recommendation",
+    "title": "Daily Quests",
+    "subtitle": "Today's practice · your personalized recommendation",
     "goToNextMove": "Go to My Next Move",
     "loading": "Finding your practice...",
     "emptyState": "We don't have a specific match yet — browse the full library instead.",

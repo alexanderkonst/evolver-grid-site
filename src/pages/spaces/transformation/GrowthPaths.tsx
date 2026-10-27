@@ -6,7 +6,7 @@ const PATHS = [
     { id: "body", label: "Body", icon: Activity, description: "Physical vitality and health", path: "/game/path/body" },
     { id: "emotions", label: "Emotions", icon: Heart, description: "Emotional regulation and shadow work", path: "/game/path/emotions" },
     { id: "mind", label: "Mind", icon: Brain, description: "Worldview and mental clarity", path: "/game/path/mind" },
-    { id: "genius", label: "Genius", icon: Zap, description: "Authenticity and self-expression", path: "/game/path/genius" },
+    { id: "genius", label: "Uniqueness", icon: Zap, description: "Authenticity and self-expression", path: "/game/path/genius" },
     { id: "spirit", label: "Spirit", icon: Sparkles, description: "Awareness and sensitivity", path: "/game/path/spirit" },
 ];
 
@@ -21,9 +21,9 @@ const GrowthPaths = () => {
                 <div className="mb-8">
                     <div className="flex items-center gap-3 mb-2">
                         <TrendingUp className="w-6 h-6 text-foreground" />
-                        <h1 className="text-2xl font-bold text-foreground">5 Growth Paths</h1>
+                        <h1 className="text-2xl font-bold text-foreground">Skill Tree</h1>
                     </div>
-                    <p className="text-muted-foreground">Body, Emotions, Mind, Genius, Spirit</p>
+                    <p className="text-muted-foreground">5 growth paths · Body, Emotions, Mind, Uniqueness, Spirit</p>
                 </div>
 
                 {/* Paths Grid */}

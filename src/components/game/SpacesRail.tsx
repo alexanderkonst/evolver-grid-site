@@ -173,7 +173,7 @@ interface SpaceItem {
 const SPACES: SpaceItem[] = [
     {
         id: "journey",
-        label: "JOURNEY",
+        label: "MAIN QUEST",
         labelKey: "spacesRail.journey",
         // Day 48 iter 7 (Sasha): teal ✵ glyph replaced with the custom
         // gold-with-blue-hints journey icon asset.
@@ -204,7 +204,7 @@ const SPACES: SpaceItem[] = [
     // },
     {
         id: "grow",
-        label: "ME",
+        label: "CHARACTER",
         labelKey: "spacesRail.me",
         // Day 48 iter 7 (Sasha): purple ❂ glyph replaced with the custom
         // ME icon asset. Sasha asked for a warm gold glow around the
@@ -214,7 +214,7 @@ const SPACES: SpaceItem[] = [
     },
     {
         id: "meet",
-        label: "MEET",
+        label: "RAIDS",
         labelKey: "spacesRail.meet",
         icon: <GlyphIcon glyph="⚭" color="hsl(145, 65%, 60%)" />,
         path: "/game/meet",
@@ -228,7 +228,7 @@ const SPACES: SpaceItem[] = [
         // intermediate. /game/collaborate route also redirects to the
         // matches surface as a safety net (see App.tsx).
         id: "collaborate",
-        label: "COLLABORATE",
+        label: "PARTY & GUILD",
         labelKey: "spacesRail.collaborate",
         icon: <SvgGlyphIcon Glyph={CollaborateGlyph} color="hsl(325, 65%, 65%)" />,
         path: "/game/collaborate/matches",
@@ -242,7 +242,7 @@ const SPACES: SpaceItem[] = [
         // SectionsPanel keys, etc. all key off it; only label/position/
         // gate changed. See GameShellV2.tsx unlockStatus["learn"].
         id: "learn",
-        label: "GROW",
+        label: "TRAINING",
         labelKey: "spacesRail.grow",
         // Day 134 (Sasha 2026-07-23): the former Settings artifact is
         // now GROW's mark. Keep the space's established cool-blue glow
@@ -273,7 +273,7 @@ const SPACES: SpaceItem[] = [
         // string changes (see locale files). Rail chip text is
         // t(labelKey), not this `label` field (English fallback only).
         id: "build",
-        label: "BUILT BY YOU",
+        label: "THE FORGE",
         labelKey: "spacesRail.build",
         icon: <SvgGlyphIcon Glyph={BuildGlyph} color="hsl(45, 90%, 62%)" size={32} />,
         // Day 52 (Sasha 2026-04-26): BUILD chip lands on the Unique
@@ -284,7 +284,7 @@ const SPACES: SpaceItem[] = [
     },
     {
         id: "buysell",
-        label: "OFFER",
+        label: "TRADING POST",
         labelKey: "spacesRail.offer",
         icon: <GlyphIcon glyph="⚛" color="hsl(15, 85%, 65%)" />,
         path: "/game/marketplace",

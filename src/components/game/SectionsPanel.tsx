@@ -116,7 +116,7 @@ const SPACE_SECTIONS: SpaceSections = {
     // static entry is intentionally empty (keeping the key alive so the
     // lookup doesn't return null). See `buildJourneySections()` below.
     journey: {
-        title: "JOURNEY",
+        title: "MAIN QUEST",
         sections: [],
     },
     // AI OS Space — Day 54 (Sasha 2026-04-28): elevated from JOURNEY
@@ -173,7 +173,7 @@ const SPACE_SECTIONS: SpaceSections = {
     // URL paths kept as `/game/me/zone-of-genius/*` for backwards compat;
     // UI labels renamed to "Top Talent" per the rename pass.
     grow: {
-        title: "ME",
+        title: "CHARACTER",
         sections: [
             // Day 119 (Sasha 2026-07-09): Profile Space — the assembled
             // profile (identity, talents, mission, assets, QoL, collab
@@ -269,12 +269,12 @@ const SPACE_SECTIONS: SpaceSections = {
     // there's a single source of truth for the steps (also read by Library.tsx
     // when rendering the active step's content in pane 3).
     learn: {
-        title: "LEARN",
+        title: "TRAINING",
         sections: [],
     },
     // MEET Space (was Events)
     meet: {
-        title: "MEET",
+        title: "RAIDS",
         sections: [
             { id: "browse", label: "Browse Events", path: "/game/meet" },
             { id: "my-rsvps", label: "My RSVPs", path: "/game/meet/my-rsvps" },
@@ -291,7 +291,7 @@ const SPACE_SECTIONS: SpaceSections = {
     // (see GameShellV2.tsx unlockStatus). Within an unlocked space, only
     // Genius Match is currently usable.
     collaborate: {
-        title: "COLLABORATE",
+        title: "PARTY & GUILD",
         sections: [
             { id: "genius-match", label: "Find Collaborators", path: "/game/collaborate" },
             {
@@ -329,7 +329,7 @@ const SPACE_SECTIONS: SpaceSections = {
     // Karime's per-founder offer row still injects into the second group
     // (see getSections below). No more branching on location.pathname.
     build: {
-        title: "BUILD",
+        title: "THE FORGE",
         sections: [
             { id: "build-header-founder-tools", label: "Founder Tools", path: "", isHeader: true },
             { id: "equilibrium-v2", label: "Equilibrium", path: "/build/equilibrium" },
@@ -361,7 +361,7 @@ const SPACE_SECTIONS: SpaceSections = {
     },
     // OFFER Space (was Marketplace)
     buysell: {
-        title: "OFFER",
+        title: "TRADING POST",
         sections: [
             { id: "overview", label: "Overview", path: "/game/marketplace" },
             { id: "my-products", label: "My Products", path: "/game/marketplace/my-products" },
@@ -1157,7 +1157,7 @@ const SectionsPanel = ({
                 location.pathname === "/game/learn" || location.pathname.startsWith("/game/learn/");
             const pathBase = insideAuthed ? "/game/learn/library" : "/library";
             return {
-                title: "GROW",
+                title: "TRAINING",
                 sections: buildLearnSections(pathBase),
             };
         }

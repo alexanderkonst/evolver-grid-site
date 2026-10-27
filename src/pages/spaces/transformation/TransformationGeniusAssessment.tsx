@@ -19,7 +19,7 @@ const TransformationGeniusAssessment = () => {
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-8">
               <h1 className="text-3xl sm:text-4xl font-bold text-primary mb-6">
-                Discover Your Zone of Genius Now:
+                Character Creation · Discover Your Uniqueness Now:
               </h1>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm">
