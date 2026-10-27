@@ -246,3 +246,11 @@ The world is a sovereign village on the main screen, built from real photos of p
 | Workshop | THE FORGE (UBB) | craft your offer |
 | Market | TRADING POST | your shop and others' |
 | Town Hall | Venture Co-op | build ventures together |
+
+### 13.2 Design decisions (Sasha, 2026-10-27: «Все записываем!!! это и есть работа, мы дизайним игру!!!»)
+- **The engine is already built.** The modules are working game systems; designing the game = naming, ordering and connecting them.
+- **Character creation = top talent + mission + a real photo.** The character is you, not an avatar.
+- **Inventory = assets** (Asset Mapping).
+- **Level = your real QoL score, not invented levels.** E.g. 6.1 out of 10, the weakest domain sets it. **Private:** only the player sees their own level, to track progress and look at their life soberly. No public levels, no leaderboards.
+- **Party = Mastermind, Guild = Venture Co-op.** Game names only where they serve.
+- **Cult game, not a generic game.** «Игры бывают разные! Нам не нужно перенимать всякую дребедень.» Take from games only what serves real transformation; no borrowed junk mechanics (no arbitrary points, no public status ladders, no grind).
