@@ -237,9 +237,9 @@ const GameTitle = () => {
   const reduceMotion = usePrefersReducedMotion();
   const [active, setActive] = useState(0);
   const [started, setStarted] = useState(false);
-  // LOAD GAME → /auth, or straight into the game (/game/journey, where /game
-  // redirects) when a session already exists.
-  const [loadTo, setLoadTo] = useState("/auth");
+  // LOAD GAME → /auth, or straight onto the Character Sheet (the save file made
+  // visible) when a session already exists.
+  const [loadTo, setLoadTo] = useState("/auth?next=/game/me/overview");
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   const items: MenuItem[] = [
@@ -270,7 +270,7 @@ const GameTitle = () => {
     supabase.auth
       .getSession()
       .then(({ data }) => {
-        if (!cancelled && data.session?.user?.id) setLoadTo("/game/journey");
+        if (!cancelled && data.session?.user?.id) setLoadTo("/game/me/overview");
       })
       .catch(() => {});
     return () => {

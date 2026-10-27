@@ -7370,3 +7370,25 @@ form.liquid-glass input:-webkit-autofill:active {
     opacity: 0.46;
   }
 }
+
+/* ──────────────────────────────────────────────────────────────────
+   Character Sheet (/game/me/overview) — one-time glow when a quest slot
+   lights up after JOURNEY_ITEM_COMPLETED_EVENT. Accent comes from the
+   slot's soul color via --slot-accent. Plays once; stripped entirely
+   under prefers-reduced-motion, along with the crystal's ambient motion.
+   ────────────────────────────────────────────────────────────────── */
+@keyframes character-sheet-slot-glow {
+  0% { box-shadow: 0 0 0 0 transparent; }
+  35% { box-shadow: 0 0 28px 2px color-mix(in srgb, var(--slot-accent, #8460ea) 55%, transparent); }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+.character-sheet-slot-glow {
+  animation: character-sheet-slot-glow 1.8s ease-out 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .character-sheet-slot-glow,
+  .character-sheet-crystal *,
+  .character-sheet-crystal {
+    animation: none !important;
+  }
+}

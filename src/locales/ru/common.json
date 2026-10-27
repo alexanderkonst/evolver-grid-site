@@ -7011,6 +7011,46 @@
       "mission": "Моя миссия"
     }
   },
+  "characterSheet": {
+    "eyebrow": "Лист персонажа",
+    "playerFallback": "Игрок",
+    "character": {
+      "photoInvite": "Добавь своё настоящее фото",
+      "talentLabel": "Главный талант",
+      "talentEmpty": "Ещё не открыт",
+      "talentCta": "Найди свой главный талант",
+      "missionLabel": "Миссия",
+      "missionEmpty": "Ещё не выбрана",
+      "missionCta": "Открой свою миссию"
+    },
+    "level": {
+      "title": "Уровень",
+      "private": "Это видишь только ты.",
+      "value": "{{value}} / 10",
+      "weakest": "Задаёт самая слабая сфера: {{domain}}",
+      "empty": "Ещё не измерен",
+      "cta": "Составь карту качества жизни"
+    },
+    "inventory": {
+      "title": "Инвентарь",
+      "summary": "Активов на карте: {{total}}",
+      "open": "Открыть инвентарь",
+      "empty": "Пусто",
+      "cta": "Составь карту своих активов"
+    },
+    "quests": {
+      "title": "Первая цепочка квестов",
+      "unlocked": "Открыто",
+      "findTopTalent": "Найди свой главный талант",
+      "takePlaybook": "Возьми плейбук",
+      "seePath": "Увидь короткий путь",
+      "seeDashboard": "Посмотри, как мы это строим",
+      "mapAssets": "Составь карту своих активов",
+      "assessQol": "Оцени качество своей жизни",
+      "buildBusiness": "Построй бизнес на своём главном таланте",
+      "discoverMission": "Открой свою миссию"
+    }
+  },
   "myProducts": {
     "toast": {
       "copied": {

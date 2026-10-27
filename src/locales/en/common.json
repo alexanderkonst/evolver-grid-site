@@ -7019,6 +7019,46 @@
       "mission": "My Mission"
     }
   },
+  "characterSheet": {
+    "eyebrow": "Character sheet",
+    "playerFallback": "Player",
+    "character": {
+      "photoInvite": "Add your real photo",
+      "talentLabel": "Top talent",
+      "talentEmpty": "Not discovered yet",
+      "talentCta": "Find your top talent",
+      "missionLabel": "Mission",
+      "missionEmpty": "Not chosen yet",
+      "missionCta": "Discover your mission"
+    },
+    "level": {
+      "title": "Level",
+      "private": "Only you see this.",
+      "value": "{{value}} / 10",
+      "weakest": "Set by your weakest area: {{domain}}",
+      "empty": "Not measured yet",
+      "cta": "Map your quality of life"
+    },
+    "inventory": {
+      "title": "Inventory",
+      "summary": "Assets mapped: {{total}}",
+      "open": "Open inventory",
+      "empty": "Empty",
+      "cta": "Map your assets"
+    },
+    "quests": {
+      "title": "First quest chain",
+      "unlocked": "Unlocked",
+      "findTopTalent": "Find your top talent",
+      "takePlaybook": "Take the playbook",
+      "seePath": "See the shortcut path",
+      "seeDashboard": "See how we're building this",
+      "mapAssets": "Map your assets",
+      "assessQol": "Assess your quality of life",
+      "buildBusiness": "Build a business off your top talent",
+      "discoverMission": "Discover your mission"
+    }
+  },
   "myProducts": {
     "toast": {
       "copied": {

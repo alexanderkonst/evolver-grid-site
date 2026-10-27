@@ -165,3 +165,13 @@ export const JOURNEY_LAST_SEEN_KEY = "journey:last-seen-completion-v1";
  * Event detail shape: `{ id: JourneyItemId }`
  */
 export const JOURNEY_ITEM_COMPLETED_EVENT = "journeyItemCompleted";
+
+/**
+ * Fire the completion event. Call it right after a module writes the artifact
+ * that satisfies an item's `completionPredicate`. The Character Sheet
+ * (`/game/me/overview`) listens and re-evaluates without a reload.
+ */
+export const dispatchJourneyItemCompleted = (id: JourneyItemId): void => {
+    if (typeof window === "undefined") return;
+    window.dispatchEvent(new CustomEvent(JOURNEY_ITEM_COMPLETED_EVENT, { detail: { id } }));
+};

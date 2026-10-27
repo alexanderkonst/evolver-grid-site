@@ -6990,6 +6990,46 @@
       "mission": "Mi misión"
     }
   },
+  "characterSheet": {
+    "eyebrow": "Hoja de personaje",
+    "playerFallback": "Jugador",
+    "character": {
+      "photoInvite": "Añade tu foto real",
+      "talentLabel": "Talento principal",
+      "talentEmpty": "Aún sin descubrir",
+      "talentCta": "Encuentra tu talento principal",
+      "missionLabel": "Misión",
+      "missionEmpty": "Aún sin elegir",
+      "missionCta": "Descubre tu misión"
+    },
+    "level": {
+      "title": "Nivel",
+      "private": "Solo tú ves esto.",
+      "value": "{{value}} / 10",
+      "weakest": "Lo marca tu área más débil: {{domain}}",
+      "empty": "Aún sin medir",
+      "cta": "Mapea tu calidad de vida"
+    },
+    "inventory": {
+      "title": "Inventario",
+      "summary": "Activos mapeados: {{total}}",
+      "open": "Abrir inventario",
+      "empty": "Vacío",
+      "cta": "Mapea tus activos"
+    },
+    "quests": {
+      "title": "Primera cadena de misiones",
+      "unlocked": "Desbloqueado",
+      "findTopTalent": "Encuentra tu talento principal",
+      "takePlaybook": "Toma el playbook",
+      "seePath": "Mira el atajo",
+      "seeDashboard": "Mira cómo lo estamos construyendo",
+      "mapAssets": "Mapea tus activos",
+      "assessQol": "Evalúa tu calidad de vida",
+      "buildBusiness": "Construye un negocio sobre tu talento principal",
+      "discoverMission": "Descubre tu misión"
+    }
+  },
   "myProducts": {
     "toast": {
       "copied": {
