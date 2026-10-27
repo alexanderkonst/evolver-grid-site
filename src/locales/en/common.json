@@ -7019,6 +7019,63 @@
       "mission": "My Mission"
     }
   },
+  "characterSheet": {
+    "eyebrow": "Your House",
+    "playerFallback": "Player",
+    "character": {
+      "photoInvite": "Add your real photo",
+      "talentLabel": "Top talent",
+      "talentEmpty": "Not discovered yet",
+      "talentCta": "Find your top talent",
+      "missionLabel": "Mission",
+      "missionEmpty": "Not chosen yet",
+      "missionCta": "Discover your mission"
+    },
+    "level": {
+      "title": "Level",
+      "private": "Only you see this.",
+      "weakest": "Set by your weakest area: {{domain}}",
+      "empty": "Not measured yet",
+      "cta": "Map your quality of life"
+    },
+    "inventory": {
+      "title": "Inventory",
+      "summary": "Assets mapped: {{total}}",
+      "open": "Open inventory",
+      "empty": "Empty",
+      "cta": "Map your assets"
+    },
+    "quests": {
+      "title": "First quest chain",
+      "unlocked": "Unlocked",
+      "findTopTalent": "Find your top talent",
+      "takePlaybook": "Take the playbook",
+      "seePath": "See the shortcut path",
+      "seeDashboard": "See how we're building this",
+      "mapAssets": "Map your assets",
+      "assessQol": "Assess your quality of life",
+      "buildBusiness": "Build a business off your top talent",
+      "discoverMission": "Discover your mission",
+      "locked": {
+        "buildBusiness": "Unlocks after activation.",
+        "discoverMission": "Unlocks after you build a business off your top talent."
+      }
+    },
+    "victories": {
+      "title": "Victories",
+      "note": "Real wins, collected from the first day.",
+      "empty": "Your first victory is one quest away.",
+      "cta": "Begin the first quest",
+      "findTopTalent": "Passed the uniqueness test and entered the village",
+      "takePlaybook": "Took the playbook",
+      "seePath": "Saw the shortcut path to your business",
+      "seeDashboard": "Saw how the game is being built",
+      "mapAssets": "Mapped your assets",
+      "assessQol": "Assessed your quality of life",
+      "buildBusiness": "Built a business off your top talent",
+      "discoverMission": "Discovered your mission"
+    }
+  },
   "myProducts": {
     "toast": {
       "copied": {

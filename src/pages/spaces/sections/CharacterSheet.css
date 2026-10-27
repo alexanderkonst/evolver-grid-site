@@ -1,0 +1,167 @@
+/*
+ * Character Sheet — "Your House" at night (/game/me/overview).
+ * Same world as the title screen (src/pages/GameTitle.css): near-black, one
+ * ice-blue accent, Cormorant Garamond + IBM Plex Mono, hairlines instead of
+ * cards. Everything is scoped under .cs-root. Variables are redeclared here so
+ * the sheet does not depend on GameTitle.css being loaded.
+ */
+.cs-root {
+  --cs-bg: #07080a;
+  --cs-accent: #bcd7e6;
+  --cs-ink: rgba(238, 234, 226, 0.92);
+  --cs-ink-2: rgba(238, 234, 226, 0.62);
+  --cs-ink-3: rgba(238, 234, 226, 0.5);
+  --cs-hair: rgba(238, 234, 226, 0.14);
+  --cs-serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --cs-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--cs-bg);
+  color: var(--cs-ink);
+  font-family: var(--cs-serif);
+}
+.cs-root ::selection { background: var(--cs-accent); color: var(--cs-bg); }
+
+/* ---------- Backdrop: the house at night, darkened for text ---------- */
+.cs-scene {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+}
+.cs-scene img {
+  width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%;
+  opacity: 0.55;
+}
+.cs-scene::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 24%, rgba(7, 8, 10, 0) 0%, rgba(7, 8, 10, 0.55) 100%),
+    linear-gradient(to bottom, rgba(7, 8, 10, 0.35) 0%, rgba(7, 8, 10, 0.78) 38%, var(--cs-bg) 78%);
+}
+.cs-grain {
+  position: absolute; inset: -50%; z-index: -1; pointer-events: none; opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.cs-inner {
+  width: 100%; max-width: 640px; margin: 0 auto;
+  padding: clamp(40px, 8vh, 96px) 24px clamp(64px, 12vh, 140px);
+  text-shadow: 0 1px 24px rgba(5, 6, 8, 0.65);
+}
+
+.cs-mono {
+  font-family: var(--cs-mono); font-weight: 300; text-transform: uppercase;
+  letter-spacing: 0.32em; font-size: 12px; color: var(--cs-ink-3); margin: 0;
+}
+
+/* ---------- Hero: the crystal is the centrepiece ---------- */
+.cs-hero { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.cs-crystal { margin: clamp(20px, 4vh, 40px) 0 0; }
+.cs-photo {
+  width: 72px; height: 72px; margin-top: 8px; border-radius: 9999px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 0 1px var(--cs-hair);
+}
+.cs-photo img { width: 100%; height: 100%; object-fit: cover; }
+.cs-photo-invite { margin: 10px 0 0; }
+.cs-name {
+  font-family: var(--cs-serif); font-weight: 300; text-transform: uppercase;
+  font-size: clamp(32px, 7vw, 56px); line-height: 1.04; letter-spacing: 0.06em;
+  margin: 24px 0 0; color: var(--cs-ink); text-wrap: balance;
+}
+
+/* ---------- Sections: hairline-separated, no cards ---------- */
+.cs-sec { padding: clamp(40px, 7vh, 72px) 0 0; }
+.cs-sec > .cs-mono { margin-bottom: 20px; }
+.cs-rule { width: 56px; height: 1px; background: var(--cs-accent); border: 0; margin: clamp(40px, 7vh, 72px) auto 0; opacity: 0.8; }
+
+.cs-value {
+  font-family: var(--cs-serif); font-weight: 300; font-size: clamp(26px, 5.4vw, 34px);
+  line-height: 1.15; letter-spacing: 0.01em; margin: 0; color: var(--cs-ink); text-wrap: balance;
+}
+.cs-value--empty { font-style: italic; color: var(--cs-ink-2); }
+.cs-body { font-family: var(--cs-serif); font-style: italic; font-weight: 300; font-size: 19px; color: var(--cs-ink-2); margin: 0; }
+
+.cs-link {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-family: var(--cs-mono); font-weight: 300; font-size: 12px; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--cs-ink-3); text-decoration: none;
+  transition: color 0.6s ease;
+}
+.cs-link:hover, .cs-link:focus-visible { color: var(--cs-ink); }
+.cs-link:focus { outline: none; }
+.cs-link:focus-visible { outline: 1px solid var(--cs-accent); outline-offset: 2px; }
+.cs-cur { width: 2em; color: var(--cs-accent); opacity: 0; transition: opacity 0.4s ease; }
+.cs-link:hover .cs-cur, .cs-link:focus-visible .cs-cur { opacity: 1; }
+
+/* ---------- Level (private) ---------- */
+.cs-level { text-align: center; }
+.cs-level__num {
+  font-family: var(--cs-serif); font-weight: 300; font-size: clamp(56px, 14vw, 88px);
+  line-height: 1; letter-spacing: 0.02em; margin: 0; color: var(--cs-ink);
+}
+.cs-level__num span { font-size: 0.4em; color: var(--cs-ink-3); letter-spacing: 0.08em; }
+.cs-level__private { color: var(--cs-accent); margin-top: 14px; }
+.cs-level__why { font-family: var(--cs-mono); font-weight: 300; font-size: 12px; letter-spacing: 0.12em; color: var(--cs-ink-3); margin: 10px 0 0; }
+.cs-domains { list-style: none; margin: 32px 0 0; padding: 0; text-align: left; }
+.cs-domains li {
+  display: grid; grid-template-columns: minmax(0, 1fr) 96px 2ch; align-items: center; gap: 14px;
+  min-height: 34px; font-family: var(--cs-mono); font-weight: 300; font-size: 12px;
+  letter-spacing: 0.12em; color: var(--cs-ink-3);
+}
+.cs-domains .cs-bar { height: 1px; background: var(--cs-hair); position: relative; }
+.cs-domains .cs-bar i { position: absolute; left: 0; top: 0; height: 1px; background: var(--cs-ink-3); }
+.cs-domains li.is-weakest { color: var(--cs-ink); }
+.cs-domains li.is-weakest .cs-bar i { background: var(--cs-accent); height: 2px; top: -0.5px; }
+.cs-domains .cs-score { text-align: right; }
+
+/* ---------- Lists: inventory, quest chain, victories ---------- */
+.cs-list { list-style: none; margin: 0; padding: 0; }
+.cs-list li { border-top: 1px solid var(--cs-hair); }
+.cs-list li:last-child { border-bottom: 1px solid var(--cs-hair); }
+.cs-item { display: flex; align-items: center; gap: 16px; min-height: 52px; padding: 6px 0; }
+.cs-item__no { width: 2.5ch; flex: none; }
+.cs-item__label {
+  flex: 1; min-width: 0; font-family: var(--cs-serif); font-weight: 300; font-size: 21px;
+  line-height: 1.25; color: var(--cs-ink-3); text-decoration: none; transition: color 0.6s ease;
+}
+a.cs-item__label:hover, a.cs-item__label:focus-visible { color: var(--cs-ink); }
+a.cs-item__label:focus { outline: none; }
+a.cs-item__label:focus-visible { outline: 1px solid var(--cs-accent); outline-offset: 2px; }
+.cs-item__tag { flex: none; letter-spacing: 0.2em; }
+.cs-item__hint { margin: -4px 0 8px calc(2.5ch + 16px); font-family: var(--cs-mono); font-weight: 300; font-size: 12px; letter-spacing: 0.08em; color: var(--cs-ink-3); }
+
+/* a lit slot carries the player's soul color */
+.cs-slot { --slot-accent: var(--cs-accent); }
+.cs-slot.is-lit .cs-item__label { color: var(--cs-ink); }
+.cs-slot.is-lit .cs-item__no { color: var(--slot-accent); }
+.cs-slot.is-lit { box-shadow: inset 2px 0 0 var(--slot-accent); padding-left: 14px; }
+.cs-slot:not(.is-lit) .cs-item__no { opacity: 0.6; }
+
+@keyframes cs-slot-glow {
+  0% { box-shadow: inset 2px 0 0 var(--slot-accent), 0 0 0 0 transparent; }
+  35% { box-shadow: inset 2px 0 0 var(--slot-accent), 0 0 28px 2px color-mix(in srgb, var(--slot-accent) 55%, transparent); }
+  100% { box-shadow: inset 2px 0 0 var(--slot-accent), 0 0 0 0 transparent; }
+}
+.cs-slot.is-fresh { animation: cs-slot-glow 1.8s ease-out 1; }
+
+.cs-victory .cs-item__label { color: var(--cs-ink); }
+.cs-victory .cs-item__no { color: var(--slot-accent); }
+.cs-sec__note { margin: -8px 0 20px; font-family: var(--cs-serif); font-style: italic; font-weight: 300; font-size: 17px; color: var(--cs-ink-2); }
+
+/* ---------- Entrance + reduced motion ---------- */
+@keyframes cs-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.cs-inner > * { opacity: 0; animation: cs-rise 1.4s ease-out forwards; }
+.cs-inner > *:nth-child(2) { animation-delay: 0.25s; }
+.cs-inner > *:nth-child(3) { animation-delay: 0.4s; }
+.cs-inner > *:nth-child(4) { animation-delay: 0.55s; }
+.cs-inner > *:nth-child(n+5) { animation-delay: 0.7s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-inner > * { opacity: 1; animation: none; }
+  .cs-slot.is-fresh { animation: none; }
+  /* SoulDodecahedron animates with Tailwind utilities (spin / pulse / ping). */
+  .cs-crystal, .cs-crystal * { animation: none !important; }
+  .cs-link, .cs-cur, .cs-item__label { transition: none; }
+}

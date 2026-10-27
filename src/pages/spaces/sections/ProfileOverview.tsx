@@ -1,133 +1,297 @@
-import { useEffect, useState } from "react";
+import { useEffect, type CSSProperties } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { User, Sparkles, Briefcase, Map, Target, Boxes, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import GameShellV2 from "@/components/game/GameShellV2";
-import PlayerStatsBadge from "@/components/game/PlayerStatsBadge";
-import OnboardingProgress from "@/components/onboarding/OnboardingProgress";
-import { supabase } from "@/integrations/supabase/client";
-import { getOrCreateGameProfileId } from "@/lib/gameProfile";
-import { getOnboardingStep } from "@/lib/onboardingProgress";
+import SoulDodecahedron from "@/components/SoulDodecahedron";
+import ProfilePictureUpload from "@/components/profile/ProfilePictureUpload";
+import { useCharacterSheet, type CharacterSheetSlot } from "@/hooks/useCharacterSheet";
+import { useLocalizedDomains } from "@/modules/quality-of-life-map/qolConfig";
+import type { JourneyItemId } from "@/data/journeySequence";
+import "./CharacterSheet.css";
 
-interface ProfileData {
-    firstName: string | null;
-    level: number;
-    xpTotal: number;
-    streakDays: number;
-    onboardingStage: string | null;
-}
+/**
+ * Character Sheet — "Your House" at night, the save file made visible
+ * (docs/02-strategy/game_of_being_you.md §13, 13.2, 13.4). Route:
+ * /game/me/overview (and the Profile space).
+ *
+ * Reads only: every module already writes its data (see useCharacterSheet).
+ * Visual rules follow src/pages/GameTitle.tsx: same fonts, dark cinematic
+ * world, the crystal as centrepiece, hairlines instead of cards, no XP,
+ * points, badges or leaderboards.
+ *
+ * PRIVACY: the QoL level is shown only here, to its owner. Keep it off every
+ * public profile, matchmaking and marketplace surface (§13.2).
+ */
+
+// Same families as GameTitle's FONTS_HREF. Keep the two in sync.
+const FONTS_HREF =
+    "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&display=swap";
+
+const SCENE_SRC = "/game/village/house.webp";
+
+const QUEST_KEYS: Record<JourneyItemId, string> = {
+    "find-top-talent": "findTopTalent",
+    "take-playbook": "takePlaybook",
+    "see-path": "seePath",
+    "see-dashboard": "seeDashboard",
+    "map-assets": "mapAssets",
+    "assess-qol": "assessQol",
+    "build-business": "buildBusiness",
+    "discover-mission": "discoverMission",
+};
+
+const pad = (n: number) => String(n).padStart(2, "0");
 
 const ProfileOverviewContent = () => {
     const { t } = useTranslation();
-    const [data, setData] = useState<ProfileData | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const sheet = useCharacterSheet();
+    const domains = useLocalizedDomains();
 
+    // Fonts are scoped to this page, as on the title screen.
     useEffect(() => {
-        let isMounted = true;
-        const loadData = async () => {
-            try {
-                const profileId = await getOrCreateGameProfileId();
-                const { data: profile } = await supabase
-                    .from("game_profiles")
-                    .select("first_name, level, xp_total, current_streak_days, onboarding_stage")
-                    .eq("id", profileId)
-                    .maybeSingle();
-
-                if (!isMounted) return;
-                setData({
-                    firstName: profile?.first_name ?? null,
-                    level: profile?.level ?? 0,
-                    xpTotal: profile?.xp_total ?? 0,
-                    streakDays: profile?.current_streak_days ?? 0,
-                    onboardingStage: profile?.onboarding_stage ?? null,
-                });
-            } catch {
-                // Silent fail
-            } finally {
-                if (isMounted) setIsLoading(false);
-            }
-        };
-        loadData();
-        return () => { isMounted = false; };
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = FONTS_HREF;
+        document.head.appendChild(link);
+        return () => link.remove();
     }, []);
 
-    const currentStep = getOnboardingStep(data?.onboardingStage);
+    const domainName = (id: string) => domains.find((d) => d.id === id)?.name ?? id;
+    const soulColor = (i: number) =>
+        sheet.soulColors ? sheet.soulColors[i % sheet.soulColors.length] : undefined;
+    const accentStyle = (i: number): CSSProperties | undefined => {
+        const color = soulColor(i);
+        return color ? ({ "--slot-accent": color } as CSSProperties) : undefined;
+    };
+    const questLabel = (slot: CharacterSheetSlot) =>
+        t(`characterSheet.quests.${QUEST_KEYS[slot.id]}`);
 
-    if (isLoading) {
+    if (sheet.isLoading) {
         return (
-            <div className="p-6 lg:p-8 max-w-2xl mx-auto flex items-center justify-center min-h-[50vh]">
-                <div className="text-white/30 animate-pulse text-sm">{t('profileOverview.loading')}</div>
+            <div className="cs-root">
+                <div className="cs-scene" aria-hidden="true">
+                    <img src={SCENE_SRC} alt="" decoding="async" />
+                </div>
+                <div className="cs-inner">
+                    <p className="cs-mono" aria-live="polite">{t("profileOverview.loading")}</p>
+                </div>
             </div>
         );
     }
 
+    const doneSlots = sheet.chain.filter((s) => s.done);
+    const nextSlot = sheet.chain.find((s) => !s.done && !s.lockedHint);
+    const name = sheet.firstName ?? t("characterSheet.playerFallback");
+
     return (
-        <div className="p-6 lg:p-8 max-w-2xl mx-auto space-y-8">
-            {/* Welcome Header */}
-            <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#8460ea]/15 flex items-center justify-center ring-1 ring-white/10">
-                    <User className="w-8 h-8 text-[#8460ea]" />
-                </div>
-                <h1 className="text-2xl font-bold text-white mb-2">
-                    {data?.firstName ? t('profileOverview.greeting', { name: data.firstName }) : t('profileOverview.titleFallback')}
-                </h1>
-                <p className="text-white/40">
-                    {t('profileOverview.subtitle')}
-                </p>
+        <div className="cs-root">
+            <div className="cs-scene" aria-hidden="true">
+                <img src={SCENE_SRC} alt="" decoding="async" />
             </div>
+            <div className="cs-grain" aria-hidden="true" />
 
-            {/* Stats */}
-            {data && (
-                <div className="flex justify-center">
-                    <PlayerStatsBadge
-                        level={data.level}
-                        xpTotal={data.xpTotal}
-                        streakDays={data.streakDays}
-                        size="md"
-                    />
-                </div>
-            )}
+            <div className="cs-inner">
+                {/* Character: crystal first, then the real face and the name */}
+                <header className="cs-hero">
+                    <p className="cs-mono">{t("characterSheet.eyebrow")}</p>
+                    <div className="cs-crystal">
+                        <SoulDodecahedron soulColors={sheet.soulColors ?? undefined} size="lg" />
+                    </div>
+                    {sheet.userId && (
+                        sheet.avatarUrl ? (
+                            <div className="cs-photo">
+                                <img src={sheet.avatarUrl} alt={name} decoding="async" />
+                            </div>
+                        ) : (
+                            <>
+                                <div className="cs-photo">
+                                    <ProfilePictureUpload
+                                        userId={sheet.userId}
+                                        displayName={name}
+                                        size={72}
+                                        onUpload={() => sheet.refresh()}
+                                    />
+                                </div>
+                                <p className="cs-mono cs-photo-invite">{t("characterSheet.character.photoInvite")}</p>
+                            </>
+                        )
+                    )}
+                    <h1 className="cs-name">{name}</h1>
+                </header>
 
-            {/* Onboarding Progress */}
-            <div className="rounded-2xl liquid-glass ring-1 ring-white/10 p-6">
-                <OnboardingProgress currentStep={currentStep} />
+                <section className="cs-sec cs-hero" aria-labelledby="cs-talent-h">
+                    <p className="cs-mono" id="cs-talent-h">{t("characterSheet.character.talentLabel")}</p>
+                    {sheet.topTalent ? (
+                        <p className="cs-value">{sheet.topTalent}</p>
+                    ) : (
+                        <>
+                            <p className="cs-value cs-value--empty">{t("characterSheet.character.talentEmpty")}</p>
+                            <Link className="cs-link" to="/zone-of-genius/entry">
+                                <span className="cs-cur" aria-hidden="true">▸</span>
+                                {t("characterSheet.character.talentCta")} →
+                            </Link>
+                        </>
+                    )}
+                </section>
+
+                <section className="cs-sec cs-hero" aria-labelledby="cs-mission-h">
+                    <p className="cs-mono" id="cs-mission-h">{t("characterSheet.character.missionLabel")}</p>
+                    {sheet.missionTitle ? (
+                        <p className="cs-value">{sheet.missionTitle}</p>
+                    ) : (
+                        <>
+                            <p className="cs-value cs-value--empty">{t("characterSheet.character.missionEmpty")}</p>
+                            <Link className="cs-link" to="/game/me/mission">
+                                <span className="cs-cur" aria-hidden="true">▸</span>
+                                {t("characterSheet.character.missionCta")} →
+                            </Link>
+                        </>
+                    )}
+                </section>
+
+                <hr className="cs-rule" />
+
+                {/* Level: the weakest of the 8 domains. Private, never rendered publicly. */}
+                <section className="cs-sec cs-level" aria-labelledby="cs-level-h">
+                    <p className="cs-mono" id="cs-level-h">{t("characterSheet.level.title")}</p>
+                    {sheet.qol ? (
+                        <>
+                            <p className="cs-level__num">
+                                {sheet.qol.level} <span>/ 10</span>
+                            </p>
+                            <p className="cs-mono cs-level__private">{t("characterSheet.level.private")}</p>
+                            <p className="cs-level__why">
+                                {t("characterSheet.level.weakest", { domain: domainName(sheet.qol.weakest) })}
+                            </p>
+                            <ul className="cs-domains">
+                                {sheet.qol.domains.map((d) => (
+                                    <li key={d.id} className={d.id === sheet.qol?.weakest ? "is-weakest" : undefined}>
+                                        <span>{domainName(d.id)}</span>
+                                        <span className="cs-bar" aria-hidden="true">
+                                            <i style={{ width: `${d.score * 10}%` }} />
+                                        </span>
+                                        <span className="cs-score">{d.score}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </>
+                    ) : (
+                        <>
+                            <p className="cs-value cs-value--empty">{t("characterSheet.level.empty")}</p>
+                            <p className="cs-mono cs-level__private">{t("characterSheet.level.private")}</p>
+                            <Link className="cs-link" to="/quality-of-life-map/assessment">
+                                <span className="cs-cur" aria-hidden="true">▸</span>
+                                {t("characterSheet.level.cta")} →
+                            </Link>
+                        </>
+                    )}
+                </section>
+
+                <hr className="cs-rule" />
+
+                {/* Inventory = assets */}
+                <section className="cs-sec cs-hero" aria-labelledby="cs-inv-h">
+                    <p className="cs-mono" id="cs-inv-h">{t("characterSheet.inventory.title")}</p>
+                    {sheet.assets.count > 0 ? (
+                        <>
+                            <p className="cs-value">{t("characterSheet.inventory.summary", { total: sheet.assets.count })}</p>
+                            <ul className="cs-list" style={{ width: "100%", marginTop: 20 }}>
+                                {sheet.assets.top.map((a) => (
+                                    <li key={a.id}>
+                                        <div className="cs-item">
+                                            <span className="cs-item__label" style={{ color: "var(--cs-ink)" }}>{a.title}</span>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                            <Link className="cs-link" to="/game/me/assets">
+                                <span className="cs-cur" aria-hidden="true">▸</span>
+                                {t("characterSheet.inventory.open")}
+                            </Link>
+                        </>
+                    ) : (
+                        <>
+                            <p className="cs-value cs-value--empty">{t("characterSheet.inventory.empty")}</p>
+                            <Link className="cs-link" to="/asset-mapping">
+                                <span className="cs-cur" aria-hidden="true">▸</span>
+                                {t("characterSheet.inventory.cta")} →
+                            </Link>
+                        </>
+                    )}
+                </section>
+
+                <hr className="cs-rule" />
+
+                {/* First quest chain: lit when done, a quiet empty slot when not */}
+                <section className="cs-sec" aria-labelledby="cs-chain-h">
+                    <p className="cs-mono" id="cs-chain-h">{t("characterSheet.quests.title")}</p>
+                    <ol className="cs-list">
+                        {sheet.chain.map((slot, i) => {
+                            const lit = slot.done ? sheet.chain.slice(0, i + 1).filter((s) => s.done).length - 1 : 0;
+                            const locked = !slot.done && !!slot.lockedHint;
+                            const cls = ["cs-slot", slot.done && "is-lit", slot.justCompleted && "is-fresh"]
+                                .filter(Boolean)
+                                .join(" ");
+                            return (
+                                <li key={slot.id} className={cls} style={slot.done ? accentStyle(lit) : undefined}>
+                                    <div className="cs-item">
+                                        <span className="cs-mono cs-item__no">{pad(i + 1)}</span>
+                                        {locked ? (
+                                            <span className="cs-item__label">{questLabel(slot)}</span>
+                                        ) : (
+                                            <Link className="cs-item__label" to={slot.path}>
+                                                {questLabel(slot)}
+                                            </Link>
+                                        )}
+                                        {slot.done && (
+                                            <span className="cs-mono cs-item__tag">{t("characterSheet.quests.unlocked")}</span>
+                                        )}
+                                    </div>
+                                    {locked && (
+                                        <p className="cs-item__hint">
+                                            {t(`characterSheet.quests.locked.${QUEST_KEYS[slot.id]}`, { defaultValue: slot.lockedHint })}
+                                        </p>
+                                    )}
+                                </li>
+                            );
+                        })}
+                    </ol>
+                </section>
+
+                <hr className="cs-rule" />
+
+                {/* Victories: completed steps, read-only (§13.4) */}
+                <section className="cs-sec" aria-labelledby="cs-vic-h">
+                    <p className="cs-mono" id="cs-vic-h">{t("characterSheet.victories.title")}</p>
+                    {doneSlots.length > 0 ? (
+                        <>
+                            <p className="cs-sec__note">{t("characterSheet.victories.note")}</p>
+                            <ul className="cs-list">
+                                {doneSlots.map((slot, i) => (
+                                    <li key={slot.id} className="cs-slot cs-victory" style={accentStyle(i)}>
+                                        <div className="cs-item">
+                                            <span className="cs-mono cs-item__no" aria-hidden="true">◆</span>
+                                            <span className="cs-item__label">
+                                                {t(`characterSheet.victories.${QUEST_KEYS[slot.id]}`)}
+                                            </span>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </>
+                    ) : (
+                        <div className="cs-hero">
+                            <p className="cs-value cs-value--empty">{t("characterSheet.victories.empty")}</p>
+                            {nextSlot && (
+                                <Link className="cs-link" to={nextSlot.path}>
+                                    <span className="cs-cur" aria-hidden="true">▸</span>
+                                    {t("characterSheet.victories.cta")} →
+                                </Link>
+                            )}
+                        </div>
+                    )}
+                </section>
             </div>
-
-            {/* Quick Links */}
-            <div className="grid grid-cols-2 gap-3">
-                <Link
-                    to="/zone-of-genius/entry"
-                    className="flex items-center gap-3 p-4 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/30 hover:bg-white/[0.03] transition-all group"
-                >
-                    <Sparkles className="w-5 h-5 text-[#8460ea]" />
-                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">{t('profileOverview.cards.topTalent')}</span>
-                </Link>
-                <Link
-                    to="/game/me/genius-business"
-                    className="flex items-center gap-3 p-4 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/30 hover:bg-white/[0.03] transition-all group"
-                >
-                    <Briefcase className="w-5 h-5 text-[#8460ea]" />
-                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">{t('profileOverview.cards.business')}</span>
-                </Link>
-                <Link
-                    to="/quality-of-life-map/assessment"
-                    className="flex items-center gap-3 p-4 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/30 hover:bg-white/[0.03] transition-all group"
-                >
-                    <Map className="w-5 h-5 text-[#8460ea]" />
-                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">{t('profileOverview.cards.qualityOfLife')}</span>
-                </Link>
-                <Link
-                    to="/game/me/mission"
-                    className="flex items-center gap-3 p-4 rounded-xl liquid-glass ring-1 ring-white/10 hover:ring-[#8460ea]/30 hover:bg-white/[0.03] transition-all group"
-                >
-                    <Target className="w-5 h-5 text-[#8460ea]" />
-                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">{t('profileOverview.cards.mission')}</span>
-                </Link>
-            </div>
-
-            {/* Profile settings moved to the unified Settings page (2026-04-21).
-                Reachable via the Settings button at the bottom of the spaces rail. */}
         </div>
     );
 };
