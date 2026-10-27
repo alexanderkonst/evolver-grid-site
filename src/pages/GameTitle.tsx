@@ -15,7 +15,7 @@ import "./GameTitle.css";
 const FONTS_HREF =
   "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&display=swap";
 
-const HERO_SRC = "/game/hero_forest.png";
+const HERO_SRC = "/game/hero_forest.webp";
 const INVESTOR_HREF = "mailto:alexanderkonst@gmail.com?subject=Investor%20Room";
 
 type MenuItem = {
@@ -393,8 +393,8 @@ const GameTitle = () => {
                 <li key={p.solid} className={p.unique ? "is-unique" : undefined}>
                   <div className="gt-solid">
                     <img
-                      className="gt-gem"
-                      src={`/game/gems/gem_${p.solid}.webp`}
+                      className={`gt-gem gt-gem--${p.solid}`}
+                      src={`/game/gems/gem_${p.solid}.png`}
                       alt=""
                       aria-hidden="true"
                       loading="lazy"

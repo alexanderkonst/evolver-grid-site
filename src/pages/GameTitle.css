@@ -156,13 +156,19 @@
 .gt-paths li.is-unique canvas { max-width: 270px; }
 .gt-solid { position: relative; width: 100%; max-width: 180px; display: flex; justify-content: center; }
 .gt-paths li.is-unique .gt-solid { max-width: 270px; }
-.gt-solid canvas { position: relative; z-index: 1; opacity: 0.55; }
+.gt-solid canvas { position: relative; z-index: 1; opacity: 0.8; }
 .gt-gem {
-  position: absolute; left: 50%; top: 50%; width: 62%; height: auto; z-index: 0;
-  transform: translate(-50%, -50%); mix-blend-mode: screen; pointer-events: none;
-  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.06));
+  position: absolute; left: 50%; top: 50%; width: 46%; height: auto; z-index: 0;
+  transform: translate(-50%, -50%); pointer-events: none; opacity: 0.92;
+  filter: drop-shadow(0 0 14px var(--gem-glow, rgba(220, 235, 255, 0.10)));
   animation: gt-gem-float 7s ease-in-out infinite;
 }
+.gt-paths li.is-unique .gt-gem { width: 50%; }
+.gt-gem--cube { --gem-glow: rgba(214, 180, 120, 0.16); }
+.gt-gem--icosa { --gem-glow: rgba(80, 220, 140, 0.18); }
+.gt-gem--dodeca { --gem-glow: rgba(190, 225, 255, 0.20); }
+.gt-gem--octa { --gem-glow: rgba(220, 225, 235, 0.12); }
+.gt-gem--tetra { --gem-glow: rgba(255, 150, 60, 0.18); }
 @keyframes gt-gem-float {
   0%, 100% { transform: translate(-50%, -50%); }
   50% { transform: translate(-50%, calc(-50% - 6px)); }
