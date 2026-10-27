@@ -85,8 +85,8 @@ THE GAME OF BEING YOU is a stage-7 game with an on-ramp to stage 8, built on pri
 
 Sasha's line for her:
 
-> "I built a game that sends the player back to their life through their essence, their uniqueness."
+> "I built a game that sends the player back to their life through ether, their uniqueness."
 
-*(Dictated as "through ether"; read as "essence". Confirm the wording with Sasha before sending.)*
+*(Exact wording confirmed by Sasha, 2026-10-27: ether = aether, the fifth element, the quintessence.)*
 
 Status: no contact made yet. Routes: X @avantgame (she says she's most likely to reply there), jmcgonigal@iftf.org, IFTF Urgent Optimists.
