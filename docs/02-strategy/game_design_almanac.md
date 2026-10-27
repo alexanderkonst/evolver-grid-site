@@ -1,7 +1,7 @@
 # Game Design Almanac
 
 > Evolutionary map of game design: one invariant parameter, tracked through phase shifts. Companion to [game_of_being_you.md](./game_of_being_you.md).
-> *Started: 2026-10-26. Owner: Aleksandr Konstantinov. Keeper: Evolver (Hark). v0.2: stages 1–7 confirmed by Sasha («Бинго!», 2026-10-26); second axis (fidelity) and forecast stages 8–9 added.*
+> *Started: 2026-10-26. Owner: Aleksandr Konstantinov. Keeper: Evolver (Hark). v0.2: stages 1–7 confirmed by Sasha («Бинго!», 2026-10-26); second axis (fidelity) and forecast stages 8–10 and method added; Sasha: «Это ЗОЛОТО».*
 
 ## Invariant parameter: the scope of player authorship
 
@@ -35,8 +35,9 @@ How close the game's state is to the real world. It rises with every stage and r
 | 7 | Life as the Game | **Reality itself.** Real GPS, real heartbeat, real income, real QoL. Simulation fidelity = 100%, because nothing is simulated. |
 | 8 | Shared Reality (forecast) | **Reality as medium.** The game edits the world a group lives in. |
 | 9 | Civilization Game (forecast) | **Reality as output.** The world is the rendered result of rules people design. |
+| 10 | The Self-Playing World (forecast) | **Reality as self.** Designer, player and world coincide: the world plays itself, consciously. |
 
-**Insight:** for 7 stages games chased reality; at 7 they catch it. After that, reality starts approaching the game: life designed with the clarity of good game design. That inversion is the value proposition of THE GAME OF BEING YOU.
+**Insight (Sasha: «Это ЗОЛОТО», 2026-10-26):** for 7 stages games chased reality; at 7 they catch it. After that, reality starts approaching the game: life designed with the clarity of good game design. That inversion is the value proposition of THE GAME OF BEING YOU.
 
 ## Forecast: the next octave (8 and 9)
 
@@ -51,4 +52,21 @@ Octave reading: 7 = Do of the new octave, 8 = Re, 9 = Mi. The next **Mi–Fa int
 
 **Where we sit:** THE GAME OF BEING YOU is a stage-7 game (your life is the game state) whose multiplayer layer (party, Mastermind, contribution leaderboard, "Finding Your Tribe") is an on-ramp to stage 8.
 
-*Status: stages 8–9 are a forecast by Evolver, 2026-10-26, for Sasha's review.*
+### Stage 10 (forecast, beyond the Mi–Fa interval)
+
+| # | Stage | Horizon | Player authors | One-line description | Precursors |
+|---|---|---|---|---|---|
+| 10 | The Self-Playing World (Fa) | not datable | the player itself, at planetary scale | Humanity, with its intelligences, becomes one character with its own uniqueness: a civilization that knows what it uniquely is and plays its part among other living systems and minds. Designer, player and world coincide. | Teilhard's noosphere, Lila (the world as divine play), Gaia, Kardashev's scale |
+
+Mirror of the first octave: there the Mi–Fa interval (3→4) was the moment the **player became a character**. In the new octave the same interval (9→10) is the moment the **civilization becomes a character**. An interval does not happen by itself: it needs an outside shock (in the first octave: story and role-play; here, plausibly, AI as a second kind of mind, contact with the planet's limits, or a crisis of meaning).
+
+### How the forecast was made (method)
+
+1. **Invariant extrapolation.** In stages 1–7 the thing the player authors widens by one order each time (move → strategy → performance → identity → path → worlds for others → own life). The next orders of the holarchy are a shared life (8), the rules of civilization (9), and the civilization as a self (10). Same holonic primitive as FYTT's canvas: person → venture → community → civilization.
+2. **Fidelity axis turns over at 7.** Before 7 the game approaches reality; after 7 reality approaches the game: medium (8), output (9), self (10).
+3. **Octave law.** The first octave's structure (three notes inside fixed rules, then an interval needing a shock, then a closing Si–Do shock) is mapped onto the second: 7 = Do, 8 = Re, 9 = Mi, interval, 10 = Fa.
+4. **Timing by compression.** Stage durations shrink: millennia (1), centuries (2), decades (3–6), ~20 years (6). Stage 7 began ~2023, so 8 is plausibly already starting (its precursors exist) and grows within a decade; 9 is datable only roughly; 10 not at all.
+
+Honest limit: this is extrapolation from a pattern, not data. Precursors confirm the direction, not the dates.
+
+*Status: stages 8–10 are a forecast by Evolver, 2026-10-26. Sasha: «Это ЗОЛОТО» (fidelity axis, the inversion insight, stages 8–9).*

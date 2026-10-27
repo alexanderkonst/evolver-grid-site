@@ -172,6 +172,8 @@ Stage-7+ mechanics that pass the test (proposed, Evolver):
 
 ## 12. Ideas & findings log (append-only)
 
+- 2026-10-26: Sasha: games are a way to live, potentially more useful than people imagine. Engagement-built games amplify addiction and are linked to loneliness and social anxiety because they substitute artificial achievement for real life and screen contact for people. The fidelity principle is the antidote: when the game is your life, playing more means living more, and the party is real people. Working line: *the game that sends you back to your life.*
+- 2026-10-26: Compatibility with stages 9–10 (Evolver): built on primitives that do not need replacing at higher scales: uniqueness as the unit (stage 10 = civilization as a character made of unique players), no artificial points (proof as a byproduct of real outcomes scales to civic mechanisms), rules authored by players (open method, forkable per community, Collective revenue share and treasury). Keep 9–10 as horizon, never as a pitch promise.
 - 2026-10-26: Synthesis point of the three visual directions = one real object under real light (cinema = space, prism = object and the only color, paperback = type and paper).
 - 2026-10-26: Topaz-on-black reads as *Dark Side of the Moon*; rejected. Amber topaz → clear, faintly ice-blue topaz.
 - 2026-10-26: Light should not be a sideways prism beam: it comes from the source above, passes through the center of the being, grounds into the earth, and the spectrum radiates in all directions ("most true to the nature of things").
