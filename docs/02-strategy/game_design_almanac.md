@@ -70,3 +70,23 @@ Mirror of the first octave: there the Mi–Fa interval (3→4) was the moment th
 Honest limit: this is extrapolation from a pattern, not data. Precursors confirm the direction, not the dates.
 
 *Status: stages 8–10 are a forecast by Evolver, 2026-10-26. Sasha: «Это ЗОЛОТО» (fidelity axis, the inversion insight, stages 8–9).*
+
+## Design rule: enter at 8, compatible with 9 and 10 (2026-10-27)
+
+*Sasha: «ЗОЛОТО! ГЛУБОЧАЙШИЕ ПОНИМАНИЯ!!!»*
+
+THE GAME OF BEING YOU is a stage-7 game with an on-ramp to stage 8, built on primitives that won't need to change at the scales of stages 9 and 10:
+
+- **The unit is uniqueness.** Stage 10 is civilization as one character, assembled from unique players. We build the cell of that character.
+- **No artificial points.** Proof comes as a byproduct of real results. That can scale into civic mechanisms; XP can't.
+- **Players write the rules.** Open method, a fork for every community, revenue share and the Collective's treasury: stage 9 in miniature.
+
+**Lineage: Jane McGonigal.** *The game that sends you back to your life* is directly her thesis (*Reality Is Broken*, *SuperBetter*). This is what Sasha will tell her: he is building a game that enters stage 8 and stays compatible with 9 and 10, and he wants to build it with her, because few people are building games like this.
+
+Sasha's line for her:
+
+> "I built a game that sends the player back to their life through their essence, their uniqueness."
+
+*(Dictated as "through ether"; read as "essence". Confirm the wording with Sasha before sending.)*
+
+Status: no contact made yet. Routes: X @avantgame (she says she's most likely to reply there), jmcgonigal@iftf.org, IFTF Urgent Optimists.

@@ -172,6 +172,7 @@ Stage-7+ mechanics that pass the test (proposed, Evolver):
 
 ## 12. Ideas & findings log (append-only)
 
+- 2026-10-27: Sasha («ЗОЛОТО!»): design rule is to enter stage 8 while staying compatible with 9 and 10 (see almanac). *The game that sends you back to your life* is directly Jane McGonigal's thesis; he will pitch building it with her.
 - 2026-10-27: Sasha rejected «Raids» («убери, ты шутишь? Убери все упоминания»): events stay Events/Meet; no raid vocabulary anywhere.
 - 2026-10-26: Sasha: games are a way to live, potentially more useful than people imagine. Engagement-built games amplify addiction and are linked to loneliness and social anxiety because they substitute artificial achievement for real life and screen contact for people. The fidelity principle is the antidote: when the game is your life, playing more means living more, and the party is real people. Working line: *the game that sends you back to your life.*
 - 2026-10-26: Compatibility with stages 9–10 (Evolver): built on primitives that do not need replacing at higher scales: uniqueness as the unit (stage 10 = civilization as a character made of unique players), no artificial points (proof as a byproduct of real outcomes scales to civic mechanisms), rules authored by players (open method, forkable per community, Collective revenue share and treasury). Keep 9–10 as horizon, never as a pitch promise.
