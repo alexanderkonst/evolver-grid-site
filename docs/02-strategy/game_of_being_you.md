@@ -264,3 +264,27 @@ The world is a sovereign village on the main screen, built from real photos of p
 - **Threshold guardians, not bosses.** Each stage ends with a real-world threshold you pass (no combat vocabulary); passing it is the power-up.
 - **The Slipper (finale, cannot be pictured):** the Ball is the first real «yes» from the world: the first paying client or collaboration on your own offer. No points, a trace in reality.
 - Scope for now: stop here (Sasha: «На этом пока ограничимся»).
+
+### 13.4 Victories: the path of uniqueness, step by step (Sasha, 2026-10-27)
+**Principle.** Real wins are collected from the very first day of use, so people recognize these victories in themselves instead of overlooking them. Collected over time, they prove «I can», show the next goal and give the motivation to walk towards it. Sasha: «Нутром чую что это будет мега приятно людям». No points: each victory is a real event, a trace in reality.
+
+**On every completed step:**
+1. Congratulate the player (a moment of recognition, never a generic toast).
+2. Ask: «How much did this resonate, from 1 to 10?»
+3. Record the victory and the rating in the player's save file (Character Sheet), as a growing collection.
+
+**The sequence (v1):**
+| # | Victory | Where it happens | Form now |
+|---|---|---|---|
+| 1 | Passed the uniqueness test, entered the village | Gate | Digital |
+| 2 | Each character quest completed (Mission, soul colors, QoL level, assets) | Your House | Digital |
+| 3 | Packaged my uniqueness in one phrase, for the first time | Your House / Workshop | Digital |
+| 4 | Received the tagline of my unique business, for the first time | Workshop | Digital |
+| 5 | Came to the webinar (live or the recording) | Academy | Live |
+| 6 | Came to the Mastermind | Fire Circle | Live |
+| 7 | Completed the 21-day mastery practice | Academy | Live |
+| 8 | Named the price of my product to a client, for the first time | Market | Live, real world |
+| 9 | Sold my first product for money (the Ball, the Slipper finale: the first real «yes» from the world) | Market / Town Hall | Real world |
+| optional | Oracle Reading ($37 deep Top Talent reveal), its Scroll goes to the inventory | Oracle | Digital |
+
+**Now vs later.** Steps 5 to 7 are live trainings today; they can be digitized later. The order may be refined; the victories and the congratulate-and-ask ritual are fixed.
