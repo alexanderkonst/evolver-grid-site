@@ -1,7 +1,7 @@
 # Consciousness Meets Science — Mini-Course (Season C)
 
 > **Added:** 2026-10-27 · Mystery School intro in the Academy · EN
-> **Source:** Sasha's (Aleksandr Konstantinov) Medium article *Consciousness Meets Science: How Inner Experiences and Science Co-Reveal the Nature of Reality*, plus his core idea (see `VIDEO_PRODUCTION_PLAN.md` → Course-from-Source Template → Application 2).
+> **Source:** Sasha's (Aleksandr Konstantinov) Medium article *Consciousness Meets Science: How Inner Experiences and Science Co-Reveal the Nature of Reality*, plus his core idea (method: `../templates/course-from-source.md`; plan: `VIDEO_PRODUCTION_PLAN.md` → Course-from-Source Application 2).
 > **Decisions (Sasha, 2026-10-27):** only from the article for now (expand later); short, dense videos of 90–120 s; NotebookLM works only from the text prepared per episode; the core idea is the spine (opens in C01E00, closes in C05E03).
 > **Status:** ready to load, awaiting Sasha's authorship check (Step 6).
 

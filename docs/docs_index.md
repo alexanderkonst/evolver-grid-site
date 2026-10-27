@@ -19,6 +19,7 @@ docs/
 ├── 04-exports/        # Generated exports
 ├── 05-reference/      # Standards & templates
 ├── 05-specs/          # Module specs (renamed from 04-specs)
+├── templates/         # Reusable production templates (course-from-source, testimonial clips)
 ├── 06-architecture/   # Technical architecture
 ├── 06-modules/        # Per-module docs
 ├── 07-technology/     # Core tech systems
