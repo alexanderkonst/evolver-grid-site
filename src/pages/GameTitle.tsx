@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { FONTS_HREF } from "@/lib/gameFonts";
 import { shouldShowWordlessIntro } from "@/lib/firstVisit";
 import WordlessIntro from "@/components/game/WordlessIntro";
+import { journeyStepRows } from "@/lib/journeyLabels";
 import "./GameTitle.css";
 
 /**
@@ -26,12 +27,10 @@ type MenuItem = {
   to: string;
 };
 
-const LEVELS = [
-  { title: "Know your character", body: "Describe your talents, resources, dedication, craft and quality of life." },
-  { title: "Forge your unique business", body: "Turn who you are into a scalable offer only you can make." },
-  { title: "Enter multiplayer", body: "Join collaborations with other players of the Golden Age." },
-  { title: "Work, play & grow together", body: "Co-create, compound results, raise your quality of life." },
-];
+// Chapter 01 is the Journey itself (WP-4): the same steps, order and «optional» marks as
+// Your House, `/ignite` and the Quest Board pane, read from JOURNEY_MAIN. No copy of the
+// list lives on this page. The page is English-only, so no `t`.
+const JOURNEY_STEPS = journeyStepRows();
 
 type SolidName = "cube" | "icosa" | "dodeca" | "octa" | "tetra";
 
@@ -441,16 +440,16 @@ const TitleScreen = () => {
         <section className="gt-book gt-sec" id="how" aria-labelledby="gt-how-h">
           <div className="gt-book__inner">
             <p className="gt-mono gt-chapter">Chapter 01</p>
-            <p className="gt-mono gt-label">Single Player → Multiplayer</p>
-            <h2 id="gt-how-h">Four levels. One light, refracted into you.</h2>
+            <p className="gt-mono gt-label">The path of uniqueness</p>
+            <h2 id="gt-how-h">{JOURNEY_STEPS.length} steps. One light, refracted into you.</h2>
             <ol className="gt-levels">
-              {LEVELS.map((level, i) => (
-                <li key={level.title} className={i === 0 ? "is-current" : undefined}>
-                  <span className="gt-node">{String(i + 1).padStart(2, "0")}</span>
+              {JOURNEY_STEPS.map((step, i) => (
+                <li key={step.id} className={i === 0 ? "is-current" : undefined}>
+                  <span className="gt-node">{String(step.no).padStart(2, "0")}</span>
                   <div>
-                    <h3>{level.title}</h3>
-                    <p>{level.body}</p>
-                    {i === 0 && <span className="gt-mono">Level 01 · You are here</span>}
+                    <h3>{step.label}</h3>
+                    {step.optional && <span className="gt-mono">{step.optional}</span>}
+                    {i === 0 && <span className="gt-mono">You are here</span>}
                   </div>
                 </li>
               ))}

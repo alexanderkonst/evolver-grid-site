@@ -1011,6 +1011,22 @@
     "stakeInk": "quiénes son realmente las personas",
     "stakeAfter": ", en vez de los roles que se les asignaron."
   },
+  "journeySteps": {
+    "optional": "opcional",
+    "find-top-talent": "Empieza por encontrar tu talento principal",
+    "discover-mission": "Descubre tu misión",
+    "assess-qol": "Evalúa tu calidad de vida",
+    "map-assets": "Mapea tus activos",
+    "build-business": "Construye un negocio sobre tu talento principal",
+    "locked": {
+      "discover-mission": "Se abre cuando tu talento principal está guardado. Dentro: lo que te toca hacer en el mundo.",
+      "assess-qol": "Se abre cuando tu misión está guardada. Dentro: tu nivel real, privado para ti.",
+      "map-assets": "Se abre cuando tu misión está guardada. Dentro: tu inventario de todo con lo que puedes construir.",
+      "build-business": "Se abre cuando tu talento principal, tu misión y tus activos están guardados. Dentro: tu singularidad en una frase y luego tu eslogan."
+    },
+    "here": "Estás aquí",
+    "chapterLabel": "El camino de la singularidad"
+  },
   "spacesRail": {
     "logoutToastTitle": "Has cerrado sesión",
     "logoutToastDescription": "Nos vemos cuando vuelvas.",
@@ -1505,7 +1521,7 @@
       "assessQol": "Evalúa tu calidad de vida",
       "buildBusiness": "Construye un negocio sobre tu talento principal",
       "discoverMission": "Descubre tu misión",
-      "spaceFallback": "Recorrido"
+      "spaceFallback": "Pueblo"
     },
     "unlockHints": {
       "nextMove": "Se desbloquea tras el Paso 1",

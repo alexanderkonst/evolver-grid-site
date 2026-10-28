@@ -7,6 +7,7 @@ import ProfilePictureUpload from "@/components/profile/ProfilePictureUpload";
 import { useCharacterSheet, type CharacterSheetSlot } from "@/hooks/useCharacterSheet";
 import { useLocalizedDomains } from "@/modules/quality-of-life-map/qolConfig";
 import type { JourneyItemId } from "@/data/journeySequence";
+import { journeyStepRows } from "@/lib/journeyLabels";
 import "./CharacterSheet.css";
 
 /**
@@ -63,8 +64,12 @@ const ProfileOverviewContent = () => {
         const color = soulColor(i);
         return color ? ({ "--slot-accent": color } as CSSProperties) : undefined;
     };
-    const questLabel = (slot: CharacterSheetSlot) =>
-        t(`characterSheet.quests.${QUEST_KEYS[slot.id]}`);
+    // WP-4: the first quest chain is the Journey list, the same rows (labels, order,
+    // «optional» marks) as the title screen, `/ignite` and the Quest Board pane.
+    // `sheet.chain` is `JOURNEY_MAIN` in order, so rows line up with slots by index.
+    const stepRows = journeyStepRows(t);
+    const stepRow = (slot: CharacterSheetSlot, i: number) =>
+        stepRows[i] ?? { label: slot.label, optional: null };
 
     if (sheet.isLoading) {
         return (
@@ -237,11 +242,14 @@ const ProfileOverviewContent = () => {
                                     <div className="cs-item">
                                         <span className="cs-mono cs-item__no">{pad(i + 1)}</span>
                                         {locked ? (
-                                            <span className="cs-item__label">{questLabel(slot)}</span>
+                                            <span className="cs-item__label">{stepRow(slot, i).label}</span>
                                         ) : (
                                             <Link className="cs-item__label" to={slot.path}>
-                                                {questLabel(slot)}
+                                                {stepRow(slot, i).label}
                                             </Link>
+                                        )}
+                                        {stepRow(slot, i).optional && (
+                                            <span className="cs-mono cs-item__tag">{stepRow(slot, i).optional}</span>
                                         )}
                                         {slot.done && (
                                             <span className="cs-mono cs-item__tag">{t("characterSheet.quests.unlocked")}</span>
@@ -249,7 +257,7 @@ const ProfileOverviewContent = () => {
                                     </div>
                                     {locked && (
                                         <p className="cs-item__hint">
-                                            {t(`characterSheet.quests.locked.${QUEST_KEYS[slot.id]}`, { defaultValue: slot.lockedHint })}
+                                            {t(`journeySteps.locked.${slot.id}`, { defaultValue: slot.lockedHint })}
                                         </p>
                                     )}
                                 </li>

@@ -60,8 +60,19 @@ export type JourneyItem = {
     id: JourneyItemId;
     /** "main" = a step of the Journey (§14.2); "extra" = tutorial lore, off the main path. */
     kind: "main" | "extra";
+    /**
+     * The one name of this step, everywhere it is listed (`/`, Your House, `/ignite`, the
+     * Quest Board pane). No ordinal in the string: lists render the number from the step's
+     * position in `JOURNEY_MAIN`, so a reorder never leaves a stale «3.» behind.
+     * Localised through `journeyStepLabel` (src/lib/journeyLabels.ts).
+     */
     label: string;
     path: string;
+    /**
+     * True when the Journey works without this step. It is marked «optional» wherever the
+     * list is drawn, and nothing downstream requires it: one answer for every list.
+     */
+    optional?: boolean;
     /** When set, defines what "done" means for this item. Undefined = never auto-completes. */
     completionPredicate?: CompletionPredicate;
     /** Where the completed artifact lives in ME / BUILD. Informational. */
@@ -103,7 +114,7 @@ export const JOURNEY_SEQUENCE: JourneyItem[] = [
     {
         id: "find-top-talent",
         kind: "main",
-        label: "1. Start by finding your top talent",
+        label: "Start by finding your top talent",
         path: "/",
         completionHome: "/game/me/zone-of-genius",
         completionPredicate: async ({ supabase, profileId }) =>
@@ -112,7 +123,7 @@ export const JOURNEY_SEQUENCE: JourneyItem[] = [
     {
         id: "discover-mission",
         kind: "main",
-        label: "2. Discover your mission",
+        label: "Discover your mission",
         path: "/mission-discovery",
         requires: ["find-top-talent"],
         lockedHint: "Opens when your top talent is saved. Inside: what is yours to do in the world.",
@@ -122,7 +133,10 @@ export const JOURNEY_SEQUENCE: JourneyItem[] = [
     {
         id: "assess-qol",
         kind: "main",
-        label: "3. Assess your quality of life",
+        label: "Assess your quality of life",
+        // Optional since Sasha, 2026-05-22 (Day 79): nothing downstream requires QoL.
+        // The mark lives here so every list shows the same answer.
+        optional: true,
         path: "/quality-of-life-map/assessment",
         completionHome: "/game/me/quality-of-life",
         requires: ["discover-mission"],
@@ -133,7 +147,7 @@ export const JOURNEY_SEQUENCE: JourneyItem[] = [
     {
         id: "map-assets",
         kind: "main",
-        label: "4. Map your assets",
+        label: "Map your assets",
         path: "/asset-mapping",
         completionHome: "/game/me/assets",
         requires: ["discover-mission"],
@@ -144,7 +158,7 @@ export const JOURNEY_SEQUENCE: JourneyItem[] = [
     {
         id: "build-business",
         kind: "main",
-        label: "5. Build a business off your top talent",
+        label: "Build a business off your top talent",
         path: "/ubb",
         requires: ["find-top-talent", "discover-mission", "map-assets"],
         lockedHint:
@@ -195,7 +209,7 @@ export const JOURNEY_LAST_SEEN_KEY = "journey:last-seen-completion-v1";
  * DOM event name dispatched when an item transitions to completed.
  *
  * Wave 1: nothing listens. The event is a SEAM so a later wave can wire
- * propagation into ME-space rows / SpacesRail badges / PlayerStatsBadge
+ * propagation into ME-space rows / SpacesRail badges
  * without changing the pane code. Per the holonic roast (P8 — Platform as
  * Nervous System): build the seam now even if the consumers come later.
  *

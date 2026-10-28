@@ -36,16 +36,17 @@ import { isProductLandingRoute } from "@/lib/shellRoutes";
 // Day 80 Wave 2.11: useEntryPath import retired — the video background
 // now checks the URL directly at mount (see comment in MuxVideoBackground
 // below) so sessionStorage-cached match flags don't poison fresh loads.
-import SpacesRail, { SPACES } from "./SpacesRail";
+import SpacesRail from "./SpacesRail";
 import SectionsPanel, { SPACE_SECTIONS, STATIC_LABEL_KEYS } from "./SectionsPanel";
 import { useJourneyProgress } from "@/hooks/useJourneyProgress";
+import { usePlaceStates } from "@/hooks/usePlaceStates";
+import { activePlaceKey, PANE_BY_PLACE, RAIL_PLACES } from "@/lib/railPlaces";
 import { useLinkedQuizResult } from "@/hooks/useLinkedQuizResult";
 import {
     QUIZ_RESULT_EVENT,
     readLocalQuizResult,
     type LocalQuizResult,
 } from "@/lib/quizOwnership";
-import PlayerStatsBadge from "./PlayerStatsBadge";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import SiteLogo from "@/components/SiteLogo";
 // hls.js is dynamically imported inside MuxVideoBackground to avoid module-level crashes
@@ -460,7 +461,9 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // entry) → stored user preference → false. try/catch guards Safari
     // private mode where localStorage access throws.
     const [railMinimized, setRailMinimized] = useState<boolean>(() => {
-        if (defaultRailMinimized || isAuthRoute) return true;
+        // WP-4: /auth no longer forces a separate compact rail; it shows the same
+        // 11 places, at the width the player chose, as every other screen.
+        if (defaultRailMinimized) return true;
         try {
             return window.localStorage.getItem(RAIL_MINIMIZED_STORAGE_KEY) === "true";
         } catch {
@@ -526,9 +529,6 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         zone_of_genius_completed?: boolean | null;
         mission_discovered_at?: string | null;
         resources_mapped_at?: string | null;
-        level?: number | null;
-        xp_total?: number | null;
-        current_streak_days?: number | null;
         // Day 130 (Sasha 2026-07-20): IDENTITY AS PRESENCE — soul-color
         // avatar ring. Not in the generated Supabase types yet (same gap
         // CharacterHub.tsx works around); selected explicitly below and
@@ -665,12 +665,11 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         return !isLandingPage && !isIgnitePage && !isEquilibriumPage && !isKarimePage && !isAdminPage;
     });
 
-    // Auth is a focused account surface inside the persistent shell.
-    // Route transitions do not remount this component, so enforce its
-    // compact state whenever auth becomes active.
+    // Auth is a focused account surface inside the persistent shell: pane 2 has no
+    // sections for it, so it stays closed. The rail is the one shared rail (WP-4);
+    // it is no longer forced compact here.
     useEffect(() => {
         if (!isAuthRoute) return;
-        setRailMinimized(true);
         setSectionsPanelOpen(false);
     }, [isAuthRoute]);
     const [mobileView, setMobileView] = useState<"navigation" | "content">(() => {
@@ -696,6 +695,9 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // Reading the same hook here re-uses the probe fallbacks and lets
     // the BUILD chip + the JOURNEY strikethrough light up in lockstep.
     const { progress: journeyProgress } = useJourneyProgress();
+
+    // WP-4: the state of each village place, the rail's only source (same as /village).
+    const { states: placeStates } = usePlaceStates();
 
     const getSpaceFromPath = (pathname: string): string | undefined => {
         // Day 52 (Sasha 2026-04-26): /ubb (Unique Business Builder)
@@ -828,18 +830,23 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             return;
         }
 
-        const fallback = SPACES.find((s) => location.pathname.startsWith(s.path) || location.pathname === s.path);
+        // Last resort: the pane of the place whose module owns this path.
+        const fallback = RAIL_PLACES.find((p) => location.pathname.startsWith(p.to) || location.pathname === p.to);
         if (fallback) {
-            setActiveSpaceId(fallback.id);
+            setActiveSpaceId(PANE_BY_PLACE[fallback.key]);
         }
     }, [location.pathname, activeSpaceId, spaceOverride]);
+
+    // The place the player stands in: the path decides first, the pane second.
+    const activePlace = activePlaceKey(location.pathname, activeSpaceId);
+    const activePlaceData = RAIL_PLACES.find((p) => p.key === activePlace);
 
     // Load profile
     const loadProfile = async (userId: string) => {
         try {
             const { data, error } = await supabase
                 .from("game_profiles")
-                .select("first_name, last_name, avatar_url, username, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at, level, xp_total, current_streak_days")
+                .select("first_name, last_name, avatar_url, username, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at")
                 .eq("user_id", userId)
                 .maybeSingle();
             // Day 148 (Sasha 2026-08-07): older accounts reported stuck at
@@ -887,7 +894,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         try {
             const { data } = await supabase
                 .from("game_profiles")
-                .select("first_name, last_name, avatar_url, username, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at, level, xp_total, current_streak_days")
+                .select("first_name, last_name, avatar_url, username, onboarding_stage, last_zog_snapshot_id, zone_of_genius_completed, mission_discovered_at, resources_mapped_at")
                 .eq("id", profileId)
                 .maybeSingle();
             setProfile(data || null);
@@ -1260,73 +1267,10 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     const missionComplete = missionCompleteStrict || !!journeyProgress["journey-mission-discovery"];
     const assetsComplete = assetsCompleteStrict || !!journeyProgress["journey-asset-mapper"];
     const tmaComplete = topTalentComplete && missionComplete && assetsComplete;
-    // ME is the one progressive space that can begin before account
-    // creation: completing the public quiz creates a browser-local chapter,
-    // and an authenticated claim makes that chapter follow the person across
-    // devices. Established T+M+A users retain their existing access.
-    const meUnlocked = tmaComplete || !!localQuizResult || !!linkedQuizResult;
-    const aiOsUnlocked = tmaComplete;
-
-    // BUILT BY YOU is part of the post-onboarding world. Entitlement or a
-    // prior activation must not surface it before the standard Top Talent +
-    // Mission + Assets sequence is complete.
-    const buildUnlocked = tmaComplete;
-
-    const unlockStatus: Record<string, boolean> = profileLoaded
-        ? {
-            "journey": true,                                    // Always open — the front door
-            "next-move": topTalentComplete,                     // After Step 1
-            "ai-os": aiOsUnlocked,                              // After T+M+A or ever-visited (Day 79)
-            // Day 135 (Sasha): ME re-gated from `topTalentComplete` to the
-            // full `tmaComplete` triad (Top Talent + Mission + Assets), same
-            // signal as "learn"/COLLABORATE/BUILD's triad arm. ME now sits
-            // in GATED_SPACES (below) so it's hidden — not dimmed — until
-            // earned. Direct routes (/game/me/*) stay reachable throughout
-            // via MeGate + the rail's own footer profile button, so nothing
-            // the user already produced (Top Talent / Mission / Assets) is
-            // stranded while this chip is hidden.
-            "grow": meUnlocked,                                 // ME — after quiz locally, claimed cross-device, or T+M+A
-            // Day 119 (Sasha 2026-07-09): GROW space enabled — id stays
-            // "learn" (rail label is now GROW, positioned between
-            // COLLABORATE and BUILD). Gate switched from the
-            // LEARN_VISIBLE flag to tmaComplete so it unlocks together
-            // with COLLABORATE and BUILD's triad arm, on the same
-            // "onboarding complete" signal. MEET stays flag-gated below.
-            "learn": tmaComplete,                               // GROW — unlocks with COLLABORATE, after T+M+A complete
-            // Day 61 (Sasha 2026-05-04 14:30): MEET gated by feature
-            // flag (see top of file). When flag is false (default),
-            // unlock = false unconditionally → lands in hiddenSpaces →
-            // invisible in rail. When flipped to true, restores the
-            // previous "After Step 1" behavior.
-            "build": buildUnlocked,                            // After T+M+A complete
-            "meet": MEET_VISIBLE && topTalentComplete,          // After Step 1 — community events (currently flag-gated off)
-            // Day 87 v2 (Sasha 2026-05-29): COLLABORATE gated on T+M+A
-            // completion (matching the matchable threshold from the
-            // funnel-v2 spec). Authed users who haven't completed the
-            // triad don't see the chip; unauthed guests are already
-            // hidden by NON_PUBLIC_SPACE_IDS upstream. See comment at
-            // line ~369 for the gating history.
-            "collaborate": tmaComplete,                         // After T+M+A complete
-            // Day 139 (Sasha 2026-07-29): OFFER space hidden unconditionally —
-            // flagged as a dataless/messy surface in production (see
-            // docs/02-strategy/module_taxonomy.md, Marketplace v0.5 PoC).
-            // Hide-don't-dim: fully removed from nav rather than gated by
-            // ignitionComplete. Route (/game/marketplace) still resolves for
-            // anyone who navigates directly (e.g. admin); nothing deleted.
-            "buysell": false,
-        }
-        : {};
-
-    // Unlock hint tooltips — shown on hover over locked spaces.
-    // Day 48 iter 7 (Sasha): ME's hint sharpened from the generic
-    // "Unlocks after Step 1" to the proper product language:
-    // "Unlocks after your Find Your Top Talent Reveal." Hovered
-    // via the native `title` attribute on the locked chip.
     // Day 135 (Sasha): legacy ME unlock toast — fires ONCE when T+M+A
-    // completes (independent of the nudge badge above, which persists until
-    // the user actually opens ME; this flag persists forever so a refresh,
-    // re-login, or later re-completion never re-fires it). localStorage
-    // over a profile column per the founder directive (no migration).
+    // completes (this flag persists forever so a refresh, re-login, or later
+    // re-completion never re-fires it). localStorage over a profile column per
+    // the founder directive (no migration).
     useEffect(() => {
         if (!profileLoaded || !tmaComplete || !user?.id) return;
         if (typeof window === "undefined") return;
@@ -1339,144 +1283,16 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         });
     }, [profileLoaded, tmaComplete, user?.id, toast, t]);
 
-    const unlockHints: Record<string, string> = {
-        "next-move": t("shell.unlockHints.nextMove"),
-        "grow": t("shell.unlockHints.grow"),
-        "learn": t("shell.unlockHints.learn"),
-        "build": t("shell.unlockHints.build"),
-        "meet": t("shell.unlockHints.meet"),
-        "collaborate": t("shell.unlockHints.collaborate"),
-        "buysell": t("shell.unlockHints.buysell"),
-    };
-
-    // Nudge badges - visual indicators for unlocked spaces (disabled for now)
-    const nudgeBadges: string[] = [];
-    // COLLABORATE nudge - will activate when hasResources is tracked
-    // if (hasResources && !nudges.collaborateNudgeSeen) {
-    //     nudgeBadges.push('collaborate');
-    // }
-    // Hide-don't-lock (Sasha, 2026-04-21): a locked space just clutters the
-    // rail. Anywhere in the app, if a space isn't unlocked, hide it entirely —
-    // it reveals itself when the user earns it. JOURNEY and ME are always on.
-    //
-    // Day 79 (Sasha 2026-05-22): ai-os added to GATED_SPACES so it falls
-    // into the hide-don't-lock pattern when the unlockStatus[ai-os] is
-    // false. Localised handling below for the unauthed-guest case.
-    // Day 135 (Sasha): "grow" (ME) added — same hide-don't-lock treatment as
-    // the rest of the T+M+A-gated set, replacing the dimmed/disabled chip
-    // it used to render via unlockStatus["grow"] === false.
-    const GATED_SPACES = ["next-move", "ai-os", "grow", "learn", "meet", "collaborate", "build", "buysell"] as const;
-    // Day 75 → Day 87 — COLLABORATE flicker fix history:
-    //
-    // Day 75 (Sasha 2026-05-19): COLLABORATE was specifically extracted
-    // from the profile-gated branch because its unlock signal was
-    // localStorage-only (synchronous + instant), so it didn't need to
-    // wait for the profile fetch. Two-branch logic was the right shape
-    // for that signal.
-    //
-    // Day 87 v2 (Sasha 2026-05-29): COLLABORATE gate moved to T+M+A
-    // completion (profile-resolved). It now behaves the same as
-    // next-move / learn / meet — unlockStatus is computed only when
-    // `profileLoaded === true`, otherwise it falls into the GATED_SPACES
-    // catch-all and stays hidden during the ~300-500ms fetch. Same
-    // flicker-prevention as the other gated spaces; no special case
-    // needed.
-    const profileBackedGated = [...GATED_SPACES];
-
-    // Day 79 (Sasha 2026-05-22): unauthed-guest visibility tightened.
-    // Only the genuinely public surfaces — JOURNEY (marketing entry)
-    // and AI OS (explicit "free Holonic Commons, no profile, no sign-in"
-    // per Day 53 — see /ai-os route comment in App.tsx) — show for
-    // visitors who aren't signed in. Everything else (ME / BUILD /
-    // LEARN / MEET / COLLABORATE / OFFER) has MeGate or RequireAuth
-    // downstream, so showing the chips just leads to redirect-bounces.
-    //
-    // The previous logic had two compounding leak paths for guests:
-    //   1. ME and BUILD weren't in GATED_SPACES (per the "hide-don't-
-    //      lock with ME-always-on" + Day 77 "BUILD-always-on for the
-    //      funnel-v2 sidebar entry" exceptions). Both were intended
-    //      for AUTHED users but never gated on auth state — so guests
-    //      saw both chips too.
-    //   2. COLLABORATE's `fytt:collaborate-unlocked` localStorage flag
-    //      persists per-browser. Guests with prior testing localStorage
-    //      saw COLLABORATE even when signed out.
-    //
-    // Both leaks closed by overriding hiddenSpaces when `authChecked &&
-    // !user`. The override fires only AFTER the auth check resolves —
-    // until then, the original logic runs so authed users don't flicker
-    // through a stripped rail during the auth fetch.
-    const NON_PUBLIC_SPACE_IDS = [
-        "next-move",
-        "grow",
-        "learn",
-        "meet",
-        "collaborate",
-        "build",
-        "buysell",
-    ];
-    const isGuest = authChecked && !user;
-
-    // Day 84 v2 (Sasha 2026-05-25 evening): white-label demo scopes get
-    // the FULL rail visible (AI OS + ME + BUILD + etc), unauth or not.
-    // These routes (planetir/daouniverse/network-school/karime) are
-    // platform-sales surfaces — a prospective community leader needs to
-    // see the depth of the offering, not just a JOURNEY chip. Aurora's
-    // hide-non-public-for-guests stays for the canonical funnel since
-    // the funnel pivots on the single JOURNEY action.
-    // Day 91 (Sasha 2026-06-09): aurum dropped from the SKIN-VALUE list.
-    // Now that Aurum is a persistable user theme, keying full-rail on
-    // the skin value would show logged-out guests on the CANONICAL
-    // landing the full rail just because they prefer dark — undoing the
-    // Day 79 guest tightening. The /aurum (+ legacy /darktheme) DEMO
-    // route still gets the full rail via the route-scope check below.
-    // The white-label slugs stay value-keyed: they only ever occur
-    // under their route scopes (never persistable via setSkin).
-    const __isFullRailScope =
-        __spaceShipSkin === "planetir" ||
-        __spaceShipSkin === "daouniverse" ||
-        __spaceShipSkin === "network-school" ||
-        __spaceShipSkin === "techstars" ||
-        initialSkinScope?.skin === "aurum" ||
-        location.pathname.startsWith("/build/karime");
-
-    // Day 79 (Sasha 2026-05-22): AI OS gate applies to guests too.
-    // Default-hide for unauthed visitors who have never been to /ai-os.
-    // localStorage flag latches once and never un-latches, so any guest
-    // who has clicked through Sasha's cold-paste link (which writes the
-    // flag on AiOsPage mount) continues to see the chip thereafter.
-    const guestHidden: string[] = __isFullRailScope
-        ? [] // show ALL chips on white-label demo surfaces
-        : [...NON_PUBLIC_SPACE_IDS, "ai-os"].filter(
-            (spaceId) => spaceId !== "grow" || !localQuizResult,
-        );
-
-    const hiddenSpaces: string[] = isGuest
-        ? guestHidden
-        : profileLoaded
-        ? profileBackedGated.filter((id) => unlockStatus[id] === false)
-        : // During the profile fetch, hide the profile-backed gated
-          // spaces (so there's no lock-then-hide flicker).
-          [...profileBackedGated];
+    // WP-4: no gating of the rail lives here any more. The rail is the 11 places of the
+    // village map, every one of them always on it; what a place is (closed, open, next,
+    // done, live) comes from placeState() through usePlaceStates(), the same source as
+    // /village. The old hide-don't-lock matrix (unlockStatus / hiddenSpaces / hints /
+    // nudges, keyed by the retired space ids) is gone with the spaces.
 
     // Navigation handlers
+    // The rail has already navigated to the place; this only points pane 2 at its sections.
     const handleSpaceSelect = (spaceId: string) => {
-        if (isGuest && spaceId === "grow") {
-            navigate(
-                localQuizResult?.resultId
-                    ? `/quiz/r/${encodeURIComponent(localQuizResult.resultId)}`
-                    : "/quiz",
-            );
-            setMobileView("content");
-            return;
-        }
         setActiveSpaceId(spaceId);
-        // Mark nudge as seen if this space had one
-        if (spaceId === 'build' && nudgeBadges.includes('build')) {
-            import('@/lib/myNextMoveLogic').then(m => m.markNudgeSeen('build'));
-        }
-        if (spaceId === 'collaborate' && nudgeBadges.includes('collaborate')) {
-            import('@/lib/myNextMoveLogic').then(m => m.markNudgeSeen('collaborate'));
-        }
         // Mobile view stays on navigation - both panels visible
     };
 
@@ -1702,13 +1518,10 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             <div className={cn("relative z-10 hidden lg:flex isolate", isAiOsRoute ? "h-dvh min-h-0 overflow-hidden" : "min-h-dvh")}>
                 {/* Panel 1: Spaces Rail */}
                 <SpacesRail
-                    activeSpaceId={activeSpaceId}
+                    activePlace={activePlace}
+                    placeStates={placeStates}
                     onSpaceSelect={handleSpaceSelect}
-                    unlockStatus={unlockStatus}
                     compact={railMinimized}
-                    unlockHints={unlockHints}
-                    nudgeBadges={nudgeBadges}
-                    hiddenSpaces={hiddenSpaces}
                     className={cn(
                         "h-dvh transform-gpu transition-[width] duration-200 ease-out",
                         // On /ai-os desktop the shell is a true app-shell
@@ -1736,8 +1549,6 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     userName={[profile?.first_name, profile?.last_name].filter(Boolean).join(" ") || undefined}
                     userAvatarUrl={profile?.avatar_url || undefined}
                     isAuthenticated={authChecked ? !!user : undefined}
-                    userLevel={profile?.level || undefined}
-                    userXp={profile?.xp_total || undefined}
                     soulColors={profile?.soul_colors || undefined}
                     soulColorSeed={archetypeTitle || user?.id || undefined}
                     publicProfilePath={publicProfilePath}
@@ -1846,6 +1657,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 >
                     <SectionsPanel
                         activeSpaceId={activeSpaceId}
+                        placeName={activePlaceData?.name}
+                        placeLine={activePlaceData?.line}
                         onSectionSelect={handleSectionSelect}
                         onClose={toggleSectionsPanel}
                         className="h-full w-[260px]"
@@ -2025,18 +1838,13 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         Result: chip icons stay in color, BUILD glyph stays
                         yellow, separator missing — Sasha's mobile bugs. */}
                     <SpacesRail
-                        activeSpaceId={activeSpaceId}
+                        activePlace={activePlace}
+                        placeStates={placeStates}
                         onSpaceSelect={handleSpaceSelect}
-                        unlockStatus={unlockStatus}
-                        unlockHints={unlockHints}
-                        nudgeBadges={nudgeBadges}
-                        hiddenSpaces={hiddenSpaces}
                         pageOwnsBackground={pageOwnsBackground}
                         userName={[profile?.first_name, profile?.last_name].filter(Boolean).join(" ") || undefined}
                         userAvatarUrl={profile?.avatar_url || undefined}
                         isAuthenticated={authChecked ? !!user : undefined}
-                        userLevel={profile?.level || undefined}
-                        userXp={profile?.xp_total || undefined}
                         soulColors={profile?.soul_colors || undefined}
                         soulColorSeed={archetypeTitle || user?.id || undefined}
                         publicProfilePath={publicProfilePath}
@@ -2054,6 +1862,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     <div className="flex-1">
                         <SectionsPanel
                             activeSpaceId={activeSpaceId}
+                            placeName={activePlaceData?.name}
+                            placeLine={activePlaceData?.line}
                             onSectionSelect={handleSectionSelect}
                             className="w-full h-full"
                             pageOwnsBackground={pageOwnsBackground}
@@ -2191,8 +2001,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                             space name when the section can't be derived
                             (e.g., paths that aren't section-mapped). */}
                         {(() => {
-                            const __activeSpace = SPACES.find(s => s.id === activeSpaceId);
-                            const spaceLabel = __activeSpace ? t(__activeSpace.labelKey) : t("shell.breadcrumb.spaceFallback");
+                            const spaceLabel = activePlaceData ? activePlaceData.name : t("shell.breadcrumb.spaceFallback");
                             const pathname = location.pathname;
 
                             // Resolve active section label.
