@@ -15,7 +15,7 @@
  *     "Build a business off your top talent" → /ignite#pricing-section
  *   - AppleseedDisplay reveal → primary CTA → here
  */
-import { ArrowRight, Check, ShieldCheck, ChevronDown } from "lucide-react";
+import { ArrowRight, Check, ShieldCheck, ChevronDown, Play } from "lucide-react";
 import { trackPageView, trackCTAClick } from "@/lib/funnelAnalytics";
 import { ExpandableTestimonial } from "@/components/ExpandableTestimonial";
 import type { TestimonialData } from "@/components/ExpandableTestimonial";
@@ -28,7 +28,7 @@ import SEO from "@/components/SEO";
 // attribution line; clarity-call CTAs no longer use the speech-bubble
 // glyph (now plain italic underline links); DivineTimingCapture
 // removed (called trackFunnelEvent for the divine_timing event).
-import { useState, useRef, useEffect, type ReactNode } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import geniusLogo from "@/assets/ignite-logo.png";
 import { supabase } from "@/integrations/supabase/client";
@@ -73,41 +73,49 @@ const useTestimonials = (): TestimonialData[] => {
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 const CALCOM_BOOKING_LINK = "https://cal.com/aleksandrkonstantinov/productize-yourself";
-const CALCOM_CLARITY_LINK = "https://cal.com/aleksandrkonstantinov/direction-choice-call";
+// Tab title for /ignite. Price stays off the tab; the page sells 2 hours.
+const IGNITE_TAB_TITLE = "Next-Chapter Positioning Session — 2 hours | Find Your Top Talent";
+const CALCOM_CLARITY_LINK ="https://cal.com/aleksandrkonstantinov/direction-choice-call";
 
 
 /* ─── Lazy YouTube Embed ──────────────────────────────────── */
+// Poster-first: the still (YouTube's own thumbnail) renders immediately with a
+// play button, so the embed never reads as a hung "Loading…" box. The iframe
+// (and its YouTube weight) only mounts on click, with autoplay.
 const LazyYouTube = ({ id, title }: { id: string; title: string }) => {
   const { t } = useTranslation();
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
-      { rootMargin: "200px" }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+  const [playing, setPlaying] = useState(false);
 
   return (
-    <div ref={ref} className="aspect-video rounded-2xl overflow-hidden">
-      {visible ? (
+    <div className="relative aspect-video rounded-2xl overflow-hidden bg-muted">
+      {playing ? (
         <iframe
-          src={`https://www.youtube.com/embed/${id}`}
+          src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
           title={title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
           className="w-full h-full"
         />
       ) : (
-        <div
-          className="w-full h-full flex items-center justify-center text-xs"
-          style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.35))", background: "rgba(var(--shadow-rgb),0.04)" }}
+        <button
+          type="button"
+          onClick={() => setPlaying(true)}
+          aria-label={`${t('ignite.videoPlay')}: ${title}`}
+          className="group absolute inset-0 w-full h-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
-          {t('ignite.videoLoading')}
-        </div>
+          <img
+            src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <span className="absolute inset-0 flex items-center justify-center">
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-background/90 text-foreground shadow-lg transition-transform group-hover:scale-105">
+              <Play className="h-6 w-6 translate-x-0.5" aria-hidden="true" fill="currentColor" />
+            </span>
+          </span>
+        </button>
       )}
     </div>
   );
@@ -248,7 +256,9 @@ const IgniteSession = () => {
     // Day 123 (Sasha 2026-07-13): tab title harmonized to the hero's
     // being-wanted register — the old shame-hook headline contradicted
     // the page it opened.
-    document.title = "The Tagline Your Next Chapter Runs On | Productize Yourself Session";
+    // 2026-10-27: same constant as <SEO> below, so Helmet and this effect
+    // can't fight over the tab (they previously disagreed).
+    document.title = IGNITE_TAB_TITLE;
     trackPageView('ignite_view');
     return () => { document.title = previousTitle; };
   }, []);
@@ -700,18 +710,18 @@ const IgniteSession = () => {
   return (
     <>
       <SEO
-        title="Professional Direction Session — Free 45 min | Find Your Top Talent"
-        description="A free 45-minute 1:1 with Aleksandr. Name your top talent in one exact sentence, see the direction it points to, and leave with a clear next step."
+        title={IGNITE_TAB_TITLE}
+        description="A 2-hour 1:1 working session with Aleksandr. Name your top talent in one exact sentence, position your next chapter around it, and leave with a clear next step. If you don't recognize it as yours, you don't pay."
         path="/ignite"
-        ogTitle="Find your professional direction in 45 minutes."
+        ogTitle="Position your next chapter around your top talent in 2 hours."
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Professional Direction Session",
+          name: "Next-Chapter Positioning Session",
           provider: { "@type": "Person", name: "Alexander Konstantinov" },
           areaServed: "Worldwide",
-          description: "Free 45-minute 1:1 session to name your top talent and see the professional direction it points to.",
-          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          description: "2-hour 1:1 session to name your top talent in one sentence and position your next chapter around it.",
+          offers: { "@type": "Offer", price: "555", priceCurrency: "USD" },
         }}
       />
       <GameShellV2 hideLogo>{content}</GameShellV2>
