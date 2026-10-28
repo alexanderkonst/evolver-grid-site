@@ -12,6 +12,11 @@ import { DOMAINS, useLocalizedDomains } from "@/modules/quality-of-life-map/qolC
 import { cn } from "@/lib/utils";
 import { buildQolResultsPath } from "@/lib/onboardingRouting";
 import ProgressIndicator from "@/components/ProgressIndicator";
+import ModuleIntro from "@/components/game/ModuleIntro";
+import { getJourneyModule } from "@/data/journeyModules";
+
+// WP-5: this module in the module form.
+const QOL_MODULE = getJourneyModule("assess-qol")!;
 
 interface QualityOfLifeMapAssessmentProps {
   renderMode?: "standalone" | "embedded";
@@ -481,7 +486,13 @@ const QualityOfLifeMapAssessment = ({
   // height) was removed; the back button sits inside the new shell's
   // own top spacing.
   if (showIntro) {
-    return introScreen;
+    // WP-5: the Journey's standalone route opens with the module's Intro (result + one
+    // button). The embedded Learn route keeps its own intro screen above.
+    return (
+      <div className="px-4 py-8 sm:py-10">
+        <ModuleIntro module={QOL_MODULE} onStart={() => setShowIntro(false)} />
+      </div>
+    );
   }
 
   return (

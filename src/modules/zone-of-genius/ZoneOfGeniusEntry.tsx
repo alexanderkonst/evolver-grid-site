@@ -61,6 +61,12 @@ import { saveResonanceRating } from "@/lib/saveResonanceRating";
 import { supabase } from "@/integrations/supabase/client";
 import { markAnonymousZogSaved } from "@/lib/anonClaimGuard";
 import Hls from "hls.js";
+import ModuleIntro from "@/components/game/ModuleIntro";
+import ModuleOutro from "@/components/game/ModuleOutro";
+import { getJourneyModule } from "@/data/journeyModules";
+
+// WP-5: this module in the module form (Intro → one button → the flow → Outro).
+const ZOG_MODULE = getJourneyModule("find-top-talent")!;
 
 const HLS_VIDEO_URL = "https://stream.mux.com/8DFxbzBL8jIJYpaZv3s6kDx4AfPkVI1gH4bBh38GNw8.m3u8";
 
@@ -208,6 +214,21 @@ const ZoneOfGeniusEntry = () => {
     const [guestRevealUnlocked, setGuestRevealUnlocked] = useState(false);
     const [showSignupModal, setShowSignupModal] = useState(false);
     const [isSaved, setIsSaved] = useState(false);
+    // True right after a save in this visit: the Outro (a stable screen) follows the reveal.
+    // A reveal loaded from the saved result (a returning visit) has none.
+    const [justSaved, setJustSaved] = useState(false);
+    // WP-5: the Intro is the door of the test. It waits for the saved-result check below
+    // (`loaded`) so a returning player never sees it flash, and is skipped for onboarding
+    // (/start) and a redo, which start straight at the route choice.
+    const [loaded, setLoaded] = useState(false);
+    const [introPending, setIntroPending] = useState(
+        !returnPath.includes("/start") && searchParams.get("redo") !== "true",
+    );
+    useEffect(() => {
+        // Once the player is anywhere past the route choice, the Intro is behind them
+        // (a retake goes back to the route choice, not to the Intro).
+        if (step !== "choice-route") setIntroPending(false);
+    }, [step]);
 
     // Removed navBar for cleaner onboarding flow
 
@@ -372,7 +393,9 @@ const ZoneOfGeniusEntry = () => {
                 }
             }
         };
-        loadExisting();
+        loadExisting()
+            .catch(() => undefined)
+            .finally(() => setLoaded(true));
     }, [navigate, returnPath]);
 
     useEffect(() => {
@@ -437,6 +460,7 @@ const ZoneOfGeniusEntry = () => {
                     const result = await saveAppleseed(appleseed, aiResponse);
                     if (result.success) {
                         setIsSaved(true);
+                        setJustSaved(true);
                         console.log("[ZoneOfGeniusEntry] Auto-saved appleseed for auth user");
                         // Issue #93: same confirmation the Guided path shows.
                         systemToast.success(t("zogEntry.bannerResultSaved"), {
@@ -634,6 +658,7 @@ const ZoneOfGeniusEntry = () => {
             const result = await saveAppleseed(appleseed, aiResponse);
             if (result.success) {
                 setIsSaved(true);
+                setJustSaved(true);
                 // No toast - user proceeds to signup silently
                 const redirectPath = getPostZogRedirect(returnPath);
                 if (redirectPath && returnPath !== "/game/me") {
@@ -877,7 +902,16 @@ const ZoneOfGeniusEntry = () => {
                 <div className="w-full max-w-3xl mx-auto px-5 pb-6">
                     <EnterVillageButton />
                 </div>
-                <MatchFlowCta step="top-talent" />
+                {/* WP-5 module form, After: a fresh save ends in the Outro (one button back
+                    to the village) in place of the Funnel v2 CTA. A reveal loaded from the
+                    saved result keeps the CTA. */}
+                {justSaved ? (
+                    <div className="px-4 pb-8">
+                        <ModuleOutro module={ZOG_MODULE} result={appleseed.vibrationalKey?.name?.replace(/[✦✧]/g, "").trim() || null} />
+                    </div>
+                ) : (
+                    <MatchFlowCta step="top-talent" />
+                )}
                 {retakeControl}
                     </>
                 )}
@@ -950,6 +984,19 @@ const ZoneOfGeniusEntry = () => {
                     showProductBuilderButton={true}
                 />
                 {retakeControl}
+            </GameShellV2>
+        );
+    }
+
+    // WP-5 module form, Before: the Intro (result + one button) leads into the route choice.
+    if (step === "choice-route" && introPending) {
+        return (
+            <GameShellV2 hideNavigation={hideNav} hideLogo>
+                {loaded ? (
+                    <div className="px-4 py-8 sm:py-10">
+                        <ModuleIntro module={ZOG_MODULE} onStart={() => setIntroPending(false)} />
+                    </div>
+                ) : null}
             </GameShellV2>
         );
     }

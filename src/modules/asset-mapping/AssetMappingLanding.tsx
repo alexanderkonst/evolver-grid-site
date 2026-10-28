@@ -29,7 +29,12 @@ import { Ornament, GOLD_TEXT_STYLE } from "@/lib/landingDesign";
 // Funnel v2 (Day 77, Sasha 2026-05-20): match-path conditional CTAs on
 // the post-save "matched" state — the unlock moment for collaboration
 // matches. Returns null for build-path users.
-import MatchFlowCta from "@/components/landing/MatchFlowCta";
+import ModuleIntro from "@/components/game/ModuleIntro";
+import ModuleOutro from "@/components/game/ModuleOutro";
+import { assetsResultText, getJourneyModule } from "@/data/journeyModules";
+
+// WP-5: this module in the module form.
+const ASSETS_MODULE = getJourneyModule("map-assets")!;
 
 type Step = "choice" | "has-ai" | "paste-response" | "matched";
 
@@ -348,6 +353,9 @@ const AssetMappingLanding = () => {
     const [isMatching, setIsMatching] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const [hasSaved, setHasSaved] = useState(false);
+    const [savedCount, setSavedCount] = useState(0);
+    // WP-5: the Intro (result + one button) is the door; the Outro replaces the review once saved.
+    const [introPending, setIntroPending] = useState(true);
     const [matchedAssets, setMatchedAssets] = useState<MatchedAsset[]>([]);
     const { toast } = useToast();
 
@@ -458,6 +466,7 @@ const AssetMappingLanding = () => {
             }
 
             setHasSaved(true);
+            setSavedCount(result.saved);
             const totalSkipped = skippedCount + result.skipped;
             toast({
                 title: t('assetLanding.toastAssetsSavedTitle'),
@@ -469,35 +478,9 @@ const AssetMappingLanding = () => {
                 }),
             });
 
-            // Day 80 Wave 2 (Sasha 2026-05-22): graduation detection +
-            // celebration modal dispatch. If this save lands the user at
-            // T+M+A all complete (the matching engine's minimum signal),
-            // fire the GRADUATION variant ("you're crystallized · find
-            // collaborators is now open"). Otherwise fire the regular
-            // per-save celebration. Listener (App.tsx) enforces once-
-            // per-primitive via sessionStorage.
-            try {
-                const { data: profileForGrad } = await supabase
-                    .from("game_profiles")
-                    .select("mission_discovered_at, last_zog_snapshot_id")
-                    .eq("user_id", user.id)
-                    .maybeSingle();
-                const hasMission = !!(profileForGrad as { mission_discovered_at?: string | null } | null)?.mission_discovered_at;
-                const hasTalent = !!(profileForGrad as { last_zog_snapshot_id?: string | null } | null)?.last_zog_snapshot_id;
-                const isGraduation = hasMission && hasTalent;
-                const resultText = t('assetLanding.celebrateResultText', { count: result.saved });
-                window.dispatchEvent(
-                    new CustomEvent("fytt:celebrate", {
-                        detail: {
-                            primitive: "assets",
-                            variant: isGraduation ? "graduation" : "regular",
-                            resultText,
-                        },
-                    }),
-                );
-            } catch {
-                // Defensive — never block save on celebration UX.
-            }
+            // The celebration is the Outro (ModuleOutro, WP-5), a stable screen
+            // rendered once `hasSaved` is set, not the `fytt:celebrate` modal
+            // (Day 80 Wave 2), which would stack a second set of buttons on it.
         } catch (err) {
             toast({ title: t('assetLanding.toastSomethingWentWrong'), variant: "destructive" });
         } finally {
@@ -628,6 +611,22 @@ const AssetMappingLanding = () => {
     };
 
     const extractDisabled = !hasAiText || isMatching;
+
+    // WP-5 module form: Intro → the flow below → Outro right after the inventory is saved.
+    if (hasSaved) {
+        return (
+            <div className="px-4 py-8 sm:py-10">
+                <ModuleOutro module={ASSETS_MODULE} result={assetsResultText(savedCount)} />
+            </div>
+        );
+    }
+    if (introPending) {
+        return (
+            <div className="px-4 py-8 sm:py-10">
+                <ModuleIntro module={ASSETS_MODULE} onStart={() => setIntroPending(false)} />
+            </div>
+        );
+    }
 
     return (
         // Day 63 (Sasha 2026-05-07): wrapper no longer paints WASH_BG —
@@ -1103,16 +1102,10 @@ const AssetMappingLanding = () => {
                                 );
                             })()}
                         </div>
-
-                        {/* Funnel v2 (§4.4.3): the unlock moment. Once
-                            assets are saved, match-path users get the
-                            "See your matches →" primary CTA + a
-                            secondary "Assess your quality of life →".
-                            Build-path users see only the action row
-                            above. Pre-save we render nothing extra so
-                            the user's attention stays on the matched
-                            list + Save button. */}
-                        {hasSaved && <MatchFlowCta step="assets" />}
+                        {/* After the save this whole review gives way to the Outro
+                            (ModuleOutro, WP-5): one button back to the village, where
+                            the next move waits. It replaces Funnel v2's MatchFlowCta
+                            ("See your matches →") on this screen. */}
                     </div>
                 )}
             </div>
