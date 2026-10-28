@@ -1,6 +1,8 @@
 import type { CSSProperties, ElementType, ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import type { PlaceStateName } from "@/lib/placeState";
+import { stateWordText } from "@/lib/villageCopy";
 import "./PlaceState.css";
 
 /**
@@ -49,17 +51,10 @@ type PlaceStateProps = {
   children?: ReactNode;
 };
 
-const TAG_TEXT: Record<PlaceStateName, string | null> = {
-  closed: "Not open yet",
-  open: null,
-  next: "Next",
-  done: "Done",
-  live: "Live",
-};
-
 /** The state as a word. Closed is read by screen readers only (the line carries it visually). */
 export const PlaceStateTag = ({ state, className }: { state: PlaceStateName; className?: string }) => {
-  const text = TAG_TEXT[state];
+  const { t } = useTranslation();
+  const text = stateWordText(state, t);
   if (!text) return null;
   return (
     <span className={cn("ps-tag", `ps-tag--${state}`, className)} data-tag={state}>

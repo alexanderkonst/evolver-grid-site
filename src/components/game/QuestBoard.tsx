@@ -1,12 +1,14 @@
 import { useId } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import PlaceState from "@/components/game/PlaceState";
-import { JOURNEY_MAIN } from "@/data/journeySequence";
-import { getJourneyModule } from "@/data/journeyModules";
+import { getJourneyModule, moduleText } from "@/data/journeyModules";
 import { getVillagePlace, sceneObjectPosition } from "@/data/villagePlaces";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
+import { journeyOptionalWord } from "@/lib/journeyLabels";
 import { placeSaveFromSheet } from "@/lib/placeState";
-import { journeyRows, nextQuest, questRows } from "@/lib/questBoard";
+import { journeyResultText, journeyRows, nextQuest, questRows } from "@/lib/questBoard";
+import { placeAlt, tr } from "@/lib/villageCopy";
 import "./ModuleForm.css";
 import "./QuestBoard.css";
 
@@ -23,6 +25,7 @@ import "./QuestBoard.css";
  */
 
 const QuestBoard = () => {
+  const { t } = useTranslation();
   const sheet = useCharacterSheet();
   const place = getVillagePlace("quest-board");
   const headingId = useId();
@@ -30,22 +33,22 @@ const QuestBoard = () => {
   const worldId = useId();
 
   const save = placeSaveFromSheet(sheet);
-  const journey = journeyRows(save);
-  const quests = questRows(save);
-  const next = nextQuest(save);
-  const nextItem = next?.kind === "journey" ? JOURNEY_MAIN.find((i) => i.id === next.row.id) : undefined;
+  const journey = journeyRows(save, t);
+  const quests = questRows(save, t);
+  const next = nextQuest(save, t);
+  const nextResult = next?.kind === "journey" ? journeyResultText(next.row.id, t) : "";
 
   return (
     <section className="mf qb" aria-labelledby={headingId} aria-busy={sheet.isLoading || undefined}>
       <Link className="mf__back" to="/village">
-        ← Village
+        {tr(t, "village.backVillage", "← Village")}
       </Link>
       {place ? (
         <div className="qb__scene">
           <img
             className="mf__img"
             src={place.image}
-            alt={place.alt}
+            alt={placeAlt(place, t)}
             decoding="async"
             style={{ objectPosition: sceneObjectPosition(place) }}
           />
@@ -54,24 +57,26 @@ const QuestBoard = () => {
 
       <div className="qb__body">
         <header className="qb__head">
-          <p className="mf__eyebrow">Quest Board</p>
+          <p className="mf__eyebrow">{tr(t, "village.place.quest-board.name", "Quest Board")}</p>
           <h1 id={headingId} className="mf__headline">
-            Your next quest
+            {tr(t, "village.quest.heading", "Your next quest")}
           </h1>
           {sheet.isLoading ? null : next ? (
             <>
               <p className="mf__silhouette">
                 {next.kind === "journey"
-                  ? `${next.row.label}${nextItem?.result ? ` — ${nextItem.result}` : ""}`
+                  ? `${next.row.label}${nextResult ? ` — ${nextResult}` : ""}`
                   : `${next.row.title} — ${next.row.line}`}
               </p>
               <Link className="mf__go" to={next.row.to}>
-                {next.kind === "quest" ? (getJourneyModule(next.row.id)?.verb ?? "Enter") : "Enter"}{" "}
+                {next.kind === "quest" && getJourneyModule(next.row.id)
+                  ? moduleText(getJourneyModule(next.row.id)!, "verb", t)
+                  : tr(t, "village.enterWord", "Enter")}{" "}
                 <span aria-hidden="true">→</span>
               </Link>
             </>
           ) : (
-            <p className="mf__silhouette">Nothing is waiting. Go and live the next thing.</p>
+            <p className="mf__silhouette">{tr(t, "village.quest.empty", "Nothing is waiting. Go and live the next thing.")}</p>
           )}
         </header>
 
@@ -79,7 +84,7 @@ const QuestBoard = () => {
           <>
             <section className="qb__group" aria-labelledby={journeyId}>
               <h2 id={journeyId} className="qb__h">
-                The Journey
+                {tr(t, "village.quest.journey", "The Journey")}
               </h2>
               <ol className="qb__list">
                 {journey.map((r) => (
@@ -89,7 +94,7 @@ const QuestBoard = () => {
                     ) : (
                       <Link className="qb__name" to={r.to}>
                         {`${r.no}. ${r.label}`}
-                        {r.optional ? " (optional)" : ""}
+                        {r.optional ? ` (${journeyOptionalWord(t)})` : ""}
                       </Link>
                     )}
                   </PlaceState>
@@ -99,7 +104,7 @@ const QuestBoard = () => {
 
             <section className="qb__group" aria-labelledby={worldId}>
               <h2 id={worldId} className="qb__h">
-                In the world
+                {tr(t, "village.quest.world", "In the world")}
               </h2>
               <ol className="qb__list">
                 {quests.map((q) => (

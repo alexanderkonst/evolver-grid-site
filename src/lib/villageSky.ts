@@ -1,4 +1,6 @@
+import type { TFunction } from "i18next";
 import { getLunarState } from "@/lib/equilibrium-cycles";
+import { tr } from "@/lib/villageCopy";
 
 /**
  * Village sky — the Digital Village lives by the real moon.
@@ -33,6 +35,14 @@ export const VILLAGE_SKY_MOODS: Record<VillageMoonPhase, string> = {
   full: "Full moon. Harvest.",
   waning: "The moon wanes. Digest.",
 };
+
+/**
+ * The mood in the reader's language (`village.sky.<phase>`); no `t` = the English above.
+ * Each line is an image, not a sentence to translate literally: new = release, waxing = build,
+ * full = harvest, waning = digest. A translation keeps that verb and that charge.
+ */
+export const villageSkyMood = (phase: VillageMoonPhase, t?: TFunction): string =>
+  tr(t, `village.sky.${phase}`, VILLAGE_SKY_MOODS[phase]);
 
 /** MOON_PHASES index (0 = New Moon … 7 = Waning Crescent) → village bucket. */
 const PHASE_BY_SEGMENT: VillageMoonPhase[] = [

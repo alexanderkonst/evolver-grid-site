@@ -1,15 +1,18 @@
 import { useId } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import PlaceState from "@/components/game/PlaceState";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
 import {
   moduleClosedLine,
   moduleHasRequirements,
   moduleIntroState,
+  moduleText,
   type JourneyModuleDef,
 } from "@/data/journeyModules";
 import { getVillagePlace, sceneObjectPosition } from "@/data/villagePlaces";
 import { placeSaveFromSheet, type PlaceStateName } from "@/lib/placeState";
+import { placeAlt, tr } from "@/lib/villageCopy";
 import { useLeave } from "@/lib/motion";
 import "./ModuleForm.css";
 
@@ -41,6 +44,7 @@ type Props = {
 };
 
 const ModuleIntro = ({ module, onStart, state: forced, className }: Props) => {
+  const { t } = useTranslation();
   const sheet = useCharacterSheet();
   const headingId = useId();
   const place = getVillagePlace(module.place);
@@ -55,7 +59,7 @@ const ModuleIntro = ({ module, onStart, state: forced, className }: Props) => {
   return (
     <section className={`mf mf--intro${leaving ? " is-leaving" : ""}${className ? ` ${className}` : ""}`} aria-labelledby={headingId}>
       <Link className="mf__back" to="/village">
-        ← Village
+        {tr(t, "village.backVillage", "← Village")}
       </Link>
       <PlaceState
         state={state}
@@ -66,24 +70,24 @@ const ModuleIntro = ({ module, onStart, state: forced, className }: Props) => {
             <img
               className="mf__img"
               src={place.image}
-              alt={place.alt}
+              alt={placeAlt(place, t)}
               decoding="async"
               style={{ objectPosition: sceneObjectPosition(place) }}
             />
           ) : undefined
         }
-        line={closed ? moduleClosedLine(module.id) : undefined}
+        line={closed ? moduleClosedLine(module.id, t) : undefined}
         action={
           <button type="button" className="mf__go" onClick={(e) => leave(onStart, e)} disabled={loading} aria-busy={loading || undefined}>
-            {module.verb} <span aria-hidden="true">→</span>
+            {moduleText(module, "verb", t)} <span aria-hidden="true">→</span>
           </button>
         }
       >
-        <p className="mf__eyebrow">{module.eyebrow}</p>
+        <p className="mf__eyebrow">{moduleText(module, "eyebrow", t)}</p>
         <h1 id={headingId} className="mf__headline">
-          {module.headline}
+          {moduleText(module, "headline", t)}
         </h1>
-        <p className="mf__silhouette">{module.silhouette}</p>
+        <p className="mf__silhouette">{moduleText(module, "silhouette", t)}</p>
       </PlaceState>
     </section>
   );

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { MessageCircle, Send } from "lucide-react";
 import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   Popover,
   PopoverContent,
@@ -28,6 +29,7 @@ type Channel = keyof typeof channelHref;
  * runtime, tracking script, or new store of visitor messages.
  */
 const ChatLauncher = () => {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const location = useLocation();
 
@@ -72,7 +74,7 @@ const ChatLauncher = () => {
         <PopoverTrigger asChild>
           <button
             type="button"
-            aria-label="Chat with us"
+            aria-label={t("chatLauncher.title", { defaultValue: "Chat with us" })}
             // WP-1b: every colour is a --chat-* token (theme-tokens.css), so the
             // launcher follows the skin. Lapis / Lunar keep the navy + gold defaults.
             // Phone (<768px): a 48px round icon so it covers no CTA; the name stays in aria-label.
@@ -84,7 +86,7 @@ const ChatLauncher = () => {
               aria-hidden="true"
             />
             <span className="hidden font-sans text-[13px] font-medium tracking-[0.02em] md:inline">
-              Chat with us
+              {t("chatLauncher.title", { defaultValue: "Chat with us" })}
             </span>
           </button>
         </PopoverTrigger>
@@ -96,9 +98,9 @@ const ChatLauncher = () => {
           className="chat-panel w-[min(22rem,calc(100vw-2rem))] overflow-hidden rounded-[22px] border border-[color:var(--chat-panel-border)] bg-[color:var(--chat-panel-bg)] p-2.5 text-[color:var(--chat-panel-ink)] shadow-[0_24px_70px_rgba(var(--chat-panel-shadow-rgb),0.52),inset_0_1px_0_rgba(var(--chat-sheen-rgb),0.1)]"
         >
           <div className="px-3 pb-2.5 pt-2">
-            <p className="font-serif text-[21px] leading-tight">Chat with us</p>
+            <p className="font-serif text-[21px] leading-tight">{t("chatLauncher.title", { defaultValue: "Chat with us" })}</p>
             <p className="mt-1 text-[12px] leading-relaxed text-[rgba(var(--chat-panel-ink-rgb),0.55)]">
-              Choose the channel that feels easiest.
+              {t("chatLauncher.subtitle", { defaultValue: "Choose the channel that feels easiest." })}
             </p>
           </div>
 
@@ -115,7 +117,7 @@ const ChatLauncher = () => {
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block text-[14px] font-medium">WhatsApp</span>
-                <span className="block text-[11px] text-[rgba(var(--chat-panel-ink-rgb),0.45)]">Open a private conversation</span>
+                <span className="block text-[11px] text-[rgba(var(--chat-panel-ink-rgb),0.45)]">{t("chatLauncher.whatsappHint", { defaultValue: "Open a private conversation" })}</span>
               </span>
               <span className="text-[rgba(var(--chat-panel-ink-rgb),0.35)] transition group-hover:translate-x-0.5 group-hover:text-[rgba(var(--chat-panel-ink-rgb),0.65)]" aria-hidden="true">→</span>
             </a>

@@ -1,4 +1,7 @@
+import type { TFunction } from "i18next";
 import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
+import { journeyStepLabel } from "@/lib/journeyLabels";
+import { placeName, placeTagline, tr } from "@/lib/villageCopy";
 
 /**
  * placeState — one function that says what state a place (or a room inside one) is in.
@@ -57,6 +60,8 @@ export type PlaceClosedLine = {
   event: string;
   /** The transformational result, completing «Inside: …», e.g. "your offer, built from your top talent". */
   inside: string;
+  /** i18n key of the whole line («Opens when …. Inside: ….»). Absent = English only. */
+  key?: string;
 };
 
 /** A window in which something happens at the place. ISO timestamps with offset. */
@@ -65,6 +70,8 @@ export type PlaceLive = {
   until: string;
   /** «Live now: Webinar, Wed Nov 4.» */
   line: string;
+  /** i18n key of `line`. Absent = English only. */
+  key?: string;
 };
 
 export type PlaceRule = {
@@ -82,6 +89,8 @@ export type PlaceRule = {
 
 /** Anything with a rule: a village place, an Academy room, the Oracle Reading. */
 export type PlaceInput = {
+  /** The place's key (`village.place.<key>.line`); absent = the line is not translated. */
+  key?: string;
   line: string;
   rule: PlaceRule;
 };
@@ -201,6 +210,44 @@ export const moveTitle = (move: Pick<NextMove, "title" | "place">): string | nul
   move.title.toLowerCase() === move.place.name.toLowerCase() ? null : move.title;
 
 /**
+ * The words of a next move in the reader's language: the place's name, the title, and what it
+ * gives. `nextMove` builds the English; this reads the same sources through the catalog
+ * (`village.*`, `journeySteps.*`). Pass no `t` and you get the English back.
+ */
+export const nextMoveCopy = (
+  move: NextMove,
+  t?: TFunction,
+): { place: string; title: string; result: string } => {
+  const place = placeName(move.place, t);
+  if (move.title === SAVE_CHARACTER_TITLE) {
+    return {
+      place,
+      title: tr(t, "village.saveCharacter", move.title),
+      result: tr(t, "village.saveResult", move.result),
+    };
+  }
+  if (move.kind === "step") {
+    const item = JOURNEY_MAIN.find((i) => i.id === move.step);
+    if (item) {
+      return {
+        place,
+        title: journeyStepLabel(item, t),
+        result: item.result ? tr(t, `village.result.${item.id}`, item.result) : placeTagline(move.place, t),
+      };
+    }
+  }
+  if (move.kind === "live") {
+    const live = move.place.rule.live;
+    return {
+      place,
+      title: live ? tr(t, live.key, live.line) : place,
+      result: placeTagline(move.place, t),
+    };
+  }
+  return { place, title: move.kind === "quests" ? place : move.title, result: placeTagline(move.place, t) };
+};
+
+/**
  * The single next move for this save. The Journey's next step comes first, at the place
  * whose `steps` hold it; with no step left, a place that is live now; else the Quest Board.
  * A place that is closed is never offered. Null only when nothing is open to offer.
@@ -279,8 +326,20 @@ export const whatChanged = <P extends MovePlace>(
   save: PlaceSave,
 ): { fresh: P[]; line: string | null } => {
   const fresh = places.filter((p) => placeState(p, save) !== "closed" && !seenOpen.has(p.key));
+  return { fresh, line: whatChangedLine(fresh) };
+};
+
+/**
+ * The one «what changed» line for the places that just opened (see `whatChanged`), in the
+ * reader's language when a `t` is passed. Null when nothing is new.
+ */
+export const whatChangedLine = <P extends MovePlace>(fresh: readonly P[], t?: TFunction): string | null => {
   const spoken = fresh.find((p) => p.opened) ?? fresh[0];
-  return { fresh, line: spoken ? (spoken.opened ?? `${spoken.name} is open.`) : null };
+  if (!spoken) return null;
+  if (spoken.opened) return tr(t, `village.place.${spoken.key}.opened`, spoken.opened);
+  return t
+    ? String(t("village.opened.default", { name: placeName(spoken, t), defaultValue: "{{name}} is open." }))
+    : `${spoken.name} is open.`;
 };
 
 /** True while `now` falls inside the place's live window. */
@@ -306,15 +365,16 @@ export const placeState = (place: PlaceInput, save: PlaceSave): PlaceStateName =
 const trimDot = (s: string) => s.trim().replace(/\.+$/, "");
 
 /** «Opens when <real event>. Inside: <result>.» Empty when the place has no closed line. */
-export const closedLine = (place: PlaceInput): string => {
+export const closedLine = (place: PlaceInput, t?: TFunction): string => {
   const c = place.rule.closed;
   if (!c) return "";
-  return `Opens when ${trimDot(c.event)}. Inside: ${trimDot(c.inside)}.`;
+  return tr(t, c.key, `Opens when ${trimDot(c.event)}. Inside: ${trimDot(c.inside)}.`);
 };
 
 /** The one line to show for a place in a given state. */
-export const placeLine = (place: PlaceInput, state: PlaceStateName): string => {
-  if (state === "closed") return closedLine(place);
-  if (state === "live") return place.rule.live?.line ?? place.line;
-  return place.line;
+export const placeLine = (place: PlaceInput, state: PlaceStateName, t?: TFunction): string => {
+  if (state === "closed") return closedLine(place, t);
+  const live = place.rule.live;
+  if (state === "live" && live) return tr(t, live.key, live.line);
+  return placeTagline(place, t);
 };

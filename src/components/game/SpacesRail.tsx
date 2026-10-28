@@ -1,4 +1,5 @@
 import { memo, useEffect, useId, useState } from "react";
+import type { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -27,6 +28,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { closedLine, placeLine, type PlaceStateName } from "@/lib/placeState";
+import { placeName, stateWordText, tr } from "@/lib/villageCopy";
 import { PANE_BY_PLACE, RAIL_PLACES, tourIdFor } from "@/lib/railPlaces";
 import type { VillagePlace, VillagePlaceKey } from "@/data/villagePlaces";
 import { OPEN_CHAT_EVENT } from "@/components/ChatLauncher";
@@ -173,11 +175,10 @@ const StateMark = ({ state, compact }: { state: PlaceStateName; compact: boolean
 };
 
 /** The state as a word for screen readers; closed reads its «Opens when …» line. */
-const stateWord = (place: VillagePlace, state: PlaceStateName): string => {
-    if (state === "closed") return closedLine(place);
-    if (state === "live") return placeLine(place, state);
-    if (state === "next") return "Next";
-    if (state === "done") return "Done";
+const stateWord = (place: VillagePlace, state: PlaceStateName, t: TFunction): string => {
+    if (state === "closed") return closedLine(place, t);
+    if (state === "live") return placeLine(place, state, t);
+    if (state === "next" || state === "done") return stateWordText(state, t) ?? "";
     return "";
 };
 
@@ -271,6 +272,16 @@ const SpacesRail = ({
     const isPlanetir = skin === "planetir";
     const isTechstars = skin === "techstars";
     const isDefaultYouSkin = !isNS && !isDao && !isPlanetir && !isTechstars;
+    // Brand names are not translated; only the word «home» around them is.
+    const homeBrand = isNS
+        ? "Network School"
+        : isDao
+            ? "LATAM Impact"
+            : isPlanetir
+                ? "Planetir"
+                : isTechstars
+                    ? "Techstars"
+                    : "Find Your Top Talent";
     const nextToggleSkin: Skin = TOGGLE_NEXT_SKIN[skin] ?? "lapis";
     const toggleLabel = t(TOGGLE_LABEL_KEY[nextToggleSkin] ?? "spacesRail.themeToggleToLapisTitle");
 
@@ -463,7 +474,7 @@ const SpacesRail = ({
                         "block group transition-all hover:opacity-90",
                         compact && "grid place-items-center w-[48px] h-[48px] mx-auto p-0"
                     )}
-                    aria-label={isNS ? "Network School home" : isDao ? "LATAM Impact home" : isPlanetir ? "Planetir home" : isTechstars ? "Techstars home" : "Find Your Top Talent home"}
+                    aria-label={t("spacesRail.homeAria", { brand: homeBrand, defaultValue: "{{brand}} home" })}
                 >
                     {isTechstars ? (
                         <>
@@ -732,7 +743,7 @@ const SpacesRail = ({
               <div className="relative">
               <TooltipProvider delayDuration={150} skipDelayDuration={0}>
                 <nav
-                    aria-label="Village"
+                    aria-label={tr(t, "village.railAria", "Village")}
                     className={compact ? "flex flex-col gap-[6px] p-[8px]" : drawer ? "flex flex-col gap-1 px-2 pt-3 pb-3" : "flex flex-col gap-1 px-3 pt-3 pb-3"}
                 >
                 {RAIL_PLACES.map((place, i) => {
@@ -740,10 +751,11 @@ const SpacesRail = ({
                     const closed = state === "closed";
                     const active = place.key === activePlace;
                     const Icon = PLACE_ICON[place.key];
-                    const line = placeLine(place, state);
+                    const line = placeLine(place, state, t);
+                    const name = placeName(place, t);
                     // The state word ("Opens when…", Next, Done, live line) is the description,
                     // not the name: the button is named by the place alone.
-                    const describedBy = stateWord(place, state) ? `${uid}-state-${place.key}` : undefined;
+                    const describedBy = stateWord(place, state, t) ? `${uid}-state-${place.key}` : undefined;
 
                     const handleClick = () => {
                         if (closed) return;
@@ -797,7 +809,7 @@ const SpacesRail = ({
                             // hidden (mobile). In compact and closed the hover card below
                             // carries the same line.
                             title={!closed && !compact ? line : undefined}
-                            aria-label={place.name}
+                            aria-label={name}
                             aria-describedby={describedBy}
                         >
                             <span
@@ -828,13 +840,13 @@ const SpacesRail = ({
                                             textTransform: "uppercase",
                                         }}
                                     >
-                                        {place.name}
+                                        {name}
                                     </span>
                                 )}
                             </span>
 
                             <StateMark state={state} compact={compact} />
-                            <span id={describedBy} className="sr-only">{stateWord(place, state)}</span>
+                            <span id={describedBy} className="sr-only">{stateWord(place, state, t)}</span>
 
                             {/* Active-state gold pip, hidden in compact (its left-edge
                                 position overflowed the slim 72px column). */}
@@ -876,7 +888,7 @@ const SpacesRail = ({
                                                 color: "var(--accent-bright)",
                                             }}
                                         >
-                                            {place.name}
+                                            {name}
                                         </p>
                                         {(closed || state === "live") && (
                                             <p
