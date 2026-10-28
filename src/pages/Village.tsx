@@ -27,6 +27,7 @@ import { nextMove, placeLine, placeSaveFromSheet, placeState, type PlaceStateNam
 import { useVillageChanges } from "@/hooks/useVillageChanges";
 import { PlaceState, PlaceStateTag } from "@/components/game/PlaceState";
 import { LunarPaths, LunarWorldSync } from "@/components/skin/LunarWorld";
+import { unseenKeys, useLeave } from "@/lib/motion";
 import "./Village.css";
 
 /**
@@ -51,6 +52,10 @@ import "./Village.css";
  *
  * Others who are here now appear as anonymous lights on a place's map marker and in its
  * scene (WP-21, src/hooks/useVillagePresence.ts). Never a count, never a link.
+ *
+ * Motion (WP-15, src/lib/motion.ts and the `--motion-*` tokens): map → place zooms toward the
+ * place while the two layers cross-fade; ENTER pushes the scene in before the route changes;
+ * a place that took its colour since the last visit has it fill in once (§14.11).
  */
 
 type Direction = "left" | "right" | "up" | "down";
@@ -168,6 +173,40 @@ const SkyMoon = ({ sky }: { sky: VillageSky }) => (
 /** «New» beside a place that opened since the last visit: a word, so the reveal is never colour-only. */
 const NewTag = () => <span className="ps-tag ps-tag--next vl-new">New</span>;
 
+const COLOR_KEY = (userId: string) => `village:seen-color-v1:${userId}`;
+
+/**
+ * Places that took their colour (done, or live) since this player last stood in the village,
+ * for the one-time fill-in (§14.11, WP-15). Same shape as `useVillageChanges`: the village
+ * remembers, per player and browser, which places it has already shown in colour; the set only
+ * grows and is written at once, so a reload never replays it. With no memory (a new browser)
+ * every coloured place counts as new, once. A guest, or storage that fails, gets no reveal.
+ */
+const useColorReveal = (userId: string | null, ready: boolean, coloredKeys: readonly string[]): string[] => {
+  const [fresh, setFresh] = useState<string[]>([]);
+  const coloredNow = coloredKeys.join("|");
+  useEffect(() => {
+    if (!ready || !userId) return;
+    const now = coloredNow ? coloredNow.split("|") : [];
+    let seen: string[] | null = null;
+    try {
+      const parsed: unknown = JSON.parse(window.localStorage.getItem(COLOR_KEY(userId)) ?? "null");
+      seen = Array.isArray(parsed) ? parsed.filter((k): k is string => typeof k === "string") : null;
+    } catch {
+      seen = null;
+    }
+    const added = unseenKeys(seen, now);
+    // Keep what was already announced this visit (a re-run must not clear it).
+    if (added.length > 0) setFresh((prev) => [...new Set([...prev, ...added])]);
+    try {
+      window.localStorage.setItem(COLOR_KEY(userId), JSON.stringify([...new Set([...(seen ?? []), ...now])]));
+    } catch {
+      // Private mode / quota: the reveal is cosmetic, ignore.
+    }
+  }, [userId, ready, coloredNow]);
+  return fresh;
+};
+
 /** The current time, refreshed so a live window opens and closes while the page is up. */
 const useNow = (everyMs: number) => {
   const [now, setNow] = useState(() => new Date());
@@ -198,6 +237,15 @@ const Village = () => {
   const move = ready ? nextMove(VILLAGE_PLACES, save) : null;
   const changes = useVillageChanges(sheet.userId, VILLAGE_PLACES, save, ready);
   const isNew = (p: VillagePlace) => changes.fresh.includes(p);
+  // Places that took their colour since the last visit: the colour fills into them once (WP-15).
+  const colorFresh = useColorReveal(
+    sheet.userId,
+    ready,
+    VILLAGE_PLACES.filter((_, i) => states[i] === "done" || states[i] === "live").map((p) => p.key),
+  );
+  const isRevealed = (p: VillagePlace) => colorFresh.includes(p.key);
+  // ENTER: the scene pushes in and the screen fades, then the route changes.
+  const { leaving, leave } = useLeave("base");
   const [active, setActive] = useState<number | null>(null);
   // Keep the last scene mounted after leaving it, so map ← place can crossfade too.
   const [lastPlace, setLastPlace] = useState<VillagePlace | undefined>(place);
@@ -293,7 +341,7 @@ const Village = () => {
   const lastPending = lastIndex >= 0 && !ready && states[lastIndex] === "closed";
 
   return (
-    <div className="vl-root" data-view={place ? "place" : "map"} style={skyVars(sky)}>
+    <div className={`vl-root${leaving ? " is-leaving" : ""}`} data-view={place ? "place" : "map"} style={skyVars(sky)}>
       <div className="vl-grain" aria-hidden="true" />
       {/* Lunar only: the player's soul colors and the sky, from the same save as placeState (§14.11). */}
       <LunarWorldSync sheet={sheet} save={save} />
@@ -306,8 +354,13 @@ const Village = () => {
             <p className="vl-mono vl-moonline">{sky.mood}</p>
           </header>
 
-          <div className="vl-frame" style={MAP_STAGE}>
+          {/* --vl-zx/--vl-zy: the place the map zooms toward when it fades out (WP-15). */}
+          <div
+            className="vl-frame"
+            style={{ ...MAP_STAGE, "--vl-zx": `${lastPlace?.x ?? 50}%`, "--vl-zy": `${lastPlace?.y ?? 50}%` } as CSSProperties}
+          >
             <div className="vl-cover">
+             <div className="vl-zoom">
               <div className="vl-drift">
                 <img
                   className="vl-map-img"
@@ -326,7 +379,7 @@ const Village = () => {
                       top: `${p.y}%`,
                       "--vl-d": `${-i * 0.55}s`,
                     } as CSSProperties;
-                    const cls = `vl-pin${p.side === "left" ? " vl-pin--left" : ""}${i === active ? " is-active" : ""}${isNew(p) ? " is-new" : ""}`;
+                    const cls = `vl-pin${p.side === "left" ? " vl-pin--left" : ""}${i === active ? " is-active" : ""}${isNew(p) ? " is-new" : ""}${isRevealed(p) ? " is-reveal" : ""}`;
                     return (
                       // A closed pin still opens its (faded) scene, so it is not disabled.
                       <PlaceState key={p.key} as="li" state={shown[i]} className={cls} style={style} tag={false} disabled={false}>
@@ -358,6 +411,7 @@ const Village = () => {
                   })}
                 </ul>
               </div>
+             </div>
             </div>
             <div className="vl-vignette" aria-hidden="true" />
             <SkyMoon sky={sky} />
@@ -390,7 +444,9 @@ const Village = () => {
                     {move.optional ? <span className="vl-move__optional"> (optional)</span> : null}
                   </p>
                   {move.kind === "step" ? <p className="vl-move__result">{move.result}</p> : null}
-                  <Link className="vl-enter vl-move__enter" to={move.to}>ENTER</Link>
+                  <Link className="vl-enter vl-move__enter" to={move.to} onClick={(e) => leave(() => navigate(move.to), e)}>
+                    ENTER
+                  </Link>
                 </aside>
               ) : null}
             </div>
@@ -399,7 +455,7 @@ const Village = () => {
           <nav className="vl-list" aria-label="Places">
             <ul>
               {VILLAGE_PLACES.map((p, i) => (
-                <PlaceState key={p.key} as="li" state={shown[i]} className={isNew(p) ? "is-new" : undefined} tag={false} disabled={false}>
+                <PlaceState key={p.key} as="li" state={shown[i]} className={`${isNew(p) ? "is-new" : ""} ${isRevealed(p) ? "is-reveal" : ""}`.trim() || undefined} tag={false} disabled={false}>
                   <Link to={`/village/${p.key}`}>
                     <span className="vl-list__name">{p.name}</span>
                     <PlaceStateTag state={shown[i]} />
@@ -440,6 +496,7 @@ const Village = () => {
                   ref={enterRef}
                   className={`vl-enter${lastPending ? " is-pending" : ""}`}
                   to={lastPlace.to}
+                  onClick={(e) => leave(() => navigate(lastPlace.to), e)}
                 >
                   ENTER
                 </Link>

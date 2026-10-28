@@ -6696,6 +6696,64 @@ All colors MUST be HSL.
   animation-delay: 0.4s;
 }
 
+/* ==========================================================================
+   Motion tokens — one transition language for the Journey (WP-15 part 1).
+   Design: docs/02-strategy/game_of_being_you.md §14.8 (WP-15), §14.11.
+
+   Every Journey transition reads these and nothing else: village → place (zoom),
+   place → ModuleIntro → module → ModuleOutro → village (cross-fade), and the colour
+   filling into a place that just opened or just got done. src/lib/motion.ts mirrors the
+   durations in milliseconds for the code that has to wait for one (a test keeps them equal).
+
+   prefers-reduced-motion: the durations and the scales collapse, so each of these
+   becomes an instant change; no component needs its own reduced-motion rule for them.
+
+   Opacity, `scale` and `filter` only: a transform or a layout property here would
+   create a containing block for fixed/sticky descendants (see page-enter below) or shift
+   layout on mobile.
+   ========================================================================== */
+:root {
+  --motion-fast: 200ms;     /* a screen leaving, a control answering */
+  --motion-base: 400ms;     /* a screen arriving, a pane sliding */
+  --motion-slow: 900ms;     /* a scene crossfade: village ↔ place */
+  --motion-reveal: 1800ms;  /* colour filling into a place (§14.11) */
+
+  --motion-ease: cubic-bezier(0.22, 0.61, 0.36, 1);   /* enter: quick start, soft landing */
+  --motion-ease-in: cubic-bezier(0.4, 0, 1, 1);       /* exit: leaves at speed */
+  --motion-ease-inout: cubic-bezier(0.4, 0, 0.2, 1);  /* a change that stays on screen */
+
+  --motion-zoom: 1.12;      /* the scene you leave pushes in by this much */
+  --motion-settle: 1.06;    /* the scene you arrive in settles from this scale to 1 */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-base: 0ms;
+    --motion-slow: 0ms;
+    --motion-reveal: 0ms;
+    --motion-zoom: 1;
+    --motion-settle: 1;
+  }
+}
+
+/* enter: opacity only. Used with a `backwards` fill, so the element returns to its own
+   resting style when the animation ends. */
+@keyframes motion-enter {
+  from { opacity: 0; }
+}
+
+/* arriving in a scene: it settles from --motion-settle to its natural size */
+@keyframes motion-settle {
+  from { scale: var(--motion-settle); }
+}
+
+/* the colour filling in: grey and quiet first, then your colour */
+@keyframes motion-fill {
+  from { opacity: 0; filter: grayscale(1) brightness(0.85); }
+  45% { opacity: 1; filter: grayscale(1) brightness(0.85); }
+}
+
 /* Page Transitions */
 /* Day 51 night v2 (Sasha 2026-04-25): keyframe is now strictly
    opacity-only. Even when `to` had no transform, Chrome's forwards
@@ -6730,12 +6788,13 @@ All colors MUST be HSL.
   }
 }
 
+/* WP-15: page changes run on the shared motion tokens (above). */
 .page-transition-enter {
-  animation: page-enter 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: page-enter var(--motion-base) var(--motion-ease-inout) forwards;
 }
 
 .page-transition-exit {
-  animation: page-exit 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+  animation: page-exit var(--motion-fast) var(--motion-ease-in) forwards;
 }
 
 /* Micro-Interactions */
