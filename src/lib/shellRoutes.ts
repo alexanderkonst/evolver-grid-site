@@ -113,6 +113,7 @@ const SHELL_PREFIX: string[] = [
     "/asset-mapping",
     "/quality-of-life-map",
     "/game/me",
+    "/game/journey/quest", // WP-11 real-world quests (J10–J12); "/game/journey" itself is the board above
     "/game/next-move",
     "/game/learn",
     "/game/marketplace",

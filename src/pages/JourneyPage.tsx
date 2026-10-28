@@ -5,12 +5,20 @@ import MethodologyLandingPage from "@/pages/MethodologyLandingPage";
 import MatchHero from "@/components/landing/MatchHero";
 import { useEntryPath } from "@/contexts/EntryPathContext";
 import { shouldRouteToQuiz, markDoorSeen } from "@/lib/doorRouter";
+import QuestBoard from "@/components/game/QuestBoard";
 import { supabase } from "@/integrations/supabase/client";
 
 /**
  * JourneyPage — the JOURNEY space main page.
- * Wraps the pane-3 hero in GameShellV2 for the /game/journey route and
- * also serves as the `/` homepage.
+ *
+ * WP-11 (game_of_being_you.md §14.8): `/game/journey` is the one Quest Board (`QuestBoard`),
+ * which also takes the place of the next-move hub and Today (their routes redirect here).
+ * Everywhere else this page serves (`/journey`), it stays the landing below, unchanged.
+ * The first-visit door (quiz redirect) belongs to the landing only: the board is readable by
+ * a guest as it is.
+ *
+ * Landing (`JourneyLanding`): wraps the pane-3 hero in GameShellV2 and
+ * once served as the `/` homepage.
  *
  * Funnel v2 (Day 77, Sasha 2026-05-20): when a visitor enters via
  * `?path=match` (Balaji / ecosystem-leader outreach), MatchHero renders
@@ -38,7 +46,7 @@ import { supabase } from "@/integrations/supabase/client";
  *
  * Spec: docs/specs/funnel-v2/funnel-v2_product_spec.md §4.1.
  */
-const JourneyPage = () => {
+const JourneyLanding = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const navigationType = useNavigationType();
@@ -102,6 +110,18 @@ const JourneyPage = () => {
       {isMatch ? <MatchHero /> : <MethodologyLandingPage />}
     </GameShellV2>
   );
+};
+
+const JourneyPage = () => {
+  const { pathname } = useLocation();
+  if (pathname === "/game/journey") {
+    return (
+      <GameShellV2>
+        <QuestBoard />
+      </GameShellV2>
+    );
+  }
+  return <JourneyLanding />;
 };
 
 export default JourneyPage;

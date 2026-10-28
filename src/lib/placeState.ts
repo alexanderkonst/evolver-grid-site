@@ -21,11 +21,16 @@ export type PlaceStateName = "closed" | "open" | "next" | "done" | "live";
 
 /**
  * Real events that are not Journey steps. Some have no record in the save yet
- * (`first-sale`, `productize-session`, `founder-academy`, `spectrum-reading`); until a module writes
+ * (`productize-session`, `founder-academy`, `spectrum-reading`); until a module writes
  * one, the event stays unmet and whatever waits on it stays closed.
+ *
+ * The three real-world victories (WP-11: `mastery-practice` J10, `first-price` J11,
+ * `first-sale` J12) are read from `journey_victories` through the sheet's `victories`.
  */
 export type PlaceEvent =
   | "offer-saved"
+  | "mastery-practice"
+  | "first-price"
   | "first-sale"
   | "productize-session"
   | "founder-academy"
@@ -85,18 +90,24 @@ export type PlaceSave = {
 /** A save with nothing in it: a guest, or a state read before the save has loaded. */
 export const emptyPlaceSave = (now: Date = new Date()): PlaceSave => ({ met: {}, now });
 
+/** The real-world victories (J10–J12, §14.2) a player records themselves, in Journey order. */
+export const REAL_WORLD_VICTORIES = ["mastery-practice", "first-price", "first-sale"] as const;
+export type RealWorldVictory = (typeof REAL_WORLD_VICTORIES)[number];
+
 /** The part of `useCharacterSheet` this module reads. */
 export type PlaceSaveSource = {
   chain: { id: JourneyItemId; done: boolean }[];
   /** An offer / tagline artifact exists in the UBB. */
   offerSaved?: boolean;
+  /** `journey_victories.step_id` of every victory the player has recorded. */
+  victories?: readonly string[];
 };
 
 /**
  * Turn the character sheet into a PlaceSave. Journey steps come straight from the
  * sheet's chain (zog_snapshots, mission, qol_snapshots, user_assets); the offer
- * event comes from the UBB artifacts. There is no sales record yet, so
- * `first-sale` is never met.
+ * event comes from the UBB artifacts. The real-world events (`first-sale` among them) are
+ * met by the player's own recorded victories (WP-11); with none, they are never met.
  */
 export const placeSaveFromSheet = (
   sheet: PlaceSaveSource,
@@ -111,6 +122,9 @@ export const placeSaveFromSheet = (
     // a saved offer / tagline is the artifact that finishes it (§14.2 J7).
     met["build-business"] = true;
   }
+  for (const id of REAL_WORLD_VICTORIES) {
+    if (sheet.victories?.includes(id)) met[id] = true;
+  }
   return { met, now };
 };
 
@@ -120,6 +134,13 @@ export const placeSaveFromSheet = (
  */
 export const awaitingSave = (save: PlaceSave): boolean =>
   save.met["guest-result"] === true && save.met["find-top-talent"] !== true;
+
+/**
+ * True once the first sale is recorded: Town Hall opens (its rule waits on `first-sale`) and
+ * the player's house is the one to light on the map (§14.2 J12, §14.12). The map reads this
+ * beside `placeState`; the house's own state is not changed by it.
+ */
+export const houseLit = (save: PlaceSave): boolean => save.met["first-sale"] === true;
 
 /** The single next move on the Journey: first main step not done whose requirements are done. */
 export const nextJourneyStep = (save: PlaceSave): JourneyItemId | null => {

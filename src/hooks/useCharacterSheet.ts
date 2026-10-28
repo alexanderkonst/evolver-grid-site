@@ -53,6 +53,12 @@ export type CharacterSheetData = {
     assets: { count: number; top: CharacterSheetAsset[] };
     /** An offer / tagline artifact is saved in the UBB (opens Market and Co-working, §14.3). */
     offerSaved: boolean;
+    /**
+     * `journey_victories.step_id` of every victory the player has recorded (own rows only, RLS).
+     * The real-world ones (J10–J12) open Town Hall and light the house (placeState, WP-11).
+     * Empty while the table is missing or unreadable.
+     */
+    victories: string[];
 };
 
 const EMPTY: CharacterSheetData = {
@@ -66,6 +72,7 @@ const EMPTY: CharacterSheetData = {
     qol: null,
     assets: { count: 0, top: [] },
     offerSaved: false,
+    victories: [],
 };
 
 const TOP_ASSETS = 3;
@@ -111,7 +118,7 @@ async function loadSheet(): Promise<CharacterSheetData> {
     // soul_colors is not in the generated types (CharacterHub casts the same way).
     const row = (profile ?? {}) as { first_name?: string | null; avatar_url?: string | null; soul_colors?: string[] | null };
 
-    const [zog, qol, assets, mission, offer] = await Promise.all([
+    const [zog, qol, assets, mission, offer, victories] = await Promise.all([
         profileId
             ? supabase
                   .from("zog_snapshots")
@@ -148,6 +155,7 @@ async function loadSheet(): Promise<CharacterSheetData> {
             .select("id", { count: "exact", head: true })
             .eq("user_id", user.id)
             .in("artifact_key", OFFER_ARTIFACT_KEYS),
+        supabase.from("journey_victories").select("step_id").eq("user_id", user.id),
     ]);
 
     return {
@@ -164,6 +172,7 @@ async function loadSheet(): Promise<CharacterSheetData> {
             top: (assets.data ?? []).map((a) => ({ id: a.id, title: a.title })),
         },
         offerSaved: !offer.error && (offer.count ?? 0) > 0,
+        victories: victories.error ? [] : (victories.data ?? []).map((v) => v.step_id),
     };
 }
 

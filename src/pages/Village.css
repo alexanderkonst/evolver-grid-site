@@ -313,6 +313,13 @@
 .vl-pin.is-reveal[data-place-state="live"]::after {
   animation: motion-enter var(--motion-reveal) var(--motion-ease) var(--motion-slow) backwards;
 }
+/* WP-11 (§14.2 J12, §14.12): after the first sale the player's house is lit on the map. A halo
+   on the dot (any skin) and the word «Lit», so it is never colour alone. */
+.vl-lit-word { margin-left: 8px; font-family: var(--vl-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--open-accent); }
+.vl-pin.is-lit .vl-dot::before {
+  opacity: 1; background: var(--open-accent);
+  box-shadow: 0 0 0 3px rgba(var(--scene-bg-rgb),0.85), 0 0 0 4px var(--open-accent), 0 0 26px 8px var(--open-accent);
+}
 @keyframes vl-bloom {
   0% { transform: scale(0.4); opacity: 0; }
   45% { transform: scale(2.2); opacity: 1; box-shadow: 0 0 22px 8px var(--open-accent); }
