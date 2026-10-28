@@ -155,8 +155,8 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     line: "Find partners for the work.",
     to: "/game/collaborate/matches",
     rule: {
-      opens: "offer-saved",
-      closed: { event: "your offer is saved", inside: "partners for the work" },
+      opens: "triad",
+      closed: { event: "your top talent, mission and assets are saved", inside: "partners for the work" },
     },
     image: "/game/village/coworking.webp",
     alt: "A long arched hall for co-working: wooden desks with brass lamps and laptops, sacred-geometry paintings on the walls, string lights, and a window onto the starry night",
@@ -167,7 +167,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
   },
   {
     key: "fire-circle",
-    name: "Fire Circle",
+    name: "Mastermind",
     line: "Your Mastermind circle.",
     to: "/build/mastermind",
     rule: {

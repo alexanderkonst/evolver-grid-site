@@ -37,6 +37,11 @@ export type PlaceEvent =
   | "deeper-access"
   | "spectrum-reading"
   /**
+   * The matching triad is saved: top talent, mission and assets (T-M-A, §14.13). Derived in
+   * `placeSaveFromSheet` from the three Journey steps; QoL is optional and not part of it.
+   */
+  | "triad"
+  /**
    * A signed-out visitor holds a finished Top Talent result on this device (local guest save).
    * Not a Journey step and not an unlock: Your House stays closed until the result is saved to
    * an account (§14.3). It only decides the next move («Save your character», WP-7b).
@@ -103,6 +108,9 @@ export type PlaceSaveSource = {
   victories?: readonly string[];
 };
 
+/** The Journey steps that make a person matchable: talent, mission, assets (§14.13). */
+const TRIAD_STEPS: JourneyItemId[] = ["find-top-talent", "discover-mission", "map-assets"];
+
 /**
  * Turn the character sheet into a PlaceSave. Journey steps come straight from the
  * sheet's chain (zog_snapshots, mission, qol_snapshots, user_assets); the offer
@@ -116,6 +124,7 @@ export const placeSaveFromSheet = (
 ): PlaceSave => {
   const met: PlaceSave["met"] = { ...extra };
   for (const step of sheet.chain) met[step.id] = step.done;
+  if (TRIAD_STEPS.every((id) => met[id] === true)) met.triad = true;
   if (sheet.offerSaved) {
     met["offer-saved"] = true;
     // Journey step 5 («Build a business») has no completion predicate of its own;

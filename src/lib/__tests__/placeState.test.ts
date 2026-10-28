@@ -46,7 +46,7 @@ const statesOf = (save: ReturnType<typeof saveWith>) =>
   Object.fromEntries(VILLAGE_PLACES.map((p) => [p.key, placeState(p, save)])) as Record<VillagePlaceKey, PlaceStateName>;
 
 describe("placeState: unlock order (§14.3)", () => {
-  it("a guest sees Reception next, Academy and Fire Circle open, everything else closed", () => {
+  it("a guest sees Reception next, Academy and Mastermind open, everything else closed", () => {
     const s = statesOf(saveWith([]));
     expect(s.reception).toBe("next");
     expect(s.academy).toBe("open");
@@ -85,6 +85,24 @@ describe("placeState: unlock order (§14.3)", () => {
     const s = statesOf(saveWith(["find-top-talent", "discover-mission", "assess-qol", "map-assets"]));
     expect(s.house).toBe("done");
     expect(s.workshop).toBe("next");
+  });
+
+  it("Co-working opens on the triad (talent + mission + assets), with QoL skipped and no offer saved", () => {
+    const s = statesOf(saveWith(["find-top-talent", "discover-mission", "map-assets"]));
+    expect(s.coworking).toBe("open");
+    expect(s.market).toBe("closed"); // Market still waits on a saved offer
+    expect(s["town-hall"]).toBe("closed");
+  });
+
+  it("Co-working stays closed while any of talent, mission or assets is missing", () => {
+    for (const done of [
+      ["find-top-talent", "discover-mission"],
+      ["find-top-talent", "map-assets"],
+      ["discover-mission", "map-assets"],
+      ["find-top-talent", "discover-mission", "assess-qol"],
+    ] as JourneyItemId[][]) {
+      expect(placeState(place("coworking"), saveWith(done)), done.join("+")).toBe("closed");
+    }
   });
 
   it("an offer / tagline saved opens Market and Co-working and finishes the Workshop", () => {
@@ -157,7 +175,7 @@ describe("placeState: live", () => {
     expect(placeState(place("academy"), before)).toBe("open");
   });
 
-  it("the Fire Circle is live on the Mastermind days, Nov 9 and 10", () => {
+  it("the Mastermind is live on the Mastermind days, Nov 9 and 10", () => {
     expect(placeState(place("fire-circle"), saveWith([], { now: new Date("2026-11-09T18:00:00Z") }))).toBe("live");
     expect(placeState(place("fire-circle"), saveWith([], { now: new Date("2026-11-10T18:00:00Z") }))).toBe("live");
     expect(placeState(place("fire-circle"), saveWith([], { now: new Date("2026-11-11T07:00:00Z") }))).toBe("open");
@@ -182,14 +200,14 @@ describe("closed lines come from data (§14.3)", () => {
     }
   });
 
-  it("only Reception, Academy and Fire Circle are open for a guest", () => {
+  it("only Reception, Academy and Mastermind are open for a guest", () => {
     const open = VILLAGE_PLACES.filter((p) => !p.rule.opens).map((p) => p.key);
     expect(open.sort()).toEqual(["academy", "fire-circle", "reception"]);
   });
 });
 
 describe("rules point at the Journey, they do not restate it", () => {
-  const events: PlaceEvent[] = ["offer-saved", "mastery-practice", "first-price", "first-sale", "productize-session", "founder-academy", "deeper-access"];
+  const events: PlaceEvent[] = ["offer-saved", "triad", "mastery-practice", "first-price", "first-sale", "productize-session", "founder-academy", "deeper-access"];
   const known = new Set<string>([...JOURNEY_MAIN.map((i) => i.id), ...events]);
 
   it("every requirement names a Journey step or a known event", () => {
@@ -358,11 +376,19 @@ describe("whatChanged: what is new since the last visit (§14.6)", () => {
     expect(r.line).toBe("The Workshop is open.");
   });
 
-  it("Offer saved: the stall stands in the Market", () => {
+  it("Assets saved: Co-working is new", () => {
     const done: JourneyItemId[] = ["find-top-talent", "discover-mission", "assess-qol", "map-assets"];
     const before: VillagePlaceKey[] = [...guestOpen, "house", "quest-board", "oracle", "cafe", "workshop"];
+    const r = whatChanged(VILLAGE_PLACES, seen(...before), saveWith(done));
+    expect(r.fresh.map((p) => p.key)).toEqual(["coworking"]);
+    expect(r.line).toBe("Co-working is open.");
+  });
+
+  it("Offer saved: the stall stands in the Market", () => {
+    const done: JourneyItemId[] = ["find-top-talent", "discover-mission", "assess-qol", "map-assets"];
+    const before: VillagePlaceKey[] = [...guestOpen, "house", "quest-board", "oracle", "cafe", "workshop", "coworking"];
     const r = whatChanged(VILLAGE_PLACES, seen(...before), saveWith(done, { offerSaved: true }));
-    expect(r.fresh.map((p) => p.key).sort()).toEqual(["coworking", "market"]);
+    expect(r.fresh.map((p) => p.key)).toEqual(["market"]);
     expect(r.line).toBe("Your stall stands in the Market.");
   });
 

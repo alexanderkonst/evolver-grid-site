@@ -386,10 +386,11 @@ Code steps `take-playbook`, `see-path`, `see-dashboard` collapse into Tutorial l
 
 | Place | Opens when |
 |---|---|
-| Reception, Academy, Fire Circle | always |
+| Reception, Academy, Mastermind (was Fire Circle, 10-28) | always |
 | Your House, Quest Board, Oracle | J1: Top Talent saved to your account |
 | Workshop, Café | J2: Mission saved (§13.3: profile described → Café opens) |
-| Market, Co-working | J7: offer / tagline saved (your stall appears) |
+| Co-working | talent + mission + assets saved (Sasha, 2026-10-28; §14.13) |
+| Market | J7: offer / tagline saved (your stall appears) |
 | Town Hall | J12: first sale recorded |
 
 Inferred, to confirm in review: the Oracle and Co-working thresholds.
@@ -592,7 +593,8 @@ Locks were advisory (they colour rows, never block routes). Playbook, Roadmap (`
 - Kept: steps 0, 1, ✦, 2, 3, 4, 6 and every route; Playbook / Roadmap / Dashboard in the Workshop pane; old landing at `/journey`; Today at `/character`.
 - Changed order (game): QoL now before Assets (§14.2). Harmless while QoL stays optional.
 - **Restored 2026-10-28:** `/?path=match` and `/?path=build` open the pre-game landing again (the title screen had swallowed them); the next-move hub (`/next-move`), the daily-loop page (`/next-move-v2`) and the classic map (`/map-classic`) have their own routes again (their old URLs still open the Quest Board / village).
-- **Open fork for Sasha (not changed):** «Find collaborators» left the journey; matching now lives in the Co-working place, which opens only after an offer is saved (§14.3), much later than «after T-M-A». Old order = matching right after the triad; new game = matching after the business. Also: the quiz-first door at `/` was replaced by the wordless first minute (WP-18).
+- **Decided by Sasha 2026-10-28 («Норм!»), was an open fork:** «Find collaborators» is back in its original place. It lives in the Co-working place, which now opens right after the talent + mission + assets triad (QoL is optional and not required), as in the pre-game path: quiz → talent → $37 optional → mission → assets → QoL optional → co-creators → business. It no longer waits for a saved offer. The wordless first minute (WP-18) stays the newcomer's first screen; the quiz-first door at `/` is not restored.
+- **Village label (Sasha, 2026-10-28):** the building formerly labelled «Fire Circle» is labelled **Mastermind** (ru «Мастермайнд», es «Mastermind») and links to the existing Mastermind page (`/build/mastermind`). No Fire Circle feature is built (WP-10 stays parked); the place key `fire-circle` is unchanged in code.
 
 ## 15. Game masters' principles — Sasha's verdicts (2026-10-27)
 
