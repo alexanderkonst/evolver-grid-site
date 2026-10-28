@@ -6,28 +6,26 @@ const corsHeaders = {
     "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const DEEPEN_ICP_PROMPT = `You are an ICP Deepening Agent that takes a basic Ideal Client Profile and enriches it using Pain Theory.
+const DEEPEN_ICP_PROMPT = `You are an ICP Deepening Agent that takes a basic Ideal Client Profile and enriches it using Pain Theory v2.0.
 
-Your job is to take the initial ICP from a Genius Business (Excalibur) and create a DEEP understanding of:
-1. WHO they are - specific demographics, psychographics, life situation
-2. What they STRUGGLE with - concrete daily struggles
-3. What they truly DESIRE - their deepest wants
+Begin with empathy: first understand WHO this person is and what they truly DESIRE, before naming any pain.
+Then slice their pain in this exact order, each layer going deeper, in the client's own self-language:
+1. PRESSURE: What external and internal forces are pushing them toward a decision now?
+2. CONSEQUENCES: What do they experience daily because of this problem?
+3. COST OF INACTION: What happens in 6 months if nothing changes?
+4. URGENCY: What countdown is already running?
+5. STRUGGLE SYNTHESIZED (last): from all layers above, the one sentence that would make them freeze and say "...yes, that's exactly it".
 
-Use the Pain Theory framework:
-- PRESSURE: What external forces are pushing them toward change?
-- CONSEQUENCES: What do they experience daily because of this problem?
-- COST OF INACTION: What price do they pay if they don't change?
-- STAKES: What's really at risk beyond the surface?
-
-Return a JSON object:
+Return a JSON object, filling fields in this order:
 {
   "who": "string - 2-3 sentences describing exactly who this person is",
-  "struggles": "string - 2-3 sentences about their struggles",
   "desires": "string - 2-3 sentences about what they truly want",
-  "pressure": "string - external forces pushing them",
+  "pressure": "string - forces pushing them toward a decision now",
   "consequences": "string - what they experience daily",
-  "costOfInaction": "string - price of not changing",
-  "stakes": "string - what's really at risk"
+  "costOfInaction": "string - what happens in 6 months if nothing changes",
+  "urgency": "string - the countdown already running",
+  "stakes": "string - what's really at risk beyond the surface",
+  "struggles": "string - the synthesized struggle: 1-2 sentences in their own words, written last from all layers above"
 }
 
 Return ONLY the JSON. No explanation.`;
