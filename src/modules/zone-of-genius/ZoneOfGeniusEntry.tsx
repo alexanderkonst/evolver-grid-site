@@ -36,7 +36,7 @@ import { saveAppleseed, saveExcalibur, loadSavedData, saveAppleseedToLocalStorag
 import AppleseedDisplay from "./AppleseedDisplay";
 import AppleseedRitualLoading from "./AppleseedRitualLoading";
 import ExcaliburDisplay from "./ExcaliburDisplay";
-import SaveCharacterCard from "./SaveCharacterCard";
+import TopTalentAuthGate from "./TopTalentAuthGate";
 import { clearGuestBuffers, freshRetakeState } from "./retake";
 import { formatSupabaseError, isSchemaDriftError } from "./formatSupabaseError";
 import { SaveErrorToastBody } from "@/components/ui/save-error-toast";
@@ -203,6 +203,7 @@ const ZoneOfGeniusEntry = () => {
 
     // Guest/Auth state
     const [isGuest, setIsGuest] = useState(true);
+    const [guestRevealUnlocked, setGuestRevealUnlocked] = useState(false);
     const [showSignupModal, setShowSignupModal] = useState(false);
     const [isSaved, setIsSaved] = useState(false);
 
@@ -544,6 +545,7 @@ const ZoneOfGeniusEntry = () => {
         setAiResponse(fresh.aiResponse);
         setError(fresh.error);
         setIsSaved(fresh.isSaved);
+        setGuestRevealUnlocked(fresh.guestRevealUnlocked);
         setStep(fresh.step);
     };
 
@@ -622,8 +624,8 @@ const ZoneOfGeniusEntry = () => {
         }
     };
 
-    const handleSaveAppleseed = async (): Promise<boolean> => {
-        if (!appleseed) return false;
+    const handleSaveAppleseed = async () => {
+        if (!appleseed) return;
 
         setIsSaving(true);
         try {
@@ -635,7 +637,6 @@ const ZoneOfGeniusEntry = () => {
                 if (redirectPath && returnPath !== "/game/me") {
                     setTimeout(() => navigate(redirectPath), 600);
                 }
-                return true;
             } else {
                 console.error("[ZoneOfGeniusEntry] Save failed:", result.error);
                 toast({
@@ -648,7 +649,6 @@ const ZoneOfGeniusEntry = () => {
                     ),
                     variant: "destructive",
                 });
-                return false;
             }
         } catch (err) {
             toast({
@@ -656,36 +656,8 @@ const ZoneOfGeniusEntry = () => {
                 description: t('zogEntry.toastSomethingWentWrongSaving'),
                 variant: "destructive",
             });
-            return false;
         } finally {
             setIsSaving(false);
-        }
-    };
-
-    // «Save your character» (WP-7a): the guest just got an account. Persist the result and
-    // send the player into the village. Without a session yet (email confirmation still
-    // pending) nothing is saved here: the guest buffer stays in localStorage and is
-    // migrated on the first sign-in, so we only tell them what to do next.
-    const handleCharacterAccount = async () => {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (!session?.user) {
-            systemToast.success(t("zogEntry.saveCharacterConfirmEmail"), { duration: 8000 });
-            return;
-        }
-        // The auth listener may already have flipped isGuest and started the auto-save
-        // effect; it reports its own failures, so do not write the same row twice.
-        if (hasSavedAppleseed.current) {
-            navigate("/village");
-            return;
-        }
-        // Otherwise claim the save before flipping the guest flag, so the effect stays out.
-        hasSavedAppleseed.current = true;
-        setIsGuest(false);
-        const saved = await handleSaveAppleseed();
-        if (saved) {
-            navigate("/village");
-        } else {
-            hasSavedAppleseed.current = false;
         }
     };
 
@@ -828,9 +800,23 @@ const ZoneOfGeniusEntry = () => {
     if (step === "appleseed-result" && appleseed) {
         return (
             <GameShellV2 hideNavigation={hideNav} hideLogo>
-                {/* WP-7a: no wall before the reveal. A guest sees their result at
-                    once; the account is asked at «Save your character» below it. */}
-                <>
+                {isGuest && !guestRevealUnlocked ? (
+                    <TopTalentAuthGate
+                        resultPayload={appleseed as unknown as Record<string, unknown>}
+                        assessmentVersion="ai-v1"
+                        title={t("zogEntry.saveCharacterModalTitle")}
+                        onSaved={(email) => {
+                            setAnonymousSave({ status: "sent", email });
+                            setGuestRevealUnlocked(true);
+                            systemToast.success(t("zogEntry.bannerResultSaved"), {
+                                duration: 5000,
+                            });
+                            // WP-7a: after the gate's save the player enters the village.
+                            navigate("/village");
+                        }}
+                    />
+                ) : (
+                    <>
                 {(anonymousSave.status === "sending" || anonymousSave.status === "error") && (
                     <div className="w-full max-w-3xl mx-auto px-5 pt-4">
                         {anonymousSave.status === "sending" && (
@@ -878,10 +864,10 @@ const ZoneOfGeniusEntry = () => {
                     1 minute →" CTA below the reveal. Renders nothing for
                     build-path users — AppleseedDisplay's existing CTAs are
                     the only thing they see. */}
-                {isGuest && <SaveCharacterCard onAccount={handleCharacterAccount} />}
                 <MatchFlowCta step="top-talent" />
                 {retakeControl}
-                </>
+                    </>
+                )}
             </GameShellV2>
         );
     }
