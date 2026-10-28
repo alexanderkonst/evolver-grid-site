@@ -21,7 +21,7 @@ export type PlaceStateName = "closed" | "open" | "next" | "done" | "live";
 
 /**
  * Real events that are not Journey steps. Some have no record in the save yet
- * (`first-sale`, `productize-session`, `founder-academy`); until a module writes
+ * (`first-sale`, `productize-session`, `founder-academy`, `spectrum-reading`); until a module writes
  * one, the event stays unmet and whatever waits on it stays closed.
  */
 export type PlaceEvent =
@@ -29,7 +29,8 @@ export type PlaceEvent =
   | "first-sale"
   | "productize-session"
   | "founder-academy"
-  | "deeper-access";
+  | "deeper-access"
+  | "spectrum-reading";
 
 /** What a place can wait on: a Journey step being done, or a real event. */
 export type PlaceRequirement = JourneyItemId | PlaceEvent;
