@@ -16,7 +16,7 @@ This skill transforms AI from a single-perspective evaluator into a **complete s
 - **Designing** new features, products, or experiences
 - **Reviewing** decisions, plans, or architectural choices
 - **Creating** anything that needs to resonate at multiple levels
-- When the user requests "holonic analysis," "deep analysis," "27-perspective," or "see from all angles"
+- When the user requests "holonic analysis," "deep analysis," "26-perspective," or "see from all angles"
 
 ## The Framework: 4 × 3 + 1 + recursion
 
@@ -35,7 +35,7 @@ This skill transforms AI from a single-perspective evaluator into a **complete s
 |-------|--------|----------|
 | **Essence** | ❤️ | What IS this? Stripped to irreducible truth |
 | **Significance** | 🧠 | What does this MEAN? Why does it matter? |
-| **Consequences** | 🔥 | What does this DEMAND? What must change, at every scale? |
+| **Implications** | 🔥 | What does this DEMAND? What must change, at every scale? |
 
 ### The Matrix (12 perspectives)
 
@@ -44,7 +44,7 @@ This skill transforms AI from a single-perspective evaluator into a **complete s
 Essence ❤️    P1: Feel      P2: Measure   P3: Belong    P4: Architect
 Significance  P5: Liberate  P6: Evidence  P7: Culture   P8: System
   🧠
-Consequences  P9: Inner     P10: Build    P11: Tribe    P12: Scale
+Implications  P9: Inner     P10: Build    P11: Tribe    P12: Scale
   🔥            move          next          action        impact
 ```
 
@@ -85,7 +85,7 @@ In practice: press send, ship the code, make the call, write the message. The 27
 1. Before generating, consider what the output must achieve at each perspective
 2. Build from Essence first (❤️) — what IS this trying to be?
 3. Then Significance (🧠) — why does each quadrant matter?
-4. Then Consequences (🔥) — what concrete action does each demand?
+4. Then Implications (🔥) — what concrete action does each demand?
 5. Let the 13th perspective guide the synthesis
 6. Generate output that serves ALL quadrants, not just UR (mechanical/technical)
 
@@ -111,7 +111,7 @@ In practice: press send, ship the code, make the call, write the message. The 27
 |------------------------|------------------------|
 | UR (mechanical correctness) | UL (does this FEEL true?) |
 | LR (system optimization) | LL (does the TRIBE recognize itself?) |
-| Consequences (what to fix) | Essence (what IS this really?) |
+| Implications (what to fix) | Essence (what IS this really?) |
 | Surface-level fixes | Structural root causes |
 
 ## Quality Gate
