@@ -49,13 +49,13 @@ Every meeting starts from a player's impulse: «сейчас было бы кл�
 ## 5. The Café mechanic (working hypothesis, Sasha 2026-10-28)
 1. On each resident's card: **Open to** (pick any): coffee in person, a 20-min call, a question about my gift, collaboration. Plus city.
 2. One button: **Invite to coffee**, with an optional one-line note.
-3. The other person gets one email: **Accept / Not now**. On accept, both get each other's contact. That's it.
+3. The other person gets a notification (and an email): **Accept / Not now**. On accept, **a 1:1 chat opens between them** right in the game, like DMs on X or LinkedIn. Contacts can be shared in the chat. (Sasha, 2026-10-28: «а почему бы нам просто не открывать с ними чат?… нам нечего скрывать, платформу я делаю для Сан Панчо изначально… Очень даже чат!»)
 
 ## 6. Phases (radical simplicity)
 - **Phase 1: the Meet button.** Press it (your impulse):
   - **Now:** see who is in the village right now; if someone is, send "Meet now?" and a call link opens for both.
-  - **This week:** the system offers 3 residents by talent, each with a suggested topic. Pick one, send "Meet?". On accept, contacts open; in person or online, their choice.
-  - Covers spontaneous, matchmade and 1:1. No chat or feed to build.
+  - **This week:** the system offers 3 residents by talent, each with a suggested topic. Pick one, send "Meet?". On accept, a 1:1 chat opens; in person or online, their choice.
+  - Covers spontaneous, matchmade and 1:1. On accept, a 1:1 chat opens; no public feed.
 - **Phase 2: Campfire.** A weekly hosted circle at a fixed time, in its building. Hosts first, later residents host. (Not the parked "Fire Circle" from the game plan: that stays parked until redefined.)
 - **Phase 3: Café.** A room with live presence where you just drop in, once enough people are around that it is rarely empty.
 - **Themed events** stay in Events.
@@ -67,7 +67,7 @@ Every meeting starts from a player's impulse: «сейчас было бы кл�
 ## 8. Open questions (for Sasha)
 1. Who you see: only 3 suggestions, or suggestions plus search? (Evolver: both; suggestions are the magic, search the freedom.)
 2. What "Open to" offers: Evolver: three choices plus city.
-3. After yes: contacts by email, we carry no calendar or chat?
+3. ~~After yes: contacts by email, no chat~~ Decided (Sasha, 2026-10-28): on accept a 1:1 chat opens. Open: can anyone write to anyone directly, as on X, or only after an accepted invite?
 4. Limits: up to 3 open invites at a time; "Not now" is silent?
 5. How "Now" presence works with few players online.
 
