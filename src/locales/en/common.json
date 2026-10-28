@@ -91,6 +91,7 @@
     "saveCharacterModalTitle": "Save your character",
     "enterVillage": "Enter the village",
     "saveCharacterReason": "Keep your character and read your full reading.",
+    "saveCharacterResultSaved": "Your result is saved to your character.",
     "notNowEnterVillage": "Not now, enter the village",
     "aiPromptHeading": "Copy this prompt into your AI",
     "aiPromptSubtitle": "ChatGPT, Claude, Gemini — any will work",

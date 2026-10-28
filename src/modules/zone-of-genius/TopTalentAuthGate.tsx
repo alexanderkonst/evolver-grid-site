@@ -142,7 +142,9 @@ const TopTalentAuthGate = ({
         window.sessionStorage.setItem(PENDING_CLAIM_SAVED_EMAIL_KEY, normalizedEmail);
       }
 
-      const emailRedirectTo = `${localizedOrigin()}/auth/callback?next=${encodeURIComponent("/zone-of-genius")}`;
+      // WP-7: the link from the email brings the player into the village (AuthCallback
+      // attaches the saved result to the character first), not back to the test.
+      const emailRedirectTo = `${localizedOrigin()}/auth/callback?next=${encodeURIComponent("/village")}`;
       void supabase.auth.signInWithOtp({
         email: normalizedEmail,
         options: { emailRedirectTo },
@@ -294,6 +296,18 @@ const TopTalentAuthGate = ({
               </p>
             )}
           </form>
+        )}
+
+        {inline && status !== "sent" && (
+          <p
+            className="text-xs sm:text-sm leading-relaxed"
+            style={{
+              fontFamily: "'Source Serif 4', Georgia, serif",
+              color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
+            }}
+          >
+            {t("zogEntry.saveCharacterResultSaved")}
+          </p>
         )}
 
         {inline && (

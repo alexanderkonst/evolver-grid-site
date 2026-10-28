@@ -548,7 +548,7 @@ const ZoneOfGeniusEntry = () => {
         }
         hasPostedAnonymous.current = false;
         setAnonymousSave({ status: "idle" });
-        navigate("/auth?claim=true&next=/zone-of-genius");
+        navigate("/auth?claim=true&next=/zone-of-genius/entry");
     };
 
     // Issue #48 P0 #1: explicit "Retake Zone of Genius". Mirrors Mission
@@ -1011,7 +1011,7 @@ const ZoneOfGeniusEntry = () => {
         <SEO
             title={t('zogEntry.seoTitle')}
             description={t('zogEntry.seoDescription')}
-            path="/zone-of-genius"
+            path="/zone-of-genius/entry"
         />
         <GameShellV2 hideNavigation={hideNav} hideLogo>
             {/*
