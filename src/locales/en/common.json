@@ -1821,7 +1821,25 @@
     }
   },
   "courseCms": {
-    "tagline": "How inner experience and modern science co-reveal the nature of reality."
+    "tagline": "How inner experience and modern science co-reveal the nature of reality.",
+    "lead": "Stop choosing between your head and your heart. In 15 short videos, see how what you feel inside and what science finds outside tell one story.",
+    "promise": {
+      "C01E00": "Trust what you notice before you can explain it.",
+      "C01E01": "Stop choosing between your head and your heart.",
+      "C01E02": "Treat what you feel as information worth checking.",
+      "C02E01": "Recognize your boundless moments, and know you're not strange.",
+      "C02E02": "Notice the quiet signals your body already gives you.",
+      "C02E03": "Recognize meaningful signs without getting lost in them.",
+      "C02E04": "Stay calm when an experience gets strange.",
+      "C03E01": "Find the way in that fits you.",
+      "C03E02": "Know that millions have felt what you felt.",
+      "C04E01": "See how each part carries the whole.",
+      "C04E02": "Know what physics really says, and what it doesn't.",
+      "C04E03": "Know what meditation actually changes in the brain.",
+      "C05E01": "Place any claim on one map, calmly.",
+      "C05E02": "Feel at home in a living universe.",
+      "C05E03": "Step into the role that's yours."
+    }
   },
   "course": {
     "eyebrow": "Free mini-course",

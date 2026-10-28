@@ -10,6 +10,8 @@ export interface CourseEpisode {
     title: string;
     youtubeId: string;
     infographic?: string;
+    /** i18n key for one plain promise line shown under the episode title. Optional. */
+    promiseKey?: string;
 }
 
 export interface CourseModule {
@@ -31,6 +33,8 @@ export interface CourseConfig {
     title: string;
     /** i18n key for the italic line under the title. */
     taglineKey: string;
+    /** i18n key for an optional lead paragraph under the tagline. */
+    leadKey?: string;
     modules: CourseModule[];
     practices: CoursePractice[];
 }

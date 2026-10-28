@@ -140,6 +140,11 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                 <p className="text-base sm:text-lg italic max-w-2xl" style={BODY_STYLE}>
                     {t(course.taglineKey)}
                 </p>
+                {course.leadKey && (
+                    <p className="text-sm sm:text-base max-w-2xl mt-3" style={BODY_STYLE}>
+                        {t(course.leadKey)}
+                    </p>
+                )}
             </header>
 
             <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-6 lg:gap-8">
@@ -169,6 +174,11 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                             <h2 className="text-2xl sm:text-3xl font-semibold leading-tight" style={TITLE_STYLE}>
                                 {current.title}
                             </h2>
+                            {current.promiseKey && (
+                                <p className="mt-1 text-sm sm:text-base leading-snug" style={BODY_STYLE}>
+                                    {t(current.promiseKey)}
+                                </p>
+                            )}
                         </div>
                         <button
                             type="button"

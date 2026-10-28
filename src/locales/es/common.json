@@ -1,4 +1,24 @@
 {
+  "courseCms": {
+    "lead": "Deja de elegir entre tu cabeza y tu corazón. En 15 videos cortos verás cómo lo que sientes por dentro y lo que la ciencia encuentra por fuera cuentan una misma historia.",
+    "promise": {
+      "C01E00": "Confía en lo que notas antes de poder explicarlo.",
+      "C01E01": "Deja de elegir entre tu cabeza y tu corazón.",
+      "C01E02": "Trata lo que sientes como información que vale la pena comprobar.",
+      "C02E01": "Reconoce tus momentos sin límites y sabe que no eres raro.",
+      "C02E02": "Nota las señales silenciosas que tu cuerpo ya te da.",
+      "C02E03": "Reconoce las señales con sentido sin perderte en ellas.",
+      "C02E04": "Mantén la calma cuando una experiencia se vuelve extraña.",
+      "C03E01": "Encuentra la puerta que es para ti.",
+      "C03E02": "Sabe que millones han sentido lo mismo que tú.",
+      "C04E01": "Mira cómo cada parte contiene el todo.",
+      "C04E02": "Sabe lo que la física realmente dice, y lo que no.",
+      "C04E03": "Sabe lo que la meditación realmente cambia en el cerebro.",
+      "C05E01": "Ubica cualquier afirmación en un solo mapa, con calma.",
+      "C05E02": "Siéntete en casa en un universo vivo.",
+      "C05E03": "Asume el papel que es tuyo."
+    }
+  },
   "errors": {
     "saveGenericBody": "No pudimos guardar eso ahora mismo. Inténtalo de nuevo en un momento.",
     "schemaDriftBody": "Estamos actualizando esta parte de la app. Inténtalo de nuevo en breve. Tu trabajo está a salvo.",
