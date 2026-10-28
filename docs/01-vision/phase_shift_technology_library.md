@@ -5541,7 +5541,7 @@ When the protocol holds at this level, the entire go-to-market collapses to:
 
 1. **Offer the lead magnet to ~10/10 aligned tribe members first**, in rooms where a warm intro is possible.
 2. **The lead magnet is the founder's medicine in motion** — the method revealed to oneself as one consciously and in focus delivers the transformational result.
-3. **The transformational result sequence mirrors the user journey** — pain → promised land, in a straight line, consciously, not zigzagging in fog.
+3. **The transformational result sequence mirrors the user journey** — pain → transformational promise, in a straight line, consciously, not zigzagging in fog.
 
 The work is no longer "marketing." The work is **describing what the lead magnet does** in the same Specificity Loop frequency that converts so high in the funnel. The lead magnet reveals itself; the founder does not invent it.
 

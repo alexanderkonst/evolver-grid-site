@@ -1293,7 +1293,7 @@ Pain Card (recognition)
 - **BHAG confirmed:** 1M realizations × $100 = $100M. Both Alexander and Sergey fully resonate. North Star Metric = counted realization moments
 - **Phase transitions / S-curves:** Deep mutual resonance — both see development as non-linear, occurring in phases with exponential curves. Catalyzing faster phase transitions = shared territory
 - **Hero's Journey as organizing principle:** Sergey organized all artifacts by Hero's Journey stages. Alexander confirmed: resonates powerfully with founders as archetype
-- **Product = journey, not point:** Alexander's key guidance — the product IS the user journey from chaos to promised land. Value Ladder = steps of this journey. Don't separate product from journey
+- **Product = journey, not point:** Alexander's key guidance — the product IS the user journey from chaos to transformational promise. Value Ladder = steps of this journey. Don't separate product from journey
 - **«Дырка от бублика» metaphor:** Space around product core is clear. Core itself (what exactly 1-on-1 product does) still forming. 11 areas × 10 functions × 3 axes = navigation map, not to-do list
 - **Co-founder search:** Founder exercise (5 facets + worlds) sent to Andrey Moor and Oleg Kubyshkin. Moor resonates, taking time. Key principle: co-founder without own fire = shadow
 - **Alexander shared 12-facet dodecahedron methodology:** Sacred geometry (5th element, dodecahedron = 12 pentagonal faces). 12 perspectives on one uniqueness. Sergey's «worlds» = one of these facets

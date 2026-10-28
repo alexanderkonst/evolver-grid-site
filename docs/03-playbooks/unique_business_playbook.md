@@ -873,7 +873,7 @@ Once the protocol holds at this level, the founder's strategy collapses to:
 
 1. **Offer the lead magnet to ~10/10 aligned client tribe first**, in rooms with a warm intro.
 2. **Lead magnet = the method, revealed to oneself as one consciously and in focus delivers their medicine.** The lead magnet doesn't need to be invented — it reveals itself as the founder articulates the transformational result sequence.
-3. **The transformational result sequence mirrors the user journey** — from pain to promised land, in a straight line, consciously, not zigzagging in fog.
+3. **The transformational result sequence mirrors the user journey** — from pain to transformational promise, in a straight line, consciously, not zigzagging in fog.
 
 The work, then, is not "marketing." The work is **describing what the lead magnet does** — the transformation it delivers — with the same Specificity Loop frequency that converts so high in the funnel. The Lead Magnet article in Part II accounts for this: lead magnet as the founder's medicine in motion, made visible.
 

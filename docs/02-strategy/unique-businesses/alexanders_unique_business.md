@@ -89,7 +89,7 @@ Describe A in the client's own words and B as what they will see and do. Name th
 ### 7. Related decisions of 2026-10-27
 - Entry door: the 45-minute Direction Call on /ignite, plus the webinar.
 - Mastermind name: **Founder-Market Fit Discovery Mastermind**.
-- The canvas has six parts: Uniqueness, Shadow, Myth, Tribe, Transition, Promised Land ([unique-business-canvas.md](../../templates/unique-business-canvas.md)). The longer canvases below stay as genealogy.
+- The canvas has six parts: Uniqueness, Shadow, Myth, Tribe, Transition, Transformational Promise ([unique-business-canvas.md](../../templates/unique-business-canvas.md)). The longer canvases below stay as genealogy.
 - Guarantee for shift offers: Sasha's open choice between A (only the checkable shift) and B (the shift plus money back). Precedent for B on /ignite: "If you don't leave with a one-sentence business you recognize as yours: you don't pay." ([shift-offer.md §6](../../templates/shift-offer.md))
 
 ## ⭐ Business Case — The Webinar Engine v1 (Sasha, October 22, 2026)
@@ -10436,7 +10436,7 @@ The consequence for the canvas: Sasha's **channels** layer (7-artifact model) ju
 
 *1. Offer the lead magnet to ~10/10 aligned tribe members first, in rooms where a warm intro is possible.*
 *2. Treat the lead magnet as the founder's medicine in motion — the method revealed to oneself as one consciously and in focus delivers the transformational result.*
-*3. Describe the transformational result sequence — pain → promised land — in the same Specificity Loop frequency that converts so high in the funnel.*
+*3. Describe the transformational result sequence — pain → transformational promise — in the same Specificity Loop frequency that converts so high in the funnel.*
 
 *This is what Principle 15 calls the **Strategic Collapse**: when the protocol holds, the founder is not "doing marketing" anymore. They are doing God's work in flow, with challenges that arrive in straight-line clarity rather than fog-zigzagging.*
 
