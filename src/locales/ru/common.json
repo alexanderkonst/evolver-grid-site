@@ -1283,6 +1283,8 @@
   "settings": {
     "skinHeading": "Тема",
     "skinDescription": "Выбери оформление, которое тебе по душе. Применяется мгновенно во всём приложении. Мы запомним твой выбор; когда ты вошёл в аккаунт, он следует за тобой на любом устройстве.",
+    "skinLunarLabel": "Lunar",
+    "skinLunarTagline": "Лунное серебро · цвет приходит по мере игры",
     "skinLapisLabel": "Lapis",
     "skinLapisTagline": "Светлая · синий и золото на кремовом",
     "skinAurumLabel": "Aurum",

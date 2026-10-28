@@ -2604,6 +2604,582 @@
 }
 
 /* ───────────────────────────────────────────────────────────────────
+   LUNAR SKIN — WP-2 (game_of_being_you.md §14.8, §14.10, §14.11)
+   The default skin for new players: a readable silver moonlit world
+   (deep slate-blue night, cool silver ink, never pure black-and-white)
+   with ONE teal accent. Color is not a reward currency: it arrives in
+   the world as the player lives through it. This block is the base
+   register (tokens + dark-surface re-tones, structured like Aurum);
+   the world layer (grayscale scenes, halftone, place states, paths,
+   sky) lives in `src/styles/lunar-world.css`, and the semantic layer
+   (surface / text / accent / scene / lock / live) in `theme-tokens.css`.
+
+   Palette
+     night      #090d13 → #0e141c → #121b26   (sky shifts toward #2c4560)
+     silver ink #e6ebf2 (rgb 230,235,242), silver line #c8d2de (200,210,222)
+     teal       #5ec8bd (rgb 94,200,189), bright #8fe3d9
+   ─────────────────────────────────────────────────────────────────── */
+
+[data-skin="lunar"] {
+  /* ── Text — cool silver on slate night. */
+  --skin-text-primary: #eef2f7;
+  --skin-text-body: rgba(230, 235, 242, 0.92);
+  --skin-text-muted: rgba(230, 235, 242, 0.74);
+  --skin-text-muted-soft: rgba(230, 235, 242, 0.58);
+
+  --skin-sections-text: rgba(230, 235, 242, 0.86);
+
+  --skin-text-halo-strong:
+    0 0 24px rgba(5, 8, 12, 0.66),
+    0 1px 3px rgba(5, 8, 12, 0.8);
+  --skin-text-halo-subtle:
+    0 0 16px rgba(5, 8, 12, 0.46),
+    0 1px 2px rgba(5, 8, 12, 0.66);
+  --skin-text-halo-soft: 0 1px 2px rgba(5, 8, 12, 0.56);
+  --skin-text-halo-deep:
+    0 0 28px rgba(5, 8, 12, 0.74),
+    0 1px 3px rgba(5, 8, 12, 0.88),
+    0 0 1px rgba(200, 210, 222, 0.32);
+
+  /* Panel washes — P1 (rail) darkest, P2 (sections) a step up, P3 (body) lightest. */
+  --skin-panel-1-bg: rgba(7, 10, 15, 0.96);
+  --skin-panel-2-bg: rgba(12, 17, 24, 0.95);
+  --skin-panel-wash:
+    linear-gradient(180deg,
+      rgba(17, 25, 35, 0.42) 0%,
+      rgba(11, 16, 23, 0.28) 55%,
+      rgba(6, 9, 14, 0.42) 100%);
+  --skin-panel-wash-quiet:
+    linear-gradient(180deg,
+      rgba(17, 25, 35, 0.12) 0%,
+      rgba(11, 16, 23, 0.06) 100%);
+
+  /* Ornaments — silver line work. */
+  --skin-ornament-rule:  rgba(200, 210, 222, 0.34);
+  --skin-ornament-star:  #c8d2de;
+  --skin-ornament-shadow:
+    0 0 16px rgba(200, 210, 222, 0.42),
+    0 0 3px rgba(230, 235, 242, 0.7);
+
+  /* Primary CTA — dark glass with a teal outline and glow (the mockups'
+     «Find my mission →»). The one place the accent speaks loudest. */
+  --skin-cta-bg: linear-gradient(
+    135deg,
+    rgba(94, 200, 189, 0.18) 0%,
+    rgba(94, 200, 189, 0.08) 100%
+  );
+  --skin-cta-text: #e9fbf8;
+  --skin-cta-border: rgba(94, 200, 189, 0.7);
+  --skin-cta-shadow:
+    0 0 22px -4px rgba(94, 200, 189, 0.45),
+    0 12px 30px -12px rgba(0, 0, 0, 0.72);
+  --skin-cta-text-shadow: none;
+  --skin-cta-icon: #8fe3d9;
+  --skin-cta-icon-shadow: none;
+
+  /* Gradient accents — silver, with one teal. */
+  --skin-accent-1-bg: linear-gradient(135deg, #c8d2de 0%, #8d9bab 100%);
+  --skin-accent-1-glow: drop-shadow(0 0 10px rgba(200, 210, 222, 0.42));
+  --skin-accent-2-bg: linear-gradient(135deg, #8fe3d9 0%, #5ec8bd 100%);
+  --skin-accent-2-glow: drop-shadow(0 0 12px rgba(94, 200, 189, 0.5));
+  --skin-accent-3-bg: linear-gradient(135deg, #7d8b9b 0%, #5a6776 100%);
+  --skin-accent-3-glow: drop-shadow(0 0 8px rgba(125, 139, 155, 0.4));
+
+  --skin-link-secondary: rgba(230, 235, 242, 0.78);
+
+  --skin-text-strong: rgba(240, 244, 249, 0.98);
+  --skin-text-faint:  rgba(230, 235, 242, 0.62);
+  --skin-text-hint:   rgba(230, 235, 242, 0.48);
+
+  /* Rules — silver hairlines. */
+  --skin-rule-strong:   rgba(200, 210, 222, 0.40);
+  --skin-rule-medium:   rgba(200, 210, 222, 0.24);
+  --skin-rule-hairline: rgba(200, 210, 222, 0.14);
+  --skin-rule-faint:    rgba(200, 210, 222, 0.07);
+
+  /* Links — silver, teal on hover. */
+  --skin-link-color:        #e6ebf2;
+  --skin-link-hover:        #8fe3d9;
+  --skin-link-underline:    rgba(94, 200, 189, 0.5);
+
+  /* Cards — slate surface, silver hairline. */
+  --skin-card-bg:       rgba(14, 20, 29, 0.88);
+  --skin-card-border:   rgba(200, 210, 222, 0.18);
+  --skin-card-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.5),
+    0 16px 40px -16px rgba(0, 0, 0, 0.7);
+
+  --skin-tint-violet-soft: linear-gradient(135deg, rgba(200,210,222,0.04), rgba(200,210,222,0.01));
+  --skin-tint-gold-soft:   linear-gradient(135deg, rgba(94,200,189,0.09), rgba(94,200,189,0.03));
+
+  /* The single accent — teal. (The token keeps its legacy "gold" name.) */
+  --skin-accent-gold:        #5ec8bd;
+  --skin-accent-gold-glow:   drop-shadow(0 0 10px rgba(94, 200, 189, 0.5));
+
+  /* Selected state — teal wash, teal border. */
+  --skin-selected-bg:     rgba(94, 200, 189, 0.14);
+  --skin-selected-border: rgba(94, 200, 189, 0.55);
+  --skin-selected-text:   #e9fbf8;
+
+  /* Form inputs. */
+  --skin-input-bg:      rgba(8, 12, 18, 0.72);
+  --skin-input-border:  rgba(200, 210, 222, 0.28);
+  --skin-input-text:    #e6ebf2;
+  --skin-input-placeholder: rgba(230, 235, 242, 0.46);
+
+  /* Darkroom — hero-style content. */
+  --skin-darkroom-bg:     rgba(6, 9, 14, 0.96);
+  --skin-darkroom-text:   rgba(240, 244, 249, 0.96);
+  --skin-darkroom-muted:  rgba(230, 235, 242, 0.72);
+  --skin-darkroom-border: rgba(200, 210, 222, 0.2);
+
+  /* Callout — deep teal, cream text. */
+  --skin-callout-bg:     linear-gradient(135deg, #2f7a73 0%, #235a55 100%);
+  --skin-callout-glow:   drop-shadow(0 0 12px rgba(94, 200, 189, 0.4));
+
+  /* Music player — quiet silver. */
+  --skin-music-play-bg:     transparent;
+  --skin-music-play-border: rgba(200, 210, 222, 0.36);
+  --skin-music-play-shadow: 0 0 10px -2px rgba(200, 210, 222, 0.34);
+  --skin-music-icon:        #c8d2de;
+  --skin-music-text:        rgba(230, 235, 242, 0.86);
+  --skin-music-meta:        rgba(230, 235, 242, 0.62);
+
+  --skin-strike-color: rgba(200, 210, 222, 0.5);
+
+  /* Settings tabs. */
+  --skin-tab-active-bg: rgba(94, 200, 189, 0.2);
+  --skin-tab-active-ink: #8fe3d9;
+
+  /* Page-level surfaces (see the Aurum block for the contract). */
+  --skin-page-bg: transparent;
+  --skin-page-wash: linear-gradient(160deg, #0f1620 0%, #0b1017 50%, #070a0f 100%);
+
+  --skin-ink: #e6ebf2;
+  --skin-ink-body: rgba(230, 235, 242, 0.92);
+  --skin-ink-muted: rgba(230, 235, 242, 0.66);
+
+  --skin-card-fill: var(--skin-card-bg);
+  --skin-input-fill: var(--skin-input-bg);
+  --skin-hairline: var(--skin-card-border);
+}
+
+/* LUNAR — Day/night body. `--lunar-dawn` (0 → 1, set from the player's
+   Journey by src/lib/lunarWorld.ts; 0 when unset) lifts the horizon from
+   deep night toward pre-dawn blue. Subtle by design: it is a sky, not a
+   progress bar, and no screen shows it as a number. */
+[data-skin="lunar"] body {
+  background:
+    radial-gradient(ellipse 120% 55% at 50% 108%, rgba(120, 158, 200, calc(var(--lunar-dawn, 0) * 0.3)) 0%, transparent 70%),
+    radial-gradient(ellipse at 14% 10%, rgba(200, 214, 232, 0.08) 0%, transparent 55%),
+    linear-gradient(180deg,
+      #090d13 0%,
+      #0e141c 48%,
+      color-mix(in srgb, #121b26, #2c4560 calc(var(--lunar-dawn, 0) * 100%)) 100%);
+  color: #e6ebf2;
+}
+
+/* Kill the Mux HLS video background: Lunar is its own atmosphere. */
+[data-skin="lunar"] video[autoplay][muted],
+[data-skin="lunar"] video.absolute,
+[data-skin="lunar"] [data-mux-background],
+[data-skin="lunar"] video[playsinline] {
+  display: none !important;
+}
+
+[data-skin="lunar"] [class*="bg-[#0a0a1a]"],
+[data-skin="lunar"] .bg-\[\#0a0a1a\] {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+[data-skin="lunar"] body::before {
+  mix-blend-mode: screen;
+  opacity: 0.04;
+}
+[data-skin="lunar"] ::selection {
+  background: rgba(94, 200, 189, 0.34);
+  color: #f2fbfa;
+}
+
+/* Liquid-glass — dark frost with a silver edge. */
+[data-skin="lunar"] .liquid-glass {
+  background: rgba(14, 20, 29, 0.64) !important;
+  border: 1px solid rgba(200, 210, 222, 0.2) !important;
+  box-shadow:
+    inset 0 1px 0 0 rgba(230, 235, 242, 0.12),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.5),
+    0 10px 28px -6px rgba(0, 0, 0, 0.7) !important;
+  color: #e6ebf2 !important;
+}
+[data-skin="lunar"] .liquid-glass-strong {
+  background: rgba(16, 23, 33, 0.84) !important;
+  border: 1px solid rgba(200, 210, 222, 0.26) !important;
+  box-shadow:
+    inset 0 1px 0 0 rgba(230, 235, 242, 0.16),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.55),
+    0 16px 36px -10px rgba(0, 0, 0, 0.8) !important;
+}
+[data-skin="lunar"] .liquid-glass [style*="color"] {
+  color: #e6ebf2 !important;
+}
+
+/* Primary CTA (.liquid-glass-dark): dark glass, teal outline and glow. */
+[data-skin="lunar"] .liquid-glass-dark {
+  background: var(--skin-cta-bg) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(94, 200, 189, 0.7) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(94, 200, 189, 0.08),
+    0 0 22px -4px rgba(94, 200, 189, 0.45),
+    0 14px 32px -10px rgba(0, 0, 0, 0.6) !important;
+  color: #e9fbf8 !important;
+}
+[data-skin="lunar"] .liquid-glass-dark::before {
+  display: none !important;
+}
+[data-skin="lunar"] .liquid-glass-dark:hover {
+  background: linear-gradient(135deg, rgba(94, 200, 189, 0.28) 0%, rgba(94, 200, 189, 0.16) 100%) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(94, 200, 189, 0.16),
+    0 0 32px -2px rgba(94, 200, 189, 0.6),
+    0 16px 34px -10px rgba(0, 0, 0, 0.66) !important;
+}
+[data-skin="lunar"] .liquid-glass-dark,
+[data-skin="lunar"] .liquid-glass-dark * {
+  color: #e9fbf8 !important;
+}
+[data-skin="lunar"] .liquid-glass-dark img.ornament-spin,
+[data-skin="lunar"] .liquid-glass-dark > img:first-of-type {
+  filter: brightness(0) invert(1) !important;
+}
+
+/* Hover wash on rail + Pane 2 — teal-tinted. */
+[data-skin="lunar"] .liquid-glass.h-dvh button:hover,
+[data-skin="lunar"] .liquid-glass.h-dvh a:hover,
+[data-skin="lunar"] .liquid-glass.h-dvh .group:hover,
+[data-skin="lunar"] [class*="w-[260px]"] .group:hover,
+[data-skin="lunar"] aside[data-pane="2"] .group:hover {
+  background-color: rgba(94, 200, 189, 0.1) !important;
+}
+
+/* Active-item indicator — teal left-bar. */
+[data-skin="lunar"] [style*="--skin-selected-bg"] {
+  box-shadow: inset 3px 0 0 0 #5ec8bd !important;
+}
+
+[data-skin="lunar"] .liquid-glass.h-dvh .h-px[style*="rgba(212, 175, 55"] {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(200, 210, 222, 0.4) 20%,
+    rgba(200, 210, 222, 0.4) 80%,
+    transparent 100%
+  ) !important;
+}
+
+[data-skin="lunar"] [class*="w-[260px]"] > div.h-16:first-child,
+[data-skin="lunar"] aside[data-pane="2"] > div.h-16:first-child {
+  border-bottom-color: rgba(200, 210, 222, 0.2) !important;
+}
+
+[data-skin="lunar"] button[aria-label="Hide sidebar"] {
+  color: rgba(230, 235, 242, 0.78) !important;
+}
+[data-skin="lunar"] button[aria-label="Hide sidebar"]:hover {
+  background-color: rgba(94, 200, 189, 0.12) !important;
+}
+
+/* Pane 1 rail — re-assert the panel-1 token over the .liquid-glass !important. */
+[data-skin="lunar"] .liquid-glass.h-dvh {
+  border-right: 1px solid rgba(200, 210, 222, 0.2) !important;
+  background: var(--skin-panel-1-bg, rgba(7, 10, 15, 0.96)) !important;
+  backdrop-filter: blur(10px) saturate(110%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(110%) !important;
+}
+[data-skin="lunar"] div[data-pane="2"],
+[data-skin="lunar"] aside[data-pane="2"] {
+  border-right: 1px solid rgba(200, 210, 222, 0.2) !important;
+  background-color: var(--skin-panel-2-bg, rgba(12, 17, 24, 0.95)) !important;
+}
+
+/* Rail icons and glyphs — silver. */
+[data-skin="lunar"] .liquid-glass.h-dvh img[alt="Journey"],
+[data-skin="lunar"] .liquid-glass.h-dvh img[alt="AI OS"],
+[data-skin="lunar"] .liquid-glass.h-dvh img[alt="Me"],
+[data-skin="lunar"] .liquid-glass.h-dvh img[alt="Build"],
+[data-skin="lunar"] .liquid-glass.h-dvh img[src*="settings-icon"],
+[data-skin="lunar"] a[aria-label="Home"] img {
+  filter: brightness(0) invert(0.86) !important;
+}
+[data-skin="lunar"] .liquid-glass.h-dvh span[style*="place-items: center"],
+[data-skin="lunar"] .liquid-glass.h-dvh span[style*="place-items:center"] {
+  color: #dfe6ee !important;
+  text-shadow: 0 0 8px rgba(200, 210, 222, 0.34) !important;
+}
+[data-skin="lunar"] .liquid-glass.h-dvh button.group:not([style*="color"]) span.md\:block,
+[data-skin="lunar"] .liquid-glass.h-dvh a.group:not([style*="color"]) span.md\:block {
+  color: rgba(230, 235, 242, 0.62) !important;
+}
+[data-skin="lunar"] .liquid-glass.h-dvh > span[aria-hidden][class*="absolute"][class*="top-0"][class*="right-0"] {
+  background-image:
+    linear-gradient(180deg,
+      rgba(200, 210, 222, 0) 0%,
+      rgba(200, 210, 222, 0.2) 16%,
+      rgba(143, 227, 217, 0.5) 40%,
+      rgba(200, 210, 222, 0.38) 62%,
+      rgba(200, 210, 222, 0.12) 88%,
+      rgba(200, 210, 222, 0) 100%) !important;
+}
+
+/* Hardcoded Aurora gold literals → silver / teal (see the Aurum block for
+   why each selector exists). Yellow glows go silver; gold chips and fills
+   take the one teal accent. */
+[data-skin="lunar"] [class*="rgba(244,212,114"],
+[data-skin="lunar"] [class*="rgba(244, 212, 114"] {
+  box-shadow:
+    0 0 18px -4px rgba(200, 210, 222, 0.4),
+    0 0 4px -1px rgba(230, 235, 242, 0.5) !important;
+}
+[data-skin="lunar"] .bg-\[\#d4af37\],
+[data-skin="lunar"] [class*="bg-[#d4af37"] {
+  background-color: #5ec8bd !important;
+  box-shadow: none !important;
+}
+[data-skin="lunar"] [style*="background"][style*="rgba(212,175,55"]:not(img),
+[data-skin="lunar"] [style*="background"][style*="rgba(212, 175, 55"]:not(img) {
+  background-color: rgba(94, 200, 189, 0.14) !important;
+  background-image: none !important;
+  border-color: rgba(94, 200, 189, 0.42) !important;
+  color: #8fe3d9 !important;
+}
+[data-skin="lunar"] [class*="rgba(212,175,55"],
+[data-skin="lunar"] [class*="rgba(212, 175, 55"] {
+  background-color: rgba(94, 200, 189, 0.14) !important;
+  border-color: rgba(94, 200, 189, 0.42) !important;
+}
+
+[data-skin="lunar"] [data-match-hero] > div[aria-hidden] {
+  display: none !important;
+}
+
+/* SectionsPanel locked-row popover (inline Aurora navy + gold). */
+[data-skin="lunar"] [style*="rgba(10,22,40,1)"][style*="rgba(18,28,56,1)"] {
+  background-image: linear-gradient(
+    135deg,
+    rgba(8, 11, 16, 0.98) 0%,
+    rgba(15, 21, 30, 0.98) 50%,
+    rgba(8, 11, 16, 0.98) 100%
+  ) !important;
+  border-color: rgba(200, 210, 222, 0.34) !important;
+  box-shadow:
+    0 0 0 1px rgba(200, 210, 222, 0.14),
+    0 8px 28px -8px rgba(0, 0, 0, 0.72),
+    0 0 24px -6px rgba(94, 200, 189, 0.22) !important;
+}
+[data-skin="lunar"] [style*="rgba(10,22,40,1)"] p[style*="#f4d472"] {
+  font-family: "Cormorant Garamond", serif !important;
+  color: #dfe6ee !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.62) !important;
+}
+
+/* Auth card. */
+[data-skin="lunar"] article.liquid-glass-strong h1,
+[data-skin="lunar"] article.liquid-glass-strong h1 *,
+[data-skin="lunar"] article.liquid-glass-strong p,
+[data-skin="lunar"] article.liquid-glass-strong label {
+  color: var(--skin-text-primary, #eef2f7) !important;
+}
+[data-skin="lunar"] article.liquid-glass-strong [role="tablist"] {
+  background-color: rgba(200, 210, 222, 0.07) !important;
+  border-color: rgba(200, 210, 222, 0.22) !important;
+}
+[data-skin="lunar"] article.liquid-glass-strong [role="tab"][data-state="active"] {
+  background-color: rgba(94, 200, 189, 0.2) !important;
+  color: #f2fbfa !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.42) !important;
+}
+[data-skin="lunar"] article.liquid-glass-strong [role="tab"]:not([data-state="active"]) {
+  color: rgba(230, 235, 242, 0.64) !important;
+}
+[data-skin="lunar"] article.liquid-glass-strong input {
+  background-color: rgba(8, 12, 18, 0.62) !important;
+  border-color: rgba(200, 210, 222, 0.3) !important;
+  color: #e6ebf2 !important;
+}
+[data-skin="lunar"] article.liquid-glass-strong input::placeholder {
+  color: rgba(230, 235, 242, 0.44) !important;
+}
+[data-skin="lunar"] article.liquid-glass-strong form button[type="submit"] {
+  background: linear-gradient(135deg, #5ec8bd 0%, #3fa89d 100%) !important;
+  color: #06201d !important;
+  border-color: rgba(143, 227, 217, 0.4) !important;
+  font-family: "Montserrat", system-ui, sans-serif !important;
+  letter-spacing: 0.08em;
+}
+
+/* LUNAR — cross-page dark re-tones. Mirrors the Aurum / Techstars
+   re-tones further down this file (hardcoded Aurora navy ink, white
+   fills, pastel heroes, semantic chips) for pages that predate the
+   skins. Everything keys on the skin tokens, so the silver register
+   comes through; no amber is carried over. */
+[data-skin="lunar"] [class*="text-[#0a1628]"],
+[data-skin="lunar"] [class*="text-[#2c3150]"] {
+  color: var(--skin-text-body) !important;
+}
+[data-skin="lunar"] [class*="text-[rgba(44,49,80"] {
+  color: var(--skin-text-muted) !important;
+}
+[data-skin="lunar"] h1[class*="text-[#0a1628]"],
+[data-skin="lunar"] h2[class*="text-[#0a1628]"],
+[data-skin="lunar"] h1[class*="text-[#2c3150]"],
+[data-skin="lunar"] h2[class*="text-[#2c3150]"],
+[data-skin="lunar"] h3[class*="text-[#2c3150]"] {
+  color: var(--skin-text-primary) !important;
+}
+/* Surfaces that stay light keep their navy ink. */
+[data-skin="lunar"] [class*="bg-white"][class*="text-[#2c3150]"],
+[data-skin="lunar"] [class*="bg-[#a4a3d0]"][class*="text-[#2c3150]"] {
+  color: #2c3150 !important;
+}
+[data-skin="lunar"] [class*="text-[#7a5108]"] {
+  color: var(--skin-text-muted) !important;
+}
+[data-skin="lunar"] {
+  --wabi-text-primary: var(--skin-text-primary);
+  --wabi-text-secondary: var(--skin-text-muted);
+  --wabi-text-muted: var(--skin-text-muted-soft);
+}
+[data-skin="lunar"] [class*="via-[#fdf6e3]"] {
+  background-image: none !important;
+  background-color: var(--skin-card-bg) !important;
+}
+[data-skin="lunar"] .intros-page [class*="hover:bg-white"]:hover {
+  background-color: var(--skin-selected-bg) !important;
+}
+[data-skin="lunar"] .today-page [class*="bg-emerald-50"],
+[data-skin="lunar"] .today-page [class*="bg-indigo-50"] {
+  background-color: rgba(255, 255, 255, 0.07) !important;
+}
+[data-skin="lunar"] [data-qol-snapshot] text.recharts-text {
+  fill: var(--skin-text-muted) !important;
+}
+[data-skin="lunar"] .text-green-700,
+[data-skin="lunar"] .text-emerald-700 {
+  color: #4ade80;
+}
+[data-skin="lunar"] .bg-red-50 {
+  background-color: rgba(127, 29, 29, 0.25);
+}
+[data-skin="lunar"] .border-red-200 {
+  border-color: rgba(248, 113, 113, 0.35);
+}
+[data-skin="lunar"] .text-red-600 {
+  color: #fca5a5;
+}
+[data-skin="lunar"] .bg-amber-100.text-amber-700 {
+  background-color: rgba(245, 158, 11, 0.16);
+  color: #fcd34d;
+}
+[data-skin="lunar"] .hover\:bg-white\/40:hover {
+  background-color: var(--skin-input-fill);
+}
+[data-skin="lunar"] .hover\:bg-white\/80:hover {
+  background-color: var(--skin-card-fill);
+}
+[data-skin="lunar"] .hover\:bg-white\/30:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+[data-skin="lunar"] [style*="var(--skin-card-bg"] {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.5),
+    0 16px 40px -16px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(230, 235, 242, 0.08) !important;
+}
+[data-skin="lunar"] [style*="var(--skin-card-fill, linear-gradient(180deg, rgba(255,255,255,0.96)"] {
+  border-color: var(--skin-card-border) !important;
+  box-shadow:
+    0 10px 28px -10px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+[data-skin="lunar"] [style*="var(--skin-card-fill, rgba(255, 255, 255, 0.85))"],
+[data-skin="lunar"] [style*="var(--skin-card-fill, rgba(255, 255, 255, 0.96))"] {
+  border-color: var(--skin-card-border) !important;
+}
+[data-skin="lunar"] [class*="hover:bg-[rgba(26,30,58"]:hover {
+  background-color: rgba(230, 235, 242, 0.08) !important;
+}
+[data-skin="lunar"] .from-white.via-\[\#f5f5ff\].to-\[\#ebe8f7\],
+[data-skin="lunar"] .from-\[\#c8b7d8\].via-\[\#d4d1e8\].to-\[\#e7e9f5\],
+[data-skin="lunar"] .from-\[\#e7e9e5\].to-\[\#dcdde2\] {
+  background-image: none;
+  background-color: var(--skin-card-fill);
+}
+[data-skin="lunar"] .from-\[\#c8b7d8\] .bg-white\/60,
+[data-skin="lunar"] .from-\[\#e7e9e5\] .bg-white\/60 {
+  background-color: var(--skin-input-fill);
+}
+[data-skin="lunar"] .bg-green-100.text-green-700,
+[data-skin="lunar"] .bg-amber-100.text-amber-900 {
+  background-color: var(--skin-selected-bg) !important;
+  color: var(--skin-selected-text) !important;
+}
+[data-skin="lunar"] .mdls-page-atmosphere {
+  background-color: hsl(215 35% 7%);
+  background-image:
+    radial-gradient(ellipse 60% 50% at 12% 8%, hsl(200 40% 60% / 0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 60% at 92% 96%, hsl(215 50% 40% / 0.18) 0%, transparent 65%);
+}
+/* The cream device-frame demo stays a held light object. */
+[data-skin="lunar"] .mdls-device-frame [class*="text-[#0a1628]"] {
+  color: #0a1628 !important;
+}
+[data-skin="lunar"] .mdls-device-frame [class*="text-[#0a1628]/85"] { color: rgba(10, 22, 40, 0.85) !important; }
+[data-skin="lunar"] .mdls-device-frame [class*="text-[#0a1628]/75"] { color: rgba(10, 22, 40, 0.75) !important; }
+[data-skin="lunar"] .mdls-device-frame [class*="text-[#0a1628]/70"] { color: rgba(10, 22, 40, 0.7) !important; }
+[data-skin="lunar"] .mdls-device-frame [class*="text-[#0a1628]/55"] { color: rgba(10, 22, 40, 0.55) !important; }
+[data-skin="lunar"] .mdls-device-frame [class*="text-[#0a1628]/50"] { color: rgba(10, 22, 40, 0.5) !important; }
+[data-skin="lunar"] .mdls-device-frame [class*="text-[#0a1628]/30"] { color: rgba(10, 22, 40, 0.3) !important; }
+[data-skin="lunar"] .mdls-page-atmosphere [style*="text-shadow"]:not(.mdls-device-frame *) {
+  text-shadow: var(--skin-text-halo-strong) !important;
+}
+/* Equilibrium (largest authored surface): frosted whites → dark glass. */
+[data-skin="lunar"] .eq-v2-page [class*="bg-white"] {
+  background-color: rgba(255, 255, 255, 0.07) !important;
+}
+[data-skin="lunar"] .eq-v2-page [style*="rgba(255,255,255"],
+[data-skin="lunar"] .eq-v2-page [style*="rgba(255, 255, 255"] {
+  background-color: rgba(255, 255, 255, 0.09) !important;
+}
+[data-skin="lunar"] .eq-v2-page [style*="rgba(252, 231, 197"],
+[data-skin="lunar"] .eq-v2-page [style*="rgba(252,231,197"] {
+  background: linear-gradient(
+    135deg,
+    rgba(26, 38, 52, 0.94) 0%,
+    rgba(22, 32, 45, 0.94) 50%,
+    rgba(26, 36, 50, 0.94) 100%
+  ) !important;
+  border-color: rgba(94, 200, 189, 0.42) !important;
+  box-shadow:
+    0 0 24px rgba(94, 200, 189, 0.24),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.14),
+    0 6px 18px rgba(0, 0, 0, 0.55) !important;
+}
+[data-skin="lunar"] .eq-v2-page [class*="bg-[#0a1628]"] {
+  background-color: rgba(200, 210, 222, 0.07) !important;
+}
+[data-skin="lunar"] .eq-v2-page [class*="border-[#0a1628]"] {
+  border-color: rgba(200, 210, 222, 0.2) !important;
+}
+[data-skin="lunar"] .eq-v2-page .liquid-glass,
+[data-skin="lunar"] .eq-v2-page .liquid-glass-strong {
+  background: rgba(11, 16, 23, 0.76) !important;
+  border-color: rgba(200, 210, 222, 0.2) !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────
    TECHSTARS SKIN — Day 91 (Sasha 2026-06-08)
    ───────────────────────────────────────────────────────────────────
    Mirrors techstars.com — the global accelerator. Bold neo-grotesque
@@ -4649,6 +5225,29 @@ All colors MUST be HSL.
     --border: 41 38% 24%;              /* amber-tinted border, lifted */
     --input: 240 10% 6%;
     --ring: 41 62% 53%;
+  }
+
+  /* Lunar — WP-2. Slate-blue night base, cool silver text, one teal accent.
+     Shadcn HSL palette mirroring the [data-skin="lunar"] token block above.
+     Never pure black: the base sits at L 7% with a blue undertone. */
+  [data-skin="lunar"] {
+    --background: 215 30% 7%;
+    --foreground: 214 28% 93%;
+    --card: 215 28% 10%;
+    --card-foreground: 214 28% 93%;
+    --popover: 215 30% 8%;
+    --popover-foreground: 214 28% 93%;
+    --primary: 173 46% 56%;            /* teal #5ec8bd */
+    --primary-foreground: 215 30% 7%;
+    --secondary: 215 24% 14%;
+    --secondary-foreground: 214 28% 93%;
+    --muted: 215 22% 13%;
+    --muted-foreground: 214 16% 72%;
+    --accent: 173 46% 56%;
+    --accent-foreground: 215 30% 7%;
+    --border: 214 18% 24%;
+    --input: 215 22% 12%;
+    --ring: 173 46% 56%;
   }
 }
 

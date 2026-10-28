@@ -1852,6 +1852,8 @@
   "settings": {
     "skinHeading": "Tema",
     "skinDescription": "Elige la estética que te sienta bien. Se aplica al instante en toda la app. Recordamos tu elección; cuando inicias sesión, te sigue a cada dispositivo.",
+    "skinLunarLabel": "Lunar",
+    "skinLunarTagline": "Plata a la luz de la luna · el color llega mientras juegas",
     "skinLapisLabel": "Lapis",
     "skinLapisTagline": "Claro · azul marino y oro sobre crema",
     "skinAurumLabel": "Aurum",

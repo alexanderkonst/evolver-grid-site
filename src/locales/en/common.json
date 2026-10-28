@@ -1286,6 +1286,8 @@
   "settings": {
     "skinHeading": "Skin",
     "skinDescription": "Pick the aesthetic that feels right. Applies instantly across the whole app. We remember your choice; when you're logged in, it follows you to every device.",
+    "skinLunarLabel": "Lunar",
+    "skinLunarTagline": "Moonlit silver · color arrives as you play",
     "skinLapisLabel": "Lapis",
     "skinLapisTagline": "Light · navy and gold on cream",
     "skinAurumLabel": "Aurum",

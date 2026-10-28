@@ -16,6 +16,7 @@ import { hasParticleInvite, useVillageParticles } from "@/hooks/useVillagePartic
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
 import { placeLine, placeSaveFromSheet, placeState, type PlaceStateName } from "@/lib/placeState";
 import { PlaceState, PlaceStateTag } from "@/components/game/PlaceState";
+import { LunarPaths, LunarWorldSync } from "@/components/skin/LunarWorld";
 import "./Village.css";
 
 /**
@@ -258,6 +259,8 @@ const Village = () => {
   return (
     <div className="vl-root" data-view={place ? "place" : "map"} style={skyVars(sky)}>
       <div className="vl-grain" aria-hidden="true" />
+      {/* Lunar only: the player's soul colors and the sky, from the same save as placeState (§14.11). */}
+      <LunarWorldSync sheet={sheet} save={save} />
 
       <main>
         <section className={`vl-layer vl-map${place ? "" : " is-on"}`} aria-label="Digital Village map">
@@ -279,6 +282,7 @@ const Village = () => {
                   decoding="async"
                 />
                 <SkyVeil />
+                <LunarPaths states={shown} />
                 <ul className="vl-pins">
                   {VILLAGE_PLACES.map((p, i) => {
                     const style = {

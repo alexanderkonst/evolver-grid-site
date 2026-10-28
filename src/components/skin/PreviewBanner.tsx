@@ -84,9 +84,9 @@ const PreviewBanner = () => {
   const { skin, setSkin } = useSkin();
   const navigate = useNavigate();
 
-  // Lapis and Aurum are the two first-class platform themes — neither
-  // is a preview or a demo, so neither carries a banner (Day 91).
-  if (skin === "lapis" || skin === "aurum") return null;
+  // Lunar, Lapis and Aurum are the first-class platform themes — none
+  // is a preview or a demo, so none carries a banner (Day 91; Lunar WP-2).
+  if (skin === "lunar" || skin === "lapis" || skin === "aurum") return null;
 
   const config = SKIN_BANNER_CONFIG[skin];
   if (!config || config.mode === "hidden") return null;

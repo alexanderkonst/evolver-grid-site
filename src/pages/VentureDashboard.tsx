@@ -142,7 +142,7 @@ const formatCurrencyCompact = (v: number) => formatCurrency(v, "USD", { notation
 
 /** Resolve skin-aware chart palette by reading the active <html data-skin>. */
 const useSkinChartPalette = () => {
-  const [skin, setSkin] = useState<"lapis" | "navy-gold" | "aurum" | "techstars">(() => {
+  const [skin, setSkin] = useState<"lunar" | "lapis" | "navy-gold" | "aurum" | "techstars">(() => {
     if (typeof document === "undefined") return "lapis";
     return (document.documentElement.dataset.skin as any) || "lapis";
   });
@@ -160,7 +160,7 @@ const useSkinChartPalette = () => {
   // getting the LIGHT chart palette (near-invisible navy ticks on a
   // near-black page) because only navy-gold counted as dark. Same pass,
   // later wave: techstars added — same near-black register, same leak.
-  const isDark = skin === "navy-gold" || skin === "aurum" || skin === "techstars";
+  const isDark = skin === "lunar" || skin === "navy-gold" || skin === "aurum" || skin === "techstars";
   return {
     tick: isDark ? "rgba(245,241,232,0.78)" : "rgba(11,42,90,0.72)",
     grid: isDark ? "rgba(212,175,55,0.10)" : "rgba(26,30,58,0.10)",

@@ -12,7 +12,7 @@ import "./PlaceState.css";
  *           one line: «Opens when <real event>. Inside: <result>.»
  *   open    full colour
  *   next    open + the accent marker (`--open-accent`) and the word «Next»
- *   done    open + «Done» (colour arrives per skin; Lunar maps it later)
+ *   done    open + «Done» (colour arrives per skin; Lunar maps it in src/styles/lunar-world.css)
  *   live    open + the live marker (`--live-accent`) and the word «Live»
  *
  * The state is exposed as `data-place-state` on the root so a skin (Lunar,
