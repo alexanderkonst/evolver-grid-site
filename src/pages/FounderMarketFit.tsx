@@ -361,10 +361,6 @@ const FounderMarketFit = () => {
                             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </a>
-                    <div className="fmf-guarantee">
-                        <span className="fmf-guarantee-icon" aria-hidden="true">🛡️</span>
-                        <p>{t('founderMarketFit.bookGuarantee')}</p>
-                    </div>
                 </div>
             </section>
 

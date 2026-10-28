@@ -8,14 +8,14 @@
  * the `igniteLogo` asset are kept for URL stability + asset import
  * coherence; user-facing copy and all post-Day-55 references should use
  * "Productize Yourself Session." Price: $555. Length: 2 hours.
- * Guarantee: or you don't pay.
+ * No money-back guarantee (Sasha, 2026-10-28): recognition can be blocked by the client's own resistance.
  *
  * Entry points to this page:
  *   - Landing primary CTA → /zone-of-genius (assessment) → reveal →
  *     "Build a business off your top talent" → /ignite#pricing-section
  *   - AppleseedDisplay reveal → primary CTA → here
  */
-import { ArrowRight, Check, ShieldCheck, ChevronDown, Play } from "lucide-react";
+import { ArrowRight, Check, ChevronDown, Play } from "lucide-react";
 import { trackPageView, trackCTAClick } from "@/lib/funnelAnalytics";
 import { ExpandableTestimonial } from "@/components/ExpandableTestimonial";
 import type { TestimonialData } from "@/components/ExpandableTestimonial";
@@ -522,26 +522,6 @@ const IgniteSession = () => {
             </ul>
           </div>
 
-          {/* Guarantee */}
-          <div
-            className="px-4 py-3 max-w-sm mx-auto rounded-xl border"
-            style={{ borderColor: "var(--skin-ornament-rule, rgba(26,30,58,0.16))" }}
-          >
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <ShieldCheck
-                className="w-5 h-5"
-                style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}
-                aria-hidden="true"
-              />
-            </div>
-            <p
-              className="text-sm leading-relaxed font-medium"
-              style={{ color: "var(--skin-text-primary, #0a1628)" }}
-            >
-              {t('ignite.guarantee')}
-            </p>
-          </div>
-
           {/* Resonance permission */}
           <p
             className="text-[11px] italic max-w-xs mx-auto leading-relaxed"
@@ -757,7 +737,7 @@ const IgniteSession = () => {
     <>
       <SEO
         title={IGNITE_TAB_TITLE}
-        description="A 2-hour 1:1 working session with Aleksandr. Name your top talent in one exact sentence, position your next chapter around it, and leave with a clear next step. If you don't recognize it as yours, you don't pay."
+        description="A 2-hour 1:1 working session with Aleksandr. Name your top talent in one exact sentence, position your next chapter around it, and leave with a clear next step."
         path="/ignite"
         ogTitle="Position your next chapter around your top talent in 2 hours."
         jsonLd={{

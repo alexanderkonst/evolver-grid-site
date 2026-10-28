@@ -81,7 +81,7 @@ Built ONLY from their own words: (1) their invariant quoted back ("you said X, t
 | 100–115 | Act | Write the first message together for ONE named person and **send it in session** ("Who is the ONE person you'd send this to?") | v1 |
 | 115–120 | Close | Next container in one sentence (see §4.5). If not: "You have your first offer. Go." | v1, v2 |
 
-**What they leave with** (live `/ignite`, 2026-10-27): the "not-ready" loop named and cleared; purpose and mission in plain words; their lifelong pattern compressed into a one-sentence business; their magnetic story, a usable bio and the hero section of one landing page. **Guarantee:** "If you don't leave with a one-sentence business you recognize as yours: you don't pay."
+**What they leave with** (live `/ignite`, 2026-10-27): the "not-ready" loop named and cleared; purpose and mission in plain words; their lifelong pattern compressed into a one-sentence business; their magnetic story, a usable bio and the hero section of one landing page. **Guarantee:** none (Sasha, 2026-10-28); the former "or you don't pay" line was removed, since recognition can be blocked by the client's own resistance.
 *Dated notes:* v1 deliverable was a sent first DM; Mirror Session: offer statement + first hand-raiser post draft; v2: full canvas first draft. All three survive inside the plan above.
 
 ### If-stuck cheat sheet

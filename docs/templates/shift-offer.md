@@ -57,8 +57,8 @@
 - The line must survive being said out loud on a call without embarrassment.
 - One line per product. If it needs two, it is two products or one is Craft.
 
-## 6. Open fork for Sasha: what "guaranteed" means
-*Not decided here. Sasha decides; this section records the two readings.*
+## 6. Guarantee: decided, none
+**Decision (Sasha, 2026-10-28): no guarantee, neither money-back nor pay-after-recognition.** Recognition can be blocked by the client's own resistance (the shadow shows up as resistance and lowers resonance), so a guarantee would hand the verdict to that resistance and put Sasha in the position of justifying himself. Instead: an honest promise of what the session does, and the free 45-minute Direction Call as the readiness filter. Removed from /ignite and /founder-market-fit on 2026-10-28. Shift Offers promise the shift and its self-check as a quality standard, never as a money guarantee. The two readings below stay as the dated record of the fork.
 
 | | A. Guaranteed = the checkable shift | B. Guaranteed = money-back style |
 |---|---|---|

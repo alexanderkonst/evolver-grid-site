@@ -60,7 +60,7 @@ A Phase Shift Technology is point B: a new vision. A template is the path to it 
 ### 2. The niche of shifts and the map
 Sasha's definition: «Каждый уникальный бизнес - это создание уникальной карты продуктов, специализируясь в своей нише сдвигов (сознания или физической реальности). Карта продуктов - это фазовые сдвиги × реплицируемые и упрощенные пути их реализации. У одной технологии может быть несколько путей разной глубины: видео, модуль игры, сессия. А один путь может нести несколько сдвигов.» (Every unique business is the creation of a unique product map, specialising in its niche of shifts, of consciousness or of physical reality. The product map is phase shifts × replicable, simplified paths that realise them. One technology can have several paths of different depth: a video, a game module, a session. And one path can carry several shifts.)
 
-- **This business's niche (Sasha, 2026-10-28):** «проявление души в работе или уникальность как ключ к профессиональному успеху» (the soul showing up in work, or uniqueness as the key to professional success). Shifts of consciousness, for founders and people who work with founders. The reference shift is the one the $555 session already guarantees: "If you don't leave with a one-sentence business you recognize as yours: you don't pay."
+- **This business's niche (Sasha, 2026-10-28):** «проявление души в работе или уникальность как ключ к профессиональному успеху» (the soul showing up in work, or uniqueness as the key to professional success). Shifts of consciousness, for founders and people who work with founders. The reference shift is the one the $555 session delivers: a one-sentence business the person recognizes as theirs.
 - **Rows (shifts):** the technologies in the library, each with a before → after and a check.
 - **Columns (paths, light → deep):** the ladder below. Each rung is a path; each product is one cell (one shift on one path).
 
@@ -90,7 +90,7 @@ Describe A in the client's own words and B as what they will see and do. Name th
 - Entry door: the 45-minute Direction Call on /ignite, plus the webinar.
 - Mastermind name: **Founder-Market Fit Discovery Mastermind**.
 - The canvas has six parts: Uniqueness, Shadow, Myth, Tribe, Transition, Transformational Promise ([unique-business-canvas.md](../../templates/unique-business-canvas.md)). The longer canvases below stay as genealogy.
-- Guarantee for shift offers: Sasha's open choice between A (only the checkable shift) and B (the shift plus money back). Precedent for B on /ignite: "If you don't leave with a one-sentence business you recognize as yours: you don't pay." ([shift-offer.md §6](../../templates/shift-offer.md))
+- Guarantee: **Decision (Sasha, 2026-10-28): no guarantee, neither money-back nor pay-after-recognition.** Recognition can be blocked by the client's own resistance (the shadow shows up as resistance and lowers resonance), so a guarantee would hand the verdict to that resistance and put Sasha in the position of justifying himself. Instead: an honest promise of what the session does, and the free 45-minute Direction Call as the readiness filter. Removed from /ignite and /founder-market-fit on 2026-10-28.
 
 ## ⭐ Business Case — The Webinar Engine v1 (Sasha, October 22, 2026)
 

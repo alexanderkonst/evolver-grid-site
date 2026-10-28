@@ -847,7 +847,7 @@ Applied first to the Journey modules J1–J12 when WP-5 lands; Evolver keeps the
 - A: "I've pivoted so many times I can't say what my business is."
 - B: they **see** their lifelong pattern as a one-sentence business; they **do** send the first message to one named person, in the session.
 - Offer line: **You will see your lifelong pattern as a one-sentence business you recognize as yours, and you will send your first message before we hang up.**
-- Self-check: they say the sentence in their own words and recognize it as theirs (the live guarantee: "If you don't leave with a one-sentence business you recognize as yours: you don't pay"); the message sent.
+- Self-check: they say the sentence in their own words and recognize it as theirs (no guarantee attached since 2026-10-28, Sasha's decision); the message sent.
 - Gap: page title still says «Free 45 min» (#100, §14.5).
 
 **Title `/` and Village map `/village`** · the frame

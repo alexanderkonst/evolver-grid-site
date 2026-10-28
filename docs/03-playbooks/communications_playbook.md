@@ -668,6 +668,8 @@ Keep 2-3 of these in your back pocket. When someone asks "show me it works" — 
 
 When they hesitate:
 
+*Superseded 2026-10-28: Sasha dropped the "you don't pay" guarantee (recognition can be blocked by the client's resistance). Do not use the lines below; promise what the session does instead.*
+
 > **"We leave the session with a concrete offer you can send the same day. If that doesn't happen, you don't pay."**
 
 This one sentence neutralizes:
