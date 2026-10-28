@@ -14,6 +14,31 @@
   - **Ideal Forms**: the lens of ideal forms;
   - **the Unity of form, quality, colour, sound, taste and light**: the lens where all of them are one.
 
+### 2a. The four lenses, written out
+*Extension by Evolver, 2026-10-27 (T7). Sasha's words above stay as given; this only unfolds them. One template, four ways of seeing it; a concrete template usually leans on one or two.*
+
+#### Blueprint (the architectural lens)
+- **What it sees:** the whole as a structure of parts and places: what sits where, what contains what, how one moves between them, what is locked until what. It answers *what is the shape of the whole, and where does each part live?*
+- **Example from the corpus:** the game blueprint, [`docs/02-strategy/game_of_being_you.md`](../02-strategy/game_of_being_you.md): the whole platform drawn as one village of places (§13.1), one canonical journey (§14.2), one lock rule (§14.3), one module form (§14.4), and the same plan landing in a real village (§16, San Pancho). Every product, page and funnel has its place in it.
+- **Ask it:** where does this live in the whole, and what are its neighbours?
+
+#### Causal (the causal lens)
+- **What it sees:** the whole as a sequence of causes: what has to happen first for the next thing to emerge, which energy each step wants, where the loop closes and turns again. It answers *what produces what, in which order?*
+- **Example from the corpus:** the Hexagon Cycle, Phase Shift Technology Library, Technology 161 ([`docs/01-vision/phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md)): two interlocking triangles, DO and BE, six steps (deepening Uniqueness → fit → focus → strategy → action meeting reality → new life and new potential), then the cycle turns again from a deeper connection with Uniqueness. The same cycle shows as prism 4 (seasons) and prism 8 (Equilibrium's lunar phases). Most L2 templates are written in this lens: steps, loops, protocols (e.g. [improvement-loop.md](./improvement-loop.md)).
+- **Ask it:** what is the next cause, and is this a DO step or a BE step?
+
+#### Ideal Forms (the lens of ideal forms)
+- **What it sees:** the canonical shape a thing wants to take, the archetype every instance approximates: the right proportion, the one form that fits. It answers *what is this, when it is fully itself?*
+- **Example from the corpus:** the five Platonic solids and the dodecahedron crystal in the game blueprint (§1–2): Body = cube (earth), Emotions = icosahedron (water), Mind = octahedron (air), Spirit = tetrahedron (fire), Uniqueness = dodecahedron (aether) at the centre, the crystal that refracts the one white light into a person's own spectrum. In templates the same lens shows as canonical formats: one episode = one idea in 90–120 s ([course-from-source.md](./course-from-source.md)), the verbatim 4–20 s clip ([testimonial-clips.md](./testimonial-clips.md)), Intro → one button → result → Outro (game §14.4).
+- **Ask it:** what is the one form this is reaching for, and what in it is extra?
+
+#### Unity (form · quality · colour · sound · taste · light as one)
+- **What it sees:** the whole as one felt coherence, where shape, quality, colour, sound, taste and light are not separate layers but one meaning showing through different senses. It answers *does every sense say the same thing?*
+- **Example from the corpus:** colour as presence, never paint (working phrase for a rule that runs through the corpus): in the game, refraction is the only source of saturated colour and the player's own soul colours take over the world (§1, §3, §5), and in Lunar colour is "not a reward currency… it is **your** color arriving in the places you have actually lived through" (§14.11); in MDLS / Stage 8 design ([`docs/01-vision/new_ui_paradigm_vision.md`](../01-vision/new_ui_paradigm_vision.md)) light moves from "painted-on" to true refraction, "light as actor", and UI "stops being a layer painted on top"; in the infographics (Hark specialty `infographic-style-keeper`) one visual canon holds form, colour and light together across every sheet.
+- **Ask it:** if this were felt with eyes closed, would it still be the same thing?
+
+**How the lenses sit together.** Blueprint says where, Causal says how it unfolds, Ideal Forms says what it is when complete, Unity says whether it is one. Each template's meta-description names its lens(es) (§6); the README inventory uses them as a working reading per template.
+
 ## 3. Significance
 - **Repeatability.** Seeing it as a template makes it repeatable: we can re-run it in any domain, village or medium.
 - **The template as an object.** We can see the template as an object and receive it as something arriving from the spheres (Sasha's words), not only something we make.
@@ -60,9 +85,9 @@ The L1 list is provisional; the corpus inventory (README, «Corpus inventory by 
 - [ ] T2 Corpus inventory of templates, structured by these levels and domains (in progress).
 - [ ] T3 Confirm the L1 domain list with Sasha from the inventory.
 - [ ] T4 Write a meta-description for each L1 domain: how the Meta-Template sees that domain.
-- [ ] T5 Add the meta-description block to every existing L2 template (course-from-source, testimonial-clips, improvement-loop first).
+- [x] T5 Add the meta-description block to every existing L2 template (course-from-source, testimonial-clips, improvement-loop first) (2026-10-27: all three + the game blueprint as the Blueprint lens; templates promoted later get theirs on arrival, §7.2).
 - [ ] T6 Promote the strongest templates found in the corpus into `docs/templates/`, each with its meta-description; merge duplicates.
-- [ ] T7 Write the four lenses out (Blueprint, Causal, Ideal Forms, Unity) as short sections with an example each; link the game blueprint as the Blueprint lens.
+- [x] T7 Write the four lenses out (Blueprint, Causal, Ideal Forms, Unity) as short sections with an example each; link the game blueprint as the Blueprint lens (2026-10-27, §2a).
 - [ ] T8 Link each L1 domain to the evolutionary avant-garde flavors it serves.
 - [ ] T9 Import the Meta-Template and its tree into the knowledge graph.
 - [ ] T10 Make the self-extension protocol runnable: an agent specialty that adds and evolves templates by §7.
