@@ -112,6 +112,12 @@
   --lock-dim: 0.55;
   --open-accent: var(--scene-accent);   /* next / done marker; follows each skin's scene accent */
   --live-accent: hsl(15 80% 46%);
+  /* A closed place's words stay readable: the dot and the art fade (--lock-filter,
+     --lock-dim), the label does not. Alphas of the scene ink, so every skin gets a
+     legible label from its own --scene-ink-rgb. The label chip is darker than an open
+     one so a faded name never melts into the map. */
+  --lock-label-alpha: 0.68;
+  --lock-label-bg-alpha: 0.6;
 
   /* ── Lunar world hooks (WP-2, §14.11) ──
      Inert in every skin but Lunar: `none` / unused values change nothing.

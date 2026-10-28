@@ -162,9 +162,7 @@
 [data-skin="lunar"] .vl-pin[data-place-state="closed"] .vl-dot::after {
   display: none;
 }
-[data-skin="lunar"] .vl-pin[data-place-state="closed"] .vl-pin__name {
-  color: rgba(var(--scene-ink-rgb), 0.38);
-}
+/* closed label: colour and chip come from the lock label tokens (Village.css). */
 [data-skin="lunar"] .vl-pin[data-place-state="next"] .vl-dot::before {
   background: var(--open-accent);
   box-shadow: 0 0 10px 2px rgba(var(--accent-rgb), 0.8), 0 0 30px 8px rgba(var(--accent-rgb), 0.3);
@@ -229,11 +227,7 @@
 }
 
 /* Mobile list: the same five states, in type rather than light. */
-[data-skin="lunar"] .vl-list li[data-place-state="closed"] .vl-list__name,
-[data-skin="lunar"] .vl-list li[data-place-state="closed"] .vl-list__line {
-  opacity: var(--lock-dim);
-  color: rgba(var(--scene-ink-rgb), 0.5);
-}
+/* closed rows: readable, from the lock label tokens (Village.css); no extra opacity. */
 [data-skin="lunar"] .vl-list li[data-place-state="next"] .vl-list__name {
   color: var(--accent-text);
 }
