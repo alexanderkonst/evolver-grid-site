@@ -8,6 +8,7 @@ import { PlaceState } from "@/components/game/PlaceState";
 import {
   closedLine,
   emptyPlaceSave,
+  houseLit,
   nextJourneyStep,
   nextMove,
   openPlaceKeys,
@@ -31,11 +32,12 @@ const place = (key: VillagePlaceKey) => {
 /** A save in which exactly these Journey steps are done. */
 const saveWith = (
   done: JourneyItemId[],
-  opts: { offerSaved?: boolean; events?: Partial<Record<PlaceEvent, boolean>>; now?: Date } = {},
+  opts: { offerSaved?: boolean; victories?: string[]; events?: Partial<Record<PlaceEvent, boolean>>; now?: Date } = {},
 ) => {
   const sheet: PlaceSaveSource = {
     chain: JOURNEY_MAIN.map((i) => ({ id: i.id, done: done.includes(i.id) })),
     offerSaved: opts.offerSaved,
+    victories: opts.victories,
   };
   return placeSaveFromSheet(sheet, opts.now ?? TUESDAY, opts.events);
 };
@@ -95,12 +97,38 @@ describe("placeState: unlock order (§14.3)", () => {
     expect(s["town-hall"]).toBe("closed");
   });
 
-  it("Town Hall stays closed until a first sale is recorded; nothing records one yet", () => {
+  it("Town Hall stays closed until a first sale is recorded", () => {
     const save = saveWith(["find-top-talent", "discover-mission"], { offerSaved: true });
     expect(placeState(place("town-hall"), save)).toBe("closed");
     const sold = saveWith(["find-top-talent", "discover-mission"], { offerSaved: true, events: { "first-sale": true } });
     expect(placeState(place("town-hall"), sold)).toBe("open");
     expect(placeState(place("market"), sold)).toBe("done");
+  });
+
+  it("the first-sale victory the player recorded (J12) opens Town Hall and lights the house; no other victory does", () => {
+    const base = ["find-top-talent", "discover-mission"] as JourneyItemId[];
+    const none = saveWith(base, { offerSaved: true, victories: [] });
+    expect(houseLit(none)).toBe(false);
+
+    for (const other of ["mastery-practice", "first-price", "journey-step", "academy-welcome"]) {
+      const save = saveWith(base, { offerSaved: true, victories: [other] });
+      expect(placeState(place("town-hall"), save), other).toBe("closed");
+      expect(houseLit(save), other).toBe(false);
+    }
+
+    const sold = saveWith(base, { offerSaved: true, victories: ["first-price", "first-sale"] });
+    expect(placeState(place("town-hall"), sold)).toBe("open");
+    expect(placeState(place("market"), sold)).toBe("done");
+    expect(houseLit(sold)).toBe(true);
+  });
+
+  it("J10 and J11 victories are read into the save as their own events", () => {
+    const save = saveWith(["find-top-talent"], { victories: ["mastery-practice", "first-price"] });
+    expect(save.met["mastery-practice"]).toBe(true);
+    expect(save.met["first-price"]).toBe(true);
+    expect(save.met["first-sale"]).toBeUndefined();
+    // A guest, or a save with no victories table, has none of them.
+    expect(placeSaveFromSheet({ chain: [] }).met).toEqual({});
   });
 
   it("the single next move is the first step whose requirements are met", () => {
@@ -161,7 +189,7 @@ describe("closed lines come from data (§14.3)", () => {
 });
 
 describe("rules point at the Journey, they do not restate it", () => {
-  const events: PlaceEvent[] = ["offer-saved", "first-sale", "productize-session", "founder-academy", "deeper-access"];
+  const events: PlaceEvent[] = ["offer-saved", "mastery-practice", "first-price", "first-sale", "productize-session", "founder-academy", "deeper-access"];
   const known = new Set<string>([...JOURNEY_MAIN.map((i) => i.id), ...events]);
 
   it("every requirement names a Journey step or a known event", () => {

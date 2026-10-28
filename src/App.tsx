@@ -150,7 +150,7 @@ import SergeyIgnition from "./pages/SergeyIgnition";
 import OyiIgnition from "./pages/OyiIgnition";
 import MultipleIntelligences from "./pages/MultipleIntelligences";
 import GameHome from "./pages/GameHome";
-import DailyLoopV2 from "./pages/DailyLoopV2";
+import QuestModule from "./components/game/QuestModule";
 import Today from "./pages/Today";
 import Auth from "./pages/Auth";
 import AuthCallback from "./pages/AuthCallback";
@@ -722,8 +722,10 @@ const App = () => (
                   {/* Game Routes */}
                   {/* /game is retired — always redirect to /game/journey (or just `/` landing) */}
                   <Route path="/game" element={<Navigate to="/game/journey" replace />} />
-                  <Route path="/game/next-move" element={<Navigate to="/village" replace />} />
-                  <Route path="/game/next-move-v2" element={<RequireAuth><DailyLoopV2 /></RequireAuth>} />
+                  {/* WP-11: the one Quest Board is /game/journey; the old next-move links keep working. */}
+                  <Route path="/game/next-move" element={<Navigate to="/game/journey" replace />} />
+                  <Route path="/game/next-move/*" element={<Navigate to="/game/journey" replace />} />
+                  <Route path="/game/next-move-v2" element={<Navigate to="/game/journey" replace />} />
                   {/* ME Space (was Grow, was Profile) */}
                   {/* Day 47 late pass (Sasha): /game/me is now a single-focus
                       Top Talent view. No welcome landing page — users arrive
@@ -759,6 +761,8 @@ const App = () => (
                   {/* JOURNEY Space */}
                   <Route path="/game/journey" element={<JourneyPage />} />
                   <Route path="/game/journey/start" element={<ZoneOfGeniusEntry />} />
+                  {/* WP-11: the real-world quests J10–J12 (Intro → task → «I did it» → Outro). A guest may read them. */}
+                  <Route path="/game/journey/quest/:questId" element={<QuestModule />} />
                   {/* PLAYBOOK — Step 1 is at /playbook itself (no `/discover` slug).
                       Legacy /playbook/discover redirects to /playbook. */}
                   <Route path="/playbook" element={<PlaybookPage />} />
@@ -885,7 +889,7 @@ const App = () => (
                   <Route path="/game/snapshot" element={<RequireAuth><CharacterSnapshot /></RequireAuth>} />
                   <Route path="/game/path/:pathId" element={<RequireAuth><GrowthPathsPage /></RequireAuth>} />
                   <Route path="/game/test-nav" element={<RequireAuth><TestNavigation /></RequireAuth>} />
-                  <Route path="/today" element={<RequireAuth><Today /></RequireAuth>} />
+                  <Route path="/today" element={<Navigate to="/game/journey" replace />} />
                   <Route path="/character" element={<RequireAuth><Today /></RequireAuth>} />
                   {/* The old XP-based GameMap is unrouted; /map now opens the Digital Village. */}
                   <Route path="/map" element={<Navigate to="/village" replace />} />

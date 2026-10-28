@@ -247,7 +247,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     // /game/coop is a legacy redirect (→ /game/build → /ubb) in App.tsx.
     to: "/game/coop",
     rule: {
-      // No sales record exists yet, so this stays closed.
+      // Opens on the J12 victory the player records on the Quest Board (WP-11).
       opens: "first-sale",
       closed: {
         event: "your first sale is recorded",

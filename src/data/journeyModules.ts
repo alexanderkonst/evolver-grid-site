@@ -4,7 +4,8 @@
  * §14.12 (the result is the badge).
  *
  * One entry per Journey step that is built today (J1, J2, J4, J5, and the two Workshop slices
- * J6, J7 of WP-9). Webinar, Mastermind and Quest Board add their entries with WP-10/11. Order,
+ * J6, J7 of WP-9) and the three real-world quests of the Quest Board (J10–J12, WP-11).
+ * Webinar and Mastermind add their entries with WP-10. Order,
  * requirements and the closed line come from `JOURNEY_MAIN` (src/data/journeySequence.ts);
  * nothing here restates them. The place a module lives in comes from VILLAGE_PLACES
  * (src/data/villagePlaces.ts).
@@ -19,7 +20,15 @@
  */
 
 import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
-import { placeState, type PlaceSave, type PlaceStateName } from "@/lib/placeState";
+import {
+  closedLine,
+  placeState,
+  type PlaceClosedLine,
+  type PlaceRequirement,
+  type PlaceSave,
+  type PlaceStateName,
+  type RealWorldVictory,
+} from "@/lib/placeState";
 import type { VillagePlaceKey } from "@/data/villagePlaces";
 
 /** A Journey step that is not a `JOURNEY_MAIN` row of its own: a slice of `build-business`. */
@@ -28,8 +37,18 @@ export type SliceStepId = "uniqueness-phrase" | "tagline";
 /** A module in the form that is not a Journey step: an Academy lesson a guest can play (src/data/academyModule.ts). */
 export type ExtraStepId = "academy-welcome";
 
-/** Everything that has a module form: a Journey step, a slice of one, or an Academy lesson. */
-export type ModuleStepId = JourneyItemId | SliceStepId | ExtraStepId;
+/**
+ * A real-world quest on the Quest Board (WP-11, §14.2 J10–J12): the player does something
+ * outside the game and says «I did it». None is a `JOURNEY_MAIN` row; the victory row they
+ * write is their only record, and `placeState` reads it as the event of the same name.
+ */
+export type QuestStepId = RealWorldVictory;
+
+/** The real-world quests, in Journey order: J10, J11, J12. */
+export const QUEST_STEP_IDS: readonly QuestStepId[] = ["mastery-practice", "first-price", "first-sale"];
+
+/** Everything that has a module form: a Journey step, a slice of one, a real-world quest, or an Academy lesson. */
+export type ModuleStepId = JourneyItemId | SliceStepId | QuestStepId | ExtraStepId;
 
 /** The Journey item whose requirements and closed line a slice borrows. */
 export const SLICE_PARENT: Record<SliceStepId, JourneyItemId> = {
@@ -42,9 +61,12 @@ export const isSliceStep = (id: ModuleStepId): id is SliceStepId => id in SLICE_
 /** An Academy lesson: it has the module form but no row in `JOURNEY_MAIN`, so nothing waits on it. */
 export const isExtraStep = (id: ModuleStepId): id is ExtraStepId => id === "academy-welcome";
 
-/** The `JOURNEY_MAIN` item a module id is read from: itself, or the parent of a slice. Undefined for an Academy lesson. */
+export const isQuestStep = (id: string | null | undefined): id is QuestStepId =>
+  !!id && (QUEST_STEP_IDS as readonly string[]).includes(id);
+
+/** The `JOURNEY_MAIN` item a module id is read from: itself, or the parent of a slice. Undefined for a quest or an Academy lesson. */
 export const journeyStepOf = (id: ModuleStepId): JourneyItemId | undefined =>
-  isExtraStep(id) ? undefined : isSliceStep(id) ? SLICE_PARENT[id] : id;
+  isExtraStep(id) || isQuestStep(id) ? undefined : isSliceStep(id) ? SLICE_PARENT[id] : id;
 
 export type JourneyModuleDef = {
   /** The Journey step this module completes; the key of its victory row. */
@@ -61,6 +83,19 @@ export type JourneyModuleDef = {
   verb: string;
   /** Where the module itself starts. */
   startPath: string;
+  /** Only a real-world quest (J10–J12): the task, and what must be true before it is offered. */
+  quest?: {
+    /** «J10» … «J12», for the reader of the Quest Board. */
+    journey: string;
+    /** The task in the world, in the player's second person, one or two sentences. */
+    task: string;
+    /** The label of the button that says it is done. */
+    didIt: string;
+    /** What the quest waits on. Absent = always open. */
+    opens?: PlaceRequirement;
+    /** The «Opens when … Inside: …» line while it waits. Required with `opens`. */
+    closed?: PlaceClosedLine;
+  };
   outro: {
     /** «Done · …» eyebrow. */
     done: string;
@@ -172,6 +207,77 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
       fallbackResult: "Your tagline",
     },
   },
+
+  // Real-world quests (WP-11, §14.2 J10–J12; J8 and J9 are the webinar and the Mastermind).
+  // The task happens outside the game; «I did it» is the player's own word, recorded as a
+  // victory with its 1–10 (src/components/game/QuestModule.tsx).
+  {
+    id: "mastery-practice",
+    place: "academy",
+    eyebrow: "Academy · Step 10",
+    headline: "Twenty-one days of practice, done",
+    silhouette: "Practise for 21 days with others walking the same path. When the twenty-first day is behind you, come back and say so.",
+    verb: "Practise my 21 days",
+    startPath: "/game/journey/quest/mastery-practice",
+    quest: {
+      journey: "J10",
+      task: "Practise every day for 21 days, alongside others walking the same path. Come back when you have done all 21.",
+      didIt: "I did my 21 days",
+    },
+    outro: {
+      done: "Done · Your 21 days are complete",
+      badge: "21 Days",
+      livesIn: { text: "It lives in Your House, on the shelf of your victories.", to: "/game/me/overview" },
+      opened: "Twenty-one days of practice are behind you. The Quest Board holds the next quest.",
+      fallbackResult: "Twenty-one days of practice",
+    },
+  },
+  {
+    id: "first-price",
+    place: "market",
+    eyebrow: "Market · Step 11",
+    headline: "Name your price to a real client",
+    silhouette: "Your price is part of the gift. You say it out loud to one real person who could buy.",
+    verb: "Name my price",
+    startPath: "/game/journey/quest/first-price",
+    quest: {
+      journey: "J11",
+      task: "Tell one real client the price of your offer, out loud or in writing. Then come back and say you did.",
+      didIt: "I named my price",
+      opens: "offer-saved",
+      closed: { event: "your offer is saved", inside: "your first price, said to a real client" },
+    },
+    outro: {
+      done: "Done · Your first price is named",
+      badge: "First Price",
+      livesIn: { text: "It lives in your Market stall: the price is what lets the work land.", to: "/game/marketplace" },
+      opened: "Your stall carries a price. Your first sale is the next quest.",
+      fallbackResult: "Your first price",
+    },
+  },
+  {
+    id: "first-sale",
+    place: "market",
+    eyebrow: "Market · Step 12",
+    headline: "Receive your first payment for being you",
+    silhouette: "Someone pays you for your own offer. A neighbour counts the same as a stranger online.",
+    verb: "Make my first sale",
+    startPath: "/game/journey/quest/first-sale",
+    quest: {
+      journey: "J12",
+      task: "Sell your offer to one real person and receive the payment. Come back and say you did: no money moves here, and we take your word.",
+      didIt: "I made my first sale",
+      opens: "offer-saved",
+      closed: { event: "your offer is saved", inside: "proof in the world that someone pays you for being you" },
+    },
+    outro: {
+      done: "Done · Your first sale is recorded",
+      badge: "First Sale",
+      livesIn: { text: "It lives in the Town Hall, where your voice now counts.", to: "/village/town-hall" },
+      opened: "The Town Hall is open, and your house is lit on the map.",
+      fallbackResult: "Your first sale",
+    },
+  },
 ];
 
 export const getJourneyModule = (id: string | undefined): JourneyModuleDef | undefined =>
@@ -184,6 +290,10 @@ export const getJourneyModule = (id: string | undefined): JourneyModuleDef | und
  * (`placeSaveFromSheet`).
  */
 export const moduleIntroState = (id: ModuleStepId, save: PlaceSave): PlaceStateName => {
+  if (isQuestStep(id)) {
+    // A real-world quest is done once its victory is recorded; it waits on its own event.
+    return placeState({ line: "", rule: { opens: questDef(id)?.opens, steps: [id] } }, save);
+  }
   const item = JOURNEY_MAIN.find((i) => i.id === journeyStepOf(id));
   const requires = item?.requires ?? [];
   const closedFirst = requires.find((req) => save.met[req] !== true);
@@ -201,13 +311,22 @@ export const moduleIntroState = (id: ModuleStepId, save: PlaceSave): PlaceStateN
   );
 };
 
+const questDef = (id: QuestStepId) => getJourneyModule(id)?.quest;
+
 /** True when the step waits on an earlier one, so its state depends on the save. */
 export const moduleHasRequirements = (id: ModuleStepId): boolean =>
-  (JOURNEY_MAIN.find((i) => i.id === journeyStepOf(id))?.requires ?? []).length > 0;
+  isQuestStep(id)
+    ? !!questDef(id)?.opens
+    : (JOURNEY_MAIN.find((i) => i.id === journeyStepOf(id))?.requires ?? []).length > 0;
 
 /** The closed line of a Journey step: «Opens when … Inside: ….» Empty when it has none. */
-export const moduleClosedLine = (id: ModuleStepId): string =>
-  JOURNEY_MAIN.find((i) => i.id === journeyStepOf(id))?.lockedHint ?? "";
+export const moduleClosedLine = (id: ModuleStepId): string => {
+  if (isQuestStep(id)) {
+    const closed = questDef(id)?.closed;
+    return closed ? closedLine({ line: "", rule: { closed } }) : "";
+  }
+  return JOURNEY_MAIN.find((i) => i.id === journeyStepOf(id))?.lockedHint ?? "";
+};
 
 /** The part of the character sheet the Outro reads its result from. */
 export type ModuleResultSource = {

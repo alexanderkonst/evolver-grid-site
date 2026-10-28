@@ -1,0 +1,27 @@
+/*
+ * QuestBoard (WP-11): the one board at /game/journey.
+ * Builds on ModuleForm.css (.mf: village variables, the scene, the one button) and reads the
+ * same semantic tokens, never a literal colour, so every skin renders it, Lunar included.
+ */
+
+.qb { display: block; min-height: min(100vh, 900px); }
+.qb__scene { position: absolute; inset: 0; z-index: -1; height: min(56vh, 520px); }
+.qb__scene::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(var(--scene-bg-rgb), 0.35) 0%, rgba(var(--scene-bg-rgb), 0.6) 60%, var(--vl-bg) 100%);
+}
+.qb__body { position: relative; z-index: 1; padding: 72px 24px 56px; }
+.qb__head { text-align: center; padding-bottom: clamp(20px, 4vh, 40px); text-shadow: 0 1px 24px rgba(var(--scene-shadow-rgb), 0.65); }
+.qb__group { max-width: 640px; margin: clamp(24px, 4vh, 40px) auto 0; }
+.qb__h {
+  margin: 0 0 10px; font-family: var(--vl-mono); font-weight: 300; font-size: 12px;
+  letter-spacing: 0.26em; text-transform: uppercase; color: var(--vl-ink-2);
+}
+.qb__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.qb__row { padding: 12px 0; border-top: 1px solid var(--vl-hair); }
+.qb__name { font-weight: 300; font-size: clamp(20px, 2.2vw, 26px); line-height: 1.25; color: var(--vl-ink); }
+a.qb__name { display: inline-block; min-height: 44px; }
+a.qb__name:hover, a.qb__name:focus-visible { color: var(--vl-accent); outline: none; }
+.qb__row .ps-line { margin-top: 4px; font-size: 17px; color: var(--vl-ink-2); }
+.qb__row .ps-tag { margin-top: 4px; margin-left: 10px; }
+.qb__row[data-place-state="closed"] .qb__name { color: var(--vl-ink-3); }

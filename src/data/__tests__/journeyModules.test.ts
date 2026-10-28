@@ -2,11 +2,14 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
 import { VILLAGE_PLACES } from "@/data/villagePlaces";
+import { getJourneyChoice } from "@/data/journeyChoices";
 import { closedLine, emptyPlaceSave, placeSaveFromSheet, placeState, type PlaceSave } from "@/lib/placeState";
 import {
   JOURNEY_MODULES,
+  QUEST_STEP_IDS,
   assetsResultText,
   getJourneyModule,
+  isQuestStep,
   isSliceStep,
   isValidRating,
   journeyStepOf,
@@ -25,7 +28,7 @@ const saveWith = (done: JourneyItemId[]): PlaceSave =>
   placeSaveFromSheet({ chain: JOURNEY_MAIN.map((i) => ({ id: i.id, done: done.includes(i.id) })) });
 
 describe("journey modules (WP-5 module form)", () => {
-  it("covers J1, J2, J4, J5, J6, J7 and nothing else yet", () => {
+  it("covers J1, J2, J4, J5, J6, J7 and the real-world quests J10–J12, and nothing else yet", () => {
     expect(JOURNEY_MODULES.map((m) => m.id)).toEqual([
       "find-top-talent",
       "discover-mission",
@@ -33,18 +36,32 @@ describe("journey modules (WP-5 module form)", () => {
       "map-assets",
       "uniqueness-phrase",
       "tagline",
+      "mastery-practice",
+      "first-price",
+      "first-sale",
     ]);
   });
 
-  it("every module is a Journey step, or a slice of one, living in a real village place", () => {
+  it("every module is a Journey step, a slice of one, or a real-world quest, living in a real village place", () => {
     const steps = new Set(JOURNEY_MAIN.map((i) => i.id));
     const places = new Set(VILLAGE_PLACES.map((p) => p.key));
     for (const m of JOURNEY_MODULES) {
-      expect(steps.has(journeyStepOf(m.id)), m.id).toBe(true);
+      if (isQuestStep(m.id)) {
+        expect(m.quest, m.id).toBeDefined();
+        expect(journeyStepOf(m.id), m.id).toBeUndefined();
+      } else {
+        expect(steps.has(journeyStepOf(m.id)!), m.id).toBe(true);
+        expect(m.quest, m.id).toBeUndefined();
+      }
       expect(places.has(m.place), m.id).toBe(true);
       expect(getJourneyModule(m.id)).toBe(m);
     }
     expect(getJourneyModule("nope")).toBeUndefined();
+  });
+
+  it("the quests are numbered J10, J11, J12 and every one has its real choice", () => {
+    expect(QUEST_STEP_IDS.map((id) => getJourneyModule(id)?.quest?.journey)).toEqual(["J10", "J11", "J12"]);
+    for (const id of QUEST_STEP_IDS) expect(getJourneyChoice(id), id).toBeDefined();
   });
 
   it("the button is the result as a verb, never «Continue»", () => {
@@ -66,6 +83,8 @@ describe("journey modules (WP-5 module form)", () => {
         m.outro.livesIn.text,
         m.outro.opened,
         m.outro.fallbackResult,
+        m.quest?.task ?? "",
+        m.quest?.didIt ?? "",
       ];
       for (const w of words) expect(w, `${m.id}: ${w}`).not.toMatch(barrier);
       expect(moduleClosedLine(m.id), m.id).not.toMatch(barrier);
@@ -124,6 +143,25 @@ describe("moduleIntroState", () => {
     }
     expect(isSliceStep("map-assets")).toBe(false);
     expect(journeyStepOf("map-assets")).toBe("map-assets");
+  });
+
+  it("J10 is open to everyone; J11 and J12 wait on a saved offer; each is done once its victory is recorded", () => {
+    const chain = JOURNEY_MAIN.map((i) => ({ id: i.id, done: false }));
+    const save = (over: { offerSaved?: boolean; victories?: string[] }) => placeSaveFromSheet({ chain, ...over });
+
+    expect(moduleHasRequirements("mastery-practice")).toBe(false);
+    expect(moduleIntroState("mastery-practice", emptyPlaceSave())).toBe("open");
+    for (const id of ["first-price", "first-sale"] as const) {
+      expect(moduleHasRequirements(id), id).toBe(true);
+      expect(moduleIntroState(id, emptyPlaceSave()), id).toBe("closed");
+      expect(moduleClosedLine(id), id).toMatch(/^Opens when .+\. Inside: .+\.$/);
+      expect(moduleIntroState(id, save({ offerSaved: true })), id).toBe("open");
+      expect(moduleIntroState(id, save({ offerSaved: true, victories: [id] })), id).toBe("done");
+    }
+    expect(moduleIntroState("mastery-practice", save({ victories: ["mastery-practice"] }))).toBe("done");
+    // One quest's victory does not finish another.
+    expect(moduleIntroState("first-sale", save({ offerSaved: true, victories: ["first-price"] }))).toBe("open");
+    expect(moduleClosedLine("mastery-practice")).toBe("");
   });
 
   it("the Market opens on a saved offer, which is what J7 saves", () => {
