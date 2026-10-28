@@ -6,16 +6,19 @@
  * This component has no course- or episode-specific logic: add an episode or
  * an infographic in the data file and it shows up here.
  */
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Check, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import type { CourseConfig } from "@/data/courses/types";
+import { supabase } from "@/integrations/supabase/client";
 import {
     flattenEpisodes,
     getPublishedModules,
+    loadGuestWatched,
     loadLastEpisode,
-    loadWatched,
+    mergeGuestWatched,
+    saveGuestWatched,
     saveLastEpisode,
     saveWatched,
     soundcloudEmbedUrl,
@@ -24,17 +27,12 @@ import {
 import { GOLD_TEXT_STYLE } from "@/lib/landingDesign";
 import { BODY_STYLE, EYEBROW_STYLE, TITLE_STYLE } from "@/pages/Library";
 import { cn } from "@/lib/utils";
+import "./CoursePage.css";
 
 const ZOG_ENTRY_PATH = "/zone-of-genius/entry";
 
 const CARD_STYLE: React.CSSProperties = {
     boxShadow: "0 8px 24px -12px rgba(10, 22, 40, 0.18), 0 0 0 1px rgba(212, 175, 55, 0.22)",
-};
-
-const GOLD_BUTTON_STYLE: React.CSSProperties = {
-    background: "linear-gradient(135deg, rgba(244, 212, 114, 0.95) 0%, rgba(212, 175, 55, 0.85) 100%)",
-    color: "#0a1628",
-    border: "0.5px solid rgba(122, 81, 8, 0.45)",
 };
 
 const CoursePage = ({ course }: { course: CourseConfig }) => {
@@ -54,7 +52,36 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
     }, [episodes, requestedCode]);
     const current = episodes[currentIndex];
 
-    const [watched, setWatched] = useState<string[]>(() => loadWatched(COURSE_SLUG));
+    // A guest's watched episodes live in their own localStorage list; a signed-in user's in the
+    // account list. On sign-in the guest list is merged into the account (mergeGuestWatched).
+    // Until the session resolves we show the guest list: the one a visitor can have made.
+    const [watched, setWatched] = useState<string[]>(() => loadGuestWatched(COURSE_SLUG));
+    const signedInRef = useRef(false);
+
+    useEffect(() => {
+        let mounted = true;
+        const apply = (signedIn: boolean) => {
+            if (!mounted) return;
+            signedInRef.current = signedIn;
+            setWatched(signedIn ? mergeGuestWatched(COURSE_SLUG) : loadGuestWatched(COURSE_SLUG));
+        };
+        const resolve = () =>
+            supabase.auth
+                .getSession()
+                .then(({ data }) => apply(Boolean(data.session)))
+                .catch(() => apply(false));
+        resolve();
+        const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+            // A null event can be a transient blip during token refresh: re-verify before
+            // treating the visitor as a guest (same guard as RequireAuth).
+            if (session) apply(true);
+            else resolve();
+        });
+        return () => {
+            mounted = false;
+            data.subscription.unsubscribe();
+        };
+    }, [COURSE_SLUG]);
 
     useEffect(() => {
         if (current) saveLastEpisode(COURSE_SLUG, current.code);
@@ -75,7 +102,8 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
             const has = prev.includes(code);
             if (value === has) return prev;
             const next = value ? [...prev, code] : prev.filter((c) => c !== code);
-            saveWatched(COURSE_SLUG, next);
+            if (signedInRef.current) saveWatched(COURSE_SLUG, next);
+            else saveGuestWatched(COURSE_SLUG, next);
             return next;
         });
     }, [COURSE_SLUG]);
@@ -174,8 +202,7 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                             type="button"
                             onClick={handleNext}
                             disabled={isLast}
-                            className="inline-flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-semibold transition-opacity disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90"
-                            style={GOLD_BUTTON_STYLE}
+                            className="course-cta inline-flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-semibold"
                         >
                             {t("course.next")}
                             <ChevronRight className="w-4 h-4" />
@@ -207,8 +234,7 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                             </p>
                             <Link
                                 to={ZOG_ENTRY_PATH}
-                                className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold hover:opacity-90"
-                                style={GOLD_BUTTON_STYLE}
+                                className="course-cta inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
                             >
                                 {t("course.ctaButton")}
                                 <ArrowRight className="w-4 h-4" />
@@ -266,8 +292,8 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                             aria-valuenow={progressPct}
                         >
                             <div
-                                className="h-full rounded-full transition-[width] duration-300"
-                                style={{ width: `${progressPct}%`, background: GOLD_BUTTON_STYLE.background }}
+                                className="course-progress-fill h-full rounded-full transition-[width] duration-300"
+                                style={{ width: `${progressPct}%` }}
                             />
                         </div>
 
@@ -296,11 +322,12 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                                                         style={{ color: "var(--skin-text-primary, #0a1628)" }}
                                                     >
                                                         <span
-                                                            className="mt-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full"
+                                                            className={cn(
+                                                                "mt-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full",
+                                                                done && "course-dot-done",
+                                                            )}
                                                             style={
-                                                                done
-                                                                    ? GOLD_BUTTON_STYLE
-                                                                    : { boxShadow: "inset 0 0 0 1px rgba(212, 175, 55, 0.5)" }
+                                                                done ? undefined : { boxShadow: "inset 0 0 0 1px rgba(212, 175, 55, 0.5)" }
                                                             }
                                                         >
                                                             {done && <Check className="w-2.5 h-2.5" />}
