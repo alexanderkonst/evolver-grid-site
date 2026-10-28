@@ -29,6 +29,7 @@ A standing instruction for any long-running build (first applied to The Game of 
 | Date | Wave | What we learned about planning | Change applied |
 |---|---|---|---|
 | 2026-10-27 | Waves 1–2 (WP-1…WP-18) | Lovable publish is a separate, sometimes blocking step; a shared Lovable session serialises everything | Publish is its own checklist item per wave, with its own session |
+| 2026-10-27 | Wave 2 (WP-5, WP-7a) | A WP that bundles UI and a DB table waits whole on the consent for the table; and a review request («send to /village after save») hid the player's reward | Migrations always ship as their own PR, UI degrades without them; every review change is checked against the three-minute walk (title → test → saved character → village) before it is asked for |
 
 ## Applied in
 - The Game of Being You (from 2026-10-27)
