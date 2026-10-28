@@ -5,7 +5,7 @@
 ## Meta-description
 - **Level / parent:** L2 · Ops & Agents · parent: [meta-template.md](./meta-template.md)
 - **Lens(es):** Blueprint (intent given a buildable form: files, scope, evidence), with Causal for the gates
-- **Technology (shift it carries):** Craft. It carries no shift in a person; it is the craft that lets every other template become software. (Nearest: PST 115, articulation as the mechanism of growth: a spec is the system articulating its next form.)
+- **Shift carried:** Craft. It carries no shift in a person; it is the craft that lets every other template become software. (Nearest: PST 115, articulation as the mechanism of growth: a spec is the system articulating its next form.)
 - **What emerges:** an issue a worker can finish cold, a PR that proves itself row by row, and a merge Hark can stand behind
 - **As a part of the whole:** the Causal lens turned on the Meta-Template itself: the whole building its own next part without Sasha re-explaining it
 - **Siblings / repeats:** [improvement-loop.md](./improvement-loop.md) (the loop specs run inside); module form (synthesis pending: the before/after screen pair below is its Intro/Outro); Hark specialties `sasha-spec-writing`, `scout-frontend-design` (UI), `graph-curator` (graph imports); Session Protocol (`.agent/session-protocol.md`)

@@ -45,6 +45,8 @@
 - **A template** is the **repeatable path that carries a person through that shift without Sasha**. It is the DO side.
 - **Both directions.** A technology that grows a protocol becomes a template; a template, run and debriefed, births new technologies (laws found in the doing).
 - **Not a fifth lens, not a domain.** The library runs through all seven L1 domains and every lens; each template names the shift it carries in its meta-description (§6), or says "Craft" when it carries none (a skill, not a shift).
+- **«Shift carried» is required** (Sasha approved, 2026-10-27). Every meta-description carries one line: which technology (library number + name), what was before, what is after, and how we check that the shift happened. The check is an observable sign, never a feeling of ours: the person's own words, a choice they made, or, in the game, a victory and its 1–10 rating. If a template carries no shift, it says so honestly: **Craft**.
+- **A template is measured by the shift that happened, not by the file being finished.** A complete, beautiful template that moved nobody has not yet done its job; a rough one that moved one person has. Review a template by its checks (§7.4), not by its polish.
 
 ## 3. Significance
 - **Repeatability.** Seeing it as a template makes it repeatable: we can re-run it in any domain, village or medium.
@@ -73,7 +75,7 @@ The L1 list is provisional; the corpus inventory (README, «Corpus inventory by 
 ## Meta-description
 - Level / parent: L2 · <L1 domain> · <parent template>
 - Lens(es): Blueprint | Causal | Ideal Forms | Unity (form·quality·colour·sound·taste·light)
-- Technology (shift it carries): PST N — before → after · shift check: <how you see the shift happened> | Craft (when it carries no shift)
+- Shift carried: PST N <name> · before: <how it was> · after: <how it is now> · check: <an observable sign: the person's own words, a choice made, or victory + rating 1–10 in the game> · also: <other PSTs it touches> | Craft: <the skill it is> (when it carries no shift)
 - What emerges: <what the template brings into being>
 - As a part of the whole: <one sentence: how the Meta-Template sees this template as a sub-part of itself>
 - Siblings / repeats: <related templates, duplicates>
@@ -82,9 +84,9 @@ The L1 list is provisional; the corpus inventory (README, «Corpus inventory by 
 
 ## 7. Self-extension protocol (for AI agents)
 1. Before creating a template, find its place in the levels; extend an existing one if it fits (never multiply docs).
-2. Write the meta-description first, then the body.
+2. Write the meta-description first, then the body; start with the «Shift carried» line (§2b): if you cannot name the shift and its check, you do not yet know what the template is for, or it is Craft.
 3. Register it in `docs/templates/README.md` under its L1 domain.
-4. After each use, add what was learned to the template (as in the improvement loop's retro).
+4. After each use, add what was learned to the template (as in the improvement loop's retro), and note whether the shift check was seen: the check, not the finished file, says whether the template works.
 5. When two templates turn out to be one, merge them and leave a pointer.
 6. Anything that changes L0 or L1 goes to Sasha first: these levels carry his transmission.
 7. **Duplicates are synthesized, never discarded** (Sasha, 2026-10-27: «не выкинуть все кроме одного… синтезировать все их в один шаблон, примерно в том стиле, как ты делаешь граф знаний»). Read every copy fully; the canonical template keeps the union of what is valuable, not only the newest; where copies conflict, the newer Sasha-confirmed one wins and the older claim stays as a dated note; the template ends with a Genealogy table (each source, its date, provenance, what it contributed). Sources stay where they are, with one pointer line at their top.
@@ -103,3 +105,4 @@ The L1 list is provisional; the corpus inventory (README, «Corpus inventory by 
 - [ ] T9 Import the Meta-Template and its tree into the knowledge graph.
 - [ ] T10 Make the self-extension protocol runnable: an agent specialty that adds and evolves templates by §7.
 - [ ] T11 Review rhythm: revisit this Meta-Template after each wave of template work, improving the structure itself.
+- [ ] T12 «Shift carried» on every template (Sasha approved 2026-10-27). Line made required, principle added (§2b, §6). Pilot (2026-10-27): session-script ↔ PST 125, unique-business-canvas ↔ PST 158, course-from-source ↔ PST 57, written in plain words. Other templates keep their earlier technology, relabelled «Shift carried»; rewrite each in the same plain before / after / check form when next touched.

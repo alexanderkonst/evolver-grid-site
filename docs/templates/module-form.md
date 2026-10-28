@@ -5,7 +5,7 @@
 ## Meta-description
 - **Level / parent:** L2 · The Game & the Village (proposed L1) · parent: the game blueprint (the Blueprint lens, [meta-template.md](./meta-template.md) §2a)
 - **Lens(es):** Ideal Forms (one breath per place: one result, one button), with Causal for the ritual and the build gates
-- **Technology (shift it carries):** PST 81 The Specificity Loop — the moment after a step spent on thanking us (a toast) → spent on a recognition the player keeps · also PST 115 (articulation is the mechanism of growth: each Outro makes a real result legible to the player), PST 52 (ritual conversion) · shift check: on the Outro the player sees their own result in their own words, rates it, and the village visibly changes
+- **Shift carried:** PST 81 The Specificity Loop — the moment after a step spent on thanking us (a toast) → spent on a recognition the player keeps · also PST 115 (articulation is the mechanism of growth: each Outro makes a real result legible to the player), PST 52 (ritual conversion) · shift check: on the Outro the player sees their own result in their own words, rates it, and the village visibly changes
 - **What emerges:** a place a player can enter, do one real thing in, see what is now true about their life, and leave with the village brighter
 - **As a part of the whole:** each place as one breath of the whole: the game never adds anything artificial; it makes a real step legible, beautiful and playable
 - **Siblings / repeats:** [spec-handoff.md](./spec-handoff.md) (the before/after screen pair and the build gates); [session-script.md](./session-script.md) (the same arc live: promise → work → recognition); [testimonial-clips.md](./testimonial-clips.md) (voices in Outro notes); the stall auto-assembly (blueprint §14.12)

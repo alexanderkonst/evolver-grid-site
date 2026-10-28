@@ -5,7 +5,7 @@
 ## Meta-description
 - **Level / parent:** L2 · Consciousness development (seeing instruments; open question to Sasha whether seeing instruments sit directly under L0) · parent: [meta-template.md](./meta-template.md)
 - **Lens(es):** Unity (one coherent seeing from every side), with Causal for the rounds and Ideal Forms for the output shape
-- **Technology (shift it carries):** PST 15 Complete Seeing Guaranteed + PST 66 The 27th Perspective — evaluation from one angle that can always miss a side → seeing from every angle at every depth that ends in one act · also PST 37 (the dodecahedral artifact) · shift check: the reading names something no single position caught, and ends in one concrete action
+- **Shift carried:** PST 15 Complete Seeing Guaranteed + PST 66 The 27th Perspective — evaluation from one angle that can always miss a side → seeing from every angle at every depth that ends in one act · also PST 37 (the dodecahedral artifact) · shift check: the reading names something no single position caught, and ends in one concrete action
 - **What emerges:** one unified reading of anything (an artifact, a decision, a design, a strategy) that has been seen from every angle at every depth, and ends in one irreversible act
 - **As a part of the whole:** the Meta-Template's own eye: the way the whole sees any of its parts as a whole, then lets the seeing become form (the 27th is emergence itself, in miniature)
 - **Siblings / repeats:** roasting (uses this as its engine; synthesis pending, see README), holomap builder (draws the result), Unique Business Canvas (each artifact can be opened 12+1, §6), knowledge-graph link perspectives (§7)

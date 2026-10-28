@@ -5,7 +5,7 @@
 ## Meta-description
 - **Level / parent:** L2 · Consciousness development (seeing instruments) · parent: [meta-template.md](./meta-template.md); engine: [holonic-seeing.md](./holonic-seeing.md)
 - **Lens(es):** Causal (critique rounds without fixing, then one synthesis), with Unity for the energy test
-- **Technology (shift it carries):** PST 93 Vision ↔ Viability Balancing — a draft fixed bit by bit, or a strategy loved until it fails → an artifact refined to essence-truth and a strategy that survived its own post-mortem · shift check: the creator feels challenged and supported, and the next version scores higher on their gut (artifacts) or arrives as kinetic calm (strategies)
+- **Shift carried:** PST 93 Vision ↔ Viability Balancing — a draft fixed bit by bit, or a strategy loved until it fails → an artifact refined to essence-truth and a strategy that survived its own post-mortem · shift check: the creator feels challenged and supported, and the next version scores higher on their gut (artifacts) or arrives as kinetic calm (strategies)
 - **What emerges:** the next version of an artifact, a spec or a strategy, carrying everything the critique saw, with the one seed that survived
 - **As a part of the whole:** truth sharpened before form is fixed: the Meta-Template's seeing turned adversarial, with love, so emergence doesn't settle on a local maximum
 - **Siblings / repeats:** [holonic-seeing.md](./holonic-seeing.md) (the rounds are the same moves); [unique-business-canvas.md](./unique-business-canvas.md) §6 (the deepening engine is this protocol, productized); [spec-handoff.md](./spec-handoff.md) and [module-form.md](./module-form.md) (roast gates between build phases); `src/prompts/user/iterateStrategyCruciblePrompt.ts` (the crash-test in code)
