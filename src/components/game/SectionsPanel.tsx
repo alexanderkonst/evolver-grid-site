@@ -1165,6 +1165,8 @@ const SectionsPanel = ({
 
     return (
         <div
+            // WP-1b: stable hook for the Dao scrub in src/styles/skin-journey.css
+            data-sections-panel=""
             className={cn(
                 "w-[260px] flex flex-col relative z-30",
                 // Day 55 (Sasha 2026-04-29): `liquid-glass` (backdrop-filter
@@ -1608,10 +1610,11 @@ const SectionsPanel = ({
                             style={
                                 (sectionActive || journeyState === "present") && !hasSubSections && !isLocked
                                     ? isDefaultYouSkin
+                                        // WP-1b: fill comes from the skin (theme-tokens.css);
+                                        // the defaults are the navy gradient this used to hardcode.
                                         ? {
-                                            backgroundColor: "rgba(36, 61, 111, 0.56)",
-                                            backgroundImage:
-                                                "linear-gradient(135deg, rgba(102, 128, 181, 0.30) 0%, rgba(47, 74, 128, 0.42) 68%, rgba(27, 50, 98, 0.48) 100%)",
+                                            backgroundColor: "var(--nav-pane-active-color)",
+                                            backgroundImage: "var(--nav-pane-active-image)",
                                         }
                                         : { backgroundColor: "var(--skin-selected-bg, rgba(212, 175, 55, 0.10))" }
                                     : isLocked

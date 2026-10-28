@@ -1,0 +1,178 @@
+/* ==========================================================================
+   JOURNEY FOLLOWS THE SKIN — WP-1b (game_of_being_you.md §14.1.8, §14.8)
+   ==========================================================================
+   WP-1 put the Journey screens on the semantic tokens. This file closes what
+   was still left on a fixed look:
+
+   1. Scene art      the title (`/`) and the village (`/village`) painted the
+                     same night picture in every skin. Each skin now tints it
+                     through `--scene-filter`, and the light skins get a day
+                     scene (cream for Lapis, paper-white for The Dao).
+   2. Active nav     the navy fill of the selected rail / panel row is read
+                     from `--nav-*-active-*` (theme-tokens.css); Aurum and
+                     The Dao add their left-bar.
+   3. The Dao        no gold anywhere: CTA breath, hero emblem, panel glow and
+                     dividers, gold chips inside the sections panel.
+
+   Loaded after lunar-world.css (see main.tsx). Lunar is not touched: its
+   scene filter and tokens come from lunar-world.css / theme-tokens.css as
+   before. Lapis, Aurum and Dao rules are scoped to `.gt-root` / `.vl-root`
+   so the other screens that read `--scene-*` (Your House, the intro) keep
+   their look.
+   ========================================================================== */
+
+/* ── 1. Scene art ────────────────────────────────────────────────────────
+   `--scene-filter` is `none` unless a skin sets it, so a skin without a
+   tint renders the art untouched. */
+.gt-screen__img,
+.vl-map-img,
+.vl-place__img {
+  filter: var(--scene-filter);
+}
+
+/* Lapis: navy ink and antique gold on cream. A day scene: the night art is
+   inverted back through its hues, so the lake reads as pale morning and the
+   navy ink on it stays legible. */
+[data-skin="lapis"] .gt-root,
+[data-skin="lapis"] .vl-root {
+  --scene-bg: #f6efe0;
+  --scene-bg-rgb: 246, 239, 224;
+  --scene-shadow-rgb: 253, 250, 243;
+  --scene-paper: #fdfaf3;
+  --scene-accent: #a06d08;
+  --scene-accent-rgb: 160, 109, 8;
+  --scene-ink-rgb: 11, 42, 90;
+  --scene-glow-rgb: 212, 175, 55;
+  --scene-glow-warm-rgb: 160, 109, 8;
+  --scene-glow-hot-rgb: 122, 81, 8;
+  --scene-dot: #0b2a5a;
+  --scene-dot-active: #07183a;
+  --sky-moon-rgb: 11, 42, 90;
+  --sky-dim-rgb: 253, 250, 243;
+  --live-accent: hsl(15 80% 38%);
+  --scene-filter: invert(1) hue-rotate(180deg) sepia(0.22) saturate(0.9) brightness(1.02) contrast(0.92);
+}
+
+/* Aurum: the same night, warmed to candlelight. */
+[data-skin="aurum"] .gt-root,
+[data-skin="aurum"] .vl-root {
+  --scene-filter: sepia(0.55) saturate(1.2) hue-rotate(-12deg) brightness(0.95);
+}
+
+/* The Dao: black and white on paper. Grey, then inverted to a pale negative;
+   the moon becomes an ink disc on a light sky. */
+[data-skin="dao"] .gt-root,
+[data-skin="dao"] .vl-root {
+  --scene-filter: grayscale(1) invert(1) contrast(0.8) brightness(1.08);
+  --sky-moon-rgb: 10, 10, 10;
+  --sky-dim-rgb: 255, 255, 255;
+}
+[data-skin="dao"] .gt-gem {
+  filter: grayscale(1) drop-shadow(0 0 14px rgba(10, 10, 10, 0.1));
+}
+
+/* ── 2. Active nav item: left-bar ────────────────────────────────────────
+   Aurum and The Dao draw the selected row flat; the bar says "you are here".
+   Lapis and Lunar keep the fill alone, as before. */
+[data-skin="aurum"] [style*="--nav-rail-active"],
+[data-skin="aurum"] [style*="--nav-pane-active"] {
+  box-shadow: inset 3px 0 0 0 #f0c870 !important;
+}
+[data-skin="dao"] [style*="--nav-rail-active"],
+[data-skin="dao"] [style*="--nav-pane-active"] {
+  box-shadow: inset 3px 0 0 0 #0a0a0a !important;
+}
+
+/* ── 3. The Dao: no gold anywhere ────────────────────────────────────── */
+
+/* Primary CTA "breath": a gold halo animated on box-shadow, which beats the
+   skin's own flat CTA shadow. The Dao CTA is a still black pill. */
+[data-skin="dao"] .cta-breath {
+  animation: none;
+  will-change: auto;
+}
+
+/* Hero emblem (the ignite star above a landing headline): a black silhouette,
+   like the other emblems in the skin. */
+[data-skin="dao"] .skin-emblem {
+  filter: brightness(0) saturate(0);
+}
+
+/* Any inline gold glow, anywhere. Inline styles carry the literal, so a
+   substring match reaches what the class rules in index.css cannot. */
+[data-skin="dao"] [style*="rgba(244, 212, 114"],
+[data-skin="dao"] [style*="rgba(244,212,114"] {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Rail spine: the gold gradient on the right edge becomes a grey hairline. */
+[data-skin="dao"] .liquid-glass.h-dvh > span[aria-hidden][class*="absolute"][class*="top-0"][class*="right-0"] {
+  background-image: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0) 0%,
+    rgba(10, 10, 10, 0.16) 40%,
+    rgba(10, 10, 10, 0.16) 64%,
+    rgba(10, 10, 10, 0) 100%
+  ) !important;
+}
+/* SPACES ↔ utility separator in the rail. */
+[data-skin="dao"] .liquid-glass.h-dvh .h-px[style*="rgba(212, 175, 55"] {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(10, 10, 10, 0.18) 20%,
+    rgba(10, 10, 10, 0.18) 80%,
+    transparent 100%
+  ) !important;
+}
+/* Active-place pip on the rail. */
+[data-skin="dao"] [class*="bg-[rgba(226,190,82"] {
+  background-color: #0a0a0a !important;
+}
+/* Section dividers (the Forge sidebar and every other labelled group). */
+[data-skin="dao"] [class*="from-[#d4af37"] {
+  background-image: linear-gradient(
+    to right,
+    rgba(10, 10, 10, 0.18),
+    rgba(10, 10, 10, 0.06),
+    transparent
+  ) !important;
+}
+
+/* Sections panel (Pane 2): a white sheet, not the navy-and-lapis one. */
+[data-skin="dao"] [data-sections-panel] {
+  background-color: #ffffff !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+[data-skin="dao"] [data-sections-panel] > span[aria-hidden][class*="absolute"] {
+  background-image: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0) 0%,
+    rgba(10, 10, 10, 0.12) 40%,
+    rgba(10, 10, 10, 0.12) 64%,
+    rgba(10, 10, 10, 0) 100%
+  ) !important;
+}
+/* Gold text, chips and borders inside the panel go to ink. */
+[data-skin="dao"] [data-sections-panel] [style*="#f4d472"],
+[data-skin="dao"] [data-sections-panel] [style*="rgba(244, 212, 114"],
+[data-skin="dao"] [data-sections-panel] [style*="rgba(212, 175, 55"] {
+  color: #0a0a0a !important;
+}
+[data-skin="dao"] [data-sections-panel] [style*="background"][style*="rgba(244, 212, 114"],
+[data-skin="dao"] [data-sections-panel] [style*="background"][style*="rgba(212, 175, 55"] {
+  background-image: none !important;
+  background-color: rgba(10, 10, 10, 0.06) !important;
+}
+[data-skin="dao"] [data-sections-panel] [style*="border"][style*="rgba(244, 212, 114"],
+[data-skin="dao"] [data-sections-panel] [style*="border"][style*="rgba(212, 175, 55"] {
+  border-color: rgba(10, 10, 10, 0.22) !important;
+}
+
+/* Chat panel: WhatsApp green and Telegram blue are brand colours; the skin has
+   no colour, so the two rows go grey. */
+[data-skin="dao"] .chat-panel a {
+  filter: grayscale(1);
+}

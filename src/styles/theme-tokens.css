@@ -17,9 +17,10 @@
    consumed as `rgba(var(--accent-rgb), 0.22)`.
 
    Scene tokens (`--scene-*`) feed the night-art screens (title, village,
-   Your House). Under lapis (the default) they keep the night navy / ice-blue
-   register those screens had; the default theme for new players is Sasha's
-   call (§14.10 fork 1), so it is not changed here.
+   Your House). Lapis keeps the night navy / ice-blue values here for the
+   screens that still read them (Your House, the intro); the title and the
+   village give Lapis, Aurum and The Dao their own scene (WP-1b, see
+   `src/styles/skin-journey.css`). Lunar's scene is WP-2's.
 
    Lock/live tokens (`--lock-filter`, `--lock-dim`, `--open-accent`,
    `--live-accent`) are defined per skin; `PlaceState` (WP-3,
@@ -121,6 +122,35 @@
   --scene-halftone: none;
   --scene-halftone-size: auto;
   --place-window-lit: 255, 214, 140;
+
+  /* ── Active nav item (WP-1b) ──
+     The fill of the selected row in the rail (Pane 1) and the sections panel
+     (Pane 2). The defaults are the navy gradients those components hardcoded,
+     so Lapis, Lunar and every skin without an override render pixel-equal.
+     Aurum and The Dao override them below: no navy in a gold or black-and-white
+     world. */
+  --nav-rail-active-color: rgba(15, 35, 76, 0.52);
+  --nav-rail-active-image: linear-gradient(135deg, rgba(76, 105, 164, 0.36) 0%, rgba(18, 40, 86, 0.48) 72%, rgba(7, 24, 59, 0.56) 100%);
+  --nav-pane-active-color: rgba(36, 61, 111, 0.56);
+  --nav-pane-active-image: linear-gradient(135deg, rgba(102, 128, 181, 0.30) 0%, rgba(47, 74, 128, 0.42) 68%, rgba(27, 50, 98, 0.48) 100%);
+
+  /* ── Chat launcher (WP-1b): the floating «Chat with us» button and its panel ──
+     Defaults are the navy / gold / cream the launcher hardcoded. */
+  --chat-bg: rgba(8, 23, 47, 0.95);
+  --chat-bg-hover: #0b2041;
+  --chat-border: rgba(217, 184, 95, 0.45);
+  --chat-border-hover: rgba(240, 207, 114, 0.75);
+  --chat-ink: #fff8e7;
+  --chat-accent: #efcf77;
+  --chat-ring: #f0cf72;
+  --chat-glow-rgb: 217, 184, 95;
+  --chat-shadow-rgb: 2, 10, 24;
+  --chat-sheen-rgb: 255, 255, 255;
+  --chat-panel-bg: #08172f;
+  --chat-panel-border: rgba(217, 184, 95, 0.25);
+  --chat-panel-ink: #fff8e7;
+  --chat-panel-ink-rgb: 255, 255, 255;
+  --chat-panel-shadow-rgb: 1, 8, 20;
 }
 
 /* ── Place states (WP-3's PlaceState sets `data-place-state` on a place) ──
@@ -214,6 +244,28 @@
   --lock-filter: grayscale(0.9) saturate(0.5) brightness(0.85);
   --lock-dim: 0.45;
   --live-accent: hsl(15 88% 62%);
+
+  /* Active nav item: candleflame amber, flat (WP-1b). */
+  --nav-rail-active-color: rgba(var(--accent-rgb), 0.14);
+  --nav-rail-active-image: none;
+  --nav-pane-active-color: rgba(var(--accent-rgb), 0.14);
+  --nav-pane-active-image: none;
+
+  /* Chat launcher: near-black glass, amber hairline (WP-1b). */
+  --chat-bg: rgba(11, 11, 16, 0.95);
+  --chat-bg-hover: #14141c;
+  --chat-border: rgba(212, 168, 58, 0.45);
+  --chat-border-hover: rgba(240, 200, 112, 0.75);
+  --chat-ink: #f0e6d0;
+  --chat-accent: #f0c870;
+  --chat-ring: #f0c870;
+  --chat-glow-rgb: 212, 168, 58;
+  --chat-shadow-rgb: 0, 0, 0;
+  --chat-panel-bg: #0b0b10;
+  --chat-panel-border: rgba(212, 168, 58, 0.25);
+  --chat-panel-ink: #f0e6d0;
+  --chat-panel-ink-rgb: 240, 230, 208;
+  --chat-panel-shadow-rgb: 0, 0, 0;
 }
 
 /* Sky tint (WP-16) for the dark skins: moonlight takes the skin's ink, the veil its shadow. */
@@ -259,6 +311,32 @@
   --lock-filter: grayscale(1);
   --lock-dim: 0.4;
   --live-accent: hsl(15 80% 38%);       /* darker on a white scene: text-contrast */
+}
+
+/* ── The Dao only (WP-1b): black and white, no gold, no navy ──
+   Network School shares the block above but keeps its own look. */
+[data-skin="dao"] {
+  /* Active nav item: a soft grey wash, like the rail's own Dao fill. */
+  --nav-rail-active-color: rgba(10, 10, 10, 0.06);
+  --nav-rail-active-image: none;
+  --nav-pane-active-color: rgba(10, 10, 10, 0.06);
+  --nav-pane-active-image: none;
+
+  /* Chat launcher: a black pill (the Dao CTA), a white panel with a hairline. */
+  --chat-bg: #0a0a0a;
+  --chat-bg-hover: #262626;
+  --chat-border: #0a0a0a;
+  --chat-border-hover: rgba(10, 10, 10, 0.7);
+  --chat-ink: #ffffff;
+  --chat-accent: #ffffff;
+  --chat-ring: #0a0a0a;
+  --chat-glow-rgb: 10, 10, 10;
+  --chat-shadow-rgb: 0, 0, 0;
+  --chat-panel-bg: #ffffff;
+  --chat-panel-border: rgba(10, 10, 10, 0.14);
+  --chat-panel-ink: #0a0a0a;
+  --chat-panel-ink-rgb: 10, 10, 10;
+  --chat-panel-shadow-rgb: 0, 0, 0;
 }
 
 /* ── Karime: warm cream, charcoal ink ── */
