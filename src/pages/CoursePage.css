@@ -1,0 +1,53 @@
+/* ==========================================================================
+   CoursePage — gold surfaces of the free course player, on skin tokens
+   ==========================================================================
+   These used to be inline hex/rgba gold. Gold glass on a dark skin (Lunar)
+   or navy glass on a light one read as washed-out, so the Next button looked
+   disabled while it worked. Everything here reads the skin's primary-CTA
+   tokens (--skin-cta-*, defined per skin in src/index.css), so the button is
+   as loud as every other primary button in the skin it sits in. The gold
+   values are only fallbacks for a skin that defines no CTA tokens.
+
+   Rule of the file: enabled = full opacity + the skin's CTA surface;
+   disabled = dimmed, flat, greyed. The two never look alike.
+   ========================================================================== */
+
+.course-cta {
+  background: var(--skin-cta-bg, linear-gradient(135deg, rgba(244, 212, 114, 0.95) 0%, rgba(212, 175, 55, 0.85) 100%));
+  color: var(--skin-cta-text, #0a1628);
+  border: 1px solid var(--skin-cta-border, rgba(122, 81, 8, 0.45));
+  box-shadow: var(--skin-cta-shadow, none);
+  text-shadow: var(--skin-cta-text-shadow, none);
+  opacity: 1;
+  cursor: pointer;
+  transition: filter 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.course-cta:hover:not(:disabled) {
+  filter: brightness(1.12);
+}
+
+.course-cta:focus-visible {
+  outline: 2px solid var(--skin-cta-icon, currentColor);
+  outline-offset: 2px;
+}
+
+.course-cta:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+  text-shadow: none;
+  filter: grayscale(1);
+}
+
+/* Episode checkmark dot in the contents list (watched). */
+.course-dot-done {
+  background: var(--skin-cta-bg, linear-gradient(135deg, rgba(244, 212, 114, 0.95) 0%, rgba(212, 175, 55, 0.85) 100%));
+  color: var(--skin-cta-icon, #0a1628);
+  box-shadow: inset 0 0 0 1px var(--skin-cta-border, rgba(122, 81, 8, 0.45));
+}
+
+/* Progress bar fill. */
+.course-progress-fill {
+  background: var(--skin-accent-gold, #d4af37);
+}

@@ -9,8 +9,11 @@ import {
     flattenEpisodes,
     getPublishedModules,
     isEpisodePublished,
+    loadGuestWatched,
     loadLastEpisode,
     loadWatched,
+    mergeGuestWatched,
+    saveGuestWatched,
     saveLastEpisode,
     saveWatched,
     soundcloudEmbedUrl,
@@ -79,6 +82,25 @@ describe("progress storage", () => {
         expect(loadWatched(COURSE_SLUG)).toEqual([]);
         window.localStorage.setItem(`course-progress:${COURSE_SLUG}`, JSON.stringify({ a: 1 }));
         expect(loadWatched(COURSE_SLUG)).toEqual([]);
+    });
+
+    it("keeps a guest's watched episodes across a reload, apart from the account's", () => {
+        saveGuestWatched(COURSE_SLUG, ["F01E01"]);
+        expect(loadGuestWatched(COURSE_SLUG)).toEqual(["F01E01"]);
+        expect(loadWatched(COURSE_SLUG)).toEqual([]);
+    });
+
+    it("merges the guest's episodes into the account on sign-in, without duplicates", () => {
+        saveWatched(COURSE_SLUG, ["F01E02", "F01E01"]);
+        saveGuestWatched(COURSE_SLUG, ["F01E01", "F01E03"]);
+        expect(mergeGuestWatched(COURSE_SLUG)).toEqual(["F01E02", "F01E01", "F01E03"]);
+        expect(loadWatched(COURSE_SLUG)).toEqual(["F01E02", "F01E01", "F01E03"]);
+        expect(loadGuestWatched(COURSE_SLUG)).toEqual([]);
+    });
+
+    it("merge with no guest list leaves the account list as it is", () => {
+        saveWatched(COURSE_SLUG, ["F01E01"]);
+        expect(mergeGuestWatched(COURSE_SLUG)).toEqual(["F01E01"]);
     });
 
     it("remembers the last episode", () => {
