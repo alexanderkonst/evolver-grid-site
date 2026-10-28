@@ -57,7 +57,7 @@ const titleRules: TitleRule[] = [
   { match: (path) => path.startsWith("/game/collaborate"), title: "Party & Guild" },
   { match: (path) => path.startsWith("/game/events"), title: "Gatherings" },
   { match: (path) => path.startsWith("/game/meet"), title: "Meet" },
-  { match: (path) => path.startsWith("/game/coop"), title: "The Forge" },
+  { match: (path) => path.startsWith("/game/coop"), title: "Town Hall" },
   { match: (path) => path.startsWith("/game/next-move"), title: "Next Move" },
   { match: (path) => path === "/game", title: "Game" },
   { match: (path) => path.startsWith("/resources/personality-tests"), title: "Personality Tests" },

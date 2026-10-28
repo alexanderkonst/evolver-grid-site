@@ -244,7 +244,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     key: "town-hall",
     name: "Town Hall",
     line: "Build ventures together.",
-    // /game/coop is a legacy redirect (→ /game/build → /ubb) in App.tsx.
+    // Town Hall v0 (WP-12): src/pages/spaces/CoopSpace.tsx.
     to: "/game/coop",
     rule: {
       // Opens on the J12 victory the player records on the Quest Board (WP-11).
