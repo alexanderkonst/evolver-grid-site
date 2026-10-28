@@ -661,3 +661,208 @@ Applied first to the Journey modules J1–J12 when WP-5 lands; Evolver keeps the
 - circle venue: a fire on the beach, a host venue, or both.
 
 **Accepted (Sasha, 2026-10-27: «Давай пока так»):** load the public directory into a private layer only, so each practitioner gets a pre-built, unpublished stall shown to them at first contact as a gift ("this is you, want to claim it?"). It becomes public only when its owner claims it. This refines rule 5 (§16.3) to "private import, public by claim". First step: a private preview of the unclaimed stalls for Sasha; the data stays out of this public repo.
+
+## 17. Shift offers per module (2026-10-27)
+
+*Applies [`docs/templates/shift-offer.md`](../templates/shift-offer.md) (PST 173, Sell the Shift, Not the Content) to every module of the game. Written by Evolver, 2026-10-27, from §13–§14 and the code at main (`src/data/journeySequence.ts`, `src/data/villagePlaces.ts`); no code was changed. Module names are as in code: Journey id (`JOURNEY_SEQUENCE`), route, village place key. Offer lines are in English (product language). Where no library technology fits honestly, the module is marked **Craft** rather than forced. **For the game loop:** these lines can be wired into each module's Intro (headline + button, §14.4) and the checks into its Outro later; nothing here is wired yet. The guarantee wording ("guaranteed" as the checkable shift, or money-back style) is Sasha's open fork (shift-offer.md §6) and is not used in the lines below.*
+
+### 17.1 Journey modules
+
+**J1 · Zone of Genius** · `find-top-talent` · `/zone-of-genius/entry` · place `reception`
+- Template used: module-form.md (Intro → one button → result → Outro); Top Talent prompt `src/prompts/user/zoneOfGeniusPrompt.ts`
+- Technology carried: PST 5 From Invisible Gift to Articulated Genius · also PST 56 Externalized Self-Recognition
+- A (their words): "I'm good at many things and I can't say what makes me me."
+- B: they **see** their top talent named in one sentence that fits only them; they **do** save it to their account and enter the village as themselves.
+- Offer line: **You will see your top talent named in one sentence that fits only you, and you will step into the village as yourself.**
+- Self-check: they rate the reveal 1–10 on the Outro (8+ = landed), and the snapshot is saved (`zog_snapshots`).
+- Gap: the 1–10 ritual is not yet on this Outro (WP-5, §14.5); two buttons still compete on the Intro.
+
+**J2 · Mission Discovery** · `discover-mission` · `/mission-discovery` · place `house`
+- Template used: module-form.md; Mission Discovery prompt `src/prompts/user/missionDiscoveryPrompt.ts`
+- Technology carried: PST 94 The Unique Face of Eternity (nearest honest fit: a mission is the fit one unique face is for)
+- A: "I don't know what is mine to do in the world; I do what comes."
+- B: they **see** what is theirs to do, in their own words; they **do** commit to it (the committed mission row).
+- Offer line: **You will see what is yours to do in the world, in your own words, and you will commit to it.**
+- Self-check: the committed mission in the save file + their 1–10 on the Outro.
+- Gap: Outro has no 1–10 and no return to the village yet (§14.5).
+
+**J3 · Spectrum Reading (soul colours)** · no Journey id · not built · place `house` (faded room)
+- Template used: none yet (module not built, §9)
+- Technology carried: none named yet
+- A / B: not defined.
+- Offer line: **none: no module, no promise.**
+- Gap: the module itself; the room stays faded with its line (§14.7.7).
+
+**J4 · QoL Map** · `assess-qol` (optional) · `/quality-of-life-map/assessment` · place `house`
+- Template used: module-form.md
+- Technology carried: **Craft** (it does carry a real seeing, "your level is set by your weakest domain", but no library technology names it yet: a library candidate for Sasha, meta-template §7.8)
+- A: "My life is sort of fine, sort of not; I can't tell where to put my effort."
+- B: they **see** their real level, private to them, and the one domain that sets it; they **do** pick that domain as this month's focus.
+- Offer line: **You will see your real level, private to you, and the one domain that sets it, and you will choose it as your focus.**
+- Self-check: the snapshot (`qol_snapshots`) + the domain they choose, written by them.
+- Gap: no "choose a focus" step exists; the Intro goes straight into the assessment.
+
+**J5 · Asset Mapping** · `map-assets` · `/asset-mapping` · place `house`
+- Template used: module-form.md; Asset Mapping prompt `src/prompts/extraction/assetMappingPrompt.ts`
+- Technology carried: PST 10 The Business You're Already Standing On
+- A: "I'm starting from zero."
+- B: they **see** what they already hold, as an inventory; they **do** pick one asset to put to work this week.
+- Offer line: **You will see everything you already hold, laid out as your inventory, and you will pick one asset to put to work this week.**
+- Self-check: assets saved (`user_assets`) + the asset they pick, named by them.
+- Gap: the "pick one" step is not in the module; Outro lacks 1–10 and the way back.
+
+**J6 · Unique Business Builder: uniqueness slice** · `build-business` (part) · `/ubb/uniqueness` · place `workshop`
+- Template used: unique-business-canvas.md (artifact sequence, step 1) + module-form.md
+- Technology carried: PST 89 Self-Description Quality Determines Opportunity Quality · also PST 128 The Name Is the Result
+- A: "When people ask what I do, I ramble."
+- B: they **see** their uniqueness in one phrase that is theirs; they **do** use it as their intro or bio the same day.
+- Offer line: **You will see your uniqueness in one phrase that is unmistakably yours, and you will use it to introduce yourself today.**
+- Self-check: their own body score on the phrase, 9+/10 (PST 158 check), recorded as V3.
+- Gap: no Journey Intro/Outro for this slice yet (§14.5, "wrap two slices").
+
+**J7 · Unique Business Builder: tagline slice** · `build-business` · `/ubb/*` (tagline step) · place `workshop`
+- Template used: unique-business-canvas.md + module-form.md; stall auto-assembly §14.12
+- Technology carried: PST 158 It Descends into the Body · also PST 10, PST 22 (the process is the storefront)
+- A: "I have a business in my head that makes sense and changes nothing."
+- B: they **see** the tagline of their unique business and feel it as true; they **do** let it open their stall in the Market.
+- Offer line: **You will see the tagline of your unique business and feel it is true, and you will open your stall in the Market with it.**
+- Self-check: body score 9+/10 a few days later on rereading (theirs, not ours) + the stall exists (V4).
+- Gap: same as J6; the delayed reread is not prompted anywhere.
+
+**J8 · Webinar** · no Journey id · linked from `/build/mastermind` · place `academy` (`live`)
+- Template used: broadcast run-of-show (Hark specialty, dated; no repo template yet: gap in templates README)
+- Technology carried: open until the webinar plan exists; tentatively PST 53 The MEET Principle (they cannot unsee the cost of staying the same)
+- A: "I keep circling the same question about my work."
+- B: tentatively, they **see** the cost of staying the same; they **do** take the next seat (Mastermind) or book a call.
+- Offer line (draft, **not for use**: webinar copy waits for Sasha's plan, hold of 2026-10-23): You will see what staying the same is costing you, and you will choose your next step before the hour is out.
+- Self-check: attendance (V5) + a booking or seat taken within 48 h.
+- Gap: no measurable B until the content is set; no Intro/Outro (§14.5).
+
+**J9 · Mastermind** · no Journey id · `/build/mastermind` · place `fire-circle` ( `live`: Nov 9–10, $222)
+- Template used: mastermind-host (Hark specialty: 2 live sessions + 7 days of integration); course-from-source.md for the recorded parts
+- Technology carried: PST 158 It Descends into the Body · also PST 57 Campfire Networking
+- A: "I get insights in sessions and lose them by Tuesday."
+- B: they **see** their next move held by a circle until it is theirs; they **do** take one real step in the world during the 7 days and report it to the circle.
+- Offer line: **You will see your next move clearly, held by a circle for a full week, and you will take it in the real world before the week is out.**
+- Self-check: the real step reported in the circle (their words) + V6 with 1–10.
+- Gap: the checkout is still `mailto:` (§14.5); no Outro.
+
+**J10 · 21-day mastery practice** · no Journey id · live, Quest Board check-in only · place `academy`
+- Template used: none in the repo (practice runs live)
+- Technology carried: **Craft** (the practice is not written down in the repo, so no shift can be named honestly yet)
+- A / B: not defined beyond completion.
+- Offer line: **none as a promise**; invitation only: "Practise for 21 days with others walking the same path."
+- Self-check: 21 check-ins on the Quest Board (V7).
+- Gap: no written practice, no B beyond completion.
+
+**J11 · First price** · no Journey id · Quest Board self-report · place `market` (real world)
+- Template used: module-form.md, real-world quest (Intro → «I did it» → Outro, §14.5)
+- Technology carried: PST 38 Sacred Exchange Restores the Flow (the money shadow)
+- A: "I don't feel I have the right to charge for this."
+- B: they **see** that the price is the container that lets the work land; they **do** say their price to one real client.
+- Offer line: **You will see why your price is part of the gift, and you will say it out loud to one real client.**
+- Self-check: «I did it» with who and what price, in their words (V8) + 1–10.
+- Gap: the Quest Board real-world quest is not built yet.
+
+**J12 · First sale (the Slipper)** · no Journey id · Quest Board self-report (checkout data later) · place `market`
+- Template used: module-form.md, real-world quest
+- Technology carried: PST 102 The Guru Loop and the Skin-in-the-Game Antidote (proof that leaves the loop) · also PST 166 (economy first)
+- A: "I'm not sure anyone will pay me for being me."
+- B: they **see** proof in the world, not in the game; they **do** receive their first payment for their own offer.
+- Offer line: **You will see proof in the world that someone pays you for being you, and you will receive your first payment for your own offer.**
+- Self-check: the recorded sale (self-report now, checkout data later) → Town Hall opens.
+- Gap: not built; the check needs the sale record.
+
+**J12 · Market and your stall** · `/game/marketplace/*`, `/p/:slug` · place `market`
+- Template used: stall auto-assembly (§14.12) + module-form.md
+- Technology carried: PST 22 The Process IS the Storefront
+- A: "I'd need months and a website before I could sell anything."
+- B: they **see** that their stall already stands, assembled from what they played; they **do** send its link to one person.
+- Offer line: **You will see your stall already standing, built from what you've played, and you will send it to one person today.**
+- Self-check: the stall is published and its link has been opened by someone else.
+- Gap: link sharing and visits are not tracked.
+
+**J13 · Town Hall** · `/game/coop` (today a wrong redirect to `/ubb`) · place `town-hall`
+- Template used: none yet (v0: residents' income + your voice)
+- Technology carried: PST 166 Everyone Looks at Self-Governance, I Look at the Economy (as the design law; no player module yet)
+- Offer line: **none: not built.**
+- Gap: the module itself.
+
+**opt · Oracle Reading ($37)** · `deeper-access` (`ORACLE_READING`) · inside place `oracle`
+- Template used: Top Talent deep reveal (`src/prompts/user/zoneOfGeniusPrompt.ts` deeper view)
+- Technology carried: PST 6 From Articulated Genius to Living Venture · also PST 5
+- A: "I know my talent, but I don't see how it becomes income."
+- B: they **see** how their top talent turns into income; they **do** pick one path to try first.
+- Offer line: **You will see how your top talent turns into income, and you will choose the first path to try.**
+- Self-check: the Scroll in the inventory + the path they pick + 1–10.
+- Gap: the item is greyed today; the "pick a path" step does not exist.
+
+### 17.2 Places outside the Journey and the frame
+
+**Quest Board** · MAIN QUEST · place `quest-board`
+- Template used: module-form.md (the village hint = the next Intro's promise)
+- Technology carried: PST 49 The One-Button Engine
+- A: "There's too much; I don't know what's next."
+- B: they **see** one next move; they **do** it today.
+- Offer line: **You will see the one move that matters next, and you will make it today.**
+- Self-check: the quest marked done (victory).
+- Gap: real-world quests (J10–J12) not built.
+
+**Your House (Character Sheet)** · `/game/me/overview` · place `house`
+- Template used: module-form.md + §14.7
+- Technology carried: PST 56 Externalized Self-Recognition · also PST 115 Articulation Is the Mechanism of Growth
+- A: "Bits of me are scattered across tests and notes."
+- B: they **see** themselves gathered in one place, in their own words; they **do** open the next room.
+- Offer line: **You will see who you are gathered in one place, in your own words, and you will open the next room of your house.**
+- Self-check: victories on the shelf grow; the next room opened.
+- Gap: WP-8 (beauty, structure) in progress.
+
+**Café** · MEET · place `cafe`
+- Template used: AI Matchmaker Brief (`docs/02-strategy/briefs/matchmaker_brief_v4.31.md`) + match-why prompt `src/prompts/user/matchWhyPrompt.ts`
+- Technology carried: PST 134 Recursive Likeness × Complementarity (the trust equation)
+- A: "I meet lots of people and rarely the right ones."
+- B: they **see** who resonates with them and why; they **do** meet one of them.
+- Offer line: **You will see who resonates with you and exactly why, and you will meet one of them.**
+- Self-check: a mutual intro accepted and a meeting held (their report).
+- Gap: meetings held are not recorded, only intros sent.
+
+**Co-working** · PARTY & GUILD · place `coworking`
+- Template used: AI Matchmaker Brief + intro emails
+- Technology carried: PST 130 The Complementarity Gradient (with the Day 166 correction, PST 134)
+- A: "I need a partner who has what I lack, and I don't know where to look."
+- B: they **see** a partner who has what they lack and shares their pattern; they **do** start one piece of work together.
+- Offer line: **You will see the partner who holds what you lack, and you will start one piece of work together.**
+- Self-check: a first joint task named by both.
+- Gap: no record of joint work.
+
+**Oracle** · AI OS · place `oracle`
+- Template used: AI OS system prompt (`system-prompts/v5.2/system-prompt.md`)
+- Technology carried: **Craft** (a tool; nearest PST 119 Bring Your Own Clerk)
+- Offer line: **none as a promise**; service line: "Ask your AI, already briefed on your top talent."
+- Gap: no measurable B.
+
+**`/ignite` · the $555, 2-hour session** · Sasha's stall in the Market
+- Template used: session-script.md
+- Technology carried: PST 125 The Social Physics of the Mirror
+- A: "I've pivoted so many times I can't say what my business is."
+- B: they **see** their lifelong pattern as a one-sentence business; they **do** send the first message to one named person, in the session.
+- Offer line: **You will see your lifelong pattern as a one-sentence business you recognize as yours, and you will send your first message before we hang up.**
+- Self-check: they say the sentence in their own words and recognize it as theirs (the live guarantee: "If you don't leave with a one-sentence business you recognize as yours: you don't pay"); the message sent.
+- Gap: page title still says «Free 45 min» (#100, §14.5).
+
+**Title `/` and Village map `/village`** · the frame
+- Technology carried: **Craft** (navigation and the frame of the game; they carry the player to the modules that carry shifts)
+- Offer line: none.
+
+**Tutorial lore** · `take-playbook`, `see-path`, `see-dashboard` (extras)
+- Technology carried: **Craft** (lore, no state)
+- Offer line: none.
+
+### 17.3 Summary
+- **Strong shift (named technology + a check the player runs):** J1 Zone of Genius, J6 uniqueness phrase, J7 tagline, J9 Mastermind, J11 first price, J12 first sale, `/ignite` session; workable with a small gap: J2 Mission, J5 Assets, Market/stall, Oracle Reading, Quest Board, Your House, Café, Co-working.
+- **Craft (no honest library shift yet):** J4 QoL Map (real seeing, library candidate), J10 21-day practice, Oracle (AI OS), Title and Village map, Tutorial lore.
+- **No offer (not built or not defined):** J3 Spectrum Reading, J13 Town Hall, J8 Webinar (waits for Sasha's plan).
+- **Three lines best suited to the webinar close and the Direction Call** (for Sasha to choose from; webinar copy still waits for his plan):
+  1. "You will see your top talent named in one sentence that fits only you, and you will step into the village as yourself."
+  2. "You will see your lifelong pattern as a one-sentence business you recognize as yours, and you will send your first message before we hang up."
+  3. "You will see your next move clearly, held by a circle for a full week, and you will take it in the real world before the week is out."
