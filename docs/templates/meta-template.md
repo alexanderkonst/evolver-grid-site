@@ -41,7 +41,7 @@
 
 ### 2b. Technology and template: BE and DO of one cycle
 *Sasha delegated the decision, 2026-10-27 20:41; written by Evolver.*
-- **A technology** (the Phase Shift Technology Library, `docs/01-vision/phase_shift_technology_library.md`, 161 numbered technologies) is a **shift in seeing**: a before → after that, once seen, cannot be unseen. It is the BE side of the cycle (PST 161, the Hexagon Cycle).
+- **A technology** (the Phase Shift Technology Library, `docs/01-vision/phase_shift_technology_library.md`, 172 numbered technologies) is a **shift in seeing**: a before → after that, once seen, cannot be unseen. It is the BE side of the cycle (PST 161, the Hexagon Cycle).
 - **A template** is the **repeatable path that carries a person through that shift without Sasha**. It is the DO side.
 - **Both directions.** A technology that grows a protocol becomes a template; a template, run and debriefed, births new technologies (laws found in the doing).
 - **Not a fifth lens, not a domain.** The library runs through all seven L1 domains and every lens; each template names the shift it carries in its meta-description (§6), or says "Craft" when it carries none (a skill, not a shift).

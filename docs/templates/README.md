@@ -102,7 +102,7 @@ Reusable methods for producing things from Sasha's work: one file per template, 
 | Dodecahedral Artifact 12+1 | PST library §37 | a 12+1-perspective artifact | Blueprint | an earlier form of holonic seeing | all | historical | **synthesized** → [holonic-seeing.md](./holonic-seeing.md) §5–6 (2026-10-27) |
 | Roasting Protocol | `docs/05-reference/roasting_protocol.md` (5 steps); `docs/08-content/appleseed_roasting_protocol.md`; roasts in `docs/05-specs/daily-loop/` | an artifact refined through adversarial seeing | Causal | truth sharpened before form is fixed | all | in use · 2026-01-24 → 2026-10-27 | **synthesized** → [roasting.md](./roasting.md) (2026-10-27), with PST 93 crash-test |
 | Holomap Builder | `.agent/skills/holomap-builder/SKILL.md`; `docs/holomaps/README.md`; `scripts/holomap-update/` | a holomap | Blueprint | wholes within wholes, drawn | all | in use · 2026-05-29 | keep |
-| PST library protocols | `docs/01-vision/phase_shift_technology_library.md` (161 numbered technologies; protocols at §48c, §57h, §62h, §64b) | named technologies with repeatable protocols | Causal | the library of moves the Meta-Template already knows | all | in use (living) | keep; future L2 entries are drawn from it one by one |
+| PST library protocols | `docs/01-vision/phase_shift_technology_library.md` (172 numbered technologies; protocols at §48c, §57h, §62h, §64b) | named technologies with repeatable protocols | Causal | the library of moves the Meta-Template already knows | all | in use (living) | keep; future L2 entries are drawn from it one by one |
 
 ### L1 · 3 Collectives
 *Emergence between people.*
