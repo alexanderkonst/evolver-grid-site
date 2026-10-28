@@ -127,6 +127,7 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                     <Sparkles className="w-4 h-4" style={{ color: "rgba(160, 109, 8, 0.85)" }} />
                     <span className="text-[10.5px]" style={EYEBROW_STYLE}>
                         {t("course.eyebrow")}
+                        {course.eyebrowKey ? ` · ${t(course.eyebrowKey)}` : null}
                     </span>
                 </div>
                 <h1
@@ -134,7 +135,7 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                     style={TITLE_STYLE}
                 >
                     <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-                        {course.title}
+                        {course.titleKey ? t(course.titleKey, { defaultValue: course.title }) : course.title}
                     </span>
                 </h1>
                 <p className="text-base sm:text-lg italic max-w-2xl" style={BODY_STYLE}>

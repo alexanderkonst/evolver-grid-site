@@ -928,6 +928,11 @@
       "uniqueProduct": "Primer producto único"
     }
   },
+  "courseCms": {
+    "title": "Tu experiencia interior como datos",
+    "eyebrow": "La conciencia se encuentra con la ciencia",
+    "tagline": "Verás que lo que has vivido por dentro, visiones, conciencia sin límites, el corazón espiritual, lo comparten muchas personas y tiene un lugar junto a la ciencia, con cada afirmación marcada como demostrada o hipótesis. Y nombrarás una experiencia tuya en ese lenguaje común, sin esconderla ni exagerarla. 15 episodios cortos, unos 30 minutos."
+  },
   "library": {
     "filterAll": "Todo",
     "durationMinutes": "{{count}} min",

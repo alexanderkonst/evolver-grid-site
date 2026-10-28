@@ -604,7 +604,7 @@ const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Secti
     // Second free course (public), same player: Consciousness Meets Science.
     const consciousnessMeetsScienceRow: Section = {
         id: "consciousness-meets-science",
-        label: "Consciousness Meets Science",
+        label: "Your Inner Experience Is Data",
         path: CMS_COURSE_PATH,
     };
 

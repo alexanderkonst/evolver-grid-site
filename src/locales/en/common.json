@@ -1816,7 +1816,9 @@
     }
   },
   "courseCms": {
-    "tagline": "How inner experience and modern science co-reveal the nature of reality."
+    "title": "Your Inner Experience Is Data",
+    "eyebrow": "Consciousness Meets Science",
+    "tagline": "You'll see that what you've lived inside, visions, boundless awareness, the spiritual heart, is shared by many people and has a place next to science, with every claim marked established or hypothesis. And you'll name one experience of your own in that shared language, without hiding it or overclaiming it. 15 short episodes, about 30 minutes."
   },
   "course": {
     "eyebrow": "Free mini-course",
@@ -5350,7 +5352,7 @@
           "library": "Practice Library",
           "paths": "Skill Tree",
           "dormantPotential": "Activate Your Dormant Potential",
-          "consciousnessMeetsScience": "Consciousness Meets Science"
+          "consciousnessMeetsScience": "Your Inner Experience Is Data"
         }
       },
       "marketplace": {

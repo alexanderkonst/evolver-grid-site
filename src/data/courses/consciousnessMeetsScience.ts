@@ -5,7 +5,7 @@
  * rendered by src/pages/CoursePage.tsx. Same rules as activateYourDormantPotential.ts:
  *  - `youtubeId` starting with "TBD" = not uploaded yet; the UI skips it.
  *  - Videos are Unlisted on YouTube (channel Integral Evolution, playlist
- *    "Consciousness Meets Science"); embedded via youtube-nocookie.com.
+ *    "Your Inner Experience Is Data · Consciousness Meets Science"); embedded via youtube-nocookie.com.
  *  - Episode titles stay English in every locale.
  * Source: Sasha's Medium article "Consciousness Meets Science" (course outline:
  * docs/08-content/VIDEO_PRODUCTION_PLAN.md); NotebookLM Explainer videos, 2026-10-28.
@@ -14,7 +14,10 @@ import type { CourseConfig, CourseModule } from "./types";
 
 export const CMS_COURSE_SLUG = "consciousness-meets-science";
 export const CMS_COURSE_PATH = `/grow/${CMS_COURSE_SLUG}`;
-export const CMS_COURSE_TITLE = "Consciousness Meets Science";
+// Shift title (PST 173, docs/templates/shift-offer.md; Sasha 2026-10-28). The old name
+// stays as the eyebrow line (courseCms.eyebrow) so the course is still recognizable.
+export const CMS_COURSE_TITLE = "Your Inner Experience Is Data";
+export const CMS_COURSE_SUBTITLE = "Consciousness Meets Science";
 
 export const CMS_COURSE_MODULES: CourseModule[] = [
     {
@@ -67,6 +70,8 @@ export const CMS_COURSE_MODULES: CourseModule[] = [
 export const CONSCIOUSNESS_MEETS_SCIENCE: CourseConfig = {
     slug: CMS_COURSE_SLUG,
     title: CMS_COURSE_TITLE,
+    titleKey: "courseCms.title",
+    eyebrowKey: "courseCms.eyebrow",
     taglineKey: "courseCms.tagline",
     modules: CMS_COURSE_MODULES,
     practices: [],
