@@ -349,3 +349,45 @@ describe("whatChanged: what is new since the last visit (§14.6)", () => {
     expect(whatChanged(VILLAGE_PLACES, new Set(open), save).line).toBeNull();
   });
 });
+
+describe("a guest with a finished test (WP-7b: result first, account only to save)", () => {
+  const guest = (done: JourneyItemId[] = []) => saveWith(done, { events: { "guest-result": true } });
+
+  it("the next move is «Save your character», at Your House, which stays closed", () => {
+    const save = guest();
+    const m = nextMove(VILLAGE_PLACES, save);
+    expect(m?.kind).toBe("step");
+    expect(m?.title).toBe("Save your character");
+    expect(m?.place.key).toBe("house");
+    expect(m?.to).toBe("/village/house");
+    expect(m?.result).toBeTruthy();
+    // The unlock order is untouched: the House opens when the top talent is saved to an account.
+    expect(placeState(place("house"), save)).toBe("closed");
+  });
+
+  it("Reception is no longer the glowing next move, and nothing else claims it", () => {
+    const s = statesOf(guest());
+    expect(s.reception).toBe("open");
+    expect(Object.values(s)).not.toContain("next");
+  });
+
+  it("once saved, the next move is the mission at Your House (J2)", () => {
+    const save = guest(["find-top-talent"]);
+    const m = nextMove(VILLAGE_PLACES, save);
+    expect(m?.step).toBe("discover-mission");
+    expect(m?.place.key).toBe("house");
+    expect(m?.title).not.toBe("Save your character");
+    expect(placeState(place("house"), save)).toBe("next");
+    expect(placeState(place("reception"), save)).toBe("done");
+  });
+
+  it("without a result on the device, a guest still starts at Reception", () => {
+    const m = nextMove(VILLAGE_PLACES, saveWith([], { events: { "guest-result": false } }));
+    expect(m?.place.key).toBe("reception");
+    expect(m?.step).toBe("find-top-talent");
+  });
+
+  it("changes nothing for callers that do not pass the event", () => {
+    expect(nextMove(VILLAGE_PLACES, saveWith([]))?.place.key).toBe("reception");
+  });
+});

@@ -30,7 +30,13 @@ export type PlaceEvent =
   | "productize-session"
   | "founder-academy"
   | "deeper-access"
-  | "spectrum-reading";
+  | "spectrum-reading"
+  /**
+   * A signed-out visitor holds a finished Top Talent result on this device (local guest save).
+   * Not a Journey step and not an unlock: Your House stays closed until the result is saved to
+   * an account (§14.3). It only decides the next move («Save your character», WP-7b).
+   */
+  | "guest-result";
 
 /** What a place can wait on: a Journey step being done, or a real event. */
 export type PlaceRequirement = JourneyItemId | PlaceEvent;
@@ -108,6 +114,13 @@ export const placeSaveFromSheet = (
   return { met, now };
 };
 
+/**
+ * A guest has seen their result but not saved it: the Journey's first step is still undone
+ * (it needs the account), yet taking the test is no longer the next move.
+ */
+export const awaitingSave = (save: PlaceSave): boolean =>
+  save.met["guest-result"] === true && save.met["find-top-talent"] !== true;
+
 /** The single next move on the Journey: first main step not done whose requirements are done. */
 export const nextJourneyStep = (save: PlaceSave): JourneyItemId | null => {
   const step = JOURNEY_MAIN.find(
@@ -146,6 +159,12 @@ export type NextMove<P extends MovePlace = MovePlace> = {
 };
 
 const QUEST_BOARD = "quest-board";
+/** The place that holds the save file; «Save your character» is done at its door (§14.3, WP-7b). */
+const SAVE_PLACE = "house";
+
+/** The next move for a guest who has a result and no account. */
+export const SAVE_CHARACTER_TITLE = "Save your character";
+const SAVE_CHARACTER_RESULT = "you'll keep your character, and Your House opens.";
 
 /**
  * The single next move for this save. The Journey's next step comes first, at the place
@@ -155,6 +174,23 @@ const QUEST_BOARD = "quest-board";
 export const nextMove = <P extends MovePlace>(places: readonly P[], save: PlaceSave): NextMove<P> | null => {
   const states = new Map(places.map((p) => [p.key, placeState(p, save)] as const));
   const offered = (p: P | undefined): p is P => !!p && states.get(p.key) !== "closed";
+
+  // A guest who finished the test: the next move is to save it. Your House is still closed
+  // (the unlock order is untouched); its door is where the save happens.
+  if (awaitingSave(save)) {
+    const house = places.find((p) => p.key === SAVE_PLACE);
+    if (house) {
+      return {
+        kind: "step",
+        place: house,
+        step: "find-top-talent",
+        title: SAVE_CHARACTER_TITLE,
+        result: SAVE_CHARACTER_RESULT,
+        to: `/village/${house.key}`,
+        optional: false,
+      };
+    }
+  }
 
   const stepId = nextJourneyStep(save);
   if (stepId) {
@@ -228,7 +264,8 @@ export const placeState = (place: PlaceInput, save: PlaceSave): PlaceStateName =
   if (isLiveNow(live, save.now)) return "live";
   if (steps && steps.length > 0 && steps.every((req) => isMet(save, req))) return "done";
   const next = nextJourneyStep(save);
-  if (next && steps?.includes(next)) return "next";
+  // Awaiting the save, the test is behind the guest: Reception is no longer the next move.
+  if (next && steps?.includes(next) && !awaitingSave(save)) return "next";
   return "open";
 };
 
