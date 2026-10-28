@@ -433,3 +433,32 @@ Method: [shift-offer.md](../templates/shift-offer.md) §1a (primitive vs shift; 
 Sasha confirmed scientism as one of them (2026-10-28).
 
 Sasha on this map (2026-10-28): «Супергуд!!! … Про это можно курс прямо делать!» Seed for a separate course: one episode per limiting worldview, each sold by its result in plain language (never naming the level or the virus). Many courses can grow from such maps; for now we have two and watch how they perform before adding more. Next: write the offer line from the grounded DO / FEEL / SEE results, in plain results language.
+
+### Episode by episode: primitive → what a person lives → plain promise (draft, Hark 2026-10-28; inferred from titles and the article, check against each text)
+
+Rule: the promise column is the only one that may reach people. Primitive and felt sense are for us.
+
+| Ep | Primitive | What a person lives (phenomenology) | Plain promise |
+|---|---|---|---|
+| C01E00 Mystics First | authority outside → knowing within | "I knew it before I could prove it." | Trust what you notice before you can explain it. |
+| C01E01 Two Sides of One Coin | split → wholeness | relief: nothing left to hide | Stop choosing between your head and your heart. |
+| C01E02 Inner Experience as Data | noise → signal | "my experience counts" | Treat what you feel as information worth checking. |
+| C02E01 Sacred Geometry, Boundless Awareness | small self → vastness | spaciousness, wide open | Recognize your boundless moments, and know you're not odd. |
+| C02E02 Third Eye, Inner Body | numb → sensing | aliveness in the body | Notice the quiet signals your body already gives. |
+| C02E03 Messages, Spiritual Heart | alone → addressed | warmth, being spoken to | Recognize meaningful messages without getting lost in them. |
+| C02E04 Tunnels and the Torus | fear of the unknown → familiarity | calm in strange states | Meet unusual experiences without fear. |
+| C03E01 Four Doors | locked → many ways in | "there's a way for me" | Find the door in that fits you. |
+| C03E02 You Are Not Alone | isolation → belonging | company | Know that millions have felt what you felt. |
+| C04E01 Holograms, Fractals, Emergence | fragments → the part holds the whole | wonder | See how every part carries the whole. |
+| C04E02 Quantum Fields, Entanglement | separate things → one connected field | awe, with honest limits | Know what physics really says, and what it doesn't. |
+| C04E03 The Meditating Brain | vague → measurable | confidence | Know what meditation actually changes in you. |
+| C05E01 The Integral Map | many clashing views → one map | clarity | Place any claim on one map, calmly. |
+| C05E02 A Universe of Living Pixels | dead universe → living whole | at home | Feel yourself a living part of a living universe. |
+| C05E03 The Mystic's Role Returns | spectator → participant | purpose | Take up the role that's yours. |
+
+**Offer line candidates (results language, for Sasha to choose):**
+1. Stop choosing between your head and your heart: in 15 short videos, see how what you feel inside and what science finds outside tell one story.
+2. Feel at home in the universe again, without giving up your rational mind.
+3. Take your inner experience seriously, and talk about it so both your skeptical and your spiritual friends nod.
+
+**Conscious communication checklist (every title, hook, email line):** says what the person will notice, feel or do; uses words they would say; no level names, no diagnoses, no jargon; one promise per line; honest about what science does not yet show.
