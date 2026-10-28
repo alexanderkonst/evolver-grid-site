@@ -28,7 +28,7 @@ Each entry in this library is a technology — a seeing instrument that produces
 
 ## ⟡ Executive Summary & 27-Perspective Synthesis
 
-> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 173 as of October 27, 2026) stay the source of truth.*
+> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 174 as of October 28, 2026) stay the source of truth.*
 
 This is the R&D engine of the whole venture: a growing library of seeing instruments, each named by the transformational result it delivers, from cosmogenesis (Prime Radiant) through uniqueness articulation, the founder-first inversion, and myth-to-movement, up to the recent cluster on ripeness, transition, the mirror, and the network of sovereigns. They do not stack like a portfolio; they nest, each one refracting through all the others. Held together they are a single field seen from many faces (concentric polymathy). Over 2026 the collection converged on one spine: articulation is the mechanism of growth, recognition replaces persuasion, the mirror is the product, and a network coheres through well-formed edges rather than a center. Every playbook move, product, and pricing decision downstream traces to a numbered technology here.
 
@@ -9249,3 +9249,42 @@ Other prisms of the same cycle: **4** (seasons, elements); **8** (7+1, two squar
 - *Technology 103: The Splitting Principle — Shelf and Cathedral*: sell the result people can name, deliver what has no name yet.
 - *Technology 102: The Guru Loop and the Skin-in-the-Game Antidote*: promise only what the person can verify outside our own loop.
 - `docs/templates/shift-offer.md` (2026-10-27): the template that turns any template, module or product into an offer.
+
+---
+
+## Technology 174: The Product Map: Shifts × Paths (карта продуктов: сдвиги × пути) (oral, Oct 28, 2026)
+
+> *Oral · October 28, 2026 · chat with Hark. Provenance: dictated by Sasha right after PST 173 (Sell the Shift, Not the Content). Where PST 173 says what one offer sells (a named shift), this one says what a whole business is: a map of shifts and the paths that deliver them. He asked for it to be both a library technology and a template (`docs/templates/product-map.md`).*
+
+### 🫀 Essence — in Sasha's words
+
+1. > «Каждый уникальный бизнес - это создание уникальной карты продуктов, специализируясь в своей нише сдвигов (сознания или физической реальности).
+   > Карта продуктов - это фазовые сдвиги × реплицируемые и упрощенные пути их реализации. У одной технологии может быть несколько путей разной глубины: видео, модуль игры, сессия. А один путь может нести несколько сдвигов.»
+   > — *chat of 2026-10-28, MST*
+
+   *(translation)* "Every unique business is the creation of a unique product map, specialising in its own niche of shifts (of consciousness or of physical reality). A product map is phase shifts × replicable and simplified paths of their realisation. One technology can have several paths of different depth: a video, a game module, a session. And one path can carry several shifts."
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* A business usually thinks of itself as a list of products: a course here, a session there, a membership on top, each added when it seemed like a good idea. The list has no inner logic, so it is hard to see what is missing, what repeats, and what the business is actually for. Seen as a map, the business has two axes. Down the side: the shifts it specialises in, its niche (of consciousness, or of physical reality). Across the top: the paths that deliver a shift, from light to deep (a video, a game module, a session), each one replicable and simplified so it runs without the founder re-inventing it. A product is one cell where a shift meets a path. One shift can be reached by many paths of different depth, and one path can carry several shifts. The uniqueness of the business is the uniqueness of its map: which shifts it owns and which paths it has built for them. The shift: from "a catalogue of products" to "a map of shifts × replicable paths, where every product is a cell and the empty cells show what to build next".
+
+### 🔥 Implications — AI draft
+
+- **1st order.** Every product is placed on the map: which shift (PST number) it carries, on which path, at which depth. A product that sits on no shift row is Craft, and the map shows it honestly.
+- **2nd order.** Product decisions are read off the map: a core shift with only a deep path needs a light one (the door); a shift with only light paths needs a deep one (where the price lives, PST 173 price by depth). A new path built once (a game module, a video) is reused across many shifts.
+- **3rd order.** The niche of shifts becomes the identity of the business: two businesses with the same formats are different businesses if their rows differ, and a business grows by deepening its rows, not by adding unrelated products.
+
+### Shape
+
+- **Shape:** **Grid of light**: rows of shifts, columns of paths by depth, lit cells where a product exists.
+- **Infographic (one line):** A grid with shift arrows (A → B) as rows on the left and path icons along the top from a small play button (video) through a game tile and a circle of chairs to a fire (session, circle); some cells glow with a small offer card, others are empty outlines; caption: your business is your map.
+
+### Cross-references — Connects to
+
+- *Technology 173: Sell the Shift, Not the Content*: each lit cell of the map is one shift offer.
+- *Technology 169: The Template of Templates*: a path is a template; a template names the shift it carries.
+- *Technology 161: The Hexagon Cycle*: shift = BE, path = DO; the map is the cycle laid out as a business.
+- *Technology 160: Function, Not Form*: the format of a path does not change the shift it carries.
+- *Technology 114: The Holonic Wants→Products Matrix*: an earlier matrix of products by layer; the product map reads them by shift and path.
+- *Technology 103: The Splitting Principle — Shelf and Cathedral*: light paths as the shelf, deep paths as the cathedral.
+- `docs/templates/product-map.md` (2026-10-28): the template that draws a business's product map.
