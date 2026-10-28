@@ -1,3 +1,5 @@
+> Synthesized into docs/templates/roasting.md (2026-10-27). This file is kept as a source.
+
 # Appleseed Methodology: Roasting Protocol
 
 > This document describes the iterative refinement process that transforms raw AI output into high-signal Appleseed.

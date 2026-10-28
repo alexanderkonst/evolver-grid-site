@@ -12,6 +12,7 @@ Reusable methods for producing things from Sasha's work: one file per template, 
 | [unique-business-canvas.md](./unique-business-canvas.md) | A founder's whole business on half a page: the artifact sequence with gates, the pain slicer, the deepening engine, the PMF hypothesis loop; synthesized from 9 sources | in use (9 canvases, UBB, `deepen-*`) |
 | [spec-handoff.md](./spec-handoff.md) | An issue an agent can finish cold, three build gates, evidence that counts, PR rules and the review before merge; synthesized from 6 tellings | in use (Hark → Claude Code / Codex) |
 | [module-form.md](./module-form.md) | The one form of every place, room and module: Intro → one button → result → Outro, the victories ritual, the real choice, the lock rule, the Koster check, build and polish gates; synthesized from 9 sources | in use (Journey J1–J12, WP-5) |
+| [roasting.md](./roasting.md) | The next version of anything: critique rounds without fixing (fidelity), the crash-test (viability), roast gates in builds, the live roast after a publish; synthesized from 5 sources | in use (Appleseed, `deepen-*`, roast gates, live roasts) |
 
 *Folder created 2026-10-27 (Sasha: «IMPORTANT»).*
 
@@ -99,7 +100,7 @@ Reusable methods for producing things from Sasha's work: one file per template, 
 | Vibe Synthesis | `.agent/vibe-synthesis.md` | portable field activation | Unity | the field carried into a new conversation | Oracle | historical · 2026-04-16 | keep |
 | Holonic Seeing (27 perspectives) | Hark specialty `holonic-seeing`; `.agent/skills/holonic-seeing/SKILL.md`; `docs/01-vision/phase_shift_technology_library.md` §15e, §15g, §15i; `docs/01-vision/universal_ontology.md` §Output Protocol | a 27-perspective synthesis | Unity | the Meta-Template seeing anything as a whole | all (seeing instrument) | in use | **synthesized** → [holonic-seeing.md](./holonic-seeing.md) (2026-10-27); sources keep a pointer |
 | Dodecahedral Artifact 12+1 | PST library §37 | a 12+1-perspective artifact | Blueprint | an earlier form of holonic seeing | all | historical | **synthesized** → [holonic-seeing.md](./holonic-seeing.md) §5–6 (2026-10-27) |
-| Roasting Protocol | `docs/05-reference/roasting_protocol.md` (5 steps); `docs/08-content/appleseed_roasting_protocol.md`; roasts in `docs/05-specs/daily-loop/` | an artifact refined through adversarial seeing | Causal | truth sharpened before form is fixed | all | in use · undated | keep; merge Appleseed variant |
+| Roasting Protocol | `docs/05-reference/roasting_protocol.md` (5 steps); `docs/08-content/appleseed_roasting_protocol.md`; roasts in `docs/05-specs/daily-loop/` | an artifact refined through adversarial seeing | Causal | truth sharpened before form is fixed | all | in use · 2026-01-24 → 2026-10-27 | **synthesized** → [roasting.md](./roasting.md) (2026-10-27), with PST 93 crash-test |
 | Holomap Builder | `.agent/skills/holomap-builder/SKILL.md`; `docs/holomaps/README.md`; `scripts/holomap-update/` | a holomap | Blueprint | wholes within wholes, drawn | all | in use · 2026-05-29 | keep |
 | PST library protocols | `docs/01-vision/phase_shift_technology_library.md` (161 numbered technologies; protocols at §48c, §57h, §62h, §64b) | named technologies with repeatable protocols | Causal | the library of moves the Meta-Template already knows | all | in use (living) | keep; future L2 entries are drawn from it one by one |
 
@@ -222,7 +223,7 @@ Runners-up: mastermind-host (after the Nov 9–10 run), infographic-style-keeper
 - **Product / UX playbooks**: `ux_playbook.md` ≈ archive backup; `product_playbook.md` restructures the same text.
 - **Outreach copy**: Outreach Ops vs Customer Journey §5/§7, Communications universal template and emails, adjacent-founder template; two empty July stubs.
 - ~~**Session scripts**~~ → synthesized into [session-script.md](./session-script.md) (2026-10-27): Ignition SOP v1/v2, Mirror Session, Direction Call Script, Pre-Call Protocol, Reflection Proposal, Funnel v5, `/ignite`.
-- **Roasting**: Roasting Protocol vs Appleseed roasting vs daily-loop roast trio.
+- ~~**Roasting**~~ → synthesized into [roasting.md](./roasting.md) (2026-10-27): Roasting Protocol, Appleseed roasting, daily-loop roast trio, PST 93 crash-test, the live roast.
 - ~~**Module checklists**~~ → synthesized into [module-form.md](./module-form.md) (2026-10-27): implementation checklist ×2; module polish ×2.
 - **Copy voice**: Anti-AI style vs Humanizer vs Purity Check.
 - **Myth**: myth-maker vs Myth Broadcasts.

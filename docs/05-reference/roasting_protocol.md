@@ -1,3 +1,5 @@
+> Synthesized into docs/templates/roasting.md (2026-10-27). This file is kept as a source.
+
 # The Roasting Protocol
 ## Iterative Adversarial Refinement for High-Fidelity Artifacts
 

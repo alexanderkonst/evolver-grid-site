@@ -1,3 +1,5 @@
+> Synthesized into docs/templates/roasting.md (2026-10-27). This file is kept as a source.
+
 # Daily Loop Product Roast
 
 > **Roast Gate #1: Product Playbook**
