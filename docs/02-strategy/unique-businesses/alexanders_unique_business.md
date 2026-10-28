@@ -353,11 +353,13 @@ v1 (same day) wrongly modelled one webinar per month without the container; corr
 
 
 ### 12. Ticket phrase for the Nov 4 webinar (draft, 2026-10-28)
-*Mechanic from the strategy package «продаём сдвиги» (Sasha's yes, 2026-10-28): at the start of the webinar each person writes their one-sentence phrase of uniqueness and rates it 0–10; at the end they rewrite and re-rate it. The phrase is their ticket (priority place) into the Founder-Market Fit Discovery Mastermind ($222); with consent, three are worked through live, and the before/after phrases and the rating difference go to the Proof Ledger as the first proof. The run-of-show stays Sasha's; no copy goes out until he gives the webinar plan and content. Three candidate lines for the invitation, Sasha picks or rewrites:*
+*Mechanic from the strategy package «продаём сдвиги» (Sasha's yes, 2026-10-28): at the start of the webinar each person writes their one-sentence phrase of uniqueness and rates it 0–10; at the end they rewrite and re-rate it. With consent, three are worked through live, and the before/after phrases and the rating difference go to the Proof Ledger as the first proof. The run-of-show stays Sasha's; no copy goes out until he gives the webinar plan and content.*
 
-1. "You'll see the one thread under everything you do, and you'll write it as one sentence: your ticket into the Mastermind."
+*Rule (Sasha, 2026-10-28): the webinar is presented as a standalone experience. Do not mention the Mastermind (or any next offer) in the invitation or the webinar copy; go step by step, otherwise we confuse, overload and may scare people off. Three candidate lines for the invitation, Sasha picks or rewrites:*
+
+1. "You'll see the one thread under everything you do, and you'll write it down as one sentence that is yours."
 2. "You'll see your top talent named in words that fit only you, and you'll rate that sentence 0 to 10 at the start and at the end, so you see your own shift."
-3. "You'll see why your gift stayed invisible, even to you, and you'll leave with a one-sentence draft of your business that opens the Mastermind door."
+3. "You'll see why your gift stayed invisible, even to you, and you'll leave with a one-sentence draft of what you're here to do."
 
 No guarantees, no numbers we cannot stand behind (shift-offer.md §5).
 
