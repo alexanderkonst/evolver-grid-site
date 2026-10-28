@@ -5,6 +5,8 @@ import GameShellV2 from "@/components/game/GameShellV2";
 import SoulDodecahedron from "@/components/SoulDodecahedron";
 import ProfilePictureUpload from "@/components/profile/ProfilePictureUpload";
 import { useCharacterSheet, type CharacterSheetSlot } from "@/hooks/useCharacterSheet";
+import { useModuleChoices } from "@/hooks/useModuleChoice";
+import { choiceDate } from "@/data/journeyChoices";
 import { useLocalizedDomains } from "@/modules/quality-of-life-map/qolConfig";
 import type { JourneyItemId } from "@/data/journeySequence";
 import { journeyStepRows } from "@/lib/journeyLabels";
@@ -47,6 +49,8 @@ const ProfileOverviewContent = () => {
     const { t } = useTranslation();
     const sheet = useCharacterSheet();
     const domains = useLocalizedDomains();
+    // WP-19: the decision each badge carries. Private to the player; absent for a guest.
+    const decisions = useModuleChoices();
 
     // Fonts are scoped to this page, as on the title screen.
     useEffect(() => {
@@ -275,16 +279,28 @@ const ProfileOverviewContent = () => {
                         <>
                             <p className="cs-sec__note">{t("characterSheet.victories.note")}</p>
                             <ul className="cs-list">
-                                {doneSlots.map((slot, i) => (
-                                    <li key={slot.id} className="cs-slot cs-victory" style={accentStyle(i)}>
-                                        <div className="cs-item">
-                                            <span className="cs-mono cs-item__no" aria-hidden="true">◆</span>
-                                            <span className="cs-item__label">
-                                                {t(`characterSheet.victories.${QUEST_KEYS[slot.id]}`)}
-                                            </span>
-                                        </div>
-                                    </li>
-                                ))}
+                                {doneSlots.map((slot, i) => {
+                                    const decision = decisions.available ? decisions.forStep(slot.id) : null;
+                                    return (
+                                        <li key={slot.id} className="cs-slot cs-victory" style={accentStyle(i)}>
+                                            <div className="cs-item">
+                                                <span className="cs-mono cs-item__no" aria-hidden="true">◆</span>
+                                                <span className="cs-item__label">
+                                                    {t(`characterSheet.victories.${QUEST_KEYS[slot.id]}`)}
+                                                </span>
+                                            </div>
+                                            {decision ? (
+                                                <p className="cs-sec__note cs-victory__choice">
+                                                    {decision.choice_text}
+                                                    <time className="cs-mono cs-victory__date" dateTime={decision.created_at}>
+                                                        {" "}
+                                                        {choiceDate(decision.created_at)}
+                                                    </time>
+                                                </p>
+                                            ) : null}
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </>
                     ) : (

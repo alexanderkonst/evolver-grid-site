@@ -77,6 +77,7 @@ import MensCircle from "./pages/MensCircle";
 import MensCircleThankYou from "./pages/MensCircleThankYou";
 import VentureDashboard from "./pages/VentureDashboard";
 import GameShellV2 from "./components/game/GameShellV2";
+import ChoiceFollowUp from "./components/game/ChoiceFollowUp";
 import { pathUsesLayoutShell, pathHidesLogo } from "./lib/shellRoutes";
 import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
 import IgniteSession from "./pages/IgniteSession";
@@ -885,7 +886,7 @@ const App = () => (
                   {/* The old XP-based GameMap is unrouted; /map now opens the Digital Village. */}
                   <Route path="/map" element={<Navigate to="/village" replace />} />
                   {/* One element for map and place so the two layers can crossfade. */}
-                  <Route path="/village/:place?" element={<Village />} />
+                  <Route path="/village/:place?" element={<><Village /><ChoiceFollowUp /></>} />
                   <Route path="/skills" element={<RequireAuth><GrowthPathsPage /></RequireAuth>} />
                   <Route path="/growth-paths" element={<RequireAuth><GrowthPathsPage /></RequireAuth>} />
                   <Route path="/resources/zog-intro-video" element={<RequireAuth><ResourcesZogIntroVideo /></RequireAuth>} />
