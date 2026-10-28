@@ -1190,6 +1190,8 @@ export type Database = {
           updated_at: string
           user_id: string | null
           username: string | null
+          village_presence_on: boolean
+          village_show_name: boolean
           visibility: string | null
           visible_community_ids: string[]
           xp_body: number
@@ -1266,6 +1268,8 @@ export type Database = {
           updated_at?: string
           user_id?: string | null
           username?: string | null
+          village_presence_on?: boolean
+          village_show_name?: boolean
           visibility?: string | null
           visible_community_ids?: string[]
           xp_body?: number
@@ -1342,6 +1346,8 @@ export type Database = {
           updated_at?: string
           user_id?: string | null
           username?: string | null
+          village_presence_on?: boolean
+          village_show_name?: boolean
           visibility?: string | null
           visible_community_ids?: string[]
           xp_body?: number
@@ -1498,6 +1504,30 @@ export type Database = {
           updated_at?: string | null
           user_id?: string
           zone_of_genius_completed?: boolean | null
+        }
+        Relationships: []
+      }
+      journey_victories: {
+        Row: {
+          created_at: string
+          id: string
+          rating: number
+          step_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          rating: number
+          step_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          rating?: number
+          step_id?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -1974,6 +2004,36 @@ export type Database = {
           },
         ]
       }
+      module_choices: {
+        Row: {
+          choice_text: string
+          created_at: string
+          followup: string | null
+          followup_at: string | null
+          id: string
+          step_id: string
+          user_id: string
+        }
+        Insert: {
+          choice_text: string
+          created_at?: string
+          followup?: string | null
+          followup_at?: string | null
+          id?: string
+          step_id: string
+          user_id: string
+        }
+        Update: {
+          choice_text?: string
+          created_at?: string
+          followup?: string | null
+          followup_at?: string | null
+          id?: string
+          step_id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       multiple_intelligences_assessments: {
         Row: {
           created_at: string
@@ -2379,6 +2439,45 @@ export type Database = {
           rating?: number
           tier?: string
           user_id?: string | null
+        }
+        Relationships: []
+      }
+      sales_events: {
+        Row: {
+          amount_cents: number | null
+          buyer_first_name: string | null
+          created_at: string
+          currency: string | null
+          external_ref: string | null
+          id: string
+          occurred_at: string
+          offer_ref: string | null
+          seller_user_id: string
+          source: string
+        }
+        Insert: {
+          amount_cents?: number | null
+          buyer_first_name?: string | null
+          created_at?: string
+          currency?: string | null
+          external_ref?: string | null
+          id?: string
+          occurred_at?: string
+          offer_ref?: string | null
+          seller_user_id: string
+          source: string
+        }
+        Update: {
+          amount_cents?: number | null
+          buyer_first_name?: string | null
+          created_at?: string
+          currency?: string | null
+          external_ref?: string | null
+          id?: string
+          occurred_at?: string
+          offer_ref?: string | null
+          seller_user_id?: string
+          source?: string
         }
         Relationships: []
       }
@@ -2820,6 +2919,42 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      village_particles: {
+        Row: {
+          avatar_url: string
+          created_at: string
+          display_name: string
+          id: string
+          place_key: string
+          status: string
+          text: string
+          uniqueness: string | null
+          user_id: string
+        }
+        Insert: {
+          avatar_url: string
+          created_at?: string
+          display_name: string
+          id?: string
+          place_key: string
+          status?: string
+          text: string
+          uniqueness?: string | null
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string
+          created_at?: string
+          display_name?: string
+          id?: string
+          place_key?: string
+          status?: string
+          text?: string
+          uniqueness?: string | null
+          user_id?: string
+        }
+        Relationships: []
       }
       visibility_settings: {
         Row: {
