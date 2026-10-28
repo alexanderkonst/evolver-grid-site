@@ -29,10 +29,6 @@ export interface CoursePractice {
 export interface CourseConfig {
     slug: string;
     title: string;
-    /** Optional i18n key for a localized title (falls back to `title`). */
-    titleKey?: string;
-    /** Optional i18n key for a course-name line appended to the eyebrow. */
-    eyebrowKey?: string;
     /** i18n key for the italic line under the title. */
     taglineKey: string;
     modules: CourseModule[];
