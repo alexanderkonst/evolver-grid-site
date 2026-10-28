@@ -12,7 +12,7 @@ describe("rail places", () => {
       "Oracle",
       "Café",
       "Co-working",
-      "Fire Circle",
+      "Mastermind",
       "Academy",
       "Workshop",
       "Market",
