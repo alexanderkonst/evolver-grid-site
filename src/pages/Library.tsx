@@ -58,11 +58,11 @@ const VideoCategoryFilter = ({
 }) => {
   const { t } = useTranslation();
   return (
-  <div className="flex gap-2 flex-wrap mb-6 justify-center">
+  <div className="flex gap-2 mb-6 p-0.5 md:p-0 overflow-x-auto scrollbar-hide md:flex-wrap md:justify-center md:overflow-visible">
     <button
       onClick={() => onSelect("all")}
       className={cn(
-        "px-4 py-2 rounded-full text-xs font-medium transition-all duration-300",
+        "px-4 py-2 min-h-[44px] md:min-h-0 shrink-0 whitespace-nowrap rounded-full text-xs font-medium transition-all duration-300",
         activeCategory === "all"
           ? "bg-[rgba(212,175,55,0.18)] ring-1 ring-[rgba(212,175,55,0.6)]"
           : "bg-[rgba(212,175,55,0.06)] ring-1 ring-[rgba(212,175,55,0.18)] hover:bg-[rgba(212,175,55,0.12)]"
@@ -80,7 +80,7 @@ const VideoCategoryFilter = ({
         key={cat.id}
         onClick={() => onSelect(cat.id)}
         className={cn(
-          "px-4 py-2 rounded-full text-xs font-medium transition-all duration-300",
+          "px-4 py-2 min-h-[44px] md:min-h-0 shrink-0 whitespace-nowrap rounded-full text-xs font-medium transition-all duration-300",
           activeCategory === cat.id
             ? "bg-[rgba(212,175,55,0.18)] ring-1 ring-[rgba(212,175,55,0.6)]"
             : "bg-[rgba(212,175,55,0.06)] ring-1 ring-[rgba(212,175,55,0.18)] hover:bg-[rgba(212,175,55,0.12)]"

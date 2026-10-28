@@ -971,7 +971,7 @@
     "guidedBy": "Guiado por {{teacher}}",
     "growthSequence": "Secuencia de crecimiento",
     "indexHero": "CRECE",
-    "indexIntro": "Seis pasos. Del talento disperso a la maestría centrada. Elige un paso del panel lateral — cada uno desbloquea el siguiente nivel de ver.",
+    "indexIntro": "Seis pasos. Del talento disperso a la maestría centrada. Elige un paso abajo o en el menú — cada uno desbloquea el siguiente nivel de ver.",
     "recommendedTitle": "Recomendado para ti",
     "recommendedReason": "Elegido para tu área de {{domain}} — tu punto de crecimiento actual",
     "qolInvite": "Haz la instantánea de Calidad de Vida para desbloquear recomendaciones personales.",
@@ -1565,7 +1565,8 @@
       "expand": "Expandir barra lateral"
     },
     "menu": {
-      "open": "Abrir menú"
+      "open": "Abrir menú",
+      "close": "Cerrar menú"
     }
   },
   "resetPassword": {

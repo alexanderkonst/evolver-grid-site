@@ -75,14 +75,15 @@ const ChatLauncher = () => {
             aria-label="Chat with us"
             // WP-1b: every colour is a --chat-* token (theme-tokens.css), so the
             // launcher follows the skin. Lapis / Lunar keep the navy + gold defaults.
-            className="group flex min-h-12 items-center gap-2.5 rounded-full border border-[color:var(--chat-border)] bg-[color:var(--chat-bg)] px-4 py-3 text-[color:var(--chat-ink)] shadow-[0_12px_40px_rgba(var(--chat-shadow-rgb),0.42),inset_0_1px_0_rgba(var(--chat-sheen-rgb),0.14)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-[color:var(--chat-border-hover)] hover:bg-[color:var(--chat-bg-hover)] hover:shadow-[0_16px_48px_rgba(var(--chat-shadow-rgb),0.5),0_0_20px_rgba(var(--chat-glow-rgb),0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--chat-ring)] focus-visible:ring-offset-2"
+            // Phone (<768px): a 48px round icon so it covers no CTA; the name stays in aria-label.
+            className="group flex h-12 w-12 min-h-12 items-center justify-center rounded-full border border-[color:var(--chat-border)] bg-[color:var(--chat-bg)] p-0 md:h-auto md:w-auto md:justify-start md:gap-2.5 md:px-4 md:py-3 text-[color:var(--chat-ink)] shadow-[0_12px_40px_rgba(var(--chat-shadow-rgb),0.42),inset_0_1px_0_rgba(var(--chat-sheen-rgb),0.14)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-[color:var(--chat-border-hover)] hover:bg-[color:var(--chat-bg-hover)] hover:shadow-[0_16px_48px_rgba(var(--chat-shadow-rgb),0.5),0_0_20px_rgba(var(--chat-glow-rgb),0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--chat-ring)] focus-visible:ring-offset-2"
           >
             <MessageCircle
               className="h-[19px] w-[19px] text-[color:var(--chat-accent)] transition-transform duration-300 group-hover:scale-105"
               strokeWidth={1.8}
               aria-hidden="true"
             />
-            <span className="font-sans text-[13px] font-medium tracking-[0.02em]">
+            <span className="hidden font-sans text-[13px] font-medium tracking-[0.02em] md:inline">
               Chat with us
             </span>
           </button>
