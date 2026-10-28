@@ -430,4 +430,6 @@ Method: [shift-offer.md](../templates/shift-offer.md) §1a (primitive vs shift; 
 | Magical / New-Age regression | anything mystical is true; feeling replaces checking | inflation | delusion, loss of credibility | same line; stay grounded and critical (C05E03) |
 | Integral (healthy) | both: inner and outer co-reveal reality | wholeness | — | the destination: the integral map, the mystic's role returns (C05) |
 
-Sasha confirmed scientism as one of them (2026-10-28). Next: write the offer line from the grounded DO / FEEL / SEE results, in plain results language.
+Sasha confirmed scientism as one of them (2026-10-28).
+
+Sasha on this map (2026-10-28): «Супергуд!!! … Про это можно курс прямо делать!» Seed for a separate course: one episode per limiting worldview, each sold by its result in plain language (never naming the level or the virus). Many courses can grow from such maps; for now we have two and watch how they perform before adding more. Next: write the offer line from the grounded DO / FEEL / SEE results, in plain results language.
