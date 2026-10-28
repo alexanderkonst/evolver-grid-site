@@ -10,6 +10,7 @@ import {
 } from "@/data/journeyModules";
 import { getVillagePlace, sceneObjectPosition } from "@/data/villagePlaces";
 import { placeSaveFromSheet, type PlaceStateName } from "@/lib/placeState";
+import { useLeave } from "@/lib/motion";
 import "./ModuleForm.css";
 
 /**
@@ -25,6 +26,9 @@ import "./ModuleForm.css";
  *
  * `state` is for previews and tests; by default it is read from the player's save, and the
  * button waits (disabled, never «closed») until the save has loaded.
+ *
+ * Motion (WP-15, src/lib/motion.ts): the scene settles in when the screen arrives; the one
+ * button fades and pushes the scene in, then calls `onStart`. Reduced motion: `onStart` at once.
  */
 
 type Props = {
@@ -40,6 +44,7 @@ const ModuleIntro = ({ module, onStart, state: forced, className }: Props) => {
   const sheet = useCharacterSheet();
   const headingId = useId();
   const place = getVillagePlace(module.place);
+  const { leaving, leave } = useLeave("fast");
 
   // A step with no requirement is never closed, so its button never waits for the save.
   const loading = forced === undefined && sheet.isLoading && moduleHasRequirements(module.id);
@@ -48,7 +53,7 @@ const ModuleIntro = ({ module, onStart, state: forced, className }: Props) => {
   const closed = state === "closed";
 
   return (
-    <section className={`mf mf--intro${className ? ` ${className}` : ""}`} aria-labelledby={headingId}>
+    <section className={`mf mf--intro${leaving ? " is-leaving" : ""}${className ? ` ${className}` : ""}`} aria-labelledby={headingId}>
       <Link className="mf__back" to="/village">
         ← Village
       </Link>
@@ -69,7 +74,7 @@ const ModuleIntro = ({ module, onStart, state: forced, className }: Props) => {
         }
         line={closed ? moduleClosedLine(module.id) : undefined}
         action={
-          <button type="button" className="mf__go" onClick={onStart} disabled={loading} aria-busy={loading || undefined}>
+          <button type="button" className="mf__go" onClick={(e) => leave(onStart, e)} disabled={loading} aria-busy={loading || undefined}>
             {module.verb} <span aria-hidden="true">→</span>
           </button>
         }

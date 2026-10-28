@@ -1523,7 +1523,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     onSpaceSelect={handleSpaceSelect}
                     compact={railMinimized}
                     className={cn(
-                        "h-dvh transform-gpu transition-[width] duration-200 ease-out",
+                        "h-dvh transform-gpu transition-[width] duration-[var(--motion-fast)] ease-[var(--motion-ease)]",
                         // On /ai-os desktop the shell is a true app-shell
                         // (parent is h-dvh overflow-hidden), so sticky is
                         // pointless and risky — use plain flex child.
@@ -1650,7 +1650,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 <div
                     data-pane="2"
                     className={cn(
-                        "transition-all duration-200 ease-out h-dvh overflow-hidden z-30 min-w-0 transform-gpu",
+                        "transition-all duration-[var(--motion-fast)] ease-[var(--motion-ease)] h-dvh overflow-hidden z-30 min-w-0 transform-gpu",
                         isAiOsRoute ? "shrink-0" : "sticky top-0",
                         sectionsPanelOpen ? "w-[260px]" : "w-0 basis-0"
                     )}
@@ -1824,7 +1824,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 {/* Mobile: Navigation View (Panel 1 + Panel 2) */}
                 <div
                     className={cn(
-                        "absolute inset-0 flex overflow-visible pl-px transition-transform duration-300 ease-out",
+                        "absolute inset-0 flex overflow-visible pl-px transition-transform duration-[var(--motion-base)] ease-[var(--motion-ease)]",
                         mobileView === "navigation" ? "translate-x-0" : "-translate-x-full"
                     )}
                     style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)' }}
@@ -1875,7 +1875,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 {/* Mobile: Content View with Back Button */}
                 <div
                     className={cn(
-                        "absolute inset-0 flex flex-col transition-transform duration-300 ease-out",
+                        "absolute inset-0 flex flex-col transition-transform duration-[var(--motion-base)] ease-[var(--motion-ease)]",
                         mobileView === "content" ? "translate-x-0" : "translate-x-full"
                     )}
                 >

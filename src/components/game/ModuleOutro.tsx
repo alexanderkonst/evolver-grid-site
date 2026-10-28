@@ -1,5 +1,6 @@
 import { useEffect, useId, useState, type FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useLeave } from "@/lib/motion";
 import LeaveParticle from "@/components/game/LeaveParticle";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
 import { useJourneyVictory } from "@/hooks/useJourneyVictory";
@@ -32,6 +33,10 @@ import "./ModuleForm.css";
  *
  * `result` is the fresh result when the module has it in hand (a just-typed mission); it
  * wins over what the save says, which may not have caught up yet.
+ *
+ * Motion (WP-15, src/lib/motion.ts): the screen fades in, then the badge fills with colour
+ * (§14.11, the «what opened» beat) and the facts follow; «Back to the village» fades the
+ * screen out before the village fades in. Reduced motion: all of it is an instant change.
  */
 
 type Props = {
@@ -49,6 +54,8 @@ const ModuleOutro = ({ module, result, className }: Props) => {
   const prompt = getJourneyChoice(module.id);
   const decision = useModuleChoice(prompt ? module.id : null);
   const labelId = useId();
+  const navigate = useNavigate();
+  const { leaving, leave } = useLeave("fast");
   const [pending, setPending] = useState<number | null>(null);
   const [note, setNote] = useState<string | null>(null);
   const [draft, setDraft] = useState("");
@@ -85,7 +92,7 @@ const ModuleOutro = ({ module, result, className }: Props) => {
   const showChoice = !!prompt && decision.available && decision.signedIn && !decision.loading;
 
   return (
-    <section className={`mf mf--outro${className ? ` ${className}` : ""}`} aria-label={module.outro.done}>
+    <section className={`mf mf--outro${leaving ? " is-leaving" : ""}${className ? ` ${className}` : ""}`} aria-label={module.outro.done}>
       <div className="mf__stage" data-place-state="done">
         <p className="mf__eyebrow">{module.outro.done}</p>
 
@@ -166,7 +173,7 @@ const ModuleOutro = ({ module, result, className }: Props) => {
         ) : null}
 
         <div className="mf__after">
-          <Link className="mf__go" to="/village">
+          <Link className="mf__go" to="/village" onClick={(e) => leave(() => navigate("/village"), e)}>
             Back to the village
           </Link>
           <LeaveParticle placeKey={module.place} api={particles} variant="scene" />

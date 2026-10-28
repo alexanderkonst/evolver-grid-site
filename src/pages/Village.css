@@ -19,7 +19,7 @@
   --vl-hair: rgba(var(--scene-ink-rgb), 0.14);
   --vl-serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
   --vl-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
-  --vl-fade: 0.9s;
+  --vl-fade: var(--motion-slow); /* WP-15: the village's crossfade is the slow step of the motion tokens */
   position: relative;
   min-height: 100vh;
   min-height: 100svh;
@@ -45,12 +45,26 @@
 /* ---------- Layers: map and place crossfade ---------- */
 .vl-layer {
   opacity: 0; visibility: hidden; pointer-events: none;
-  transition: opacity var(--vl-fade) ease, visibility 0s linear var(--vl-fade);
+  transition: opacity var(--vl-fade) var(--motion-ease-inout), visibility 0s linear var(--vl-fade);
 }
 .vl-layer.is-on {
   opacity: 1; visibility: visible; pointer-events: auto;
-  transition: opacity var(--vl-fade) ease, visibility 0s;
+  transition: opacity var(--vl-fade) var(--motion-ease-inout), visibility 0s;
+  /* A layer that mounts already on (arriving from another screen, or the first place visited)
+     has no «before» for a transition to start from, so it enters with a keyframe too. */
+  animation: motion-enter var(--vl-fade) var(--motion-ease-inout) backwards;
 }
+
+/* WP-15, village → place: the map zooms toward the place you chose while it fades out, and
+   the place settles in (see .vl-place__img). Coming back, the same moves run in reverse.
+   Origin = the place's pin (--vl-zx/--vl-zy, set on .vl-frame); the pins are laid out in %
+   of this same box, so the zoom lands on the building. `scale` is its own property: it does
+   not touch the drift animation's `transform`, and it moves no layout. */
+.vl-zoom {
+  position: absolute; inset: 0; transform-origin: var(--vl-zx, 50%) var(--vl-zy, 50%);
+  transition: scale var(--vl-fade) var(--motion-ease-inout);
+}
+.vl-map:not(.is-on) .vl-zoom { scale: var(--motion-zoom); }
 
 /* ---------- Map ---------- */
 .vl-map { position: relative; height: 100vh; height: 100svh; overflow: hidden; }
@@ -180,9 +194,15 @@
 .vl-place { position: fixed; inset: 0; z-index: 3; background: var(--vl-bg); }
 .vl-place__img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  /* object-position and transform-origin come per scene from its focal point */
-  animation: vl-burns 36s ease-in-out infinite alternate;
+  /* object-position and transform-origin come per scene from its focal point.
+     WP-15: on arrival the scene settles from --motion-settle (`scale`, beside the drift's
+     `transform`); `backwards` hands the property back when it ends, so leaving can push in. */
+  animation: motion-settle var(--vl-fade) var(--motion-ease) backwards, vl-burns 36s ease-in-out infinite alternate;
 }
+.vl-place__state > .ps-scene { overflow: hidden; }
+/* ENTER: the scene pushes in and the screen fades before the route changes (useLeave). */
+.vl-root.is-leaving { opacity: 0; transition: opacity var(--motion-base) var(--motion-ease-in); }
+.vl-root.is-leaving .vl-place__img { scale: var(--motion-zoom); transition: scale var(--motion-base) var(--motion-ease-in); }
 .vl-place::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background:
@@ -283,8 +303,16 @@
 
 /* A place that opened since the last visit blooms once; «New» is the same fact in a word. */
 .vl-new { margin-left: 8px; }
-.vl-pin.is-new .vl-dot::before { animation: vl-bloom 2.2s ease-out 1; }
-.vl-list li.is-new .vl-list__name { animation: vl-hint 1.4s ease-out; }
+.vl-pin.is-new .vl-dot::before { animation: vl-bloom var(--motion-reveal) var(--motion-ease) 1; }
+.vl-list li.is-new .vl-list__name, .vl-list li.is-reveal .vl-list__name { animation: vl-hint var(--motion-reveal) var(--motion-ease) backwards; }
+/* WP-15 reveal (§14.11): a place that got its colour since the last visit fills in once, after the
+   map has arrived. Lunar draws the colour as the pin's `::after` layer (lunar-world.css); its
+   resting opacity is the state's own, so the keyframe only names where it starts. Other skins
+   carry done on the dot, which blooms (above). */
+.vl-pin.is-reveal[data-place-state="done"]::after,
+.vl-pin.is-reveal[data-place-state="live"]::after {
+  animation: motion-enter var(--motion-reveal) var(--motion-ease) var(--motion-slow) backwards;
+}
 @keyframes vl-bloom {
   0% { transform: scale(0.4); opacity: 0; }
   45% { transform: scale(2.2); opacity: 1; box-shadow: 0 0 22px 8px var(--open-accent); }
@@ -377,7 +405,7 @@
   }
   .vl-list__line { display: block; margin-top: 6px; font-style: italic; font-weight: 300; font-size: 19px; color: var(--vl-ink-2); }
   .vl-list a:focus-visible .vl-list__name { outline: 1px solid var(--vl-accent); outline-offset: 4px; }
-  .vl-place__img { animation: none; }
+  .vl-place__img { animation: motion-settle var(--vl-fade) var(--motion-ease) backwards; } /* no drift on mobile; the settle stays */
   .vl-place__copy { padding-bottom: 56px; }
   .vl-mote { max-width: 62vw; font-size: 17px; }
   .vl-mote--0 { top: 12%; left: 6%; }
@@ -385,10 +413,14 @@
   .vl-mote--2 { top: 32%; left: 10%; }
 }
 
+/* WP-15: the transitions above read the motion tokens, which are 0 under reduced motion, so they
+   already land at once. What is switched off here is the ambient motion and the rest. */
 @media (prefers-reduced-motion: reduce) {
-  .vl-layer, .vl-layer.is-on { transition: none; }
+  .vl-layer, .vl-layer.is-on, .vl-zoom, .vl-root.is-leaving, .vl-root.is-leaving .vl-place__img { transition: none; }
+  .vl-layer.is-on { animation: none; }
   .vl-drift, .vl-place__img, .vl-dot::after, .vl-hint, .vl-moon__glow { animation: none; }
-  .vl-move__changed, .vl-move__card, .vl-pin.is-new .vl-dot::before, .vl-list li.is-new .vl-list__name { animation: none; }
+  .vl-pin.is-reveal[data-place-state]::after { animation: none; }
+  .vl-move__changed, .vl-move__card, .vl-pin.is-new .vl-dot::before, .vl-list li.is-new .vl-list__name, .vl-list li.is-reveal .vl-list__name { animation: none; }
   .vl-presence__glow { animation: none; opacity: 0.85; }
   .vl-sky-veil { transition: none; }
   .vl-dot::after { display: none; }

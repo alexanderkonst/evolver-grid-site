@@ -162,8 +162,26 @@
 
 .mf__after { display: flex; flex-direction: column; align-items: center; }
 
+/* ---------- Motion (WP-15) ----------
+ * One language with the village (src/index.css `--motion-*`, src/lib/motion.ts): a screen
+ * arrives by fading in, leaves by fading out, and a scene settles in / pushes in. Opacity,
+ * `scale` and `filter` only: nothing moves layout. Under prefers-reduced-motion the tokens
+ * are 0, so every rule below lands at once. */
+.mf { animation: motion-enter var(--motion-base) var(--motion-ease) backwards; }
+.mf__img { animation: motion-settle var(--motion-slow) var(--motion-ease) backwards; }
+/* the one button was pressed: the screen fades and the scene pushes in, then the next screen opens */
+.mf.is-leaving { opacity: 0; transition: opacity var(--motion-fast) var(--motion-ease-in); }
+.mf.is-leaving .mf__img { scale: var(--motion-zoom); transition: scale var(--motion-fast) var(--motion-ease-in); }
+
+/* Outro, the «what opened» beat (§14.11): the badge takes its colour in place, then what it
+   opened is said. The badge is hidden by the animation's own first frame, not by layout. */
+.mf--outro .mf__eyebrow { animation: motion-enter var(--motion-base) var(--motion-ease) backwards; }
+.mf--outro .mf__badge { animation: motion-fill var(--motion-reveal) var(--motion-ease) var(--motion-base) backwards; }
+.mf--outro .mf__facts { animation: motion-enter var(--motion-base) var(--motion-ease) calc(var(--motion-base) + var(--motion-reveal) / 2) backwards; }
+
 @media (prefers-reduced-motion: reduce) {
-  .mf__go, .mf__back, .mf__rate-btn, .mf__choice-btn { transition: none; }
+  .mf, .mf__img, .mf--outro .mf__eyebrow, .mf--outro .mf__badge, .mf--outro .mf__facts { animation: none; }
+  .mf__go, .mf__back, .mf__rate-btn, .mf__choice-btn, .mf.is-leaving, .mf.is-leaving .mf__img { transition: none; }
 }
 @media (max-width: 480px) {
   .mf__rate-btn { min-width: 40px; }
