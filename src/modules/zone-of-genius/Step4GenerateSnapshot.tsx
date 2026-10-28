@@ -37,7 +37,7 @@ import { useEntryPath } from "@/contexts/EntryPathContext";
 // component, single artifact shape, no drift). Replaces the prior
 // 3-box layout (hero + character card + superpowers).
 import RevelatoryHero from "@/components/game/RevelatoryHero";
-import TopTalentAuthGate from "./TopTalentAuthGate";
+import SaveCharacterCard from "./SaveCharacterCard";
 // Issue #52 (Sasha 2026-10-15), item 9: the "Generated in…" language notice
 // (from #51) was only wired into the deeper per-perspective view. Surface it
 // on the Step-4 reveal too — the guided lane stamps output_language on save,
@@ -77,7 +77,6 @@ const Step4GenerateSnapshot = () => {
   const [profileId, setProfileId] = useState<string | null>(null);
   const [isLoadingProfile, setIsLoadingProfile] = useState(true);
   const [isGuest, setIsGuest] = useState(true);
-  const [guestRevealUnlocked, setGuestRevealUnlocked] = useState(false);
   // Populated by background appleseed processing — single source of truth
   // for downstream (email funnel, profile cards, Excalibur).
   const [appleseed, setAppleseed] = useState<AppleseedData | null>(null);
@@ -328,10 +327,18 @@ const Step4GenerateSnapshot = () => {
     }
   };
 
-  const saveSnapshotToDatabase = async (snapshotText: string) => {
+  // Captured before the save fn so it can shadow `profileId` with a fresh id (WP-7a: a guest
+  // who just made an account is saved under the profile resolved AFTER signup).
+  const profileIdForSave = profileId;
+
+  const saveSnapshotToDatabase = async (
+    snapshotText: string,
+    profileIdOverride?: string,
+  ): Promise<boolean> => {
+    const profileId = profileIdOverride ?? profileIdForSave;
     if (!profileId) {
       toast.error("Failed to save your snapshot. Please reload and try again.");
-      return;
+      return false;
     }
 
     // Day 61 (Sasha 2026-05-04 22:30): false-alarm guard. The outer
@@ -546,6 +553,7 @@ ${snapshotText}`;
       } catch (telemetryErr) {
         console.warn("[Step4] logActionEvent failed (non-fatal):", telemetryErr);
       }
+      return true;
     } catch (err) {
       if (successToastFired) {
         // The snapshot WAS saved (we showed the success toast before
@@ -556,6 +564,7 @@ ${snapshotText}`;
           "[Step4] Post-success error caught (snapshot is saved; error happened after the success toast):",
           err,
         );
+        return true;
       } else {
         // Genuine save failure — fired before we could even claim
         // success. Tell the user. Issue #45 (Sasha 2026-10-14): log the
@@ -574,8 +583,27 @@ ${snapshotText}`;
             isSchemaDrift={isSchemaDriftError(err)}
           />,
         );
+        return false;
       }
     }
+  };
+
+  // «Save your character» (WP-7a): the guest just got an account. Save the guided result
+  // under the post-signup profile and send the player into the village. Without a session
+  // yet (email confirmation pending) there is nothing to write: just say what comes next.
+  const handleCharacterAccount = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.user) {
+      toast.success(t("zogEntry.saveCharacterConfirmEmail"), { duration: 8000 });
+      return;
+    }
+    setIsGuest(false);
+    const freshProfileId = await getOrCreateGameProfileId().catch(() => null);
+    if (!freshProfileId || !snapshotMarkdown) {
+      toast.error("Failed to save your snapshot. Please reload and try again.");
+      return;
+    }
+    if (await saveSnapshotToDatabase(snapshotMarkdown, freshProfileId)) navigate("/village");
   };
 
   const buildPrompt = () => {
@@ -769,18 +797,8 @@ ${snapshotText}`;
             <PremiumLoader size="lg" text="Discovering your Top Talent..." />
           </div>
         ) : parsedSnapshot ? (
-          isGuest && !guestRevealUnlocked ? (
-            <TopTalentAuthGate
-              resultPayload={buildSavePayload() as Record<string, unknown>}
-              assessmentVersion="guided-v1"
-              onSaved={() => {
-                setGuestRevealUnlocked(true);
-                toast.success(t("zogEntry.bannerResultSaved"), {
-                  duration: 5000,
-                });
-              }}
-            />
-          ) : (
+          // WP-7a: no wall before the reveal. A guest sees the result at once; the account
+          // is asked at «Save your character» under it.
           <>
             <div className="max-w-2xl mx-auto space-y-6">
               {/* Unified reveal artifact */}
@@ -1402,8 +1420,8 @@ ${snapshotText}`;
                 </div>
               </div>
             </div>
+            {isGuest && <SaveCharacterCard onAccount={handleCharacterAccount} />}
           </>
-          )
         ) : null}
       </main>
 

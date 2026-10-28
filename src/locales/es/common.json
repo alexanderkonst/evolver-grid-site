@@ -1256,7 +1256,7 @@
     },
     "journey": {
       "quizStep0": {
-        "label": "Paso 0 · Descubre en qué capítulo de tu viaje del héroe estás",
+        "label": "0. Descubre en qué capítulo de tu viaje del héroe estás",
         "retake": "Repetir el test"
       },
       "startHere": {
@@ -4562,6 +4562,13 @@
     "cardFasterSubtitle": "Más preciso que el test, salvo que tu IA apenas te conozca aún.",
     "cardGuidedTitle": "Guiado (10–15 min)",
     "cardGuidedSubtitle": "Haz la evaluación completa.",
+    "choiceHeading": "Encuentra tu talento principal en un minuto",
+    "ctaFindTopTalent": "Encontrar mi talento principal",
+    "saveCharacterLine": "Este es tu personaje. Guárdalo.",
+    "saveCharacterCta": "Guarda tu personaje",
+    "saveCharacterModalTitle": "Guarda tu personaje",
+    "saveCharacterModalDesc": "Crea una cuenta para conservar tu personaje y entra al pueblo.",
+    "saveCharacterConfirmEmail": "Casi listo. Confirma tu correo e inicia sesión para entrar al pueblo. Tu personaje está guardado.",
     "aiPromptHeading": "Copia este prompt en tu IA",
     "aiPromptSubtitle": "ChatGPT, Claude, Gemini: cualquiera sirve",
     "copyButton": "Copiar",

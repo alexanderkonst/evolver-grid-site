@@ -71,10 +71,16 @@ const Auth = () => {
     (window.localStorage?.getItem("ftt_entry_path") ||
       window.sessionStorage?.getItem("ftt_entry_path")) !== "build";
   const isOnboardingFlow =
-    !isCockpitRedirect && (mode === "signup" || claimMode || isMatchPathEntry); // tinted UI
-  // Match-path users are net-new — default them to Sign Up, not Log In.
+    !isCockpitRedirect && mode !== "login" && (mode === "signup" || claimMode || isMatchPathEntry); // tinted UI
+  // An explicit `?mode=` always wins (LOAD GAME on the title screen sends
+  // `?mode=login`: a returning player). Without one, match-path newcomers
+  // default to Sign Up, everyone else to Log In.
   const defaultTab =
-    mode === "signup" || (!isCockpitRedirect && isMatchPathEntry) ? "signup" : "login";
+    mode === "login"
+      ? "login"
+      : mode === "signup" || (!isCockpitRedirect && isMatchPathEntry)
+        ? "signup"
+        : "login";
   // Day 58+ (Sasha 2026-05-03): Tabs converted from uncontrolled to
   // controlled so the cross-device email-confirmation flow can flip
   // the user from Sign Up → Log In automatically when we detect they
@@ -520,7 +526,7 @@ const Auth = () => {
     ? t('auth.subtitleQol')
     : isCockpitRedirect
       ? t('auth.subtitleCockpit')
-      : isMatchPathEntry
+      : isMatchPathEntry && mode !== "login"
       ? t('auth.subtitleMatch')
       : isOnboardingFlow
         ? t('auth.subtitleOnboarding')

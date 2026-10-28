@@ -910,7 +910,11 @@ const App = () => (
                   </Route>
                                     <Route path="/zone-of-genius/appleseed" element={<RequireAuth><AppleseedView /></RequireAuth>} />
                   <Route path="/zone-of-genius/excalibur" element={<RequireAuth><ExcaliburView /></RequireAuth>} />
-                  <Route path="/zone-of-genius/entry" element={<RequireAuth><ZoneOfGeniusEntry /></RequireAuth>} />
+                  {/* WP-7a (2026-10-28): the test is public. A guest plays it from the title
+                      (NEW GAME → Reception → here) with no auth wall before the reveal; auth
+                      is asked at «Save your character» after it. Saved data still needs an
+                      account (SignupModal → migrateGuestDataToProfile). */}
+                  <Route path="/zone-of-genius/entry" element={<ZoneOfGeniusEntry />} />
                   {/* Day 47 (Sasha): assessment is now public — no login gate. Log-in
                       added friction AND showed the legacy shell; guests can now complete
                       the guided path and be offered to save on the result page. */}

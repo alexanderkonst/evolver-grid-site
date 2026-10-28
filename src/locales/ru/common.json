@@ -82,6 +82,13 @@
     "cardFasterSubtitle": "Точнее теста — если только твой ИИ ещё не знает тебя.",
     "cardGuidedTitle": "С сопровождением (10–15 мин)",
     "cardGuidedSubtitle": "Пройдите полную диагностику.",
+    "choiceHeading": "Найди свой главный талант за минуту",
+    "ctaFindTopTalent": "Найти мой главный талант",
+    "saveCharacterLine": "Это твой персонаж. Сохрани его.",
+    "saveCharacterCta": "Сохрани своего персонажа",
+    "saveCharacterModalTitle": "Сохрани своего персонажа",
+    "saveCharacterModalDesc": "Создай аккаунт, чтобы персонаж сохранился, и войди в деревню.",
+    "saveCharacterConfirmEmail": "Почти готово. Подтверди почту и войди, чтобы попасть в деревню. Твой персонаж сохранён.",
     "aiPromptHeading": "Скопируйте этот промпт в ваш ИИ",
     "aiPromptSubtitle": "ChatGPT, Claude, Gemini: подойдёт любой",
     "copyButton": "Копировать",
@@ -426,7 +433,7 @@
     },
     "journey": {
       "quizStep0": {
-        "label": "Шаг 0 · Узнай, в какой главе своего пути ты сейчас",
+        "label": "0. Узнай, в какой главе своего пути ты сейчас",
         "retake": "Пройти тест заново"
       },
       "startHere": {

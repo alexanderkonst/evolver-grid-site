@@ -58,8 +58,17 @@
 
 /* Every place unlit: the closed look of §14.3, pushed to night. */
 .wi-map--dark {
-  filter: var(--lock-filter, grayscale(0.9) saturate(0.6)) brightness(0.3);
+  filter: var(--lock-filter, grayscale(0.9) saturate(0.6)) brightness(0.24);
 }
+
+/* Night veil: keeps the opening scene dark in every skin until the gesture lights
+   Reception (it fades with the light). */
+.wi-night {
+  position: absolute; inset: 0; pointer-events: none;
+  background: rgba(var(--scene-bg-rgb), 0.4);
+  transition: opacity var(--wi-light-ms) ease-out;
+}
+.wi-root:not([data-phase="dark"]) .wi-night { opacity: 0; }
 
 /* The same map in full colour, revealed only around Reception. */
 .wi-lit {
@@ -151,12 +160,25 @@
 .wi-enter:hover, .wi-enter:focus-visible { background: var(--wi-open); color: var(--wi-bg); outline: none; }
 @keyframes wi-in { to { opacity: 1; } }
 
-/* Accessibility: tiny, low-contrast, keyboard-focusable skip; wakes up on focus/hover. */
+/* "Tap or press any key": visible until the first gesture, then it unmounts. It fades
+   in after a beat so the dark village is seen first, then breathes softly. */
+.wi-cue {
+  position: absolute; z-index: 2; left: 0; right: 0; margin: 0; text-align: center;
+  bottom: clamp(64px, 12vh, 128px); padding: 0 24px; pointer-events: none;
+  font-family: var(--wi-mono); font-weight: 300; font-size: 12px;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(var(--scene-ink-rgb), 0.62); text-shadow: 0 1px 18px rgba(var(--scene-shadow-rgb), 0.8);
+  opacity: 0; animation: wi-in 1.2s ease-out 1s forwards, wi-cue-pulse 3.6s ease-in-out 2.2s infinite;
+}
+@keyframes wi-cue-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+/* Quiet but visible, keyboard-focusable skip; wakes up on focus/hover. */
 .wi-skip {
   position: absolute; z-index: 3; right: 8px; bottom: 8px;
-  width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center;
-  background: none; border: 0; padding: 0; cursor: pointer;
-  font-family: var(--wi-mono); font-size: 14px; color: rgba(var(--scene-ink-rgb), 0.22);
+  min-width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center;
+  background: none; border: 0; padding: 0 14px; cursor: pointer;
+  font-family: var(--wi-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(var(--scene-ink-rgb), 0.5);
   transition: color 0.4s ease;
 }
 .wi-skip:hover, .wi-skip:focus-visible { color: rgba(var(--scene-ink-rgb), 0.8); }
@@ -173,5 +195,6 @@
   .wi-lit, .wi-bloom, .wi-breath, .wi-enter, .wi-skip { transition: none; }
   .wi-root[data-phase="dark"] .wi-breath { animation: none; opacity: 0.4; }
   .wi-root[data-phase="dark"][data-eager] .wi-breath { animation: none; opacity: 0.7; }
-  .wi-name, .wi-line, .wi-enter { animation: none; opacity: 1; }
+  .wi-name, .wi-line, .wi-enter, .wi-cue { animation: none; opacity: 1; }
+  .wi-night { transition: none; }
 }

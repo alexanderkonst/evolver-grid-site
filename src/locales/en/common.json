@@ -82,6 +82,13 @@
     "cardFasterSubtitle": "More precise than the test, unless your AI barely knows you yet.",
     "cardGuidedTitle": "Guided (10–15 min)",
     "cardGuidedSubtitle": "Take the full assessment.",
+    "choiceHeading": "Find your top talent in about a minute",
+    "ctaFindTopTalent": "Find my top talent",
+    "saveCharacterLine": "This is your character. Keep it.",
+    "saveCharacterCta": "Save your character",
+    "saveCharacterModalTitle": "Save your character",
+    "saveCharacterModalDesc": "Create an account so your character is kept, then step into the village.",
+    "saveCharacterConfirmEmail": "Almost there. Confirm your email, then log in to enter the village. Your character is kept.",
     "aiPromptHeading": "Copy this prompt into your AI",
     "aiPromptSubtitle": "ChatGPT, Claude, Gemini — any will work",
     "copyButton": "Copy",
@@ -425,7 +432,7 @@
     },
     "journey": {
       "quizStep0": {
-        "label": "Step 0 · See where you are in the entrepreneur's hero's journey",
+        "label": "0. See where you are in the entrepreneur's hero's journey",
         "retake": "Retake journey quiz"
       },
       "startHere": {

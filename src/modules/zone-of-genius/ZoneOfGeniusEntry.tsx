@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { trackPageView, trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
-import { ArrowRight, Copy, Check, Bot, ClipboardList, Sword } from "lucide-react";
+import { ArrowRight, Copy, Check, Sword } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PremiumButton } from "@/components/ui/PremiumButton";
 import { PasteTextarea, type PasteTextareaHandle } from "@/components/ui/paste-textarea";
@@ -36,7 +36,7 @@ import { saveAppleseed, saveExcalibur, loadSavedData, saveAppleseedToLocalStorag
 import AppleseedDisplay from "./AppleseedDisplay";
 import AppleseedRitualLoading from "./AppleseedRitualLoading";
 import ExcaliburDisplay from "./ExcaliburDisplay";
-import TopTalentAuthGate from "./TopTalentAuthGate";
+import SaveCharacterCard from "./SaveCharacterCard";
 import { clearGuestBuffers, freshRetakeState } from "./retake";
 import { formatSupabaseError, isSchemaDriftError } from "./formatSupabaseError";
 import { SaveErrorToastBody } from "@/components/ui/save-error-toast";
@@ -203,7 +203,6 @@ const ZoneOfGeniusEntry = () => {
 
     // Guest/Auth state
     const [isGuest, setIsGuest] = useState(true);
-    const [guestRevealUnlocked, setGuestRevealUnlocked] = useState(false);
     const [showSignupModal, setShowSignupModal] = useState(false);
     const [isSaved, setIsSaved] = useState(false);
 
@@ -545,7 +544,6 @@ const ZoneOfGeniusEntry = () => {
         setAiResponse(fresh.aiResponse);
         setError(fresh.error);
         setIsSaved(fresh.isSaved);
-        setGuestRevealUnlocked(fresh.guestRevealUnlocked);
         setStep(fresh.step);
     };
 
@@ -624,8 +622,8 @@ const ZoneOfGeniusEntry = () => {
         }
     };
 
-    const handleSaveAppleseed = async () => {
-        if (!appleseed) return;
+    const handleSaveAppleseed = async (): Promise<boolean> => {
+        if (!appleseed) return false;
 
         setIsSaving(true);
         try {
@@ -637,6 +635,7 @@ const ZoneOfGeniusEntry = () => {
                 if (redirectPath && returnPath !== "/game/me") {
                     setTimeout(() => navigate(redirectPath), 600);
                 }
+                return true;
             } else {
                 console.error("[ZoneOfGeniusEntry] Save failed:", result.error);
                 toast({
@@ -649,6 +648,7 @@ const ZoneOfGeniusEntry = () => {
                     ),
                     variant: "destructive",
                 });
+                return false;
             }
         } catch (err) {
             toast({
@@ -656,8 +656,36 @@ const ZoneOfGeniusEntry = () => {
                 description: t('zogEntry.toastSomethingWentWrongSaving'),
                 variant: "destructive",
             });
+            return false;
         } finally {
             setIsSaving(false);
+        }
+    };
+
+    // «Save your character» (WP-7a): the guest just got an account. Persist the result and
+    // send the player into the village. Without a session yet (email confirmation still
+    // pending) nothing is saved here: the guest buffer stays in localStorage and is
+    // migrated on the first sign-in, so we only tell them what to do next.
+    const handleCharacterAccount = async () => {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session?.user) {
+            systemToast.success(t("zogEntry.saveCharacterConfirmEmail"), { duration: 8000 });
+            return;
+        }
+        // The auth listener may already have flipped isGuest and started the auto-save
+        // effect; it reports its own failures, so do not write the same row twice.
+        if (hasSavedAppleseed.current) {
+            navigate("/village");
+            return;
+        }
+        // Otherwise claim the save before flipping the guest flag, so the effect stays out.
+        hasSavedAppleseed.current = true;
+        setIsGuest(false);
+        const saved = await handleSaveAppleseed();
+        if (saved) {
+            navigate("/village");
+        } else {
+            hasSavedAppleseed.current = false;
         }
     };
 
@@ -800,20 +828,9 @@ const ZoneOfGeniusEntry = () => {
     if (step === "appleseed-result" && appleseed) {
         return (
             <GameShellV2 hideNavigation={hideNav} hideLogo>
-                {isGuest && !guestRevealUnlocked ? (
-                    <TopTalentAuthGate
-                        resultPayload={appleseed as unknown as Record<string, unknown>}
-                        assessmentVersion="ai-v1"
-                        onSaved={(email) => {
-                            setAnonymousSave({ status: "sent", email });
-                            setGuestRevealUnlocked(true);
-                            systemToast.success(t("zogEntry.bannerResultSaved"), {
-                                duration: 5000,
-                            });
-                        }}
-                    />
-                ) : (
-                    <>
+                {/* WP-7a: no wall before the reveal. A guest sees their result at
+                    once; the account is asked at «Save your character» below it. */}
+                <>
                 {(anonymousSave.status === "sending" || anonymousSave.status === "error") && (
                     <div className="w-full max-w-3xl mx-auto px-5 pt-4">
                         {anonymousSave.status === "sending" && (
@@ -861,10 +878,10 @@ const ZoneOfGeniusEntry = () => {
                     1 minute →" CTA below the reveal. Renders nothing for
                     build-path users — AppleseedDisplay's existing CTAs are
                     the only thing they see. */}
+                {isGuest && <SaveCharacterCard onAccount={handleCharacterAccount} />}
                 <MatchFlowCta step="top-talent" />
                 {retakeControl}
-                    </>
-                )}
+                </>
             </GameShellV2>
         );
     }
@@ -1108,92 +1125,60 @@ const ZoneOfGeniusEntry = () => {
                             liquid-glass-dark + skin-cta-bg, bumped the
                             headings to Cormorant Garamond, kept the violet /
                             blue accent circles as subtle colored anchors. */}
-                        <div className="space-y-3">
+                        {/* WP-7a (game_of_being_you.md §14.5 row J1): ONE primary button,
+                            the result as a verb. The second path is a quiet text link. */}
+                        <div className="flex flex-col items-center gap-4">
                             <button
                                 onClick={() => setStep("ai-prompt")}
-                                className="group liquid-glass-dark w-full p-4 rounded-2xl text-left transition-all duration-300 hover:scale-[1.015] active:scale-[0.985] animate-in fade-in slide-in-from-bottom-2 duration-400 focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
+                                className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-6 sm:px-8 py-3.5 max-w-full text-base sm:text-lg font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none animate-in fade-in slide-in-from-bottom-2 duration-400"
                                 style={{
+                                    fontFamily: "'Cormorant Garamond', serif",
                                     color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
                                     backgroundImage:
                                         "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
                                     boxShadow:
                                         "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
+                                    textShadow:
+                                        "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
                                 }}
                             >
-                                <div className="flex items-center gap-4">
-                                    <div
-                                        className="p-3 rounded-full shrink-0 transition-colors duration-300"
-                                        style={{ backgroundColor: "rgba(var(--accent-bright-rgb), 0.18)" }}
-                                    >
-                                        <Bot className="w-5 h-5" style={{ color: "var(--accent-bright)" }} />
-                                    </div>
-                                    <div>
-                                        <p
-                                            className="text-lg font-semibold tracking-[0.01em]"
-                                            style={{
-                                                fontFamily: "'Cormorant Garamond', serif",
-                                                color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
-                                            }}
-                                        >
-                                            {t('zogEntry.cardFasterTitle')}
-                                        </p>
-                                        {/* Day 80 Wave 2.10: CTA subtitle pinned to
-                                            Source Serif 4 (was inheriting system
-                                            sans). One of three canonical fonts. */}
-                                        <p
-                                            className="text-xs mt-0.5 leading-relaxed"
-                                            style={{
-                                                fontFamily: "'Source Serif 4', Georgia, serif",
-                                                color: "var(--cta-text-soft)",
-                                            }}
-                                        >
-                                            {t('zogEntry.cardFasterSubtitle')}
-                                        </p>
-                                    </div>
-                                </div>
+                                <img
+                                    src={igniteLogo}
+                                    alt=""
+                                    aria-hidden="true"
+                                    className="h-4 w-auto opacity-80 transition-opacity group-hover:opacity-100"
+                                    style={{
+                                        filter: "drop-shadow(0 0 6px rgba(var(--accent-bright-rgb), 0.45))",
+                                    }}
+                                    draggable={false}
+                                />
+                                <span style={CTA_SMALL_CAPS_STYLE}>{t('zogEntry.ctaFindTopTalent')}</span>
+                                <ArrowRight
+                                    aria-hidden="true"
+                                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                                />
                             </button>
-
-                            <button
-                                onClick={handleStartManualAssessment}
-                                className="group liquid-glass-dark w-full p-4 rounded-2xl text-left transition-all duration-300 hover:scale-[1.015] active:scale-[0.985] animate-in fade-in slide-in-from-bottom-2 duration-400 focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
+                            {/* Day 80 Wave 2.10: subtitle pinned to Source Serif 4. */}
+                            <p
+                                className="text-xs leading-relaxed text-center max-w-xs"
                                 style={{
-                                    color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
-                                    backgroundImage:
-                                        "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(26,30,58,0.62) 50%, rgba(10,22,40,0.72) 100%))",
-                                    boxShadow:
-                                        "var(--skin-cta-shadow, 0 0 18px -4px rgba(240,194,127,0.45), 0 10px 24px -10px rgba(10,22,40,0.5))",
-                                    animationDelay: "100ms",
+                                    fontFamily: "'Source Serif 4', Georgia, serif",
+                                    color: "var(--skin-text-muted, rgba(26,30,58,0.78))",
+                                    textShadow: "var(--skin-text-halo-deep)",
                                 }}
                             >
-                                <div className="flex items-center gap-4">
-                                    <div
-                                        className="p-3 rounded-full shrink-0 transition-colors duration-300"
-                                        style={{ backgroundColor: "rgba(var(--accent-bright-rgb), 0.18)" }}
-                                    >
-                                        <ClipboardList className="w-5 h-5" style={{ color: "var(--accent-bright)" }} />
-                                    </div>
-                                    <div>
-                                        <p
-                                            className="text-lg font-semibold tracking-[0.01em]"
-                                            style={{
-                                                fontFamily: "'Cormorant Garamond', serif",
-                                                color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
-                                            }}
-                                        >
-                                            {t('zogEntry.cardGuidedTitle')}
-                                        </p>
-                                        {/* Day 80 Wave 2.10: pinned to Source Serif 4. */}
-                                        <p
-                                            className="text-xs mt-0.5 leading-relaxed"
-                                            style={{
-                                                fontFamily: "'Source Serif 4', Georgia, serif",
-                                                color: "var(--cta-text-soft)",
-                                            }}
-                                        >
-                                            {t('zogEntry.cardGuidedSubtitle')}
-                                        </p>
-                                    </div>
-                                </div>
+                                {t('zogEntry.cardFasterSubtitle')}
+                            </p>
+                            <button
+                                type="button"
+                                onClick={handleStartManualAssessment}
+                                className="text-[12px] transition-colors duration-300 tracking-wide hover:underline"
+                                style={{
+                                    color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
+                                    textShadow: "var(--skin-text-halo-deep)",
+                                }}
+                            >
+                                {t('zogEntry.guidedAssessmentLink')}
                             </button>
                         </div>
                     </div>
