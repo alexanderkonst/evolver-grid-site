@@ -67,7 +67,7 @@ Every meeting starts from a player's impulse: «сейчас было бы кл�
 ## 8. Open questions (for Sasha)
 1. Who you see: only 3 suggestions, or suggestions plus search? (Evolver: both; suggestions are the magic, search the freedom.)
 2. What "Open to" offers: Evolver: three choices plus city.
-3. ~~After yes: contacts by email, no chat~~ Decided (Sasha, 2026-10-28): on accept a 1:1 chat opens. Open: can anyone write to anyone directly, as on X, or only after an accepted invite?
+3. ~~After yes: contacts by email, no chat~~ Decided (Sasha, 2026-10-28): on accept a 1:1 chat opens. Decided (Sasha, 2026-10-28: «Я тоже»): the village is open, any resident can write to any resident directly, as on X. Invite to coffee stays as the gentle first step.
 4. Limits: up to 3 open invites at a time; "Not now" is silent?
 5. How "Now" presence works with few players online.
 
