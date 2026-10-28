@@ -310,7 +310,7 @@ const Village = () => {
                             onFocus={() => select(i)}
                           >
                             <span className="vl-dot ps-fade" aria-hidden="true" />
-                            <span className="vl-pin__name ps-fade">{p.name}</span>
+                            <span className="vl-pin__name">{p.name}</span>
                             <PlaceStateTag state={shown[i]} />
                           </Link>
                         )}
@@ -340,7 +340,7 @@ const Village = () => {
               {VILLAGE_PLACES.map((p, i) => (
                 <PlaceState key={p.key} as="li" state={shown[i]} tag={false} disabled={false}>
                   <Link to={`/village/${p.key}`}>
-                    <span className="vl-list__name ps-fade">{p.name}</span>
+                    <span className="vl-list__name">{p.name}</span>
                     <PlaceStateTag state={shown[i]} />
                     <span className="vl-list__line">{placeLine(p, shown[i])}</span>
                   </Link>

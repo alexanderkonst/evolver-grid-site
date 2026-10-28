@@ -10,8 +10,12 @@
   --vl-bg: var(--scene-bg);
   --vl-accent: var(--scene-accent);
   --vl-ink: rgba(var(--scene-ink-rgb), 0.92);
-  --vl-ink-2: rgba(var(--scene-ink-rgb), 0.62);
-  --vl-ink-3: rgba(var(--scene-ink-rgb), 0.5);
+  /* Secondary and tertiary ink carry the subtitle, «← Title» and the hover caption over the
+     map: lifted so they stay legible over the vignette in every skin. */
+  --vl-ink-2: rgba(var(--scene-ink-rgb), 0.82);
+  --vl-ink-3: rgba(var(--scene-ink-rgb), 0.7);
+  --vl-lock-ink: rgba(var(--scene-ink-rgb), var(--lock-label-alpha));
+  --vl-lock-chip: rgba(var(--scene-bg-rgb), var(--lock-label-bg-alpha));
   --vl-hair: rgba(var(--scene-ink-rgb), 0.14);
   --vl-serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
   --vl-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
@@ -231,6 +235,13 @@
 .vl-list .ps-tag { display: block; margin-top: 6px; }
 .vl-pin[data-place-state="closed"] .vl-dot::before { box-shadow: none; }
 .vl-pin[data-place-state="closed"] .vl-dot::after { display: none; }
+/* closed: faded, never unreadable. The name carries no ps-fade (that would stack the lock
+   filter, the lock opacity and a low-alpha ink into dark-on-dark); it reads the lock label
+   tokens instead, on a denser chip. The «Opens when…» line is the point of a closed place. */
+.vl-pin[data-place-state="closed"] .vl-pin__name { color: var(--vl-lock-ink); background: var(--vl-lock-chip); }
+.vl-pin[data-place-state="closed"].is-active .vl-pin__name { color: var(--vl-ink); }
+.vl-list li[data-place-state="closed"] .vl-list__name,
+.vl-list li[data-place-state="closed"] .vl-list__line { color: var(--vl-lock-ink); }
 .vl-pin[data-place-state="next"] .vl-dot::before {
   opacity: 1; background: var(--open-accent);
   box-shadow: 0 0 0 3px rgba(var(--scene-bg-rgb),0.85), 0 0 0 4px var(--open-accent), 0 0 20px 5px var(--open-accent);
