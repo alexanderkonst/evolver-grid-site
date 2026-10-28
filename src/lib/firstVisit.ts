@@ -56,3 +56,29 @@ export function markIntroSeen(): void {
 export function shouldShowWordlessIntro(): boolean {
   return !hasSeenIntro() && !hasSavedGame();
 }
+
+/** Where a guest's finished Top Talent reading waits on this device (written by saveToDatabase.ts). */
+const GUEST_APPLESEED_KEY = "guest_appleseed_data";
+
+/**
+ * The guest's finished Top Talent reading, or null. Read-only: it is the payload the
+ * «Save your character» flow sends. The Transition Quiz marker is a different result and is
+ * not counted here: it holds no reading to save.
+ */
+export function readGuestTopTalentPayload(): Record<string, unknown> | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = window.localStorage.getItem(GUEST_APPLESEED_KEY);
+    if (!raw) return null;
+    const parsed: unknown = JSON.parse(raw);
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed)
+      ? (parsed as Record<string, unknown>)
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+export function hasGuestTopTalentResult(): boolean {
+  return readGuestTopTalentPayload() !== null;
+}

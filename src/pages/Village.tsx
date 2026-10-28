@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { FONTS_HREF } from "@/lib/gameFonts";
@@ -24,6 +24,8 @@ import {
 import { useSoulColors } from "@/hooks/useSoulColors";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
 import { nextMove, placeLine, placeSaveFromSheet, placeState, type PlaceStateName } from "@/lib/placeState";
+import { hasGuestTopTalentResult, readGuestTopTalentPayload } from "@/lib/firstVisit";
+import TopTalentAuthGate from "@/modules/zone-of-genius/TopTalentAuthGate";
 import { useVillageChanges } from "@/hooks/useVillageChanges";
 import { PlaceState, PlaceStateTag } from "@/components/game/PlaceState";
 import { LunarPaths, LunarWorldSync } from "@/components/skin/LunarWorld";
@@ -44,7 +46,9 @@ import "./Village.css";
  * A closed place shows its faded scene and one line, «Opens when <real event>.
  * Inside: <result>.», with no ENTER. A guest sees Reception, Academy and Fire
  * Circle open and everything else closed; "I already live here" leads to /auth
- * (same `?redirect=` contract as RequireAuth). No barrier language.
+ * (same `?redirect=` contract as RequireAuth). No barrier language. A newcomer standing at the
+ * closed Your House gets the one action that opens it: «Find your top talent», or, with a
+ * finished test on this device, «Save your character» (WP-7b: result first, account to save).
  *
  * The map is the game screen (WP-6, §14.6): one next-move card (place · step · what it
  * gives · ENTER, from `nextMove`), one «what changed» line and a one-time reveal on places
@@ -124,6 +128,67 @@ const useSignedIn = () => {
     };
   }, []);
   return signedIn;
+};
+
+/**
+ * True while this browser holds a finished Top Talent reading that is not saved to an account.
+ * Read from the device (localStorage), so it re-reads when the tab regains focus or another tab
+ * writes it; a visitor who comes back from the test sees the village already knowing.
+ */
+const useGuestResult = (): boolean => {
+  const [has, setHas] = useState(hasGuestTopTalentResult);
+  useEffect(() => {
+    const read = () => setHas(hasGuestTopTalentResult());
+    window.addEventListener("focus", read);
+    window.addEventListener("storage", read);
+    return () => {
+      window.removeEventListener("focus", read);
+      window.removeEventListener("storage", read);
+    };
+  }, []);
+  return has;
+};
+
+/**
+ * Your House, closed, for a signed-out visitor (WP-7b: result first, account only to save).
+ * One primary action: no result yet → «Find your top talent» (Reception); a result but no
+ * account → «Save your character» (the same save as after the test, TopTalentAuthGate).
+ * «I already live here → sign in» stays beside it, quiet, for residents.
+ */
+const NewcomerPath = ({
+  hasResult,
+  onGo,
+  signInTo,
+}: {
+  hasResult: boolean;
+  /** Leave for Reception with the village's own exit motion. */
+  onGo: (e: MouseEvent<HTMLElement>) => void;
+  signInTo: string;
+}) => {
+  const [saving, setSaving] = useState(false);
+  const payload = hasResult ? readGuestTopTalentPayload() : null;
+  return (
+    <div className="vl-newcomer-path">
+      {payload ? (
+        saving ? (
+          <div className="vl-save">
+            <TopTalentAuthGate inline resultPayload={payload} assessmentVersion="ai-v1" title="Save your character" />
+          </div>
+        ) : (
+          <button type="button" className="vl-enter vl-newcomer" onClick={() => setSaving(true)}>
+            Save your character
+          </button>
+        )
+      ) : (
+        <Link className="vl-enter vl-newcomer" to="/village/reception" onClick={onGo}>
+          Find your top talent
+        </Link>
+      )}
+      <Link className="vl-mono vl-signin" to={signInTo}>
+        I already live here &rarr; sign in
+      </Link>
+    </div>
+  );
 };
 
 /** The real moon tonight. Re-read every ten minutes so a tab left open follows the sky. */
@@ -230,11 +295,15 @@ const Village = () => {
   // will turn out closed is drawn open and its ENTER is hidden, so a returning player
   // never sees the village fade and brighten again.
   const ready = !sheet.isLoading;
-  const save = placeSaveFromSheet(sheet, now);
+  // A finished test on this device counts for a visitor with no account (WP-7b): the next
+  // move becomes «Save your character». Once saved, the sheet's chain takes over.
+  const guestResult = useGuestResult();
+  const save = placeSaveFromSheet(sheet, now, { "guest-result": signedIn === false && guestResult });
   const states: PlaceStateName[] = VILLAGE_PLACES.map((p) => placeState(p, save));
   const shown: PlaceStateName[] = states.map((s) => (!ready && s === "closed" ? "open" : s));
-  // One next move and what changed since the last visit (WP-6, §14.6). Both wait for the save.
-  const move = ready ? nextMove(VILLAGE_PLACES, save) : null;
+  // One next move and what changed since the last visit (WP-6, §14.6). Both wait for the save;
+  // the move also waits for the session, so a guest never sees Reception flash before Save.
+  const move = ready && signedIn !== null ? nextMove(VILLAGE_PLACES, save) : null;
   const changes = useVillageChanges(sheet.userId, VILLAGE_PLACES, save, ready);
   const isNew = (p: VillagePlace) => changes.fresh.includes(p);
   // Places that took their colour since the last visit: the colour fills into them once (WP-15).
@@ -512,14 +581,24 @@ const Village = () => {
                       startOpen={hasParticleInvite(lastPlace.key)}
                     />
                   )}
-                  {/* A returning resident who is signed out can still sign in and come back here. */}
+                  {/* A returning resident who is signed out can still sign in and come back here.
+                      At Your House a newcomer also gets the one action that opens it. */}
                   {signedIn === false && lastState === "closed" ? (
-                    <Link
-                      className="vl-mono vl-signin"
-                      to={`/auth?redirect=${encodeURIComponent(lastPlace.to)}`}
-                    >
-                      I already live here &rarr; sign in
-                    </Link>
+                    lastPlace.key === "house" ? (
+                      <NewcomerPath
+                        key={guestResult ? "save" : "find"}
+                        hasResult={guestResult}
+                        onGo={(e) => leave(() => navigate("/village/reception"), e)}
+                        signInTo={`/auth?redirect=${encodeURIComponent(lastPlace.to)}`}
+                      />
+                    ) : (
+                      <Link
+                        className="vl-mono vl-signin"
+                        to={`/auth?redirect=${encodeURIComponent(lastPlace.to)}`}
+                      >
+                        I already live here &rarr; sign in
+                      </Link>
+                    )
                   ) : null}
                 </>
               }
