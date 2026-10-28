@@ -23,6 +23,8 @@
 
 > **Day 166 crown — Recursive Unique Business.** Sasha's business performs one living act at four scales: recognize recursive likeness, reveal the complementary difference, and meet sufficient ripeness for the difference to become value. AI gives the person, business, collective, and planetary field a living mirror, so each can recognize its own pattern and grow without losing sovereignty. Full formula and commercial projection: [Day 166 synthesis](#day-166--the-recursive-unique-business-tuesday-august-25-2026).
 
+> **2026-10-27 — the business as a product map.** Every product of this business is a packaged shift: a Phase Shift Technology (the new vision, point B) plus a template (the path from point A). The business is its product map: its niche of shifts × the replicable paths that deliver them, with the Mastermind as the meta-product where new technologies are born. Full section: [Product Map — the business as shifts × paths](#-product-map--the-business-as-shifts--paths-2026-10-27).
+
 **Current compression of the whole business:**
 
 > **I do exactly what life does: I recognize myself in another person, and the differences between us reveal the gift that belongs uniquely to them. When the person is ready, we turn the gift into value through an AI-native business that can recognize its own pattern, learn from reality, and grow without losing itself. The work completes when the founder can continue with healthy pride and, if they choose, perform the same act for another person through their own unique gift. The same living pattern scales from people to businesses, from businesses to collectives, and from collectives to planetary coordination: life flowers through children, crystallizes value through unique businesses, learns cooperation through collectives, and gradually recognizes itself as a planet.**
@@ -47,6 +49,48 @@ This is the playbook applied to Sasha's own business, and at the same time a com
 **✦ Crystallization (27th):** the canvas is only alive if it stays the single source of truth and the mirror never lags. The one discipline: update the artifact here the moment an insight deepens it — newest on top, nothing deleted — and keep live state in the Dashboard and roadmap, never frozen into this abstract.
 
 ---
+
+## ⭐ Product Map — the business as shifts × paths (2026-10-27)
+
+*Findings of Sasha and Evolver, 2026-10-27. Sasha's own words are quoted (Russian original); everything else is the written synthesis. Generic method for any founder: [Unique Business Playbook, The Product Method](../../03-playbooks/unique_business_playbook.md#the-product-method-shifts--paths-2026-10-27). Templates: [shift-offer.md](../../templates/shift-offer.md) (PST 173, one product) and [product-map.md](../../templates/product-map.md) (PST 174, the whole map).*
+
+### 1. Template = methodology = product
+A Phase Shift Technology is point B: a new vision. A template is the path to it from point A, the old vision. Together they make a product. Every product of this business is therefore a packaged shift, and the [Phase Shift Technology Library](../../01-vision/phase_shift_technology_library.md) is a catalogue of future products. With 172+ technologies on file the library works as a development lab: the question is not "what to sell" but "which shift gets a path first".
+
+### 2. The niche of shifts and the map
+Sasha's definition: «Каждый уникальный бизнес - это создание уникальной карты продуктов, специализируясь в своей нише сдвигов (сознания или физической реальности). Карта продуктов - это фазовые сдвиги × реплицируемые и упрощенные пути их реализации. У одной технологии может быть несколько путей разной глубины: видео, модуль игры, сессия. А один путь может нести несколько сдвигов.» (Every unique business is the creation of a unique product map, specialising in its niche of shifts, of consciousness or of physical reality. The product map is phase shifts × replicable, simplified paths that realise them. One technology can have several paths of different depth: a video, a game module, a session. And one path can carry several shifts.)
+
+- **This business's niche:** shifts of consciousness for founders and people who work with founders, in the territory the Executive Summary names (foggy power → a clear path; one's own uniqueness → a business that could only be theirs). The reference shift is the one the $555 session already guarantees: "If you don't leave with a one-sentence business you recognize as yours: you don't pay." *A one-sentence statement of the niche in Sasha's words is still to be written; this line is derived from the canvas.*
+- **Rows (shifts):** the technologies in the library, each with a before → after and a check.
+- **Columns (paths, light → deep):** the ladder below. Each rung is a path; each product is one cell (one shift on one path).
+
+| Path (light → deep) | Role on the map |
+|---|---|
+| **Game** | Showcase of paths: every module is a template with a named shift; the 1–10 rating at the end shows whether the person reached B |
+| **Course** (short videos) | A light, replicable path that runs without Sasha live ([course-from-source.md](../../templates/course-from-source.md)) |
+| **Direction Call** (free, 45 min) | The entry door, on /ignite together with the webinar |
+| **$555 Founder-Market Fit session** (2 hours, 1:1) | Full recognition: the one-sentence business, under the /ignite guarantee |
+| **Founder-Market Fit Discovery Mastermind** | A held group shift, and the meta-product (§3) |
+
+Price follows the depth of the shift, not the volume of content (bands: [shift-offer.md §7](../../templates/shift-offer.md)). More hours or more modules never raise a rung's price; a deeper, verified shift does.
+
+### 3. The Mastermind as meta-product
+Sasha: «Мастермайнд — мета-продукт. Там рождаются новые технологии, и цикл крутится на людях в живой реальности.» (The Mastermind is a meta-product. New technologies are born there, and the cycle turns on people in living reality.) It has two roles at once: a path on the map (a held shift for a group, $222 on the first run, Nov 9–10, 2026, per the Webinar Engine case below), and the engine that adds new rows to the map, because each run with live people surfaces technologies that then get their own paths.
+
+### 4. The moat
+The steps can be copied; the vision they carry is born only with the founder. A competitor can lift every template in this repository and still lack the seeing that produced it and keeps producing the next one. That is the moat, and it is why the library and the Mastermind matter more than any single product.
+
+### 5. The test for any new product
+Before a new product is built or sold, it answers: which shift does it carry; who comes in (A); who leaves (B); how do we know the shift happened, in a form the person names themselves. No answer means Craft (a skill or service sold as such), not a product. The answer is written on a shift-offer sheet; the offer line reads "You will see… and you will…".
+
+### 6. Sales language
+Describe A in the client's own words and B as what they will see and do. Name the path between them later, after entry.
+
+### 7. Related decisions of 2026-10-27
+- Entry door: the 45-minute Direction Call on /ignite, plus the webinar.
+- Mastermind name: **Founder-Market Fit Discovery Mastermind**.
+- The canvas has six parts: Uniqueness, Shadow, Myth, Tribe, Transition, Promised Land ([unique-business-canvas.md](../../templates/unique-business-canvas.md)). The longer canvases below stay as genealogy.
+- Guarantee for shift offers: Sasha's open choice between A (only the checkable shift) and B (the shift plus money back). Precedent for B on /ignite: "If you don't leave with a one-sentence business you recognize as yours: you don't pay." ([shift-offer.md §6](../../templates/shift-offer.md))
 
 ## ⭐ Business Case — The Webinar Engine v1 (Sasha, October 22, 2026)
 
@@ -646,6 +690,14 @@ This is the collective-scale form of the Noble = Free antidote: the gift is not 
 
 *Day 48 (April 22, 2026) original snapshot; refreshed newest-on-top. The canvas sprawls further down — this is the top-of-the-file glance.*
 
+> ### 2026-10-27 — entry door, ladder, product map
+>
+> **Entry door:** the 45-minute Direction Call on /ignite, plus the webinar (group lane: [Webinar Engine](#-business-case--the-webinar-engine-v1-sasha-october-22-2026)).
+>
+> **Ladder, read as a product map (paths by depth of shift):** game → course → Direction Call → $555 Founder-Market Fit session (2 hours) → **Founder-Market Fit Discovery Mastermind**, which is also the meta-product where new technologies are born. Detail: [Product Map](#-product-map--the-business-as-shifts--paths-2026-10-27).
+>
+> *The Day 166 box below is kept as a dated snapshot. Its commercial doors (Productize Yourself $555 → BUILT $1,111 or The Crossing → node) predate the 2026-10-27 ladder.*
+
 > ### ⭐ Latest State — Day 166 (August 25, 2026)
 >
 > **Governing business law:** recognize recursive likeness → reveal complementary difference → meet ripeness → help the difference become value → build a business that can recognize and grow itself → leave the founder able to repeat the act through their own gift.
@@ -712,6 +764,8 @@ This is the collective-scale form of the Noble = Free antidote: the gift is not 
 - **Name:** Find Your Top Talent
 - **Domain:** [FindYourTopTalent.Com](https://findyourtoptalent.com)
 - **Founder domain:** [aleksandrkonstantinov.com](https://aleksandrkonstantinov.com)
+- **Entry door (2026-10-27):** the 45-minute Direction Call on [/ignite](https://findyourtoptalent.com/ignite), plus the webinar.
+- **Mastermind name (2026-10-27):** Founder-Market Fit Discovery Mastermind ([/mastermind](https://findyourtoptalent.com/mastermind)).
 - **Site skins:** Aurora (default · light pearlescent + rainbow highlights) · Navy + Gold (preview at `/preview` · deep navy + gold accents, editorial dark)
 
 ### Tribe — superseded, see Latest State box above and Tribe v5.0 (§3)
@@ -914,6 +968,8 @@ These outputs are also baked into `appleseedGenerator.ts` `CALIBRATION_EXAMPLES`
 *Use for:* Life-update post ("what I just focused my life on") · About page opener · Step 6 masthead example · the example-in-playbook that demonstrates the "master tuning fork" substep. **This is the template sentence structure** for anyone producing their own Step 6 tuning fork.
 
 ### Value Ladder (the Path · `/path`)
+
+> **Ladder as of 2026-10-27:** game → course → Direction Call (free, 45 min, the entry door on /ignite, with the webinar) → **$555 Founder-Market Fit session (2 hours)** → **Founder-Market Fit Discovery Mastermind**. Each rung is a path that carries a shift; price follows the depth of the shift, not the volume of content ([Product Map](#-product-map--the-business-as-shifts--paths-2026-10-27)). The Day 138 ladder below is kept as a dated snapshot.
 
 > **⭐ Live ladder — Day 138 (July 28, 2026):** Direction Call (free, 45 min) → **Productize Yourself Session $555** → **BUILT $1,111** → **Node (white-label) $1,500 + $75/mo**. Karime founding-node variant: $555 + $55/mo, waived until her 5th subscriber (priced and sent, per `roadmap.md` Current Status). The free rung is the Direction Call named Day 124 ([§ addendum below](#addendum--day-124-july-14-2026-the-direction-call-the-missing-rung)), not the old Step-1-of-7 framing. "Ignition Session" / "Top Talent Business Session" is now called the **Productize Yourself Session**.
 

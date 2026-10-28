@@ -9,8 +9,8 @@
 
 > *"Work seen as sacred, executed as ceremony."*
 
-**Version:** 4.9  
-**Created:** February 2026 · Last updated: October 17, 2026 (*added "Function, not form: configurations of a Unique Business" to Part I*). Previously: September 10, 2026 (Day 180: *corpus-sync — the loop doctrine landed in the executive summary + Principle 18 (D2); Principle 17 gained the "which sequence, which use" table reconciling the 7-step, 21-chain, and UBB runtime (D4); the duplicate Principle 13 was renumbered to Principle 21; changelog aligned to v4.8.*)  
+**Version:** 4.10  
+**Created:** February 2026 · Last updated: October 27, 2026 (*added "The Product Method: Shifts × Paths" to the Integrated Stack*). Previously: October 17, 2026 (*added "Function, not form: configurations of a Unique Business" to Part I*). Previously: September 10, 2026 (Day 180: *corpus-sync — the loop doctrine landed in the executive summary + Principle 18 (D2); Principle 17 gained the "which sequence, which use" table reconciling the 7-step, 21-chain, and UBB runtime (D4); the duplicate Principle 13 was renumbered to Principle 21; changelog aligned to v4.8.*)  
 **Purpose:** The master playbook for AI-assisted genius-based venture building  
 **Execution:** [Customer Journey Playbook](./customer_journey_playbook.md) — the operational map from first touchpoint to paid session
 
@@ -35,6 +35,8 @@
 This is the master method: how to build a business that is structurally the founder's, starting from their uniqueness. It is one continuous machine, not a pile of frameworks — top talent → playbook → builder tool → optional guided journey. The whole compresses to one sentence: your unique business is the one signal you carry within, turned into a business. Uniqueness generates the signal, shadow names its inversion, myth universalizes it into a law, tribe polarizes around that law, and pain, promise, offer, marketing, comms, and distribution all inherit the same signal. Part 0 sets the soul-aligned principles (Copernican Inversion, Mirror not Teacher, the Precision Gap IS the Product), Part I the ontology, Parts II–III the frameworks and AI workflows the builder executes, Parts IV–V the operations. Its deepest claim: it structurally removes the "I don't know what to do" stuckness, so the founder meets only their own inner work.
 
 **The whole in one line:** *One originating signal — your articulated uniqueness — refracted through every layer of a venture, so the business could only be built by you.*
+
+**The product side in one line (2026-10-27):** *every product is a packaged shift (a technology as point B, a template as the path from point A), and a unique business is a unique product map: its niche of shifts × the paths that deliver them.* See [The Product Method](#the-product-method-shifts--paths-2026-10-27).
 
 **Three depths:**
 - ❤️ **Essence** — business is crystallized self-knowledge; working ON the business and working ON yourself become the same action, and the founder is client zero.
@@ -101,6 +103,34 @@ The whole method explains itself in six visual frames (canonical infographic set
 5. **The Ladder** — free taste → paid step → infrastructure, at every holon (person, community, business).
 6. **The Network** — sovereigns, each 100% self-owned, connected by consent-shaped edges (revenue shares, advisory, collaborations); alignment lives in the edges.
 
+## The Product Method: Shifts × Paths (2026-10-27)
+
+> *Found 2026-10-27 by Sasha and Evolver; Sasha called it (translated) "a huge upgrade in quality, simplicity, applicability, practical use". Sasha's own words are quoted. Templates: [shift-offer.md](../templates/shift-offer.md) (one product, PST 173) and [product-map.md](../templates/product-map.md) (the whole map, PST 174). Applied to one business: `alexanders_unique_business.md`, Product Map section.*
+
+The canvas says who the business is. This method says what it sells.
+
+**1. Template = methodology = product.** A phase shift technology is point B, a new vision. A template (a methodology) is the path to it from point A, the old vision. Together they make a product. Every product is a packaged shift, so a library of technologies is a catalogue of future products, and the working question becomes "which shift gets a path first?", not "what should I sell?".
+
+**2. The one product test.** Any new product answers four questions before it is built or sold:
+- Which shift does it carry?
+- Who comes in (A)?
+- Who leaves (B)?
+- How do we know the shift happened, in a form the person names themselves?
+
+No answer means **Craft**: a skill or service, sold honestly as such, with no transformation promised. The answers fill one [shift offer](../templates/shift-offer.md), whose line reads "You will see… and you will…".
+
+**3. The product map.** In Sasha's words: «Каждый уникальный бизнес - это создание уникальной карты продуктов, специализируясь в своей нише сдвигов (сознания или физической реальности). Карта продуктов - это фазовые сдвиги × реплицируемые и упрощенные пути их реализации. У одной технологии может быть несколько путей разной глубины: видео, модуль игры, сессия. А один путь может нести несколько сдвигов.» (Every unique business is the creation of a unique product map, specialising in its niche of shifts, of consciousness or of physical reality. The product map is phase shifts × replicable, simplified paths that realise them. One technology can have several paths of different depth: a video, a game module, a session. And one path can carry several shifts.)
+
+Rows are shifts; columns are paths ordered from light to deep; each product is a cell; an empty cell is a visible choice. Build the map with [product-map.md](../templates/product-map.md). This is the same signal the Waterfall carries, seen from the offer side: uniqueness sets the niche of shifts, and the map is how that niche reaches people.
+
+**4. Price follows the depth of the shift,** not the volume of content. More hours, modules or pages never raise a price; a deeper, verified shift does. A cheaper path to the same shift is a better product, not a cheaper one. This is the 4 Levels of Value (v4.5) made concrete; bands in [shift-offer.md §7](../templates/shift-offer.md).
+
+**5. A meta-product.** One container where new technologies are born from live people. Sasha, of his own Mastermind: «Мастермайнд — мета-продукт. Там рождаются новые технологии, и цикл крутится на людях в живой реальности.» (The Mastermind is a meta-product. New technologies are born there, and the cycle turns on people in living reality.) It is a path on the map and, at the same time, the engine that adds new rows to it.
+
+**6. The moat.** Steps can be copied; the vision they carry is born only with the founder. Open blueprints cost nothing (Principle 2) because what cannot be copied is the seeing that produces the next technology.
+
+**7. Sales language A → B.** Describe A in the client's own words and B as what they will see and do. Name the path between them later, after entry.
+
 ## The deepest claim: ignorance-stuckness eliminated
 
 Founders are blocked by two kinds of stuckness — *ignorance* ("I don't know what to do") and *inner challenge* ("I know what to do but something inside resists"). The Integrated Stack eliminates the first kind structurally. The playbook tells you what to do; the builder gives you a working draft; Linguistic Synthesis (Phase Shift Technology 82) keeps the output simple-not-simplistic; the improve loop pushes specificity up and refuses to ship if it doesn't.
@@ -117,6 +147,7 @@ The pricing tiers map directly onto this spectrum. See Phase Shift Technology 83
 ## Where to look next
 
 - **Operating the methodology in your own life:** continue with Part 0 onward.
+- **Turning technologies into products and a product map:** [The Product Method](#the-product-method-shifts--paths-2026-10-27) above, with [shift-offer.md](../templates/shift-offer.md) and [product-map.md](../templates/product-map.md).
 - **Choosing a vehicle for the function (startup, 1:1, product, ecosystem role, connector):** [Function, not form](#function-not-form-configurations-of-a-unique-business), in Part I.
 - **Operating the Builder:** the artifact prompts in `supabase/functions/_shared/ubb-prompts.ts` are this playbook compiled into machine instructions.
 - **The two paths through the stack and the source-of-truth architecture:** Phase Shift Technology Library, Technology 83.
@@ -1972,6 +2003,8 @@ Everyone already monetizes something. The question is: what, and how consciously
 
 We don't invest in startups. We invest in *the crystallization moment* — and capture the downstream value.
 
+> *2026-10-27 refinement of point 3:* the methodology's steps can be copied; the vision they carry is born only with the founder, and that is the moat ([The Product Method](#the-product-method-shifts--paths-2026-10-27), point 6). Point 3 stays as the earlier reading.
+
 **Back founders who have done the articulation work.** They're the ones who will achieve PMF inevitably, because their business is an expression of who they are, not a copy of what worked for someone else.
 
 ---
@@ -3752,6 +3785,8 @@ CHECK:  "Does the ladder lead to recurring revenue?"
 | 4 | **RETAINER** | Ongoing access | $497-2,997/mo | Sustained results |
 | 5 | **PARTNERSHIP** | Co-creation, equity | Custom | Long-term collaboration |
 
+> *2026-10-27:* order the tiers by the depth of the shift each one carries, and let price follow that depth; every tier passes the one product test or is sold as Craft ([The Product Method](#the-product-method-shifts--paths-2026-10-27); [product-map.md](../templates/product-map.md) for the full map). The price ranges below are an earlier generic reference.
+
 **Differentiation Logic:**
 - Cohort vs Intensive: speed, access, price
 - "Choose COHORT if..." vs "Choose INTENSIVE if..."
@@ -5094,12 +5129,15 @@ This is why the node licensing network works:
 
 These are not in opposition. They are complementary faces of the same whole. The methodology without the technology stays visionary. The technology without the methodology stays mechanical. Together: a living system.
 
+> *Terminology note (2026-10-27):* here "technology" means the platform. In [The Product Method](#the-product-method-shifts--paths-2026-10-27), "technology" means a phase shift technology (point B, the new vision) and "methodology" means the template that leads to it; together they make one product.
+
 ---
 
 *Unique Business Playbook v4.2 — April 3, 2026*
 *The Holonic Venture Studio — Building businesses on the foundation of genius, not ideas.*
 
 **Changelog:**
+- **v4.9 → v4.10 (October 27, 2026):** the Integrated Stack gained "The Product Method: Shifts × Paths": template = methodology = product; the one product test (A, B, check, or Craft); the product map (shifts × paths of different depth, a unique business as a unique map in its niche of shifts); price by depth of shift; the meta-product; the moat; sales language A → B. Pointers added to the executive summary, Workflow 7, the Investment Thesis and The Methodology & The Technology. Templates: shift-offer.md (PST 173), product-map.md (PST 174).
 - **v4.8 → v4.9 (October 17, 2026):** Part I gained "Function, not form: configurations of a Unique Business". The function stays constant; the configuration (1:1, system or product, own venture, inside an ecosystem, across ecosystems) is chosen to fit the season. Includes a five-question selection test, the mapping of discovery, articulation, and productize onto each configuration, and an ecosystem-role door in the outcome menu.
 - **v4.3 → v4.8:** *(consolidated, backfilled Day 180 corpus-sync — per-version deltas were not recorded between April and September, so the landmarks are grouped rather than split by point release.)* The Integrated Stack unifying frame (v4.6, the "one continuous machine" section, Technology 83). Part I gained "The Loop: Self-Knowledge and Business Co-Arise" (Day 102). Principles 14-21 added: 14 (Hero's Journey Challenge Ordering), 15 (The Specificity Loop), 16 (The Unique Business Accelerator), 17 (Recursive Value Flow — four-scale projection + the "which sequence, which use" artifact table, D4), 18 (You Are Stream 0 + the loop doctrine, D2), 19 (The Mirror Opener), 20 (The Hexagram — order A per D1, "practice" line cut per D3), 21 (The Grind Addiction Diagnosis, renumbered from a duplicate Principle 13). Phase Shift Technologies 134-143 referenced (recursive value flow, mirror fidelity, the faculty layer, the load order, the exposure law). Public Lines, the Timestamp Requirement, and the phenomenon-naming language test codified.
 - **v4.2:** Funnel Hearing Principle (April 3, 2026). New operational infrastructure: the funnel can now HEAR. `src/lib/funnelAnalytics.ts` wires 17 typed event types across the entire ZoG → Quiz → /ignite → Booking conversion pipeline. Events tracked: page views, step transitions, email saves, CTA clicks, quiz completions (with archetype), divine timing captures, and booking link clicks. Anonymous session IDs, localStorage queue fallback for offline resilience, Supabase `funnel_events` target table. This is the first LR (systemic) infrastructure for measuring encounter — without it, every decision about the funnel is assumption-based. PageLoader dark glass fix deployed: Suspense fallback now matches the liquid glass aesthetic (bg-[#0a0a1a] + white/30 spinner). Cross-references: Roadmap analytics wiring, Session Log Day 34 afternoon.
