@@ -23,12 +23,12 @@
 | Ignition Session v2.0 | 2026-03-19 | uniqueness live, AI generates the rest on screen; 60–75 min; upsell to The Build |
 | Mirror Session | Unique Business Playbook, Step 4 (spring 2026) | 60 min, MAP → MATCH → MOVE, $555 recommended, name-your-price minimum $222 |
 | Productize Yourself Session | 2026-04 onward (site, emails, rail label) | 2 hours, $555, money-back guarantee ("locked" at 2 h, prices unified at $555) |
-| Founder-Market Fit session | Funnel v5, Sasha 2026-10-19 | "1–2 hours, paid, $555. Offered only to people who came through the 20-minute call." |
+| Private Founder-Market Fit Session | Funnel v5, Sasha 2026-10-19 | "1–2 hours, paid, $555. Offered only to people who came through the 20-minute call." |
 | Next-Chapter Positioning Session | `/ignite` tab title, 2026-10-27 | the live page: "The tagline your next chapter runs on. Written with you, in 2 hours." |
 | **Founder-Market Fit Discovery Mastermind** | Sasha's decision, 2026-10-27 | the name, chosen over the three names above |
-| **Founder-Market Fit session** (1:1, $555) | Sasha, 2026-10-28 | «555 — индивидуально; 222 — в группе»: the Mastermind name belongs to the $222 group; the 1:1 session is the Founder-Market Fit session |
+| **Private Founder-Market Fit Session** (1:1, $555) | Sasha, 2026-10-28 | «555 — индивидуально; 222 — в группе»: the Mastermind name belongs to the $222 group; the 1:1 session is the Private Founder-Market Fit Session |
 
-**Canonical now (Sasha, 2026-10-28):** this 1:1 is the **Founder-Market Fit session**: $555, 2 hours, 1:1, no guarantee (removed 2026-10-28). **Founder-Market Fit Discovery Mastermind** is the $222 group container, not this session. *Superseded 2026-10-27 line:* **Founder-Market Fit Discovery Mastermind** (Sasha, 2026-10-27); $555, 2 hours, 1:1, money-back guarantee. Productize Yourself, Founder-Market Fit and Next-Chapter Positioning are earlier names. *Dated notes:* the 60-minute and 60–75-minute durations and the $222 name-your-price floor are earlier shapes, not current offers.
+**Canonical now (Sasha, 2026-10-28):** this 1:1 is the **Private Founder-Market Fit Session**: $555, 2 hours, 1:1, no guarantee (removed 2026-10-28). **Founder-Market Fit Discovery Mastermind** is the $222 group container, not this session. *Superseded 2026-10-27 line:* **Founder-Market Fit Discovery Mastermind** (Sasha, 2026-10-27); $555, 2 hours, 1:1, money-back guarantee. Productize Yourself, Founder-Market Fit and Next-Chapter Positioning are earlier names. *Dated notes:* the 60-minute and 60–75-minute durations and the $222 name-your-price floor are earlier shapes, not current offers.
 
 ## 3. Three principles (hold them, never teach them)
 1. **They're already doing it.** The business exists in the help they give for free and what people thank them for. You name, you don't invent.
@@ -120,7 +120,7 @@ Built ONLY from their own words: (1) their invariant quoted back ("you said X, t
 ## 6. Open edges
 - ~~Two free front doors (20 min vs 45 min)~~ closed 2026-10-27: the 45-min Direction Call plus the webinar, see §4.2.
 - The 2-hour minute plan is a composition; Sasha has not run it as written.
-- ~~Public name~~ closed 2026-10-27: **Founder-Market Fit Discovery Mastermind** (Sasha). The live `/ignite` tab, rail and video still carry the older names until the site is updated. Corrected 2026-10-28 (Sasha): Mastermind = the $222 group; this 1:1 = Founder-Market Fit session, $555.
+- ~~Public name~~ closed 2026-10-27: **Founder-Market Fit Discovery Mastermind** (Sasha). The live `/ignite` tab, rail and video still carry the older names until the site is updated. Corrected 2026-10-28 (Sasha): Mastermind = the $222 group; this 1:1 = Private Founder-Market Fit Session, $555.
 
 ---
 

@@ -75,7 +75,7 @@ const useTestimonials = (): TestimonialData[] => {
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 const CALCOM_BOOKING_LINK = "https://cal.com/aleksandrkonstantinov/productize-yourself";
 // Tab title for /ignite. Price stays off the tab; the page sells 2 hours.
-const IGNITE_TAB_TITLE = "Next-Chapter Positioning Session — 2 hours | Find Your Top Talent";
+const IGNITE_TAB_TITLE = "Private Founder-Market Fit Session — 1:1, 2 hours, $555 | Find Your Top Talent";
 const CALCOM_CLARITY_LINK ="https://cal.com/aleksandrkonstantinov/direction-choice-call";
 
 
@@ -502,6 +502,12 @@ const IgniteSession = () => {
             <p className="text-xs" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}>
               {t('ignite.priceAttribution')}
             </p>
+            <p className="text-xs" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}>
+              {t('ignite.offerDistinction')}{" "}
+              <a href="/build/mastermind" className="underline underline-offset-2">
+                {t('ignite.offerDistinctionLink')}
+              </a>
+            </p>
           </div>
 
           {/* Price comparison trio */}
@@ -737,16 +743,16 @@ const IgniteSession = () => {
     <>
       <SEO
         title={IGNITE_TAB_TITLE}
-        description="A 2-hour 1:1 working session with Aleksandr. Name your top talent in one exact sentence, position your next chapter around it, and leave with a clear next step."
+        description="Private Founder-Market Fit Session: a 2-hour 1:1 working session with Aleksandr ($555). Name your top talent in one exact sentence, position your next chapter around it, and leave with a clear next step."
         path="/ignite"
         ogTitle="Position your next chapter around your top talent in 2 hours."
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Next-Chapter Positioning Session",
+          name: "Private Founder-Market Fit Session",
           provider: { "@type": "Person", name: "Alexander Konstantinov" },
           areaServed: "Worldwide",
-          description: "2-hour 1:1 session to name your top talent in one sentence and position your next chapter around it.",
+          description: "Private Founder-Market Fit Session (1:1, 2 hours, $555) to name your top talent in one sentence and position your next chapter around it.",
           offers: { "@type": "Offer", price: "555", priceCurrency: "USD" },
         }}
       />

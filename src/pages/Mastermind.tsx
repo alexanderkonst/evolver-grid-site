@@ -8,7 +8,8 @@
  * live in the constants block so the swap touches nothing else.
  *
  * No payment provider is wired here. Until MASTERMIND_CTA_URL is set, the
- * CTA opens a mailto waitlist request (never a dead link).
+ * CTA goes to the free Nov 4 live session registration (Luma, the same link
+ * as the bridge line) and the price block says "Registration opens soon".
  */
 import { ArrowRight } from "lucide-react";
 import GameShellV2 from "../components/game/GameShellV2";
@@ -19,20 +20,19 @@ import { cn } from "@/lib/utils";
 
 /* ─── Constants: copy, price, CTA (single source of truth) ─── */
 const MASTERMIND_PRICE = "$222";
-/** Set to the checkout / registration URL once decided. Empty → mailto waitlist. */
+/** Set to the checkout URL once decided. Empty → free live-session registration. */
+// TODO(Sasha): Stripe link for Mastermind $222
 const MASTERMIND_CTA_URL = "";
-const MASTERMIND_WAITLIST_MAILTO =
-  "mailto:sasha@evolver.team?subject=" +
-  encodeURIComponent("Founder-Market Fit Discovery Mastermind — reserve my place");
 const MASTERMIND_LIVE_SESSION_URL = "https://lu.ma/qpogt17o";
 
 const MASTERMIND_COPY = {
-  eyebrow: "Mastermind · Nov 9–10",
+  eyebrow: "Group Mastermind · Nov 9–10",
   title: "Founder-Market Fit Discovery Mastermind",
   promise:
     "In two live sessions you find where your uniqueness meets the market and leave with a clear offer for your first clients.",
   formatLabel: "Format",
   format: [
+    "Small group, 2 sessions, $222",
     "2 × 90 min live (Nov 9 and Nov 10)",
     "7 days of integration in the group",
     "Recording of both sessions included.",
@@ -47,9 +47,15 @@ const MASTERMIND_COPY = {
     { name: "Action", text: "Offer and first contacts." },
     { name: "Integration", text: "One week in the group." },
   ],
-  priceLabel: "Early bird",
+  priceLabel: "Early bird · group",
   priceNote: "First 10 seats (beta). Regular price later.",
   ctaLabel: "Reserve my place",
+  /** Shown on the CTA while MASTERMIND_CTA_URL is empty. */
+  ctaLabelPending: "Join the free live session",
+  pendingNote: "Registration opens soon.",
+  distinction:
+    "This is the group (small group, 2 sessions, $222). Prefer 1:1? The Private Founder-Market Fit Session is 1:1, 2 hours, $555.",
+  distinctionLink: "See the Private Session",
   bridgeLead: "Want to meet me first?",
   bridgeLink: "Join the live session on Wed Nov 4, 9:00 CDMX",
   seoTitle: "Founder-Market Fit Discovery Mastermind — Nov 9–10 | Find Your Top Talent",
@@ -57,8 +63,9 @@ const MASTERMIND_COPY = {
     "Two live 90-minute sessions (Nov 9 and 10) plus a week of integration. Find where your uniqueness meets the market and leave with a clear offer for your first clients.",
 } as const;
 
-const MASTERMIND_CTA_HREF = MASTERMIND_CTA_URL || MASTERMIND_WAITLIST_MAILTO;
-const CTA_OPENS_NEW_TAB = Boolean(MASTERMIND_CTA_URL);
+const MASTERMIND_CTA_HREF = MASTERMIND_CTA_URL || MASTERMIND_LIVE_SESSION_URL;
+const CTA_IS_PENDING = !MASTERMIND_CTA_URL;
+const CTA_OPENS_NEW_TAB = true;
 
 const SERIF = { fontFamily: "'Cormorant Garamond', serif" } as const;
 const BODY_SERIF = {
@@ -214,10 +221,24 @@ const Mastermind = () => {
               <p className="text-sm italic" style={BODY_SERIF}>
                 {c.priceNote}
               </p>
+              {CTA_IS_PENDING && (
+                <p className="text-sm font-semibold" style={{ color: "var(--skin-text-primary, #0a1628)" }}>
+                  {c.pendingNote}
+                </p>
+              )}
               <div className="flex justify-center pt-2">
                 <MastermindCta id="mastermind-cta-price" />
               </div>
             </section>
+
+            {/* PRIVATE vs GROUP */}
+            <p className="text-center text-sm leading-relaxed max-w-md mx-auto" style={BODY_SERIF}>
+              {c.distinction}{" "}
+              <a href="/ignite" className="underline underline-offset-4">
+                {c.distinctionLink}
+              </a>
+              .
+            </p>
 
             {/* BRIDGE */}
             <p className="text-center text-sm italic leading-relaxed" style={BODY_SERIF}>
@@ -265,7 +286,7 @@ const MastermindCta = ({ id }: { id: string }) => (
     }}
   >
     <span style={{ textTransform: "uppercase", letterSpacing: "0.12em", fontSize: "0.88em" }}>
-      {MASTERMIND_COPY.ctaLabel}
+      {CTA_IS_PENDING ? MASTERMIND_COPY.ctaLabelPending : MASTERMIND_COPY.ctaLabel}
     </span>
     <ArrowRight
       className="w-4 h-4 ml-0.5 transition-transform duration-300 group-hover:translate-x-0.5"

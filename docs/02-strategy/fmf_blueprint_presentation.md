@@ -236,7 +236,7 @@ The blueprints ARE the training data. The examples ARE the fine-tuning. The sequ
 | ICP (3 situations + anti-ICP) | ✅ Defined |
 | Pain (4 dimensions + self-language) | ✅ Sliced |
 | Method (MAP→MATCH→MOVE) | ✅ Designed |
-| Landing page | ✅ Live at [evolver.team/fmf](https://evolver.team/fmf) |
+| Landing page | ✅ Live at [findyourtoptalent.com/fmf](https://findyourtoptalent.com/fmf) (earlier evolver.team domain was an invented address, removed 2026-10-28) |
 | Session guide | ✅ Ready |
 | Movement framework | ✅ Mapped against 7 layers |
 | Partnership strategy | ✅ Architecture defined |

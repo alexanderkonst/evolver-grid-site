@@ -69,8 +69,8 @@ Sasha's definition: «Каждый уникальный бизнес - это с
 | **Game** | Showcase of paths: every module is a template with a named shift; the 1–10 rating at the end shows whether the person reached B |
 | **Course** (short videos) | A light, replicable path that runs without Sasha live ([course-from-source.md](../../templates/course-from-source.md)) |
 | **Direction Call** (free, 45 min) | The entry door, on /ignite together with the webinar |
-| **$555 Founder-Market Fit session** (2 hours, 1:1) | Full recognition: the one-sentence business, under the /ignite guarantee |
-| **Founder-Market Fit Discovery Mastermind** | A held group shift, and the meta-product (§3) |
+| **$555 Private Founder-Market Fit Session** (2 hours, 1:1) | Full recognition: the one-sentence business, under the /ignite guarantee |
+| **Founder-Market Fit Discovery Mastermind** (small group, 2 sessions, $222) | A held group shift, and the meta-product (§3) |
 
 Price follows the depth of the shift, not the volume of content (bands: [shift-offer.md §7](../../templates/shift-offer.md)). More hours or more modules never raise a rung's price; a deeper, verified shift does.
 
@@ -97,7 +97,7 @@ Describe A in the client's own words and B as what they will see and do. Name th
 *Filed from Sasha's own words in chat, October 22, 2026 (18:10 CDMX). This is the group lane of the business; Funnel v5 (Reading-first, below) stays the 1:1 LinkedIn lane, and the two feed each other. First run: the free live session on **Wed Oct 28, 2026, 9:00–10:30 CDMX** (Luma qpogt17o) → **Founder-Market Fit Discovery Mastermind, Mon–Tue Nov 9–10, 2026, $222, recording included**. Goal: make this a repeatable engine, run cycle after cycle, with more and more ways to fill the room (communities first).*
 
 ### 1. The case in one paragraph
-Sasha personally reads a person's potential and invites them to a free live session built for people who work with entrepreneurs. The session gives a real taste of founder-market fit; those for whom it lands join a paid two-day Mastermind; from the Mastermind the natural next rungs are the $555 Founder-Market Fit session (2 hours, 1:1) and the group build. Every cycle sharpens the infographics, the copy and the list of host communities, so the cost of filling the next room falls while the value of the room rises.
+Sasha personally reads a person's potential and invites them to a free live session built for people who work with entrepreneurs. The session gives a real taste of founder-market fit; those for whom it lands join a paid two-day Mastermind; from the Mastermind the natural next rungs are the $555 Private Founder-Market Fit Session (2 hours, 1:1) and the group build. Every cycle sharpens the infographics, the copy and the list of host communities, so the cost of filling the next room falls while the value of the room rises.
 
 ### 2. Segment and promise
 - **Who:** people who in some form work with entrepreneurs: investors in founders, coaches and mentors of founders, consultants, accelerators, studios, community hosts.
@@ -124,7 +124,7 @@ First community host: the host who already offered to plug a Sasha-written seque
 7. **The live session** (60 or 90 min; run-of-show is Sasha's).
 8. **Split.** Attended and no-show get different follow-ups (§5).
 9. **Mastermind page** (/mastermind): what they are invited into, Nov 9–10, $222, recording included; payment by Stripe (Sasha connects Stripe himself).
-10. **Mastermind → next rungs:** $555 Founder-Market Fit session (2 h), group build, and later the license to run it for their own clients.
+10. **Mastermind → next rungs:** $555 Private Founder-Market Fit Session (2 h), group build, and later the license to run it for their own clients.
 
 ### 5. Communication: the energetically clean sequence
 **Principle (Sasha):** reminding people is clean; sending too many messages is not. So: every message gives something real (an insight, an infographic, the link they need), one clear call to action at most, no countdown pressure, no "last chance", easy to step away. **Hard cap: at most 3 messages before the session and at most 3 after, then silence.** A non-reply means it is not their moment.
@@ -211,7 +211,7 @@ Average of the three solid steps ≈ **×2.7**. Honest counterweight: cold Linke
 - Run 1 gives our own real registration and show-up rates; from run 2 we replace the benchmarks with them.
 
 **Not yet counted (lifetime value)**
-The $555 Founder-Market Fit session, the group build, the Sovereign Founder Collective, and the license to run the program for their own clients. Each run also moves people toward unique businesses and grows the collective of founders who do this together, which is the point of the whole engine.
+The $555 Private Founder-Market Fit Session, the group build, the Sovereign Founder Collective, and the license to run the program for their own clients. Each run also moves people toward unique businesses and grows the collective of founders who do this together, which is the point of the whole engine.
 
 ### 9. Four-month plan v1 — two runs, one container, lunar timing, energy (October 22, 2026)
 
@@ -246,7 +246,7 @@ A larger list includes more cold contacts, so the invite step uses the market ra
 | Revenue | $444 | ~$2,000 |
 
 **Container (Jan 7 – Feb 5), $1,111**
-Alumni of both Masterminds: floor 3, target ~13. At ~33% continuing: floor 1, target 4. Revenue: floor $1,111, target ~$4,400. Minimum for a group: 4. Below that, the same people get $555 Founder-Market Fit sessions instead.
+Alumni of both Masterminds: floor 3, target ~13. At ~33% continuing: floor 1, target 4. Revenue: floor $1,111, target ~$4,400. Minimum for a group: 4. Below that, the same people get $555 Private Founder-Market Fit Sessions instead.
 
 **Four-month total**
 | | Floor | Target |
@@ -315,7 +315,7 @@ Base = $1,958 from 13 open deals (probability-weighted, unchanged) + $3,708 from
 | **Engine total** | **$1,391** | **$3,708** | **$7,247** |
 Base conversion 25% is Evolver's midpoint of §9's floor (12.5%) and target (36%), not Sasha's figure. Webinar 2 registrations = 200 invites × 18.5% floor / 28% target, base the midpoint. After Feb 5 the engine pauses: nothing new in Feb.
 
-**Container minimum (flag, not modelled):** expected buyers reach the group minimum of 4 only in the high case. In low and base the group may not run; those people get $555 Founder-Market Fit sessions instead, which would turn the base container line from ≈$2,310 into ≈$1,154. Founding seats offered at Mastermind 1 (§9, improvement 1) are what lifts this.
+**Container minimum (flag, not modelled):** expected buyers reach the group minimum of 4 only in the high case. In low and base the group may not run; those people get $555 Private Founder-Market Fit Sessions instead, which would turn the base container line from ≈$2,310 into ≈$1,154. Founding seats offered at Mastermind 1 (§9, improvement 1) are what lifts this.
 
 **Biggest levers on the base:** attendee → Mastermind conversion (25% → 36%: +$1,632, the container scales with it) · the largest open container deal closing (35% → 75%: +$889) · registrations for either webinar at the high end (+$662 each).
 
@@ -338,7 +338,7 @@ v1 (same day) wrongly modelled one webinar per month without the container; corr
 2. **Read.** For each person who accepts, Evolver reads the profile and their site and runs the Appleseed / Zone of Genius prompts to synthesize **one uniqueness sentence** (the bullseye: present-tense verb, concrete object, for whom, 5-second-friend test).
 3. **Message 1.** "*My AI shows that you bring value by <bullseye>. Want to know what scalable product this ability naturally turns into?*" No shadow: nobody is eager to see their shadow; the product question is about their future money.
 4. **Yes → free 20-minute call** ([cal.com/aleksandrkonstantinov/20](https://cal.com/aleksandrkonstantinov/20)). We get acquainted and Sasha reveals the cards: on the infographic, how this ability turns into a product.
-5. **Founder-Market Fit session — 1–2 hours, paid, $555.** Offered only to people who came through the 20-minute call. Together we make the product concrete and see the outline of their unique business.
+5. **Private Founder-Market Fit Session — 1–2 hours, paid, $555.** Offered only to people who came through the 20-minute call. Together we make the product concrete and see the outline of their unique business.
 6. **Group build.** After FMF, Sasha offers to build it together in a group.
 
 **Guardrails:** max 10 messages a day, no bulk sends; no separate AI LinkedIn account. The first 10 readings Sasha sees and edits; after that Evolver sends on its own with a daily digest.
@@ -694,7 +694,7 @@ This is the collective-scale form of the Noble = Free antidote: the gift is not 
 >
 > **Entry door:** the 45-minute Direction Call on /ignite, plus the webinar (group lane: [Webinar Engine](#-business-case--the-webinar-engine-v1-sasha-october-22-2026)).
 >
-> **Ladder, read as a product map (paths by depth of shift):** game → course → Direction Call → $555 Founder-Market Fit session (2 hours) → **Founder-Market Fit Discovery Mastermind**, which is also the meta-product where new technologies are born. Detail: [Product Map](#-product-map--the-business-as-shifts--paths-2026-10-27).
+> **Ladder, read as a product map (paths by depth of shift):** game → course → Direction Call → $555 Private Founder-Market Fit Session (2 hours) → **Founder-Market Fit Discovery Mastermind**, which is also the meta-product where new technologies are born. Detail: [Product Map](#-product-map--the-business-as-shifts--paths-2026-10-27).
 >
 > *The Day 166 box below is kept as a dated snapshot. Its commercial doors (Productize Yourself $555 → BUILT $1,111 or The Crossing → node) predate the 2026-10-27 ladder.*
 
@@ -969,7 +969,7 @@ These outputs are also baked into `appleseedGenerator.ts` `CALIBRATION_EXAMPLES`
 
 ### Value Ladder (the Path · `/path`)
 
-> **Ladder as of 2026-10-27:** game → course → Direction Call (free, 45 min, the entry door on /ignite, with the webinar) → **$555 Founder-Market Fit session (2 hours)** → **Founder-Market Fit Discovery Mastermind**. Each rung is a path that carries a shift; price follows the depth of the shift, not the volume of content ([Product Map](#-product-map--the-business-as-shifts--paths-2026-10-27)). The Day 138 ladder below is kept as a dated snapshot.
+> **Ladder as of 2026-10-27:** game → course → Direction Call (free, 45 min, the entry door on /ignite, with the webinar) → **$555 Private Founder-Market Fit Session (2 hours)** → **Founder-Market Fit Discovery Mastermind**. Each rung is a path that carries a shift; price follows the depth of the shift, not the volume of content ([Product Map](#-product-map--the-business-as-shifts--paths-2026-10-27)). The Day 138 ladder below is kept as a dated snapshot.
 
 > **⭐ Live ladder — Day 138 (July 28, 2026):** Direction Call (free, 45 min) → **Productize Yourself Session $555** → **BUILT $1,111** → **Node (white-label) $1,500 + $75/mo**. Karime founding-node variant: $555 + $55/mo, waived until her 5th subscriber (priced and sent, per `roadmap.md` Current Status). The free rung is the Direction Call named Day 124 ([§ addendum below](#addendum--day-124-july-14-2026-the-direction-call-the-missing-rung)), not the old Step-1-of-7 framing. "Ignition Session" / "Top Talent Business Session" is now called the **Productize Yourself Session**.
 

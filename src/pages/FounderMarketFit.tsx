@@ -22,7 +22,7 @@ const FounderMarketFit = () => {
             'og:title': 'Human-Market Fit | Alexander Konstantinov',
             'og:description': 'Your unique value is already seeking a market. Map the coherence in a 2-hour diagnostic for founders and builders.',
             'og:type': 'website',
-            'og:url': 'https://evolver.team/fmf',
+            'og:url': 'https://findyourtoptalent.com/fmf',
             'twitter:card': 'summary_large_image',
             'twitter:title': 'Human-Market Fit | Alexander Konstantinov',
             'twitter:description': 'Reality-cohering field detection: where your lived value, taste, obsession, and judgment meet a real market need.',
@@ -369,7 +369,6 @@ const FounderMarketFit = () => {
                 <div className="fmf-container fmf-footer-inner">
                     <p>© {new Date().getFullYear()} Alexander Konstantinov</p>
                     <div className="fmf-footer-links">
-                        <a href="mailto:sasha@evolver.team">sasha@evolver.team</a>
                         <a href="https://linkedin.com/in/aleksandrkonstantinov" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                     </div>
                 </div>
