@@ -30,7 +30,7 @@ import { useEntryPath } from "@/contexts/EntryPathContext";
 // below the Top Talent reveal. Renders null for build-path users so
 // AppleseedDisplay's existing CTAs are untouched.
 import MatchFlowCta from "@/components/landing/MatchFlowCta";
-import { generateAppleseed, AppleseedData } from "./appleseedGenerator";
+import { generateAppleseed, AppleseedData, RevealTimeoutError } from "./appleseedGenerator";
 import { generateExcalibur, ExcaliburData } from "./excaliburGenerator";
 import { saveAppleseed, saveExcalibur, loadSavedData, saveAppleseedToLocalStorage } from "./saveToDatabase";
 import AppleseedDisplay from "./AppleseedDisplay";
@@ -155,6 +155,8 @@ const ZoneOfGeniusEntry = () => {
     const [copied, setCopied] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    // Own-AI reveal failure (timeout / AI error): shown on the paste step with Retry.
+    const [revealError, setRevealError] = useState<string | null>(null);
     const [isSaving, setIsSaving] = useState(false);
     const [profileId, setProfileId] = useState<string | null>(null);
 
@@ -611,6 +613,7 @@ const ZoneOfGeniusEntry = () => {
 
         setIsProcessing(true);
         setError(null);
+        setRevealError(null);
         setStep("generating-appleseed");
 
         try {
@@ -640,9 +643,11 @@ const ZoneOfGeniusEntry = () => {
             setIsGuest(!session?.user);
             setStep("appleseed-result");
         } catch (err) {
-            const errorMsg = err instanceof Error ? err.message : t('zogEntry.errorGeneric');
-            setError(errorMsg.includes('try again')
-              ? errorMsg
+            // Always a kind, localized message (never raw gateway/billing text),
+            // shown on the paste step with Retry + the guided test as fallback.
+            console.error("[ZoneOfGeniusEntry] Reveal failed:", err);
+            setRevealError(err instanceof RevealTimeoutError
+              ? t('zogEntry.errorRevealTimeout')
               : t('zogEntry.errorGenerateProfile'));
             setStep("paste-response");
         } finally {
@@ -818,7 +823,7 @@ const ZoneOfGeniusEntry = () => {
     if (step === "generating-appleseed") {
         return (
             <GameShellV2 hideNavigation={hideNav} hideLogo>
-                <AppleseedRitualLoading minDuration={4000} />
+                <AppleseedRitualLoading minDuration={4000} waitHint={t('zogEntry.revealWaitHint')} />
             </GameShellV2>
         );
     }
@@ -1396,6 +1401,41 @@ const ZoneOfGeniusEntry = () => {
                                 WebkitBackdropFilter: "blur(12px)",
                             }}
                         />
+
+                        {revealError && (
+                            <div
+                                role="alert"
+                                className="rounded-2xl px-5 py-4 text-sm space-y-3 text-center"
+                                style={{
+                                    color: "var(--skin-text-primary, #0a1628)",
+                                    backgroundColor: "rgba(255,255,255,0.55)",
+                                    border: "1px solid rgba(160,109,8,0.30)",
+                                    backdropFilter: "blur(12px)",
+                                    WebkitBackdropFilter: "blur(12px)",
+                                }}
+                            >
+                                <p>{revealError}</p>
+                                <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+                                    <button
+                                        type="button"
+                                        onClick={handleGenerateAppleseed}
+                                        disabled={isProcessing || !hasPasteText}
+                                        className="font-semibold underline underline-offset-4 disabled:opacity-50"
+                                        style={{ color: "var(--accent-text, #7a5108)" }}
+                                    >
+                                        {t('zogEntry.revealRetry')}
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={handleStartManualAssessment}
+                                        className="underline underline-offset-4"
+                                        style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.75))" }}
+                                    >
+                                        {t('zogEntry.revealGuidedFallback')}
+                                    </button>
+                                </div>
+                            </div>
+                        )}
 
                         <div className="flex justify-center">
                             <button

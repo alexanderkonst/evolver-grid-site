@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 interface AppleseedRitualLoadingProps {
     onComplete?: () => void;
     minDuration?: number; // minimum display time in ms
+    /** Optional line telling the visitor how long the wait usually is. */
+    waitHint?: string;
 }
 
 const PHASES = [
@@ -14,7 +16,8 @@ const PHASES = [
 
 const AppleseedRitualLoading = ({
     onComplete,
-    minDuration = 4000
+    minDuration = 4000,
+    waitHint,
 }: AppleseedRitualLoadingProps) => {
     const [phaseIndex, setPhaseIndex] = useState(0);
     const [progress, setProgress] = useState(0);
@@ -24,9 +27,11 @@ const AppleseedRitualLoading = ({
             setPhaseIndex(prev => (prev + 1) % PHASES.length);
         }, minDuration / PHASES.length);
 
+        // The real wait is ~45s to ~3 min, so the bar must not sit full after 4s
+        // (it read as frozen). It eases toward 95% and keeps moving.
         const progressInterval = setInterval(() => {
-            setProgress(prev => Math.min(prev + 2, 100));
-        }, minDuration / 50);
+            setProgress(prev => prev + (95 - prev) * 0.04);
+        }, 500);
 
         const completeTimeout = setTimeout(() => {
             if (onComplete) onComplete();
@@ -121,6 +126,17 @@ const AppleseedRitualLoading = ({
                 >
                     Your Top Talent is being articulated...
                 </p>
+                {waitHint ? (
+                    <p
+                        className="mt-2 text-xs"
+                        style={{
+                            color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+                            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
+                        }}
+                    >
+                        {waitHint}
+                    </p>
+                ) : null}
             </div>
         </>
     );
