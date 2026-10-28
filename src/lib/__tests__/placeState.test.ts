@@ -9,9 +9,12 @@ import {
   closedLine,
   emptyPlaceSave,
   nextJourneyStep,
+  nextMove,
+  openPlaceKeys,
   placeLine,
   placeSaveFromSheet,
   placeState,
+  whatChanged,
   type PlaceEvent,
   type PlaceSaveSource,
   type PlaceStateName,
@@ -244,5 +247,105 @@ describe("PlaceState component", () => {
     expect(render("next")).toContain(">Next<");
     expect(render("done")).toContain(">Done<");
     expect(render("live")).toContain(">Live<");
+  });
+});
+
+describe("nextMove: one next move (§14.6)", () => {
+  const move = (done: JourneyItemId[], opts: Parameters<typeof saveWith>[1] = {}) =>
+    nextMove(VILLAGE_PLACES, saveWith(done, opts));
+
+  it("a guest is sent to Reception, with the result of the test and the real route", () => {
+    const m = move([]);
+    expect(m?.kind).toBe("step");
+    expect(m?.place.key).toBe("reception");
+    expect(m?.step).toBe("find-top-talent");
+    expect(m?.to).toBe("/zone-of-genius/entry");
+    expect(m?.result).toBeTruthy();
+  });
+
+  it("follows the Journey: Reception → Your House (mission, QoL, assets) → Workshop", () => {
+    expect(move(["find-top-talent"])?.place.key).toBe("house");
+    expect(move(["find-top-talent"])?.step).toBe("discover-mission");
+    expect(move(["find-top-talent", "discover-mission"])?.step).toBe("assess-qol");
+    expect(move(["find-top-talent", "discover-mission", "assess-qol"])?.step).toBe("map-assets");
+    const m = move(["find-top-talent", "discover-mission", "assess-qol", "map-assets"]);
+    expect(m?.place.key).toBe("workshop");
+    expect(m?.to).toBe("/ubb");
+  });
+
+  it("agrees with the place that glows: its state is next", () => {
+    for (const done of [[], ["find-top-talent"], ["find-top-talent", "discover-mission"]] as JourneyItemId[][]) {
+      const save = saveWith(done);
+      const m = nextMove(VILLAGE_PLACES, save);
+      expect(m && placeState(m.place, save)).toBe("next");
+    }
+  });
+
+  it("marks the optional step as optional", () => {
+    expect(move(["find-top-talent", "discover-mission"])?.optional).toBe(true);
+    expect(move(["find-top-talent"])?.optional).toBe(false);
+  });
+
+  it("every Journey step names what it gives", () => {
+    for (const item of JOURNEY_MAIN) expect(item.result, item.id).toBeTruthy();
+  });
+
+  it("with the Journey done, a place that is live comes first, else the Quest Board", () => {
+    const all = JOURNEY_MAIN.map((i) => i.id);
+    const during = move(all, { offerSaved: true, now: new Date("2026-11-04T15:30:00Z") });
+    expect(during?.kind).toBe("live");
+    expect(during?.place.key).toBe("academy");
+    const quiet = move(all, { offerSaved: true, now: TUESDAY });
+    expect(quiet?.kind).toBe("quests");
+    expect(quiet?.place.key).toBe("quest-board");
+  });
+
+  it("a live window does not push aside the next Journey step", () => {
+    const m = move(["find-top-talent"], { now: new Date("2026-11-04T15:30:00Z") });
+    expect(m?.kind).toBe("step");
+    expect(m?.step).toBe("discover-mission");
+  });
+});
+
+describe("whatChanged: what is new since the last visit (§14.6)", () => {
+  const seen = (...keys: VillagePlaceKey[]) => new Set<string>(keys);
+  const guestOpen: VillagePlaceKey[] = ["reception", "academy", "fire-circle"];
+
+  it("names nothing when nothing opened", () => {
+    const r = whatChanged(VILLAGE_PLACES, seen(...guestOpen), saveWith([]));
+    expect(r.fresh).toEqual([]);
+    expect(r.line).toBeNull();
+  });
+
+  it("Top Talent saved: Your House, Quest Board and Oracle are new; the line is Your House", () => {
+    const r = whatChanged(VILLAGE_PLACES, seen(...guestOpen), saveWith(["find-top-talent"]));
+    expect(r.fresh.map((p) => p.key)).toEqual(["house", "quest-board", "oracle"]);
+    expect(r.line).toBe("Your House is open.");
+  });
+
+  it("Mission saved: Café and Workshop are new; the Workshop speaks", () => {
+    const before: VillagePlaceKey[] = [...guestOpen, "house", "quest-board", "oracle"];
+    const r = whatChanged(VILLAGE_PLACES, seen(...before), saveWith(["find-top-talent", "discover-mission"]));
+    expect(r.fresh.map((p) => p.key).sort()).toEqual(["cafe", "workshop"]);
+    expect(r.line).toBe("The Workshop is open.");
+  });
+
+  it("Offer saved: the stall stands in the Market", () => {
+    const done: JourneyItemId[] = ["find-top-talent", "discover-mission", "assess-qol", "map-assets"];
+    const before: VillagePlaceKey[] = [...guestOpen, "house", "quest-board", "oracle", "cafe", "workshop"];
+    const r = whatChanged(VILLAGE_PLACES, seen(...before), saveWith(done, { offerSaved: true }));
+    expect(r.fresh.map((p) => p.key).sort()).toEqual(["coworking", "market"]);
+    expect(r.line).toBe("Your stall stands in the Market.");
+  });
+
+  it("a place without its own line says «<Name> is open.»", () => {
+    const r = whatChanged([place("cafe")], seen(), saveWith(["find-top-talent", "discover-mission"]));
+    expect(r.line).toBe("Café is open.");
+  });
+
+  it("a place the village has already seen open is not new again", () => {
+    const save = saveWith(["find-top-talent"]);
+    const open = openPlaceKeys(VILLAGE_PLACES, save);
+    expect(whatChanged(VILLAGE_PLACES, new Set(open), save).line).toBeNull();
   });
 });

@@ -7100,7 +7100,6 @@
     },
     "badges": {
       "note": "Una insignia por cada paso que terminaste, con tus palabras.",
-      "chose": "Elegiste: {{text}}",
       "names": {
         "findTopTalent": "Talento principal",
         "discoverMission": "Misión",

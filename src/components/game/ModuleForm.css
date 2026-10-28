@@ -114,10 +114,37 @@
   margin: 0; text-wrap: balance; font-weight: 400; font-size: clamp(24px, 3.6vw, 40px); line-height: 1.22; color: var(--vl-ink);
 }
 
+/* the decision on the badge (WP-19): the player's own words, then the date. No label, no score. */
+.mf__badge-choice {
+  margin: 18px 0 0; padding-top: 16px; border-top: 1px solid var(--vl-hair);
+  display: grid; gap: 6px; font-style: italic; font-weight: 300; font-size: clamp(18px, 2vw, 22px); line-height: 1.35; color: var(--vl-ink-2);
+}
+.mf__badge-choice-text { overflow-wrap: anywhere; }
+.mf__badge-date { font-style: normal; font-family: var(--vl-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--vl-ink-3); }
+
 .mf__facts { margin: 26px auto 0; max-width: 46ch; display: grid; gap: 10px; }
 .mf__fact { margin: 0; font-style: italic; font-weight: 300; font-size: clamp(17px, 1.8vw, 21px); line-height: 1.4; color: var(--vl-ink-2); }
 .mf__fact a { text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--vl-hair); }
 .mf__fact a:hover, .mf__fact a:focus-visible { color: var(--vl-ink); text-decoration-color: var(--vl-accent); outline: none; }
+
+/* the real choice (WP-19): one question, the player's own words */
+.mf__choice { margin: 30px 0 0; width: 100%; max-width: 46ch; display: flex; flex-direction: column; align-items: center; }
+.mf__choice-q { font-style: italic; font-weight: 300; font-size: clamp(19px, 2vw, 24px); color: var(--vl-ink); }
+.mf__choice-input {
+  box-sizing: border-box; width: 100%; margin-top: 12px; padding: 12px 14px; resize: vertical; min-height: 72px;
+  border: 1px solid var(--vl-hair); border-radius: 0; background: rgba(var(--scene-bg-rgb), 0.35); color: var(--vl-ink);
+  font-family: var(--vl-serif); font-size: 19px; line-height: 1.4; text-align: left;
+}
+.mf__choice-input::placeholder { color: var(--vl-ink-3); font-style: italic; }
+.mf__choice-input:focus-visible { border-color: var(--vl-accent); outline: none; }
+.mf__choice-btn {
+  min-height: 44px; margin-top: 12px; padding: 0 24px; cursor: pointer; border-radius: 0;
+  border: 1px solid var(--vl-hair); background: transparent; color: var(--vl-ink-2);
+  font-family: var(--vl-mono); font-weight: 300; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+.mf__choice-btn:hover:not(:disabled), .mf__choice-btn:focus-visible { border-color: var(--vl-accent); color: var(--vl-ink); outline: none; }
+.mf__choice-btn:disabled { opacity: 0.5; cursor: default; }
 
 /* 1–10 */
 .mf__rate { margin: 30px 0 0; padding: 0; border: 0; min-width: 0; }
@@ -136,7 +163,7 @@
 .mf__after { display: flex; flex-direction: column; align-items: center; }
 
 @media (prefers-reduced-motion: reduce) {
-  .mf__go, .mf__back, .mf__rate-btn { transition: none; }
+  .mf__go, .mf__back, .mf__rate-btn, .mf__choice-btn { transition: none; }
 }
 @media (max-width: 480px) {
   .mf__rate-btn { min-width: 40px; }

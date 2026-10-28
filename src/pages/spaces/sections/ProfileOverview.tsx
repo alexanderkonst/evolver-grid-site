@@ -6,7 +6,9 @@ import { PlaceState, PlaceStateTag } from "@/components/game/PlaceState";
 import SoulDodecahedron from "@/components/SoulDodecahedron";
 import ProfilePictureUpload from "@/components/profile/ProfilePictureUpload";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
+import { useModuleChoices } from "@/hooks/useModuleChoice";
 import { useSoulColors } from "@/hooks/useSoulColors";
+import { choiceDate } from "@/data/journeyChoices";
 import { useLocalizedDomains } from "@/modules/quality-of-life-map/qolConfig";
 import type { JourneyItemId } from "@/data/journeySequence";
 import {
@@ -63,6 +65,8 @@ type Sheet = ReturnType<typeof useCharacterSheet>;
 const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
     const { t } = useTranslation();
     const domains = useLocalizedDomains();
+    // WP-19: the decision each badge carries. Private to the player; absent for a guest.
+    const decisions = useModuleChoices();
     // Until Spectrum Reading exists the colors are the top-talent archetype's (§14.7 q7).
     const soul = useSoulColors(sheet.soulColors, sheet.topTalent);
 
@@ -276,7 +280,7 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
                 <ul className="cs-shelf">
                     {badges.map((b, i) => {
                         const result = badgeResult(b.step, sheet);
-                        const choice = sheet.choices[b.step];
+                        const decision = decisions.available ? decisions.forStep(b.step) : null;
                         const earnedBadge = b.state === "done";
                         return (
                             <PlaceState
@@ -296,8 +300,14 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
                                 {earnedBadge && b.step === "assess-qol" && (
                                     <p className="cs-mono cs-badge__private">{t("characterSheet.level.private")}</p>
                                 )}
-                                {earnedBadge && choice && (
-                                    <p className="cs-badge__choice">{t("characterSheet.badges.chose", { text: choice })}</p>
+                                {earnedBadge && decision && (
+                                    <p className="cs-badge__choice">
+                                        {decision.choice_text}
+                                        <time className="cs-mono cs-victory__date" dateTime={decision.created_at}>
+                                            {" "}
+                                            {choiceDate(decision.created_at)}
+                                        </time>
+                                    </p>
                                 )}
                             </PlaceState>
                         );

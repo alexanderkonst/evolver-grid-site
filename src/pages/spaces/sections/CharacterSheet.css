@@ -188,6 +188,10 @@
 .cs-badge__private { margin-top: 10px; color: var(--cs-accent); }
 .cs-badge .ps-line { font-size: 14px; line-height: 1.3; color: var(--cs-ink-2); }
 
+/* WP-19: the decision a badge carries; the date follows in small mono. */
+.cs-badge__choice { overflow-wrap: anywhere; }
+.cs-victory__date { font-style: normal; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cs-ink-2); }
+
 /* not earned yet: a faint outline; a closed one carries its «Opens when…» line */
 .cs-badge:not([data-place-state="done"]) { border: 1px dashed var(--cs-hair); }
 .cs-badge:not([data-place-state="done"]) .cs-badge__emblem { color: var(--cs-ink-3); opacity: 0.4; }

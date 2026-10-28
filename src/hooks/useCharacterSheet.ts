@@ -53,12 +53,6 @@ export type CharacterSheetData = {
     assets: { count: number; top: CharacterSheetAsset[] };
     /** An offer / tagline artifact is saved in the UBB (opens Market and Co-working, §14.3). */
     offerSaved: boolean;
-    /**
-     * The real life choice the player made at each Outro, by Journey step id (§15.5). Shown on
-     * the badge of that step, to its owner only. The 1–10 ratings are deliberately not read:
-     * they are kept, never shown (§14.7 q4).
-     */
-    choices: Partial<Record<string, string>>;
 };
 
 const EMPTY: CharacterSheetData = {
@@ -72,7 +66,6 @@ const EMPTY: CharacterSheetData = {
     qol: null,
     assets: { count: 0, top: [] },
     offerSaved: false,
-    choices: {},
 };
 
 const TOP_ASSETS = 3;
@@ -118,7 +111,7 @@ async function loadSheet(): Promise<CharacterSheetData> {
     // soul_colors is not in the generated types (CharacterHub casts the same way).
     const row = (profile ?? {}) as { first_name?: string | null; avatar_url?: string | null; soul_colors?: string[] | null };
 
-    const [zog, qol, assets, mission, offer, choices] = await Promise.all([
+    const [zog, qol, assets, mission, offer] = await Promise.all([
         profileId
             ? supabase
                   .from("zog_snapshots")
@@ -155,7 +148,6 @@ async function loadSheet(): Promise<CharacterSheetData> {
             .select("id", { count: "exact", head: true })
             .eq("user_id", user.id)
             .in("artifact_key", OFFER_ARTIFACT_KEYS),
-        supabase.from("module_choices").select("step_id, choice_text").eq("user_id", user.id),
     ]);
 
     return {
@@ -172,10 +164,6 @@ async function loadSheet(): Promise<CharacterSheetData> {
             top: (assets.data ?? []).map((a) => ({ id: a.id, title: a.title })),
         },
         offerSaved: !offer.error && (offer.count ?? 0) > 0,
-        // A missing table or a refused read just means no choices yet: the badge stays plain.
-        choices: choices.error
-            ? {}
-            : Object.fromEntries((choices.data ?? []).map((c) => [c.step_id, c.choice_text])),
     };
 }
 

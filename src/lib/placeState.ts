@@ -116,6 +116,103 @@ export const nextJourneyStep = (save: PlaceSave): JourneyItemId | null => {
   return step ? step.id : null;
 };
 
+/** What a place needs to be offered as the next move or named in «what changed». */
+export type MovePlace = PlaceInput & {
+  key: string;
+  name: string;
+  /** Module route behind ENTER. */
+  to: string;
+  /** The line when it has just opened: «Your House is open.» */
+  opened?: string;
+};
+
+/**
+ * The one next move (§14.6): where to go, what it is, what it gives, and where ENTER leads.
+ *   step    the next Journey step, at the place that holds it
+ *   live    the Journey is done (or nothing is left in it) and something is live now
+ *   quests  nothing else is pending: the Quest Board holds the next quest
+ */
+export type NextMove<P extends MovePlace = MovePlace> = {
+  kind: "step" | "live" | "quests";
+  place: P;
+  /** The Journey step when `kind` is `step`. */
+  step: JourneyItemId | null;
+  title: string;
+  /** What it gives, completing «… — <result>». */
+  result: string;
+  to: string;
+  /** The step is one the Journey works without. */
+  optional: boolean;
+};
+
+const QUEST_BOARD = "quest-board";
+
+/**
+ * The single next move for this save. The Journey's next step comes first, at the place
+ * whose `steps` hold it; with no step left, a place that is live now; else the Quest Board.
+ * A place that is closed is never offered. Null only when nothing is open to offer.
+ */
+export const nextMove = <P extends MovePlace>(places: readonly P[], save: PlaceSave): NextMove<P> | null => {
+  const states = new Map(places.map((p) => [p.key, placeState(p, save)] as const));
+  const offered = (p: P | undefined): p is P => !!p && states.get(p.key) !== "closed";
+
+  const stepId = nextJourneyStep(save);
+  if (stepId) {
+    const item = JOURNEY_MAIN.find((i) => i.id === stepId);
+    const place = places.find((p) => p.rule.steps?.includes(stepId));
+    if (item && offered(place)) {
+      return {
+        kind: "step",
+        place,
+        step: stepId,
+        title: item.label,
+        result: item.result ?? place.line,
+        to: item.enter ?? item.path,
+        optional: !!item.optional,
+      };
+    }
+  }
+
+  const live = places.find((p) => states.get(p.key) === "live");
+  if (live) {
+    return {
+      kind: "live",
+      place: live,
+      step: null,
+      title: live.rule.live?.line ?? live.name,
+      result: live.line,
+      to: live.to,
+      optional: false,
+    };
+  }
+
+  const board = places.find((p) => p.key === QUEST_BOARD);
+  if (offered(board)) {
+    return { kind: "quests", place: board, step: null, title: board.name, result: board.line, to: board.to, optional: false };
+  }
+  return null;
+};
+
+/** Keys of the places that are not closed: the set the village remembers having seen open. */
+export const openPlaceKeys = (places: readonly MovePlace[], save: PlaceSave): string[] =>
+  places.filter((p) => placeState(p, save) !== "closed").map((p) => p.key);
+
+/**
+ * «What changed» (§14.6): the places open now that were not open at the last visit, and the
+ * one line that names it. A place with its own `opened` line speaks first (a Workshop and a
+ * Café open together on the mission; the Workshop is the Journey's place), else the first
+ * new place in map order says «<Name> is open.» Null line when nothing is new.
+ */
+export const whatChanged = <P extends MovePlace>(
+  places: readonly P[],
+  seenOpen: ReadonlySet<string>,
+  save: PlaceSave,
+): { fresh: P[]; line: string | null } => {
+  const fresh = places.filter((p) => placeState(p, save) !== "closed" && !seenOpen.has(p.key));
+  const spoken = fresh.find((p) => p.opened) ?? fresh[0];
+  return { fresh, line: spoken ? (spoken.opened ?? `${spoken.name} is open.`) : null };
+};
+
 /** True while `now` falls inside the place's live window. */
 export const isLiveNow = (live: PlaceLive | undefined, now: Date): boolean => {
   if (!live) return false;

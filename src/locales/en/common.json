@@ -7129,7 +7129,6 @@
     },
     "badges": {
       "note": "One badge for each step you finished, in your own words.",
-      "chose": "You chose: {{text}}",
       "names": {
         "findTopTalent": "Top Talent",
         "discoverMission": "Mission",
