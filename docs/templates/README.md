@@ -8,6 +8,7 @@ Reusable methods for producing things from Sasha's work: one file per template, 
 | [testimonial-clips.md](./testimonial-clips.md) | Short verbatim testimonial clips (4–20 s, subtitled, 16:9 + 9:16) cut from recorded calls, consent-gated, for the game's Outro notes | in use (first batch 2026-10-27, private until consent) |
 | [improvement-loop.md](./improvement-loop.md) | The standing loop for long builds: work by plan, ship, report in meaning, review the plan, improve the planning itself (with a planning retro) | in use (The Game of Being You, from 2026-10-27) |
 | [holonic-seeing.md](./holonic-seeing.md) | One unified reading of anything from 27 positions (4 quadrants × 3 depths, the centre, the seeing of the seeing, then the one act); synthesized from 5 tellings | in use (synthesis layers, roasts, `/27`, Hark specialty) |
+| [session-script.md](./session-script.md) | The recognition ritual end to end: pre-call, the free call, the same-day reflection, the $555 2-hour session and its close; synthesized from 6 tellings | in use (`/ignite`, Direction Calls, FMF session) |
 
 *Folder created 2026-10-27 (Sasha: «IMPORTANT»).*
 
@@ -57,8 +58,8 @@ Reusable methods for producing things from Sasha's work: one file per template, 
 | Landing Page Copywriting Framework | `docs/02-strategy/landing_page_copywriting_framework.md` + Marketing Playbook §How to Apply to Any UB Landing Page + `generate-landing` | landing copy flow | Causal | the offer as a page | Market | historical · 2026-01-24 | merge with Marketing Playbook |
 | Marketing Playbook | `docs/03-playbooks/marketing_playbook.md` (Outreach Formula per door; Playbook-as-Lead-Magnet Pattern) | marketing system for a UB | Causal | values made visible to the tribe | Market | reference · undated (Apr 2026) | keep |
 | Distribution Playbook + Mirror Selling | `docs/03-playbooks/distribution_playbook.md` (Distribution Formula, Purity Check, Sales — Mirror Selling) | distribution system and sales laws | Causal | the last mile where the offer meets a buyer | Market | in use · v2.0 2026-07-22 | keep |
-| Session script (Direction Call) | Distribution Playbook §2 Direction Call Script + §7 Pre-Call Protocol | a 1:1 call that turns into a session | Causal | the moment of recognition, run as a ritual | Market (Sasha's stall, `/ignite`) | in use · 2026-07 | **promote**, merged with the Ignition SOP |
-| Ignition Session SOP v1 / v2 | `docs/02-strategy/unique-businesses/alexanders_unique_business.md` §Ignition Session SOP v1.0, §v2.0 (mirrored in KG `AUB 21.05/21.06`) | the paid session flow | Causal | the same ritual, earlier version | Market | historical · v2 2026-03-19 | merge into the session-script template |
+| Session script (Direction Call) | Distribution Playbook §2 Direction Call Script + §7 Pre-Call Protocol | a 1:1 call that turns into a session | Causal | the moment of recognition, run as a ritual | Market (Sasha's stall, `/ignite`) | in use · 2026-07 | **synthesized** → [session-script.md](./session-script.md) (2026-10-27) |
+| Ignition Session SOP v1 / v2 | `docs/02-strategy/unique-businesses/alexanders_unique_business.md` §Ignition Session SOP v1.0, §v2.0 (mirrored in KG `AUB 21.05/21.06`) | the paid session flow | Causal | the same ritual, earlier version | Market | historical · v2 2026-03-19 | **synthesized** → [session-script.md](./session-script.md) (2026-10-27) |
 | BUILT container | `docs/04-products/the_build_container.md` | 3-week advisory offer + copy laws | Ideal Forms | the canonical shape of a deep-engagement offer | Market | in use · v1.0 2026-07-10 | keep |
 | King-Maker Intensive | `docs/02-strategy/king_maker_intensive.md` | group program offer draft | Ideal Forms | the session made collective | Market · Fire Circle | draft · Aug 2026 (Day 157) | keep as draft |
 | Product Formats Taxonomy | `docs/02-strategy/product_formats_taxonomy.md` §Template/Methodology Formats | catalogue of product shapes | Blueprint | the possible forms an offer can take | Market | reference · undated | keep |
@@ -217,7 +218,7 @@ Runners-up: mastermind-host (after the Nov 9–10 run), infographic-style-keeper
 - **Spec / handoff**: `sasha-spec-writing`, `hark_spec_handover.md`, SOW+DoD files, `feature.md`, Feature Spec Template, Integrated Product Building Workflow.
 - **Product / UX playbooks**: `ux_playbook.md` ≈ archive backup; `product_playbook.md` restructures the same text.
 - **Outreach copy**: Outreach Ops vs Customer Journey §5/§7, Communications universal template and emails, adjacent-founder template; two empty July stubs.
-- **Session scripts**: Ignition SOP v1/v2 vs Direction Call Script.
+- ~~**Session scripts**~~ → synthesized into [session-script.md](./session-script.md) (2026-10-27): Ignition SOP v1/v2, Mirror Session, Direction Call Script, Pre-Call Protocol, Reflection Proposal, Funnel v5, `/ignite`.
 - **Roasting**: Roasting Protocol vs Appleseed roasting vs daily-loop roast trio.
 - **Module checklists**: implementation checklist ×2; module polish ×2.
 - **Copy voice**: Anti-AI style vs Humanizer vs Purity Check.

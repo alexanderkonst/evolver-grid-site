@@ -1,3 +1,5 @@
+> Sales §2 (Direction Call Script) and §7 (Pre-Call Protocol) are synthesized into docs/templates/session-script.md (2026-10-27). This file is kept as a source.
+
 # Distribution Playbook
 ## The Complete User Journey from Product to Working Distribution System
 

@@ -1,3 +1,5 @@
+> §4a (Reflection Proposal) is synthesized into docs/templates/session-script.md (2026-10-27). This file is kept as a source.
+
 # Outreach Ops — the one file
 
 > **v1.0 — Day 124.** The single execution file. Everything needed to run outreach lives here: no jumping between docs. Strategy source: `outreach_strategy_2026-07.md` v3.0 (don't touch that for execution, only for strategy changes). Current relationship and offer state: the Master Table + Offer Ledger in `strategic_crm_outreach_tracker.md`, maintained through Pulse.

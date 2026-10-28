@@ -1,3 +1,5 @@
+> Step 4 (Mirror Session) is synthesized into docs/templates/session-script.md (2026-10-27). This file is kept as a source.
+
 # The Integrated Unique Business Playbook
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
