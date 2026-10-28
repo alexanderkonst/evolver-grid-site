@@ -71,7 +71,13 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { withRetry } from "@/lib/withRetry";
 import { useToast } from "@/hooks/use-toast";
 import { SaveErrorToastBody } from "@/components/ui/save-error-toast";
+import ModuleIntro from "@/components/game/ModuleIntro";
+import ModuleOutro from "@/components/game/ModuleOutro";
+import { getJourneyModule } from "@/data/journeyModules";
 import { resolveMissionSentence } from "./missionSynthesis";
+
+// WP-5: this module in the module form (Intro → one button → the flow → Outro).
+const MISSION_MODULE = getJourneyModule("discover-mission")!;
 
 // ─── Editorial-register tokens (per docs/03-playbooks/ui_playbook.md) ──
 // Mirror ZoneOfGeniusOverview / QoL Results. Dark ink on light glass,
@@ -109,6 +115,14 @@ const MissionDiscoveryLanding = () => {
     const { path: entryPath } = useEntryPath();
 
     const [state, setState] = useState<State>("prompt");
+    // WP-5: the Intro shows until the player presses its one button, but only for a player
+    // with no saved mission yet (set once the mount check has run, `checked`). A returning
+    // player, an edit (?edit=1) and a start-over never see it.
+    const [checked, setChecked] = useState(false);
+    const [introPending, setIntroPending] = useState(false);
+    // True right after a save in this visit: the Outro (a stable screen) takes the place of
+    // the saved card. A later visit shows the saved card as before.
+    const [justSaved, setJustSaved] = useState(false);
     const [aiResponse, setAiResponse] = useState("");
     const [sentence, setSentence] = useState("");
     const [copied, setCopied] = useState(false);
@@ -184,9 +198,13 @@ const MissionDiscoveryLanding = () => {
                     // editable "confirm" state with their saved mission
                     // pre-filled, instead of the "saved" card.
                     setState(searchParams.get("edit") === "1" ? "confirm" : "saved");
+                } else if (searchParams.get("edit") !== "1") {
+                    setIntroPending(true);
                 }
             } catch {
                 // Silent — landing on the prompt state is the safe default.
+            } finally {
+                if (!cancelled) setChecked(true);
             }
         })();
         return () => {
@@ -320,6 +338,7 @@ const MissionDiscoveryLanding = () => {
             }
 
             setState("saved");
+            setJustSaved(true);
 
             // ── Post-save side effects ──
             // 1. Tell useJourneyProgress instances to refetch so JOURNEY
@@ -328,27 +347,14 @@ const MissionDiscoveryLanding = () => {
             //    pane 2 shows the JOURNEY rail (where item #8 lives).
             // 3. Tell GameShellV2 to ensure pane 2 is open so the user
             //    sees the strikethrough animation + the next step.
-            // 4. Day 80 Wave 2 (Sasha 2026-05-22): fire celebration modal
-            //    with the saved sentence. Once-per-primitive via the
-            //    listener's sessionStorage flag — re-saves don't re-fire.
+            // The celebration is the Outro (ModuleOutro, WP-5): a stable screen
+            // rendered below, not the `fytt:celebrate` modal, which would stack a
+            // second set of buttons on top of it.
             window.dispatchEvent(new CustomEvent("fytt:refresh-journey-progress"));
             window.dispatchEvent(
                 new CustomEvent("fytt:set-active-space", { detail: { spaceId: "journey" } }),
             );
             window.dispatchEvent(new CustomEvent("fytt:open-sections-panel"));
-            try {
-                window.dispatchEvent(
-                    new CustomEvent("fytt:celebrate", {
-                        detail: {
-                            primitive: "mission",
-                            variant: "regular",
-                            resultText: finalSentence,
-                        },
-                    }),
-                );
-            } catch {
-                // Defensive — never block save on celebration UX.
-            }
         } catch (err) {
             // Day 77 (Sasha 2026-05-20): surface the actual error.
             // Supabase errors are PostgrestError-shaped plain objects
@@ -404,6 +410,24 @@ const MissionDiscoveryLanding = () => {
             setIsSaving(false);
         }
     };
+
+    // WP-5 module form. Before: the Intro (result + one button) until the player starts,
+    // unless a mission is already saved. After: the Outro right after a save.
+    if (!checked) return null;
+    if (introPending) {
+        return (
+            <div className="px-4 py-8 sm:py-10">
+                <ModuleIntro module={MISSION_MODULE} onStart={() => setIntroPending(false)} />
+            </div>
+        );
+    }
+    if (state === "saved" && justSaved) {
+        return (
+            <div className="px-4 py-8 sm:py-10">
+                <ModuleOutro module={MISSION_MODULE} result={sentence} />
+            </div>
+        );
+    }
 
     return (
         <div className="max-w-3xl mx-auto px-4 py-10 sm:py-12">

@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
@@ -77,6 +77,11 @@ import { Map, Download, RefreshCw } from "lucide-react";
 // "See your refined matches →" CTA below the action row. Returns null
 // for build-path users.
 import MatchFlowCta from "@/components/landing/MatchFlowCta";
+import ModuleOutro from "@/components/game/ModuleOutro";
+import { getJourneyModule, qolResultText } from "@/data/journeyModules";
+
+// WP-5: this module in the module form.
+const QOL_MODULE = getJourneyModule("assess-qol")!;
 
 interface QualityOfLifeMapResultsProps {
   renderMode?: "standalone" | "embedded";
@@ -86,6 +91,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   renderMode = "standalone",
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get("return");
@@ -331,6 +337,10 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   const localizedNameById = Object.fromEntries(
     localizedDomains.map(d => [d.id, d.name])
   ) as Record<string, string>;
+
+  // WP-5: the Journey route (/quality-of-life-map/results) ends in the Outro once saved.
+  const showOutro =
+    renderMode === "standalone" && isSaved && location.pathname.startsWith("/quality-of-life-map/");
 
   const overallAverage = domainResults.reduce((sum, r) => sum + r.stageValue, 0) / domainResults.length;
   const overallStageRounded = overallAverage.toFixed(1);
@@ -969,7 +979,17 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
       {/* Funnel v2 (§4.4.4): match-path "See your refined matches →"
           CTA below the utility action row. Build-path users see only
           Retake / Download PDF. */}
-      <MatchFlowCta step="qol" />
+      {/* WP-5: on the Journey route the saved result ends in the Outro (one button back to
+          the village), in place of Funnel v2's MatchFlowCta. Revisits from Your House
+          (/game/me/quality-of-life) and the embedded Learn route keep the old row. */}
+      {showOutro ? (
+        <ModuleOutro
+          module={QOL_MODULE}
+          result={qolResultText(Math.min(...domainResults.map((r) => r.stageValue)))}
+        />
+      ) : (
+        <MatchFlowCta step="qol" />
+      )}
     </div>
   );
 
