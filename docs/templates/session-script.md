@@ -1,6 +1,6 @@
 # Session script: the recognition ritual (free call → reflection → the $555 2-hour session)
 
-*Canonical template, synthesized 2026-10-27 by Evolver from six tellings (Genealogy at the end). It holds the whole path one person walks with Sasha, from the first booked call to the paid 2-hour session and its close. Where tellings differ, the newest Sasha-confirmed one wins (Funnel v5, 2026-10-19, and the live `/ignite` page); older claims stay as dated notes. The minute plan in §5 is a composition of the sources, marked as such, for Sasha to confirm on the next session.*
+*Canonical template, synthesized 2026-10-27 by Evolver from six tellings (Genealogy at the end). It holds the whole path one person walks with Sasha, from the first booked call to the paid 2-hour session and its close. Where tellings differ, the newest Sasha-confirmed one wins (Sasha's decisions of 2026-10-27 on the entry door and the name; before them Funnel v5, 2026-10-19, and the live `/ignite` page); older claims stay as dated notes. The minute plan in §5 is a composition of the sources, marked as such, for Sasha to confirm on the next session.*
 
 ## Meta-description
 - **Level / parent:** L2 · Business development (Market: Sasha's stall, `/ignite`) · parent: [meta-template.md](./meta-template.md); domain parent `docs/03-playbooks/unique_business_playbook.md`
@@ -25,8 +25,9 @@
 | Productize Yourself Session | 2026-04 onward (site, emails, rail label) | 2 hours, $555, money-back guarantee ("locked" at 2 h, prices unified at $555) |
 | Founder-Market Fit session | Funnel v5, Sasha 2026-10-19 | "1–2 hours, paid, $555. Offered only to people who came through the 20-minute call." |
 | Next-Chapter Positioning Session | `/ignite` tab title, 2026-10-27 | the live page: "The tagline your next chapter runs on. Written with you, in 2 hours." |
+| **Founder-Market Fit Discovery Mastermind** | Sasha's decision, 2026-10-27 | the name, chosen over the three names above |
 
-**Canonical now:** $555, 2 hours, 1:1, money-back guarantee; the public name follows the live `/ignite` page. *Dated notes:* the 60-minute and 60–75-minute durations and the $222 name-your-price floor are earlier shapes, not current offers.
+**Canonical now:** **Founder-Market Fit Discovery Mastermind** (Sasha, 2026-10-27); $555, 2 hours, 1:1, money-back guarantee. Productize Yourself, Founder-Market Fit and Next-Chapter Positioning are earlier names. *Dated notes:* the 60-minute and 60–75-minute durations and the $222 name-your-price floor are earlier shapes, not current offers.
 
 ## 3. Three principles (hold them, never teach them)
 1. **They're already doing it.** The business exists in the help they give for free and what people thank them for. You name, you don't invent.
@@ -43,9 +44,8 @@
 - **Choose and declare the container** before the call starts (below).
 
 ### 4.2 The free call
-**Front door, now:** the free **20-minute call** (Funnel v5, Sasha 2026-10-19: "We get acquainted and Sasha reveals the cards: on the infographic, how this ability turns into a product"; cal.com/aleksandrkonstantinov/20). The person arrives with their one uniqueness sentence already read by Evolver from their profile.
-**Still live:** the free **45-minute Direction Call** on `/ignite` (cal.com/aleksandrkonstantinov/direction-choice-call) for people who come from the page.
-> *Open fork for Sasha:* two free doors coexist (20 min from LinkedIn readings, 45 min from `/ignite`). Funnel v5 is newer and Sasha's own; the page has not been changed. Not changed here.
+**Entry door, now** (Sasha's decision, 2026-10-27): the free **45-minute Direction Call** on `/ignite` (cal.com/aleksandrkonstantinov/direction-choice-call), plus the **webinar**.
+> *Dated note:* Funnel v5 (Sasha, 2026-10-19) made a free **20-minute call** the front door ("We get acquainted and Sasha reveals the cards: on the infographic, how this ability turns into a product"; cal.com/aleksandrkonstantinov/20), with the person's uniqueness sentence read in advance from their profile. From 2026-10-27 it is no longer the entry door. The fork "two free doors" (20 min vs 45 min) is closed by that decision.
 
 **The Direction Call script** (2026-07, 7 stages, one emotional arc):
 | Time | Stage | Emotion | Exact line |
@@ -62,7 +62,7 @@
 - **The three collapses:** stage 2 creates Attention, stage 3 Pain (in their voice), stage 6 tests Purchasing Power.
 - **Incepting question per segment** (polymath, practitioner, founder between ventures, founder with live business, employee, fractional, community leader, investor, teen): see Distribution Playbook, Sales §3. Each asks them to articulate the invariant they can't yet.
 - **Buying questions:** never answer with an explanation; point: "what you just asked is exactly the work."
-- **The 20-minute version** compresses the same arc: frame → their field → the mirror (the reading and the infographic) → one door. *(Composition, not yet written by Sasha.)*
+- *Dated:* **the 20-minute version** (Funnel v5 door, not the entry door since 2026-10-27) compressed the same arc: frame → their field → the mirror (the reading and the infographic) → one door. *(Composition, never written by Sasha.)*
 
 ### 4.3 Same day: the Reflection Proposal
 Built ONLY from their own words: (1) their invariant quoted back ("you said X, that is your pattern"); (2) their buying question quoted back; (3) their project's core derived from their own material; then ONE door with the price. Give the seed generously; sell the operationalization. «Диагностика бесплатно. Сборка за деньги.» "The mirror is free. The forge is paid."
@@ -117,9 +117,9 @@ Built ONLY from their own words: (1) their invariant quoted back ("you said X, t
 - Add what this session taught to this template (Meta-Template §7.4).
 
 ## 6. Open edges
-- Two free front doors (20 min vs 45 min), see §4.2.
+- ~~Two free front doors (20 min vs 45 min)~~ closed 2026-10-27: the 45-min Direction Call plus the webinar, see §4.2.
 - The 2-hour minute plan is a composition; Sasha has not run it as written.
-- Public name: "Next-Chapter Positioning" (tab), "Productize Yourself" (rail, video), "Founder-Market Fit" (Funnel v5). One name is Sasha's call.
+- ~~Public name~~ closed 2026-10-27: **Founder-Market Fit Discovery Mastermind** (Sasha). The live `/ignite` tab, rail and video still carry the older names until the site is updated.
 
 ---
 

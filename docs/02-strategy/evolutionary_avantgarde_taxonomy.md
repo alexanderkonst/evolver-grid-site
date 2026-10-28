@@ -138,7 +138,7 @@ The list is open: more flavors exist, and new ones appear every year.
 | Big-system intellectuals who explain everything through one human system (e.g. Iain McGilchrist, left/right hemisphere) | | | | ● | | ● | New (adjacent to polymaths) |
 | Sensitivity and tantra | | | | ● | | | New |
 | Dance (ecstatic dance and the like) | | | | ● | | ● | New |
-| Physical hubs (Bali: Ubud hub, Canggu hub, inferred from the transcript; others) | | ● | | ● | ● | | New |
+| Physical hubs (Bali: Ubud hub, Canggu hub; others) | | ● | | ● | ● | | New |
 | Conscious communities in big cities | | | | ● | | ● | New |
 | AIESEC alumni ("a powerful community") | | ● | ● | | | | New |
 | Russian-speaking entrepreneur scene (Sasha has many entries here) | | ● | | | | | New |
@@ -167,7 +167,6 @@ The list is open: more flavors exist, and new ones appear every year.
 
 **Unclear in the transcript, to ask Sasha:**
 - "типа why": likely YPO or EO.
-- Ubud/Canggu (heard "Bood hub Cap gun hub") is inferred, pending Sasha's confirmation. (Confirmed by Sasha 2026-10-27: the festival is Boom (Portugal); the big-system intellectual is Iain McGilchrist.)
 
 ---
 

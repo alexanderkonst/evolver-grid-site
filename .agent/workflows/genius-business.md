@@ -85,11 +85,12 @@ Create `docs/specs/[venture-name]/genius_business_tracker.md` with this structur
 
 ### Step 4: PAIN (5-Layer Slicer)
 1. Apply each layer sequentially using founder's ICP input:
-   - **Layer 1 — Struggle:** What they'd say if asked "what's going on?"
-   - **Layer 2 — Pressure:** What's pushing toward a decision NOW?
-   - **Layer 3 — Consequences:** What they experience daily (body, mind, emotions, relationships, identity)
-   - **Layer 4 — Cost of Inaction:** What happens in 6 months if nothing changes?
-   - **Layer 5 — Urgency Levers:** What countdown is already running?
+   - **Layer 1 — Pressure:** What's pushing toward a decision NOW?
+   - **Layer 2 — Consequences:** What they experience daily (body, mind, emotions, relationships, identity)
+   - **Layer 3 — Cost of Inaction:** What happens in 6 months if nothing changes?
+   - **Layer 4 — Urgency Levers:** What countdown is already running?
+   - **Layer 5 — Struggle Synthesized:** The structural pattern, arrived at last (not the surface "what's going on?"): the one sentence that makes them say "...yes, that's exactly it"
+   - *(Slicer v2.0 order, Pain Theory Playbook 2026-02-23: struggle last.)*
 2. Extract **Self-Language Inventory** — 8-12 exact phrases they say to themselves
 3. Add pain data to the ICP document
 4. **GATE:** Ask: *"Would they cry reading this?"*

@@ -116,7 +116,7 @@ Universal Ontology Executive Summary (2026-08-16) and other synthesis layers; `d
 
 ## 10. Open edges
 - Open Edges 6–7 (26 positions of seeing + 1 of action; 3³ and 13 → 26 + 1 as one threshold) await Sasha's confirmation.
-- The downloadable skill (`public/skills/holonic-seeing.md`, mirrored in `.agent/skills/`) still says "Implications", "26-perspective" and defines 26 as the critique of the critique. Updating the public skill to this canon is a public-facing change: Sasha's call.
+- The downloadable skill (`public/skills/holonic-seeing.md`) says "Consequences" and "27-perspective" since 2026-10-28 (Sasha approved the label and the number, 2026-10-27). It still defines 26 as the critique of the critique, and the mirror in `.agent/skills/` still says "Implications" and "26-perspective"; any further change to the public skill is Sasha's call.
 - Precision figures in PST §37 (≈7/10, 9.5/10, 9.9+/10 for 3 / 12 / 12 + 1) are AI-written estimates, never measured; kept as intuition only.
 
 ---

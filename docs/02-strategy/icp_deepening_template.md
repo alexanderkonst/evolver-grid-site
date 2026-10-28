@@ -35,32 +35,34 @@ INPUT:
 YOUR TASK:
 Project the ICP through the 5-Layer Pain Slicer. For this ideal client:
 
-1. STRUGGLE (What They're Struggling With)
-   - What would they say if you asked "what's going on?"
-   - What do they complain about? What do they Google at midnight?
-   - What do they FEEL but won't say unprompted?
-
-2. PRESSURE (What's Pushing Toward a Decision)
+1. PRESSURE (What's Pushing Toward a Decision)
    - What external clocks are ticking? (financial, relational, market)
    - What relationship dynamics are creating pressure?
    - What self-image erosion is happening?
    - Map the compound loop — how do pressure sources amplify each other?
 
-3. CONSEQUENCES (Daily Experience)
+2. CONSEQUENCES (Daily Experience)
    - What does a bad day feel like in their body?
    - What is their inner dialogue when they're alone?
    - How does this affect their most important relationship?
    - Where is their energy going that it shouldn't?
 
-4. COST OF INACTION
+3. COST OF INACTION
    - What happens in 6 months if nothing changes?
    - What gets permanently lost (not just delayed)?
    - What is the real cost? (Usually not bankruptcy — usually resignation)
 
-5. URGENCY LEVERS
+4. URGENCY LEVERS
    - What countdown is already running?
    - What tipping point is approaching in their relationships?
    - What compounding cost are they paying per month of delay?
+
+5. STRUGGLE SYNTHESIZED (What They're Struggling With, arrived at last)
+   - After the four layers above: what would they say if forced to be honest about the full picture?
+   - What is the REAL conflict (often different from what they'd name first, or Google at midnight)?
+   - What do they FEEL but won't say unprompted? What pattern keeps repeating across their attempts?
+   - What's the one sentence that would make them freeze and say "...yes, that's exactly it"?
+   (Slicer v2.0 order, Pain Theory Playbook 2026-02-23: start with struggle and you get the surface complaint; arrive at it and you get the structural truth.)
 
 6. AWARENESS STAGE
    - Where are they on the 5-stage awareness scale?

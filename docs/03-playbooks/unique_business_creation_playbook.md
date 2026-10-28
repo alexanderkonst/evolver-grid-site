@@ -182,13 +182,15 @@ If that's true → FMF is the most important thing a founder can do → the meth
 
 **How:** Apply the 5-Layer Pain Slicer sequentially:
 
+*Order: Slicer v2.0 (Pain Theory Playbook, 2026-02-23): pressure → consequences → cost of inaction → urgency → struggle synthesized. Struggle comes last: start with it and you get the surface complaint; arrive at it and you get the structural truth.*
+
 | Layer | Question | Produces |
 |-------|----------|----------|
-| 1. **Struggle** | What would they say if you asked "what's going on?" | Surface problem in their words |
-| 2. **Pressure** | What's pushing them toward a decision NOW? | Forcing functions + compound loop |
-| 3. **Consequences** | What do they experience daily? | Body, mind, emotions, relationships, identity |
-| 4. **Cost of Inaction** | What's the price of doing nothing? | 6-month projection → usually resignation |
-| 5. **Urgency Levers** | What makes NOW different from "eventually"? | Countdown mechanisms |
+| 1. **Pressure** | What's pushing them toward a decision NOW? | Forcing functions + compound loop |
+| 2. **Consequences** | What do they experience daily? | Body, mind, emotions, relationships, identity |
+| 3. **Cost of Inaction** | What's the price of doing nothing? | 6-month projection → usually resignation |
+| 4. **Urgency Levers** | What makes NOW different from "eventually"? | Countdown mechanisms |
+| 5. **Struggle Synthesized** | What's the one sentence that would make them freeze and say "...yes, that's exactly it"? | The structural pattern, not the surface complaint |
 
 **Then extract:** Self-Language Inventory (8-12 phrases they say to themselves)
 
@@ -196,11 +198,11 @@ If that's true → FMF is the most important thing a founder can do → the meth
 
 | Layer | Key Finding |
 |-------|-------------|
-| **Struggle** | "I can't figure out which venture to go all-in on" |
 | **Pressure** | Savings declining + partner conversations + self-image erosion (compound loop) |
 | **Consequences** | Chest tightness, scatter, oscillation between vision and despair, walking on eggshells around money |
 | **Cost of Inaction** | Not bankruptcy — **resignation**. Shelving the dream. "I'll come back to it when…" (They won't.) |
 | **Urgency** | Runway countdown, relationship tipping point, AI market window closing |
+| **Struggle** | "I can't figure out which venture to go all-in on" |
 
 **Self-Language:** "I've been in this transition for too long" / "I'm running out of runway" / "I'm so much more capable than my results show" / "I feel like I'm drilling hoping I'm almost through the wall"
 
@@ -221,7 +223,7 @@ If that's true → FMF is the most important thing a founder can do → the meth
 > "Business happens when timeless essence meets temporal pressure." — ITFT
 
 **How:**
-1. Point A = the felt experience (from Layer 3 of the slicer — consequences)
+1. Point A = the felt experience (from Layer 2 of the slicer — consequences)
 2. Point B = the lived reality after transformation
 3. The Bridge = your method (from Step 6)
 4. Run through 3x Roasting cycles using TP Deepening Template

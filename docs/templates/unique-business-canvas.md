@@ -56,7 +56,8 @@
 **The domino:** myth + tribe are ~80 % of the work; the rest cascades. **Pain before promise:** the insight lives in Point A; Point B is guaranteed by the uniqueness.
 
 > *Dated notes on the order.* The 10-step Creation Playbook (2026-02-14/18) put **Myth first** ("Step 0, the seed from which all others grow"), then Seed (uniqueness), then **Offer before ICP**. From 2026-02-20 the playbook, the canvas template v5–v6 and the builder code all derive **uniqueness first**, myth from uniqueness, tribe from myth ("Don't define tribe first. Forge myth, watch who magnetizes"); the offer (Excalibur) becomes downstream of pain and promise. Canonical: the table above. The early insight survives as the collapse test and the "photon of truth" (find the one unbreakable sentence first).
-> *Scale tension, held open:* the canvas template counts **7** artifacts (FMF masterclass, 2026-10-24: "The Unique Business OS: 7 Artifacts"); the playbook adds Shadow (8) and steps 5.5–5.7; Sasha's own canvas tracks 18 rows (Dream Outcome, Strategy, Method, Proof, Golden DM, …). Reading: 7 public faces, 8 working artifacts, the rest are a mature canvas's extensions. For Sasha to confirm.
+> *Scale, current decision (Sasha, 2026-10-27):* the canvas has **six** parts: **Uniqueness, Shadow, Myth, Tribe, Transition, Promised Land** («сейчас вообще получается шесть: уникальность, тень, миф, трайб, переход, земля обетованная»). The table above stays as the working derivation order underneath.
+> *Dated history of the scale:* the canvas template counted **7** artifacts (FMF masterclass, 2026-10-24: "The Unique Business OS: 7 Artifacts"); the playbook added Shadow (**8**) and steps 5.5–5.7; Sasha's own canvas tracks **18** rows (Dream Outcome, Strategy, Method, Proof, Golden DM, …). Hark's earlier reading (7 public faces, 8 working artifacts, the rest a mature canvas's extensions) is superseded by the six.
 
 ## 4. Pain: the 5-Layer Slicer v2.0 (2026-02-23)
 Apply in this order, per segment; each layer gives two outputs: what's seen from outside + the self-talk they are aware of (their awareness stage).
@@ -72,7 +73,7 @@ Apply in this order, per segment; each layer gives two outputs: what's seen from
 **Confabulation layer:** the tribe can't diagnose its own root cause ("the market wasn't ready"); listen for what they don't say.
 **Awareness:** Schwartz 1–5 plus the **layer-aware** rung (2026-07-27): "it is not effort, it is the layer." Message must match the rung, not the position.
 
-> *Dated note, and a drift found in synthesis:* v1 of the slicer (2026-02-14) started with **Struggle** and ended with Urgency. That order still lives in the Creation Playbook, the `genius-business` workflow, the ICP Deepening prompt, the Pain Mapping Template table inside `pain_theory_playbook.md` itself, and in the live `deepen-icp` function (struggles before pressure). `deepen-pain` already runs Pressure first. Bringing `deepen-icp` to v2.0 is a code change: queued as a candidate, not done here.
+> *Dated note, and a drift found in synthesis:* v1 of the slicer (2026-02-14) started with **Struggle** and ended with Urgency. The docs were aligned to v2.0 on 2026-10-28: the Creation Playbook, the `genius-business` workflow, the ICP Deepening prompt and the Pain Mapping Template table in `pain_theory_playbook.md`. The live `deepen-icp` function still runs v1 (struggles before pressure) and waits for Sasha's ok on a Lovable deploy. `deepen-pain` already runs Pressure first.
 
 ## 5. Tribe: signal first (PST 72)
 - Define the tribe by what's **alive** in them (an unmistakable creative signal they can't yet name), not by what's broken.

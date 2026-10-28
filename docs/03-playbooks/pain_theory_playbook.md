@@ -183,15 +183,15 @@ Awareness level and developmental position are **different axes, and they intera
 
 ## The Pain Mapping Template
 
-For ICP Deepening, map each dimension:
+For ICP Deepening, map each dimension (in the v2.0 slicer order above: struggle last):
 
 | Dimension | Question | Client's Self-Language |
 |-----------|----------|------------------------|
-| **1. Struggle** | What would they say if asked "what's going on?" | |
-| **2. Pressure** | What's making this urgent NOW? | |
-| **3. Consequences** | What are they experiencing daily? | |
-| **4. Cost of Inaction** | What happens in 6 months if nothing changes? | |
-| **5. Urgency Levers** | What countdown is already running? | |
+| **1. Pressure** | What's making this urgent NOW? | |
+| **2. Consequences** | What are they experiencing daily? | |
+| **3. Cost of Inaction** | What happens in 6 months if nothing changes? | |
+| **4. Urgency Levers** | What countdown is already running? | |
+| **5. Struggle Synthesized** | What's the one sentence that would make them freeze and say "...yes, that's exactly it"? | |
 | **Awareness Stage** | 1-5, where is your ideal client? | |
 
 ---
