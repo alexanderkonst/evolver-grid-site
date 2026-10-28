@@ -28,7 +28,7 @@ Each entry in this library is a technology — a seeing instrument that produces
 
 ## ⟡ Executive Summary & 27-Perspective Synthesis
 
-> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 172 as of October 27, 2026) stay the source of truth.*
+> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 173 as of October 27, 2026) stay the source of truth.*
 
 This is the R&D engine of the whole venture: a growing library of seeing instruments, each named by the transformational result it delivers, from cosmogenesis (Prime Radiant) through uniqueness articulation, the founder-first inversion, and myth-to-movement, up to the recent cluster on ripeness, transition, the mirror, and the network of sovereigns. They do not stack like a portfolio; they nest, each one refracting through all the others. Held together they are a single field seen from many faces (concentric polymathy). Over 2026 the collection converged on one spine: articulation is the mechanism of growth, recognition replaces persuasion, the mirror is the product, and a network coheres through well-formed edges rather than a center. Every playbook move, product, and pricing decision downstream traces to a numbered technology here.
 
@@ -9208,3 +9208,44 @@ Other prisms of the same cycle: **4** (seasons, elements); **8** (7+1, two squar
 - *Technology 149: One Anatomy, All Traditions (The Rosetta Stone)*.
 - *Technology 128: The Name Is the Result*: the name follows what it does.
 - *Technology 167: One Primitive Under Every Flavour*.
+
+---
+
+## Technology 173: Sell the Shift, Not the Content (продаём сдвиги, а не контент) (oral, Oct 27, 2026)
+
+> *Oral · October 27, 2026 · chat with Hark. Provenance, honestly: the first line came from Hark, in the synthesis of the BE/DO cycle (technology = shift, template = path; `docs/templates/meta-template.md` §2b): «Продаём сдвиги, а не контент. Язык предложения звучит как "ты увидишь…", а не "ты получишь курс"». Sasha recognised it and took it further himself: because we know which template carries which shift, the offer can name the result directly and promise it, which makes it a principle of product management. He asked for it to be added to the library («Это технология в библиотеку!»).*
+
+### 🫀 Essence — in Sasha's words
+
+1. > «Зная какой шаблон мы используем, это идеальный способ продать что-то - напрямую назвать (и предложить!) гарантированный результат! Это ГИГАНТСКОЕ ОТКРЫТИЕ ДЛЯ УПРАВЛЕНИЯ ПРОДУКТАМИ! Это технология в библиотеку!»
+   > — *chat of 2026-10-27, ~23:57 MST*
+
+   *(translation)* "Knowing which template we are using, this is the perfect way to sell something: name directly (and offer!) a guaranteed result! This is a GIGANTIC DISCOVERY FOR PRODUCT MANAGEMENT! This is a technology for the library!"
+
+2. *The line he was answering (Hark, same evening, from the BE/DO synthesis):* «Продаём сдвиги, а не контент. Язык предложения звучит как "ты увидишь…", а не "ты получишь курс"».
+
+   *(translation)* "We sell shifts, not content. The offer sounds like 'you will see…', not 'you will get a course'."
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* Most offers sell what is inside the box: a course, a number of hours, a set of modules. The buyer has to guess whether any of it will change anything. Once every template names the shift it carries (technology = the shift in seeing, template = the repeatable path through it), the offer no longer needs to describe content at all. It names point A in the person's own words, the new seeing at point B and the real step they will take, and promises only what the path reliably delivers and the person can check for themselves. The result itself becomes the offer. Where a template carries no shift (Craft), there is nothing to promise, and the offer says so. The shift: from "I sell content, a course, hours" to "I sell a named shift with a known path, so the result itself is the offer".
+
+### 🔥 Implications — AI draft
+
+- **1st order.** Every product, module and session gets one offer line in the form «Ты увидишь… и сделаешь…» / "You will see… and you will…", taken from the «Shift carried» line of its template, plus a check the person can run themselves.
+- **2nd order.** Price follows the depth of the shift, not the volume of content; a product with no measurable B is either given a check or honestly sold as Craft.
+- **3rd order.** The library and the template set become the product catalogue: a new technology is a new promise we can make, and a template without a verified shift is a promise we are not yet allowed to make.
+
+### Shape
+
+- **Shape:** **Arrow over a box**: the box (content) fades, the arrow from A to B stays and carries the price tag.
+- **Infographic (one line):** On the left an open box spilling modules and hours, crossed out lightly; on the right a single arrow from a dim point A to a lit point B with a small check mark at B; caption: sell the arrow, not the box.
+
+### Cross-references — Connects to
+
+- *Technology 161: The Hexagon Cycle*: technology as the BE side, template as the DO side of one cycle.
+- *Technology 169: The Template of Templates*: every template names the shift it carries, which is what makes this offer possible.
+- *Technology 128: The Name Is the Result*: the offer line is the name of the result, said to the buyer.
+- *Technology 103: The Splitting Principle — Shelf and Cathedral*: sell the result people can name, deliver what has no name yet.
+- *Technology 102: The Guru Loop and the Skin-in-the-Game Antidote*: promise only what the person can verify outside our own loop.
+- `docs/templates/shift-offer.md` (2026-10-27): the template that turns any template, module or product into an offer.
