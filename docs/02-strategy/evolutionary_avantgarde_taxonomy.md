@@ -135,7 +135,7 @@ The list is open: more flavors exist, and new ones appear every year.
 |---|:-:|:-:|:-:|:-:|:-:|:-:|---|
 | People building their own AIs on the new principles | ● | ● | | | | ● | New (adjacent to AI-native builders, but builds its own AI rather than founder scaffolding) |
 | Metaphysics, especially integral metaphysics without the word "integral" (Robert Gilbert, Buckminster Fuller, Rudolf Steiner) | | | | ● | | ● | New |
-| Big-system intellectuals who explain everything through one human system (e.g. Iain McGilchrist, left/right hemisphere; name inferred) | | | | ● | | ● | New (adjacent to polymaths) |
+| Big-system intellectuals who explain everything through one human system (e.g. Iain McGilchrist, left/right hemisphere) | | | | ● | | ● | New (adjacent to polymaths) |
 | Sensitivity and tantra | | | | ● | | | New |
 | Dance (ecstatic dance and the like) | | | | ● | | ● | New |
 | Physical hubs (Bali: Ubud hub, Canggu hub, inferred from the transcript; others) | | ● | | ● | ● | | New |
@@ -146,7 +146,7 @@ The list is open: more flavors exist, and new ones appear every year.
 | Alumni of entrepreneurial networking groups (transcript "типа why"; likely YPO or EO, uncertain) | | ● | | | | | New. Sasha's caveat: no real connection yet; feels like more status and ego than the mission needs |
 | Healers (powerful healers) | | | ● | ● | | | New |
 | Masters' chats and easy-access digital rooms in communities (e.g. Russian-speaking communities in Bali) | | ● | | ● | | | New |
-| Festivals and giant gatherings (Burning Man; one more name unclear, possibly Boom): huge unification potential | | | | ● | ● | ● | New |
+| Festivals and giant gatherings (Burning Man; Boom (Portugal)): huge unification potential | | | | ● | ● | ● | New |
 | Successful projects on the land; regenerative communities and their self-organization | ● | | ● | | ● | | From January map (Rooting: land projects, ecovillages; Regeneration) |
 | Silicon Valley, its centres of gravity, and its universities | | ● | | | | | From January map (Innovation: startup ecosystems) |
 | High-vibration organizations and universities (Ubiquity University, Minerva University) | | ● | | ● | | | From January map (Awakening: alternative education) |
@@ -167,8 +167,7 @@ The list is open: more flavors exist, and new ones appear every year.
 
 **Unclear in the transcript, to ask Sasha:**
 - "типа why": likely YPO or EO.
-- A festival name heard as "woman": possibly Boom.
-- McGilchrist (he forgot the name) and Ubud/Canggu (heard "Bood hub Cap gun hub") are inferred.
+- Ubud/Canggu (heard "Bood hub Cap gun hub") is inferred, pending Sasha's confirmation. (Confirmed by Sasha 2026-10-27: the festival is Boom (Portugal); the big-system intellectual is Iain McGilchrist.)
 
 ---
 
@@ -300,3 +299,23 @@ Not a community platform. **A planetary synapse.**
 
 **Mission:**
 > "One meta-ecosystem. Six currents. One launch sequence. The scattered avantgarde coordinates at last."
+
+---
+
+## Where the shades lead (2026-10-27)
+
+*Provenance: Hark synthesis, 2026-10-27; Sasha called it «гениально» and asked to document it. 'Why today' is Hark's reading.*
+
+**Why nuance matters.** Each shade lives in its own juice and hears only its own language; generic "for the avant-garde" language reaches no one. Yet all of them need the same things: village, uniqueness, shops, economy, masterminds, AI. One foundation, many doors, each speaking its own language. Nuance is what turns one foundation into doors.
+
+**Why today** (Hark's reading). The village came alive today: a guest takes the test without a wall, and other players are visible as lights. The place has a form, so who lives there matters. Ahead: the webinar, the Mastermind, YC. All of them need a sharp "for whom".
+
+**Where it leads.**
+1. **Sasha is the living map of the intersection.** This is his uncopyable advantage and the spine of the investor/YC story.
+2. **Hubs, festivals and city communities are the channels.** The shades already converge there; one door opens many.
+3. **The Russian-speaking space is a second axis** cutting across the petals, where he has the most entry points. The first village residents likely come from there (inferred).
+4. **The village becomes the meeting place for people who never met** (a breathwork facilitator, a city digital-twin builder, a venture studio partner). The avant-garde stops being a set of subcultures and becomes a force.
+
+**This week.** Pick 2–3 shades and one channel for the first settling of the village, and speak to them in their language. Sasha's choice.
+
+**The view that opens** (Hark synthesis, 2026-10-27). The avant-garde is not a market segment but an organism missing connective tissue. FYT's role is that tissue: a translation and meeting layer (uniqueness → matching → shared village economy), rather than one more offer to one shade. The Mastermind is the first cross-shade room; the measure is cross-shade meetings that turn into joint work and money. Sasha's own unique business is the first proof of the pattern.
