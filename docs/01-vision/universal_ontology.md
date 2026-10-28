@@ -1,3 +1,5 @@
+> §4d (Holonic Seeing Mode) is synthesized into docs/templates/holonic-seeing.md (2026-10-27). This file is kept as a source.
+
 # Universal Ontology
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*

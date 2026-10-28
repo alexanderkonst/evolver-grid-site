@@ -79,6 +79,7 @@ The L1 list is provisional; the corpus inventory (README, «Corpus inventory by 
 4. After each use, add what was learned to the template (as in the improvement loop's retro).
 5. When two templates turn out to be one, merge them and leave a pointer.
 6. Anything that changes L0 or L1 goes to Sasha first: these levels carry his transmission.
+7. **Duplicates are synthesized, never discarded** (Sasha, 2026-10-27: «не выкинуть все кроме одного… синтезировать все их в один шаблон, примерно в том стиле, как ты делаешь граф знаний»). Read every copy fully; the canonical template keeps the union of what is valuable, not only the newest; where copies conflict, the newer Sasha-confirmed one wins and the older claim stays as a dated note; the template ends with a Genealogy table (each source, its date, provenance, what it contributed). Sources stay where they are, with one pointer line at their top.
 
 ## 8. Tasks (living list)
 - [x] T1 Record the transmission as this Meta-Template (2026-10-27).
@@ -86,7 +87,7 @@ The L1 list is provisional; the corpus inventory (README, «Corpus inventory by 
 - [ ] T3 Confirm the L1 domain list with Sasha from the inventory.
 - [ ] T4 Write a meta-description for each L1 domain: how the Meta-Template sees that domain.
 - [x] T5 Add the meta-description block to every existing L2 template (course-from-source, testimonial-clips, improvement-loop first) (2026-10-27: all three + the game blueprint as the Blueprint lens; templates promoted later get theirs on arrival, §7.2).
-- [ ] T6 Promote the strongest templates found in the corpus into `docs/templates/`, each with its meta-description; merge duplicates.
+- [ ] T6 Promote the strongest templates found in the corpus into `docs/templates/`, each with its meta-description; synthesize duplicates (§7.7) (in progress 2026-10-27: holonic-seeing).
 - [x] T7 Write the four lenses out (Blueprint, Causal, Ideal Forms, Unity) as short sections with an example each; link the game blueprint as the Blueprint lens (2026-10-27, §2a).
 - [ ] T8 Link each L1 domain to the evolutionary avant-garde flavors it serves.
 - [ ] T9 Import the Meta-Template and its tree into the knowledge graph.

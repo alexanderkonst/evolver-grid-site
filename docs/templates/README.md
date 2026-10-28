@@ -7,6 +7,7 @@ Reusable methods for producing things from Sasha's work: one file per template, 
 | [course-from-source.md](./course-from-source.md) | A mini-course (modules, 90–120 s episodes, NotebookLM Video Overviews) from a body of work: workshops, an article, infographics | in use (Activate Your Dormant Potential; Consciousness Meets Science draft) |
 | [testimonial-clips.md](./testimonial-clips.md) | Short verbatim testimonial clips (4–20 s, subtitled, 16:9 + 9:16) cut from recorded calls, consent-gated, for the game's Outro notes | in use (first batch 2026-10-27, private until consent) |
 | [improvement-loop.md](./improvement-loop.md) | The standing loop for long builds: work by plan, ship, report in meaning, review the plan, improve the planning itself (with a planning retro) | in use (The Game of Being You, from 2026-10-27) |
+| [holonic-seeing.md](./holonic-seeing.md) | One unified reading of anything from 27 positions (4 quadrants × 3 depths, the centre, the seeing of the seeing, then the one act); synthesized from 5 tellings | in use (synthesis layers, roasts, `/27`, Hark specialty) |
 
 *Folder created 2026-10-27 (Sasha: «IMPORTANT»).*
 
@@ -92,8 +93,8 @@ Reusable methods for producing things from Sasha's work: one file per template, 
 | AI OS system prompt | `system-prompts/v5.2/system-prompt.md` (v5.0, v5.1 frozen) | installable cognition | Unity | the Oracle: the whole speaking back | Oracle | in use | keep |
 | alexander-thinking-partner *(Hark specialty)* | Hark custom skill | AI OS 5.2 stance for strategy work | Unity | the same Oracle inside Hark | Oracle | in use | keep |
 | Vibe Synthesis | `.agent/vibe-synthesis.md` | portable field activation | Unity | the field carried into a new conversation | Oracle | historical · 2026-04-16 | keep |
-| Holonic Seeing (27 perspectives) | Hark specialty `holonic-seeing`; `.agent/skills/holonic-seeing/SKILL.md`; `docs/01-vision/phase_shift_technology_library.md` §15e, §15g, §15i; `docs/01-vision/universal_ontology.md` §Output Protocol | a 27-perspective synthesis | Unity | the Meta-Template seeing anything as a whole | all (seeing instrument) | in use | **promote** one canonical; the rest point to it |
-| Dodecahedral Artifact 12+1 | PST library §37 | a 12+1-perspective artifact | Blueprint | an earlier form of holonic seeing | all | historical | merge into Holonic Seeing |
+| Holonic Seeing (27 perspectives) | Hark specialty `holonic-seeing`; `.agent/skills/holonic-seeing/SKILL.md`; `docs/01-vision/phase_shift_technology_library.md` §15e, §15g, §15i; `docs/01-vision/universal_ontology.md` §Output Protocol | a 27-perspective synthesis | Unity | the Meta-Template seeing anything as a whole | all (seeing instrument) | in use | **synthesized** → [holonic-seeing.md](./holonic-seeing.md) (2026-10-27); sources keep a pointer |
+| Dodecahedral Artifact 12+1 | PST library §37 | a 12+1-perspective artifact | Blueprint | an earlier form of holonic seeing | all | historical | **synthesized** → [holonic-seeing.md](./holonic-seeing.md) §5–6 (2026-10-27) |
 | Roasting Protocol | `docs/05-reference/roasting_protocol.md` (5 steps); `docs/08-content/appleseed_roasting_protocol.md`; roasts in `docs/05-specs/daily-loop/` | an artifact refined through adversarial seeing | Causal | truth sharpened before form is fixed | all | in use · undated | keep; merge Appleseed variant |
 | Holomap Builder | `.agent/skills/holomap-builder/SKILL.md`; `docs/holomaps/README.md`; `scripts/holomap-update/` | a holomap | Blueprint | wholes within wholes, drawn | all | in use · 2026-05-29 | keep |
 | PST library protocols | `docs/01-vision/phase_shift_technology_library.md` (116 technologies; protocols at §48c, §57h, §62h, §64b) | named technologies with repeatable protocols | Causal | the library of moves the Meta-Template already knows | all | in use (living) | keep; future L2 entries are drawn from it one by one |
@@ -211,7 +212,7 @@ Runners-up: mastermind-host (after the Nov 9–10 run), infographic-style-keeper
 
 ### Duplicate clusters
 - **Course / video production**: 5 files + `course-from-source.md`.
-- **Holonic seeing**: Hark specialty, `.agent/skills/`, PST §15e/g/i, `universal_ontology.md` output protocol, PST §37.
+- ~~**Holonic seeing**~~ → synthesized into [holonic-seeing.md](./holonic-seeing.md) (2026-10-27): Hark specialty, `.agent/skills/`, PST §15e/g/i, `universal_ontology.md` output protocol, PST §37.
 - **Unique Business method**: Integrated Playbook, Creation Playbook (10 steps), `genius-business` workflow, Venture Growth Playbook.
 - **Spec / handoff**: `sasha-spec-writing`, `hark_spec_handover.md`, SOW+DoD files, `feature.md`, Feature Spec Template, Integrated Product Building Workflow.
 - **Product / UX playbooks**: `ux_playbook.md` ≈ archive backup; `product_playbook.md` restructures the same text.

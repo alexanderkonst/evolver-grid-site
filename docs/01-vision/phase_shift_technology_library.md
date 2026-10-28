@@ -1,3 +1,5 @@
+> Technology 15 (§15a–i), §37 and Technology 66 are synthesized into docs/templates/holonic-seeing.md (2026-10-27). This file is kept as a source.
+
 # Unusually Rapid Phase Shift Technology Library
 
 > **Naming note (July 26, 2026):** entries in this library were previously called *Domains*; they are renamed *Technologies*, because each is a technology of phase-shifting rather than a subject area. Numbering is unchanged, so *Domain N* in older documents refers to *Technology N* here.
