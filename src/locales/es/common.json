@@ -1865,6 +1865,18 @@
     "toastResetFailedDescription": "No se pudo reiniciar el progreso. Inténtalo de nuevo.",
     "resetMyProgressButton": "Reiniciar mi progreso"
   },
+  "villagePresence": {
+    "othersHere": "Hay otros aquí",
+    "heading": "En el pueblo",
+    "description": "Los demás jugadores aparecen como luces suaves en el lugar donde están. No se guarda nada y una luz no enlaza con el perfil de nadie.",
+    "showMeLabel": "Mostrarme en el pueblo",
+    "showMeHint": "Los demás ven una luz donde estás. Si lo apagas, se va enseguida.",
+    "showMeAriaLabel": "Mostrarme en el pueblo",
+    "showNameLabel": "Mostrar mi nombre en el pueblo",
+    "showNameHint": "Tu nombre de pila se ve como un pequeño rótulo bajo tu luz. Sin foto y sin apellido.",
+    "showNameAriaLabel": "Mostrar mi nombre de pila en el pueblo",
+    "showNameSignInHint": "Inicia sesión para elegir si se muestra tu nombre de pila."
+  },
   "settings": {
     "skinHeading": "Tema",
     "skinDescription": "Elige la estética que te sienta bien. Se aplica al instante en toda la app. Recordamos tu elección; cuando inicias sesión, te sigue a cada dispositivo.",

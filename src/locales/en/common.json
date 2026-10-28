@@ -1289,6 +1289,18 @@
     "toastResetFailedDescription": "Failed to reset progress. Please try again.",
     "resetMyProgressButton": "Reset My Progress"
   },
+  "villagePresence": {
+    "othersHere": "Others are here",
+    "heading": "In the village",
+    "description": "Other players show up as soft lights in the place they are in. Nothing is stored, and a light does not link to anyone's profile.",
+    "showMeLabel": "Show me in the village",
+    "showMeHint": "Others see a light where you are. Turn it off and it goes right away.",
+    "showMeAriaLabel": "Show me in the village",
+    "showNameLabel": "Show my first name in the village",
+    "showNameHint": "Your first name shows as a small caption under your light. No photo, no surname.",
+    "showNameAriaLabel": "Show my first name in the village",
+    "showNameSignInHint": "Sign in to choose whether your first name shows."
+  },
   "settings": {
     "skinHeading": "Skin",
     "skinDescription": "Pick the aesthetic that feels right. Applies instantly across the whole app. We remember your choice; when you're logged in, it follows you to every device.",

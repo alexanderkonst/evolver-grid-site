@@ -8,6 +8,7 @@ import { Switch } from "@/components/ui/switch";
 import GameShellV2 from "@/components/game/GameShellV2";
 import ProfileSettingsSection from "@/components/settings/ProfileSettingsSection";
 import AuthLinkErrorNotice from "@/components/settings/AuthLinkErrorNotice";
+import VillagePresenceSettings from "@/components/settings/VillagePresenceSettings";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { useSkin, type Skin } from "@/contexts/SkinContext";
 import { useToast } from "@/hooks/use-toast";
@@ -900,6 +901,8 @@ const Settings = () => {
                         </TabsList>
                         <TabsContent value="profile">
                             <ProfileSettingsSection />
+                            {/* Village presence (WP-21): the two switches for the lights. */}
+                            <VillagePresenceSettings />
                             {/* Language — the logged-in home for switching locale
                                 (the floating switcher is guest-only). */}
                             <div className="mt-6 flex items-center justify-between gap-4 rounded-xl border border-border/60 bg-card/50 p-4">
