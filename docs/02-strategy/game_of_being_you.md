@@ -8,6 +8,16 @@
 **Tagline:** *Bring the full force of who you are to what you build.*
 **Moonshot (Sasha, 2026-10-26):** make a cult game, a "candy": polished, simple, hard to forget. We already have plenty of mystery, ritual and content; the work now is craft and form.
 
+## Meta-description (the game as the Blueprint lens)
+*Added 2026-10-27 by Evolver, per [Meta-Template](../templates/meta-template.md) §6 and T5; nothing below is restructured.*
+- Level / parent: L2 · The Game & the Village (proposed L1, awaiting Sasha's confirmation, Meta-Template T3) · parent: [meta-template.md](../templates/meta-template.md)
+- Lens(es): **Blueprint** (main: the whole platform drawn as one architecture of places, paths, locks and a canonical journey) · **Unity** (one light in, your spectrum out: form, colour and light carry one meaning, §1, §5, §14.11)
+- What emerges: a person becoming themselves, played as one game: Uniqueness found, then mission, offer, first sale, tribe, village.
+- As a part of the whole: the Meta-Template seen as architecture (named in Meta-Template §2): every product, page and funnel is a place in one village, so the whole can be walked, built and re-run (§16, Village #1) as one form.
+- Siblings / repeats: §14.4 Module form, §13.4 Victories, §15.8 Koster facet check (its L3 parts, candidates to promote as one template); `game_spaces.md`, `module_taxonomy.md`; the real village (§16) as the same blueprint landing in a physical place.
+- Status · applied in · last reviewed: in use · findyourtoptalent.com (Journey build, WP-1…) · 2026-10-27
+
+
 
 ---
 

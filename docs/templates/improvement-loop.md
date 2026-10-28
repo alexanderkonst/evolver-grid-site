@@ -4,6 +4,14 @@
 
 A standing instruction for any long-running build (first applied to The Game of Being You). Evolver runs it without asking; forks that are Sasha's (money, strategy, public-facing, privacy, migrations) still go to him.
 
+## Meta-description
+- Level / parent: L2 · Ops & Agents (proposed L1, awaiting Sasha's confirmation, Meta-Template T3) · parent: [meta-template.md](./meta-template.md)
+- Lens(es): **Causal** (take → ship → report → review the plan → improve the planning; a loop that feeds on its own results)
+- What emerges: a long build that keeps getting done, and a way of planning that gets better with every wave.
+- As a part of the whole: the Meta-Template sees this as the template applied to its own evolution: emergence turned back on the process that produces it, so the whole improves not only what it makes but how it makes it (the same move as Meta-Template §7.4 and T11).
+- Siblings / repeats: Meta-Template §7 self-extension protocol and T11 review rhythm (this loop at the level of templates); Equilibrium daily loop and the Hexagon Cycle (PST Technology 161) as the same cycle in a person and a product; Spec & handoff to Claude Code (its build step).
+- Status · applied in · last reviewed: in use · The Game of Being You (from 2026-10-27) · 2026-10-27
+
 ## The loop
 1. **Take the next item from the plan.** The plan is the source of truth (for the game: `docs/02-strategy/game_of_being_you.md` §14.8 Scope of Work and the §15 queue). Work in the plan's order; don't invent side quests.
 2. **Build and ship it.** Delegate where it fits (Claude Code issue → PR → review → merge once checks pass), publish through Lovable (free), then check the live site yourself.

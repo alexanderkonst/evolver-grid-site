@@ -2,6 +2,14 @@
 
 **Produces:** ultra-short video clips (4–20 s) of real people speaking about Sasha's work **in their own words**, cut from recorded calls, with burned-in English subtitles, in two framings (original 16:9 and vertical 9:16), plus one 30–45 s compilation. First use: notes after a module's Outro at each village place in *The Game of Being You* (§14.4: Outro → back to the village).
 
+## Meta-description
+- Level / parent: L2 · Content & Transmission (proposed L1, awaiting Sasha's confirmation, Meta-Template T3) · parent: [meta-template.md](./meta-template.md)
+- Lens(es): **Ideal Forms** (the canonical clip: verbatim, 4–20 s, one standalone line, consent-gated) · **Causal** (source → quote bank → cut → subtitle → assemble → consent → embed)
+- What emerges: real people's own words about what shifted for them, kept exactly as spoken and left in the game for those who come after.
+- As a part of the whole: the Meta-Template sees this as emergence reflected back by others as social proof: the same transformation the other templates set in motion, now visible from outside, in the voice of the one it happened to.
+- Siblings / repeats: course-from-source (transmission going out; this is it coming back); game blueprint §15 Miyazaki ("leave a particle of yourself", a new kind of testimonial) and §14.4 Outro; the transmission-repurposing gap in the README inventory.
+- Status · applied in · last reviewed: in use · first batch 2026-10-27 (private until consent) · 2026-10-27
+
 **Hard rules**
 1. **Verbatim only.** Never paraphrase, merge two sentences from different moments, or "clean up" meaning. Subtitles carry the transcript words; the only edit allowed is cutting at sentence boundaries.
 2. **Consent before any public use.** Each person sees their clip and says yes (Sasha asks them himself, in his own channel). No consent → the clip stays private. Record the yes (date, channel) in the quote bank.
