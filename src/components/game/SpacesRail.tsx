@@ -55,7 +55,25 @@ import brandLogo from "@/assets/you-be-original-main-lockup.webp"; // Day 123 (S
 // Attractor artifact — docs/assets/canonical-artifact/). The wordmark
 // lockup (find-your-top-talent-logo.png) is unchanged.
 import brandMark from "@/assets/original-octahedron-mark.png";
-import { useSkin } from "@/contexts/SkinContext";
+import { useSkin, type Skin } from "@/contexts/SkinContext";
+
+/**
+ * WP-1b: the rail's theme toggle. One table drives the click, the label and the
+ * tooltip, so the label always names the skin the next click applies.
+ * Lunar (the default) is an entry point that steps to Lapis; Lapis → Aurum →
+ * The Dao → Lapis is the loop.
+ */
+const TOGGLE_NEXT_SKIN: Partial<Record<Skin, Skin>> = {
+    lunar: "lapis",
+    lapis: "aurum",
+    aurum: "dao",
+    dao: "lapis",
+};
+const TOGGLE_LABEL_KEY: Partial<Record<Skin, string>> = {
+    lapis: "spacesRail.themeToggleToLapisTitle",
+    aurum: "spacesRail.themeToggleToAurumTitle",
+    dao: "spacesRail.themeToggleToDaoTitle",
+};
 // White-label demo (2026-05-19, Sasha): when skin is `network-school`,
 // the rail brand mark swaps to the official NS flag asset hosted on
 // ns-assets.com. Sasha provided the URL directly — no local copy.
@@ -244,6 +262,8 @@ const SpacesRail = ({
     const isPlanetir = skin === "planetir";
     const isTechstars = skin === "techstars";
     const isDefaultYouSkin = !isNS && !isDao && !isPlanetir && !isTechstars;
+    const nextToggleSkin: Skin = TOGGLE_NEXT_SKIN[skin] ?? "lapis";
+    const toggleLabel = t(TOGGLE_LABEL_KEY[nextToggleSkin] ?? "spacesRail.themeToggleToLapisTitle");
 
     // Day 54+++ (Sasha 2026-04-28 night): backdrop-filter disabled on touch
     // devices. iOS WebKit's backdrop-filter on a full-viewport-height region
@@ -746,10 +766,11 @@ const SpacesRail = ({
                             style={
                                 active && !closed
                                     ? isDefaultYouSkin && !isTheDao
+                                        // WP-1b: fill comes from the skin (theme-tokens.css);
+                                        // the defaults are the navy gradient this used to hardcode.
                                         ? {
-                                            backgroundColor: "rgba(15, 35, 76, 0.52)",
-                                            backgroundImage:
-                                                "linear-gradient(135deg, rgba(76, 105, 164, 0.36) 0%, rgba(18, 40, 86, 0.48) 72%, rgba(7, 24, 59, 0.56) 100%)",
+                                            backgroundColor: "var(--nav-rail-active-color)",
+                                            backgroundImage: "var(--nav-rail-active-image)",
                                         }
                                         : { backgroundColor: "var(--skin-selected-bg-deep, rgba(212, 175, 55, 0.13))" }
                                     : undefined
@@ -1041,12 +1062,12 @@ const SpacesRail = ({
                             <Tooltip>
                                 <TooltipTrigger asChild>
                                     <button
-                                        onClick={() => setSkin(skin === "lapis" ? "aurum" : skin === "aurum" ? "dao" : "lapis")}
+                                        onClick={() => setSkin(nextToggleSkin)}
                                         className={cn(
                                             "grid place-items-center rounded-full transition-all duration-300 text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30",
                                             compact ? "w-[30px] h-[30px]" : "w-[48px] h-[48px]"
                                         )}
-                                        aria-label={skin === "lapis" ? t('spacesRail.themeToggleToDarkAria') : skin === "aurum" ? t('spacesRail.themeToggleToDaoAria') : t('spacesRail.themeToggleToLightAria')}
+                                        aria-label={toggleLabel}
                                     >
                                         {skin === "lapis" ? (
                                             <Moon
@@ -1070,7 +1091,7 @@ const SpacesRail = ({
                                     </button>
                                 </TooltipTrigger>
                                 <TooltipContent side="top" align="center" sideOffset={10} className="rounded-lg border-none px-2.5 py-1.5 bg-black/85 text-[11px] text-white/90">
-                                    {skin === "lapis" ? t('spacesRail.themeToggleToAurumTitle') : skin === "aurum" ? t('spacesRail.themeToggleToDaoTitle') : t('spacesRail.themeToggleToLapisTitle')}
+                                    {toggleLabel}
                                 </TooltipContent>
                             </Tooltip>
                         )}

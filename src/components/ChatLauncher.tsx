@@ -73,10 +73,12 @@ const ChatLauncher = () => {
           <button
             type="button"
             aria-label="Chat with us"
-            className="group flex min-h-12 items-center gap-2.5 rounded-full border border-[#d9b85f]/45 bg-[#08172f]/95 px-4 py-3 text-[#fff8e7] shadow-[0_12px_40px_rgba(2,10,24,0.42),inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-[#f0cf72]/75 hover:bg-[#0b2041] hover:shadow-[0_16px_48px_rgba(2,10,24,0.5),0_0_20px_rgba(217,184,95,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f0cf72] focus-visible:ring-offset-2"
+            // WP-1b: every colour is a --chat-* token (theme-tokens.css), so the
+            // launcher follows the skin. Lapis / Lunar keep the navy + gold defaults.
+            className="group flex min-h-12 items-center gap-2.5 rounded-full border border-[color:var(--chat-border)] bg-[color:var(--chat-bg)] px-4 py-3 text-[color:var(--chat-ink)] shadow-[0_12px_40px_rgba(var(--chat-shadow-rgb),0.42),inset_0_1px_0_rgba(var(--chat-sheen-rgb),0.14)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-[color:var(--chat-border-hover)] hover:bg-[color:var(--chat-bg-hover)] hover:shadow-[0_16px_48px_rgba(var(--chat-shadow-rgb),0.5),0_0_20px_rgba(var(--chat-glow-rgb),0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--chat-ring)] focus-visible:ring-offset-2"
           >
             <MessageCircle
-              className="h-[19px] w-[19px] text-[#efcf77] transition-transform duration-300 group-hover:scale-105"
+              className="h-[19px] w-[19px] text-[color:var(--chat-accent)] transition-transform duration-300 group-hover:scale-105"
               strokeWidth={1.8}
               aria-hidden="true"
             />
@@ -90,11 +92,11 @@ const ChatLauncher = () => {
           side="top"
           align="end"
           sideOffset={12}
-          className="w-[min(22rem,calc(100vw-2rem))] overflow-hidden rounded-[22px] border border-[#d9b85f]/25 bg-[#08172f] p-2.5 text-[#fff8e7] shadow-[0_24px_70px_rgba(1,8,20,0.52),inset_0_1px_0_rgba(255,255,255,0.1)]"
+          className="chat-panel w-[min(22rem,calc(100vw-2rem))] overflow-hidden rounded-[22px] border border-[color:var(--chat-panel-border)] bg-[color:var(--chat-panel-bg)] p-2.5 text-[color:var(--chat-panel-ink)] shadow-[0_24px_70px_rgba(var(--chat-panel-shadow-rgb),0.52),inset_0_1px_0_rgba(var(--chat-sheen-rgb),0.1)]"
         >
           <div className="px-3 pb-2.5 pt-2">
             <p className="font-serif text-[21px] leading-tight">Chat with us</p>
-            <p className="mt-1 text-[12px] leading-relaxed text-white/55">
+            <p className="mt-1 text-[12px] leading-relaxed text-[rgba(var(--chat-panel-ink-rgb),0.55)]">
               Choose the channel that feels easiest.
             </p>
           </div>
@@ -105,16 +107,16 @@ const ChatLauncher = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => recordChannelChoice("whatsapp")}
-              className="group flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.045] px-3.5 py-3.5 transition hover:border-[#69d391]/35 hover:bg-[#69d391]/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#69d391]"
+              className="group flex items-center gap-3 rounded-2xl border border-[rgba(var(--chat-panel-ink-rgb),0.08)] bg-[rgba(var(--chat-panel-ink-rgb),0.045)] px-3.5 py-3.5 transition hover:border-[#69d391]/35 hover:bg-[#69d391]/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#69d391]"
             >
               <span className="grid h-9 w-9 place-items-center rounded-full bg-[#25D366]/15 text-[#7ce6a3]">
                 <MessageCircle className="h-[19px] w-[19px]" strokeWidth={1.8} aria-hidden="true" />
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block text-[14px] font-medium">WhatsApp</span>
-                <span className="block text-[11px] text-white/45">Open a private conversation</span>
+                <span className="block text-[11px] text-[rgba(var(--chat-panel-ink-rgb),0.45)]">Open a private conversation</span>
               </span>
-              <span className="text-white/35 transition group-hover:translate-x-0.5 group-hover:text-white/65" aria-hidden="true">→</span>
+              <span className="text-[rgba(var(--chat-panel-ink-rgb),0.35)] transition group-hover:translate-x-0.5 group-hover:text-[rgba(var(--chat-panel-ink-rgb),0.65)]" aria-hidden="true">→</span>
             </a>
 
             <a
@@ -122,16 +124,16 @@ const ChatLauncher = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => recordChannelChoice("telegram")}
-              className="group flex items-center gap-3 rounded-2xl border border-white/[0.08] bg-white/[0.045] px-3.5 py-3.5 transition hover:border-[#63b8ef]/35 hover:bg-[#229ED9]/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#63b8ef]"
+              className="group flex items-center gap-3 rounded-2xl border border-[rgba(var(--chat-panel-ink-rgb),0.08)] bg-[rgba(var(--chat-panel-ink-rgb),0.045)] px-3.5 py-3.5 transition hover:border-[#63b8ef]/35 hover:bg-[#229ED9]/[0.09] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#63b8ef]"
             >
               <span className="grid h-9 w-9 place-items-center rounded-full bg-[#229ED9]/15 text-[#73c9f2]">
                 <Send className="h-[18px] w-[18px]" strokeWidth={1.8} aria-hidden="true" />
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block text-[14px] font-medium">Telegram</span>
-                <span className="block text-[11px] text-white/45">@integralevolution</span>
+                <span className="block text-[11px] text-[rgba(var(--chat-panel-ink-rgb),0.45)]">@integralevolution</span>
               </span>
-              <span className="text-white/35 transition group-hover:translate-x-0.5 group-hover:text-white/65" aria-hidden="true">→</span>
+              <span className="text-[rgba(var(--chat-panel-ink-rgb),0.35)] transition group-hover:translate-x-0.5 group-hover:text-[rgba(var(--chat-panel-ink-rgb),0.65)]" aria-hidden="true">→</span>
             </a>
           </div>
         </PopoverContent>

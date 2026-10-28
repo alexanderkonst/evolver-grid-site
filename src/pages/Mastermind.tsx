@@ -115,7 +115,7 @@ const Mastermind = () => {
           <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 pt-8 pb-16 space-y-12">
             {/* HERO */}
             <header className="text-center space-y-6 pb-2">
-              <img src={geniusLogo} alt="" className="w-[140px] h-auto mx-auto opacity-80" />
+              <img src={geniusLogo} alt="" className="skin-emblem w-[140px] h-auto mx-auto opacity-80" />
               <p
                 className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.28em] bg-clip-text text-transparent"
                 style={GOLD_TEXT_STYLE}

@@ -346,7 +346,7 @@ const IgniteSession = () => {
           <img
             src={geniusLogo}
             alt={t('ignite.logoAlt')}
-            className="w-[140px] h-auto mx-auto opacity-80"
+            className="skin-emblem w-[140px] h-auto mx-auto opacity-80"
           />
 
           {/* Day 131+ (Sasha 2026-07-30/31): eyebrow moved above the hero
