@@ -130,7 +130,8 @@ Not on the map because §17 gives them no shift yet: J3 Spectrum Reading, J13 To
 
 ## 7. Open edges
 - Which shifts are **core** for FindYourTopTalent: the founder's.
-- The Video column: §17 names no video path; whether course-from-source episodes become paths for existing rows is open.
+- The Video column: §17 names no video path; whether course-from-source episodes become paths for existing rows is open. First cell in production (2026-10-28, Sasha's yes): PST 5 × Video, a 60–90 s Explainer ending at `/ignite`, made with NotebookLM from a one-source script.
+- Licensing a cell to a community host (one shift × one path, with its offer sheet, script and self-check): offer draft in `docs/02-strategy/unique-businesses/alexanders_unique_business.md`, Product Map §8. Split TBD by Sasha.
 - Whether places of the game (Quest Board, Café, Co-working, Your House) count as products on the map or as the frame; they are shown here because §17 gives each an offer line.
 - Prices per cell follow shift-offer.md §7; live prices and checkout stay with Sasha.
 

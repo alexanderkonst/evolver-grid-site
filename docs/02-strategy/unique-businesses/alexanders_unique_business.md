@@ -69,7 +69,7 @@ Sasha's definition: «Каждый уникальный бизнес - это с
 | **Game** | Showcase of paths: every module is a template with a named shift; the 1–10 rating at the end shows whether the person reached B |
 | **Course** (short videos) | A light, replicable path that runs without Sasha live ([course-from-source.md](../../templates/course-from-source.md)) |
 | **Direction Call** (free, 45 min) | The entry door, on /ignite together with the webinar |
-| **$555 Private Founder-Market Fit Session** (2 hours, 1:1) | Full recognition: the one-sentence business, under the /ignite guarantee |
+| **$555 Private Founder-Market Fit Session** (2 hours, 1:1) | Full recognition: the one-sentence business; no guarantee (removed 2026-10-28, §7) |
 | **Founder-Market Fit Discovery Mastermind** (small group, 2 sessions, $222) | A held group shift, and the meta-product (§3) |
 
 Price follows the depth of the shift, not the volume of content (bands: [shift-offer.md §7](../../templates/shift-offer.md)). More hours or more modules never raise a rung's price; a deeper, verified shift does.
@@ -92,9 +92,35 @@ Describe A in the client's own words and B as what they will see and do. Name th
 - The canvas has six parts: Uniqueness, Shadow, Myth, Tribe, Transition, Transformational Promise ([unique-business-canvas.md](../../templates/unique-business-canvas.md)). The longer canvases below stay as genealogy.
 - Guarantee: **Decision (Sasha, 2026-10-28): no guarantee, neither money-back nor pay-after-recognition.** Recognition can be blocked by the client's own resistance (the shadow shows up as resistance and lowers resonance), so a guarantee would hand the verdict to that resistance and put Sasha in the position of justifying himself. Instead: an honest promise of what the session does, and the free 45-minute Direction Call as the readiness filter. Removed from /ignite and /founder-market-fit on 2026-10-28.
 
+### 8. Cell licence for community hosts (offer draft, 2026-10-28)
+*One-page offer, written by Evolver from the strategy package «продаём сдвиги» (Sasha's yes, 2026-10-28). Draft for Sasha: no host has been approached; who is offered it, and when, is Sasha's call. Revenue split is a placeholder.*
+
+**Offer line (EN):** You will see your members name their own top talent in one sentence, and you will run that shift for your community yourself, with our materials.
+
+**What a host gets**
+- **The right to run one cell** of the Product Map for their own community: one shift (a row, e.g. PST 5 From Invisible Gift to Articulated Genius) on one path (a column: a live session, a short video sequence, or a guided game module). One cell per licence; more cells are separate licences.
+- **Materials for that cell:** the shift offer sheet ([shift-offer.md](../../templates/shift-offer.md) §3: point A in members' words, what they will see and do, the offer line), the path's script or template (e.g. [session-script.md](../../templates/session-script.md), [course-from-source.md](../../templates/course-from-source.md), [module-form.md](../../templates/module-form.md)), the infographics for that shift, and the self-check below.
+- **A short briefing with Sasha** before the first run, and a debrief after it (format TBD for Sasha).
+- **Attribution line** for the host's channels: "Run with FindYourTopTalent.com" (wording TBD for Sasha).
+
+**What the host does:** invites and holds their own members, runs the cell as written, records each member's self-check, shares anonymised results back (with members' consent).
+
+**Revenue split:** **TBD, Sasha.** The live /license page says "Revenue share by agreement"; no figure is fixed here. Whether the host charges members, and how much, is also TBD.
+
+**How the self-check works** (the same check for every host, so the shift is measured, not the delivery; shift-offer.md §2.4)
+1. At the start each member writes one sentence about what makes their work theirs and rates it 0–10 ("how true does this feel?").
+2. The cell runs (session, videos or module).
+3. At the end the member rewrites the sentence and rates it again, then marks the recognition line: A "always known, never said", B where in the body it landed, C "too simple" (often a sign of the gift).
+4. The host records both sentences and both ratings. A rating of 9+ on the final sentence, said in the member's own words, is the sign the shift happened. Rows go to the Proof Ledger only with the member's consent.
+5. No guarantee is offered to members (Sasha's decision of 2026-10-28 applies to licensed cells too); the self-check is the quality standard.
+
+**Who it is for (types, no names):** founder communities and accelerators, coaching and mentoring schools, coworking and retreat hosts, creator collectives, alumni networks, investor and angel circles, women-founder and diaspora founder groups, career-transition programs, spiritual-entrepreneur circles, university entrepreneurship clubs.
+
+**Open for Sasha:** the split; whether hosts must first go through the Mastermind; which cell is offered first (suggestion: PST 5 × live session, the same shift as the first video); what counts as proof before the first host case exists (only confirmed Proof Ledger rows).
+
 ## ⭐ Business Case — The Webinar Engine v1 (Sasha, October 22, 2026)
 
-*Filed from Sasha's own words in chat, October 22, 2026 (18:10 CDMX). This is the group lane of the business; Funnel v5 (Reading-first, below) stays the 1:1 LinkedIn lane, and the two feed each other. First run: the free live session on **Wed Oct 28, 2026, 9:00–10:30 CDMX** (Luma qpogt17o) → **Founder-Market Fit Discovery Mastermind, Mon–Tue Nov 9–10, 2026, $222, recording included**. Goal: make this a repeatable engine, run cycle after cycle, with more and more ways to fill the room (communities first).*
+*Filed from Sasha's own words in chat, October 22, 2026 (18:10 CDMX). This is the group lane of the business; Funnel v5 (Reading-first, below) stays the 1:1 LinkedIn lane, and the two feed each other. First run: the free live session, moved by Sasha on 2026-10-25 from Oct 28 to **Wed Nov 4, 2026, 9:00–10:30 CDMX** (Luma qpogt17o) → **Founder-Market Fit Discovery Mastermind, Mon–Tue Nov 9–10, 2026, $222, recording included**. Goal: make this a repeatable engine, run cycle after cycle, with more and more ways to fill the room (communities first).*
 
 ### 1. The case in one paragraph
 Sasha personally reads a person's potential and invites them to a free live session built for people who work with entrepreneurs. The session gives a real taste of founder-market fit; those for whom it lands join a paid two-day Mastermind; from the Mastermind the natural next rungs are the $555 Private Founder-Market Fit Session (2 hours, 1:1) and the group build. Every cycle sharpens the infographics, the copy and the list of host communities, so the cost of filling the next room falls while the value of the room rises.
@@ -324,6 +350,16 @@ Base conversion 25% is Evolver's midpoint of §9's floor (12.5%) and target (36%
 **Relation to §9 four-month plan:** §9 counts the engine alone at floor (≈$1.8k) and target (≈$7.3k); the engine's low/high here land at $1.4k / $7.2k because they are probability-weighted (fractional buyers, no rounding up). Run 1 gives our own show-up and conversion rates; recalibrate before the run-2 invites go out (Nov 11).
 
 v1 (same day) wrongly modelled one webinar per month without the container; corrected at Sasha's catch.
+
+
+### 12. Ticket phrase for the Nov 4 webinar (draft, 2026-10-28)
+*Mechanic from the strategy package «продаём сдвиги» (Sasha's yes, 2026-10-28): at the start of the webinar each person writes their one-sentence phrase of uniqueness and rates it 0–10; at the end they rewrite and re-rate it. The phrase is their ticket (priority place) into the Founder-Market Fit Discovery Mastermind ($222); with consent, three are worked through live, and the before/after phrases and the rating difference go to the Proof Ledger as the first proof. The run-of-show stays Sasha's; no copy goes out until he gives the webinar plan and content. Three candidate lines for the invitation, Sasha picks or rewrites:*
+
+1. "You'll see the one thread under everything you do, and you'll write it as one sentence: your ticket into the Mastermind."
+2. "You'll see your top talent named in words that fit only you, and you'll rate that sentence 0 to 10 at the start and at the end, so you see your own shift."
+3. "You'll see why your gift stayed invisible, even to you, and you'll leave with a one-sentence draft of your business that opens the Mastermind door."
+
+No guarantees, no numbers we cannot stand behind (shift-offer.md §5).
 
 ---
 
