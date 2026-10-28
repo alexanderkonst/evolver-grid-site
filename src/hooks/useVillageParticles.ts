@@ -129,7 +129,7 @@ export function useVillageParticles(placeKey: string | null | undefined): Villag
     let live = true;
     (async () => {
       try {
-        const { data, error } = await supabase
+        const { data, error } = await (supabase as any)
           .from("village_particles")
           .select("id, text, display_name, avatar_url, uniqueness, created_at")
           .eq("place_key", placeKey)
@@ -160,7 +160,7 @@ export function useVillageParticles(placeKey: string | null | undefined): Villag
     let live = true;
     (async () => {
       try {
-        const { data, error } = await supabase
+        const { data, error } = await (supabase as any)
           .from("village_particles")
           .select("id")
           .eq("place_key", placeKey)
@@ -185,7 +185,7 @@ export function useVillageParticles(placeKey: string | null | undefined): Villag
     let live = true;
     (async () => {
       try {
-        const { data, error } = await supabase
+        const { data, error } = await (supabase as any)
           .from("game_profiles")
           .select("first_name, last_name, avatar_url")
           .eq("user_id", userId)
@@ -229,7 +229,7 @@ export function useVillageParticles(placeKey: string | null | undefined): Villag
         // name, photo and uniqueness are filled in by the database from the profile
         // (the column grant allows only these three), so they are not typed here.
         const row = { user_id: userId, place_key: placeKey, text: checked.text };
-        const { error } = await supabase.from("village_particles").insert(row as never);
+        const { error } = await (supabase as any).from("village_particles").insert(row as never);
         if (error) {
           if (isMissingTable(error)) {
             tableMissing = true;
