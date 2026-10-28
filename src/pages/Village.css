@@ -287,6 +287,30 @@
 @keyframes vl-mote-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes vl-mote-float { from { translate: 0 -5px; } to { translate: 0 6px; } }
 
+/* ---------- Presence: the others who are here now, as anonymous lights (WP-21) ---------- */
+/* Skin tokens only. A light is `currentColor` (their hue, else the skin accent); it is never clickable. */
+.vl-presence { position: absolute; z-index: 1; pointer-events: none; }
+.vl-presence--scene { inset: 0; }
+.vl-presence--pin { left: 0; top: 0; width: 0; height: 0; }
+.vl-presence__light {
+  position: absolute; display: block; width: 0; height: 0; color: var(--vl-light, var(--vl-accent));
+}
+.vl-presence__glow {
+  position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; border-radius: 50%;
+  background: currentColor; opacity: 0.85;
+  box-shadow: 0 0 12px 3px currentColor, 0 0 30px 8px rgba(var(--scene-shadow-rgb), 0.5);
+  animation: vl-presence-in 2.4s ease both, vl-presence-breathe 5.5s ease-in-out infinite alternate;
+  animation-delay: 0s, var(--vl-breath, 0s);
+}
+.vl-presence--pin .vl-presence__glow { left: -2.5px; top: -2.5px; width: 5px; height: 5px; box-shadow: 0 0 8px 2px currentColor; }
+.vl-presence__name {
+  position: absolute; left: 0; top: 14px; transform: translateX(-50%); white-space: nowrap;
+  font-family: var(--vl-mono); font-weight: 300; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--vl-ink-3); text-shadow: 0 0 12px rgba(var(--scene-shadow-rgb), 0.9);
+}
+@keyframes vl-presence-in { from { opacity: 0; } to { opacity: 0.85; } }
+@keyframes vl-presence-breathe { from { transform: scale(0.8); opacity: 0.55; } to { transform: scale(1.15); opacity: 0.95; } }
+
 /* ---------- Mobile: map as hero, places as a menu list below ---------- */
 @media (max-width: 767px) {
   .vl-map { height: auto; overflow: visible; }
@@ -324,6 +348,7 @@
 @media (prefers-reduced-motion: reduce) {
   .vl-layer, .vl-layer.is-on { transition: none; }
   .vl-drift, .vl-place__img, .vl-dot::after, .vl-hint, .vl-moon__glow { animation: none; }
+  .vl-presence__glow { animation: none; opacity: 0.85; }
   .vl-sky-veil { transition: none; }
   .vl-dot::after { display: none; }
   .vl-intro { animation: none; opacity: 1; }

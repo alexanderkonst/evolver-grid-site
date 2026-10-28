@@ -13,6 +13,15 @@ import {
 import LeaveParticle from "@/components/game/LeaveParticle";
 import PlaceParticles from "@/components/game/PlaceParticles";
 import { hasParticleInvite, useVillageParticles } from "@/hooks/useVillageParticles";
+import PresenceLights from "@/components/game/PresenceLights";
+import {
+  MAP_PLACE_KEY,
+  firstNameOf,
+  hueFromColor,
+  useVillagePresence,
+  useVillagePresencePrefs,
+} from "@/hooks/useVillagePresence";
+import { useSoulColors } from "@/hooks/useSoulColors";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
 import { placeLine, placeSaveFromSheet, placeState, type PlaceStateName } from "@/lib/placeState";
 import { PlaceState, PlaceStateTag } from "@/components/game/PlaceState";
@@ -34,6 +43,9 @@ import "./Village.css";
  * Inside: <result>.», with no ENTER. A guest sees Reception, Academy and Fire
  * Circle open and everything else closed; "I already live here" leads to /auth
  * (same `?redirect=` contract as RequireAuth). No barrier language.
+ *
+ * Others who are here now appear as anonymous lights on a place's map marker and in its
+ * scene (WP-21, src/hooks/useVillagePresence.ts). Never a count, never a link.
  */
 
 type Direction = "left" | "right" | "up" | "down";
@@ -182,6 +194,18 @@ const Village = () => {
   const enterRef = useRef<HTMLAnchorElement>(null);
   // Particles left here by earlier players (WP-17). Follows the last scene so they fade with it.
   const particles = useVillageParticles(lastPlace?.key ?? null);
+  // The others here now, as anonymous lights (WP-21). This tab appears with its soul /
+  // top-talent hue, and with a first name only if the player opted in; nothing else leaves.
+  const presencePrefs = useVillagePresencePrefs();
+  const soul = useSoulColors(sheet.soulColors, sheet.topTalent);
+  const presenceReady = presencePrefs.ready && ready;
+  const presence = useVillagePresence({
+    placeKey: place?.key ?? MAP_PLACE_KEY,
+    listen: presencePrefs.ready,
+    appear: presenceReady && presencePrefs.presenceOn,
+    hue: hueFromColor(soul.colors?.[0]),
+    firstName: presencePrefs.showName ? firstNameOf(sheet.firstName) : null,
+  });
 
   // Fonts + tab title, scoped to this page.
   useEffect(() => {
@@ -314,6 +338,8 @@ const Village = () => {
                             <PlaceStateTag state={shown[i]} />
                           </Link>
                         )}
+                        {/* Beside the link, not in it: a light leads nowhere. */}
+                        <PresenceLights lights={presence[p.key]} variant="pin" />
                       </PlaceState>
                     );
                   })}
@@ -412,6 +438,7 @@ const Village = () => {
             <SkyVeil />
             <SkyMoon sky={sky} />
             <PlaceParticles particles={particles.particles} />
+            <PresenceLights lights={presence[lastPlace.key]} variant="scene" />
           </section>
         )}
       </main>
