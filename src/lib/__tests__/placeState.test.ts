@@ -9,6 +9,9 @@ import {
   closedLine,
   emptyPlaceSave,
   houseLit,
+  isLiveNow,
+  liveWindowNow,
+  liveWindows,
   nextJourneyStep,
   nextMove,
   openPlaceKeys,
@@ -162,6 +165,38 @@ describe("placeState: live", () => {
     expect(placeState(place("fire-circle"), saveWith([], { now: new Date("2026-11-10T18:00:00Z") }))).toBe("live");
     expect(placeState(place("fire-circle"), saveWith([], { now: new Date("2026-11-11T07:00:00Z") }))).toBe("open");
   });
+
+  it("the Fire Circle is also live during the webinar it announces, Wed Nov 4, 9:00 Mexico City (WP-10)", () => {
+    const fire = place("fire-circle");
+    const during = saveWith([], { now: new Date("2026-11-04T15:30:00Z") });
+    expect(placeState(fire, during)).toBe("live");
+    expect(placeLine(fire, "live", during.now)).toBe("Live now: Webinar, Wed Nov 4.");
+    expect(placeState(fire, saveWith([], { now: new Date("2026-11-04T14:59:00Z") }))).toBe("open");
+    expect(placeState(fire, saveWith([], { now: new Date("2026-11-04T17:00:00Z") }))).toBe("open");
+    // Between the two windows nothing is live.
+    expect(placeState(fire, saveWith([], { now: new Date("2026-11-07T18:00:00Z") }))).toBe("open");
+  });
+
+  it("a place with two windows speaks the one that is open", () => {
+    const fire = place("fire-circle");
+    expect(placeLine(fire, "live", new Date("2026-11-09T18:00:00Z"))).toBe("Live now: Mastermind, Nov 9–10.");
+    expect(placeLine(fire, "live", new Date("2026-11-04T15:30:00Z"))).toBe("Live now: Webinar, Wed Nov 4.");
+    // Asked outside both windows, it falls back to the first rather than going blank.
+    expect(placeLine(fire, "live", TUESDAY)).toBe("Live now: Webinar, Wed Nov 4.");
+  });
+
+  it("a rule may give one window or a list", () => {
+    const one = { from: "2026-11-04T09:00:00-06:00", until: "2026-11-04T10:30:00-06:00", line: "Live now." };
+    const two = { from: "2026-11-09T00:00:00-06:00", until: "2026-11-11T00:00:00-06:00", line: "Live now, too." };
+    expect(liveWindows(undefined)).toEqual([]);
+    expect(liveWindows(one)).toEqual([one]);
+    expect(liveWindows([one, two])).toEqual([one, two]);
+    expect(isLiveNow(one, new Date("2026-11-04T15:30:00Z"))).toBe(true);
+    expect(isLiveNow([one, two], new Date("2026-11-10T18:00:00Z"))).toBe(true);
+    expect(isLiveNow([one, two], TUESDAY)).toBe(false);
+    expect(isLiveNow(undefined, TUESDAY)).toBe(false);
+    expect(liveWindowNow([one, two], new Date("2026-11-10T18:00:00Z"))).toBe(two);
+  });
 });
 
 describe("closed lines come from data (§14.3)", () => {
@@ -232,7 +267,7 @@ describe("no barrier words in anything a player reads", () => {
     for (const p of VILLAGE_PLACES) {
       expect(p.line, p.key).not.toMatch(barrier);
       expect(closedLine(p), p.key).not.toMatch(barrier);
-      expect(p.rule.live?.line ?? "", p.key).not.toMatch(barrier);
+      for (const w of liveWindows(p.rule.live)) expect(w.line, p.key).not.toMatch(barrier);
     }
     expect(closedLine(ORACLE_READING)).not.toMatch(barrier);
     for (const s of GROWTH_STEPS) expect(growthStepClosedLine(s), s.id).not.toMatch(barrier);
@@ -322,7 +357,9 @@ describe("nextMove: one next move (§14.6)", () => {
     const all = JOURNEY_MAIN.map((i) => i.id);
     const during = move(all, { offerSaved: true, now: new Date("2026-11-04T15:30:00Z") });
     expect(during?.kind).toBe("live");
-    expect(during?.place.key).toBe("academy");
+    // The webinar makes the Academy and the Fire Circle live together (WP-10); the first in map order speaks.
+    expect(during?.place.key).toBe("fire-circle");
+    expect(during?.title).toBe("Live now: Webinar, Wed Nov 4.");
     const quiet = move(all, { offerSaved: true, now: TUESDAY });
     expect(quiet?.kind).toBe("quests");
     expect(quiet?.place.key).toBe("quest-board");

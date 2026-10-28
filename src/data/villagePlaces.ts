@@ -12,6 +12,7 @@
  * JOURNEY_MAIN (src/data/journeySequence.ts); nothing here restates its order.
  */
 
+import { FIRE_CIRCLE_LIVE, WEBINAR_LIVE } from "@/data/liveEvents";
 import type { PlaceInput, PlaceRule } from "@/lib/placeState";
 
 export type VillagePlaceKey =
@@ -171,13 +172,9 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     line: "Your Mastermind circle.",
     to: "/build/mastermind",
     rule: {
-      // Mastermind sessions on Nov 9 and Nov 10 (src/pages/Mastermind.tsx). The session
-      // times are not in the code, so the window is the two days, Mexico City time.
-      live: {
-        from: "2026-11-09T00:00:00-06:00",
-        until: "2026-11-11T00:00:00-06:00",
-        line: "Live now: Mastermind, Nov 9–10.",
-      },
+      // The webinar (Wed Nov 4) is announced on the Mastermind page, and the Mastermind sessions
+      // are Nov 9 and 10 (src/pages/Mastermind.tsx): both windows live in src/data/liveEvents.ts.
+      live: FIRE_CIRCLE_LIVE,
     },
     image: "/game/village/fire-circle.webp",
     alt: "A domed hall with a brass fire bowl at its center, patterned seats in a circle around it, tall white columns, crystals and candles, and a glowing oculus above",
@@ -191,13 +188,8 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     line: "Grow in what matters most.",
     to: "/game/learn",
     rule: {
-      // Webinar Wed Nov 4, 9:00 Mexico City (src/pages/Mastermind.tsx, bridgeLink).
-      // The length is not in the code; 90 minutes assumed.
-      live: {
-        from: "2026-11-04T09:00:00-06:00",
-        until: "2026-11-04T10:30:00-06:00",
-        line: "Live now: Webinar, Wed Nov 4.",
-      },
+      // Webinar Wed Nov 4, 9:00 Mexico City (src/data/liveEvents.ts).
+      live: WEBINAR_LIVE,
     },
     image: "/game/village/academy.webp",
     alt: "A grand library under a dome at night: curved wooden bookshelves, an armillary sphere, scrolls and an open book, and a crystal dodecahedron among the stars in the skylight",

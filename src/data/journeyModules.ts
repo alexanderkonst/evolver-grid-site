@@ -5,7 +5,8 @@
  *
  * One entry per Journey step that is built today (J1, J2, J4, J5, and the two Workshop slices
  * J6, J7 of WP-9) and the three real-world quests of the Quest Board (J10–J12, WP-11).
- * Webinar and Mastermind add their entries with WP-10. Order,
+ * The Mastermind (J9, WP-10) has no `JOURNEY_MAIN` row, so like the Academy lesson its words live
+ * in their own file (src/data/mastermindModule.ts). Order,
  * requirements and the closed line come from `JOURNEY_MAIN` (src/data/journeySequence.ts);
  * nothing here restates them. The place a module lives in comes from VILLAGE_PLACES
  * (src/data/villagePlaces.ts).
@@ -34,8 +35,13 @@ import type { VillagePlaceKey } from "@/data/villagePlaces";
 /** A Journey step that is not a `JOURNEY_MAIN` row of its own: a slice of `build-business`. */
 export type SliceStepId = "uniqueness-phrase" | "tagline";
 
-/** A module in the form that is not a Journey step: an Academy lesson a guest can play (src/data/academyModule.ts). */
-export type ExtraStepId = "academy-welcome";
+/**
+ * A module in the form that is not a `JOURNEY_MAIN` row: an Academy lesson a guest can play
+ * (src/data/academyModule.ts), or the Fire Circle's Mastermind, J9 (src/data/mastermindModule.ts).
+ */
+export type ExtraStepId = "academy-welcome" | "mastermind";
+
+const EXTRA_STEP_IDS: readonly ExtraStepId[] = ["academy-welcome", "mastermind"];
 
 /**
  * A real-world quest on the Quest Board (WP-11, §14.2 J10–J12): the player does something
@@ -58,8 +64,8 @@ export const SLICE_PARENT: Record<SliceStepId, JourneyItemId> = {
 
 export const isSliceStep = (id: ModuleStepId): id is SliceStepId => id in SLICE_PARENT;
 
-/** An Academy lesson: it has the module form but no row in `JOURNEY_MAIN`, so nothing waits on it. */
-export const isExtraStep = (id: ModuleStepId): id is ExtraStepId => id === "academy-welcome";
+/** An Academy lesson or the Mastermind: it has the module form but no row in `JOURNEY_MAIN`, so nothing waits on it. */
+export const isExtraStep = (id: ModuleStepId): id is ExtraStepId => (EXTRA_STEP_IDS as readonly string[]).includes(id);
 
 export const isQuestStep = (id: string | null | undefined): id is QuestStepId =>
   !!id && (QUEST_STEP_IDS as readonly string[]).includes(id);

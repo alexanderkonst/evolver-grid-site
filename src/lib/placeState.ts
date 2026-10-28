@@ -72,7 +72,8 @@ export type PlaceRule = {
    * this list also make the place `next` while that step is the single next move.
    */
   steps?: PlaceRequirement[];
-  live?: PlaceLive;
+  /** One window, or several when a place hosts more than one event (the Fire Circle: webinar and Mastermind). */
+  live?: PlaceLive | readonly PlaceLive[];
 };
 
 /** Anything with a rule: a village place, an Academy room, the Oracle Reading. */
@@ -236,7 +237,7 @@ export const nextMove = <P extends MovePlace>(places: readonly P[], save: PlaceS
       kind: "live",
       place: live,
       step: null,
-      title: live.rule.live?.line ?? live.name,
+      title: liveWindowNow(live.rule.live, save.now)?.line ?? live.name,
       result: live.line,
       to: live.to,
       optional: false,
@@ -270,12 +271,18 @@ export const whatChanged = <P extends MovePlace>(
   return { fresh, line: spoken ? (spoken.opened ?? `${spoken.name} is open.`) : null };
 };
 
-/** True while `now` falls inside the place's live window. */
-export const isLiveNow = (live: PlaceLive | undefined, now: Date): boolean => {
-  if (!live) return false;
+/** A place's live window(s) as a list, whichever way its rule gives them. */
+export const liveWindows = (live: PlaceRule["live"]): readonly PlaceLive[] =>
+  !live ? [] : "from" in live ? [live] : live;
+
+/** The live window that `now` falls inside, if any. */
+export const liveWindowNow = (live: PlaceRule["live"], now: Date): PlaceLive | undefined => {
   const t = now.getTime();
-  return t >= Date.parse(live.from) && t < Date.parse(live.until);
+  return liveWindows(live).find((w) => t >= Date.parse(w.from) && t < Date.parse(w.until));
 };
+
+/** True while `now` falls inside one of the place's live windows. */
+export const isLiveNow = (live: PlaceRule["live"], now: Date): boolean => liveWindowNow(live, now) !== undefined;
 
 const isMet = (save: PlaceSave, req: PlaceRequirement) => save.met[req] === true;
 
@@ -299,9 +306,14 @@ export const closedLine = (place: PlaceInput): string => {
   return `Opens when ${trimDot(c.event)}. Inside: ${trimDot(c.inside)}.`;
 };
 
-/** The one line to show for a place in a given state. */
-export const placeLine = (place: PlaceInput, state: PlaceStateName): string => {
+/**
+ * The one line to show for a place in a given state. A live place with several windows
+ * speaks the window that is open at `now`, else its first.
+ */
+export const placeLine = (place: PlaceInput, state: PlaceStateName, now: Date = new Date()): string => {
   if (state === "closed") return closedLine(place);
-  if (state === "live") return place.rule.live?.line ?? place.line;
+  if (state === "live") {
+    return liveWindowNow(place.rule.live, now)?.line ?? liveWindows(place.rule.live)[0]?.line ?? place.line;
+  }
   return place.line;
 };
