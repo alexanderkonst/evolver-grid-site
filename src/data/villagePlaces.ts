@@ -35,6 +35,8 @@ export type VillagePlace = {
   to: string;
   /** When it opens, its closed line, what finishing it means, when it is live. */
   rule: PlaceRule;
+  /** «What changed» line on the visit after it opens. Absent = «<Name> is open.» (see `whatChanged`). */
+  opened?: string;
   /** Night scene image (public/game/village). */
   image: string;
   alt: string;
@@ -93,6 +95,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
       closed: { event: TOP_TALENT_SAVED, inside: "your crystal, mission and save file" },
       steps: ["discover-mission", "assess-qol", "map-assets"],
     },
+    opened: "Your House is open.",
     image: "/game/village/house.webp",
     alt: "Inside your house at night: tall white columns hung with string lights, a luminous crystal dodecahedron on an altar of candles, amethyst and quartz, and a singing bowl on the rugs",
     focus: { x: 50, y: 75 },
@@ -212,6 +215,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
       closed: { event: "your mission is saved", inside: "your offer, built from your top talent" },
       steps: ["build-business"],
     },
+    opened: "The Workshop is open.",
     image: "/game/village/workshop.webp",
     alt: "A workshop under neon-edged arches: a 3D printer, a laser cutter, a large-format printer and a robotic arm, with a luminous crystal dodecahedron floating at the center",
     focus: { x: 50, y: 55 },
@@ -229,6 +233,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
       closed: { event: "your offer is saved", inside: "your shop, and the shops of other residents" },
       steps: ["first-sale"],
     },
+    opened: "Your stall stands in the Market.",
     image: "/game/village/market.webp",
     alt: "A night bazaar under lanterns: stalls draped with textiles, painted ceramics, copper teapots, amethyst and quartz, and a white minaret under a starry sky",
     focus: { x: 55, y: 35 },
@@ -249,6 +254,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
         inside: "ventures built together, and your voice in the village",
       },
     },
+    opened: "The Town Hall is open.",
     image: "/game/village/town-hall.webp",
     alt: "The town hall plaza under the Milky Way: a white tower and domes with softly lit arches, rugs leading across a tiled square, and a crystal dodecahedron above",
     focus: { x: 45, y: 15 },

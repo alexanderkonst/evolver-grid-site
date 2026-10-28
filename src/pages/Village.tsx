@@ -23,7 +23,8 @@ import {
 } from "@/hooks/useVillagePresence";
 import { useSoulColors } from "@/hooks/useSoulColors";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
-import { placeLine, placeSaveFromSheet, placeState, type PlaceStateName } from "@/lib/placeState";
+import { nextMove, placeLine, placeSaveFromSheet, placeState, type PlaceStateName } from "@/lib/placeState";
+import { useVillageChanges } from "@/hooks/useVillageChanges";
 import { PlaceState, PlaceStateTag } from "@/components/game/PlaceState";
 import { LunarPaths, LunarWorldSync } from "@/components/skin/LunarWorld";
 import "./Village.css";
@@ -43,6 +44,10 @@ import "./Village.css";
  * Inside: <result>.», with no ENTER. A guest sees Reception, Academy and Fire
  * Circle open and everything else closed; "I already live here" leads to /auth
  * (same `?redirect=` contract as RequireAuth). No barrier language.
+ *
+ * The map is the game screen (WP-6, §14.6): one next-move card (place · step · what it
+ * gives · ENTER, from `nextMove`), one «what changed» line and a one-time reveal on places
+ * that opened since the last visit (`useVillageChanges`). One hint, never a list.
  *
  * Others who are here now appear as anonymous lights on a place's map marker and in its
  * scene (WP-21, src/hooks/useVillagePresence.ts). Never a count, never a link.
@@ -160,6 +165,9 @@ const SkyMoon = ({ sky }: { sky: VillageSky }) => (
   </div>
 );
 
+/** «New» beside a place that opened since the last visit: a word, so the reveal is never colour-only. */
+const NewTag = () => <span className="ps-tag ps-tag--next vl-new">New</span>;
+
 /** The current time, refreshed so a live window opens and closes while the page is up. */
 const useNow = (everyMs: number) => {
   const [now, setNow] = useState(() => new Date());
@@ -186,6 +194,10 @@ const Village = () => {
   const save = placeSaveFromSheet(sheet, now);
   const states: PlaceStateName[] = VILLAGE_PLACES.map((p) => placeState(p, save));
   const shown: PlaceStateName[] = states.map((s) => (!ready && s === "closed" ? "open" : s));
+  // One next move and what changed since the last visit (WP-6, §14.6). Both wait for the save.
+  const move = ready ? nextMove(VILLAGE_PLACES, save) : null;
+  const changes = useVillageChanges(sheet.userId, VILLAGE_PLACES, save, ready);
+  const isNew = (p: VillagePlace) => changes.fresh.includes(p);
   const [active, setActive] = useState<number | null>(null);
   // Keep the last scene mounted after leaving it, so map ← place can crossfade too.
   const [lastPlace, setLastPlace] = useState<VillagePlace | undefined>(place);
@@ -314,7 +326,7 @@ const Village = () => {
                       top: `${p.y}%`,
                       "--vl-d": `${-i * 0.55}s`,
                     } as CSSProperties;
-                    const cls = `vl-pin${p.side === "left" ? " vl-pin--left" : ""}${i === active ? " is-active" : ""}`;
+                    const cls = `vl-pin${p.side === "left" ? " vl-pin--left" : ""}${i === active ? " is-active" : ""}${isNew(p) ? " is-new" : ""}`;
                     return (
                       // A closed pin still opens its (faded) scene, so it is not disabled.
                       <PlaceState key={p.key} as="li" state={shown[i]} className={cls} style={style} tag={false} disabled={false}>
@@ -336,6 +348,7 @@ const Village = () => {
                             <span className="vl-dot ps-fade" aria-hidden="true" />
                             <span className="vl-pin__name">{p.name}</span>
                             <PlaceStateTag state={shown[i]} />
+                            {isNew(p) ? <NewTag /> : null}
                           </Link>
                         )}
                         {/* Beside the link, not in it: a light leads nowhere. */}
@@ -361,13 +374,36 @@ const Village = () => {
           </div>
           <Link className="vl-mono vl-corner" to="/">← Title</Link>
 
+          {/* WP-6 (§14.6): what changed since the last visit, and the one next move. One hint, never a list. */}
+          {changes.line || move ? (
+            <div className="vl-move">
+              {changes.line ? (
+                <p className="vl-mono vl-move__changed" role="status">{changes.line}</p>
+              ) : null}
+              {move ? (
+                <aside className="vl-move__card" aria-label="Your next move" data-kind={move.kind}>
+                  <p className="vl-mono vl-move__eyebrow">Your next move</p>
+                  <p className="vl-move__where">
+                    <span className="vl-move__place">{move.place.name}</span>
+                    {" · "}
+                    {move.title}
+                    {move.optional ? <span className="vl-move__optional"> (optional)</span> : null}
+                  </p>
+                  {move.kind === "step" ? <p className="vl-move__result">{move.result}</p> : null}
+                  <Link className="vl-enter vl-move__enter" to={move.to}>ENTER</Link>
+                </aside>
+              ) : null}
+            </div>
+          ) : null}
+
           <nav className="vl-list" aria-label="Places">
             <ul>
               {VILLAGE_PLACES.map((p, i) => (
-                <PlaceState key={p.key} as="li" state={shown[i]} tag={false} disabled={false}>
+                <PlaceState key={p.key} as="li" state={shown[i]} className={isNew(p) ? "is-new" : undefined} tag={false} disabled={false}>
                   <Link to={`/village/${p.key}`}>
                     <span className="vl-list__name">{p.name}</span>
                     <PlaceStateTag state={shown[i]} />
+                    {isNew(p) ? <NewTag /> : null}
                     <span className="vl-list__line">{placeLine(p, shown[i])}</span>
                   </Link>
                 </PlaceState>

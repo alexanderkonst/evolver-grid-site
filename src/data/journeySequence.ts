@@ -81,6 +81,14 @@ export type JourneyItem = {
     requires?: JourneyItemId[];
     /** Line shown while the item is closed: «Opens when <real event>. Inside: <result>.» (§14.3). */
     lockedHint?: string;
+    /**
+     * What the player gets, as a clause that follows a dash: «you'll know what is yours to do
+     * in the world.» It is the Intro's promise (§14.4) and the village's next-move hint (§14.6).
+     * Must match the module's Master Result.
+     */
+    result?: string;
+    /** Where ENTER in the village goes when it is not `path` (the title `/` is no place to enter). */
+    enter?: string;
 };
 
 /**
@@ -116,6 +124,8 @@ export const JOURNEY_SEQUENCE: JourneyItem[] = [
         kind: "main",
         label: "Start by finding your top talent",
         path: "/",
+        enter: "/zone-of-genius/entry",
+        result: "you'll see your top talent and keep your character.",
         completionHome: "/game/me/zone-of-genius",
         completionPredicate: async ({ supabase, profileId }) =>
             profileId ? anyRowExists(supabase, "zog_snapshots", "profile_id", profileId) : false,
@@ -125,6 +135,7 @@ export const JOURNEY_SEQUENCE: JourneyItem[] = [
         kind: "main",
         label: "Discover your mission",
         path: "/mission-discovery",
+        result: "you'll know what is yours to do in the world.",
         requires: ["find-top-talent"],
         lockedHint: "Opens when your top talent is saved. Inside: what is yours to do in the world.",
         // No predicate: a committed mission (mission_participants) is the artifact
@@ -138,6 +149,7 @@ export const JOURNEY_SEQUENCE: JourneyItem[] = [
         // The mark lives here so every list shows the same answer.
         optional: true,
         path: "/quality-of-life-map/assessment",
+        result: "you'll know your real level, private to you.",
         completionHome: "/game/me/quality-of-life",
         requires: ["discover-mission"],
         lockedHint: "Opens when your mission is saved. Inside: your real level, private to you.",
@@ -149,6 +161,7 @@ export const JOURNEY_SEQUENCE: JourneyItem[] = [
         kind: "main",
         label: "Map your assets",
         path: "/asset-mapping",
+        result: "you'll hold the inventory of everything you can build with.",
         completionHome: "/game/me/assets",
         requires: ["discover-mission"],
         lockedHint: "Opens when your mission is saved. Inside: your inventory of everything you can build with.",
@@ -160,6 +173,7 @@ export const JOURNEY_SEQUENCE: JourneyItem[] = [
         kind: "main",
         label: "Build a business off your top talent",
         path: "/ubb",
+        result: "you'll have your uniqueness in one phrase, then your tagline.",
         requires: ["find-top-talent", "discover-mission", "map-assets"],
         lockedHint:
             "Opens when your top talent, mission and assets are saved. Inside: your uniqueness in one phrase, then your tagline.",
