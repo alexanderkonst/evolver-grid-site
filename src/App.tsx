@@ -313,7 +313,7 @@ const GrowSpace = lazy(() => import("./pages/spaces/ProfileSpace")); // was Prof
 const LearnSpace = lazy(() => import("./pages/spaces/TransformationSpace")); // was Transformation
 const MeetSpace = lazy(() => import("./pages/spaces/EventsSpace")); // was Events
 const CollaborateSpace = lazy(() => import("./pages/spaces/TeamsSpace")); // was Teams/Discover
-const BuildSpace = lazy(() => import("./pages/spaces/CoopSpace")); // was Business Incubator
+const TownHallSpace = lazy(() => import("./pages/spaces/CoopSpace")); // Town Hall v0 (WP-12)
 const MarketplaceSpace = lazy(() => import("./pages/spaces/MarketplaceSpace")); // OFFER
 const QualityOfLifeMapResults = lazy(() => import("./pages/QualityOfLifeMapResults"));
 const AdminGeniusOffers = lazy(() => import("./pages/AdminGeniusOffers"));
@@ -881,8 +881,9 @@ const App = () => (
                     <Route path="landing-page" element={<UbbLandingPageScreen />} />
                     <Route path="dossier" element={<DossierScreen />} />
                   </Route>
+                  {/* Town Hall v0 (WP-12): closed state for anyone without a first sale, never a redirect or an auth wall. */}
+                  <Route path="/game/coop" element={<TownHallSpace />} />
                   {/* Legacy redirects */}
-                  <Route path="/game/coop" element={<Navigate to="/game/build" replace />} />
                   <Route path="/events" element={<Navigate to="/game/meet" replace />} />
                   <Route path="/events/:id" element={<RequireAuth><EventDetail /></RequireAuth>} />
                   <Route path="/events/community/:communityId" element={<RequireAuth><CommunityEvents /></RequireAuth>} />

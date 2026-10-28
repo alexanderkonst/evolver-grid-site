@@ -124,6 +124,8 @@
 .ir-figure {
   font-family: var(--ir-serif); font-weight: 300; font-size: clamp(56px, 9vw, 110px); line-height: 1; color: var(--ir-ink);
 }
+/* the empty state of a figure («No sales recorded yet»): quiet, not a hero number */
+.ir-figure--quiet { font-size: clamp(26px, 3.4vw, 40px); line-height: 1.2; font-style: italic; color: var(--ir-ink-2); }
 .ir-note { font-family: var(--ir-serif); font-style: italic; font-size: 18px; color: var(--ir-ink-3); margin: 56px 0 0; }
 
 /* ---------- Team ---------- */

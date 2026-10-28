@@ -1083,6 +1083,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             location.pathname === "/" ||
             location.pathname.startsWith("/game/journey") ||
             location.pathname.startsWith("/game/me") ||
+            location.pathname === "/game/coop" || // Town Hall shows its closed state, never a redirect (WP-12)
             location.pathname === "/game/settings";
         if (needsOnboarding && location.pathname.startsWith("/game") && !publicShellPaths) {
             navigate("/start");

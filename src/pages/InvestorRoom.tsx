@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { VILLAGE_INCOME_LABEL, useVillageIncome, villageIncomeText } from "@/lib/villageIncome";
 import "./InvestorRoom.css";
 
 /**
@@ -202,6 +203,8 @@ const InvestorRoom = () => {
     };
   }, []);
 
+  const { loading: incomeLoading, income } = useVillageIncome();
+
   const numbers = [
     { value: counts.profiles, label: COPY.numbers.profiles },
     { value: counts.talents, label: COPY.numbers.talents },
@@ -272,26 +275,31 @@ const InvestorRoom = () => {
           </div>
         </section>
 
-        {numbers.length > 0 && (
-          <section className="ir-room ir-room--short" aria-labelledby="ir-num-h">
-            <img className="ir-scene" src={scene("market")} alt="" aria-hidden="true" loading="lazy" decoding="async" />
-            <div className="ir-veil" aria-hidden="true" />
-            <div className="ir-inner">
-              <Reveal reduceMotion={reduceMotion}>
-                <p className="ir-mono ir-kicker" id="ir-num-h">{COPY.numbers.kicker}</p>
-                <ul className="ir-numbers">
-                  {numbers.map((n) => (
-                    <li key={n.label}>
-                      <span className="ir-figure">{n.value.toLocaleString("en-US")}{n.label === COPY.numbers.talents && n.value >= TALENT_ROW_CAP ? "+" : ""}</span>
-                      <span className="ir-mono">{n.label}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="ir-note">{COPY.numbers.note}</p>
-              </Reveal>
-            </div>
-          </section>
-        )}
+        <section className="ir-room ir-room--short" aria-labelledby="ir-num-h">
+          <img className="ir-scene" src={scene("market")} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+          <div className="ir-veil" aria-hidden="true" />
+          <div className="ir-inner">
+            <Reveal reduceMotion={reduceMotion}>
+              <p className="ir-mono ir-kicker" id="ir-num-h">{COPY.numbers.kicker}</p>
+              <ul className="ir-numbers">
+                {numbers.map((n) => (
+                  <li key={n.label}>
+                    <span className="ir-figure">{n.value.toLocaleString("en-US")}{n.label === COPY.numbers.talents && n.value >= TALENT_ROW_CAP ? "+" : ""}</span>
+                    <span className="ir-mono">{n.label}</span>
+                  </li>
+                ))}
+                {/* The village's one public number: the same figure, from the same helper, as the Town Hall. */}
+                <li>
+                  <span className={`ir-figure${income ? "" : " ir-figure--quiet"}`} aria-busy={incomeLoading || undefined}>
+                    {incomeLoading ? " " : villageIncomeText(income)}
+                  </span>
+                  <span className="ir-mono">{VILLAGE_INCOME_LABEL}</span>
+                </li>
+              </ul>
+              <p className="ir-note">{COPY.numbers.note}</p>
+            </Reveal>
+          </div>
+        </section>
 
         <section className="ir-room ir-room--short" aria-labelledby="ir-team-h">
           <img className="ir-scene" src={scene("fire-circle")} alt="" aria-hidden="true" loading="lazy" decoding="async" />
