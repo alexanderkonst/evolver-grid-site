@@ -18,6 +18,9 @@ import { Loader2 } from "lucide-react";
 import { useUniqueBusiness } from "../UniqueBusinessContext";
 import { ImproveButton } from "../components/ImproveButton";
 import { SpecificityBadge } from "../components/SpecificityBadge";
+import { getJourneyModule } from "@/data/journeyModules";
+import JourneySlice from "../JourneySlice";
+import { SLICE_OF_ARTIFACT } from "../journeySlices";
 import { ARTIFACT_LABELS, UBB_ROOT, ARTIFACT_URL_SLUGS } from "../constants";
 import { ALL_ARTIFACT_KEYS } from "../types";
 import type { ArtifactKey } from "../types";
@@ -77,7 +80,17 @@ export default function GenericArtifactScreen() {
     );
   }
 
-  return <ArtifactView artifactKey={artifactKey} />;
+  // WP-9: uniqueness (J6) and promise (J7) are Journey modules; the rest of UBB is as it was.
+  const slice = SLICE_OF_ARTIFACT[artifactKey];
+  const sliceModule = getJourneyModule(slice);
+  const view = <ArtifactView artifactKey={artifactKey} />;
+  return sliceModule ? (
+    <JourneySlice key={artifactKey} artifactKey={artifactKey} module={sliceModule}>
+      {view}
+    </JourneySlice>
+  ) : (
+    view
+  );
 }
 
 export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
