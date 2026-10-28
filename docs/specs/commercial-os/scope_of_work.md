@@ -1,3 +1,5 @@
+> The SoW + DoD pattern used here is synthesized into docs/templates/spec-handoff.md (2026-10-27). This file is kept as a source.
+
 # Commercial OS v2 — Scope of Work
 
 **Module:** Commercial OS (`/built-by-you/commercial-os`, source `commercial-tools/app/`)

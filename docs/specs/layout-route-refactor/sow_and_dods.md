@@ -1,3 +1,5 @@
+> The SoW + DoD pattern used here is synthesized into docs/templates/spec-handoff.md (2026-10-27). This file is kept as a source.
+
 # Layout-Route Refactor — SOW + DoDs
 
 > *Started 2026-06-13. Goal: hoist `GameShellV2` from a per-route wrapper to a

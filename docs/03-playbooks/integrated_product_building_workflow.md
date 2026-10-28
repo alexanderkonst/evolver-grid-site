@@ -1,3 +1,5 @@
+> Synthesized into docs/templates/spec-handoff.md (2026-10-27). This file is kept as a source.
+
 # Integrated Product Building Workflow
 ## Step-by-Step Execution Manual for Any Module
 

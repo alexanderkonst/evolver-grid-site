@@ -1,3 +1,5 @@
+> §Feature Spec Template is synthesized into docs/templates/spec-handoff.md (2026-10-27). This file is kept as a source.
+
 # The Vibe-Coding Playbook
 ## First Principles of Product Design
 

@@ -1,3 +1,5 @@
+> Synthesized into docs/templates/spec-handoff.md (2026-10-27). This file is kept as a source.
+
 # How We Write Specs — Handover to Hark
 
 *For Hark, who will assign work to Claude Code and Codex through GitHub issues and PRs, starting with parsing `docs/` (evolver-grid-site) into the Obsidian graph (repo `knowledgegraph`). Every rule names its source file. **[practice, not written]** marks how we actually work but haven't written down. Contradictions are collected in §7.*

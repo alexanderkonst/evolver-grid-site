@@ -1,3 +1,5 @@
+> The SoW + DoD pattern used here is synthesized into docs/templates/spec-handoff.md (2026-10-27). This file is kept as a source.
+
 # Profile Space — SOW & DoDs (Planning · Implementation · Testing)
 
 > *Day 119 (2026-07-09), Sasha's brief, verbatim intent: create a Profile space in ME holding mission discovery, assets discovered, top talent, quality of life, and collaboration requests sent — with retake/edit for any test, QoL assessment access, progression view ("short summary of what changed" + history), a LinkedIn upload, and one-click full-profile PDF export building on the existing Settings download. Built from scratch — no legacy pages reused.*

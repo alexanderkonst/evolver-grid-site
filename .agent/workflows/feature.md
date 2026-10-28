@@ -2,6 +2,8 @@
 description: Generate a Feature Requirement Document (FReD) before implementing new features
 ---
 
+> Synthesized into docs/templates/spec-handoff.md (2026-10-27). This file is kept as a source.
+
 # Feature Workflow
 
 **When to use:** Before implementing any new feature or functionality.

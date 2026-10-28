@@ -1,3 +1,5 @@
+> The SoW + DoD pattern used here is synthesized into docs/templates/spec-handoff.md (2026-10-27). This file is kept as a source.
+
 # UBB Deep Context — Debugging + Validation SoW + DoD
 
 *Day 78, 2026-05-21. Status: runs alongside the Implementation SoW.*

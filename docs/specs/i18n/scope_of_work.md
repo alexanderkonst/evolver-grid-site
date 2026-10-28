@@ -1,3 +1,5 @@
+> The SoW + DoD pattern used here is synthesized into docs/templates/spec-handoff.md (2026-10-27). This file is kept as a source.
+
 # i18n + l10n — Scope of Work (v2)
 
 *Find Your Top Talent / Evolver platform · v1 drafted 2026-06-13 (Day 100) · **v2 rewritten 2026-06-14 after an adversarial roast that proved v1 lowballed scope and timeline 2–4x.** Launch pair: Russian first, then Spanish.*

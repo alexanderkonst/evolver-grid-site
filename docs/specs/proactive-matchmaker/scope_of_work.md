@@ -1,3 +1,5 @@
+> The SoW + DoD pattern used here is synthesized into docs/templates/spec-handoff.md (2026-10-27). This file is kept as a source.
+
 # Proactive Matchmaker v1 — Scope of Work
 
 **Module:** Proactive Matchmaker (§8.7 Loop 2, replacing the "come back to the page" digest)
