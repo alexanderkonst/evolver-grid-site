@@ -1501,30 +1501,6 @@ export type Database = {
         }
         Relationships: []
       }
-      journey_victories: {
-        Row: {
-          created_at: string
-          id: string
-          rating: number
-          step_id: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          rating: number
-          step_id: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          rating?: number
-          step_id?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
       marketplace_products: {
         Row: {
           blueprint_content: Json | null

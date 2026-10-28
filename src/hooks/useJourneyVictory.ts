@@ -13,7 +13,32 @@ import { isValidRating } from "@/data/journeyModules";
  * so every failure on the read path (missing table, network, RLS) quietly means
  * `available: false`: the Outro shows the same screen without the rating row. Nothing is
  * thrown and nothing is logged.
+ *
+ * The table is deliberately absent from the generated `Database` type (it arrives with the
+ * migration PR), so it is reached through a loose, local client type below.
  */
+
+type QueryError = { code?: string; message?: string } | null;
+
+/** The slice of the query builder this hook uses; stands in for the generated table type. */
+type VictoriesTable = {
+  select: (columns: string) => {
+    eq: (column: string, value: string) => {
+      eq: (column: string, value: string) => {
+        limit: (n: number) => PromiseLike<{
+          data: { rating: number }[] | null;
+          error: QueryError;
+        }>;
+      };
+    };
+  };
+  insert: (row: { user_id: string; step_id: string; rating: number }) => PromiseLike<{
+    error: QueryError;
+  }>;
+};
+
+const victories = () =>
+  supabase.from("journey_victories" as never) as unknown as VictoriesTable;
 
 export type RateResult = { ok: true } | { ok: false; message: string };
 
@@ -32,7 +57,7 @@ export type JourneyVictoryApi = {
 /** Remembered for the session so a missing table is probed once, not per Outro. */
 let tableMissing = false;
 
-const isMissingTable = (error: { code?: string; message?: string } | null) =>
+const isMissingTable = (error: QueryError) =>
   !!error &&
   (error.code === "42P01" ||
     error.code === "PGRST205" ||
@@ -86,8 +111,7 @@ export function useJourneyVictory(stepId: string | null | undefined): JourneyVic
     setLoading(true);
     (async () => {
       try {
-        const { data, error } = await supabase
-          .from("journey_victories")
+        const { data, error } = await victories()
           .select("rating")
           .eq("user_id", userId)
           .eq("step_id", stepId)
@@ -118,8 +142,7 @@ export function useJourneyVictory(stepId: string | null | undefined): JourneyVic
       }
       if (!isValidRating(value)) return { ok: false, message: "Pick a number from 1 to 10." };
       try {
-        const { error } = await supabase
-          .from("journey_victories")
+        const { error } = await victories()
           .insert({ user_id: userId, step_id: stepId, rating: value });
         if (error) {
           if (isMissingTable(error)) {
@@ -127,8 +150,7 @@ export function useJourneyVictory(stepId: string | null | undefined): JourneyVic
             setAvailable(false);
           } else if (error.code === "23505") {
             // Answered before (another tab, a retry): the first answer stands.
-            const { data } = await supabase
-              .from("journey_victories")
+            const { data } = await victories()
               .select("rating")
               .eq("user_id", userId)
               .eq("step_id", stepId)
