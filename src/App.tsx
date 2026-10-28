@@ -769,7 +769,9 @@ const App = () => (
                   {/* MY ARTIFACTS — user's unique-business artifacts grouped by step. RLS-scoped. */}
                   <Route path="/my-artifacts" element={<RequireAuth><MyArtifactsPage /></RequireAuth>} />
                   {/* LEARN Space (was Transformation) */}
-                  <Route path="/game/learn" element={<RequireAuth><LearnSpace /></RequireAuth>} />
+                  {/* Issue #186: the Academy is open to a guest, who plays one module and is asked
+                      for the account only at «Save». The sub-routes below still need it. */}
+                  <Route path="/game/learn" element={<LearnSpace />} />
                   <Route path="/game/learn/today" element={<RequireAuth><TodaysPractice /></RequireAuth>} />
                   <Route path="/game/learn/paths" element={<RequireAuth><TransformationGrowthPaths /></RequireAuth>} />
                   <Route path="/game/learn/path/:pathId" element={<RequireAuth><PathSection /></RequireAuth>} />

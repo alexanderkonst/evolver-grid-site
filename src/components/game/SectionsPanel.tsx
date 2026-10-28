@@ -993,8 +993,10 @@ const SectionsPanel = ({
         // or browsing the public /library surface — same pane structure,
         // different scope. Sasha, Day 56 (2026-04-28).
         if (activeSpaceId === "learn") {
+            // Issue #186: /game/learn is open to a guest, whose rooms are the public /library ones.
             const insideAuthed =
-                location.pathname === "/game/learn" || location.pathname.startsWith("/game/learn/");
+                !!userEmail &&
+                (location.pathname === "/game/learn" || location.pathname.startsWith("/game/learn/"));
             const pathBase = insideAuthed ? "/game/learn/library" : "/library";
             return {
                 title: "GROW",

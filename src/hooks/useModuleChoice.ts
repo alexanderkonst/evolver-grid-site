@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { cleanChoiceText, isFollowup, type Followup } from "@/data/journeyChoices";
+import { isGuestStep, readGuestStep, saveGuestChoice, type GuestStepId } from "@/lib/guestModule";
 
 /**
  * The real choice a player made at the end of a Journey module (WP-19).
@@ -55,6 +56,12 @@ const toChoice = (row: {
   followup_at: row.followup_at,
 });
 
+/** A guest's choice for a guest-playable step, in the shape of a stored one. */
+const guestChoice = (stepId: GuestStepId): ModuleChoice | null => {
+  const c = readGuestStep(stepId).choice;
+  return c ? { step_id: stepId, choice_text: c.text, created_at: c.at, followup: null, followup_at: null } : null;
+};
+
 /** The signed-in player's id; `known` flips once the first answer is in. */
 function useUserId() {
   const [userId, setUserId] = useState<string | null>(null);
@@ -91,7 +98,10 @@ function useUserId() {
 export type ModuleChoiceApi = {
   /** The table answered. False while it is missing or unreadable: hide the choice. */
   available: boolean;
-  /** A signed-in player. Guests have no save file to record in. */
+  /**
+   * The player has a save file to record in: an account, or, for a guest-playable step
+   * (src/lib/guestModule.ts), the guest's own browser. Other steps give guests no save file.
+   */
   signedIn: boolean;
   /** Still finding out whether a choice exists. */
   loading: boolean;
@@ -110,6 +120,13 @@ export function useModuleChoice(stepId: string | null | undefined): ModuleChoice
   useEffect(() => {
     setChoice(null);
     if (!stepId || !known) return;
+    if (!userId && isGuestStep(stepId)) {
+      // A guest-playable step keeps its choice in this browser until «Save» (guestModule).
+      setAvailable(true);
+      setChoice(guestChoice(stepId));
+      setLoading(false);
+      return;
+    }
     if (tableMissing) {
       setAvailable(false);
       setLoading(false);
@@ -150,6 +167,13 @@ export function useModuleChoice(stepId: string | null | undefined): ModuleChoice
 
   const choose = useCallback(
     async (rawText: string): Promise<ChoiceResult> => {
+      if (stepId && !userId && isGuestStep(stepId)) {
+        if (!saveGuestChoice(stepId, rawText)) {
+          return { ok: false, message: "Write a few words, up to 280 characters." };
+        }
+        setChoice(guestChoice(stepId));
+        return { ok: true };
+      }
       if (!stepId || !userId || !available) {
         return { ok: false, message: "Your choice can be saved once you are signed in." };
       }
@@ -189,7 +213,7 @@ export function useModuleChoice(stepId: string | null | undefined): ModuleChoice
     [stepId, userId, available],
   );
 
-  return { available, signedIn: !!userId, loading, choice, choose };
+  return { available, signedIn: !!userId || (known && isGuestStep(stepId)), loading, choice, choose };
 }
 
 // ------------------------------------------------- all of a player's (shelf, village)

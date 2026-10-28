@@ -25,8 +25,11 @@ import type { VillagePlaceKey } from "@/data/villagePlaces";
 /** A Journey step that is not a `JOURNEY_MAIN` row of its own: a slice of `build-business`. */
 export type SliceStepId = "uniqueness-phrase" | "tagline";
 
-/** Everything that has a module form: a Journey step, or a slice of one. */
-export type ModuleStepId = JourneyItemId | SliceStepId;
+/** A module in the form that is not a Journey step: an Academy lesson a guest can play (src/data/academyModule.ts). */
+export type ExtraStepId = "academy-welcome";
+
+/** Everything that has a module form: a Journey step, a slice of one, or an Academy lesson. */
+export type ModuleStepId = JourneyItemId | SliceStepId | ExtraStepId;
 
 /** The Journey item whose requirements and closed line a slice borrows. */
 export const SLICE_PARENT: Record<SliceStepId, JourneyItemId> = {
@@ -36,8 +39,12 @@ export const SLICE_PARENT: Record<SliceStepId, JourneyItemId> = {
 
 export const isSliceStep = (id: ModuleStepId): id is SliceStepId => id in SLICE_PARENT;
 
-/** The `JOURNEY_MAIN` item a module id is read from: itself, or the parent of a slice. */
-export const journeyStepOf = (id: ModuleStepId): JourneyItemId => (isSliceStep(id) ? SLICE_PARENT[id] : id);
+/** An Academy lesson: it has the module form but no row in `JOURNEY_MAIN`, so nothing waits on it. */
+export const isExtraStep = (id: ModuleStepId): id is ExtraStepId => id === "academy-welcome";
+
+/** The `JOURNEY_MAIN` item a module id is read from: itself, or the parent of a slice. Undefined for an Academy lesson. */
+export const journeyStepOf = (id: ModuleStepId): JourneyItemId | undefined =>
+  isExtraStep(id) ? undefined : isSliceStep(id) ? SLICE_PARENT[id] : id;
 
 export type JourneyModuleDef = {
   /** The Journey step this module completes; the key of its victory row. */
@@ -187,7 +194,7 @@ export const moduleIntroState = (id: ModuleStepId, save: PlaceSave): PlaceStateN
         opens: closedFirst,
         // A slice is not a Journey row, so it is never «next» or «done» on its own:
         // closed while its parent waits, otherwise open.
-        steps: isSliceStep(id) ? [] : [id],
+        steps: isSliceStep(id) || isExtraStep(id) ? [] : [id],
       },
     },
     save,

@@ -101,6 +101,20 @@ export const JOURNEY_CHOICES: JourneyChoicePrompt[] = [
   },
 ];
 
+/**
+ * The real choice of a module that is not a Journey step: an Academy lesson a guest can play.
+ * Kept apart from `JOURNEY_CHOICES` (that list is exactly J1–J12); `getJourneyChoice` reads both.
+ * COPY FOR SASHA'S REVIEW BEFORE MERGE.
+ */
+export const ACADEMY_CHOICES: JourneyChoicePrompt[] = [
+  {
+    stepId: "academy-welcome",
+    journey: "Academy",
+    question: "What will you do this week to wake your potential?",
+    placeholder: "Walk before work, every morning",
+  },
+];
+
 /** The database accepts 1–280 characters (module_choices_text_length). */
 export const CHOICE_MIN = 1;
 export const CHOICE_MAX = 280;
@@ -117,7 +131,7 @@ export const FOLLOWUP_LABELS: Record<Followup, string> = {
 };
 
 export const getJourneyChoice = (stepId: string | null | undefined): JourneyChoicePrompt | undefined =>
-  JOURNEY_CHOICES.find((c) => c.stepId === stepId);
+  JOURNEY_CHOICES.find((c) => c.stepId === stepId) ?? ACADEMY_CHOICES.find((c) => c.stepId === stepId);
 
 export const isFollowup = (v: unknown): v is Followup =>
   typeof v === "string" && (FOLLOWUPS as readonly string[]).includes(v);
