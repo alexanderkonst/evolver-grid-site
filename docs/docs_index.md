@@ -231,7 +231,6 @@ Everything about AI itself (AI OS, benchmark, the Hark leap, self-awareness map,
 | [module_scope.md](./05-reference/module_scope.md) | Module scope definitions |
 | [inventory.md](./05-reference/inventory.md) | Asset inventory |
 | [prompt_registry.md](./05-reference/prompt_registry.md) | AI prompt registry |
-| [seed_test_profiles.md](./05-reference/seed_test_profiles.md) | Test profile data |
 | [refactor_plan.md](./05-reference/refactor_plan.md) | Refactoring plan |
 | [lint_baseline_plan.md](./05-reference/lint_baseline_plan.md) | Lint config |
 | [codex_handoff_onboarding.md](./05-reference/codex_handoff_onboarding.md) | Codex AI handoff |
