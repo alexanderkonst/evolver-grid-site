@@ -4601,6 +4601,7 @@
     "saveCharacterModalTitle": "Guarda tu personaje",
     "enterVillage": "Entrar en la aldea",
     "saveCharacterReason": "Guarda tu personaje y lee tu lectura completa.",
+    "saveCharacterResultSaved": "Tu resultado se guarda en tu personaje.",
     "notNowEnterVillage": "Ahora no, entrar en la aldea",
     "aiPromptHeading": "Copia este prompt en tu IA",
     "aiPromptSubtitle": "ChatGPT, Claude, Gemini: cualquiera sirve",

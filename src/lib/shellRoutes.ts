@@ -28,11 +28,28 @@
  * way. They're not enumerated.
  */
 
+/**
+ * WP-7: the one public door of the Top Talent test. Every other URL that used
+ * to mount the same page now redirects here (App.tsx), keeping ?query and #hash
+ * (`?result=<token>`, `?return=`, `?redo=true`, `?path=`).
+ */
+export const ZOG_ENTRY_PATH = "/zone-of-genius/entry";
+
+/** Old URLs into the test. They stay alive as redirects; none asks for a login. */
+export const LEGACY_ZOG_ENTRY_PATHS: readonly string[] = [
+    "/zone-of-genius",
+    "/game/journey/start",
+    "/genius-offer",
+];
+
+/** Where an old test URL goes (path + its query and hash), or null if it is not one. */
+export function zogEntryRedirectTarget(pathname: string, search = "", hash = ""): string | null {
+    return LEGACY_ZOG_ENTRY_PATHS.includes(pathname) ? `${ZOG_ENTRY_PATH}${search}${hash}` : null;
+}
+
 /** Pages that render their own shell with special config — layout stays out. */
 const HOLDOUT_EXACT = new Set<string>([
-    "/zone-of-genius",       // ZoneOfGeniusEntry (shell config flips per wizard step)
-    "/game/journey/start",   // ZoneOfGeniusEntry
-    "/zone-of-genius/entry", // ZoneOfGeniusEntry
+    ZOG_ENTRY_PATH,         // ZoneOfGeniusEntry (shell config flips per wizard step)
     "/quiz2",                // GeniusQuiz (hideNavigation) — moved from /quiz July 28, 2026
     "/quiz",                 // TransitionQuizPage — standalone, own layout, no shell
     "/game/settings",        // Settings (showNavigation)

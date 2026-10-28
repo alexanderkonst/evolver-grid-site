@@ -79,7 +79,7 @@ import MensCircleThankYou from "./pages/MensCircleThankYou";
 import VentureDashboard from "./pages/VentureDashboard";
 import GameShellV2 from "./components/game/GameShellV2";
 import ChoiceFollowUp from "./components/game/ChoiceFollowUp";
-import { pathUsesLayoutShell, pathHidesLogo } from "./lib/shellRoutes";
+import { pathUsesLayoutShell, pathHidesLogo, zogEntryRedirectTarget, ZOG_ENTRY_PATH } from "./lib/shellRoutes";
 import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
 import IgniteSession from "./pages/IgniteSession";
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
@@ -443,6 +443,13 @@ const LegacyPublicProfileRedirect = () => {
   return <Navigate to={`/${username ?? ""}`} replace />;
 };
 
+// WP-7: old URLs into the Top Talent test land on the one public door,
+// /zone-of-genius/entry, keeping ?query and #hash (see lib/shellRoutes.ts).
+const ZogEntryRedirect = () => {
+  const location = useLocation();
+  return <Navigate to={zogEntryRedirectTarget(location.pathname, location.search, location.hash) ?? ZOG_ENTRY_PATH} replace />;
+};
+
 const GlobalChrome = () => {
   const location = useLocation();
   const isHeroQuiz = location.pathname === "/hero";
@@ -540,7 +547,7 @@ const App = () => (
                   <Route path="/cockpit/dashboard" element={<Navigate to="/build/cockpit/dashboard" replace />} />
                   <Route path="/game/cockpit" element={<Navigate to="/build/cockpit/dashboard" replace />} />
                   <Route path="/proposalforwegoodovahere" element={<ProposalForWeGoodOvaHere />} />
-                  <Route path="/zone-of-genius" element={<ZoneOfGeniusEntry />} />
+                  <Route path="/zone-of-genius" element={<ZogEntryRedirect />} />
                   <Route path="/auth" element={<Auth />} />
                   <Route path="/auth/callback" element={<AuthCallback />} />
                   <Route path="/auth/reset-password" element={<ResetPassword />} />
@@ -701,7 +708,7 @@ const App = () => (
                   <Route path="/destiny" element={<Destiny />} />
                   <Route path="/mens-circle" element={<RequireAuth><MensCircle /></RequireAuth>} />
                   <Route path="/mens-circle/thank-you" element={<RequireAuth><MensCircleThankYou /></RequireAuth>} />
-                  <Route path="/genius-offer" element={<Navigate to="/zone-of-genius/entry" replace />} />
+                  <Route path="/genius-offer" element={<ZogEntryRedirect />} />
                   {/* Day 47 late pass (Sasha): /quiz is now public. It's the
                       secondary CTA from the ZoG result ("See exactly why this
                       hasn't turned into income") — auth before that is pure friction.
@@ -775,7 +782,7 @@ const App = () => (
                   <Route path="/game/grow/*" element={<Navigate to="/game/me" replace />} />
                   {/* JOURNEY Space */}
                   <Route path="/game/journey" element={<JourneyPage />} />
-                  <Route path="/game/journey/start" element={<ZoneOfGeniusEntry />} />
+                  <Route path="/game/journey/start" element={<ZogEntryRedirect />} />
                   {/* WP-11: the real-world quests J10–J12 (Intro → task → «I did it» → Outro). A guest may read them. */}
                   <Route path="/game/journey/quest/:questId" element={<QuestModule />} />
                   {/* PLAYBOOK — Step 1 is at /playbook itself (no `/discover` slug).

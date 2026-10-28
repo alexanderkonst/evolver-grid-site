@@ -45,7 +45,8 @@ const Auth = () => {
   const mode = searchParams.get("mode"); // signup, login, or null
   // Read both ?next= (spec) and ?redirect= (legacy). Default depends on flow.
   const queryNext = searchParams.get("next") || searchParams.get("redirect");
-  const defaultNext = claimMode ? "/zone-of-genius" : "/playbook/discover";
+  // Claim mode goes straight to the one public test door (WP-7): no login in between.
+  const defaultNext = claimMode ? "/zone-of-genius/entry" : "/playbook/discover";
   const nextPath = queryNext || defaultNext;
   const isCockpitRedirect =
     nextPath.startsWith("/build/cockpit") || nextPath.startsWith("/cockpit");
