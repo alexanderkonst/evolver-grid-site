@@ -834,7 +834,7 @@ const tryExtractTopTalentProfile = (rawSignal: string): TopTalentProfile | undef
 };
 
 /** Max wait for the reveal before the page shows an error with Retry. */
-export const REVEAL_TIMEOUT_MS = 180_000;
+export const REVEAL_TIMEOUT_MS = 240_000;
 
 /** Thrown when the reveal takes longer than REVEAL_TIMEOUT_MS. */
 export class RevealTimeoutError extends Error {
@@ -854,7 +854,7 @@ export const generateAppleseed = async (rawSignal: string): Promise<AppleseedDat
   const prompt = buildAppleseedPrompt(rawSignal);
 
   // The reveal must always end: a result or an error, never an endless loader.
-  // The model usually answers in ~45-90s (observed up to ~3 min in a browser); cut off at REVEAL_TIMEOUT_MS and let the
+  // The model usually answers in ~45-90s (observed ~2.5 min in a browser, so 4 min gives headroom); cut off at REVEAL_TIMEOUT_MS and let the
   // page show a kind error with Retry and the guided test as fallback.
   const controller = typeof AbortController !== 'undefined' ? new AbortController() : undefined;
   let timer: ReturnType<typeof setTimeout> | undefined;
