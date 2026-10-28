@@ -2,6 +2,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { FONTS_HREF } from "@/lib/gameFonts";
+import { shouldShowWordlessIntro } from "@/lib/firstVisit";
+import WordlessIntro from "@/components/game/WordlessIntro";
 import "./GameTitle.css";
 
 /**
@@ -249,7 +251,7 @@ const PlatonicSolid = ({
   return <canvas ref={ref} role="img" aria-label={label} />;
 };
 
-const GameTitle = () => {
+const TitleScreen = () => {
   const reduceMotion = usePrefersReducedMotion();
   const [active, setActive] = useState(0);
   const [started, setStarted] = useState(false);
@@ -352,7 +354,7 @@ const GameTitle = () => {
           <div className="gt-screen__copy">
             <header className="gt-screen__head">
             <h1>The Game of Being&nbsp;You</h1>
-            <p className="gt-sub">Self-Discovery · Quality of Life · Uniqueness · Growth · Tribe</p>
+            <p className="gt-sub">Self-Discovery · Growth · Quality of Life · Uniqueness · Tribe · Village · Collective</p>
             </header>
             <nav className="gt-menu-wrap" aria-label="Game menu">
               <ul className="gt-menu">
@@ -473,6 +475,16 @@ const GameTitle = () => {
       </footer>
     </div>
   );
+};
+
+/**
+ * The homepage. A fresh browser gets the wordless first minute (WP-18) before the
+ * title menu; returning, signed-in and skipped players see the menu as before.
+ */
+const GameTitle = () => {
+  const [intro, setIntro] = useState(shouldShowWordlessIntro);
+  const endIntro = useCallback(() => setIntro(false), []);
+  return intro ? <WordlessIntro onSkip={endIntro} /> : <TitleScreen />;
 };
 
 export default GameTitle;

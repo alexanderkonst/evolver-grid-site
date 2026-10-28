@@ -2,15 +2,21 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from "re
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { FONTS_HREF } from "@/lib/gameFonts";
+import { getVillageSky, type VillageSky } from "@/lib/villageSky";
 import {
-  RECEPTION,
   VILLAGE_MAP,
   VILLAGE_PLACES,
   getVillagePlace,
   sceneObjectPosition,
   type VillagePlace,
 } from "@/data/villagePlaces";
-import { LunarWorldSync } from "@/components/skin/LunarWorld";
+import LeaveParticle from "@/components/game/LeaveParticle";
+import PlaceParticles from "@/components/game/PlaceParticles";
+import { hasParticleInvite, useVillageParticles } from "@/hooks/useVillageParticles";
+import { useCharacterSheet } from "@/hooks/useCharacterSheet";
+import { placeLine, placeSaveFromSheet, placeState, type PlaceStateName } from "@/lib/placeState";
+import { PlaceState, PlaceStateTag } from "@/components/game/PlaceState";
+import { LunarPaths, LunarWorldSync } from "@/components/skin/LunarWorld";
 import "./Village.css";
 
 /**
@@ -21,9 +27,12 @@ import "./Village.css";
  * src/data/villagePlaces.ts. Source of truth:
  * docs/02-strategy/game_of_being_you.md §13.1–§13.4 (no XP, no points, no levels).
  *
- * The map and every scene are public. A signed-out guest who opens a place
- * other than Reception finds a warm invitation over the scene instead of ENTER:
- * their stay begins at Reception, or "I already live here" leads to /auth
+ * The map and every scene are public. Each place is in one of five states
+ * (closed · open · next · done · live), read from the player's save by
+ * `placeState` (src/lib/placeState.ts, §14.3 / §14.11) and drawn by `PlaceState`.
+ * A closed place shows its faded scene and one line, «Opens when <real event>.
+ * Inside: <result>.», with no ENTER. A guest sees Reception, Academy and Fire
+ * Circle open and everything else closed; "I already live here" leads to /auth
  * (same `?redirect=` contract as RequireAuth). No barrier language.
  */
 
@@ -95,18 +104,84 @@ const useSignedIn = () => {
   return signedIn;
 };
 
+/** The real moon tonight. Re-read every ten minutes so a tab left open follows the sky. */
+const useVillageSky = (): VillageSky => {
+  const [sky, setSky] = useState(() => getVillageSky());
+  useEffect(() => {
+    const id = window.setInterval(() => setSky(getVillageSky()), 10 * 60 * 1000);
+    return () => window.clearInterval(id);
+  }, []);
+  return sky;
+};
+
+/**
+ * Sky custom properties, set once on .vl-root. The moon is the shared layer (same for
+ * every resident tonight); the Journey's dawn at the horizon (§14.11 step 6) is the
+ * player's own and will be a separate layer with its own variables. Keep them apart.
+ * Decorative values only: none of these is ever rendered as text.
+ */
+const skyVars = (sky: VillageSky): CSSProperties =>
+  ({
+    "--sky-moon-illumination": sky.illumination.toFixed(3),
+    "--sky-moon-phase": sky.cycle.toFixed(3),
+    // Width of the terminator ellipse relative to the disc: 1 at new/full, 0 at the quarters.
+    "--sky-moon-squeeze": Math.abs(Math.cos(sky.cycle * 2 * Math.PI)).toFixed(3),
+  }) as CSSProperties;
+
+/** Night veil over a scene: darkest at new moon, gone at full moon. */
+const SkyVeil = () => <div className="vl-sky-veil" aria-hidden="true" />;
+
+/** The moon disc with its real phase shape; lit on the right while waxing, the left while waning. */
+const SkyMoon = ({ sky }: { sky: VillageSky }) => (
+  <div
+    className="vl-moon"
+    data-phase={sky.phase}
+    data-waxing={sky.cycle < 0.5}
+    data-gibbous={Math.cos(sky.cycle * 2 * Math.PI) < 0}
+    aria-hidden="true"
+  >
+    <div className="vl-moon__glow" />
+    <div className="vl-moon__disc">
+      <div className="vl-moon__lit" />
+      <div className="vl-moon__term" />
+    </div>
+  </div>
+);
+
+/** The current time, refreshed so a live window opens and closes while the page is up. */
+const useNow = (everyMs: number) => {
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const id = window.setInterval(() => setNow(new Date()), everyMs);
+    return () => window.clearInterval(id);
+  }, [everyMs]);
+  return now;
+};
+
 const Village = () => {
   const { place: placeKey } = useParams<{ place?: string }>();
+  const sky = useVillageSky();
   const place = getVillagePlace(placeKey);
   const navigate = useNavigate();
   const mobile = useIsMobile();
   const signedIn = useSignedIn();
+  const sheet = useCharacterSheet();
+  const now = useNow(60_000);
+  // The state of every place, read from the save. Until the save has loaded, a place that
+  // will turn out closed is drawn open and its ENTER is hidden, so a returning player
+  // never sees the village fade and brighten again.
+  const ready = !sheet.isLoading;
+  const save = placeSaveFromSheet(sheet, now);
+  const states: PlaceStateName[] = VILLAGE_PLACES.map((p) => placeState(p, save));
+  const shown: PlaceStateName[] = states.map((s) => (!ready && s === "closed" ? "open" : s));
   const [active, setActive] = useState<number | null>(null);
   // Keep the last scene mounted after leaving it, so map ← place can crossfade too.
   const [lastPlace, setLastPlace] = useState<VillagePlace | undefined>(place);
   if (place && place !== lastPlace) setLastPlace(place);
   const pinRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const enterRef = useRef<HTMLAnchorElement>(null);
+  // Particles left here by earlier players (WP-17). Follows the last scene so they fade with it.
+  const particles = useVillageParticles(lastPlace?.key ?? null);
 
   // Fonts + tab title, scoped to this page.
   useEffect(() => {
@@ -140,6 +215,8 @@ const Village = () => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       if (place) {
         if (e.key === "Escape") {
+          const el = document.activeElement;
+          if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) return; // typing a particle
           e.preventDefault();
           navigate("/village");
         } else if (e.key === "Enter") {
@@ -170,21 +247,27 @@ const Village = () => {
 
   if (placeKey && !place) return <Navigate to="/village" replace />;
 
-  // Signed-out guests get the invitation everywhere except Reception itself.
-  const invited = signedIn === false && !!lastPlace && lastPlace.key !== RECEPTION.key;
   const current = active !== null ? VILLAGE_PLACES[active] : null;
+  const lastIndex = lastPlace ? VILLAGE_PLACES.indexOf(lastPlace) : -1;
+  const lastState = lastIndex >= 0 ? shown[lastIndex] : "open";
+  // Closed and live say their own line; every other state keeps the place's line.
+  const lastLine = lastPlace && (lastState === "closed" || lastState === "live")
+    ? placeLine(lastPlace, lastState)
+    : undefined;
+  const lastPending = lastIndex >= 0 && !ready && states[lastIndex] === "closed";
 
   return (
-    <div className="vl-root" data-view={place ? "place" : "map"}>
+    <div className="vl-root" data-view={place ? "place" : "map"} style={skyVars(sky)}>
       <div className="vl-grain" aria-hidden="true" />
-      {/* Lunar only: the player's soul colors and the sky, read from the save (§14.11). */}
-      <LunarWorldSync />
+      {/* Lunar only: the player's soul colors and the sky, from the same save as placeState (§14.11). */}
+      <LunarWorldSync sheet={sheet} save={save} />
 
       <main>
         <section className={`vl-layer vl-map${place ? "" : " is-on"}`} aria-label="Digital Village map">
           <header className="vl-head vl-intro">
             <p className="vl-mono">The Game of Being You</p>
             <h1>The Digital Village</h1>
+            <p className="vl-mono vl-moonline">{sky.mood}</p>
           </header>
 
           <div className="vl-frame" style={MAP_STAGE}>
@@ -198,6 +281,8 @@ const Village = () => {
                   height={VILLAGE_MAP.height}
                   decoding="async"
                 />
+                <SkyVeil />
+                <LunarPaths states={shown} />
                 <ul className="vl-pins">
                   {VILLAGE_PLACES.map((p, i) => {
                     const style = {
@@ -207,11 +292,12 @@ const Village = () => {
                     } as CSSProperties;
                     const cls = `vl-pin${p.side === "left" ? " vl-pin--left" : ""}${i === active ? " is-active" : ""}`;
                     return (
-                      <li key={p.key} className={cls} style={style}>
+                      // A closed pin still opens its (faded) scene, so it is not disabled.
+                      <PlaceState key={p.key} as="li" state={shown[i]} className={cls} style={style} tag={false} disabled={false}>
                         {mobile ? (
                           // Mobile: the list below is the menu; dots only mark the buildings.
                           <span className="vl-pin__link" aria-hidden="true">
-                            <span className="vl-dot" />
+                            <span className="vl-dot ps-fade" />
                           </span>
                         ) : (
                           <Link
@@ -223,17 +309,19 @@ const Village = () => {
                             onMouseEnter={() => select(i)}
                             onFocus={() => select(i)}
                           >
-                            <span className="vl-dot" aria-hidden="true" />
-                            <span className="vl-pin__name">{p.name}</span>
+                            <span className="vl-dot ps-fade" aria-hidden="true" />
+                            <span className="vl-pin__name ps-fade">{p.name}</span>
+                            <PlaceStateTag state={shown[i]} />
                           </Link>
                         )}
-                      </li>
+                      </PlaceState>
                     );
                   })}
                 </ul>
               </div>
             </div>
             <div className="vl-vignette" aria-hidden="true" />
+            <SkyMoon sky={sky} />
           </div>
 
           <div className="vl-foot vl-intro">
@@ -242,20 +330,21 @@ const Village = () => {
               className={`vl-hint${current ? "" : " is-idle"}`}
               aria-live="polite"
             >
-              {current ? current.line : "Choose a place"}
+              {current && active !== null ? placeLine(current, shown[active]) : "Choose a place"}
             </p>
           </div>
           <Link className="vl-mono vl-corner" to="/">← Title</Link>
 
           <nav className="vl-list" aria-label="Places">
             <ul>
-              {VILLAGE_PLACES.map((p) => (
-                <li key={p.key}>
+              {VILLAGE_PLACES.map((p, i) => (
+                <PlaceState key={p.key} as="li" state={shown[i]} tag={false} disabled={false}>
                   <Link to={`/village/${p.key}`}>
-                    <span className="vl-list__name">{p.name}</span>
-                    <span className="vl-list__line">{p.line}</span>
+                    <span className="vl-list__name ps-fade">{p.name}</span>
+                    <PlaceStateTag state={shown[i]} />
+                    <span className="vl-list__line">{placeLine(p, shown[i])}</span>
                   </Link>
-                </li>
+                </PlaceState>
               ))}
             </ul>
           </nav>
@@ -266,43 +355,63 @@ const Village = () => {
             className={`vl-layer vl-place${place ? " is-on" : ""}`}
             aria-label={lastPlace.name}
           >
-            <img
-              className="vl-place__img"
-              src={lastPlace.image}
-              alt={lastPlace.alt}
-              decoding="async"
-              style={{
-                objectPosition: sceneObjectPosition(lastPlace),
-                transformOrigin: sceneObjectPosition(lastPlace),
-              }}
-            />
             <Link className="vl-mono vl-back" to="/village">← Village</Link>
-            <div className="vl-place__copy">
-              <h2>{lastPlace.name}</h2>
-              <p className="vl-place__line">{lastPlace.line}</p>
-              {invited ? (
-                <div className="vl-invite">
-                  <p className="vl-invite__text">You&rsquo;re our guest. Your stay begins at Reception.</p>
-                  <Link ref={enterRef} className="vl-enter" to={`/village/${RECEPTION.key}`}>
-                    GO TO RECEPTION
-                  </Link>
-                  <Link
-                    className="vl-mono vl-signin"
-                    to={`/auth?redirect=${encodeURIComponent(lastPlace.to)}`}
-                  >
-                    I already live here &rarr; sign in
-                  </Link>
-                </div>
-              ) : (
+            <PlaceState
+              state={lastState}
+              className="vl-place__state"
+              bodyClassName="vl-place__copy"
+              scene={
+                <img
+                  className="vl-place__img"
+                  src={lastPlace.image}
+                  alt={lastPlace.alt}
+                  decoding="async"
+                  style={{
+                    objectPosition: sceneObjectPosition(lastPlace),
+                    transformOrigin: sceneObjectPosition(lastPlace),
+                  }}
+                />
+              }
+              line={lastLine}
+              action={
                 <Link
                   ref={enterRef}
-                  className={`vl-enter${signedIn === null && lastPlace.key !== RECEPTION.key ? " is-pending" : ""}`}
+                  className={`vl-enter${lastPending ? " is-pending" : ""}`}
                   to={lastPlace.to}
                 >
                   ENTER
                 </Link>
-              )}
-            </div>
+              }
+              after={
+                <>
+                  {/* Leaving a particle (WP-17) is for someone standing inside, so a closed place offers none. */}
+                  {lastState !== "closed" && !lastPending && (
+                    <LeaveParticle
+                      key={lastPlace.key}
+                      placeKey={lastPlace.key}
+                      api={particles}
+                      startOpen={hasParticleInvite(lastPlace.key)}
+                    />
+                  )}
+                  {/* A returning resident who is signed out can still sign in and come back here. */}
+                  {signedIn === false && lastState === "closed" ? (
+                    <Link
+                      className="vl-mono vl-signin"
+                      to={`/auth?redirect=${encodeURIComponent(lastPlace.to)}`}
+                    >
+                      I already live here &rarr; sign in
+                    </Link>
+                  ) : null}
+                </>
+              }
+            >
+              <h2>{lastPlace.name}</h2>
+              {lastLine ? null : <p className="vl-place__line">{lastPlace.line}</p>}
+            </PlaceState>
+            {/* Sky and particles belong to the village, not the building: they do not fade when it is closed. */}
+            <SkyVeil />
+            <SkyMoon sky={sky} />
+            <PlaceParticles particles={particles.particles} />
           </section>
         )}
       </main>

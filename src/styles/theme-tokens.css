@@ -22,8 +22,11 @@
    call (§14.10 fork 1), so it is not changed here.
 
    Lock/live tokens (`--lock-filter`, `--lock-dim`, `--open-accent`,
-   `--live-accent`) are defined per skin now so WP-3 can build `PlaceState`
-   on them. Coloured skins: desaturate + dim. Usage:
+   `--live-accent`) are defined per skin; `PlaceState` (WP-3,
+   src/components/game/PlaceState.tsx) renders the five states on them.
+   `--open-accent` follows each skin's `--scene-accent`; the two light-scene
+   skins darken `--live-accent` for text contrast. Coloured skins: desaturate
+   + dim. Usage:
      .closed { filter: var(--lock-filter); opacity: var(--lock-dim); }
    ========================================================================== */
 
@@ -94,10 +97,19 @@
   --scene-dot: #f3ecd9;
   --scene-dot-active: #ffffff;
 
+  /* ── Sky (WP-16): the shared real-moon layer over the night scenes ──
+     Village.tsx sets --sky-moon-illumination (0..1) and the disc shape vars on
+     .vl-root; these tokens only decide how the sky is tinted. The art is night
+     in every skin, so light skins keep the default cool moon on near-black. ── */
+  --sky-moon-rgb: 238, 234, 226;       /* moon disc and moonlight */
+  --sky-dim-rgb: 5, 6, 8;              /* night veil: strongest at new moon */
+  --sky-dim-max: 0.34;                 /* veil alpha at new moon, 0 at full */
+  --sky-glow-max: 0.16;                /* moonlight halo alpha at full moon */
+
   /* ── Lock / open / live (WP-3 reads these) ── */
   --lock-filter: grayscale(0.9) saturate(0.6);
   --lock-dim: 0.55;
-  --open-accent: var(--skin-accent-gold);
+  --open-accent: var(--scene-accent);   /* next / done marker; follows each skin's scene accent */
   --live-accent: hsl(15 80% 46%);
 
   /* ── Lunar world hooks (WP-2, §14.11) ──
@@ -204,6 +216,16 @@
   --live-accent: hsl(15 88% 62%);
 }
 
+/* Sky tint (WP-16) for the dark skins: moonlight takes the skin's ink, the veil its shadow. */
+[data-skin="navy-gold"],
+[data-skin="aurum"],
+[data-skin="daouniverse"],
+[data-skin="planetir"],
+[data-skin="techstars"] {
+  --sky-moon-rgb: var(--scene-ink-rgb);
+  --sky-dim-rgb: var(--scene-shadow-rgb);
+}
+
 /* ── Network School + The Dao: editorial black on white ── */
 [data-skin="network-school"],
 [data-skin="dao"] {
@@ -236,7 +258,7 @@
 
   --lock-filter: grayscale(1);
   --lock-dim: 0.4;
-  --live-accent: hsl(15 80% 46%);
+  --live-accent: hsl(15 80% 38%);       /* darker on a white scene: text-contrast */
 }
 
 /* ── Karime: warm cream, charcoal ink ── */
@@ -270,7 +292,7 @@
 
   --lock-filter: grayscale(0.9) saturate(0.6);
   --lock-dim: 0.5;
-  --live-accent: hsl(15 80% 46%);
+  --live-accent: hsl(15 80% 38%);       /* darker on a cream scene: text-contrast */
 }
 
 /* ── Daouniverse: deep forest, antique gold ── */

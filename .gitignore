@@ -60,3 +60,4 @@ docs/09-logs/project_pulse_log.md
 # exist in a fresh checkout before the first build runs.
 public/generated/project-pulse-snapshot.json
 docs/02-strategy/warm-base
+repo/

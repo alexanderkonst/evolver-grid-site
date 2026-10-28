@@ -17,9 +17,11 @@
    `--unearned-fill` (silver) and `--earned-fill` (soul colors), in
    theme-tokens.css. Neither the stall nor badges are built here.
 
-   The contract with WP-3's PlaceState: it sets `data-place-state` to one of
-   closed | open | next | done | live on the element that IS the place (map
-   pin `.vl-pin`, scene `.vl-place`, list row `li`). The three numbers it
+   The contract with WP-3's PlaceState (src/components/game/PlaceState.tsx): it
+   sets `data-place-state` to one of closed | open | next | done | live,
+   computed by `placeState()` (src/lib/placeState.ts), on the element that IS
+   the place (map pin `.vl-pin`, scene `.vl-place__state`, list row `li`).
+   Lunar keeps no state of its own: every rule below reads that attribute. The three numbers it
    implies (`--place-saturation`, `--place-glow`, `--place-shade`) come from
    theme-tokens.css. Nothing below needs a counter or a number on screen.
 
@@ -41,7 +43,7 @@
 /* Halftone: decorative on every scene, denser on a closed place (below). The
    overlay never takes pointer events and never covers text (copy sits above). */
 [data-skin="lunar"] .gt-screen::before,
-[data-skin="lunar"] .vl-place::before {
+[data-skin="lunar"] .vl-place__state::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -196,30 +198,33 @@
   color: var(--vl-ink);
 }
 
-/* A place scene (/village/:place): the whole scene takes the state. */
-[data-skin="lunar"] .vl-place[data-place-state="closed"] .vl-place__img {
-  filter: var(--scene-filter) brightness(0.5);
+/* A place scene (/village/:place): WP-3's PlaceState is `.vl-place__state`, and
+   `data-place-state` lives on it, so the whole scene takes the state. Closed also
+   gets PlaceState's own fade (`--lock-filter`, `--lock-dim`) on the scene wrapper;
+   the extra dimming here only deepens the silhouette. */
+[data-skin="lunar"] .vl-place__state[data-place-state="closed"] .vl-place__img {
+  filter: var(--scene-filter) brightness(0.65);
 }
-[data-skin="lunar"] .vl-place[data-place-state="closed"]::before {
+[data-skin="lunar"] .vl-place__state[data-place-state="closed"]::before {
   background-size: 3px 3px;
   opacity: 1;
 }
-[data-skin="lunar"] .vl-place[data-place-state="open"] .vl-place__img,
-[data-skin="lunar"] .vl-place[data-place-state="next"] .vl-place__img {
+[data-skin="lunar"] .vl-place__state[data-place-state="open"] .vl-place__img,
+[data-skin="lunar"] .vl-place__state[data-place-state="next"] .vl-place__img {
   filter: var(--scene-filter) brightness(1.1);
 }
 /* done / live: the scene takes the soul colors (halftone gives way to color). */
-[data-skin="lunar"] .vl-place[data-place-state="done"]::before,
-[data-skin="lunar"] .vl-place[data-place-state="live"]::before {
+[data-skin="lunar"] .vl-place__state[data-place-state="done"]::before,
+[data-skin="lunar"] .vl-place__state[data-place-state="live"]::before {
   background: linear-gradient(135deg, var(--soul-1) 0%, var(--soul-2) 55%, var(--soul-3) 100%);
   mix-blend-mode: color;
   opacity: calc(var(--place-saturation) * 0.7);
 }
-[data-skin="lunar"] .vl-place[data-place-state="done"] .vl-place__img,
-[data-skin="lunar"] .vl-place[data-place-state="live"] .vl-place__img {
+[data-skin="lunar"] .vl-place__state[data-place-state="done"] .vl-place__img,
+[data-skin="lunar"] .vl-place__state[data-place-state="live"] .vl-place__img {
   filter: var(--scene-filter) brightness(1.1);
 }
-[data-skin="lunar"] .vl-place[data-place-state="next"] .vl-enter {
+[data-skin="lunar"] .vl-place__state[data-place-state="next"] .vl-enter {
   box-shadow: 0 0 22px -4px rgba(var(--accent-rgb), 0.55);
 }
 
@@ -244,7 +249,8 @@
        <path data-lit="true" d="M x1 y1 …" />
      </svg>
    inside `.vl-drift`, coordinates in the same % as villagePlaces.ts. A path is
-   `data-lit="true"` when both of its places are `done` / `live`. */
+   `data-lit="true"` when both of its places are `done` / `live` per
+   `placeState()` (LunarPaths in src/components/skin/LunarWorld.tsx). */
 [data-skin="lunar"] .vl-paths {
   position: absolute;
   inset: 0;

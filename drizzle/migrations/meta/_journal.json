@@ -36,6 +36,13 @@
       "when": 1792873947321,
       "tag": "0004_reserve_mastermind_username",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1792873962000,
+      "tag": "0005_village_particles",
+      "breakpoints": true
     }
   ]
 }

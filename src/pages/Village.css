@@ -78,8 +78,46 @@
   font-size: clamp(26px, min(3.6vw, 5.4vh), 56px); line-height: 1.04; letter-spacing: 0.06em;
   margin: 14px 0 0; color: var(--vl-ink); text-wrap: balance;
 }
+.vl-moonline { margin: 14px 0 0; text-transform: none; letter-spacing: 0.14em; font-size: 13px; color: var(--vl-ink-2); }
 .vl-intro { opacity: 0; animation: vl-fade-in 1.6s ease-out 0.4s forwards; }
 @keyframes vl-fade-in { to { opacity: 1; } }
+
+/* ---------- Sky: the real moon (WP-16) ----------
+ * Shared layer, same for every resident tonight. Driven only by --sky-moon-* set on
+ * .vl-root from getVillageSky(); tinted by the --sky-* tokens, so every skin carries it.
+ * Independent of the Journey's own dawn at the horizon (§14.11), which gets its own layer.
+ * Nothing here is shown as a number. */
+.vl-sky-veil {
+  position: absolute; inset: 0; pointer-events: none;
+  background: rgba(var(--sky-dim-rgb), calc((1 - var(--sky-moon-illumination, 0.5)) * var(--sky-dim-max)));
+  transition: background-color var(--vl-fade) ease;
+}
+.vl-moon {
+  --vl-moon-lit: rgb(var(--sky-moon-rgb));
+  --vl-moon-dark: color-mix(in srgb, rgb(var(--sky-moon-rgb)) 9%, rgb(var(--sky-dim-rgb)));
+  position: absolute; z-index: 1; pointer-events: none;
+  top: clamp(28px, 6vh, 72px); right: clamp(24px, 5vw, 80px);
+  width: clamp(34px, 4.4vw, 60px); aspect-ratio: 1;
+}
+.vl-moon__glow {
+  position: absolute; inset: -130%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--sky-moon-rgb), calc(var(--sky-moon-illumination, 0.5) * var(--sky-glow-max))) 0%, rgba(var(--sky-moon-rgb), 0) 62%);
+  animation: vl-moon-breathe 9s ease-in-out infinite alternate;
+}
+@keyframes vl-moon-breathe { from { opacity: 0.75; } to { opacity: 1; } }
+.vl-moon__disc {
+  position: relative; width: 100%; height: 100%; border-radius: 50%; overflow: hidden;
+  background: var(--vl-moon-dark); box-shadow: 0 0 0 1px rgba(var(--sky-moon-rgb), 0.16);
+}
+/* Waning: the same shapes, mirrored (the lit limb is on the left). */
+.vl-moon[data-waxing="false"] .vl-moon__disc { transform: scaleX(-1); }
+.vl-moon__lit { position: absolute; top: 0; bottom: 0; right: 0; width: 50%; background: var(--vl-moon-lit); }
+/* The terminator: an ellipse as wide as |cos(phase)|. Dark over the lit half = crescent; lit over the dark half = gibbous. */
+.vl-moon__term {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%;
+  background: var(--vl-moon-dark); transform: scaleX(var(--sky-moon-squeeze, 1));
+}
+.vl-moon[data-gibbous="true"] .vl-moon__term { background: var(--vl-moon-lit); }
 
 /* markers: small glowing points, name in title-screen type */
 .vl-pins { list-style: none; margin: 0; padding: 0; position: absolute; inset: 0; z-index: 2; }
@@ -174,18 +212,69 @@
 }
 .vl-enter:hover, .vl-enter:focus-visible { background: var(--vl-accent); color: var(--vl-bg); outline: none; }
 .vl-enter.is-pending { visibility: hidden; }
-.vl-invite { display: flex; flex-direction: column; align-items: center; }
-.vl-invite__text {
-  font-family: var(--vl-serif); font-style: italic; font-weight: 300; margin: clamp(24px, 4vh, 40px) 0 0;
-  font-size: clamp(22px, 2.4vw, 32px); line-height: 1.3; color: var(--vl-ink); max-width: 26ch; text-wrap: balance;
+/* ---------- Place states (PlaceState: closed · open · next · done · live) ---------- */
+.vl-place__state { position: absolute; inset: 0; }
+.vl-place__state > .ps-scene { position: absolute; inset: 0; }
+/* the one line: «Opens when … Inside: …» or «Live now: …» */
+.vl-place .ps-line {
+  font-family: var(--vl-serif); font-weight: 300; margin: 18px auto 0; max-width: 34ch; text-wrap: balance;
+  font-size: clamp(20px, 2.2vw, 28px); line-height: 1.3; color: var(--vl-ink);
 }
-.vl-invite .vl-enter { margin-top: clamp(24px, 4vh, 36px); }
+.vl-place .ps-tag { display: block; margin-top: 14px; }
+.vl-place [data-place-state="next"] .vl-enter { border-color: var(--open-accent); }
+.vl-place [data-place-state="live"] .vl-enter { border-color: var(--live-accent); }
+.vl-place [data-place-state="next"] .vl-enter:hover, .vl-place [data-place-state="next"] .vl-enter:focus-visible { background: var(--open-accent); }
+.vl-place [data-place-state="live"] .vl-enter:hover, .vl-place [data-place-state="live"] .vl-enter:focus-visible { background: var(--live-accent); }
+
+/* map: next rings the dot in the accent, done fills it, live pulses in the live colour, closed goes out */
+.vl-pin__link .ps-tag { margin-top: 0; }
+.vl-list .ps-tag { display: block; margin-top: 6px; }
+.vl-pin[data-place-state="closed"] .vl-dot::before { box-shadow: none; }
+.vl-pin[data-place-state="closed"] .vl-dot::after { display: none; }
+.vl-pin[data-place-state="next"] .vl-dot::before {
+  opacity: 1; background: var(--open-accent);
+  box-shadow: 0 0 0 3px rgba(var(--scene-bg-rgb),0.85), 0 0 0 4px var(--open-accent), 0 0 20px 5px var(--open-accent);
+}
+.vl-pin[data-place-state="next"] .vl-dot::after { border-color: var(--open-accent); opacity: 0.7; }
+.vl-pin[data-place-state="done"] .vl-dot::before { opacity: 1; background: var(--open-accent); box-shadow: 0 0 10px 2px var(--open-accent); }
+.vl-pin[data-place-state="live"] .vl-dot::before {
+  opacity: 1; background: var(--live-accent); box-shadow: 0 0 12px 3px var(--live-accent), 0 0 30px 8px var(--live-accent);
+}
+.vl-pin[data-place-state="live"] .vl-dot::after { border-color: var(--live-accent); }
+
 .vl-signin {
   display: inline-flex; align-items: center; min-height: 44px; margin-top: 14px; padding: 0 12px;
   font-size: 11px; letter-spacing: 0.22em; text-shadow: 0 1px 16px rgba(var(--scene-shadow-rgb),0.8); transition: color 0.6s ease;
 }
 .vl-signin:hover, .vl-signin:focus-visible { color: var(--vl-ink); }
 .vl-back:focus-visible, .vl-corner:focus-visible, .vl-signin:focus-visible { outline: 1px solid var(--vl-accent); outline-offset: 2px; }
+
+/* ---------- Particles: what earlier players left at the place (WP-17) ---------- */
+.vl-motes { position: absolute; z-index: 1; inset: 0; pointer-events: none; }
+.vl-mote {
+  position: absolute; margin: 0; max-width: min(30ch, 34vw); text-align: center;
+  font-family: var(--vl-serif); font-style: italic; font-weight: 300; font-size: clamp(17px, 1.5vw, 22px); line-height: 1.35;
+  color: var(--vl-ink); text-shadow: 0 0 18px rgba(var(--scene-shadow-rgb), 0.9), 0 0 36px rgba(var(--scene-shadow-rgb), 0.6);
+  opacity: 0.88; transition: opacity 1.4s ease; /* swapping a light: fade out, change the line, fade in */
+}
+.vl-mote.is-fading { opacity: 0; }
+/* The body drifts and arrives once; the shell above handles the swaps. */
+.vl-mote__body { display: block; opacity: 0; animation: vl-mote-in 2.2s ease forwards, vl-mote-float 11s ease-in-out infinite alternate; }
+/* Never anonymous: the real photo glows like a small light above the line. */
+.vl-mote__face {
+  display: block; width: 38px; height: 38px; margin: 0 auto 8px; border-radius: 50%; object-fit: cover;
+  border: 1px solid var(--vl-accent); box-shadow: 0 0 14px 2px rgba(var(--scene-shadow-rgb), 0.6), 0 0 12px 1px var(--vl-accent);
+}
+.vl-mote__name { display: block; margin-top: 6px; font-style: normal; font-family: var(--vl-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--vl-ink-2); }
+.vl-mote__unique { display: block; margin-top: 2px; font-size: 14px; color: var(--vl-ink-3); }
+.vl-mote--0 { top: 15%; left: 7%; }
+.vl-mote--1 { top: 29%; right: 7%; }
+.vl-mote--2 { top: 43%; left: 15%; }
+.vl-mote--0 .vl-mote__body { animation-delay: 0.6s, 0s; }
+.vl-mote--1 .vl-mote__body { animation-delay: 2.4s, -3.5s; }
+.vl-mote--2 .vl-mote__body { animation-delay: 4.2s, -7s; }
+@keyframes vl-mote-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes vl-mote-float { from { translate: 0 -5px; } to { translate: 0 6px; } }
 
 /* ---------- Mobile: map as hero, places as a menu list below ---------- */
 @media (max-width: 767px) {
@@ -215,12 +304,19 @@
   .vl-list a:focus-visible .vl-list__name { outline: 1px solid var(--vl-accent); outline-offset: 4px; }
   .vl-place__img { animation: none; }
   .vl-place__copy { padding-bottom: 56px; }
+  .vl-mote { max-width: 62vw; font-size: 17px; }
+  .vl-mote--0 { top: 12%; left: 6%; }
+  .vl-mote--1 { top: 22%; right: 6%; }
+  .vl-mote--2 { top: 32%; left: 10%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .vl-layer, .vl-layer.is-on { transition: none; }
-  .vl-drift, .vl-place__img, .vl-dot::after, .vl-hint { animation: none; }
+  .vl-drift, .vl-place__img, .vl-dot::after, .vl-hint, .vl-moon__glow { animation: none; }
+  .vl-sky-veil { transition: none; }
   .vl-dot::after { display: none; }
   .vl-intro { animation: none; opacity: 1; }
   .vl-dot::before, .vl-pin__name, .vl-enter, .vl-back, .vl-corner, .vl-signin { transition: none; }
+  .vl-mote { transition: none; }
+  .vl-mote__body { animation: none; opacity: 1; }
 }

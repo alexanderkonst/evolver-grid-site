@@ -198,6 +198,17 @@ Sasha's note (verbatim):
 
 **Naming caution:** because "economics of singularities" and "economics of uniqueness" are academically occupied, "The Uniqueness Economy" as a public name carries prior-art overlap. The thesis is distinct; the *name* may want to be more distinctive (Sasha's call, least-delegable). Differentiation to lean on: **the person as the unit, complementarity as the act, AI as the why-now, recognition as the hinge.**
 
+### 6.1 Why the primitive is a moat: one bedrock under many silos (2026-10-27)
+
+*Thesis, not proven traction. Detail: `evolutionary_avantgarde_taxonomy.md` (flavors map v2, the silo problem, the bedrock).*
+
+- The evolutionary avant-garde is about twenty flavors (network states, New Earth, integral, breathwork, plant medicine, venture studios, digital twins of cities, AI-native builders, and more). Each cooks in its own juice and rebuilds part of the same stack on its own.
+- Underneath, every flavor needs the same primitive: a village, uniqueness, stalls and an economy, growth programs, coworking, masterminds, hackathons, a venture studio, business playbooks, and AI to amplify one's signal. No flavor holds all of it.
+- The Digital Village packages the primitive as one game with a flavor-neutral Gate (the uniqueness test). Any flavor can enter without converting to another flavor's worldview, so the addressable base is the sum of the petals, not one petal.
+- The defensible part is the upstream: articulating each person's uniqueness (the methodology and the dated articulation-depth reads), plus the felt map of the flavors that lets one village speak to each in its own language. Tools downstream of articulation (sites, offers, AI scaffolding) commoditize; the articulation and the cross-flavor graph do not copy easily.
+- Each flavor that joins adds matches across petals that no single-flavor platform can offer, so value grows with the number of flavors, not only the number of users.
+- Status: San Pancho (Village #1) is the first test. To be shown, not yet shown: that people from at least three different flavors walk the same Journey to a first sale, and that cross-flavor matches lead to real deals.
+
 ---
 
 ## 7. The inner turn — the divine-scale loop (verbatim — Sasha)

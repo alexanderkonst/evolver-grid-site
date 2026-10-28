@@ -1,0 +1,177 @@
+/*
+ * WordlessIntro — the first minute, no words (WP-18).
+ * Design: docs/02-strategy/game_of_being_you.md §14.2 (J0), §14.3 (open/new state).
+ * Palette comes from the semantic scene tokens (src/styles/theme-tokens.css), so every
+ * skin renders it. In Lunar the breathing light is --scene-accent (silver) and the lit
+ * bloom is --scene-glow-warm-rgb (the first warm colour). Scoped under .wi-root.
+ */
+
+/* Radius of the lit mask; registered so the light can spread smoothly. Without
+   @property support the light still fades in (opacity), it just doesn't grow. */
+@property --wi-r {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+.wi-root {
+  --wi-bg: var(--scene-bg);
+  --wi-accent: var(--scene-accent);
+  --wi-open: var(--open-accent, var(--scene-accent));
+  --wi-ink: rgba(var(--scene-ink-rgb), 0.92);
+  --wi-ink-2: rgba(var(--scene-ink-rgb), 0.62);
+  --wi-serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --wi-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
+  --wi-light-ms: 1500ms;
+
+  /* The map is a square image shown object-fit: cover as a box, so % markers stay on
+     their buildings (same idea as .vl-cover). W/H are the box size; Reception is
+     anchored at ~32% / 52% of the screen and the box is clamped to cover it. */
+  --wi-w: max(100vw, calc(100svh * var(--wi-ratio, 1)));
+  --wi-h: calc(var(--wi-w) / var(--wi-ratio, 1));
+
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  overflow: hidden;
+  background: var(--wi-bg);
+  color: var(--wi-ink);
+  font-family: var(--wi-serif);
+}
+
+.wi-grain {
+  position: fixed; inset: -50%; z-index: 100; pointer-events: none; opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.wi-stage { position: absolute; inset: 0; overflow: hidden; }
+
+.wi-box {
+  position: absolute;
+  width: var(--wi-w);
+  height: var(--wi-h);
+  left: clamp(calc(100vw - var(--wi-w)), calc(32vw - var(--wi-rx, 0.09) * var(--wi-w)), 0px);
+  top: clamp(calc(100svh - var(--wi-h)), calc(52svh - var(--wi-ry, 0.57) * var(--wi-h)), 0px);
+}
+
+.wi-map { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+
+/* Every place unlit: the closed look of §14.3, pushed to night. */
+.wi-map--dark {
+  filter: var(--lock-filter, grayscale(0.9) saturate(0.6)) brightness(0.3);
+}
+
+/* The same map in full colour, revealed only around Reception. */
+.wi-lit {
+  position: absolute; inset: 0; opacity: 0;
+  -webkit-mask-image: radial-gradient(
+    circle at calc(var(--wi-rx, 0.09) * 100%) calc(var(--wi-ry, 0.57) * 100%),
+    #000 0,
+    #000 calc(var(--wi-r) * 0.4),
+    transparent var(--wi-r)
+  );
+  mask-image: radial-gradient(
+    circle at calc(var(--wi-rx, 0.09) * 100%) calc(var(--wi-ry, 0.57) * 100%),
+    #000 0,
+    #000 calc(var(--wi-r) * 0.4),
+    transparent var(--wi-r)
+  );
+  transition: opacity var(--wi-light-ms) ease-out, --wi-r var(--wi-light-ms) ease-out;
+}
+.wi-root:not([data-phase="dark"]) .wi-lit { opacity: 1; --wi-r: calc(var(--wi-w) * 0.13); }
+
+/* Warm bloom over the lit windows; sits at Reception. */
+.wi-bloom, .wi-breath {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  left: calc(var(--wi-rx, 0.09) * 100%);
+  top: calc(var(--wi-ry, 0.57) * 100%);
+  transform: translate(-50%, -50%);
+}
+.wi-bloom {
+  width: calc(var(--wi-w) * 0.3); height: calc(var(--wi-w) * 0.3);
+  background: radial-gradient(circle, rgba(var(--scene-glow-warm-rgb), 0.38) 0, rgba(var(--scene-glow-warm-rgb), 0.12) 38%, transparent 68%);
+  mix-blend-mode: screen; opacity: 0; transform: translate(-50%, -50%) scale(0.4);
+  transition: opacity var(--wi-light-ms) ease-out, transform var(--wi-light-ms) ease-out;
+}
+.wi-root:not([data-phase="dark"]) .wi-bloom { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+/* The only motion before the first gesture: a faint breathing light. */
+.wi-breath {
+  width: clamp(54px, calc(var(--wi-w) * 0.07), 120px);
+  height: clamp(54px, calc(var(--wi-w) * 0.07), 120px);
+  background: radial-gradient(circle, rgba(var(--scene-accent-rgb), 0.5) 0, rgba(var(--scene-glow-warm-rgb), 0.16) 42%, transparent 70%);
+  opacity: 0.35;
+  animation: wi-breath 5s ease-in-out infinite;
+  transition: opacity 0.6s ease-out;
+}
+/* ~8 s without a gesture: breathes a little stronger (JS sets data-eager). */
+.wi-root[data-eager] .wi-breath { animation-name: wi-breath-eager; animation-duration: 3.6s; }
+.wi-root:not([data-phase="dark"]) .wi-breath { animation: none; opacity: 0; }
+@keyframes wi-breath {
+  0%, 100% { opacity: 0.22; transform: translate(-50%, -50%) scale(0.85); }
+  50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.1); }
+}
+@keyframes wi-breath-eager {
+  0%, 100% { opacity: 0.35; transform: translate(-50%, -50%) scale(0.95); }
+  50% { opacity: 0.85; transform: translate(-50%, -50%) scale(1.3); }
+}
+
+.wi-vignette {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 46%, rgba(var(--scene-bg-rgb), 0) 40%, rgba(var(--scene-bg-rgb), 0.75) 100%),
+    linear-gradient(to bottom, rgba(var(--scene-bg-rgb), 0.5) 0%, rgba(var(--scene-bg-rgb), 0) 24%, rgba(var(--scene-bg-rgb), 0) 55%, rgba(var(--scene-bg-rgb), 0.88) 100%);
+}
+
+/* Name, line and ENTER: they arrive after the light, one after another. */
+.wi-copy {
+  position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; text-align: center;
+  padding: 0 24px clamp(48px, 9vh, 112px);
+  text-shadow: 0 1px 24px rgba(var(--scene-shadow-rgb), 0.65);
+}
+.wi-name {
+  font-family: var(--wi-serif); font-weight: 300; text-transform: uppercase;
+  font-size: clamp(40px, min(7.2vw, 11vh), 112px); line-height: 1.02; letter-spacing: 0.06em;
+  margin: 0; color: var(--wi-ink); text-wrap: balance;
+  opacity: 0; animation: wi-in 1s ease-out forwards;
+}
+.wi-line {
+  font-family: var(--wi-serif); font-style: italic; font-weight: 300;
+  font-size: clamp(19px, 2vw, 26px); color: var(--wi-ink-2); margin: 18px 0 0;
+  opacity: 0; animation: wi-in 1s ease-out 0.4s forwards;
+}
+.wi-enter {
+  display: inline-flex; align-items: center; min-height: 44px; margin-top: clamp(32px, 5vh, 52px); padding: 0 30px;
+  border: 1px solid var(--wi-open); font-family: var(--wi-mono); font-weight: 300; font-size: 12px;
+  letter-spacing: 0.3em; color: var(--wi-ink); text-decoration: none; text-shadow: none;
+  background: rgba(var(--scene-bg-rgb), 0.25);
+  opacity: 0; animation: wi-in 1s ease-out 0.9s forwards;
+  transition: background-color 0.8s ease, color 0.8s ease;
+}
+.wi-enter:hover, .wi-enter:focus-visible { background: var(--wi-open); color: var(--wi-bg); outline: none; }
+@keyframes wi-in { to { opacity: 1; } }
+
+/* Accessibility: tiny, low-contrast, keyboard-focusable skip; wakes up on focus/hover. */
+.wi-skip {
+  position: absolute; z-index: 3; right: 8px; bottom: 8px;
+  width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center;
+  background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: var(--wi-mono); font-size: 14px; color: rgba(var(--scene-ink-rgb), 0.22);
+  transition: color 0.4s ease;
+}
+.wi-skip:hover, .wi-skip:focus-visible { color: rgba(var(--scene-ink-rgb), 0.8); }
+.wi-skip:focus-visible { outline: 1px solid var(--wi-accent); outline-offset: -6px; }
+
+/* Visually hidden, still read by screen readers. */
+.wi-sr {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+/* Instant light, no animation. */
+@media (prefers-reduced-motion: reduce) {
+  .wi-lit, .wi-bloom, .wi-breath, .wi-enter, .wi-skip { transition: none; }
+  .wi-root[data-phase="dark"] .wi-breath { animation: none; opacity: 0.4; }
+  .wi-root[data-phase="dark"][data-eager] .wi-breath { animation: none; opacity: 0.7; }
+  .wi-name, .wi-line, .wi-enter { animation: none; opacity: 1; }
+}

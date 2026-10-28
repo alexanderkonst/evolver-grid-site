@@ -8,10 +8,17 @@ import {
   LibraryItem,
   LibraryCategoryId,
 } from "@/modules/library/libraryContent";
-import { GROWTH_STEPS, findStep, type GrowthStep } from "@/modules/library/growthSteps";
+import {
+  GROWTH_STEPS,
+  findStep,
+  growthStepClosedLine,
+  growthStepState,
+  type GrowthStep,
+} from "@/modules/library/growthSteps";
+import { PlaceState } from "@/components/game/PlaceState";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { cn } from "@/lib/utils";
-import { Lock, Play, BookOpen, ArrowRight, Rocket, Sparkles, Compass } from "lucide-react";
+import { Play, BookOpen, ArrowRight, Rocket, Sparkles, Compass } from "lucide-react";
 import { useSuggestedPractices } from "@/hooks/useSuggestedPractices";
 
 /* ─── Shared skin-aware text styles ─── */
@@ -447,24 +454,20 @@ const StepContent = ({ step }: { step: GrowthStep }) => {
           </div>
         )}
 
-        {/* Locked */}
-        {step.content === "locked" && (
+        {/* Closed room: the faded room and its one line (§14.3) */}
+        {step.content === "closed" && (
           <div className="flex flex-col items-center">
-            <div
+            <PlaceState
+              state={growthStepState(step)}
               className="liquid-glass rounded-2xl p-8 text-center max-w-md mx-auto"
-              style={{ boxShadow: "0 0 0 1px rgba(212, 175, 55, 0.18)", opacity: 0.85 }}
-            >
-              <Lock
-                className="w-7 h-7 mx-auto mb-4"
-                style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.45))" }}
-              />
-              <h3 className="text-lg font-semibold mb-2" style={TITLE_STYLE}>
-                {t('library.lockedTitle')}
-              </h3>
-              <p className="text-sm italic leading-relaxed" style={BODY_STYLE}>
-                {step.lockedHint ?? t('library.lockedHintFallback')}
-              </p>
-            </div>
+              style={{ boxShadow: "0 0 0 1px rgba(212, 175, 55, 0.18)" }}
+              scene={
+                <h3 className="text-lg font-semibold" style={TITLE_STYLE}>
+                  {step.shortLabel}
+                </h3>
+              }
+              line={growthStepClosedLine(step) || undefined}
+            />
           </div>
         )}
       </div>
@@ -512,49 +515,59 @@ const LibraryIndex = ({ pathBase }: { pathBase: string }) => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
         {GROWTH_STEPS.map((step) => {
-          const isLocked = step.locked;
-          return (
-            <button
-              key={step.id}
-              onClick={() => !isLocked && navigate(`${pathBase}/${step.id}`)}
-              disabled={isLocked}
-              className={cn(
-                "rounded-2xl p-5 text-left transition-all duration-300 relative overflow-hidden liquid-glass-strong",
-                isLocked
-                  ? "opacity-55 cursor-not-allowed"
-                  : "hover:scale-[1.012] cursor-pointer hover:shadow-[0_12px_36px_-14px_rgba(10,22,40,0.25)]"
-              )}
-              style={{
-                boxShadow: "0 8px 24px -12px rgba(10, 22, 40, 0.18), 0 0 0 1px rgba(212, 175, 55, 0.22)",
-              }}
-            >
-              <div className="flex items-start gap-3">
-                <span
-                  className="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full text-sm font-semibold"
-                  style={{
-                    background: isLocked
-                      ? "rgba(212, 175, 55, 0.16)"
-                      : "linear-gradient(135deg, rgba(244, 212, 114, 0.95) 0%, rgba(212, 175, 55, 0.85) 100%)",
-                    color: isLocked ? "rgba(122, 81, 8, 0.65)" : "#0a1628",
-                    fontFamily: "'DM Sans', system-ui, sans-serif",
-                    fontVariantNumeric: "tabular-nums lining-nums",
-                    border: isLocked
-                      ? "0.5px solid rgba(212, 175, 55, 0.35)"
-                      : "0.5px solid rgba(122, 81, 8, 0.45)",
-                  }}
-                >
-                  {isLocked ? <Lock className="w-3.5 h-3.5" /> : step.number}
-                </span>
-                <div className="flex-1 min-w-0">
-                  <div className="text-base font-semibold mb-1" style={{ ...TITLE_STYLE, fontWeight: 600 }}>
-                    {step.shortLabel}
-                  </div>
-                  <div className="text-xs italic line-clamp-2" style={BODY_STYLE}>
-                    {isLocked && step.lockedHint ? step.lockedHint : step.description}
-                  </div>
+          // The room's state comes from placeState; a closed room cannot be entered and
+          // says in one line what opens it and what is inside (§14.3).
+          const state = growthStepState(step);
+          const isClosed = state === "closed";
+          const cardStyle = {
+            boxShadow: "0 8px 24px -12px rgba(10, 22, 40, 0.18), 0 0 0 1px rgba(212, 175, 55, 0.22)",
+          };
+          const inner = (
+            <div className="flex items-start gap-3">
+              <span
+                className="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full text-sm font-semibold"
+                style={{
+                  background: "linear-gradient(135deg, rgba(244, 212, 114, 0.95) 0%, rgba(212, 175, 55, 0.85) 100%)",
+                  color: "#0a1628",
+                  fontFamily: "'DM Sans', system-ui, sans-serif",
+                  fontVariantNumeric: "tabular-nums lining-nums",
+                  border: "0.5px solid rgba(122, 81, 8, 0.45)",
+                }}
+              >
+                {step.number}
+              </span>
+              <div className="flex-1 min-w-0">
+                <div className="text-base font-semibold mb-1" style={{ ...TITLE_STYLE, fontWeight: 600 }}>
+                  {step.shortLabel}
+                </div>
+                <div className="text-xs italic line-clamp-2" style={BODY_STYLE}>
+                  {step.description}
                 </div>
               </div>
-            </button>
+            </div>
+          );
+          if (isClosed) {
+            return (
+              <PlaceState
+                key={step.id}
+                state={state}
+                className="rounded-2xl p-5 text-left relative overflow-hidden liquid-glass-strong"
+                style={cardStyle}
+                scene={inner}
+                line={growthStepClosedLine(step)}
+              />
+            );
+          }
+          return (
+            <PlaceState key={step.id} state={state} tag={false}>
+              <button
+                onClick={() => navigate(`${pathBase}/${step.id}`)}
+                className="w-full rounded-2xl p-5 text-left transition-all duration-300 relative overflow-hidden liquid-glass-strong hover:scale-[1.012] cursor-pointer hover:shadow-[0_12px_36px_-14px_rgba(10,22,40,0.25)]"
+                style={cardStyle}
+              >
+                {inner}
+              </button>
+            </PlaceState>
           );
         })}
       </div>

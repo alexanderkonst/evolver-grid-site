@@ -18,6 +18,10 @@
  * immediately, without querying the save. Village keeps the cache fresh.
  */
 
+import { JOURNEY_MAIN } from "@/data/journeySequence";
+import type { VillagePlaceKey } from "@/data/villagePlaces";
+import type { PlaceSave, PlaceStateName } from "@/lib/placeState";
+
 const CACHE_KEY = "lunar-world";
 
 export type LunarWorld = {
@@ -31,12 +35,31 @@ const EMPTY: LunarWorld = { soul: null, dawn: 0 };
 
 const SOUL_VARS = ["--soul-1", "--soul-2", "--soul-3"] as const;
 
-/** Share of the Journey that is done, as the sky's progress. Clamped; never a count. */
-export const dawnFromChain = (chain: ReadonlyArray<{ done: boolean }>): number => {
-  if (chain.length === 0) return 0;
-  const done = chain.filter((s) => s.done).length;
-  return Math.min(1, Math.max(0, done / chain.length));
+/**
+ * Share of the Journey that is done, as the sky's progress. Read from the same
+ * `PlaceSave` that `placeState()` reads (so a saved offer finishes its step here
+ * too), and never a count on screen. Clamped to 0…1.
+ */
+export const dawnFromSave = (save: PlaceSave): number => {
+  if (JOURNEY_MAIN.length === 0) return 0;
+  const done = JOURNEY_MAIN.filter((item) => save.met[item.id] === true).length;
+  return Math.min(1, Math.max(0, done / JOURNEY_MAIN.length));
 };
+
+/**
+ * The paths of the map, by place key (the Journey and unlock order, §14.2 / §14.3):
+ * Reception → Your House → Workshop → Market → Town Hall. A path lights when both
+ * of its places are `done` or `live` (§14.11 step 3).
+ */
+export const LUNAR_PATHS: ReadonlyArray<readonly [VillagePlaceKey, VillagePlaceKey]> = [
+  ["reception", "house"],
+  ["house", "workshop"],
+  ["workshop", "market"],
+  ["market", "town-hall"],
+];
+
+/** The two states in which Lunar paints a place in the player's color. */
+export const isColored = (state: PlaceStateName | undefined): boolean => state === "done" || state === "live";
 
 export const readLunarWorld = (): LunarWorld => {
   try {

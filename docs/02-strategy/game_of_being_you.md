@@ -4,9 +4,20 @@
 > *Created: 2026-10-26 (Day 225). Owner: Aleksandr Konstantinov. Keeper: Evolver (Hark).*
 > Related: [game_spaces.md](./game_spaces.md) (what you can do in each space), [module_taxonomy.md](./module_taxonomy.md), [../05-reference/brandbook.md](../05-reference/brandbook.md).
 
-**Subtitle:** Self-Discovery · Quality of Life · Uniqueness · Growth · Tribe (Sasha, 2026-10-26).
+**Subtitle:** Self-Discovery · Growth · Quality of Life · Uniqueness · Tribe · Village · Collective (Sasha, 2026-10-27; was «Self-Discovery · Quality of Life · Uniqueness · Growth · Tribe», 2026-10-26).
 **Tagline:** *Bring the full force of who you are to what you build.*
 **Moonshot (Sasha, 2026-10-26):** make a cult game, a "candy": polished, simple, hard to forget. We already have plenty of mystery, ritual and content; the work now is craft and form.
+
+## Meta-description (the game as the Blueprint lens)
+*Added 2026-10-27 by Evolver, per [Meta-Template](../templates/meta-template.md) §6 and T5; nothing below is restructured.*
+- Level / parent: L2 · The Game & the Village (proposed L1, awaiting Sasha's confirmation, Meta-Template T3) · parent: [meta-template.md](../templates/meta-template.md)
+- Lens(es): **Blueprint** (main: the whole platform drawn as one architecture of places, paths, locks and a canonical journey) · **Unity** (one light in, your spectrum out: form, colour and light carry one meaning, §1, §5, §14.11)
+- What emerges: a person becoming themselves, played as one game: Uniqueness found, then mission, offer, first sale, tribe, village.
+- As a part of the whole: the Meta-Template seen as architecture (named in Meta-Template §2): every product, page and funnel is a place in one village, so the whole can be walked, built and re-run (§16, Village #1) as one form.
+- Siblings / repeats: §14.4 Module form, §13.4 Victories, §15.8 Koster facet check (its L3 parts, candidates to promote as one template); `game_spaces.md`, `module_taxonomy.md`; the real village (§16) as the same blueprint landing in a physical place.
+- Status · applied in · last reviewed: in use · findyourtoptalent.com (Journey build, WP-1…) · 2026-10-27
+
+
 
 ---
 
@@ -107,6 +118,7 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 - 2026-10-26: "Genius" → "Uniqueness" in all copy; Spirit = tetrahedron (fire), Uniqueness = dodecahedron (aether).
 - 2026-10-26: soul colors become the core Spectrum mechanic; profile page to be designed around the player's crystal.
 - 2026-10-26: build the real homepage from mockup v0.2 (GitHub issue).
+- 2026-10-27: San Pancho is Village #1: the Digital Village gets a physical twin; build first, then partner with the community network and individual shop owners (§16).
 
 ## 9. Next
 
@@ -117,14 +129,14 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 5. Blender hero render + loop.
 
 
-## 10. Core loop v0.1: goal, levels, XP (2026-10-26)
+## 10. Core loop v0.1: goal and levels (2026-10-26)
 
 **Goal of the game** (Sasha, 2026-10-26: «прикольно»)**:** a high quality of life, as defined by the Quality of Life Map (8 domains × 10 stages: Wealth, Health, Happiness, Love & Relationships, Impact, Growth, Social Ties, Home; `src/modules/quality-of-life-map/qolConfig.ts`).
 
 - **Level = your bottleneck:** the lowest stage across all 8 domains. To level up, the whole map has to move up at least one stage (Sasha: "a level is at least one transition across the whole map"). Theory of Constraints / Liebig's barrel.
 - **Main quest = suggested from the bottleneck, confirmed by the player.** Life is rarely black and white, so the game proposes the bottleneck domain as the main quest and the player confirms or picks another (Sasha, 2026-10-26: «не всегда будет черно белое… только если игрок подтверждает»).
-- **No artificial XP (Sasha, 2026-10-26: «может просто наша цель — точно показать саму жизнь? А не придумывать искусственные XP? Мы же саму жизнь артикулируем»).** Progress is the player's real movement on the QoL map, read from life, not points. What matters to people is what the platform shows, as far as possible. The five paths (Body, Emotions, Mind, Spirit, Uniqueness) are the skill tree; their practices feed XP into domains.
-- **Leveling down is real** (life goes down too), so two meters: **Current level** (can fall, shown as weather, not punishment) and **Peak** (best level reached, kept). A drop opens a **Comeback quest** with bonus XP.
+- **No artificial XP (Sasha, 2026-10-26: «может просто наша цель — точно показать саму жизнь? А не придумывать искусственные XP? Мы же саму жизнь артикулируем»).** Progress is the player's real movement on the QoL map, read from life, not points. What matters to people is what the platform shows, as far as possible. The five paths (Body, Emotions, Mind, Spirit, Uniqueness) are the skill tree; their practices move the player's real level in each domain.
+- **Leveling down is real** (life goes down too), so two meters: **Current level** (can fall, shown as weather, not punishment) and **Peak** (best level reached, kept). A drop opens a **Comeback quest**; its reward is the real recovery.
 - **Input (confirmed):** a 60-second weekly **Save Point** ritual (each domain: up / same / down + one line) and a full map re-take each season.
 - **Rejected (Sasha, 2026-10-26: «ерунда! Не сработает»):** evidence from quests and peer witness from the party as XP/input.
 - **The crystal shows the level:** clarity and brightness of the player's spectrum grow with level; new facets unlock (Spectrum insights).
@@ -172,6 +184,7 @@ Stage-7+ mechanics that pass the test (proposed, Evolver):
 
 ## 12. Ideas & findings log (append-only)
 
+- 2026-10-27: The village already exists offline: San Pancho's community directory holds ~115 local businesses, one in five in wellness/transformation, with uniqueness written in their reviews. «Мы уже не с нуля действуем» (§16).
 - 2026-10-27: Game masters' principles judged by Sasha (§15): Miyamoto wordless first minute («genius»), Miyazaki → leave a particle of yourself (new kind of testimonial), Eguchi real-moon village («fire ×3», lunar macro loop + solar daily loop of stacked habits), Chen → real multiplayer presence, Sid Meier real-choice ending, Koster facet check; McGonigal dark guardian parked.
 - 2026-10-27: Sasha («ЗОЛОТО!»): design rule is to enter stage 8 while staying compatible with 9 and 10 (see almanac). *The game that sends you back to your life* is directly Jane McGonigal's thesis; he will pitch building it with her.
 - 2026-10-27: Sasha rejected «Raids» («убери, ты шутишь? Убери все упоминания»): events stay Events/Meet; no raid vocabulary anywhere.
@@ -186,6 +199,7 @@ Stage-7+ mechanics that pass the test (proposed, Evolver):
 - 2026-10-26: Goal = QoL; level = bottleneck domain; leveling down exists (Current vs Peak); input via Save Point.
 - 2026-10-26: Game design almanac started: invariant = scope of player authorship; 7 stages; Si–Do = life as the game ([game_design_almanac.md](./game_design_almanac.md)).
 - 2026-10-26: Subtitle → "Self-Discovery · Quality of Life · Uniqueness · Growth · Tribe"; "FindYourTopTalent.com presents" removed.
+- 2026-10-27: Subtitle → "Self-Discovery · Growth · Quality of Life · Uniqueness · Tribe · Village · Collective".
 - 2026-10-26: Fifth Element = quintessence = Uniqueness; proposed as the game's name (§11).
 - 2026-10-26: Fidelity principle (§10a): no artificial XP; the game shows life itself; what matters to people is in the platform. Save Point + seasonal re-take confirmed.
 - 2026-10-26: Sasha: «называем открыто игрой де-факто игру» — the platform already lives under /game/*; next step = game vocabulary for existing spaces (labels only, routes unchanged). Proposed map: Me→Character, ZoG→Character Creation, QoL assessment→Save Point & Level, Today→Daily Quests, Paths→Skill Tree, Grow→Training, Build→The Forge, Marketplace→Trading Post, Collaborate/Coop→Party & Guild, Journey→Main Quest. Awaiting his yes.
@@ -227,7 +241,7 @@ Stage-7+ mechanics that pass the test (proposed, Evolver):
 **The three magic moves (connections, not modules):**
 1. **The pumpkin becomes a coach: one quest chain.** Rewrite the 8 journey labels as quests in the four acts above. Steps 2–4 collapse into TUTORIAL lore so the chain reads as a story, not a funnel. Copy and order only.
 2. **The dress: every quest lights the crystal.** `JOURNEY_ITEM_COMPLETED_EVENT` already fires with no listener. CHARACTER listens to it: each completion lights a facet of the player's crystal in their soul colors, and LOAD GAME opens on that crystal. The save file becomes visible.
-3. **The slipper: a finale you can't fake.** Act IV is the first real yes from the world, recorded in TRADING POST. No points; the footprint is real, so the transformation is permanent. Mood and XP go up and down (Current vs Peak); the slipper stays.
+3. **The slipper: a finale you can't fake.** Act IV is the first real yes from the world, recorded in TRADING POST. No points; the footprint is real, so the transformation is permanent. Mood and level go up and down (Current vs Peak); the slipper stays.
 
 Status: map v0, waiting for Sasha's corrections before any issue.
 
@@ -247,6 +261,8 @@ The world is a sovereign village on the main screen, built from real photos of p
 | Workshop | THE FORGE (UBB) | craft your offer |
 | Market | TRADING POST | your shop and others' |
 | Town Hall | Venture Co-op | build ventures together |
+
+Physical twin: San Pancho as Village #1 (§16).
 
 ### 13.2 Design decisions (Sasha, 2026-10-27: «Все записываем!!! это и есть работа, мы дизайним игру!!!»)
 - **The engine is already built.** The modules are working game systems; designing the game = naming, ordering and connecting them.
@@ -572,3 +588,56 @@ Applied first to the Journey modules J1–J12 when WP-5 lands; Evolver keeps the
 - *Multiplayer presence (WP-21):* who appears to whom (everyone in the village / only your Fire Circle / opt-in), what an avatar shows (silhouette and glow only / name / face), whether guests appear, and whether presence is on by default.
 - *Particles (WP-17):* anonymous by default or signed with first name; whether particles are public to guests or only to residents. Default in the build until he decides: first name optional, shown to everyone, nothing else about the person.
 - *Storage consent:* particles and choices need new tables (WP-17, WP-19). Same open consent as §14.10.4: PRs that add a migration wait for his yes before merging.
+
+> **Decided 2026-10-27 (Sasha):** new DB tables for particles (#144) and real-choice endings (#147) approved. Particles are never anonymous: real name (player may choose the display name), real profile photo, real uniqueness; visible to everyone, guests included.
+
+## 16. The real village: San Pancho as Village #1 (Sasha, 2026-10-27)
+
+*Sasha: «мы уже не с нуля действуем… существующие плеяды бизнесов, уникальных, уже объединённых в определённые сети… это просто космос».* The Digital Village (§13.1) gets a physical twin. We build on our side, inspired by what the San Pancho community has already unlocked, then ask what potential comes next, prepare the platform for it, and only then offer partnership to the network and to individual shop owners.
+
+### 16.1 What already exists (snapshot, 2026-10-27)
+- **San Pancho Life** (sanpancholife.com) is a community-first directory for San Francisco (San Pancho), Nayarit. It lists about 115 local businesses, about 65 rentals, events, a marketplace, Radio San Pancho and Community Projects. Its mission: *"a network connecting the people of San Pancho to guide the town's growth in a community-first direction"*. Part of its advertising profit funds local causes.
+- **About one listing in five is health, wellness or transformation:** somatic coaching, breathwork, Feldenkrais, astrology, holistic centers, yoga, a "place for truth, connection and transformation". Lessons, catering, galleries and a coworking garden make up most of the rest. This is our ICP, already gathered in one place.
+- **A typical listing:** one practitioner, a generic description, the price hidden ("ask for prices"). The real asset is the reviews, which carry a uniqueness nobody has put into words yet.
+- **Reference case (kept private, no names here):** a local swim teacher has 22 five-star reviews, and ten of them describe the same miracle: a child who was afraid of water swims within 3–4 lessons. Her Zone of Genius and her signature offer are already written by her clients. The listing shows neither a package nor a price.
+
+### 16.2 Mapping: game place → real place
+| Game place (§13.1) | Real counterpart in San Pancho |
+|---|---|
+| Market / your stall (§14.12) | the directory listing + the artisan market; the stall's QR code sits in the physical shop |
+| Fire Circle | a real fire on the beach: a full-moon circle for the Mastermind |
+| Co-working | the coworking garden: meet partners in person |
+| Café | a real café: multiplayer presence turns into "three villagers are here, coffee?" |
+| Academy | the local lessons and workshops already listed |
+| Town Hall | Community Projects and the community gym association: where income becomes voice |
+
+### 16.3 Rules (inherit everything above)
+1. **Fidelity (§10a) gets physical.** A real-choice ending (WP-19) can point into the town: book a local practitioner, come to the circle, put your offer on the market. The badge is still the decision.
+2. **The first-sale boss is a neighbor.** In a real village the first buyer often lives two houses away. J11 counts a local sale the same as an online one.
+3. **The lunar loop in the flesh.** Full moon: a real harvest circle where stalls are shown in person. New moon: a quiet circle. The game's moon (WP-16) and the town's moon are the same moon.
+4. **Particles = real faces of the town.** A particle (WP-17) left by a San Pancho resident is a real name, a real photo and a real shop, visible on that person's stall and through the QR code.
+5. **The village owns its own data.** Private import only (§16.6); nothing is public until its owner claims it. Practitioners bring their own listing, reviews and voice when they join. Partnership is invitation, never extraction.
+6. **Town Hall's one public number** (§14.1.7) becomes tangible: the income of the village's residents.
+
+### 16.4 Sequence (Sasha's order)
+1. **Build on our side.** We take inspiration from the directory and the community and finish the Journey (§14.8 waves), so a practitioner can go from top talent to a priced stall.
+2. **Think the next potential.** What can San Pancho unlock next? Practitioners turned into unique businesses with clear offers and prices, a living market between them, and a circle that refers clients to each other.
+3. **Prepare the platform.** We add a village notion: places with an optional real-world counterpart and a QR code to a stall. That is design only for now; a migration needs Sasha's yes.
+4. **Offer the partnership,** first to the network (San Pancho Life), then to individual shop owners: walk the Uniqueness path and grow your shop. No outreach before Sasha decides the platform is ready.
+
+### 16.5 Horizons
+- **Now (this week):** this section, plus a private demo built from public reviews of how a practitioner's uniqueness and offer could read. It is not shown to anyone yet.
+- **Within a month (November 2026):** the Journey works end to end. Prepare a pilot cohort of 5–10 local practitioners and a first live circle around the November full moon. The partnership proposal to San Pancho Life waits until the platform is ready.
+- **Medium term (3–6 months):** Village #1 is live. Physical QR codes are on real stalls, real-choice endings lead into the town, there is a co-branded "unique business" mark on directory listings, and part of the revenue goes to Community Projects. The format is copied to a second village (Sayulita is next door).
+- **Long term (6–24 months):** a federation of villages (Mexican Pacific coast, Tulum, Bali), each a fork of the open method with its own Town Hall. Together they form the Collective, which is the stage-8 on-ramp (§12, almanac). It stays a horizon, never a pitch promise.
+- **Scale ladder (Sasha, 2026-10-27):** digital twins of cities, in our case villages first, then bioregions. Robert Kirkpatrick works on digital twins: a potential ally to explore.
+
+### 16.6 Status: accepted, converging (Sasha, 2026-10-27)
+*Sasha on §16.1–16.5: «Да, все так! По ходу касания реальности будет проявляться реальная форма… Конвергируем!»* The plan stands as written. Its real form will come from contact with reality, not from more planning up front.
+
+**Parked as premature** (Sasha: «решения… преждевременны. Двигаемся дальше пока без них»). We move on without deciding these; they come back only when reality asks:
+- pilot cohort free for feedback and a particle, or paid at a local price;
+- first contact with San Pancho Life and practitioners: Sasha in person or an Evolver draft;
+- circle venue: a fire on the beach, a host venue, or both.
+
+**Accepted (Sasha, 2026-10-27: «Давай пока так»):** load the public directory into a private layer only, so each practitioner gets a pre-built, unpublished stall shown to them at first contact as a gift ("this is you, want to claim it?"). It becomes public only when its owner claims it. This refines rule 5 (§16.3) to "private import, public by claim". First step: a private preview of the unclaimed stalls for Sasha; the data stays out of this public repo.
