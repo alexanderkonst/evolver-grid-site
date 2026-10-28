@@ -420,7 +420,7 @@ Method: [shift-offer.md](../templates/shift-offer.md) §1a (primitive vs shift; 
 2. **Now I FEEL myself:** whole, no half of me in hiding; at home in the universe rather than alone in it.
 3. **Now I SEE as possible:** inner experience as a real path to knowing; a much larger reality than the one I was taught; a life where meaning is not a private fantasy.
 
-**Mental viruses this course treats (draft map).** Each level of thinking carries an unhealthy, limiting picture of the world that we let go of when we move to the next level. These "viruses" have real costs, in proportion to how strong they are.
+**Mental viruses this course treats (draft map, INTERNAL ONLY: never name levels or viruses in public copy; speak in desired results, see shift-offer.md step 2).** Each level of thinking carries an unhealthy, limiting picture of the world that we let go of when we move to the next level. These "viruses" have real costs, in proportion to how strong they are.
 
 | Level of thinking | Virus (limiting belief) | Primitive | Cost in life | How the course treats it |
 |---|---|---|---|---|
@@ -430,4 +430,4 @@ Method: [shift-offer.md](../templates/shift-offer.md) §1a (primitive vs shift; 
 | Magical / New-Age regression | anything mystical is true; feeling replaces checking | inflation | delusion, loss of credibility | same line; stay grounded and critical (C05E03) |
 | Integral (healthy) | both: inner and outer co-reveal reality | wholeness | — | the destination: the integral map, the mystic's role returns (C05) |
 
-Open: confirm the levels and viruses with Sasha; then write the offer line from the three answers.
+Sasha confirmed scientism as one of them (2026-10-28). Next: write the offer line from the grounded DO / FEEL / SEE results, in plain results language.
