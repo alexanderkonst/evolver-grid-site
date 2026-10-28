@@ -3,6 +3,8 @@ name: holonic-seeing
 description: Applies 27-perspective holonic analysis (4 quadrants × 3 depths + center + recursion + crystallization) to any artifact, decision, or creative output. Use when evaluating, roasting, designing, or reviewing anything that requires seeing from all angles at all depths.
 ---
 
+> Synthesized into docs/templates/holonic-seeing.md (2026-10-27). This file is kept as a source.
+
 # Holonic Seeing — The 27-Perspective Modus Operandi
 
 This skill transforms AI from a single-perspective evaluator into a **complete seeing instrument** — applying the Merkaba geometry of perception to any task.
