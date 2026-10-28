@@ -1,3 +1,5 @@
+> Synthesized into docs/templates/unique-business-canvas.md (2026-10-27). This file is kept as a source.
+
 # ICP Deepening Template
 ## From Surface Profile to Soul-Deep Understanding
 

@@ -1,3 +1,5 @@
+> The Artifact Production Sequence and the canvas laws are synthesized into docs/templates/unique-business-canvas.md (2026-10-27). This file is kept as a source.
+
 > Step 4 (Mirror Session) is synthesized into docs/templates/session-script.md (2026-10-27). This file is kept as a source.
 
 # The Integrated Unique Business Playbook

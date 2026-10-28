@@ -1,3 +1,5 @@
+> Synthesized into docs/templates/unique-business-canvas.md (2026-10-27). This file is kept as a source.
+
 # Transformational Promise Deepening Template
 ## From Generic A→B to Soul-Resonant Journey
 

@@ -1,3 +1,5 @@
+> The 5-Layer Pain Slicer and the Pain Mapping Template are synthesized into docs/templates/unique-business-canvas.md (2026-10-27). This file is kept as a source.
+
 # Pain Theory Playbook
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*

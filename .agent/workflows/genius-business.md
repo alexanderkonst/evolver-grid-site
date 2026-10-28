@@ -2,6 +2,8 @@
 description: Build a Genius Business from Zone of Genius to first revenue using the 10-step pipeline
 ---
 
+> Synthesized into docs/templates/unique-business-canvas.md (2026-10-27). This file is kept as a source.
+
 # Genius Business Creation Workflow
 
 > **Playbook:** `docs/03-playbooks/genius_business_creation_playbook.md`
