@@ -31,6 +31,7 @@ import { formatDate } from "@/i18n/format";
 import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
 import { trackCTAClick } from "@/lib/funnelAnalytics";
 import MatchFlowCta from "@/components/landing/MatchFlowCta";
+import EnterVillageButton from "./EnterVillageButton";
 import { useEntryPath } from "@/contexts/EntryPathContext";
 // Day 61 (Sasha 2026-05-04 21:30): RevelatoryHero imported to unify
 // the assessment-path reveal with the AI-path reveal (single render
@@ -779,8 +780,6 @@ ${snapshotText}`;
                 toast.success(t("zogEntry.bannerResultSaved"), {
                   duration: 5000,
                 });
-                // WP-7a: after the gate's save the player enters the village.
-                navigate("/village");
               }}
             />
           ) : (
@@ -838,6 +837,9 @@ ${snapshotText}`;
                   darkMode={false}
                 />
               </div>
+
+              {/* WP-7a: the one primary way on from the reveal, into the village. */}
+              <EnterVillageButton />
 
               {/* Issue #52 item 9: "Generated in {language}" transparency
                   label. The guided lane stamps output_language =

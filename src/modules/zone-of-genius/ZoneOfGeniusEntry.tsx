@@ -37,6 +37,7 @@ import AppleseedDisplay from "./AppleseedDisplay";
 import AppleseedRitualLoading from "./AppleseedRitualLoading";
 import ExcaliburDisplay from "./ExcaliburDisplay";
 import TopTalentAuthGate from "./TopTalentAuthGate";
+import EnterVillageButton from "./EnterVillageButton";
 import { clearGuestBuffers, freshRetakeState } from "./retake";
 import { formatSupabaseError, isSchemaDriftError } from "./formatSupabaseError";
 import { SaveErrorToastBody } from "@/components/ui/save-error-toast";
@@ -811,8 +812,6 @@ const ZoneOfGeniusEntry = () => {
                             systemToast.success(t("zogEntry.bannerResultSaved"), {
                                 duration: 5000,
                             });
-                            // WP-7a: after the gate's save the player enters the village.
-                            navigate("/village");
                         }}
                     />
                 ) : (
@@ -864,6 +863,10 @@ const ZoneOfGeniusEntry = () => {
                     1 minute →" CTA below the reveal. Renders nothing for
                     build-path users — AppleseedDisplay's existing CTAs are
                     the only thing they see. */}
+                {/* WP-7a: the one primary way on from the reveal, into the village. */}
+                <div className="w-full max-w-3xl mx-auto px-5 pb-6">
+                    <EnterVillageButton />
+                </div>
                 <MatchFlowCta step="top-talent" />
                 {retakeControl}
                     </>

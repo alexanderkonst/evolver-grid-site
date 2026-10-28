@@ -913,7 +913,8 @@ const App = () => (
                   {/* WP-7a (2026-10-28): the test is public. A guest plays it from the title
                       (NEW GAME → Reception → here); the wall moves from the start of the
                       test to after it: TopTalentAuthGate («Save your character») still
-                      stands before the reveal, then the player goes to /village. */}
+                      stands before the reveal, the reveal shows right after the save,
+                      and its primary button «Enter the village» leads to /village. */}
                   <Route path="/zone-of-genius/entry" element={<ZoneOfGeniusEntry />} />
                   {/* Day 47 (Sasha): assessment is now public — no login gate. Log-in
                       added friction AND showed the legacy shell; guests can now complete
