@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { isValidRating } from "@/data/journeyModules";
+import { isGuestStep, readGuestStep, saveGuestRating } from "@/lib/guestModule";
 
 /**
  * The victory of one Journey step: the 1–10 «How much did this resonate?» a player gave
@@ -45,7 +46,10 @@ export type RateResult = { ok: true } | { ok: false; message: string };
 export type JourneyVictoryApi = {
   /** The table answered. False while it is missing or unreadable: hide the rating row. */
   available: boolean;
-  /** A signed-in player. Guests have no save file to record in. */
+  /**
+   * The player has a save file to record in: an account, or, for a guest-playable step
+   * (src/lib/guestModule.ts), the guest's own browser. Other steps give guests no save file.
+   */
   signedIn: boolean;
   /** Still finding out whether a rating exists. */
   loading: boolean;
@@ -98,6 +102,13 @@ export function useJourneyVictory(stepId: string | null | undefined): JourneyVic
   useEffect(() => {
     setRating(null);
     if (!stepId || !authKnown) return;
+    if (!userId && isGuestStep(stepId)) {
+      // A guest-playable step keeps its answer in this browser until «Save» (guestModule).
+      setAvailable(true);
+      setRating(readGuestStep(stepId).rating ?? null);
+      setLoading(false);
+      return;
+    }
     if (tableMissing) {
       setAvailable(false);
       setLoading(false);
@@ -137,6 +148,12 @@ export function useJourneyVictory(stepId: string | null | undefined): JourneyVic
 
   const rate = useCallback(
     async (value: number): Promise<RateResult> => {
+      if (stepId && !userId && isGuestStep(stepId)) {
+        const stored = saveGuestRating(stepId, value);
+        if (stored === null) return { ok: false, message: "Pick a number from 1 to 10." };
+        setRating(stored);
+        return { ok: true };
+      }
       if (!stepId || !userId || !available) {
         return { ok: false, message: "Your answer can be saved once you are signed in." };
       }
@@ -169,5 +186,5 @@ export function useJourneyVictory(stepId: string | null | undefined): JourneyVic
     [stepId, userId, available],
   );
 
-  return { available, signedIn: !!userId, loading, rating, rate };
+  return { available, signedIn: !!userId || (authKnown && isGuestStep(stepId)), loading, rating, rate };
 }
