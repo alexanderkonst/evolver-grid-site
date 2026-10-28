@@ -1815,6 +1815,9 @@
       }
     }
   },
+  "courseCms": {
+    "tagline": "How inner experience and modern science co-reveal the nature of reality."
+  },
   "course": {
     "eyebrow": "Free mini-course",
     "tagline": "How to master your spirit, mind, emotions, body and unique genius.",
@@ -5346,7 +5349,8 @@
         "modules": {
           "library": "Practice Library",
           "paths": "Skill Tree",
-          "dormantPotential": "Activate Your Dormant Potential"
+          "dormantPotential": "Activate Your Dormant Potential",
+          "consciousnessMeetsScience": "Consciousness Meets Science"
         }
       },
       "marketplace": {

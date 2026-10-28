@@ -2,7 +2,7 @@
  * coursePlayer.ts — pure helpers for the course page (no React).
  * Content lives in src/data/courses/*; this file only filters and stores.
  */
-import type { CourseEpisode, CourseModule } from "@/data/courses/activateYourDormantPotential";
+import type { CourseEpisode, CourseModule } from "@/data/courses/types";
 
 /** Episodes whose YouTube id starts with "TBD" are placeholders — hidden in the UI. */
 export const isEpisodePublished = (episode: CourseEpisode): boolean =>

@@ -64,6 +64,7 @@ import FeedbackPage from "./pages/FeedbackPage";
 import ContactNew from "./pages/ContactNew";
 import Library from "./pages/Library";
 import ActivateYourDormantPotential from "./pages/ActivateYourDormantPotential";
+import ConsciousnessMeetsScience from "./pages/ConsciousnessMeetsScience";
 import ModuleDetail from "./pages/ModuleDetail";
 import ModuleLandingPage from "./pages/ModuleLandingPage";
 import AIUpgrade from "./pages/AIUpgrade";
@@ -664,6 +665,7 @@ const App = () => (
                   <Route path="/library/:stepId" element={<Library />} />
                   {/* Free entry course — public, no auth. GROW space (shell supplied by SmartShellLayout). */}
                   <Route path="/grow/activate-your-dormant-potential" element={<ActivateYourDormantPotential />} />
+                  <Route path="/grow/consciousness-meets-science" element={<ConsciousnessMeetsScience />} />
                   <Route path="/contact" element={<RequireAuth><ContactNew /></RequireAuth>} />
                   <Route path="/feedback" element={<RequireAuth><FeedbackPage /></RequireAuth>} />
                   <Route path="/tools" element={<RequireAuth><ToolsRedirect /></RequireAuth>} />

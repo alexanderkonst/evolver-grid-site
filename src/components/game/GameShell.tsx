@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { useToast } from "@/hooks/use-toast";
 import { COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
+import { CMS_COURSE_PATH } from "@/data/courses/consciousnessMeetsScience";
 
 interface ModuleItem {
     id: string;
@@ -68,7 +69,8 @@ const SPACES: NavItem[] = [
         modules: [
             { id: "library", labelKey: "gameShell.nav.transformation.modules.library", path: "/library" },
             { id: "paths", labelKey: "gameShell.nav.transformation.modules.paths", path: "/growth-paths" },
-            { id: "dormant-potential", labelKey: "gameShell.nav.transformation.modules.dormantPotential", path: COURSE_PATH }
+            { id: "dormant-potential", labelKey: "gameShell.nav.transformation.modules.dormantPotential", path: COURSE_PATH },
+            { id: "consciousness-meets-science", labelKey: "gameShell.nav.transformation.modules.consciousnessMeetsScience", path: CMS_COURSE_PATH }
         ]
     },
     {

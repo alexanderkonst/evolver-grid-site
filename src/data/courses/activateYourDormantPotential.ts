@@ -12,27 +12,9 @@
  *  - Episode titles stay English in every locale.
  */
 
-export interface CourseEpisode {
-    /** Unique within the course. Used in the ?ep= deep link and progress storage. */
-    code: string;
-    title: string;
-    youtubeId: string;
-    infographic?: string;
-}
+import type { CourseConfig, CourseModule, CoursePractice } from "./types";
 
-export interface CourseModule {
-    id: string;
-    title: string;
-    episodes: CourseEpisode[];
-}
-
-export interface CoursePractice {
-    id: string;
-    /** Duration label shown before the title, e.g. "1 min". */
-    duration: string;
-    title: string;
-    soundcloudUrl: string;
-}
+export type { CourseEpisode, CourseModule, CoursePractice } from "./types";
 
 export const COURSE_SLUG = "activate-your-dormant-potential";
 export const COURSE_PATH = `/grow/${COURSE_SLUG}`;
@@ -146,3 +128,11 @@ export const COURSE_PRACTICES: CoursePractice[] = [
         soundcloudUrl: "https://soundcloud.com/alexander-konstantinov-976475588/29-symmetric-breaths",
     },
 ];
+
+export const ACTIVATE_YOUR_DORMANT_POTENTIAL: CourseConfig = {
+    slug: COURSE_SLUG,
+    title: COURSE_TITLE,
+    taglineKey: "course.tagline",
+    modules: COURSE_MODULES,
+    practices: COURSE_PRACTICES,
+};

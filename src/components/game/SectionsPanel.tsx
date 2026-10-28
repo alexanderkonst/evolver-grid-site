@@ -14,6 +14,7 @@ import { GROWTH_STEPS, growthStepClosedLine, growthStepState } from "@/modules/l
 import { ORACLE_READING } from "@/data/villagePlaces";
 import { placeState } from "@/lib/placeState";
 import { COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
+import { CMS_COURSE_PATH } from "@/data/courses/consciousnessMeetsScience";
 import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
 import { useDeeperAccess } from "@/hooks/useDeeperAccess";
 import { useEntitlement } from "@/hooks/useEntitlement";
@@ -600,6 +601,13 @@ const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Secti
         path: COURSE_PATH,
     };
 
+    // Second free course (public), same player: Consciousness Meets Science.
+    const consciousnessMeetsScienceRow: Section = {
+        id: "consciousness-meets-science",
+        label: "Consciousness Meets Science",
+        path: CMS_COURSE_PATH,
+    };
+
     const stepRows: Section[] = GROWTH_STEPS.map((step) => ({
         id: `learn-step-${step.id}`,
         label: `${step.number}. ${step.shortLabel}`,
@@ -609,7 +617,7 @@ const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Secti
         lockedHint: growthStepClosedLine(step) || undefined,
     }));
 
-    return [libraryOverviewRow, dormantPotentialRow, ...stepRows];
+    return [libraryOverviewRow, dormantPotentialRow, consciousnessMeetsScienceRow, ...stepRows];
 };
 
 type EntryPath = "match" | "build" | null;
