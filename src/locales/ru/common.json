@@ -82,6 +82,10 @@
     "cardFasterSubtitle": "Точнее теста — если только твой ИИ ещё не знает тебя.",
     "cardGuidedTitle": "С сопровождением (10–15 мин)",
     "cardGuidedSubtitle": "Пройдите полную диагностику.",
+    "choiceHeading": "Найди свой главный талант за минуту",
+    "ctaFindTopTalent": "Найти мой главный талант",
+    "saveCharacterModalTitle": "Сохрани своего персонажа",
+    "enterVillage": "Войти в деревню",
     "aiPromptHeading": "Скопируйте этот промпт в ваш ИИ",
     "aiPromptSubtitle": "ChatGPT, Claude, Gemini: подойдёт любой",
     "copyButton": "Копировать",
@@ -427,7 +431,7 @@
     },
     "journey": {
       "quizStep0": {
-        "label": "Шаг 0 · Узнай, в какой главе своего пути ты сейчас",
+        "label": "0. Узнай, в какой главе своего пути ты сейчас",
         "retake": "Пройти тест заново"
       },
       "startHere": {

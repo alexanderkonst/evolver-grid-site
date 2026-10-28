@@ -9,6 +9,8 @@ type TopTalentAuthGateProps = {
   resultPayload: Record<string, unknown>;
   assessmentVersion?: string;
   onSaved?: (email: string) => void;
+  /** Overrides the default headline (WP-7a: «Save your character»). */
+  title?: string;
 };
 
 const PENDING_CLAIM_EMAIL_KEY = "pending_claim_email";
@@ -48,6 +50,7 @@ const TopTalentAuthGate = ({
   resultPayload,
   assessmentVersion = "v1",
   onSaved,
+  title,
 }: TopTalentAuthGateProps) => {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "saving" | "sent" | "cooldown" | "error">("idle");
@@ -191,7 +194,7 @@ const TopTalentAuthGate = ({
               fontWeight: 600,
             }}
           >
-            Make sure you save it to be able to access it later.
+            {title ?? "Make sure you save it to be able to access it later."}
           </h1>
           <p
             className="text-xs sm:text-sm leading-relaxed"

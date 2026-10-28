@@ -254,13 +254,13 @@ const TitleScreen = () => {
   const reduceMotion = usePrefersReducedMotion();
   const [active, setActive] = useState(0);
   const [started, setStarted] = useState(false);
-  // LOAD GAME → /auth, or into the Digital Village (/village) when a session
-  // already exists.
-  const [loadTo, setLoadTo] = useState("/auth");
+  // LOAD GAME → /auth on the Log in tab (a returning player, not a signup),
+  // or into the Digital Village (/village) when a session already exists.
+  const [loadTo, setLoadTo] = useState("/auth?mode=login");
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   const items: MenuItem[] = [
-    { key: "new", label: "New Game", hint: "Discover your Uniqueness", to: "/zone-of-genius/entry" },
+    { key: "new", label: "New Game", hint: "Discover your Uniqueness", to: "/village/reception" },
     { key: "load", label: "Load Game", hint: "Continue your journey", to: loadTo },
     { key: "tutorial", label: "Tutorial", hint: "Free course · Activate Your Dormant Potential", to: "/grow/activate-your-dormant-potential" },
     { key: "multi", label: "Multiplayer", hint: "Mastermind & co-creation", to: "/build/mastermind" },

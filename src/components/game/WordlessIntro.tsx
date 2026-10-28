@@ -15,6 +15,9 @@ import "./WordlessIntro.css";
  * lights Reception; then its name and line fade in and ENTER appears. ENTER goes to
  * /village/reception, where the normal path continues (the uniqueness test).
  *
+ * Before the first gesture the scene reads as night (map dimmed + a night veil) and a quiet
+ * "Tap or press any key" cue plus a quiet Skip are visible (WP-7a).
+ *
  * Phases: dark → lit (light spreads, ~1.5 s) → ready (name, line, ENTER).
  * prefers-reduced-motion: dark → ready at once, no animation (see the CSS).
  * Mounted by GameTitle only on a first visit (src/lib/firstVisit.ts).
@@ -156,10 +159,19 @@ const WordlessIntro = ({ onSkip }: Props) => {
               decoding="async"
             />
           </div>
+          <span className="wi-night" />
           <span className="wi-bloom" />
           <span className="wi-breath" />
         </div>
         <div className="wi-vignette" aria-hidden="true" />
+
+        {/* The one quiet cue before the first gesture. Visible, not just in the DOM
+            (the screen-reader line above says the same in words). Gone once lit. */}
+        {phase === "dark" && (
+          <p className="wi-cue" aria-hidden="true">
+            Tap or press any key
+          </p>
+        )}
 
         <div className="wi-copy" aria-live="polite">
           {phase === "ready" && (
@@ -186,7 +198,7 @@ const WordlessIntro = ({ onSkip }: Props) => {
         aria-label="Skip intro"
         onClick={skip}
       >
-        <span aria-hidden="true">»</span>
+        <span aria-hidden="true">Skip »</span>
       </button>
     </div>
   );

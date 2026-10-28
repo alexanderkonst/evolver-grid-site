@@ -1272,7 +1272,7 @@
     },
     "journey": {
       "quizStep0": {
-        "label": "Paso 0 · Descubre en qué capítulo de tu viaje del héroe estás",
+        "label": "0. Descubre en qué capítulo de tu viaje del héroe estás",
         "retake": "Repetir el test"
       },
       "startHere": {
@@ -4580,6 +4580,10 @@
     "cardFasterSubtitle": "Más preciso que el test, salvo que tu IA apenas te conozca aún.",
     "cardGuidedTitle": "Guiado (10–15 min)",
     "cardGuidedSubtitle": "Haz la evaluación completa.",
+    "choiceHeading": "Encuentra tu talento principal en un minuto",
+    "ctaFindTopTalent": "Encontrar mi talento principal",
+    "saveCharacterModalTitle": "Guarda tu personaje",
+    "enterVillage": "Entrar en la aldea",
     "aiPromptHeading": "Copia este prompt en tu IA",
     "aiPromptSubtitle": "ChatGPT, Claude, Gemini: cualquiera sirve",
     "copyButton": "Copiar",
