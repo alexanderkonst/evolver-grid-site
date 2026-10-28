@@ -2,12 +2,14 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
 import { VILLAGE_PLACES } from "@/data/villagePlaces";
-import { closedLine, emptyPlaceSave, placeSaveFromSheet, type PlaceSave } from "@/lib/placeState";
+import { closedLine, emptyPlaceSave, placeSaveFromSheet, placeState, type PlaceSave } from "@/lib/placeState";
 import {
   JOURNEY_MODULES,
   assetsResultText,
   getJourneyModule,
+  isSliceStep,
   isValidRating,
+  journeyStepOf,
   moduleClosedLine,
   moduleHasRequirements,
   moduleIntroState,
@@ -23,20 +25,22 @@ const saveWith = (done: JourneyItemId[]): PlaceSave =>
   placeSaveFromSheet({ chain: JOURNEY_MAIN.map((i) => ({ id: i.id, done: done.includes(i.id) })) });
 
 describe("journey modules (WP-5 module form)", () => {
-  it("covers J1, J2, J4, J5 and nothing else yet", () => {
+  it("covers J1, J2, J4, J5, J6, J7 and nothing else yet", () => {
     expect(JOURNEY_MODULES.map((m) => m.id)).toEqual([
       "find-top-talent",
       "discover-mission",
       "assess-qol",
       "map-assets",
+      "uniqueness-phrase",
+      "tagline",
     ]);
   });
 
-  it("every module is a Journey step living in a real village place", () => {
+  it("every module is a Journey step, or a slice of one, living in a real village place", () => {
     const steps = new Set(JOURNEY_MAIN.map((i) => i.id));
     const places = new Set(VILLAGE_PLACES.map((p) => p.key));
     for (const m of JOURNEY_MODULES) {
-      expect(steps.has(m.id), m.id).toBe(true);
+      expect(steps.has(journeyStepOf(m.id)), m.id).toBe(true);
       expect(places.has(m.place), m.id).toBe(true);
       expect(getJourneyModule(m.id)).toBe(m);
     }
@@ -104,6 +108,29 @@ describe("moduleIntroState", () => {
     // Assets is open too, but QoL comes first in the Journey, so it is not «next».
     expect(moduleIntroState("map-assets", afterMission)).toBe("open");
     expect(moduleIntroState("assess-qol", saveWith(["find-top-talent", "discover-mission", "assess-qol"]))).toBe("done");
+  });
+
+  it("J6 and J7 are slices of build-business: closed until it opens, never next or done on their own", () => {
+    for (const id of ["uniqueness-phrase", "tagline"] as const) {
+      expect(isSliceStep(id), id).toBe(true);
+      expect(journeyStepOf(id), id).toBe("build-business");
+      expect(moduleHasRequirements(id), id).toBe(true);
+      expect(moduleIntroState(id, emptyPlaceSave()), id).toBe("closed");
+      expect(moduleIntroState(id, saveWith(["find-top-talent", "discover-mission"])), id).toBe("closed");
+      expect(moduleClosedLine(id), id).toBe(JOURNEY_MAIN.find((i) => i.id === "build-business")?.lockedHint);
+      const ready = saveWith(["find-top-talent", "discover-mission", "map-assets"]);
+      expect(moduleIntroState(id, ready), id).toBe("open");
+      expect(moduleIntroState(id, saveWith(["find-top-talent", "discover-mission", "map-assets", "build-business"])), id).toBe("open");
+    }
+    expect(isSliceStep("map-assets")).toBe(false);
+    expect(journeyStepOf("map-assets")).toBe("map-assets");
+  });
+
+  it("the Market opens on a saved offer, which is what J7 saves", () => {
+    const market = VILLAGE_PLACES.find((p) => p.key === "market")!;
+    const chain = JOURNEY_MAIN.map((i) => ({ id: i.id, done: false }));
+    expect(placeState(market, placeSaveFromSheet({ chain, offerSaved: false }))).toBe("closed");
+    expect(placeState(market, placeSaveFromSheet({ chain, offerSaved: true }))).not.toBe("closed");
   });
 
   it("agrees with the village: the closed line is the one the Journey data carries", () => {

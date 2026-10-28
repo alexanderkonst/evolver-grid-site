@@ -3,10 +3,16 @@
  * Design: docs/02-strategy/game_of_being_you.md §14.4 (Intro → one button → result → Outro),
  * §14.12 (the result is the badge).
  *
- * One entry per Journey step that is built today (J1, J2, J4, J5). The UBB slices, webinar,
- * Mastermind and Quest Board add their entries with WP-9/10/11. Order, requirements and the
- * closed line come from `JOURNEY_MAIN` (src/data/journeySequence.ts); nothing here restates
- * them. The place a module lives in comes from VILLAGE_PLACES (src/data/villagePlaces.ts).
+ * One entry per Journey step that is built today (J1, J2, J4, J5, and the two Workshop slices
+ * J6, J7 of WP-9). Webinar, Mastermind and Quest Board add their entries with WP-10/11. Order,
+ * requirements and the closed line come from `JOURNEY_MAIN` (src/data/journeySequence.ts);
+ * nothing here restates them. The place a module lives in comes from VILLAGE_PLACES
+ * (src/data/villagePlaces.ts).
+ *
+ * J6 and J7 are two slices of the one `build-business` item (§14.2: «Journey steps 6 and 7
+ * live inside this item»). They have no row in `JOURNEY_MAIN`; they borrow its requirements
+ * and closed line through `SLICE_PARENT`, and their ids are the step ids of their victory and
+ * their real choice (src/data/journeyChoices.ts).
  *
  * Copy rules (§14.1, §14.3): the headline IS the module's Master Result; the button is the
  * result as a verb, never «Continue»; no barrier words (lock, gate, unlock, coming soon).
@@ -16,9 +22,26 @@ import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
 import { placeState, type PlaceSave, type PlaceStateName } from "@/lib/placeState";
 import type { VillagePlaceKey } from "@/data/villagePlaces";
 
+/** A Journey step that is not a `JOURNEY_MAIN` row of its own: a slice of `build-business`. */
+export type SliceStepId = "uniqueness-phrase" | "tagline";
+
+/** Everything that has a module form: a Journey step, or a slice of one. */
+export type ModuleStepId = JourneyItemId | SliceStepId;
+
+/** The Journey item whose requirements and closed line a slice borrows. */
+export const SLICE_PARENT: Record<SliceStepId, JourneyItemId> = {
+  "uniqueness-phrase": "build-business",
+  tagline: "build-business",
+};
+
+export const isSliceStep = (id: ModuleStepId): id is SliceStepId => id in SLICE_PARENT;
+
+/** The `JOURNEY_MAIN` item a module id is read from: itself, or the parent of a slice. */
+export const journeyStepOf = (id: ModuleStepId): JourneyItemId => (isSliceStep(id) ? SLICE_PARENT[id] : id);
+
 export type JourneyModuleDef = {
   /** The Journey step this module completes; the key of its victory row. */
-  id: JourneyItemId;
+  id: ModuleStepId;
   /** Where it lives in the village (scene image, particle place). */
   place: VillagePlaceKey;
   /** Intro eyebrow: where you are. */
@@ -110,6 +133,38 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
       fallbackResult: "Your assets",
     },
   },
+  {
+    id: "uniqueness-phrase",
+    place: "workshop",
+    eyebrow: "Workshop · Step 6",
+    headline: "Your uniqueness in one phrase",
+    silhouette: "The AI drafts one phrase that only you could say, from your top talent. You sharpen it until it sounds like you.",
+    verb: "Name my uniqueness",
+    startPath: "/ubb/uniqueness",
+    outro: {
+      done: "Done · Your uniqueness is saved",
+      badge: "Uniqueness",
+      livesIn: { text: "It lives in your Workshop, and every part of your business is built from it.", to: "/ubb" },
+      opened: "The Workshop holds the next piece: the tagline of your business.",
+      fallbackResult: "Your uniqueness",
+    },
+  },
+  {
+    id: "tagline",
+    place: "workshop",
+    eyebrow: "Workshop · Step 7",
+    headline: "The tagline of your unique business",
+    silhouette: "One sentence for the people you serve: where they are, and where you take them.",
+    verb: "Write my tagline",
+    startPath: "/ubb/promise",
+    outro: {
+      done: "Done · Your tagline is saved",
+      badge: "Tagline",
+      livesIn: { text: "It lives in your Workshop, and it is the sign over your stall.", to: "/ubb" },
+      opened: "Your stall stands in the Market.",
+      fallbackResult: "Your tagline",
+    },
+  },
 ];
 
 export const getJourneyModule = (id: string | undefined): JourneyModuleDef | undefined =>
@@ -121,8 +176,8 @@ export const getJourneyModule = (id: string | undefined): JourneyModuleDef | und
  * the single next move, otherwise `open`. Pure; the caller passes the save
  * (`placeSaveFromSheet`).
  */
-export const moduleIntroState = (id: JourneyItemId, save: PlaceSave): PlaceStateName => {
-  const item = JOURNEY_MAIN.find((i) => i.id === id);
+export const moduleIntroState = (id: ModuleStepId, save: PlaceSave): PlaceStateName => {
+  const item = JOURNEY_MAIN.find((i) => i.id === journeyStepOf(id));
   const requires = item?.requires ?? [];
   const closedFirst = requires.find((req) => save.met[req] !== true);
   return placeState(
@@ -130,7 +185,9 @@ export const moduleIntroState = (id: JourneyItemId, save: PlaceSave): PlaceState
       line: "",
       rule: {
         opens: closedFirst,
-        steps: [id],
+        // A slice is not a Journey row, so it is never «next» or «done» on its own:
+        // closed while its parent waits, otherwise open.
+        steps: isSliceStep(id) ? [] : [id],
       },
     },
     save,
@@ -138,12 +195,12 @@ export const moduleIntroState = (id: JourneyItemId, save: PlaceSave): PlaceState
 };
 
 /** True when the step waits on an earlier one, so its state depends on the save. */
-export const moduleHasRequirements = (id: JourneyItemId): boolean =>
-  (JOURNEY_MAIN.find((i) => i.id === id)?.requires ?? []).length > 0;
+export const moduleHasRequirements = (id: ModuleStepId): boolean =>
+  (JOURNEY_MAIN.find((i) => i.id === journeyStepOf(id))?.requires ?? []).length > 0;
 
 /** The closed line of a Journey step: «Opens when … Inside: ….» Empty when it has none. */
-export const moduleClosedLine = (id: JourneyItemId): string =>
-  JOURNEY_MAIN.find((i) => i.id === id)?.lockedHint ?? "";
+export const moduleClosedLine = (id: ModuleStepId): string =>
+  JOURNEY_MAIN.find((i) => i.id === journeyStepOf(id))?.lockedHint ?? "";
 
 /** The part of the character sheet the Outro reads its result from. */
 export type ModuleResultSource = {
@@ -164,9 +221,10 @@ export const qolResultText = (level: number): string => `Level ${level} of 10`;
  * The step's result in the player's own words, read from the save (the same data Your House
  * shows). Null until the step has one; the Outro then falls back to `outro.fallbackResult`.
  * A module that holds the fresh result in hand (a just-typed mission) passes it to the
- * Outro directly, which wins over this.
+ * Outro directly, which wins over this. The slices J6, J7 always do: the sheet does not
+ * carry their phrases.
  */
-export const moduleResultText = (id: JourneyItemId, sheet: ModuleResultSource): string | null => {
+export const moduleResultText = (id: ModuleStepId, sheet: ModuleResultSource): string | null => {
   switch (id) {
     case "find-top-talent":
       return sheet.topTalent?.trim() || null;
