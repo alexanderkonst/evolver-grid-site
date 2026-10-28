@@ -11,6 +11,7 @@ Reusable methods for producing things from Sasha's work: one file per template, 
 | [session-script.md](./session-script.md) | The recognition ritual end to end: pre-call, the free call, the same-day reflection, the $555 2-hour session and its close; synthesized from 6 tellings | in use (`/ignite`, Direction Calls, FMF session) |
 | [unique-business-canvas.md](./unique-business-canvas.md) | A founder's whole business on half a page: the artifact sequence with gates, the pain slicer, the deepening engine, the PMF hypothesis loop; synthesized from 9 sources | in use (9 canvases, UBB, `deepen-*`) |
 | [spec-handoff.md](./spec-handoff.md) | An issue an agent can finish cold, three build gates, evidence that counts, PR rules and the review before merge; synthesized from 6 tellings | in use (Hark → Claude Code / Codex) |
+| [module-form.md](./module-form.md) | The one form of every place, room and module: Intro → one button → result → Outro, the victories ritual, the real choice, the lock rule, the Koster check, build and polish gates; synthesized from 9 sources | in use (Journey J1–J12, WP-5) |
 
 *Folder created 2026-10-27 (Sasha: «IMPORTANT»).*
 
@@ -139,15 +140,15 @@ Reusable methods for producing things from Sasha's work: one file per template, 
 | L2 template | Where | Produces | Lens | As a part of the whole | Module | Status · dated | Verdict |
 |---|---|---|---|---|---|---|---|
 | The Game of Being You blueprint | `docs/02-strategy/game_of_being_you.md` | the whole site as one game | Blueprint | the Meta-Template seen as architecture (named in meta-template §2) | all places | in use · 2026-10-27 | keep (link as the Blueprint lens, T7) |
-| Module form: Intro → one button → result → Outro | blueprint §14.4 (+ §14.3 lock rule) | the shape of every place | Ideal Forms | each place as one breath of the whole | all places | in use · 2026-10-27 | **promote** (with the three rows below as its parts) |
-| Victories ritual | blueprint §13.4 (congratulate → 1–10 → record) | a growing collection of real wins | Causal | each step becoming a trace in reality | all places | in use · 2026-10-27 | merge into Module form |
-| Koster facet check | blueprint §15.8 | 7-question check before any new place | Ideal Forms | no place repeats another; each reveals a new facet | all places | in use · 2026-10-27 | merge into Module form |
-| Fidelity principle | blueprint §10a | the "real result" test | Causal | the game never leaves reality | all places | in use · 2026-10-26 | keep (inside Module form) |
+| Module form: Intro → one button → result → Outro | blueprint §14.4 (+ §14.3 lock rule) | the shape of every place | Ideal Forms | each place as one breath of the whole | all places | in use · 2026-10-27 | **synthesized** → [module-form.md](./module-form.md) (2026-10-27) |
+| Victories ritual | blueprint §13.4 (congratulate → 1–10 → record) | a growing collection of real wins | Causal | each step becoming a trace in reality | all places | in use · 2026-10-27 | **synthesized** → [module-form.md](./module-form.md) §4 (2026-10-27) |
+| Koster facet check | blueprint §15.8 | 7-question check before any new place | Ideal Forms | no place repeats another; each reveals a new facet | all places | in use · 2026-10-27 | **synthesized** → [module-form.md](./module-form.md) §7 (2026-10-27) |
+| Fidelity principle | blueprint §10a | the "real result" test | Causal | the game never leaves reality | all places | in use · 2026-10-26 | **synthesized** → [module-form.md](./module-form.md) §2 (2026-10-27); stays in the blueprint |
 | Game Design Almanac, forecast method | `docs/02-strategy/game_design_almanac.md` §How the forecast was made | forecast of the next octave | Causal | the game seeing its own evolution | all | draft · 2026-10-27 | keep |
 | Module Template + registry refresh rule | `docs/05-reference/module_registry.md` §Module Template; `docs/02-strategy/module_taxonomy.md` (re-audit vs `src/App.tsx`) | an honest module map | Blueprint | the platform seeing its own interior | all | in use · 2026-08-16 | keep |
-| Module landing page SOP + universal landing template | `docs/04-workflows/module_landing_page_workflow.md`; `docs/05-reference/module_landing_page_infrastructure.md` (Universal Landing Page Template, Customer Forces Template); applied in `docs/06-modules/*/landing_page_content.md` | a module landing page | Causal | the pre-game form of a place's door | Gate · Your House | superseded by Module form · 2026-02-10 | merge into Module form, then retire |
-| Module Polish workflow | `docs/04-workflows/module_polish.md` = `.agent/workflows/polish.md` | a polished module | Causal | duplicate pair | all | historical · 2026-02-05 | merge into one; retire the copy |
-| Module Implementation Checklist v3.0 | `docs/05-reference/module_implementation_checklist.md`; copy `docs/05-specs/onboarding/onboarding_implementation_checklist.md` | a module built phase by phase | Blueprint | duplicate pair | all | historical · undated | merge into one; refresh to Module form |
+| Module landing page SOP + universal landing template | `docs/04-workflows/module_landing_page_workflow.md`; `docs/05-reference/module_landing_page_infrastructure.md` (Universal Landing Page Template, Customer Forces Template); applied in `docs/06-modules/*/landing_page_content.md` | a module landing page | Causal | the pre-game form of a place's door | Gate · Your House | superseded by Module form · 2026-02-10 | **synthesized** → [module-form.md](./module-form.md) §10, dated (2026-10-27) |
+| Module Polish workflow | `docs/04-workflows/module_polish.md` = `.agent/workflows/polish.md` | a polished module | Causal | duplicate pair | all | historical · 2026-02-05 | **synthesized** → [module-form.md](./module-form.md) §9 (2026-10-27); both copies keep a pointer |
+| Module Implementation Checklist v3.0 | `docs/05-reference/module_implementation_checklist.md`; copy `docs/05-specs/onboarding/onboarding_implementation_checklist.md` | a module built phase by phase | Blueprint | duplicate pair | all | historical · undated | **synthesized** → [module-form.md](./module-form.md) §8 (2026-10-27); both copies keep a pointer |
 | Onboarding / tour scripts | `docs/07-technology/onboarding_script.md`; `docs/05-specs/customer_journey_progression.md` §Tour Script; `docs/03-playbooks/product_onboarding_playbook.md` | first-run onboarding | Causal | the old door before the Gate | Gate | superseded by Gate → village · 2025-01-07 | retire |
 | Gamification mechanics / spec | `docs/07-technology/gamification_mechanics.md`, `gamification_spec.md` | points and levels | Causal | contradicts §13.2 (no points, real QoL level) | — | superseded · 2025-01 | retire |
 | Quest suggestion prompts | `supabase/functions/suggest-main-quest`, `suggest-next-quest` | today's quest | Causal | the Quest Board choosing one next move | Quest Board | in use (code) | keep |
@@ -222,7 +223,7 @@ Runners-up: mastermind-host (after the Nov 9–10 run), infographic-style-keeper
 - **Outreach copy**: Outreach Ops vs Customer Journey §5/§7, Communications universal template and emails, adjacent-founder template; two empty July stubs.
 - ~~**Session scripts**~~ → synthesized into [session-script.md](./session-script.md) (2026-10-27): Ignition SOP v1/v2, Mirror Session, Direction Call Script, Pre-Call Protocol, Reflection Proposal, Funnel v5, `/ignite`.
 - **Roasting**: Roasting Protocol vs Appleseed roasting vs daily-loop roast trio.
-- **Module checklists**: implementation checklist ×2; module polish ×2.
+- ~~**Module checklists**~~ → synthesized into [module-form.md](./module-form.md) (2026-10-27): implementation checklist ×2; module polish ×2.
 - **Copy voice**: Anti-AI style vs Humanizer vs Purity Check.
 - **Myth**: myth-maker vs Myth Broadcasts.
 - **Body-of-work study**: Money Studies holomaps vs Leonardo instances.

@@ -1,3 +1,5 @@
+> The Transformative-Result Pattern is synthesized into docs/templates/module-form.md (2026-10-27). This file is kept as a source.
+
 > Synthesized into docs/templates/spec-handoff.md (2026-10-27). This file is kept as a source.
 
 # Integrated Product Building Workflow

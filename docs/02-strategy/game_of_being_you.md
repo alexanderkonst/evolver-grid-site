@@ -1,3 +1,5 @@
+> §10a, §13.4, §14.3, §14.4, §15.5 and §15.8 (the module form and its rules) are synthesized into docs/templates/module-form.md (2026-10-27). This file is kept as a source.
+
 # THE GAME OF BEING YOU — Game Blueprint
 
 > Master design doc for the game that findyourtoptalent.com becomes. The game is the blueprint: every product, page and funnel is a part of the game.

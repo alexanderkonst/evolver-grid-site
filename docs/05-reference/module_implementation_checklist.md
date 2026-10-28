@@ -1,3 +1,5 @@
+> Synthesized into docs/templates/module-form.md (2026-10-27). This file is kept as a source.
+
 # Complete Module Implementation Checklist v3.0
 
 > **Universal template with ALL sub-steps from ALL playbooks.**

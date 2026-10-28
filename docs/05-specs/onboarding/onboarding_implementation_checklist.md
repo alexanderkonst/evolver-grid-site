@@ -1,3 +1,5 @@
+> Synthesized into docs/templates/module-form.md (2026-10-27). This file is kept as a source.
+
 # Module Implementation Checklist
 
 > **Onboarding Module — Complete Product Stack Applied**

@@ -1,3 +1,5 @@
+> Synthesized into docs/templates/module-form.md (2026-10-27). This file is kept as a source.
+
 # Module Polish Workflow
 
 > Audit an existing module against playbook standards and fix issues
