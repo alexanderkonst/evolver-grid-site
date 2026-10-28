@@ -16,6 +16,13 @@
 ## 1. Essence
 **We sell shifts, not content.** The offer sounds like «Ты увидишь… и сделаешь…» / "You will see… and you will…", never "you will get a course". Because every template already names the shift it carries ([meta-template.md](./meta-template.md) §2b), we can name the result directly and promise exactly what the path delivers. **No shift, no promise.**
 
+## 1a. Primitive vs shift: three questions (Sasha, 2026-10-28)
+A **primitive** names the mechanism (e.g. split → wholeness). It is not yet the **shift**. The shift is what changes for the person, answered by three questions, always all three:
+1. **What can I now DO?** (new capability, action)
+2. **How do I now FEEL myself?** (new state, self-experience)
+3. **What possibilities do I now SEE as available?** (new horizon)
+"What's in it for the person?" is answered only when all three have concrete answers in their words. The offer line is built from them.
+
 ## 2. Principles (from the BE/DO cycle, meta-template §2b)
 1. **Technology is the shift, template is the path.** The offer quotes the shift (BE) and stands on the path (DO). If either is missing, there is no offer yet.
 2. **«Shift carried» is the source of the offer.** Read the template's «Shift carried» line first; the offer is that line, said to the buyer in their words.
@@ -30,6 +37,10 @@
 - Template used: <docs/templates/… or module, route>
 - Technology carried: PST N <name> | Craft: <the skill it is>
 - Point A (their words): <what they see and feel now, as they would say it>
+- Primitive (mechanism): <e.g. split → wholeness>
+- Shift: now I can DO: <…>
+- Shift: now I FEEL myself: <…>
+- Shift: now I SEE possibilities: <…>
 - Point B — they will SEE: <the new seeing, one sentence>
 - Point B — they will DO: <one real step they take, inside or right after>
 - Offer line (EN): You will see <…> and you will <…>.

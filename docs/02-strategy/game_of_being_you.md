@@ -4,7 +4,7 @@
 
 > Master design doc for the game that findyourtoptalent.com becomes. The game is the blueprint: every product, page and funnel is a part of the game.
 > *Created: 2026-10-26 (Day 225). Owner: Aleksandr Konstantinov. Keeper: Evolver (Hark).*
-> Related: [game_spaces.md](./game_spaces.md) (what you can do in each space), [module_taxonomy.md](./module_taxonomy.md), [../05-reference/brandbook.md](../05-reference/brandbook.md).
+> Related: [game_multiplayer.md](./game_multiplayer.md) (Multiplayer: Meet, how players meet), [game_spaces.md](./game_spaces.md) (what you can do in each space), [module_taxonomy.md](./module_taxonomy.md), [../05-reference/brandbook.md](../05-reference/brandbook.md).
 
 **Subtitle:** Self-Discovery · Growth · Quality of Life · Uniqueness · Tribe · Village · Collective (Sasha, 2026-10-27; was «Self-Discovery · Quality of Life · Uniqueness · Growth · Tribe», 2026-10-26).
 **Tagline:** *Bring the full force of who you are to what you build.*
