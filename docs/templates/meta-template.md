@@ -39,6 +39,13 @@
 
 **How the lenses sit together.** Blueprint says where, Causal says how it unfolds, Ideal Forms says what it is when complete, Unity says whether it is one. Each template's meta-description names its lens(es) (§6); the README inventory uses them as a working reading per template.
 
+### 2b. Technology and template: BE and DO of one cycle
+*Sasha delegated the decision, 2026-10-27 20:41; written by Evolver.*
+- **A technology** (the Phase Shift Technology Library, `docs/01-vision/phase_shift_technology_library.md`, 161 numbered technologies) is a **shift in seeing**: a before → after that, once seen, cannot be unseen. It is the BE side of the cycle (PST 161, the Hexagon Cycle).
+- **A template** is the **repeatable path that carries a person through that shift without Sasha**. It is the DO side.
+- **Both directions.** A technology that grows a protocol becomes a template; a template, run and debriefed, births new technologies (laws found in the doing).
+- **Not a fifth lens, not a domain.** The library runs through all seven L1 domains and every lens; each template names the shift it carries in its meta-description (§6), or says "Craft" when it carries none (a skill, not a shift).
+
 ## 3. Significance
 - **Repeatability.** Seeing it as a template makes it repeatable: we can re-run it in any domain, village or medium.
 - **The template as an object.** We can see the template as an object and receive it as something arriving from the spheres (Sasha's words), not only something we make.
@@ -66,6 +73,7 @@ The L1 list is provisional; the corpus inventory (README, «Corpus inventory by 
 ## Meta-description
 - Level / parent: L2 · <L1 domain> · <parent template>
 - Lens(es): Blueprint | Causal | Ideal Forms | Unity (form·quality·colour·sound·taste·light)
+- Technology (shift it carries): PST N — before → after · shift check: <how you see the shift happened> | Craft (when it carries no shift)
 - What emerges: <what the template brings into being>
 - As a part of the whole: <one sentence: how the Meta-Template sees this template as a sub-part of itself>
 - Siblings / repeats: <related templates, duplicates>
@@ -80,6 +88,8 @@ The L1 list is provisional; the corpus inventory (README, «Corpus inventory by 
 5. When two templates turn out to be one, merge them and leave a pointer.
 6. Anything that changes L0 or L1 goes to Sasha first: these levels carry his transmission.
 7. **Duplicates are synthesized, never discarded** (Sasha, 2026-10-27: «не выкинуть все кроме одного… синтезировать все их в один шаблон, примерно в том стиле, как ты делаешь граф знаний»). Read every copy fully; the canonical template keeps the union of what is valuable, not only the newest; where copies conflict, the newer Sasha-confirmed one wins and the older claim stays as a dated note; the template ends with a Genealogy table (each source, its date, provenance, what it contributed). Sources stay where they are, with one pointer line at their top.
+8. **Template → library.** A new law found in a template's debrief (retro, session notes, a planning review) is a candidate technology for the Phase Shift Technology Library; note it in the template and bring it to Sasha (the library carries his transmission).
+9. **Library → template.** A technology that grows a repeatable protocol is a template candidate: register it in the README inventory and promote it by §7.1–7.3.
 
 ## 8. Tasks (living list)
 - [x] T1 Record the transmission as this Meta-Template (2026-10-27).

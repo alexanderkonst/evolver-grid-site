@@ -6,6 +6,7 @@
 ## Meta-description
 - Level / parent: L2 · Content & Transmission (proposed L1, awaiting Sasha's confirmation, Meta-Template T3) · parent: [meta-template.md](./meta-template.md)
 - Lens(es): **Causal** (the six steps, structure first and content hanging on it) · **Ideal Forms** (one episode = one idea, 90–120 s; the course look: one metaphor, three colours, one "never")
+- Technology (shift it carries): PST 96 Signal-Preserving Holonic Artifact Propagation — a body of work reworded into generic lessons → every episode carries the source's signal intact · also PST 82 (simple, not simplistic), 145 (the average fills the silence), 8 (one acorn, every magnification) · shift check: someone who never met Sasha watches one episode and repeats its one idea in its own words, not average ones
 - What emerges: a body of Sasha's work (workshops, an article, infographics) becomes a path other people can walk on their own: modules, episodes, one badge.
 - As a part of the whole: the Meta-Template sees this as emergence of a transmission into a learnable form: what arrived through Sasha is given a spine and a rhythm so it can be received, repeated and grown in another person without loss.
 - Siblings / repeats: testimonial-clips (the same transmission returning as others' words); the NotebookLM video production cluster and the micro-module format (to be merged in as parts, see README inventory); Hark specialty `course-from-source` is a mirror of this file.
