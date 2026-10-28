@@ -151,6 +151,9 @@ a.cs-item__label:focus-visible { outline: 1px solid var(--cs-accent); outline-of
 .cs-victory .cs-item__label { color: var(--cs-ink); }
 .cs-victory .cs-item__no { color: var(--slot-accent); }
 .cs-sec__note { margin: -8px 0 20px; font-family: var(--cs-serif); font-style: italic; font-weight: 300; font-size: 17px; color: var(--cs-ink-2); }
+/* WP-19: the decision a badge carries, under its row; the date follows in small mono. */
+.cs-victory .cs-victory__choice { margin: 4px 0 0; overflow-wrap: anywhere; }
+.cs-victory__date { font-style: normal; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cs-ink-2); }
 
 /* ---------- Entrance + reduced motion ---------- */
 @keyframes cs-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
