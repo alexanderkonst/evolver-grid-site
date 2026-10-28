@@ -1,3 +1,5 @@
+> Its production method is synthesized into docs/templates/course-from-source.md (2026-10-27). This file is kept as a source.
+
 # Video Production Plan — NotebookLM → YouTube → Platform
 
 > **Created:** 2026-02-05

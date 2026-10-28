@@ -4,7 +4,7 @@ Reusable methods for producing things from Sasha's work: one file per template, 
 
 | Template | What it produces | Status |
 |---|---|---|
-| [course-from-source.md](./course-from-source.md) | A mini-course (modules, 90–120 s episodes, NotebookLM Video Overviews) from a body of work: workshops, an article, infographics | in use (Activate Your Dormant Potential; Consciousness Meets Science draft) |
+| [course-from-source.md](./course-from-source.md) | A mini-course (modules, 90–120 s episodes, NotebookLM Video Overviews) from a body of work: workshops, an article, infographics | in use (Activate Your Dormant Potential; Consciousness Meets Science draft); production line folded in 2026-10-27 |
 | [testimonial-clips.md](./testimonial-clips.md) | Short verbatim testimonial clips (4–20 s, subtitled, 16:9 + 9:16) cut from recorded calls, consent-gated, for the game's Outro notes | in use (first batch 2026-10-27, private until consent) |
 | [improvement-loop.md](./improvement-loop.md) | The standing loop for long builds: work by plan, ship, report in meaning, review the plan, improve the planning itself (with a planning retro) | in use (The Game of Being You, from 2026-10-27) |
 | [holonic-seeing.md](./holonic-seeing.md) | One unified reading of anything from 27 positions (4 quadrants × 3 depths, the centre, the seeing of the seeing, then the one act); synthesized from 5 tellings | in use (synthesis layers, roasts, `/27`, Hark specialty) |
@@ -160,7 +160,7 @@ Reusable methods for producing things from Sasha's work: one file per template, 
 | L2 template | Where | Produces | Lens | As a part of the whole | Module | Status · dated | Verdict |
 |---|---|---|---|---|---|---|---|
 | Course-from-Source | [course-from-source.md](./course-from-source.md); mirrored by Hark specialty `course-from-source` | a NotebookLM mini-course | Causal | a body of work becoming a path others can walk | Academy | in use · 2026-10-27 | keep (promoted); skill stays a mirror |
-| NotebookLM video production cluster | `docs/04-workflows/notebooklm_video_production.md`; `docs/03-playbooks/notebooklm_workflow.md` (RU); `docs/04-workflows/video_regeneration_project_plan.md` (focus, style, YouTube description templates); `docs/08-content/VIDEO_PRODUCTION_PLAN.md` (8 steps per module, metadata template); `scripts/README_REGENERATION.md` | episode videos and their metadata | Causal | the earlier tellings of course production | Academy | historical, plan in use · 2026-02 → 2026-10-27 | merge into Course-from-Source as its parts; keep the plan as tracker |
+| NotebookLM video production cluster | `docs/04-workflows/notebooklm_video_production.md`; `docs/03-playbooks/notebooklm_workflow.md` (RU); `docs/04-workflows/video_regeneration_project_plan.md` (focus, style, YouTube description templates); `docs/08-content/VIDEO_PRODUCTION_PLAN.md` (8 steps per module, metadata template); `scripts/README_REGENERATION.md` | episode videos and their metadata | Causal | the earlier tellings of course production | Academy | historical, plan in use · 2026-02 → 2026-10-27 | **synthesized** → [course-from-source.md](./course-from-source.md) §Production line + Genealogy (2026-10-27); the plan stays the tracker |
 | Testimonial clips | [testimonial-clips.md](./testimonial-clips.md) | consent-gated verbatim clips | Ideal Forms | a player's voice left for those who come after | Market · Outros | in use · 2026-10-27 | keep (promoted) |
 | infographic-style-keeper *(Hark specialty)* | Hark custom skill | one visual canon for Sasha's sketches (micro/macro, 5 inner vectors ↔ 6 business sides) | Unity | form, colour and light held as one canon | Content & Brand | in use · Oct 2026 | **promote** (runner-up) |
 | Infographic prompt specs | `docs/08-content/hero_journey_map_infographic_prompts.md`, `landing_page_infographic_prompts.md`; `output/imagegen/*-prompt.md` (6) | generated infographics, posters, dioramas | Unity | applied examples of the canon | Content & Brand | historical | merge as examples into the infographic template |
@@ -215,7 +215,7 @@ Reusable methods for producing things from Sasha's work: one file per template, 
 Runners-up: mastermind-host (after the Nov 9–10 run), infographic-style-keeper, Pulse Protocol, application-blueprint (public-safe version), myth-maker.
 
 ### Duplicate clusters
-- **Course / video production**: 5 files + `course-from-source.md`.
+- ~~**Course / video production**~~ → 5 files synthesized into [course-from-source.md](./course-from-source.md) (2026-10-27).
 - ~~**Holonic seeing**~~ → synthesized into [holonic-seeing.md](./holonic-seeing.md) (2026-10-27): Hark specialty, `.agent/skills/`, PST §15e/g/i, `universal_ontology.md` output protocol, PST §37.
 - ~~**Unique Business method**~~ → synthesized into [unique-business-canvas.md](./unique-business-canvas.md) (2026-10-27); Integrated Playbook stays the domain parent: Integrated Playbook, Creation Playbook (10 steps), `genius-business` workflow, Venture Growth Playbook.
 - ~~**Spec / handoff**~~ → synthesized into [spec-handoff.md](./spec-handoff.md) (2026-10-27): `sasha-spec-writing`, `hark_spec_handover.md`, SOW+DoD files, `feature.md`, Feature Spec Template, Integrated Product Building Workflow.

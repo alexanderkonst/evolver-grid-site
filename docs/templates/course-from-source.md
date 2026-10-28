@@ -9,7 +9,7 @@
 - Technology (shift it carries): PST 96 Signal-Preserving Holonic Artifact Propagation — a body of work reworded into generic lessons → every episode carries the source's signal intact · also PST 82 (simple, not simplistic), 145 (the average fills the silence), 8 (one acorn, every magnification) · shift check: someone who never met Sasha watches one episode and repeats its one idea in its own words, not average ones
 - What emerges: a body of Sasha's work (workshops, an article, infographics) becomes a path other people can walk on their own: modules, episodes, one badge.
 - As a part of the whole: the Meta-Template sees this as emergence of a transmission into a learnable form: what arrived through Sasha is given a spine and a rhythm so it can be received, repeated and grown in another person without loss.
-- Siblings / repeats: testimonial-clips (the same transmission returning as others' words); the NotebookLM video production cluster and the micro-module format (to be merged in as parts, see README inventory); Hark specialty `course-from-source` is a mirror of this file.
+- Siblings / repeats: testimonial-clips (the same transmission returning as others' words); the NotebookLM video production cluster (synthesized in below, 2026-10-27: Production line, Genealogy) and the micro-module format (still to merge, see README inventory); Hark specialty `course-from-source` is a mirror of this file.
 - Status · applied in · last reviewed: in use · Activate Your Dormant Potential; Consciousness Meets Science (draft) · 2026-10-27
 
 > **Added:** 2026-10-27, in Sasha's words, as the reusable way to turn any body of his work (workshops, an article, infographics) into a mini-course. A living course: it keeps improving after release.
@@ -33,6 +33,17 @@
 - Close each module on warmer light than it opened with; the last episode ends in the fullest light (dawn / fire circle).
 - Example set: Consciousness Meets Science, 15 episode lines kept with the episode prompts.
 
+### Production line (batch, from the February runs)
+*Synthesized 2026-10-27 from five production files (Genealogy below). Where they differ from the 6 steps above, the October rules win.*
+1. **Prepare all sources first.** One text per episode, in one batch file with clear separators (`===MODULE: <code> <title>===` … `===END===`), and the per-episode focus line pre-written in a table. No thinking during execution, only pasting.
+2. **Trigger, don't wait.** Per episode: new notebook → paste source → rename to the episode code → Video Overview → Customize → style line + focus line → Generate → **move to the next episode at once** (~60–90 s each). Several tabs in rotation, or the Playwright script `scripts/regenerate_videos.js` (`scripts/README_REGENERATION.md`), which continues on failure, marks ❌ and saves a screenshot.
+3. **Harvest after ~15–20 min**, in rolling batches. **Duration gate before download:** within target, else mark and regenerate with a stricter focus line.
+4. **Name and file:** `<module code><episode> — <Title>` (codes: F Foundational, S Spirit, M Mind, E Emotions, B Body, G Genius, C Consciousness; "seasons are called modules").
+5. **Upload unlisted**, one playlist per module; description = one-sentence summary + the course link + 3–4 tags; log each URL in the tracker.
+6. **Tracker per course:** episode × (sourced, triggered, downloaded, uploaded, URL). Delegate batches of 10+ to a cheaper sub-agent with a self-contained task.
+
+> *Dated notes.* **Length:** February runs held a hard "90 seconds maximum… NON-NEGOTIABLE", yet accepted "max 2 min" at the download check; October (Sasha, 2026-10-27) sets **90–120 s, under 2 minutes**. The invariant across both: one idea, under two minutes. **Look:** February used one constant Bio-Light style for every video ("Bio-luminescent, iridescent pastel gradients on dark background…"); October replaces it with a course look + episode scene (above); Bio-Light stays a valid course look. **Format:** the first guide (RU, early 2026) made Audio Overviews (MP3); the line has been Video Overviews since February. **Names:** "Planetary OS v1.0" in titles and descriptions belongs to the old curriculum name; the course is *Activate Your Dormant Potential* since 2026-10-26.
+
 ### Rules of thumb
 - One episode = one idea, 90–120 s (about 220–300 spoken words).
 - Module = a theme of the structure; course = a short, self-paced experience with Intro, Outro and one badge (Game of Being You rules).
@@ -42,3 +53,15 @@
 ### Applications
 - 1. **Activate Your Dormant Potential** (6 modules, 38 episodes): [activate_your_dormant_potential_transcripts.md](../08-content/activate_your_dormant_potential_transcripts.md).
 - 2. **Consciousness Meets Science** (Mystery School intro, draft): plan in [VIDEO_PRODUCTION_PLAN.md](../08-content/VIDEO_PRODUCTION_PLAN.md) → Application 2; episode texts in [consciousness_meets_science_course.md](../08-content/consciousness_meets_science_course.md).
+
+---
+
+## Genealogy
+| Source | Date | Provenance | What it contributed |
+|---|---|---|---|
+| `docs/03-playbooks/notebooklm_workflow.md` (RU) | early 2026 | Sasha's own working note, AI-assisted | the first per-module loop (notebook → source → overview → YouTube → URL in a table); episode list; parallel tabs |
+| `docs/08-content/VIDEO_PRODUCTION_PLAN.md` | v2.0 2026-02-05; renamed course 2026-10-26; Application 2 2026-10-27 | AI-run plan and tracker; October notes in Sasha's words | the 8-step per-episode loop; naming as TV series; YouTube metadata template; the master tracker; the 6 steps moved from here into this file (2026-10-27); stays the live tracker and holds Application 2 |
+| `docs/04-workflows/notebooklm_video_production.md` | v1.1 2026-02-05 | AI-written, from the automated runs | trigger-don't-wait; batch clipboard file; pre-written focus prompts; harvest; optimization history (≈9 min → ≈90 s per episode); troubleshooting |
+| `docs/04-workflows/video_regeneration_project_plan.md` | 2026-02-11 | AI-written plan, reviewed with Sasha before execution | the duration gate before download; rolling batches; sub-agent allocation; description template; risk list |
+| `scripts/README_REGENERATION.md` | 2026-02-11 | AI-written, documents `scripts/regenerate_videos.js` | the line as a Playwright script: continue on failure, ❌ in tracker, screenshot per error |
+| this file's 6 steps and Look & feel | 2026-10-27 | Sasha's words (6 steps, authorship check, 90–120 s) | the canonical method; course look + episode scene |

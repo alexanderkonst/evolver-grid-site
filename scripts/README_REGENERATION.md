@@ -1,3 +1,5 @@
+> Synthesized into docs/templates/course-from-source.md (2026-10-27). This file is kept as a source.
+
 # Video Regeneration Script
 
 Automated script to regenerate all 35 NotebookLM videos with 90-second duration constraint.

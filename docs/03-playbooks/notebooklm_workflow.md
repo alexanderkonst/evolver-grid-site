@@ -1,3 +1,5 @@
+> Synthesized into docs/templates/course-from-source.md (2026-10-27). This file is kept as a source.
+
 # NotebookLM Video Production Guide
 
 ## 🎯 Простая инструкция
