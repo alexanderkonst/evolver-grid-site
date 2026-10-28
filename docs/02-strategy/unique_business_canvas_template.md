@@ -1,103 +1,136 @@
-> Synthesized into docs/templates/unique-business-canvas.md (2026-10-27). This file is kept as a source.
+> The method lives in [docs/templates/unique-business-canvas.md](../templates/unique-business-canvas.md) (canonical, synthesized 2026-10-27). This file is the founder's fill-in skeleton built on it.
+
+> **Changelog.** v7.0 (2026-10-28): rebuilt on the **six main artifacts**: Uniqueness, Shadow, Myth, Tribe, Transition, Transformational Promise. Full Shadow section; Pain becomes **Transition** (5-Layer Slicer v2.0, empathy first); Promise becomes **Transformational Promise** (formerly also "Promised Land"); the **recognition line** (familiarity, body, "too simple") after every body score; Lead Magnet and Value Ladder move downstream to "From canvas to market". The 7-artifact count of v5.0–v6.0 is superseded. · v6.0 (2026-09-11): five method laws. · v5.0 (2026-03-12): two forms, status table, canvas.
 
 # Unique Business Canvas — Template
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
-> **How to use:** Fill in order. Each artifact builds on the previous. Copy this file as `[name]s_unique_business.md`. Reference: [Unique Business Playbook](../03-playbooks/unique_business_playbook.md)
->
-> **Key principles:**
-> - Every artifact exists in **TWO FORMS**: full-signal (founder's language) + universal language (teenager understands it)
-> - Precision scores (1-10) are given by the founder's body, not their mind
-> - A new version only replaces the previous if precision is HIGHER
-> - The Canvas becomes a self-sustaining flywheel: live life → new clarity → glance at Canvas → tell AI → version increments → downstream sharpens
-> - The universal language version IS the marketing — no copywriter needed
+> **How to use:** Fill in order. Each artifact derives from the one above it. Copy this file as `[name]s_unique_business.md`. Method: [Unique Business Canvas (canonical)](../templates/unique-business-canvas.md) · long form: [Unique Business Playbook](../03-playbooks/unique_business_playbook.md)
 
 ---
 
-> **v6.0 additions (Day 180).** The live method gained five laws since v5.0; fold them into every canvas:
-> - **Shadow — two dials.** The Shadow artifact carries a synthesized one-line form *and* a full paragraph; score both. (Playbook Principle 5; `unique-businesses/alexanders_unique_business.md` §2B.)
-> - **Public Lines (versioned).** The tagline, bio, and one-liner a stranger actually hears are artifacts; version them like any other. (Playbook Principle 13, The Highest-Rated Version Rule.)
-> - **Timestamp Requirement.** Every artifact version carries a date; the proprietary dataset is the timestamped trail of the maturation.
-> - **Ripeness read.** Alongside uniqueness, read whether the person can build from it now — the 9-axis Ripeness Vector, with Surrender / Means / Ticking-Clock as multiplicative gates. (Technology 123.)
-> - **Stream 0.** The method is run on its author first; the four scales (0/A/B/C) open in a load order. (Playbook Principle 18.)
-> - **Function, not form.** The canvas describes a function. The vehicle that carries it (1:1, product, own venture, an ecosystem role, a connector between networks) is chosen for the season and can change without changing the canvas. (Playbook, Part I, "Function, not form: configurations of a Unique Business.")
->
-> Full per-artifact template sections for these can follow; this note makes the current method's laws canonical in the template now.
+## The laws (hold every artifact)
 
-## 🧭 Business Dashboard
+1. **Two forms.** Full-signal (the founder's language, metaphors, insider terms) + universal language (a teenager understands it). The universal version IS the marketing; no copywriter needed.
+2. **The body scores.** Precision 1–10 is given by the founder's body, not their mind. If the facilitator or the AI says 9 and the founder feels 7, it's 7.
+3. **The recognition line.** After every body score, ask all three probes; each shows the truth from another side:
+   - **A · Familiarity:** does it feel like something you've always known but never said?
+   - **B · Body:** where in the body did it land, and what moved (chills, warmth, tears, a drop, a breath)?
+   - **C · "Too simple":** does it feel too obvious to be valuable? That is a sign of the gift, not a flaw: what you do most naturally feels like nothing to you.
+   Low resonance can be **resistance** (shadow), not a wrong formulation. Before rewriting, check: is it "this isn't me" or "I don't want this to be me"?
+4. **Version + date.** Every version, score and prediction carries its date. The timestamped trail is the dataset.
+5. **Only higher replaces.** A new version replaces the previous one only if its body score is higher. Never delete a spoken version; newest on top.
+6. **Derive from the highest-rated version.** Build downstream only from the highest-scored full-signal version, and cite it ("derived from Uniqueness v1.2, 9.4/10"). Never re-distil what the founder already scored.
+7. **Keep the person's exact words.** Every reaction to a formulation goes, verbatim, into the Nuance list (below) and is fed into the next version. Without it the AI silently drops a shade of meaning between versions and resonance falls without anyone knowing why. Verbatim beats polish.
+8. **Forged, not drafted.** Articulate → roast → distil → repeat; at least 3 versions before building on an artifact.
+9. **Error from below.** An error in artifact N shows when building N + 1. When an artifact feels off, check the one above it.
+10. **The last mile is the founder's.** AI gets an artifact to ~9; the founder's own rewrite, from inside the tribe's skin, closes it to 10.
+11. **ONE of everything.** One tribe, one myth, one transition, one promise, one channel, one ladder.
+12. **Function, not form.** The canvas describes a function. The vehicle (1:1, product, own venture, ecosystem role, connector between networks) is chosen for the season and can change without changing the canvas.
+13. **Stream 0.** Run the method on yourself first.
 
-*Distilled snapshot. Top-of-file glance — the canvas sprawls below. Pattern originated Day 48 (April 22, 2026) in Sasha's canvas; codified here as a template for every founder building their own unique business.*
+### Precision thresholds
+
+| Body score | Unlocks | Do |
+|---|---|---|
+| 8.0+ | direction is right | polish, don't restart; downstream may be drafted, not finalized |
+| 9.2+ | downstream in earnest | start Transition and Transformational Promise |
+| 9.5+ | full strategy activation | stop polishing, act; precision now comes from market contact |
+| 9.9+ | polish territory | refinement, not architecture; ship |
+
+### Who leads, by step
+
+On **identity steps** (Uniqueness, Shadow, Myth) the founder's recognition is the instrument: fast and somatic. On **business steps** (Transition, Promise, and everything downstream) the founder's evaluation faculty often runs out ("I can't rate this"), because it needs having watched a business run: here **the facilitator leads**, proposes, and the market scores.
+
+---
+
+> **v6.0 additions (Day 180), kept as genealogy.** Shadow — two dials; Public Lines (versioned); Timestamp Requirement; Ripeness read (9-axis vector, Surrender / Means / Ticking-Clock as multiplicative gates, Technology 123); Stream 0; Function, not form. In v7.0 each is folded into the laws above, the Shadow section, the Dashboard (public lines) or the Tribe section (ripeness).
+
+## Business Dashboard
+
+*Distilled snapshot. Top-of-file glance; the canvas sprawls below.*
 
 ### Name & Surfaces
 - **Name:** *[Your business name]*
 - **Domain:** *[yoursite.com]*
 - **Founder domain:** *[yourname.com]* (if different)
-- **Site skins / aesthetic identity:** *[optional — e.g. "Light + rainbow" / "Dark + metal"]*
+- **Site skins / aesthetic identity:** *[optional]*
 
-### Tribe (target 9+/10 precision)
-*[Who your 9+/10 clients are, in your own voice. One paragraph. Should make the right person sit up and the wrong person quietly leave.]*
+### Three public lines (versioned, newest on top)
+- **Business tagline:** *[~7 words]* · v— · [date] · —/10
+- **Uniqueness tagline:** *[~7 words]* · v— · [date] · —/10
+- **Mission:** *[one sentence]* · v— · [date] · —/10
 
-### Top Talent — target 9+/10 articulation
-*[Your top talent distilled to one sentence at 9+/10 precision. See Step 2 of the playbook.]*
+### Master Tuning Forks — v1.0
 
-### ⭐ Master Tuning Forks — v1.0
-
-*The one-sentence frames of the transformation. Three compressions of the same signal, posted across bios, DMs, life-update posts, and About pages. See Step 6 of the playbook.*
+*One-sentence frames of the transformation. Three compressions of the same signal, for bios, DMs, life-update posts and About pages.*
 
 **Tuning Fork #1 — Primary (full)**
 > *[I help {tribe} turn their {input} into {outcome} — {quality}, in {timeframe}.]*
 
-*Use for:* LinkedIn About · Instagram bio · site footer · speaker bios. Long enough to carry your full differentiator, short enough to feel alive.
+*Use for:* LinkedIn About · Instagram bio · site footer · speaker bios.
 
 **Tuning Fork #2 — Compressed**
 > *[I turn {tribe}'s {input} into {outcome} in {timeframe}.]*
 
-*Use for:* Email signature · WhatsApp bio · Telegram bio · X bio · LinkedIn tagline. Any slot where space is tight.
+*Use for:* email signature · messenger bios · X bio · LinkedIn tagline.
 
-**Tuning Fork #3 — Transformation Arc** ← *canonical template form*
+**Tuning Fork #3 — Transformation Arc** ← *canonical form*
 > *[{tribe member} walks in {challenged situation} into my digital shop — and walks out, {timeframe} later, with {concrete transformational result}.]*
 
-*Use for:* Life-update post ("what I just focused my life on") · About page opener · Step 6 masthead example. This is the form a reader *locates themselves inside* — they're already in the shop reading the line, so the arc begins right now.
+*Use for:* life-update post · About page opener. The reader locates themselves inside the line.
 
-**Sasha's working example (reference):**
+**Author's example (reference):**
 > "An aspiring impact founder walks in challenged to clearly explain what they do into my digital shop — and walks out, 6–8 weeks later, with a running scalable business at early product-market fit."
 
 ### Value Ladder snapshot
-*[Step 1 free · Steps 2+3 {$} · Step 4 {$} · Step 5 {$} · Step 6 {$+rev share} · Step 7 by invitation. Total entry path: {$total} in {timeframe}. See Path page / Value Ladder artifact below.]*
+*[Step 0 free · Step 1 {$} · Step 2 {$} · Step 3 {$/mo}. See "From canvas to market" below.]*
 
 ### Current State
-- **Founders / cohort:** *[names or count]*
+- **Clients / cohort:** *[names or count]*
 - **Revenue to date:** *[cash + in-kind + rev share]*
-- **Next milestone:** *[the specific Si-Do crystallization this business is working toward]*
+- **Next milestone:** *[the specific crystallization this business is working toward]*
 
 ---
 
 ## Artifact Status
 
-| Artifact | Version | Precision | Status |
-|----------|---------|-----------|--------|
-| Uniqueness | — | — | ⏳ Not started |
-| Myth | — | — | ⏳ Not started |
-| Tribe | — | — | ⏳ Not started |
-| Pain | — | — | ⏳ Not started |
-| Promise | — | — | ⏳ Not started |
-| Lead Magnet | — | — | ⏳ Not started |
-| Value Ladder | — | — | ⏳ Not started |
+| # | Artifact | Version | Body score | Recognition (A · B · C) | Date | Status |
+|---|----------|---------|-----------|-------------------------|------|--------|
+| 1 | Uniqueness | — | — | — | — | Not started |
+| 2 | Shadow | — | resonance —/10 · charge —/10 | — | — | Not started |
+| 3 | Myth | — | — | — | — | Not started |
+| 4 | Tribe | — | — | — | — | Not started |
+| 5 | Transition (Point A →) | — | — | — | — | Not started |
+| 6 | Transformational Promise (Point B) | — | — | — | — | Not started |
+
+*Downstream, not core artifacts:* Lead Magnet, Value Ladder (see "From canvas to market").
 
 ## Unique Business Canvas
 
-*The entire unique business at a glance. Each artifact in its most distilled form. Iterate from here.*
+*The whole unique business on half a page. Each artifact in its most distilled form. Iterate from here.*
 
 | # | Artifact | Distillation |
 |---|----------|-------------|
-| 1 | **Uniqueness** | *[One paragraph: who are you at your brightest? What's the intersection no one else occupies?]* |
-| 2 | **Myth** | *[**Lie:** what false belief does the world run on? **Truth:** what's actually true? **Line:** the sentence that stops the scroll]* |
-| 3 | **Tribe** | *[One paragraph: who are these people? What do they carry? What did the world tell them to do? What do they refuse?]* |
-| 4 | **Pain** | *[One paragraph: what's broken? What's gone? What are they choosing over what? What do they actually need?]* |
-| 5 | **Promise** | *[One paragraph: what comes back? How? The transformation in their words]* |
-| 6 | **Lead Magnet** | *[Format + mechanism: how does the pain card reach them?]* |
-| 7 | **Value Ladder** | *[Steps with prices: Free → Entry → Journey → Container]* |
+| 1 | **Uniqueness** | *[Who are you at your brightest? The intersection no one else occupies.]* |
+| 2 | **Shadow** | *[The inverted trap of the gift, one line: "I need to [apply my gift to myself] before I can [apply it to others]."]* |
+| 3 | **Myth** | *[**Lie:** the false belief the world runs on. **Truth:** what's actually true. **Line:** the sentence that stops the scroll.]* |
+| 4 | **Tribe** | *[Who recognizes themselves in the myth: what's alive in them, what they carry, what they refuse.]* |
+| 5 | **Transition** | *[Point A and the passage: what's bearing down, what it costs, why now, what's at stake, the structural struggle.]* |
+| 6 | **Transformational Promise** | *[Point B: what comes back, as the exact inversion of the transition, in their words.]* |
+
+---
+
+## Nuance list (the person's exact words)
+
+*Every reaction to every formulation, verbatim, numbered. Re-fed into the next version of the artifact it belongs to.*
+
+| # | Artifact · version | Their exact words | What it tells us | Folded into |
+|---|---|---|---|---|
+| 1 | | | | |
+| 2 | | | | |
+| 3 | | | | |
 
 ---
 
@@ -111,25 +144,82 @@
 
 ### Universal language version
 
-> *[Same signal, zero jargon. A teenager understands it. This IS the marketing.]*
+> *[Same signal, zero jargon. A teenager understands it.]*
 
-**Precision score:** —/10
-**Scored by:** [founder name], [date]
+### Tagline (~7 words)
+
+> *[...]*
+
+**Version:** v— · [date] · derived from: —
+**Body score:** —/10 · scored by [founder name], [date]
+**Recognition line:** A familiarity: *[...]* · B body: *[where, what moved]* · C "too simple": *[yes / no, their words]*
+
+> If they say "that's too simple, everyone can do that": name it gently. The thing you do most naturally feels too simple to be valuable; that's structural, not true.
 
 ---
 
-## 2. Myth
+## 2. Shadow
+
+*What is the inverted trap of my gift?*
+
+> The shadow is the gift turned inward and against itself. Its landing is often the peak of a session. Name it gently; don't dig into it or do therapy.
+
+### Anatomy
+
+| Layer | What it is | The founder's shadow |
+|---|---|---|
+| **Surface** | the behavior others can see (the scatter, the delay, the over-giving) | *[...]* |
+| **Middle** | the feeling underneath ("I feel lost", "nothing's finished", "I feel isolated") | *[...]* |
+| **Root** | the belief that runs it | *[...]* |
+| **Inversion** | how exactly the gift turns against its owner | *[...]* |
+
+### The recursive trap
+
+> *"I need to [apply my gift to myself] before I can [apply it to others]."*
+>
+> *[The founder's version]*
+
+### Collapse condition
+
+> *[What dissolves the trap: usually acting from the gift for others before it is "finished" in oneself.]*
+
+### One line (full-signal)
+
+> *[...]*
+
+### Full paragraph
+
+> *[...]*
+
+### Universal language version
+
+> *[Same shadow, zero jargon. A teenager recognizes it in a friend, or in themselves.]*
+
+**Version:** v— · [date] · derived from: Uniqueness v—
+**Two dials** (score both, for the one line and the paragraph):
+- **Resonance:** —/10 (how true)
+- **Charge:** —/10 (how much it stings)
+
+**Recognition line:** A familiarity: *[...]* · B body: *[...]* · C "too simple": *[...]*
+
+> **The shadow under-reads on the resonance scale by construction.** Light artifacts produce "wow, that's me"; shadow artifacts often produce "no, that's not me", which is resistance, not resonance. The shadow has landed when the charge is high and a minute later they can still say "that's about me". A low resonance with a high charge is a hit, not a miss.
+
+---
+
+## 3. Myth
 
 *What must be true about the world for my work to be inevitable?*
 
-### Master Lie / Master Belief Polarity
+> **The myth needs a leap to the unsaid.** Every other artifact rewards faithful compression of what the founder said; the myth requires an inferential leap to what they have never said out loud. Read between the lines. A Master Lie shaped as advice to the reader ("you'll be shown the way") is the classic failure: the Lie is a claim about the world.
+
+### Master Lie / Master Belief
 
 | | |
 |---|---|
 | **Master Lie** | *[The false belief the world runs on]* |
-| **Master Belief** | *[The truth your business is built on]* |
+| **Master Belief** | *[The truth the business is built on]* |
 
-### Full myth — full-signal distillation
+### Full myth — full-signal
 
 > **The Lie:** *[...]*
 >
@@ -145,164 +235,221 @@
 
 | Component | What it is |
 |-----------|-----------|
-| **Seed** (irreducible truth) | *[The claim about reality that everything grows from]* |
+| **Seed** (irreducible truth) | *[The claim about reality everything grows from]* |
 | **Soil** (the enemy) | *[What's wrong with the world that makes the seed necessary]* |
-| **Sunlight** (the tribe) | *[Who recognizes themselves — the self-selection moment]* |
+| **Sunlight** (the tribe) | *[Who recognizes themselves: the self-selection moment]* |
 | **Water** (the call) | *[What the believer does next]* |
 
 ### Three layers
 
 | Layer | Function | The line |
 |-------|----------|----------|
-| **Attack** | Stops the scroll, creates enemies | *[...]* |
-| **Reframe** | 2am moment, can't unsee | *[...]* |
-| **Invitation** | Creates the tribe | *[...]* |
+| **Attack** | stops the scroll, creates enemies | *[...]* |
+| **Reframe** | the 2am moment, can't unsee | *[...]* |
+| **Invitation** | creates the tribe | *[...]* |
 
 ### Collapse test
 
-> *"If someone proves [opposite of core claim], my business collapses."* → ✅ / ❌
+> *"If someone proves [opposite of core claim], my business collapses."* → yes = myth · no = preference
 
-**Precision score:** —/10
-**Scored by:** [founder name], [date]
+**Version:** v— · [date] · derived from: Uniqueness v—, Shadow v—
+**Body score:** —/10 · scored by [founder name], [date]
+**Recognition line:** A familiarity: *[...]* · B body: *[...]* · C "too simple": *[...]*
 
 ---
 
-## 3. Tribe (ICP)
+## 4. Tribe
 
 *Who recognizes themselves in this myth?*
 
-**Tribe name:** *[...]* 
+> **Signal first.** Define the tribe by what's alive in them (a creative signal they can't yet name), not by what's broken. Use situations, not identity labels ("people who know they have something real but it's not becoming a business", not "founders in transition"). The tribe is a trajectory: read it as motion, not category. Don't define the tribe first: forge the myth and watch who it magnetizes.
+
+**Tribe name:** *[...]*
 
 ### Who they are — full-signal
 
-*[One paragraph in founder's language]*
+*[One paragraph in the founder's language]*
 
 ### Who they are — universal language
 
-> *[Same signal. Zero jargon. A teenager can read this and say "oh, those people."]*
+> *[Same signal. Zero jargon. A teenager reads it and says "oh, those people."]*
 
-### Qualifiers — all must be true
+### Resonance sort
+
+1. AI proposes sub-tribes at 3+ precision tiers.
+2. The founder reorders them by body.
+3. The founder adds what the AI missed.
+4. AI synthesizes; somatic confirmation (chills, humility, tears).
+
+### Qualifiers — all must be true (inner state first)
 
 | # | Qualifier | Source |
 |---|-----------|--------|
 | 1 | | |
 | 2 | | |
 | 3 | | |
-| 4 | | |
-| 5 | | |
 
-### Who this is NOT for
+### Segments
+
+| Segment | How they arrived | The grind | The dream (their words) | What they tell themselves |
+|---|---|---|---|---|
+| | | | | |
+
+### Who this is NOT for (what they want, say, do)
 
 - *[...]*
 - *[...]*
-- *[...]*
 
-### Named people
+### Named people (at least 5 real people)
 
 - **[Name]** — *[context]*
 - **[Name]** — *[context]*
+
+### Ripeness read
+
+*[Can they build from it now? 9-axis vector; Surrender, Means and Ticking Clock are multiplicative gates: any one at zero zeroes the rest.]*
 
 **Tribe test:** *[The question that filters: tribe member or not?]*
 
-**Precision score:** —/10
-**Scored by:** [founder name], [date]
+**Version:** v— · [date] · derived from: Myth v—
+**Body score:** —/10 · scored by [founder name], [date]
+**Recognition line:** A familiarity: *[...]* · B body: *[...]* · C "too simple": *[...]*
 
 ---
 
-## 4. Pain (Point A)
+## 5. Transition (Point A → the passage)
 
-*What is their situation and why is it unbearable?*
+*What is their situation, why is it unbearable, and why does it have to move now?*
 
-> Use the [5-Layer Pain Slicer v2.0](../03-playbooks/pain_theory_playbook.md) methodology.
+> 5-Layer Slicer v2.0, per segment, in this order. **Empathy first:** precision without empathy is manipulation; empathy without precision is therapy; both together are a tuning fork. When you start with the struggle you get the surface complaint; when you arrive at it, you get the structural truth. Each layer gives two outputs: what's seen from outside + the self-talk they're aware of.
 
-### Layer 1: PRESSURE — What's bearing down on them right now?
+### Layer 1: PRESSURE — what's bearing down on them right now?
 
-*[What they feel, what they say, what's actually happening]*
+*[What they feel, what they say, what's actually happening. Map the compounding loop, not just the sources.]*
 
-### Layer 2: CONSEQUENCES — What has this already cost them?
+### Layer 2: CONSEQUENCES — what has it already cost them?
 
 | Domain | The cost | In their words |
 |--------|---------|---------------|
-| | | |
-| | | |
+| body | | |
+| inner dialogue | | |
+| closest relationship | | |
+| the mask (and for whom) | | |
 
-### Layer 3: COST OF INACTION — What happens if nothing changes?
+### Layer 3: COST OF INACTION — what happens in 6–12 months if nothing changes?
 
-*[The scariest version]*
+*[Usually not bankruptcy but resignation. The abyss they won't say out loud.]*
 
-### Layer 4: URGENCY — Why now? Why can't this wait?
+### Layer 4: URGENCY — why now?
 
-| Signal | What it means |
+| Signal (the countdown already running) | What it means |
 |--------|-------------|
 | | |
 
-### Layer 5: STRUGGLE SYNTHESIZED — The structural truth
+### Layer 5: STAKES — what's really on the line?
 
-> *[The synthesis — the one paragraph that captures the structural truth of their pain. This is the pain card.]*
+*[The worst stake they can't admit: identity, a relationship, a life not lived.]*
 
-**Precision score:** —/10
-**Scored by:** [founder name], [date]
+### Layer 6: STRUGGLE SYNTHESIZED — the structural truth
+
+> *[One paragraph: the sentence that would make them freeze and say "…yes, that's exactly it". This is the pain card.]*
+
+### Self-language inventory (8–12 phrases, their words)
+
+- *"[...]"*
+- *"[...]"*
+
+### Confabulation check
+
+*[What the tribe blames ("the market wasn't ready") vs. what they don't say. Listen for the unsaid.]*
+
+### Awareness rung
+
+*[Schwartz 1–5 + layer-aware. The message matches the rung, not the position.]*
+
+### Universal language version
+
+> *[The transition in a teenager's words.]*
+
+**Version:** v— · [date] · derived from: Tribe v—
+**Body score:** —/10 · scored by [founder name], [date] · gate: would they cry reading it, and did the founder's heart open writing it?
+**Recognition line:** A familiarity: *[...]* · B body: *[...]* · C "too simple": *[...]*
 
 ---
 
-## 5. Promise (Point B)
+## 6. Transformational Promise (Point B)
 
-*What's the master transformational result?*
+*What is the master transformational result?*
 
-> At high pain precision, the Promise writes itself as the **exact inversion** of each pain layer.
+> At high Transition precision, the promise writes itself as the **exact inversion** of each layer. The insight lives in Point A; Point B is guaranteed by the uniqueness. (Earlier name: "Promise", also "Promised Land".)
 
 ### Inversion table
 
-| Pain (Point A) | → | Promise (Point B) |
+| Transition (Point A) | → | Transformational Promise (Point B) |
 |---------------|---|-------------------|
-| | → | |
-| | → | |
-| | → | |
+| Pressure | → | |
+| Consequences | → | |
+| Cost of inaction | → | |
+| Urgency / stakes | → | |
+| Struggle | → | |
 
-### The Promise in one sentence (full-signal)
+### The promise in one sentence (full-signal)
 
 > *[...]*
 
 ### Universal language version
 
-> *[Same promise. Zero jargon. This IS the voice note. This IS the DM.]*
+> *[Same promise. Zero jargon. This is the voice note, this is the DM.]*
 
-**Precision score:** —/10
-**Scored by:** [founder name], [date]
+### A → B as one deliverable sentence (the Transformational Result)
+
+> *[I help {tribe} go from {A, felt} to {B, lived} through {method}.]*
+
+### Three felt wins (mini A → mini B)
+
+1. *[...]*
+2. *[...]*
+3. *[...]*
+
+**Version:** v— · [date] · derived from: Transition v—, Uniqueness v—
+**Body score:** —/10 · scored by [founder name], [date] · gate: can you say it naturally in conversation?
+**Recognition line:** A familiarity: *[...]* · B body: *[...]* · C "too simple": *[...]*
 
 ---
 
-## 6. Lead Magnet
+## From canvas to market (downstream)
 
-*The pain card as content, delivered through the channel.*
+*Not core artifacts: they inherit the signal of the six. Here the facilitator leads and the market scores.*
 
-> At 9.9+ pain precision, the pain card IS the lead magnet. Not a methodology guide. Not an explainer video. The PAIN — mirrored back with devastating accuracy.
+### Lead Magnet
 
-**Format:** *[DM / voice note / hand raiser post / video / ...]*
+> At very high Transition precision, the pain card IS the lead magnet. Not a methodology guide, not an explainer: the transition mirrored back with devastating accuracy.
+
+**Format:** *[DM / voice note / hand-raiser post / video / ...]*
 
 **The card:**
-
-> *[The universal language version of the pain or promise — the piece that makes someone say "how do they know this about me?"]*
+> *[The universal language version of the transition or promise: the piece that makes someone say "how do they know this about me?"]*
 
 **Channel:** *[Where the tribe lives. ONE channel.]*
 
----
-
-## 7. Value Ladder
+### Value Ladder
 
 | Step | Container | What happens | Price |
 |------|----------|-------------|-------|
-| 0 | **Lead Magnet** | *[Recognition trigger]* | Free |
+| 0 | **Lead Magnet** | *[Recognition]* | Free |
 | 1 | **[Name]** | *[Entry: initiation, first experience]* | $ |
 | 2 | **[Name]** | *[Journey: the transformation]* | $$ |
 | 3 | **[Name]** | *[Container: ongoing, embodiment]* | $/mo |
 
-**Path to first $10K:**
-- *[Specific combination and math]*
+**Path to first $10K:** *[revenue target ÷ price = sales; × 2 conversations; × 2.5 outreach]*
 
-### First Action — The River Step
+### Then, in order
 
-**Who gets the first message?**
+Blueprint (3-phase method, explainable in 30 s) → Positioning → Landing page → Distribution (max 3 channels) → Launch. See the canonical method §8.
+
+### First Action — the River Step
+
+**Who gets the first message?** Write it together and send it in the session.
 
 1. **[Name]** — *[why them]*
 2. **[Name]** — *[why them]*
@@ -311,15 +458,17 @@
 
 ## Session Notes
 
-*Capture key moments, breakthroughs, and quotes from each session.*
+*Key moments, breakthroughs and quotes from each session. Exact words go to the Nuance list.*
 
 ### Session #1 — [Date]
 
 **Peak moment:** *[...]*
 **Key quotes:** *[...]*
-**Precision scores awarded:** *[...]*
+**Body scores + recognition lines awarded:** *[...]*
+**Where resistance showed up (possible shadow):** *[...]*
 
 ---
 
+*Template v7.0 — October 28, 2026. Rebuilt on the six main artifacts (Uniqueness, Shadow, Myth, Tribe, Transition, Transformational Promise); recognition line after every score; nuance list; who-leads-by-step; Lead Magnet and Value Ladder moved downstream. The 7-artifact count of v5.0–v6.0 (Uniqueness, Myth, Tribe, Pain, Promise, Lead Magnet, Value Ladder) is superseded.*
 *Template v6.0 — September 11, 2026 (Day 180). v5.0 (March 12, Laylat al-Qadr) preserved as genealogy; v6.0 adds the five laws the live method gained since April — see the "v6.0 additions" note at the top.*
 *Added: Artifact Status table, Unique Business Canvas, two-form principle (full-signal + universal language), 5-Layer Pain Slicer structure, inverse pain → promise methodology, value ladder with first action step. Reorganized to match proven session flow.*

@@ -18,7 +18,7 @@
 
 ## 2. Laws that hold every artifact
 1. **Two forms.** Full-signal (the founder's language) + universal language (a teenager understands it; "this IS the marketing").
-2. **The body scores.** Precision 1–10 is the founder's body, not their mind; "if the facilitator or AI says 9 but the founder feels 7, it's 7."
+2. **The body scores.** Precision 1–10 is the founder's body, not their mind; "if the facilitator or AI says 9 but the founder feels 7, it's 7." **Recognition line** (all three, after the score): A familiarity ("feels like something I've always known but never said"); B body (where it landed, what moved); C "too simple" (too obvious to be valuable = a sign of the gift, not a flaw). Low resonance may be resistance (shadow), not a wrong formulation. (Sasha, 2026-10-28: «давай все три! Они все три показывают правду».)
 3. **Only higher replaces.** A new version replaces the previous only if its precision is higher.
 4. **Highest-rated version rule** (2026-04-09): derive downstream only from the highest-scored full-signal version; never re-distil what the founder already scored; cite the source version ("derived from Uniqueness v1.0, 9.9/10").
 5. **Timestamp everything** (2026-07-20): every version, score and prediction carries its date: the trail is the dataset.
@@ -38,7 +38,20 @@
 | 9.5+ | full strategy activation | stop polishing, act; precision now comes from market contact |
 | 9.9+ | polish territory | refinement, not architecture; ship |
 
-## 3. The artifact sequence (derivation order)
+## 3. The six artifacts, and the derivation order underneath
+**The six** (Sasha, 2026-10-27/28): every canvas leads with these; each in two forms, body-scored with the recognition line, versioned and dated.
+| # | Artifact | Question | Maps to rows below |
+|---|---|---|---|
+| 1 | **Uniqueness** | Who am I at my brightest? | 1 |
+| 2 | **Shadow** | What is the inverted trap of my gift? (resonance 1–10 + charge 0–10; low resonance is often resistance) | 1.5 |
+| 3 | **Myth** | What must be true about the world for my work to be inevitable? (needs a leap to the unsaid) | 2 |
+| 4 | **Tribe** | Who recognizes themselves in this myth? | 3 |
+| 5 | **Transition** | Point A and the passage: Pressure → Consequences → Cost of inaction → Urgency → Stakes → Struggle synthesized, empathy first | 4 |
+| 6 | **Transformational Promise** | Point B, the exact inversion of the transition (formerly "Promise" / "Promised Land") | 5, 5.5–5.7 |
+
+Lead magnet and value ladder (rows 6–7) are downstream: "from canvas to market" (§8). On identity steps (1–3) the founder's recognition leads; on business steps (5 onward) the facilitator leads (Rafael session, 2026-07-27: the founder's evaluation faculty runs out before the sequence does). Keep a nuance list of the person's exact words across versions. Fill-in skeleton: `docs/02-strategy/unique_business_canvas_template.md` v7.0.
+
+**Derivation order (working detail):**
 | # | Artifact | Question | Output | Gate (human in the loop) |
 |---|---|---|---|---|
 | 1 | **Uniqueness** | Who am I at my brightest? | Unique Gift card (vibrational key, compound archetype, essence) + **tagline ~7 words**, roasted 3 rounds + meta-roast | "Does this feel true?" (emotional resonance, not agreement) |
@@ -73,7 +86,7 @@ Apply in this order, per segment; each layer gives two outputs: what's seen from
 **Confabulation layer:** the tribe can't diagnose its own root cause ("the market wasn't ready"); listen for what they don't say.
 **Awareness:** Schwartz 1–5 plus the **layer-aware** rung (2026-07-27): "it is not effort, it is the layer." Message must match the rung, not the position.
 
-> *Dated note, and a drift found in synthesis:* v1 of the slicer (2026-02-14) started with **Struggle** and ended with Urgency. The docs were aligned to v2.0 on 2026-10-28: the Creation Playbook, the `genius-business` workflow, the ICP Deepening prompt and the Pain Mapping Template table in `pain_theory_playbook.md`. The live `deepen-icp` function still runs v1 (struggles before pressure) and waits for Sasha's ok on a Lovable deploy. `deepen-pain` already runs Pressure first.
+> *Dated note, and a drift found in synthesis:* v1 of the slicer (2026-02-14) started with **Struggle** and ended with Urgency. The docs were aligned to v2.0 on 2026-10-28: the Creation Playbook, the `genius-business` workflow, the ICP Deepening prompt and the Pain Mapping Template table in `pain_theory_playbook.md`. `deepen-icp` now runs v2.0 too (Pressure first, with an `urgency` field); `deepen-pain` already ran Pressure first.
 
 ## 5. Tribe: signal first (PST 72)
 - Define the tribe by what's **alive** in them (an unmistakable creative signal they can't yet name), not by what's broken.

@@ -20,7 +20,7 @@
 1. **Technology is the shift, template is the path.** The offer quotes the shift (BE) and stands on the path (DO). If either is missing, there is no offer yet.
 2. **«Shift carried» is the source of the offer.** Read the template's «Shift carried» line first; the offer is that line, said to the buyer in their words.
 3. **Measured by the shift that happened, not by what was delivered.** A finished course that moved nobody kept no promise; a rough session that moved one person did.
-4. **The check is the person's, never ours.** An observable sign: their own words, a choice they made, a victory and its 1–10 rating, a real act in the world.
+4. **The check is the person's, never ours.** An observable sign: their own words, a choice they made, a victory and its 1–10 rating (then the recognition line: A familiarity, "always known, never said"; B body, where it landed; C "too simple", a sign of the gift), a real act in the world.
 5. **Craft is honest.** A template that carries no shift is sold as a skill or a service, with no transformation promised.
 6. **Knowledge multiplies itself.** Each delivered offer is a use of the template; what the check shows goes back into the template, and a new law it reveals is a library candidate (meta-template §7.8).
 
@@ -47,7 +47,7 @@
 3. **Point B as seeing + doing.** *See:* what becomes visible that was not (a pattern, a gap, a cost, a name). *Do:* one real step that follows (they send a message, name a price, book, commit). Seeing without a step is not yet a shift you can sell; a step without new seeing is a task.
 4. **The offer line.** «Ты увидишь… и сделаешь…» / "You will see… and you will…". One sentence, plain language, the buyer's words. It is the Intro headline and button of the module ([module-form.md](./module-form.md) §3), the page headline, and the last line of the call.
 5. **Promise.** Only what the path *reliably* delivers, and only what the person can *verify themselves*. Good: "you will name the gap yourself", "your body will say 9 or more out of 10 to your own one-sentence business", "you will have one real booking in your calendar". Not good: "you will make $10k", "you will find your purpose" (unverifiable or not reliably ours).
-6. **Check.** The sign, who sees it and where it is recorded (the victory and its 1–10 in the save file; their words in the reflection message; the booking in the calendar; the CRM after the call).
+6. **Check.** The sign, who sees it and where it is recorded (the victory, its 1–10 and the A/B/C recognition line in the save file; their words in the reflection message; the booking in the calendar; the CRM after the call).
 7. **Price** (§7) and **Craft honesty** (§8).
 
 ## 5. Writing rules for the offer line
