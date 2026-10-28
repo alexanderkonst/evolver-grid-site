@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { markAnonymousZogSaved } from "@/lib/anonClaimGuard";
@@ -11,6 +13,12 @@ type TopTalentAuthGateProps = {
   onSaved?: (email: string) => void;
   /** Overrides the default headline (WP-7a: «Save your character»). */
   title?: string;
+  /**
+   * WP-7b: render as a card directly under the reveal instead of a full-page
+   * wall. Adds the one-line reason and the quiet «Not now, enter the village»
+   * link. Save logic is identical in both modes.
+   */
+  inline?: boolean;
 };
 
 const PENDING_CLAIM_EMAIL_KEY = "pending_claim_email";
@@ -51,7 +59,9 @@ const TopTalentAuthGate = ({
   assessmentVersion = "v1",
   onSaved,
   title,
+  inline = false,
 }: TopTalentAuthGateProps) => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "saving" | "sent" | "cooldown" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
@@ -160,7 +170,13 @@ const TopTalentAuthGate = ({
   };
 
   return (
-    <div className="min-h-dvh flex items-center justify-center px-5 py-12">
+    <div
+      className={
+        inline
+          ? "flex items-center justify-center px-1 py-2"
+          : "min-h-dvh flex items-center justify-center px-5 py-12"
+      }
+    >
       <div
         className="w-full max-w-xl rounded-3xl px-6 py-8 sm:px-8 sm:py-10 text-center space-y-6"
         style={{
@@ -177,16 +193,18 @@ const TopTalentAuthGate = ({
         </div>
 
         <div className="space-y-3">
-          <p
-            className="text-xs uppercase"
-            style={{
-              fontFamily: "'DM Sans', system-ui, sans-serif",
-              letterSpacing: "0.18em",
-              color: "rgba(122,81,8,0.88)",
-            }}
-          >
-            Your result is ready
-          </p>
+          {!inline && (
+            <p
+              className="text-xs uppercase"
+              style={{
+                fontFamily: "'DM Sans', system-ui, sans-serif",
+                letterSpacing: "0.18em",
+                color: "rgba(122,81,8,0.88)",
+              }}
+            >
+              Your result is ready
+            </p>
+          )}
           <h1
             className="text-3xl sm:text-4xl leading-tight"
             style={{
@@ -196,6 +214,17 @@ const TopTalentAuthGate = ({
           >
             {title ?? "Make sure you save it to be able to access it later."}
           </h1>
+          {inline && (
+            <p
+              className="text-sm sm:text-base leading-relaxed"
+              style={{
+                fontFamily: "'Source Serif 4', Georgia, serif",
+                color: "var(--skin-text-primary, #0a1628)",
+              }}
+            >
+              {t("zogEntry.saveCharacterReason")}
+            </p>
+          )}
           <p
             className="text-xs sm:text-sm leading-relaxed"
             style={{
@@ -265,6 +294,23 @@ const TopTalentAuthGate = ({
               </p>
             )}
           </form>
+        )}
+
+        {inline && (
+          <p>
+            <Link
+              to="/village"
+              className="text-sm underline underline-offset-4 transition-opacity hover:opacity-100"
+              style={{
+                fontFamily: "'Source Serif 4', Georgia, serif",
+                color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
+                textDecorationColor: "rgba(26,30,58,0.3)",
+                opacity: 0.9,
+              }}
+            >
+              {t("zogEntry.notNowEnterVillage")}
+            </Link>
+          </p>
         )}
       </div>
     </div>

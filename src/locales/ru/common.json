@@ -86,6 +86,8 @@
     "ctaFindTopTalent": "Найти мой главный талант",
     "saveCharacterModalTitle": "Сохрани своего персонажа",
     "enterVillage": "Войти в деревню",
+    "saveCharacterReason": "Сохрани персонажа и прочитай полное описание.",
+    "notNowEnterVillage": "Не сейчас, войти в деревню",
     "aiPromptHeading": "Скопируйте этот промпт в ваш ИИ",
     "aiPromptSubtitle": "ChatGPT, Claude, Gemini: подойдёт любой",
     "copyButton": "Копировать",

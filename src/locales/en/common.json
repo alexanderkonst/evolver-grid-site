@@ -86,6 +86,8 @@
     "ctaFindTopTalent": "Find my top talent",
     "saveCharacterModalTitle": "Save your character",
     "enterVillage": "Enter the village",
+    "saveCharacterReason": "Keep your character and read your full reading.",
+    "notNowEnterVillage": "Not now, enter the village",
     "aiPromptHeading": "Copy this prompt into your AI",
     "aiPromptSubtitle": "ChatGPT, Claude, Gemini — any will work",
     "copyButton": "Copy",

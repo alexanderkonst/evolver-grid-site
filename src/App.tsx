@@ -912,10 +912,10 @@ const App = () => (
                   </Route>
                                     <Route path="/zone-of-genius/appleseed" element={<RequireAuth><AppleseedView /></RequireAuth>} />
                   <Route path="/zone-of-genius/excalibur" element={<RequireAuth><ExcaliburView /></RequireAuth>} />
-                  {/* WP-7a (2026-10-28): the test is public. A guest plays it from the title
-                      (NEW GAME → Reception → here); the wall moves from the start of the
-                      test to after it: TopTalentAuthGate («Save your character») still
-                      stands before the reveal, the reveal shows right after the save,
+                  {/* WP-7a/7b (2026-10-28): the test is public. A guest plays it from the title
+                      (NEW GAME → Reception → here); result first, account at «Save your
+                      character»: the reveal shows right after the test, with
+                      TopTalentAuthGate inline under it. Saving unlocks the full reading,
                       and its primary button «Enter the village» leads to /village. */}
                   <Route path="/zone-of-genius/entry" element={<ZoneOfGeniusEntry />} />
                   {/* Day 47 (Sasha): assessment is now public — no login gate. Log-in
