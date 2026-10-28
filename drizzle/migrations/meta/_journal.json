@@ -43,6 +43,13 @@
       "when": 1792873962000,
       "tag": "0005_village_particles",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1793163551604,
+      "tag": "0006_game_tables",
+      "breakpoints": true
     }
   ]
 }
