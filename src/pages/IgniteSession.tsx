@@ -33,6 +33,7 @@ import { useTranslation } from "react-i18next";
 import geniusLogo from "@/assets/ignite-logo.png";
 import { supabase } from "@/integrations/supabase/client";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
+import { journeyStepRows } from "@/lib/journeyLabels";
 import { cn } from "@/lib/utils";
 
 /* ─── Shared testimonial data (single source of truth) ─── */
@@ -616,6 +617,51 @@ const IgniteSession = () => {
               {t('ignite.directionCallCta')}
             </IgniteCta>
           </div>
+        </section>
+
+        {/* WP-4: where this session sits on the path. The list is the Journey itself
+            (JOURNEY_MAIN through journeyStepRows): the same labels, order and
+            «optional» marks as the title screen, Your House and the Quest Board pane.
+            The session is the Workshop, the step «Build a business off your top talent». */}
+        <section className="max-w-md mx-auto space-y-4" aria-label={t('journeySteps.chapterLabel')}>
+          <p
+            className="text-[10px] uppercase tracking-[0.28em] text-center font-bold bg-clip-text text-transparent"
+            style={GOLD_TEXT_STYLE}
+          >
+            {t('journeySteps.chapterLabel')}
+          </p>
+          <ol className="space-y-2 text-left">
+            {journeyStepRows(t).map((step) => (
+              <li key={step.id} className="flex items-baseline gap-2.5">
+                <span
+                  className="text-xs tabular-nums"
+                  style={{ color: "var(--text-faint)" }}
+                  aria-hidden="true"
+                >
+                  {String(step.no).padStart(2, "0")}
+                </span>
+                <span
+                  className="text-sm sm:text-base leading-relaxed"
+                  style={{
+                    color: step.id === "build-business" ? "var(--text-primary)" : "var(--text-secondary)",
+                    fontWeight: step.id === "build-business" ? 600 : 400,
+                  }}
+                >
+                  {step.label}
+                </span>
+                {step.optional && (
+                  <span className="text-xs italic" style={{ color: "var(--text-faint)" }}>
+                    {step.optional}
+                  </span>
+                )}
+                {step.id === "build-business" && (
+                  <span className="text-xs italic" style={{ color: "var(--accent-text)" }}>
+                    {t('journeySteps.here')}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ol>
         </section>
 
         {/* BLOCK 4 — QUIET FOOTER (alternates + 2 FAQs + methodology video) */}

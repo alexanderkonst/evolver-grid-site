@@ -74,22 +74,25 @@ const DEFAULT_PLAYLIST_URL =
  *   • /auth, /auth/*          — sign-in / sign-up / reset-password
  *   • /activations, /...      — marketing landings for individual
  *                                workshop purchases (Stripe checkout)
+ *   • /activate-top-talent    — the $37 power-up page (WP-4)
  *
  * Used both to lazy-mount the engine (boots on first allowed-route
  * entry) AND to auto-pause when the user crosses into denied
  * territory (e.g., navigates from /game/me → /ignite).
  */
-function isShellRoute(pathname: string): boolean {
+export function isShellRoute(pathname: string): boolean {
     // Hard-deny list of "no music" surfaces — every other route is
     // music-allowed by default. New routes don't need any change here.
     if (pathname === "/ignite" || pathname.startsWith("/ignite/")) return false;
-    // Day 79 (Sasha 2026-05-22): /auth pause retired. The match-path
-    // funnel (Top Talent → Mission → Assets → save-your-data → /auth)
-    // now keeps music continuous through sign-up. Auth is a moment of
-    // progressive commitment inside the funnel, not a hard break from
-    // it; the underscoring should ride through. Other "no music"
-    // surfaces (/ignite, /activations) still pause as before because
-    // they're sales surfaces, not funnel-internal.
+    // WP-4 (game_of_being_you.md §14.1.2): music is off on auth and checkout.
+    // Day 79 let music ride through sign-up; Sasha reversed that with the one-shell
+    // work package (issue #161, item 5). Signing in or paying is a moment that wants
+    // quiet, so playback pauses on entry and the player waits in the rail for the next
+    // shell route.
+    if (pathname === "/auth" || pathname.startsWith("/auth/")) return false;
+    // Checkout surfaces: the $37 Top Talent power-up page and the workshop landings
+    // (Stripe checkout) are sales / payment screens, same as /ignite.
+    if (pathname === "/activate-top-talent" || pathname.startsWith("/activate-top-talent/")) return false;
     if (pathname === "/activations" || pathname.startsWith("/activations/")) return false;
     return true;
 }

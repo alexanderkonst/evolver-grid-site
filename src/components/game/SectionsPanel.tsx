@@ -9,6 +9,7 @@ import { filterAdminOnlyRows } from "./adminOnlyRows";
 import { supabase } from "@/integrations/supabase/client";
 import { PLAYBOOK_STEPS } from "@/data/playbookSteps";
 import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
+import { journeyStepLine, journeyStepRows } from "@/lib/journeyLabels";
 import { GROWTH_STEPS, growthStepClosedLine, growthStepState } from "@/modules/library/growthSteps";
 import { ORACLE_READING } from "@/data/villagePlaces";
 import { placeState } from "@/lib/placeState";
@@ -382,39 +383,10 @@ const SPACE_SECTIONS: SpaceSections = {
  * buildJourneySections. Dynamic builders (journey / learn / ubb) own their
  * own t() calls and are NOT passed through this map.
  */
-/** Space id -> i18n key for the pane-2 group title (JOURNEY/ME/LEARN/...).
- * Reuses the spacesRail.* catalog so the pane header matches the rail + breadcrumb. */
-export const SPACE_TITLE_KEYS: Record<string, string> = {
-    journey: "spacesRail.journey",
-    "ai-os": "spacesRail.aiOs",
-    me: "spacesRail.me",
-    // Day 135 (Sasha) bugfix: these two were swapped — id "grow" is the ME
-    // space (rail labelKey spacesRail.me) and id "learn" is the GROW space
-    // (rail labelKey spacesRail.grow). The swap made pane 2's header read
-    // "LEARN" while ME's Public Profile/Top Talent/Mission/Assets sections
-    // were listed underneath.
-    learn: "spacesRail.grow",
-    grow: "spacesRail.me",
-    meet: "spacesRail.meet",
-    collaborate: "spacesRail.collaborate",
-    build: "spacesRail.build",
-    offer: "spacesRail.offer",
-    // The rail's OFFER space id is "buysell"; without this entry its pane
-    // header fell back to the static English title instead of the catalog.
-    buysell: "spacesRail.offer",
-};
-
-/** Space id -> i18n key for the short plain-language subtitle shown under the
- * pane-2 title (game vocabulary, issue #129). Same id mapping as SPACE_TITLE_KEYS. */
-export const SPACE_SUBTITLE_KEYS: Record<string, string> = {
-    journey: "spacesRail.subtitle.journey",
-    learn: "spacesRail.subtitle.grow",
-    grow: "spacesRail.subtitle.me",
-    meet: "spacesRail.subtitle.meet",
-    collaborate: "spacesRail.subtitle.collaborate",
-    build: "spacesRail.subtitle.build",
-    buysell: "spacesRail.subtitle.offer",
-};
+// WP-4: the pane-2 header is the name and one-line description of the village place the
+// player stands in (`placeName` / `placeLine` props, from VILLAGE_PLACES), the same words
+// as the rail chip and the map. The old per-space title keys (MAIN QUEST, CHARACTER,
+// THE FORGE, TRADING POST, …) and their subtitles are retired with those names.
 
 export const STATIC_LABEL_KEYS: Record<string, { label: string; lockedHint?: string }> = {
     // AI OS space
@@ -524,6 +496,10 @@ const localizeSections = (t: TFunction, sections: Section[]): Section[] =>
 
 interface SectionsPanelProps {
     activeSpaceId: string;
+    /** Name of the village place the player stands in; the pane header (WP-4). */
+    placeName?: string;
+    /** That place's one line from the village map; the pane subtitle. */
+    placeLine?: string;
     onSectionSelect?: (path: string) => void;
     onClose?: () => void;
     className?: string;
@@ -713,138 +689,59 @@ const buildJourneySections = (
     t: TFunction,
     _currentPath: string,
     // Day 95 (Sasha 2026-06-13, rev 2): the $37 power-up row keys on the
-    // NARROW, durable PAID signal from useDeeperAccess — true iff the
-    // user has paid / redeemed a coupon (game_profiles
-    // .activation_unlocked_at set) OR holds a paid entitlement tier.
-    // Completing the FREE reveal does NOT trip it (Sasha's explicit
-    // call). This is the SAME signal the content gate (RequireDeeperAccess)
-    // enforces, so the row's strikethrough + routing match what the user
-    // can actually access:
+    // NARROW, durable PAID signal from useDeeperAccess — true iff the user
+    // has paid / redeemed a coupon (game_profiles.activation_unlocked_at set)
+    // OR holds a paid entitlement tier. Completing the FREE reveal does NOT
+    // trip it. This is the SAME signal the content gate (RequireDeeperAccess)
+    // enforces, so the row's strikethrough + routing match what the user can
+    // actually access:
     //   • activated  → crossed out + routes to deeper-view RESULTS
     //   • otherwise  → not crossed + routes to the /activate-top-talent
     //                  SALES page.
-    // (rev 1 briefly used the BROAD deepProfileActivated, which crossed
-    // the row out on free reveal — reverted here.) `activationDone` stays
-    // a separate param driving buildBusinessUnlocked, untouched.
     hasDeeperAccess: boolean,
     journeyProgress: JourneyProgress = {},
-    entryPath: EntryPath = null,
+    // WP-4: no longer read. The path-aware terminus (Find collaborators vs Build a
+    // business) is gone; Find collaborators is the Co-working place on the rail.
+    _entryPath: EntryPath = null,
     activationDone: boolean = false,
     // Day 138 (Sasha 2026-07-30): JOURNEY Step 0 — "See what hero's
-    // journey chapter you're in." Sits above the numbered 1→2→3→4→5 path
-    // (its own unnumbered "Step 0"), links to /quiz, and shows a mini
-    // seven-tick arc + chapter name once the user has a linked result.
+    // journey chapter you're in." Sits above the numbered path (its own
+    // unnumbered "Step 0"), links to /quiz, and shows a mini seven-tick arc
+    // + chapter name once the user has a linked result.
     linkedQuizResult: LinkedQuizResult | null = null,
     onRetakeQuiz: () => void = () => {},
 ): Section[] => {
-    // WP-13 (2026-10-27): ORDER comes from `JOURNEY_MAIN` (journeySequence.ts,
-    // game_of_being_you.md §14.2: Mission before business). The row objects
-    // below carry the pane-specific parts (i18n label, route, lock, progress
-    // flag); the final sort at the bottom lays them out in the sequence's
-    // order, so reordering the Journey is a one-line move in that file.
+    // WP-4 (game_of_being_you.md §14.1.2): the numbered rows ARE `JOURNEY_MAIN`
+    // (src/data/journeySequence.ts), rendered through the same `journeyStepRows` as the
+    // title screen's Chapter 01, Your House and `/ignite`: same labels, same order, same
+    // «optional» marks. This function adds only what is pane-specific: the route a row
+    // opens, whether it is closed, and whether it is struck through.
     //
-    // Funnel v2 (Day 77, Sasha 2026-05-20) + Day 80 path-awareness +
-    // Day 79 QoL optionality (Sasha 2026-05-22):
-    // JOURNEY structured as the matching-onboarding sequence
-    // (T → optional Activation → M → optional QoL → A → Build OR Find Collaborators).
-    //
-    //   1.  Start by finding your top talent  : entry, always open
-    //   1.5 Activate your top talent ($37)    : OPTIONAL paid deepening
-    //                                           (closed until T)
-    //   2.  Discover your mission             : closed until #1 completes
-    //   3.  Assess your quality of life       : OPTIONAL; closed until #2
-    //                                           completes, no downstream deps
-    //   4.  Map your assets                   : closed until #2 completes
-    //   5.  PATH-AWARE TERMINUS:
-    //        build path: "Build a business off your top talent" → /path
-    //                    (lock: !topTalentDone)
-    //        match path: "Find collaborators" → /game/collaborate/matches
-    //                    (lock: !assetsDone; engine needs T+M+A minimum
-    //                     so the first 10 heads-ups carry enough signal)
-    //
-    // QoL non-gate audit (Day 79): nothing downstream of QoL is gated by
-    // QoL completion. The terminus #5 depends on A or T. AI OS chip gate
-    // (GameShellV2 unlockStatus) depends on T+M+A. No other space unlock
-    // references the qol_complete onboarding stage as a hard gate. Adding
-    // QoL completion as a requirement anywhere in the future requires
-    // updating this comment block.
-    //
-    // Locks are advisory, not access-gating: any authenticated user can
-    // navigate directly to /mission-discovery, /asset-mapping,
-    // /quality-of-life-map, /ubb, /game/collaborate/matches regardless of
-    // JOURNEY lock state. The lock state only colors the row in the pane
-    // (strikethrough + dim + popover hint).
-    //
-    // Spec: docs/specs/funnel-v2/funnel-v2_product_spec.md §4.2.
-    const topTalentDone = !!journeyProgress["journey-start-here"];
-    const missionDone = !!journeyProgress["journey-mission-discovery"];
-    const assetsDone = !!journeyProgress["journey-asset-mapper"];
-    const tmaComplete = topTalentDone && missionDone && assetsDone;
+    // Locks are advisory, not access-gating: any authenticated user can navigate
+    // directly to /mission-discovery, /asset-mapping, /quality-of-life-map, /ubb
+    // regardless of lock state. The lock only colors the row (strikethrough + dim +
+    // popover hint).
+    const stepRows = journeyStepRows(t);
 
-    // Day 80 Wave 2.20 (Sasha 2026-05-22): match-path #6 unlock signal.
-    // Same gate as the BUILD space chip (GameShellV2). Either:
-    //   (a) Activation done — paid/gifted tier or coupon flag, or
-    //   (b) Triad complete — T+M+A.
-    // Identical to GameShellV2's `buildUnlocked` derivation. Keeping
-    // both in sync by re-deriving here from the threaded activationDone
-    // arg + locally-derived tmaComplete (which uses the same
-    // journeyProgress signals GameShellV2's tmaComplete consumes).
-    const buildBusinessUnlocked = activationDone || tmaComplete;
+    // useJourneyProgress ids (lenient completion probes) per Journey step.
+    const PROGRESS_ID: Partial<Record<JourneyItemId, string>> = {
+        "find-top-talent": "journey-start-here",
+        "discover-mission": "journey-mission-discovery",
+        "assess-qol": "journey-qol-assess",
+        "map-assets": "journey-asset-mapper",
+        "build-business": "journey-build-business",
+    };
+    const done = (id: JourneyItemId) => !!journeyProgress[PROGRESS_ID[id] ?? ""];
 
-    // 2026-06-10 default flip: match funnel is the default JOURNEY shape
-    // (#5 Find collaborators, #6 Build a business). Only an explicit
-    // `?path=build` entry restores the legacy build-terminus journey.
-    const isMatch = entryPath !== "build";
-
-    const terminusItem: Section = isMatch
-        ? {
-              // Day 80 (Sasha 2026-05-22): match-path #5 = Find collaborators.
-              // Locks on assets-done because the matching engine needs
-              // T+M+A minimum for a decent AI-why; the first 10 heads-ups
-              // sent must be perfect (trust ritual) so we don't open the
-              // gate before the profile carries enough signal.
-              // Completion signal: journey-find-collaborators flag set on
-              // first match_interests insert by the user.
-              id: "journey-find-collaborators",
-              label: t("rail.journey.findCollaborators.label"),
-              path: "/game/collaborate/matches",
-              locked: !assetsDone,
-              lockedHint: t("rail.journey.findCollaborators.lockedHint"),
-              completed: !!journeyProgress["journey-find-collaborators"],
-          }
-        : {
-              // Day 80 (Sasha 2026-05-22): build-path #5 destination
-              // moved from /ubb → /path. /path shows the full 7-step
-              // visual with conversion CTAs and works whether or not
-              // the user has paid for Build; /ubb requires Build
-              // entitlement to render anything meaningful.
-              id: "journey-build-business",
-              label: t("rail.journey.buildBusinessTerminus.label"),
-              path: "/path",
-              locked: !topTalentDone,
-              lockedHint: t("rail.journey.buildBusinessTerminus.lockedHint"),
-              completed: !!journeyProgress["journey-build-business"],
-          };
-
-    // Day 80 Wave 2.20 (Sasha 2026-05-22): match-path #6 = "Build a
-    // business off your top talent." On the match path the user can
-    // optionally graduate from finding-collaborators to building-a-
-    // business — same destination as the build-path #5 (/path), but
-    // appears AFTER "Find collaborators" rather than instead of it.
-    // Locked until either Activate Top Talent is done OR the T+M+A
-    // triad is complete (same gate as the BUILD space chip).
-    // On the build path this is already item #5 (the terminus), so we
-    // don't double-emit.
-    const buildBusinessItem: Section | null = isMatch
-        ? {
-              id: "journey-build-business",
-              label: t("rail.journey.buildBusinessSix.label"),
-              path: "/path",
-              locked: !buildBusinessUnlocked,
-              lockedHint: t("rail.journey.buildBusinessSix.lockedHint"),
-              completed: !!journeyProgress["journey-build-business"],
-          }
-        : null;
+    // Where a row opens inside the pane. Issue #48 P1 #4: top talent goes to the
+    // Zone-of-Genius entry (shows the saved result, or the Faster/Guided choice), not
+    // "/" (the title screen). Day 80: «Build a business» opens /path, which shows the
+    // full visual with conversion CTAs whether or not the user has paid; /ubb needs the
+    // Build entitlement to render anything meaningful.
+    const PANE_PATH: Partial<Record<JourneyItemId, string>> = {
+        "find-top-talent": "/zone-of-genius",
+        "build-business": "/path",
+    };
 
     const quizStep0Done = !!linkedQuizResult;
     const quizStageNames = t("quiz.stageNames", { returnObjects: true }) as Record<string, string>;
@@ -865,162 +762,50 @@ const buildJourneySections = (
             : undefined,
     };
 
-    const rows: Section[] = [
-        quizStep0Item,
-        {
-            // Issue #48 P1 #4: route to the Zone-of-Genius entry, not "/"
-            // (the marketing homepage). A signed-in user clicking "Start by
-            // finding your top talent" should land on the reveal flow — the
-            // entry shows their saved result if they have one, or the
-            // Faster/Guided choice if they don't.
-            id: "journey-start-here",
-            label: t("rail.journey.startHere.label"),
-            path: "/zone-of-genius",
-            completed: topTalentDone,
-        },
-        {
-            // Day 80 Wave 2.2 (Sasha 2026-05-22): optional $37 Top Talent
-            // Activation step rendered as a "sidequest" variant — gold-
-            // accented, ✦ glyph (no number), italic subtitle, right-
-            // aligned price chip. Doesn't break the numbered 1→2→3→4→5
-            // path flow; reads as "this exists alongside, optional, paid."
-            //
-            // Per alexanders_unique_business.md Branch B: deeper digital
-            // profile (Three Talents in Depth, How It Shows Up, Path of
-            // Mastery, Roles, Partner, Monetization, What's Next).
-            //
-            // Routes to /game/me/zone-of-genius — the user's existing
-            // Top Talent reveal in the platform shell, where the
-            // Activation CTA lives in context (not the /ignite sales
-            // page). Sasha's call: "in-context deepening, not bait-
-            // and-switch to the booking page."
-            id: "journey-activation",
-            // Day 80 Wave 2.3 (Sasha 2026-05-22): copy + visual revisions:
-            //  - label rewritten to Sasha's exact wording (matches the
-            //    AppleseedDisplay $37 CTA section's headline)
-            //  - subtitle dropped — was making the row visually larger
-            //    than step #1; sidequest should be a SIBLING of the
-            //    numbered steps, not a dominating element
-            //  - priceChip retained on the right for premium signal
-            //  - route swapped to /zone-of-genius#activate where the
-            //    actual $37 CTA section lives in AppleseedDisplay
-            //    (NOT /game/me/zone-of-genius which only has $555 CTAs)
-            // Day 80 Wave 2.6 (Sasha 2026-05-22): price chip removed.
-            // The chip popped harder than warranted on what's mostly a
-            // free funnel — risked making the whole journey read as
-            // paid. Price is now ambient inside the label itself
-            // (muted dim text). Honest, present, but quieter — the
-            // numbered free steps stay the visual anchor.
-            // Day 94 (Sasha 2026-06-05): "optional" -> "power-up". "Optional"
-            // undersold the $37 deeper Top Talent reveal as skippable; "power-up"
-            // frames it as a value-ladder enhancement and fits the sidequest /
-            // game register. The QoL row keeps "(optional)"; that signal is right.
-            label: t("rail.journey.activation.label"),
-            variant: "sidequest",
-            // Day 80 Wave 2.4: route to the dedicated standalone page,
-            // not the AppleseedDisplay anchor (which surrounds the
-            // $37 offer with the $555 funnel + other CTAs).
-            // Day 95 (Sasha 2026-06-13): route is STATE-AWARE on the PAID
-            // signal. Once the user has actually activated (paid / coupon /
-            // tier — hasDeeperAccess), the row sends them to their deeper-
-            // view RESULTS. The deeper view is now paywalled by
-            // RequireDeeperAccess, so routing there for a NON-activated
-            // user would just bounce them back to the sales page — hence
-            // we send unactivated users straight to /activate-top-talent.
-            path: hasDeeperAccess
-                ? "/game/me/zone-of-genius"
-                : "/activate-top-talent",
-            // Day 80 Wave 2.8 (Sasha 2026-05-22): locked until Top
-            // Talent is articulated. Buying the deeper monetization
-            // product before the user has a Top Talent is nonsensical
-            // — there's nothing to deepen. Same lock pattern + popover
-            // hint as the other numbered steps.
-            // WP-3: the state comes from placeState (the Oracle Reading item of
-            // §14.3); the line stays the translated rail.journey.activation text.
-            locked:
-                placeState(ORACLE_READING, {
-                    met: { "find-top-talent": topTalentDone, "deeper-access": hasDeeperAccess },
-                    now: new Date(),
-                }) === "closed",
-            lockedHint: t("rail.journey.activation.lockedHint"),
-            // Day 95 (Sasha 2026-06-13, rev 2): crosses out on the PAID
-            // signal only (hasDeeperAccess = paid / coupon / tier). The
-            // free reveal does NOT cross it out — Sasha's explicit intent,
-            // and now correct since the deeper view is genuinely paywalled.
-            // Matches the routing above and what RequireDeeperAccess
-            // enforces, so strikethrough ⇔ actually-has-access.
-            completed: hasDeeperAccess,
-        },
-        {
-            id: "journey-mission-discovery",
-            label: t("rail.journey.missionDiscovery.label"),
-            path: "/mission-discovery",
-            locked: !topTalentDone,
-            lockedHint: t("rail.journey.missionDiscovery.lockedHint"),
-            completed: missionDone,
-        },
-        {
-            id: "journey-asset-mapper",
-            label: t("rail.journey.assetMapper.label"),
-            path: "/asset-mapping",
-            locked: !missionDone,
-            lockedHint: t("rail.journey.assetMapper.lockedHint"),
-            completed: assetsDone,
-        },
-        {
-            // Day 77 (Sasha 2026-05-20): "Improves match quality" badge
-            // removed; Sasha flagged it as redundant ornamentation.
-            // The position in the sequence already signals its role.
-            //
-            // Day 79 (Sasha 2026-05-22): QoL marked optional + unlocked.
-            //
-            // Day 80 Wave 2.13 (Sasha 2026-05-22): unlock REVERTED. QoL
-            // stays labeled "(optional)" — that signal is right — but
-            // the sequence-gate comes back. Reason: even though QoL
-            // doesn't technically gate anything downstream, showing it
-            // open while the step before it is still closed confuses the
-            // 1→2→3→4→5 reading order. The fix is sequencing pressure,
-            // not blocking access — users can still navigate directly
-            // to /quality-of-life-map/assessment if they want; the lock
-            // is advisory (visual + popover hint), not access-gating.
-            // WP-13 (2026-10-27): QoL now sits right after Mission (§14.2),
-            // so it opens on mission-done instead of assets-done.
-            id: "journey-qol-assess",
-            label: t("rail.journey.qolAssess.label"),
-            path: "/quality-of-life-map/assessment",
-            locked: !missionDone,
-            lockedHint: t("rail.journey.qolAssess.lockedHint"),
-            completed: !!journeyProgress["journey-qol-assess"],
-        },
-        terminusItem,
-        // Day 80 Wave 2.20: match-path-only #6 (null on build path so
-        // we don't double up — build path already has "Build a business"
-        // as its #5 terminus).
-        ...(buildBusinessItem ? [buildBusinessItem] : []),
-    ];
+    // The $37 deeper Top Talent reveal: an item inside the Oracle (§14.3), shown here as
+    // a sidequest, not a Journey step. Day 80: gold-accented, ✦ glyph (no number), price
+    // ambient inside the label. Day 94: «power-up», not «optional». Locked until the top
+    // talent is saved (buying the deeper product before there is a top talent is
+    // nonsensical); the state comes from placeState (WP-3).
+    const activationRow: Section = {
+        id: "journey-activation",
+        label: t("rail.journey.activation.label"),
+        variant: "sidequest",
+        path: hasDeeperAccess ? "/game/me/zone-of-genius" : "/activate-top-talent",
+        locked:
+            placeState(ORACLE_READING, {
+                met: { "find-top-talent": done("find-top-talent"), "deeper-access": hasDeeperAccess },
+                now: new Date(),
+            }) === "closed",
+        lockedHint: t("rail.journey.activation.lockedHint"),
+        completed: hasDeeperAccess,
+    };
 
-    // Lay the rows out in JOURNEY_MAIN order. Rows that belong to a step
-    // share its rank (the $37 power-up sits after top talent; Find
-    // collaborators sits before Build a business); Array.sort is stable, so
-    // equal ranks keep the order they have above. Step 0 (quiz) ranks -1.
-    const journeyIdByRow: Record<string, JourneyItemId> = {
-        "journey-start-here": "find-top-talent",
-        "journey-activation": "find-top-talent",
-        "journey-mission-discovery": "discover-mission",
-        "journey-qol-assess": "assess-qol",
-        "journey-asset-mapper": "map-assets",
-        "journey-find-collaborators": "build-business",
-        "journey-build-business": "build-business",
-    };
-    const rankOf = (row: Section): number => {
-        const journeyId = journeyIdByRow[row.id];
-        return journeyId ? JOURNEY_MAIN.findIndex((item) => item.id === journeyId) : -1;
-    };
-    return [...rows].sort((a, b) => rankOf(a) - rankOf(b));
+    const rows: Section[] = [quizStep0Item];
+    JOURNEY_MAIN.forEach((item, i) => {
+        const requiresMet = (item.requires ?? []).every((id) => done(id));
+        // Day 80 Wave 2.20: «Build a business» also opens for anyone who activated
+        // (paid tier or coupon), same as before; otherwise it needs its requirements.
+        const open = item.id === "build-business" ? activationDone || requiresMet : requiresMet;
+        rows.push({
+            id: PROGRESS_ID[item.id] ?? `journey-${item.id}`,
+            label: journeyStepLine(stepRows[i]),
+            path: PANE_PATH[item.id] ?? item.path,
+            locked: !open,
+            lockedHint: item.lockedHint
+                ? String(t(`journeySteps.locked.${item.id}`, { defaultValue: item.lockedHint }))
+                : undefined,
+            completed: done(item.id),
+        });
+        if (item.id === "find-top-talent") rows.push(activationRow);
+    });
+    return rows;
 };
 
 const SectionsPanel = ({
     activeSpaceId,
+    placeName,
+    placeLine,
     onSectionSelect,
     onClose,
     className,
@@ -1486,13 +1271,12 @@ const SectionsPanel = ({
                             textShadow: "0 0 12px rgba(244, 212, 114, 0.35)",
                         }}
                     >
-                        {SPACE_TITLE_KEYS[activeSpaceId] ? t(SPACE_TITLE_KEYS[activeSpaceId], { defaultValue: spaceData.title }) : spaceData.title}
+                        {placeName ?? spaceData.title}
                     </span>
-                    {/* Game vocabulary (issue #129): plain-language subtitle
-                        under the game-style space name so meaning stays clear. */}
-                    {SPACE_SUBTITLE_KEYS[activeSpaceId] && (
+                    {/* The place's one line from the village map, under its name. */}
+                    {placeLine && (
                         <span className="block mt-0.5 text-[12px] italic text-white/60 truncate">
-                            {t(SPACE_SUBTITLE_KEYS[activeSpaceId])}
+                            {placeLine}
                         </span>
                     )}
                 </div>

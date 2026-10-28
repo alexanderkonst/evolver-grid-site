@@ -14,7 +14,6 @@ import PremiumCard from "@/components/ui/PremiumCard";
 import PremiumButton from "@/components/ui/PremiumButton";
 import HeroIcon from "@/components/ui/HeroIcon";
 import DailyLoopLayout from "@/components/game/DailyLoopLayout";
-import PlayerStatsBadge from "@/components/game/PlayerStatsBadge";
 import PowerfulWelcome from "@/components/game/PowerfulWelcome";
 import AssemblyTracker from "@/components/game/AssemblyTracker";
 import MyLifeSection, { DOMAIN_LABELS } from "@/components/game/MyLifeSection";
@@ -739,17 +738,6 @@ const GameHome = () => {
                 streakDays={profile?.current_streak_days}
                 totalActions={profile?.total_quests_completed}
               />
-              {profile && (
-                <div className="mb-10 flex justify-center">
-                  <PlayerStatsBadge
-                    level={profile.level}
-                    xpTotal={profile.xp_total}
-                    streakDays={profile.current_streak_days}
-                    size="lg"
-                  />
-                </div>
-              )}
-
               {/* MY LIFE Section - QoL overview */}
               {currentQolSnapshot && (
                 <div className="mb-8 max-w-md mx-auto">

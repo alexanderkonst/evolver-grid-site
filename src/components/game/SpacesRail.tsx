@@ -1,18 +1,34 @@
-import { ReactNode, memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
+    Check,
+    Coffee,
     Contrast,
+    DoorOpen,
+    Flame,
+    GraduationCap,
+    Hammer,
+    Home,
+    Landmark,
     LogIn,
     LogOut,
     MessageCircle,
     Moon,
+    ScrollText,
     Settings,
+    Sparkles,
+    Store,
     Sun,
+    Users,
     UserRound,
+    type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { closedLine, placeLine, type PlaceStateName } from "@/lib/placeState";
+import { PANE_BY_PLACE, RAIL_PLACES, tourIdFor } from "@/lib/railPlaces";
+import type { VillagePlace, VillagePlaceKey } from "@/data/villagePlaces";
 import { OPEN_CHAT_EVENT } from "@/components/ChatLauncher";
 import { supabase } from "@/integrations/supabase/client";
 import {
@@ -21,8 +37,6 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
-import GlyphIcon from "./GlyphIcon";
-import { BuildGlyph, CollaborateGlyph, SpaceGlyphProps } from "./SpaceGlyphs";
 import { useSoulColors } from "@/hooks/useSoulColors";
 // Day 58+ (Sasha 2026-05-03): custom minimal SoundCloud player. Hides
 // the default iframe entirely (waveform / privacy-policy link / SC
@@ -62,247 +76,103 @@ import latamPyramid from "@/assets/latam-impact-pyramid.png";
 // lockup is small enough horizontally to read on the 72px column.
 import planetirLogo from "@/assets/planetir-logo.png";
 import techstarsLogo from "@/assets/techstars-logo.png";
-// Day 48 iter 7 (Sasha): JOURNEY + ME spaces now render with custom
-// image assets (gold-tinted) instead of typographic glyphs — keeps
-// them coherent with the gold-signature identity while the other
-// five spaces retain their color-coded rainbow glyphs (they're
-// locked + colorful-by-design).
-import journeyIcon from "@/assets/journey-icon.png";
-import meIcon from "@/assets/me-icon.png";
-// Day 54 (Sasha 2026-04-28): AI OS elevated from JOURNEY step #4 to its
-// own Space. The merkaba — rainbow harmonic geometry inside a circle —
-// signals the substrate it is (cognitive scaffold), not a stop on the
-// value ladder.
-import aiOsIcon from "@/assets/mc-merkaba.png";
-// Day 134 (Sasha 2026-07-23): this geometric mark moves from Settings
-// to GROW. Settings returns to the universally recognized gear icon;
-// the more distinctive brand artifact now belongs to a primary Space.
-import settingsIcon from "@/assets/settings-icon.png";
 
 /**
- * ImageIcon — inline <img> used for spaces whose glyph is better
- * expressed as a custom image (JOURNEY + ME). Matches GlyphIcon's
- * 28×28 footprint so it slots into the same grid cell. Optional
- * `glow` adds a warm gold drop-shadow halo around the mark.
+ * WP-4 (game_of_being_you.md §14.1.2, §14.6): the rail is the village map folded.
+ * One chip per place of `VILLAGE_PLACES`, in map order, under the map's names, in the
+ * state `placeState()` gives it (closed · open · next · done · live). The old spaces
+ * (MAIN QUEST · AI OS · CHARACTER · MEET · PARTY & GUILD · TRAINING · THE FORGE ·
+ * TRADING POST) are gone from the rail; pane 2 still opens the section list of the
+ * module each place holds (`PANE_BY_PLACE`, src/lib/railPlaces.ts).
+ *
+ * Each place gets a line icon. Color is not the carrier: icons draw in the rail's ink and
+ * the state reads from the shared lock / open / live tokens (src/styles/theme-tokens.css),
+ * so every skin renders every state.
  */
-const ImageIcon = ({
-    src,
-    alt,
-    glow = false,
-    size = 28,
-}: {
-    src: string;
-    alt: string;
-    glow?: boolean;
-    /** Override the default 28×28 footprint. Used by AI OS to render
-        slightly smaller (Sasha 2026-05-19) — the merkaba mark fills
-        its box more aggressively than the JOURNEY star / ME crystal,
-        which made it read as larger in the rail row. */
-    size?: number;
-}) => (
-    // Day 131 (Sasha 2026-07-20): rotation removed from rail icons —
-    // `.gentle-spin-always` + inline `animation` retired here. The class
-    // itself stays in index.css (still used outside the rail, e.g.
-    // AiOsPricingPage) — only this rail usage is dropped.
-    <img
-        src={src}
-        alt={alt}
-        aria-hidden="true"
-        draggable={false}
-        className="flex-shrink-0 select-none object-contain"
-        style={{
-            width: size,
-            height: size,
-            // Day 54+ (Sasha 2026-04-28 evening): glow softened. Was 8px@0.7 +
-            // 2px@0.9 — too hot, the icons read as competing with the wordmark.
-            // Now 5px@0.4 + 1px@0.55: the gold ring stays present (paired-set
-            // identity for JOURNEY · AI OS · ME holds), but the halo no longer
-            // dominates the rail.
-            filter: glow
-                ? "drop-shadow(0 0 5px rgba(244, 212, 114, 0.4)) drop-shadow(0 0 1px rgba(212, 175, 55, 0.55))"
-                : "drop-shadow(0 0 4px rgba(244, 212, 114, 0.3))",
-        }}
-    />
-);
+const PLACE_ICON: Record<VillagePlaceKey, LucideIcon> = {
+    reception: DoorOpen,
+    house: Home,
+    "quest-board": ScrollText,
+    oracle: Sparkles,
+    cafe: Coffee,
+    coworking: Users,
+    "fire-circle": Flame,
+    academy: GraduationCap,
+    workshop: Hammer,
+    market: Store,
+    "town-hall": Landmark,
+};
 
-/**
- * SvgGlyphIcon — wraps the geometric line-glyph family (SpaceGlyphs.tsx)
- * in the same footprint/glow treatment as GlyphIcon, so GROW / BUILT BY
- * YOU / COLLABORATE read as siblings of the other rail icons (color glow,
- * centered grid cell, no rotation).
- */
-const SvgGlyphIcon = ({
-    Glyph,
-    color,
-    size = 28,
-}: {
-    Glyph: (props: SpaceGlyphProps) => JSX.Element;
-    color: string;
-    size?: number;
-}) => (
-    <span
-        aria-hidden="true"
-        className="flex-shrink-0 select-none grid place-items-center"
-        style={{
-            width: size,
-            height: size,
-            color,
-            filter: `drop-shadow(0 0 4px ${color}) drop-shadow(0 0 10px ${color}66) drop-shadow(0 0 10px rgba(244, 212, 114, 0.28))`,
-        }}
-    >
-        <Glyph size={size} />
-    </span>
-);
-
-interface SpaceItem {
-    id: string;
-    label: string;
-    labelKey: string;
-    icon: ReactNode;
-    path: string;
-}
-
-// Sasha's chosen glyphs (2026-04-21, v2):
-//   JOURNEY     ✵
-//   ME          ❂
-//   LEARN       ✹
-//   MEET        ⚭
-//   COLLABORATE ⇶
-//   BUILD       ⬢
-//   OFFER       ⚛
-const SPACES: SpaceItem[] = [
-    {
-        id: "journey",
-        label: "MAIN QUEST",
-        labelKey: "spacesRail.journey",
-        // Day 48 iter 7 (Sasha): teal ✵ glyph replaced with the custom
-        // gold-with-blue-hints journey icon asset.
-        // Day 50 (Sasha): warm gold glow now matches ME — the two
-        // gold-tinted icons (JOURNEY + ME) read as a paired set.
-        icon: <ImageIcon src={journeyIcon} alt="Journey" glow />,
-        path: "/game/journey",
-    },
-    {
-        id: "ai-os",
-        label: "AI OS",
-        labelKey: "spacesRail.aiOs",
-        // Day 54 (Sasha 2026-04-28): AI OS elevated to its own Space,
-        // sitting between JOURNEY and ME — process / substrate / being,
-        // the three foundational doors. The merkaba carries the rainbow
-        // harmonic geometry already established elsewhere on site; gold
-        // glow matches the JOURNEY + ME paired-set treatment so all
-        // three foundational icons read as siblings.
-        icon: <ImageIcon src={aiOsIcon} alt="AI OS" glow size={22} />,
-        path: "/ai-os",
-    },
-    // Hidden until built — uncomment to re-enable
-    // {
-    //     id: "next-move",
-    //     label: "MY NEXT MOVE",
-    //     icon: <GlyphIcon glyph="⟡" color="hsl(210, 75%, 65%)" />,
-    //     path: "/game/next-move",
-    // },
-    {
-        id: "grow",
-        label: "CHARACTER",
-        labelKey: "spacesRail.me",
-        // Day 48 iter 7 (Sasha): purple ❂ glyph replaced with the custom
-        // ME icon asset. Sasha asked for a warm gold glow around the
-        // mark — rendered via drop-shadow on the <img> (see ImageIcon).
-        icon: <ImageIcon src={meIcon} alt="Me" glow />,
-        path: "/game/me",
-    },
-    {
-        id: "meet",
-        label: "MEET",
-        labelKey: "spacesRail.meet",
-        icon: <GlyphIcon glyph="⚭" color="hsl(145, 65%, 60%)" />,
-        path: "/game/meet",
-    },
-    {
-        // Day 65 (Sasha 2026-05-09): COLLABORATE chip now routes
-        // directly to the matches surface (was: /game/collaborate, the
-        // TeamsSpace landing — a separate page that overlapped with
-        // /game/collaborate/matches and confused users). The COLLABORATE
-        // value proposition IS the matches; the landing was a stale
-        // intermediate. /game/collaborate route also redirects to the
-        // matches surface as a safety net (see App.tsx).
-        id: "collaborate",
-        label: "PARTY & GUILD",
-        labelKey: "spacesRail.collaborate",
-        icon: <SvgGlyphIcon Glyph={CollaborateGlyph} color="hsl(325, 65%, 65%)" />,
-        path: "/game/collaborate/matches",
-    },
-    {
-        // Day 119 (Sasha 2026-07-09): GROW space enabled — was LEARN,
-        // sat between ME and MEET, gated behind LEARN_VISIBLE (off).
-        // Repositioned between COLLABORATE and BUILD, relabeled GROW,
-        // re-gated to unlock together with COLLABORATE/BUILD (T+M+A
-        // complete). Internal id stays "learn" — routes, GATED_SPACES,
-        // SectionsPanel keys, etc. all key off it; only label/position/
-        // gate changed. See GameShellV2.tsx unlockStatus["learn"].
-        id: "learn",
-        label: "TRAINING",
-        labelKey: "spacesRail.grow",
-        // Day 134 (Sasha 2026-07-23): the former Settings artifact is
-        // now GROW's mark. Keep the space's established cool-blue glow
-        // so the icon inherits GROW's atmosphere rather than utility gold.
-        icon: (
+/** Next · Done · Live as a small mark beside the name. Closed and open carry none. */
+const StateMark = ({ state, compact }: { state: PlaceStateName; compact: boolean }) => {
+    if (state === "next") {
+        return (
             <span
                 aria-hidden="true"
-                className="flex-shrink-0 select-none grid place-items-center"
+                className="absolute rounded-full"
                 style={{
-                    width: 28,
-                    height: 28,
-                    filter: "drop-shadow(0 0 4px hsl(210 75% 68%)) drop-shadow(0 0 10px hsl(210 75% 68% / 0.4))",
+                    width: 7,
+                    height: 7,
+                    top: compact ? 6 : 10,
+                    right: compact ? 6 : 12,
+                    background: "var(--open-accent)",
+                    boxShadow: "0 0 8px 1px var(--open-accent)",
                 }}
-            >
-                <img
-                    src={settingsIcon}
-                    alt=""
-                    draggable={false}
-                    className="h-[24px] w-[24px] object-contain"
-                />
-            </span>
-        ),
-        path: "/game/learn",
-    },
-    {
-        // Day 121 (Sasha 2026-07-13): renamed BUILD -> "BUILT BY YOU" —
-        // labelKey unchanged (spacesRail.build), only the translated
-        // string changes (see locale files). Rail chip text is
-        // t(labelKey), not this `label` field (English fallback only).
-        id: "build",
-        label: "THE FORGE",
-        labelKey: "spacesRail.build",
-        icon: <SvgGlyphIcon Glyph={BuildGlyph} color="hsl(45, 90%, 62%)" size={32} />,
-        // Day 52 (Sasha 2026-04-26): BUILD chip lands on the Unique
-        // Business Builder. UBB is the canonical BUILD experience —
-        // legacy /game/build/* paths still resolve for back-compat
-        // but are no longer the primary destination.
-        path: "/ubb",
-    },
-    {
-        id: "buysell",
-        label: "TRADING POST",
-        labelKey: "spacesRail.offer",
-        icon: <GlyphIcon glyph="⚛" color="hsl(15, 85%, 65%)" />,
-        path: "/game/marketplace",
-    },
-];
+            />
+        );
+    }
+    if (state === "live") {
+        return (
+            <span
+                aria-hidden="true"
+                className="absolute rounded-full animate-pulse motion-reduce:animate-none"
+                style={{
+                    width: 7,
+                    height: 7,
+                    top: compact ? 6 : 10,
+                    right: compact ? 6 : 12,
+                    background: "var(--live-accent)",
+                }}
+            />
+        );
+    }
+    if (state === "done") {
+        return (
+            <Check
+                aria-hidden="true"
+                className="absolute"
+                style={{
+                    width: 12,
+                    height: 12,
+                    top: compact ? 4 : 8,
+                    right: compact ? 4 : 10,
+                    color: "var(--open-accent)",
+                }}
+            />
+        );
+    }
+    return null;
+};
 
-// Day 130 (Sasha 2026-07-20): per-space accent hue for the ENTERED-STATE
-// DEPTH background wash — deliberately sparse. Most spaces stay neutral;
-// only GROW and BUILT BY YOU get a named atmosphere.
-const SPACE_ACCENT_HUE: Record<string, number> = {
-    learn: 40, // GROW — warm dawn gold
-    build: 46, // BUILT BY YOU — deep gold
+/** The state as a word for screen readers; closed reads its «Opens when …» line. */
+const stateWord = (place: VillagePlace, state: PlaceStateName): string => {
+    if (state === "closed") return closedLine(place);
+    if (state === "live") return placeLine(place, state);
+    if (state === "next") return "Next";
+    if (state === "done") return "Done";
+    return "";
 };
 
 interface SpacesRailProps {
-    activeSpaceId?: string;
+    /** The place the player is standing in (src/lib/railPlaces.ts `activePlaceKey`). */
+    activePlace?: VillagePlaceKey | null;
+    /**
+     * The state of each place, in `VILLAGE_PLACES` order (src/hooks/usePlaceStates.ts).
+     * Absent = every place reads open, which is what a rail rendered before the save loads shows.
+     */
+    placeStates?: PlaceStateName[];
+    /** Called with the pane-2 space id of the place just entered. */
     onSpaceSelect?: (spaceId: string) => void;
-    unlockStatus?: Record<string, boolean>;
     /**
      * Day 82 v4 (Sasha 2026-05-24): when true, the rail collapses to the
      * mobile-equivalent slim icon-only width on desktop (overriding the
@@ -310,12 +180,6 @@ interface SpacesRailProps {
      * data-rail-compact attribute + matching CSS rule in index.css.
      */
     compact?: boolean;
-    /** Tooltip hints for locked spaces — e.g. "Unlocks after Step 1" */
-    unlockHints?: Record<string, string>;
-    /** Spaces that have a new unlock waiting (shows badge/glow) */
-    nudgeBadges?: string[];
-    /** Spaces to completely hide from the rail (gradual reveal) */
-    hiddenSpaces?: string[];
     className?: string;
     /**
      * When the parent page renders its OWN full-screen background (e.g. /ai-os
@@ -333,8 +197,6 @@ interface SpacesRailProps {
     isAuthenticated?: boolean;
     /** Canonical root-level public profile URL for the authenticated user. */
     publicProfilePath?: string;
-    userLevel?: number;
-    userXp?: number;
     /**
      * Day 130 (Sasha 2026-07-20): IDENTITY AS PRESENCE. Explicit soul
      * colors from `game_profiles.soul_colors` (already generated
@@ -351,21 +213,16 @@ interface SpacesRailProps {
 }
 
 const SpacesRail = ({
-    activeSpaceId,
+    activePlace = null,
+    placeStates,
     onSpaceSelect,
-    unlockStatus = {},
     compact: compactRequested = false,
-    unlockHints = {},
-    nudgeBadges = [],
-    hiddenSpaces = [],
     className,
     pageOwnsBackground = false,
     userName,
     userAvatarUrl,
     isAuthenticated,
     publicProfilePath = "/game/me/profile",
-    userLevel,
-    userXp,
     soulColors,
     soulColorSeed,
 }: SpacesRailProps) => {
@@ -463,20 +320,6 @@ const SpacesRail = ({
         return () => window.clearTimeout(id);
     }, [compactRequested]);
     const compact = compactLayout;
-
-    const isActive = (path: string) => {
-        if (activeSpaceId) {
-            return SPACES.find(s => s.path === path)?.id === activeSpaceId;
-        }
-        return location.pathname.startsWith(path);
-    };
-
-    // Day 130 (Sasha 2026-07-20): ENTERED-STATE DEPTH — a very subtle
-    // per-space hue tints the rail background when that space is active,
-    // atmosphere rather than paint. Only GROW (learn) and BUILT BY YOU
-    // (build) get a named accent; everything else stays neutral (no wash).
-    const activeSpace = SPACES.find((s) => isActive(s.path));
-    const activeAccentHue = activeSpace ? SPACE_ACCENT_HUE[activeSpace.id] ?? null : null;
 
     return (
         <div
@@ -844,96 +687,64 @@ const SpacesRail = ({
                 }}
             />
 
-            {/* Day 48 iter 8 (Sasha) — chip refinements:
-                • gap between chips bumped (gap-1 → gap-1.5) so the
-                  active gold halo has room to breathe.
-                • rounded-xl → rounded-2xl — matches the CTA-pill radius
-                  family, reads as editorial instead of cornery.
-                • Labels shift to Cormorant Garamond uppercase with
-                  0.14em tracking — same voice as the landing CTA.
-                • Active chip gets a faint gold inset tint on the
-                  interior so the halo + body bond into one lit object.
-                • Hover adds a soft outer gold glow (not just a ring).
-                • Lock badge retired — dimmed icon + tooltip hint
-                  already communicate locked state; the black disc was
-                  reading as Bootstrap debris.
-                • Label transition-opacity 500ms → rewards unlock. */}
-            {/* Day 48 iter 16 (Sasha): `TooltipProvider` wraps the whole
-                nav so any chip can opt into a custom tooltip. Delay 150ms
-                so hover feels crisp but not jumpy. `skipDelayDuration=0`
-                so moving between adjacent chips doesn't re-flash the
-                delay. */}
+            {/* WP-4: the 11 places of the village map, in map order, under the map's
+                names, in the state placeState() gives them. A closed place stays on
+                the rail faded (the lock tokens), cannot be entered, and says in one
+                line what opens it and what is inside; nothing is hidden. Chip look
+                (shape, rings, Cormorant caps) is the rail's existing grammar; the new
+                parts (fade, state marks, hover card) read WP-1 tokens only.
+                TooltipProvider: delay 150ms so hover feels crisp but not jumpy;
+                skipDelayDuration 0 so moving between chips does not re-flash it. */}
             <ScrollArea className="flex-1 spaces-rail-scroll">
               <div className="relative">
-                {/* Day 130 (Sasha 2026-07-20): ENTERED-STATE DEPTH — barely-
-                    there radial wash tinting the rail toward the active
-                    space's accent hue. Atmosphere, not paint: ~4-5% opacity,
-                    fades in/out with the active space. */}
-                <div
-                    aria-hidden="true"
-                    className="absolute inset-0 pointer-events-none transition-opacity duration-500"
-                    style={{
-                        opacity: activeAccentHue !== null ? 0.045 : 0,
-                        background:
-                            activeAccentHue !== null
-                                ? `radial-gradient(circle at 50% 20%, hsl(${activeAccentHue}, 70%, 55%) 0%, transparent 65%)`
-                                : undefined,
-                    }}
-                />
               <TooltipProvider delayDuration={150} skipDelayDuration={0}>
-                <nav className={compact ? "flex flex-col gap-[8px] p-[8px]" : "flex flex-col gap-2.5 px-3 pt-4 pb-3"}>
-                {SPACES.filter(space => !hiddenSpaces.includes(space.id)).map((space) => {
-                    const isLocked = unlockStatus[space.id] === false;
-                    const active = isActive(space.path);
-                    const hasNudge = nudgeBadges.includes(space.id);
+                <nav
+                    aria-label="Village"
+                    className={compact ? "flex flex-col gap-[6px] p-[8px]" : "flex flex-col gap-1 px-3 pt-3 pb-3"}
+                >
+                {RAIL_PLACES.map((place, i) => {
+                    const state: PlaceStateName = placeStates?.[i] ?? "open";
+                    const closed = state === "closed";
+                    const active = place.key === activePlace;
+                    const Icon = PLACE_ICON[place.key];
+                    const line = placeLine(place, state);
 
-                    const handleSpaceClick = () => {
-                        if (isLocked) return;
-                        onSpaceSelect?.(space.id);
-                        navigate(space.path);
+                    const handleClick = () => {
+                        if (closed) return;
+                        onSpaceSelect?.(PANE_BY_PLACE[place.key]);
+                        navigate(place.to);
                     };
 
                     const chipButton = (
                         <button
-                            key={space.id}
-                            data-tour-id={space.id}
-                            onClick={handleSpaceClick}
-                            disabled={isLocked}
+                            key={place.key}
+                            type="button"
+                            data-tour-id={tourIdFor(place.key)}
+                            data-place={place.key}
+                            data-place-state={state}
+                            aria-current={active ? "page" : undefined}
+                            aria-disabled={closed ? true : undefined}
+                            onClick={handleClick}
                             className={cn(
                                 "transition-all duration-300 relative group",
                                 compact
                                     ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
-                                    : "flex items-center gap-3 px-3 py-3.5 rounded-2xl justify-center lg:justify-start",
-                                // Day 119 (Sasha 2026-07-09): during the 200ms
-                                // collapse fade (width already narrowing, layout
-                                // still row) clip the fading label instead of
-                                // letting it spill over the pane edge.
+                                    : "flex items-center gap-3 px-3 py-2.5 rounded-2xl justify-center lg:justify-start",
+                                // Clip the fading label while the rail narrows.
                                 compactRequested && !compact && "overflow-hidden",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
-                                isLocked
-                                    ? "text-white/30 cursor-not-allowed"
+                                closed
+                                    ? "text-white/55 cursor-default"
                                     : active
-                                        // Day 119 (Sasha 2026-07-09): in compact, the
-                                        // 22-48px glow radius bled past the 72px pane's
-                                        // right edge (48px cell + 12px margin leaves no
-                                        // room). Tighter contained glow; same gold ring.
-                                        // Day 130 (Sasha 2026-07-20): ENTERED-STATE
-                                        // DEPTH — the flat "lit ring" gets a recessed
-                                        // inset shadow + slight scale-down, reading as
-                                        // a place you've stepped INTO rather than a
-                                        // button lit from outside. Faint gold ring kept.
+                                        // Entered state: recessed inset shadow + slight
+                                        // scale-down, a place you have stepped INTO.
                                         ? compact
                                             ? "text-white shadow-[inset_0_2px_8px_rgba(0,0,0,0.35)] scale-[0.99]"
                                             : "text-white shadow-[inset_0_2px_10px_rgba(0,0,0,0.38),inset_0_0_0_1px_rgba(244,212,114,0.14)] scale-[0.99]"
-                                        : hasNudge
-                                            ? "bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 hover:text-emerald-300 ring-1 ring-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.4)] animate-pulse"
-                                            : "text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
+                                        : "text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
                             )}
                             style={
-                                active
-                                    // Day 130 (Sasha 2026-07-20): background deepened
-                                    // slightly (0.08 → 0.13) to pair with the inset
-                                    // shadow — the chip reads as recessed, not just lit.
+                                active && !closed
                                     ? isDefaultYouSkin && !isTheDao
                                         ? {
                                             backgroundColor: "rgba(15, 35, 76, 0.52)",
@@ -943,135 +754,57 @@ const SpacesRail = ({
                                         : { backgroundColor: "var(--skin-selected-bg-deep, rgba(212, 175, 55, 0.13))" }
                                     : undefined
                             }
-                            // Day 48 iter 16: native `title` attribute retired for
-                            // locked chips (replaced by the Radix Tooltip below).
-                            // Non-locked chips keep the native title as a simple
-                            // accessibility fallback for mobile where the label
-                            // column is hidden.
-                            // Day 119 (Sasha 2026-07-09): also dropped in compact
-                            // — the Radix label tooltip below covers it, and the
-                            // native one would double up.
-                            title={!isLocked && !compact ? t(space.labelKey) : undefined}
-                            aria-label={isLocked ? (unlockHints[space.id] || t('spacesRail.lockedLabel', { space: t(space.labelKey) })) : t(space.labelKey)}
+                            // Native title is the plain fallback where the label column is
+                            // hidden (mobile). In compact and closed the hover card below
+                            // carries the same line.
+                            title={!closed && !compact ? line : undefined}
+                            aria-label={closed ? `${place.name}. ${closedLine(place)}` : place.name}
                         >
-                            <span className="relative flex-shrink-0">
-                                <span
-                                    className={cn(
-                                        "transition-opacity duration-500",
-                                        isLocked && "opacity-30",
-                                    )}
-                                >
-                                    {space.icon}
-                                </span>
+                            <span
+                                className="relative flex flex-1 min-w-0 items-center gap-3 justify-center lg:justify-start transition-[filter,opacity] duration-500"
+                                style={closed ? { filter: "var(--lock-filter)", opacity: "var(--lock-dim)" } : undefined}
+                            >
+                                <Icon
+                                    aria-hidden="true"
+                                    className="flex-shrink-0"
+                                    style={{ width: compact ? 22 : 20, height: compact ? 22 : 20 }}
+                                    strokeWidth={1.6}
+                                />
+                                {!compact && (
+                                    <span
+                                        className={cn(
+                                            "hidden lg:block truncate transition-opacity duration-150",
+                                            labelsVisible ? "opacity-100" : "opacity-0"
+                                        )}
+                                        style={{
+                                            fontFamily: "'Cormorant Garamond', serif",
+                                            fontWeight: active ? 700 : 600,
+                                            fontSize: "0.78rem",
+                                            letterSpacing: "0.14em",
+                                            textTransform: "uppercase",
+                                        }}
+                                    >
+                                        {place.name}
+                                    </span>
+                                )}
                             </span>
 
-                            {!compact && (
-                                <span
-                                    // Day 119 (Sasha 2026-07-09): fade with the
-                                    // rail width transition instead of popping.
-                                    className={cn(
-                                        "hidden lg:block truncate transition-opacity duration-150",
-                                        labelsVisible ? "opacity-100" : "opacity-0"
-                                    )}
-                                    style={{
-                                        fontFamily: "'Cormorant Garamond', serif",
-                                        fontWeight: active ? 700 : 600,
-                                        fontSize: "0.78rem",
-                                        letterSpacing: "0.14em",
-                                        textTransform: "uppercase",
-                                    }}
-                                >
-                                    {t(space.labelKey)}
-                                </span>
-                            )}
+                            <StateMark state={state} compact={compact} />
+                            <span className="sr-only">{stateWord(place, state)}</span>
 
-                            {hasNudge && (
-                                <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-black/30 animate-ping" />
-                            )}
-                            {hasNudge && (
-                                <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-black/30" />
-                            )}
-
-                            {/* Day 119 (Sasha 2026-07-09): active-state gold pip
-                                hidden in compact — its left-edge positioning
-                                overflowed the slim 72px column (previously
-                                hidden via a CSS override). The chip's own gold
-                                ring on active state is enough indicator. */}
+                            {/* Active-state gold pip, hidden in compact (its left-edge
+                                position overflowed the slim 72px column). */}
                             {active && !compact && (
                                 <div className="absolute left-0 top-1/2 w-[3px] h-7 rounded-r-full translate-x-0 lg:-translate-x-1/2 -translate-y-1/2 bg-[rgba(226,190,82,0.86)] shadow-[0_0_6px_rgba(244,212,114,0.34)]" />
                             )}
                         </button>
                     );
 
-                    // Day 48 iter 16 (Sasha): custom Radix tooltip for locked
-                    // chips. Replaces the system `title=` tooltip (ugly black
-                    // rectangle, cursor overlap). Premium register: dark glass
-                    // pill + gold hairline + Cormorant italic text. Positioned
-                    // on the RIGHT of the chip (side="right") so the cursor
-                    // (over the chip itself) never covers the message. Small
-                    // side-offset so it doesn't touch the rail edge.
-                    if (isLocked) {
-                        const hint = unlockHints[space.id] || t('spacesRail.lockedLabel', { space: t(space.labelKey) });
+                    // Hover card: closed places say what opens them; in compact every
+                    // place shows its name (and its line when it has something to say).
+                    if (closed || compact) {
                         return (
-                            <Tooltip key={space.id}>
-                                <TooltipTrigger asChild>
-                                    {chipButton}
-                                </TooltipTrigger>
-                                <TooltipContent
-                                    side="right"
-                                    align="center"
-                                    sideOffset={12}
-                                    className="max-w-[260px] rounded-xl border-none p-0 shadow-none bg-transparent animate-in fade-in-0 zoom-in-95"
-                                >
-                                    <div
-                                        className="liquid-glass-dark rounded-xl px-4 py-3"
-                                        style={{
-                                            backgroundImage:
-                                                "linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(18,28,56,0.88) 50%, rgba(10,22,40,0.92) 100%)",
-                                            border: "1px solid rgba(212, 175, 55, 0.35)",
-                                            boxShadow:
-                                                "0 0 0 1px rgba(212, 175, 55, 0.15), 0 8px 28px -8px rgba(10, 22, 40, 0.6), 0 0 24px -6px rgba(244, 212, 114, 0.25)",
-                                        }}
-                                    >
-                                        <p
-                                            className="text-[11px] mb-1"
-                                            style={{
-                                                fontFamily: "'Cormorant Garamond', serif",
-                                                fontWeight: 600,
-                                                letterSpacing: "0.22em",
-                                                textTransform: "uppercase",
-                                                color: "#f4d472",
-                                                textShadow: "0 0 10px rgba(244, 212, 114, 0.4)",
-                                            }}
-                                        >
-                                            {t('spacesRail.lockedHeader', { space: t(space.labelKey) })}
-                                        </p>
-                                        <p
-                                            className="text-[13px] italic leading-snug"
-                                            style={{
-                                                fontFamily: "'Cormorant Garamond', serif",
-                                                fontWeight: 500,
-                                                color: "rgba(245, 241, 232, 0.92)",
-                                            }}
-                                        >
-                                            {hint}
-                                        </p>
-                                    </div>
-                                </TooltipContent>
-                            </Tooltip>
-                        );
-                    }
-
-                    // Day 119 (Sasha 2026-07-09): compact-mode label tooltip
-                    // for UNLOCKED chips. In compact the visible label is
-                    // gone, so hovering a chip shows its name in the same
-                    // premium register as the locked-chip tooltip above
-                    // (dark glass pill + gold hairline + Cormorant), just
-                    // without the unlock-hint line. Non-compact keeps the
-                    // visible label + native title, no Radix tooltip.
-                    if (compact) {
-                        return (
-                            <Tooltip key={space.id}>
+                            <Tooltip key={place.key}>
                                 <TooltipTrigger asChild>
                                     {chipButton}
                                 </TooltipTrigger>
@@ -1084,26 +817,35 @@ const SpacesRail = ({
                                     <div
                                         className="liquid-glass-dark rounded-xl px-4 py-2.5"
                                         style={{
-                                            backgroundImage:
-                                                "linear-gradient(135deg, rgba(10,22,40,0.92) 0%, rgba(18,28,56,0.88) 50%, rgba(10,22,40,0.92) 100%)",
-                                            border: "1px solid rgba(212, 175, 55, 0.35)",
-                                            boxShadow:
-                                                "0 0 0 1px rgba(212, 175, 55, 0.15), 0 8px 28px -8px rgba(10, 22, 40, 0.6), 0 0 24px -6px rgba(244, 212, 114, 0.25)",
+                                            backgroundColor: "rgba(var(--scene-bg-rgb), 0.92)",
+                                            border: "1px solid rgba(var(--accent-rgb), 0.35)",
+                                            boxShadow: "0 8px 28px -8px rgba(var(--shadow-rgb), 0.6)",
                                         }}
                                     >
                                         <p
-                                            className="text-[11px]"
+                                            className={cn("text-[11px]", closed || state === "live" ? "mb-1" : "")}
                                             style={{
                                                 fontFamily: "'Cormorant Garamond', serif",
                                                 fontWeight: 600,
                                                 letterSpacing: "0.22em",
                                                 textTransform: "uppercase",
-                                                color: "#f4d472",
-                                                textShadow: "0 0 10px rgba(244, 212, 114, 0.4)",
+                                                color: "var(--accent-bright)",
                                             }}
                                         >
-                                            {t(space.labelKey)}
+                                            {place.name}
                                         </p>
+                                        {(closed || state === "live") && (
+                                            <p
+                                                className="text-[13px] italic leading-snug"
+                                                style={{
+                                                    fontFamily: "'Cormorant Garamond', serif",
+                                                    fontWeight: 500,
+                                                    color: "rgba(var(--scene-ink-rgb), 0.92)",
+                                                }}
+                                            >
+                                                {line}
+                                            </p>
+                                        )}
                                     </div>
                                 </TooltipContent>
                             </Tooltip>
@@ -1401,41 +1143,18 @@ const areEqual = (prev: SpacesRailProps, next: SpacesRailProps) => {
     // Day 119 (Sasha 2026-07-09): compact now flips at runtime on every
     // shell route (platform-wide minimize) — must invalidate the memo.
     if (prev.compact !== next.compact) return false;
-    if (prev.activeSpaceId !== next.activeSpaceId) return false;
+    if (prev.activePlace !== next.activePlace) return false;
     if (prev.onSpaceSelect !== next.onSpaceSelect) return false;
     if (prev.className !== next.className) return false;
     if (prev.pageOwnsBackground !== next.pageOwnsBackground) return false;
-    // Check nudgeBadges
-    const prevNudges = prev.nudgeBadges || [];
-    const nextNudges = next.nudgeBadges || [];
-    if (prevNudges.length !== nextNudges.length) return false;
-    for (const badge of prevNudges) {
-        if (!nextNudges.includes(badge)) return false;
-    }
-    // Check unlockStatus
-    const prevKeys = Object.keys(prev.unlockStatus || {});
-    const nextKeys = Object.keys(next.unlockStatus || {});
-    if (prevKeys.length !== nextKeys.length) return false;
-    for (const key of prevKeys) {
-        if (prev.unlockStatus?.[key] !== next.unlockStatus?.[key]) return false;
-    }
-    // Check unlockHints
-    const prevHintKeys = Object.keys(prev.unlockHints || {});
-    const nextHintKeys = Object.keys(next.unlockHints || {});
-    if (prevHintKeys.length !== nextHintKeys.length) return false;
-    for (const key of prevHintKeys) {
-        if (prev.unlockHints?.[key] !== next.unlockHints?.[key]) return false;
-    }
-    // Check hiddenSpaces
-    const prevHidden = prev.hiddenSpaces || [];
-    const nextHidden = next.hiddenSpaces || [];
-    if (prevHidden.length !== nextHidden.length) return false;
-    for (const h of prevHidden) {
-        if (!nextHidden.includes(h)) return false;
+    // The place states arrive as a new array each render; compare by content.
+    const prevStates = prev.placeStates || [];
+    const nextStates = next.placeStates || [];
+    if (prevStates.length !== nextStates.length) return false;
+    for (let i = 0; i < prevStates.length; i++) {
+        if (prevStates[i] !== nextStates[i]) return false;
     }
     return true;
 };
 
 export default memo(SpacesRail, areEqual);
-export { SPACES };
-export type { SpaceItem };
