@@ -7113,6 +7113,30 @@
       "assessQol": "Assessed your quality of life",
       "buildBusiness": "Built a business off your top talent",
       "discoverMission": "Discovered your mission"
+    },
+    "rooms": {
+      "talent": { "again": "Take the test again" },
+      "mission": { "again": "Open your mission" },
+      "colors": { "title": "Soul colors" },
+      "level": { "again": "Measure again" },
+      "offer": {
+        "title": "Your offer",
+        "saved": "Your offer is saved. It stands on your stall.",
+        "empty": "Not built yet",
+        "start": "Build your offer",
+        "again": "Open the Workshop"
+      }
+    },
+    "badges": {
+      "note": "One badge for each step you finished, in your own words.",
+      "chose": "You chose: {{text}}",
+      "names": {
+        "findTopTalent": "Top Talent",
+        "discoverMission": "Mission",
+        "assessQol": "Real Level",
+        "mapAssets": "Inventory",
+        "buildBusiness": "Your Offer"
+      }
     }
   },
   "myProducts": {

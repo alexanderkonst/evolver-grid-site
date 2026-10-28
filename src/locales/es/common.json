@@ -7084,6 +7084,30 @@
       "assessQol": "Evaluaste tu calidad de vida",
       "buildBusiness": "Construiste un negocio sobre tu talento principal",
       "discoverMission": "Descubriste tu misión"
+    },
+    "rooms": {
+      "talent": { "again": "Repetir el test" },
+      "mission": { "again": "Abrir tu misión" },
+      "colors": { "title": "Colores del alma" },
+      "level": { "again": "Medir de nuevo" },
+      "offer": {
+        "title": "Tu oferta",
+        "saved": "Tu oferta está guardada. Está en tu puesto.",
+        "empty": "Aún sin construir",
+        "start": "Construir tu oferta",
+        "again": "Abrir el Taller"
+      }
+    },
+    "badges": {
+      "note": "Una insignia por cada paso que terminaste, con tus palabras.",
+      "chose": "Elegiste: {{text}}",
+      "names": {
+        "findTopTalent": "Talento principal",
+        "discoverMission": "Misión",
+        "assessQol": "Nivel real",
+        "mapAssets": "Inventario",
+        "buildBusiness": "Tu oferta"
+      }
     }
   },
   "myProducts": {
