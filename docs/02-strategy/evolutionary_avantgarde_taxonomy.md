@@ -166,7 +166,6 @@ The list is open: more flavors exist, and new ones appear every year.
 - **Language spaces as an axis.** The Russian-speaking entrepreneur scene, diaspora groups, Russian-speaking Bali chats and the Russian-speaking New Earth leaders run across the petals. A language space is a second axis next to the flavors, and the one where Sasha has the most entries.
 
 **Unclear in the transcript, to ask Sasha:**
-- "Used to shock statue founders to soft": meaning unknown, not mapped.
 - "типа why": likely YPO or EO.
 - A festival name heard as "woman": possibly Boom.
 - McGilchrist (he forgot the name) and Ubud/Canggu (heard "Bood hub Cap gun hub") are inferred.
