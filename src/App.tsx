@@ -104,6 +104,21 @@ import ActivateTopTalent from "./pages/ActivateTopTalent";
 import MethodologyLandingPage from "./pages/MethodologyLandingPage";
 import JourneyPage from "./pages/JourneyPage";
 import GameTitle from "./pages/GameTitle";
+// Keep-constraint (game_of_being_you.md §14.13, Sasha 2026-10-28): pre-game surfaces stay reachable.
+const CoreLoopHome = lazy(() => import("./pages/CoreLoopHome"));
+const DailyLoopV2 = lazy(() => import("./pages/DailyLoopV2"));
+const GameMap = lazy(() => import("./pages/GameMap"));
+
+/**
+ * `/`: the title screen, except for entry links that carry `?path=` (Funnel v2,
+ * docs/specs/funnel-v2/funnel-v2_product_spec.md §4.1: `?path=match` outreach links show
+ * MatchHero, `?path=build` the methodology landing). Those links predate the game and
+ * stay working (§14.13 keep-constraint).
+ */
+const RootRoute = () => {
+  const { search } = useLocation();
+  return new URLSearchParams(search).has("path") ? <JourneyPage /> : <GameTitle />;
+};
 import InvestorRoom from "./pages/InvestorRoom";
 // Day 137 (Sasha 2026-07-28): /home2 is a private, noindex review surface for
 // the proposed landing rebuild that was briefly (and mistakenly) live at `/`
@@ -501,7 +516,7 @@ const App = () => (
                   {/* Issue #127 (Sasha 2026-10-27): THE GAME OF BEING YOU title screen is
                       now the homepage. The previous homepage (JourneyPage) stays
                       reachable at /journey (and still at /game/journey). */}
-                  <Route path="/" element={<GameTitle />} />
+                  <Route path="/" element={<RootRoute />} />
                   {/* Issue #135 (Sasha 2026-10-27): public Investor Room, information
                       ABOUT the Digital Village. Not a door into it: «Play the game»
                       leads back to the title screen at `/`. */}
@@ -894,6 +909,11 @@ const App = () => (
                   <Route path="/character" element={<RequireAuth><Today /></RequireAuth>} />
                   {/* The old XP-based GameMap is unrouted; /map now opens the Digital Village. */}
                   <Route path="/map" element={<Navigate to="/village" replace />} />
+                  {/* §14.13 keep-constraint: the pre-game next-move hub, the daily-loop page and
+                      the classic map keep their own routes (their old URLs open the game). */}
+                  <Route path="/next-move" element={<RequireAuth><CoreLoopHome /></RequireAuth>} />
+                  <Route path="/next-move-v2" element={<RequireAuth><DailyLoopV2 /></RequireAuth>} />
+                  <Route path="/map-classic" element={<RequireAuth><GameMap /></RequireAuth>} />
                   {/* One element for map and place so the two layers can crossfade. */}
                   <Route path="/village/:place?" element={<><Village /><ChoiceFollowUp /></>} />
                   <Route path="/skills" element={<RequireAuth><GrowthPathsPage /></RequireAuth>} />
