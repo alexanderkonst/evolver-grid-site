@@ -202,7 +202,7 @@ Sasha's note (verbatim):
 
 *Thesis, not proven traction. Detail: `evolutionary_avantgarde_taxonomy.md` (flavors map v2, the silo problem, the bedrock).*
 
-- The evolutionary avant-garde is about twenty flavors (network states, New Earth, integral, breathwork, plant medicine, venture studios, digital twins of cities, AI-native builders, and more). Each cooks in its own juice and rebuilds part of the same stack on its own.
+- The evolutionary avant-garde is more than thirty flavors (36 mapped as of 2026-10-27: network states, New Earth, integral, breathwork, plant medicine, healers, tantra and ecstatic dance, venture studios, digital twins of cities, AI-native builders, physical hubs, festivals, language-space communities, and more). Each cooks in its own juice and rebuilds part of the same stack on its own.
 - Underneath, every flavor needs the same primitive: a village, uniqueness, stalls and an economy, growth programs, coworking, masterminds, hackathons, a venture studio, business playbooks, and AI to amplify one's signal. No flavor holds all of it.
 - The Digital Village packages the primitive as one game with a flavor-neutral Gate (the uniqueness test). Any flavor can enter without converting to another flavor's worldview, so the addressable base is the sum of the petals, not one petal.
 - The defensible part is the upstream: articulating each person's uniqueness (the methodology and the dated articulation-depth reads), plus the felt map of the flavors that lets one village speak to each in its own language. Tools downstream of articulation (sites, offers, AI scaffolding) commoditize; the articulation and the cross-flavor graph do not copy easily.

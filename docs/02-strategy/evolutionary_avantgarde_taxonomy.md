@@ -123,6 +123,54 @@ A flavor can span several currents. **New** marks a flavor that was not in the J
 
 The list is open: more flavors exist, and new ones appear every year.
 
+### v3 additions (2026-10-27 evening, Sasha's dictation)
+
+*Source: Sasha's voice dictation, October 27, 2026, 20:26 CDMX. Transcript cleaned up by Hark; items marked "inferred" or "unclear" are Hark's reading of the audio, to confirm with Sasha.*
+
+**His framing (paraphrase).** Very few people embody many shades of the evolutionary avant-garde at once. He knows many of them, not all. It is a bold claim, and he is ready to defend it; intellectual battles he will meet with aikido.
+
+**New rows.** Statuses: **New** = in neither the January map nor v2; **From January map** = a January subculture now added to the flavors table.
+
+| Flavor | Sovereignty | Innovation | Regeneration | Awakening | Rooting | Creation | Status |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|---|
+| People building their own AIs on the new principles | ● | ● | | | | ● | New (adjacent to AI-native builders, but builds its own AI rather than founder scaffolding) |
+| Metaphysics, especially integral metaphysics without the word "integral" (Robert Gilbert, Buckminster Fuller, Rudolf Steiner) | | | | ● | | ● | New |
+| Big-system intellectuals who explain everything through one human system (e.g. Iain McGilchrist, left/right hemisphere; name inferred) | | | | ● | | ● | New (adjacent to polymaths) |
+| Sensitivity and tantra | | | | ● | | | New |
+| Dance (ecstatic dance and the like) | | | | ● | | ● | New |
+| Physical hubs (Bali: Ubud hub, Canggu hub, inferred from the transcript; others) | | ● | | ● | ● | | New |
+| Conscious communities in big cities | | | | ● | | ● | New |
+| AIESEC alumni ("a powerful community") | | ● | ● | | | | New |
+| Russian-speaking entrepreneur scene (Sasha has many entries here) | | ● | | | | | New |
+| MBA groups and diaspora groups united by language and culture (e.g. Russian-speaking communities) | | ● | | | | | New |
+| Alumni of entrepreneurial networking groups (transcript "типа why"; likely YPO or EO, uncertain) | | ● | | | | | New. Sasha's caveat: no real connection yet; feels like more status and ego than the mission needs |
+| Healers (powerful healers) | | | ● | ● | | | New |
+| Masters' chats and easy-access digital rooms in communities (e.g. Russian-speaking communities in Bali) | | ● | | ● | | | New |
+| Festivals and giant gatherings (Burning Man; one more name unclear, possibly Boom): huge unification potential | | | | ● | ● | ● | New |
+| Successful projects on the land; regenerative communities and their self-organization | ● | | ● | | ● | | From January map (Rooting: land projects, ecovillages; Regeneration) |
+| Silicon Valley, its centres of gravity, and its universities | | ● | | | | | From January map (Innovation: startup ecosystems) |
+| High-vibration organizations and universities (Ubiquity University, Minerva University) | | ● | | ● | | | From January map (Awakening: alternative education) |
+
+**Extends existing v2 rows** (no new row):
+- **Game designers**: re-confirmed; for Sasha a layer that is newly opening.
+- **Semi-establishment change-makers**: now explicitly includes change-makers with careers in international institutions (UN, World Economic Forum and the like) who are awakening.
+- **Consciousness technologies**: also named "transformational technology", technology at the junction of consciousness and states work.
+- **Spiritual teachers**: now includes teachers of mindfulness, love, wisdom, spirit and soul, and teachers of awakening, including inter-dimensional and stage awakening.
+- **New Earth leaders**: now includes new-era leaders emerging inside specific language spaces, especially a Russian-speaking "leaders of the new Earth" group.
+- **Web3, pop-up cities, network states**: pop-up cities named again, next to festivals.
+
+**Count.** v2: 19 flavors. v3: 36 (17 new rows: 14 new, 3 from the January map; 6 v2 rows extended).
+
+**Two cross-cuts the v3 list reveals** (Hark's reading, to check with Sasha):
+- **Containers, not worldviews.** Physical hubs, festivals, conscious city communities, masters' chats and pop-up cities are places where many flavors already overlap. They are distribution channels for the whole spectrum, not one more petal.
+- **Language spaces as an axis.** The Russian-speaking entrepreneur scene, diaspora groups, Russian-speaking Bali chats and the Russian-speaking New Earth leaders run across the petals. A language space is a second axis next to the flavors, and the one where Sasha has the most entries.
+
+**Unclear in the transcript, to ask Sasha:**
+- "Used to shock statue founders to soft": meaning unknown, not mapped.
+- "типа why": likely YPO or EO.
+- A festival name heard as "woman": possibly Boom.
+- McGilchrist (he forgot the name) and Ubud/Canggu (heard "Bood hub Cap gun hub") are inferred.
+
 ---
 
 ## The silo problem
@@ -165,7 +213,7 @@ San Pancho is Village #1 of the same primitive in the physical world (§16). The
 
 ### Native doors: where each flavor enters
 
-Every flavor walks the same Journey, but each has a door it recognizes first. *Thesis, to be tested with real people from each flavor.*
+Every flavor walks the same Journey, but each has a door it recognizes first. *Thesis, to be tested with real people from each flavor.* 36 flavors as of v3 (2026-10-27 evening); v3 rows are at the end of the table.
 
 | Flavor | Native door (first place / program / offer) | What the primitive gives it that it lacks alone |
 |---|---|---|
@@ -188,11 +236,29 @@ Every flavor walks the same Journey, but each has a door it recognizes first. *T
 | Semi-establishment change-makers | Academy (the webinar) and Fire Circle | A concrete, small working model of the change they theorize |
 | Polymaths and researchers | Café (MEET) and Co-working | Being matched for their range instead of forced into one box |
 | AI-native builders of founder scaffolding | Oracle (AI OS) and Workshop, as partners | The articulation upstream of their tools: a founder who knows what to build; and a village to deploy into |
+| People building their own AIs on the new principles (v3) | Oracle (AI OS), as contributors and partners | A living use case: AI that amplifies a person's own signal, with real residents to serve |
+| Metaphysics, integral without the word (v3) | Academy, as teachers and contributors | Students from other petals and a priced offer; a practical world where the metaphysics is lived |
+| Big-system intellectuals (v3) | Café (MEET) and Academy (talks) | Being read alongside other systems instead of competing with them; an audience across petals |
+| Sensitivity and tantra (v3) | Market and Workshop (UBB) | A clear, respectable offer and price; clients from outside the scene |
+| Dance, ecstatic dance (v3) | Market (events as stalls) and Café | A steady flow of people and a way to turn the dance floor into lasting connections |
+| Physical hubs (Bali: Ubud, Canggu) (v3) | Federation of villages (§16.5) and Fire Circle | A shared method to run a hub as a village with an economy; matching across hubs |
+| Conscious communities in big cities (v3) | Fire Circle (Mastermind) and Café (MEET) | Continuity between gatherings, and members who earn from their gifts |
+| AIESEC alumni (v3) | Academy (webinar) and Co-working | A second round of the change-maker path, now built on their own uniqueness |
+| Russian-speaking entrepreneur scene (v3) | Academy (webinar) and Workshop (UBB), in Russian | A business built on the founder's uniqueness, not on a copied model |
+| MBA and language/culture diaspora groups (v3) | Academy (webinar) and Café (MEET) | Matches by complementarity, not only by shared language or school |
+| Alumni of entrepreneurial networking groups (YPO/EO?) (v3) | Investor Room and Town Hall (low priority, per Sasha's caveat) | Deal flow with depth: founders who know what they are uniquely for |
+| Healers (v3) | Market and Workshop (UBB) | A priced offer instead of donations; clients from other petals |
+| Masters' chats and easy-access digital rooms (v3) | Academy (webinar) and Market, announced in the chat | A path from a chat post to a stall and a first sale |
+| Festivals and giant gatherings (v3) | Café (MEET) and Co-working, as an after-festival village | A reason and a place to keep going after the festival ends |
+| Successful land projects, regenerative communities (v3) | Town Hall and the federation of villages (§16.5) | An economy of residents' gifts next to the land work; a method to share with other projects |
+| Silicon Valley, its centres of gravity, universities (v3) | Investor Room and Workshop | Founders who did the articulation work before the pitch |
+| High-vibration organizations and universities (Ubiquity, Minerva) (v3) | Academy, as partners | A practical path from study to a first sale for their students and alumni |
 
 ### Reading the game through this prism
 
 - **One Journey, many doors.** The Journey (§14.2) stays one. What changes per flavor is the copy at the door and the first offer shown, not the path.
-- **Practitioners first, partners second.** Flavors whose people are solo practitioners with an offer (breathwork, energetic and archetypal work, spiritual teachers, consciousness technologies, uniqueness) are players and early stall owners. Flavors that build infrastructure (digital twins, network states, venture studios, AI-native builders, game designers, Enspiral-type communities) are partners: they enter through Town Hall, Oracle and village design.
+- **Practitioners first, partners second.** Flavors whose people are solo practitioners with an offer (breathwork, energetic and archetypal work, spiritual teachers, consciousness technologies, uniqueness, and from v3 healers, tantra, dance) are players and early stall owners. Flavors that build infrastructure (digital twins, network states, venture studios, AI-native builders, game designers, Enspiral-type communities, and from v3 builders of their own AIs, physical hubs, land projects, universities) are partners: they enter through Town Hall, Oracle and village design.
+- **Containers are channels (v3).** Hubs, festivals, city communities and masters' chats are where many flavors already meet; one entry there reaches several petals at once. *Thesis.*
 - **Koster facet check (§15.8), extended.** For every new place, add one line: which flavor will recognize this place as its own door?
 
 ---
