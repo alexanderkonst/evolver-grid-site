@@ -1175,7 +1175,7 @@ const ZoneOfGeniusEntry = () => {
                             the result as a verb. The second path is a quiet text link. */}
                         <div className="flex flex-col items-center gap-4">
                             <button
-                                onClick={handleStartManualAssessment}
+                                onClick={() => setStep("ai-prompt")}
                                 className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-6 sm:px-8 py-3.5 max-w-full text-base sm:text-lg font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none animate-in fade-in slide-in-from-bottom-2 duration-400"
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
@@ -1213,19 +1213,18 @@ const ZoneOfGeniusEntry = () => {
                                     textShadow: "var(--skin-text-halo-deep)",
                                 }}
                             >
-                                {t('zogEntry.ctaGuidedSubtitle')}
+                                {t('zogEntry.cardFasterSubtitle')}
                             </p>
-                            {/* WP-7c: the external-AI route stays reachable as the quiet link. */}
                             <button
                                 type="button"
-                                onClick={() => setStep("ai-prompt")}
+                                onClick={handleStartManualAssessment}
                                 className="text-[12px] transition-colors duration-300 tracking-wide hover:underline"
                                 style={{
                                     color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
                                     textShadow: "var(--skin-text-halo-deep)",
                                 }}
                             >
-                                {t('zogEntry.useOwnAiLink')}
+                                {t('zogEntry.guidedAssessmentLink')}
                             </button>
                         </div>
                     </div>
