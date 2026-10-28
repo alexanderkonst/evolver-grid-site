@@ -30,7 +30,13 @@ import { useEntryPath } from "@/contexts/EntryPathContext";
 // below the Top Talent reveal. Renders null for build-path users so
 // AppleseedDisplay's existing CTAs are untouched.
 import MatchFlowCta from "@/components/landing/MatchFlowCta";
-import { generateAppleseed, AppleseedData, RevealTimeoutError } from "./appleseedGenerator";
+import {
+    generateAppleseed,
+    AppleseedData,
+    RevealTimeoutError,
+    UnreadableResponseError,
+    isAppleseedReadable,
+} from "./appleseedGenerator";
 import { generateExcalibur, ExcaliburData } from "./excaliburGenerator";
 import { saveAppleseed, saveExcalibur, loadSavedData, saveAppleseedToLocalStorage } from "./saveToDatabase";
 import AppleseedDisplay from "./AppleseedDisplay";
@@ -111,6 +117,9 @@ type Step =
     | "generating-excalibur"
     | "excalibur-result";
 
+// A real answer to the prompt is far longer; below this we nudge, never block.
+const SHORT_PASTE_CHARS = 200;
+
 const ZoneOfGeniusEntry = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
@@ -152,11 +161,13 @@ const ZoneOfGeniusEntry = () => {
     const [aiResponse, setAiResponse] = useState("");
     const pasteRef = useRef<PasteTextareaHandle>(null);
     const [hasPasteText, setHasPasteText] = useState(false);
+    const [isShortPaste, setIsShortPaste] = useState(false);
     const [copied, setCopied] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
     const [error, setError] = useState<string | null>(null);
     // Own-AI reveal failure (timeout / AI error): shown on the paste step with Retry.
     const [revealError, setRevealError] = useState<string | null>(null);
+    const [revealUnreadable, setRevealUnreadable] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const [profileId, setProfileId] = useState<string | null>(null);
 
@@ -610,15 +621,19 @@ const ZoneOfGeniusEntry = () => {
         const pastedResponse = pasteRef.current?.getValue() ?? "";
         if (!pastedResponse.trim()) return;
         setAiResponse(pastedResponse);
+        setIsShortPaste(pastedResponse.trim().length < SHORT_PASTE_CHARS);
 
         setIsProcessing(true);
         setError(null);
         setRevealError(null);
+        setRevealUnreadable(false);
         setStep("generating-appleseed");
 
         try {
             // Generate Appleseed from raw AI response
             const result = await generateAppleseed(pastedResponse);
+            // Never show the empty reveal card: no title and no talents is an error.
+            if (!isAppleseedReadable(result)) throw new UnreadableResponseError();
             setAppleseed(result);
 
             // Recovery buffer only. Guests now authenticate before seeing the reveal.
@@ -646,9 +661,12 @@ const ZoneOfGeniusEntry = () => {
             // Always a kind, localized message (never raw gateway/billing text),
             // shown on the paste step with Retry + the guided test as fallback.
             console.error("[ZoneOfGeniusEntry] Reveal failed:", err);
+            setRevealUnreadable(err instanceof UnreadableResponseError);
             setRevealError(err instanceof RevealTimeoutError
               ? t('zogEntry.errorRevealTimeout')
-              : t('zogEntry.errorGenerateProfile'));
+              : err instanceof UnreadableResponseError
+                ? t('zogEntry.errorUnreadableResponse')
+                : t('zogEntry.errorGenerateProfile'));
             setStep("paste-response");
         } finally {
             setIsProcessing(false);
@@ -1391,6 +1409,9 @@ const ZoneOfGeniusEntry = () => {
                             ref={pasteRef}
                             initialValue={aiResponse}
                             onHasTextChange={setHasPasteText}
+                            onInput={(event) =>
+                                setIsShortPaste(event.currentTarget.value.trim().length < SHORT_PASTE_CHARS)
+                            }
                             placeholder={t('zogEntry.pastePlaceholder')}
                             className="min-h-[200px] font-mono text-sm rounded-2xl focus:ring-1 transition-all duration-300"
                             style={{
@@ -1401,6 +1422,15 @@ const ZoneOfGeniusEntry = () => {
                                 WebkitBackdropFilter: "blur(12px)",
                             }}
                         />
+
+                        {hasPasteText && isShortPaste && !revealError && (
+                            <p
+                                className="text-xs text-center"
+                                style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.75))" }}
+                            >
+                                {t('zogEntry.pasteShortHint')}
+                            </p>
+                        )}
 
                         {revealError && (
                             <div
@@ -1418,12 +1448,14 @@ const ZoneOfGeniusEntry = () => {
                                 <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
                                     <button
                                         type="button"
-                                        onClick={handleGenerateAppleseed}
+                                        // Unreadable paste: resubmitting the same text can't help,
+                                        // so "Try again" returns to the paste box with the text kept.
+                                        onClick={revealUnreadable ? () => setRevealError(null) : handleGenerateAppleseed}
                                         disabled={isProcessing || !hasPasteText}
                                         className="font-semibold underline underline-offset-4 disabled:opacity-50"
                                         style={{ color: "var(--accent-text, #7a5108)" }}
                                     >
-                                        {t('zogEntry.revealRetry')}
+                                        {revealUnreadable ? t('zogEntry.revealTryAgain') : t('zogEntry.revealRetry')}
                                     </button>
                                     <button
                                         type="button"

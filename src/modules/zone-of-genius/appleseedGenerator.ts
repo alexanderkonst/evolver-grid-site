@@ -845,6 +845,27 @@ export class RevealTimeoutError extends Error {
 }
 
 /**
+ * Thrown by the own-AI reveal when the extraction came back with no title and
+ * no talents (e.g. a short partial paste), so the page shows an error instead
+ * of an empty reveal card.
+ */
+export class UnreadableResponseError extends Error {
+  constructor() {
+    super('unreadable-response');
+    this.name = 'UnreadableResponseError';
+  }
+}
+
+/** True when the reveal card would have something to show: a title or at least one talent. */
+export const isAppleseedReadable = (appleseed: Partial<AppleseedData> | null | undefined): boolean => {
+  const profile = appleseed?.topTalentProfile;
+  const hasTitle = Boolean(appleseed?.vibrationalKey?.name?.trim());
+  const hasTalents = [profile?.top_three_talents_compact, profile?.top_three_talents]
+    .some((list) => Array.isArray(list) && list.some((talent) => typeof talent === 'string' && talent.trim()));
+  return hasTitle || hasTalents;
+};
+
+/**
  * Generate an Appleseed from raw signal using Lovable AI.
  *
  * @param rawSignal - The user's pasted AI response about their genius
