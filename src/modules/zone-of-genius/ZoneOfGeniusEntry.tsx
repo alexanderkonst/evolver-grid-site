@@ -204,6 +204,7 @@ const ZoneOfGeniusEntry = () => {
 
     // Guest/Auth state
     const [isGuest, setIsGuest] = useState(true);
+    // WP-7b: «full reading unlocked» (after the guest saves), not «result visible».
     const [guestRevealUnlocked, setGuestRevealUnlocked] = useState(false);
     const [showSignupModal, setShowSignupModal] = useState(false);
     const [isSaved, setIsSaved] = useState(false);
@@ -802,18 +803,27 @@ const ZoneOfGeniusEntry = () => {
         return (
             <GameShellV2 hideNavigation={hideNav} hideLogo>
                 {isGuest && !guestRevealUnlocked ? (
-                    <TopTalentAuthGate
-                        resultPayload={appleseed as unknown as Record<string, unknown>}
-                        assessmentVersion="ai-v1"
-                        title={t("zogEntry.saveCharacterModalTitle")}
-                        onSaved={(email) => {
-                            setAnonymousSave({ status: "sent", email });
-                            setGuestRevealUnlocked(true);
-                            systemToast.success(t("zogEntry.bannerResultSaved"), {
-                                duration: 5000,
-                            });
-                        }}
-                    />
+                    // WP-7b: result first. A guest sees the head of the reading
+                    // (title + hero card) at once; «Save your character» sits
+                    // inline right under it. The rest unlocks after the save.
+                    <>
+                        <AppleseedDisplay appleseed={appleseed} preview />
+                        <div className="w-full max-w-3xl mx-auto px-5 pb-6">
+                            <TopTalentAuthGate
+                                inline
+                                resultPayload={appleseed as unknown as Record<string, unknown>}
+                                assessmentVersion="ai-v1"
+                                title={t("zogEntry.saveCharacterModalTitle")}
+                                onSaved={(email) => {
+                                    setAnonymousSave({ status: "sent", email });
+                                    setGuestRevealUnlocked(true);
+                                    systemToast.success(t("zogEntry.bannerResultSaved"), {
+                                        duration: 5000,
+                                    });
+                                }}
+                            />
+                        </div>
+                    </>
                 ) : (
                     <>
                 {(anonymousSave.status === "sending" || anonymousSave.status === "error") && (

@@ -78,6 +78,8 @@ const Step4GenerateSnapshot = () => {
   const [profileId, setProfileId] = useState<string | null>(null);
   const [isLoadingProfile, setIsLoadingProfile] = useState(true);
   const [isGuest, setIsGuest] = useState(true);
+  // WP-7b: «full reading unlocked» (set after the guest saves), not «result
+  // visible» — the reveal itself shows to a guest straight away.
   const [guestRevealUnlocked, setGuestRevealUnlocked] = useState(false);
   // Populated by background appleseed processing — single source of truth
   // for downstream (email funnel, profile cards, Excalibur).
@@ -195,6 +197,7 @@ const Step4GenerateSnapshot = () => {
   }, []);
 
   const basePath = getZogAssessmentBasePath(location.pathname);
+  const guestLocked = isGuest && !guestRevealUnlocked;
 
   // Day 47 very-late pass: fix "You are a The Performing Sage of Justice"
   // article collision. AI sometimes returns archetypes prefixed with "The".
@@ -770,19 +773,6 @@ ${snapshotText}`;
             <PremiumLoader size="lg" text="Discovering your Top Talent..." />
           </div>
         ) : parsedSnapshot ? (
-          isGuest && !guestRevealUnlocked ? (
-            <TopTalentAuthGate
-              resultPayload={buildSavePayload() as Record<string, unknown>}
-              assessmentVersion="guided-v1"
-              title={t("zogEntry.saveCharacterModalTitle")}
-              onSaved={() => {
-                setGuestRevealUnlocked(true);
-                toast.success(t("zogEntry.bannerResultSaved"), {
-                  duration: 5000,
-                });
-              }}
-            />
-          ) : (
           <>
             <div className="max-w-2xl mx-auto space-y-6">
               {/* Unified reveal artifact */}
@@ -838,6 +828,24 @@ ${snapshotText}`;
                 />
               </div>
 
+              {/* WP-7b: a guest sees the reveal first. «Save your character»
+                  sits directly under it, inline; the primary button, the
+                  offers and the rest stay behind the save. */}
+              {guestLocked ? (
+                <TopTalentAuthGate
+                  inline
+                  resultPayload={buildSavePayload() as Record<string, unknown>}
+                  assessmentVersion="guided-v1"
+                  title={t("zogEntry.saveCharacterModalTitle")}
+                  onSaved={() => {
+                    setGuestRevealUnlocked(true);
+                    toast.success(t("zogEntry.bannerResultSaved"), {
+                      duration: 5000,
+                    });
+                  }}
+                />
+              ) : (
+              <>
               {/* WP-7a: the one primary way on from the reveal, into the village. */}
               <EnterVillageButton />
 
@@ -1299,6 +1307,8 @@ ${snapshotText}`;
               </div>
               </>
               )}
+              </>
+              )}
             </div>
 
             {/* Hidden PDF content — uses inline styles for reliable html2canvas rendering */}
@@ -1408,7 +1418,6 @@ ${snapshotText}`;
               </div>
             </div>
           </>
-          )
         ) : null}
       </main>
 
@@ -1420,7 +1429,7 @@ ${snapshotText}`;
           Compact right-anchored glass pill, never a full-width banner.
           Hidden via opacity + pointer-events so the transition stays
           smooth without layout reflow. */}
-      {!isMatchPath && (
+      {!isMatchPath && !guestLocked && (
         <div
           className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 transition-all duration-500 ${
             floatBarVisible

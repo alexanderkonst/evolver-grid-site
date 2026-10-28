@@ -62,6 +62,12 @@ interface AppleseedDisplayProps {
     onSave?: () => void;
     isSaving?: boolean;
     onResonanceRating?: (rating: number) => void;
+    /**
+     * WP-7b: guest preview. Renders only the head of the reading (the hero /
+     * bullseye card) with a soft fade at its foot; the deeper sections, the
+     * offer CTAs and the resonance rating wait until the guest saves.
+     */
+    preview?: boolean;
 }
 
 /**
@@ -188,6 +194,7 @@ const AppleseedDisplay = ({
     onSave,
     isSaving = false,
     onResonanceRating,
+    preview = false,
 }: AppleseedDisplayProps) => {
     const { t } = useTranslation();
     const { toast } = useToast();
@@ -398,6 +405,39 @@ const AppleseedDisplay = ({
         // more ↓"), pointing the user DOWN at the offers instead
         // of OUT of the page.
     }, [email, appleseed]);
+
+    // WP-7b: the guest preview is the hero card alone, fading out at the
+    // foot. Placed after every hook above so hook order never changes.
+    if (preview) {
+        return (
+            <div className="relative z-10 max-w-2xl mx-auto px-4 pt-2">
+                <div
+                    style={{
+                        borderRadius: '24px',
+                        boxShadow:
+                            '0 0 50px rgba(240, 194, 127, 0.32), 0 0 100px rgba(212, 175, 55, 0.16)',
+                    }}
+                >
+                    <div
+                        style={{
+                            WebkitMaskImage: 'linear-gradient(to bottom, #000 82%, transparent 100%)',
+                            maskImage: 'linear-gradient(to bottom, #000 82%, transparent 100%)',
+                        }}
+                    >
+                        <RevelatoryHero
+                            type="appleseed"
+                            title={appleseed.vibrationalKey.name}
+                            tagline={t('appleseed.heroTagline')}
+                            actionStatement={appleseed.bullseyeSentence}
+                            topThreeTalents={appleseed.topTalentProfile?.top_three_talents_compact}
+                            topShadow={flipToFirstPersonReflexive(appleseed.topTalentProfile?.top_shadow_one_sentence)}
+                            darkMode={useDarkHero}
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <>
