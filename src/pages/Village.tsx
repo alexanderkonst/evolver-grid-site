@@ -23,7 +23,7 @@ import {
 } from "@/hooks/useVillagePresence";
 import { useSoulColors } from "@/hooks/useSoulColors";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
-import { nextMove, placeLine, placeSaveFromSheet, placeState, type PlaceStateName } from "@/lib/placeState";
+import { houseLit, nextMove, placeLine, placeSaveFromSheet, placeState, type PlaceStateName } from "@/lib/placeState";
 import { hasGuestTopTalentResult, readGuestTopTalentPayload } from "@/lib/firstVisit";
 import TopTalentAuthGate from "@/modules/zone-of-genius/TopTalentAuthGate";
 import { useVillageChanges } from "@/hooks/useVillageChanges";
@@ -64,7 +64,8 @@ import "./Village.css";
 
 type Direction = "left" | "right" | "up" | "down";
 
-const RECEPTION_INDEX = VILLAGE_PLACES.findIndex((p) => p.key === "reception");
+const HOUSE_PLACE = "house";
+const RECEPTION_INDEX =VILLAGE_PLACES.findIndex((p) => p.key === "reception");
 const ASPECT = VILLAGE_MAP.width / VILLAGE_MAP.height;
 
 /** Map stage geometry for the CSS: image ratio and focal point (see .vl-cover). */
@@ -306,6 +307,8 @@ const Village = () => {
   const move = ready && signedIn !== null ? nextMove(VILLAGE_PLACES, save) : null;
   const changes = useVillageChanges(sheet.userId, VILLAGE_PLACES, save, ready);
   const isNew = (p: VillagePlace) => changes.fresh.includes(p);
+  // The first sale (J12, WP-11) lights the player's house on the map; its own state is unchanged.
+  const isLit = (p: VillagePlace) => p.key === HOUSE_PLACE && ready && houseLit(save);
   // Places that took their colour since the last visit: the colour fills into them once (WP-15).
   const colorFresh = useColorReveal(
     sheet.userId,
@@ -448,7 +451,7 @@ const Village = () => {
                       top: `${p.y}%`,
                       "--vl-d": `${-i * 0.55}s`,
                     } as CSSProperties;
-                    const cls = `vl-pin${p.side === "left" ? " vl-pin--left" : ""}${i === active ? " is-active" : ""}${isNew(p) ? " is-new" : ""}${isRevealed(p) ? " is-reveal" : ""}`;
+                    const cls = `vl-pin${p.side === "left" ? " vl-pin--left" : ""}${i === active ? " is-active" : ""}${isNew(p) ? " is-new" : ""}${isRevealed(p) ? " is-reveal" : ""}${isLit(p) ? " is-lit" : ""}`;
                     return (
                       // A closed pin still opens its (faded) scene, so it is not disabled.
                       <PlaceState key={p.key} as="li" state={shown[i]} className={cls} style={style} tag={false} disabled={false}>
@@ -471,6 +474,7 @@ const Village = () => {
                             <span className="vl-pin__name">{p.name}</span>
                             <PlaceStateTag state={shown[i]} />
                             {isNew(p) ? <NewTag /> : null}
+                            {isLit(p) ? <span className="vl-lit-word">Lit</span> : null}
                           </Link>
                         )}
                         {/* Beside the link, not in it: a light leads nowhere. */}
@@ -524,11 +528,12 @@ const Village = () => {
           <nav className="vl-list" aria-label="Places">
             <ul>
               {VILLAGE_PLACES.map((p, i) => (
-                <PlaceState key={p.key} as="li" state={shown[i]} className={`${isNew(p) ? "is-new" : ""} ${isRevealed(p) ? "is-reveal" : ""}`.trim() || undefined} tag={false} disabled={false}>
+                <PlaceState key={p.key} as="li" state={shown[i]} className={`${isNew(p) ? "is-new" : ""} ${isRevealed(p) ? "is-reveal" : ""} ${isLit(p) ? "is-lit" : ""}`.trim().replace(/\s+/g, " ") || undefined} tag={false} disabled={false}>
                   <Link to={`/village/${p.key}`}>
                     <span className="vl-list__name">{p.name}</span>
                     <PlaceStateTag state={shown[i]} />
                     {isNew(p) ? <NewTag /> : null}
+                    {isLit(p) ? <span className="vl-lit-word">Lit</span> : null}
                     <span className="vl-list__line">{placeLine(p, shown[i])}</span>
                   </Link>
                 </PlaceState>
