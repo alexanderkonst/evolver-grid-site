@@ -9,7 +9,9 @@ import { filterAdminOnlyRows } from "./adminOnlyRows";
 import { supabase } from "@/integrations/supabase/client";
 import { PLAYBOOK_STEPS } from "@/data/playbookSteps";
 import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
-import { GROWTH_STEPS } from "@/modules/library/growthSteps";
+import { GROWTH_STEPS, growthStepClosedLine, growthStepState } from "@/modules/library/growthSteps";
+import { ORACLE_READING } from "@/data/villagePlaces";
+import { placeState } from "@/lib/placeState";
 import { COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
 import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
 import { useDeeperAccess } from "@/hooks/useDeeperAccess";
@@ -626,8 +628,9 @@ const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Secti
         id: `learn-step-${step.id}`,
         label: `${step.number}. ${step.shortLabel}`,
         path: `${pathBase}/${step.id}`,
-        locked: step.locked,
-        lockedHint: step.lockedHint,
+        // Closed rooms read their state and line from placeState (§14.3).
+        locked: growthStepState(step) === "closed",
+        lockedHint: growthStepClosedLine(step) || undefined,
     }));
 
     return [libraryOverviewRow, dormantPotentialRow, ...stepRows];
@@ -932,7 +935,13 @@ const buildJourneySections = (
             // product before the user has a Top Talent is nonsensical
             // — there's nothing to deepen. Same lock pattern + popover
             // hint as the other numbered steps.
-            locked: !topTalentDone,
+            // WP-3: the state comes from placeState (the Oracle Reading item of
+            // §14.3); the line stays the translated rail.journey.activation text.
+            locked:
+                placeState(ORACLE_READING, {
+                    met: { "find-top-talent": topTalentDone, "deeper-access": hasDeeperAccess },
+                    now: new Date(),
+                }) === "closed",
             lockedHint: t("rail.journey.activation.lockedHint"),
             // Day 95 (Sasha 2026-06-13, rev 2): crosses out on the PAID
             // signal only (hasDeeperAccess = paid / coupon / tier). The

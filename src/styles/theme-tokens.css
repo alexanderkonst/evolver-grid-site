@@ -22,8 +22,11 @@
    call (§14.10 fork 1), so it is not changed here.
 
    Lock/live tokens (`--lock-filter`, `--lock-dim`, `--open-accent`,
-   `--live-accent`) are defined per skin now so WP-3 can build `PlaceState`
-   on them. Coloured skins: desaturate + dim. Usage:
+   `--live-accent`) are defined per skin; `PlaceState` (WP-3,
+   src/components/game/PlaceState.tsx) renders the five states on them.
+   `--open-accent` follows each skin's `--scene-accent`; the two light-scene
+   skins darken `--live-accent` for text contrast. Coloured skins: desaturate
+   + dim. Usage:
      .closed { filter: var(--lock-filter); opacity: var(--lock-dim); }
    ========================================================================== */
 
@@ -106,7 +109,7 @@
   /* ── Lock / open / live (WP-3 reads these) ── */
   --lock-filter: grayscale(0.9) saturate(0.6);
   --lock-dim: 0.55;
-  --open-accent: var(--skin-accent-gold);
+  --open-accent: var(--scene-accent);   /* next / done marker; follows each skin's scene accent */
   --live-accent: hsl(15 80% 46%);
 }
 
@@ -231,7 +234,7 @@
 
   --lock-filter: grayscale(1);
   --lock-dim: 0.4;
-  --live-accent: hsl(15 80% 46%);
+  --live-accent: hsl(15 80% 38%);       /* darker on a white scene: text-contrast */
 }
 
 /* ── Karime: warm cream, charcoal ink ── */
@@ -265,7 +268,7 @@
 
   --lock-filter: grayscale(0.9) saturate(0.6);
   --lock-dim: 0.5;
-  --live-accent: hsl(15 80% 46%);
+  --live-accent: hsl(15 80% 38%);       /* darker on a cream scene: text-contrast */
 }
 
 /* ── Daouniverse: deep forest, antique gold ── */
