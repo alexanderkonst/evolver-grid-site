@@ -406,3 +406,28 @@ Night sky slowly turning to dawn — deep indigo fading into soft gold, fine sil
 | C05E01 | The Integral Map of Cutting-Edge Fields of Science: four domains, outer, inner and collective, on one map of fields of study. |
 | C05E02 | The integral meta-model, offered as a hypothesis: Planck-scale points, toroidal dynamos, the zero-point field, every part containing the whole. |
 | C05E03 | The circle closes: insight comes from within first, the mystic's role is returning, and it is yours — end with the invitation to the live Fire Circle evening. |
+
+---
+
+## Part 3 — The shift this course makes (working notes with Sasha, 2026-10-28; not final)
+Method: [shift-offer.md](../templates/shift-offer.md) §1a (primitive vs shift; three questions).
+
+**Primitive (mechanism):** split → wholeness. Two sides of one coin (C01E01): inner and outer are two windows on one reality.
+**Deeper candidate (universal):** separateness → belonging. From "I am a random speck in a dead mechanical universe, meaning is private" to "I am part of a living, conscious whole, and science does not contradict it".
+
+**The shift, three questions (draft):**
+1. **Now I can DO:** use what I know inside together with what the evidence shows when I decide; speak about my inner experiences openly; enter expanded states on purpose and come back grounded.
+2. **Now I FEEL myself:** whole, no half of me in hiding; at home in the universe rather than alone in it.
+3. **Now I SEE as possible:** inner experience as a real path to knowing; a much larger reality than the one I was taught; a life where meaning is not a private fantasy.
+
+**Mental viruses this course treats (draft map).** Each level of thinking carries an unhealthy, limiting picture of the world that we let go of when we move to the next level. These "viruses" have real costs, in proportion to how strong they are.
+
+| Level of thinking | Virus (limiting belief) | Primitive | Cost in life | How the course treats it |
+|---|---|---|---|---|
+| Traditional / mythic | inner experiences are dangerous or belong only to priests and authorities | authority outside me | fear, shame, handing my knowing to others | shows the experiences are natural and shared across cultures (C02, C03E02) |
+| Modern / rational (scientism) | only the measurable is real; inner experience is brain noise; the universe is a dead mechanism | separation, meaninglessness | hiding experiences, nihilism, cut-off intuition | science itself rhymes with the mystics' reports; insight comes from within before it is proven (C01E00, C04) |
+| Postmodern / relativist | everything is subjective, every claim equally valid, no ground | no ground | confusion, gullibility, spiritual bypass | the strict line between established and hypothesis (C04, C05E01) |
+| Magical / New-Age regression | anything mystical is true; feeling replaces checking | inflation | delusion, loss of credibility | same line; stay grounded and critical (C05E03) |
+| Integral (healthy) | both: inner and outer co-reveal reality | wholeness | — | the destination: the integral map, the mystic's role returns (C05) |
+
+Open: confirm the levels and viruses with Sasha; then write the offer line from the three answers.
