@@ -15,7 +15,9 @@ const stubMatchMedia = (reduce: boolean) =>
     removeEventListener: () => {},
   }));
 
-afterEach(() => vi.unstubAllGlobals());
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
 
 describe("motion tokens", () => {
   it("MOTION mirrors the --motion-* durations in src/index.css", () => {
