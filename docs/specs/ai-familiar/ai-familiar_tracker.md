@@ -258,3 +258,10 @@ One test question. Side A: a small open model (hosted open-model API) with the p
 | "Feel first" without a test screen | The feeling comes from the first answer naming their talent in their words. The explanation ("models are alike; the difference is how well it knows you") appears only after, as one line. |
 | Small vs frontier claim | Not shown to players until our own mini-benchmark confirms it (landscape doc §5, §6). |
 | What screens change | Screens 2–3 likely merge: Ask → Answer (with optional "compare" toggle). Pending Sasha's roast. |
+
+## 12. The AI is a character in the game (Sasha, 2026-10-29 15:12)
+
+> «получается что этот ИИ - персонаж в игре? Значит он может и ведет всю коммуникацию? И сам сообщает - теперь я могу то, это.»
+
+**Working stance (Evolver):** yes, the player's AI is the voice of the game, not a feature inside it (known pattern: Ghost in Destiny, Navi in Zelda, Cortana in Halo). It speaks in first person at the key beats: welcome, Outros, the double unlock ("Now I can… · Ask me…"), the return greeting, and the Cinderella Moment, where it speaks for the first time in its settled form. Before top talent is found it speaks plainly and briefly (unformed); after, in a voice shaped by the player's archetype.
+**Boundary:** it is the voice, the world stays visual. Maps, infographics, houses and screens remain the structure, so the game never collapses into one chat window. It only announces real unlocks (fidelity rule).
