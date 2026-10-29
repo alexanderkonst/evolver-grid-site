@@ -63,6 +63,35 @@ describe("WP-1b: the rail toggle names the next skin", () => {
   });
 });
 
+describe("WP-1b: Mastermind and the Appearance tab follow the skin", () => {
+  it("Mastermind paints its accent labels from the label-ink tokens, not the shared gold style", () => {
+    const page = source("../../pages/Mastermind.tsx");
+    expect(page).not.toContain("GOLD_TEXT_STYLE");
+    expect(page).toContain("var(--label-ink-bg)");
+  });
+
+  it("the Appearance tab hardcodes no gold and The Dao sets the tokens it reads", () => {
+    const all = source("../../pages/Settings.tsx");
+    const settings = all.slice(all.indexOf("const AppearanceTab"), all.indexOf("const NotificationsTab"));
+    expect(settings.length).toBeGreaterThan(0);
+    expect(settings).not.toContain("#d4af37");
+    expect(settings).not.toContain("hsla(40, 70%, 55%, 0.55)");
+    expect(settings).not.toContain("hsl(40 70% 45%)");
+    const dao = skinBlock(source("../../styles/theme-tokens.css"), '[data-skin="dao"]');
+    for (const token of ["--skin-tab-active-ink", "--select-accent", "--select-border", "--select-ring-rgb"]) {
+      expect(dao).toContain(token);
+    }
+  });
+});
+
+describe("§14.3: a closed pin says so on the map", () => {
+  it("the closed word is shown on pins (not screen-reader only) and the dot is an empty ring", () => {
+    const css = source("../../pages/Village.css");
+    expect(css).toMatch(/\.vl-pin \.ps-tag--closed\s*\{[^}]*position: static/);
+    expect(css).toMatch(/\.vl-pin\[data-place-state="closed"\] \.vl-dot::before\s*\{[^}]*background: transparent/);
+  });
+});
+
 describe("WP-1b: the skin layer is loaded", () => {
   it("main.tsx imports skin-journey.css after lunar-world.css", () => {
     const main = source("../../main.tsx");

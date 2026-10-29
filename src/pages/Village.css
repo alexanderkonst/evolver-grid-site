@@ -14,6 +14,9 @@
      map: lifted so they stay legible over the vignette in every skin. */
   --vl-ink-2: rgba(var(--scene-ink-rgb), 0.82);
   --vl-ink-3: rgba(var(--scene-ink-rgb), 0.7);
+  /* «← Title», «← Village» and «I already live here → sign in» sit on the art; the light skins
+     raise this to near-solid ink (skin-journey.css) so they clear 4.5:1. */
+  --vl-link-ink: var(--vl-ink-3);
   --vl-lock-ink: rgba(var(--scene-ink-rgb), var(--lock-label-alpha));
   --vl-lock-chip: rgba(var(--scene-bg-rgb), var(--lock-label-bg-alpha));
   --vl-hair: rgba(var(--scene-ink-rgb), 0.14);
@@ -255,6 +258,19 @@
 .vl-list .ps-tag { display: block; margin-top: 6px; }
 .vl-pin[data-place-state="closed"] .vl-dot::before { box-shadow: none; }
 .vl-pin[data-place-state="closed"] .vl-dot::after { display: none; }
+/* closed is a shape and a word, never colour alone (§14.3): the dot is an empty ring where an open
+   one is a filled point (in The Dao both are ink on paper, so fill is the only thing that differs),
+   and «Not open yet» is read on the map, not only by a screen reader. */
+.vl-pin[data-place-state="closed"] .vl-dot::before {
+  box-sizing: border-box; width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px;
+  background: transparent; border: 1px solid var(--scene-dot);
+}
+.vl-pin .ps-tag--closed {
+  position: static; width: auto; height: auto; margin: 0; padding: 4px 9px; overflow: visible; clip: auto;
+  white-space: nowrap; font-size: 10px; letter-spacing: 0.2em; color: var(--vl-lock-ink);
+  background: var(--vl-lock-chip); text-shadow: 0 0 10px rgba(var(--scene-shadow-rgb),0.9);
+}
+.vl-pin .ps-tag--closed::before { content: "\25CB\00a0"; } /* an open circle, as in the mobile list */
 /* closed: faded, never unreadable. The name carries no ps-fade (that would stack the lock
    filter, the lock opacity and a low-alpha ink into dark-on-dark); it reads the lock label
    tokens instead, on a denser chip. The «Opens when…» line is the point of a closed place. */
@@ -330,6 +346,7 @@
   display: inline-flex; align-items: center; min-height: 44px; margin-top: 14px; padding: 0 12px;
   font-size: 11px; letter-spacing: 0.22em; text-shadow: 0 1px 16px rgba(var(--scene-shadow-rgb),0.8); transition: color 0.6s ease;
 }
+.vl-corner, .vl-back, .vl-signin { color: var(--vl-link-ink); }
 .vl-signin:hover, .vl-signin:focus-visible { color: var(--vl-ink); }
 .vl-back:focus-visible, .vl-corner:focus-visible, .vl-signin:focus-visible { outline: 1px solid var(--vl-accent); outline-offset: 2px; }
 

@@ -156,7 +156,7 @@
 
 /* marker + label per state */
 [data-skin="lunar"] .vl-pin[data-place-state="closed"] .vl-dot::before {
-  opacity: 0.35;
+  opacity: 0.7; /* an empty ring (Village.css); a faint ring would vanish on the dark art */
   box-shadow: none;
 }
 [data-skin="lunar"] .vl-pin[data-place-state="closed"] .vl-dot::after {
@@ -290,4 +290,11 @@
   [data-skin="lunar"] .vl-paths path {
     transition: none;
   }
+}
+
+/* ── 5. Mastermind (/build/mastermind) ───────────────────────────────────
+   The divider emblem carries an inline gold glow (src/lib/landingDesign.tsx, shared by
+   other pages). On this page Lunar swaps it for its own moonlight teal. */
+[data-skin="lunar"] #mastermind-page .ornament-spin {
+  filter: drop-shadow(0 0 10px rgba(var(--accent-bright-rgb), 0.5)) drop-shadow(0 0 3px rgba(var(--accent-rgb), 0.7)) !important;
 }

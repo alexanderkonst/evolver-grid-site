@@ -53,6 +53,7 @@
   --sky-dim-rgb: 253, 250, 243;
   --live-accent: hsl(15 80% 38%);
   --scene-filter: none;
+  --vl-link-ink: rgba(var(--scene-ink-rgb), 0.96);
 }
 
 /* Aurum: the same night, warmed to candlelight. */
@@ -68,6 +69,7 @@
   --scene-filter: grayscale(1) contrast(0.9) brightness(1.04);
   --sky-moon-rgb: 10, 10, 10;
   --sky-dim-rgb: 255, 255, 255;
+  --vl-link-ink: rgba(var(--scene-ink-rgb), 0.96);
 }
 [data-skin="dao"] .gt-gem {
   filter: grayscale(1) drop-shadow(0 0 14px rgba(10, 10, 10, 0.1));

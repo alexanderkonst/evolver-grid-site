@@ -15,8 +15,9 @@ import { ArrowRight } from "lucide-react";
 import GameShellV2 from "../components/game/GameShellV2";
 import SEO from "@/components/SEO";
 import geniusLogo from "@/assets/ignite-logo.png";
-import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
+import { Ornament } from "@/lib/landingDesign";
 import { cn } from "@/lib/utils";
+import type { CSSProperties } from "react";
 
 /* ─── Constants: copy, price, CTA (single source of truth) ─── */
 const MASTERMIND_PRICE = "$222";
@@ -73,10 +74,17 @@ const BODY_SERIF = {
   color: "var(--text-secondary)",
 } as const;
 
+/** Gradient text in the skin's accent (theme-tokens.css `--label-ink-*`; Lunar, Lapis, Aurum, The Dao each their own). */
+const LABEL_TEXT_STYLE: CSSProperties = {
+  backgroundImage: "var(--label-ink-bg)",
+  filter: "var(--label-ink-glow)",
+  textShadow: "none",
+};
+
 const SectionLabel = ({ children }: { children: string }) => (
   <p
     className="text-[10px] uppercase tracking-[0.28em] text-center font-bold bg-clip-text text-transparent"
-    style={GOLD_TEXT_STYLE}
+    style={LABEL_TEXT_STYLE}
   >
     {children}
   </p>
@@ -125,7 +133,7 @@ const Mastermind = () => {
               <img src={geniusLogo} alt="" className="skin-emblem w-[140px] h-auto mx-auto opacity-80" />
               <p
                 className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.28em] bg-clip-text text-transparent"
-                style={GOLD_TEXT_STYLE}
+                style={LABEL_TEXT_STYLE}
               >
                 {c.eyebrow}
               </p>
@@ -160,7 +168,7 @@ const Mastermind = () => {
               <ul className="space-y-2.5 text-left">
                 {c.format.map((item) => (
                   <li key={item} className="flex items-baseline gap-2.5">
-                    <span className="text-sm bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>→</span>
+                    <span className="text-sm bg-clip-text text-transparent" style={LABEL_TEXT_STYLE}>→</span>
                     <span
                       className="text-sm sm:text-base leading-relaxed"
                       style={{ color: "var(--skin-text-primary, #0a1628)" }}
@@ -186,7 +194,7 @@ const Mastermind = () => {
                   <li key={step.name} className="flex items-baseline gap-3">
                     <span
                       className="text-lg font-bold bg-clip-text text-transparent shrink-0"
-                      style={{ ...SERIF, ...GOLD_TEXT_STYLE }}
+                      style={{ ...SERIF, ...LABEL_TEXT_STYLE }}
                     >
                       {i + 1}
                     </span>
