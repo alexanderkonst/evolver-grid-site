@@ -5,6 +5,7 @@ import { FONTS_HREF } from "@/lib/gameFonts";
 import { shouldShowWordlessIntro } from "@/lib/firstVisit";
 import WordlessIntro from "@/components/game/WordlessIntro";
 import { journeyStepRows } from "@/lib/journeyLabels";
+import { useSceneSrc } from "@/lib/sceneSrc";
 import "./GameTitle.css";
 
 /**
@@ -252,6 +253,7 @@ const PlatonicSolid = ({
 
 const TitleScreen = () => {
   const reduceMotion = usePrefersReducedMotion();
+  const heroSrc = useSceneSrc(HERO_SRC);
   const [active, setActive] = useState(0);
   const [started, setStarted] = useState(false);
   // LOAD GAME → /auth on the Log in tab (a returning player, not a signup),
@@ -345,7 +347,7 @@ const TitleScreen = () => {
         <section className="gt-screen" aria-label="Title screen">
           <img
             className="gt-screen__img"
-            src={HERO_SRC}
+            src={heroSrc}
             alt="A vertical beam of light descends through a crystal dodecahedron over a moonlit mountain lake; four small crystal solids (tetrahedron, icosahedron, cube, octahedron) rest on the misty horizon, catching its spectrum"
             decoding="async"
             style={reduceMotion ? { animation: "none" } : undefined}
