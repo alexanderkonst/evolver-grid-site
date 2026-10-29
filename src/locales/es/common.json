@@ -4576,47 +4576,7 @@
       "footer": "Actualizado en abril de 2026 · findyourtoptalent.com/intros"
     }
   },
-  "village": {
-    "quest": {
-      "backBoard": "← Tablón de misiones",
-      "didIt": "Lo hice",
-      "rateQ": "¿Cuánto resonó contigo, de {{min}} a {{max}}? Toca un número para registrarlo.",
-      "rateOf": "{{n}} de {{max}}"
-    },
-    "module": {
-      "webinar": {
-        "eyebrow": "Academia · Paso 8",
-        "headline": "Únete a la sesión gratuita del Mastermind (4 de nov)",
-        "silhouette": "Una sesión gratuita en vivo con otras personas en el mismo camino. Ven y sal con un paso que dar.",
-        "verb": "Unirme a la sesión",
-        "task": "Únete a la sesión gratuita del Mastermind el miércoles 4 de noviembre. Después, vuelve y cuenta que estuviste.",
-        "didIt": "Estuve en la sesión",
-        "link": "Abrir la página de la sesión"
-      },
-      "mastermind": {
-        "eyebrow": "Mastermind · Paso 9",
-        "headline": "Mastermind 9–10 de nov",
-        "silhouette": "Dos días en círculo con otras personas que construyen. Sales con un paso real que dar esta semana.",
-        "verb": "Unirme al Mastermind",
-        "task": "Únete al Mastermind el 9 y 10 de noviembre. Cuando terminen los dos días, vuelve y cuenta que estuviste.",
-        "didIt": "Estuve en el Mastermind",
-        "link": "Abrir la página del Mastermind"
-      },
-      "mastery-practice": {
-        "didIt": "Hice mis 21 días"
-      },
-      "first-price": {
-        "didIt": "Dije mi precio"
-      },
-      "first-sale": {
-        "didIt": "Hice mi primera venta"
-      }
-    }
-  },
   "zogEntry": {
-    "revealStageReading": "Leyendo tus respuestas...",
-    "revealStagePattern": "Encontrando el patrón...",
-    "revealStageWriting": "Escribiendo tu talento...",
     "toastSaveFailedTitle": "No se guardó",
     "toastAutoSaveFailedDesc": "No se pudo guardar tu talento principal. Toca Guardar para reintentar.",
     "toastTapSaveToRetry": "Toca Guardar para reintentar.",
@@ -4628,7 +4588,7 @@
     "errorUnreadableResponse": "No pudimos leer un talento principal en esa respuesta. Pega la respuesta completa de tu IA o haz el test guiado.",
     "revealTryAgain": "Intentar de nuevo",
     "pasteShortHint": "Parece corta. Pega la respuesta completa de tu IA para que podamos leer tu patrón.",
-    "revealWaitHint": "Suele tardar entre 2 y 4 minutos. Mantén esta página abierta.",
+    "revealWaitHint": "Suele tardar de uno a tres minutos. Mantén esta página abierta.",
     "toastCouldNotSaveProfile": "No se pudo guardar tu perfil.",
     "toastErrorTitle": "Error",
     "toastSomethingWentWrongSaving": "Algo salió mal al guardar.",
