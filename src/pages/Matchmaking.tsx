@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import { MapPin, Users, Languages } from "lucide-react";
 import { toast } from "sonner";
 import GameShellV2 from "@/components/game/GameShellV2";
@@ -14,8 +15,9 @@ import MatchExplainer, { useMatchExplainerState } from "@/components/matchmaking
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { TimeoutError, withTimeout } from "@/lib/withTimeout";
 
-// Ceiling for the matching engine call (LLM pass per candidate).
-const ASSET_MATCHES_TIMEOUT_MS = 45_000;
+// Ceiling for the matching engine call (LLM pass per candidate). After this the page
+// stops waiting and shows the empty state (issue #215).
+const ASSET_MATCHES_TIMEOUT_MS = 20_000;
 
 // ─────────────────────────────────────────────────────────────────────
 // Day 63 night (Sasha 2026-05-07) — Aurora register reskin + Strong
@@ -523,9 +525,8 @@ const Matchmaking = () => {
         }
       } catch (err) {
         console.error("[AssetMatching] Failed:", err);
-        setMatchesMessage(
-          err instanceof TimeoutError ? t('matchmaking.timeoutNotice') : t('matchmaking.loadSnag'),
-        );
+        // A timeout is the real empty state (default copy); any other failure keeps its snag message.
+        setMatchesMessage(err instanceof TimeoutError ? null : t('matchmaking.loadSnag'));
       } finally {
         setAssetMatchesLoading(false);
       }
@@ -1072,6 +1073,13 @@ const Matchmaking = () => {
               {matchesMessage ||
                 t('matchmaking.noMatchesYetBody')}
             </p>
+            <Link
+              to="/village"
+              className="mt-5 inline-block text-sm font-semibold underline underline-offset-4"
+              style={{ color: "var(--skin-text-primary, #0a1628)" }}
+            >
+              {t('matchmaking.backToVillage')}
+            </Link>
           </div>
         )}
 

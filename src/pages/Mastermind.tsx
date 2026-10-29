@@ -15,6 +15,7 @@ import { ArrowRight } from "lucide-react";
 import GameShellV2 from "../components/game/GameShellV2";
 import SEO from "@/components/SEO";
 import geniusLogo from "@/assets/ignite-logo.png";
+import { MASTERMIND_LIVE_SESSION_URL } from "@/data/mastermindSession";
 import { Ornament } from "@/lib/landingDesign";
 import { cn } from "@/lib/utils";
 import type { CSSProperties } from "react";
@@ -24,7 +25,6 @@ const MASTERMIND_PRICE = "$222";
 /** Set to the checkout URL once decided. Empty → free live-session registration. */
 // TODO(Sasha): Stripe link for Mastermind $222
 const MASTERMIND_CTA_URL = "";
-const MASTERMIND_LIVE_SESSION_URL = "https://lu.ma/qpogt17o";
 
 const MASTERMIND_COPY = {
   eyebrow: "Group Mastermind · Nov 9–10",

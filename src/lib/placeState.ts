@@ -92,6 +92,8 @@ export type PlaceInput = {
   /** The place's key (`village.place.<key>.line`); absent = the line is not translated. */
   key?: string;
   line: string;
+  /** The line for someone with a session, when it differs («Welcome back» at Reception). */
+  lineReturning?: string;
   rule: PlaceRule;
 };
 
@@ -371,10 +373,18 @@ export const closedLine = (place: PlaceInput, t?: TFunction): string => {
   return tr(t, c.key, `Opens when ${trimDot(c.event)}. Inside: ${trimDot(c.inside)}.`);
 };
 
-/** The one line to show for a place in a given state. */
-export const placeLine = (place: PlaceInput, state: PlaceStateName, t?: TFunction): string => {
+/** The one line to show for a place in a given state; `signedIn` picks the returning line where a place has one. */
+export const placeLine = (
+  place: PlaceInput,
+  state: PlaceStateName,
+  t?: TFunction,
+  signedIn?: boolean,
+): string => {
   if (state === "closed") return closedLine(place, t);
   const live = place.rule.live;
   if (state === "live" && live) return tr(t, live.key, live.line);
+  if (signedIn && place.lineReturning) {
+    return tr(t, place.key ? `village.place.${place.key}.lineReturning` : undefined, place.lineReturning);
+  }
   return placeTagline(place, t);
 };

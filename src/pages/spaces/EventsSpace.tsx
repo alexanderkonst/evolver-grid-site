@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { CalendarDays } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import EventCard from "@/components/events/EventCard";
-import EmptyState from "@/components/ui/EmptyState";
+import { MASTERMIND_LIVE_SESSION_URL } from "@/data/mastermindSession";
 import CreateEventForm from "@/components/events/CreateEventForm";
 import { useEvents } from "@/hooks/useEvents";
 import { supabase } from "@/integrations/supabase/client";
@@ -77,6 +77,22 @@ const EventsSpace = () => {
             )}
           </div>
 
+          {/* The free Mastermind session: always here, so the Café is never empty (issue #215). */}
+          <a
+            href={MASTERMIND_LIVE_SESSION_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mb-6 block rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] p-5 shadow-[0_4px_16px_rgba(44,49,80,0.06)] transition-shadow hover:shadow-[0_12px_32px_rgba(132,96,234,0.22)]"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+              {t("eventsSpace.mastermind.when")}
+            </p>
+            <h2 className="mt-1 text-lg font-semibold text-foreground">{t("eventsSpace.mastermind.title")}</h2>
+            <span className="mt-3 inline-block text-sm font-semibold text-foreground underline underline-offset-4">
+              {t("eventsSpace.mastermind.cta")}
+            </span>
+          </a>
+
           {/* Loading State */}
           {loading && (
             <div className="grid gap-4 sm:grid-cols-2">
@@ -143,28 +159,8 @@ const EventsSpace = () => {
             </div>
           )}
 
-          {/* Empty State — Day 91 (Sasha 2026-06-09): card fill tokenized for Aurum, fallback keeps lapis at white/85 */}
-          {!loading && !error && events.length === 0 && (
-            <div className="rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-8 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-              <EmptyState
-                icon={<CalendarDays className="w-6 h-6 text-muted-foreground" />}
-                title={t("eventsSpace.emptyTitle")}
-                description={
-                  isAuthenticated
-                    ? t("eventsSpace.emptyDescAuthed")
-                    : t("eventsSpace.emptyDescGuest")
-                }
-                action={
-                  isAuthenticated
-                    ? {
-                      label: t("eventsSpace.createEvent"),
-                      onClick: () => navigate("/game/events/create"),
-                    }
-                    : undefined
-                }
-              />
-            </div>
-          )}
+          {/* No empty state: the Mastermind card above is the content when there are no other events,
+              and the one «Create Event» button is the one in the header (issue #215). */}
 
           {/* Events Grid */}
           {!loading && !error && events.length > 0 && (

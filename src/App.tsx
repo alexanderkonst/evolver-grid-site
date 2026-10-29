@@ -818,7 +818,7 @@ const App = () => (
                   <Route path="/game/transformation" element={<Navigate to="/game/learn" replace />} />
                   <Route path="/game/transformation/*" element={<Navigate to="/game/learn" replace />} />
                   {/* OFFER Space (was Marketplace) */}
-                  <Route path="/game/marketplace" element={<RequireAuth><MarketplaceSpace /></RequireAuth>} />
+                  <Route path="/game/marketplace" element={<RequireAuth closedPlace="market"><MarketplaceSpace /></RequireAuth>} />
                   <Route path="/game/marketplace/my-products" element={<RequireAuth><MyProductsPage /></RequireAuth>} />
                   <Route path="/game/marketplace/founders" element={<Navigate to="/game/marketplace" replace />} />
                   <Route path="/game/marketplace/browse" element={<Navigate to="/game/marketplace" replace />} />

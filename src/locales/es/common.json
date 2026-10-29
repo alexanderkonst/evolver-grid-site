@@ -1978,7 +1978,7 @@
     "doneTitle": "¡Hecho por hoy! 🎉",
     "doneSubtitle": "Completaste tus acciones diarias. ¡Buen trabajo!",
     "bonusSideQuest": "Misión secundaria extra",
-    "mainQuestLabel": "Misión principal",
+    "mainQuestLabel": "Tablón de misiones",
     "stageOf": "Etapa {{current}} de {{total}}",
     "complete": "Completado",
     "captureOutput": "Captura tu resultado",
@@ -3312,7 +3312,7 @@
     "brand": "Genius Business",
     "nav": {
       "profile": {
-        "label": "Perfil",
+        "label": "Tu Casa",
         "description": "Conócete a ti mismo",
         "modules": {
           "zog": "Zona de Genio",
@@ -3328,14 +3328,14 @@
         }
       },
       "marketplace": {
-        "label": "Marketplace",
+        "label": "Mercado",
         "description": "Monetiza tu genio"
       },
       "teams": {
-        "label": "Equipos",
+        "label": "Coworking",
         "description": "Encuentra a tu gente",
         "modules": {
-          "matches": "Coincidencias",
+          "matches": "Coworking",
           "people": "Directorio de Personas"
         }
       },
@@ -3344,14 +3344,14 @@
         "description": "Encuentros y experiencias"
       },
       "coop": {
-        "label": "Incubadora de Negocios",
+        "label": "Taller",
         "description": "Construir juntos"
       }
     },
     "unlockHints": {
-      "teams": "Completa tu Zona de Genio para desbloquear Equipos.",
-      "marketplace": "Crea tu Oferta de Genio para desbloquear Marketplace.",
-      "coop": "Crea tu Oferta de Genio para desbloquear la Incubadora de Negocios.",
+      "teams": "Completa tu Zona de Genio para desbloquear Coworking.",
+      "marketplace": "Crea tu Oferta de Genio para desbloquear el Mercado.",
+      "coop": "Crea tu Oferta de Genio para desbloquear el Taller.",
       "events": "Completa tu Zona de Genio para desbloquear Eventos."
     },
     "toast": {
@@ -3373,7 +3373,7 @@
   },
   "tourSteps": {
     "me": {
-      "title": "Yo",
+      "title": "Tu Casa",
       "tagline": "Tu Zona de Genio vive aquí",
       "description": "Este eres tú — tu Zona de Genio, tu historia, tus dones únicos. Todo lo que descubres sobre ti se guarda aquí."
     },
@@ -3388,17 +3388,17 @@
       "description": "Conecta con gente afín mediante el matchmaking por genio. Encuentra socios, mentores y colaboradores que complementen tus dones."
     },
     "collaborate": {
-      "title": "Colabora",
+      "title": "Coworking",
       "tagline": "Trabajar juntos",
       "description": "Une fuerzas con otros en proyectos y misiones compartidas. Aquí es donde el genio individual se vuelve impacto colectivo."
     },
     "build": {
-      "title": "Construye",
+      "title": "Taller",
       "tagline": "Convierte el genio en ingreso",
       "description": "Crea tu oferta única, construye tu landing page y lanza tu negocio de genio al mundo."
     },
     "offer": {
-      "title": "Oferta",
+      "title": "Mercado",
       "tagline": "El marketplace",
       "description": "Explora y compra ofertas de otros creadores, o publica la tuya. Aquí es donde el genio se intercambia."
     },
@@ -3500,8 +3500,9 @@
     "couldNotWithdrawInterest": "No se pudo retirar el interés. Inténtalo de nuevo.",
     "locationBlockedWarning": "Añade tu ubicación en tu perfil para usar el filtro de ubicación. ",
     "languageBlockedWarning": "Añade tus idiomas hablados en tu perfil para usar el filtro de idioma.",
-    "noMatchesYet": "Aún no hay matches",
-    "noMatchesYetBody": "A medida que más personas completen su perfil, esto se irá llenando.",
+    "noMatchesYet": "Aún no hay matches.",
+    "noMatchesYetBody": "Cada semana llegan nuevos fundadores.",
+    "backToVillage": "← Aldea",
     "communityMember": "Miembro de la comunidad",
     "proposalTypeCollaboration": "Colaboración",
     "whyThisWorks": "Por qué funciona",
@@ -4902,7 +4903,7 @@
   },
   "dailyLoopLayout": {
     "me": {
-      "title": "Yo",
+      "title": "Tu Casa",
       "welcomeBack": "Bienvenido de vuelta",
       "playerFallback": "Jugador",
       "levelXp": "Nivel {{level}} · {{xp}} XP",
@@ -7137,7 +7138,7 @@
       "level": { "again": "Medir de nuevo" },
       "offer": {
         "title": "Tu oferta",
-        "saved": "Tu oferta está guardada. Está en tu puesto.",
+        "saved": "Tu oferta está guardada en el Taller.",
         "empty": "Aún sin construir",
         "start": "Construir tu oferta",
         "again": "Abrir el Taller"
@@ -7187,7 +7188,12 @@
     "emptyTitle": "Aún no hay eventos",
     "emptyDescAuthed": "Vuelve pronto o crea tu propio encuentro para la comunidad.",
     "emptyDescGuest": "Vuelve pronto para ver los próximos encuentros de la comunidad.",
-    "createEvent": "Crear evento"
+    "createEvent": "Crear evento",
+    "mastermind": {
+      "when": "Mié 4 nov, 9:00 CDMX",
+      "title": "Sesión gratuita del Mastermind",
+      "cta": "Regístrate en Luma"
+    }
   },
   "appleseedView": {
     "empty": {

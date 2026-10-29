@@ -31,6 +31,8 @@ export type VillagePlace = {
   key: VillagePlaceKey;
   name: string;
   line: string;
+  /** The line once there is a session, when it differs from `line` (see `placeLine`). */
+  lineReturning?: string;
   /** Module route behind ENTER. */
   to: string;
   /** When it opens, its closed line, what finishing it means, when it is live. */
@@ -76,6 +78,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     key: "reception",
     name: "Reception",
     line: "Welcome, guest. Discover your uniqueness.",
+    lineReturning: "Welcome back. Discover your uniqueness.",
     to: "/zone-of-genius/entry",
     rule: { steps: ["find-top-talent"] },
     // The scene file is still named gate.webp; kept until a Reception scene is made.

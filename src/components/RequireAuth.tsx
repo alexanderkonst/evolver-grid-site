@@ -22,7 +22,18 @@ import { supabase } from "@/integrations/supabase/client";
  * bare event. A genuine sign-out still redirects (getSession then returns
  * null); a transient blip no longer does.
  */
-const RequireAuth = ({ children }: { children: ReactNode }) => {
+const RequireAuth = ({
+  children,
+  closedPlace,
+}: {
+  children: ReactNode;
+  /**
+   * A village place key (src/data/villagePlaces.ts). A guest is sent to that place's closed
+   * scene (`/village/<key>`: faded scene, its «Opens when …» line, sign-in beside it) instead
+   * of straight to /auth (issue #215).
+   */
+  closedPlace?: string;
+}) => {
   const [status, setStatus] = useState<"loading" | "authed" | "unauthed">("loading");
   const location = useLocation();
 
@@ -76,6 +87,7 @@ const RequireAuth = ({ children }: { children: ReactNode }) => {
   }
 
   if (status === "unauthed") {
+    if (closedPlace) return <Navigate to={`/village/${closedPlace}`} replace />;
     const redirectPath = encodeURIComponent(location.pathname + location.search);
     return <Navigate to={`/auth?redirect=${redirectPath}`} replace />;
   }
