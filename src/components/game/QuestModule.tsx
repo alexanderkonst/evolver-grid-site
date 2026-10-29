@@ -1,13 +1,25 @@
 import { useEffect, useId, useState } from "react";
 import { Link, Navigate, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import GuestSaveCard from "@/components/game/GuestSaveCard";
 import ModuleIntro from "@/components/game/ModuleIntro";
 import ModuleOutro from "@/components/game/ModuleOutro";
 import { JOURNEY_ITEM_COMPLETED_EVENT } from "@/data/journeySequence";
-import { RATING_MAX, RATING_MIN, getJourneyModule, isQuestStep, type JourneyModuleDef } from "@/data/journeyModules";
+import {
+  RATING_MAX,
+  RATING_MIN,
+  getJourneyModule,
+  isQuestStep,
+  moduleText,
+  questDidItText,
+  questLinkText,
+  questTaskText,
+  type JourneyModuleDef,
+} from "@/data/journeyModules";
 import { useJourneyVictory } from "@/hooks/useJourneyVictory";
 import { useSessionUserId } from "@/hooks/useSessionUserId";
 import { questRoute } from "@/lib/questBoard";
+import { tr } from "@/lib/villageCopy";
 import "./ModuleForm.css";
 
 /**
@@ -39,6 +51,7 @@ type TaskProps = {
 };
 
 const QuestTask = ({ module, onRecorded }: TaskProps) => {
+  const { t } = useTranslation();
   const userId = useSessionUserId();
   const victory = useJourneyVictory(module.id);
   const labelId = useId();
@@ -64,24 +77,39 @@ const QuestTask = ({ module, onRecorded }: TaskProps) => {
   };
 
   return (
-    <section className="mf mf--outro" aria-label={module.headline}>
+    <section className="mf mf--outro" aria-label={moduleText(module, "headline", t)}>
       <Link className="mf__back" to="/game/journey">
-        ← Quest Board
+        {tr(t, "village.quest.backBoard", "← Quest Board")}
       </Link>
       <div className="mf__stage" data-place-state="open">
         <p className="mf__eyebrow">
-          {module.eyebrow}
+          {moduleText(module, "eyebrow", t)}
           {quest ? ` · ${quest.journey}` : ""}
         </p>
-        <h1 className="mf__headline">{module.headline}</h1>
-        <p className="mf__silhouette">{quest?.task}</p>
+        <h1 className="mf__headline">{moduleText(module, "headline", t)}</h1>
+        <p className="mf__silhouette">{questTaskText(module, t)}</p>
+        {quest?.link ? (
+          <p className="mf__fact">
+            {/^https?:\/\//.test(quest.link.to) ? (
+              <a href={quest.link.to} target="_blank" rel="noopener noreferrer">
+                {questLinkText(module, t)} <span aria-hidden="true">↗</span>
+              </a>
+            ) : (
+              <Link to={quest.link.to}>{questLinkText(module, t)}</Link>
+            )}
+          </p>
+        ) : null}
 
         {said && guest ? (
           <GuestSaveCard next={`${questRoute(module.id)}?step=task`} />
         ) : said ? (
           <fieldset className="mf__rate" aria-describedby={note ? `${labelId}-note` : undefined}>
             <legend className="mf__rate-q" id={labelId}>
-              How much did this resonate, {RATING_MIN}–{RATING_MAX}? Tap a number to record it.
+              {t("village.quest.rateQ", {
+                min: RATING_MIN,
+                max: RATING_MAX,
+                defaultValue: "How much did this resonate, {{min}}–{{max}}? Tap a number to record it.",
+              })}
             </legend>
             <div className="mf__rate-row" role="group" aria-labelledby={labelId}>
               {RATINGS.map((n) => (
@@ -89,7 +117,7 @@ const QuestTask = ({ module, onRecorded }: TaskProps) => {
                   key={n}
                   type="button"
                   className="mf__rate-btn"
-                  aria-label={`${n} of ${RATING_MAX}`}
+                  aria-label={t("village.quest.rateOf", { n, max: RATING_MAX, defaultValue: "{{n}} of {{max}}" })}
                   aria-pressed={pending === n}
                   disabled={pending !== null}
                   onClick={() => record(n)}
@@ -104,7 +132,7 @@ const QuestTask = ({ module, onRecorded }: TaskProps) => {
           </fieldset>
         ) : (
           <button type="button" className="mf__go" disabled={userId === undefined} onClick={() => setSaid(true)}>
-            {quest?.didIt ?? "I did it"} <span aria-hidden="true">→</span>
+            {questDidItText(module, t) || tr(t, "village.quest.didIt", "I did it")} <span aria-hidden="true">→</span>
           </button>
         )}
       </div>

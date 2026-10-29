@@ -26,14 +26,16 @@ describe("Quest Board rows (WP-11)", () => {
       expect(r.line, r.id).toMatch(/^Opens when /);
     }
     const quests = questRows(emptyPlaceSave());
-    expect(quests.map((q) => q.state)).toEqual(["open", "closed", "closed"]);
+    expect(quests.map((q) => q.state)).toEqual(["open", "open", "open", "closed", "closed"]);
   });
 
-  it("J10, J11, J12 come in that order, each with its own route", () => {
+  it("J8 to J12 come in that order, each with its own route", () => {
     const quests = questRows(emptyPlaceSave());
     expect(quests.map((q) => q.id)).toEqual([...QUEST_STEP_IDS]);
-    expect(quests.map((q) => q.journey)).toEqual(["J10", "J11", "J12"]);
+    expect(quests.map((q) => q.journey)).toEqual(["J8", "J9", "J10", "J11", "J12"]);
     expect(quests.map((q) => q.to)).toEqual([
+      "/game/journey/quest/webinar",
+      "/game/journey/quest/mastermind",
       "/game/journey/quest/mastery-practice",
       "/game/journey/quest/first-price",
       "/game/journey/quest/first-sale",
@@ -43,16 +45,16 @@ describe("Quest Board rows (WP-11)", () => {
 
   it("J11 and J12 open on a saved offer; a recorded victory marks the quest done", () => {
     const offer = saveWith(["find-top-talent", "discover-mission"], { offerSaved: true });
-    expect(questRows(offer).map((q) => q.state)).toEqual(["open", "open", "open"]);
+    expect(questRows(offer).map((q) => q.state)).toEqual(["open", "open", "open", "open", "open"]);
 
     const priced = saveWith(["find-top-talent", "discover-mission"], { offerSaved: true, victories: ["first-price"] });
-    expect(questRows(priced).map((q) => q.state)).toEqual(["open", "done", "open"]);
+    expect(questRows(priced).map((q) => q.state)).toEqual(["open", "open", "open", "done", "open"]);
 
     const sold = saveWith(["find-top-talent", "discover-mission"], {
       offerSaved: true,
-      victories: ["mastery-practice", "first-price", "first-sale"],
+      victories: [...QUEST_STEP_IDS],
     });
-    expect(questRows(sold).map((q) => q.state)).toEqual(["done", "done", "done"]);
+    expect(questRows(sold).map((q) => q.state)).toEqual(["done", "done", "done", "done", "done"]);
   });
 
   it("the next quest is the Journey's next step, then the first open real-world quest", () => {
@@ -67,11 +69,17 @@ describe("Quest Board rows (WP-11)", () => {
     );
     const quest = nextQuest(allDone);
     expect(quest?.kind).toBe("quest");
-    expect(quest?.row.id).toBe("mastery-practice");
+    expect(quest?.row.id).toBe("webinar");
+
+    const afterSessions = saveWith(
+      JOURNEY_MAIN.map((i) => i.id),
+      { offerSaved: true, victories: ["webinar", "mastermind"] },
+    );
+    expect(nextQuest(afterSessions)?.row.id).toBe("mastery-practice");
 
     const afterPractice = saveWith(
       JOURNEY_MAIN.map((i) => i.id),
-      { offerSaved: true, victories: ["mastery-practice"] },
+      { offerSaved: true, victories: ["webinar", "mastermind", "mastery-practice"] },
     );
     expect(nextQuest(afterPractice)?.row.id).toBe("first-price");
 

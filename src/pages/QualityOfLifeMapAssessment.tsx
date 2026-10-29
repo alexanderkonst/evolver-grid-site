@@ -29,7 +29,7 @@ const QualityOfLifeMapAssessment = ({
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get("return");
-  const { answers, setAnswer } = useQolAssessment();
+  const { answers, setAnswer, isLoading: qolLoading } = useQolAssessment();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showIntro, setShowIntro] = useState(true);
 
@@ -490,7 +490,8 @@ const QualityOfLifeMapAssessment = ({
     // button). The embedded Learn route keeps its own intro screen above.
     return (
       <div className="px-4 py-8 sm:py-10">
-        <ModuleIntro module={QOL_MODULE} onStart={() => setShowIntro(false)} />
+        {/* `ready`: once the saved result has loaded, the button is enabled; it does not wait on the character sheet. */}
+        <ModuleIntro module={QOL_MODULE} onStart={() => setShowIntro(false)} ready={!qolLoading} />
       </div>
     );
   }

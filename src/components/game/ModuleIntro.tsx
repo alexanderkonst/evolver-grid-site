@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { useEffect, useId, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import PlaceState from "@/components/game/PlaceState";
@@ -40,18 +40,34 @@ type Props = {
   onStart: () => void;
   /** Override the state read from the save (previews, tests). */
   state?: PlaceStateName;
+  /**
+   * The page already holds this module's saved result (the QoL page has loaded its snapshot).
+   * The button then no longer waits on the character sheet.
+   */
+  ready?: boolean;
   className?: string;
 };
 
-const ModuleIntro = ({ module, onStart, state: forced, className }: Props) => {
+/** How long the button waits on the character sheet before it gives up and enables itself. */
+const SHEET_WAIT_MS = 4000;
+
+const ModuleIntro = ({ module, onStart, state: forced, ready = false, className }: Props) => {
   const { t } = useTranslation();
   const sheet = useCharacterSheet();
   const headingId = useId();
   const place = getVillagePlace(module.place);
   const { leaving, leave } = useLeave("fast");
+  const [gaveUp, setGaveUp] = useState(false);
+
+  // A sheet that never answers (a slow or failed read) must not leave the one button disabled.
+  useEffect(() => {
+    if (!sheet.isLoading) return;
+    const id = window.setTimeout(() => setGaveUp(true), SHEET_WAIT_MS);
+    return () => window.clearTimeout(id);
+  }, [sheet.isLoading]);
 
   // A step with no requirement is never closed, so its button never waits for the save.
-  const loading = forced === undefined && sheet.isLoading && moduleHasRequirements(module.id);
+  const loading = forced === undefined && !ready && !gaveUp && sheet.isLoading && moduleHasRequirements(module.id);
   const state: PlaceStateName =
     forced ?? (loading ? "open" : moduleIntroState(module.id, placeSaveFromSheet(sheet)));
   const closed = state === "closed";

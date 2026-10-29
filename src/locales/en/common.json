@@ -57,7 +57,10 @@
     "errorUnreadableResponse": "We couldn't read a top talent from that response. Paste your AI's full answer, or take the guided test.",
     "revealTryAgain": "Try again",
     "pasteShortHint": "This looks short. Paste your AI's full answer so we can read your pattern from it.",
-    "revealWaitHint": "This usually takes one to three minutes. Please keep this page open.",
+    "revealWaitHint": "This usually takes 2–4 minutes. Please keep this page open.",
+    "revealStageReading": "Reading your answers...",
+    "revealStagePattern": "Finding the pattern...",
+    "revealStageWriting": "Writing your talent...",
     "toastCouldNotSaveProfile": "Could not save your profile.",
     "toastErrorTitle": "Error",
     "toastSomethingWentWrongSaving": "Something went wrong while saving.",
@@ -3396,7 +3399,11 @@
       "heading": "Your next quest",
       "empty": "Nothing is waiting. Go and live the next thing.",
       "journey": "The Journey",
-      "world": "In the world"
+      "world": "In the world",
+      "backBoard": "← Quest Board",
+      "didIt": "I did it",
+      "rateQ": "How much did this resonate, {{min}}–{{max}}? Tap a number to record it.",
+      "rateOf": "{{n}} of {{max}}"
     },
     "module": {
       "find-top-talent": {
@@ -3435,26 +3442,47 @@
         "silhouette": "One sentence for the people you serve: where they are, and where you take them.",
         "verb": "Write my tagline"
       },
+      "webinar": {
+        "eyebrow": "Academy · Step 8",
+        "headline": "Join the free Mastermind session (Nov 4)",
+        "silhouette": "One free live session with others on the same path. Come, and leave with one step to take.",
+        "verb": "Join the free session",
+        "task": "Join the free Mastermind session on Wednesday, Nov 4. Afterwards, come back and say you were there.",
+        "didIt": "I joined the session",
+        "link": "Open the session page"
+      },
+      "mastermind": {
+        "eyebrow": "Mastermind · Step 9",
+        "headline": "Mastermind Nov 9–10",
+        "silhouette": "Two days in a circle with others who build. You leave with one real step to take this week.",
+        "verb": "Join the Mastermind",
+        "task": "Join the Mastermind on Nov 9–10. When the two days are over, come back and say you were there.",
+        "didIt": "I joined the Mastermind",
+        "link": "Open the Mastermind page"
+      },
       "mastery-practice": {
         "eyebrow": "Academy · Step 10",
         "headline": "Twenty-one days of practice, done",
         "silhouette": "Practise for 21 days with others walking the same path. When the twenty-first day is behind you, come back and say so.",
         "verb": "Practise my 21 days",
-        "task": "Practise every day for 21 days, alongside others walking the same path. Come back when you have done all 21."
+        "task": "Practise every day for 21 days, alongside others walking the same path. Come back when you have done all 21.",
+        "didIt": "I did my 21 days"
       },
       "first-price": {
         "eyebrow": "Market · Step 11",
         "headline": "Name your price to a real client",
         "silhouette": "Your price is part of the gift. You say it out loud to one real person who could buy.",
         "verb": "Name my price",
-        "task": "Tell one real client the price of your offer, out loud or in writing. Then come back and say you did."
+        "task": "Tell one real client the price of your offer, out loud or in writing. Then come back and say you did.",
+        "didIt": "I named my price"
       },
       "first-sale": {
         "eyebrow": "Market · Step 12",
         "headline": "Receive your first payment for being you",
         "silhouette": "Someone pays you for your own offer. A neighbour counts the same as a stranger online.",
         "verb": "Make my first sale",
-        "task": "Sell your offer to one real person and receive the payment. Come back and say you did: no money moves here, and we take your word."
+        "task": "Sell your offer to one real person and receive the payment. Come back and say you did: no money moves here, and we take your word.",
+        "didIt": "I made my first sale"
       }
     }
   },
