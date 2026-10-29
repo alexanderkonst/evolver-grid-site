@@ -61,6 +61,15 @@ Originally *genius* was not a trait but a being that accompanies a person. The g
 
 ---
 
+## 0c. The real landscape, October 2026 (living research)
+
+| Doc | What it is |
+|---|---|
+| [landscape_2026-10.md](landscape_2026-10.md) | Five findings, the holomap re-read for Oct 2026, integral maps of model types and harness types, where Sasha's setup sits, what it means for Sputnik |
+| [landscape_2026-10_sources.md](landscape_2026-10_sources.md) | Raw numbers with sources and dates (AA v5, Scale, Epoch, arXiv) |
+
+---
+
 ## 1. AI OS — the product (installable cognition)
 
 | Doc | What it is |
