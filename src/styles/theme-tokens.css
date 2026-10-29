@@ -157,6 +157,20 @@
   --chat-panel-ink: #fff8e7;
   --chat-panel-ink-rgb: 255, 255, 255;
   --chat-panel-shadow-rgb: 1, 8, 20;
+
+  /* ── Selection chrome (WP-1b): the Settings → Appearance tab ──
+     The skin cards' selected border, focus/selected ring, and the section icon.
+     Defaults are the gold literals the tab hardcoded; The Dao overrides them. */
+  --select-accent: hsl(40 70% 45%);
+  --select-border: hsla(40, 70%, 55%, 0.55);
+  --select-ring-rgb: 212, 175, 55;
+
+  /* ── Accent label ink (WP-1b): eyebrows, list arrows and step numbers painted as
+     gradient text (Mastermind). Every skin reads its own callout gradient, so Lapis,
+     Aurum and The Dao are unchanged; Lunar overrides below (its callout is a dark teal
+     fill for buttons, too dark as text on near-black). ── */
+  --label-ink-bg: var(--skin-callout-bg, linear-gradient(135deg, #a06d08 0%, #7a5108 45%, #6b4208 100%));
+  --label-ink-glow: var(--skin-callout-glow, none);
 }
 
 /* ── Place states (WP-3's PlaceState sets `data-place-state` on a place) ──
@@ -343,6 +357,13 @@
   --chat-panel-ink: #0a0a0a;
   --chat-panel-ink-rgb: 10, 10, 10;
   --chat-panel-shadow-rgb: 0, 0, 0;
+
+  /* Settings → Appearance: the active tab, its check badge, the selected skin card and
+     the focus ring are ink, not gold. */
+  --skin-tab-active-ink: #0a0a0a;
+  --select-accent: #0a0a0a;
+  --select-border: rgba(10, 10, 10, 0.55);
+  --select-ring-rgb: 10, 10, 10;
 }
 
 /* ── Karime: warm cream, charcoal ink ── */
@@ -517,6 +538,11 @@
   --lock-dim: 0.72;
   --open-accent: #5ec8bd;
   --live-accent: #8fe3d9;
+  /* A closed name sits visibly under an open one (0.82 ink): ~6:1 on the chip, not a twin of it. */
+  --lock-label-alpha: 0.6;
+  --lock-label-bg-alpha: 0.72;
+  --label-ink-bg: linear-gradient(135deg, #b5f0e8 0%, #8fe3d9 55%, #5ec8bd 100%);
+  --label-ink-glow: none;
 
   /* Lunar world. */
   --scene-filter: grayscale(1) contrast(1.06) brightness(0.96);

@@ -159,7 +159,7 @@ const AppearanceTab = () => {
                 <div className="flex items-start gap-3">
                     <Palette
                         className="w-5 h-5 mt-0.5 flex-shrink-0"
-                        style={{ color: "hsl(40 70% 45%)" }}
+                        style={{ color: "var(--select-accent)" }}
                     />
                     <div>
                         <h2
@@ -201,20 +201,20 @@ const AppearanceTab = () => {
                                 disabled={isDisabled}
                                 className={cn(
                                     "relative text-left rounded-xl p-4 transition-all duration-200",
-                                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/50 focus-visible:ring-offset-2",
+                                    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(var(--select-ring-rgb),0.5)] focus-visible:ring-offset-2",
                                     isDisabled
                                         ? "opacity-55 cursor-not-allowed shadow-sm"
                                         : cn(
                                               "hover:scale-[1.01] active:scale-[0.995]",
                                               active
-                                                  ? "ring-2 ring-[#d4af37]/40 shadow-md"
+                                                  ? "ring-2 ring-[rgba(var(--select-ring-rgb),0.4)] shadow-md"
                                                   : "shadow-sm",
                                           ),
                                 )}
                                 style={{
                                     background: "var(--skin-input-bg, rgba(255, 255, 255, 0.55))",
                                     border: active
-                                        ? "1px solid hsla(40, 70%, 55%, 0.55)"
+                                        ? "1px solid var(--select-border)"
                                         : "1px solid var(--skin-hairline, hsla(228, 30%, 18%, 0.10))",
                                 }}
                             >
