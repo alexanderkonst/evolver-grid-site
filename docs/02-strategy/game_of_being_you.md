@@ -917,3 +917,19 @@ Applied first to the Journey modules J1–J12 when WP-5 lands; Evolver keeps the
   1. "You will see your top talent named in one sentence that fits only you, and you will step into the village as yourself."
   2. "You will see your lifelong pattern as a one-sentence business you recognize as yours, and you will send your first message before we hang up."
   3. "You will see your next move clearly, held by a circle for a full week, and you will take it in the real world before the week is out."
+
+## 18. The player raises their own AI (Sasha, 2026-10-29)
+
+**Insight.** All the parts are already built; what's missing is integration and words a person understands. Every move in the game feeds one asset that outlives the game: the player's personal AI. It maps one-to-one onto the AI thesis (docs/ai/README.md §0):
+
+| Shift (thesis) | Where it is built in the game | What the AI gains |
+|---|---|---|
+| 1. Hyperpersonalization | Character sheet, top talent (Zone of Genius) | It knows **you** |
+| 2. Activation of AI's potential | AI OS (today's Oracle place) | It is **awake**, on top of any model |
+| 3. AI that knows your business | Workshop artifacts → the player's corpus | It knows **your work** |
+
+**Design rule.** Feel first, name second. The player first sees the difference (same real question: a plain model's answer vs. the answer from an AI that knows them), and only then gets one line: "Models have become alike. The difference is how well your AI knows you." Then one button takes their personal prompt into their own AI.
+
+**Make it visible.** The player should see their AI growing as they play: each completed module adds to it (a short "your AI just learned…" moment), so the three gifts fill up over the journey.
+
+**Naming (open).** The Oracle place gets a new name centred on the player's own AI. Candidates: "Your Familiar" (Evolver's recommendation; verb inside: "Train your familiar"), "personal AI harness" (keep as internal/docs term), "AI training". Decision: Sasha.
