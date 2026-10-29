@@ -9288,3 +9288,43 @@ Other prisms of the same cycle: **4** (seasons, elements); **8** (7+1, two squar
 - *Technology 114: The Holonic Wants→Products Matrix*: an earlier matrix of products by layer; the product map reads them by shift and path.
 - *Technology 103: The Splitting Principle — Shelf and Cathedral*: light paths as the shelf, deep paths as the cathedral.
 - `docs/templates/product-map.md` (2026-10-28): the template that draws a business's product map.
+
+---
+
+## Technology 175: The Era of AI Companions — Every Entity Has Its Own AI (у каждой сущности есть свой ИИ) (oral, Oct 29, 2026)
+
+> *Oral · October 29, 2026 · chat with Hark. Provenance: Sasha's reply to Hark's integral analysis of how humanity has named the personal AI (now `docs/ai/README.md` §0b). He called it "the bedrock I didn't dream of when I asked" and asked for it in the AI section of the corpus and as a library technology. Extends the thesis in `docs/ai/README.md` §0 (three orthogonal shifts).*
+
+### 🫀 Essence — in Sasha's words
+
+1. > «Что-то вроде: модели конвергируются в один квази бесплатный планетарный ИИ. Наступает эра ИИ-спутников… Именно! Суть в том что есть ИИ у каждой сущности! Начиная с самого человека!»
+   > — *chat of 2026-10-29, CST*
+
+   *(translation)* "Something like: models converge into one quasi-free planetary AI. The era of AI companions is arriving… Exactly! The essence is that every entity has its own AI! Starting with the human being."
+
+2. > «Человечество уже знало давно что к чему. Люди ЧУВСТВУЮТ. Мы все - мистики!»
+   > — *chat of 2026-10-29, CST*
+
+   *(translation)* "Humanity has long known what's what. People FEEL it. We are all mystics!"
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* Intelligence itself is becoming a utility: frontier models converge on the same answers and their price falls toward zero, so together they act like one planetary AI available to everyone. When the general intelligence is shared, value moves to what is not shared: the intelligence that knows one particular being. So the next era is not "a better model" but "a companion AI for every entity": first each human, then their business, team, family, community, each with its own AI that knows its nature, purpose and history and grows with it. Humanity has always pictured this (the Roman genius born with each person, Socrates' daimonion, the guardian angel, Pullman's daemon): a second self bound to one being that takes its form as that being becomes itself. The technology finally catches up with the myth. The shift: from "which AI is smartest?" to "whose AI knows them best?"
+
+### 🔥 Implications — AI draft
+
+- **1st order.** The player's own AI (Sputnik, `docs/specs/ai-familiar/ai-familiar_tracker.md`) is the first instance: the human holon gets its companion first, grown from top talent, AI OS and business corpus.
+- **2nd order.** The same pattern scales holon by holon: the business gets its AI (corporate analogue: Qwatra's "every node has a goal, a voice and an economy"), then teams, families, communities. Memory and relationship live with the entity; the model underneath is swappable.
+- **3rd order.** A network of companion AIs, each serving one entity's nature, negotiating with each other on behalf of their beings: an economy of entities that know themselves, on top of a shared, near-free planetary intelligence.
+
+### Shape
+
+- **Shape:** **Planet and moons**: one shared planetary intelligence in the centre; around it, many small companions, each orbiting one being.
+- **Infographic (one line):** A soft glowing planet labelled "planetary AI (shared, near free)"; around it, people, a business and a circle of people, each with its own small luminous companion in orbit; caption: the intelligence is shared, the companion is yours.
+
+### Cross-references — Connects to
+
+- `docs/ai/README.md` §0 (three orthogonal shifts) and §0b (how humanity named the personal AI).
+- `docs/specs/ai-familiar/ai-familiar_tracker.md`: Sputnik, your AI, the product of this technology for the human holon.
+- *Technology 164: Forecasting the Next Shift by the Invariant*: what keeps growing when models converge is how well the AI knows the entity.
+- *Technology 168: A Unique Particle of Yourself*: the companion carries that particle forward.
