@@ -28,7 +28,7 @@ const saveWith = (done: JourneyItemId[]): PlaceSave =>
   placeSaveFromSheet({ chain: JOURNEY_MAIN.map((i) => ({ id: i.id, done: done.includes(i.id) })) });
 
 describe("journey modules (WP-5 module form)", () => {
-  it("covers J1, J2, J4, J5, J6, J7 and the real-world quests J10–J12, and nothing else yet", () => {
+  it("covers J1, J2, J4, J5, J6, J7 and the real-world quests J8–J12, and nothing else yet", () => {
     expect(JOURNEY_MODULES.map((m) => m.id)).toEqual([
       "find-top-talent",
       "discover-mission",
@@ -36,6 +36,8 @@ describe("journey modules (WP-5 module form)", () => {
       "map-assets",
       "uniqueness-phrase",
       "tagline",
+      "webinar",
+      "mastermind",
       "mastery-practice",
       "first-price",
       "first-sale",
@@ -59,9 +61,16 @@ describe("journey modules (WP-5 module form)", () => {
     expect(getJourneyModule("nope")).toBeUndefined();
   });
 
-  it("the quests are numbered J10, J11, J12 and every one has its real choice", () => {
-    expect(QUEST_STEP_IDS.map((id) => getJourneyModule(id)?.quest?.journey)).toEqual(["J10", "J11", "J12"]);
+  it("the quests are numbered J8 to J12 and every one has its real choice", () => {
+    expect(QUEST_STEP_IDS.map((id) => getJourneyModule(id)?.quest?.journey)).toEqual(["J8", "J9", "J10", "J11", "J12"]);
     for (const id of QUEST_STEP_IDS) expect(getJourneyChoice(id), id).toBeDefined();
+  });
+
+  it("J8 sends the player to the Luma page and J9 to the Mastermind page", () => {
+    expect(getJourneyModule("webinar")?.quest?.link?.to).toBe("https://lu.ma/qpogt17o");
+    expect(getJourneyModule("mastermind")?.quest?.link?.to).toBe("/build/mastermind");
+    expect(getJourneyModule("webinar")?.headline).toBe("Join the free Mastermind session (Nov 4)");
+    expect(getJourneyModule("mastermind")?.headline).toBe("Mastermind Nov 9–10");
   });
 
   it("the button is the result as a verb, never «Continue»", () => {
@@ -145,12 +154,15 @@ describe("moduleIntroState", () => {
     expect(journeyStepOf("map-assets")).toBe("map-assets");
   });
 
-  it("J10 is open to everyone; J11 and J12 wait on a saved offer; each is done once its victory is recorded", () => {
+  it("J8, J9 and J10 are open to everyone; J11 and J12 wait on a saved offer; each is done once its victory is recorded", () => {
     const chain = JOURNEY_MAIN.map((i) => ({ id: i.id, done: false }));
     const save = (over: { offerSaved?: boolean; victories?: string[] }) => placeSaveFromSheet({ chain, ...over });
 
-    expect(moduleHasRequirements("mastery-practice")).toBe(false);
-    expect(moduleIntroState("mastery-practice", emptyPlaceSave())).toBe("open");
+    for (const id of ["webinar", "mastermind", "mastery-practice"] as const) {
+      expect(moduleHasRequirements(id), id).toBe(false);
+      expect(moduleIntroState(id, emptyPlaceSave()), id).toBe("open");
+      expect(moduleIntroState(id, save({ victories: [id] })), id).toBe("done");
+    }
     for (const id of ["first-price", "first-sale"] as const) {
       expect(moduleHasRequirements(id), id).toBe(true);
       expect(moduleIntroState(id, emptyPlaceSave()), id).toBe("closed");

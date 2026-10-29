@@ -4,9 +4,8 @@
  * §14.12 (the result is the badge).
  *
  * One entry per Journey step that is built today (J1, J2, J4, J5, and the two Workshop slices
- * J6, J7 of WP-9) and the three real-world quests of the Quest Board (J10–J12, WP-11).
- * Webinar and Mastermind add their entries with WP-10. Order,
- * requirements and the closed line come from `JOURNEY_MAIN` (src/data/journeySequence.ts);
+ * J6, J7 of WP-9) and the five real-world quests of the Quest Board (J8–J12, WP-11).
+ * Order, requirements and the closed line come from `JOURNEY_MAIN` (src/data/journeySequence.ts);
  * nothing here restates them. The place a module lives in comes from VILLAGE_PLACES
  * (src/data/villagePlaces.ts).
  *
@@ -46,8 +45,8 @@ export type ExtraStepId = "academy-welcome";
  */
 export type QuestStepId = RealWorldVictory;
 
-/** The real-world quests, in Journey order: J10, J11, J12. */
-export const QUEST_STEP_IDS: readonly QuestStepId[] = ["mastery-practice", "first-price", "first-sale"];
+/** The real-world quests, in Journey order: J8, J9, J10, J11, J12. */
+export const QUEST_STEP_IDS: readonly QuestStepId[] = ["webinar", "mastermind", "mastery-practice", "first-price", "first-sale"];
 
 /** Everything that has a module form: a Journey step, a slice of one, a real-world quest, or an Academy lesson. */
 export type ModuleStepId = JourneyItemId | SliceStepId | QuestStepId | ExtraStepId;
@@ -93,6 +92,8 @@ export type JourneyModuleDef = {
     task: string;
     /** The label of the button that says it is done. */
     didIt: string;
+    /** Where the task happens, when it has an address: an external page (https) or a route of the site. */
+    link?: { to: string; label: string };
     /** What the quest waits on. Absent = always open. */
     opens?: PlaceRequirement;
     /** The «Opens when … Inside: …» line while it waits. Required with `opens`. */
@@ -210,9 +211,53 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     },
   },
 
-  // Real-world quests (WP-11, §14.2 J10–J12; J8 and J9 are the webinar and the Mastermind).
+  // Real-world quests (WP-11, §14.2 J8–J12; J8 and J9 are the free session and the Mastermind).
   // The task happens outside the game; «I did it» is the player's own word, recorded as a
   // victory with its 1–10 (src/components/game/QuestModule.tsx).
+  {
+    id: "webinar",
+    place: "academy",
+    eyebrow: "Academy · Step 8",
+    headline: "Join the free Mastermind session (Nov 4)",
+    silhouette: "One free live session with others on the same path. Come, and leave with one step to take.",
+    verb: "Join the free session",
+    startPath: "/game/journey/quest/webinar",
+    quest: {
+      journey: "J8",
+      task: "Join the free Mastermind session on Wednesday, Nov 4. Afterwards, come back and say you were there.",
+      didIt: "I joined the session",
+      link: { to: "https://lu.ma/qpogt17o", label: "Open the session page" },
+    },
+    outro: {
+      done: "Done · You joined the free session",
+      badge: "Free Session",
+      livesIn: { text: "It lives in Your House, on the shelf of your victories.", to: "/game/me/overview" },
+      opened: "You were in the room. The Mastermind is the next quest.",
+      fallbackResult: "The free Mastermind session",
+    },
+  },
+  {
+    id: "mastermind",
+    place: "fire-circle",
+    eyebrow: "Mastermind · Step 9",
+    headline: "Mastermind Nov 9–10",
+    silhouette: "Two days in a circle with others who build. You leave with one real step to take this week.",
+    verb: "Join the Mastermind",
+    startPath: "/game/journey/quest/mastermind",
+    quest: {
+      journey: "J9",
+      task: "Join the Mastermind on Nov 9–10. When the two days are over, come back and say you were there.",
+      didIt: "I joined the Mastermind",
+      link: { to: "/build/mastermind", label: "Open the Mastermind page" },
+    },
+    outro: {
+      done: "Done · You joined the Mastermind",
+      badge: "Mastermind",
+      livesIn: { text: "It lives in Your House, on the shelf of your victories.", to: "/game/me/overview" },
+      opened: "You were in the circle. The Quest Board holds the next quest.",
+      fallbackResult: "The Mastermind",
+    },
+  },
   {
     id: "mastery-practice",
     place: "academy",
@@ -353,6 +398,14 @@ export const moduleText = (
 /** The task of a real-world quest, in the reader's language. Empty for a module that is not a quest. */
 export const questTaskText = (module: JourneyModuleDef | undefined, t?: TFunction): string =>
   module?.quest ? tr(t, `village.module.${module.id}.task`, module.quest.task) : "";
+
+/** The «I did it» button of a real-world quest, in the reader's language. Empty for a module that is not a quest. */
+export const questDidItText = (module: JourneyModuleDef | undefined, t?: TFunction): string =>
+  module?.quest ? tr(t, `village.module.${module.id}.didIt`, module.quest.didIt) : "";
+
+/** The label of a quest's link to where it happens, in the reader's language. Empty when it has none. */
+export const questLinkText = (module: JourneyModuleDef | undefined, t?: TFunction): string =>
+  module?.quest?.link ? tr(t, `village.module.${module.id}.link`, module.quest.link.label) : "";
 
 /** The part of the character sheet the Outro reads its result from. */
 export type ModuleResultSource = {
