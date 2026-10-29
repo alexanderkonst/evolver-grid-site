@@ -9367,3 +9367,40 @@ Other prisms of the same cycle: **4** (seasons, elements); **8** (7+1, two squar
 - *Technology 173: Sell the Shift, Not the Content*: the button is named by the shift it gives.
 - `docs/specs/ai-familiar/ai-familiar_tracker.md` §15 (button principle) and §16 (our AI, not theirs).
 
+---
+
+## Technology 177: Market Maps as an X-ray of the Inner Turn (карты рынков как рентген разворота внутрь) (oral, Oct 29, 2026)
+
+> *Oral · October 29, 2026 · chat with Hark, reacting to Hark's naming of "market maps / LUMAscapes" while collecting the 2025–26 AI maps (`docs/ai/market_maps_2026-10.md`). Sasha: «это ещё один огромный пункт урожая… достойно технологии в библиотеке… запиши всё это куда нужно». Builds on Technology 76 (The Return to Center) and Technology 78 (The Planetary Holomap).*
+
+### 🫀 Essence — in Sasha's words
+
+> «Маркет-мапс, или Luma-мапс, это гениально: мы же можем так увидеть практически всю экономическую активность через эти карты, и причём приземлённо… каждая индустрия, каждая отрасль экономики, каждая подотрасль, каждая рыночная ниша, каждая подниша… каждая компания, каждый предприниматель, каждый собственник бизнеса и все, кто в нём работают, пройдут через огромные перемены: развернут свой бизнес от обслуживания чего-то внешнего к обслуживанию внутреннего мира клиента… Коперниканский переворот, только не на уровне Земля–Солнце, а на уровне каждого человека и любых конфигураций, которые люди составляют: фирма, рыночная ниша, отрасль.»
+> — *chat of 2026-10-29, 17:54 CST*
+
+> «Мы можем смотреть не на тех, кто кажется лидером, у кого больше денег залито, а на то, как реально по факту они делают этот переворот: из внешнего во внутреннее, и через внутреннее снова во внешнее, но уже по-другому. Вот в чём переворот.»
+
+*(translation)* "Market maps are genius: through them we can see almost all economic activity, and concretely. Every industry, sub-industry, niche and sub-niche, every company, founder, owner and employee will go through a huge change: turning the business from serving something external to serving the client's inner world. A Copernican turn, not at the Earth–Sun level but at the level of every person and every configuration people form: a firm, a niche, an industry. We look not at who seems to lead or has raised the most, but at how they actually make the turn: from outer to inner, and through the inner back to the outer, differently."
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* Market maps (LUMAscapes, Matt Turck's MAD landscape, CB Insights and a16z maps) already chart the economy in a ready fractal: sector → industry → sub-industry → niche → sub-niche → companies → the leaders setting the pace. Every map today ranks by the outer signs: funding, revenue, logo size. Read through Technology 76, the same map shows something no investor map measures: how far each player has made the return to center, from serving an external object (a product, a transaction, a symptom) to serving the client's inner world (their nature, meaning, becoming), and then back out into products and services made from that center. So one instrument does two things: it grounds the Planetary Holomap (Technology 78) in real companies and names, and it shows, niche by niche, where the turn has already happened, who leads it in fact, and where it is still waiting.
+
+### 🔥 Implications — AI draft
+
+- **1st order.** A new line of work: mapping. Take existing market maps as the skeleton (base taxonomy: an official industry classification such as ISIC/NAICS for the top layers, market maps for the lower ones), and add one new axis per company: *outer → inner → outer-anew*, scored from what the company actually does, not from its funding.
+- **2nd order.** The maps produce a list of real people already making the turn in every niche. They are the natural tribe of the new economy: a community, a club, a venture studio (form to emerge; Sasha's broad strokes, Oct 29). Any outreach waits for Sasha's yes.
+- **3rd order.** A living atlas of the planetary economy turning inside out, the Golden Age map (Technology 78) drawn with real company names, which updates as each niche turns.
+
+### Shape
+
+- **Shape:** **Fractal map with a glowing turn**: the familiar market-map grid, sector boxes nesting into niches, where each logo carries a small arrow showing how far it has turned from outer to inner and back out.
+- **Infographic (one line):** A classic LUMAscape-style grid; most logos grey with arrows pointing outward, a few glowing with arrows that curve inward to a human figure and back out as light; caption: same economy, read from center.
+
+### Cross-references — Connects to
+
+- *Technology 76: The Return to Center*: the motion each company is scored on.
+- *Technology 78: The Planetary Holomap*: the two readings of one territory; this technology gives it real names.
+- *Technology 166: Everyone Looks at Self-Governance, I Look at the Economy*: economy first.
+- `docs/ai/market_maps_2026-10.md`: the first pass, AI market maps 2025–Oct 2026.
+
