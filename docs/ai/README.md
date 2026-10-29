@@ -6,6 +6,22 @@
 
 ---
 
+## 0. Thesis: where the real shift in AI answers comes from (Sasha, 2026-10-29)
+
+> The best AI answers no longer depend on which model you use. Frontier models are converging; their answers are becoming near copies of each other. The real shift comes from three things, all orthogonal to the model:
+>
+> 1. **Hyperpersonalization.** The AI knows the person's uniqueness: the ultimate personalization.
+> 2. **Activation of AI's potential.** An operating layer (AI OS) that unlocks more of what any model can do, on top of absolutely any model, orthogonally.
+> 3. **An AI that knows their business.** Their own corpus, a second brain.
+
+This is, in effect, the thesis of a whole AI company. It extends the thread below (knowledge structure as an axis orthogonal to model capability) from "inside one conversation" to "who you are, how the AI is activated, what it knows about your work".
+
+**Where it lives in the product.** Each shift has a place in the Game of Being You: (1) the character sheet and top talent (Zone of Genius); (2) the Oracle / AI OS; (3) the Workshop artifacts, which are the start of the player's corpus.
+
+**Open design problem.** A player won't grasp how big this is from being told. The game has to let them *feel* the difference first (same question, generic answer vs. answer from an AI that knows them), and only then name it.
+
+---
+
 ## 1. AI OS — the product (installable cognition)
 
 | Doc | What it is |
