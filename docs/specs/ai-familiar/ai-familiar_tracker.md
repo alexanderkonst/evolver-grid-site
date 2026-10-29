@@ -246,3 +246,15 @@ One test question. Side A: a small open model (hosted open-model API) with the p
 - **Task A:** prompt builder adds the "you can now ask" prompts per unlocked piece (static list per gift step).
 - **Task B:** two-column unlock card in Outros; Cinderella Moment variant of the J1 Outro; one-tap "How did that land?" stored in `resonance_events`.
 - **Task C:** unchanged.
+
+---
+
+## 11. Holes in "living proof" and "feel first" (Sasha, 2026-10-29 15:02: «непонятно как задизайнить этот опыт, зачем это игроку… много дыр»)
+
+| Hole | Working hypothesis (to test, not decided) |
+|---|---|
+| Why would the player want a comparison? | They don't. They want an answer to their real question. The comparison is an optional "see the difference" toggle after the answer, never a gate. Main proof role moves to marketing (side-by-side clips, the benchmark), not the core flow. |
+| What question do they bring? | Offer three questions written from their own top talent ("you can now ask…"), so the first answer is about them by design. |
+| "Feel first" without a test screen | The feeling comes from the first answer naming their talent in their words. The explanation ("models are alike; the difference is how well it knows you") appears only after, as one line. |
+| Small vs frontier claim | Not shown to players until our own mini-benchmark confirms it (landscape doc §5, §6). |
+| What screens change | Screens 2–3 likely merge: Ask → Answer (with optional "compare" toggle). Pending Sasha's roast. |
