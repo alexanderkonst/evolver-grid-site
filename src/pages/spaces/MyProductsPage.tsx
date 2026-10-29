@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { localizedOrigin } from "@/i18n/localeScope";
 import {
@@ -86,8 +86,8 @@ const MyProductsPage = () => {
                     ) : (
                         <div className="rounded-xl border border-dashed border-border bg-muted/40 p-10 text-center">
                             <Package className="w-10 h-10 text-foreground/20 mx-auto mb-3" />
-                            <p className="text-muted-foreground text-sm">{t('myProducts.empty.title')}</p>
-                            <p className="text-muted-foreground text-xs mt-1">{t('myProducts.empty.cta')}</p>
+                            <p className="text-muted-foreground text-sm">{t('villagePlaces.market.empty')}</p>
+                            <Button asChild className="mt-3"><Link to="/ubb">{t("villagePlaces.openWorkshop")}</Link></Button>
                         </div>
                     )}
                 </div>

@@ -1,3 +1,5 @@
+import i18n from "@/i18n/config";
+
 interface TitleRule {
   match: (path: string) => boolean;
   title: string;
@@ -22,7 +24,7 @@ const titleRules: TitleRule[] = [
   { match: (path) => path === "/build/cockpit/dashboard", title: "Founder Cockpit" },
   { match: (path) => path === "/build/cockpit/offers", title: "Offers Board" },
   { match: (path) => path === "/build/cockpit", title: "Founder Cockpit" },
-  { match: (path) => path === "/ubb" || path.startsWith("/ubb/"), title: "The Forge" },
+  { match: (path) => path === "/ubb" || path.startsWith("/ubb/"), title: "Workshop" },
   { match: (path) => path === "/game/build" || path.startsWith("/game/build/"), title: "The Forge" },
   // Game vocabulary (Sasha 2026-10-26, issue #129): labels only. Specific
   // /game/learn/* pages come before the generic Training rule.
@@ -51,7 +53,7 @@ const titleRules: TitleRule[] = [
   { match: (path) => path === "/start", title: "Onboarding" },
   { match: (path) => path.startsWith("/quality-of-life-map"), title: "Quality of Life" },
   { match: (path) => path.startsWith("/game/transformation"), title: "Training" },
-  { match: (path) => path.startsWith("/game/marketplace"), title: "Trading Post" },
+  { match: (path) => path.startsWith("/game/marketplace"), title: "Market" },
   { match: (path) => path.startsWith("/game/teams"), title: "Party & Guild" },
   { match: (path) => path.startsWith("/game/matches"), title: "Party & Guild" },
   { match: (path) => path.startsWith("/game/collaborate"), title: "Party & Guild" },
@@ -80,5 +82,7 @@ const titleRules: TitleRule[] = [
  */
 export const getPageTitle = (pathname: string): string => {
   const match = titleRules.find((entry) => entry.match(pathname));
+  if (match?.title === "Workshop") return i18n.t("villagePlaces.workshop.title");
+  if (match?.title === "Market") return i18n.t("villagePlaces.market.title");
   return match ? match.title : "";
 };

@@ -1,4 +1,9 @@
 {
+  "villagePlaces": {
+    "workshop": { "title": "Workshop", "description": "Shape your unique business, one artifact at a time." },
+    "market": { "title": "Market", "description": "Where founders show what they offer.", "empty": "Your stall opens once your offer is ready in the Workshop." },
+    "openWorkshop": "Open Workshop"
+  },
   "errors": {
     "saveGenericBody": "We couldn't save that just now. Please try again in a moment.",
     "schemaDriftBody": "We're updating this part of the app. Please try again shortly. Your work is safe.",

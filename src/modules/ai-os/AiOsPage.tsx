@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
@@ -2481,6 +2482,7 @@ const SUITE_SLUG: Record<string, string> = {
 };
 
 const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
+  const { t } = useTranslation();
 
   // Per-page SEO — sets browser tab title on /ai-os and per-suite sub-routes.
   // Global og: tags from index.html still apply.
@@ -2836,6 +2838,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
         className="relative z-10 w-full flex justify-center px-4 pt-2 pb-4 sm:min-h-screen sm:px-6 sm:py-8 overflow-x-hidden"
       >
         <div className="w-full max-w-[42rem] space-y-6 sm:space-y-20">
+          <Link to="/game" className="relative z-10 inline-block text-sm text-white/70 hover:text-white">{t("village.backVillage")}</Link>
 
           {/* Header — Day 51 (Sasha 2026-04-24): tightened padding stack.
               GameShellV2 already supplies pt-4; layered py-16+pt-12 was

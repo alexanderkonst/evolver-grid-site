@@ -133,22 +133,6 @@ export default function DossierScreen() {
             </span>
             {" locked"}
           </span>
-          {avgSpecificity > 0 && (
-            <span style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))" }}>
-              · avg specificity{" "}
-              <span
-                className="not-italic"
-                style={{
-                  fontFamily: "'DM Sans', system-ui, sans-serif",
-                  fontWeight: 600,
-                  fontVariantNumeric: "tabular-nums lining-nums",
-                  color: "var(--skin-text-primary, #0b2a5a)",
-                }}
-              >
-                {avgSpecificity.toFixed(1)}
-              </span>
-            </span>
-          )}
         </p>
       </header>
 
