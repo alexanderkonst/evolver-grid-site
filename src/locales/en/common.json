@@ -729,7 +729,8 @@
       "expand": "Expand sidebar"
     },
     "menu": {
-      "open": "Open menu"
+      "open": "Open menu",
+      "close": "Close menu"
     }
   },
   "myResult": {
@@ -1900,7 +1901,7 @@
     "guidedBy": "Guided by {{teacher}}",
     "growthSequence": "Growth Sequence",
     "indexHero": "GROW",
-    "indexIntro": "Six steps. From scattered talent to centered mastery. Pick a step from the side panel — each one unlocks the next level of seeing.",
+    "indexIntro": "Six steps. From scattered talent to centered mastery. Pick a step below or from the menu — each one unlocks the next level of seeing.",
     "recommendedTitle": "Recommended for you",
     "recommendedReason": "Chosen for your {{domain}} — your current growth edge",
     "qolInvite": "Take the Quality of Life snapshot to unlock personal recommendations.",

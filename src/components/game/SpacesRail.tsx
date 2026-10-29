@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useId, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -198,6 +198,12 @@ interface SpacesRailProps {
      * data-rail-compact attribute + matching CSS rule in index.css.
      */
     compact?: boolean;
+    /**
+     * Phone drawer (issue #202): the rail is the left column of the overlay menu, so
+     * every place shows its name next to its icon (a phone has no hover) and the rail
+     * is wide enough to hold them. Desktop and the slim rail never set this.
+     */
+    drawer?: boolean;
     className?: string;
     /**
      * When the parent page renders its OWN full-screen background (e.g. /ai-os
@@ -235,6 +241,7 @@ const SpacesRail = ({
     placeStates,
     onSpaceSelect,
     compact: compactRequested = false,
+    drawer = false,
     className,
     pageOwnsBackground = false,
     userName,
@@ -245,6 +252,8 @@ const SpacesRail = ({
     soulColorSeed,
 }: SpacesRailProps) => {
     const { t } = useTranslation();
+    // The shell mounts this rail twice (desktop + phone), so ids need a per-instance prefix.
+    const uid = useId();
     const { hasSoulColors, ringGradient, glowColor } = useSoulColors(soulColors, soulColorSeed);
     const location = useLocation();
     const navigate = useNavigate();
@@ -345,7 +354,11 @@ const SpacesRail = ({
         <div
             data-rail-compact={compactRequested ? "true" : undefined}
             className={cn(
-                compactRequested ? "w-[72px] flex flex-col relative z-30" : "w-[72px] lg:w-[280px] flex flex-col relative z-30",
+                compactRequested
+                    ? "w-[72px] flex flex-col relative z-30"
+                    : drawer
+                        ? "w-[176px] flex-shrink-0 flex flex-col relative z-30"
+                        : "w-[72px] lg:w-[280px] flex flex-col relative z-30",
                 "liquid-glass",
                 className
             )}
@@ -720,7 +733,7 @@ const SpacesRail = ({
               <TooltipProvider delayDuration={150} skipDelayDuration={0}>
                 <nav
                     aria-label="Village"
-                    className={compact ? "flex flex-col gap-[6px] p-[8px]" : "flex flex-col gap-1 px-3 pt-3 pb-3"}
+                    className={compact ? "flex flex-col gap-[6px] p-[8px]" : drawer ? "flex flex-col gap-1 px-2 pt-3 pb-3" : "flex flex-col gap-1 px-3 pt-3 pb-3"}
                 >
                 {RAIL_PLACES.map((place, i) => {
                     const state: PlaceStateName = placeStates?.[i] ?? "open";
@@ -728,6 +741,9 @@ const SpacesRail = ({
                     const active = place.key === activePlace;
                     const Icon = PLACE_ICON[place.key];
                     const line = placeLine(place, state);
+                    // The state word ("Opens when…", Next, Done, live line) is the description,
+                    // not the name: the button is named by the place alone.
+                    const describedBy = stateWord(place, state) ? `${uid}-state-${place.key}` : undefined;
 
                     const handleClick = () => {
                         if (closed) return;
@@ -749,7 +765,9 @@ const SpacesRail = ({
                                 "transition-all duration-300 relative group",
                                 compact
                                     ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
-                                    : "flex items-center gap-3 px-3 py-2.5 rounded-2xl justify-center lg:justify-start",
+                                    : drawer
+                                        ? "flex items-center gap-2.5 px-2.5 py-2.5 min-h-[44px] rounded-2xl justify-start"
+                                        : "flex items-center gap-3 px-3 py-2.5 rounded-2xl justify-center lg:justify-start",
                                 // Clip the fading label while the rail narrows.
                                 compactRequested && !compact && "overflow-hidden",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
@@ -779,10 +797,14 @@ const SpacesRail = ({
                             // hidden (mobile). In compact and closed the hover card below
                             // carries the same line.
                             title={!closed && !compact ? line : undefined}
-                            aria-label={closed ? `${place.name}. ${closedLine(place)}` : place.name}
+                            aria-label={place.name}
+                            aria-describedby={describedBy}
                         >
                             <span
-                                className="relative flex flex-1 min-w-0 items-center gap-3 justify-center lg:justify-start transition-[filter,opacity] duration-500"
+                                className={cn(
+                                    "relative flex flex-1 min-w-0 items-center transition-[filter,opacity] duration-500",
+                                    drawer ? "gap-2.5 justify-start" : "gap-3 justify-center lg:justify-start"
+                                )}
                                 style={closed ? { filter: "var(--lock-filter)", opacity: "var(--lock-dim)" } : undefined}
                             >
                                 <Icon
@@ -794,7 +816,8 @@ const SpacesRail = ({
                                 {!compact && (
                                     <span
                                         className={cn(
-                                            "hidden lg:block truncate transition-opacity duration-150",
+                                            drawer ? "block" : "hidden lg:block",
+                                            "truncate transition-opacity duration-150",
                                             labelsVisible ? "opacity-100" : "opacity-0"
                                         )}
                                         style={{
@@ -811,7 +834,7 @@ const SpacesRail = ({
                             </span>
 
                             <StateMark state={state} compact={compact} />
-                            <span className="sr-only">{stateWord(place, state)}</span>
+                            <span id={describedBy} className="sr-only">{stateWord(place, state)}</span>
 
                             {/* Active-state gold pip, hidden in compact (its left-edge
                                 position overflowed the slim 72px column). */}
@@ -925,7 +948,10 @@ const SpacesRail = ({
                                 // its first painted pixel, not its invisible
                                 // button box, lands on the same vertical axis as
                                 // the painted Space glyphs above.
-                                : "grid h-12 grid-cols-[repeat(5,48px)] items-center gap-0 ml-[13px]"
+                                : drawer
+                                    // Five 48px cells (240px) do not fit the 176px drawer rail: wrap to 3 + 2.
+                                    ? "grid grid-cols-[repeat(3,48px)] items-center gap-0 w-fit mx-auto"
+                                    : "grid h-12 grid-cols-[repeat(5,48px)] items-center gap-0 ml-[13px]"
                         )}
                     >
                         {/* Avatar / Profile — hidden for guests on pages that
@@ -1164,6 +1190,7 @@ const areEqual = (prev: SpacesRailProps, next: SpacesRailProps) => {
     // Day 119 (Sasha 2026-07-09): compact now flips at runtime on every
     // shell route (platform-wide minimize) — must invalidate the memo.
     if (prev.compact !== next.compact) return false;
+    if (prev.drawer !== next.drawer) return false;
     if (prev.activePlace !== next.activePlace) return false;
     if (prev.onSpaceSelect !== next.onSpaceSelect) return false;
     if (prev.className !== next.className) return false;

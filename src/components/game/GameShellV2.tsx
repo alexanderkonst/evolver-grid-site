@@ -1,4 +1,5 @@
 import { ReactNode, useState, useEffect, useRef, createContext, useContext } from "react";
+import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate, useNavigationType, Outlet } from "react-router-dom";
 import { ArrowLeft, ChevronRight, Menu } from "lucide-react";
@@ -48,6 +49,7 @@ import {
     type LocalQuizResult,
 } from "@/lib/quizOwnership";
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
+import { OPEN_CHAT_EVENT } from "@/components/ChatLauncher";
 import SiteLogo from "@/components/SiteLogo";
 // hls.js is dynamically imported inside MuxVideoBackground to avoid module-level crashes
 import { useToast } from "@/hooks/use-toast";
@@ -1294,7 +1296,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // The rail has already navigated to the place; this only points pane 2 at its sections.
     const handleSpaceSelect = (spaceId: string) => {
         setActiveSpaceId(spaceId);
-        // Mobile view stays on navigation - both panels visible
+        // Phone: choosing a place takes you there, so the drawer closes.
+        setMobileView("content");
     };
 
     const handleSectionSelect = (path: string) => {
@@ -1309,6 +1312,25 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     const toggleSectionsPanel = () => {
         setSectionsPanelOpen(prev => !prev);
     };
+
+    // Phone drawer: Esc, a route change (rail logo, Settings, Log in) or opening the chat
+    // popover closes it. The backdrop button and place/section picks close it directly.
+    useEffect(() => {
+        if (mobileView !== "navigation") return;
+        const close = () => setMobileView("content");
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") close();
+        };
+        window.addEventListener("keydown", onKeyDown);
+        window.addEventListener(OPEN_CHAT_EVENT, close);
+        return () => {
+            window.removeEventListener("keydown", onKeyDown);
+            window.removeEventListener(OPEN_CHAT_EVENT, close);
+        };
+    }, [mobileView]);
+    useEffect(() => {
+        setMobileView("content");
+    }, [location.pathname]);
 
     // Day 51 (Sasha 2026-04-25): route-aware background.
     //
@@ -1822,13 +1844,35 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
 
             {/* === MOBILE LAYOUT === */}
             <div className="relative z-10 lg:hidden w-full min-h-dvh overflow-hidden">
-                {/* Mobile: Navigation View (Panel 1 + Panel 2) */}
+                {/* Mobile: Navigation drawer (Panel 1 + Panel 2). Issue #202: an overlay over
+                    the content, which keeps its place; the dimmed backdrop closes it on tap.
+                    The only motion is the slide. Closed, it is invisible and out of the tab order.
+                    Portaled to <body>: this wrapper is its own z-10 stacking context, which would
+                    leave the drawer under the floating chat button (z-65). */}
+                {createPortal(
                 <div
                     className={cn(
-                        "absolute inset-0 flex overflow-visible pl-px transition-transform duration-[var(--motion-base)] ease-[var(--motion-ease)]",
+                        "fixed inset-0 z-[66] lg:hidden transition-[visibility] duration-[var(--motion-base)]",
+                        mobileView === "navigation" ? "visible" : "invisible"
+                    )}
+                    aria-hidden={mobileView !== "navigation"}
+                >
+                <button
+                    type="button"
+                    tabIndex={-1}
+                    aria-label={t("shell.menu.close")}
+                    onClick={() => setMobileView("content")}
+                    className={cn(
+                        "absolute inset-0 bg-black/55",
+                        mobileView === "navigation" ? "block" : "hidden"
+                    )}
+                />
+                <div
+                    className={cn(
+                        "absolute inset-y-0 left-0 flex w-[min(92vw,28rem)] overflow-hidden transition-transform duration-[var(--motion-base)] ease-[var(--motion-ease)]",
                         mobileView === "navigation" ? "translate-x-0" : "-translate-x-full"
                     )}
-                    style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)' }}
+                    style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)', backgroundColor: 'var(--skin-panel-1-bg, rgba(10, 22, 50, 0.98))' }}
                 >
                     {/* Panel 1: Spaces Rail */}
                     {/* V8 (Sasha 2026-05-20): pass `h-dvh` on mobile too.
@@ -1849,6 +1893,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         soulColors={profile?.soul_colors || undefined}
                         soulColorSeed={archetypeTitle || user?.id || undefined}
                         publicProfilePath={publicProfilePath}
+                        drawer
                         className="h-dvh"
                     />
 
@@ -1860,7 +1905,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     )}
 
                     {/* Panel 2: Sections */}
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                         <SectionsPanel
                             activeSpaceId={activeSpaceId}
                             placeName={activePlaceData?.name}
@@ -1872,14 +1917,12 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         />
                     </div>
                 </div>
+                </div>,
+                document.body
+                )}
 
-                {/* Mobile: Content View with Back Button */}
-                <div
-                    className={cn(
-                        "absolute inset-0 flex flex-col transition-transform duration-[var(--motion-base)] ease-[var(--motion-ease)]",
-                        mobileView === "content" ? "translate-x-0" : "translate-x-full"
-                    )}
-                >
+                {/* Mobile: Content View with Menu Button (stays in place under the drawer) */}
+                <div className="absolute inset-0 flex flex-col">
                     {/* Day 50 (Sasha): mobile content-view header now
                         mirrors the landing's pane 2 chrome — navy panel
                         wash + gold spine at the bottom, Cormorant title
@@ -2129,7 +2172,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                             (pageOwnsBackground || isImmersiveDarkRoute) ? "" : "pt-4"
                         )}
                         style={{
-                            paddingBottom: 'env(safe-area-inset-bottom)',
+                            // Room under the last line for the floating chat button (4rem).
+                            paddingBottom: 'calc(env(safe-area-inset-bottom) + 4rem)',
                             scrollbarWidth: 'none',
                             msOverflowStyle: 'none',
                             background: (pageOwnsBackground || isImmersiveDarkRoute)
