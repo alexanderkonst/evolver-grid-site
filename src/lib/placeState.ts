@@ -196,6 +196,10 @@ const SAVE_PLACE = "house";
 export const SAVE_CHARACTER_TITLE = "Save your character";
 const SAVE_CHARACTER_RESULT = "you'll keep your character, and Your House opens.";
 
+/** The title shown after the place name on the next-move card; null when it only repeats the name. */
+export const moveTitle = (move: Pick<NextMove, "title" | "place">): string | null =>
+  move.title.toLowerCase() === move.place.name.toLowerCase() ? null : move.title;
+
 /**
  * The single next move for this save. The Journey's next step comes first, at the place
  * whose `steps` hold it; with no step left, a place that is live now; else the Quest Board.

@@ -9,6 +9,7 @@ import {
   closedLine,
   emptyPlaceSave,
   houseLit,
+  moveTitle,
   nextJourneyStep,
   nextMove,
   openPlaceKeys,
@@ -344,6 +345,18 @@ describe("nextMove: one next move (§14.6)", () => {
     const quiet = move(all, { offerSaved: true, now: TUESDAY });
     expect(quiet?.kind).toBe("quests");
     expect(quiet?.place.key).toBe("quest-board");
+  });
+
+  it("names the Quest Board once: the title is dropped when it repeats the place", () => {
+    const quiet = move(JOURNEY_MAIN.map((i) => i.id), { offerSaved: true, now: TUESDAY });
+    expect(quiet?.kind).toBe("quests");
+    expect(quiet && moveTitle(quiet)).toBeNull();
+    expect(moveTitle({ place: { name: "Quest Board" }, title: "QUEST BOARD" } as never)).toBeNull();
+  });
+
+  it("keeps the title when it adds something to the place name", () => {
+    const m = move([]);
+    expect(m && moveTitle(m)).toBe(m?.title);
   });
 
   it("a live window does not push aside the next Journey step", () => {

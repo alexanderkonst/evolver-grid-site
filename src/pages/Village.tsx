@@ -23,13 +23,14 @@ import {
 } from "@/hooks/useVillagePresence";
 import { useSoulColors } from "@/hooks/useSoulColors";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
-import { houseLit, nextMove, placeLine, placeSaveFromSheet, placeState, type PlaceStateName } from "@/lib/placeState";
+import { houseLit, moveTitle, nextMove, placeLine, placeSaveFromSheet, placeState, type PlaceStateName } from "@/lib/placeState";
 import { hasGuestTopTalentResult, readGuestTopTalentPayload } from "@/lib/firstVisit";
 import TopTalentAuthGate from "@/modules/zone-of-genius/TopTalentAuthGate";
 import { useVillageChanges } from "@/hooks/useVillageChanges";
 import { PlaceState, PlaceStateTag } from "@/components/game/PlaceState";
 import { LunarPaths, LunarWorldSync } from "@/components/skin/LunarWorld";
 import { unseenKeys, useLeave } from "@/lib/motion";
+import { useSceneSrc } from "@/lib/sceneSrc";
 import "./Village.css";
 
 /**
@@ -322,6 +323,8 @@ const Village = () => {
   // Keep the last scene mounted after leaving it, so map ← place can crossfade too.
   const [lastPlace, setLastPlace] = useState<VillagePlace | undefined>(place);
   if (place && place !== lastPlace) setLastPlace(place);
+  const mapSrc = useSceneSrc(VILLAGE_MAP.image);
+  const placeSrc = useSceneSrc(lastPlace?.image ?? "");
   const pinRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const enterRef = useRef<HTMLAnchorElement>(null);
   // Particles left here by earlier players (WP-17). Follows the last scene so they fade with it.
@@ -436,7 +439,7 @@ const Village = () => {
               <div className="vl-drift">
                 <img
                   className="vl-map-img"
-                  src={VILLAGE_MAP.image}
+                  src={mapSrc}
                   alt={VILLAGE_MAP.alt}
                   width={VILLAGE_MAP.width}
                   height={VILLAGE_MAP.height}
@@ -512,8 +515,7 @@ const Village = () => {
                   <p className="vl-mono vl-move__eyebrow">Your next move</p>
                   <p className="vl-move__where">
                     <span className="vl-move__place">{move.place.name}</span>
-                    {" · "}
-                    {move.title}
+                    {moveTitle(move) ? ` · ${moveTitle(move)}` : null}
                     {move.optional ? <span className="vl-move__optional"> (optional)</span> : null}
                   </p>
                   {move.kind === "step" ? <p className="vl-move__result">{move.result}</p> : null}
@@ -555,7 +557,7 @@ const Village = () => {
               scene={
                 <img
                   className="vl-place__img"
-                  src={lastPlace.image}
+                  src={placeSrc}
                   alt={lastPlace.alt}
                   decoding="async"
                   style={{
