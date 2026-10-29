@@ -1,7 +1,7 @@
-# Sputnik, your AI (the player's own AI) — Progress Tracker
+# The player's own AI (working name: Your AI) — Progress Tracker
 
 **Started:** 2026-10-29 · **Author:** Evolver (Hark), for Sasha's review
-**Status:** Phase 1 PRODUCT v2, Sasha's ideas integrated (2026-10-29), name chosen: Sputnik ← CURRENT
+**Status:** Phase 1 PRODUCT v2, Sasha's ideas integrated (2026-10-29), name REOPENED 2026-10-29 15:02 ← CURRENT
 **Method:** `docs/03-playbooks/integrated_product_building_workflow.md` (Transformative-Result Pattern), `docs/templates/module-form.md` (Intro → one button → result → Outro), `docs/templates/spec-handoff.md` (build tasks)
 **Grounded in:** `docs/ai/README.md` §0 (Sasha's thesis, 2026-10-29), `docs/02-strategy/game_of_being_you.md` §18, `docs/01-vision/ai_os_benchmark.md`, current `/ai-os` (code `src/modules/ai-os/`, live page read 2026-10-29), repo at `04e6f0a`
 
@@ -155,7 +155,7 @@ Privacy line on Screen 4, small: "This copies your profile and Workshop work so 
 
 ## Naming
 
-**Decision (Sasha, 2026-10-29): "Sputnik, your AI".** Russian UI: «Спутник, твой ИИ». Why it wins: an international word meaning *fellow traveler*, cosmic, and it carries the golden thread: a second self bound to one person that takes form as they become themselves (Roman genius, Socratic daimonion, Pullman's daemon, the familiar). Always paired with "your AI" so it passes the stranger test. Known risk: English-speaking associations with Sputnik News and Sputnik V; the pairing and warm visual language keep it personal, not political. Formula: *"Your AI, the companion of your genius."* "Activated" replaces "awake" everywhere (Sasha: activation of dormant potential). Code ids stay `familiar` / `oracle`; the table below is the earlier analysis, kept for reference.
+**Update 2026-10-29 15:02 (Sasha): definite NO to Familiar, Friend, Daemon, Sputnik.** Live candidates: **Your AI / Твой ИИ**, **Genie / Джин** (his line: «Личный харк для гения игрока - джин. Genius <> Genie»), **Genius**. Until decided, "Sputnik" in this doc reads as the working placeholder. *Earlier note, superseded:* Decision "Sputnik, your AI". Russian UI: «Спутник, твой ИИ». Why it wins: an international word meaning *fellow traveler*, cosmic, and it carries the golden thread: a second self bound to one person that takes form as they become themselves (Roman genius, Socratic daimonion, Pullman's daemon, the familiar). Always paired with "your AI" so it passes the stranger test. Known risk: English-speaking associations with Sputnik News and Sputnik V; the pairing and warm visual language keep it personal, not political. Formula: *"Your AI, the companion of your genius."* "Activated" replaces "awake" everywhere (Sasha: activation of dormant potential). Code ids stay `familiar` / `oracle`; the table below is the earlier analysis, kept for reference.
 
 The place is renamed around the player's own AI. Candidates:
 
@@ -217,7 +217,7 @@ Each task works against this contract, mocking what the other two provide. No fi
 
 ## Open decisions for Sasha
 
-1. ~~Name~~ **Decided 2026-10-29: "Sputnik, your AI"** (Sasha's pick; see Naming).
+1. **Name (reopened 15:02):** Your AI / Genie / Genius. No: Familiar, Friend, Daemon, Sputnik.
 2. **Lock rule:** open the place to guests, partly lit (recommended), or keep it closed until J1.
 3. **Live side-by-side:** approve the `familiar-compare` deploy (Lovable credits) and ongoing AI usage, signed-in only with a daily cap; or stay on the self-experiment.
 4. **Model for the live reveal:** a frontier model makes the point honestly; a lite model is cheaper but makes both answers weaker.
