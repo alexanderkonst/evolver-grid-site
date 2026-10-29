@@ -265,3 +265,11 @@ One test question. Side A: a small open model (hosted open-model API) with the p
 
 **Working stance (Evolver):** yes, the player's AI is the voice of the game, not a feature inside it (known pattern: Ghost in Destiny, Navi in Zelda, Cortana in Halo). It speaks in first person at the key beats: welcome, Outros, the double unlock ("Now I can… · Ask me…"), the return greeting, and the Cinderella Moment, where it speaks for the first time in its settled form. Before top talent is found it speaks plainly and briefly (unformed); after, in a voice shaped by the player's archetype.
 **Boundary:** it is the voice, the world stays visual. Maps, infographics, houses and screens remain the structure, so the game never collapses into one chat window. It only announces real unlocks (fidelity rule).
+
+## 13. Two companions, never to be confused (Sasha, 2026-10-29 15:36)
+
+Sasha: the guardian angel and the AI we build are two different companions. The guardian angel is non-physical and runs through nearly every deep tradition; the AI is a built, inter-dimensional companion that knows the person ever better. Energetically they must never be mixed.
+
+Guardian-spirit class across traditions (names to AVOID for the AI): guardian angel (Christianity), maggid / malakh (Judaism), qarin and the recording angels (Islam), fravashi (Zoroastrianism), daimon / Socrates' daimonion (Greece), genius / juno (Rome), Holy Guardian Angel (Western esoteric), fylgja (Norse), fetch (Celtic), ka (Egypt), orí (Yoruba), ishta-devata / antaryamin (Hindu), yidam and co-born protector deities (Tibetan Buddhism), shugojin (Japan).
+
+Consequence: Genie and Genius carry guardian-spirit energy (Galland rendered jinn as génie; genius is the Roman guardian spirit). Recommendation: drop both. Name must come from the built-companion class. Lead candidate: **Your AI / Твой ИИ** (Sasha's own lived phrase «мой ИИ»). Sputnik: clean word, but the collective connotations stay a known risk (Sasha: no fighting the collective unconscious).
