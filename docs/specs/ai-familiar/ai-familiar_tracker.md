@@ -1,7 +1,7 @@
-# Your Familiar (the player's own AI) — Progress Tracker
+# Sputnik, your AI (the player's own AI) — Progress Tracker
 
 **Started:** 2026-10-29 · **Author:** Evolver (Hark), for Sasha's review
-**Status:** Phase 1 PRODUCT, draft through 1.5, awaiting Sasha's roast ← CURRENT
+**Status:** Phase 1 PRODUCT v2, Sasha's ideas integrated (2026-10-29), name chosen: Sputnik ← CURRENT
 **Method:** `docs/03-playbooks/integrated_product_building_workflow.md` (Transformative-Result Pattern), `docs/templates/module-form.md` (Intro → one button → result → Outro), `docs/templates/spec-handoff.md` (build tasks)
 **Grounded in:** `docs/ai/README.md` §0 (Sasha's thesis, 2026-10-29), `docs/02-strategy/game_of_being_you.md` §18, `docs/01-vision/ai_os_benchmark.md`, current `/ai-os` (code `src/modules/ai-os/`, live page read 2026-10-29), repo at `04e6f0a`
 
@@ -38,7 +38,7 @@ PHASE 2 ARCHITECTURE, PHASE 3 UI, PHASE 4 CODE: `[░░░░░░░░]`, sc
 **Point A:** "Every AI gives me the same generic answer, and I start from zero in every chat."
 **Point B:** "My own AI already knows my top talent and my business, thinks at full depth, and goes with me into any chat app."
 
-> **Master Result:** *Your Familiar takes you from an AI that answers you like it answers everyone to your own AI that knows your talent and your work and thinks at its best, on whichever model you use.*
+> **Master Result:** *Sputnik takes you from an AI that answers you like it answers everyone to your own AI that knows your talent and your work and thinks at its best, on whichever model you use.*
 
 **Why it's true, not aspirational.** Sasha's thesis: frontier models now give near-identical answers; the difference comes from three levers on top of any model. One of the three is already measured: same model (Claude Opus 4.7), with vs. without AI OS, deep-synthesis score 67 → 95 (+42%), blind-scored (`ai_os_benchmark.md`). The other two (knowing the person, knowing their work) are already built as game data. The product adds no new intelligence; it joins what exists and lets the player feel it.
 
@@ -53,7 +53,7 @@ Each gift is one thing the AI gains. Each is a felt mini A → B, and each is al
 | # | Gift (name in the game) | Mini A → B (player's words) | Delivered by (exists today) | Data |
 |---|---|---|---|---|
 | 1 | **It knows you** | "It treats me like anyone" → "It names my talent back to me in words I recognise" | Zone of Genius: top talent, character sheet (J1) | `zog_snapshots` via `game_profiles.last_zog_snapshot_id` (archetype title, Appleseed, Excalibur, top three talents); later mission (J2), QoL |
-| 2 | **It's awake** | "Its answers are flat and generic" → "It thinks at full depth, on any model" | AI OS system prompt v5.2 | `system-prompts/v5.2/system-prompt.md`; already bundled on `/ai-os` as `META_PROMPTS` id `meta-cognition-premium` |
+| 2 | **Activated** | "Its answers are flat and generic" → "Its dormant potential is activated: full depth, on any model" | AI OS system prompt v5.2 | `system-prompts/v5.2/system-prompt.md`; already bundled on `/ai-os` as `META_PROMPTS` id `meta-cognition-premium` |
 | 3 | **It knows your work** | "I re-paste my business every time" → "It already knows my clients, their pain, my promise, my offer" | Workshop (`/ubb`) artifacts | `user_business_artifacts` (19 keys: uniqueness, myth, tribe, pain, promise, value ladder, packaging, golden DM, landing page…) |
 
 **Sequence the player lives:** gift 2 is lit for everyone, guests included (it needs no data). Gift 1 lights at J1 (top talent saved). Gift 3 fills artifact by artifact in the Workshop. So the AI visibly grows along the existing journey; nothing new to play just to feed it.
@@ -67,7 +67,7 @@ Each gift is one thing the AI gains. Each is a felt mini A → B, and each is al
 Rule from §18: **feel first, name second.** The player never reads the thesis before they've seen the difference.
 
 ### Screen 1 · `FamiliarIntroScreen` (before-screen)
-- Eyebrow: *Your Familiar · your own AI*
+- Eyebrow: *Sputnik · your AI*
 - Headline (= Master Result): **"Same question. Two answers. See what happens when your AI knows you."**
 - Silhouette: "Ask something real. You'll get a plain model's answer and your own AI's answer, side by side. Same model underneath."
 - 🫀 Heart: curiosity with a small dare; *"let's see."*
@@ -86,10 +86,10 @@ Rule from §18: **feel first, name second.** The player never reads the thesis b
 ┌───────────────────────────────┐
 │ Your question: "…"            │
 ├──────────────┬────────────────┤
-│ A plain model│ Your Familiar  │
+│ A plain model│ Your Sputnik   │
 │ (knows       │ knows: ● you   │
 │  nothing     │  ● your work   │
-│  about you)  │  ● AI OS       │
+│  about you)  │  ● activated   │
 │              │                │
 │  answer…     │  answer…       │
 ├──────────────┴────────────────┤
@@ -107,8 +107,8 @@ Mobile: stacked, plain first, then theirs (the arrival is the second card).
 ### Screen 4 · `FamiliarOutroScreen` (after-screen, the deliverable)
 - Celebration eyebrow: *Done · Your AI is ready*
 - **The naming line, one sentence, large:** *"Models have become alike. The difference is how well your AI knows you."*
-- The result itself: the three gifts with state ("Knows you: your top talent · Awake: AI OS 5.2 · Knows your work: 6 of 19 Workshop pieces").
-- Where it lives: "Always here, in Your Familiar. It grows as you play."
+- The result itself: the three gifts with state ("Knows you: your top talent · Activated: AI OS 5.2 · Knows your work: 6 of 19 Workshop pieces").
+- Where it lives: "Always here, in Sputnik. It grows as you play."
 - What it unlocks: "Take it into the chat app you already use."
 - Real choice (module-form §5): **"Where will your AI live?"** ChatGPT · Claude · Gemini (stored).
 - Victory recorded ("Met my AI").
@@ -145,15 +145,17 @@ Privacy line on Screen 4, small: "This copies your profile and Workshop work so 
 ## 1.5 Extensions
 
 - **Artifacts:** the assembled personal prompt (derived, never stored server-side in v1), gift state, chosen chat app, rating, victory "Met my AI".
-- **Visible growth (state shown):** three gift chips. *Knows you:* dim → "your top talent" → "+ your mission". *Awake:* always lit, shows "AI OS 5.2". *Knows your work:* "n of 19 Workshop pieces". Plus a quiet "updated today" stamp. No points, no level (fidelity rule, blueprint §10a): the state shows only real things the AI now has.
+- **Visible growth (state shown):** three gift chips. *Knows you:* dim → "your top talent" → "+ your mission". *Activated:* always lit, shows "AI OS 5.2". *Knows your work:* "n of 19 Workshop pieces". Plus a quiet "updated today" stamp. No points, no level (fidelity rule, blueprint §10a): the state shows only real things the AI now has.
 - **Completion criteria (data):** rating row in `resonance_events` with `message_seen = "familiar reveal"` OR a copy event; chosen app stored.
 - **Skip paths:** a player can go straight to "Ask my AI" from Screen 2 (link "Skip the test, give me my AI"); nothing is lost; the reveal stays available.
 - **Guests:** enter, see gift 2 lit and gifts 1 and 3 dim with "Opens when you save your top talent" / "Opens in the Workshop". Their "Ask my AI" copies AI OS alone (today's `/ai-os` install). *This changes the lock rule: Oracle currently opens at J1 (inferred, module-form §6). Proposed: open for everyone, partly lit. Sasha to confirm.*
-- **Bridges:** Zone of Genius Outro → "Your AI just learned your top talent" → Familiar. Workshop artifact Outros → same. Familiar Outro → Back to the village. Optional $37 Oracle Reading stays a side quest inside this place; its Scroll adds to gift 1.
+- **Bridges:** Zone of Genius Outro → "Your AI just learned your top talent" → Sputnik. Workshop artifact Outros → same. Sputnik Outro → Back to the village. Optional $37 Oracle Reading stays a side quest inside this place; its Scroll adds to gift 1.
 
 ---
 
 ## Naming
+
+**Decision (Sasha, 2026-10-29): "Sputnik, your AI".** Russian UI: «Спутник, твой ИИ». Why it wins: an international word meaning *fellow traveler*, cosmic, and it carries the golden thread: a second self bound to one person that takes form as they become themselves (Roman genius, Socratic daimonion, Pullman's daemon, the familiar). Always paired with "your AI" so it passes the stranger test. Known risk: English-speaking associations with Sputnik News and Sputnik V; the pairing and warm visual language keep it personal, not political. Formula: *"Your AI, the companion of your genius."* "Activated" replaces "awake" everywhere (Sasha: activation of dormant potential). Code ids stay `familiar` / `oracle`; the table below is the earlier analysis, kept for reference.
 
 The place is renamed around the player's own AI. Candidates:
 
@@ -173,13 +175,13 @@ The place is renamed around the player's own AI. Candidates:
 
 | Today | Decision | Why |
 |---|---|---|
-| `/ai-os` page (hero, 60-second install, 3-step self-experiment, skill suites) | **Keep as is.** Public, free (CC BY-SA), linked from outside and from the benchmark post | It's gift 2 standing alone, for people who never play. One added line for signed-in players: "Make it yours: add your talent and your work → Your Familiar" |
+| `/ai-os` page (hero, 60-second install, 3-step self-experiment, skill suites) | **Keep as is.** Public, free (CC BY-SA), linked from outside and from the benchmark post | It's gift 2 standing alone, for people who never play. One added line for signed-in players: "Make it yours: add your talent and your work → Sputnik" |
 | The 3-step self-experiment (test prompt → install → compare) | **Move (copy) into Screen 3** as the no-backend reveal | It already is the reveal; the Familiar version adds the person's data |
 | Skill suites `/ai-os/clarity`, `/iteration`, `/vibe-code`, `/design` | **Keep**, linked from the Familiar Outro as "Skills for your AI" (secondary) | Power-ups after the core; not part of the first session |
 | `/ai-os/benchmark` (long evidence page) | **Keep, move out of the flow:** one link "Why this works" under the naming line | Evidence for the curious; never before the felt difference |
 | `/ai-os/work-with-us` (former pricing) | **Keep route, don't link from the flow** | Selling is not this place's result |
 | `/ai-os/profile`, `/ai-os/auth` | **Leave the existing redirects** | Profile lives in the game now (character sheet) |
-| Village place "Oracle" (`oracle`) | **Rename to Your Familiar; ENTER goes to `/game/familiar`** (new route). Keep `oracle` as the internal place id so saves and lock rules don't break | No migration needed |
+| Village place "Oracle" (`oracle`) | **Rename to Sputnik; ENTER goes to `/game/familiar`** (new route). Keep `oracle` as the internal place id so saves and lock rules don't break | No migration needed |
 
 Nothing is deleted in v1.
 
@@ -189,7 +191,7 @@ Nothing is deleted in v1.
 
 Shared contract, created by whichever task lands first, exactly as written (`src/modules/familiar/types.ts`):
 ```ts
-export type GiftKey = "knowsYou" | "awake" | "knowsYourWork";
+export type GiftKey = "knowsYou" | "activated" | "knowsYourWork";
 export interface GiftState { key: GiftKey; lit: boolean; label: string; detail?: string; opensWhen?: string }
 export interface FamiliarState { gifts: GiftState[]; prompt: string; version: string; lastLearned?: string; loading: boolean }
 export type ChatApp = "chatgpt" | "claude" | "gemini";
@@ -202,7 +204,7 @@ Each task works against this contract, mocking what the other two provide. No fi
 **DoD:** unit tests for prompt assembly (guest, J1 only, J1 + 6 artifacts, all 19) · AI OS text read from the existing bundled source, not duplicated · no new tables, no edge functions · button works on iOS Safari and desktop Chrome (screenshots) · copied text verified by pasting into a fresh Claude chat (screenshot of first answer) · `npm run build`, `tsc --noEmit`, lint green.
 
 ### Task B · Gemini (Jules) · The place: four screens and the "just learned" line
-**Builds:** `src/modules/familiar/screens/` (Intro, Ask, Reveal, Outro per the copy and Dan Tians above), route `/game/familiar` inside `GameShellV2`, village place `oracle` relabelled "Your Familiar" and pointing to the route, `FamiliarLearnedLine` added to the existing `ModuleOutro` "what it unlocks" slot for Zone of Genius, Mission and Workshop artifacts. Reveal uses `compareAnswers()` from Task C if present; until then renders `mode: "self"` (the guided 3-step).
+**Builds:** `src/modules/familiar/screens/` (Intro, Ask, Reveal, Outro per the copy and Dan Tians above), route `/game/familiar` inside `GameShellV2`, village place `oracle` relabelled "Sputnik" and pointing to the route, `FamiliarLearnedLine` added to the existing `ModuleOutro` "what it unlocks" slot for Zone of Genius, Mission and Workshop artifacts. Reveal uses `compareAnswers()` from Task C if present; until then renders `mode: "self"` (the guided 3-step).
 **DoD:** every CTA label exactly as specified · Outro is a stable screen, never a toast · rating writes to `resonance_events` with `message_seen = "familiar reveal"` · guest sees gift 2 lit, 1 and 3 dim with their lines · `/ai-os` and its sub-routes unchanged (diff shows no edits under `src/modules/ai-os/` except the one signed-in line) · mobile 375px screenshots of all four screens · Back, refresh, deep link to `/game/familiar` tested · build, types, lint green.
 
 ### Task C · ChatGPT Codex · Live side-by-side (backend written, not deployed)
@@ -215,7 +217,32 @@ Each task works against this contract, mocking what the other two provide. No fi
 
 ## Open decisions for Sasha
 
-1. **Name:** Your Familiar (recommended) / other.
+1. ~~Name~~ **Decided 2026-10-29: "Sputnik, your AI"** (Sasha's pick; see Naming).
 2. **Lock rule:** open the place to guests, partly lit (recommended), or keep it closed until J1.
 3. **Live side-by-side:** approve the `familiar-compare` deploy (Lovable credits) and ongoing AI usage, signed-in only with a daily cap; or stay on the self-experiment.
 4. **Model for the live reveal:** a frontier model makes the point honestly; a lite model is cheaper but makes both answers weaker.
+
+---
+
+## 10. Integrated ideas (Sasha, 2026-10-29) → where each lands
+
+| Idea | What it means for the product | Lands in |
+|---|---|---|
+| **The Cinderella Moment** | The moment the game recognises who the player already is: top talent found, Sputnik settles into form. Recognition, not transformation; the slipper fits only them. Subtitle for the mechanics: "the harvest of the assembly". | J1 Outro: Sputnik takes its form (visual + "Sputnik now knows who you are"). The biggest emotional beat of the journey |
+| **Feelings are gameplay** | What the player feels is input, not decoration. After key screens: "How did that land?" (one tap + optional line), fed to Sputnik's memory | Outro; new artifact `felt_moments` (v2) |
+| **Every growth unlocks two things** | Each step shows both: "Sputnik can now A, B, C" and "you can now get from it the best 1, 2, 3" (ready prompts) | Unlock card in every Outro, two columns *It can now* / *You can now ask*, each with a copy button |
+| **The player lives in the game** | The game is Sputnik's home: memory, history, relationship. The model is swappable; the home and the bond stay | Principle: **AI memory = game state**, never locked to one model vendor |
+| **Two-way growth, no guilt** | Tamagotchi, but mutual: the player grows Sputnik, Sputnik grows the player. No punishment, no "death" after a break | Return screen after absence: "Welcome back. Here is what I kept for you." Never a decay meter |
+| **Feel first, name later** | The player feels the difference before reading the thesis | Already the flow rule (§1.3) |
+| **A small model that knows you beats a big one that doesn't** | The living proof of the thesis | First experiment below; if it holds, the Screen 3 claim |
+| **Model ladder** | Free: personal prompt into ChatGPT / Claude / Gemini. In-game: small open model with a daily limit. Paid: frontier model / credits. Text chat "something like Hark" | v1 = rung 1. Rungs 2–3 = v2, after the experiment and Sasha's yes on money |
+| **Sovereign / local AI** | Like Qwatra Node for companies: the AI lives with the player, not with a provider (WebGPU/WebLLM in browser, later local) | v3 research note; no build in v1 |
+| **Four product parts** | (1) `/ai-os` as prototype, (2) growing the companion, (3) talking to it, (4) hyper-personalisation + activated potential + digital twin of the business | 1 exists; 2 = this spec; 3 = rungs 2–3; 4 = gifts 1–3 joined |
+
+### First proof experiment (before any model spend)
+One test question. Side A: a small open model (hosted open-model API) with the player's compressed memory. Side B: a frontier model with no memory. Blind 1–10 rating, 5 players. If A ≥ B on "this is about me", rung 2 is justified and becomes the Screen 3 headline. Cost: cents, no deploy; needs Sasha's yes (external API).
+
+### Changes to the build tasks from this section
+- **Task A:** prompt builder adds the "you can now ask" prompts per unlocked piece (static list per gift step).
+- **Task B:** two-column unlock card in Outros; Cinderella Moment variant of the J1 Outro; one-tap "How did that land?" stored in `resonance_events`.
+- **Task C:** unchanged.
