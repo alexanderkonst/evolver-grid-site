@@ -5593,10 +5593,10 @@
         "description": "Monetize your genius"
       },
       "teams": {
-        "label": "Party & Guild",
+        "label": "Co-working",
         "description": "Find your people",
         "modules": {
-          "matches": "Party & Guild",
+          "matches": "Co-working",
           "people": "People Directory"
         }
       },
@@ -5610,7 +5610,7 @@
       }
     },
     "unlockHints": {
-      "teams": "Complete your Zone of Genius to unlock Party & Guild.",
+      "teams": "Complete your Zone of Genius to unlock Co-working.",
       "marketplace": "Create your Genius Offer to unlock Trading Post.",
       "coop": "Create your Genius Offer to unlock The Forge.",
       "events": "Complete your Zone of Genius to unlock Events."
@@ -5649,7 +5649,7 @@
       "description": "Connect with aligned people through genius matchmaking. Find partners, mentors, and collaborators who complement your gifts."
     },
     "collaborate": {
-      "title": "Party & Guild",
+      "title": "Co-working",
       "tagline": "Work together",
       "description": "Join forces with others on shared projects and missions. This is where individual genius becomes collective impact."
     },
