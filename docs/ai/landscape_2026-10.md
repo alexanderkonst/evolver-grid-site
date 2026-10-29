@@ -104,3 +104,31 @@ Mapped on §3, his setup covers all eight layers at once: activation (AI OS, his
 ## Log
 
 - **2026-10-29** · v1 written from live research (sources file) + holomap re-reading. Findings 0.1–0.5, maps §2–3, setup mapping §4, Sputnik implications §5.
+
+---
+
+## 7. Market maps overlaid (2026-10-29, second pass)
+
+Sasha's hack: use existing market maps (LUMAscapes) of AI. 18 maps and reports collected, 2025 – Oct 2026 (MAD 2025, a16z Top 100 v7, CB Insights AI 100 / agent maps, Menlo enterprise + consumer, Bessemer, Air Street, Madrona, Scalekit, MCPacific). Full table and merged taxonomy: `market_maps_2026-10.md`.
+
+**Overlay on our harness layers (§3):**
+
+| Our layer | What the maps show | Crowded / emerging |
+|---|---|---|
+| 1 Activation | Not a category on any map (prompts/skills hidden inside "dev platforms") | **Unmapped** |
+| 2 Tools / MCP | Own boxes in MAD, CBI-S, Madrona, Scalekit; ≈124K MCP servers, top 0.1% get 84% of installs | Crowded infra, concentrated use |
+| 3 Agent loop | Coding agents: "most crowded market on the map", $4B spend | Crowded |
+| 4 Swarm / orchestration | Orchestration boxes; agent identity, payments, observability new | Emerging |
+| 5 Memory | New box in MAD, CBI-S; Bessemer's "dark matter / new moat" (Mem0, Zep, Letta) | Emerging, developer-facing |
+| 6 Identity of the person | **Absent from every map.** Closest: companions (Character.AI, Replika) and wellness (Rosebud, Finch) | **Empty** |
+| 7 Personal AI OS | New 2026 category: personal agents in messaging (Instinct, Meta Muse, Poke → acquired by Cognition), open harnesses (OpenClaw, Hermes Agent) | Emerging fast |
+| 8 Sovereign / local | New MAD box: local runtimes (Ollama, LM Studio, llama.cpp, MLX) | Emerging |
+
+**What the personal-AI category teaches (Oct 2026):**
+- *Pure companionship is collapsing:* Character.AI in Chapter 11 (2026-10-12), Friend (friend.com) relaunched at $249 with ≈$348K revenue, regulators circling.
+- *Utility memory wins:* Plaud (2M+ devices, >$100M software ARR, profitable); big tech buys memory hardware (Meta–Limitless, Amazon–Bee); personal agents that DO things grow (Instinct, Poke, Hermes).
+- *No one models who the person is.* Products remember what you said and do what you ask; none know your talent, stage or purpose.
+
+**Conclusion.** The player's AI should sit where the growing curves cross: **companion warmth + real utility + identity at the depth of genius (layer 6)**, carried by the empty layer 1 (activation). Companionship alone fails; utility alone is a commodity; the empty layers are the moat.
+
+**Next step (Sasha, 2026-10-29):** map products onto this map (friend.com, Plaud, and the rest), see where AI is going, pick what to build; building is cheap now.
