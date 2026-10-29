@@ -19,7 +19,9 @@
  * result as a verb, never «Continue»; no barrier words (lock, gate, unlock, coming soon).
  */
 
+import type { TFunction } from "i18next";
 import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
+import { tr } from "@/lib/villageCopy";
 import {
   closedLine,
   placeState,
@@ -245,7 +247,11 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
       task: "Tell one real client the price of your offer, out loud or in writing. Then come back and say you did.",
       didIt: "I named my price",
       opens: "offer-saved",
-      closed: { event: "your offer is saved", inside: "your first price, said to a real client" },
+      closed: {
+        event: "your offer is saved",
+        inside: "your first price, said to a real client",
+        key: "village.closed.first-price",
+      },
     },
     outro: {
       done: "Done · Your first price is named",
@@ -268,7 +274,11 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
       task: "Sell your offer to one real person and receive the payment. Come back and say you did: no money moves here, and we take your word.",
       didIt: "I made my first sale",
       opens: "offer-saved",
-      closed: { event: "your offer is saved", inside: "proof in the world that someone pays you for being you" },
+      closed: {
+        event: "your offer is saved",
+        inside: "proof in the world that someone pays you for being you",
+        key: "village.closed.first-sale",
+      },
     },
     outro: {
       done: "Done · Your first sale is recorded",
@@ -319,14 +329,30 @@ export const moduleHasRequirements = (id: ModuleStepId): boolean =>
     ? !!questDef(id)?.opens
     : (JOURNEY_MAIN.find((i) => i.id === journeyStepOf(id))?.requires ?? []).length > 0;
 
-/** The closed line of a Journey step: «Opens when … Inside: ….» Empty when it has none. */
-export const moduleClosedLine = (id: ModuleStepId): string => {
+/**
+ * The closed line of a Journey step: «Opens when … Inside: ….» Empty when it has none.
+ * With a `t` it reads the catalog: `journeySteps.locked.<id>` for a step (the same lines the
+ * rail and Your House use), `village.closed.<id>` for a quest.
+ */
+export const moduleClosedLine = (id: ModuleStepId, t?: TFunction): string => {
   if (isQuestStep(id)) {
     const closed = questDef(id)?.closed;
-    return closed ? closedLine({ line: "", rule: { closed } }) : "";
+    return closed ? closedLine({ line: "", rule: { closed } }, t) : "";
   }
-  return JOURNEY_MAIN.find((i) => i.id === journeyStepOf(id))?.lockedHint ?? "";
+  const item = JOURNEY_MAIN.find((i) => i.id === journeyStepOf(id));
+  return item?.lockedHint ? tr(t, `journeySteps.locked.${item.id}`, item.lockedHint) : "";
 };
+
+/** The Intro's words (and a quest's task) in the reader's language: `village.module.<id>.<field>`. */
+export const moduleText = (
+  module: JourneyModuleDef,
+  field: "eyebrow" | "headline" | "silhouette" | "verb",
+  t?: TFunction,
+): string => tr(t, `village.module.${module.id}.${field}`, module[field]);
+
+/** The task of a real-world quest, in the reader's language. Empty for a module that is not a quest. */
+export const questTaskText = (module: JourneyModuleDef | undefined, t?: TFunction): string =>
+  module?.quest ? tr(t, `village.module.${module.id}.task`, module.quest.task) : "";
 
 /** The part of the character sheet the Outro reads its result from. */
 export type ModuleResultSource = {

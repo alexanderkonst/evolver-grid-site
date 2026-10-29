@@ -92,7 +92,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     to: "/game/me/overview",
     rule: {
       opens: "find-top-talent",
-      closed: { event: TOP_TALENT_SAVED, inside: "your crystal, mission and save file" },
+      closed: { event: TOP_TALENT_SAVED, inside: "your crystal, mission and save file", key: "village.closed.house" },
       steps: ["discover-mission", "assess-qol", "map-assets"],
     },
     opened: "Your House is open.",
@@ -110,7 +110,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     to: "/game/journey",
     rule: {
       opens: "find-top-talent",
-      closed: { event: TOP_TALENT_SAVED, inside: "your next quest" },
+      closed: { event: TOP_TALENT_SAVED, inside: "your next quest", key: "village.closed.quest-board" },
     },
     image: "/game/village/quest-board.webp",
     alt: "A rooftop terrace at dusk with a wooden quest board of pinned notes, lanterns, cushions on rugs around a low table, white domes and the sea beyond",
@@ -125,7 +125,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     to: "/ai-os",
     rule: {
       opens: "find-top-talent",
-      closed: { event: TOP_TALENT_SAVED, inside: "your AI, ready to answer" },
+      closed: { event: TOP_TALENT_SAVED, inside: "your AI, ready to answer", key: "village.closed.oracle" },
     },
     image: "/game/village/oracle.webp",
     alt: "A still reflecting pool at night, a glowing crystal dodecahedron floating above its mirrored water, neon-lit arches on one side, floating candles and a singing bowl in the foreground",
@@ -140,7 +140,11 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     to: "/game/meet",
     rule: {
       opens: "discover-mission",
-      closed: { event: "your mission is saved", inside: "people to meet, professionally or simply" },
+      closed: {
+        event: "your mission is saved",
+        inside: "people to meet, professionally or simply",
+        key: "village.closed.cafe",
+      },
     },
     image: "/game/village/cafe.webp",
     alt: "A café lounge open to the night sea, deep blue sofas and poufs on woven rugs, candles, amethyst geodes, and neon-edged arches framing a string-lit horizon",
@@ -156,7 +160,11 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     to: "/game/collaborate/matches",
     rule: {
       opens: "triad",
-      closed: { event: "your top talent, mission and assets are saved", inside: "partners for the work" },
+      closed: {
+        event: "your top talent, mission and assets are saved",
+        inside: "partners for the work",
+        key: "village.closed.coworking",
+      },
     },
     image: "/game/village/coworking.webp",
     alt: "A long arched hall for co-working: wooden desks with brass lamps and laptops, sacred-geometry paintings on the walls, string lights, and a window onto the starry night",
@@ -177,6 +185,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
         from: "2026-11-09T00:00:00-06:00",
         until: "2026-11-11T00:00:00-06:00",
         line: "Live now: Mastermind, Nov 9–10.",
+        key: "village.live.fire-circle",
       },
     },
     image: "/game/village/fire-circle.webp",
@@ -197,6 +206,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
         from: "2026-11-04T09:00:00-06:00",
         until: "2026-11-04T10:30:00-06:00",
         line: "Live now: Webinar, Wed Nov 4.",
+        key: "village.live.academy",
       },
     },
     image: "/game/village/academy.webp",
@@ -212,7 +222,11 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     to: "/ubb",
     rule: {
       opens: "discover-mission",
-      closed: { event: "your mission is saved", inside: "your offer, built from your top talent" },
+      closed: {
+        event: "your mission is saved",
+        inside: "your offer, built from your top talent",
+        key: "village.closed.workshop",
+      },
       steps: ["build-business"],
     },
     opened: "The Workshop is open.",
@@ -230,7 +244,11 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     to: "/game/marketplace",
     rule: {
       opens: "offer-saved",
-      closed: { event: "your offer is saved", inside: "your shop, and the shops of other residents" },
+      closed: {
+        event: "your offer is saved",
+        inside: "your shop, and the shops of other residents",
+        key: "village.closed.market",
+      },
       steps: ["first-sale"],
     },
     opened: "Your stall stands in the Market.",
@@ -252,6 +270,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
       closed: {
         event: "your first sale is recorded",
         inside: "ventures built together, and your voice in the village",
+        key: "village.closed.town-hall",
       },
     },
     opened: "The Town Hall is open.",

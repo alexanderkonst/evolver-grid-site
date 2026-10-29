@@ -35,7 +35,16 @@ import { formatDate, formatNumber, formatCurrency } from "@/i18n/format";
 2. Add the same key with the translation to `ru` and `es`.
 3. Reference it with `t("your.key")`.
 
-Missing keys fall back to English (no crash), but a missing key in `ru`/`es` means an untranslated surface, so keep the three files key-aligned.
+Missing keys fall back to English (no crash), but a missing key in `ru`/`es` means an untranslated surface, so keep the three files key-aligned. Check it with `node scripts/i18n-key-check.mjs` (add `--prefix village.` to look at one area, `--same-as-en` to list values still identical to English).
+
+### Copy that lives in data files (the village)
+
+Some English is data, not JSX: `VILLAGE_PLACES`, `JOURNEY_MODULES`, `JOURNEY_SEQUENCE`, `VILLAGE_SKY_MOODS`. It stays in those files as the English source and the tests read it. Translate it at render, never in the data:
+
+- `tr(t, key, english)` in `src/lib/villageCopy.ts` returns the catalog string for `key`, with the data's English as the `defaultValue`. Pass no `t` and you get the English back.
+- Helpers take an optional `t`: `placeName`, `placeTagline`, `placeAlt`, `closedLine(place, t)`, `placeLine(place, state, t)`, `whatChangedLine(fresh, t)`, `nextMoveCopy(move, t)`, `moduleText(module, field, t)`, `moduleClosedLine(id, t)`, `villageSkyMood(phase, t)`, `journeyRows(save, t)`.
+- Keys are `village.*`: `village.place.<key>.{name,line,alt,opened}`, `village.closed.<key>` (the whole «Opens when … Inside: …» line), `village.live.<key>`, `village.module.<id>.{eyebrow,headline,silhouette,verb,task}`, `village.result.<id>`, `village.sky.<phase>`, `village.state.<state>`.
+- `src/lib/__tests__/villageCopy.test.ts` fails if a catalog string and its data file ever differ in English.
 
 ## Namespaces (when bundles grow)
 

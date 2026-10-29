@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { FONTS_HREF } from "@/lib/gameFonts";
-import { getVillageSky, type VillageSky } from "@/lib/villageSky";
+import { getVillageSky, villageSkyMood, type VillageSky } from "@/lib/villageSky";
 import {
   VILLAGE_MAP,
   VILLAGE_PLACES,
@@ -23,7 +24,18 @@ import {
 } from "@/hooks/useVillagePresence";
 import { useSoulColors } from "@/hooks/useSoulColors";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
-import { houseLit, moveTitle, nextMove, placeLine, placeSaveFromSheet, placeState, type PlaceStateName } from "@/lib/placeState";
+import {
+  houseLit,
+  nextMove,
+  nextMoveCopy,
+  placeLine,
+  placeSaveFromSheet,
+  placeState,
+  whatChangedLine,
+  type PlaceStateName,
+} from "@/lib/placeState";
+import { journeyOptionalWord } from "@/lib/journeyLabels";
+import { placeAlt, placeName, placeTagline, tr } from "@/lib/villageCopy";
 import { hasGuestTopTalentResult, readGuestTopTalentPayload } from "@/lib/firstVisit";
 import TopTalentAuthGate from "@/modules/zone-of-genius/TopTalentAuthGate";
 import { useVillageChanges } from "@/hooks/useVillageChanges";
@@ -167,27 +179,29 @@ const NewcomerPath = ({
   onGo: (e: MouseEvent<HTMLElement>) => void;
   signInTo: string;
 }) => {
+  const { t } = useTranslation();
   const [saving, setSaving] = useState(false);
   const payload = hasResult ? readGuestTopTalentPayload() : null;
+  const saveCharacter = tr(t, "village.saveCharacter", "Save your character");
   return (
     <div className="vl-newcomer-path">
       {payload ? (
         saving ? (
           <div className="vl-save">
-            <TopTalentAuthGate inline resultPayload={payload} assessmentVersion="ai-v1" title="Save your character" />
+            <TopTalentAuthGate inline resultPayload={payload} assessmentVersion="ai-v1" title={saveCharacter} />
           </div>
         ) : (
           <button type="button" className="vl-enter vl-newcomer" onClick={() => setSaving(true)}>
-            Save your character
+            {saveCharacter}
           </button>
         )
       ) : (
         <Link className="vl-enter vl-newcomer" to="/village/reception" onClick={onGo}>
-          Find your top talent
+          {tr(t, "village.findTopTalent", "Find your top talent")}
         </Link>
       )}
       <Link className="vl-mono vl-signin" to={signInTo}>
-        I already live here &rarr; sign in
+        {tr(t, "village.signIn", "I already live here → sign in")}
       </Link>
     </div>
   );
@@ -238,7 +252,10 @@ const SkyMoon = ({ sky }: { sky: VillageSky }) => (
 );
 
 /** «New» beside a place that opened since the last visit: a word, so the reveal is never colour-only. */
-const NewTag = () => <span className="ps-tag ps-tag--next vl-new">New</span>;
+const NewTag = () => {
+  const { t } = useTranslation();
+  return <span className="ps-tag ps-tag--next vl-new">{tr(t, "village.new", "New")}</span>;
+};
 
 const COLOR_KEY = (userId: string) => `village:seen-color-v1:${userId}`;
 
@@ -285,6 +302,7 @@ const useNow = (everyMs: number) => {
 };
 
 const Village = () => {
+  const { t } = useTranslation();
   const { place: placeKey } = useParams<{ place?: string }>();
   const sky = useVillageSky();
   const place = getVillagePlace(placeKey);
@@ -306,7 +324,9 @@ const Village = () => {
   // One next move and what changed since the last visit (WP-6, §14.6). Both wait for the save;
   // the move also waits for the session, so a guest never sees Reception flash before Save.
   const move = ready && signedIn !== null ? nextMove(VILLAGE_PLACES, save) : null;
+  const moveCopy = move ? nextMoveCopy(move, t) : null;
   const changes = useVillageChanges(sheet.userId, VILLAGE_PLACES, save, ready);
+  const changesLine = whatChangedLine(changes.fresh, t);
   const isNew = (p: VillagePlace) => changes.fresh.includes(p);
   // The first sale (J12, WP-11) lights the player's house on the map; its own state is unchanged.
   const isLit = (p: VillagePlace) => p.key === HOUSE_PLACE && ready && houseLit(save);
@@ -342,19 +362,23 @@ const Village = () => {
     firstName: presencePrefs.showName ? firstNameOf(sheet.firstName) : null,
   });
 
-  // Fonts + tab title, scoped to this page.
+  // Fonts, scoped to this page.
   useEffect(() => {
     const link = document.createElement("link");
     link.rel = "stylesheet";
     link.href = FONTS_HREF;
     document.head.appendChild(link);
+    return () => link.remove();
+  }, []);
+
+  // Tab title, scoped to this page; follows the language switcher.
+  useEffect(() => {
     const prevTitle = document.title;
-    document.title = "The Digital Village · FindYourTopTalent";
+    document.title = tr(t, "village.tabTitle", "The Digital Village · FindYourTopTalent");
     return () => {
-      link.remove();
       document.title = prevTitle;
     };
-  }, []);
+  }, [t]);
 
   // Coming back from a place, the map remembers where you were.
   useEffect(() => {
@@ -411,7 +435,7 @@ const Village = () => {
   const lastState = lastIndex >= 0 ? shown[lastIndex] : "open";
   // Closed and live say their own line; every other state keeps the place's line.
   const lastLine = lastPlace && (lastState === "closed" || lastState === "live")
-    ? placeLine(lastPlace, lastState)
+    ? placeLine(lastPlace, lastState, t)
     : undefined;
   const lastPending = lastIndex >= 0 && !ready && states[lastIndex] === "closed";
 
@@ -422,11 +446,11 @@ const Village = () => {
       <LunarWorldSync sheet={sheet} save={save} />
 
       <main>
-        <section className={`vl-layer vl-map${place ? "" : " is-on"}`} aria-label="Digital Village map">
+        <section className={`vl-layer vl-map${place ? "" : " is-on"}`} aria-label={tr(t, "village.mapAria", "Digital Village map")}>
           <header className="vl-head vl-intro">
-            <p className="vl-mono">The Game of Being You</p>
-            <h1>The Digital Village</h1>
-            <p className="vl-mono vl-moonline">{sky.mood}</p>
+            <p className="vl-mono">{tr(t, "village.eyebrow", "The Game of Being You")}</p>
+            <h1>{tr(t, "village.title", "The Digital Village")}</h1>
+            <p className="vl-mono vl-moonline">{villageSkyMood(sky.phase, t)}</p>
           </header>
 
           {/* --vl-zx/--vl-zy: the place the map zooms toward when it fades out (WP-15). */}
@@ -440,7 +464,7 @@ const Village = () => {
                 <img
                   className="vl-map-img"
                   src={mapSrc}
-                  alt={VILLAGE_MAP.alt}
+                  alt={tr(t, "village.map.alt", VILLAGE_MAP.alt)}
                   width={VILLAGE_MAP.width}
                   height={VILLAGE_MAP.height}
                   decoding="async"
@@ -474,10 +498,10 @@ const Village = () => {
                             onFocus={() => select(i)}
                           >
                             <span className="vl-dot ps-fade" aria-hidden="true" />
-                            <span className="vl-pin__name">{p.name}</span>
+                            <span className="vl-pin__name">{placeName(p, t)}</span>
                             <PlaceStateTag state={shown[i]} />
                             {isNew(p) ? <NewTag /> : null}
-                            {isLit(p) ? <span className="vl-lit-word">Lit</span> : null}
+                            {isLit(p) ? <span className="vl-lit-word">{tr(t, "village.lit", "Lit")}</span> : null}
                           </Link>
                         )}
                         {/* Beside the link, not in it: a light leads nowhere. */}
@@ -499,44 +523,47 @@ const Village = () => {
               className={`vl-hint${current ? "" : " is-idle"}`}
               aria-live="polite"
             >
-              {current && active !== null ? placeLine(current, shown[active]) : "Choose a place"}
+              {current && active !== null
+                ? placeLine(current, shown[active], t)
+                : tr(t, "village.choosePlace", "Choose a place")}
             </p>
           </div>
-          <Link className="vl-mono vl-corner" to="/">← Title</Link>
+          <Link className="vl-mono vl-corner" to="/">{tr(t, "village.backTitle", "← Title")}</Link>
 
           {/* WP-6 (§14.6): what changed since the last visit, and the one next move. One hint, never a list. */}
-          {changes.line || move ? (
+          {changesLine || move ? (
             <div className="vl-move">
-              {changes.line ? (
-                <p className="vl-mono vl-move__changed" role="status">{changes.line}</p>
+              {changesLine ? (
+                <p className="vl-mono vl-move__changed" role="status">{changesLine}</p>
               ) : null}
-              {move ? (
-                <aside className="vl-move__card" aria-label="Your next move" data-kind={move.kind}>
-                  <p className="vl-mono vl-move__eyebrow">Your next move</p>
+              {move && moveCopy ? (
+                <aside className="vl-move__card" aria-label={tr(t, "village.nextMove", "Your next move")} data-kind={move.kind}>
+                  <p className="vl-mono vl-move__eyebrow">{tr(t, "village.nextMove", "Your next move")}</p>
                   <p className="vl-move__where">
-                    <span className="vl-move__place">{move.place.name}</span>
-                    {moveTitle(move) ? ` · ${moveTitle(move)}` : null}
-                    {move.optional ? <span className="vl-move__optional"> (optional)</span> : null}
+                    <span className="vl-move__place">{moveCopy.place}</span>
+                    {/* The place is named once: skip the title when it only repeats the place (see moveTitle). */}
+                    {moveCopy.title.toLowerCase() !== moveCopy.place.toLowerCase() ? ` · ${moveCopy.title}` : null}
+                    {move.optional ? <span className="vl-move__optional"> ({journeyOptionalWord(t)})</span> : null}
                   </p>
-                  {move.kind === "step" ? <p className="vl-move__result">{move.result}</p> : null}
+                  {move.kind === "step" ? <p className="vl-move__result">{moveCopy.result}</p> : null}
                   <Link className="vl-enter vl-move__enter" to={move.to} onClick={(e) => leave(() => navigate(move.to), e)}>
-                    ENTER
+                    {tr(t, "village.enter", "ENTER")}
                   </Link>
                 </aside>
               ) : null}
             </div>
           ) : null}
 
-          <nav className="vl-list" aria-label="Places">
+          <nav className="vl-list" aria-label={tr(t, "village.placesNav", "Places")}>
             <ul>
               {VILLAGE_PLACES.map((p, i) => (
                 <PlaceState key={p.key} as="li" state={shown[i]} className={`${isNew(p) ? "is-new" : ""} ${isRevealed(p) ? "is-reveal" : ""} ${isLit(p) ? "is-lit" : ""}`.trim().replace(/\s+/g, " ") || undefined} tag={false} disabled={false}>
                   <Link to={`/village/${p.key}`}>
-                    <span className="vl-list__name">{p.name}</span>
+                    <span className="vl-list__name">{placeName(p, t)}</span>
                     <PlaceStateTag state={shown[i]} />
                     {isNew(p) ? <NewTag /> : null}
-                    {isLit(p) ? <span className="vl-lit-word">Lit</span> : null}
-                    <span className="vl-list__line">{placeLine(p, shown[i])}</span>
+                    {isLit(p) ? <span className="vl-lit-word">{tr(t, "village.lit", "Lit")}</span> : null}
+                    <span className="vl-list__line">{placeLine(p, shown[i], t)}</span>
                   </Link>
                 </PlaceState>
               ))}
@@ -547,9 +574,9 @@ const Village = () => {
         {lastPlace && (
           <section
             className={`vl-layer vl-place${place ? " is-on" : ""}`}
-            aria-label={lastPlace.name}
+            aria-label={placeName(lastPlace, t)}
           >
-            <Link className="vl-mono vl-back" to="/village">← Village</Link>
+            <Link className="vl-mono vl-back" to="/village">{tr(t, "village.backVillage", "← Village")}</Link>
             <PlaceState
               state={lastState}
               className="vl-place__state"
@@ -558,7 +585,7 @@ const Village = () => {
                 <img
                   className="vl-place__img"
                   src={placeSrc}
-                  alt={lastPlace.alt}
+                  alt={placeAlt(lastPlace, t)}
                   decoding="async"
                   style={{
                     objectPosition: sceneObjectPosition(lastPlace),
@@ -574,7 +601,7 @@ const Village = () => {
                   to={lastPlace.to}
                   onClick={(e) => leave(() => navigate(lastPlace.to), e)}
                 >
-                  ENTER
+                  {tr(t, "village.enter", "ENTER")}
                 </Link>
               }
               after={
@@ -603,15 +630,15 @@ const Village = () => {
                         className="vl-mono vl-signin"
                         to={`/auth?redirect=${encodeURIComponent(lastPlace.to)}`}
                       >
-                        I already live here &rarr; sign in
+                        {tr(t, "village.signIn", "I already live here → sign in")}
                       </Link>
                     )
                   ) : null}
                 </>
               }
             >
-              <h2>{lastPlace.name}</h2>
-              {lastLine ? null : <p className="vl-place__line">{lastPlace.line}</p>}
+              <h2>{placeName(lastPlace, t)}</h2>
+              {lastLine ? null : <p className="vl-place__line">{placeTagline(lastPlace, t)}</p>}
             </PlaceState>
             {/* Sky and particles belong to the village, not the building: they do not fade when it is closed. */}
             <SkyVeil />

@@ -1,6 +1,17 @@
+import type { TFunction } from "i18next";
 import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
-import { QUEST_STEP_IDS, getJourneyModule, moduleClosedLine, moduleIntroState, type QuestStepId } from "@/data/journeyModules";
+import {
+  QUEST_STEP_IDS,
+  getJourneyModule,
+  moduleClosedLine,
+  moduleIntroState,
+  moduleText,
+  questTaskText,
+  type QuestStepId,
+} from "@/data/journeyModules";
+import { journeyStepLabel } from "@/lib/journeyLabels";
 import { nextJourneyStep, type PlaceSave, type PlaceStateName } from "@/lib/placeState";
+import { tr } from "@/lib/villageCopy";
 
 /**
  * The Quest Board's rows (WP-11). Design: docs/02-strategy/game_of_being_you.md §14.2, §14.3.
@@ -40,8 +51,17 @@ export type QuestRow = {
   to: string;
 };
 
-/** The Journey steps with their state: done, the single next move, open, or closed with its line. */
-export const journeyRows = (save: PlaceSave): JourneyRow[] => {
+/** What a Journey step gives, in the reader's language (the clause after the dash). Empty when it has none. */
+export const journeyResultText = (id: JourneyItemId, t?: TFunction): string => {
+  const result = JOURNEY_MAIN.find((i) => i.id === id)?.result;
+  return result ? tr(t, `village.result.${id}`, result) : "";
+};
+
+/**
+ * The Journey steps with their state: done, the single next move, open, or closed with its line.
+ * Pass `t` for the reader's language; without it the rows are the English source.
+ */
+export const journeyRows = (save: PlaceSave, t?: TFunction): JourneyRow[] => {
   const next = nextJourneyStep(save);
   return JOURNEY_MAIN.map((item, i): JourneyRow => {
     const done = save.met[item.id] === true;
@@ -50,26 +70,26 @@ export const journeyRows = (save: PlaceSave): JourneyRow[] => {
     return {
       id: item.id,
       no: i + 1,
-      label: item.label,
+      label: journeyStepLabel(item, t),
       optional: !!item.optional,
       state,
-      line: closed ? (item.lockedHint ?? "") : "",
+      line: closed && item.lockedHint ? tr(t, `journeySteps.locked.${item.id}`, item.lockedHint) : "",
       to: item.enter ?? item.path,
     };
   });
 };
 
 /** The real-world quests J10–J12, in order. */
-export const questRows = (save: PlaceSave): QuestRow[] =>
+export const questRows = (save: PlaceSave, t?: TFunction): QuestRow[] =>
   QUEST_STEP_IDS.map((id): QuestRow => {
     const module = getJourneyModule(id);
     const state = moduleIntroState(id, save);
     return {
       id,
       journey: module?.quest?.journey ?? "",
-      title: module?.headline ?? id,
+      title: module ? moduleText(module, "headline", t) : id,
       state,
-      line: state === "closed" ? moduleClosedLine(id) : (module?.quest?.task ?? ""),
+      line: state === "closed" ? moduleClosedLine(id, t) : questTaskText(module, t),
       to: questRoute(id),
     };
   });
@@ -78,9 +98,12 @@ export const questRows = (save: PlaceSave): QuestRow[] =>
  * The one quest to offer first: the next Journey step if there is one, else the first
  * real-world quest that is open. Null when everything is done or waiting.
  */
-export const nextQuest = (save: PlaceSave): { kind: "journey"; row: JourneyRow } | { kind: "quest"; row: QuestRow } | null => {
-  const step = journeyRows(save).find((r) => r.state === "next");
+export const nextQuest = (
+  save: PlaceSave,
+  t?: TFunction,
+): { kind: "journey"; row: JourneyRow } | { kind: "quest"; row: QuestRow } | null => {
+  const step = journeyRows(save, t).find((r) => r.state === "next");
   if (step) return { kind: "journey", row: step };
-  const quest = questRows(save).find((r) => r.state === "open" || r.state === "next");
+  const quest = questRows(save, t).find((r) => r.state === "open" || r.state === "next");
   return quest ? { kind: "quest", row: quest } : null;
 };
