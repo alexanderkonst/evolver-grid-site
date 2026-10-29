@@ -129,7 +129,7 @@ describe("placeState: unlock order (§14.3)", () => {
     const none = saveWith(base, { offerSaved: true, victories: [] });
     expect(houseLit(none)).toBe(false);
 
-    for (const other of ["mastery-practice", "first-price", "journey-step", "academy-welcome"]) {
+    for (const other of ["webinar", "mastermind", "mastery-practice", "first-price", "journey-step", "academy-welcome"]) {
       const save = saveWith(base, { offerSaved: true, victories: [other] });
       expect(placeState(place("town-hall"), save), other).toBe("closed");
       expect(houseLit(save), other).toBe(false);

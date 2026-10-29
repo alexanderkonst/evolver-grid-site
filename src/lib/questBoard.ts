@@ -18,7 +18,7 @@ import { tr } from "@/lib/villageCopy";
  *
  * Two lists, both read from real events in the save, never from points:
  *   the Journey   the `JOURNEY_MAIN` steps (J1–J7) in their order, each done / next / open / closed
- *   in the world  the real-world quests J10–J12, each done / open / closed (J11 and J12 wait on a saved offer)
+ *   in the world  the real-world quests J8–J12, each done / open / closed (J11 and J12 wait on a saved offer)
  *
  * Pure and synchronous: the page loads the save (`useCharacterSheet`) and passes it in through
  * `placeSaveFromSheet`. Order, labels and requirements come from `JOURNEY_SEQUENCE` and
@@ -42,7 +42,7 @@ export type JourneyRow = {
 
 export type QuestRow = {
   id: QuestStepId;
-  /** «J10» … «J12». */
+  /** «J8» … «J12». */
   journey: string;
   title: string;
   state: PlaceStateName;
@@ -79,7 +79,7 @@ export const journeyRows = (save: PlaceSave, t?: TFunction): JourneyRow[] => {
   });
 };
 
-/** The real-world quests J10–J12, in order. */
+/** The real-world quests J8–J12, in order. */
 export const questRows = (save: PlaceSave, t?: TFunction): QuestRow[] =>
   QUEST_STEP_IDS.map((id): QuestRow => {
     const module = getJourneyModule(id);

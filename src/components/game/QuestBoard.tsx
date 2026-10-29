@@ -2,11 +2,13 @@ import { useId } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import PlaceState from "@/components/game/PlaceState";
+import SaveCharacterCta from "@/components/game/SaveCharacterCta";
 import { getJourneyModule, moduleText } from "@/data/journeyModules";
 import { getVillagePlace, sceneObjectPosition } from "@/data/villagePlaces";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
+import { hasGuestTopTalentResult } from "@/lib/firstVisit";
 import { journeyOptionalWord } from "@/lib/journeyLabels";
-import { placeSaveFromSheet } from "@/lib/placeState";
+import { awaitingSave, placeSaveFromSheet } from "@/lib/placeState";
 import { journeyResultText, journeyRows, nextQuest, questRows } from "@/lib/questBoard";
 import { placeAlt, tr } from "@/lib/villageCopy";
 import "./ModuleForm.css";
@@ -16,7 +18,7 @@ import "./QuestBoard.css";
  * QuestBoard — the one Quest Board at `/game/journey` (WP-11).
  * Design: docs/02-strategy/game_of_being_you.md §14.2, §14.3, §14.8 row WP-11.
  *
- *   the Quest Board scene · the one next quest · the Journey (J1–J7) · in the world (J10–J12)
+ *   the Quest Board scene · the one next quest · the Journey (J1–J7) · in the world (J8–J12)
  *
  * It replaces the next-move hub and Today (`/game/next-move*` and `/today` redirect here).
  * Every row is a real event in the save in one of the five states of `placeState`; no points,
@@ -32,7 +34,11 @@ const QuestBoard = () => {
   const journeyId = useId();
   const worldId = useId();
 
-  const save = placeSaveFromSheet(sheet);
+  // A guest who has finished the test holds the reading on this device: the next move is to
+  // save it, the same «Save your character» that Your House shows (WP-7b).
+  const guestResult = !sheet.isLoading && !sheet.userId && hasGuestTopTalentResult();
+  const save = placeSaveFromSheet(sheet, new Date(), { "guest-result": guestResult });
+  const saveFirst = awaitingSave(save);
   const journey = journeyRows(save, t);
   const quests = questRows(save, t);
   const next = nextQuest(save, t);
@@ -61,7 +67,14 @@ const QuestBoard = () => {
           <h1 id={headingId} className="mf__headline">
             {tr(t, "village.quest.heading", "Your next quest")}
           </h1>
-          {sheet.isLoading ? null : next ? (
+          {sheet.isLoading ? null : saveFirst ? (
+            <>
+              <p className="mf__silhouette">
+                {tr(t, "village.saveResult", "you'll keep your character, and Your House opens.")}
+              </p>
+              <SaveCharacterCta buttonClassName="mf__go" />
+            </>
+          ) : next ? (
             <>
               <p className="mf__silhouette">
                 {next.kind === "journey"

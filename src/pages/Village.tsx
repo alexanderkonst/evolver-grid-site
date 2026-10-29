@@ -37,7 +37,7 @@ import {
 import { journeyOptionalWord } from "@/lib/journeyLabels";
 import { placeAlt, placeName, placeTagline, tr } from "@/lib/villageCopy";
 import { hasGuestTopTalentResult, readGuestTopTalentPayload } from "@/lib/firstVisit";
-import TopTalentAuthGate from "@/modules/zone-of-genius/TopTalentAuthGate";
+import SaveCharacterCta from "@/components/game/SaveCharacterCta";
 import { useVillageChanges } from "@/hooks/useVillageChanges";
 import { PlaceState, PlaceStateTag } from "@/components/game/PlaceState";
 import { LunarPaths, LunarWorldSync } from "@/components/skin/LunarWorld";
@@ -180,21 +180,10 @@ const NewcomerPath = ({
   signInTo: string;
 }) => {
   const { t } = useTranslation();
-  const [saving, setSaving] = useState(false);
-  const payload = hasResult ? readGuestTopTalentPayload() : null;
-  const saveCharacter = tr(t, "village.saveCharacter", "Save your character");
   return (
     <div className="vl-newcomer-path">
-      {payload ? (
-        saving ? (
-          <div className="vl-save">
-            <TopTalentAuthGate inline resultPayload={payload} assessmentVersion="ai-v1" title={saveCharacter} />
-          </div>
-        ) : (
-          <button type="button" className="vl-enter vl-newcomer" onClick={() => setSaving(true)}>
-            {saveCharacter}
-          </button>
-        )
+      {hasResult && readGuestTopTalentPayload() ? (
+        <SaveCharacterCta buttonClassName="vl-enter vl-newcomer" formClassName="vl-save" />
       ) : (
         <Link className="vl-enter vl-newcomer" to="/village/reception" onClick={onGo}>
           {tr(t, "village.findTopTalent", "Find your top talent")}

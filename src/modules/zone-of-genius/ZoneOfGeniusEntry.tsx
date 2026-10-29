@@ -841,7 +841,15 @@ const ZoneOfGeniusEntry = () => {
     if (step === "generating-appleseed") {
         return (
             <GameShellV2 hideNavigation={hideNav} hideLogo>
-                <AppleseedRitualLoading minDuration={4000} waitHint={t('zogEntry.revealWaitHint')} />
+                <AppleseedRitualLoading
+                    minDuration={4000}
+                    waitHint={t('zogEntry.revealWaitHint')}
+                    stageLines={[
+                        t('zogEntry.revealStageReading'),
+                        t('zogEntry.revealStagePattern'),
+                        t('zogEntry.revealStageWriting'),
+                    ]}
+                />
             </GameShellV2>
         );
     }
