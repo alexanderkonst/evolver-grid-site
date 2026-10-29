@@ -522,7 +522,7 @@
     },
     "me": {
       "profile": {
-        "label": "Character"
+        "label": "Your House"
       },
       "topTalent": {
         "label": "Top Talent"
@@ -1476,7 +1476,7 @@
     "doneTitle": "Done for Today! 🎉",
     "doneSubtitle": "You've completed your daily actions. Great work!",
     "bonusSideQuest": "Bonus Side Quest",
-    "mainQuestLabel": "Main Quest",
+    "mainQuestLabel": "Quest Board",
     "stageOf": "Stage {{current}} of {{total}}",
     "complete": "Complete",
     "captureOutput": "Capture Your Output",
@@ -3315,6 +3315,7 @@
       "reception": {
         "name": "Reception",
         "line": "Welcome, guest. Discover your uniqueness.",
+        "lineReturning": "Welcome back. Discover your uniqueness.",
         "alt": "A grand marble stair lined with lanterns and candles rises to a welcoming arched doorway glowing warm gold, a crystal dodecahedron shining above it in the night sky"
       },
       "house": {
@@ -5599,7 +5600,7 @@
     "brand": "Genius Business",
     "nav": {
       "profile": {
-        "label": "Character",
+        "label": "Your House",
         "description": "Know yourself",
         "modules": {
           "zog": "Character Creation",
@@ -5617,14 +5618,14 @@
         }
       },
       "marketplace": {
-        "label": "Trading Post",
+        "label": "Market",
         "description": "Monetize your genius"
       },
       "teams": {
-        "label": "Party & Guild",
+        "label": "Co-working",
         "description": "Find your people",
         "modules": {
-          "matches": "Party & Guild",
+          "matches": "Co-working",
           "people": "People Directory"
         }
       },
@@ -5633,14 +5634,14 @@
         "description": "Gatherings and Experiences"
       },
       "coop": {
-        "label": "The Forge",
+        "label": "Workshop",
         "description": "Build your unique business"
       }
     },
     "unlockHints": {
-      "teams": "Complete your Zone of Genius to unlock Party & Guild.",
-      "marketplace": "Create your Genius Offer to unlock Trading Post.",
-      "coop": "Create your Genius Offer to unlock The Forge.",
+      "teams": "Complete your Zone of Genius to unlock Co-working.",
+      "marketplace": "Create your Genius Offer to unlock Market.",
+      "coop": "Create your Genius Offer to unlock Workshop.",
       "events": "Complete your Zone of Genius to unlock Events."
     },
     "toast": {
@@ -5662,7 +5663,7 @@
   },
   "tourSteps": {
     "me": {
-      "title": "Character",
+      "title": "Your House",
       "tagline": "Your Zone of Genius lives here",
       "description": "This is you — your Zone of Genius, your story, your unique gifts. Everything you discover about yourself gets saved here."
     },
@@ -5677,17 +5678,17 @@
       "description": "Connect with aligned people through genius matchmaking. Find partners, mentors, and collaborators who complement your gifts."
     },
     "collaborate": {
-      "title": "Party & Guild",
+      "title": "Co-working",
       "tagline": "Work together",
       "description": "Join forces with others on shared projects and missions. This is where individual genius becomes collective impact."
     },
     "build": {
-      "title": "The Forge",
+      "title": "Workshop",
       "tagline": "Turn genius into income",
       "description": "Create your unique offer, build your landing page, and launch your genius business to the world."
     },
     "offer": {
-      "title": "Trading Post",
+      "title": "Market",
       "tagline": "The marketplace",
       "description": "Browse and purchase offers from other creators, or list your own. This is where genius gets exchanged."
     },
@@ -6308,7 +6309,7 @@
   },
   "dailyLoopLayout": {
     "me": {
-      "title": "Character",
+      "title": "Your House",
       "welcomeBack": "Welcome back",
       "playerFallback": "Player",
       "levelXp": "Level {{level}} · {{xp}} XP",
@@ -7390,7 +7391,7 @@
       "level": { "again": "Measure again" },
       "offer": {
         "title": "Your offer",
-        "saved": "Your offer is saved. It stands on your stall.",
+        "saved": "Your offer is saved in the Workshop.",
         "empty": "Not built yet",
         "start": "Build your offer",
         "again": "Open the Workshop"
@@ -7440,7 +7441,21 @@
     "emptyTitle": "No events yet",
     "emptyDescAuthed": "Check back soon or create your own community gathering.",
     "emptyDescGuest": "Check back soon for upcoming community gatherings.",
-    "createEvent": "Create Event"
+    "createEvent": "Create Event",
+    "featured": {
+      "liveSession": {
+        "when": "Wed Nov 4 · 9:00 CDMX",
+        "title": "Free Mastermind session",
+        "price": "Free · live session",
+        "cta": "Register on Luma"
+      },
+      "mastermind": {
+        "when": "Nov 9–10",
+        "title": "Founder-Market-Fit Mastermind",
+        "price": "2 live sessions · $222",
+        "cta": "See details"
+      }
+    }
   },
   "appleseedView": {
     "empty": {
