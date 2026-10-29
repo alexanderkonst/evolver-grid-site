@@ -6,6 +6,8 @@ import { supabase } from "@/integrations/supabase/client";
  * RequireAuth — wraps routes that need an authenticated user.
  * Shows a spinner while checking auth, redirects to /auth if not logged in.
  * Passes `?redirect=<current_path>` so the user returns after login.
+ * With `closedPlace` (a village place key) a guest goes to that place's closed scene
+ * (/village/<key>) instead of /auth.
  *
  * Day 148 (Sasha 2026-08-07): a signed-in user was being bounced to the
  * signup gate from /mission-discovery, repeatedly. Root cause: the guard
@@ -22,7 +24,7 @@ import { supabase } from "@/integrations/supabase/client";
  * bare event. A genuine sign-out still redirects (getSession then returns
  * null); a transient blip no longer does.
  */
-const RequireAuth = ({ children }: { children: ReactNode }) => {
+const RequireAuth = ({ children, closedPlace }: { children: ReactNode; closedPlace?: string }) => {
   const [status, setStatus] = useState<"loading" | "authed" | "unauthed">("loading");
   const location = useLocation();
 
@@ -76,6 +78,9 @@ const RequireAuth = ({ children }: { children: ReactNode }) => {
   }
 
   if (status === "unauthed") {
+    // A village place shows its faded closed scene with its line, like the other places,
+    // instead of a hard redirect to sign-up (issue #215).
+    if (closedPlace) return <Navigate to={`/village/${closedPlace}`} replace />;
     const redirectPath = encodeURIComponent(location.pathname + location.search);
     return <Navigate to={`/auth?redirect=${redirectPath}`} replace />;
   }

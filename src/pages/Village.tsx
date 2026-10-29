@@ -435,7 +435,7 @@ const Village = () => {
   const lastState = lastIndex >= 0 ? shown[lastIndex] : "open";
   // Closed and live say their own line; every other state keeps the place's line.
   const lastLine = lastPlace && (lastState === "closed" || lastState === "live")
-    ? placeLine(lastPlace, lastState, t)
+    ? placeLine(lastPlace, lastState, t, signedIn === true)
     : undefined;
   const lastPending = lastIndex >= 0 && !ready && states[lastIndex] === "closed";
 
@@ -524,7 +524,7 @@ const Village = () => {
               aria-live="polite"
             >
               {current && active !== null
-                ? placeLine(current, shown[active], t)
+                ? placeLine(current, shown[active], t, signedIn === true)
                 : tr(t, "village.choosePlace", "Choose a place")}
             </p>
           </div>
@@ -563,7 +563,7 @@ const Village = () => {
                     <PlaceStateTag state={shown[i]} />
                     {isNew(p) ? <NewTag /> : null}
                     {isLit(p) ? <span className="vl-lit-word">{tr(t, "village.lit", "Lit")}</span> : null}
-                    <span className="vl-list__line">{placeLine(p, shown[i], t)}</span>
+                    <span className="vl-list__line">{placeLine(p, shown[i], t, signedIn === true)}</span>
                   </Link>
                 </PlaceState>
               ))}
@@ -638,7 +638,7 @@ const Village = () => {
               }
             >
               <h2>{placeName(lastPlace, t)}</h2>
-              {lastLine ? null : <p className="vl-place__line">{placeTagline(lastPlace, t)}</p>}
+              {lastLine ? null : <p className="vl-place__line">{placeTagline(lastPlace, t, signedIn === true)}</p>}
             </PlaceState>
             {/* Sky and particles belong to the village, not the building: they do not fade when it is closed. */}
             <SkyVeil />

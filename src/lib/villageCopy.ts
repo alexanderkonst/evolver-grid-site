@@ -37,9 +37,18 @@ export const stateWordText = (state: PlaceStateName, t?: TFunction): string | nu
 export const placeName = (p: { key: string; name: string }, t?: TFunction): string =>
   tr(t, `village.place.${p.key}.name`, p.name);
 
-/** The place's own line: «Welcome, guest. Discover your uniqueness.» */
-export const placeTagline = (p: { key?: string; line: string }, t?: TFunction): string =>
-  tr(t, p.key ? `village.place.${p.key}.line` : undefined, p.line);
+/**
+ * The place's own line: «Welcome, guest. Discover your uniqueness.» A place with a
+ * `lineReturning` says that one once a session exists: «Welcome back. …»
+ */
+export const placeTagline = (
+  p: { key?: string; line: string; lineReturning?: string },
+  t?: TFunction,
+  signedIn = false,
+): string =>
+  signedIn && p.lineReturning
+    ? tr(t, p.key ? `village.place.${p.key}.lineReturning` : undefined, p.lineReturning)
+    : tr(t, p.key ? `village.place.${p.key}.line` : undefined, p.line);
 
 /** The scene description for screen readers. */
 export const placeAlt = (p: { key: string; alt: string }, t?: TFunction): string =>

@@ -58,6 +58,14 @@ describe("village places: the catalog is the data's English", () => {
     }
   });
 
+  it("Reception says «Welcome back» once a session exists, the others keep one line (issue #215)", () => {
+    const reception = VILLAGE_PLACES[0];
+    expect(placeTagline(reception, strict)).toBe("Welcome, guest. Discover your uniqueness.");
+    expect(placeTagline(reception, strict, true)).toBe("Welcome back. Discover your uniqueness.");
+    expect(placeLine(reception, "open", strict, true)).toBe(reception.lineReturning);
+    for (const p of VILLAGE_PLACES.slice(1)) expect(placeTagline(p, strict, true), p.key).toBe(p.line);
+  });
+
   it("the «opened» lines, and the default «<Name> is open.»", () => {
     for (const p of VILLAGE_PLACES) {
       expect(whatChangedLine([p], strict), p.key).toBe(whatChangedLine([p]));
