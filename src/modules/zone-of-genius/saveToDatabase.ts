@@ -3,6 +3,7 @@ import { awardXp } from "@/lib/xpSystem";
 import { awardFirstTimeBonus } from "@/lib/xpService";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { withRetry } from "@/lib/withRetry";
+import { fetchTopTalentSnapshot } from "@/lib/topTalentSnapshot";
 import { AppleseedData } from "./appleseedGenerator";
 import { ExcaliburData } from "./excaliburGenerator";
 import { SNAPSHOT_PENDING_SENTINEL } from "./snapshotSentinel";
@@ -576,37 +577,13 @@ export const loadSavedData = async (): Promise<{
       };
     }
 
-    // The profile's CURRENT Top Talent is the one game_profiles
-    // .last_zog_snapshot_id points at (2026-10-24: a version can be
-    // restored by repointing it, so "newest row" is not always current).
-    // Fall back to the newest snapshot only when the pointer is NULL or
-    // points at a row that is not this profile's.
-    let snapshot: { id: string; appleseed_data: unknown; excalibur_data: unknown } | null = null;
-    const { data: pointerRow } = await supabase
-      .from("game_profiles")
-      .select("last_zog_snapshot_id")
-      .eq("id", profileId)
-      .maybeSingle();
-    const pointerId = pointerRow?.last_zog_snapshot_id ?? null;
-    if (pointerId) {
-      const { data: pointed } = await supabase
-        .from("zog_snapshots")
-        .select("id, appleseed_data, excalibur_data")
-        .eq("id", pointerId)
-        .eq("profile_id", profileId)
-        .maybeSingle();
-      snapshot = pointed ?? null;
-    }
-    if (!snapshot) {
-      const { data: latest } = await supabase
-        .from("zog_snapshots")
-        .select("id, appleseed_data, excalibur_data")
-        .eq("profile_id", profileId)
-        .order("created_at", { ascending: false })
-        .limit(1)
-        .maybeSingle();
-      snapshot = latest ?? null;
-    }
+    // The profile's CURRENT Top Talent: pointer first, newest as fallback
+    // (shared with Your House, see lib/topTalentSnapshot.ts).
+    const snapshot = await fetchTopTalentSnapshot<{
+      id: string;
+      appleseed_data: unknown;
+      excalibur_data: unknown;
+    }>(profileId, "id, appleseed_data, excalibur_data");
 
     if (!snapshot) {
       // IMPORTANT: For authenticated users with no snapshot, return empty.

@@ -9,6 +9,7 @@ import {
     type JourneyItemId,
 } from "@/data/journeySequence";
 import { computeQolLevel, type QolLevel } from "@/lib/qolLevel";
+import { fetchTopTalentSnapshot } from "@/lib/topTalentSnapshot";
 
 /**
  * useCharacterSheet — read-only data layer for the Character Sheet
@@ -45,7 +46,7 @@ export type CharacterSheetData = {
     avatarUrl: string | null;
     /** Hex colors of the soul crystal; null until generated. */
     soulColors: string[] | null;
-    /** Archetype from the latest zog_snapshot; null = not discovered yet. */
+    /** Archetype of the current zog_snapshot (pointer first, newest as fallback); null = not discovered yet. */
     topTalent: string | null;
     missionTitle: string | null;
     /** Weakest-domain level + 8 domain scores; null = no QoL snapshot yet. */
@@ -119,14 +120,12 @@ async function loadSheet(): Promise<CharacterSheetData> {
     const row = (profile ?? {}) as { first_name?: string | null; avatar_url?: string | null; soul_colors?: string[] | null };
 
     const [zog, qol, assets, mission, offer, victories] = await Promise.all([
+        // Same read as Reception: the pointer's snapshot, newest only as fallback.
         profileId
-            ? supabase
-                  .from("zog_snapshots")
-                  .select("archetype_title")
-                  .eq("profile_id", profileId)
-                  .order("created_at", { ascending: false })
-                  .limit(1)
-                  .maybeSingle()
+            ? fetchTopTalentSnapshot<{ id: string; archetype_title: string | null }>(
+                  profileId,
+                  "id, archetype_title",
+              )
             : null,
         profileId
             ? supabase
@@ -164,7 +163,7 @@ async function loadSheet(): Promise<CharacterSheetData> {
         firstName: row.first_name ?? null,
         avatarUrl: row.avatar_url ?? null,
         soulColors: row.soul_colors && row.soul_colors.length > 0 ? row.soul_colors : null,
-        topTalent: zog?.data?.archetype_title ?? null,
+        topTalent: zog?.archetype_title ?? null,
         missionTitle: mission.data?.mission_title ?? null,
         qol: computeQolLevel(qol?.data),
         assets: {
