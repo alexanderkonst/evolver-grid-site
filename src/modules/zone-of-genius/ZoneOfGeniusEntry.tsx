@@ -841,6 +841,7 @@ const ZoneOfGeniusEntry = () => {
                         <div className="w-full max-w-3xl mx-auto px-5 pb-6">
                             <TopTalentAuthGate
                                 inline
+                                saved={isSaved}
                                 resultPayload={appleseed as unknown as Record<string, unknown>}
                                 assessmentVersion="ai-v1"
                                 title={t("zogEntry.saveCharacterModalTitle")}

@@ -19,6 +19,12 @@ type TopTalentAuthGateProps = {
    * link. Save logic is identical in both modes.
    */
   inline?: boolean;
+  /**
+   * True only when the result is really in the player's account (a signed-in
+   * auto-save succeeded). Until then the inline card says the result is only
+   * on this device. The email claim has its own confirmation below.
+   */
+  saved?: boolean;
 };
 
 const PENDING_CLAIM_EMAIL_KEY = "pending_claim_email";
@@ -60,6 +66,7 @@ const TopTalentAuthGate = ({
   onSaved,
   title,
   inline = false,
+  saved = false,
 }: TopTalentAuthGateProps) => {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
@@ -125,12 +132,10 @@ const TopTalentAuthGate = ({
           }
           setRetryAfterSeconds(saveResponse.retry_after_seconds);
           setStatus("cooldown");
-          setError(
-            `Too many save attempts for this email. Try again in ${saveResponse.retry_after_seconds} seconds.`,
-          );
+          setError(t("zogEntry.gateRateLimited", { seconds: saveResponse.retry_after_seconds }));
           return;
         } else if (saveError || !saveResponse?.ok) {
-          throw new Error("Could not save your Top Talent result. Please try again.");
+          throw new Error(t("zogEntry.gateSaveFailed"));
         }
       }
 
@@ -166,7 +171,7 @@ const TopTalentAuthGate = ({
         err instanceof Error &&
           !err.message.includes("Edge Function returned a non-2xx status code")
           ? err.message
-          : "Something went wrong saving your result. Please try again.",
+          : t("zogEntry.gateSaveFailedGeneric"),
       );
     }
   };
@@ -204,7 +209,7 @@ const TopTalentAuthGate = ({
                 color: "rgba(122,81,8,0.88)",
               }}
             >
-              Your result is ready
+              {t("zogEntry.gateResultReady")}
             </p>
           )}
           <h1
@@ -214,7 +219,7 @@ const TopTalentAuthGate = ({
               fontWeight: 600,
             }}
           >
-            {title ?? "Make sure you save it to be able to access it later."}
+            {title ?? t("zogEntry.gateDefaultTitle")}
           </h1>
           {inline && (
             <p
@@ -234,8 +239,7 @@ const TopTalentAuthGate = ({
               color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
             }}
           >
-            No charge for the result. We will send two very short follow-up emails
-            inviting you to go deeper. If you do not react, we stop.
+            {t("zogEntry.gateNoCharge")}
           </p>
         </div>
 
@@ -248,8 +252,9 @@ const TopTalentAuthGate = ({
               color: "var(--skin-text-primary, #0a1628)",
             }}
           >
-            Check your inbox at <strong>{email.trim()}</strong>. Open the magic link
-            and your Top Talent will appear.
+            {t("zogEntry.gateInboxBefore")}
+            <strong>{email.trim()}</strong>
+            {t("zogEntry.gateInboxAfter")}
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-3">
@@ -264,7 +269,7 @@ const TopTalentAuthGate = ({
                 type="email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
-                placeholder="your@email.com"
+                placeholder={t("zogEntry.gateEmailPlaceholder")}
                 className="min-w-0 flex-1 bg-transparent text-sm outline-none"
                 style={{ color: "var(--skin-text-primary, #0a1628)" }}
                 required
@@ -279,10 +284,10 @@ const TopTalentAuthGate = ({
                 }}
               >
                 {status === "saving"
-                  ? "Saving..."
+                  ? t("zogEntry.gateSaving")
                   : status === "cooldown"
-                    ? `Wait ${retryAfterSeconds}s`
-                    : "Save email"}
+                    ? t("zogEntry.gateWait", { seconds: retryAfterSeconds })
+                    : t("zogEntry.gateSaveEmail")}
               </button>
             </div>
             {(status === "error" || status === "cooldown") && (
@@ -292,7 +297,7 @@ const TopTalentAuthGate = ({
                   color: status === "cooldown" ? "#7a5108" : "#b91c1c",
                 }}
               >
-                {error ?? "Please try again."}
+                {error ?? t("zogEntry.gateTryAgain")}
               </p>
             )}
           </form>
@@ -306,7 +311,7 @@ const TopTalentAuthGate = ({
               color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
             }}
           >
-            {t("zogEntry.saveCharacterResultSaved")}
+            {saved ? t("zogEntry.saveCharacterResultSaved") : t("zogEntry.saveCharacterResultOnDevice")}
           </p>
         )}
 
