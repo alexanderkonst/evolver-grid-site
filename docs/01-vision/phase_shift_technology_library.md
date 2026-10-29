@@ -9328,3 +9328,42 @@ Other prisms of the same cycle: **4** (seasons, elements); **8** (7+1, two squar
 - `docs/specs/ai-familiar/ai-familiar_tracker.md`: Sputnik, your AI, the product of this technology for the human holon.
 - *Technology 164: Forecasting the Next Shift by the Invariant*: what keeps growing when models converge is how well the AI knows the entity.
 - *Technology 168: A Unique Particle of Yourself*: the companion carries that particle forward.
+
+---
+
+## Technology 176: We Are Not Model Makers, We Are the Interface (мы создатели интерфейса с ИИ) (oral, Oct 29, 2026)
+
+> *Oral · October 29, 2026 · chat with Hark, while designing the player's own AI (`docs/specs/ai-familiar/ai-familiar_tracker.md` §16). Sasha: «это можно прямо напрямую в библиотеку технологий записывать. Записывай.»*
+
+### 🫀 Essence — in Sasha's words
+
+> «Тыква превращается в карету… тыква — это AIOS, операционная система искусственного интеллекта, которую я делал. И выясняется, что эта тыква превращается в новый, вообще инновационный интерфейс для искусственного интеллекта на планете, где интерфейс исчезает… задача интерфейса — исчезнуть. Чем более он невидимый при сохранении функционала, тем более продвинутый интерфейс… Мы вообще не создатели моделей, правильно? Мы создатели интерфейса с искусственным интеллектом. Вот это биг-идея.»
+> — *chat of 2026-10-29, CST*
+
+*(translation)* "The pumpkin turns into a carriage: the pumpkin is AI OS, the operating system for AI I was building, and it turns out to be a new, innovative interface to AI for the planet, one where the interface disappears. The interface's task is to disappear: the more invisible it is while keeping the function, the more advanced it is. We are not model makers. We are makers of the interface to AI. That's the big idea."
+
+> «Люди сначала думали: prompt, prompt, prompt, скиллы… На самом деле всё это эволюционирует просто к кнопке — к одной кнопке.»
+
+*(translation)* "People first thought: prompts, skills… In fact it all evolves into a button, one button."
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* When models converge (Technology 175), owning a model stops being the moat; the value is in how a person reaches intelligence. The interface's arc runs prompt → skill → workflow → one button named after the transformation it gives → no visible interface at all: the AI already knows you and acts. AI OS, built as a prompt "operating system", was the pumpkin: a clumsy-looking object that turns out to be the carriage, an interface that disappears into the person's life. So the product is never "connect your ChatGPT": the person stays inside our interface, and which model runs underneath is an implementation detail nobody needs to see.
+
+### 🔥 Implications — AI draft
+
+- **1st order.** The player's AI lives in the game; no sending players to external chat apps (tracker §16). Models stay swappable and unnamed.
+- **2nd order.** Every feature is designed as a button labelled by its result, then as no button: the AI offers the next step itself.
+- **3rd order.** The defensible asset is the person's memory, relationship and the disappearing interface, not the weights: the companion-for-every-entity era needs interface makers, not more model makers.
+
+### Shape
+
+- **Shape:** **Pumpkin → carriage → disappearing road**: prompt, then button, then nothing visible, only the journey.
+- **Infographic (one line):** Left to right: a pile of prompts, then a single glowing button, then a person simply walking forward with a faint glow beside them; caption: the best interface disappears.
+
+### Cross-references — Connects to
+
+- *Technology 175: The Era of AI Companions*: models converge; the companion and its interface carry the value.
+- *Technology 173: Sell the Shift, Not the Content*: the button is named by the shift it gives.
+- `docs/specs/ai-familiar/ai-familiar_tracker.md` §15 (button principle) and §16 (our AI, not theirs).
+

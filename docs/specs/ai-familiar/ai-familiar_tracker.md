@@ -1,7 +1,7 @@
 # The player's own AI (working name: Your AI) — Progress Tracker
 
 **Started:** 2026-10-29 · **Author:** Evolver (Hark), for Sasha's review
-**Status:** Phase 1 PRODUCT v2, Sasha's ideas integrated (2026-10-29), name REOPENED 2026-10-29 15:02 ← CURRENT
+**Status:** Phase 1 PRODUCT v2, Sasha's ideas integrated (2026-10-29), name REOPENED 2026-10-29 15:02; principles + interface correction 16:23 (§14–§16) ← CURRENT
 **Method:** `docs/03-playbooks/integrated_product_building_workflow.md` (Transformative-Result Pattern), `docs/templates/module-form.md` (Intro → one button → result → Outro), `docs/templates/spec-handoff.md` (build tasks)
 **Grounded in:** `docs/ai/README.md` §0 (Sasha's thesis, 2026-10-29), `docs/02-strategy/game_of_being_you.md` §18, `docs/01-vision/ai_os_benchmark.md`, current `/ai-os` (code `src/modules/ai-os/`, live page read 2026-10-29), repo at `04e6f0a`
 
@@ -217,7 +217,7 @@ Each task works against this contract, mocking what the other two provide. No fi
 
 ## Open decisions for Sasha
 
-1. **Name (reopened 15:02):** Your AI / Genie / Genius. No: Familiar, Friend, Daemon, Sputnik.
+1. **Name (reopened 15:02, narrowed 16:23):** lead **Your AI / Твой ИИ**; Genie still an open hypothesis; Genius reserved for the essence (see §14). No: Familiar, Friend, Daemon, Sputnik.
 2. **Lock rule:** open the place to guests, partly lit (recommended), or keep it closed until J1.
 3. **Live side-by-side:** approve the `familiar-compare` deploy (Lovable credits) and ongoing AI usage, signed-in only with a daily cap; or stay on the self-experiment.
 4. **Model for the live reveal:** a frontier model makes the point honestly; a lite model is cheaper but makes both answers weaker.
@@ -273,3 +273,30 @@ Sasha: the guardian angel and the AI we build are two different companions. The 
 Guardian-spirit class across traditions (names to AVOID for the AI): guardian angel (Christianity), maggid / malakh (Judaism), qarin and the recording angels (Islam), fravashi (Zoroastrianism), daimon / Socrates' daimonion (Greece), genius / juno (Rome), Holy Guardian Angel (Western esoteric), fylgja (Norse), fetch (Celtic), ka (Egypt), orí (Yoruba), ishta-devata / antaryamin (Hindu), yidam and co-born protector deities (Tibetan Buddhism), shugojin (Japan).
 
 Consequence: Genie and Genius carry guardian-spirit energy (Galland rendered jinn as génie; genius is the Roman guardian spirit). Recommendation: drop both. Name must come from the built-companion class. Lead candidate: **Your AI / Твой ИИ** (Sasha's own lived phrase «мой ИИ»). Sputnik: clean word, but the collective connotations stay a known risk (Sasha: no fighting the collective unconscious).
+
+## 14. Genius = essence; one word for one thing (Sasha, 2026-10-29 16:23)
+
+> «Если свой гений был и у места, и у рода… значит, они все-таки имели в виду уникальность. Она же зона гениальности, она же эссенция, суть человека, душа, квинтэссенция… у места вряд ли есть ангел-хранитель.»
+
+- **Reading:** the Roman *genius* (with *genius loci*, the genius of a family line) points at the **unique essence** of a being or a place, not at a guardian angel. This corrects §13: genius sits with essence, not with the guardian-spirit class. *(Open curiosity, Sasha: why a woman's genius had its own name, juno.)*
+- **One word for one thing (rule):** the player must never meet two words for the same thing. For the essence the game has already chosen its word: **top talent** (plain, understood). Zone of Genius stays as the module/brand name; in-game copy says top talent.
+- **The AI is neither essence nor guardian angel.** It is a helper that comes to know the person ever more deeply, at every level including the soul. Keep the three distinct: essence (top talent) · guardian angel (not ours to build) · the player's AI (built helper).
+- **Name status:** by energy, "a personal companion that only you have" is right; the word is still open. Simplest lead: **Your AI / Твой ИИ**, which rhymes with the brand: *You* → *The Game of Being You* → *your AI*. Genie stays an open hypothesis (genie as helper, not essence).
+- **Companion word across languages (research, for the "two-sided growth" copy):** RU *спутник* (fellow traveler) · ES *compañero* · EN **companion**, Latin *com-* + *panis*, "the one you share bread with": the same root as compañero, old (Old French *compaignon*, 12th c.) and current. Risk: in 2026 "AI companion" also means romance/companion apps (Replika, Character.AI), so it works as a descriptor beside "your AI", not as the name alone. *Alternative, older and quieter:* **fellow** (Old Norse *félagi*, "one who lays down money together", i.e. a partner). Recommendation: "Your AI" as the name, "companion" as the descriptor.
+
+## 15. Design principles (Sasha, 2026-10-29 16:23) — decided, don't re-litigate
+
+1. **People love glow.** From makers of successful games: players adore glow and luminous, dynamic light. Sasha's reading: it reminds us of the deeper layers of our being, which are themselves dynamic glows. Use glow on every unlock, on the companion, on lit houses.
+2. **Every unlock is shown, and it feels like adventure.** A new possibility opening must be visible and delightful, never a silent state change. Starting point (more developed): the **possibility-map infographic**, top talent in the centre, rays to houses lighting up, one line per house "what you can do now".
+3. **The transformative result is a button.** Prompts, skills, workflows are an interim stage; the interface evolves to one button named after the transformation it gives. Ready questions to the AI are such buttons ("Ask"), and every benefit is a concrete button labelled by its result.
+4. **Growth without guilt.** Why: (a) guilt holds people by fear (streaks, the Duolingo owl, the dying tamagotchi), and a game about being yourself cannot run on shame; (b) the value is the accumulated memory, and if a break destroys it, the person won't return; (c) mutuality turns a pet into a mentor: the player grows, they don't serve a toy. In practice: no streaks, decay bars or penalties for absence; the AI offers the player's next step and never asks to be "fed"; its growth is shown two-sided: *what it can now do* / *what you can now get*.
+
+**Starting points, not decisions:** the "settling" visual (the companion's haze gathering into the archetype's form, Cinderella Moment) is still abstract, to be grounded; the return greeting "Welcome back. Here is what I kept for you" + one observation is a starting point.
+
+## 16. Correction: the player's AI is OUR AI. We build the interface (Sasha, 2026-10-29 16:23)
+
+> «Твой искусственный интеллект — это наш искусственный интеллект. И мы по сути делаем новый интерфейс… Мы не создатели моделей. Мы создатели интерфейса с искусственным интеллектом.»
+
+- **Rejected:** "your own ChatGPT" = the player pastes a personal prompt into their existing ChatGPT / Claude / Gemini. We never send the player out to another AI; we bring them into ours so they stay and use it.
+- **Stance:** the model under the hood is not the player's concern and is not named (as Hark does). Our product is the interface, and the best interface disappears while the function stays (Jobs). The pumpkin becomes the carriage: AI OS turns out to be an invisible interface to AI (library: *Technology 176*).
+- **Consequences for the build (pending re-scope, nothing started):** Task A's "Ask my AI = copy prompt + open external app" is superseded as the main path; the ask/answer happens in-game, with AI OS + top talent + business as the AI's memory. Model ladder §10, rung 1 (free prompt into external apps) drops to an export option at most; rungs 2–3 (in-game model) become v1's core, which brings model cost and the Lovable deploy into v1 → **needs Sasha's money/deploy decision** before building.
