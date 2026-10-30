@@ -68,6 +68,27 @@ Originally *genius* was not a trait but a being that accompanies a person. The g
 | [landscape_2026-10.md](landscape_2026-10.md) | Five findings, the holomap re-read for Oct 2026, integral maps of model types and harness types, where Sasha's setup sits, what it means for Sputnik |
 | [holomap_history_2026-10.md](holomap_history_2026-10.md) | The AI holomap filled from the past: 8 modules × stages 1–3 + Oct 2026 snapshot, leaders, essence, path dependency |
 | [landscape_2026-10_sources.md](landscape_2026-10_sources.md) | Raw numbers with sources and dates (AA v5, Scale, Epoch, arXiv) |
+| [market_maps_2026-10.md](market_maps_2026-10.md) | 18 AI market maps (LUMAscapes) 2025–Oct 2026: publishers, taxonomies, leaders; no box for an AI that knows who you are |
+
+### 0d. Workstream: Evolutionary Mapping (Sasha, 2026-10-29 19:16) — living
+
+> «Мы двигаемся в ширину и в глубину на каждом холоническом уровне… оформляем всё это в отдельный ворк-стрим.»
+
+**The chain, as it actually unfolded:**
+1. **Holomap = evolutionary map** of AI: AI split into its main aspects, aspects into sub-aspects (multi-level, holonic, modular); each aspect moves through stages on its own, yet all are bound by feedback loops and non-linear dependencies, known and unknown. The holomap contains the integral map and adds more levels (Wilber would say integral is the meta-theory with room for everything; Sasha agrees). Evolutionary and holonic are near-synonyms with nuances.
+2. **2026 snapshot:** where AI actually stands, cell by cell (cells written long ago, tracked as AI develops).
+3. **Grounding in reality:** fill the cells with what happened on Earth, past and present (`holomap_history_2026-10.md`). Contact with reality improves the description of the past, the present and the map itself, and so shows the future better.
+4. **Leaders:** the grounded map shows who leads each aspect of AI.
+5. **Market maps:** the same can be done for the whole economy, not only AI (library *Technology 177*): what continues, what falls away, and which leaders already work in the new paradigm, knowingly or not.
+6. **Use:** invest, bet, network them, introduce, match-make, look for collaborations, form an agglomerate or club. Also feeds the game (Market, Co-working matchmaking).
+
+**Products:** yes, map the products too (Sasha, 19:16), but methodically: inside the map, by aspect and stage, not as a loose list.
+
+**Taxonomy (top-down):** to reach a fine niche-level taxonomy, first build the higher levels (economy → sectors → industries → sub-industries → niches → sub-niches → companies → leaders). For AI and frontier niches Sasha rates **CB Insights** highest: its market taxonomy sits at the cutting edge, but the full scheme is their paid know-how. Plan: reverse-engineer it from what they publish openly (public reports, market maps, research briefs, e.g. AI 100 2026, AI agent market map, AI agent tech stack in `market_maps_2026-10.md`), then build our own taxonomy, with official classifications (ISIC/NAICS) for the top layers.
+
+**Ontology note:** AI as imitation (imitari / imago): library *Technology 179*.
+
+**Next steps (in order):** (a) top layers of the economy taxonomy; (b) reverse-engineer CB Insights' public niche names into the AI branch; (c) place AI products onto the holomap cells; (d) apply the outer → inner → outer-anew axis (Tech 177).
 
 ---
 

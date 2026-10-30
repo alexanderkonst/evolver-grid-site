@@ -9438,3 +9438,36 @@ Other prisms of the same cycle: **4** (seasons, elements); **8** (7+1, two squar
 - *Technology 177: Market Maps as an X-ray of the Inner Turn*: same method, map first, then the future reveals itself.
 - `docs/specs/ai-familiar/ai-familiar_tracker.md` §17: feature backlog F1–F5.
 
+---
+
+## Technology 179: AI Is Imitation (imitari → imago: искусственный интеллект по сути имитация) (oral, Oct 29, 2026)
+
+> *Oral · October 29, 2026 · chat with Hark, while setting up the Evolutionary Mapping workstream (`docs/ai/README.md` §0d). Etymology from etymonline.com (imitate, image), fetched 2026-10-29.*
+
+### 🫀 Essence — in Sasha's words
+
+> «Из нашей онтологии вытекает, что искусственный интеллект строится в каком-то смысле как игра: он всё больше отражает реальность, использует то, что в реальности существует во вселенной, и имитирует синтетически. Мне кажется, это глубочайший инсайт: искусственный интеллект очень сильно описывается словом имитация, но невероятно качественная имитация. Искусственный интеллект суть имитация.»
+> — *chat of 2026-10-29, 19:16 CST*
+
+*(translation)* "From our ontology it follows that AI is built, in a sense, like a game: it reflects reality ever more, uses what exists in the universe and imitates it synthetically. AI is essentially imitation, but incredibly high-quality imitation."
+
+### 🔤 The word
+
+Latin *imitari* "to copy, portray", from the PIE root *\*aim-* "to copy". From the same stem comes *imago*: "copy, likeness, statue, picture", also "phantom, apparition" and "idea, appearance"; and from *imago*, *imaginari*, imagination. Wycliffe's Bible (1382), Genesis 1:27: "To þe ymage of god he made hym." So imitation, image and imagination are one family: to imitate is to make an image.
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* If AI is imitation, it is an image-maker: it learns the patterns of what exists and renders their likeness, ever more faithfully, like a game engine renders a world. That gives a clean ontology. The original is reality and the living being; AI is the image. Its quality can rise without limit, but an image never becomes its source. This explains both its power (any pattern that exists can be imaged) and its edge (it reflects the genius, it does not have one). It also grounds our design stance: the player's AI is a mirror of their genius, not a clone (ai-familiar tracker, Oct 29), and the player, made "in the image" of something greater, stays the original.
+
+### 🔥 Implications — AI draft
+
+- **1st order.** In the holomap, every AI aspect can be read as "which part of reality is it imitating, and how faithfully": language, perception, action, memory, social presence.
+- **2nd order.** The evolution of AI = the rising fidelity of imitation, aspect by aspect, until the imitation grows simple and almost invisible (the disappearing interface, Tech 176/178).
+- **3rd order.** The human question becomes: what in us is the original that no image exhausts? Our answer: top talent, the genius.
+
+### Cross-references — Connects to
+
+- *Technology 176 / 178*: interface that disappears.
+- *Technology 177*: market maps; same mapping workstream.
+- `docs/specs/ai-familiar/ai-familiar_tracker.md`: mirror, not clone.
+
