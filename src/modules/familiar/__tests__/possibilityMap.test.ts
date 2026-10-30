@@ -3,7 +3,7 @@ import { JOURNEY_MAIN } from "@/data/journeySequence";
 import { VILLAGE_PLACES } from "@/data/villagePlaces";
 import en from "@/locales/en/common.json";
 import { closedLine, emptyPlaceSave, nextJourneyStep, placeSaveFromSheet, placeState } from "@/lib/placeState";
-import { MAP_HOME, WHAT_YOU_CAN_DO, buildPossibilityMap, rayPoint } from "../possibilityMap";
+import { CENTRE_RADIUS, MAP_HOME, WHAT_YOU_CAN_DO, buildPossibilityMap, rayPoint, wrapCentreText } from "../possibilityMap";
 
 const TUESDAY = new Date("2026-10-27T18:00:00Z");
 
@@ -63,6 +63,20 @@ describe("possibility map", () => {
     for (const n of [0, 1, 2, 3, 4]) {
       const map = buildPossibilityMap(afterSteps(n));
       if (map.next) expect(placeState(map.next.place, afterSteps(n))).not.toBe("closed");
+    }
+  });
+
+  it("wraps the centre text to the ring without cutting a word", () => {
+    expect(wrapCentreText("after the Zone of Genius", 14)).toEqual(["after the Zone", "of Genius"]);
+    expect(wrapCentreText("  Your top talent ", 14)).toEqual(["Your top talent"]);
+    expect(wrapCentreText("Entrepreneurship", 14)).toEqual(["Entrepreneurship"]);
+    expect(wrapCentreText("", 14)).toEqual([]);
+  });
+
+  it("keeps the centre ring clear of every house", () => {
+    for (let i = 0; i < 10; i++) {
+      const p = rayPoint(i, 10);
+      expect(Math.hypot(p.x - 50, p.y - 50) - CENTRE_RADIUS).toBeGreaterThan(10);
     }
   });
 
