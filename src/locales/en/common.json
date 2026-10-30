@@ -46,7 +46,8 @@
     "tensionLine": "Most platforms flatten you into titles, résumés, and keywords",
     "bridge": "A few simple prompts. Your talent in exact words, in two minutes. Then introductions to people whose work complements yours, with the collaboration spelled out",
     "ctaLabel": "Match me",
-    "microcopy": "Free · 2 minutes · No signup to start"
+    "microcopy": "Free · 2 minutes · No signup to start",
+    "microcopySignedIn": "Free. About 2 minutes."
   },
   "methodology": {
     "seoTitle": "Find Your Top Talent. Productize It. Find Your People.",
@@ -227,6 +228,7 @@
   "playbookHero": {
     "primaryCtaLabel": "Find your top talent",
     "metaLine": "Free · 2 minutes · No signup",
+    "metaLineSignedIn": "Free. About 2 minutes.",
     "secondaryCtaLabel": "See the exact playbook"
   },
   "ignite": {

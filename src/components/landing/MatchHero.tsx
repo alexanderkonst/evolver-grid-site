@@ -6,6 +6,7 @@ import { GOLD_TEXT_STYLE } from "@/lib/landingDesign";
 import SEO from "@/components/SEO";
 import { trackFunnelEvent } from "@/lib/funnelAnalytics";
 import { useSkin } from "@/contexts/SkinContext";
+import { useSessionUserId } from "@/hooks/useSessionUserId";
 
 /**
  * MatchHero — Funnel v2 (Day 77, Sasha 2026-05-20).
@@ -42,6 +43,7 @@ const MatchHero = () => {
   const navigate = useNavigate();
   const { skin } = useSkin();
   const { t } = useTranslation();
+  const userId = useSessionUserId();
 
   // §4.8 entry-path attribution. Fires once on mount — the landing
   // impression. `path_param_present` reflects whether the user arrived
@@ -338,7 +340,7 @@ const MatchHero = () => {
               fontWeight: 500,
             }}
           >
-            <span>{t("matchHero.microcopy")}</span>
+            <span>{t(userId ? "matchHero.microcopySignedIn" : "matchHero.microcopy")}</span>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
+import { useSessionUserId } from "@/hooks/useSessionUserId";
 // Day 67 (Sasha 2026-05-10): primary CTA extracted to shared
 // `<EditorialCta>` component (src/components/ui/editorial-cta.tsx).
 // Same pattern — rotating ignite-logo emblem, small-caps tracked label,
@@ -46,6 +47,7 @@ import { EditorialCta } from "@/components/ui/editorial-cta";
 const PlaybookHero = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const userId = useSessionUserId();
 
   return (
     /* Day 54 (Sasha 2026-04-28): inner stack opened up to match the
@@ -91,7 +93,7 @@ const PlaybookHero = () => {
             fontWeight: 500,
           }}
         >
-          <span>{t("playbookHero.metaLine")}</span>
+          <span>{t(userId ? "playbookHero.metaLineSignedIn" : "playbookHero.metaLine")}</span>
         </div>
 
         {/* Secondary — also compact glass pill, de-ranked via
