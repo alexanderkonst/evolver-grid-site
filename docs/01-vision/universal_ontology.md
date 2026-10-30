@@ -625,6 +625,31 @@ The Morphogenetic Holomap (P1–P12) is a Lens 4 (12-system). With the 13th pers
 
 # Part III — Field, Being, Creation
 
+
+## 4f. TYPES OF NUMBER-PRISMS — Meta-Prisms (recognition, Sasha, Oct 29, 2026)
+
+> «Есть мета-числовые призмы: четверных фреймов-призм может быть много… Это эволюционный край изучения интегральной, универсальной метафизики.» — *chat with Hark, 2026-10-29 19:42 CST*
+
+**The recognition.** One number carries several *kinds* of prism. §4e catalogs prisms by number (3, 4, 7, 12, 13, 26, 27); §4f adds the second axis: by **type**. Each type is a different way of differentiating, of making distinctions within the whole.
+
+**The 4 as the worked example:**
+
+| Type of prism | The 4 in this type | What it differentiates |
+|---|---|---|
+| Numerical (numerological) | 1, 2, 3, 4 described by their qualities | qualities of number itself |
+| Perspectival | Wilber's four quadrants (I / We / It / Its) | points of view, types of perspective |
+| Elemental | Earth, Water, Fire, Air | qualities of substance and energy |
+| Cyclical (seasonal) | Spring, Summer, Autumn, Winter | phases of a cycle in time |
+
+**Elements and seasons.** Very close, perhaps one thing: the four seasons may be the four elements manifesting in nature. Not only on Earth: seasons follow from orbits, and orbits throughout the universe are elliptical, so the four seasons are a universal pattern.
+
+**Open edges.**
+- Which other types exist (geometric? archetypal? developmental?), and do they hold for every number in §4e?
+- Is the type list itself a number-prism (a meta-prism of prisms)?
+- Name of the field: *evolutionary edge of integral / universal metaphysics* (working name).
+
+**Status.** Recognition for the ontology only. Not adopted into the product (Sasha, Oct 29: don't implement frameworks not yet fully lived; the talent reveal already rests on deep frameworks).
+
 ## 3. THE FIELD
 
 *The fundamental substrate of reality.*
