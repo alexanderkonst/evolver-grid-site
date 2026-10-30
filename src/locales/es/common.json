@@ -1757,6 +1757,13 @@
       },
       "karime": {
         "label": "La oferta única de Karime"
+      },
+      "opensWhen": {
+        "find-top-talent": "Se abre cuando tu talento principal está guardado.",
+        "discover-mission": "Se abre cuando tu misión está guardada.",
+        "triad": "Se abre cuando tu talento principal, tu misión y tus activos están guardados.",
+        "offer-saved": "Se abre cuando tu oferta está guardada.",
+        "first-sale": "Se abre cuando tu primera venta está registrada."
       }
     },
     "offer": {

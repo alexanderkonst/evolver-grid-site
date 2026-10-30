@@ -175,6 +175,7 @@ import ResetPassword from "./pages/ResetPassword";
 import GeniusLayerMatching from "./pages/GeniusLayerMatching";
 import GrowthPathsPage from "./pages/GrowthPathsPage";
 import Village from "./pages/Village";
+import NextStep, { NEXT_STEP_PATH } from "./pages/NextStep";
 import ProfileMissionSection from "./pages/spaces/sections/ProfileMissionSection";
 import ProfileAssetsSection from "./pages/spaces/sections/ProfileAssetsSection";
 import ProfileOverview from "./pages/spaces/sections/ProfileOverview";
@@ -748,6 +749,8 @@ const App = () => (
                   {/* Game Routes */}
                   {/* /game is retired — always redirect to /game/journey (or just `/` landing) */}
                   <Route path="/game" element={<Navigate to="/game/journey" replace />} />
+                  {/* Issue #250: where sign-in lands, the player's next move (src/pages/NextStep.tsx). */}
+                  <Route path={NEXT_STEP_PATH} element={<NextStep />} />
                   {/* WP-11: the one Quest Board is /game/journey; the old next-move links keep working. */}
                   <Route path="/game/next-move" element={<Navigate to="/game/journey" replace />} />
                   <Route path="/game/next-move/*" element={<Navigate to="/game/journey" replace />} />

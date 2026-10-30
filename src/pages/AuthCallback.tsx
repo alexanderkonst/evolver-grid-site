@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { AlertTriangle, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { claimAnonymousZogIfAllowed } from "@/lib/anonClaimGuard";
+import { NEXT_STEP_PATH } from "@/pages/NextStep";
 
 // Terminal page in the magic-link flow. Supabase's client parses the tokens
 // out of the URL fragment (detectSessionInUrl: true in client.ts), we wait for
@@ -29,7 +30,9 @@ const AuthCallback = () => {
   // Callers can still override via the `?next=` query param when they
   // genuinely need to land somewhere else (paid post-session activation,
   // admin links, etc.).
-  const next = searchParams.get("next") || "/zone-of-genius";
+  // Issue #250 (Sasha 2026-10-30): with no `?next=`, land on the player's next move
+  // (read after the claim above has saved their talent), not on the test door.
+  const next = searchParams.get("next") || NEXT_STEP_PATH;
 
   useEffect(() => {
     let timeoutId: number | undefined;

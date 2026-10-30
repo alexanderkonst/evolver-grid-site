@@ -702,6 +702,13 @@
       },
       "karime": {
         "label": "Karime's Unique Offer"
+      },
+      "opensWhen": {
+        "find-top-talent": "Opens when your top talent is saved.",
+        "discover-mission": "Opens when your mission is saved.",
+        "triad": "Opens when your top talent, mission and assets are saved.",
+        "offer-saved": "Opens when your offer is saved.",
+        "first-sale": "Opens when your first sale is recorded."
       }
     },
     "offer": {

@@ -12,12 +12,14 @@ import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
 import { journeyStepLine, journeyStepRows } from "@/lib/journeyLabels";
 import { GROWTH_STEPS, growthStepClosedLine, growthStepState } from "@/modules/library/growthSteps";
 import { ORACLE_READING } from "@/data/villagePlaces";
-import { placeState } from "@/lib/placeState";
+import { placeSaveFromSheet, placeState } from "@/lib/placeState";
+import { FOUNDER_TOOL_OPENS_WHEN } from "@/data/founderTools";
+import { resolveFounderTools } from "@/lib/founderTools";
 import { COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
 import { CMS_COURSE_PATH } from "@/data/courses/consciousnessMeetsScience";
-import { useDeepProfileActivated } from "@/hooks/useDeepProfileActivated";
 import { useDeeperAccess } from "@/hooks/useDeeperAccess";
 import { useEntitlement } from "@/hooks/useEntitlement";
+import { useCharacterSheet } from "@/hooks/useCharacterSheet";
 import { useJourneyProgress, type JourneyProgress } from "@/hooks/useJourneyProgress";
 import { useLinkedQuizResult, type LinkedQuizResult } from "@/hooks/useLinkedQuizResult";
 import { useEntryPath } from "@/contexts/EntryPathContext";
@@ -331,8 +333,8 @@ const SPACE_SECTIONS: SpaceSections = {
     // with its 6 phase sub-sections, the Founder Cockpit + its dashboard).
     // "Unique Startup Incubation" holds the methodology/offer arc
     // (Playbook / Roadmap / Ignite / Products / Dashboard / Holomap).
-    // Karime's per-founder offer row still injects into the second group
-    // (see getSections below). No more branching on location.pathname.
+    // Which rows a player sees is decided by their journey stage, not here:
+    // src/data/founderTools.ts (issue #250). No more branching on location.pathname.
     build: {
         title: "THE FORGE",
         sections: [
@@ -355,6 +357,8 @@ const SPACE_SECTIONS: SpaceSections = {
             { id: "build-path",       label: "Roadmap",                                 path: "/path" },
             { id: "build-ignite",     label: "Productize Yourself Signature Workshop",   path: "/ignite" },
             { id: "build-products",   label: "Products",                                path: "/products" },
+            // Personal page: listed only for its owner's account (src/data/founderTools.ts).
+            { id: "build-karime",     label: "Karime's Unique Offer",                   path: "/build/karime" },
             { id: "build-dashboard",  label: "Dashboard",                               path: "/dashboard" },
             { id: "build-holomap",    label: "Holomap",                                 path: "/holomap" },
         ],
@@ -831,16 +835,12 @@ const SectionsPanel = ({
     const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
     const [userEmail, setUserEmail] = useState<string | null>(null);
 
-    // Day 64 (Sasha 2026-05-07): deeper-Top-Talent-view gate for the
-    // JOURNEY #5 ("Build a business off your top talent") soft-lock.
-    // Same hook is consumed by GameShellV2 to gate the BUILD space
-    // chip — single source of truth across the funnel boundary.
-    const { activated: deepProfileActivated } = useDeepProfileActivated();
+    // Issue #250: the player's save decides which BUILD tools are listed.
+    const sheet = useCharacterSheet();
     // Day 95 (Sasha 2026-06-13): narrow PAID signal for the $37 power-up
     // row's strikethrough + routing (paid / coupon / tier — NOT free
     // reveal). Same signal RequireDeeperAccess enforces on the deeper
-    // routes. Broad `deepProfileActivated` still drives BUILD unlock /
-    // Karime / dropdown below — those are reveal-level, not paywalled.
+    // routes.
     const { hasAccess: hasDeeperAccess } = useDeeperAccess();
 
     // Day 80 Wave 2.20 (Sasha 2026-05-22): activation signal for the
@@ -958,11 +958,26 @@ const SectionsPanel = ({
         // Onboarding QA (2026-10-21): hide admin-only BUILD rows from
         // everyone else instead of letting them hit a silent redirect
         // (Cockpit dashboard) or a "Forbidden" banner (Commercial OS).
+        // Issue #250 (Sasha 2026-10-30): the tools open at the matching moments of the
+        // hero's journey; a guest sees none, a personal row only its owner. While the save
+        // loads nothing is staged yet, so nothing flashes in and out.
         const baseData =
             activeSpaceId === "build"
                 ? {
                       ...rawBaseData,
-                      sections: filterAdminOnlyRows(rawBaseData.sections, userEmail),
+                      sections: resolveFounderTools(
+                          filterAdminOnlyRows(rawBaseData.sections, userEmail),
+                          {
+                              met: sheet.isLoading ? {} : placeSaveFromSheet(sheet).met,
+                              email: userEmail,
+                              opensWhen: (stage) =>
+                                  String(
+                                      t(`rail.build.opensWhen.${stage}`, {
+                                          defaultValue: FOUNDER_TOOL_OPENS_WHEN[stage],
+                                      }),
+                                  ),
+                          },
+                      ),
                   }
                 : rawBaseData;
 
@@ -1020,43 +1035,10 @@ const SectionsPanel = ({
         // here) and its `entryPath === "match"` exception are retired
         // along with it.
 
-        // Day 80 (Sasha 2026-05-23): Karime Kuri's in-platform offering
-        // page. BUILD sidebar row appears only when:
-        //   (a) the viewer is Karime herself (so she always sees her own
-        //       page link), or
-        //   (b) the viewer has unlocked the BUILD space
-        //       (deepProfileActivated — paid tier, coupon, or completed
-        //       Top Talent reveal).
-        // Hidden otherwise. Direct URL /build/karime renders regardless —
-        // the route has no auth gate; only the sidebar row is conditional.
-        // Per memory: hide-don't-show beats ghost-locked nav.
-        if (
-            activeSpaceId === "build" &&
-            (userEmail === "karimekurit@gmail.com" || deepProfileActivated)
-        ) {
-            const karimeRow: Section = {
-                id: "build-karime",
-                label: "Karime's Unique Offer",
-                path: "/build/karime",
-            };
-            // Day 121: Founder Tools / Unique Startup Incubation groups
-            // replaced the flat list — Karime's row now inserts after
-            // "Products", still inside the incubation group, still
-            // adjacent to the other offer-cluster rows.
-            const productsIdx = baseData.sections.findIndex(
-                (s) => s.id === "build-products",
-            );
-            const insertAt =
-                productsIdx >= 0 ? productsIdx + 1 : baseData.sections.length;
-            return {
-                ...baseData,
-                sections: [
-                    ...baseData.sections.slice(0, insertAt),
-                    karimeRow,
-                    ...baseData.sections.slice(insertAt),
-                ],
-            };
-        }
+        // Karime Kuri's in-platform offering page (Day 80) is a personal row: listed only
+        // for her account by resolveFounderTools (issue #250; it used to also list for
+        // anyone with the BUILD space unlocked). Direct URL /build/karime renders
+        // regardless: the route has no auth gate, only the pane row is conditional.
 
         // Add Art section only for alexanderkonst@gmail.com in ME space
         if (activeSpaceId === "grow" && userEmail === "alexanderkonst@gmail.com") {
@@ -1784,6 +1766,17 @@ const SectionsPanel = ({
                                 }}
                             >
                                 {sectionText}
+                                {/* Issue #250: a Founder Tool one stage ahead says in plain words
+                                    what opens it, like the «Done when» lines (no hover needed on
+                                    a phone). */}
+                                {isLocked && activeSpaceId === "build" && section.lockedHint && (
+                                    <span
+                                        className="block mt-0.5 text-[13px] italic font-normal leading-snug text-white/75"
+                                        style={{ fontFamily: "'Inter', sans-serif", letterSpacing: 0 }}
+                                    >
+                                        {section.lockedHint}
+                                    </span>
+                                )}
                             </span>
                             {section.badge && (
                                 <span
