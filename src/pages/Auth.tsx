@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { VILLAGE_PLACES } from "@/data/villagePlaces";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -48,6 +49,8 @@ const Auth = () => {
   // Claim mode goes straight to the one public test door (WP-7): no login in between.
   const defaultNext = claimMode ? "/zone-of-genius/entry" : "/playbook/discover";
   const nextPath = queryNext || defaultNext;
+  // The wall was reached from a village place (its module route): offer the way back to the map.
+  const fromVillagePlace = !!queryNext && VILLAGE_PLACES.some((p) => p.to === queryNext.split(/[?#]/)[0]);
   const isCockpitRedirect =
     nextPath.startsWith("/build/cockpit") || nextPath.startsWith("/cockpit");
   // Day 79 (Sasha 2026-05-22): match-path entry detection. When the user
@@ -545,6 +548,16 @@ const Auth = () => {
               "0 8px 24px -10px rgba(var(--shadow-rgb), 0.18), 0 24px 60px -24px rgba(var(--shadow-rgb), 0.22), 0 0 0 1px rgba(var(--accent-rgb), 0.10)",
           }}
         >
+          {/* A guest who hit the wall from a village place can step back to the village. */}
+          {fromVillagePlace ? (
+            <Link
+              to="/village"
+              className="inline-block mb-4 text-sm"
+              style={{ color: "var(--skin-text-primary, #0a1628)" }}
+            >
+              {t("village.backVillage", { defaultValue: "← Village" })}
+            </Link>
+          ) : null}
           {/* Header — Cormorant title + italic subtitle.
               Day 80 (Sasha 2026-05-23): legibility upgraded per
               ui_playbook.md Part VIII "Strong" cocktail. The match-path

@@ -8487,5 +8487,11 @@
     "reuseLabel": "Sobre la reutilización",
     "reuseBody": "Usa esta definición. Enséñala, cítala, ponla en tus propios materiales, construye sobre ella. Es libre y está hecha para viajar.",
     "reuseDiscipline": "Di founder-market fit, exactamente esas palabras, cada vez. No founder/market fit, no founder-market alignment. Una categoría es una frase que la gente tiene que recordar, y cada sinónimo parte la memoria en dos."
+  },
+  "village": {
+    "backVillage": "← Pueblo",
+    "welcomeBack": "Te damos la bienvenida de nuevo",
+    "yourTalent": "Tu talento principal: {{name}}",
+    "continue": "Continuar"
   }
 }

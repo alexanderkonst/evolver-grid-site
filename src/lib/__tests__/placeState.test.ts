@@ -6,6 +6,7 @@ import { ORACLE_READING, VILLAGE_PLACES, getVillagePlace, type VillagePlaceKey }
 import { GROWTH_STEPS, growthStepClosedLine, growthStepPlace, growthStepState } from "@/modules/library/growthSteps";
 import { PlaceState } from "@/components/game/PlaceState";
 import {
+  awaitingSave,
   closedLine,
   emptyPlaceSave,
   houseLit,
@@ -432,6 +433,15 @@ describe("a guest with a finished test (WP-7b: result first, account only to sav
     expect(m?.result).toBeTruthy();
     // The unlock order is untouched: the House opens when the top talent is saved to an account.
     expect(placeState(place("house"), save)).toBe("closed");
+  });
+
+  it("every place a guest sees closed waits on the top talent, so «Save your character» is the step that opens it", () => {
+    const save = guest();
+    const closed = VILLAGE_PLACES.filter((p) => placeState(p, save) === "closed").map((p) => p.key);
+    expect(closed.sort()).toEqual(["coworking", "house", "market", "quest-board", "town-hall", "workshop"]);
+    expect(awaitingSave(save)).toBe(true);
+    // Saving the talent is what the first of them (Home, Quest Board) waits on; the rest wait on later steps.
+    expect(["house", "quest-board"].every((k) => place(k as VillagePlaceKey).rule.opens === "find-top-talent")).toBe(true);
   });
 
   it("Reception is no longer the glowing next move, and nothing else claims it", () => {

@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { FONTS_HREF } from "@/lib/gameFonts";
-import { shouldShowWordlessIntro } from "@/lib/firstVisit";
+import { readGuestTalentName, shouldShowWelcomeBack, shouldShowWordlessIntro } from "@/lib/firstVisit";
+import { tr } from "@/lib/villageCopy";
 import WordlessIntro from "@/components/game/WordlessIntro";
 import { journeyStepRows } from "@/lib/journeyLabels";
 import { useSceneSrc } from "@/lib/sceneSrc";
@@ -252,6 +254,7 @@ const PlatonicSolid = ({
 };
 
 const TitleScreen = () => {
+  const { t } = useTranslation();
   const reduceMotion = usePrefersReducedMotion();
   const heroSrc = useSceneSrc(HERO_SRC);
   const [active, setActive] = useState(0);
@@ -260,6 +263,9 @@ const TitleScreen = () => {
   // or into the Digital Village (/village) when a session already exists.
   const [loadTo, setLoadTo] = useState("/auth?mode=login");
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  // A guest who kept a result on this device is welcomed back instead of meeting the cold menu.
+  const [talent] = useState(() => (shouldShowWelcomeBack() ? readGuestTalentName() : null));
+  const continueRef = useRef<HTMLAnchorElement>(null);
 
   const items: MenuItem[] = [
     { key: "new", label: "New Game", hint: "Discover your Uniqueness", to: "/village/reception" },
@@ -314,6 +320,15 @@ const TitleScreen = () => {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (window.scrollY > window.innerHeight * 0.6) return;
+      if (talent) {
+        // One choice: Enter continues, nothing to move between.
+        if (e.key === "Enter" && !document.activeElement?.closest(".gt-menu")) {
+          e.preventDefault();
+          setStarted(true);
+          continueRef.current?.click();
+        }
+        return;
+      }
       if (e.key === "ArrowDown" || e.key === "ArrowUp") {
         e.preventDefault();
         setStarted(true);
@@ -338,7 +353,7 @@ const TitleScreen = () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("pointerdown", onPointer);
     };
-  }, [active, select]);
+  }, [active, select, talent]);
 
   return (
     <div className="gt-root">
@@ -357,6 +372,22 @@ const TitleScreen = () => {
             <h1>The Game of Being&nbsp;You</h1>
             <p className="gt-sub">Self-Discovery · Growth · Quality of Life · Uniqueness · Tribe · Village · Collective</p>
             </header>
+            {talent ? (
+              <nav className="gt-menu-wrap" aria-label={tr(t, "village.welcomeBack", "Welcome back")}>
+                <p className="gt-tagline gt-back">{tr(t, "village.welcomeBack", "Welcome back")}</p>
+                <p className="gt-tagline gt-back">
+                  {String(t("village.yourTalent", { name: talent, defaultValue: "Your top talent: {{name}}" }))}
+                </p>
+                <ul className="gt-menu">
+                  <li className="is-active">
+                    <Link ref={continueRef} to="/village">
+                      <span className="gt-cur" aria-hidden="true">▸</span>
+                      {tr(t, "village.continue", "Continue")}
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+            ) : (
             <nav className="gt-menu-wrap" aria-label="Game menu">
               <ul className="gt-menu">
                 {items.map((item, i) => {
@@ -402,6 +433,7 @@ const TitleScreen = () => {
               <hr className="gt-rule" />
               <p className="gt-tagline">Bring the full force of who you are to what you build.</p>
             </nav>
+            )}
           </div>
           <p className={`gt-start${started ? " is-gone" : ""}`} aria-hidden="true">PRESS START</p>
         </section>
