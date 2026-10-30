@@ -162,6 +162,16 @@
 .cs-domains li.is-weakest { color: var(--cs-ink); }
 .cs-domains li.is-weakest .cs-bar i { background: var(--cs-accent); height: 2px; top: -0.5px; }
 
+/* level month by month (#241): the player's own history, this month first */
+.cs-level__history { margin: 20px 0 12px; text-align: left; }
+.cs-history { list-style: none; margin: 8px 0 0; padding: 0; }
+.cs-history li {
+  display: flex; justify-content: space-between; gap: 14px; min-height: 34px; align-items: center;
+  border-top: 1px solid var(--cs-hair); font-family: var(--cs-mono); font-weight: 300; font-size: 12px;
+  letter-spacing: 0.12em; color: var(--cs-ink-3);
+}
+.cs-history li:first-child { color: var(--cs-ink); }
+
 /* inventory */
 .cs-list { list-style: none; margin: 0; padding: 0; }
 .cs-list li { border-top: 1px solid var(--cs-hair); }

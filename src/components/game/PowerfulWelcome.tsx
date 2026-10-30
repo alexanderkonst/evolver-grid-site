@@ -5,7 +5,8 @@ interface PowerfulWelcomeProps {
     firstName?: string | null;
     archetypeTitle?: string | null;
     corePattern?: string | null;
-    level?: number;
+    /** The one player level (QoL average); null until measured. */
+    level?: number | null;
     xpTotal?: number;
     streakDays?: number;
     totalActions?: number;
@@ -23,7 +24,7 @@ const PowerfulWelcome = ({
     firstName,
     archetypeTitle,
     corePattern,
-    level = 1,
+    level = null,
     xpTotal = 0,
     streakDays = 0,
     totalActions = 0,
@@ -36,7 +37,7 @@ const PowerfulWelcome = ({
         return "Good evening";
     }, []);
 
-    const progressPercent = Math.min((xpTotal / (level * 100)) * 100, 100);
+    const progressPercent = Math.min((xpTotal / ((level ?? 1) * 100)) * 100, 100);
 
     return (
         <div className="relative overflow-hidden rounded-3xl mb-8">
@@ -83,7 +84,7 @@ const PowerfulWelcome = ({
                     <div className="text-center">
                         <div className="flex items-center justify-center gap-1 text-white/80 mb-1">
                             <Star className="w-4 h-4" />
-                            <span className="text-lg sm:text-xl font-bold">{level}</span>
+                            <span className="text-lg sm:text-xl font-bold">{level ?? "–"}</span>
                         </div>
                         <p className="text-white/50 text-xs uppercase tracking-wide">Level</p>
                     </div>

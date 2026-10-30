@@ -1,46 +1,21 @@
 import { Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { formatNumber } from "@/i18n/format";
+import PlayerLevel from "@/components/game/PlayerLevel";
 
 interface MeSectionProps {
     archetypeTitle?: string;
-    level: number;
-    xpTotal: number;
-    xpToNextLevel?: number;
+    /** The one player level (QoL average); null until measured. Owner-only screen. */
+    level: number | null;
     displayName?: string;
     avatarUrl?: string | null;
 }
 
-// XP needed per level (simple curve)
-const XP_PER_LEVEL = [0, 100, 250, 500, 1000, 2000, 3500, 5500, 8000, 12000, 20000];
-
-const getXpForLevel = (level: number) => {
-    if (level < XP_PER_LEVEL.length) return XP_PER_LEVEL[level];
-    return XP_PER_LEVEL[XP_PER_LEVEL.length - 1] + (level - XP_PER_LEVEL.length + 1) * 5000;
-};
-
-// Calculate actual level from XP total (fixes mismatch between DB level and xpTotal)
-const getLevelFromXp = (xpTotal: number): number => {
-    let level = 1;
-    while (getXpForLevel(level) <= xpTotal && level < 100) {
-        level++;
-    }
-    return level;
-};
-
-const MeSection = ({ archetypeTitle, level: dbLevel, xpTotal, displayName, avatarUrl }: MeSectionProps) => {
+const MeSection = ({ archetypeTitle, level, displayName, avatarUrl }: MeSectionProps) => {
     const { t } = useTranslation();
-    // Use XP-derived level to avoid mismatch bugs
-    const level = getLevelFromXp(xpTotal);
-    const xpForCurrentLevel = getXpForLevel(level - 1);
-    const xpForNextLevel = getXpForLevel(level);
-    const xpInCurrentLevel = Math.max(0, xpTotal - xpForCurrentLevel);
-    const xpNeededForNext = xpForNextLevel - xpForCurrentLevel;
-    const progressPercent = Math.min(100, Math.max(0, (xpInCurrentLevel / xpNeededForNext) * 100));
 
     return (
         <div className="relative overflow-hidden rounded-xl liquid-glass ring-1 ring-white/10 p-5 mb-4 breathing-card">
-            <div className="flex items-center gap-3 mb-3">
+            <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-white/10 overflow-hidden flex items-center justify-center ring-1 ring-white/15">
                     {avatarUrl ? (
                         <img
@@ -67,23 +42,7 @@ const MeSection = ({ archetypeTitle, level: dbLevel, xpTotal, displayName, avata
                             t('meSection.discoverArchetype')
                         )}
                     </h2>
-                    <p className="text-sm text-white/50">
-                        {t('meSection.levelLine', { level, xp: formatNumber(xpTotal) })}
-                    </p>
-                </div>
-            </div>
-
-            {/* XP Progress Bar */}
-            <div className="mt-2">
-                <div className="flex justify-between text-xs text-white/30 mb-1">
-                    <span>{t('meSection.xpProgress', { current: formatNumber(xpInCurrentLevel), needed: formatNumber(xpNeededForNext) })}</span>
-                    <span>{t('meSection.levelNext', { next: level + 1 })}</span>
-                </div>
-                <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                    <div
-                        className="h-full bg-gradient-to-r from-[#8460ea] to-[#6894d0] rounded-full transition-all duration-500"
-                        style={{ width: `${progressPercent}%` }}
-                    />
+                    <PlayerLevel level={level} className="text-sm text-white/50" />
                 </div>
             </div>
         </div>

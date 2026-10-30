@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { formatNumber } from "@/i18n/format";
+import PlayerLevel from "@/components/game/PlayerLevel";
+import { usePlayerLevel } from "@/hooks/usePlayerLevel";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Sparkles, Target, Heart, TrendingUp, Zap, Gift } from "lucide-react";
@@ -34,6 +35,7 @@ import { PILLARS } from "@/modules/mission-discovery/data/pillars";
 const CharacterHub = () => {
     const navigate = useNavigate();
     const { t } = useTranslation();
+    const { level } = usePlayerLevel();
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState<any>(null);
     const [profile, setProfile] = useState<any>(null);
@@ -317,9 +319,7 @@ const CharacterHub = () => {
                         <h1 className="text-xl sm:text-2xl font-semibold text-white mb-1">
                             {profile?.first_name || user?.email?.split("@")[0] || t("characterHub.playerFallback")}
                         </h1>
-                        <p className="text-[#8460ea] text-sm">
-                            {t("characterHub.levelLine", { level: profile?.level || 1, xp: formatNumber(profile?.xp_total || 0) })}
-                        </p>
+                        <PlayerLevel level={level} className="text-[#8460ea] text-sm" />
                         {zogSnapshot?.archetype_title && (
                             <p className="text-[#a4a3d0] text-xs mt-1">{zogSnapshot.archetype_title}</p>
                         )}

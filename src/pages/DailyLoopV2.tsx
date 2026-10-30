@@ -1,32 +1,24 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import GameShellV2 from "@/components/game/GameShellV2";
 import MeSummary from "@/components/game/MeSummary";
 import MyLifeSummary from "@/components/game/MyLifeSummary";
-import NextMoveCard from "@/components/game/NextMoveCard";
+import PlayerNextMoveCard from "@/components/game/PlayerNextMoveCard";
 import EmptyStateCard from "@/components/game/EmptyStateCard";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { supabase } from "@/integrations/supabase/client";
-import { getRecommendedVector, STARTER_ACTIONS, type VectorId } from "@/lib/domainMapping";
-import { type UnifiedAction } from "@/types/actions";
-import { durationToBucket } from "@/lib/actionEngine";
+import { usePlayerLevel } from "@/hooks/usePlayerLevel";
 
 /**
  * DailyLoopV2 - Simplified Game Home using new ME / MY LIFE / MY NEXT MOVE layout
  * This is a test page for the new Daily Loop design
  */
 export default function DailyLoopV2() {
-    const navigate = useNavigate();
-    const { t } = useTranslation();
+    const { level } = usePlayerLevel();
 
     const [isLoading, setIsLoading] = useState(true);
-    const [profile, setProfile] = useState<any>(null);
     const [zogSnapshot, setZogSnapshot] = useState<any>(null);
     const [qolScores, setQolScores] = useState<any>(null);
-    const [nextAction, setNextAction] = useState<UnifiedAction | null>(null);
-    const [recommendedVector, setRecommendedVector] = useState<VectorId | null>(null);
 
     useEffect(() => {
         loadData();
@@ -45,7 +37,6 @@ export default function DailyLoopV2() {
                 .maybeSingle();
 
             if (!profileData) return;
-            setProfile(profileData);
 
             // Fetch ZoG snapshot if exists (using zog_snapshots table)
             if (profileData.last_zog_snapshot_id) {
@@ -66,7 +57,7 @@ export default function DailyLoopV2() {
                     .maybeSingle();
 
                 if (qol) {
-                    const scores = {
+                    setQolScores({
                         wealth: qol.wealth_stage,
                         health: qol.health_stage,
                         happiness: qol.happiness_stage,
@@ -75,44 +66,12 @@ export default function DailyLoopV2() {
                         growth: qol.growth_stage,
                         socialTies: qol.social_ties_stage,
                         home: qol.home_stage,
-                    };
-                    setQolScores(scores);
-
-                    // Get recommended action based on lowest domain
-                    const vector = getRecommendedVector(scores);
-                    setRecommendedVector(vector);
-
-                    if (vector) {
-                        const starter = STARTER_ACTIONS[vector];
-                        setNextAction({
-                            id: `starter:${vector}`,
-                            type: "practice",
-                            loop: "transformation",
-                            title: starter.title,
-                            duration: durationToBucket(starter.duration),
-                            whyRecommended: t('dailyLoop.whyRecommended', { vector }),
-                            source: "lib/domainMapping.ts",
-                            growthPath: vector,
-                        });
-                    }
+                    });
                 }
             }
         } finally {
             setIsLoading(false);
         }
-    };
-
-    const handleStart = () => {
-        // Navigate to library with recommended vector filter
-        if (recommendedVector) {
-            navigate(`/game/transformation/library?vector=${recommendedVector}`);
-        } else {
-            navigate("/game/transformation/library");
-        }
-    };
-
-    const handleExplore = () => {
-        navigate("/game/transformation/library");
     };
 
     if (isLoading) {
@@ -135,9 +94,7 @@ export default function DailyLoopV2() {
                 {hasZog ? (
                     <MeSummary
                         archetypeTitle={zogSnapshot?.archetype_title}
-                        level={profile?.level || 1}
-                        xpTotal={profile?.xp_total || 0}
-                        xpToNextLevel={100}
+                        level={level}
                     />
                 ) : (
                     <EmptyStateCard type="zog" />
@@ -150,15 +107,8 @@ export default function DailyLoopV2() {
                     <EmptyStateCard type="qol" />
                 ) : null}
 
-                {/* MY NEXT MOVE Section */}
-                {hasZog && hasQol && (
-                    <NextMoveCard
-                        action={nextAction}
-                        onStart={handleStart}
-                        onExplore={handleExplore}
-                        isLoading={false}
-                    />
-                )}
+                {/* MY NEXT MOVE Section: the same move the map card shows */}
+                <PlayerNextMoveCard />
             </div>
         </GameShellV2>
     );

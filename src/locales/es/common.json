@@ -7344,7 +7344,7 @@
     "level": {
       "title": "Nivel",
       "private": "Solo tú ves esto.",
-      "weakest": "Lo marca tu área más débil: {{domain}}",
+      "weakest": "Promedio de tus ocho áreas. La más débil: {{domain}}",
       "empty": "Aún sin medir",
       "cta": "Mapea tu calidad de vida"
     },
@@ -8902,6 +8902,31 @@
         "market": "Abre tu tienda.",
         "town-hall": "Construyan proyectos juntos."
       }
+    }
+  },
+  "playerNextMove": {
+    "go": "Abrir"
+  },
+  "playerLevel": {
+    "title": "Nivel",
+    "value": "Nivel {{level}} / 10",
+    "empty": "Nivel aún sin medir"
+  },
+  "playerMetrics": {
+    "level": {
+      "title": "Nivel"
+    },
+    "history": {
+      "title": "Mes a mes",
+      "value": "{{value}} / {{max}}",
+      "up": "Subió {{change}} desde tu último mes medido.",
+      "down": "Bajó {{change}} desde tu último mes medido.",
+      "same": "Igual que tu último mes medido."
+    },
+    "quest": {
+      "group": "Este mes",
+      "title": "Mide tu mes",
+      "doneWhen": "el nivel de este mes aparece en tu Casa."
     }
   }
 }

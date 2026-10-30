@@ -7379,7 +7379,7 @@
     "level": {
       "title": "Level",
       "private": "Only you see this.",
-      "weakest": "Set by your weakest area: {{domain}}",
+      "weakest": "Average of your eight areas. Weakest: {{domain}}",
       "empty": "Not measured yet",
       "cta": "Map your quality of life"
     },
@@ -8879,6 +8879,31 @@
         "market": "Open your shop.",
         "town-hall": "Build ventures together."
       }
+    }
+  },
+  "playerNextMove": {
+    "go": "Open"
+  },
+  "playerLevel": {
+    "title": "Level",
+    "value": "Level {{level}} / 10",
+    "empty": "Level not measured yet"
+  },
+  "playerMetrics": {
+    "level": {
+      "title": "Level"
+    },
+    "history": {
+      "title": "Month by month",
+      "value": "{{value}} / {{max}}",
+      "up": "Up {{change}} since your last measured month.",
+      "down": "Down {{change}} since your last measured month.",
+      "same": "Same as your last measured month."
+    },
+    "quest": {
+      "group": "This month",
+      "title": "Measure your month",
+      "doneWhen": "this month's level shows on your Home."
     }
   }
 }

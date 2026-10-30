@@ -1,29 +1,20 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { formatNumber } from "@/i18n/format";
 import { User } from "lucide-react";
+import PlayerLevel from "@/components/game/PlayerLevel";
 
 interface MeSummaryProps {
     archetypeTitle?: string | null;
-    level: number;
-    xpTotal: number;
-    xpToNextLevel?: number;
+    /** The one player level (QoL average); null until measured. Owner-only screen. */
+    level: number | null;
 }
 
 /**
  * MeSummary - Shows who I am at a glance
  * Part of Daily Loop home screen
  */
-export default function MeSummary({
-    archetypeTitle,
-    level,
-    xpTotal,
-    xpToNextLevel = 100,
-}: MeSummaryProps) {
+export default function MeSummary({ archetypeTitle, level }: MeSummaryProps) {
     const { t } = useTranslation();
-    // Calculate XP progress within current level
-    const xpInCurrentLevel = xpTotal % xpToNextLevel;
-    const progressPercent = (xpInCurrentLevel / xpToNextLevel) * 100;
 
     // Day 91 (Sasha 2026-06-09): tokenized for Aurum - lapis falls back to the original bg-white/80
     return (
@@ -39,24 +30,7 @@ export default function MeSummary({
                     <h2 className="text-lg font-bold text-[#2c3150] font-display truncate">
                         {archetypeTitle || t("meSummary.discovering")}
                     </h2>
-                    <p className="text-sm text-[var(--wabi-text-secondary)]">
-                        {t("meSummary.levelXp", { level, xp: formatNumber(xpTotal) })}
-                    </p>
-
-                    {/* XP Progress Bar */}
-                    <div className="mt-3 h-2 bg-[#a4a3d0]/20 rounded-full overflow-hidden">
-                        <div
-                            className="h-full bg-gradient-to-r from-[#8460ea] to-[#6894d0] transition-all duration-500"
-                            style={{ width: `${progressPercent}%` }}
-                        />
-                    </div>
-                    <p className="text-xs text-[var(--wabi-text-muted)] mt-1">
-                        {t("meSummary.progressToNext", {
-                            current: xpInCurrentLevel,
-                            target: xpToNextLevel,
-                            next: level + 1,
-                        })}
-                    </p>
+                    <PlayerLevel level={level} className="text-sm text-[var(--wabi-text-secondary)]" />
                 </div>
             </div>
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { formatNumber } from "@/i18n/format";
+import PlayerLevel from "@/components/game/PlayerLevel";
+import { usePlayerLevel } from "@/hooks/usePlayerLevel";
 import { useNavigate } from "react-router-dom";
 import { Sparkles, Clock, Zap, Leaf } from "lucide-react";
 import Navigation from "@/components/Navigation";
@@ -36,8 +37,7 @@ const TIME_OPTIONS = [
 const GameMap = () => {
     const navigate = useNavigate();
     const [playerName, setPlayerName] = useState<string>("");
-    const [playerLevel, setPlayerLevel] = useState<number>(1);
-    const [playerXP, setPlayerXP] = useState<number>(0);
+    const { level } = usePlayerLevel();
     const [activeQuest, setActiveQuest] = useState<ActiveQuest | null>(null);
     const [showQuestFilter, setShowQuestFilter] = useState(false);
     const [selectedTime, setSelectedTime] = useState<number | null>(null);
@@ -52,14 +52,12 @@ const GameMap = () => {
         const profileId = await getOrCreateGameProfileId();
         const { data: profile } = await supabase
             .from("game_profiles")
-            .select("first_name, xp_total, level, xp_body, xp_mind, xp_emotions, xp_spirit, xp_uniqueness, last_quest_title")
+            .select("first_name, xp_total, xp_body, xp_mind, xp_emotions, xp_spirit, xp_uniqueness, last_quest_title")
             .eq("id", profileId)
             .maybeSingle();
 
         if (profile) {
             setPlayerName(profile.first_name || "Player");
-            setPlayerLevel(profile.level || 1);
-            setPlayerXP(profile.xp_total || 0);
 
             // Calculate path progress (simplified - based on XP ratios)
             const totalPathXP = (profile.xp_body || 0) + (profile.xp_mind || 0) +
@@ -121,9 +119,7 @@ const GameMap = () => {
                         <h1 className="text-xl sm:text-2xl font-semibold text-white mb-1">
                             Welcome back, <span className="text-[#8460ea]">{playerName}</span>
                         </h1>
-                        <p className="text-[#a4a3d0] text-sm">
-                            Level {playerLevel} · {formatNumber(playerXP)} XP
-                        </p>
+                        <PlayerLevel level={level} className="text-[#a4a3d0] text-sm" />
                     </div>
 
                     {/* The Dodecahedron Map */}

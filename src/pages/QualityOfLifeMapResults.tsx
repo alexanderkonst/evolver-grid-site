@@ -995,7 +995,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
       {showOutro ? (
         <ModuleOutro
           module={QOL_MODULE}
-          result={qolResultText(Math.min(...domainResults.map((r) => r.stageValue)))}
+          result={qolResultText(Math.round(overallAverage * 10) / 10)}
         />
       ) : (
         <MatchFlowCta step="qol" />
