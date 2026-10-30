@@ -82,3 +82,33 @@ export function readGuestTopTalentPayload(): Record<string, unknown> | null {
 export function hasGuestTopTalentResult(): boolean {
   return readGuestTopTalentPayload() !== null;
 }
+
+/** The decorative glyphs the reveal strips from a talent name (see RevelatoryHero). */
+const stripDecorativeGlyphs = (name: string): string => name.replace(/[✦✧◆◇❖✱★☆]/g, "").trim();
+
+/**
+ * The name of the guest's top talent from the reading kept on this device
+ * (`vibrationalKey.name`, the same value the reveal shows), or null. Read-only.
+ */
+export function readGuestTalentName(): string | null {
+  const vk = readGuestTopTalentPayload()?.vibrationalKey;
+  const name = vk && typeof vk === "object" ? (vk as { name?: unknown }).name : null;
+  const clean = typeof name === "string" ? stripDecorativeGlyphs(name) : "";
+  return clean || null;
+}
+
+/**
+ * True on `/` for a returning guest: a finished reading with a talent name is kept on this
+ * device and no account session is stored. Synchronous (localStorage only), like the wordless
+ * intro check, so the welcome-back never flashes after the menu. A signed-in player has
+ * «Load game»; the signed-out keys are only ever read, never written.
+ */
+export function shouldShowWelcomeBack(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    if (window.localStorage.getItem("evolver-auth-token")) return false;
+  } catch {
+    return false;
+  }
+  return readGuestTalentName() !== null;
+}

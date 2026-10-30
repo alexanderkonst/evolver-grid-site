@@ -3314,6 +3314,9 @@
     "saveResult": "you'll keep your character, and Home opens.",
     "findTopTalent": "Find your top talent",
     "signIn": "I already live here → sign in",
+    "welcomeBack": "Welcome back",
+    "yourTalent": "Your top talent: {{name}}",
+    "continue": "Continue",
     "opened": {
       "default": "{{name}} is open."
     },

@@ -6,7 +6,7 @@ import SaveCharacterCta from "@/components/game/SaveCharacterCta";
 import { getJourneyModule, moduleText } from "@/data/journeyModules";
 import { getVillagePlace, sceneObjectPosition } from "@/data/villagePlaces";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
-import { hasGuestTopTalentResult } from "@/lib/firstVisit";
+import { hasGuestTopTalentResult, readGuestTalentName } from "@/lib/firstVisit";
 import { journeyOptionalWord } from "@/lib/journeyLabels";
 import { awaitingSave, placeSaveFromSheet } from "@/lib/placeState";
 import { journeyResultText, journeyRows, nextQuest, questRows } from "@/lib/questBoard";
@@ -37,6 +37,7 @@ const QuestBoard = () => {
   // A guest who has finished the test holds the reading on this device: the next move is to
   // save it, the same «Save your character» that Home shows (WP-7b).
   const guestResult = !sheet.isLoading && !sheet.userId && hasGuestTopTalentResult();
+  const guestTalent = guestResult ? readGuestTalentName() : null;
   const save = placeSaveFromSheet(sheet, new Date(), { "guest-result": guestResult });
   const saveFirst = awaitingSave(save);
   const journey = journeyRows(save, t);
@@ -70,6 +71,11 @@ const QuestBoard = () => {
           </h1>
           {sheet.isLoading ? null : saveFirst ? (
             <>
+              {guestTalent ? (
+                <p className="mf__silhouette">
+                  {String(t("village.yourTalent", { name: guestTalent, defaultValue: "Your top talent: {{name}}" }))}
+                </p>
+              ) : null}
               <p className="mf__silhouette">
                 {tr(t, "village.saveResult", "you'll keep your character, and Home opens.")}
               </p>
