@@ -23,8 +23,8 @@ import type { CSSProperties } from "react";
 /* ─── Constants: copy, price, CTA (single source of truth) ─── */
 const MASTERMIND_PRICE = "$222";
 /** Set to the checkout URL once decided. Empty → free live-session registration. */
-// TODO(Sasha): Stripe link for Mastermind $222
-const MASTERMIND_CTA_URL = "";
+// Stripe payment link from Sasha, 2026-10-30 (Founder-Market Fit Mastermind, $222, live mode).
+const MASTERMIND_CTA_URL = "https://buy.stripe.com/14AcN5aIAbCr8idh1CdEs0I";
 
 const MASTERMIND_COPY = {
   eyebrow: "Group Mastermind · Nov 9–10",
