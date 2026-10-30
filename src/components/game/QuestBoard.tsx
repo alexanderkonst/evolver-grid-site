@@ -42,6 +42,7 @@ const QuestBoard = () => {
   const journey = journeyRows(save, t);
   const quests = questRows(save, t);
   const next = nextQuest(save, t);
+  const doneWhenLabel = tr(t, "village.doneWhen.label", "Done when");
   const nextResult = next?.kind === "journey" ? journeyResultText(next.row.id, t) : "";
 
   return (
@@ -110,6 +111,11 @@ const QuestBoard = () => {
                         {r.optional ? ` (${journeyOptionalWord(t)})` : ""}
                       </Link>
                     )}
+                    {r.doneWhen ? (
+                      <p className="qb__done-when">
+                        <span className="qb__done-when-label">{doneWhenLabel}</span> {r.doneWhen}
+                      </p>
+                    ) : null}
                   </PlaceState>
                 ))}
               </ol>
@@ -129,6 +135,11 @@ const QuestBoard = () => {
                         {`${q.journey} · ${q.title}`}
                       </Link>
                     )}
+                    {q.doneWhen ? (
+                      <p className="qb__done-when">
+                        <span className="qb__done-when-label">{doneWhenLabel}</span> {q.doneWhen}
+                      </p>
+                    ) : null}
                   </PlaceState>
                 ))}
               </ol>

@@ -37,6 +37,8 @@ export type JourneyRow = {
   state: PlaceStateName;
   /** The closed line while `closed`, else empty. */
   line: string;
+  /** The clause after «Done when»: the checkable completion criterion. Empty when the step has none. */
+  doneWhen: string;
   to: string;
 };
 
@@ -48,6 +50,8 @@ export type QuestRow = {
   state: PlaceStateName;
   /** The closed line while `closed`, else what the quest asks. */
   line: string;
+  /** The clause after «Done when»: the checkable completion criterion. Empty when the quest has none. */
+  doneWhen: string;
   to: string;
 };
 
@@ -74,6 +78,7 @@ export const journeyRows = (save: PlaceSave, t?: TFunction): JourneyRow[] => {
       optional: !!item.optional,
       state,
       line: closed && item.lockedHint ? tr(t, `journeySteps.locked.${item.id}`, item.lockedHint) : "",
+      doneWhen: item.doneWhen ? tr(t, `village.doneWhen.${item.id}`, item.doneWhen) : "",
       to: item.enter ?? item.path,
     };
   });
@@ -90,6 +95,7 @@ export const questRows = (save: PlaceSave, t?: TFunction): QuestRow[] =>
       title: module ? moduleText(module, "headline", t) : id,
       state,
       line: state === "closed" ? moduleClosedLine(id, t) : questTaskText(module, t),
+      doneWhen: module?.quest?.doneWhen ? tr(t, `village.doneWhen.${id}`, module.quest.doneWhen) : "",
       to: questRoute(id),
     };
   });

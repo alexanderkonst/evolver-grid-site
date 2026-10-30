@@ -57,6 +57,19 @@ describe("Quest Board rows (WP-11)", () => {
     expect(questRows(sold).map((q) => q.state)).toEqual(["done", "done", "done", "done", "done"]);
   });
 
+  it("every row carries a short, checkable «Done when» clause (at most 12 words with the label)", () => {
+    const rows = [...journeyRows(emptyPlaceSave()), ...questRows(emptyPlaceSave())];
+    expect(rows).toHaveLength(10);
+    for (const r of rows) {
+      expect(r.doneWhen, r.id).not.toBe("");
+      const words = `Done when ${r.doneWhen}`.split(/\s+/).length;
+      expect(words, r.id).toBeLessThanOrEqual(12);
+      expect(r.doneWhen, r.id).not.toMatch(/\b(lock|gate|unlock|coming soon|xp|points?|streak)/i);
+    }
+    expect(journeyRows(emptyPlaceSave())[0].doneWhen).toBe("your top talent shows on your Home.");
+    expect(questRows(emptyPlaceSave())[4].doneWhen).toBe("a real person has paid you for your offer.");
+  });
+
   it("the next quest is the Journey's next step, then the first open real-world quest", () => {
     const first = nextQuest(emptyPlaceSave());
     expect(first?.kind).toBe("journey");
