@@ -8802,13 +8802,10 @@
       "eyebrow": "Your AI · the test",
       "yourQuestion": "Your question",
       "sameModel": "Same model on both sides. The only difference is what your AI carries.",
-      "whichApp": "Which chat app do you use?",
-      "step1": "Open a plain {{app}} chat and ask your question. Read the answer.",
-      "step2": "Open a new chat with your AI, then ask the same question.",
+      "step1": "Ask your question in a plain AI chat. Read the answer.",
       "step3": "Notice the difference.",
       "copyQuestion": "Copy my question",
       "copied": "Copied",
-      "open": "Open {{app}}",
       "rateQ": "How different is this, 1 to 10?",
       "rateOf": "{{n}} of 10",
       "thanks": "Thank you. You gave it {{rating}} of 10.",
@@ -8823,11 +8820,30 @@
       "naming": "Models have become alike. The difference is how well your AI knows you.",
       "why": "Why this works",
       "lives": "Always here, in the village, at Your AI. It grows as you play.",
-      "unlocks": "Take it into the chat app you already use.",
-      "privacy": "This copies your profile and Workshop work so you can paste it into your own AI. Nothing is sent anywhere until you paste.",
-      "privacyGuest": "This copies the AI OS prompt so you can paste it into your own AI. Nothing is sent anywhere until you paste.",
       "back": "Back to the village",
       "skills": "Skills for your AI"
+    },
+    "map": {
+      "aria": "What you can do in the village now",
+      "title": "What you can do now",
+      "loading": "Reading your village.",
+      "open": " (open)",
+      "closed": " (not open yet)",
+      "talentPlaceholder1": "Your top talent",
+      "talentPlaceholder2": "appears here",
+      "talentPlaceholder3": "after the Zone of Genius",
+      "do": {
+        "reception": "Find your top talent.",
+        "house": "See your crystal, mission and save file.",
+        "quest-board": "Pick your next quest.",
+        "cafe": "Meet people, professionally or simply.",
+        "coworking": "Find partners for the work.",
+        "fire-circle": "Join your Mastermind circle.",
+        "academy": "Grow in what matters most.",
+        "workshop": "Craft your offer.",
+        "market": "Open your shop.",
+        "town-hall": "Build ventures together."
+      }
     }
   }
 }

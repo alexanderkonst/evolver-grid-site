@@ -8,13 +8,11 @@
  */
 import { useCallback, useState } from "react";
 import { Navigate, useSearchParams } from "react-router-dom";
-import { useSessionUserId } from "@/hooks/useSessionUserId";
 import FamiliarAskScreen from "./screens/FamiliarAskScreen";
 import FamiliarIntroScreen from "./screens/FamiliarIntroScreen";
 import FamiliarOutroScreen from "./screens/FamiliarOutroScreen";
 import FamiliarRevealScreen from "./screens/FamiliarRevealScreen";
-import { getChatApp, getQuestion, setChatApp, setQuestion as storeQuestion } from "./storage";
-import type { ChatApp } from "./types";
+import { getQuestion, setQuestion as storeQuestion } from "./storage";
 import { useFamiliar } from "./useFamiliar";
 
 type Step = "intro" | "ask" | "reveal" | "outro";
@@ -29,19 +27,12 @@ const stepOf = (raw: string | null): Step | null => {
 const FamiliarPage = () => {
   const [params, setParams] = useSearchParams();
   const state = useFamiliar();
-  const userId = useSessionUserId();
-  const [app, setApp] = useState<ChatApp>(() => getChatApp());
   const [question, setQuestion] = useState<string>(() => getQuestion());
 
   const go = useCallback(
     (step: Step) => setParams(step === "intro" ? {} : { step }),
     [setParams],
   );
-
-  const chooseApp = (next: ChatApp) => {
-    setApp(next);
-    setChatApp(next);
-  };
 
   const requested = stepOf(params.get("step"));
   // An unknown ?step= is a bad link, not a screen: start at the Intro.
@@ -64,10 +55,10 @@ const FamiliarPage = () => {
     );
   }
   if (step === "reveal") {
-    return <FamiliarRevealScreen state={state} question={question} app={app} onApp={chooseApp} onNext={() => go("outro")} />;
+    return <FamiliarRevealScreen state={state} question={question} onNext={() => go("outro")} />;
   }
   if (step === "outro") {
-    return <FamiliarOutroScreen state={state} app={app} onApp={chooseApp} signedIn={!!userId} />;
+    return <FamiliarOutroScreen state={state} />;
   }
   return <FamiliarIntroScreen onStart={() => go("ask")} />;
 };

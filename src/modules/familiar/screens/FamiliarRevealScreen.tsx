@@ -1,8 +1,9 @@
 /**
  * Screen 3 · Reveal, `mode: "self"` (the guided self-experiment, no backend):
  *   1. ask the question in a plain chat
- *   2. ask the same question with your prompt
- *   3. notice the difference, rate it 1–10 (optional)
+ *   2. notice the difference, rate it 1–10 (optional)
+ * The «Ask my AI» hand-off to ChatGPT / Claude / Gemini is gone: Your AI lives inside the game
+ * (AskMyAiButton and buildFamiliarPrompt stay in the module, unused, for the in-game AI later).
  * Spec: docs/specs/ai-familiar/ai-familiar_tracker.md §1.3, §1 «Honest split». The rating goes to
  * `resonance_events` with `message_seen = "familiar reveal"`. «Hear why →» appears once the player
  * has rated, or says they would rather not.
@@ -10,14 +11,11 @@
 import { useId, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import AskMyAiButton from "../AskMyAiButton";
-import ChatAppPicker from "../ChatAppPicker";
 import GiftChips from "../GiftChips";
-import { chatAppName, chatAppUrl } from "../chatApps";
 import { copyText } from "../copyText";
 import { recordRating } from "../recordRating";
 import { getRating, setRating } from "../storage";
-import type { ChatApp, CompareResult, FamiliarState } from "../types";
+import type { CompareResult, FamiliarState } from "../types";
 import "@/components/game/ModuleForm.css";
 
 const MODE: CompareResult["mode"] = "self";
@@ -26,8 +24,6 @@ const RATINGS = Array.from({ length: 10 }, (_, i) => i + 1);
 type Props = {
   state: FamiliarState;
   question: string;
-  app: ChatApp;
-  onApp: (app: ChatApp) => void;
   onNext: () => void;
 };
 
@@ -43,7 +39,7 @@ const Step = ({ n, text, children }: { n: number; text: string; children?: React
   </li>
 );
 
-const FamiliarRevealScreen = ({ state, question, app, onApp, onNext }: Props) => {
+const FamiliarRevealScreen = ({ state, question, onNext }: Props) => {
   const { t } = useTranslation();
   const labelId = useId();
   const [questionCopied, setQuestionCopied] = useState(false);
@@ -51,7 +47,6 @@ const FamiliarRevealScreen = ({ state, question, app, onApp, onNext }: Props) =>
   const [pending, setPending] = useState<number | null>(null);
   const [note, setNote] = useState<string | null>(null);
   const [skipped, setSkipped] = useState(false);
-  const name = chatAppName(app);
 
   const copyQuestion = async () => {
     const ok = await copyText(question);
@@ -91,48 +86,21 @@ const FamiliarRevealScreen = ({ state, question, app, onApp, onNext }: Props) =>
           })}
         </p>
 
-        <ChatAppPicker
-          value={app}
-          onChange={onApp}
-          legend={t("familiar.reveal.whichApp", { defaultValue: "Which chat app do you use?" })}
-        />
-
         <ol className="m-0 mt-6 flex w-full max-w-md list-none flex-col gap-6 p-0">
           <Step
             n={1}
             text={t("familiar.reveal.step1", {
-              app: name,
-              defaultValue: "Open a plain {{app}} chat and ask your question. Read the answer.",
+              defaultValue: "Ask your question in a plain AI chat. Read the answer.",
             })}
           >
-            <span className="flex flex-wrap justify-center gap-2">
-              <button type="button" className="mf__choice-btn" style={{ marginTop: 0 }} onClick={copyQuestion}>
-                {questionCopied
-                  ? t("familiar.reveal.copied", { defaultValue: "Copied" })
-                  : t("familiar.reveal.copyQuestion", { defaultValue: "Copy my question" })}
-              </button>
-              <a
-                className="mf__choice-btn inline-flex items-center"
-                style={{ marginTop: 0 }}
-                href={chatAppUrl(app)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t("familiar.reveal.open", { app: name, defaultValue: "Open {{app}}" })} <span aria-hidden="true">↗</span>
-              </a>
-            </span>
+            <button type="button" className="mf__choice-btn" style={{ marginTop: 0 }} onClick={copyQuestion}>
+              {questionCopied
+                ? t("familiar.reveal.copied", { defaultValue: "Copied" })
+                : t("familiar.reveal.copyQuestion", { defaultValue: "Copy my question" })}
+            </button>
           </Step>
 
-          <Step
-            n={2}
-            text={t("familiar.reveal.step2", {
-              defaultValue: "Open a new chat with your AI, then ask the same question.",
-            })}
-          >
-            <AskMyAiButton state={state} app={app} />
-          </Step>
-
-          <Step n={3} text={t("familiar.reveal.step3", { defaultValue: "Notice the difference." })} />
+          <Step n={2} text={t("familiar.reveal.step3", { defaultValue: "Notice the difference." })} />
         </ol>
 
         {rating !== null ? (
