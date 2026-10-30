@@ -118,6 +118,49 @@ Describe A in the client's own words and B as what they will see and do. Name th
 
 **Open for Sasha:** the split; whether hosts must first go through the Mastermind; which cell is offered first (suggestion: PST 5 × live session, the same shift as the first video); what counts as proof before the first host case exists (only confirmed Proof Ledger rows).
 
+### 9. Ecosystem offer: all seven in every scale (2026-10-30)
+*Sasha's insight, October 30, 2026, refined with Evolver. Status: hypothesis until the Mastermind of Nov 9–10 gives the proof. No ecosystem has been approached.*
+
+**The core (Sasha, translated):** grow all seven parts in every scale. That is the main idea of the platform, the product and the game, so that every layer (a person, a practice, a community, an ecosystem) can use the one system. The key insight: founder-market fit, uniqueness, is the **binding node**. Almost nobody sees it, and those who work with uniqueness don't see that it unfolds into all seven civilizational parts.
+
+**One correction (Evolver):** an ecosystem doesn't buy "a more whole system"; that reads as "yours is incomplete". It buys **a result for its people**. The system they meet later, from inside, where it is recognized rather than sold.
+
+**What the short message still lacks**
+
+| # | What | Now | What to do |
+|---|---|---|---|
+| 1 | Proof | No numbers on people | Mastermind Nov 9–10 as the case: N people, each with profile, quest, match, first offer, plus 2–3 quotes |
+| 2 | Who first | "All ecosystems" | 3 ecosystems from adjacent cells of the who × what map, where the Market of geniuses is empty and members are alive |
+| 3 | Their pain, their words | Our language (parts, genius) | Per ecosystem: what hurts (members don't find their role, little inner economy, people leave after the event) |
+| 4 | A concrete pilot | No format, no terms | One Founder-Market Fit Circle (below); price and split are Sasha's |
+| 5 | A demo link | Scattered pages | One partner page: profile in 10 minutes + what the community gets |
+| 6 | Who Sasha is, in one line | Several versions | Pick one and hold it everywhere |
+
+**The offer (the seed at their scale): Founder-Market Fit Circle for their members**
+- 8–12 people, two live sessions plus a week of integration, led by Sasha.
+- Each member leaves with top talent, mission and a first offer of their gift.
+- The community gets a talent map of its people and matches inside it (who builds with whom, who is whose client).
+- Terms, Sasha's choice: first circle as a gift to the community for the case / members pay $222 and the community gets a share / the community pays for the circle.
+
+The seven-part system is not named in the message.
+
+**Message draft (after the Mastermind, EN):**
+> Hi [Name], I'm Aleksandr, I help founders find where their unique gift meets a market. [Community] gathers exactly the people who carry such gifts, and [their pain in their words].
+> Proposal: one Founder-Market Fit Circle for 8–12 of your members. Two live sessions, a week of integration. Each leaves with their top talent, mission and a first offer; you get a talent map of your community and matches inside it. Our last circle: [N people, N offers, one quote].
+> [Terms]. Open to a 20-min call next week? [link]
+
+**Order:** (1) Mastermind Nov 9–10 → numbers and quotes. (2) Sasha picks 3 ecosystems and the terms. (3) Evolver builds the partner page and fits the message to each; Sasha writes and sends.
+
+**Developed further (Evolver, 2026-10-30, hypotheses):**
+- **One asset, three scales, three buyers.** Founder buys their first offer; a practitioner (coach, mentor, host) buys a ready uniqueness module for their program (see §8 cell licence); an ecosystem buys a circle and a talent map of its people. The asset under all three is the same: the verified genius profile.
+- **The seven parts open by scale.** In a circle, the first four appear at once (Mirror: profile; Myth: the recognition; Path: the quest; Circle: the group itself). The Market of geniuses appears in the matches. Village and Federation appear only when several circles in one ecosystem connect; that is the second sale, not the first.
+- **First candidates (from the who × what map, not researched):** ecosystems at the Awakening × Innovation edge, where Sasha has most entries: e.g. Billion Dollar Impact / Maverick1000 (Stacey Lauren, Yanik Silver; live gift marketplace, community-partner model), physical hubs (Ubud, Canggu), Russian-speaking founder and New Earth spaces. Choice is Sasha's.
+- **Proof ledger per circle:** members' self-check before and after (cell licence §8 method), offers made, first money for the gift within 30 days, matches accepted. These four numbers are what the message's "[N]" becomes.
+
+**Where all workstreams converge:** the Mastermind of Nov 9–10 as the first seed, one circle where all seven appear in small scale. The game is its onboarding, the thesis needs its numbers, the ecosystem offer needs its case, the who × what map chooses who comes next, and the public diary tells its story. In substance they converge on one asset: the verified genius profile.
+
+Template: [ecosystem-offer.md](../../templates/ecosystem-offer.md). Method in the playbook: "The Ecosystem Offer: seven in every scale".
+
 ## ⭐ Business Case — The Webinar Engine v1 (Sasha, October 22, 2026)
 
 *Filed from Sasha's own words in chat, October 22, 2026 (18:10 CDMX). This is the group lane of the business; Funnel v5 (Reading-first, below) stays the 1:1 LinkedIn lane, and the two feed each other. First run: the free live session, moved by Sasha on 2026-10-25 from Oct 28 to **Wed Nov 4, 2026, 9:00–10:30 CDMX** (Luma qpogt17o) → **Founder-Market Fit Discovery Mastermind, Mon–Tue Nov 9–10, 2026, $222, recording included**. Goal: make this a repeatable engine, run cycle after cycle, with more and more ways to fill the room (communities first).*

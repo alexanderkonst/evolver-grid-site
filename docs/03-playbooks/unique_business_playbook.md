@@ -131,6 +131,24 @@ Rows are shifts; columns are paths ordered from light to deep; each product is a
 
 **7. Sales language A → B.** Describe A in the client's own words and B as what they will see and do. Name the path between them later, after entry.
 
+## The Ecosystem Offer: seven in every scale (2026-10-30)
+
+> *Sasha's insight, October 30, 2026: grow all seven parts (Mirror, Myth-initiation, Path, Circle, Market of geniuses, Village, Federation) in every scale; uniqueness, founder-market fit, is the binding node. Worked example: `alexanders_unique_business.md`, Product Map §9.*
+
+**1. The binding node.** Every community, school or ecosystem already grows some of the seven parts. What almost none of them has is the node that ties them: each member's uniqueness made into an offer. Those who work with uniqueness rarely see that it unfolds into all seven.
+
+**2. Sell the result, not the system.** An ecosystem buys a result for its people. "A more whole system" reads as "yours is incomplete". The system is met from inside, in the work, where it is recognized.
+
+**3. The seed at their scale.** The first offer is one circle for their members, not a platform: each member leaves with top talent, mission and a first offer; the community gets a talent map and matches inside it. Later parts (Village, Federation) open only when several circles connect, which is the second sale.
+
+**4. Proof before the message.** The message carries numbers from a real circle: members, offers made, first money for the gift, matches accepted, one quote. Without them the message waits.
+
+**5. Three ecosystems, chosen on the map.** Pick from adjacent cells of the who × what map (six currents × seven parts), where the Market of geniuses is thin and members are alive. Name each one's pain in its own words.
+
+**6. The founder writes, as a sovereign.** The founder sends the message personally and sets the terms (gift circle for the case, revenue share, or paid circle). Agents prepare the page and fit the words.
+
+Template: [ecosystem-offer.md](../templates/ecosystem-offer.md).
+
 ## The deepest claim: ignorance-stuckness eliminated
 
 Founders are blocked by two kinds of stuckness — *ignorance* ("I don't know what to do") and *inner challenge* ("I know what to do but something inside resists"). The Integrated Stack eliminates the first kind structurally. The playbook tells you what to do; the builder gives you a working draft; Linguistic Synthesis (Phase Shift Technology 82) keeps the output simple-not-simplistic; the improve loop pushes specificity up and refuses to ship if it doesn't.

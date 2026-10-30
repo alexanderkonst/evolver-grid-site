@@ -15,6 +15,7 @@ Reusable methods for producing things from Sasha's work: one file per template, 
 | [roasting.md](./roasting.md) | The next version of anything: critique rounds without fixing (fidelity), the crash-test (viability), roast gates in builds, the live roast after a publish; synthesized from 5 sources | in use (Appleseed, `deepen-*`, roast gates, live roasts) |
 | [shift-offer.md](./shift-offer.md) | One offer sheet per template, module or product: Point A in their words, what they will see and do at B, the line «Ты увидишь… и сделаешь…» / "You will see… and you will…", a self-checkable promise, price by depth of shift; carries PST 173 | draft (applied to the game modules, `game_of_being_you.md` §17, 2026-10-27); guarantee fork open for Sasha |
 | [product-map.md](./product-map.md) | A whole business as one map: its niche of shifts (consciousness / physical reality) down the side, replicable and simplified paths by depth across the top (video, game module, session, mastermind), each cell one Shift Offer, with four checks; carries PST 174 | draft (worked example from `game_of_being_you.md` §17, 2026-10-28) |
+| [ecosystem-offer.md](./ecosystem-offer.md) | One short proposal from a sovereign founder to an existing ecosystem: six gates (proof, who, their pain, pilot, demo, one line), the circle offer shape, a message skeleton under 90 words, what comes after a yes; carries "all seven in every scale" | draft (FYTT, 2026-10-30; waits for Mastermind proof) |
 
 *Folder created 2026-10-27 (Sasha: «IMPORTANT»).*
 
