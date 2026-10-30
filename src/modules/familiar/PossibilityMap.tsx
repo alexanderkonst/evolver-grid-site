@@ -12,7 +12,11 @@ import { useSessionUserId } from "@/hooks/useSessionUserId";
 import { hasGuestTopTalentResult } from "@/lib/firstVisit";
 import { closedLine, nextMoveCopy, placeSaveFromSheet } from "@/lib/placeState";
 import { placeName, tr } from "@/lib/villageCopy";
-import { buildPossibilityMap } from "./possibilityMap";
+import { CENTRE_RADIUS, buildPossibilityMap, wrapCentreText } from "./possibilityMap";
+
+/** Centre label: line height as a share of the type size, and the widest line (in characters) the ring takes. */
+const CENTRE_LEADING = 1.2;
+const CENTRE_MAX_CHARS = 14;
 
 const PossibilityMap = () => {
   const { t } = useTranslation();
@@ -36,13 +40,25 @@ const PossibilityMap = () => {
   const talent = sheet.topTalent?.trim();
   const move = map.next ? nextMoveCopy(map.next, t) : null;
 
+  // The ring holds a few short lines. Wrap the text to the ring; more lines mean smaller type.
+  const centreLines = talent
+    ? wrapCentreText(talent, CENTRE_MAX_CHARS)
+    : [
+        t("familiar.map.talentPlaceholder1", { defaultValue: "Your top talent" }),
+        t("familiar.map.talentPlaceholder2", { defaultValue: "appears here" }),
+        t("familiar.map.talentPlaceholder3", { defaultValue: "after the Zone of Genius" }),
+      ].flatMap((line) => wrapCentreText(line, CENTRE_MAX_CHARS));
+  const centreSize = centreLines.length <= 2 ? 3.4 : centreLines.length === 3 ? 3 : centreLines.length === 4 ? 2.7 : 2.3;
+  const centreLead = centreSize * CENTRE_LEADING;
+  const centreTop = 50 - ((centreLines.length - 1) * centreLead) / 2;
+
   return (
     <section className="mt-8 flex w-full max-w-md flex-col items-center" aria-label={t("familiar.map.aria", { defaultValue: "What you can do in the village now" })}>
       <h2 className="mf__badge-name" style={{ margin: 0 }}>
         {t("familiar.map.title", { defaultValue: "What you can do now" })}
       </h2>
 
-      <svg viewBox="0 0 100 100" className="mt-4 w-full max-w-[340px]" role="img" aria-hidden="true" focusable="false">
+      <svg viewBox="0 0 100 100" className="mt-4 w-full max-w-[400px]" role="img" aria-hidden="true" focusable="false">
         {map.houses.map((h) => (
           <line
             key={`ray-${h.place.key}`}
@@ -76,17 +92,13 @@ const PossibilityMap = () => {
             </text>
           </g>
         ))}
-        <circle cx={50} cy={50} r={11} fill="rgba(var(--scene-bg-rgb), 0.6)" stroke="var(--open-accent)" strokeWidth={0.6} />
-        <text x={50} y={talent ? 51 : 47.6} textAnchor="middle" fontSize={talent ? 3.4 : 2.7} fill="var(--vl-ink)">
-          {talent ? (
-            talent
-          ) : (
-            <>
-              <tspan x={50}>{t("familiar.map.talentPlaceholder1", { defaultValue: "Your top talent" })}</tspan>
-              <tspan x={50} dy={3.4}>{t("familiar.map.talentPlaceholder2", { defaultValue: "appears here" })}</tspan>
-              <tspan x={50} dy={3.4}>{t("familiar.map.talentPlaceholder3", { defaultValue: "after the Zone of Genius" })}</tspan>
-            </>
-          )}
+        <circle cx={50} cy={50} r={CENTRE_RADIUS} fill="rgba(var(--scene-bg-rgb), 0.6)" stroke="var(--open-accent)" strokeWidth={0.6} />
+        <text textAnchor="middle" dominantBaseline="central" fontSize={centreSize} fill="var(--vl-ink)">
+          {centreLines.map((line, i) => (
+            <tspan key={i} x={50} y={centreTop + i * centreLead}>
+              {line}
+            </tspan>
+          ))}
         </text>
       </svg>
 

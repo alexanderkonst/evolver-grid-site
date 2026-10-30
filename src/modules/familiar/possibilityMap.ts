@@ -46,6 +46,23 @@ export type PossibilityMap = {
 
 const RADIUS = 38;
 
+/** The centre ring's radius in the 100 × 100 box; the nearest house sits 38 from the centre. */
+export const CENTRE_RADIUS = 16;
+
+/**
+ * Break a centre label into lines of at most `maxChars` characters (a word longer than that keeps its
+ * own line). Words are never cut, so every translation stays whole; the caller sizes the type to the lines.
+ */
+export const wrapCentreText = (text: string, maxChars: number): string[] => {
+  const lines: string[] = [];
+  for (const word of text.trim().split(/\s+/).filter(Boolean)) {
+    const last = lines[lines.length - 1];
+    if (last !== undefined && last.length + 1 + word.length <= maxChars) lines[lines.length - 1] = `${last} ${word}`;
+    else lines.push(word);
+  }
+  return lines;
+};
+
 /** Houses evenly round the centre, the first straight up, clockwise. */
 export const rayPoint = (index: number, total: number): { x: number; y: number } => {
   const angle = (index / total) * 2 * Math.PI - Math.PI / 2;
