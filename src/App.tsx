@@ -83,6 +83,8 @@ import { pathUsesLayoutShell, pathHidesLogo, zogEntryRedirectTarget, ZOG_ENTRY_P
 import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
 import IgniteSession from "./pages/IgniteSession";
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
+// Your AI (village place `oracle`): carries the 5,400-word AI OS prompt, so it loads on demand.
+const FamiliarPage = lazy(() => import("./modules/familiar/FamiliarPage"));
 const Mastermind = lazy(() => import("./pages/Mastermind"));
 const EvolutionPortal = lazy(() => import("./pages/EvolutionPortal"));
 const EvolutionPortalKarime = lazy(() => import("./pages/EvolutionPortalKarime"));
@@ -600,6 +602,8 @@ const App = () => (
                       stale links. /ai-os/pricing kept for the Holonic Commons
                       tip / patronage flow (no auth needed).  */}
                   <Route path="/ai-os" element={<GameShellV2><AiOsPage /></GameShellV2>} />
+                  {/* Your AI (game v1, issue #224): the village place `oracle`. Open to guests. */}
+                  <Route path="/game/your-ai" element={<GameShellV2><FamiliarPage /></GameShellV2>} />
                   <Route path="/ai-os/auth" element={<Navigate to="/ai-os" replace />} />
                   {/* Day 54+ (Sasha 2026-04-28): /ai-os/pricing renamed to
                       /ai-os/work-with-us. The page no longer leads with

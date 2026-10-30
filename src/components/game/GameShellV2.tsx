@@ -761,6 +761,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             collaborate: "collaborate",
             build: "build",
             marketplace: "buysell",
+            // Your AI (village place `oracle`) shares the AI OS pane.
+            "your-ai": "ai-os",
             // Legacy redirects (for backwards compatibility)
             me: "grow",
             profile: "grow",

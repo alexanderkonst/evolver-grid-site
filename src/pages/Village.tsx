@@ -78,6 +78,12 @@ import "./Village.css";
 type Direction = "left" | "right" | "up" | "down";
 
 const HOUSE_PLACE = "house";
+
+/**
+ * Where a pin or list row goes. Every place opens its scene first, except Your AI: it is a
+ * place of the game itself, open to guests, so its pin goes straight to /game/your-ai.
+ */
+const pinTo = (p: VillagePlace) => (p.key === "oracle" ? p.to : `/village/${p.key}`);
 const RECEPTION_INDEX =VILLAGE_PLACES.findIndex((p) => p.key === "reception");
 const ASPECT = VILLAGE_MAP.width / VILLAGE_MAP.height;
 
@@ -482,7 +488,7 @@ const Village = () => {
                               pinRefs.current[i] = el;
                             }}
                             className="vl-pin__link"
-                            to={`/village/${p.key}`}
+                            to={pinTo(p)}
                             onMouseEnter={() => select(i)}
                             onFocus={() => select(i)}
                           >
@@ -547,7 +553,7 @@ const Village = () => {
             <ul>
               {VILLAGE_PLACES.map((p, i) => (
                 <PlaceState key={p.key} as="li" state={shown[i]} className={`${isNew(p) ? "is-new" : ""} ${isRevealed(p) ? "is-reveal" : ""} ${isLit(p) ? "is-lit" : ""}`.trim().replace(/\s+/g, " ") || undefined} tag={false} disabled={false}>
-                  <Link to={`/village/${p.key}`}>
+                  <Link to={pinTo(p)}>
                     <span className="vl-list__name">{placeName(p, t)}</span>
                     <PlaceStateTag state={shown[i]} />
                     {isNew(p) ? <NewTag /> : null}

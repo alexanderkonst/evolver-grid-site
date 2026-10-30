@@ -9,7 +9,7 @@ describe("rail places", () => {
       "Reception",
       "Home",
       "Quest Board",
-      "Oracle",
+      "Your AI",
       "Café",
       "Co-working",
       "Mastermind",
