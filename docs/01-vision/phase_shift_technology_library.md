@@ -9400,6 +9400,12 @@ Other prisms of the same cycle: **4** (seasons, elements); **8** (7+1, two squar
 - **2nd order.** The maps produce a list of real people already making the turn in every niche. They are the natural tribe of the new economy: a community, a club, a venture studio (form to emerge; Sasha's broad strokes, Oct 29). Any outreach waits for Sasha's yes.
 - **3rd order.** A living atlas of the planetary economy turning inside out, the Golden Age map (Technology 78) drawn with real company names, which updates as each niche turns.
 
+### 🫀 Refinement — from direction to resolution (Sasha, Oct 29, 2026, 22:23 CST)
+
+> «еще и в том, что у нас появляется контроль - не просто что вся экономика пройдет такой сдвиг, а вообще ясность про КАЖДУЮ микро отрасль и нишу - что с ней скорее всего произойдет. А это самый крутой инвестиционный тезис на планете.»
+
+**AI draft:** the leap is resolution: from "the economy turns inward" to a forecast per micro-industry and niche. Honest edges: it is a probabilistic map, not control; direction without timing does not yet make an investment edge; the claim becomes investable once dated calls per niche are logged and later scored (a track record), the same discipline as dated, scored deal flow.
+
 ### Shape
 
 - **Shape:** **Fractal map with a glowing turn**: the familiar market-map grid, sector boxes nesting into niches, where each logo carries a small arrow showing how far it has turned from outer to inner and back out.
