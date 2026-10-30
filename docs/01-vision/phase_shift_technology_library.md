@@ -9404,3 +9404,37 @@ Other prisms of the same cycle: **4** (seasons, elements); **8** (7+1, two squar
 - *Technology 166: Everyone Looks at Self-Governance, I Look at the Economy*: economy first.
 - `docs/ai/market_maps_2026-10.md`: the first pass, AI market maps 2025–Oct 2026.
 
+---
+
+## Technology 178: The Workstream Wall (окна потоков, которые ИИ открывает и закрывает сам) (oral, Oct 29, 2026)
+
+> *Oral · October 29, 2026 · chat with Hark, after a day of many parallel threads in one Hark chat. Sasha: «у меня идёт поток, трансмиссия про экраны, про интерфейсы». Feature list in `docs/specs/ai-familiar/ai-familiar_tracker.md` §17. Builds on Technology 176 (We Are Not Model Makers, We Are the Interface).*
+
+### 🫀 Essence — in Sasha's words
+
+> «Если бы мои отдельные нити разговора были на одном экране, как несколько окон, и эти окна сами по себе появлялись — искусственный интеллект бы их создавал по ходу дела и закрывал, когда закрывается какой-то воркстрим, — чтобы эти воркстримы в реальном времени происходили… А если бы я ещё мог их тачскрином управлять… как в Minority Report стоял перед ним и двигал вещи… В Network School стоял большой вертикальный тачскрин с виджетом Luma, где можно пролистать все ивенты дня… мне кажется, это как раз и есть рабочий интерфейс взаимодействия с искусственным интеллектом. И так как интерфейс в перспективе исчезает, интерфейса нет, когда он не необходим.»
+> — *chat of 2026-10-29, 18:52 CST*
+
+*(translation)* "If my separate threads were on one screen as windows that appear by themselves, the AI creating them as we go and closing them when a workstream closes, happening in real time... and if I could move them by touch, standing before it as in Minority Report... At Network School there was a big vertical touchscreen with a Luma widget showing all the day's events... that is the working interface with AI. And since the interface disappears, there is no interface when it isn't needed."
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* Chat is a single line of time, but a founder's mind runs many threads at once. A long chat forces him to scroll back through time to find a thread; a projects folder forces him to open each box to see its state. The next interface turns this inside out: the threads are laid out in space, each one a living window with its state and next step, and the AI itself opens a window when a stream is born and closes it when the stream is done. The person stops managing the interface; the interface follows the shape of his attention. That is the disappearing interface in practice: nothing stays on the wall that doesn't need him.
+
+### 🔥 Implications — AI draft
+
+- **1st order.** In our product, workstreams show as tiles on one surface, created and closed by the AI, with bookmarks inside long conversations.
+- **2nd order.** Spatial surfaces (touch tables, standing walls, holographic and 3D headsets) become the natural home for this wall: threads you can see and move with your hands.
+- **3rd order.** The interface becomes a live map of a person's attention and work, and dissolves into the environment when nothing needs them.
+
+### Shape
+
+- **Shape:** **The Living Wall**: a person standing before a glowing surface where threads float as panels, new ones lighting up, finished ones fading away.
+- **Infographic (one line):** Left, a long scrolling chat column with a tired thumb; right, the same threads as luminous windows on a wall, one appearing, one dissolving; caption: from a line of time to a field of streams.
+
+### Cross-references — Connects to
+
+- *Technology 176: We Are Not Model Makers, We Are the Interface*.
+- *Technology 177: Market Maps as an X-ray of the Inner Turn*: same method, map first, then the future reveals itself.
+- `docs/specs/ai-familiar/ai-familiar_tracker.md` §17: feature backlog F1–F5.
+

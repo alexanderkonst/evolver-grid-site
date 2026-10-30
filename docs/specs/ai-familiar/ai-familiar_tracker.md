@@ -300,3 +300,22 @@ Consequence: Genie and Genius carry guardian-spirit energy (Galland rendered jin
 - **Rejected:** "your own ChatGPT" = the player pastes a personal prompt into their existing ChatGPT / Claude / Gemini. We never send the player out to another AI; we bring them into ours so they stay and use it.
 - **Stance:** the model under the hood is not the player's concern and is not named (as Hark does). Our product is the interface, and the best interface disappears while the function stays (Jobs). The pumpkin becomes the carriage: AI OS turns out to be an invisible interface to AI (library: *Technology 176*).
 - **Consequences for the build (pending re-scope, nothing started):** Task A's "Ask my AI = copy prompt + open external app" is superseded as the main path; the ask/answer happens in-game, with AI OS + top talent + business as the AI's memory. Model ladder §10, rung 1 (free prompt into external apps) drops to an export option at most; rungs 2–3 (in-game model) become v1's core, which brings model cost and the Lovable deploy into v1 → **needs Sasha's money/deploy decision** before building.
+
+## 17. Interface features backlog: the next AI interface (Sasha, 2026-10-29 18:52) — living list
+
+> «Мы с тобой будем повторять Hark строить, и я буду добавлять фичи, которые мне кажутся фичами следующего интерфейса… пока ты это просто записывай.»
+
+Sasha's live transmission. We build the interface, not models (§16), so this list grows. Status of every item: **idea, not scoped**. Source of pain: his own daily use of Hark.
+
+| # | Feature | Pain / why | Notes |
+|---|---|---|---|
+| F1 | **Bookmarks in one chat** | One long chat births many ideas; he keeps scrolling back to find a thread. | Mark a moment, jump back to it in one tap. |
+| F2 | **Workstreams as live windows on one screen** | Projects are a separate section: he'd have to click into each to see its state, and the chat list keeps reordering, so he scrolls and switches context, burning attention. | Each workstream is a window/tile on one screen, showing its state and next step in real time. |
+| F3 | **The AI opens and closes the windows itself** | He thinks in parallel threads; managing them by hand is overhead. | A window appears when a new workstream is born in conversation and closes when the stream completes. Interface exists only while needed (disappearing interface, §16). |
+| F4 | **Touch and spatial control** | Natural mode: moving things with hands. | Tablet lying horizontally in front of him, or a standing screen à la *Minority Report*, dragging threads around. |
+| F5 | **The standing wall of events** | Reference: Network School (Balaji, Malaysia) had a big vertical touchscreen stand running a Luma widget: scroll the day's events, tap into one. | Sasha: "that is the working interface with AI." A wall of live workstreams, not a chat list. |
+
+**Interface surfaces to compare (his list, to map evolutionarily):** iPad-class touchscreen (high response quality, ergonomics) · *Minority Report* floating transparent or holographic panels (liquid-glass-like, physical or purely holographic) · AR/VR glasses: Meta (popular in ads; real quality unverified) and Apple Vision Pro (striking quasi-3D; seeing the interface in 3D feels harmonious, as close to how we see reality as it gets).
+
+**Method (Sasha):** first the evolutionary map of interfaces, then the future reveals itself from the map, the way Asimov's psychohistory reads where things are going. Next step proposed by Hark: an interface holomap (stages 1→4) in `docs/ai/`, from which F1–F5 and future features fall out.
+
