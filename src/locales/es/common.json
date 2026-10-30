@@ -1251,6 +1251,7 @@
   "playbookHero": {
     "primaryCtaLabel": "Encuentra tu talento principal",
     "metaLine": "Gratis · 2 minutos · Sin registro",
+    "metaLineSignedIn": "Gratis. Unos 2 minutos.",
     "secondaryCtaLabel": "Ver el playbook exacto"
   },
   "journey": {
@@ -3459,7 +3460,8 @@
     "tensionLine": "La mayoría de las plataformas te aplanan en cargos, currículums y palabras clave",
     "bridge": "Unas pocas preguntas simples. Tu talento en palabras exactas, en dos minutos. Luego presentaciones a personas cuyo trabajo complementa el tuyo, con la colaboración ya definida",
     "ctaLabel": "Encuéntrame socios",
-    "microcopy": "Gratis · 2 minutos · Sin registro para empezar"
+    "microcopy": "Gratis · 2 minutos · Sin registro para empezar",
+    "microcopySignedIn": "Gratis. Unos 2 minutos."
   },
   "onboarding": {
     "step1Label": "Genio",

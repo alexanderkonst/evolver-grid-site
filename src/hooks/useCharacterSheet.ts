@@ -119,11 +119,13 @@ async function loadSheet(): Promise<CharacterSheetData> {
     if (!user) return EMPTY;
 
     // Read-only lookup; the sheet never creates a profile.
-    const { data: profile } = await supabase
+    const { data: profile, error: profileError } = await supabase
         .from("game_profiles")
         .select("*")
         .eq("user_id", user.id)
         .maybeSingle();
+    // A failed profile read must not pass for «no profile»: the rest of the sheet would read empty.
+    if (profileError) throw profileError;
 
     const profileId = profile?.id ?? null;
     // soul_colors is not in the generated types (CharacterHub casts the same way).
@@ -208,6 +210,7 @@ async function loadSheet(): Promise<CharacterSheetData> {
 export function useCharacterSheet() {
     const [data, setData] = useState<CharacterSheetData>(EMPTY);
     const [isLoading, setIsLoading] = useState(true);
+    const [loadFailed, setLoadFailed] = useState(false);
     const [justCompleted, setJustCompleted] = useState<Set<JourneyItemId>>(new Set());
     const { completion, isLoading: chainLoading, recheck } = useJourneyCompletion();
     // Completion state we have already shown; seeded from the cross-visit cache.
@@ -216,8 +219,11 @@ export function useCharacterSheet() {
     const refresh = useCallback(async () => {
         try {
             setData(await loadSheet());
+            setLoadFailed(false);
         } catch {
             // Silent fail, as ProfileOverview always did: an empty sheet is a valid sheet.
+            // `loadFailed` tells a consumer that «empty» here means «unread», not «nothing done».
+            setLoadFailed(true);
         } finally {
             setIsLoading(false);
         }
@@ -270,5 +276,5 @@ export function useCharacterSheet() {
         };
     });
 
-    return { ...data, chain, isLoading: isLoading || chainLoading, refresh };
+    return { ...data, chain, isLoading: isLoading || chainLoading, loadFailed, refresh };
 }

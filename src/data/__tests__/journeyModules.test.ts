@@ -15,6 +15,7 @@ import {
   journeyStepOf,
   moduleClosedLine,
   moduleHasRequirements,
+  moduleIntroRead,
   moduleIntroState,
   moduleResultText,
   qolResultText,
@@ -109,6 +110,26 @@ describe("journey modules (WP-5 module form)", () => {
     expect(isValidRating(7.5)).toBe(false);
     expect(isValidRating("7")).toBe(false);
     expect(isValidRating(null)).toBe(false);
+  });
+});
+
+describe("moduleIntroRead (a slow or failed read is never «closed»)", () => {
+  // Every chain step reads undone until the sheet has loaded, so an unread save looks closed.
+  const unread = emptyPlaceSave();
+
+  it("still loading: map-assets reads open, not closed", () => {
+    expect(moduleIntroState("map-assets", unread)).toBe("closed");
+    expect(moduleIntroRead("map-assets", { isLoading: true }, unread)).toBe("open");
+  });
+
+  it("a failed read reads open, not closed", () => {
+    expect(moduleIntroRead("map-assets", { isLoading: false, loadFailed: true }, unread)).toBe("open");
+  });
+
+  it("a loaded read still says closed, and done stays done", () => {
+    expect(moduleIntroRead("map-assets", { isLoading: false, loadFailed: false }, unread)).toBe("closed");
+    const all = JOURNEY_MAIN.map((i) => i.id);
+    expect(moduleIntroRead("map-assets", { isLoading: false }, saveWith(all))).toBe("done");
   });
 });
 

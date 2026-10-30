@@ -51,6 +51,7 @@ import {
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import { OPEN_CHAT_EVENT } from "@/components/ChatLauncher";
 import SiteLogo from "@/components/SiteLogo";
+import { placeTagline } from "@/lib/villageCopy";
 // hls.js is dynamically imported inside MuxVideoBackground to avoid module-level crashes
 import { useToast } from "@/hooks/use-toast";
 
@@ -844,6 +845,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // The place the player stands in: the path decides first, the pane second.
     const activePlace = activePlaceKey(location.pathname, activeSpaceId);
     const activePlaceData = RAIL_PLACES.find((p) => p.key === activePlace);
+    // A signed-in player never reads «Welcome, guest» (Reception has a returning line).
+    const activePlaceLine = activePlaceData ? placeTagline(activePlaceData, t, !!user) : undefined;
 
     // Load profile
     const loadProfile = async (userId: string) => {
@@ -1683,7 +1686,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     <SectionsPanel
                         activeSpaceId={activeSpaceId}
                         placeName={activePlaceData?.name}
-                        placeLine={activePlaceData?.line}
+                        placeLine={activePlaceLine}
                         onSectionSelect={handleSectionSelect}
                         onClose={toggleSectionsPanel}
                         className="h-full w-[260px]"
@@ -1911,7 +1914,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         <SectionsPanel
                             activeSpaceId={activeSpaceId}
                             placeName={activePlaceData?.name}
-                            placeLine={activePlaceData?.line}
+                            placeLine={activePlaceLine}
                             onSectionSelect={handleSectionSelect}
                             className="w-full h-full"
                             pageOwnsBackground={pageOwnsBackground}
