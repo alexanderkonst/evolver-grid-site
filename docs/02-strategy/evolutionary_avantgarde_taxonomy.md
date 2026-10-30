@@ -2,7 +2,7 @@
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
-> **Last Updated**: October 27, 2026 (flavors map v2, the silo problem, the bedrock primitive). First version: January 15, 2026.
+> **Last Updated**: October 30, 2026 (currents v2.1 DRAFT: eight currents; two axes, currents × organs). October 27, 2026: flavors map v2, the silo problem, the bedrock primitive. First version: January 15, 2026.
 
 ---
 
@@ -11,6 +11,8 @@
 > **Planetary OS is the coordination layer for the Evolutionary Avantgarde.**
 >
 > One launch sequence across all movements — **Sovereignty, Innovation, Regeneration, Awakening, Rooting, Creation**. People articulate and monetize their value, jump-start collaborations systematically, and the scattered movements building the future **coordinate as one meta-ecosystem**.
+>
+> **2026-10-30:** the six currents above are the v1 grid; the current grid is eight currents (v2.1 DRAFT): Inner work, Conscious business & impact, Technology frontier, Land & regeneration, Systems change & sensemaking, Hosts & stewards, Culture, myth & story, New economy. See [First Level](#first-level-eight-currents-v21-draft-2026-10-30).
 >
 > **October 2026:** the coordination layer has a concrete form: one primitive that every flavor needs, made playable as the Digital Village. See [One primitive across all flavors](#one-primitive-across-all-flavors-bedrock).
 
@@ -28,20 +30,80 @@ Communities at the **frontier of technology AND consciousness**. They share thre
 
 ---
 
-## First Level: Six Currents
+## First Level: Eight Currents (v2.1, DRAFT, 2026-10-30)
 
-| Current | Core Drive | Emoji |
-|---------|------------|-------|
-| **Sovereignty** | Decentralized governance, self-determination | 🌐 |
-| **Innovation** | Building the future through ventures | 🚀 |
-| **Regeneration** | Healing earth and systems | 🌱 |
-| **Awakening** | Consciousness evolution, spiritual growth | ✨ |
-| **Rooting** | Land-based intentional living | 🏡 |
-| **Creation** | Art, culture, narrative as evolution vectors | 🎭 |
+*Provenance: DRAFT v2.1, 2026-10-30. Synthesized by Hark in dialogue with Sasha (chat, 14:48–15:19 MST); Sasha approved it as a draft («ДЕЛАЙ!»). The grid is open to revision as live ecosystems and stewards are added.*
+
+**Genealogy.** v1 (January 2026): Sovereignty · Innovation · Regeneration · Awakening · Rooting · Creation → superseded by v2 (2026-10-30, seven currents) → v2.1 (same day, eight currents). The v1 subculture lists below are kept as a dated snapshot.
+
+**Why v1 did not work.** Its six currents were cut on different grounds: Sovereignty and Awakening are *values*, Rooting is a *place*, Innovation and Creation are *activities*. Mixed grounds made everything overlap. And the people who hold communities had been treated as "channels", though stewarding a community is a profession.
+
+### The test of a current
+
+A current is real if:
+1. **Self-name:** its people call themselves that.
+2. **Its own infrastructure:** its own events, media and leaders.
+3. **Its own money:** money circulates inside it.
+
+One ground of division only: **what a person does and what they call their tribe**. A person's primary current is where they earn and spend their time; one person can stand in two or three. *Eight came out of the test, not to match the seven organs.*
+
+### Nested WHO axis
+
+**Current → shade → ecosystem → people.** Currents and shades are the map; ecosystems (level 3) and their stewards and members (level 4) are the territory.
+
+### The eight currents
+
+| # | Current | Self-names | Shades (from the 36 flavors and the v2.1 additions) |
+|---|---|---|---|
+| 1 | **Inner work** | conscious, spiritual path, healer | Seven shades of spiritual teachers (below); healers; breathwork; tantra; plant teachers; energetic and archetypal work; metaphysics |
+| 2 | **Conscious business & impact** | impact, conscious business, founder | Founders and their coaches; venture studios and funds; EO/YPO; AIESEC; MBA and diaspora groups; Silicon Valley; Maverick1000 / Billion Dollar Impact |
+| 3 | **Technology frontier** | builder, web3, AI-native | AI-native builders; people building their own AIs; DAOs; network states; pop-up cities; DeSci; longevity; consciousness technologies; digital twins of cities |
+| 4 | **Land & regeneration** | regen, ecovillage, permaculture | Ecovillages; land projects; New Earth settlements; regenerative farms |
+| 5 | **Systems change & sensemaking** | integral, metamodern, Game B, metacrisis | Integral people and integral cities; polymaths; metamapping; big-system intellectuals; UN/WEF change-makers; system-change convenings; new-type universities |
+| 6 | **Hosts & stewards** | community builder, host, steward | Leaders of conscious communities in cities; festival producers (Burning Man, Boom); hub founders (Ubud, Canggu); colivings and retreat centers; hosts of masters' chats |
+| 7 | **Culture, myth & story** | artist, creator, storyteller, mythologist | Artists; mythologists and the Campbell lineage; storytellers; narrative designers; ritual designers; authors of future myths; conscious media; dance as art; game designers / transformational games |
+| 8 | **New economy** | new economy, solidarity economy, commons, coop, regen finance | Cooperatives and platform coops; gift economy; commons; local and complementary currencies; Doughnut economics; ReFi and DAO treasuries; Enspiral-type networks; UBI and dividends |
+
+**Our home flavor.** Uniqueness and soul expression sits on the seam of 1 and 2: inner work that becomes a business.
+
+### What changed from v1
+
+- **Sovereignty dissolved.** Web3 and network states went to the Technology frontier, change-makers to Systems change. Sovereignty is a value, not a tribe.
+- **Rooting + Regeneration became one current.** They are the same people on the land.
+- **Hosts & stewards became a current, not a channel.** Festival producers, hub founders and city community leaders run, grow and steward their communities professionally. They are the buyers for the ecosystems vector (C): they hold people who need the result.
+- **Conscious business split from technology.** Different tribes with different events.
+- **New economy became the eighth current (v2.1).** ReFi had been filed under Land, Enspiral under Hosts, DAO treasuries under the Frontier. Being smeared across three currents was the symptom of a missing one. It passes the test: self-name; its own networks (New Economy Coalition, Platform Cooperativism, the Doughnut Economics movement); its own money (cooperative finance, treasuries, grants). For us: the "path to first money from one's gift" layer and the Venture Co-op belong here; these are natural allies.
+- **Current 7 renamed "Culture, myth & story" (v2.1).** People who work with myths and stories land here.
+
+### Shades worth naming
+
+**Inner work: spiritual teachers by the way the path runs.** The largest current, so it divides by *what the path goes through*:
+1. **Non-dual:** advaita, dzogchen, satsang, awakening outside tradition.
+2. **Traditional lineages:** Buddhism, yoga, Sufism, Kabbalah, Taoism, Christian mystics.
+3. **Shamanic and plant:** indigenous traditions, ceremony, ayahuasca, temazcal.
+4. **Somatic:** breath, tantra, somatics, ecstatic dance.
+5. **Esoteric and cartographic:** astrology, Human Design, Gene Keys, channeling, energy systems.
+6. **Psycho-spiritual:** IFS, transpersonal psychology, shadow work, transformational coaches.
+7. **New Age and ascension:** New Earth, starseeds, manifestation.
+
+The shades differ sharply in language and in their relation to money: one offer does not sound the same to an advaitin and to an astrologer.
+
+**Culture, myth & story.** Mythologists and the Campbell lineage, storytellers, narrative designers, ritual designers, authors of future myths. Sasha's myth broadcasts come from here. **Ritualists sit on the seam with Inner work.**
+
+**Game designers / transformational games** (a shade of current 7): Games for Change, serious games, Nordic LARP for growth, community and collaboration games, life-as-a-game designers (in the spirit of McGonigal). A shade, not a current: they pass the test, but the transformational part is still small and the large game industry is not avant-garde. **Strategic for us:** they are co-authors of the game, not buyers; keep them as a separate partner list.
+
+### Cross-cuts that are not currents
+
+- **Language is an identity attribute, not a current.** It hangs on levels 3 and 4 (ecosystems and people). A person has one language or a seam of several (RU–ES–EN and other multilingual spaces); people on the seams are bridges between spaces, as Sasha himself is. This replaces the v3 reading of language spaces as a second axis next to the flavors.
+- **Regeneration, defined.** Restoring the capacity of a living system to renew itself. The core is land: soil, water, forest, farms that leave the land richer than they took it. The same principle then carries over to cities, communities and finance (ReFi). That is why in the grid it lives with land.
+
+### Next enrichment (proposed)
+
+Five fields per current: **vocabulary** (how they name gift, money and growth), **money** (what they pay for and how much), **gathering places** (events, media, chats), **3–5 live ecosystems and their stewards** (levels 3–4), **link to us** (which of our steps they need first). Order: Hosts, Inner work, Conscious business first, where Sasha's people and money are closest. First applied result: **stewards list v1** (3 communities per current, 24 names, each with its vocabulary and what our game gives its people) as channel C for the second cohort; Hark gathers, Sasha writes to them. Second: one offer in eight phrasings, one per current's language.
 
 ---
 
-## Second Level: Subcultures Within Each Current
+## v1 subcultures by the six old currents (January 2026, superseded by v2.1)
 
 ### 🌐 Sovereignty
 - Network States (Balaji, Praxis, Próspera)
@@ -93,7 +155,7 @@ Communities at the **frontier of technology AND consciousness**. They share thre
 
 ## Flavors map v2 (2026-10-27)
 
-*Source: Sasha's dictation, October 27, 2026. Extends the six currents with the flavors he named; the currents stay as the first level.*
+*Source: Sasha's dictation, October 27, 2026. Extends the six currents with the flavors he named; the currents stay as the first level.* *(2026-10-30: the columns below are the v1 currents; each flavor's v2.1 current is in the First Level table.)*
 
 **Petals and spectrum at once.** Each flavor is a petal: its own identity, language, leaders and events. Read together they also form a spectrum, running from the inner end (states, the nervous system, the soul) through the relational middle (communities, circles, programs) to the outer end (ventures, capital, cities, bioregions). Most people stand on one petal; the spectrum is visible only from the intersection.
 
@@ -208,6 +270,8 @@ San Pancho is Village #1 of the same primitive in the physical world (§16). The
 
 **Flavor-neutral by design.** The Gate is the same for everyone: the uniqueness test does not ask which petal you belong to. The flavor shows up in what you build, not in what you must believe to enter. This is what lets one village hold all of them.
 
+**One lived experience, eight languages (2026-10-30, Sasha).** The eight currents are eight languages for one lived experience: a person senses a gift that is only theirs, and the world does not yet receive it. Each current names the gift, the obstacle and the way through in its own words (awakening, impact, building, regeneration, community, story, a fair economy). Our offers must be written in that shared experience first, then translated into each current's language.
+
 ### Native doors: where each flavor enters
 
 Every flavor walks the same Journey, but each has a door it recognizes first. *Thesis, to be tested with real people from each flavor.* 36 flavors as of v3 (2026-10-27 evening); v3 rows are at the end of the table.
@@ -264,7 +328,7 @@ Every flavor walks the same Journey, but each has a door it recognizes first. *T
 
 ### One Organism
 
-The six currents aren't separate movements. **They're one organism waking up in six places simultaneously.** Planetary OS is the connective tissue.
+The six currents aren't separate movements. **They're one organism waking up in six places simultaneously.** Planetary OS is the connective tissue. *(Written for the v1 grid; it holds for the eight currents of v2.1.)*
 
 ### Genius Resonance — The Fourth Coordination Mechanism
 
@@ -345,6 +409,18 @@ The inner-turn taxonomy (ISIC/NAICS top layers + market-map niches + the axis ou
 | Federation of villages and bioregions | Bioregionalists, network states | **Federation** (a network of hearths on the land) | To hold the planet |
 
 Order runs from the center outward: person → path → circle → exchange → village → planet. The return to the center (Technology 76) unfolded into structure.
+
+### Two axes: currents (who) × organs (what for) (DRAFT v2.1, 2026-10-30)
+
+*Provenance: Hark synthesis in dialogue with Sasha, 2026-10-30; approved as draft.*
+
+**Currents are the WHO axis** (current → shade → ecosystem → people). **The seven organs are the WHAT-FOR axis**: a function in the civilization. They are independent axes. The earlier current × organ matrix did not converge because the two were treated as one axis (the "Avant-garde subtype" column above names who typically builds each organ; it is not a current). The matrix will work once each cell is filled from live examples: which current's people build which organ.
+
+**How this map links to the other maps** (Hark's reading):
+- **Product Map** (shifts × paths, `unique-businesses/alexanders_unique_business.md`) = WHAT we give.
+- **Digital surface holomap** (`digital_surface_holomap.md`) = WHERE they find us.
+- **IP map** (cell licence for community hosts, §8 of `alexanders_unique_business.md`): Hosts & stewards and coaches are the buyers of practitioner and white-label licences.
+- **The game** (`game_of_being_you.md`): a current is the player's home clan; a guild is a gathering inside a shade; the Village is where currents meet.
 
 ### The whole
 - **What it is:** a living cell of a golden-age civilization in which all seven organs already exist at small scale. Not a product, not a project. The planetary holomap (Technology 78), read from the center and embodied.
