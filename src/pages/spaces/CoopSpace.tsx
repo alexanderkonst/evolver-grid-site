@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import PlaceState from "@/components/game/PlaceState";
@@ -39,13 +40,27 @@ const TownHallNumber = () => {
   );
 };
 
+/** How long the door reads as open while the save loads, before it is read as an empty save (closed). */
+const SHEET_WAIT_MS = 4000;
+
 const TownHall = () => {
   const sheet = useCharacterSheet();
   const place = getVillagePlace("town-hall");
+  const [gaveUp, setGaveUp] = useState(false);
+
+  // A save that never answers (a slow or failed read) must not leave the closed line unsaid.
+  useEffect(() => {
+    if (!sheet.isLoading) return;
+    const id = window.setTimeout(() => setGaveUp(true), SHEET_WAIT_MS);
+    return () => window.clearTimeout(id);
+  }, [sheet.isLoading]);
+
   if (!place) return null;
 
   // Until the save has loaded the door reads as open (as ModuleIntro does), never as a flash of closed.
-  const state: PlaceStateName = sheet.isLoading ? "open" : placeState(place, placeSaveFromSheet(sheet));
+  // If it has not loaded after SHEET_WAIT_MS, nothing in the save proves it open: closed.
+  const state: PlaceStateName =
+    sheet.isLoading && !gaveUp ? "open" : placeState(place, placeSaveFromSheet(sheet));
   const closed = state === "closed";
 
   return (
@@ -75,7 +90,7 @@ const TownHall = () => {
       >
         <p className="mf__eyebrow">Digital Village</p>
         <h1 className="mf__headline">Town Hall</h1>
-        {sheet.isLoading || closed ? null : <TownHallNumber />}
+        {(sheet.isLoading && !gaveUp) || closed ? null : <TownHallNumber />}
       </PlaceState>
     </section>
   );

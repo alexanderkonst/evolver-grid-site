@@ -148,6 +148,7 @@ const AppleseedRitualLoading = ({
                 {/* Decorative text */}
                 <p
                     className="mt-8 text-sm"
+                    aria-live="polite"
                     style={{
                         color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
                         textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",

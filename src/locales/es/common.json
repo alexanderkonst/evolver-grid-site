@@ -1,4 +1,8 @@
 {
+  "village": {
+    "backTitleAria": "Volver al título",
+    "enterPlace": "Entrar a {{place}}"
+  },
   "courseCms": {
     "lead": "Deja de elegir entre tu cabeza y tu corazón. En 15 videos cortos verás cómo lo que sientes por dentro y lo que la ciencia encuentra por fuera cuentan una misma historia.",
     "promise": {

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
 import { ExcaliburData } from "@/modules/zone-of-genius/excaliburGenerator";
 import BackButton from "@/components/BackButton";
+import NotFound from "@/pages/NotFound";
 
 interface PublicProfileData {
   user_id?: string | null;
@@ -284,6 +285,11 @@ const PublicProfile = () => {
         <PremiumLoader size="lg" />
       </div>
     );
+  }
+
+  // A root slug that is no username at all (/spaces, /build, /xyz) is a missing page, not a private profile.
+  if (!profile && username && !audienceDenyReason) {
+    return <NotFound />;
   }
 
   if (!profile || visibility === "hidden" || audienceDenyReason) {

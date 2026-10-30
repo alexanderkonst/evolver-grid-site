@@ -526,7 +526,7 @@ const Village = () => {
                 : tr(t, "village.choosePlace", "Choose a place")}
             </p>
           </div>
-          <Link className="vl-mono vl-corner" to="/">{tr(t, "village.backTitle", "← Title")}</Link>
+          <Link className="vl-mono vl-corner" to="/" aria-label={tr(t, "village.backTitleAria", "Back to title")}>{tr(t, "village.backTitle", "← Title")}</Link>
 
           {/* WP-6 (§14.6): what changed since the last visit, and the one next move. One hint, never a list. */}
           {changesLine || move ? (
@@ -549,7 +549,12 @@ const Village = () => {
                     </p>
                   ) : null}
                   {move.kind === "step" ? <p className="vl-move__result">{moveCopy.result}</p> : null}
-                  <Link className="vl-enter vl-move__enter" to={move.to} onClick={(e) => leave(() => navigate(move.to), e)}>
+                  <Link
+                    className="vl-enter vl-move__enter"
+                    to={move.to}
+                    aria-label={t("village.enterPlace", { place: moveCopy.place, defaultValue: "Enter {{place}}" })}
+                    onClick={(e) => leave(() => navigate(move.to), e)}
+                  >
                     {tr(t, "village.enter", "ENTER")}
                   </Link>
                 </aside>
@@ -602,6 +607,7 @@ const Village = () => {
                   ref={enterRef}
                   className={`vl-enter${lastPending ? " is-pending" : ""}`}
                   to={lastPlace.to}
+                  aria-label={t("village.enterPlace", { place: placeName(lastPlace, t), defaultValue: "Enter {{place}}" })}
                   onClick={(e) => leave(() => navigate(lastPlace.to), e)}
                 >
                   {tr(t, "village.enter", "ENTER")}
