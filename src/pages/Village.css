@@ -423,13 +423,19 @@
     white-space: normal; border: 0; font-size: 12px; color: var(--vl-lock-ink);
   }
   .vl-list .ps-tag--closed::before { content: "\25CB\00a0"; } /* an open circle: a shape, never colour alone */
+  /* A closed place reads as closed before its name: the state word leads, the name steps back to the
+     tertiary ink, the line stays at lock ink. The row is still a link and opens the closed scene. */
+  .vl-list li[data-place-state="closed"] a { display: flex; flex-direction: column; align-items: flex-start; }
+  .vl-list li[data-place-state="closed"] .ps-tag--closed { order: -1; margin: 0 0 6px; }
+  .vl-list li[data-place-state="closed"] .vl-list__name { color: var(--vl-ink-3); }
   /* The moon lives in the top band of the map and the pins sit below it. Smaller, closer to the
      corner, a tighter halo: pins start at 29% of the map, and the biggest pin aura (Lunar, 10% of
      the width) must not reach the moon's halo. src/lib/__tests__/villageMobileLayout.test.ts holds it. */
   .vl-moon { top: 12px; right: 16px; width: 30px; }
   .vl-moon__glow { inset: -50%; }
   .vl-map { height: auto; overflow: visible; }
-  .vl-head { position: relative; top: auto; left: auto; padding: 44px 24px 22px; }
+  /* 72px clears the fixed «YOU» mark (top 16 + 48 high), so it no longer sits on the eyebrow at 390 or 360 */
+  .vl-head { position: relative; top: auto; left: auto; padding: 72px 24px 22px; }
   .vl-head h1 { font-size: 30px; margin-top: 12px; }
   .vl-frame { position: relative; inset: auto; width: 100%; aspect-ratio: var(--vl-ar, 1); }
   .vl-cover { left: 0; top: 0; width: 100%; transform: none; }

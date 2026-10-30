@@ -375,6 +375,7 @@ const Auth = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
+                      className="h-11"
                     />
                   </div>
                   <Button type="submit" className="w-full" disabled={loading}>
@@ -457,6 +458,7 @@ const Auth = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     autoFocus
+                    className="h-11"
                   />
                 </div>
                 <Button type="submit" className="w-full" disabled={loading}>
@@ -644,7 +646,7 @@ const Auth = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="rounded-xl"
+                    className="h-11 rounded-xl"
                   />
                 </div>
                 <div className="space-y-1.5">
@@ -686,7 +688,7 @@ const Auth = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="rounded-xl"
+                    className="h-11 rounded-xl"
                   />
                 </div>
                 <Button type="submit" className="w-full h-12 rounded-full" disabled={loading}>
@@ -730,7 +732,7 @@ const Auth = () => {
             {/* ─── SIGN UP ─── */}
             <TabsContent value="signup">
               <form onSubmit={handleSignUp} className="space-y-4">
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2">
                   <div className="space-y-1.5">
                     <Label
                       htmlFor="signup-firstname"
@@ -749,7 +751,7 @@ const Auth = () => {
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       required
-                      className="rounded-xl"
+                      className="h-11 rounded-xl"
                     />
                   </div>
                   <div className="space-y-1.5">
@@ -770,7 +772,7 @@ const Auth = () => {
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       required
-                      className="rounded-xl"
+                      className="h-11 rounded-xl"
                     />
                   </div>
                 </div>
@@ -792,7 +794,7 @@ const Auth = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="rounded-xl"
+                    className="h-11 rounded-xl"
                   />
                 </div>
                 <div className="space-y-1.5">
@@ -813,7 +815,7 @@ const Auth = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="rounded-xl"
+                    className="h-11 rounded-xl"
                   />
                 </div>
                 <Button type="submit" className="w-full h-12 rounded-full" disabled={loading}>
