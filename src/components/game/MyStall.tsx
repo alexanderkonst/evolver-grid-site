@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
 import { stallParts, STALL_SHELF_MAX } from "@/lib/myStall";
@@ -16,8 +17,9 @@ const MyStall = () => {
     const { t } = useTranslation();
     const sheet = useCharacterSheet();
 
-    // A guest never reaches the Market (RequireAuth); an unloaded sheet draws nothing yet.
-    if (sheet.isLoading || !sheet.userId) return null;
+    // A guest never reaches the Market (RequireAuth), so the stall draws for every player,
+    // whatever the offer state, and even if the sheet read failed (an empty sheet is valid).
+    if (sheet.isLoading) return null;
 
     const stall = stallParts(sheet);
 
@@ -82,6 +84,12 @@ const MyStall = () => {
                         </>
                     )}
                 </div>
+
+                {!stall.open && (
+                    <p className="ms__workshop">
+                        {t("villagePlaces.market.empty")} <Link to="/ubb">{t("villagePlaces.openWorkshop")}</Link>
+                    </p>
+                )}
 
                 <div
                     className={`ms__lamp${stall.lampLit ? " ms__lamp--lit" : ""}`}
