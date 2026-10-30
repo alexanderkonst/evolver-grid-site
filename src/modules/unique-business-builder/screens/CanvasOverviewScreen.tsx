@@ -41,7 +41,7 @@ import { getStepForArtifact } from "@/data/playbookArtifactMap";
 import { EntitlementBadge } from "@/components/EntitlementBadge";
 
 export default function CanvasOverviewScreen() {
-  const { artifacts, lockedCount, avgSpecificity, stalenessWarnings, isInitializing } = useUniqueBusiness();
+  const { artifacts, lockedCount, stalenessWarnings, isInitializing } = useUniqueBusiness();
   const navigate = useNavigate();
 
   const firstUnlocked = ALL_ARTIFACT_KEYS.find((k) => !artifacts[k]?.latestLocked) as
@@ -120,24 +120,6 @@ export default function CanvasOverviewScreen() {
               of {totalArtifacts} locked
             </span>
           </div>
-          {avgSpecificity > 0 && (
-            <div
-              className="text-sm"
-              style={{ color: "var(--skin-text-muted, rgba(11, 42, 90, 0.62))" }}
-            >
-              avg specificity{" "}
-              <span
-                className="text-base"
-                style={{
-                  fontWeight: 600,
-                  fontVariantNumeric: "tabular-nums lining-nums",
-                  color: "var(--skin-text-primary, #0b2a5a)",
-                }}
-              >
-                {avgSpecificity.toFixed(1)}
-              </span>
-            </div>
-          )}
         </div>
 
         {lockedCount >= 10 && lockedCount < totalArtifacts && (

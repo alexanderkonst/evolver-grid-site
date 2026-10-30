@@ -23,28 +23,6 @@ import { useUniqueBusiness } from "../UniqueBusinessContext";
 import { ARTIFACT_LABELS } from "../constants";
 import type { ArtifactKey, ArtifactState } from "../types";
 
-// Cost ≈ $0.0005 per Improve call (midpoint of $0.0003–$0.0008 observed
-// against Gemini 2.5 Flash via Lovable AI Gateway). Time ≈ 7 seconds of
-// AI compute per call — excludes the founder's own review time, which
-// varies. We surface AI compute only; review time is the user's, not ours
-// to estimate.
-const COST_PER_CALL_USD = 0.0005;
-const SECONDS_PER_CALL = 7;
-
-function formatCost(n: number): string {
-  const total = n * COST_PER_CALL_USD;
-  // Keep three decimals so 1 artifact reads as $0.001 (not $0.000).
-  return `$${total.toFixed(3)}`;
-}
-
-function formatAiTime(n: number): string {
-  const seconds = n * SECONDS_PER_CALL;
-  if (seconds < 60) return `~${seconds}s`;
-  const m = Math.floor(seconds / 60);
-  const s = seconds % 60;
-  return s > 0 ? `~${m}m ${s}s` : `~${m}m`;
-}
-
 export function BulkImprovePanel() {
   const { artifacts, bulkImprove, startBulkImprove, cancelBulkImprove } = useUniqueBusiness();
   const [expanded, setExpanded] = useState(false);
@@ -266,16 +244,6 @@ export function BulkImprovePanel() {
           aria-label={`Improve all ${n} stale artifacts`}
         >
           Improve all {n}
-          <span
-            style={{
-              marginLeft: "0.5em",
-              opacity: 0.7,
-              fontVariantNumeric: "tabular-nums lining-nums",
-              fontWeight: 500,
-            }}
-          >
-            ~{formatCost(n)} · {formatAiTime(n)}
-          </span>
         </button>
       </div>
 
