@@ -22,6 +22,8 @@ The whole product resolves to this one sentence. Home screen always returns to O
 
 One intake → one Genius Profile → everything else is quests, upgrades, and matchmaking derived from that profile.
 
+Since 2026-10-30 the loops are read as one network of nodes with one data model: see [Node Architecture](#node-architecture-one-network-one-data-model-2026-10-30).
+
 ---
 
 ## Key Architectural Distinction
@@ -441,3 +443,168 @@ Text buttons → Cards → illustrated map → 3D isometric → full VR
 
 *Game Architecture — Implementation Reference*
 *Last updated: 2025-01-05*
+
+---
+
+## Node Architecture: one network, one data model (2026-10-30)
+
+*Provenance: Sasha approved «Node architecture, document only» (2026-10-30). Inspired by Qwatra's node (see [qwatra_blog_2026-10.md](../ai/qwatra_blog_2026-10.md) §1 post 5, §4). Sasha: «our list of modules is already a variation of this — see how it can enrich what we do.» Sources for the module list: the product architecture brief for Vladimir (`docs/02-strategy/partners/vladimir_product_architecture_brief.md`, Oct 2026; not present on main at `b0ca978`, read from a working copy): value ladder of 8 steps + other products; the village places in [game_of_being_you.md](../02-strategy/game_of_being_you.md) §13.1 and the Journey §14.2; the seven organs in [evolutionary_avantgarde_taxonomy.md](../02-strategy/evolutionary_avantgarde_taxonomy.md) («The whole»); the working matchmaker in `supabase/functions/*match*` and [matchmaker_brief_v4.31.md](../02-strategy/briefs/matchmaker_brief_v4.31.md). **Documentation only: no code, no migration.***
+
+### The idea in one paragraph
+
+The game, the Life OS and the Mastermind are not three products. They are one network of **nodes**, and every node carries the same four things. Qwatra's node is an enterprise, project or task. **Ours puts the person at the center:** the player is the root node, and every other node (a quest, a practice, a Workshop project, a stall, a match, a circle, a village) exists because it serves one or more people. This extends the Kernel above («Genius Profile = Player Model; everything else is a loop derived from it»): the loops are now nodes with one shape.
+
+### The four properties (every node, no exceptions)
+
+| Property | Plain meaning | Rule |
+|---|---|---|
+| **Goal** | why this node exists, and by when (if there is a when) | one sentence, in the owner's words |
+| **Done when…** | the check that says it is finished, **written before work starts** | must point at a real event (fidelity §10a of the game blueprint): a saved artifact, a recorded sale, a sent intro, a re-taken map. Never points, never «feels done» |
+| **Ledger** | what went in, what came back | many currencies, not only money (see below); append-only |
+| **Agents** | who serves it: AI agents and the humans who hold the irreversible steps | each agent has «may do» and «must ask» lists |
+
+### Node types, mapped to the modules and organs
+
+Order runs from the center outward, as in the seven organs: person → path → circle → exchange → village → planet.
+
+| Node type | Organ (taxonomy) | Village place (§13.1) | Modules / products today | Goal | Done when… (written in advance) | Ledger: in → back | Agents |
+|---|---|---|---|---|---|---|---|
+| **Person (player)** | Mirror + Myth-initiation | Gate, Your House | Top Talent / ZoG, Mission, Assets, QoL map, Character Sheet, Hero's-Journey quiz | a high quality of life; be recognized and paid for being yourself | **season:** the whole QoL map rises one stage (level = weakest domain); **journey:** first real «yes» from the world (first sale, the Slipper) | time, money spent on own growth → victories, resonance, QoL stages, income | the player's own AI (§18 «Your Familiar»), Evolver/Hark |
+| **Quest** (journey step, daily practice, comeback quest, threshold) | Myth-initiation | Quest Board | `journeySequence`, `quests`/`quest_runs`, ModuleIntro/Outro | the module's one transformational result | the Outro artifact is saved (e.g. mission committed, tagline saved) | minutes, money (e.g. $37 Oracle Reading) → victory + resonance 1–10 | module AI; next-move recommender |
+| **Practice / season (Life OS)** | Path | Academy, Your House | QoL Save Point, 21-day practice, Equilibrium (cycles + tasks), Founder Cockpit | move one domain, live by natural cycles | 21 days logged / weekly Save Point shows «up» in the chosen domain / season map re-taken | minutes, streak freezes → QoL stage changes | Equilibrium planner, Cockpit, own AI |
+| **Workshop project** (a unique business) | Guild/Circle (creation) | Workshop | UBB, Founder-Market Fit ($555), Product-Market Fit ($5,555), product builder, commercial tools (ICP prospector, outreach radar, ledger) | a scalable product built on the person's top talent | tagline + priced offer published (J7); then first paid client (J12) | hours, money, attention → artifacts, revenue | UBB AI, product builder, ICP prospector; human coach (Sasha) |
+| **Offer / stall** | Market of geniuses | Market | marketplace products, `/p/:slug`, offer pulses | a paid «yes» | a sale is recorded (`sales_events`) | price named, visits → revenue, testimonials | stall assembler (§14.12); the owner names price |
+| **Match** (between two people) | Guild/Circle (meeting) | Café, Co-working | the existing matchmaker (below) | a useful encounter between two people | **v0:** mutual intro email sent after both said yes; **v1 (from the brief):** a next step chosen | proposals, attention → intros, conversations, collaborations, sales | proactive-match-proposal, match scoring; both people consent |
+| **Circle** (Mastermind, founder circle, guild, Sovereign Founder Collective) | Guild/Circle | Mastermind (formerly Fire Circle) | Mastermind ($222, 2 sessions + 7 days), Mystery School, Entrepreneur's Evolution, Sovereign Founder Collective (10% to treasury) | each member takes a real step this season | before/after map at the closing ceremony; each member's chosen step done or honestly not | seats, hours → members' victories, income; treasury share | human facilitator holds the field; circle agent prepares and records |
+| **Venture** (several people, one project) | Guild/Circle → Market | Town Hall (Venture Co-op) | missions, Venture Co-op, delivery for clients (50/50), licence (90/10) | a shared product or delivery | the agreed result accepted by the client / partners | each partner's contribution → revenue split by agreement | venture agent; partners sign terms |
+| **Village** | Village | the map itself | `communities`, white-label onboarding, San Pancho Village #1 | residents earn from their gifts (one public number: residents' income) | target set by the Town Hall each season (e.g. N residents with a first sale) | residents' time → residents' income; share to Community Projects | village host agent, matchmaker; Town Hall decides |
+| **Federation** *(horizon)* | Federation | — | network of villages (§16.5) | villages share method and matching | — later | — later | — later |
+
+A **person can sit in many nodes at once** (several circles, matches, a venture), so links are a graph, not only a tree: «part of» gives the holarchy, «member of» and «between» give the network.
+
+### Holonic relations: what rolls up, and how
+
+- **Ledger rolls up by sum.** An entry is written once, at the node where it happened (a sale on the stall). Parents see it through the link: stall → project → person → village income. Nothing is double-written.
+- **Progress rolls up by the bottleneck, not the average.** A person's level is the weakest QoL domain (Liebig's barrel, §10). The same rule can hold upward: a circle's season is as strong as its least-moved member is honestly seen; a village's number is residents' income, not visitors.
+- **«Done when» rolls up by reference.** A parent's criterion may name its children («Workshop project is done when its stall has a first sale»). A child being done never closes a parent by itself; the parent's own check does.
+- **Opening follows the same chain.** The lock rule (§14.3) is node logic: a node opens when an upstream node's «done when» fires (Top Talent saved → Your House opens; first sale → Town Hall opens).
+- **Recursive self-investment.** Qwatra: a node reinvests in itself. Ours, at three scales: the person reinvests income in their own growth (value ladder steps 2 → 5); the Workshop's revenue share flows up (delivery 50/50, licence 90/10 with 10% to the Sovereign Founder Collective); the village sends a share to Community Projects. The ledger makes each flow visible.
+
+### Where irreversible steps stay with the human
+
+Agents prepare; a human confirms. Same boundary as Qwatra (reversibility), and the same as our approval rules.
+
+| Irreversible step | Who confirms |
+|---|---|
+| Paying (seat, $37 reading, session, Product-Market Fit) | the player |
+| Naming a price to a client; accepting paid terms; revenue-share agreements | the owner of the offer / the partners |
+| Any introduction to another person | both people (double yes, below) |
+| Publishing a stall, profile fields beyond the visibility matrix ([data_architecture.md](./data_architecture.md)) | the owner |
+| Joining a circle or venture; a Town Hall decision | the person / the village |
+| Outreach on someone's behalf | that person, always |
+
+Everything an agent does on a node is written to the node's log (append-only), with its source, so a mistake becomes a search for the cause, not for the guilty.
+
+### Matchmaking: the existing node flow (do not redesign)
+
+Matchmaking already works and is modelled as it is, not replaced by a new needs/offers market. Per Sasha, it includes and exceeds Boardy's mechanics.
+
+1. **Proposal.** Weekly, `proactive-match-proposal` picks one best candidate per eligible player from `suggest-asset-matches`, biased by their accept/decline history; writes `match_interests` + `match_proposals`; sends a 3-line email with Yes / Not now. Cap: one proposal a week; a decline cools off for 90 days; silence has no side effects.
+2. **Or the player asks.** «I'd like to meet» on a card → `send-match-headsup-email` tells the other person who and why, with Yes / Not now.
+3. **Consent.** `match-consent` (signed link) records the answer.
+4. **Introduction.** Both yes → `send-mutual-intro-email`: both people on «to», equal standing, the platform introduces.
+5. **Scoring.** resonance = 100 × ⁴√(top talent × mission × assets × QoL) (`_shared/matchScoring.ts`).
+
+As a node: **goal** = a useful encounter; **done when** = mutual intro sent (v0), next step chosen (v1); **ledger** = proposals sent, answers, intros, and later conversations, collaborations, sales (the event chain in the matchmaker brief: found → accepted → reply → opening confirmed → next step → paid agreement → delivery → result); **agents** = proposer, scorer, consent handler; **human step** = the two yeses.
+
+### What our module list adds that Qwatra lacks
+
+1. **The person is the root, and being comes before doing.** Qwatra optimizes work objects; our root goal is a person's quality of life.
+2. **Bottleneck progress.** Level = the weakest domain; Qwatra's account is a cost sum.
+3. **A many-currency ledger.** Time, money, attention, resonance (1–10), QoL stages, victories. Recognition is a return, not only revenue.
+4. **Consent on relationship nodes.** People are never bargained over; a match needs two yeses.
+5. **Natural cycles as the clock.** Moon and sun (Equilibrium, §15.7a), not only deadlines.
+6. **Privacy per field.** The visibility matrix: me / community / public.
+7. **The player's own AI grows with every node** (§18): each finished node teaches it something.
+8. **A path, not a plan.** Nodes open in the order life earns them (lock rule); a value ladder turns completed nodes into the next ones.
+
+### What Qwatra adds that we lack (to adopt)
+
+1. **«Done when» written in advance for every node**, including projects and circles (today only modules have a clear Outro artifact).
+2. **The «invested» side of the ledger.** We record returns (victories, sales) but not what went in; adding it shows real return on a season.
+3. **A critic agent and an append-only log per node**, with disagreements raised to the human with both positions.
+4. **Event as the unit of change.** Each real event re-plans the next move locally (we already fire `JOURNEY_ITEM_COMPLETED_EVENT`; the node model makes it general).
+5. **Not adopted:** the priced assignment market. Our coordination between people is the matchmaker plus consent.
+
+### Minimal data model (overlay on existing tables)
+
+The node model is a **thin layer over tables that already exist**; each node points at its source row. No migration until Sasha says yes.
+
+```ts
+type NodeKind = 'person' | 'quest' | 'practice' | 'project' | 'offer'
+              | 'match' | 'circle' | 'venture' | 'village' | 'federation';
+
+interface Node {
+  id: string;
+  kind: NodeKind;
+  owner_id: string;                 // a person (game_profiles.id); for village/circle: its host
+  parent_id: string | null;         // holarchy: «part of»
+  goal: { text: string; by?: string };
+  done_when: {
+    text: string;                   // in plain words
+    check: string;                  // the real event that proves it, e.g. 'sales_events:first'
+    written_at: string;             // must precede the first ledger entry
+    written_by: string;
+  };
+  state: 'closed' | 'open' | 'live' | 'done' | 'dropped';   // the lock rule states
+  opened_by?: string;               // node id whose done_when opened this one
+  visibility: 'me' | 'community' | 'public';
+  source: { table: string; id: string };                    // existing row
+  done_at?: string;
+}
+
+interface NodeLink {                 // the network beyond the tree
+  from_id: string; to_id: string;
+  relation: 'member_of' | 'between' | 'serves';
+}
+
+interface LedgerEntry {              // append-only
+  id: string; node_id: string;
+  direction: 'invested' | 'returned';
+  currency: 'usd' | 'minutes' | 'attention' | 'resonance' | 'qol_stage' | 'victory';
+  amount: number; note?: string;
+  source: { table: string; id: string };
+  recorded_by: 'agent' | 'human'; at: string;
+}
+
+interface AgentAssignment {
+  node_id: string;
+  agent: string;                    // 'own_ai' | 'evolver' | 'module:ubb' | 'matchmaker' | 'critic' | 'human:facilitator' …
+  may_do: string[];                 // reversible actions
+  must_ask: string[];               // irreversible actions → a named human
+}
+
+interface NodeEvent {                // the log
+  id: string; node_id: string; type: string; actor: string;
+  reversible: boolean; approved_by?: string; payload: unknown; at: string;
+}
+```
+
+| Node kind | Source tables today |
+|---|---|
+| person | `game_profiles`, `zog_snapshots`, `qol_snapshots`, `user_assets` |
+| quest | `quests`, `quest_runs`, `journey_victories`, `module_choices` |
+| practice | `equilibrium_*`, `qol_snapshots` |
+| project | `unique_business_dossiers`, `user_business_artifacts`, `product_builder_snapshots`, `founder_canvases` |
+| offer | `marketplace_products`, `offer_pulses`; returns in `sales_events`, `testimonials` |
+| match | `match_proposals`, `match_interests`, `match_intros`, `connections` |
+| circle | `communities`, `community_members`, `events`, `event_rsvps` |
+| venture | `missions`, `mission_participants`, `mission_outcomes` |
+| village | `communities`, `village_particles` |
+| log (all) | `action_events`, `resonance_events`, `email_send_log` |
+
+### Later
+
+- **Weekly journal + critic in the Workshop** — deferred.
+- Federation node, cross-village matching.
+- Building the overlay (tables `nodes`, `node_links`, `ledger_entries`, `node_agents`, `node_events`) — needs Sasha's yes.
