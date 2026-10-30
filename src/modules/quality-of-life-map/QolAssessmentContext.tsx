@@ -20,6 +20,8 @@ export interface QolHistoryEntry {
 
 interface QolAssessmentContextValue {
   answers: Answers;
+  /** True when no one is signed in: answers live in this browser, nothing is written to the DB. */
+  isGuest: boolean;
   setAnswer: (domainId: DomainId, stageId: number) => void;
   reset: () => void;
   isComplete: boolean;
@@ -76,6 +78,21 @@ const rowToScore = (row: QolSnapshotRow): number => {
   return stages.reduce((sum, v) => sum + (v ?? 0), 0) / stages.length;
 };
 
+/**
+ * Guest QoL (Sasha 2026-10-29: the test is shared with coaches' clients, so it must be
+ * non-gated and invite to save). A guest's answers live in this browser; after sign-in
+ * they are adopted once (newer than any DB snapshot) and the Results page saves them.
+ */
+export const GUEST_QOL_KEY = "evolver:guest-qol:v1";
+const readGuestAnswers = (): Partial<Answers> | null => {
+  try {
+    const raw = window.localStorage.getItem(GUEST_QOL_KEY);
+    return raw ? (JSON.parse(raw) as Partial<Answers>) : null;
+  } catch {
+    return null;
+  }
+};
+
 const QolAssessmentContext = createContext<QolAssessmentContextValue | undefined>(undefined);
 
 const createInitialAnswers = (): Answers => {
@@ -91,6 +108,17 @@ export const QolAssessmentProvider = ({ children }: { children: ReactNode }) => 
   const [isLoading, setIsLoading] = useState(true);
   const [snapshotCreatedAt, setSnapshotCreatedAt] = useState<string | null>(null);
   const [history, setHistory] = useState<QolHistoryEntry[]>([]);
+  const [isGuest, setIsGuest] = useState(false);
+
+  // Guest: keep answers in this browser so a refresh or the magic-link return keeps them.
+  useEffect(() => {
+    if (!isGuest || isLoading) return;
+    try {
+      window.localStorage.setItem(GUEST_QOL_KEY, JSON.stringify(answers));
+    } catch {
+      /* private mode */
+    }
+  }, [answers, isGuest, isLoading]);
   const location = useLocation();
 
   // Load saved QoL data from database on mount.
@@ -120,12 +148,42 @@ export const QolAssessmentProvider = ({ children }: { children: ReactNode }) => 
   useEffect(() => {
     const isFresh = new URLSearchParams(location.search).get("fresh") === "true";
     if (isFresh) {
-      setIsLoading(false);
+      try {
+        window.localStorage.removeItem(GUEST_QOL_KEY);
+      } catch {
+        /* ignore */
+      }
+      supabase.auth
+        .getSession()
+        .then(({ data: { session } }) => {
+          if (!session?.user?.id) setIsGuest(true);
+        })
+        .finally(() => setIsLoading(false));
       return;
     }
 
     const loadFromDatabase = async () => {
       try {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        const guestAnswers = readGuestAnswers();
+        const guestComplete =
+          !!guestAnswers && DOMAINS.every((d) => typeof guestAnswers[d.id] === "number");
+        if (!session?.user?.id) {
+          setIsGuest(true);
+          if (guestAnswers) setAnswers({ ...createInitialAnswers(), ...guestAnswers });
+          return;
+        }
+        if (guestComplete) {
+          // Just signed in from the guest save card: the guest result is the newest.
+          setAnswers({ ...createInitialAnswers(), ...guestAnswers });
+          try {
+            window.localStorage.removeItem(GUEST_QOL_KEY);
+          } catch {
+            /* ignore */
+          }
+        }
         const profileId = await getOrCreateGameProfileId();
 
         // Issue #52 (Sasha 2026-10-15), item 11: select the MOST RECENT
@@ -151,7 +209,7 @@ export const QolAssessmentProvider = ({ children }: { children: ReactNode }) => 
 
         if (snapshots.length > 0) {
           const latest = snapshots[0];
-          setAnswers(rowToAnswers(latest));
+          if (!guestComplete) setAnswers(rowToAnswers(latest));
           setSnapshotCreatedAt(latest.created_at);
           setHistory(
             snapshots.map((row) => ({
@@ -215,6 +273,7 @@ export const QolAssessmentProvider = ({ children }: { children: ReactNode }) => 
     isLoading,
     snapshotCreatedAt,
     history,
+    isGuest,
   };
 
   return (

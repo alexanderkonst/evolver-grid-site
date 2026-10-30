@@ -935,7 +935,7 @@ const App = () => (
                       the catch-all <NotFound /> below); could be made into
                       redirects to /quality-of-life-map/results if Sasha sees
                       stale links in the wild. */}
-                  <Route path="/quality-of-life-map" element={<RequireAuth><QolLayout /></RequireAuth>}>
+                  <Route path="/quality-of-life-map" element={<QolLayout />}>
                     <Route path="assessment" element={<QualityOfLifeMapAssessment />} />
                     <Route path="results" element={<QualityOfLifeMapResults />} />
                   </Route>

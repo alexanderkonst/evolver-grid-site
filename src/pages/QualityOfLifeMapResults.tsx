@@ -78,6 +78,7 @@ import { Map, Download, RefreshCw } from "lucide-react";
 // for build-path users.
 import MatchFlowCta from "@/components/landing/MatchFlowCta";
 import ModuleOutro from "@/components/game/ModuleOutro";
+import GuestSaveCard from "@/components/game/GuestSaveCard";
 import { getJourneyModule, qolResultText } from "@/data/journeyModules";
 
 // WP-5: this module in the module form.
@@ -95,7 +96,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get("return");
-  const { answers, reset, isComplete, isLoading, snapshotCreatedAt, history } = useQolAssessment();
+  const { answers, reset, isComplete, isLoading, snapshotCreatedAt, history, isGuest } = useQolAssessment();
   const snapshotRef = useRef<HTMLDivElement | null>(null);
   const { toast } = useToast();
 
@@ -113,10 +114,11 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   }, []);
 
   useEffect(() => {
-    if (isComplete && profileId && !isSaved) {
+    // Guests keep the result in this browser (QolAssessmentContext); the save card invites them.
+    if (isComplete && profileId && !isSaved && !isGuest && !isLoading) {
       saveSnapshotToDatabase();
     }
-  }, [isComplete, profileId]);
+  }, [isComplete, profileId, isGuest, isLoading]);
 
   const saveSnapshotToDatabase = async () => {
     if (!profileId) return;
@@ -904,6 +906,14 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         }))}
         profileId={profileId ?? undefined}
       />
+
+      {isGuest ? (
+        <GuestSaveCard
+          next="/quality-of-life-map/results"
+          title="Save your map"
+          body="Keep this result, compare it next time, and see how your life moves. We send you a link; there is no password."
+        />
+      ) : null}
 
       {/* Action row — Retake / Download PDF (two equal secondary CTAs).
           Day 67 (Sasha 2026-05-16): migrated from inline liquid-glass-

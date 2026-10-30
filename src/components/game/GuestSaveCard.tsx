@@ -17,11 +17,14 @@ type Props = {
   /** Where the magic link returns the player. */
   next?: string;
   className?: string;
+  /** Optional copy override, e.g. for the Quality of Life result. */
+  title?: string;
+  body?: string;
 };
 
 type Status = "idle" | "saving" | "sent" | "error";
 
-const GuestSaveCard = ({ next = "/game/learn", className }: Props) => {
+const GuestSaveCard = ({ next = "/game/learn", className, title, body }: Props) => {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
@@ -49,7 +52,7 @@ const GuestSaveCard = ({ next = "/game/learn", className }: Props) => {
   return (
     <div className={`flex items-center justify-center px-4 py-6${className ? ` ${className}` : ""}`}>
       <section
-        aria-label="Save your character"
+        aria-label={title ?? "Save your character"}
         className="w-full max-w-xl rounded-3xl px-6 py-8 sm:px-8 sm:py-10 text-center space-y-5"
         style={{
           background: "var(--skin-card-fill, rgba(255,255,255,0.88))",
@@ -64,13 +67,13 @@ const GuestSaveCard = ({ next = "/game/learn", className }: Props) => {
 
         <div className="space-y-3">
           <h2 className="text-3xl leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>
-            Save your character
+            {title ?? "Save your character"}
           </h2>
           <p
             className="text-sm sm:text-base leading-relaxed"
             style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}
           >
-            Keep your badge and your choice, and go on from here. We send you a link; there is no password.
+            {body ?? "Keep your badge and your choice, and go on from here. We send you a link; there is no password."}
           </p>
         </div>
 
