@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { MapPin, Users, Languages } from "lucide-react";
 import { toast } from "sonner";
@@ -15,7 +16,7 @@ import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { TimeoutError, withTimeout } from "@/lib/withTimeout";
 
 // Ceiling for the matching engine call (LLM pass per candidate).
-const ASSET_MATCHES_TIMEOUT_MS = 45_000;
+const ASSET_MATCHES_TIMEOUT_MS = 14_000;
 
 // ─────────────────────────────────────────────────────────────────────
 // Day 63 night (Sasha 2026-05-07) — Aurora register reskin + Strong
@@ -187,6 +188,15 @@ interface CurrentProfile {
   archetype: string;
   location: string | null;
   spokenLanguages: string[];
+}
+
+export interface FounderInVillage {
+  userId: string;
+  name: string;
+  avatarUrl: string | null;
+  topTalentLine: string;
+  profilePath: string;
+  archetypeTitle?: string | null;
 }
 
 // Day 80 (Sasha 2026-05-22): client-side similarity helpers retired.
@@ -386,6 +396,10 @@ const Matchmaking = () => {
   // each empty-state cause; we render that when present.
   const [matchesMessage, setMatchesMessage] = useState<string | null>(null);
 
+  // "Founders in the Village" fallback state
+  const [villageFounders, setVillageFounders] = useState<FounderInVillage[]>([]);
+  const [villageFoundersLoading, setVillageFoundersLoading] = useState(false);
+
   // Tinder-style: track current AI match index
   const [currentAiMatchIndex, setCurrentAiMatchIndex] = useState(0);
   // Track hidden profiles
@@ -533,6 +547,95 @@ const Matchmaking = () => {
 
     loadAssetMatches();
   }, []);
+
+  // Fetch "Founders in the village" when asset matches return empty / timed out / finished without matches
+  useEffect(() => {
+    if (assetMatchesLoading) return;
+    if (assetMatches.length > 0) return;
+
+    const loadVillageFounders = async () => {
+      setVillageFoundersLoading(true);
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+
+        // Query public profiles (visibility != 'hidden') having a ZOG snapshot, newest first, max 12
+        let query = supabase
+          .from("game_profiles")
+          .select("user_id, first_name, last_name, avatar_url, username, last_zog_snapshot_id, created_at, visibility")
+          .neq("visibility", "hidden")
+          .not("last_zog_snapshot_id", "is", null)
+          .order("created_at", { ascending: false })
+          .limit(16);
+
+        if (user?.id) {
+          query = query.neq("user_id", user.id);
+        }
+
+        const { data: profileRows, error: profileErr } = await query;
+
+        if (profileErr || !profileRows || profileRows.length === 0) {
+          setVillageFounders([]);
+          return;
+        }
+
+        const snapshotIds = profileRows
+          .map((p) => p.last_zog_snapshot_id)
+          .filter((id): id is string => Boolean(id));
+
+        const { data: snapshotRows } = await supabase
+          .from("zog_snapshots")
+          .select("id, top_three_talents, appleseed_data, archetype_title")
+          .in("id", snapshotIds);
+
+        const snapshotMap = new Map<string, { topTalent: string; archetype: string | null }>();
+        if (snapshotRows) {
+          for (const snap of snapshotRows) {
+            let talentLine = "";
+            const appleseed = snap.appleseed_data as any;
+
+            if (Array.isArray(appleseed?.topTalentProfile?.top_three_talents_compact) && appleseed.topTalentProfile.top_three_talents_compact.length > 0) {
+              talentLine = appleseed.topTalentProfile.top_three_talents_compact.slice(0, 3).join(" • ");
+            } else if (Array.isArray(snap.top_three_talents) && snap.top_three_talents.length > 0) {
+              talentLine = (snap.top_three_talents as string[]).slice(0, 3).join(" • ");
+            } else if (Array.isArray(appleseed?.topTalentProfile?.top_three_talents) && appleseed.topTalentProfile.top_three_talents.length > 0) {
+              talentLine = appleseed.topTalentProfile.top_three_talents.slice(0, 3).join(" • ");
+            }
+
+            snapshotMap.set(snap.id, {
+              topTalent: talentLine,
+              archetype: snap.archetype_title || appleseed?.threeLenses?.archetype || null,
+            });
+          }
+        }
+
+        const founders: FounderInVillage[] = profileRows
+          .map((p) => {
+            const snapInfo = p.last_zog_snapshot_id ? snapshotMap.get(p.last_zog_snapshot_id) : null;
+            const fullName = [p.first_name, p.last_name].filter(Boolean).join(" ").trim() || "Community Founder";
+            const profilePath = p.username ? `/${p.username}` : `/profile/${p.user_id}`;
+
+            return {
+              userId: p.user_id,
+              name: fullName,
+              avatarUrl: p.avatar_url || null,
+              topTalentLine: snapInfo?.topTalent || "",
+              profilePath,
+              archetypeTitle: snapInfo?.archetype || null,
+            };
+          })
+          .filter((f) => Boolean(f.topTalentLine))
+          .slice(0, 12);
+
+        setVillageFounders(founders);
+      } catch (err) {
+        console.error("[Matchmaking] loadVillageFounders error:", err);
+      } finally {
+        setVillageFoundersLoading(false);
+      }
+    };
+
+    loadVillageFounders();
+  }, [assetMatches.length, assetMatchesLoading]);
 
   // Day 80 (Sasha 2026-05-23): re-fetch with a higher cap when the
   // user clicks "See more matches". Returns the new total count so
@@ -873,6 +976,19 @@ const Matchmaking = () => {
   return (
     <GameShellV2>
       <div className="p-6 lg:p-8 max-w-3xl mx-auto">
+        <div className="mb-6">
+          <Link
+            to="/village"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider transition-opacity hover:opacity-80"
+            style={{
+              fontFamily: "'DM Sans', system-ui, sans-serif",
+              color: "var(--skin-goldDeep, #5d4307)",
+              textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+            }}
+          >
+            ← Village
+          </Link>
+        </div>
 
         {/* ═══════ HEADER — Aurora editorial register ═══════ */}
         {/* Cormorant headline with GOLD_TEXT_STYLE accent + italic echo
@@ -1044,34 +1160,170 @@ const Matchmaking = () => {
           </div>
         )}
 
-        {/* No-matches state — Aurora ceremonial empty */}
+        {/* No-matches state & Founders in the Village fallback */}
         {!assetMatchesLoading && !error && !hasAnyMatches && (
-          <div
-            className="rounded-2xl px-6 py-10 text-center"
-            style={parchmentCard}
-          >
-            <h2
-              style={{
-                ...cormorantTitle,
-                fontSize: "22px",
-                fontWeight: 700,
-                textShadow: legibleHeadlineHalo,
-              }}
-              className="mb-2"
+          <div className="space-y-8">
+            <div
+              className="rounded-2xl px-6 py-8 text-center"
+              style={parchmentCard}
             >
-              {t('matchmaking.noMatchesYet')}
-            </h2>
-            <p
-              className="italic"
-              style={{
-                ...legibleItalicEcho,
-                fontSize: "16px",
-                lineHeight: 1.55,
-              }}
-            >
-              {matchesMessage ||
-                t('matchmaking.noMatchesYetBody')}
-            </p>
+              <h2
+                style={{
+                  ...cormorantTitle,
+                  fontSize: "22px",
+                  fontWeight: 700,
+                  textShadow: legibleHeadlineHalo,
+                }}
+                className="mb-2"
+              >
+                {t('matchmaking.noMatchesYet')}
+              </h2>
+              <p
+                className="italic"
+                style={{
+                  ...legibleItalicEcho,
+                  fontSize: "16px",
+                  lineHeight: 1.55,
+                }}
+              >
+                {matchesMessage ||
+                  t('matchmaking.noMatchesYetBody')}
+              </p>
+            </div>
+
+            {/* Founders in the Village section */}
+            <div>
+              <div className="mb-6 text-center">
+                <div
+                  style={{
+                    ...eyebrowSmall,
+                    fontSize: "12px",
+                    fontWeight: 700,
+                    color: "var(--skin-goldDeep, #5d4307)",
+                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
+                  }}
+                  className="mb-1"
+                >
+                  <Users className="w-3.5 h-3.5 inline-block mr-1.5 align-[-2px]" />
+                  Village Directory
+                </div>
+                <h2
+                  style={{
+                    ...cormorantTitle,
+                    fontSize: "26px",
+                    fontWeight: 700,
+                    textShadow: legibleHeadlineHalo,
+                  }}
+                >
+                  Founders in the Village
+                </h2>
+                <p
+                  className="italic"
+                  style={{
+                    ...legibleItalicEcho,
+                    fontSize: "15px",
+                  }}
+                >
+                  Real members with saved top talents and public profiles
+                </p>
+              </div>
+
+              {villageFoundersLoading ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Skeleton className="h-28 w-full" />
+                  <Skeleton className="h-28 w-full" />
+                  <Skeleton className="h-28 w-full" />
+                  <Skeleton className="h-28 w-full" />
+                </div>
+              ) : villageFounders.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {villageFounders.map((founder) => (
+                    <Link
+                      key={founder.userId}
+                      to={founder.profilePath}
+                      className="group rounded-2xl p-4 transition-all duration-200 hover:-translate-y-0.5 flex flex-col justify-between"
+                      style={parchmentCard}
+                    >
+                      <div className="flex items-start gap-3">
+                        <div
+                          className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0"
+                          style={{
+                            background: "rgba(212, 175, 55, 0.15)",
+                            border: "0.5px solid rgba(212, 175, 55, 0.45)",
+                          }}
+                        >
+                          {founder.avatarUrl ? (
+                            <img src={founder.avatarUrl} alt={founder.name} className="w-full h-full object-cover" />
+                          ) : (
+                            <span
+                              style={{
+                                fontFamily: "'Cormorant Garamond', serif",
+                                fontWeight: 700,
+                                fontSize: "18px",
+                                color: "var(--skin-goldDeep, #5d4307)",
+                              }}
+                            >
+                              {founder.name.charAt(0)}
+                            </span>
+                          )}
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <h3
+                            style={{
+                              ...cormorantTitle,
+                              fontSize: "16px",
+                              fontWeight: 700,
+                            }}
+                            className="truncate group-hover:underline"
+                          >
+                            {founder.name}
+                          </h3>
+                          {founder.archetypeTitle && (
+                            <p
+                              style={{
+                                fontFamily: "'DM Sans', system-ui, sans-serif",
+                                fontSize: "11px",
+                                fontWeight: 600,
+                                textTransform: "uppercase",
+                                letterSpacing: "0.08em",
+                                color: "var(--skin-goldDeep, #5d4307)",
+                              }}
+                              className="truncate mb-1"
+                            >
+                              ✦ {stripSymbols(founder.archetypeTitle)}
+                            </p>
+                          )}
+                          <p
+                            className="italic line-clamp-2"
+                            style={{
+                              fontFamily: "'Source Serif 4', serif",
+                              fontWeight: 600,
+                              fontSize: "13px",
+                              lineHeight: 1.4,
+                              color: "var(--skin-text-primary, #0b2a5a)",
+                            }}
+                          >
+                            {founder.topTalentLine}
+                          </p>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-6">
+                  <p
+                    className="italic text-sm"
+                    style={{
+                      fontFamily: "'Source Serif 4', serif",
+                      color: "var(--skin-text-muted, rgba(11,42,90,0.65))",
+                    }}
+                  >
+                    No public founder profiles found at this time.
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         )}
 
