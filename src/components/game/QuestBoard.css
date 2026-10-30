@@ -22,6 +22,8 @@
 .qb__name { font-weight: 300; font-size: clamp(20px, 2.2vw, 26px); line-height: 1.25; color: var(--vl-ink); }
 a.qb__name { display: inline-block; min-height: 44px; }
 a.qb__name:hover, a.qb__name:focus-visible { color: var(--vl-accent); outline: none; }
+.qb__done-when { margin: 2px 0 0; font-size: 16px; line-height: 1.4; color: var(--vl-ink-3); overflow-wrap: anywhere; }
+.qb__done-when-label { font-family: var(--vl-mono); font-weight: 300; font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; }
 .qb__row .ps-line { margin-top: 4px; font-size: 17px; color: var(--vl-ink-2); }
 .qb__row .ps-tag { margin-top: 4px; margin-left: 10px; }
 .qb__row[data-place-state="closed"] .qb__name { color: var(--vl-ink-3); }

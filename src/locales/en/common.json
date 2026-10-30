@@ -3400,6 +3400,19 @@
       "map-assets": "you'll hold the inventory of everything you can build with.",
       "build-business": "you'll have your uniqueness in one phrase, then your tagline."
     },
+    "doneWhen": {
+      "label": "Done when",
+      "find-top-talent": "your top talent shows on your Home.",
+      "discover-mission": "one sentence of your mission is saved at Home.",
+      "assess-qol": "all eight areas are answered and your level shows.",
+      "map-assets": "your skills, experience and network sit in one inventory.",
+      "build-business": "your uniqueness phrase and your tagline are both saved.",
+      "webinar": "you were in the live session on Nov 4.",
+      "mastermind": "you took part in the Mastermind, Nov 9–10.",
+      "mastery-practice": "your twenty-first day of practice is behind you.",
+      "first-price": "one real client has heard your price.",
+      "first-sale": "a real person has paid you for your offer."
+    },
     "quest": {
       "heading": "Your next quest",
       "empty": "Nothing is waiting. Go and live the next thing.",

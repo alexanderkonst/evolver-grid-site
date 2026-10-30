@@ -90,6 +90,8 @@ export type JourneyModuleDef = {
     journey: string;
     /** The task in the world, in the player's second person, one or two sentences. */
     task: string;
+    /** The checkable completion criterion, the clause after «Done when» on the Quest Board. */
+    doneWhen?: string;
     /** The label of the button that says it is done. */
     didIt: string;
     /** Where the task happens, when it has an address: an external page (https) or a route of the site. */
@@ -224,6 +226,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     startPath: "/game/journey/quest/webinar",
     quest: {
       journey: "J8",
+      doneWhen: "you were in the live session on Nov 4.",
       task: "Join the free Mastermind session on Wednesday, Nov 4. Afterwards, come back and say you were there.",
       didIt: "I joined the session",
       link: { to: "https://lu.ma/qpogt17o", label: "Open the session page" },
@@ -246,6 +249,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     startPath: "/game/journey/quest/mastermind",
     quest: {
       journey: "J9",
+      doneWhen: "you took part in the Mastermind, Nov 9–10.",
       task: "Join the Mastermind on Nov 9–10. When the two days are over, come back and say you were there.",
       didIt: "I joined the Mastermind",
       link: { to: "/build/mastermind", label: "Open the Mastermind page" },
@@ -268,6 +272,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     startPath: "/game/journey/quest/mastery-practice",
     quest: {
       journey: "J10",
+      doneWhen: "your twenty-first day of practice is behind you.",
       task: "Practise every day for 21 days, alongside others walking the same path. Come back when you have done all 21.",
       didIt: "I did my 21 days",
     },
@@ -289,6 +294,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     startPath: "/game/journey/quest/first-price",
     quest: {
       journey: "J11",
+      doneWhen: "one real client has heard your price.",
       task: "Tell one real client the price of your offer, out loud or in writing. Then come back and say you did.",
       didIt: "I named my price",
       opens: "offer-saved",
@@ -316,6 +322,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     startPath: "/game/journey/quest/first-sale",
     quest: {
       journey: "J12",
+      doneWhen: "a real person has paid you for your offer.",
       task: "Sell your offer to one real person and receive the payment. Come back and say you did: no money moves here, and we take your word.",
       didIt: "I made my first sale",
       opens: "offer-saved",
