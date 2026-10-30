@@ -186,6 +186,7 @@ Stage-7+ mechanics that pass the test (proposed, Evolver):
 
 ## 12. Ideas & findings log (append-only)
 
+- 2026-10-30: From Share Your Gifts (Stacey Lauren, Yanik Silver): (a) **cooperation games** turn strangers into partners fastest → live format for the Café and Coworking; (b) **"digital palette"** — a profile and map prepared in advance so a "yes" takes seconds → a ready offer on the player's Market stall before any event; (c) **meaning + commerce together** (a share of each purchase goes to a cause) → trust layer for the avant-garde; idea only, any money split is Sasha's call.
 - 2026-10-27: The village already exists offline: San Pancho's community directory holds ~115 local businesses, one in five in wellness/transformation, with uniqueness written in their reviews. «Мы уже не с нуля действуем» (§16).
 - 2026-10-27: Game masters' principles judged by Sasha (§15): Miyamoto wordless first minute («genius»), Miyazaki → leave a particle of yourself (new kind of testimonial), Eguchi real-moon village («fire ×3», lunar macro loop + solar daily loop of stacked habits), Chen → real multiplayer presence, Sid Meier real-choice ending, Koster facet check; McGonigal dark guardian parked.
 - 2026-10-27: Sasha («ЗОЛОТО!»): design rule is to enter stage 8 while staying compatible with 9 and 10 (see almanac). *The game that sends you back to your life* is directly Jane McGonigal's thesis; he will pitch building it with her.

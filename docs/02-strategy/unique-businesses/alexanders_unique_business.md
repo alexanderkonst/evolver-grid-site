@@ -440,6 +440,18 @@ No guarantees, no numbers we cannot stand behind (shift-offer.md §5).
 
 ---
 
+### 13. Borrowed from Share Your Gifts (Stacey Lauren, Yanik Silver / Maverick1000; Nov 4–5, 2026; filed 2026-10-30)
+*Sasha is registered and plans to attend; he is in contact with Stacey. Only what fits our engine now; their scarcity mechanic (no recording, live-only purchases) is not taken, since our Mastermind includes the recording and the tone rule is abundance.*
+
+1. **Community partner tier in registration (channel C, live form).** Registration asks: coming alone, or bringing my community (5–10 / 10–20 / 20+). A host who brings a group gets their own breakout room. This turns channel C from a host kit into a choice inside the form.
+2. **Two invite links after registration:** personal and for the community, each with a "who you brought" counter. Growth without ads; the counter is the host's proof of value.
+3. **"What gift do you bring?" field in the form.** For us: the person's Zone of Genius result link or one line of uniqueness. Gives Sasha a reading before the room starts.
+4. **Pre-parties:** 20–30 min mini-sessions before the event (offer roast, LinkedIn, story), each one also an acquisition channel. Candidate for the run after Nov 9–10.
+5. **Honest FAQ that removes the fear** ("Is this two days of being sold to?"). Mastermind page only; the Nov 4 webinar copy still never mentions the Mastermind (rule of 2026-10-28).
+6. **"One yes → a year changed" case format:** one step and its chain of consequences. Template for participant stories after Nov 9–10.
+
+**Next:** items 1–3 go into the registration flow for the second run; 5 into the Mastermind page; 6 into the post-Mastermind case collection. Not built yet.
+
 ## ⭐ Funnel v5 — Reading-first (Sasha, October 19, 2026)
 
 *Filed from Sasha's own words in chat, October 19, 2026 (22:45–23:31 MST). Supersedes the 12-step funnel in canvas v3.0 §8.6 for the LinkedIn channel; the canvases below stay as genealogy.*
