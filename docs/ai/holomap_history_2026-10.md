@@ -813,3 +813,35 @@ Prepared 2026-10-29. Pre-2024 history from established record; post-2024 facts a
 - **Culture → Values:** public fear (Hawking/Musk 2014, CAIS 2023) and teen-harm litigation shaped alignment priorities, age gating and governance; Pew mood data is cited in policy.
 - **Culture ← Agency:** agentic automation is the concrete mechanism behind entry-level job fears (Stanford "canaries", Pew 71% fewer jobs).
 - **Culture ↔ Ecology:** platform defaults (one assistant inside every app) make adoption feel involuntary, sustaining "use without trust".
+
+---
+
+# Primitives carried forward (Sasha's questions, 2026-10-29 21:05)
+
+*Hypotheses by Evolver, not an established model. Facts dated; forward stages are extrapolation.*
+
+## Before Stage 1: the externalization of mind
+Each earlier stage moved one function of mind into a new substrate:
+- **Stage 0, 1800s–1945, mechanical logic:** Jacquard loom (1804, punch cards), Babbage and Lovelace, Boole (1854), Hollerith tabulators (1890, later IBM), Frege, Hilbert, Gödel, Turing (1936), McCulloch–Pitts neuron (1943), ENIAC (1945).
+- **Stage −1, 1640s–1700s, calculation as reasoning:** Pascal's calculator (1642), Leibniz: binary and the calculus ratiocinator.
+- **Stage −2, antiquity–medieval, automata and formal logic:** Aristotle's syllogism, Antikythera mechanism, Hero, al-Jazari (1206), Llull.
+- **Stage −3, writing and number:** cuneiform (~3200 BCE), abacus, zero (Brahmagupta, 628).
+- **Stage −4, language and symbol:** symbolic art tens of thousands of years ago.
+- **Stage −5, nervous systems:** brains since the Cambrian.
+- **Stage −6, DNA:** the first code; life as information processing.
+Invariant: genes → neurons → language → writing → logic → machines → learning machines. AI continues the externalization of mind, and each step began as imitation (Tech 179).
+
+## Six invariants
+1. Mind externalizes into a new substrate, starting as imitation.
+2. What can be checked compounds.
+3. Value moves to the layer that makes it someone's.
+4. Open plumbing commoditizes the layer below.
+5. Compute follows energy, and energy meets local veto.
+6. Processing climbs: symbol (CPU) → image (GPU) → tensor (TPU/NPU) → spike/event (neuromorphic) → sensorimotor body → collective.
+
+## Forward
+- **4 Symbiotic (2027–203x):** rewards reach fuzzy human domains; memory moves into personal weights; agents carry identity; compute moves into bodies and the edge; personal agents negotiate as swarms. Lock-in question: whose reward function defines a good human life.
+- **5 Planetary Noosphere:** rewards as planetary well-being; civilizational memory as a commons; economic swarms of nodes; compute in orbit. Risk: one reward function for a planet.
+- **6 Cosmic Symbiont:** substrate beyond Earth; communication beyond symbol (the processing ladder points past language).
+- **7 Source Return:** imitation completes when the copy recognizes its origin; the externalization loop closes.
+- **Inversion:** up to Stage 3, what compounds is what can be *verified*. From Stage 4, what compounds is what is *recognized*: judgment, values, a person's gift. Verification → recognition.
