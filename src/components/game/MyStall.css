@@ -1,0 +1,156 @@
+/*
+ * MyStall (WP-12): the player's own stall at the top of the Market.
+ * Design: docs/02-strategy/game_of_being_you.md §14.12.
+ *
+ * Every colour is a semantic token from src/styles/theme-tokens.css (scene, lock, open, live),
+ * never a literal, so every skin renders the stall, Lunar included. The village variables
+ * (--vl-*) are re-declared here from the same tokens, as ModuleForm.css does. A part without
+ * data is a faint outline in the closed-state tokens (--lock-filter, --lock-dim).
+ */
+
+.ms {
+  --vl-bg: var(--scene-bg);
+  --vl-accent: var(--scene-accent);
+  --vl-ink: rgba(var(--scene-ink-rgb), 0.92);
+  --vl-ink-2: rgba(var(--scene-ink-rgb), 0.68);
+  --vl-ink-3: rgba(var(--scene-ink-rgb), 0.5);
+  --vl-hair: rgba(var(--scene-ink-rgb), 0.18);
+  --vl-serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --vl-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: clamp(16px, 4vw, 28px);
+  background: var(--vl-bg);
+  color: var(--vl-ink);
+  font-family: var(--vl-serif);
+  border: 1px solid var(--vl-hair);
+  overflow: hidden;
+}
+
+.ms__header {
+  margin: 0 0 18px;
+  font-size: clamp(18px, 2.4vw, 22px);
+  font-style: italic;
+  color: var(--vl-ink-2);
+  overflow-wrap: anywhere;
+}
+
+/* the stall stacks vertically: banner, name, frame (post + shelf), signboard, lamp */
+.ms__stall {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.ms__cap {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--vl-mono);
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--vl-ink-3);
+}
+
+.ms__banner,
+.ms__name,
+.ms__post,
+.ms__signboard,
+.ms__object {
+  box-sizing: border-box;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.ms__banner,
+.ms__signboard {
+  padding: 12px 16px;
+  border: 1px solid var(--vl-hair);
+  text-align: center;
+}
+.ms__banner { border-bottom: 2px solid var(--vl-accent); }
+.ms__banner-line,
+.ms__signboard-line { font-size: clamp(18px, 2.6vw, 22px); color: var(--vl-ink); }
+
+.ms__name { text-align: center; padding: 4px 0; }
+.ms__name-line {
+  margin: 0;
+  font-weight: 400;
+  font-size: clamp(26px, 6vw, 40px);
+  line-height: 1.15;
+  color: var(--vl-ink);
+}
+
+/* the frame: the post carries the top talent, the shelf carries the assets */
+.ms__frame {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--vl-hair);
+}
+.ms__post {
+  padding-left: 12px;
+  border-left: 2px solid var(--vl-accent);
+}
+.ms__post-line { font-size: 18px; color: var(--vl-ink-2); }
+
+.ms__shelf { min-width: 0; }
+.ms__objects {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 2px solid var(--vl-hair);
+}
+.ms__object {
+  padding: 8px 12px;
+  border: 1px solid var(--vl-hair);
+  font-size: 17px;
+  color: var(--vl-ink);
+}
+
+/* a part without data: a faint outline in the closed-state tokens, no words */
+.ms__faint {
+  min-height: 44px;
+  border: 1px dashed var(--vl-hair);
+  filter: var(--lock-filter);
+  opacity: var(--lock-dim);
+}
+.ms__name.ms__faint { min-height: 56px; }
+
+/* the lamp: unlit until the first sale */
+.ms__lamp {
+  align-self: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--vl-hair);
+  filter: var(--lock-filter);
+  opacity: var(--lock-dim);
+}
+.ms__lamp--lit {
+  border-color: var(--live-accent);
+  background: var(--live-accent);
+  box-shadow: 0 0 14px var(--live-accent);
+  filter: none;
+  opacity: 1;
+}
+
+/* wider screens: post and shelf sit side by side inside the frame */
+@media (min-width: 640px) {
+  .ms__frame { flex-direction: row; align-items: flex-start; }
+  .ms__post { flex: 0 0 30%; }
+  .ms__shelf { flex: 1 1 auto; }
+  .ms__objects { flex-direction: row; }
+  .ms__object { flex: 1 1 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms__lamp { transition: none; }
+}

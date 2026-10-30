@@ -10,6 +10,7 @@ import {
 } from "@/data/journeySequence";
 import { computeQolLevel, type QolLevel } from "@/lib/qolLevel";
 import { fetchTopTalentSnapshot } from "@/lib/topTalentSnapshot";
+import { slicePhrase } from "@/modules/unique-business-builder/journeySlices";
 
 /**
  * useCharacterSheet — read-only data layer for the Character Sheet
@@ -54,6 +55,10 @@ export type CharacterSheetData = {
     assets: { count: number; top: CharacterSheetAsset[] };
     /** An offer / tagline artifact is saved in the UBB (opens Market and Co-working, §14.3). */
     offerSaved: boolean;
+    /** The uniqueness phrase (J6, the stall's name) from the newest `uniqueness` artifact; null until saved. */
+    uniquenessPhrase: string | null;
+    /** The tagline (J7, the stall's signboard) from the newest `promise` artifact; null until saved. */
+    tagline: string | null;
     /**
      * `journey_victories.step_id` of every victory the player has recorded (own rows only, RLS).
      * The real-world ones (J10–J12) open Town Hall and light the house (placeState, WP-11).
@@ -73,6 +78,8 @@ const EMPTY: CharacterSheetData = {
     qol: null,
     assets: { count: 0, top: [] },
     offerSaved: false,
+    uniquenessPhrase: null,
+    tagline: null,
     victories: [],
 };
 
@@ -84,6 +91,9 @@ const TOP_ASSETS = 3;
  * saved forms of the offer. Narrow this list when WP-9 lands.
  */
 const OFFER_ARTIFACT_KEYS = ["promise", "value_ladder"];
+
+/** The J6 / J7 phrases the stall shows (journeySlices.ts maps each key to its content field). */
+const PHRASE_ARTIFACT_KEYS = ["uniqueness", "promise"] as const;
 
 const readLastSeen = (): Partial<Record<JourneyItemId, boolean>> | null => {
     try {
@@ -119,7 +129,7 @@ async function loadSheet(): Promise<CharacterSheetData> {
     // soul_colors is not in the generated types (CharacterHub casts the same way).
     const row = (profile ?? {}) as { first_name?: string | null; avatar_url?: string | null; soul_colors?: string[] | null };
 
-    const [zog, qol, assets, mission, offer, victories] = await Promise.all([
+    const [zog, qol, assets, mission, offer, phrases, victories] = await Promise.all([
         // Same read as Reception: the pointer's snapshot, newest only as fallback.
         profileId
             ? fetchTopTalentSnapshot<{ id: string; archetype_title: string | null }>(
@@ -154,8 +164,26 @@ async function loadSheet(): Promise<CharacterSheetData> {
             .select("id", { count: "exact", head: true })
             .eq("user_id", user.id)
             .in("artifact_key", OFFER_ARTIFACT_KEYS),
+        // Versions are append-only: the newest row of each key is the current phrase.
+        supabase
+            .from("user_business_artifacts")
+            .select("artifact_key, content_json")
+            .eq("user_id", user.id)
+            .in("artifact_key", [...PHRASE_ARTIFACT_KEYS])
+            .order("created_at", { ascending: false })
+            .limit(20),
         supabase.from("journey_victories").select("step_id").eq("user_id", user.id),
     ]);
+
+    const newestPhrase = (key: (typeof PHRASE_ARTIFACT_KEYS)[number]): string | null => {
+        const rows = phrases.error ? [] : (phrases.data ?? []);
+        for (const r of rows) {
+            if (r.artifact_key !== key) continue;
+            const phrase = slicePhrase(key, r.content_json);
+            if (phrase) return phrase;
+        }
+        return null;
+    };
 
     return {
         userId: user.id,
@@ -171,6 +199,8 @@ async function loadSheet(): Promise<CharacterSheetData> {
             top: (assets.data ?? []).map((a) => ({ id: a.id, title: a.title })),
         },
         offerSaved: !offer.error && (offer.count ?? 0) > 0,
+        uniquenessPhrase: newestPhrase("uniqueness"),
+        tagline: newestPhrase("promise"),
         victories: victories.error ? [] : (victories.data ?? []).map((v) => v.step_id),
     };
 }
