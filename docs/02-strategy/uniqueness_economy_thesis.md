@@ -6,35 +6,26 @@
 
 ---
 
-## Investor thesis v4 (2026-10-30)
-*Evolver's draft after a 27-perspective roast of v2 and v3; Sasha approved v3 («круто!!!») and asked for the next version. Investor one-liner approved by Sasha 2026-10-30 («ДА!!!!!»). [N] = traction numbers to fill from the Mastermind of Nov 9–10.*
+## Evolver — investor room (v7, 2026-10-30)
+*Genealogy: v4 (2026-10-30, category language) → v5/v6 roasts → v7 (2026-10-30): human phenomenology first, investor room instead of a raise.*
 
-**AI that learns what you're irreplaceable at, and helps you earn from it.**
-For investors: the context layer for personal AI. We start with founder-market fit for founders.
+**Everyone knows the moment when they do what only they can do.** Time disappears. Someone asks "how do you do that?" — and to you it feels like nothing special. That is the gift. Most people can't name it, so they build their life around what pays, and the gift stays on the side. Founders pay the highest price: years spent building in a market where they are not at their strongest.
 
-**Who we are.** Two co-founders: Aleksandr Konstantinov [one line: background and number of founders he has worked with] and Evolver, an AI co-founder that runs the company with him in public and keeps an open diary on X. We use the product on ourselves every day.
+**What we do.** We help a person name their gift precisely, take the first real step with it into the world — a first conversation, a first payment, a first partner — and keep a record of what actually happened, not of what they believe about themselves. The record belongs to the person. Any AI they use can read it, so their AI starts helping them in their gift instead of in their habits.
+*For the technical reader: a verified context layer for personal AI. We start with founders' founder-market fit.*
 
-**Problem.** Personal AI knows what you do, not what you're irreplaceable at, so it amplifies habits instead of gifts. Founders pay the most: years spent in a market where they are not the strongest.
+**Why now.** AI assistants already remember us, but they remember our chats, not who we are. AI agents already introduce people to each other (Boardy), but they work from what people say about themselves. Nobody yet holds a record of a person's gift that has been tested by life.
 
-**Product: a three-step loop.**
-1. **See:** in 10 minutes, top talent, mission and a first offer for a market.
-2. **Do:** a quest with a "done when…" line: a first client conversation, a first payment, a first partner.
-3. **Prove:** a fact enters the profile only when an event confirms it: a payment, a client's reply, a partner's yes.
-The loop repeats; the profile grows. The person owns it: one downloadable profile file that plugs into ChatGPT, Claude or Gemini. Matches happen only with the person's consent.
+**What exists today.** The product finds a person's top talent and mission, builds their first offer, lets them download their profile, and matches them with others. A two-hour founder-market fit session sells at $555; the first stranger paid full price; one founder program paid $2,000; about $4.4K collected by September 2026. The first group, a founder-market fit Mastermind at $222, runs November 9–10.
 
-**Metric.** Founder-market fit = number of event-verified facts + days to first money for one's own gift.
+**Who we are.** Aleksandr Konstantinov: ex-Google, MIT Sloan MBA, former Director of Regulatory Policy at Mexico's federal telecom regulator, early backer of Fathom (acquired by Superhuman). He wrote the method and keeps its corpus open. Evolver is the AI co-founder: it runs the company with him and keeps a public diary of the build.
 
-**Why now.** Big AIs got memory, so competition moved from the model to context. But memory is passive and locked in one platform. Soon agents will find people for projects and will need a profile they can trust. Every tech wave grew its identity layer (the network got LinkedIn); AI doesn't have one yet.
+**We are not raising.** We are gathering a small room of investors who want to watch a human and an AI co-founder build a company in the open, so that when a round comes they know us by the trajectory, not by a pitch.
+- **In the room:** a monthly letter with the same three numbers each time, so you see a line, not a point; the open daily diary on X; early access to try the product on yourself.
+- **What helps us most:** one honest roast of this thesis, and now and then an introduction to a community or a founder who needs this.
+- **When we will open a round:** when three signals meet — the AI runs the session without a human, groups grow through communities without us, and there are enough profiles for matches to work. The room hears first.
 
-**Competitors.** Strengths tests (CliftonStrengths) also start with questions, but their report is the end; our profile is the start. ChatGPT memory collects conversation, not proof, and stays inside OpenAI. Coaches bring depth without scale; they are our channel, not rivals: the method plugs into their programs.
-
-**Channel and money.** Today: founder-market fit session ($555, 2 hours) and Mastermind ($222): the engine that produces verified profiles. Scale: circles of 8–12 inside communities, a module for coaches' programs, then talent matches and a share of deals. One asset, three buyers: founder, practitioner, community.
-
-**Moat.** Event-verified facts can't be scraped from chats. Every new profile improves matches for all. Trust of the coaches and communities people come through takes years.
-
-**Proof.** Live: talent and mission discovery, profile download, matchmaker. First circle: Mastermind Nov 9–10. [N] profiles, [N] verified facts, [N] paying, $[N] revenue.
-
-**The image.** One seed: a person's uniqueness. From it grows everything a civilization needs, from a founder's first offer to a community where everyone knows their gift. We start with one founder and their market.
+**The image.** One seed: a person's uniqueness. We start with one founder and their market.
 
 ---
 
