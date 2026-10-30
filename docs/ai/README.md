@@ -90,6 +90,8 @@ Originally *genius* was not a trait but a being that accompanies a person. The g
 
 **Taxonomy v0 (2026-10-29):** [taxonomy_v0_2026-10.md](taxonomy_v0_2026-10.md): ISIC Rev.5 top layers (22 sections, 87 divisions), ~190 CB Insights names reverse-engineered from 11 public pages, our AI branch (11 domains, 71 markets, ~237 niches) with an empty turn column.
 
+**Interface almanac (2026-10-29):** [interface_almanac.md](interface_almanac.md): evolutionary map of interfaces, stages 1–7 + forecast 8–10; chat = command line one turn up; F1–F5 placed.
+
 **Next steps (in order):** (a) top layers of the economy taxonomy; (b) reverse-engineer CB Insights' public niche names into the AI branch; (c) place AI products onto the holomap cells; (d) apply the outer → inner → outer-anew axis (Tech 177).
 
 ---

@@ -342,7 +342,7 @@ Sasha's live transmission. We build the interface, not models (§16), so this li
 
 **Interface surfaces to compare (his list, to map evolutionarily):** iPad-class touchscreen (high response quality, ergonomics) · *Minority Report* floating transparent or holographic panels (liquid-glass-like, physical or purely holographic) · AR/VR glasses: Meta (popular in ads; real quality unverified) and Apple Vision Pro (striking quasi-3D; seeing the interface in 3D feels harmonious, as close to how we see reality as it gets).
 
-**Method (Sasha):** first the evolutionary map of interfaces, then the future reveals itself from the map, the way Asimov's psychohistory reads where things are going. Next step proposed by Hark: an interface holomap (stages 1→4) in `docs/ai/`, from which F1–F5 and future features fall out.
+**Method (Sasha):** first the evolutionary map of interfaces, then the future reveals itself from the map, the way Asimov's psychohistory reads where things are going. Next step proposed by Hark: an interface holomap (stages 1→4) in `docs/ai/`, from which F1–F5 and future features fall out. **Done v0 (2026-10-29):** `docs/ai/interface_almanac.md`; F3 (the AI arranges the windows) is the true novelty.
 
 
 ---
