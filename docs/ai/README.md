@@ -94,6 +94,20 @@ Originally *genius* was not a trait but a being that accompanies a person. The g
 
 ---
 
+
+**Lineage of AI's makers (v0, 2026-10-29).** Sasha: start the holomap earlier than McCulloch–Pitts (1943). Two or three figures per generation:
+1. Ancestor of formal reasoning: Aristotle (syllogism, 4th c. BCE); Hero of Alexandria (automata, 1st c.).
+2. Combinatorial machine of thought: Ramon Llull (Ars Magna, c. 1305); al-Jazari (programmable automata, 1206).
+3. Thinking = calculation: Hobbes ("reasoning is but reckoning", 1655); Leibniz (calculus ratiocinator, binary, universal language). Working founder of the idea: Leibniz.
+4. The machine and its limit: Babbage (Analytical Engine); Ada Lovelace (Note G, 1843: the engine "has no pretensions to originate anything"); Boole (Laws of Thought, 1854).
+5. Logic as foundation: Frege (1879); Hilbert (decision problem); Gödel (incompleteness, 1931).
+6. Birth of computation and the neuron: Turing (1936; "The Imitation Game", 1950); McCulloch and Pitts (1943); Wiener and Shannon (cybernetics, information, 1948).
+7. Naming the field: McCarthy (the term, Dartmouth 1956); Minsky; Rosenblatt (perceptron, 1958).
+8. Learning machines, the winter years: Rumelhart and Hinton (backpropagation, 1986); LeCun (convolutional nets); Hochreiter and Schmidhuber (LSTM, 1997).
+9. Deep learning breaks through: Krizhevsky, Sutskever, Hinton (AlexNet, 2012); Fei-Fei Li (ImageNet); Hassabis (DeepMind: AlphaGo 2016, AlphaFold).
+10. Language as the interface: Vaswani et al. (Transformer, 2017); Sutskever and Altman (GPT, ChatGPT 2022); Amodei (scaling laws, Anthropic).
+Link to Technology 179 (AI Is Imitation): Turing himself named his test "the imitation game".
+
 ## 1. AI OS — the product (installable cognition)
 
 | Doc | What it is |
