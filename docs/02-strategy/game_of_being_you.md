@@ -934,3 +934,6 @@ Applied first to the Journey modules J1–J12 when WP-5 lands; Evolver keeps the
 **Make it visible.** The player should see their AI growing as they play: each completed module adds to it (a short "your AI just learned…" moment), so the three gifts fill up over the journey.
 
 **Naming (open).** The Oracle place gets a new name centred on the player's own AI. Candidates: "Your Familiar" (Evolver's recommendation; verb inside: "Train your familiar"), "personal AI harness" (keep as internal/docs term), "AI training". Decision: Sasha.
+
+**Guilds of the new economy** (Sasha, 2026-10-29 22:27). «да, отличный подход, делай. Тест да тоже норм. ВОУ. Получается что мы можем лидеров новой экономики просто взять и собрать. И разделить по гильдиям. Они начнут естественно интегрироваться. Нужны будут фасилитаторы. Вот это веселуха! Запишу это как технологию сдвига. Также запиши это в корпус. И в стратегические файлы. ВОУ.» The inner-turn taxonomy finds, niche by niche, the leaders who already made the turn; the village gathers them into guilds (niche families), they integrate naturally, facilitators hold the field. Library: Technology 180.
+

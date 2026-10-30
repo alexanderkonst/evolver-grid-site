@@ -9485,3 +9485,32 @@ Latin *imitari* "to copy, portray", from the PIE root *\*aim-* "to copy". From t
 - *Technology 177*: market maps; same mapping workstream.
 - `docs/specs/ai-familiar/ai-familiar_tracker.md`: mirror, not clone.
 
+---
+
+## Technology 180: Gather the Leaders of the New Economy into Guilds (собрать лидеров новой экономики и разделить по гильдиям) (oral, Oct 29, 2026)
+
+> *Oral · October 29, 2026, 22:27 CST · chat with Hark, answering the plan for the inner-turn taxonomy (ISIC/NAICS top layers + market-map niches + one new axis: outer → inner → outer anew, scored by what a company actually does). Builds on Technology 177.*
+
+### 🫀 Essence — in Sasha's words
+
+> «да, отличный подход, делай. Тест да тоже норм. ВОУ. Получается что мы можем лидеров новой экономики просто взять и собрать. И разделить по гильдиям. Они начнут естественно интегрироваться. Нужны будут фасилитаторы. Вот это веселуха! Запишу это как технологию сдвига. Также запиши это в корпус. И в стратегические файлы. ВОУ.»
+> — *chat of 2026-10-29, CST*
+
+*(translation)* "So we can simply take the leaders of the new economy and gather them, and divide them into guilds. They will start to integrate naturally. We'll need facilitators. What fun!"
+
+### 🧠 Significance — AI draft
+
+The taxonomy stops being a map and becomes a convening instrument. Once every niche is scored on the inner-turn axis, the leaders who already made the turn are findable, niche by niche. Grouped by guild (a niche family on the same axis), they share a language, so integration happens by itself; the facilitator holds the field rather than pushing it.
+
+### 🔥 Implications — AI draft
+
+- Guild = a village place for one niche family; facilitators are a new role (and product line: facilitator training/licensing).
+- The Mastermind becomes the first guild format; the village is the meeting place across guilds (Technology 177, "one foundation, many doors").
+- Deal flow and the investment thesis gain a living body: the people the map points to are in the room.
+- Not outreach yet: who is invited, how and when stays Sasha's call.
+
+### Cross-references — Connects to
+
+- *Technology 177: Market Maps as an X-ray of the Inner Turn* (the map that finds them).
+- `docs/02-strategy/evolutionary_avantgarde_taxonomy.md` (shades and doors), `docs/ai/taxonomy_v0_2026-10.md` (the taxonomy).
+

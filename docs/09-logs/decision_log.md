@@ -6,6 +6,11 @@
 
 ---
 
+## 2026-10-29
+
+### D-2026-10-29-01: Inner-turn taxonomy and guilds of the new economy
+**Decision (Sasha, 22:27: «да, отличный подход, делай. Тест да тоже норм»):** build the economy taxonomy from ISIC/NAICS top layers + market-map niches and leaders, with one new axis per company: outer → inner → outer anew, scored by what the company actually does, not by capital raised. First test niche: founder coaching. Direction: gather the leaders who made the turn into guilds (niche families), with facilitators (Technology 180). Outreach to anyone stays Sasha's call.
+
 ## 2026-10-26 (Day 225)
 
 ### D-2026-10-26-02: Fidelity principle — the game shows life itself, no artificial XP

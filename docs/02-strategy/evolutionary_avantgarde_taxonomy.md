@@ -318,3 +318,8 @@ Not a community platform. **A planetary synapse.**
 **This week.** Pick 2–3 shades and one channel for the first settling of the village, and speak to them in their language. Sasha's choice.
 
 **The view that opens** (Hark synthesis, 2026-10-27). The avant-garde is not a market segment but an organism missing connective tissue. FYT's role is that tissue: a translation and meeting layer (uniqueness → matching → shared village economy), rather than one more offer to one shade. The Mastermind is the first cross-shade room; the measure is cross-shade meetings that turn into joint work and money. Sasha's own unique business is the first proof of the pattern.
+
+## Guilds: from map to gathering (Sasha, 2026-10-29 22:27)
+
+The inner-turn taxonomy (ISIC/NAICS top layers + market-map niches + the axis outer → inner → outer anew, scored by actual work, not capital raised) gives a second use of the shades: not only doors to speak through, but rooms to gather in. Leaders of the new economy who already made the turn are found niche by niche and divided into **guilds** (niche families). Within a guild they share a language and integrate naturally; across guilds the village is the meeting place. **Facilitators** are needed: a new role and a possible product line. First test of the axis: founder coaching. Who is invited, how and when is Sasha's call. Library: Technology 180.
+
