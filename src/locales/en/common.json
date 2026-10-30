@@ -7432,7 +7432,8 @@
     }
   },
   "eventsSpace": {
-    "title": "Events",
+    "title": "Café",
+    "backToVillage": "← Village",
     "subtitle": "Gatherings and experiences",
     "otherLocations": "Other locations",
     "filter": "Filter",

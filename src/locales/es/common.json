@@ -7174,7 +7174,8 @@
     }
   },
   "eventsSpace": {
-    "title": "Eventos",
+    "title": "Café",
+    "backToVillage": "← Aldea",
     "subtitle": "Encuentros y experiencias",
     "otherLocations": "Otros lugares",
     "filter": "Filtro",
