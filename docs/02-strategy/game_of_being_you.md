@@ -939,3 +939,78 @@ Applied first to the Journey modules J1–J12 when WP-5 lands; Evolver keeps the
 
 **Guilds of the new economy** (Sasha, 2026-10-29 22:27). «да, отличный подход, делай. Тест да тоже норм. ВОУ. Получается что мы можем лидеров новой экономики просто взять и собрать. И разделить по гильдиям. Они начнут естественно интегрироваться. Нужны будут фасилитаторы. Вот это веселуха! Запишу это как технологию сдвига. Также запиши это в корпус. И в стратегические файлы. ВОУ.» The inner-turn taxonomy finds, niche by niche, the leaders who already made the turn; the village gathers them into guilds (niche families), they integrate naturally, facilitators hold the field. Library: Technology 180.
 
+## 19. Live audit 2026-10-30: what to fix, add, debug and polish
+
+*Sasha, 2026-10-30: audit everything we've reached, then write what to fix, add, debug, change and polish, with the focus on UX, the user path, the player path and gamification. Source: live site findyourtoptalent.com, bundle `index-BSMnvgmq.js` = main `c37cb82` (#238; live bundle checked against main: the Stripe link from `3058c8d` and `ms__workshop` from #238 are in the live chunks, so no publish was needed). Six browser walks at 14:30–15:00 MST: guest first use at 1920, signed-in (Sasha's account) at 1920, every Village place and keyboard at 1920, 390×844 through the iframe harness, four skins, /es and /ru. Every finding is tagged `observed@390`, `observed@1920`, `signed-in` or `code`. Read-only: no purchase, no publish, no Lovable, no messages. Raw notes: `/workspace/work/audit1030/slice-*.md` (Hark workspace). Previous audit: 2026-10-28, 38/100 (Hark workspace `game-audit.md`).*
+
+**390 actually checked:** yes, through the iframe harness (real phone CSS).
+
+### 19.1 Verdict
+The first minute and the reveal are now honest and fast (about two minutes, a moving bar, «kept on this device»), the Market stall assembles from real data, Mastermind takes a real payment; but a guest who leaves is forgotten, a signed-in player sees several different truths about themselves, and a Spanish or Russian player still plays an English game.
+
+### 19.2 Score (judged, same scorecard as 10-28)
+| Heuristic | 10-28 | 10-30 | Finding today |
+|---|---|---|---|
+| System status | 3 | 3 | reveal bar moves (~100–120 s) but stalls at ~90–95 % and is not announced to screen readers; `/next-move`, `/next-move-v2` paint a bare spinner for many seconds |
+| User's words | 2 | 3 | old names gone (Forge, Trading Post, Party & Guild); still «crystal», «save file», «I already live here», «The moon wanes. Digest.» to a stranger |
+| Control & exit | 3 | 3 | ← Village on most places, but on Market and Workshop it goes to `/game` = Quest Board; no way back on Mastermind @390 and on the Co-working sign-up wall; Lunar cannot be chosen again once left |
+| Consistency | 2 | 2 | one account: Level «2 / 10» (Home), «Level 4 · 600 XP» (`/next-move`), «Level 7 · 600 XP» (`/next-move-v2`, `/map-classic`); name shown four ways; Assets «Done» on the Quest Board but `/asset-mapping` closed |
+| Error prevention | 3 | 3 | the honest save line fixed the false «saved»; «kept on this device» still dies with a cleared browser |
+| Recognition | 3 | 3 | «Not open yet» is text now in every skin; low contrast, and closed cards on the phone list look and tap like open ones |
+| Shortcuts | 4 | 4 | rail + map + LOAD GAME |
+| Minimalism | 3 | 3 | FOUNDER TOOLS catalog (13 items incl. «Karime's Unique Offer») on Mastermind, Workshop, Town Hall |
+| Error recovery | 3 | 3 | Co-working loading → clear empty state (good); Town Hall is a picture with one «Back to the village» button |
+| Help | 3 | 3 | «Done when» lines on every quest are the best help in the game; five of six closed places give a guest only «I already live here → sign in» |
+Mean 3.0 → **50**; laws: Fitts FAIL (Chat launcher still covers targets @390), Hick FAIL (FOUNDER TOOLS catalog), Doherty pass, Miller pass, Tesler pass → **40/100** (10-28: 38). The gain is the reveal, the Café, the stall and the honest save; the drag is consistency and i18n, which did not move.
+
+### 19.3 Top 7 findings (by impact)
+1. **Spanish and Russian players get an English game** (blocks for ES/RU). #213 wired `t()` into the game layer but added the keys to `en` only: `node scripts/i18n-key-check.mjs` reports 563 missing entries (≈280 keys per language), of them all 158 `village.*` keys and 67 `familiar.*` (Your AI) keys, plus `market`, `course`, `eventsSpace`, `spacesRail`, `zogEntry`, `chatLauncher`. Live: `/es/village` and `/ru/village` show one localized sentence; Quest Board «Done when» lines, Your AI, Café cards and Academy rooms are English; the `/ru` title is the old NEW GAME menu with «You Are The Fifth Element», all English (`code` + `observed@390` + `observed@1920`). The translations that exist read naturally; one calque: «усиление» for power-up. → #239 (P0).
+2. **A guest who leaves is forgotten, and the result never leaves its card** (blocks conversion). After the reveal and «Not now, enter the village», reloading `/` shows the cold title menu, no «welcome back», no resume, «You are here» on step 01. The talent is not shown on the map, the Quest Board or Your AI. Five of six closed places offer a guest only «I already live here → sign in»; the Co-working sign-up wall has no way back @390 (`observed@1920`, `observed@390`). → #240 (P0).
+3. **One player, several truths** (reduces trust; signed-in). Same account, same session: Level 2/10 vs 4 vs 7, three different next moves (Quest Board / «Read Your Genius Profile» / «Articulate Your Top 3 Talents»); name «Umza · Montoya» in the rail, «Aleksandr Konstantinov» at Reception, «ALEKSANDR» at Home; `/asset-mapping` says «Opens when your mission is saved» with the button disabled, while Home shows 43 assets and the Quest Board marks Assets Done. Likely cause (`code`, `ModuleIntro.tsx`): after `SHEET_WAIT_MS` = 4 s the intro stops waiting and computes the state from a sheet that has not loaded, which reads as closed. Signed-in pages still say «No signup» (`/?path=match`, `/?path=build`) and «Welcome, guest» (`/map-classic` chip). → #241 (P0).
+4. **Internal tools inside the game** (adds friction; fork for Sasha). Mastermind, Workshop and Town Hall show a FOUNDER TOOLS sub-menu (Equilibrium, Commercial OS, Automated Venture Builder, Founder Cockpit, Playbook, Roadmap, Products, «Karime's Unique Offer», Dashboard, Holomap); right after sign-in the player lands on a method page with «Fork it on GitHub» (`signed-in`). Playbook / Roadmap / Dashboard must stay reachable (§14.13), so this is Sasha's question 1, not an issue.
+5. **Holes in the way around** (adds friction). «← Village» on Market and Workshop links to `/game`, which redirects to the Quest Board (`code`: `VillagePlaceHeader.tsx` line 8); Mastermind has no ← Village @390; Town Hall reached directly is a picture and a bounce, no closed line; `/spaces`, `/build`, `/xyz` show «Profile Private — This profile is not available right now.» (fall into `/:username`); the skin toggle loops Lapis → Aurum → Dao and never back to Lunar (`code`: `SpacesRail.tsx` `TOGGLE_NEXT_SKIN`); the Outro still says «Home, the Quest Board and the Oracle are open» (`code`: `journeyModules.ts`). → #242 (P1).
+6. **Phone: covered and look-alike targets** (adds friction, `observed@390`). «Chat with us» still covers «Skip »», the corner of the next-move card, the Café card and a «Done when» line (in #236's scope, in build); closed cards in the phone list have no closed look and stay tappable links; sign-up inputs 40 px; EN pill ~34 px high; the fixed YOU logo overlaps the «The Game of Being You» eyebrow on `/village`; «DONE WHEN» label crowds its sentence. → #243 (P1, after #236).
+7. **First seconds and screen readers** (polish). «Press any key»: Space does nothing, Enter and click work; reveal progress lives only in a visual bar (no `aria-live`), the static line «This usually takes 2–4 minutes» is all a screen reader gets; the next-move button is named only «ENTER», the corner link «← TITLE»; place tab titles generic on Village places («The Digital Village · FindYourTopTalent» for Home, Quest Board…; #236 covers game tab titles). → #242 (P1).
+
+### 19.4 Since 10-28: fixed and confirmed live
+- Honest save: guest reads «Your result is kept on this device», no false «saved» (#209). Reveal ~100–120 s with a moving bar (was several minutes of rotating lines). One top talent at Reception, Home and stall («Designing System Standards»).
+- Closed places say «Not open yet» as text in every skin; Mastermind follows the skin; Dao gold and Lapis-with-Lunar-art not reproduced (#210, #205). Latent: literal `#d4af37` in focus/hover rings in Dao.
+- Café open to guests with the Nov 4 free session (Luma) and the $222 Mastermind card, ← Village, no Create Event for guests (#226, #229).
+- Your AI place: intro → ask → two answers → outro, no raw keys (#227). Quest Board «Done when» under every quest (#233).
+- Market stall assembles from real data for a signed-in player: mission, stall name, top talent, three shelf items, signboard; «Your stall is open in the Market.» (#235, #238). #237 closed as done by #238.
+- Mastermind «Reserve my place» opens the live Stripe checkout for $222 (`3058c8d`; not paid, checked only).
+- Phone menu is an overlay drawer, closed places disabled in it (#212). Keyboard: focus ring visible, Tab reaches every pin and the next-move card, Escape closes menus.
+- Language prefix sticks through every link and redirect, the switcher keeps the route. Keep-list routes `/?path=match`, `/?path=build`, `/next-move`, `/next-move-v2`, `/map-classic` all open; Playbook / Roadmap / Dashboard still in the Workshop pane.
+- Co-working loading → explanation → clear empty state: the pattern the other loaders should copy.
+
+### 19.5 Work list (what to fix, add, debug, change, polish)
+| # | Kind | What | Where | Evidence | Issue |
+|---|---|---|---|---|---|
+| 1 | fix | add `es` + `ru` values for every missing key (village, familiar, market, course, eventsSpace, spacesRail, zogEntry, chatLauncher, villagePlaces); route `doneWhen`, Café cards, Academy rooms, `/ru` title menu through `t()`; replace «усиление» | `src/locales/{es,ru}/common.json`, `journeyModules.ts`, `QuestBoard.tsx`, Café, Academy, `GameTitle.tsx` | `i18n-key-check` 563 missing; `/es/village` 1 Spanish sentence | #239 |
+| 2 | add | returning guest on `/`: «Welcome back» + «Continue» to the village with their talent; the talent shown on the next-move card and the Quest Board | `GameTitle.tsx`, `Village.tsx`, `QuestBoard.tsx`, local result store | reload `/` = cold menu | #240 |
+| 3 | change | every closed place gives a guest the next real step («Find your top talent» / the step that opens it) next to the sign-in link; Co-working sign-up wall gets ← Village | `PlaceState.tsx`, `villagePlaces.ts`, Co-working auth | 5 of 6 closed = sign-in only | #240 |
+| 4 | debug | `/asset-mapping` and QoL done-state: never compute «closed» from an unloaded sheet | `ModuleIntro.tsx` (`SHEET_WAIT_MS`), `placeState.ts` | 43 assets, Quest Board Done, intro closed | #241 |
+| 5 | fix | one level and one next move: Home, `/next-move`, `/next-move-v2`, `/map-classic` read the same function (routes stay) | `useCharacterSheet`, next-move pages, `CoreLoopHome` | 2/10 vs L4 vs L7 | #241 |
+| 6 | fix | one display name rule; signed-in copy never says «guest» / «No signup» | rail footer, Reception, Home, `/?path=*`, `/map-classic` | four names | #241 |
+| 7 | fix | ← Village goes to `/village` everywhere | `VillagePlaceHeader.tsx` | `to="/game"` | #242 |
+| 8 | add | Town Hall direct visit shows its closed line, not a bounce; Mastermind ← Village | `/game/coop`, `Mastermind.tsx` | splash only | #242 |
+| 9 | add | not-found page for unknown reserved-looking slugs instead of «Profile Private» (public profiles stay at `/:username`) | `App.tsx`, `PublicProfile` empty state | `/spaces`, `/build`, `/xyz` | #242 |
+| 10 | polish | splash takes Space; reveal progress `aria-live`; next-move button named with the place; «← Title» named; stale «Oracle» line | `GameTitle.tsx`, reveal, `Village.tsx`, `journeyModules.ts` | observed | #242 |
+| 11 | polish | phone: closed cards look closed (dim + state first) yet still open their place scene; inputs ≥44 px; EN pill ≥44 px; YOU logo clear of the eyebrow; «Done when» spacing | `Village.css`, `Auth.tsx`, header | observed@390 | #243 |
+| 12 | decide | FOUNDER TOOLS in the game, Lunar back in the toggle, `/ru` title layout, «Umza · Montoya» | — | — | Sasha §19.7 |
+
+Issues opened by this audit: P0 #239 (ES/RU), #240 (guest path), #241 (player truth); P1 #242 (way around + a11y), #243 (phone, after #236). Already in build, not duplicated: #236 (WP-15 harmony: Chat launcher offset on game routes, tokens, closed-label contrast, ← Village where missing, game tab titles).
+
+### 19.6 Player path and gamification: what is missing for the loop to pull
+- **Return pull.** Nothing tells a returning player what changed since last time except the next-move card; for a guest nothing at all. The cheapest pull: the title screen greets by talent and offers «Continue» (item 2).
+- **Visible consequence.** The reveal is the only big moment; after it, the village does not change for a guest. One lit window or line on the map after the reveal («Reception: your talent is known») would make the first action leave a mark (my guess; needs a human).
+- **Progress you can read.** Three level scales compete; until one wins, levels hurt more than they help (item 5). The «Done when» lines are the right grammar for progress; the Quest Board could mark the current quest in the list, not only in the hero.
+- **Social moment.** Presence (WP-21) was not observable in single-browser walks; the Café now has real events, Co-working real founders. Unverified, not disproven.
+
+### 19.7 Questions only Sasha can answer
+1. FOUNDER TOOLS (13 items incl. «Karime's Unique Offer») on Mastermind, Workshop and Town Hall: hide it from players and keep the tools on their own routes and in the Workshop pane (§14.13 holds), or keep it visible?
+2. Skin toggle: put Lunar back into the loop (Lunar → Lapis → Aurum → Dao → Lunar), or keep Lunar as the entry only?
+3. `/ru` title: the same wordless first minute as `/` and `/es`, or keep the old menu with «You Are The Fifth Element» for Russian visitors?
+4. The character name «Umza · Montoya» in your account rail: real choice or a leftover test name? And which name should the game show a player: character name or real first name?
+5. Russian and Spanish game copy is public text: one sample screen (village + Quest Board) for your eye before the full run, or straight through?
+6. Mastermind page body stays English under /es and /ru (the offer is English-speaking), or translate it too?
