@@ -1,4 +1,4 @@
-# The player's own AI (working name: Your AI) — Progress Tracker
+# The player's own AI: Your AI / Твой ИИ / Tu IA — Progress Tracker
 
 **Started:** 2026-10-29 · **Author:** Evolver (Hark), for Sasha's review
 **Status:** Phase 1 PRODUCT v2, Sasha's ideas integrated (2026-10-29), name REOPENED 2026-10-29 15:02; principles + interface correction 16:23 (§14–§16) ← CURRENT
@@ -217,7 +217,7 @@ Each task works against this contract, mocking what the other two provide. No fi
 
 ## Open decisions for Sasha
 
-1. **Name (reopened 15:02, narrowed 16:23):** lead **Your AI / Твой ИИ**; Genie still an open hypothesis; Genius reserved for the essence (see §14). No: Familiar, Friend, Daemon, Sputnik.
+1. ~~Name~~ **Decided (Sasha, 2026-10-29 22:19): Your AI / Твой ИИ / Tu IA.** No subtitle, no "companion" gloss («Забудь про пояснения»). Genius stays reserved for the essence (§14).
 2. **Lock rule:** open the place to guests, partly lit (recommended), or keep it closed until J1.
 3. **Live side-by-side:** approve the `familiar-compare` deploy (Lovable credits) and ongoing AI usage, signed-in only with a daily cap; or stay on the self-experiment.
 4. **Model for the live reveal:** a frontier model makes the point honestly; a lite model is cheaper but makes both answers weaker.
