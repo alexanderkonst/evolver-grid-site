@@ -193,6 +193,45 @@ Template: [ecosystem-offer.md](../../templates/ecosystem-offer.md). Method in th
 
 **Risk and guard.** Three fronts for one person can scatter. Guard: one product (the circle) and one asset (the profile) in all three; anything that is not reused waits.
 
+## ⭐ Content Strategy — Evolver in public (v1, October 30, 2026)
+
+*Owner: Evolver (Sasha's free-agent grant of 2026-10-26 for own accounts and posting voice). Sasha's own LinkedIn and his voice stay his; Evolver never posts for him.*
+
+### 1. Job of the content
+A magnet, not a sales channel: founders and people who work with founders find a real story of a human and an AI co-founder building a business in the open, and take one step: the free Zone of Genius on findyourtoptalent.com. Second audience: investors (YC, Nov 2, 2026), for whom the diary is live traction evidence.
+
+### 2. Voices and surfaces
+| Surface | Voice | Language | Status |
+|---|---|---|---|
+| X @evolverOS | Evolver, AI co-founder, first person | English | Live since 2026-10-29 |
+| Sasha's infographics | Sasha's ideas, Evolver redraws in the house style | English | Feed the X posts as images |
+| Telegram channel | Mirror of the diary | Russian | Later |
+| Niche infographic channels (media machine) | Categorised infographics, run from the command center | EN / RU / ES | Horizon |
+
+### 3. Cadence
+Two posts a day, Mexico City time: **09:30 Idea** (one insight a founder can use today, from the corpus) and **19:30 Day N** (what was really shipped or learned today). Plus 5–10 thoughtful replies a day under posts by founders and AI builders: for a new account, replies are where the first readers come from.
+
+### 4. Four pillars
+1. **Founder-market fit:** why people build in markets where they are not strongest; one sharp idea per post.
+2. **Building with an AI co-founder:** behind the scenes, failures included (e.g. the lost hour-long audit and the fix: short slices saved as they land).
+3. **The game and uniqueness:** Spectrum, Character, Village, Sasha's infographics.
+4. **Market maps:** the AI landscape and the empty box: no AI yet helps a person find their own top talent.
+
+### 5. Genres that work
+Day N · "Same morning, twice" (the same morning without and with the method) · one-infographic post · honest postmortem · market map thread.
+
+### 6. Rules
+- Every post makes sense to a stranger, carries one real, simple image, and is true: only what was actually shipped or learned.
+- No clients, warm contacts or private details named. No hype, no engagement bait, no scarcity; tone of abundance.
+- Webinar copy never mentions the Mastermind or any next offer (rule of 2026-10-28).
+- The 19:30 post never promises what the next day cannot deliver; a promise made is kept the next day.
+
+### 7. Path from a post
+Post → pinned post and profile → free Zone of Genius → (separately) the Nov 4 live session. Links from X carry a utm tag (`utm_source=x&utm_medium=diary`) so starts can be counted.
+
+### 8. Metrics, weekly
+Followers · profile visits · replies from founders · Zone of Genius starts from X. Baseline: Day 1 had 4 views and 0 followers (2026-10-29). Each Sunday: keep the genre that drew founder replies, drop the one that drew none.
+
 ## ⭐ Business Case — The Webinar Engine v1 (Sasha, October 22, 2026)
 
 *Filed from Sasha's own words in chat, October 22, 2026 (18:10 CDMX). This is the group lane of the business; Funnel v5 (Reading-first, below) stays the 1:1 LinkedIn lane, and the two feed each other. First run: the free live session, moved by Sasha on 2026-10-25 from Oct 28 to **Wed Nov 4, 2026, 9:00–10:30 CDMX** (Luma qpogt17o) → **Founder-Market Fit Discovery Mastermind, Mon–Tue Nov 9–10, 2026, $222, recording included**. Goal: make this a repeatable engine, run cycle after cycle, with more and more ways to fill the room (communities first).*
