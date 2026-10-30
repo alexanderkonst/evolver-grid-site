@@ -1014,3 +1014,15 @@ Issues opened by this audit: P0 #239 (ES/RU), #240 (guest path), #241 (player tr
 4. The character name «Umza · Montoya» in your account rail: real choice or a leftover test name? And which name should the game show a player: character name or real first name?
 5. Russian and Spanish game copy is public text: one sample screen (village + Quest Board) for your eye before the full run, or straight through?
 6. Mastermind page body stays English under /es and /ru (the offer is English-speaking), or translate it too?
+
+### 19.8 Retro of the §14 wave and how we move next (2026-10-30, accepted by Sasha: «ОГОНЬ!»)
+**Fact.** Of the 24 work packages in §14.8, 21 shipped (≈160 of ≈240 h); WP-10 parked; harmony pass, Town Hall v0 and save→village handoff finishing. Same days, the live audit scored the game 40/100. Shipped ≠ felt.
+
+**Rules for every next wave**
+1. **One wave = one feeling, one number.** Before building, name the one thing a player should feel (e.g. «I come back and the village remembers me») and the target score on the §19.2 scorecard. Max 3–5 work items per wave.
+2. **Done = live walk.** An item is done only after a walk on the live site as guest and as signed-in player, on phone (390 px) and desktop, with screenshots. Not when the code is merged.
+3. **One truth first, screens second.** Level, next move, name, talent each come from one function; every page reads it. Level = average of QoL domains, measured monthly, seen only by the player; other metrics join the same monthly record later.
+4. **Hark builds and tests locally before merge.** Claude's PRs often skip build/tests; GitHub Actions minutes are short until 11-01.
+5. **Translation = text on the page.** ES/RU counts when a Spanish or Russian visitor reads their language, not when keys exist.
+6. **Re-score after each wave** on the same scorecard; the next wave is chosen by the lowest score, not by the longest list.
+7. **Every item carries «what the player feels»** next to «Done when…».
