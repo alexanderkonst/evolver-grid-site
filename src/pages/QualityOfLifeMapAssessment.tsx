@@ -491,7 +491,8 @@ const QualityOfLifeMapAssessment = ({
     return (
       <div className="px-4 py-8 sm:py-10">
         {/* `ready`: once the saved result has loaded, the button is enabled; it does not wait on the character sheet. */}
-        <ModuleIntro module={QOL_MODULE} onStart={() => setShowIntro(false)} ready={!qolLoading} />
+        {/* Sasha 2026-10-29: the QoL test is shared by link (coaches → clients), so it is never locked here. */}
+        <ModuleIntro module={QOL_MODULE} onStart={() => setShowIntro(false)} ready={!qolLoading} neverClosed />
       </div>
     );
   }

@@ -40,6 +40,8 @@ type Props = {
   onStart: () => void;
   /** Override the state read from the save (previews, tests). */
   state?: PlaceStateName;
+  /** A shareable module (e.g. the QoL test a coach sends a client) is never shown as closed. */
+  neverClosed?: boolean;
   /**
    * The page already holds this module's saved result (the QoL page has loaded its snapshot).
    * The button then no longer waits on the character sheet.
@@ -51,7 +53,7 @@ type Props = {
 /** How long the button waits on the character sheet before it gives up and enables itself. */
 const SHEET_WAIT_MS = 4000;
 
-const ModuleIntro = ({ module, onStart, state: forced, ready = false, className }: Props) => {
+const ModuleIntro = ({ module, onStart, state: forced, ready = false, neverClosed = false, className }: Props) => {
   const { t } = useTranslation();
   const sheet = useCharacterSheet();
   const headingId = useId();
@@ -68,8 +70,9 @@ const ModuleIntro = ({ module, onStart, state: forced, ready = false, className 
 
   // A step with no requirement is never closed, so its button never waits for the save.
   const loading = forced === undefined && !ready && !gaveUp && sheet.isLoading && moduleHasRequirements(module.id);
-  const state: PlaceStateName =
+  const read: PlaceStateName =
     forced ?? (loading ? "open" : moduleIntroState(module.id, placeSaveFromSheet(sheet)));
+  const state: PlaceStateName = neverClosed && read === "closed" ? "open" : read;
   const closed = state === "closed";
 
   return (
