@@ -56,7 +56,7 @@ export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
       <DropdownMenuTrigger
         aria-label={t("language.label", "Language")}
         className={[
-          "inline-flex items-center gap-1.5 rounded-full border border-border/50",
+          "inline-flex min-h-[44px] items-center gap-1.5 rounded-full border border-border/50",
           "bg-background/70 px-3 py-1.5 text-sm font-medium text-foreground/80 shadow-sm",
           "backdrop-blur-md transition-colors hover:text-foreground hover:border-border",
           "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
