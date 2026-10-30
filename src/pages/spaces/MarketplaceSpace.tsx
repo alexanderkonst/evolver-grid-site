@@ -6,6 +6,7 @@ import { usePublishedGeniusBusiness } from "@/modules/product-builder/ProductBui
 import { useState, useCallback } from "react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import MyStall from "@/components/game/MyStall";
 import { FoundersHero, FoundersCTA } from "@/components/founders/FoundersShared";
 import { FOUNDERS, FounderCard } from "@/pages/FoundersShowcase";
 
@@ -26,6 +27,7 @@ const MarketplaceSpace = () => {
             <ErrorBoundary>
                 <div className="p-4 lg:p-6 max-w-4xl mx-auto space-y-10">
                     <VillagePlaceHeader place="market" />
+                    <MyStall />
                     {!business && (
                         <div className="space-y-3 rounded-xl border border-dashed border-border p-6">
                             <p>{t("villagePlaces.market.empty")}</p>

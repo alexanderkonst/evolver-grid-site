@@ -4,6 +4,20 @@
     "market": { "title": "Market", "description": "Where founders show what they offer.", "empty": "Your stall opens once your offer is ready in the Workshop." },
     "openWorkshop": "Open Workshop"
   },
+  "market": {
+    "stall": {
+      "label": "Your stall",
+      "headerPrivate": "Your stall. Only you can see it for now.",
+      "headerOpen": "Your stall is open in the Market.",
+      "post": "Top talent",
+      "banner": "Mission",
+      "shelves": "On the shelf",
+      "name": "Stall name",
+      "signboard": "Signboard",
+      "lampLit": "The lamp is lit.",
+      "lampUnlit": "The lamp is not lit yet."
+    }
+  },
   "errors": {
     "saveGenericBody": "We couldn't save that just now. Please try again in a moment.",
     "schemaDriftBody": "We're updating this part of the app. Please try again shortly. Your work is safe.",
