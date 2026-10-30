@@ -125,15 +125,15 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     outro: {
       done: "Done · Your top talent is saved",
       badge: "Top Talent",
-      livesIn: { text: "It lives in Your House, on the shelf of your victories.", to: "/game/me/overview" },
-      opened: "Your House, the Quest Board and the Oracle are open.",
+      livesIn: { text: "It lives at Home, on the shelf of your victories.", to: "/game/me/overview" },
+      opened: "Home, the Quest Board and the Oracle are open.",
       fallbackResult: "Your top talent",
     },
   },
   {
     id: "discover-mission",
     place: "house",
-    eyebrow: "Your House · Step 2",
+    eyebrow: "Home · Step 2",
     headline: "Discover your mission",
     silhouette: "Paste one answer from your own AI. You leave with one sentence about what is yours to do in the world.",
     verb: "Find my mission",
@@ -141,7 +141,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     outro: {
       done: "Done · Your mission is saved",
       badge: "Mission",
-      livesIn: { text: "It lives in Your House, and it is the banner over your stall.", to: "/game/me/mission" },
+      livesIn: { text: "It lives at Home, and it is the banner over your stall.", to: "/game/me/mission" },
       opened: "The Café, the Workshop, the quality-of-life map and your assets are open.",
       fallbackResult: "Your mission",
     },
@@ -149,7 +149,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
   {
     id: "assess-qol",
     place: "house",
-    eyebrow: "Your House · Step 3",
+    eyebrow: "Home · Step 3",
     headline: "Know your real level",
     silhouette: "Eight areas of life, answered honestly. The result is private: only you see it.",
     verb: "Show my level",
@@ -157,15 +157,15 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     outro: {
       done: "Done · Your level is saved",
       badge: "Real Level",
-      livesIn: { text: "It lives in Your House. It is private to you.", to: "/game/me/quality-of-life" },
-      opened: "Your House now shows your level, privately, and where to grow next.",
+      livesIn: { text: "It lives at Home. It is private to you.", to: "/game/me/quality-of-life" },
+      opened: "Home now shows your level, privately, and where to grow next.",
       fallbackResult: "Your level",
     },
   },
   {
     id: "map-assets",
     place: "house",
-    eyebrow: "Your House · Step 4",
+    eyebrow: "Home · Step 4",
     headline: "Map everything you can build with",
     silhouette: "Your skills, experience and network, gathered once into one inventory.",
     verb: "Map my assets",
@@ -173,7 +173,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     outro: {
       done: "Done · Your assets are saved",
       badge: "Inventory",
-      livesIn: { text: "They live in Your House, and they are the shelves of your stall.", to: "/game/me/assets" },
+      livesIn: { text: "They live at Home, and they are the shelves of your stall.", to: "/game/me/assets" },
       opened: "The Workshop's first job is open: your offer, built from these.",
       fallbackResult: "Your assets",
     },
@@ -231,7 +231,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     outro: {
       done: "Done · You joined the free session",
       badge: "Free Session",
-      livesIn: { text: "It lives in Your House, on the shelf of your victories.", to: "/game/me/overview" },
+      livesIn: { text: "It lives at Home, on the shelf of your victories.", to: "/game/me/overview" },
       opened: "You were in the room. The Mastermind is the next quest.",
       fallbackResult: "The free Mastermind session",
     },
@@ -253,7 +253,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     outro: {
       done: "Done · You joined the Mastermind",
       badge: "Mastermind",
-      livesIn: { text: "It lives in Your House, on the shelf of your victories.", to: "/game/me/overview" },
+      livesIn: { text: "It lives at Home, on the shelf of your victories.", to: "/game/me/overview" },
       opened: "You were in the circle. The Quest Board holds the next quest.",
       fallbackResult: "The Mastermind",
     },
@@ -274,7 +274,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     outro: {
       done: "Done · Your 21 days are complete",
       badge: "21 Days",
-      livesIn: { text: "It lives in Your House, on the shelf of your victories.", to: "/game/me/overview" },
+      livesIn: { text: "It lives at Home, on the shelf of your victories.", to: "/game/me/overview" },
       opened: "Twenty-one days of practice are behind you. The Quest Board holds the next quest.",
       fallbackResult: "Twenty-one days of practice",
     },
@@ -377,7 +377,7 @@ export const moduleHasRequirements = (id: ModuleStepId): boolean =>
 /**
  * The closed line of a Journey step: «Opens when … Inside: ….» Empty when it has none.
  * With a `t` it reads the catalog: `journeySteps.locked.<id>` for a step (the same lines the
- * rail and Your House use), `village.closed.<id>` for a quest.
+ * rail and Home use), `village.closed.<id>` for a quest.
  */
 export const moduleClosedLine = (id: ModuleStepId, t?: TFunction): string => {
   if (isQuestStep(id)) {
@@ -419,11 +419,11 @@ export type ModuleResultSource = {
 export const assetsResultText = (count: number): string | null =>
   count > 0 ? `${count} ${count === 1 ? "asset" : "assets"} mapped` : null;
 
-/** «Level 4 of 10»: the weakest of the eight QoL domains, as Your House shows it. */
+/** «Level 4 of 10»: the weakest of the eight QoL domains, as Home shows it. */
 export const qolResultText = (level: number): string => `Level ${level} of 10`;
 
 /**
- * The step's result in the player's own words, read from the save (the same data Your House
+ * The step's result in the player's own words, read from the save (the same data Home
  * shows). Null until the step has one; the Outro then falls back to `outro.fallbackResult`.
  * A module that holds the fresh result in hand (a just-typed mission) passes it to the
  * Outro directly, which wins over this. The slices J6, J7 always do: the sheet does not

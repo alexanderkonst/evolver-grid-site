@@ -103,7 +103,7 @@
     "enterVillage": "Enter the village",
     "saveCharacterReason": "Keep your character and read your full reading.",
     "saveCharacterResultSaved": "Your result is saved to your character.",
-    "saveCharacterResultOnDevice": "Your result is kept on this device. Save it to open Your House.",
+    "saveCharacterResultOnDevice": "Your result is kept on this device. Save it to open Home.",
     "gateResultReady": "Your result is ready",
     "gateDefaultTitle": "Make sure you save it to be able to access it later.",
     "gateNoCharge": "No charge for the result. We will send two very short follow-up emails inviting you to go deeper. If you do not react, we stop.",
@@ -527,7 +527,7 @@
     },
     "me": {
       "profile": {
-        "label": "Your House"
+        "label": "Home"
       },
       "topTalent": {
         "label": "Top Talent"
@@ -3295,7 +3295,7 @@
     "lit": "Lit",
     "new": "New",
     "saveCharacter": "Save your character",
-    "saveResult": "you'll keep your character, and Your House opens.",
+    "saveResult": "you'll keep your character, and Home opens.",
     "findTopTalent": "Find your top talent",
     "signIn": "I already live here → sign in",
     "opened": {
@@ -3324,10 +3324,10 @@
         "alt": "A grand marble stair lined with lanterns and candles rises to a welcoming arched doorway glowing warm gold, a crystal dodecahedron shining above it in the night sky"
       },
       "house": {
-        "name": "Your House",
+        "name": "Home",
         "line": "Your crystal, mission and save file.",
         "alt": "Inside your house at night: tall white columns hung with string lights, a luminous crystal dodecahedron on an altar of candles, amethyst and quartz, and a singing bowl on the rugs",
-        "opened": "Your House is open."
+        "opened": "Home is open."
       },
       "quest-board": {
         "name": "Quest Board",
@@ -3419,19 +3419,19 @@
         "verb": "Find my top talent"
       },
       "discover-mission": {
-        "eyebrow": "Your House · Step 2",
+        "eyebrow": "Home · Step 2",
         "headline": "Discover your mission",
         "silhouette": "Paste one answer from your own AI. You leave with one sentence about what is yours to do in the world.",
         "verb": "Find my mission"
       },
       "assess-qol": {
-        "eyebrow": "Your House · Step 3",
+        "eyebrow": "Home · Step 3",
         "headline": "Know your real level",
         "silhouette": "Eight areas of life, answered honestly. The result is private: only you see it.",
         "verb": "Show my level"
       },
       "map-assets": {
-        "eyebrow": "Your House · Step 4",
+        "eyebrow": "Home · Step 4",
         "headline": "Map everything you can build with",
         "silhouette": "Your skills, experience and network, gathered once into one inventory.",
         "verb": "Map my assets"
@@ -5605,7 +5605,7 @@
     "brand": "Genius Business",
     "nav": {
       "profile": {
-        "label": "Your House",
+        "label": "Home",
         "description": "Know yourself",
         "modules": {
           "zog": "Character Creation",
@@ -5668,7 +5668,7 @@
   },
   "tourSteps": {
     "me": {
-      "title": "Your House",
+      "title": "Home",
       "tagline": "Your Zone of Genius lives here",
       "description": "This is you — your Zone of Genius, your story, your unique gifts. Everything you discover about yourself gets saved here."
     },
@@ -6314,7 +6314,7 @@
   },
   "dailyLoopLayout": {
     "me": {
-      "title": "Your House",
+      "title": "Home",
       "welcomeBack": "Welcome back",
       "playerFallback": "Player",
       "levelXp": "Level {{level}} · {{xp}} XP",
@@ -7332,7 +7332,7 @@
     }
   },
   "characterSheet": {
-    "eyebrow": "Your House",
+    "eyebrow": "Home",
     "playerFallback": "Player",
     "character": {
       "photoInvite": "Add your real photo",

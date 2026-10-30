@@ -607,7 +607,7 @@ const IgniteSession = () => {
 
         {/* WP-4: where this session sits on the path. The list is the Journey itself
             (JOURNEY_MAIN through journeyStepRows): the same labels, order and
-            «optional» marks as the title screen, Your House and the Quest Board pane.
+            «optional» marks as the title screen, Home and the Quest Board pane.
             The session is the Workshop, the step «Build a business off your top talent». */}
         <section className="max-w-md mx-auto space-y-4" aria-label={t('journeySteps.chapterLabel')}>
           <p

@@ -23,7 +23,7 @@ import { placeSaveFromSheet } from "@/lib/placeState";
 import "./CharacterSheet.css";
 
 /**
- * Character Sheet — "Your House" at night, the save file made visible
+ * Character Sheet — "Home" at night, the save file made visible
  * (docs/02-strategy/game_of_being_you.md §13, 13.2, §14.7, §14.12). Route:
  * /game/me/overview (and the Profile space). WP-8.
  *

@@ -578,7 +578,7 @@ export const loadSavedData = async (): Promise<{
     }
 
     // The profile's CURRENT Top Talent: pointer first, newest as fallback
-    // (shared with Your House, see lib/topTalentSnapshot.ts).
+    // (shared with Home, see lib/topTalentSnapshot.ts).
     const snapshot = await fetchTopTalentSnapshot<{
       id: string;
       appleseed_data: unknown;

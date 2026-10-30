@@ -35,7 +35,7 @@ const QuestBoard = () => {
   const worldId = useId();
 
   // A guest who has finished the test holds the reading on this device: the next move is to
-  // save it, the same «Save your character» that Your House shows (WP-7b).
+  // save it, the same «Save your character» that Home shows (WP-7b).
   const guestResult = !sheet.isLoading && !sheet.userId && hasGuestTopTalentResult();
   const save = placeSaveFromSheet(sheet, new Date(), { "guest-result": guestResult });
   const saveFirst = awaitingSave(save);
@@ -70,7 +70,7 @@ const QuestBoard = () => {
           {sheet.isLoading ? null : saveFirst ? (
             <>
               <p className="mf__silhouette">
-                {tr(t, "village.saveResult", "you'll keep your character, and Your House opens.")}
+                {tr(t, "village.saveResult", "you'll keep your character, and Home opens.")}
               </p>
               <SaveCharacterCta buttonClassName="mf__go" />
             </>

@@ -63,7 +63,7 @@ describe("placeState: unlock order (§14.3)", () => {
     expect(placeState(place("reception"), emptyPlaceSave(TUESDAY))).toBe("next");
   });
 
-  it("Top Talent saved opens Your House, Quest Board and Oracle; Reception is done", () => {
+  it("Top Talent saved opens Home, Quest Board and Oracle; Reception is done", () => {
     const s = statesOf(saveWith(["find-top-talent"]));
     expect(s.reception).toBe("done");
     expect(s.house).toBe("next"); // mission is the next move, and it lives in the House
@@ -311,7 +311,7 @@ describe("nextMove: one next move (§14.6)", () => {
     expect(m?.result).toBeTruthy();
   });
 
-  it("follows the Journey: Reception → Your House (mission, QoL, assets) → Workshop", () => {
+  it("follows the Journey: Reception → Home (mission, QoL, assets) → Workshop", () => {
     expect(move(["find-top-talent"])?.place.key).toBe("house");
     expect(move(["find-top-talent"])?.step).toBe("discover-mission");
     expect(move(["find-top-talent", "discover-mission"])?.step).toBe("assess-qol");
@@ -377,10 +377,10 @@ describe("whatChanged: what is new since the last visit (§14.6)", () => {
     expect(r.line).toBeNull();
   });
 
-  it("Top Talent saved: Your House, Quest Board and Oracle are new; the line is Your House", () => {
+  it("Top Talent saved: Home, Quest Board and Oracle are new; the line is Home", () => {
     const r = whatChanged(VILLAGE_PLACES, seen(...guestOpen), saveWith(["find-top-talent"]));
     expect(r.fresh.map((p) => p.key)).toEqual(["house", "quest-board", "oracle"]);
-    expect(r.line).toBe("Your House is open.");
+    expect(r.line).toBe("Home is open.");
   });
 
   it("Mission saved: the Workshop is new and speaks", () => {
@@ -421,7 +421,7 @@ describe("whatChanged: what is new since the last visit (§14.6)", () => {
 describe("a guest with a finished test (WP-7b: result first, account only to save)", () => {
   const guest = (done: JourneyItemId[] = []) => saveWith(done, { events: { "guest-result": true } });
 
-  it("the next move is «Save your character», at Your House, which stays closed", () => {
+  it("the next move is «Save your character», at Home, which stays closed", () => {
     const save = guest();
     const m = nextMove(VILLAGE_PLACES, save);
     expect(m?.kind).toBe("step");
@@ -439,7 +439,7 @@ describe("a guest with a finished test (WP-7b: result first, account only to sav
     expect(Object.values(s)).not.toContain("next");
   });
 
-  it("once saved, the next move is the mission at Your House (J2)", () => {
+  it("once saved, the next move is the mission at Home (J2)", () => {
     const save = guest(["find-top-talent"]);
     const m = nextMove(VILLAGE_PLACES, save);
     expect(m?.step).toBe("discover-mission");

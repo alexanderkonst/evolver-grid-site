@@ -29,7 +29,7 @@ type MenuItem = {
 };
 
 // Chapter 01 is the Journey itself (WP-4): the same steps, order and «optional» marks as
-// Your House, `/ignite` and the Quest Board pane, read from JOURNEY_MAIN. No copy of the
+// Home, `/ignite` and the Quest Board pane, read from JOURNEY_MAIN. No copy of the
 // list lives on this page. The page is English-only, so no `t`.
 const JOURNEY_STEPS = journeyStepRows();
 

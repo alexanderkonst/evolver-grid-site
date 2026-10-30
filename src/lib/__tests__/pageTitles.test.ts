@@ -14,8 +14,8 @@ describe("getPageTitle", () => {
     expect(getPageTitle("/library/breathwork")).toBe("Library");
   });
 
-  it("returns Your House for the ME space routes (names from villagePlaces.ts, issue #215)", () => {
-    expect(getPageTitle("/game/me")).toBe("Your House");
+  it("returns Home for the ME space routes (names from villagePlaces.ts, issue #215)", () => {
+    expect(getPageTitle("/game/me")).toBe("Home");
   });
 
   it("uses the village place names for the spaces (issue #215)", () => {

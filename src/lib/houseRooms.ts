@@ -8,7 +8,7 @@ import {
 } from "@/lib/placeState";
 
 /**
- * houseRooms — the rooms of Your House and the badges on its shelf, as data.
+ * houseRooms — the rooms of Home and the badges on its shelf, as data.
  * Design: docs/02-strategy/game_of_being_you.md §14.7 (the eight decided answers, WP-8),
  * §14.3 (the lock rule), §14.12 (badges).
  *

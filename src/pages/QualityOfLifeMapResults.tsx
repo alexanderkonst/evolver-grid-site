@@ -990,7 +990,7 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
           CTA below the utility action row. Build-path users see only
           Retake / Download PDF. */}
       {/* WP-5: on the Journey route the saved result ends in the Outro (one button back to
-          the village), in place of Funnel v2's MatchFlowCta. Revisits from Your House
+          the village), in place of Funnel v2's MatchFlowCta. Revisits from Home
           (/game/me/quality-of-life) and the embedded Learn route keep the old row. */}
       {showOutro ? (
         <ModuleOutro

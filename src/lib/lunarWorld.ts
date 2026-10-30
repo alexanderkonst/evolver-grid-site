@@ -48,7 +48,7 @@ export const dawnFromSave = (save: PlaceSave): number => {
 
 /**
  * The paths of the map, by place key (the Journey and unlock order, §14.2 / §14.3):
- * Reception → Your House → Workshop → Market → Town Hall. A path lights when both
+ * Reception → Home → Workshop → Market → Town Hall. A path lights when both
  * of its places are `done` or `live` (§14.11 step 3).
  */
 export const LUNAR_PATHS: ReadonlyArray<readonly [VillagePlaceKey, VillagePlaceKey]> = [

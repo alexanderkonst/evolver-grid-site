@@ -60,7 +60,7 @@ import "./Village.css";
  * Inside: <result>.», with no ENTER. A guest sees Reception, Academy and Fire
  * Circle open and everything else closed; "I already live here" leads to /auth
  * (same `?redirect=` contract as RequireAuth). No barrier language. A newcomer standing at the
- * closed Your House gets the one action that opens it: «Find your top talent», or, with a
+ * closed Home gets the one action that opens it: «Find your top talent», or, with a
  * finished test on this device, «Save your character» (WP-7b: result first, account to save).
  *
  * The map is the game screen (WP-6, §14.6): one next-move card (place · step · what it
@@ -164,7 +164,7 @@ const useGuestResult = (): boolean => {
 };
 
 /**
- * Your House, closed, for a signed-out visitor (WP-7b: result first, account only to save).
+ * Home, closed, for a signed-out visitor (WP-7b: result first, account only to save).
  * One primary action: no result yet → «Find your top talent» (Reception); a result but no
  * account → «Save your character» (the same save as after the test, TopTalentAuthGate).
  * «I already live here → sign in» stays beside it, quiet, for residents.
@@ -605,7 +605,7 @@ const Village = () => {
                     />
                   )}
                   {/* A returning resident who is signed out can still sign in and come back here.
-                      At Your House a newcomer also gets the one action that opens it. */}
+                      At Home a newcomer also gets the one action that opens it. */}
                   {signedIn === false && lastState === "closed" ? (
                     lastPlace.key === "house" ? (
                       <NewcomerPath
