@@ -47,13 +47,14 @@ const statesOf = (save: ReturnType<typeof saveWith>) =>
   Object.fromEntries(VILLAGE_PLACES.map((p) => [p.key, placeState(p, save)])) as Record<VillagePlaceKey, PlaceStateName>;
 
 describe("placeState: unlock order (§14.3)", () => {
-  it("a guest sees Reception next, Academy, Café and Mastermind open, everything else closed", () => {
+  it("a guest sees Reception next, Academy, Café, Mastermind and Your AI open, everything else closed", () => {
     const s = statesOf(saveWith([]));
     expect(s.reception).toBe("next");
     expect(s.academy).toBe("open");
     expect(s["fire-circle"]).toBe("open");
     expect(s.cafe).toBe("open");
-    for (const k of ["house", "quest-board", "oracle", "workshop", "market", "coworking", "town-hall"] as const) {
+    expect(s.oracle).toBe("open"); // Your AI is open to guests, partly lit (issue #224)
+    for (const k of ["house", "quest-board", "workshop", "market", "coworking", "town-hall"] as const) {
       expect(s[k]).toBe("closed");
     }
   });
@@ -63,7 +64,7 @@ describe("placeState: unlock order (§14.3)", () => {
     expect(placeState(place("reception"), emptyPlaceSave(TUESDAY))).toBe("next");
   });
 
-  it("Top Talent saved opens Your House, Quest Board and Oracle; Reception is done", () => {
+  it("Top Talent saved opens Your House and Quest Board; Reception is done; Your AI stays open", () => {
     const s = statesOf(saveWith(["find-top-talent"]));
     expect(s.reception).toBe("done");
     expect(s.house).toBe("next"); // mission is the next move, and it lives in the House
@@ -202,9 +203,9 @@ describe("closed lines come from data (§14.3)", () => {
     }
   });
 
-  it("only Reception, Academy and Mastermind are open for a guest", () => {
+  it("only Reception, Academy, Mastermind, Café and Your AI are open for a guest", () => {
     const open = VILLAGE_PLACES.filter((p) => !p.rule.opens).map((p) => p.key);
-    expect(open.sort()).toEqual(["academy", "fire-circle", "reception"]);
+    expect(open.sort()).toEqual(["academy", "cafe", "fire-circle", "oracle", "reception"]);
   });
 });
 
@@ -369,7 +370,7 @@ describe("nextMove: one next move (§14.6)", () => {
 
 describe("whatChanged: what is new since the last visit (§14.6)", () => {
   const seen = (...keys: VillagePlaceKey[]) => new Set<string>(keys);
-  const guestOpen: VillagePlaceKey[] = ["reception", "academy", "fire-circle", "cafe"];
+  const guestOpen: VillagePlaceKey[] = ["reception", "academy", "fire-circle", "cafe", "oracle"];
 
   it("names nothing when nothing opened", () => {
     const r = whatChanged(VILLAGE_PLACES, seen(...guestOpen), saveWith([]));
@@ -377,9 +378,9 @@ describe("whatChanged: what is new since the last visit (§14.6)", () => {
     expect(r.line).toBeNull();
   });
 
-  it("Top Talent saved: Your House, Quest Board and Oracle are new; the line is Your House", () => {
+  it("Top Talent saved: Your House and Quest Board are new; the line is Your House", () => {
     const r = whatChanged(VILLAGE_PLACES, seen(...guestOpen), saveWith(["find-top-talent"]));
-    expect(r.fresh.map((p) => p.key)).toEqual(["house", "quest-board", "oracle"]);
+    expect(r.fresh.map((p) => p.key)).toEqual(["house", "quest-board"]);
     expect(r.line).toBe("Your House is open.");
   });
 

@@ -123,13 +123,13 @@ export const VILLAGE_PLACES: VillagePlace[] = [
   },
   {
     key: "oracle",
-    name: "Oracle",
+    name: "Your AI",
     line: "Ask your AI.",
-    to: "/ai-os",
-    rule: {
-      opens: "find-top-talent",
-      closed: { event: TOP_TALENT_SAVED, inside: "your AI, ready to answer", key: "village.closed.oracle" },
-    },
+    to: "/game/your-ai",
+    // Open to everyone, guests included: the place shows what the AI already has (activated)
+    // and what opens the rest (docs/specs/ai-familiar/ai-familiar_tracker.md §1.5). The key
+    // stays `oracle` so saves and the rail keep working.
+    rule: {},
     image: "/game/village/oracle.webp",
     alt: "A still reflecting pool at night, a glowing crystal dodecahedron floating above its mirrored water, neon-lit arches on one side, floating candles and a singing bowl in the foreground",
     focus: { x: 50, y: 60 },
