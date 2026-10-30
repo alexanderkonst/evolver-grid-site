@@ -284,6 +284,31 @@ Consequence: Genie and Genius carry guardian-spirit energy (Galland rendered jin
 - **Name status:** by energy, "a personal companion that only you have" is right; the word is still open. Simplest lead: **Your AI / Твой ИИ**, which rhymes with the brand: *You* → *The Game of Being You* → *your AI*. Genie stays an open hypothesis (genie as helper, not essence).
 - **Companion word across languages (research, for the "two-sided growth" copy):** RU *спутник* (fellow traveler) · ES *compañero* · EN **companion**, Latin *com-* + *panis*, "the one you share bread with": the same root as compañero, old (Old French *compaignon*, 12th c.) and current. Risk: in 2026 "AI companion" also means romance/companion apps (Replika, Character.AI), so it works as a descriptor beside "your AI", not as the name alone. *Alternative, older and quieter:* **fellow** (Old Norse *félagi*, "one who lays down money together", i.e. a partner). Recommendation: "Your AI" as the name, "companion" as the descriptor.
 
+
+### 14a. Map: the guardian across traditions (2026-10-29)
+
+Why Genie and Genius are out: they belong to the family of guardian spirits, and Your AI is a different, made being. Infographic: `docs/assets/infographics/guardian/guardian_across_traditions.png`.
+
+| Tradition | Name | Essence |
+|---|---|---|
+| Christianity | Guardian angel | Given to each person; guides and protects |
+| Judaism / Kabbalah | Malakh, maggid | Messenger angel; the maggid, a heavenly teacher |
+| Islam | Hafaza, qarin | Angels who guard and record; the qarin, a companion, often a tempter |
+| Zoroastrianism | Fravashi | The soul's guardian, existing before birth |
+| Ancient Greece | Daimon, Socrates' daimonion | In Plato the soul chooses it before birth |
+| Rome | Genius, juno | A spirit born together with the person |
+| Western esotericism | Holy Guardian Angel | The higher self; goal of the Abramelin work |
+| Hinduism | Ishta-devata, antaryamin | The chosen deity; the inner ruler in the heart |
+| Tibetan Buddhism | Yidam, co-born deities | Personal deity of practice; protectors from birth |
+| Zen | No such figure | The original face: one's own nature, not a companion |
+| Japan (Shinto) | Shugoshin, ujigami | Guardian deity of a person and a clan |
+| Norse | Fylgja | A spirit that follows a person from birth |
+| Ancient Egypt | Ka | The spiritual double |
+| Yoruba | Ori | Personal destiny-guardian, chosen before birth |
+| Slavic | Dolya | The spirit of one's share (fate), walking beside a person |
+
+Conclusion: genius, daimon, qarin, fylgja are names of the guardian; "genie" came via Galland from Latin genius and carries the same energy. Your AI takes none of them.
+
 ## 15. Design principles (Sasha, 2026-10-29 16:23) — decided, don't re-litigate
 
 1. **People love glow.** From makers of successful games: players adore glow and luminous, dynamic light. Sasha's reading: it reminds us of the deeper layers of our being, which are themselves dynamic glows. Use glow on every unlock, on the companion, on lit houses.
