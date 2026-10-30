@@ -50,6 +50,17 @@ describe("stallParts", () => {
         expect(parts.open).toBe(false);
     });
 
+    it("no saved offer at all: talent + mission + assets still give three present parts", () => {
+        const parts = stallParts({
+            topTalent: "The Catalyst",
+            missionTitle: "Mission",
+            assets: assets("One", "Two", "Three"),
+        });
+        expect(parts.present).toHaveLength(3);
+        expect(parts.present).toEqual(["post", "banner", "shelves"]);
+        expect(parts.open).toBe(false);
+    });
+
     it("a saved tagline opens the stall and adds the name and signboard", () => {
         const parts = stallParts({
             ...empty,

@@ -75,6 +75,9 @@
 .ms__banner-line,
 .ms__signboard-line { font-size: clamp(18px, 2.6vw, 22px); color: var(--vl-ink); }
 
+.ms__workshop { margin: 0; text-align: center; font-size: 13px; color: var(--vl-ink-3); }
+.ms__workshop a { color: inherit; text-decoration: underline; }
+
 .ms__name { text-align: center; padding: 4px 0; }
 .ms__name-line {
   margin: 0;

@@ -1,8 +1,4 @@
 import VillagePlaceHeader from "@/components/game/VillagePlaceHeader";
-import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui/button";
-import { usePublishedGeniusBusiness } from "@/modules/product-builder/ProductBuilderContext";
 import { useState, useCallback } from "react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -12,8 +8,6 @@ import { FOUNDERS, FounderCard } from "@/pages/FoundersShowcase";
 
 
 const MarketplaceSpace = () => {
-    const { t } = useTranslation();
-    const business = usePublishedGeniusBusiness();
     const [expandedFounder, setExpandedFounder] = useState<string | null>(null);
 
     const toggle = useCallback(
@@ -28,12 +22,6 @@ const MarketplaceSpace = () => {
                 <div className="p-4 lg:p-6 max-w-4xl mx-auto space-y-10">
                     <VillagePlaceHeader place="market" />
                     <MyStall />
-                    {!business && (
-                        <div className="space-y-3 rounded-xl border border-dashed border-border p-6">
-                            <p>{t("villagePlaces.market.empty")}</p>
-                            <Button asChild><Link to="/ubb">{t("villagePlaces.openWorkshop")}</Link></Button>
-                        </div>
-                    )}
                     {/* ─── Hero ──────────────────────────────────── */}
                     <FoundersHero lightMode />
 
