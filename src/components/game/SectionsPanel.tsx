@@ -966,6 +966,15 @@ const SectionsPanel = ({
                   }
                 : rawBaseData;
 
+        // Café (MEET): Create Event and My RSVPs both sit behind sign-in, so a guest only
+        // sees Browse Events. Hidden rather than sent to a sign-up form with no explanation.
+        if (activeSpaceId === "meet" && !userEmail) {
+            return {
+                ...baseData,
+                sections: baseData.sections.filter((s) => s.id === "browse"),
+            };
+        }
+
         // JOURNEY → fixed trio (Start Here · The Playbook · The Path).
         // Day 48 (Sasha): same list for guests and authed users. No
         // My Artifacts, no progression-aware reveal, no extras.

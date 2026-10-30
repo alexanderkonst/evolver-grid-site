@@ -27,7 +27,7 @@ describe("getPageTitle", () => {
     expect(getPageTitle("/game/learn")).toBe("Training");
     expect(getPageTitle("/game/marketplace")).toBe("Market");
     expect(getPageTitle("/game/collaborate/matches")).toBe("Co-working");
-    expect(getPageTitle("/game/meet")).toBe("Meet");
+    expect(getPageTitle("/game/meet")).toBe("Café");
     expect(getPageTitle("/ubb")).toBe("Workshop");
   });
 

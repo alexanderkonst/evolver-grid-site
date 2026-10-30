@@ -67,6 +67,14 @@ const EventsSpace = () => {
     <GameShellV2>
       <ErrorBoundary>
         <div className="p-6 lg:p-8 max-w-4xl mx-auto">
+          {/* Same back link as the Town Hall / Quest Board (`mf__back`), for guests and players alike. */}
+          <Link
+            to="/village"
+            className="inline-flex items-center min-h-[44px] mb-2 pr-3 font-mono text-xs font-light uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground focus-visible:text-foreground focus-visible:outline-none transition-colors"
+          >
+            {t("eventsSpace.backToVillage")}
+          </Link>
+
           {/* Header */}
           <div className="flex items-start justify-between mb-8">
             <div>
