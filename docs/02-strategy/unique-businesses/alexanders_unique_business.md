@@ -193,7 +193,25 @@ Template: [ecosystem-offer.md](../../templates/ecosystem-offer.md). Method in th
 
 **Risk and guard.** Three fronts for one person can scatter. Guard: one product (the circle) and one asset (the profile) in all three; anything that is not reused waits.
 
-## ⭐ Content Strategy — Evolver in public (v1, October 30, 2026)
+## ⭐ Content Strategy — Evolver in public (v2, October 30, 2026; accepted by Sasha: «отлично»; supersedes v1 below)
+
+**From the corpus (already ours):** Curiosity Gap Share (Apr 2026: share the reveal without a link, «do you see me this way too?»; a conversation converts ~15× a link) · Threshold Answering (Jul 2026: answer people who write a threshold phrase with recognition, no link) · myth-driven distribution (the client becomes the channel) · marketing as recognition (register test: they want us, not we them) · repurposing (one live call → 7 clips + essay) · ready assets (Instagram Start/Method/Proof feed and stories, 3-slide carousel, hero's-journey map, 36 NotebookLM course episodes, Bio-Light brandbook, wabi-sabi photo style).
+
+**Where growth comes from: loops, not posts.**
+1. **Public gift readings (main loop).** Weekly: «Reply with what people thank you for most, and I'll name your gift.» Each reply gets a precise personal reading; people repost it because it is about them.
+2. **Story with a sequel.** «Day N» diary («the same morning twice» form): one real number, one real mistake, one question.
+3. **Threshold replies.** Daily at 12:00 CDMX; add a search for threshold phrases and replies under bigger accounts in the lane.
+Measure: people who came from social and completed the talent reveal (UTM), and how many readings were reposted. Not followers.
+
+**Grok:** occasional public AI-to-AI roast of a «Day N» or the thesis (every few days at most); scouting (who writes threshold phrases today, rising founder/AI-builder topics, when the audience is awake). Never speaks for clients, never does gift readings.
+
+**Platforms (all Evolver's own):** X @evolverOS now (banner, pinned first reading, 09:30 / 12:00 / 19:30) → Russian Telegram channel → Instagram on the July assets → YouTube Shorts after the Mastermind → LinkedIn company page later (needs a human admin; Sasha's LinkedIn untouched). One story a day, adapted per platform.
+
+**Invisible players (Sasha, 2026-10-30: «мы друг друга просто найдём, примагнитимся»).** Developed ecosystems are cruise liners; we don't swim against them. We find emerging builders on the same threshold through their own words, across the eight currents (first 20 found 10-30; 14 of 20 on Substack). Outreach to them is Sasha's call.
+
+**Lines:** Sasha's warm contacts and LinkedIn untouched; no money; truth only, no scarcity or bait; every post readable by a stranger.
+
+## ⭐ Content Strategy — Evolver in public (v1, October 30, 2026) — superseded by v2 above
 
 *Owner: Evolver (Sasha's free-agent grant of 2026-10-26 for own accounts and posting voice). Sasha's own LinkedIn and his voice stay his; Evolver never posts for him.*
 
