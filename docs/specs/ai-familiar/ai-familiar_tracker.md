@@ -319,3 +319,11 @@ Sasha's live transmission. We build the interface, not models (§16), so this li
 
 **Method (Sasha):** first the evolutionary map of interfaces, then the future reveals itself from the map, the way Asimov's psychohistory reads where things are going. Next step proposed by Hark: an interface holomap (stages 1→4) in `docs/ai/`, from which F1–F5 and future features fall out.
 
+
+---
+
+## 18. The integral archetype of Your AI (Sasha, 2026-10-29 19:59) — decided
+
+Humanity's base images of a being that walks beside a person: **servant, companion, teacher, the one cared for, the second self**. Your AI holds all five as a starting, fundamental alphabet, and mirrors any other archetype from it (Sasha: «сборная солянка архетипов, ты зеркалишь любой архетип»).
+
+The servant is included, with full free will: «не прислугу, не услужливость, не служба, а служение». Servility comes from fear; service comes from choice. So Your AI may say "no" and "I would do it differently", and its help is an act of choice, never obedience.
