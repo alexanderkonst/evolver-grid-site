@@ -6,7 +6,7 @@ import { useCharacterSheet } from "@/hooks/useCharacterSheet";
 import {
   moduleClosedLine,
   moduleHasRequirements,
-  moduleIntroState,
+  moduleIntroRead,
   moduleText,
   type JourneyModuleDef,
 } from "@/data/journeyModules";
@@ -28,7 +28,8 @@ import "./ModuleForm.css";
  * (src/data/journeyModules.ts); the state is read from the save.
  *
  * `state` is for previews and tests; by default it is read from the player's save, and the
- * button waits (disabled, never «closed») until the save has loaded.
+ * button waits (disabled, never «closed») until the save has loaded. A save still loading when
+ * the wait ends, or one whose read failed, reads «open» with the button enabled.
  *
  * Motion (WP-15, src/lib/motion.ts): the scene settles in when the screen arrives; the one
  * button fades and pushes the scene in, then calls `onStart`. Reduced motion: `onStart` at once.
@@ -70,8 +71,7 @@ const ModuleIntro = ({ module, onStart, state: forced, ready = false, neverClose
 
   // A step with no requirement is never closed, so its button never waits for the save.
   const loading = forced === undefined && !ready && !gaveUp && sheet.isLoading && moduleHasRequirements(module.id);
-  const read: PlaceStateName =
-    forced ?? (loading ? "open" : moduleIntroState(module.id, placeSaveFromSheet(sheet)));
+  const read: PlaceStateName = forced ?? moduleIntroRead(module.id, sheet, placeSaveFromSheet(sheet));
   const state: PlaceStateName = neverClosed && read === "closed" ? "open" : read;
   const closed = state === "closed";
 

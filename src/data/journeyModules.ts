@@ -128,7 +128,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
       done: "Done · Your top talent is saved",
       badge: "Top Talent",
       livesIn: { text: "It lives at Home, on the shelf of your victories.", to: "/game/me/overview" },
-      opened: "Home, the Quest Board and the Oracle are open.",
+      opened: "Home, the Quest Board and Your AI are open.",
       fallbackResult: "Your top talent",
     },
   },
@@ -374,6 +374,18 @@ export const moduleIntroState = (id: ModuleStepId, save: PlaceSave): PlaceStateN
 };
 
 const questDef = (id: QuestStepId) => getJourneyModule(id)?.quest;
+
+/**
+ * The state an Intro shows when it reads the save. Only a loaded read can say «closed»:
+ * while the sheet is still loading (including after the Intro stopped waiting for it) or
+ * when its read failed, every chain step reads as undone, which would show a done step as
+ * closed. In those cases the step reads «open» and the button stays enabled.
+ */
+export const moduleIntroRead = (
+  id: ModuleStepId,
+  sheet: { isLoading: boolean; loadFailed?: boolean },
+  save: PlaceSave,
+): PlaceStateName => (sheet.isLoading || sheet.loadFailed ? "open" : moduleIntroState(id, save));
 
 /** True when the step waits on an earlier one, so its state depends on the save. */
 export const moduleHasRequirements = (id: ModuleStepId): boolean =>
