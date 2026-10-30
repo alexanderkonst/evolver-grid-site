@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { VILLAGE_PLACES } from "@/data/villagePlaces";
+import { NEXT_STEP_PATH } from "@/pages/NextStep";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -47,7 +48,8 @@ const Auth = () => {
   // Read both ?next= (spec) and ?redirect= (legacy). Default depends on flow.
   const queryNext = searchParams.get("next") || searchParams.get("redirect");
   // Claim mode goes straight to the one public test door (WP-7): no login in between.
-  const defaultNext = claimMode ? "/zone-of-genius/entry" : "/playbook/discover";
+  // No explicit destination: the player's current next move, not a method page (issue #250).
+  const defaultNext = claimMode ? "/zone-of-genius/entry" : NEXT_STEP_PATH;
   const nextPath = queryNext || defaultNext;
   // The wall was reached from a village place (its module route): offer the way back to the map.
   const fromVillagePlace = !!queryNext && VILLAGE_PLACES.some((p) => p.to === queryNext.split(/[?#]/)[0]);

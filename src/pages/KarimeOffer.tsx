@@ -20,9 +20,8 @@ import { useSkin } from "@/contexts/SkinContext";
  * Access:
  *   - Route /build/karime is public (no RequireAuth, no MeGate) so the
  *     direct URL is reachable cold for sharing.
- *   - Sidebar row "Karime's Unique Offer" in SectionsPanel renders only when
- *     `userEmail === karimekurit@gmail.com` OR `useDeepProfileActivated()`
- *     returns true (i.e., user has unlocked the BUILD space).
+ *   - Sidebar row "Karime's Unique Offer" in SectionsPanel renders only for
+ *     her own account (`owner` rule in src/data/founderTools.ts, issue #250).
  *
  * Visual register: gold word-highlights from MatchHero are NOT carried over —
  * Karime's copy is heart-centered (grief / heartbreak / emotional exhaustion)
