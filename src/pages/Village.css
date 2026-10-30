@@ -42,7 +42,7 @@
 
 .vl-mono {
   font-family: var(--vl-mono); font-weight: 300; text-transform: uppercase;
-  letter-spacing: 0.32em; font-size: 12px; color: var(--vl-ink-3); margin: 0;
+  letter-spacing: 0.32em; font-size: var(--vl-text-label); color: var(--vl-ink-3); margin: 0;
 }
 
 /* ---------- Layers: map and place crossfade ---------- */
@@ -99,7 +99,7 @@
   font-size: clamp(26px, min(3.6vw, 5.4vh), 56px); line-height: 1.04; letter-spacing: 0.06em;
   margin: 14px 0 0; color: var(--vl-ink); text-wrap: balance;
 }
-.vl-moonline { margin: 14px 0 0; text-transform: none; letter-spacing: 0.14em; font-size: 13px; color: var(--vl-ink-2); }
+.vl-moonline { margin: 14px 0 0; text-transform: none; letter-spacing: 0.14em; font-size: var(--vl-text-small); color: var(--vl-ink-2); }
 .vl-intro { opacity: 0; animation: vl-fade-in 1.6s ease-out 0.4s forwards; }
 @keyframes vl-fade-in { to { opacity: 1; } }
 
@@ -162,7 +162,7 @@
 }
 @keyframes vl-ring { 0% { transform: scale(1); opacity: 0.55; } 70%, 100% { transform: scale(4); opacity: 0; } }
 .vl-pin__name {
-  font-family: var(--vl-mono); font-weight: 300; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase;
+  font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-label); letter-spacing: 0.24em; text-transform: uppercase;
   color: var(--vl-ink-2); padding: 4px 9px; background: rgba(var(--scene-bg-rgb),0.4);
   text-shadow: 0 0 10px rgba(var(--scene-shadow-rgb),0.9); transition: color 0.6s ease, background-color 0.6s ease;
 }
@@ -179,7 +179,7 @@
   text-shadow: 0 1px 24px rgba(var(--scene-shadow-rgb),0.65);
 }
 .vl-hint {
-  min-height: 24px; margin: 0; font-family: var(--vl-mono); font-weight: 300; font-size: 13px;
+  min-height: 24px; margin: 0; font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-small);
   letter-spacing: 0.14em; color: var(--vl-ink-2); animation: vl-hint 0.7s ease-out;
 }
 .vl-hint.is-idle { color: var(--vl-ink-3); }
@@ -233,7 +233,7 @@
 }
 .vl-enter {
   display: inline-flex; align-items: center; min-height: 44px; margin-top: clamp(32px, 5vh, 52px); padding: 0 30px;
-  border: 1px solid var(--vl-accent); font-family: var(--vl-mono); font-weight: 300; font-size: 12px;
+  border: 1px solid var(--vl-accent); font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-label);
   letter-spacing: 0.3em; color: var(--vl-ink); text-shadow: none; background: rgba(var(--scene-bg-rgb),0.25);
   transition: background-color 0.8s ease, color 0.8s ease;
 }
@@ -267,7 +267,7 @@
 }
 .vl-pin .ps-tag--closed {
   position: static; width: auto; height: auto; margin: 0; padding: 4px 9px; overflow: visible; clip: auto;
-  white-space: nowrap; font-size: 10px; letter-spacing: 0.2em; color: var(--vl-lock-ink);
+  white-space: nowrap; font-size: var(--vl-text-micro); letter-spacing: 0.2em; color: var(--vl-lock-ink);
   background: var(--vl-lock-chip); text-shadow: 0 0 10px rgba(var(--scene-shadow-rgb),0.9);
 }
 .vl-pin .ps-tag--closed::before { content: "\25CB\00a0"; } /* an open circle, as in the mobile list */
@@ -298,7 +298,7 @@
 }
 .vl-move > * { pointer-events: auto; }
 .vl-move__changed {
-  margin: 0; font-size: 12px; letter-spacing: 0.2em; color: var(--open-accent);
+  margin: 0; font-size: var(--vl-text-label); letter-spacing: 0.2em; color: var(--open-accent);
   text-shadow: 0 1px 18px rgba(var(--scene-shadow-rgb),0.8); animation: vl-hint 0.9s ease-out;
 }
 .vl-move__card {
@@ -306,11 +306,11 @@
   border: 1px solid var(--vl-hair); border-top-color: var(--open-accent);
   backdrop-filter: blur(6px); animation: vl-hint 0.9s ease-out;
 }
-.vl-move__eyebrow { margin: 0; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--vl-ink-3); }
-.vl-move__where { margin: 8px 0 0; font-size: 21px; line-height: 1.25; color: var(--vl-ink); text-wrap: balance; }
-.vl-move__place { font-family: var(--vl-mono); font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; }
-.vl-move__optional { font-size: 16px; font-style: italic; color: var(--vl-ink-3); }
-.vl-move__result { margin: 8px 0 0; font-style: italic; font-weight: 300; font-size: 18px; line-height: 1.3; color: var(--vl-ink-2); text-wrap: balance; }
+.vl-move__eyebrow { margin: 0; font-size: var(--vl-text-micro); letter-spacing: 0.3em; text-transform: uppercase; color: var(--vl-ink-3); }
+.vl-move__where { margin: 8px 0 0; font-size: var(--vl-text-title); line-height: 1.25; color: var(--vl-ink); text-wrap: balance; }
+.vl-move__place { font-family: var(--vl-mono); font-size: var(--vl-text-small); letter-spacing: 0.2em; text-transform: uppercase; }
+.vl-move__optional { font-size: var(--vl-text-body); font-style: italic; color: var(--vl-ink-3); }
+.vl-move__result { margin: 8px 0 0; font-style: italic; font-weight: 300; font-size: var(--vl-text-lead); line-height: 1.3; color: var(--vl-ink-2); text-wrap: balance; }
 .vl-move__enter { margin-top: 16px; border-color: var(--open-accent); }
 .vl-move__enter:hover, .vl-move__enter:focus-visible { background: var(--open-accent); }
 .vl-move__card[data-kind="live"] { border-top-color: var(--live-accent); }
@@ -331,7 +331,7 @@
 }
 /* WP-11 (§14.2 J12, §14.12): after the first sale the player's house is lit on the map. A halo
    on the dot (any skin) and the word «Lit», so it is never colour alone. */
-.vl-lit-word { margin-left: 8px; font-family: var(--vl-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--open-accent); }
+.vl-lit-word { margin-left: 8px; font-family: var(--vl-mono); font-size: var(--vl-text-micro); letter-spacing: 0.22em; text-transform: uppercase; color: var(--open-accent); }
 .vl-pin.is-lit .vl-dot::before {
   opacity: 1; background: var(--open-accent);
   box-shadow: 0 0 0 3px rgba(var(--scene-bg-rgb),0.85), 0 0 0 4px var(--open-accent), 0 0 26px 8px var(--open-accent);
@@ -344,7 +344,7 @@
 
 .vl-signin {
   display: inline-flex; align-items: center; min-height: 44px; margin-top: 14px; padding: 0 12px;
-  font-size: 11px; letter-spacing: 0.22em; text-shadow: 0 1px 16px rgba(var(--scene-shadow-rgb),0.8); transition: color 0.6s ease;
+  font-size: var(--vl-text-micro); letter-spacing: 0.22em; text-shadow: 0 1px 16px rgba(var(--scene-shadow-rgb),0.8); transition: color 0.6s ease;
 }
 .vl-corner, .vl-back, .vl-signin { color: var(--vl-link-ink); }
 .vl-signin:hover, .vl-signin:focus-visible { color: var(--vl-ink); }
@@ -377,8 +377,8 @@
   display: block; width: 38px; height: 38px; margin: 0 auto 8px; border-radius: 50%; object-fit: cover;
   border: 1px solid var(--vl-accent); box-shadow: 0 0 14px 2px rgba(var(--scene-shadow-rgb), 0.6), 0 0 12px 1px var(--vl-accent);
 }
-.vl-mote__name { display: block; margin-top: 6px; font-style: normal; font-family: var(--vl-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--vl-ink-2); }
-.vl-mote__unique { display: block; margin-top: 2px; font-size: 14px; color: var(--vl-ink-3); }
+.vl-mote__name { display: block; margin-top: 6px; font-style: normal; font-family: var(--vl-mono); font-size: var(--vl-text-micro); letter-spacing: 0.22em; text-transform: uppercase; color: var(--vl-ink-2); }
+.vl-mote__unique { display: block; margin-top: 2px; font-size: var(--vl-text-small); color: var(--vl-ink-3); }
 .vl-mote--0 { top: 15%; left: 7%; }
 .vl-mote--1 { top: 29%; right: 7%; }
 .vl-mote--2 { top: 43%; left: 15%; }
@@ -406,7 +406,7 @@
 .vl-presence--pin .vl-presence__glow { left: -2.5px; top: -2.5px; width: 5px; height: 5px; box-shadow: 0 0 8px 2px currentColor; }
 .vl-presence__name {
   position: absolute; left: 0; top: 14px; transform: translateX(-50%); white-space: nowrap;
-  font-family: var(--vl-mono); font-weight: 300; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-micro); letter-spacing: 0.22em; text-transform: uppercase;
   color: var(--vl-ink-3); text-shadow: 0 0 12px rgba(var(--scene-shadow-rgb), 0.9);
 }
 @keyframes vl-presence-in { from { opacity: 0; } to { opacity: 0.85; } }
@@ -417,10 +417,10 @@
   /* Closed rows are the menu on a phone: the name and the line read at 0.88 of the ink (the
      desktop chip tokens are tuned for a label over the map), and the state is a word. */
   .vl-root { --vl-lock-ink: rgba(var(--scene-ink-rgb), 0.88); }
-  .vl-list li[data-place-state="closed"] .vl-list__name { font-size: 16px; }
+  .vl-list li[data-place-state="closed"] .vl-list__name { font-size: var(--vl-text-body); }
   .vl-list .ps-tag--closed {
     position: static; width: auto; height: auto; margin: 8px 0 0; overflow: visible; clip: auto;
-    white-space: normal; border: 0; font-size: 12px; color: var(--vl-lock-ink);
+    white-space: normal; border: 0; font-size: var(--vl-text-label); color: var(--vl-lock-ink);
   }
   .vl-list .ps-tag--closed::before { content: "\25CB\00a0"; } /* an open circle: a shape, never colour alone */
   /* The moon lives in the top band of the map and the pins sit below it. Smaller, closer to the
@@ -430,7 +430,7 @@
   .vl-moon__glow { inset: -50%; }
   .vl-map { height: auto; overflow: visible; }
   .vl-head { position: relative; top: auto; left: auto; padding: 44px 24px 22px; }
-  .vl-head h1 { font-size: 30px; margin-top: 12px; }
+  .vl-head h1 { font-size: var(--vl-text-display); margin-top: 12px; }
   .vl-frame { position: relative; inset: auto; width: 100%; aspect-ratio: var(--vl-ar, 1); }
   .vl-cover { left: 0; top: 0; width: 100%; transform: none; }
   .vl-drift { animation: none; }
@@ -449,14 +449,14 @@
   .vl-list li { margin: 0; border-bottom: 1px solid var(--vl-hair); }
   .vl-list a { display: block; padding: 18px 0 18px; outline: none; }
   .vl-list__name {
-    display: block; font-family: var(--vl-mono); font-weight: 300; font-size: 15px;
+    display: block; font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-body);
     letter-spacing: 0.24em; text-transform: uppercase; color: var(--vl-ink);
   }
-  .vl-list__line { display: block; margin-top: 6px; font-style: italic; font-weight: 300; font-size: 19px; color: var(--vl-ink-2); }
+  .vl-list__line { display: block; margin-top: 6px; font-style: italic; font-weight: 300; font-size: var(--vl-text-lead); color: var(--vl-ink-2); }
   .vl-list a:focus-visible .vl-list__name { outline: 1px solid var(--vl-accent); outline-offset: 4px; }
   .vl-place__img { animation: motion-settle var(--vl-fade) var(--motion-ease) backwards; } /* no drift on mobile; the settle stays */
   .vl-place__copy { padding-bottom: 56px; }
-  .vl-mote { max-width: 62vw; font-size: 17px; }
+  .vl-mote { max-width: 62vw; font-size: var(--vl-text-lead); }
   .vl-mote--0 { top: 12%; left: 6%; }
   .vl-mote--1 { top: 22%; right: 6%; }
   .vl-mote--2 { top: 32%; left: 10%; }

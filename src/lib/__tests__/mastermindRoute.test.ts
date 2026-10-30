@@ -22,8 +22,8 @@ describe("Mastermind route regression tests", () => {
     expect(pathUsesLayoutShell("/build/mastermind")).toBe(true);
   });
 
-  it("gives /build/mastermind the title 'Founder-Market Fit Discovery Mastermind'", () => {
-    expect(getPageTitle("/build/mastermind")).toBe("Founder-Market Fit Discovery Mastermind");
+  it("gives /build/mastermind the place name 'Mastermind' as its tab title (WP-15)", () => {
+    expect(getPageTitle("/build/mastermind")).toBe("Mastermind");
   });
 
   it("contains a section in BUILD space with path /build/mastermind labeled 'Founder Mastermind'", () => {

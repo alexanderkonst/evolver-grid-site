@@ -116,8 +116,31 @@
      --lock-dim), the label does not. Alphas of the scene ink, so every skin gets a
      legible label from its own --scene-ink-rgb. The label chip is darker than an open
      one so a faded name never melts into the map. */
-  --lock-label-alpha: 0.68;
-  --lock-label-bg-alpha: 0.6;
+  --lock-label-alpha: 0.8;
+  --lock-label-bg-alpha: 0.72;
+
+  /* ── Journey scales (WP-15 part 2) ──
+     One type scale and one spacing scale for the Journey screens (title, village, Home,
+     Quest Board, Your AI, Café, Co-working, Market, Workshop, Mastermind). A screen picks a
+     step; it does not write a px size of its own. Sizes inside clamp() stay fluid headings.
+     The type steps are the sizes the screens already used, snapped to seven. Nothing here
+     is a colour; colour is --scene-* / --vl-*. */
+  --vl-text-micro: 11px;    /* chips, tags, a closed place's «Not open yet» */
+  --vl-text-label: 12px;    /* mono eyebrows, back links, buttons */
+  --vl-text-small: 14px;    /* a line under a name, captions */
+  --vl-text-body: 16px;     /* running text */
+  --vl-text-lead: 18px;     /* the one line under a heading, row names */
+  --vl-text-title: 22px;    /* a card or section title */
+  --vl-text-display: 28px;  /* a quiet display line */
+  --vl-space-1: 4px;
+  --vl-space-2: 8px;
+  --vl-space-3: 12px;
+  --vl-space-4: 16px;
+  --vl-space-5: 24px;
+  --vl-space-6: 32px;
+  --vl-space-7: 48px;
+  /* Room at the bottom of a game screen for the floating «Chat with us» pill (48px + its inset). */
+  --chat-clearance: 72px;
 
   /* ── Lunar world hooks (WP-2, §14.11) ──
      Inert in every skin but Lunar: `none` / unused values change nothing.
@@ -538,9 +561,10 @@
   --lock-dim: 0.72;
   --open-accent: #5ec8bd;
   --live-accent: #8fe3d9;
-  /* A closed name sits visibly under an open one (0.82 ink): ~6:1 on the chip, not a twin of it. */
-  --lock-label-alpha: 0.6;
-  --lock-label-bg-alpha: 0.72;
+  /* A closed name sits under an open one (0.92 ink) and still clears AA (4.5:1) on its chip,
+     also over the lightest art (worked out: ~6.8:1 over white; default skin ~5.4:1). */
+  --lock-label-alpha: 0.8;
+  --lock-label-bg-alpha: 0.8;
   --label-ink-bg: linear-gradient(135deg, #b5f0e8 0%, #8fe3d9 55%, #5ec8bd 100%);
   --label-ink-glow: none;
 

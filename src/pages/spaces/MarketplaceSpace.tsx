@@ -25,7 +25,8 @@ const MarketplaceSpace = () => {
     return (
         <GameShellV2>
             <ErrorBoundary>
-                <div className="p-4 lg:p-6 max-w-4xl mx-auto space-y-10">
+                {/* pb: room under the last control for the «Chat with us» pill (WP-15, --chat-clearance) */}
+                <div className="p-4 pb-[calc(var(--chat-clearance)+1rem)] lg:p-6 max-w-4xl mx-auto space-y-10">
                     <VillagePlaceHeader place="market" />
                     <MyStall />
                     {!business && (
