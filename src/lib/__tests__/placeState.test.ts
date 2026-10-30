@@ -47,12 +47,13 @@ const statesOf = (save: ReturnType<typeof saveWith>) =>
   Object.fromEntries(VILLAGE_PLACES.map((p) => [p.key, placeState(p, save)])) as Record<VillagePlaceKey, PlaceStateName>;
 
 describe("placeState: unlock order (§14.3)", () => {
-  it("a guest sees Reception next, Academy and Mastermind open, everything else closed", () => {
+  it("a guest sees Reception next, Academy, Café and Mastermind open, everything else closed", () => {
     const s = statesOf(saveWith([]));
     expect(s.reception).toBe("next");
     expect(s.academy).toBe("open");
     expect(s["fire-circle"]).toBe("open");
-    for (const k of ["house", "quest-board", "oracle", "workshop", "cafe", "market", "coworking", "town-hall"] as const) {
+    expect(s.cafe).toBe("open");
+    for (const k of ["house", "quest-board", "oracle", "workshop", "market", "coworking", "town-hall"] as const) {
       expect(s[k]).toBe("closed");
     }
   });
@@ -69,11 +70,11 @@ describe("placeState: unlock order (§14.3)", () => {
     expect(s["quest-board"]).toBe("open");
     expect(s.oracle).toBe("open");
     expect(s.workshop).toBe("closed");
-    expect(s.cafe).toBe("closed");
+    expect(s.cafe).toBe("open");
     expect(s.market).toBe("closed");
   });
 
-  it("Mission saved opens Workshop and Café", () => {
+  it("Mission saved opens the Workshop; the Café was already open", () => {
     const s = statesOf(saveWith(["find-top-talent", "discover-mission"]));
     expect(s.workshop).toBe("open");
     expect(s.cafe).toBe("open");
@@ -368,7 +369,7 @@ describe("nextMove: one next move (§14.6)", () => {
 
 describe("whatChanged: what is new since the last visit (§14.6)", () => {
   const seen = (...keys: VillagePlaceKey[]) => new Set<string>(keys);
-  const guestOpen: VillagePlaceKey[] = ["reception", "academy", "fire-circle"];
+  const guestOpen: VillagePlaceKey[] = ["reception", "academy", "fire-circle", "cafe"];
 
   it("names nothing when nothing opened", () => {
     const r = whatChanged(VILLAGE_PLACES, seen(...guestOpen), saveWith([]));
@@ -382,16 +383,16 @@ describe("whatChanged: what is new since the last visit (§14.6)", () => {
     expect(r.line).toBe("Your House is open.");
   });
 
-  it("Mission saved: Café and Workshop are new; the Workshop speaks", () => {
+  it("Mission saved: the Workshop is new and speaks", () => {
     const before: VillagePlaceKey[] = [...guestOpen, "house", "quest-board", "oracle"];
     const r = whatChanged(VILLAGE_PLACES, seen(...before), saveWith(["find-top-talent", "discover-mission"]));
-    expect(r.fresh.map((p) => p.key).sort()).toEqual(["cafe", "workshop"]);
+    expect(r.fresh.map((p) => p.key)).toEqual(["workshop"]);
     expect(r.line).toBe("The Workshop is open.");
   });
 
   it("Assets saved: Co-working is new", () => {
     const done: JourneyItemId[] = ["find-top-talent", "discover-mission", "assess-qol", "map-assets"];
-    const before: VillagePlaceKey[] = [...guestOpen, "house", "quest-board", "oracle", "cafe", "workshop"];
+    const before: VillagePlaceKey[] = [...guestOpen, "house", "quest-board", "oracle", "workshop"];
     const r = whatChanged(VILLAGE_PLACES, seen(...before), saveWith(done));
     expect(r.fresh.map((p) => p.key)).toEqual(["coworking"]);
     expect(r.line).toBe("Co-working is open.");
@@ -399,14 +400,14 @@ describe("whatChanged: what is new since the last visit (§14.6)", () => {
 
   it("Offer saved: the stall stands in the Market", () => {
     const done: JourneyItemId[] = ["find-top-talent", "discover-mission", "assess-qol", "map-assets"];
-    const before: VillagePlaceKey[] = [...guestOpen, "house", "quest-board", "oracle", "cafe", "workshop", "coworking"];
+    const before: VillagePlaceKey[] = [...guestOpen, "house", "quest-board", "oracle", "workshop", "coworking"];
     const r = whatChanged(VILLAGE_PLACES, seen(...before), saveWith(done, { offerSaved: true }));
     expect(r.fresh.map((p) => p.key)).toEqual(["market"]);
     expect(r.line).toBe("Your stall stands in the Market.");
   });
 
   it("a place without its own line says «<Name> is open.»", () => {
-    const r = whatChanged([place("cafe")], seen(), saveWith(["find-top-talent", "discover-mission"]));
+    const r = whatChanged([place("cafe")], seen(), saveWith([]));
     expect(r.line).toBe("Café is open.");
   });
 

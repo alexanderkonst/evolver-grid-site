@@ -98,9 +98,13 @@ const WordlessIntro = ({ onSkip }: Props) => {
       }
       light();
     };
-    const events = ["pointerdown", "touchmove", "wheel", "keydown"] as const;
-    events.forEach((name) => window.addEventListener(name, onGesture, { passive: true }));
-    return () => events.forEach((name) => window.removeEventListener(name, onGesture));
+    // Every pointer path, not only pointerdown: a mouse click, a tap and a touch each advance
+    // like a key press. Capture phase, so a handler further down that stops propagation
+    // cannot swallow the gesture. `light` is idempotent, so several events for one click are fine.
+    const events = ["pointerdown", "mousedown", "touchstart", "touchmove", "click", "wheel", "keydown"] as const;
+    const options = { passive: true, capture: true } as const;
+    events.forEach((name) => window.addEventListener(name, onGesture, options));
+    return () => events.forEach((name) => window.removeEventListener(name, onGesture, options));
   }, [phase, light]);
 
   // After ~8 s with no gesture the breathing light grows a little stronger (still no words).

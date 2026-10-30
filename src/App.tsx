@@ -845,7 +845,8 @@ const App = () => (
                   <Route path="/game/mission" element={<Navigate to="/game/collaborate/mission" replace />} />
                   <Route path="/community/people" element={<Navigate to="/game/collaborate/people" replace />} />
                   {/* MEET Space (was Events) */}
-                  <Route path="/game/meet" element={<RequireAuth><MeetSpace /></RequireAuth>} />
+                  {/* Public: the Café's webinar + Mastermind cards must reach guests. Create / RSVPs stay behind sign-in. */}
+                  <Route path="/game/meet" element={<MeetSpace />} />
                   <Route path="/game/meet/create" element={<RequireAuth><CreateEvent /></RequireAuth>} />
                   <Route path="/game/meet/my-rsvps" element={<RequireAuth><MyRsvps /></RequireAuth>} />
                   {/* Legacy redirects */}

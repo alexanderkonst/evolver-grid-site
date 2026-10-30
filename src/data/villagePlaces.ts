@@ -141,14 +141,10 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     name: "Café",
     line: "Meet people, professionally or simply.",
     to: "/game/meet",
-    rule: {
-      opens: "discover-mission",
-      closed: {
-        event: "your mission is saved",
-        inside: "people to meet, professionally or simply",
-        key: "village.closed.cafe",
-      },
-    },
+    // Open to guests: the Café holds the webinar (Nov 4) and the Mastermind invite, which a
+    // visitor must be able to see before they have a character. The personal parts (create an
+    // event, RSVPs) stay behind sign-in on their own routes.
+    rule: {},
     image: "/game/village/cafe.webp",
     alt: "A café lounge open to the night sea, deep blue sofas and poufs on woven rugs, candles, amethyst geodes, and neon-edged arches framing a string-lit horizon",
     focus: { x: 50, y: 55 },
