@@ -290,6 +290,8 @@ Not a community platform. **A planetary synapse.**
 
 ## One-Liner Variants
 
+> **Canonical (2026-10-29, Sasha: «мурашки»):** We are building the seed of the golden age: seven organs of one civilization, gathered around the genius of every person. See *The whole* below.
+
 **Short:**
 > "The coordination layer for the Evolutionary Avantgarde."
 
@@ -323,3 +325,65 @@ Not a community platform. **A planetary synapse.**
 
 The inner-turn taxonomy (ISIC/NAICS top layers + market-map niches + the axis outer → inner → outer anew, scored by actual work, not capital raised) gives a second use of the shades: not only doors to speak through, but rooms to gather in. Leaders of the new economy who already made the turn are found niche by niche and divided into **guilds** (niche families). Within a guild they share a language and integrate naturally; across guilds the village is the meeting place. **Facilitators** are needed: a new role and a possible product line. First test of the axis: founder coaching. Who is invited, how and when is Sasha's call. Library: Technology 180.
 
+
+## The whole: the seed of the golden age (Sasha, 2026-10-29 23:16) — confirmed
+
+*Provenance: Hark synthesis in chat, 2026-10-29. Sasha: «ГЕНИАЛЬНО»; whole aspect «да!»; name «да!»; one-liner «вау, мурашки!». Related: Technology 76 (return to the center), Technology 78 (planetary holomap), [leonardo_strategy_for_the_golden_age.md](../03-playbooks/leonardo_strategy_for_the_golden_age.md).*
+
+> **We are building the seed of the golden age: seven organs of one civilization, gathered around the genius of every person.**
+
+### Seven organs
+
+| What we build | Avant-garde subtype | Golden-age meta-artifact | Function in the whole |
+|---|---|---|---|
+| AI interface | Consciousness technologists | **Mirror** (the disappearing interface) | To see and understand |
+| Cult game | Mythmakers | **Myth-initiation** | To become oneself |
+| Life operating system | Masters of development | **Path** (everyday practice) | To live from the center |
+| Collective of sovereign founders | Founders of calling | **Guild / Circle** | To create together |
+| New economy | Gift economists | **Market of geniuses** (radiation instead of extraction) | To exchange gifts |
+| Digital village | Community builders | **Village** (the hearth) | To live together |
+| Federation of villages and bioregions | Bioregionalists, network states | **Federation** (a network of hearths on the land) | To hold the planet |
+
+Order runs from the center outward: person → path → circle → exchange → village → planet. The return to the center (Technology 76) unfolded into structure.
+
+### The whole
+- **What it is:** a living cell of a golden-age civilization in which all seven organs already exist at small scale. Not a product, not a project. The planetary holomap (Technology 78), read from the center and embodied.
+- **Architecture:** a holarchy (Koestler, 1967). Each artifact is whole in itself and part of the larger one. One essence, top talent, runs through every level.
+- **Whole aspect of the avant-garde:** **Golden Age Architects** (*civilization builders*): those who build not one organ but the binding of all seven.
+- **Name of the whole: Evolver.** Confirmed by Sasha. A verb: the whole is a movement, not a thing.
+
+### Lineage: civilization builders who built several organs at once (v0)
+
+| Who | What they bound together |
+|---|---|
+| Rudolf Steiner (1861–1925) | Path (anthroposophy), education (Waldorf), land (biodynamics), medicine, threefold social order (economy, rights, culture) |
+| Sri Aurobindo and the Mother (Mirra Alfassa) | Integral yoga (Path) → Auroville (1968): a planetary township with its own economy and education |
+| Mahatma Gandhi | Sarvodaya and village swaraj: a path, a gift-like economy (khadi), self-governing villages as the unit of the nation |
+| Peter and Eileen Caddy, Dorothy Maclean | Findhorn (1962): spiritual practice + community + land |
+| Dieter Duhm, Sabine Lichtenfels | Tamera (1995): a research village for a post-violence culture |
+| Buckminster Fuller | Spaceship Earth, the World Game: design at the scale of the planet |
+| Balaji Srinivasan | *The Network State* (2022), Network School: community, economy, education, federation |
+| Vitalik Buterin | Ethereum, plural funding, Zuzalu (2023): economy + pop-up village |
+| Jordan Hall, Daniel Schmachtenberger | Game B, civilization design for the metacrisis |
+
+The list is a starting point; most of them bound three to five organs, none all seven with uniqueness as the thread.
+
+### Do the 36 shades map onto the seven organs?
+
+Yes, all 36 land, none orphaned. Primary organ per shade (secondary in brackets):
+
+| Organ | Shades | Count |
+|---|---|---|
+| Mirror | Consciousness technologies; metamapping; polymaths and researchers; AI-native builders (Guild); people building their own AIs; metaphysics; big-system intellectuals | 7 |
+| Myth-initiation | Energetic and archetypal work; uniqueness and soul expression (the thread through all); game designers | 3 |
+| Path | Integral people (Federation); spiritual teachers; psychedelics and plant teachers (Myth); breathwork and nervous system; sensitivity and tantra; dance (Myth); healers; high-vibration universities (Mirror) | 8 |
+| Guild / Circle | AIESEC alumni; Russian-speaking entrepreneur scene; MBA and diaspora groups; YPO/EO-type alumni; Silicon Valley and universities (Market) | 5 |
+| Market of geniuses | DAO people; venture studios and funds | 2 |
+| Village | Successful digital communities; physical hubs; conscious communities in big cities; masters' chats; festivals and giant gatherings (Myth) | 5 |
+| Federation | Digital twins of cities; New Earth leaders; web3, pop-up cities, network states (Market, Village); system-change convenings; semi-establishment change-makers (UN, WEF); land projects and regenerative communities | 6 |
+
+**What the mapping shows** (Hark's reading):
+1. **The seven organs pass the test:** the open list of shades fits them with nothing left over.
+2. **The market of geniuses is the thinnest organ** (2 shades), Myth second (3). The gift economy is the least populated organ of the avant-garde, the same empty cell the founder-coaching axis test found (stage 3b, identity as offer). That is where FYT's market sits.
+3. **Uniqueness and soul expression is not one organ** but the thread through all seven, as the whole requires.
+4. **Containers and language spaces are not organs.** Hubs, festivals and chats are where organs meet (Village scale); language spaces are a second axis across all seven.

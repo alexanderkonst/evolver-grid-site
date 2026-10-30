@@ -409,3 +409,9 @@ The live UI is untouched; only the cloned doc gets the override. The PDF reads a
 ## How to read entries above
 
 Each decision is reasoned at the time and shipped. If a decision is later reversed (new evidence, principle shift, scope change), the new entry references the old one explicitly — *"Supersedes D-YYYY-MM-DD-NN."* This is an append-only log; old entries don't get edited. Reading top-to-bottom traces the architectural lineage. Reading bottom-to-top traces the architectural state.
+
+## D-2026-10-29-02 — The whole is named Evolver: the seed of the golden age
+- **Decided by:** Sasha, 2026-10-29 23:16 («ГЕНИАЛЬНО… да!»).
+- **What:** the seven organs (Mirror, Myth-initiation, Path, Guild/Circle, Market of geniuses, Village, Federation) form one whole, named **Evolver**; its avant-garde aspect is Golden Age Architects (civilization builders). Canonical one-liner fixed.
+- **Where:** `docs/02-strategy/evolutionary_avantgarde_taxonomy.md` § The whole.
+
