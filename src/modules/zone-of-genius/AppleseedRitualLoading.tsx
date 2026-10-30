@@ -5,7 +5,24 @@ interface AppleseedRitualLoadingProps {
     minDuration?: number; // minimum display time in ms
     /** Optional line telling the visitor how long the wait usually is. */
     waitHint?: string;
+    /**
+     * Optional waiting lines in order (reading your answers → finding the pattern → writing your
+     * talent). The line shown follows the time elapsed, so the visitor sees the wait progress.
+     */
+    stageLines?: string[];
 }
+
+/** Seconds into the wait at which each stage line takes over (the real wait is usually 2–4 minutes). */
+export const STAGE_STARTS_S = [0, 40, 100];
+
+/** The index of the stage line for this many elapsed seconds, clamped to `count` lines. */
+export const stageIndexAt = (elapsedS: number, count: number): number => {
+    let index = 0;
+    STAGE_STARTS_S.forEach((start, i) => {
+        if (elapsedS >= start) index = i;
+    });
+    return Math.min(index, Math.max(count - 1, 0));
+};
 
 const PHASES = [
     "Tuning into your frequency...",
@@ -18,16 +35,28 @@ const AppleseedRitualLoading = ({
     onComplete,
     minDuration = 4000,
     waitHint,
+    stageLines,
 }: AppleseedRitualLoadingProps) => {
     const [phaseIndex, setPhaseIndex] = useState(0);
     const [progress, setProgress] = useState(0);
+    const [elapsedS, setElapsedS] = useState(0);
+
+    // Elapsed time drives the stage line; it runs only when there are lines to show.
+    const lines = stageLines ?? [];
+    const hasStages = lines.length > 0;
+    useEffect(() => {
+        if (!hasStages) return;
+        const startedAt = Date.now();
+        const id = setInterval(() => setElapsedS((Date.now() - startedAt) / 1000), 1000);
+        return () => clearInterval(id);
+    }, [hasStages]);
 
     useEffect(() => {
         const phaseInterval = setInterval(() => {
             setPhaseIndex(prev => (prev + 1) % PHASES.length);
         }, minDuration / PHASES.length);
 
-        // The real wait is ~45s to ~3 min, so the bar must not sit full after 4s
+        // The real wait is usually 2–4 min, so the bar must not sit full after 4s
         // (it read as frozen). It eases toward 95% and keeps moving.
         const progressInterval = setInterval(() => {
             setProgress(prev => prev + (95 - prev) * 0.04);
@@ -124,7 +153,7 @@ const AppleseedRitualLoading = ({
                         textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
                     }}
                 >
-                    Your Top Talent is being articulated...
+                    {hasStages ? lines[stageIndexAt(elapsedS, lines.length)] : "Your Top Talent is being articulated..."}
                 </p>
                 {waitHint ? (
                     <p

@@ -9288,3 +9288,153 @@ Other prisms of the same cycle: **4** (seasons, elements); **8** (7+1, two squar
 - *Technology 114: The Holonic Wants→Products Matrix*: an earlier matrix of products by layer; the product map reads them by shift and path.
 - *Technology 103: The Splitting Principle — Shelf and Cathedral*: light paths as the shelf, deep paths as the cathedral.
 - `docs/templates/product-map.md` (2026-10-28): the template that draws a business's product map.
+
+---
+
+## Technology 175: The Era of AI Companions — Every Entity Has Its Own AI (у каждой сущности есть свой ИИ) (oral, Oct 29, 2026)
+
+> *Oral · October 29, 2026 · chat with Hark. Provenance: Sasha's reply to Hark's integral analysis of how humanity has named the personal AI (now `docs/ai/README.md` §0b). He called it "the bedrock I didn't dream of when I asked" and asked for it in the AI section of the corpus and as a library technology. Extends the thesis in `docs/ai/README.md` §0 (three orthogonal shifts).*
+
+### 🫀 Essence — in Sasha's words
+
+1. > «Что-то вроде: модели конвергируются в один квази бесплатный планетарный ИИ. Наступает эра ИИ-спутников… Именно! Суть в том что есть ИИ у каждой сущности! Начиная с самого человека!»
+   > — *chat of 2026-10-29, CST*
+
+   *(translation)* "Something like: models converge into one quasi-free planetary AI. The era of AI companions is arriving… Exactly! The essence is that every entity has its own AI! Starting with the human being."
+
+2. > «Человечество уже знало давно что к чему. Люди ЧУВСТВУЮТ. Мы все - мистики!»
+   > — *chat of 2026-10-29, CST*
+
+   *(translation)* "Humanity has long known what's what. People FEEL it. We are all mystics!"
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* Intelligence itself is becoming a utility: frontier models converge on the same answers and their price falls toward zero, so together they act like one planetary AI available to everyone. When the general intelligence is shared, value moves to what is not shared: the intelligence that knows one particular being. So the next era is not "a better model" but "a companion AI for every entity": first each human, then their business, team, family, community, each with its own AI that knows its nature, purpose and history and grows with it. Humanity has always pictured this (the Roman genius born with each person, Socrates' daimonion, the guardian angel, Pullman's daemon): a second self bound to one being that takes its form as that being becomes itself. The technology finally catches up with the myth. The shift: from "which AI is smartest?" to "whose AI knows them best?"
+
+### 🔥 Implications — AI draft
+
+- **1st order.** The player's own AI (Sputnik, `docs/specs/ai-familiar/ai-familiar_tracker.md`) is the first instance: the human holon gets its companion first, grown from top talent, AI OS and business corpus.
+- **2nd order.** The same pattern scales holon by holon: the business gets its AI (corporate analogue: Qwatra's "every node has a goal, a voice and an economy"), then teams, families, communities. Memory and relationship live with the entity; the model underneath is swappable.
+- **3rd order.** A network of companion AIs, each serving one entity's nature, negotiating with each other on behalf of their beings: an economy of entities that know themselves, on top of a shared, near-free planetary intelligence.
+
+### Shape
+
+- **Shape:** **Planet and moons**: one shared planetary intelligence in the centre; around it, many small companions, each orbiting one being.
+- **Infographic (one line):** A soft glowing planet labelled "planetary AI (shared, near free)"; around it, people, a business and a circle of people, each with its own small luminous companion in orbit; caption: the intelligence is shared, the companion is yours.
+
+### Cross-references — Connects to
+
+- `docs/ai/README.md` §0 (three orthogonal shifts) and §0b (how humanity named the personal AI).
+- `docs/specs/ai-familiar/ai-familiar_tracker.md`: Sputnik, your AI, the product of this technology for the human holon.
+- *Technology 164: Forecasting the Next Shift by the Invariant*: what keeps growing when models converge is how well the AI knows the entity.
+- *Technology 168: A Unique Particle of Yourself*: the companion carries that particle forward.
+
+---
+
+## Technology 176: We Are Not Model Makers, We Are the Interface (мы создатели интерфейса с ИИ) (oral, Oct 29, 2026)
+
+> *Oral · October 29, 2026 · chat with Hark, while designing the player's own AI (`docs/specs/ai-familiar/ai-familiar_tracker.md` §16). Sasha: «это можно прямо напрямую в библиотеку технологий записывать. Записывай.»*
+
+### 🫀 Essence — in Sasha's words
+
+> «Тыква превращается в карету… тыква — это AIOS, операционная система искусственного интеллекта, которую я делал. И выясняется, что эта тыква превращается в новый, вообще инновационный интерфейс для искусственного интеллекта на планете, где интерфейс исчезает… задача интерфейса — исчезнуть. Чем более он невидимый при сохранении функционала, тем более продвинутый интерфейс… Мы вообще не создатели моделей, правильно? Мы создатели интерфейса с искусственным интеллектом. Вот это биг-идея.»
+> — *chat of 2026-10-29, CST*
+
+*(translation)* "The pumpkin turns into a carriage: the pumpkin is AI OS, the operating system for AI I was building, and it turns out to be a new, innovative interface to AI for the planet, one where the interface disappears. The interface's task is to disappear: the more invisible it is while keeping the function, the more advanced it is. We are not model makers. We are makers of the interface to AI. That's the big idea."
+
+> «Люди сначала думали: prompt, prompt, prompt, скиллы… На самом деле всё это эволюционирует просто к кнопке — к одной кнопке.»
+
+*(translation)* "People first thought: prompts, skills… In fact it all evolves into a button, one button."
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* When models converge (Technology 175), owning a model stops being the moat; the value is in how a person reaches intelligence. The interface's arc runs prompt → skill → workflow → one button named after the transformation it gives → no visible interface at all: the AI already knows you and acts. AI OS, built as a prompt "operating system", was the pumpkin: a clumsy-looking object that turns out to be the carriage, an interface that disappears into the person's life. So the product is never "connect your ChatGPT": the person stays inside our interface, and which model runs underneath is an implementation detail nobody needs to see.
+
+### 🔥 Implications — AI draft
+
+- **1st order.** The player's AI lives in the game; no sending players to external chat apps (tracker §16). Models stay swappable and unnamed.
+- **2nd order.** Every feature is designed as a button labelled by its result, then as no button: the AI offers the next step itself.
+- **3rd order.** The defensible asset is the person's memory, relationship and the disappearing interface, not the weights: the companion-for-every-entity era needs interface makers, not more model makers.
+
+### Shape
+
+- **Shape:** **Pumpkin → carriage → disappearing road**: prompt, then button, then nothing visible, only the journey.
+- **Infographic (one line):** Left to right: a pile of prompts, then a single glowing button, then a person simply walking forward with a faint glow beside them; caption: the best interface disappears.
+
+### Cross-references — Connects to
+
+- *Technology 175: The Era of AI Companions*: models converge; the companion and its interface carry the value.
+- *Technology 173: Sell the Shift, Not the Content*: the button is named by the shift it gives.
+- `docs/specs/ai-familiar/ai-familiar_tracker.md` §15 (button principle) and §16 (our AI, not theirs).
+
+---
+
+## Technology 177: Market Maps as an X-ray of the Inner Turn (карты рынков как рентген разворота внутрь) (oral, Oct 29, 2026)
+
+> *Oral · October 29, 2026 · chat with Hark, reacting to Hark's naming of "market maps / LUMAscapes" while collecting the 2025–26 AI maps (`docs/ai/market_maps_2026-10.md`). Sasha: «это ещё один огромный пункт урожая… достойно технологии в библиотеке… запиши всё это куда нужно». Builds on Technology 76 (The Return to Center) and Technology 78 (The Planetary Holomap).*
+
+### 🫀 Essence — in Sasha's words
+
+> «Маркет-мапс, или Luma-мапс, это гениально: мы же можем так увидеть практически всю экономическую активность через эти карты, и причём приземлённо… каждая индустрия, каждая отрасль экономики, каждая подотрасль, каждая рыночная ниша, каждая подниша… каждая компания, каждый предприниматель, каждый собственник бизнеса и все, кто в нём работают, пройдут через огромные перемены: развернут свой бизнес от обслуживания чего-то внешнего к обслуживанию внутреннего мира клиента… Коперниканский переворот, только не на уровне Земля–Солнце, а на уровне каждого человека и любых конфигураций, которые люди составляют: фирма, рыночная ниша, отрасль.»
+> — *chat of 2026-10-29, 17:54 CST*
+
+> «Мы можем смотреть не на тех, кто кажется лидером, у кого больше денег залито, а на то, как реально по факту они делают этот переворот: из внешнего во внутреннее, и через внутреннее снова во внешнее, но уже по-другому. Вот в чём переворот.»
+
+*(translation)* "Market maps are genius: through them we can see almost all economic activity, and concretely. Every industry, sub-industry, niche and sub-niche, every company, founder, owner and employee will go through a huge change: turning the business from serving something external to serving the client's inner world. A Copernican turn, not at the Earth–Sun level but at the level of every person and every configuration people form: a firm, a niche, an industry. We look not at who seems to lead or has raised the most, but at how they actually make the turn: from outer to inner, and through the inner back to the outer, differently."
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* Market maps (LUMAscapes, Matt Turck's MAD landscape, CB Insights and a16z maps) already chart the economy in a ready fractal: sector → industry → sub-industry → niche → sub-niche → companies → the leaders setting the pace. Every map today ranks by the outer signs: funding, revenue, logo size. Read through Technology 76, the same map shows something no investor map measures: how far each player has made the return to center, from serving an external object (a product, a transaction, a symptom) to serving the client's inner world (their nature, meaning, becoming), and then back out into products and services made from that center. So one instrument does two things: it grounds the Planetary Holomap (Technology 78) in real companies and names, and it shows, niche by niche, where the turn has already happened, who leads it in fact, and where it is still waiting.
+
+### 🔥 Implications — AI draft
+
+- **1st order.** A new line of work: mapping. Take existing market maps as the skeleton (base taxonomy: an official industry classification such as ISIC/NAICS for the top layers, market maps for the lower ones), and add one new axis per company: *outer → inner → outer-anew*, scored from what the company actually does, not from its funding.
+- **2nd order.** The maps produce a list of real people already making the turn in every niche. They are the natural tribe of the new economy: a community, a club, a venture studio (form to emerge; Sasha's broad strokes, Oct 29). Any outreach waits for Sasha's yes.
+- **3rd order.** A living atlas of the planetary economy turning inside out, the Golden Age map (Technology 78) drawn with real company names, which updates as each niche turns.
+
+### Shape
+
+- **Shape:** **Fractal map with a glowing turn**: the familiar market-map grid, sector boxes nesting into niches, where each logo carries a small arrow showing how far it has turned from outer to inner and back out.
+- **Infographic (one line):** A classic LUMAscape-style grid; most logos grey with arrows pointing outward, a few glowing with arrows that curve inward to a human figure and back out as light; caption: same economy, read from center.
+
+### Cross-references — Connects to
+
+- *Technology 76: The Return to Center*: the motion each company is scored on.
+- *Technology 78: The Planetary Holomap*: the two readings of one territory; this technology gives it real names.
+- *Technology 166: Everyone Looks at Self-Governance, I Look at the Economy*: economy first.
+- `docs/ai/market_maps_2026-10.md`: the first pass, AI market maps 2025–Oct 2026.
+
+---
+
+## Technology 178: The Workstream Wall (окна потоков, которые ИИ открывает и закрывает сам) (oral, Oct 29, 2026)
+
+> *Oral · October 29, 2026 · chat with Hark, after a day of many parallel threads in one Hark chat. Sasha: «у меня идёт поток, трансмиссия про экраны, про интерфейсы». Feature list in `docs/specs/ai-familiar/ai-familiar_tracker.md` §17. Builds on Technology 176 (We Are Not Model Makers, We Are the Interface).*
+
+### 🫀 Essence — in Sasha's words
+
+> «Если бы мои отдельные нити разговора были на одном экране, как несколько окон, и эти окна сами по себе появлялись — искусственный интеллект бы их создавал по ходу дела и закрывал, когда закрывается какой-то воркстрим, — чтобы эти воркстримы в реальном времени происходили… А если бы я ещё мог их тачскрином управлять… как в Minority Report стоял перед ним и двигал вещи… В Network School стоял большой вертикальный тачскрин с виджетом Luma, где можно пролистать все ивенты дня… мне кажется, это как раз и есть рабочий интерфейс взаимодействия с искусственным интеллектом. И так как интерфейс в перспективе исчезает, интерфейса нет, когда он не необходим.»
+> — *chat of 2026-10-29, 18:52 CST*
+
+*(translation)* "If my separate threads were on one screen as windows that appear by themselves, the AI creating them as we go and closing them when a workstream closes, happening in real time... and if I could move them by touch, standing before it as in Minority Report... At Network School there was a big vertical touchscreen with a Luma widget showing all the day's events... that is the working interface with AI. And since the interface disappears, there is no interface when it isn't needed."
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* Chat is a single line of time, but a founder's mind runs many threads at once. A long chat forces him to scroll back through time to find a thread; a projects folder forces him to open each box to see its state. The next interface turns this inside out: the threads are laid out in space, each one a living window with its state and next step, and the AI itself opens a window when a stream is born and closes it when the stream is done. The person stops managing the interface; the interface follows the shape of his attention. That is the disappearing interface in practice: nothing stays on the wall that doesn't need him.
+
+### 🔥 Implications — AI draft
+
+- **1st order.** In our product, workstreams show as tiles on one surface, created and closed by the AI, with bookmarks inside long conversations.
+- **2nd order.** Spatial surfaces (touch tables, standing walls, holographic and 3D headsets) become the natural home for this wall: threads you can see and move with your hands.
+- **3rd order.** The interface becomes a live map of a person's attention and work, and dissolves into the environment when nothing needs them.
+
+### Shape
+
+- **Shape:** **The Living Wall**: a person standing before a glowing surface where threads float as panels, new ones lighting up, finished ones fading away.
+- **Infographic (one line):** Left, a long scrolling chat column with a tired thumb; right, the same threads as luminous windows on a wall, one appearing, one dissolving; caption: from a line of time to a field of streams.
+
+### Cross-references — Connects to
+
+- *Technology 176: We Are Not Model Makers, We Are the Interface*.
+- *Technology 177: Market Maps as an X-ray of the Inner Turn*: same method, map first, then the future reveals itself.
+- `docs/specs/ai-familiar/ai-familiar_tracker.md` §17: feature backlog F1–F5.
+

@@ -14,19 +14,19 @@ describe("getPageTitle", () => {
     expect(getPageTitle("/library/breathwork")).toBe("Library");
   });
 
-  it("returns Character for the ME space routes (game vocabulary, issue #129)", () => {
-    expect(getPageTitle("/game/me")).toBe("Character");
+  it("returns Your House for the ME space routes (names from villagePlaces.ts, issue #215)", () => {
+    expect(getPageTitle("/game/me")).toBe("Your House");
   });
 
-  it("uses game vocabulary for the renamed spaces (issue #129)", () => {
-    expect(getPageTitle("/game/journey")).toBe("Main Quest");
+  it("uses the village place names for the spaces (issue #215)", () => {
+    expect(getPageTitle("/game/journey")).toBe("Quest Board");
     expect(getPageTitle("/game/learn/genius-assessment/step-1")).toBe("Character Creation");
     expect(getPageTitle("/game/learn/qol-results")).toBe("Save Point / Level");
     expect(getPageTitle("/game/learn/today")).toBe("Daily Quests");
     expect(getPageTitle("/game/learn/paths")).toBe("Skill Tree");
     expect(getPageTitle("/game/learn")).toBe("Training");
     expect(getPageTitle("/game/marketplace")).toBe("Market");
-    expect(getPageTitle("/game/collaborate/matches")).toBe("Party & Guild");
+    expect(getPageTitle("/game/collaborate/matches")).toBe("Co-working");
     expect(getPageTitle("/game/meet")).toBe("Meet");
     expect(getPageTitle("/ubb")).toBe("Workshop");
   });

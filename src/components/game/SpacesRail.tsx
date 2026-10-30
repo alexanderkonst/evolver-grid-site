@@ -177,7 +177,7 @@ const StateMark = ({ state, compact }: { state: PlaceStateName; compact: boolean
 /** The state as a word for screen readers; closed reads its «Opens when …» line. */
 const stateWord = (place: VillagePlace, state: PlaceStateName, t: TFunction): string => {
     if (state === "closed") return closedLine(place, t);
-    if (state === "live") return placeLine(place, state, t);
+    if (state === "live") return placeLine(place, state, t, true);
     if (state === "next" || state === "done") return stateWordText(state, t) ?? "";
     return "";
 };
@@ -751,7 +751,7 @@ const SpacesRail = ({
                     const closed = state === "closed";
                     const active = place.key === activePlace;
                     const Icon = PLACE_ICON[place.key];
-                    const line = placeLine(place, state, t);
+                    const line = placeLine(place, state, t, true);
                     const name = placeName(place, t);
                     // The state word ("Opens when…", Next, Done, live line) is the description,
                     // not the name: the button is named by the place alone.

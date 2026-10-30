@@ -1,5 +1,3 @@
-import i18n from "@/i18n/config";
-
 interface TitleRule {
   match: (path: string) => boolean;
   title: string;
@@ -25,10 +23,10 @@ const titleRules: TitleRule[] = [
   { match: (path) => path === "/build/cockpit/offers", title: "Offers Board" },
   { match: (path) => path === "/build/cockpit", title: "Founder Cockpit" },
   { match: (path) => path === "/ubb" || path.startsWith("/ubb/"), title: "Workshop" },
-  { match: (path) => path === "/game/build" || path.startsWith("/game/build/"), title: "The Forge" },
+  { match: (path) => path === "/game/build" || path.startsWith("/game/build/"), title: "Workshop" },
   // Game vocabulary (Sasha 2026-10-26, issue #129): labels only. Specific
   // /game/learn/* pages come before the generic Training rule.
-  { match: (path) => path === "/game/journey" || path.startsWith("/game/journey/"), title: "Main Quest" },
+  { match: (path) => path === "/game/journey" || path.startsWith("/game/journey/"), title: "Quest Board" },
   { match: (path) => path.startsWith("/game/learn/genius-assessment"), title: "Character Creation" },
   { match: (path) => path.startsWith("/game/learn/qol-assessment") || path.startsWith("/game/learn/qol-results"), title: "Save Point / Level" },
   { match: (path) => path.startsWith("/game/learn/today"), title: "Daily Quests" },
@@ -42,8 +40,8 @@ const titleRules: TitleRule[] = [
 
   // ME space → all collapsed to "Top Talent" (single-focus per Day 47).
   { match: (path) => path.startsWith("/zone-of-genius"), title: "Top Talent" },
-  { match: (path) => path === "/game/me" || path.startsWith("/game/me/"), title: "Character" },
-  { match: (path) => path.startsWith("/game/profile"), title: "Character" },
+  { match: (path) => path === "/game/me" || path.startsWith("/game/me/"), title: "Your House" },
+  { match: (path) => path.startsWith("/game/profile"), title: "Your House" },
 
   // Other surfaces.
   { match: (path) => path === "/library" || path.startsWith("/library/"), title: "Library" },
@@ -54,9 +52,9 @@ const titleRules: TitleRule[] = [
   { match: (path) => path.startsWith("/quality-of-life-map"), title: "Quality of Life" },
   { match: (path) => path.startsWith("/game/transformation"), title: "Training" },
   { match: (path) => path.startsWith("/game/marketplace"), title: "Market" },
-  { match: (path) => path.startsWith("/game/teams"), title: "Party & Guild" },
-  { match: (path) => path.startsWith("/game/matches"), title: "Party & Guild" },
-  { match: (path) => path.startsWith("/game/collaborate"), title: "Party & Guild" },
+  { match: (path) => path.startsWith("/game/teams"), title: "Co-working" },
+  { match: (path) => path.startsWith("/game/matches"), title: "Co-working" },
+  { match: (path) => path.startsWith("/game/collaborate"), title: "Co-working" },
   { match: (path) => path.startsWith("/game/events"), title: "Gatherings" },
   { match: (path) => path.startsWith("/game/meet"), title: "Meet" },
   { match: (path) => path.startsWith("/game/coop"), title: "Town Hall" },
@@ -82,7 +80,5 @@ const titleRules: TitleRule[] = [
  */
 export const getPageTitle = (pathname: string): string => {
   const match = titleRules.find((entry) => entry.match(pathname));
-  if (match?.title === "Workshop") return i18n.t("villagePlaces.workshop.title");
-  if (match?.title === "Market") return i18n.t("villagePlaces.market.title");
   return match ? match.title : "";
 };

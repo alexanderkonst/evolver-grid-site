@@ -37,7 +37,7 @@ import {
 import { journeyOptionalWord } from "@/lib/journeyLabels";
 import { placeAlt, placeName, placeTagline, tr } from "@/lib/villageCopy";
 import { hasGuestTopTalentResult, readGuestTopTalentPayload } from "@/lib/firstVisit";
-import TopTalentAuthGate from "@/modules/zone-of-genius/TopTalentAuthGate";
+import SaveCharacterCta from "@/components/game/SaveCharacterCta";
 import { useVillageChanges } from "@/hooks/useVillageChanges";
 import { PlaceState, PlaceStateTag } from "@/components/game/PlaceState";
 import { LunarPaths, LunarWorldSync } from "@/components/skin/LunarWorld";
@@ -180,21 +180,10 @@ const NewcomerPath = ({
   signInTo: string;
 }) => {
   const { t } = useTranslation();
-  const [saving, setSaving] = useState(false);
-  const payload = hasResult ? readGuestTopTalentPayload() : null;
-  const saveCharacter = tr(t, "village.saveCharacter", "Save your character");
   return (
     <div className="vl-newcomer-path">
-      {payload ? (
-        saving ? (
-          <div className="vl-save">
-            <TopTalentAuthGate inline resultPayload={payload} assessmentVersion="ai-v1" title={saveCharacter} />
-          </div>
-        ) : (
-          <button type="button" className="vl-enter vl-newcomer" onClick={() => setSaving(true)}>
-            {saveCharacter}
-          </button>
-        )
+      {hasResult && readGuestTopTalentPayload() ? (
+        <SaveCharacterCta buttonClassName="vl-enter vl-newcomer" formClassName="vl-save" />
       ) : (
         <Link className="vl-enter vl-newcomer" to="/village/reception" onClick={onGo}>
           {tr(t, "village.findTopTalent", "Find your top talent")}
@@ -435,7 +424,7 @@ const Village = () => {
   const lastState = lastIndex >= 0 ? shown[lastIndex] : "open";
   // Closed and live say their own line; every other state keeps the place's line.
   const lastLine = lastPlace && (lastState === "closed" || lastState === "live")
-    ? placeLine(lastPlace, lastState, t)
+    ? placeLine(lastPlace, lastState, t, signedIn === true)
     : undefined;
   const lastPending = lastIndex >= 0 && !ready && states[lastIndex] === "closed";
 
@@ -524,7 +513,7 @@ const Village = () => {
               aria-live="polite"
             >
               {current && active !== null
-                ? placeLine(current, shown[active], t)
+                ? placeLine(current, shown[active], t, signedIn === true)
                 : tr(t, "village.choosePlace", "Choose a place")}
             </p>
           </div>
@@ -563,7 +552,7 @@ const Village = () => {
                     <PlaceStateTag state={shown[i]} />
                     {isNew(p) ? <NewTag /> : null}
                     {isLit(p) ? <span className="vl-lit-word">{tr(t, "village.lit", "Lit")}</span> : null}
-                    <span className="vl-list__line">{placeLine(p, shown[i], t)}</span>
+                    <span className="vl-list__line">{placeLine(p, shown[i], t, signedIn === true)}</span>
                   </Link>
                 </PlaceState>
               ))}
@@ -638,7 +627,7 @@ const Village = () => {
               }
             >
               <h2>{placeName(lastPlace, t)}</h2>
-              {lastLine ? null : <p className="vl-place__line">{placeTagline(lastPlace, t)}</p>}
+              {lastLine ? null : <p className="vl-place__line">{placeTagline(lastPlace, t, signedIn === true)}</p>}
             </PlaceState>
             {/* Sky and particles belong to the village, not the building: they do not fade when it is closed. */}
             <SkyVeil />

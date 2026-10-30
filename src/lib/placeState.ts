@@ -27,11 +27,13 @@ export type PlaceStateName = "closed" | "open" | "next" | "done" | "live";
  * (`productize-session`, `founder-academy`, `spectrum-reading`); until a module writes
  * one, the event stays unmet and whatever waits on it stays closed.
  *
- * The three real-world victories (WP-11: `mastery-practice` J10, `first-price` J11,
- * `first-sale` J12) are read from `journey_victories` through the sheet's `victories`.
+ * The five real-world victories (WP-11: `webinar` J8, `mastermind` J9, `mastery-practice` J10,
+ * `first-price` J11, `first-sale` J12) are read from `journey_victories` through the sheet's `victories`.
  */
 export type PlaceEvent =
   | "offer-saved"
+  | "webinar"
+  | "mastermind"
   | "mastery-practice"
   | "first-price"
   | "first-sale"
@@ -92,6 +94,8 @@ export type PlaceInput = {
   /** The place's key (`village.place.<key>.line`); absent = the line is not translated. */
   key?: string;
   line: string;
+  /** The line for someone who already has a session; absent = `line` for everyone. */
+  lineReturning?: string;
   rule: PlaceRule;
 };
 
@@ -104,8 +108,8 @@ export type PlaceSave = {
 /** A save with nothing in it: a guest, or a state read before the save has loaded. */
 export const emptyPlaceSave = (now: Date = new Date()): PlaceSave => ({ met: {}, now });
 
-/** The real-world victories (J10–J12, §14.2) a player records themselves, in Journey order. */
-export const REAL_WORLD_VICTORIES = ["mastery-practice", "first-price", "first-sale"] as const;
+/** The real-world victories (J8–J12, §14.2) a player records themselves, in Journey order. */
+export const REAL_WORLD_VICTORIES = ["webinar", "mastermind", "mastery-practice", "first-price", "first-sale"] as const;
 export type RealWorldVictory = (typeof REAL_WORLD_VICTORIES)[number];
 
 /** The part of `useCharacterSheet` this module reads. */
@@ -372,9 +376,9 @@ export const closedLine = (place: PlaceInput, t?: TFunction): string => {
 };
 
 /** The one line to show for a place in a given state. */
-export const placeLine = (place: PlaceInput, state: PlaceStateName, t?: TFunction): string => {
+export const placeLine = (place: PlaceInput, state: PlaceStateName, t?: TFunction, signedIn = false): string => {
   if (state === "closed") return closedLine(place, t);
   const live = place.rule.live;
   if (state === "live" && live) return tr(t, live.key, live.line);
-  return placeTagline(place, t);
+  return placeTagline(place, t, signedIn);
 };

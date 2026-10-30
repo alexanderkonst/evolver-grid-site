@@ -1,16 +1,22 @@
 import { useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { CalendarDays } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import EventCard from "@/components/events/EventCard";
-import EmptyState from "@/components/ui/EmptyState";
 import CreateEventForm from "@/components/events/CreateEventForm";
 import { useEvents } from "@/hooks/useEvents";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import SkeletonCard from "@/components/ui/SkeletonCard";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import { MASTERMIND_LIVE_SESSION_URL, MASTERMIND_PAGE_PATH } from "@/data/mastermindSession";
+
+/** The two real events of the Mastermind launch; their copy is `eventsSpace.featured.<id>.*`. */
+const FEATURED_EVENTS = [
+  { id: "liveSession", href: MASTERMIND_LIVE_SESSION_URL, external: true },
+  { id: "mastermind", href: MASTERMIND_PAGE_PATH, external: false },
+] as const;
 
 const EventsSpace = () => {
   const navigate = useNavigate();
@@ -143,28 +149,39 @@ const EventsSpace = () => {
             </div>
           )}
 
-          {/* Empty State — Day 91 (Sasha 2026-06-09): card fill tokenized for Aurum, fallback keeps lapis at white/85 */}
-          {!loading && !error && events.length === 0 && (
-            <div className="rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-8 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-              <EmptyState
-                icon={<CalendarDays className="w-6 h-6 text-muted-foreground" />}
-                title={t("eventsSpace.emptyTitle")}
-                description={
-                  isAuthenticated
-                    ? t("eventsSpace.emptyDescAuthed")
-                    : t("eventsSpace.emptyDescGuest")
-                }
-                action={
-                  isAuthenticated
-                    ? {
-                      label: t("eventsSpace.createEvent"),
-                      onClick: () => navigate("/game/events/create"),
-                    }
-                    : undefined
-                }
-              />
-            </div>
-          )}
+          {/* Two real events, always shown (issue #215). The header holds the only Create Event button.
+              Card fill tokenized for Aurum (Day 91), fallback keeps lapis at white/85. */}
+          <div className="grid gap-4 sm:grid-cols-2 mb-6">
+            {FEATURED_EVENTS.map((event) => {
+              const cls =
+                "block rounded-xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-6 shadow-[0_4px_16px_rgba(44,49,80,0.06)] hover:border-foreground/40 transition-colors";
+              const body = (
+                <>
+                  <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
+                    {t(`eventsSpace.featured.${event.id}.when`)}
+                  </p>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
+                    {t(`eventsSpace.featured.${event.id}.title`)}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    {t(`eventsSpace.featured.${event.id}.price`)}
+                  </p>
+                  <span className="text-sm font-medium text-foreground">
+                    {t(`eventsSpace.featured.${event.id}.cta`)} →
+                  </span>
+                </>
+              );
+              return event.external ? (
+                <a key={event.id} href={event.href} target="_blank" rel="noopener noreferrer" className={cls}>
+                  {body}
+                </a>
+              ) : (
+                <Link key={event.id} to={event.href} className={cls}>
+                  {body}
+                </Link>
+              );
+            })}
+          </div>
 
           {/* Events Grid */}
           {!loading && !error && events.length > 0 && (
