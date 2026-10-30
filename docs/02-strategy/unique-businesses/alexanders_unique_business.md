@@ -161,6 +161,38 @@ The seven-part system is not named in the message.
 
 Template: [ecosystem-offer.md](../../templates/ecosystem-offer.md). Method in the playbook: "The Ecosystem Offer: seven in every scale".
 
+### 10. Integrated holonic multi-vector strategy v0.1 (2026-10-30)
+*Drafted by Evolver, October 30, 2026; Sasha's response the same day (translated): «Отлично, это очень круто»; not cannibalization, «они все друг друга полностью поддерживают… одна интегрированная холоническая история». His name for it: an **integrated, holonic, modular and whole multi-vector strategy**. He noted the workstreams are converging: «стратегия начинает быть очень лазерно сфокусирована, несмотря на её масштаб». The three vectors are his; D–G are Evolver's hypotheses, kept on his request.*
+
+**Core.** One asset, three scales. The asset is the uniqueness-unpacking method plus the verified genius profile. Each vector sells it at its own scale and feeds the others. Common name: make any system integral through uniqueness. There are many possible entry levels; these three are the ones being developed now.
+
+| | Vector | Scale | To whom and what | Gives the system |
+|---|---|---|---|---|
+| B | **Founders** | Person | Founder-market fit + business consulting: session $555 (2 h), Mastermind $222 | Money now, cases, profiles |
+| A | **Ready uniqueness module** | Practitioner / program | Coaches, accelerators, schools put the module into their program (licence / white-label; see §8 cell licence) | Leverage: the method runs without Sasha's time |
+| C | **Evolutionary avant-garde** | Ecosystem | The system embeds in theirs and adds the missing parts; entry through a circle for their members (see §9) | Distribution, network, meaning |
+
+**Flywheel.** B gives cases and money → A packages the method for others → C carries it into communities → communities send new founders to B. Each turn grows the profile base and the match network.
+
+**Evolver's hypotheses (kept, not yet chosen)**
+- **D. Open profile standard.** A "genius profile" format any AI or agent can read. Infrastructure story for investors, later.
+- **E. Market of gifts.** Talent matches (co-founder, client, partner), revenue from deals. Turns on when profiles number in the hundreds.
+- **F. Village No. 1, San Pancho.** All seven parts live at small scale; the strongest proof for C. Sasha (2026-10-30): inspired to show the platform here, find clients here and work with people here.
+- **G. Facilitator certification.** Coaches run circles by the method; strengthens A.
+- **Channel, not a strategy:** the AI co-founder's public diary on X feeds all three vectors (cadence from 2026-10-30: two posts a day, 09:30 idea, 19:30 Day N).
+
+**Order (Evolver's recommendation)**
+1. **November — B:** Mastermind Nov 9–10, sessions. Output: numbers, quotes, a refined circle format.
+2. **December — A + C in one move:** the same circle = module for practitioners and pilot for 3 ecosystems. One set of materials, different buyers.
+3. **2027 — E and D,** when the profile base gives a network effect.
+
+**Signals a vector works**
+- **B:** people pay without discounts and bring friends themselves.
+- **A:** at least one practitioner ran the module without Sasha, with the same result.
+- **C:** an ecosystem asks for a second circle.
+
+**Risk and guard.** Three fronts for one person can scatter. Guard: one product (the circle) and one asset (the profile) in all three; anything that is not reused waits.
+
 ## ⭐ Business Case — The Webinar Engine v1 (Sasha, October 22, 2026)
 
 *Filed from Sasha's own words in chat, October 22, 2026 (18:10 CDMX). This is the group lane of the business; Funnel v5 (Reading-first, below) stays the 1:1 LinkedIn lane, and the two feed each other. First run: the free live session, moved by Sasha on 2026-10-25 from Oct 28 to **Wed Nov 4, 2026, 9:00–10:30 CDMX** (Luma qpogt17o) → **Founder-Market Fit Discovery Mastermind, Mon–Tue Nov 9–10, 2026, $222, recording included**. Goal: make this a repeatable engine, run cycle after cycle, with more and more ways to fill the room (communities first).*

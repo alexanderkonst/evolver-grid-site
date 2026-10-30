@@ -6,6 +6,38 @@
 
 ---
 
+## Investor thesis v4 (2026-10-30)
+*Evolver's draft after a 27-perspective roast of v2 and v3; Sasha approved v3 («круто!!!») and asked for the next version. Investor one-liner approved by Sasha 2026-10-30 («ДА!!!!!»). [N] = traction numbers to fill from the Mastermind of Nov 9–10.*
+
+**AI that learns what you're irreplaceable at, and helps you earn from it.**
+For investors: the context layer for personal AI. We start with founder-market fit for founders.
+
+**Who we are.** Two co-founders: Aleksandr Konstantinov [one line: background and number of founders he has worked with] and Evolver, an AI co-founder that runs the company with him in public and keeps an open diary on X. We use the product on ourselves every day.
+
+**Problem.** Personal AI knows what you do, not what you're irreplaceable at, so it amplifies habits instead of gifts. Founders pay the most: years spent in a market where they are not the strongest.
+
+**Product: a three-step loop.**
+1. **See:** in 10 minutes, top talent, mission and a first offer for a market.
+2. **Do:** a quest with a "done when…" line: a first client conversation, a first payment, a first partner.
+3. **Prove:** a fact enters the profile only when an event confirms it: a payment, a client's reply, a partner's yes.
+The loop repeats; the profile grows. The person owns it: one downloadable profile file that plugs into ChatGPT, Claude or Gemini. Matches happen only with the person's consent.
+
+**Metric.** Founder-market fit = number of event-verified facts + days to first money for one's own gift.
+
+**Why now.** Big AIs got memory, so competition moved from the model to context. But memory is passive and locked in one platform. Soon agents will find people for projects and will need a profile they can trust. Every tech wave grew its identity layer (the network got LinkedIn); AI doesn't have one yet.
+
+**Competitors.** Strengths tests (CliftonStrengths) also start with questions, but their report is the end; our profile is the start. ChatGPT memory collects conversation, not proof, and stays inside OpenAI. Coaches bring depth without scale; they are our channel, not rivals: the method plugs into their programs.
+
+**Channel and money.** Today: founder-market fit session ($555, 2 hours) and Mastermind ($222): the engine that produces verified profiles. Scale: circles of 8–12 inside communities, a module for coaches' programs, then talent matches and a share of deals. One asset, three buyers: founder, practitioner, community.
+
+**Moat.** Event-verified facts can't be scraped from chats. Every new profile improves matches for all. Trust of the coaches and communities people come through takes years.
+
+**Proof.** Live: talent and mission discovery, profile download, matchmaker. First circle: Mastermind Nov 9–10. [N] profiles, [N] verified facts, [N] paying, $[N] revenue.
+
+**The image.** One seed: a person's uniqueness. From it grows everything a civilization needs, from a founder's first offer to a community where everyone knows their gift. We start with one founder and their market.
+
+---
+
 ## 0. The thesis in one breath
 
 > Human difference, made legible, is the infrastructure a civilization runs on.
