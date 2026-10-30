@@ -12,11 +12,14 @@
  * as the bridge line) and the price block says "Registration opens soon".
  */
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import GameShellV2 from "../components/game/GameShellV2";
 import SEO from "@/components/SEO";
 import geniusLogo from "@/assets/ignite-logo.png";
 import { Ornament } from "@/lib/landingDesign";
 import { cn } from "@/lib/utils";
+import { tr } from "@/lib/villageCopy";
 import { MASTERMIND_LIVE_SESSION_URL } from "@/data/mastermindSession";
 import type { CSSProperties } from "react";
 
@@ -92,6 +95,7 @@ const SectionLabel = ({ children }: { children: string }) => (
 
 const Mastermind = () => {
   const c = MASTERMIND_COPY;
+  const { t } = useTranslation();
 
   return (
     <>
@@ -128,6 +132,12 @@ const Mastermind = () => {
           }}
         >
           <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 pt-8 pb-16 space-y-12">
+            <Link
+              to="/village"
+              className="inline-flex min-h-11 items-center text-sm text-muted-foreground hover:text-foreground"
+            >
+              {tr(t, "village.backVillage", "← Village")}
+            </Link>
             {/* HERO */}
             <header className="text-center space-y-6 pb-2">
               <img src={geniusLogo} alt="" className="skin-emblem w-[140px] h-auto mx-auto opacity-80" />

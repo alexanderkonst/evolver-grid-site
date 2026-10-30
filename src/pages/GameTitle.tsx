@@ -324,6 +324,14 @@ const TitleScreen = () => {
         e.preventDefault();
         setStarted(true);
         linkRefs.current[active]?.click();
+      } else if (e.key === " " && !e.repeat && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        // Space starts like Enter. A link has no native Space activation, so the menu is included;
+        // any other focused control keeps its own Space.
+        const el = document.activeElement;
+        if (el && el !== document.body && !el.closest(".gt-menu")) return;
+        e.preventDefault();
+        setStarted(true);
+        linkRefs.current[active]?.click();
       }
     };
     const onScroll = () => {
