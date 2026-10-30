@@ -3335,7 +3335,7 @@
         "alt": "A rooftop terrace at dusk with a wooden quest board of pinned notes, lanterns, cushions on rugs around a low table, white domes and the sea beyond"
       },
       "oracle": {
-        "name": "Oracle",
+        "name": "Your AI",
         "line": "Ask your AI.",
         "alt": "A still reflecting pool at night, a glowing crystal dodecahedron floating above its mirrored water, neon-lit arches on one side, floating candles and a singing bowl in the foreground"
       },
@@ -3381,7 +3381,6 @@
     "closed": {
       "house": "Opens when your top talent is saved to your account. Inside: your crystal, mission and save file.",
       "quest-board": "Opens when your top talent is saved to your account. Inside: your next quest.",
-      "oracle": "Opens when your top talent is saved to your account. Inside: your AI, ready to answer.",
       "cafe": "Opens when your mission is saved. Inside: people to meet, professionally or simply.",
       "coworking": "Opens when your top talent, mission and assets are saved. Inside: partners for the work.",
       "workshop": "Opens when your mission is saved. Inside: your offer, built from your top talent.",
@@ -8759,5 +8758,76 @@
     "reuseLabel": "On reuse",
     "reuseBody": "Use this definition. Teach it, quote it, put it in your own materials, build on it. It is free and it is meant to travel.",
     "reuseDiscipline": "Say founder-market fit, exactly those words, every time. Not founder/market fit, not founder-market alignment. A category is a phrase people have to remember, and every synonym splits the memory in two."
+  },
+  "familiar": {
+    "askMyAi": "Ask my AI",
+    "updateMyAi": "Update my AI",
+    "pasteNote": "Copied. Paste it into the new {{app}} chat, then ask it anything.",
+    "copyFailed": "Your browser blocked the copy. Press the button again, or try another browser.",
+    "whereLive": "Where will your AI live?",
+    "back": "← Back",
+    "gifts": {
+      "aria": "What your AI has",
+      "lit": " (has it)",
+      "dim": " (not yet)"
+    },
+    "gift": {
+      "knowsYou": "Knows you",
+      "activated": "Activated",
+      "knowsYourWork": "Knows your work"
+    },
+    "intro": {
+      "eyebrow": "Your AI",
+      "headline": "Same question. Two answers. See what happens when your AI knows you.",
+      "silhouette": "Ask something real. You'll get a plain chat's answer and your own AI's answer, side by side, in the chat app you already use. Same model underneath.",
+      "cta": "Ask my question"
+    },
+    "ask": {
+      "aria": "Ask your question",
+      "eyebrow": "Your AI",
+      "label": "Ask something real.",
+      "placeholder": "What are you deciding right now?",
+      "examples": "Examples",
+      "example": {
+        "future": "Based on everything you know about me, what are the best actions for me in the short, medium and long term? One sentence each.",
+        "focus": "What should I focus on this week, and what should I stop doing?",
+        "stuck": "Where am I playing smaller than I could, and what is one move to change that?"
+      },
+      "brings": "Your AI will bring:",
+      "cta": "See both answers",
+      "skip": "Skip the test, give me my AI"
+    },
+    "reveal": {
+      "aria": "Compare the two answers",
+      "eyebrow": "Your AI · the test",
+      "yourQuestion": "Your question",
+      "sameModel": "Same model on both sides. The only difference is what your AI carries.",
+      "whichApp": "Which chat app do you use?",
+      "step1": "Open a plain {{app}} chat and ask your question. Read the answer.",
+      "step2": "Open a new chat with your AI, then ask the same question.",
+      "step3": "Notice the difference.",
+      "copyQuestion": "Copy my question",
+      "copied": "Copied",
+      "open": "Open {{app}}",
+      "rateQ": "How different is this, 1 to 10?",
+      "rateOf": "{{n}} of 10",
+      "thanks": "Thank you. You gave it {{rating}} of 10.",
+      "notSaved": "Could not save your rating, but you can go on.",
+      "skipRating": "Skip rating",
+      "cta": "Hear why"
+    },
+    "outro": {
+      "aria": "Your AI is ready",
+      "eyebrow": "Done · Your AI is ready",
+      "badge": "Your AI",
+      "naming": "Models have become alike. The difference is how well your AI knows you.",
+      "why": "Why this works",
+      "lives": "Always here, in the village, at Your AI. It grows as you play.",
+      "unlocks": "Take it into the chat app you already use.",
+      "privacy": "This copies your profile and Workshop work so you can paste it into your own AI. Nothing is sent anywhere until you paste.",
+      "privacyGuest": "This copies the AI OS prompt so you can paste it into your own AI. Nothing is sent anywhere until you paste.",
+      "back": "Back to the village",
+      "skills": "Skills for your AI"
+    }
   }
 }
