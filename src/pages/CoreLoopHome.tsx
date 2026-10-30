@@ -11,12 +11,13 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Sparkles, BarChart3, ArrowRight, Book, Users, Rocket } from "lucide-react";
+import { Sparkles, BarChart3, Book, Users, Rocket } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { Button } from "@/components/ui/button";
 import GameShellV2 from "@/components/game/GameShellV2";
 import MeSection from "@/components/game/MeSection";
 import MyLifeSection from "@/components/game/MyLifeSection";
+import PlayerNextMoveCard from "@/components/game/PlayerNextMoveCard";
 import CelebrationModal from "@/components/game/CelebrationModal";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
@@ -28,6 +29,7 @@ import {
     type Recommendation
 } from "@/lib/myNextMoveLogic";
 import { useToast } from "@/hooks/use-toast";
+import { usePlayerLevel } from "@/hooks/usePlayerLevel";
 import { useTranslation } from "react-i18next";
 
 interface QolDomain {
@@ -47,8 +49,7 @@ const CoreLoopHome = () => {
 
     // Profile data (ME section)
     const [archetypeTitle, setArchetypeTitle] = useState<string | null>(null);
-    const [level, setLevel] = useState(1);
-    const [xpTotal, setXpTotal] = useState(0);
+    const { level } = usePlayerLevel();
     const [displayName, setDisplayName] = useState<string | null>(null);
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
@@ -94,13 +95,11 @@ const CoreLoopHome = () => {
             // Load game profile
             const { data: profile } = await supabase
                 .from('game_profiles')
-                .select('level, xp_total, last_zog_snapshot_id, last_qol_snapshot_id, first_name, avatar_url')
+                .select('last_zog_snapshot_id, last_qol_snapshot_id, first_name, avatar_url')
                 .eq('id', profileId)
                 .single();
 
             if (profile) {
-                setLevel(profile.level || 1);
-                setXpTotal(profile.xp_total || 0);
                 setDisplayName(profile.first_name || user.email?.split("@")[0] || "Player");
                 setAvatarUrl((profile as any).avatar_url || null);
 
@@ -228,7 +227,6 @@ const CoreLoopHome = () => {
                 <MeSection
                     archetypeTitle={archetypeTitle || undefined}
                     level={level}
-                    xpTotal={xpTotal}
                     displayName={displayName || undefined}
                     avatarUrl={avatarUrl}
                 />
@@ -241,47 +239,8 @@ const CoreLoopHome = () => {
                 {/* === MY NEXT MOVE SECTION === */}
                 {primaryRecommendation && (
                     <section className="space-y-3">
-                        <h2 className="text-lg font-semibold text-[#2c3150]">{t('coreLoopHome.myNextMove')}</h2>
-
-                        {/* Primary Recommendation Card */}
-                        <div className={`rounded-xl border-2 p-6 transition-all hover:shadow-lg
-                            ${primaryRecommendation.space === 'grow' ? 'border-[#c8b7d8] bg-[#c8b7d8]/10' : ''}
-                            ${primaryRecommendation.space === 'learn' ? 'border-blue-200 bg-blue-50' : ''}
-                            ${primaryRecommendation.space === 'collaborate' ? 'border-purple-200 bg-purple-50' : ''}
-                            ${primaryRecommendation.space === 'build' ? 'border-emerald-200 bg-emerald-50' : ''}
-                        `}>
-                            <div className="flex items-start gap-4">
-                                <div className={`p-3 rounded-xl
-                                    ${primaryRecommendation.space === 'grow' ? 'bg-[#c8b7d8]/30 text-[#8460ea]' : ''}
-                                    ${primaryRecommendation.space === 'learn' ? 'bg-blue-100 text-blue-600' : ''}
-                                    ${primaryRecommendation.space === 'collaborate' ? 'bg-purple-100 text-purple-600' : ''}
-                                    ${primaryRecommendation.space === 'build' ? 'bg-emerald-100 text-emerald-600' : ''}
-                                `}>
-                                    {getIcon(primaryRecommendation.icon)}
-                                </div>
-                                <div className="flex-1">
-                                    <h3 className="text-lg font-semibold text-[#2c3150] mb-1">
-                                        {primaryRecommendation.title}
-                                    </h3>
-                                    <p className="text-sm text-[rgba(44,49,80,0.7)] mb-4">
-                                        {primaryRecommendation.description}
-                                    </p>
-                                    {primaryRecommendation.estimatedTime && (
-                                        <p className="text-xs text-[rgba(44,49,80,0.5)] mb-3">
-                                            ⏱️ {primaryRecommendation.estimatedTime}
-                                        </p>
-                                    )}
-                                    <Button
-                                        onClick={() => handleStartAction(primaryRecommendation)}
-                                        className="w-full"
-                                        size="lg"
-                                    >
-                                        {primaryRecommendation.ctaLabel}
-                                        <ArrowRight className="w-4 h-4 ml-2" />
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
+                        {/* The one next move, the same one the map card shows (issue #241). */}
+                        <PlayerNextMoveCard />
 
                         {/* Nudge (if any) */}
                         {nudgeRecommendation && (

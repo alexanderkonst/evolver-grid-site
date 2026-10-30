@@ -12,6 +12,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import PlayerLevel from "@/components/game/PlayerLevel";
+import { usePlayerLevel } from "@/hooks/usePlayerLevel";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -81,6 +83,7 @@ export default function TodayPage() {
     const navigate = useNavigate();
     const { toast } = useToast();
     const { t, i18n } = useTranslation();
+    const { level } = usePlayerLevel();
 
     const logSelection = (payload: Omit<Parameters<typeof logActionEvent>[0], "profileId">) => {
         if (!profile?.id) return;
@@ -435,7 +438,7 @@ export default function TodayPage() {
                         </span>
                         <span className="flex items-center gap-1">
                             <Trophy className="w-4 h-4 text-amber-500" />
-                            {t('today.level', { level: profile?.level || 1 })}
+                            <PlayerLevel level={level} />
                         </span>
                         <span>{t('today.xp', { xp: profile?.xp_total || 0 })}</span>
                     </div>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Sparkles, Flame, Compass, Heart, ArrowRight, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import BoldText from "@/components/BoldText";
+import PlayerLevel from "@/components/game/PlayerLevel";
 
 interface NextMoveAction {
   id?: string;
@@ -19,8 +20,8 @@ interface NextMoveAction {
 
 interface DailyLoopLayoutProps {
   profileName?: string | null;
-  level?: number;
-  xpTotal?: number;
+  /** The one player level (QoL average). */
+  level?: number | null;
   streakDays?: number;
   archetypeTitle?: string | null;
   lowestDomains?: string[];
@@ -58,7 +59,6 @@ const SectionCard = ({
 export const DailyLoopLayout = ({
   profileName,
   level,
-  xpTotal,
   streakDays,
   archetypeTitle,
   lowestDomains = [],
@@ -89,10 +89,10 @@ export const DailyLoopLayout = ({
             )}
           </div>
           <div className="flex flex-wrap items-center gap-3 text-sm text-[#2c3150]">
-            {typeof level === "number" && typeof xpTotal === "number" && (
+            {typeof level === "number" && (
               <span className="inline-flex items-center gap-2 rounded-full bg-[#a4a3d0]/20 px-3 py-1 font-semibold">
                 <Compass className="w-4 h-4 text-[#2c3150]" aria-hidden />
-                {t('dailyLoopLayout.me.levelXp', { level, xp: xpTotal })}
+                <PlayerLevel level={level} />
               </span>
             )}
             {streakDays && streakDays > 0 && (

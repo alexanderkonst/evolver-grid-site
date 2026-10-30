@@ -1,12 +1,13 @@
 import type { DomainId } from "@/modules/quality-of-life-map/qolConfig";
 
 /**
- * Player level = the weakest of the 8 QoL domains (core loop v0.1,
- * docs/02-strategy/game_of_being_you.md §10). The same rule getLowestQolDomain
- * (practiceSystem) uses to pick the growth edge, here with the score kept.
+ * Player level = the average of the 8 QoL domains (Sasha, 2026-10-30, issue #241). The one
+ * level the game shows, on every screen. The weakest domain stays as `weakest`: it picks the
+ * growth edge (getLowestQolDomain in practiceSystem), it no longer sets the level.
  *
- * PRIVATE by design (§13.2): this is for the player's own Character Sheet.
- * Never feed it to matchmaking, marketplace or any public profile surface.
+ * PRIVATE by design (§13.2): the number is for the player's own screens only. Never feed it to
+ * matchmaking, marketplace, ranking or any public profile surface;
+ * other players see nothing about it (no number, no lock). No XP is shown beside it.
  */
 
 /** qol_snapshots column for each QoL domain. */
@@ -35,9 +36,9 @@ export type QolStageColumns = {
 export type QolDomainScore = { id: DomainId; score: number };
 
 export type QolLevel = {
-  /** Weakest domain's stage, 1–10. */
+  /** Mean of the 8 domain stages to one decimal, 1–10. */
   level: number;
-  /** Domain that sets the level (first in QoL order on ties). */
+  /** Lowest domain (first in QoL order on ties): the growth edge, not the level. */
   weakest: DomainId;
   /** All 8 domains in QoL order. */
   domains: QolDomainScore[];
@@ -55,5 +56,11 @@ export function computeQolLevel(snapshot: Partial<QolStageColumns> | null | unde
   }
 
   const weakest = domains.reduce((low, d) => (d.score < low.score ? d : low));
-  return { level: weakest.score, weakest: weakest.id, domains };
+  const mean = domains.reduce((sum, d) => sum + d.score, 0) / domains.length;
+  return { level: Math.round(mean * 10) / 10, weakest: weakest.id, domains };
+}
+
+/** The one player level: mean of the 8 QoL domains (6.9, or 7 when whole). Null when any stage is missing. */
+export function qolAverageLevel(snapshot: Partial<QolStageColumns> | null | undefined): number | null {
+  return computeQolLevel(snapshot)?.level ?? null;
 }

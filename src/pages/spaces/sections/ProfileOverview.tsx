@@ -6,6 +6,8 @@ import { PlaceState, PlaceStateTag } from "@/components/game/PlaceState";
 import SoulDodecahedron from "@/components/SoulDodecahedron";
 import ProfilePictureUpload from "@/components/profile/ProfilePictureUpload";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
+import { usePlayerMetricHistory } from "@/hooks/usePlayerMetricHistory";
+import MetricHistory from "@/components/game/MetricHistory";
 import { useModuleChoices } from "@/hooks/useModuleChoice";
 import { useSoulColors } from "@/hooks/useSoulColors";
 import { choiceDate } from "@/data/journeyChoices";
@@ -89,6 +91,7 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
             return next;
         });
 
+    const metricHistory = usePlayerMetricHistory();
     const name = sheet.firstName ?? t("characterSheet.playerFallback");
     const domainName = (id: string) => domains.find((d) => d.id === id)?.name ?? id;
     // Silver in Lunar until earned (`--soul-*` on <html>), the skin accent elsewhere.
@@ -171,6 +174,7 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
                             </ul>
                         </>
                     )}
+                    <MetricHistory metric="level" series={metricHistory.series.level} className="cs-level__history" />
                 </>
             );
         }

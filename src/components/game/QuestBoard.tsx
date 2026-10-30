@@ -6,6 +6,8 @@ import SaveCharacterCta from "@/components/game/SaveCharacterCta";
 import { getJourneyModule, moduleText } from "@/data/journeyModules";
 import { getVillagePlace, sceneObjectPosition } from "@/data/villagePlaces";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
+import { usePlayerMetricHistory } from "@/hooks/usePlayerMetricHistory";
+import { measureMonthQuest } from "@/lib/playerMetrics";
 import { hasGuestTopTalentResult, readGuestTalentName } from "@/lib/firstVisit";
 import { journeyOptionalWord } from "@/lib/journeyLabels";
 import { awaitingSave, placeSaveFromSheet } from "@/lib/placeState";
@@ -29,10 +31,12 @@ import "./QuestBoard.css";
 const QuestBoard = () => {
   const { t } = useTranslation();
   const sheet = useCharacterSheet();
+  const metrics = usePlayerMetricHistory();
   const place = getVillagePlace("quest-board");
   const headingId = useId();
   const journeyId = useId();
   const worldId = useId();
+  const monthId = useId();
 
   // A guest who has finished the test holds the reading on this device: the next move is to
   // save it, the same «Save your character» that Home shows (WP-7b).
@@ -45,6 +49,8 @@ const QuestBoard = () => {
   const next = nextQuest(save, t);
   const doneWhenLabel = tr(t, "village.doneWhen.label", "Done when");
   const nextResult = next?.kind === "journey" ? journeyResultText(next.row.id, t) : "";
+  // #241: a signed-in player with no measurement this calendar month gets «Measure your month».
+  const monthQuest = measureMonthQuest(metrics);
 
   return (
     <section className="mf qb" aria-labelledby={headingId} aria-busy={sheet.isLoading || undefined}>
@@ -102,6 +108,25 @@ const QuestBoard = () => {
 
         {sheet.isLoading ? null : (
           <>
+            {monthQuest ? (
+              <section className="qb__group qb__group--month" aria-labelledby={monthId}>
+                <h2 id={monthId} className="qb__h">
+                  {tr(t, "playerMetrics.quest.group", "This month")}
+                </h2>
+                <ol className="qb__list">
+                  <PlaceState as="li" state="open" className="qb__row">
+                    <Link className="qb__name" to={monthQuest.to}>
+                      {tr(t, "playerMetrics.quest.title", "Measure your month")}
+                    </Link>
+                    <p className="qb__done-when">
+                      <span className="qb__done-when-label">{doneWhenLabel}</span>{" "}
+                      {tr(t, "playerMetrics.quest.doneWhen", "this month's level shows on your Home.")}
+                    </p>
+                  </PlaceState>
+                </ol>
+              </section>
+            ) : null}
+
             <section className="qb__group" aria-labelledby={journeyId}>
               <h2 id={journeyId} className="qb__h">
                 {tr(t, "village.quest.journey", "The Journey")}

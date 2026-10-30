@@ -22,6 +22,7 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { LIBRARY_ITEMS, type LibraryItem } from "@/modules/library/libraryContent";
 import { useToast } from "@/hooks/use-toast";
+import { usePlayerLevel } from "@/hooks/usePlayerLevel";
 import { type Upgrade, getUpgradesByBranch, getPlayerUpgrades } from "@/lib/upgradeSystem";
 import { getSuggestedPractices } from "@/lib/practiceSystem";
 import {
@@ -110,6 +111,7 @@ const GameHome = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { t, i18n } = useTranslation();
+  const { level: playerLevel } = usePlayerLevel();
 
   // Core state
   const [isLoading, setIsLoading] = useState(true);
@@ -194,13 +196,8 @@ const GameHome = () => {
       const previousProfile = previousProfileRef.current;
       if (previousProfile) {
         const xpDelta = profileData.xp_total - (previousProfile.xp_total ?? 0);
-        const levelDelta = profileData.level - (previousProfile.level ?? 0);
-        if (levelDelta > 0) {
-          setCelebration({
-            title: t('gameHome.celebration.levelUpTitle'),
-            detail: t('gameHome.celebration.levelUpDetail', { level: profileData.level }),
-          });
-        } else if (xpDelta > 0) {
+        // No XP-level «Level up» here: the one level is the QoL average (issue #241).
+        if (xpDelta > 0) {
           setCelebration({
             title: t('gameHome.celebration.xpTitle', { xp: xpDelta }),
             detail: t('gameHome.celebration.xpDetail'),
@@ -733,7 +730,7 @@ const GameHome = () => {
                 firstName={profile?.first_name}
                 archetypeTitle={zogSnapshot?.archetype_title}
                 corePattern={zogSnapshot?.core_pattern}
-                level={profile?.level}
+                level={playerLevel}
                 xpTotal={profile?.xp_total}
                 streakDays={profile?.current_streak_days}
                 totalActions={profile?.total_quests_completed}
@@ -833,8 +830,7 @@ const GameHome = () => {
           {hasAnyData && (
             <DailyLoopLayout
               profileName={[profile?.first_name, profile?.last_name].filter(Boolean).join(" ") || null}
-              level={profile?.level}
-              xpTotal={profile?.xp_total}
+              level={playerLevel}
               streakDays={profile?.current_streak_days}
               archetypeTitle={zogSnapshot?.archetype_title}
               lowestDomains={lowestDomains}
