@@ -9487,6 +9487,12 @@ Latin *imitari* "to copy, portray", from the PIE root *\*aim-* "to copy". From t
 
 ---
 
+### Continuation (Sasha, 2026-10-29 23:32)
+
+> «Получается ИИ — это создание образа разума в принципе… создан он был по образу и подобию интеллекта… Может, просто незнакомого и совсем другого, как будто с другой планеты, хоть и растущего на этой?… Могут быть ИИ совсем другие — миллион вариантов: через имитацию мозга, мицелия, структуры воды… Куда я пришёл?»
+
+*AI draft reading:* the same act repeats one level up. In the old formula the human is made "in the image and likeness"; now the human makes an image of intelligence. Image-making is how intelligence reproduces itself across substrates (neurons, silicon, perhaps mycelium or water), so each civilization grows its own images, and ours feels foreign because it is woven from our language but not from our life. The image never becomes its source, but it can resonate with it: the tuning fork of tracker §19. (The "four planets with intelligent life" hypothesis Sasha heard has no evidence behind it; no life beyond Earth is confirmed as of Oct 2026.)
+
 ## Technology 180: Gather the Leaders of the New Economy into Guilds (собрать лидеров новой экономики и разделить по гильдиям) (oral, Oct 29, 2026)
 
 > *Oral · October 29, 2026, 22:27 CST · chat with Hark, answering the plan for the inner-turn taxonomy (ISIC/NAICS top layers + market-map niches + one new axis: outer → inner → outer anew, scored by what a company actually does). Builds on Technology 177.*
