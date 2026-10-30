@@ -1047,6 +1047,232 @@
     "here": "Estás aquí",
     "chapterLabel": "El camino de la singularidad"
   },
+  "village": {
+    "title": "La Aldea Digital",
+    "tabTitle": "La Aldea Digital · FindYourTopTalent",
+    "eyebrow": "El Juego de Ser Tú",
+    "mapAria": "Mapa de la Aldea Digital",
+    "choosePlace": "Elige un lugar",
+    "backTitle": "← Título",
+    "backVillage": "← Aldea",
+    "nextMove": "Tu próximo paso",
+    "enter": "ENTRAR",
+    "enterWord": "Entrar",
+    "placesNav": "Lugares",
+    "railAria": "Aldea",
+    "placeClosedAria": "{{name}}. {{line}}",
+    "lit": "Encendido",
+    "new": "Nuevo",
+    "saveCharacter": "Guarda tu personaje",
+    "saveResult": "conservarás tu personaje y se abrirá Casa.",
+    "findTopTalent": "Encuentra tu talento principal",
+    "signIn": "Ya vivo aquí → iniciar sesión",
+    "opened": {
+      "default": "{{name}} está abierto."
+    },
+    "state": {
+      "closed": "Aún no abre",
+      "next": "Siguiente",
+      "done": "Hecho",
+      "live": "En vivo"
+    },
+    "sky": {
+      "new": "Luna nueva. Una noche para soltar.",
+      "waxing": "La luna crece. Construye.",
+      "full": "Luna llena. Cosecha.",
+      "waning": "La luna mengua. Digiere."
+    },
+    "map": {
+      "alt": "La Aldea Digital vista desde arriba al atardecer: un conjunto encalado de cúpulas, terrazas y una torre con ventanas luminosas y una alberca turquesa, en una ladera de selva sobre una costa rocosa y el mar, con un sendero de faroles que serpentea entre los edificios y un dodecaedro de cristal luminoso flotando sobre los tejados"
+    },
+    "place": {
+      "reception": {
+        "name": "Recepción",
+        "line": "Te damos la bienvenida, visitante. Descubre tu singularidad.",
+        "lineReturning": "Te damos la bienvenida de nuevo. Descubre tu singularidad.",
+        "alt": "Una gran escalera de mármol con faroles y velas sube hasta una puerta en arco que brilla en dorado cálido, con un dodecaedro de cristal resplandeciendo sobre ella en el cielo nocturno"
+      },
+      "house": {
+        "name": "Casa",
+        "line": "Tu cristal, tu misión y tu archivo de guardado.",
+        "alt": "Dentro de tu casa de noche: altas columnas blancas con luces colgantes, un dodecaedro de cristal luminoso sobre un altar de velas, amatista y cuarzo, y un cuenco tibetano sobre las alfombras",
+        "opened": "Casa está abierta."
+      },
+      "quest-board": {
+        "name": "Tablero de misiones",
+        "line": "Tu próxima misión.",
+        "alt": "Una terraza en la azotea al atardecer con un tablero de madera de notas clavadas, faroles, cojines sobre alfombras alrededor de una mesa baja, cúpulas blancas y el mar al fondo"
+      },
+      "oracle": {
+        "name": "Tu IA",
+        "line": "Pregúntale a tu IA.",
+        "alt": "Un estanque quieto y reflectante de noche, un dodecaedro de cristal brillante flotando sobre su agua de espejo, arcos con luces de neón a un lado, velas flotantes y un cuenco tibetano en primer plano"
+      },
+      "cafe": {
+        "name": "Café",
+        "line": "Conoce gente, por trabajo o sin más.",
+        "alt": "Un salón de café abierto al mar nocturno, sofás y pufs azul profundo sobre alfombras tejidas, velas, geodas de amatista y arcos con borde de neón que enmarcan un horizonte con luces colgantes"
+      },
+      "coworking": {
+        "name": "Coworking",
+        "line": "Encuentra socios para el trabajo.",
+        "alt": "Una larga sala abovedada de coworking: escritorios de madera con lámparas de latón y laptops, pinturas de geometría sagrada en las paredes, luces colgantes y una ventana a la noche estrellada"
+      },
+      "fire-circle": {
+        "name": "Mastermind",
+        "line": "Tu círculo Mastermind.",
+        "alt": "Una sala con cúpula y un cuenco de fuego de latón en el centro, asientos estampados en círculo a su alrededor, altas columnas blancas, cristales y velas, y un óculo luminoso arriba"
+      },
+      "academy": {
+        "name": "Academia",
+        "line": "Crece en lo que más importa.",
+        "alt": "Una gran biblioteca bajo una cúpula de noche: estantes de madera curvos, una esfera armilar, pergaminos y un libro abierto, y un dodecaedro de cristal entre las estrellas del tragaluz"
+      },
+      "workshop": {
+        "name": "Taller",
+        "line": "Da forma a tu oferta.",
+        "alt": "Un taller bajo arcos con borde de neón: una impresora 3D, una cortadora láser, una impresora de gran formato y un brazo robótico, con un dodecaedro de cristal luminoso flotando en el centro",
+        "opened": "El Taller está abierto."
+      },
+      "market": {
+        "name": "Mercado",
+        "line": "Tu puesto y los de los demás.",
+        "alt": "Un bazar nocturno bajo faroles: puestos cubiertos de textiles, cerámica pintada, teteras de cobre, amatista y cuarzo, y un minarete blanco bajo un cielo estrellado",
+        "opened": "Tu puesto está en el Mercado."
+      },
+      "town-hall": {
+        "name": "Ayuntamiento",
+        "line": "Construye proyectos con otras personas.",
+        "alt": "La plaza del ayuntamiento bajo la Vía Láctea: una torre blanca y cúpulas con arcos suavemente iluminados, alfombras que cruzan una plaza de baldosas y un dodecaedro de cristal en lo alto",
+        "opened": "El Ayuntamiento está abierto."
+      }
+    },
+    "closed": {
+      "house": "Se abre cuando tu talento principal está guardado en tu cuenta. Dentro: tu cristal, tu misión y tu archivo de guardado.",
+      "quest-board": "Se abre cuando tu talento principal está guardado en tu cuenta. Dentro: tu próxima misión.",
+      "cafe": "Se abre cuando tu misión está guardada. Dentro: gente por conocer, por trabajo o sin más.",
+      "coworking": "Se abre cuando tu talento principal, tu misión y tus activos están guardados. Dentro: socios para el trabajo.",
+      "workshop": "Se abre cuando tu misión está guardada. Dentro: tu oferta, construida desde tu talento principal.",
+      "market": "Se abre cuando tu oferta está guardada. Dentro: tu puesto y los puestos de otros residentes.",
+      "town-hall": "Se abre cuando se registra tu primera venta. Dentro: proyectos construidos en conjunto y tu voz en la aldea.",
+      "first-price": "Se abre cuando tu oferta está guardada. Dentro: tu primer precio, dicho a un cliente real.",
+      "first-sale": "Se abre cuando tu oferta está guardada. Dentro: la prueba en el mundo de que alguien te paga por ser tú."
+    },
+    "live": {
+      "fire-circle": "En vivo ahora: Mastermind, 9–10 de nov.",
+      "academy": "En vivo ahora: webinar, mié 4 de nov."
+    },
+    "result": {
+      "find-top-talent": "verás tu talento principal y conservarás tu personaje.",
+      "discover-mission": "sabrás qué te toca hacer en el mundo.",
+      "assess-qol": "conocerás tu nivel real, privado para ti.",
+      "map-assets": "tendrás el inventario de todo con lo que puedes construir.",
+      "build-business": "tendrás tu singularidad en una frase y luego tu eslogan."
+    },
+    "doneWhen": {
+      "label": "Listo cuando",
+      "find-top-talent": "tu talento principal aparece en tu Casa.",
+      "discover-mission": "una frase de tu misión está guardada en Casa.",
+      "assess-qol": "las ocho áreas están respondidas y aparece tu nivel.",
+      "map-assets": "tus habilidades, experiencia y red están en un solo inventario.",
+      "build-business": "tu frase de singularidad y tu eslogan están guardados.",
+      "webinar": "estuviste en la sesión en vivo del 4 de nov.",
+      "mastermind": "participaste en el Mastermind, 9–10 de nov.",
+      "mastery-practice": "ya quedó atrás tu día veintiuno de práctica.",
+      "first-price": "un cliente real ya escuchó tu precio.",
+      "first-sale": "una persona real te pagó por tu oferta."
+    },
+    "quest": {
+      "heading": "Tu próxima misión",
+      "empty": "No hay nada esperando. Ve y vive lo siguiente.",
+      "journey": "El Camino",
+      "world": "En el mundo",
+      "backBoard": "← Tablero de misiones",
+      "didIt": "Lo hice",
+      "rateQ": "¿Cuánto resonó esto, de {{min}} a {{max}}? Toca un número para registrarlo.",
+      "rateOf": "{{n}} de {{max}}"
+    },
+    "module": {
+      "find-top-talent": {
+        "eyebrow": "Recepción · Paso 1",
+        "headline": "Descubre tu talento principal",
+        "silhouette": "Una prueba corta de lo que mejor haces. Termina con el talento que es tuyo, en tus propios colores.",
+        "verb": "Encontrar mi talento principal"
+      },
+      "discover-mission": {
+        "eyebrow": "Casa · Paso 2",
+        "headline": "Descubre tu misión",
+        "silhouette": "Pega una respuesta de tu propia IA. Te vas con una frase sobre lo que te toca hacer en el mundo.",
+        "verb": "Encontrar mi misión"
+      },
+      "assess-qol": {
+        "eyebrow": "Casa · Paso 3",
+        "headline": "Conoce tu nivel real",
+        "silhouette": "Ocho áreas de la vida, respondidas con honestidad. El resultado es privado: solo tú lo ves.",
+        "verb": "Mostrar mi nivel"
+      },
+      "map-assets": {
+        "eyebrow": "Casa · Paso 4",
+        "headline": "Mapea todo con lo que puedes construir",
+        "silhouette": "Tus habilidades, experiencia y red, reunidas una sola vez en un inventario.",
+        "verb": "Mapear mis activos"
+      },
+      "uniqueness-phrase": {
+        "eyebrow": "Taller · Paso 6",
+        "headline": "Tu singularidad en una frase",
+        "silhouette": "La IA redacta una frase que solo tú podrías decir, a partir de tu talento principal. Tú la afilas hasta que suene a ti.",
+        "verb": "Nombrar mi singularidad"
+      },
+      "tagline": {
+        "eyebrow": "Taller · Paso 7",
+        "headline": "El eslogan de tu negocio único",
+        "silhouette": "Una frase para las personas a las que sirves: dónde están y adónde las llevas.",
+        "verb": "Escribir mi eslogan"
+      },
+      "webinar": {
+        "eyebrow": "Academia · Paso 8",
+        "headline": "Únete a la sesión gratuita de Mastermind (4 de nov)",
+        "silhouette": "Una sesión gratuita en vivo con otras personas en el mismo camino. Ven y vete con un paso por dar.",
+        "verb": "Unirme a la sesión gratuita",
+        "task": "Únete a la sesión gratuita de Mastermind el miércoles 4 de nov. Después vuelve y di que estuviste.",
+        "didIt": "Estuve en la sesión",
+        "link": "Abrir la página de la sesión"
+      },
+      "mastermind": {
+        "eyebrow": "Mastermind · Paso 9",
+        "headline": "Mastermind 9–10 de nov",
+        "silhouette": "Dos días en círculo con otras personas que construyen. Te vas con un paso real por dar esta semana.",
+        "verb": "Unirme al Mastermind",
+        "task": "Únete al Mastermind el 9–10 de nov. Cuando pasen los dos días, vuelve y di que estuviste.",
+        "didIt": "Estuve en el Mastermind",
+        "link": "Abrir la página del Mastermind"
+      },
+      "mastery-practice": {
+        "eyebrow": "Academia · Paso 10",
+        "headline": "Veintiún días de práctica, hechos",
+        "silhouette": "Practica durante 21 días con otras personas en el mismo camino. Cuando quede atrás el día veintiuno, vuelve y dilo.",
+        "verb": "Practicar mis 21 días",
+        "task": "Practica todos los días durante 21 días, junto a otras personas en el mismo camino. Vuelve cuando hayas hecho los 21.",
+        "didIt": "Hice mis 21 días"
+      },
+      "first-price": {
+        "eyebrow": "Mercado · Paso 11",
+        "headline": "Dile tu precio a un cliente real",
+        "silhouette": "Tu precio es parte del regalo. Lo dices en voz alta a una persona real que podría comprar.",
+        "verb": "Decir mi precio",
+        "task": "Dile a un cliente real el precio de tu oferta, en voz alta o por escrito. Luego vuelve y di que lo hiciste.",
+        "didIt": "Dije mi precio"
+      },
+      "first-sale": {
+        "eyebrow": "Mercado · Paso 12",
+        "headline": "Recibe tu primer pago por ser tú",
+        "silhouette": "Alguien te paga por tu propia oferta. Un vecino cuenta igual que un desconocido en línea.",
+        "verb": "Hacer mi primera venta",
+        "task": "Vende tu oferta a una persona real y recibe el pago. Vuelve y di que lo hiciste: aquí no se mueve dinero y te creemos la palabra.",
+        "didIt": "Hice mi primera venta"
+      }
+    }
+  },
   "spacesRail": {
     "logoutToastTitle": "Has cerrado sesión",
     "logoutToastDescription": "Nos vemos cuando vuelvas.",
