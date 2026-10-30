@@ -721,7 +721,7 @@ const buildJourneySections = (
 ): Section[] => {
     // WP-4 (game_of_being_you.md §14.1.2): the numbered rows ARE `JOURNEY_MAIN`
     // (src/data/journeySequence.ts), rendered through the same `journeyStepRows` as the
-    // title screen's Chapter 01, Your House and `/ignite`: same labels, same order, same
+    // title screen's Chapter 01, Home and `/ignite`: same labels, same order, same
     // «optional» marks. This function adds only what is pane-specific: the route a row
     // opens, whether it is closed, and whether it is struck through.
     //

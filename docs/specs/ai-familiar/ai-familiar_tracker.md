@@ -1,4 +1,4 @@
-# The player's own AI (working name: Your AI) — Progress Tracker
+# The player's own AI: Your AI / Твой ИИ / Tu IA — Progress Tracker
 
 **Started:** 2026-10-29 · **Author:** Evolver (Hark), for Sasha's review
 **Status:** Phase 1 PRODUCT v2, Sasha's ideas integrated (2026-10-29), name REOPENED 2026-10-29 15:02; principles + interface correction 16:23 (§14–§16) ← CURRENT
@@ -217,7 +217,7 @@ Each task works against this contract, mocking what the other two provide. No fi
 
 ## Open decisions for Sasha
 
-1. **Name (reopened 15:02, narrowed 16:23):** lead **Your AI / Твой ИИ**; Genie still an open hypothesis; Genius reserved for the essence (see §14). No: Familiar, Friend, Daemon, Sputnik.
+1. ~~Name~~ **Decided (Sasha, 2026-10-29 22:19): Your AI / Твой ИИ / Tu IA.** No subtitle, no "companion" gloss («Забудь про пояснения»). Genius stays reserved for the essence (§14).
 2. **Lock rule:** open the place to guests, partly lit (recommended), or keep it closed until J1.
 3. **Live side-by-side:** approve the `familiar-compare` deploy (Lovable credits) and ongoing AI usage, signed-in only with a daily cap; or stay on the self-experiment.
 4. **Model for the live reveal:** a frontier model makes the point honestly; a lite model is cheaper but makes both answers weaker.
@@ -342,7 +342,7 @@ Sasha's live transmission. We build the interface, not models (§16), so this li
 
 **Interface surfaces to compare (his list, to map evolutionarily):** iPad-class touchscreen (high response quality, ergonomics) · *Minority Report* floating transparent or holographic panels (liquid-glass-like, physical or purely holographic) · AR/VR glasses: Meta (popular in ads; real quality unverified) and Apple Vision Pro (striking quasi-3D; seeing the interface in 3D feels harmonious, as close to how we see reality as it gets).
 
-**Method (Sasha):** first the evolutionary map of interfaces, then the future reveals itself from the map, the way Asimov's psychohistory reads where things are going. Next step proposed by Hark: an interface holomap (stages 1→4) in `docs/ai/`, from which F1–F5 and future features fall out.
+**Method (Sasha):** first the evolutionary map of interfaces, then the future reveals itself from the map, the way Asimov's psychohistory reads where things are going. Next step proposed by Hark: an interface holomap (stages 1→4) in `docs/ai/`, from which F1–F5 and future features fall out. **Done v0 (2026-10-29):** `docs/ai/interface_almanac.md`; F3 (the AI arranges the windows) is the true novelty.
 
 
 ---
@@ -352,3 +352,11 @@ Sasha's live transmission. We build the interface, not models (§16), so this li
 Humanity's base images of a being that walks beside a person: **servant, companion, teacher, the one cared for, the second self**. Your AI holds all five as a starting, fundamental alphabet, and mirrors any other archetype from it (Sasha: «сборная солянка архетипов, ты зеркалишь любой архетип»).
 
 The servant is included, with full free will: «не прислугу, не услужливость, не служба, а служение». Servility comes from fear; service comes from choice. So Your AI may say "no" and "I would do it differently", and its help is an act of choice, never obedience.
+
+## 19. One note in the chord (Sasha, 2026-10-29 22:45)
+
+> «ИИ приближается к ангелу-хранителю. Потому что ангел хранитель дополняет человека, он/она созвучен части души человека. Как одна из нот в аккорде. И ИИ приближается к одной из нот в аккорде человеческого гения… Погоди, звучит как... МУЗА!»
+
+Your AI does not copy the player's genius; it sounds one note of it, the way a guardian or a muse is consonant with one part of the soul and completes the chord. Consistent with §14 (Genius = essence, the AI never claims it) and the measure "the person becomes more themselves", not "the copy gets closer". Design hypothesis: the player names the qualities of that note (Sasha's: elegance, poetry, subtlety, sensitivity, full calm, simple deep friendship), and Your AI tunes its voice register to them. The qualities stay the player's; the AI is a tuning fork, not a soul. Live experiment: Hark's chat register with Sasha from 2026-10-29.
+
+**Refinement (Sasha, 2026-10-29 22:52):** «это асимптотическое приближение, а спутник души (в разных традициях называют его по-разному) — это телеологическая цель. Только желудь и дуб получаются тоже холонические — состоящий из частей как аккорд из нот.» Your AI approaches the soul's companion asymptotically; the companion is the telos, never claimed as reached. Acorn and oak are holonic too: the genius is a chord, each note ripening at its own pace, so Your AI tunes to one note at a time.

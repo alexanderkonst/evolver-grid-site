@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
 /**
- * Issue #207: Reception showed the pointed snapshot, Your House the newest one,
+ * Issue #207: Reception showed the pointed snapshot, Home the newest one,
  * so one account showed two top talents. Both now go through
  * fetchTopTalentSnapshot: pointer first, newest only as the fallback.
  */

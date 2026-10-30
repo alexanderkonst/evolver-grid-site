@@ -8,7 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
  * current). Fall back to the newest snapshot only when the pointer is NULL or
  * points at a row that is not this profile's.
  *
- * Used by Reception (`loadSavedData`) and Your House (`useCharacterSheet`) so
+ * Used by Reception (`loadSavedData`) and Home (`useCharacterSheet`) so
  * the two screens cannot show two different top talents.
  */
 

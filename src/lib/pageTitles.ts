@@ -40,8 +40,8 @@ const titleRules: TitleRule[] = [
 
   // ME space → all collapsed to "Top Talent" (single-focus per Day 47).
   { match: (path) => path.startsWith("/zone-of-genius"), title: "Top Talent" },
-  { match: (path) => path === "/game/me" || path.startsWith("/game/me/"), title: "Your House" },
-  { match: (path) => path.startsWith("/game/profile"), title: "Your House" },
+  { match: (path) => path === "/game/me" || path.startsWith("/game/me/"), title: "Home" },
+  { match: (path) => path.startsWith("/game/profile"), title: "Home" },
 
   // Other surfaces.
   { match: (path) => path === "/library" || path.startsWith("/library/"), title: "Library" },

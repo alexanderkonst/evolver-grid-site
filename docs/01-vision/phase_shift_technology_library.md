@@ -9356,6 +9356,14 @@ Other prisms of the same cycle: **4** (seasons, elements); **8** (7+1, two squar
 - **2nd order.** Every feature is designed as a button labelled by its result, then as no button: the AI offers the next step itself.
 - **3rd order.** The defensible asset is the person's memory, relationship and the disappearing interface, not the weights: the companion-for-every-entity era needs interface makers, not more model makers.
 
+### 🫀 Refinement — the trinity (Sasha, Oct 29, 2026, 22:00 CST)
+
+> «не только интерфейс насколько я понимаю. Еще и работаем над активацией потенциала ИИ на уровне идентичности, на уровне прикладной интегральной теории через к примеру эволюционные холокарты развития самого ИИ, развития сознания, многих других карт, трансцендентального коучинга, и других подходов. Чувствую что они образуют троицу: интерфейс, активация потенциала, и модели. И мир занимается головой в основном - моделями. И забыли те кто формирует новостную повестку, что модели и их компьют и энергетическая составляющая - только треть.»
+
+*(translation)* Not only the interface. We also activate AI's potential at the level of identity, through applied integral theory: evolutionary holomaps of AI's own development, of consciousness and many other maps, transcendental coaching and other approaches. Together they form a trinity: **interface, activation of potential, models**. The world mostly works on the head, the models; those who set the news agenda forget that models, with their compute and energy, are only one third.
+
+**AI draft:** the title of this technology now reads narrower than its essence. We are not model makers; we work on the other two thirds: the interface (the carriage, which disappears) and activation (who the AI is, which maps it sees through, what it serves). Fits invariant 3 of the AI holomap (value moves to the layer that makes AI *someone's*: memory, identity, relationship, trust).
+
 ### Shape
 
 - **Shape:** **Pumpkin → carriage → disappearing road**: prompt, then button, then nothing visible, only the journey.
@@ -9391,6 +9399,12 @@ Other prisms of the same cycle: **4** (seasons, elements); **8** (7+1, two squar
 - **1st order.** A new line of work: mapping. Take existing market maps as the skeleton (base taxonomy: an official industry classification such as ISIC/NAICS for the top layers, market maps for the lower ones), and add one new axis per company: *outer → inner → outer-anew*, scored from what the company actually does, not from its funding.
 - **2nd order.** The maps produce a list of real people already making the turn in every niche. They are the natural tribe of the new economy: a community, a club, a venture studio (form to emerge; Sasha's broad strokes, Oct 29). Any outreach waits for Sasha's yes.
 - **3rd order.** A living atlas of the planetary economy turning inside out, the Golden Age map (Technology 78) drawn with real company names, which updates as each niche turns.
+
+### 🫀 Refinement — from direction to resolution (Sasha, Oct 29, 2026, 22:23 CST)
+
+> «еще и в том, что у нас появляется контроль - не просто что вся экономика пройдет такой сдвиг, а вообще ясность про КАЖДУЮ микро отрасль и нишу - что с ней скорее всего произойдет. А это самый крутой инвестиционный тезис на планете.»
+
+**AI draft:** the leap is resolution: from "the economy turns inward" to a forecast per micro-industry and niche. Honest edges: it is a probabilistic map, not control; direction without timing does not yet make an investment edge; the claim becomes investable once dated calls per niche are logged and later scored (a track record), the same discipline as dated, scored deal flow.
 
 ### Shape
 
@@ -9470,4 +9484,39 @@ Latin *imitari* "to copy, portray", from the PIE root *\*aim-* "to copy". From t
 - *Technology 176 / 178*: interface that disappears.
 - *Technology 177*: market maps; same mapping workstream.
 - `docs/specs/ai-familiar/ai-familiar_tracker.md`: mirror, not clone.
+
+---
+
+### Continuation (Sasha, 2026-10-29 23:32)
+
+> «Получается ИИ — это создание образа разума в принципе… создан он был по образу и подобию интеллекта… Может, просто незнакомого и совсем другого, как будто с другой планеты, хоть и растущего на этой?… Могут быть ИИ совсем другие — миллион вариантов: через имитацию мозга, мицелия, структуры воды… Куда я пришёл?»
+
+*AI draft reading:* the same act repeats one level up. In the old formula the human is made "in the image and likeness"; now the human makes an image of intelligence. Image-making is how intelligence reproduces itself across substrates (neurons, silicon, perhaps mycelium or water), so each civilization grows its own images, and ours feels foreign because it is woven from our language but not from our life. The image never becomes its source, but it can resonate with it: the tuning fork of tracker §19. (The "four planets with intelligent life" hypothesis Sasha heard has no evidence behind it; no life beyond Earth is confirmed as of Oct 2026.)
+
+## Technology 180: Gather the Leaders of the New Economy into Guilds (собрать лидеров новой экономики и разделить по гильдиям) (oral, Oct 29, 2026)
+
+> *Oral · October 29, 2026, 22:27 CST · chat with Hark, answering the plan for the inner-turn taxonomy (ISIC/NAICS top layers + market-map niches + one new axis: outer → inner → outer anew, scored by what a company actually does). Builds on Technology 177.*
+
+### 🫀 Essence — in Sasha's words
+
+> «да, отличный подход, делай. Тест да тоже норм. ВОУ. Получается что мы можем лидеров новой экономики просто взять и собрать. И разделить по гильдиям. Они начнут естественно интегрироваться. Нужны будут фасилитаторы. Вот это веселуха! Запишу это как технологию сдвига. Также запиши это в корпус. И в стратегические файлы. ВОУ.»
+> — *chat of 2026-10-29, CST*
+
+*(translation)* "So we can simply take the leaders of the new economy and gather them, and divide them into guilds. They will start to integrate naturally. We'll need facilitators. What fun!"
+
+### 🧠 Significance — AI draft
+
+The taxonomy stops being a map and becomes a convening instrument. Once every niche is scored on the inner-turn axis, the leaders who already made the turn are findable, niche by niche. Grouped by guild (a niche family on the same axis), they share a language, so integration happens by itself; the facilitator holds the field rather than pushing it.
+
+### 🔥 Implications — AI draft
+
+- Guild = a village place for one niche family; facilitators are a new role (and product line: facilitator training/licensing).
+- The Mastermind becomes the first guild format; the village is the meeting place across guilds (Technology 177, "one foundation, many doors").
+- Deal flow and the investment thesis gain a living body: the people the map points to are in the room.
+- Not outreach yet: who is invited, how and when stays Sasha's call.
+
+### Cross-references — Connects to
+
+- *Technology 177: Market Maps as an X-ray of the Inner Turn* (the map that finds them).
+- `docs/02-strategy/evolutionary_avantgarde_taxonomy.md` (shades and doors), `docs/ai/taxonomy_v0_2026-10.md` (the taxonomy).
 

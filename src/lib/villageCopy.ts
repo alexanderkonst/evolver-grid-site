@@ -33,7 +33,7 @@ export const stateWordText = (state: PlaceStateName, t?: TFunction): string | nu
   return english ? tr(t, `village.state.${state}`, english) : null;
 };
 
-/** The name of a village place: «Reception», «Your House» … */
+/** The name of a village place: «Reception», «Home» … */
 export const placeName = (p: { key: string; name: string }, t?: TFunction): string =>
   tr(t, `village.place.${p.key}.name`, p.name);
 

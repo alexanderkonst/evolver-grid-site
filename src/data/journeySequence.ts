@@ -14,7 +14,7 @@
  * returns a `{id → boolean}` completion map.
  *
  * WP-13 (2026-10-27): order follows game_of_being_you.md §14.2 (Mission before
- * business). The JOURNEY pane (`SectionsPanel.buildJourneySections`) and Your House
+ * business). The JOURNEY pane (`SectionsPanel.buildJourneySections`) and Home
  * (`useCharacterSheet`) both read `JOURNEY_MAIN`; the rail's MAIN QUEST entry opens
  * that pane.
  *
@@ -61,7 +61,7 @@ export type JourneyItem = {
     /** "main" = a step of the Journey (§14.2); "extra" = tutorial lore, off the main path. */
     kind: "main" | "extra";
     /**
-     * The one name of this step, everywhere it is listed (`/`, Your House, `/ignite`, the
+     * The one name of this step, everywhere it is listed (`/`, Home, `/ignite`, the
      * Quest Board pane). No ordinal in the string: lists render the number from the step's
      * position in `JOURNEY_MAIN`, so a reorder never leaves a stale «3.» behind.
      * Localised through `journeyStepLabel` (src/lib/journeyLabels.ts).
@@ -77,7 +77,7 @@ export type JourneyItem = {
     completionPredicate?: CompletionPredicate;
     /** Where the completed artifact lives in ME / BUILD. Informational. */
     completionHome?: string;
-    /** Items that must be done first. Drives the closed state in Your House. */
+    /** Items that must be done first. Drives the closed state at Home. */
     requires?: JourneyItemId[];
     /** Line shown while the item is closed: «Opens when <real event>. Inside: <result>.» (§14.3). */
     lockedHint?: string;
@@ -115,7 +115,7 @@ const anyRowExists = async (
  * Top talent → Mission → QoL → Assets → Business (uniqueness, then tagline).
  *
  * `lockedHint` follows the §14.3 line: «Opens when <real event>. Inside: <result>.»
- * Hints here are English fallbacks; the pane reads `rail.journey.*` and Your House
+ * Hints here are English fallbacks; the pane reads `rail.journey.*` and Home
  * reads `characterSheet.quests.locked.*` first. Keep the three in step.
  */
 export const JOURNEY_SEQUENCE: JourneyItem[] = [
@@ -183,7 +183,7 @@ export const JOURNEY_SEQUENCE: JourneyItem[] = [
         // Journey steps 6 (uniqueness) and 7 (tagline) of §14.2 live inside this item.
     },
     // Tutorial lore, not Journey steps (§14.2). The pages stay; they only leave
-    // the main sequence, the pane and Your House.
+    // the main sequence, the pane and Home.
     {
         id: "take-playbook",
         kind: "extra",

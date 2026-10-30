@@ -6,6 +6,11 @@
 
 ---
 
+## 2026-10-29
+
+### D-2026-10-29-01: Inner-turn taxonomy and guilds of the new economy
+**Decision (Sasha, 22:27: «да, отличный подход, делай. Тест да тоже норм»):** build the economy taxonomy from ISIC/NAICS top layers + market-map niches and leaders, with one new axis per company: outer → inner → outer anew, scored by what the company actually does, not by capital raised. First test niche: founder coaching. Direction: gather the leaders who made the turn into guilds (niche families), with facilitators (Technology 180). Outreach to anyone stays Sasha's call.
+
 ## 2026-10-26 (Day 225)
 
 ### D-2026-10-26-02: Fidelity principle — the game shows life itself, no artificial XP
@@ -404,3 +409,9 @@ The live UI is untouched; only the cloned doc gets the override. The PDF reads a
 ## How to read entries above
 
 Each decision is reasoned at the time and shipped. If a decision is later reversed (new evidence, principle shift, scope change), the new entry references the old one explicitly — *"Supersedes D-YYYY-MM-DD-NN."* This is an append-only log; old entries don't get edited. Reading top-to-bottom traces the architectural lineage. Reading bottom-to-top traces the architectural state.
+
+## D-2026-10-29-02 — The whole is named Evolver: the seed of the golden age
+- **Decided by:** Sasha, 2026-10-29 23:16 («ГЕНИАЛЬНО… да!»).
+- **What:** the seven organs (Mirror, Myth-initiation, Path, Guild/Circle, Market of geniuses, Village, Federation) form one whole, named **Evolver**; its avant-garde aspect is Golden Age Architects (civilization builders). Canonical one-liner fixed.
+- **Where:** `docs/02-strategy/evolutionary_avantgarde_taxonomy.md` § The whole.
+

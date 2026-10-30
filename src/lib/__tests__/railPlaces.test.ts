@@ -7,7 +7,7 @@ describe("rail places", () => {
   it("is the village map: same places, same order, same names", () => {
     expect(RAIL_PLACES.map((p) => p.name)).toEqual([
       "Reception",
-      "Your House",
+      "Home",
       "Quest Board",
       "Your AI",
       "Café",

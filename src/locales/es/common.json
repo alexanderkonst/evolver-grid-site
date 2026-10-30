@@ -4626,7 +4626,7 @@
     "enterVillage": "Entrar en la aldea",
     "saveCharacterReason": "Guarda tu personaje y lee tu lectura completa.",
     "saveCharacterResultSaved": "Tu resultado se guarda en tu personaje.",
-    "saveCharacterResultOnDevice": "Tu resultado solo se guarda en este dispositivo. Guárdalo para abrir Tu casa.",
+    "saveCharacterResultOnDevice": "Tu resultado solo se guarda en este dispositivo. Guárdalo para abrir Casa.",
     "gateResultReady": "Tu resultado está listo",
     "gateDefaultTitle": "Guárdalo para poder acceder a él más tarde.",
     "gateNoCharge": "El resultado no tiene costo. Te enviaremos dos correos muy breves invitándote a profundizar. Si no respondes, paramos.",
@@ -7073,7 +7073,7 @@
     }
   },
   "characterSheet": {
-    "eyebrow": "Tu casa",
+    "eyebrow": "Casa",
     "playerFallback": "Jugador",
     "character": {
       "photoInvite": "Añade tu foto real",

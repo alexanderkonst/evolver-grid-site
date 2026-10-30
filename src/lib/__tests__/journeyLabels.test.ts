@@ -29,7 +29,7 @@ describe("journey step rows", () => {
 describe("every list of Journey steps reads the one source", () => {
   it.each([
     ["the title screen's Chapter 01", "../../pages/GameTitle.tsx"],
-    ["Your House", "../../pages/spaces/sections/ProfileOverview.tsx"],
+    ["Home", "../../pages/spaces/sections/ProfileOverview.tsx"],
     ["/ignite", "../../pages/IgniteSession.tsx"],
     ["the Quest Board pane", "../../components/game/SectionsPanel.tsx"],
   ])("%s", (_name, rel) => {

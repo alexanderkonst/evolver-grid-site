@@ -90,7 +90,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
   },
   {
     key: "house",
-    name: "Your House",
+    name: "Home",
     line: "Your crystal, mission and save file.",
     to: "/game/me/overview",
     rule: {
@@ -98,7 +98,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
       closed: { event: TOP_TALENT_SAVED, inside: "your crystal, mission and save file", key: "village.closed.house" },
       steps: ["discover-mission", "assess-qol", "map-assets"],
     },
-    opened: "Your House is open.",
+    opened: "Home is open.",
     image: "/game/village/house.webp",
     alt: "Inside your house at night: tall white columns hung with string lights, a luminous crystal dodecahedron on an altar of candles, amethyst and quartz, and a singing bowl on the rugs",
     focus: { x: 50, y: 75 },

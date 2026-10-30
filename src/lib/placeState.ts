@@ -48,7 +48,7 @@ export type PlaceEvent =
   | "triad"
   /**
    * A signed-out visitor holds a finished Top Talent result on this device (local guest save).
-   * Not a Journey step and not an unlock: Your House stays closed until the result is saved to
+   * Not a Journey step and not an unlock: Home stays closed until the result is saved to
    * an account (§14.3). It only decides the next move («Save your character», WP-7b).
    */
   | "guest-result";
@@ -178,7 +178,7 @@ export type MovePlace = PlaceInput & {
   name: string;
   /** Module route behind ENTER. */
   to: string;
-  /** The line when it has just opened: «Your House is open.» */
+  /** The line when it has just opened: «Home is open.» */
   opened?: string;
 };
 
@@ -207,7 +207,7 @@ const SAVE_PLACE = "house";
 
 /** The next move for a guest who has a result and no account. */
 export const SAVE_CHARACTER_TITLE = "Save your character";
-const SAVE_CHARACTER_RESULT = "you'll keep your character, and Your House opens.";
+const SAVE_CHARACTER_RESULT = "you'll keep your character, and Home opens.";
 
 /** The title shown after the place name on the next-move card; null when it only repeats the name. */
 export const moveTitle = (move: Pick<NextMove, "title" | "place">): string | null =>
@@ -260,7 +260,7 @@ export const nextMove = <P extends MovePlace>(places: readonly P[], save: PlaceS
   const states = new Map(places.map((p) => [p.key, placeState(p, save)] as const));
   const offered = (p: P | undefined): p is P => !!p && states.get(p.key) !== "closed";
 
-  // A guest who finished the test: the next move is to save it. Your House is still closed
+  // A guest who finished the test: the next move is to save it. Home is still closed
   // (the unlock order is untouched); its door is where the save happens.
   if (awaitingSave(save)) {
     const house = places.find((p) => p.key === SAVE_PLACE);

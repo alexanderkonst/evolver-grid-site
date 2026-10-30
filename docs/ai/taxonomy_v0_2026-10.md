@@ -2,7 +2,7 @@
 
 For the Evolutionary Mapping workstream. Compiled 2026-10-29 from public pages only (web fetch; no logins). Every category name is taken from a source as written. Anything I inferred or could not see is marked *unverified* or *inferred*. Dates are publication dates.
 
-**Contents:** Part 1 Whole economy (ISIC Rev.5) · Part 2 CB Insights AI taxonomy, reverse-engineered · Part 3 Our AI-branch taxonomy v0 · Gaps
+**Contents:** Part 1 Whole economy (ISIC Rev.5) · Part 2 CB Insights AI taxonomy, reverse-engineered · Part 3 Our AI-branch taxonomy v0 · Gaps · Part 4 Axis test: founder coaching
 
 ## Part 1. Top layers of the whole economy: ISIC Rev.5
 
@@ -263,3 +263,74 @@ Legend: CBI codes as in Part 2 (AI100-26, AGT-25N, AGT-25M, STACK-25, DC-25, PHY
 | a16z consumer taxonomy was read only from report text (Top 100 7th ed. 2026-10, spending report 2025-10); Bessemer from roadmap headings only; Menlo's departmental, vertical and stack maps are images I did not read | A few niche names in Part 3 may be missing | Read the Menlo market-map images and Bessemer roadmap pages |
 | ISIC ↔ AI-domain anchors (Part 3.0) are my mapping | Inferred | Check against the ISIC explanatory notes for K62/K63/N72 |
 | The "turn" column is empty on purpose | — | Score it in the next pass |
+
+## Part 4. Axis test: founder coaching (2026-10-29)
+
+First test of the inner-turn axis (Technology 177, approved by Sasha 2026-10-29) on one niche. Public pages only, fetched 2026-10-29; no logins, no contact with anyone. Each company is scored on what its program and offer pages say it does, not on funding or size. The sample is 15 players I picked by hand. Some of the boutiques came from a search for "inside-out" founder coaching, so the sample over-represents stage 3 compared with the market (*inferred*). Read the counts as a test of the rubric, not as market shares.
+
+**Axis.** 1 = outer: sells external tactics and results only (growth, fundraising, accountability, KPIs). 2 = inner: works on the founder's inner state or identity (psychology, somatics, purpose, shadow), separate from business mechanics. 3 = outer anew: inner work brought back into business form (identity or uniqueness becomes the product, strategy, team or offer, with business outcomes traced to the inner shift).
+
+### 4.1 Where the niche sits in the classifications
+
+| System | Code and title as the source writes it | Fit | Source |
+|---|---|---|---|
+| ISIC Rev.5 | N 70 "Activities of head offices; management consultancy activities" → 702 / **7020 "Business and other management consultancy activities"** | Main home for 1:1 founder and CEO coaching. The class note covers "advice, guidance and operational assistance… on management issues" and never mentions coaching. | Official structure CSV (Part 1); UNSD note: https://unstats.un.org/unsd/classifications/Econ/Detail/EN/27/7020 |
+| ISIC Rev.5 | Q 85 → **8559 "Other education n.e.c."** | Cohort programs, bootcamps and workshops (*inferred*) | Official structure CSV |
+| ISIC Rev.5 | T 96 → **9690 "Other personal service activities n.e.c."** | Personal-growth retreats such as Hoffman (*inferred*) | Official structure CSV |
+| NAICS 2022 | **541611 "Administrative Management and General Management Consulting Services"**. Index entries include "Business management consulting services" and "Business start-up consulting services". | Main home (stage 1 firms fit it best) | https://www.census.gov/naics/?details=541611&year=2022 · 2022 NAICS Index File |
+| NAICS 2022 | **611430 "Professional and Management Development Training"** (index: "Management development training") | Cohorts, workshops, Vistage-style programs (*inferred*) | 2022 NAICS Index File |
+| NAICS 2022 | **541612 "Human Resources Consulting Services"** (index: "Organization development consulting services") | Team and culture coaching (CLG, Reboot for Organizations) (*inferred*) | 2022 NAICS Index File |
+
+**Finding:** neither classification has a code for coaching. The 2022 NAICS index has no entry with "coach" in the executive sense; the only match is doula services under 812990. In the official taxonomies the niche is invisible: it is spread across management consulting, education and personal services. In Part 3 it appears only as AI coaching (BetterUp Grow, CoachHub AIMY™) under D8 HR & talent.
+
+### 4.2 Players scored
+
+| # | Player | What they sell (from their page) | Stage | Evidence (quote) | Conf. |
+|---|---|---|---|---|---|
+| 1 | Marshall Goldsmith Stakeholder Centered Coaching (mgscc.net) | Coaching on one leadership behavior, re-rated by stakeholders; coach certification | **1** | "You believe behavioral change is more valuable than mindset shifts." (https://mgscc.net/certification/) | high |
+| 2 | EOS Worldwide (eosworldwide.com) | Operating system plus Implementers: Vision, Traction, Healthy | **1** | "Bring discipline and accountability to your organization — execute on your vision every 90 days." (https://www.eosworldwide.com/traction-component) | high |
+| 3 | Scaling Up (scalingup.com) | Certified coaches, One-Page Strategic Plan, Scoreboard software | **1** | "The 4 DECISIONS™ methodology… PEOPLE, STRATEGY, EXECUTION, CASH" (https://scalingup.com/) | high |
+| 4 | Vistage (vistage.com) | CEO peer advisory groups led by Chairs | **1** | "Grow faster and outlast the competition with Vistage." (https://www.vistage.com) | high |
+| 5 | Mochary Method (mocharymethod.com) | 1:1 and team coaching for startup CEOs, from $10K/month | **1** | "uses its proven playbooks and proprietary software to help the world's best startup operators" (https://www.mocharymethod.com) | med |
+| 6 | BetterUp (betterup.com) | Enterprise human plus AI coaching platform with "performance intelligence" | **1** | "connects your people investment to CEO-friendly metrics like manager effectiveness, attrition, and productivity" (https://www.betterup.com/) | med |
+| 7 | CoachHub (coachhub.com) | Enterprise digital, AI and executive coaching | **1** | "Move minds and metrics… Track real-time performance data" (https://www.coachhub.com/) | med |
+| 8 | Hoffman Institute (hoffmaninstitute.org) | Week-long residential Process, $6,950 | **2** | "helps participants identify negative behaviors, moods, and ways of thinking that developed unconsciously and were conditioned in childhood" (https://www.hoffmaninstitute.org/the-process/) | high |
+| 9 | Hendricks Institute (hendricks.com) | Zone of Genius and conscious-love programs | **2** | "Discover your unique zone of genius to live with more purpose, passion, and inspiration." (https://hendricks.com/) No business offer seen. | low |
+| 10 | Reboot (reboot.io) | CEO, co-founder and team coaching; bootcamps; 360s | **3** (3a) | "Your own psychology now scales… At five people, this was a personality trait. At two hundred, it's culture." (https://www.reboot.io/ceo-coaching/) | med |
+| 11 | Conscious Leadership Group (conscious.is) | 15 Commitments; individual, team and culture programs | **3** (3a) | "We build trust, speed up decisions, and create cultures where people own outcomes" (https://conscious.is/) | med |
+| 12 | Inside-Out Leadership (leadinsideout.io) | Founder-coaches for early and mid-stage CEOs | **3** (3a) | "the radical self-inquiry required to scale into executive leaders… architect high scale, low-drama companies from founding to exit" (https://www.leadinsideout.io/) | med |
+| 13 | Strategic Coach (strategiccoach.com) | Quarterly entrepreneur program (owners with ≥$200K net income), Unique Ability® | **3** (3a/3b) | "Unique Ability is the special mix of talents, passions, and energy that makes you who you are. It's how you create the most value" (https://uniqueability.com) | med |
+| 14 | Ryan Pink, Entrepreneur's Edge™ (ryanpink.com) | 1:1 coaching for founders at $1–5M revenue | **3** (3b, staged) | "A 2-Phase Process - Moving From Inner to Outer… Vision Realignment… Strategic Focus… Joyful Execution" (https://www.ryanpink.com/) | high |
+| 15 | Nina Chin, INCOMPARABLE (ninachin.com) | Group mentorship for founders and creatives | **3** (3b) | "build what only you could build. Your offer. Your methodology… Your business." (https://ninachin.com/incomparable-cocoon) | med |
+
+### 4.3 Distribution
+
+- **Stage 1: 7** (MGSCC, EOS, Scaling Up, Vistage, Mochary, BetterUp, CoachHub). These are the large networks and platforms, with 290 to 3,500+ coaches each.
+- **Stage 2: 2** (Hoffman, Hendricks).
+- **Stage 3: 6**, all boutiques or mid-size firms. 4 are 3a, where the inner work goes into leadership, team and culture (Reboot, CLG, Inside-Out, Strategic Coach). 2 are 3b, where it goes into the offer or strategy (Ryan Pink, Nina Chin).
+- Scale runs opposite to the turn. Every player with enterprise scale is stage 1, and inner work there serves outer metrics (*inferred* from the pages read). Hardly anyone does 3b, where the founder's uniqueness becomes the product or offer, and those who do are solo practitioners.
+
+### 4.4 Stage-3 leaders (guild candidates; no outreach without Sasha's yes)
+
+1. **Reboot** (Jerry Colonna): the deepest inner work with the most business evidence. Its case studies follow founders through IPOs and exits as "identity, relational, and organizational" passages.
+2. **Conscious Leadership Group**: the most codified bridge. The 15 Commitments and somatic work feed into culture and decision speed, with CEO testimonials on business effects.
+3. **Strategic Coach / Unique Ability**: the only scaled player that makes uniqueness the organizing unit of the business (roles, team, "Who Not How").
+4. **Ryan Pink, Entrepreneur's Edge**: the clearest stage 2→3 program design, an explicit inner phase followed by an outer phase (vision, strategy, execution).
+5. **Inside-Out Leadership**: founder-coaches who pair self-inquiry with how the company is architected.
+
+Nina Chin is the purest 3b case. She is left out of the top five because the method rests on Human Design and astrology (see 4.5).
+
+### 4.5 What the axis failed to capture
+
+1. **3a vs 3b.** "Business form" lumps together leadership, team and culture (where most stage 3 lives) with the offer, product and strategy (where almost no one lives). The single stage hides the main finding.
+2. **Inner as means vs inner as end.** BetterUp and CoachHub coach mindsets, resilience and well-being, but sell them as workforce metrics. Stage 1 says "external tactics only", which is not quite true for them. They are inner methods used for an outer purpose.
+3. **Who pays.** Enterprise HR buys, the employee receives. The buyer's framing (KPIs) drives the page, not the session. Founder-paid firms read more inner.
+4. **Validity.** The axis scores direction, not whether the method works. An astrology-based 3b and an evidence-based 3a currently get the same score. No one publishes inner shift → business outcome beyond testimonials. MGSCC measures, but only outer behavior (*inferred* from pages read).
+5. **Network variance.** For Vistage, Scaling Up, SCC and EOS the stage belongs to the method. Individual Chairs or coaches can sit at 2 or 3 (*inferred*).
+6. **Half-steps.** EOS "Healthy" and the Scaling Up One Page Personal Plan are inner modules inside outer systems (1.5). Reboot starts clients from outer problems and goes inward.
+
+### 4.6 Suggested rubric refinements
+
+1. **Split stage 3** into **3a**: inner → leadership, team or culture, and **3b**: inner or identity → offer, product or strategy. Guild core = 3b plus strong 3a. Allow 1.5 and 2.5.
+2. **Evidence ladder.** Use program structure or curriculum first, then case studies, then testimonials, then taglines. Each score cites at least one program or offer page. "Inside-out" and "transformation" in a tagline count for nothing on their own.
+3. **Three side columns, kept off the stage score:** *validity* (evidence-based / mixed / esoteric), *payer* (founder / enterprise), and *inner-as* (means / end). Together with 3a/3b they let the map separate real turners from inner-washing.

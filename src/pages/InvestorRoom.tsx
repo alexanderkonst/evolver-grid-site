@@ -35,7 +35,7 @@ const COPY = {
     items: [
       {
         label: "The world",
-        body: "A living digital village, each place a module that already works: Gate, House, Quest Board, Oracle, Café, Co-working, Fire Circle, Academy, Workshop, Market, Town Hall.",
+        body: "A living digital village, each place a module that already works: Gate, Home, Quest Board, Oracle, Café, Co-working, Fire Circle, Academy, Workshop, Market, Town Hall.",
       },
       {
         label: "The engine",
@@ -47,13 +47,58 @@ const COPY = {
       },
     ],
   },
+  // Sasha 2026-10-29: «очень важно не упустить, и записать в инвестор рум».
+  doors: {
+    kicker: "Where the shades of the avant-garde lead",
+    title: "One foundation, many doors.",
+    items: [
+      {
+        label: "Why nuance matters",
+        body: "Each shade of the evolutionary avant-garde lives in its own world and hears only its own language. Generic words «for the avant-garde» reach no one. Yet all of them need the same things: a village, uniqueness, stalls, an economy, masterminds, AI. So the foundation is one, the doors are many, and each door speaks its own language. Nuance is what turns one foundation into those doors.",
+      },
+      {
+        label: "The unfair advantage",
+        body: "The founder is a living map of the intersection: breathwork, city digital twins, venture studios, integral theory, AI. This cannot be copied, and it is the core of the story.",
+      },
+      {
+        label: "The channels",
+        body: "Hubs, festivals and city communities, where the shades already meet, so one door opens many at once. The Russian-speaking world is a second axis that runs through every petal.",
+      },
+      {
+        label: "Where it leads",
+        body: "The village becomes the meeting place. A breathwork facilitator, a builder of city digital twins and a venture studio partner have never met before. Here they do, and the avant-garde stops being a set of subcultures and becomes a force.",
+      },
+    ],
+  },
+  products: {
+    kicker: "Template = methodology = product",
+    title: "Every product is a packaged shift.",
+    items: [
+      {
+        label: "The essence",
+        body: "A technology is point B, a new way of seeing. A template is the path to it from point A, the old way of seeing. Together they are a product, so the library of technologies is a catalogue of future products.",
+      },
+      {
+        label: "The lab",
+        body: "170+ technologies already written down. The question is never what to sell, only which shift gets its path first. The steps can be copied; the vision they carry is born only here. Price follows the depth of the shift, not the volume of content: game, course, Direction Call, $555 session, Mastermind.",
+      },
+      {
+        label: "One test for every product",
+        body: "What shift does it carry? Who arrives (A)? Who leaves (B)? How do we know the shift happened, in the person's own words? No answer means craft, not product.",
+      },
+      {
+        label: "How it compounds",
+        body: "Product map = technologies × paths. The Mastermind is the meta-product where new technologies are born from live reality. The game is the shop window of paths: each module is a template with a named shift, and the 1–10 rating at its end shows whether the player reached B.",
+      },
+    ],
+  },
   path: {
     kicker: "The path to the glass slipper",
     title: "Nine steps. The last one happens in the real world.",
     steps: [
       { place: "Gate", step: "Pass the uniqueness test and enter the village", scene: "gate" },
-      { place: "House", step: "Keep describing your character", scene: "house" },
-      { place: "House", step: "Say your uniqueness in one sentence", scene: "house" },
+      { place: "Home", step: "Keep describing your character", scene: "house" },
+      { place: "Home", step: "Say your uniqueness in one sentence", scene: "house" },
       { place: "Workshop", step: "Receive the tagline of your business", scene: "workshop" },
       { place: "Academy", step: "Learn how the path of uniqueness works", scene: "academy" },
       { place: "Fire Circle", step: "Sit in the mastermind", scene: "fire-circle" },
@@ -240,6 +285,48 @@ const InvestorRoom = () => {
             </Reveal>
             <ol className="ir-thesis">
               {COPY.thesis.items.map((item) => (
+                <li key={item.label}>
+                  <Reveal reduceMotion={reduceMotion}>
+                    <span className="ir-mono ir-label">{item.label}</span>
+                    <p>{item.body}</p>
+                  </Reveal>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section className="ir-room" aria-labelledby="ir-doors-h">
+          <img className="ir-scene" src={scene("cafe")} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+          <div className="ir-veil" aria-hidden="true" />
+          <div className="ir-inner">
+            <Reveal reduceMotion={reduceMotion}>
+              <p className="ir-mono ir-kicker">{COPY.doors.kicker}</p>
+              <h2 id="ir-doors-h">{COPY.doors.title}</h2>
+            </Reveal>
+            <ol className="ir-thesis">
+              {COPY.doors.items.map((item) => (
+                <li key={item.label}>
+                  <Reveal reduceMotion={reduceMotion}>
+                    <span className="ir-mono ir-label">{item.label}</span>
+                    <p>{item.body}</p>
+                  </Reveal>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section className="ir-room" aria-labelledby="ir-products-h">
+          <img className="ir-scene" src={scene("workshop")} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+          <div className="ir-veil" aria-hidden="true" />
+          <div className="ir-inner">
+            <Reveal reduceMotion={reduceMotion}>
+              <p className="ir-mono ir-kicker">{COPY.products.kicker}</p>
+              <h2 id="ir-products-h">{COPY.products.title}</h2>
+            </Reveal>
+            <ol className="ir-thesis">
+              {COPY.products.items.map((item) => (
                 <li key={item.label}>
                   <Reveal reduceMotion={reduceMotion}>
                     <span className="ir-mono ir-label">{item.label}</span>

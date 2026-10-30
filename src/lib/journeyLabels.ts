@@ -8,7 +8,7 @@ import {
 /**
  * One way to name the Journey in a list (WP-4, game_of_being_you.md §14.1.2).
  *
- * Every list of Journey steps (the title screen's Chapter 01, Your House, `/ignite`, the
+ * Every list of Journey steps (the title screen's Chapter 01, Home, `/ignite`, the
  * Quest Board pane) reads `JOURNEY_MAIN` through `journeyStepRows`, so they carry the same
  * labels, the same order and the same «optional» marks. The English strings live in
  * `JOURNEY_SEQUENCE`; the `journeySteps.*` catalog only translates them. Pass no `t` and

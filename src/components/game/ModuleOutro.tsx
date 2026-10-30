@@ -17,7 +17,7 @@ import "./ModuleForm.css";
  * A stable screen, never a toast: it stays until the player presses the one button.
  *
  *   «Done · …» eyebrow · the badge (the result IS the badge: the player's own words in a
- *   frame, and below them the player's decision with its date) · where it lives (Your House)
+ *   frame, and below them the player's decision with its date) · where it lives (Home)
  *   · what opened · the real choice (one plain question, the player's own words) ·
  *   «How much did this resonate, 1–10?» · ONE button, «Back to the village» → /village.
  *
