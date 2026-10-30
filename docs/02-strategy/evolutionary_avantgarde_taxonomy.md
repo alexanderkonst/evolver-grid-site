@@ -387,3 +387,28 @@ Yes, all 36 land, none orphaned. Primary organ per shade (secondary in brackets)
 2. **The market of geniuses is the thinnest organ** (2 shades), Myth second (3). The gift economy is the least populated organ of the avant-garde, the same empty cell the founder-coaching axis test found (stage 3b, identity as offer). That is where FYT's market sits.
 3. **Uniqueness and soul expression is not one organ** but the thread through all seven, as the whole requires.
 4. **Containers and language spaces are not organs.** Hubs, festivals and chats are where organs meet (Village scale); language spaces are a second axis across all seven.
+
+## Living builders of the organs (v0, 2026-10-30)
+
+Organs: 1 Mirror, 2 Myth-initiation, 3 Path, 4 Guild/Circle, 5 Market of geniuses, 6 Village, 7 Federation.
+Draft from Hark's own reading, not yet verified against each person's current work; organ assignments are inferred.
+
+| Who | What they build | Organs present | Missing |
+|---|---|---|---|
+| Balaji Srinivasan | Network School, network state | 3, 4, 5, 6, 7 | Mirror, Myth |
+| Vitalik Buterin | Zuzalu, Ethereum, public goods | 4, 5, 6, 7 | Mirror, Path |
+| Jordan Hall | Game B, civium | 3, 4, 6, 7 | Market of geniuses |
+| Daniel Schmachtenberger | Consilience Project, metacrisis | 4, 7 | All personal organs |
+| Sabine Lichtenfels | Tamera, healing biotopes | 2, 4, 6, 7 | Market of geniuses |
+| Satish Kumar | Schumacher College, Resurgence | 2, 3, 4, 6 | Market, Federation |
+| Otto Scharmer | Theory U, u.lab, Presencing Institute | 1, 3, 4, 7 | Market, Village |
+| Frédéric Laloux | Reinventing Organizations | 4, 5 | Myth, Village |
+| Ken Wilber | Integral theory, AQAL | 1, 3, 7 | Market, Village |
+| Michael Meade | Mosaic, the myth of genius | 1, 2, 3 | Economy, Village |
+| Bill Plotkin | Animas, Soulcraft | 1, 2, 3 | Economy, Village |
+| Charles Eisenstein | Sacred economics, gift | 2, 5, 6 | Institutions |
+| Kate Raworth | Doughnut Economics Lab, cities | 5, 7 | All personal organs |
+
+**Pattern.** The widest builders (Balaji, Vitalik) hold the collective organs (4–7) and lack the personal ones (Mirror, Myth). The deepest on uniqueness (Meade, Plotkin) hold the personal organs (1–3) and lack economy and village. Nobody bridges the two halves around the genius of each person. That bridge is Evolver's cell.
+
+**Stance toward them (Sasha, 2026-10-30, open question).** Seeing the whole creates a pull to tell each builder what their system lacks. Working stance: offer the bridge, not a diagnosis; show how their organ sits in the whole and what it gains by connecting; start with one, through relationship.
