@@ -8944,7 +8944,18 @@
     "share": "Поделиться",
     "copyLink": "Скопировать ссылку",
     "copied": "Скопировано",
-    "copyFailed": "Не удалось скопировать"
+    "copyFailed": "Не удалось скопировать",
+    "shareReveal": "Поделиться этим открытием",
+    "revealTitle": "Мой Главный Талант",
+    "revealText": "Я только что открыл свой Главный Талант: {{title}}.",
+    "revealGuestLinkCopied": "Ссылка скопирована. Поделись с другом.",
+    "overviewIntro": "Вот как я естественно создаю ценность:",
+    "published": {
+      "title": "Посмотри на мой Genius Business",
+      "text": "Я только что создал страницу своего Genius Business!",
+      "linkCopied": "Ссылка скопирована!",
+      "linkCopiedBody": "Поделись ею с миром."
+    }
   },
   "publicProfile": {
     "privateTitle": "Профиль закрыт",

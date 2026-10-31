@@ -8944,7 +8944,18 @@
     "share": "Compartir",
     "copyLink": "Copiar enlace",
     "copied": "Copiado",
-    "copyFailed": "No se pudo copiar"
+    "copyFailed": "No se pudo copiar",
+    "shareReveal": "Comparte esta revelación",
+    "revealTitle": "Mi Talento Principal",
+    "revealText": "Acabo de descubrir mi Talento Principal: {{title}}.",
+    "revealGuestLinkCopied": "Enlace copiado. Compártelo con un amigo.",
+    "overviewIntro": "Así es como creo valor de forma natural:",
+    "published": {
+      "title": "Mira mi Genius Business",
+      "text": "¡Acabo de crear la página de mi Genius Business!",
+      "linkCopied": "¡Enlace copiado!",
+      "linkCopiedBody": "Compártelo con el mundo."
+    }
   },
   "publicProfile": {
     "privateTitle": "Perfil privado",

@@ -8921,7 +8921,18 @@
     "share": "Share",
     "copyLink": "Copy link",
     "copied": "Copied",
-    "copyFailed": "Could not copy"
+    "copyFailed": "Could not copy",
+    "shareReveal": "Share this reveal",
+    "revealTitle": "My Top Talent",
+    "revealText": "I just discovered my Top Talent: {{title}}.",
+    "revealGuestLinkCopied": "Link copied. Share it with a friend.",
+    "overviewIntro": "This is how I naturally create value:",
+    "published": {
+      "title": "Check out my Genius Business",
+      "text": "I just created my Genius Business landing page!",
+      "linkCopied": "Link copied!",
+      "linkCopiedBody": "Share it with the world."
+    }
   },
   "publicProfile": {
     "privateTitle": "Profile Private",

@@ -50,7 +50,9 @@ import {
 import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
 import CardActions from "@/components/sharing/CardActions";
 import ReadNextSectionButton from "@/components/profile/ReadNextSectionButton";
-import { flipToSecondPerson, flipToFirstPerson } from "@/lib/zogProfileVoice";
+import { flipToSecondPerson } from "@/lib/zogProfileVoice";
+import { useShareIdentity } from "@/hooks/useShareIdentity";
+import { buildOverviewShareText, buildOwnRevealCard } from "@/lib/shareSurfaces";
 // Day 119 (Sasha 2026-07-09): inside-layer brand signature (see the
 // matching placement in RevelatoryHero).
 import youLockup from "@/assets/you-be-original-lockup.webp";
@@ -67,39 +69,8 @@ const stripDecorativeGlyphs = (name: string): string =>
  * period — matches the landing register. Day 58 (Sasha 2026-05-02).
  */
 
-/**
- * Share text for the overview hero CardActions. Same shape as
- * RevelatoryHero's buildShareTextFor but drops the threeLenses block
- * (the overview hero doesn't render lenses) and folds in core_pattern
- * if present so the shared text carries the deeper resonance.
- */
-const buildOverviewShareText = (
-    archetype: string,
-    bullseye: string | undefined,
-    corePattern: string | undefined,
-    topThreeTalents: string[] | undefined,
-): string => {
-    let text = `This is how I naturally create value:\n\n`;
-    // Blank line between the archetype name and the one-sentence bullseye so
-    // the two don't run together and read as one confused statement (Sasha
-    // 2026-10-09).
-    text += `${archetype}\n\n`;
-    if (bullseye) text += `${formatBullseyeLine(bullseye)}\n\n`;
-    // Day 61 (Sasha 2026-05-04): include the compact three talents in
-    // the share text so the saved Top Talent page shares the same
-    // shape as the post-assessment reveal. Bullet-separated single
-    // line keeps it scannable in social previews.
-    if (topThreeTalents && topThreeTalents.length > 0) {
-        text += `My three talents: ${topThreeTalents.join(" · ")}.\n\n`;
-    }
-    // The share text is a FIRST-PERSON post the person makes about
-    // themselves, so the core-pattern paragraph reads "I recognize…", not
-    // the on-page second-person "You recognize…". Normalize legacy
-    // third-person via flipToSecondPerson, then flip to first person.
-    if (corePattern) text += `${flipToFirstPerson(flipToSecondPerson(corePattern))}\n\n`;
-    text += `Curious if you see me in this description.\n\n→ FindYourTopTalent.Com`;
-    return text;
-};
+// Share text for the hero CardActions: buildOverviewShareText in @/lib/shareSurfaces
+// (text and own link come from the one builder).
 
 // Light-glass + dark-text palette, per the blueprint.
 // Day 91 (Sasha 2026-06-09): ink tokenized for the dark skins; Lapis
@@ -211,6 +182,7 @@ const parseMonetizationAvenue = (
 
 const ZoneOfGeniusOverview = () => {
     const { t } = useTranslation();
+    const { identity } = useShareIdentity();
     const navigate = useNavigate();
     const heroCardRef = useRef<HTMLElement | null>(null);
     // Day 80 (Sasha 2026-05-23): CROSS-USER LEAK FIX. The previous
@@ -527,6 +499,9 @@ const ZoneOfGeniusOverview = () => {
     }
 
     const vk = appleseedData.vibrationalKey;
+    // Share card slice 3: a player with a link name shares their own page (link from the
+    // one builder); everyone else keeps the text as it was.
+    const overviewOwnCard = buildOwnRevealCard(identity, vk?.name ? stripDecorativeGlyphs(vk.name) : "", window.location.origin);
 
     return (
         <GameShellV2 hideLogo>
@@ -654,12 +629,15 @@ const ZoneOfGeniusOverview = () => {
                             <CardActions
                                 captureRef={heroCardRef as React.RefObject<HTMLElement>}
                                 fileName={`${stripDecorativeGlyphs(vk.name).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "my-top-talent"}-find-your-top-talent`}
-                                shareText={buildOverviewShareText(
-                                    stripDecorativeGlyphs(vk.name),
-                                    appleseedData.bullseyeSentence,
-                                    fullAppleseed?.topTalentProfile?.core_pattern,
-                                    fullAppleseed?.topTalentProfile?.top_three_talents_compact,
-                                )}
+                                shareText={buildOverviewShareText({
+                                    archetype: stripDecorativeGlyphs(vk.name),
+                                    bullseye: appleseedData.bullseyeSentence,
+                                    corePattern: fullAppleseed?.topTalentProfile?.core_pattern,
+                                    topThreeTalents: fullAppleseed?.topTalentProfile?.top_three_talents_compact,
+                                    ownCard: overviewOwnCard,
+                                    t: (key, options) => t(key, options) as string,
+                                })}
+                                shareUrl={overviewOwnCard?.url}
                                 darkMode={false}
                                 captureWidth={480}
                             />

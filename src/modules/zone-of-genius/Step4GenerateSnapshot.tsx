@@ -33,6 +33,8 @@ import { trackCTAClick } from "@/lib/funnelAnalytics";
 import MatchFlowCta from "@/components/landing/MatchFlowCta";
 import EnterVillageButton from "./EnterVillageButton";
 import { useEntryPath } from "@/contexts/EntryPathContext";
+import { useShareIdentity } from "@/hooks/useShareIdentity";
+import { buildRevealShare } from "@/lib/shareSurfaces";
 // Day 61 (Sasha 2026-05-04 21:30): RevelatoryHero imported to unify
 // the assessment-path reveal with the AI-path reveal (single render
 // component, single artifact shape, no drift). Replaces the prior
@@ -64,6 +66,7 @@ const Step4GenerateSnapshot = () => {
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get("return");
   const { path: entryPath } = useEntryPath();
+  const { identity } = useShareIdentity();
   const isMatchPath = entryPath !== "build";
   const {
     selectedTop10TalentIds,
@@ -713,6 +716,30 @@ ${snapshotText}`;
     }
   };
 
+  // Share card slice 3: the signed-in player with a link name shares the one builder's
+  // text and their own page; a guest shares a localized invite to the assessment.
+  const handleShareReveal = () => {
+    const share = buildRevealShare({
+      owner: identity,
+      topTalent: cleanedArchetypeTitle,
+      origin: window.location.origin,
+      inviteUrl: `${localizedOrigin()}/zone-of-genius`,
+      t: (key, options) => t(key, options) as string,
+    });
+    if (typeof navigator !== "undefined" && navigator.share) {
+      navigator
+        .share({
+          title: share.title,
+          text: share.text,
+          ...(share.url ? { url: share.url } : {}),
+        })
+        .catch(() => {});
+    } else {
+      navigator.clipboard?.writeText(share.copyText);
+      toast.success(share.own ? t("shareCard.copied") : t("shareCard.revealGuestLinkCopied"));
+    }
+  };
+
   const handleBack = () => {
     navigate(getZogStepPath(basePath, 3));
   };
@@ -1279,23 +1306,12 @@ ${snapshotText}`;
                       remove them. */}
                   <button
                     type="button"
-                    onClick={() => {
-                      if (typeof navigator !== "undefined" && navigator.share) {
-                        navigator.share({
-                          title: "My Top Talent",
-                          text: `I just discovered my Top Talent: ${cleanedArchetypeTitle}.`,
-                          url: `${localizedOrigin()}/zone-of-genius`,
-                        }).catch(() => {});
-                      } else {
-                        navigator.clipboard?.writeText(`${localizedOrigin()}/zone-of-genius`);
-                        toast.success("Link copied — share with a friend.");
-                      }
-                    }}
+                    onClick={handleShareReveal}
                     className="inline-flex items-center gap-1.5 transition-colors hover:underline"
                     style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}
                   >
                     <Share2 className="w-3.5 h-3.5" />
-                    <span>Share this reveal</span>
+                    <span>{t("shareCard.shareReveal")}</span>
                   </button>
                   {/* Day 61 (Sasha 2026-05-04 23:10): Back + Start Over
                       buttons removed — redundant. The user can reload
