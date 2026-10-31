@@ -6,6 +6,9 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Send } from "lucide-react";
 import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
+import { ACTION_REVEAL, type YourAiButton } from "@/data/yourAiCatalog";
+import { supabase } from "@/integrations/supabase/client";
+import { getCachedZogSnapshot } from "@/lib/zogSnapshotCache";
 import {
   askYourAi,
   countAnswers,
@@ -13,6 +16,7 @@ import {
   SUGGESTED_ANSWERS,
   type DialogueMessage,
 } from "./yourAiDialogue";
+import { buildPlayerCard, readTraces, writeTrace } from "./yourAiCard";
 
 type Props = {
   messages: DialogueMessage[];
@@ -48,6 +52,8 @@ const YourAiDialogue = ({
   const [notesOpen, setNotesOpen] = useState(Boolean(ownAiNotes));
   const [notesDraft, setNotesDraft] = useState(ownAiNotes);
   const endRef = useRef<HTMLDivElement>(null);
+  // Signed-in player id, if any. Scopes traces and the saved-snapshot read; guests use "guest".
+  const ownerRef = useRef<string | null>(null);
   const answers = countAnswers(messages);
   const canReveal = answers >= MIN_ANSWERS_TO_REVEAL || (Boolean(ownAiNotes.trim()) && answers >= 1);
   const revealRecommended = ready || answers >= SUGGESTED_ANSWERS;
@@ -56,12 +62,34 @@ const YourAiDialogue = ({
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, [messages.length, thinking]);
 
+  useEffect(() => {
+    let cancelled = false;
+    supabase.auth
+      .getSession()
+      .then(({ data }) => {
+        if (!cancelled) ownerRef.current = data.session?.user?.id ?? null;
+      })
+      .catch(() => {
+        /* guest: no owner */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  /** Player card for the turn prompt: saved ZoG snapshot (session cache) + local traces. */
+  const currentCard = () => {
+    const owner = ownerRef.current;
+    const snapshot = owner ? getCachedZogSnapshot(owner) : null;
+    return buildPlayerCard(snapshot, readTraces(owner));
+  };
+
   const runTurn = async (history: DialogueMessage[], notes: string) => {
     setThinking(true);
     setTurnError(false);
     try {
-      const turn = await askYourAi(history, notes, i18n.resolvedLanguage);
-      setMessages([...history, { role: "ai", text: turn.reply }]);
+      const turn = await askYourAi(history, notes, i18n.resolvedLanguage, currentCard());
+      setMessages([...history, { role: "ai", text: turn.reply, buttons: turn.buttons }]);
       if (turn.ready) setReady(true);
     } catch (err) {
       console.error("[YourAiDialogue] turn failed", err);
@@ -91,7 +119,39 @@ const YourAiDialogue = ({
     if (notes && !thinking) void runTurn(messages, notes);
   };
 
-  const lastIsPlayer = messages.length > 0 && messages[messages.length - 1].role === "player";
+  const lastMessage = messages.length > 0 ? messages[messages.length - 1] : undefined;
+  const lastIsPlayer = lastMessage?.role === "player";
+
+  // Buttons first: the latest AI message's validated buttons. The reveal stays locked until
+  // there is enough material, whatever the model proposes. First = the one next move.
+  const offered: YourAiButton[] =
+    !thinking && lastMessage?.role === "ai"
+      ? (lastMessage.buttons ?? []).filter((b) => b.id !== ACTION_REVEAL || canReveal)
+      : [];
+
+  const recordTap = (button: YourAiButton) => {
+    writeTrace({ kind: button.kind, payload_id: button.id, outcome: "tapped" }, ownerRef.current);
+  };
+
+  const tapAction = (button: YourAiButton) => {
+    recordTap(button);
+    if (button.id === ACTION_REVEAL) onReveal();
+  };
+
+  const buttonClass =
+    "inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2 text-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-white/40";
+  const buttonStyle = (primary: boolean) =>
+    primary
+      ? {
+          fontWeight: 600,
+          color: "var(--skin-cta-text, rgba(245,245,250,0.98))",
+          backgroundImage: "var(--skin-cta-bg, linear-gradient(135deg, rgba(10,22,40,0.82) 0%, rgba(26,30,58,0.72) 100%))",
+        }
+      : {
+          color: "var(--skin-text-primary, #0a1628)",
+          backgroundColor: "rgba(255,255,255,0.55)",
+          border: "1px solid var(--skin-hairline, rgba(26,30,58,0.18))",
+        };
 
   return (
     <div className="space-y-4 animate-in fade-in duration-500">
@@ -171,6 +231,38 @@ const YourAiDialogue = ({
         )}
         <div ref={endRef} />
       </div>
+
+      {offered.length > 0 && (
+        <div className="flex flex-wrap items-center justify-center gap-2" role="group" aria-label="Suggested next steps">
+          {offered.map((b, i) => {
+            const primary = i === 0;
+            const content = (
+              <>
+                <span>{b.label}</span>
+                {primary && <ArrowRight aria-hidden="true" className="w-3.5 h-3.5" />}
+              </>
+            );
+            // Links open in a new tab so the conversation (held in the parent) survives.
+            return b.to ? (
+              <a
+                key={b.id}
+                href={b.to}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => recordTap(b)}
+                className={buttonClass}
+                style={buttonStyle(primary)}
+              >
+                {content}
+              </a>
+            ) : (
+              <button key={b.id} type="button" onClick={() => tapAction(b)} className={buttonClass} style={buttonStyle(primary)}>
+                {content}
+              </button>
+            );
+          })}
+        </div>
+      )}
 
       <div className="flex items-end gap-2">
         <textarea
