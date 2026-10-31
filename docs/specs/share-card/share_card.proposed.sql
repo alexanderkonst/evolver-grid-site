@@ -5,6 +5,14 @@
 -- (b) player_reflections: a visitor's answer to the card's question, readable only by the player.
 -- The UI degrades while (a) and (b) are missing: the public card falls back to the Top Talent archetype and shows no answer buttons.
 
+-- REVIEW 2026-10-30 (Hark): part (b) is purely additive (new table, RLS, one function) and is all the
+-- friend-response return loop needs; the UI turns it on by itself once the table exists
+-- (usePlayerReflections probe). Apply (b) ALONE first. Part (a) drops and recreates an existing
+-- public function (brief outage window, body must be copied by hand), so it is NOT additive:
+-- apply it separately, in one transaction, after (b) is verified.
+-- When (b) lands as a real migration, update usePlayerReflections.test.tsx ("no migration mentions
+-- player_reflections") in the same change.
+
 -- (a) Add gift_line to get_public_profile_by_username.
 -- Return type changes, so the function is dropped and recreated with the SAME body as
 -- 20260722224112_*.sql plus one column. Copy that body verbatim when applying; only the
@@ -52,11 +60,16 @@ create policy player_reflections_owner_select on public.player_reflections
 create policy player_reflections_owner_update on public.player_reflections
   for update using (player_user_id = auth.uid()) with check (player_user_id = auth.uid());
 
+-- Defense in depth: no direct insert/delete for clients; the owner may only change read_at.
+revoke insert, update, delete on public.player_reflections from anon, authenticated;
+revoke select on public.player_reflections from anon;
+grant update (read_at) on public.player_reflections to authenticated;
+
 -- Visitors (guest or signed in) write only through this function, which checks the page is public.
 create or replace function public.leave_reflection(
   p_username text, p_answer text, p_line text, p_visitor_name text
 ) returns void
-language plpgsql security definer set search_path = public as $$
+language plpgsql security definer set search_path = public, pg_temp as $$
 declare
   v_player uuid;
   v_name text;
@@ -76,6 +89,9 @@ begin
   end if;
   v_name := coalesce(v_name, nullif(btrim(p_visitor_name), ''));
   if v_name is null then raise exception 'reflection_needs_name' using errcode = 'P0001'; end if;
+  if p_answer is null or p_answer not in ('yes', 'partly', 'differently') then
+    raise exception 'reflection_bad_answer' using errcode = 'P0001';
+  end if;
 
   -- One answer per signed-in visitor per player per day (guests: client guard + rate limit later).
   if auth.uid() is not null and exists (
