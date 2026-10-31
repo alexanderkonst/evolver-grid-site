@@ -13,6 +13,7 @@
  */
 
 import type { PlaceInput, PlaceRule } from "@/lib/placeState";
+import { NEW_GAME_PATH } from "@/lib/firstVisit";
 
 export type VillagePlaceKey =
   | "reception"
@@ -79,7 +80,8 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     name: "Reception",
     line: "Welcome, guest. Discover your uniqueness.",
     lineReturning: "Welcome back. Discover your uniqueness.",
-    to: "/zone-of-genius/entry",
+    // The door of the test: straight to the first question (issue #281), same as NEW GAME.
+    to: NEW_GAME_PATH,
     rule: { steps: ["find-top-talent"] },
     // The scene file is still named gate.webp; kept until a Reception scene is made.
     image: "/game/village/gate.webp",

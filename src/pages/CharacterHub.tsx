@@ -31,6 +31,7 @@ import { DESIRED_OUTCOMES } from "@/modules/mission-discovery/data/outcomes";
 import { KEY_CHALLENGES } from "@/modules/mission-discovery/data/challenges";
 import { FOCUS_AREAS } from "@/modules/mission-discovery/data/focusAreas";
 import { PILLARS } from "@/modules/mission-discovery/data/pillars";
+import { NEW_GAME_PATH } from "@/lib/firstVisit";
 
 const CharacterHub = () => {
     const navigate = useNavigate();
@@ -394,7 +395,7 @@ const CharacterHub = () => {
                                 <Button
                                     size="sm"
                                     className="bg-[#8460ea] hover:bg-[#7050da] text-white"
-                                    onClick={() => navigate("/zone-of-genius/entry")}
+                                    onClick={() => navigate(NEW_GAME_PATH)}
                                 >
                                     {t("characterHub.zogStart")}
                                 </Button>
@@ -617,7 +618,7 @@ const CharacterHub = () => {
                                 isLocked={!zogSnapshot}
                                 unlockHint={t("characterHub.tileStartHint")}
                                 size="sm"
-                                onClick={() => navigate(zogSnapshot ? "/zone-of-genius" : "/zone-of-genius/entry")}
+                                onClick={() => navigate(zogSnapshot ? "/zone-of-genius" : NEW_GAME_PATH)}
                             />
 
                             {/* Quality of Life */}

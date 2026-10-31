@@ -35,6 +35,7 @@
  */
 
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { NEW_GAME_PATH } from "@/lib/firstVisit";
 
 export type JourneyItemId =
     | "find-top-talent"
@@ -129,7 +130,8 @@ export const JOURNEY_SEQUENCE: JourneyItem[] = [
         kind: "main",
         label: "Start by finding your top talent",
         path: "/",
-        enter: "/zone-of-genius/entry",
+        // Straight to the first question (issue #281): no module intro or route choice on the way.
+        enter: NEW_GAME_PATH,
         result: "you'll see your top talent and keep your character.",
         doneWhen: "your top talent shows on your Home.",
         completionHome: "/game/me/zone-of-genius",

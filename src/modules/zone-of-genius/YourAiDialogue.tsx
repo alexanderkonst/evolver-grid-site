@@ -30,6 +30,8 @@ type Props = {
   revealError: string | null;
   onGuided: () => void;
   onOwnAiPrompt: () => void;
+  /** Drop the saved answers and begin again (issue #281). Two taps, so one slip never wipes them. */
+  onStartOver?: () => void;
 };
 
 const HALO = "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95))";
@@ -45,11 +47,13 @@ const YourAiDialogue = ({
   revealError,
   onGuided,
   onOwnAiPrompt,
+  onStartOver,
 }: Props) => {
   const { t, i18n } = useTranslation();
   const [draft, setDraft] = useState("");
   const [thinking, setThinking] = useState(false);
   const [turnError, setTurnError] = useState(false);
+  const [confirmStartOver, setConfirmStartOver] = useState(false);
   const [notesOpen, setNotesOpen] = useState(Boolean(ownAiNotes));
   const [notesDraft, setNotesDraft] = useState(ownAiNotes);
   // Issue #270: the side doors sit in a "More options" expander; saved notes keep it open.
@@ -435,6 +439,28 @@ const YourAiDialogue = ({
             </div>
           )}
         </div>
+
+        {onStartOver && answers > 0 && (
+          <button
+            type="button"
+            disabled={thinking}
+            onClick={() => {
+              if (confirmStartOver) {
+                setConfirmStartOver(false);
+                onStartOver();
+              } else {
+                setConfirmStartOver(true);
+              }
+            }}
+            onBlur={() => setConfirmStartOver(false)}
+            className="inline-flex min-h-11 items-center text-[12px] underline underline-offset-4 hover:opacity-80 disabled:opacity-40"
+            style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))", textShadow: HALO }}
+          >
+            {confirmStartOver
+              ? t("zogEntry.yourAiStartOverConfirm", { defaultValue: "Tap again to erase your answers and start over" })
+              : t("zogEntry.yourAiStartOver", { defaultValue: "Start over" })}
+          </button>
+        )}
 
         {/* Quiet footer below the spine: Deep reading is visible but locked (no payment path), then the credits copy. */}
         <div className="w-full pt-3 space-y-3 text-center">

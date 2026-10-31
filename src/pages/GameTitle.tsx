@@ -3,7 +3,14 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { FONTS_HREF } from "@/lib/gameFonts";
-import { NEW_GAME_PATH, readGuestTalentName, shouldShowWelcomeBack, shouldShowWordlessIntro } from "@/lib/firstVisit";
+import {
+  NEW_GAME_FRESH_PATH,
+  NEW_GAME_PATH,
+  readGuestTalentName,
+  shouldShowWelcomeBack,
+  shouldShowWordlessIntro,
+} from "@/lib/firstVisit";
+import { hasUnfinishedDialogue } from "@/lib/zogDialogueDraft";
 import { tr } from "@/lib/villageCopy";
 import WordlessIntro from "@/components/game/WordlessIntro";
 import { journeyStepRows } from "@/lib/journeyLabels";
@@ -265,14 +272,38 @@ const TitleScreen = () => {
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   // A guest who kept a result on this device is welcomed back instead of meeting the cold menu.
   const [talent] = useState(() => (shouldShowWelcomeBack() ? readGuestTalentName() : null));
-  const continueRef = useRef<HTMLAnchorElement>(null);
+  // Issue #281: a test left unfinished on this device. Continue goes back into that dialogue.
+  const [unfinished] = useState(() => hasUnfinishedDialogue());
 
+  // The first item is what PRESS START and a bare Enter choose: Continue for a returning player
+  // (the unfinished test, else the village), NEW GAME for everyone else. A returning player
+  // keeps a visible way to begin again and to sign in (issue #281).
+  const newGame: MenuItem = {
+    key: "new",
+    label: "New Game",
+    hint: "Discover your Uniqueness",
+    // With a saved dialogue, NEW GAME means begin again; Continue is the way back into it.
+    to: unfinished ? NEW_GAME_FRESH_PATH : NEW_GAME_PATH,
+  };
+  const loadGame: MenuItem = { key: "load", label: "Load Game", hint: "Continue your journey", to: loadTo };
   const items: MenuItem[] = [
-    { key: "new", label: "New Game", hint: "Discover your Uniqueness", to: NEW_GAME_PATH },
-    { key: "load", label: "Load Game", hint: "Continue your journey", to: loadTo },
-    { key: "tutorial", label: "Tutorial", hint: "Free course · Activate Your Dormant Potential", to: "/grow/activate-your-dormant-potential" },
-    { key: "multi", label: "Multiplayer", hint: "Mastermind & co-creation", to: "/build/mastermind" },
-    { key: "about", label: "About", hint: "The story · Investor Room", to: "#about" },
+    ...(unfinished
+      ? [{ key: "continue", label: tr(t, "village.continue", "Continue"), hint: "Pick up your unfinished test", to: NEW_GAME_PATH }]
+      : talent
+        ? [{ key: "continue", label: tr(t, "village.continue", "Continue"), hint: "Back to your village", to: "/village" }]
+        : []),
+    ...(unfinished && talent
+      ? [{ key: "village", label: "Village", hint: "Back to your village", to: "/village" }]
+      : []),
+    newGame,
+    loadGame,
+    ...(talent
+      ? []
+      : [
+          { key: "tutorial", label: "Tutorial", hint: "Free course · Activate Your Dormant Potential", to: "/grow/activate-your-dormant-potential" },
+          { key: "multi", label: "Multiplayer", hint: "Mastermind & co-creation", to: "/build/mastermind" },
+          { key: "about", label: "About", hint: "The story · Investor Room", to: "#about" },
+        ]),
   ];
 
   // Fonts + tab title, scoped to this page so index.html (and every other
@@ -309,26 +340,18 @@ const TitleScreen = () => {
       ?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
   }, [reduceMotion]);
 
+  const itemCount = items.length;
   const select = useCallback((i: number, focus = false) => {
-    const next = (i + 5) % 5;
+    const next = (i + itemCount) % itemCount;
     setActive(next);
     if (focus) linkRefs.current[next]?.focus({ preventScroll: true });
-  }, []);
+  }, [itemCount]);
 
   // Keyboard: Up/Down move the cursor, Enter activates. PRESS START hides on
   // the first input of any kind.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (window.scrollY > window.innerHeight * 0.6) return;
-      if (talent) {
-        // One choice: Enter continues, nothing to move between.
-        if (e.key === "Enter" && !document.activeElement?.closest(".gt-menu")) {
-          e.preventDefault();
-          setStarted(true);
-          continueRef.current?.click();
-        }
-        return;
-      }
       if (e.key === "ArrowDown" || e.key === "ArrowUp") {
         e.preventDefault();
         setStarted(true);
@@ -352,7 +375,14 @@ const TitleScreen = () => {
     const onScroll = () => {
       if (window.scrollY > 8) setStarted(true);
     };
-    const onPointer = () => setStarted(true);
+    // Issue #281: a press ON the PRESS START button must not hide it. Hiding sets
+    // pointer-events: none before the click lands, so the click never fired (PRESS START "did
+    // nothing"), and whatever sat under the pointer then took a hover (the cursor jumped to
+    // MULTIPLAYER). The button's own onClick hides it and starts.
+    const onPointer = (e: PointerEvent) => {
+      if (e.target instanceof Element && e.target.closest(".gt-start")) return;
+      setStarted(true);
+    };
     window.addEventListener("keydown", onKey);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("pointerdown", onPointer);
@@ -361,7 +391,7 @@ const TitleScreen = () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("pointerdown", onPointer);
     };
-  }, [active, select, talent]);
+  }, [active, select]);
 
   return (
     <div className="gt-root">
@@ -380,23 +410,15 @@ const TitleScreen = () => {
             <h1>The Game of Being&nbsp;You</h1>
             <p className="gt-sub">Self-Discovery · Growth · Quality of Life · Uniqueness · Tribe · Village · Collective</p>
             </header>
-            {talent ? (
-              <nav className="gt-menu-wrap" aria-label={tr(t, "village.welcomeBack", "Welcome back")}>
-                <p className="gt-tagline gt-back">{tr(t, "village.welcomeBack", "Welcome back")}</p>
-                <p className="gt-tagline gt-back">
-                  {String(t("village.yourTalent", { name: talent, defaultValue: "Your top talent: {{name}}" }))}
-                </p>
-                <ul className="gt-menu">
-                  <li className="is-active">
-                    <Link ref={continueRef} to="/village">
-                      <span className="gt-cur" aria-hidden="true">▸</span>
-                      {tr(t, "village.continue", "Continue")}
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-            ) : (
-            <nav className="gt-menu-wrap" aria-label="Game menu">
+            <nav className="gt-menu-wrap" aria-label={talent ? tr(t, "village.welcomeBack", "Welcome back") : "Game menu"}>
+              {talent ? (
+                <>
+                  <p className="gt-tagline gt-back">{tr(t, "village.welcomeBack", "Welcome back")}</p>
+                  <p className="gt-tagline gt-back">
+                    {String(t("village.yourTalent", { name: talent, defaultValue: "Your top talent: {{name}}" }))}
+                  </p>
+                </>
+              ) : null}
               <ul className="gt-menu">
                 {items.map((item, i) => {
                   const inner = (
@@ -441,10 +463,10 @@ const TitleScreen = () => {
               <hr className="gt-rule" />
               <p className="gt-tagline">Bring the full force of who you are to what you build.</p>
             </nav>
-            )}
           </div>
           {/* Issue #270: PRESS START is a real control. It does what Enter does on the first
-              menu item (NEW GAME, or Continue for a returning player). */}
+              menu item (NEW GAME, or Continue for a returning player). Issue #281: the menu
+              stays visible for a returning player too (Continue · New Game · Load Game). */}
           <button
             type="button"
             className={`gt-start${started ? " is-gone" : ""}`}
@@ -452,7 +474,7 @@ const TitleScreen = () => {
             aria-hidden={started || undefined}
             onClick={() => {
               setStarted(true);
-              (talent ? continueRef.current : linkRefs.current[0])?.click();
+              linkRefs.current[0]?.click();
             }}
           >
             PRESS START

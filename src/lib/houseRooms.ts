@@ -1,4 +1,5 @@
 import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
+import { NEW_GAME_PATH } from "@/lib/firstVisit";
 import { moduleClosedLine, moduleIntroState } from "@/data/journeyModules";
 import {
   closedLine,
@@ -48,7 +49,7 @@ const ROOMS: RoomDef[] = [
   {
     id: "talent",
     step: "find-top-talent",
-    to: { start: "/zone-of-genius/entry", again: "/zone-of-genius/entry" },
+    to: { start: NEW_GAME_PATH, again: "/zone-of-genius/entry" },
   },
   {
     id: "mission",

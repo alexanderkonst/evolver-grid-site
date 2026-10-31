@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
+import { NEW_GAME_PATH } from "@/lib/firstVisit";
 import { ORACLE_READING, VILLAGE_PLACES, getVillagePlace, type VillagePlaceKey } from "@/data/villagePlaces";
 import { GROWTH_STEPS, growthStepClosedLine, growthStepPlace, growthStepState } from "@/modules/library/growthSteps";
 import { PlaceState } from "@/components/game/PlaceState";
@@ -309,7 +310,7 @@ describe("nextMove: one next move (§14.6)", () => {
     expect(m?.kind).toBe("step");
     expect(m?.place.key).toBe("reception");
     expect(m?.step).toBe("find-top-talent");
-    expect(m?.to).toBe("/zone-of-genius/entry");
+    expect(m?.to).toBe(NEW_GAME_PATH);
     expect(m?.result).toBeTruthy();
   });
 

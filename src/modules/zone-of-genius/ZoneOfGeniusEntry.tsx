@@ -72,7 +72,8 @@ import Hls from "hls.js";
 import ModuleIntro from "@/components/game/ModuleIntro";
 import ModuleOutro from "@/components/game/ModuleOutro";
 import { getJourneyModule } from "@/data/journeyModules";
-import { wantsFirstQuestion } from "@/lib/firstVisit";
+import { wantsFirstQuestion, wantsFreshStart } from "@/lib/firstVisit";
+import { clearDialogueDraft, readDialogueDraft, writeDialogueDraft } from "@/lib/zogDialogueDraft";
 
 // WP-5: this module in the module form (Intro → one button → the flow → Outro).
 const ZOG_MODULE = getJourneyModule("find-top-talent")!;
@@ -161,7 +162,20 @@ const ZoneOfGeniusEntry = () => {
     // NEW GAME / splash ENTER (`?begin=1`): open on the first question itself, the Your AI
     // dialogue, skipping the module intro and the route choice. The other doors stay one
     // link away inside the dialogue (guided test, own AI). See NEW_GAME_PATH.
-    const beginAtFirstQuestion = wantsFirstQuestion(searchParams);
+    // Issue #281: a dialogue left unfinished on this device resumes where it stopped, by any
+    // door. Onboarding (`/start`), a redo, a token reveal and `?fresh=1` (NEW GAME with a draft
+    // waiting) never resume it; the last two also drop it.
+    const [resumeDraft] = useState(() => {
+        if (returnPath.includes("/start") || searchParams.get("redo") === "true" || searchParams.has("result")) {
+            return null;
+        }
+        if (wantsFreshStart(searchParams)) {
+            clearDialogueDraft();
+            return null;
+        }
+        return readDialogueDraft();
+    });
+    const beginAtFirstQuestion = wantsFirstQuestion(searchParams) || resumeDraft !== null;
     const [step, setStep] = useState<Step>(beginAtFirstQuestion ? "your-ai" : "choice-route");
     // `aiResponse` is the last SUBMITTED paste (used by the save paths). The
     // paste box itself is uncontrolled and read on submit, so typing or
@@ -175,10 +189,16 @@ const ZoneOfGeniusEntry = () => {
     // Your AI dialogue (Sasha 2026-10-30): the default door. Kept here so a failed
     // reveal returns to the conversation intact.
     const [dialogue, setDialogue] = useState<DialogueMessage[]>(() =>
-        beginAtFirstQuestion ? [{ role: "ai", text: t('zogEntry.yourAiOpening') }] : [],
+        resumeDraft
+            ? (resumeDraft.messages as DialogueMessage[])
+            : beginAtFirstQuestion
+              ? [{ role: "ai", text: t('zogEntry.yourAiOpening') }]
+              : [],
     );
-    const [ownAiNotes, setOwnAiNotes] = useState("");
-    const [dialogueReady, setDialogueReady] = useState(false);
+    const [ownAiNotes, setOwnAiNotes] = useState(resumeDraft?.ownAiNotes ?? "");
+    const [dialogueReady, setDialogueReady] = useState(resumeDraft?.ready ?? false);
+    // Bumped by «Start over» so the dialogue remounts with clean local state (draft, notes box).
+    const [dialogueKey, setDialogueKey] = useState(0);
     const [dialogueRevealError, setDialogueRevealError] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     // Own-AI reveal failure (timeout / AI error): shown on the paste step with Retry.
@@ -218,6 +238,19 @@ const ZoneOfGeniusEntry = () => {
     useEffect(() => {
         trackPageView('zog_entry');
     }, []);
+
+    // Issue #281: keep the dialogue on this device as it grows, so a reload or a visit elsewhere
+    // does not lose the answers. Only while the player is in the dialogue; the draft is cleared
+    // when the reveal is made (handleRevealFromDialogue) or on «Start over».
+    useEffect(() => {
+        if (step === "appleseed-result" || step === "excalibur-result") {
+            // A reading is on screen (made now, or loaded from the save): no draft left to resume.
+            clearDialogueDraft();
+            return;
+        }
+        if (step !== "your-ai") return;
+        writeDialogueDraft(dialogue, ownAiNotes, dialogueReady);
+    }, [step, dialogue, ownAiNotes, dialogueReady]);
 
     // Auto-scroll to step content when step changes + track funnel transitions
     useEffect(() => {
@@ -394,6 +427,7 @@ const ZoneOfGeniusEntry = () => {
                 localStorage.removeItem("guest_excalibur_data");
                 localStorage.removeItem("guest_appleseed_data");
                 localStorage.removeItem("guest_ai_response");
+                clearDialogueDraft();
                 return; // Start fresh from route-selector
             }
 
@@ -593,6 +627,7 @@ const ZoneOfGeniusEntry = () => {
         if (typeof window !== "undefined") {
             clearGuestBuffers(window.localStorage);
         }
+        clearDialogueDraft();
         const fresh = freshRetakeState();
         hasSavedAppleseed.current = fresh.hasSavedAppleseed;
         setAppleseed(fresh.appleseed);
@@ -644,6 +679,16 @@ const ZoneOfGeniusEntry = () => {
         setStep("your-ai");
     };
 
+    // «Start over» in the dialogue: drop the saved answers and open on the first question again.
+    const handleDialogueStartOver = () => {
+        clearDialogueDraft();
+        setDialogue([{ role: "ai", text: t('zogEntry.yourAiOpening') }]);
+        setOwnAiNotes("");
+        setDialogueReady(false);
+        setDialogueRevealError(null);
+        setDialogueKey((k) => k + 1);
+    };
+
     // Your AI door: our AI answers the unchanged reveal prompt from the conversation,
     // then the existing reveal runs on it (same path as a pasted own-AI answer).
     const handleRevealFromDialogue = async () => {
@@ -658,6 +703,8 @@ const ZoneOfGeniusEntry = () => {
             if (!isAppleseedReadable(result)) throw new UnreadableResponseError();
             setAppleseed(result);
             saveAppleseedToLocalStorage(result, signal);
+            // The reading now lives in its own save: the unfinished-dialogue draft is done (issue #281).
+            clearDialogueDraft();
             const { data: { session } } = await supabase.auth.getSession();
             setIsGuest(!session?.user);
             setStep("appleseed-result");
@@ -1330,6 +1377,8 @@ const ZoneOfGeniusEntry = () => {
                 {step === "your-ai" && (
                     <div ref={stepContentRef}>
                         <YourAiDialogue
+                            key={dialogueKey}
+                            onStartOver={handleDialogueStartOver}
                             messages={dialogue}
                             setMessages={setDialogue}
                             ownAiNotes={ownAiNotes}

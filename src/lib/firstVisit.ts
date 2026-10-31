@@ -21,9 +21,21 @@ export const INTRO_SEEN_KEY = "fytt:wordless-intro-seen:v1";
 export const BEGIN_PARAM = "begin";
 export const NEW_GAME_PATH = `/zone-of-genius/entry?${BEGIN_PARAM}=1`;
 
+/**
+ * NEW GAME on the title, when an unfinished dialogue waits on the device: the same door, but
+ * the player chose to begin again, so the saved dialogue is dropped (Continue resumes it).
+ */
+export const FRESH_PARAM = "fresh";
+export const NEW_GAME_FRESH_PATH = `${NEW_GAME_PATH}&${FRESH_PARAM}=1`;
+
 /** True when the URL asks the test to open on its first question. Onboarding (`/start`) keeps its own flow. */
 export function wantsFirstQuestion(search: URLSearchParams): boolean {
   return search.get(BEGIN_PARAM) === "1" && !(search.get("return") ?? "").includes("/start");
+}
+
+/** True when the URL asks to drop the saved dialogue and begin again. */
+export function wantsFreshStart(search: URLSearchParams): boolean {
+  return search.get(FRESH_PARAM) === "1";
 }
 
 /**

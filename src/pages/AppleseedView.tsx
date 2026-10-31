@@ -13,6 +13,7 @@ import { loadSavedData } from "@/modules/zone-of-genius/saveToDatabase";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { saveResonanceRating } from "@/lib/saveResonanceRating";
 import BackButton from "@/components/BackButton";
+import { NEW_GAME_PATH } from "@/lib/firstVisit";
 
 const AppleseedView = () => {
   const { t } = useTranslation();
@@ -58,7 +59,7 @@ const AppleseedView = () => {
             {t('appleseedView.empty.body')}
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <Button onClick={() => navigate("/zone-of-genius/entry")}>
+            <Button onClick={() => navigate(NEW_GAME_PATH)}>
               {t('appleseedView.empty.cta')}
             </Button>
             <BackButton to="/game/me" />

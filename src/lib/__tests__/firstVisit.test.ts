@@ -2,6 +2,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import {
   INTRO_SEEN_KEY,
+  NEW_GAME_FRESH_PATH,
   NEW_GAME_PATH,
   hasGuestTopTalentResult,
   hasSavedGame,
@@ -11,6 +12,7 @@ import {
   shouldShowWelcomeBack,
   shouldShowWordlessIntro,
   wantsFirstQuestion,
+  wantsFreshStart,
 } from "@/lib/firstVisit";
 
 describe("firstVisit", () => {
@@ -102,6 +104,14 @@ describe("firstVisit", () => {
       const [path, qs] = NEW_GAME_PATH.split("?");
       expect(path).toBe("/zone-of-genius/entry");
       expect(wantsFirstQuestion(params(qs))).toBe(true);
+    });
+
+    it("NEW GAME with a saved dialogue is the same door plus the fresh flag", () => {
+      const [path, qs] = NEW_GAME_FRESH_PATH.split("?");
+      expect(path).toBe("/zone-of-genius/entry");
+      expect(wantsFirstQuestion(params(qs))).toBe(true);
+      expect(wantsFreshStart(params(qs))).toBe(true);
+      expect(wantsFreshStart(params(NEW_GAME_PATH.split("?")[1]))).toBe(false);
     });
 
     it("is off without the flag, and for onboarding", () => {

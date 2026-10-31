@@ -15,8 +15,8 @@ type TopTalentAuthGateProps = {
   title?: string;
   /**
    * WP-7b: render as a card directly under the reveal instead of a full-page
-   * wall. Adds the one-line reason and the quiet «Not now, enter the village»
-   * link. Save logic is identical in both modes.
+   * wall. Adds the one-line reason and the quiet «Enter the village»
+   * link (its own choice, apart from saving). Save logic is identical in both modes.
    */
   inline?: boolean;
   /**
@@ -327,7 +327,7 @@ const TopTalentAuthGate = ({
                 opacity: 0.9,
               }}
             >
-              {t("zogEntry.notNowEnterVillage")}
+              {t("zogEntry.enterVillage")}
             </Link>
           </p>
         )}
