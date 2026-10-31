@@ -1,7 +1,13 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
+import { useShareIdentity } from "@/hooks/useShareIdentity";
+import { PROFILE_SETTINGS_PATH } from "@/hooks/useVillageParticles";
 import { stallParts, STALL_SHELF_MAX } from "@/lib/myStall";
+import { buildShareCard } from "@/lib/shareCard";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
+import ShareCard from "./ShareCard";
 import "./MyStall.css";
 
 /**
@@ -16,12 +22,48 @@ import "./MyStall.css";
 const MyStall = () => {
     const { t } = useTranslation();
     const sheet = useCharacterSheet();
+    const { identity, isLoading: identityLoading } = useShareIdentity();
+    const [shareOpen, setShareOpen] = useState(false);
 
     // A guest never reaches the Market (RequireAuth), so the stall draws for every player,
     // whatever the offer state, and even if the sheet read failed (an empty sheet is valid).
     if (sheet.isLoading) return null;
 
     const stall = stallParts(sheet);
+
+    // Share card entry: one action, or one line saying what is missing. Never both.
+    const card = buildShareCard({
+        name: identity?.name || sheet.firstName,
+        username: identity?.username,
+        uniquenessPhrase: sheet.uniquenessPhrase,
+        tagline: sheet.tagline,
+        topTalent: sheet.topTalent,
+        origin: window.location.origin,
+    });
+    const shareEntry = (() => {
+        if (identityLoading) return null;
+        if (!identity?.username?.trim()) {
+            return (
+                <p className="ms__share">
+                    <Link to={PROFILE_SETTINGS_PATH}>{t("shareCard.pickLinkName")}</Link>
+                </p>
+            );
+        }
+        if (!card) {
+            return (
+                <p className="ms__share">
+                    <Link to="/ubb">{t("shareCard.needsGift")}</Link>
+                </p>
+            );
+        }
+        return (
+            <p className="ms__share">
+                <button type="button" className="ms__share-btn" onClick={() => setShareOpen(true)}>
+                    {t("shareCard.shareStall")}
+                </button>
+            </p>
+        );
+    })();
 
     return (
         <section className="ms" data-open={stall.open ? "true" : "false"} aria-label={t("market.stall.label")}>
@@ -97,6 +139,18 @@ const MyStall = () => {
                     aria-label={stall.lampLit ? t("market.stall.lampLit") : t("market.stall.lampUnlit")}
                 />
             </div>
+
+            {shareEntry}
+
+            {card && (
+                <Dialog open={shareOpen} onOpenChange={setShareOpen}>
+                    <DialogContent className="max-w-[min(94vw,460px)] p-3 sm:p-5">
+                        <DialogTitle className="sr-only">{t("shareCard.shareStall")}</DialogTitle>
+                        <DialogDescription className="sr-only">{card.shareText}</DialogDescription>
+                        <ShareCard variant="owner" card={card} name={card.name} avatarUrl={identity?.avatarUrl} gift={card.gift} />
+                    </DialogContent>
+                </Dialog>
+            )}
         </section>
     );
 };

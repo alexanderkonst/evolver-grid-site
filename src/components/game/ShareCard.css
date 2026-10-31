@@ -1,0 +1,146 @@
+/*
+ * ShareCard (Share card, slice 1): the player's stall turned outward.
+ * Design: docs/02-strategy/game_of_being_you.md §14.12a, docs/templates/module-form.md §11.
+ *
+ * Same tokens as the Journey harmony pass (MyStall.css): semantic scene tokens and the
+ * --vl-* type and space scales, never a literal, so every skin renders the card, Lunar
+ * included. Phone 390 first: one column, the QR under the question. The QR tile is the
+ * one literal pair (white ground, dark modules) because a scanner needs contrast, not a skin.
+ */
+
+.sc {
+  --vl-bg: var(--scene-bg);
+  --vl-accent: var(--scene-accent);
+  --vl-ink: rgba(var(--scene-ink-rgb), 0.92);
+  --vl-ink-2: rgba(var(--scene-ink-rgb), 0.82);
+  --vl-ink-3: rgba(var(--scene-ink-rgb), 0.7);
+  --vl-hair: rgba(var(--scene-ink-rgb), 0.18);
+  --vl-serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --vl-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 420px;
+  min-width: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--vl-space-4);
+  font-family: var(--vl-serif);
+  color: var(--vl-ink);
+}
+
+.sc__card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--vl-space-4);
+  padding: var(--vl-space-5) var(--vl-space-4);
+  background: var(--vl-bg);
+  border: 1px solid var(--vl-hair);
+  border-bottom: 2px solid var(--vl-accent);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.sc__avatar {
+  width: 88px;
+  height: 88px;
+  flex: none;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--vl-hair);
+}
+
+.sc__name {
+  margin: 0;
+  font-weight: 400;
+  font-size: clamp(26px, 6vw, 36px);
+  line-height: 1.15;
+  color: var(--vl-ink);
+}
+
+.sc__gift {
+  margin: 0;
+  font-size: clamp(20px, 5vw, 26px);
+  line-height: 1.3;
+  color: var(--vl-ink-2);
+}
+
+.sc__question {
+  margin: 0;
+  padding-top: var(--vl-space-3);
+  border-top: 1px solid var(--vl-hair);
+  align-self: stretch;
+  font-style: italic;
+  font-size: var(--vl-text-lead);
+  color: var(--vl-ink);
+}
+
+.sc__way {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--vl-space-3);
+  min-width: 0;
+  max-width: 100%;
+}
+.sc__qr {
+  padding: var(--vl-space-2);
+  background: #ffffff;
+  line-height: 0;
+}
+.sc__qr canvas { max-width: 100%; height: auto !important; }
+.sc__link {
+  font-family: var(--vl-mono);
+  font-weight: 300;
+  font-size: var(--vl-text-label);
+  letter-spacing: 0.04em;
+  color: var(--vl-ink-3);
+  overflow-wrap: anywhere;
+}
+
+/* owner actions: three quiet buttons, same voice as .lp__go */
+.sc__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--vl-space-2);
+}
+.sc__btn {
+  min-height: 44px;
+  padding: 0 var(--vl-space-4);
+  cursor: pointer;
+  font-family: var(--vl-mono);
+  font-weight: 300;
+  font-size: var(--vl-text-label);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--vl-ink);
+  background: transparent;
+  border: 1px solid var(--vl-accent);
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+.sc__btn:hover,
+.sc__btn:focus-visible {
+  background: var(--vl-accent);
+  color: var(--vl-bg);
+  outline: none;
+}
+
+/* the Save image control comes from CardActions; bring it into the same voice */
+.sc__actions > div button {
+  min-height: 44px;
+  border: 1px solid var(--vl-accent);
+  border-radius: 0;
+  color: var(--vl-ink);
+  font-family: var(--vl-mono);
+  font-weight: 300;
+  font-size: var(--vl-text-label);
+  letter-spacing: 0.2em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sc__btn { transition: none; }
+}

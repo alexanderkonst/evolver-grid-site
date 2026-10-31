@@ -5,6 +5,8 @@ import CardActions from "@/components/sharing/CardActions";
 import { QRCodeCanvas } from "qrcode.react";
 import { Ornament } from "@/lib/landingDesign";
 import { formatBullseye, formatBullseyeLine } from "@/modules/zone-of-genius/bullseye";
+import { useShareIdentity } from "@/hooks/useShareIdentity";
+import { buildShareCard } from "@/lib/shareCard";
 // Day 61 (Sasha 2026-05-04 12:45): brand torus mark used in the
 // in-card footer so the saved/shared image carries identifiable
 // branding + the source URL. The torus IS the brand mark; we use
@@ -94,6 +96,7 @@ const stripDecorativeGlyphs = (name: string): string =>
 //     specificity bonus. Threshold is 260 not 280 to leave a few chars of
 //     headroom for the user's potential added comment.
 const SHARE_URL = "https://findyourtoptalent.com?utm_source=share&utm_medium=social&utm_campaign=top_talent_reveal";
+const QR_URL = "https://findyourtoptalent.com?utm_source=qr&utm_medium=image&utm_campaign=top_talent_reveal";
 const TWITTER_SOFT_CAP = 260;
 
 const buildShareTextFor = (
@@ -101,6 +104,7 @@ const buildShareTextFor = (
     title: string,
     actionStatement: string | undefined,
     topThreeTalents: string[] | undefined,
+    shareUrl: string,
 ): string => {
     const titleLine = `${t("revelatoryHero.shareTitleLine", { title: stripDecorativeGlyphs(title) })}\n\n`;
     const bullseyeLine = actionStatement
@@ -110,7 +114,7 @@ const buildShareTextFor = (
         topThreeTalents && topThreeTalents.length > 0
             ? `${t("revelatoryHero.shareTalentsLine", { talents: topThreeTalents.join(" · ") })}\n\n`
             : "";
-    const closingLine = `${t("revelatoryHero.shareClosing")}\n\n→ ${SHARE_URL}`;
+    const closingLine = `${t("revelatoryHero.shareClosing")}\n\n→ ${shareUrl}`;
 
     const fullText = `${titleLine}${bullseyeLine}${talentsLine}${closingLine}`;
 
@@ -187,7 +191,20 @@ const RevelatoryHero = ({
     // serialize what the user sees, including the breathing-card glow
     // and the gradient backdrop.
     const cardRef = useRef<HTMLDivElement>(null);
-    const shareText = buildShareTextFor(t, title, actionStatement, topThreeTalents);
+    // Share card slice 1: a signed-in player with a link name shares and scans to their own
+    // page (url / qrUrl from the one builder); a guest keeps the homepage.
+    const { identity } = useShareIdentity();
+    const ownCard = buildShareCard({
+        name: identity?.name,
+        username: identity?.username,
+        uniquenessPhrase: null,
+        tagline: null,
+        topTalent: title,
+        origin: window.location.origin,
+    });
+    const shareText = buildShareTextFor(t, title, actionStatement, topThreeTalents, ownCard?.url ?? SHARE_URL);
+    const qrValue = ownCard?.qrUrl ?? QR_URL;
+    const footerHost = ownCard ? ownCard.url.replace(/^https?:\/\//, "") : "findyourtoptalent.com";
 
     // Day 61 (Sasha 2026-05-04): defensive filter — drop empty strings,
     // limit to 3 entries (in case the model over-generates) so the
@@ -417,7 +434,7 @@ const RevelatoryHero = ({
                             textShadow: `0 0 24px ${palette.glowColor}`,
                         }}
                     >
-                        {t("revelatoryHero.brandFooterPrefix")} <span style={{ fontWeight: 600 }}>findyourtoptalent.com</span>
+                        {t("revelatoryHero.brandFooterPrefix")} <span style={{ fontWeight: 600 }}>{footerHost}</span>
                     </p>
 
                     {/* QR code — Day 61 (Sasha 2026-05-04 19:45).
@@ -450,7 +467,7 @@ const RevelatoryHero = ({
                         }}
                     >
                         <QRCodeCanvas
-                            value="https://findyourtoptalent.com?utm_source=qr&utm_medium=image&utm_campaign=top_talent_reveal"
+                            value={qrValue}
                             size={60}
                             bgColor="#ffffff"
                             fgColor="#0a1628"

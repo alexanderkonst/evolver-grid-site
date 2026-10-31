@@ -8935,5 +8935,30 @@
       "title": "Mide tu mes",
       "doneWhen": "el nivel de este mes aparece en tu Casa."
     }
+  },
+  "shareCard": {
+    "question": "¿Tú también me ves así?",
+    "shareStall": "Comparte tu puesto",
+    "pickLinkName": "Elige el nombre de tu enlace",
+    "needsGift": "Tu frase de unicidad en el Taller le da su línea a tu tarjeta",
+    "share": "Compartir",
+    "copyLink": "Copiar enlace",
+    "copied": "Copiado",
+    "copyFailed": "No se pudo copiar"
+  },
+  "publicProfile": {
+    "privateTitle": "Perfil privado",
+    "unavailable": "Este perfil no está disponible ahora mismo.",
+    "audienceFriends": "Este perfil solo es visible para sus conexiones.",
+    "audienceCommunities": "Este perfil solo es visible para las comunidades seleccionadas.",
+    "signIn": "Iniciar sesión",
+    "communityMember": "Miembro de la comunidad",
+    "coreVibration": "Vibración central",
+    "uniqueOffer": "Oferta única",
+    "geniusOffer": "Oferta de genio",
+    "bio": "Biografía",
+    "connect": "Conectar",
+    "door": "¿Quieres ver tu propio don?",
+    "metaDescription": "Descubre tu Zona de Genio."
   }
 }
