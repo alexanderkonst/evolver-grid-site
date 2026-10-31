@@ -58,7 +58,15 @@ const resolveVisibility = (value: string | null) => {
   return "full";
 };
 
-const PublicProfile = () => {
+type PublicProfileProps = {
+  /**
+   * Told whether this root slug is a missing page (a 404). The route wrapper in App.tsx uses it
+   * to hide the game shell, so the 404 is the one shell-less template (issue #270).
+   */
+  onMissing?: (missing: boolean) => void;
+};
+
+const PublicProfile = ({ onMissing }: PublicProfileProps = {}) => {
   const { userId, username } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -312,6 +320,13 @@ const PublicProfile = () => {
 
   const visibility = resolveVisibility(profile?.visibility ?? null);
 
+  // A root slug that is no username at all (/spaces, /build, /xyz) is a missing page, not a private profile.
+  const isMissingPage = !loading && !profile && !!username && !audienceDenyReason;
+  useEffect(() => {
+    onMissing?.(isMissingPage);
+    return () => onMissing?.(false);
+  }, [isMissingPage, onMissing]);
+
   if (loading) {
     return (
       <div className="min-h-dvh flex items-center justify-center">
@@ -320,9 +335,9 @@ const PublicProfile = () => {
     );
   }
 
-  // A root slug that is no username at all (/spaces, /build, /xyz) is a missing page, not a private profile.
-  if (!profile && username && !audienceDenyReason) {
-    return <NotFound />;
+  if (isMissingPage) {
+    // With a route wrapper listening (onMissing) the wrapper draws the 404 outside the shell.
+    return onMissing ? null : <NotFound />;
   }
 
   if (!profile || visibility === "hidden" || audienceDenyReason) {

@@ -489,13 +489,30 @@ const Village = () => {
                     } as CSSProperties;
                     const cls = `vl-pin${p.side === "left" ? " vl-pin--left" : ""}${i === active ? " is-active" : ""}${isNew(p) ? " is-new" : ""}${isRevealed(p) ? " is-reveal" : ""}${isLit(p) ? " is-lit" : ""}`;
                     return (
-                      // A closed pin still opens its (faded) scene, so it is not disabled.
-                      <PlaceState key={p.key} as="li" state={shown[i]} className={cls} style={style} tag={false} disabled={false}>
+                      // Issue #270: a closed pin is aria-disabled (PlaceState's default) and goes nowhere:
+                      // no dead arch. It still takes hover and focus, so its «Opens when…» line shows below.
+                      <PlaceState key={p.key} as="li" state={shown[i]} className={cls} style={style} tag={false}>
                         {mobile ? (
                           // Mobile: the list below is the menu; dots only mark the buildings.
                           <span className="vl-pin__link" aria-hidden="true">
                             <span className="vl-dot ps-fade" />
                           </span>
+                        ) : shown[i] === "closed" ? (
+                          <a
+                            ref={(el) => {
+                              pinRefs.current[i] = el;
+                            }}
+                            className="vl-pin__link is-locked"
+                            role="link"
+                            aria-disabled="true"
+                            tabIndex={0}
+                            onMouseEnter={() => select(i)}
+                            onFocus={() => select(i)}
+                          >
+                            <span className="vl-dot ps-fade" aria-hidden="true" />
+                            <span className="vl-pin__name">{placeName(p, t)}</span>
+                            <PlaceStateTag state={shown[i]} />
+                          </a>
                         ) : (
                           <Link
                             ref={(el) => {
@@ -576,14 +593,23 @@ const Village = () => {
           <nav className="vl-list" aria-label={tr(t, "village.placesNav", "Places")}>
             <ul>
               {VILLAGE_PLACES.map((p, i) => (
-                <PlaceState key={p.key} as="li" state={shown[i]} className={`${isNew(p) ? "is-new" : ""} ${isRevealed(p) ? "is-reveal" : ""} ${isLit(p) ? "is-lit" : ""}`.trim().replace(/\s+/g, " ") || undefined} tag={false} disabled={false}>
-                  <Link to={pinTo(p)}>
-                    <span className="vl-list__name">{placeName(p, t)}</span>
-                    <PlaceStateTag state={shown[i]} />
-                    {isNew(p) ? <NewTag /> : null}
-                    {isLit(p) ? <span className="vl-lit-word">{tr(t, "village.lit", "Lit")}</span> : null}
-                    <span className="vl-list__line">{placeLine(p, shown[i], t, signedIn === true)}</span>
-                  </Link>
+                <PlaceState key={p.key} as="li" state={shown[i]} className={`${isNew(p) ? "is-new" : ""} ${isRevealed(p) ? "is-reveal" : ""} ${isLit(p) ? "is-lit" : ""}`.trim().replace(/\s+/g, " ") || undefined} tag={false}>
+                  {shown[i] === "closed" ? (
+                    // Issue #270: closed means aria-disabled and no navigation; the line says what opens it.
+                    <a role="link" aria-disabled="true" tabIndex={0} className="is-locked">
+                      <span className="vl-list__name">{placeName(p, t)}</span>
+                      <PlaceStateTag state={shown[i]} />
+                      <span className="vl-list__line">{placeLine(p, shown[i], t, signedIn === true)}</span>
+                    </a>
+                  ) : (
+                    <Link to={pinTo(p)}>
+                      <span className="vl-list__name">{placeName(p, t)}</span>
+                      <PlaceStateTag state={shown[i]} />
+                      {isNew(p) ? <NewTag /> : null}
+                      {isLit(p) ? <span className="vl-lit-word">{tr(t, "village.lit", "Lit")}</span> : null}
+                      <span className="vl-list__line">{placeLine(p, shown[i], t, signedIn === true)}</span>
+                    </Link>
+                  )}
                 </PlaceState>
               ))}
             </ul>

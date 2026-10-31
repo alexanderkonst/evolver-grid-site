@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation, useParams } from "react-router-dom";
 import CustomCursor from "@/components/CustomCursor";
 import SiteLogo from "@/components/SiteLogo";
@@ -208,6 +208,7 @@ import AppleseedView from "./pages/AppleseedView";
 import ExcaliburView from "./pages/ExcaliburView";
 import ZoGPerspectiveView from "./pages/spaces/profile/ZoGPerspectiveView";
 import NotFound from "./pages/NotFound";
+import MissionLocked from "./pages/MissionLocked";
 // Day 61 (Sasha 2026-05-04 17:30): MyResult.tsx is now a LEGACY page,
 // kept alive ONLY to honor historical inbox links of the form
 // /my-result?token=<access_token>. New deposit-slip emails (from
@@ -454,6 +455,25 @@ const ZogEntryRedirect = () => {
   return <Navigate to={zogEntryRedirectTarget(location.pathname, location.search, location.hash) ?? ZOG_ENTRY_PATH} replace />;
 };
 
+/**
+ * /:username — a public profile inside the shell. A root slug that is no username is a 404, and
+ * the 404 is the one template without the game shell (issue #270): the shell is hidden (not
+ * unmounted, so the profile page keeps its state) while PublicProfile reports a missing page.
+ */
+const PublicProfileRoute = () => {
+  const [missing, setMissing] = useState(false);
+  return (
+    <>
+      <div hidden={missing} style={{ display: missing ? "none" : "contents" }}>
+        <GameShellV2 spaceOverride="grow" defaultRailMinimized defaultSectionsPanelClosed>
+          <PublicProfile onMissing={setMissing} />
+        </GameShellV2>
+      </div>
+      {missing ? <NotFound /> : null}
+    </>
+  );
+};
+
 const GlobalChrome = () => {
   const location = useLocation();
   const isHeroQuiz = location.pathname === "/hero";
@@ -691,6 +711,14 @@ const App = () => (
                   <Route path="/activate" element={<Navigate to="/game/me/zone-of-genius/start-here" replace />} />
                   <Route path="/library" element={<Library />} />
                   <Route path="/library/:stepId" element={<Library />} />
+                  {/* Issue #270: /grow alone is the Academy index. The course pages below stay
+                      under /grow/*; this exact path used to fall to /:username and 404. */}
+                  <Route path="/grow" element={<Navigate to="/game/learn" replace />} />
+                  {/* Issue #270: guessed and old mission URLs show a locked door (like
+                      /village/house) instead of a 404. Public, no auth, no shell. */}
+                  <Route path="/zone-of-genius/mission" element={<MissionLocked />} />
+                  <Route path="/mission" element={<MissionLocked />} />
+                  <Route path="/discover-mission" element={<MissionLocked />} />
                   {/* Free entry course — public, no auth. GROW space (shell supplied by SmartShellLayout). */}
                   <Route path="/grow/activate-your-dormant-potential" element={<ActivateYourDormantPotential />} />
                   <Route path="/grow/consciousness-meets-science" element={<ConsciousnessMeetsScience />} />
@@ -1096,10 +1124,13 @@ const App = () => (
                   {/* Canonical public profiles live directly at /:username.
                       Explicit application routes above always win; reserved
                       slugs in the database prevent future route collisions. */}
-                  <Route path="/:username" element={<GameShellV2 spaceOverride="grow" defaultRailMinimized defaultSectionsPanelClosed><PublicProfile /></GameShellV2>} />
-                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                  <Route path="*" element={<NotFound />} />
+                  <Route path="/:username" element={<PublicProfileRoute />} />
                   </Route>
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE.
+                      Issue #270: the 404 sits OUTSIDE the shell layout, so an unknown path under
+                      a shell prefix (/grow/xyz, /game/me/xyz) gets the one shell-less template
+                      too: no rail, no music. */}
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
               </PageTransition>
             </Suspense>

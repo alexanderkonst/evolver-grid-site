@@ -1,37 +1,17 @@
-import { useLocation, Link } from "react-router-dom";
-import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import MoonNotice from "@/components/game/MoonNotice";
 
-import { LanguageSwitcher } from "@/i18n/LanguageSwitcher";
-import { tr } from "@/lib/villageCopy";
-
-const NotFound = () => {
-  const location = useLocation();
-  const { t } = useTranslation();
-
-  useEffect(() => {
-  }, [location.pathname]);
-
-  return (
-    <div className="flex min-h-dvh items-center justify-center bg-muted">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">{t("notFound.code")}</h1>
-        <p className="mb-4 text-xl text-muted-foreground">{t("notFound.title")}</p>
-        <div className="flex items-center justify-center gap-6">
-          <Link to="/village" className="text-primary underline hover:text-primary/90">
-            {tr(t, "village.backVillage", "← Village")}
-          </Link>
-          <Link to="/" className="text-primary underline hover:text-primary/90">
-            {t("notFound.home")}
-          </Link>
-        </div>
-        {/* Phase 0 i18n pilot — temporary switcher placement to prove the
-            pipeline end-to-end. Proper home (global menu / Settings) is a
-            Phase 1 UX decision. See docs/specs/i18n/scope_of_work.md. */}
-        <LanguageSwitcher className="mt-8 flex items-center justify-center gap-2" />
-      </div>
-    </div>
-  );
-};
+/**
+ * The one 404 template (issue #270). No game shell, no rail, no music: App.tsx mounts it
+ * outside the shell layout, and PublicProfile hides its shell when it renders this.
+ */
+const NotFound = () => (
+  <MoonNotice
+    eyebrow="404"
+    title="This page is not in the village"
+    line="The link may be old, or the page may have moved."
+    primary={{ to: "/village", label: "Back to the village" }}
+    secondary={{ to: "/", label: "Title screen" }}
+  />
+);
 
 export default NotFound;

@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { FONTS_HREF } from "@/lib/gameFonts";
 import { markIntroSeen } from "@/lib/firstVisit";
 import { RECEPTION, VILLAGE_MAP } from "@/data/villagePlaces";
+import brandLogo from "@/assets/you-be-original-main-lockup.webp";
 import "./WordlessIntro.css";
 
 /**
@@ -171,6 +172,12 @@ const WordlessIntro = ({ onSkip }: Props) => {
 
         {/* The one quiet cue before the first gesture. Visible, not just in the DOM
             (the screen-reader line above says the same in words). Gone once lit. */}
+        {phase === "dark" && (
+          <div className="wi-brand" aria-hidden="true">
+            <img className="wi-brand__logo" src={brandLogo} alt="" decoding="async" />
+            <p className="wi-brand__promise">Find your top talent and play the game of being you.</p>
+          </div>
+        )}
         {phase === "dark" && (
           <p className="wi-cue" aria-hidden="true">
             Tap or press any key
