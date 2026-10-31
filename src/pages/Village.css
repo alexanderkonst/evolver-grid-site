@@ -484,3 +484,43 @@
   .vl-mote { transition: none; }
   .vl-mote__body { animation: none; opacity: 1; }
 }
+
+/* ── The colour returns (Sasha, 2026-10-30; src/lib/placeColor.ts) ─────────────────────────
+   A place starts mostly greyscale. `--vl-soul` (0…1, earned objects / total, set on the scene's
+   PlaceState) gives it its colour back, a little with every object earned. Only the scene art
+   takes the filter: the copy, ENTER and the back link sit outside `.ps-scene` and never fade.
+   A closed place keeps PlaceState's lock fade instead. */
+.vl-place__state:not([data-place-state="closed"]) .vl-place__img {
+  filter: grayscale(calc(0.88 - 0.88 * var(--vl-soul, 0))) saturate(calc(0.9 + 0.2 * var(--vl-soul, 0)));
+  transition: filter 1.8s var(--motion-ease, ease);
+}
+
+/* The objects of a place: a quiet row of crystals high in the scene. An earned one shines in
+   slowly shifting iridescent hues; one still ahead is a faint silver trace. */
+.vl-objects {
+  position: absolute; z-index: 2; left: 50%; top: clamp(72px, 16%, 150px);
+  display: flex; gap: clamp(12px, 2.2vw, 22px); margin: 0; padding: 0; list-style: none;
+  transform: translateX(-50%); pointer-events: none;
+}
+.vl-object {
+  --vl-size: clamp(10px, 1.3vw, 15px);
+  width: var(--vl-size); height: var(--vl-size); rotate: 45deg; border-radius: 2px;
+  /* a gentle arc: the middle of the row sits a little higher */
+  translate: 0 var(--vl-y, 0px);
+  border: 1px solid rgba(var(--scene-ink-rgb), 0.32);
+  background: rgba(var(--scene-ink-rgb), 0.08);
+  transition: background 1.2s ease, box-shadow 1.2s ease, border-color 1.2s ease;
+}
+.vl-object.is-earned {
+  border-color: rgba(var(--scene-ink-rgb), 0.75);
+  background: conic-gradient(from 210deg, var(--vl-iris-1), var(--vl-iris-2), var(--vl-iris-3), var(--vl-iris-4), var(--vl-iris-5), var(--vl-iris-1));
+  box-shadow: 0 0 10px var(--vl-iris-glow-1), 0 0 22px var(--vl-iris-glow-2);
+  animation: vl-iridesce 9s linear infinite;
+  animation-delay: calc(var(--vl-i) * -1.3s);
+}
+@keyframes vl-iridesce { to { filter: hue-rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .vl-place__state:not([data-place-state="closed"]) .vl-place__img { transition: none; }
+  .vl-object, .vl-object.is-earned { transition: none; animation: none; }
+}

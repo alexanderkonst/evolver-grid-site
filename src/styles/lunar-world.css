@@ -207,20 +207,32 @@
   background-size: 3px 3px;
   opacity: 1;
 }
-[data-skin="lunar"] .vl-place__state[data-place-state="open"] .vl-place__img,
-[data-skin="lunar"] .vl-place__state[data-place-state="next"] .vl-place__img {
-  filter: var(--scene-filter) brightness(1.1);
+/* open / next / done / live: the colour returns object by object (src/lib/placeColor.ts).
+   `--vl-soul` (0…1, earned objects / total) lifts the grey off the scene art, thins the
+   halftone, and lays the player's soul colors over the scene only (`.ps-scene::after`, under
+   the copy), so the words never change colour. */
+[data-skin="lunar"] .vl-place__state:not([data-place-state="closed"]) .vl-place__img {
+  filter: grayscale(calc(1 - 0.9 * var(--vl-soul, 0))) contrast(1.06) brightness(1.06);
+  transition: filter 1.8s var(--motion-ease, ease);
 }
-/* done / live: the scene takes the soul colors (halftone gives way to color). */
-[data-skin="lunar"] .vl-place__state[data-place-state="done"]::before,
-[data-skin="lunar"] .vl-place__state[data-place-state="live"]::before {
+[data-skin="lunar"] .vl-place__state:not([data-place-state="closed"])::before {
+  opacity: calc(0.7 - 0.45 * var(--vl-soul, 0));
+  transition: opacity 1.8s ease;
+}
+[data-skin="lunar"] .vl-place__state:not([data-place-state="closed"]) > .ps-scene::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   background: linear-gradient(135deg, var(--soul-1) 0%, var(--soul-2) 55%, var(--soul-3) 100%);
   mix-blend-mode: color;
-  opacity: calc(var(--place-saturation) * 0.7);
+  opacity: calc(var(--vl-soul, 0) * 0.35);
+  transition: opacity 1.8s ease;
 }
-[data-skin="lunar"] .vl-place__state[data-place-state="done"] .vl-place__img,
-[data-skin="lunar"] .vl-place__state[data-place-state="live"] .vl-place__img {
-  filter: var(--scene-filter) brightness(1.1);
+@media (prefers-reduced-motion: reduce) {
+  [data-skin="lunar"] .vl-place__state:not([data-place-state="closed"]) .vl-place__img,
+  [data-skin="lunar"] .vl-place__state:not([data-place-state="closed"])::before,
+  [data-skin="lunar"] .vl-place__state:not([data-place-state="closed"]) > .ps-scene::after { transition: none; }
 }
 [data-skin="lunar"] .vl-place__state[data-place-state="next"] .vl-enter {
   box-shadow: 0 0 22px -4px rgba(var(--accent-rgb), 0.55);

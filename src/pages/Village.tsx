@@ -44,6 +44,7 @@ import { PlaceState, PlaceStateTag } from "@/components/game/PlaceState";
 import { LunarPaths, LunarWorldSync } from "@/components/skin/LunarWorld";
 import { unseenKeys, useLeave } from "@/lib/motion";
 import { useSceneSrc } from "@/lib/sceneSrc";
+import { placeObjects, placeSoul, watchedCourseObjects } from "@/lib/placeColor";
 import "./Village.css";
 
 /**
@@ -436,6 +437,16 @@ const Village = () => {
     ? placeLine(lastPlace, lastState, t, signedIn === true)
     : undefined;
   const lastPending = lastIndex >= 0 && !ready && states[lastIndex] === "closed";
+  // The colour the player has brought back to this place (placeColor): each earned object
+  // shines and gives the scene a little more colour. Until the save loads, the scene stays grey.
+  const lastObjects = lastPlace && ready
+    ? placeObjects(lastPlace.key, {
+        ...save.met,
+        ...Object.fromEntries((sheet.victories ?? []).map((id) => [id, true])),
+        ...(lastPlace.key === "academy" ? watchedCourseObjects() : {}),
+      })
+    : [];
+  const lastSoul = placeSoul(lastObjects);
 
   return (
     <div className={`vl-root${leaving ? " is-leaving" : ""}`} data-view={place ? "place" : "map"} style={skyVars(sky)}>
@@ -588,8 +599,10 @@ const Village = () => {
             <PlaceState
               state={lastState}
               className="vl-place__state"
+              style={{ "--vl-soul": lastSoul.toFixed(3) } as CSSProperties}
               bodyClassName="vl-place__copy"
               scene={
+                <>
                 <img
                   className="vl-place__img"
                   src={placeSrc}
@@ -600,6 +613,19 @@ const Village = () => {
                     transformOrigin: sceneObjectPosition(lastPlace),
                   }}
                 />
+                {/* The objects of this place: earned ones in iridescent hues, the rest a faint trace. */}
+                {lastObjects.length > 0 ? (
+                  <ul className="vl-objects" aria-hidden="true">
+                    {lastObjects.map((o, i) => (
+                      <li
+                        key={o.id}
+                        className={`vl-object${o.earned ? " is-earned" : ""}`}
+                        style={{ "--vl-i": i, "--vl-y": `${Math.abs(i - (lastObjects.length - 1) / 2) * 3}px` } as CSSProperties}
+                      />
+                    ))}
+                  </ul>
+                ) : null}
+                </>
               }
               line={lastLine}
               action={

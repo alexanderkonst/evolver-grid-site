@@ -10,7 +10,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { PLAYBOOK_STEPS } from "@/data/playbookSteps";
 import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
 import { journeyStepLine, journeyStepRows } from "@/lib/journeyLabels";
-import { GROWTH_STEPS, growthStepClosedLine, growthStepState } from "@/modules/library/growthSteps";
 import { ORACLE_READING } from "@/data/villagePlaces";
 import { placeSaveFromSheet, placeState } from "@/lib/placeState";
 import { FOUNDER_TOOL_OPENS_WHEN } from "@/data/founderTools";
@@ -581,23 +580,7 @@ interface SectionsPanelProps {
  * "Coming soon," which read as broken rather than aspirational. Re-add
  * once any path actually has content.
  */
-const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Section[] => {
-    // Day 119 (Sasha 2026-07-09): "Path of Mastery" overview row, first
-    // item in the GROW pane 2. Routes to pathBase with no :stepId —
-    // Library.tsx's LearnSpaceContent renders LibraryIndex (the full
-    // category-filterable video grid) in that case. Same component the
-    // 6 numbered steps below already use for their per-step content; this
-    // row is just the un-scoped overview entry point into it.
-    // Day 119 evening: relabeled from "Transformational Library" —
-    // that name belongs to step 1 below (the row that actually opens the
-    // library material), not this overview/index page. Was a naming swap,
-    // not a new row.
-    const libraryOverviewRow: Section = {
-        id: "path-of-mastery",
-        label: "Path of Mastery",
-        path: pathBase,
-    };
-
+const buildLearnSections = (): Section[] => {
     // Free entry course (public). Same path in both scopes: the page is not auth-gated.
     const dormantPotentialRow: Section = {
         id: "activate-your-dormant-potential",
@@ -612,16 +595,14 @@ const buildLearnSections = (pathBase: "/library" | "/game/learn/library"): Secti
         path: CMS_COURSE_PATH,
     };
 
-    const stepRows: Section[] = GROWTH_STEPS.map((step) => ({
-        id: `learn-step-${step.id}`,
-        label: `${step.number}. ${step.shortLabel}`,
-        path: `${pathBase}/${step.id}`,
-        // Closed rooms read their state and line from placeState (§14.3).
-        locked: growthStepState(step) === "closed",
-        lockedHint: growthStepClosedLine(step) || undefined,
-    }));
-
-    return [libraryOverviewRow, dormantPotentialRow, consciousnessMeetsScienceRow, ...stepRows];
+    // Sasha, 2026-10-30: the Academy lists only the two courses we have, as one path
+    // (Consciousness Meets Science, then Activate Your Dormant Potential; start with either).
+    // The overview and the six Library rooms stay built and routed, just not listed here.
+    return [
+        { id: "academy", label: "Academy", path: "/game/learn" },
+        consciousnessMeetsScienceRow,
+        dormantPotentialRow,
+    ];
 };
 
 type EntryPath = "match" | "build" | null;
@@ -1009,7 +990,7 @@ const SectionsPanel = ({
             };
         }
 
-        // LEARN → 6-step Growth Sequence (Library) + 5 Growth Paths.
+        // LEARN → the Academy and its two courses (Sasha 2026-10-30). Earlier:
         // The pane 2 rows are built dynamically from GROWTH_STEPS so the
         // step list is a single source of truth shared with Library.tsx
         // (which renders each step's content in pane 3). Path base
@@ -1017,14 +998,9 @@ const SectionsPanel = ({
         // or browsing the public /library surface — same pane structure,
         // different scope. Sasha, Day 56 (2026-04-28).
         if (activeSpaceId === "learn") {
-            // Issue #186: /game/learn is open to a guest, whose rooms are the public /library ones.
-            const insideAuthed =
-                !!userEmail &&
-                (location.pathname === "/game/learn" || location.pathname.startsWith("/game/learn/"));
-            const pathBase = insideAuthed ? "/game/learn/library" : "/library";
             return {
                 title: "GROW",
-                sections: buildLearnSections(pathBase),
+                sections: buildLearnSections(),
             };
         }
 

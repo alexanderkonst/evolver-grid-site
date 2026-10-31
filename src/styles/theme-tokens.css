@@ -32,6 +32,16 @@
    ========================================================================== */
 
 :root {
+  /* Village objects (src/lib/placeColor.ts): the iridescent hues of an earned object, same in
+     every skin (Sasha, 2026-10-30: players bring back the colours of their soul). */
+  --vl-iris-1: #ff9ad5;
+  --vl-iris-2: #ffd36e;
+  --vl-iris-3: #8ff5c8;
+  --vl-iris-4: #7fc8ff;
+  --vl-iris-5: #c39bff;
+  --vl-iris-glow-1: rgba(255, 220, 255, 0.55);
+  --vl-iris-glow-2: rgba(140, 200, 255, 0.35);
+
   /* ── Text ── */
   --text-primary: var(--skin-text-primary);
   --text-body: var(--skin-text-body);
