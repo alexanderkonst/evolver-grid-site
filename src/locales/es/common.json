@@ -8955,6 +8955,35 @@
       "text": "¡Acabo de crear la página de mi Genius Business!",
       "linkCopied": "¡Enlace copiado!",
       "linkCopiedBody": "Compártelo con el mundo."
+    },
+    "answer": {
+      "label": "Tu respuesta",
+      "yes": "Sí, eres tú",
+      "partly": "En parte",
+      "differently": "Te veo distinto",
+      "line": "¿Qué ves tú?",
+      "name": "Tu nombre",
+      "send": "Enviar",
+      "sent": "Enviado a {{name}}."
+    },
+    "reflection": {
+      "group": "Respuestas",
+      "questTitle": "{{name}} respondió: ¿Tú también me ves así?",
+      "from": "De",
+      "theirAnswer": "Su respuesta",
+      "theirLine": "Lo que ve",
+      "ask": "Pregúntale qué ve.",
+      "close": "Cerrar",
+      "error": {
+        "needsName": "Dinos primero tu nombre.",
+        "alreadyToday": "Tu respuesta de hoy ya está enviada. Vuelve mañana.",
+        "ownPage": "Esta es tu propia página.",
+        "notPublic": "Esta página no es pública.",
+        "tooShort": "Unas palabras más, por favor: al menos 3 caracteres.",
+        "tooLong": "Que sea más corto: hasta 140 caracteres.",
+        "profanity": "¿Podrías decirlo de otra manera?",
+        "generic": "No se envió. Inténtalo de nuevo en un momento."
+      }
     }
   },
   "publicProfile": {

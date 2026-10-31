@@ -2,6 +2,7 @@ import { useId } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import PlaceState from "@/components/game/PlaceState";
+import ReflectionQuests from "@/components/game/ReflectionQuests";
 import SaveCharacterCta from "@/components/game/SaveCharacterCta";
 import { getJourneyModule, moduleText } from "@/data/journeyModules";
 import { getVillagePlace, sceneObjectPosition } from "@/data/villagePlaces";
@@ -126,6 +127,10 @@ const QuestBoard = () => {
                 </ol>
               </section>
             ) : null}
+
+            {/* Share card slice 2: a visitor's answer comes back as a quest. Renders nothing
+                while the database part is missing or nothing is unread, so the board is unchanged. */}
+            {sheet.userId ? <ReflectionQuests /> : null}
 
             <section className="qb__group" aria-labelledby={journeyId}>
               <h2 id={journeyId} className="qb__h">

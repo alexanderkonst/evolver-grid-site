@@ -3,6 +3,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { MapPin, Target } from "lucide-react";
 import ShareCard from "@/components/game/ShareCard";
+import ShareCardAnswer from "@/components/game/ShareCardAnswer";
+import { usePlayerReflections } from "@/hooks/usePlayerReflections";
 import { pickGift } from "@/lib/shareCard";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { supabase } from "@/integrations/supabase/client";
@@ -69,6 +71,9 @@ const PublicProfile = () => {
   // Day 126 — audience gate result. `null` deny reason = allowed.
   const [audienceDenyReason, setAudienceDenyReason] = useState<Exclude<ProfileAudienceValue, "public"> | null>(null);
   const [isViewerLoggedIn, setIsViewerLoggedIn] = useState(false);
+  // Share card slice 2: the viewer is the player. Their own page shows no answer buttons.
+  const [viewerIsOwner, setViewerIsOwner] = useState(false);
+  const reflections = usePlayerReflections();
 
   useEffect(() => {
     let isMounted = true;
@@ -145,7 +150,10 @@ const PublicProfile = () => {
         const { data: { user: viewer } } = await supabase.auth.getUser();
         const viewerId = viewer?.id || null;
         const isOwnProfile = !!viewerId && !!resolvedUserId && viewerId === resolvedUserId;
-        if (isMounted) setIsViewerLoggedIn(!!viewerId);
+        if (isMounted) {
+          setIsViewerLoggedIn(!!viewerId);
+          setViewerIsOwner(isOwnProfile);
+        }
 
         if (!isOwnProfile) {
           let audience: ProfileAudienceValue = "public";
@@ -371,13 +379,22 @@ const PublicProfile = () => {
         <div className="rounded-3xl bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur p-6 sm:p-10 shadow-lg border border-[var(--skin-hairline,rgba(255,255,255,0.6))]">
           {/* Share card slice 1: the page leads with the same card the player sends
               (name, photo, gift line, the question). Never level. The one door below
-              is the visitor's own start. Answer buttons are slice 2. */}
+              is the visitor's own start. Slice 2 adds the answer under the card; it renders
+              nothing while the database part is missing, and nothing for the owner. */}
           <ShareCard
             variant="visitor"
             name={fullName}
             avatarUrl={profile.avatar_url}
             gift={gift?.gift ?? null}
           />
+          {username && gift?.gift && (
+            <ShareCardAnswer
+              username={username}
+              playerName={fullName}
+              isOwner={viewerIsOwner}
+              api={reflections}
+            />
+          )}
           <div className="mt-5 flex justify-center">
             <Button asChild variant="outline">
               <Link to="/zone-of-genius">{t("publicProfile.door")}</Link>
