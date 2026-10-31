@@ -60,14 +60,17 @@ const Step1SelectTop10Talents = () => {
 
   return (
     <div className="space-y-6" style={{ color: "var(--skin-text-primary, #0a1628)" }}>
-      {/* Header — Day 47 late pass: dark text on light Panel 3 */}
-      <div className="text-center space-y-2">
+      {/* Header — sits on the same glass surface as the counter below, so the skin text
+          tokens always meet the surface they were tuned for (the lunar silver ink was
+          landing on a pale ground here: near-white heading, ~1.2:1). The shadows are the
+          skin's halo tokens, not a hardcoded white glow. */}
+      <div className="liquid-glass text-center space-y-2 px-5 py-4 rounded-xl">
         <h2
           className="text-xl sm:text-2xl font-semibold"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
             color: "var(--skin-text-primary, #0a1628)",
-            textShadow: "0 1px 2px rgba(255,255,255,0.7)",
+            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
           }}
         >
           What Lights You Up?
@@ -76,7 +79,7 @@ const Step1SelectTop10Talents = () => {
           className="text-sm max-w-xl mx-auto"
           style={{
             color: "var(--skin-text-body, rgba(26,30,58,0.82))",
-            textShadow: "0 1px 2px rgba(255,255,255,0.6)",
+            textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
           }}
         >
           Pick the <strong style={{ color: "var(--skin-text-primary, #0a1628)" }}>10 talents</strong> you genuinely enjoy doing — the ones that make you come alive.
@@ -94,7 +97,7 @@ const Step1SelectTop10Talents = () => {
               style={{ color: canContinue ? "var(--skin-text-primary, #0a1628)" : "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
             >
               {localSelected.length}
-              <span className="font-normal text-sm" style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.4))" }}>
+              <span className="font-normal text-sm" style={{ color: "var(--skin-text-faint, rgba(26,30,58,0.7))" }}>
                 {" / "}{maxSelectable}
               </span>
             </div>
@@ -212,6 +215,8 @@ const Step1SelectTop10Talents = () => {
       <div
         className="sm:hidden fixed bottom-0 left-0 right-0 p-4 z-20"
         style={{
+          // Right edge clears the 48px «Chat with us» pill (--chat-clearance) so it never sits over Continue.
+          paddingRight: "var(--chat-clearance)",
           background:
             "var(--skin-card-fill, linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 80%, transparent 100%))",
           backdropFilter: "blur(14px)",

@@ -53,9 +53,9 @@ const ZoneOfGeniusAssessmentLayout = ({
       {/* Day 47 very-late pass: darker body/muted text for legibility
           (was 0.55 → 0.7). */}
       <p
-        className="text-sm mb-6"
+        className="liquid-glass inline-block rounded-full px-3 py-1 text-sm mb-6"
         style={{
-          color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
+          color: "var(--skin-text-body, rgba(26,30,58,0.82))",
           textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
         }}
       >

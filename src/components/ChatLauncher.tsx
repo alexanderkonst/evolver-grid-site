@@ -13,9 +13,13 @@ export const OPEN_CHAT_EVENT = "fytt:open-chat";
 /**
  * The Journey screens (WP-15): title, village, every /game place, Workshop, Mastermind.
  * `/` is the title screen (and, with `?path=`, the pre-game landing: the same corner rule is harmless there).
+ * The top-talent test (`/zone-of-genius/*`: entry, the four assessment steps) is part of the Journey:
+ * its sticky bottom bar carries Continue, so the pill tucks away from it there too.
  */
 export const isGameScreenPath = (pathname: string): boolean =>
   pathname === "/" ||
+  pathname === "/zone-of-genius" ||
+  pathname.startsWith("/zone-of-genius/") ||
   pathname === "/village" ||
   pathname.startsWith("/village/") ||
   pathname === "/game" ||

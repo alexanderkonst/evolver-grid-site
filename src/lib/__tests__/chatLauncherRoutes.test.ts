@@ -16,6 +16,11 @@ describe("WP-15: the chat launcher tucks into the corner on the Journey screens"
       "/ubb",
       "/ubb/offer",
       "/build/mastermind",
+      "/zone-of-genius",
+      "/zone-of-genius/entry",
+      "/zone-of-genius/assessment",
+      "/zone-of-genius/assessment/step-1",
+      "/zone-of-genius/assessment/step-4",
     ]) {
       expect(isGameScreenPath(path), path).toBe(true);
     }

@@ -197,6 +197,8 @@ const Step2SelectTop3CoreTalents = () => {
       <div
         className="sm:hidden fixed bottom-0 left-0 right-0 p-4 z-20"
         style={{
+          // Right edge clears the 48px «Chat with us» pill (--chat-clearance) so it never sits over Continue.
+          paddingRight: "var(--chat-clearance)",
           background:
             "var(--skin-card-fill, linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 80%, transparent 100%))",
           backdropFilter: "blur(14px)",
