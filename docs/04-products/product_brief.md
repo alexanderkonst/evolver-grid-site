@@ -75,3 +75,17 @@ Aka Value Ladder aka CJM
 - **Venture Studio**
 - **Client Evolution Portal**
 - **The Founder Read**
+
+---
+
+## 6. Your AI credits (как работают AI-кредиты в Your AI)
+
+Решение Саши, 2026-10-30, одобрено как публичный коммерческий текст. Цены пакетов ещё не назначены: на сайте без цен, без кнопок, без checkout.
+
+**Слова Саши (2026-10-30, дословно):**
+
+> "We are as generous as we can be with the AI credits but when you start to really use this AI more and hit the limits, we will offer you larger packages of AI credits, that also come with an upgrade to the model's power."
+
+**Публичный текст (экран Your AI и строка на /products):**
+
+> Your AI is free to start. We're as generous with AI credits as we can be. When you really start using it and hit the limit, larger credit packages are there, and each one also upgrades the power of the model.
