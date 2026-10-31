@@ -47,3 +47,15 @@ Principles drawn from the lineage:
 7. **Open membership.** Anyone who wants in: Ukrainians, Russians, Belarusians, Georgians, Kazakhs, the diaspora, the world.
 Anti-pattern to avoid (the Nevsky fault line): one equal becomes the broker of an outside power, or the centre speaks for everyone. Any "union" voiced from Moscow now reads as empire.
 Open question: name, first holon, first prototype (a network of people building together across borders — possibly on the Evolver/FYTT game platform as the "village").
+
+## 2026-10-31 — Rorik of Dorestad hypothesis (status: contested)
+- Rorik "of Jutland/Dorestad" (c. 810 – before 882), Danish Viking of the Skjöldung house, received Dorestad and Frisian lands as a fief from Lothair I (c. 850). Sources: Annals of St Bertin, Annals of Fulda, Annals of Xanten.
+- Dorestad (by today's Wijk bij Duurstede, NL, at the Rhine–Lek fork) was the largest emporium of the Carolingian north: Frisian traders, its own mint, links to Haithabu, Birka, England. Frisian merchants were the first Baltic network before Gotland and the Hanse.
+- Identification Rorik = Rurik: N. T. Belyaev (1929), later supported by A. N. Kirpichnikov and others; rejected by many (name was common, chronology gaps, no direct source link). Argument for: Rorik vanishes from Frankish sources in the 860s, matching the chronicle's 862.
+- If true, the loop closes twice: (1) the Dutch hub's lord founds the Rurikid line at Ladoga; (2) his blood descendant Peter (via Evdokia Gorbataya-Shuyskaya) learns in Zaandam/Amsterdam and builds Petersburg on the Neva, the river flowing out of Lake Ladoga. Symbolic rhyme, not causal: the Hanse kontor in Novgorod was St Peter's Court (Peterhof).
+
+## 2026-10-31 — Holonic vision v0.1 (Sasha's additions)
+- Non-state by design: a network of people, communities and cities; states are not members by default. Open membership, every participant's sovereignty.
+- First time in this lineage: digital infrastructure (the kontor, law and ledger become software).
+- Conscious infrastructure of uniqueness: membership and voice grow from each person's made-legible uniqueness and created value, not from origin or tokens.
+- Same pattern as the project: THE GAME OF BEING YOU / Digital Village = the person-level holon; Sovereign Founder Collective nodes = kontors; Planetary OS / knowledge graph = shared law; economy first, governance earned ("a village is people who already feed each other").

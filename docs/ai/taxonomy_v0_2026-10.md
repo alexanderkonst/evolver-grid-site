@@ -2,7 +2,7 @@
 
 For the Evolutionary Mapping workstream. Compiled 2026-10-29 from public pages only (web fetch; no logins). Every category name is taken from a source as written. Anything I inferred or could not see is marked *unverified* or *inferred*. Dates are publication dates.
 
-**Contents:** Part 1 Whole economy (ISIC Rev.5) · Part 2 CB Insights AI taxonomy, reverse-engineered · Part 3 Our AI-branch taxonomy v0 · Gaps · Part 4 Axis test: founder coaching
+**Contents:** Part 1 Whole economy (ISIC Rev.5) · Part 2 CB Insights AI taxonomy, reverse-engineered · Part 3 Our AI-branch taxonomy v0 · Gaps · Part 4 Axis test: founder coaching · Part 5 Toward an integral taxonomy
 
 ## Part 1. Top layers of the whole economy: ISIC Rev.5
 
@@ -334,3 +334,82 @@ Nina Chin is the purest 3b case. She is left out of the top five because the met
 1. **Split stage 3** into **3a**: inner → leadership, team or culture, and **3b**: inner or identity → offer, product or strategy. Guild core = 3b plus strong 3a. Allow 1.5 and 2.5.
 2. **Evidence ladder.** Use program structure or curriculum first, then case studies, then testimonials, then taglines. Each score cites at least one program or offer page. "Inside-out" and "transformation" in a tagline count for nothing on their own.
 3. **Three side columns, kept off the stage score:** *validity* (evidence-based / mixed / esoteric), *payer* (founder / enterprise), and *inner-as* (means / end). Together with 3a/3b they let the map separate real turners from inner-washing.
+
+## Part 5. Toward an integral taxonomy: comparing schemes, finding the primitive (2026-10-29)
+
+Public sources only, fetched 2026-10-29. Counts are as each owner states them; where sources disagree both figures are given. Anything marked *inferred* is my reading, not a source's.
+
+**Which taxonomy v0 uses.** A hybrid: ISIC Rev.5 Section (22) → Division (87) as the whole-economy spine (Part 1); our own AI branch Domain (11) → Market (71) → Niche (~237) (Part 3); CB Insights' Sector → Segment → Category → Market used as a source of market atoms, not as our structure (Part 2). Re-counted from the official CSV, ISIC Rev.5 has 22 sections, 87 divisions, 258 groups, 463 classes.
+
+### 5.1 Schemes compared
+
+| Scheme | Owner | Levels (count) | Sorts by | Strength | Blind spot |
+|---|---|---|---|---|---|
+| ISIC Rev.5 | UN Statistics Division | Section 22 → Division 87 → Group 258 → Class 463 | Kind of activity (output; inputs and technique at fine levels; the intro calls it "production-oriented or supply-based") | Global, complete, crosswalks to everything | Blind to technology, demand, business model; new markets are scattered (coaching, Part 4) |
+| NAICS 2022 | US/CA/MX statistical agencies | Sector 20 → Subsector 96 → Industry group 308 → Industry 689 → National industry 1,012 | One principle only: similar production process | Purest single axis; fine detail | Same activity built by different processes ends up split |
+| NACE Rev.2.1 | Eurostat (in force from 2025) | Section 22 → Division 87 → Group 287 → Class 651 | Same as ISIC (top two levels identical) | EU legal standard; finer than ISIC | Same as ISIC |
+| GICS | MSCI and S&P DJI | Sector 11 → Industry group 25 → Industry 74 → Sub-industry 163 (verified) | "Market demand-oriented": the company's principal business activity, by revenue | Investor-grade; splits Staples from Discretionary by demand | Listed companies only; private and frontier markets coarse |
+| ICB | FTSE Russell (LSEG) | Industry 11 → Supersector 20 → Sector 45 → Subsector 173 | Source of the majority of revenue | Like GICS; ground rules updated Aug 2026 | Same as GICS |
+| TRBC | LSEG | Economic sector 13 → Business sector 32 → Industry group 61 → Industry 153 → Activity 895 | The market a company serves, "rather than the products or services they offer" | 5th level is near-niche | Older summaries still cite the 2012 counts (10/28/54/136/837) |
+| CB Insights | CB Insights | Sector → Segment → Category → Market (1,500–1,700+) | Stack/value-chain layer → function or industry → technology + actor | Frontier-fast; market atoms are reused across maps | Markets live behind a login; overlapping; tech-only |
+| PitchBook | PitchBook (Morningstar) | Sector 7 → Group ~41 → Industry code ~219 (third-party count, *unverified*), plus 50+ verticals and 141+ emerging spaces | Codes: what is sold. Verticals: themes that cut "across multiple industries" | Two-layer design: a tree plus cross-cutting tags | The vertical vocabulary is ad hoc and not exclusive |
+| Crunchbase | Crunchbase | Industry group 40+ → Industry 700+ (multi-tag; 3–5 per company advised) | Keyword facets mixing output, tech and customer | Broad, flat, crowd-tagged | Inconsistent; an industry can sit in two groups |
+| Dealroom | Dealroom.co | Industry 31 (taxonomy page) / "fixed 32" (glossary 2025) → Sub-industry 77; plus separate Technologies (19), Business models, Sectors (18) | Separate facets: industry, technology, business model | Closest to orthogonal facets | Industry list is startup-centric |
+| O*NET-SOC 2019 / ESCO v1.2 | US DOL / European Commission | O*NET 1,016 occupations (867 SOC), 2,085 detailed work activities; ESCO 3,039 occupations, 13,939 skills (ISCO-based) | Job function and skills of a person | Person-level match; maps to functions | Says nothing about firms or markets |
+
+Sources: ISIC CSV (Part 1) and ISIC Rev.5 intro, 2024-03-11, https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/ISIC5_Intro_11Mar2024.pdf · NAICS: OMB notice 2024-12-20, https://www.regulations.gov/document/OMB_FRDOC_0001-0388; 2022 NAICS Manual, https://www.census.gov/naics/reference_files_tools/2022_NAICS_Manual.pdf · NACE Rev.2.1 manual 2025-05-21, https://ec.europa.eu/eurostat/documents/3859598/21633320/KS-GQ-24-007-EN-N.pdf · GICS methodology 2026-10-19, https://www.spglobal.com/spdji/en/documents/methodologies/methodology-gics.pdf; MSCI methodology (demand orientation) 2022, https://www.msci.com/documents/1296102/11185224/GICS%20Methodology%202022.pdf · ICB ground rules v5.1, 2026-08-20, https://www.lseg.com/content/dam/ftse-russell/en_us/documents/ground-rules/icb-ground-rules.pdf · TRBC methodology (Sep 2020 issue), https://www.lseg.com/content/dam/marketing/en_us/documents/methodology/trbc-business-classifcation-methodology.pdf; "market they serve" in Stockopedia's description, https://www.stockopedia.com/learn/our-data/sector-classification-462793 · PitchBook verticals, https://pitchbook.com/what-are-industry-verticals; emerging spaces 2023-02-01, https://pitchbook.com/blog/what-are-emerging-spaces; code count, https://github.com/KimSoo7261/pitchbook_industry_classification · Crunchbase, https://support.crunchbase.com/hc/en-us/articles/360043671353-How-are-industries-organized · Dealroom, https://dealroom.co/our-data/taxonomy, https://dealroom.co/guides/taxonomy, https://dealroom.co/blog/glossary-definitions (2025-05-19) · O*NET, https://www.onetcenter.org/taxonomy.html, https://www.onetcenter.org/content.html · ESCO v1.2 (2024-05), https://esco.ec.europa.eu/en/about-esco/what-esco.
+
+**Families.** There are three families. The *supply* schemes (ISIC, NACE, NAICS) classify an establishment by what it produces or how it produces it. The *market* schemes (GICS, ICB, TRBC) classify a listed company by revenue and the demand it serves. The *frontier* schemes (CB Insights, PitchBook verticals, Crunchbase, Dealroom) classify by technology, theme and business model, and are often multi-tag. O*NET and ESCO classify people, not firms.
+
+### 5.2 How ISIC and CB Insights relate
+
+They sort on different axes, so they do not nest. ISIC asks *what activity produces value added* and assigns one primary class. CB Insights asks *which technology, at which stack layer, sold to which function or industry*. Its market atom is "[object/tech] + [actor noun]" with an optional "for Y" suffix (2.8). Most CB markets fall into a handful of ISIC classes (J5829 Other software publishing, K6219 Other computer programming, K6310 Computing infrastructure/hosting, N7210 R&D). Meanwhile CB Insights uses ISIC's real differentiator, the customer's industry, as its *category* level.
+
+| CB Insights market (source) | ISIC Rev.5 home(s) | What is lost in each direction |
+|---|---|---|
+| Vector databases (STACK-25, DC-25, AI100-26) | J5829 if sold as licensed software; K6310 if run as a managed cloud service (*inferred*: the ISIC page for 5829 did not resolve, so the SaaS rule is not verified) | One CB market splits across two ISIC **sections** by delivery mode. ISIC cannot see "vector" at all. |
+| Industrial humanoid robot developers (HUM-25) | C2819/C2829 machinery once shipping; N7210 while pre-revenue (*inferred*) | The demand side (factories in C, warehouses in H52) that defines the market is outside ISIC's axis. |
+| Clinical trial management systems (AI100-26) | J5829 / K6310 by activity | The pharma customer (C2100, N7210) is the market's identity in CB Insights and invisible in ISIC. |
+| *Reverse:* ISIC 7020 Business and other management consultancy | Founder coaching, strategy consulting, AI-transformation advisories (Part 4) | CB Insights has no market here at all: it only maps technology. |
+
+The mapping is **many-to-many through a third coordinate, demand**. A CB market ≈ ISIC activity (usually K/J) × the buyer's ISIC division × the technology (*inferred*).
+
+### 5.3 The primitive
+
+No scheme's tree is the primitive. Each tree is a projection of one **coordinate tuple** per business unit onto one or two axes. Proposed orthogonal axes:
+
+1. **Output (O):** what is produced, as an ISIC class. *What.*
+2. **Demand (D):** who it is for: the buyer's ISIC division, or a household need. A *Scope* flag records whether the buyer is defined by job function (horizontal; function from O*NET/ESCO) or by industry (vertical). *For whom.*
+3. **Means (M):** process or technology (controlled tags, starting from Dealroom's 19 plus our AI terms). *How.*
+4. **Layer (L):** position in the value chain or stack: L0 resources/primary → L1 energy & compute → L2 models/core tech → L3 data & tooling → L4 application → L5 service/delivery → L6 rails/markets. *Where in the chain.*
+5. **Form (F):** actor type and business model: producer, developer, platform, provider, marketplace, network. *As what.*
+6. **Turn (T):** outer 1 / 1.5 / inner 2 / 2.5 / outer-anew 3a (inner → leadership, team, culture) or 3b (inner → offer, product), per 4.6. *From which source.*
+7. **Stage (S):** maturity of the niche (emerging / growth / mature) and of the firm. *When.*
+
+T and S are evaluative. O–F are descriptive.
+
+Projections: **ISIC/NACE** = O (with M at class level). **NAICS** = M (process). **GICS/ICB/TRBC** = D at the top (Staples vs Discretionary; "market served"), O at the bottom, weighted by revenue. **CB Insights** = L (segment) → D+Scope (category) → M+F (market name). **PitchBook** = O/D tree + M/D tags. **Dealroom** = O, M and F as separate facets, the nearest to the tuple. **O*NET/ESCO** = the function value of D, at person level.
+
+*Finding:* our own v0 Domain level mixes four axes. D1–D6 are Layers, D7–D9 are Scope, D10 is Means (physical) and D11 is Demand (consumer). That is why some niches fit in two domains.
+
+### 5.4 Integral taxonomy v1 (proposal)
+
+- **Spine (for navigation and coverage):** Realm = ISIC Section (22) → Field = ISIC Division (87) of the **Output**. This keeps the crosswalk to official data and to v0.
+- **Niche (the atom):** a cell in O × D × M. Naming rule: **"[Means] [output] for [demand]"**, e.g. "AI voice receptionists for dental clinics". Form, Layer, Turn and Stage are attributes of the niche, not levels.
+- **Market** = the niche with Demand rolled up to the buyer's ISIC section or function. **Domain** (AI frontier only) = a Layer × Scope view, kept as a lens and no longer a level.
+- **Coordinates for one company:** `O: ISIC class | D: buyer division or need; scope H/V | M: tags | L | F | T | S`, each with a source quote, using the 4.6 evidence ladder.
+
+**Worked examples** (types, not scored companies; T values *inferred*):
+
+| | Founder-coaching firm (Reboot-type, Part 4) | AI voice-agent startup (front desk for clinics) | Regenerative farm (direct to households) |
+|---|---|---|---|
+| Niche name | Human coaching for venture-backed founders | AI voice receptionists for outpatient clinics | Regenerative mixed farming for local households |
+| O | N7020 (+ Q8559 for cohorts) | J5829 / K6310 | A0150 Mixed farming |
+| D (scope) | Founders and CEOs; function: leadership (H) | R86 human health; function: front desk (V) | Households; food need (via G47 or direct) |
+| M | Dialogic and somatic coaching; no AI | Speech AI + LLM agents | Regenerative practices; soil biology |
+| L / F | L5 / provider (boutique) | L4 / platform (SaaS) | L0 / producer |
+| T | 3a | 1 (default, unless its offer is built on the founder's uniqueness) | 1–3b: 3b only if the steward's identity and land practice *are* the offer |
+| S | Mature niche | Growth | Emerging |
+| Where v0 put it | Not in Part 3; ISIC scatters it | D8 Customer service or D9 Healthcare (ambiguous) | ISIC A01 only |
+
+The same tuple places all three. ISIC alone separates them only by output. CB Insights sees only the second. The **Turn** axis is the only one that can find "inside-out" leaders across all three (*inferred*).
