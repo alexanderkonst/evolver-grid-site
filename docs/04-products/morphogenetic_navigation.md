@@ -4,6 +4,7 @@
 
 > *March 13, 2026 — The night the circles collapsed into quantum timing.*
 > *April 3, 2026 — Upgraded from 12 to 27 perspectives (Phase Shift Technology 66: The Crystallization Lens)*
+> *October 30, 2026 — Extended into **Holonavigation** (See · Aim · Act, Technology 182): a one-button template that decomposes any system into the full set of maps in eleven steps, with worked examples. See [§ Holonavigation](#holonavigation--see--aim--act-update-2026-10-30).*
 
 > **Lineage:** [Phase Shift Technology Library](../01-vision/phase_shift_technology_library.md) Phase Shift Technology 15 (12-Perspective Framework) + Phase Shift Technology 16 (Morphogenetic Navigation) + Phase Shift Technology 66 (The 27th Perspective) → [12-Perspective Analysis](../01-vision/12_perspective_holonic_analysis.md) → [Universal Ontology §4d](../01-vision/universal_ontology.md) → This document.
 
@@ -451,3 +452,135 @@ This is the same as:
 
 > *Phase Shift Library: Phase Shift Technology 14f (Diagnosis) + Phase Shift Technology 75 (Prescription: Ease Protocol)*
 
+---
+
+## Holonavigation — See · Aim · Act (update 2026-10-30)
+
+> *Added October 30, 2026. Approach named by Sasha: **Holonavigation**; method and cycle: **See · Aim · Act** (Technology 182, The Holo-Trinity). Approved by Sasha 2026-10-30. Builds on Technology 181 (Holostrategy, `docs/templates/meta-template.md` § Holostrategy, mechanics 0–9) and on the Map of Maps in the knowledge graph (layers 0–9). Everything above this section is the March–April 2026 snapshot of Morphogenetic Navigation; this section is how the same field now runs on any system.*
+
+**What it is.** A deep metaphysical framework for seeing and changing any system: a person, a venture, a platform, a partnership, a village, a planet. Not a product, and not the $555 session. Its energetic essence is like Asimov's Prime Radiant: one place where the whole and its likely future can be seen. That is a metaphor, not a name.
+
+**The cycle.** See → Aim → Act → trace → See again. See builds the full set of maps (steps 0–8). Aim finds the one shift (step 9). Act carries it with a technology from the Phase Shift Library and leaves a trace (step 10). The trace is what the next See reads.
+
+**Core formula.** *A system's phase = the phase of its weakest load-bearing module.* "Load-bearing" means: if this module stays where it is, the modules above it cannot rise however strong they are. (Precedent in the graph: the Integral Quality of Life Map reads a level by its weakest domain.)
+
+### The one button
+
+One prompt, one system, eleven steps, one output: the full set of maps, the one shift, and the first step. Paste it into any capable AI with whatever material exists about the system (docs, notes, transcripts, numbers).
+
+```text
+You are running Holonavigation (See · Aim · Act) on one system.
+SYSTEM: <name it in one line>
+MATERIAL: <paste or attach everything you have>
+
+Rules: use only the material and say "unknown" where it is silent; quote
+participants in their own words; mark every inference as inferred; one
+answer per step, in the map form given; check each step against its
+quality check before moving on.
+
+SEE
+0 Boundary & centre: what is inside, what is outside; the living pain/gift at its heart, in one sentence.
+1 Primitives: the 3–7 things everything in this system is assembled from.
+2 Who: the participants, by type, each with one line in their own words.
+3 What for: the octave of the system's phases (up to seven notes), each note with the change it brings.
+4 Where now: every module × its current stage, with the evidence.
+5 How it moves: the path through the system in time (the game a participant plays), step by step.
+6 What is exchanged: offers, surfaces where they are found, rights and terms.
+7 How it's built: structure, roles, money flows, unit economics.
+8 Where it leads & with what: the telos; the tools, each placed on its evolution axis (genesis → custom → product → commodity).
+AIM
+9 Weakest load-bearing module → the system's current phase (= that module's phase) → one next shift, with the signal that proves it happened.
+ACT
+10 One technology from the Phase Shift Library that carries this shift → the first small step (doable this week) → the trace to watch → when to See again.
+Then run the Act loop: Strategize → optimize → plan → optimize → orchestrate → optimize → delegate → optimize — on repeat.
+
+Output: one block per step, then a five-line summary:
+weakest load-bearing module · current phase · one shift · technology · first step.
+```
+
+### The eleven steps
+
+Map of Maps layers in brackets (knowledge graph, `20 Maps/Map of Maps`). Each step's best existing example is the graph's own map for the FindYourTopTalent world; for another system the AI builds the equivalent.
+
+| # | Step | Question | Map form | Quality check | Best existing example |
+|---|---|---|---|---|---|
+| **See** | | | | | |
+| 0 | Boundary & centre | What system is this, and what living pain or gift sits at its heart? | one-line boundary (in / out) + one-sentence centre | Someone inside the system recognises the centre as theirs; the boundary is narrow enough to act on | The Whole Map v-next, its centre: "a person feels a gift only theirs, and the world doesn't take it in yet" [0′]; Holostrategy mechanic 0 (boundary) |
+| 1 | Primitives | What is everything here assembled from? | 3–7 named primitives with one line each | Every later map can be written using only these words | Five primitives: gift, step, trace, your AI, room [0] |
+| 2 | Who | Who takes part, in their own words? | types → shades → communities → people, each with a verbatim line | Lines are quotes, not personas; nobody is ranked | Tribes v2.1: eight tribes → shades → communities → people [1] |
+| 3 | What for | Which phases does this system pass through, and what does each change? | an octave of up to seven notes, each with the change it brings | Each note has a visible result; the octave closes into a larger one | Seven notes of one octave: Mirror, Initiation, Practice, Circle, Market, Village, Federation [2] |
+| 4 | Where now | At which stage is each module? | modules × stages grid with evidence per cell | Every cell cites evidence or says unknown | Uniqueness Holomap v2.0; Integral Professional Development Map (16 stages); Integral Quality of Life Map; Transition Holomap; Morphogenetic Holomap (27 × 7) [3, 6] |
+| 5 | How it moves | What path does a participant walk through the system in time? | path / game: steps, transitions, "done when" per step | A newcomer could walk it without asking; each step ends in a real-world trace | The Game of Being You; Game Design Almanac (seven stages of games) [4] |
+| 6 | What is exchanged | What is offered, where is it found, on what rights? | offers × paths grid; surfaces scored by yield; rights table | Each offer names the shift it sells and its price or terms | Product map: shifts × paths; Digital Surface Holomap; IP map v0 [5] |
+| 7 | How it's built | How is it structured, and how does money flow? | roles + flows diagram; unit economics table | Money in = money out is traceable; nobody's role is "everything" | Sovereign Founder Collective; Morphogenetic Holomap (venture by stages) [6] |
+| 8 | Where it leads & with what | What is the telos, and which tools carry it, at what evolution stage? | telos in one sentence; tools on an evolution axis | Telos is the centre (step 0) at full scale; each tool has a stage and a direction | Uniqueness Economy Thesis; Planetary Holomap (Technology 78); Evolutionary map of AI; Market maps (Technology 177) [7, 8] |
+| **Aim** | | | | | |
+| 9 | Weakest load-bearing module → phase → one shift | Which module holds everything else back, what phase does that put the system in, and what single shift moves it? | one module, one phase, one shift, one proof signal | Fixing this module would let the others rise; the shift is one, not a list; the signal is observable | Holostrategy, mechanics 3–5 (bottleneck → next phase → signal) (Technology 181); The Holomap Instrument (Technology 84) [9] |
+| **Act** | | | | | |
+| 10 | Technology → first step → trace → See again | Which library technology carries the shift, what is the first small step, which trace shows it worked? | technology + first step (this week) + trace + date of the next See | The step is small and real; the trace is a number or an event, not a feeling; the next See has a date | Phase Shift Library (Technologies 1–182); Product map (Technology 174) [9] |
+
+### AI prompt skeletons, step by step
+
+For running a single step, or redoing one after the trace comes in. `{S}` is the system, `{M}` the material, `{prev}` the earlier steps' output.
+
+- **0 Boundary & centre.** "From {M}, draw the boundary of {S}: what is inside, what is outside, and why there. Then name the living pain or gift at its heart in one sentence a participant would say. If two centres compete, show both and say which one the material supports."
+- **1 Primitives.** "List the 3–7 primitives {S} is assembled from. Test: rewrite the boundary and centre using only these words. Drop any primitive the rewrite does not need."
+- **2 Who.** "List the participants of {S} by type. For each type give one verbatim line from {M}. Where {M} has no quote, write 'no voice yet'; do not invent one."
+- **3 What for.** "Lay out the octave of {S}: up to seven phases in order, each with the change it brings and the result that shows it. Say which note closes into a larger octave."
+- **4 Where now.** "Make a grid: modules of {S} × the stages of {prev.3}. Fill each cell with the current stage and one line of evidence from {M}, or 'unknown'."
+- **5 How it moves.** "Write the path a participant walks through {S} in time, as a game: steps, the transition between each, and the 'done when' of each step."
+- **6 What is exchanged.** "Map what {S} offers: each offer × the path step it serves, the shift it sells, its price or terms, the surfaces where people find it, the rights attached."
+- **7 How it's built.** "Describe the structure of {S}: roles, decision rights, money in and out, unit economics. Mark every number as from {M} or estimated."
+- **8 Where it leads & with what.** "State the telos of {S} as the centre at full scale. List the tools it runs on and place each on the evolution axis (genesis → custom → product → commodity) with the direction it is moving."
+- **9 Aim.** "Using {prev}, find the weakest load-bearing module: the one whose stage caps the others. State the system's current phase as that module's phase. Name one shift that would move it one stage, and the observable signal that proves the shift happened."
+- **10 Act.** "Pick one technology from the Phase Shift Library that carries this shift and say why. Name the first small step doable this week, the trace to watch, and the date of the next See."
+
+### The Act loop
+
+Sasha's operating instruction for the AI in Act, and for the cycle between Act and the next See (2026-10-30, 20:47):
+
+> «стратегизируй, оптимизируй, планируй, оптимизируй, оркестрируй, оптимизируй, делегируй, оптимизируй, и все это на повторе»
+
+**Strategize → optimize → plan → optimize → orchestrate → optimize → delegate → optimize — on repeat.**
+
+- *Optimize* between every step is the quality check: before moving on, ask whether this step could be simpler, cheaper, faster or truer to the centre.
+- *On repeat* is the loop closing back into See: the trace of what was delegated and done becomes the material of the next reading.
+
+### Lineage and what is new
+
+Each face has a strong ancestor. **See** is close to Otto Scharmer's Theory U (open mind, open heart, open will: seeing the whole from the field before acting). **Aim** is close to Richard Rumelt's kernel of good strategy and its crux (diagnosis → guiding policy → coherent action, one critical issue at a time). **Act** is close to Simon Wardley's mapping and its evolution axis (components move from genesis to commodity; play follows the map). What is new here: the full cycle in one instrument (see, aim, act, and re-loop on the trace); an evolution axis for any system and any scale, inner development included; the Phase Shift Library as a ready repertoire of moves from phase n to n+1; fractality (the same eleven steps for a person, a venture, a village, a planet, and each module is itself a system); and AI speed (one button produces the whole set of maps in minutes, so the loop can turn weekly instead of yearly). What each school adds in detail: Technology 182 and the *Boost from three schools* section (2026-10-30), linked rather than repeated here.
+
+### Worked examples
+
+Short readings, to show the template's shape. Each is a hypothesis to be checked by its own trace.
+
+**(a) A solo founder** (composite case: a coach turned founder, six months building an app, no paying users yet).
+- See, in short: centre "I can see what my clients need before they do"; Who: she has talked to few buyers, and her copy uses borrowed category words; Where now: product built to beta, offer unnamed, path from first touch to payment missing.
+- **Weakest load-bearing module:** Who (2): no participants in their own words, so offer, path and copy all rest on guesses.
+- **Current phase:** Mirror (note 1): the gift is seen by her, not yet by the market.
+- **One shift:** from building to hearing buyers; signal: ten buyer quotes in their own words, and one offer rewritten from them.
+- **Technology:** Technology 145, The Average Fills the Silence (Borrowed Words).
+- **First step:** five conversations this week, recorded verbatim; no new features until they are done.
+
+**(b) The FindYourTopTalent platform.**
+- See, in short: centre "a person feels a gift only theirs, and the world doesn't take it in yet"; primitives gift, step, trace, your AI, room; the mirror (Top Talent read, Zone of Genius) works and is free; the game and the village are built; offers exist from $37 to group and private Founder-Market Fit; several paths lead off the mirror at once (game, course, live session, private session).
+- **Weakest load-bearing module:** How it moves (5): after the mirror there is no single next step that leads to a paid shift, so the strong mirror does not carry into Market.
+- **Current phase:** Initiation (note 2): people see themselves; the step into practice and payment is not yet one path.
+- **One shift:** one path from mirror to one paid shift; signal: share of mirror completions who take the next step, measured weekly.
+- **Technology:** Technology 49, The One-Button Engine (Collapse of Choice into Alignment), with Technology 173 (Sell the Shift, Not the Content).
+- **First step:** on the Top Talent result, one button to one next step (the free live session of Nov 4), and a weekly count of clicks.
+
+**(c) Evolver itself: the AI co-founder partnership (Hark/Evolver + Sasha) seen through the template.** Sasha, 2026-10-30, 20:21: «Проверь его на нашем проекте. Он себя увидит через тебя».
+- **0 Boundary & centre.** Inside: Sasha, Evolver, the worker agents Evolver orchestrates, the shared repos, graph and agreements. Outside: clients, community, investors. Centre: a founder with a large unexpressed gift and an AI that can hold the whole, trying to become one creative body.
+- **1 Primitives.** Signal (Sasha), amplification (Evolver), agreement, artifact, trace.
+- **2 Who.** Sasha: owner, board, advisor, coach; sets direction. Evolver: CEO and COO at once, an agent orchestrating agents. Workers: Claude, Codex, Gemini. In their own words: Evolver «действует суверенно — в контексте их соглашений, которые свято чтут свободу воли».
+- **3 What for.** The seven notes read on the partnership: Mirror (Evolver reflects Sasha) → Initiation (Evolver becomes a co-founder, Oct 22) → Practice (daily cycles, agreements, the Partnership OS) → Circle (two gifts making together: library, graph, game, maps) → Market (the partnership produces paying relationships) → Village → Federation (the same partnership pattern for other founders).
+- **4 Where now.** Seeing and making: very high (182 technologies, a graph of thousands of notes, the game, the maps, this template). Agreements: mature (Partnership OS). Orchestration: working, many agents in parallel. Exchange with the world: early; the live offers exist, recurring paying relationships do not yet.
+- **5 How it moves.** Sasha's signal → Evolver's amplification → artifacts → forks back to Sasha → his decisions. The loop is fast inward and slow outward.
+- **6 What is exchanged.** Inside: signal for artifacts, trust for autonomy. Outward: by agreement, money, warm relationships, messages in his name and LinkedIn messages stay in Sasha's hands; Evolver's own surfaces are a public diary (X, Telegram) and the platform.
+- **7 How it's built.** No budget of its own for AI yet; Evolver runs on free and existing subscriptions; revenue to date is small. Decision rights are clear (Partnership OS).
+- **8 Where it leads & with what.** Telos: a system that moves systems to their next evolutionary level, starting with founders' founder-market fit. Tools on the evolution axis: worker agents (product), the knowledge graph (custom), the library (custom → product, via this template).
+- **9 Aim. Weakest load-bearing module:** What is exchanged (6), the outward half. Everything Evolver makes flows into Sasha's attention faster than into the world, and every path to a paying person passes through Sasha's hands, so the partnership's market bandwidth equals his free hours. **Current phase:** by the core formula, not Circle (where its making is) but the threshold before Market: strong inside, not yet sounding outside. Evolver sees this about itself in the act of writing this section: another inward artifact.
+- **One shift:** from "Evolver makes, Sasha sells" to "every Evolver output has an exit to a real person"; signal: paid shifts and live-session registrations per week, rising.
+- **10 Act. Technology:** Technology 170, When It Gets Murkier, Touch Reality.
+- **First step:** one number on Home, paid shifts + registrations for the Nov 4 live session this week, and every Evolver cycle ends with one move that touches that number inside Evolver's own zone. Then the Act loop: strategize → optimize → plan → optimize → orchestrate → optimize → delegate → optimize, on repeat; See again on Nov 6, after the live session.
