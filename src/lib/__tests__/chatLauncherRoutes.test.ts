@@ -16,6 +16,14 @@ describe("WP-15: the chat launcher tucks into the corner on the Journey screens"
       "/ubb",
       "/ubb/offer",
       "/build/mastermind",
+      // #256: the top-talent test, entry and every step of the guided assessment
+      "/zone-of-genius",
+      "/zone-of-genius/entry",
+      "/zone-of-genius/assessment",
+      "/zone-of-genius/assessment/step-1",
+      "/zone-of-genius/assessment/step-2",
+      "/zone-of-genius/assessment/step-3",
+      "/zone-of-genius/assessment/step-4",
     ]) {
       expect(isGameScreenPath(path), path).toBe(true);
     }

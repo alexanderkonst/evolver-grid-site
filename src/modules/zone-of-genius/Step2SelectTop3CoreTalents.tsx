@@ -201,6 +201,8 @@ const Step2SelectTop3CoreTalents = () => {
             "var(--skin-card-fill, linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 80%, transparent 100%))",
           backdropFilter: "blur(14px)",
           WebkitBackdropFilter: "blur(14px)",
+          // #256: Continue stops short of the «Chat with us» pill (--chat-clearance, theme-tokens.css)
+          paddingRight: "var(--chat-clearance, 72px)",
         }}
       >
         <div className="flex items-center justify-between gap-3 mb-3">

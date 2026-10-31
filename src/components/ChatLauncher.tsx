@@ -22,7 +22,11 @@ export const isGameScreenPath = (pathname: string): boolean =>
   pathname.startsWith("/game/") ||
   pathname === "/ubb" ||
   pathname.startsWith("/ubb/") ||
-  pathname === "/build/mastermind";
+  pathname === "/build/mastermind" ||
+  // #256: the top-talent test is not a Journey screen, but its full-width mobile
+  // Continue bar sits on the pill's baseline, so it takes the same corner rule.
+  pathname === "/zone-of-genius" ||
+  pathname.startsWith("/zone-of-genius/");
 
 const MESSAGE =
   "Hi, I landed on your website and wanted to get in touch.";
