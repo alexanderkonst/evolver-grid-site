@@ -9597,6 +9597,9 @@ The trace of every step feeds the next seeing: see → aim → act → trace →
 | **Integral (AQAL) + Spiral Dynamics** ([Integral theory](https://en.wikipedia.org/wiki/Integral_theory_(Ken_Wilber)), [Spiral Dynamics](https://en.wikipedia.org/wiki/Spiral_Dynamics)) | Stages, holons, quadrants, developmental lines | Turns the meta-map into a move and a roadmap for a given system |
 | **Digital twin** ([Wikipedia](https://en.wikipedia.org/wiki/Digital_twin)) | A live model synced with real data (≈ the trace-fed holomap) | Works for human and social systems, and carries aim and action, not only monitoring |
 | **OKRs** ([Wikipedia](https://en.wikipedia.org/wiki/Objectives_and_key_results)) | Objective + measurable result | OKRs say what to reach, not where the bottleneck is or which method moves it |
+| **Gurdjieff's Law of Three and Law of Seven** (Fourth Way: three forces; the octave of seven notes with its intervals) ([Wikipedia](https://en.wikipedia.org/wiki/Fourth_Way)) | A triad and an octave of seven notes; processes don't run in a straight line | Turns the octave into a business and life instrument: each note is a phase with a checkable result, and the triad is see / aim / act |
+
+**Inside the corpus already.** The name and the instrument have earlier forms here: *Technology 1: Seeing the Origin of Everything (Prime Radiant)* (the origin pattern); `docs/07-technology/prime_radiant_spec.md` (Prime Radiant Spec v0.1, a holonic game engine, Jan–Feb 2026: "playable, navigable, and collaborative — from the scale of one person to the scale of civilization"); the Prime Radiant canonical artifact identity (Jul 2026); and *Technology 84: Predicting Where Any Living System Will Phase-Shift Next (The Holomap Instrument)*. The holo-trinity is the first form that joins seeing, aiming and acting into one loop.
 
 ### 🧭 Product sketch — AI draft (price left to Sasha)
 
