@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import type { PlayerReflectionsApi as HookApi } from "../usePlayerReflections";
 
 // Mutable stand-in for the hook, so the components can be rendered in both states.
 const hookState = vi.hoisted(() => ({
@@ -13,7 +14,7 @@ const hookState = vi.hoisted(() => ({
     unread: [] as unknown[],
     leave: async () => ({ ok: true as const }),
     markRead: async () => {},
-  },
+  } as unknown as HookApi,
 }));
 
 vi.mock("react-i18next", () => ({
