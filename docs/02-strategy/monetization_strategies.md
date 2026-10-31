@@ -120,6 +120,19 @@ The honest catch you already named: the exact prices, and the exact way of charg
 
 **The name.** The human-facing name for this whole thing is the **Self-Organizing Human Network (SOHN)**. `PlanetaryOS` / the `Kernel` stay the engine under the hood; SOHN is what gets published, spoken, and put on the seminal page (`/sohn`). The thesis abstract lives there.
 
+### 6. Owner decisions (2026-10-30): author split and retro pool
+
+*Decided by Aleksandr Konstantinov, 2026-10-30.*
+
+**Author revenue split (outside authors on the hosted platform).** Courses, micro-courses and products by outside authors sold on the platform split by who brought the buyer:
+
+- **Buyer brought by the platform / the game:** two-thirds (66.6%) to the author, one-third (33.3%) to the platform.
+- **Buyer brought by the author themself:** 90% to the author, 10% to the platform.
+
+Why: the platform is paid for what it actually did, bringing the buyer. No flat Uber-like take on every sale. This is separate from the 10% revenue share fork operators owe (line 3 above, Distributor Agreement §3). Legal text: [`DISTRIBUTOR_AGREEMENT.md` → Author revenue split](../../DISTRIBUTOR_AGREEMENT.md#author-revenue-split-hosted-platform). Answers open question 1 in [`evolutionary_avantgarde_taxonomy.md`](./evolutionary_avantgarde_taxonomy.md).
+
+**Retro pool distribution: opt-in claimants first.** The retro pool (the share of revenue that pays back retroactively for proven traces, see the Planet row in [`evolutionary_avantgarde_taxonomy.md`](./evolutionary_avantgarde_taxonomy.md)) is distributed at first **only among those who come to claim their share**. Why: split across ~8 billion people from day one, each share is below one cent and the transfer costs more than the payout. As the pool grows, the circle of recipients widens toward everyone. The size of the pool is still open.
+
 ---
 
 ## Strategic Crystallization (Day 76–77, May 19–20, 2026)
@@ -684,6 +697,9 @@ This is **Big Idea #1 (master holon prototypes everything before the network) an
 - **Distributor Agreement bumped to v0.4** — preamble transparency note added; §16 spirit clause updated; cross-link to treasury evolution doc.
 - **README updated** — same word replacements; cross-links added.
 - Subtitle changed: *commons tithe* → *steward-owned commons*.
+
+### v2.4 — October 30, 2026
+- **Owner decisions added** as §6 of *The Whole System*: author revenue split on the hosted platform (66.6% / 33.3% when the platform brought the buyer, 90% / 10% when the author did) and retro pool distribution (opt-in claimants first, widening toward everyone as the pool grows). Distributor Agreement bumped to v0.6; LICENSE.md cross-links the split.
 
 ---
 

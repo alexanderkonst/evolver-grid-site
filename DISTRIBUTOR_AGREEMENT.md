@@ -1,6 +1,6 @@
 # Distributor Agreement
 
-**Version 0.5 · May 20, 2026 (Day 77)**
+**Version 0.6 · October 30, 2026**
 *This is a draft. The intent is binding; the legal language will tighten with counsel review before any first signature.*
 
 > **On where the 10% goes (v0.1 transparency note).** The revenue share defined in §3 currently routes to Alexander Konstantinov personally as **founder steward** — covering years of unpaid R&D, apparatus operating costs (Supabase, AI APIs, hosting, code maintenance), and founder compensation during bootstrap. This is the *founder-steward phase* of a declared three-phase trajectory toward a **governed purpose entity that cannot be sold**. The full evolution — threshold-triggered transition at ~25 active distributors, declared allocation buckets, distributor council governance at Phase 3 — is documented in [`docs/02-strategy/commons_treasury_evolution.md`](./docs/02-strategy/commons_treasury_evolution.md). When this doc says "Commons" in §7 it refers to the *data commons* (opt-in anonymized artifacts); the *revenue commons* is the trajectory described in the treasury evolution doc.
@@ -28,6 +28,19 @@ On Path A, you owe NOTHING beyond the agreed subscription terms. The hosted Plat
 If you fork the Platform and run your own instance — modifying the code, hosting on your own infrastructure, operating under your own brand — the Distributor Agreement below applies. Summary: 10% rev-share above a $1,000/month free tier, opt-in commons contribution, attribution preserved, audit by exception.
 
 > **The two paths are mutually exclusive on a given operation.** Path A means "use Sasha's hosted Platform." Path B means "run your own forked Platform." If you outgrow Path A and start forking, you cross to Path B. If you previously forked under Path B and decide hosted is simpler, you migrate to Path A.
+
+### Author revenue split (hosted platform)
+
+*Owner decision, Aleksandr Konstantinov, 2026-10-30.* When an outside author (someone other than the Licensor) sells a course, micro-course or other product **on the hosted Platform**, the sale is split by who brought the buyer:
+
+| Who brought the buyer | Author | Platform |
+|---|---|---|
+| The Platform / the game | **two-thirds (66.6%)** | **one-third (33.3%)** |
+| The author themself | **90%** | **10%** |
+
+The Platform is paid for what it actually did: bringing the buyer earns a third, hosting a sale the author brought in earns a tenth. No flat Uber-style take on every sale.
+
+This is **not** the Path B revenue share. The 10% in §3 is what a fork-and-self-host Distributor owes on their own instance's revenue above the $1,000/month free tier; the author split above applies only to sales on the hosted Platform. Business-model context: [`monetization_strategies.md` §6](./docs/02-strategy/monetization_strategies.md#6-owner-decisions-2026-10-30-author-split-and-retro-pool). Methodology license: [`LICENSE.md`](./LICENSE.md).
 
 The rest of this document is **Path B** — the Distributor Agreement for fork-and-self-host operators.
 
@@ -283,6 +296,8 @@ If a situation arises that this document does not address, the spirit to apply i
 When in doubt, talk to the Licensor directly: [Telegram](https://t.me/integralevolution).
 
 ---
+
+*v0.6 · October 30, 2026 · Added "Author revenue split (hosted platform)" before the Path B text: outside authors selling on the hosted Platform get two-thirds (66.6%) when the Platform brought the buyer (one-third, 33.3%, to the Platform) and 90% when they brought the buyer themselves (10% to the Platform). Kept distinct from the §3 Path B 10% revenue share. Owner decision by Aleksandr Konstantinov.*
 
 *v0.5 · May 20, 2026 (Day 77) · Removed the Path A subscription tier table (Tasting / Builder / Locked-in / Founders 50 / Ignition) — those tiers were a hypothesis, never actually enforced in practice, and pricing is still being arrived at through real pilots. Path A pricing is now stated as bespoke per engagement, published tiers to be defined as the model matures. §15.2 Generated Outputs updated to remove specific tier names; references the subscription agreement directly. Path B (10% rev-share fork-and-self-host) unchanged.*
 

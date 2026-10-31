@@ -727,5 +727,7 @@ One ledger of traces serves every payer: the player sees progress, the host sees
 
 ### Open questions for Sasha
 1. **Author split on the unlock path.** Shift pays faculty 25% plus affiliate; Substack and Skool keep only 3–10%. Where do outside authors sit, and how does it stack with the 33% co-host share?
+   *Resolved 2026-10-30:* by who brought the buyer: platform/game brought them, author two-thirds (66.6%) / platform one-third (33.3%); author brought them, 90% / 10%. See [`monetization_strategies.md` §6](./monetization_strategies.md#6-owner-decisions-2026-10-30-author-split-and-retro-pool).
 2. **Is "AI reads your trace" the subscription** (the AI flavor inside the game), with the first step and trace free forever?
 3. **A retro pool for Planet.** Do we reserve a share of revenue to pay retroactively for proven traces of village and region projects (like Optimism's 20% of supply or Fortnite's 40% engagement pool), and how much?
+   *Partly resolved 2026-10-30:* distribution starts only among opt-in claimants (a share split across ~8 billion people is below a cent and costs more to send than it pays), widening toward everyone as the pool grows; the size of the pool stays open. See [`monetization_strategies.md` §6](./monetization_strategies.md#6-owner-decisions-2026-10-30-author-split-and-retro-pool).
