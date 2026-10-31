@@ -23,3 +23,27 @@ Append-only. Tags: **[fact]** · **[hyp]** · **[ours]** as in the cosmology log
 9. **Naming the capital "Harmony" (Sasha).** [ours, Sasha] Naming the main city "Harmony" would be an incredibly strong, conceptual move for a civilization being born. Calling the capital "the place of concord and order" declares the overcoming of ruinous internecine strife.
    [fact] The Primary Chronicle frames the calling of Rurik exactly this way: «Земля наша велика и обильна, а наряда в ней нет» ("our land is great and abundant, but there is no order [*naryad*] in it").
    [ours] The founding problem of Rus was order, not territory; a name like "Harmony" makes the remedy the identity of the centre.
+
+## 2026-10-31 — The Hanse lineage (Sasha: «кажется, я нашёл мой lineage»)
+
+10. **Hanse: a network federation that worked for ~400 years.** [fact] Leagues of north German merchants and towns, 12th–17th c., led by Lübeck, up to ~200 towns over time. No sovereign, no permanent army or capital; the Hansetag (diet) met irregularly. Mustered fleets and beat Denmark (Peace of Stralsund, 1370). Four main kontore: Novgorod (Peterhof), Bruges, London (Steelyard), Bergen. Dominant in Baltic trade, not a full monopoly.
+11. **The Dutch as heirs.** [fact] The fluyt cut freight costs; the Baltic grain trade was the Dutch "mother trade"; the United Provinces (1581/1588) were a federation of autonomous cities and provinces under the States General; the VOC (1602), run by the Heeren XVII drawn from city chambers, plus the Amsterdam exchange = first modern joint-stock company and stock market. Then Britain borrowed the financial toolkit.
+12. **The Ladoga → Hanse → Amsterdam → Petersburg circle.** [fact] Ladoga existed by ~750s (dendrochronology), a century before Rurik: he came to an existing hub, not a blank spot. Chronicle (Ipatiev list): Rurik settled at Ladoga, then built a town by the Volkhov (Rurik's Settlement/Novgorod), and handed Polotsk, Rostov, Beloozero and Murom to his men: a network of strongholds along the routes. [hyp] Rurik = Rorik of Dorestad (Jutland), who held Dorestad, the great Frisian trade hub in today's Netherlands. Debated, but if true the Dutch circle closes twice.
+    [fact] Peter I worked at the Zaandam and Amsterdam yards (1697); Partikulyarnaya verf (1718) issued boats to residents with an obligation to sail; no permanent bridge across the Neva until 1727 (pontoon). Sources include Danish envoy Just Juel and Holstein kammerjunker F. W. Bergholz. Spires of Peter and Paul and the Admiralty raised by Dutch master Harman van Bolos.
+    [fact] Peter has documented Rurikid ancestry: Evdokia Gorbataya-Shuyskaya (Suzdal Rurikids), mother of Patriarch Filaret, was his great-great-grandmother. Anastasia Romanovna (Ivan IV's first wife) was Filaret's aunt: kinship by marriage, not blood.
+    [ours] The network-trade model reappears whenever a centre opens to exchange: Ladoga, Novgorod, Hanse, Amsterdam, Petersburg.
+
+## 2026-10-31 — Holonic vision v0 (Sasha: «новое холоническое видение для союза России и Украины. И кого бы то ни было, кто хочет присоединиться. Айки-до. Будем править по совести.»)
+
+Context [fact, as of 2026-10-31]: Russia's full-scale war against Ukraine is in its fifth year; Russia occupies ~20% of Ukraine; a local US-brokered ceasefire in Oleshky (Kherson) is holding, residents choose where to go; trilateral talks planned for November.
+
+Principles drawn from the lineage:
+1. **Consent before union** (the calling of Rurik, the Novgorod *ryad*). Nobody joins by force; no union of states, a field of people and communities. Each party sets its own terms of participation; the harmed side sets them first.
+2. **Right of exit** (Iceland: a free farmer could switch his goði). A member who cannot leave is a subject.
+3. **No capital; "Harmony" is a function, not a city** (Hanse: Lübeck led, nobody ruled). Rotating hubs, kontore in neutral cities.
+4. **Shared law, local autonomy** (Lübeck law, Russkaya Pravda). Subsidiarity: each holon decides what it can (person → family → community → city → network → land → planet).
+5. **Exchange before politics** (Ladoga, Hanse, Dutch). Trade, learning, work together build trust that declarations cannot.
+6. **Conscience: truth before reconciliation.** Aikido = do not push against what is real. Today that means: the war ends, sovereignty respected, prisoners and children home, harm named. Only then does a voluntary network have ground.
+7. **Open membership.** Anyone who wants in: Ukrainians, Russians, Belarusians, Georgians, Kazakhs, the diaspora, the world.
+Anti-pattern to avoid (the Nevsky fault line): one equal becomes the broker of an outside power, or the centre speaks for everyone. Any "union" voiced from Moscow now reads as empire.
+Open question: name, first holon, first prototype (a network of people building together across borders — possibly on the Evolver/FYTT game platform as the "village").
