@@ -10,21 +10,21 @@
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(to bottom, rgba(var(--scene-bg-rgb), 0.35) 0%, rgba(var(--scene-bg-rgb), 0.6) 60%, var(--vl-bg) 100%);
 }
-.qb__body { position: relative; z-index: 1; padding: 72px 24px 56px; }
+.qb__body { position: relative; z-index: 1; padding: 72px var(--vl-space-5) calc(var(--vl-space-6) + var(--chat-clearance)); }
 .qb__head { text-align: center; padding-bottom: clamp(20px, 4vh, 40px); text-shadow: 0 1px 24px rgba(var(--scene-shadow-rgb), 0.65); }
 .qb__group { max-width: 640px; margin: clamp(24px, 4vh, 40px) auto 0; }
 .qb__h {
-  margin: 0 0 10px; font-family: var(--vl-mono); font-weight: 300; font-size: 12px;
+  margin: 0 0 var(--vl-space-3); font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-label);
   letter-spacing: 0.26em; text-transform: uppercase; color: var(--vl-ink-2);
 }
-.qb__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-.qb__row { padding: 12px 0; border-top: 1px solid var(--vl-hair); }
+.qb__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--vl-space-1); }
+.qb__row { padding: var(--vl-space-3) 0; border-top: 1px solid var(--vl-hair); }
 /* open (a link) and closed (a span) share one box, so «Done when» sits the same distance below every name */
 .qb__name { display: inline-flex; align-items: center; min-height: 44px; font-weight: 300; font-size: clamp(20px, 2.2vw, 26px); line-height: 1.25; color: var(--vl-ink); }
 a.qb__name:hover, a.qb__name:focus-visible { color: var(--vl-accent); outline: none; }
 /* the label is its own line and the sentence wraps flush under it; 0.8 ink on open and locked rows alike (the 0.5 ink-3 was the low-contrast locked line) */
-.qb__done-when { margin: 0; font-size: 16px; line-height: 1.4; color: rgba(var(--scene-ink-rgb), 0.8); overflow-wrap: anywhere; }
-.qb__done-when-label { display: block; margin-bottom: 2px; font-family: var(--vl-mono); font-weight: 300; font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; }
-.qb__row .ps-line { margin-top: 4px; font-size: 17px; color: var(--vl-ink-2); }
+.qb__done-when { margin: 0; font-size: var(--vl-text-body); line-height: 1.4; color: rgba(var(--scene-ink-rgb), 0.8); overflow-wrap: anywhere; }
+.qb__done-when-label { display: block; margin-bottom: 2px; font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-label); letter-spacing: 0.26em; text-transform: uppercase; }
+.qb__row .ps-line { margin-top: 4px; font-size: var(--vl-text-lead); color: var(--vl-ink-2); }
 .qb__row .ps-tag { margin-top: 4px; margin-left: 10px; }
-.qb__row[data-place-state="closed"] .qb__name { color: var(--vl-ink-3); }
+.qb__row[data-place-state="closed"] .qb__name { color: var(--vl-lock-ink, var(--vl-ink-3)); }

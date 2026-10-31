@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { PLACE_BACK_LINK_CLASS } from "@/components/game/VillagePlaceHeader";
+import { getVillagePlace } from "@/data/villagePlaces";
+import { placeName } from "@/lib/villageCopy";
 import { useTranslation } from "react-i18next";
 import { MapPin, Users, Languages } from "lucide-react";
 import { toast } from "sonner";
@@ -359,6 +362,8 @@ const _ParkedFreshMatchesMondayPanel = () => {
 
 const Matchmaking = () => {
   const { t } = useTranslation();
+  const coworking = getVillagePlace("coworking");
+  const coworkingName = coworking ? placeName(coworking, t) : "Co-working";
   // Day 80 (Sasha 2026-05-23): ?debug=1 in the URL surfaces the four
   // sub-scores below each match card. Validation-only — lets testers
   // give precise feedback on the algorithm ("rank 3 felt better than
@@ -975,19 +980,19 @@ const Matchmaking = () => {
 
   return (
     <GameShellV2>
-      <div className="p-6 lg:p-8 max-w-3xl mx-auto">
+      <div className="p-6 pb-[calc(var(--chat-clearance)+1.5rem)] lg:p-8 max-w-3xl mx-auto">
         <div className="mb-6">
+          {/* WP-15: the shared place header: «← Village» (same link as every place), then the place name. */}
           <Link
             to="/village"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider transition-opacity hover:opacity-80"
-            style={{
-              fontFamily: "'DM Sans', system-ui, sans-serif",
-              color: "var(--skin-goldDeep, #5d4307)",
-              textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))",
-            }}
+            className={PLACE_BACK_LINK_CLASS}
+            style={{ color: "var(--skin-goldDeep, #5d4307)", textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))" }}
           >
-            ← Village
+            {t("village.backVillage", { defaultValue: "← Village" })}
           </Link>
+          <p className="mt-1 font-mono text-xs font-light uppercase tracking-[0.2em] text-muted-foreground">
+            {coworkingName}
+          </p>
         </div>
 
         {/* ═══════ HEADER — Aurora editorial register ═══════ */}

@@ -22,6 +22,8 @@ import {
     type HouseRoomId,
 } from "@/lib/houseRooms";
 import { placeSaveFromSheet } from "@/lib/placeState";
+import { getVillagePlace } from "@/data/villagePlaces";
+import { placeTagline, tr } from "@/lib/villageCopy";
 import "./CharacterSheet.css";
 
 /**
@@ -66,6 +68,7 @@ type Sheet = ReturnType<typeof useCharacterSheet>;
 
 const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
     const { t } = useTranslation();
+    const homePlace = getVillagePlace("house");
     const domains = useLocalizedDomains();
     // WP-19: the decision each badge carries. Private to the player; absent for a guest.
     const decisions = useModuleChoices();
@@ -325,7 +328,10 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
         <div className="cs-inner">
             {/* The character is you: the crystal in your colors, your real face at its heart */}
             <header className="cs-hero">
+                {/* WP-15: the same page header as every place: back to the village, the place name, one line. */}
+                <Link className="cs-link cs-back" to="/village">{tr(t, "village.backVillage", "← Village")}</Link>
                 <p className="cs-mono">{t("characterSheet.eyebrow")}</p>
+                {homePlace && <p className="cs-line">{placeTagline(homePlace, t, !!sheet.userId)}</p>}
                 <div className="cs-crystal">
                     <SoulDodecahedron soulColors={crystalColors} size="lg" />
                     {sheet.avatarUrl && (

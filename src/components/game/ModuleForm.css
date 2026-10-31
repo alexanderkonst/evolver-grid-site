@@ -12,8 +12,11 @@
   --vl-bg: var(--scene-bg);
   --vl-accent: var(--scene-accent);
   --vl-ink: rgba(var(--scene-ink-rgb), 0.92);
-  --vl-ink-2: rgba(var(--scene-ink-rgb), 0.68);
-  --vl-ink-3: rgba(var(--scene-ink-rgb), 0.5);
+  /* WP-15: the same secondary and tertiary ink as the village (Village.css), so a caption reads
+     the same on the map and in the form, and clears AA (4.5:1) in the light skins too. */
+  --vl-ink-2: rgba(var(--scene-ink-rgb), 0.82);
+  --vl-ink-3: rgba(var(--scene-ink-rgb), 0.7);
+  --vl-lock-ink: rgba(var(--scene-ink-rgb), var(--lock-label-alpha));
   --vl-hair: rgba(var(--scene-ink-rgb), 0.18);
   --vl-serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
   --vl-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
@@ -45,7 +48,7 @@
 .mf__back {
   position: absolute; z-index: 2; top: 14px; left: 18px;
   display: inline-flex; align-items: center; min-height: 44px; padding-right: 12px;
-  font-family: var(--vl-mono); font-weight: 300; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+  font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-label); letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--vl-ink-2); text-shadow: 0 1px 16px rgba(var(--scene-shadow-rgb), 0.8); transition: color 0.4s ease;
 }
 .mf__back:hover, .mf__back:focus-visible { color: var(--vl-ink); outline: none; }
@@ -56,7 +59,7 @@
   text-shadow: 0 1px 24px rgba(var(--scene-shadow-rgb), 0.65);
 }
 .mf__eyebrow {
-  margin: 0 0 14px; font-family: var(--vl-mono); font-weight: 300; font-size: 12px;
+  margin: 0 0 14px; font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-label);
   letter-spacing: 0.26em; text-transform: uppercase; color: var(--vl-ink-2);
 }
 .mf__headline {
@@ -79,7 +82,7 @@
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   min-height: 48px; margin-top: clamp(28px, 4.5vh, 44px); padding: 0 32px; cursor: pointer;
   border: 1px solid var(--vl-accent); border-radius: 0; background: rgba(var(--scene-bg-rgb), 0.25);
-  font-family: var(--vl-mono); font-weight: 300; font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase;
+  font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-label); letter-spacing: 0.26em; text-transform: uppercase;
   color: var(--vl-ink); text-shadow: none; transition: background-color 0.6s ease, color 0.6s ease;
 }
 .mf__go:hover:not(:disabled), .mf__go:focus-visible { background: var(--vl-accent); color: var(--vl-bg); outline: none; }
@@ -105,7 +108,7 @@
   box-shadow: 0 0 0 5px rgba(var(--scene-bg-rgb), 0.5), 0 0 0 6px rgba(var(--scene-ink-rgb), 0.16), 0 0 44px -8px var(--open-accent);
 }
 .mf__badge-name {
-  display: block; margin: 0 0 14px; font-family: var(--vl-mono); font-weight: 400; font-size: 11px;
+  display: block; margin: 0 0 14px; font-family: var(--vl-mono); font-weight: 400; font-size: var(--vl-text-micro);
   letter-spacing: 0.3em; text-transform: uppercase; color: var(--open-accent);
 }
 .mf__badge-name::before { content: "\2726\00a0\00a0"; }
@@ -120,7 +123,7 @@
   display: grid; gap: 6px; font-style: italic; font-weight: 300; font-size: clamp(18px, 2vw, 22px); line-height: 1.35; color: var(--vl-ink-2);
 }
 .mf__badge-choice-text { overflow-wrap: anywhere; }
-.mf__badge-date { font-style: normal; font-family: var(--vl-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--vl-ink-3); }
+.mf__badge-date { font-style: normal; font-family: var(--vl-mono); font-size: var(--vl-text-micro); letter-spacing: 0.2em; text-transform: uppercase; color: var(--vl-ink-3); }
 
 .mf__facts { margin: 26px auto 0; max-width: 46ch; display: grid; gap: 10px; }
 .mf__fact { margin: 0; font-style: italic; font-weight: 300; font-size: clamp(17px, 1.8vw, 21px); line-height: 1.4; color: var(--vl-ink-2); }
@@ -133,14 +136,14 @@
 .mf__choice-input {
   box-sizing: border-box; width: 100%; margin-top: 12px; padding: 12px 14px; resize: vertical; min-height: 72px;
   border: 1px solid var(--vl-hair); border-radius: 0; background: rgba(var(--scene-bg-rgb), 0.35); color: var(--vl-ink);
-  font-family: var(--vl-serif); font-size: 19px; line-height: 1.4; text-align: left;
+  font-family: var(--vl-serif); font-size: var(--vl-text-lead); line-height: 1.4; text-align: left;
 }
 .mf__choice-input::placeholder { color: var(--vl-ink-3); font-style: italic; }
 .mf__choice-input:focus-visible { border-color: var(--vl-accent); outline: none; }
 .mf__choice-btn {
   min-height: 44px; margin-top: 12px; padding: 0 24px; cursor: pointer; border-radius: 0;
   border: 1px solid var(--vl-hair); background: transparent; color: var(--vl-ink-2);
-  font-family: var(--vl-mono); font-weight: 300; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+  font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-label); letter-spacing: 0.22em; text-transform: uppercase;
   transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 .mf__choice-btn:hover:not(:disabled), .mf__choice-btn:focus-visible { border-color: var(--vl-accent); color: var(--vl-ink); outline: none; }
@@ -153,18 +156,18 @@
 .mf__rate-btn {
   min-width: 44px; min-height: 44px; padding: 0; cursor: pointer; border-radius: 0;
   border: 1px solid var(--vl-hair); background: transparent; color: var(--vl-ink-2);
-  font-family: var(--vl-mono); font-weight: 300; font-size: 14px; transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+  font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-small); transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 .mf__rate-btn:hover:not(:disabled), .mf__rate-btn:focus-visible { border-color: var(--vl-accent); color: var(--vl-ink); outline: none; }
 .mf__rate-btn[aria-pressed="true"] { background: var(--vl-accent); border-color: var(--vl-accent); color: var(--vl-bg); }
 .mf__rate-btn:disabled { cursor: default; }
-.mf__rate-note { margin: 10px 0 0; font-style: italic; font-size: 16px; color: var(--vl-ink); min-height: 1.4em; }
+.mf__rate-note { margin: 10px 0 0; font-style: italic; font-size: var(--vl-text-body); color: var(--vl-ink); min-height: 1.4em; }
 
 .mf__after { display: flex; flex-direction: column; align-items: center; }
 
 /* Town Hall v0 (WP-12): the village's one public number, then one quiet line */
 .mf__number-label {
-  margin: 26px 0 0; font-family: var(--vl-mono); font-weight: 300; font-size: 12px;
+  margin: 26px 0 0; font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-label);
   letter-spacing: 0.26em; text-transform: uppercase; color: var(--vl-ink-2);
 }
 .mf__number {
