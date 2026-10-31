@@ -331,6 +331,7 @@ function ExternalRedirect({ to }: { to: string }) {
 // Space pages - renamed: GROW, LEARN, MEET, COLLABORATE, BUILD, OFFER
 const GrowSpace = lazy(() => import("./pages/spaces/ProfileSpace")); // was Profile
 const LearnSpace = lazy(() => import("./pages/spaces/TransformationSpace")); // was Transformation
+const CourseSales = lazy(() => import("./pages/CourseSales")); // /academy/:slug — one sales page per course (Sasha 2026-10-30)
 const MeetSpace = lazy(() => import("./pages/spaces/EventsSpace")); // was Events
 const CollaborateSpace = lazy(() => import("./pages/spaces/TeamsSpace")); // was Teams/Discover
 const TownHallSpace = lazy(() => import("./pages/spaces/CoopSpace")); // Town Hall v0 (WP-12)
@@ -724,6 +725,8 @@ const App = () => (
                   <Route path="/grow/consciousness-meets-science" element={<ConsciousnessMeetsScience />} />
                   {/* Advanced micro-course built on /27; unlocks after Integral Mystery School (label only). Sasha 2026-10-30. */}
                   <Route path="/grow/activation-of-inner-vision" element={<ActivationOfInnerVision />} />
+                  {/* Course sales pages, one shared template (src/components/CourseSalesPage.tsx). Sasha 2026-10-30. */}
+                  <Route path="/academy/:slug" element={<CourseSales />} />
                   <Route path="/contact" element={<RequireAuth><ContactNew /></RequireAuth>} />
                   <Route path="/feedback" element={<RequireAuth><FeedbackPage /></RequireAuth>} />
                   <Route path="/tools" element={<RequireAuth><ToolsRedirect /></RequireAuth>} />

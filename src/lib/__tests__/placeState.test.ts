@@ -243,7 +243,7 @@ describe("rooms below place level", () => {
     expect(states["integral-mystery-school"]).toBe("closed");
     expect(states["foundational-videos"]).toBe("open");
     const founder = GROWTH_STEPS.find((s) => s.id === "founder-academy")!;
-    expect(growthStepClosedLine(founder)).toMatch(/^Opens when .+Productize Yourself Session\. Inside: .+\.$/);
+    expect(growthStepClosedLine(founder)).toMatch(/^Opens when .+Private Founder-Market Fit Session\. Inside: .+\.$/);
     expect(growthStepPlace(founder).line).toBe(founder.description);
   });
 });

@@ -368,7 +368,7 @@ const SPACE_SECTIONS: SpaceSections = {
         sections: [
             { id: "overview", label: "Overview", path: "/game/marketplace" },
             { id: "my-products", label: "My Products", path: "/game/marketplace/my-products" },
-            { id: "ignite", label: "Productize Yourself Session", path: "/game/marketplace/ignite" },
+            { id: "ignite", label: "Private Founder-Market Fit Session", path: "/game/marketplace/ignite" },
             { id: "public-page", label: "My Public Page", path: "/marketplace/create-page" },
         ],
     },

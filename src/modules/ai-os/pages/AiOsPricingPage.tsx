@@ -130,15 +130,13 @@ const Pricing = () => {
                 <div className="flex-1">
                   <p className="text-[10px] tracking-[0.25em] uppercase font-medium mb-1" style={{ color: 'hsl(40 50% 75% / 0.75)' }}>For individuals · 1:1</p>
                   <h3 className="text-lg sm:text-xl font-display italic font-normal mb-2" style={{ color: 'hsl(0 0% 100% / 0.95)' }}>
-                    Productize Yourself Session
+                    Private Founder-Market Fit Session
                   </h3>
                   <p className="text-sm font-light leading-relaxed mb-4" style={{ color: 'hsl(0 0% 100% / 0.78)' }}>
-                    90 minutes, 1:1 with Aleksandr. Name your craft, find the business built on who you already are, leave with your first easy move. $555 with money-back guarantee.
+                    2 hours, 1:1 with Aleksandr. Name your craft, find the business built on who you already are, leave with your first easy move. $555 with money-back guarantee.
                   </p>
                   <a
-                    href={ALEKSANDR_TELEGRAM_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/ignite"
                     className="inline-flex items-center gap-2 text-xs font-semibold px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105"
                     style={{
                       background: 'linear-gradient(135deg, hsl(40 70% 55%) 0%, hsl(40 60% 42%) 100%)',

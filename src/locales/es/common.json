@@ -4195,7 +4195,7 @@
     "inversionStrong": "es el negocio.",
     "inversionAfter": "Y la IA lo convierte en un multiplicador de fuerza.",
     "inversionDetail": "En 60 minutos verás cómo convertir tu equipo actual en una máquina de producción 2-5× mayor, sin contratar a nadie. Sin teoría. Sin diapositivas. Sobre tu trabajo real.",
-    "heroCtaNote": "Diagnóstico privado. Plazas limitadas cada mes.",
+    "heroCtaNote": "Diagnóstico privado.",
     "qualifierTitle": "Esto es para ti si",
     "qualifierPill1": "Eres fundador, ejecutivo o PM, y sigues siendo el cuello de botella",
     "qualifierPill2": "Trabajas más duro que nunca, pero los resultados se están estancando",
@@ -4254,7 +4254,7 @@
     "finalCtaBottleneck": "Tú eres el cuello de botella.",
     "finalCtaFixThat": "Vamos a arreglar eso.",
     "clarityCtaLabel": "¿Tienes preguntas? Hablemos primero",
-    "finalCtaNote": "Diagnóstico privado. Plazas limitadas disponibles.",
+    "finalCtaNote": "Diagnóstico privado.",
     "faqTitle": "Preguntas",
     "faq1Q": "¿Esto es coaching?",
     "faq1A": "No. Es una sesión de trabajo sobre tu sistema real.",
@@ -6037,7 +6037,7 @@
     "offerDistinctionLink": "Ver el Mastermind grupal →",
     "priceCompareHeading": "Junto a qué se sostienen estos $555.",
     "priceCompare1": "Un fin de semana de retiro cuesta más que esto, y no entrega el avance en claridad que buscas.",
-    "priceCompare2": "Otros seis meses de “todavía lo estoy descifrando” salen mucho más caros, te desgastan, y pasan factura a tu salud.",
+    "priceCompare2": "Lo que te llevas es tuyo: tu don en palabras que puedes decir de un solo aliento, listo para compartir.",
     "priceCompare3": "Lo que compras es ultimate compounding leverage: una sola frase con todo tu próximo capítulo concentrado dentro.",
     "guarantee": "Si no sales con un negocio en una frase en el que te reconoces como tuyo: no pagas.",
     "resonancePermission": "Si tu corazón no resuena con esto, no te inscribas. Esto funciona porque la gente llega cuando está lista, no cuando se la presiona o se la manipula.",
@@ -8571,10 +8571,10 @@
         "cta": "Reserva tu Direction Call"
       },
       "session": {
-        "name": "Productize Yourself Session",
+        "name": "Private Founder-Market Fit Session",
         "meta": "Taller de 2 horas · $555",
         "desc": "Nombra lo único que realmente haces, y sal con una oferta y una página lista para enviar.",
-        "cta": "Ver Productize Yourself Session"
+        "cta": "Ver Private Founder-Market Fit Session"
       },
       "built": {
         "name": "BUILT",

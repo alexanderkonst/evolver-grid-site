@@ -743,6 +743,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         // Activate Your Dormant Potential course). Distinct from /game/grow,
         // which is the legacy alias for the ME space.
         if (pathname === "/grow" || pathname.startsWith("/grow/")) return "learn";
+        // /academy/<slug> are the public course sales pages (Sasha 2026-10-30).
+        if (pathname.startsWith("/academy/")) return "learn";
         // Day 63 (Sasha 2026-05-07 night): /asset-mapping belongs to JOURNEY
         // (it's step #7 in the journey sequence per SectionsPanel's
         // buildJourneySections). Mapping it here in addition to the

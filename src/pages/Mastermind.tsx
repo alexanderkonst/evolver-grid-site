@@ -31,8 +31,8 @@ const MASTERMIND_CTA_URL = "https://buy.stripe.com/14AcN5aIAbCr8idh1CdEs0I";
 
 const MASTERMIND_COPY = {
   eyebrow: "Founder-Market Fit Discovery Mastermind · Nov 9–10",
-  // Market door (2026-10-30): headline = the shared experience; the method name moved to the eyebrow.
-  title: "The first time a stranger pays for your gift.",
+  // Slogan headline removed (Sasha 2026-10-30 22:43); `title` is the name, used for og:title only.
+  title: "Founder-Market Fit Discovery Mastermind",
   /** The product/method name, for the event schema and anywhere a name (not a promise) is needed. */
   productName: "Founder-Market Fit Discovery Mastermind",
   promise:
@@ -55,7 +55,7 @@ const MASTERMIND_COPY = {
     { name: "Integration", text: "One week in the group." },
   ],
   priceLabel: "Early bird · group",
-  priceNote: "First 10 seats (beta). Regular price later.",
+  priceNote: "Small group · 2 live sessions · recording included.",
   ctaLabel: "Reserve my place",
   /** Shown on the CTA while MASTERMIND_CTA_URL is empty. */
   ctaLabelPending: "Join the free live session",
@@ -144,24 +144,12 @@ const Mastermind = () => {
             {/* HERO */}
             <header className="text-center space-y-6 pb-2">
               <img src={geniusLogo} alt="" className="skin-emblem w-[140px] h-auto mx-auto opacity-80" />
-              <p
+              {/* Sasha 2026-10-30 22:43: slogan headline removed, no replacement; the name is the h1. */}
+              <h1
                 className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.28em] bg-clip-text text-transparent"
                 style={LABEL_TEXT_STYLE}
               >
                 {c.eyebrow}
-              </p>
-              <h1
-                className="font-serif max-w-2xl mx-auto break-words"
-                style={{
-                  ...SERIF,
-                  fontSize: "clamp(1.95rem, 5vw, 2.9rem)",
-                  fontWeight: 700,
-                  lineHeight: 1.15,
-                  letterSpacing: "-0.018em",
-                  color: "var(--skin-text-primary, #0a1628)",
-                }}
-              >
-                {c.title}
               </h1>
               <p
                 className="text-base sm:text-lg italic max-w-md mx-auto leading-relaxed"

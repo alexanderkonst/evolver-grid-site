@@ -283,7 +283,7 @@
     "offerDistinctionLink": "See the group Mastermind →",
     "priceCompareHeading": "What $555 stands next to.",
     "priceCompare1": "One retreat weekend costs more than this, and doesn't deliver the breakthrough in clarity you want.",
-    "priceCompare2": "Another six months of “I'm figuring things out” costs far more, wears you down, and takes it out of your health.",
+    "priceCompare2": "What you leave with stays yours: your gift in words you can say in one breath, ready to share.",
     "priceCompare3": "What you're buying is ultimate compounding leverage: one sentence with your entire next chapter concentrated inside it.",
     "guarantee": "If you don't leave with a one-sentence business you recognize as yours: you don't pay.",
     "resonancePermission": "If your heart isn't resonating with this, don't sign up. This works because people come when they're ready, not when they're pressured or manipulated.",
@@ -746,7 +746,7 @@
         "label": "My Products"
       },
       "ignite": {
-        "label": "Productize Yourself Session"
+        "label": "Private Founder-Market Fit Session"
       },
       "publicPage": {
         "label": "My Public Page"
@@ -1901,7 +1901,7 @@
     }
   },
   "courseAiv": {
-    "eyebrow": "Advanced micro-course · unlocks after Integral Mystery School",
+    "eyebrow": "Advanced micro-course · $27 · unlocks after Integral Mystery School",
     "tagline": "See any situation whole, from 27 positions, and let the seeing land as one act.",
     "lead": "Nine short videos on the 27-perspective instrument: two axes, twelve dimensions, the Logos, the octave of seeing the seer, and the 27th, where seeing becomes an act. Each episode ends with a practice on your own real situation.",
     "inProduction": "Videos in production",
@@ -2129,7 +2129,7 @@
     "ctaTitleLine1": "Your Uniqueness IS",
     "ctaTitleLine2": "Your Business",
     "ctaSubtitle": "One session. Your myth discovered. Your canvas complete. The business you were always meant to build — revealed.",
-    "ctaButton": "Book Your Productize Yourself Session — $555",
+    "ctaButton": "Book Your Private Founder-Market Fit Session — $555",
     "footerJoinCommunity": "Join the community →"
   },
   "monetization": {
@@ -2401,7 +2401,7 @@
   },
   "feedback": {
     "sessionType": {
-      "ignition": "Productize Yourself Session (2 hours)",
+      "ignition": "Private Founder-Market Fit Session (2 hours)",
       "build": "The Build (multi-session)",
       "group": "Group Build",
       "other": "Other"
@@ -2520,7 +2520,7 @@
     },
     "nextMilestone": {
       "eyebrow": "Next Milestone",
-      "title": "First $555 Productize Yourself Session from Funnel",
+      "title": "First $555 Private Founder-Market Fit Session from Funnel",
       "stat1": "$1,696 received (cash + in-kind)",
       "stat2": "3 canvases to N=10",
       "stat3": "3/9 surfaces live"
@@ -2997,7 +2997,7 @@
     },
     "cta": {
       "primary": "Start free with Step 1",
-      "secondary": "Book your Productize Yourself Session"
+      "secondary": "Book your Private Founder-Market Fit Session"
     },
     "close": {
       "optional": "Every step is optional. Every step delivers a complete transformation in itself."
@@ -3780,7 +3780,7 @@
     "essayHindsight": "In hindsight it always looks obvious. Like you've always known it.",
     "essayMorePeople": "The more people get there, the easier it becomes for the next.",
     "essayPivotLine": "And one more thing: you can't pivot away from yourself. That's why this works.",
-    "essayBookSession": "Book a Productize Yourself Session",
+    "essayBookSession": "Book a Private Founder-Market Fit Session",
     "essayShortcutAfter": "if you'd like to take the shortcut.",
     "stepLabel": "Step {{number}}:",
     "byTheEnd": "By the end:",
@@ -3861,8 +3861,8 @@
     "loading": "Loading canvas…",
     "empty": {
       "title": "Unique Business Canvas",
-      "subtitle": "The Canvas is built during a facilitated Productize Yourself Session — 60–90 minutes where we discover your uniqueness, forge your myth, identify your tribe, and design your business around who you already are.",
-      "cta": "Book Productize Yourself Session — $555",
+      "subtitle": "The Canvas is built during a facilitated Private Founder-Market Fit Session: 2 hours where we discover your uniqueness, forge your myth, identify your tribe, and design your business around who you already are.",
+      "cta": "Book Private Founder-Market Fit Session — $555",
       "ctaCaption": "60–90 minutes · Full 7-artifact Canvas · AI-compiled in real time",
       "alreadyHaveProduct": "Already have a product?",
       "goToProductBuilder": "Go to Product Builder"
@@ -4832,7 +4832,7 @@
     "inversionStrong": "is the business.",
     "inversionAfter": "And AI turns it into a force multiplier.",
     "inversionDetail": "In 60 minutes, you'll see how to turn your current team into a 2–5× output machine—without hiring. No theory. No slides. On your actual work.",
-    "heroCtaNote": "Private diagnostic. Limited spots monthly.",
+    "heroCtaNote": "Private diagnostic.",
     "qualifierTitle": "This is for you if",
     "qualifierPill1": "You're a founder, exec, or PM—and you're still the bottleneck",
     "qualifierPill2": "You're working harder than ever, but results are flattening",
@@ -4891,7 +4891,7 @@
     "finalCtaBottleneck": "You're the bottleneck.",
     "finalCtaFixThat": "Let's fix that.",
     "clarityCtaLabel": "Have questions? Let's talk first",
-    "finalCtaNote": "Private diagnostic. Limited spots available.",
+    "finalCtaNote": "Private diagnostic.",
     "faqTitle": "Questions",
     "faq1Q": "Is this coaching?",
     "faq1A": "No. This is a working session on your actual system.",
@@ -7833,10 +7833,10 @@
     "format2": "check-ins through chat between sessions",
     "format3": "one clear expected result per week",
     "priceLabel": "Price",
-    "priceBody": "This container is the direct continuation of the Productize Yourself Session. It's a cohort program where we build together as a group.",
+    "priceBody": "This container is the direct continuation of the Private Founder-Market Fit Session. It's a cohort program where we build together as a group.",
     "closing": "Let me know how this lands.",
     "cta": "Message Sasha on WhatsApp",
-    "routerBefore": "Haven't done the Productize Yourself Session yet?",
+    "routerBefore": "Haven't done the Private Founder-Market Fit Session yet?",
     "routerLink": "Start there",
     "routerAfter": ": the BUILT picks up where it leaves off.",
     "storiesEyebrow": "What changed for them",
@@ -8629,10 +8629,10 @@
         "cta": "Book the Direction Call"
       },
       "session": {
-        "name": "Productize Yourself Session",
+        "name": "Private Founder-Market Fit Session",
         "meta": "2-hour workshop · $555",
         "desc": "Name the one thing you actually do, then leave with an offer and a page ready to send.",
-        "cta": "See the Productize Yourself Session"
+        "cta": "See the Private Founder-Market Fit Session"
       },
       "built": {
         "name": "BUILT",

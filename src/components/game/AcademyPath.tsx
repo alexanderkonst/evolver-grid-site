@@ -2,33 +2,33 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Lock } from "lucide-react";
 import { ACADEMY_COURSES } from "@/lib/placeColor";
-import { CMS_COURSE_PATH } from "@/data/courses/consciousnessMeetsScience";
-import { COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
+import { courseSalesPath } from "@/data/courseSales";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { BODY_STYLE, EYEBROW_STYLE, TITLE_STYLE } from "@/pages/Library";
 
 /**
  * AcademyPath — the Academy (/game/learn): the two courses we have, shown as one path
  * (Sasha, 2026-10-30). A player may start with either; each card opens the course's own
- * page (its existing link). Below them, the courses that open after these two, quiet and
- * closed: no links, no checkout (Stripe is not touched here).
+ * sales page (/academy/<slug>). Below them, the courses that open after these two, quiet:
+ * each line opens its sales page; no checkout (Stripe is not touched here).
  *
  * The Library rooms and their routes (/library, /game/learn/library/*) stay as they were;
  * they are only no longer listed here.
  */
 
-const COURSE_LINKS: Record<string, string> = {
-  "consciousness-meets-science": CMS_COURSE_PATH,
-  "activate-your-dormant-potential": COURSE_PATH,
-};
-
 /** Courses after these two, opened one after another as paid upgrades (Sasha 2026-10-30 21:49).
- *  Copy is Sasha's (2026-10-30 21:01), English only. */
-const NEXT_COURSES: { title: string; note: string }[] = [
-  { title: "Founder Academy", note: "$111 · recorded" },
-  { title: "Integral Mystery School", note: "$111 · recorded · after Founder Academy" },
-  // The course made from the /27 article (working title "Activation of Inner Vision"): no price, no waitlist.
-  { title: "Advanced micro-course", note: "unlocks after Integral Mystery School" },
+ *  Copy is Sasha's (2026-10-30 21:01; $27 and the live group added 22:3x), English only.
+ *  Each line opens its sales page (/academy/<slug>, src/data/courseSales.ts). No checkout here. */
+const NEXT_COURSES: { slug: string; title: string; note: string }[] = [
+  { slug: "founder-academy", title: "Founder Academy", note: "$111 · recorded" },
+  { slug: "integral-mystery-school", title: "Integral Mystery School", note: "$111 · recorded · after Founder Academy" },
+  // The course made from the /27 article (working title "Activation of Inner Vision").
+  { slug: "activation-of-inner-vision", title: "Advanced micro-course", note: "$27 · unlocks after Integral Mystery School" },
+  {
+    slug: "live-group",
+    title: "Live group",
+    note: "1 month · $333 · live version of Founder Academy + Integral Mystery School · Join the waitlist",
+  },
 ];
 
 const cardStyle = {
@@ -63,7 +63,7 @@ const AcademyPath = () => {
         {ACADEMY_COURSES.map((course, i) => (
           <li key={course.slug}>
             <Link
-              to={COURSE_LINKS[course.slug]}
+              to={courseSalesPath(course.slug)}
               className="block h-full rounded-2xl p-5 text-left transition-all duration-300 liquid-glass-strong hover:scale-[1.012] hover:shadow-[0_12px_36px_-14px_rgba(10,22,40,0.25)] motion-reduce:transition-none motion-reduce:hover:scale-100"
               style={cardStyle}
             >
@@ -94,7 +94,11 @@ const AcademyPath = () => {
         </p>
         <ul className="list-none p-0 m-0 divide-y divide-[rgba(212,175,55,0.16)] opacity-70">
           {NEXT_COURSES.map((c, i) => (
-            <li key={c.title} className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5 py-2.5" aria-disabled="true">
+            <li key={c.title}>
+              <Link
+                to={courseSalesPath(c.slug)}
+                className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5 py-2.5 rounded-md transition-opacity hover:opacity-100 focus-visible:opacity-100"
+              >
               <Lock className="w-3.5 h-3.5 flex-shrink-0 self-center" aria-hidden="true" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.6))" }} />
               <span className="text-xs tabular-nums self-center" style={BODY_STYLE} aria-label={`Step ${i + 1}`}>
                 {i + 1}
@@ -105,6 +109,7 @@ const AcademyPath = () => {
               <span className="text-sm italic w-full pl-[26px] sm:w-auto sm:pl-0 sm:ml-auto sm:text-right" style={BODY_STYLE}>
                 {c.note}
               </span>
+              </Link>
             </li>
           ))}
         </ul>

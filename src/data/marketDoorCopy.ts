@@ -1,7 +1,7 @@
 /**
  * The Market door (note 5): one shared experience, then each tribe's voice.
- * Sasha 2026-10-30: "one experience, eight languages". The headline names the
- * moment every tribe shares; "Founder-Market Fit" stays as the METHOD name
+ * Sasha 2026-10-30: "one experience, eight languages". The shared headline was
+ * removed (Sasha 22:43, no replacement); "Founder-Market Fit" stays as the METHOD name
  * (eyebrows, product names), never the promise.
  *
  * Lives here, not in locales/*\/common.json, because those files were being
@@ -11,15 +11,10 @@ type Lang = "en" | "es" | "ru";
 type Copy = Record<Lang, string>;
 
 export const MARKET_DOOR = {
-  headline: {
-    en: "The first time a stranger pays for your gift.",
-    es: "La primera vez que un desconocido paga por tu don.",
-    ru: "Первый раз, когда незнакомый человек платит за твой дар.",
-  },
   igniteEyebrow: {
-    en: "Founder-Market Fit Session · 1:1 · 2\u00a0hours",
-    es: "Sesión Founder-Market Fit · 1:1 · 2 horas",
-    ru: "Сессия Founder-Market Fit · 1:1 · 2 часа",
+    en: "Private Founder-Market Fit Session · 1:1 · 2\u00a0hours",
+    es: "Private Founder-Market Fit Session · 1:1 · 2 horas",
+    ru: "Private Founder-Market Fit Session · 1:1 · 2 часа",
   },
   igniteSub: {
     en: "Your work isn't landing yet. Your impact isn't paid for yet. What you build best has no users yet. In 2\u00a0hours we write the one sentence your business runs on: who it's for, what it does, why you.",
@@ -27,9 +22,9 @@ export const MARKET_DOOR = {
     ru: "Твоя работа пока не доходит до мира. Твой вклад пока никто не оплачивает. У лучшего, что ты строишь, пока нет пользователей. За 2 часа мы пишем одну фразу, на которой держится твой бизнес: для кого он, что он делает, почему именно ты.",
   },
   productsFmfLine: {
-    en: "The first time a stranger pays for your gift. In 2 hours, the one sentence that gets you there.",
-    es: "La primera vez que un desconocido paga por tu don. En 2 horas, la frase que te lleva ahí.",
-    ru: "Первый раз, когда незнакомый человек платит за твой дар. За 2 часа — фраза, которая к этому ведёт.",
+    en: "In 2 hours, the one sentence your business runs on.",
+    es: "En 2 horas, la frase sobre la que corre tu negocio.",
+    ru: "За 2 часа — фраза, на которой держится твой бизнес.",
   },
   productsPmfLine: {
     en: "From your gift to strangers who pay for it, again and again: a scalable product in a\u00a0month.",

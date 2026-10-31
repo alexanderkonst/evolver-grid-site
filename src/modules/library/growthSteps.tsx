@@ -71,7 +71,7 @@ export const GROWTH_STEPS: GrowthStep[] = [
     rule: {
       opens: "productize-session",
       closed: {
-        event: "you have watched the foundational course and done a Productize Yourself Session",
+        event: "you have watched the foundational course and done a Private Founder-Market Fit Session",
         inside: "structured modules to build your unique business from your zone of genius",
       },
     },

@@ -355,27 +355,12 @@ const IgniteSession = () => {
               heading — the category-line/shelf-key convention used
               elsewhere on the site puts the shelf line right above the
               headline, not buried under the subheading. */}
-          <p
+          {/* Sasha 2026-10-30 22:43: the slogan headline is gone, no replacement; the session's name is the page's h1. */}
+          <h1
             className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.28em] bg-clip-text text-transparent"
             style={GOLD_TEXT_STYLE}
           >
             {marketDoor('igniteEyebrow', lang)}
-          </p>
-
-          <h1
-            className="font-serif max-w-2xl mx-auto"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(1.95rem, 5vw, 2.9rem)",
-              fontWeight: 700,
-              lineHeight: 1.15,
-              letterSpacing: "-0.018em",
-              color: "var(--skin-text-primary, #0a1628)",
-              textShadow:
-                "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
-            }}
-          >
-            {marketDoor('headline', lang)}
           </h1>
 
           <p
@@ -747,7 +732,7 @@ const IgniteSession = () => {
         title={IGNITE_TAB_TITLE}
         description="Private Founder-Market Fit Session: a 2-hour 1:1 working session with Aleksandr ($555). Name your top talent in one exact sentence, position your next chapter around it, and leave with a clear next step."
         path="/ignite"
-        ogTitle="The first time a stranger pays for your gift."
+        ogTitle="Private Founder-Market Fit Session · 1:1 · 2 hours"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Service",
