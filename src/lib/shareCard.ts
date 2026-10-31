@@ -32,7 +32,7 @@ export type ShareCard = {
     url: string;
     /** The QR carries this one: same page, attributed. */
     qrUrl: string;
-    /** gift + blank line + the question + blank line + url */
+    /** «{name}: {gift}» (just the gift without a name) + blank line + the question + blank line + url */
     shareText: string;
 };
 
@@ -75,13 +75,16 @@ export const buildShareCard = (input: ShareCardInput, t?: ShareCardT): ShareCard
 
     const translate: ShareCardT = t ?? ((key, options) => i18next.t(key, options) as string);
     const url = `${input.origin.replace(/\/+$/, "")}/${encodeURIComponent(username)}`;
+    const name = clean(input.name);
+    // The text starts with who is speaking: «{name}: {gift}». No name, no prefix.
+    const lead = name ? `${name}: ${picked.gift}` : picked.gift;
 
     return {
-        name: clean(input.name),
+        name,
         gift: picked.gift,
         giftSource: picked.giftSource,
         url,
         qrUrl: `${url}?${SHARE_CARD_QR_PARAMS}`,
-        shareText: `${picked.gift}\n\n${translate("shareCard.question")}\n\n${url}`,
+        shareText: `${lead}\n\n${translate("shareCard.question")}\n\n${url}`,
     };
 };

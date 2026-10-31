@@ -1,8 +1,12 @@
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { igniteLogo } from "@/lib/landingDesign";
 import profilePhoto from "@/assets/profile-photo.png";
+import ShareCard from "@/components/game/ShareCard";
+import ShareCardAnswer from "@/components/game/ShareCardAnswer";
+import { usePlayerReflections } from "@/hooks/usePlayerReflections";
+import { supabase } from "@/integrations/supabase/client";
 
 /**
  * /aleksandr — Aleksandr Konstantinov's own public platform profile.
@@ -160,9 +164,40 @@ const collaborations = [
 
 const ecosystems = ["MIT", "Bell Labs", "Network School", "UN", "Autodidact"];
 
+// Share card: the founder's page leads with the same card every player's page leads with.
+// His link name is the root slug the stall card shows (`/aleksandr`); the gift line is
+// his own Zone of Genius sentence below.
+const FOUNDER_NAME = "Aleksandr Konstantinov";
+const FOUNDER_USERNAME = "aleksandr";
+const FOUNDER_GIFT = sentences[0].text;
+
 export default function AlexanderProfile() {
   const navigate = useNavigate();
   const [ctaHover, setCtaHover] = useState(false);
+  const reflections = usePlayerReflections();
+  // The viewer is the founder: his own page shows no answer buttons (same rule as PublicProfile).
+  const [viewerIsOwner, setViewerIsOwner] = useState(false);
+
+  useEffect(() => {
+    if (!reflections.userId) {
+      setViewerIsOwner(false);
+      return;
+    }
+    let live = true;
+    (async () => {
+      try {
+        const { data } = await supabase.rpc("get_public_profile_by_username", { p_username: FOUNDER_USERNAME });
+        const row = (Array.isArray(data) ? data[0] : data) as { user_id?: string | null } | null | undefined;
+        if (live) setViewerIsOwner(!!row?.user_id && row.user_id === reflections.userId);
+      } catch {
+        // Unknown owner: the server still refuses an answer on one's own page.
+        if (live) setViewerIsOwner(false);
+      }
+    })();
+    return () => {
+      live = false;
+    };
+  }, [reflections.userId]);
 
   return (
     <div
@@ -228,8 +263,20 @@ export default function AlexanderProfile() {
         className="relative max-w-[620px] mx-auto px-5 sm:px-8 pt-32 sm:pt-40 pb-[120px] overflow-x-clip"
         style={{ zIndex: 1 }}
       >
+        {/* Share card: the page leads with the card the player sends (name, photo, gift,
+            the question), so a scanned QR lands on it. Answer buttons render nothing
+            until the database part exists, and nothing for the founder himself, so no
+            empty slot is left behind. */}
+        <ShareCard variant="visitor" name={FOUNDER_NAME} avatarUrl={profilePhoto} gift={FOUNDER_GIFT} />
+        <ShareCardAnswer
+          username={FOUNDER_USERNAME}
+          playerName={FOUNDER_NAME}
+          isOwner={viewerIsOwner}
+          api={reflections}
+        />
+
         {/* Header — a solitary presence inside the archetype */}
-        <header className="relative text-center mb-4">
+        <header className="relative text-center mb-4 mt-12 sm:mt-16">
           <CanonicalArtifact />
           <img
             src={profilePhoto}
@@ -240,12 +287,12 @@ export default function AlexanderProfile() {
               boxShadow: "0 0 0 6px rgba(8, 13, 26, 0.76), 0 0 40px rgba(185, 154, 95, 0.18)",
             }}
           />
-          <h1
+          <h2
             className="relative text-[2rem] sm:text-[2.6rem] leading-tight"
             style={{ fontFamily: DISPLAY_FONT, letterSpacing: "0.08em", fontWeight: 400 }}
           >
             Aleksandr Konstantinov
-          </h1>
+          </h2>
           <p
             className="relative mt-3 text-sm sm:text-base"
             style={{ fontFamily: DISPLAY_FONT, color: MUTE, letterSpacing: "0.12em" }}

@@ -1,5 +1,12 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { founderRedirectTarget } from "../../components/FounderRedirect";
+
+const redirectSource = readFileSync(
+  new URL("../../components/FounderRedirect.tsx", import.meta.url),
+  "utf8",
+);
+const profileSource = readFileSync(new URL("../AlexanderProfile.tsx", import.meta.url), "utf8");
 
 const appSource = readFileSync(new URL("../../App.tsx", import.meta.url), "utf8");
 const shellSource = readFileSync(
@@ -28,15 +35,25 @@ describe("Sasha founder profile routing", () => {
   });
 
   it("keeps legacy founder URLs pointed at the canonical profile", () => {
-    expect(appSource).toContain(
-      '<Route path="/aleksandr" element={<Navigate to="/sasha" replace />} />',
+    for (const slug of ["aleksandr", "alexander", "integralevolution"]) {
+      expect(appSource).toContain(`<Route path="/${slug}" element={<FounderRedirect />} />`);
+    }
+  });
+
+  it("keeps the query string and hash through the founder redirect (QR attribution)", () => {
+    expect(founderRedirectTarget("?utm_source=qr&utm_medium=share_card", "")).toBe(
+      "/sasha?utm_source=qr&utm_medium=share_card",
     );
-    expect(appSource).toContain(
-      '<Route path="/alexander" element={<Navigate to="/sasha" replace />} />',
-    );
-    expect(appSource).toContain(
-      '<Route path="/integralevolution" element={<Navigate to="/sasha" replace />} />',
-    );
+    expect(founderRedirectTarget("?a=1", "#top")).toBe("/sasha?a=1#top");
+    expect(founderRedirectTarget("", "")).toBe("/sasha");
+    expect(redirectSource).toContain("founderRedirectTarget(search, hash)");
+    expect(redirectSource).toContain("replace");
+  });
+
+  it("leads /sasha with the same share card as every public profile", () => {
+    expect(profileSource).toContain('<ShareCard variant="visitor"');
+    expect(profileSource).toContain("<ShareCardAnswer");
+    expect(profileSource.indexOf("<ShareCard variant")).toBeLessThan(profileSource.indexOf("<header"));
   });
 
   it("applies the founder page shell and chrome behavior at /sasha", () => {

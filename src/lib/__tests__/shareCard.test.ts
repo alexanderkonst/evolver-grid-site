@@ -49,10 +49,18 @@ describe("buildShareCard", () => {
         expect(card?.qrUrl).toBe("https://findyourtoptalent.com/ada?utm_source=qr&utm_medium=share_card");
     });
 
-    it("writes the share text as gift, question, link with blank lines between", () => {
+    it("writes the share text as «name: gift», question, link with blank lines between", () => {
         expect(buildShareCard(base, t)?.shareText).toBe(
-            "I make machines dream in poetry\n\nDo you see me this way too?\n\nhttps://findyourtoptalent.com/ada",
+            "Ada Lovelace: I make machines dream in poetry\n\nDo you see me this way too?\n\nhttps://findyourtoptalent.com/ada",
         );
+    });
+
+    it("starts with the gift alone when the player has no name", () => {
+        for (const name of [null, undefined, "", "  "]) {
+            expect(buildShareCard({ ...base, name }, t)?.shareText).toBe(
+                "I make machines dream in poetry\n\nDo you see me this way too?\n\nhttps://findyourtoptalent.com/ada",
+            );
+        }
     });
 
     it("never carries level, QoL, metrics, talents list or prices", () => {

@@ -289,6 +289,7 @@ import YouBeOriginal from "./pages/YouBeOriginal";
 import Web3Commons from "./pages/Web3Commons";
 import Founder from "./pages/Founder";
 import AlexanderProfile from "./pages/AlexanderProfile";
+import FounderRedirect from "./components/FounderRedirect";
 // Unique Business Builder v2.0
 import UniqueBusinessLayout from "./modules/unique-business-builder/UniqueBusinessLayout";
 import CanvasOverviewScreen from "./modules/unique-business-builder/screens/CanvasOverviewScreen";
@@ -1064,9 +1065,9 @@ const App = () => (
                   {/* Sasha's public platform profile · /sasha · standalone (no shell).
                       "The platform's profile, in public." One CTA: create your own profile. */}
                   <Route path="/sasha" element={<GameShellV2 spaceOverride="grow" defaultRailMinimized defaultSectionsPanelClosed><AlexanderProfile /></GameShellV2>} />
-                  <Route path="/aleksandr" element={<Navigate to="/sasha" replace />} />
-                  <Route path="/alexander" element={<Navigate to="/sasha" replace />} />
-                  <Route path="/integralevolution" element={<Navigate to="/sasha" replace />} />
+                  <Route path="/aleksandr" element={<FounderRedirect />} />
+                  <Route path="/alexander" element={<FounderRedirect />} />
+                  <Route path="/integralevolution" element={<FounderRedirect />} />
                   {/* Public monetization explainer · /monetization · standalone (no shell),
                       radical-transparency framing, Liquid Glass register. */}
                   <Route path="/monetization" element={<Monetization />} />
