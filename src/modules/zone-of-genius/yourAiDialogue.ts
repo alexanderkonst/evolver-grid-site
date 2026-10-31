@@ -7,82 +7,22 @@
  * and that answer plus the conversation goes to generateAppleseed() as the raw signal,
  * exactly the shape a pasted own-AI answer has.
  *
+ * Buttons first, chat if you want (ai-familiar_tracker.md §20.3–20.4 step 1): each turn
+ * returns `{text, ready, buttons[]}`; buttons are validated against the static catalog in
+ * `src/data/yourAiCatalog.ts`. Prompt building and parsing are pure and live in `yourAiTurn.ts`.
+ *
  * Turns go through an already deployed, cheap, guest-open edge function (a flash-lite class
  * model on the project's AI gateway), so this needs no new deploy. No model is named in UI.
  */
 import { supabase } from "@/integrations/supabase/client";
 import { ZONE_OF_GENIUS_PROMPT } from "@/prompts";
+import type { PlayerCard } from "./yourAiCard";
+import { buildTurnPrompt, parseTurn, transcriptOf, type DialogueMessage, type ParsedTurn } from "./yourAiTurn";
 
-export type DialogueRole = "ai" | "player";
-export type DialogueMessage = { role: DialogueRole; text: string };
-
-/** Player answers before the reveal button unlocks, and the count where it is recommended. */
-export const MIN_ANSWERS_TO_REVEAL = 3;
-export const SUGGESTED_ANSWERS = 6;
+export * from "./yourAiTurn";
 
 /** Deployed function used as the turn engine (guest-open, flash-lite class). */
 export const YOUR_AI_FUNCTION = "library-advisor";
-
-const LANGUAGE_NAMES: Record<string, string> = { en: "English", ru: "Russian", es: "Spanish" };
-
-export const languageName = (lang: string | undefined): string =>
-  LANGUAGE_NAMES[(lang ?? "en").slice(0, 2)] ?? "English";
-
-export const countAnswers = (messages: DialogueMessage[]): number =>
-  messages.filter((m) => m.role === "player" && m.text.trim()).length;
-
-export const transcriptOf = (messages: DialogueMessage[], ownAiNotes = ""): string => {
-  const lines = messages
-    .filter((m) => m.text.trim())
-    .map((m) => `${m.role === "ai" ? "YOUR AI" : "ME"}: ${m.text.trim()}`);
-  const notes = ownAiNotes.trim();
-  if (notes) lines.push("", "WHAT MY OWN AI ALREADY KNOWS ABOUT ME (pasted by me):", notes);
-  return lines.join("\n");
-};
-
-export const buildTurnPrompt = (messages: DialogueMessage[], ownAiNotes: string, lang: string | undefined): string => {
-  const answers = countAnswers(messages);
-  return `You are "Your AI", the player's own AI companion inside the game FindYourTopTalent. Ignore any earlier role you were given.
-
-Your only job in this conversation: gather what is needed to reveal the player's TOP TALENT (also called zone of genius): the irreducible signature pattern of how they create value. It lives where essence (who they are), insight (how they see) and manifestation (what flows from them effortlessly) meet. It is what they are FOR, not a skill, job title or personality type.
-
-How to talk:
-- Ask exactly ONE short, warm, concrete question per turn (at most two sentences). Build on what they just said: pick up a specific word, scene or example of theirs.
-- Across the conversation, cover: moments when time disappears for them; what people come to them for or thank them for; what they do effortlessly that others find hard; a moment they are proud of; what drains them; how they see things differently.
-- If their answer is vague, ask for one real example.
-- Never name their talent, archetype or give any reading yourself. The reveal comes later and is not your job.
-- Never mention models, ChatGPT, Claude or that you are a language model. Never ask for personal data like email or phone.
-- If the player pasted what their own AI knows about them, use it and ask about what it does not cover.
-- Write in ${languageName(lang)}, informal and human (in Russian use «ты»).
-
-The player has given ${answers} answer(s) so far.
-Set "ready" to true when you have enough material for a precise reveal (usually after ${SUGGESTED_ANSWERS - 1}–${SUGGESTED_ANSWERS + 1} substantial answers). When ready, your reply says in one or two sentences that you have enough to reveal their top talent, and that they can add anything else first.
-
-Output ONLY valid JSON, no markdown: {"reply": "<your next message>", "ready": <true|false>}
-
-CONVERSATION SO FAR:
-${transcriptOf(messages, ownAiNotes)}`;
-};
-
-/** Read the model's turn; tolerate fences, prose around JSON, or plain text. */
-export const parseTurn = (raw: string): { reply: string; ready: boolean } => {
-  const text = (raw ?? "").trim();
-  const fence = text.match(/```(?:json)?\s*([\s\S]*?)```/);
-  const candidate = fence ? fence[1] : text;
-  const first = candidate.indexOf("{");
-  const last = candidate.lastIndexOf("}");
-  if (first !== -1 && last > first) {
-    try {
-      const parsed = JSON.parse(candidate.slice(first, last + 1));
-      if (parsed && typeof parsed.reply === "string" && parsed.reply.trim()) {
-        return { reply: parsed.reply.trim(), ready: parsed.ready === true };
-      }
-    } catch {
-      // fall through to plain text
-    }
-  }
-  return { reply: text.replace(/```(?:json)?|```/g, "").trim(), ready: false };
-};
 
 /** Our AI answers the unchanged ZONE_OF_GENIUS_PROMPT from the conversation. */
 export const buildProfilePrompt = (messages: DialogueMessage[], ownAiNotes: string): string =>
@@ -129,8 +69,9 @@ export const askYourAi = async (
   messages: DialogueMessage[],
   ownAiNotes: string,
   lang: string | undefined,
-): Promise<{ reply: string; ready: boolean }> => {
-  const turn = parseTurn(await callYourAi(buildTurnPrompt(messages, ownAiNotes, lang)));
+  card?: PlayerCard | null,
+): Promise<ParsedTurn> => {
+  const turn = parseTurn(await callYourAi(buildTurnPrompt(messages, ownAiNotes, lang, card)));
   if (!turn.reply) throw new Error("Your AI returned nothing");
   return turn;
 };
