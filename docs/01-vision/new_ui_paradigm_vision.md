@@ -4,7 +4,7 @@
 
 > "The interface doesn't represent the transformation — it transmits it."
 
-> **Version 2026-10-30 (v2, Bloom).** Single source of truth for UI across *The Game of Being You* / Find Your Top Talent. Never fork it: extend this file. **Part A** — the paradigm (history kept below, 2026-01 → 2026-05). **Part B** — applied: the whole game interface (rules, then screen by screen). **Part C** — anti-patterns we never ship. **Part D** — open decisions for Sasha. Game design (places, Journey, lock rule) lives in [`game_of_being_you.md`](../02-strategy/game_of_being_you.md) §13–14; this doc owns how it looks, moves and feels.
+> **Version 2026-10-31 (v2.1, Bloom).** Single source of truth for UI across *The Game of Being You* / Find Your Top Talent. Never fork it: extend this file. **Part A** — the paradigm (history kept below, 2026-01 → 2026-05). **Part B** — applied: the whole game interface (rules, then screen by screen). **Part C** — anti-patterns we never ship. **Part D** — decisions (resolved 2026-10-31). Game design (places, Journey, lock rule) lives in [`game_of_being_you.md`](../02-strategy/game_of_being_you.md) §13–14; this doc owns how it looks, moves and feels.
 
 ---
 
@@ -16,10 +16,12 @@
 
 **Bloom in five sentences.**
 1. **AI is invisible; the game is the act itself.** AI manifests through the character, the world and the choices it offers, never as a chat window the player has to manage.
-2. **Buttons, not a permanent chat.** At every moment the player sees 1–3 personal choices: one primary **next real step** (an action in their life, not a menu item), up to two quiet alternatives, and "say it your way" free text.
+2. **Buttons, not a permanent chat.** At every moment the player sees 1–3 personal choices: one primary **next real step** (an action in their life, not a menu item), up to two quieter but clearly tappable alternatives, and "say it your way" free text.
 3. **The world blooms.** One global warmth grows with what the player has actually done: moon-silver night → first warm light → seven colors → dawn. This is the deferred soul-colors idea, made playable.
 4. **Your colors from your first artifact (Sasha, 2026-10-30 23:59).** Gift-derived (soul) colors do not wait for the gift to be named 9/10: the **first earned artifact lights the player's first own color**, and the palette refines as the gift sharpens.
 5. **Gently, subtly (Sasha, 2026-10-31 00:00: «только нежно, тонко»).** Color is a whisper, not a theme switch. Nothing is loud, nothing is urgent, nothing is "gamified".
+
+**CTA rule — project-wide (Sasha, 2026-10-31: «ЛЮДЯМ ОЧЕНЬ ВАЖНО ЧТОБЫ КНОПКИ CTA БЫЛИ ОЧЕНЬ ВИДНЫЕ И ПОНЯТНЫЕ»).** Bloom's softness is for the world (color, light, motion), **never for the action**. Every screen has **one unmistakable primary CTA**: large, high-contrast, obviously tappable, a plain verb. Secondary actions are quieter but **clearly tappable**: readable size and contrast, with an underline or a chevron. «Нежно, тонко» never applies to the button that moves the player forward.
 
 The sections that follow in Part A are the paradigm's history and foundations (soul colors, five pillars, dimensionality, the 8 primitives). Where they conflict with A.0 or Part B, A.0 and Part B win.
 
@@ -369,26 +371,27 @@ Across the batch we map: which primitives are most loaded, which stage they sit 
 | **Material** | Physical materials only: night air, still water, stone, paper, topaz, a little gold. One real object under real light per scene. No generic "card" as the default container. | material is chosen per scene, not per component |
 | **Depth** | The world is a place, not a stack of panels: foreground (the act), middle (the world), far (sky). Choices sit *in* the world, not in floating modals. | parallax only where it carries meaning; no drop-shadow cards |
 | **Light** | Light is the reward and the guide. The next real step is the one lit thing; what is closed is unlit (lock rule, `game_of_being_you.md` §14.3). | `--place-glow`, the single accent; never glow outlines or neon |
-| **Color / Bloom** | One global `bloomLevel` 0–9 for the whole world (#277): 0 moon silver (readable, never punishing) · 1 first warm light (first artifact, and the player's **first own color**) · 2–8 seven colors arrive one per earned artifact · 9 full dawn. Hues live in one config and accept **per-player gift-derived colors from artifact 1**; until a reading exists, archetype colors stand in. | CSS vars on `:root` (saturation, warmth, lit hues); feeds `--soul-1..3` and `--lunar-dawn`; `?bloom=N` preview |
-| **Bloom tenderness** (Sasha, 2026-10-31) | **Color is a whisper, not a theme switch.** Low-saturation tints; small hue shift per stage; color lives mostly in light, glow and accents, not in full backgrounds; transitions slow and soft (several seconds, no flashes); stage 9 dawn is still gentle. **Acceptance:** each stage visibly warmer than the last, yet no stage ever looks loud or "gamified". WCAG-AA at every stage, stage 0 first. | saturation cap per stage in the config; `prefers-reduced-motion` → instant, no animation |
+| **Color / Bloom** | One global `bloomLevel` 0–9 for the whole world (#277): 0 moon silver (readable, never punishing) · 1 first warm light (first artifact, and the player's **first own color**) · 2–8 a fixed seven hues arrive one per earned artifact, each tinted toward the player's gift (D.2) · 9 full dawn. Hues live in one config and accept **per-player gift-derived colors from artifact 1** (D.1); before artifact 1, archetype colors stand in. Color belongs to the world-wide bloom only; places take on light (D.3). | CSS vars on `:root` (saturation, warmth, lit hues); feeds `--soul-1..3` and `--lunar-dawn`; `?bloom=N` preview |
+| **Bloom tenderness** (Sasha, 2026-10-31) | **Color is a whisper, not a theme switch.** Low-saturation tints; small hue shift per stage; color lives mostly in light, glow and accents, not in full backgrounds; transitions slow and soft (several seconds, no flashes); stage 9 dawn is still gentle. **Acceptance:** each stage visibly warmer than the last, yet no stage ever looks loud or "gamified". WCAG-AA at every stage, stage 0 first. Tenderness never reaches the CTAs (A.0 CTA rule). | saturation cap per stage in the config; `prefers-reduced-motion` → instant, no animation |
 | **Motion** | One slow tempo for the world (breath 4–15 s). Fast motion only as direct response to the player's own act. The artifact moment is the one hero beat: its color lights, briefly. | CSS keyframes, ease-in-out; reduced-motion respected |
 | **Sound** | Seed only: a single soft tone at hero moments (artifact earned, gift reveal), same signature as the visual. Off by default unless an existing hook is there. | one event drives sound + motion together |
 | **Typography** | Paperback serif for meaning, thin mono for the game's voice (menu, labels). Small type, huge negative space. Copy speaks to the player, never explains the UI. | existing skin type tokens |
 | **Proportion** | Holonic ratios (Pillar 1) across spacing and timing. | golden-ratio scale |
 
-**Choice primitive (all screens).** `1 primary + ≤2 secondary + free text` (#269/#273/#275). The primary is a verb about the player's life ("Write to the one person who…", "Name what you'd do for free"), not navigation ("Go to Workshop"). Secondary choices are quiet (text-weight, no fill). Free text is a single unobtrusive line: *say it your way*. Never a chat transcript as the main surface.
+**Choice primitive (all screens).** `1 primary + ≤2 secondary + free text` (#269/#273/#275). The primary is a verb about the player's life ("Write to the one person who…", "Name what you'd do for free"), not navigation ("Go to Workshop"). The primary follows the A.0 CTA rule: large, high-contrast, obviously a button, a plain verb. Secondary choices are quieter than the primary but clearly tappable: readable size and AA contrast, an underline or a chevron (→), a tap target of at least 44 px; never dim caption-style text. Free text is a single unobtrusive line: *say it your way*. Never a chat transcript as the main surface.
 
 **Copy primitive.** Warm, plain, second person. No urgency, scarcity or fear; no countdowns; no "first time a stranger pays for your gift" slogan. No internal words on the surface (`game_of_being_you.md` §14.1 rule 10), no model names.
 
 ## B.2 Screen by screen
 
-Each screen: **feels** → **transmitted by** → **do / don't** → **issue**.
+Each screen: **feels** → **transmitted by** → **do / don't** → **CTA** → **issue**.
 
 ### 1. Main menu — NEW GAME / CONTINUE (`/`)
 - **Feels:** stillness before dawn; *this is a world, and it's waiting for me.*
 - **Transmitted by:** the title frame (crystal over still water, moon-silver), the mono vertical menu, one line of brand + promise, slow breath.
 - **Do:** NEW GAME reaches the first question in ≤2 clicks; CONTINUE (LOAD GAME) resumes where the player left off; returning players see the world at their current bloom.
 - **Don't:** consecutive ENTER-only screens, feature tours, captions explaining the menu.
+- **CTA:** NEW GAME is the one primary (CONTINUE takes its place for returning players): the largest, highest-contrast item in the menu, obviously selectable on hover, tap and focus; the other menu items readable and clearly tappable, never faint.
 - **Issue:** #271.
 
 ### 2. First question (`/zone-of-genius/entry` and the first Your AI turn)
@@ -396,6 +399,7 @@ Each screen: **feels** → **transmitted by** → **do / don't** → **issue**.
 - **Transmitted by:** one question, large serif, on the night world; three answer buttons + free text; nothing else on screen.
 - **Do:** the question is the screen; the answer is an act, not a form field.
 - **Don't:** progress bars, step counters ("1 of 12"), a chat log, an avatar.
+- **CTA:** the three answers are large, high-contrast, full-width buttons in plain words; *say it your way* is a visible input line with a clear send arrow.
 - **Issue:** #271, #275.
 
 ### 3. Village / world map (`/village/:place?`)
@@ -403,13 +407,16 @@ Each screen: **feels** → **transmitted by** → **do / don't** → **issue**.
 - **Transmitted by:** the village appearing **after** the first answer, as a reward, not a gate; places closed/open/next/done (§14.3, §14.11); the one lit next move; the world's warmth at the player's bloom level.
 - **Do:** show the single next real step in the world itself; the global bloom (#277) carries color; place states carry light/legibility.
 - **Don't:** numbers, XP, levels, badges walls; per-page color forks.
+- **CTA:** one labelled, lit button for the next real step (a plain verb, e.g. «Find your top talent →»), anchored at the bottom on phones; the glow on the map points to it and never replaces it.
 - **Issue:** #271, #277.
 
 ### 4. The Your AI moment (`/game/your-ai`, reveal steps)
 - **Feels:** *it already knows me a little, and it's on my side.* The AI is felt, not seen.
 - **Transmitted by:** a voice in the world (the character's line, set in the game's type), followed by 1–3 personal buttons and *say it your way*; AI OS loaded underneath every session (#275); "your AI just learned…" as a soft moment, not a notification.
 - **Do:** credits copy quiet and honest (free start, daily free dialogue, deep readings locked, "larger credit packages are coming") — no prices, no checkout from here (#272).
+- **Approved direction (2026-10-31; image kept outside the repo):** a huge low moon over the valley; the player's gift sentence trailing off into a thread of light that runs through the valley to the player; one bold glowing CTA pill «Ask one friend what they see in you →»; two underlined secondary links beneath it; «Or say it your way…» set on the horizon line.
 - **Don't:** chat bubbles + avatar as the main surface, typing indicators as theatre, model names, a lock that looks like a paywall.
+- **CTA:** one bold glowing pill with the next real step (e.g. «Ask one friend what they see in you →»); two underlined secondary links; *Or say it your way…* as a visible line.
 - **Issue:** #272, #275.
 
 ### 5. Gift reveal / profile (`/game/me/*`, Your House)
@@ -417,6 +424,7 @@ Each screen: **feels** → **transmitted by** → **do / don't** → **issue**.
 - **Transmitted by:** the crystal refracting light into the player's own colors; one line of essence; the artifact moment where its color lights; colors refine as the gift sharpens.
 - **Do:** first artifact → first own color, immediately; share card «Do you see me this way too?» (§14.12a) carries the player's colors.
 - **Don't:** confetti, trophies, score cards, rainbow defaults.
+- **CTA:** once recognition lands, one clear, large, high-contrast primary (the share card «Do you see me this way too? →», or the next room); Copy link and Save image as underlined secondary links.
 - **Issue:** #277.
 
 ### 6. Academy / learn (`/game/learn`, `/grow/*`)
@@ -424,6 +432,7 @@ Each screen: **feels** → **transmitted by** → **do / don't** → **issue**.
 - **Transmitted by:** paperback typography, paper grain, generous space; each lesson ends in one real step in life.
 - **Do:** the end of a lesson is an act (and possibly an artifact), not "Next lesson →".
 - **Don't:** course-platform chrome (progress rings, % complete, module grids of thumbnails).
+- **CTA:** the lesson's real step is a large primary button with a plain verb; «Next lesson» is at most an underlined secondary link.
 - **Issue:** — (course pages in flight; apply on next touch).
 
 ### 7. Paths & offers / checkout (`/products/*`, Market, checkout doors)
@@ -431,13 +440,15 @@ Each screen: **feels** → **transmitted by** → **do / don't** → **issue**.
 - **Transmitted by:** the player's stall assembling itself as they play (§14.12); offers in the same world light; one real checkout in one step, same price and length as the page (§14.1 rule 9).
 - **Do:** plain price, plain length, one button.
 - **Don't:** countdown timers, "only 3 seats left", strike-through anchors, fear copy, "free" headlines over paid offers.
+- **CTA:** one large, high-contrast button with the price on it or right beside it (e.g. «Book the 2-hour session · $555»); nothing else on the screen competes with it.
 - **Issue:** — (Stripe untouched until Sasha lifts it).
 
 ### 8. Multiplayer (Mastermind, guilds, other residents)
 - **Feels:** *I'm not alone; others have walked this road.*
-- **Transmitted by:** other residents' houses in their colors on my map; palettes side by side (resonant / complementary); a team as composite light; live events as a slow pulse.
+- **Transmitted by:** other residents' houses lit on my map (light, not per-place color: D.3); palettes side by side (resonant / complementary); a team as composite light; live events as a slow pulse.
 - **Do:** presence over metrics; the village's one public number is residents' income.
 - **Don't:** leaderboards, follower counts, activity feeds, notification badges.
+- **CTA:** one clear primary for the shared act (e.g. «Join the circle», «Say hello»); presence stays soft, the action is unmistakable.
 - **Issue:** — (§13, §16 of the game spec).
 
 ---
@@ -447,11 +458,12 @@ Each screen: **feels** → **transmitted by** → **do / don't** → **issue**.
 **The default dark-mode SaaS / chat app.** Sasha rejected a Your AI mockup on 2026-10-30 as *"ugly, default UI"*. Named here so no one rebuilds it:
 - rounded cards as the universal container;
 - a chat bubble + avatar as the main surface of the AI;
-- flat pill CTAs;
+- flat pills: generic SaaS button styling (the fault is the generic look, not visibility; a bold glowing CTA pill in the world's light is right, see the A.0 CTA rule);
 - clip-art moon (or any clip-art standing in for the real world);
 - captions that explain the UI ("Here you can…", "Tap a button below to…").
 
 **Also never:**
+- **a CTA dissolved into scenery / dim caption buttons**: a primary that blends into the world, low-contrast text as the only way forward, or a glow with no label (A.0 CTA rule);
 - a permanent chat window as the game's interface (AI is invisible; §A.0.1);
 - urgency, scarcity or fear copy; the "first time a stranger pays for your gift" slogan;
 - loud color: theme-switch jumps, saturated full-screen backgrounds, flashes, neon, glow outlines, rainbow gradients behind text;
@@ -462,13 +474,17 @@ Each screen: **feels** → **transmitted by** → **do / don't** → **issue**.
 
 ---
 
-# Part D — Open decisions for Sasha
+# Part D — Decisions
 
-1. **Gift color source before a reading exists.** Artifact 1 lights the first own color: derived from that artifact's content by AI (Evolver's recommendation), or from the top-talent archetype until the Spectrum Reading runs?
-2. **Seven colors: whose seven?** Stages 2–8 light seven hues. Are they a fixed seven (one per path/element) tinted toward the player's gift, or seven drawn from the player's own palette? (Affects the #277 config shape.)
-3. **Global bloom vs. per-place color (§14.11).** #277 makes color one global value. Recommendation: global bloom carries color everywhere; places keep only light/legibility states (closed dim, next lit, done warm-lit). Confirm that §14.11 "the place takes on color" becomes "the place takes on light".
-4. **Sound.** Ship the sonic seed at the artifact moment now (off by default), or hold until a sound designer?
-5. **Which surface proves Bloom first.** Evolver's recommendation: first question → first artifact → village at bloom 1, as one continuous proof-of-paradigm (#271 + #277), judged side by side with today.
+**Resolved (decided by Hark under Sasha's delegation, 2026-10-31).** Sasha can override any of them.
+
+1. **Gift color source before a reading exists → derived from the first artifact.** The player's first own color is derived by AI from the content of their first earned artifact. Top-talent archetype colors only stand in before artifact 1 (bloom 0); the palette refines as the gift sharpens (Spectrum Reading later).
+2. **Seven colors → a fixed seven, tinted toward the player's gift.** Stages 2–8 each light one fixed hue (same seven, same order for everyone), tinted toward the player's gift colors. #277 config shape: seven base hues + a per-player tint.
+3. **Global bloom vs. per-place color → places take on light; color belongs only to the world-wide bloom.** Places keep light and legibility states only (closed dim, open silver, next lit, done warm-lit, live slow pulse). `game_of_being_you.md` §14.11 now reads «the place takes on light».
+4. **Sound → later, off by default.** The artifact-moment tone waits for a later pass; when it ships, it is off by default.
+5. **First proof screen → first question → first artifact → village at bloom 1**, as one continuous proof-of-paradigm (#271 + #277), judged side by side with the current version.
+
+Open: none right now.
 
 ---
 
@@ -480,3 +496,4 @@ Each screen: **feels** → **transmitted by** → **do / don't** → **issue**.
 *Updated: 2026-05-16 (later) — Resolved syntactic collision flagged by Sasha: "dimensions" is reserved for perspectives of consciousness (the 27-perspective ontology); the 7 building blocks of digital surface design are renamed **primitives** (Web3 / CS sense — irreducible, composable, trusted, load-bearing units). Added "A note on terminology — Primitives vs Dimensions" section. Affirmed **Motion** (not Animation) as the primitive name; animation, transition, physics, parallax, generative, gesture-driven are all techniques *inside* Motion. Flagged **Typography** as candidate 8th primitive — held for mood-board test.*
 *Updated: 2026-05-16 (later II) — **Typography promoted out of held-status into the 8th primitive of digital surface design.** Distinct from Form because letters carry meaning differently (typeface, weight, scale, leading, kerning, rhythm, light/color/depth/motion interactions). Count adjustments propagated (Liquid Glass = 7–8 primitives; "the 8 primitives" header). Open question closed; will revisit only if mood boards reveal a folding-back into Form.*
 *Updated: 2026-10-30 (v2, Bloom) — Combined all UI findings into this single place. Named the paradigm **Bloom** (Stage 8 Neo-Dimensional remains its stage). Added A.0 (AI invisible; 1 primary + ≤2 secondary + free text; global world bloom 0–9; gift colors from the first artifact; «нежно, тонко» tenderness rule), Part B (rules per primitive + eight screens: menu, first question, village, Your AI, gift reveal, academy, offers/checkout, multiplayer, linked to #271/#272/#275/#277), Part C (anti-patterns incl. the rejected default dark-mode SaaS/chat UI, no urgency copy), Part D (open decisions). Soul colors revived from deprioritized.*
+*Updated: 2026-10-31 (v2.1) — Project-wide CTA rule (Sasha: CTAs very visible and clear) in A.0; a CTA line on each of the eight screens in B.2; secondary actions quieter but clearly tappable (B.1); Part C: flat pills = generic SaaS styling, new anti-pattern «CTA dissolved into scenery / dim caption buttons»; Part D resolved by Hark (first color from the first artifact; fixed seven hues tinted toward the gift; places take on light, color only in the world-wide bloom; sound later, off by default; first proof = first question → first artifact → village at bloom 1); Your AI approved direction recorded.*
