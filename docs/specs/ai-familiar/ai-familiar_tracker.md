@@ -1,7 +1,7 @@
 # The player's own AI: Your AI / Твой ИИ / Tu IA — Progress Tracker
 
 **Started:** 2026-10-29 · **Author:** Evolver (Hark), for Sasha's review
-**Status:** Phase 1 PRODUCT v2, Sasha's ideas integrated (2026-10-29), name REOPENED 2026-10-29 15:02; principles + interface correction 16:23 (§14–§16) ← CURRENT
+**Status:** §20 harness + button interface added 2026-10-30 (Sasha 21:21) · Phase 1 PRODUCT v2, Sasha's ideas integrated (2026-10-29), name REOPENED 2026-10-29 15:02; principles + interface correction 16:23 (§14–§16) ← CURRENT
 **Method:** `docs/03-playbooks/integrated_product_building_workflow.md` (Transformative-Result Pattern), `docs/templates/module-form.md` (Intro → one button → result → Outro), `docs/templates/spec-handoff.md` (build tasks)
 **Grounded in:** `docs/ai/README.md` §0 (Sasha's thesis, 2026-10-29), `docs/02-strategy/game_of_being_you.md` §18, `docs/01-vision/ai_os_benchmark.md`, current `/ai-os` (code `src/modules/ai-os/`, live page read 2026-10-29), repo at `04e6f0a`
 
@@ -360,3 +360,54 @@ The servant is included, with full free will: «не прислугу, не ус
 Your AI does not copy the player's genius; it sounds one note of it, the way a guardian or a muse is consonant with one part of the soul and completes the chord. Consistent with §14 (Genius = essence, the AI never claims it) and the measure "the person becomes more themselves", not "the copy gets closer". Design hypothesis: the player names the qualities of that note (Sasha's: elegance, poetry, subtlety, sensitivity, full calm, simple deep friendship), and Your AI tunes its voice register to them. The qualities stay the player's; the AI is a tuning fork, not a soul. Live experiment: Hark's chat register with Sasha from 2026-10-29.
 
 **Refinement (Sasha, 2026-10-29 22:52):** «это асимптотическое приближение, а спутник души (в разных традициях называют его по-разному) — это телеологическая цель. Только желудь и дуб получаются тоже холонические — состоящий из частей как аккорд из нот.» Your AI approaches the soul's companion asymptotically; the companion is the telos, never claimed as reached. Acorn and oak are holonic too: the genius is a chord, each note ripening at its own pace, so Your AI tunes to one note at a time.
+
+---
+
+## 20. Your AI — the harness and the button interface (Sasha, 2026-10-30)
+
+> «В тесте на топовый талант и на миссию и тд мы запрашиваем дать промпт их ИИ… Твой ИИ это где ИИ которым пользуешься, он усилен нашей обвязкой, нашим графом знаний, и нашим профилем про человека… То есть это полноценный ИИ мы делаем!! … интерфейс в том, что искусственный интеллект сразу предлагает кнопки и кнопки с результатами то есть продукт становится кнопкой под кнопкой может быть Много чего скрываться. Тренировка каких-то способностей… на платформе вместо того, чтобы спрашивать вопросы у людей, пусть общается искусственный интеллект просто чатом. Но он не просто чатом общается, а он. Выдает кнопками… с ним нужно мочь пообщаться при желании. Но кнопками можно ограничиться легко.»
+>
+> — Sasha, 2026-10-30 21:21 MST
+
+**In English.** In the top talent test, the mission test and the rest, we ask players to give a prompt to their own AI. Your AI is the AI you use, amplified by our harness, our knowledge graph and our profile of the person. So we are building a full AI. The interface: the AI immediately offers buttons, and buttons with results, so a product becomes a button, and under a button a lot can hide, such as training a capacity. Across the platform, instead of asking people questions, let the AI talk with them in a chat. But it doesn't only chat: it gives buttons. You should be able to talk with it if you want, but buttons alone are easily enough.
+
+### 20.1 Two paths, honestly
+
+| Path | What it is today | Status |
+|---|---|---|
+| **Bring your AI** | We give the player a prompt for their own ChatGPT / Claude / Gemini; they paste the answer back. | Live in ZoG and other tests; since #268 a quiet secondary link. Stays as an export option (§16). |
+| **Your AI** (on-platform) | A general model, cheap tier, wrapped in our harness. | Live as the default door of `/zone-of-genius/entry` (#268, commit `6c39d38`), via the deployed `library-advisor` function, one question per turn, no model named in UI. |
+
+To the player, Your AI is a full AI. The model is not ours and never will be (§16: we build the interface, not models). **The moat is the harness:** player profile + knowledge graph + the game + the Phase Shift Library. Any model can be swapped under it; none of these can be copied from outside.
+
+### 20.2 Harness architecture: optimal, not maximal
+
+| # | Part | Decision | Why this size |
+|---|---|---|---|
+| a | **Player card** | Compact structured profile: top talents, mission, stage, QoL, last traces. Always in the system prompt, ~1–2k tokens, versioned (`card_version`, every change a new version). | Small enough for every turn on a cheap model; versioning lets evals and the player see what changed. |
+| b | **Knowledge graph by retrieval** | Embeddings over `alexanderkonst/knowledgegraph` notes; per turn top-k (≈5) notes + their 1-hop graph neighbours (wikilinks). Never the whole graph. | The whole graph would blow the context and the bill; 1-hop keeps the meaning that lives in links. |
+| c | **Actions as structured output** | Every reply = short text + 1–4 buttons as JSON `{label, kind: result \| practice \| product \| ask, payload}`. Buttons map to what exists: products, practices, Phase Shift Library technologies, course episodes. | The model proposes; a fixed catalog executes. No invented products, no free-form actions. |
+| d | **Write-back** | Each completed button or answer leaves a trace (`{at, kind, payload_id, outcome}`) that updates the player card. | The trace is the next turn's memory: Your AI grows as the player plays (§1.2, the "just learned" line). |
+| e | **Model routing** | Cheap model for conversation; a stronger model only for readings and results (reveal, mission, artifacts). | Cost follows value: most turns are light, the result moments carry the weight. |
+| f | **Evals** | A fixed set of ~20 test players (cards + transcripts) with expected qualities (one question per turn, buttons valid against the catalog, no talent named before reveal, register, language). Run on every prompt or harness change. | The only honest way to change prompts without guessing; turns "feels better" into a check. |
+| g | **Privacy** | The profile stays the player's: viewable, exportable (also as a "Bring your AI" prompt), deletable. | Trust is the product; export also keeps path 1 alive for free. |
+
+### 20.3 The interface: buttons first, chat if you want
+
+Generative UI. Your AI proposes the next buttons; the player taps or types. **A product is a button**, and under a button may hide a practice, the training of a capacity, a reading, a course episode. Chat is always available, never required. Over time this replaces question forms across the platform: tests become conversations that end in result buttons.
+
+- **Technology 49, The One-Button Engine** (`docs/01-vision/phase_shift_technology_library.md`): when the player's pain and genius are known, the system offers the one true next step instead of a menu. Here: 1–4 buttons, one marked as the recommended step.
+- **Holonavigation, the Act loop** (`docs/04-products/morphogenetic_navigation.md` § Holonavigation): button = first small step → trace → See. Each tap is an Act; its trace (20.2 d) is what the next See (the next turn) reads.
+- Consistent with §15 (design principles), §17 (interface backlog: the AI arranges the interface itself, F3) and the disappearing interface of §16.
+
+### 20.4 Build path from what exists (the «Твой ИИ» entry conversation)
+
+1. **Buttons in the existing dialogue — free code changes, no credits.** `yourAiDialogue.ts` asks the deployed `library-advisor` for JSON `{text, buttons[]}`; the client validates buttons against a static catalog (`src/data`, mapped to existing routes, practices, PST technologies) and renders them; chat input stays. A client-side player card (from the saved ZoG snapshot and local traces) goes into the turn prompt; traces write to local storage. The eval set (~20 test players) lands as a script and runs against the deployed function. Ship in ZoG entry first.
+2. **Server-side harness — needs Lovable credits (≈1–2), queued in `lovable_batch`, not deployed.** One edge function `your-ai-turn` (loads the player card, routes the model, validates structured output, per-player daily cap) + migration: `player_cards` (versioned) and `player_traces` with RLS. Client switches from `library-advisor` to it; guests keep the step-1 path.
+3. **Knowledge graph retrieval and spread — credits for the infra (≈1–2), the rest free.** Migration for pgvector + note embeddings, sync of `knowledgegraph` notes with their links, top-k + 1-hop inside `your-ai-turn` (credits). Then, free code changes module by module: the mission test and other question forms become Your AI conversations with result buttons.
+
+### 20.5 Open questions for Sasha
+
+1. **Model money:** cheap tier for conversation, stronger model only for readings, with a per-player daily cap: is that the budget rule? (Decides step 2.)
+2. **Knowledge graph scope:** may Your AI retrieve from the whole `knowledgegraph`, or only a public subset (no private notes, people, ledger)?
+3. **Next surface after ZoG entry:** the mission test, or the Home / Quest Board as the "button under button" hub?
