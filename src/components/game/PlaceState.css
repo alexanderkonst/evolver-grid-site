@@ -36,7 +36,7 @@
   margin-top: 0.9em;
   font-family: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
   font-weight: 400;
-  font-size: 11px;
+  font-size: var(--vl-text-micro);
   letter-spacing: 0.24em;
   text-transform: uppercase;
   font-style: normal;

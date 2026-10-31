@@ -10,6 +10,20 @@ import {
 
 export const OPEN_CHAT_EVENT = "fytt:open-chat";
 
+/**
+ * The Journey screens (WP-15): title, village, every /game place, Workshop, Mastermind.
+ * `/` is the title screen (and, with `?path=`, the pre-game landing: the same corner rule is harmless there).
+ */
+export const isGameScreenPath = (pathname: string): boolean =>
+  pathname === "/" ||
+  pathname === "/village" ||
+  pathname.startsWith("/village/") ||
+  pathname === "/game" ||
+  pathname.startsWith("/game/") ||
+  pathname === "/ubb" ||
+  pathname.startsWith("/ubb/") ||
+  pathname === "/build/mastermind";
+
 const MESSAGE =
   "Hi, I landed on your website and wanted to get in touch.";
 const WHATSAPP_NUMBER = "14157073432";
@@ -68,8 +82,20 @@ const ChatLauncher = () => {
 
   if (isQuizRoute || isPersonalLetterRoute) return null;
 
+  // WP-15: on the Journey screens a phone's primary button sits at the bottom of the column,
+  // where the 48px pill would cover it. There the pill tucks into the corner (12px, not 16px)
+  // and the screens keep `--chat-clearance` of room under their last control (theme-tokens.css).
+  const isGameRoute = isGameScreenPath(location.pathname);
+
   return (
-    <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 sm:bottom-6 sm:right-6 z-[65]">
+    <div
+      data-game-route={isGameRoute || undefined}
+      className={`fixed z-[65] sm:bottom-6 sm:right-6 ${
+        isGameRoute
+          ? "bottom-[max(0.75rem,env(safe-area-inset-bottom))] right-3"
+          : "bottom-[max(1rem,env(safe-area-inset-bottom))] right-4"
+      }`}
+    >
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <button

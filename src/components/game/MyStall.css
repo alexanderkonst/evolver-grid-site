@@ -12,8 +12,9 @@
   --vl-bg: var(--scene-bg);
   --vl-accent: var(--scene-accent);
   --vl-ink: rgba(var(--scene-ink-rgb), 0.92);
-  --vl-ink-2: rgba(var(--scene-ink-rgb), 0.68);
-  --vl-ink-3: rgba(var(--scene-ink-rgb), 0.5);
+  /* WP-15: the same secondary and tertiary ink as the village (Village.css). */
+  --vl-ink-2: rgba(var(--scene-ink-rgb), 0.82);
+  --vl-ink-3: rgba(var(--scene-ink-rgb), 0.7);
   --vl-hair: rgba(var(--scene-ink-rgb), 0.18);
   --vl-serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
   --vl-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
@@ -29,7 +30,7 @@
 }
 
 .ms__header {
-  margin: 0 0 18px;
+  margin: 0 0 var(--vl-space-4);
   font-size: clamp(18px, 2.4vw, 22px);
   font-style: italic;
   color: var(--vl-ink-2);
@@ -40,7 +41,7 @@
 .ms__stall {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: var(--vl-space-3);
   min-width: 0;
 }
 
@@ -49,7 +50,7 @@
   margin-bottom: 4px;
   font-family: var(--vl-mono);
   font-weight: 300;
-  font-size: 11px;
+  font-size: var(--vl-text-micro);
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--vl-ink-3);
@@ -75,9 +76,6 @@
 .ms__banner-line,
 .ms__signboard-line { font-size: clamp(18px, 2.6vw, 22px); color: var(--vl-ink); }
 
-.ms__workshop { margin: 0; text-align: center; font-size: 13px; color: var(--vl-ink-3); }
-.ms__workshop a { color: inherit; text-decoration: underline; }
-
 .ms__name { text-align: center; padding: 4px 0; }
 .ms__name-line {
   margin: 0;
@@ -91,15 +89,15 @@
 .ms__frame {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 14px;
+  gap: var(--vl-space-3);
+  padding: var(--vl-space-3);
   border: 1px solid var(--vl-hair);
 }
 .ms__post {
   padding-left: 12px;
   border-left: 2px solid var(--vl-accent);
 }
-.ms__post-line { font-size: 18px; color: var(--vl-ink-2); }
+.ms__post-line { font-size: var(--vl-text-lead); color: var(--vl-ink-2); }
 
 .ms__shelf { min-width: 0; }
 .ms__objects {
@@ -114,7 +112,7 @@
 .ms__object {
   padding: 8px 12px;
   border: 1px solid var(--vl-hair);
-  font-size: 17px;
+  font-size: var(--vl-text-lead);
   color: var(--vl-ink);
 }
 
