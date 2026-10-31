@@ -288,6 +288,15 @@ const YourAiDialogue = ({
             {t("zogEntry.ownAiPromptLink")}
           </button>
         </div>
+        {/* Quiet credits note: last in the stack so the dialogue and its controls stay where they were. */}
+        <div className="max-w-md pt-3 text-center space-y-0.5">
+          <p className="text-[11px] uppercase tracking-wider" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))", textShadow: HALO }}>
+            {t("zogEntry.yourAiCreditsTitle")}
+          </p>
+          <p className="text-xs leading-relaxed" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))", textShadow: HALO }}>
+            {t("zogEntry.yourAiCreditsBody")}
+          </p>
+        </div>
       </div>
     </div>
   );

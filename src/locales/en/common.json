@@ -171,6 +171,8 @@
     "yourAiNotesCancel": "Cancel",
     "yourAiNotesSave": "Add to our conversation",
     "yourAiRevealHint": "Answer a few questions first.",
+    "yourAiCreditsTitle": "How Your AI credits work",
+    "yourAiCreditsBody": "Your AI is free to start. We're as generous with AI credits as we can be. When you really start using it and hit the limit, larger credit packages are there, and each one also upgrades the power of the model.",
     "yourAiNeedMore": "Your AI needs a bit more to see your pattern. Answer one or two more questions, then reveal again.",
     "ownAiPromptLink": "Use an outside AI instead"
   },
@@ -7779,6 +7781,8 @@
       "body": "One screen that reads the venture and the person as one system: strategy, relationships, energy. Ask what to do next and it answers from the whole picture, including what any dashboard ignores: the founder.",
       "cta": "Open the Cockpit"
     },
+    "aiCreditsHeading": "Your AI credits",
+    "aiCreditsBody": "Your AI is free to start. We're as generous with AI credits as we can be. When you really start using it and hit the limit, larger credit packages are there, and each one also upgrades the power of the model.",
     "rdEyebrow": "Research & development",
     "rdHeading": "R&D",
     "rdIntro": "Still in research and development. Shown here so the full picture is visible.",
