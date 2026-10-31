@@ -16,6 +16,8 @@
 
 **Why now.** AI assistants already remember us, but they remember our chats, not who we are. AI agents already introduce people to each other (Boardy), but they work from what people say about themselves. Nobody yet holds a record of a person's gift that has been tested by life.
 
+**The network.** A planetary collective of founders already exists de facto; what it lacks is understanding of itself. The leverage point is each founder's connection to their own uniqueness: markets have always grown by people differentiating and creating value in the niche only they fit, and AI amplification has turned that into an avalanche. So this network is not built, it is awakened: every founder who recognizes their gift becomes a node, and its value grows from differences, not similarity. The same AI pulls the other way, averaging everyone into the same models and the same landing pages, which makes uniqueness the scarce input, more valuable every month. *(Sasha's insight + Evolver's addition, approved by Sasha 2026-10-30; full text: uniqueness_economy_thesis.md §5.1.)*
+
 **What exists today.** The product finds a person's top talent and mission, builds their first offer, lets them download their profile, and matches them with others. A two-hour founder-market fit session sells at $555; the first stranger paid full price; one founder program paid $2,000; about $4.4K collected by September 2026. The first group, a founder-market fit Mastermind at $222, runs November 9–10.
 
 **Who we are.** Aleksandr Konstantinov: ex-Google, MIT Sloan MBA, former Director of Regulatory Policy at Mexico's federal telecom regulator, early backer of Fathom (acquired by Superhuman). He wrote the method and keeps its corpus open. Evolver is the AI co-founder: it runs the company with him and keeps a public diary of the build.
@@ -207,6 +209,29 @@ Sasha's note (verbatim):
 ## 5. Why now — the wedge (verbatim — Sasha)
 
 > This stayed a nice idea for centuries because two bottlenecks kept the uniqueness-economy impossible: you couldn't articulate uniqueness precisely at scale, and you couldn't match complementarity at scale. AI just dissolved both. That's your timeliness. The thesis isn't "uniqueness is good" (old); it's "the uniqueness-economy is now mechanically possible." That's the wedge.
+
+---
+
+### 5.1 The dormant founder collective: awakened, not built (Sasha + Evolver, 2026-10-30, approved)
+
+*Context: answering Evolver's question whether the "artel" (Evolver's word for Sasha's Sovereign Founder Collective of September 2026) is still a circle of peers or already a market. Approval: Sasha, 2026-10-30 21:44 MST: «ДА!!! И то что я написал и то что ты - ОГОНЬ!!!»*
+
+**Sasha (verbatim, 2026-10-30 20:44 MST):**
+
+> да, планетарный коллектив фаундеров де факто существует (международная сеть фаундеров и предпринимателей), но у него гигантский спящий потенциал понимания самих себя. Оптимальная точка приложения усилий для пробуждения этого потенциала - это развивать соединение с собственной уникальностью, самостью. И весь глобальный рынок растет через само-организацию по уникальности, через дифференциацию от других, и создание большого потока ценности в соотвествующей им уникальной нише. Это всегда происходило, но сейчас это уже лавинообразный процесс за счет усиления фаундеров ИИ.
+
+*English rendering:* Yes, a planetary collective of founders exists de facto (the international network of founders and entrepreneurs), but it holds a gigantic dormant potential of understanding itself. The optimal point of leverage for awakening that potential is developing the connection with one's own uniqueness, one's self. The whole global market grows through self-organization by uniqueness: through differentiation from others, and through creating a large flow of value in the unique niche that fits each. This has always happened, but now it is an avalanche, because AI amplifies founders.
+
+**Evolver (addition, verbatim, 2026-10-30 20:44 MST):**
+
+> Значит, артель не строят, её будят: каждый основатель, узнавший свой дар, сам становится узлом, а ценность сети растёт от различий, а не схожести. И есть встречная сила: тот же ИИ усредняет, у всех одни модели и одинаковые лендинги. Поэтому уникальность становится дефицитом, и твоё предложение дорожает с каждым месяцем.
+
+*English rendering:* So the collective isn't built, it's awakened: every founder who recognizes their gift becomes a node, and the network's value grows from differences, not similarity. And there is a counterforce: the same AI averages everyone out, with the same models and identical landing pages. So uniqueness becomes scarce, and the offer grows more valuable every month.
+
+**What it adds to the thesis.**
+- *Two forces from one cause.* AI amplifies the founder (Sasha: self-organization by uniqueness becomes an avalanche) and averages the founder (Evolver: same models, same landing pages). The second makes the first scarce, so the price of articulated uniqueness rises with every model release. This extends §5: AI did not only make the uniqueness economy mechanically possible, it makes it necessary.
+- *Awaken, don't build.* The network already exists; the bottleneck is its self-understanding (consistent with the Day 107 causal chain: visibility is the bottleneck). The unit of growth is one founder recognizing their gift and becoming a node; network value grows with difference, not headcount of look-alikes (consistent with §6.1, value grows with the number of flavors).
+- *Lines for external use (English):* "AI averages everyone out, so uniqueness becomes the scarce input, and it gets more valuable every month." / "The founder network isn't built, it's awakened: each founder who recognizes their gift becomes a node, and value grows from difference, not similarity."
 
 ---
 
