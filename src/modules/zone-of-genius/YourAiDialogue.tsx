@@ -4,7 +4,7 @@
  */
 import { useEffect, useId, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, ChevronDown, Send } from "lucide-react";
+import { ArrowRight, ChevronDown, Lock, Send } from "lucide-react";
 import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
 import { ACTION_REVEAL, type YourAiButton } from "@/data/yourAiCatalog";
 import { supabase } from "@/integrations/supabase/client";
@@ -17,6 +17,7 @@ import {
   type DialogueMessage,
 } from "./yourAiDialogue";
 import { buildPlayerCard, readTraces, writeTrace } from "./yourAiCard";
+import { YOUR_AI_DAILY_FREE_TURNS, getTurnsUsedToday, recordTurn } from "./yourAiDailyLimit";
 
 type Props = {
   messages: DialogueMessage[];
@@ -58,6 +59,9 @@ const YourAiDialogue = ({
   const endRef = useRef<HTMLDivElement>(null);
   // Signed-in player id, if any. Scopes traces and the saved-snapshot read; guests use "guest".
   const ownerRef = useRef<string | null>(null);
+  // Daily free dialogue limit (client-side). Only dialogue turns count; reveal and profile never do.
+  const [turnsUsed, setTurnsUsed] = useState(() => getTurnsUsedToday(null));
+  const limitReached = turnsUsed >= YOUR_AI_DAILY_FREE_TURNS;
   const answers = countAnswers(messages);
   const canReveal = answers >= MIN_ANSWERS_TO_REVEAL || (Boolean(ownAiNotes.trim()) && answers >= 1);
   const revealRecommended = ready || answers >= SUGGESTED_ANSWERS;
@@ -71,7 +75,9 @@ const YourAiDialogue = ({
     supabase.auth
       .getSession()
       .then(({ data }) => {
-        if (!cancelled) ownerRef.current = data.session?.user?.id ?? null;
+        if (cancelled) return;
+        ownerRef.current = data.session?.user?.id ?? null;
+        setTurnsUsed(getTurnsUsedToday(ownerRef.current));
       })
       .catch(() => {
         /* guest: no owner */
@@ -89,10 +95,15 @@ const YourAiDialogue = ({
   };
 
   const runTurn = async (history: DialogueMessage[], notes: string) => {
+    // Re-read the stored count: a day rollover or another tab can change it since the last render.
+    const used = getTurnsUsedToday(ownerRef.current);
+    setTurnsUsed(used);
+    if (used >= YOUR_AI_DAILY_FREE_TURNS) return;
     setThinking(true);
     setTurnError(false);
     try {
       const turn = await askYourAi(history, notes, i18n.resolvedLanguage, currentCard());
+      setTurnsUsed(recordTurn(ownerRef.current));
       setMessages([...history, { role: "ai", text: turn.reply, buttons: turn.buttons }]);
       if (turn.ready) setReady(true);
     } catch (err) {
@@ -106,13 +117,13 @@ const YourAiDialogue = ({
 
   const send = () => {
     const text = draft.trim();
-    if (!text || thinking) return;
+    if (!text || thinking || limitReached) return;
     setDraft("");
     void runTurn([...messages, { role: "player", text }], ownAiNotes);
   };
 
   const retryTurn = () => {
-    if (thinking) return;
+    if (thinking || limitReached) return;
     void runTurn(messages, ownAiNotes);
   };
 
@@ -120,7 +131,7 @@ const YourAiDialogue = ({
     const notes = notesDraft.trim();
     setOwnAiNotes(notes);
     setNotesOpen(false);
-    if (notes && !thinking) void runTurn(messages, notes);
+    if (notes && !thinking && !limitReached) void runTurn(messages, notes);
   };
 
   const lastMessage = messages.length > 0 ? messages[messages.length - 1] : undefined;
@@ -279,9 +290,10 @@ const YourAiDialogue = ({
             }
           }}
           rows={2}
-          placeholder={t("zogEntry.yourAiPlaceholder")}
+          disabled={limitReached}
+          placeholder={limitReached ? t("zogEntry.yourAiLimitPlaceholder") : t("zogEntry.yourAiPlaceholder")}
           aria-label={t("zogEntry.yourAiPlaceholder")}
-          className="flex-1 min-w-0 resize-none rounded-2xl px-3.5 py-2.5 text-[16px] outline-none focus:ring-1"
+          className="flex-1 min-w-0 resize-none rounded-2xl px-3.5 py-2.5 text-[16px] outline-none focus:ring-1 disabled:opacity-60"
           style={{
             backgroundColor: "var(--skin-input-fill, rgba(255,255,255,0.55))",
             border: "1px solid var(--skin-hairline, rgba(26,30,58,0.18))",
@@ -291,8 +303,8 @@ const YourAiDialogue = ({
         <button
           type="button"
           onClick={send}
-          disabled={!draft.trim() || thinking}
-          aria-describedby={!draft.trim() && !thinking ? sendHintId : undefined}
+          disabled={!draft.trim() || thinking || limitReached}
+          aria-describedby={!draft.trim() && !thinking && !limitReached ? sendHintId : undefined}
           aria-label={t("zogEntry.yourAiSend")}
           className="shrink-0 h-11 w-11 rounded-full inline-flex items-center justify-center transition-opacity disabled:opacity-40"
           style={{
@@ -304,7 +316,23 @@ const YourAiDialogue = ({
         </button>
       </div>
 
-      {!draft.trim() && !thinking && (
+      {limitReached && (
+        <div
+          role="status"
+          className="rounded-2xl px-4 py-3 text-center space-y-1.5"
+          style={{ backgroundColor: "rgba(255,255,255,0.45)", border: "1px solid var(--skin-hairline, rgba(26,30,58,0.14))" }}
+        >
+          <p className="text-sm" style={{ color: "var(--skin-text-primary, #0a1628)" }}>{t("zogEntry.yourAiLimitNote")}</p>
+          <p className="text-xs font-semibold" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.75))" }}>
+            {t("zogEntry.yourAiCreditsTitle")}
+          </p>
+          <p className="text-xs leading-relaxed" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.75))" }}>
+            {t("zogEntry.yourAiCreditsBody")}
+          </p>
+        </div>
+      )}
+
+      {!draft.trim() && !thinking && !limitReached && (
         <p id={sendHintId} className="text-xs text-center -mt-2" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))", textShadow: HALO }}>
           {t("zogEntry.yourAiSendHint", { defaultValue: "Write your answer to send it." })}
         </p>
@@ -404,6 +432,29 @@ const YourAiDialogue = ({
                   {t("zogEntry.ownAiPromptLink")}
                 </button>
               </div>
+            </div>
+          )}
+        </div>
+
+        {/* Quiet footer below the spine: Deep reading is visible but locked (no payment path), then the credits copy. */}
+        <div className="w-full pt-3 space-y-3 text-center">
+          <div
+            role="group"
+            aria-label={t("zogEntry.yourAiDeepReading")}
+            className="mx-auto max-w-sm rounded-2xl px-4 py-2.5 space-y-0.5 opacity-80"
+            style={{ border: "1px dashed var(--skin-hairline, rgba(26,30,58,0.25))", color: "var(--skin-text-muted, rgba(26,30,58,0.75))" }}
+          >
+            <p className="inline-flex items-center gap-1.5 text-[13px] font-semibold">
+              <Lock aria-hidden="true" className="h-3.5 w-3.5" />
+              <span>{t("zogEntry.yourAiDeepReading")}</span>
+              <span className="sr-only">{t("zogEntry.yourAiDeepReadingLocked")}</span>
+            </p>
+            <p className="text-xs leading-relaxed">{t("zogEntry.yourAiDeepReadingLine")}</p>
+          </div>
+          {!limitReached && (
+            <div className="mx-auto max-w-sm space-y-0.5" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))", textShadow: HALO }}>
+              <p className="text-xs font-semibold">{t("zogEntry.yourAiCreditsTitle")}</p>
+              <p className="text-xs leading-relaxed">{t("zogEntry.yourAiCreditsBody")}</p>
             </div>
           )}
         </div>
