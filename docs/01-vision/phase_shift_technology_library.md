@@ -30,7 +30,7 @@ Each entry in this library is a technology — a seeing instrument that produces
 
 > *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 182 as of October 30, 2026) stay the source of truth.*
 
-> *Index note, 2026-10-30: Technology 182, The Holo-Trinity — See · Aim · Act, is the cycle that holds the whole library (see → aim → act → trace → see again); it runs on any system as **Holonavigation**, with a one-button template in `docs/04-products/morphogenetic_navigation.md` § Holonavigation, where Act draws its technology from this library.*
+> *Index note, 2026-10-30: Technology 182, The Holo-Trinity — See · Aim · Act, is the cycle that holds the whole library (see → aim → act → trace → see again); it runs on any system as **Holonavigation**, with a one-button template in `docs/04-products/morphogenetic_navigation.md` § Holonavigation (eleven steps over the Map of Maps; a system's phase = the phase of its weakest load-bearing module), where Act draws its technology from this library.*
 
 This is the R&D engine of the whole venture: a growing library of seeing instruments, each named by the transformational result it delivers, from cosmogenesis (Prime Radiant) through uniqueness articulation, the founder-first inversion, and myth-to-movement, up to the recent cluster on ripeness, transition, the mirror, and the network of sovereigns. They do not stack like a portfolio; they nest, each one refracting through all the others. Held together they are a single field seen from many faces (concentric polymathy). Over 2026 the collection converged on one spine: articulation is the mechanism of growth, recognition replaces persuasion, the mirror is the product, and a network coheres through well-formed edges rather than a center. Every playbook move, product, and pricing decision downstream traces to a numbered technology here.
 
@@ -9562,7 +9562,7 @@ A **phase shift** is not just change or transformation: it is change with a conc
 
 **Energetic essence: Prime Radiant — like Asimov's device (metaphor, not a name).**
 
-**Applied as Holonavigation.** The approach that runs this cycle on any system is named **Holonavigation**; its one-button template (steps 0–10: See 0–8, Aim 9, Act 10), the boost from three schools (Scharmer → See, Rumelt → Aim, Wardley → Act) and two worked examples live in [`docs/04-products/morphogenetic_navigation.md` § Holonavigation](../04-products/morphogenetic_navigation.md#holonavigation--see--aim--act-update-2026-10-30) (added 2026-10-30).
+**Applied as Holonavigation.** The approach that runs this cycle on any system is named **Holonavigation**; its one-button template (steps 0–10: See 0–8, Aim 9, Act 10, with the core formula *a system's phase = the phase of its weakest load-bearing module*), the Act loop («стратегизируй, оптимизируй, планируй, оптимизируй, оркестрируй, оптимизируй, делегируй, оптимизируй, и все это на повторе», Sasha 2026-10-30 20:47), the boost from three schools (Scharmer → See, Rumelt → Aim, Wardley → Act) and three worked examples (a solo founder, the FindYourTopTalent platform, Evolver itself) live in [`docs/04-products/morphogenetic_navigation.md` § Holonavigation](../04-products/morphogenetic_navigation.md#holonavigation--see--aim--act-update-2026-10-30) (added 2026-10-30).
 
 ### 🫀 Essence — in Sasha's words
 
@@ -9620,4 +9620,4 @@ An earlier AI draft here treated the holo-trinity as a product under the working
 - *Technology 181: Holomethodology of Phase Shifts (Holostrategy)*: the three layers this technology joins into one instrument.
 - *Technology 78: The Planetary Holomap*; *Technology 169: The Template of Templates*.
 - `docs/templates/meta-template.md` § Holostrategy (principles, mechanics 0–9, planetary case).
-- `docs/04-products/morphogenetic_navigation.md` § Holonavigation: the one-button template (steps 0–10), the boost from three schools, worked examples.
+- `docs/04-products/morphogenetic_navigation.md` § Holonavigation: the one-button template (steps 0–10), the Act loop, the boost from three schools, three worked examples (solo founder, FindYourTopTalent platform, Evolver itself).
