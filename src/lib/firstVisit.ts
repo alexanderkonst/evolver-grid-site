@@ -14,6 +14,19 @@
 export const INTRO_SEEN_KEY = "fytt:wordless-intro-seen:v1";
 
 /**
+ * NEW GAME and the splash ENTER go here: straight to the first Zone of Genius question
+ * (the Your AI dialogue), with no Reception scene, module intro or route choice in between.
+ * The village follows the answer (the reveal ends in «Enter the village»).
+ */
+export const BEGIN_PARAM = "begin";
+export const NEW_GAME_PATH = `/zone-of-genius/entry?${BEGIN_PARAM}=1`;
+
+/** True when the URL asks the test to open on its first question. Onboarding (`/start`) keeps its own flow. */
+export function wantsFirstQuestion(search: URLSearchParams): boolean {
+  return search.get(BEGIN_PARAM) === "1" && !(search.get("return") ?? "").includes("/start");
+}
+
+/**
  * Any of these means this browser already holds a player: a Supabase session, a guest
  * profile, or a saved Top Talent result.
  */

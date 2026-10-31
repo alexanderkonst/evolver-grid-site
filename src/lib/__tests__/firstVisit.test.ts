@@ -2,6 +2,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import {
   INTRO_SEEN_KEY,
+  NEW_GAME_PATH,
   hasGuestTopTalentResult,
   hasSavedGame,
   markIntroSeen,
@@ -9,6 +10,7 @@ import {
   readGuestTopTalentPayload,
   shouldShowWelcomeBack,
   shouldShowWordlessIntro,
+  wantsFirstQuestion,
 } from "@/lib/firstVisit";
 
 describe("firstVisit", () => {
@@ -91,5 +93,21 @@ describe("firstVisit", () => {
     expect(hasGuestTopTalentResult()).toBe(false);
     window.localStorage.setItem("guest_appleseed_data", "[]");
     expect(hasGuestTopTalentResult()).toBe(false);
+  });
+
+  describe("new game path", () => {
+    const params = (qs: string) => new URLSearchParams(qs);
+
+    it("NEW_GAME_PATH goes straight to the test and asks for the first question", () => {
+      const [path, qs] = NEW_GAME_PATH.split("?");
+      expect(path).toBe("/zone-of-genius/entry");
+      expect(wantsFirstQuestion(params(qs))).toBe(true);
+    });
+
+    it("is off without the flag, and for onboarding", () => {
+      expect(wantsFirstQuestion(params(""))).toBe(false);
+      expect(wantsFirstQuestion(params("begin=0"))).toBe(false);
+      expect(wantsFirstQuestion(params("begin=1&return=/start"))).toBe(false);
+    });
   });
 });
