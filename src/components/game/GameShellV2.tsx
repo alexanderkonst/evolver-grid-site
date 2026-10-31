@@ -6,6 +6,7 @@ import { ArrowLeft, ChevronRight, Menu } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
 // Top-right corner icon — FYTT glyph, separate from the rail wordmark.
 // AI OS routes still swap this for the merkaba below.
 // Day 54+ (Sasha 2026-04-28): on AI OS routes, the top-right home icon
@@ -686,6 +687,16 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         return "content";
     });
     const [shortcutsOpen, setShortcutsOpen] = useState(false);
+    // Issue #270: below `md` the phone drawer opens on the rail alone (it is 176px of rail plus
+    // a sub-panel squeezed into what is left). A visible "Sections" toggle opens the sub-panel;
+    // ⌘B is not the only way. From `md` up both panes show, as before.
+    const isNarrow = useIsMobile();
+    const [drawerSectionsOpen, setDrawerSectionsOpen] = useState(
+        () => typeof window === "undefined" || window.innerWidth >= 768,
+    );
+    useEffect(() => {
+        setDrawerSectionsOpen(!isNarrow);
+    }, [isNarrow]);
 
     // Journey progress is shared with SectionsPanel as the lenient
     // completion signal. Pointer columns
@@ -1874,7 +1885,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 />
                 <div
                     className={cn(
-                        "absolute inset-y-0 left-0 flex w-[min(92vw,28rem)] overflow-hidden transition-transform duration-[var(--motion-base)] ease-[var(--motion-ease)]",
+                        "absolute inset-y-0 left-0 flex overflow-hidden transition-transform duration-[var(--motion-base)] ease-[var(--motion-ease)]",
+                        drawerSectionsOpen ? "w-[min(92vw,28rem)]" : "w-[min(92vw,14.5rem)] md:w-[min(92vw,28rem)]",
                         mobileView === "navigation" ? "translate-x-0" : "-translate-x-full"
                     )}
                     style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)', backgroundColor: 'var(--skin-panel-1-bg, rgba(10, 22, 50, 0.98))' }}
@@ -1909,8 +1921,40 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         />
                     )}
 
+                    {/* Visible toggle for the sub-panel below `md` (issue #270). */}
+                    <button
+                        type="button"
+                        onClick={() => setDrawerSectionsOpen((open) => !open)}
+                        aria-expanded={drawerSectionsOpen}
+                        aria-controls="mobile-sections-panel"
+                        className="md:hidden flex w-9 shrink-0 flex-col items-center justify-center gap-3 border-l border-white/10 hover:bg-white/10 focus-visible:outline focus-visible:outline-1 focus-visible:outline-[#5ec8bd]"
+                        style={{ color: "#e6ebf2" }}
+                    >
+                        <ChevronRight
+                            aria-hidden="true"
+                            className={cn("h-4 w-4 transition-transform", drawerSectionsOpen && "rotate-180")}
+                            style={{ color: "#5ec8bd" }}
+                        />
+                        <span
+                            style={{
+                                writingMode: "vertical-rl",
+                                fontFamily: "'IBM Plex Mono', ui-monospace, monospace",
+                                fontSize: 11,
+                                letterSpacing: "0.2em",
+                                textTransform: "uppercase",
+                            }}
+                        >
+                            {drawerSectionsOpen
+                                ? t("shell.sections.hide", { defaultValue: "Hide sections" })
+                                : t("shell.sections.show", { defaultValue: "Sections" })}
+                        </span>
+                    </button>
+
                     {/* Panel 2: Sections */}
-                    <div className="flex-1 min-w-0">
+                    <div
+                        id="mobile-sections-panel"
+                        className={cn("flex-1 min-w-0", !drawerSectionsOpen && "hidden md:block")}
+                    >
                         <SectionsPanel
                             activeSpaceId={activeSpaceId}
                             placeName={activePlaceData?.name}

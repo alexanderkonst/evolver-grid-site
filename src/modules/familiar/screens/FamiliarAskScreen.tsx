@@ -21,6 +21,7 @@ type Props = {
 const FamiliarAskScreen = ({ state, initialQuestion, onSubmit, onSkip }: Props) => {
   const { t } = useTranslation();
   const inputId = useId();
+  const hintId = useId();
   const [question, setQuestion] = useState(initialQuestion);
   const ready = question.trim().length > 0;
 
@@ -69,9 +70,15 @@ const FamiliarAskScreen = ({ state, initialQuestion, onSubmit, onSkip }: Props) 
           </p>
           <GiftChips gifts={state.gifts} />
 
-          <button type="submit" className="mf__go" disabled={!ready}>
+          <button type="submit" className="mf__go" disabled={!ready} aria-describedby={ready ? undefined : hintId}>
             {t("familiar.ask.cta", { defaultValue: "See both answers" })} <span aria-hidden="true">→</span>
           </button>
+          {/* Issue #270: a disabled primary says what it waits for. */}
+          {!ready && (
+            <p id={hintId} className="mf__rate-note" style={{ marginTop: 10 }}>
+              {t("familiar.ask.ctaHint", { defaultValue: "Write your question above, or tap an example." })}
+            </p>
+          )}
         </form>
         <button
           type="button"

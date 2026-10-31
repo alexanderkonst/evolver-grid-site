@@ -815,7 +815,9 @@ const SpacesRail = ({
                             <span
                                 className={cn(
                                     "relative flex flex-1 min-w-0 items-center transition-[filter,opacity] duration-500",
-                                    drawer ? "gap-2.5 justify-start" : "gap-3 justify-center lg:justify-start"
+                                    drawer ? "gap-2.5 justify-start" : "gap-3 justify-center lg:justify-start",
+                                    // Issue #270: icon over a short text label (see .rail-cell-label).
+                                    compact && "flex-col !gap-[3px] justify-center"
                                 )}
                                 style={closed ? { filter: "var(--lock-filter)", opacity: "var(--lock-dim)" } : undefined}
                             >
@@ -838,6 +840,20 @@ const SpacesRail = ({
                                             fontSize: "0.78rem",
                                             letterSpacing: "0.14em",
                                             textTransform: "uppercase",
+                                        }}
+                                    >
+                                        {name}
+                                    </span>
+                                )}
+                                {/* Issue #270: a tooltip needs hover, and a phone has none. In the collapsed
+                                    rail every icon gets its name beneath it wherever hover is missing or the
+                                    screen is narrow; wide hover screens keep the icon-only rail. */}
+                                {compact && (
+                                    <span
+                                        className="rail-cell-label"
+                                        style={{
+                                            fontFamily: "'Cormorant Garamond', serif",
+                                            fontWeight: active ? 700 : 600,
                                         }}
                                     >
                                         {name}

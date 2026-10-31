@@ -5,8 +5,11 @@
  * Until the first video is uploaded (all ids "TBD"), CoursePage has nothing
  * to play, so this page shows the course contents instead.
  */
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import WaitlistModal from "@/components/WaitlistModal";
 import CoursePage from "@/pages/CoursePage";
 import SEO from "@/components/SEO";
 import { ACTIVATION_OF_INNER_VISION as COURSE, AIV_COURSE_PATH } from "@/data/courses/activationOfInnerVision";
@@ -20,6 +23,7 @@ const CARD_STYLE: React.CSSProperties = {
 
 const ActivationOfInnerVision = () => {
     const { t } = useTranslation();
+    const [notifyOpen, setNotifyOpen] = useState(false);
     const seo = (
         <SEO
             title="Activation of Inner Vision | Advanced micro-course"
@@ -88,6 +92,18 @@ const ActivationOfInnerVision = () => {
                         ))}
                     </ol>
                 </div>
+
+                {/* Issue #270: the one primary action while the videos are in production. Reuses the
+                    existing waitlist capture (send-waitlist-email); no payment. */}
+                <div className="mt-6 flex flex-col items-start gap-2">
+                    <Button type="button" size="lg" onClick={() => setNotifyOpen(true)}>
+                        {t("courseAiv.notifyCta", { defaultValue: "Notify me when ready" })}
+                    </Button>
+                    <p className="text-xs" style={BODY_STYLE}>
+                        {t("courseAiv.notifyHint", { defaultValue: "One email when the first video is live. No payment." })}
+                    </p>
+                </div>
+                <WaitlistModal isOpen={notifyOpen} onClose={() => setNotifyOpen(false)} moduleName={COURSE.title} />
 
                 <p className="text-sm mt-6" style={BODY_STYLE}>
                     {t("courseAiv.paperPrefix")}{" "}
