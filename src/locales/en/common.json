@@ -171,6 +171,9 @@
     "yourAiNotesCancel": "Cancel",
     "yourAiNotesSave": "Add to our conversation",
     "yourAiRevealHint": "Answer a few questions first.",
+    "yourAiSendHint": "Write your answer to send it.",
+    "moreOptions": "More options",
+    "revealPasteHint": "Paste your AI’s answer above first.",
     "yourAiNeedMore": "Your AI needs a bit more to see your pattern. Answer one or two more questions, then reveal again.",
     "ownAiPromptLink": "Use an outside AI instead"
   },
@@ -782,6 +785,10 @@
     "sidebar": {
       "expandTitle": "Expand sidebar (⌘B)",
       "expand": "Expand sidebar"
+    },
+    "sections": {
+      "show": "Sections",
+      "hide": "Hide sections"
     },
     "menu": {
       "open": "Open menu",
@@ -1898,6 +1905,8 @@
     "tagline": "See any situation whole, from 27 positions, and let the seeing land as one act.",
     "lead": "Nine short videos on the 27-perspective instrument: two axes, twelve dimensions, the Logos, the octave of seeing the seer, and the 27th, where seeing becomes an act. Each episode ends with a practice on your own real situation.",
     "inProduction": "Videos in production",
+    "notifyCta": "Notify me when ready",
+    "notifyHint": "One email when the first video is live. No payment.",
     "paperPrefix": "Built on the paper"
   },
   "courseCms": {
@@ -8876,6 +8885,7 @@
       },
       "brings": "Your AI will bring:",
       "cta": "See both answers",
+      "ctaHint": "Write your question above, or tap an example.",
       "skip": "Skip the test, give me my AI"
     },
     "reveal": {

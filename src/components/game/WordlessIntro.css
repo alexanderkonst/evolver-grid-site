@@ -167,10 +167,25 @@
   bottom: clamp(64px, 12vh, 128px); padding: 0 24px; pointer-events: none;
   font-family: var(--wi-mono); font-weight: 300; font-size: var(--vl-text-label);
   letter-spacing: 0.3em; text-transform: uppercase;
-  color: rgba(var(--scene-ink-rgb), 0.78); text-shadow: 0 1px 18px rgba(var(--scene-shadow-rgb), 0.8);
+  /* Issue #270: moon-world ink #e6ebf2, solid (WCAG AA). The pulse stays at or above 0.85
+     so the contrast never dips mid-breath. */
+  color: #e6ebf2; text-shadow: 0 1px 18px rgba(var(--scene-shadow-rgb), 0.8);
   opacity: 0; animation: wi-in 1.2s ease-out 1s forwards, wi-cue-pulse 3.6s ease-in-out 2.2s infinite;
 }
-@keyframes wi-cue-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+@keyframes wi-cue-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
+
+/* Issue #270: small lockup + one-line promise at the top, before the first gesture. */
+.wi-brand {
+  position: absolute; z-index: 2; left: 0; right: 0; top: clamp(28px, 7vh, 72px); margin: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 0 24px; text-align: center;
+  pointer-events: none; text-shadow: 0 1px 18px rgba(var(--scene-shadow-rgb), 0.8);
+  opacity: 0; animation: wi-in 1.2s ease-out 0.4s forwards;
+}
+.wi-brand__logo { width: clamp(120px, 22vw, 180px); height: auto; }
+.wi-brand__promise {
+  margin: 0; font-family: var(--wi-serif); font-style: italic; font-weight: 300;
+  font-size: clamp(18px, 2vw, 24px); color: #e6ebf2; text-wrap: balance; max-width: 34ch;
+}
 
 /* Quiet but visible, keyboard-focusable skip; wakes up on focus/hover. */
 .wi-skip {

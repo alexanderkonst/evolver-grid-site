@@ -1580,6 +1580,12 @@ const ZoneOfGeniusEntry = () => {
                                 />
                             </button>
                         </div>
+                        {/* Issue #270: a disabled primary says what it waits for. */}
+                        {!hasPasteText && !isProcessing && (
+                            <p className="text-xs text-center" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.75))" }}>
+                                {t('zogEntry.revealPasteHint', { defaultValue: 'Paste your AI’s answer above first.' })}
+                            </p>
+                        )}
                     </div>
                 )}
             </div>

@@ -101,9 +101,12 @@
   position: absolute; left: 50%; bottom: 30px; transform: translateX(-50%); z-index: 1; margin: 0;
   font-family: var(--gt-mono); font-weight: 300; font-size: var(--vl-text-label); letter-spacing: 0.42em;
   color: var(--gt-ink-2); animation: gt-pulse 2.4s ease-in-out infinite; transition: opacity 0.8s ease;
+  /* Issue #270: it is a <button> now, so reset the chrome and keep a touch-sized target. */
+  background: none; border: 0; padding: 0 16px; min-height: 44px; cursor: pointer; white-space: nowrap;
 }
 @keyframes gt-pulse { 0%, 100% { opacity: 0.15; } 50% { opacity: 0.8; } }
-.gt-start.is-gone { animation: none; opacity: 0; }
+.gt-start:hover, .gt-start:focus-visible { animation: none; opacity: 1; color: var(--gt-ink); }
+.gt-start.is-gone { animation: none; opacity: 0; pointer-events: none; }
 
 /* ---------- Shared section frame ---------- */
 .gt-sec { padding: 160px 0; }
@@ -155,6 +158,8 @@
 .gt-levels p { font-family: var(--gt-serif); font-size: var(--vl-text-lead); line-height: 1.55; color: var(--gt-ink-2); margin: 0; }
 .gt-levels .gt-mono { display: block; margin-top: 12px; }
 .gt-levels li.is-current .gt-mono { color: var(--gt-accent); }
+.gt-levels li.is-locked .gt-mono { color: var(--gt-ink-2); }
+.gt-levels li.is-locked .gt-mono::before { content: "\25CB\00a0"; } /* an open circle: a shape, never colour alone */
 .gt-folio { margin-top: 88px; text-align: center; }
 
 /* ---------- Five paths ---------- */

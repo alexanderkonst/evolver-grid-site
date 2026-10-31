@@ -172,6 +172,8 @@
 }
 .vl-pin.is-active .vl-pin__name { color: var(--vl-ink); background: rgba(var(--scene-bg-rgb),0.62); }
 .vl-pin__link:focus-visible .vl-pin__name { outline: 1px solid var(--vl-accent); outline-offset: 2px; }
+/* Issue #270: a closed pin / list row is aria-disabled and goes nowhere. */
+.vl-pin__link.is-locked, .vl-list a.is-locked { cursor: not-allowed; }
 
 .vl-foot {
   position: absolute; z-index: 2; left: 0; right: 0; bottom: clamp(28px, 5vh, 56px);

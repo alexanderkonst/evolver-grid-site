@@ -443,7 +443,20 @@ const TitleScreen = () => {
             </nav>
             )}
           </div>
-          <p className={`gt-start${started ? " is-gone" : ""}`} aria-hidden="true">PRESS START</p>
+          {/* Issue #270: PRESS START is a real control. It does what Enter does on the first
+              menu item (NEW GAME, or Continue for a returning player). */}
+          <button
+            type="button"
+            className={`gt-start${started ? " is-gone" : ""}`}
+            tabIndex={started ? -1 : 0}
+            aria-hidden={started || undefined}
+            onClick={() => {
+              setStarted(true);
+              (talent ? continueRef.current : linkRefs.current[0])?.click();
+            }}
+          >
+            PRESS START
+          </button>
         </section>
 
         <section className="gt-sec gt-fifth" id="fifth" aria-labelledby="gt-fifth-h">
@@ -485,16 +498,26 @@ const TitleScreen = () => {
             <p className="gt-mono gt-label">The path of uniqueness</p>
             <h2 id="gt-how-h">{JOURNEY_STEPS.length} steps. One light, refracted into you.</h2>
             <ol className="gt-levels">
-              {JOURNEY_STEPS.map((step, i) => (
-                <li key={step.id} className={i === 0 ? "is-current" : undefined}>
-                  <span className="gt-node">{String(step.no).padStart(2, "0")}</span>
-                  <div>
-                    <h3>{step.label}</h3>
-                    {step.optional && <span className="gt-mono">{step.optional}</span>}
-                    {i === 0 && <span className="gt-mono">You are here</span>}
-                  </div>
-                </li>
-              ))}
+              {JOURNEY_STEPS.map((step, i) => {
+                // Issue #270: the mission opens when the top talent is saved. Until this browser
+                // has one, step 02 says so, in words and aria-disabled, not by dimming alone.
+                const locked = step.id === "discover-mission" && !talent;
+                return (
+                  <li
+                    key={step.id}
+                    className={i === 0 ? "is-current" : locked ? "is-locked" : undefined}
+                    aria-disabled={locked ? true : undefined}
+                  >
+                    <span className="gt-node">{String(step.no).padStart(2, "0")}</span>
+                    <div>
+                      <h3>{step.label}</h3>
+                      {step.optional && <span className="gt-mono">{step.optional}</span>}
+                      {i === 0 && <span className="gt-mono">You are here</span>}
+                      {locked && <span className="gt-mono">Locked · opens when your top talent is saved</span>}
+                    </div>
+                  </li>
+                );
+              })}
             </ol>
             <p className="gt-mono gt-folio">— 1 —</p>
           </div>

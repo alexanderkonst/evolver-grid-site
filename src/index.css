@@ -4076,6 +4076,34 @@
   display: none;
 }
 
+/* Issue #270: collapsed-rail text labels. Tooltips need hover, so on touch (no hover) and on
+   narrow desktop widths each icon carries its name beneath it. Wide hover screens keep the
+   icon-only rail and the tooltip. Text is moon-world ink #e6ebf2 on the rail's dark panel. */
+.rail-cell-label {
+  display: none;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.6rem;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #e6ebf2;
+}
+@media (hover: none), (max-width: 1279px) {
+  [data-rail-compact="true"] button[data-place] {
+    height: auto;
+    min-height: 56px;
+    width: 100%;
+    padding: 6px 2px;
+    border-radius: 16px;
+  }
+  .rail-cell-label {
+    display: block;
+  }
+}
+
 /* V3 typography (Sasha 2026-05-19) — NS is editorial serif throughout
    for content, clean sans only for UI chrome (rail chips, Pane 2 nav,
    form controls). Body type in serif is what carries the editorial

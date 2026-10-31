@@ -790,7 +790,9 @@ const buildJourneySections = (
                 : undefined,
             completed: done(item.id),
         });
-        if (item.id === "find-top-talent") rows.push(activationRow);
+        // Issue #270: the $37 card stays out of the list until it is relevant (top talent saved).
+        // A locked $37 card beside the first step read as a price wall before any value.
+        if (item.id === "find-top-talent" && !activationRow.locked) rows.push(activationRow);
     });
     return rows;
 };
@@ -1942,7 +1944,22 @@ const SectionsPanel = ({
                                         // on every sub-route because every
                                         // sub-path starts with the parent
                                         // /game/me/zone-of-genius prefix.
-                                        const subActive = location.pathname === sub.path;
+                                        // Issue #270: the active child must always light up. An exact
+                                        // match still wins; a deeper page under a child's path
+                                        // (/…/start-here/xyz) keeps that child lit unless a sibling
+                                        // matches it more closely. The prefix rule is what keeps the
+                                        // Overview from lighting on every sub-route (the Day 58 bug).
+                                        const subPath = sub.path.split(/[?#]/)[0];
+                                        const siblingPaths = section.subSections!.map((s) => s.path.split(/[?#]/)[0]);
+                                        const subActive =
+                                            location.pathname === subPath ||
+                                            (location.pathname.startsWith(subPath + "/") &&
+                                                !siblingPaths.some(
+                                                    (p) =>
+                                                        p.length > subPath.length &&
+                                                        (location.pathname === p || location.pathname.startsWith(p + "/")),
+                                                ) &&
+                                                !siblingPaths.some((p) => p !== subPath && p.startsWith(subPath + "/")));
                                         const subNumber = subIdx + 1;
                                         // Day 58 (Sasha 2026-05-02): "Start Here"
                                         // gets a subtle persistent glow even
@@ -1974,6 +1991,15 @@ const SectionsPanel = ({
                                                         ? { backgroundColor: "var(--skin-selected-bg, rgba(212, 175, 55, 0.08))" }
                                                         : undefined
                                                 }
+                                                role="link"
+                                                tabIndex={0}
+                                                aria-current={subActive ? "page" : undefined}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === "Enter" || e.key === " ") {
+                                                        e.preventDefault();
+                                                        onSectionSelect?.(sub.path);
+                                                    }
+                                                }}
                                                 onClick={() => onSectionSelect?.(sub.path)}
                                             >
                                                 {subActive && (
