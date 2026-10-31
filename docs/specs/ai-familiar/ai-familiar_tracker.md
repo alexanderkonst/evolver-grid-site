@@ -406,7 +406,14 @@ Generative UI. Your AI proposes the next buttons; the player taps or types. **A 
 2. **Server-side harness — needs Lovable credits (≈1–2), queued in `lovable_batch`, not deployed.** One edge function `your-ai-turn` (loads the player card, routes the model, validates structured output, per-player daily cap) + migration: `player_cards` (versioned) and `player_traces` with RLS. Client switches from `library-advisor` to it; guests keep the step-1 path.
 3. **Knowledge graph retrieval and spread — credits for the infra (≈1–2), the rest free.** Migration for pgvector + note embeddings, sync of `knowledgegraph` notes with their links, top-k + 1-hop inside `your-ai-turn` (credits). Then, free code changes module by module: the mission test and other question forms become Your AI conversations with result buttons.
 
-### 20.5 Open questions for Sasha
+### 20.5 Decisions (Sasha, 2026-10-30 22:28: «да, поехали»)
+
+1. **Model money:** cheap model for conversation, stronger model only for readings, per-player daily cap.
+2. **Knowledge graph scope:** public subset only (no private notes, people, ledger).
+3. **Next surface after ZoG entry:** the mission test.
+4. Steps 2–3 (Lovable) wait in `lovable_batch` with the two queued migrations; the prompt is held until Sasha releases the batch. Step 1 proceeds now (free).
+
+### 20.5a Open questions for Sasha (original, now answered above)
 
 1. **Model money:** cheap tier for conversation, stronger model only for readings, with a per-player daily cap: is that the budget rule? (Decides step 2.)
 2. **Knowledge graph scope:** may Your AI retrieve from the whole `knowledgegraph`, or only a public subset (no private notes, people, ledger)?
