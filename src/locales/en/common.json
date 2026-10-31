@@ -1,7 +1,14 @@
 {
   "villagePlaces": {
-    "workshop": { "title": "Workshop", "description": "Shape your unique business, one artifact at a time." },
-    "market": { "title": "Market", "description": "Where founders show what they offer.", "empty": "Your stall opens once your offer is ready in the Workshop." },
+    "workshop": {
+      "title": "Workshop",
+      "description": "Shape your unique business, one artifact at a time."
+    },
+    "market": {
+      "title": "Market",
+      "description": "Where founders show what they offer.",
+      "empty": "Your stall opens once your offer is ready in the Workshop."
+    },
     "openWorkshop": "Open Workshop"
   },
   "market": {
@@ -7430,10 +7437,18 @@
       "discoverMission": "Discovered your mission"
     },
     "rooms": {
-      "talent": { "again": "Take the test again" },
-      "mission": { "again": "Open your mission" },
-      "colors": { "title": "Soul colors" },
-      "level": { "again": "Measure again" },
+      "talent": {
+        "again": "Take the test again"
+      },
+      "mission": {
+        "again": "Open your mission"
+      },
+      "colors": {
+        "title": "Soul colors"
+      },
+      "level": {
+        "again": "Measure again"
+      },
       "offer": {
         "title": "Your offer",
         "saved": "Your offer is saved in the Workshop.",
@@ -8932,6 +8947,35 @@
       "text": "I just created my Genius Business landing page!",
       "linkCopied": "Link copied!",
       "linkCopiedBody": "Share it with the world."
+    },
+    "answer": {
+      "label": "Your answer",
+      "yes": "Yes, that's you",
+      "partly": "Partly",
+      "differently": "I see you differently",
+      "line": "What do you see?",
+      "name": "Your first name",
+      "send": "Send",
+      "sent": "Sent to {{name}}."
+    },
+    "reflection": {
+      "group": "Answers",
+      "questTitle": "{{name}} answered: Do you see me this way too?",
+      "from": "From",
+      "theirAnswer": "Their answer",
+      "theirLine": "What they see",
+      "ask": "Ask them what they see.",
+      "close": "Close",
+      "error": {
+        "needsName": "Tell us your first name first.",
+        "alreadyToday": "Your answer for today is already sent. Come back tomorrow.",
+        "ownPage": "This is your own page.",
+        "notPublic": "This page is not public.",
+        "tooShort": "A few more words, please: at least 3 characters.",
+        "tooLong": "Let it be shorter: up to 140 characters.",
+        "profanity": "Could you say it another way?",
+        "generic": "It did not go through just now. Try again in a moment."
+      }
     }
   },
   "publicProfile": {

@@ -28,3 +28,15 @@ a.qb__name:hover, a.qb__name:focus-visible { color: var(--vl-accent); outline: n
 .qb__row .ps-line { margin-top: 4px; font-size: var(--vl-text-lead); color: var(--vl-ink-2); }
 .qb__row .ps-tag { margin-top: 4px; margin-left: 10px; }
 .qb__row[data-place-state="closed"] .qb__name { color: var(--vl-lock-ink, var(--vl-ink-3)); }
+
+/* reflections (share card slice 2): a row opens to show who answered and what they said */
+.qb__toggle { background: transparent; border: none; padding: 0; cursor: pointer; text-align: left; font-family: inherit; }
+.qb__toggle:hover, .qb__toggle:focus-visible { color: var(--vl-accent); outline: none; }
+.qb__reflection { display: grid; gap: var(--vl-space-2); padding-bottom: var(--vl-space-2); }
+.qb__close {
+  justify-self: start; min-height: 44px; padding: 0 var(--vl-space-4); cursor: pointer; background: transparent;
+  font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-label); letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--vl-ink); border: 1px solid var(--vl-accent); transition: background-color 0.6s ease, color 0.6s ease;
+}
+.qb__close:hover, .qb__close:focus-visible { background: var(--vl-accent); color: var(--vl-bg); outline: none; }
+@media (prefers-reduced-motion: reduce) { .qb__close { transition: none; } }
