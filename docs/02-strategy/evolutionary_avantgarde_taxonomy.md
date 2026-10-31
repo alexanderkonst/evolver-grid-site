@@ -490,3 +490,78 @@ Draft from Hark's own reading, not yet verified against each person's current wo
 **Pattern.** The widest builders (Balaji, Vitalik) hold the collective organs (4–7) and lack the personal ones (Mirror, Myth). The deepest on uniqueness (Meade, Plotkin) hold the personal organs (1–3) and lack economy and village. Nobody bridges the two halves around the genius of each person. That bridge is Evolver's cell.
 
 **Stance toward them (Sasha, 2026-10-30, open question).** Seeing the whole creates a pull to tell each builder what their system lacks. Working stance: offer the bridge, not a diagnosis; show how their organ sits in the whole and what it gains by connecting; start with one, through relationship.
+
+---
+
+## Testing the order of the seven notes (v0 draft, 2026-10-30)
+
+*Provenance: Hark draft for Sasha, 2026-10-30. Answers tension 9 of the Whole Map v-next: is the order real? In life a first sale (Market) often comes before co-creation (Circle). Nothing sent; Sasha picks the three people. Note names: Mirror, Initiation, Practice, Circle, Market, Village, Federation.*
+
+### What we are testing
+- **H1 (current order):** Circle (something exists with two names on it) sounds before Market (a stranger pays for the gift).
+- **H0 (alternative):** Market sounds first, and Circle comes after, or the first sale and the first co-creation are the same event.
+- Side questions: where people stalled (the two intervals), and whether notes 1–3 happen in order at all.
+
+Rule of the interview: the person never sees the list of notes until the last question. We collect dated events in their own words first, then map them.
+
+### Interview script (20 minutes, 10 questions)
+*Opening (30 s): "I'm mapping how a gift becomes a living. No right answers. I'll ask for moments and rough dates; 'about 2019' is fine."*
+
+1. **(2 min)** What is the thing you do that only you can do? Say it in one sentence. When could you first say it like that, and who confirmed it? → *Mirror*
+2. **(2 min)** When did you first introduce yourself to a stranger by that work, without apologising or softening it? What happened? → *Initiation*
+3. **(2 min)** When did this work start deciding how your weeks look, not just a hobby on the side? What changed in your calendar? → *Practice*
+4. **(2 min)** Who was the first person outside friends and family who paid you for it? How did they find you, how much, and when? → *Market*
+5. **(2 min)** What was the first thing you made together with someone else that neither of you could have made alone, something with both names on it? When? → *Circle*
+6. **(2 min)** Looking at those two moments: which came first? Did one lead to the other? Was the first payer connected to that collaboration? → *order, causality*
+7. **(2 min)** Where did you get stuck the longest, and what or who got you moving again? → *intervals*
+8. **(1.5 min)** Do you now trade regularly with other people's gifts around you, using theirs while they use yours? Since when? → *Village*
+9. **(1.5 min)** Does your method run anywhere without you: someone teaching it, licensing it, using it in another place? Since when? → *Federation*
+10. **(2.5 min)** *(Show the seven cards with one-line meanings, shuffled.)* Put them in the order they happened for you. Leave out any that haven't happened. → *self-sort vs our reconstruction*
+
+*Close (30 s): thank them; ask permission to quote anonymously.*
+
+### Scoring sheet (one per person)
+
+| Field | Value |
+|---|---|
+| Person (pseudonym) · tribe · shade | |
+| Years with the gift · works with founders (y/n) | |
+
+| Note | Happened (y/n) | Approx. date | Evidence in their words | Confidence (1–3) | Our rank | Their card rank (Q10) |
+|---|---|---|---|---|---|---|
+| Mirror | | | | | | |
+| Initiation | | | | | | |
+| Practice | | | | | | |
+| Circle | | | | | | |
+| Market | | | | | | |
+| Village | | | | | | |
+| Federation | | | | | | |
+
+| Verdict fields | Value |
+|---|---|
+| Market before Circle? (yes / no / same event) | |
+| Gap between them (months) | |
+| First sale came through a collaboration? (y/n) | |
+| First payer: stranger / warm referral / friend (only a stranger counts as Market) | |
+| Longest stall: after which note, how long, what moved it | |
+| Our order vs their card order: same / differs at notes … | |
+| Surprise worth a tension note | |
+
+**Reading the three sheets:** 3 of 3 Circle-first keeps the order. 2 of 3 Market-first, or Q10 cards contradicting our rank in 2 of 3, means rewrite: either swap notes 4 and 5, or mark them as a pair that can sound in either order (and say so in the game's venture node, which today reads Circle → Market). Mixed results: interview three more before deciding. Three people decide nothing alone; they decide whether to keep looking.
+
+### Criteria for picking the three
+1. **Three different tribes.** First person from the home seam: a healer or coach who works with founders (tribe 1 × tribe 2). The other two from two other tribes (e.g. hosts & stewards, technology frontier, culture & story).
+2. **Has passed Market** (strangers have paid them), so the order is observable; ideally has also made something with someone else.
+3. **At least 3 years with the gift**, so dates are real and not plans.
+4. **Not in active paid delivery with Sasha now**, and not family, so answers aren't shaped by the method. If a close person is chosen anyway, mark the sheet "close".
+5. **Can recall with dates** (has a website, posts or calendar to check against) and has 20 minutes.
+6. **No pre-sorting:** don't pick people because we already guess their order.
+
+### Candidate profiles (Sasha chooses; names kept out of the public repo)
+- Executive coach to founders, ex-founder of a design firm (tribe 2 × coach).
+- Meditation and wellness retreat lead, ex-investment banker (tribe 1).
+- Healer/coach running her own ceremony practice with clients (tribe 1; close, mark "close" if chosen).
+- Sound-healing community builder with a human-potential platform (tribe 1 / 7).
+- Bali founder-club host (tribe 6).
+- Founder with a systems-alchemy uniqueness who reached his own first revenue (tribe 3).
+- Purpose-led investor who runs darkness and silence retreats (tribe 1 / 8).
