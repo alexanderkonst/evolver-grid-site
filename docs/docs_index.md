@@ -54,7 +54,7 @@ Everything about AI itself (AI OS, benchmark, the Hark leap, self-awareness map,
 | [holonic_vision.md](./01-vision/holonic_vision.md) | Holonic worldview applied to platform |
 | [manifesto.md](./01-vision/manifesto.md) | Core manifesto & mission |
 | [vision.md](./01-vision/vision.md) | High-level vision statement |
-| [new_ui_paradigm_vision.md](./01-vision/new_ui_paradigm_vision.md) | UI as Transmission — soul colors, breathing UI |
+| [new_ui_paradigm_vision.md](./01-vision/new_ui_paradigm_vision.md) | Bloom — UI as Transmission: our UI paradigm applied to the whole game interface (single source for UI) |
 | [crystalline_clarity_framework.md](./01-vision/crystalline_clarity_framework.md) | Clarity framework |
 | [integral_transactional_field_theory.md](./01-vision/integral_transactional_field_theory.md) | Integral field theory |
 | [sacred_transaction_field.md](./01-vision/sacred_transaction_field.md) | Sacred economics |

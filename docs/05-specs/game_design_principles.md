@@ -26,6 +26,8 @@ Not too easy (boring), not too hard (frustrating). The "flow state" zone. Quests
 The player should always feel they're moving forward, even if slowly. No dead ends. Every action counts.
 
 ### 4. Progress Made Visual
+> *Superseded 2026-10-30: progress shows in the world, never in numbers (no XP bars/levels/streaks); see [Bloom](../01-vision/new_ui_paradigm_vision.md) Part C.*
+
 XP bars, level indicators, skill tree unlocks, streak flames. Show growth tangibly — don't just tell.
 
 ### 5. Growth Made Tangible

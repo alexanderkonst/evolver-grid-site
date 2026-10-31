@@ -80,6 +80,8 @@ Open: the reading method (prompt + validation against the cases where colors wer
 
 ## 5. Visual system and anti-kitsch rules
 
+> **UI paradigm (2026-10-30):** the whole game interface — rules, screen by screen, anti-patterns — lives in [Bloom — UI as Transmission](../01-vision/new_ui_paradigm_vision.md). This section and §14.11 stay as game design; Bloom owns how it looks and feels.
+
 Synthesis of three directions, converging on **one real object under real light**:
 - **Cinema** gives the space and the camera (landscape, still water, mist, slow motion, film grain).
 - **Prism** gives the object and the only color (refraction is the only source of saturated color).
@@ -531,6 +533,8 @@ Rough sizes for later planning only. Each stays as it is until its turn; none bl
 Rail labels: place names (Your House, Workshop, Market…) follow from principle 2 and supersede the game-vocabulary labels of #128/#129 (CHARACTER, THE FORGE, TRADING POST). Proposed: close #128/#129 as superseded when WP-4 lands.
 
 ### 14.11 Lunar: how color enters as you play (Sasha, 2026-10-27: «продумай как именно добавляются краски по мере прохождения»)
+
+> **2026-10-30:** color is now one global world bloom (#277), gentle, with gift colors from the first artifact; see [Bloom](../01-vision/new_ui_paradigm_vision.md) B.1 and Part D.3 on per-place color.
 
 Reference mockups: `docs/assets/lunar/lunar-sheet.jpg` (title, village map, module Intro, module Outro). Fonts in the mockups are reference only.
 

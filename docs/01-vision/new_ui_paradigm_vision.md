@@ -1,10 +1,27 @@
-# UI as Transmission
+# Bloom — UI as Transmission
 
-*A New Paradigm of Interface Design*
+*Our UI paradigm, and its application to the whole game interface. The world blooms as you act.*
 
 > "The interface doesn't represent the transformation — it transmits it."
 
+> **Version 2026-10-30 (v2, Bloom).** Single source of truth for UI across *The Game of Being You* / Find Your Top Talent. Never fork it: extend this file. **Part A** — the paradigm (history kept below, 2026-01 → 2026-05). **Part B** — applied: the whole game interface (rules, then screen by screen). **Part C** — anti-patterns we never ship. **Part D** — open decisions for Sasha. Game design (places, Journey, lock rule) lives in [`game_of_being_you.md`](../02-strategy/game_of_being_you.md) §13–14; this doc owns how it looks, moves and feels.
+
 ---
+
+# Part A — The paradigm
+
+## A.0 Bloom: the 2026-10-30 synthesis
+
+**Name (Sasha, 2026-10-30 23:59: asked for a name born from the synthesis).** The paradigm is called **Bloom**: *the world blooms as you act.* Stage 8 **Neo-Dimensional** (below) stays the *developmental stage* Bloom belongs to on the 10-stage arc; Bloom is our paradigm's own name. This closes the 2026-05-16 naming question.
+
+**Bloom in five sentences.**
+1. **AI is invisible; the game is the act itself.** AI manifests through the character, the world and the choices it offers, never as a chat window the player has to manage.
+2. **Buttons, not a permanent chat.** At every moment the player sees 1–3 personal choices: one primary **next real step** (an action in their life, not a menu item), up to two quiet alternatives, and "say it your way" free text.
+3. **The world blooms.** One global warmth grows with what the player has actually done: moon-silver night → first warm light → seven colors → dawn. This is the deferred soul-colors idea, made playable.
+4. **Your colors from your first artifact (Sasha, 2026-10-30 23:59).** Gift-derived (soul) colors do not wait for the gift to be named 9/10: the **first earned artifact lights the player's first own color**, and the palette refines as the gift sharpens.
+5. **Gently, subtly (Sasha, 2026-10-31 00:00: «только нежно, тонко»).** Color is a whisper, not a theme switch. Nothing is loud, nothing is urgent, nothing is "gamified".
+
+The sections that follow in Part A are the paradigm's history and foundations (soul colors, five pillars, dimensionality, the 8 primitives). Where they conflict with A.0 or Part B, A.0 and Part B win.
 
 ## The Paradigm Shift
 
@@ -285,7 +302,7 @@ The prior vision is not deleted — it is partial. The pillars sit inside specif
 |---|---|
 | 1 — Holonic Visual Ratios | architectural constraint shaping *all* dimensions (proportion as DNA) |
 | 2 — Breathing UI | expression of **Primitive 6 — Motion** |
-| 3 — Soul Color Personalization | expression of **Primitive 4 — Color** *(deprioritized 2026-05-16)* |
+| 3 — Soul Color Personalization | expression of **Primitive 4 — Color** *(deprioritized 2026-05-16; revived 2026-10-30 as Bloom)* |
 | 4 — Ritual Space Architecture | orchestration of primitives 1–7 *per space* |
 | 5 — Synesthetic Coherence | expression of **Primitive 7 — Sound** (seed-only at Stage 8) |
 
@@ -303,11 +320,11 @@ The prior vision is not deleted — it is partial. The pillars sit inside specif
 **Isn't (yet):**
 - Full VR / spatial computing — too far past current device norms.
 - Reality-indistinguishable simulation — not until Stage 10.
-- Per-user soul-color derivation — *deprioritized 2026-05-16.*
+- Per-user soul-color derivation — *deprioritized 2026-05-16; revived 2026-10-30 as the world bloom + gift colors from the first artifact (A.0, B.1).*
 - Per-user state-responsive breathing — *deprioritized 2026-05-16.*
 - Holomap motion choreography — *deprioritized 2026-05-16.*
 
-### Naming — open question
+### Naming — resolved 2026-10-30 (Bloom)
 
 Sasha's instinct: "neomorphism" / "neo-morphism." **The name is partially taken**: **Neumorphism** is a 2020 movement (Michał Malewicz on Dribbble) — soft extruded shadows mimicking thermoformed plastic — that mostly failed on accessibility grounds. Three candidates that better fit Stage 8:
 
@@ -317,7 +334,7 @@ Sasha's instinct: "neomorphism" / "neo-morphism." **The name is partially taken*
 | **Living Material** | motion + breath + multi-material | hides the depth move | narrative language, user-facing brand |
 | **Volumetric Field** | depth + field-coherence | less material-aware | spatial-computing-adjacent positioning |
 
-Recommendation deferred until mood boards land — felt resonance will resolve it.
+**Resolved 2026-10-30: the paradigm is named Bloom** (see A.0). Neo-Dimensional stays as the name of Stage 8 on the arc.
 
 ### Protocol for incoming mood boards (27-perspective lens)
 
@@ -341,11 +358,125 @@ Across the batch we map: which primitives are most loaded, which stage they sit 
 
 ---
 
-*This document captures a paradigm shift in UI design: from aesthetic consistency to essential resonance. The interface as transmission of transformation.*
+# Part B — Applied: the whole game interface
+
+*Applies to every player-facing surface: title (`/`), `/village/*`, `/game/*` (journey, quests, your-ai, me, learn), `/zone-of-genius/*`, `/products/*`, `/grow/*`, `/build/mastermind`, checkout doors. Builds on the existing Lunar skin (`src/index.css` `[data-skin="lunar"]`, `src/styles/lunar-world.css`, `theme-tokens.css`) and `src/lib/lunarWorld.ts` (`--soul-1..3`, `--lunar-dawn`); no parallel theme system.*
+
+## B.1 Rules per primitive (design tokens as law)
+
+| Primitive | Rule | Token / mechanism |
+|---|---|---|
+| **Material** | Physical materials only: night air, still water, stone, paper, topaz, a little gold. One real object under real light per scene. No generic "card" as the default container. | material is chosen per scene, not per component |
+| **Depth** | The world is a place, not a stack of panels: foreground (the act), middle (the world), far (sky). Choices sit *in* the world, not in floating modals. | parallax only where it carries meaning; no drop-shadow cards |
+| **Light** | Light is the reward and the guide. The next real step is the one lit thing; what is closed is unlit (lock rule, `game_of_being_you.md` §14.3). | `--place-glow`, the single accent; never glow outlines or neon |
+| **Color / Bloom** | One global `bloomLevel` 0–9 for the whole world (#277): 0 moon silver (readable, never punishing) · 1 first warm light (first artifact, and the player's **first own color**) · 2–8 seven colors arrive one per earned artifact · 9 full dawn. Hues live in one config and accept **per-player gift-derived colors from artifact 1**; until a reading exists, archetype colors stand in. | CSS vars on `:root` (saturation, warmth, lit hues); feeds `--soul-1..3` and `--lunar-dawn`; `?bloom=N` preview |
+| **Bloom tenderness** (Sasha, 2026-10-31) | **Color is a whisper, not a theme switch.** Low-saturation tints; small hue shift per stage; color lives mostly in light, glow and accents, not in full backgrounds; transitions slow and soft (several seconds, no flashes); stage 9 dawn is still gentle. **Acceptance:** each stage visibly warmer than the last, yet no stage ever looks loud or "gamified". WCAG-AA at every stage, stage 0 first. | saturation cap per stage in the config; `prefers-reduced-motion` → instant, no animation |
+| **Motion** | One slow tempo for the world (breath 4–15 s). Fast motion only as direct response to the player's own act. The artifact moment is the one hero beat: its color lights, briefly. | CSS keyframes, ease-in-out; reduced-motion respected |
+| **Sound** | Seed only: a single soft tone at hero moments (artifact earned, gift reveal), same signature as the visual. Off by default unless an existing hook is there. | one event drives sound + motion together |
+| **Typography** | Paperback serif for meaning, thin mono for the game's voice (menu, labels). Small type, huge negative space. Copy speaks to the player, never explains the UI. | existing skin type tokens |
+| **Proportion** | Holonic ratios (Pillar 1) across spacing and timing. | golden-ratio scale |
+
+**Choice primitive (all screens).** `1 primary + ≤2 secondary + free text` (#269/#273/#275). The primary is a verb about the player's life ("Write to the one person who…", "Name what you'd do for free"), not navigation ("Go to Workshop"). Secondary choices are quiet (text-weight, no fill). Free text is a single unobtrusive line: *say it your way*. Never a chat transcript as the main surface.
+
+**Copy primitive.** Warm, plain, second person. No urgency, scarcity or fear; no countdowns; no "first time a stranger pays for your gift" slogan. No internal words on the surface (`game_of_being_you.md` §14.1 rule 10), no model names.
+
+## B.2 Screen by screen
+
+Each screen: **feels** → **transmitted by** → **do / don't** → **issue**.
+
+### 1. Main menu — NEW GAME / CONTINUE (`/`)
+- **Feels:** stillness before dawn; *this is a world, and it's waiting for me.*
+- **Transmitted by:** the title frame (crystal over still water, moon-silver), the mono vertical menu, one line of brand + promise, slow breath.
+- **Do:** NEW GAME reaches the first question in ≤2 clicks; CONTINUE (LOAD GAME) resumes where the player left off; returning players see the world at their current bloom.
+- **Don't:** consecutive ENTER-only screens, feature tours, captions explaining the menu.
+- **Issue:** #271.
+
+### 2. First question (`/zone-of-genius/entry` and the first Your AI turn)
+- **Feels:** *someone is actually asking about me.*
+- **Transmitted by:** one question, large serif, on the night world; three answer buttons + free text; nothing else on screen.
+- **Do:** the question is the screen; the answer is an act, not a form field.
+- **Don't:** progress bars, step counters ("1 of 12"), a chat log, an avatar.
+- **Issue:** #271, #275.
+
+### 3. Village / world map (`/village/:place?`)
+- **Feels:** *my life as a place, and I can see where I've been.*
+- **Transmitted by:** the village appearing **after** the first answer, as a reward, not a gate; places closed/open/next/done (§14.3, §14.11); the one lit next move; the world's warmth at the player's bloom level.
+- **Do:** show the single next real step in the world itself; the global bloom (#277) carries color; place states carry light/legibility.
+- **Don't:** numbers, XP, levels, badges walls; per-page color forks.
+- **Issue:** #271, #277.
+
+### 4. The Your AI moment (`/game/your-ai`, reveal steps)
+- **Feels:** *it already knows me a little, and it's on my side.* The AI is felt, not seen.
+- **Transmitted by:** a voice in the world (the character's line, set in the game's type), followed by 1–3 personal buttons and *say it your way*; AI OS loaded underneath every session (#275); "your AI just learned…" as a soft moment, not a notification.
+- **Do:** credits copy quiet and honest (free start, daily free dialogue, deep readings locked, "larger credit packages are coming") — no prices, no checkout from here (#272).
+- **Don't:** chat bubbles + avatar as the main surface, typing indicators as theatre, model names, a lock that looks like a paywall.
+- **Issue:** #272, #275.
+
+### 5. Gift reveal / profile (`/game/me/*`, Your House)
+- **Feels:** *recognition* — "yes, that's me."
+- **Transmitted by:** the crystal refracting light into the player's own colors; one line of essence; the artifact moment where its color lights; colors refine as the gift sharpens.
+- **Do:** first artifact → first own color, immediately; share card «Do you see me this way too?» (§14.12a) carries the player's colors.
+- **Don't:** confetti, trophies, score cards, rainbow defaults.
+- **Issue:** #277.
+
+### 6. Academy / learn (`/game/learn`, `/grow/*`)
+- **Feels:** *a quiet reading room* — I'm becoming more of myself.
+- **Transmitted by:** paperback typography, paper grain, generous space; each lesson ends in one real step in life.
+- **Do:** the end of a lesson is an act (and possibly an artifact), not "Next lesson →".
+- **Don't:** course-platform chrome (progress rings, % complete, module grids of thumbnails).
+- **Issue:** — (course pages in flight; apply on next touch).
+
+### 7. Paths & offers / checkout (`/products/*`, Market, checkout doors)
+- **Feels:** *a fair exchange between people*, not a funnel.
+- **Transmitted by:** the player's stall assembling itself as they play (§14.12); offers in the same world light; one real checkout in one step, same price and length as the page (§14.1 rule 9).
+- **Do:** plain price, plain length, one button.
+- **Don't:** countdown timers, "only 3 seats left", strike-through anchors, fear copy, "free" headlines over paid offers.
+- **Issue:** — (Stripe untouched until Sasha lifts it).
+
+### 8. Multiplayer (Mastermind, guilds, other residents)
+- **Feels:** *I'm not alone; others have walked this road.*
+- **Transmitted by:** other residents' houses in their colors on my map; palettes side by side (resonant / complementary); a team as composite light; live events as a slow pulse.
+- **Do:** presence over metrics; the village's one public number is residents' income.
+- **Don't:** leaderboards, follower counts, activity feeds, notification badges.
+- **Issue:** — (§13, §16 of the game spec).
+
+---
+
+# Part C — Anti-patterns: what we never ship
+
+**The default dark-mode SaaS / chat app.** Sasha rejected a Your AI mockup on 2026-10-30 as *"ugly, default UI"*. Named here so no one rebuilds it:
+- rounded cards as the universal container;
+- a chat bubble + avatar as the main surface of the AI;
+- flat pill CTAs;
+- clip-art moon (or any clip-art standing in for the real world);
+- captions that explain the UI ("Here you can…", "Tap a button below to…").
+
+**Also never:**
+- a permanent chat window as the game's interface (AI is invisible; §A.0.1);
+- urgency, scarcity or fear copy; the "first time a stranger pays for your gift" slogan;
+- loud color: theme-switch jumps, saturated full-screen backgrounds, flashes, neon, glow outlines, rainbow gradients behind text;
+- XP bars, levels, streak flames, score cards, leaderboards (supersedes `docs/05-specs/game_design_principles.md` §4 "Progress Made Visual", which predates §14.1 rule 7);
+- «locked / coming soon / paywall / unlock» words where the picture can say it (§14.3);
+- model names, repo names, version numbers on the surface;
+- per-page color forks or hardcoded hex in new screens (read tokens).
+
+---
+
+# Part D — Open decisions for Sasha
+
+1. **Gift color source before a reading exists.** Artifact 1 lights the first own color: derived from that artifact's content by AI (Evolver's recommendation), or from the top-talent archetype until the Spectrum Reading runs?
+2. **Seven colors: whose seven?** Stages 2–8 light seven hues. Are they a fixed seven (one per path/element) tinted toward the player's gift, or seven drawn from the player's own palette? (Affects the #277 config shape.)
+3. **Global bloom vs. per-place color (§14.11).** #277 makes color one global value. Recommendation: global bloom carries color everywhere; places keep only light/legibility states (closed dim, next lit, done warm-lit). Confirm that §14.11 "the place takes on color" becomes "the place takes on light".
+4. **Sound.** Ship the sonic seed at the artifact moment now (off by default), or hold until a sound designer?
+5. **Which surface proves Bloom first.** Evolver's recommendation: first question → first artifact → village at bloom 1, as one continuous proof-of-paradigm (#271 + #277), judged side by side with today.
+
+---
+
+*This document captures our UI paradigm, Bloom: from aesthetic consistency to essential resonance. The interface as transmission of transformation.*
 
 *Created: 2026-01-28*
 *Updated: 2026-03-26 — Added Design Trend Synthesis (5 macro trends + white space map) and Design-to-Code Translation Methodology*
 *Updated: 2026-05-16 — Added the Dimensionality framework: first principle (digital surfaces evolve as consciousness evolves through dimensionality), the 10-stage arc (Binary → Reality-Indistinguishable, Stage 8 = NEO-DIMENSIONAL as our sweet spot), the 7 primitives of digital surface design (material · depth · form · color · light · motion · sound), Stage 8 "is / isn't" definition, the cosmic recursion linking cosmogenesis to UI evolution, the Steve Jobs joint (product+design fuse around transformation), naming question with three candidates, and the 27-perspective protocol for upcoming mood boards. Prior Five Pillars relocated as expressions of specific primitives + architecture-wide proportion constraint.*
 *Updated: 2026-05-16 (later) — Resolved syntactic collision flagged by Sasha: "dimensions" is reserved for perspectives of consciousness (the 27-perspective ontology); the 7 building blocks of digital surface design are renamed **primitives** (Web3 / CS sense — irreducible, composable, trusted, load-bearing units). Added "A note on terminology — Primitives vs Dimensions" section. Affirmed **Motion** (not Animation) as the primitive name; animation, transition, physics, parallax, generative, gesture-driven are all techniques *inside* Motion. Flagged **Typography** as candidate 8th primitive — held for mood-board test.*
 *Updated: 2026-05-16 (later II) — **Typography promoted out of held-status into the 8th primitive of digital surface design.** Distinct from Form because letters carry meaning differently (typeface, weight, scale, leading, kerning, rhythm, light/color/depth/motion interactions). Count adjustments propagated (Liquid Glass = 7–8 primitives; "the 8 primitives" header). Open question closed; will revisit only if mood boards reveal a folding-back into Form.*
-
+*Updated: 2026-10-30 (v2, Bloom) — Combined all UI findings into this single place. Named the paradigm **Bloom** (Stage 8 Neo-Dimensional remains its stage). Added A.0 (AI invisible; 1 primary + ≤2 secondary + free text; global world bloom 0–9; gift colors from the first artifact; «нежно, тонко» tenderness rule), Part B (rules per primitive + eight screens: menu, first question, village, Your AI, gift reveal, academy, offers/checkout, multiplayer, linked to #271/#272/#275/#277), Part C (anti-patterns incl. the rejected default dark-mode SaaS/chat UI, no urgency copy), Part D (open decisions). Soul colors revived from deprioritized.*
