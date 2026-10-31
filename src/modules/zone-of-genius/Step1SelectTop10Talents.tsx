@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Trans, useTranslation } from "react-i18next";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { useLocalizedTalents } from "./talents";
 import { cn } from "@/lib/utils";
@@ -7,6 +8,7 @@ import { Check, ArrowLeft, ArrowRight } from "lucide-react";
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
 
 const Step1SelectTop10Talents = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const { selectedTop10TalentIds, setSelectedTop10TalentIds } = useZoneOfGenius();
@@ -70,7 +72,7 @@ const Step1SelectTop10Talents = () => {
             textShadow: "0 1px 2px rgba(255,255,255,0.7)",
           }}
         >
-          What Lights You Up?
+          {String(t("zogSteps.step1.title"))}
         </h2>
         <p
           className="text-sm max-w-xl mx-auto"
@@ -79,7 +81,10 @@ const Step1SelectTop10Talents = () => {
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >
-          Pick the <strong style={{ color: "var(--skin-text-primary, #0a1628)" }}>10 talents</strong> you genuinely enjoy doing — the ones that make you come alive.
+          <Trans
+            i18nKey="zogSteps.step1.intro"
+            components={{ b: <strong style={{ color: "var(--skin-text-primary, #0a1628)" }} /> }}
+          />
         </p>
       </div>
 
@@ -98,12 +103,12 @@ const Step1SelectTop10Talents = () => {
                 {" / "}{maxSelectable}
               </span>
             </div>
-            <span className="text-xs" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.72))" }}>talents selected</span>
+            <span className="text-xs" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.72))" }}>{String(t("zogSteps.step1.talentsSelected"))}</span>
           </div>
 
           {showMaxWarning && (
             <div className="text-xs animate-fade-in" style={{ color: "#d97706" }}>
-              Deselect one to choose another
+              {String(t("zogSteps.deselectOne"))}
             </div>
           )}
 
@@ -121,7 +126,7 @@ const Step1SelectTop10Talents = () => {
                 textShadow: "0 1px 2px rgba(255,255,255,0.6)",
               }}
             >
-              Continue →
+              {String(t("zogSteps.continue"))}
             </button>
           </div>
         </div>
@@ -188,7 +193,7 @@ const Step1SelectTop10Talents = () => {
           style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
         >
           <ArrowLeft size={14} />
-          Back
+          {String(t("zogSteps.back"))}
         </button>
         <button
           onClick={handleContinue}
@@ -202,7 +207,7 @@ const Step1SelectTop10Talents = () => {
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >
-          Continue to Step 2
+          {String(t("zogSteps.step1.continueNext"))}
           <ArrowRight size={14} />
         </button>
       </div>
@@ -226,14 +231,14 @@ const Step1SelectTop10Talents = () => {
             >
               {localSelected.length} / {maxSelectable}
             </span>
-            <span className="text-xs" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.72))" }}>selected</span>
+            <span className="text-xs" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.72))" }}>{String(t("zogSteps.selected"))}</span>
           </div>
           <button
             onClick={handleBack}
             className="text-xs px-3 py-1.5 rounded-full liquid-glass transition-colors"
             style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
           >
-            Back
+            {String(t("zogSteps.back"))}
           </button>
         </div>
         <button
@@ -248,7 +253,7 @@ const Step1SelectTop10Talents = () => {
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >
-          Continue →
+          {String(t("zogSteps.continue"))}
         </button>
       </div>
 

@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import { Share2, Copy, Linkedin, Facebook, Send, Twitter, Instagram, Check, ChevronDown } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { type DomainId } from "@/modules/quality-of-life-map/qolConfig";
@@ -16,11 +18,13 @@ interface ShareQolProps {
 }
 
 const buildShareText = ({
+  t,
   overallStage,
   growthDomains,
   strengthDomains,
   profileUrl,
 }: {
+  t: TFunction;
   overallStage: string;
   growthDomains: Array<{ domain: { name: string } }>;
   strengthDomains: Array<{ domain: { name: string } }>;
@@ -29,14 +33,14 @@ const buildShareText = ({
   const growth = growthDomains.map(({ domain }) => domain.name).join(" • ");
   const strengths = strengthDomains.map(({ domain }) => domain.name).join(" • ");
 
-  let text = `My Quality of Life Map snapshot: Overall Stage ${overallStage}.\n`;
+  let text = `${t("shareQol.textHead", { stage: overallStage })}\n`;
   if (growth) {
-    text += `Top growth: ${growth}\n`;
+    text += `${t("shareQol.textGrowth", { list: growth })}\n`;
   }
   if (strengths) {
-    text += `Strengths: ${strengths}\n`;
+    text += `${t("shareQol.textStrengths", { list: strengths })}\n`;
   }
-  text += `\nDiscover yours for free at ${profileUrl}`;
+  text += `\n${t("shareQol.textFoot", { url: profileUrl })}`;
 
   return text;
 };
@@ -49,6 +53,7 @@ const buildShareUrl = (profileUrl: string, profileId?: string) => {
 };
 
 const ShareQol = ({ overallStage, growthDomains, strengthDomains, profileId, profileUrl }: ShareQolProps) => {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -59,12 +64,13 @@ const ShareQol = ({ overallStage, growthDomains, strengthDomains, profileId, pro
   const shareText = useMemo(
     () =>
       buildShareText({
+        t,
         overallStage,
         growthDomains,
         strengthDomains,
         profileUrl: shareUrl,
       }),
-    [overallStage, growthDomains, strengthDomains, shareUrl],
+    [t, overallStage, growthDomains, strengthDomains, shareUrl],
   );
 
   const encodedProfileUrl = encodeURIComponent(shareUrl);
@@ -102,11 +108,11 @@ const ShareQol = ({ overallStage, growthDomains, strengthDomains, profileId, pro
     try {
       await navigator.clipboard.writeText(shareText);
       setCopied(true);
-      toast({ title: "Copied to clipboard!" });
+      toast({ title: String(t("shareQol.toastCopied")) });
       setTimeout(() => setCopied(false), 2000);
     } catch {
       toast({
-        title: "Copy failed",
+        title: String(t("shareQol.toastFailed")),
         variant: "destructive",
       });
     }
@@ -119,7 +125,7 @@ const ShareQol = ({ overallStage, growthDomains, strengthDomains, profileId, pro
           ChevronDown replaces the default → arrow and rotates on open. */}
       <EditorialCta
         variant="primary"
-        label="Share my Quality of Life Map"
+        label={String(t("shareQol.share"))}
         onClick={() => setIsOpen(!isOpen)}
         icon={<Share2 className="w-4 h-4" />}
         rightIcon={
@@ -129,7 +135,7 @@ const ShareQol = ({ overallStage, growthDomains, strengthDomains, profileId, pro
           />
         }
         className="w-full"
-        ariaLabel="Share my Quality of Life Map"
+        ariaLabel={String(t("shareQol.share"))}
       />
 
       {/* Subtitle — Cormorant italic in soft gold, matches the
@@ -150,7 +156,7 @@ const ShareQol = ({ overallStage, growthDomains, strengthDomains, profileId, pro
           letterSpacing: "0.01em",
         }}
       >
-        Invite others to map theirs
+        {String(t("shareQol.invite"))}
       </p>
 
       {isOpen && (
@@ -201,7 +207,7 @@ const ShareQol = ({ overallStage, growthDomains, strengthDomains, profileId, pro
               <Copy className="w-5 h-5" style={{ color: "#f4d472" }} />
             )}
             <span style={{ fontSize: "15px", fontWeight: 600, letterSpacing: "0.01em" }}>
-              {copied ? "Copied!" : "Copy Text"}
+              {copied ? String(t("shareQol.copied")) : String(t("shareQol.copyText"))}
             </span>
           </button>
         </div>

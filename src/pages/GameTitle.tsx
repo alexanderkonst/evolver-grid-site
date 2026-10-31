@@ -31,32 +31,18 @@ type MenuItem = {
 };
 
 // Chapter 01 is the Journey itself (WP-4): the same steps, order and «optional» marks as
-// Home, `/ignite` and the Quest Board pane, read from JOURNEY_MAIN. No copy of the
-// list lives on this page. The page is English-only, so no `t`.
-const JOURNEY_STEPS = journeyStepRows();
+// Home, `/ignite` and the Quest Board pane, read from JOURNEY_MAIN through
+// `journeyStepRows(t)` inside the component. No copy of the list lives on this page.
 
 type SolidName = "cube" | "icosa" | "dodeca" | "octa" | "tetra";
 
-const SOLID_NAMES: Record<SolidName, string> = {
-  cube: "cube",
-  icosa: "icosahedron",
-  dodeca: "dodecahedron",
-  octa: "octahedron",
-  tetra: "tetrahedron",
-};
-
-const PATHS: {
-  solid: SolidName;
-  name: string;
-  element: string;
-  line: string;
-  unique?: boolean;
-}[] = [
-  { solid: "cube", name: "Body", element: "Earth", line: "Vitality and foundation" },
-  { solid: "icosa", name: "Emotions", element: "Water", line: "Mastery of inner weather" },
-  { solid: "dodeca", name: "Uniqueness", element: "Aether", line: "Your unique gift, refracted into the world", unique: true },
-  { solid: "octa", name: "Mind", element: "Air", line: "Clarity and perception" },
-  { solid: "tetra", name: "Spirit", element: "Fire", line: "The fire that moves you" },
+// The five paths in display order; their words live under `titleScreen.path.<solid>.*`.
+const PATHS: { solid: SolidName; unique?: boolean }[] = [
+  { solid: "cube" },
+  { solid: "icosa" },
+  { solid: "dodeca", unique: true },
+  { solid: "octa" },
+  { solid: "tetra" },
 ];
 
 /* ---------- Platonic solid geometry (vertices → edges by min distance) ---------- */
@@ -267,13 +253,20 @@ const TitleScreen = () => {
   const [talent] = useState(() => (shouldShowWelcomeBack() ? readGuestTalentName() : null));
   const continueRef = useRef<HTMLAnchorElement>(null);
 
-  const items: MenuItem[] = [
-    { key: "new", label: "New Game", hint: "Discover your Uniqueness", to: "/village/reception" },
-    { key: "load", label: "Load Game", hint: "Continue your journey", to: loadTo },
-    { key: "tutorial", label: "Tutorial", hint: "Free course · Activate Your Dormant Potential", to: "/grow/activate-your-dormant-potential" },
-    { key: "multi", label: "Multiplayer", hint: "Mastermind & co-creation", to: "/build/mastermind" },
-    { key: "about", label: "About", hint: "The story · Investor Room", to: "#about" },
-  ];
+  const journeySteps = journeyStepRows(t);
+  const menuTo: Record<string, string> = {
+    new: "/village/reception",
+    load: loadTo,
+    tutorial: "/grow/activate-your-dormant-potential",
+    multi: "/build/mastermind",
+    about: "#about",
+  };
+  const items: MenuItem[] = ["new", "load", "tutorial", "multi", "about"].map((key) => ({
+    key,
+    label: String(t(`titleScreen.menu.${key}.label`)),
+    hint: String(t(`titleScreen.menu.${key}.hint`)),
+    to: menuTo[key],
+  }));
 
   // Fonts + tab title, scoped to this page so index.html (and every other
   // page) stays untouched.
@@ -283,12 +276,12 @@ const TitleScreen = () => {
     link.href = FONTS_HREF;
     document.head.appendChild(link);
     const prevTitle = document.title;
-    document.title = "The Game of Being You · FindYourTopTalent";
+    document.title = String(t("titleScreen.tabTitle"));
     return () => {
       link.remove();
       document.title = prevTitle;
     };
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     let cancelled = false;
@@ -367,18 +360,18 @@ const TitleScreen = () => {
     <div className="gt-root">
       <div className="gt-grain" aria-hidden="true" />
       <main>
-        <section className="gt-screen" aria-label="Title screen">
+        <section className="gt-screen" aria-label={String(t("titleScreen.sectionAria"))}>
           <img
             className="gt-screen__img"
             src={heroSrc}
-            alt="A vertical beam of light descends through a crystal dodecahedron over a moonlit mountain lake; four small crystal solids (tetrahedron, icosahedron, cube, octahedron) rest on the misty horizon, catching its spectrum"
+            alt={String(t("titleScreen.heroAlt"))}
             decoding="async"
             style={reduceMotion ? { animation: "none" } : undefined}
           />
           <div className="gt-screen__copy">
             <header className="gt-screen__head">
-            <h1>The Game of Being&nbsp;You</h1>
-            <p className="gt-sub">Self-Discovery · Growth · Quality of Life · Uniqueness · Tribe · Village · Collective</p>
+            <h1>{String(t("titleScreen.title"))}</h1>
+            <p className="gt-sub">{String(t("titleScreen.subtitle"))}</p>
             </header>
             {talent ? (
               <nav className="gt-menu-wrap" aria-label={tr(t, "village.welcomeBack", "Welcome back")}>
@@ -396,7 +389,7 @@ const TitleScreen = () => {
                 </ul>
               </nav>
             ) : (
-            <nav className="gt-menu-wrap" aria-label="Game menu">
+            <nav className="gt-menu-wrap" aria-label={String(t("titleScreen.menuAria"))}>
               <ul className="gt-menu">
                 {items.map((item, i) => {
                   const inner = (
@@ -439,16 +432,16 @@ const TitleScreen = () => {
               </ul>
               <p className="gt-hint" aria-live="polite">{items[active].hint}</p>
               <hr className="gt-rule" />
-              <p className="gt-tagline">Bring the full force of who you are to what you build.</p>
+              <p className="gt-tagline">{String(t("titleScreen.tagline"))}</p>
             </nav>
             )}
           </div>
-          <p className={`gt-start${started ? " is-gone" : ""}`} aria-hidden="true">PRESS START</p>
+          <p className={`gt-start${started ? " is-gone" : ""}`} aria-hidden="true">{String(t("titleScreen.pressStart"))}</p>
         </section>
 
         <section className="gt-sec gt-fifth" id="fifth" aria-labelledby="gt-fifth-h">
           <div className="gt-center">
-            <h2 id="gt-fifth-h">You Are The Fifth Element</h2>
+            <h2 id="gt-fifth-h">{String(t("titleScreen.fifthTitle"))}</h2>
             <ul className="gt-paths">
               {PATHS.map((p, i) => (
                 <li key={p.solid} className={p.unique ? "is-unique" : undefined}>
@@ -464,15 +457,15 @@ const TitleScreen = () => {
                     />
                     <PlatonicSolid
                       solid={p.solid}
-                      label={`Crystal ${SOLID_NAMES[p.solid]} inside its rotating wireframe`}
+                      label={String(t("titleScreen.crystalLabel", { solid: String(t(`titleScreen.solid.${p.solid}`)) }))}
                       index={i}
                       accent={!!p.unique}
                       reduceMotion={reduceMotion}
                     />
                   </div>
-                  <span className="gt-mono">{p.name}</span>
-                  <span className="gt-mono gt-element">{p.element}</span>
-                  <p>{p.line}</p>
+                  <span className="gt-mono">{String(t(`titleScreen.path.${p.solid}.name`))}</span>
+                  <span className="gt-mono gt-element">{String(t(`titleScreen.path.${p.solid}.element`))}</span>
+                  <p>{String(t(`titleScreen.path.${p.solid}.line`))}</p>
                 </li>
               ))}
             </ul>
@@ -481,17 +474,17 @@ const TitleScreen = () => {
 
         <section className="gt-book gt-sec" id="how" aria-labelledby="gt-how-h">
           <div className="gt-book__inner">
-            <p className="gt-mono gt-chapter">Chapter 01</p>
-            <p className="gt-mono gt-label">The path of uniqueness</p>
-            <h2 id="gt-how-h">{JOURNEY_STEPS.length} steps. One light, refracted into you.</h2>
+            <p className="gt-mono gt-chapter">{String(t("titleScreen.chapter"))}</p>
+            <p className="gt-mono gt-label">{String(t("titleScreen.pathLabel"))}</p>
+            <h2 id="gt-how-h">{String(t("titleScreen.stepsHeading", { n: journeySteps.length }))}</h2>
             <ol className="gt-levels">
-              {JOURNEY_STEPS.map((step, i) => (
+              {journeySteps.map((step, i) => (
                 <li key={step.id} className={i === 0 ? "is-current" : undefined}>
                   <span className="gt-node">{String(step.no).padStart(2, "0")}</span>
                   <div>
                     <h3>{step.label}</h3>
                     {step.optional && <span className="gt-mono">{step.optional}</span>}
-                    {i === 0 && <span className="gt-mono">You are here</span>}
+                    {i === 0 && <span className="gt-mono">{String(t("titleScreen.youAreHere"))}</span>}
                   </div>
                 </li>
               ))}
@@ -502,12 +495,12 @@ const TitleScreen = () => {
 
         <section className="gt-sec" id="about" aria-labelledby="gt-about-h">
           <div className="gt-about">
-            <p className="gt-mono">About</p>
-            <h2 id="gt-about-h">A game designed to make you more yourself.</h2>
+            <p className="gt-mono">{String(t("titleScreen.aboutLabel"))}</p>
+            <h2 id="gt-about-h">{String(t("titleScreen.aboutTitle"))}</h2>
             <p className="gt-body">
-              FindYourTopTalent turns self-discovery into a game you actually want to play — and a business that pays you for being who you are. Created by Aleksandr Konstantinov and built with Evolver, an AI co-founder.
+              {String(t("titleScreen.aboutBody"))}
             </p>
-            <Link className="gt-enter" to={INVESTOR_HREF}>ENTER THE INVESTOR ROOM →</Link>
+            <Link className="gt-enter" to={INVESTOR_HREF}>{String(t("titleScreen.enterInvestor"))}</Link>
           </div>
         </section>
       </main>

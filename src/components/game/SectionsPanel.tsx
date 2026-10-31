@@ -405,6 +405,7 @@ export const STATIC_LABEL_KEYS: Record<string, { label: string; lockedHint?: str
     "ai-os-pricing": { label: "rail.aiOs.pricing.label" },
     // ME space
     "me-profile": { label: "rail.me.profile.label" },
+    "public-profile": { label: "sidePanel.publicProfile" },
     "top-talent": { label: "rail.me.topTalent.label" },
     "tt-start-here": { label: "rail.me.ttStartHere.label" },
     "tt-overview": { label: "rail.me.ttOverview.label" },

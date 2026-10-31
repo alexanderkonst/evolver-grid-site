@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Trans, useTranslation } from "react-i18next";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { useLocalizedTalents } from "./talents";
 import { cn } from "@/lib/utils";
@@ -7,6 +8,7 @@ import { ChevronUp, ChevronDown, ArrowLeft, GripVertical, Sparkles } from "lucid
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
 
 const Step3OrderTalents = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const { top3CoreTalentIds, orderedTalentIds, setOrderedTalentIds } = useZoneOfGenius();
@@ -27,7 +29,7 @@ const Step3OrderTalents = () => {
   }, [top3CoreTalentIds, orderedTalentIds, navigate, basePath]);
 
   const localizedTalents = useLocalizedTalents();
-  const orderedTalents = localOrdered.map(id => localizedTalents.find(t => t.id === id)!).filter(Boolean);
+  const orderedTalents = localOrdered.map(id => localizedTalents.find(talent => talent.id === id)!).filter(Boolean);
 
   const moveUp = (index: number) => {
     if (index === 0) return;
@@ -77,7 +79,11 @@ const Step3OrderTalents = () => {
     setDraggedIndex(null);
   };
 
-  const rankLabels = ["Primary Genius", "Secondary Genius", "Supporting Genius"];
+  const rankLabels = [
+    String(t("zogSteps.step3.rank1")),
+    String(t("zogSteps.step3.rank2")),
+    String(t("zogSteps.step3.rank3")),
+  ];
 
   return (
     <div className="space-y-6" style={{ color: "var(--skin-text-primary, #0a1628)" }}>
@@ -91,7 +97,7 @@ const Step3OrderTalents = () => {
             textShadow: "0 1px 2px rgba(255,255,255,0.7)",
           }}
         >
-          Order Your Top 3
+          {String(t("zogSteps.step3.title"))}
         </h2>
         <p
           className="text-sm max-w-xl mx-auto"
@@ -100,10 +106,13 @@ const Step3OrderTalents = () => {
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >
-          Put your 3 core talents in order, from <strong style={{ color: "var(--skin-text-primary, #0a1628)" }}>most defining</strong> (#1) to third (#3).
+          <Trans
+            i18nKey="zogSteps.step3.intro"
+            components={{ b: <strong style={{ color: "var(--skin-text-primary, #0a1628)" }} /> }}
+          />
         </p>
         <p className="text-xs" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}>
-          Drag or use arrows to reorder.
+          {String(t("zogSteps.step3.reorderHint"))}
         </p>
       </div>
 
@@ -204,7 +213,7 @@ const Step3OrderTalents = () => {
           style={{ color: "var(--skin-text-body, rgba(26,30,58,0.82))" }}
         >
           <ArrowLeft size={14} />
-          Back
+          {String(t("zogSteps.back"))}
         </button>
         <button
           onClick={handleContinue}
@@ -216,7 +225,7 @@ const Step3OrderTalents = () => {
         >
           {/* Day 48 iter 7 (Sasha): migrated violet → gold for funnel coherence. */}
           <Sparkles size={14} style={{ color: "#7a5108" }} />
-          Generate My Top Talent
+          {String(t("zogSteps.step3.generateTalent"))}
         </button>
       </div>
 
@@ -237,7 +246,7 @@ const Step3OrderTalents = () => {
             className="text-xs px-3 py-1.5 rounded-full liquid-glass transition-colors"
             style={{ color: "var(--skin-text-body, rgba(26,30,58,0.82))" }}
           >
-            Back
+            {String(t("zogSteps.back"))}
           </button>
         </div>
         <button
@@ -250,7 +259,7 @@ const Step3OrderTalents = () => {
         >
           {/* Day 48 iter 7 (Sasha): migrated violet → gold for funnel coherence. */}
           <Sparkles size={14} style={{ color: "#7a5108" }} />
-          Generate My Snapshot
+          {String(t("zogSteps.step3.generateSnapshot"))}
         </button>
       </div>
 

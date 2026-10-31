@@ -51,7 +51,7 @@ import {
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import { OPEN_CHAT_EVENT } from "@/components/ChatLauncher";
 import SiteLogo from "@/components/SiteLogo";
-import { placeTagline } from "@/lib/villageCopy";
+import { placeName, placeTagline } from "@/lib/villageCopy";
 // hls.js is dynamically imported inside MuxVideoBackground to avoid module-level crashes
 import { useToast } from "@/hooks/use-toast";
 
@@ -847,6 +847,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     const activePlaceData = RAIL_PLACES.find((p) => p.key === activePlace);
     // A signed-in player never reads «Welcome, guest» (Reception has a returning line).
     const activePlaceLine = activePlaceData ? placeTagline(activePlaceData, t, !!user) : undefined;
+    // The place name in the reader's language: the pane header and the mobile breadcrumb eyebrow.
+    const activePlaceName = activePlaceData ? placeName(activePlaceData, t) : undefined;
 
     // Load profile
     const loadProfile = async (userId: string) => {
@@ -1685,7 +1687,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 >
                     <SectionsPanel
                         activeSpaceId={activeSpaceId}
-                        placeName={activePlaceData?.name}
+                        placeName={activePlaceName}
                         placeLine={activePlaceLine}
                         onSectionSelect={handleSectionSelect}
                         onClose={toggleSectionsPanel}
@@ -1913,7 +1915,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     <div className="flex-1 min-w-0">
                         <SectionsPanel
                             activeSpaceId={activeSpaceId}
-                            placeName={activePlaceData?.name}
+                            placeName={activePlaceName}
                             placeLine={activePlaceLine}
                             onSectionSelect={handleSectionSelect}
                             className="w-full h-full"
@@ -2050,7 +2052,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                             space name when the section can't be derived
                             (e.g., paths that aren't section-mapped). */}
                         {(() => {
-                            const spaceLabel = activePlaceData ? activePlaceData.name : t("shell.breadcrumb.spaceFallback");
+                            const spaceLabel = activePlaceName ?? t("shell.breadcrumb.spaceFallback");
                             const pathname = location.pathname;
 
                             // Resolve active section label.

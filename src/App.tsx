@@ -14,6 +14,7 @@ import RequireDeeperAccess from "@/components/RequireDeeperAccess";
 // AnimatedBackground removed for minimal SaaS design
 import PageTransition from "@/components/PageTransition";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import { useTranslation } from "react-i18next";
 import { getPageTitle } from "@/lib/pageTitles";
 import ScrollRestoration from "@/components/ScrollRestoration";
 import { ThemeProvider } from "@/contexts/ThemeContext";
@@ -378,16 +379,18 @@ if (typeof document !== "undefined" && activeSkinScope) {
 
 const TitleManager = () => {
   const location = useLocation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Day 53 (Sasha 2026-04-27): drop the " | suffix" when getPageTitle
     // returns "" (root + unmapped routes). Old behavior appended "| Home"
     // / "| Explore" which read as confusing leftover boilerplate in tabs.
-    const sectionTitle = getPageTitle(location.pathname);
+    // The section label follows the reader's language (issue #255).
+    const sectionTitle = getPageTitle(location.pathname, t);
     document.title = sectionTitle
       ? `Find Your Top Talent | ${sectionTitle}`
       : "Find Your Top Talent";
-  }, [location.pathname]);
+  }, [location.pathname, t]);
 
   return null;
 };

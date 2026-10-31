@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Trans, useTranslation } from "react-i18next";
 import { useZoneOfGenius } from "./ZoneOfGeniusContext";
 import { useLocalizedTalents } from "./talents";
 import { cn } from "@/lib/utils";
@@ -7,6 +8,7 @@ import { Check, ArrowLeft, ArrowRight } from "lucide-react";
 import { getZogAssessmentBasePath, getZogStepPath } from "./zogRoutes";
 
 const Step2SelectTop3CoreTalents = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const { selectedTop10TalentIds, top3CoreTalentIds, setTop3CoreTalentIds } = useZoneOfGenius();
@@ -23,7 +25,7 @@ const Step2SelectTop3CoreTalents = () => {
   }, [selectedTop10TalentIds, top3CoreTalentIds, navigate, basePath]);
 
   const localizedTalents = useLocalizedTalents();
-  const top10Talents = localizedTalents.filter(t => selectedTop10TalentIds.includes(t.id));
+  const top10Talents = localizedTalents.filter(talent => selectedTop10TalentIds.includes(talent.id));
 
   const handleTalentClick = (talentId: number) => {
     if (localSelected.includes(talentId)) {
@@ -63,7 +65,7 @@ const Step2SelectTop3CoreTalents = () => {
             textShadow: "0 1px 2px rgba(255,255,255,0.7)",
           }}
         >
-          Your Top 3
+          {String(t("zogSteps.step2.title"))}
         </h2>
         <p
           className="text-sm max-w-xl mx-auto"
@@ -72,8 +74,10 @@ const Step2SelectTop3CoreTalents = () => {
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >
-          Now narrow it down. Which <strong style={{ color: "var(--skin-text-primary, #0a1628)" }}>3</strong> do you love doing the most?
-          The ones you'd keep even if you had to drop the rest.
+          <Trans
+            i18nKey="zogSteps.step2.intro"
+            components={{ b: <strong style={{ color: "var(--skin-text-primary, #0a1628)" }} /> }}
+          />
         </p>
       </div>
 
@@ -90,12 +94,12 @@ const Step2SelectTop3CoreTalents = () => {
                 {" / 3"}
               </span>
             </div>
-            <span className="text-xs" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.72))" }}>core talents selected</span>
+            <span className="text-xs" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.72))" }}>{String(t("zogSteps.step2.coreSelected"))}</span>
           </div>
 
           {showMaxWarning && (
             <div className="text-xs animate-fade-in" style={{ color: "#d97706" }}>
-              Deselect one to choose another
+              {String(t("zogSteps.deselectOne"))}
             </div>
           )}
 
@@ -112,7 +116,7 @@ const Step2SelectTop3CoreTalents = () => {
                 textShadow: "0 1px 2px rgba(255,255,255,0.6)",
               }}
             >
-              Continue →
+              {String(t("zogSteps.continue"))}
             </button>
           </div>
         </div>
@@ -173,7 +177,7 @@ const Step2SelectTop3CoreTalents = () => {
           style={{ color: "var(--skin-text-body, rgba(26,30,58,0.82))" }}
         >
           <ArrowLeft size={14} />
-          Back
+          {String(t("zogSteps.back"))}
         </button>
         <button
           onClick={handleContinue}
@@ -187,7 +191,7 @@ const Step2SelectTop3CoreTalents = () => {
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >
-          Continue to Step 3
+          {String(t("zogSteps.step2.continueNext"))}
           <ArrowRight size={14} />
         </button>
       </div>
@@ -211,14 +215,14 @@ const Step2SelectTop3CoreTalents = () => {
             >
               {localSelected.length} / 3
             </span>
-            <span className="text-xs" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.72))" }}>selected</span>
+            <span className="text-xs" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.72))" }}>{String(t("zogSteps.selected"))}</span>
           </div>
           <button
             onClick={handleBack}
             className="text-xs px-3 py-1.5 rounded-full liquid-glass transition-colors"
             style={{ color: "var(--skin-text-body, rgba(26,30,58,0.82))" }}
           >
-            Back
+            {String(t("zogSteps.back"))}
           </button>
         </div>
         <button
@@ -233,7 +237,7 @@ const Step2SelectTop3CoreTalents = () => {
             textShadow: "0 1px 2px rgba(255,255,255,0.6)",
           }}
         >
-          Continue →
+          {String(t("zogSteps.continue"))}
         </button>
       </div>
 

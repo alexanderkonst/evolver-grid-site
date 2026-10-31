@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Trans, useTranslation } from 'react-i18next';
 import { useZoneOfGenius } from './ZoneOfGeniusContext';
 import { useLocalizedTalents } from './talents';
 import { Progress } from '@/components/ui/progress';
@@ -7,6 +8,7 @@ import { ThumbsUp, ThumbsDown, ArrowLeft, ArrowRight } from 'lucide-react';
 import { getZogAssessmentBasePath, getZogStepPath } from './zogRoutes';
 
 const Step0SwipeTalents = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const { setYesTalentIds } = useZoneOfGenius();
@@ -117,21 +119,26 @@ const Step0SwipeTalents = () => {
       <div className="max-w-2xl mx-auto">
         <div className="liquid-glass rounded-2xl p-6 sm:p-8 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-            Quick Scan Complete
+            {String(t('zogSteps.step0.scanComplete'))}
           </h2>
           <p className="text-base sm:text-lg text-white/80 mb-2">
-            You said <span className="font-bold text-white">YES</span> to{' '}
-            <span className="font-bold">{yesTalentCount}</span> talents.
+            <Trans
+              i18nKey="zogSteps.step0.saidYes"
+              values={{ n: yesTalentCount }}
+              components={{
+                yes: <span className="font-bold text-white" />,
+                n: <span className="font-bold" />,
+              }}
+            />
           </p>
           <p className="text-sm sm:text-base text-white/50 mb-6">
-            Next, you'll choose your Top 10 from these.
+            {String(t('zogSteps.step0.nextTop10'))}
           </p>
-          
+
           {yesTalentCount < 10 && (
             <div className="liquid-glass rounded-xl p-4 mb-6 text-left">
               <p className="text-sm text-white/60">
-                You selected fewer than 10 talents. That's okay — you might have a very focused pattern.
-                You can rescan, or continue with what you have.
+                {String(t('zogSteps.step0.fewerThan10'))}
               </p>
             </div>
           )}
@@ -141,13 +148,13 @@ const Step0SwipeTalents = () => {
               onClick={handleRescan}
               className="liquid-glass px-6 py-3 rounded-full text-sm font-medium text-white/70 hover:text-white hover:scale-[1.02] active:scale-95 transition-all"
             >
-              Rescan Talents
+              {String(t('zogSteps.step0.rescan'))}
             </button>
             <button
               onClick={handleContinue}
               className="liquid-glass-strong px-6 py-3 rounded-full text-sm font-medium text-white hover:scale-[1.02] active:scale-95 transition-all ring-1 ring-white/20"
             >
-              Continue to Top 10 →
+              {String(t('zogSteps.step0.continueTop10'))}
             </button>
           </div>
         </div>
@@ -165,7 +172,7 @@ const Step0SwipeTalents = () => {
             className="flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back
+            {String(t('zogSteps.back'))}
           </button>
         </div>
       )}
@@ -173,17 +180,20 @@ const Step0SwipeTalents = () => {
       {/* Instructions */}
       <div className="text-center mb-6 sm:mb-8">
         <p className="text-sm sm:text-base text-white/60 leading-relaxed mb-4">
-          You'll see each talent one by one.<br />
-          <span className="sm:hidden">Swipe left for "Not really me", swipe right for "This feels like me".</span>
-          <span className="hidden sm:inline">Tap <strong className="text-white/80">"This feels like me"</strong> if this is a natural part of you — something you're good at, 
-          drawn to, or that people already recognize in you.<br />
-          Use <strong className="text-white/80">"Not really me"</strong> otherwise.</span>
+          {String(t('zogSteps.step0.intro'))}<br />
+          <span className="sm:hidden">{String(t('zogSteps.step0.swipeHint'))}</span>
+          <span className="hidden sm:inline">
+            <Trans
+              i18nKey="zogSteps.step0.tapHint"
+              components={{ b: <strong className="text-white/80" />, br: <br /> }}
+            />
+          </span>
         </p>
         <p className="text-xs sm:text-sm text-white/40">
-          <strong>Don't mark what you wish you were. Mark what you already are.</strong>
+          <strong>{String(t('zogSteps.step0.honest'))}</strong>
         </p>
         <p className="text-xs sm:text-sm text-white/30 mt-2">
-          Go with your first instinct. This usually takes about 3–4 minutes.
+          {String(t('zogSteps.step0.instinct'))}
         </p>
       </div>
 
@@ -191,10 +201,10 @@ const Step0SwipeTalents = () => {
       <div className="mb-6 sm:mb-8">
         <div className="flex justify-between items-center mb-2">
           <span className="text-xs sm:text-sm text-white/40">
-            Talent {currentIndex + 1} of {shuffledTalents.length}
+            {String(t('zogSteps.step0.progress', { current: currentIndex + 1, total: shuffledTalents.length }))}
           </span>
           <span className="text-xs sm:text-sm text-white font-semibold">
-            Yes selected: {yesTalentCount}
+            {String(t('zogSteps.step0.yesSelected', { n: yesTalentCount }))}
           </span>
         </div>
         <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
@@ -227,7 +237,7 @@ const Step0SwipeTalents = () => {
         {currentAnswer && (
           <div className="mt-4 text-center">
             <span className={`text-xs font-semibold ${currentAnswer === 'yes' ? 'text-white/80' : 'text-white/30'}`}>
-              Previously selected: {currentAnswer === 'yes' ? 'This feels like me' : 'Not really me'}
+              {String(t('zogSteps.step0.previously', { answer: String(t(currentAnswer === 'yes' ? 'zogSteps.step0.isMe' : 'zogSteps.step0.notMe')) }))}
             </span>
           </div>
         )}
@@ -240,19 +250,19 @@ const Step0SwipeTalents = () => {
           className={`flex-1 h-14 sm:h-16 text-base sm:text-lg flex items-center justify-center gap-2 rounded-xl liquid-glass text-white/60 hover:text-white/80 hover:scale-[1.01] active:scale-[0.98] transition-all ${currentAnswer === 'no' ? 'ring-1 ring-white/30' : ''}`}
         >
           <ThumbsDown className="w-5 h-5" />
-          Not really me
+          {String(t('zogSteps.step0.notMe'))}
         </button>
         <button
           onClick={handleYes}
           className={`flex-1 h-14 sm:h-16 text-base sm:text-lg flex items-center justify-center gap-2 rounded-xl liquid-glass-strong text-white hover:scale-[1.01] active:scale-[0.98] transition-all ring-1 ring-white/20 ${currentAnswer === 'yes' ? 'ring-white/40 shadow-[0_0_20px_rgba(255,255,255,0.1)]' : ''}`}
         >
           <ThumbsUp className="w-5 h-5" />
-          This feels like me
+          {String(t('zogSteps.step0.isMe'))}
         </button>
       </div>
       
       <p className="text-xs text-center text-white/20 mt-4 sm:hidden">
-        💡 Swipe left or right to answer
+        {String(t('zogSteps.step0.swipeFooter'))}
       </p>
     </div>
   );

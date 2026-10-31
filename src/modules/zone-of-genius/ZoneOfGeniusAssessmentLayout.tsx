@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ZoneOfGeniusProvider } from "./ZoneOfGeniusContext";
 import { cn } from "@/lib/utils";
 import { getZogAssessmentBasePath, getZogAssessmentSteps } from "./zogRoutes";
@@ -13,6 +14,7 @@ interface ZoneOfGeniusAssessmentLayoutProps {
 const ZoneOfGeniusAssessmentLayout = ({
   renderMode = "standalone",
 }: ZoneOfGeniusAssessmentLayoutProps) => {
+  const { t } = useTranslation();
   const location = useLocation();
   const basePath = getZogAssessmentBasePath(location.pathname);
   const steps = getZogAssessmentSteps(basePath);
@@ -48,7 +50,7 @@ const ZoneOfGeniusAssessmentLayout = ({
           textShadow: "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
         }}
       >
-        Discover Your Top Talent
+        {String(t("zogSteps.layoutTitle"))}
       </h1>
       {/* Day 47 very-late pass: darker body/muted text for legibility
           (was 0.55 → 0.7). */}
@@ -59,7 +61,7 @@ const ZoneOfGeniusAssessmentLayout = ({
           textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.6))",
         }}
       >
-        Step {activeStep} of {steps.length}
+        {String(t("zogSteps.stepOf", { current: activeStep, total: steps.length }))}
       </p>
 
       {/* Progress bar — dark-on-light */}
@@ -123,7 +125,9 @@ const ZoneOfGeniusAssessmentLayout = ({
               >
                 {activeStep > step.number ? "✓" : step.number}
               </div>
-              <span className="hidden sm:inline">{step.label}</span>
+              <span className="hidden sm:inline">
+                {String(t(`zogSteps.stepLabel.${step.number}`, { defaultValue: step.label }))}
+              </span>
             </div>
             {idx < steps.length - 1 && (
               <div
