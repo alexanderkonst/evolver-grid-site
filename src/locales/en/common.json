@@ -175,7 +175,14 @@
     "moreOptions": "More options",
     "revealPasteHint": "Paste your AI’s answer above first.",
     "yourAiNeedMore": "Your AI needs a bit more to see your pattern. Answer one or two more questions, then reveal again.",
-    "ownAiPromptLink": "Use an outside AI instead"
+    "ownAiPromptLink": "Use an outside AI instead",
+    "yourAiCreditsTitle": "How Your AI credits work",
+    "yourAiCreditsBody": "Your AI is free to start. We're as generous with AI credits as we can be. When you really start using it and hit the limit, larger credit packages are there, and each one also upgrades the power of the model.",
+    "yourAiLimitNote": "You've reached today's free Your AI limit. It resets tomorrow.",
+    "yourAiLimitPlaceholder": "Today's free limit is reached",
+    "yourAiDeepReading": "Deep reading",
+    "yourAiDeepReadingLocked": "Locked",
+    "yourAiDeepReadingLine": "Deep readings run on the strong model. Larger credit packages are coming."
   },
   "matchCta": {
     "topTalent": {
@@ -7674,6 +7681,8 @@
     "eyebrow": "Products",
     "title": "Products",
     "intro": "Different doors, one starting point: your uniqueness, made precise enough to build on. Start where you are.",
+    "aiCreditsHeading": "Your AI credits",
+    "aiCreditsBody": "Your AI is free to start. We're as generous with AI credits as we can be. When you really start using it and hit the limit, larger credit packages are there, and each one also upgrades the power of the model.",
     "summaryEyebrow": "The whole, in one breath",
     "summaryHeading": "One method, many doors.",
     "summaryBody": "Each product here does the same core work at a different scale. It finds the signal you already carry and makes it clear enough to act on. A free quiz shows where you are on the hero's journey. Sessions name your genius and your founder-market fit. A month-long build takes the product to market. Programs and a collective carry the work further, and tools and white-label infrastructure serve communities. You start where you are, and go as far as you want.",

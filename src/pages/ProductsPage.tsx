@@ -1,4 +1,5 @@
 /** /products — public offer catalogue, using Ignite's editorial design grammar. */
+import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { marketDoor } from "@/data/marketDoorCopy";
 import { ChevronDown } from "lucide-react";
@@ -113,7 +114,16 @@ const ProductsPage = () => {
         <Ornament />
 
         <div className="space-y-6 md:space-y-8">
-          {CARDS.map(def => <ProductCard key={def.key} def={def} />)}
+          {CARDS.map(def => (
+            <Fragment key={def.key}>
+              <ProductCard def={def} />
+              {def.key === "profile" && (
+                <p className="product-body text-sm italic max-w-md mx-auto text-center">
+                  <span className="font-semibold not-italic">{t("products.aiCreditsHeading")}.</span> {t("products.aiCreditsBody")}
+                </p>
+              )}
+            </Fragment>
+          ))}
         </div>
 
         <section className="space-y-6 md:space-y-8" aria-labelledby="products-rd">
