@@ -15,6 +15,7 @@ import { supabase } from "@/integrations/supabase/client";
 import {
     flattenEpisodes,
     getPublishedModules,
+    isEpisodePublished,
     loadGuestWatched,
     loadLastEpisode,
     mergeGuestWatched,
@@ -42,6 +43,8 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
 
     const modules = useMemo(() => getPublishedModules(course.modules), [course.modules]);
     const episodes = useMemo(() => flattenEpisodes(modules), [modules]);
+    // Contents list: published modules only, unless the course opts in to showing upcoming episodes.
+    const navModules = course.showUpcoming ? course.modules : modules;
 
     const requestedCode = searchParams.get("ep");
     const currentIndex = useMemo(() => {
@@ -308,13 +311,34 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                         </div>
 
                         <nav className="space-y-4 max-h-[60vh] overflow-y-auto pr-1" aria-label={t("course.contents")}>
-                            {modules.map((module) => (
+                            {navModules.map((module) => (
                                 <div key={module.id}>
                                     <div className="text-[10.5px] mb-1.5" style={EYEBROW_STYLE}>
                                         {module.title}
                                     </div>
                                     <ul className="space-y-0.5">
                                         {module.episodes.map((episode) => {
+                                            if (!isEpisodePublished(episode)) {
+                                                return (
+                                                    <li key={episode.code}>
+                                                        <div
+                                                            className="flex items-start gap-2.5 rounded-lg px-2.5 py-2 text-sm opacity-50"
+                                                            style={{ color: "var(--skin-text-primary, #0a1628)" }}
+                                                        >
+                                                            <span
+                                                                className="mt-0.5 inline-flex h-4 w-4 flex-shrink-0 rounded-full"
+                                                                style={{ boxShadow: "inset 0 0 0 1px rgba(212, 175, 55, 0.3)" }}
+                                                            />
+                                                            <span className="min-w-0 flex-1">
+                                                                <span className="block text-[10px] tracking-wide tabular-nums">
+                                                                    {episode.code} · {t("course.comingSoon", { defaultValue: "Coming soon" })}
+                                                                </span>
+                                                                <span className="block text-xs leading-snug">{episode.title}</span>
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                );
+                                            }
                                             const isCurrent = episode.code === current.code;
                                             const done = watched.includes(episode.code);
                                             return (

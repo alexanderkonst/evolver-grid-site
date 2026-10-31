@@ -38,5 +38,7 @@ export interface CourseConfig {
     /** i18n key for an optional lead paragraph under the tagline. */
     leadKey?: string;
     modules: CourseModule[];
+    /** List not-yet-uploaded ("TBD") episodes in the contents as muted "Coming soon" rows. Default: hidden. */
+    showUpcoming?: boolean;
     practices: CoursePractice[];
 }

@@ -1904,9 +1904,6 @@
     "eyebrow": "Advanced micro-course · $27 · unlocks after Integral Mystery School",
     "tagline": "See any situation whole, from 27 positions, and let the seeing land as one act.",
     "lead": "Nine short videos on the 27-perspective instrument: two axes, twelve dimensions, the Logos, the octave of seeing the seer, and the 27th, where seeing becomes an act. Each episode ends with a practice on your own real situation.",
-    "inProduction": "Videos in production",
-    "notifyCta": "Notify me when ready",
-    "notifyHint": "One email when the first video is live. No payment.",
     "paperPrefix": "Built on the paper"
   },
   "courseCms": {
@@ -1940,6 +1937,7 @@
     "watched": "Watched",
     "progress": "{{done}} of {{total}} watched",
     "contents": "Course contents",
+    "comingSoon": "Coming soon",
     "infographic": "Infographic",
     "infographicAlt": "Infographic for {{title}}",
     "practices": "Practices",
