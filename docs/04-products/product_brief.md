@@ -89,3 +89,10 @@ Aka Value Ladder aka CJM
 **Публичный текст (экран Your AI и строка на /products):**
 
 > Your AI is free to start. We're as generous with AI credits as we can be. When you really start using it and hit the limit, larger credit packages are there, and each one also upgrades the power of the model.
+
+**Уровни Your AI (решение Саши, 2026-10-30):**
+
+- **Free forever:** профиль, первый шаг и обычный диалог в пределах дневного лимита, на дешёвой модели.
+- **Paid:** глубокие прочтения (deep readings) на сильной модели, через более крупные пакеты кредитов / подписку. Цена TBD; без checkout и без Stripe, пока цена не назначена.
+
+Реализация сейчас (только клиент): дневной лимит бесплатного диалога считается в localStorage / существующих данных пользователя, без миграций; deep readings показаны как закрытый шаг с текстом про кредиты («larger packages coming»), без оплаты.
