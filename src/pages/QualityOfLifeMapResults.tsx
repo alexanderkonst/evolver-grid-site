@@ -77,6 +77,8 @@ import { Map, Download, RefreshCw } from "lucide-react";
 // "See your refined matches →" CTA below the action row. Returns null
 // for build-path users.
 import MatchFlowCta from "@/components/landing/MatchFlowCta";
+import MetricHistory from "@/components/game/MetricHistory";
+import { usePlayerMetricHistory } from "@/hooks/usePlayerMetricHistory";
 import ModuleOutro from "@/components/game/ModuleOutro";
 import GuestSaveCard from "@/components/game/GuestSaveCard";
 import { getJourneyModule, qolResultText } from "@/data/journeyModules";
@@ -96,9 +98,10 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const returnTo = searchParams.get("return");
-  const { answers, reset, isComplete, isLoading, snapshotCreatedAt, history, isGuest } = useQolAssessment();
+  const { answers, reset, isComplete, isLoading, snapshotCreatedAt, isGuest } = useQolAssessment();
   const snapshotRef = useRef<HTMLDivElement | null>(null);
   const { toast } = useToast();
+  const metricHistory = usePlayerMetricHistory();
 
   const [profileId, setProfileId] = useState<string | null>(null);
   const [isSaved, setIsSaved] = useState(false);
@@ -811,6 +814,13 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
               / 10
             </span>
           </div>
+          {snapshotCreatedAt ? (
+            <p style={{ fontSize: "13px", color: "rgba(var(--ink-rgb), 0.7)" }}>
+              {t('qolResults.measuredOn', {
+                date: formatDate(snapshotCreatedAt, { year: "numeric", month: "long", day: "numeric" }),
+              })}
+            </p>
+          ) : null}
           <p
             style={{
               fontFamily: "'Source Serif 4', 'Cormorant Garamond', serif",
@@ -942,49 +952,14 @@ const QualityOfLifeMapResults: FC<QualityOfLifeMapResultsProps> = ({
         />
       </div>
 
-      {/* Issue #52 (Sasha 2026-10-15), item 11: earlier results as history.
-          The hero above shows the latest snapshot (newest by created_at); the
-          list below is every prior snapshot, newest first, with its own date
-          and overall score. Hidden when there's only one result. */}
-      {history.length > 1 && (
-        <div className="liquid-glass rounded-3xl p-6 sm:p-8">
-          <p style={heroEyebrowStyle} className="mb-5">
-            {t('qolResults.historyHeading')}
-          </p>
-          <div className="space-y-3">
-            {history.slice(1).map((entry) => (
-              <div
-                key={entry.id}
-                className="flex items-center justify-between py-2 border-b last:border-b-0"
-                style={{ borderColor: "var(--skin-hairline, rgba(26,30,58,0.08))" }}
-              >
-                <span
-                  style={{
-                    fontFamily: "'Source Serif 4', serif",
-                    fontSize: "15px",
-                    fontWeight: 500,
-                    color: "rgba(var(--ink-rgb), 0.88)",
-                    textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.85))",
-                  }}
-                >
-                  {formatDate(entry.createdAt, { year: "numeric", month: "short", day: "numeric" })}
-                </span>
-                <span
-                  style={{
-                    fontFamily: "'DM Sans', system-ui, sans-serif",
-                    fontWeight: 600,
-                    fontSize: "16px",
-                    color: "var(--accent-gold)",
-                    fontVariantNumeric: "tabular-nums",
-                  }}
-                >
-                  {entry.score.toFixed(1)} / 10
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      {/* Issue #257: one source for level history everywhere (#241). The same month-by-month
+          list as Home's Level card; it replaces the raw «Earlier results» list, which could
+          show a snapshot twice. Renders nothing for a guest or before the first measurement. */}
+      <MetricHistory
+        metric="level"
+        series={metricHistory.series.level}
+        className="liquid-glass rounded-3xl p-6 sm:p-8 space-y-3"
+      />
 
       {/* Funnel v2 (§4.4.4): match-path "See your refined matches →"
           CTA below the utility action row. Build-path users see only

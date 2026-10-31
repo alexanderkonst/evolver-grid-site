@@ -29,14 +29,14 @@ export default function MetricHistory({ metric, series, className }: MetricHisto
         <p className="cs-level__why">
           {change === 0
             ? t("playerMetrics.history.same")
-            : t(change > 0 ? "playerMetrics.history.up" : "playerMetrics.history.down", { change: Math.abs(change) })}
+            : t(change > 0 ? "playerMetrics.history.up" : "playerMetrics.history.down", { change: Math.abs(change).toFixed(1) })}
         </p>
       ) : null}
       <ul className="cs-history" aria-label={t("playerMetrics.history.title")}>
         {series.map((p) => (
           <li key={p.month}>
             <span>{monthName(p.month)}</span>{" "}
-            <span>{t("playerMetrics.history.value", { value: p.value, max: def.max })}</span>
+            <span>{t("playerMetrics.history.value", { value: p.value.toFixed(1), max: def.max })}</span>
           </li>
         ))}
       </ul>

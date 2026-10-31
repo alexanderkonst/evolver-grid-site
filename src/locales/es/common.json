@@ -5205,6 +5205,7 @@
     "retakeCta": "Rehacer",
     "downloadPdfCta": "Descargar PDF",
     "historyHeading": "Resultados anteriores",
+    "measuredOn": "Medido el {{date}}",
     "toastSaveFailedTitle": "No se pudieron guardar tus resultados",
     "toastSaveFailedDesc": "Tus respuestas siguen en esta página. Inténtalo de nuevo o recarga.",
     "toastPdfDownloadedTitle": "PDF descargado",
