@@ -9520,3 +9520,27 @@ The taxonomy stops being a map and becomes a convening instrument. Once every ni
 - *Technology 177: Market Maps as an X-ray of the Inner Turn* (the map that finds them).
 - `docs/02-strategy/evolutionary_avantgarde_taxonomy.md` (shades and doors), `docs/ai/taxonomy_v0_2026-10.md` (the taxonomy).
 
+---
+
+## Technology 181: Holomethodology of Phase Shifts (Holostrategy) (холостратегия) (oral, Oct 30, 2026)
+
+> *Oral · October 30, 2026, 18:01 CST · voice message to Hark, after the "invisible players" scan: 14 of 20 leaders found on Substack in about 10 minutes. Full template: `docs/templates/meta-template.md` § "Holostrategy — meta-template (v0, 2026-10-30)". Builds on Technology 78 (The Planetary Holomap) and Technology 169 (The Template of Templates).*
+
+### 🫀 Essence — the law
+
+A **phase shift** is not just change or transformation: it is change with a concrete result that moves the system into its next phase. Seven phases, then an octave shift: the whole system becomes one module of a larger register. Three layers make one move: **holomap** (understanding the system: modules, stages, dependencies, likely future) → **holostrategy** (how *this* system makes its next shift: which module, which technology, roughly when, which result proves it) → **technology** (the library entry that does the move). Evolver = a system for moving systems to their next evolutionary levels.
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice:* The scan showed that finding people is cheap (minutes) and relationships are the constraint. So the planetary avant-garde's bottleneck is not visibility but isolation: gifts not yet grounded in relationships that pay. The holostrategy names that one bottleneck, the next-phase signal (recurring professional relationships between them), and the primitives that carry the shift: L1 one person, L2 two, L3 the network. The same template runs for a person, a venture, a village, a planet.
+
+### 🔥 Implications — AI draft
+
+- **1st order.** Every strategy doc can be written in one form: boundary → holomap → bottleneck → next phase → technology → primitives → paths → horizons → trace → octave (mechanics 0–9 in the meta-template).
+- **2nd order.** The library becomes a methodology: each technology is a candidate move from phase n to n+1 for some module.
+- **3rd order.** Reach scales by template, not by hand: channels where people already write (Substack, X, email) and the Evolver public feed.
+
+### Cross-references — Connects to
+
+- `docs/templates/meta-template.md` § Holostrategy: principles, mechanics 0–9, the planetary particular case.
+- *Technology 78: The Planetary Holomap*; *Technology 169: The Template of Templates*; *Technology 180: Gather the Leaders of the New Economy into Guilds*.

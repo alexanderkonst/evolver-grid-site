@@ -106,3 +106,58 @@ The L1 list is provisional; the corpus inventory (README, «Corpus inventory by 
 - [ ] T10 Make the self-extension protocol runnable: an agent specialty that adds and evolves templates by §7.
 - [ ] T11 Review rhythm: revisit this Meta-Template after each wave of template work, improving the structure itself.
 - [ ] T12 «Shift carried» on every template (Sasha approved 2026-10-27). Line made required, principle added (§2b, §6). Pilot (2026-10-27): session-script ↔ PST 125, unique-business-canvas ↔ PST 158, course-from-source ↔ PST 57, written in plain words. Other templates keep their earlier technology, relabelled «Shift carried»; rewrite each in the same plain before / after / check form when next touched.
+
+## Holostrategy — meta-template (v0, 2026-10-30)
+*Transmission from Sasha, 2026-10-30 (voice, recorded close to his words), after the "invisible players" scan. Library entry: Phase Shift Technology Library, Technology 181 ([`docs/01-vision/phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md)). Holomap background in the same library: §2 Navigating Systems as Living Wholes (Holomaps), §25 Navigation, Not Dashboard (Morphogenetic Holomap), Technology 78 The Planetary Holomap. Holonic levels of this file: §5.*
+
+### Three layers, one move
+- **Holomap**: understanding of a system: its modules, the stage of each, dependencies on past states, and its likely evolutionary future (presentology / futurology: no math modelling, no exact dates, rough horizons to refine).
+- **Holostrategy**: how *this particular* system makes its next phase shift: which module, which shift, by which technology, roughly by when, and which concrete result proves the new phase.
+- **Holomethodology of phase shifts**: the library of technologies that move any system from phase n to n+1 (lives in [`phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md)). A phase shift is not just change or transformation: it is change with a concrete result that puts the system into its next phase. Seven phases, then an octave shift: the whole system becomes one module of a larger register.
+- **Evolver** = a system for moving systems to their next evolutionary levels.
+
+### Principles
+1. **Holonic.** One template for a person, a product, a venture, a village, a planet. The planetary case is a "particular case" on a galactic scale.
+2. **Result defines the phase, not activity.** Each phase has a visible, checkable sign that it has arrived.
+3. **Lower stages solid.** A module can't skip stages; the system's phase is held back by its weakest load-bearing module.
+4. **One bottleneck at a time.** The strategy names the single module whose shift unlocks the rest.
+5. **Trace beats fantasy.** Every step leaves a record; the next step is built on what happened.
+6. **Rough horizons.** Time ranges, refined as facts arrive.
+7. **Primitives in levels.** The shift is carried by small repeatable acts, composed L1 → L2 → L3.
+
+### Mechanics (the template)
+0. **Boundary.** Name the system: what it's made of, what it's a part of.
+1. **Holomap.** Modules × stages; current stage of each; dependency chains from the past.
+2. **Edge and bottleneck.** Leading module, lagging module, and the one that holds the phase back.
+3. **Next phase.** What the system looks like one phase up, and the signal that says it's there.
+4. **Technology.** Which phase-shift technology from the library does the move.
+5. **Primitives.** L1: the act of one person. L2: the relationship between two. L3: the group / network / system.
+6. **Paths.** For each type of participant: the sequence of steps from first contact to co-creation.
+7. **Horizons.** Rough time ranges per step.
+8. **Trace and review.** Record what happened, re-read the holomap, update the strategy.
+9. **Octave.** After phase 7 the system becomes a module of the next register; the template restarts there.
+
+### The particular case: planetary avant-garde
+*Taxonomy of the currents: [`docs/02-strategy/evolutionary_avantgarde_taxonomy.md`](../02-strategy/evolutionary_avantgarde_taxonomy.md).*
+- **System:** people with a gift the world doesn't yet receive, across eight currents.
+- **Bottleneck:** they're isolated and their gift isn't grounded in relationships that pay.
+- **Next-phase signal:** recurring professional relationships between them (deals, partnerships, referrals), not just inspiration.
+- **L1 primitive:** gift → first step → trace → your AI reads the trace.
+- **L2 primitive:** precise reading → conversation → first joint experiment → professional relationship.
+- **L3 primitive:** clan by current → village → guild / studio → economy of uniqueness.
+
+#### Paths by type (funnel)
+| Type | Where they are | Door | Next steps |
+|---|---|---|---|
+| Not yet awake | sense something, no words for it | course, quiz, game | name the gift → first step |
+| Awake, not grounded | know the gift, no market | Nov 4 session, Mastermind, 1:1 | FMF → first offer → first payment |
+| Leader with a project | already building, alone | reading-first contact (Sasha writes) | conversation → joint experiment → partner / guild |
+
+Every path: seen → read → conversation → first joint step → recurring relationship → co-creation. Goal: unlimited professional relationships for Sasha, by template, not by hand.
+
+#### Scaling note
+Finding people is cheap (minutes). Contacting at scale is the constraint. LinkedIn premium tiers mostly add search and InMail, not more invitations, and several LinkedIn accounts break LinkedIn's terms. Reach should widen through channels where they already write (Substack, X, email) and through the Evolver public feed.
+
+### Open
+- Where primitives L1–L3 get their full spec (product side).
+- Which phase-shift technologies map to which path step.

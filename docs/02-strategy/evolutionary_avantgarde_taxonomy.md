@@ -272,6 +272,8 @@ San Pancho is Village #1 of the same primitive in the physical world (§16). The
 
 **One lived experience, eight languages (2026-10-30, Sasha).** The eight currents are eight languages for one lived experience: a person senses a gift that is only theirs, and the world does not yet receive it. Each current names the gift, the obstacle and the way through in its own words (awakening, impact, building, regeneration, community, story, a fair economy). Our offers must be written in that shared experience first, then translated into each current's language.
 
+**The primitive in levels (2026-10-30).** L1 (one person), L2 (two), L3 (the network) primitives of the planetary avant-garde, with paths by type: `docs/templates/meta-template.md` § "Holostrategy — meta-template (v0, 2026-10-30)".
+
 ### Native doors: where each flavor enters
 
 Every flavor walks the same Journey, but each has a door it recognizes first. *Thesis, to be tested with real people from each flavor.* 36 flavors as of v3 (2026-10-27 evening); v3 rows are at the end of the table.
