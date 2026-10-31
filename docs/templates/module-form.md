@@ -85,6 +85,19 @@ When a module is built or rebuilt, run the four playbooks with a **roast gate af
 - Koster table for J1–J12 to be filled when WP-5 lands (WP-20).
 - *Dated, superseded:* the universal module landing page (hero, for whom, pain, solution, outcomes, structure, origin, CTA; `docs/05-reference/module_landing_page_infrastructure.md`, 2026-02) was the door to a module before the village; the Intro now carries that job inside the game. Its customer-forces block (push, pull, anxiety, habit) stays useful for Market stalls and public pages.
 
+## 11. Micro-template: the Share card (2026-10-30)
+*Shift carried:* Craft → recognition. Before: the player's gift lives only in their own screens. After: someone who knows them answers whether they see it too. Check: a reflection lands (who, which answer, their line). Applied first: the stall card, [`game_of_being_you.md` §14.12a](../02-strategy/game_of_being_you.md).
+
+Any artifact a player sends out of the game uses this one form:
+1. **Who:** name (+ photo if they have one).
+2. **One line, their words:** the most personal sentence they wrote themselves (uniqueness phrase → tagline → Top Talent). With none, the card is not offered; it names the step that gives the line.
+3. **One question** that asks for recognition, not praise: «Do you see me this way too?» / «¿Tú también me ves así?» / «Ты тоже видишь меня так?».
+4. **One way back:** their own link as text + QR (with `utm_source`/`utm_medium`), never the homepage.
+5. **One answer, three choices + one optional line** for the visitor (yes / partly / differently), named, not anonymous; then one door into the visitor's own game.
+6. **One trace back** to the player: a quest, not a counter. Visible to the player only.
+
+Never on the card: level, scores, counts, metrics, prices. One builder function and one component carry the copy and the link, so no surface writes its own share text. Minimal: the same tokens as the Journey harmony pass, works in every skin, phone 390 first.
+
 ---
 
 ## Genealogy
