@@ -30,6 +30,7 @@ import SEO from "@/components/SEO";
 // removed (called trackFunnelEvent for the divine_timing event).
 import { useState, useEffect, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
+import { marketDoor } from "@/data/marketDoorCopy";
 import geniusLogo from "@/assets/ignite-logo.png";
 import { supabase } from "@/integrations/supabase/client";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
@@ -245,7 +246,8 @@ const IgniteCta = ({
      reveal page, not here. */
 
 const IgniteSession = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.resolvedLanguage;
   const location = useLocation();
   // `inShell` flag retired Day 47 late pass — GameShellV2 is now the
   // wrapper regardless of URL. `location` still used for hash scrolling below.
@@ -357,7 +359,7 @@ const IgniteSession = () => {
             className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.28em] bg-clip-text text-transparent"
             style={GOLD_TEXT_STYLE}
           >
-            {t('ignite.shelfLine')}
+            {marketDoor('igniteEyebrow', lang)}
           </p>
 
           <h1
@@ -373,7 +375,7 @@ const IgniteSession = () => {
                 "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.7), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.45), 0 1px 0 rgba(11,42,90,0.25))",
             }}
           >
-            {t('ignite.heroTitle')}
+            {marketDoor('headline', lang)}
           </h1>
 
           <p
@@ -383,7 +385,7 @@ const IgniteSession = () => {
               color: "var(--text-secondary)",
             }}
           >
-            {t('ignite.heroSub')}
+            {marketDoor('igniteSub', lang)}
           </p>
 
           <Ornament className="my-1" />
@@ -745,7 +747,7 @@ const IgniteSession = () => {
         title={IGNITE_TAB_TITLE}
         description="Private Founder-Market Fit Session: a 2-hour 1:1 working session with Aleksandr ($555). Name your top talent in one exact sentence, position your next chapter around it, and leave with a clear next step."
         path="/ignite"
-        ogTitle="Position your next chapter around your top talent in 2 hours."
+        ogTitle="The first time a stranger pays for your gift."
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Service",

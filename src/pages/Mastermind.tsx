@@ -30,10 +30,13 @@ const MASTERMIND_PRICE = "$222";
 const MASTERMIND_CTA_URL = "https://buy.stripe.com/14AcN5aIAbCr8idh1CdEs0I";
 
 const MASTERMIND_COPY = {
-  eyebrow: "Group Mastermind · Nov 9–10",
-  title: "Founder-Market Fit Discovery Mastermind",
+  eyebrow: "Founder-Market Fit Discovery Mastermind · Nov 9–10",
+  // Market door (2026-10-30): headline = the shared experience; the method name moved to the eyebrow.
+  title: "The first time a stranger pays for your gift.",
+  /** The product/method name, for the event schema and anywhere a name (not a promise) is needed. */
+  productName: "Founder-Market Fit Discovery Mastermind",
   promise:
-    "In two live sessions you find where your uniqueness meets the market and leave with a clear offer for your first clients.",
+    "Two live sessions in a small group. You find where your gift meets the people who need it, and leave with a clear offer for your first clients.",
   formatLabel: "Format",
   format: [
     "Small group, 2 sessions, $222",
@@ -42,7 +45,7 @@ const MASTERMIND_COPY = {
     "Recording of both sessions included.",
   ],
   forLabel: "Who it's for",
-  forWho: "Founders and solo experts who have a gift but no sharp offer.",
+  forWho: "Healers, coaches, builders, hosts and storytellers who carry a gift and have no sharp offer yet. Founders too.",
   flowLabel: "How it flows",
   flow: [
     { name: "Uniqueness", text: "Articulate the layers." },
@@ -107,7 +110,7 @@ const Mastermind = () => {
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Event",
-          name: c.title,
+          name: c.productName,
           description: c.promise,
           startDate: "2026-11-09",
           endDate: "2026-11-10",

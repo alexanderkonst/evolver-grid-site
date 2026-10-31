@@ -1,5 +1,6 @@
 /** /products — public offer catalogue, using Ignite's editorial design grammar. */
 import { useTranslation } from "react-i18next";
+import { marketDoor } from "@/data/marketDoorCopy";
 import { ChevronDown } from "lucide-react";
 import SEO from "@/components/SEO";
 import { ProductCta, ProductEyebrow, ProductHero, ProductLanding } from "@/components/products/ProductLanding";
@@ -53,8 +54,13 @@ const RD_CARDS: ProductCardDef[] = [
 ];
 
 const ProductCard = ({ def, muted = false }: { def: ProductCardDef; muted?: boolean }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const name = t(`products.${def.key}.name`);
+  // Market door (2026-10-30): the promise is the shared experience; the method keeps its name.
+  const line =
+    def.key === "fmf" ? marketDoor("productsFmfLine", i18n.resolvedLanguage)
+    : def.key === "pmf" ? marketDoor("productsPmfLine", i18n.resolvedLanguage)
+    : t(`products.${def.key}.line`);
 
   return (
     <article
@@ -64,7 +70,7 @@ const ProductCard = ({ def, muted = false }: { def: ProductCardDef; muted?: bool
       <div className="space-y-3">
         <ProductEyebrow>{t(`products.${def.key}.badge`)}</ProductEyebrow>
         <h2 id={`${def.key}-title`} className="product-title text-2xl sm:text-3xl">{name}</h2>
-        <p className="product-body text-base italic">{t(`products.${def.key}.line`)}</p>
+        <p className="product-body text-base italic">{line}</p>
       </div>
       <p className="product-body text-base">{t(`products.${def.key}.body`)}</p>
       {def.links.length > 0 && (
