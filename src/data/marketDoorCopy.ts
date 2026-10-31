@@ -17,12 +17,12 @@ export const MARKET_DOOR = {
     ru: "Первый раз, когда незнакомый человек платит за твой дар.",
   },
   igniteEyebrow: {
-    en: "Founder-Market Fit Session · 1:1 · 2 hours",
+    en: "Founder-Market Fit Session · 1:1 · 2\u00a0hours",
     es: "Sesión Founder-Market Fit · 1:1 · 2 horas",
     ru: "Сессия Founder-Market Fit · 1:1 · 2 часа",
   },
   igniteSub: {
-    en: "Your work isn't landing yet. Your impact isn't paid for yet. What you build best has no users yet. In 2 hours we write the one sentence your business runs on: who it's for, what it does, why you.",
+    en: "Your work isn't landing yet. Your impact isn't paid for yet. What you build best has no users yet. In 2\u00a0hours we write the one sentence your business runs on: who it's for, what it does, why you.",
     es: "Tu trabajo aún no aterriza en el mundo. Tu impacto aún no se paga. Lo mejor que construyes aún no tiene usuarios. En 2 horas escribimos la frase sobre la que corre tu negocio: para quién es, qué hace, por qué tú.",
     ru: "Твоя работа пока не доходит до мира. Твой вклад пока никто не оплачивает. У лучшего, что ты строишь, пока нет пользователей. За 2 часа мы пишем одну фразу, на которой держится твой бизнес: для кого он, что он делает, почему именно ты.",
   },
@@ -32,7 +32,7 @@ export const MARKET_DOOR = {
     ru: "Первый раз, когда незнакомый человек платит за твой дар. За 2 часа — фраза, которая к этому ведёт.",
   },
   productsPmfLine: {
-    en: "From your gift to strangers who pay for it, again and again: a scalable product in a month.",
+    en: "From your gift to strangers who pay for it, again and again: a scalable product in a\u00a0month.",
     es: "De tu don a desconocidos que pagan por él, una y otra vez: un producto escalable en un mes.",
     ru: "От твоего дара к незнакомым людям, которые платят за него снова и снова: масштабируемый продукт за месяц.",
   },
