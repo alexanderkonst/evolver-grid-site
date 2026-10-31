@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Copy, ExternalLink, Share2, Edit, Check, PartyPopper, Sparkles, Star } from "lucide-react";
 import { useProductBuilder } from "../ProductBuilderContext";
@@ -14,6 +15,7 @@ const PublishedScreen: React.FC = () => {
     const navigate = useNavigate();
     const { state, setPublished, setCurrentStep } = useProductBuilder();
     const { toast } = useToast();
+    const { t } = useTranslation();
     const [isPublishing, setIsPublishing] = useState(false);
     const [copied, setCopied] = useState(false);
     const productUrl = state.productUrl || `https://geniusbusiness.app/p/your-genius-product`;
@@ -102,8 +104,8 @@ const PublishedScreen: React.FC = () => {
             await navigator.clipboard.writeText(state.productUrl || productUrl);
             setCopied(true);
             toast({
-                title: "Link copied!",
-                description: "Share it with the world.",
+                title: t("shareCard.published.linkCopied"),
+                description: t("shareCard.published.linkCopiedBody"),
             });
             setTimeout(() => setCopied(false), 2000);
         } catch (err) {
@@ -126,8 +128,8 @@ const PublishedScreen: React.FC = () => {
         if (navigator.share) {
             try {
                 await navigator.share({
-                    title: "Check out my Genius Business",
-                    text: "I just created my Genius Business landing page!",
+                    title: t("shareCard.published.title"),
+                    text: t("shareCard.published.text"),
                     url: state.productUrl || productUrl,
                 });
             } catch (err) {

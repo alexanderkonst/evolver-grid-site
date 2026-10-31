@@ -40,6 +40,8 @@ interface CardActionsProps {
     captureWidth?: number;
     /** Save image only: the caller owns Share and Copy (the Share card has its own, via the one builder). */
     saveOnly?: boolean;
+    /** The player's own link (from the one builder); the Telegram target uses it. Default: the site URL. */
+    shareUrl?: string;
 }
 
 /**
@@ -65,6 +67,7 @@ const CardActions = ({
     darkMode = false,
     captureWidth,
     saveOnly = false,
+    shareUrl,
 }: CardActionsProps) => {
     const { t } = useTranslation();
     const { toast } = useToast();
@@ -333,7 +336,7 @@ const CardActions = ({
     };
 
     const encodedText = useMemo(() => encodeURIComponent(shareText), [shareText]);
-    const siteUrl = encodeURIComponent("https://findyourtoptalent.com");
+    const siteUrl = encodeURIComponent(shareUrl || "https://findyourtoptalent.com");
 
     const shareLinks = useMemo(
         () => [
