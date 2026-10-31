@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { MapPin, Target } from "lucide-react";
+import ShareCard from "@/components/game/ShareCard";
+import { pickGift } from "@/lib/shareCard";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -20,6 +23,9 @@ interface PublicProfileData {
   show_mission: boolean | null;
   show_offer: boolean | null;
   last_zog_snapshot_id: string | null;
+  // The player's own gift sentence (uniqueness phrase, else tagline). The RPC does not
+  // return it until docs/specs/share-card/share_card.proposed.sql is applied; absent = null.
+  gift_line?: string | null;
 }
 
 // Day 126 (Sasha 2026-07-16): profile AUDIENCE gate — WHO can see the
@@ -33,9 +39,9 @@ interface PublicProfileData {
 // `as any` casts rather than hand-editing the generated file.
 type ProfileAudienceValue = "friends" | "communities" | "public";
 
-const PRIVATE_AUDIENCE_COPY: Record<Exclude<ProfileAudienceValue, "public">, string> = {
-  friends: "This profile is visible to connections only.",
-  communities: "This profile is visible to selected communities only.",
+const PRIVATE_AUDIENCE_COPY_KEY: Record<Exclude<ProfileAudienceValue, "public">, string> = {
+  friends: "publicProfile.audienceFriends",
+  communities: "publicProfile.audienceCommunities",
 };
 
 interface MissionRow {
@@ -53,6 +59,7 @@ const resolveVisibility = (value: string | null) => {
 const PublicProfile = () => {
   const { userId, username } = useParams();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState<PublicProfileData | null>(null);
   const [mission, setMission] = useState<MissionRow | null>(null);
@@ -228,7 +235,11 @@ const PublicProfile = () => {
         .maybeSingle();
 
       if (isMounted) {
-        setProfile({ ...profileData, last_zog_snapshot_id: profileData.last_zog_snapshot_id ?? null } as PublicProfileData);
+        setProfile({
+          ...profileData,
+          last_zog_snapshot_id: profileData.last_zog_snapshot_id ?? null,
+          gift_line: typeof profileData.gift_line === "string" ? profileData.gift_line : null,
+        } as PublicProfileData);
         setMission(missionData ? (missionData as MissionRow) : null);
         setAppleseed(zogData?.appleseed_data ? (zogData.appleseed_data as unknown as AppleseedData) : null);
         setExcalibur(zogData?.excalibur_data ? (zogData.excalibur_data as unknown as ExcaliburData) : null);
@@ -244,13 +255,32 @@ const PublicProfile = () => {
     };
   }, [userId, username]);
 
+  const fullName = useMemo(() => {
+    const parts = [profile?.first_name, profile?.last_name].filter(Boolean);
+    return parts.length > 0 ? parts.join(" ") : t("publicProfile.communityMember");
+  }, [profile?.first_name, profile?.last_name, t]);
+
+  const archetypeTitle = appleseed?.threeLenses?.archetype || appleseed?.vibrationalKey?.name;
+
+  // Visitor gift line: the player's own sentence if the RPC returns it, else the archetype
+  // name, else the Top Talent. Never level, never generated filler.
+  const gift = useMemo(
+    () =>
+      pickGift({
+        uniquenessPhrase: profile?.gift_line,
+        tagline: null,
+        topTalent: archetypeTitle || topTalents[0],
+      }),
+    [profile?.gift_line, archetypeTitle, topTalents],
+  );
+
   useEffect(() => {
     if (!profile || loading) return;
-    const title = `${fullName} | Planetary OS`;
+    const title = `${fullName} | Find Your Top Talent`;
     const description =
-      appleseed?.vibrationalKey?.name ||
+      gift?.gift ||
       mission?.mission_title ||
-      "Discover your Zone of Genius.";
+      t("publicProfile.metaDescription");
     const image = profile.avatar_url || "";
 
     document.title = title;
@@ -270,12 +300,7 @@ const PublicProfile = () => {
     if (image) {
       setMeta("og:image", image, "property");
     }
-  }, [appleseed?.vibrationalKey?.tagline, loading, mission?.mission_title, profile]);
-
-  const fullName = useMemo(() => {
-    const parts = [profile?.first_name, profile?.last_name].filter(Boolean);
-    return parts.length > 0 ? parts.join(" ") : "Community Member";
-  }, [profile?.first_name, profile?.last_name]);
+  }, [fullName, gift?.gift, loading, mission?.mission_title, profile, t]);
 
   const visibility = resolveVisibility(profile?.visibility ?? null);
 
@@ -297,19 +322,19 @@ const PublicProfile = () => {
     // screen, with copy specific to the deny reason. `audienceDenyReason`
     // is null for the pre-existing hidden/missing-profile cases, which keep
     // their original generic copy.
-    const audienceCopy = audienceDenyReason ? PRIVATE_AUDIENCE_COPY[audienceDenyReason] : null;
+    const audienceCopy = audienceDenyReason ? t(PRIVATE_AUDIENCE_COPY_KEY[audienceDenyReason]) : null;
     return (
       <div className="min-h-dvh flex items-center justify-center px-4">
         <div className="max-w-md text-center space-y-4">
           {/* Day 91 (Sasha 2026-06-09): navy text tokenized for Aurum —
               hardcoded #2c3150 was invisible on the near-black skins. */}
-          <h1 className="text-2xl font-semibold" style={{ color: "var(--skin-text-primary, #2c3150)" }}>Profile Private</h1>
+          <h1 className="text-2xl font-semibold" style={{ color: "var(--skin-text-primary, #2c3150)" }}>{t("publicProfile.privateTitle")}</h1>
           <p className="text-sm" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.6))" }}>
-            {audienceCopy || "This profile is not available right now."}
+            {audienceCopy || t("publicProfile.unavailable")}
           </p>
           {audienceDenyReason && !isViewerLoggedIn && (
             <Button onClick={() => navigate(`/auth?redirect=${encodeURIComponent(window.location.pathname)}`)}>
-              Sign in
+              {t("publicProfile.signIn")}
             </Button>
           )}
           <BackButton />
@@ -321,7 +346,6 @@ const PublicProfile = () => {
   const canShowLocation = visibility !== "minimal" && (profile.show_location ?? true) && profile.location;
   const canShowMission = visibility !== "minimal" && (profile.show_mission ?? true) && mission;
   const canShowOffer = visibility === "full" && (profile.show_offer ?? true) && excalibur;
-  const archetypeTitle = appleseed?.threeLenses?.archetype || appleseed?.vibrationalKey?.name;
   const coreVibration = excalibur?.essenceAnchor?.geniusAppleSeed || null;
 
   return (
@@ -345,32 +369,24 @@ const PublicProfile = () => {
       </div>
       <div className="max-w-4xl mx-auto px-4 pb-12">
         <div className="rounded-3xl bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur p-6 sm:p-10 shadow-lg border border-[var(--skin-hairline,rgba(255,255,255,0.6))]">
-          <div className="flex flex-col items-center text-center">
-            <div className="w-28 h-28 rounded-full overflow-hidden bg-[var(--skin-input-fill,#f0f4ff)] flex items-center justify-center">
-              {profile.avatar_url ? (
-                <img
-                  src={profile.avatar_url}
-                  alt={fullName}
-                  loading="lazy"
-                  onError={(e) => {
-                    e.currentTarget.src = "/placeholder.svg";
-                  }}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <span className="text-2xl font-semibold" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.6))" }}>
-                  {fullName
-                    .split(" ")
-                    .map((part) => part[0])
-                    .join("")
-                    .slice(0, 2)
-                    .toUpperCase()}
-                </span>
-              )}
-            </div>
-            <h1 className="text-3xl sm:text-4xl font-display font-semibold mt-5">{fullName}</h1>
-            {archetypeTitle && (
-              <p className="mt-3 text-lg font-medium" style={{ color: "var(--skin-text-primary, #2c3150)" }}>✦ {archetypeTitle} ✦</p>
+          {/* Share card slice 1: the page leads with the same card the player sends
+              (name, photo, gift line, the question). Never level. The one door below
+              is the visitor's own start. Answer buttons are slice 2. */}
+          <ShareCard
+            variant="visitor"
+            name={fullName}
+            avatarUrl={profile.avatar_url}
+            gift={gift?.gift ?? null}
+          />
+          <div className="mt-5 flex justify-center">
+            <Button asChild variant="outline">
+              <Link to="/zone-of-genius">{t("publicProfile.door")}</Link>
+            </Button>
+          </div>
+
+          <div className="mt-8 flex flex-col items-center text-center">
+            {archetypeTitle && gift?.giftSource !== "topTalent" && (
+              <p className="text-lg font-medium" style={{ color: "var(--skin-text-primary, #2c3150)" }}>✦ {archetypeTitle} ✦</p>
             )}
             {appleseed?.vibrationalKey?.tagline && (
               <p className="mt-2 text-sm italic max-w-xl" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.6))" }}>
@@ -379,7 +395,7 @@ const PublicProfile = () => {
             )}
             {coreVibration && (
               <p className="mt-3 text-sm font-medium" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.7))" }}>
-                Core Vibration: <span style={{ color: "var(--skin-text-primary, #2c3150)" }}>{coreVibration}</span>
+                {t("publicProfile.coreVibration")}: <span style={{ color: "var(--skin-text-primary, #2c3150)" }}>{coreVibration}</span>
               </p>
             )}
             <div className="mt-4 space-y-2 text-sm" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.6))" }}>
@@ -413,22 +429,22 @@ const PublicProfile = () => {
 
           {mission?.intro_text && (
             <div className="mt-8 rounded-2xl border border-[var(--skin-hairline,rgba(164,163,208,0.2))] bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-5 text-center shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-              <p className="text-sm uppercase tracking-wide" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.6))" }}>Bio</p>
+              <p className="text-sm uppercase tracking-wide" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.6))" }}>{t("publicProfile.bio")}</p>
               <p className="mt-2" style={{ color: "var(--skin-text-primary, #2c3150)" }}>{mission.intro_text}</p>
             </div>
           )}
 
           {canShowOffer && excalibur && (
             <div className="mt-8 rounded-2xl border border-[var(--skin-hairline,rgba(164,163,208,0.2))] bg-[var(--skin-card-fill,rgba(240,244,255,0.5))] p-5 shadow-[0_4px_16px_rgba(44,49,80,0.06)]">
-              <p className="text-xs font-medium mb-1" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.6))" }}>Unique Offer</p>
-              <h2 className="text-lg font-semibold" style={{ color: "var(--skin-text-primary, #2c3150)" }}>{excalibur.offer?.statement || excalibur.businessIdentity?.tagline || "Genius Offer"}</h2>
+              <p className="text-xs font-medium mb-1" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.6))" }}>{t("publicProfile.uniqueOffer")}</p>
+              <h2 className="text-lg font-semibold" style={{ color: "var(--skin-text-primary, #2c3150)" }}>{excalibur.offer?.statement || excalibur.businessIdentity?.tagline || t("publicProfile.geniusOffer")}</h2>
               <p className="text-sm mt-2" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.7))" }}>{excalibur.offer?.deliverable || ""}</p>
               <p className="text-sm mt-2" style={{ color: "var(--skin-text-muted, rgba(44,49,80,0.7))" }}>{excalibur.offer?.form || ""}</p>
             </div>
           )}
 
           <div className="mt-8 flex justify-center">
-            <Button onClick={() => navigate("/connections")}>Connect</Button>
+            <Button onClick={() => navigate("/connections")}>{t("publicProfile.connect")}</Button>
           </div>
         </div>
       </div>

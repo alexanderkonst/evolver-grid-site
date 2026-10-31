@@ -38,6 +38,8 @@ interface CardActionsProps {
      * the consistency win.
      */
     captureWidth?: number;
+    /** Save image only: the caller owns Share and Copy (the Share card has its own, via the one builder). */
+    saveOnly?: boolean;
 }
 
 /**
@@ -62,6 +64,7 @@ const CardActions = ({
     shareText,
     darkMode = false,
     captureWidth,
+    saveOnly = false,
 }: CardActionsProps) => {
     const { t } = useTranslation();
     const { toast } = useToast();
@@ -375,10 +378,10 @@ const CardActions = ({
             </button>
 
             {/* divider dot */}
-            <span aria-hidden="true" className={`text-xs ${idle}`}>·</span>
+            {!saveOnly && <span aria-hidden="true" className={`text-xs ${idle}`}>·</span>}
 
             {/* Share Text */}
-            <button
+            {!saveOnly && <button
                 ref={shareBtnRef}
                 type="button"
                 onClick={() => setShareOpen((o) => !o)}
@@ -391,7 +394,7 @@ const CardActions = ({
             >
                 <Share2 className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>{t("cardActions.share.label")}</span>
-            </button>
+            </button>}
 
             {/* Share popover — portaled to <body> so the card's
                 overflow:hidden + rounded-3xl can't clip it. */}

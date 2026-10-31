@@ -8912,5 +8912,30 @@
       "title": "Measure your month",
       "doneWhen": "this month's level shows on your Home."
     }
+  },
+  "shareCard": {
+    "question": "Do you see me this way too?",
+    "shareStall": "Share your stall",
+    "pickLinkName": "Pick your link name",
+    "needsGift": "Your uniqueness phrase in the Workshop gives your card its line",
+    "share": "Share",
+    "copyLink": "Copy link",
+    "copied": "Copied",
+    "copyFailed": "Could not copy"
+  },
+  "publicProfile": {
+    "privateTitle": "Profile Private",
+    "unavailable": "This profile is not available right now.",
+    "audienceFriends": "This profile is visible to connections only.",
+    "audienceCommunities": "This profile is visible to selected communities only.",
+    "signIn": "Sign in",
+    "communityMember": "Community Member",
+    "coreVibration": "Core Vibration",
+    "uniqueOffer": "Unique Offer",
+    "geniusOffer": "Genius Offer",
+    "bio": "Bio",
+    "connect": "Connect",
+    "door": "Want to see your own gift?",
+    "metaDescription": "Discover your Zone of Genius."
   }
 }
