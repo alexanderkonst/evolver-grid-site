@@ -7368,6 +7368,8 @@
   },
   "profileOverview": {
     "loading": "Loading profile...",
+    "loadFailed": "Could not load your profile.",
+    "retry": "Try again",
     "greeting": "Hello, {{name}}!",
     "titleFallback": "Your Profile",
     "subtitle": "Know yourself. Build your character.",

@@ -11,6 +11,7 @@ import {
 import { computeQolLevel, type QolLevel } from "@/lib/qolLevel";
 import { fetchTopTalentSnapshot } from "@/lib/topTalentSnapshot";
 import { slicePhrase } from "@/modules/unique-business-builder/journeySlices";
+import { LOAD_TIMEOUT_MS, withTimeout } from "@/lib/withTimeout";
 
 /**
  * useCharacterSheet — read-only data layer for the Character Sheet
@@ -113,9 +114,12 @@ const writeLastSeen = (state: Record<string, boolean>) => {
 };
 
 async function loadSheet(): Promise<CharacterSheetData> {
+    // From the stored session: `auth.getUser()` is a network call that can stall and keep Home
+    // on «Loading profile...» for good (#263). RLS still checks the token on every read below.
     const {
-        data: { user },
-    } = await supabase.auth.getUser();
+        data: { session },
+    } = await supabase.auth.getSession();
+    const user = session?.user ?? null;
     if (!user) return EMPTY;
 
     // Read-only lookup; the sheet never creates a profile.
@@ -212,13 +216,14 @@ export function useCharacterSheet() {
     const [isLoading, setIsLoading] = useState(true);
     const [loadFailed, setLoadFailed] = useState(false);
     const [justCompleted, setJustCompleted] = useState<Set<JourneyItemId>>(new Set());
-    const { completion, isLoading: chainLoading, recheck } = useJourneyCompletion();
+    const { completion, isLoading: chainLoading, loadFailed: chainFailed, recheck } = useJourneyCompletion();
     // Completion state we have already shown; seeded from the cross-visit cache.
     const seen = useRef<Partial<Record<JourneyItemId, boolean>> | null>(null);
 
     const refresh = useCallback(async () => {
         try {
-            setData(await loadSheet());
+            // Bounded: a request that never settles ends as a failed load, not as endless loading.
+            setData(await withTimeout(loadSheet(), LOAD_TIMEOUT_MS, "character sheet"));
             setLoadFailed(false);
         } catch {
             // Silent fail, as ProfileOverview always did: an empty sheet is a valid sheet.
@@ -232,6 +237,13 @@ export function useCharacterSheet() {
     useEffect(() => {
         refresh();
     }, [refresh]);
+
+    // «Try again» after a failed or timed-out load: back to loading, re-read both halves.
+    const retry = useCallback(() => {
+        setIsLoading(true);
+        recheck();
+        refresh();
+    }, [recheck, refresh]);
 
     // The seam: a completed item re-evaluates the chain and re-reads the save.
     useEffect(() => {
@@ -276,5 +288,13 @@ export function useCharacterSheet() {
         };
     });
 
-    return { ...data, chain, isLoading: isLoading || chainLoading, loadFailed, refresh };
+    return {
+        ...data,
+        chain,
+        isLoading: isLoading || chainLoading,
+        // Either half unread: «empty» means «unread», not «nothing done».
+        loadFailed: loadFailed || chainFailed,
+        refresh,
+        retry,
+    };
 }

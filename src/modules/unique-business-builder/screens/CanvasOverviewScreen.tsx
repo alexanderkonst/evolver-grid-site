@@ -39,9 +39,10 @@ import { getStepForArtifact } from "@/data/playbookArtifactMap";
 // — appears in the Canvas Overview hero so the founder sees their tier
 // without needing to check Stripe or settings. Silent on default 'tasting'.
 import { EntitlementBadge } from "@/components/EntitlementBadge";
+import { InitFailedNotice } from "../components/InitFailedNotice";
 
 export default function CanvasOverviewScreen() {
-  const { artifacts, lockedCount, stalenessWarnings, isInitializing } = useUniqueBusiness();
+  const { artifacts, lockedCount, stalenessWarnings, isInitializing, initFailed } = useUniqueBusiness();
   const navigate = useNavigate();
 
   const firstUnlocked = ALL_ARTIFACT_KEYS.find((k) => !artifacts[k]?.latestLocked) as
@@ -63,6 +64,7 @@ export default function CanvasOverviewScreen() {
   if (isInitializing) {
     return <CanvasOverviewSkeleton />;
   }
+  if (initFailed) return <InitFailedNotice />;
 
   return (
     <div className="mx-auto max-w-5xl space-y-10">

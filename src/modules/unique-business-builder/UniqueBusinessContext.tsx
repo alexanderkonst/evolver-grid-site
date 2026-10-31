@@ -38,6 +38,7 @@ import { ALL_ARTIFACT_KEYS } from "./types";
 import { ARTIFACT_LABELS, ERROR_MESSAGES, nextVersionString } from "./constants";
 import { PARENTS, getDownstream } from "./dependencyTree";
 import { PROMPT_VERSION } from "./promptVersions";
+import { LOAD_TIMEOUT_MS, withTimeout } from "@/lib/withTimeout";
 import { inputVersionHash, type RootContextShape } from "./inputHash";
 import { friendlyArtifactError, insertWithOptionalColumns } from "./artifactInsert";
 
@@ -261,6 +262,11 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
   // have artifacts === {}. Flips to false in the finally-block of the
   // initial fetch effect.
   const [isInitializing, setIsInitializing] = useState(true);
+  // The initial fetch failed or took over LOAD_TIMEOUT_MS: screens show «Try again», not an
+  // empty canvas (which would read as «nothing made yet») and not endless skeletons (#263).
+  const [initFailed, setInitFailed] = useState(false);
+  const [initNonce, setInitNonce] = useState(0);
+  const retryInit = useCallback(() => setInitNonce((n) => n + 1), []);
 
   // Day 74 (Sasha 2026-05-22): Bulk Improve cascade state.
   //
@@ -306,11 +312,15 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
   // Load user + ZoG + artifacts on mount
   useEffect(() => {
     let cancelled = false;
+    setIsInitializing(true);
+    setInitFailed(false);
 
-    (async () => {
-      try {
-        const { data: userRes } = await supabase.auth.getUser();
-        const uid = userRes.user?.id ?? null;
+    const loadInitial = async () => {
+      {
+        // getSession() (local), NOT getUser() (network): getUser() can stall and leave the
+        // Workshop on grey skeletons for good (#263). RLS checks the token on every read.
+        const { data: sessionRes } = await supabase.auth.getSession();
+        const uid = sessionRes.session?.user?.id ?? null;
         if (cancelled) return;
         setUserId(uid);
         if (!uid) return;
@@ -409,12 +419,21 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
           .eq("user_id", uid)
           .in("artifact_key", ALL_ARTIFACT_KEYS as unknown as string[]);
         if (cancelled) return;
-        if (error) {
-          console.error("Failed to load artifacts:", error);
-          toast.error("Couldn't load your canvas — please refresh.");
-          return;
-        }
+        if (error) throw error;
         setArtifacts(buildArtifactStates((rows || []) as DbRow[]));
+      }
+    };
+
+    (async () => {
+      try {
+        // Bounded: a request that never settles ends as a failed load, not as skeletons
+        // for good (#263). Late results of the abandoned run are ignored via `cancelled`.
+        await withTimeout(loadInitial(), LOAD_TIMEOUT_MS, "canvas");
+      } catch (e) {
+        if (!cancelled) {
+          console.error("Failed to load artifacts:", e);
+          setInitFailed(true);
+        }
       } finally {
         // Day 53 night iter 3: flip isInitializing false whether the
         // fetch succeeded, errored, or returned no auth — surfaces stop
@@ -426,7 +445,7 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [initNonce]);
 
   // Realtime: when a new row arrives for this user, refresh that artifact's state.
   // Day 66 (Sasha 2026-05-16) — Wave B2: ALSO refetch on tab focus +
@@ -1359,6 +1378,8 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
     isImproving,
     isGenerating,
     isInitializing,
+    initFailed,
+    retryInit,
     bulkImprove,
     lockedCascadePrompt,
     lockedCount: derived.lockedCount,

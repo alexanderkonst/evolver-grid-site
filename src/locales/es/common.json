@@ -7326,6 +7326,8 @@
   },
   "profileOverview": {
     "loading": "Cargando perfil...",
+    "loadFailed": "No se pudo cargar tu perfil.",
+    "retry": "Intentar de nuevo",
     "greeting": "¡Hola, {{name}}!",
     "titleFallback": "Tu perfil",
     "subtitle": "Conócete. Desarrolla tu personaje.",
