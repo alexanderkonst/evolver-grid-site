@@ -387,6 +387,14 @@ const ProfileOverviewContent = () => {
                 <div className="cs-inner">
                     <p className="cs-mono" aria-live="polite">{t("profileOverview.loading")}</p>
                 </div>
+            ) : sheet.loadFailed ? (
+                // A failed or timed-out read: say so, never an endless loading line (#263).
+                <div className="cs-inner">
+                    <p className="cs-mono" role="alert">{t("profileOverview.loadFailed")}</p>
+                    <button type="button" className="cs-mono" onClick={() => sheet.retry()}>
+                        {t("profileOverview.retry")}
+                    </button>
+                </div>
             ) : (
                 // Mounted once the save has loaded, so the open rooms start from the real state.
                 <HouseSheet sheet={sheet} />
