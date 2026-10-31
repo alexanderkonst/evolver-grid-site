@@ -43,6 +43,8 @@ import AppleseedDisplay from "./AppleseedDisplay";
 import AppleseedRitualLoading from "./AppleseedRitualLoading";
 import ExcaliburDisplay from "./ExcaliburDisplay";
 import TopTalentAuthGate from "./TopTalentAuthGate";
+import YourAiDialogue from "./YourAiDialogue";
+import { buildRevealSignal, type DialogueMessage } from "./yourAiDialogue";
 import EnterVillageButton from "./EnterVillageButton";
 import { clearGuestBuffers, freshRetakeState } from "./retake";
 import { formatSupabaseError, isSchemaDriftError } from "./formatSupabaseError";
@@ -110,6 +112,7 @@ const HlsBackground = () => {
 type Step =
     | "choice"
     | "choice-route"
+    | "your-ai"
     | "ai-prompt"
     | "paste-response"
     | "generating-appleseed"
@@ -164,6 +167,12 @@ const ZoneOfGeniusEntry = () => {
     const [isShortPaste, setIsShortPaste] = useState(false);
     const [copied, setCopied] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
+    // Your AI dialogue (Sasha 2026-10-30): the default door. Kept here so a failed
+    // reveal returns to the conversation intact.
+    const [dialogue, setDialogue] = useState<DialogueMessage[]>([]);
+    const [ownAiNotes, setOwnAiNotes] = useState("");
+    const [dialogueReady, setDialogueReady] = useState(false);
+    const [dialogueRevealError, setDialogueRevealError] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     // Own-AI reveal failure (timeout / AI error): shown on the paste step with Retry.
     const [revealError, setRevealError] = useState<string | null>(null);
@@ -586,6 +595,10 @@ const ZoneOfGeniusEntry = () => {
         setIsSaved(fresh.isSaved);
         setGuestRevealUnlocked(fresh.guestRevealUnlocked);
         setStep(fresh.step);
+        setDialogue([]);
+        setOwnAiNotes("");
+        setDialogueReady(false);
+        setDialogueRevealError(null);
     };
 
     const handleCopyPrompt = async () => {
@@ -614,6 +627,44 @@ const ZoneOfGeniusEntry = () => {
         setGuidedConfirmOpen(false);
         setHasExistingResult(false);
         proceedToManualAssessment();
+    };
+
+    const startYourAi = () => {
+        if (dialogue.length === 0) {
+            setDialogue([{ role: "ai", text: t('zogEntry.yourAiOpening') }]);
+        }
+        setDialogueRevealError(null);
+        setStep("your-ai");
+    };
+
+    // Your AI door: our AI answers the unchanged reveal prompt from the conversation,
+    // then the existing reveal runs on it (same path as a pasted own-AI answer).
+    const handleRevealFromDialogue = async () => {
+        setIsProcessing(true);
+        setError(null);
+        setDialogueRevealError(null);
+        setStep("generating-appleseed");
+        try {
+            const signal = await buildRevealSignal(dialogue, ownAiNotes);
+            setAiResponse(signal);
+            const result = await generateAppleseed(signal);
+            if (!isAppleseedReadable(result)) throw new UnreadableResponseError();
+            setAppleseed(result);
+            saveAppleseedToLocalStorage(result, signal);
+            const { data: { session } } = await supabase.auth.getSession();
+            setIsGuest(!session?.user);
+            setStep("appleseed-result");
+        } catch (err) {
+            console.error("[ZoneOfGeniusEntry] Your AI reveal failed:", err);
+            setDialogueRevealError(err instanceof RevealTimeoutError
+              ? t('zogEntry.errorRevealTimeout')
+              : err instanceof UnreadableResponseError
+                ? t('zogEntry.yourAiNeedMore')
+                : t('zogEntry.errorGenerateProfile'));
+            setStep("your-ai");
+        } finally {
+            setIsProcessing(false);
+        }
     };
 
     const handleGenerateAppleseed = async () => {
@@ -1207,7 +1258,7 @@ const ZoneOfGeniusEntry = () => {
                             the result as a verb. The second path is a quiet text link. */}
                         <div className="flex flex-col items-center gap-4">
                             <button
-                                onClick={() => setStep("ai-prompt")}
+                                onClick={startYourAi}
                                 className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-6 sm:px-8 py-3.5 max-w-full text-base sm:text-lg font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none animate-in fade-in slide-in-from-bottom-2 duration-400"
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
@@ -1262,7 +1313,25 @@ const ZoneOfGeniusEntry = () => {
                     </div>
                 )}
 
-                {/* Step: AI Prompt */}
+                {/* Step: Your AI dialogue — the default door (Sasha 2026-10-30). */}
+                {step === "your-ai" && (
+                    <div ref={stepContentRef}>
+                        <YourAiDialogue
+                            messages={dialogue}
+                            setMessages={setDialogue}
+                            ownAiNotes={ownAiNotes}
+                            setOwnAiNotes={setOwnAiNotes}
+                            ready={dialogueReady}
+                            setReady={setDialogueReady}
+                            onReveal={handleRevealFromDialogue}
+                            revealError={dialogueRevealError}
+                            onGuided={handleStartManualAssessment}
+                            onOwnAiPrompt={() => setStep("ai-prompt")}
+                        />
+                    </div>
+                )}
+
+                {/* Step: AI Prompt (secondary: copy the prompt into an outside AI) */}
                 {step === "ai-prompt" && (
                     <div ref={stepContentRef} className="space-y-6 animate-in fade-in duration-500">
                         <div className="text-center space-y-2">
