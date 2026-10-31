@@ -17,3 +17,9 @@ Append-only. Tags: **[fact]** · **[hyp]** · **[ours]** as in the cosmology log
    [ours] Lesson: a federation does not surrender because it is weak; it surrenders when outside fear turns one of the equals into the broker of an external power.
 7. **Alfred's answer to the Vikings was systemic.** [fact] After Edington (878): ~30 fortified burhs so no one lived more than a day from refuge; rotating militia (half in the fields, half on duty); a fleet; literacy and law in the vernacular. Helped by the Danish army dissolving as warriors settled the land.
 8. **Greece fell three times, once from failed federation.** [fact] Bronze Age collapse (~1200–1100 BC, interdependent trade network); end of free poleis (Peloponnesian War 431–404 → Macedon 338 → Rome 146 BC); Byzantine dark age (541–800). [ours] The poleis never built a lasting federation; outside powers absorbed them one by one.
+
+## 2026-10-31 — A capital named "Harmony"
+
+9. **Naming the capital "Harmony" (Sasha).** [ours, Sasha] Naming the main city "Harmony" would be an incredibly strong, conceptual move for a civilization being born. Calling the capital "the place of concord and order" declares the overcoming of ruinous internecine strife.
+   [fact] The Primary Chronicle frames the calling of Rurik exactly this way: «Земля наша велика и обильна, а наряда в ней нет» ("our land is great and abundant, but there is no order [*naryad*] in it").
+   [ours] The founding problem of Rus was order, not territory; a name like "Harmony" makes the remedy the identity of the centre.
