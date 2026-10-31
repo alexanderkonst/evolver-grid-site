@@ -70,6 +70,23 @@
 
 The L1 list is provisional; the corpus inventory (README, «Corpus inventory by module») fills and corrects it.
 
+### 5a. Five bedrock primitives (Sasha-confirmed, 2026-10-30)
+*Provenance: Hark synthesis in chat, 2026-10-30; Sasha: «Это мощно! Бедрок примитив, и очень понятный». The wording of the five is Hark's, confirmed by Sasha.*
+
+Everything we build is assembled from five primitives. They are the central chain read as parts: **gift → step → trace → your AI reads the trace → the room sees the line.**
+
+| Primitive | What it is |
+|---|---|
+| **Gift** | what only you can do |
+| **Step** | the first act with it in the world |
+| **Trace** | the record of what happened |
+| **Your AI** | the one who reads the trace and helps |
+| **Room** | the people who watch the line |
+
+- **Holonic.** The same five hold at every level. In the Holostrategy below, the L1 primitive (one person) is gift → step → trace → your AI; L2 (two people) and L3 (group, network) are the Room at a larger scale.
+- **Where they already live:** gift: uniqueness holomap and Zone of Genius; step: the Product Map and the game's quests; trace: the player's corpus and Workshop artifacts; your AI: the Oracle / AI OS (`docs/ai/README.md` §0); room: Mastermind, Fire Circle, guilds, the Village (seven organs in `docs/02-strategy/evolutionary_avantgarde_taxonomy.md`).
+- **Open (proposal, not decided):** whether each template's meta-description (§6) names which of the five it produces or strengthens.
+
 ## 6. Meta-description format (one per template, at its top)
 ```
 ## Meta-description
