@@ -4923,6 +4923,8 @@
     "yourAiHeading": "Tu IA",
     "yourAiSubtitle": "Unas preguntas, unos 5 minutos. Luego tu talento principal.",
     "yourAiName": "Tu IA",
+    "yourAiStart": "Empezar un chat nuevo",
+    "yourAiStartConfirm": "¿Empezar de nuevo? Se borrará el chat.",
     "yourAiOpening": "Hola, soy tu IA en este juego. Encontremos juntos tu talento principal: unas preguntas y luego la revelación.\n\nPara empezar: ¿cuándo desaparece el tiempo para ti? ¿Qué estás haciendo en esos momentos?",
     "yourAiThinking": "Tu IA está pensando…",
     "yourAiTurnError": "Tu IA no respondió esta vez.",

@@ -159,6 +159,8 @@
     "yourAiHeading": "Your AI",
     "yourAiSubtitle": "A few questions, about 5 minutes. Then your top talent.",
     "yourAiName": "Your AI",
+    "yourAiStart": "Start a new chat",
+    "yourAiStartConfirm": "Start over? This clears the chat.",
     "yourAiOpening": "Hi, I'm your AI in this game. Let's find your top talent together: a few questions, then the reveal.\n\nTo start: when does time disappear for you? What are you doing in those moments?",
     "yourAiThinking": "Your AI is thinking…",
     "yourAiTurnError": "Your AI didn't answer this time.",

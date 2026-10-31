@@ -9,6 +9,7 @@ import { CTA_SMALL_CAPS_STYLE, igniteLogo } from "@/lib/landingDesign";
 import { ACTION_REVEAL, type YourAiButton } from "@/data/yourAiCatalog";
 import { supabase } from "@/integrations/supabase/client";
 import { getCachedZogSnapshot } from "@/lib/zogSnapshotCache";
+import { useFamiliar } from "@/modules/familiar/useFamiliar";
 import {
   askYourAi,
   countAnswers,
@@ -29,6 +30,8 @@ type Props = {
   revealError: string | null;
   onGuided: () => void;
   onOwnAiPrompt: () => void;
+  /** Start a new chat: the parent resets the conversation to the opening message. */
+  onStartNew: () => void;
 };
 
 const HALO = "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95))";
@@ -44,8 +47,15 @@ const YourAiDialogue = ({
   revealError,
   onGuided,
   onOwnAiPrompt,
+  onStartNew,
 }: Props) => {
   const { t, i18n } = useTranslation();
+  // The AI OS for this session: about me + AI OS (guest: AI OS alone). A ref, so a turn always
+  // sends the latest prompt without re-creating handlers.
+  const familiar = useFamiliar();
+  const osPromptRef = useRef(familiar.prompt);
+  osPromptRef.current = familiar.prompt;
+  const [confirmStart, setConfirmStart] = useState(false);
   const [draft, setDraft] = useState("");
   const [thinking, setThinking] = useState(false);
   const [turnError, setTurnError] = useState(false);
@@ -92,7 +102,7 @@ const YourAiDialogue = ({
     setThinking(true);
     setTurnError(false);
     try {
-      const turn = await askYourAi(history, notes, i18n.resolvedLanguage, currentCard());
+      const turn = await askYourAi(history, notes, i18n.resolvedLanguage, currentCard(), { prompt: osPromptRef.current });
       setMessages([...history, { role: "ai", text: turn.reply, buttons: turn.buttons }]);
       if (turn.ready) setReady(true);
     } catch (err) {
@@ -121,6 +131,19 @@ const YourAiDialogue = ({
     setOwnAiNotes(notes);
     setNotesOpen(false);
     if (notes && !thinking) void runTurn(messages, notes);
+  };
+
+  // Start a new chat. With answers on the table, the first tap asks; the second one starts over.
+  const startNew = () => {
+    if (thinking) return;
+    if (answers > 0 && !confirmStart) {
+      setConfirmStart(true);
+      return;
+    }
+    setConfirmStart(false);
+    setDraft("");
+    setTurnError(false);
+    onStartNew();
   };
 
   const lastMessage = messages.length > 0 ? messages[messages.length - 1] : undefined;
@@ -177,6 +200,28 @@ const YourAiDialogue = ({
         >
           {t("zogEntry.yourAiSubtitle")}
         </p>
+        {/* Issue #275: a clear Start. A fresh chat, with our AI OS loaded. */}
+        <div className="pt-1 flex items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={startNew}
+            disabled={thinking}
+            className={`${buttonClass} min-h-11 disabled:opacity-50`}
+            style={buttonStyle(false)}
+          >
+            {confirmStart ? t("zogEntry.yourAiStartConfirm") : t("zogEntry.yourAiStart")}
+          </button>
+          {confirmStart && (
+            <button
+              type="button"
+              onClick={() => setConfirmStart(false)}
+              className="text-[13px] underline underline-offset-4"
+              style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.75))" }}
+            >
+              {t("zogEntry.yourAiNotesCancel")}
+            </button>
+          )}
+        </div>
       </div>
 
       <div

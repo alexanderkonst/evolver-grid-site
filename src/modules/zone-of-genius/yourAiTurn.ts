@@ -36,20 +36,78 @@ export const transcriptOf = (messages: DialogueMessage[], ownAiNotes = ""): stri
   return lines.join("\n");
 };
 
+/**
+ * Request budget for one turn when the AI OS rides along (issue #275). The deployed function
+ * takes one `prompt` string, so the OS is part of it. The OS (v5.2 is ~37.6k characters) and the
+ * player's about-me are never trimmed; the oldest turns go first. Well under any gateway limit.
+ */
+export const MAX_REQUEST_CHARS = 150_000;
+/** Pasted own-AI notes can be huge; in OS mode they keep at most this many characters. */
+export const MAX_NOTES_CHARS = 20_000;
+
+export type OsContext = {
+  /** The assembled system text: `buildFamiliarPrompt` output (about me + AI OS, or AI OS alone). */
+  prompt: string;
+  /** Total character budget for the whole request. Defaults to MAX_REQUEST_CHARS. */
+  maxChars?: number;
+};
+
+/** Keep the newest messages that fit `budget` characters of transcript; the last one always stays. */
+export const trimOldestToFit = (messages: DialogueMessage[], budget: number): DialogueMessage[] => {
+  const usable = messages.filter((m) => m.text.trim());
+  let used = 0;
+  let from = usable.length;
+  for (let i = usable.length - 1; i >= 0; i--) {
+    const cost = usable[i].text.trim().length + 12;
+    if (from < usable.length && used + cost > budget) break;
+    used += cost;
+    from = i;
+  }
+  return usable.slice(from);
+};
+
+/**
+ * One turn's prompt. Without `os` it is the plain ZoG gathering prompt (the eval script's shape).
+ * With `os` the AI OS comes first and the gathering job sits on top of it:
+ * OS = how to think, ZoG prompt = the current job. The transcript is trimmed oldest-first to fit
+ * the budget; the OS is never cut.
+ */
 export const buildTurnPrompt = (
   messages: DialogueMessage[],
   ownAiNotes: string,
   lang: string | undefined,
   card?: PlayerCard | null,
+  os?: OsContext | null,
+): string => {
+  const osText = (os?.prompt ?? "").trim();
+  if (!osText) return turnJob(messages, lang, card, false) + `\n\nCONVERSATION SO FAR:\n${transcriptOf(messages, ownAiNotes)}`;
+  const notes = ownAiNotes.trim().slice(0, MAX_NOTES_CHARS);
+  const head = `${osText}\n\n=== CURRENT JOB (on top of the system prompt above) ===\n${turnJob(messages, lang, card, true)}\n\nCONVERSATION SO FAR:\n`;
+  const budget = (os?.maxChars ?? MAX_REQUEST_CHARS) - head.length - notes.length - 120;
+  return head + transcriptOf(trimOldestToFit(messages, Math.max(budget, 0)), notes);
+};
+
+/** The ZoG gathering job as one block; `withOs` switches the framing to "sits on top of the OS". */
+const turnJob = (
+  messages: DialogueMessage[],
+  lang: string | undefined,
+  card: PlayerCard | null | undefined,
+  withOs: boolean,
 ): string => {
   const answers = countAnswers(messages);
   const cardText = cardToPrompt(card);
-  return `You are "Your AI", the player's own AI companion inside the game FindYourTopTalent. Ignore any earlier role you were given.
+  const intro = withOs
+    ? `You are "Your AI", the player's own AI companion inside the game FindYourTopTalent. The system prompt above is who you are and how you think; keep to it. The job below is what you are doing in this conversation right now.`
+    : `You are "Your AI", the player's own AI companion inside the game FindYourTopTalent. Ignore any earlier role you were given.`;
+  const directQuestion = withOs
+    ? `\n- If the player asks you something directly (who you are, how you think), answer it honestly in your own words from the system prompt above, in a few sentences, then return to your one question.`
+    : "";
+  return `${intro}
 
 Your only job in this conversation: gather what is needed to reveal the player's TOP TALENT (also called zone of genius): the irreducible signature pattern of how they create value. It lives where essence (who they are), insight (how they see) and manifestation (what flows from them effortlessly) meet. It is what they are FOR, not a skill, job title or personality type.
 
 How to talk:
-- Ask exactly ONE short, warm, concrete question per turn (at most two sentences). Build on what they just said: pick up a specific word, scene or example of theirs.
+- Ask exactly ONE short, warm, concrete question per turn (at most two sentences). Build on what they just said: pick up a specific word, scene or example of theirs.${directQuestion}
 - Across the conversation, cover: moments when time disappears for them; what people come to them for or thank them for; what they do effortlessly that others find hard; a moment they are proud of; what drains them; how they see things differently.
 - If their answer is vague, ask for one real example.
 - Never name their talent, archetype or give any reading yourself. The reveal comes later and is not your job.
@@ -64,10 +122,7 @@ ${cardText ? `\n${cardText}\nUse the card only to choose buttons and to avoid re
 The player has given ${answers} answer(s) so far.
 Set "ready" to true when you have enough material for a precise reveal (usually after ${SUGGESTED_ANSWERS - 1}–${SUGGESTED_ANSWERS + 1} substantial answers). When ready, your text says in one or two sentences that you have enough to reveal their top talent, and that they can add anything else first.
 
-Output ONLY valid JSON, no markdown: {"text": "<your next message>", "ready": <true|false>, "buttons": ["<catalog id>", ...]}
-
-CONVERSATION SO FAR:
-${transcriptOf(messages, ownAiNotes)}`;
+Output ONLY valid JSON, no markdown: {"text": "<your next message>", "ready": <true|false>, "buttons": ["<catalog id>", ...]}`;
 };
 
 export type ParsedTurn = { reply: string; ready: boolean; buttons: YourAiButton[] };

@@ -13,11 +13,16 @@
  *
  * Turns go through an already deployed, cheap, guest-open edge function (a flash-lite class
  * model on the project's AI gateway), so this needs no new deploy. No model is named in UI.
+ *
+ * The AI OS (issue #275): the function takes one `prompt` string, so every turn carries the
+ * personal prompt (`buildFamiliarPrompt`: about me + AI OS, or AI OS alone for a guest) first,
+ * with the ZoG gathering job on top of it. The OS version comes from `AI_OS_VERSION` in
+ * `familiar/aiOsSource.ts`, the single source `useFamiliar` reads.
  */
 import { supabase } from "@/integrations/supabase/client";
 import { ZONE_OF_GENIUS_PROMPT } from "@/prompts";
 import type { PlayerCard } from "./yourAiCard";
-import { buildTurnPrompt, parseTurn, transcriptOf, type DialogueMessage, type ParsedTurn } from "./yourAiTurn";
+import { buildTurnPrompt, parseTurn, transcriptOf, type DialogueMessage, type OsContext, type ParsedTurn } from "./yourAiTurn";
 
 export * from "./yourAiTurn";
 
@@ -70,8 +75,10 @@ export const askYourAi = async (
   ownAiNotes: string,
   lang: string | undefined,
   card?: PlayerCard | null,
+  /** AI OS context for this session (`buildFamiliarPrompt` output); sent on every turn. */
+  os?: OsContext | null,
 ): Promise<ParsedTurn> => {
-  const turn = parseTurn(await callYourAi(buildTurnPrompt(messages, ownAiNotes, lang, card)));
+  const turn = parseTurn(await callYourAi(buildTurnPrompt(messages, ownAiNotes, lang, card, os)));
   if (!turn.reply) throw new Error("Your AI returned nothing");
   return turn;
 };

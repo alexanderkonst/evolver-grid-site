@@ -637,6 +637,13 @@ const ZoneOfGeniusEntry = () => {
         setStep("your-ai");
     };
 
+    // Start a new chat (issue #275): a fresh session back at the opening message. Pasted notes stay.
+    const startNewYourAiChat = () => {
+        setDialogue([{ role: "ai", text: t('zogEntry.yourAiOpening') }]);
+        setDialogueReady(false);
+        setDialogueRevealError(null);
+    };
+
     // Your AI door: our AI answers the unchanged reveal prompt from the conversation,
     // then the existing reveal runs on it (same path as a pasted own-AI answer).
     const handleRevealFromDialogue = async () => {
@@ -1327,6 +1334,7 @@ const ZoneOfGeniusEntry = () => {
                             revealError={dialogueRevealError}
                             onGuided={handleStartManualAssessment}
                             onOwnAiPrompt={() => setStep("ai-prompt")}
+                            onStartNew={startNewYourAiChat}
                         />
                     </div>
                 )}
