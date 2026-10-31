@@ -461,7 +461,15 @@
   .vl-list__line { display: block; margin-top: 6px; font-style: italic; font-weight: 300; font-size: var(--vl-text-lead); color: var(--vl-ink-2); }
   .vl-list a:focus-visible .vl-list__name { outline: 1px solid var(--vl-accent); outline-offset: 4px; }
   .vl-place__img { animation: motion-settle var(--vl-fade) var(--motion-ease) backwards; } /* no drift on mobile; the settle stays */
-  .vl-place__copy { padding-bottom: 56px; }
+  /* Issue #267: at 390 the name, the line and ENTER stack tall enough to reach the arched door in
+     the scene (Reception), and the line ran across its outline at 0.82 ink. The copy block now sits
+     on its own scrim, from clear at the top to the scene colour behind the text, and the line reads
+     at the full ink, so it holds >= 4.5:1 over the art in every skin and clears the arch. */
+  .vl-place__copy {
+    padding-top: 96px; padding-bottom: 56px;
+    background: linear-gradient(to bottom, rgba(var(--scene-bg-rgb),0) 0, rgba(var(--scene-bg-rgb),0.82) 84px, rgba(var(--scene-bg-rgb),0.9) 100%);
+  }
+  .vl-place__line, .vl-place .ps-line { color: var(--vl-ink); }
   .vl-mote { max-width: 62vw; font-size: var(--vl-text-lead); }
   .vl-mote--0 { top: 12%; left: 6%; }
   .vl-mote--1 { top: 22%; right: 6%; }

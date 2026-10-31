@@ -102,7 +102,7 @@ const Step3OrderTalents = () => {
         >
           Put your 3 core talents in order, from <strong style={{ color: "var(--skin-text-primary, #0a1628)" }}>most defining</strong> (#1) to third (#3).
         </p>
-        <p className="text-xs" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}>
+        <p className="text-sm" style={{ color: "var(--skin-text-body, rgba(26,30,58,0.82))" }}>
           Drag or use arrows to reorder.
         </p>
       </div>
@@ -127,13 +127,15 @@ const Step3OrderTalents = () => {
             <GripVertical size={16} className="shrink-0" style={{ color: "var(--skin-text-hint, rgba(26,30,58,0.3))" }} />
 
             {/* Arrows */}
-            <div className="flex flex-col gap-0.5 shrink-0">
+            <div className="flex flex-col shrink-0">
               <button
                 onClick={() => moveUp(index)}
                 disabled={index === 0}
+                aria-label={`Move ${talent.name} up`}
                 className={cn(
-                  "p-1.5 rounded transition-colors min-h-[40px] sm:min-h-0",
-                  index === 0 ? "opacity-20 cursor-not-allowed" : "opacity-60 hover:opacity-100"
+                  // Issue #267: hit area >= 44x44 (was ~28 wide x 40 high)
+                  "flex items-center justify-center min-h-[44px] min-w-[44px] rounded transition-colors",
+                  index === 0 ? "opacity-30 cursor-not-allowed" : "opacity-85 hover:opacity-100"
                 )}
                 style={{ backgroundColor: "transparent" }}
               >
@@ -142,9 +144,10 @@ const Step3OrderTalents = () => {
               <button
                 onClick={() => moveDown(index)}
                 disabled={index === orderedTalents.length - 1}
+                aria-label={`Move ${talent.name} down`}
                 className={cn(
-                  "p-1.5 rounded transition-colors min-h-[40px] sm:min-h-0",
-                  index === orderedTalents.length - 1 ? "opacity-20 cursor-not-allowed" : "opacity-60 hover:opacity-100"
+                  "flex items-center justify-center min-h-[44px] min-w-[44px] rounded transition-colors",
+                  index === orderedTalents.length - 1 ? "opacity-30 cursor-not-allowed" : "opacity-85 hover:opacity-100"
                 )}
                 style={{ backgroundColor: "transparent" }}
               >
@@ -171,8 +174,8 @@ const Step3OrderTalents = () => {
             {/* Content */}
             <div className="flex-1 min-w-0">
               <p
-                className="text-[10px] uppercase tracking-wider font-medium mb-0.5"
-                style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.7))" }}
+                className="text-[11px] uppercase tracking-wider font-medium mb-0.5"
+                style={{ color: "var(--skin-text-body, rgba(26,30,58,0.82))" }}
               >
                 {rankLabels[index]}
               </p>
@@ -188,7 +191,7 @@ const Step3OrderTalents = () => {
               >
                 {talent.name}
               </h3>
-              <p className="text-xs truncate" style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.75))" }}>
+              <p className="text-xs truncate" style={{ color: "var(--skin-text-body, rgba(26,30,58,0.82))" }}>
                 {talent.description}
               </p>
             </div>

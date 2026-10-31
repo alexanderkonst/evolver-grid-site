@@ -163,9 +163,11 @@ const RevelatoryHero = ({
     const palette = darkMode
         ? {
             gradient: "from-transparent to-transparent",
-            textPrimary: "text-white/90",
+            // Issue #267: body inks at full strength (were /90 and /75),
+            // so the description and «→ get yours» lines clear 4.5:1 on a phone.
+            textPrimary: "text-white",
             textMuted: "text-[#f4d472]",
-            shadowText: "text-white/75",
+            shadowText: "text-white/92",
             glowColor: "rgba(212,175,55,0.22)",
             cardBorder: "1px solid rgba(244, 212, 114, 0.32)",
         }
@@ -174,15 +176,15 @@ const RevelatoryHero = ({
             gradient: "from-white/88 via-[#fdf6e3]/92 to-white/86",
             textPrimary: "text-[#2c3150]",
             textMuted: "text-[#7a5108]",
-            shadowText: "text-[#2c3150]/80",
+            shadowText: "text-[#2c3150]/95",
             glowColor: "rgba(212,175,55,0.14)",
             cardBorder: "1px solid rgba(212, 175, 55, 0.32)",
         }
         : {
             gradient: "from-[#8c6410] via-[#7a5108] to-[#6b4208]",
             textPrimary: "text-white",
-            textMuted: "text-[#f5e6b0]/65",
-            shadowText: "text-[#f5e6b0]/85",
+            textMuted: "text-[#fff3c4]",
+            shadowText: "text-[#fff6d6]",
             glowColor: "rgba(244,212,114,0.3)",
             cardBorder: "1px solid rgba(244, 212, 114, 0.30)",
         };

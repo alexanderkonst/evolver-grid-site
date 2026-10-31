@@ -144,12 +144,85 @@ const CardActions = ({
         // clone's width. The live element's CSS is never touched —
         // no flash, no layout shift on screen. The data attribute is
         // removed from the live element after capture (cleanup).
+        //
+        // Issue #267 (2026-10-31): the clone-only width mutation above
+        // had a flaw. html2canvas sizes + crops the canvas from the LIVE
+        // element's box (position and size on the page), then renders
+        // its own clone. On desktop the clone was narrowed to 480px and
+        // lost its ignored blocks (top shadow, buttons), so it laid out
+        // somewhere else inside the page: the crop landed off the card
+        // and the page background (plus the flat `backgroundColor`
+        // fill) showed as a band down the left, a band across the top
+        // and squares in the rounded corners. At 390px the card already
+        // fits in 480px, so nothing moved and the image was clean.
+        //
+        // Fix: capture a STAGED COPY. We copy the card into an
+        // off-screen fixed box, apply the final width, drop the
+        // ignored blocks and reveal the QR there, then hand THAT
+        // element to html2canvas. The box html2canvas measures is now
+        // the box it renders, so the canvas is exactly the card. The
+        // card carries its own solid fill and its own radius, and the
+        // canvas behind it is transparent, so the rounded corners stay
+        // clear instead of filling with a page colour.
         const captureToken = captureWidth
             ? `cap-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
             : null;
+
+        const liveRect = el.getBoundingClientRect();
+        const liveStyle = window.getComputedStyle(el);
+        const stage = document.createElement("div");
+        stage.setAttribute("aria-hidden", "true");
+        stage.style.cssText =
+            "position:fixed;left:-10000px;top:0;pointer-events:none;" +
+            `width:${captureWidth ?? Math.round(liveRect.width)}px;`;
+        const target = el.cloneNode(true) as HTMLElement;
+
+        // cloneNode does not copy canvas pixels (the QR code); copy them
+        // first, before any block is removed, so the indexes still match.
+        const liveCanvases = el.querySelectorAll("canvas");
+        const copyCanvases = target.querySelectorAll("canvas");
+        liveCanvases.forEach((src, i) => {
+            const dst = copyCanvases[i];
+            if (!dst) return;
+            dst.width = src.width;
+            dst.height = src.height;
+            dst.getContext("2d")?.drawImage(src, 0, 0);
+        });
+
+        // What html2canvas would skip, and what it reveals, is applied
+        // here so the staged box is already its final size.
+        target.querySelectorAll("[data-html2canvas-ignore]").forEach((n) => n.remove());
+        target.querySelectorAll<HTMLElement>("[data-capture-only-qr]").forEach((qr) => {
+            // Day 61: capture-only elements (the QR in RevelatoryHero's
+            // brand footer) are parked offscreen + hidden in the live page.
+            qr.style.position = "static";
+            qr.style.visibility = "visible";
+            qr.style.left = "auto";
+            qr.style.top = "auto";
+            qr.style.marginTop = "0.5rem";
+        });
+
+        // The card's own fill and radius. The live fill is the page-level
+        // gradient + translucent glass, which html2canvas cannot paint, so
+        // use the element's computed colour when it is opaque, else the
+        // placement default. Never a page background.
+        const computedFill = liveStyle.backgroundColor;
+        const opaqueFill = /^rgb\(/.test(computedFill) ? computedFill : null;
+        target.style.margin = "0";
+        target.style.transform = "none";
+        target.style.width = `${captureWidth ?? Math.round(liveRect.width)}px`;
+        target.style.maxWidth = target.style.width;
+        target.style.boxSizing = "border-box";
+        target.style.overflow = "hidden";
+        target.style.borderRadius = liveStyle.borderRadius;
+        target.style.backgroundColor = opaqueFill ?? (darkMode ? "#0a162a" : "#fdf6e3");
         if (captureToken) {
-            el.setAttribute("data-capture-token", captureToken);
+            target.setAttribute("data-capture-token", captureToken);
         }
+        stage.appendChild(target);
+        // Next to the card, not in <body>: inherited type and the skin
+        // tokens set on its ancestors still reach the copy.
+        (el.parentElement ?? document.body).appendChild(stage);
 
         try {
             // Day 51 night fix #2 (Sasha): html2canvas was throwing on
@@ -182,11 +255,19 @@ const CardActions = ({
             // click Save → PNG downloads cleanly to ~/Downloads.
             // Rendered on demand so Save can retry at a lower scale if the
             // first export comes back empty (see the retry below).
-            const captureAtScale = (scale: number) => html2canvas(el, {
+            const captureAtScale = (scale: number) => html2canvas(target, {
                 scale,
                 useCORS: true,
                 logging: false,
-                backgroundColor: darkMode ? "#0a162a" : "#fdf6e3",
+                // Issue #267: transparent canvas. The card paints its own
+                // fill inside its own rounded corners (set on `target`
+                // above); a flat canvas colour filled the corners and any
+                // gap around the card with a dark page-like colour.
+                backgroundColor: null,
+                // The staged box is position:fixed; render it against a
+                // zero scroll so the box measured is the box drawn.
+                scrollX: 0,
+                scrollY: 0,
                 imageTimeout: 15000,
                 onclone: (clonedDoc) => {
                     const styleTag = clonedDoc.createElement("style");
@@ -224,42 +305,9 @@ const CardActions = ({
                         }
                     `;
                     clonedDoc.head.appendChild(styleTag);
-
-                    // Apply forced width to the CLONED element only
-                    // (offscreen, invisible to user) → no on-screen
-                    // flash, vertical PNG output preserved.
-                    if (captureToken && captureWidth) {
-                        const clonedEl = clonedDoc.querySelector(
-                            `[data-capture-token="${captureToken}"]`,
-                        ) as HTMLElement | null;
-                        if (clonedEl) {
-                            clonedEl.style.width = `${captureWidth}px`;
-                            clonedEl.style.maxWidth = `${captureWidth}px`;
-                        }
-                    }
-
-                    // Day 61 (Sasha 2026-05-04 19:45): reveal
-                    // capture-only elements (e.g., QR code in
-                    // RevelatoryHero brand footer). These elements
-                    // live in the DOM positioned offscreen +
-                    // visibility-hidden so they don't show in the
-                    // live page, but ARE rendered with full layout
-                    // (so html2canvas can capture them after this
-                    // reset). Resetting position/visibility brings
-                    // them back into the inline flow inside the
-                    // captured clone — they appear in the saved PNG,
-                    // never on the live page.
-                    const captureOnlyEls = clonedDoc.querySelectorAll(
-                        "[data-capture-only-qr]",
-                    );
-                    captureOnlyEls.forEach((el) => {
-                        const html = el as HTMLElement;
-                        html.style.position = "static";
-                        html.style.visibility = "visible";
-                        html.style.left = "auto";
-                        html.style.top = "auto";
-                        html.style.marginTop = "0.5rem";
-                    });
+                    // Width, ignored blocks and the QR reveal are applied
+                    // to the staged copy before capture (see above), so
+                    // nothing here moves the card.
                 },
             });
             // Day 62 (Sasha 2026-05-05): switched from data-URL anchor
@@ -313,13 +361,10 @@ const CardActions = ({
                 variant: "destructive",
             });
         } finally {
-            // Cleanup: remove the capture-token marker from the live
-            // element regardless of capture success/failure. The
-            // attribute is benign (empty data-* with no styling
-            // attached) but tidiness matters.
-            if (captureToken) {
-                el.removeAttribute("data-capture-token");
-            }
+            // Cleanup: drop the staged copy (it carried the capture
+            // token), whether the capture worked or not. The live card
+            // was never touched.
+            stage.remove();
             setSaving(false);
         }
     };
