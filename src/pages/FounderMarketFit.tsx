@@ -7,7 +7,7 @@ const CAL_LINK = "https://cal.com/aleksandrkonstantinov/fmf";
 const FounderMarketFit = () => {
     const { t } = useTranslation();
     useEffect(() => {
-        document.title = "Human-Market Fit | Alexander Konstantinov";
+        document.title = "Human-Market Fit | Aleksandr Konstantinov";
         document.documentElement.classList.add("dark");
 
         // SEO meta tags
@@ -19,12 +19,12 @@ const FounderMarketFit = () => {
 
         // OG tags — update existing or create new
         const ogTags: Record<string, string> = {
-            'og:title': 'Human-Market Fit | Alexander Konstantinov',
+            'og:title': 'Human-Market Fit | Aleksandr Konstantinov',
             'og:description': 'Your unique value is already seeking a market. Map the coherence in a 2-hour diagnostic for founders and builders.',
             'og:type': 'website',
             'og:url': 'https://findyourtoptalent.com/fmf',
             'twitter:card': 'summary_large_image',
-            'twitter:title': 'Human-Market Fit | Alexander Konstantinov',
+            'twitter:title': 'Human-Market Fit | Aleksandr Konstantinov',
             'twitter:description': 'Reality-cohering field detection: where your lived value, taste, obsession, and judgment meet a real market need.',
         };
         const originals: Record<string, string | null> = {};
@@ -367,7 +367,7 @@ const FounderMarketFit = () => {
             {/* ===== FOOTER ===== */}
             <footer className="fmf-footer">
                 <div className="fmf-container fmf-footer-inner">
-                    <p>© {new Date().getFullYear()} Alexander Konstantinov</p>
+                    <p>© {new Date().getFullYear()} Aleksandr Konstantinov</p>
                     <div className="fmf-footer-links">
                         <a href="https://linkedin.com/in/aleksandrkonstantinov" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                     </div>

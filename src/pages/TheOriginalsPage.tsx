@@ -12,7 +12,7 @@ interface Founder {
 
 const FOUNDERS: Founder[] = [
   {
-    name: "Alexander",
+    name: "Aleksandr",
     archetypeKey: "theOriginals.founders.alexander.archetype",
     taglineKey: "theOriginals.founders.alexander.tagline",
     status: "active",

@@ -64,7 +64,7 @@ const KPIS = [
     value: "7",
     trend: "+1",
     trendLabel: "Apr 18",
-    detail: "Alexander · O. · S. · Al. · Sa. · K. · Ki.",
+    detail: "Aleksandr · O. · S. · Al. · Sa. · K. · Ki.",
     gold: false,
   },
   {
@@ -100,7 +100,7 @@ const REVENUE_BREAKDOWN = [
 // ─── Timeline ───────────────────────────────────────────────────────────────
 
 const TIMELINE = [
-  { day: 1, date: "Mar 4", name: "Alexander", type: "Client Zero", desc: "Built the methodology by applying it to himself first." },
+  { day: 1, date: "Mar 4", name: "Aleksandr", type: "Client Zero", desc: "Built the methodology by applying it to himself first." },
   { day: 2, date: "Mar 5", name: "O.", type: "Gratitude ($566)", desc: "Complete business blueprint. Later sent $566 in gratitude gifts — without being asked." },
   { day: 4, date: "Mar 7", name: "S.", type: "Rev Share ($277)", desc: "Business blueprint created. Revenue share agreement. 3 follow-up sessions delivered." },
   { day: 9, date: "Mar 12", name: "Al.", type: "Value Exchange", desc: "Complete blueprint in 2.5 hours — fastest session yet." },

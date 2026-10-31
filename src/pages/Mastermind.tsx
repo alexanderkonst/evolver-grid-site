@@ -115,7 +115,7 @@ const Mastermind = () => {
           startDate: "2026-11-09",
           endDate: "2026-11-10",
           eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
-          organizer: { "@type": "Person", name: "Alexander Konstantinov" },
+          organizer: { "@type": "Person", name: "Aleksandr Konstantinov" },
           offers: {
             "@type": "Offer",
             price: MASTERMIND_PRICE.replace(/[^0-9.]/g, ""),

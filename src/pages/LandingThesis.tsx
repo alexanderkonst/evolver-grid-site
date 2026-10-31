@@ -248,7 +248,7 @@ const LandingThesis = () => {
           "@context": "https://schema.org",
           "@type": "CreativeWork",
           name: "The Uniqueness Economy",
-          author: { "@type": "Person", name: "Alexander Konstantinov" },
+          author: { "@type": "Person", name: "Aleksandr Konstantinov" },
           datePublished: "2026-06-19",
           about: "A recognition-first thesis: prosperity is constrained by fit, human difference is coordination infrastructure, and AI makes uniqueness visible and matchable at civilizational scale.",
         }}

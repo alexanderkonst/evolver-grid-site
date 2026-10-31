@@ -27,7 +27,7 @@ interface FounderCanvas {
 
 export const FOUNDERS: FounderCanvas[] = [
   {
-    name: "Alexander",
+    name: "Aleksandr",
     archetype: "The Focus Lens",
     tagline: "Helps build ventures from who you already are",
     date: "February 19, 2026",

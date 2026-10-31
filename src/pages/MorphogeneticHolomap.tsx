@@ -89,7 +89,7 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
     currentStage: 3, score: 7.5,
     stages: [
       { name: "Seed", note: "Do", icon: "🌰", desc: "Idea only. No external evidence", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "First canvas (Client Zero — Alexander)", status: "done" },
+      { name: "Sprout", note: "Re", icon: "🌱", desc: "First canvas (Client Zero — Aleksandr)", status: "done" },
       { name: "Growth", note: "Mi", icon: "🌿", desc: "5 canvases, 2000+ line playbook, 100% conversion, platform deployed", status: "current" },
       { name: "Maturation", note: "Fa", icon: "🌳", desc: "20+ canvases. SOP v2 operational. Facilitators using the system", status: "future" },
       { name: "Fruition", note: "Sol", icon: "🍎", desc: "100+ canvases. Revenue consistent. Platform automates 40%+", status: "future" },
@@ -284,7 +284,7 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
       { conservative: "Q4 '26", baseline: "Q3 '26", optimistic: "Q2 '26" },
     ],
     trigger: "Founders share canvases + Pain Mirrors",
-    shadow: { name: "Tribe Centered On Founder", description: "Gravity pulls toward Alexander. The tribe needs its own center.", status: "active" },
+    shadow: { name: "Tribe Centered On Founder", description: "Gravity pulls toward Aleksandr. The tribe needs its own center.", status: "active" },
     nextMilestone: "First founder-to-founder canvas exchange",
   },
   {

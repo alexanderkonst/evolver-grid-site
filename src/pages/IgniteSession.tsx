@@ -752,7 +752,7 @@ const IgniteSession = () => {
           "@context": "https://schema.org",
           "@type": "Service",
           name: "Private Founder-Market Fit Session",
-          provider: { "@type": "Person", name: "Alexander Konstantinov" },
+          provider: { "@type": "Person", name: "Aleksandr Konstantinov" },
           areaServed: "Worldwide",
           description: "Private Founder-Market Fit Session (1:1, 2 hours, $555) to name your top talent in one sentence and position your next chapter around it.",
           offers: { "@type": "Offer", price: "555", priceCurrency: "USD" },

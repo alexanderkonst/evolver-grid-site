@@ -688,7 +688,7 @@ export default function IntegralTheoryUpgrade1() {
           "@context": "https://schema.org",
           "@type": "Article",
           headline: "27-Perspective Vision",
-          author: { "@type": "Person", name: "Alexander Konstantinov" },
+          author: { "@type": "Person", name: "Aleksandr Konstantinov" },
           datePublished: "2026-04-16",
         }}
       />
