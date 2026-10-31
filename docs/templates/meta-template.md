@@ -127,16 +127,19 @@ Everything we build is assembled from five primitives. They are the central chai
 ## Holostrategy — meta-template (v0, 2026-10-30)
 *Transmission from Sasha, 2026-10-30 (voice, recorded close to his words), after the "invisible players" scan. Library entry: Phase Shift Technology Library, Technology 181 ([`docs/01-vision/phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md)). Holomap background in the same library: §2 Navigating Systems as Living Wholes (Holomaps), §25 Navigation, Not Dashboard (Morphogenetic Holomap), Technology 78 The Planetary Holomap. Holonic levels of this file: §5.*
 
+*Status: v0 **Sasha-confirmed 2026-10-30** (19:38 CST, «ОЧЕНЬ КРУТО! Документируй» on the v0 summary of 18:09 CST). The seven phases are seven notes of one octave: notes have a direction, each a step up, and after the seventh the next octave begins (Sasha's image, 2026-10-30).*
+
 ### Three layers, one move
 - **Holomap**: understanding of a system: its modules, the stage of each, dependencies on past states, and its likely evolutionary future (presentology / futurology: no math modelling, no exact dates, rough horizons to refine).
 - **Holostrategy**: how *this particular* system makes its next phase shift: which module, which shift, by which technology, roughly by when, and which concrete result proves the new phase.
 - **Holomethodology of phase shifts**: the library of technologies that move any system from phase n to n+1 (lives in [`phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md)). A phase shift is not just change or transformation: it is change with a concrete result that puts the system into its next phase. Seven phases, then an octave shift: the whole system becomes one module of a larger register.
 - **Evolver** = a system for moving systems to their next evolutionary levels.
+- **As one instrument (Technology 182, the holo-trinity, 2026-10-30):** holomap = **see** (head); holostrategy = **aim**: focus and point the magnet (heart); holomethodology / holo-roadmap = **act** through a concrete, grounded, step-by-step roadmap that produces results (gut). Together: the *Prime Radiant* (working name), morphological holonavigation.
 
 ### Principles
 1. **Holonic.** One template for a person, a product, a venture, a village, a planet. The planetary case is a "particular case" on a galactic scale.
 2. **Result defines the phase, not activity.** Each phase has a visible, checkable sign that it has arrived.
-3. **Lower stages solid.** A module can't skip stages; the system's phase is held back by its weakest load-bearing module.
+3. **Lower stages solid.** A module can't skip stages; the system's phase equals the phase of its weakest load-bearing module.
 4. **One bottleneck at a time.** The strategy names the single module whose shift unlocks the rest.
 5. **Trace beats fantasy.** Every step leaves a record; the next step is built on what happened.
 6. **Rough horizons.** Time ranges, refined as facts arrive.
@@ -152,7 +155,7 @@ Everything we build is assembled from five primitives. They are the central chai
 6. **Paths.** For each type of participant: the sequence of steps from first contact to co-creation.
 7. **Horizons.** Rough time ranges per step.
 8. **Trace and review.** Record what happened, re-read the holomap, update the strategy.
-9. **Octave.** After phase 7 the system becomes a module of the next register; the template restarts there.
+9. **Octave.** After phase 7 (the seventh note) the system becomes a module of the next register; the template restarts there.
 
 ### The particular case: planetary avant-garde
 *Taxonomy of the currents: [`docs/02-strategy/evolutionary_avantgarde_taxonomy.md`](../02-strategy/evolutionary_avantgarde_taxonomy.md).*

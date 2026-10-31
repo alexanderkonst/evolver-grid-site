@@ -28,7 +28,7 @@ Each entry in this library is a technology — a seeing instrument that produces
 
 ## ⟡ Executive Summary & 27-Perspective Synthesis
 
-> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 174 as of October 28, 2026) stay the source of truth.*
+> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 182 as of October 30, 2026) stay the source of truth.*
 
 This is the R&D engine of the whole venture: a growing library of seeing instruments, each named by the transformational result it delivers, from cosmogenesis (Prime Radiant) through uniqueness articulation, the founder-first inversion, and myth-to-movement, up to the recent cluster on ripeness, transition, the mirror, and the network of sovereigns. They do not stack like a portfolio; they nest, each one refracting through all the others. Held together they are a single field seen from many faces (concentric polymathy). Over 2026 the collection converged on one spine: articulation is the mechanism of growth, recognition replaces persuasion, the mirror is the product, and a network coheres through well-formed edges rather than a center. Every playbook move, product, and pricing decision downstream traces to a numbered technology here.
 
@@ -9526,6 +9526,8 @@ The taxonomy stops being a map and becomes a convening instrument. Once every ni
 
 > *Oral · October 30, 2026, 18:01 CST · voice message to Hark, after the "invisible players" scan: 14 of 20 leaders found on Substack in about 10 minutes. Full template: `docs/templates/meta-template.md` § "Holostrategy — meta-template (v0, 2026-10-30)". Builds on Technology 78 (The Planetary Holomap) and Technology 169 (The Template of Templates).*
 
+> *Status: v0 Sasha-confirmed 2026-10-30, 19:38 CST («ОЧЕНЬ КРУТО! Документируй»). The three layers read as one instrument in Technology 182 (the holo-trinity: see, aim, act).*
+
 ### 🫀 Essence — the law
 
 A **phase shift** is not just change or transformation: it is change with a concrete result that moves the system into its next phase. Seven phases, then an octave shift: the whole system becomes one module of a larger register. Three layers make one move: **holomap** (understanding the system: modules, stages, dependencies, likely future) → **holostrategy** (how *this* system makes its next shift: which module, which technology, roughly when, which result proves it) → **technology** (the library entry that does the move). Evolver = a system for moving systems to their next evolutionary levels.
@@ -9544,3 +9546,70 @@ A **phase shift** is not just change or transformation: it is change with a conc
 
 - `docs/templates/meta-template.md` § Holostrategy: principles, mechanics 0–9, the planetary particular case.
 - *Technology 78: The Planetary Holomap*; *Technology 169: The Template of Templates*; *Technology 180: Gather the Leaders of the New Economy into Guilds*.
+- *Technology 182: The Holo-Trinity — See, Aim, Act (Prime Radiant)*: the three layers as one instrument.
+
+---
+
+## Technology 182: The Holo-Trinity — See, Aim, Act (Prime Radiant, working name) (холотроица: увидеть, направить, действовать) (oral, Oct 30, 2026)
+
+> *Oral · October 30, 2026, 19:34 CST · chat with Hark, after Holostrategy v0 (Technology 181). Sasha calls it a mega-technology for the library: the three layers of Technology 181 read as one instrument with three centres, head / heart / gut. Builds on Technology 181 (Holomethodology of Phase Shifts), Technology 78 (The Planetary Holomap) and Technology 169 (The Template of Templates). Template: `docs/templates/meta-template.md` § "Holostrategy — meta-template (v0, 2026-10-30)".*
+
+### 🫀 Essence — in Sasha's words
+
+> «Вау, получается троица head/heart/gut:
+>
+> Холокарта - увидеть
+> Холостратегия - сфокусировать и направить магнит
+> Холометодология / холороадмэп - действовать через супер кокретную практическую заземленную работающую понятную пошаговую результивную дорожную карту
+>
+> …
+>
+> Куда это запишем? Это мега-Технология  в нашу библиотеку. Вау!!!!!!!!! И вместе они прайм рэдиэнт, в нем заключены все три этих холокарты, вся морфологическая холонавигация или что-то вроде.»
+> — *chat of 2026-10-30, 19:34 CST*
+
+*(translation)* "Wow, so it's a trinity, head / heart / gut. Holomap: to see. Holostrategy: to focus and aim the magnet. Holomethodology / holo-roadmap: to act through a super-concrete, practical, grounded, working, clear, step-by-step, result-producing roadmap. … It's a mega-technology for our library. And together they are a prime radiant: all three of these holomaps are contained in it, the whole morphological holonavigation, or something like that."
+
+| Centre | Layer | Verb | Question it answers | Output |
+|---|---|---|---|---|
+| Head | Holomap | **See** | What is this system, at which stage is each module, where is it going? | modules × stages, edge, bottleneck |
+| Heart | Holostrategy | **Aim** (focus, point the magnet) | Which one shift now, and what result proves it? | the next phase, its signal, rough horizon |
+| Gut | Holomethodology / holo-roadmap | **Act** | Which steps, in which order, carried by which technology? | a step-by-step roadmap from the library, primitives L1–L3 |
+
+The trace of every step feeds the next seeing: see → aim → act → trace → see again. Seven phases are seven notes of one octave; after the seventh, the system becomes one note of a larger octave and the trinity runs again there.
+
+### 🧠 Significance — AI draft
+
+*AI draft, for Sasha to rewrite in his voice.*
+- **Essence.** One instrument, three faces: see the whole, choose the one move, walk it step by step until the result shows. Same template for a person, a product, a venture, a village, a planet.
+- **Meaning.** Most tools give one face only: maps without a choice, strategies without a path, plans without a picture of the whole. Here the three are one loop, and a phase counts only when its result is visible. That turns the technology library from a collection into the "act" layer of a navigation system.
+- **Consequences.** (1) Evolver's offer fits one sentence: we help any system see itself, choose its next shift and make it. (2) Every technology becomes a candidate step in some roadmap. (3) It is productizable as session + AI + template (sketch below). (4) Risk: the abstraction must stay concrete; each layer needs a worked example, and the planetary avant-garde case in the meta-template is the first.
+
+### Closest analogues (sources opened 2026-10-30)
+
+| Analogue | What it shares | What the trinity adds |
+|---|---|---|
+| **Rumelt's kernel of good strategy**: diagnosis → guiding policy → coherent actions ([McKinsey Quarterly, 2011](https://www.mckinsey.com/capabilities/strategy-and-corporate-finance/our-insights/the-perils-of-bad-strategy)) | Closest structural twin: diagnosis ≈ holomap + bottleneck, guiding policy ≈ holostrategy, coherent actions ≈ roadmap; "one or two critical issues" ≈ one bottleneck at a time | An evolutionary axis (stages, phases, octave), a library of tested shift technologies, one template for every scale, and a visible result that marks the phase |
+| **Wardley Mapping**: purpose → landscape → climate → doctrine → leadership; components on value chain × evolution ([Wikipedia](https://en.wikipedia.org/wiki/Wardley_map), [Learn Wardley Mapping](https://learnwardleymapping.com/)) | Map first, then play; components move through evolution stages | Holonic (a person and a planet on the same template), inner development counts, phase = result, trace-driven review |
+| **Theory U** (Scharmer): open mind, open heart, open will ([Interaction Institute](https://interactioninstitute.org/theory-u-the-3rd-proposition/); [presencing.org](https://www.presencing.org/theoryu)) | The same head / heart / will triad as the source of change | Lands the triad in a map, a choice and a roadmap with checkable results; Theory U is a process of awareness, not a navigation instrument |
+| **Asimov's Prime Radiant** (Foundation): a device storing the psychohistory equations of humanity's future ([Wikipedia](https://en.wikipedia.org/wiki/Prime_Radiant)) | One place where the whole and its likely future are seen | Not prediction of masses but navigation of one system by its own trace; includes the move and the steps |
+| **Theory of Change**: outcomes pathway, preconditions, "I'll know it when I see" indicators ([Wikipedia](https://en.wikipedia.org/wiki/Theory_of_change)) | Result signals; working back from the outcome | A holomap of modules × stages and the single-bottleneck rule |
+| **OODA loop** (Boyd): observe → orient → decide → act ([Wikipedia](https://en.wikipedia.org/wiki/OODA_loop)) | The loop see → decide → act | Stages and octaves: where the system is in its development, not only what is happening now |
+| **Integral (AQAL) + Spiral Dynamics** ([Integral theory](https://en.wikipedia.org/wiki/Integral_theory_(Ken_Wilber)), [Spiral Dynamics](https://en.wikipedia.org/wiki/Spiral_Dynamics)) | Stages, holons, quadrants, developmental lines | Turns the meta-map into a move and a roadmap for a given system |
+| **Digital twin** ([Wikipedia](https://en.wikipedia.org/wiki/Digital_twin)) | A live model synced with real data (≈ the trace-fed holomap) | Works for human and social systems, and carries aim and action, not only monitoring |
+| **OKRs** ([Wikipedia](https://en.wikipedia.org/wiki/Objectives_and_key_results)) | Objective + measurable result | OKRs say what to reach, not where the bottleneck is or which method moves it |
+
+### 🧭 Product sketch — AI draft (price left to Sasha)
+
+- **Name.** Working name *Prime Radiant*. IP note: "PRIME RADIANT" is a pending US trademark of Prime Radiant, Inc. (an AI research lab, San Francisco), filed 2026-04-17 for AI software, serial 99771910 ([Trademarkia](https://www.trademarkia.com/prime-radiant-99771910)); several other AI products use the name too. Fine as an internal name; risky as a public name for AI software. Alternatives: *Holonavigator*, *Holocompass*, *See · Aim · Act*, *Evolver Radiant*.
+- **For whom.** A founder or leader of a system in transition (a person, a venture, a community, a village) who sees a lot and does a lot, but can't tell which move matters now.
+- **Transformational result.** From "I see everything and do everything" to "I know my one next shift, I'm making it, and I'll know when it's done."
+- **Inputs.** The system's boundary; its trace (what already happened: docs, numbers, conversations); the person's own words.
+- **Outputs.** (1) Holomap: modules × stages, edge, bottleneck. (2) Holostrategy: the one next shift, its signal, a rough horizon. (3) Holo-roadmap: steps carried by technologies from the library, primitives L1–L3, a review date.
+- **Delivery.** A live session with Sasha + an AI that reads the trace + the meta-template (mechanics 0–9); afterwards the AI keeps the radiant current from the trace and re-reads it at each review.
+- **Price.** ___ (Sasha).
+
+### Cross-references — Connects to
+
+- *Technology 181: Holomethodology of Phase Shifts (Holostrategy)*: the three layers this technology joins into one instrument.
+- *Technology 78: The Planetary Holomap*; *Technology 169: The Template of Templates*.
+- `docs/templates/meta-template.md` § Holostrategy (principles, mechanics 0–9, planetary case).
