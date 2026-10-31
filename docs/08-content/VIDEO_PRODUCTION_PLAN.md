@@ -47,6 +47,49 @@ Open for Sasha: final structure; who writes Module 1; episode count; RU, EN or b
 Source: Sasha's paper *27-Perspective Vision* (/27, `src/pages/IntegralTheoryUpgrade1.tsx`, v1.2). Season code **V** (Vision). 3 modules, 9 episodes, ~15–18 min. Structure follows the paper's own arc (Sasha, 2026-10-30): The Twelve (two axes, 12 dimensions, the 13th) → The Octave (14–25, the 26th, the 27th) → The Landing (descent octave, the instrument, the act). No price shown for now.
 Episode texts, prompts and word counts: `activation_of_inner_vision_course.md`. Course data: `src/data/courses/activationOfInnerVision.ts` (ids `TBD` until upload). Page: `/grow/activation-of-inner-vision`.
 
+## 🧭 Course-from-Source Application 4: Micro-courses on Uniqueness and Professional Development — backlog, awaiting Sasha
+**Sasha, 2026-10-30 22:11 (verbatim, excerpt; full message in [game_of_being_you.md §20](../02-strategy/game_of_being_you.md)):** «Кстати, давай сделаем микро-курсы по уникальности на основании карт которые у нас есть? И по профессиональному развитию? Мы можем сделать офигенные супер короткие микро-курсы. И вообще их стоит за доллар например продавать. Или криптой тоже чтобы было можно. Или валютой телеграмма к примеру.. Продумаем.»
+
+**Format:** [course-from-source](../templates/course-from-source.md), super short: **1–3 episodes of 90–120 s**, one idea per episode, one badge. Season code **MC**. Each course is a power-up for one Gift Path boss (§20.2 of the game doc) and sits on the Quest Board next to that stage.
+
+**Two lines.** *Uniqueness*: one course per map in `knowledgegraph/20 Maps/Map of Maps.md` that carries a teachable idea. *Professional development*: from the Integral Professional Development Map (16 stages, 4 tiers) and the venture development map.
+
+**Candidates (Hark draft, 13). Ranked by Gift Path stage:** earlier bosses stop more players. Map of Maps tension: «most of the avant-garde may stall at the first interval, before Market».
+
+| Rank | Line | Title | One-line promise | Boss it helps beat | Eps | Source (knowledgegraph) |
+|---|---|---|---|---|---|---|
+| MC1 | Uniqueness | Nobody Names Their Gift Alone | Why you stall at 6–8/10, and the one move that gets you to the naming: receive a mirror | I · The Fog | 2 | `10 Notes/Frameworks/FW Uniqueness stages (1-10).md` (3→4 shock); `30 Sources/The Uniqueness Holomap v2.0 (July 2026).md` |
+| MC2 | Uniqueness | Gift, Step, Trace, Your AI, Room | The whole game in two minutes: five things everything you build is made of | I · The Fog | 1 | `10 Notes/Frameworks/FW Five primitives — gift, step, trace, your AI, room (bedrock).md` |
+| MC3 | Uniqueness | Nine Cells of You | Pattern · Direction · Assets: map your uniqueness in nine cells and find the empty one | I · The Fog | 3 | `10 Notes/Frameworks/FW Pattern · Direction · Assets (the 3×3 of uniqueness).md` |
+| MC4 | Professional | Founder-Market Fit Comes First | Your personal triumph, your past self and your replicable method already make an offer | II · Gatekeeper of Worth | 2 | `10 Notes/Frameworks/FW Founder-market fit formula — personal triumph, past self, replicable method, offer.md`; `30 Sources/Founder-Market Fit — Canonical Definition v0.3.md` |
+| MC5 | Uniqueness | Why You've Been in Tremors for Years | The seven stages of a crossing, where most people stall, and why the first real exchange is the click | II · Gatekeeper of Worth | 2 | `30 Sources/The Transition Holomap v1.0 (Jul 2026).md` |
+| MC6 | Professional | The Step from Employee to Entrepreneur | What changes between stage 5 (intrapreneurial leader) and stage 6 (aspiring entrepreneur), and the first act of stage 6 | II · Gatekeeper of Worth | 2 | `30 Sources/Integral Professional Development Map v1.0 (Jul 2026).md` |
+| MC7 | Uniqueness | One Gift, One Shift Offer | Turn your gift into one offer: the shift you carry, before → after | II · Gatekeeper of Worth | 1 | `10 Notes/Frameworks/FW Product map — shifts × paths, each cell one shift offer.md` |
+| MC8 | Uniqueness | Speak Your Tribe's Language | One door, eight voices: find the words your tribe already uses | III · The Explainer | 2 | `10 Notes/Frameworks/FW Currents of the evolutionary avant-garde v2.1 — eight currents, the WHO axis (draft).md` |
+| MC9 | Uniqueness | Where Your Tribe Already Looks | 151 surfaces scored by yield: pick the three that pay for you | III · The Explainer | 2 | `30 Sources/The Digital Surface Holomap — the Projection Matrix, 151 Surfaces Scored by Yield (Mar 31 – Apr 2, 2026).md` |
+| MC10 | Professional | From «Me» to «I Can't Live Without It» | The five venture stages, their milestones, and how you know you crossed from MVP to product-market fit | III · The Explainer | 2 | `10 Notes/Frameworks/FW Venture development map — five stages from founder-market fit to optimization.md` |
+| MC11 | Professional | Sixteen Stages of a Working Life | Find your altitude, employee → entrepreneur → founder → investor·mentor, and the next stage | IV · Bottleneck Self | 2 | `30 Sources/Integral Professional Development Map v1.0 (Jul 2026).md` |
+| MC12 | Uniqueness | Keep 100%, Share the Revenue | How sovereign founders grow together without giving up their venture | IV · Bottleneck Self | 1 | `30 Sources/The Sovereign Founder Collective (Aug 2026).md` |
+| MC13 | Uniqueness | Why Difference Compounds | Sameness depreciates, articulated difference compounds: the economy your gift is entering | IV · Bottleneck Self | 1 | `30 Sources/Uniqueness Economy Thesis.md` |
+
+Production per course-from-source: Sasha sets the structure; the Foundational lines are his own words. The IPDM and Transition sources are dated July 2026 snapshots. Read them through the newer canon, e.g. founder-market fit upstream of PMF.
+
+### Pricing and payments note (Hark proposal; Sasha: «Продумаем», nothing decided)
+Facts checked 2026-10-30:
+- **Card via Stripe:** 2.9% + 30¢ per domestic card (+1.5% international) ([stripe.com/pricing](https://stripe.com/pricing)). On a $1 sale that is 32.9¢ (≈⅓) domestic, ≈34¢ international. Card works for bundles, not for $1. Stripe also lists stablecoin payments at 1.5% on the same page. Stripe stays untouched until Sasha lifts his hold.
+- **Telegram Stars:** inside a Telegram bot, digital goods must be sold in Stars (currency `XTR`). Crypto or other providers are not allowed there, per App Store / Play rules ([core.telegram.org/bots/payments-stars](https://core.telegram.org/bots/payments-stars), FAQ). The seller receives **$0.013 per Star** as a reward ([Bot Developer Terms §6.2.4](https://telegram.org/tos/bot-developers)). Payout runs through Fragment, in TON/Gram. Stars can be held up to 21 days. Buyers pay about **$0.02 per Star** in the app stores: the smallest pack is 50 Stars for $0.99, 1,000 for $19.99 (Telegram's Star Pricing table, an image on the same page, as transcribed by third-party guides, Oct 2026). Example: a 77-Star course nets ≈$1.00 and costs the buyer ≈$1.50 in-app. A 50-Star course nets $0.65.
+- **Crypto:** USDC on a low-fee L2 such as Base. The network fee per transfer is usually a fraction of a cent (not verified today; check before launch). There is no processor cut unless a processor is used.
+
+**Proposal:** for $1 items, sell micro-courses for **Stars in the Evolver Telegram bot** (compliant, one tap, no card form) and for **USDC on an L2** on the web. Sell by card only as **bundles** (e.g. one Gift Path stage's courses, or all 13), where 30¢ stops mattering.
+
+**Open questions for Sasha**
+1. Free or paid: are MC1–MC3 (Stage I) free lead magnets, with paid courses starting at Stage II?
+2. Price: $1 flat (≈77 Stars, buyer pays ≈$1.50 in-app), or a round 50 Stars (nets $0.65)?
+3. Where they live: Telegram bot first, the site first, or both at once?
+4. Bundle: one price per Gift Path stage, or one for all 13?
+5. Language: EN first, or EN + RU + ES together?
+6. Which three to produce first (Hark suggests MC1, MC4, MC5: one per early boss)?
+
 ---
 
 ## 🎬 Naming Convention (TV Series Style)

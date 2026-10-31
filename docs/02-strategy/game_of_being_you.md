@@ -1049,3 +1049,92 @@ Issues opened by this audit: P0 #239 (ES/RU), #240 (guest path), #241 (player tr
 5. **Translation = text on the page.** ES/RU counts when a Spanish or Russian visitor reads their language, not when keys exist.
 6. **Re-score after each wave** on the same scorecard; the next wave is chosen by the lowest score, not by the longest list.
 7. **Every item carries «what the player feels»** next to «Done when…».
+
+## 20. The Gift Path: the game's progress line (Sasha, 2026-10-30)
+
+**Sasha, verbatim (2026-10-30 22:11):**
+> «Gift path as progress line: raw gift → first paid by a stranger → product → scale - ЭТО ВАЖНО! Там прогресс нужно сделать гораздо более гранулярно! В этом во многом игра! Это и есть процесс прохождения игры! А брать мы это берем из того как проходят люди работу со мной. Это уже есть частично в /playbook. А /path покажет что мы можем людям предложить чтобы быстрее пройти боссов этой стадии? вместе с командой? ИГРОВОЙ МОМЕНТ! Кстати, давай сделаем микро-курсы по уникальности на основании карт которые у нас есть? И по профессиональному развитию? Мы можем сделать офигенные супер короткие микро-курсы. И вообще их стоит за доллар например продавать. Или криптой тоже чтобы было можно. Или валютой телеграмма к примеру.. Продумаем. ТУТ КУЧА КРУТОГО, НЕ УПУСТИ И ЗАДОКУМЕНТИРУЙ»
+
+**What he decided (his words, above):** the Gift Path is *how the game is played through*; progress along it must be much more granular; the steps are harvested from how people actually move through work with him (partly already in `/playbook`); `/path` shows what we offer to beat each stage's bosses faster, including with the team. Origin of the line: [morphogenetic_navigation.md](../04-products/morphogenetic_navigation.md) → Act (Wardley's evolution axis applied to the gift).
+
+**Everything below this line is a Hark draft (2026-10-30), for Sasha's review.** Sources harvested: `src/data/playbookSteps.ts` (7 steps × 3 substeps, verbatim titles), `/path` ladder (`pathPage.ladder` in `src/locales/en/common.json`), §13.3–13.4 victories V1–V9, §14.2 Journey, the Uniqueness stages 1–10 and Transition stages (knowledgegraph `10 Notes/Frameworks/`), and the Daily Learnings Ledger in `evolver-private-ledger/docs/09-logs/project_pulse_log.md` (how clients actually moved, Jul–Oct 2026).
+
+### 20.1 Rules that carry over (no new mechanics invented)
+- **A step counts only by its trace in reality** (§10a fidelity, §13.4 victories): a sentence saved, a recording, a payment. No XP.
+- **Every passed step runs the §13.4 ritual:** congratulate, ask «resonance 1–10?», record in the Character Sheet.
+- **Bosses are real-life thresholds** (§10 motivation 7, approved). §13.3 calls them *threshold guardians* (no combat vocabulary); Sasha's 10-30 message says «боссы». Draft uses «boss» in docs; the word on screen is open question 1.
+- **The Gift Path is the business spine of the QoL level, not a second level scale** (§19.6 warns three scales already compete). Draft: it lives as the player's *gift line* in Your House and the stall, and feeds the Wealth and Impact domains of the QoL map.
+- **Holonic:** the same four stages read for one person (gift), a product, and a venture (the venture map's FMF → MVP → PMF → scale-up).
+
+### 20.2 The line: 4 stages, 22 steps
+
+The milestones on the line are Sasha's four words; the extra milestone **named gift** (9+/10 resonance) splits his first segment, because that is where `/playbook` Steps 1–3 and Ignite end.
+
+**Stage I · Raw gift → Named gift** (Playbook 1–3 · Uniqueness stages 1→4 · victories V1–V4)
+
+| # | Step | Trace that proves it | Harvested from |
+|---|---|---|---|
+| I.1 | Pass the top-talent reveal, enter the village | talent sentence v1.0 saved | Playbook 1.1; V1 |
+| I.2 | Write the gift in one sentence and version it | v1.x in Your House | Playbook 1.2–1.3 |
+| I.3 | Receive one mirror: someone says «yes, that's you» | one reflection on the share card (§14.12a) | Uniqueness 3→4 shock: «nobody names their own invariant alone» |
+| I.4 | Reach 9/10 resonance | self-rating ≥ 9 recorded | Playbook 2.1–2.2 |
+| I.5 | Find the top blind spot and the personal myth | two Workshop artifacts | Playbook 3.1–3.2 |
+| I.6 | Get the shape of the business (tagline + 7 artifacts) | UBB tagline saved | Playbook 3.3; V4 |
+
+- **Boss: The Fog** — «I can't say what I do in one breath». Typical stall: 6–8/10 after any test (Playbook 2.2: no personality test gets further); the block is consent to the mirror, not its accuracy.
+- **/path to beat it faster:** free reveal + free 45-min Direction Call; Your AI copy-prompts (already in Playbook 1.2); micro-courses MC1–MC3 (§20.4); **Ignite** 2-hour session, Steps 2+3, $555; Oracle Reading $37 as an optional power-up.
+
+**Stage II · Named gift → First paid by a stranger** (Playbook 4–5, 6.3 · Transition stages 5→7, the Crossing · victories V5–V9)
+
+| # | Step | Trace that proves it | Harvested from |
+|---|---|---|---|
+| II.1 | Turn the gift into one transformational promise | promise line on your stall | Playbook 4.2 |
+| II.2 | Name your first signature 1:1 session | offer card with a name | Playbook 4.3 |
+| II.3 | Let five tribe names surface, write them down | list of 5 | Playbook 5.1 |
+| II.4 | Deliver it once as a gift or beta, recorded | recording + one quote | Playbook 4.3, 5.2 |
+| II.5 | Say your price out loud to a client | logged on the Quest Board | V8 |
+| II.6 | Send the life-update to weak ties outside your circle | sent (count only) | Playbook 6.3 |
+| II.7 | A stranger pays (the Slipper) | payment record | V9; Uniqueness 6→7 and Transition Crossing «at once» |
+
+- **Boss: The Gatekeeper of Worth** — giving forever for free, never naming the price, friends say yes and strangers don't. Ledger patterns: undefined exchange («сочтёмся») is where value leaks; donation with dignity converts where free leaks; a priced written proposal reads as service, not leak; money-shaped buyers need an income-framed promise.
+- **/path to beat it faster:** **BUILT** 3 weeks with other conscious founders, $1,111 (the team); **TEST**, $333; **Mastermind** $222 (the Room witnesses the first price); webinar; micro-courses MC4–MC7; Your AI: transcripts → testimonials (Playbook 4.2, 5.2).
+
+**Stage III · First stranger → Product** (Playbook 5.3, 6.1–6.2 · venture map stage 1→2 · Uniqueness 6→7, having → transmitting)
+
+| # | Step | Trace that proves it | Harvested from |
+|---|---|---|---|
+| III.1 | Deliver ~10 sessions across ~5 clients | delivery dashboard | Playbook 5.3 |
+| III.2 | Track your three key metrics | dashboard filled | Playbook 5.2 |
+| III.3 | Name your highly specific tribe in one line | tribe line saved | Playbook 5.3 |
+| III.4 | Ship landing + lead magnet + funnel | live URL | Playbook 6.1 |
+| III.5 | Set the master tuning fork on every bio, one DM, one post | links live | Playbook 6.2 |
+| III.6 | Someone buys without a call | a sale with no call before it | Playbook 6.1 («until the page can close without you») |
+
+- **Boss: The Explainer** — the offer only exists while you are in the room explaining it. Si-Do shock: packaged precisely enough that a stranger uses it without you.
+- **/path to beat it faster:** **LAUNCH** 2-week container (priced in conversation); Mastermind; Your AI: roasting prompts, Godfather Offer Architect (Playbook 6.1); micro-courses MC8–MC10. *Hark idea:* the player's own first product can itself be a micro-course made with course-from-source.
+
+**Stage IV · Product → Scale** (Playbook 7 · venture map 3→4 · IPDM founder tier 9–12)
+
+| # | Step | Trace that proves it | Harvested from |
+|---|---|---|---|
+| IV.1 | A stranger finds and buys without you pushing | inbound sale with its source | Playbook 7, transformational result |
+| IV.2 | An upstream practitioner routes buyers to you | one revenue-share edge | Playbook 6.3 (strategy 3) |
+| IV.3 | Productize, license or white-label | a sale with zero of your hours | Playbook 7.2 |
+| IV.4 | Join the Sovereign Founder Collective | signed edge | Playbook 7.1 |
+| IV.5 | Help a newer founder cross Stage II | their II.7 trace names you | Playbook 7.3 |
+
+- **Boss: The Bottleneck Self** — growth equals your hours; scale stays a solo grind.
+- **/path to beat it faster:** Step 7 by invitation (10% revenue share or equity); the Collective and guilds (§18); micro-courses MC11–MC13.
+
+### 20.3 Where it shows up (draft, nothing built)
+- `/playbook` keeps the method (7 steps); `/path` keeps the offers and prices. Draft: `/path` gets one more column, «the boss of this stage and what helps», with no copy change until Sasha reads it (content there is «locked verbatim from Sasha»).
+- In the game: the gift line is the stall assembling itself (§14.12); each step's trace lights one part. §14.2 Journey steps 6–12 already equal I.6 and II.5–II.7.
+
+### 20.4 Micro-courses (Sasha's idea, same message)
+Backlog with 13 candidates, two lines (Uniqueness · Professional development), ranked by which Gift Path boss each helps beat: [VIDEO_PRODUCTION_PLAN.md → Application 4](../08-content/VIDEO_PRODUCTION_PLAN.md). Pricing and payments note (Hark proposal, not decided) is there too.
+
+### 20.5 Open for Sasha
+1. On screen: «boss», «threshold guardian» (§13.3), or something else?
+2. Is **named gift (9+/10)** a milestone on the line, or only a step inside Stage I?
+3. «First paid by a stranger»: does a paying friend count, or only someone outside your circle (II.7 assumes outside)?
+4. Is the Gift Path a separate visible line, or only the Wealth/Impact part of the one QoL level (§19.8 rule 3: one truth)?
