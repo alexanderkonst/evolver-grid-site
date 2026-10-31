@@ -23,6 +23,7 @@ import {
   useVillagePresencePrefs,
 } from "@/hooks/useVillagePresence";
 import { useSoulColors } from "@/hooks/useSoulColors";
+import { useBloomSync } from "@/hooks/useBloomSync";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
 import {
   awaitingSave,
@@ -316,6 +317,8 @@ const Village = () => {
   // move becomes «Save your character». Once saved, the sheet's chain takes over.
   const guestResult = useGuestResult();
   const save = placeSaveFromSheet(sheet, now, { "guest-result": signedIn === false && guestResult });
+  // The same save sets the world's one colorfulness for every screen (src/lib/bloom.ts).
+  useBloomSync(save, sheet.victories, ready, sheet.loadFailed);
   // The talent they saw, read from the same local result (nothing is sent anywhere).
   const guestTalent = signedIn === false && guestResult ? readGuestTalentName() : null;
   const states: PlaceStateName[] = VILLAGE_PLACES.map((p) => placeState(p, save));

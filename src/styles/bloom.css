@@ -1,0 +1,170 @@
+/* ==========================================================================
+   WORLD BLOOM — issue #277 (Sasha, 2026-10-30: the whole world blooms)
+   ==========================================================================
+   ONE global colorfulness for the Lunar world, `bloomLevel` 0…9, written as CSS
+   custom properties on <html> by src/lib/bloom.ts. Every scene inherits it; there
+   is no per-page fork. Colors, their order and the stages live in
+   src/config/bloom.ts (the swap-point for soul colors derived from the gift).
+
+   Inputs (all on <html>):
+     --bloom-sat      0 → 1  how much color the scene art has back
+     --bloom-warm     0 → 1  warm tint and horizon glow
+     --bloom-c1…c7           the seven colors, fully transparent until lit
+     --bloom-seconds         how long a change takes to settle
+
+   Where it lands:
+     1. Scene art     `--scene-filter` (grayscale + a little sepia) — every scene
+                      image in Lunar already reads that one token.
+     2. Sky           `.bloom-sky`, fixed behind the page: a warm horizon and a band
+                      of the lit colors. Dimmed (--bloom-sky-dim) so it never lifts
+                      the background under text: WCAG-AA holds at every stage.
+     3. Moment        `.bloom-glow`, a brief glow in the color of the object just earned.
+     4. Preview       `.bloom-chip`, only while ?bloom=N is active.
+
+   Other skins are untouched: every rule is scoped to [data-skin="lunar"], except
+   the property registrations, which are inert on their own.
+   ========================================================================== */
+
+/* Registered so the browser can interpolate them: a change of stage is a slow
+   crossfade, not a jump. Without @property support it simply snaps. */
+@property --bloom-sat { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --bloom-warm { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --bloom-c1 { syntax: "<color>"; inherits: true; initial-value: rgb(0 0 0 / 0); }
+@property --bloom-c2 { syntax: "<color>"; inherits: true; initial-value: rgb(0 0 0 / 0); }
+@property --bloom-c3 { syntax: "<color>"; inherits: true; initial-value: rgb(0 0 0 / 0); }
+@property --bloom-c4 { syntax: "<color>"; inherits: true; initial-value: rgb(0 0 0 / 0); }
+@property --bloom-c5 { syntax: "<color>"; inherits: true; initial-value: rgb(0 0 0 / 0); }
+@property --bloom-c6 { syntax: "<color>"; inherits: true; initial-value: rgb(0 0 0 / 0); }
+@property --bloom-c7 { syntax: "<color>"; inherits: true; initial-value: rgb(0 0 0 / 0); }
+
+/* Held back until the first paint of the cached stage (initBloom), so a page
+   load never animates up from silver. */
+html[data-bloom-ready] {
+  transition:
+    --bloom-sat var(--bloom-seconds, 4s) ease-in-out,
+    --bloom-warm var(--bloom-seconds, 4s) ease-in-out,
+    --bloom-c1 var(--bloom-seconds, 4s) ease-in-out,
+    --bloom-c2 var(--bloom-seconds, 4s) ease-in-out,
+    --bloom-c3 var(--bloom-seconds, 4s) ease-in-out,
+    --bloom-c4 var(--bloom-seconds, 4s) ease-in-out,
+    --bloom-c5 var(--bloom-seconds, 4s) ease-in-out,
+    --bloom-c6 var(--bloom-seconds, 4s) ease-in-out,
+    --bloom-c7 var(--bloom-seconds, 4s) ease-in-out;
+}
+
+/* ── 1. Scene art ────────────────────────────────────────────────────────
+   Stage 0 is the Lunar original, byte for byte: grayscale(1) and no sepia. */
+[data-skin="lunar"] {
+  --scene-filter:
+    grayscale(calc(1 - var(--bloom-sat, 0)))
+    sepia(calc(var(--bloom-warm, 0) * 0.12))
+    contrast(1.06)
+    brightness(0.96);
+}
+
+/* ── 2. Sky ──────────────────────────────────────────────────────────────
+   Behind the content (z-index -1), so it tints the night the text sits on
+   rather than painting over the text. */
+.bloom-sky {
+  display: none;
+}
+[data-skin="lunar"] .bloom-sky {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  filter: brightness(var(--bloom-sky-dim, 0.3));
+}
+[data-skin="lunar"] .bloom-sky::before,
+[data-skin="lunar"] .bloom-sky::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+/* the warm horizon: first light at stage 1, deepening toward dawn */
+[data-skin="lunar"] .bloom-sky::after {
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--bloom-warm-color, #f2c98a) calc(var(--bloom-warm, 0) * var(--bloom-sky-warm, 0.5) * 100%), transparent) 0%,
+    transparent 60%
+  );
+}
+/* the band of lit colors along the horizon; an unlit color is transparent */
+[data-skin="lunar"] .bloom-sky::before {
+  top: auto;
+  height: 42%;
+  opacity: var(--bloom-sky-band, 0.6);
+  background: linear-gradient(
+    90deg,
+    var(--bloom-c1),
+    var(--bloom-c2),
+    var(--bloom-c3),
+    var(--bloom-c4),
+    var(--bloom-c5),
+    var(--bloom-c6),
+    var(--bloom-c7)
+  );
+  -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 100%);
+  mask-image: linear-gradient(to top, #000 0%, transparent 100%);
+}
+
+/* ── 3. The moment an object is earned ──────────────────────────────────
+   The earned color rises from the bottom edge and settles. Brief, soft, no text. */
+.bloom-glow {
+  display: none;
+}
+[data-skin="lunar"] .bloom-glow {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(ellipse 90% 55% at 50% 100%, var(--bloom-glow-color, #f2c98a) 0%, transparent 70%);
+  filter: brightness(0.7);
+  animation: bloom-glow var(--bloom-glow-ms, 2600ms) ease-out forwards;
+}
+@keyframes bloom-glow {
+  0%   { opacity: 0; transform: translateY(8%); }
+  28%  { opacity: 0.4; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(0); }
+}
+
+/* ── 4. Preview chip (?bloom=N) ──────────────────────────────────────── */
+.bloom-chip {
+  position: fixed;
+  left: 12px;
+  bottom: 12px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: calc(100vw - 24px);
+  padding: 6px 6px 6px 12px;
+  border: 1px solid rgba(230, 235, 242, 0.4);
+  border-radius: 999px;
+  background: #0e141c;
+  color: #eef2f7;
+  font: 400 12px/1.2 "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0.04em;
+}
+.bloom-chip button {
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px solid rgba(230, 235, 242, 0.55);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.bloom-chip button:focus-visible {
+  outline: 2px solid #8fe3d9;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-bloom-ready] { transition: none; }
+  [data-skin="lunar"] .bloom-glow { animation: none; display: none; }
+}

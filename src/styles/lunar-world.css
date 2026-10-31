@@ -212,7 +212,8 @@
    halftone, and lays the player's soul colors over the scene only (`.ps-scene::after`, under
    the copy), so the words never change colour. */
 [data-skin="lunar"] .vl-place__state:not([data-place-state="closed"]) .vl-place__img {
-  filter: grayscale(calc(1 - 0.9 * var(--vl-soul, 0))) contrast(1.06) brightness(1.06);
+  /* the place's own color (--vl-soul) and the world's (--bloom-sat, src/styles/bloom.css) compose */
+  filter: grayscale(calc((1 - 0.9 * var(--vl-soul, 0)) * (1 - var(--bloom-sat, 0)))) contrast(1.06) brightness(1.06);
   transition: filter 1.8s var(--motion-ease, ease);
 }
 [data-skin="lunar"] .vl-place__state:not([data-place-state="closed"])::before {

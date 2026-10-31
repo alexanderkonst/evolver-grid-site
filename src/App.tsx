@@ -29,6 +29,7 @@ import CockpitDashboard from "./pages/CockpitDashboard";
 import CockpitOffersBoard from "./pages/CockpitOffersBoard";
 import PreviewBanner from "@/components/skin/PreviewBanner";
 import { LunarWorldCache } from "@/components/skin/LunarWorld";
+import { BloomWorld } from "@/components/skin/BloomWorld";
 import NSScopeLock from "@/components/skin/NSScopeLock";
 import DaouniverseScopeLock from "@/components/skin/DaouniverseScopeLock";
 import PlanetirScopeLock from "@/components/skin/PlanetirScopeLock";
@@ -508,6 +509,7 @@ const GlobalChrome = () => {
       <ScrollRestoration />
       {!isHeroQuiz && <PreviewBanner />}
       <LunarWorldCache />
+      <BloomWorld />
       {!isHeroQuiz && <MusicPlayer />}
     </>
   );

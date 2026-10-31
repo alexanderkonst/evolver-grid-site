@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { VILLAGE_PLACES } from "@/data/villagePlaces";
+import { useBloomSync } from "@/hooks/useBloomSync";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
 import { placeSaveFromSheet, placeState, type PlaceStateName } from "@/lib/placeState";
 
@@ -22,6 +23,8 @@ export const usePlaceStates = (): { states: PlaceStateName[]; ready: boolean } =
 
   const ready = !sheet.isLoading;
   const save = placeSaveFromSheet(sheet, now);
+  // The same save sets the world's colorfulness (src/lib/bloom.ts) on every screen with the rail.
+  useBloomSync(save, sheet.victories, ready, sheet.loadFailed);
   const states = VILLAGE_PLACES.map((p): PlaceStateName => {
     const s = placeState(p, save);
     return !ready && s === "closed" ? "open" : s;

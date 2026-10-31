@@ -6,9 +6,11 @@ import "./index.css";
 import "./styles/theme-tokens.css";
 import "./styles/lunar-world.css";
 import "./styles/skin-journey.css";
+import "./styles/bloom.css";
 import i18n from "@/i18n/config";
 import { installLanguageProfileSync } from "@/i18n/languageSync";
 import { installPostAuthSideEffects } from "@/lib/postAuthSideEffects";
+import { initBloom } from "@/lib/bloom";
 
 // Day 58+ (Sasha 2026-05-03): defensive service-worker cleanup. The
 // Karime walkthrough hit a stale "Dashboard / Playbook / Path" UI
@@ -51,6 +53,9 @@ if (typeof window !== "undefined" && "serviceWorker" in navigator) {
 // src/lib/postAuthSideEffects.ts for the architectural rationale.
 installPostAuthSideEffects();
 installLanguageProfileSync();
+// The world's colorfulness (src/lib/bloom.ts): paint the cached stage before React renders, so a
+// page load never animates up from silver.
+initBloom();
 
 createRoot(document.getElementById("root")!).render(
     <I18nextProvider i18n={i18n}>
