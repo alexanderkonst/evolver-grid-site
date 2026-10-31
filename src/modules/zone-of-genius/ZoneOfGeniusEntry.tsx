@@ -72,6 +72,7 @@ import Hls from "hls.js";
 import ModuleIntro from "@/components/game/ModuleIntro";
 import ModuleOutro from "@/components/game/ModuleOutro";
 import { getJourneyModule } from "@/data/journeyModules";
+import { wantsFirstQuestion } from "@/lib/firstVisit";
 
 // WP-5: this module in the module form (Intro → one button → the flow → Outro).
 const ZOG_MODULE = getJourneyModule("find-top-talent")!;
@@ -157,7 +158,11 @@ const ZoneOfGeniusEntry = () => {
     // below. Mode A (?result=token) and Mode B (authed with saved
     // snapshot) overrides in the loadExisting effect still jump straight
     // to the appleseed-result step — unaffected.
-    const [step, setStep] = useState<Step>("choice-route");
+    // NEW GAME / splash ENTER (`?begin=1`): open on the first question itself, the Your AI
+    // dialogue, skipping the module intro and the route choice. The other doors stay one
+    // link away inside the dialogue (guided test, own AI). See NEW_GAME_PATH.
+    const beginAtFirstQuestion = wantsFirstQuestion(searchParams);
+    const [step, setStep] = useState<Step>(beginAtFirstQuestion ? "your-ai" : "choice-route");
     // `aiResponse` is the last SUBMITTED paste (used by the save paths). The
     // paste box itself is uncontrolled and read on submit, so typing or
     // pasting a long response never round-trips through React state.
@@ -169,7 +174,9 @@ const ZoneOfGeniusEntry = () => {
     const [isProcessing, setIsProcessing] = useState(false);
     // Your AI dialogue (Sasha 2026-10-30): the default door. Kept here so a failed
     // reveal returns to the conversation intact.
-    const [dialogue, setDialogue] = useState<DialogueMessage[]>([]);
+    const [dialogue, setDialogue] = useState<DialogueMessage[]>(() =>
+        beginAtFirstQuestion ? [{ role: "ai", text: t('zogEntry.yourAiOpening') }] : [],
+    );
     const [ownAiNotes, setOwnAiNotes] = useState("");
     const [dialogueReady, setDialogueReady] = useState(false);
     const [dialogueRevealError, setDialogueRevealError] = useState<string | null>(null);
@@ -244,7 +251,7 @@ const ZoneOfGeniusEntry = () => {
     // (/start) and a redo, which start straight at the route choice.
     const [loaded, setLoaded] = useState(false);
     const [introPending, setIntroPending] = useState(
-        !returnPath.includes("/start") && searchParams.get("redo") !== "true",
+        !returnPath.includes("/start") && searchParams.get("redo") !== "true" && !beginAtFirstQuestion,
     );
     useEffect(() => {
         // Once the player is anywhere past the route choice, the Intro is behind them
@@ -1069,6 +1076,12 @@ const ZoneOfGeniusEntry = () => {
                 {retakeControl}
             </GameShellV2>
         );
+    }
+
+    // First question requested (NEW GAME): wait for the saved-result check, so a signed-in
+    // player who already has a result is taken to it without the question flashing first.
+    if (beginAtFirstQuestion && step === "your-ai" && !loaded) {
+        return <GameShellV2 hideNavigation={hideNav} hideLogo>{null}</GameShellV2>;
     }
 
     // WP-5 module form, Before: the Intro (result + one button) leads into the route choice.

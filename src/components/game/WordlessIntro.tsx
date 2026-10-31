@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from "re
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { FONTS_HREF } from "@/lib/gameFonts";
-import { markIntroSeen } from "@/lib/firstVisit";
+import { NEW_GAME_PATH, markIntroSeen } from "@/lib/firstVisit";
 import { RECEPTION, VILLAGE_MAP } from "@/data/villagePlaces";
 import brandLogo from "@/assets/you-be-original-main-lockup.webp";
 import "./WordlessIntro.css";
@@ -13,8 +13,9 @@ import "./WordlessIntro.css";
  * Design: docs/02-strategy/game_of_being_you.md §14.2 (Journey J0), §14.3 (open/new
  * state language). A new player sees the dark village, every place unlit, and one faint
  * light breathing where Reception is. Any gesture (tap, click, swipe, scroll, any key)
- * lights Reception; then its name and line fade in and ENTER appears. ENTER goes to
- * /village/reception, where the normal path continues (the uniqueness test).
+ * lights Reception; then its name and line fade in and ENTER appears. ENTER goes straight to
+ * the first question of the uniqueness test (NEW_GAME_PATH): two clicks from the splash. The
+ * village comes after the answer, as the reward (the reveal ends in «Enter the village»).
  *
  * Before the first gesture the scene reads as night (map dimmed + a night veil) and a quiet
  * "Tap or press any key" cue plus a quiet Skip are visible (WP-7a).
@@ -192,7 +193,7 @@ const WordlessIntro = ({ onSkip }: Props) => {
               <Link
                 ref={enterRef}
                 className="wi-enter"
-                to={`/village/${RECEPTION.key}`}
+                to={NEW_GAME_PATH}
                 onClick={markIntroSeen}
               >
                 ENTER

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { FONTS_HREF } from "@/lib/gameFonts";
-import { readGuestTalentName, shouldShowWelcomeBack, shouldShowWordlessIntro } from "@/lib/firstVisit";
+import { NEW_GAME_PATH, readGuestTalentName, shouldShowWelcomeBack, shouldShowWordlessIntro } from "@/lib/firstVisit";
 import { tr } from "@/lib/villageCopy";
 import WordlessIntro from "@/components/game/WordlessIntro";
 import { journeyStepRows } from "@/lib/journeyLabels";
@@ -268,7 +268,7 @@ const TitleScreen = () => {
   const continueRef = useRef<HTMLAnchorElement>(null);
 
   const items: MenuItem[] = [
-    { key: "new", label: "New Game", hint: "Discover your Uniqueness", to: "/village/reception" },
+    { key: "new", label: "New Game", hint: "Discover your Uniqueness", to: NEW_GAME_PATH },
     { key: "load", label: "Load Game", hint: "Continue your journey", to: loadTo },
     { key: "tutorial", label: "Tutorial", hint: "Free course · Activate Your Dormant Potential", to: "/grow/activate-your-dormant-potential" },
     { key: "multi", label: "Multiplayer", hint: "Mastermind & co-creation", to: "/build/mastermind" },

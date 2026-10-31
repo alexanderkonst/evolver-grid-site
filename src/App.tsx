@@ -992,7 +992,7 @@ const App = () => (
                                     <Route path="/zone-of-genius/appleseed" element={<RequireAuth><AppleseedView /></RequireAuth>} />
                   <Route path="/zone-of-genius/excalibur" element={<RequireAuth><ExcaliburView /></RequireAuth>} />
                   {/* WP-7a/7b (2026-10-28): the test is public. A guest plays it from the title
-                      (NEW GAME → Reception → here); result first, account at «Save your
+                      (NEW GAME → here, ?begin=1, straight to the first question); result first, account at «Save your
                       character»: the reveal shows right after the test, with
                       TopTalentAuthGate inline under it. Saving unlocks the full reading,
                       and its primary button «Enter the village» leads to /village. */}
