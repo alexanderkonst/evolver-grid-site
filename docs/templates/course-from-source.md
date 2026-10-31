@@ -53,6 +53,7 @@
 ### Applications
 - 1. **Activate Your Dormant Potential** (6 modules, 38 episodes): [activate_your_dormant_potential_transcripts.md](../08-content/activate_your_dormant_potential_transcripts.md).
 - 2. **Consciousness Meets Science** (Mystery School intro, draft): plan in [VIDEO_PRODUCTION_PLAN.md](../08-content/VIDEO_PRODUCTION_PLAN.md) → Application 2; episode texts in [consciousness_meets_science_course.md](../08-content/consciousness_meets_science_course.md).
+- 3. **Activation of Inner Vision** (advanced micro-course from the /27 paper, unlocks after Integral Mystery School; 3 modules, 9 episodes, draft): [activation_of_inner_vision_course.md](../08-content/activation_of_inner_vision_course.md).
 
 ---
 

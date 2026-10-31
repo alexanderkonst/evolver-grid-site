@@ -793,6 +793,15 @@ export default function IntegralTheoryUpgrade1() {
           </section>
         ))}
 
+        {/* Quiet pointer to the advanced micro-course built on this paper (2026-10-30). */}
+        <p className="text-white/40 text-sm md:text-base text-center italic mb-16 md:mb-20" style={{ fontFamily: "'Source Serif 4', serif" }}>
+          {lang === 'en' ? 'To practise this on your own situations: ' : 'Практиковать это на своих ситуациях: '}
+          <a href="/grow/activation-of-inner-vision" className="underline underline-offset-4 decoration-white/20 hover:text-white/70 transition-colors">
+            {lang === 'en' ? 'Activation of Inner Vision' : '«Активация внутреннего видения»'}
+          </a>
+          {lang === 'en' ? ', an advanced micro-course.' : ', продвинутый микрокурс.'}
+        </p>
+
         {/* Footer */}
         <footer className="py-16 md:py-24 border-t border-white/5">
           {/* Sources */}

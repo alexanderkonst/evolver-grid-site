@@ -31,6 +31,8 @@ export interface CoursePractice {
 export interface CourseConfig {
     slug: string;
     title: string;
+    /** i18n key for the small label above the title. Defaults to "course.eyebrow" ("Free mini-course"). */
+    eyebrowKey?: string;
     /** i18n key for the italic line under the title. */
     taglineKey: string;
     /** i18n key for an optional lead paragraph under the tagline. */

@@ -126,7 +126,7 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                 <div className="inline-flex items-center gap-2 mb-3">
                     <Sparkles className="w-4 h-4" style={{ color: "rgba(160, 109, 8, 0.85)" }} />
                     <span className="text-[10.5px]" style={EYEBROW_STYLE}>
-                        {t("course.eyebrow")}
+                        {t(course.eyebrowKey ?? "course.eyebrow")}
                     </span>
                 </div>
                 <h1

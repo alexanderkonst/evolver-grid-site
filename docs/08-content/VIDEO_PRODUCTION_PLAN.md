@@ -43,6 +43,10 @@ Open for Sasha: final structure; who writes Module 1; episode count; RU, EN or b
 
 **Ready-to-load episode texts + NotebookLM prompts (EN, 15 episodes, 2026-10-27):** `consciousness_meets_science_course.md`.
 
+## 🧭 Course-from-Source Application 3: "Activation of Inner Vision" (advanced micro-course, unlocks after Integral Mystery School) — draft, awaiting Sasha
+Source: Sasha's paper *27-Perspective Vision* (/27, `src/pages/IntegralTheoryUpgrade1.tsx`, v1.2). Season code **V** (Vision). 3 modules, 9 episodes, ~15–18 min. Structure follows the paper's own arc (Sasha, 2026-10-30): The Twelve (two axes, 12 dimensions, the 13th) → The Octave (14–25, the 26th, the 27th) → The Landing (descent octave, the instrument, the act). No price shown for now.
+Episode texts, prompts and word counts: `activation_of_inner_vision_course.md`. Course data: `src/data/courses/activationOfInnerVision.ts` (ids `TBD` until upload). Page: `/grow/activation-of-inner-vision`.
+
 ---
 
 ## 🎬 Naming Convention (TV Series Style)
@@ -64,6 +68,7 @@ F01E04 — Five Paths of Growth — Planetary OS v1.0
 | **E** | Emotions | E01E01 – E01E05 (5 episodes) |
 | **B** | Body | B01E01 – B01E03 (3 episodes) |
 | **G** | Genius | G01E01 – G01E06 (6 episodes) |
+| **V** | Activation of Inner Vision (advanced micro-course) | V01E01 – V03E03 (9 episodes) |
 
 ### Examples
 - `F01E04 — Five Paths of Growth — Planetary OS v1.0`
