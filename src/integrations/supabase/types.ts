@@ -2989,6 +2989,57 @@ export type Database = {
         }
         Relationships: []
       }
+      village_window_lights: {
+        Row: {
+          id: number
+          ip_hash: string
+          lit_at: string
+        }
+        Insert: {
+          id?: never
+          ip_hash: string
+          lit_at?: string
+        }
+        Update: {
+          id?: never
+          ip_hash?: string
+          lit_at?: string
+        }
+        Relationships: []
+      }
+      village_windows: {
+        Row: {
+          display_name: string | null
+          lit_at: string
+          moon_phase: string
+          n: number
+          released: boolean
+          token: string
+          top_talent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          display_name?: string | null
+          lit_at?: string
+          moon_phase: string
+          n?: never
+          released?: boolean
+          token?: string
+          top_talent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          display_name?: string | null
+          lit_at?: string
+          moon_phase?: string
+          n?: never
+          released?: boolean
+          token?: string
+          top_talent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       visibility_settings: {
         Row: {
           created_at: string
@@ -3236,6 +3287,15 @@ export type Database = {
           previous_tier: Database["public"]["Enums"]["entitlement_tier"]
         }[]
       }
+      claim_window: {
+        Args: { p_token: string }
+        Returns: {
+          lit_at: string
+          moon_phase: string
+          n: number
+          token: string
+        }[]
+      }
       eq_complete_task: { Args: { p_task_id: string }; Returns: undefined }
       eq_promote_do_now: {
         Args: { p_item_id: string; p_item_type: string; p_owner: string }
@@ -3295,6 +3355,16 @@ export type Database = {
         }
         Returns: undefined
       }
+      light_window: {
+        Args: { p_phase: string; p_token?: string; p_top_talent: string }
+        Returns: {
+          lit_at: string
+          moon_phase: string
+          n: number
+          token: string
+        }[]
+      }
+      lit_windows_count: { Args: never; Returns: number }
       normalize_profile_username: { Args: { p_value: string }; Returns: string }
       profile_username_is_reserved: {
         Args: { p_username: string }
@@ -3339,6 +3409,16 @@ export type Database = {
       set_my_public_profile_username: {
         Args: { p_username: string }
         Returns: string
+      }
+      window_public: {
+        Args: { p_n: number }
+        Returns: {
+          display_name: string
+          lit_at: string
+          moon_phase: string
+          n: number
+          top_talent: string
+        }[]
       }
     }
     Enums: {

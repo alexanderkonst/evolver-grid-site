@@ -57,6 +57,13 @@
       "when": 1793509938309,
       "tag": "0007_player_reflections",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1793509971449,
+      "tag": "0008_village_windows",
+      "breakpoints": true
     }
   ]
 }
