@@ -238,7 +238,7 @@ async function answer(
       "Content-Type": "application/json",
       Authorization: `Bearer ${LOVABLE_API_KEY}`,
     },
-    body: JSON.stringify({ model: "openai/gpt-6-astra", reasoning_effort: "low", messages }),
+    body: JSON.stringify({ model: "google/gemini-3.8-flash", reasoning_effort: "low", messages }),
   });
   if (!res.ok) {
     const body = await res.text();
