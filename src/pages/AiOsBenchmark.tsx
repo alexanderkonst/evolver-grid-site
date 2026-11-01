@@ -4,7 +4,8 @@ import { useTranslation } from "react-i18next";
 import { ArrowLeft, ArrowRight, MessageCircle, Download } from "lucide-react";
 
 /**
- * AiOsBenchmark — public benchmark page for AI OS v5.0.
+ * AiOsBenchmark — LEGACY public benchmark page for AI OS v5.0 (April 2026 study).
+ * Owner decision 2026-10-31: benchmarking paused; a completely new benchmark is in progress.
  *
  * Single source of truth for the +42% claim. Pinned from the
  * /ai-os hero via the "See the +42% benchmark" ghost link, also
@@ -90,7 +91,17 @@ const AiOsBenchmark = () => {
                             textShadow: "0 0 14px rgba(244,212,114,0.35), 0 0 12px rgba(0,0,0,0.85)",
                         }}
                     >
-                        AI OS · v5.0
+                        AI OS · v5.0 · Legacy
+                    </p>
+                    <p
+                        className="text-sm sm:text-base leading-relaxed max-w-2xl mb-6 rounded-xl px-4 py-3"
+                        style={{
+                            color: "hsl(0 0% 100% / 0.85)",
+                            background: "hsl(40 70% 55% / 0.10)",
+                            border: "1px solid hsl(40 70% 70% / 0.30)",
+                        }}
+                    >
+                        {t("aiOsBenchmark.legacyNote")}
                     </p>
                     <h1
                         className="font-display italic font-normal leading-[1.05] tracking-[-0.02em] mb-6"

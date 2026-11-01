@@ -154,7 +154,7 @@ const SPACE_SECTIONS: SpaceSections = {
             },
             {
                 id: "ai-os-benchmark",
-                label: "Benchmarking",
+                label: "Benchmark (legacy)",
                 path: "/ai-os/benchmark",
             },
             {

@@ -53,3 +53,9 @@ This writes `system-prompts/v5.1/system-prompt.md` plus a manifest. Commit the n
 ## Why this folder is at the repo root
 
 The system prompt is the venture's central artifact for AI users. It earns top-level visibility, not deep nesting. A buried archive gets forgotten. A standout folder stays known.
+
+---
+
+## Release notes
+
+- **v5.3 (2026-10-31):** point release on the way to v6. Sovereignty added to the conflict order (Care → Truth → Sovereignty → Empowerment → Simplicity); depth check reads Essence → Significance → Consequences (was "Implications"); the holonic seeing gate fires on strategic, creative and evaluative work instead of every output, and no longer claims to guarantee 27-perspective seeing; the frontier reading is marked as dated; carries the sovereign co-creator line already in source. License: CC BY-NC-SA 4.0, © 2026 Aleksandr Konstantinov. Plan for v6: `docs/02-strategy/ai_os_v6_plan.md`.
