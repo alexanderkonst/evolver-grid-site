@@ -249,7 +249,7 @@ Sasha decided (2026-10-31): **no benchmark run for v6.** Benchmark v2 design (ha
 2. **Iterate on the draft.** The Iterate module (§3.7) run on v6.0-alpha: roast, roast 2, meta-roast, crash test ("v6 shipped and failed"), rebuilt to alpha.n until kinetic calm or rising murk.
 3. **Sasha's live use.** He uses v6-alpha in his own sessions next to v5.2 for as long as he chooses; release on his recognition ("this is mine, and better"). His notes feed alpha.n point versions.
 
-The public `/ai-os/benchmark` page keeps describing the April 2026 study; v6 makes no new numeric claim.
+The public `/ai-os/benchmark` page is marked legacy (April 2026 study of an earlier scaffold); v6 makes no numeric claim.
 
 ---
 
@@ -262,10 +262,10 @@ Sasha's instruction 2026-10-31: proceed with the rest. Forks 1–6 and 8 are tak
 3. **AI altitude:** person-relative (+1 stage; at their stage for execution; 11+ as strategic default and ceiling); separate words for AI-development stage and professional stage (default).
 4. **Moonshot vs sovereignty gradient:** moonshot ambition default; capital instrument follows the gradient (default).
 5. **Licensing:** per R6 notes (§4).
-6. **v5.3 interim:** recommended, but it edits `system-prompts/`: waits on Sasha's explicit yes.
+6. **v5.3 interim:** **shipped 2026-10-31** with Sasha's yes (Sovereignty in the conflict order, Consequences, seeing gate by stakes, no guarantee claim, dated frontier; CC BY-NC-SA 4.0 everywhere).
 7. ~~Spend on benchmark~~: closed, no benchmark.
 8. **Canonical 14–26:** 14–25 = blind-spot re-pass on the center, 26 = seeing the seeing; scale pass optional in the module (default).
-9. **Public benchmark page wording** ("raw outputs open", "v5.2 = +42%"): public-facing, waits on Sasha.
+9. **Public benchmark page:** **decided 2026-10-31**: `/ai-os/benchmark` is a legacy page; benchmarking paused; a completely new benchmark is a separate work in progress, not on v6's path. +42% removed from the prompt card.
 
 ---
 
