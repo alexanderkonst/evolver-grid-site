@@ -2153,6 +2153,39 @@ export type Database = {
         }
         Relationships: []
       }
+      player_reflections: {
+        Row: {
+          answer: string
+          created_at: string
+          id: string
+          line: string | null
+          player_user_id: string
+          read_at: string | null
+          visitor_name: string
+          visitor_user_id: string | null
+        }
+        Insert: {
+          answer: string
+          created_at?: string
+          id?: string
+          line?: string | null
+          player_user_id: string
+          read_at?: string | null
+          visitor_name: string
+          visitor_user_id?: string | null
+        }
+        Update: {
+          answer?: string
+          created_at?: string
+          id?: string
+          line?: string | null
+          player_user_id?: string
+          read_at?: string | null
+          visitor_name?: string
+          visitor_user_id?: string | null
+        }
+        Relationships: []
+      }
       player_upgrades: {
         Row: {
           completed_at: string | null
@@ -3252,6 +3285,15 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      leave_reflection: {
+        Args: {
+          p_answer: string
+          p_line: string
+          p_username: string
+          p_visitor_name: string
+        }
+        Returns: undefined
       }
       normalize_profile_username: { Args: { p_value: string }; Returns: string }
       profile_username_is_reserved: {
