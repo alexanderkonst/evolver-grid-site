@@ -501,7 +501,7 @@ const ZoneOfGeniusOverview = () => {
     const vk = appleseedData.vibrationalKey;
     // Share card slice 3: a player with a link name shares their own page (link from the
     // one builder); everyone else keeps the text as it was.
-    const overviewOwnCard = buildOwnRevealCard(identity, vk?.name ? stripDecorativeGlyphs(vk.name) : "", window.location.origin);
+    const overviewOwnCard = buildOwnRevealCard(identity ? { name: identity.displayName, username: identity.username } : null, vk?.name ? stripDecorativeGlyphs(vk.name) : "", window.location.origin);
 
     return (
         <GameShellV2 hideLogo>

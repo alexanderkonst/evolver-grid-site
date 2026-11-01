@@ -96,6 +96,8 @@ export type PlaceInput = {
   line: string;
   /** The line for someone who already has a session; absent = `line` for everyone. */
   lineReturning?: string;
+  /** `lineReturning` with the player's name (`{{name}}`); used only when a name is given. */
+  lineReturningNamed?: string;
   rule: PlaceRule;
 };
 
@@ -206,8 +208,9 @@ const QUEST_BOARD = "quest-board";
 const SAVE_PLACE = "house";
 
 /** The next move for a guest who has a result and no account. */
-export const SAVE_CHARACTER_TITLE = "Save your character";
-const SAVE_CHARACTER_RESULT = "you'll keep your character, and Home opens.";
+// W5 (cult spec §6): «Keep your light lit», same save flow, new words. No window wording.
+export const SAVE_CHARACTER_TITLE = "Keep your light lit";
+const SAVE_CHARACTER_RESULT = "your light stays lit wherever you play, and Home opens.";
 
 /** The title shown after the place name on the next-move card; null when it only repeats the name. */
 export const moveTitle = (move: Pick<NextMove, "title" | "place">): string | null =>
@@ -376,9 +379,16 @@ export const closedLine = (place: PlaceInput, t?: TFunction): string => {
 };
 
 /** The one line to show for a place in a given state. */
-export const placeLine = (place: PlaceInput, state: PlaceStateName, t?: TFunction, signedIn = false): string => {
+export const placeLine = (
+  place: PlaceInput,
+  state: PlaceStateName,
+  t?: TFunction,
+  signedIn = false,
+  /** The one `displayName()` (src/lib/displayName.ts); null for a guest. */
+  name: string | null = null,
+): string => {
   if (state === "closed") return closedLine(place, t);
   const live = place.rule.live;
   if (state === "live" && live) return tr(t, live.key, live.line);
-  return placeTagline(place, t, signedIn);
+  return placeTagline(place, t, signedIn, name);
 };

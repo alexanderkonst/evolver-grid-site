@@ -54,6 +54,7 @@ import { OPEN_CHAT_EVENT } from "@/components/ChatLauncher";
 import SiteLogo from "@/components/SiteLogo";
 import MoonMedallion from "@/components/game/MoonMedallion";
 import { placeTagline } from "@/lib/villageCopy";
+import { displayName } from "@/lib/displayName";
 // hls.js is dynamically imported inside MuxVideoBackground to avoid module-level crashes
 import { useToast } from "@/hooks/use-toast";
 
@@ -861,8 +862,10 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // The place the player stands in: the path decides first, the pane second.
     const activePlace = activePlaceKey(location.pathname, activeSpaceId);
     const activePlaceData = RAIL_PLACES.find((p) => p.key === activePlace);
-    // A signed-in player never reads «Welcome, guest» (Reception has a returning line).
-    const activePlaceLine = activePlaceData ? placeTagline(activePlaceData, t, !!user) : undefined;
+    // W2: the one player name for the rail and the place line; null for a guest.
+    const playerName = displayName({ signedIn: !!user, firstName: profile?.first_name });
+    // A signed-in player is never «guest», and a guest never reads a name (Reception has a returning line).
+    const activePlaceLine = activePlaceData ? placeTagline(activePlaceData, t, !!user, playerName) : undefined;
 
     // Load profile
     const loadProfile = async (userId: string) => {
@@ -1590,7 +1593,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         "overflow-y-auto overflow-x-hidden",
                     )}
                     pageOwnsBackground={pageOwnsBackground}
-                    userName={[profile?.first_name, profile?.last_name].filter(Boolean).join(" ") || undefined}
+                    userName={playerName ?? undefined}
                     userAvatarUrl={profile?.avatar_url || undefined}
                     isAuthenticated={authChecked ? !!user : undefined}
                     soulColors={profile?.soul_colors || undefined}
@@ -1918,7 +1921,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         placeStates={placeStates}
                         onSpaceSelect={handleSpaceSelect}
                         pageOwnsBackground={pageOwnsBackground}
-                        userName={[profile?.first_name, profile?.last_name].filter(Boolean).join(" ") || undefined}
+                        userName={playerName ?? undefined}
                         userAvatarUrl={profile?.avatar_url || undefined}
                         isAuthenticated={authChecked ? !!user : undefined}
                         soulColors={profile?.soul_colors || undefined}

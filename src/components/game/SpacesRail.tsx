@@ -1034,7 +1034,7 @@ const SpacesRail = ({
                                             "grid place-items-center rounded-full transition-all duration-300 hover:ring-1 hover:ring-[#d4af37]/30",
                                             compact ? "w-[30px] h-[30px]" : "w-[48px] h-[48px]"
                                         )}
-                                        aria-label={t('spacesRail.profileAria')}
+                                        aria-label={userName ? `${t('spacesRail.profileAria')}: ${userName}` : t('spacesRail.profileAria')}
                                     >
                                         {hasSoulColors ? (
                                             <span
@@ -1061,7 +1061,8 @@ const SpacesRail = ({
                                     </button>
                                 </TooltipTrigger>
                                 <TooltipContent side="top" align="center" sideOffset={10} className="rounded-lg border-none px-2.5 py-1.5 bg-black/85 text-[11px] text-white/90">
-                                    {t('spacesRail.profileAria')}
+                                    {/* W2: the one player name (src/lib/displayName.ts), the same word as Home and Reception. */}
+                                    {userName || t('spacesRail.profileAria')}
                                 </TooltipContent>
                             </Tooltip>
                         )}

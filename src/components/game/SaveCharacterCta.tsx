@@ -22,7 +22,7 @@ const SaveCharacterCta = ({ buttonClassName, formClassName }: Props) => {
   const [saving, setSaving] = useState(false);
   const payload = readGuestTopTalentPayload();
   if (!payload) return null;
-  const title = tr(t, "village.saveCharacter", "Save your character");
+  const title = tr(t, "village.saveCharacter", "Keep your light lit");
   return saving ? (
     <div className={formClassName}>
       <TopTalentAuthGate inline resultPayload={payload} assessmentVersion="ai-v1" title={title} />

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { displayName } from "@/lib/displayName";
 
 /**
  * Who the signed-in player is on their share card: name, photo, link name.
@@ -11,6 +12,8 @@ import { supabase } from "@/integrations/supabase/client";
 
 export type ShareIdentity = {
     name: string;
+    /** The one player name (src/lib/displayName.ts): what the card shows. `name` stays the full name (particles). */
+    displayName: string | null;
     avatarUrl: string | null;
     username: string | null;
 };
@@ -37,6 +40,7 @@ export function useShareIdentity() {
                 if (!alive || !data) return;
                 setIdentity({
                     name: [data.first_name, data.last_name].filter(Boolean).join(" ").trim(),
+                    displayName: displayName({ signedIn: true, firstName: data.first_name }),
                     avatarUrl: data.avatar_url ?? null,
                     username: data.username ?? null,
                 });
