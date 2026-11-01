@@ -139,6 +139,7 @@ const HomeLandingPage = lazy(() => import("./pages/HomeLandingPage"));
 const HomeV2Page = lazy(() => import("./pages/HomeV2Page"));
 // Sasha 2026-10-27: private, noindex review of the testimonial clips (consent pending). Not linked anywhere.
 const TestimonialsPreview = lazy(() => import("./pages/TestimonialsPreview"));
+const NaturalClockPreview = lazy(() => import("./pages/NaturalClockPreview"));
 // Day 80 (Sasha 2026-05-23): Karime Kuri's offering page, first
 // in-platform per-founder offer surface. Lives in BUILD space, route
 // is public so the direct URL is shareable cold; sidebar row gated.
@@ -554,6 +555,8 @@ const App = () => (
                       leads back to the title screen at `/`. */}
                   <Route path="/investor" element={<InvestorRoom />} />
                   <Route path="/preview/testimonials" element={<TestimonialsPreview />} />
+                  {/* Natural Clock prototype (issue #284): sun · moon · week · solar battery. */}
+                  <Route path="/preview/natural-clock" element={<NaturalClockPreview />} />
                   <Route path="/journey" element={<JourneyPage />} />
                   {/* Day 138 (Sasha 2026-07-29): /home carries the approved
                       truth-landing copy — see HomeV2Page.tsx for context. */}

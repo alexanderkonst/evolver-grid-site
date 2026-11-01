@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { InfoPopover } from "./components/InfoPopover";
 import { BirthdayPrompt } from "./components/BirthdayPrompt";
 import { useMdlsFlag } from "./useMdlsFlag";
+import { NaturalClockStripGate } from "./naturalClock/NaturalClockStripGate";
 import { EquilibriumMDLSPage } from "./EquilibriumMDLSPage";
 import { useCycles, formatPhaseEndsAt } from "./hooks/useCycles";
 import { CycleEnergyBar } from "./components/CycleEnergyBar";
@@ -201,6 +202,9 @@ export const EquilibriumV2Page = () => {
           <WatchModeToggle mode={mode} onChange={setMode} />
         </div>
       </header>
+
+      {/* Natural Clock (issue #284): renders only with the ?mdls=1 preview flag. */}
+      <NaturalClockStripGate className="mb-6" />
 
       <SectionAnchorNav mode={mode} />
 

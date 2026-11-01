@@ -42,6 +42,7 @@ import SaveCharacterCta from "@/components/game/SaveCharacterCta";
 import { useVillageChanges } from "@/hooks/useVillageChanges";
 import { PlaceState, PlaceStateTag } from "@/components/game/PlaceState";
 import { LunarPaths, LunarWorldSync } from "@/components/skin/LunarWorld";
+import { NaturalClockStripGate } from "@/modules/equilibrium/naturalClock";
 import { unseenKeys, useLeave } from "@/lib/motion";
 import { useSceneSrc } from "@/lib/sceneSrc";
 import { placeObjects, placeSoul, watchedCourseObjects } from "@/lib/placeColor";
@@ -461,6 +462,8 @@ const Village = () => {
             <h1>{tr(t, "village.title", "The Digital Village")}</h1>
             <p className="vl-mono vl-moonline">{villageSkyMood(sky.phase, t)}</p>
           </header>
+          {/* Natural Clock (issue #284): renders only with the ?mdls=1 preview flag. */}
+          <NaturalClockStripGate className="mx-auto mb-3 w-full max-w-[520px]" />
 
           {/* --vl-zx/--vl-zy: the place the map zooms toward when it fades out (WP-15). */}
           <div

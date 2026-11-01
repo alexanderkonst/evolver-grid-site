@@ -27,3 +27,38 @@ export const EQ_INFO_COPY = {
   harvest:
     "What you've reaped. A running celebration of completed tasks across all workstreams, grouped by day. Each entry shows the workstream it came from, how long it was in focus, and when you completed it. Hover the check to restore a task if you closed it by accident.",
 } as const;
+
+/**
+ * Natural Clock copy (issue #284). English only, editable later — these are
+ * prototype words, not locked master text.
+ */
+export const NATURAL_CLOCK_COPY = {
+  /** One word of energy per weekday planet (keyed by PLANETARY_DAYS[].planet). */
+  weekWord: {
+    Sun: "Radiate",
+    Moon: "Feel",
+    Mars: "Act",
+    Mercury: "Connect",
+    Jupiter: "Expand",
+    Venus: "Harmonize",
+    Saturn: "Ground",
+  },
+  /**
+   * Display name of each of the 8 phases on the clock. Same as phasePlan's
+   * `EqPhaseName` except position 6, which the clock calls "Prep for Harvest".
+   */
+  phaseName: {
+    Planning: "Planning",
+    Planting: "Planting",
+    Clearing: "Clearing",
+    Gathering: "Gathering",
+    Seeing: "Seeing",
+    Leading: "Prep for Harvest",
+    Harvesting: "Harvesting",
+    Celebrating: "Celebrating",
+  },
+  stripLabel: "Natural clock: where you are in sun, moon, week and year. Tap to open.",
+  addBirthday: "Add your birthday",
+  birthdayToday: "Your new year begins today",
+  youAreHere: "You are here",
+} as const;

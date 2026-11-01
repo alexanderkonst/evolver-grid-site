@@ -12,6 +12,12 @@ interface BirthdayPromptProps {
   userId: string | null;
   /** Called after a successful save so the hook can refresh state. */
   onSaved: (newBirthday: string) => void;
+  /**
+   * Optional. When given, the prompt can be closed (Esc or "Not now"). The
+   * Equilibrium pages omit it, so their prompt stays the blocking modal it
+   * always was; the Natural Clock passes it because it opens the prompt on tap.
+   */
+  onDismiss?: () => void;
 }
 
 /**
@@ -38,9 +44,20 @@ export const BirthdayPrompt = ({
   loading,
   userId,
   onSaved,
+  onDismiss,
 }: BirthdayPromptProps) => {
   const [value, setValue] = useState("");
   const [saving, setSaving] = useState(false);
+
+  // Esc closes the prompt, only when the caller made it dismissible.
+  useEffect(() => {
+    if (!onDismiss || loading || !userId || birthday) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onDismiss();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onDismiss, loading, userId, birthday]);
 
   // Lock body scroll while open. Defensive cleanup (2026-05-16 round 7,
   // Sasha bug report): page wasn't scrolling after BD save. Root cause —
@@ -192,6 +209,15 @@ export const BirthdayPrompt = ({
         >
           {saving ? "Saving…" : "Continue"}
         </button>
+        {onDismiss && (
+          <button
+            type="button"
+            onClick={onDismiss}
+            className="eq-text-halo mt-3 w-full py-2 text-sm text-[#0a1628]/80 underline-offset-4 hover:underline"
+          >
+            Not now
+          </button>
+        )}
       </div>
     </div>
   );

@@ -1548,3 +1548,44 @@ To be resolved during the relevant phase, not preconditions:
 ---
 
 *Spec scaffold ready. Phase 1.1 (Master Result + Deep Roast) is the next substantive work. Roasted output replaces TBD blocks inline.*
+
+---
+
+## Natural Clock
+
+*Prototype, issue #284 (2026-11-01). Status: preview only. A player sees where they stand in natural time in one glance.*
+
+**What it is.** Four clocks read from the real sky and the player's birthday, drawn as one compact strip and one full face. It reuses the cycle math the Watch already runs; it adds no tables, no migrations and no paid API.
+
+| Clock | Reads | Drawn as | Source |
+|---|---|---|---|
+| **Day** | Sun altitude and side of noon → Dawn · Morning · Zenith · Afternoon · Golden hour · Dusk · Night | Sun on its arc (innermost ring); the village sky follows it | `naturalClock/sunLight.ts` |
+| **Moon** | Real lit fraction + the Equilibrium phase of the 8 + days to the next phase | Moon silhouette from the true illuminated fraction; 8 moons on the ring, current one lit | `getLunarState` + `phasePlan.ts` + `naturalClock/moonShape.ts` |
+| **Week** | Weekday planet + one word | ☉ Sun · ☽ Moon · ♂ Mars · ☿ Mercury · ♃ Jupiter · ♀ Venus · ♄ Saturn | `PLANETARY_DAYS` + `NATURAL_CLOCK_COPY.weekWord` |
+| **Year** | Days to the next birthday + share of the solar year still ahead | Battery ring with the birthday mark at the top | `naturalClock/solarBattery.ts` |
+
+**Rules, all reversible, set in this prototype:**
+
+- **Light states.** Night below −6° sun altitude. Rising: Dawn from −6° to 6°, Morning above 6°. Falling: Golden hour from 6° to the horizon (−0.833°), Dusk down to −6°. Zenith is any time the sun is in the top 20% of its own noon altitude; the stretch after Zenith and above 6° is **Afternoon**. Afternoon is not in the original list of six names; without it the hours between Zenith and Golden hour have no name.
+- **Place.** Device location only if the player has already granted it, or presses "Use my location" on the face. Otherwise the sun is placed from the timezone (longitude from the UTC offset, latitude 40°N, or 30°S for known southern zones) and the face says "approx.". Coordinates stay in memory; they are never stored or sent.
+- **Moon names.** The clock calls cycle position 6 "Prep for Harvest" (phasePlan's `Leading`). Everything else is phasePlan's name. Days to the next phase are rounded up, never below 1.
+- **Battery.** `battery = days to next birthday ÷ length of the current solar year`. Full on the birthday, empty on its eve. **Birthday today:** `daysToNext` 0, battery 100%, strip reads "Your new year begins today". **Feb 29** birthdays land on Mar 1 in a common year, matching `getSolarState`. Day-granular, so it can differ from the Solar bar's millisecond-granular progress by under 0.3%.
+- **No birthday.** The year chip reads "Add your birthday" and opens the existing `BirthdayPrompt` (now optionally dismissible via `onDismiss`; the Equilibrium pages do not pass it and behave as before). Birthday sources: `equilibrium_state.birthday`, then the `equilibrium_v2_birthday:<userId>` localStorage copy. Read-only.
+
+**Interface.**
+
+- **Compact strip**, 390px first: a 2×2 grid of chips that becomes one row from 640px. Each chip opens the full face. `Golden hour · Prep for Harvest, 3d · Thursday, expand · 64 days to your new year`, with a real moon silhouette, a text planet glyph and a battery icon in place of emoji.
+- **Full face**, inner to outer: day dial (noon at the top, daylight arc, sun marker) · moon ring (8 phases, Planning at the top, current one lit with its real shape) · week ring (7 planets, Monday at the top, today filled teal) · year ring (battery arc ending at the birthday mark). The center reads "You are here" and the light state. The full one-line sentence sits under the rings, with the four readings in words below it.
+- **Moon-world canon.** Ink `#e6ebf2`, teal `#5ec8bd`, Cormorant Garamond for words, IBM Plex Mono for readings.
+- **The world is the clock.** While the clock is on, `useNaturalSky` writes `--nc-sky-top` / `--nc-sky-bottom` and `data-natural-sky="on"` on `<html>`; `src/styles/lunar-world.css` §6 paints the Lunar body sky from them. It does nothing unless that attribute is present.
+
+**Where it lives.**
+
+| Surface | How |
+|---|---|
+| `/preview/natural-clock` | Strip and face, ungated like the other `/preview/*` routes. Query params for review: `?now=2026-11-05T17:30` · `?lat=51.5&lon=0` · `?birthday=1990-03-25`. A time-travel slider moves the clock ±12h. |
+| Village (`/village`) and Equilibrium (`/build/equilibrium`) | `NaturalClockStripGate` at the top. Renders nothing unless the existing `?mdls=1` flag is on for the page load, and lazy-loads the clock code only then. |
+
+**Not in this prototype.** `suncalc` (the package is not in the lockfile; `sunLight.ts` carries the same low-precision solar formulas, ~1 minute at sunrise and sunset, and is the only file a swap would touch). Zodiac and solar-season rings. Translations (English only). Mounting on the marketing `/home` landing, which is not the player's Home.
+
+**Tests.** `src/modules/equilibrium/naturalClock/__tests__/`: light states (Greenwich solstice hours, Sydney, polar night, midnight sun), the 8 moon phases on fixed dates from the 2000-01-06 reference new moon, terminator paths, weekday planets for every day of a fixed week, battery percent and days including birthday today, the eve, the new-year boundary and Feb 29 in common and leap years.

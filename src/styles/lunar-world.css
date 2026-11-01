@@ -310,3 +310,18 @@
 [data-skin="lunar"] #mastermind-page .ornament-spin {
   filter: drop-shadow(0 0 10px rgba(var(--accent-bright-rgb), 0.5)) drop-shadow(0 0 3px rgba(var(--accent-rgb), 0.7)) !important;
 }
+
+/* ── 6. Natural sky (issue #284, preview flag only) ──────────────────────
+   While the Natural Clock is on, the sky follows the real light: the hook
+   useNaturalSky (src/modules/equilibrium/naturalClock) sets `data-natural-sky`
+   and `--nc-sky-top` / `--nc-sky-bottom` on <html>. Nothing here applies
+   unless that attribute is present, so no player sees it without the flag. */
+[data-skin="lunar"][data-natural-sky="on"] body {
+  background:
+    radial-gradient(ellipse at 14% 10%, rgba(200, 214, 232, 0.08) 0%, transparent 55%),
+    linear-gradient(180deg,
+      var(--nc-sky-top) 0%,
+      color-mix(in srgb, var(--nc-sky-top), var(--nc-sky-bottom) 55%) 55%,
+      var(--nc-sky-bottom) 100%);
+  color: #e6ebf2;
+}
