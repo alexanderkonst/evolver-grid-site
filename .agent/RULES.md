@@ -84,7 +84,7 @@ Alexander has consolidated onto the Claude ecosystem. Two Claude surfaces, one a
 
 ### Shared
 - Both read ALL files. Both CAN edit anywhere. `.agent/skills/` is shared.
-- **Retired Day 103 (June 23, 2026):** the `ai_tasks/PENDING_*.md → DONE_*.md` queue + `AGENTS.md` (Codex workflow). Archived at `docs/archive/codex_workflow_2026/`. Single task system going forward: `docs/02-strategy/roadmap.md`.
+- **Retired Day 103 (June 23, 2026):** the `ai_tasks/PENDING_*.md → DONE_*.md` queue + the old `AGENTS.md` (Codex workflow). Archived at `docs/archive/codex_workflow_2026/`. Single task system going forward: `docs/02-strategy/roadmap.md`. (`AGENTS.md` itself returned 2026-11-01 as the single starting brief for any agent; it is a brief, not a task queue.)
 - **Also deprecated**: `.cursorrules`, Codex lane, Lovable DB lane, "Claude (Antigravity)" lane. Legacy references may remain in old files until pruned organically.
 - `CLAUDE.md` stays pointer-only. Neither surface adds third-party opinions to it.
 
@@ -117,6 +117,26 @@ Agent PRs merge themselves the moment they are green. Event-driven (`workflow_ru
 > **Install (Hark):** staged as `.agent/pending/agent-open-pr.yml` (the Claude GitHub App cannot write to `.github/workflows/`). Run `git mv .agent/pending/agent-open-pr.yml .github/workflows/agent-open-pr.yml` and `git mv -f .agent/pending/agent-automerge.yml .github/workflows/agent-automerge.yml` (the update adds `"Agent Open PR"` and `"Claude Review"` to its `workflow_run` list and makes it honour the `REVIEW: CHANGES` critic comment). Also enable repo setting *Actions → General → Allow GitHub Actions to create and approve pull requests*. Then remove this note.
 
 On `push` to `claude/**`, if the branch has no open PR and is ahead of `main`, the workflow opens one: title = first line of the last commit, body = rest of the commit message + `Closes #N` (from `claude/issue-N-*`). `GITHUB_TOKEN` PRs fire no `pull_request` workflows, so it then dispatches every active workflow that listens to `pull_request` **and** declares `workflow_dispatch` on the branch ref; those runs carry the head SHA, so auto-merge counts them. **A PR-check workflow must declare `workflow_dispatch`**, or it never runs on auto-opened PRs. Agents: open the PR yourself when your permissions allow; this is the safety net.
+
+## Swarm routing (label routing, second key, weekly numbers) — issue #285
+
+> **Install (Hark):** staged in `.agent/pending/` (the Claude GitHub App cannot write to `.github/workflows/`). One block:
+> ```
+> git mv -f .agent/pending/claude.yml          .github/workflows/claude.yml
+> git mv -f .agent/pending/agent-automerge.yml .github/workflows/agent-automerge.yml
+> git mv    .agent/pending/agent-router.yml    .github/workflows/agent-router.yml
+> git mv    .agent/pending/second-key.yml      .github/workflows/second-key.yml
+> git mv    .agent/pending/swarm-weekly.yml    .github/workflows/swarm-weekly.yml
+> ```
+> Then: run *Agent Router* once with `ensure_labels = true` (creates `agent:claude`, `agent:codex`, `agent:gemini`, `needs-hark`). `agent-open-pr.yml` and `claude-review.yml` are still staged from the earlier batch; install them in the same commit if you want the critic and auto-opened PRs. Then remove this note.
+
+**Label routing.** `agent:claude` on an issue runs `claude.yml` exactly like an `@claude` mention (every `@claude` path is unchanged; an issue created with both the label and a mention runs once). `agent:codex` / `agent:gemini` are handled by `agent-router.yml`: if `OPENAI_API_KEY` / `GEMINI_API_KEY` is not a repo secret, it posts one "secret missing" comment per issue and exits green. If the secret exists the lane is a stub (one "armed" comment, no run); wiring a runner is a separate issue. Only users with triage rights can add labels, so label routing is as gated as an `@claude` mention.
+
+**Second key** (`second-key.yml`). Gated PRs = touch `supabase/` or a non-test file under `src/` (regex in `scripts/swarm/gate.mjs`, copied into both workflows; a test fails if the copies drift). The job posts one `SECOND-KEY: APPROVE|CHANGES` comment per commit, written by `github-actions[bot]`, reviewing against the linked issue's DoD. Claude runs read-only; Codex joins when `OPENAI_API_KEY` exists, and then **both must approve**. A reviewer that returns no valid verdict counts as CHANGES (fail closed).
+`agent-automerge.yml` then merges a gated PR only if checks are green **and** the latest `SECOND-KEY` comment is for the current head SHA and says APPROVE. Red CI or CHANGES → label `needs-hark` plus one comment. `needs-hark` is sticky: Hark removes it after fixing or overriding, and auto-merge looks again. Comments by anyone but `github-actions[bot]` are ignored. Non-gated PRs are unchanged.
+If `claude-review.yml` (the older critic) is installed too, gated PRs get two Claude passes (critic + second key). Intentional for now; fold them if the cost shows up in `swarm_weekly.md`.
+
+**Weekly numbers** (`swarm-weekly.yml`, Mondays 15:00 UTC → `docs/ops/swarm_weekly.md`; definitions are in that doc; logic in `scripts/swarm/weekly.mjs`). If `main` is protected the workflow opens a docs-only PR instead of pushing; Hark merges it by hand.
 
 ## Definition of Done — Before AND After
 

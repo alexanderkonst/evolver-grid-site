@@ -27,6 +27,7 @@ docs/
 ├── 09-logs/           # Session & decision logs, pulse log
 ├── 10-workshops/      # Workshop materials
 ├── ai/               # AI hub — one map of everything about AI itself
+├── ops/               # Operating numbers (swarm_weekly.md, written by a weekly workflow)
 ├── holomaps/          # Transition + uniqueness holomaps
 ├── specs/             # Feature specs (quiz, i18n, corpus-sync, ...)
 ├── assets/            # Shared assets

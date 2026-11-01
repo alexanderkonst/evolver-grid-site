@@ -1,6 +1,9 @@
 # INSTALL: git mv -f .agent/pending/agent-automerge.yml .github/workflows/agent-automerge.yml
 # (update: adds "Agent Open PR" and "Claude Review" to the workflow_run list, and blocks on a
 #  `REVIEW: CHANGES` critic comment; replaces the installed copy)
+# (update for #285: second key. PRs touching supabase/ or non-test src/ merge only on green CI AND a
+#  `SECOND-KEY: APPROVE` comment for the current head SHA; red CI or CHANGES labels `needs-hark`.
+#  Adds "Second Key Review" to the workflow_run list. Install second-key.yml with it.)
 # (shipped here because the Claude GitHub App cannot write to .github/workflows/)
 name: Agent Auto-merge
 
@@ -12,7 +15,7 @@ on:
   workflow_run:
     # Every OTHER workflow in this repo. Do NOT list "Agent Auto-merge" here: it would re-trigger itself forever.
     # When you add a workflow, add its `name:` to this list.
-    workflows: ["Claude Code", "Corpus Drift Check", "Agent Open PR", "Claude Review"]
+    workflows: ["Claude Code", "Corpus Drift Check", "Agent Open PR", "Claude Review", "Second Key Review"]
     types: [completed]
   check_suite:
     types: [completed]
@@ -66,6 +69,7 @@ jobs:
             for (const [name, color, description] of [
               ['hold', 'fbca04', 'Agent auto-merge: do not merge this PR'],
               ['needs-sasha', 'd93f0b', 'Agent auto-merge: touches irreversible surface, a human must merge'],
+              ['needs-hark', 'b60205', 'Second key said no or CI is red: Hark looks'],
             ]) {
               try {
                 await github.rest.issues.getLabel({ owner, repo, name });
@@ -102,26 +106,56 @@ jobs:
               return null;
             };
 
+            // --- second key (#285) ------------------------------------------------------
+            // gate-patterns (keep identical to scripts/swarm/gate.mjs; a test enforces it):
+            const GATE_RE = /^(supabase\/|src\/(?!.*(?:__tests__\/|\.test\.[cm]?[jt]sx?$)))/;
+            const isGatedPr = async (pr) => {
+              const files = await github.paginate(github.rest.pulls.listFiles, { owner, repo, pull_number: pr.number, per_page: 100 });
+              return files.some((f) => GATE_RE.test(f.filename) || (f.previous_filename && GATE_RE.test(f.previous_filename)));
+            };
+            // Verdict comment for the CURRENT head SHA, written by second-key.yml (github-actions[bot] only:
+            // anyone can comment on a public PR, so a human or other bot cannot fake an approval).
+            const secondKeyVerdict = async (pr) => {
+              const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number: pr.number, per_page: 100 });
+              const mine = comments.filter((c) => c.user && c.user.login === 'github-actions[bot]'
+                && (c.body || '').includes(`<!-- second-key-sha: ${pr.head.sha} -->`));
+              if (mine.length === 0) return null;
+              const m = mine[mine.length - 1].body.match(/^SECOND-KEY: (APPROVE|CHANGES)$/m);
+              return m ? m[1] : null;
+            };
+            const sendToHark = async (pr, why) => {
+              await github.rest.issues.addLabels({ owner, repo, issue_number: pr.number, labels: ['needs-hark'] });
+              await github.rest.issues.createComment({ owner, repo, issue_number: pr.number, body: `Not auto-merging: ${why}. Labelled \`needs-hark\`. Remove the label after the fix or the override to let auto-merge look again.` });
+            };
+
+            // Returns null when green, else { text, red }. red = something FAILED (vs. still pending).
             const checksReason = async (sha) => {
+              let pending = null;
+              let failed = null;
               // Check runs
               const checkRuns = await github.paginate(github.rest.checks.listForRef, { owner, repo, ref: sha, per_page: 100 });
               const runs = checkRuns.filter((c) => c.name !== SELF_JOB);
               for (const c of runs) {
-                if (c.status !== 'completed') return `check pending: ${c.name}`;
-                if (!OK.has(c.conclusion)) return `check ${c.conclusion}: ${c.name}`;
+                if (c.status !== 'completed') pending = pending || `check pending: ${c.name}`;
+                else if (!OK.has(c.conclusion)) failed = failed || `check ${c.conclusion}: ${c.name}`;
               }
               // Workflow runs registered for this SHA (covers runs queued but without a check run yet)
               const wfRuns = await github.paginate(github.rest.actions.listWorkflowRunsForRepo, { owner, repo, head_sha: sha, per_page: 100 });
               for (const w of wfRuns.filter((w) => w.path !== SELF_PATH)) {
-                if (w.status !== 'completed') return `workflow run pending: ${w.name}`;
-                if (!OK.has(w.conclusion)) return `workflow run ${w.conclusion}: ${w.name}`;
+                if (w.status !== 'completed') pending = pending || `workflow run pending: ${w.name}`;
+                else if (!OK.has(w.conclusion)) failed = failed || `workflow run ${w.conclusion}: ${w.name}`;
               }
               // Legacy commit statuses
               const combined = await github.rest.repos.getCombinedStatusForRef({ owner, repo, ref: sha });
-              if (combined.data.total_count > 0 && combined.data.state !== 'success') return `commit status ${combined.data.state}`;
+              if (combined.data.total_count > 0 && combined.data.state !== 'success') {
+                if (combined.data.state === 'pending') pending = pending || 'commit status pending';
+                else failed = failed || `commit status ${combined.data.state}`;
+              }
+              if (failed) return { text: failed, red: true };
+              if (pending) return { text: pending, red: false };
               // Nothing at all registered yet -> too early to call it green
               if (runs.length === 0 && combined.data.total_count === 0 && wfRuns.filter((w) => w.path !== SELF_PATH).length === 0) {
-                return 'no checks reported yet';
+                return { text: 'no checks reported yet', red: false };
               }
               return null;
             };
@@ -168,6 +202,7 @@ jobs:
                 if (pr.draft) { decide(pr, 'skipped, draft'); continue; }
                 if (labels.includes('hold')) { decide(pr, 'skipped, label `hold`'); continue; }
                 if (labels.includes('needs-sasha')) { decide(pr, 'skipped, label `needs-sasha`'); continue; }
+                if (labels.includes('needs-hark')) { decide(pr, 'skipped, label `needs-hark`'); continue; }
 
                 const guard = await guardReason(pr);
                 if (guard) {
@@ -175,6 +210,19 @@ jobs:
                   await github.rest.issues.createComment({ owner, repo, issue_number: pr.number, body: `Not auto-merging: ${guard}. Labelled \`needs-sasha\`; a human merges this one.` });
                   decide(pr, `skipped, guard: ${guard} -> labelled needs-sasha`);
                   continue;
+                }
+
+                // Second key (#285): src/ (non-test) or supabase/ PRs also need a SECOND-KEY: APPROVE.
+                // Red CI is routed to Hark here, before the mergeable_state gate (a red required check
+                // makes mergeable_state 'blocked', which would hide it).
+                const gated = await isGatedPr(pr);
+                if (gated) {
+                  const early = await checksReason(pr.head.sha);
+                  if (early && early.red) {
+                    await sendToHark(pr, `CI is red on a second-key PR (${early.text})`);
+                    decide(pr, `skipped, gated, ${early.text} -> labelled needs-hark`);
+                    continue;
+                  }
                 }
 
                 if (pr.mergeable === false || pr.mergeable_state === 'dirty') {
@@ -194,7 +242,17 @@ jobs:
                 }
 
                 const checks = await checksReason(pr.head.sha);
-                if (checks) { decide(pr, `skipped, ${checks}`); continue; }
+                if (checks) { decide(pr, `skipped, ${checks.text}`); continue; }
+
+                if (gated) {
+                  const verdict = await secondKeyVerdict(pr);
+                  if (verdict === null) { decide(pr, 'skipped, gated, awaiting SECOND-KEY verdict for this head SHA'); continue; }
+                  if (verdict === 'CHANGES') {
+                    await sendToHark(pr, 'the second key requested changes');
+                    decide(pr, 'skipped, gated, SECOND-KEY: CHANGES -> labelled needs-hark');
+                    continue;
+                  }
+                }
 
                 const review = await reviewReason(pr);
                 if (review) { decide(pr, `skipped, ${review}`); continue; }

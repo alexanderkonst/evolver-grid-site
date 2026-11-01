@@ -1,0 +1,92 @@
+# INSTALL: git mv .agent/pending/swarm-weekly.yml .github/workflows/swarm-weekly.yml
+# (shipped here because the Claude GitHub App cannot write to .github/workflows/)
+name: Swarm Weekly Numbers
+
+# Mondays 15:00 UTC: append one row to docs/ops/swarm_weekly.md (#285).
+# Window = previous Monday 15:00 UTC -> this Monday 15:00 UTC. Definitions: docs/ops/swarm_weekly.md.
+# Logic + tests: scripts/swarm/weekly.mjs, scripts/swarm/swarm.test.mjs.
+# Read-only API calls with GITHUB_TOKEN; the only write is one docs row. Idempotent per week.
+# Dry run: Actions -> Swarm Weekly Numbers -> Run workflow, dry_run = true (default). Prints the row, writes nothing.
+
+on:
+  schedule:
+    - cron: "0 15 * * 1"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Print the row only; do not commit"
+        required: false
+        type: boolean
+        default: true
+      now:
+        description: "Pretend it is this UTC time (e.g. 2026-11-02T15:00:00Z) to backfill a week"
+        required: false
+        type: string
+
+concurrency:
+  group: swarm-weekly
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write # only for the fallback when main is protected
+  issues: read
+  actions: read
+
+jobs:
+  weekly:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Compute the week
+        id: row
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+          NOW: ${{ inputs.now }}
+        run: |
+          if [ -n "$NOW" ]; then export SWARM_NOW="$NOW"; fi
+          if [ "$DRY_RUN" = "true" ]; then
+            node scripts/swarm/weekly.mjs --dry-run | tee "$RUNNER_TEMP/swarm-out.txt"
+          else
+            node scripts/swarm/weekly.mjs | tee "$RUNNER_TEMP/swarm-out.txt"
+          fi
+          {
+            echo '### Swarm weekly numbers'
+            echo
+            echo '```'
+            cat "$RUNNER_TEMP/swarm-out.txt"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit the row
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- docs/ops/swarm_weekly.md; then
+            echo "Nothing to commit (week already recorded)."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/ops/swarm_weekly.md
+          git commit -m "docs(ops): swarm weekly numbers $(date -u +%F)"
+          if git push origin HEAD:main; then
+            exit 0
+          fi
+          echo "Direct push to main refused (protected?). Opening a PR instead."
+          branch="ops/swarm-weekly-$(date -u +%Y%m%d)"
+          git push origin "HEAD:refs/heads/$branch"
+          gh pr create --base main --head "$branch" \
+            --title "docs(ops): swarm weekly numbers $(date -u +%F)" \
+            --body "Automated weekly row for docs/ops/swarm_weekly.md. Merge by hand; docs only."

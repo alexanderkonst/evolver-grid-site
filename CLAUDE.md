@@ -125,6 +125,7 @@ Plus `specs/` with equilibrium, ignite-landing subdirectories. When I don't know
 
 ## Repo landmarks
 
+- `AGENTS.md` — the single starting brief for any agent (product, repo map, canon docs, standing exclusions, DoD conventions, swarm routing). Read it before code work; it is not restated here.
 - `.cursorrules` → `.agent/RULES.md` — autonomous execution mode.
 - `src/pages/MorphogeneticHolomap.tsx` — the visual surface of the navigation instrument.
 - `src/prompts/user/` and `src/prompts/extraction/` — prompt source of truth.
