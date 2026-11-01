@@ -50,6 +50,34 @@
       "when": 1793163551604,
       "tag": "0006_game_tables",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1793509938309,
+      "tag": "0007_player_reflections",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1793509971449,
+      "tag": "0008_village_windows",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1793510013120,
+      "tag": "0009_your_ai_player_cards_traces",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1793510036382,
+      "tag": "0010_knowledge_notes_pgvector",
+      "breakpoints": true
     }
   ]
 }
