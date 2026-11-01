@@ -1531,6 +1531,97 @@ export type Database = {
         }
         Relationships: []
       }
+      knowledge_note_chunks: {
+        Row: {
+          chunk_index: number
+          content: string
+          embedding: string
+          id: string
+          note_id: string
+        }
+        Insert: {
+          chunk_index: number
+          content: string
+          embedding: string
+          id?: string
+          note_id: string
+        }
+        Update: {
+          chunk_index?: number
+          content?: string
+          embedding?: string
+          id?: string
+          note_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "knowledge_note_chunks_note_id_fkey"
+            columns: ["note_id"]
+            isOneToOne: false
+            referencedRelation: "knowledge_notes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      knowledge_note_links: {
+        Row: {
+          from_note_id: string
+          to_title_key: string
+        }
+        Insert: {
+          from_note_id: string
+          to_title_key: string
+        }
+        Update: {
+          from_note_id?: string
+          to_title_key?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "knowledge_note_links_from_note_id_fkey"
+            columns: ["from_note_id"]
+            isOneToOne: false
+            referencedRelation: "knowledge_notes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      knowledge_notes: {
+        Row: {
+          body: string
+          content_hash: string
+          id: string
+          is_public: boolean
+          path: string
+          source: string
+          synced_at: string
+          title: string
+          title_key: string
+        }
+        Insert: {
+          body: string
+          content_hash: string
+          id?: string
+          is_public?: boolean
+          path: string
+          source?: string
+          synced_at?: string
+          title: string
+          title_key: string
+        }
+        Update: {
+          body?: string
+          content_hash?: string
+          id?: string
+          is_public?: boolean
+          path?: string
+          source?: string
+          synced_at?: string
+          title?: string
+          title_key?: string
+        }
+        Relationships: []
+      }
       marketplace_products: {
         Row: {
           blueprint_content: Json | null
@@ -3420,6 +3511,17 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      knowledge_retrieve: {
+        Args: { p_k?: number; p_neighbours?: number; p_query: string }
+        Returns: {
+          distance: number
+          excerpt: string
+          hop: number
+          note_id: string
+          path: string
+          title: string
+        }[]
       }
       leave_reflection: {
         Args: {
