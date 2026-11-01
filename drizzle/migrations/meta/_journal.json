@@ -64,6 +64,13 @@
       "when": 1793509971449,
       "tag": "0008_village_windows",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1793510013120,
+      "tag": "0009_your_ai_player_cards_traces",
+      "breakpoints": true
     }
   ]
 }

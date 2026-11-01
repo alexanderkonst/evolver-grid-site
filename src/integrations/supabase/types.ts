@@ -2153,6 +2153,33 @@ export type Database = {
         }
         Relationships: []
       }
+      player_cards: {
+        Row: {
+          card: Json
+          card_version: number
+          content_hash: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          card: Json
+          card_version: number
+          content_hash: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          card?: Json
+          card_version?: number
+          content_hash?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       player_reflections: {
         Row: {
           answer: string
@@ -2183,6 +2210,36 @@ export type Database = {
           read_at?: string | null
           visitor_name?: string
           visitor_user_id?: string | null
+        }
+        Relationships: []
+      }
+      player_traces: {
+        Row: {
+          at: string
+          id: string
+          kind: string
+          outcome: string
+          payload_id: string
+          surface: string
+          user_id: string
+        }
+        Insert: {
+          at?: string
+          id?: string
+          kind: string
+          outcome?: string
+          payload_id: string
+          surface?: string
+          user_id: string
+        }
+        Update: {
+          at?: string
+          id?: string
+          kind?: string
+          outcome?: string
+          payload_id?: string
+          surface?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -3067,6 +3124,24 @@ export type Database = {
         }
         Relationships: []
       }
+      your_ai_daily_usage: {
+        Row: {
+          day: string
+          turns: number
+          user_id: string
+        }
+        Insert: {
+          day: string
+          turns?: number
+          user_id: string
+        }
+        Update: {
+          day?: string
+          turns?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
       zog_snapshots: {
         Row: {
           ai_response_raw: string | null
@@ -3419,6 +3494,10 @@ export type Database = {
           n: number
           top_talent: string
         }[]
+      }
+      your_ai_take_turn: {
+        Args: { p_cap: number; p_user: string }
+        Returns: number
       }
     }
     Enums: {
