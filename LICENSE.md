@@ -1,6 +1,6 @@
 # Documentation & Methodology License
 
-> **Scope:** this license covers `/docs`, the playbook, the methodology, and any prose / canvas / blueprint content of this project.
+> **Scope:** this license covers `/docs`, the AI OS system prompts (`/system-prompts`), the playbook, the methodology, and any prose / canvas / blueprint content of this project.
 > **Code** lives under a separate license — see [`LICENSE`](./LICENSE) (PolyForm Noncommercial 1.0.0).
 > **Anthropic-derived skills** in `/.agent/skills/` are MIT (per their upstream license).
 > **Commercial use** of either the code or the methodology — see [`DISTRIBUTOR_AGREEMENT.md`](./DISTRIBUTOR_AGREEMENT.md).

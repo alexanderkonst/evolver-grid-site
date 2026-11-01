@@ -1,0 +1,16 @@
+{
+  "version": "5.3",
+  "snapshotted_at": "2026-11-01T04:54:16.928Z",
+  "source_file": "src/modules/ai-os/AiOsPage.tsx",
+  "components": [
+    "vibeporting",
+    "ai-self-awareness",
+    "boost-intel",
+    "evolutionary-mastery",
+    "moonshot"
+  ],
+  "license": "CC BY-NC-SA 4.0",
+  "author": "Aleksandr Konstantinov",
+  "char_count": 37423,
+  "line_count": 834
+}

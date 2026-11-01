@@ -615,6 +615,7 @@
     }
   },
   "aiOsBenchmark": {
+    "legacyNote": "Página legado. Este estudio midió un andamiaje anterior de AI OS en abril de 2026. Por ahora decidimos no enfocarnos en benchmarks: el siguiente paso es un benchmark completamente nuevo, y ese trabajo está en curso. Los resultados de abajo quedan como registro.",
     "backToAiOs": "Volver a AI OS",
     "heroHeadline": "El mismo modelo. Otra conversación.",
     "heroIntro1": "Esta página trata de lo que cambia cuando instalas AI OS en una conversación de IA nueva.",

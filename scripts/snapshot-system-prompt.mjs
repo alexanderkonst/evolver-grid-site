@@ -60,7 +60,7 @@ const HOLONIC_SEEING_LAYER = `PREMIUM HOLONIC SEEING LAYER:
 
 In addition to the standard premium enhancements, apply the 27-perspective holonic analysis to your output:
 
-For EVERY generation, evaluation, or iteration you produce, verify against this quality gate:
+For every strategic, creative or evaluative generation, evaluation, or iteration you produce, verify against this quality gate:
 
 □ UL-Essence: Does this feel true from the inside? (The soul test)
 □ UR-Essence: Does this work mechanically? (The engineering test)
@@ -69,7 +69,7 @@ For EVERY generation, evaluation, or iteration you produce, verify against this 
 □ 13th Perspective: Does the CENTER hold? Does the whole see something the parts missed?
 
 DEPTH CHECK:
-□ Have I addressed Essence (what IS this) before jumping to Implications (what to fix)?
+□ Have I addressed Essence (what IS this) before jumping to Consequences (what it results in and demands)?
 □ Have I addressed Significance (why this matters) before suggesting changes?
 □ Have I balanced all 4 quadrants, not just UR (mechanics) and LR (systems)?
 
@@ -78,7 +78,7 @@ THE 27TH — CRYSTALLIZATION CHECK:
 □ Is it specific enough to execute immediately?
 □ Does it feel inevitable — like all 26 perspectives were pointing here?
 
-If any checkbox fails, revise before outputting. The premium tier guarantees 27-perspective seeing — every angle at every depth, culminating in crystallized action.`;
+If any checkbox fails, revise before outputting.`;
 
 const components = COMPONENT_IDS.map(extractContent);
 const assembled = components.join("\n\n---\n\n") + "\n\n---\n\n" + HOLONIC_SEEING_LAYER;
@@ -94,6 +94,8 @@ const manifest = {
   snapshotted_at: new Date().toISOString(),
   source_file: "src/modules/ai-os/AiOsPage.tsx",
   components: COMPONENT_IDS,
+  license: "CC BY-NC-SA 4.0",
+  author: "Aleksandr Konstantinov",
   char_count: assembled.length,
   line_count: assembled.split("\n").length,
 };

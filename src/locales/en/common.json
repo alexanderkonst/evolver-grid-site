@@ -5303,6 +5303,7 @@
     "toastSavedTitle": "Transcript saved!"
   },
   "aiOsBenchmark": {
+    "legacyNote": "Legacy page. This study measured an earlier scaffold of AI OS in April 2026. We've decided not to focus on benchmarks for now: the next step is a completely new benchmark, and that work is in progress. The results below stay as a record.",
     "backToAiOs": "Back to AI OS",
     "heroHeadline": "Same model. Different conversation.",
     "heroIntro1": "This page is about what changes when you install AI OS into a fresh AI conversation.",
