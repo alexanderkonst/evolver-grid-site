@@ -208,7 +208,7 @@ async function generateBrief(kind: BriefKind, context: unknown): Promise<BriefCo
       Authorization: `Bearer ${LOVABLE_API_KEY}`,
     },
     body: JSON.stringify({
-      model: "openai/gpt-6-astra",
+      model: "google/gemini-3.1-flash-lite",
       reasoning_effort: "low",
       messages: [
         { role: "system", content: SYSTEM_PROMPT },

@@ -35,7 +35,7 @@ serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "openai/gpt-6-astra",
+        model: "google/gemini-3.8-flash",
         // Day 62 (Sasha 2026-05-05): temperature pinned LOW for
         // determinism. Backstory: Sasha's friend hit a divergence
         // bug — the post-assessment reveal showed one archetype, the
