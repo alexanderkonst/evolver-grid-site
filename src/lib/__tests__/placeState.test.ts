@@ -423,11 +423,12 @@ describe("whatChanged: what is new since the last visit (§14.6)", () => {
 describe("a guest with a finished test (WP-7b: result first, account only to save)", () => {
   const guest = (done: JourneyItemId[] = []) => saveWith(done, { events: { "guest-result": true } });
 
-  it("the next move is «Save your character», at Home, which stays closed", () => {
+  it("the next move is «Keep your light lit», at Home, which stays closed", () => {
     const save = guest();
     const m = nextMove(VILLAGE_PLACES, save);
     expect(m?.kind).toBe("step");
-    expect(m?.title).toBe("Save your character");
+    expect(m?.title).toBe("Keep your light lit");
+    expect(JSON.stringify(m).toLowerCase()).not.toContain("window");
     expect(m?.place.key).toBe("house");
     expect(m?.to).toBe("/village/house");
     expect(m?.result).toBeTruthy();
@@ -435,7 +436,7 @@ describe("a guest with a finished test (WP-7b: result first, account only to sav
     expect(placeState(place("house"), save)).toBe("closed");
   });
 
-  it("every place a guest sees closed waits on the top talent, so «Save your character» is the step that opens it", () => {
+  it("every place a guest sees closed waits on the top talent, so «Keep your light lit» is the step that opens it", () => {
     const save = guest();
     const closed = VILLAGE_PLACES.filter((p) => placeState(p, save) === "closed").map((p) => p.key);
     expect(closed.sort()).toEqual(["coworking", "house", "market", "quest-board", "town-hall", "workshop"]);
@@ -455,7 +456,7 @@ describe("a guest with a finished test (WP-7b: result first, account only to sav
     const m = nextMove(VILLAGE_PLACES, save);
     expect(m?.step).toBe("discover-mission");
     expect(m?.place.key).toBe("house");
-    expect(m?.title).not.toBe("Save your character");
+    expect(m?.title).not.toBe("Keep your light lit");
     expect(placeState(place("house"), save)).toBe("next");
     expect(placeState(place("reception"), save)).toBe("done");
   });

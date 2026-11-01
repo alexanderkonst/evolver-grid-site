@@ -195,7 +195,7 @@ const RevelatoryHero = ({
     // page (url / qrUrl from the one builder); a guest keeps the homepage.
     const { identity } = useShareIdentity();
     const ownCard = buildShareCard({
-        name: identity?.name,
+        name: identity?.displayName,
         username: identity?.username,
         uniquenessPhrase: null,
         tagline: null,

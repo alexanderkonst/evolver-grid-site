@@ -40,7 +40,7 @@ import { buildRevealShare } from "@/lib/shareSurfaces";
 // component, single artifact shape, no drift). Replaces the prior
 // 3-box layout (hero + character card + superpowers).
 import RevelatoryHero from "@/components/game/RevelatoryHero";
-import TopTalentAuthGate from "./TopTalentAuthGate";
+import KeepItLit from "@/components/game/KeepItLit";
 // Issue #52 (Sasha 2026-10-15), item 9: the "Generated in…" language notice
 // (from #51) was only wired into the deeper per-perspective view. Surface it
 // on the Step-4 reveal too — the guided lane stamps output_language on save,
@@ -720,7 +720,8 @@ ${snapshotText}`;
   // text and their own page; a guest shares a localized invite to the assessment.
   const handleShareReveal = () => {
     const share = buildRevealShare({
-      owner: identity,
+      // W2: the card carries the one player name.
+      owner: identity ? { name: identity.displayName, username: identity.username } : null,
       topTalent: cleanedArchetypeTitle,
       origin: window.location.origin,
       inviteUrl: `${localizedOrigin()}/zone-of-genius`,
@@ -859,11 +860,9 @@ ${snapshotText}`;
                   sits directly under it, inline; the primary button, the
                   offers and the rest stay behind the save. */}
               {guestLocked ? (
-                <TopTalentAuthGate
-                  inline
+                <KeepItLit
                   resultPayload={buildSavePayload() as Record<string, unknown>}
                   assessmentVersion="guided-v1"
-                  title={t("zogEntry.saveCharacterModalTitle")}
                   onSaved={() => {
                     setGuestRevealUnlocked(true);
                     toast.success(t("zogEntry.bannerResultSaved"), {

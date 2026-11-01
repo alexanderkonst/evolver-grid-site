@@ -703,6 +703,9 @@ const buildJourneySections = (
     // + chapter name once the user has a linked result.
     linkedQuizResult: LinkedQuizResult | null = null,
     onRetakeQuiz: () => void = () => {},
+    // W1 (cult spec §5 #1): a guest sees no price on the rail. The $37 power-up row
+    // waits for a signed-in player. The route `/activate-top-talent` stays reachable.
+    signedIn: boolean = false,
 ): Section[] => {
     // WP-4 (game_of_being_you.md §14.1.2): the numbered rows ARE `JOURNEY_MAIN`
     // (src/data/journeySequence.ts), rendered through the same `journeyStepRows` as the
@@ -792,7 +795,7 @@ const buildJourneySections = (
         });
         // Issue #270: the $37 card stays out of the list until it is relevant (top talent saved).
         // A locked $37 card beside the first step read as a price wall before any value.
-        if (item.id === "find-top-talent" && !activationRow.locked) rows.push(activationRow);
+        if (item.id === "find-top-talent" && signedIn && !activationRow.locked) rows.push(activationRow);
     });
     return rows;
 };
@@ -988,6 +991,7 @@ const SectionsPanel = ({
                     activationDone,
                     linkedQuizResult,
                     handleRetakeQuiz,
+                    !!userEmail,
                 ),
             };
         }

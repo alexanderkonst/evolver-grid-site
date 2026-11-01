@@ -37,6 +37,7 @@ import {
 } from "@/lib/placeState";
 import { journeyOptionalWord } from "@/lib/journeyLabels";
 import { placeAlt, placeName, placeTagline, tr } from "@/lib/villageCopy";
+import { displayName } from "@/lib/displayName";
 import { hasGuestTopTalentResult, readGuestTalentName, readGuestTopTalentPayload } from "@/lib/firstVisit";
 import SaveCharacterCta from "@/components/game/SaveCharacterCta";
 import { useVillageChanges } from "@/hooks/useVillageChanges";
@@ -307,6 +308,8 @@ const Village = () => {
   const mobile = useIsMobile();
   const signedIn = useSignedIn();
   const sheet = useCharacterSheet();
+  // W2: the one player name (Reception's «Welcome back, <name>»); null for a guest.
+  const playerName = displayName({ signedIn: signedIn === true, firstName: sheet.firstName });
   const now = useNow(60_000);
   // The state of every place, read from the save. Until the save has loaded, a place that
   // will turn out closed is drawn open and its ENTER is hidden, so a returning player
@@ -434,7 +437,7 @@ const Village = () => {
   const lastState = lastIndex >= 0 ? shown[lastIndex] : "open";
   // Closed and live say their own line; every other state keeps the place's line.
   const lastLine = lastPlace && (lastState === "closed" || lastState === "live")
-    ? placeLine(lastPlace, lastState, t, signedIn === true)
+    ? placeLine(lastPlace, lastState, t, signedIn === true, playerName)
     : undefined;
   const lastPending = lastIndex >= 0 && !ready && states[lastIndex] === "closed";
   // The colour the player has brought back to this place (placeColor): each earned object
@@ -550,7 +553,7 @@ const Village = () => {
               aria-live="polite"
             >
               {current && active !== null
-                ? placeLine(current, shown[active], t, signedIn === true)
+                ? placeLine(current, shown[active], t, signedIn === true, playerName)
                 : tr(t, "village.choosePlace", "Choose a place")}
             </p>
           </div>
@@ -599,7 +602,7 @@ const Village = () => {
                     <a role="link" aria-disabled="true" tabIndex={0} className="is-locked">
                       <span className="vl-list__name">{placeName(p, t)}</span>
                       <PlaceStateTag state={shown[i]} />
-                      <span className="vl-list__line">{placeLine(p, shown[i], t, signedIn === true)}</span>
+                      <span className="vl-list__line">{placeLine(p, shown[i], t, signedIn === true, playerName)}</span>
                     </a>
                   ) : (
                     <Link to={pinTo(p)}>
@@ -607,7 +610,7 @@ const Village = () => {
                       <PlaceStateTag state={shown[i]} />
                       {isNew(p) ? <NewTag /> : null}
                       {isLit(p) ? <span className="vl-lit-word">{tr(t, "village.lit", "Lit")}</span> : null}
-                      <span className="vl-list__line">{placeLine(p, shown[i], t, signedIn === true)}</span>
+                      <span className="vl-list__line">{placeLine(p, shown[i], t, signedIn === true, playerName)}</span>
                     </Link>
                   )}
                 </PlaceState>
@@ -691,7 +694,7 @@ const Village = () => {
               }
             >
               <h2>{placeName(lastPlace, t)}</h2>
-              {lastLine ? null : <p className="vl-place__line">{placeTagline(lastPlace, t, signedIn === true)}</p>}
+              {lastLine ? null : <p className="vl-place__line">{placeTagline(lastPlace, t, signedIn === true, playerName)}</p>}
             </PlaceState>
             {/* Sky and particles belong to the village, not the building: they do not fade when it is closed. */}
             <SkyVeil />

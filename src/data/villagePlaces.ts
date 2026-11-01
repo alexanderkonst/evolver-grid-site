@@ -31,8 +31,10 @@ export type VillagePlace = {
   key: VillagePlaceKey;
   name: string;
   line: string;
-  /** The line once a session exists (Reception: «Welcome back» instead of «Welcome, guest»). */
+  /** The line once a session exists (Reception: «Welcome back» instead of the guest's line). */
   lineReturning?: string;
+  /** `lineReturning` for a signed-in player who has a name; `{{name}}` is the one `displayName()`. */
+  lineReturningNamed?: string;
   /** Module route behind ENTER. */
   to: string;
   /** When it opens, its closed line, what finishing it means, when it is live. */
@@ -77,8 +79,10 @@ export const VILLAGE_PLACES: VillagePlace[] = [
   {
     key: "reception",
     name: "Reception",
-    line: "Welcome, guest. Discover your uniqueness.",
+    // A guest is «you», never «guest» and never a name (cult spec §5 #4).
+    line: "You're welcome here. Discover your uniqueness.",
     lineReturning: "Welcome back. Discover your uniqueness.",
+    lineReturningNamed: "Welcome back, {{name}}. Discover your uniqueness.",
     to: "/zone-of-genius/entry",
     rule: { steps: ["find-top-talent"] },
     // The scene file is still named gate.webp; kept until a Reception scene is made.

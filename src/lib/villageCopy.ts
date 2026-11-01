@@ -38,17 +38,26 @@ export const placeName = (p: { key: string; name: string }, t?: TFunction): stri
   tr(t, `village.place.${p.key}.name`, p.name);
 
 /**
- * The place's own line: «Welcome, guest. Discover your uniqueness.» A place with a
+ * The place's own line: «You're welcome here. Discover your uniqueness.» A place with a
  * `lineReturning` says that one once a session exists: «Welcome back. …»
  */
 export const placeTagline = (
-  p: { key?: string; line: string; lineReturning?: string },
+  p: { key?: string; line: string; lineReturning?: string; lineReturningNamed?: string },
   t?: TFunction,
   signedIn = false,
-): string =>
-  signedIn && p.lineReturning
+  /** The one `displayName()`; null or absent for a guest and for a player with no name. */
+  name: string | null = null,
+): string => {
+  if (signedIn && name && p.lineReturningNamed) {
+    const key = p.key ? `village.place.${p.key}.lineReturningNamed` : undefined;
+    return t && key
+      ? String(t(key, { defaultValue: p.lineReturningNamed, name }))
+      : p.lineReturningNamed.replace("{{name}}", name);
+  }
+  return signedIn && p.lineReturning
     ? tr(t, p.key ? `village.place.${p.key}.lineReturning` : undefined, p.lineReturning)
     : tr(t, p.key ? `village.place.${p.key}.line` : undefined, p.line);
+};
 
 /** The scene description for screen readers. */
 export const placeAlt = (p: { key: string; alt: string }, t?: TFunction): string =>

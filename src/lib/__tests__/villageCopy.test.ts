@@ -60,8 +60,15 @@ describe("village places: the catalog is the data's English", () => {
 
   it("Reception says «Welcome back» once a session exists, the others keep one line (issue #215)", () => {
     const reception = VILLAGE_PLACES[0];
-    expect(placeTagline(reception, strict)).toBe("Welcome, guest. Discover your uniqueness.");
+    // W2: a guest is «you», never «guest» and never a name.
+    expect(placeTagline(reception, strict)).toBe("You're welcome here. Discover your uniqueness.");
+    expect(placeTagline(reception, strict, false, "Sasha")).toBe("You're welcome here. Discover your uniqueness.");
     expect(placeTagline(reception, strict, true)).toBe("Welcome back. Discover your uniqueness.");
+    // The signed-in line carries the one display name; without a name it stays unnamed.
+    expect(placeTagline(reception, strict, true, "Sasha")).toBe("Welcome back, Sasha. Discover your uniqueness.");
+    expect(placeTagline(reception, undefined, true, "Sasha")).toBe("Welcome back, Sasha. Discover your uniqueness.");
+    expect(placeTagline(reception, strict, true, null)).toBe("Welcome back. Discover your uniqueness.");
+    expect(placeTagline(reception, strict)).not.toMatch(/guest/i);
     expect(placeLine(reception, "open", strict, true)).toBe(reception.lineReturning);
     for (const p of VILLAGE_PLACES.slice(1)) expect(placeTagline(p, strict, true), p.key).toBe(p.line);
   });
@@ -143,7 +150,7 @@ describe("the next move and the sky", () => {
       "village.railAria": "Village",
       "village.lit": "Lit",
       "village.new": "New",
-      "village.saveCharacter": "Save your character",
+      "village.saveCharacter": "Keep your light lit",
       "village.findTopTalent": "Find your top talent",
       "village.signIn": "I already live here → sign in",
       "village.quest.heading": "Your next quest",
