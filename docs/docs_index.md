@@ -76,6 +76,7 @@ Everything about AI itself (AI OS, benchmark, the Hark leap, self-awareness map,
 | [sacred_space_map.md](./02-strategy/sacred_space_map.md) | **Third navigation instrument** (sibling to roadmap + morphogenetic_holomap) — full read of the 5-year "My Sacred Space" Telegram journal (2021–2026). Taxonomy · evolution/eras · idea-flow/book architecture · mind-mirror · lexicon · gems. Where Sasha's mind has actually been |
 | [module_taxonomy.md](./02-strategy/module_taxonomy.md) | GROW·LEARN·MEET·COLLABORATE·BUILD·BUYSELL |
 | [game_of_being_you.md](./02-strategy/game_of_being_you.md) | **Game blueprint** — THE GAME OF BEING YOU: one light in, your spectrum out; 5 solids/elements; soul colors = Spectrum mechanic; title-screen homepage; lead magnets; cult virality; assets in assets/game-of-being-you/ |
+| [cult_mechanics_registry.md](./02-strategy/cult_mechanics_registry.md) | **Phase 1 only (2026-11-01, issue #286):** Holonavigation holomap of 50 ecosystems ranked by evidence of true human engagement (level × flavor, stages, dependencies, likely future). Phases 2+ (mega-mechanic for the Game) await Sasha's review |
 | [game_spaces.md](./02-strategy/game_spaces.md) | 5 Spaces architecture |
 | [monetization_evolution_ladder.md](./02-strategy/monetization_evolution_ladder.md) | Monetization strategy |
 | [project_synthesis.md](./02-strategy/project_synthesis.md) | Project synthesis overview |
