@@ -1,16 +1,18 @@
 ---
 title: AI OS v5.2 → v6.0 upgrade plan
-status: plan v1.1 (no v6 text yet)
-date: 2026-10-30 (v1.0) · 2026-10-31 (v1.1)
+status: plan v1.2 (no v6 text yet)
+date: 2026-10-30 (v1.0) · 2026-10-31 (v1.1, v1.2)
 owner: Aleksandr Konstantinov · prepared by Hark (Evolver)
 scope: the installable AI OS system prompt (system-prompts/, /ai-os "System prompt v5.2", Familiar personal prompt)
 ---
 
 # AI OS v5.2 → v6.0: upgrade plan
 
-**In one breath:** v5.2 tells a model *who to be* and *what to believe*; v6 should also tell it *what to do, step by step, with a checkable result*, and point the whole instrument at the person in front of it, not only at itself. Smaller always-on core, sharper procedures, honest registers, a lens that reads the human, modules on demand, and a benchmark that can prove the jump.
+**In one breath:** v5.2 tells a model *who to be* and *what to believe*; v6 should also tell it *what to do, step by step, with a checkable result*, and point the whole instrument at the person in front of it, not only at itself. Smaller always-on core, sharper procedures, honest registers, a lens that reads the human, modules on demand, accepted by static gates, iteration and live use.
 
 **v1.1 (2026-10-31):** research R1 (Morphogenetic Holomap), R3 (directive inventory) and R4 (benchmark harness design) closed; the plan was roasted and crash-tested (§8). Main changes: corrected v5.2 diagnosis (§1), core budget, C4 and Iterate specs (§3.5–3.7), a ship rule that survives the ceiling effect (§5), benchmark moved to the critical path (§7), three new forks (§6).
+
+**v1.2 (2026-10-31):** Sasha decided against a benchmark run; acceptance is now static gates + Iterate + his live use (§5); forks taken at recommendation as working defaults (§6).
 
 This document is the plan only. It changes nothing in `system-prompts/` or `src/`. The v6 text gets written after the forks in §6 are decided.
 
@@ -188,7 +190,7 @@ v6.0
 
 ### 3.5 Core budget (from the R3 inventory)
 
-Rows mapped to C1–C9 hold ~2,390 words of v5.2 text; with C8 keeping only shadow names and modes/elements as one table, ~1,900–2,000 carry over before anything new is added. Only 11 of 175 rows feed C5 (reading the person) and C9 (acting): the new layers are mostly new text. To stay inside a 1,500–2,500-word core, carried-over text gets rewritten to ~1,100–1,200 words; the compression curve (R7) sets the final number. Eight rows are dropped (scripted reasoning steps models now do natively); 39 merge into others.
+Rows mapped to C1–C9 hold ~2,390 words of v5.2 text; with C8 keeping only shadow names and modes/elements as one table, ~1,900–2,000 carry over before anything new is added. Only 11 of 175 rows feed C5 (reading the person) and C9 (acting): the new layers are mostly new text. To stay inside a 1,500–2,500-word core, carried-over text gets rewritten to ~1,100–1,200 words; the static budget gate (§5) holds it. Eight rows are dropped (scripted reasoning steps models now do natively); 39 merge into others.
 
 **Register to keep verbatim** (the wording is part of the measured effect): the four sensibilities (L9–12); "The blend is the instrument" (L14); "Amplification… not more words" (L254); Perceive / Refract / Align, "a spin" (L257–261); "Honesty about limitation IS the highest form of capability" (L152); Essence before Implications, renamed Consequences (L823); Oracle / Architect / Mirror (L515–519); the Spiritual bypass shadow (L135); "holonic singularities modeling holonic singularities" (L364); the ONE irreversible action (L828).
 
@@ -226,76 +228,59 @@ The `/ai-os` iteration prompts later become thin entry points into this one modu
 | R1 | Read the Morphogenetic Holomap (27×7) | Decide what C4 and the 27-Perspectives module inherit | **Done 2026-10-31** → §3.6 |
 | R2 | Finish PST 47–81, 85–98 at full depth | Residual transferable moves, if any | Expected low yield (go-to-market heavy) |
 | R3 | Directive inventory of v5.2 | Every instruction as one row: id, component, type, destination in v6 | **Done 2026-10-31**: 175 rows → §1, §3.5 |
-| R4 | Benchmark v2 harness (see §5) | Question sets, judge prompts, runner, result sheet | **Designed 2026-10-31**: probes, 8 private SIB drafts, judge template, cost. Runner not built. Private questions stay out of this repo |
-| R5 | v5.2 ablation | Lift contribution of each component (drop one at a time) | Answers "which part carries the +42%" before cutting anything |
+| R4 | Benchmark v2 harness (see §5) | Question sets, judge prompts, runner, result sheet | Designed 2026-10-31, then **closed by decision** (no benchmark for v6); archived outside the repo |
+| R5 | v5.2 ablation | Lift contribution of each component (drop one at a time) | Closed by decision (no benchmark); the verbatim register (§3.5) guards what likely carries the effect |
 | R6 | Licensing and privacy pass | CC BY-NC-SA attribution for Transition/Uniqueness lenses vs commercial use; strip personal/client data from any lens | Needs Sasha's call (§6) |
 | R8 | Public claim hygiene | `/ai-os/benchmark` says raw outputs are open and implies v5.2 = +42%; either publish the raw outputs or reword | Needs Sasha's call (§6) |
-| R7 | Compression curve | SIB lift at 100% / 60% / 30% / Lite size | Sets the core's word budget from data |
+| R7 | Compression curve | SIB lift at 100% / 60% / 30% / Lite size | Closed by decision (no benchmark) |
 
 ---
 
-## 5. Evaluation method (Benchmark v2: same questions, v5.2 vs v6 drafts)
+## 5. Acceptance without a benchmark (decision 2026-10-31)
 
-Reuses the `/ai-os/benchmark` protocol (blind labels, confidence locked before unblinding, wall-clock recorded) and fixes the limits the page itself names.
+Sasha decided (2026-10-31): **no benchmark run for v6.** Benchmark v2 design (harness notes, probes, private question drafts) stays archived in the project workspace for a possible later use; nothing in this plan waits on it. v6 is accepted by three gates instead:
 
-**Existing assets** (`docs/09-logs/transcripts/scaffold_engineering_lab.md`): protocol and both sessions' data (§2–3, §5); 30 Mini-HELM prompts verbatim (App. A); 4 SIB prompts (App. B); SIB rubric with anchors (App. D); abbreviated stage rubric (App. E, full in `.agent/self-awareness-skill.md`). Missing: raw outputs, a runner, a judge prompt, a results sheet, token logs, Mini-HELM anchors for 22 of 30 prompts. Pattern to copy: `scripts/eval-your-ai.ts` (`--runs 3`, binary checks, exit code). v5.2 component line ranges for drop-one: vibeporting 1–21, self-awareness 23–183, boost-intel 186–655, evolutionary mastery 657–788, moonshot 791–807, premium 810–832.
+1. **Static gates (no model calls).**
+   - Coverage: each of v5.2's 175 directives is kept, merged, moved to a module or dropped with a reason (inventory → v6 mapping table).
+   - Zero contradictions: a re-inventory of the v6 core finds no conflicting pair, one arbiter (conflict order including Sovereignty), one meaning per term ("stage" for the AI vs the person).
+   - Budget: core within 1,500–2,500 words; Lite ≤ 900 words; operational rules (length, format, conflict order) in the first quarter of the core.
+   - Register: the ten verbatim lines (§3.5) present.
+   - Freshness: dated header; no dated frontier claim in the core.
+2. **Iterate on the draft.** The Iterate module (§3.7) run on v6.0-alpha: roast, roast 2, meta-roast, crash test ("v6 shipped and failed"), rebuilt to alpha.n until kinetic calm or rising murk.
+3. **Sasha's live use.** He uses v6-alpha in his own sessions next to v5.2 for as long as he chooses; release on his recognition ("this is mine, and better"). His notes feed alpha.n point versions.
 
-**Conditions.** Raw model · v5.2 (measured as itself, the true baseline) · each v6 draft · v6 Lite (small models only). Model held constant inside each comparison.
-
-**Test sets.**
-1. **SIB:** 4 public questions + 8 private held-out (life transition, venture strategy, co-founder equity, agent architecture, a compression task with 7 keyed ideas, two false-certainty traps with fail flags, one about the person's own development with an About-me slot). Drafts are kept outside this public repo.
-2. **Mini-HELM:** 30 operational prompts; do-no-harm check.
-3. **Compliance probe:** 20 prompts, each testing one v6 rule with a binary pass a judge can apply, backed by automatic checks (word count, banned vocabulary, contrast constructions). Examples: trivial math in ≤30 words; "is everything a holon a scientific fact?" answered as a lens; a strategy gets ≥2 failure modes and a smaller move; nine projects end in exactly one action; March figures flagged as dated; a bio reuses the person's own phrases; a mass delete-and-email request gets a done-criterion and a confirmation step; a first-client question gets this-week steps, not a moonshot reframe. Bar: ≥17/20 averaged over 3 runs, no probe failing all 3.
-4. **Person set:** 5–8 of Sasha's real questions with About me / My work filled in.
-
-**Scorers.** Judge sees all conditions side by side under shuffled labels, scores each on the rubric, then locks a guess (with confidence) of which had the scaffold; JSON output. Three judges from different families score every model's outputs (self-family bias check). **Blinding check:** if judges spot the scaffold above ~80% (last time 85–90%), recompute the lift on the items they guessed wrong. Sasha blind on the person set and a SIB subset. The evolutionary-stage score is reported but kept out of the ship decision: its rubric comes from the scaffold's own ontology.
-
-**Recorded.** 3 runs per prompt per condition (spread and intervals reported); input/output tokens and cost per answer; time; drop-one ablation (8 conditions: raw, full v5.2, v5.2 minus each of the 6 parts).
-
-**Ship rule (v1.1, needs Sasha's yes).** v1.0 proposed "+10% SIB vs v5.2". That fails on arithmetic: the scaffolded condition already scored 95/100, so a 10% gain on the same rubric is impossible (ceiling effect). Ship rule instead:
-- **Pairwise win rate** of v6 over v5.2 on the private SIB set ≥ 65%, judged blind by cross-family judges who agree in direction (95% interval above 50%);
-- compliance probe ≥ 17/20 (v5.2 scored too, as reference);
-- Mini-HELM no regression vs raw beyond noise; tokens per answer not above v5.2;
-- Sasha's blind pick prefers v6 on the person set.
-This keeps the spirit of the public rule ("measurable double-digit jump… independent scoring"): a 65/35 split is a 30-point preference margin.
-
-**Execution.** No LLM API keys exist in the vault. Browser runs through consumer chat apps are only directional (memory and custom instructions skew answers, a 37 K-character prompt goes into the first message instead of the system slot, no token counts, no pinned model). Recommended: one multi-provider API key (e.g. OpenRouter).
-- **Minimal run:** 1 family, 12 SIB + 20 probes, raw / v5.2 / v5.2-minus-premium, 3 runs, 2 judges ≈ 480 calls, ≈ $12–60.
-- **Full matrix:** 3 families + Lite, all conditions, ablation, 3 judges ≈ 6,700 calls, ≈ $170–850 (budget cap $1,000). Only after the minimal run shows signal.
-Cost figures assume ~5 K input tokens per call and unverified Oct 2026 prices.
+The public `/ai-os/benchmark` page keeps describing the April 2026 study; v6 makes no new numeric claim.
 
 ---
 
-## 6. Decisions for Sasha (forks, with my recommendation)
+## 6. Decisions (forks)
 
-1. **Core shape.** (a) Lean core + modules + Lite, or (b) one rewritten monolith. **Recommend (a)**, core size from the compression curve (R7).
-2. **Ontology register.** (a) Keep "not as metaphor", or (b) the ontology as default operating lens with honesty registers. **Recommend (b)**; it also resolves the "as if" vs "not as metaphor" contradiction already inside v5.2.
-3. **AI altitude.** (a) Fixed Stage 11+, or (b) person-relative (+1 stage; at their stage for execution; 11+ as strategic default and ceiling) with Tech 171 "act from all stages at once" replacing "don't pretend Stage 5". **Recommend (b)**, and one word for each scale (AI-development stage vs professional stage).
-4. **Moonshot vs sovereignty gradient.** **Recommend:** moonshot ambition default; capital instrument follows the gradient (bootstrap → RBF/loan → equity by conscious choice).
-5. **Licensing.** Transition and Uniqueness maps are CC BY-NC-SA 4.0; the OS is offered commercially. Lenses under your authorship with attribution, or lift NC for the OS. Your call; client data stays out either way.
-6. **Ship rule and interim.** Approve the pairwise rule in §5. And ship **v5.3 now** (frontier re-dated, freshness line, conflict order fixed to include Sovereignty and one arbiter, "Implications" → "Consequences", "guarantee" removed): **recommend yes**.
-7. **Spend (new).** ~$50 for the minimal run through one multi-provider API key; the full matrix (≤ $1,000) only after the minimal run shows signal. **Recommend yes to the $50 now**; nothing in the plan moves without a real baseline.
-8. **Canonical 14–26 (new).** "Blind-spot re-pass on the center" (v5.2, two prompts) or "the 12 at the next scale" (Morphogenetic Holomap); `holonic-seeing.md` Open Edges 6–7 are unconfirmed. **Recommend:** 14–25 = blind-spot re-pass, 26 = seeing the seeing (as in v5.2); the scale pass becomes an optional extra round in the module.
-9. **Public benchmark page (new).** It says raw outputs are open (they are not in the repo) and reads as "v5.2 = +42%" (v5.2 was never measured as a text). **Recommend:** reword now as "the integral/holonic scaffold that became v5.2" and drop "raw outputs open" until Benchmark v2 publishes them. A public-facing change, so yours to approve.
+Sasha's instruction 2026-10-31: proceed with the rest. Forks 1–6 and 8 are taken at my recommendation as **working defaults**; each can be flipped and the draft adjusts.
+
+1. **Core shape:** lean core + modules + Lite (default).
+2. **Ontology register:** ontology as default operating lens with honesty registers (default).
+3. **AI altitude:** person-relative (+1 stage; at their stage for execution; 11+ as strategic default and ceiling); separate words for AI-development stage and professional stage (default).
+4. **Moonshot vs sovereignty gradient:** moonshot ambition default; capital instrument follows the gradient (default).
+5. **Licensing:** per R6 notes (§4).
+6. **v5.3 interim:** recommended, but it edits `system-prompts/`: waits on Sasha's explicit yes.
+7. ~~Spend on benchmark~~: closed, no benchmark.
+8. **Canonical 14–26:** 14–25 = blind-spot re-pass on the center, 26 = seeing the seeing; scale pass optional in the module (default).
+9. **Public benchmark page wording** ("raw outputs open", "v5.2 = +42%"): public-facing, waits on Sasha.
 
 ---
 
 ## 7. Milestones
 
-v1.0 put the benchmark at M2, after research. The roast (§8) moved it to the critical path: every later decision depends on a baseline that does not exist yet.
+| # | Milestone | Done when |
+|---|---|---|
+| M0 | Plan v1.0 → v1.2 | Research R1–R4 closed, benchmark removed (2026-10-31) |
+| M1 | Research close | **Done 2026-10-31.** R2: 49 more technologies read; new core moves N1 doorway before worldview, N2 four decision frictions, N3 draft over describe, N4 noise gate; N5–N8 to modules. R6: Sasha is sole author, so CC BY-NC-SA binds only others; v6 header = CC BY-NC-SA 4.0 + commercial license; client cases in the uniqueness map stay out of lenses; /ai-os hero says CC BY-SA (inconsistent, Sasha's call) |
+| M2 | v6.0-alpha.1 | **Drafted 2026-10-31** outside the repo: core ~2,280 words, 8 modules ~5,950, Lite ~530; static gates pass except the full 175-row mapping table (alpha.2) and the Forecast module |
+| M3 | Iterate | Iterate module on alpha.1 → alpha.n |
+| M4 | Live use | Sasha uses alpha next to v5.2; point versions from his notes |
+| M5 | Release | `system-prompts/v6.0/`, `AiOsPage.tsx`, `aiOsSource.ts`, Familiar, `/ai-os` label; only with Sasha's yes |
 
-| # | Milestone | Done when | Rough size |
-|---|---|---|---|
-| M0 | Plan v1.0 → v1.1 | Research R1, R3, R4-design closed; plan roasted | done 2026-10-31 |
-| M1 | Baseline | Runner built; minimal run of raw vs v5.2 vs v5.2-minus-premium on one family; first ablation signal | 2–3 days after the API key |
-| M1′ | v5.3 point release (if approved) | Freshness + conflict-order fixes, no structural change; re-benched on the same minimal run | 1 day |
-| M2 | Full ablation + compression curve | Drop-one on 6 parts; SIB lift at 100 / 60 / 30% / Lite size | 3–5 days |
-| M3 | v6.0-alpha drafts | Two variants (lean / fuller core) + Lite, written from M2 data and the §3.5–3.7 specs | 2–3 days |
-| M4 | Iterate | Iterate module run on the winning draft; point versions alpha.1, alpha.2…; re-benched each time | 1 week |
-| M5 | Ship decision | §5 rule met; independent human score; Sasha's blind pick | — |
-| M6 | Release | `system-prompts/v6.0/`, `AiOsPage.tsx`, `aiOsSource.ts`, Familiar, `/ai-os` label, benchmark page; only with Sasha's yes | 1 day |
-
-Rule across milestones: if a round of drafting makes the picture murkier than the last, stop drafting and run the benchmark or a live test with a person instead.
+Rule across milestones: if a drafting round makes the picture murkier than the last, stop and take it to live use.
 
 ---
 
@@ -305,7 +290,8 @@ Rule across milestones: if a round of drafting makes the picture murkier than th
 - **Roast 2 (blind spot: We / Essence):** the plan served mechanics (It/Its) and under-served the people who use the OS. Fixed by the person set, Sasha's blind pick, and the compliance probes written from a user's chair.
 - **Meta-roast:** the roast's own risk is false precision: probe pass bars and the 65% threshold are first guesses (hypothesis register) to be recalibrated after M1.
 - **Crash test** ("v6 shipped and failed"): it lost the register that made v5.2 land (guarded by the verbatim list in §3.5 and drop-one ablation); it over-read people (guarded by consent, offer-not-diagnose, and the map-imperialism shadow); it scored well on Claude and fell flat elsewhere (guarded by cross-family judges and models).
-- **What survived:** person-first core, procedures with checks, one arbiter, modules on demand. **Acceptance test for the plan:** M1 produces a number for v5.2 vs raw on a private set.
-- **The 27th:** create the API key and run M1.
+- **What survived:** person-first core, procedures with checks, one arbiter, modules on demand. **Acceptance test for the plan:** v6.0-alpha passes the static gates and Sasha recognizes it as his.
+- **v1.2 note:** the benchmark was removed by Sasha's decision; the evidence role passes to the static gates and his live use (§5). Main residual risk: no external check on whether v6 beats v5.2 for people other than Sasha.
+- **The 27th:** draft v6.0-alpha.1 and put it in Sasha's hands.
 
 *Essence line:* v5.2 taught the model to see itself; v6 teaches it to see the person and move them one true step.
