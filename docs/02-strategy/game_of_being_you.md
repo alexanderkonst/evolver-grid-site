@@ -1142,3 +1142,53 @@ Backlog with 13 candidates, two lines (Uniqueness · Professional development), 
 2. Is **named gift (9+/10)** a milestone on the line, or only a step inside Stage I?
 3. «First paid by a stranger»: does a paying friend count, or only someone outside your circle (II.7 assumes outside)?
 4. Is the Gift Path a separate visible line, or only the Wealth/Impact part of the one QoL level (§19.8 rule 3: one truth)?
+
+## 21. The World layer and the daily loop (Sasha, 2026-11-01)
+
+**Context.** Hark proposed a daily loop v0 (Dawn: one AI question by talent × moon phase; Step: one 5-minute real-world quest; Fire: evening log + a light at another's window; "what pulls you back": the village changes overnight, an AI insight every few days, week/moon arcs; no streaks, no numbers). Sasha's verdicts below are the decisions; Hark's notes are marked as drafts.
+
+### 21.1 Sasha's verdicts, verbatim (2026-11-01 00:29 MST)
+- **Dawn question by talent × moon:** «херня».
+- **Step:** «это хорошо, но почему бы просто не показывать какой шаг следующий для человека? Думаю огромная часть правильного ответа - это линейная последовательность квестов. С артефактами за каждый которые устанавливаются в каждый дом.»
+- **Quest order:** «есть последовательность квеста. Игрок может не идти в этом порядке, но нельзя скипнуть квесты.»
+- **The World (Heroes-style):** «Как в Heroes - ты развиваешь деревню, и развиваешь свой дом, и развиваешь связи с другими деревнями! Можешь начать новую деревню! Или даже мы с тобой можем находить разные деревни и их делать. И карту сделать. Где будут деревни отмечены. У деревень люди могут стать амбассадорами. У каждого свой магазин! Такой карты практически нет. Как человеку из Убуда найти кого-то из Сан Панчо и торговать с ним? Плюс есть существующие деревни. Видишь что получается? мы воссоздаем мир и реальные механики между людьми как игровые механики которые их повторяют. Вот это оно!»
+- **Evening Fire / journal:** «можно кстати добавить в дом. Типа как журнал цифровой в который можно диктовать через Твой ИИ, и с промптами очень глубокими и мощными. Это хорошо! Но это далеко не главная динамика. Хотя эта может подцепить чтобы это делать каждый день. Вообще надо учиться у других real life игр.»
+- **"Village changes overnight" and "AI insight every few days" as the return hook:** «ерунда».
+- **Week and moon arc (Save Point Sunday, Circle at new moon, Harvest at full moon):** «это хорошо, надо придумать как это оформить. Например каждому дать эквилибриум в каком-то виде?»
+- **No streaks / no numbers:** rejected. «почему бы не добавить какие-то стрики и числа на экране или какие-то дэшборды? прогресс в игре я думаю это например явный изи вин. Экран персонажа - это людям нравится - развивать персонажа! Как мы развиваем персонажа? 1) проходя квесты, верно? 2) Может стоит добавить их аватар через ИИ? по их фотографии создать реалистичного аватара?»
+- **North star:** «я хочу чтобы игра помогала быть в реальной жизни, чтобы вся игра была нацелена на живую реальность, не уход в цифру.»
+- **Light at another's window:** «вообще не догоняю чтобы что?» → dropped.
+- **Telegram reminder:** «какое? кому? чтобы что?» → dropped until a concrete purpose exists.
+
+### 21.2 The core principle (decided)
+**The game re-creates the real world and the real mechanics between people as game mechanics that mirror them.** Every mechanic must have a real-life counterpart (a person, a place, a trade, a skill, a payment). Digital is the map; life is the territory. (Extends §16 San Pancho as Village #1.)
+
+### 21.3 Three scales of play (decided direction, details are Hark draft)
+1. **Your House (character).** Grows by passing the linear quest sequence (§14.2 Journey, §20 Gift Path). Each quest yields a real artifact (phrase, offer, price, recording, first sale) that is *installed in the house* as a visible object. Order is flexible, skipping is not.
+2. **Your Village.** A real community (San Pancho, Ubud, a city neighbourhood, an existing network). Villagers develop it together: shared buildings unlock as members pass quests (draft: Market opens at N stalls, Circle at N members). Any player can **found a new village**; Sasha and Hark can seed villages too.
+3. **The World map.** Real villages marked on a real map. **Ambassadors** per village. **Every player has a shop (stall).** Trade and links between villages: a person in Ubud finds a person in San Pancho and trades with them. Existing villages (communities, directories like sanpancholife.com) are onboarded, not rebuilt. Such a map barely exists today: this is the asymmetric bet.
+
+### 21.4 Character progress (decided: visible progress is good)
+- Character screen with visible growth: quests passed, artifacts in the house, stage on the Gift Path, a dashboard. Streaks and numbers are allowed.
+- **Hark draft:** streaks measured in real-world acts (a sale, a session given, an offer sent), weekly rather than daily so life never punishes the player; numbers that matter in life (clients served, money earned from the gift, villages traded with), not XP.
+- **AI avatar from the player's photo:** open. Hark draft: a stylised portrait made from the real photo, kept recognisable, so the avatar points back to the real person (consistent with §21.2). Opt-in; the photo is never shared without consent.
+
+### 21.5 Week and moon arc (decided to keep; form open)
+Sunday Save Point, Circle at new moon, Harvest at full moon. Sasha's idea: give every player an **Equilibrium** in some form (see `equilibrium` product: lunar/weekly rhythm planner). Hark draft: each player's house has a small Equilibrium clock showing their own cycle (this week's quest, this moon's intention); the Circle and Harvest are real gatherings per village (online or on the beach), led by its ambassador.
+
+### 21.6 Daily journal in the house (good, secondary)
+A journal in Your House, dictated through Your AI, with deep prompts. Possibly the daily hook, not the main dynamic.
+
+### 21.7 Learn from real-life games (to research; Hark's starting list)
+| Game | What it teaches us |
+|---|---|
+| Pokémon GO / Ingress | real places on a real map; gather in person; portals = real landmarks |
+| Heroes of Might and Magic | build your town, your hero, expand across a map |
+| Animal Crossing | a slow daily loop; visiting and trading between islands |
+| Duolingo | one linear path, visible next step, forgiving streaks |
+| Habitica | character grows from real-life tasks |
+| Strava | real activity → social recognition, local clubs, segments |
+| Couchsurfing / Burning Man regionals | ambassadors per city, gift economy, real gatherings |
+
+### 21.8 Next
+Game-design session Sasha × Hark (next session): the quest sequence and its artifacts, what a village unlocks, what the world map shows on day one (San Pancho + one more real village).
