@@ -13,6 +13,7 @@
  */
 
 import { supabase } from "@/integrations/supabase/client";
+import { withTimeout } from "@/lib/withTimeout";
 
 // ─── Types ───────────────────────────────────────────────────────
 
@@ -69,7 +70,11 @@ export type FunnelStep =
   | "evolution_portal_karime_view" // Landed on Karime's personalized proposal page
   | "activate_click"            // Clicked Activate ($37) Stripe CTA on AppleseedDisplay
   | "activate_coupon_redeemed"  // Redeemed coupon to bypass Stripe (Day 58)
-  | "activate_welcome";         // Landed on /activate/welcome (post-payment or coupon)
+  | "activate_welcome"          // Landed on /activate/welcome (post-payment or coupon)
+  // Return metric v0 (#287): the number to Nov 14 is players who passed the
+  // top-talent reveal and came back on another day. See docs/specs/metrics/.
+  | "reveal_seen"               // Top-talent reveal card shown (metadata.talent)
+  | "game_open";                // Game route mounted, at most once per local day per device
 
 export interface FunnelEvent {
   step: FunnelStep;
@@ -83,12 +88,51 @@ const SESSION_KEY = "funnel_session_id";
 const QUEUE_KEY = "funnel_event_queue";
 
 const getSessionId = (): string => {
-  let id = sessionStorage.getItem(SESSION_KEY);
-  if (!id) {
-    id = crypto.randomUUID();
-    sessionStorage.setItem(SESSION_KEY, id);
+  try {
+    let id = sessionStorage.getItem(SESSION_KEY);
+    if (!id) {
+      id = crypto.randomUUID();
+      sessionStorage.setItem(SESSION_KEY, id);
+    }
+    return id;
+  } catch {
+    // Storage blocked (private mode): a throwaway id, analytics must not break the page.
+    return "no-session-storage";
   }
-  return id;
+};
+
+// ─── Stable anonymous player id (#287) ──────────────────────────
+// session_id dies with the tab, so a return visit looks like a new person.
+// player_id lives in localStorage: one uuid per device, created once. It is
+// random, carries no PII, and is cleared with the browser's site data.
+
+export const PLAYER_ID_KEY = "fytt_player_id";
+
+let memoryPlayerId: string | null = null;
+
+export const getPlayerId = (): string => {
+  try {
+    let id = localStorage.getItem(PLAYER_ID_KEY);
+    if (!id) {
+      id = crypto.randomUUID();
+      localStorage.setItem(PLAYER_ID_KEY, id);
+    }
+    return id;
+  } catch {
+    // Storage blocked: keep one id for this page load so events at least group together.
+    if (!memoryPlayerId) memoryPlayerId = crypto.randomUUID();
+    return memoryPlayerId;
+  }
+};
+
+/** The signed-in user's id (a uuid, never the email), or null. getSession reads local storage. */
+const getUserId = async (): Promise<string | null> => {
+  try {
+    const { data } = await withTimeout(supabase.auth.getSession(), 1500, "funnel getSession");
+    return data?.session?.user?.id ?? null;
+  } catch {
+    return null;
+  }
 };
 
 // ─── Event Queue (Offline Resilience) ───────────────────────────
@@ -156,15 +200,26 @@ const flushQueue = async () => {
 // ─── Core Tracking Function ─────────────────────────────────────
 
 export const trackFunnelEvent = async (event: FunnelEvent): Promise<void> => {
-  const payload: QueuedEvent = {
-    session_id: getSessionId(),
-    step: event.step,
-    source: event.source,
-    metadata: event.metadata,
-    timestamp: new Date().toISOString(),
-    page_url: window.location.pathname + window.location.search,
-    referrer: document.referrer || "",
-  };
+  let payload: QueuedEvent;
+  try {
+    const userId = await getUserId();
+    payload = {
+      session_id: getSessionId(),
+      step: event.step,
+      source: event.source,
+      // Identity keys go last so a caller cannot overwrite them.
+      metadata: {
+        ...event.metadata,
+        player_id: getPlayerId(),
+        ...(userId ? { user_id: userId } : {}),
+      },
+      timestamp: new Date().toISOString(),
+      page_url: window.location.pathname + window.location.search,
+      referrer: document.referrer || "",
+    };
+  } catch {
+    return; // Analytics never breaks the game.
+  }
 
   try {
     const { error } = await (supabase as any)
