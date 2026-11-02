@@ -192,10 +192,12 @@ describe("wiring", () => {
     }
   });
 
-  it("the database part stays proposed: no migration mentions player_reflections", () => {
+  it("the database part is applied: exactly one migration creates player_reflections and leave_reflection", () => {
     const dir = join(__dirname, "../../../supabase/migrations");
-    for (const name of readdirSync(dir)) {
-      expect(readFileSync(join(dir, name), "utf8"), name).not.toContain("player_reflections");
-    }
+    const hits = readdirSync(dir).filter((name) =>
+      /create table if not exists public\.player_reflections/i.test(readFileSync(join(dir, name), "utf8")),
+    );
+    expect(hits).toHaveLength(1);
+    expect(readFileSync(join(dir, hits[0]), "utf8")).toMatch(/FUNCTION public\.leave_reflection/);
   });
 });
