@@ -1327,3 +1327,11 @@ Sasha: artifacts can become interior objects in "Your House", jewelry amulets on
 - "The business you were born with"
 - "Your business is already inside you"
 - "Every person carries a business. Here's how to read yours."
+
+### 23.4 Two kinds of quests: Hero's Journey quests and Village quests (Sasha, 2026-11-02 01:20)
+> «КВЕСТЫ В РЕАЛЬНОЙ ЖИЗНИ! выпей кофе в реальной жизни. Купи реальные живые сессии у людей в деревне… есть квесты пути героя, а есть квесты В ДЕРЕВНЕ!!!!! Типа купи 3 разных сессии у 3 разных людей - получи артефакт.»
+
+- **Hero's Journey quests:** the inner line of §23.1 (reveal → … → matchmaking).
+- **Village quests:** done in real life, in the real village (San Pancho first). Examples (Sasha's): have a coffee with someone in real life; buy live sessions from people in the village; **buy 3 different sessions from 3 different people → get an artifact.**
+- Why it matters: village quests turn play into real revenue for village practitioners (the §22/§16 metric: income through the platform) and feed the 10% shop commission model (memory: practitioner shops strategy, 2026-11-02).
+- Open (to design): how a real-life action is verified (e.g. the practitioner confirms the session in their shop, or payment goes through the platform); which artifacts are village-only.
