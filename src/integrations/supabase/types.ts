@@ -1531,6 +1531,97 @@ export type Database = {
         }
         Relationships: []
       }
+      knowledge_note_chunks: {
+        Row: {
+          chunk_index: number
+          content: string
+          embedding: string
+          id: string
+          note_id: string
+        }
+        Insert: {
+          chunk_index: number
+          content: string
+          embedding: string
+          id?: string
+          note_id: string
+        }
+        Update: {
+          chunk_index?: number
+          content?: string
+          embedding?: string
+          id?: string
+          note_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "knowledge_note_chunks_note_id_fkey"
+            columns: ["note_id"]
+            isOneToOne: false
+            referencedRelation: "knowledge_notes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      knowledge_note_links: {
+        Row: {
+          from_note_id: string
+          to_title_key: string
+        }
+        Insert: {
+          from_note_id: string
+          to_title_key: string
+        }
+        Update: {
+          from_note_id?: string
+          to_title_key?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "knowledge_note_links_from_note_id_fkey"
+            columns: ["from_note_id"]
+            isOneToOne: false
+            referencedRelation: "knowledge_notes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      knowledge_notes: {
+        Row: {
+          body: string
+          content_hash: string
+          id: string
+          is_public: boolean
+          path: string
+          source: string
+          synced_at: string
+          title: string
+          title_key: string
+        }
+        Insert: {
+          body: string
+          content_hash: string
+          id?: string
+          is_public?: boolean
+          path: string
+          source?: string
+          synced_at?: string
+          title: string
+          title_key: string
+        }
+        Update: {
+          body?: string
+          content_hash?: string
+          id?: string
+          is_public?: boolean
+          path?: string
+          source?: string
+          synced_at?: string
+          title?: string
+          title_key?: string
+        }
+        Relationships: []
+      }
       marketplace_products: {
         Row: {
           blueprint_content: Json | null
@@ -2150,6 +2241,96 @@ export type Database = {
           email?: string
           opted_out_at?: string
           reason?: string | null
+        }
+        Relationships: []
+      }
+      player_cards: {
+        Row: {
+          card: Json
+          card_version: number
+          content_hash: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          card: Json
+          card_version: number
+          content_hash: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          card?: Json
+          card_version?: number
+          content_hash?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      player_reflections: {
+        Row: {
+          answer: string
+          created_at: string
+          id: string
+          line: string | null
+          player_user_id: string
+          read_at: string | null
+          visitor_name: string
+          visitor_user_id: string | null
+        }
+        Insert: {
+          answer: string
+          created_at?: string
+          id?: string
+          line?: string | null
+          player_user_id: string
+          read_at?: string | null
+          visitor_name: string
+          visitor_user_id?: string | null
+        }
+        Update: {
+          answer?: string
+          created_at?: string
+          id?: string
+          line?: string | null
+          player_user_id?: string
+          read_at?: string | null
+          visitor_name?: string
+          visitor_user_id?: string | null
+        }
+        Relationships: []
+      }
+      player_traces: {
+        Row: {
+          at: string
+          id: string
+          kind: string
+          outcome: string
+          payload_id: string
+          surface: string
+          user_id: string
+        }
+        Insert: {
+          at?: string
+          id?: string
+          kind: string
+          outcome?: string
+          payload_id: string
+          surface?: string
+          user_id: string
+        }
+        Update: {
+          at?: string
+          id?: string
+          kind?: string
+          outcome?: string
+          payload_id?: string
+          surface?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -2956,6 +3137,57 @@ export type Database = {
         }
         Relationships: []
       }
+      village_window_lights: {
+        Row: {
+          id: number
+          ip_hash: string
+          lit_at: string
+        }
+        Insert: {
+          id?: never
+          ip_hash: string
+          lit_at?: string
+        }
+        Update: {
+          id?: never
+          ip_hash?: string
+          lit_at?: string
+        }
+        Relationships: []
+      }
+      village_windows: {
+        Row: {
+          display_name: string | null
+          lit_at: string
+          moon_phase: string
+          n: number
+          released: boolean
+          token: string
+          top_talent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          display_name?: string | null
+          lit_at?: string
+          moon_phase: string
+          n?: never
+          released?: boolean
+          token?: string
+          top_talent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          display_name?: string | null
+          lit_at?: string
+          moon_phase?: string
+          n?: never
+          released?: boolean
+          token?: string
+          top_talent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       visibility_settings: {
         Row: {
           created_at: string
@@ -2980,6 +3212,24 @@ export type Database = {
           updated_at?: string
           user_id?: string
           visibility?: string
+        }
+        Relationships: []
+      }
+      your_ai_daily_usage: {
+        Row: {
+          day: string
+          turns: number
+          user_id: string
+        }
+        Insert: {
+          day: string
+          turns?: number
+          user_id: string
+        }
+        Update: {
+          day?: string
+          turns?: number
+          user_id?: string
         }
         Relationships: []
       }
@@ -3203,6 +3453,15 @@ export type Database = {
           previous_tier: Database["public"]["Enums"]["entitlement_tier"]
         }[]
       }
+      claim_window: {
+        Args: { p_token: string }
+        Returns: {
+          lit_at: string
+          moon_phase: string
+          n: number
+          token: string
+        }[]
+      }
       eq_complete_task: { Args: { p_task_id: string }; Returns: undefined }
       eq_promote_do_now: {
         Args: { p_item_id: string; p_item_type: string; p_owner: string }
@@ -3253,6 +3512,36 @@ export type Database = {
         }
         Returns: boolean
       }
+      knowledge_retrieve: {
+        Args: { p_k?: number; p_neighbours?: number; p_query: string }
+        Returns: {
+          distance: number
+          excerpt: string
+          hop: number
+          note_id: string
+          path: string
+          title: string
+        }[]
+      }
+      leave_reflection: {
+        Args: {
+          p_answer: string
+          p_line: string
+          p_username: string
+          p_visitor_name: string
+        }
+        Returns: undefined
+      }
+      light_window: {
+        Args: { p_phase: string; p_token?: string; p_top_talent: string }
+        Returns: {
+          lit_at: string
+          moon_phase: string
+          n: number
+          token: string
+        }[]
+      }
+      lit_windows_count: { Args: never; Returns: number }
       normalize_profile_username: { Args: { p_value: string }; Returns: string }
       profile_username_is_reserved: {
         Args: { p_username: string }
@@ -3297,6 +3586,20 @@ export type Database = {
       set_my_public_profile_username: {
         Args: { p_username: string }
         Returns: string
+      }
+      window_public: {
+        Args: { p_n: number }
+        Returns: {
+          display_name: string
+          lit_at: string
+          moon_phase: string
+          n: number
+          top_talent: string
+        }[]
+      }
+      your_ai_take_turn: {
+        Args: { p_cap: number; p_user: string }
+        Returns: number
       }
     }
     Enums: {
