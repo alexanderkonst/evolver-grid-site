@@ -17,8 +17,18 @@ describe("sceneSrc: light skins use the day art", () => {
     }
   });
 
-  it("lunar, aurum and unknown skins keep the night art", () => {
-    for (const skin of ["lunar", "aurum", "navy-gold", "", null, undefined]) {
+  it("lunar reads the lunar village scenes and keeps the night hero", () => {
+    expect(sceneSrc("/game/hero_forest.webp", "lunar")).toBe("/game/hero_forest.webp");
+    for (const image of [VILLAGE_MAP.image, ...VILLAGE_PLACES.map((p) => p.image)]) {
+      expect(sceneSrc(image, "lunar")).toBe(image.replace("/game/village/", "/game/village/lunar/"));
+    }
+    for (const path of ["/game/village/day/map.webp", "/game/other.webp", "/logo.png", ""]) {
+      expect(sceneSrc(path, "lunar")).toBe(path);
+    }
+  });
+
+  it("aurum and unknown skins keep the night art", () => {
+    for (const skin of ["aurum", "navy-gold", "", null, undefined]) {
       expect(sceneSrc("/game/hero_forest.webp", skin)).toBe("/game/hero_forest.webp");
       expect(sceneSrc("/game/village/map.webp", skin)).toBe("/game/village/map.webp");
     }
