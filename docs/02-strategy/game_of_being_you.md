@@ -1288,3 +1288,42 @@ Sasha's open question: why does the conscious village use the platform? How exac
 **Proof metric:** cross-bookings (a client who came via A books B) and income through the platform. Leading: shops claimed, client reveals per practitioner (target 3 or more).
 
 **Smallest test (1 week, no credits):** 3 practitioners, shops built and claimed, each sends the reveal to 5 clients. Works if 8 of 15 complete it and at least one opens another shop.
+
+## 23. The Player One path (Sasha, 2026-11-02)
+
+> «так и получается - ready player one. То есть самому нужно стать готовым, в этом магия становления Мерлином. Уже всегда и был готов, но это понимаешь когда готов.» «Значит путь игрока - это мой путь, все просто.»
+
+**Principle.** The player's path is Sasha's own path. He is Player One: every milestone he passes as a pioneer becomes a quest for the next player. Marketplace, social network, game, hero's journey, venture studio and personal AI are one platform, not separate products; each opens as the next level of the world.
+
+### 23.1 The quest line (Sasha's order, 2026-11-02)
+1. **Top Talent Reveal.**
+2. **Activation** of the top talent (his guided meditations: RU 13 min, EN 25 min).
+3. **Integration and starting the loop** (re-write the sentence → activate → clarity → offers → money; see §22).
+4. **Mission Reveal:** where I am heading, where my projects and interests point, what I am called to do.
+5. **Resources I already carry** (needed later for collaboration recommendations). Can come later.
+6. **What to develop, inner and outer.**
+7. **Where I am in my development, professionally and personally:** two tests, QoL and Hero's Journey chapter.
+8. **Activate dormant potential:** see it, then activate each direction, using level calibration; see versions of yourself at different levels (mini-course).
+9. **Open your shop on the platform.** Use the player's existing pages if they have them; if not, send them to build their Unique Business with Sasha. One simple question qualifies a player for this quest.
+10. **If not ready for a shop, first step:** a video on how a business is built into every person, and how to see how it is built into *you*. This is the content part of Sasha's webinar; he reuses it. English wording open (candidates in 23.3).
+11. **Group process:** build the Unique Business together (Mastermind).
+12. **Transformational practices** from selected teachers on the platform (their pages come later). Also a quest.
+13. **Matchmaking.**
+
+Sub-quests: simple ones per step; Sasha designs them himself.
+
+### 23.2 Artifacts (Sasha, 2026-11-02; mechanics below are Hark's [SUGGESTION], not decided)
+Sasha: artifacts can become interior objects in "Your House", jewelry amulets on the avatar, or real jewelry rings; easy to implement, a cult story; his sacred-object designs are world class. Open: protecting the designs.
+
+[SUGGESTION] mechanics:
+- **Earned, never bought in-game.** One artifact per completed quest (Reveal, Activation, Mission, ...), as §20 already implies («артефакты за каждый, которые устанавливаются в каждый дом»).
+- **Placed in Your House:** each one lights a part of the house; the house becomes the visible record of the hero's journey (character sheet).
+- **Worn on the avatar:** the player chooses one amulet to show in the village; it signals their gift and chapter to others and feeds matchmaking (a visible, honest signal).
+- **Unlocks, not power:** an artifact opens the next quest or a village place; no pay-to-win.
+- **Seasonal rares:** Mastermind and season artifacts, only for those who played that season.
+- **Physical edition:** a real ring or amulet for players who complete a chapter, made to order. A revenue line and the cult object; requires the design-protection decision first.
+
+### 23.3 Step 10 wording candidates [SUGGESTION]
+- "The business you were born with"
+- "Your business is already inside you"
+- "Every person carries a business. Here's how to read yours."
