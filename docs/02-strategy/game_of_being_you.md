@@ -1323,10 +1323,8 @@ Sasha: artifacts can become interior objects in "Your House", jewelry amulets on
 - **Seasonal rares:** Mastermind and season artifacts, only for those who played that season.
 - **Physical edition:** a real ring or amulet for players who complete a chapter, made to order. A revenue line and the cult object; requires the design-protection decision first.
 
-### 23.3 Step 10 wording candidates [SUGGESTION]
-- "The business you were born with"
-- "Your business is already inside you"
-- "Every person carries a business. Here's how to read yours."
+### 23.3 Step 10 wording (Sasha, 2026-11-02)
+- Sasha's choice: **"The business within"**, or simply **"Your personal business"**. (Hark's earlier candidates "The business you were born with" etc. rejected.)
 
 ### 23.4 Two kinds of quests: Hero's Journey quests and Village quests (Sasha, 2026-11-02 01:20)
 > «КВЕСТЫ В РЕАЛЬНОЙ ЖИЗНИ! выпей кофе в реальной жизни. Купи реальные живые сессии у людей в деревне… есть квесты пути героя, а есть квесты В ДЕРЕВНЕ!!!!! Типа купи 3 разных сессии у 3 разных людей - получи артефакт.»
