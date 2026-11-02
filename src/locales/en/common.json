@@ -3625,7 +3625,8 @@
     "lockedLabel": "{{space}}, locked",
     "lockedHeader": "{{space}} · Locked",
     "themeToggleToDaoAria": "Switch to black-and-white theme",
-    "themeToggleToDaoTitle": "Switch to The Dao, the black-and-white theme"
+    "themeToggleToDaoTitle": "Switch to The Dao, the black-and-white theme",
+    "themeToggleToLunarTitle": "Switch to Lunar, the moonlit theme"
   },
   "authLinkError": {
     "expiredTitle": "This link expired",

@@ -1312,6 +1312,7 @@
     "lockedHeader": "{{space}} · Bloqueado",
     "themeToggleToDaoAria": "Cambiar al tema en blanco y negro",
     "themeToggleToDaoTitle": "Cambiar a The Dao, el tema en blanco y negro",
+    "themeToggleToLunarTitle": "Cambia a Lunar, el tema de luz de luna",
     "homeAria": "Inicio de {{brand}}",
     "subtitle": {
       "journey": "Tu camino paso a paso",

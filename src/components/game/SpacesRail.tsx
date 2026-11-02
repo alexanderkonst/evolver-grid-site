@@ -69,12 +69,13 @@ const TOGGLE_NEXT_SKIN: Partial<Record<Skin, Skin>> = {
     lunar: "lapis",
     lapis: "aurum",
     aurum: "dao",
-    dao: "lapis",
+    dao: "lunar",
 };
 const TOGGLE_LABEL_KEY: Partial<Record<Skin, string>> = {
     lapis: "spacesRail.themeToggleToLapisTitle",
     aurum: "spacesRail.themeToggleToAurumTitle",
     dao: "spacesRail.themeToggleToDaoTitle",
+    lunar: "spacesRail.themeToggleToLunarTitle",
 };
 // White-label demo (2026-05-19, Sasha): when skin is `network-school`,
 // the rail brand mark swaps to the official NS flag asset hosted on
