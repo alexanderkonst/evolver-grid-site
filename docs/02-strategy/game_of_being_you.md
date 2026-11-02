@@ -1333,3 +1333,16 @@ Sasha: artifacts can become interior objects in "Your House", jewelry amulets on
 - **Village quests:** done in real life, in the real village (San Pancho first). Examples (Sasha's): have a coffee with someone in real life; buy live sessions from people in the village; **buy 3 different sessions from 3 different people → get an artifact.**
 - Why it matters: village quests turn play into real revenue for village practitioners (the §22/§16 metric: income through the platform) and feed the 10% shop commission model (memory: practitioner shops strategy, 2026-11-02).
 - Open (to design): how a real-life action is verified (e.g. the practitioner confirms the session in their shop, or payment goes through the platform); which artifacts are village-only.
+
+### 23.5 Artifacts: earned in the game, made in real life (Sasha "да!", 2026-11-02 01:24)
+Mechanics (Hark's proposal, accepted by Sasha):
+- Artifacts can't be bought in the game. One per quest; it goes into the player's House (My Home) and lights it up.
+- One amulet worn on the avatar is visible to the village and helps matching.
+- Artifacts open things; they don't give power. Seasonal rare ones possible.
+
+Real-life item (Sasha's extension):
+- At a certain stage (e.g. after a completed chapter) the player gets the right to **buy the physical item in real life**: a real ring or jewel of their artifact.
+- We **really sell it on the site**, made to order, with the page saying how long it takes to make ("ready in N weeks").
+- Sequence: earn it in the game first, then unlock the right to buy the real one. Cult story, world-class designs, new revenue line.
+
+Open: design protection before any physical sale; which stage unlocks the purchase; maker/jeweler, price, lead time; whether village quests (§23.4) unlock village-only artifacts.
