@@ -3133,6 +3133,20 @@
 [data-skin="lunar"] [class*="hover:bg-[rgba(26,30,58"]:hover {
   background-color: rgba(230, 235, 242, 0.08) !important;
 }
+/* The navless shell (guided Top Talent test, /zone-of-genius/assessment) painted a cream
+   gradient under every skin, so on the dark skins the silver text sat on white and could not
+   be read. Dark skins keep their own night canvas (the body background) there. */
+[data-skin="lunar"] .game-shell-navless,
+[data-skin="aurum"] .game-shell-navless,
+[data-skin="techstars"] .game-shell-navless {
+  background-image: none;
+  background-color: transparent;
+}
+[data-skin="lunar"] .game-shell-navless__bokeh,
+[data-skin="aurum"] .game-shell-navless__bokeh,
+[data-skin="techstars"] .game-shell-navless__bokeh {
+  display: none;
+}
 [data-skin="lunar"] .from-white.via-\[\#f5f5ff\].to-\[\#ebe8f7\],
 [data-skin="lunar"] .from-\[\#c8b7d8\].via-\[\#d4d1e8\].to-\[\#e7e9f5\],
 [data-skin="lunar"] .from-\[\#e7e9e5\].to-\[\#dcdde2\] {

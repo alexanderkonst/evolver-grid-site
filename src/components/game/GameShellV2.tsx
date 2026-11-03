@@ -1229,12 +1229,12 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 className={
                     navlessPageOwnsBackground
                         ? "min-h-dvh bg-[#0a0a1a]"
-                        : "min-h-dvh bg-gradient-to-br from-white via-[#f0f8ff] to-[#f5f5ff]"
+                        : "game-shell-navless min-h-dvh bg-gradient-to-br from-white via-[#f0f8ff] to-[#f5f5ff]"
                 }
             >
                 {/* Wabi-sabi Bokeh Overlay — only on the cream variant */}
                 {!navlessPageOwnsBackground && (
-                    <div className="fixed inset-0 pointer-events-none z-0">
+                    <div className="game-shell-navless__bokeh fixed inset-0 pointer-events-none z-0">
                         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(132,96,234,0.06)_0%,transparent_50%)]" />
                         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(164,163,208,0.08)_0%,transparent_50%)]" />
                     </div>
