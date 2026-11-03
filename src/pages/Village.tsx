@@ -512,6 +512,7 @@ const Village = () => {
                       left: `${p.x}%`,
                       top: `${p.y}%`,
                       "--vl-d": `${-i * 0.55}s`,
+                      "--vl-ly": `${p.labelDy ?? 0}px`,
                     } as CSSProperties;
                     const cls = `vl-pin${p.side === "left" ? " vl-pin--left" : ""}${i === active ? " is-active" : ""}${isNew(p) ? " is-new" : ""}${isRevealed(p) ? " is-reveal" : ""}${isLit(p) ? " is-lit" : ""} vl-light--${lights[i]}`;
                     return (

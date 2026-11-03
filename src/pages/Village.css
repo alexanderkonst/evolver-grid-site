@@ -149,6 +149,8 @@
   display: flex; align-items: center; gap: 10px; white-space: nowrap; outline: none;
 }
 .vl-pin--left .vl-pin__link { left: auto; right: -14px; flex-direction: row-reverse; }
+/* Label nudge (place.labelDy): the words move, the marker stays on its building. */
+.vl-pin__link > :not(.vl-dot) { translate: 0 var(--vl-ly, 0px); }
 .vl-dot { position: relative; width: 28px; height: 28px; flex: none; }
 .vl-dot::before {
   content: ""; position: absolute; left: 50%; top: 50%; width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px;

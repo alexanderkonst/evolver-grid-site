@@ -55,6 +55,11 @@ export type VillagePlace = {
   y: number;
   /** Which side of the marker the label sits on (default: right). */
   side?: "left" | "right";
+  /**
+   * Nudges the label (not the marker) up or down, in px, where two labels
+   * would collide: Town Hall and Co-working sit 1% apart on y and face each other.
+   */
+  labelDy?: number;
 };
 
 export const VILLAGE_MAP = {
@@ -171,6 +176,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     x: 83,
     y: 30,
     side: "left",
+    labelDy: 12,
   },
   {
     key: "fire-circle",
@@ -278,6 +284,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     focus: { x: 45, y: 15 },
     x: 66,
     y: 29,
+    labelDy: -16,
   },
 ];
 
