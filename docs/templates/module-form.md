@@ -140,6 +140,9 @@ The rest of the Outro (§3: where it lives, what it unlocks, the rating, the rea
 
 Removed from the old path screen by this law: «Let's create your profile for matching.» · «Good news: AI makes it real quick.» · «We start with your top talent.» · «Which way?» · «More precise than the test, unless your AI barely knows you yet.»
 
+### 12.5a The colouring mechanic (Sasha, 2026-11-03: «он раскрашивает игру как раскраску»)
+The Landing image is shown **in greyscale**. When the person gets the result, the **same image comes to full colour** on the Final screen, with the **artifact** they earned and the next step. Module by module the player colours their own reality: value, an artifact and beauty arrive in one moment. Top Talent: the courtyard image (`public/images/modules/top-talent-courtyard.webp`) greyscale on Landing, in colour on the reveal; first artifact = the pointed Star of Uniqueness, which appears in the player's House (issue #313). The artifact is in-game, not on-chain.
+
 ### 12.6 DoD (any module)
 Landing: result named · one button in the player's voice · at most one small alternative line · one fitting image · nothing else. Final: the essence named again · one compact line of significance that includes «first time in your life» (in the module's own words).
 
