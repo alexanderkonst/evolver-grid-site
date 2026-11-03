@@ -147,7 +147,7 @@ html[data-skin="lunar"] button[data-seam]::before {
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(var(--seam-moon), 0.10) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+    linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(var(--seam-moon), 0.06) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
     repeating-linear-gradient(180deg,
       transparent 0 118px,
       rgba(var(--seam-deep), 0.9) 118px 119px,
