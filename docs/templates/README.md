@@ -16,6 +16,7 @@ Reusable methods for producing things from Sasha's work: one file per template, 
 | [shift-offer.md](./shift-offer.md) | One offer sheet per template, module or product: Point A in their words, what they will see and do at B, the line «Ты увидишь… и сделаешь…» / "You will see… and you will…", a self-checkable promise, price by depth of shift; carries PST 173 | draft (applied to the game modules, `game_of_being_you.md` §17, 2026-10-27); guarantee fork open for Sasha |
 | [product-map.md](./product-map.md) | A whole business as one map: its niche of shifts (consciousness / physical reality) down the side, replicable and simplified paths by depth across the top (video, game module, session, mastermind), each cell one Shift Offer, with four checks; carries PST 174 | draft (worked example from `game_of_being_you.md` §17, 2026-10-28) |
 | [ecosystem-offer.md](./ecosystem-offer.md) | One short proposal from a sovereign founder to an existing ecosystem: six gates (proof, who, their pain, pilot, demo, one line), the circle offer shape, a message skeleton under 90 words, what comes after a yes; carries "all seven in every scale" | draft (FYTT, 2026-10-30; waits for Mastermind proof) |
+| [application-loop.md](./application-loop.md) | A grant, fellowship or accelerator application from first draft to submission: draft → roast → v2 → abstract to Sasha → his inputs → v3 + roast → abstract again → (one more layer) → Sasha edits by hand → submit on his yes | in use (MIT Solve 2027, from 2026-11-03) |
 
 *Folder created 2026-10-27 (Sasha: «IMPORTANT»).*
 
