@@ -45,6 +45,9 @@
     "choosePlace": "Elige un lugar",
     "backTitle": "← Título",
     "backVillage": "← Aldea",
+    "signal": {
+      "unfinished": "Sin terminar"
+    },
     "medallionBack": "Volver a la aldea",
     "dial": {
       "aria": "Dial lunar: esta noche en Equilibrium",

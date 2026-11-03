@@ -45,6 +45,9 @@
     "choosePlace": "Выбери место",
     "backTitle": "← Заставка",
     "backVillage": "← Деревня",
+    "signal": {
+      "unfinished": "Не завершено"
+    },
     "medallionBack": "Назад в деревню",
     "dial": {
       "aria": "Лунный циферблат: эта ночь в Equilibrium",

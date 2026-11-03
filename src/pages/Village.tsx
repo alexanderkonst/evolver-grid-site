@@ -47,6 +47,7 @@ import { useSceneSrc } from "@/lib/sceneSrc";
 import { placeObjects, placeSoul, watchedCourseObjects } from "@/lib/placeColor";
 import IntroSequence from "@/components/game/IntroSequence";
 import MoonDial from "@/components/game/MoonDial";
+import { placeLight, placeSignalKey, type PlaceLight } from "@/lib/placeLight";
 import "./Village.css";
 
 /**
@@ -349,6 +350,16 @@ const Village = () => {
     VILLAGE_PLACES.filter((_, i) => states[i] === "done" || states[i] === "live").map((p) => p.key),
   );
   const isRevealed = (p: VillagePlace) => colorFresh.includes(p.key);
+  // Window light = place state (village-as-dashboard step 3): brighter where the place holds
+  // something for the player now, dark where it is locked. Until the save loads, every place
+  // waits at «quiet» so nothing flashes.
+  const lights: PlaceLight[] = VILLAGE_PLACES.map((p, i) =>
+    ready ? placeLight(p, states[i], save, { isNew: isNew(p), houseLit: isLit(p) }) : "quiet",
+  );
+  const signal = (i: number) =>
+    placeSignalKey(lights[i], shown[i]) === "unfinished" ? (
+      <span className="ps-tag vl-signal">{tr(t, "village.signal.unfinished", "Unfinished")}</span>
+    ) : null;
   // ENTER: the scene pushes in and the screen fades, then the route changes.
   const { leaving, leave } = useLeave("base");
   const [active, setActive] = useState<number | null>(null);
@@ -502,11 +513,13 @@ const Village = () => {
                       top: `${p.y}%`,
                       "--vl-d": `${-i * 0.55}s`,
                     } as CSSProperties;
-                    const cls = `vl-pin${p.side === "left" ? " vl-pin--left" : ""}${i === active ? " is-active" : ""}${isNew(p) ? " is-new" : ""}${isRevealed(p) ? " is-reveal" : ""}${isLit(p) ? " is-lit" : ""}`;
+                    const cls = `vl-pin${p.side === "left" ? " vl-pin--left" : ""}${i === active ? " is-active" : ""}${isNew(p) ? " is-new" : ""}${isRevealed(p) ? " is-reveal" : ""}${isLit(p) ? " is-lit" : ""} vl-light--${lights[i]}`;
                     return (
                       // Issue #270: a closed pin is aria-disabled (PlaceState's default) and goes nowhere:
                       // no dead arch. It still takes hover and focus, so its «Opens when…» line shows below.
                       <PlaceState key={p.key} as="li" state={shown[i]} className={cls} style={style} tag={false}>
+                        {/* The building's windows: how much light this place has for the player now. */}
+                        <span className="vl-window" aria-hidden="true" />
                         {mobile ? (
                           // Mobile: the list below is the menu; dots only mark the buildings.
                           <span className="vl-pin__link" aria-hidden="true">
@@ -541,6 +554,7 @@ const Village = () => {
                             <span className="vl-dot ps-fade" aria-hidden="true" />
                             <span className="vl-pin__name">{placeName(p, t)}</span>
                             <PlaceStateTag state={shown[i]} />
+                            {signal(i)}
                             {isNew(p) ? <NewTag /> : null}
                             {isLit(p) ? <span className="vl-lit-word">{tr(t, "village.lit", "Lit")}</span> : null}
                           </Link>
@@ -608,7 +622,7 @@ const Village = () => {
           <nav className="vl-list" aria-label={tr(t, "village.placesNav", "Places")}>
             <ul>
               {VILLAGE_PLACES.map((p, i) => (
-                <PlaceState key={p.key} as="li" state={shown[i]} className={`${isNew(p) ? "is-new" : ""} ${isRevealed(p) ? "is-reveal" : ""} ${isLit(p) ? "is-lit" : ""}`.trim().replace(/\s+/g, " ") || undefined} tag={false}>
+                <PlaceState key={p.key} as="li" state={shown[i]} className={`vl-light--${lights[i]} ${isNew(p) ? "is-new" : ""} ${isRevealed(p) ? "is-reveal" : ""} ${isLit(p) ? "is-lit" : ""}`.trim().replace(/\s+/g, " ") || undefined} tag={false}>
                   {shown[i] === "closed" ? (
                     // Issue #270: closed means aria-disabled and no navigation; the line says what opens it.
                     <a role="link" aria-disabled="true" tabIndex={0} className="is-locked">
@@ -620,6 +634,7 @@ const Village = () => {
                     <Link to={pinTo(p)}>
                       <span className="vl-list__name">{placeName(p, t)}</span>
                       <PlaceStateTag state={shown[i]} />
+                      {signal(i)}
                       {isNew(p) ? <NewTag /> : null}
                       {isLit(p) ? <span className="vl-lit-word">{tr(t, "village.lit", "Lit")}</span> : null}
                       <span className="vl-list__line">{placeLine(p, shown[i], t, signedIn === true)}</span>
