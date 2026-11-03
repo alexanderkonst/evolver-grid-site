@@ -8,12 +8,296 @@
 > *Current version: **v10.1** (August 25, 2026 — Day 166 · Recursive Unique Business. Trust and value flow simplified to `T = Recursive Likeness × Complementarity`; `VF = Trust × Ripeness`. The mirror-versus-complement binary is corrected, recursive completion is named, the AI-native self-recognizing business is formalized, and the full commercial artifact chain is projected across individual, business, collective, and planetary coordination. Day 138 remains preserved immediately below as genealogy.)*
 > *Prior version: **v10.0** (July 28, 2026 — Day 138 · Surfaces Refresh Pass. Top-of-file artifacts were reconciled to the Day 138 roadmap state; Pain v4.1 remained an open location flag.)*
 > *Prior version: **v9.9** (April 25, 2026 — Day 51 night · Documentation consolidation pass. All five core corpus docs synchronized to Day 51 state: session_log Day 50 + Day 51 entries appended, roadmap v5.2 stamped, holomap Day 51 addendum with center reading "Codification" + perspective deltas + composite view, playbook bumped to v4.6 with the six business-model plays section added to Principle 15, this file's final consolidation entry below). The architecture is now legible at every layer of the corpus. Prior versions preserved in the changelog at end of file — nothing deleted, each version additive.*
+> *Current canvas: **UNIQUENESS v1.3 / UNIQUE BUSINESS CANVAS v1.12** (2026-11-03), first section below the header. Earlier canvases are kept below as superseded genealogy.*
 > *Playbook: [Unique Business Playbook](../../03-playbooks/unique_business_playbook.md) (v4.6)*
 > *Customer Journey: [Customer Journey Playbook](../../03-playbooks/customer_journey_playbook.md)*
 
 > **Architecture:** This document is a **Layer 1 (Operating System)** — the produced artifacts of Alexander's unique business. Layer 2 applications (FMF session, landing page, DMs) run on this OS. Layer 0 (Cosmogenesis / Prime Radiant) is the origin pattern beneath it.
 >
 > **This file is the single source of truth.** Each artifact is versioned with essence, significance, and key practical implications. When a new insight deepens an articulation, update it here — nowhere else.
+
+---
+
+## ⭐ UNIQUENESS v1.3 / UNIQUE BUSINESS CANVAS v1.12 — CURRENT (Sasha's own canvas, updated 2026-11-03)
+
+> Current version of the Uniqueness + Unique Business Canvas. Older versions follow below, marked superseded.
+
+**UNIQUENESS v1.3**
+
+**UNIQUE BUSINESS CANVAS v1.12**
+
+*Current version, 2026-11-03. Supersedes UNIQUENESS v1.2 / UNIQUE BUSINESS CANVAS v1.11. Changelog at the bottom.*
+
+**1. ЧЕТКО СФОРМУЛИРОВАННОЕ САМОПОНИМАНИЕ**
+
+**UNIQUENESS**  
+**Unique Integrated Vibratory Signature**
+
+**ЭГАЛИОН+АЛЕКСАЭДР+МИРИНА: Aether Architect of Free Worlds**  
+**perceives the hidden unity of separate worlds and gives it elegant, living form, so that life can freely author itself.**  
+**Благодать формы / Sovereign Grace**  
+**Triad of Lineages of Mastery**  
+**Mystic > Philosopher King > Technologist**  
+**Deepest layer seen:**  
+**I perceive underlying order, discern its meaning, then architect it into form.**  
+**I listen to Reality deeply enough to help it architect itself.**
+
+**Звук**  
+Один удар низкой поющей чаши — **Эгалион**, тишина, которая никому не подчиняется.  
+Из него вырастают чистые обертоны в квинту, как грани кристалла — **Алексаэдр**, геометрия, которую слышно.  
+И внутри них тихий женский голос без слов, ведущий мелодию по этим граням — **Мирина**.
+
+Звучит как храм, в котором нет стен.
+
+**Слова**  
+- **Благодать формы** / Sovereign Grace  
+- Порядок, который освобождает. Красота, которая не держит.  
+- Геометрия свободы, спетая как стих.
+
+**Качество**  
+Благодать: точность + красота + свобода в одном жесте. Форма настолько верная, что человек в ней не сжимается, а расправляется. Тень делает то же самое, но с дверью, которая не открывается наружу.
+
+**Топ-5 проявлений**  
+1. **Игра и деревня.** Мир, где уникальность становится местом, в котором хочется жить, и из которого можно уйти в своё дело.  
+2. **Реконнект уникальности в одной фразе.** Момент, когда человек слышит себя сказанным точно и красиво, а не заданным. Сюда же цвета души.  
+3. **Сакральная геометрия.** Пять элементов, додекаэдр, тор, глина в руках: космос, который можно потрогать.  
+4. **Сакральный интерьер.** Лунная тема, заставка, интерфейсы как храмы: невидимое становится ощутимым.  
+5. **Карты и метасистемы.** Planetary OS, карта развития, Unique Business Canvas: весь авангард в одной схеме, в которой каждый находит своё место.
+
+**Core thesis:** highest leverage in business is to be more in touch with one's uniqueness.
+
+**MISSION**  
+**Lifelong Dedication**  
+**Help humanity evolve into a consciously coordinating civilization through unique talent monetization, precision match-making for collaboration, self-knowledge sourced venture-building and systemic stewardship.**  
+**Role: I turn scattered potential into a clear plan people can follow.**
+
+**UNIQUE SHADOW**  
+**Compacted Inverted Uniqueness aka Alter Ego**  
+**The Golden Cage Architect**  
+**perceives the hidden unity and casts it into a form so beautiful and total that others surrender their will to live inside his vision.**  
+**The same grace, but with a door that does not open outward.**  
+**Mystic → Delusionist — mistakes inner revelation for objective truth; confuses intuition with infallibility.**  
+**Philosopher King → Tyrant — wisdom becomes superiority; seeing the larger system becomes justification for deciding for others.**  
+**Technologist → Manipulator — systems cease to liberate agency and begin engineering behavior, dependency, or control.**  
+**Deep shadow: the Architect who becomes so identified with seeing the Whole that he forgets he is also merely one perspective within it. And instead of architecting conditions for emergence attempts at architecting reality itself.**  
+**Integration: integration doesn't mean reaching some impossible state of zero control, zero projection, perfect surrender. That itself becomes another perfectionistic control project. It means becoming increasingly sensitive to when architecture subtly becomes imposition—and being able to return.**  
+**No cage, a door outward: every form serves real life and never competes with it. The door outward, into one's own life and business, matters more than the way in. Anyone can fork and change any component; players and partners build their own buildings in the village.**  
+**Calibration: Right now, am I listening to Life—or overriding it? Does this form have a door that opens outward?**
+
+
+**2. ИДЕАЛЬНЫЙ КЛИЕНТ**  
+*зеркальное отражение меня: моей идентичности, моей метаморфозы, и моей главной жизненной установки*  
+**2.1 Идентичность:** Предприниматели, которые помогают другим предпринимателям: предпринимательский путь за плечами, жизнь и путешествия в разных странах, свободное владение несколькими языками, ставка на импакт и рост, проделанная внутренняя работа и тяга будить нераскрытый потенциал, который они видят вокруг.  
+**2.2 Ключевая жизненная установка (=*мудрость, даруемая через испытания на пути героя*):** Мой основной врожденный талант формирует мое дело жизни через мои жизненные приключения и кратчайшим путем ведет к моей реализации. Highest leverage in business is to be more in touch with one's uniqueness.  
+**2.3 Метаморфоза:** У тебя сразу несколько визионерских проектов: каждый проект растёт но очень медленно. А если они уже скомпоновались в один общий проект - то непонятно с кем его делать так как его сложно объяснять. Твое окружение едва понимает в чем их суть, а значит и не может порекомендовать другим или понять с кем сделать интро. Перманентно кажется что успех вот-вот за углом, но невозможно не видеть, что сбережения тают, что муж/жена теряет веру, что нетворк потихоньку забывает наработанную профессиональную репутацию. Человек начинает сам серьезно сомневаться в себе. Вариант убить все проекты кроме одного ощущается как пойти на ампутацию частей тела. Профессиональный переходный период затягивается, и тревожность растет. Кажущийся “свет в конце туннеля” ощущается как вредный мираж и тело тихо сжимается в ужасе от неопределенности и страха все потерять.
+
+**3. ТРАНСФОРМАЦИОННОЕ ОБЕЩАНИЕ**  
+Ты четко назовешь словами свой основной врожденный талант, разглядишь уникальный масштабируемый продукт который из него естественным образом формируется, и построишь растущий, плодовитый и благой бизнес в рекордные для себя сроки через радостный интенсивный труд который ощущается как игра, а не как изматывающая ненавистная работа. Игра, которая ведёт в реальную жизнь: в твоё собственное дело.
+
+**4. ПРОДУКТ**  
+**Как пошагово происходит трансформация**  
+*Принцип: каждая ступень служит реальной жизни и открывает дверь наружу, в твоё собственное дело; любой компонент можно форкнуть и построить на нём своё.*  
+1. НЕВИДИМЫЙ КРИСТАЛЛ: увидеть свой основной врожденный талант, который ты носишь в сердце, четко назвать его, и быстро подрасти соответствующе этому уровню ясности о себе (самому на сайте, $37 или на индивидуальной сессии, $333)  
+2. FOUNDER-MARKET FIT: Найти свой founder-market fit, $555 лично, $222 в группе)  
+3. BUILT TO PMF: cтроим уникальный масштабируемый продукт за 1 месяц, $3333 индивидуально, $1111 в группе, или $5 555 с первых $55 555 выручки)  
+4. ENTREPRENEUR’S EVOLUTION: поддержка на пути героя, и мягкое ускорение роста (to be announced later)  
+5. SOVEREIGN FOUNDER COLLECTIVE (10% revenue share to grow together, requires a unique product with a PMF).  
+6. UNIQUE BUSINESS CREATION AS A SERVICE: Предлагаю им проводить эту программу для их клиентов  
+7. RAPID INCUBATION OF UNIQUE BUSINESSES: Предлагаю тренинг чтобы получить лицензию вести эту программу самим для своих клиентов
+
+**5. МЕТОД**  
+**5.1 APPLESEED**  
+*Технология высокоточного считывания сигнала уникальности человека*  
+Результат - считать свой сигнал и облечь его в слова вызывающие резонансную реакцию в теле  
+**5.2 EXCALIBUR**  
+*Технология перевода сигнала уникальности в высокоточное описание уникального бизнеса человека*  
+*Результат - уникальный бизнес в одном предложении, и одном заполненном business canvas*  
+**5.3 HERO’S JOURNEY VORTEX**  
+*Повторяемая последовательность из 5 действий которая запускает спираль роста и все больше ускоряет вихрь его энергии*  
+**5.4 Sovereign Founder AI OS**  
+*ИИ-скилл для экспоненциального и оптимального построения уникального бизнеса*  
+**5.5 THE GREAT TRANSITION: ENTREPRENEUR’S EVOLUTION**  
+*программа развития для предпринимателей*
+
+**6. УЦП**  
+I assist founders who guide founders name the one thing they were born doing, turn it into a scalable product that reaches its market in about a month, and then run the same process for their own clients under license, alongside a collective of founders. Everyone keeps 100% of what they build.  
+Я помогаю основателям, которые помогают другим основателям, спрессовать то одно, в чём они уникально сильнее всех, в масштабируемый продукт с неизбежным PMF, а затем масштабировать его пошаговым ИИ-скиллом, вместе с основателями, которые самоорганизуются в суверенный коллектив коллективов.
+
+**I assist entrepreneurs that assist other entrepreneurs to compact the one thing they're uniquely best at and translate it into a unique scalable product with PMF using AI.**  
+**Transformational promise:** You articulate the one thing you’re uniquely best at; translate it into a unique scalable product with inevitable PMF, and grow it organically and methodically using AI skills with joyful intensity, not grind.
+
+**From many real threads that nobody can pass along, to one sentence only you could say, one product built on it, and strangers paying for it, with an AI skill to run the same loop for the founders you serve.**
+
+Alongside other founders who are self-organizing into sovereign founder collective of collectives.
+
+That's how a decentralized collective of sovereign founders forms, and with it, the Golden Age AI economy emerges.
+
+**7. МАРКЕТИНГОВАЯ СТРАТЕГИЯ**  
+***как мои резонансные клиенты узнают что им дает этот продукт***  
+Я говорю с ними как с собой в зеркале: как я тебя нашёл (ИИ искал людей похожих на меня, и при этом полезно дополняющих меня), живо и неформально делюсь одной деталью которая нас объединяет, подсвечиваю сильные стороны их самих и их бизнеса, и стоимость застревания в этом месте которую я сам был вынужден заплатить, и стоимость откладывания решения ситуации, запрашиваю согласие поделиться тем, что сработало для меня. И когда появляется встречный интерес, приглашаю на бесплатный трансформирующий опыт в формате бесплатного зум звонка где они переживают трансформацию и улучшение их ситуации. В конце звонка описываю какая будет дальше трансформация у них, и предлагаю свои услуги провести их коротким путем.
+
+**8. СТРАТЕГИЯ ПРОДАЖ**  
+***как это доходит до людей***  
+**8.1 Канал:** LinkedIn: там, где мне самому скорее всего написали бы о таком.  
+**8.2 Hook**: отражение текущей профессиональной ситуации человека и стоимость бездействия  
+**8.3 Квалификаторы**  
+1. Развитая способность профессиональной ясности  
+2. Развитая способность упаковывать свой собственный бизнес  
+3. Нахождение в переходном периоде  
+4. Сходство со мной  
+**8.4 Фильтр**: есть бюджет  
+**8.5 Усилители**  
+1. Насколько человек ценит собственную трансформацию  
+2. Насколько видна и высока комплементарность  
+**8.6 Воронка**  
+1. ИИ находит профиль по высокоточному уникальному запросу  
+2. Я шлю запрос на добавление в друзья в LinkedIn  
+3. Как добавили, отражаю текущую ситуацию человека и стоимость бездействия  
+4. Запрашиваю согласие поделиться тем, как я это решил для себя  
+5. Даю им ответ через мою историю в 1-2 фразах  
+6. Человек реагирует как-то  
+7. Приглашаю на бесплатный трансформационный вебинар  
+8. На вебинар продаю двухдневный воркшоп FMF  
+9. На FMF воркшопе продаю BUILT TO PMF  
+10. После BUILT TO PMF приглашаю в суверенный коллектив фаундеров  
+11. Предлагаю им проводить эту программу для их клиентов  
+12. Предлагаю тренинг чтобы получить лицензию вести эту программу самим для своих клиентов
+
+**9. СОЮЗНИКИ**  
+South Park Commons  
+Entrepreneur First
+
+**10. ПРОВЕРКА РЕАЛЬНОСТЬЮ (снимок 2026-11-03)**  
+- 2 платящих клиента.  
+- Первый клиент наставничества на success-based оплате: 30% её выручки до первых $5 555, затем 10% (договорено устно 2026-11-02).  
+- Действующий клиент предложил купить снова.
+
+---
+
+**CHANGELOG v1.2 → v1.3 (canvas v1.11 → v1.12), 2026-11-03**  
+1. **Uniqueness:** added the quality line «Благодать формы / Sovereign Grace» and the full Sound / Words / Quality / Top-5 manifestations reading, verbatim. Formula, triad and deepest layer unchanged. *Source: Unique Integrated Vibratory Signature reading, 2026-11-03 (Sasha: «самая продвинутая версия за все время», kept word for word).*  
+2. **Core thesis:** added «highest leverage in business is to be more in touch with one's uniqueness». *Source: Sasha's own words, 2026-11-03.*  
+3. **Mission (new block):** Lifelong Dedication and Role, verbatim as written in Equilibrium. v1.2 had no mission block. *Source: Equilibrium state (lifelong_dedication, role), read 2026-11-03.*  
+4. **Shadow:** name, three inversions, deep shadow and integration unchanged. Added the cage definition «the same grace, but with a door that does not open outward», the integration line «no cage, a door outward» (game serves real life; door outward matters more than the way in; anyone can fork any component; players and partners build their own buildings in the village), and a second calibration question. *Sources: vibratory-signature reading («Тень делает то же самое, но с дверью, которая не открывается наружу»); Sasha's game principles, 2026-11-03.*  
+5. **2.2 Key life stance:** added the core thesis as its second sentence. *Source: as in 2.* 2.1 Identity and 2.3 Metamorphosis unchanged.  
+6. **3. Promise:** added «Игра, которая ведёт в реальную жизнь: в твоё собственное дело». *Source: game principles, 2026-11-03.*  
+7. **4. Product:** added one principle line (door outward, forkable). All seven steps and all prices unchanged, as Sasha wrote them. *Source: game principles, 2026-11-03.*  
+8. **5. Method, 6. USP, 7. Marketing, 9. Allies:** unchanged; no newer material contradicts or extends them.  
+9. **8. Sales:** text unchanged; qualifier numbering fixed (was 1, 2, 2, 3 → 1–4).  
+10. **10. Reality check (new, dated snapshot):** 2 paying clients; first mentorship client on success-based fee (30% to first $5,555, then 10%); a current client offered to buy again. Client names left out because this repo is public. *Source: Sasha's facts, 2026-11-03.*
+
+---
+
+## UNIQUENESS v1.2 / UNIQUE BUSINESS CANVAS v1.11 — superseded by v1.3 above (2026-11-03)
+
+> Sasha's own text, kept verbatim as genealogy.
+
+**UNIQUENESS v1.2**
+
+**UNIQUE BUSINESS CANVAS v1.11**
+
+**1\. ЧЕТКО СФОРМУЛИРОВАННОЕ САМОПОНИМАНИЕ**  
+     
+**UNIQUENESS**  
+**Unique Integrated Vibratory Signature**  
+   
+**ЭГАЛИОН+АЛЕКСАЭДР+МИРИНА: Aether Architect of Free Worlds**  
+**perceives the hidden unity of separate worlds and gives it elegant, living form, so that life can freely author itself.**  
+**Triad of Lineages of Mastery**  
+**Mystic \> Philosopher King \> Technologist**  
+**Deepest layer seen:**  
+**I perceive underlying order, discern its meaning, then architect it into form.**  
+**I listen to Reality deeply enough to help it architect itself.**
+
+**UNIQUE SHADOW**  
+**Compacted Inverted Uniqueness aka Alter Ego**  
+**The Golden Cage Architect**  
+**perceives the hidden unity and casts it into a form so beautiful and total that others surrender their will to live inside his vision.**  
+**Mystic → Delusionist — mistakes inner revelation for objective truth; confuses intuition with infallibility.**  
+**Philosopher King → Tyrant — wisdom becomes superiority; seeing the larger system becomes justification for deciding for others.**  
+**Technologist → Manipulator — systems cease to liberate agency and begin engineering behavior, dependency, or control.**  
+**Deep shadow: the Architect who becomes so identified with seeing the Whole that he forgets he is also merely one perspective within it. And instead of architecting conditions for emergence attempts at architecting reality itself.**  
+**Integration: integration doesn't mean reaching some impossible state of zero control, zero projection, perfect surrender. That itself becomes another perfectionistic control project. It means becoming increasingly sensitive to when architecture subtly becomes imposition—and being able to return.**  
+**Calibration: Right now, am I listening to Life—or overriding it?**  
+ 
+
+**2\. ИДЕАЛЬНЫЙ КЛИЕНТ**  
+*зеркальное отражение меня: моей идентичности, моей метаморфозы, и моей главной жизненной установки*  
+    ***2.1 Идентичность:*** Предприниматели, которые помогают другим предпринимателям: предпринимательский путь за плечами, жизнь и путешествия в разных странах, свободное владение несколькими языками, ставка на импакт и рост, проделанная внутренняя работа и тяга будить нераскрытый потенциал, который они видят вокруг.  
+    **2.2 Ключевая жизненная установка (=*мудрость, даруемая через испытания на пути героя)*:** Мой основной врожденный талант формирует мое дело жизни через мои жизненные приключения и кратчайшим путем ведет к моей реализации.  
+    **2.3 Метаморфоза:** У тебя сразу несколько визионерских проектов: каждый проект растёт но очень медленно. А если они уже скомпоновались в один общий проект \- то непонятно с кем его делать так как его сложно объяснять. Твое окружение едва понимает в чем их суть, а значит и не может порекомендовать другим или понять с кем сделать интро. Перманентно кажется что успех вот-вот за углом, но невозможно не видеть, что сбережения тают, что муж/жена теряет веру, что нетворк потихоньку забывает наработанную профессиональную репутацию. Человек начинает сам серьезно сомневаться в себе. Вариант убить все проекты кроме одного ощущается как пойти на ампутацию частей тела. Профессиональный переходный период затягивается, и тревожность растет. Кажущийся “свет в конце туннеля” ощущается как вредный мираж и тело тихо сжимается в ужасе от неопределенности и страха все потерять.  
+**3\. ТРАНСФОРМАЦИОННОЕ ОБЕЩАНИЕ**  
+Ты четко назовешь словами свой основной врожденный талант, разглядишь уникальный масштабируемый продукт который из него естественным образом формируется, и построишь растущий, плодовитый и благой бизнес в рекордные для себя сроки через радостный интенсивный труд который ощущается как игра, а не как изматывающая ненавистная работа.  
+**4\. ПРОДУКТ**   
+**Как пошагово происходит трансформация**  
+1\. НЕВИДИМЫЙ КРИСТАЛЛ: увидеть свой основной врожденный талант, который ты носишь в сердце, четко назвать его, и быстро подрасти соответствующе этому уровню ясности о себе (самому на сайте, \$37 или на индивидуальной сессии, \$333)  
+2\. FOUNDER-MARKET FIT: Найти свой founder-market fit, \$555 лично, \$222 в группе)  
+3\. BUILT TO PMF: cтроим уникальный масштабируемый продукт за 1 месяц, \$3333 индивидуально, \$1111 в группе, или \$5 555 с первых \$55 555 выручки)  
+4\. ENTREPRENEUR’S EVOLUTION: поддержка на пути героя, и мягкое ускорение роста (to be announced later)  
+5\. SOVEREIGN FOUNDER COLLECTIVE (10% revenue share to grow together, requires a unique product with a PMF).  
+6\. UNIQUE BUSINESS CREATION AS A SERVICE: Предлагаю им проводить эту программу для их клиентов   
+7\. RAPID INCUBATION OF UNIQUE BUSINESSES: Предлагаю тренинг чтобы получить лицензию вести эту программу самим для своих клиентов  
+**5\. МЕТОД**  
+    ***5.1 APPLESEED***  
+    *Технология высокоточного считывания сигнала уникальности человека*  
+    Результат \- считать свой сигнал и облечь его в слова вызывающие резонансную реакцию в теле  
+    ***5.2 EXCALIBUR***   
+    *Технология перевода сигнала уникальности в высокоточное описание уникального бизнеса человека*  
+    *Результат \- уникальный бизнес в одном предложении, и одном заполненном business canvas*  
+    ***5.3 HERO’S JOURNEY VORTEX***  
+    *Повторяемая последовательность из 5 действий которая запускает спираль роста и все больше ускоряет вихрь его*   
+    *энергии*  
+    **5.4 Sovereign Founder AI OS**  
+    *ИИ-скилл для экспоненциального и оптимального построения уникального бизнеса*  
+    ***5.5 THE GREAT TRANSITION: ENTREPRENEUR’S EVOLUTION***  
+    *программа развития для предпринимателей*
+
+**6\. УЦП**  
+I assist founders who guide founders name the one thing they were born doing, turn it into a scalable product that reaches its market in about a month, and then run the same process for their own clients under license, alongside a collective of founders. Everyone keeps 100% of what they build.  
+Я помогаю основателям, которые помогают другим основателям, спрессовать то одно, в чём они уникально сильнее всех, в масштабируемый продукт с неизбежным PMF, а затем масштабировать его пошаговым ИИ-скиллом, вместе с основателями, которые самоорганизуются в суверенный коллектив коллективов.
+
+**I assist entrepreneurs that assist other entrepreneurs to compact the one thing they're uniquely best at and translate it into a unique scalable product with PMF using AI.**  
+**Transformational promise:** You articulate the one thing you’re uniquely best at; translate it into a unique scalable product with inevitable PMF, and grow it organically and methodically using AI skills with joyful intensity, not grind.
+
+**From many real threads that nobody can pass along, to one sentence only you could say, one product built on it, and strangers paying for it, with an AI skill to run the same loop for the founders you serve.**
+
+Alongside other founders who are self-organizing into sovereign founder collective of collectives.
+
+That's how a decentralized collective of sovereign founders forms, and with it, the Golden Age AI economy emerges.
+
+**7\. МАРКЕТИНГОВАЯ СТРАТЕГИЯ**  
+***как мои резонансные клиенты узнают что им дает этот продукт***    
+Я говорю с ними как с собой в зеркале: как я тебя нашёл (ИИ искал людей похожих на меня, и при этом полезно дополняющих меня), живо и неформально делюсь одной деталью которая нас объединяет, подсвечиваю сильные стороны их самих и их бизнеса, и стоимость застревания в этом месте которую я сам был вынужден заплатить, и стоимость откладывания решения ситуации, запрашиваю согласие поделиться тем, что сработало для меня. И когда появляется встречный интерес, приглашаю на бесплатный трансформирующий опыт в формате бесплатного зум звонка где они переживают трансформацию и улучшение их ситуации. В конце звонка описываю какая будет дальше трансформация у них, и предлагаю свои услуги провести их коротким путем.  
+**8\. СТРАТЕГИЯ ПРОДАЖ**  
+***как это доходит до людей***  
+    **8.1 Канал:** LinkedIn: там, где мне самому скорее всего написали бы о таком.  
+    **8.2 Hook**: отражение текущей профессиональной ситуации человека и стоимость бездействия  
+    **8.3 Квалификаторы**  
+    1\. Развитая способность профессиональной ясности  
+    2\. Развитая способность упаковывать свой собственный бизнес  
+    2\. Нахождение в переходном периоде  
+    3\. Сходство со мной  
+    **8.4 Фильтр**: есть бюджет  
+     
+    **8.5 Усилители**  
+    1\. Насколько человек ценит собственную трансформацию  
+    2\. Насколько видна и высока комплементарность  
+    **8.6 Воронка**  
+    1\. ИИ находит профиль по высокоточному уникальному запросу  
+    2\. Я шлю запрос на добавление в друзья в LinkedIn  
+    3\. Как добавили, отражаю текущую ситуацию человека и стоимость бездействия  
+    4\. Запрашиваю согласие поделиться тем, как я это решил для себя  
+    5\. Даю им ответ через мою историю в 1-2 фразах  
+    6\. Человек реагирует как-то  
+    7\. Приглашаю на бесплатный трансформационный вебинар  
+    8\. На вебинар продаю двухдневный воркшоп FMF  
+    9\. На FMF воркшопе продаю BUILT TO PMF  
+   10\. После BUILT TO PMF приглашаю в суверенный коллектив фаундеров  
+   11\. Предлагаю им проводить эту программу для их клиентов   
+   12\. Предлагаю тренинг чтобы получить лицензию вести эту программу самим для своих клиентов  
+**9\. СОЮЗНИКИ**  
+South Park Commons  
+Entrepreneur First
 
 ---
 
@@ -528,6 +812,8 @@ No guarantees, no numbers we cannot stand behind (shift-offer.md §5).
 **Spec and drafts:** private ledger, `docs/evolver/reading-first-outreach.md`.
 
 ## ⭐ Канвас уникального бизнеса — v3.0 (Sasha's own, filed Day 186, September 16, 2026)
+
+> **Superseded** by UNIQUENESS v1.3 / UNIQUE BUSINESS CANVAS v1.12 at the top of this file (2026-11-03). Kept as genealogy.
 
 *Sasha's own revision, same day as v1.0 and v2.0. **Current version.** v2.0 and v1.0 preserved below as genealogy. Three real changes: the uniqueness line now names the form (containers), the metamorphosis names the merged-project trap, and the UVP is filled in both languages.*
 
