@@ -464,6 +464,31 @@ const AppleseedDisplay = ({
                     isMatchPath ? "pb-2" : "pb-32 sm:pb-40"
                 }`}
             >
+                {/* Final-screen headline — Sasha 2026-11-03, module-form §12.4–12.5.
+                    The essence named again + one compact line of significance.
+                    Sits above the existing reveal; nothing below it changes.
+                    Colors come from skin tokens so Lunar/moonlight stays intact. */}
+                <div className="text-center space-y-1.5 pt-1">
+                    <h2
+                        className="text-xl sm:text-2xl font-semibold leading-snug"
+                        style={{
+                            color: "var(--skin-text-primary, #0b2a5a)",
+                            fontFamily: "'Source Serif 4', serif",
+                        }}
+                    >
+                        {t('appleseed.finalHeadline')}
+                    </h2>
+                    <p
+                        className="text-sm sm:text-base max-w-md mx-auto"
+                        style={{
+                            color: "var(--skin-text-muted, rgba(11,42,90,0.86))",
+                            fontFamily: "'Source Serif 4', serif",
+                        }}
+                    >
+                        {t('appleseed.finalHeadlineSub')}
+                    </p>
+                </div>
+
                 {/* Return-state greeting — Day 57 (Sasha 2026-05-01).
                     Shown only when the user is coming back to a previously
                     saved appleseed (isReturning captured at mount). */}
