@@ -74,6 +74,10 @@
     var(--lunar-p2-solid) !important;
   background-blend-mode: overlay, normal !important;
 }
+/* Its glass rim (a 1px light edge from .liquid-glass::before) doubled both seams. */
+[data-skin="lunar"] [data-sections-panel]::before {
+  display: none !important;
+}
 html[data-skin="lunar"] [data-sections-panel][style] {
   background-color: var(--lunar-p2-glass) !important;
   background-image: var(--lunar-p2-tint) !important;
@@ -155,8 +159,8 @@ html[data-skin="lunar"] button[data-seam]::after {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: calc(50% - 1.5px);
-  width: 3px;
+  left: calc(50% - 1px);
+  width: 2px;
   z-index: -1;
   pointer-events: none;
   background: linear-gradient(180deg,
@@ -165,7 +169,7 @@ html[data-skin="lunar"] button[data-seam]::after {
     rgba(var(--seam-moon), 0.55) 50%,
     rgba(var(--seam-moon), 0.0) 80%,
     transparent 100%) 0 -60% / 100% 45% no-repeat;
-  filter: blur(0.6px);
+  filter: blur(0.4px);
   opacity: 0.55;
   animation: lunar-seam-breathe 18s ease-in-out infinite;
 }
@@ -211,7 +215,7 @@ html[data-skin="lunar"] [data-sections-panel] > span[aria-hidden="true"][style]:
   html[data-skin="lunar"] [data-sections-panel] > span[aria-hidden="true"][style]::after {
     animation: none;
     background-position: 0 42%;
-    opacity: 0.35;
+    opacity: 0.22;
   }
 }
 
