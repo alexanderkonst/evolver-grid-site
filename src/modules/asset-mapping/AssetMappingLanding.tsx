@@ -622,7 +622,7 @@ const AssetMappingLanding = () => {
     }
     if (introPending) {
         return (
-            <div className="px-4 py-8 sm:py-10">
+            <div className="px-4 py-8 sm:py-10 lg:p-0">
                 <ModuleIntro module={ASSETS_MODULE} onStart={() => setIntroPending(false)} />
             </div>
         );

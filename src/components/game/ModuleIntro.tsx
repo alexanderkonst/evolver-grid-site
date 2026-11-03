@@ -76,7 +76,7 @@ const ModuleIntro = ({ module, onStart, state: forced, ready = false, neverClose
   const closed = state === "closed";
 
   return (
-    <section className={`mf mf--intro${leaving ? " is-leaving" : ""}${className ? ` ${className}` : ""}`} aria-labelledby={headingId}>
+    <section className={`mf mf--intro mf--pane${leaving ? " is-leaving" : ""}${className ? ` ${className}` : ""}`} aria-labelledby={headingId}>
       <Link className="mf__back" to="/village">
         {tr(t, "village.backVillage", "← Village")}
       </Link>

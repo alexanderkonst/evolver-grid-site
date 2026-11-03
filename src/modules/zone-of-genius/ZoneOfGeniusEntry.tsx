@@ -1025,7 +1025,7 @@ const ZoneOfGeniusEntry = () => {
         return (
             <GameShellV2 hideNavigation={hideNav} hideLogo>
                 {loaded ? (
-                    <div className="px-4 py-8 sm:py-10">
+                    <div className="px-4 py-8 sm:py-10 lg:p-0">
                         <ModuleIntro module={ZOG_MODULE} onStart={() => setIntroPending(false)} />
                     </div>
                 ) : null}

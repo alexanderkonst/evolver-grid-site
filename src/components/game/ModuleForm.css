@@ -91,6 +91,36 @@
 .mf [data-place-state="next"] .mf__go:hover:not(:disabled),
 .mf [data-place-state="next"] .mf__go:focus-visible { background: var(--open-accent); }
 
+/* ---------- Intro on desktop: the scene fills the whole third panel ----------
+ * `ModuleIntro` only (it adds `.mf--pane`; Town Hall, Familiar and the rest of `.mf--intro` are
+ * untouched). From `lg` the shell shows pane 3 beside the rail, so the Intro stops being a
+ * centred 960px card: no max-width, no auto margins, the full height of the panel, and the
+ * things that framed it are lifted for this screen only:
+ *   - the call sites' own padding (`lg:p-0` on their wrappers);
+ *   - pane 3's top padding (`pt-4`, and the 2.5rem the NS/DAO skins force);
+ *   - Lunar's content zoom on pane 3, which would multiply the 100dvh below.
+ * `.mf__img` is already `object-fit: cover` with the place's own `objectPosition`; the copy
+ * stays bottom-centred and the vignette (`.mf--intro::after`) now spans the larger image.
+ * Below `lg` nothing here applies, so the phone screen is as it was. */
+@media (min-width: 1024px) {
+  .mf--pane {
+    max-width: none;
+    margin: 0;
+    min-height: 100dvh;
+  }
+  html main[data-pane="3"]:has(.mf--pane) { padding-top: 0 !important; }
+  html main[data-pane="3"]:has(.mf--pane) > .page-transition-enter { zoom: 1; }
+
+  /* a quiet link under the Intro (Academy «Browse the rooms») sits over the scene's foot,
+     in the scene's own ink, instead of falling below the fold */
+  p.mf-pane-aside {
+    position: absolute; left: 0; right: 0; bottom: 14px; z-index: 2; margin: 0;
+    text-shadow: 0 1px 16px rgba(var(--scene-shadow-rgb), 0.8);
+  }
+  .mf-pane-aside a { color: rgba(var(--scene-ink-rgb), 0.82) !important; text-decoration-color: rgba(var(--scene-ink-rgb), 0.4) !important; }
+  .mf-pane-aside a:hover, .mf-pane-aside a:focus-visible { color: rgba(var(--scene-ink-rgb), 0.92) !important; }
+}
+
 /* ---------- Outro ---------- */
 .mf--outro { align-items: center; justify-content: center; }
 .mf__stage {

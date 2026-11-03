@@ -489,7 +489,7 @@ const QualityOfLifeMapAssessment = ({
     // WP-5: the Journey's standalone route opens with the module's Intro (result + one
     // button). The embedded Learn route keeps its own intro screen above.
     return (
-      <div className="px-4 py-8 sm:py-10">
+      <div className="px-4 py-8 sm:py-10 lg:p-0">
         {/* `ready`: once the saved result has loaded, the button is enabled; it does not wait on the character sheet. */}
         {/* Sasha 2026-10-29: the QoL test is shared by link (coaches → clients), so it is never locked here. */}
         <ModuleIntro module={QOL_MODULE} onStart={() => setShowIntro(false)} ready={!qolLoading} neverClosed />

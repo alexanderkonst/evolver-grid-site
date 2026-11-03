@@ -45,9 +45,9 @@ const AcademyModule = ({ guest, onDone }: Props) => {
 
   if (stage === "intro") {
     return (
-      <div className="px-4 py-8 sm:py-10">
+      <div className="relative px-4 py-8 sm:py-10 lg:p-0">
         <ModuleIntro module={ACADEMY_WELCOME_MODULE} onStart={() => setStage("lesson")} />
-        <p className="mt-4 text-center">
+        <p className="mt-4 text-center mf-pane-aside">
           <Link
             to="/game/learn?rooms=1"
             className="text-sm underline underline-offset-4"
