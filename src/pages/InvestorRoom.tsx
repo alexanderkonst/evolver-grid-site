@@ -95,7 +95,7 @@ const COPY = {
     kicker: "The path to the glass slipper",
     title: "Nine steps. The last one happens in the real world.",
     steps: [
-      { place: "Portal", step: "Pass the uniqueness test and enter the village", scene: "gate" },
+      { place: "Entry Portal", step: "Pass the uniqueness test and enter the village", scene: "gate" },
       { place: "Home", step: "Keep describing your character", scene: "house" },
       { place: "Home", step: "Say your uniqueness in one sentence", scene: "house" },
       { place: "Workshop", step: "Receive the tagline of your business", scene: "workshop" },

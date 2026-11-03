@@ -70,7 +70,7 @@ describe("village places: the catalog is the data's English", () => {
     for (const p of VILLAGE_PLACES) {
       expect(whatChangedLine([p], strict), p.key).toBe(whatChangedLine([p]));
     }
-    expect(whatChangedLine([VILLAGE_PLACES[0]], strict)).toBe("Portal is open.");
+    expect(whatChangedLine([VILLAGE_PLACES[0]], strict)).toBe("Entry Portal is open.");
   });
 });
 
