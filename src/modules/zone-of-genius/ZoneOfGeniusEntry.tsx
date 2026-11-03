@@ -25,7 +25,6 @@ import {
 // Day 79 (Sasha 2026-05-22): EntryPath read here so the "choice-route"
 // step can show match-path users a "Step 1 of 2" orientation above the
 // Faster/Guided options. Build-path users see the screen unchanged.
-import { useEntryPath } from "@/contexts/EntryPathContext";
 // Funnel v2 (Day 77, Sasha 2026-05-20): match-path conditional CTAs
 // below the Top Talent reveal. Renders null for build-path users so
 // AppleseedDisplay's existing CTAs are untouched.
@@ -126,17 +125,6 @@ const ZoneOfGeniusEntry = () => {
     const location = useLocation();
     const { toast } = useToast();
     const [searchParams] = useSearchParams();
-    // Day 79 (Sasha 2026-05-22): match-path orientation gate. When the
-    // user arrived via `?path=match` (Balaji/ecosystem outreach), the
-    // choice-route screen shows a "Step 1 of 2" preamble above the
-    // Faster/Guided options so the user understands the Top Talent
-    // reveal is step 1 and the actual intros come after. Build-path
-    // users see the screen unchanged.
-    // 2026-06-10 default flip: match funnel is the default — only an
-    // explicit `?path=build` entry hides the orientation preamble.
-    const { path: entryPath } = useEntryPath();
-    const isMatchPath = entryPath !== "build";
-
     // Show the full platform shell everywhere (Sasha, 2026-04-21): the ZoG
     // reveal module now lives inside the JOURNEY shell regardless of route.
     // `isInPlatform` is kept as a read-only flag in case other branches need it.
@@ -1105,81 +1093,10 @@ const ZoneOfGeniusEntry = () => {
                        the first viewport without scrolling. */
                     <div ref={stepContentRef} className="space-y-5 animate-in fade-in duration-500">
                         <div className="text-center">
-                            {/* Day 80 Wave 2.9 (Sasha 2026-05-22): copy + layout
-                                revision. The "Step 1 of 2" framing was confusing
-                                because the JOURNEY pane already numbers 5 steps —
-                                a parallel 2-step counter on this page jarred.
-                                Rewrite: drop the artificial step counter, name
-                                WHY the top talent comes first (it's the signal)
-                                + what happens next (intros to people whose work
-                                meets yours). The "Which way?"
-                                question now sits directly above the CTAs as the
-                                interaction prompt, not as a page headline. */}
-                            {/* Day 80 Wave 2.12 (Sasha 2026-05-22): copy revision.
-                                Replaced single "signal" paragraph with a
-                                three-stanza preamble that frames the act as
-                                profile-building (not assessment), names the
-                                accelerator (AI), and orients to the first
-                                primitive. Middle line italic + slightly
-                                muted to differentiate the supporting beat. */}
-                            {/* Day 80 Wave 2.14 (Sasha 2026-05-22): vertical
-                                spacing + legibility pass.
-                                  - mb-6 → mb-3 so preamble + h2 + CTAs fit
-                                    the first viewport without scrolling.
-                                  - textShadow upgraded from `--skin-text-halo-soft`
-                                    to `--skin-text-halo-deep` (the strong
-                                    legibility cocktail from ui_playbook
-                                    Part VIII) — match-path video is busier
-                                    than build-path, soft halos weren't
-                                    enough. */}
-                            {isMatchPath && (
-                                <div
-                                    className="max-w-[560px] mx-auto space-y-1.5 mb-3"
-                                    style={{
-                                        fontFamily: "'Source Serif 4', serif",
-                                    }}
-                                >
-                                    <p
-                                        className="text-sm sm:text-base leading-relaxed"
-                                        style={{
-                                            color: "var(--skin-text-primary, #0a1628)",
-                                            textShadow:
-                                                "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
-                                        }}
-                                    >
-                                        {t('zogEntry.matchPreambleLine1')}
-                                    </p>
-                                    <p
-                                        className="text-sm sm:text-base italic leading-relaxed"
-                                        style={{
-                                            color: "var(--skin-text-muted, rgba(26,30,58,0.78))",
-                                            textShadow:
-                                                "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.78), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.6))",
-                                        }}
-                                    >
-                                        {t('zogEntry.matchPreambleLine2')}
-                                    </p>
-                                    <p
-                                        className="text-sm sm:text-base leading-relaxed"
-                                        style={{
-                                            color: "var(--skin-text-primary, #0a1628)",
-                                            textShadow:
-                                                "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
-                                        }}
-                                    >
-                                        {t('zogEntry.matchPreambleLine3')}
-                                    </p>
-                                </div>
-                            )}
-
-                            {/* "Which way?" — moved DOWN to sit
-                                directly above the two CTAs as the interaction
-                                prompt (not the page headline). Build-path users
-                                see only this question, no orientation paragraph.
-                                Day 80 Wave 2.10 (Sasha 2026-05-22): unified to
-                                Cormorant per ui_playbook.md — this is a heading
-                                question, not body copy. Was Source Serif 4. */}
-                            {/* Day 80 Wave 2.14: deep halo cocktail for match-path
+                            {/* Module-form §12 (Sasha 2026-11-03): Landing screen names
+                                the result. This headline replaces the old match-path
+                                preamble and the "Which way?" question, for both the
+                                match and build paths. Deep halo cocktail kept for
                                 legibility (ui_playbook Part VIII). */}
                             <h2
                                 className="text-2xl tracking-[-0.005em]"
@@ -1191,7 +1108,7 @@ const ZoneOfGeniusEntry = () => {
                                         "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                                 }}
                             >
-                                {t('zogEntry.revealQuestion')}
+                                {t('zogEntry.pathHeadline')}
                             </h2>
                         </div>
 
@@ -1236,17 +1153,7 @@ const ZoneOfGeniusEntry = () => {
                                     className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
                                 />
                             </button>
-                            {/* Day 80 Wave 2.10: subtitle pinned to Source Serif 4. */}
-                            <p
-                                className="text-xs leading-relaxed text-center max-w-xs"
-                                style={{
-                                    fontFamily: "'Source Serif 4', Georgia, serif",
-                                    color: "var(--skin-text-muted, rgba(26,30,58,0.78))",
-                                    textShadow: "var(--skin-text-halo-deep)",
-                                }}
-                            >
-                                {t('zogEntry.cardFasterSubtitle')}
-                            </p>
+                            {/* Module-form §12.2: one small alternative line, same action as before. */}
                             <button
                                 type="button"
                                 onClick={handleStartManualAssessment}
@@ -1256,7 +1163,7 @@ const ZoneOfGeniusEntry = () => {
                                     textShadow: "var(--skin-text-halo-deep)",
                                 }}
                             >
-                                {t('zogEntry.guidedAssessmentLink')}
+                                {t('zogEntry.manualAssessmentLink')}
                             </button>
                         </div>
                     </div>
