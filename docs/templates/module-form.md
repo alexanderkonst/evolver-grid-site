@@ -22,7 +22,7 @@
 ## 3. The form
 | Part | What it is | Rules |
 |---|---|---|
-| **Intro** (`ModuleIntro`, the before-screen; the **Landing screen** of §12) | the promise | place scene; eyebrow + headline that state the result (= the module's Master Result); **one button whose label is the result as a verb** («Find my mission →», never «Continue»). Shown faded when the place is `closed`, with its line. *Copy law since 2026-11-03: §12 (the 1–2 line silhouette is superseded: nothing explains the method).* |
+| **Intro** (`ModuleIntro`, the before-screen; the **Landing screen** of §12) | the promise | place scene; eyebrow + headline that state the result (= the module's Master Result); **one button whose label is the result as a verb** («Find my mission →», never «Continue»). Shown faded when the place is `closed`, with its line. *Copy law since 2026-11-03: §12. Existing Intros keep their lines; §12 is applied module by module, never as a sweep (Sasha, 2026-11-03).* |
 | **Passage** | the module as it is | unchanged inside; the form wraps, it doesn't rebuild |
 | **Result** | the artifact | the real thing the player now holds, in their own words |
 | **Outro** (`ModuleOutro`, the after-screen; the **Final screen** of §12) | the confirmation, **a stable surface, never a toast** | celebration eyebrow («Done · Your mission is saved») · **the result itself, prominently** · where it lives (Your House) · **what it unlocks** (which place opened or brightened) · congratulations · **the rating** (§4) · **one real life choice** (§5) · the victory recorded · **one forward button: Back to the village**, where the next hint waits |
@@ -117,7 +117,7 @@ Every product and every module is **a transformational result**. The game is mod
 | **Image** | one beautiful image that fits the module |
 | **Nothing else** | no explanation of the method, no «good news, AI makes it quick», no comparison of paths, no preamble, no question like «Which way?» |
 
-Check before shipping: cover everything but the headline and the button. Is anything left that the person must read to act? Remove it (the one small alternative line is the only exception).
+Check before shipping: cover everything but the headline and the button. Is anything left that the person must read to act? Remove it (the one small alternative line is the only exception). Applies to the screen being built or reworked, one module at a time, by Sasha's yes; never a sweep across all modules.
 
 ### 12.3 Process
 The person gets the transformational result. The form wraps the module; it does not rebuild it (§3, Passage).
@@ -136,7 +136,7 @@ The rest of the Outro (§3: where it lives, what it unlocks, the rating, the rea
 | **Landing** (the module's path screen) | Headline: **«Your top talent, named in one clear sentence.»** · Button: **«Find my top talent»** (the AI path) · Small line under the button: **«Just starting to talk with AI? Do the manual guided assessment instead →»** (the guided path, same result) · Image: one image fitting the Entry Portal (*proposal, awaiting Sasha; until then no image on this screen*) |
 | **Landing**, RU | «Твой главный талант — названный одной ясной фразой.» · «Найти мой главный талант» · «Только начинаешь общаться с ИИ? Пройди ручную пошаговую оценку →» |
 | **Landing**, ES | «Tu talento principal, nombrado en una frase clara.» · «Encontrar mi talento principal» · «¿Apenas empiezas a hablar con la IA? Haz la evaluación guiada manual →» |
-| **Final** (*proposal only, not applied: the Top Talent reveal screen is not changed without Sasha's yes to that exact change*) | «This is your top talent, named. Most people go their whole life without seeing it this clearly.» |
+| **Final** (Sasha's yes 2026-11-03, his wording) | «This is your top talent, named. Most people go their whole life without naming it in one sentence and seeing it this clearly.» |
 
 Removed from the old path screen by this law: «Let's create your profile for matching.» · «Good news: AI makes it real quick.» · «We start with your top talent.» · «Which way?» · «More precise than the test, unless your AI barely knows you yet.»
 
