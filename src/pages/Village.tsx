@@ -315,9 +315,16 @@ const Village = () => {
   const startGame = placeKey === "reception" && !!(introState?.intro || introState?.startGame);
   const endIntro = useCallback(() => {
     setIntroOn(false);
-    // Back/refresh must not replay it; the button keeps its START GAME.
-    navigate(`${location.pathname}${location.search}`, { replace: true, state: { startGame: true } });
-  }, [navigate, location.pathname, location.search]);
+    // Back/refresh must not replay it; the button keeps its START GAME. The history entry is
+    // rewritten in place: a router navigate here would be a new location, and the app-wide
+    // PageTransition would fade the Entry Portal out and in again right after the dissolve.
+    try {
+      const prev = (window.history.state ?? {}) as Record<string, unknown>;
+      window.history.replaceState({ ...prev, usr: { startGame: true } }, "");
+    } catch {
+      /* history unavailable: a refresh may replay the intro, nothing breaks */
+    }
+  }, []);
   const mobile = useIsMobile();
   const signedIn = useSignedIn();
   const sheet = useCharacterSheet();
