@@ -1,8 +1,8 @@
 ---
 title: Personal Intelligence (AI) Setup Playbook: agentic routines
-version: 0.1 (template + first instance, expected savings unmeasured)
-date: 2026-10-17
-audience: founders who already run an AI orchestrator and a code repo and want the loop to run without them
+version: 0.2 (install path added; routines template + first instance, expected savings unmeasured)
+date: 2026-10-17 (v0.2: 2026-11-03)
+audience: anyone who wants the same AI setup (Part 0), and founders who want the loop to run without them (Part A)
 status: draft, Hark reviews and merges
 companions: docs/ai/README.md, docs/01-vision/ai_frontier_hark_2026-10.md, docs/01-vision/ai_os_benchmark.md
 license: CC BY-NC-SA 4.0
@@ -10,9 +10,112 @@ license: CC BY-NC-SA 4.0
 
 # Personal Intelligence (AI) Setup Playbook: agentic routines
 
-*A copyable template. Part A is generic: any founder can replicate it. Part B is one worked instance (Sasha's). Part A never depends on Part B.*
+*A copyable template. Part 0 is the install path, step by step, from an empty account to one chat that runs your mail, messengers, files, code and media. Part A is generic: any founder can replicate it. Part B is one worked instance (Sasha's). Part A never depends on Part B.*
 
 The setup stage has two layers. The first layer is the cognition scaffold (AI OS, see [ai_os_benchmark.md](../01-vision/ai_os_benchmark.md)): what context the model thinks in. This playbook covers the second layer, the **routines**: what the system does on its own, without being asked.
+
+---
+
+## Part 0. Install path, step by step
+
+*Added 2026-11-03 (v0.2). The question this answers: "I like how you use AI: it writes in your Telegram, messages someone on WhatsApp, cuts video with sound, builds your site, and all of it lives in one interface, even one chat. How do I install that for myself?" Use it as a checklist when you walk a person through the setup. Each stage ends with a check you can see.*
+
+### The shape
+
+One chat is the cockpit. Behind it sit five layers; install them bottom up.
+
+| Layer | What it gives | Stage |
+|---|---|---|
+| 1. Orchestrator | One chat with memory, projects, scheduled tasks, Home panels, browser | 1 |
+| 2. Accounts | Mail, calendar, files, code, team chat, saved logins and keys | 2, 3 |
+| 3. Hands on your machine | Your own Telegram and WhatsApp, your screen, your files | 4, 5 |
+| 4. Cognition | The AI OS: how the AI thinks with you and what it may do without asking | 6 |
+| 5. Workers and media | Coding agents, video and sound, publishing | 7, 8, 9 |
+| 6. Routines | What runs on its own | 10 (Part A) |
+
+Rule for the guide: one stage per sitting, finish its check, then move on. Stages 1, 2, 3 and 6 are the minimum useful setup (about 2 hours). Everything else is added when a real task asks for it.
+
+### Stage 1. Orchestrator (20 min)
+
+- Create an account in Hark (web, iOS, Android; Mac app optional). Ours runs on a paid plan; the free plan is enough to try.
+- Say who you are in the first chat: name, city, work, language, how you like to be spoken to. The orchestrator saves it to memory.
+- Create one Project per ongoing body of work (for example: business, health, a launch).
+- **Check:** ask "what do you know about me?" and get a correct one-paragraph answer.
+
+### Stage 2. Connected accounts (15 min)
+
+- Connect Google (Gmail, Calendar, Drive, Docs, Sheets), GitHub, Slack, from Settings → Connected accounts or by asking in chat.
+- **Check:** "what's on my calendar tomorrow?" and "summarize my last 5 emails" both answer from the real accounts.
+
+### Stage 3. Vault: logins and keys (20 min)
+
+- Save logins for the sites the AI should act on (LinkedIn, X, Instagram, your site's admin) through the secure form, never in chat.
+- Save API keys the same way (examples from our setup: meeting notes, transcription, hosting, a Telegram bot token).
+- Write the approval rules in plain words: what it does without asking, what it always confirms (money, outbound messages, public posts, warm contacts).
+- **Check:** "open my LinkedIn notifications" works without you typing a password.
+
+### Stage 4. Your own Telegram and WhatsApp (30 min, needs a Mac)
+
+Why: browser sessions of Telegram Web and WhatsApp Web expire and keep asking for codes and QR scans. Running both on your own Mac as tools (MCP servers) keeps them signed in as you.
+
+1. Download the setup script the orchestrator gives you into Downloads.
+2. In Terminal type one line: `bash ~/Downloads/evolver-messengers-setup.sh`. Do not paste the script's text into Terminal.
+3. Telegram: open my.telegram.org/apps, sign in, create an app (any name, platform Desktop), paste `api_id` and `api_hash` into Terminal, then the login code Telegram sends you. These stay on your Mac.
+4. WhatsApp: scan the QR code with your phone (Linked devices).
+5. The script prints an ADDRESS and copies an access key to the clipboard. Send the address in chat; paste the key into the secure form.
+6. After a reboot: run `~/evolver-messengers/start.sh` and send the new address.
+- **Check:** "show my last 5 Telegram chats" and "show my last WhatsApp messages from <name>" answer. Sending still needs your yes.
+
+### Stage 5. Your screen and files (20 min, optional, Mac)
+
+- Screen control (Peekaboo) and a Downloads folder bridge, both exposed the same way as Stage 4 (local server, access key, tunnel, registered as MCP).
+- Shared-computer rule: the AI drives your screen only when you are not using the Mac.
+- **Check:** "list the newest files in my Downloads".
+
+### Stage 6. Cognition: the AI OS (30 min)
+
+- Install the AI OS as a custom skill (our stack: base 5.2 plus 6.0 on top). It sets how the AI thinks: answer first, own judgment, integral lenses, compressed language. See [ai_os_benchmark.md](../01-vision/ai_os_benchmark.md).
+- Add your own canon: who you are, your mission, your operating principles, your voice rules. Keep them in a repo so they outlive any one tool.
+- **Check:** ask a hard decision question; the answer leads with a recommendation, the reason and a confidence, not a list of options.
+
+### Stage 7. Workers: coding agents (40 min, needs GitHub)
+
+- One repo as the second brain (docs, specs, logs). Ours: `evolver-grid-site`.
+- Claude Code through the GitHub Action (`claude.yml`, secret `CLAUDE_CODE_OAUTH_TOKEN`): the orchestrator opens an issue with `@claude`, Claude opens a PR, checks run, the orchestrator merges.
+- Optional second and third trees: Codex cloud (ChatGPT) and Jules (Gemini). Optional local runners on the Mac (launchd, one labeled issue every 30 min) for private repos, to spend the subscription instead of Actions minutes.
+- **Check:** one small issue goes from "@claude" to a merged PR without you opening GitHub.
+
+### Stage 8. Video, sound, images (20 min)
+
+- Built into the orchestrator: ffmpeg and ImageMagick in its sandbox (cut, join, add sound, captions), image generation, transcripts from a video link.
+- Generated video: Veo through Google Flow, driven by the browser on your Google account (monthly credits).
+- Meetings: a notes tool (ours: Fathom) and transcription (ours: Deepgram), connected by API key.
+- **Check:** send a clip and ask "add this sound at 0:03 and give me a 9:16 version".
+
+### Stage 9. Publishing (20 min)
+
+- Site: a hosted app (ours: Lovable with GitHub sync, Vercel). The orchestrator ships through PRs; publishing stays a human button where credits are involved.
+- Social: X, LinkedIn, Instagram, a Telegram channel. One post, written once, cross-posted by a skill; anything public still gets your yes.
+- **Check:** a draft post appears in chat ready to approve for all networks.
+
+### Stage 10. Routines
+
+Once the stages above work, add the routines in Part A in the install order given there.
+
+### How to walk a person through it
+
+1. **Why first (5 min).** Ask what they want the AI to take off their plate this month. That picks which optional stages they need.
+2. **Minimum setup in one sitting:** Stages 1, 2, 3, 6. End with one real task done end to end from the chat.
+3. **One stage per next sitting,** only when a real task needs it. A stage nobody uses is noise.
+4. **Every stage ends on its check,** seen with their own eyes, not described.
+5. **Approval rules before power.** Write what needs their yes before connecting messengers or money.
+
+### Open items (v0.2)
+
+- Exact plan names and prices are not listed here; confirm them on the day of setup.
+- Stage 4 is being installed on Sasha's Mac on 2026-11-03; times and the check get corrected after the first full run.
+- A Windows path for Stages 4 and 5 is not written yet.
+- Each stage gets a short screen recording once the path is stable.
 
 ---
 
@@ -254,7 +357,7 @@ Report format: `Closed 2: PR 74 merged, deploy green. Open 1: reply pending, nex
 
 ```yaml
 # learning/linkedin_first_message/pairs.yml  (append-only)
-- date: 2026-10-17
+- date: 2026-10-17 (v0.2: 2026-11-03)
   draft: "<agent draft, no names>"
   final: "<what the human actually sent>"
   edit_type: [shorter, dropped_flattery]   # free tags, reused across pairs
