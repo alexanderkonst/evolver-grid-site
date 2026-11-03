@@ -1,4 +1,40 @@
 {
+  "intro": {
+    "aria": "Introducción",
+    "fifth": "Eres el quinto elemento.",
+    "village": "Aterrizas en una aldea.",
+    "startGame": "EMPEZAR PARTIDA",
+    "skip": "Saltar",
+    "skipAria": "Saltar la introducción",
+    "replay": "Ver la introducción de nuevo",
+    "elements": {
+      "body": {
+        "name": "Cuerpo",
+        "element": "Tierra",
+        "line": "Vitalidad y cimiento"
+      },
+      "emotions": {
+        "name": "Emociones",
+        "element": "Agua",
+        "line": "Dominio del clima interior"
+      },
+      "uniqueness": {
+        "name": "Unicidad",
+        "element": "Éter",
+        "line": "Tu don único, refractado en el mundo"
+      },
+      "mind": {
+        "name": "Mente",
+        "element": "Aire",
+        "line": "Claridad y percepción"
+      },
+      "spirit": {
+        "name": "Espíritu",
+        "element": "Fuego",
+        "line": "El fuego que te mueve"
+      }
+    }
+  },
   "village": {
     "backTitleAria": "Volver al título",
     "enterPlace": "Entrar a {{place}}",
