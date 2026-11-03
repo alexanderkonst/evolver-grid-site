@@ -1,0 +1,219 @@
+/* ==========================================================================
+   LUNAR PANELS — design/moon-panels (Sasha, 2026-11-03). DESIGN BRANCH, not shipped.
+   ==========================================================================
+   An upgrade of the Lunar shell's three panels, not a redesign: same palette, same type.
+   Every rule is scoped to [data-skin="lunar"]; no other skin, the title screen or the
+   reveal is touched. Loaded after lunar-world.css (main.tsx).
+
+   1. Gradation   panel 1 darkest → panel 2 a step lighter → panel 3 lightest, one slate family
+   2. Surface     a real lunar surface in each panel, felt rather than seen
+   3. Seams       the hinge between panels 1 and 2, the hairline seam between 2 and 3
+   4. Pane 3      content scaled to fill the desk on wide screens
+
+   Lunar surface textures (public/game/lunar-surface/*.webp) are made from NASA public-domain
+   data: NASA Scientific Visualization Studio, "CGI Moon Kit" (svs.gsfc.nasa.gov/4720) —
+   lroc_color_poles_8k.tif (LRO LROC WAC Hapke-normalized color mosaic, Arizona State Univ.)
+   for albedo and ldem_16_uint.tif (LRO LOLA elevation, 16 px/deg) for relief, shaded with a
+   low sun from the upper left. Credit: NASA's Scientific Visualization Studio / LRO LROC & LOLA.
+     p1  Mare Imbrium's eastern shore: Plato, Archimedes, Aristillus, Autolycus, Montes Apenninus
+     p2  southern highlands: Tycho, Maginus, Clavius, Longomontanus
+     p3  Theophilus, Cyrillus, Catharina at Mare Nectaris (softened, seamless 1200px tile)
+   Each is grayscale with its mean at exactly 50% grey and a low baked contrast, laid with
+   background-blend-mode: overlay. Over a dark panel, overlay multiplies the panel by 2×grey,
+   so 50% grey changes nothing: the panel's average colour stays where it was and only the
+   craters' light and shadow move a level or two around it. (Same result as a high-contrast
+   map at ~5% opacity, without depending on stacking contexts for the blend.)
+   ========================================================================== */
+
+[data-skin="lunar"] {
+  /* Panel 2 tint: the navy wash SectionsPanel paints inline is replaced by a slate one
+     (the only hue change: pane 2 read bluer than both of its neighbours). */
+  --lunar-p2-tint: linear-gradient(170deg,
+    rgba(52, 64, 82, 0.30) 0%,
+    rgba(30, 40, 54, 0.20) 42%,
+    rgba(10, 15, 22, 0.40) 100%);
+
+  /* Seam materials. */
+  --seam-moon: 217, 209, 180;       /* #D9D1B4 moonlight accent */
+  --seam-ochre: 150, 112, 58;       /* #96703A engraved ochre */
+  --seam-deep: 2, 4, 7;
+
+  /* The seam controls' chevron takes moonlight, not the Aurora gold fallback. */
+  --skin-rail-toggle-accent: rgba(var(--seam-moon), 0.82);
+}
+
+/* ── 1+2. Panel 1 (rail): darkest, Imbrium maria underneath ────────────── */
+[data-skin="lunar"] .liquid-glass.h-dvh {
+  background:
+    url("/game/lunar-surface/moon-p1-imbrium.webp") center 30% / cover no-repeat,
+    var(--skin-panel-1-bg, rgba(7, 10, 15, 0.96)) !important;
+  background-blend-mode: overlay, normal !important;
+  border-right: 0 !important;         /* the hinge carries the edge now */
+}
+/* The rail's own vertical spine retires on Lunar: the hinge beside it is the seam. */
+[data-skin="lunar"] .liquid-glass.h-dvh > span[aria-hidden][class*="absolute"][class*="top-0"][class*="right-0"] {
+  display: none !important;
+}
+
+/* ── 1+2. Panel 2 (sections): one step lighter, Tycho/Clavius highlands ── */
+[data-skin="lunar"] div[data-pane="2"],
+[data-skin="lunar"] #mobile-sections-panel {
+  border-right: 0 !important;
+  background:
+    url("/game/lunar-surface/moon-p2-tycho-clavius.webp") center 20% / cover no-repeat,
+    var(--skin-panel-2-bg, rgba(12, 17, 24, 0.95)) !important;
+  background-blend-mode: overlay, normal !important;
+}
+html[data-skin="lunar"] [data-sections-panel][style] {
+  background-image: var(--lunar-p2-tint) !important;
+}
+
+/* ── 1+2. Panel 3: lightest, the body's own night with Nectaris in it ─── */
+/* Pane 3 is transparent: what shows there is <body>. The tile joins the body's own
+   background stack so it blends with the exact night gradient under it; panels 1 and 2
+   are opaque over it, so it only shows in pane 3 (and behind the content on a phone). */
+[data-skin="lunar"] body {
+  background-image:
+    url("/game/lunar-surface/moon-p3-nectaris.webp"),
+    radial-gradient(ellipse 120% 55% at 50% 108%, rgba(120, 158, 200, calc(var(--lunar-dawn, 0) * 0.3)) 0%, transparent 70%),
+    radial-gradient(ellipse at 14% 10%, rgba(200, 214, 232, 0.08) 0%, transparent 55%),
+    linear-gradient(180deg,
+      #090d13 0%,
+      #0e141c 48%,
+      color-mix(in srgb, #121b26, #2c4560 calc(var(--lunar-dawn, 0) * 100%)) 100%);
+  background-size: 1200px 1200px, auto, auto, auto;
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat;
+  background-position: 0 0, 0 0, 0 0, 0 0;
+  background-blend-mode: overlay, normal, normal, normal;
+}
+
+/* ── 3. Seams ─────────────────────────────────────────────────────────────
+   Panel 1 | panel 2: the hinge of a folding tablet. The 20px control column becomes a
+   brushed moonstone barrel between two engraved lips: an ochre hairline where it meets the
+   rail, a moonlight hairline where it meets the sections pane, a dark groove inside each.
+   Fine knuckle joints every 120px give it structure; a thread of moonlight breathes slowly
+   along its axis. The same control language dresses the collapsed-pane-2 strip and the
+   phone drawer's «Sections» strip. (Specificity beats the gold-literal rule in index.css
+   that painted this column a flat 14% moonlight grey: the mismatched divider.) */
+html[data-skin="lunar"] button[data-seam][style] {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-left: 0 !important;
+  background:
+    linear-gradient(90deg,
+      rgba(var(--seam-ochre), 0.42) 0 1px,
+      rgba(var(--seam-deep), 0.85) 1px 2px,
+      transparent 2px calc(100% - 2px),
+      rgba(var(--seam-deep), 0.85) calc(100% - 2px) calc(100% - 1px),
+      rgba(var(--seam-moon), 0.24) calc(100% - 1px) 100%),
+    linear-gradient(90deg,
+      rgba(0, 0, 0, 0.42) 0%,
+      rgba(var(--seam-moon), 0.030) 30%,
+      rgba(var(--seam-moon), 0.065) 50%,
+      rgba(var(--seam-moon), 0.030) 70%,
+      rgba(0, 0, 0, 0.36) 100%),
+    linear-gradient(90deg, #080b10 0%, #0b1119 100%) !important;
+  box-shadow: none !important;
+  transition: filter var(--motion-fast, 200ms) ease;
+}
+html[data-skin="lunar"] button[data-seam][style]:hover {
+  filter: brightness(1.35);
+}
+/* knuckles + the axis line */
+html[data-skin="lunar"] button[data-seam]::before {
+  content: "";
+  position: absolute;
+  inset: 0 4px;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(var(--seam-moon), 0.10) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+    repeating-linear-gradient(180deg,
+      transparent 0 118px,
+      rgba(var(--seam-deep), 0.9) 118px 119px,
+      rgba(var(--seam-moon), 0.11) 119px 120px);
+}
+/* the breathing thread of light */
+html[data-skin="lunar"] button[data-seam]::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 1.5px);
+  width: 3px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(var(--seam-moon), 0.0) 20%,
+    rgba(var(--seam-moon), 0.55) 50%,
+    rgba(var(--seam-moon), 0.0) 80%,
+    transparent 100%) 0 -60% / 100% 45% no-repeat;
+  filter: blur(0.6px);
+  opacity: 0.55;
+  animation: lunar-seam-breathe 18s ease-in-out infinite;
+}
+html[data-skin="lunar"] button[data-seam] > svg,
+html[data-skin="lunar"] button[data-seam] > span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Panel 2 | panel 3: the same language at hairline scale (groove, moonlight, ochre) on
+   SectionsPanel's own right-edge spine, with the thread of light out of phase. */
+html[data-skin="lunar"] [data-sections-panel] > span[aria-hidden="true"][style] {
+  width: 3px !important;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg,
+      rgba(var(--seam-deep), 0.7) 0 1px,
+      rgba(var(--seam-moon), 0.20) 1px 2px,
+      rgba(var(--seam-ochre), 0.30) 2px 3px) !important;
+}
+html[data-skin="lunar"] [data-sections-panel] > span[aria-hidden="true"][style]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(var(--seam-moon), 0.0) 20%,
+    rgba(var(--seam-moon), 0.5) 50%,
+    rgba(var(--seam-moon), 0.0) 80%,
+    transparent 100%) 0 -60% / 100% 45% no-repeat;
+  opacity: 0.5;
+  animation: lunar-seam-breathe 18s ease-in-out -9s infinite;
+}
+
+@keyframes lunar-seam-breathe {
+  0%   { background-position: 0 -60%;  opacity: 0.25; }
+  50%  {                               opacity: 0.7;  }
+  100% { background-position: 0 160%; opacity: 0.25; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-skin="lunar"] button[data-seam]::after,
+  html[data-skin="lunar"] [data-sections-panel] > span[aria-hidden="true"][style]::after {
+    animation: none;
+    background-position: 0 42%;
+    opacity: 0.35;
+  }
+}
+
+/* ── 4. Pane 3: fill the desk ─────────────────────────────────────────────
+   On a wide screen the content column sat small in a large dark field. On the routes whose
+   content sits on the shell's surface (not /ai-os, /codex, /ignite), the content is scaled as
+   one piece: titles, cards, rows and body text keep their proportions and typefaces and
+   grow with the space. Phones and tablets are unchanged. */
+@media (min-width: 1280px) {
+  [data-skin="lunar"] main[data-pane-fit="true"] > .page-transition-enter { zoom: 1.12; }
+}
+@media (min-width: 1400px) {
+  [data-skin="lunar"] main[data-pane-fit="true"] > .page-transition-enter { zoom: 1.2; }
+}
+@media (min-width: 1680px) {
+  [data-skin="lunar"] main[data-pane-fit="true"] > .page-transition-enter { zoom: 1.28; }
+}
+@media (min-width: 1920px) {
+  [data-skin="lunar"] main[data-pane-fit="true"] > .page-transition-enter { zoom: 1.36; }
+}
