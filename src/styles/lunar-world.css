@@ -341,9 +341,14 @@
   }
 }
 
-/* ── 5. Mastermind (/build/mastermind) ───────────────────────────────────
-   The divider emblem carries an inline gold glow (src/lib/landingDesign.tsx, shared by
-   other pages). On this page Lunar swaps it for its own moonlight. */
-[data-skin="lunar"] #mastermind-page .ornament-spin {
-  filter: drop-shadow(0 0 10px rgba(var(--accent-bright-rgb), 0.5)) drop-shadow(0 0 3px rgba(var(--accent-rgb), 0.7)) !important;
+/* ── 5. Divider emblem (Academy, Mastermind and every page using <Ornament>) ──
+   The emblem (src/assets/ignite-logo.png) has a cyan core and carries an inline gold
+   glow (src/lib/landingDesign.tsx, shared by other skins). At 20px the cyan read as
+   mint, a leftover of the old turquoise theme (Sasha, 2026-11-03). Lunar turns the
+   whole emblem moon-stone and gives it its own moonlight glow. CTA emblems inside
+   .liquid-glass-dark keep their own (more specific) white rule in index.css. */
+[data-skin="lunar"] .ornament-spin {
+  filter: grayscale(1) sepia(0.28) saturate(0.9) brightness(1.18)
+    drop-shadow(0 0 10px rgba(var(--moonlight-glow-rgb, 236, 230, 208), 0.45))
+    drop-shadow(0 0 3px rgba(var(--moonlight-accent-rgb, 217, 209, 180), 0.7)) !important;
 }
