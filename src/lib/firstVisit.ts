@@ -112,3 +112,29 @@ export function shouldShowWelcomeBack(): boolean {
   }
   return readGuestTalentName() !== null;
 }
+
+/**
+ * Intro v2 (the cinematic intro after NEW GAME, src/components/game/IntroSequence.tsx).
+ * Set after one full or skipped view; from then on NEW GAME goes straight to the Entry
+ * Portal. «Replay intro» under the title screen plays it again on request.
+ */
+export const CINEMATIC_INTRO_SEEN_KEY = "fytt:intro-v2-seen:v1";
+
+export function hasSeenCinematicIntro(): boolean {
+  if (typeof window === "undefined") return true;
+  try {
+    return !!window.localStorage.getItem(CINEMATIC_INTRO_SEEN_KEY);
+  } catch {
+    // Storage blocked: we cannot remember, so do not replay it on every NEW GAME.
+    return true;
+  }
+}
+
+export function markCinematicIntroSeen(): void {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(CINEMATIC_INTRO_SEEN_KEY, "1");
+  } catch {
+    /* private mode: the intro may play again, nothing breaks */
+  }
+}

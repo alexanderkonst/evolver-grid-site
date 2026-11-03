@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { FONTS_HREF } from "@/lib/gameFonts";
-import { readGuestTalentName, shouldShowWelcomeBack, shouldShowWordlessIntro } from "@/lib/firstVisit";
+import { hasSeenCinematicIntro, readGuestTalentName, shouldShowWelcomeBack } from "@/lib/firstVisit";
 import { tr } from "@/lib/villageCopy";
-import WordlessIntro from "@/components/game/WordlessIntro";
 import { journeyStepRows } from "@/lib/journeyLabels";
 import { useSceneSrc } from "@/lib/sceneSrc";
 import "./GameTitle.css";
@@ -268,6 +267,8 @@ const TitleScreen = () => {
   // A guest who kept a result on this device is welcomed back instead of meeting the cold menu.
   const [talent] = useState(() => (shouldShowWelcomeBack() ? readGuestTalentName() : null));
   const continueRef = useRef<HTMLAnchorElement>(null);
+  // Intro v2: the first NEW GAME on this browser plays the cinematic on its way to the Entry Portal.
+  const [playIntro] = useState(() => !hasSeenCinematicIntro());
 
   const items: MenuItem[] = [
     { key: "new", label: "New Game", hint: "Discover your Uniqueness", to: "/village/reception" },
@@ -291,6 +292,20 @@ const TitleScreen = () => {
       document.title = prevTitle;
     };
   }, []);
+
+  // The intro's first frames, warm before NEW GAME so the cut from the title has no gap.
+  useEffect(() => {
+    if (!playIntro) return;
+    const links = ["/game/intro/frames/f1-title.webp", "/game/intro/frames/f2-fifth.webp"].map((href) => {
+      const l = document.createElement("link");
+      l.rel = "preload";
+      l.as = "image";
+      l.href = href;
+      document.head.appendChild(l);
+      return l;
+    });
+    return () => links.forEach((l) => l.remove());
+  }, [playIntro]);
 
   useEffect(() => {
     let cancelled = false;
@@ -437,7 +452,7 @@ const TitleScreen = () => {
                           {inner}
                         </a>
                       ) : (
-                        <Link {...common} to={item.to}>
+                        <Link {...common} to={item.to} state={item.key === "new" && playIntro ? { intro: true } : undefined}>
                           {inner}
                         </Link>
                       )}
@@ -544,19 +559,22 @@ const TitleScreen = () => {
       </main>
       <footer className="gt-foot">
         <p className="gt-mono">© 2026 FindYourTopTalent</p>
+        {/* Intro v2: after one view NEW GAME goes straight in; this plays it again. */}
+        <p className="gt-mono">
+          <Link className="gt-replay" to="/village/reception" state={{ intro: true }}>
+            {tr(t, "intro.replay", "Replay intro")}
+          </Link>
+        </p>
       </footer>
     </div>
   );
 };
 
 /**
- * The homepage. A fresh browser gets the wordless first minute (WP-18) before the
- * title menu; returning, signed-in and skipped players see the menu as before.
+ * The homepage: the title menu. Intro v2 (Sasha, 2026-11-02) moved the intro behind NEW GAME:
+ * the cinematic plays on the way to the Entry Portal (src/components/game/IntroSequence.tsx),
+ * so the wordless first minute (WP-18, WordlessIntro) no longer opens the homepage.
  */
-const GameTitle = () => {
-  const [intro, setIntro] = useState(shouldShowWordlessIntro);
-  const endIntro = useCallback(() => setIntro(false), []);
-  return intro ? <WordlessIntro onSkip={endIntro} /> : <TitleScreen />;
-};
+const GameTitle = () => <TitleScreen />;
 
 export default GameTitle;

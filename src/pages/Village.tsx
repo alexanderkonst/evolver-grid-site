@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { FONTS_HREF } from "@/lib/gameFonts";
@@ -45,6 +45,7 @@ import { LunarPaths, LunarWorldSync } from "@/components/skin/LunarWorld";
 import { unseenKeys, useLeave } from "@/lib/motion";
 import { useSceneSrc } from "@/lib/sceneSrc";
 import { placeObjects, placeSoul, watchedCourseObjects } from "@/lib/placeColor";
+import IntroSequence from "@/components/game/IntroSequence";
 import "./Village.css";
 
 /**
@@ -304,6 +305,17 @@ const Village = () => {
   const sky = useVillageSky();
   const place = getVillagePlace(placeKey);
   const navigate = useNavigate();
+  const location = useLocation();
+  // Intro v2: NEW GAME arrives here with `state.intro`; the cinematic plays over the Entry
+  // Portal and ends on it, START GAME already in place (src/components/game/IntroSequence.tsx).
+  const introState = (location.state ?? null) as { intro?: boolean; startGame?: boolean } | null;
+  const [introOn, setIntroOn] = useState(() => placeKey === "reception" && !!introState?.intro);
+  const startGame = placeKey === "reception" && !!(introState?.intro || introState?.startGame);
+  const endIntro = useCallback(() => {
+    setIntroOn(false);
+    // Back/refresh must not replay it; the button keeps its START GAME.
+    navigate(`${location.pathname}${location.search}`, { replace: true, state: { startGame: true } });
+  }, [navigate, location.pathname, location.search]);
   const mobile = useIsMobile();
   const signedIn = useSignedIn();
   const sheet = useCharacterSheet();
@@ -659,10 +671,15 @@ const Village = () => {
                   ref={enterRef}
                   className={`vl-enter${lastPending ? " is-pending" : ""}`}
                   to={lastPlace.to}
-                  aria-label={t("village.enterPlace", { place: placeName(lastPlace, t), defaultValue: "Enter {{place}}" })}
+                  aria-label={
+                    startGame && lastPlace.key === "reception"
+                      ? tr(t, "intro.startGame", "START GAME")
+                      : t("village.enterPlace", { place: placeName(lastPlace, t), defaultValue: "Enter {{place}}" })
+                  }
+                  data-intro-anchor={lastPlace.key === "reception" ? "start" : undefined}
                   onClick={(e) => leave(() => navigate(lastPlace.to), e)}
                 >
-                  {tr(t, "village.enter", "ENTER")}
+                  {startGame && lastPlace.key === "reception" ? tr(t, "intro.startGame", "START GAME") : tr(t, "village.enter", "ENTER")}
                 </Link>
               }
               after={
@@ -701,6 +718,7 @@ const Village = () => {
           </section>
         )}
       </main>
+      {introOn ? <IntroSequence anchorSelector='[data-intro-anchor="start"]' onDone={endIntro} /> : null}
     </div>
   );
 };

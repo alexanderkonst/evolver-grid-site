@@ -237,3 +237,6 @@
   .gt-menu-wrap { animation-duration: 0.01s; animation-delay: 0s; }
   .gt-menu a, .gt-cur, .gt-enter, .gt-start { transition: none; }
 }
+/* Intro v2: the quiet replay link under the copyright. */
+.gt-foot .gt-replay { display: inline-block; margin-top: 14px; color: inherit; opacity: 0.55; text-decoration: none; }
+.gt-foot .gt-replay:hover, .gt-foot .gt-replay:focus-visible { opacity: 0.9; }

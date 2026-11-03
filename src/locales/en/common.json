@@ -1,4 +1,40 @@
 {
+  "intro": {
+    "aria": "Intro",
+    "fifth": "You are the fifth element.",
+    "village": "You land in a village.",
+    "startGame": "START GAME",
+    "skip": "Skip",
+    "skipAria": "Skip intro",
+    "replay": "Replay intro",
+    "elements": {
+      "body": {
+        "name": "Body",
+        "element": "Earth",
+        "line": "Vitality and foundation"
+      },
+      "emotions": {
+        "name": "Emotions",
+        "element": "Water",
+        "line": "Mastery of inner weather"
+      },
+      "uniqueness": {
+        "name": "Uniqueness",
+        "element": "Aether",
+        "line": "Your unique gift, refracted into the world"
+      },
+      "mind": {
+        "name": "Mind",
+        "element": "Air",
+        "line": "Clarity and perception"
+      },
+      "spirit": {
+        "name": "Spirit",
+        "element": "Fire",
+        "line": "The fire that moves you"
+      }
+    }
+  },
   "villagePlaces": {
     "workshop": {
       "title": "Workshop",
