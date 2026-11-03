@@ -329,6 +329,10 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         // uses profile_id (FK to game_profiles), not user_id. Resolve the
         // game_profile first, then query zog_snapshots by profile_id.
         // Was: .eq("user_id", uid) → 400 Bad Request, root context empty.
+        // The four reads below are independent, so they run together (#263): in series the
+        // Workshop waited for the sum of all of them (ZoG chain, mission, assets) before
+        // the artifact rows, which are what the cards need, were even requested.
+        const loadZog = async () => {
         try {
           const profileId = await getOrCreateGameProfileId();
           if (cancelled) return;
@@ -367,10 +371,12 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         } catch (e) {
           console.warn("[UBB] zog_snapshot load failed (non-fatal):", e);
         }
+        };
 
         // Day 78 Phase 1 (Sasha 2026-05-21): load mission_statement +
         // mission_discovered_at from game_profiles. Non-fatal if missing;
         // the rootContext memo will simply omit the mission field.
+        const loadMission = async () => {
         try {
           const { data: profileRows } = await (supabase as any)
             .from("game_profiles")
@@ -388,11 +394,13 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         } catch (e) {
           console.warn("[UBB] mission load failed (non-fatal):", e);
         }
+        };
 
         // Day 78 Phase 2 (Sasha 2026-05-21): load user_assets inventory.
         // Non-fatal if missing; rootContext memo omits assets when null.
         // Maps DB snake_case fields to the SavedAsset-shaped camelCase the
         // edge function expects via assetsSummary.
+        const loadAssets = async () => {
         try {
           const { data: assetRows } = await (supabase as any)
             .from("user_assets")
@@ -411,16 +419,22 @@ export function UniqueBusinessProvider({ children }: { children: ReactNode }) {
         } catch (e) {
           console.warn("[UBB] assets load failed (non-fatal):", e);
         }
+        };
 
-        // Load all artifact rows for this user (v2.0 keys only)
-        const { data: rows, error } = await (supabase as any)
-          .from("user_business_artifacts")
-          .select("*")
-          .eq("user_id", uid)
-          .in("artifact_key", ALL_ARTIFACT_KEYS as unknown as string[]);
-        if (cancelled) return;
-        if (error) throw error;
-        setArtifacts(buildArtifactStates((rows || []) as DbRow[]));
+        // Load all artifact rows for this user (v2.0 keys only). Not non-fatal: a failure
+        // here throws and the screens show «Try again».
+        const loadArtifacts = async () => {
+          const { data: rows, error } = await (supabase as any)
+            .from("user_business_artifacts")
+            .select("*")
+            .eq("user_id", uid)
+            .in("artifact_key", ALL_ARTIFACT_KEYS as unknown as string[]);
+          if (cancelled) return;
+          if (error) throw error;
+          setArtifacts(buildArtifactStates((rows || []) as DbRow[]));
+        };
+
+        await Promise.all([loadZog(), loadMission(), loadAssets(), loadArtifacts()]);
       }
     };
 

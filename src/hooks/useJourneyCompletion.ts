@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { JOURNEY_SEQUENCE, type JourneyItemId } from "@/data/journeySequence";
-import { LOAD_TIMEOUT_MS, TimeoutError, withTimeout } from "@/lib/withTimeout";
+import { LOAD_TIMEOUT_MS, REQUEST_TIMEOUT_MS, TimeoutError, withTimeout } from "@/lib/withTimeout";
 
 /**
  * useJourneyCompletion — composite completion-state hook for the JOURNEY pane.
@@ -124,13 +124,14 @@ export async function loadCompletion(): Promise<{ completion: CompletionMap; fai
         profileId: profile?.id ?? null,
     };
 
-    // Step 3: run all predicates in parallel; each is bounded on its own.
+    // Step 3: run all predicates in parallel; each is bounded on its own (REQUEST_TIMEOUT_MS,
+    // above a slow-but-working load), the whole read by LOAD_TIMEOUT_MS in the hook.
     let failed = false;
     const results = await Promise.allSettled(
         JOURNEY_SEQUENCE.map(async (item) => {
             if (!item.completionPredicate) return { id: item.id, done: false };
             try {
-                const done = await withTimeout(item.completionPredicate(ctx), LOAD_TIMEOUT_MS, item.id);
+                const done = await withTimeout(item.completionPredicate(ctx), REQUEST_TIMEOUT_MS, item.id);
                 return { id: item.id, done };
             } catch (e) {
                 // A single bad predicate must not break the panel; a hung one is a failed read.

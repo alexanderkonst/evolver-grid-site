@@ -122,36 +122,10 @@ async function loadSheet(): Promise<CharacterSheetData> {
     const user = session?.user ?? null;
     if (!user) return EMPTY;
 
-    // Read-only lookup; the sheet never creates a profile.
-    const { data: profile, error: profileError } = await supabase
-        .from("game_profiles")
-        .select("*")
-        .eq("user_id", user.id)
-        .maybeSingle();
-    // A failed profile read must not pass for «no profile»: the rest of the sheet would read empty.
-    if (profileError) throw profileError;
-
-    const profileId = profile?.id ?? null;
-    // soul_colors is not in the generated types (CharacterHub casts the same way).
-    const row = (profile ?? {}) as { first_name?: string | null; avatar_url?: string | null; soul_colors?: string[] | null };
-
-    const [zog, qol, assets, mission, offer, phrases, victories] = await Promise.all([
-        // Same read as Reception: the pointer's snapshot, newest only as fallback.
-        profileId
-            ? fetchTopTalentSnapshot<{ id: string; archetype_title: string | null }>(
-                  profileId,
-                  "id, archetype_title",
-              )
-            : null,
-        profileId
-            ? supabase
-                  .from("qol_snapshots")
-                  .select("*")
-                  .eq("profile_id", profileId)
-                  .order("created_at", { ascending: false })
-                  .limit(1)
-                  .maybeSingle()
-            : null,
+    // Five of the reads below are keyed by the user id, not the profile id. Start them now,
+    // beside the profile lookup, so they do not wait for it (#263: in series, Home paid for
+    // the profile read plus the slowest of the rest).
+    const userReads = Promise.all([
         supabase
             .from("user_assets")
             .select("id, title", { count: "exact" })
@@ -179,6 +153,48 @@ async function loadSheet(): Promise<CharacterSheetData> {
             .order("created_at", { ascending: false })
             .limit(20),
         supabase.from("journey_victories").select("step_id").eq("user_id", user.id),
+    ]);
+    // If the profile read throws below, this promise is abandoned: keep its rejection quiet.
+    userReads.catch(() => {});
+
+    // Read-only lookup; the sheet never creates a profile.
+    const { data: profile, error: profileError } = await supabase
+        .from("game_profiles")
+        .select("*")
+        .eq("user_id", user.id)
+        .maybeSingle();
+    // A failed profile read must not pass for «no profile»: the rest of the sheet would read empty.
+    if (profileError) throw profileError;
+
+    const profileId = profile?.id ?? null;
+    // soul_colors is not in the generated types (CharacterHub casts the same way).
+    const row = (profile ?? {}) as {
+        first_name?: string | null;
+        avatar_url?: string | null;
+        soul_colors?: string[] | null;
+        last_zog_snapshot_id?: string | null;
+    };
+
+    const [zog, qol, [assets, mission, offer, phrases, victories]] = await Promise.all([
+        // Same read as Reception: the pointer's snapshot, newest only as fallback. The pointer
+        // is already on the profile row above, so it is not read a second time.
+        profileId
+            ? fetchTopTalentSnapshot<{ id: string; archetype_title: string | null }>(
+                  profileId,
+                  "id, archetype_title",
+                  row.last_zog_snapshot_id ?? null,
+              )
+            : null,
+        profileId
+            ? supabase
+                  .from("qol_snapshots")
+                  .select("*")
+                  .eq("profile_id", profileId)
+                  .order("created_at", { ascending: false })
+                  .limit(1)
+                  .maybeSingle()
+            : null,
+        userReads,
     ]);
 
     const newestPhrase = (key: (typeof PHRASE_ARTIFACT_KEYS)[number]): string | null => {

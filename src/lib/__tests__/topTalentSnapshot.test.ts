@@ -80,6 +80,15 @@ describe("fetchTopTalentSnapshot", () => {
     expect(snap?.id).toBe("new");
   });
 
+  it("uses a pointer the caller already read, with the same result as reading it", async () => {
+    state.pointerId = "old"; // would be read from game_profiles if the caller passed nothing
+    const withKnown = await fetchTopTalentSnapshot<Snap>("p1", COLUMNS, "old");
+    expect(withKnown?.id).toBe("old");
+    // A known NULL pointer means «no pointer»: the table's value is not consulted.
+    const withNull = await fetchTopTalentSnapshot<Snap>("p1", COLUMNS, null);
+    expect(withNull?.id).toBe("new");
+  });
+
   it("returns null when the profile has no snapshot", async () => {
     state.snapshots = [];
     expect(await fetchTopTalentSnapshot<Snap>("p1", COLUMNS)).toBeNull();

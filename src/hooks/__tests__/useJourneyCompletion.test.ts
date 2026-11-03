@@ -23,7 +23,7 @@ vi.mock("@/integrations/supabase/client", () => ({
 }));
 
 import { loadCompletion } from "../useJourneyCompletion";
-import { LOAD_TIMEOUT_MS, TimeoutError, withTimeout } from "@/lib/withTimeout";
+import { LOAD_TIMEOUT_MS, REQUEST_TIMEOUT_MS, TimeoutError, withTimeout } from "@/lib/withTimeout";
 
 const signedIn = { data: { session: { user: { id: "u1" } } } };
 
@@ -78,7 +78,7 @@ describe("loadCompletion", () => {
       done = true;
       return r;
     });
-    await vi.advanceTimersByTimeAsync(LOAD_TIMEOUT_MS - 1);
+    await vi.advanceTimersByTimeAsync(REQUEST_TIMEOUT_MS - 1);
     expect(done).toBe(false);
     await vi.advanceTimersByTimeAsync(1);
     const out = await pending;
@@ -86,6 +86,24 @@ describe("loadCompletion", () => {
     expect(done).toBe(true);
     expect(out.failed).toBe(true);
     expect(out.completion["find-top-talent"]).toBe(false);
+  });
+
+  it("a slow-but-working load is NOT reported as failed", async () => {
+    mocks.getSession.mockResolvedValue(signedIn);
+    // Each request takes 9 s (profile, then predicates): 18 s in all, under the 20 s cap,
+    // and each over the old 8 s cap that would have shown «Try again» to this player.
+    const slow = (value: unknown) =>
+      query(new Promise((resolve) => setTimeout(() => resolve(value), 9_000)));
+    mocks.from.mockImplementation((table: string) =>
+      table === "game_profiles" ? slow({ data: { id: "p1" } }) : slow({ count: 1, error: null }),
+    );
+
+    const bounded = withTimeout(loadCompletion(), LOAD_TIMEOUT_MS, "journey completion");
+    await vi.advanceTimersByTimeAsync(18_000);
+    const out = await bounded;
+
+    expect(out.failed).toBe(false);
+    expect(out.completion["find-top-talent"]).toBe(true);
   });
 
   it("the profile lookup that never resolves is cut by the hook's outer timeout", async () => {

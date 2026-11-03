@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { LOAD_TIMEOUT_MS, TimeoutError, withTimeout } from "../withTimeout";
+import { LOAD_TIMEOUT_MS, REQUEST_TIMEOUT_MS, TimeoutError, withTimeout } from "../withTimeout";
 
 describe("withTimeout", () => {
   beforeEach(() => {
@@ -24,7 +24,16 @@ describe("withTimeout", () => {
     await settled;
   });
 
-  it("defaults to the 8 s budget from issue #263", () => {
-    expect(LOAD_TIMEOUT_MS).toBe(8000);
+  it("keeps the caps above a slow-but-working load (10–15 s seen live, #263)", () => {
+    expect(REQUEST_TIMEOUT_MS).toBeGreaterThanOrEqual(12000);
+    expect(LOAD_TIMEOUT_MS).toBeGreaterThan(REQUEST_TIMEOUT_MS);
+    expect(LOAD_TIMEOUT_MS).toBe(20000);
+  });
+
+  it("defaults to the per-request cap", async () => {
+    const result = withTimeout(new Promise<never>(() => {}));
+    const settled = expect(result).rejects.toBeInstanceOf(TimeoutError);
+    await vi.advanceTimersByTimeAsync(REQUEST_TIMEOUT_MS);
+    await settled;
   });
 });
