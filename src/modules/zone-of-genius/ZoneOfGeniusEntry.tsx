@@ -69,6 +69,7 @@ import { markAnonymousZogSaved } from "@/lib/anonClaimGuard";
 import Hls from "hls.js";
 import ModuleIntro from "@/components/game/ModuleIntro";
 import ModuleOutro from "@/components/game/ModuleOutro";
+import ColouringImage from "@/components/game/ColouringImage";
 import { getJourneyModule } from "@/data/journeyModules";
 
 // WP-5: this module in the module form (Intro → one button → the flow → Outro).
@@ -1055,7 +1056,13 @@ const ZoneOfGeniusEntry = () => {
                 </div>
             )}
 
-            <div className="relative z-10 px-5 lg:px-10 py-4 sm:py-6 max-w-2xl mx-auto min-h-dvh flex flex-col justify-center">
+            {/* Colouring mechanic (issue #313, module-form §12.5a): the path screen is the
+                module's Landing, so the courtyard fills the third panel in greyscale; the
+                reveal brings the same image to colour. The wrapper is always present (so
+                the steps never remount); the image only on the path screen. */}
+            <div className={`cb-landing${step === "choice-route" ? " cb-landing--on" : ""}`}>
+            {step === "choice-route" && <ColouringImage mode="grey" />}
+            <div className="cb-landing__body relative z-10 px-5 lg:px-10 py-4 sm:py-6 max-w-2xl mx-auto min-h-dvh flex flex-col justify-center">
                 {/* Day 53 second pass (Sasha 2026-04-27): the page-level
                     cream wash that lived here was retired. It was bounded
                     to max-w-2xl so it created a visible cream column with
@@ -1519,6 +1526,7 @@ const ZoneOfGeniusEntry = () => {
                         )}
                     </div>
                 )}
+            </div>
             </div>
 
             {/* Signup Modal */}

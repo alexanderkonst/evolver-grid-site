@@ -13,8 +13,10 @@ import { useSoulColors } from "@/hooks/useSoulColors";
 import { choiceDate } from "@/data/journeyChoices";
 import { useLocalizedDomains } from "@/modules/quality-of-life-map/qolConfig";
 import type { JourneyItemId } from "@/data/journeySequence";
+import { StarOfUniqueness } from "@/components/game/artifactImages";
 import {
     badgeResult,
+    houseArtifacts,
     houseBadges,
     houseRooms,
     nextHouseRoom,
@@ -81,6 +83,7 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
     );
     const rooms = useMemo(() => houseRooms(save), [save]);
     const badges = useMemo(() => houseBadges(save), [save]);
+    const artifacts = useMemo(() => houseArtifacts(save), [save]);
 
     // The next room starts open, and the shelf: the two things a returning player looks for.
     const [open, setOpen] = useState<Set<HouseRoomId>>(() => {
@@ -360,6 +363,28 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
             </header>
 
             <ol className="cs-rooms">{rooms.map(renderRoom)}</ol>
+
+            {/* Issue #313: the artifacts the player owns. Read from the save, nothing stored. */}
+            <section className="cs-artifacts" aria-labelledby="cs-artifacts-h" data-testid="house-artifacts">
+                <h2 id="cs-artifacts-h" className="cs-mono cs-artifacts__h">{t("characterSheet.artifacts.title")}</h2>
+                <p className="cs-sec__note">{t("characterSheet.artifacts.note")}</p>
+                <ul className="cs-shelf">
+                    {artifacts.map((a) => (
+                        <li key={a.id} className={`cs-artifact${a.owned ? " is-owned" : ""}`} data-owned={a.owned}>
+                            <StarOfUniqueness
+                                className="cs-artifact__img"
+                                alt={a.owned ? t("characterSheet.artifacts.starOfUniqueness.name") : ""}
+                            />
+                            <p className="cs-mono cs-artifact__name">{t("characterSheet.artifacts.starOfUniqueness.name")}</p>
+                            <p className="cs-artifact__line">
+                                {a.owned
+                                    ? t("characterSheet.artifacts.starOfUniqueness.line")
+                                    : t("characterSheet.artifacts.locked")}
+                            </p>
+                        </li>
+                    ))}
+                </ul>
+            </section>
         </div>
     );
 };

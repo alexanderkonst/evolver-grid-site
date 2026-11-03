@@ -128,6 +128,31 @@ export const houseBadges = (save: PlaceSave): HouseBadge[] =>
     return { step: item.id, state, line: state === "closed" ? moduleClosedLine(item.id) : "" };
   });
 
+export type HouseArtifactId = "star-of-uniqueness";
+
+export type HouseArtifact = {
+  id: HouseArtifactId;
+  /** The Journey step whose result earns it. */
+  step: JourneyItemId;
+  /** True once the player has it. */
+  owned: boolean;
+};
+
+/** The artifacts a Journey step hands over with its result (issue #313, module-form §12.5a). */
+const ARTIFACTS: Pick<HouseArtifact, "id" | "step">[] = [
+  // Top Talent: the first artifact, the pointed star.
+  { id: "star-of-uniqueness", step: "find-top-talent" },
+];
+
+/**
+ * The player's artifacts. They are in-game, not on-chain, and for now they are not stored: an
+ * artifact is owned exactly when the step that hands it over is done (the same read as a
+ * badge), so nothing new is written. A stored `player_artifacts` table is proposed in
+ * issue #313's PR; until it exists this is the source.
+ */
+export const houseArtifacts = (save: PlaceSave): HouseArtifact[] =>
+  ARTIFACTS.map((a) => ({ ...a, owned: moduleIntroState(a.step, save) === "done" }));
+
 /**
  * What a badge carries as its own words. The talent and the mission are the player's own
  * lines; the private level and the asset details never ride on a badge, because a badge may

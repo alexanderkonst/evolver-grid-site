@@ -1,0 +1,209 @@
+/* ColouringImage — the colouring mechanic (issue #313, module-form §12.5a).
+ *
+ * One image, two moments:
+ *   .cb--grey    the Landing: greyscale and a little dimmed, so the headline reads.
+ *   .cb--arrive  the Final screen: the SAME image comes to full colour once, washing outward
+ *                from the crystal (`--cb-ox` / `--cb-oy`, the point the colour starts from).
+ *
+ * The wash is two stacked images: the greyscale one below, the colour one on top, revealed by
+ * a growing radial mask. Where masks are not supported it is a plain cross-fade (which reads
+ * as the same grey → colour filter change). `prefers-reduced-motion`: colour at once, no wash.
+ * Colours come from the image itself; nothing here touches a skin token.
+ */
+
+.cb-art {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  --cb-ox: 50%;
+  --cb-oy: 22%;
+  --cb-dur: 2800ms;
+}
+
+.cb-art__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  user-select: none;
+}
+
+/* Landing: greyscale + a slight dim so the headline reads. */
+.cb-art__img--grey {
+  filter: grayscale(1) brightness(0.62) contrast(1.05);
+}
+
+/* Final: the grey layer is the base, the colour layer washes in over it. */
+.cb--arrive .cb-art__img--grey {
+  filter: grayscale(1) brightness(0.8);
+}
+
+.cb-art__img--colour {
+  filter: none;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: var(--cb-ox) var(--cb-oy);
+  mask-position: var(--cb-ox) var(--cb-oy);
+  -webkit-mask-image: radial-gradient(circle farthest-corner, #000 0%, #000 62%, transparent 100%);
+  mask-image: radial-gradient(circle farthest-corner, #000 0%, #000 62%, transparent 100%);
+  /* Held at 0 until the colour image has loaded (data-ready), so the wash never plays on
+     an empty frame. */
+  -webkit-mask-size: 0% 0%;
+  mask-size: 0% 0%;
+  opacity: 1;
+}
+
+.cb-art__img--colour[data-ready="true"] {
+  animation: cb-wash var(--cb-dur) cubic-bezier(0.33, 0.1, 0.25, 1) forwards;
+}
+
+/* The wash has played already in this visit (or motion is reduced): colour, no animation. */
+.cb--arrive.cb--done .cb-art__img--colour {
+  animation: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+@keyframes cb-wash {
+  from {
+    -webkit-mask-size: 0% 0%;
+    mask-size: 0% 0%;
+  }
+  to {
+    /* 330%: the solid 62% of the circle outgrows the whole image, whatever the crop. */
+    -webkit-mask-size: 330% 330%;
+    mask-size: 330% 330%;
+  }
+}
+
+/* No mask support: the same moment as a plain grey → colour fade. */
+@supports not ((mask-image: none) or (-webkit-mask-image: none)) {
+  .cb-art__img--colour {
+    opacity: 0;
+  }
+  .cb-art__img--colour[data-ready="true"] {
+    animation: cb-fade var(--cb-dur) ease-in-out forwards;
+  }
+  @keyframes cb-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cb--arrive .cb-art__img--colour,
+  .cb--arrive .cb-art__img--colour[data-ready="true"] {
+    animation: none;
+    opacity: 1;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+/* The scrim: keeps text legible over the image and settles its edges into the panel. */
+.cb-art__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 55%, rgba(6, 10, 22, 0.15) 0%, rgba(6, 10, 22, 0.55) 100%),
+    linear-gradient(to bottom, rgba(6, 10, 22, 0.1) 0%, rgba(6, 10, 22, 0.45) 100%);
+}
+
+/* ---------- Landing: the image fills the whole third panel ---------- */
+.cb-landing {
+  position: relative;
+  isolation: isolate;
+}
+.cb-landing > .cb-landing__body { position: relative; z-index: 1; }
+
+/* On the Landing the copy sits on a dark image, whatever the skin: light ink, dark halo. */
+.cb-landing--on {
+  --skin-text-primary: #f6f1e4;
+  --skin-text-muted: rgba(246, 241, 228, 0.86);
+  --skin-text-muted-soft: rgba(246, 241, 228, 0.74);
+  --skin-text-halo-deep: 0 1px 14px rgba(4, 8, 18, 0.85), 0 0 2px rgba(4, 8, 18, 0.6);
+}
+
+/* From `lg` pane 3 sits beside the rail: drop its top padding so the image reaches the top
+   edge (same idea as `.mf--pane` in ModuleForm.css; this screen only). */
+@media (min-width: 1024px) {
+  html main[data-pane="3"]:has(.cb-landing--on) { padding-top: 0 !important; }
+}
+
+/* ---------- Final: the hero block (image backdrop + the first artifact) ---------- */
+.cb-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 24px;
+  min-height: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 0 50px rgba(240, 194, 127, 0.22), 0 0 100px rgba(212, 175, 55, 0.1);
+  /* The ink on the image is light, whatever the skin. Anything placed inside the hero
+     (the reveal headline) reads from these tokens. */
+  --skin-text-primary: #f6f1e4;
+  --skin-text-muted: rgba(246, 241, 228, 0.86);
+  --skin-text-halo-deep: 0 1px 14px rgba(4, 8, 18, 0.85), 0 0 2px rgba(4, 8, 18, 0.6);
+}
+.cb-hero > .cb-hero__body { position: relative; z-index: 1; width: 100%; }
+
+.cb-artifact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+}
+.cb-artifact__star {
+  width: 7rem;
+  height: auto;
+  max-width: 100%;
+  filter: drop-shadow(0 0 14px rgba(240, 194, 127, 0.7)) drop-shadow(0 0 34px rgba(120, 180, 255, 0.35));
+  pointer-events: none;
+  user-select: none;
+  /* It arrives after the colour has mostly washed in. */
+  animation: cb-artifact-in 900ms ease-out 1800ms both;
+}
+.cb-artifact__label {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.25;
+  color: var(--skin-text-primary);
+  text-shadow: var(--skin-text-halo-deep);
+  animation: cb-artifact-label-in 700ms ease-out 2300ms both;
+}
+.cb--done .cb-artifact__star,
+.cb--done .cb-artifact__label { animation-delay: 0ms; }
+
+@keyframes cb-artifact-in {
+  from { opacity: 0; transform: scale(0.82) translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes cb-artifact-label-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cb-artifact__star,
+  .cb-artifact__label { animation: none; }
+}
+
+@media (min-width: 640px) {
+  .cb-hero { min-height: 18rem; }
+  .cb-artifact__star { width: 8.5rem; }
+  .cb-artifact__label { font-size: 1.4rem; }
+}

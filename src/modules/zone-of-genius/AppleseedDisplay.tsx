@@ -1,5 +1,6 @@
 import { ArrowRight, Mail } from "lucide-react";
 import RevelatoryHero from "@/components/game/RevelatoryHero";
+import FirstArtifactHero from "@/components/game/FirstArtifactHero";
 import ResonanceRating from "@/components/ui/ResonanceRating";
 import { AppleseedData } from "./appleseedGenerator";
 import { useState, useCallback, useEffect } from "react";
@@ -410,7 +411,10 @@ const AppleseedDisplay = ({
     // foot. Placed after every hook above so hook order never changes.
     if (preview) {
         return (
-            <div className="relative z-10 max-w-2xl mx-auto px-4 pt-2">
+            <div className="relative z-10 max-w-2xl mx-auto px-4 pt-2 space-y-6">
+                {/* Colouring mechanic (issue #313): the Landing's courtyard comes to colour
+                    and the first artifact arrives, for a guest too. */}
+                <FirstArtifactHero />
                 <div
                     style={{
                         borderRadius: '24px',
@@ -464,6 +468,12 @@ const AppleseedDisplay = ({
                     isMatchPath ? "pb-2" : "pb-32 sm:pb-40"
                 }`}
             >
+                {/* Colouring mechanic (issue #313, module-form §12.5a): the Landing's courtyard
+                    comes to full colour behind the first artifact, the Star of Uniqueness.
+                    The Final headline block (issue #312) belongs inside this hero, above the
+                    star. */}
+                <FirstArtifactHero />
+
                 {/* Return-state greeting — Day 57 (Sasha 2026-05-01).
                     Shown only when the user is coming back to a previously
                     saved appleseed (isReturning captured at mount). */}

@@ -3024,6 +3024,7 @@
     "saving": "Guardando…",
     "saveIt": "Guardar",
     "patternStillHere": "Tu patrón sigue aquí.",
+    "firstArtifact": "Tu primer artefacto: la Estrella de la Unicidad",
     "cautionTitle": "Una advertencia importante",
     "cautionLead": "Este recordatorio de tu talento natural plantó una semilla de autoconocimiento que irá creciendo en ti.",
     "cautionBody": "Las palabras exactas que recibiste NO son literalmente TÚ, ¿verdad? Son un reflejo útil de tu esencia, al servicio de tu autocomprensión. Tu conocimiento de ti mismo es lo que de verdad importa, y solo importará más a medida que la IA avance. Solo tú puedes saber cuánto resonaron estas palabras con tu esencia; ninguna otra IA ni persona puede saberlo. De hecho, si repites el test, verás palabras distintas, lo cual demuestra que tu verdadera esencia es tu secreto.",
@@ -7473,6 +7474,16 @@
       "assessQol": "Evaluaste tu calidad de vida",
       "buildBusiness": "Construiste un negocio sobre tu talento principal",
       "discoverMission": "Descubriste tu misión"
+    },
+    "artifacts": {
+      "title": "Artefactos",
+      "note": "Objetos del juego que ganaste por un resultado real.",
+      "owned": "Tuyo",
+      "locked": "Se abre cuando encuentres tu talento principal.",
+      "starOfUniqueness": {
+        "name": "Estrella de la Unicidad",
+        "line": "Ganada cuando tu talento principal fue nombrado."
+      }
     },
     "rooms": {
       "talent": {

@@ -1341,6 +1341,7 @@
     "saving": "Saving…",
     "saveIt": "Save it",
     "patternStillHere": "Your pattern is still here.",
+    "firstArtifact": "Your first artifact: the Star of Uniqueness",
     "cautionTitle": "Important words of caution",
     "cautionLead": "This reminder of your natural talent planted a seed of self-knowledge that will be growing in you.",
     "cautionBody": "The exact words you got are NOT literally YOU, right? They are a useful reflection of your essence for the purpose of your self-understanding. Your knowledge of yourself is what truly matters, and will only matter more as AI develops. Only you can know how much these words resonated with your essence, not any other AI or human. In fact, if you retake the test, you will see different words which proves that your true essence is your secret.",
@@ -7538,6 +7539,16 @@
       "assessQol": "Assessed your quality of life",
       "buildBusiness": "Built a business off your top talent",
       "discoverMission": "Discovered your mission"
+    },
+    "artifacts": {
+      "title": "Artifacts",
+      "note": "In-game things you earned for a real result.",
+      "owned": "Yours",
+      "locked": "Opens when you find your top talent.",
+      "starOfUniqueness": {
+        "name": "Star of Uniqueness",
+        "line": "Earned when your top talent was named."
+      }
     },
     "rooms": {
       "talent": {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
-import { badgeResult, houseBadges, houseRooms, nextHouseRoom, type HouseRoomId } from "../houseRooms";
+import { badgeResult, houseArtifacts, houseBadges, houseRooms, nextHouseRoom, type HouseRoomId } from "../houseRooms";
 import { placeSaveFromSheet } from "../placeState";
 
 const NOW = new Date("2026-10-28T18:00:00Z");
@@ -129,5 +129,15 @@ describe("badgeResult", () => {
     expect(badgeResult("assess-qol", sheet)).toBeNull();
     expect(badgeResult("map-assets", sheet)).toBeNull();
     expect(badgeResult("build-business", sheet)).toBeNull();
+  });
+});
+
+describe("houseArtifacts (issue #313)", () => {
+  it("the Star of Uniqueness is owned exactly when Top Talent is done", () => {
+    expect(houseArtifacts(saveWith([]))).toEqual([
+      { id: "star-of-uniqueness", step: "find-top-talent", owned: false },
+    ]);
+    expect(houseArtifacts(saveWith(["find-top-talent"]))[0].owned).toBe(true);
+    expect(houseArtifacts(saveWith(["discover-mission"]))[0].owned).toBe(false);
   });
 });
