@@ -52,6 +52,7 @@ import {
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import { OPEN_CHAT_EVENT } from "@/components/ChatLauncher";
 import SiteLogo from "@/components/SiteLogo";
+import MoonMedallion from "@/components/game/MoonMedallion";
 import { placeTagline } from "@/lib/villageCopy";
 // hls.js is dynamically imported inside MuxVideoBackground to avoid module-level crashes
 import { useToast } from "@/hooks/use-toast";
@@ -512,6 +513,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // content-scroll rule (Aurora cream wash → transparent so the Mux
     // photo bg shows through), same full-rail inclusion.
     const __isTechstarsShell = __spaceShipSkin === "techstars";
+    // The house brand («YOU be original»): its emblem is the moon medallion (village-as-dashboard step 1).
+    const __isYouShell = !__isNSShell && !__isDaoShell && !__isPlanetirShell && !__isTechstarsShell;
     const navigate = useNavigate();
 
     // User & profile state
@@ -1874,6 +1877,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         mobileView === "navigation" ? "visible" : "invisible"
                     )}
                     aria-hidden={mobileView !== "navigation"}
+                    data-modal-open={mobileView === "navigation" ? "true" : undefined}
                 >
                 <button
                     type="button"
@@ -2014,9 +2018,16 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                             as identity reinforcement, and the hamburger is
                             well-understood without a label in 2026.
                             44px min tap target preserved. */}
+                        {/* Village-as-dashboard step 1 (Sasha 2026-11-03): on a phone the logo's
+                            emblem in the top bar is the moon medallion, back to the village; the
+                            pill beside it keeps only ☰. Partner skins keep their mark in the pill. */}
+                        {__isYouShell ? <MoonMedallion size={44} side="bottom" /> : null}
                         <button
                             onClick={handleBackToNavigation}
-                            className="min-h-[44px] inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full transition-all relative hover:scale-[1.02] active:scale-[0.98]"
+                            className={cn(
+                                "min-h-[44px] inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full transition-all relative hover:scale-[1.02] active:scale-[0.98]",
+                                __isYouShell && "min-w-[44px] justify-center"
+                            )}
                             style={__isNSShell ? {
                                 color: '#0a0a0a',
                                 background: '#ffffff',
@@ -2057,6 +2068,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                             }}
                             aria-label={t("shell.menu.open")}
                         >
+                            {__isYouShell ? null : (
                             <img
                                 /* V6 (Sasha 2026-05-19): use the canonical
                                    NS wavy flag PNG on mobile too, not the
@@ -2081,6 +2093,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                                 className="w-7 h-7 object-contain flex-shrink-0"
                                 draggable={false}
                             />
+                            )}
                             <Menu className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                         </button>
                         {/* Day 53 (Sasha 2026-04-27): mobile breadcrumb.
