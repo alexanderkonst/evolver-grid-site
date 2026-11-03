@@ -1799,9 +1799,10 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 <main
                     // Lunar panels (design/moon-panels): hook for the desktop content scale in
                     // src/styles/lunar-panels.css. "fit" only on the routes whose content sits on
-                    // the shell's own surface.
+                    // the shell's own surface. The Entry Portal (/zone-of-genius/entry) is exempt:
+                    // scaled, its hero reaches the bottom of a 1440x900 screen.
                     data-pane="3"
-                    data-pane-fit={(pageOwnsBackground || isImmersiveDarkRoute) ? undefined : "true"}
+                    data-pane-fit={(pageOwnsBackground || isImmersiveDarkRoute || location.pathname.replace(/\/+$/, "") === "/zone-of-genius/entry") ? undefined : "true"}
                     // Day 51 night: `overflow-auto` was historically dropped
                     // here so non-/ai-os routes (e.g. /playbook) can use
                     // document-scroll sticky.
