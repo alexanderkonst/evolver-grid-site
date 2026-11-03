@@ -6,9 +6,20 @@ const ov = (id: string) => INTRO_OVERLAYS.find((o) => o.id === id)!;
 const at = (name: string, t: number) => ({ clip: INTRO_CLIPS.findIndex((c) => c.name === name), t });
 
 describe("intro v2 timeline", () => {
-  it("has the nine clips of the script, ~44 s", () => {
-    expect(INTRO_CLIPS.map((c) => c.name)).toEqual(["V1", "V2a", "V2b", "V3a", "V3b", "V3c", "V4a", "V4b", "V4c"]);
-    expect(INTRO_CLIPS.reduce((s, c) => s + c.length, 0)).toBe(44);
+  it("has the eight clips of the script, ~40 s, ending on the V4b vortex", () => {
+    expect(INTRO_CLIPS.map((c) => c.name)).toEqual(["V1", "V2a", "V2b", "V3a", "V3b", "V3c", "V4a", "V4b"]);
+    expect(INTRO_CLIPS.reduce((s, c) => s + c.length, 0)).toBe(40);
+    expect(INTRO_CLIPS[INTRO_CLIPS.length - 1].name).toBe("V4b");
+  });
+
+  it("never shows the Entry Portal's picture: no clip or still uses f8-entry-portal (#307)", () => {
+    for (const c of INTRO_CLIPS) {
+      expect(c.from).not.toBe("f8-entry-portal");
+      expect(c.to).not.toBe("f8-entry-portal");
+      for (const t of [0, 1, 2, 3, 3.9]) for (const l of stillLayers(c, t)) expect(l.frame).not.toBe("f8-entry-portal");
+    }
+    // V4b's still fallback holds the pavilion to the end.
+    expect(stillLayers(INTRO_CLIPS[INTRO_CLIPS.length - 1], 3.99)).toEqual([{ frame: "f7-pavilion", opacity: 1 }]);
   });
 
   it("chains still frames: each clip starts on the frame the previous one ends on", () => {
@@ -29,10 +40,17 @@ describe("intro v2 timeline", () => {
     expect(overlayPhase(ov("elements"), at("V2a", 0.9))).toBe("gone");
   });
 
-  it("START GAME ignites at V4c 3.3 s and stays", () => {
-    expect(overlayPhase(ov("start"), at("V4c", 3.2))).toBe("before");
-    expect(overlayPhase(ov("start"), at("V4c", 3.31))).toBe("in");
-    expect(overlayPhase(ov("start"), at("V4c", 99))).toBe("in");
+  it("START GAME ignites at V4b 3.4 s, on the last clip's tail, and stays", () => {
+    expect(overlayPhase(ov("start"), at("V4b", 3.3))).toBe("before");
+    expect(overlayPhase(ov("start"), at("V4b", 3.41))).toBe("in");
+    expect(overlayPhase(ov("start"), at("V4b", 99))).toBe("in");
+    // The clock stops at the last clip's end, so the ignite must start and finish inside it.
+    const start = ov("start");
+    const last = INTRO_CLIPS[INTRO_CLIPS.length - 1];
+    expect(start.at.clip).toBe(INTRO_CLIPS.length - 1);
+    expect(start.at.t + (start.ignite ?? 0)).toBeLessThanOrEqual(last.length);
+    expect(last.length - start.at.t).toBeGreaterThanOrEqual(0.5);
+    expect(last.length - start.at.t).toBeLessThanOrEqual(0.7);
   });
 
   it("caps a long clip at its duration and plays a short one to its end", () => {
@@ -62,7 +80,7 @@ describe("intro v2 timeline", () => {
   });
 });
 
-describe("intro v2: the last clip lands on the Entry Portal", () => {
+describe("intro v2: portal-landing math (kept, no clip uses it since #307)", () => {
   const gate = [150 / 1920, 0, 1619 / 1920, 1] as const;
 
   it("draws a cover image where CSS does (object-position 50% 10%)", () => {
@@ -102,7 +120,7 @@ describe("intro v2: the last clip lands on the Entry Portal", () => {
     expect(portalEase(4, 2.6)).toBe(1);
   });
 
-  it("only the last clip lands on the portal", () => {
-    expect(INTRO_CLIPS.filter((c) => c.portal).map((c) => c.name)).toEqual(["V4c"]);
+  it("no clip lands on the portal's picture any more (V4c dropped, #307)", () => {
+    expect(INTRO_CLIPS.filter((c) => c.portal).map((c) => c.name)).toEqual([]);
   });
 });

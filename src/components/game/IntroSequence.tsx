@@ -33,10 +33,11 @@ import "./IntroSequence.css";
  * IntroSequence — the cinematic intro (intro v2, Sasha's script of 2026-11-02).
  *
  * NEW GAME on the title screen → /village/reception with `state.intro`. The Entry Portal
- * renders underneath and this full-screen layer plays over it: nine clips back to back
- * (src/data/introSequence.ts), text overlaid in code, and at the end START GAME ignites in
- * the exact place of the Entry Portal's own button, then the layer dissolves away and the
- * player is on the live Entry Portal with that button already there.
+ * renders underneath and this full-screen layer plays over it: eight clips back to back
+ * (src/data/introSequence.ts), text overlaid in code. On the last clip's tail (the V4b vortex)
+ * START GAME ignites in the exact place of the Entry Portal's own button, then the layer
+ * dissolves away and the player is on the live Entry Portal with that button already there.
+ * No picture of the portal is shown in between (#307).
  *
  * A clip that is not in public/game/intro/ plays its still frames instead (slow Ken Burns +
  * dissolves), so the sequence always runs end to end. prefers-reduced-motion: stills only,
@@ -62,7 +63,7 @@ const FRAMES: IntroFrame[] = [
   "f5-close-lit",
   "f6-close-golden",
   "f7-pavilion",
-  "f8-entry-portal",
+  // No f8-entry-portal: the portal's picture is never shown inside the intro (#307).
 ];
 
 const frameSrc = (f: IntroFrame) => `${INTRO_FRAMES}/${f}.webp`;
@@ -383,8 +384,9 @@ const IntroSequence = ({ onDone, anchorSelector, sceneSelector = '[data-intro-an
         }
       }
 
-      // The last clip lands on the live Entry Portal: its video box eases from covering the
-      // screen to lying exactly on the portal's picture (also while the layer dissolves).
+      // A clip with `portal` lands on the live Entry Portal: its video box eases from covering
+      // the screen to lying exactly on the portal's picture (also while the layer dissolves).
+      // No clip uses it since #307; every clip covers the screen.
       vidRefs.forEach((r, i) => {
         const v = r.current;
         if (!v) return;
@@ -436,7 +438,7 @@ const IntroSequence = ({ onDone, anchorSelector, sceneSelector = '[data-intro-an
     };
     raf = requestAnimationFrame(tick);
 
-    // Go: wait (briefly) for the first clip's probe, then start. `?introFrom=V4c` starts at a
+    // Go: wait (briefly) for the first clip's probe, then start. `?introFrom=V4b` starts at a
     // later clip, for reviewing a clip once it has been dropped in.
     const from = new URLSearchParams(window.location.search).get("introFrom");
     const firstIndex = Math.max(0, INTRO_CLIPS.findIndex((c) => c.name === from));

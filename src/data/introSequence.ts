@@ -1,10 +1,15 @@
 /**
- * The cinematic intro (intro v2): NEW GAME on the title → nine clips (~44 s) → the Entry Portal.
+ * The cinematic intro (intro v2): NEW GAME on the title → eight clips (~40 s) → the Entry Portal.
  *
  * Script: Sasha's backbone, 2026-11-02. Text is overlaid in code, never baked into video.
  *
+ * The last clip is V4b (the vortex). At its end the intro layer dissolves straight into the
+ * live Entry Portal (INTRO_OUTRO_MS): no picture of the portal is ever shown inside the intro
+ * (#307). V4c, which opened on that picture, is out of the sequence; its files stay in
+ * public/game/intro/ for now, and the f8-entry-portal still is not rendered at all.
+ *
  * DROPPING IN CLIPS: put the files in `public/game/intro/` named exactly after the clip
- * (`V1.mp4`, `V2a.mp4`, … `V4c.mp4`; a `V1.webm` next to it is used first where the browser
+ * (`V1.mp4`, `V2a.mp4`, … `V4b.mp4`; a `V1.webm` next to it is used first where the browser
  * plays WebM). A missing clip is not an error: that stretch plays its still frames
  * (`public/game/intro/frames/*.webp`) with a slow Ken Burns move and dissolves instead.
  *
@@ -27,8 +32,7 @@ export type IntroFrame =
   | "f4-close-lunar"
   | "f5-close-lit"
   | "f6-close-golden"
-  | "f7-pavilion"
-  | "f8-entry-portal";
+  | "f7-pavilion";
 
 export type IntroClip = {
   /** File name without extension, in public/game/intro/. */
@@ -46,6 +50,7 @@ export type IntroClip = {
   to: IntroFrame;
   dissolve?: [number, number];
   /**
+   * Unused since #307 (no clip ends on the portal's picture any more; kept for a future clip).
    * The clip ends on the Entry Portal's own picture (the last clip). `gate` is where the
    * portal's scene image sits inside the clip's 16:9 frame, as fractions [x, y, w, h]. While
    * the clip plays, the video eases from covering the screen (`k` 0, the cut from the clip
@@ -57,8 +62,8 @@ export type IntroClip = {
 
 // Clips (2026-11-03): V1, V2a, V2b, V3a Veo 3.1 Lite; V3b, V3c, V4a, V4b, V4c Veo 3.1 Fast.
 // Every file is 8 s as shot; V2b is cut to its first 4 s at transcode, the others reach their
-// slot with `rate`. V4c is edited to 4 s (glow, a ~1.6 s colour drain to moonlight grey, then
-// the Entry Portal end frame, graded and framed from the live moon-theme portal scene).
+// slot with `rate`. V4c (2026-11-03, #307) is dropped: its opening ~2 s is a still of the
+// Entry Portal picture, which must never show inside the intro.
 export const INTRO_CLIPS: IntroClip[] = [
   { name: "V1", length: 8, duration: 8, rate: 1, from: "f1-title", to: "f2-fifth", dissolve: [0.5, 3.0] },
   { name: "V2a", length: 6, duration: 6, rate: 4 / 3, from: "f2-fifth", to: "f3-village-wide", dissolve: [1.0, 5.0] },
@@ -67,19 +72,9 @@ export const INTRO_CLIPS: IntroClip[] = [
   { name: "V3b", length: 4, duration: 4, rate: 2, from: "f4-close-lunar", to: "f5-close-lit", dissolve: [0.3, 2.8] },
   { name: "V3c", length: 4, duration: 4, rate: 2, from: "f5-close-lit", to: "f6-close-golden", dissolve: [0.3, 3.4] },
   { name: "V4a", length: 4, duration: 4, rate: 2, from: "f6-close-golden", to: "f7-pavilion", dissolve: [0.5, 3.4] },
-  { name: "V4b", length: 4, duration: 4, rate: 2, from: "f7-pavilion", to: "f8-entry-portal", dissolve: [0.4, 3.4] },
-  // V4c: the crystal glows, the colour drains to moonlight grey, and the clip ends on the live
-  // Entry Portal's picture (gate = the 1619×1080 scene inside the 1920×1080 frame) while START
-  // GAME ignites and the layer dissolves.
-  {
-    name: "V4c",
-    length: 4,
-    duration: 4,
-    rate: 1,
-    from: "f8-entry-portal",
-    to: "f8-entry-portal",
-    portal: { gate: [150 / 1920, 0, 1619 / 1920, 1], settle: 2.6 },
-  },
+  // V4b, the last clip: the vortex. Its still fallback holds the pavilion (never the portal
+  // picture). START GAME ignites on its tail; at its end the layer dissolves into the live portal.
+  { name: "V4b", length: 4, duration: 4, rate: 2, from: "f7-pavilion", to: "f7-pavilion" },
 ];
 
 /** A moment in the sequence: clip index + seconds into that clip. */
@@ -106,8 +101,9 @@ export const INTRO_OVERLAYS: IntroOverlay[] = [
   { id: "elements", at: { clip: clip("V1"), t: 3.4 }, until: { clip: clip("V2a"), t: 0.8 }, fade: 0.8 },
   // V3a 1–4.4 s: «You land in a village.»
   { id: "village", at: { clip: clip("V3a"), t: 1.0 }, until: { clip: clip("V3a"), t: 4.4 }, fade: 0.7 },
-  // V4c 3.3 s: START GAME ignites over 0.5 s and stays.
-  { id: "start", at: { clip: clip("V4c"), t: 3.3 }, ignite: 0.5 },
+  // V4b 3.4 s: START GAME ignites over 0.5 s on the vortex's tail and stays; the layer then
+  // dissolves (INTRO_OUTRO_MS) from V4b's end, so the lit button lands on the live one.
+  { id: "start", at: { clip: clip("V4b"), t: 3.4 }, ignite: 0.5 },
 ];
 
 /**
