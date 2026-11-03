@@ -41,7 +41,7 @@
     },
     "place": {
       "reception": {
-        "name": "Recepción",
+        "name": "Portal",
         "line": "Te damos la bienvenida, visitante. Descubre tu singularidad.",
         "lineReturning": "Te damos la bienvenida de nuevo. Descubre tu singularidad.",
         "alt": "Una gran escalera de mármol con faroles y velas sube hasta una puerta en arco que brilla en dorado cálido, con un dodecaedro de cristal resplandeciendo sobre ella en el cielo nocturno"
@@ -148,7 +148,7 @@
     },
     "module": {
       "find-top-talent": {
-        "eyebrow": "Recepción · Paso 1",
+        "eyebrow": "Portal · Paso 1",
         "headline": "Descubre tu talento principal",
         "silhouette": "Una prueba corta de lo que mejor haces. Termina con el talento que es tuyo, en tus propios colores.",
         "verb": "Encontrar mi talento principal"

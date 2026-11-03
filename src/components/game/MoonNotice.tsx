@@ -6,11 +6,11 @@ import { FONTS_HREF } from "@/lib/gameFonts";
  * MoonNotice — the one full-page notice template with no game shell (issue #270).
  * Used by the 404 page and by the locked mission doors. No rail, no music, no chrome:
  * a title, one line, one primary action, one quiet way back. Moon-world canon:
- * ink #e6ebf2, teal #5ec8bd, Cormorant Garamond + IBM Plex Mono.
+ * ink #e6ebf2, moonlight #d9d1b4, Cormorant Garamond + IBM Plex Mono.
  */
 
 const INK = "#e6ebf2";
-const TEAL = "#5ec8bd";
+const MOONLIGHT = "#d9d1b4";
 const SERIF = '"Cormorant Garamond", "EB Garamond", Georgia, serif';
 const MONO = '"IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace';
 
@@ -51,7 +51,7 @@ const MoonNotice = ({ eyebrow, title, line, primary, secondary, children }: Prop
       }}
     >
       <div style={{ maxWidth: 520 }}>
-        <p style={{ margin: 0, fontFamily: MONO, fontWeight: 300, fontSize: 13, letterSpacing: "0.3em", textTransform: "uppercase", color: TEAL }}>
+        <p style={{ margin: 0, fontFamily: MONO, fontWeight: 300, fontSize: 13, letterSpacing: "0.3em", textTransform: "uppercase", color: MOONLIGHT }}>
           {eyebrow}
         </p>
         <h1 style={{ margin: "18px 0 0", fontWeight: 300, fontSize: "clamp(34px, 6vw, 56px)", lineHeight: 1.1, color: INK, textWrap: "balance" }}>
@@ -71,7 +71,7 @@ const MoonNotice = ({ eyebrow, title, line, primary, secondary, children }: Prop
               alignItems: "center",
               minHeight: 44,
               padding: "0 28px",
-              border: `1px solid ${TEAL}`,
+              border: `1px solid ${MOONLIGHT}`,
               color: INK,
               fontFamily: MONO,
               fontWeight: 300,

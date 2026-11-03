@@ -596,12 +596,13 @@ const buildLearnSections = (): Section[] => {
     };
 
     // Sasha, 2026-10-30: the Academy lists only the two courses we have, as one path
-    // (Consciousness Meets Science, then Activate Your Dormant Potential; start with either).
+    // (Activate Your Dormant Potential, then Consciousness Meets Science, order swapped by
+    // Sasha 2026-11-02; start with either).
     // The overview and the six Library rooms stay built and routed, just not listed here.
     return [
         { id: "academy", label: "Academy", path: "/game/learn" },
-        consciousnessMeetsScienceRow,
         dormantPotentialRow,
+        consciousnessMeetsScienceRow,
     ];
 };
 

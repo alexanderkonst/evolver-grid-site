@@ -200,7 +200,7 @@
 
   /* ── Accent label ink (WP-1b): eyebrows, list arrows and step numbers painted as
      gradient text (Mastermind). Every skin reads its own callout gradient, so Lapis,
-     Aurum and The Dao are unchanged; Lunar overrides below (its callout is a dark teal
+     Aurum and The Dao are unchanged; Lunar overrides below (its callout is a dark ochre
      fill for buttons, too dark as text on near-black). ── */
   --label-ink-bg: var(--skin-callout-bg, linear-gradient(135deg, #a06d08 0%, #7a5108 45%, #6b4208 100%));
   --label-ink-glow: var(--skin-callout-glow, none);
@@ -532,7 +532,7 @@
   --live-accent: hsl(15 88% 62%);
 }
 
-/* ── Lunar (WP-2): slate-blue night, cool silver ink, one teal accent ──
+/* ── Lunar (WP-2): slate-blue night, cool silver ink, one moonlight accent ──
    The default skin for new players (§14.10). Silver is the whole world until
    the player colors it: `--soul-1..3` start silver and are overwritten on
    <html> by src/lib/lunarWorld.ts with the player's soul colors, so anything
@@ -541,24 +541,24 @@
 [data-skin="lunar"] {
   --text-secondary: rgba(230, 235, 242, 0.78);
   --surface-page: linear-gradient(180deg, #090d13 0%, #0e141c 45%, #121b26 100%);
-  --accent-bright: #8fe3d9;
-  --accent-text: #8fe3d9;
-  --accent-text-hover: #b5f0e8;
-  --accent-text-strong: #8fe3d9;
-  --accent-rgb: 94, 200, 189;
-  --accent-bright-rgb: 143, 227, 217;
+  --accent-bright: var(--moonlight);
+  --accent-text: var(--moonlight);
+  --accent-text-hover: var(--moonlight-bright);
+  --accent-text-strong: var(--moonlight);
+  --accent-rgb: var(--moonlight-glow-rgb);
+  --accent-bright-rgb: var(--moonlight-rgb);
   --ink-rgb: 230, 235, 242;
   --ink-soft-rgb: 230, 235, 242;
   --shadow-rgb: 0, 0, 0;
   --paper-rgb: 14, 20, 29;
-  --focus-rgb: 94, 200, 189;
+  --focus-rgb: var(--moonlight-glow-rgb);
 
   --scene-bg: #0a0e14;
   --scene-bg-rgb: 10, 14, 20;
   --scene-shadow-rgb: 4, 7, 11;
   --scene-paper: #0e141c;
-  --scene-accent: #5ec8bd;
-  --scene-accent-rgb: 94, 200, 189;
+  --scene-accent: var(--moonlight-accent);
+  --scene-accent-rgb: var(--moonlight-glow-rgb);
   --scene-ink-rgb: 230, 235, 242;
   --scene-glow-rgb: 214, 226, 240;          /* moonlight */
   --scene-glow-warm-rgb: 168, 196, 228;
@@ -569,13 +569,13 @@
   /* Closed is a dark silhouette, not a hidden room: still readable. */
   --lock-filter: grayscale(1) brightness(0.55) contrast(1.05);
   --lock-dim: 0.72;
-  --open-accent: #5ec8bd;
-  --live-accent: #8fe3d9;
+  --open-accent: var(--moonlight-accent);
+  --live-accent: var(--moonlight);
   /* A closed name sits under an open one (0.92 ink) and still clears AA (4.5:1) on its chip,
      also over the lightest art (worked out: ~6.8:1 over white; default skin ~5.4:1). */
   --lock-label-alpha: 0.8;
   --lock-label-bg-alpha: 0.8;
-  --label-ink-bg: linear-gradient(135deg, #b5f0e8 0%, #8fe3d9 55%, #5ec8bd 100%);
+  --label-ink-bg: linear-gradient(135deg, var(--moonlight-bright) 0%, var(--moonlight) 55%, var(--moonlight-accent) 100%);
   --label-ink-glow: none;
 
   /* Lunar world. */

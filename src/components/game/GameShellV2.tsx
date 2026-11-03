@@ -1929,13 +1929,13 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         onClick={() => setDrawerSectionsOpen((open) => !open)}
                         aria-expanded={drawerSectionsOpen}
                         aria-controls="mobile-sections-panel"
-                        className="md:hidden flex w-9 shrink-0 flex-col items-center justify-center gap-3 border-l border-white/10 hover:bg-white/10 focus-visible:outline focus-visible:outline-1 focus-visible:outline-[#5ec8bd]"
+                        className="md:hidden flex w-9 shrink-0 flex-col items-center justify-center gap-3 border-l border-white/10 hover:bg-white/10 focus-visible:outline focus-visible:outline-1 focus-visible:outline-[#d9d1b4]"
                         style={{ color: "#e6ebf2" }}
                     >
                         <ChevronRight
                             aria-hidden="true"
                             className={cn("h-4 w-4 transition-transform", drawerSectionsOpen && "rotate-180")}
-                            style={{ color: "#5ec8bd" }}
+                            style={{ color: "#d9d1b4" }}
                         />
                         <span
                             style={{

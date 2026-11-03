@@ -67,7 +67,7 @@ const SKIN_OPTIONS: SkinOption[] = [
                 style={{
                     color: "#e6ebf2",
                     textShadow:
-                        "0 0 10px rgba(94,200,189,0.75), 0 0 3px rgba(230,235,242,0.85)",
+                        "0 0 10px rgba(240,228,190,0.75), 0 0 3px rgba(230,235,242,0.85)",
                 }}
             >
                 ☾

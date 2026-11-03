@@ -19,8 +19,9 @@ import { getPublishedModules, loadGuestWatched, loadWatched } from "@/lib/course
  * module of the two courses watched to the end (src/lib/coursePlayer.ts progress).
  */
 
-/** The two Academy courses, in the order the path shows them. */
-export const ACADEMY_COURSES = [CONSCIOUSNESS_MEETS_SCIENCE, ACTIVATE_YOUR_DORMANT_POTENTIAL] as const;
+/** The two Academy courses, in the order the path shows them
+ *  (Sasha, 2026-11-02: Activate Your Dormant Potential first, then Consciousness Meets Science). */
+export const ACADEMY_COURSES = [ACTIVATE_YOUR_DORMANT_POTENTIAL, CONSCIOUSNESS_MEETS_SCIENCE] as const;
 
 /** Object id of one course module: done once every published episode in it is watched. */
 export const courseModuleObjectId = (slug: string, moduleId: string) => `course:${slug}:${moduleId}`;

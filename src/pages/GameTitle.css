@@ -51,6 +51,8 @@
   transform-origin: 50% 30%; animation: gt-burns 30s ease-in-out infinite alternate;
 }
 @keyframes gt-burns { from { transform: scale(1); } to { transform: scale(1.06); } }
+/* The iridescent ray layer is Lunar-only (src/styles/lunar-world.css). */
+.gt-iris { display: none; }
 .gt-screen::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(to bottom, rgba(var(--scene-bg-rgb), 0) 58%, rgba(var(--scene-bg-rgb), 0.78) 78%, var(--gt-bg) 100%);
@@ -101,7 +103,7 @@
   position: absolute; left: 50%; bottom: 30px; transform: translateX(-50%); z-index: 1; margin: 0;
   font-family: var(--gt-mono); font-weight: 300; font-size: var(--vl-text-label); letter-spacing: 0.42em;
   color: var(--gt-ink-2); animation: gt-pulse 2.4s ease-in-out infinite; transition: opacity 0.8s ease;
-  /* Issue #270: it is a <button> now, so reset the chrome and keep a touch-sized target. */
+  /* Issue 270: it is a <button> now, so reset the chrome and keep a touch-sized target. */
   background: none; border: 0; padding: 0 16px; min-height: 44px; cursor: pointer; white-space: nowrap;
 }
 @keyframes gt-pulse { 0%, 100% { opacity: 0.15; } 50% { opacity: 0.8; } }

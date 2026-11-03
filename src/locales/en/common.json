@@ -3393,7 +3393,7 @@
     },
     "place": {
       "reception": {
-        "name": "Reception",
+        "name": "Portal",
         "line": "Welcome, guest. Discover your uniqueness.",
         "lineReturning": "Welcome back. Discover your uniqueness.",
         "alt": "A grand marble stair lined with lanterns and candles rises to a welcoming arched doorway glowing warm gold, a crystal dodecahedron shining above it in the night sky"
@@ -3500,7 +3500,7 @@
     },
     "module": {
       "find-top-talent": {
-        "eyebrow": "Reception · Step 1",
+        "eyebrow": "Portal · Step 1",
         "headline": "Discover your top talent",
         "silhouette": "A short test of what you do best. It ends with the talent that is yours, in your own colors.",
         "verb": "Find my top talent"
