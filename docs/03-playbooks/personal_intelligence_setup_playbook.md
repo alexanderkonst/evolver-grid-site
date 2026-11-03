@@ -81,6 +81,9 @@ Rule for the guide: one stage per sitting, finish its check, then move on. **Min
 - Point it at Stages 4 to 6: your canon (who you are, mission, operating principles, voice rules) lives in the repo so it outlives any one tool.
 - **Check:** ask a hard decision question; the answer leads with a recommendation, the reason and a confidence, not a list of options.
 
+- **Templates first** (Sasha, 2026-11-03): keep your repeatable forms as templates in one folder (ours: `docs/templates/`, indexed by `README.md`). Give the AI one custom skill that loads before any work product, routes the task to its template (a screen, an offer, an application, a session, a spec for a coding agent) and follows it without being told; put the same rule in the coding agent's instructions (`CLAUDE.md`). The AI names the template it used in its report, so you can see it fired. Cost: one short file read per task, a few thousand tokens, small next to the rework it saves.
+- **Check:** ask for a new offer without naming a template; the report names the template it followed.
+
 ### Stage 8. Your own Telegram and WhatsApp (30 min, needs a Mac)
 
 Why: browser sessions of Telegram Web and WhatsApp Web expire and keep asking for codes and QR scans. Running both on your own Mac as tools (MCP servers) keeps them signed in as you. *Being installed on Sasha's Mac on 2026-11-03; steps get corrected after the first full run.*
