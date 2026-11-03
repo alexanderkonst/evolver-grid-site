@@ -46,6 +46,7 @@ import { unseenKeys, useLeave } from "@/lib/motion";
 import { useSceneSrc } from "@/lib/sceneSrc";
 import { placeObjects, placeSoul, watchedCourseObjects } from "@/lib/placeColor";
 import IntroSequence from "@/components/game/IntroSequence";
+import MoonDial from "@/components/game/MoonDial";
 import "./Village.css";
 
 /**
@@ -472,6 +473,8 @@ const Village = () => {
             <p className="vl-mono">{tr(t, "village.eyebrow", "The Game of Being You")}</p>
             <h1>{tr(t, "village.title", "The Digital Village")}</h1>
             <p className="vl-mono vl-moonline">{villageSkyMood(sky.phase, t)}</p>
+            {/* Village-as-dashboard step 2: tonight in Equilibrium, the player's own lines. */}
+            <MoonDial className="vl-dial" />
           </header>
 
           {/* --vl-zx/--vl-zy: the place the map zooms toward when it fades out (WP-15). */}

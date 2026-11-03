@@ -46,6 +46,27 @@
     "backTitle": "← Заставка",
     "backVillage": "← Деревня",
     "medallionBack": "Назад в деревню",
+    "dial": {
+      "aria": "Лунный циферблат: эта ночь в Equilibrium",
+      "be": "БЫТЬ",
+      "do": "ДЕЛАТЬ",
+      "focus": "Фокус луны",
+      "doNow": "Сделать сейчас",
+      "notSet": "ещё не задан",
+      "nothingChosen": "ничего не выбрано",
+      "signIn": "Войди, чтобы видеть свой фокус луны и «сделать сейчас»",
+      "setUp": "Назови свой фокус луны в Equilibrium",
+      "phase": {
+        "Planning": "Замысел",
+        "Planting": "Посев",
+        "Clearing": "Очищение",
+        "Gathering": "Сбор",
+        "Seeing": "Видение",
+        "Leading": "Подготовка к урожаю",
+        "Harvesting": "Урожай",
+        "Celebrating": "Праздник"
+      }
+    },
     "nextMove": "Твой следующий шаг",
     "enter": "ВОЙТИ",
     "enterWord": "Войти",

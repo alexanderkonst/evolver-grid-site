@@ -100,6 +100,7 @@
   margin: 14px 0 0; color: var(--vl-ink); text-wrap: balance;
 }
 .vl-moonline { margin: 14px 0 0; text-transform: none; letter-spacing: 0.14em; font-size: var(--vl-text-small); color: var(--vl-ink-2); }
+.vl-dial { margin-top: clamp(18px, 3vh, 28px); }
 .vl-intro { opacity: 0; animation: vl-fade-in 1.6s ease-out 0.4s forwards; }
 @keyframes vl-fade-in { to { opacity: 1; } }
 
