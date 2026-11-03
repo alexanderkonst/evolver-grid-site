@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
@@ -22,6 +22,8 @@ import "./GameTitle.css";
 const HERO_SRC = "/game/hero_forest.webp";
 // The Telegram contact CTA now lives inside the room itself (InvestorRoom.tsx).
 const INVESTOR_HREF = "/investor";
+/** New Game · Load Game · Multiplayer · About (the cursor wraps over these). */
+const MENU_COUNT = 4;
 
 type MenuItem = {
   key: string;
@@ -270,9 +272,9 @@ const TitleScreen = () => {
   const items: MenuItem[] = [
     { key: "new", label: "New Game", hint: "Discover your Uniqueness", to: "/village/reception" },
     { key: "load", label: "Load Game", hint: "Continue your journey", to: loadTo },
-    { key: "tutorial", label: "Tutorial", hint: "Free course · Activate Your Dormant Potential", to: "/grow/activate-your-dormant-potential" },
     { key: "multi", label: "Multiplayer", hint: "Mastermind & co-creation", to: "/build/mastermind" },
-    { key: "about", label: "About", hint: "The story · Investor Room", to: "#about" },
+    // Sasha, 2026-11-02: ABOUT opens the Investor Room; TUTORIAL is gone from the menu.
+    { key: "about", label: "About", hint: "The story · Investor Room", to: INVESTOR_HREF },
   ];
 
   // Fonts + tab title, scoped to this page so index.html (and every other
@@ -310,7 +312,7 @@ const TitleScreen = () => {
   }, [reduceMotion]);
 
   const select = useCallback((i: number, focus = false) => {
-    const next = (i + 5) % 5;
+    const next = (i + MENU_COUNT) % MENU_COUNT;
     setActive(next);
     if (focus) linkRefs.current[next]?.focus({ preventScroll: true });
   }, []);
@@ -374,6 +376,12 @@ const TitleScreen = () => {
             alt="A vertical beam of light descends through a crystal dodecahedron over a moonlit mountain lake; four small crystal solids (tetrahedron, icosahedron, cube, octahedron) rest on the misty horizon, catching its spectrum"
             decoding="async"
             style={reduceMotion ? { animation: "none" } : undefined}
+          />
+          {/* Lunar: an iridescent shimmer in the crystal's own light rays (lunar-world.css). */}
+          <div
+            className="gt-iris"
+            aria-hidden="true"
+            style={{ "--gt-hero": `url(${heroSrc})`, ...(reduceMotion ? { animation: "none" } : {}) } as CSSProperties}
           />
           <div className="gt-screen__copy">
             <header className="gt-screen__head">

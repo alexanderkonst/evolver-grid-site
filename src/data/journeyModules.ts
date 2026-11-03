@@ -119,7 +119,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
   {
     id: "find-top-talent",
     place: "reception",
-    eyebrow: "Reception · Step 1",
+    eyebrow: "Portal · Step 1",
     headline: "Discover your top talent",
     silhouette: "A short test of what you do best. It ends with the talent that is yours, in your own colors.",
     verb: "Find my top talent",

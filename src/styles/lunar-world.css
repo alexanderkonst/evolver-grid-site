@@ -40,6 +40,43 @@
   filter: var(--scene-filter);
 }
 
+/* Title screen: the crystal's light rays shimmer iridescent (Sasha, 2026-11-02).
+   The scene stays greyscale; only its brightest light takes a soft opal spectrum.
+   How: the hero (same cover geometry as .gt-screen__img) is thresholded to its
+   highlights, multiplied by a conic spectrum centred on the crystal, then blended
+   as `color` (hue only, luminance kept), masked to the glow around the crystal
+   (image y 41%; the cover keeps it there on every aspect up to 16:9). */
+[data-skin="lunar"] .gt-iris {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  isolation: isolate;
+  mix-blend-mode: color;
+  opacity: 0.6;
+  transform-origin: 50% 30%;
+  animation: gt-burns 30s ease-in-out infinite alternate;
+  -webkit-mask-image: radial-gradient(ellipse 64vh 30vh at 50% 41%, #000 0%, rgba(0, 0, 0, 0.55) 45%, transparent 100%);
+  mask-image: radial-gradient(ellipse 64vh 30vh at 50% 41%, #000 0%, rgba(0, 0, 0, 0.55) 45%, transparent 100%);
+}
+[data-skin="lunar"] .gt-iris::before,
+[data-skin="lunar"] .gt-iris::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+[data-skin="lunar"] .gt-iris::before {
+  background: var(--gt-hero) 50% 30% / cover no-repeat;
+  filter: grayscale(1) brightness(0.78) contrast(2.4);
+}
+[data-skin="lunar"] .gt-iris::after {
+  background: conic-gradient(from 20deg at 50% 41%,
+    var(--vl-iris-1), var(--vl-iris-2), var(--vl-iris-3), var(--vl-iris-4), var(--vl-iris-5),
+    var(--vl-iris-1), var(--vl-iris-2), var(--vl-iris-3), var(--vl-iris-4), var(--vl-iris-5),
+    var(--vl-iris-1));
+  mix-blend-mode: multiply;
+}
+
 /* Halftone: decorative on every scene, denser on a closed place (below). The
    overlay never takes pointer events and never covers text (copy sits above). */
 [data-skin="lunar"] .gt-screen::before,
@@ -121,7 +158,7 @@
   mix-blend-mode: multiply;
   opacity: var(--place-shade);
 }
-/* next: open + a teal rim of light. */
+/* next: open + a moonlight rim of light. */
 [data-skin="lunar"] .vl-pin[data-place-state="next"]::before {
   background:
     radial-gradient(closest-side, transparent 58%, rgba(var(--accent-rgb), 0.34) 86%, transparent 100%),
@@ -167,7 +204,7 @@
   background: var(--open-accent);
   box-shadow: 0 0 10px 2px rgba(var(--accent-rgb), 0.8), 0 0 30px 8px rgba(var(--accent-rgb), 0.3);
 }
-/* next: the teal ring marker around the place (outline, not a fill). */
+/* next: the moonlight ring marker around the place (outline, not a fill). */
 [data-skin="lunar"] .vl-pin[data-place-state="next"] .vl-dot::after {
   width: 46px;
   height: 46px;
@@ -306,7 +343,7 @@
 
 /* ── 5. Mastermind (/build/mastermind) ───────────────────────────────────
    The divider emblem carries an inline gold glow (src/lib/landingDesign.tsx, shared by
-   other pages). On this page Lunar swaps it for its own moonlight teal. */
+   other pages). On this page Lunar swaps it for its own moonlight. */
 [data-skin="lunar"] #mastermind-page .ornament-spin {
   filter: drop-shadow(0 0 10px rgba(var(--accent-bright-rgb), 0.5)) drop-shadow(0 0 3px rgba(var(--accent-rgb), 0.7)) !important;
 }
