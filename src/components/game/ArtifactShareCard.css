@@ -1,0 +1,40 @@
+/*
+ * ArtifactShareCard: the one share-card frame (module form §12.5b). 4:5, fixed design width so
+ * the exported image is the same on every phone. Flat colours only: html2canvas cannot be
+ * trusted with gradients, filters or backdrop blur (see CardActions).
+ */
+.asc {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: min(340px, 100%);
+  aspect-ratio: 4 / 5;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0a162a;
+  color: #fdf6e3;
+  font-family: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  text-align: center;
+}
+.asc__scene { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; display: block; }
+/* a flat veil keeps the lines legible over the colour scene, without a gradient */
+.asc__veil { position: absolute; inset: 0; z-index: -1; background: rgba(10, 22, 42, 0.46); }
+.asc__body { display: flex; flex-direction: column; align-items: center; padding: 0 28px; }
+.asc__artifact { width: 46%; height: auto; display: block; }
+.asc__artifact-name {
+  margin: 14px 0 0; font-family: "IBM Plex Mono", ui-monospace, monospace; font-weight: 400;
+  font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: #f1d58a;
+}
+.asc__result {
+  margin: 16px 0 0; text-wrap: balance; overflow-wrap: anywhere;
+  font-weight: 500; font-size: 26px; line-height: 1.2; color: #fdf6e3;
+}
+.asc__game {
+  position: absolute; left: 0; right: 0; bottom: 18px; margin: 0;
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-weight: 300;
+  font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(253, 246, 227, 0.8);
+}

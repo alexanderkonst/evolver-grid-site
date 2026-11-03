@@ -4223,6 +4223,13 @@
     "toastYoureInTitle": "Estás dentro.",
     "toastCouldntOpenTitle": "No se pudo abrir tu perfil"
   },
+  "artifactCard": {
+    "share": "Compartir",
+    "save": "Guardar imagen",
+    "send": "Enviar",
+    "failed": "No se pudo crear la imagen. Inténtalo de nuevo.",
+    "description": "Tu artefacto en una tarjeta que puedes guardar o enviar."
+  },
   "cardActions": {
     "toast": {
       "captureFailed": "No se pudo capturar la tarjeta, elemento no encontrado",

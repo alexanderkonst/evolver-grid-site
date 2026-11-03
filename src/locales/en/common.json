@@ -4195,6 +4195,13 @@
     "saved": "Saved!",
     "saveToProfile": "Save to Profile"
   },
+  "artifactCard": {
+    "share": "Share",
+    "save": "Save image",
+    "send": "Send",
+    "failed": "Could not make the image. Try again.",
+    "description": "Your artifact on a card you can save or send."
+  },
   "cardActions": {
     "toast": {
       "captureFailed": "Couldn't capture card — element not found",

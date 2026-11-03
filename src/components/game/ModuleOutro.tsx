@@ -2,6 +2,7 @@ import { useEffect, useId, useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLeave } from "@/lib/motion";
 import LeaveParticle from "@/components/game/LeaveParticle";
+import ArtifactShareAction from "@/components/game/ArtifactShareAction";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
 import { useJourneyVictory } from "@/hooks/useJourneyVictory";
 import { useModuleChoice } from "@/hooks/useModuleChoice";
@@ -115,6 +116,9 @@ const ModuleOutro = ({ module, result, className }: Props) => {
           </p>
           <p className="mf__fact">{module.outro.opened}</p>
         </div>
+
+        {/* §12.5b: the module's artifact on a share card. Nothing renders for a module with no registry entry. */}
+        <ArtifactShareAction moduleId={module.id} resultLine={shown} />
 
         {showChoice && prompt && !decision.choice ? (
           <form className="mf__choice" onSubmit={decide} aria-describedby={choiceNote ? `${labelId}-choice-note` : undefined}>
