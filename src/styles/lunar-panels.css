@@ -26,12 +26,22 @@
    ========================================================================== */
 
 [data-skin="lunar"] {
+  /* The gradation, as solid colours (measured from the live shell at 1440px, then refined):
+       panel 1  #080b0f  rgb(8,11,15)    — unchanged
+       panel 2  ≈ rgb(11.5,17,25)       — was rgb(12,19,31): a step between 1 and 3, not bluer than both
+       panel 3  ≈ rgb(14,20.5,29)       — unchanged (the body's night gradient)
+     The texture layers need an opaque colour under them: overlay over a translucent colour
+     leaks the grey through and lifts the panel. */
+  --lunar-p1-solid: rgb(8, 11, 15);
+  --lunar-p2-solid: rgb(11, 16, 23);
+  --lunar-p2-glass: rgba(12, 18, 26, 0.5);
+
   /* Panel 2 tint: the navy wash SectionsPanel paints inline is replaced by a slate one
      (the only hue change: pane 2 read bluer than both of its neighbours). */
   --lunar-p2-tint: linear-gradient(170deg,
-    rgba(52, 64, 82, 0.30) 0%,
-    rgba(30, 40, 54, 0.20) 42%,
-    rgba(10, 15, 22, 0.40) 100%);
+    rgba(40, 52, 68, 0.20) 0%,
+    rgba(22, 30, 42, 0.10) 45%,
+    rgba(6, 9, 14, 0.24) 100%);
 
   /* Seam materials. */
   --seam-moon: 217, 209, 180;       /* #D9D1B4 moonlight accent */
@@ -46,7 +56,7 @@
 [data-skin="lunar"] .liquid-glass.h-dvh {
   background:
     url("/game/lunar-surface/moon-p1-imbrium.webp") center 30% / cover no-repeat,
-    var(--skin-panel-1-bg, rgba(7, 10, 15, 0.96)) !important;
+    var(--lunar-p1-solid) !important;
   background-blend-mode: overlay, normal !important;
   border-right: 0 !important;         /* the hinge carries the edge now */
 }
@@ -61,11 +71,16 @@
   border-right: 0 !important;
   background:
     url("/game/lunar-surface/moon-p2-tycho-clavius.webp") center 20% / cover no-repeat,
-    var(--skin-panel-2-bg, rgba(12, 17, 24, 0.95)) !important;
+    var(--lunar-p2-solid) !important;
   background-blend-mode: overlay, normal !important;
 }
 html[data-skin="lunar"] [data-sections-panel][style] {
+  background-color: var(--lunar-p2-glass) !important;
   background-image: var(--lunar-p2-tint) !important;
+  /* The glass's saturate(180%) backdrop was what turned pane 2 navy; the pane behind it is
+     solid now, so there is nothing to frost. */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* ── 1+2. Panel 3: lightest, the body's own night with Nectaris in it ─── */
