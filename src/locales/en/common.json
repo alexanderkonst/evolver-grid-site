@@ -3393,6 +3393,9 @@
     "backTitle": "← Title",
     "backTitleAria": "Back to title",
     "backVillage": "← Village",
+    "signal": {
+      "unfinished": "Unfinished"
+    },
     "medallionBack": "Back to village",
     "dial": {
       "aria": "Moon dial: tonight in Equilibrium",

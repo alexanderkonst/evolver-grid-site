@@ -527,3 +527,45 @@
   .vl-place__state:not([data-place-state="closed"]) .vl-place__img { transition: none; }
   .vl-object, .vl-object.is-earned { transition: none; animation: none; }
 }
+
+/* ── Window light = place state (village-as-dashboard step 3, Sasha 2026-11-03) ──────────────
+   Each building's windows carry a light laid over the map at its pin, from src/lib/placeLight.ts:
+   dark (closed) · quiet (open, nothing waiting) · lit (an unfinished step here) · bright (the next
+   move, live now, or new since the last visit). The warm light is the existing lit-window token
+   (--place-window-lit), the same light done/live places already show in Lunar. Never colour alone:
+   «Unfinished», «Next», «Live», «New» say it in words beside the building and in the list. */
+.vl-window {
+  position: absolute; left: 0; top: 0; pointer-events: none;
+  width: var(--vl-aura, clamp(90px, 10vw, 180px)); aspect-ratio: 1.5;
+  transform: translate(-50%, -54%); border-radius: 50%;
+  background: radial-gradient(closest-side,
+    rgba(var(--place-window-lit, 255, 214, 140), 0.62) 0%,
+    rgba(var(--place-window-lit, 255, 214, 140), 0.2) 42%,
+    rgba(var(--place-window-lit, 255, 214, 140), 0) 78%);
+  mix-blend-mode: screen; opacity: 0;
+  transition: opacity 1.4s var(--motion-ease, ease);
+}
+.vl-light--quiet .vl-window { opacity: 0.14; }
+.vl-light--lit .vl-window { opacity: 0.42; }
+.vl-light--bright .vl-window { opacity: 0.72; animation: vl-window-breathe 6s ease-in-out infinite alternate; }
+@keyframes vl-window-breathe { from { opacity: 0.58; } to { opacity: 0.8; } }
+.vl-pin .vl-window { z-index: 0; }
+.vl-pin__link .vl-signal, .vl-list .vl-signal {
+  position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: nowrap;
+  font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-micro); letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--vl-ink-2); padding: 4px 9px; background: rgba(var(--scene-bg-rgb), 0.5);
+  text-shadow: 0 0 10px rgba(var(--scene-shadow-rgb), 0.9);
+}
+.vl-signal::before { content: "\25D0\00a0"; color: rgb(var(--place-window-lit, 255, 214, 140)); } /* a half-lit circle */
+.vl-list .vl-signal { display: inline-block; margin: 6px 0 0; padding: 0; background: none; }
+/* Phone: the map shows dots only, so the dot itself carries the light. */
+@media (max-width: 767px) {
+  .vl-pin.vl-light--lit .vl-dot::before,
+  .vl-pin.vl-light--bright .vl-dot::before {
+    opacity: 1; box-shadow: 0 0 8px 2px rgba(var(--place-window-lit, 255, 214, 140), 0.7), 0 0 20px 6px rgba(var(--place-window-lit, 255, 214, 140), 0.25);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vl-window { transition: none; }
+  .vl-light--bright .vl-window { animation: none; }
+}
