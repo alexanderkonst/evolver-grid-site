@@ -12,7 +12,18 @@ import {
   type IntroFrame,
   type IntroPos,
 } from "@/data/introSequence";
-import { captionLayout, overlayPhase, playLength, slotTime, stillLayers, type CaptionLayout, type OverlayPhase } from "@/lib/introTimeline";
+import {
+  captionLayout,
+  coverRect,
+  overlayPhase,
+  playLength,
+  portalEase,
+  portalFrame,
+  slotTime,
+  stillLayers,
+  type CaptionLayout,
+  type OverlayPhase,
+} from "@/lib/introTimeline";
 import { markCinematicIntroSeen } from "@/lib/firstVisit";
 import { startIntroAmbience } from "@/lib/introAmbience";
 import { tr } from "@/lib/villageCopy";
@@ -37,6 +48,8 @@ type Props = {
   onDone: (how: "ended" | "skipped") => void;
   /** The live START GAME control to ignite over (cloned at its exact place and style). */
   anchorSelector: string;
+  /** The live Entry Portal scene image the last clip lands on (see `portal` in introSequence.ts). */
+  sceneSelector?: string;
 };
 
 type Mode = "video" | "still";
@@ -80,6 +93,22 @@ const probeClip = async (name: string): Promise<string | null> => {
   return null;
 };
 
+/** Fraction 0…1 from one object-position token ("10%", "center"…); px or unknown → centre. */
+const posFrac = (tok: string | undefined): number => {
+  if (!tok) return 0.5;
+  if (tok.endsWith("%")) return Math.min(1, Math.max(0, parseFloat(tok) / 100));
+  return tok === "left" || tok === "top" ? 0 : tok === "right" || tok === "bottom" ? 1 : 0.5;
+};
+
+/** Where the live scene image draws its picture on screen (object-fit: cover), or null. */
+const sceneRect = (selector: string) => {
+  const img = document.querySelector<HTMLImageElement>(selector);
+  if (!img || !img.naturalWidth) return null;
+  const r = img.getBoundingClientRect();
+  const [px, py] = getComputedStyle(img).objectPosition.split(/\s+/);
+  return coverRect({ x: r.left, y: r.top, w: r.width, h: r.height }, img.naturalWidth, img.naturalHeight, posFrac(px), posFrac(py));
+};
+
 /** A copy of the live control, with its computed look frozen inline, for the ignite. */
 const cloneControl = (el: HTMLElement): HTMLElement => {
   const copy = el.cloneNode(true) as HTMLElement;
@@ -109,7 +138,7 @@ const cloneControl = (el: HTMLElement): HTMLElement => {
   return copy;
 };
 
-const IntroSequence = ({ onDone, anchorSelector }: Props) => {
+const IntroSequence = ({ onDone, anchorSelector, sceneSelector = '[data-intro-anchor="scene"]' }: Props) => {
   const { t } = useTranslation();
   const reduce = useRef(prefersReducedMotion()).current;
   const rootRef = useRef<HTMLDivElement>(null);
@@ -353,6 +382,32 @@ const IntroSequence = ({ onDone, anchorSelector }: Props) => {
           void enter(st.clip + 1);
         }
       }
+
+      // The last clip lands on the live Entry Portal: its video box eases from covering the
+      // screen to lying exactly on the portal's picture (also while the layer dissolves).
+      vidRefs.forEach((r, i) => {
+        const v = r.current;
+        if (!v) return;
+        const c = st.clip >= 0 ? INTRO_CLIPS[st.clip] : undefined;
+        const scene = c?.portal && st.mode === "video" && i === st.slot ? sceneRect(sceneSelector) : null;
+        if (c?.portal && scene) {
+          const f = portalFrame(window.innerWidth, window.innerHeight, c.portal.gate, scene, portalEase(p.t, c.portal.settle));
+          v.dataset.portal = "1";
+          Object.assign(v.style, {
+            inset: "auto",
+            left: `${f.x}px`,
+            top: `${f.y}px`,
+            width: `${f.w}px`,
+            height: `${f.h}px`,
+            maxWidth: "none",
+            maxHeight: "none",
+            objectFit: "fill",
+          });
+        } else if (v.dataset.portal) {
+          delete v.dataset.portal;
+          for (const k of ["inset", "left", "top", "width", "height", "maxWidth", "maxHeight", "objectFit"] as const) v.style[k] = "";
+        }
+      });
 
       // Stills: the frames of the current clip, everything else hidden.
       const clipNow = INTRO_CLIPS[Math.max(0, st.clip)];

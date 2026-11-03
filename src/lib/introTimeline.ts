@@ -50,6 +50,40 @@ export const stillLayers = (c: IntroClip, t: number): { frame: IntroFrame; opaci
   ];
 };
 
+export type Box = { x: number; y: number; w: number; h: number };
+
+/** Where an image with object-fit: cover draws its picture inside `box` (object-position px, py as 0…1). */
+export const coverRect = (box: Box, natW: number, natH: number, px = 0.5, py = 0.5): Box => {
+  const s = Math.max(box.w / natW, box.h / natH);
+  const w = natW * s;
+  const h = natH * s;
+  return { x: box.x + (box.w - w) * px, y: box.y + (box.h - h) * py, w, h };
+};
+
+/**
+ * The box of the last clip's 16:9 frame on a vw×vh screen. k = 0: covering the screen, centred
+ * (as every clip plays). k = 1: its `gate` region lying exactly on `scene`, the rectangle where
+ * the live Entry Portal draws its picture. In between: eased linearly by the caller.
+ */
+export const portalFrame = (
+  vw: number,
+  vh: number,
+  gate: readonly [number, number, number, number],
+  scene: Box,
+  k: number,
+): Box => {
+  const cover = coverRect({ x: 0, y: 0, w: vw, h: vh }, INTRO_FRAME_RATIO, 1);
+  const w = scene.w / gate[2];
+  const h = scene.h / gate[3];
+  const target = { x: scene.x - gate[0] * w, y: scene.y - gate[1] * h, w, h };
+  const m = Math.min(1, Math.max(0, k));
+  const mix = (a: number, b: number) => a + (b - a) * m;
+  return { x: mix(cover.x, target.x), y: mix(cover.y, target.y), w: mix(cover.w, target.w), h: mix(cover.h, target.h) };
+};
+
+/** Eased 0→1 over `settle` seconds of the slot. */
+export const portalEase = (t: number, settle: number): number => smooth(t / Math.max(0.001, settle));
+
 export type CaptionLayout = {
   /** "frame": each caption under its element; "stack": one column under the crystal (portrait). */
   mode: "frame" | "stack";
