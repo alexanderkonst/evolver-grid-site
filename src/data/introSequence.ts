@@ -45,10 +45,20 @@ export type IntroClip = {
   from: IntroFrame;
   to: IntroFrame;
   dissolve?: [number, number];
+  /**
+   * The clip ends on the Entry Portal's own picture (the last clip). `gate` is where the
+   * portal's scene image sits inside the clip's 16:9 frame, as fractions [x, y, w, h]. While
+   * the clip plays, the video eases from covering the screen (`k` 0, the cut from the clip
+   * before) to lying exactly on the live portal scene (`k` 1 by `settle` s), so its last frame
+   * and the portal match pixel for pixel on every screen and the dissolve shows one picture.
+   */
+  portal?: { gate: [number, number, number, number]; settle: number };
 };
 
-// Draft clips (Veo 3.1 Lite, 2026-11-03): every file is 8 s as shot. V2b and V4c files are
-// cut to their first 4 s at transcode; the others reach their slot with `rate`.
+// Clips (2026-11-03): V1, V2a, V2b, V3a Veo 3.1 Lite; V3b, V3c, V4a, V4b, V4c Veo 3.1 Fast.
+// Every file is 8 s as shot; V2b is cut to its first 4 s at transcode, the others reach their
+// slot with `rate`. V4c is edited to 4 s (glow, a ~1.6 s colour drain to moonlight grey, then
+// the Entry Portal end frame, graded and framed from the live moon-theme portal scene).
 export const INTRO_CLIPS: IntroClip[] = [
   { name: "V1", length: 8, duration: 8, rate: 1, from: "f1-title", to: "f2-fifth", dissolve: [0.5, 3.0] },
   { name: "V2a", length: 6, duration: 6, rate: 4 / 3, from: "f2-fifth", to: "f3-village-wide", dissolve: [1.0, 5.0] },
@@ -58,8 +68,18 @@ export const INTRO_CLIPS: IntroClip[] = [
   { name: "V3c", length: 4, duration: 4, rate: 2, from: "f5-close-lit", to: "f6-close-golden", dissolve: [0.3, 3.4] },
   { name: "V4a", length: 4, duration: 4, rate: 2, from: "f6-close-golden", to: "f7-pavilion", dissolve: [0.5, 3.4] },
   { name: "V4b", length: 4, duration: 4, rate: 2, from: "f7-pavilion", to: "f8-entry-portal", dissolve: [0.4, 3.4] },
-  // V4c holds on its last frame (the end of the glow) while START GAME ignites and the layer dissolves.
-  { name: "V4c", length: 4, duration: 4, rate: 1, from: "f8-entry-portal", to: "f8-entry-portal" },
+  // V4c: the crystal glows, the colour drains to moonlight grey, and the clip ends on the live
+  // Entry Portal's picture (gate = the 1619×1080 scene inside the 1920×1080 frame) while START
+  // GAME ignites and the layer dissolves.
+  {
+    name: "V4c",
+    length: 4,
+    duration: 4,
+    rate: 1,
+    from: "f8-entry-portal",
+    to: "f8-entry-portal",
+    portal: { gate: [150 / 1920, 0, 1619 / 1920, 1], settle: 2.6 },
+  },
 ];
 
 /** A moment in the sequence: clip index + seconds into that clip. */

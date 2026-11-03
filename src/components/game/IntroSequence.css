@@ -38,6 +38,13 @@
 
 .intro-video { visibility: hidden; background: transparent; }
 .intro-video.is-on { visibility: visible; }
+/* Several skins hide every `video[playsinline]` / `video[autoplay][muted]` (the old Mux
+   background) and Techstars darkens it. The intro's clips are not that background: without
+   this, the moon theme (the default for new players) showed only the still frames. */
+[data-skin] .intro-root video.intro-video {
+  display: block !important;
+  filter: none !important;
+}
 
 /* ---------- Text: ignite (0.25 s, blur 6→0, moonlight glow flares and settles), fade ---------- */
 

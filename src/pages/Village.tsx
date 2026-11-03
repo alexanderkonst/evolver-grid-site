@@ -669,6 +669,7 @@ const Village = () => {
                 <>
                 <img
                   className="vl-place__img"
+                  data-intro-anchor="scene"
                   src={placeSrc}
                   alt={placeAlt(lastPlace, t)}
                   decoding="async"
