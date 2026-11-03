@@ -46,6 +46,27 @@
     "backTitle": "← Título",
     "backVillage": "← Aldea",
     "medallionBack": "Volver a la aldea",
+    "dial": {
+      "aria": "Dial lunar: esta noche en Equilibrium",
+      "be": "SER",
+      "do": "HACER",
+      "focus": "Foco lunar",
+      "doNow": "Hacer ahora",
+      "notSet": "aún sin definir",
+      "nothingChosen": "nada elegido",
+      "signIn": "Inicia sesión para ver tu foco lunar y qué hacer ahora",
+      "setUp": "Nombra tu foco lunar en Equilibrium",
+      "phase": {
+        "Planning": "Planificar",
+        "Planting": "Sembrar",
+        "Clearing": "Despejar",
+        "Gathering": "Recoger",
+        "Seeing": "Ver",
+        "Leading": "Preparar la cosecha",
+        "Harvesting": "Cosechar",
+        "Celebrating": "Celebrar"
+      }
+    },
     "nextMove": "Tu próximo paso",
     "enter": "ENTRAR",
     "enterWord": "Entrar",

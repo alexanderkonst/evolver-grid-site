@@ -3394,6 +3394,27 @@
     "backTitleAria": "Back to title",
     "backVillage": "← Village",
     "medallionBack": "Back to village",
+    "dial": {
+      "aria": "Moon dial: tonight in Equilibrium",
+      "be": "BE",
+      "do": "DO",
+      "focus": "Moon Focus",
+      "doNow": "Do now",
+      "notSet": "not set yet",
+      "nothingChosen": "nothing chosen",
+      "signIn": "Sign in to see your Moon Focus and Do now",
+      "setUp": "Name your Moon Focus in Equilibrium",
+      "phase": {
+        "Planning": "Planning",
+        "Planting": "Planting",
+        "Clearing": "Clearing",
+        "Gathering": "Gathering",
+        "Seeing": "Seeing",
+        "Leading": "Prep for Harvest",
+        "Harvesting": "Harvesting",
+        "Celebrating": "Celebrating"
+      }
+    },
     "nextMove": "Your next move",
     "enter": "ENTER",
     "enterWord": "Enter",

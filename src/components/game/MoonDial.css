@@ -1,0 +1,44 @@
+/* MoonDial (village-as-dashboard step 2). Village ink tokens + the moon accent #D9D1B4 and the
+   ochre hairline #96703A already used by the moon theme; no new palette. */
+.moon-dial {
+  --md-moon: 217, 209, 180;
+  --md-ochre: 150, 112, 58;
+  display: flex; align-items: center; gap: 16px;
+  max-width: 360px; margin: 0;
+  font-family: var(--vl-serif, "Cormorant Garamond", Georgia, serif);
+  color: var(--vl-ink, rgba(235, 238, 242, 0.92));
+  text-shadow: 0 1px 18px rgba(var(--scene-shadow-rgb, 0, 0, 0), 0.75);
+}
+.moon-dial__svg { width: 84px; height: 84px; flex: none; overflow: visible; }
+.moon-dial__sector { stroke-width: 0.6; transition: fill 0.8s ease, stroke 0.8s ease; }
+/* BE: a quiet filled sector (receive). DO: an open sector with an ochre hairline (act). */
+.moon-dial__sector--be { fill: rgba(var(--md-moon), 0.16); stroke: rgba(var(--md-moon), 0.28); }
+.moon-dial__sector--do { fill: rgba(var(--md-moon), 0.03); stroke: rgba(var(--md-ochre), 0.85); }
+.moon-dial__sector.is-now {
+  fill: rgba(var(--md-moon), 0.92); stroke: rgb(var(--md-moon));
+  filter: drop-shadow(0 0 3px rgba(var(--md-moon), 0.65));
+}
+.moon-dial__bedo {
+  font-family: var(--vl-mono, "IBM Plex Mono", ui-monospace, monospace); font-weight: 300;
+  font-size: 11px; letter-spacing: 0.18em; fill: rgb(var(--md-moon));
+}
+.moon-dial__copy { min-width: 0; }
+.moon-dial__phase {
+  margin: 0; font-family: var(--vl-mono, "IBM Plex Mono", ui-monospace, monospace); font-weight: 300;
+  font-size: var(--vl-text-label, 12px); letter-spacing: 0.24em; text-transform: uppercase; color: rgb(var(--md-moon));
+}
+.moon-dial__line { margin: 6px 0 0; font-size: var(--vl-text-small, 15px); line-height: 1.3; color: var(--vl-ink-2, rgba(235, 238, 242, 0.82)); }
+.moon-dial__label {
+  display: block; font-family: var(--vl-mono, "IBM Plex Mono", ui-monospace, monospace); font-weight: 300;
+  font-size: var(--vl-text-micro, 11px); letter-spacing: 0.2em; text-transform: uppercase; color: var(--vl-ink-3, rgba(235, 238, 242, 0.7));
+}
+.moon-dial__value {
+  display: block; font-style: italic; overflow: hidden; text-overflow: ellipsis;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+}
+.moon-dial__invite a {
+  font-style: italic; color: var(--vl-ink-2, rgba(235, 238, 242, 0.82));
+  border-bottom: 1px solid rgba(var(--md-ochre), 0.8); padding-bottom: 1px; transition: color 0.5s ease, border-color 0.5s ease;
+}
+.moon-dial__invite a:hover, .moon-dial__invite a:focus-visible { color: var(--vl-ink); border-color: rgb(var(--md-moon)); outline: none; }
+@media (prefers-reduced-motion: reduce) { .moon-dial__sector, .moon-dial__invite a { transition: none; } }
