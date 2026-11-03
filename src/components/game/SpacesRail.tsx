@@ -85,6 +85,7 @@ import latamPyramid from "@/assets/latam-impact-pyramid.png";
 // lockup is small enough horizontally to read on the 72px column.
 import planetirLogo from "@/assets/planetir-logo.png";
 import techstarsLogo from "@/assets/techstars-logo.png";
+import MoonMedallion from "@/components/game/MoonMedallion";
 
 /**
  * WP-4 (game_of_being_you.md §14.1.2, §14.6): the rail is the village map folded.
@@ -459,12 +460,42 @@ const SpacesRail = ({
                 absolute px, not rem — user browser font-size settings
                 (Sasha runs 24px root) inflated 3rem cells to 72px inside
                 the fixed 72px rail. */}
-            <div className={compact ? "p-[6px]" : "px-3 pt-2 pb-0"}>
+            {/* Village-as-dashboard step 1 (Sasha 2026-11-03): the logo's emblem is the moon
+                medallion, the way back to the village (MoonMedallion; M / Esc do the same).
+                Desktop: a moonstone ring laid exactly over the emblem printed in the lockup, so the
+                lockup itself is unchanged and its wordmark still leads home. Compact rail and the
+                phone drawer: the emblem itself, in the medallion. Partner skins keep their logos. */}
+            <div className={cn(compact ? "p-[6px]" : "px-3 pt-2 pb-0", isDefaultYouSkin && "relative")}>
+                {isDefaultYouSkin && compact ? (
+                    <div className="grid place-items-center w-[48px] h-[48px] mx-auto">
+                        <MoonMedallion size={42} side="right" />
+                    </div>
+                ) : null}
+                {isDefaultYouSkin && !compact ? (
+                    <div className="lg:hidden flex justify-center py-1">
+                        <MoonMedallion size={44} side="right" />
+                    </div>
+                ) : null}
+                {isDefaultYouSkin && !compact ? (
+                    <div className="hidden lg:flex absolute z-10 left-3 right-3 top-2 h-[104px] items-center justify-center pointer-events-none">
+                        <div className="relative w-[304px] shrink-0" style={{ aspectRatio: "856 / 641" }}>
+                            <MoonMedallion
+                                overlay
+                                size={82}
+                                side="right"
+                                className="pointer-events-auto"
+                                style={{ position: "absolute", left: "25.53%", top: "49.3%", transform: "translate(-50%, -50%)" }}
+                            />
+                        </div>
+                    </div>
+                ) : null}
+                {isDefaultYouSkin && compact ? null : (
                 <Link
                     to="/"
                     className={cn(
                         "block group transition-all hover:opacity-90",
-                        compact && "grid place-items-center w-[48px] h-[48px] mx-auto p-0"
+                        compact && "grid place-items-center w-[48px] h-[48px] mx-auto p-0",
+                        isDefaultYouSkin && !compact && "hidden lg:block"
                     )}
                     aria-label={t("spacesRail.homeAria", { brand: homeBrand, defaultValue: "{{brand}} home" })}
                 >
@@ -671,13 +702,8 @@ const SpacesRail = ({
                         />
                     ) : (
                         <>
-                            {/* Mobile: torus mark, slow rotation + breath. */}
-                            <img
-                                src={brandMark}
-                                alt="Find Your Top Talent"
-                                className="lg:hidden w-10 h-10 mx-auto object-contain"
-                                draggable={false}
-                            />
+                            {/* Mobile (phone drawer): the emblem is the moon medallion, rendered
+                                beside this link (above), so nothing here below lg. */}
                             {/* Desktop: optically cropped lockup. The source
                                 contains sparse peripheral pixels, so alpha trim
                                 alone leaves a 4:3 canvas with large dead zones.
@@ -707,6 +733,7 @@ const SpacesRail = ({
                         </>
                     )}
                 </Link>
+                )}
             </div>
 
             {/* V6 (Sasha 2026-05-19): horizontal hairline separating the

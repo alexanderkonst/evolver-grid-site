@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { isProductLandingRoute } from "@/lib/shellRoutes";
+import MoonMedallion from "@/components/game/MoonMedallion";
 // Day 48 (Sasha): the brand logo (orb + FIND YOUR TOP TALENT wordmark).
 // Same asset used by the SpacesRail and the top-right shell icon.
 import brandLogo from "@/assets/you-be-original-main-lockup.webp"; // Day 123 (Sasha 2026-07-13): main brand -> YOU be original
@@ -15,6 +16,17 @@ import brandLogo from "@/assets/you-be-original-main-lockup.webp"; // Day 123 (S
  */
 const SiteLogo = () => {
     const location = useLocation();
+
+    // Village-as-dashboard step 1 (Sasha 2026-11-03): in the village (map and every place)
+    // the logo is its emblem, the moon medallion, at the same top-centre spot; it leads back
+    // to the village map. The lockup stays everywhere else.
+    if (location.pathname === "/village" || location.pathname.startsWith("/village/")) {
+        return (
+            <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
+                <MoonMedallion size={44} side="bottom" />
+            </div>
+        );
+    }
 
     // Hide on pages whose layout already carries the brand elsewhere.
     const hidden = [

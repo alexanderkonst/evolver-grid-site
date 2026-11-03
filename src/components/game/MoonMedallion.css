@@ -1,0 +1,78 @@
+/* MoonMedallion: the logo's emblem in a round moonstone (village-as-dashboard step 1).
+   Moon accent #D9D1B4 (217 209 180), ochre hairline #96703A (150 112 58). No palette shift:
+   these are the two moon-theme colours already in use. */
+.moon-medallion {
+  --mm-moon: 217, 209, 180;
+  --mm-ochre: 150, 112, 58;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: var(--mm-size, 44px);
+  height: var(--mm-size, 44px);
+  border-radius: 50%;
+  /* moonstone: a milky disc, lit from the upper left, with a faint blue adularescence */
+  background:
+    radial-gradient(circle at 34% 28%, rgba(var(--mm-moon), 0.30) 0%, rgba(var(--mm-moon), 0.10) 38%, rgba(var(--mm-moon), 0) 62%),
+    radial-gradient(circle at 66% 76%, rgba(150, 178, 214, 0.14) 0%, rgba(150, 178, 214, 0) 55%),
+    radial-gradient(circle at 50% 50%, rgba(14, 18, 28, 0.72) 0%, rgba(8, 11, 18, 0.86) 100%);
+  border: 1px solid rgba(var(--mm-ochre), 0.95);
+  box-shadow:
+    inset 0 0 0 1px rgba(var(--mm-moon), 0.10),
+    inset 0 1px 6px rgba(var(--mm-moon), 0.16),
+    0 0 10px -2px rgba(var(--mm-moon), 0.22);
+  transition: box-shadow 0.45s ease, transform 0.45s ease, border-color 0.45s ease;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.moon-medallion__emblem {
+  width: 78%;
+  height: 78%;
+  object-fit: contain;
+  pointer-events: none;
+  /* the gold of the lockup, quietened toward moonlight so it sits in the moonstone */
+  filter: saturate(0.72) brightness(0.98) drop-shadow(0 0 3px rgba(var(--mm-moon), 0.28));
+  transition: filter 0.45s ease;
+}
+.moon-medallion:hover,
+.moon-medallion:focus-visible {
+  border-color: rgba(var(--mm-moon), 0.9);
+  box-shadow:
+    inset 0 0 0 1px rgba(var(--mm-moon), 0.18),
+    inset 0 1px 8px rgba(var(--mm-moon), 0.24),
+    0 0 14px 2px rgba(var(--mm-moon), 0.42),
+    0 0 32px 6px rgba(var(--mm-moon), 0.18);
+}
+.moon-medallion:hover .moon-medallion__emblem,
+.moon-medallion:focus-visible .moon-medallion__emblem {
+  filter: saturate(0.8) brightness(1.08) drop-shadow(0 0 6px rgba(var(--mm-moon), 0.55));
+}
+.moon-medallion:focus-visible {
+  outline: 1px solid rgb(var(--mm-moon));
+  outline-offset: 3px;
+}
+.moon-medallion:active { transform: scale(0.97); }
+
+/* Overlay: laid exactly over the emblem printed in a lockup image. The image shows the emblem;
+   the medallion adds the moonstone ring, the glow and the hit area. The disc stays clear so
+   the printed emblem reads through. */
+.moon-medallion--overlay {
+  background: radial-gradient(circle at 34% 28%, rgba(var(--mm-moon), 0.16) 0%, rgba(var(--mm-moon), 0) 58%);
+}
+
+.moon-medallion__tip {
+  font-family: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e9e4d2;
+  background: rgba(10, 13, 20, 0.94);
+  border: 1px solid rgba(150, 112, 58, 0.7);
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moon-medallion, .moon-medallion__emblem { transition: none; }
+  .moon-medallion:active { transform: none; }
+}
