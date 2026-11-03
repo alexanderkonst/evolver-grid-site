@@ -6,7 +6,7 @@ import { activePlaceKey, PANE_BY_PLACE, RAIL_PLACES, tourIdFor } from "../railPl
 describe("rail places", () => {
   it("is the village map: same places, same order, same names", () => {
     expect(RAIL_PLACES.map((p) => p.name)).toEqual([
-      "Portal",
+      "Entry Portal",
       "Home",
       "Quest Board",
       "Your AI",

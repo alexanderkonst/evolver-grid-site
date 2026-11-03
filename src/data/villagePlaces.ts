@@ -76,7 +76,7 @@ const TOP_TALENT_SAVED = "your top talent is saved to your account";
 export const VILLAGE_PLACES: VillagePlace[] = [
   {
     key: "reception",
-    name: "Portal",
+    name: "Entry Portal",
     line: "Welcome, guest. Discover your uniqueness.",
     lineReturning: "Welcome back. Discover your uniqueness.",
     to: "/zone-of-genius/entry",
