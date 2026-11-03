@@ -9,7 +9,7 @@
 - **What emerges:** a place a player can enter, do one real thing in, see what is now true about their life, and leave with the village brighter
 - **As a part of the whole:** each place as one breath of the whole: the game never adds anything artificial; it makes a real step legible, beautiful and playable
 - **Siblings / repeats:** [spec-handoff.md](./spec-handoff.md) (the before/after screen pair and the build gates); [session-script.md](./session-script.md) (the same arc live: promise → work → recognition); [testimonial-clips.md](./testimonial-clips.md) (voices in Outro notes); the stall auto-assembly (blueprint §14.12)
-- **Status · applied in · last reviewed:** in use · Journey modules J1–J12 (blueprint §14.5, WP-5, WP-19, WP-20) · 2026-10-27
+- **Status · applied in · last reviewed:** in use · Journey modules J1–J12 (blueprint §14.5, WP-5, WP-19, WP-20) · 2026-11-03 (§12 Landing and Final screen copy law)
 
 ---
 
@@ -22,10 +22,10 @@
 ## 3. The form
 | Part | What it is | Rules |
 |---|---|---|
-| **Intro** (`ModuleIntro`, the before-screen) | the promise | place scene; eyebrow + headline that state the result (= the module's Master Result); 1–2 line silhouette of what will happen; **one button whose label is the result as a verb** («Find my mission →», never «Continue»). Shown faded when the place is `closed`, with its line |
+| **Intro** (`ModuleIntro`, the before-screen; the **Landing screen** of §12) | the promise | place scene; eyebrow + headline that state the result (= the module's Master Result); **one button whose label is the result as a verb** («Find my mission →», never «Continue»). Shown faded when the place is `closed`, with its line. *Copy law since 2026-11-03: §12 (the 1–2 line silhouette is superseded: nothing explains the method).* |
 | **Passage** | the module as it is | unchanged inside; the form wraps, it doesn't rebuild |
 | **Result** | the artifact | the real thing the player now holds, in their own words |
-| **Outro** (`ModuleOutro`, the after-screen) | the confirmation, **a stable surface, never a toast** | celebration eyebrow («Done · Your mission is saved») · **the result itself, prominently** · where it lives (Your House) · **what it unlocks** (which place opened or brightened) · congratulations · **the rating** (§4) · **one real life choice** (§5) · the victory recorded · **one forward button: Back to the village**, where the next hint waits |
+| **Outro** (`ModuleOutro`, the after-screen; the **Final screen** of §12) | the confirmation, **a stable surface, never a toast** | celebration eyebrow («Done · Your mission is saved») · **the result itself, prominently** · where it lives (Your House) · **what it unlocks** (which place opened or brightened) · congratulations · **the rating** (§4) · **one real life choice** (§5) · the victory recorded · **one forward button: Back to the village**, where the next hint waits |
 | **Village hint** | the next Intro's promise | «Your House · Discover your mission — you'll know what is yours to do in the world.» |
 
 "A toast is not a transformative-result delivery. The after-screen IS the deliverable." (Transformative-Result Pattern, Sasha, 2026-05-22)
@@ -98,6 +98,51 @@ Any artifact a player sends out of the game uses this one form:
 
 Never on the card: level, scores, counts, metrics, prices. One builder function and one component carry the copy and the link, so no surface writes its own share text. Minimal: the same tokens as the Journey harmony pass, works in every skin, phone 390 first.
 
+
+## 12. Landing and Final screen: the copy law (Sasha, 2026-11-03)
+*Dictated by Sasha 2026-11-03 (chat), recorded close to his words; built on the Transformative-Result Pattern of the Integrated Product Building Workflow (`docs/03-playbooks/integrated_product_building_workflow.md`, 2026-05-22). Newest Sasha-confirmed telling: where §3 says more on the Intro's copy, this section wins.*
+
+### 12.1 Philosophy
+Every product and every module is **a transformational result**. The game is modular, and every module has three parts:
+1. **Landing screen**: names the result and offers it.
+2. **Process**: the person gets the transformational result.
+3. **Final screen**: names what they got, and why it matters.
+
+### 12.2 Landing screen
+| Element | Rule |
+|---|---|
+| **The result, named** | the screen says: you can get result X, and X itself is **named** (not described, not promised in general) |
+| **One main button** | names the result **in the player's voice**: «Find my top talent», «Find my mission». Never «Start», «Continue», «Begin» |
+| **Alternative path** (only if one exists) | **one small line under the button** leading to the same result another way. No comparison of the paths |
+| **Image** | one beautiful image that fits the module |
+| **Nothing else** | no explanation of the method, no «good news, AI makes it quick», no comparison of paths, no preamble, no question like «Which way?» |
+
+Check before shipping: cover everything but the headline and the button. Is anything left that the person must read to act? Remove it (the one small alternative line is the only exception).
+
+### 12.3 Process
+The person gets the transformational result. The form wraps the module; it does not rebuild it (§3, Passage).
+
+### 12.4 Final screen
+| Element | Rule |
+|---|---|
+| **The essence, named again** | the result the person got, named once more, prominently |
+| **Its significance, in ONE very compact line** | part of that significance: **this is the first time in their life** they have this result. Say it |
+
+The rest of the Outro (§3: where it lives, what it unlocks, the rating, the real choice, one button back) stays as it is; this section sets the headline block.
+
+### 12.5 Worked example: Entry Portal · Top Talent
+| Screen | Copy |
+|---|---|
+| **Landing** (the module's path screen) | Headline: **«Your top talent, named in one clear sentence.»** · Button: **«Find my top talent»** (the AI path) · Small line under the button: **«Just starting to talk with AI? Do the manual guided assessment instead →»** (the guided path, same result) · Image: one image fitting the Entry Portal (*proposal, awaiting Sasha; until then no image on this screen*) |
+| **Landing**, RU | «Твой главный талант — названный одной ясной фразой.» · «Найти мой главный талант» · «Только начинаешь общаться с ИИ? Пройди ручную пошаговую оценку →» |
+| **Landing**, ES | «Tu talento principal, nombrado en una frase clara.» · «Encontrar mi talento principal» · «¿Apenas empiezas a hablar con la IA? Haz la evaluación guiada manual →» |
+| **Final** (*proposal only, not applied: the Top Talent reveal screen is not changed without Sasha's yes to that exact change*) | «This is your top talent, named. Most people go their whole life without seeing it this clearly.» |
+
+Removed from the old path screen by this law: «Let's create your profile for matching.» · «Good news: AI makes it real quick.» · «We start with your top talent.» · «Which way?» · «More precise than the test, unless your AI barely knows you yet.»
+
+### 12.6 DoD (any module)
+Landing: result named · one button in the player's voice · at most one small alternative line · one fitting image · nothing else. Final: the essence named again · one compact line of significance that includes «first time in your life» (in the module's own words).
+
 ---
 
 ## Genealogy
@@ -112,3 +157,4 @@ Never on the card: level, scores, counts, metrics, prices. One builder function 
 | Game blueprint §14.3 *Lock rule*, §14.4 *Module form* | 2026-10-27 | Sasha (14:44, 15:08), written with Evolver | the four states and `placeState()`; unlock order; Intro → one button → result → Outro with its DoD |
 | Game blueprint §15.5, §15.8 *Real choice*, *Koster facet check* | 2026-10-27 | Evolver, from game-design lineages, accepted into the blueprint | the real life choice at every Outro; the seven-question check before any new place |
 | PST 81 *The Specificity Loop* | 2026-04-25 | Sasha's funnel discovery, AI-codified | the recognition form after a rating (joined to the Outro in this synthesis) |
+| Sasha's dictation, Landing and Final screen | 2026-11-03 | Sasha (chat) | §12: every module = a transformational result; Landing names the result, one button in the player's voice, one small alternative line, an image, nothing else; Final names the essence again + one compact line of significance, «first time in your life»; Entry Portal worked example |
