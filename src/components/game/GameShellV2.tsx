@@ -1613,6 +1613,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     toggle's visual register. */}
                 <button
                     onClick={toggleRailMinimize}
+                    data-seam="rail"
                     className={cn(
                         "h-dvh w-5 flex items-center justify-center transition-all duration-200 hover:bg-white/10 relative z-30 group",
                         "focus-visible:outline focus-visible:outline-1 focus-visible:outline-[color:var(--skin-rail-toggle-accent,rgba(244,212,114,0.6))]",
@@ -1754,6 +1755,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                        one control language. */
                     <button
                         onClick={toggleSectionsPanel}
+                        data-seam="sections"
                         className={cn(
                             "h-dvh w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative z-30 group",
                             "focus-visible:outline focus-visible:outline-1 focus-visible:outline-[color:var(--skin-rail-toggle-accent,rgba(244,212,114,0.6))]",
@@ -1795,6 +1797,12 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     the wrapper at top:0 so fixed bg videos reach the top
                     edge as intended. */}
                 <main
+                    // Lunar panels (design/moon-panels): hook for the desktop content scale in
+                    // src/styles/lunar-panels.css. "fit" only on the routes whose content sits on
+                    // the shell's own surface. The Entry Portal (/zone-of-genius/entry) is exempt:
+                    // scaled, its hero reaches the bottom of a 1440x900 screen.
+                    data-pane="3"
+                    data-pane-fit={(pageOwnsBackground || isImmersiveDarkRoute || location.pathname.replace(/\/+$/, "") === "/zone-of-genius/entry") ? undefined : "true"}
                     // Day 51 night: `overflow-auto` was historically dropped
                     // here so non-/ai-os routes (e.g. /playbook) can use
                     // document-scroll sticky.
@@ -1933,6 +1941,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         onClick={() => setDrawerSectionsOpen((open) => !open)}
                         aria-expanded={drawerSectionsOpen}
                         aria-controls="mobile-sections-panel"
+                        data-seam="drawer"
                         className="md:hidden flex w-9 shrink-0 flex-col items-center justify-center gap-3 border-l border-white/10 hover:bg-white/10 focus-visible:outline focus-visible:outline-1 focus-visible:outline-[#d9d1b4]"
                         style={{ color: "#e6ebf2" }}
                     >
