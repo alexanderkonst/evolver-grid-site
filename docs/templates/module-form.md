@@ -143,8 +143,11 @@ Removed from the old path screen by this law: «Let's create your profile for ma
 ### 12.5a The colouring mechanic (Sasha, 2026-11-03: «он раскрашивает игру как раскраску»)
 The Landing image is shown **in greyscale**. When the person gets the result, the **same image comes to full colour** on the Final screen, with the **artifact** they earned and the next step. Module by module the player colours their own reality: value, an artifact and beauty arrive in one moment. Top Talent: the courtyard image (`public/images/modules/top-talent-courtyard.webp`) greyscale on Landing, in colour on the reveal; first artifact = the pointed Star of Uniqueness, which appears in the player's House (issue #313). The artifact is in-game, not on-chain.
 
+### 12.5b One module, one artifact, one share card (Sasha, 2026-11-03: «на каждый модуль свой артефакт и своя карточка»)
+Every module carries three things: a **transformational promise** (Landing), a **transformational process** (the steps), a **transformational artifact** (Final). The artifact is unique to the module and unique to the player's result, and it lives on a **share card** (micro-template §11): the coloured scene + the artifact + the player's one line. Same card frame in every module, different artifact. This is the third leg of the cult ritual: the ritual is the same in every module, it cannot be bought, only lived, and **it is visible to others**. Artifacts come from Sasha's existing artifact library and are assigned module by module; a module without an assigned artifact is not finished. In-game, not on-chain.
+
 ### 12.6 DoD (any module)
-Landing: result named · one button in the player's voice · at most one small alternative line · one fitting image · nothing else. Final: the essence named again · one compact line of significance that includes «first time in your life» (in the module's own words).
+Landing: result named · one button in the player's voice · at most one small alternative line · one fitting image · nothing else. Final: the essence named again · one compact line of significance that includes «first time in your life» (in the module's own words). Artifact + share card assigned (§12.5b).
 
 ---
 
