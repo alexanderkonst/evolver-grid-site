@@ -2618,7 +2618,7 @@
      night      #090d13 → #0e141c → #121b26   (sky shifts toward #2c4560)
      silver ink #e6ebf2 (rgb 230,235,242), silver line #c8d2de (200,210,222)
      moonlight  #d9d1b4 accent, #e9e4cf bright, #cfc29a deep (borders),
-                glow rgb 240,228,190 — grey with a slight warm ochre, the
+                glow rgb 236,230,208 — grey with a slight warm ochre, the
                 colour of the full moon (Sasha, 2026-11-02: replaces teal)
    ─────────────────────────────────────────────────────────────────── */
 
@@ -2633,7 +2633,7 @@
   --moonlight-accent-rgb: 217, 209, 180;
   --moonlight-deep: #cfc29a;
   --moonlight-deep-rgb: 207, 194, 154;
-  --moonlight-glow-rgb: 240, 228, 190;
+  --moonlight-glow-rgb: 236, 230, 208;
 
   /* ── Text — cool silver on slate night. */
   --skin-text-primary: #eef2f7;
