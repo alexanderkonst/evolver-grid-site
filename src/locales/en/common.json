@@ -1,4 +1,40 @@
 {
+  "intro": {
+    "aria": "Intro",
+    "fifth": "You are the fifth element.",
+    "village": "You land in a village.",
+    "startGame": "START GAME",
+    "skip": "Skip",
+    "skipAria": "Skip intro",
+    "replay": "Replay intro",
+    "elements": {
+      "body": {
+        "name": "Body",
+        "element": "Earth",
+        "line": "Vitality and foundation"
+      },
+      "emotions": {
+        "name": "Emotions",
+        "element": "Water",
+        "line": "Mastery of inner weather"
+      },
+      "uniqueness": {
+        "name": "Uniqueness",
+        "element": "Aether",
+        "line": "Your unique gift, refracted into the world"
+      },
+      "mind": {
+        "name": "Mind",
+        "element": "Air",
+        "line": "Clarity and perception"
+      },
+      "spirit": {
+        "name": "Spirit",
+        "element": "Fire",
+        "line": "The fire that moves you"
+      }
+    }
+  },
   "villagePlaces": {
     "workshop": {
       "title": "Workshop",
@@ -116,7 +152,7 @@
     "matchPreambleLine3": "We start with your top talent.",
     "revealQuestion": "Which way?",
     "cardFasterTitle": "Faster (1 min)",
-    "cardFasterSubtitle": "A short conversation with your AI, about 5 minutes.",
+    "cardFasterSubtitle": "More precise than the test, unless your AI barely knows you yet.",
     "cardGuidedTitle": "Guided (10–15 min)",
     "cardGuidedSubtitle": "Take the full assessment.",
     "choiceHeading": "Find your top talent in about a minute",
@@ -3357,6 +3393,31 @@
     "backTitle": "← Title",
     "backTitleAria": "Back to title",
     "backVillage": "← Village",
+    "signal": {
+      "unfinished": "Unfinished"
+    },
+    "medallionBack": "Back to village",
+    "dial": {
+      "aria": "Moon dial: tonight in Equilibrium",
+      "be": "BE",
+      "do": "DO",
+      "focus": "Moon Focus",
+      "doNow": "Do now",
+      "notSet": "not set yet",
+      "nothingChosen": "nothing chosen",
+      "signIn": "Sign in to see your Moon Focus and Do now",
+      "setUp": "Name your Moon Focus in Equilibrium",
+      "phase": {
+        "Planning": "Planning",
+        "Planting": "Planting",
+        "Clearing": "Clearing",
+        "Gathering": "Gathering",
+        "Seeing": "Seeing",
+        "Leading": "Prep for Harvest",
+        "Harvesting": "Harvesting",
+        "Celebrating": "Celebrating"
+      }
+    },
     "nextMove": "Your next move",
     "enter": "ENTER",
     "enterWord": "Enter",
@@ -3393,7 +3454,7 @@
     },
     "place": {
       "reception": {
-        "name": "Reception",
+        "name": "Entry Portal",
         "line": "Welcome, guest. Discover your uniqueness.",
         "lineReturning": "Welcome back. Discover your uniqueness.",
         "alt": "A grand marble stair lined with lanterns and candles rises to a welcoming arched doorway glowing warm gold, a crystal dodecahedron shining above it in the night sky"
@@ -3500,7 +3561,7 @@
     },
     "module": {
       "find-top-talent": {
-        "eyebrow": "Reception · Step 1",
+        "eyebrow": "Entry Portal · Step 1",
         "headline": "Discover your top talent",
         "silhouette": "A short test of what you do best. It ends with the talent that is yours, in your own colors.",
         "verb": "Find my top talent"
@@ -3625,7 +3686,8 @@
     "lockedLabel": "{{space}}, locked",
     "lockedHeader": "{{space}} · Locked",
     "themeToggleToDaoAria": "Switch to black-and-white theme",
-    "themeToggleToDaoTitle": "Switch to The Dao, the black-and-white theme"
+    "themeToggleToDaoTitle": "Switch to The Dao, the black-and-white theme",
+    "themeToggleToLunarTitle": "Switch to Lunar, the moonlit theme"
   },
   "authLinkError": {
     "expiredTitle": "This link expired",

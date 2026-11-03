@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { FONTS_HREF } from "@/lib/gameFonts";
@@ -45,6 +45,9 @@ import { LunarPaths, LunarWorldSync } from "@/components/skin/LunarWorld";
 import { unseenKeys, useLeave } from "@/lib/motion";
 import { useSceneSrc } from "@/lib/sceneSrc";
 import { placeObjects, placeSoul, watchedCourseObjects } from "@/lib/placeColor";
+import IntroSequence from "@/components/game/IntroSequence";
+import MoonDial from "@/components/game/MoonDial";
+import { placeLight, placeSignalKey, type PlaceLight } from "@/lib/placeLight";
 import "./Village.css";
 
 /**
@@ -304,6 +307,24 @@ const Village = () => {
   const sky = useVillageSky();
   const place = getVillagePlace(placeKey);
   const navigate = useNavigate();
+  const location = useLocation();
+  // Intro v2: NEW GAME arrives here with `state.intro`; the cinematic plays over the Entry
+  // Portal and ends on it, START GAME already in place (src/components/game/IntroSequence.tsx).
+  const introState = (location.state ?? null) as { intro?: boolean; startGame?: boolean } | null;
+  const [introOn, setIntroOn] = useState(() => placeKey === "reception" && !!introState?.intro);
+  const startGame = placeKey === "reception" && !!(introState?.intro || introState?.startGame);
+  const endIntro = useCallback(() => {
+    setIntroOn(false);
+    // Back/refresh must not replay it; the button keeps its START GAME. The history entry is
+    // rewritten in place: a router navigate here would be a new location, and the app-wide
+    // PageTransition would fade the Entry Portal out and in again right after the dissolve.
+    try {
+      const prev = (window.history.state ?? {}) as Record<string, unknown>;
+      window.history.replaceState({ ...prev, usr: { startGame: true } }, "");
+    } catch {
+      /* history unavailable: a refresh may replay the intro, nothing breaks */
+    }
+  }, []);
   const mobile = useIsMobile();
   const signedIn = useSignedIn();
   const sheet = useCharacterSheet();
@@ -336,6 +357,16 @@ const Village = () => {
     VILLAGE_PLACES.filter((_, i) => states[i] === "done" || states[i] === "live").map((p) => p.key),
   );
   const isRevealed = (p: VillagePlace) => colorFresh.includes(p.key);
+  // Window light = place state (village-as-dashboard step 3): brighter where the place holds
+  // something for the player now, dark where it is locked. Until the save loads, every place
+  // waits at «quiet» so nothing flashes.
+  const lights: PlaceLight[] = VILLAGE_PLACES.map((p, i) =>
+    ready ? placeLight(p, states[i], save, { isNew: isNew(p), houseLit: isLit(p) }) : "quiet",
+  );
+  const signal = (i: number) =>
+    placeSignalKey(lights[i], shown[i]) === "unfinished" ? (
+      <span className="ps-tag vl-signal">{tr(t, "village.signal.unfinished", "Unfinished")}</span>
+    ) : null;
   // ENTER: the scene pushes in and the screen fades, then the route changes.
   const { leaving, leave } = useLeave("base");
   const [active, setActive] = useState<number | null>(null);
@@ -460,6 +491,8 @@ const Village = () => {
             <p className="vl-mono">{tr(t, "village.eyebrow", "The Game of Being You")}</p>
             <h1>{tr(t, "village.title", "The Digital Village")}</h1>
             <p className="vl-mono vl-moonline">{villageSkyMood(sky.phase, t)}</p>
+            {/* Village-as-dashboard step 2: tonight in Equilibrium, the player's own lines. */}
+            <MoonDial className="vl-dial" />
           </header>
 
           {/* --vl-zx/--vl-zy: the place the map zooms toward when it fades out (WP-15). */}
@@ -486,12 +519,15 @@ const Village = () => {
                       left: `${p.x}%`,
                       top: `${p.y}%`,
                       "--vl-d": `${-i * 0.55}s`,
+                      "--vl-ly": `${p.labelDy ?? 0}px`,
                     } as CSSProperties;
-                    const cls = `vl-pin${p.side === "left" ? " vl-pin--left" : ""}${i === active ? " is-active" : ""}${isNew(p) ? " is-new" : ""}${isRevealed(p) ? " is-reveal" : ""}${isLit(p) ? " is-lit" : ""}`;
+                    const cls = `vl-pin${p.side === "left" ? " vl-pin--left" : ""}${i === active ? " is-active" : ""}${isNew(p) ? " is-new" : ""}${isRevealed(p) ? " is-reveal" : ""}${isLit(p) ? " is-lit" : ""} vl-light--${lights[i]}`;
                     return (
                       // Issue #270: a closed pin is aria-disabled (PlaceState's default) and goes nowhere:
                       // no dead arch. It still takes hover and focus, so its «Opens when…» line shows below.
                       <PlaceState key={p.key} as="li" state={shown[i]} className={cls} style={style} tag={false}>
+                        {/* The building's windows: how much light this place has for the player now. */}
+                        <span className="vl-window" aria-hidden="true" />
                         {mobile ? (
                           // Mobile: the list below is the menu; dots only mark the buildings.
                           <span className="vl-pin__link" aria-hidden="true">
@@ -526,6 +562,7 @@ const Village = () => {
                             <span className="vl-dot ps-fade" aria-hidden="true" />
                             <span className="vl-pin__name">{placeName(p, t)}</span>
                             <PlaceStateTag state={shown[i]} />
+                            {signal(i)}
                             {isNew(p) ? <NewTag /> : null}
                             {isLit(p) ? <span className="vl-lit-word">{tr(t, "village.lit", "Lit")}</span> : null}
                           </Link>
@@ -593,7 +630,7 @@ const Village = () => {
           <nav className="vl-list" aria-label={tr(t, "village.placesNav", "Places")}>
             <ul>
               {VILLAGE_PLACES.map((p, i) => (
-                <PlaceState key={p.key} as="li" state={shown[i]} className={`${isNew(p) ? "is-new" : ""} ${isRevealed(p) ? "is-reveal" : ""} ${isLit(p) ? "is-lit" : ""}`.trim().replace(/\s+/g, " ") || undefined} tag={false}>
+                <PlaceState key={p.key} as="li" state={shown[i]} className={`vl-light--${lights[i]} ${isNew(p) ? "is-new" : ""} ${isRevealed(p) ? "is-reveal" : ""} ${isLit(p) ? "is-lit" : ""}`.trim().replace(/\s+/g, " ") || undefined} tag={false}>
                   {shown[i] === "closed" ? (
                     // Issue #270: closed means aria-disabled and no navigation; the line says what opens it.
                     <a role="link" aria-disabled="true" tabIndex={0} className="is-locked">
@@ -605,6 +642,7 @@ const Village = () => {
                     <Link to={pinTo(p)}>
                       <span className="vl-list__name">{placeName(p, t)}</span>
                       <PlaceStateTag state={shown[i]} />
+                      {signal(i)}
                       {isNew(p) ? <NewTag /> : null}
                       {isLit(p) ? <span className="vl-lit-word">{tr(t, "village.lit", "Lit")}</span> : null}
                       <span className="vl-list__line">{placeLine(p, shown[i], t, signedIn === true)}</span>
@@ -659,10 +697,15 @@ const Village = () => {
                   ref={enterRef}
                   className={`vl-enter${lastPending ? " is-pending" : ""}`}
                   to={lastPlace.to}
-                  aria-label={t("village.enterPlace", { place: placeName(lastPlace, t), defaultValue: "Enter {{place}}" })}
+                  aria-label={
+                    startGame && lastPlace.key === "reception"
+                      ? tr(t, "intro.startGame", "START GAME")
+                      : t("village.enterPlace", { place: placeName(lastPlace, t), defaultValue: "Enter {{place}}" })
+                  }
+                  data-intro-anchor={lastPlace.key === "reception" ? "start" : undefined}
                   onClick={(e) => leave(() => navigate(lastPlace.to), e)}
                 >
-                  {tr(t, "village.enter", "ENTER")}
+                  {startGame && lastPlace.key === "reception" ? tr(t, "intro.startGame", "START GAME") : tr(t, "village.enter", "ENTER")}
                 </Link>
               }
               after={
@@ -701,6 +744,7 @@ const Village = () => {
           </section>
         )}
       </main>
+      {introOn ? <IntroSequence anchorSelector='[data-intro-anchor="start"]' onDone={endIntro} /> : null}
     </div>
   );
 };

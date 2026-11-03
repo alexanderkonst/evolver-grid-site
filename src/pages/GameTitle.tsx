@@ -1,11 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { FONTS_HREF } from "@/lib/gameFonts";
-import { NEW_GAME_PATH, readGuestTalentName, shouldShowWelcomeBack, shouldShowWordlessIntro } from "@/lib/firstVisit";
+import { hasSeenCinematicIntro, readGuestTalentName, shouldShowWelcomeBack } from "@/lib/firstVisit";
 import { tr } from "@/lib/villageCopy";
-import WordlessIntro from "@/components/game/WordlessIntro";
 import { journeyStepRows } from "@/lib/journeyLabels";
 import { useSceneSrc } from "@/lib/sceneSrc";
 import "./GameTitle.css";
@@ -22,6 +21,8 @@ import "./GameTitle.css";
 const HERO_SRC = "/game/hero_forest.webp";
 // The Telegram contact CTA now lives inside the room itself (InvestorRoom.tsx).
 const INVESTOR_HREF = "/investor";
+/** New Game · Load Game · Multiplayer · About (the cursor wraps over these). */
+const MENU_COUNT = 4;
 
 type MenuItem = {
   key: string;
@@ -266,13 +267,15 @@ const TitleScreen = () => {
   // A guest who kept a result on this device is welcomed back instead of meeting the cold menu.
   const [talent] = useState(() => (shouldShowWelcomeBack() ? readGuestTalentName() : null));
   const continueRef = useRef<HTMLAnchorElement>(null);
+  // Intro v2: the first NEW GAME on this browser plays the cinematic on its way to the Entry Portal.
+  const [playIntro] = useState(() => !hasSeenCinematicIntro());
 
   const items: MenuItem[] = [
-    { key: "new", label: "New Game", hint: "Discover your Uniqueness", to: NEW_GAME_PATH },
+    { key: "new", label: "New Game", hint: "Discover your Uniqueness", to: "/village/reception" },
     { key: "load", label: "Load Game", hint: "Continue your journey", to: loadTo },
-    { key: "tutorial", label: "Tutorial", hint: "Free course · Activate Your Dormant Potential", to: "/grow/activate-your-dormant-potential" },
     { key: "multi", label: "Multiplayer", hint: "Mastermind & co-creation", to: "/build/mastermind" },
-    { key: "about", label: "About", hint: "The story · Investor Room", to: "#about" },
+    // Sasha, 2026-11-02: ABOUT opens the Investor Room; TUTORIAL is gone from the menu.
+    { key: "about", label: "About", hint: "The story · Investor Room", to: INVESTOR_HREF },
   ];
 
   // Fonts + tab title, scoped to this page so index.html (and every other
@@ -289,6 +292,20 @@ const TitleScreen = () => {
       document.title = prevTitle;
     };
   }, []);
+
+  // The intro's first frames, warm before NEW GAME so the cut from the title has no gap.
+  useEffect(() => {
+    if (!playIntro) return;
+    const links = ["/game/intro/frames/f1-title.webp", "/game/intro/frames/f2-fifth.webp"].map((href) => {
+      const l = document.createElement("link");
+      l.rel = "preload";
+      l.as = "image";
+      l.href = href;
+      document.head.appendChild(l);
+      return l;
+    });
+    return () => links.forEach((l) => l.remove());
+  }, [playIntro]);
 
   useEffect(() => {
     let cancelled = false;
@@ -310,7 +327,7 @@ const TitleScreen = () => {
   }, [reduceMotion]);
 
   const select = useCallback((i: number, focus = false) => {
-    const next = (i + 5) % 5;
+    const next = (i + MENU_COUNT) % MENU_COUNT;
     setActive(next);
     if (focus) linkRefs.current[next]?.focus({ preventScroll: true });
   }, []);
@@ -375,6 +392,12 @@ const TitleScreen = () => {
             decoding="async"
             style={reduceMotion ? { animation: "none" } : undefined}
           />
+          {/* Lunar: an iridescent shimmer in the crystal's own light rays (lunar-world.css). */}
+          <div
+            className="gt-iris"
+            aria-hidden="true"
+            style={{ "--gt-hero": `url(${heroSrc})`, ...(reduceMotion ? { animation: "none" } : {}) } as CSSProperties}
+          />
           <div className="gt-screen__copy">
             <header className="gt-screen__head">
             <h1>The Game of Being&nbsp;You</h1>
@@ -429,7 +452,7 @@ const TitleScreen = () => {
                           {inner}
                         </a>
                       ) : (
-                        <Link {...common} to={item.to}>
+                        <Link {...common} to={item.to} state={item.key === "new" && playIntro ? { intro: true } : undefined}>
                           {inner}
                         </Link>
                       )}
@@ -536,19 +559,22 @@ const TitleScreen = () => {
       </main>
       <footer className="gt-foot">
         <p className="gt-mono">© 2026 FindYourTopTalent</p>
+        {/* Intro v2: after one view NEW GAME goes straight in; this plays it again. */}
+        <p className="gt-mono">
+          <Link className="gt-replay" to="/village/reception" state={{ intro: true }}>
+            {tr(t, "intro.replay", "Replay intro")}
+          </Link>
+        </p>
       </footer>
     </div>
   );
 };
 
 /**
- * The homepage. A fresh browser gets the wordless first minute (WP-18) before the
- * title menu; returning, signed-in and skipped players see the menu as before.
+ * The homepage: the title menu. Intro v2 (Sasha, 2026-11-02) moved the intro behind NEW GAME:
+ * the cinematic plays on the way to the Entry Portal (src/components/game/IntroSequence.tsx),
+ * so the wordless first minute (WP-18, WordlessIntro) no longer opens the homepage.
  */
-const GameTitle = () => {
-  const [intro, setIntro] = useState(shouldShowWordlessIntro);
-  const endIntro = useCallback(() => setIntro(false), []);
-  return intro ? <WordlessIntro onSkip={endIntro} /> : <TitleScreen />;
-};
+const GameTitle = () => <TitleScreen />;
 
 export default GameTitle;

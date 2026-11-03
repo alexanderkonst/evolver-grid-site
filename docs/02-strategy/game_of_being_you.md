@@ -1192,3 +1192,157 @@ A journal in Your House, dictated through Your AI, with deep prompts. Possibly t
 
 ### 21.8 Next
 Game-design session Sasha × Hark (next session): the quest sequence and its artifacts, what a village unlocks, what the world map shows on day one (San Pancho + one more real village).
+
+## 22. Strategy 2026-11-02: the reveal-activation loop and the living village
+
+*Sasha, 2026-11-02 00:04 MST, reacting to Hark's 15-point list of the game's main aspects: «PLEASE DOCUMENT!!! This is our strategy coming together.»* Decisions below are his, in clean English. His leanings are marked **leaning**; undecided items are marked **OPEN**. This section extends §13 (game design), §16 (San Pancho), §18 (Your AI) and §21 (the World layer); it does not replace them except where noted.
+
+### 22.1 The game is the product (reaffirmed)
+Not a funnel. Quests and boss fights are real-life accomplishments on the hero's journey: the first offer aligned with your top talent packaged, the first time the product is offered, the first sale, the first 10, 100, 1000 (10^n) customers. **Every first is a victory and a game quest.** (Extends §13.4 and §20.)
+
+### 22.2 The Top Talent Reveal is the master hook
+The reveal ("Copy our prompt into the AI you already use, paste the answer back, Appleseed names your top talent in one sentence in about a minute. Alternative: the Zone of Genius test, 10 to 15 min.") is the master lead magnet, master hook, master promise and master game hook: the moment the player unconsciously gets hooked ("woah, what's next, I must find out"). It is the one anchor of the game.
+
+Right after the reveal, the game points out two things to the player:
+1. This is probably the first time they have ever put their nature's gift of uniqueness into one compact sentence that actually feels true (even if it still needs some important polishing to really sound true).
+2. They have not yet connected with it as an inner feeling. That is exactly what Sasha can do online, including with a short recorded meditation.
+
+### 22.3 Activation is the real next step after the reveal
+- **Content exists:** Sasha recorded two activations (guided meditations) on 2026-11-01/02: Russian, 13 min; English, 25 min (the English one has somewhat more clearing). The sequence of transformations is similar in both.
+- **Position:** the activation is THE next step after the reveal. This promotes it from the optional side quest framing in §14.13 and §13.4 (where the $37 Oracle Reading was a side quest); the reveal → activation link is now the core path.
+- **Skip is allowed:** the player can skip it, move on to the next quest and activate the top talent themselves. For them the game gives tips, possibly the exact methodology of the results the activation achieves.
+- **What we sell:** never "an activation", "a guided meditation" or "uniqueness activation". We sell **a series of transformational results**: the actual sequence of transformations Sasha delivers in the activation. Copy shape: "We recommend you now a, b, c. Here is an activation for $27 that does exactly that for you."
+- **Price, leaning:** paid, around **$27**, possibly as the entry product. Not final.
+- **OPEN:** how this relates to the existing $37 Activate Your Top Talent / Oracle Reading power-up (`/activate-top-talent`, Activation Hub with a 6-min meditation): replace, merge, or keep both. **OPEN:** the exact list of transformational results (a, b, c) to be written from the recordings, with Sasha.
+
+### 22.4 The iteration loop (the strategy coming together)
+Sasha is certain this activates uniqueness like nothing else. If the player does it at least once:
+1. writes the next iteration of the one-sentence articulation, working off what they got in the activation;
+2. does the activation again;
+
+then they learn they can do this continuously. **Each cycle brings new clarity on where they fully fit in, without masks → more and better opportunities → money when they make offers** (a job, a startup, coaching: the form does not matter).
+
+Loop: **reveal → activate → re-articulate the sentence → activate again → repeat → clarity → better offers → income.**
+
+### 22.5 Character: develop, personalize, see progress
+Character = top talent + mission + a real photo. Your House is the character sheet. Level = average of the Quality of Life domains, visible only to the player, tracked monthly. Confirmed (YES). The most fun part of a character is developing and personalizing it and seeing progress (extends §21.4).
+
+### 22.6 Sacred objects as quest prizes
+- NFT-like **sacred objects** are prizes for quests; the player can then wear or display them (installed in Your House, per §21.3).
+- Source: Sasha's own artwork, easily enough for about 10 artifacts, and he keeps creating more; the number prism topology designs from recent days; some pieces already in 3D; many 3D pieces in dry clay. He sees them as **sacred interior design objects**.
+- He has done sacred interior design in about 10 homes, with strong photos, mostly at night (he loves the night aesthetic; consistent with the blue hour/night village look).
+- **OPEN:** design protection, possibly through a design-portfolio site.
+
+### 22.7 Your AI: two theses (YES)
+1. **Personal AI is the AI that knows you best, but it is limited by how well YOU know yourself.** The whole purpose of the game is to help you know yourself better, so **the game is the shortest path to personal AI.**
+2. **When AI knows your unique business, it is a different league.** A pioneering idea hidden in plain sight.
+(Extends §18.)
+
+### 22.8 AI-legible profile (YES)
+The player's profile is AI-legible. Any personal AI out there will want to collaborate with a system that does what makes a personal AI personal. Sasha: «THIS MUST BE DOCUMENTED, PURE GOLD.»
+
+### 22.9 Digital Village: activate dormant potential
+- **The key:** the village exists to activate the dormant potential of its people.
+- **What San Pancho already has (Sasha's observations):** WhatsApp chats for economic activity (a marketplace, reportedly built to be solidary; to verify); websites that list individuals with offers; posters advertising services in many places. Open question he raises: how do people from other villages see them?
+- **Success of the San Pancho digital twin = prosperity of San Pancho entrepreneurs.** Recurring level-up meetups are not its reason to exist. Its reason to exist:
+  - a **digital local marketplace**: each practitioner places their shop;
+  - a **digital local academy of actual teachers**: the ceramics teacher, Mar (working with cannabis), and possibly an I Ching teacher, a somatic mobility teacher, a yoga teacher, an acupuncturist. Somatic workers are teachers too: awakening through the body.
+- **Traffic is the whole thing.** Sasha can build their shops for them, then say: "I made a digital twin of San Pancho, it is a game, you already have a shop there, look" (with a screenshot). Plus San Pancho Life, photographed posters, people he knows: buzz. Post in the groups. (Consistent with §16.6, private import, public by claim.)
+- **Language:** English for now; a Spanish activation eventually.
+- **Entry rule:** all locals are welcome, and each gets the top talent reveal first. Word spreads after the first people.
+- **Colour (YES, modular):** completing a quest brings colour to a space; spaces together light up the village. The village becomes visible, literally. (Extends §14.11.)
+
+### 22.10 Economy first: the metric
+Sasha cannot know residents' total income. He can know (1) **income that comes through the platform** and (2) what practitioners report when **asked after a client came to them through the game**. These two are the village metric for now (refines §16.3 rule 6).
+
+### 22.11 Land-based communities
+The game may spread in conscious circles because it is cool, well made, useful at every step, and **rooted in land-based communities**. Sasha's read: maybe that is why ClubDAO-type communities were not it: their members do not live in the same village.
+
+### 22.12 Matching, multiplayer, studio and fund; physical village
+- Matching / multiplayer / studio and fund: YES.
+- **Next step:** the webinar, with a designed next step after it.
+- **Physical village:** YES, contingent on there being growth mechanics (see 22.13).
+
+### 22.13 OPEN: growth mechanics of the conscious village
+Sasha's open question: why does the conscious village use the platform? How exactly do its conscious entrepreneurs use it? How do they connect the dots? What are the growth mechanics?
+
+#### Proposal (Hark), not decided [SUGGESTION]
+*This is Hark's proposal for discussion. Nothing here is decided.*
+
+**Why they use it:** clients. A practitioner joins because the game sends them people who already know what they need and what the practitioner is uniquely good at. Clarity on their own offer is the second reason.
+
+**The connecting move: the reveal becomes the village's intake form.** Each practitioner sends new clients the reveal link before the first session ("do this, 1 minute, bring your sentence"). The practitioner gets a better session; the client becomes a player, sees the other lit shops and the academy, and books a second practitioner. The practitioner is the distributor; cross-booking is the dot-connecting.
+
+**Who gets what:** practitioner: a shop built for them, a clear priced offer, warmer clients, referrals. Client: their top talent, the activation, a map of whom to see. Village: one shared front door for the WhatsApp chats, listings and posters. Platform: income through it, data for the metric.
+
+**First 30 days, ~10 practitioners:**
+- Week 1: Sasha builds 10 shops privately from listings and reviews.
+- Week 2: shows each in person ("this is you, claim it?"), reveal first, activation offered. A claim lights their building.
+- Week 3: each sends the reveal to 5 clients; QR on their poster; "San Pancho is 4/10 lit" posted in the groups.
+- Week 4: full-moon harvest circle; ask each: did a client come through the game?
+
+**Sharing triggers:** your building lighting up; a screenshot of your own shop; the client's sentence ("Do you see me this way too?", §14.12a).
+
+**Other villages:** San Pancho lit on the world map; visitors and nomads who pass through carry it; a "start your village" button and an ambassador.
+
+**Proof metric:** cross-bookings (a client who came via A books B) and income through the platform. Leading: shops claimed, client reveals per practitioner (target 3 or more).
+
+**Smallest test (1 week, no credits):** 3 practitioners, shops built and claimed, each sends the reveal to 5 clients. Works if 8 of 15 complete it and at least one opens another shop.
+
+## 23. The Player One path (Sasha, 2026-11-02)
+
+> «так и получается - ready player one. То есть самому нужно стать готовым, в этом магия становления Мерлином. Уже всегда и был готов, но это понимаешь когда готов.» «Значит путь игрока - это мой путь, все просто.»
+
+**Principle.** The player's path is Sasha's own path. He is Player One: every milestone he passes as a pioneer becomes a quest for the next player. Marketplace, social network, game, hero's journey, venture studio and personal AI are one platform, not separate products; each opens as the next level of the world.
+
+### 23.1 The quest line (Sasha's order, 2026-11-02)
+1. **Top Talent Reveal.**
+2. **Activation** of the top talent (his guided meditations: RU 13 min, EN 25 min).
+3. **Integration and starting the loop** (re-write the sentence → activate → clarity → offers → money; see §22).
+4. **Mission Reveal:** where I am heading, where my projects and interests point, what I am called to do.
+5. **Resources I already carry** (needed later for collaboration recommendations). Can come later.
+6. **What to develop, inner and outer.**
+7. **Where I am in my development, professionally and personally:** two tests, QoL and Hero's Journey chapter.
+8. **Activate dormant potential:** see it, then activate each direction, using level calibration; see versions of yourself at different levels (mini-course).
+9. **Open your shop on the platform.** Use the player's existing pages if they have them; if not, send them to build their Unique Business with Sasha. One simple question qualifies a player for this quest.
+10. **If not ready for a shop, first step:** a video on how a business is built into every person, and how to see how it is built into *you*. This is the content part of Sasha's webinar; he reuses it. English wording open (candidates in 23.3).
+11. **Group process:** build the Unique Business together (Mastermind).
+12. **Transformational practices** from selected teachers on the platform (their pages come later). Also a quest.
+13. **Matchmaking.**
+
+Sub-quests: simple ones per step; Sasha designs them himself.
+
+### 23.2 Artifacts (Sasha, 2026-11-02; mechanics below are Hark's [SUGGESTION], not decided)
+Sasha: artifacts can become interior objects in "Your House", jewelry amulets on the avatar, or real jewelry rings; easy to implement, a cult story; his sacred-object designs are world class. Open: protecting the designs.
+
+[SUGGESTION] mechanics:
+- **Earned, never bought in-game.** One artifact per completed quest (Reveal, Activation, Mission, ...), as §20 already implies («артефакты за каждый, которые устанавливаются в каждый дом»).
+- **Placed in Your House:** each one lights a part of the house; the house becomes the visible record of the hero's journey (character sheet).
+- **Worn on the avatar:** the player chooses one amulet to show in the village; it signals their gift and chapter to others and feeds matchmaking (a visible, honest signal).
+- **Unlocks, not power:** an artifact opens the next quest or a village place; no pay-to-win.
+- **Seasonal rares:** Mastermind and season artifacts, only for those who played that season.
+- **Physical edition:** a real ring or amulet for players who complete a chapter, made to order. A revenue line and the cult object; requires the design-protection decision first.
+
+### 23.3 Step 10 wording (Sasha, 2026-11-02)
+- Sasha's choice: **"The business within"**, or simply **"Your personal business"**. (Hark's earlier candidates "The business you were born with" etc. rejected.)
+
+### 23.4 Two kinds of quests: Hero's Journey quests and Village quests (Sasha, 2026-11-02 01:20)
+> «КВЕСТЫ В РЕАЛЬНОЙ ЖИЗНИ! выпей кофе в реальной жизни. Купи реальные живые сессии у людей в деревне… есть квесты пути героя, а есть квесты В ДЕРЕВНЕ!!!!! Типа купи 3 разных сессии у 3 разных людей - получи артефакт.»
+
+- **Hero's Journey quests:** the inner line of §23.1 (reveal → … → matchmaking).
+- **Village quests:** done in real life, in the real village (San Pancho first). Examples (Sasha's): have a coffee with someone in real life; buy live sessions from people in the village; **buy 3 different sessions from 3 different people → get an artifact.**
+- Why it matters: village quests turn play into real revenue for village practitioners (the §22/§16 metric: income through the platform) and feed the 10% shop commission model (memory: practitioner shops strategy, 2026-11-02).
+- Open (to design): how a real-life action is verified (e.g. the practitioner confirms the session in their shop, or payment goes through the platform); which artifacts are village-only.
+
+### 23.5 Artifacts: earned in the game, made in real life (Sasha "да!", 2026-11-02 01:24)
+Mechanics (Hark's proposal, accepted by Sasha):
+- Artifacts can't be bought in the game. One per quest; it goes into the player's House (My Home) and lights it up.
+- One amulet worn on the avatar is visible to the village and helps matching.
+- Artifacts open things; they don't give power. Seasonal rare ones possible.
+
+Real-life item (Sasha's extension):
+- At a certain stage (e.g. after a completed chapter) the player gets the right to **buy the physical item in real life**: a real ring or jewel of their artifact.
+- We **really sell it on the site**, made to order, with the page saying how long it takes to make ("ready in N weeks").
+- Sequence: earn it in the game first, then unlock the right to buy the real one. Cult story, world-class designs, new revenue line.
+
+Open: design protection before any physical sale; which stage unlocks the purchase; maker/jeweler, price, lead time; whether village quests (§23.4) unlock village-only artifacts.

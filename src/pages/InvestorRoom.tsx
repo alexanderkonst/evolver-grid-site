@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { VILLAGE_INCOME_LABEL, useVillageIncome, villageIncomeText } from "@/lib/villageIncome";
 import "./InvestorRoom.css";
 
 /**
@@ -96,7 +95,7 @@ const COPY = {
     kicker: "The path to the glass slipper",
     title: "Nine steps. The last one happens in the real world.",
     steps: [
-      { place: "Gate", step: "Pass the uniqueness test and enter the village", scene: "gate" },
+      { place: "Entry Portal", step: "Pass the uniqueness test and enter the village", scene: "gate" },
       { place: "Home", step: "Keep describing your character", scene: "house" },
       { place: "Home", step: "Say your uniqueness in one sentence", scene: "house" },
       { place: "Workshop", step: "Receive the tagline of your business", scene: "workshop" },
@@ -109,7 +108,12 @@ const COPY = {
   },
   numbers: {
     kicker: "Live numbers",
-    note: "Aggregate counts only, read live. No names, no personal data.",
+    note: "Player counts are read live. Revenue as of November 2, 2026. No names, no personal data.",
+    traction: [
+      { value: "$4,759", label: "paid to us since April 2026" },
+      { value: "11", label: "founders working with us now" },
+      { value: "60%", label: "of paying clients bought again" },
+    ],
     profiles: "players in the village",
     talents: "players who found their top talent",
   },
@@ -248,7 +252,6 @@ const InvestorRoom = () => {
     };
   }, []);
 
-  const { loading: incomeLoading, income } = useVillageIncome();
 
   const numbers = [
     { value: counts.profiles, label: COPY.numbers.profiles },
@@ -375,13 +378,13 @@ const InvestorRoom = () => {
                     <span className="ir-mono">{n.label}</span>
                   </li>
                 ))}
-                {/* The village's one public number: the same figure, from the same helper, as the Town Hall. */}
-                <li>
-                  <span className={`ir-figure${income ? "" : " ir-figure--quiet"}`} aria-busy={incomeLoading || undefined}>
-                    {incomeLoading ? " " : villageIncomeText(income)}
-                  </span>
-                  <span className="ir-mono">{VILLAGE_INCOME_LABEL}</span>
-                </li>
+                {/* Company traction, stated by the founder, with its as-of date. */}
+                {COPY.numbers.traction.map((t) => (
+                  <li key={t.label}>
+                    <span className="ir-figure">{t.value}</span>
+                    <span className="ir-mono">{t.label}</span>
+                  </li>
+                ))}
               </ul>
               <p className="ir-note">{COPY.numbers.note}</p>
             </Reveal>

@@ -43,8 +43,6 @@ import AppleseedDisplay from "./AppleseedDisplay";
 import AppleseedRitualLoading from "./AppleseedRitualLoading";
 import ExcaliburDisplay from "./ExcaliburDisplay";
 import TopTalentAuthGate from "./TopTalentAuthGate";
-import YourAiDialogue from "./YourAiDialogue";
-import { buildRevealSignal, type DialogueMessage } from "./yourAiDialogue";
 import EnterVillageButton from "./EnterVillageButton";
 import { clearGuestBuffers, freshRetakeState } from "./retake";
 import { formatSupabaseError, isSchemaDriftError } from "./formatSupabaseError";
@@ -72,7 +70,6 @@ import Hls from "hls.js";
 import ModuleIntro from "@/components/game/ModuleIntro";
 import ModuleOutro from "@/components/game/ModuleOutro";
 import { getJourneyModule } from "@/data/journeyModules";
-import { wantsFirstQuestion } from "@/lib/firstVisit";
 
 // WP-5: this module in the module form (Intro → one button → the flow → Outro).
 const ZOG_MODULE = getJourneyModule("find-top-talent")!;
@@ -113,7 +110,6 @@ const HlsBackground = () => {
 type Step =
     | "choice"
     | "choice-route"
-    | "your-ai"
     | "ai-prompt"
     | "paste-response"
     | "generating-appleseed"
@@ -158,11 +154,7 @@ const ZoneOfGeniusEntry = () => {
     // below. Mode A (?result=token) and Mode B (authed with saved
     // snapshot) overrides in the loadExisting effect still jump straight
     // to the appleseed-result step — unaffected.
-    // NEW GAME / splash ENTER (`?begin=1`): open on the first question itself, the Your AI
-    // dialogue, skipping the module intro and the route choice. The other doors stay one
-    // link away inside the dialogue (guided test, own AI). See NEW_GAME_PATH.
-    const beginAtFirstQuestion = wantsFirstQuestion(searchParams);
-    const [step, setStep] = useState<Step>(beginAtFirstQuestion ? "your-ai" : "choice-route");
+    const [step, setStep] = useState<Step>("choice-route");
     // `aiResponse` is the last SUBMITTED paste (used by the save paths). The
     // paste box itself is uncontrolled and read on submit, so typing or
     // pasting a long response never round-trips through React state.
@@ -172,14 +164,6 @@ const ZoneOfGeniusEntry = () => {
     const [isShortPaste, setIsShortPaste] = useState(false);
     const [copied, setCopied] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
-    // Your AI dialogue (Sasha 2026-10-30): the default door. Kept here so a failed
-    // reveal returns to the conversation intact.
-    const [dialogue, setDialogue] = useState<DialogueMessage[]>(() =>
-        beginAtFirstQuestion ? [{ role: "ai", text: t('zogEntry.yourAiOpening') }] : [],
-    );
-    const [ownAiNotes, setOwnAiNotes] = useState("");
-    const [dialogueReady, setDialogueReady] = useState(false);
-    const [dialogueRevealError, setDialogueRevealError] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     // Own-AI reveal failure (timeout / AI error): shown on the paste step with Retry.
     const [revealError, setRevealError] = useState<string | null>(null);
@@ -251,7 +235,7 @@ const ZoneOfGeniusEntry = () => {
     // (/start) and a redo, which start straight at the route choice.
     const [loaded, setLoaded] = useState(false);
     const [introPending, setIntroPending] = useState(
-        !returnPath.includes("/start") && searchParams.get("redo") !== "true" && !beginAtFirstQuestion,
+        !returnPath.includes("/start") && searchParams.get("redo") !== "true",
     );
     useEffect(() => {
         // Once the player is anywhere past the route choice, the Intro is behind them
@@ -602,10 +586,6 @@ const ZoneOfGeniusEntry = () => {
         setIsSaved(fresh.isSaved);
         setGuestRevealUnlocked(fresh.guestRevealUnlocked);
         setStep(fresh.step);
-        setDialogue([]);
-        setOwnAiNotes("");
-        setDialogueReady(false);
-        setDialogueRevealError(null);
     };
 
     const handleCopyPrompt = async () => {
@@ -634,44 +614,6 @@ const ZoneOfGeniusEntry = () => {
         setGuidedConfirmOpen(false);
         setHasExistingResult(false);
         proceedToManualAssessment();
-    };
-
-    const startYourAi = () => {
-        if (dialogue.length === 0) {
-            setDialogue([{ role: "ai", text: t('zogEntry.yourAiOpening') }]);
-        }
-        setDialogueRevealError(null);
-        setStep("your-ai");
-    };
-
-    // Your AI door: our AI answers the unchanged reveal prompt from the conversation,
-    // then the existing reveal runs on it (same path as a pasted own-AI answer).
-    const handleRevealFromDialogue = async () => {
-        setIsProcessing(true);
-        setError(null);
-        setDialogueRevealError(null);
-        setStep("generating-appleseed");
-        try {
-            const signal = await buildRevealSignal(dialogue, ownAiNotes);
-            setAiResponse(signal);
-            const result = await generateAppleseed(signal);
-            if (!isAppleseedReadable(result)) throw new UnreadableResponseError();
-            setAppleseed(result);
-            saveAppleseedToLocalStorage(result, signal);
-            const { data: { session } } = await supabase.auth.getSession();
-            setIsGuest(!session?.user);
-            setStep("appleseed-result");
-        } catch (err) {
-            console.error("[ZoneOfGeniusEntry] Your AI reveal failed:", err);
-            setDialogueRevealError(err instanceof RevealTimeoutError
-              ? t('zogEntry.errorRevealTimeout')
-              : err instanceof UnreadableResponseError
-                ? t('zogEntry.yourAiNeedMore')
-                : t('zogEntry.errorGenerateProfile'));
-            setStep("your-ai");
-        } finally {
-            setIsProcessing(false);
-        }
     };
 
     const handleGenerateAppleseed = async () => {
@@ -1078,12 +1020,6 @@ const ZoneOfGeniusEntry = () => {
         );
     }
 
-    // First question requested (NEW GAME): wait for the saved-result check, so a signed-in
-    // player who already has a result is taken to it without the question flashing first.
-    if (beginAtFirstQuestion && step === "your-ai" && !loaded) {
-        return <GameShellV2 hideNavigation={hideNav} hideLogo>{null}</GameShellV2>;
-    }
-
     // WP-5 module form, Before: the Intro (result + one button) leads into the route choice.
     if (step === "choice-route" && introPending) {
         return (
@@ -1271,7 +1207,7 @@ const ZoneOfGeniusEntry = () => {
                             the result as a verb. The second path is a quiet text link. */}
                         <div className="flex flex-col items-center gap-4">
                             <button
-                                onClick={startYourAi}
+                                onClick={() => setStep("ai-prompt")}
                                 className="group liquid-glass-dark cta-breath rounded-full inline-flex items-center justify-center gap-2 sm:gap-2.5 px-6 sm:px-8 py-3.5 max-w-full text-base sm:text-lg font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-white/40 outline-none animate-in fade-in slide-in-from-bottom-2 duration-400"
                                 style={{
                                     fontFamily: "'Cormorant Garamond', serif",
@@ -1326,25 +1262,7 @@ const ZoneOfGeniusEntry = () => {
                     </div>
                 )}
 
-                {/* Step: Your AI dialogue — the default door (Sasha 2026-10-30). */}
-                {step === "your-ai" && (
-                    <div ref={stepContentRef}>
-                        <YourAiDialogue
-                            messages={dialogue}
-                            setMessages={setDialogue}
-                            ownAiNotes={ownAiNotes}
-                            setOwnAiNotes={setOwnAiNotes}
-                            ready={dialogueReady}
-                            setReady={setDialogueReady}
-                            onReveal={handleRevealFromDialogue}
-                            revealError={dialogueRevealError}
-                            onGuided={handleStartManualAssessment}
-                            onOwnAiPrompt={() => setStep("ai-prompt")}
-                        />
-                    </div>
-                )}
-
-                {/* Step: AI Prompt (secondary: copy the prompt into an outside AI) */}
+                {/* Step: AI Prompt */}
                 {step === "ai-prompt" && (
                     <div ref={stepContentRef} className="space-y-6 animate-in fade-in duration-500">
                         <div className="text-center space-y-2">

@@ -52,6 +52,7 @@ import {
 import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import { OPEN_CHAT_EVENT } from "@/components/ChatLauncher";
 import SiteLogo from "@/components/SiteLogo";
+import MoonMedallion from "@/components/game/MoonMedallion";
 import { placeTagline } from "@/lib/villageCopy";
 // hls.js is dynamically imported inside MuxVideoBackground to avoid module-level crashes
 import { useToast } from "@/hooks/use-toast";
@@ -512,6 +513,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // content-scroll rule (Aurora cream wash → transparent so the Mux
     // photo bg shows through), same full-rail inclusion.
     const __isTechstarsShell = __spaceShipSkin === "techstars";
+    // The house brand («YOU be original»): its emblem is the moon medallion (village-as-dashboard step 1).
+    const __isYouShell = !__isNSShell && !__isDaoShell && !__isPlanetirShell && !__isTechstarsShell;
     const navigate = useNavigate();
 
     // User & profile state
@@ -1226,12 +1229,12 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 className={
                     navlessPageOwnsBackground
                         ? "min-h-dvh bg-[#0a0a1a]"
-                        : "min-h-dvh bg-gradient-to-br from-white via-[#f0f8ff] to-[#f5f5ff]"
+                        : "game-shell-navless min-h-dvh bg-gradient-to-br from-white via-[#f0f8ff] to-[#f5f5ff]"
                 }
             >
                 {/* Wabi-sabi Bokeh Overlay — only on the cream variant */}
                 {!navlessPageOwnsBackground && (
-                    <div className="fixed inset-0 pointer-events-none z-0">
+                    <div className="game-shell-navless__bokeh fixed inset-0 pointer-events-none z-0">
                         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(132,96,234,0.06)_0%,transparent_50%)]" />
                         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(164,163,208,0.08)_0%,transparent_50%)]" />
                     </div>
@@ -1610,6 +1613,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     toggle's visual register. */}
                 <button
                     onClick={toggleRailMinimize}
+                    data-seam="rail"
                     className={cn(
                         "h-dvh w-5 flex items-center justify-center transition-all duration-200 hover:bg-white/10 relative z-30 group",
                         "focus-visible:outline focus-visible:outline-1 focus-visible:outline-[color:var(--skin-rail-toggle-accent,rgba(244,212,114,0.6))]",
@@ -1751,6 +1755,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                        one control language. */
                     <button
                         onClick={toggleSectionsPanel}
+                        data-seam="sections"
                         className={cn(
                             "h-dvh w-5 flex items-center justify-center transition-colors hover:bg-white/10 relative z-30 group",
                             "focus-visible:outline focus-visible:outline-1 focus-visible:outline-[color:var(--skin-rail-toggle-accent,rgba(244,212,114,0.6))]",
@@ -1792,6 +1797,12 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     the wrapper at top:0 so fixed bg videos reach the top
                     edge as intended. */}
                 <main
+                    // Lunar panels (design/moon-panels): hook for the desktop content scale in
+                    // src/styles/lunar-panels.css. "fit" only on the routes whose content sits on
+                    // the shell's own surface. The Entry Portal (/zone-of-genius/entry) is exempt:
+                    // scaled, its hero reaches the bottom of a 1440x900 screen.
+                    data-pane="3"
+                    data-pane-fit={(pageOwnsBackground || isImmersiveDarkRoute || location.pathname.replace(/\/+$/, "") === "/zone-of-genius/entry") ? undefined : "true"}
                     // Day 51 night: `overflow-auto` was historically dropped
                     // here so non-/ai-os routes (e.g. /playbook) can use
                     // document-scroll sticky.
@@ -1874,6 +1885,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         mobileView === "navigation" ? "visible" : "invisible"
                     )}
                     aria-hidden={mobileView !== "navigation"}
+                    data-modal-open={mobileView === "navigation" ? "true" : undefined}
                 >
                 <button
                     type="button"
@@ -1929,13 +1941,14 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         onClick={() => setDrawerSectionsOpen((open) => !open)}
                         aria-expanded={drawerSectionsOpen}
                         aria-controls="mobile-sections-panel"
-                        className="md:hidden flex w-9 shrink-0 flex-col items-center justify-center gap-3 border-l border-white/10 hover:bg-white/10 focus-visible:outline focus-visible:outline-1 focus-visible:outline-[#5ec8bd]"
+                        data-seam="drawer"
+                        className="md:hidden flex w-9 shrink-0 flex-col items-center justify-center gap-3 border-l border-white/10 hover:bg-white/10 focus-visible:outline focus-visible:outline-1 focus-visible:outline-[#d9d1b4]"
                         style={{ color: "#e6ebf2" }}
                     >
                         <ChevronRight
                             aria-hidden="true"
                             className={cn("h-4 w-4 transition-transform", drawerSectionsOpen && "rotate-180")}
-                            style={{ color: "#5ec8bd" }}
+                            style={{ color: "#d9d1b4" }}
                         />
                         <span
                             style={{
@@ -2014,9 +2027,16 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                             as identity reinforcement, and the hamburger is
                             well-understood without a label in 2026.
                             44px min tap target preserved. */}
+                        {/* Village-as-dashboard step 1 (Sasha 2026-11-03): on a phone the logo's
+                            emblem in the top bar is the moon medallion, back to the village; the
+                            pill beside it keeps only ☰. Partner skins keep their mark in the pill. */}
+                        {__isYouShell ? <MoonMedallion size={44} side="bottom" /> : null}
                         <button
                             onClick={handleBackToNavigation}
-                            className="min-h-[44px] inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full transition-all relative hover:scale-[1.02] active:scale-[0.98]"
+                            className={cn(
+                                "min-h-[44px] inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full transition-all relative hover:scale-[1.02] active:scale-[0.98]",
+                                __isYouShell && "min-w-[44px] justify-center"
+                            )}
                             style={__isNSShell ? {
                                 color: '#0a0a0a',
                                 background: '#ffffff',
@@ -2057,6 +2077,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                             }}
                             aria-label={t("shell.menu.open")}
                         >
+                            {__isYouShell ? null : (
                             <img
                                 /* V6 (Sasha 2026-05-19): use the canonical
                                    NS wavy flag PNG on mobile too, not the
@@ -2081,6 +2102,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                                 className="w-7 h-7 object-contain flex-shrink-0"
                                 draggable={false}
                             />
+                            )}
                             <Menu className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                         </button>
                         {/* Day 53 (Sasha 2026-04-27): mobile breadcrumb.

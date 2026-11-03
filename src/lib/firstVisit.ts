@@ -14,19 +14,6 @@
 export const INTRO_SEEN_KEY = "fytt:wordless-intro-seen:v1";
 
 /**
- * NEW GAME and the splash ENTER go here: straight to the first Zone of Genius question
- * (the Your AI dialogue), with no Reception scene, module intro or route choice in between.
- * The village follows the answer (the reveal ends in «Enter the village»).
- */
-export const BEGIN_PARAM = "begin";
-export const NEW_GAME_PATH = `/zone-of-genius/entry?${BEGIN_PARAM}=1`;
-
-/** True when the URL asks the test to open on its first question. Onboarding (`/start`) keeps its own flow. */
-export function wantsFirstQuestion(search: URLSearchParams): boolean {
-  return search.get(BEGIN_PARAM) === "1" && !(search.get("return") ?? "").includes("/start");
-}
-
-/**
  * Any of these means this browser already holds a player: a Supabase session, a guest
  * profile, or a saved Top Talent result.
  */
@@ -124,4 +111,30 @@ export function shouldShowWelcomeBack(): boolean {
     return false;
   }
   return readGuestTalentName() !== null;
+}
+
+/**
+ * Intro v2 (the cinematic intro after NEW GAME, src/components/game/IntroSequence.tsx).
+ * Set after one full or skipped view; from then on NEW GAME goes straight to the Entry
+ * Portal. «Replay intro» under the title screen plays it again on request.
+ */
+export const CINEMATIC_INTRO_SEEN_KEY = "fytt:intro-v2-seen:v1";
+
+export function hasSeenCinematicIntro(): boolean {
+  if (typeof window === "undefined") return true;
+  try {
+    return !!window.localStorage.getItem(CINEMATIC_INTRO_SEEN_KEY);
+  } catch {
+    // Storage blocked: we cannot remember, so do not replay it on every NEW GAME.
+    return true;
+  }
+}
+
+export function markCinematicIntroSeen(): void {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(CINEMATIC_INTRO_SEEN_KEY, "1");
+  } catch {
+    /* private mode: the intro may play again, nothing breaks */
+  }
 }
