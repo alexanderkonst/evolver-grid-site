@@ -93,11 +93,14 @@ import MoonMedallion from "@/components/game/MoonMedallion";
  * state `placeState()` gives it (closed · open · next · done · live). Pane 2 still opens
  * the section list of the module each place holds (`PANE_BY_PLACE`, src/lib/railPlaces.ts).
  *
- * Each place gets a small photoreal icon of its building (Sasha 2026-11-02), framed in
- * CSS (`.village-place-icon`, src/index.css): moon-stone border, ochre inner line, soft
- * glow. The state still reads from the shared lock / open / live tokens
- * (src/styles/theme-tokens.css), so every skin renders every state.
+ * Each place gets a photoreal icon of its building (Sasha 2026-11-02): a square inscribed
+ * in a soft radial moonlight glow, no stroke (`.village-place-icon`, src/index.css; issue
+ * #311). The glow follows the chip's state: none when closed, soft when activated,
+ * stronger when it is the current place. The state still reads from the shared lock /
+ * open / live tokens (src/styles/theme-tokens.css), so every skin renders every state.
  */
+/** One size for the collapsed and the expanded rail: the icon does not jump between them. */
+const PLACE_ICON_SIZE = 36;
 const placeIconSrc = (key: VillagePlaceKey) => `/game/village/icons/${key}.webp`;
 const placeIconSrc2x = (key: VillagePlaceKey) => `/game/village/icons/${key}@2x.webp`;
 
@@ -117,17 +120,29 @@ const PlaceIcon = ({ place, size }: { place: VillagePlace; size: number }) => (
 );
 
 /** Next · Done · Live as a small mark beside the name. Closed and open carry none. */
-const StateMark = ({ state, compact }: { state: PlaceStateName; compact: boolean }) => {
+const StateMark = ({ state, compact, drawer }: { state: PlaceStateName; compact: boolean; drawer: boolean }) => {
+    // The mark sits in the corner of the cell, clear of the 36px icon (issue #311). In the
+    // collapsed rail, and in the icon-only rail below lg, the icon fills the cell, so the
+    // mark hugs the very corner; in a row with a label (drawer, or lg+) it keeps its old
+    // place at the right end of the row.
+    const corner = compact
+        ? "top-[1px] right-[1px]"
+        : drawer
+            ? "top-[10px] right-[12px]"
+            : "top-[1px] right-[1px] lg:top-[10px] lg:right-[12px]";
+    const checkCorner = compact
+        ? "top-0 right-0"
+        : drawer
+            ? "top-[8px] right-[10px]"
+            : "top-0 right-0 lg:top-[8px] lg:right-[10px]";
     if (state === "next") {
         return (
             <span
                 aria-hidden="true"
-                className="absolute rounded-full"
+                className={cn("absolute rounded-full", corner)}
                 style={{
                     width: 7,
                     height: 7,
-                    top: compact ? 6 : 10,
-                    right: compact ? 6 : 12,
                     background: "var(--open-accent)",
                     boxShadow: "0 0 8px 1px var(--open-accent)",
                 }}
@@ -138,12 +153,10 @@ const StateMark = ({ state, compact }: { state: PlaceStateName; compact: boolean
         return (
             <span
                 aria-hidden="true"
-                className="absolute rounded-full animate-pulse motion-reduce:animate-none"
+                className={cn("absolute rounded-full animate-pulse motion-reduce:animate-none", corner)}
                 style={{
                     width: 7,
                     height: 7,
-                    top: compact ? 6 : 10,
-                    right: compact ? 6 : 12,
                     background: "var(--live-accent)",
                 }}
             />
@@ -153,13 +166,14 @@ const StateMark = ({ state, compact }: { state: PlaceStateName; compact: boolean
         return (
             <Check
                 aria-hidden="true"
-                className="absolute"
+                className={cn("absolute", checkCorner)}
+                strokeWidth={3}
                 style={{
                     width: 12,
                     height: 12,
-                    top: compact ? 4 : 8,
-                    right: compact ? 4 : 10,
                     color: "var(--open-accent)",
+                    // A dark halo keeps the check readable where it touches the picture.
+                    filter: "drop-shadow(0 0 2px rgba(var(--scene-bg-rgb), 0.95))",
                 }}
             />
         );
@@ -796,8 +810,8 @@ const SpacesRail = ({
                                 compact
                                     ? "grid place-items-center w-[48px] h-[48px] mx-auto rounded-full p-0"
                                     : drawer
-                                        ? "flex items-center gap-2.5 px-2.5 py-2.5 min-h-[44px] rounded-2xl justify-start"
-                                        : "flex items-center gap-3 px-3 py-2.5 rounded-2xl justify-center lg:justify-start",
+                                        ? "flex items-center gap-2.5 px-2.5 py-2 min-h-[44px] rounded-2xl justify-start"
+                                        : "flex items-center gap-3 px-1.5 lg:px-3 py-2 rounded-2xl justify-center lg:justify-start",
                                 // Clip the fading label while the rail narrows.
                                 compactRequested && !compact && "overflow-hidden",
                                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/40",
@@ -806,13 +820,17 @@ const SpacesRail = ({
                                     : active
                                         // Entered state: recessed inset shadow + slight
                                         // scale-down, a place you have stepped INTO.
+                                        // Collapsed cell: no ring, no inset shadow, no fill. The icon's
+                                        // own glow (.village-place-icon) says "you are here" (issue #311).
                                         ? compact
-                                            ? "text-white shadow-[inset_0_2px_8px_rgba(0,0,0,0.35)] scale-[0.99]"
+                                            ? "text-white"
                                             : "text-white shadow-[inset_0_2px_10px_rgba(0,0,0,0.38),inset_0_0_0_1px_rgba(244,212,114,0.14)] scale-[0.99]"
-                                        : "text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
+                                        : compact
+                                            ? "text-white/55 hover:text-white/95 hover:translate-y-[-1px] active:translate-y-0"
+                                            : "text-white/55 hover:bg-white/[0.04] hover:text-white/95 hover:ring-1 hover:ring-[#d4af37]/30 hover:shadow-[0_0_16px_-4px_rgba(244,212,114,0.28)] hover:translate-y-[-1px] active:translate-y-0"
                             )}
                             style={
-                                active && !closed
+                                active && !closed && !compact
                                     ? isDefaultYouSkin && !isTheDao
                                         // WP-1b: fill comes from the skin (theme-tokens.css);
                                         // the defaults are the navy gradient this used to hardcode.
@@ -835,11 +853,11 @@ const SpacesRail = ({
                                     "relative flex flex-1 min-w-0 items-center transition-[filter,opacity] duration-500",
                                     drawer ? "gap-2.5 justify-start" : "gap-3 justify-center lg:justify-start",
                                     // Issue #270: icon over a short text label (see .rail-cell-label).
-                                    compact && "flex-col !gap-[3px] justify-center"
+                                    compact && "flex-col !gap-[6px] justify-center"
                                 )}
                                 style={closed ? { filter: "var(--lock-filter)", opacity: "var(--lock-dim)" } : undefined}
                             >
-                                <PlaceIcon place={place} size={compact ? 26 : 28} />
+                                <PlaceIcon place={place} size={PLACE_ICON_SIZE} />
                                 {!compact && (
                                     <span
                                         className={cn(
@@ -874,7 +892,7 @@ const SpacesRail = ({
                                 )}
                             </span>
 
-                            <StateMark state={state} compact={compact} />
+                            <StateMark state={state} compact={compact} drawer={drawer} />
                             <span id={describedBy} className="sr-only">{stateWord(place, state, t)}</span>
 
                             {/* Active-state gold pip, hidden in compact (its left-edge
