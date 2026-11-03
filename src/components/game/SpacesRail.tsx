@@ -5,26 +5,14 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     Check,
-    Coffee,
     Contrast,
-    DoorOpen,
-    Flame,
-    GraduationCap,
-    Hammer,
-    Home,
-    Landmark,
     LogIn,
     LogOut,
     MessageCircle,
     Moon,
-    ScrollText,
     Settings,
-    Sparkles,
-    Store,
     Sun,
-    Users,
     UserRound,
-    type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { closedLine, placeLine, type PlaceStateName } from "@/lib/placeState";
@@ -101,28 +89,31 @@ import techstarsLogo from "@/assets/techstars-logo.png";
 /**
  * WP-4 (game_of_being_you.md §14.1.2, §14.6): the rail is the village map folded.
  * One chip per place of `VILLAGE_PLACES`, in map order, under the map's names, in the
- * state `placeState()` gives it (closed · open · next · done · live). The old spaces
- * (MAIN QUEST · AI OS · CHARACTER · MEET · PARTY & GUILD · TRAINING · THE FORGE ·
- * TRADING POST) are gone from the rail; pane 2 still opens the section list of the
- * module each place holds (`PANE_BY_PLACE`, src/lib/railPlaces.ts).
+ * state `placeState()` gives it (closed · open · next · done · live). Pane 2 still opens
+ * the section list of the module each place holds (`PANE_BY_PLACE`, src/lib/railPlaces.ts).
  *
- * Each place gets a line icon. Color is not the carrier: icons draw in the rail's ink and
- * the state reads from the shared lock / open / live tokens (src/styles/theme-tokens.css),
- * so every skin renders every state.
+ * Each place gets a small photoreal icon of its building (Sasha 2026-11-02), framed in
+ * CSS (`.village-place-icon`, src/index.css): moon-stone border, ochre inner line, soft
+ * glow. The state still reads from the shared lock / open / live tokens
+ * (src/styles/theme-tokens.css), so every skin renders every state.
  */
-const PLACE_ICON: Record<VillagePlaceKey, LucideIcon> = {
-    reception: DoorOpen,
-    house: Home,
-    "quest-board": ScrollText,
-    oracle: Sparkles,
-    cafe: Coffee,
-    coworking: Users,
-    "fire-circle": Flame,
-    academy: GraduationCap,
-    workshop: Hammer,
-    market: Store,
-    "town-hall": Landmark,
-};
+const placeIconSrc = (key: VillagePlaceKey) => `/game/village/icons/${key}.webp`;
+const placeIconSrc2x = (key: VillagePlaceKey) => `/game/village/icons/${key}@2x.webp`;
+
+const PlaceIcon = ({ place, size }: { place: VillagePlace; size: number }) => (
+    <span className="village-place-icon flex-shrink-0" style={{ width: size, height: size }}>
+        <img
+            src={placeIconSrc(place.key)}
+            srcSet={`${placeIconSrc(place.key)} 1x, ${placeIconSrc2x(place.key)} 2x`}
+            alt={place.alt}
+            width={size}
+            height={size}
+            loading="lazy"
+            decoding="async"
+            draggable={false}
+        />
+    </span>
+);
 
 /** Next · Done · Live as a small mark beside the name. Closed and open carry none. */
 const StateMark = ({ state, compact }: { state: PlaceStateName; compact: boolean }) => {
@@ -751,7 +742,6 @@ const SpacesRail = ({
                     const state: PlaceStateName = placeStates?.[i] ?? "open";
                     const closed = state === "closed";
                     const active = place.key === activePlace;
-                    const Icon = PLACE_ICON[place.key];
                     const line = placeLine(place, state, t, true);
                     const name = placeName(place, t);
                     // The state word ("Opens when…", Next, Done, live line) is the description,
@@ -822,12 +812,7 @@ const SpacesRail = ({
                                 )}
                                 style={closed ? { filter: "var(--lock-filter)", opacity: "var(--lock-dim)" } : undefined}
                             >
-                                <Icon
-                                    aria-hidden="true"
-                                    className="flex-shrink-0"
-                                    style={{ width: compact ? 22 : 20, height: compact ? 22 : 20 }}
-                                    strokeWidth={1.6}
-                                />
+                                <PlaceIcon place={place} size={compact ? 26 : 28} />
                                 {!compact && (
                                     <span
                                         className={cn(
