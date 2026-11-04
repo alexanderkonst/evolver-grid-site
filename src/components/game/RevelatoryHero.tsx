@@ -7,6 +7,7 @@ import { Ornament } from "@/lib/landingDesign";
 import { formatBullseye, formatBullseyeLine } from "@/modules/zone-of-genius/bullseye";
 import { useShareIdentity } from "@/hooks/useShareIdentity";
 import { buildShareCard } from "@/lib/shareCard";
+import { useRevealSeen } from "@/hooks/useReturnMetric";
 // Day 61 (Sasha 2026-05-04 12:45): brand torus mark used in the
 // in-card footer so the saved/shared image carries identifiable
 // branding + the source URL. The torus IS the brand mark; we use
@@ -154,6 +155,7 @@ const RevelatoryHero = ({
     subtitle,
 }: RevelatoryHeroProps) => {
     const { t } = useTranslation();
+    useRevealSeen(stripDecorativeGlyphs(title)); // return metric (#287): reveal_seen, once per device
     const isAppleseed = type === "appleseed";
 
     // Day 58 (Sasha 2026-05-02): icon/iconBg/iconColor/divider fields
