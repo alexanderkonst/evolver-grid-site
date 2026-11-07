@@ -107,6 +107,7 @@ import ActivateTopTalent from "./pages/ActivateTopTalent";
 import MethodologyLandingPage from "./pages/MethodologyLandingPage";
 import JourneyPage from "./pages/JourneyPage";
 import GameTitle from "./pages/GameTitle";
+import { useGameOpen } from "./hooks/useReturnMetric";
 // Keep-constraint (game_of_being_you.md §14.13, Sasha 2026-10-28): pre-game surfaces stay reachable.
 const CoreLoopHome = lazy(() => import("./pages/CoreLoopHome"));
 const DailyLoopV2 = lazy(() => import("./pages/DailyLoopV2"));
@@ -478,6 +479,7 @@ const PublicProfileRoute = () => {
 
 const GlobalChrome = () => {
   const location = useLocation();
+  useGameOpen(); // return metric (#287): game_open, once per local day per device
   const isHeroQuiz = location.pathname === "/hero";
   // Day 124: /you ships its own header with an in-page language switcher
   // (matching the page's dark/cream register), same reasoning as SiteLogo's

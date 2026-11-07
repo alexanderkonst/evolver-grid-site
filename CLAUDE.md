@@ -158,3 +158,6 @@ Sasha runs a second AI, **Hark**, which owns the **Cashflow** panel. As of the h
 ## When unsure
 
 Read `docs/docs_index.md`, then the relevant file. When still unsure, ask Sasha once and update the corpus with his answer.
+
+## Templates first (Sasha, 2026-11-03)
+Before building or writing anything (a module screen, copy, an offer, a spec, a course, an application), open `docs/templates/README.md`, find the template whose "What it produces" matches the task, and follow it. Module screens: `docs/templates/module-form.md` (§12 = Landing and Final screen copy law). Name the template you followed in the PR description. If none fits, say so in the PR.

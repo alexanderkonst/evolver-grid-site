@@ -28,7 +28,7 @@ Each entry in this library is a technology — a seeing instrument that produces
 
 ## ⟡ Executive Summary & 27-Perspective Synthesis
 
-> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 182 as of October 30, 2026) stay the source of truth.*
+> *Synthesis layer added 2026-08-16. A plain-language abstract and a holonic reading of the whole. The technologies below (numbered 1 to 183 as of November 3, 2026) stay the source of truth.*
 
 > *Index note, 2026-10-30: Technology 182, The Holo-Trinity — See · Aim · Act, is the cycle that holds the whole library (see → aim → act → trace → see again); it runs on any system as **Holonavigation**, with a one-button template in `docs/04-products/morphogenetic_navigation.md` § Holonavigation (eleven steps over the Map of Maps; a system's phase = the phase of its weakest load-bearing module), where Act draws its technology from this library.*
 
@@ -9621,3 +9621,34 @@ An earlier AI draft here treated the holo-trinity as a product under the working
 - *Technology 78: The Planetary Holomap*; *Technology 169: The Template of Templates*.
 - `docs/templates/meta-template.md` § Holostrategy (principles, mechanics 0–9, planetary case).
 - `docs/04-products/morphogenetic_navigation.md` § Holonavigation: the one-button template (steps 0–10), the Act loop, the boost from three schools, three worked examples (solo founder, FindYourTopTalent platform, Evolver itself).
+
+---
+
+## Technology 183: Signal Authorship — Human Signal, Convergent Writing (человек подаёт сигнал, пишет конвергенция) (oral, Nov 3, 2026)
+
+> *Oral · November 3, 2026, 15:34 MST · chat with Hark, replying to Hark's note that Emergent Ventures and Mozilla screen out AI-written applications. Dictated; quoted close to his words. Builds on Technology 179 (AI Is Imitation), Technology 175 (Every Entity Has Its Own AI), Technology 168 (A Unique Particle of Yourself). Applied first in `docs/templates/application-loop.md` (§ 0, added the same day).*
+
+**What it is.** Authorship in the AI era is not "the human wrote it" or "the AI wrote it". The human gives the signal (why this exists, what it must say); the AI helps write; the human takes part in the iterations; once the text matches the signal or strengthens it, the human steps in to make the final version and edits out whatever does not fit what they themselves mean to say. The question stops being *who wrote it* and becomes *how far the human passed the AI's output through themselves*.
+
+### 🫀 Essence — in Sasha's words
+
+> «нет такого что пишет человек или пишет искусственный интеллект… конвергенция — это человек, пишет конвергенция, и будущее в том, что человек подает сигнал. Искусственный интеллект помогает написать заявку, человек участвует в итерациях этой заявки. И дальше, когда человек видит, что заявка соответствует тому сигналу, который подал человек, или даже усиливает его, то тогда человек уже включается в создание последней версии… то, что не соответствует изначальному сигналу… человек просто правит. А дальше тогда вопрос не в том, кто написал… И это не только к заявкам относится, а вообще к любой авторской работе… не или-или, а и-и. И вопрос становится тем, насколько человек аутпут искусственного интеллекта действительно пропустил через себя, либо же просто этого поленился сделать.»
+>
+> «Это всегда был симбиоз искусственного интеллекта и человека… Оригинальность работы — это не то, что человек сам написал от нуля от руки. Это тупиковая ветвь развития.»
+> — *chat of 2026-11-03, 15:34 MST*
+
+### The cycle
+1. **Signal.** The human states why and what: the intent the work must carry.
+2. **Convergent drafting.** The AI drafts from the signal and the corpus; the human joins the iterations.
+3. **Recognition.** The human checks: does it match the signal, or amplify it?
+4. **Final hand.** The human makes the last version, cutting what is not theirs.
+5. **Measure of originality:** depth of passing-through, not origin of keystrokes.
+
+### 🧠 Significance — AI draft
+*AI draft, for Sasha to rewrite in his voice.*
+- **Essence.** The author is whoever owns the signal and the final pass; the rest is instrumentation, like a pen, an editor or a translator always was.
+- **Consequences.** (1) In every template that produces authored work, the human gate is the signal at the start and the final hand at the end, not the blank page. (2) Reading the source questions yourself is part of the signal: a program's questions are a mirror for one's own project. (3) Tension to hold honestly: some institutions still frame rules as "human vs AI" (e.g., Emergent Ventures, Mozilla in Nov 2026). Signal Authorship meets their intent (the human means every line), and their stated rules are still read and respected program by program.
+
+### Cross-references — Connects to
+- *Technology 179: AI Is Imitation*; *Technology 175: Every Entity Has Its Own AI*; *Technology 168: A Unique Particle of Yourself*.
+- `docs/templates/application-loop.md` § 0 (first application of this technology).

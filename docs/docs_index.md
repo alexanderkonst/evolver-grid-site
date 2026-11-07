@@ -19,7 +19,7 @@ docs/
 ├── 04-exports/        # Generated exports
 ├── 05-reference/      # Standards & templates
 ├── 05-specs/          # Module specs (renamed from 04-specs)
-├── templates/         # Reusable production templates (course-from-source, testimonial clips)
+├── templates/         # Reusable templates (course-from-source, testimonial clips, roasting, application-loop, …)
 ├── 06-architecture/   # Technical architecture
 ├── 06-modules/        # Per-module docs
 ├── 07-technology/     # Core tech systems
@@ -73,6 +73,7 @@ Everything about AI itself (AI OS, benchmark, the Hark leap, self-awareness map,
 | Doc | Purpose |
 |-----|---------|
 | [roadmap.md](./02-strategy/roadmap.md) | Product roadmap & milestones |
+| [non_equity_programs.md](./02-strategy/non_equity_programs.md) | Non-equity grants, fellowships and residencies ranked by fit, with deadlines and status; run one at a time through templates/application-loop.md (2026-11-03) |
 | [sacred_space_map.md](./02-strategy/sacred_space_map.md) | **Third navigation instrument** (sibling to roadmap + morphogenetic_holomap) — full read of the 5-year "My Sacred Space" Telegram journal (2021–2026). Taxonomy · evolution/eras · idea-flow/book architecture · mind-mirror · lexicon · gems. Where Sasha's mind has actually been |
 | [module_taxonomy.md](./02-strategy/module_taxonomy.md) | GROW·LEARN·MEET·COLLABORATE·BUILD·BUYSELL |
 | [game_of_being_you.md](./02-strategy/game_of_being_you.md) | **Game blueprint** — THE GAME OF BEING YOU: one light in, your spectrum out; 5 solids/elements; soul colors = Spectrum mechanic; title-screen homepage; lead magnets; cult virality; assets in assets/game-of-being-you/ |
@@ -146,7 +147,7 @@ Everything about AI itself (AI OS, benchmark, the Hark leap, self-awareness map,
 | [telemetry_playbook.md](./03-playbooks/telemetry_playbook.md) | Analytics & tracking |
 | [mission_control.md](./03-playbooks/mission_control.md) | Mission control dashboard |
 | [natural_work_rhythms.md](./03-playbooks/natural_work_rhythms.md) | Work rhythm patterns |
-| [personal_intelligence_setup_playbook.md](./03-playbooks/personal_intelligence_setup_playbook.md) | **Personal Intelligence (AI) setup** — agentic routines as a copyable template (trigger + context + steer/verify), then Sasha's instance. Expected savings are a hypothesis until measured |
+| [personal_intelligence_setup_playbook.md](./03-playbooks/personal_intelligence_setup_playbook.md) | **Personal Intelligence (AI) setup** — install path step by step (Part 0 v0.3: one orchestrating chat; your corpus, knowledge graph and uniqueness profile before tools; then messengers, files, code, media, visual style), then agentic routines as a copyable template (trigger + context + steer/verify), then Sasha's instance. Expected savings are a hypothesis until measured |
 | [notebooklm_workflow.md](./03-playbooks/notebooklm_workflow.md) | NotebookLM workflow |
 
 ---
