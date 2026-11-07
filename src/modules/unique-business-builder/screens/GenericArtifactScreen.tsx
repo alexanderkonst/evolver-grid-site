@@ -24,6 +24,7 @@ import { SLICE_OF_ARTIFACT } from "../journeySlices";
 import { ARTIFACT_LABELS, UBB_ROOT, ARTIFACT_URL_SLUGS } from "../constants";
 import { ALL_ARTIFACT_KEYS } from "../types";
 import type { ArtifactKey } from "../types";
+import { InitFailedNotice } from "../components/InitFailedNotice";
 
 // Map URL slug → artifact_key (reverse of ARTIFACT_URL_SLUGS, excluding compound slugs)
 const SLUG_TO_KEY: Record<string, ArtifactKey> = {
@@ -94,7 +95,7 @@ export default function GenericArtifactScreen() {
 }
 
 export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
-  const { artifacts, generateArtifact, isGenerating, isImproving, lockArtifact, unlockArtifact, updateArtifactScore, restoreToV1, isInitializing } = useUniqueBusiness();
+  const { artifacts, generateArtifact, isGenerating, isImproving, lockArtifact, unlockArtifact, updateArtifactScore, restoreToV1, isInitializing, initFailed } = useUniqueBusiness();
   const state = artifacts[artifactKey];
   const latest = state?.latest;
   const isLocked = !!state?.latestLocked;
@@ -110,6 +111,7 @@ export function ArtifactView({ artifactKey }: { artifactKey: ArtifactKey }) {
   if (isInitializing) {
     return <ArtifactSkeleton label={ARTIFACT_LABELS[artifactKey]} />;
   }
+  if (initFailed) return <InitFailedNotice />;
 
   return (
     <div className="mx-auto max-w-3xl space-y-8">

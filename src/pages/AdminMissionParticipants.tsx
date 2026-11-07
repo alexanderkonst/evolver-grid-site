@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { deferAuthCallback } from "@/lib/authCallback";
 import { Button } from "@/components/ui/button";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { supabase } from "@/integrations/supabase/client";
@@ -91,7 +92,7 @@ const AdminMissionParticipants = () => {
 
     checkAuth();
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(deferAuthCallback(async (_event, session) => {
       setUser(session?.user ?? null);
       if (session?.user) {
         const hasAdminRole = await checkAdminRole(session.user.email);
@@ -104,7 +105,7 @@ const AdminMissionParticipants = () => {
         setParticipants([]);
         setLoading(false);
       }
-    });
+    }));
 
     return () => subscription.unsubscribe();
   }, []);
