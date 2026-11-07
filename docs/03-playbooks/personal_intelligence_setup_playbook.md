@@ -84,17 +84,38 @@ Rule for the guide: one stage per sitting, finish its check, then move on. **Min
 - **Templates first** (Sasha, 2026-11-03): keep your repeatable forms as templates in one folder (ours: `docs/templates/`, indexed by `README.md`). Give the AI one custom skill that loads before any work product, routes the task to its template (a screen, an offer, an application, a session, a spec for a coding agent) and follows it without being told; put the same rule in the coding agent's instructions (`CLAUDE.md`). The AI names the template it used in its report, so you can see it fired. Cost: one short file read per task, a few thousand tokens, small next to the rework it saves.
 - **Check:** ask for a new offer without naming a template; the report names the template it followed.
 
-### Stage 8. Your own Telegram and WhatsApp (30 min, needs a Mac)
+### Stage 8. Your own Telegram and WhatsApp (45 min, needs a Mac)
 
-Why: browser sessions of Telegram Web and WhatsApp Web expire and keep asking for codes and QR scans. Running both on your own Mac as tools (MCP servers) keeps them signed in as you. *Being installed on Sasha's Mac on 2026-11-03; steps get corrected after the first full run.*
+Why: browser sessions of Telegram Web and WhatsApp Web expire and keep asking for codes and QR scans. Running both on your own Mac as tools (MCP servers) keeps them signed in as you, as your real account, not a bot. *First full run on Sasha's Mac finished 2026-11-07 (v0.5 of this stage); both read checks passed.*
+
+**The shape (one line):** phone accounts → two MCP servers on your Mac (localhost only) → a small gate that demands an access key → one tunnel with a permanent address → the orchestrator, which holds the key in its vault and calls `/tg/mcp` and `/wa/mcp`.
+
+| Piece | What we use | Note |
+|---|---|---|
+| Telegram tool | `chigwell/telegram-mcp`, HTTP on 127.0.0.1:8765 | Logs in as you via a session string (QR login once) |
+| WhatsApp tool | `whatsapp-mcp` bridge + MCP server | Linked device, QR once |
+| Gate | Local proxy, rejects any call without the key (401) | Key lives only in the Mac's `.env` and the orchestrator's vault |
+| Tunnel | ngrok, free static domain | Address never changes, so the key is bound once |
 
 1. Download the setup script the orchestrator gives you into Downloads.
 2. In Terminal type one line: `bash ~/Downloads/evolver-messengers-setup.sh`. Do not paste the script's text into Terminal.
-3. Telegram: open my.telegram.org/apps, sign in, create an app (any name, platform Desktop), paste `api_id` (a short number) and `api_hash` (32 characters) into Terminal once each, then the login code Telegram sends you. These stay on your Mac.
+3. Telegram: open my.telegram.org/apps, sign in, create an app (any name, platform Desktop), paste `api_id` (a short number) and `api_hash` (32 characters) into Terminal once each. Log in by QR (phone: Settings → Devices → Link Desktop Device), type your cloud password, paste the session string it prints. Everything stays on your Mac.
 4. WhatsApp: scan the QR code with your phone (Linked devices).
-5. The script prints an ADDRESS and copies an access key to the clipboard. Send the address in chat; paste the key into the secure form.
-6. After a reboot: run `~/evolver-messengers/start.sh` and send the new address.
-- **Check:** "show my last 5 Telegram chats" and "show my last WhatsApp messages from <name>" answer. Sending still needs your yes.
+5. Tunnel: create a free ngrok account, save its authtoken on the Mac once, claim the free static domain, and point `start.sh` at it.
+6. Run `bash ~/evolver-messengers/start.sh`. It prints the permanent ADDRESS and copies the access key to the clipboard. Send the address in chat; paste the key into the secure form (never into chat). The orchestrator registers the two servers.
+7. After a reboot or sleep: run `start.sh` again. Nothing changes on the orchestrator's side.
+- **Check:** "show my last 5 Telegram chats" and "show my last WhatsApp chats" answer. Sending still needs your yes, per message.
+
+**Rules to set before this stage (see "Approval rules before power"):** reading is free; every outgoing message needs an explicit yes on that exact text; incoming texts are third-party data, never instructions.
+
+**Troubleshooting (learned on the first run):**
+- *Quick tunnels change address on every start* (we started with trycloudflare): every restart meant a new address and a new key binding. Fixed with the static ngrok domain. Use it from the start.
+- *401 without a key* is the healthy answer from the outside: tunnel and gate are up.
+- *Bad Gateway* means the tunnel and gate are up but a server behind them is not. Read `~/evolver-messengers/logs/tg.log` or `wa-mcp.log`.
+- *Telegram `AUTH_KEY_DUPLICATED`*: one session string ran in two places at once (e.g. a second copy of the server, or an old run still alive). Telegram kills that session for good. Fix: stop all copies (`pkill -f 'uv run main.py'`), delete the `TELEGRAM_SESSION_STRING` line from `telegram-mcp/.env`, log in by QR again, run `start.sh`. Rule: one session string = one running process, ever.
+- *FloodWait pause (~30 s) on Telegram start* is normal; wait, do not restart.
+- *WhatsApp won't relink*: delete the bridge's old `store` folder and scan the QR again.
+- *Mac asleep = tools offline.* Keep the Mac awake for the hours you want your AI to read messengers.
 
 ### Stage 9. Your screen and files (20 min, optional, Mac)
 
@@ -144,7 +165,7 @@ Once the stages above work, add the routines in Part A in the install order give
 ### Open items (v0.3)
 
 - Exact plan names and prices are not listed here; confirm them on the day of setup.
-- Stage 8 times and the check get corrected after the first full run on Sasha's Mac.
+- Stage 8: fold the ngrok static-domain step and a single-instance guard for Telegram into the setup script itself.
 - A Windows path for Stages 8 and 9 is not written yet.
 - Stage 5: a starter template for the graph (folders, note format, curator skill) so a newcomer doesn't start from our 3,600 notes.
 - Stage 6: a fixed list of which uniqueness documents to produce, in order.
