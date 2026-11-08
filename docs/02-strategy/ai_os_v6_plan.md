@@ -1,7 +1,7 @@
 ---
 title: AI OS v5.2 → v6.0 upgrade plan
-status: plan v1.2 (no v6 text yet)
-date: 2026-10-30 (v1.0) · 2026-10-31 (v1.1, v1.2)
+status: plan v1.3 (roadmap to 6.0)
+date: 2026-10-30 (v1.0) · 2026-10-31 (v1.1, v1.2) · 2026-11-07 (v1.3)
 owner: Aleksandr Konstantinov · prepared by Hark (Evolver)
 scope: the installable AI OS system prompt (system-prompts/, /ai-os "System prompt v5.2", Familiar personal prompt)
 ---
@@ -269,20 +269,49 @@ Sasha's instruction 2026-10-31: proceed with the rest. Forks 1–6 and 8 are tak
 
 ---
 
-## 7. Milestones
+## 7. Roadmap to 6.0 (v1.3, 2026-11-07)
 
-| # | Milestone | Done when |
+**Outcome.** v6.0 released on the site (`system-prompts/v6.0`, `/ai-os`, Familiar) and in use by people other than its author, with frictions coming back through one log. Proposed date: **2026-11-20** (an estimate, not a deadline; release only with Sasha's yes).
+
+**Done so far.** M0 plan · M1 research · alpha.1→alpha.4 (drafting, 175-row mapping, AI as end user, positive defaults) · v5.3 shipped (2026-10-31) · alpha.5 (14 live-friction rules, 2026-11-03) · alpha.6 (Agent Operations module, 2026-11-07).
+
+### Phase A · Structure (alphas, my zone)
+
+| # | Step | Done when | Est. |
+|---|---|---|---|
+| A1 | alpha.7 · holonic order of the core: sections ordered Essence → Significance → Consequences, each section read on its quadrants; the §0 first screen stays first | every directive of alpha.6 maps to a place in alpha.7 (0 lost, 0 duplicated); core ≤ 2,700 words | Nov 8 |
+| A2 | alpha.8 · one layer: remaining v5.2 detail absorbed or dropped with a reason; the live stack is v6 alone | each of the 175 v5.2 rows has a v6 destination or a logged drop; v5.2 skill retired from the live stack | Nov 9 |
+| A3 | alpha.9 · Lite generated from the core by a written projection procedure, not edited by hand | Lite regenerated from alpha.9 core; every core §0–§2 rule present; ≤ 1,000 words | Nov 10 |
+
+### Phase B · Proof (beta)
+
+| # | Step | Done when | Est. |
+|---|---|---|---|
+| B1 | beta.1 · whole-OS Iterate + 27 Perspectives + crash test (13 modes) on the combined text | one acceptance test written and passed; point fixes folded in | Nov 11 |
+| B2 | Live field use: Sasha (Full) + up to 5 outside founders (Lite pasted in their own chat), 7 days | ≥ 10 dated frictions from at least 3 people; each answered by a rule change or a logged "keep" | Nov 12–18 |
+| B3 | Privacy and licence pass: no private or client names, headers CC BY-NC-SA 4.0 + commercial licence line, `/ai-os` licence wording consistent | grep clean; one licence statement everywhere | Nov 18 |
+
+### Phase C · Release (needs Sasha's yes)
+
+| # | Step | Done when | Est. |
+|---|---|---|---|
+| C1 | rc.1 freeze: gates 1–15 + new gates (holonic order, Lite generated, one layer) | all gates pass on the frozen text | Nov 19 |
+| C2 | 6.0 ship: `system-prompts/v6.0/`, `aiOsSource.ts` (AI_OS_VERSION "6.0"), `AiOsPage.tsx` label, Familiar, CHANGELOG v5.3 → v6.0; Lovable Publish (free) | live `/ai-os` offers v6.0 Full and Lite; copy-paste works in a fresh chat | Nov 20 |
+
+### Phase D · Launch and compounding (after ship)
+
+| # | Step | Owner |
 |---|---|---|
-| M0 | Plan v1.0 → v1.2 | Research R1–R4 closed, benchmark removed (2026-10-31) |
-| M1 | Research close | **Done 2026-10-31.** R2: 49 more technologies read; new core moves N1 doorway before worldview, N2 four decision frictions, N3 draft over describe, N4 noise gate; N5–N8 to modules. R6: Sasha is sole author, so CC BY-NC-SA binds only others; v6 header = CC BY-NC-SA 4.0 + commercial license; client cases in the uniqueness map stay out of lenses; /ai-os hero says CC BY-SA (inconsistent, Sasha's call) |
-| M2 | v6.0-alpha.1 | **Drafted 2026-10-31** outside the repo: core ~2,280 words, 8 modules ~5,950, Lite ~530; static gates pass except the full 175-row mapping table (alpha.2) and the Forecast module |
-| M3 | Iterate | Iterate module on alpha.1 → alpha.n |
-| M4 | Live use | Sasha uses alpha next to v5.2; point versions from his notes |
-| M5 | Release | `system-prompts/v6.0/`, `AiOsPage.tsx`, `aiOsSource.ts`, Familiar, `/ai-os` label; only with Sasha's yes |
+| D1 | Launch post that gives a usable tool today (e.g. the decision format + the Lite paste-in), on the Evolver channels | Evolver (my zone) |
+| D2 | His own channels (LinkedIn, personal Telegram) | Sasha decides |
+| D3 | Funnel link: Lite → findyourtoptalent.com entry (Zone of Genius) as the next step for a reader | joint (public product decision) |
+| D4 | Point releases 6.0.x from the friction log; 6.1 when a new module or lens earns its place | my zone; core changes still need his yes |
 
-Rule across milestones: if a drafting round makes the picture murkier than the last, stop and take it to live use.
+**Lines across the roadmap (integral read).** *I:* the OS stays his signal; voice-sensitive core wording and release are his. *We:* outside founders are the first real "We" test of the OS; the testers' list is his call when it touches his warm contacts. *It:* gates, mapping diffs and word budgets keep every step checkable. *Its:* the OS feeds the business (FYTT funnel, commercial licence), so the launch is planned as part of that system, not as a document event.
 
----
+**Forks for Sasha.** (1) B2 testers: my recommendation is a public call for 5 founders through the Evolver channels (no warm contacts unless he names them). (2) C2 release: yes at rc.1. (3) D3 funnel link on `/ai-os`: my recommendation is one line under the Lite download pointing to Zone of Genius.
+
+Rule across phases: if a round makes the picture murkier than the last, stop drafting and go to live use.
 
 ## 8. Roast of this plan (v1.0 → v1.1)
 
