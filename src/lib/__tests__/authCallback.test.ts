@@ -2,11 +2,15 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { deferAuthCallback } from "@/lib/authCallback";
 
 describe("deferAuthCallback (#263)", () => {
-  beforeEach(() => vi.useFakeTimers());
-  afterEach(() => vi.useRealTimers());
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+  afterEach(() => {
+    vi.useRealTimers();
+  });
 
   it("returns at once, even when the handler never settles", () => {
-    const handler = vi.fn(() => new Promise<void>(() => {}));
+    const handler = vi.fn((..._args: unknown[]) => new Promise<void>(() => {}));
     const result = deferAuthCallback(handler)("SIGNED_IN", { user: 1 });
     // Not a promise: supabase-js has nothing to await while it holds the auth lock.
     expect(result).toBeUndefined();
