@@ -1,6 +1,6 @@
 # Source Integration: any source → graph → corpus → reflection
 
-*v1, 2026-11-08. Asked for by Sasha (chat, 2026-11-08): «шаблон, по которому любой искусственный интеллект может взять и выполнить задачу»: run any piece of knowledge (a long YouTube course, a conversation, a book, a talk) through the project, integrate it into the knowledge graph and the corpus with quality, and give Sasha a reflection he can actually absorb. Status: canonical. Lens (see [meta-template.md](./meta-template.md)): Causal.*
+*v1.1, 2026-11-08 (v1 same day; v1.1 after the first test run, Hark on a 2:46 conversation with Justin Vinokur: privacy fixed, compaction, speaker map, conversation mode, series naming). Asked for by Sasha (chat, 2026-11-08): «шаблон, по которому любой искусственный интеллект может взять и выполнить задачу»: run any piece of knowledge (a long YouTube course, a conversation, a book, a talk) through the project, integrate it into the knowledge graph and the corpus with quality, and give Sasha a reflection he can actually absorb. Status: canonical. Lens (see [meta-template.md](./meta-template.md)): Causal.*
 
 **Why it exists.** Hark tokens are scarce; a dense 10-hour course must not pass through Hark's context. This template is the meta-move: Hark (or Sasha) only writes the one-line intake; any capable agent (Claude Code, Codex, GPT, Gemini, a Hark subagent) executes it end to end; Sasha reads only the reflection.
 
@@ -49,7 +49,11 @@ chunks: []   # filled in step 2, each with done: true/false (makes the run resum
 - **B, standard:** every chunk extracted; notes only for what is new or contradicts; corpus edits only for clear wins.
 - **C, skim:** one pass over the whole; source card + up to 7 key ideas + reflection. No new maps.
 
-**Privacy rule.** The `knowledgegraph` and `evolver-grid-site` repos are public. A private conversation (a client, a friend, a call) goes raw to `evolver-private-ledger` only; the public graph gets de-identified ideas without names, amounts or quotes, and only ideas that are Sasha's or general. When unsure, treat as private.
+**Privacy rule.** `evolver-grid-site` is **public**; `knowledgegraph` and `evolver-private-ledger` are **private**.
+- Raw transcript of a private conversation (a client, a friend, a call): `evolver-private-ledger/sources/` only.
+- Extract of a private conversation: `knowledgegraph` is fine (private), with the interpersonal part kept to a few lines; the CRM holds the rest.
+- **Someone else's unreleased work is their IP** (e.g. a friend's system he is still licensing): it may live in the private graph, never in the public corpus, and is marked as theirs.
+- Only Sasha's own positions or general ideas, de-identified, may reach `evolver-grid-site`. When unsure, treat as private.
 
 ## 2. Acquire the text, verbatim
 
@@ -60,22 +64,32 @@ chunks: []   # filled in step 2, each with done: true/false (makes the run resum
 
 Never summarize at this stage. Save verbatim (step 3 path), with a header: title, URL, author, date, length, how acquired.
 
-**Chunking.** Split into chunks of ~20–30 minutes of speech or ~8–10k words, cut at chapter or topic boundaries (YouTube chapters if present). List them in the card's `chunks:`. Each chunk is processed in its own pass, so any model with a modest context window can do it and a run can resume after a cut.
+**Speaker map** (conversations): diarization is unreliable. Identify who is who from content (who talks about whose project) and write it in the header, e.g. "Speaker 1 = Justin; Speakers 3 and 4 = Sasha; 2, 5–8 = café staff". One person split into two speaker labels and bystanders in a café are both normal. Count each person's words (talk share): it is part of the reflection.
+
+**Compact working copy** (not saved): one line per utterance, `J[1:23:45] text`, markup stripped, bystander lines under four words dropped. Cuts ~30% of tokens; read this, cite timestamps from it.
+
+**Chunking.** A source under ~25k words fits one pass in a large-context model; then log the chunks as topic ranges in the card (still useful for resuming and for the reflection) and read straight through. Otherwise split into chunks of ~20–30 minutes of speech or ~8–10k words, cut at chapter or topic boundaries (YouTube chapters if present). List them in the card's `chunks:`. Each chunk is processed in its own pass, so any model with a modest context window can do it and a run can resume after a cut.
 
 ## 3. Where things live
 
 | What | Public source | Private source |
 |---|---|---|
 | Verbatim transcript | `knowledgegraph/10 Sources/<kind>/<author-slug>/<YYYY-MM-DD>-<slug>.md` (one per video) | `evolver-private-ledger/sources/<YYYY-MM-DD>-<slug>.md` |
-| Source card (intake + chunk log + summary) | `knowledgegraph/30 Sources/<Author> - <Title>.md` | private ledger, same folder |
-| Notes (concepts, frameworks, practices, distinctions) | `knowledgegraph/10 Notes/` | `10 Notes/`, de-identified only |
-| Maps (any structure with parts and arrows) | `knowledgegraph/20 Maps/` | same, de-identified |
-| Corpus edits | `evolver-grid-site/docs/...` (step 6) | same, de-identified |
-| Reflection to Sasha | end of the source card + PR body | private ledger + PR body |
+| Source card (intake + chunk log + extraction + reflection) | `knowledgegraph/30 Sources/<Author> - <Title>.md` | `knowledgegraph/30 Sources/<Person> — Session N (extract).md` |
+| Notes (concepts, frameworks, practices, distinctions) | `knowledgegraph/10 Notes/` | same; the other person's ideas marked as theirs |
+| Maps (any structure with parts and arrows) | `knowledgegraph/20 Maps/` | same |
+| Corpus edits | `evolver-grid-site/docs/...` (step 6) | only Sasha's own positions, de-identified |
+| CRM (people) | none | `evolver-private-ledger/docs/02-strategy/strategic_crm_outreach_tracker.md`: the person's row + version line |
+| Reflection to Sasha | end of the source card + PR body | same |
+
+**Series first.** Before naming anything, search `30 Sources/` and `20 Maps/` for earlier material from the same person or author (`Session 1 (extract)`, a map about their work). Continue their naming and numbering, and update the existing map with a dated section instead of starting a new one.
 
 Follow `knowledgegraph/CLAUDE.md` and `AGENTS.md` for note format, naming and link rules. They win over this table if they differ.
 
 ## 4. Extract (one pass per chunk)
+
+**Conversation mode** (a talk Sasha took part in): sort the extraction into four lanes. **A. Their ideas** (the other person's; their IP if unreleased). **B. Sasha's own positions said live** (often the most valuable lane: match each against our corpus; many will be SAME-AS, which is a good sign, not waste). **C. The relationship** (status, what was said about the relationship, offers, open loops) → a few lines in the card, details to the CRM row. **D. Off-thread** (life news, small talk): one line, not integrated.
+
 
 For each chunk, write a block in the source card under `## Extraction` with these item types, each with a timestamp:
 
@@ -122,6 +136,7 @@ Written last, from the graph and corpus changes, not from the transcript. In the
 2. **3–5 key insights,** each: the idea in plain words → why it matters for us → timestamp.
 3. **What is really new** vs **what we already had** (name our frameworks it matches: "this is our X in other words").
 4. **Where it confirms our thesis, where it challenges it.** Tensions honestly, without smoothing.
+For a conversation, add the honest read of its dynamics: talk share, the turning point, what shifted. Never a strategy, a line or timing for Sasha's warm contacts: he leads those relationships.
 5. **1–3 applications this week** for FindYourTopTalent / the game / a client (each a concrete move, marked *hypothesis*).
 6. **One question to Sasha** that only he can answer (what resonated, what he disagrees with). His answer goes to `learnings.md` (Hark) or a dated line in the source card.
 7. **Open `[?]`** and anything the agent could not verify.
@@ -138,7 +153,9 @@ Teach-back option (depth A): end with three short questions Sasha can answer fro
 | Traceability | every added claim has source + timestamp |
 | No duplicates | no new note duplicates an existing title or concept; `SAME-AS` merged |
 | Links | zero broken links; quoted / hypothesis marked; no hypothesis in front matter |
-| Privacy | private source: nothing identifying in public repos |
+| Privacy | private source: nothing identifying in `evolver-grid-site`; someone else's unreleased work only in private repos |
+| Speakers | speaker map in the header; talk share counted (conversations) |
+| CRM | conversation: the person's row updated, version line added |
 | Corpus | edits are dated extensions; paths listed; no new doc without a reason |
 | Reflection | present, ≤ 400 words, has all 8 parts |
 | Integrity | repo checks green |
@@ -155,4 +172,4 @@ One PR per repo touched, small, with the DoD table. Card `status: done`.
 ## 10. Worked examples (fill in after first runs)
 
 - *Robert Gilbert, open YouTube course (depth A, public)*: pending.
-- *Conversation with Justin (depth B, private)*: pending.
+- *Conversation with Justin Vinokur, 2026-11-08 (depth B, private), run by Hark*: `knowledgegraph/30 Sources/Justin Vinokur — Session 4 (extract).md` (commit 691e2c4) + map update; raw + CRM in the private ledger (2d30be6). 2:46, ~23k words read in one pass; 4 lanes; 2 existing notes extended, no new notes (most of Sasha's lane was SAME-AS); 0 public corpus edits. Lessons folded into v1.1.
