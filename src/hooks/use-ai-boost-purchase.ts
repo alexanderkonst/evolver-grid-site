@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { User } from "@supabase/supabase-js";
+import { deferAuthCallback } from "@/lib/authCallback";
 
 export const useAIBoostPurchase = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -33,9 +34,10 @@ export const useAIBoostPurchase = () => {
 
     checkAuthAndPurchase();
 
-    // Listen for auth changes
+    // Listen for auth changes. The query must not run inside the callback: supabase-js
+    // awaits it while holding the auth lock, which deadlocks every later call (#263).
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      deferAuthCallback(async (event, session) => {
         setUser(session?.user ?? null);
         
         if (session?.user) {
@@ -53,7 +55,7 @@ export const useAIBoostPurchase = () => {
         } else {
           setHasPurchased(false);
         }
-      }
+      })
     );
 
     return () => subscription.unsubscribe();

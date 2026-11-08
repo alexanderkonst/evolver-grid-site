@@ -335,6 +335,10 @@ export type UniqueBusinessState = {
    * arrives. Flips to false once the first fetch resolves (success or fail).
    */
   isInitializing: boolean;
+  /** The initial fetch failed or timed out (#263). Show a short error with `retryInit`. */
+  initFailed: boolean;
+  /** «Try again» after `initFailed`: re-runs the initial fetch. */
+  retryInit: () => void;
 
   // Derived
   lockedCount: number;

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { deferAuthCallback } from "@/lib/authCallback";
 import BoldText from "@/components/BoldText";
 import { Button } from "@/components/ui/button";
 import { Eye } from "lucide-react";
@@ -109,7 +110,7 @@ const AdminGeniusOffers = () => {
 
     checkAuth();
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(deferAuthCallback(async (event, session) => {
       setUser(session?.user ?? null);
 
       if (session?.user) {
@@ -122,7 +123,7 @@ const AdminGeniusOffers = () => {
       } else {
         setIsAdmin(false);
       }
-    });
+    }));
 
     return () => subscription.unsubscribe();
   }, []);

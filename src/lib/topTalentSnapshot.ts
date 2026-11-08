@@ -22,27 +22,36 @@ export const pickTopTalentSnapshot = <T>(pointed: T | null, newest: T | null): T
 export async function fetchTopTalentSnapshot<T extends { id: string }>(
   profileId: string,
   columns: string,
+  /**
+   * The caller's already-read `game_profiles.last_zog_snapshot_id` (`null` = no pointer).
+   * Skips the pointer round trip. `undefined` = read it here.
+   */
+  knownPointerId?: string | null,
 ): Promise<T | null> {
-  const { data: pointerRow } = await supabase
-    .from("game_profiles")
-    .select("last_zog_snapshot_id")
-    .eq("id", profileId)
-    .maybeSingle();
-  const pointerId = pointerRow?.last_zog_snapshot_id ?? null;
+  let pointerId: string | null;
+  if (knownPointerId !== undefined) {
+    pointerId = knownPointerId;
+  } else {
+    const { data: pointerRow } = await supabase
+      .from("game_profiles")
+      .select("last_zog_snapshot_id")
+      .eq("id", profileId)
+      .maybeSingle();
+    pointerId = pointerRow?.last_zog_snapshot_id ?? null;
+  }
 
-  let pointed: T | null = null;
-  if (pointerId) {
+  const readPointed = async (): Promise<T | null> => {
+    if (!pointerId) return null;
     const { data } = await supabase
       .from("zog_snapshots")
       .select(columns)
       .eq("id", pointerId)
       .eq("profile_id", profileId)
       .maybeSingle();
-    pointed = (data as unknown as T | null) ?? null;
-  }
+    return (data as unknown as T | null) ?? null;
+  };
 
-  let newest: T | null = null;
-  if (!pointed) {
+  const readNewest = async (): Promise<T | null> => {
     const { data } = await supabase
       .from("zog_snapshots")
       .select(columns)
@@ -50,8 +59,11 @@ export async function fetchTopTalentSnapshot<T extends { id: string }>(
       .order("created_at", { ascending: false })
       .limit(1)
       .maybeSingle();
-    newest = (data as unknown as T | null) ?? null;
-  }
+    return (data as unknown as T | null) ?? null;
+  };
 
+  // Both reads at once: the newest row is only used when the pointer is empty or stale,
+  // but waiting for the pointer first made Home pay for two round trips in series (#263).
+  const [pointed, newest] = await Promise.all([readPointed(), readNewest()]);
   return pickTopTalentSnapshot(pointed, newest);
 }
