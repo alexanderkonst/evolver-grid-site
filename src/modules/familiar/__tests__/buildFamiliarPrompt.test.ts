@@ -9,7 +9,7 @@ import {
 } from "../buildFamiliarPrompt";
 
 // The bundled source of truth, read straight from the file the module imports.
-const AI_OS = readFileSync(new URL("../../../../system-prompts/v5.2/system-prompt.md", import.meta.url), "utf8");
+const AI_OS = readFileSync(new URL("../../../../system-prompts/v6.0/system-prompt.md", import.meta.url), "utf8");
 
 const TALENT: FamiliarTalentInput = {
   archetypeTitle: "Pattern Architecting",
@@ -40,7 +40,7 @@ describe("buildFamiliarPrompt: guest", () => {
     expect(out).not.toContain("# My work");
   });
 
-  it("the bundled AI OS text is the real v5.2 prompt, not a stub", () => {
+  it("the bundled AI OS text is the real v6.0 prompt, not a stub", () => {
     expect(AI_OS.split(/\s+/).length).toBeGreaterThan(5000);
   });
 });

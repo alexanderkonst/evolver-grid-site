@@ -3,7 +3,7 @@ import { buildFamiliarState, buildGifts, hashPrompt, WORKSHOP_TOTAL } from "../f
 import { chatAppUrl, CHAT_APPS, isChatApp } from "../chatApps";
 
 const AI_OS = "AI OS text";
-const base = { aiOs: AI_OS, aiOsVersion: "5.2" };
+const base = { aiOs: AI_OS, aiOsVersion: "6.0" };
 const talent = { archetypeTitle: "Pattern Architecting" };
 const pieces = (n: number) => Array.from({ length: n }, (_, i) => ({ key: `k${i}`, label: `Piece ${i}`, text: `text ${i}` }));
 
@@ -13,7 +13,7 @@ describe("gifts", () => {
   it("guest: activated is lit, the other two are dim and say what opens them", () => {
     const gifts = buildGifts(base);
     expect(gifts.map((g) => g.key)).toEqual(["knowsYou", "activated", "knowsYourWork"]);
-    expect(gift(gifts, "activated")).toMatchObject({ lit: true, detail: "AI OS 5.2" });
+    expect(gift(gifts, "activated")).toMatchObject({ lit: true, detail: "AI OS 6.0" });
     expect(gift(gifts, "knowsYou")).toMatchObject({ lit: false, opensWhen: "Opens when you save your top talent" });
     expect(gift(gifts, "knowsYourWork")).toMatchObject({ lit: false, opensWhen: "Opens in the Workshop" });
     expect(gift(gifts, "knowsYou").detail).toBeUndefined();
