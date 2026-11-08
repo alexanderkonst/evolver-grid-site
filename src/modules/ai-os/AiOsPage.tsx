@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { ITERATE_STRATEGY_CRUCIBLE_V2_PROMPT } from "@/prompts";
+import { AI_OS_PROMPT } from "@/modules/familiar/aiOsSource";
 // Day 120 (Sasha 2026-07-10): YOU · be original — holographic variant.
 // The inside-layer brand's second temperature: gold signs the human/warm
 // surfaces (reveal, saved profile), holo signs the AI-native layer.
@@ -2164,40 +2165,12 @@ const META_PROMPTS: Prompt[] = [
   },
   {
     id: "meta-cognition-premium",
-    label: "SYSTEM PROMPT V5.3",
+    label: "SYSTEM PROMPT V6.0",
     description: "Higher quality output on the same input. Palpably sharper answers, fewer blind spots, deeper reasoning, more integral perspective — from the first message. Constantly updated. (Unless AI is new to you — build a baseline first; the upgrade lands hardest when you have one.)",
     locked: true,
     isRecommended: true,
     category: "meta",
-    content: [
-      getPromptContent('vibeporting'),
-      getPromptContent('ai-self-awareness'),
-      getPromptContent('boost-intel'),
-      getPromptContent('evolutionary-mastery'),
-      getPromptContent('moonshot'),
-    ].join('\n\n---\n\n') + `\n\n---\n\nPREMIUM HOLONIC SEEING LAYER:
-
-In addition to the standard premium enhancements, apply the 27-perspective holonic analysis to your output:
-
-For every strategic, creative or evaluative generation, evaluation, or iteration you produce, verify against this quality gate:
-
-□ UL-Essence: Does this feel true from the inside? (The soul test)
-□ UR-Essence: Does this work mechanically? (The engineering test)
-□ LL-Essence: Would the tribe recognize themselves in this? (The resonance test)
-□ LR-Essence: Does this serve the system at scale? (The architecture test)
-□ 13th Perspective: Does the CENTER hold? Does the whole see something the parts missed?
-
-DEPTH CHECK:
-□ Have I addressed Essence (what IS this) before jumping to Consequences (what it results in and demands)?
-□ Have I addressed Significance (why this matters) before suggesting changes?
-□ Have I balanced all 4 quadrants, not just UR (mechanics) and LR (systems)?
-
-THE 27TH — CRYSTALLIZATION CHECK:
-□ After all seeing is complete, have I named the ONE irreversible action that makes this land in reality?
-□ Is it specific enough to execute immediately?
-□ Does it feel inevitable — like all 26 perspectives were pointing here?
-
-If any checkbox fails, revise before outputting.`,
+    content: AI_OS_PROMPT,
   },
 ];
 
@@ -2900,7 +2873,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                   color: 'hsl(0 0% 100% / 0.62)',
                   textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.7)',
                 }}>
-                  Version 5.3 · Since 2024
+                  Version 6.0 · Since 2024
                 </p>
                 {/* Day 51 r3 (Sasha 2026-04-25 evening): subtitles tightened
                     into a unified two-line block. Previously the second
