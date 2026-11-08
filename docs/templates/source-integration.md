@@ -1,6 +1,6 @@
 # Source Integration: any source → graph → corpus → reflection
 
-*v1.1, 2026-11-08 (v1 same day; v1.1 after the first test run, Hark on a 2:46 conversation with Justin Vinokur: privacy fixed, compaction, speaker map, conversation mode, series naming). Asked for by Sasha (chat, 2026-11-08): «шаблон, по которому любой искусственный интеллект может взять и выполнить задачу»: run any piece of knowledge (a long YouTube course, a conversation, a book, a talk) through the project, integrate it into the knowledge graph and the corpus with quality, and give Sasha a reflection he can actually absorb. Status: canonical. Lens (see [meta-template.md](./meta-template.md)): Causal.*
+*v1.1, 2026-11-08 (v1 same day; v1.1 after the first test run, Hark on a 2:46 private conversation with a collaborator: privacy fixed, compaction, speaker map, conversation mode, series naming). Asked for by Sasha (chat, 2026-11-08): «шаблон, по которому любой искусственный интеллект может взять и выполнить задачу»: run any piece of knowledge (a long YouTube course, a conversation, a book, a talk) through the project, integrate it into the knowledge graph and the corpus with quality, and give Sasha a reflection he can actually absorb. Status: canonical. Lens (see [meta-template.md](./meta-template.md)): Causal.*
 
 **Why it exists.** Hark tokens are scarce; a dense 10-hour course must not pass through Hark's context. This template is the meta-move: Hark (or Sasha) only writes the one-line intake; any capable agent (Claude Code, Codex, GPT, Gemini, a Hark subagent) executes it end to end; Sasha reads only the reflection.
 
@@ -64,7 +64,7 @@ chunks: []   # filled in step 2, each with done: true/false (makes the run resum
 
 Never summarize at this stage. Save verbatim (step 3 path), with a header: title, URL, author, date, length, how acquired.
 
-**Speaker map** (conversations): diarization is unreliable. Identify who is who from content (who talks about whose project) and write it in the header, e.g. "Speaker 1 = Justin; Speakers 3 and 4 = Sasha; 2, 5–8 = café staff". One person split into two speaker labels and bystanders in a café are both normal. Count each person's words (talk share): it is part of the reflection.
+**Speaker map** (conversations): diarization is unreliable. Identify who is who from content (who talks about whose project) and write it in the header, e.g. "Speaker 1 = the guest; Speakers 3 and 4 = Sasha; 2, 5–8 = café staff". One person split into two speaker labels and bystanders in a café are both normal. Count each person's words (talk share): it is part of the reflection.
 
 **Compact working copy** (not saved): one line per utterance, `J[1:23:45] text`, markup stripped, bystander lines under four words dropped. Cuts ~30% of tokens; read this, cite timestamps from it.
 
@@ -171,5 +171,5 @@ One PR per repo touched, small, with the DoD table. Card `status: done`.
 
 ## 10. Worked examples (fill in after first runs)
 
-- *Robert Gilbert, open YouTube course (depth A, public)*: pending.
-- *Conversation with Justin Vinokur, 2026-11-08 (depth B, private), run by Hark*: `knowledgegraph/30 Sources/Justin Vinokur — Session 4 (extract).md` (commit 691e2c4) + map update; raw + CRM in the private ledger (2d30be6). 2:46, ~23k words read in one pass; 4 lanes; 2 existing notes extended, no new notes (most of Sasha's lane was SAME-AS); 0 public corpus edits. Lessons folded into v1.1.
+- *An open YouTube course (depth A, public)*: pending.
+- *Private conversation with a collaborator, 2026-11-08 (depth B), run by Hark*: source card in `knowledgegraph/30 Sources/` (commit 691e2c4) + map update; raw + CRM in the private ledger (2d30be6). 2:46, ~23k words read in one pass; 4 lanes; 2 existing notes extended, no new notes (most of Sasha's lane was SAME-AS); 0 public corpus edits. Lessons folded into v1.1.
