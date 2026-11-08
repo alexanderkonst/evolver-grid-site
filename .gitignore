@@ -12,6 +12,14 @@ dist
 dist-ssr
 *.local
 
+# Vite writes these next to vite.config.ts while loading it; never commit them.
+vite.config.ts.timestamp-*.mjs
+# Site-wide archive snapshots (~20 MB) do not belong in the repo root.
+/evolver-grid-site.zip
+# One lockfile format for Bun (bun.lock). The binary bun.lockb went stale
+# (missing @lovable.dev/mcp-js, which vite.config.ts imports) and must not return.
+bun.lockb
+
 # Environment files (use .env.example as template)
 .env
 .env.*
