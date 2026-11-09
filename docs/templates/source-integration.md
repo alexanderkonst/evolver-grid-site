@@ -1,6 +1,6 @@
 # Source Integration: any source → graph → corpus → reflection
 
-*v1.1, 2026-11-08 (v1 same day; v1.1 after the first test run, Hark on a 2:46 private conversation with a collaborator: privacy fixed, compaction, speaker map, conversation mode, series naming). Asked for by Sasha (chat, 2026-11-08): «шаблон, по которому любой искусственный интеллект может взять и выполнить задачу»: run any piece of knowledge (a long YouTube course, a conversation, a book, a talk) through the project, integrate it into the knowledge graph and the corpus with quality, and give Sasha a reflection he can actually absorb. Status: canonical. Lens (see [meta-template.md](./meta-template.md)): Causal.*
+*v1.2, 2026-11-08 (intake: Sasha never runs anything; v1.1 same day; v1.1 after the first test run, Hark on a 2:46 private conversation with a collaborator: privacy fixed, compaction, speaker map, conversation mode, series naming). Asked for by Sasha (chat, 2026-11-08): «шаблон, по которому любой искусственный интеллект может взять и выполнить задачу»: run any piece of knowledge (a long YouTube course, a conversation, a book, a talk) through the project, integrate it into the knowledge graph and the corpus with quality, and give Sasha a reflection he can actually absorb. Status: canonical. Lens (see [meta-template.md](./meta-template.md)): Causal.*
 
 **Why it exists.** Hark tokens are scarce; a dense 10-hour course must not pass through Hark's context. This template is the meta-move: Hark (or Sasha) only writes the one-line intake; any capable agent (Claude Code, Codex, GPT, Gemini, a Hark subagent) executes it end to end; Sasha reads only the reflection.
 
@@ -8,14 +8,16 @@
 
 ## 0. How to run it (copy one line)
 
-**Mode A, recommended for YouTube and anything long: Claude Code or Codex on Sasha's Mac**, with `evolver-grid-site`, `knowledgegraph` and `evolver-private-ledger` cloned side by side. (YouTube blocks GitHub's servers; a home IP fetches transcripts fine.)
+**Sasha never runs anything.** He gives a link and a depth; the rest is agents. (v1.2, 2026-11-08: v1.1 told him to open Claude Code and install yt-dlp; he rejected that, rightly.)
+
+**Default, Mode B via Hark:** Hark fetches the transcript itself (its video-transcript tool works where YouTube blocks yt-dlp from cloud and GitHub IPs), commits it verbatim to the step 3 path, opens an issue in `knowledgegraph` with the three lines below plus "step 2 done, start from step 3", and adds it to `90 System/import-queue.yml` (the import chain dispatches Claude, Codex on fallback). Hark then checks the PR against §DoD and brings Sasha only the reflection.
 
 ```
 Run docs/templates/source-integration.md (evolver-grid-site) on: <URL or file path>.
 Depth: <A deep | B standard | C skim>. Privacy: <public | private>. Why now: <one line, optional>.
 ```
 
-**Mode B, source is already text in a repo:** open an issue in `knowledgegraph` with the same three lines and add it to `90 System/import-queue.yml` (the import chain dispatches it to Claude, Codex on fallback).
+**Mode A, optional:** an agent already running on Sasha's Mac (Claude Code, Codex) with the three repos side by side may run the same line, acquiring with yt-dlp from the home IP. Only when it is already running; never as a chore for Sasha.
 
 **Mode C, Hark:** only for short sources (under ~1 hour) or when Sasha wants to talk it through live. Hark still follows this template and reads only what it needs.
 
