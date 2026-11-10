@@ -26,24 +26,94 @@ export const stripMarkdown = (s: string): string =>
   s.trim().replace(/^[\s>*]+|[\s>*]+$/g, "");
 
 // ─── JSON-first (new prompt shape) ─────────────────────────────────────
-// Pull `mission_one_sentence` from the LAST well-formed JSON block in the
-// paste (the AI's own output typically follows any echoed example).
-export const extractJsonOneSentence = (raw: string): string | null => {
-  const jsonMatches = raw.match(/\{[\s\S]*\}/g);
-  if (!jsonMatches || jsonMatches.length === 0) return null;
-  for (let i = jsonMatches.length - 1; i >= 0; i--) {
-    try {
-      const parsed = JSON.parse(jsonMatches[i]);
-      const sentence =
-        typeof parsed?.mission_one_sentence === "string"
-          ? parsed.mission_one_sentence.trim()
-          : null;
-      if (sentence) return sentence;
-    } catch {
-      // not valid JSON — keep trying earlier candidates
+// Pull `mission_one_sentence` from the LAST JSON object in the paste (the
+// AI's own output follows any echoed example).
+//
+// Bug (Eva, 2026-11-10): real pastes failed with "Не нашли итоговую фразу":
+//   - the old greedy /\{[\s\S]*\}/ glued every block into one invalid match;
+//   - chat apps put real line breaks inside strings, curly quotes, or a
+//     trailing comma, so JSON.parse threw;
+//   - the AI sometimes writes the key without the JSON being parseable at all.
+// Now: balanced-brace scan, light repair, and a key-level regex fallback.
+
+/** Every top-level {...} block, found by brace balance (string-aware). */
+const findJsonBlocks = (raw: string): string[] => {
+  const blocks: string[] = [];
+  let depth = 0;
+  let start = -1;
+  let inString = false;
+  let escaped = false;
+  for (let i = 0; i < raw.length; i++) {
+    const c = raw[i];
+    if (inString) {
+      if (escaped) escaped = false;
+      else if (c === "\\") escaped = true;
+      else if (c === '"') inString = false;
+      continue;
+    }
+    if (c === '"') inString = depth > 0;
+    else if (c === "{") {
+      if (depth === 0) start = i;
+      depth++;
+    } else if (c === "}" && depth > 0) {
+      depth--;
+      if (depth === 0 && start >= 0) {
+        blocks.push(raw.slice(start, i + 1));
+        start = -1;
+      }
     }
   }
-  return null;
+  return blocks;
+};
+
+/** Repair what chat apps do to JSON: curly quotes, raw newlines in strings, trailing commas. */
+const repairJson = (block: string): string => {
+  let s = block.replace(/[\u201C\u201D\u201E\u201F\u2033]/g, '"');
+  let out = "";
+  let inString = false;
+  let escaped = false;
+  for (const c of s) {
+    if (inString) {
+      if (escaped) escaped = false;
+      else if (c === "\\") escaped = true;
+      else if (c === '"') inString = false;
+      else if (c === "\n") { out += "\\n"; continue; }
+      else if (c === "\r") continue;
+      else if (c === "\t") { out += " "; continue; }
+    } else if (c === '"') inString = true;
+    out += c;
+  }
+  return out.replace(/,\s*([}\]])/g, "$1");
+};
+
+const sentenceFromParsed = (parsed: any): string | null =>
+  typeof parsed?.mission_one_sentence === "string" && parsed.mission_one_sentence.trim()
+    ? parsed.mission_one_sentence.trim()
+    : null;
+
+// Key-level fallback: the value of the LAST "mission_one_sentence" key.
+const KEY_REGEX = /["\u201C\u201D]?mission_one_sentence["\u201C\u201D]?\s*:\s*["\u201C\u201D]([\s\S]*?)["\u201C\u201D]\s*(?:[,}]|$)/g;
+
+export const extractJsonOneSentence = (raw: string): string | null => {
+  const blocks = findJsonBlocks(raw);
+  for (let i = blocks.length - 1; i >= 0; i--) {
+    for (const candidate of [blocks[i], repairJson(blocks[i])]) {
+      try {
+        const sentence = sentenceFromParsed(JSON.parse(candidate));
+        if (sentence) return sentence;
+      } catch {
+        // try the repaired form, then earlier blocks
+      }
+    }
+  }
+  KEY_REGEX.lastIndex = 0;
+  let last: string | null = null;
+  let m: RegExpExecArray | null;
+  while ((m = KEY_REGEX.exec(raw)) !== null) {
+    const v = m[1].replace(/\\"/g, '"').replace(/\s+/g, " ").trim();
+    if (v) last = v;
+  }
+  return last;
 };
 
 /** JSON first, then the legacy marker. Returns null if neither is present. */
@@ -99,6 +169,18 @@ export const resolveMissionSentence = (raw: string): string | null => {
   const extracted = extractOneSentence(raw);
   if (extracted) return extracted;
   if (isLikelyBareSentence(raw)) return raw.trim();
+  // Eva (2026-11-10): "Фразу в конце писала" — the essay ends with the one
+  // sentence as its own last paragraph, without JSON or a label. Take it.
+  const paragraphs = raw.trim().split(/\n\s*\n/).map((p) => stripMarkdown(p)).filter(Boolean);
+  if (paragraphs.length > 1) {
+    const rawLast = paragraphs[paragraphs.length - 1];
+    const quoted = /^["«“].*["»”]$/s.test(rawLast);
+    const last = rawLast.replace(/^["«“]|["»”]$/g, "").trim();
+    // Set apart = quoted, or written without a closing period (the prompt says
+    // none is required), or the essay has 3+ paragraphs with this one last.
+    const setApart = quoted || !/[.!?]$/.test(last) || paragraphs.length >= 3;
+    if (setApart && last.length >= 20 && isLikelyBareSentence(last)) return last;
+  }
   return null;
 };
 

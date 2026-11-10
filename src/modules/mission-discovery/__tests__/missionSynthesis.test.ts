@@ -109,3 +109,39 @@ describe("resolveMissionSavedDate (#6)", () => {
     expect(resolveMissionSavedDate({ updatedAt: null, discoveredAt: null })).toBeNull();
   });
 });
+
+describe("extractOneSentence — real chat-app pastes (Eva, 2026-11-10)", () => {
+  const sentence = "Помогать людям вспоминать свою природу и жить из неё";
+
+  it("survives raw line breaks inside the analysis string", () => {
+    const raw = `Вот мой разбор.\n{\n  "mission_analysis": "Первый абзац.\n\nВторой абзац.",\n  "mission_one_sentence": "${sentence}"\n}`;
+    expect(extractOneSentence(raw)).toBe(sentence);
+  });
+
+  it("survives curly quotes and a trailing comma", () => {
+    const raw = `{“mission_analysis”: “текст”, “mission_one_sentence”: “${sentence}”,}`;
+    expect(extractOneSentence(raw)).toBe(sentence);
+  });
+
+  it("takes the AI's own block after an echoed example with braces in between", () => {
+    const raw = `{"mission_one_sentence": "EXAMPLE."}\nразмышления {без json}\n\`\`\`json\n{"mission_analysis": "a", "mission_one_sentence": "${sentence}"}\n\`\`\``;
+    expect(extractOneSentence(raw)).toBe(sentence);
+  });
+
+  it("falls back to the key when the JSON is broken beyond repair", () => {
+    const raw = `{"mission_analysis": "обрыв "кавычек" внутри", "mission_one_sentence": "${sentence}"}`;
+    expect(extractOneSentence(raw)).toBe(sentence);
+  });
+});
+
+describe("resolveMissionSentence — sentence as the last paragraph", () => {
+  it("takes the final one-sentence paragraph of an essay", () => {
+    const raw = "Длинный разбор. Ещё мысль.\n\nВторой абзац. И ещё.\n\n«Помогать людям вспоминать свою природу и жить из неё»";
+    expect(resolveMissionSentence(raw)).toBe("Помогать людям вспоминать свою природу и жить из неё");
+  });
+
+  it("still returns null for an essay whose last paragraph is several sentences", () => {
+    const raw = "Первый абзац.\n\nВторой. Третий. Четвёртый.";
+    expect(resolveMissionSentence(raw)).toBeNull();
+  });
+});
