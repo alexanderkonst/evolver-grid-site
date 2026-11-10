@@ -126,7 +126,7 @@ export default function CockpitLanding() {
         ogImageAlt="Founder Cockpit: your whole business, one glance"
       />
       <Helmet>
-        <link rel="preload" as="image" href={`${IMG}/cashflow.webp`} type="image/webp" fetchPriority="high" />
+        <link rel="preload" as="image" href={`${IMG}/cashflow.webp`} type="image/webp" {...{ fetchpriority: "high" }} />
       </Helmet>
 
       <nav className="fc-nav" aria-label="Founder Cockpit">
@@ -172,7 +172,7 @@ export default function CockpitLanding() {
                 width={806}
                 height={1120}
                 alt="Founder Cockpit Cashflow panel showing total received and a cumulative chart"
-                fetchPriority="high"
+                {...{ fetchpriority: "high" }}
               />
             </div>
             <div className="fc-shot fc-side fc-side-r" data-reveal style={{ "--d": "380ms" } as React.CSSProperties}>

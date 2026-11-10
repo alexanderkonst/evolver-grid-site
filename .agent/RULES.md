@@ -23,6 +23,8 @@ All workflow files include `// turbo-all` annotation - execute ALL steps without
 
 Alexander does NOT review PRs on GitHub. Every completed code batch lands on `main` automatically and Vercel auto-deploys.
 
+**Production is not Vercel (corrected 2026-11-09).** A merge to `main` updates only `evolver-grid-site.vercel.app`. The real domain, `findyourtoptalent.com`, is served by Lovable and shows a new build only after Sasha presses Publish → Update in Lovable (free; a Lovable chat prompt is not, never send one without him). "Shipped" means checked on `findyourtoptalent.com`, never on the Vercel address.
+
 **Per-batch procedure (applies to every agent working on `src/` or `supabase/`):**
 
 1. Commit with a descriptive message using conventional-commit prefixes (`feat:`, `fix:`, `chore:`, `refactor:`, `docs:`).
