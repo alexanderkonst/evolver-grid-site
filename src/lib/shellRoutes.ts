@@ -102,7 +102,9 @@ const SHELL_EXACT = new Set<string>([
     "/build/equilibrium",
     "/skills",
     "/growth-paths",
-    // "/build/cockpit" (the public landing) is a full-bleed dark page with its own nav: no shell.
+    // Issue #322 (Sasha 2026-11-09): the public landing lives inside the game,
+    // in the Lunar skin. Its local .fc-nav stays (sticky inside pane 3).
+    "/build/cockpit",
     "/build/cockpit/dashboard",
     "/build/cockpit/offers",
     "/game/test-nav",
