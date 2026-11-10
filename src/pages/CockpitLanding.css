@@ -5,7 +5,7 @@
   --fc-bg: #07080b;
   --fc-ink: #f5f5f7;
   --fc-mute: #9a9aa1;
-  --fc-dim: #6a6a72;
+  --fc-dim: #7e7e86; /* 4.97:1 on --fc-bg, passes WCAG AA for small text */
   --fc-line: rgba(255, 255, 255, 0.09);
   min-height: 100vh;
   overflow-x: clip;
@@ -24,6 +24,8 @@
   position: sticky; top: 0; z-index: 20;
   display: flex; align-items: center; justify-content: space-between;
   height: 52px; padding: 0 clamp(20px, 5vw, 48px);
+  /* Room for the app's global language pill (fixed top-right, ~67px wide). */
+  padding-right: calc(clamp(20px, 5vw, 48px) + 78px);
   background: rgba(7, 8, 11, 0.72);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
@@ -46,6 +48,13 @@
 .fc-btn:focus-visible,
 .fc-nav-links a:focus-visible { outline: 2px solid #8fa4ff; outline-offset: 3px; }
 .fc-btn-sm { height: 30px; padding: 0 14px; font-size: 13px; }
+.fc-btn-ghost {
+  background: transparent; color: var(--fc-ink);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32);
+}
+.fc-btn-ghost:hover { background: rgba(255, 255, 255, 0.08); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6); }
+.fc-nav-cta { transition: opacity 0.3s ease, transform 0.2s ease, background 0.2s ease; }
+.fc-nav-cta-hidden { opacity: 0; pointer-events: none; }
 
 /* Type */
 .fc-eyebrow {
@@ -61,6 +70,8 @@
 /* Layout */
 .fc-sec { position: relative; padding: clamp(88px, 12vw, 168px) clamp(20px, 5vw, 48px); }
 .fc-wrap { position: relative; max-width: 1140px; margin: 0 auto; }
+/* Anchor targets land clear of the 52px sticky nav. */
+.fc-sec[id] { scroll-margin-top: 52px; }
 .fc-sec + .fc-sec { border-top: 1px solid rgba(255, 255, 255, 0.04); }
 
 /* Screens */
@@ -127,7 +138,16 @@
 }
 .fc-source .fc-media { max-width: 420px; }
 .fc-design .fc-media { max-width: 540px; }
-.fc-design .fc-shot { aspect-ratio: 540 / 468; }
+.fc-design .fc-shot { aspect-ratio: 806 / 800; }
+.fc-design .fc-shot.fc-fade::after { height: 8%; }
+.fc-callout {
+  position: absolute; z-index: 1; transform: translate(-50%, -50%);
+  display: flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 1px solid var(--fc-dim); background: rgba(7, 8, 11, 0.55);
+  color: var(--fc-dim); font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
 
 /* Flow */
 .fc-flow-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; }
@@ -136,6 +156,17 @@
 .fc-flow-row {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(18px, 2.6vw, 34px);
   margin-top: clamp(48px, 6vw, 80px);
+}
+.fc-step { position: relative; }
+/* Desktop only: a hairline arrow between panels so the four read as one path. */
+@media (min-width: 961px) {
+  .fc-step:not(:last-child)::after {
+    content: ""; position: absolute; z-index: 1;
+    top: 38%; right: calc(clamp(18px, 2.6vw, 34px) / -2);
+    width: 9px; height: 9px; transform: translate(50%, -50%) rotate(45deg);
+    border-top: 1px solid var(--fc-mute); border-right: 1px solid var(--fc-mute);
+    opacity: 0.8;
+  }
 }
 .fc-flow-row .fc-shot { --r: 20px; aspect-ratio: 251 / 328; }
 .fc-flow-row .fc-shot img { transform-origin: top center; transform: scale(1.045) translateY(-1.2%); }
@@ -161,6 +192,7 @@
 }
 .fc-close h2 { font-size: clamp(42px, 6.6vw, 84px); margin-top: 26px; }
 .fc-close .fc-lede { max-width: 720px; margin: 28px auto 0; }
+.fc-early { margin-top: 56px; display: flex; justify-content: center; }
 .fc-by { margin-top: 72px; font-size: 14px; color: var(--fc-dim); letter-spacing: 0.02em; }
 
 /* Reveal on scroll. Content is visible by default; .fc-anim is added by JS. */
@@ -174,7 +206,7 @@
 @media (prefers-reduced-motion: reduce) {
   .fc-anim [data-reveal] { opacity: 1; transform: none; transition: none; }
   .fc-anim .fc-side[data-reveal] { opacity: 0.72; }
-  .fc-btn { transition: none; }
+  .fc-btn, .fc-nav-cta { transition: none; }
 }
 
 /* Tablet */
@@ -187,14 +219,28 @@
 /* Phone */
 @media (max-width: 720px) {
   .fc-nav-links a.fc-nav-link { display: none; }
-  .fc-stage { grid-template-columns: 1fr; max-width: 320px; height: 300px; }
-  .fc-stage .fc-side { display: none; }
+  /* Side screens peek in from the edges; .fc-hero clips them, so no page scroll. */
+  .fc-stage {
+    grid-template-columns: 1fr 1.6fr 1fr; gap: 14px;
+    width: 150%; max-width: none; margin-left: -25%; height: 300px;
+  }
+  .fc-stage .fc-side { margin-top: 30%; }
+  .fc-callout { display: none; }
   .fc-trio { grid-template-columns: 1fr; }
   .fc-split .fc-wrap { grid-template-columns: 1fr; }
   .fc-media { justify-self: center; max-width: 440px; }
   .fc-source .fc-media { max-width: 360px; }
   .fc-rules div em { display: none; }
 }
+/* Phones: the four panels become a swipe row, next card peeking. */
 @media (max-width: 520px) {
-  .fc-flow-row { grid-template-columns: 1fr; max-width: 320px; margin-left: auto; margin-right: auto; }
+  .fc-flow-row {
+    display: grid; grid-auto-flow: column; grid-auto-columns: 78%; grid-template-columns: none;
+    gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    margin-left: calc(-1 * clamp(20px, 5vw, 48px)); margin-right: calc(-1 * clamp(20px, 5vw, 48px));
+    padding: 0 clamp(20px, 5vw, 48px) 8px; scroll-padding: 0 clamp(20px, 5vw, 48px);
+    scrollbar-width: none;
+  }
+  .fc-flow-row::-webkit-scrollbar { display: none; }
+  .fc-step { scroll-snap-align: start; }
 }

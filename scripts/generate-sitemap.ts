@@ -34,6 +34,7 @@ const entries: SitemapEntry[] = [
     { path: "/zone-of-genius", changefreq: "weekly", priority: "0.9" },
     { path: "/zone-of-genius/entry", changefreq: "weekly", priority: "0.85" },
     { path: "/27", changefreq: "monthly", priority: "0.8" },
+    { path: "/build/cockpit", changefreq: "weekly", priority: "0.8" },
     { path: "/ai-os", changefreq: "weekly", priority: "0.9" },
     { path: "/ai-os/work-with-us", changefreq: "weekly", priority: "0.85" },
     { path: "/ai-os/clarity", changefreq: "weekly", priority: "0.7" },

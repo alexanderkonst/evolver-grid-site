@@ -102,7 +102,7 @@ const SHELL_EXACT = new Set<string>([
     "/build/equilibrium",
     "/skills",
     "/growth-paths",
-    "/build/cockpit",
+    // "/build/cockpit" (the public landing) is a full-bleed dark page with its own nav: no shell.
     "/build/cockpit/dashboard",
     "/build/cockpit/offers",
     "/game/test-nav",
