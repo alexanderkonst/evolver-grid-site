@@ -364,9 +364,17 @@ export default function CockpitLanding() {
           </p>
           <div className="fc-cta" data-reveal>
             <a className="fc-btn" href={TELEGRAM} target="_blank" rel="noopener noreferrer">REQUEST EARLY ACCESS</a>
-            <span className="fc-cta-note">Free testing for now.</span>
           </div>
-          <p className="fc-by">Created by Alexander Konstantinov</p>
+          <p className="fc-by">
+            Created by{" "}
+            <a
+              href="https://www.linkedin.com/in/alexanderkonstantinov1/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Aleksandr Konstantinov
+            </a>
+          </p>
         </div>
       </section>
     </main>
