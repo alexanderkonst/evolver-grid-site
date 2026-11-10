@@ -173,6 +173,7 @@ async function loadSheet(): Promise<CharacterSheetData> {
         avatar_url?: string | null;
         soul_colors?: string[] | null;
         last_zog_snapshot_id?: string | null;
+        mission_statement?: string | null;
     };
 
     const [zog, qol, [assets, mission, offer, phrases, victories]] = await Promise.all([
@@ -214,7 +215,10 @@ async function loadSheet(): Promise<CharacterSheetData> {
         avatarUrl: row.avatar_url ?? null,
         soulColors: row.soul_colors && row.soul_colors.length > 0 ? row.soul_colors : null,
         topTalent: zog?.archetype_title ?? null,
-        missionTitle: mission.data?.mission_title ?? null,
+        // The mission step saves its sentence to game_profiles.mission_statement
+        // (MissionDiscoveryLanding); mission_participants is the legacy wizard's row.
+        // Read both, or a saved mission leaves Home and the Assets door closed (Eva, 2026-11-10).
+        missionTitle: row.mission_statement?.trim() || mission.data?.mission_title || null,
         qol: computeQolLevel(qol?.data),
         assets: {
             count: assets.count ?? assets.data?.length ?? 0,
