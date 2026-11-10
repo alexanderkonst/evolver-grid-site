@@ -216,6 +216,9 @@
 .fc-close .fc-lede { max-width: 720px; margin: 28px auto 0; }
 .fc-early { margin-top: 56px; display: flex; justify-content: center; }
 .fc .fc-by { margin-top: 72px; font-size: 14px; color: var(--fc-dim); letter-spacing: 0.02em; }
+.fc .fc-by a { color: inherit; text-decoration: none; }
+.fc .fc-by a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.fc .fc-by a:focus-visible { outline: 2px solid var(--fc-moon); outline-offset: 3px; }
 
 /* Reveal on scroll. Content is visible by default; .fc-anim is added by JS. */
 .fc-anim [data-reveal] {
