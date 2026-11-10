@@ -3,7 +3,8 @@ import { Outlet, useLocation } from "react-router-dom";
 import { ZoneOfGeniusProvider } from "./ZoneOfGeniusContext";
 import { cn } from "@/lib/utils";
 import { getZogAssessmentBasePath, getZogAssessmentSteps } from "./zogRoutes";
-import geniusLogo from "@/assets/ignite-logo.png";
+// W1 (cult spec §5 #2): the game frame, not the "Genius Business" logo, on game routes.
+import brandLogo from "@/assets/you-be-original-main-lockup.webp";
 import GameShellV2 from "@/components/game/GameShellV2";
 
 interface ZoneOfGeniusAssessmentLayoutProps {
@@ -34,8 +35,8 @@ const ZoneOfGeniusAssessmentLayout = ({
       {/* Logo — Day 47 very-late pass (Sasha): 2.5× larger (48px → 120px).
           The star mark now reads as a real presence, not a tiny ornament. */}
       <img
-        src={geniusLogo}
-        alt="Genius Business"
+        src={brandLogo}
+        alt="YOU — be original."
         className="w-[120px] h-auto mx-auto opacity-85 mb-5"
       />
 

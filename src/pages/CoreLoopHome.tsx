@@ -31,6 +31,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { usePlayerLevel } from "@/hooks/usePlayerLevel";
 import { useTranslation } from "react-i18next";
+import { displayName as playerDisplayName } from "@/lib/displayName";
 
 interface QolDomain {
     key: string;
@@ -100,7 +101,8 @@ const CoreLoopHome = () => {
                 .single();
 
             if (profile) {
-                setDisplayName(profile.first_name || user.email?.split("@")[0] || "Player");
+                // W2: the one player name; no email-local fallback, no «Player».
+                setDisplayName(playerDisplayName({ signedIn: true, firstName: profile.first_name }));
                 setAvatarUrl((profile as any).avatar_url || null);
 
                 // Determine completion state

@@ -24,6 +24,7 @@ import {
 import { placeSaveFromSheet } from "@/lib/placeState";
 import { getVillagePlace } from "@/data/villagePlaces";
 import { placeTagline, tr } from "@/lib/villageCopy";
+import { displayName } from "@/lib/displayName";
 import "./CharacterSheet.css";
 
 /**
@@ -95,7 +96,9 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
         });
 
     const metricHistory = usePlayerMetricHistory();
-    const name = sheet.firstName ?? t("characterSheet.playerFallback");
+    // W2: the one player name (rail, Home, Reception, card). No name yet = no name line.
+    const playerName = displayName({ signedIn: !!sheet.userId, firstName: sheet.firstName });
+    const name = playerName ?? t("characterSheet.playerFallback");
     const domainName = (id: string) => domains.find((d) => d.id === id)?.name ?? id;
     // Silver in Lunar until earned (`--soul-*` on <html>), the skin accent elsewhere.
     const crystalColors = soul.colors ?? [
@@ -331,7 +334,7 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
                 {/* WP-15: the same page header as every place: back to the village, the place name, one line. */}
                 <Link className="cs-link cs-back" to="/village">{tr(t, "village.backVillage", "← Village")}</Link>
                 <p className="cs-mono">{t("characterSheet.eyebrow")}</p>
-                {homePlace && <p className="cs-line">{placeTagline(homePlace, t, !!sheet.userId)}</p>}
+                {homePlace && <p className="cs-line">{placeTagline(homePlace, t, !!sheet.userId, playerName)}</p>}
                 <div className="cs-crystal">
                     <SoulDodecahedron soulColors={crystalColors} size="lg" />
                     {sheet.avatarUrl && (

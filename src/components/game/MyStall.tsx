@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
 import { useShareIdentity } from "@/hooks/useShareIdentity";
+import { displayName } from "@/lib/displayName";
 import { PROFILE_SETTINGS_PATH } from "@/hooks/useVillageParticles";
 import { stallParts, STALL_SHELF_MAX } from "@/lib/myStall";
 import { buildShareCard } from "@/lib/shareCard";
@@ -33,7 +34,8 @@ const MyStall = () => {
 
     // Share card entry: one action, or one line saying what is missing. Never both.
     const card = buildShareCard({
-        name: identity?.name || sheet.firstName,
+        // W2: the same name as the rail, Home and Reception.
+        name: displayName({ signedIn: !!sheet.userId, firstName: sheet.firstName }) ?? identity?.displayName,
         username: identity?.username,
         uniquenessPhrase: sheet.uniquenessPhrase,
         tagline: sheet.tagline,

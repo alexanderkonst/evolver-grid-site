@@ -42,7 +42,7 @@ import { saveAppleseed, saveExcalibur, loadSavedData, saveAppleseedToLocalStorag
 import AppleseedDisplay from "./AppleseedDisplay";
 import AppleseedRitualLoading from "./AppleseedRitualLoading";
 import ExcaliburDisplay from "./ExcaliburDisplay";
-import TopTalentAuthGate from "./TopTalentAuthGate";
+import KeepItLit from "@/components/game/KeepItLit";
 import EnterVillageButton from "./EnterVillageButton";
 import { clearGuestBuffers, freshRetakeState } from "./retake";
 import { formatSupabaseError, isSchemaDriftError } from "./formatSupabaseError";
@@ -865,12 +865,11 @@ const ZoneOfGeniusEntry = () => {
                     <>
                         <AppleseedDisplay appleseed={appleseed} preview />
                         <div className="w-full max-w-3xl mx-auto px-5 pb-6">
-                            <TopTalentAuthGate
-                                inline
+                            {/* W5: the email field opens only after the reveal card, on tap. */}
+                            <KeepItLit
                                 saved={isSaved}
                                 resultPayload={appleseed as unknown as Record<string, unknown>}
                                 assessmentVersion="ai-v1"
-                                title={t("zogEntry.saveCharacterModalTitle")}
                                 onSaved={(email) => {
                                     setAnonymousSave({ status: "sent", email });
                                     setGuestRevealUnlocked(true);
@@ -1147,27 +1146,8 @@ const ZoneOfGeniusEntry = () => {
                                                 "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                                         }}
                                     >
-                                        {t('zogEntry.matchPreambleLine1')}
-                                    </p>
-                                    <p
-                                        className="text-sm sm:text-base italic leading-relaxed"
-                                        style={{
-                                            color: "var(--skin-text-muted, rgba(26,30,58,0.78))",
-                                            textShadow:
-                                                "var(--skin-text-halo-deep, 0 0 22px rgba(255,255,255,0.78), 0 1px 2px rgba(255,255,255,0.9), 0 0 1px rgba(11,42,90,0.6))",
-                                        }}
-                                    >
-                                        {t('zogEntry.matchPreambleLine2')}
-                                    </p>
-                                    <p
-                                        className="text-sm sm:text-base leading-relaxed"
-                                        style={{
-                                            color: "var(--skin-text-primary, #0a1628)",
-                                            textShadow:
-                                                "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
-                                        }}
-                                    >
-                                        {t('zogEntry.matchPreambleLine3')}
+                                        {/* W1 (cult spec §5 #3): the village voice, not "profile for matching". */}
+                                        {t('zogEntry.receptionLine')}
                                     </p>
                                 </div>
                             )}

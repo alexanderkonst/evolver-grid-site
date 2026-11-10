@@ -19,6 +19,7 @@ import AssemblyTracker from "@/components/game/AssemblyTracker";
 import MyLifeSection, { DOMAIN_LABELS } from "@/components/game/MyLifeSection";
 import CelebrationModal from "@/components/game/CelebrationModal";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { displayName } from "@/lib/displayName";
 import { supabase } from "@/integrations/supabase/client";
 import { LIBRARY_ITEMS, type LibraryItem } from "@/modules/library/libraryContent";
 import { useToast } from "@/hooks/use-toast";
@@ -727,7 +728,7 @@ const GameHome = () => {
           {hasAnyData && (
             <>
               <PowerfulWelcome
-                firstName={profile?.first_name}
+                firstName={displayName({ signedIn: !!profile, firstName: profile?.first_name })}
                 archetypeTitle={zogSnapshot?.archetype_title}
                 corePattern={zogSnapshot?.core_pattern}
                 level={playerLevel}

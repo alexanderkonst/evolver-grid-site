@@ -95,6 +95,9 @@ const TopTalentAuthGate = ({
     return () => window.clearTimeout(timer);
   }, [retryAfterSeconds, status]);
 
+  // Disabled until the address looks valid (spec S2); the server still validates.
+  const emailLooksValid = /^\S+@\S+\.\S+$/.test(email.trim());
+
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     const normalizedEmail = email.trim().toLowerCase();
@@ -221,7 +224,8 @@ const TopTalentAuthGate = ({
           >
             {title ?? t("zogEntry.gateDefaultTitle")}
           </h1>
-          {inline && (
+          {/* W5 (cult spec §4.2 S2): the inline save is «keep it lit», one body line. */}
+          {inline ? (
             <p
               className="text-sm sm:text-base leading-relaxed"
               style={{
@@ -229,18 +233,19 @@ const TopTalentAuthGate = ({
                 color: "var(--skin-text-primary, #0a1628)",
               }}
             >
-              {t("zogEntry.saveCharacterReason")}
+              {t("zogEntry.keepLitBody")}
+            </p>
+          ) : (
+            <p
+              className="text-xs sm:text-sm leading-relaxed"
+              style={{
+                fontFamily: "'Source Serif 4', Georgia, serif",
+                color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
+              }}
+            >
+              {t("zogEntry.gateNoCharge")}
             </p>
           )}
-          <p
-            className="text-xs sm:text-sm leading-relaxed"
-            style={{
-              fontFamily: "'Source Serif 4', Georgia, serif",
-              color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
-            }}
-          >
-            {t("zogEntry.gateNoCharge")}
-          </p>
         </div>
 
         {status === "sent" ? (
@@ -252,9 +257,15 @@ const TopTalentAuthGate = ({
               color: "var(--skin-text-primary, #0a1628)",
             }}
           >
-            {t("zogEntry.gateInboxBefore")}
-            <strong>{email.trim()}</strong>
-            {t("zogEntry.gateInboxAfter")}
+            {inline ? (
+              t("zogEntry.keepLitSent", { email: email.trim() })
+            ) : (
+              <>
+                {t("zogEntry.gateInboxBefore")}
+                <strong>{email.trim()}</strong>
+                {t("zogEntry.gateInboxAfter")}
+              </>
+            )}
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-3">
@@ -276,7 +287,7 @@ const TopTalentAuthGate = ({
               />
               <button
                 type="submit"
-                disabled={status === "saving" || status === "cooldown" || !email.trim()}
+                disabled={status === "saving" || status === "cooldown" || !emailLooksValid}
                 className="rounded-full px-4 py-2 text-xs font-semibold text-white transition-opacity disabled:opacity-50"
                 style={{
                   backgroundImage: "linear-gradient(135deg, #a06d08 0%, #7a5108 100%)",
@@ -287,9 +298,19 @@ const TopTalentAuthGate = ({
                   ? t("zogEntry.gateSaving")
                   : status === "cooldown"
                     ? t("zogEntry.gateWait", { seconds: retryAfterSeconds })
-                    : t("zogEntry.gateSaveEmail")}
+                    : inline
+                      ? t("zogEntry.keepLitButton")
+                      : t("zogEntry.gateSaveEmail")}
               </button>
             </div>
+            {inline && !emailLooksValid && (
+              <p
+                className="text-xs"
+                style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.72))" }}
+              >
+                {t("zogEntry.keepLitHint")}
+              </p>
+            )}
             {(status === "error" || status === "cooldown") && (
               <p
                 className="text-sm"
@@ -303,7 +324,7 @@ const TopTalentAuthGate = ({
           </form>
         )}
 
-        {inline && status !== "sent" && (
+        {inline && saved && status !== "sent" && (
           <p
             className="text-xs sm:text-sm leading-relaxed"
             style={{
@@ -311,7 +332,7 @@ const TopTalentAuthGate = ({
               color: "var(--skin-text-muted, rgba(26,30,58,0.72))",
             }}
           >
-            {saved ? t("zogEntry.saveCharacterResultSaved") : t("zogEntry.saveCharacterResultOnDevice")}
+            {t("zogEntry.saveCharacterResultSaved")}
           </p>
         )}
 
@@ -327,7 +348,7 @@ const TopTalentAuthGate = ({
                 opacity: 0.9,
               }}
             >
-              {t("zogEntry.notNowEnterVillage")}
+              {t("zogEntry.keepLitNotNow")}
             </Link>
           </p>
         )}
