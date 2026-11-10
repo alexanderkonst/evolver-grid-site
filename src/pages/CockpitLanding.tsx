@@ -1,156 +1,319 @@
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import SEO from "@/components/SEO";
+import "./CockpitLanding.css";
 
-const cockpitModules = [
+const IMG = "/images/cockpit";
+const DASHBOARD = "/build/cockpit/dashboard";
+
+const flowSteps = [
   {
-    title: "Dynamic daily brief",
-    body: "Not a digest. Rebuilt every morning from what moved: deals, relationships, money, commitments, and the one move that matters today.",
+    title: "Reach",
+    body: "Every step of the funnel, with the bottleneck named in plain words.",
+    src: `${IMG}/funnel.webp`,
+    alt: "Sales Funnel panel: funnel strength, the current bottleneck and each funnel step",
+    w: 1014,
+    h: 1502,
+    flat: false,
   },
   {
-    title: "Business cockpit",
-    body: "Offers, pipeline, relationships, ledger, strategy. The whole business on one surface, readable by you and by AI.",
+    title: "Ask",
+    body: "Paid offers made, week by week. Offer to paid in one line.",
+    src: `${IMG}/offers.webp`,
+    alt: "Offers panel: paid offers made this month and the weekly trend",
+    w: 1004,
+    h: 1338,
+    flat: false,
   },
   {
-    title: "Founder as CEO",
-    body: "Strategy, vision, final decisions. You own the signal. Nothing goes out without your yes.",
+    title: "Receive",
+    body: "Cash and in-kind in one honest total, with every ledger behind it.",
+    src: `${IMG}/cashflow.webp`,
+    alt: "Cashflow panel: total received with a cumulative chart",
+    w: 806,
+    h: 1120,
+    flat: true,
   },
   {
-    title: "AI as COO",
-    body: "Finds your ideal clients, drafts every message, tracks each one through your funnel. Built to run your inbox and outreach while you sleep, and hand you a recap in the morning.",
-  },
-  {
-    title: "Founder-market fit first",
-    body: "Most founders start from an idea. “Idea” covers everything from a full business plan to a hunch, so it tells you nothing. The Cockpit starts from you.",
-  },
-  {
-    title: "Zone of Genius → the business",
-    body: "Your Zone of Genius, read precisely. The market it fits. The business only you should build. A process you can steer, not a bet.",
-  },
-  {
-    title: "The blind spot",
-    body: "Top investors sense founder-market fit by intuition, after the fact. This method is built to read it before you build, and to reproduce it.",
-  },
-  {
-    title: "Radically simpler",
-    body: "Templates and blueprints instead of headcount. Radically simpler, so radically cheaper to run.",
+    title: "Project",
+    body: "Where the current trend leads, and how long until you double.",
+    src: `${IMG}/trend.webp`,
+    alt: "Cashflow Trend panel: growth rate, doubling time and a six month outlook",
+    w: 1006,
+    h: 1344,
+    flat: false,
   },
 ];
 
+const designRules = [
+  { rule: "One number", meaning: "where you stand" },
+  { rule: "One line of context", meaning: "what it is made of" },
+  { rule: "One shape over time", meaning: "where it is going" },
+  { rule: "One next move", meaning: "what to do about it" },
+];
+
 export default function CockpitLanding() {
+  const rootRef = useRef<HTMLElement>(null);
+
+  // Scroll reveal. Content is visible without JS; the class that hides
+  // un-revealed blocks is only added once the observer is ready.
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root || typeof IntersectionObserver === "undefined") return;
+    const items = Array.from(root.querySelectorAll<HTMLElement>("[data-reveal]"));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fc-in");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
+    );
+    root.classList.add("fc-anim");
+    items.forEach((item) => observer.observe(item));
+    return () => {
+      observer.disconnect();
+      root.classList.remove("fc-anim");
+    };
+  }, []);
+
   return (
-    <main className="min-h-screen overflow-hidden bg-[#f7f1e6] text-[#111827]">
-      <section className="relative min-h-screen px-5 py-8 sm:px-8">
-        <div
-          className="absolute inset-0 opacity-[0.23]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(21, 31, 52, 0.14) 1px, transparent 1px), linear-gradient(90deg, rgba(21, 31, 52, 0.14) 1px, transparent 1px)",
-            backgroundSize: "44px 44px",
-          }}
-        />
-        <div
-          className="absolute inset-y-0 right-[-12%] w-[52%] bg-[#d99a2b]/70"
-          style={{
-            clipPath: "polygon(18% 8%, 100% 0, 100% 100%, 0 92%)",
-          }}
-        />
-        <div className="relative mx-auto flex min-h-[calc(100vh-4rem)] max-w-6xl flex-col justify-between">
-          <header className="flex items-center justify-between gap-4 pr-20 sm:pr-0">
-            <div
-              className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#9a6a23]"
-              style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
-            >
-              YOU
-            </div>
-            <div
-              className="text-[12px] uppercase tracking-[0.22em] text-[#1f2937]/55"
-              style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
-            >
-              Be Different
-            </div>
-          </header>
+    <main ref={rootRef} className="fc">
+      <SEO
+        title="Founder Cockpit. Your whole business, one glance."
+        description="A management system for the evolution of unique businesses. See who you are, who you reach, what you ask and what you receive on one screen."
+        path="/build/cockpit"
+      />
 
-          <div className="grid items-end gap-10 py-16 lg:grid-cols-[1.05fr_0.95fr]">
-            <section className="max-w-3xl">
-              <p
-                className="mb-5 text-[12px] font-semibold uppercase tracking-[0.24em] text-[#9a6a23]"
-                style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
-              >
-                Founder Cockpit
-              </p>
-              <h1
-                className="max-w-4xl text-[clamp(52px,8.5vw,112px)] font-semibold leading-[0.9] text-[#111827]"
-                style={{ fontFamily: "'Cormorant Garamond', serif" }}
-              >
-                Run the business only you should build.
-              </h1>
-              <p
-                className="mt-7 max-w-2xl text-[clamp(22px,3vw,36px)] leading-[1.08] text-[#1f2937]"
-                style={{ fontFamily: "'Cormorant Garamond', serif" }}
-              >
-                An integral business management system: a dynamic daily brief and the cockpit of your whole business, on one surface.
-              </p>
-              <p
-                className="mt-5 max-w-2xl text-[clamp(24px,3.2vw,42px)] italic leading-[1.08] text-[#1f2937]"
-                style={{ fontFamily: "'Cormorant Garamond', serif" }}
-              >
-                You lead. AI operates.
-              </p>
-              <div className="mt-9 flex flex-wrap items-center gap-3">
-                <Link
-                  to="/build/cockpit/dashboard"
-                  className="inline-flex items-center justify-center rounded-full bg-[#111827] px-6 py-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-white transition-transform duration-200 hover:translate-y-[-1px]"
-                  style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
-                >
-                  Enter the cockpit
-                </Link>
-                <span
-                  className="text-[13px] text-[#1f2937]/60"
-                  style={{ fontFamily: "'Source Serif 4', serif" }}
-                >
-                  For founders who build from who they are.
-                </span>
-              </div>
-            </section>
+      <nav className="fc-nav" aria-label="Founder Cockpit">
+        <div className="fc-nav-name">Founder Cockpit</div>
+        <div className="fc-nav-links">
+          <a className="fc-nav-link" href="#source">Source</a>
+          <a className="fc-nav-link" href="#flow">Flow</a>
+          <a className="fc-nav-link" href="#loop">Loop</a>
+          <Link className="fc-btn fc-btn-sm" to={DASHBOARD}>Enter</Link>
+        </div>
+      </nav>
 
-            <aside className="relative">
-              <div className="rounded-[8px] border border-[#111827]/20 bg-[#fffaf0]/95 p-5 shadow-[0_24px_80px_rgba(17,24,39,0.12)] backdrop-blur">
-                <p
-                  className="text-[13px] font-semibold uppercase tracking-[0.2em] text-[#9a6a23]"
-                  style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
-                >
-                  What changed
-                </p>
-                <p
-                  className="mt-4 text-[clamp(24px,3vw,38px)] leading-[1.02] text-[#111827]"
-                  style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                >
-                  A company used to need a team, assembled and aligned, before it could move. AI plus blueprints make it one founder&apos;s job.
-                </p>
-              </div>
-            </aside>
+      {/* Hero */}
+      <section className="fc-sec fc-hero">
+        <div className="fc-wrap">
+          <p className="fc-eyebrow" data-reveal>Founder Cockpit</p>
+          <h1 data-reveal style={{ "--d": "60ms" } as React.CSSProperties}>
+            Your whole business.
+            <br />
+            One glance.
+          </h1>
+          <p className="fc-lede" data-reveal style={{ "--d": "120ms" } as React.CSSProperties}>
+            A management system for the evolution of unique businesses.
+          </p>
+          <div className="fc-cta" data-reveal style={{ "--d": "180ms" } as React.CSSProperties}>
+            <Link className="fc-btn" to={DASHBOARD}>Enter the cockpit</Link>
+            <span className="fc-cta-note">For founders who build from who they are.</span>
           </div>
+          <div className="fc-stage">
+            <div className="fc-shot fc-side" data-reveal style={{ "--d": "380ms" } as React.CSSProperties}>
+              <img src={`${IMG}/funnel.webp`} width={1014} height={1502} alt="" />
+            </div>
+            <div className="fc-shot fc-flat" data-reveal style={{ "--d": "260ms" } as React.CSSProperties}>
+              <img
+                src={`${IMG}/cashflow.webp`}
+                width={806}
+                height={1120}
+                alt="Founder Cockpit Cashflow panel showing total received and a cumulative chart"
+                fetchPriority="high"
+              />
+            </div>
+            <div className="fc-shot fc-side" data-reveal style={{ "--d": "380ms" } as React.CSSProperties}>
+              <img src={`${IMG}/unique-business.webp`} width={976} height={1580} alt="" />
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <div className="grid gap-3 pb-4 md:grid-cols-2 lg:grid-cols-4">
-            {cockpitModules.map((module) => (
-              <article
-                key={module.title}
-                className="rounded-[8px] border border-[#111827]/12 bg-[#fffaf0]/95 p-4 backdrop-blur"
-              >
-                <h2
-                  className="text-[20px] font-semibold leading-tight text-[#111827]"
-                  style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                >
-                  {module.title}
-                </h2>
-                <p
-                  className="mt-2 text-[14px] leading-[1.45] text-[#1f2937]/76"
-                  style={{ fontFamily: "'Source Serif 4', serif" }}
-                >
-                  {module.body}
-                </p>
-              </article>
+      {/* The idea */}
+      <section className="fc-sec fc-idea">
+        <div className="fc-wrap">
+          <p className="fc-eyebrow" data-reveal>The idea</p>
+          <h2 data-reveal>A unique business is a mirror of the one person who builds it.</h2>
+          <p className="fc-lede" data-reveal>
+            Your unique faculty becomes the offer, the client and the promise. Founder Cockpit puts that whole
+            picture on one screen, so you can <b>see it, steer it and grow it on purpose.</b>
+          </p>
+          <div className="fc-trio">
+            <div data-reveal>
+              <h3>Visible</h3>
+              <p>Who you are, who you reach, what you ask and what you receive. All in view.</p>
+            </div>
+            <div data-reveal style={{ "--d": "90ms" } as React.CSSProperties}>
+              <h3>Manageable</h3>
+              <p>Each panel names the one thing holding you back right now.</p>
+            </div>
+            <div data-reveal style={{ "--d": "180ms" } as React.CSSProperties}>
+              <h3>Intentional</h3>
+              <p>Your business has versions. You watch it sharpen, and you choose the next one.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 01 Source */}
+      <section id="source" className="fc-sec fc-split fc-source fc-glow">
+        <div className="fc-wrap">
+          <div data-reveal>
+            <p className="fc-eyebrow"><span>01</span>Source</p>
+            <h2>
+              It starts with
+              <br />
+              who you are.
+            </h2>
+            <p className="fc-lede">
+              Your uniqueness, your shadow, your mission, your ideal client, your promise.{" "}
+              <b>Nine parts of one canvas,</b> each with a version number, so the business stays true to the
+              person it comes from.
+            </p>
+          </div>
+          <div className="fc-media" data-reveal style={{ "--d": "120ms" } as React.CSSProperties}>
+            <div className="fc-shot fc-fade" style={{ "--r": "32px" } as React.CSSProperties}>
+              <img
+                src={`${IMG}/unique-business.webp`}
+                width={976}
+                height={1580}
+                loading="lazy"
+                decoding="async"
+                alt="Unique Business panel: uniqueness, shadow, mission, ideal client and promise as versioned cards"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 02 Flow */}
+      <section id="flow" className="fc-sec fc-flow">
+        <div className="fc-wrap">
+          <div className="fc-flow-head" data-reveal>
+            <div>
+              <p className="fc-eyebrow"><span>02</span>Flow</p>
+              <h2>
+                From first hello
+                <br />
+                to money received.
+              </h2>
+            </div>
+            <p className="fc-lede">Four panels follow one path. You always know where it slows down.</p>
+          </div>
+          <div className="fc-flow-row">
+            {flowSteps.map((step, index) => (
+              <div key={step.title} data-reveal style={{ "--d": `${index * 90}ms` } as React.CSSProperties}>
+                <div className={`fc-shot fc-fade${step.flat ? " fc-flat" : ""}`}>
+                  <img src={step.src} width={step.w} height={step.h} loading="lazy" decoding="async" alt={step.alt} />
+                </div>
+                <h3>
+                  <span>{index + 1}</span>
+                  {step.title}
+                </h3>
+                <p>{step.body}</p>
+              </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* 03 Loop */}
+      <section id="loop" className="fc-sec fc-split fc-glow">
+        <div className="fc-wrap">
+          <div data-reveal>
+            <p className="fc-eyebrow"><span>03</span>Loop</p>
+            <h2>
+              Say what happened.
+              <br />
+              It organizes the rest.
+            </h2>
+            <p className="fc-lede">
+              <b>Pulse</b> logs a real event in seconds. <b>Self-Organize</b> lets your AI operator recover dropped
+              work, rank it and refresh every panel. You lead. AI operates. <b>Nothing goes out without your yes.</b>
+            </p>
+          </div>
+          <div className="fc-media" data-reveal style={{ "--d": "120ms" } as React.CSSProperties}>
+            <div className="fc-shot" style={{ "--r": "24px" } as React.CSSProperties}>
+              <img
+                src={`${IMG}/quick-actions.webp`}
+                width={994}
+                height={410}
+                loading="lazy"
+                decoding="async"
+                alt="Quick Actions panel with two buttons: Pulse and Self-Organize"
+              />
+            </div>
+            <div className="fc-shot" style={{ "--r": "24px" } as React.CSSProperties}>
+              <img
+                src={`${IMG}/work-in-progress.webp`}
+                width={1014}
+                height={936}
+                loading="lazy"
+                decoding="async"
+                alt="AI Work in Progress panel: items waiting on you, in progress and done"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The design */}
+      <section className="fc-sec fc-split fc-design">
+        <div className="fc-wrap">
+          <div data-reveal>
+            <p className="fc-eyebrow">The design</p>
+            <h2>
+              Every panel answers
+              <br />
+              one question.
+            </h2>
+            <div className="fc-rules">
+              {designRules.map((item, index) => (
+                <div key={item.rule}>
+                  <span>{index + 1}</span>
+                  {item.rule}
+                  <em>{item.meaning}</em>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="fc-media" data-reveal style={{ "--d": "120ms" } as React.CSSProperties}>
+            <div className="fc-shot fc-fade fc-flat" style={{ "--r": "28px" } as React.CSSProperties}>
+              <img
+                src={`${IMG}/cashflow.webp`}
+                width={806}
+                height={1120}
+                loading="lazy"
+                decoding="async"
+                alt="Cashflow panel: one number, one line of context and one chart"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Close */}
+      <section className="fc-sec fc-close">
+        <div className="fc-wrap">
+          <p className="fc-eyebrow" data-reveal>Founder Cockpit</p>
+          <h2 data-reveal>
+            Absurdly simple.
+            <br />
+            Seriously useful.
+          </h2>
+          <p className="fc-lede" data-reveal>
+            See your business the way a pilot sees a flight. Everything that matters, right in front of you.
+          </p>
+          <div className="fc-cta" data-reveal>
+            <Link className="fc-btn" to={DASHBOARD}>Enter the cockpit</Link>
+            <span className="fc-cta-note">Free testing for now.</span>
+          </div>
+          <p className="fc-by">Created by Alexander Konstantinov</p>
         </div>
       </section>
     </main>
