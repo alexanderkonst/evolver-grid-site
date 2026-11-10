@@ -1,10 +1,13 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import SEO from "@/components/SEO";
 import "./CockpitLanding.css";
 
 const IMG = "/images/cockpit";
 const DASHBOARD = "/build/cockpit/dashboard";
+const TELEGRAM = "https://t.me/integralevolution";
+const OG_IMAGE = "https://findyourtoptalent.com/images/cockpit/og.png";
 
 const flowSteps = [
   {
@@ -45,6 +48,15 @@ const flowSteps = [
   },
 ];
 
+// Callout positions on the Design section's Cashflow screen, as % of the
+// cropped frame (806 x 800 of the 806 x 1120 capture). Order matches designRules.
+const designCallouts = [
+  { left: "45%", top: "24.4%" },
+  { left: "86%", top: "35%" },
+  { left: "70%", top: "61.4%" },
+  { left: "36.5%", top: "89.8%" },
+];
+
 const designRules = [
   { rule: "One number", meaning: "where you stand" },
   { rule: "One line of context", meaning: "what it is made of" },
@@ -54,6 +66,30 @@ const designRules = [
 
 export default function CockpitLanding() {
   const rootRef = useRef<HTMLElement>(null);
+  const heroCtaRef = useRef<HTMLDivElement>(null);
+  const [heroCtaVisible, setHeroCtaVisible] = useState(true);
+
+  // Smooth in-page anchors, off under reduced motion. Scoped to this page.
+  useEffect(() => {
+    const html = document.documentElement;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const prev = html.style.scrollBehavior;
+    html.style.scrollBehavior = "smooth";
+    return () => {
+      html.style.scrollBehavior = prev;
+    };
+  }, []);
+
+  // One call to action at a time: the nav button appears only once the hero CTA is out of view.
+  useEffect(() => {
+    const el = heroCtaRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(([entry]) => setHeroCtaVisible(entry.isIntersecting), {
+      rootMargin: "-52px 0px 0px 0px",
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   // Scroll reveal. Content is visible without JS; the class that hides
   // un-revealed blocks is only added once the observer is ready.
@@ -86,7 +122,12 @@ export default function CockpitLanding() {
         title="Founder Cockpit. Your whole business, one glance."
         description="A management system for the evolution of unique businesses. See who you are, who you reach, what you ask and what you receive on one screen."
         path="/build/cockpit"
+        ogImage={OG_IMAGE}
+        ogImageAlt="Founder Cockpit: your whole business, one glance"
       />
+      <Helmet>
+        <link rel="preload" as="image" href={`${IMG}/cashflow.webp`} type="image/webp" fetchPriority="high" />
+      </Helmet>
 
       <nav className="fc-nav" aria-label="Founder Cockpit">
         <div className="fc-nav-name">Founder Cockpit</div>
@@ -94,7 +135,14 @@ export default function CockpitLanding() {
           <a className="fc-nav-link" href="#source">Source</a>
           <a className="fc-nav-link" href="#flow">Flow</a>
           <a className="fc-nav-link" href="#loop">Loop</a>
-          <Link className="fc-btn fc-btn-sm" to={DASHBOARD}>Enter</Link>
+          <Link
+            className={`fc-btn fc-btn-sm fc-nav-cta${heroCtaVisible ? " fc-nav-cta-hidden" : ""}`}
+            to={DASHBOARD}
+            aria-hidden={heroCtaVisible}
+            tabIndex={heroCtaVisible ? -1 : undefined}
+          >
+            Enter
+          </Link>
         </div>
       </nav>
 
@@ -110,12 +158,12 @@ export default function CockpitLanding() {
           <p className="fc-lede" data-reveal style={{ "--d": "120ms" } as React.CSSProperties}>
             A management system for the evolution of unique businesses.
           </p>
-          <div className="fc-cta" data-reveal style={{ "--d": "180ms" } as React.CSSProperties}>
+          <div ref={heroCtaRef} className="fc-cta" data-reveal style={{ "--d": "180ms" } as React.CSSProperties}>
             <Link className="fc-btn" to={DASHBOARD}>Enter the cockpit</Link>
             <span className="fc-cta-note">For founders who build from who they are.</span>
           </div>
           <div className="fc-stage">
-            <div className="fc-shot fc-side" data-reveal style={{ "--d": "380ms" } as React.CSSProperties}>
+            <div className="fc-shot fc-side fc-side-l" data-reveal style={{ "--d": "380ms" } as React.CSSProperties}>
               <img src={`${IMG}/funnel.webp`} width={1014} height={1502} alt="" />
             </div>
             <div className="fc-shot fc-flat" data-reveal style={{ "--d": "260ms" } as React.CSSProperties}>
@@ -127,7 +175,7 @@ export default function CockpitLanding() {
                 fetchPriority="high"
               />
             </div>
-            <div className="fc-shot fc-side" data-reveal style={{ "--d": "380ms" } as React.CSSProperties}>
+            <div className="fc-shot fc-side fc-side-r" data-reveal style={{ "--d": "380ms" } as React.CSSProperties}>
               <img src={`${IMG}/unique-business.webp`} width={976} height={1580} alt="" />
             </div>
           </div>
@@ -207,7 +255,7 @@ export default function CockpitLanding() {
           </div>
           <div className="fc-flow-row">
             {flowSteps.map((step, index) => (
-              <div key={step.title} data-reveal style={{ "--d": `${index * 90}ms` } as React.CSSProperties}>
+              <div key={step.title} className="fc-step" data-reveal style={{ "--d": `${index * 90}ms` } as React.CSSProperties}>
                 <div className={`fc-shot fc-fade${step.flat ? " fc-flat" : ""}`}>
                   <img src={step.src} width={step.w} height={step.h} loading="lazy" decoding="async" alt={step.alt} />
                 </div>
@@ -292,6 +340,11 @@ export default function CockpitLanding() {
                 decoding="async"
                 alt="Cashflow panel: one number, one line of context and one chart"
               />
+              {designCallouts.map((pos, index) => (
+                <span key={index} className="fc-callout" style={pos} aria-hidden="true">
+                  {index + 1}
+                </span>
+              ))}
             </div>
           </div>
         </div>
@@ -312,6 +365,11 @@ export default function CockpitLanding() {
           <div className="fc-cta" data-reveal>
             <Link className="fc-btn" to={DASHBOARD}>Enter the cockpit</Link>
             <span className="fc-cta-note">Free testing for now.</span>
+          </div>
+          <div className="fc-early" data-reveal>
+            <a className="fc-btn fc-btn-ghost" href={TELEGRAM} target="_blank" rel="noopener noreferrer">
+              Get early access
+            </a>
           </div>
           <p className="fc-by">Created by Alexander Konstantinov</p>
         </div>
