@@ -193,7 +193,7 @@
 .fc-close h2 { font-size: clamp(42px, 6.6vw, 84px); margin-top: 26px; }
 .fc-close .fc-lede { max-width: 720px; margin: 28px auto 0; }
 .fc-early { margin-top: 56px; display: flex; justify-content: center; }
-.fc-by { margin-top: 72px; font-size: 14px; color: var(--fc-dim); letter-spacing: 0.02em; }
+.fc .fc-by { margin-top: 72px; font-size: 14px; color: var(--fc-dim); letter-spacing: 0.02em; }
 
 /* Reveal on scroll. Content is visible by default; .fc-anim is added by JS. */
 .fc-anim [data-reveal] {
