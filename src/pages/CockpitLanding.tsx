@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import SEO from "@/components/SEO";
 import "./CockpitLanding.css";
 
 const IMG = "/images/cockpit";
-const DASHBOARD = "/build/cockpit/dashboard";
 const TELEGRAM = "https://t.me/integralevolution";
 const OG_IMAGE = "https://findyourtoptalent.com/images/cockpit/og.png";
 
@@ -135,14 +133,16 @@ export default function CockpitLanding() {
           <a className="fc-nav-link" href="#source">Source</a>
           <a className="fc-nav-link" href="#flow">Flow</a>
           <a className="fc-nav-link" href="#loop">Loop</a>
-          <Link
+          <a
             className={`fc-btn fc-btn-sm fc-nav-cta${heroCtaVisible ? " fc-nav-cta-hidden" : ""}`}
-            to={DASHBOARD}
+            href={TELEGRAM}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-hidden={heroCtaVisible}
             tabIndex={heroCtaVisible ? -1 : undefined}
           >
-            Enter
-          </Link>
+            REQUEST EARLY ACCESS
+          </a>
         </div>
       </nav>
 
@@ -159,7 +159,7 @@ export default function CockpitLanding() {
             A management system for the evolution of unique businesses.
           </p>
           <div ref={heroCtaRef} className="fc-cta" data-reveal style={{ "--d": "180ms" } as React.CSSProperties}>
-            <Link className="fc-btn" to={DASHBOARD}>Enter the cockpit</Link>
+            <a className="fc-btn" href={TELEGRAM} target="_blank" rel="noopener noreferrer">REQUEST EARLY ACCESS</a>
             <span className="fc-cta-note">For founders who build from who they are.</span>
           </div>
           <div className="fc-stage">
@@ -363,13 +363,8 @@ export default function CockpitLanding() {
             See your business the way a pilot sees a flight. Everything that matters, right in front of you.
           </p>
           <div className="fc-cta" data-reveal>
-            <Link className="fc-btn" to={DASHBOARD}>Enter the cockpit</Link>
+            <a className="fc-btn" href={TELEGRAM} target="_blank" rel="noopener noreferrer">REQUEST EARLY ACCESS</a>
             <span className="fc-cta-note">Free testing for now.</span>
-          </div>
-          <div className="fc-early" data-reveal>
-            <a className="fc-btn fc-btn-ghost" href={TELEGRAM} target="_blank" rel="noopener noreferrer">
-              Get early access
-            </a>
           </div>
           <p className="fc-by">Created by Alexander Konstantinov</p>
         </div>
