@@ -103,6 +103,26 @@ The whole method explains itself in six visual frames (canonical infographic set
 5. **The Ladder** — free taste → paid step → infrastructure, at every holon (person, community, business).
 6. **The Network** — sovereigns, each 100% self-owned, connected by consent-shaped edges (revenue shares, advisory, collaborations); alignment lives in the edges.
 
+## Business DNA: the primitives and the six elements (2026-11-11)
+
+**Level 0, the primitive.** A business is always a relationship between a human and a human. Even the deepest-tech business comes down to two people; without a human it is agent-to-agent exchange, not human business.
+**Level 1.** Inside that relationship there is a **process** and a **change** (the result). One side mostly gives, the other mostly receives, and the receiver reciprocates through a medium: money first, but not only money, and not always binary. Mutual benefit, exchange.
+**Level 2, the DNA of a business: six elements**, each derived from the one above:
+1. **Uniqueness**: the source the energy flows from.
+2. **Myth**: polarizes people and the space around it (what others called Jobs's "reality distortion field"; more precisely a reality *coherence* field).
+3. **Tribe**: the people who polarize toward the myth.
+4. **Transition**: the passage they are in, and the cost of inaction.
+5. **Transformational promise**: what takes them further along that path. Whoever holds the uniqueness has, by definition, gone further, and is called to share it.
+6. **USP, the synthesis**: for whom, what change, how (and the cost of inaction). Compressed to one sentence, this is the **tagline**: the business in one sentence.
+
+**Story → tagline.** A company's story is the synthesis of the whole business (a page, half a page, an elevator pitch). Its most compressed form is the tagline. Every format (deck, demo, 1- or 3-minute video, pico pitch, networking pitch, Product Hunt one-liner, investor line like "Uber for ambulances") carries the same one signal in a different light. Working on one sentence is an order of magnitude easier than working on a deck, so work on the sentence first.
+
+**Co-founders.** Each co-founder has a signal. A joint business works when the signals are complementary and non-conflicting; co-founder failure is signals that contradict (they actually want different things), felt as friction. A joint business is a subset of each founder's unique business.
+
+**One product first.** A business starts with one product. Planning a series of products from the start is a red flag: defocus, business suicide. A product's essence is one button: one transformational result. The result can't be invented in a vacuum; start with *who*, because business is first a relationship.
+
+**Without the primitives** you bring noise: an unreal story, solving it through the head, a puzzle that won't solve, self-convinced progress with no real certainty. The usual alternatives are dead ends: manufacturing need (pressure, fear, manipulation), or machine-like grinding through segments until a signal turns up.
+
 ## The Product Method: Shifts × Paths (2026-10-27)
 
 > *Found 2026-10-27 by Sasha and Evolver; Sasha called it (translated) "a huge upgrade in quality, simplicity, applicability, practical use". Sasha's own words are quoted. Templates: [shift-offer.md](../templates/shift-offer.md) (one product, PST 173) and [product-map.md](../templates/product-map.md) (the whole map, PST 174). Applied to one business: `alexanders_unique_business.md`, Product Map section.*
@@ -1270,6 +1290,17 @@ This principle re-closes into a concept the instant you possess it instead of pr
 > *Relates to: Principle 4 (The Mirror, Not the Teacher), Principle 5 (The Precision Gap IS the Product), Principle 10 (The Builder's Blind Spot, same Essence/Medicine/Meta-Trap shape), Principle 15 (The Specificity Loop, recognition over validation). First implementation: `src/prompts/user/zoneOfGeniusPrompt.ts` v2.1 (TRANSMIT-DON'T-REPORT + ENACT-MY-GIFT).*
 
 ---
+
+## Principle 22: Human Signal First (2026-11-11)
+
+**AI amplifies a signal; it cannot originate one.** Behind words stand a message, energy, the vibration of ideas, conceptual architecture. A transformer without a human signal at the input gives low-quality output, and asking AI to create an artifact first makes things worse: the human then has to dig through it, and the net effect is negative.
+
+**The order at every stage of unique business creation:**
+1. The founder writes the first raw version in their own words (e.g. the transformational results their work gives people).
+2. AI amplifies it.
+3. The founder polishes it to the next level.
+
+This applies to every artifact in the canvas, from uniqueness to tagline. Never start a founder's artifact from a blank AI prompt.
 
 # Part I: Philosophy & Ontology
 
