@@ -160,6 +160,7 @@ import AdminContentManager from "./pages/AdminContentManager";
 // See docs/06-architecture/autonomous-navigation-loop.md.
 const FoundersIndex = lazy(() => import("./pages/admin/FoundersIndex"));
 const FounderDetail = lazy(() => import("./pages/admin/FounderDetail"));
+const ReturnReportPage = lazy(() => import("./pages/admin/ReturnReport"));
 // Day 54 (Sasha 2026-04-28): /admin/dashboard + /admin/grants fused into
 // one operator console at /admin. Old URLs redirect to /admin so any
 // bookmarks/links keep working. Source: src/pages/admin/Admin.tsx.
@@ -775,6 +776,7 @@ const App = () => (
                   <Route path="/admin/mission-participants" element={<RequireAuth><AdminMissionParticipants /></RequireAuth>} />
                   <Route path="/admin/mission-sync" element={<RequireAuth><AdminMissionSync /></RequireAuth>} />
                   <Route path="/admin/content" element={<RequireAuth><AdminContentManager /></RequireAuth>} />
+                  <Route path="/admin/return-report" element={<RequireAuth><ReturnReportPage /></RequireAuth>} />
                   <Route path="/admin" element={<AdminPage />} />
                   <Route path="/admin/dashboard" element={<Navigate to="/admin" replace />} />
                   <Route path="/admin/grants" element={<Navigate to="/admin" replace />} />
