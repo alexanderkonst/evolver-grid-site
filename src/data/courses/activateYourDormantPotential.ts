@@ -41,7 +41,6 @@ export const COURSE_MODULES: CourseModule[] = [
             { code: "F01E08", title: "The Genius Path", youtubeId: "LW7MT427bls" },
             { code: "F01E09", title: "Architecture of Spirit", youtubeId: "ZjzigAPA-LM" },
             { code: "F01E10", title: "Balanced Growth", youtubeId: "zLihfsE9M18" },
-            { code: "F01E11", title: "Continue? Yes or No", youtubeId: "my9SDKCbKPk" },
         ],
     },
     {
@@ -110,7 +109,10 @@ export const COURSE_MODULES: CourseModule[] = [
     {
         id: "closing",
         title: "Closing",
-        episodes: [{ code: "Z01", title: "How to Integrate This Knowledge", youtubeId: "4h89Z7yshtc" }],
+        episodes: [
+            { code: "Z01", title: "Continue? Yes or No", youtubeId: "my9SDKCbKPk" },
+            { code: "Z02", title: "How to Integrate This Knowledge", youtubeId: "4h89Z7yshtc" },
+        ],
     },
 ];
 
