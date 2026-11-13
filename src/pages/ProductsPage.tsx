@@ -33,6 +33,7 @@ const CARDS: ProductCardDef[] = [
     ],
   },
   { key: "fmf", links: [{ href: "/ignite", external: false, ctaKey: "cta" }] },
+  { key: "pmfCore", links: [{ href: "/products/pmf-core", external: false, ctaKey: "cta" }] },
   { key: "pmf", links: [] },
   { key: "evolution", links: [{ href: "/products/crossing", external: false, ctaKey: "cta" }] },
   { key: "collective", links: [] },

@@ -7712,6 +7712,13 @@
       "body": "Juntos nombramos el valor que creas simplemente siendo tú, tu cliente ideal, su dolor, la promesa transformacional, el contorno del producto y tu propuesta única de valor en una sola frase.",
       "cta": "Reservar la Private Session"
     },
+    "pmfCore": {
+      "name": "Núcleo de product-market fit",
+      "badge": "1:1 · una sesión, unas 2 horas",
+      "line": "Llegas con una tecnología. Sales con el núcleo del product-market fit.",
+      "body": "En una sesión encontramos para quién es, qué cambia para ellos, por qué querrán que exista y la frase que lo lleva todo.",
+      "cta": "Qué pasa en la sesión"
+    },
     "pmf": {
       "name": "Product-Market Fit",
       "badge": "$5,555 individual · $1,111 en grupo · o $5,555 a partir de tus primeros $55,555 de ingresos",
@@ -9084,5 +9091,34 @@
     "connect": "Conectar",
     "door": "¿Quieres ver tu propio don?",
     "metaDescription": "Descubre tu Zona de Genio."
+  },
+  "pmfCorePage": {
+    "eyebrow": "Una sesión",
+    "title": "Núcleo de product-market fit",
+    "subtitle": "Llegas con una tecnología. Sales con el núcleo del product-market fit: para quién es, qué cambia para ellos, por qué querrán que exista en el mundo y la frase que lo lleva todo.",
+    "seoDescription": "Una sesión para encontrar el núcleo del product-market fit: para quién es, qué cambia y la frase que lo lleva.",
+    "getEyebrow": "Con qué te vas",
+    "getHeading": "Siete cosas, desde tus propias palabras",
+    "getItems": [
+      "Tu propia vara de medir: la prueba que debe pasar cualquier frase de tu pitch, para revisar cada versión sin mí.",
+      "El marco: para quién, qué cambia para ellos, cómo. Un producto, un botón. Señal, no ruido.",
+      "El diagnóstico: por qué tu frase actual no aterriza, desde el «quién» que falta hasta los verbos vacíos y la máquina donde debería estar la persona.",
+      "El cambio de categoría: de describir un mecanismo a dar a las personas poder sobre su propia vida. Ahí suele encontrarse una empresa.",
+      "Tus primeras personas: el segmento que ya siente el dolor y compra primero.",
+      "La frase: un tagline nacido de tu propio avance, puntuado de 0 a 10 frente al anterior.",
+      "El mapa largo: hacia dónde crece el producto, contado como una historia que un inversor puede seguir."
+    ],
+    "howEyebrow": "Cómo funciona",
+    "howHeading": "El avance sale de ti",
+    "howItems": [
+      "En los primeros cinco minutos acordamos el resultado que quieres y cómo sabrás que lo tienes.",
+      "Vamos con el método socrático, no con respuestas hechas: preguntas hasta que la frase sale de ti, por eso es tuya y se sostiene.",
+      "Cuando aparece el núcleo, lo nombramos y lo probamos con la vara que tú mismo pusiste."
+    ],
+    "promiseEyebrow": "La promesa honesta",
+    "promiseHeading": "Encontramos el núcleo. El mercado lo confirma.",
+    "promiseBody": "Los fundadores suelen tardar meses de iteraciones en llegar aquí. En una sesión obtienes el núcleo del fit; lo confirman las personas a quienes vendes.",
+    "format": "Uno a uno, en línea, unas 2 horas.",
+    "cta": "Reservar la sesión"
   }
 }

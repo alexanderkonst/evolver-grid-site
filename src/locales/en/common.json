@@ -7779,6 +7779,13 @@
       "body": "Together we name the value you create simply by being yourself, your ideal client, their pain, the transformational promise, the outline of the product, and your unique selling proposition in one sentence.",
       "cta": "Book the Private Session"
     },
+    "pmfCore": {
+      "name": "Product-Market Fit Core",
+      "badge": "1:1 · one session, about 2 hours",
+      "line": "Walk in with a technology. Walk out with the core of product-market fit.",
+      "body": "In one session we find who it's for, what changes for them, why they'll want it to exist, and the one line that carries it.",
+      "cta": "See what happens"
+    },
     "pmf": {
       "name": "Product-Market Fit",
       "badge": "$5,555 one-on-one · $1,111 in a group · or $5,555 from your first $55,555 of revenue",
@@ -9102,5 +9109,34 @@
     "connect": "Connect",
     "door": "Want to see your own gift?",
     "metaDescription": "Discover your Zone of Genius."
+  },
+  "pmfCorePage": {
+    "eyebrow": "One session",
+    "title": "Product-Market Fit Core",
+    "subtitle": "Walk in with a technology. Walk out with the core of product-market fit: who it's for, what changes for them, why they'll want it in the world, and the one line that carries it.",
+    "seoDescription": "One session to find the core of product-market fit: who it's for, what changes for them, and the one line that carries it.",
+    "getEyebrow": "What you walk away with",
+    "getHeading": "Seven things, from your own words",
+    "getItems": [
+      "Your own yardstick: the test any pitch line must pass, so you can check every next version without me.",
+      "The frame: who it's for, what changes for them, how. One product, one button. Signal, not noise.",
+      "The diagnosis: exactly why your current line doesn't land, from a missing \"who\" to empty verbs to the machine standing where the person should.",
+      "The category shift: from describing a mechanism to giving people power over their own life. This is usually where a company finds itself.",
+      "Your first people: the segment who already feel the pain and buy first.",
+      "The line: a tagline built from your own breakthrough, rated 0 to 10 against the old one.",
+      "The long map: where the product grows next, told as a story investors can follow."
+    ],
+    "howEyebrow": "How it works",
+    "howHeading": "The breakthrough comes out of you",
+    "howItems": [
+      "In the first five minutes we agree on the result you want and how you'll know you got it.",
+      "We go Socratic, not prescriptive: questions until the line comes from you, so it's yours and it holds.",
+      "When the core appears, we name it, then test it on the yardstick you set yourself."
+    ],
+    "promiseEyebrow": "The honest promise",
+    "promiseHeading": "We find the core. The market confirms it.",
+    "promiseBody": "Founders usually spend months of iterations to get here. One session gets you the core of fit; the people you sell to confirm it.",
+    "format": "One-on-one, online, about 2 hours.",
+    "cta": "Book the session"
   }
 }
