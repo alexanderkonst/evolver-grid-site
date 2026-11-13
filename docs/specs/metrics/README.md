@@ -24,6 +24,8 @@ Code: `src/lib/funnelAnalytics.ts` (`getPlayerId`), `src/lib/returnMetric.ts`, `
 - Players are keyed by `coalesce(user_id, player_id)`. Days are the player's own local calendar day (`local_date`), falling back to the UTC date of the event.
 - Output: a `total` row (`revealed_players`, `returned_players`, `return_rate_pct`), then one row per first-reveal day.
 
+**Report page (#328).** `/admin/return-report` (signed-in users only) shows the same number without SQL: three figures for all time (revealed, returned on another day, share) and a table by first-reveal day, newest first. It reads `funnel_events` through the authenticated SELECT policy, read-only, no migration. Code: `src/lib/returnReport.ts` (pure computation, tests in `src/lib/__tests__/returnReport.test.ts`), `src/pages/admin/ReturnReport.tsx`. Differences from the SQL: no date window, and identity is bridged: any event carrying both `player_id` and `user_id` ties that device to that account, so a guest reveal and a signed-in return of the same person count as one player (this closes the "Guest who later signs in" blind spot below on the page; the SQL still has it). A device shared by two accounts would merge them into one player.
+
 `funnel_events` is readable by `authenticated` users only, and the project is Lovable-managed. Without direct SQL access, the same rows can be pulled through `agent-db` (`op: "select"`, `table: "funnel_events"`, `match: {"step": "reveal_seen"}`, then `game_open`; the function caps a read at 1000 rows). `agent-db` has no named read actions and runs no SQL by design, so there is no `return_metric` action; computing the figure from those rows is a manual step for now.
 
 **Known blind spots.** The number is a floor, not a census.
