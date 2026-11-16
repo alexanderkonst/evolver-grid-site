@@ -35,19 +35,42 @@
  * Seeing = First Quarter and Harvesting = Full Moon match the issue's
  * parentheticals; Planning sits at Last Quarter per the locked lunar
  * wisdom map (docs/specs/equilibrium/lunar_wisdom_map.md).
+ *
+ * ── Cycle Journal (issue #331) ────────────────────────────────────────
+ * Three "nothing to write" phases now have a write surface of their own:
+ * Clearing (what is clearing), Gathering (resources arriving) and
+ * Celebrating (what ripened). They are JOURNAL layers: stored in
+ * `equilibrium_cycle_entries`, never "due but empty" (no amber, no guilt),
+ * and shown on the readiness strip as a count or a calm dot.
  */
 
-// ─── Layers (the 5 write surfaces, in readiness-row order) ─────────────
+import { getLunarState } from "@/lib/equilibrium-cycles";
+
+// ─── Layers (the 8 write surfaces, in cycle order) ──────────────────────
 
 export const EQ_LAYER_KEYS = [
   "focus",
   "strategies",
+  "clearing",
+  "resources",
   "workstreams",
   "tasks",
   "doNow",
+  "celebration",
 ] as const;
 
 export type EqLayerKey = (typeof EQ_LAYER_KEYS)[number];
+
+/**
+ * The Cycle Journal layers: free-form lists written phase by phase. They
+ * never read "due but empty" — see {@link computeLayerReadiness}.
+ */
+export const EQ_JOURNAL_LAYER_KEYS = ["clearing", "resources", "celebration"] as const;
+export type EqJournalLayerKey = (typeof EQ_JOURNAL_LAYER_KEYS)[number];
+
+export function isJournalLayer(key: EqLayerKey): key is EqJournalLayerKey {
+  return (EQ_JOURNAL_LAYER_KEYS as readonly EqLayerKey[]).includes(key);
+}
 
 // ─── Phases (Sasha's 8, in cycle order 1-8) ────────────────────────────
 
@@ -110,20 +133,20 @@ export const PHASE_PLAN: EqPhaseSpec[] = [
     name: "Clearing",
     moonName: "New Moon",
     astronomicalIndex: 0,
-    asks: "Nothing to write. Release fear; the how is not yours yet.",
+    asks: "Name what's clearing. One line each; no need to fix it.",
     trap: "Don't invent the \"how\" out of fear. No workstreams or tasks from panic.",
-    writes: [],
-    writeLabel: "nothing — just clear",
+    writes: ["clearing"],
+    writeLabel: "what's clearing",
   },
   {
     position: 4,
     name: "Gathering",
     moonName: "Waxing Crescent",
     astronomicalIndex: 1,
-    asks: "Nothing new. Say yes; collect raw material for Seeing.",
+    asks: "Say yes. Note every resource that arrives: money, people, calls, offers, information.",
     trap: "Don't filter or refuse early. Let it all arrive.",
-    writes: [],
-    writeLabel: "nothing — gather input",
+    writes: ["resources"],
+    writeLabel: "resources arriving",
   },
   {
     position: 5,
@@ -160,10 +183,10 @@ export const PHASE_PLAN: EqPhaseSpec[] = [
     name: "Celebrating",
     moonName: "Waning Gibbous",
     astronomicalIndex: 5,
-    asks: "Review what's done, give thanks, clear spent tasks.",
+    asks: "Name what ripened and what you celebrate, then clear spent tasks.",
     trap: "Don't jump straight to planning. No new Moon Focus yet.",
-    writes: [],
-    writeLabel: "review & clear",
+    writes: ["celebration"],
+    writeLabel: "what ripened",
   },
 ];
 
@@ -188,9 +211,12 @@ export interface EqLayerSpec {
 const LAYER_LABELS: Record<EqLayerKey, string> = {
   focus: "Focus",
   strategies: "Strategies",
+  clearing: "Clearing",
+  resources: "Resources",
   workstreams: "Workstreams",
   tasks: "Tasks",
   doNow: "DO NOW",
+  celebration: "Celebration",
 };
 
 export const EQ_LAYERS: Record<EqLayerKey, EqLayerSpec> = (() => {
@@ -220,6 +246,10 @@ export const EQ_LAYERS: Record<EqLayerKey, EqLayerSpec> = (() => {
  *                 but still empty (!). A soft nudge, never red.
  *   "not_due"   — its write phase hasn't arrived yet this cycle (·).
  *                 Calm, muted — an empty section here is correct.
+ *
+ * Journal layers (clearing / resources / celebration) only ever read
+ * "filled" or "not_due": an empty journal is never a nudge. The UI shows
+ * "not_due" for them as a calm dot, never as amber.
  */
 export type LayerReadiness = "filled" | "due_empty" | "not_due";
 
@@ -238,10 +268,12 @@ export function computeLayerReadiness(
   filled: boolean,
 ): LayerReadiness {
   if (filled) return "filled";
+  // Journal layers are never due-empty: no amber, no guilt.
+  if (isJournalLayer(layer)) return "not_due";
   return currentPosition >= EQ_LAYERS[layer].dueAtPosition ? "due_empty" : "not_due";
 }
 
-/** Readiness for all five layers at once. */
+/** Readiness for all layers at once. */
 export function computePhaseReadiness(
   currentPosition: number,
   filled: Record<EqLayerKey, boolean>,
@@ -279,4 +311,140 @@ export function phaseByLunarIndex(astronomicalIndex: number): EqPhaseSpec {
 /** The phase after this one, wrapping 8 → 1. */
 export function nextPhase(position: number): EqPhaseSpec {
   return phaseByPosition((position % 8) + 1);
+}
+
+// ─── Phase prompt (Cycle Journal, issue #331) ──────────────────────────
+
+/** Entry kinds the journal stores for the three journal layers. */
+export type CycleJournalKind = "clearing" | "resource" | "celebration";
+
+/** Layer key → entry kind. */
+export const JOURNAL_KIND_BY_LAYER: Record<EqJournalLayerKey, CycleJournalKind> = {
+  clearing: "clearing",
+  resources: "resource",
+  celebration: "celebration",
+};
+
+/** Entry kind → layer key. */
+export const JOURNAL_LAYER_BY_KIND: Record<CycleJournalKind, EqJournalLayerKey> = {
+  clearing: "clearing",
+  resource: "resources",
+  celebration: "celebration",
+};
+
+/** The existing write surfaces a "Write it →" link can jump to. */
+export type EqJumpTarget = "focus" | "strategies" | "workstreams" | "tasks" | "doNow";
+
+/**
+ * What the Phase Prompt shows for a phase. Exactly ONE prompt per phase:
+ *   - `entry` — a quick single-line input for a journal kind
+ *   - `jump`  — a "Write it →" link to an existing editor (no duplicate editors)
+ */
+export type PhasePrompt =
+  | { type: "entry"; kind: CycleJournalKind; heading: string; placeholder: string }
+  | { type: "jump"; target: EqJumpTarget; label: string };
+
+/** Quick-input copy per journal kind — in the voice of its phase. */
+export const JOURNAL_KIND_COPY: Record<
+  CycleJournalKind,
+  { heading: string; placeholder: string; noun: string; empty: string }
+> = {
+  clearing: {
+    heading: "What is clearing",
+    placeholder: "A fear, a habit, an old commitment…",
+    noun: "Clearing",
+    empty: "Nothing noted yet. That's fine.",
+  },
+  resource: {
+    heading: "Resources arriving",
+    placeholder: "A resource that arrived…",
+    noun: "Resources",
+    empty: "Nothing noted yet. That's fine.",
+  },
+  celebration: {
+    heading: "What ripened, what we celebrate",
+    placeholder: "Something that ripened…",
+    noun: "Celebration",
+    empty: "Nothing noted yet. That's fine.",
+  },
+};
+
+/** The prompt for a cycle position (1-8). */
+export function phasePromptForPosition(position: number): PhasePrompt {
+  switch (position) {
+    case 1:
+      return { type: "jump", target: "focus", label: "Write your Moon Focus" };
+    case 2:
+      return { type: "jump", target: "strategies", label: "Write your strategies" };
+    case 3:
+      return { type: "entry", kind: "clearing", ...pickCopy("clearing") };
+    case 4:
+      return { type: "entry", kind: "resource", ...pickCopy("resource") };
+    case 5:
+      return { type: "jump", target: "workstreams", label: "Write your workstreams" };
+    case 6:
+      return { type: "jump", target: "tasks", label: "Order and schedule your tasks" };
+    case 7:
+      return { type: "jump", target: "doNow", label: "Choose your DO NOW" };
+    case 8:
+      return { type: "entry", kind: "celebration", ...pickCopy("celebration") };
+    default:
+      throw new Error(`phasePlan: no phase at position ${position}`);
+  }
+}
+
+function pickCopy(kind: CycleJournalKind) {
+  const { heading, placeholder } = JOURNAL_KIND_COPY[kind];
+  return { heading, placeholder };
+}
+
+// ─── Cycle start (Cycle Journal, issue #331) ───────────────────────────
+
+const MINUTE_MS = 60_000;
+const COARSE_STEP_MS = 3 * 60 * 60 * 1000; // Planning lasts ~3.3-4.1 days: 3h can't skip it
+const MAX_COARSE_STEPS = 280; // > 30 days of 3h steps
+/** Astronomical index of Planning (Last Quarter). */
+const PLANNING_INDEX = 6;
+
+/**
+ * Start of the current cycle, in ms: the start of the most recent Planning
+ * (Last Quarter, position 1) segment at or before `nowMs`.
+ *
+ * Resolved to a whole minute: the FIRST whole minute inside Planning.
+ * Because it is snapped to the minute grid, the result is the same no
+ * matter which `nowMs` it is asked from within one cycle — entries written
+ * on different days of a cycle share one `cycle_start` and group together.
+ * (It can exceed `nowMs` by under a minute only when `nowMs` is inside the
+ * first minute of Planning.)
+ *
+ * Pure: reads only the lunar math. The server mirror lives in
+ * supabase/functions/equilibrium-agent-write/cycleJournal.ts and must
+ * return the same value.
+ */
+export function cycleStartMs(nowMs: number): number {
+  const isPlanning = (t: number) => getLunarState(t).segmentIndex === PLANNING_INDEX;
+
+  // 1. Walk back until we are inside a Planning segment.
+  let hi = nowMs;
+  let guard = 0;
+  while (!isPlanning(hi) && guard++ < MAX_COARSE_STEPS) hi -= COARSE_STEP_MS;
+
+  // 2. Walk back to the last moment outside it. (lo outside, hi inside.)
+  let lo = hi - COARSE_STEP_MS;
+  guard = 0;
+  while (isPlanning(lo) && guard++ < MAX_COARSE_STEPS) {
+    hi = lo;
+    lo -= COARSE_STEP_MS;
+  }
+
+  // 3. Bisect on whole minutes for the first minute inside Planning.
+  let loM = Math.floor(lo / MINUTE_MS);
+  let hiM = Math.ceil(hi / MINUTE_MS);
+  if (!isPlanning(hiM * MINUTE_MS)) hiM = Math.floor(hi / MINUTE_MS);
+  while (hiM - loM > 1) {
+    const mid = Math.floor((loM + hiM) / 2);
+    if (isPlanning(mid * MINUTE_MS)) hiM = mid;
+    else loM = mid;
+  }
+  return hiM * MINUTE_MS;
 }

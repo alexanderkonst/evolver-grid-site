@@ -97,7 +97,7 @@ The wisdom: **don't run the whole week as one mode.** Honor each day at least a 
 
 ---
 
-## ACT — six sections, filled as clarity arrives
+## ACT — six sections, filled as clarity arrives (plus the Cycle Journal)
 
 > *2026-10-21 (Sasha): strategy now crystallizes through Seeing and is locked at its end; Workstreams + Tasks move to Prep for Harvest (formerly Leading), whose first DO NOW is writing them.*
 
@@ -140,6 +140,38 @@ The chosen action collapses everything above into one move.
 - Each task on the Workstream list has a **DO NOW** button — promote it here.
 - Check the box → animates complete, cascades back to the workstream's done-pile.
 
+### Cycle Journal → **the phase tells you what to write, and keeps it**
+
+*Added 2026-11-16 (Sasha; issue #331).* The value of the watch is not only knowing which phase you are in, but writing down what each phase brings: what cleared, the resources that arrived, what ripened. That moves you from observing the cycle to operating on it. Three phases that used to say "nothing to write" now have a place of their own.
+
+| Phase | What you write | Where it lives |
+|---|---|---|
+| Planning | Moon Focus, 1–3 words | Focus (as before) |
+| Planting | Strategies 1–3 | Current Strategy (as before) |
+| Clearing | **What is clearing**, one line each | Cycle Journal |
+| Gathering | **Resources arriving** (optional tag: Money · People · Calls · Offers · Info · Help) | Cycle Journal |
+| Seeing | Workstreams (≤3) and Intuitive Tasks, as they reveal | Workstreams / Tasks (as before) |
+| Prep for Harvest | Order and schedule | (no new field) |
+| Harvesting | DO NOW | DO NOW (as before) |
+| Celebrating | **What ripened, what we celebrate** | Cycle Journal |
+
+**The prompt.** At the top of ACT, inside the phase card and directly under what the phase asks, there is exactly one prompt for the phase you are in.
+
+- In Clearing, Gathering and Celebrating it is a single-line field. **Enter saves**, the field clears and stays focused for the next line. Shift+Enter makes a new line. Saved lines appear at once, newest on top, with their date. Tap (or click) a line to edit it; the pencil and the bin sit on the right (on a mouse they appear on hover; on a phone they are always there). Deleting shows an **Undo**. Tags on resources are optional and never block saving.
+- In Planning, Planting, Seeing, Prep for Harvest and Harvesting it is a "Write it →" link that scrolls to the editor that already exists and opens it. There is no second editor.
+
+**Also note.** Under the prompt a quiet row, *Also note: Clearing · Resources · Celebration*, opens the same field for any of the three, at any time. Life doesn't respect phase edges; the phase only decides what is prominent.
+
+**Readiness never nags.** Clearing, Resources and Celebration are never marked "due but empty". Their chips show a count ("Resources · 4") or a calm dot.
+
+**This cycle.** Each of the eight dots in the cycle strip is tappable. It opens a small panel with what was written in that phase this cycle: the focus, the strategies, what cleared, the resources, the workstreams, what you celebrated. A dot with a small purple point under it has something written. Read through the strip and the month tells its own story.
+
+**Past cycles.** A collapsed *Past cycles* link sits at the bottom of ACT, above Parked. Open it for one read-only card per finished cycle, newest first: its dates, Moon Focus, strategies, workstreams, and the clearing / resources / celebration lists with counts. Moon Focus, strategies and workstream titles are remembered each time you save them, so the history fills in from your first saved cycle on.
+
+**For agents.** `equilibrium-agent-write` accepts `add_cycle_entry {kind, text, tag?}` (`kind` is `clearing`, `resource` or `celebration`; `tag` for resources only) and returns this cycle's entries under `cycle_journal` in `read_state`. So Hark can log a resource Sasha mentions in chat.
+
+*How to use the entries (analysis, turning resources into workstreams) is deliberately open. Sasha and Hark decide that after a cycle of real use.*
+
 ---
 
 ## The eight phases: essence, ACT, trap
@@ -158,12 +190,12 @@ The chosen action collapses everything above into one move.
 
 ### 3. Clearing · New Moon · 💧
 - **Essence:** the intention is bigger than the old you, and the mind panics: "how?" Fear comes up, and the old self builds limiting beliefs out of it. The work is to let the fear pass through without shaping it into beliefs. Crying releases. Complaining locks it in.
-- **ACT:** **don't touch.** No workstreams or tasks out of panic.
+- **ACT:** **name what's clearing** in the Cycle Journal: one line each (a fear, a habit, an old commitment, a person or pattern leaving), no need to fix it. Nothing else: no workstreams or tasks out of panic.
 - **Trap:** inventing the "how" while afraid, or taking it out on other people.
 
 ### 4. Gathering · Waxing Crescent · 🌍
 - **Essence:** first light. People, leads, coincidences and raw material arrive ("FedEx"). You don't grab them, you receive them. Say yes as a ritual, and speak kindly. The "how" is still none of your business.
-- **ACT:** build nothing new. Collect whatever arrives as raw material for Seeing.
+- **ACT:** build nothing new. **Note every resource that arrives** in the Cycle Journal: money, a contact, a call, an offer, information, help, an idea. They are the raw material for Seeing.
 - **Trap:** filtering and saying no too early.
 
 **Outer half: manifestation**
@@ -185,7 +217,7 @@ The chosen action collapses everything above into one move.
 
 ### 8. Celebrating · Waning Gibbous · 🔥
 - **Essence:** the circle closes. Say the win out loud, without shame, and give thanks. Gratitude becomes the fuel for the next Planning.
-- **ACT:** look at what got done, give thanks, and clear what's spent. Don't write the new Moon Focus yet.
+- **ACT:** **name what ripened and what you celebrate** in the Cycle Journal, give thanks, and clear what's spent. Don't write the new Moon Focus yet.
 - **Trap:** jumping from the harvest straight into planning.
 
 **Elements in pairs:** 🔥 will (Celebrating + Planning) · 💧 emanation (Planting + Clearing) · 🌍 digestion (Gathering + Seeing) · 🌬️ enrichment (Prep for Harvest + Harvesting).

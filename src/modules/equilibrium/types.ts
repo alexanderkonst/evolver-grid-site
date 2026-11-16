@@ -180,3 +180,37 @@ export const SECTION_IDS = {
 } as const;
 
 export type SectionId = (typeof SECTION_IDS)[keyof typeof SECTION_IDS];
+
+// ─── Cycle Journal (issue #331) ────────────────────────────────────────
+
+/** Journal kinds the user writes by hand (Clearing / Gathering / Celebrating). */
+export type CycleJournalEntryKind = "clearing" | "resource" | "celebration";
+
+/** Snapshot kinds written when Moon Focus / a strategy / a workstream is saved. */
+export type CycleSnapshotKind = "focus_snapshot" | "strategy_snapshot" | "workstream_snapshot";
+
+export type CycleEntryKind = CycleJournalEntryKind | CycleSnapshotKind;
+
+/** Resource tags (kind = 'resource' only). */
+export type ResourceTag = "money" | "people" | "calls" | "offers" | "info" | "help";
+
+/**
+ * A row in `equilibrium_cycle_entries`. Migration:
+ *   supabase/migrations/20261116180000_equilibrium_cycle_entries.sql
+ * For snapshot kinds `tag` holds the slot key (strategy position or
+ * workstream id) so "latest snapshot per cycle" can be taken per slot.
+ */
+export interface CycleEntry {
+  id: string;
+  user_id: string;
+  /** ISO timestamp: start of the cycle's Planning phase. */
+  cycle_start: string;
+  /** Semantic phase (1-8) the user was in when writing. */
+  phase: number;
+  kind: CycleEntryKind;
+  text: string;
+  tag: string | null;
+  created_by: string;
+  created_at: string;
+  updated_at: string;
+}
