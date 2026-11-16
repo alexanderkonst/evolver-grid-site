@@ -399,6 +399,7 @@ const AddTaskRow = ({
       <button
         type="button"
         disabled={disabled}
+        data-eq-write="empty"
         onClick={() => setAdding(true)}
         className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-[#0a1628]/15 bg-white/20 py-2.5 text-sm text-[#0a1628]/85 transition hover:bg-white/50"
       >

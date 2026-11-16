@@ -1,6 +1,15 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 import {
+  addCycleEntry,
+  cleanEntryText,
+  cleanJournalKind,
+  cleanResourceTag,
+  cycleClock,
+  readCycleEntries,
+  recordSnapshot,
+} from "./cycleJournal.ts";
+import {
   cleanParkedKind,
   parkItem,
   parkStrategy,
@@ -60,7 +69,8 @@ type Operation =
   | "complete"
   | "move_task"
   | "convert_task_to_subtask"
-  | "delete_subtask";
+  | "delete_subtask"
+  | "add_cycle_entry";
 
 interface AgentWriteRequest {
   operation?: Operation;
@@ -98,6 +108,7 @@ const allowedOperations = new Set<Operation>([
   "move_task",
   "convert_task_to_subtask",
   "delete_subtask",
+  "add_cycle_entry",
 ]);
 
 function jsonResponse(body: unknown, status = 200) {
@@ -221,6 +232,7 @@ async function ensureWorkstream(
   userId: string,
   title: string,
   dryRun: boolean,
+  agentName = "external-agent",
 ) {
   const { data, error } = await admin
     .from("equilibrium_workstreams")
@@ -248,6 +260,14 @@ async function ensureWorkstream(
     .select("*")
     .single();
   if (insertError) throw new Error(`Could not create workstream: ${insertError.message}`);
+  // Cycle Journal history (#331): a new workstream is a revealed workstream.
+  await recordSnapshot(admin, userId, {
+    kind: "workstream_snapshot",
+    text: String((created as any).title ?? title),
+    slot: String((created as any).id),
+    agentName,
+    clock: cycleClock(segmentIndexAt, Date.now()),
+  });
   return { workstream: created as any, created: true };
 }
 
@@ -407,28 +427,60 @@ function computeLunar(nowMs: number) {
   };
 }
 
+// Astronomical segment index (0-7) at a moment: the cycle clock for the
+// Cycle Journal (cycleJournal.ts).
+function segmentIndexAt(ms: number) {
+  return Math.min(7, Math.floor(lunarElongationDeg(ms) / PHASE_DEG));
+}
+
 // ─── PHASE-AWARE READINESS (server mirror of src/modules/equilibrium/
-// phasePlan.ts — issue #63). Keep in sync with that file: the semantic
-// 1-8 position mapping and the per-layer due-positions must match.
+// phasePlan.ts — issues #63, #331). Keep in sync with that file: the
+// semantic 1-8 position mapping and the per-layer due-positions must match.
 //
 //   layer        due at phase (position)
 //   focus        Planning    (1)
 //   strategies   Planting    (2)
+//   clearing     Clearing    (3)  journal layer: never due_empty
+//   resources    Gathering   (4)  journal layer: never due_empty
 //   workstreams  Seeing      (5)
 //   tasks        Seeing      (5)
 //   doNow        Harvesting  (7)
+//   celebration  Celebrating (8)  journal layer: never due_empty
 //
 // A layer is due from its position onward (the cycle only restarts at
 // Planning), so a filled layer always reads "filled" even if filled early.
-type EqLayerKey = "focus" | "strategies" | "workstreams" | "tasks" | "doNow";
+// The three journal layers (Cycle Journal, #331) are free-form lists: empty
+// reads "not_due", never "due_empty" — no guilt.
+type EqLayerKey =
+  | "focus"
+  | "strategies"
+  | "clearing"
+  | "resources"
+  | "workstreams"
+  | "tasks"
+  | "doNow"
+  | "celebration";
 type LayerReadiness = "filled" | "due_empty" | "not_due";
-const EQ_LAYER_KEYS: EqLayerKey[] = ["focus", "strategies", "workstreams", "tasks", "doNow"];
+const EQ_LAYER_KEYS: EqLayerKey[] = [
+  "focus",
+  "strategies",
+  "clearing",
+  "resources",
+  "workstreams",
+  "tasks",
+  "doNow",
+  "celebration",
+];
+const JOURNAL_LAYER_KEYS = new Set<EqLayerKey>(["clearing", "resources", "celebration"]);
 const LAYER_DUE_AT: Record<EqLayerKey, number> = {
   focus: 1,
   strategies: 2,
+  clearing: 3,
+  resources: 4,
   workstreams: 5,
   tasks: 5,
   doNow: 7,
+  celebration: 8,
 };
 
 // Semantic cycle position (1-8) from the astronomical segment index
@@ -445,9 +497,11 @@ function computePhaseReadiness(segmentIndex: number, filled: Record<EqLayerKey, 
   for (const key of EQ_LAYER_KEYS) {
     layers[key] = filled[key]
       ? "filled"
-      : position >= LAYER_DUE_AT[key]
-        ? "due_empty"
-        : "not_due";
+      : JOURNAL_LAYER_KEYS.has(key)
+        ? "not_due"
+        : position >= LAYER_DUE_AT[key]
+          ? "due_empty"
+          : "not_due";
   }
   return { phase: LUNAR_PHASES[segmentIndex].name, position, layers };
 }
@@ -516,12 +570,17 @@ async function buildReadState(admin: SupabaseAdmin, userId: string) {
   }));
 
   const lunar = computeLunar(Date.now());
+  const clock = cycleClock(segmentIndexAt, nowMs);
+  const cycleJournal = await readCycleEntries(admin, userId, clock);
   const phaseReadiness = computePhaseReadiness(lunar.segment_index, {
     focus: Boolean(String(state.moon_focus_text ?? "").trim()),
     strategies: strategies.length > 0,
+    clearing: cycleJournal.clearing.length > 0,
+    resources: cycleJournal.resources.length > 0,
     workstreams: workstreams.length > 0,
     tasks: workstreams.some((w) => w.tasks.length > 0),
     doNow: taskFlow.humanDoNowFilled,
+    celebration: cycleJournal.celebration.length > 0,
   });
 
   return {
@@ -538,6 +597,7 @@ async function buildReadState(admin: SupabaseAdmin, userId: string) {
     waiting_on_human: taskFlow.waiting_on_human,
     subtask_counts: taskFlow.subtask_counts,
     parked,
+    cycle_journal: cycleJournal,
     lunar,
     phase_readiness: phaseReadiness,
     generated_at: new Date().toISOString(),
@@ -616,6 +676,15 @@ serve(async (req) => {
             updated_at: now,
           }, { onConflict: "user_id" });
         if (error) throw new Error(`Could not update ${field}: ${error.message}`);
+        if (operation === "set_moon_focus") {
+          await recordSnapshot(admin, userId, {
+            kind: "focus_snapshot",
+            text,
+            slot: null,
+            agentName,
+            clock: cycleClock(segmentIndexAt, Date.now()),
+          });
+        }
       }
       result = { target: "equilibrium_state", field, text };
       summary = `${field} updated`;
@@ -633,12 +702,19 @@ serve(async (req) => {
             set_at: now,
           }, { onConflict: "user_id,position" });
         if (error) throw new Error(`Could not upsert strategy: ${error.message}`);
+        await recordSnapshot(admin, userId, {
+          kind: "strategy_snapshot",
+          text,
+          slot: String(position),
+          agentName,
+          clock: cycleClock(segmentIndexAt, Date.now()),
+        });
       }
       result = { target: "equilibrium_strategies", position, text };
       summary = `strategy ${position} upserted`;
     } else if (operation === "create_workstream") {
       const title = cleanString(payload.title, "payload.title", 180);
-      const ensured = await ensureWorkstream(admin, userId, title, dryRun);
+      const ensured = await ensureWorkstream(admin, userId, title, dryRun, agentName);
       result = {
         target: "equilibrium_workstreams",
         workstream_id: ensured.workstream.id,
@@ -656,6 +732,13 @@ serve(async (req) => {
           .update({ title })
           .eq("id", workstreamId);
         if (error) throw new Error(`Could not rename workstream: ${error.message}`);
+        await recordSnapshot(admin, userId, {
+          kind: "workstream_snapshot",
+          text: title,
+          slot: workstreamId,
+          agentName,
+          clock: cycleClock(segmentIndexAt, Date.now()),
+        });
       }
       result = { target: "equilibrium_workstreams", workstream_id: workstreamId, title };
       summary = `renamed workstream ${workstreamId}`;
@@ -668,7 +751,7 @@ serve(async (req) => {
 
       const workstream = workstreamIdFromPayload
         ? await getOwnedWorkstream(admin, userId, cleanUuid(workstreamIdFromPayload, "payload.workstream_id"))
-        : (await ensureWorkstream(admin, userId, workstreamTitle!, dryRun)).workstream;
+        : (await ensureWorkstream(admin, userId, workstreamTitle!, dryRun, agentName)).workstream;
 
       const taskName = optionalString(payload.task_name, 160);
       const textBody = cleanString(payload.text, "payload.text", 4000);
@@ -853,6 +936,18 @@ serve(async (req) => {
       const parentTaskId = cleanUuid(payload.parent_task_id, "payload.parent_task_id");
       const owner = payload.owner === undefined ? undefined : cleanOwner(payload.owner);
       ({ result, summary } = await convertTaskToSubtask(admin, userId, { taskId, parentTaskId, owner, agentName, dryRun }));
+    } else if (operation === "add_cycle_entry") {
+      const kind = cleanJournalKind(payload.kind);
+      const text = cleanEntryText(payload.text);
+      const tag = cleanResourceTag(payload.tag, kind);
+      ({ result, summary } = await addCycleEntry(admin, userId, {
+        kind,
+        text,
+        tag,
+        agentName,
+        clock: cycleClock(segmentIndexAt, Date.now()),
+        dryRun,
+      }));
     } else if (operation === "park_strategy") {
       const position = cleanPosition(payload.position, "payload.position", 3);
       ({ result, summary } = await parkStrategy(admin, userId, { position, agentName, dryRun }));

@@ -217,6 +217,9 @@ export const InlineEditableText = ({
     <div className={cn("flex w-full flex-col gap-1", className)}>
       <button
         type="button"
+        // Hook for "Write it →" in the phase prompt (issue #331): lets the
+        // page find and open the first empty (else first) editor in a section.
+        data-eq-write={value ? "filled" : "empty"}
         onClick={() => !disabled && setEditing(true)}
         disabled={disabled}
         className={cn(

@@ -31,6 +31,20 @@ const MAX_TASKS = 3;
 const MAX_DONE_VISIBLE = 7;
 const MAX_FOCUS = 3;
 
+/**
+ * Fired after a layer's text was SAVED (never on a failed save). The page
+ * uses it to write a Cycle Journal snapshot (issue #331) so Past cycles has
+ * real history without changing these tables.
+ */
+export type EquilibriumLayerSaved =
+  | { kind: "focus"; text: string }
+  | { kind: "strategy"; position: 1 | 2 | 3; text: string }
+  | { kind: "workstream"; id: string; title: string };
+
+export interface UseEquilibriumV2Options {
+  onLayerSaved?: (event: EquilibriumLayerSaved) => void;
+}
+
 export interface EquilibriumV2Data {
   user: User | null;
   loading: boolean;
@@ -157,7 +171,13 @@ export interface EquilibriumV2Data {
   refresh: () => Promise<void>;
 }
 
-export function useEquilibriumV2(): EquilibriumV2Data {
+export function useEquilibriumV2(options: UseEquilibriumV2Options = {}): EquilibriumV2Data {
+  // Latest callback in a ref so every mutation below keeps a stable identity.
+  const onLayerSavedRef = useRef(options.onLayerSaved);
+  useEffect(() => {
+    onLayerSavedRef.current = options.onLayerSaved;
+  }, [options.onLayerSaved]);
+
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -440,8 +460,8 @@ export function useEquilibriumV2(): EquilibriumV2Data {
   }, [state]);
 
   const upsertState = useCallback(
-    async (patch: Partial<EquilibriumState>) => {
-      if (!user) return;
+    async (patch: Partial<EquilibriumState>): Promise<boolean> => {
+      if (!user) return false;
       const row = {
         user_id: user.id,
         ...stateRef.current,
@@ -454,7 +474,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
       if (res.error) {
         console.warn("[equilibrium_v2] upsert state failed", res.error);
         toast.error("Couldn't save — try again.");
-        return;
+        return false;
       }
       setState((prev) => ({
         ...(prev ?? ({} as EquilibriumState)),
@@ -462,25 +482,36 @@ export function useEquilibriumV2(): EquilibriumV2Data {
         user_id: user.id,
         updated_at: row.updated_at,
       } as EquilibriumState));
+      return true;
     },
     [user],
   );
 
   const setMissionOverride = useCallback(
-    (text: string | null) => upsertState({ mission_override_text: text }),
+    async (text: string | null) => {
+      await upsertState({ mission_override_text: text });
+    },
     [upsertState],
   );
   const setRoleOverride = useCallback(
-    (text: string | null) => upsertState({ role_override_text: text }),
+    async (text: string | null) => {
+      await upsertState({ role_override_text: text });
+    },
     [upsertState],
   );
   const setMoonFocus = useCallback(
-    (text: string | null) => upsertState({ moon_focus_text: text }),
+    async (text: string | null) => {
+      const ok = await upsertState({ moon_focus_text: text });
+      if (ok && text && text.trim()) {
+        onLayerSavedRef.current?.({ kind: "focus", text: text.trim() });
+      }
+    },
     [upsertState],
   );
   const setLastSynthesis = useCallback(
-    (text: string, at: string) =>
-      upsertState({ last_synthesis_text: text, last_synthesis_at: at }),
+    async (text: string, at: string) => {
+      await upsertState({ last_synthesis_text: text, last_synthesis_at: at });
+    },
     [upsertState],
   );
 
@@ -524,6 +555,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
           (a, b) => a.position - b.position,
         );
       });
+      onLayerSavedRef.current?.({ kind: "strategy", position, text: row.text });
     },
     [user],
   );
@@ -580,6 +612,16 @@ export function useEquilibriumV2(): EquilibriumV2Data {
             .eq("position", position);
         }),
       );
+      // Slots changed meaning: refresh each slot's journal snapshot.
+      orderedTexts.forEach((text, i) => {
+        if (text && text.trim()) {
+          onLayerSavedRef.current?.({
+            kind: "strategy",
+            position: (i + 1) as 1 | 2 | 3,
+            text: text.trim(),
+          });
+        }
+      });
     },
     [user],
   );
@@ -683,6 +725,7 @@ export function useEquilibriumV2(): EquilibriumV2Data {
       const created = data as EquilibriumWorkstream;
       setWorkstreams((prev) => [...prev, created]);
       setActiveWorkstreamId(created.id);
+      onLayerSavedRef.current?.({ kind: "workstream", id: created.id, title: created.title });
     },
     [user, workstreams.length],
   );
@@ -700,6 +743,9 @@ export function useEquilibriumV2(): EquilibriumV2Data {
       setWorkstreams((prev) =>
         prev.map((w) => (w.id === id ? { ...w, title: title.trim() } : w)),
       );
+      if (title.trim()) {
+        onLayerSavedRef.current?.({ kind: "workstream", id, title: title.trim() });
+      }
     },
     [],
   );

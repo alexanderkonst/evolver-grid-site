@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Download } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
@@ -27,7 +27,10 @@ import { WatchModeToggle, type WatchMode } from "./components/WatchModeToggle";
 import { ActiveFocusBanner } from "./components/ActiveFocusBanner";
 import { PhaseReadinessPanel } from "./components/PhaseReadinessPanel";
 import { PhaseGate } from "./components/PhaseGate";
-import { useEquilibriumV2 } from "./hooks/useEquilibriumV2";
+import { useEquilibriumV2, type EquilibriumLayerSaved } from "./hooks/useEquilibriumV2";
+import { useCycleEntries, type CycleEntriesApi } from "./hooks/useCycleEntries";
+import { PastCyclesSection } from "./components/PastCyclesSection";
+import { buildCycleStory } from "./lib/cycleJournal";
 import { generateEquilibriumPdf } from "./generateEquilibriumPdf";
 import { getUpcomingPhaseStarts } from "@/lib/equilibrium-cycles";
 import {
@@ -40,8 +43,10 @@ import {
 import {
   EQ_LAYERS,
   computePhaseReadiness,
+  cycleStartMs,
   phaseByPosition,
   semanticPositionFromLunarIndex,
+  type EqJumpTarget,
   type EqLayerKey,
   type LayerReadiness,
 } from "./phasePlan";
@@ -100,7 +105,21 @@ export const EquilibriumV2Page = () => {
   // const isMdls = useMdlsFlag();
   // if (isMdls) return <EquilibriumMDLSPage />;
 
-  const eq = useEquilibriumV2();
+  // Cycle Journal snapshots (issue #331): every successful save of Moon
+  // Focus / a strategy / a workstream title also writes a `*_snapshot` row
+  // for the current cycle. The journal hook is created below (it needs the
+  // user and the cycle clock), so the callback reaches it through a ref.
+  const journalRef = useRef<CycleEntriesApi | null>(null);
+  const handleLayerSaved = useCallback((event: EquilibriumLayerSaved) => {
+    const journal = journalRef.current;
+    if (!journal) return;
+    if (event.kind === "focus") journal.recordSnapshot("focus_snapshot", event.text);
+    else if (event.kind === "strategy") {
+      journal.recordSnapshot("strategy_snapshot", event.text, String(event.position));
+    } else journal.recordSnapshot("workstream_snapshot", event.title, event.id);
+  }, []);
+
+  const eq = useEquilibriumV2({ onLayerSaved: handleLayerSaved });
   const { cycles, nowMs } = useCycles(eq.birthday ?? undefined);
   const [mode, setMode] = useWatchMode();
   const [exportingPdf, setExportingPdf] = useState(false);
@@ -126,16 +145,76 @@ export const EquilibriumV2Page = () => {
   // Where are we in Sasha's 1-8 cycle, which write layers are due, and
   // which are legitimately "not yet"? All config-driven from phasePlan.ts.
   const currentPosition = semanticPositionFromLunarIndex(cycles.lunar.segmentIndex);
+
+  // ── Cycle Journal (issue #331) ─────────────────────────────────────
+  // Start of this cycle's Planning phase, snapped to the minute so every
+  // entry of one cycle shares one `cycle_start`.
+  const cycleStart = useMemo(() => cycleStartMs(nowMs), [nowMs]);
+  const journal = useCycleEntries(eq.user?.id ?? null, cycleStart, currentPosition);
+  useEffect(() => {
+    journalRef.current = journal;
+  }, [journal]);
+
+  // The current cycle's story: live Focus / Strategies / Workstreams win
+  // over snapshots, so it is complete even before the first snapshot.
+  const doNowTexts = useMemo(
+    () => eq.focusedTaskIds.map((id) => taskById[id]?.text).filter((t): t is string => Boolean(t)),
+    [eq.focusedTaskIds, taskById],
+  );
+  const cycleStory = useMemo(
+    () =>
+      buildCycleStory(journal.currentEntries, {
+        focus: eq.state?.moon_focus_text?.trim() || null,
+        strategies: eq.strategies.map((s) => ({ position: s.position, text: s.text })),
+        workstreams: eq.workstreams.map((w) => w.title),
+      }),
+    [journal.currentEntries, eq.state?.moon_focus_text, eq.strategies, eq.workstreams],
+  );
+
   const layersFilled = useMemo<Record<EqLayerKey, boolean>>(
     () => ({
       focus: Boolean(eq.state?.moon_focus_text?.trim()),
       strategies: eq.strategies.length > 0,
+      clearing: cycleStory.clearing.length > 0,
+      resources: cycleStory.resources.length > 0,
       workstreams: eq.workstreams.length > 0,
       tasks: Object.values(eq.tasksByWorkstream).some((tasks) => tasks.length > 0),
       doNow: eq.focusedTaskIds.length > 0,
+      celebration: cycleStory.celebration.length > 0,
     }),
-    [eq.state?.moon_focus_text, eq.strategies, eq.workstreams, eq.tasksByWorkstream, eq.focusedTaskIds],
+    [
+      eq.state?.moon_focus_text,
+      eq.strategies,
+      eq.workstreams,
+      eq.tasksByWorkstream,
+      eq.focusedTaskIds,
+      cycleStory,
+    ],
   );
+
+  // "Write it →": scroll to an existing editor and open it. No duplicate
+  // editors — the prompt only points at the ones that are already there.
+  const handleJump = useCallback((target: EqJumpTarget) => {
+    const sectionId = {
+      focus: SECTION_IDS.focus,
+      strategies: SECTION_IDS.strategies,
+      workstreams: SECTION_IDS.workstreams,
+      tasks: SECTION_IDS.goals,
+      doNow: SECTION_IDS.doNow,
+    }[target];
+    const el = document.getElementById(sectionId);
+    if (!el) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+    // Open the first empty editor in the section (else the first one), once
+    // the scroll has had a moment to settle.
+    window.setTimeout(() => {
+      const editor =
+        el.querySelector<HTMLElement>('[data-eq-write="empty"]') ??
+        el.querySelector<HTMLElement>("[data-eq-write]");
+      editor?.click();
+    }, reduceMotion ? 0 : 350);
+  }, []);
   const readiness = useMemo(
     () => computePhaseReadiness(currentPosition, layersFilled),
     [currentPosition, layersFilled],
@@ -408,6 +487,16 @@ export const EquilibriumV2Page = () => {
               readiness={readiness}
               phaseEndMs={cycles.lunar.phaseEndMs}
               daysRemainingInPhase={cycles.lunar.daysRemainingInPhase}
+              journal={{
+                available: journal.available,
+                entries: journal.currentEntries,
+                onAdd: journal.addEntry,
+                onUpdate: journal.updateEntry,
+                onRemove: journal.removeEntry,
+              }}
+              story={cycleStory}
+              doNow={doNowTexts}
+              onJump={handleJump}
             />
           </EquilibriumSectionCard>
         )}
@@ -671,6 +760,12 @@ export const EquilibriumV2Page = () => {
               onUncompleteTask={eq.uncompleteTask}
             />
           </EquilibriumSectionCard>
+        )}
+
+        {/* Past cycles (issue #331) — a collapsed link, read-only history
+            of finished cycles. Hidden while the journal table is missing. */}
+        {!isAttune && journal.available && (
+          <PastCyclesSection entries={journal.entries} currentCycleStart={cycleStart} />
         )}
 
         {/* Parked — last block of ACT (issue #66): things set aside but
