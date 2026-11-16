@@ -13,16 +13,6 @@
    lesson (synthetic italic on display fonts reads janky). */
 @import url('https://fonts.googleapis.com/css2?family=Lexend:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* Syntheos Hand — custom hand-drawn display face for the "The Dao" (dao) skin's
-   headlines. Self-hosted (public/fonts). Day 190 (Sasha 2026-09-21). */
-@font-face {
-  font-family: "Syntheos Hand";
-  src: url("/fonts/SyntheosHand-Complete.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -4405,24 +4395,6 @@
 [data-skin="network-school"] article.liquid-glass-strong input,
 [data-skin="dao"] article.liquid-glass-strong input {
   font-family: "Newsreader", "Source Serif Pro", Georgia, serif !important;
-}
-
-/* "The Dao" (dao) title font — Syntheos Hand on headlines ONLY; body stays serif.
-   Placed after all network-school/dao editorial rules so it wins by source order,
-   and it carries the article-context selectors so content-pane titles switch too.
-   The hand face wants its own tracking/weight, so those are reset. */
-[data-skin="dao"] h1,
-[data-skin="dao"] h2,
-[data-skin="dao"] h3,
-[data-skin="dao"] h4,
-[data-skin="dao"] .font-display,
-[data-skin="dao"] article.liquid-glass-strong h1,
-[data-skin="dao"] article.liquid-glass-strong h1 *,
-[data-skin="dao"] article.liquid-glass-strong h2,
-[data-skin="dao"] article.liquid-glass-strong h3 {
-  font-family: "Syntheos Hand", "Newsreader", Georgia, serif !important;
-  font-weight: 400;
-  letter-spacing: 0;
 }
 
 /* "The Dao" active rail-chip fill — the rail's active chip reads this var
