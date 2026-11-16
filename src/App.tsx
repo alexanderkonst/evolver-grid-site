@@ -91,6 +91,7 @@ const EvolutionPortal = lazy(() => import("./pages/EvolutionPortal"));
 const EvolutionPortalKarime = lazy(() => import("./pages/EvolutionPortalKarime"));
 const BuildContainer = lazy(() => import("./pages/BuildContainer"));
 const TheCrossing = lazy(() => import("./pages/TheCrossing"));
+const TheVector = lazy(() => import("./pages/TheVector"));
 const FounderRead = lazy(() => import("./pages/FounderRead"));
 const PmfCore = lazy(() => import("./pages/PmfCore"));
 const FounderMarketFitCategory = lazy(() => import("./pages/FounderMarketFitCategory"));
@@ -694,6 +695,7 @@ const App = () => (
                   <Route path="/product/evolution-portal" element={<Navigate to="/products/evolution-portal" replace />} />
                   <Route path="/products/built" element={<BuildContainer />} />
                   <Route path="/products/crossing" element={<TheCrossing />} />
+                  <Route path="/products/vector" element={<TheVector />} />
                   <Route path="/products/founder-read" element={<FounderRead />} />
                   <Route path="/products/pmf-core" element={<PmfCore />} />
                   <Route path="/communities" element={<CommunityWebinar />} />

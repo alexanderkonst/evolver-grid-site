@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { isProductLandingRoute, pathHidesLogo, pathUsesLayoutShell } from "../shellRoutes";
 
 describe("public product shell routes", () => {
-  it.each(["/products", "/products/crossing", "/products/built"])("supplies the persistent shell without duplicate branding on %s", path => {
+  it.each(["/products", "/products/crossing", "/products/vector", "/products/built"])("supplies the persistent shell without duplicate branding on %s", path => {
     expect(isProductLandingRoute(path)).toBe(true);
     expect(pathUsesLayoutShell(path)).toBe(true);
     expect(pathHidesLogo(path)).toBe(true);
