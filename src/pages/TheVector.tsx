@@ -32,7 +32,10 @@ const TheVector = () => {
       <ProductLanding>
         <ProductHero eyebrow={t("vector.eyebrow")} title={t("vector.heading")} subtitle={t("vector.subheading")}>
           <Ornament />
-          <div className="flex flex-col items-center gap-3 pt-2">{contact}</div>
+          <div className="flex flex-col items-center gap-3 pt-2">
+            {contact}
+            <p className="product-body text-xs">{t("vector.priceLine")}</p>
+          </div>
         </ProductHero>
 
         <section className="max-w-md mx-auto space-y-6">
@@ -85,8 +88,9 @@ const TheVector = () => {
         <Ornament />
 
         <section className="liquid-glass-strong rounded-[2.5rem] p-7 md:p-9 text-center space-y-6 mb-8">
-          <ProductEyebrow heading>{t("vector.heading")}</ProductEyebrow>
-          <p className="product-body text-base max-w-md mx-auto">{t("vector.subheading")}</p>
+          <ProductEyebrow heading>{t("vector.priceHeading")}</ProductEyebrow>
+          <p className="product-price">{t("vector.priceLine")}</p>
+          <Ornament />
           <div className="pt-2">{contact}</div>
         </section>
       </ProductLanding>
