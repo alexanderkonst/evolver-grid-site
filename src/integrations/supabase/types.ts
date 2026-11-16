@@ -517,6 +517,45 @@ export type Database = {
           },
         ]
       }
+      equilibrium_cycle_entries: {
+        Row: {
+          created_at: string
+          created_by: string
+          cycle_start: string
+          id: string
+          kind: string
+          phase: number
+          tag: string | null
+          text: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string
+          cycle_start: string
+          id?: string
+          kind: string
+          phase: number
+          tag?: string | null
+          text: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          cycle_start?: string
+          id?: string
+          kind?: string
+          phase?: number
+          tag?: string | null
+          text?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       equilibrium_do_now: {
         Row: {
           id: string

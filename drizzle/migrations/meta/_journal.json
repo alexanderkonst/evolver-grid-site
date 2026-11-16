@@ -78,6 +78,13 @@
       "when": 1793510036382,
       "tag": "0010_knowledge_notes_pgvector",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1794854998617,
+      "tag": "0011_equilibrium_cycle_entries",
+      "breakpoints": true
     }
   ]
 }
