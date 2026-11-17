@@ -7,12 +7,14 @@ import { useTranslation } from "react-i18next";
 import SEO from "@/components/SEO";
 import { ProductCta, ProductEyebrow, ProductHero, ProductLanding, ProductList } from "@/components/products/ProductLanding";
 import { Ornament } from "@/lib/landingDesign";
+import { productVars } from "@/data/productMap";
 
 const TELEGRAM_CONVERSATION = "https://t.me/integralevolution";
 
 const PmfCore = () => {
   const { t } = useTranslation();
-  const k = (key: string) => t(`pmfCorePage.${key}`);
+  const vars = productVars("pmf-discovery");
+  const k = (key: string) => t(`pmfCorePage.${key}`, vars);
   const list = (key: string) => t(`pmfCorePage.${key}`, { returnObjects: true }) as string[];
 
   return (

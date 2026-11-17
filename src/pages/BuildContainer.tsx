@@ -7,19 +7,21 @@ import { useTranslation } from "react-i18next";
 import SEO from "@/components/SEO";
 import { ProductCta, ProductEyebrow, ProductHero, ProductLanding, ProductList } from "@/components/products/ProductLanding";
 import { Ornament } from "@/lib/landingDesign";
+import { productVars } from "@/data/productMap";
 
 const WHATSAPP_URL = "https://wa.me/14157073432?text=" +
   encodeURIComponent("Hi Sasha! The BUILT container lands for me, and I wanted to get in touch.");
 
 const BuildContainer = () => {
   const { t } = useTranslation();
+  const vars = productVars("build", "group");
   const contact = <ProductCta href={WHATSAPP_URL} external breathe>{t("thebuild.cta")}</ProductCta>;
 
   return (
     <>
-      <SEO title={t("thebuild.seoTitle")} description={t("thebuild.seoDescription")} path="/products/built" />
+      <SEO title={t("thebuild.seoTitle", vars)} description={t("thebuild.seoDescription", vars)} path="/products/built" />
       <ProductLanding>
-        <ProductHero eyebrow={t("thebuild.eyebrow")} title={t("thebuild.h1")} subtitle={t("thebuild.sauce")}>
+        <ProductHero eyebrow={t("thebuild.eyebrow", vars)} title={t("thebuild.h1", vars)} subtitle={t("thebuild.sauce")}>
           <Ornament />
           <div className="flex flex-col items-center gap-3 pt-2">
             {contact}
@@ -57,12 +59,12 @@ const BuildContainer = () => {
         <section className="liquid-glass-strong rounded-[2.5rem] p-7 md:p-9 text-center space-y-6">
           <ProductEyebrow heading>{t("thebuild.formatLabel")}</ProductEyebrow>
           <div className="max-w-md mx-auto">
-            <ProductList items={[1, 2, 3].map(i => t(`thebuild.format${i}`))} />
+            <ProductList items={[1, 2, 3].map(i => t(`thebuild.format${i}`, vars))} />
           </div>
           <Ornament />
           <div className="space-y-3">
             <ProductEyebrow heading>{t("thebuild.priceLabel")}</ProductEyebrow>
-            <p className="product-price">$1,111</p>
+            <p className="product-price">{vars.price}</p>
             <p className="product-body text-base max-w-md mx-auto">{t("thebuild.priceBody")}</p>
           </div>
           <p className="product-body text-base max-w-md mx-auto rounded-xl border p-4"

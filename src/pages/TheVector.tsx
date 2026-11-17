@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import SEO from "@/components/SEO";
 import { Ornament, igniteLogo } from "@/lib/landingDesign";
 import "./TheVector.css";
+import { productVars } from "@/data/productMap";
 
 const TELEGRAM_CONVERSATION = "https://t.me/integralevolution";
 
@@ -63,6 +64,7 @@ const VectorRoute = ({ children }: { children: ReactNode }) => {
 
 const TheVector = () => {
   const { t } = useTranslation();
+  const vars = productVars("vector");
   const contact = (
     <a href={TELEGRAM_CONVERSATION} target="_blank" rel="noopener noreferrer" className="vector-cta">
       <span>{t("vector.cta")}</span>
@@ -72,7 +74,7 @@ const TheVector = () => {
 
   return (
     <>
-      <SEO title={t("vector.title")} description={t("vector.seoDescription")} path="/products/vector" />
+      <SEO title={t("vector.title")} description={t("vector.seoDescription", vars)} path="/products/vector" />
       <main className="product-landing vector-page relative min-h-dvh font-sans">
         <div className="vector-sky" aria-hidden="true" />
         <div className="vector-inner relative max-w-2xl mx-auto px-5 md:px-6 py-16 space-y-16">
@@ -96,7 +98,7 @@ const TheVector = () => {
               {["f1", "f2", "f3", "f4", "f5"].map(key => (
                 <li key={key}>
                   <span className="vector-orb" aria-hidden="true" />
-                  <span className="vector-body">{t(`vector.${key}`)}</span>
+                  <span className="vector-body">{t(`vector.${key}`, vars)}</span>
                 </li>
               ))}
             </ul>
@@ -153,7 +155,7 @@ const TheVector = () => {
 
           <section className="text-center space-y-6 pb-4">
             <VectorEyebrow n="04" heading>{t("vector.priceHeading")}</VectorEyebrow>
-            <p className="vector-price">{t("vector.priceLine")}</p>
+            <p className="vector-price">{t("vector.priceLine", vars)}</p>
             <div className="pt-2">{contact}</div>
             <p className="vector-footer-mark" aria-hidden="true">findyourtoptalent.com</p>
           </section>

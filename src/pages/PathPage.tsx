@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { markJourneyVisited } from "@/lib/journeyVisits";
+import { productVars } from "@/data/productMap";
 
 /**
  * PathPage — a one-page view of the full 7-step path, commercial layer included.
@@ -35,6 +36,8 @@ type LadderRow = {
   priceDetailKey?: string;
   /** Day 133: Step 4's title links out to its product page (BUILT). */
   titleLinkTo?: string;
+  /** Product in src/data/productMap.ts whose price and duration the row quotes. */
+  product?: string;
 };
 
 // Copy fields hold i18n keys, resolved with t() at render (see below).
@@ -53,6 +56,7 @@ const LADDER: LadderRow[] = [
     titleKey: "pathPage.ladder.step23.title",
     durationKey: "pathPage.ladder.step23.duration",
     priceKey: "pathPage.ladder.step23.price",
+    product: "fmf-session",
   },
   {
     id: "step4",
@@ -61,6 +65,7 @@ const LADDER: LadderRow[] = [
     durationKey: "pathPage.ladder.step4.duration",
     priceKey: "pathPage.ladder.step4.price",
     titleLinkTo: "/products/built",
+    product: "build",
   },
   {
     id: "step5",
@@ -276,7 +281,7 @@ const PathPage = () => {
                             "var(--skin-text-muted-soft, rgba(26,30,58,0.6))",
                         }}
                       >
-                        {t(row.durationKey)}
+                        {t(row.durationKey, row.product ? productVars(row.product, row.product === "build" ? "group" : undefined) : undefined)}
                       </p>
                       {/* Day 133: Step 1's second free door — a guided
                           Direction Call alongside the self-serve test. */}
@@ -312,7 +317,7 @@ const PathPage = () => {
                           color: "var(--skin-text-primary, #0a1628)",
                         }}
                       >
-                        {t(row.priceKey)}
+                        {t(row.priceKey, row.product ? productVars(row.product, row.product === "build" ? "group" : undefined) : undefined)}
                       </div>
                       {row.priceDetailKey && (
                         <div

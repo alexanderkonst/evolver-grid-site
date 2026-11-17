@@ -4,6 +4,7 @@ import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { EditorialCta } from "@/components/ui/editorial-cta";
 import SEO from "@/components/SEO";
 import { TESTIMONIALS } from "@/data/testimonials";
+import { productVars } from "@/data/productMap";
 
 // Testimony strip picks: Sergey, Oyi, Karime — the three that speak most
 // directly to the transition/naming theme (pattern clicking into place,
@@ -55,7 +56,14 @@ const HomeV2Page = () => {
   // The two price sentences in mechanism.para3 read as one dense paragraph.
   // Split on the natural sentence boundary (". ") so each gets its own line
   // with breathing room — spacing only, the copy itself is untouched.
-  const para3 = t("homeTruth.mechanism.para3");
+  const session = productVars("fmf-session");
+  const build = productVars("build", "group");
+  const para3 = t("homeTruth.mechanism.para3", {
+    sessionPrice: session.price,
+    sessionHours: session.hours,
+    buildPrice: build.price,
+    buildWeeks: build.weeks,
+  });
   const priceSentences = para3
     .split(/(?<=\.)\s+/)
     .map((s: string) => s.trim())

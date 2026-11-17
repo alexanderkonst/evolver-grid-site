@@ -1,69 +1,81 @@
-/** /products — public offer catalogue, using Ignite's editorial design grammar. */
-import { Fragment } from "react";
+/** /products — public offer catalogue, using Ignite's editorial design grammar.
+ *  Prices, durations, formats and links come from src/data/productMap.ts; this file holds layout and prose only. */
+import { Fragment, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { marketDoor } from "@/data/marketDoorCopy";
 import { ChevronDown } from "lucide-react";
 import SEO from "@/components/SEO";
 import { ProductCta, ProductEyebrow, ProductHero, ProductLanding } from "@/components/products/ProductLanding";
+import { ProductMapView } from "@/components/products/ProductMapView";
+import { PRODUCT_FAMILIES, getProduct, summaryLines } from "@/data/productMap";
 import { Ornament } from "@/lib/landingDesign";
 import { cn } from "@/lib/utils";
 
 const TELEGRAM_CONVERSATION = "https://t.me/integralevolution";
 
-interface ProductLinkDef {
-  href: string;
-  external: boolean;
-  ctaKey: "cta" | "cta2";
-}
-
 interface ProductCardDef {
+  /** Locale key under `products.` for the prose (name, line, body, CTA labels). */
   key: string;
-  links: ProductLinkDef[];
+  /** Product ids in src/data/productMap.ts whose terms the card shows. */
+  products: string[];
+  /** Buttons: the landing comes from the product's row; a row with no landing gets no button. */
+  links: { product: string; ctaKey: "cta" | "cta2" }[];
+  /** Shown when the locale has no name for this card. */
+  fallbackName?: string;
 }
 
-// Order, names, prices and links follow docs/04-products/product_brief.md:
-// the eight-step transformational path first, then the other offers. A card with no link has none in the brief.
+// Order follows docs/04-products/product_brief.md §0: the client path first, then the other offers.
 const CARDS: ProductCardDef[] = [
-  { key: "quiz", links: [{ href: "/quiz", external: false, ctaKey: "cta" }] },
+  { key: "quiz", products: ["quiz"], links: [{ product: "quiz", ctaKey: "cta" }] },
   {
     key: "zog",
+    products: ["top-talent-course", "zog-session", "zog-teams"],
     links: [
-      { href: "https://ancient-william-0f8.notion.site/THE-ZONE-OF-GENIUS-PROGRAM-10981c75c23680cdb971df7314d07eda", external: true, ctaKey: "cta" },
-      { href: "https://nas.com/founder-academy/sessions/zone-of-genius-live-session", external: true, ctaKey: "cta2" },
+      { product: "top-talent-course", ctaKey: "cta" },
+      { product: "zog-session", ctaKey: "cta2" },
     ],
   },
-  { key: "fmf", links: [{ href: "/ignite", external: false, ctaKey: "cta" }] },
-  { key: "pmfCore", links: [{ href: "/products/pmf-core", external: false, ctaKey: "cta" }] },
-  { key: "pmf", links: [] },
-  { key: "evolution", links: [{ href: "/products/crossing", external: false, ctaKey: "cta" }] },
-  { key: "vector", links: [{ href: "/products/vector", external: false, ctaKey: "cta" }] },
-  { key: "collective", links: [] },
-  { key: "forClients", links: [] },
-  { key: "license", links: [] },
-  { key: "profile", links: [{ href: "/", external: false, ctaKey: "cta" }] },
-  { key: "matchmaking", links: [{ href: "/game/collaborate/matches", external: false, ctaKey: "cta" }] },
-  { key: "whiteLabel", links: [{ href: "/proposalforwegoodovahere", external: false, ctaKey: "cta" }] },
-  { key: "aiTraining", links: [] },
-  { key: "equilibrium", links: [{ href: "/build/equilibrium", external: false, ctaKey: "cta" }] },
-  { key: "mystery", links: [{ href: "https://nas.com/founder-academy/products/pugb/view", external: true, ctaKey: "cta" }] },
-  { key: "cockpit", links: [{ href: "/build/cockpit", external: false, ctaKey: "cta" }] },
+  {
+    key: "fmf",
+    products: ["fmf-session", "fmf-mastermind"],
+    links: [{ product: "fmf-session", ctaKey: "cta" }],
+    fallbackName: PRODUCT_FAMILIES.fmf.name,
+  },
+  { key: "pmfCore", products: ["pmf-discovery"], links: [{ product: "pmf-discovery", ctaKey: "cta" }] },
+  { key: "pmf", products: ["build"], links: [{ product: "build", ctaKey: "cta" }] },
+  { key: "evolution", products: ["crossing"], links: [{ product: "crossing", ctaKey: "cta" }] },
+  { key: "vector", products: ["vector"], links: [{ product: "vector", ctaKey: "cta" }] },
+  { key: "collective", products: ["collective"], links: [] },
+  { key: "forClients", products: ["for-clients"], links: [] },
+  { key: "license", products: ["license"], links: [] },
+  { key: "profile", products: ["profile"], links: [{ product: "profile", ctaKey: "cta" }] },
+  { key: "matchmaking", products: ["matchmaking"], links: [{ product: "matchmaking", ctaKey: "cta" }] },
+  { key: "whiteLabel", products: ["white-label"], links: [{ product: "white-label", ctaKey: "cta" }] },
+  { key: "aiTraining", products: ["ai-training"], links: [] },
+  { key: "equilibrium", products: ["equilibrium"], links: [{ product: "equilibrium", ctaKey: "cta" }] },
+  { key: "mystery", products: ["mystery-school"], links: [{ product: "mystery-school", ctaKey: "cta" }] },
+  { key: "cockpit", products: ["cockpit"], links: [{ product: "cockpit", ctaKey: "cta" }] },
 ];
 
-// Products that were on /products before the brief and are not in it. Kept as-is, shown muted, no CTA.
+// R&D rows of the brief (§0.3), shown muted, no CTA.
 const RD_CARDS: ProductCardDef[] = [
-  { key: "card7", links: [] },
-  { key: "card8", links: [] },
-  { key: "card10", links: [] },
+  { key: "card8", products: ["evolution-portal"], links: [] },
+  { key: "card10", products: ["founder-read"], links: [] },
 ];
 
 const ProductCard = ({ def, muted = false }: { def: ProductCardDef; muted?: boolean }) => {
   const { t, i18n } = useTranslation();
-  const name = t(`products.${def.key}.name`);
+  const rows = def.products.map(getProduct);
+  const name = t(`products.${def.key}.name`, { defaultValue: def.fallbackName ?? rows[0].name });
   // Market door (2026-10-30): the promise is the shared experience; the method keeps its name.
   const line =
     def.key === "fmf" ? marketDoor("productsFmfLine", i18n.resolvedLanguage)
     : def.key === "pmf" ? marketDoor("productsPmfLine", i18n.resolvedLanguage)
     : t(`products.${def.key}.line`);
+  const links = def.links.flatMap(({ product, ctaKey }) => {
+    const landing = getProduct(product).landing;
+    return landing ? [{ ...landing, ctaKey }] : [];
+  });
 
   return (
     <article
@@ -71,14 +83,16 @@ const ProductCard = ({ def, muted = false }: { def: ProductCardDef; muted?: bool
       aria-labelledby={`${def.key}-title`}
     >
       <div className="space-y-3">
-        <ProductEyebrow>{t(`products.${def.key}.badge`)}</ProductEyebrow>
+        <div>
+          {rows.flatMap(summaryLines).map(terms => <ProductEyebrow key={terms}>{terms}</ProductEyebrow>)}
+        </div>
         <h2 id={`${def.key}-title`} className="product-title text-2xl sm:text-3xl">{name}</h2>
         <p className="product-body text-base italic">{line}</p>
       </div>
       <p className="product-body text-base">{t(`products.${def.key}.body`)}</p>
-      {def.links.length > 0 && (
+      {links.length > 0 && (
         <div className="pt-1 flex flex-wrap gap-3">
-          {def.links.map(link => (
+          {links.map(link => (
             <ProductCta key={link.ctaKey} href={link.href} external={link.external}>
               {t(`products.${def.key}.${link.ctaKey}`)}
             </ProductCta>
@@ -89,13 +103,42 @@ const ProductCard = ({ def, muted = false }: { def: ProductCardDef; muted?: bool
   );
 };
 
+type View = "cards" | "map";
+
+const ViewToggle = ({ view, onChange }: { view: View; onChange: (view: View) => void }) => {
+  const { t } = useTranslation();
+  const options: { id: View; label: string }[] = [
+    { id: "cards", label: t("products.viewCards") },
+    { id: "map", label: t("products.viewMap") },
+  ];
+  return (
+    <div role="group" aria-label={t("products.viewLabel")} className="flex justify-center gap-2">
+      {options.map(option => (
+        <button
+          key={option.id}
+          type="button"
+          aria-pressed={view === option.id}
+          onClick={() => onChange(option.id)}
+          className={cn(
+            "product-eyebrow rounded-full px-5 py-2 min-h-11 transition-colors",
+            view === option.id ? "liquid-glass-strong" : "liquid-glass opacity-70 hover:opacity-100",
+          )}
+        >
+          {option.label}
+        </button>
+      ))}
+    </div>
+  );
+};
+
 const ProductsPage = () => {
   const { t } = useTranslation();
+  const [view, setView] = useState<View>("cards");
 
   return (
     <>
       <SEO title={t("products.title")} description={t("products.seoDescription")} path="/products" />
-      <ProductLanding>
+      <ProductLanding wide={view === "map"}>
         <ProductHero eyebrow={t("products.eyebrow")} title={t("products.title")} subtitle={t("products.intro")}>
           <Ornament />
         </ProductHero>
@@ -115,27 +158,35 @@ const ProductsPage = () => {
 
         <Ornament />
 
-        <div className="space-y-6 md:space-y-8">
-          {CARDS.map(def => (
-            <Fragment key={def.key}>
-              <ProductCard def={def} />
-              {def.key === "profile" && (
-                <p className="product-body text-sm italic max-w-md mx-auto text-center">
-                  <span className="font-semibold not-italic">{t("products.aiCreditsHeading")}.</span> {t("products.aiCreditsBody")}
-                </p>
-              )}
-            </Fragment>
-          ))}
-        </div>
+        <ViewToggle view={view} onChange={setView} />
 
-        <section className="space-y-6 md:space-y-8" aria-labelledby="products-rd">
-          <div className="text-center space-y-3">
-            <ProductEyebrow>{t("products.rdEyebrow")}</ProductEyebrow>
-            <h2 id="products-rd" className="product-title text-3xl">{t("products.rdHeading")}</h2>
-            <p className="product-body text-base italic max-w-md mx-auto">{t("products.rdIntro")}</p>
-          </div>
-          {RD_CARDS.map(def => <ProductCard key={def.key} def={def} muted />)}
-        </section>
+        {view === "map" ? (
+          <ProductMapView />
+        ) : (
+          <>
+            <div className="space-y-6 md:space-y-8">
+              {CARDS.map(def => (
+                <Fragment key={def.key}>
+                  <ProductCard def={def} />
+                  {def.key === "profile" && (
+                    <p className="product-body text-sm italic max-w-md mx-auto text-center">
+                      <span className="font-semibold not-italic">{t("products.aiCreditsHeading")}.</span> {t("products.aiCreditsBody")}
+                    </p>
+                  )}
+                </Fragment>
+              ))}
+            </div>
+
+            <section className="space-y-6 md:space-y-8" aria-labelledby="products-rd">
+              <div className="text-center space-y-3">
+                <ProductEyebrow>{t("products.rdEyebrow")}</ProductEyebrow>
+                <h2 id="products-rd" className="product-title text-3xl">{t("products.rdHeading")}</h2>
+                <p className="product-body text-base italic max-w-md mx-auto">{t("products.rdIntro")}</p>
+              </div>
+              {RD_CARDS.map(def => <ProductCard key={def.key} def={def} muted />)}
+            </section>
+          </>
+        )}
 
         <footer className="text-center space-y-6 pb-8">
           <Ornament />

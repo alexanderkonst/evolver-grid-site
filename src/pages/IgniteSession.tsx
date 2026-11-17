@@ -39,6 +39,7 @@ import { cn } from "@/lib/utils";
 
 /* ─── Shared testimonial data (single source of truth) ─── */
 import { TESTIMONIALS } from "@/data/testimonials";
+import { getOffer, productVars } from "@/data/productMap";
 const FALLBACK_TESTIMONIALS = TESTIMONIALS;
 
 /* ─── Hook: fetch testimonials from Supabase, fallback to hardcoded ─── */
@@ -76,7 +77,8 @@ const useTestimonials = (): TestimonialData[] => {
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 const CALCOM_BOOKING_LINK = "https://cal.com/aleksandrkonstantinov/productize-yourself";
 // Tab title for /ignite. Price stays off the tab; the page sells 2 hours.
-const IGNITE_TAB_TITLE = "Private Founder-Market Fit Session — 1:1, 2 hours, $555 | Find Your Top Talent";
+const SESSION = productVars("fmf-session");
+const IGNITE_TAB_TITLE = `Private Founder-Market Fit Session — 1:1, ${SESSION.hours} hours, ${SESSION.price} | Find Your Top Talent`;
 const CALCOM_CLARITY_LINK ="https://cal.com/aleksandrkonstantinov/direction-choice-call";
 
 
@@ -483,7 +485,7 @@ const IgniteSession = () => {
                   color: "var(--skin-text-primary, #0a1628)",
                 }}
               >
-                $555
+                {SESSION.price}
               </span>
             </div>
             <p className="text-xs" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}>
@@ -730,7 +732,7 @@ const IgniteSession = () => {
     <>
       <SEO
         title={IGNITE_TAB_TITLE}
-        description="Private Founder-Market Fit Session: a 2-hour 1:1 working session with Aleksandr ($555). Name your top talent in one exact sentence, position your next chapter around it, and leave with a clear next step."
+        description={`Private Founder-Market Fit Session: a ${SESSION.hours}-hour 1:1 working session with Aleksandr (${SESSION.price}). Name your top talent in one exact sentence, position your next chapter around it, and leave with a clear next step.`}
         path="/ignite"
         ogTitle="Private Founder-Market Fit Session · 1:1 · 2 hours"
         jsonLd={{
@@ -739,8 +741,8 @@ const IgniteSession = () => {
           name: "Private Founder-Market Fit Session",
           provider: { "@type": "Person", name: "Aleksandr Konstantinov" },
           areaServed: "Worldwide",
-          description: "Private Founder-Market Fit Session (1:1, 2 hours, $555) to name your top talent in one sentence and position your next chapter around it.",
-          offers: { "@type": "Offer", price: "555", priceCurrency: "USD" },
+          description: `Private Founder-Market Fit Session (1:1, ${SESSION.hours} hours, ${SESSION.price}) to name your top talent in one sentence and position your next chapter around it.`,
+          offers: { "@type": "Offer", price: String(getOffer("fmf-session").amountUsd), priceCurrency: "USD" },
         }}
       />
       <GameShellV2 hideLogo>{content}</GameShellV2>

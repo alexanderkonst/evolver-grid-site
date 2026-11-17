@@ -5,6 +5,7 @@ import { EditorialCta } from "@/components/ui/editorial-cta";
 import { ExpandableTestimonial } from "@/components/ExpandableTestimonial";
 import { TESTIMONIALS } from "@/data/testimonials";
 import SEO from "@/components/SEO";
+import { productVars } from "@/data/productMap";
 
 /**
  * HomeLandingPage — `/home2`, a private review surface for the proposed
@@ -313,7 +314,7 @@ const HomeLandingPage = () => {
                   className="text-xs mt-0.5"
                   style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}
                 >
-                  {t("homeLanding.ladder.call.meta")}
+                  {t("homeLanding.ladder.call.meta", productVars("direction-call"))}
                 </p>
                 <p
                   className="text-sm mt-1.5 leading-relaxed"
@@ -347,7 +348,7 @@ const HomeLandingPage = () => {
                   className="text-xs mt-0.5"
                   style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}
                 >
-                  {t("homeLanding.ladder.session.meta")}
+                  {t("homeLanding.ladder.session.meta", productVars("fmf-session"))}
                 </p>
                 <p
                   className="text-sm mt-1.5 leading-relaxed"
@@ -381,7 +382,7 @@ const HomeLandingPage = () => {
                   className="text-xs mt-0.5"
                   style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.55))" }}
                 >
-                  {t("homeLanding.ladder.built.meta")}
+                  {t("homeLanding.ladder.built.meta", productVars("build", "group"))}
                 </p>
                 <p
                   className="text-sm mt-1.5 leading-relaxed"

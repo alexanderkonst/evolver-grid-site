@@ -20,6 +20,7 @@ import { trackPageView, trackCTAClick } from "@/lib/funnelAnalytics";
 import { useEffect } from "react";
 import { DOMAINS } from "@/modules/quality-of-life-map/qolConfig";
 import { LIBRARY_CATEGORIES, LIBRARY_ITEMS } from "@/modules/library/libraryContent";
+import { productPrice } from "@/data/productMap";
 
 const TELEGRAM_CONVERSATION = "https://t.me/integralevolution";
 
@@ -506,7 +507,7 @@ const EvolutionPortal = () => {
               <div className="p-6 md:p-8 space-y-3">
                 <p style={sectionEyebrow}>Pricing</p>
                 <p style={{ ...sourceSerifBody, fontSize: "15.5px" }}>
-                  Setup: $555, including branding the portal to your
+                  Setup: {productPrice("evolution-portal", "launch")}, including branding the portal to your
                   identity. Then one dollar per active client per month.{" "}
                   <span
                     style={{

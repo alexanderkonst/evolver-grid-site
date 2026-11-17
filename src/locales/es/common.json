@@ -5882,13 +5882,13 @@
         "step": "Paso 2 + 3",
         "title": "Articúlalo con precisión · Poténcialo con estructura de negocio",
         "duration": "Taller de 2 horas",
-        "price": "$555"
+        "price": "{{price}}"
       },
       "step4": {
         "step": "Paso 4",
         "title": "BUILT: Construye tu producto, empaquétalo, define la estrategia de distribución, elige tu modelo de negocio",
-        "duration": "3 semanas, junto a otros emprendedores de impacto consciente",
-        "price": "$1,111"
+        "duration": "{{weeks}} semanas, junto a otros emprendedores de impacto consciente",
+        "price": "{{price}}"
       },
       "step5": {
         "step": "Paso 5",
@@ -7692,14 +7692,12 @@
     "closingAfter": " lo resuelve.",
     "quiz": {
       "name": "Test «¿Dónde estoy en el viaje del héroe?»",
-      "badge": "Gratis",
       "line": "Un test de tres preguntas que muestra dónde estás en el viaje del héroe.",
       "body": "Respondes tres preguntas de opción múltiple y dejas tu correo. Ves en qué punto del viaje del héroe estás, los principales obstáculos de esta etapa, cuál es la siguiente etapa y qué tiene que pasar para que avances.",
       "cta": "Hacer el test"
     },
     "zog": {
       "name": "Descubrimiento de la Zona de Genialidad",
-      "badge": "$37 en el sitio · $222–333 individual · $1,000 taller para equipos",
       "line": "Ves tu principal talento innato con un nuevo nivel de claridad y lo nombras con palabras exactas.",
       "body": "Ves tu principal talento innato con más claridad que antes, lo nombras con precisión y obtienes una nueva claridad sobre cómo monetizarlo. Esa claridad acelera el crecimiento de tu maestría en tu propio camino.",
       "cta": "Ver el programa",
@@ -7707,106 +7705,84 @@
     },
     "fmf": {
       "name": "Founder-Market Fit",
-      "badge": "Private Session: 1:1, 2 horas, $555 · Mastermind grupal: grupo pequeño, 2 sesiones, $222",
       "line": "Antes se llamaba Productize Yourself. En 2 horas encuentras tu founder-market fit.",
       "body": "Juntos nombramos el valor que creas simplemente siendo tú, tu cliente ideal, su dolor, la promesa transformacional, el contorno del producto y tu propuesta única de valor en una sola frase.",
       "cta": "Reservar la Private Session"
     },
     "pmfCore": {
       "name": "Núcleo de product-market fit",
-      "badge": "1:1 · una sesión, unas 2 horas",
       "line": "Llegas con una tecnología. Sales con el núcleo del product-market fit.",
       "body": "En una sesión encontramos para quién es, qué cambia para ellos, por qué querrán que exista y la frase que lo lleva todo.",
       "cta": "Qué pasa en la sesión"
     },
     "pmf": {
-      "name": "Product-Market Fit",
-      "badge": "$5,555 individual · $1,111 en grupo · o $5,555 a partir de tus primeros $55,555 de ingresos",
-      "line": "Un producto escalable construido en un mes.",
-      "body": "En un mes construimos la estrategia de marketing y ventas, el MVP, la prueba beta y la primera venta."
+      "line": "Un producto escalable, de la estrategia a la primera venta.",
+      "body": "Construimos la estrategia de marketing y ventas, el MVP, la prueba beta y la primera venta.",
+      "cta": "Ver BUILD"
     },
     "evolution": {
-      "name": "Entrepreneur's Evolution",
-      "badge": "$2,222 individual",
       "line": "Acompañamiento en el viaje del héroe: un programa de 2 meses.",
-      "body": "Ocho sesiones semanales en línea de hora y media, más acompañamiento por chat. Estructura y acelera la transición profesional, para que construir tu propia marca (un negocio único) tome meses y no años.",
+      "body": "Estructura y acelera la transición profesional, para que construir tu propia marca (un negocio único) tome meses y no años.",
       "cta": "Ver el programa"
     },
     "vector": {
       "name": "The Vector",
-      "badge": "$3,750 индивидуально",
       "line": "Приземление и вектор: программа индивидуального сопровождения.",
-      "body": "Сессии по 90 минут раз в две недели и поддержка в чате. Каждая встреча: 40 минут на твоё насущное и 50 минут на контент. Привычки, уникальность, настоящий момент, ментальные модели для бизнеса, ритм, стихии и состояния сознания.",
+      "body": "Каждая встреча: 40 минут на твоё насущное и 50 минут на контент. Привычки, уникальность, настоящий момент, ментальные модели для бизнеса, ритм, стихии и состояния сознания.",
       "cta": "Смотреть программу"
     },
     "collective": {
       "name": "Sovereign Founder Collective",
-      "badge": "El 10% de los ingresos va a una tesorería descentralizada",
       "line": "Una artel de emprendedores.",
       "body": "Construimos negocios únicos juntos, nos apoyamos y nos autoorganizamos."
     },
     "forClients": {
       "name": "Guío esta secuencia para tus clientes",
-      "badge": "Reparto de ingresos: 50% tuyo, 50% mío",
       "line": "La misma secuencia de pasos, guiada por mí para tus clientes.",
       "body": "Si trabajas con emprendedores, llevo a tus clientes por los pasos anteriores y repartimos los ingresos."
     },
     "license": {
       "name": "Licencia para impartir este programa tú mismo",
-      "badge": "Reparto de ingresos: 90% tuyo, 10% para Sovereign Founder Collective",
       "line": "El derecho a impartir este programa con tus propios clientes.",
-      "body": "Impartes el programa tú mismo. El 90% de los ingresos se queda contigo y el 10% va a Sovereign Founder Collective."
+      "body": "Impartes el programa tú mismo, con reparto de ingresos."
     },
     "profile": {
       "name": "Perfil de Negocio de Alta Precisión",
-      "badge": "Gratis por ahora",
       "line": "Un perfil de negocio personal, como una página de LinkedIn, en 5–10 minutos.",
       "body": "Lo creas de forma semiautomática y puedes descargarlo. Sirve para hiperpersonalizar la IA, encontrar oportunidades profesionales que encajen mejor y encontrar cofundadores.",
       "cta": "Crear tu perfil"
     },
     "matchmaking": {
       "name": "Matchmaking de Alta Precisión para Emprendedores",
-      "badge": "Pruebas gratuitas por ahora",
       "line": "Emparejamiento de cofundadores para negocios únicos.",
       "body": "Lee el perfil de una persona y lo que necesita, y hace la presentación. Los perfiles son automatizados y estandarizados. Es un módulo gratuito dentro de la plataforma.",
       "cta": "Probar el matchmaking"
     },
     "whiteLabel": {
       "name": "White-label Professional Onboarding & Profile Creation For Entrepreneurial Communities",
-      "badge": "A convenir",
       "line": "Para líderes de comunidad: el talento de cada miembro revelado, un perfil vivo y emparejamiento dentro de tu espacio.",
       "body": "Cada miembro de tu comunidad recibe la revelación de su talento y un perfil vivo, y la plataforma empareja a los miembros entre sí dentro de tu espacio. Existe una propuesta lista.",
       "cta": "Ver una propuesta de ejemplo"
     },
-    "cannabis": {
-      "name": "Spiritual Practice with Cannabis",
-      "badge": "~$100 por lugar",
-      "line": "Una práctica grupal para la calidad de vida, el estado interior y la vitalidad.",
-      "body": "Mejora la calidad de vida, el estado interior y la vitalidad, y abre experiencias místicas profundas. Más de 100 grupos realizados, solo o junto con mi esposa."
-    },
     "aiTraining": {
       "name": "Deep AI training for individuals and organizations",
-      "badge": "$800 por un taller de 2 horas",
       "line": "Una comprensión profunda de la IA que seguirá vigente durante años.",
       "body": "Una comprensión profunda de la IA que seguirá vigente durante años, y mejores prácticas. Se han realizado 3 talleres para organizaciones y 3 para grupos, con unos 1,500 participantes en total."
     },
     "equilibrium": {
       "name": "Equilibrium",
-      "badge": "Pruebas gratuitas por ahora",
       "line": "Una herramienta de productividad para fundadores.",
       "body": "Dos cosas: planificación según ciclos naturales y un gestor de tareas radicalmente simplificado.",
       "cta": "Probar Equilibrium"
     },
     "mystery": {
       "name": "Mystery School for Founders",
-      "badge": "$111–$222",
       "line": "La mayoría de mis productos en un solo combo, para grupos.",
       "body": "Se han realizado dos cohortes de un mes cada una, con 32 y 13 participantes.",
       "cta": "Ver el producto"
     },
     "cockpit": {
       "name": "Founder Cockpit",
-      "badge": "Pruebas gratuitas por ahora",
       "line": "Un instrumento de navegación en vivo para fundadores que llevan su propia empresa.",
       "body": "Una pantalla que lee la empresa y a la persona como un solo sistema: estrategia, relaciones, energía. Pregunta qué hacer después y responde desde el cuadro completo, incluyendo lo que todo panel de control ignora: el fundador.",
       "cta": "Abrir el Cockpit"
@@ -7814,33 +7790,27 @@
     "rdEyebrow": "Investigación y desarrollo",
     "rdHeading": "R&D",
     "rdIntro": "Todavía en investigación y desarrollo. Se muestra aquí para que se vea el cuadro completo.",
-    "card7": {
-      "name": "Venture Studio",
-      "badge": "Por invitación",
-      "line": "Un estudio de venture que construye negocios a partir de la unicidad de los fundadores.",
-      "body": "Para fundadores cuya próxima empresa debería construirse a partir de quienes son. Primero diseñamos la empresa desde tu unicidad, luego la construimos contigo.",
-      "cta": "Empezar una conversación"
-    },
     "card8": {
       "name": "Client Evolution Portal",
-      "badge": "Para profesionales",
       "line": "Para profesionales: tus clientes viendo su propia evolución.",
       "body": "Tu propio rincón de la plataforma, en tus colores. Tus clientes hacen una instantánea de Calidad de Vida, practican con tu biblioteca dentro y ven moverse sus propias líneas.",
       "cta": "Ver el portal"
     },
     "card10": {
       "name": "The Founder Read",
-      "badge": "Para inversionistas",
       "line": "Lee y mide el founder-market fit antes de firmar el cheque.",
       "body": "Inviertes en la persona, no en el deck, pero lees el founder-market fit a ojo. The Founder Read es un instrumento que lee y mide el grado de founder-market fit de un fundador y su capítulo exacto en el viaje del héroe del emprendedor. Construido a lo largo de años, calibrado con cientos de fundadores. Pruébalo con un fundador en el que ya invertiste.",
       "cta": "Ver el instrumento"
-    }
+    },
+    "viewLabel": "Vista del catálogo",
+    "viewCards": "Tarjetas",
+    "viewMap": "Mapa"
   },
   "thebuild": {
-    "seoTitle": "El Contenedor BUILT: 3 semanas hasta un negocio en marcha",
-    "seoDescription": "En 3 semanas: de «¿cuál es mi verdadera oferta?» a vender tu oferta insignia empaquetada a personas reales. Asesoría estratégica privada, $1,111.",
-    "eyebrow": "El Contenedor BUILT · 3 semanas",
-    "h1": "Mi propuesta es simple: en 3 semanas pasas de «¿cuál es mi verdadera oferta?» a vender tu oferta insignia empaquetada a personas reales.",
+    "seoTitle": "El Contenedor BUILT: {{weeks}} semanas hasta un negocio en marcha",
+    "seoDescription": "En {{weeks}} semanas: de «¿cuál es mi verdadera oferta?» a vender tu oferta insignia empaquetada a personas reales. Asesoría estratégica privada, {{price}}.",
+    "eyebrow": "El Contenedor BUILT · {{weeks}} semanas",
+    "h1": "Mi propuesta es simple: en {{weeks}} semanas pasas de «¿cuál es mi verdadera oferta?» a vender tu oferta insignia empaquetada a personas reales.",
     "sauce": "El ingrediente secreto eres tú :) Y avanzamos rápido y con cuidado gracias a este combo: mi experiencia vivida + los flujos de IA que viste en nuestra sesión + mi acompañamiento.",
     "w1Label": "Semana 1",
     "w1Title": "UNA DIRECCIÓN",
@@ -7852,7 +7822,7 @@
     "w3Title": "SERVIR A PERSONAS REALES",
     "w3Body": "Tu negocio toca el mundo real. Preparamos tus primeras sesiones con clientes, hacemos juntos los primeros movimientos manuales de venta y montamos el ciclo de retroalimentación que convierte cada conversación en una mejora del producto. Al final de la semana, o poco después, tendrás tus primeros clientes: gratuitos, de pago o una mezcla. Sirviendo a personas, y ellas correspondiéndote. Se acabó girar en falso: movimiento continuo, con dirección. Lo cual, en esencia, es un negocio en marcha.",
     "formatLabel": "Formato",
-    "format1": "sesiones semanales prácticas de 2 horas para construir el negocio (no muy de noche 😁)",
+    "format1": "{{sessions}} llamadas en vivo por semana, de {{minutes}} minutos cada una (no muy de noche 😁)",
     "format2": "check-ins por chat entre sesiones",
     "format3": "un resultado esperado claro por semana",
     "priceLabel": "Precio",
@@ -7873,13 +7843,13 @@
   },
   "crossing": {
     "title": "El Cruce",
-    "seoDescription": "Un programa de 2 meses para la transición en la que estás. Ocho sesiones semanales, un taller Productize Yourself, y tu unicidad nombrada con exactitud. $2,222.",
+    "seoDescription": "Un programa de {{months}} meses para la transición en la que estás. {{sessions}} sesiones semanales, un taller Productize Yourself, y tu unicidad nombrada con exactitud. {{price}}.",
     "eyebrow": "UN PROGRAMA PARA EL ENTRE-CAPÍTULOS",
     "heading": "El Cruce",
-    "subheading": "Un programa de 2 meses para la transición en la que estás",
+    "subheading": "Un programa de {{months}} meses para la transición en la que estás",
     "essence": "Tu capítulo anterior terminó y el siguiente aún no tiene nombre. Ese intermedio no es un vacío: tiene estructura, y se puede cruzar con conciencia en lugar de a la deriva. Nadie puede prometer fechas de llegada en una transición, y yo no lo haré. Lo que hace este programa: acelera y estructura el cruce mismo, para que tome meses en lugar de años, y lo atravieses con intención y conciencia, no caóticamente y sin entender qué está pasando y por qué.",
     "formatHeading": "Formato",
-    "f1": "8 sesiones semanales de 75 minutos",
+    "f1": "{{sessions}} sesiones semanales de {{minutes}} minutos",
     "f2": "más mi taller Productize Yourself de 2 horas a mitad del programa",
     "f3": "check-ins y preguntas por notas de voz entre sesiones, tantas como necesites dentro de lo razonable; hago lo posible por responder dentro del día",
     "f4": "usamos mis instrumentos y mapas, construidos e integrados desde muchos enfoques",
@@ -7915,7 +7885,7 @@
       "body": "Trabajamos lo que haya surgido en el camino. Repetimos la medición de calidad de vida de la primera sesión. Hacemos balance y construimos el plan de los siguientes pasos, conmigo o sin mí."
     },
     "priceHeading": "Precio y pago",
-    "priceLine": "Total: $2,222",
+    "priceLine": "Total: {{price}}",
     "paymentLine": "50% dentro de los 3 días posteriores a la primera sesión, el 50% restante antes de la sesión 5.",
     "afterHeading": "Qué viene después",
     "afterBody": "Planear lo siguiente ahora sería prematuro. En general, después de este trabajo sugiero enfocarse en un híbrido entre construir tu próximo negocio y las siguientes etapas de transformación. Espero que la siguiente etapa también aterrice con fuerza, pero sugiero no discutirla ahora: tendrás dos meses de experiencia directa de lo que este trabajo te da, y para entonces sabrás por ti mismo si quieres ese siguiente paso.",
@@ -7923,13 +7893,13 @@
   },
   "vector": {
     "title": "The Vector",
-    "seoDescription": "Программа приземления и вектора: глубина, которая работает в жизни и бизнесе. Сессии по 90 минут раз в две недели, поддержка в чате.",
+    "seoDescription": "Программа приземления и вектора: глубина, которая работает в жизни и бизнесе. Сессии по {{minutes}} минут, поддержка в чате.",
     "eyebrow": "ПРИЗЕМЛЕНИЕ И ВЕКТОР",
     "heading": "The Vector",
     "subheading": "Программа для тех, кто уже открыл глубину и хочет, чтобы она работала в жизни и в бизнесе",
     "essence": "Глубина без приземления остаётся красивой идеей. После сильных инсайтов легко вернуться в обычный день и обнаружить, что ничего не изменилось. The Vector про другое: мы задаём направление и приземляем каждую встречу в инструменты, привычки и решения, которые живут между сессиями. Не что и сколько ты делаешь, а какого качества и из какой глубины.",
     "formatHeading": "Формат",
-    "f1": "сессии по 90 минут, раз в две недели (ритм уточняем вместе)",
+    "f1": "{{sessions}} сессий по {{minutes}} минут, по умолчанию раз в неделю (~{{months}} месяца), ритм подстраиваем под тебя",
     "f2": "каждая встреча: 40 минут на то, что насущно для тебя прямо сейчас, и 50 минут на контентную часть",
     "f3": "при желании сессию можно продлить, продление оплачивается отдельно",
     "f4": "поддержка через чат между сессиями",
@@ -7983,7 +7953,7 @@
     },
     "cta": "Начать разговор",
     "priceHeading": "Стоимость",
-    "priceLine": "Общая стоимость: $3,750",
+    "priceLine": "Общая стоимость: {{price}}",
     "elements": {
       "fire": "огонь",
       "water": "вода",
@@ -8718,19 +8688,19 @@
       "eyebrow": "A dónde lleva esto",
       "call": {
         "name": "Direction Call",
-        "meta": "Gratis · 45 minutos",
+        "meta": "Gratis · {{minutes}} minutos",
         "desc": "Sales viendo tu transición con claridad: de qué estás saliendo, hacia qué estás creciendo, y la dirección que se deriva de eso.",
         "cta": "Reserva tu Direction Call"
       },
       "session": {
         "name": "Private Founder-Market Fit Session",
-        "meta": "Taller de 2 horas · $555",
+        "meta": "Taller de {{hours}} horas · {{price}}",
         "desc": "Nombra lo único que realmente haces, y sal con una oferta y una página lista para enviar.",
         "cta": "Ver Private Founder-Market Fit Session"
       },
       "built": {
         "name": "BUILT",
-        "meta": "3 semanas · $1,111",
+        "meta": "{{weeks}} semanas · {{price}}",
         "desc": "Construye el producto, empaquétalo y elige el modelo de negocio, junto a otros fundadores haciendo lo mismo.",
         "cta": "Ver BUILT"
       }
@@ -8756,7 +8726,7 @@
       "heading": "Esto es lo que realmente es.",
       "para1": "Encuentro el patrón que sostiene todo lo que has construido y le doy palabras exactas. Una frase que lo contiene todo. Quienes escuchan su frase por primera vez suelen quedarse callados un segundo. Después preguntan cuánto cuesta.",
       "para2": "El diagnóstico es gratis. Todo. El quiz te muestra tu capítulo. La Llamada de Dirección nombra tu transición y la dirección que sigue, 45 minutos, sin costo, y te diré con franqueza si no soy la persona indicada para esto.",
-      "para3": "El trabajo pagado empieza donde el software y una llamada gratuita honestamente terminan: convertir la frase en un negocio. Dos horas para integrar tus proyectos “sin relación” en una sola dirección clara, $555. Tres semanas para construir la oferta y tener las primeras diez conversaciones reales, $1,111."
+      "para3": "El trabajo pagado empieza donde el software y una llamada gratuita honestamente terminan: convertir la frase en un negocio. {{sessionHours}} horas para integrar tus proyectos “sin relación” en una sola dirección clara, {{sessionPrice}}. {{buildWeeks}} semanas para construir la oferta y tener las primeras diez conversaciones reales, {{buildPrice}}."
     },
     "whoFor": {
       "eyebrow": "Para quién es esto",
@@ -9196,7 +9166,7 @@
     "promiseEyebrow": "La promesa honesta",
     "promiseHeading": "Encontramos el núcleo. El mercado lo confirma.",
     "promiseBody": "Los fundadores suelen tardar meses de iteraciones en llegar aquí. En una sesión obtienes el núcleo del fit; lo confirman las personas a quienes vendes.",
-    "format": "Uno a uno, en línea, unas 2 horas.",
+    "format": "Uno a uno, en línea, {{hours}} horas.",
     "cta": "Reservar la sesión"
   }
 }

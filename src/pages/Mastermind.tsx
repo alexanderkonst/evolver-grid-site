@@ -22,9 +22,11 @@ import { cn } from "@/lib/utils";
 import { tr } from "@/lib/villageCopy";
 import { MASTERMIND_LIVE_SESSION_URL } from "@/data/mastermindSession";
 import type { CSSProperties } from "react";
+import { getOffer, productPrice, productVars } from "@/data/productMap";
 
 /* ─── Constants: copy, price, CTA (single source of truth) ─── */
-const MASTERMIND_PRICE = "$222";
+const MASTERMIND_PRICE = productPrice("fmf-mastermind");
+const PRIVATE_SESSION = productVars("fmf-session");
 /** Set to the checkout URL once decided. Empty → free live-session registration. */
 // Stripe payment link from Sasha, 2026-10-30 (Founder-Market Fit Mastermind, $222, live mode).
 const MASTERMIND_CTA_URL = "https://buy.stripe.com/14AcN5aIAbCr8idh1CdEs0I";
@@ -39,7 +41,7 @@ const MASTERMIND_COPY = {
     "Two live sessions in a small group. You find where your gift meets the people who need it, and leave with a clear offer for your first clients.",
   formatLabel: "Format",
   format: [
-    "Small group, 2 sessions, $222",
+    `Small group, 2 sessions, ${MASTERMIND_PRICE}`,
     "2 × 90 min live (Nov 9 and Nov 10)",
     "7 days of integration in the group",
     "Recording of both sessions included.",
@@ -61,7 +63,7 @@ const MASTERMIND_COPY = {
   ctaLabelPending: "Join the free live session",
   pendingNote: "Registration opens soon.",
   distinction:
-    "This is the group (small group, 2 sessions, $222). Prefer 1:1? The Private Founder-Market Fit Session is 1:1, 2 hours, $555.",
+    `This is the group (small group, 2 sessions, ${MASTERMIND_PRICE}). Prefer 1:1? The Private Founder-Market Fit Session is 1:1, ${PRIVATE_SESSION.hours} hours, ${PRIVATE_SESSION.price}.`,
   distinctionLink: "See the Private Session",
   bridgeLead: "Want to meet me first?",
   bridgeLink: "Join the live session on Wed Nov 4, 9:00 CDMX",
@@ -118,7 +120,7 @@ const Mastermind = () => {
           organizer: { "@type": "Person", name: "Aleksandr Konstantinov" },
           offers: {
             "@type": "Offer",
-            price: MASTERMIND_PRICE.replace(/[^0-9.]/g, ""),
+            price: String(getOffer("fmf-mastermind").amountUsd),
             priceCurrency: "USD",
           },
         }}

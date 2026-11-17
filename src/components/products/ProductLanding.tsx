@@ -7,9 +7,9 @@ import { cn } from "@/lib/utils";
 import "./productLanding.css";
 
 /** Ignite's editorial page grammar, shared by the public product pages. */
-export const ProductLanding = ({ children }: { children: ReactNode }) => (
+export const ProductLanding = ({ children, wide = false }: { children: ReactNode; wide?: boolean }) => (
   <main className="product-landing relative min-h-dvh font-sans">
-    <div className="relative max-w-2xl mx-auto px-4 md:px-6 py-16 space-y-12">
+    <div className={cn("relative mx-auto px-4 md:px-6 py-16 space-y-12", wide ? "max-w-6xl" : "max-w-2xl")}>
       {children}
     </div>
   </main>
