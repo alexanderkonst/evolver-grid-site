@@ -29,6 +29,7 @@
 10. **Function, not form:** the canvas describes a function; the vehicle (1:1, product, own venture, ecosystem role, connector) is chosen for the season and can change without changing the canvas.
 11. **Stream 0:** run it on yourself first (mask on first).
 12. **ONE of everything:** one segment, one myth, one pain, one Point B, one funnel, one channel, one ladder.
+13. **Naming is a shift** (2026-11-17): the shift technology is itself a shift. When the person names their change in their own words, the naming moves them again. So every score and every "what changed" is asked in their words and kept verbatim (law 7 of the template): the mirror records the shift and deepens it.
 
 ### Precision thresholds (2026-03-23)
 | Body score | Unlocks | Do |

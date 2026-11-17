@@ -1,6 +1,6 @@
 # AI Matchmaker Brief — Index & Genealogy
 
-> **Current sendable brief: [v4.31](briefs/matchmaker_brief_v4.31.md), September 21, 2026.** Each numbered file is complete and standalone; the highest version is current. This index preserves rationale and history. Send the current versioned file, not the historical blocks below.
+> **Current sendable brief: [v5.1](briefs/matchmaker_brief_v5.1.md), November 17, 2026** (adds "The self-naming signal": the shift technology is itself a shift; LinkedIn proxies). Previous: [v5.0](briefs/matchmaker_brief_v5.0.md), November 3, 2026; [v4.31](briefs/matchmaker_brief_v4.31.md), September 21, 2026. Each numbered file is complete and standalone; the highest version is current. This index preserves rationale and history. Send the current versioned file, not the historical blocks below.
 >
 > **Source hierarchy:** Sasha's UBC v1.11 and September 17–21 invitation/sovereignty exploration inform v4.3; Boardy’s operational feedback informs v4.31. Earlier briefs and outreach strategy v4.0 remain genealogy where they conflict with it. Technology 133 supplies the principle: the matchmaker mirrors the precision of the brief.
 >
