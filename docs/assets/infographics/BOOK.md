@@ -1,26 +1,28 @@
-# The Book of Psychoactive Infographics · v0.3 (2026-11-17)
+# The Book of Psychoactive Infographics · v0.4 (2026-11-17)
 
 RU: «Книга психоактивной инфографики». Single source of truth for the book's taxonomy, contents and card files. Format: [docs/templates/infographic.md](../../templates/infographic.md). License: [LICENSE.md](LICENSE.md) (CC BY-NC-SA 4.0; commercial use by agreement with Aleksandr). Card images: [book/](book/). The word "psychoactive" is the book's name only; it never appears on a card.
 
-## Funds (reading order)
-- I. Ground — first principles of business and the human
-- II. See Yourself — uniqueness, top talent, a person's signal
-- III. Cross — decision, readiness, the crossing, grounding
-- IV. Build — offer, product, first sale
-- V. Spread — distribution, fandoms, matchmakers
-- VI. Measure & Exchange — the visible shift, fair exchange
-- VII. The System — the shift as unit; product · module · game; holonic maps; noosphere
+## Contents (mirrors the game journey and its spaces; v0.4)
+The book is the game journey in pictures: each chapter is a step or space of the game and opens with its course's main infographic. Order (Sasha, 2026-11-17):
 
-## Contents
-- III.01 Three Readinesses Multiply
-- III.02 Which Program to Offer
-- VI.01 Their Own 0–10 Scale
-- VI.02 Compared to What You Expected
-- VI.03 Seen Change Gets Paid Fairly
-- VII.01 One Transformation, Three Forms
+1. Activate Your Dormant Potential: the course's main infographic (to make)
+2. See yourself
+   - 2.1 Uniqueness (top talent) (to make)
+   - 2.2 Mission (to make)
+   - 2.3 Resources (to make)
+   - 2.4 Quality of life (to make)
+3. Branch A, default: Unique Business
+   - 3.1 Business from first principles: the 19 cards below (draft v4), order inside to settle
+   - 3.2 Choosing your client: III.01 Three Readinesses Multiply, III.02 Which Program to Offer
+   - 3.3 Results and fair exchange: VI.01 Their Own 0–10 Scale, VI.02 Compared to What You Expected, VI.03 Seen Change Gets Paid Fairly
+4. Branch B: Grow (further learning and activation of potential)
+   - 4.1 Consciousness Meets Science: the course's main infographic (to make)
+   - 4.2 Next Grow courses (and so on)
 
-### Not yet placed (to get IDs, mostly fund I, some IV and VII)
-Business from first principles (19):
+Not yet placed: VII.01 One Transformation, Three Forms and the 3 noosphere cards (how the whole system is built; maybe a closing chapter). Placement of 3.2 and 3.3 is my proposal; IDs III/VI/VII are old and will be renumbered once the order settles.
+
+### Card lists
+Business from first principles (19, chapter 3.1):
 - [Two Humans](book/first-principles/primitives-01.png) · Every business, even deep tech, is a relationship between people. · status: draft v4
 - [Process, Change, Exchange](book/first-principles/primitives-02.png) · What happens between the two. · status: draft v4
 - [The DNA of a Business](book/first-principles/primitives-03.png) · Six cells. Every business that holds has all six. · status: draft v4
@@ -41,7 +43,7 @@ Business from first principles (19):
 - [Ready to Receive](book/first-principles/primitives-18.png) · Every tradition that asked this found the same four things. · status: draft v4
 - [Find the Primitive](book/first-principles/primitives-19.png) · A session plan: from one question to one sentence. · status: draft v4
 
-The noosphere (3, fund VII):
+The noosphere (3, not yet placed):
 - [Every Cell Has a Neighbor](book/noosphere/noosphere-1.png) · The world already knows each piece. Nobody holds all six from one source. · status: draft v4
 - [The Founder, Replaced](book/noosphere/noosphere-2.png) · Wasserman, Harvard: 212 US startups from the late 1990s and early 2000s. · status: draft v4
 - [Most Venture Funds Lose to an Index Fund](book/noosphere/noosphere-3.png) · status: draft v4
@@ -122,5 +124,6 @@ Private, not in this book (evolver-private-ledger): client book "The Crossing" (
 - Status: draft v6 · File: [book/laws/VII.01.png](book/laws/VII.01.png)
 
 ## Changelog
+- v0.4 (2026-11-17): contents rebuilt on the game journey (Sasha): ADP course → uniqueness, mission, resources, quality of life → Unique Business (default) and Grow branches; the seven funds dropped.
 - v0.3 (2026-11-17): card files moved into book/ under LICENSE.md; laws redrawn as v6 (Sasha's feedback 15:48: no "psychoactive" label, two-level context, one thing per card) and filled with prism, keys, notes; 19 first-principles and 3 noosphere cards listed to be placed.
 - v0.2 (2026-11-17): moved here from the Hark workspace; levels fund → scheme → subscheme.
