@@ -1687,3 +1687,9 @@ Because the brief is the articulation, every improvement to the unique-business 
 ---
 
 *Codified: August 25, 2026 (Day 166) — from four Boardy intros (Marc Winn, Maciek/Peter, Lola Eniolorunda, Alex Prober) and the same-day quiz retrodiction. Named contacts, verbatim quotes and the sent briefs live in the private CRM tracker; this file stays at the level of the pattern because it is tracked in the public repo.*
+
+## 11. Fandom Bridges as a Channel (November 17, 2026)
+
+*Law: Technology 184, Fandom Bridge. Hack and setup: `docs/02-strategy/guerrilla_marketing_hacks.md`, "Fandom Bridge".*
+
+A fandom is a ready audience whose desire is already named. For every product, list 3–5 cult analogues whose core matches the product's core (Game of Being You: Ready Player One, Heroes III), map their fan rooms, and enter as a fan with one line: «I built X, but in real life». Measure per room: replies, clicks, sign-ups per post. Keep the analogue that converts; it also becomes the product's one-sentence pitch.

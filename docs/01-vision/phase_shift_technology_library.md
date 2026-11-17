@@ -9652,3 +9652,31 @@ An earlier AI draft here treated the holo-trinity as a product under the working
 ### Cross-references — Connects to
 - *Technology 179: AI Is Imitation*; *Technology 175: Every Entity Has Its Own AI*; *Technology 168: A Unique Particle of Yourself*.
 - `docs/templates/application-loop.md` § 0 (first application of this technology).
+
+
+## Technology 184: Fandom Bridge — "I Built X, but in Real Life" (мост через фанбазу) (oral, Nov 17, 2026)
+
+> *Oral · November 17, 2026, 13:27 MST · chat with Hark, replying to Hark's note that Ready Player One is about his game. Dictated; quoted close to his words. Applied in `docs/02-strategy/guerrilla_marketing_hacks.md` (Fandom Bridge), `docs/03-playbooks/distribution_playbook.md` §11, `docs/03-playbooks/unique_business_playbook.md` (Find the Fandom of Your Uniqueness).*
+
+**What it is.** A shift in where a unique business looks for its people. Not "explain a new category to strangers", but "find the work people already love whose core matches yours, and bring it to life for its fans". The fandom has already recognised its own desire; the bridge turns a fictional desire into a real-life offer.
+
+### 🫀 Essence — in Sasha's words
+
+> «Ready Player One это прям ну очень похожее на то, что я делаю… может быть мне можно как-то тоже левериджить сообщество, которое вокруг этого существует. То есть, допустим, я пишу в сообщество, что ребята, я сделал Ready Player One. Готовы играть… можно очень культово все сделать и сделать очень крутой лаунч… Если я скажу людям, я сделал как Heroes III, только в реальной жизни. И в сообщество Heroes III направлю… аналоги, это туда, куда мне нужно идти, где люди уже поняли, что им что-то очень-очень сильно нравится… ЭТО ТЕХНОЛОГИЯ СДВИГА! Фанбазы! Все уникальные бизнесы думаю так работают.»
+> — *chat of 2026-11-17, 13:27 MST*
+
+### The steps
+1. **Core.** Name your product's core in one line (Game of Being You: a game that returns the player to real life).
+2. **Analogues.** List cult works with the same core (Ready Player One; Heroes III).
+3. **Rooms.** Find where their fans gather.
+4. **Bridge line.** «I built X, but in real life», said as a fan.
+5. **Ritual launch.** Borrow the fandom's own rituals (keys, quests, the call "Ready Player One?").
+
+### 🧠 Significance — AI draft
+*AI draft, for Sasha to rewrite in his voice.*
+- **Essence.** Desire is the scarcest thing in marketing; a fandom is stored desire. The bridge spends no energy creating it.
+- **Consequences.** (1) The analogue is also the pitch: one sentence replaces a category explanation. (2) The canvas gains a field: cult analogues and their rooms. (3) Hypothesis, not yet law: "every unique business works this way"; test across clients (Gleb, Eva) before stating it as law.
+- **Cautions.** Respect fan rooms' rules on self-promotion; the core must truly match, or fans read it as appropriation; never use a franchise's trademarks in the product name.
+
+### Cross-references — Connects to
+- Game of Being You; *Technology 183: Signal Authorship* (the bridge line is a signal, AI helps find rooms).

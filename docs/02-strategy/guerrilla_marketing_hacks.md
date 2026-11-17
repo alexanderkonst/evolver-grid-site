@@ -352,3 +352,28 @@ Network School = how to make life easy, work easy, play easy, community easy. Bu
 - Pull, don't push (they already raised their hand in public)
 - Right field × right moment (never spend the source on concrete)
 - Story-worthy (a precise recognition from a stranger is memorable)
+
+---
+
+## Fandom Bridge: "I Built X, But in Real Life" (November 17, 2026)
+
+**The Hack:** don't build an audience from zero. Go where people already know they love something, and say "I built the thing you love, only it's real".
+
+**Examples:**
+- *Ready Player One* fans (novel by Ernest Cline, 2011; Spielberg film, 2018): «I built Ready Player One. The OASIS hides keys; the final prize is reality. Game of Being You is a game that returns the player to real life. Ready Player One?»
+- *Heroes of Might and Magic III* fans: «Like Heroes III, but your own life is the map, and the hero is you.»
+
+**Setup:**
+1. Name the analogue: the cult work whose core matches the product's core (not its surface).
+2. Find its fan rooms: subreddits, Discords, forums, fan wikis, Telegram chats.
+3. Read the room's rules; post as a fan, in its language, one story-worthy line plus a door.
+4. Make the launch a ritual the fandom already knows (keys, quests, "Ready Player One?").
+
+**Why It Works:**
+- The fandom has already done the hardest work: they know what they love and why. Desire exists; we only point it at a real-life version.
+- One analogy carries the whole explanation in a sentence. No category to teach.
+- Cult language spreads by itself: fans retell it.
+
+**Principles Applied:** go where the desire already lives; analogy over explanation; story-worthy; respect the room (a fan's post, not an ad). Technology: Phase Shift Technology Library, Technology 184 (Fandom Bridge).
+
+*Origin: Sasha, chat of 2026-11-17 13:27 MST, after the Ready Player One parallel: «аналоги, это туда, куда мне нужно идти, где люди уже поняли, что им что-то очень-очень сильно нравится».*

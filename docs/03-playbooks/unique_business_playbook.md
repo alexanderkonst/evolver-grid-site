@@ -5412,3 +5412,9 @@ The order that works: they experience the transformation → they recognize in h
 ## The Hexagon Cycle of a Unique Business (October 21, 2026)
 
 A Unique Business does not move in a straight line from articulation to revenue. It turns in cycles of six steps, alternating DO and BE: (1) DO connect with Uniqueness and articulate a new layer; (2) BE clarity lights up the fit; (3) DO pack energy into focus; (4) BE strategy takes shape; (5) DO massive action meets reality (offers, clients, features, campaigns); (6) BE new flows and potential ripen from that contact. The founder and the product each have their own Uniqueness and their own cycle. In practice: name the step before planning the week; act hard on DO steps, don't force BE steps. Full technology: Phase Shift Technology Library, Technology 161.
+
+---
+
+## Tactic: Find the Fandom of Your Uniqueness (November 17, 2026)
+
+A unique business looks unique, so it seems to have no market. It does: somewhere a book, a film or a game already carries the same core, and people already love it. Find that work, and its fans are the first customers: «I built X, but in real life.» Add a field to the canvas: **Cult analogues** (works whose core matches yours) and **their fan rooms**. Sasha's hypothesis (2026-11-17), to test: every unique business grows this way. Full technology: Phase Shift Technology Library, Technology 184.
