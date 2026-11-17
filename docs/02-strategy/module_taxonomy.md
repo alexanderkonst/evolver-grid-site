@@ -1,11 +1,14 @@
 # Module Taxonomy — Holonic Map by Spaces
 
-> **Version:** 3.3
+> **Version:** 4.0
 > **Created:** 2026-01-28
-> **Updated:** 2026-07-27
-> **Purpose:** Master reference for all modules organized by Spaces + Versioning + Divine Stack Architecture
+> **Updated:** 2026-11-17
+> **Audited against:** `src/App.tsx` at SHA `1524f2ffcadfcfa03f87ac8f5a1306bfb80a6b19` (short `1524f2f`), route table lines 547–1148
+> **Purpose:** Master reference for all modules organized by Spaces + Versioning + Divine Stack Architecture. One source of truth for what the platform's modules are, how they nest inside one another, and which products are built from which modules.
 
-> **Refreshed July 27, 2026 (Day 137).** Audited against `src/App.tsx` route registrations; shipped vs specified vs seed now distinguished. This pass covers modules and routes shipped since v3.1 (2026-03-16) — Founder Cockpit, legal/trust pages, Communities, Evolution Portal (+ Karime variant), Build Container, `/destiny` unlocked from auth — plus three items that are documented but not yet code (Quiz spec, Originals Index v2, Reflection Proposal automation). See changelog v3.3 at the bottom for the full diff. Submodule-level detail below this pass is as of v3.1 and has not been individually re-verified line by line — treat top-level Version/Status/Route as current, submodule tables as directionally current.
+> **v4 (2026-11-17).** Five additions, all below: (1) the **v4 Version Matrix**, re-audited route by route against `src/App.tsx` at the SHA above, with a route-coverage ledger; (2) **Nesting**, a tree of module → submodules with one plain sentence per node; (3) **Products × modules**, one row per product in `docs/04-products/product_brief.md` §0; (4) **Module interface**, inputs, outputs and what each top-level module unlocks, with a mark on modules that could be white-labeled or contributed by an external project; and, added the same day on Sasha's approval, (5) the **Crosswalk** shift → product → module → game step, joined by the product keys of `src/data/productMap.ts`, on brief §0 v1. Older sections are kept and marked superseded where v4 replaces them; nothing was deleted. Prices are not in this file (they live in `product_brief.md`). Module names are unchanged; where code and brief use different names for one thing, both are shown. See changelog v4 at the bottom.
+
+> **Previous refresh, July 27, 2026 (Day 137).** Audited against `src/App.tsx` route registrations; shipped vs specified vs seed now distinguished. This pass covers modules and routes shipped since v3.1 (2026-03-16) — Founder Cockpit, legal/trust pages, Communities, Evolution Portal (+ Karime variant), Build Container, `/destiny` unlocked from auth — plus three items that are documented but not yet code (Quiz spec, Originals Index v2, Reflection Proposal automation). See changelog v3.3 at the bottom for the full diff. Submodule-level detail below this pass is as of v3.1 and has not been individually re-verified line by line — treat top-level Version/Status/Route as current, submodule tables as directionally current.
 
 ---
 
@@ -116,7 +119,536 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 ---
 
-## 📊 MODULE VERSION MATRIX
+## 🧾 v4 VERSION MATRIX — audited against `src/App.tsx` at `1524f2f`
+
+> **Supersedes** the v3.3 matrix further down (kept for history). Audited 2026-11-17.
+
+**How it was audited.** Every `<Route>` element in `src/App.tsx` lines 547–1148 was read: 301 elements = **294 with a path** + **6 index routes** (children of `/game/learn/genius-assessment`, `/game/build/product-builder`, `/ubb`, `/quality-of-life-map`, `/game/me/quality-of-life`, `/zone-of-genius/assessment`, `/art`; they carry no path of their own) + **1 layout route** (the shell wrapper, no path). Of the 294 paths, **76 are redirects** and **218 render a page** (105 public, 80 behind `RequireAuth`, 30 behind `MeGate`, 3 behind `RequireAdmin`; a child route counts under its parent's wrapper, so the `/ubb/*` steps are `MeGate` and the `/art/:category` page is `RequireAuth`). "Public" means no router wrapper; a few pages check access inside the page (see SY-3). Every one of the 294 is assigned to exactly one row below; the ledger after the matrix lists them all and its counts sum to 294. The tally was made by a one-off script over the route table at this SHA; it is not kept in the repo, so the next refresh should repeat it.
+
+**What v4 re-checks, and what it does not.** It re-checks that each route exists, where it goes, and who can open it. It does **not** re-rate maturity: the Version column keeps the v3.3 rating, and modules new to this file say **not rated**. Submodule tables in the detailed sections further down are as of v3.1 (v3.3 already said so) unless a row below says otherwise.
+
+**Status words.**
+- **shipped**: route present and renders a page at this SHA.
+- **redirect only**: the old route now forwards elsewhere; no page of its own.
+- **no route (concept/retired?)**: the doc names a module but `src/App.tsx` has no route for it. Not guessed further.
+- **found in code, undocumented**: a route (or page file) exists with no module row in v3.3.
+- **access**: public · `auth` (RequireAuth) · `me-gate` (signed-in users see the page, guests see an account-save card) · `admin` (RequireAdmin).
+
+### The matrix (62 rows)
+
+| ID | Space | Module | Route(s) at SHA (key ones; all in the ledger) | v3.3 rating | v4 status and notes |
+|---|---|---|---|---|---|
+| ME-1 | ME | Unique Gift (Top Talent, Zone of Genius) | `/zone-of-genius/entry` (public door); `/zone-of-genius/assessment/step-1…4`; `/zone-of-genius/appleseed`, `/zone-of-genius/excalibur` (auth); `/game/me/zone-of-genius`, `/game/me/zone-of-genius/:perspectiveId` (me-gate); `/activate-top-talent`; `/quiz2` | 0.9 | shipped. **Route corrected:** `/zone-of-genius` is only a redirect to `/zone-of-genius/entry`; so are `/genius-offer` and `/game/journey/start`. `/activate` and `/activate/welcome` redirect to `/game/me/zone-of-genius/start-here`. `/quiz2` (a quiz version of the test) and `/my-result` (a result page opened by magic link) are found in code, undocumented. |
+| ME-2 | ME | Quality of Life | `/quality-of-life-map`, `/quality-of-life-map/assessment`, `/quality-of-life-map/results`; `/game/me/quality-of-life` (auth); `/game/learn/qol-assessment`, `/game/learn/qol-results` (auth) | 0.9 | shipped. The detailed section below says start `/quality-of-life`; there is no such route. |
+| ME-3 | ME | Mission Discovery | `/mission-discovery` (auth); `/game/me/mission` (me-gate); `/mission`, `/discover-mission`, `/zone-of-genius/mission` | 0.7 | shipped. The three guessed URLs show the closed Home door (`MissionLocked`), not the module. |
+| ME-4 | ME | Resource Mapping (Asset Mapping) | `/asset-mapping`, `/asset-mapping/wizard` (auth); `/game/me/assets` (me-gate) | 0.7 | shipped. The Journey enters at `/asset-mapping`. |
+| ME-5 | ME | Character Sheet (Your House) | `/game/me/overview`, `/game/me/profile` (me-gate); `/game/snapshot` (auth); `/game/me` → `/game/me/zone-of-genius` | not rated | shipped, **not in v3.3**. Village place key `house`, named "Home". `/game/profile*` and `/game/grow*` redirect to `/game/me`. |
+| ME-6 | ME | Personality Tests | `/resources/personality-tests`, `/game/learn/tests` (auth) | 0.5 | shipped. |
+| ME-7 | ME | Your AI | `/game/your-ai` | not rated | shipped, **not in v3.3**. Code: `src/modules/familiar`, edge function `your-ai-turn`; tracker `docs/specs/ai-familiar/ai-familiar_tracker.md`. Village place key `oracle`, named "Your AI". |
+| ME-8 | ME | Transition Quiz ("Where am I on the hero's path", brief calls it Тест «Где я на пути героя») | `/quiz`; `/quiz/r/:id`; `/hero` | 0.1, "specified, no code" | **shipped** (v3.3 said no code). Code: `src/modules/transition-quiz`; edge functions `save-quiz-result`, `get-quiz-result`, `claim-quiz-result`, `save-quiz-email`. `/hero` (a four-line quiz, `HeroQuiz`) is found in code, undocumented. |
+| LN-1 | LEARN | Academy (LEARN landing, courses, activations) | `/game/learn`; `/grow/activate-your-dormant-potential`, `/grow/consciousness-meets-science`, `/grow/activation-of-inner-vision`; `/academy/:slug`; `/activations`, `/activations/:slug`, `/activations/:slug/access` | not rated | shipped, **not in v3.3**. A code comment (2026-10-30) says the landing shows two courses; three course routes exist. Not reconciled here. |
+| LN-2 | LEARN | Library (Practices) | `/library`, `/library/:stepId`; `/game/learn/library`, `/game/learn/library/:stepId` (auth) | 0.7 | shipped. |
+| LN-3 | LEARN | Growth Paths | `/game/learn/paths`, `/game/learn/path/:pathId`, `/game/path/:pathId`, `/skills`, `/growth-paths` (all auth) | 0.7 | shipped. `/skills` now opens Growth Paths, not Skill Trees. |
+| LN-4 | LEARN | Daily Loop (My Next Move) | `/game/learn/today`, `/character`, `/next-move`, `/next-move-v2` (all auth) | 0.7 | **route replaced.** `/game/next-move`, `/game/next-move/*`, `/game/next-move-v2` and `/today` now redirect to `/game/journey`. The four routes listed here still render older pages. |
+| LN-5 | LEARN | Playbook and Path | `/playbook`, `/playbook/:slug`; `/path` | not rated | shipped, **not in v3.3** (the game blueprint calls the `take-playbook` and `see-path` steps "tutorial lore"). `/path` is public by a code comment of 2026-04-21. |
+| LN-6 | LEARN | Skill Trees | none | 0.3, retired in v3.3 | **no route (concept/retired?)**, retirement confirmed. `src/pages/SkillTrees.tsx` and `src/data/skillTrees.ts` still exist but nothing routes to them. |
+| GM-1 | Game | Journey and Quest Board | `/game/journey`, `/journey`; `/game/journey/quest/:questId`; `/game/next`; `/game` → `/game/journey` | not rated | shipped, **not in v3.3**. `/game/next` renders nothing and sends a signed-in player to their next move. |
+| GM-2 | Game | The Digital Village (map and places) | `/village/:place?`; `/map` → `/village`; `/map-classic` (auth) | not rated | shipped, **not in v3.3**. Eleven places, listed under Nesting. `/map-classic` is the older map page, found in code, undocumented. |
+| GM-3 | Game | Title screen and home pages | `/`; `/home`; `/home2` | not rated | shipped. `/` is the title screen of the game (issue #127 comment in code). `/home` (`HomeV2Page`) and `/home2` (`HomeLandingPage`): found in code, undocumented. |
+| MT-1 | MEET | Events (Café) | `/game/meet`; `/game/meet/create`, `/game/meet/my-rsvps` (auth); `/events/:id`, `/events/community/:communityId` (auth) | 0.9 | shipped. `/events`, `/game/events*` redirect to `/game/meet`. |
+| MT-2 | MEET | Men's Circle | `/mens-circle`, `/mens-circle/thank-you` (both auth) | 1.0 | shipped. Both routes are behind login at this SHA; v3.3 did not say so. |
+| MT-3 | MEET | Community Webinar (community-host offer) | `/communities` | 0.7 | shipped. **Description corrected:** v3.3 called it a learner's webinar sign-up; the page's code header says it is an offer to community leaders (host a free Zone of Genius workshop for their members, revenue share). |
+| MT-4 | MEET | Mastermind (Fire Circle) | `/build/mastermind`; `/mastermind` → `/build/mastermind` | not rated | shipped, **not in v3.3**. Village place key `fire-circle`, named "Mastermind". |
+| CB-1 | COLLABORATE | Matchmaking | `/game/collaborate/matches` (auth) | 0.7 | shipped. `/game/collaborate`, `/game/teams`, `/game/matches` redirect to it. |
+| CB-2 | COLLABORATE | Connections and People | `/game/collaborate/connections`, `/game/collaborate/people`, `/game/collaborate/mission` (all auth) | 0.5 | shipped. `/connections`, `/game/mission`, `/community/people` redirect. |
+| CB-3 | COLLABORATE | Intros (Sasha's shortlist) | `/intros` | not rated | **found in code, undocumented.** Public page: people Sasha is seeking introductions to (code header). |
+| BD-1 | BUILD | Unique Business | `/game/me/genius-business`, `…/audience`, `…/promise`, `…/channels`, `…/vision` (me-gate) | 0.7 | shipped. Still routed under `/game/me`, as v3.3 said. |
+| BD-2 | BUILD | Unique Business Builder (UBB) and Canvas | `/ubb` plus 14 child routes; `/game/build/canvas`, `/game/build/my-business`, `/game/build/refine` (auth); `/game/me/canvas` (me-gate); `/my-artifacts` (auth); public outputs `/dossier/:slug`, `/page/:slugWithVersion` | Canvas 0.5, "planned" | shipped, **not in v3.3 as UBB**. The v3.3 "Unique Business Canvas" route `/game/build/canvas` now exists. The game blueprint says UBB has 13 steps; the code has 14 child routes (8 artifacts, 4 compound steps, landing page, dossier). Not reconciled. `/ubd/:slug` and `/ubl/:slugWithVersion` redirect to the public outputs. |
+| BD-3 | BUILD | Product Builder | `/game/build/product-builder` plus `icp`, `pain`, `promise`, `landing`, `blueprint`, `cta`, `published` (auth) | 0.7 | shipped. Seven steps confirmed. `/product-builder*` redirects here. |
+| BD-4 | BUILD | Business Incubator | none (`/game/build` → `/ubb`) | 0.3 | **no route (concept/retired?)**. The old start route is now a redirect to UBB. |
+| BD-5 | BUILD | Equilibrium (web, v2, with cycle journal) | `/build/equilibrium` (me-gate); `/equilibrium` → `/build/equilibrium`; `/preview/equilibrium-v2` | v2 1.0; v1 clock 0.9 | shipped. v3.3 listed v2 and the v1 clock as parallel rows; in this router `/equilibrium` forwards to v2. Whether the separate `equilibrium/` Vite app is still deployed: **not checked**. Cycle journal code: `src/modules/equilibrium` (`CycleJournalInput`, `PastCyclesSection`, `CyclePhaseStory`). `/mdls-preview` is in ST-6. |
+| BD-6 | BUILD | Founder Cockpit | `/build/cockpit`; `/build/cockpit/dashboard` (auth); `/build/cockpit/offers` (admin) | 0.9 / 0.7 | shipped, matches v3.3. `/cockpit`, `/cockpit/dashboard`, `/game/cockpit` redirect. The offers-board data note under the v3.3 matrix still applies; not re-checked. |
+| BD-7 | BUILD | Evolution Portal (brief: Client Evolution Portal) | `/products/evolution-portal`; `/products/evolution-portal/karime` | 0.7 / 0.5 | shipped. The Karime variant route is not behind login; v3.3 said "noindex", which was not re-checked. |
+| BD-8 | BUILD | Build Container (brief: BUILT) | `/products/built` | 0.5 | shipped. `/products/build` redirects. |
+| BD-9 | BUILD | The Crossing (brief: Entrepreneur's Evolution / The Crossing) | `/products/crossing` | not rated | shipped, **not in v3.3**. A sales page for the two-month transition program. |
+| BD-10 | BUILD | The Vector | `/products/vector` | not rated | shipped, **not in v3.3**. A sales page. |
+| BD-11 | BUILD | The Founder Read | `/products/founder-read` | not rated | shipped, **not in v3.3**. A page for an investor-facing instrument (code header). |
+| BD-12 | BUILD | Product-Market Fit Core | `/products/pmf-core` | not rated | shipped, **not in v3.3**. A page that explains the one-session format. |
+| BD-13 | BUILD | Ignite session (code: Productize Yourself Session; brief: Founder-Market Fit Private Session) | `/ignite`; `/game/marketplace/ignite` (auth) | not rated | shipped, **not in v3.3**. Three names for one page across code and brief; v4 does not pick one. |
+| BD-14 | BUILD | FMF Session pages | `/fmf`, `/human-market-fit` (same page); `/founder-market-fit` (category page) | 0.5 | shipped. |
+| BD-15 | BUILD | Products index | `/products` | not rated | shipped, **not in v3.3**. The public list of product pages. The brief says a public `/products/map` page will be built from brief §0; **no such route exists** at this SHA. |
+| BD-16 | BUILD | Commercial OS | `/built-by-you/commercial-os` (me-gate) | not rated | **found in code, undocumented.** The page embeds another app in a frame and passes it the signed-in session token. |
+| BD-17 | BUILD | Private client pages | `/sandra`, `/sergey`, `/oyi` (auth); `/build/karime`, `/build/karime/intake`, `/karima`, `/karime/bluelotus*` | not rated | **found in code, undocumented.** Pages made for named people; not platform modules. `/meet-karima`, `/meet-karime` redirect. |
+| BD-18 | BUILD | White-label proposal for a community | `/proposalforwegoodovahere` | not rated | **found in code, undocumented as a module.** One proposal page; the brief lists it as the landing of "White-label онбординг". |
+| BS-1 | BUY & SELL | Marketplace | `/game/marketplace`, `/game/marketplace/my-products` (auth); `/p/:slug`, `/mp/:slug`; `/marketplace/create-page`, `/my-page` (auth) | 0.5 | shipped. `/game/marketplace/browse` and `/marketplace*` are redirects (v3.3 gave browse as the start). Village place key `market`. |
+| BS-2 | BUY & SELL | Founders Showcase | none of its own (`/game/marketplace/founders` → `/game/marketplace`) | 0.7 | **redirect only.** The showcase cards (`FoundersShowcase.tsx`) now render inside `MarketplaceSpace`. `/founders` and `/founders/:slug` are now the admin founders index (SY-3), not the public showcase v3.3 described. |
+| BS-3 | BUY & SELL | The Originals (v1) | `/the-originals` (auth) | 0.5 | shipped. Behind login; v3.3 did not say so. |
+| TH-1 | Game | Town Hall (v0) | `/game/coop` | not rated | shipped, **not in v3.3**. The game blueprint (2026-10-27) called this route "a wrong redirect"; at this SHA it renders its own page (`CoopSpace`, "Town Hall v0, J13"). |
+| AI-1 | System | AI OS | `/ai-os`; `/ai-os/clarity`, `/ai-os/iteration`, `/ai-os/vibe-code`, `/ai-os/design`, `/ai-os/benchmark`, `/ai-os/work-with-us`; `/ai-upgrade` (auth) | not rated | shipped, **not in v3.3**. Twelve old paths (`/codex*`, `/prompt*`, `/ai-os/auth`, `/ai-os/pricing`, `/ai-os/profile`, `/ai-os/suites`) redirect into it. `/ai-upgrade` (a page of prompts users copy): found in code, undocumented. |
+| SY-1 | System | Holomap | `/holomap` (auth) | 0.7 | shipped. **Corrected:** v3.3 gave `/holomap` as public and `/game/holomap` as the in-platform route; at this SHA `/holomap` needs login and `/game/holomap` has no route. |
+| SY-2 | System | Dashboard | `/dashboard` | 0.5 | shipped. Public in the router. |
+| SY-3 | System | Admin and operations | `/admin`; `/admin/genius-offers`, `/admin/mission-participants`, `/admin/mission-sync`, `/admin/content`, `/admin/return-report`, `/genius-admin` (auth); `/founders`, `/founders/:slug`; `/modules`, `/modules/:slug` (admin); `/game/test-nav` (auth) | not rated | **found in code, undocumented.** `/modules` is the platform's own module list page (admin only). Access on `/admin`, `/founders*` is enforced inside the pages (`AdminGate`), not by the router. |
+| SY-4 | System | Onboarding and Tour | `/start` (auth) | 0.7 / 0.5 | Onboarding shipped. **Tour: no route (concept/retired?)**; v3.3 said "within onboarding" and v4 did not find a route for it. |
+| SY-5 | System | Account, sign-in and settings | `/auth`, `/auth/callback`, `/auth/reset-password`, `/.lovable/oauth/consent`; `/game/settings`; `/contact`, `/feedback` (auth); `/tools` (auth, redirect) | not rated | shipped, frame. `/settings`, `/profile`, `/game/me/settings` redirect to `/game/settings` or `/game/me`. `/feedback` is a testimonial collection page (code header). |
+| SY-6 | System | Public profiles and founder pages | `/:username` (last route, takes any single root path); `/profile/:userId`; `/sasha`, `/founder`, `/about/meet-the-founder` | not rated | shipped, frame. `/u/:username` redirects to `/:username`; `/aleksandr`, `/alexander`, `/integralevolution` redirect to `/sasha`. A root slug that matches no username shows the 404. |
+| ST-1 | Standalone | Equilibrium Bot (Telegram) | none in `src/App.tsx` | 0.9 | **no route** (it is a bot). Code present: `api/equilibrium-bot.ts`, `api/equilibrium-cron.ts`, edge functions `equilibrium-telegram`, `equilibrium-telegram-bot`, `equilibrium-cron`. Whether it runs today: **not checked**. |
+| ST-2 | Standalone | Art | `/art` (auth), `/art/:category` (auth); `/game/me/art` (me-gate) | 0.5 | shipped. **Corrected:** v3.3 said `/art/*` is publicly reachable; at this SHA both `/art` and `/art/:category` sit inside a `RequireAuth` layout route. |
+| ST-3 | Standalone | Transcriber | `/transcriber` (auth) | 0.5 | shipped. |
+| ST-4 | Standalone | Destiny | `/destiny` | 0.5 | shipped, public (matches v3.3). |
+| ST-5 | Standalone | Clock | none | 0.1 | **no route (concept/retired?)**, unchanged. |
+| ST-6 | Standalone | Public essays and thesis pages | `/1-pager`, `/landing`, `/monetization`, `/sohn`, `/web3`, `/you`, `/27`, `/license`, `/investor`, `/mdls-preview`, `/preview/testimonials` | not rated | **found in code, undocumented as modules.** Standalone public pages, not product modules. `/integral_theory_upgrade1` redirects to `/27`. |
+| TL-1 | Trust/Legal | Trust and Legal pages | `/data`, `/privacy`, `/terms` | 0.9 | shipped, matches v3.3. |
+| FR-1 | Frame | Skin preview and 404 | `/preview`; `*` | not rated | frame. `*` is the not-found page. |
+| UD-1 | — | Found in code, undocumented | `/intelligences`, `/genius-layer-matching`, `/m/:slug` (all auth) | not rated | **found in code, undocumented.** `MultipleIntelligences`, `GeniusLayerMatching`, `ModuleDetail`. v4 did not read them far enough to place them; they stay here until Sasha or Hark says where they belong. |
+
+### Seeds (specified or roadmapped, no code)
+
+| Seed | v4 check | Status |
+|---|---|---|
+| Quiz | **Promoted out of the seed list:** shipped, see ME-8. The spec files in `docs/specs/quiz/` are still the spec. | shipped |
+| Originals Index v2 | Only `/the-originals` (v1) is routed; no per-venture pages. | still a roadmap seed, no code |
+| Reflection Proposal automation | A search of `src/` for "reflection proposal" found nothing. | still a roadmap seed, no code |
+
+### Route coverage ledger (294 paths → 59 rows)
+
+Rows without a route (LN-6, ST-1, ST-5) are not in the ledger; 59 + 3 = 62 matrix rows. `↪` marks a redirect and shows its target. Access is shown only when it is not public.
+
+| ID | Paths | Of which redirects | Routes |
+|---|---|---|---|
+| AI-1 | 20 | 12 | `/ai-os`; `/ai-os/auth` ↪ `/ai-os`; `/ai-os/work-with-us`; `/ai-os/pricing` ↪ `/ai-os/work-with-us`; `/ai-os/profile` ↪ `/ai-os`; `/ai-os/benchmark`; `/ai-os/clarity`; `/ai-os/iteration`; `/ai-os/vibe-code`; `/ai-os/design`; `/ai-os/suites` ↪ `/ai-os`; `/codex` ↪ `/ai-os`; `/codex/auth` ↪ `/ai-os`; `/codex/pricing` ↪ `/ai-os/work-with-us`; `/codex/profile` ↪ `/ai-os`; `/prompt` ↪ `/ai-os`; `/prompt/auth` ↪ `/ai-os`; `/prompt/pricing` ↪ `/ai-os/work-with-us`; `/prompt/profile` ↪ `/ai-os`; `/ai-upgrade` (auth) |
+| BD-1 | 5 | 0 | `/game/me/genius-business` (me-gate); `/game/me/genius-business/audience` (me-gate); `/game/me/genius-business/promise` (me-gate); `/game/me/genius-business/channels` (me-gate); `/game/me/genius-business/vision` (me-gate) |
+| BD-10 | 1 | 0 | `/products/vector` |
+| BD-11 | 1 | 0 | `/products/founder-read` |
+| BD-12 | 1 | 0 | `/products/pmf-core` |
+| BD-13 | 2 | 0 | `/ignite`; `/game/marketplace/ignite` (auth) |
+| BD-14 | 3 | 0 | `/founder-market-fit`; `/human-market-fit`; `/fmf` |
+| BD-15 | 1 | 0 | `/products` |
+| BD-16 | 1 | 0 | `/built-by-you/commercial-os` (me-gate) |
+| BD-17 | 10 | 4 | `/sandra` (auth); `/sergey` (auth); `/oyi` (auth); `/build/karime`; `/build/karime/intake`; `/karima`; `/meet-karima` ↪ `/karima${location.search}${location.hash}`; `/meet-karime` ↪ `/karima${location.search}${location.hash}`; `/karime/bluelotus` ↪ `external static page`; `/karime/bluelotus/*` ↪ `external static page` |
+| BD-18 | 1 | 0 | `/proposalforwegoodovahere` |
+| BD-2 | 24 | 2 | `/dossier/:slug`; `/page/:slugWithVersion`; `/ubd/:slug` ↪ `/dossier/:slug`; `/ubl/:slugWithVersion` ↪ `/page/:slug`; `/game/me/canvas` (me-gate); `/my-artifacts` (auth); `/game/build/canvas` (auth); `/game/build/my-business` (auth); `/game/build/refine` (auth); `/ubb` (me-gate); `/ubb/uniqueness` (me-gate); `/ubb/myth` (me-gate); `/ubb/tribe` (me-gate); `/ubb/pain` (me-gate); `/ubb/promise` (me-gate); `/ubb/lead-magnet` (me-gate); `/ubb/value-ladder` (me-gate); `/ubb/specificity-matrix` (me-gate); `/ubb/session` (me-gate); `/ubb/marketing` (me-gate); `/ubb/distribution` (me-gate); `/ubb/communications` (me-gate); `/ubb/landing-page` (me-gate); `/ubb/dossier` (me-gate) |
+| BD-3 | 10 | 2 | `/game/build/product-builder` (auth); `/game/build/product-builder/icp` (auth); `/game/build/product-builder/pain` (auth); `/game/build/product-builder/promise` (auth); `/game/build/product-builder/landing` (auth); `/game/build/product-builder/blueprint` (auth); `/game/build/product-builder/cta` (auth); `/game/build/product-builder/published` (auth); `/product-builder` ↪ `/game/build/product-builder`; `/product-builder/*` ↪ `/game/build/product-builder` |
+| BD-4 | 1 | 1 | `/game/build` ↪ `/ubb` |
+| BD-5 | 3 | 1 | `/equilibrium` ↪ `/build/equilibrium`; `/build/equilibrium` (me-gate); `/preview/equilibrium-v2` |
+| BD-6 | 6 | 3 | `/build/cockpit`; `/build/cockpit/dashboard` (auth); `/build/cockpit/offers` (admin); `/cockpit` ↪ `/build/cockpit`; `/cockpit/dashboard` ↪ `/build/cockpit/dashboard`; `/game/cockpit` ↪ `/build/cockpit/dashboard` |
+| BD-7 | 4 | 2 | `/products/evolution-portal`; `/products/evolution-portal/karime`; `/products/evolution-protocol` ↪ `/products/evolution-portal`; `/product/evolution-portal` ↪ `/products/evolution-portal` |
+| BD-8 | 2 | 1 | `/products/built`; `/products/build` ↪ `/products/built` |
+| BD-9 | 1 | 0 | `/products/crossing` |
+| BS-1 | 9 | 3 | `/p/:slug`; `/mp/:slug`; `/marketplace` ↪ `/game/marketplace`; `/marketplace/browse` ↪ `/game/marketplace/browse`; `/marketplace/create-page` (auth); `/game/marketplace` (auth); `/game/marketplace/my-products` (auth); `/game/marketplace/browse` ↪ `/game/marketplace`; `/my-page` (auth) |
+| BS-2 | 1 | 1 | `/game/marketplace/founders` ↪ `/game/marketplace` |
+| BS-3 | 1 | 0 | `/the-originals` (auth) |
+| CB-1 | 4 | 3 | `/game/collaborate` ↪ `/game/collaborate/matches`; `/game/collaborate/matches` (auth); `/game/teams` ↪ `/game/collaborate`; `/game/matches` ↪ `/game/collaborate/matches` |
+| CB-2 | 6 | 3 | `/game/collaborate/connections` (auth); `/game/collaborate/mission` (auth); `/game/collaborate/people` (auth); `/connections` ↪ `/game/collaborate/connections`; `/game/mission` ↪ `/game/collaborate/mission`; `/community/people` ↪ `/game/collaborate/people` |
+| CB-3 | 1 | 0 | `/intros` |
+| FR-1 | 2 | 0 | `/preview`; `*` |
+| GM-1 | 10 | 6 | `/journey`; `/game` ↪ `/game/journey`; `/game/next`; `/game/next-move` ↪ `/game/journey`; `/game/next-move/*` ↪ `/game/journey`; `/game/next-move-v2` ↪ `/game/journey`; `/game/journey`; `/game/journey/start` ↪ `/zone-of-genius/entry`; `/game/journey/quest/:questId`; `/today` ↪ `/game/journey` |
+| GM-2 | 3 | 1 | `/map` ↪ `/village`; `/map-classic` (auth); `/village/:place?` |
+| GM-3 | 3 | 0 | `/`; `/home`; `/home2` |
+| LN-1 | 11 | 3 | `/activations`; `/activations/:slug`; `/activations/:slug/access`; `/grow` ↪ `/game/learn`; `/grow/activate-your-dormant-potential`; `/grow/consciousness-meets-science`; `/grow/activation-of-inner-vision`; `/academy/:slug`; `/game/learn`; `/game/transformation` ↪ `/game/learn`; `/game/transformation/*` ↪ `/game/learn` |
+| LN-2 | 4 | 0 | `/library`; `/library/:stepId`; `/game/learn/library` (auth); `/game/learn/library/:stepId` (auth) |
+| LN-3 | 5 | 0 | `/game/learn/paths` (auth); `/game/learn/path/:pathId` (auth); `/game/path/:pathId` (auth); `/skills` (auth); `/growth-paths` (auth) |
+| LN-4 | 4 | 0 | `/game/learn/today` (auth); `/character` (auth); `/next-move` (auth); `/next-move-v2` (auth) |
+| LN-5 | 4 | 1 | `/playbook`; `/playbook/discover` ↪ `/playbook`; `/playbook/:slug`; `/path` |
+| ME-1 | 26 | 6 | `/zone-of-genius` ↪ `/zone-of-genius/entry`; `/reveal` ↪ `/`; `/reveal/:slug` ↪ `/`; `/my-result`; `/activate-top-talent`; `/activate/welcome` ↪ `/game/me/zone-of-genius/start-here`; `/activate` ↪ `/game/me/zone-of-genius/start-here`; `/genius-offer` ↪ `/zone-of-genius/entry`; `/quiz2`; `/genius-offer-intake` (auth); `/game/me/zone-of-genius` (me-gate); `/game/me/zone-of-genius/:perspectiveId` (me-gate); `/game/learn/genius-assessment` (auth); `/game/learn/genius-assessment/step-1` (auth); `/game/learn/genius-assessment/step-2` (auth); `/game/learn/genius-assessment/step-3` (auth); `/game/learn/genius-assessment/step-4` (auth); `/resources/zog-intro-video` (auth); `/zone-of-genius/appleseed` (auth); `/zone-of-genius/excalibur` (auth); `/zone-of-genius/entry`; `/zone-of-genius/assessment`; `/zone-of-genius/assessment/step-1`; `/zone-of-genius/assessment/step-2`; `/zone-of-genius/assessment/step-3`; `/zone-of-genius/assessment/step-4` |
+| ME-2 | 6 | 0 | `/game/learn/qol-assessment` (auth); `/game/learn/qol-results` (auth); `/quality-of-life-map`; `/quality-of-life-map/assessment`; `/quality-of-life-map/results`; `/game/me/quality-of-life` (auth) |
+| ME-3 | 6 | 1 | `/zone-of-genius/mission`; `/mission`; `/discover-mission`; `/game/me/mission` (me-gate); `/mission-discovery` (auth); `/mission-discovery/wizard` ↪ `/mission-discovery` |
+| ME-4 | 3 | 0 | `/game/me/assets` (me-gate); `/asset-mapping` (auth); `/asset-mapping/wizard` (auth) |
+| ME-5 | 8 | 5 | `/game/me` ↪ `/game/me/zone-of-genius`; `/game/me/overview` (me-gate); `/game/me/profile` (me-gate); `/game/profile` ↪ `/game/me`; `/game/profile/*` ↪ `/game/me`; `/game/grow` ↪ `/game/me`; `/game/grow/*` ↪ `/game/me`; `/game/snapshot` (auth) |
+| ME-6 | 2 | 0 | `/game/learn/tests` (auth); `/resources/personality-tests` (auth) |
+| ME-7 | 1 | 0 | `/game/your-ai` |
+| ME-8 | 3 | 0 | `/hero`; `/quiz`; `/quiz/r/:id` |
+| MT-1 | 8 | 3 | `/game/meet`; `/game/meet/create` (auth); `/game/meet/my-rsvps` (auth); `/game/events` ↪ `/game/meet`; `/game/events/*` ↪ `/game/meet`; `/events` ↪ `/game/meet`; `/events/:id` (auth); `/events/community/:communityId` (auth) |
+| MT-2 | 2 | 0 | `/mens-circle` (auth); `/mens-circle/thank-you` (auth) |
+| MT-3 | 1 | 0 | `/communities` |
+| MT-4 | 2 | 1 | `/build/mastermind`; `/mastermind` ↪ `/build/mastermind` |
+| ST-2 | 3 | 0 | `/game/me/art` (me-gate); `/art` (auth); `/art/:category` (auth) |
+| ST-3 | 1 | 0 | `/transcriber` (auth) |
+| ST-4 | 1 | 0 | `/destiny` |
+| ST-6 | 12 | 1 | `/investor`; `/preview/testimonials`; `/27`; `/integral_theory_upgrade1` ↪ `/27`; `/license`; `/mdls-preview`; `/1-pager`; `/landing`; `/you`; `/web3`; `/monetization`; `/sohn` |
+| SY-1 | 1 | 0 | `/holomap` (auth) |
+| SY-2 | 1 | 0 | `/dashboard` |
+| SY-3 | 14 | 2 | `/admin/genius-offers` (auth); `/genius-admin` (auth); `/admin/mission-participants` (auth); `/admin/mission-sync` (auth); `/admin/content` (auth); `/admin/return-report` (auth); `/admin`; `/admin/dashboard` ↪ `/admin`; `/admin/grants` ↪ `/admin`; `/founders`; `/founders/:slug`; `/game/test-nav` (auth); `/modules` (admin); `/modules/:slug` (admin) |
+| SY-4 | 1 | 0 | `/start` (auth) |
+| SY-5 | 11 | 4 | `/auth`; `/auth/callback`; `/auth/reset-password`; `/.lovable/oauth/consent`; `/contact` (auth); `/feedback` (auth); `/tools` ↪ `ToolsRedirect`; `/profile` ↪ `/game/me`; `/settings` ↪ `/game/settings?tab=profile`; `/game/settings`; `/game/me/settings` ↪ `/game/settings?tab=profile` |
+| SY-6 | 9 | 4 | `/profile/:userId`; `/u/:username` ↪ `/:username`; `/founder`; `/about/meet-the-founder`; `/sasha`; `/aleksandr` ↪ `/sasha`; `/alexander` ↪ `/sasha`; `/integralevolution` ↪ `/sasha`; `/:username` |
+| TH-1 | 1 | 0 | `/game/coop` |
+| TL-1 | 3 | 0 | `/data`; `/privacy`; `/terms` |
+| UD-1 | 3 | 0 | `/intelligences` (auth); `/genius-layer-matching` (auth); `/m/:slug` (auth) |
+
+**Check:** the *Paths* column sums to 294. Frame and legal routes are inside this count: sign-in and settings (SY-5), public profiles (SY-6), skin preview and 404 (FR-1), Trust and Legal (TL-1). The 6 index routes and the layout route have no path and are not counted as paths.
+
+### What v3.3 said that was wrong at this SHA
+
+1. `/zone-of-genius` is a redirect; the door is `/zone-of-genius/entry` (ME-1).
+2. Daily Loop `/game/next-move` redirects to `/game/journey` (LN-4).
+3. `/quality-of-life` does not exist; the route is `/quality-of-life-map` (ME-2).
+4. Marketplace start `/game/marketplace/browse` is a redirect to `/game/marketplace` (BS-1).
+5. Founders Showcase: `/game/marketplace/founders` redirects, and `/founders` is the admin founders index (BS-2, SY-3).
+6. Business Incubator route `/game/build` is a redirect to `/ubb` (BD-4).
+7. Unique Business Canvas `/game/build/canvas`, marked "planned", exists (BD-2).
+8. `/holomap` needs login; `/game/holomap` has no route (SY-1).
+9. `/art` needs login (ST-2); `/mens-circle` and `/the-originals` also need login (MT-2, BS-3).
+10. `/equilibrium` forwards to `/build/equilibrium` (BD-5).
+11. Quiz is shipped, not "no code" (ME-8).
+12. Community Webinar is an offer to community hosts (MT-3).
+13. The Version Statistics table (28 modules, 186 items) is stale; v4 counts rows instead: 62 rows, 294 paths.
+
+---
+
+## 🌳 NESTING — module → submodules
+
+> **New in v4.** One line per node: what it does, in one plain sentence. IDs point to the v4 matrix. Where a sentence comes from a file name or a template rather than a screen I read, the node says *(from names)*. v3.1 submodule lists that v4 did not re-verify are named at the end of each branch, not repeated.
+
+### How the whole nests (four levels)
+
+```
+Platform
+ ├─ Frame            title screen, village map, sign-in, settings, legal   (not modules)
+ ├─ Top-level modules   one per matrix row below, grouped by Space
+ │    └─ Submodules      screens, steps and tools inside one module
+ │         └─ Journey steps J1…J13 cut across modules: each step is one module (or one slice of one) in the module form
+ └─ Products         built from modules, or services with no module  → see "Products × modules"
+```
+
+The **Village** places are not extra modules. Each place points at an existing module (`src/data/villagePlaces.ts`: "nothing here is a new module"), and the **Journey** is an ordered path through them.
+
+### ME — know yourself
+
+- **Unique Gift** (ME-1): finds the one thing you do best and says it in words that fit only you.
+  - **Entry** (`/zone-of-genius/entry`): the one public door into the test; old Top Talent URLs forward here.
+  - **ZoG assessment** (`/zone-of-genius/assessment`): four steps, pick ten talents, narrow to three, put them in order, generate the snapshot *(from names)*.
+  - **Appleseed**: the reveal, your top talent named in words.
+  - **Excalibur**: one sharp offer written from your Appleseed.
+  - **Perspectives** (`/game/me/zone-of-genius/:perspectiveId`): one saved-profile view per perspective, behind the deeper-access check. The list of perspectives was not re-read.
+  - **Top Talent Activation** (`/activate-top-talent`): the paid page that follows the reveal; buyers land on `/game/me/zone-of-genius/start-here` after paying (comment in `MeGate`).
+  - **Genius quiz** (`/quiz2`): a quiz version of the test; found in code, undocumented.
+  - **Art** (`/game/me/art`): a visual made from your profile. The issue lists it under Unique Gift; its link to standalone Art (ST-2) is **not confirmed in code**.
+  - *v3.1 submodules not re-verified:* Bullseye Sentence, Vibrational Key, Three Lenses, Appreciated For, Mastery Stages, Professional Activities, Roles and Environments, Complementary Partner, Monetization, Life Scene, Visual Codes, Elevator Pitch.
+- **Quality of Life** (ME-2): shows your real level and the one life domain that sets it.
+  - **Assessment** (`/quality-of-life-map/assessment`): you rate each domain of your life.
+  - **Results** (`/quality-of-life-map/results`): your level, private to you, and the weakest domain.
+  - **Priorities and Growth recipe**: page files exist (`QualityOfLifePriorities.tsx`, `QualityOfLifeGrowthRecipe.tsx`) but no route points at them at this SHA.
+- **Mission Discovery** (ME-3): helps you find what is yours to do in the world and commit to it.
+  - **Mission match and commit** (`/mission-discovery`): suggests missions from a database and saves the one you commit to *(v3.1: "800+ Mission Database", AI matching; not re-verified)*.
+  - **Closed door** (`/mission`, `/discover-mission`): shows why the module is closed until your top talent is saved.
+- **Resource Mapping** (ME-4): lists what you already hold (skills, relationships, experience) as an inventory.
+  - **Landing and Wizard** (`/asset-mapping`, `/asset-mapping/wizard`): the entry screen, then the guided entry of assets.
+- **Character Sheet / Your House** (ME-5): gathers your saved results in one place.
+  - **Overview** (`/game/me/overview`) and **Profile home** (`/game/me/profile`): the sheet and its rooms.
+  - **Snapshot** (`/game/snapshot`): a compact view of your character.
+- **Personality Tests** (ME-6): brings results from outside tests into your profile *(v3.1: MBTI, Enneagram, Human Design, Astrology imports; not re-verified)*.
+- **Your AI** (ME-7): a chat with an AI that already knows your top talent, and that can only suggest moves from a fixed list of real places and practices.
+  - **Four screens** (`src/modules/familiar/screens`): intro, ask, reveal, outro.
+  - **Button catalog** (`src/data/yourAiCatalog.ts`): the fixed list of moves the AI may offer; an entry is added only after its route exists.
+  - **Reveal from conversation**: runs the top talent reveal from what you have said so far.
+- **Transition Quiz** (ME-8): places you on the hero's path in about three questions.
+  - **Quiz** (`/quiz`): the questions and the score engine (`src/modules/transition-quiz/engine.ts`).
+  - **Result** (`/quiz/r/:id`): the saved result page, opened by its id.
+  - **Save my read**: keeps the result against an email (`SaveMyRead`, edge function `save-quiz-email`).
+  - **Hero quiz** (`/hero`): a four-line quiz version; found in code, undocumented.
+
+### LEARN — practices and paths
+
+- **Academy** (LN-1): the LEARN landing; shows the courses and where to start.
+  - **Course pages** (`/grow/activate-your-dormant-potential`, `/grow/consciousness-meets-science`, `/grow/activation-of-inner-vision`): one page per course.
+  - **Course sales** (`/academy/:slug`): the sales page for a course by its slug.
+  - **Activations** (`/activations`, `/activations/:slug`, `/activations/:slug/access`): an index, then a landing page and an access page for each. What an "activation" is as a product is not defined in this file.
+- **Library** (LN-2): practices you can do, with guided audio *(v3.1: 28 items; not re-verified)*.
+- **Growth Paths** (LN-3): five paths (Genius, Spirit, Mind, Emotions, Body), each a list of upgrades you take in order *(v3.1 counts; not re-verified)*.
+- **Daily Loop** (LN-4): older "what to do today" pages, replaced on the main routes by the Journey.
+  - **Today** (`/game/learn/today`, `/character`): up to three actions for the day (code header of `Today`).
+  - **Next-move hubs** (`/next-move`, `/next-move-v2`): the older recommendation screens.
+- **Playbook and Path** (LN-5): the method written out for anyone to read.
+  - **Playbook** (`/playbook`, `/playbook/:slug`): the full methodology, step by step.
+  - **Path** (`/path`): the whole seven-step path on one page, price ladder included, public.
+
+### GAME — the frame that runs the modules
+
+- **Journey and Quest Board** (GM-1): shows your one next move and keeps the record of what you have done.
+  - **Journey page** (`/game/journey`, `/journey`): the path and the next step.
+  - **Quest pages** (`/game/journey/quest/:questId`): one page per real-world quest; ids in `src/data/journeyModules.ts` are `webinar`, `mastermind`, `mastery-practice`, `first-price`, `first-sale`.
+  - **Next step** (`/game/next`): sends you to your next move after sign-in.
+  - **J1…J13**: the thirteen Journey steps, below.
+- **The Digital Village** (GM-2): the main game screen, a map where each place opens or stays closed by what you have saved.
+  - **Eleven places** (`VILLAGE_PLACES`; each is a pointer, not a module): Entry Portal → ME-1 · Home → ME-5 · Quest Board → GM-1 · Your AI → ME-7 · Café → MT-1 · Co-working → CB-1 · Mastermind → MT-4 · Academy → LN-1 · Workshop → BD-2 · Market → BS-1 · Town Hall → TH-1.
+  - **Place state rules** (`src/lib/placeState.ts`, rules in `villagePlaces.ts`): each place is closed, open, next, done or live, read from real saved events. Open to everyone: Entry Portal, Your AI, Café, Mastermind, Academy. Home and Quest Board open when your top talent is saved; Workshop when your mission is saved; Co-working when talent, mission and assets are saved; Market when an offer is saved; Town Hall when your first sale is recorded. (Blueprint §14.3 says Café opens with the mission; the code leaves it open to guests, so the code is followed here.)
+- **Title screen** (GM-3): the front door of the game.
+
+**The Journey, J1…J13** (numbers from `game_of_being_you.md` §14.2 and §17; "where" is the matrix row):
+
+| J | Step | Where | What it does |
+|---|---|---|---|
+| J1 | Zone of Genius (`find-top-talent`) | ME-1 | Names your top talent in one sentence and saves it to your account. |
+| J2 | Mission Discovery (`discover-mission`) | ME-3 | Helps you see what is yours to do and commit to it in your own words. |
+| J3 | Spectrum Reading (soul colours) | none | Not built: the blueprint marks it so and there is no route; the Home room stays faded. |
+| J4 | QoL Map (`assess-qol`) | ME-2 | Shows your real level, private to you, and the domain that sets it. |
+| J5 | Asset Mapping (`map-assets`) | ME-4 | Lays out what you already hold as an inventory. |
+| J6 | UBB uniqueness slice (`uniqueness-phrase`) | BD-2 (`/ubb/uniqueness`) | Turns your uniqueness into one phrase you can use to introduce yourself. |
+| J7 | UBB tagline slice (`tagline`) | BD-2, then BS-1 | Writes the tagline of your unique business, which opens your stall in the Market. |
+| J8 | Webinar (`webinar`) | GM-1 quest | Records that you came to the webinar, live or recorded. Webinar content waits for Sasha's plan (blueprint §17). |
+| J9 | Mastermind (`mastermind`) | MT-4, GM-1 quest | A two-session circle followed by a week to take one real step and report it. |
+| J10 | 21-day mastery practice (`mastery-practice`) | GM-1 quest | Records 21 check-ins. The practice itself is not written down in the repo (blueprint §17). |
+| J11 | First price (`first-price`) | GM-1 quest | You say your price to one real client and report it. |
+| J12 | First sale (`first-sale`); also Market and your stall | GM-1 quest, BS-1 | You report your first payment for your own offer; that opens Town Hall. The stall is your published offer at `/p/:slug`. |
+| J13 | Town Hall | TH-1 (`/game/coop`) | v0 page for residents' income and your voice (blueprint §14.5); the page exists at this SHA. |
+| opt | Oracle Reading (deeper top-talent view, `deeper-access`) | ME-1 | Not a numbered step: the deeper reading behind the deeper-access check. |
+
+### COLLABORATE and MEET — other people
+
+- **Events** (MT-1): lists events and lets people create and join them.
+  - **Events home** (`/game/meet`): the list of upcoming events; open to guests, the personal parts need sign-in.
+  - **Create** (`/game/meet/create`) and **My RSVPs** (`/game/meet/my-rsvps`): make an event, see the ones you joined.
+  - **Event detail** (`/events/:id`) and **Community events** (`/events/community/:communityId`): one event, and the events of one community.
+- **Men's Circle** (MT-2): a registration page for a men's circle, with payment *(v3.1: landing, Stripe payment, registration flow)*.
+- **Community Webinar** (MT-3): an offer page asking community leaders to host a workshop for their members.
+- **Mastermind** (MT-4): the sales page for the live Founder-Market Fit Discovery Mastermind.
+- **Matchmaking** (CB-1): finds people who match you and sends an introduction.
+  - **Matches** (`/game/collaborate/matches`): your matches *(v3.1 kinds: genius match, complementary, resource, mission; not re-verified)*.
+- **Connections and People** (CB-2): shows who you are connected to and who else is on the platform.
+  - **Connections**, **People directory**, **Mission selection** (`/game/collaborate/connections|people|mission`): the three sub-pages.
+- **Intros** (CB-3): a public list of people Sasha wants to be introduced to.
+
+### BUILD — make something people can buy
+
+- **Unique Business** (BD-1): describes the business that grows from your gift.
+  - **Audience** (ICP), **Promise**, **Channels**, **Vision** (`/game/me/genius-business/…`): who it is for, what changes for them, where you reach them, where it is going *(from names)*.
+- **Unique Business Builder (UBB) and Canvas** (BD-2): builds a founder's whole business, one artifact at a time, and publishes it.
+  - **Canvas overview** (`/ubb`): the index of all steps.
+  - **Eight artifacts** (`/ubb/uniqueness|myth|tribe|pain|promise|lead-magnet|value-ladder|specificity-matrix`): uniqueness, the founder's story, who it is for, what hurts for them, the before-and-after promise, a free first offer, the ladder of offers, a score of how specific each artifact is *(from names and `unique-business-canvas.md`; screens not re-read)*.
+  - **Four compound steps** (`/ubb/session|marketing|distribution|communications`): the session script, how the offer is expressed, how it reaches buyers, the texts the business speaks through *(from names)*.
+  - **Landing page** (`/ubb/landing-page`) and **Dossier** (`/ubb/dossier`): turn the artifacts into a page and a dossier.
+  - **Public outputs** (`/dossier/:slug`, `/page/:slugWithVersion`): the published dossier and landing page anyone can open.
+  - **Canvas pages** (`/game/build/canvas`, `/game/build/my-business`, `/game/build/refine`, `/game/me/canvas`) and **My artifacts** (`/my-artifacts`): the older canvas screens and the list of saved artifacts, read from `user_business_artifacts`.
+- **Product Builder** (BD-3): takes an idea to a published product in seven steps.
+  - **icp, pain, promise, landing, blueprint, cta, published** (`/game/build/product-builder/…`): who it is for, what hurts, the promise, the page, the product outline, the call to action, the live result *(from names)*.
+- **Equilibrium** (BD-5): plans your work by natural cycles instead of the clock.
+  - **Cycle plan** (`phasePlan.ts`, `cycleSegments.ts`): the day, week, month and quarter as nested cycles *(from names)*.
+  - **Cycle journal** (`CycleJournalInput`, `PastCyclesSection`, `CyclePhaseStory`): you write what happened in each cycle, and read past cycles.
+  - **PDF export** (`generateEquilibriumPdf.ts`): a printable version of your plan.
+  - **Telegram bot** (ST-1): daily energy readings by message, outside the web app.
+- **Founder Cockpit** (BD-6): shows the founder and the business as one operating screen.
+  - **Landing**, **Dashboard** (auth), **Offers board** (admin): the entry, the four-button console, the offers list.
+- **Evolution Portal** (BD-7): a client-facing page where a practitioner's clients can see how they move.
+  - **Base page** and **Karime variant** (`/products/evolution-portal`, `…/karime`): the general offer, and a version written for one person.
+- **Build Container / BUILT** (BD-8): the page for the three-week program that packages an offer and finds first clients.
+- **Product pages** (BD-9 The Crossing, BD-10 The Vector, BD-11 The Founder Read, BD-12 PMF Core): one sales or explainer page per product; the work itself is done in sessions, not in the platform.
+- **Ignite session** (BD-13): the purchase page for the two-hour one-to-one session.
+- **FMF pages** (BD-14): the landing and booking pages for the founder-market-fit session (v3.3: landing, booking flow, session method).
+- **Products index** (BD-15): the public list of product pages.
+- **Commercial OS** (BD-16): opens another app inside the platform and hands it your sign-in.
+- **Private client pages** (BD-17) and **White-label proposal** (BD-18): pages made for specific people or communities; not reusable modules.
+- **Business Incubator** (BD-4): no route (concept/retired?).
+
+### BUY & SELL and Town Hall
+
+- **Marketplace** (BS-1): lets people list offers and lets visitors find them.
+  - **Market home** (`/game/marketplace`, auth): browse offers; the Founders Showcase cards render here (BS-2).
+  - **My products** (`/game/marketplace/my-products`): the offers you have listed.
+  - **Creator page** (`/p/:slug`) and **Product page** (`/mp/:slug`): your public stall and one offer's page.
+  - **Page editor** (`/my-page`, `/marketplace/create-page`): edit your public page.
+- **Founders Showcase** (BS-2): shows founders' canvases as cards; now inside the Marketplace, no route of its own.
+- **The Originals v1** (BS-3): a hardcoded list of three founders.
+- **Town Hall** (TH-1): v0 page for the collective: residents' income and your voice.
+
+### System, standalone, trust
+
+- **AI OS** (AI-1): sells and explains a set of AI working systems (clarity, iteration, vibe-code, design) with a benchmark and a work-with-us page *(from route names and file layout; pages not read in full)*.
+- **Holomap** (SY-1): shows the whole system as a map of perspectives and stages (`MorphogeneticHolomap`).
+- **Dashboard** (SY-2): shows how the venture is building, for the person and for the whole.
+- **Admin and operations** (SY-3): tools for the team, including the module list (`/modules`).
+- **Onboarding** (SY-4): the first-run flow after sign-in. **Tour**: no route (concept/retired?).
+- **Account, sign-in and settings** (SY-5) and **Public profiles** (SY-6): frame pages, no submodules.
+- **Art** (ST-2): a gallery of art by category (`/art`, `/art/:category`).
+- **Transcriber** (ST-3): turns a video into a text transcript (v3.3 master result).
+- **Destiny** (ST-4): a public page; its purpose is "TBD" in v3.3 and v4 did not settle it.
+- **Equilibrium Bot** (ST-1): see Equilibrium. **Clock** (ST-5): no route.
+- **Public essays and thesis pages** (ST-6): standalone pages that state the thesis, the monetization model and the founder's note; no submodules.
+- **Trust and Legal** (TL-1): a plain-language data promise, privacy policy and terms.
+
+---
+
+## 🧩 PRODUCTS × MODULES
+
+> **Superseded by the Crosswalk below (brief v1, 2026-11-17); kept for history.** This table was built on brief §0 v0.
+>
+> **New in v4.** One row per product in `docs/04-products/product_brief.md` §0 (§0.1 has 12 rows, §0.2 has 9, §0.3 has 3: **24 rows**). Module IDs are from the v4 matrix. "Service, no platform module" means the product is delivered by a person, a call or an outside tool, and the platform has no module that carries it. Brief §0 is a v0 draft by Hark (2026-11-17); where the brief and this table disagree, the brief wins on product facts and this file wins on module facts. Prices are in the brief, not here.
+
+| Brief § | Product (as in the brief) | Built from (platform modules) | Notes |
+|---|---|---|---|
+| 0.1 · 0 | Тест «Где я на пути героя» | ME-8 Transition Quiz | Landing `/quiz`. |
+| 0.1 · 0 | Direction Call | Service, no platform module | A 45-minute call booked through an outside calendar link (brief). |
+| 0.1 · 1 | Зона Гениальности | ME-1 Unique Gift | The free reveal and the assessment run in the platform. The paid online form maps to `/activate-top-talent` (a code header calls it the Top Talent Activation product; matching it to this brief row is **my inference**). The 1:1 and team workshop forms are services. The brief's landing is an outside page. |
+| 0.1 · 2 | Founder-Market Fit (Private Session / Mastermind) | BD-13 Ignite session, MT-4 Mastermind, BD-14 FMF pages | The sessions themselves are live, not in the platform; the platform carries the pages that sell and schedule them. Code names the session "Productize Yourself Session". |
+| 0.1 · 2b | Product-Market Fit Core | BD-12 PMF Core | One session; the page explains it. |
+| 0.1 · 3 | Product-Market Fit | Service, no platform module | The brief lists no landing. |
+| 0.1 · 3b | BUILT | BD-8 Build Container | Page `/products/built`. |
+| 0.1 · 4 | Entrepreneur's Evolution / The Crossing | BD-9 The Crossing | The brief itself flags the two names (§0.6, item 4). |
+| 0.1 · 4b | The Vector | BD-10 The Vector | Page `/products/vector`; sessions are live. |
+| 0.1 · 5 | Sovereign Founder Collective | Service, no platform module | No landing. The nearest game place is Town Hall (TH-1, v0); that it is the same thing is **not stated** anywhere I read. |
+| 0.1 · 6 | Провожу для твоих клиентов | Service, no platform module | A revenue-share arrangement. |
+| 0.1 · 7 | Лицензия | Service, no platform module | A licence on revenue share. The code has white-label skins (`SkinProvider`); whether a licensee gets them is **not stated** in the brief. |
+| 0.2 | Высокоточный Бизнес Профиль | ME-1 Unique Gift (uncertain) | The brief gives landing `/` (GM-3, the title screen) and a 5–10 minute online self-description. Which module produces it is **not stated**; ME-1 is the closest by the brief's wording. Sasha or Hark to confirm. |
+| 0.2 | Мэтчмейкинг | CB-1 Matchmaking, CB-2 Connections and People | Landing `/game/collaborate/matches`. |
+| 0.2 | White-label онбординг | BD-18 White-label proposal, ME-1 Unique Gift, CB-1 Matchmaking | The brief says each member gets a profile and matching inside the community. The proposal page lists the uniqueness-scanner modules among what is set up. |
+| 0.2 | Deep AI training | Service, no platform module | A workshop. AI OS pages (AI-1) exist; a link to this product is **not stated**. |
+| 0.2 | Equilibrium | BD-5 Equilibrium (web), ST-1 Equilibrium Bot | Landing `/build/equilibrium`. |
+| 0.2 | Mystery School for Founders | Service, no platform module | A cohort sold on an outside site; the brief says it combines most products. |
+| 0.2 | Founder Cockpit | BD-6 Founder Cockpit | Landing `/build/cockpit`. |
+| 0.2 | Your AI | ME-7 Your AI | Landing `/game/your-ai`. |
+| 0.2 | Spiritual Practice with Cannabis (не публикуем) | Service, no platform module | Hidden from `/products`. |
+| 0.3 | Client Evolution Portal | BD-7 Evolution Portal | Landing `/products/evolution-portal`. |
+| 0.3 | The Founder Read | BD-11 The Founder Read | Landing `/products/founder-read`. |
+| 0.3 | Venture Studio | Service, no platform module | By invitation; no landing. |
+
+**Count check:** 24 product rows in the brief, 24 rows here. 15 have a platform module (one of them, Высокоточный Бизнес Профиль, is uncertain); 9 are services with no platform module. Modules that no brief product names include the Journey and Village frame (GM-1, GM-2, TH-1), the LEARN modules (LN-1 to LN-5), Events and Men's Circle (MT-1, MT-2, MT-3), the UBB and Product Builder branch (BD-1 to BD-3), Marketplace (BS-1 to BS-3), Holomap and Dashboard (SY-1, SY-2), AI OS, Art, Transcriber and Destiny. They are the game and platform the products sit inside.
+
+---
+
+## 🔀 CROSSWALK — shift → product → module → game step
+
+> **New in v4 (addition approved by Sasha, 2026-11-17).** One table that joins four views of the same thing: the **shift** a person gets, the **product** that sells it, the **platform module** that carries it, and the **game step** (J1…J13) that gives the same shift for free, in solo form. It reads `product_brief.md` §0 **v1** (Sasha's edits of 2026-11-17: product families are level-1 modules, sub-products are level 2) and `game_of_being_you.md` §17. It **supersedes** the v0 "Products × modules" table above, which was built on brief v0 (24 rows) and is kept for history. Prices are not here: they live in the brief, and the public list is `/products`.
+
+**The join key.** Each product has one stable key, the `id` used in `src/data/productMap.ts` (issue #340). That file is **not on `main` at this SHA**; its keys were read from branch `claude/issue-340-20261117-1831` at commit `9745de4`, where it mirrors brief **v0**. Brief v1 changed the product list, so the Key column says which case each key is:
+- **file** = the key already exists in `productMap.ts` and the product is unchanged in v1.
+- **proposed** = the brief v1 has this product but `productMap.ts` has no matching key. The key is the product's brief name in lower-case with hyphens (the two examples Sasha gave, `build` and `fmf-session`, follow that rule). Sasha or Hark to confirm; the file will need re-keying to v1.
+- **v0 keys that v1 retires:** `zog` (split into `top-talent`, `top-talent-course`, `zog-session`, `zog-teams`), `fmf` (split into `fmf-session`, `fmf-mastermind`), `pmf` and `built` (v1 has one container, `build`), `venture-studio` (v1 says "Sovereign Founder Collective (= Venture Studio)", key `collective`).
+
+**How to read the columns.**
+- **Module** = what the product is built from or sold through (IDs from the v4 matrix). "none (service)" = delivered by a person, a call or an outside tool.
+- **Game step** = the Journey step (or village place) that carries the *same shift* in solo form, from §17. "none" = no step carries it. A step marked *nearest* is my reading; the docs do not say the two are the same thing.
+- **Gap** = ⚠ marks a hole: a product with no module, a product with no game step, or a doubt about the match.
+
+### The two entry lines
+
+Two paths into the ladder; both start at the front door (`quiz` → `direction-call`).
+
+| Line | For | Path (keys) | Modules | Game steps |
+|---|---|---|---|---|
+| **Business** | someone who wants a product that sells | `fmf-session` / `fmf-mastermind` → `build` → `collective` | BD-13, BD-14 / MT-4 → BD-8 → none (service) | J6, J9 → J6, J7, J11, J12 → J13 *(nearest)* |
+| **Person** | someone in transition who wants to become themselves | `top-talent` → `crossing` → `vector` | ME-1 → BD-9 → BD-10 | J1 → none → none |
+
+What the two lines show:
+- The **business line** follows the Journey: J6 and J7 (uniqueness phrase, tagline), J9 (Mastermind), J11 and J12 (first price, first sale), and J13 (Town Hall) at the end. Its last stop, `collective`, has **no module**; Town Hall is the nearest game place, and no document says they are the same thing.
+- The **person line** leaves the game after J1. `crossing` and `vector` have a sales page each (BD-9, BD-10) but **no game step**: the deeper work is live sessions.
+
+### The crosswalk
+
+Level 1 = a product family (a level-1 module in the brief's words); level 2 = a sub-product. Rows follow the brief's order.
+
+| Shift (what changes for the person) | Key | Product (brief v1) | Module | Game step | Gap |
+|---|---|---|---|---|---|
+| Sees their stage on the hero's path, its obstacles and what leads next | `quiz` · file | Тест «Где я на пути героя» | ME-8 Transition Quiz (`/quiz`) | none; it is a door before the game | ⚠ no game step |
+| Sees what they grow out of, what they grow into, and the direction | `direction-call` · file | Professional Direction Call | none (service; outside calendar link) | none | ⚠ no module, no game step |
+| **Family 1: Top Talent** (level 1) · talent named in precise words | | | ME-1 Unique Gift | J1 Zone of Genius | |
+| Talent named in words | `top-talent` · proposed | 1a · Top Talent (free) | ME-1 (`/zone-of-genius/entry`, assessment, Appleseed) | **J1** | none |
+| Walks their own reveal step by step and learns to express the talent | `top-talent-course` · proposed | 1b · Deep Top Talent Reveal (course in the Academy) | ⚠ uncertain: the brief says a Notion programme (outside the platform). In code, `/activate-top-talent` (paid Top Talent Activation, ME-1) and the "Oracle Reading" (`deeper-access`) sit behind the same deeper-access check; which one this product is, is **not stated** | none numbered; the Oracle Reading is "opt" in §17 (*nearest*) | ⚠ module match unconfirmed |
+| Uniqueness named and lived in a conversation with a master | `zog-session` · proposed | 1c · Zone of Genius Session (1:1) | none (service) | J1 (*nearest*: same talent, deeper path) | ⚠ no module |
+| Each team member named, roles by gifts | `zog-teams` · proposed | 1d · Zone of Genius for Teams | none (service). MT-3 Community Webinar is an offer to community hosts for a free workshop; that it is this product is **not stated** | none | ⚠ no module, no game step |
+| **Family 2: Founder-Market Fit** (level 1) · value, ideal client, pain, promise, product outline and USP in one sentence | | | BD-13, BD-14, MT-4 | J6, J9 | |
+| Same, in a 2-hour 1:1 session | `fmf-session` · proposed | 2a · FMF Private Session | BD-13 Ignite session (`/ignite`; code name "Productize Yourself Session"), BD-14 FMF pages | J6 uniqueness phrase (*nearest*); `/ignite` is a Market item in §17.2, not a numbered step | ⚠ no numbered step of its own |
+| Same, in a small group | `fmf-mastermind` · proposed | 2b · FMF Mastermind | MT-4 Mastermind (`/build/mastermind`) | **J9** Mastermind | none |
+| For whom, what changes, why they will want it, one phrase (for a technology) | `pmf-core` · file | 3 · Product-Market Fit Discovery | BD-12 PMF Core (`/products/pmf-core`) | none | ⚠ no game step |
+| Direction → offer → first clients → strategy → MVP → beta → first sale | `build` · proposed | 4 · Контейнер BUILD | BD-8 Build Container (`/products/built` now; the brief wants `/products/build`). Related, **not stated** in the brief as parts of it: BD-2 UBB, BD-3 Product Builder, BS-1 Marketplace | J6 uniqueness phrase, J7 tagline, J11 first price, J12 first sale (*nearest*: the solo form of the same shift) | ⚠ the container is delivered by calls; no step is "the container" |
+| Their own brand (a unique business) in months, not years | `crossing` · file | 5 · The Crossing (earlier name: Entrepreneur's Evolution) | BD-9 The Crossing (`/products/crossing`) | none | ⚠ no game step |
+| A shift on 3–5 parameters they name, measured three times | `vector` · file | 5b · The Vector | BD-10 The Vector (`/products/vector`) | none | ⚠ no game step |
+| They build together and self-organize | `collective` · file | 6 · Sovereign Founder Collective (= Venture Studio) | none (service; no landing) | J13 Town Hall, TH-1 (*nearest*; same thing **not stated**) | ⚠ no module |
+| The whole path for their own clients | `for-your-clients` · file | 7 · Провожу для твоих клиентов | none (service) | none | ⚠ no module, no game step |
+| Leads the programme themselves | `license` · file | 8 · Лицензия | none (service) | none | ⚠ no module, no game step |
+| A precise self-profile for AI, opportunities, co-founders | `profile` · file | Высокоточный Бизнес Профиль | ⚠ not stated; ME-1 is closest by wording; the brief's landing `/` is the title screen (GM-3) | J6 uniqueness phrase (*nearest*: the J6 technology is "self-description quality") | ⚠ module match unconfirmed |
+| Meets a fitting co-founder | `matchmaking` · file | Мэтчмейкинг | CB-1 Matchmaking, CB-2 Connections and People | none numbered; the places Café (MT-1) and Co-working (CB-1) carry it (§17.2) | ⚠ no numbered step |
+| Every member of a community revealed, with profile and matching inside | `white-label` · file | White-label онбординг | BD-18 White-label proposal, ME-1, CB-1 | none | ⚠ no game step |
+| Understanding of AI for years ahead | `ai-training` · file | Deep AI training | none (service). AI-1 AI OS exists; a link is **not stated** | none | ⚠ no module, no game step |
+| Planning by cycles, plus a simple task manager | `equilibrium` · file | Equilibrium | BD-5 Equilibrium (web, cycle journal), ST-1 Equilibrium Bot | none (not part of the game) | ⚠ no game step |
+| Most of the line in one group | `mystery-school` · file | Mystery School for Founders | none (service; outside site) | none | ⚠ no module, no game step |
+| The venture and the person seen as one system | `cockpit` · file | Founder Cockpit | BD-6 Founder Cockpit | none | ⚠ no game step |
+| Deep readings by AI (the brief says "function to be clarified") | `your-ai` · file | Your AI | ME-7 Your AI | none numbered; place `oracle`, named "Your AI" (§17.2) | ⚠ no numbered step |
+| Quality of life, vitality, mystical experience | — (not public, not in `productMap.ts`) | Spiritual Practice with Cannabis (not published) | none (service) | none | ⚠ no module, no game step; hidden from `/products` |
+| Clients see how their lines move | `evolution-portal` · file | Client Evolution Portal | BD-7 Evolution Portal | none | ⚠ no game step |
+| FMF and the hero's-journey chapter read before the cheque | `founder-read` · file | The Founder Read | BD-11 The Founder Read | none | ⚠ no game step |
+
+**Count check against brief §0 v1:** §0.1 has 15 product rows (the two front-door products, 1a–1d, 2a–2b, and rows 3, 4, 5, 5b, 6, 7, 8) under two family headings (Top Talent, Founder-Market Fit); §0.2 has 9; §0.3 has 2. That is **26 products** and 28 table rows with the two family headings. Keys: 18 `file` (`quiz`, `direction-call`, `pmf-core`, `crossing`, `vector`, `collective`, `for-your-clients`, `license`, `profile`, `matchmaking`, `white-label`, `ai-training`, `equilibrium`, `mystery-school`, `cockpit`, `your-ai`, `evolution-portal`, `founder-read`), 7 `proposed` (`top-talent`, `top-talent-course`, `zog-session`, `zog-teams`, `fmf-session`, `fmf-mastermind`, `build`), and 1 product with no key (cannabis, not public). 18 + 7 + 1 = 26.
+
+### Game step → product (the reverse view)
+
+Every J-step, so a step with no product shows up too.
+
+| J | Step | Product that sells the same shift | Gap |
+|---|---|---|---|
+| J1 | Zone of Genius | `top-talent` (free); `zog-session` (*nearest*) | none |
+| J2 | Mission Discovery | none | ⚠ step with no product |
+| J3 | Spectrum Reading | none (module not built) | ⚠ no module, no product |
+| J4 | QoL Map | none | ⚠ step with no product |
+| J5 | Asset Mapping | none | ⚠ step with no product |
+| J6 | UBB uniqueness slice | `build` and `fmf-session` (*nearest*); `profile` (*nearest*) | the paid products are live; the step is the solo form |
+| J7 | UBB tagline slice | `build` (*nearest*) | same |
+| J8 | Webinar | none | ⚠ step with no product (copy waits for Sasha's plan, §17) |
+| J9 | Mastermind | `fmf-mastermind` | none |
+| J10 | 21-day mastery practice | none | ⚠ step with no product; the practice is not written down (§17) |
+| J11 | First price | `build` (*nearest*) | same as J6 |
+| J12 | First sale | `build` (*nearest*) | same as J6 |
+| J13 | Town Hall | `collective` (*nearest*) | ⚠ the product has no module |
+
+### Gaps in one place
+
+- **Products with no module (services):** `direction-call`, `zog-session`, `zog-teams`, `collective`, `for-your-clients`, `license`, `ai-training`, `mystery-school`, and the unpublished cannabis product (9). Two more have a module match that is **not confirmed**: `top-talent-course`, `profile`.
+- **Products with no game step:** `quiz`, `direction-call`, `zog-teams`, `pmf-core`, `crossing`, `vector`, `for-your-clients`, `license`, `white-label`, `ai-training`, `equilibrium`, `mystery-school`, `cockpit`, cannabis, `evolution-portal`, `founder-read`. Eight more have only a *nearest* step or a village place, not a numbered step of their own: `zog-session`, `fmf-session`, `build`, `collective`, `matchmaking`, `your-ai`, `top-talent-course`, `profile`.
+- **Game steps with no product:** J2, J3, J4, J5, J8, J10. These are the free steps that fill Your House; the brief names no product for them.
+- **Modules with no product in brief §0:** Mission Discovery (ME-3), Quality of Life (ME-2), Resource Mapping (ME-4), Character Sheet (ME-5), Personality Tests (ME-6); the whole LEARN Space (LN-1 to LN-5); Journey, Village and the title screen as products (GM-1, GM-2; GM-3 appears only as a landing); Events, Men's Circle and Community Webinar (MT-1, MT-2, MT-3); Intros (CB-3); Unique Business, UBB and Product Builder (BD-1 to BD-3); Commercial OS (BD-16); Marketplace and The Originals (BS-1 to BS-3); Town Hall (TH-1); AI OS (AI-1); Holomap, Dashboard and admin (SY-1 to SY-3); Art, Transcriber and Destiny (ST-2 to ST-4). Some are the game itself and need no product; **Men's Circle** (it has its own sale page), **AI OS** (it sells AI working systems) and **UBB** (a strong shift in §17.3 with no named product) are the three where a missing brief row is worth Sasha's look.
+- **Mismatch to fix elsewhere (not in this file):** `src/data/productMap.ts` mirrors brief v0; brief v1 needs the re-keying above. The public `/products/map` page (#340) is on a branch, not on `main`.
+
+---
+
+## 🔌 MODULE INTERFACE
+
+> **New in v4, short.** For each top-level module: what it takes in, what it hands out, and what it opens. *Inputs and outputs* are the saved records named in code or in the game blueprint; "—" means none that I could confirm. *Unlocks* comes from `src/data/villagePlaces.ts` and the blueprint's unlock table (§14.3). The last column marks a **plug-in candidate**:
+> - **W** = could be white-labeled (our module under another project's name).
+> - **X** = could be contributed by an external project (their module plugged into ours).
+> - **—** = frame or core; not offered.
+>
+> These marks are **my read, for Sasha and Hark to confirm**; no terms are defined here ("on set terms" is still open). Test used: the module works without another module's saved result, has one clear input and one output, and has a route of its own. Evidence that the platform already does this: white-label skins and scoped deployments (`SkinProvider`, the `*ScopeLock` components in `App.tsx`), the white-label proposal page (BD-18), community events (`/events/community/:communityId`), per-creator pages (`/p/:slug`, `/mp/:slug`), and the Your AI button catalog, which accepts a new entry once its route exists.
+>
+> **What an external module would have to be:** one place in the module form (Intro → one button → result → Outro, `docs/templates/module-form.md`), one real result saved to the player, and a rule for when it opens (the place-state rule). That is the contract the rows below describe for our own modules.
+
+| Module | Inputs | Outputs | Unlocks | Plug-in |
+|---|---|---|---|---|
+| ME-1 Unique Gift | Your answers (talent choices, or a conversation with Your AI) | Top talent snapshot (`zog_snapshots`), Appleseed reveal, Excalibur offer | Home and Quest Board (J1 done) | W: the white-label proposal sells the scanner |
+| ME-2 Quality of Life | Your ratings by life domain | QoL snapshot (`qol_snapshots`), your level | — | W |
+| ME-3 Mission Discovery | Top talent recommended, not required by the module | A committed mission | Workshop (J2 done) | W |
+| ME-4 Resource Mapping | Your assets, entered or suggested | Asset list (`user_assets`) | With talent and mission, opens Co-working | W |
+| ME-5 Character Sheet | Everything saved by ME-1 to ME-4 and the Journey | One page that gathers it, and the victories list | Next room of Home | — |
+| ME-6 Personality Tests | Results from outside tests | Imported results on your profile | — | X: natural slot for an outside assessment |
+| ME-7 Your AI | Your saved profile, your questions, a daily limit | A reply with buttons from the fixed catalog; a reveal from conversation | Routes and practices named in the catalog | X: a new catalog entry once its route exists |
+| ME-8 Transition Quiz | Three answers, optionally an email | A shareable result page (`/quiz/r/:id`), a saved read | Entry to Direction Call and the rest of the ladder (brief §0.1) | W |
+| LN-1 Academy | Your choice of course | Course progress | Course pages and access pages | X: courses from other projects |
+| LN-2 Library | Your choice of practice | A completed practice | — | X |
+| LN-3 Growth Paths | Onboarding, your picks | Step completions on five paths | Next upgrade on a path | X: upgrades can be of type "module" |
+| LN-5 Playbook and Path | — (public) | A readable method | — | — |
+| GM-1 Journey and Quest Board | Real saved events and your self-reports | Victories (`journey_victories`), the next move | Every place's open state | — |
+| GM-2 Village | The save file | A map with each place's state | — | — |
+| MT-1 Events | Event details; RSVP | Events, RSVPs | — | X: communities already have their own event list |
+| MT-4 Mastermind | Registration | Attendance; a reported real step (J9) | — | — |
+| CB-1 Matchmaking | Top talent and assets (v3.3 dependencies: ZoG, Resources) | Matches, introductions | — | W: the brief puts matching inside white-label onboarding |
+| CB-2 Connections and People | A completed profile | Connection requests, a people directory | — | — |
+| BD-1 Unique Business | Top talent complete | Audience, promise, channels, vision | — | W |
+| BD-2 UBB and Canvas | Top talent (fills the uniqueness section, v3.3) | Eight artifacts, four compound steps, landing page, dossier (`user_business_artifacts`) | Market opens when an offer is saved | W |
+| BD-3 Product Builder | A unique business recommended | A published product page | — | W |
+| BD-5 Equilibrium | Your date of birth for the bot; your journal entries | Cycle plan, journal, PDF | — | W: standalone, no dependencies (v3.3) |
+| BD-6 Founder Cockpit | Sign-in; live Equilibrium state; a CRM snapshot for the offers board | A one-screen operating view | — | — |
+| BD-7 Evolution Portal | A practitioner and their clients | A client-facing portal page | — | W: it exists to be configured for someone else's clients |
+| Product pages BD-8 to BD-13, BD-15 | A visitor | A booking or purchase conversation | — | — |
+| BS-1 Marketplace | A saved offer (`/p/:slug`, `/mp/:slug`) | A public stall and product pages | Town Hall after a first sale (J12) | X: other projects' offers as stalls |
+| BS-3 The Originals | — | A founder list | — | — |
+| TH-1 Town Hall | First sale recorded | v0 page: residents' income, your voice | — | — |
+| AI-1 AI OS | A visitor | Pages on four working systems, a benchmark, a work-with-us page | — | — |
+| SY-1 Holomap | A signed-in user | A map of the whole | — | — |
+| SY-2 Dashboard | Data from the spaces (v3.3) | Personal and system views | — | — |
+| ST-2 Art, ST-3 Transcriber, ST-4 Destiny | — | A gallery, a transcript, a page | — | X for Transcriber only if its input and output stay one video → one text (my read) |
+
+---
+
+## 📊 MODULE VERSION MATRIX — v3.3 (SUPERSEDED by the v4 matrix above; kept for history)
+
+> **Superseded in v4.** Routes, statuses and notes in the v4 matrix win over this table. Left unchanged so the v3.3 reading can still be compared. Corrections are listed under "What v3.3 said that was wrong at this SHA".
 
 ### Overview by Space
 
@@ -175,6 +707,8 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 ---
 
 ## 📊 MODULES BY SPACE (Detailed)
+
+> **v4 note.** These per-module tables are as of v3.1 for submodules and v3.3 for top-level fields, and were **not** re-audited line by line in v4. Where a route here differs from the v4 matrix, the v4 matrix wins (known cases: `/zone-of-genius`, `/quality-of-life`, `/game/marketplace/browse`, `/game/build`, `/game/next-move`, `/holomap`, `/art`). Submodules of the modules added in v4 are in the Nesting section, not here.
 
 ### 🪞 ME SPACE (Profile)
 
@@ -941,11 +1475,13 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 > Distinguished from the sections above: these have a spec or a roadmap entry but **no code in `src/`**. Included here so the map shows the full pipeline, not just what ships. Do not confuse with `Concept` version-stage modules elsewhere in this doc that already have some code (e.g. Clock) — these three have none.
 
-### Seed: Quiz Module
+### Seed: Quiz Module — **SUPERSEDED in v4: shipped (ME-8, `/quiz`)**
+
+> v4 found `/quiz`, `/quiz/r/:id` and `src/modules/transition-quiz` at SHA `1524f2f`. The table below is the v3.3 state, kept for history. The spec files are still the spec.
 
 | Field | Value |
 |-------|-------|
-| Status | **Specified, no code** |
+| Status | ~~Specified, no code~~ (v3.3); shipped (v4) |
 | Spec | `docs/specs/quiz/quiz_product_spec.md`, `docs/specs/quiz/quiz_tracker.md` |
 | Intended Space | ME |
 
@@ -969,7 +1505,9 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 ---
 
-## 📈 VERSION STATISTICS
+## 📈 VERSION STATISTICS — v3.1 counts (SUPERSEDED, stale)
+
+> **Superseded in v4.** These counts predate the v3.3 and v4 additions. v4 counts rows and routes instead: **62 matrix rows, 294 paths** (see the v4 matrix and ledger). Submodule counts were not redone.
 
 ### Module Count by Space
 
@@ -1029,6 +1567,18 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 ---
 
 ## 📝 CHANGELOG
+
+### v4.0 (2026-11-17)
+- **Re-audit against code.** Every route in `src/App.tsx` (lines 547–1148, SHA `1524f2f`) read and mapped: 301 route elements = 294 with a path + 6 index + 1 layout; 76 of the 294 are redirects, 218 render pages. All 294 paths are assigned to a matrix row or to frame/legal rows; the ledger sums to 294.
+- **New v4 Version Matrix** (62 rows) supersedes the v3.3 matrix, which is kept and marked superseded. Version column keeps v3.3 ratings; modules new to the file are **not rated** (v4 re-checks routes and presence, not maturity).
+- **Shipped, not in v3.3, now rows:** Transition Quiz `/quiz` (was "specified, no code"), Your AI, Character Sheet, Journey and Quest Board, Village, Town Hall v0, Mastermind, Academy and activations, Playbook and Path, Unique Business Builder (UBB) and Canvas, Equilibrium web v2 with cycle journal, The Crossing, The Vector, The Founder Read, PMF Core, Ignite session, Products index, AI OS.
+- **Found in code, undocumented (marked as such):** `/hero`, `/quiz2`, `/my-result`, `/home`, `/home2`, `/map-classic`, `/intros`, `/ai-upgrade`, `/built-by-you/commercial-os`, `/intelligences`, `/genius-layer-matching`, `/m/:slug`, private client pages, the public essay and thesis pages, the admin routes.
+- **No route (concept/retired?):** Skill Trees (retirement confirmed), Business Incubator, Tour, Clock; Equilibrium Bot has no route because it is a Telegram bot.
+- **Thirteen v3.3 claims corrected** (list under the matrix), among them: `/zone-of-genius` is a redirect; `/game/next-move` is a redirect to the Journey; `/holomap`, `/art`, `/mens-circle` and `/the-originals` need login; Founders Showcase now renders inside Marketplace and `/founders` is the admin index; Community Webinar is an offer to community hosts.
+- **New sections:** Nesting (module → submodules, one sentence per node, Journey J1…J13, eleven Village places); Products × modules (24 rows, one per product in `product_brief.md` §0); Module interface (inputs, outputs, unlocks, white-label and external-contribution marks, for Sasha and Hark to confirm).
+- **Crosswalk added (Sasha, 2026-11-17).** One table, shift → product → module → game step, joined by the stable product keys of `src/data/productMap.ts` (#340), on `product_brief.md` §0 v1 (26 products: 18 keys from the file, 7 proposed, 1 unkeyed). It shows the two entry lines (business: FMF → BUILD → Collective; person: Top Talent → Crossing → Vector), a reverse view J1…J13 → product, and the gaps (products with no module, products with no game step, game steps with no product, modules with no product). The v0 Products × modules table is marked superseded. Uncertain: seven keys are proposed, not yet in `productMap.ts`; module matches for `top-talent-course` and `profile`; every *nearest* game step.
+- **Marked superseded, not deleted:** the v3.3 matrix, the Version Statistics table, the Quiz seed. The detailed per-module tables carry a v4 note: submodule detail is still as of v3.1.
+- **Not done in v4 (open):** submodule re-verification line by line; maturity re-rating; whether the standalone `equilibrium/` app and the Telegram bot are still deployed; placing the three `UD-1` routes; reconciling UBB's 13 steps (blueprint) with its 14 child routes (code), and the Academy's two listed courses with three routed course pages.
 
 ### v3.3 (2026-07-27, Day 137)
 - **Refresh pass** — audited the Version Matrix and Standalone/System/BUILD/MEET sections against live `src/App.tsx` route registrations (last audit was v3.1, 2026-03-16 — ~4 months of drift).
@@ -1199,5 +1749,6 @@ LEVEL 4: alexanders_unique_business.md  (THE LIVING PROOF)
 
 ---
 
-*Module Taxonomy v3.2 — Knowledge Architecture added*
-*Last updated: 2026-03-19*
+*Module Taxonomy v4.0 — re-audited against `src/App.tsx` at `1524f2f`; Nesting, Products × modules and Module interface added*
+*Last updated: 2026-11-17*
+*(Footer history: v3.2 added Knowledge Architecture, 2026-03-19.)*
