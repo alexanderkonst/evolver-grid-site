@@ -1,0 +1,53 @@
+/* /products/map. Scoped to .product-map; no other page is touched.
+
+   The shared product-landing tokens (--skin-text-primary, the gold gradient) turn light on dark skins
+   (Lunar, Navy+Gold) while this page's background stays cream, so the title, eyebrows and row names would
+   vanish. Here the ink, body and gold are set to the palette's own light-page values (the fallbacks in
+   productLanding.css): ink #0a1628, body #33415c, gold #7a5108, on cream #fdfaf3 to #f6efe0.
+   Contrast on cream: ink ≈ 16:1, body ≈ 8:1, gold ≈ 6:1 (all AA, body and ink AAA). */
+
+/* The table needs more width than the editorial column; this page only. */
+.product-landing > div:has(.product-map) {
+  max-width: 72rem;
+}
+
+.product-map {
+  --pm-ink: #0a1628;
+  --pm-body: #33415c;
+  --pm-gold: #7a5108;
+  --pm-rule: rgba(26, 30, 58, 0.25);
+}
+
+.product-map .product-title,
+.product-map .product-hero-title {
+  color: var(--pm-ink);
+  text-shadow: none;
+}
+
+.product-map .product-body {
+  color: var(--pm-body);
+}
+
+.product-map .product-eyebrow {
+  color: var(--pm-gold);
+}
+
+/* Plain gold text: no gradient clip. Lunar paints a moonlight wash into any inline gold gradient
+   (background and color, !important, specificity 0,3,1), which the clip would turn into pale text; this selector outranks it. */
+.product-landing .product-map .product-eyebrow[style] {
+  color: var(--pm-gold) !important;
+  background-image: none !important;
+  background-color: transparent !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  filter: none !important;
+}
+
+.product-map .pm-rule {
+  border-color: var(--pm-rule);
+}
+
+.product-map .pm-card {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--pm-rule);
+}

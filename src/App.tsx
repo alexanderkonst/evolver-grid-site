@@ -84,6 +84,7 @@ import { pathUsesLayoutShell, pathHidesLogo, zogEntryRedirectTarget, ZOG_ENTRY_P
 import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
 import IgniteSession from "./pages/IgniteSession";
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
+const ProductMap = lazy(() => import("./pages/ProductMap"));
 // Your AI (village place `oracle`): carries the 5,400-word AI OS prompt, so it loads on demand.
 const FamiliarPage = lazy(() => import("./modules/familiar/FamiliarPage"));
 const Mastermind = lazy(() => import("./pages/Mastermind"));
@@ -686,6 +687,7 @@ const App = () => (
                   <Route path="/build/mastermind" element={<Mastermind />} />
                   <Route path="/mastermind" element={<Navigate to="/build/mastermind" replace />} />
                   <Route path="/products" element={<ProductsPage />} />
+                  <Route path="/products/map" element={<ProductMap />} />
                   {/* Day 130: Client Evolution Portal (Practitioner Node) landing — public. */}
                   <Route path="/products/evolution-portal" element={<EvolutionPortal />} />
                   {/* Personalized proposal for Karime — private, noindex, kept out of the
