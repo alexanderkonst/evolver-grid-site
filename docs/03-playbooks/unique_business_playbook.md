@@ -5418,3 +5418,9 @@ A Unique Business does not move in a straight line from articulation to revenue.
 ## Tactic: Find the Fandom of Your Uniqueness (November 17, 2026)
 
 A unique business looks unique, so it seems to have no market. It does: somewhere a book, a film or a game already carries the same core, and people already love it. Find that work, and its fans are the first customers: «I built X, but in real life.» Add a field to the canvas: **Cult analogues** (works whose core matches yours) and **their fan rooms**. Sasha's hypothesis (2026-11-17), to test: every unique business grows this way. Full technology: Phase Shift Technology Library, Technology 184.
+
+---
+
+## Tactic: Make the Shift Visible — Results in the Client's Own Words (November 17, 2026)
+
+A unique business sells a shift, and a shift is invisible until the person who lives it sees it. At the start, write each goal and the desired change in the client's own words, plus a 0–10 score. Mid and end: «сколько сейчас из 10?» and, reading back their own description, «насколько это сбылось?» (−2…+2). Never ask them to price it: a person who sees what they received balances the exchange themselves. Template: `docs/templates/transformation-results.md`. Full technology: Phase Shift Technology Library, Technology 185.

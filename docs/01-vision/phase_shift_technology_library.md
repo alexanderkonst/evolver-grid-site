@@ -9680,3 +9680,32 @@ An earlier AI draft here treated the holo-trinity as a product under the working
 
 ### Cross-references — Connects to
 - Game of Being You; *Technology 183: Signal Authorship* (the bridge line is a signal, AI helps find rooms).
+
+
+## Technology 185: The Visible Shift — Measure in Their Words (видимый сдвиг: замер словами клиента) (oral, Nov 17, 2026)
+
+> *Oral · November 17, 2026 · chat with Hark, building the results template after The Crossing with client 1 (average 2.5 → 5.3, +113%). Template: `docs/templates/transformation-results.md` v1.1. Applied in `docs/03-playbooks/unique_business_playbook.md` (Make the Shift Visible).*
+
+**What it is.** A transformation is real for the client only when they see it. The shift becomes visible through two measures taken in the client's own frame: a 0–10 score (how much moved) and a verdict against their own written description of the desired change (how far it came true). Seen value restores a fair exchange by itself; unseen value distorts it.
+
+### 🫀 Essence — in Sasha's words
+
+> «Как ему понять, какой ему рост покажется нормальным? Это невозможно просто-напросто… сравнивать не с какой-то цифрой непонятной того, сколько ты ожидал, а со внутренним ощущением, какого изменения тебе хотелось… Какой результат ты хочешь получить? Словами… в середине и в конце программы могу сказать: хорошо, ты хотел приземление, ты хотел, чтобы вот так выглядело, и показать ему описание его словами… Таким образом, у нас будет и измерение роста произошедшего, и его оценка ценности, которую он получает для себя внутри, осознанная.»
+> — *chat of 2026-11-17, 13:23 MST*
+
+### The steps
+1. **Goals** in their exact words.
+2. **Baseline** 0–10 per goal.
+3. **Desired change** described in their words (no target number).
+4. **Re-measure** mid and end: score now, and «насколько сбылось?» against their description (−2…+2, Goal Attainment Scaling).
+5. **Show** growth per goal and on average.
+6. **Carry forward:** grow, hold or let go; kept goals are point A of the next container.
+
+### 🧠 Significance — AI draft
+*AI draft, for Sasha to rewrite in his voice.*
+- **Essence.** The guide never judges the shift; the person does, in their own language. Measurement becomes part of the transformation: seeing the change consolidates it.
+- **Consequences.** (1) Every container (Crossing, Vector, BUILD) ends with a visible result and a natural next step. (2) Results become honest proof for public pages (anonymized or with a yes). (3) Never ask the client to price the shift in money.
+- **Roots.** Goal Attainment Scaling (Kiresuk & Sherman, 1968); routine outcome monitoring (Miller & Duncan).
+
+### Cross-references — Connects to
+- `docs/templates/transformation-results.md`; product_brief §0.4 (guarantee), §0.5 (The Vector measures); *Technology 184: Fandom Bridge* (a visible result is also the story fans retell).
