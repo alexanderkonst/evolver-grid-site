@@ -93,7 +93,7 @@ const BuildContainer = lazy(() => import("./pages/BuildContainer"));
 const TheCrossing = lazy(() => import("./pages/TheCrossing"));
 const TheVector = lazy(() => import("./pages/TheVector"));
 const FounderRead = lazy(() => import("./pages/FounderRead"));
-const PmfCore = lazy(() => import("./pages/PmfCore"));
+const PmfDiscovery = lazy(() => import("./pages/PmfDiscovery"));
 const FounderMarketFitCategory = lazy(() => import("./pages/FounderMarketFitCategory"));
 const CommunityWebinar = lazy(() => import("./pages/CommunityWebinar"));
 // Day 133: plain-language data promise + legal companions.
@@ -697,7 +697,8 @@ const App = () => (
                   <Route path="/products/crossing" element={<TheCrossing />} />
                   <Route path="/products/vector" element={<TheVector />} />
                   <Route path="/products/founder-read" element={<FounderRead />} />
-                  <Route path="/products/pmf-core" element={<PmfCore />} />
+                  <Route path="/products/pmf-discovery" element={<PmfDiscovery />} />
+                  <Route path="/products/pmf-core" element={<Navigate to="/products/pmf-discovery" replace />} />
                   <Route path="/communities" element={<CommunityWebinar />} />
                   <Route path="/products/build" element={<Navigate to="/products/built" replace />} />
                   {/* Day 133: plain-language data promise + legal companions. */}

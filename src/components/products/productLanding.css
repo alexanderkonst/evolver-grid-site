@@ -21,7 +21,10 @@
   font-family: 'Source Serif 4', serif;
   font-weight: 400;
   line-height: 1.65;
-  color: var(--skin-text-secondary, #33415c);
+  /* --skin-text-muted is defined by every skin (light ink on dark skins).
+     --skin-text-secondary is defined by none, so it always fell back to
+     dark navy and vanished on dark cards (issue #344). */
+  color: var(--skin-text-muted, #0b2a5a);
   overflow-wrap: break-word;
 }
 
@@ -53,7 +56,7 @@
 }
 
 .product-landing .product-quiet-link {
-  color: var(--skin-text-secondary, #33415c);
+  color: var(--skin-text-muted, #0b2a5a);
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-color: var(--skin-ornament-rule, rgba(26,30,58,0.25));
@@ -98,6 +101,48 @@
   width: 1px;
   background: var(--skin-ornament-rule, rgba(26,30,58,0.25));
 }
+
+/* Eyebrows and list arrows: a solid-enough dark gold. The shared gold gradient starts at #a06d08,
+   which is 3.9:1 on cream: under AA for 11px text. */
+.product-landing {
+  --product-accent: linear-gradient(135deg, #7a5108 0%, #6b4208 100%);
+}
+/* dao / network-school already paint editorial black via --skin-callout-bg (AA on white): untouched. */
+html:not([data-skin="dao"]):not([data-skin="network-school"]) .product-landing .product-eyebrow,
+html:not([data-skin="dao"]):not([data-skin="network-school"]) .product-landing .product-arrow {
+  background-image: var(--product-accent) !important;
+}
+
+/* Dark skins.
+   `--skin-ignite-bg` is defined by no skin, so the page was cream on every skin while the ink
+   (--skin-text-primary / -muted) turned light on the dark ones: pale text on cream, and a dark
+   glass card holding navy text (issue #344). Name the page background per dark skin (same
+   palette as TheVector.css), drop the white halo built for cream, and give eyebrows and list
+   arrows a light gold (--product-accent): --skin-callout-bg is a dark FILL colour on these skins.
+   Light skins (lapis, karime, dao, network-school) keep the cream / white defaults above. */
+[data-skin="lunar"] .product-landing,
+[data-skin="navy-gold"] .product-landing,
+[data-skin="daouniverse"] .product-landing,
+[data-skin="planetir"] .product-landing,
+[data-skin="aurum"] .product-landing,
+[data-skin="techstars"] .product-landing {
+  --skin-text-halo-deep: none;
+  --product-accent: linear-gradient(135deg, #f4d472 0%, #e0b94f 55%, #d4af37 100%);
+}
+[data-skin="lunar"] .product-landing .product-eyebrow,
+[data-skin="navy-gold"] .product-landing .product-eyebrow,
+[data-skin="daouniverse"] .product-landing .product-eyebrow,
+[data-skin="planetir"] .product-landing .product-eyebrow,
+[data-skin="aurum"] .product-landing .product-eyebrow,
+[data-skin="techstars"] .product-landing .product-eyebrow {
+  filter: none !important;
+}
+[data-skin="lunar"] .product-landing { --skin-ignite-bg: linear-gradient(180deg, #050a18 0%, #070d1c 38%, #03060f 72%, #010205 100%); }
+[data-skin="navy-gold"] .product-landing { --skin-ignite-bg: linear-gradient(180deg, #0a1628 0%, #07111f 45%, #040a14 100%); }
+[data-skin="daouniverse"] .product-landing { --skin-ignite-bg: linear-gradient(180deg, #050d09 0%, #0a1a12 40%, #0d2218 70%, #050d09 100%); }
+[data-skin="planetir"] .product-landing { --skin-ignite-bg: linear-gradient(180deg, #08130c 0%, #0a1a10 45%, #07110a 100%); }
+[data-skin="aurum"] .product-landing { --skin-ignite-bg: linear-gradient(180deg, #050507 0%, #07070a 40%, #0a0a0e 70%, #020203 100%); }
+[data-skin="techstars"] .product-landing { --skin-ignite-bg: linear-gradient(180deg, #050608 0%, #07080a 40%, #0a0b0e 70%, #02030a 100%); }
 
 @media (prefers-reduced-motion: reduce) {
   .product-landing .ornament-spin,

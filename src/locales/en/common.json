@@ -7779,8 +7779,8 @@
       "body": "Together we name the value you create simply by being yourself, your ideal client, their pain, the transformational promise, the outline of the product, and your unique selling proposition in one sentence.",
       "cta": "Book the Private Session"
     },
-    "pmfCore": {
-      "name": "Product-Market Fit Core",
+    "pmfDiscovery": {
+      "name": "Product-Market Fit Discovery",
       "badge": "1:1 · one session, about 2 hours",
       "line": "Walk in with a technology. Walk out with the core of product-market fit.",
       "body": "In one session we find who it's for, what changes for them, why they'll want it to exist, and the one line that carries it.",
@@ -9188,9 +9188,9 @@
     "door": "Want to see your own gift?",
     "metaDescription": "Discover your Zone of Genius."
   },
-  "pmfCorePage": {
+  "pmfDiscoveryPage": {
     "eyebrow": "One session",
-    "title": "Product-Market Fit Core",
+    "title": "Product-Market Fit Discovery",
     "subtitle": "Walk in with a technology. Walk out with the core of product-market fit: who it's for, what changes for them, why they'll want it in the world, and the one line that carries it.",
     "seoDescription": "One session to find the core of product-market fit: who it's for, what changes for them, and the one line that carries it.",
     "getEyebrow": "What you walk away with",

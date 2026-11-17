@@ -7712,8 +7712,8 @@
       "body": "Juntos nombramos el valor que creas simplemente siendo tú, tu cliente ideal, su dolor, la promesa transformacional, el contorno del producto y tu propuesta única de valor en una sola frase.",
       "cta": "Reservar la Private Session"
     },
-    "pmfCore": {
-      "name": "Núcleo de product-market fit",
+    "pmfDiscovery": {
+      "name": "Descubrimiento de product-market fit",
       "badge": "1:1 · una sesión, unas 2 horas",
       "line": "Llegas con una tecnología. Sales con el núcleo del product-market fit.",
       "body": "En una sesión encontramos para quién es, qué cambia para ellos, por qué querrán que exista y la frase que lo lleva todo.",
@@ -9170,9 +9170,9 @@
     "door": "¿Quieres ver tu propio don?",
     "metaDescription": "Descubre tu Zona de Genio."
   },
-  "pmfCorePage": {
+  "pmfDiscoveryPage": {
     "eyebrow": "Una sesión",
-    "title": "Núcleo de product-market fit",
+    "title": "Descubrimiento de product-market fit",
     "subtitle": "Llegas con una tecnología. Sales con el núcleo del product-market fit: para quién es, qué cambia para ellos, por qué querrán que exista en el mundo y la frase que lo lleva todo.",
     "seoDescription": "Una sesión para encontrar el núcleo del product-market fit: para quién es, qué cambia y la frase que lo lleva.",
     "getEyebrow": "Con qué te vas",

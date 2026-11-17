@@ -72,7 +72,7 @@ export const ProductList = ({ items }: { items: string[] }) => (
   <ul className="space-y-2.5 text-left">
     {items.map(item => (
       <li key={item} className="flex items-baseline gap-2.5">
-        <span className="text-sm bg-clip-text text-transparent shrink-0" style={GOLD_TEXT_STYLE} aria-hidden="true">→</span>
+        <span className="product-arrow text-sm bg-clip-text text-transparent shrink-0" style={GOLD_TEXT_STYLE} aria-hidden="true">→</span>
         <span className="product-body text-base">{item}</span>
       </li>
     ))}
