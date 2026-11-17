@@ -104,8 +104,13 @@ const TheVector = () => {
             </ul>
           </section>
 
+          <section className="max-w-md mx-auto space-y-6">
+            <VectorEyebrow n="02" heading>{t("vector.resultHeading")}</VectorEyebrow>
+            <p className="vector-body text-left">{t("vector.resultBody")}</p>
+          </section>
+
           <section className="space-y-7">
-            <VectorEyebrow n="02" heading>{t("vector.splitHeading")}</VectorEyebrow>
+            <VectorEyebrow n="03" heading>{t("vector.splitHeading")}</VectorEyebrow>
             {/* One thin bar, split 40 / 50: flex-grow carries the minutes, so the widths are 4:5. */}
             <div className="vector-split" role="presentation">
               <div className="vector-split-part" style={{ flexGrow: 40 }}>
@@ -127,7 +132,7 @@ const TheVector = () => {
 
           <section className="vector-route-section mx-auto space-y-9">
             <div className="text-center space-y-4">
-              <VectorEyebrow n="03" heading>{t("vector.sequenceHeading")}</VectorEyebrow>
+              <VectorEyebrow n="04" heading>{t("vector.sequenceHeading")}</VectorEyebrow>
               <p className="vector-quote max-w-md mx-auto text-left">{t("vector.sequenceIntro")}</p>
             </div>
             <VectorRoute>
@@ -154,7 +159,7 @@ const TheVector = () => {
           <Ornament />
 
           <section className="text-center space-y-6 pb-4">
-            <VectorEyebrow n="04" heading>{t("vector.priceHeading")}</VectorEyebrow>
+            <VectorEyebrow n="05" heading>{t("vector.priceHeading")}</VectorEyebrow>
             <p className="vector-price">{t("vector.priceLine")}</p>
             <div className="pt-2">{contact}</div>
             <p className="vector-footer-mark" aria-hidden="true">findyourtoptalent.com</p>
