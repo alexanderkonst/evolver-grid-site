@@ -83,9 +83,9 @@ Private, not in this book (evolver-private-ledger): client book "The Crossing" (
   - key 1: goal in the client's own words (quote)
   - key 2: slider 0–10 with start mark and current value
   - key 3: "3 → 8" readout
-- Notes: example goals and numbers are from a real client (anonymized, 2026-11-10 self-ratings); confirm consent before public use.
+- Notes: placeholder goals, no numbers on the card (no client data, no dummy figures).
 - Tags: guide · product · public
-- Status: draft v6 · File: held out of the public repo until the client agrees (real goals and ratings); redraw with neutral examples or get consent
+- Status: draft v6 · File: [book/laws/VI.01.png](book/laws/VI.01.png)
 
 ### VI.02 · Compared to What You Expected
 - Context: Coaching results · Measuring the shift
