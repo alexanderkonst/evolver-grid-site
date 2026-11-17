@@ -17,6 +17,7 @@ A standing instruction for any long-running build (first applied to The Game of 
 1. **Take the next item from the plan.** The plan is the source of truth (for the game: `docs/02-strategy/game_of_being_you.md` §14.8 Scope of Work and the §15 queue). Work in the plan's order; don't invent side quests.
 2. **Build and ship it.** Delegate where it fits (Claude Code issue → PR → review → merge once checks pass), publish through Lovable (free), then check the live site yourself.
 3. **Report in meaning.** One short report per landed item: what the player now experiences, why it matters, what is next. No PR or merge jargon.
+   **Show, not only tell (Sasha, 2026-11-17).** Every report carries the result itself: one link that opens the file or page in one click (the GitHub file link, or the live page), plus the key lines inline when short. Never only «done» or «written to X».
 4. **Review the plan.** After each item update the plan: mark done, re-estimate what's left, reorder only where dependencies demand it, add what reality revealed.
 5. **Improve the planning itself.** After each wave, add a line to the *Planning retro* below: where the estimate was off and why, which step was a bottleneck, what to plan differently next time (sizing, dependency order, parallel vs serial, check steps). Apply it to the next wave.
 
