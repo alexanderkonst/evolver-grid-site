@@ -55,6 +55,9 @@ Midpoint for long programs (e.g. session 7–8 of 15); short programs: end only.
 - Client data stays in the private ledger; public pages show it only anonymized or with their yes.
 - For guaranteed containers, the verdict sits beside the hard result (BUILD: a purchase in any currency, product_brief §0.4).
 
+## Technology
+Phase Shift Technology Library, Technology 185: The Visible Shift.
+
 ## Sources
 Goal Attainment Scaling (Kiresuk & Sherman, 1968); routine outcome monitoring (ORS/SRS, Miller & Duncan); pain NRS 0–10, ~2 points or ~30% is meaningful (Farrar et al., 2001).
 
