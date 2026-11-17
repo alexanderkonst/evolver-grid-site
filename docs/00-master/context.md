@@ -319,7 +319,7 @@ The system holds together through three integrity tests: features serve the 7 ar
 | 🛠️ **BUILD** | Create your business | Unique Business (0.7), Product Builder (0.7), Canvas (0.5) |
 | 🏪 **BUY & SELL** | Marketplace | Marketplace (0.5), Founders Showcase (0.7) |
 
-**Version scale:** 0.1 Concept → 0.3 Prototype → 0.5 PoC → 0.7 Alpha → 0.9 MVP → 1.0 Commercial
+**Version scale (Sasha, 2026-11-17):** 0–0.4 Concept → 0.4–0.7 Prototype → 0.7–0.99 MVP → 1–2 Beta → 2+ Commercial. Product versions: docs/04-products/product_brief.md §0.
 
 ## Technical Stack
 
