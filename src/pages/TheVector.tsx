@@ -24,11 +24,11 @@ const ELEMENTS: { key: string; Icon: LucideIcon }[] = [
 ];
 
 /** Section eyebrow: small tracked caps, a section number and a hairline under it. */
-const VectorEyebrow = ({ n, children, heading = false }: { n: string; children: ReactNode; heading?: boolean }) => {
+const VectorEyebrow = ({ n, children, heading = false }: { n?: string; children: ReactNode; heading?: boolean }) => {
   const Tag = heading ? "h2" : "p";
   return (
     <Tag className="vector-eyebrow">
-      <span className="vector-eyebrow-num" aria-hidden="true">{n} <span className="vector-eyebrow-dot">·</span></span>
+      {n && <span className="vector-eyebrow-num" aria-hidden="true">{n} <span className="vector-eyebrow-dot">·</span></span>}
       <span>{children}</span>
     </Tag>
   );
@@ -81,14 +81,12 @@ const TheVector = () => {
             {/* The star: same asset, size and glow as on every product page. Untouched. */}
             <img src={igniteLogo} alt={t("ignite.logoAlt")} width={140} height={140}
               className="w-[140px] h-auto mx-auto opacity-80" />
-            <VectorEyebrow n="00">{t("vector.eyebrow")}</VectorEyebrow>
+            <VectorEyebrow>{t("vector.eyebrow")}</VectorEyebrow>
             <h1 className="vector-title vector-hero-title">{t("vector.heading")}</h1>
             <p className="vector-lead max-w-md mx-auto">{t("vector.subheading")}</p>
             <Ornament />
-            <div className="flex flex-col items-center gap-3 pt-2">
-              {contact}
-              <p className="vector-muted text-xs">{t("vector.priceLine")}</p>
-            </div>
+            {/* Price lives once, in the closing block (Sasha, 2026-11-17). */}
+            <div className="flex flex-col items-center gap-3 pt-2">{contact}</div>
           </header>
 
           <section className="max-w-md mx-auto space-y-6">
