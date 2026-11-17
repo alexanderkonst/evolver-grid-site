@@ -19,7 +19,9 @@ The book is the game journey in pictures: each chapter is a step or space of the
    - 4.1 Consciousness Meets Science: the course's main infographic (to make)
    - 4.2 Next Grow courses (and so on)
 
-Not yet placed: VII.01 One Transformation, Three Forms and the 3 noosphere cards (how the whole system is built; maybe a closing chapter). Placement of 3.2 and 3.3 is my proposal; IDs III/VI/VII are old and will be renumbered once the order settles.
+5. Closing: the system behind it: VII.01 One Transformation, Three Forms, then the 3 noosphere cards (placement for now, work in progress)
+
+IDs III/VI/VII are old and will be renumbered once the order settles.
 
 ### Card lists
 Business from first principles (19, chapter 3.1):
@@ -43,7 +45,7 @@ Business from first principles (19, chapter 3.1):
 - [Ready to Receive](book/first-principles/primitives-18.png) · Every tradition that asked this found the same four things. · status: draft v4
 - [Find the Primitive](book/first-principles/primitives-19.png) · A session plan: from one question to one sentence. · status: draft v4
 
-The noosphere (3, not yet placed):
+The noosphere (3, chapter 5):
 - [Every Cell Has a Neighbor](book/noosphere/noosphere-1.png) · The world already knows each piece. Nobody holds all six from one source. · status: draft v4
 - [The Founder, Replaced](book/noosphere/noosphere-2.png) · Wasserman, Harvard: 212 US startups from the late 1990s and early 2000s. · status: draft v4
 - [Most Venture Funds Lose to an Index Fund](book/noosphere/noosphere-3.png) · status: draft v4
