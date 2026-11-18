@@ -573,7 +573,9 @@
   color: var(--vec-body);
 }
 
-/* Section divider: iridescent hairlines either side of one small star (centre gap leaves it room). */
+/* Section divider: iridescent hairlines either side of one small star. The star artwork has clear padding
+   inside its 2.25rem box (the visible star is about 0.5rem from the centre), so the lines run in under the
+   star to 0.4rem from the centre and the star is drawn above them: no gap on either side. */
 .vector-page .vector-divider {
   position: relative;
   display: flex;
@@ -589,7 +591,8 @@
   content: '';
   position: absolute;
   top: 50%;
-  width: calc(50% - 1.5rem);
+  z-index: 0;
+  width: calc(50% - 0.4rem);
   height: 1px;
   background: var(--vec-iris);
 }
@@ -612,6 +615,7 @@
 
 .vector-page .vector-divider-star {
   position: relative;
+  z-index: 1;
   width: 2.25rem;
   height: 2.25rem;
 }
