@@ -346,6 +346,34 @@
   margin-top: 0.62rem;
 }
 
+/* Nested list (unique-for-inner-life breakdown): smaller orbs, indented under the parent text. */
+.vector-page .vector-sublist {
+  margin-top: 0.75rem;
+}
+
+.vector-page .vector-sublist > li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.vector-page .vector-sublist .vector-orb {
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-top: 0.72rem;
+}
+
+/* The "why" paragraph under the first term: quieter than the term itself. */
+.vector-page .vector-why {
+  color: var(--vec-muted);
+}
+
+.vector-page .vector-link {
+  color: var(--vec-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* ── Session split: one thin bar, 40 / 50, labels below ─────────────────────── */
 .vector-page .vector-split {
   display: flex;

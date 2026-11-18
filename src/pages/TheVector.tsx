@@ -4,6 +4,7 @@
 import { useLayoutEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import { ArrowRight, Droplets, Flame, Mountain, Sparkles, Wind, type LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import { Ornament, igniteLogo } from "@/lib/landingDesign";
 import "./TheVector.css";
@@ -90,6 +91,18 @@ const TheVector = () => {
           </header>
 
           <section className="max-w-md mx-auto space-y-6">
+            <VectorEyebrow heading>{t("vector.gainHeading")}</VectorEyebrow>
+            <ul className="vector-list space-y-3 text-left">
+              {["g1", "g2", "g3", "g4"].map(key => (
+                <li key={key}>
+                  <span className="vector-orb" aria-hidden="true" />
+                  <span className="vector-body">{t(`vector.${key}`)}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="max-w-md mx-auto space-y-6">
             <p className="vector-body text-center">{t("vector.essence")}</p>
             <VectorEyebrow n="01" heading>{t("vector.formatHeading")}</VectorEyebrow>
             <ul className="vector-list space-y-3 text-left">
@@ -147,6 +160,69 @@ const TheVector = () => {
                 </li>
               ))}
             </VectorRoute>
+          </section>
+
+          <Ornament />
+
+          <section className="max-w-md mx-auto space-y-6">
+            <VectorEyebrow heading>{t("vector.scopeHeading")}</VectorEyebrow>
+            <h3 className="vector-title vector-block-title">{t("vector.inHeading")}</h3>
+            <ul className="vector-list space-y-3 text-left">
+              {["in1", "in2", "in3", "in4", "in5"].map(key => (
+                <li key={key}>
+                  <span className="vector-orb" aria-hidden="true" />
+                  <span className="vector-body">{t(`vector.${key}`)}</span>
+                </li>
+              ))}
+              <li>
+                <span className="vector-orb" aria-hidden="true" />
+                <div className="min-w-0">
+                  <span className="vector-body">{t("vector.in6")}</span>
+                  <ul className="vector-sublist space-y-2">
+                    {["u1", "u2", "u3", "u4"].map(key => (
+                      <li key={key}>
+                        <span className="vector-orb" aria-hidden="true" />
+                        <span className="vector-body">{t(`vector.${key}`)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            </ul>
+            <h3 className="vector-title vector-block-title pt-2">{t("vector.outHeading")}</h3>
+            <p className="vector-body">
+              {t("vector.outNote")}{" "}
+              <Link to="/products/build" className="vector-link">{t("vector.outLink")}</Link>
+            </p>
+            <ul className="vector-list space-y-3 text-left">
+              {["out1", "out2", "out3"].map(key => (
+                <li key={key}>
+                  <span className="vector-orb" aria-hidden="true" />
+                  <span className="vector-body">{t(`vector.${key}`)}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <Ornament />
+
+          <section className="max-w-md mx-auto space-y-6">
+            <VectorEyebrow heading>{t("vector.termsHeading")}</VectorEyebrow>
+            <ul className="vector-list space-y-3 text-left">
+              <li>
+                <span className="vector-orb" aria-hidden="true" />
+                <div className="min-w-0 space-y-3">
+                  <span className="vector-body block">{t("vector.t1")}</span>
+                  <p className="vector-body vector-why">{t("vector.t1Why")}</p>
+                </div>
+              </li>
+              {["t2", "t3", "t4", "t5"].map(key => (
+                <li key={key}>
+                  <span className="vector-orb" aria-hidden="true" />
+                  <span className="vector-body">{t(`vector.${key}`)}</span>
+                </li>
+              ))}
+            </ul>
           </section>
 
           <Ornament />
