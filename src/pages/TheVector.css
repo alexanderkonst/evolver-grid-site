@@ -10,10 +10,14 @@
    background (--skin-ignite-bg) is defined by no skin and so fell back to cream on every skin,
    under light dark-theme ink: white title on cream, a faint eyebrow, an invisible CTA label. */
 
-/* ── Baseline = Lunar ─────────────────────────────────────────────────────── */
+/* ── Baseline = Lunar: moon and neon (Sasha's Vector infographic deck) ─────────
+   Palette: deep night gradient, warm moonlight text, neon-green serif headings,
+   and one thin-film (iridescent) gradient that appears ONLY on 1–2px lines, panel borders,
+   the CTA border and orb rims. Never as a fill behind text. */
 .vector-page {
-  --vec-bg: linear-gradient(180deg, #050a18 0%, #070d1c 38%, #03060f 72%, #010205 100%);
-  --vec-star-rgb: 226, 234, 250;
+  --vec-bg: linear-gradient(180deg, #090b14 0%, #111524 100%);
+  --vec-star-rgb: 233, 228, 207;
+  /* Sparse, static starfield: one 560px tile of radial-gradient dots. No canvas, no motion. */
   --vec-stars:
     radial-gradient(1px 1px at 8% 14%, rgba(var(--vec-star-rgb), 0.7) 50%, transparent 52%),
     radial-gradient(1px 1px at 23% 61%, rgba(var(--vec-star-rgb), 0.45) 50%, transparent 52%),
@@ -24,36 +28,46 @@
     radial-gradient(1px 1px at 91% 73%, rgba(var(--vec-star-rgb), 0.45) 50%, transparent 52%),
     radial-gradient(1px 1px at 45% 48%, rgba(var(--vec-star-rgb), 0.3) 50%, transparent 52%),
     radial-gradient(1px 1px at 16% 92%, rgba(var(--vec-star-rgb), 0.35) 50%, transparent 52%);
-  --vec-moon: #e9e4cf;
-  --vec-moon-opacity: 0.85;
+  --vec-moon-opacity: 1;
+  --vec-moon-glow: 0 0 70px 6px rgba(243, 227, 160, 0.22), 0 0 160px 30px rgba(233, 228, 207, 0.1);
+  --vec-halo: rgba(5, 7, 14, 0.8);
 
-  /* Headings: elegant serif, light leaf-green → deeper iguana-green, soft glow. */
-  --vec-title-solid: #b4f07c;
-  --vec-title-bg: linear-gradient(135deg, #c6f890 0%, #8de25c 48%, #52bd3c 100%);
-  --vec-title-glow: drop-shadow(0 0 14px rgba(124, 226, 84, 0.34));
+  /* Neon: headings are Cormorant Garamond 600, a vertical neon-hi → neon-lo gradient, soft glow. */
+  --neon: #96de46;
+  --neon-hi: #baee68;
+  --neon-lo: #6cbe2c;
+  --vec-title-solid: var(--neon-hi);
+  --vec-title-bg: linear-gradient(180deg, var(--neon-hi) 0%, var(--neon-lo) 100%);
+  --vec-title-glow: drop-shadow(0 0 18px rgba(150, 222, 70, 0.35));
+  --vec-title-shadow: 0 0 18px rgba(150, 222, 70, 0.35);
 
-  --vec-accent: #8fe35f;
-  --vec-body: var(--skin-text-body, rgba(230, 235, 242, 0.92));
-  --vec-muted: var(--skin-text-muted, rgba(230, 235, 242, 0.74));
-  --vec-rule: var(--skin-ornament-rule, rgba(200, 210, 222, 0.34));
-  --vec-rule-strong: rgba(214, 222, 236, 0.5);
-  --vec-quote-bar: rgba(143, 227, 95, 0.7);
-  --vec-focus: #c6f890;
+  --vec-accent: var(--neon);
+  --vec-body: #e9e4cf;
+  --vec-muted: #b9b5a3;
+  --vec-rule: rgba(233, 228, 207, 0.22);
+  --vec-rule-strong: rgba(233, 228, 207, 0.4);
+  --vec-quote-bar: rgba(150, 222, 70, 0.7);
+  --vec-focus: var(--neon-hi);
 
-  /* Iridescent pearl: soft highlight, cool body, a faint green–violet sheen. */
+  /* Thin-film: pink → lilac → mint → pale gold. Lines and borders only. */
+  --vec-iris: linear-gradient(115deg, #f2a7d8 0%, #c9b6ff 34%, #a8f0c6 68%, #f3e3a0 100%);
+  --vec-panel-bg: rgba(10, 13, 24, 0.58);
+
+  /* Pearl: soft highlight on silver; the iridescent rim is drawn by the ring mask below. */
   --vec-orb:
-    radial-gradient(circle at 32% 28%, #ffffff 0%, rgba(255, 255, 255, 0) 38%),
-    linear-gradient(135deg, rgba(150, 255, 205, 0.5) 0%, rgba(196, 160, 255, 0.5) 100%),
-    radial-gradient(circle at 50% 50%, #e8edf8 0%, #aab6d2 100%);
-  --vec-orb-ring: rgba(255, 255, 255, 0.4);
+    radial-gradient(circle at 32% 28%, #ffffff 0%, rgba(255, 255, 255, 0) 40%),
+    radial-gradient(circle at 50% 50%, #e8edf8 0%, #a9b3cb 100%);
+  --vec-orb-ring: rgba(255, 255, 255, 0.25);
 
-  --vec-bar-a: #8de25c;
-  --vec-bar-b: rgba(214, 222, 236, 0.55);
+  --vec-bar-a: var(--neon);
+  --vec-bar-b: rgba(233, 228, 207, 0.5);
 
-  --vec-cta-bg: rgba(141, 226, 92, 0.12);
-  --vec-cta-text: #effce4;
-  --vec-cta-border: rgba(141, 226, 92, 0.7);
-  --vec-cta-glow: 0 0 22px -6px rgba(141, 226, 92, 0.55);
+  /* CTA: dark pill (#080a12 at 92%), iridescent 2px ring, neon label and arrow. */
+  --vec-cta-bg: rgba(8, 10, 18, 0.92);
+  --vec-cta-text: var(--neon);
+  --vec-cta-ring: var(--vec-iris);
+  --vec-cta-glow: 0 0 22px -6px rgba(150, 222, 70, 0.35);
+  --vec-cta-glow-hover: 0 0 30px -2px rgba(150, 222, 70, 0.6);
 }
 
 /* ── Gold-voiced dark skins: the same roles, read from the skin's own tokens ── */
@@ -71,8 +85,16 @@
   --vec-rule-strong: var(--skin-ornament-rule);
   --vec-bar-a: var(--skin-accent-gold);
   --vec-bar-b: var(--skin-text-muted);
-  --vec-moon: var(--skin-accent-gold);
+  /* the skin keeps its own ink, rules and gold: the iridescent film is Lunar-only */
+  --vec-body: var(--skin-text-body);
+  --vec-muted: var(--skin-text-muted);
+  --vec-rule: var(--skin-ornament-rule);
+  --vec-iris: linear-gradient(135deg, var(--skin-accent-gold), var(--skin-accent-gold));
+  --vec-cta-ring: linear-gradient(135deg, var(--skin-cta-border), var(--skin-cta-border));
   --vec-moon-opacity: 0.7;
+  --vec-moon-glow: none;
+  --vec-title-shadow: none;
+  --vec-cta-glow-hover: none;
   --vec-cta-bg: var(--skin-cta-bg);
   --vec-cta-text: var(--skin-cta-text);
   --vec-cta-border: var(--skin-cta-border);
@@ -145,9 +167,18 @@
   --vec-rule-strong: var(--skin-ornament-rule);
   --vec-bar-a: var(--vec-accent);
   --vec-bar-b: var(--skin-text-muted);
-  --vec-moon: var(--skin-text-primary);
-  --vec-moon-opacity: 0.14;
+  --vec-body: var(--skin-text-body);
+  --vec-muted: var(--skin-text-muted);
+  --vec-rule: var(--skin-ornament-rule);
+  --vec-iris: linear-gradient(135deg, var(--skin-ornament-rule), var(--skin-ornament-rule));
+  --vec-panel-bg: rgba(255, 255, 255, 0.55);
+  --vec-halo: rgba(255, 255, 255, 0.7);
+  --vec-moon-opacity: 0.18;
+  --vec-moon-glow: none;
+  --vec-title-shadow: none;
+  --vec-cta-ring: linear-gradient(135deg, var(--vec-cta-border), var(--vec-cta-border));
   --vec-cta-glow: none;
+  --vec-cta-glow-hover: none;
 }
 
 /* lapis — cream paper, navy ink, antique gold */
@@ -190,7 +221,7 @@
   --vec-cta-border: var(--skin-text-primary);
 }
 
-/* ── Page: night sky, faint stars, crescent ─────────────────────────────────── */
+/* ── Page: night sky, static starfield ─────────────────────────────────────── */
 .product-landing.vector-page {
   position: relative;
   overflow: hidden;
@@ -207,45 +238,118 @@
   background-size: 560px 560px;
 }
 
+/* ── Iridescent ring: a 1–2px border drawn with a mask, so the film never fills a box ──
+   Used by cards, panels, the CTA, the divider orb and the route orbs. Pure line work. */
+.vector-page .vector-card::before,
+.vector-page .vector-panel::before,
+.vector-page .vector-cta::before,
+.vector-page .vector-orb::after,
+.vector-page .vector-route-orb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--vec-ring-w, 1px);
+  background: var(--vec-iris);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.vector-page .vector-cta::before { --vec-ring-w: 2px; background: var(--vec-cta-ring); }
+
+/* ── Hero: a full moon with the title set on it ─────────────────────────────── */
+.vector-page .vector-hero-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(84vw, 25rem);
+  aspect-ratio: 1;
+  margin: 0.5rem auto 0;
+}
+
 .vector-page .vector-moon {
   position: absolute;
-  top: 2.75rem;
-  right: 0.25rem;
-  width: 2.2rem;
-  height: 2.2rem;
-  background: var(--vec-moon);
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
   opacity: var(--vec-moon-opacity);
-  -webkit-mask: var(--vec-moon-mask) center / contain no-repeat;
-  mask: var(--vec-moon-mask) center / contain no-repeat;
-  --vec-moon-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'/%3E%3C/svg%3E");
+  box-shadow: var(--vec-moon-glow);
+}
+
+.vector-page .vector-moon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* the photo is neutral grey: warm it a little toward moonlight */
+  filter: sepia(0.22) saturate(1.1) brightness(0.95);
+}
+
+.vector-page .vector-hero-text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+/* Dark soft halo behind the words: keeps neon type readable over the craters. */
+.vector-page .vector-hero-text::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -22% -34%;
+  background: radial-gradient(closest-side, var(--vec-halo) 0%, var(--vec-halo) 38%, transparent 100%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.vector-page .vector-hero-label {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: lowercase;
+  color: var(--vec-body);
 }
 
 /* ── Type ──────────────────────────────────────────────────────────────────── */
 .vector-page .vector-title,
-.vector-page .vector-price {
+.vector-page .vector-price,
+.vector-page .vector-heading-text {
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 700;
-  letter-spacing: -0.018em;
+  font-weight: 600;
+  letter-spacing: -0.012em;
   line-height: 1.15;
   text-wrap: balance;
   color: var(--vec-title-solid);
+  text-shadow: var(--vec-title-shadow);
   width: fit-content;
   max-width: 100%;
 }
 
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
   .vector-page .vector-title,
-  .vector-page .vector-price {
+  .vector-page .vector-price,
+  .vector-page .vector-heading-text {
     background-image: var(--vec-title-bg);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    /* glow as a drop-shadow filter: a text-shadow would tint the clipped gradient */
+    text-shadow: none;
     filter: var(--vec-title-glow);
   }
 }
 
 .vector-page .vector-hero-title {
-  font-size: clamp(2.1rem, 5.4vw, 3.1rem);
+  font-size: clamp(3.4rem, 15vw, 5.6rem);
+  line-height: 1;
+  letter-spacing: 0.01em;
   margin-inline: auto;
 }
 
@@ -256,7 +360,6 @@
 
 .vector-page .vector-price {
   font-size: clamp(3rem, 8vw, 3.75rem);
-  font-weight: 600;
   margin-inline: auto;
 }
 
@@ -281,21 +384,20 @@
   line-height: 1.6;
 }
 
-/* Eyebrow: small tracked caps, a section number, a hairline under it. */
+/* Section heading: serif neon title, a small numeral, an iridescent hairline under it. */
 .vector-page .vector-eyebrow {
   position: relative;
   display: flex;
   flex-wrap: wrap;
+  align-items: baseline;
   justify-content: center;
   gap: 0.5em;
-  padding-bottom: 0.95rem;
-  font-family: 'DM Sans', system-ui, sans-serif;
-  font-size: 11px;
+  padding-bottom: 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 5vw, 1.9rem);
   font-weight: 600;
-  letter-spacing: 0.28em;
-  line-height: 1.7;
-  text-transform: uppercase;
-  color: var(--vec-accent);
+  line-height: 1.2;
+  color: var(--vec-title-solid);
 }
 
 .vector-page .vector-eyebrow::after {
@@ -303,17 +405,37 @@
   position: absolute;
   left: 50%;
   bottom: 0;
-  width: 3rem;
+  width: 5rem;
   height: 1px;
   transform: translateX(-50%);
-  background: var(--vec-rule-strong);
+  background: var(--vec-iris);
+}
+
+.vector-page .vector-eyebrow-num {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  color: var(--vec-accent);
 }
 
 .vector-page .vector-eyebrow-dot {
   opacity: 0.8;
 }
 
-/* ── Collapsible panels (01, 02): the eyebrow heading is the toggle ─────────── */
+/* ── Cards and collapsible panels (01, 02): dark glass with a hairline iridescent border ── */
+.vector-page .vector-card,
+.vector-page .vector-panel {
+  position: relative;
+  border-radius: 1.1rem;
+  background: var(--vec-panel-bg);
+}
+
+.vector-page section.vector-card { padding: 1.75rem 1.4rem; }
+.vector-page li.vector-card { padding: 1.1rem 1.25rem 1.2rem; }
+.vector-page .vector-panel { padding: 0 1.4rem; }
+
+/* The eyebrow heading is the toggle */
 .vector-page .vector-eyebrow-toggle { padding-bottom: 0; }
 .vector-page .vector-eyebrow-toggle::after { display: none; }
 
@@ -321,12 +443,12 @@
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
   gap: 0.5em;
   width: 100%;
   min-height: 44px;
-  padding: 0.5rem 0 0.95rem;
+  padding: 0.85rem 0;
   background: none;
   border: 0;
   border-radius: 4px;
@@ -339,18 +461,7 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-.vector-page .vector-panel-toggle::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: 3rem;
-  height: 1px;
-  transform: translateX(-50%);
-  background: var(--vec-rule-strong);
-}
-
-.vector-page .vector-panel-toggle:hover { color: var(--vec-title-solid); }
+.vector-page .vector-panel-toggle:hover .vector-heading-text { filter: var(--vec-title-glow) brightness(1.12); }
 
 .vector-page .vector-panel-toggle:focus-visible {
   outline: 2px solid var(--vec-focus);
@@ -358,7 +469,9 @@
 }
 
 .vector-page .vector-panel-chevron {
-  opacity: 0.85;
+  align-self: center;
+  color: var(--vec-accent);
+  opacity: 0.9;
   transition: transform 0.25s ease;
 }
 
@@ -379,7 +492,7 @@
 }
 
 .vector-page .vector-panel-clip { min-height: 0; overflow: hidden; }
-.vector-page .vector-panel-inner { padding-top: 1.5rem; }
+.vector-page .vector-panel-inner { padding: 0.5rem 0 1.5rem; }
 
 @media (prefers-reduced-motion: reduce) {
   .vector-page .vector-panel-body,
@@ -398,9 +511,37 @@
   color: var(--vec-body);
 }
 
-/* ── Pearl orbs ────────────────────────────────────────────────────────────── */
+/* Section divider: 1px iridescent line, one pearl orb in the middle. */
+.vector-page .vector-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 28rem;
+  margin-inline: auto;
+  height: 0.75rem;
+}
+
+.vector-page .vector-divider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: var(--vec-iris);
+}
+
+.vector-page .vector-divider .vector-orb {
+  position: relative;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* ── Pearl orbs: silver body, faint iridescent rim (the ring mask above) ───── */
 .vector-page .vector-orb,
 .vector-page .vector-route-orb {
+  position: relative;
   display: block;
   flex-shrink: 0;
   border-radius: 50%;
@@ -490,10 +631,10 @@
   --lean: 0rem;
   --gut: 1.75rem;
   --orb: 0.95rem;
-  --orb-y: 1rem;
+  --orb-y: 2rem;
   position: relative;
   display: grid;
-  gap: 2.6rem;
+  gap: 1.5rem;
   padding-left: calc(0.5rem + var(--lean) + var(--gut));
   padding-bottom: 2.75rem;
 }
@@ -511,7 +652,7 @@
   width: 1px;
   height: var(--route-h, calc(100% - 6rem));
   transform-origin: top;
-  background: var(--vec-rule-strong);
+  background: var(--vec-iris);
 }
 
 @media (min-width: 768px) {
@@ -571,17 +712,17 @@
   color: var(--vec-accent);
 }
 
-/* ── CTA: a pill whose colours come from the skin ────────────────────────────── */
+/* ── CTA: dark pill, 2px iridescent ring, neon label and arrow ───────────────── */
 .vector-page .vector-cta {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
   max-width: 100%;
   min-height: 3rem;
-  padding: 0.85rem 1.75rem;
+  padding: 0.85rem 1.85rem;
   border-radius: 9999px;
-  border: 1px solid var(--vec-cta-border);
   background: var(--vec-cta-bg);
   box-shadow: var(--vec-cta-glow);
   color: var(--vec-cta-text);
@@ -592,10 +733,12 @@
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
-  transition: filter 200ms ease, transform 200ms ease;
+  transition: box-shadow 200ms ease, transform 200ms ease;
 }
 
-.vector-page .vector-cta:hover { filter: brightness(1.12); transform: translateY(-1px); }
+.vector-page .vector-cta > svg { color: var(--vec-cta-text); }
+
+.vector-page .vector-cta:hover { box-shadow: var(--vec-cta-glow-hover); transform: translateY(-1px); }
 .vector-page .vector-cta:active { transform: none; }
 
 .vector-page a:focus-visible {
@@ -609,6 +752,21 @@
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--vec-muted);
+}
+
+/* Photo credit (CC BY-SA 3.0): small, muted, a link to the file page. */
+.vector-page .vector-credit {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--vec-muted);
+}
+
+.vector-page .vector-credit a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--vec-rule-strong);
+  text-underline-offset: 3px;
 }
 
 /* Draw the line in once on load, only when motion is welcome. */

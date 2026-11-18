@@ -1,4 +1,4 @@
-/** /products/vector — the landing-and-direction program, in the infographic style (v4).
+/** /products/vector — the landing-and-direction program, in the infographic style (v5: moon and neon).
  *  Lunar is the baseline; every other skin re-voices the same structure through the
  *  `--vec-*` role tokens in TheVector.css. No colour lives in this file. */
 import { useId, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
@@ -6,10 +6,13 @@ import { ArrowRight, ChevronDown, Droplets, Flame, Mountain, Sparkles, Wind, typ
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
-import { Ornament, igniteLogo } from "@/lib/landingDesign";
 import "./TheVector.css";
 
 const TELEGRAM_CONVERSATION = "https://t.me/integralevolution";
+const MOON_CREDIT_URL = "https://commons.wikimedia.org/wiki/File:FullMoon2010.jpg";
+
+// The five intro paragraphs under the hero, each its own <p>.
+const ESSENCE_KEYS = ["essence1", "essence2", "essence3", "essence4", "essence5"] as const;
 
 // Blocks 0 to 9, in route order. The number is part of each title string.
 const BLOCK_KEYS = ["b0", "b1", "b2", "b3", "b4", "b5", "b6", "b7", "b8", "b9"] as const;
@@ -30,10 +33,17 @@ const VectorEyebrow = ({ n, children, heading = false }: { n?: string; children:
   return (
     <Tag className="vector-eyebrow">
       {n && <span className="vector-eyebrow-num" aria-hidden="true">{n} <span className="vector-eyebrow-dot">·</span></span>}
-      <span>{children}</span>
+      <span className="vector-heading-text">{children}</span>
     </Tag>
   );
 };
+
+/** Section divider: a 1px iridescent line with one pearl orb at its centre. No logo, no motion. */
+const VectorDivider = () => (
+  <div className="vector-divider" aria-hidden="true">
+    <span className="vector-orb" />
+  </div>
+);
 
 /** Collapsible panel (sections 01 and 02). The numbered eyebrow heading is the toggle: a real
  *  <button> inside the <h2>, wired with aria-expanded / aria-controls. Collapsed on load.
@@ -49,7 +59,7 @@ const VectorPanel = ({ n, heading, children }: { n: string; heading: ReactNode; 
         <button type="button" className="vector-panel-toggle" aria-expanded={open} aria-controls={bodyId}
           onClick={() => setOpen(v => !v)}>
           <span className="vector-eyebrow-num" aria-hidden="true">{n} <span className="vector-eyebrow-dot">·</span></span>
-          <span>{heading}</span>
+          <span className="vector-heading-text">{heading}</span>
           <ChevronDown className="vector-panel-chevron w-3.5 h-3.5 shrink-0" aria-hidden="true" />
         </button>
       </h2>
@@ -104,20 +114,24 @@ const TheVector = () => {
       <main className="product-landing vector-page relative min-h-dvh font-sans">
         <div className="vector-sky" aria-hidden="true" />
         <div className="vector-inner relative max-w-2xl mx-auto px-5 md:px-6 py-16 space-y-16">
-          <header className="vector-hero text-center space-y-6 pt-4 pb-2">
-            <span className="vector-moon" aria-hidden="true" />
-            {/* The star: same asset, size and glow as on every product page. Untouched. */}
-            <img src={igniteLogo} alt={t("ignite.logoAlt")} width={140} height={140}
-              className="w-[140px] h-auto mx-auto opacity-80" />
-            <VectorEyebrow>{t("vector.eyebrow")}</VectorEyebrow>
-            <h1 className="vector-title vector-hero-title">{t("vector.heading")}</h1>
+          <header className="vector-hero text-center space-y-6 pt-2 pb-2">
+            {/* Full moon behind the title; the title sits on it with a dark soft halo (CSS). */}
+            <div className="vector-hero-stage">
+              <span className="vector-moon" aria-hidden="true">
+                <img src="/vector-moon.webp" alt="" width={840} height={840} decoding="async" fetchPriority="high" />
+              </span>
+              <div className="vector-hero-text">
+                <p className="vector-hero-label">{t("vector.programLabel")}</p>
+                <h1 className="vector-title vector-hero-title">{t("vector.heading")}</h1>
+              </div>
+            </div>
             <p className="vector-lead max-w-md mx-auto">{t("vector.subheading")}</p>
-            <Ornament />
+            <VectorDivider />
             {/* Price lives once, in the closing block (Sasha, 2026-11-17). */}
             <div className="flex flex-col items-center gap-3 pt-2">{contact}</div>
           </header>
 
-          <section className="max-w-md mx-auto space-y-6">
+          <section className="vector-card max-w-md mx-auto space-y-6">
             <VectorEyebrow heading>{t("vector.gainHeading")}</VectorEyebrow>
             <ul className="vector-list space-y-3 text-left">
               {["g1", "g2", "g3", "g4"].map(key => (
@@ -129,8 +143,12 @@ const TheVector = () => {
             </ul>
           </section>
 
-          <section className="max-w-md mx-auto space-y-6">
-            <p className="vector-body text-center">{t("vector.essence")}</p>
+          <section className="max-w-md mx-auto space-y-8">
+            <div className="vector-essence space-y-4 text-center">
+              {ESSENCE_KEYS.map(key => (
+                <p key={key} className="vector-body">{t(`vector.${key}`)}</p>
+              ))}
+            </div>
             {/* Panels 01 and 02 start collapsed (Sasha, 2026-11-17); the heading is the toggle. */}
             <VectorPanel n="01" heading={t("vector.formatHeading")}>
               <ul className="vector-list space-y-3 text-left">
@@ -166,7 +184,7 @@ const TheVector = () => {
             </VectorPanel>
           </section>
 
-          <Ornament />
+          <VectorDivider />
 
           <section className="vector-route-section mx-auto space-y-9">
             <div className="text-center space-y-4">
@@ -175,7 +193,7 @@ const TheVector = () => {
             </div>
             <VectorRoute>
               {BLOCK_KEYS.map((key, index) => (
-                <li key={key} style={{ "--n": index } as CSSProperties}>
+                <li key={key} className="vector-card" style={{ "--n": index } as CSSProperties}>
                   <span className="vector-route-orb" aria-hidden="true" />
                   <h3 className="vector-title vector-block-title">{t(`vector.${key}.title`)}</h3>
                   <p className="vector-body">{t(`vector.${key}.body`)}</p>
@@ -194,9 +212,9 @@ const TheVector = () => {
             </VectorRoute>
           </section>
 
-          <Ornament />
+          <VectorDivider />
 
-          <section className="max-w-md mx-auto space-y-6">
+          <section className="vector-card max-w-md mx-auto space-y-6">
             <VectorEyebrow heading>{t("vector.scopeHeading")}</VectorEyebrow>
             <h3 className="vector-title vector-block-title">{t("vector.inHeading")}</h3>
             <ul className="vector-list space-y-3 text-left">
@@ -236,9 +254,9 @@ const TheVector = () => {
             </ul>
           </section>
 
-          <Ornament />
+          <VectorDivider />
 
-          <section className="max-w-md mx-auto space-y-6">
+          <section className="vector-card max-w-md mx-auto space-y-6">
             <VectorEyebrow heading>{t("vector.termsHeading")}</VectorEyebrow>
             <ul className="vector-list space-y-3 text-left">
               <li>
@@ -257,13 +275,16 @@ const TheVector = () => {
             </ul>
           </section>
 
-          <Ornament />
+          <VectorDivider />
 
           <section className="text-center space-y-6 pb-4">
             <VectorEyebrow n="04" heading>{t("vector.priceHeading")}</VectorEyebrow>
             <p className="vector-price">{t("vector.priceLine")}</p>
             <div className="pt-2">{contact}</div>
             <p className="vector-footer-mark" aria-hidden="true">findyourtoptalent.com</p>
+            <p className="vector-credit">
+              <a href={MOON_CREDIT_URL} target="_blank" rel="noopener noreferrer">{t("vector.moonCredit")}</a>
+            </p>
           </section>
         </div>
       </main>
