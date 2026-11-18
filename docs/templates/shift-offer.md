@@ -1,6 +1,6 @@
 # Shift offer: from any template, module or product to an offer that names the result
 
-*Template created 2026-10-27 by Evolver from PST 173 (Sasha, 2026-10-27: «Зная какой шаблон мы используем, это идеальный способ продать что-то — напрямую назвать (и предложить!) гарантированный результат!»). Written for a founder-led transformation business like ours: a library of technologies, templates as products, a game with modules, paid sessions and a Mastermind. One open fork (what "guaranteed" means, §6) is Sasha's and is not decided here.*
+*Template created 2026-10-27 by Evolver from PST 173 (Sasha, 2026-10-27: «Зная какой шаблон мы используем, это идеальный способ продать что-то — напрямую назвать (и предложить!) гарантированный результат!»). Written for a founder-led transformation business like ours: a library of technologies, templates as products, a game with modules, paid sessions and a Mastermind. Guarantee laws decided 2026-11-18, §6.*
 
 ## Meta-description
 - **Level / parent:** L2 · Business development (Market: every stall, page and door that asks for money) · parent: [meta-template.md](./meta-template.md); domain parent `docs/03-playbooks/unique_business_playbook.md`
@@ -46,7 +46,7 @@ A **primitive** names the mechanism (e.g. split → wholeness). It is not yet th
 - Offer line (EN): You will see <…> and you will <…>.
 - Offer line (RU): Ты увидишь <…> и сделаешь <…>.
 - Promise (only what the path reliably delivers and they can verify): <…>
-- Guarantee form: <strict shift | money-back style: see §6, Sasha's fork>
+- Guarantee form: <Law 1 inner: early exit by felt sense | Law 2 business: hard result if client did their part; see §6>
 - Check (how we both know B happened): <observable sign + where it is recorded>
 - Price logic: <depth of shift → price band, §7>
 - Gap: <what is missing for a measurable B, if anything>
@@ -68,7 +68,27 @@ A **primitive** names the mechanism (e.g. split → wholeness). It is not yet th
 - The line must survive being said out loud on a call without embarrassment.
 - One line per product. If it needs two, it is two products or one is Craft.
 
-## 6. Guarantee: decided, none
+## 6. Guarantee: two laws by kind of work (Sasha, 2026-11-18)
+**Supersedes the 2026-10-28 "no guarantee" decision** (kept below as the dated record). Surfaced while building the Vector and BUILT pages for Gleb.
+
+**Law 1. Inner (transformational) work: early exit by felt sense.**
+- Window: after the 1st or 2nd meeting, and no later than one month from payment.
+- Condition: the client does not feel movement in *their own* directions (the ones named in session 1, see [transformation-results.md](./transformation-results.md)).
+- Refund: 90%, no questions asked. The 10% covers real costs (e.g. AI).
+- Why: inner shift cannot be proven to the client from outside, and the 2026-10-28 worry (resistance as verdict) is answered by making the window early and short: it filters fit, not results.
+- Live example: Vector (RU wording: «После 1-й или 2-й встречи, но не позже месяца с оплаты: если не чувствуешь движения по своим направлениям, возвращаю 90%. Без вопросов. 10% покрывают реальные расходы, например на ИИ.»).
+
+**Law 2. Business work: a hard result, conditional on the client's actions.**
+- Promise: an outside, checkable result (e.g. a first sale of the packaged offer to a real person).
+- Condition: the client did their part (sessions attended, tasks done, within the stated time).
+- Refund: 90% if the result did not come while the client did their part; 10% covers real costs.
+- Exact conditions are set per product and are Sasha's call (BUILT: open, proposal of 2026-11-18 not yet confirmed).
+
+**Never:** tie a refund to a self-rated score (0–10). Measurement shows the shift; it is not a refund trigger. Public pages promise measurement, not a number.
+
+**In the offer sheet (§3):** Guarantee form = Law 1 (inner) or Law 2 (business), with the window, the condition and the refund share written out.
+
+### Record: decision of 2026-10-28 (superseded)
 **Decision (Sasha, 2026-10-28): no guarantee, neither money-back nor pay-after-recognition.** Recognition can be blocked by the client's own resistance (the shadow shows up as resistance and lowers resonance), so a guarantee would hand the verdict to that resistance and put Sasha in the position of justifying himself. Instead: an honest promise of what the session does, and the free 45-minute Direction Call as the readiness filter. Removed from /ignite and /founder-market-fit on 2026-10-28. Shift Offers promise the shift and its self-check as a quality standard, never as a money guarantee. The two readings below stay as the dated record of the fork.
 
 | | A. Guaranteed = the checkable shift | B. Guaranteed = money-back style |
@@ -103,7 +123,7 @@ A mixed reading (A everywhere, B only on paid doors) is possible; that is also S
 - If the delivery revealed a new law, bring it to Sasha as a library candidate (meta-template §7.8).
 
 ## 10. Open edges
-- The guarantee fork (§6), Sasha's.
+- Per-product conditions for Law 2 (§6), Sasha's.
 - Per paid product: the exact check and, if B is chosen, the refund flow.
 - Which offer lines go on live pages: wired by the game loop and page owners, not by this template.
 
@@ -114,3 +134,4 @@ A mixed reading (A everywhere, B only on paid doors) is possible; that is also S
 | Sasha's extension: «напрямую назвать (и предложить!) гарантированный результат» | 2026-10-27 ~23:57 MST | Sasha, chat | knowing the template = naming and promising the result; product-management principle; added to the library as PST 173 |
 | [meta-template.md](./meta-template.md) §2b | 2026-10-27 | Sasha-approved | technology/template as BE/DO; «Shift carried» required; Craft |
 | [session-script.md](./session-script.md) §4.4 | live `/ignite`, 2026-10-27 | Sasha's page | the existing money-back guarantee as precedent for fork B |
+| Two guarantee laws (inner vs business), measurement never a refund trigger | 2026-11-18 ~15:45 MST | Sasha, chat (Vector/BUILT for Gleb) | replaces the 2026-10-28 "no guarantee" decision |
