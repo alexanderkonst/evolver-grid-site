@@ -94,7 +94,7 @@ const TheVector = () => {
   return (
     <>
       <SEO title={t("vector.title")} description={t("vector.seoDescription")} path="/products/vector" />
-      <main className="product-landing vector-page relative min-h-dvh font-sans">
+      <main className="product-landing vector-page vector-fonts relative min-h-dvh font-sans">
         <div className="vector-sky" aria-hidden="true" />
         <div className="vector-inner relative max-w-2xl mx-auto px-5 md:px-6 py-16 space-y-16">
           <header className="vector-hero text-center space-y-6 pt-2 pb-2">
@@ -124,6 +124,7 @@ const TheVector = () => {
                 </li>
               ))}
             </ul>
+            <p className="vector-body">{t("vector.gScale")}</p>
           </section>
 
           <section className="max-w-md mx-auto space-y-8">
@@ -135,7 +136,7 @@ const TheVector = () => {
             {/* Panels 01 and 02 start collapsed (Sasha, 2026-11-17); the heading is the toggle. */}
             <VectorPanel n="01" heading={t("vector.formatHeading")}>
               <ul className="vector-list space-y-3 text-left">
-                {["f1", "f2", "f3", "f4", "f5"].map(key => (
+                {["f1", "f2", "f4", "f5", "f3"].map(key => (
                   <li key={key}>
                     <MoonStar className="vector-bullet" />
                     <span className="vector-body">{t(`vector.${key}`)}</span>
@@ -148,18 +149,18 @@ const TheVector = () => {
           <section>
             <VectorPanel n="02" heading={t("vector.splitHeading")}>
               <div className="space-y-7">
-                {/* One thin bar, split 40 / 50: flex-grow carries the minutes, so the widths are 4:5. */}
+                {/* One thin bar, split 30 / 60: flex-grow carries the minutes, so the widths are 1:2. */}
                 <div className="vector-split" role="presentation">
-                  <div className="vector-split-part" style={{ flexGrow: 40 }}>
+                  <div className="vector-split-part" style={{ flexGrow: 30 }}>
                     <span className="vector-split-bar vector-split-yours" />
                     <span className="vector-split-label">{t("vector.split1Label")}</span>
                   </div>
-                  <div className="vector-split-part" style={{ flexGrow: 50 }}>
+                  <div className="vector-split-part" style={{ flexGrow: 60 }}>
                     <span className="vector-split-bar vector-split-content" />
                     <span className="vector-split-label">{t("vector.split2Label")}</span>
                   </div>
                 </div>
-                <div className="grid gap-5 md:grid-cols-[40fr_50fr] md:gap-6">
+                <div className="grid gap-5 md:grid-cols-[30fr_60fr] md:gap-6">
                   <p className="vector-body">{t("vector.split1Body")}</p>
                   <p className="vector-body">{t("vector.split2Body")}</p>
                 </div>
@@ -201,7 +202,7 @@ const TheVector = () => {
             <VectorEyebrow heading>{t("vector.scopeHeading")}</VectorEyebrow>
             <h3 className="vector-title vector-block-title">{t("vector.inHeading")}</h3>
             <ul className="vector-list space-y-3 text-left">
-              {["in1", "in2", "in3", "in4", "in5"].map(key => (
+              {["in1", "in2", "in3", "in4"].map(key => (
                 <li key={key}>
                   <MoonStar className="vector-bullet" />
                   <span className="vector-body">{t(`vector.${key}`)}</span>
@@ -223,10 +224,6 @@ const TheVector = () => {
               </li>
             </ul>
             <h3 className="vector-title vector-block-title pt-2">{t("vector.outHeading")}</h3>
-            <p className="vector-body">
-              {t("vector.outNote")}{" "}
-              <Link to="/products/build" className="vector-link">{t("vector.outLink")}</Link>
-            </p>
             <ul className="vector-list space-y-3 text-left">
               {["out1", "out2", "out3"].map(key => (
                 <li key={key}>
@@ -235,6 +232,13 @@ const TheVector = () => {
                 </li>
               ))}
             </ul>
+            <p className="vector-body">
+              {t("vector.outNoteBefore")}
+              <Link to="/ignite" className="vector-link">{t("vector.outFmfLink")}</Link>
+              {t("vector.outNoteMid")}
+              <Link to="/products/built" className="vector-link">{t("vector.outBuiltLink")}</Link>
+              {t("vector.outNoteAfter")}
+            </p>
           </section>
 
           <VectorDivider />
@@ -264,7 +268,10 @@ const TheVector = () => {
             <VectorEyebrow n="04" heading>{t("vector.priceHeading")}</VectorEyebrow>
             <p className="vector-price">{t("vector.priceLine")}</p>
             <div className="pt-2">{contact}</div>
-            <p className="vector-footer-mark" aria-hidden="true">findyourtoptalent.com</p>
+            <div className="vector-guarantee max-w-md mx-auto space-y-3 text-left">
+              <p className="vector-guarantee-label">{t("vector.guaranteeLabel")}</p>
+              <p className="vector-body">{t("vector.guarantee")}</p>
+            </div>
             <p className="vector-credit">
               <a href={MOON_CREDIT_URL} target="_blank" rel="noopener noreferrer">{t("vector.moonCredit")}</a>
             </p>

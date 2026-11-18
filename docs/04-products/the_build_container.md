@@ -3,15 +3,17 @@
 > **Naming:** renamed **BUILD → BUILT** on July 12, 2026 (Day 122), Sasha's call. Past tense = done-state: the offer packaged, the business launched. Route: `/products/built`.
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
-> **Status:** v1.2 (2026-11-18). v1.0 — first offer ever sent July 10, 2026 (Day 120) to Nia Leak. This file holds the canonical offer copy as sent, its origin, and the copy laws it obeys.
+> **Status:** v1.3 (2026-11-18). v1.0 — first offer ever sent July 10, 2026 (Day 120) to Nia Leak. This file holds the canonical offer copy as sent, its origin, and the copy laws it obeys.
 
+> **v1.3 (2026-11-18, Sasha's call):** the page's opening line is now "In one month, you go from “what is my unique offer?” to selling your packaged signature offer to real people." (no "My proposal is simple", "unique" instead of "real"); the page names the author in full, Aleksandr Konstantinov, instead of "Sasha"; the router line reads "Haven't done the Founder-Market Fit Session yet?" (no "Private"); the "Aleks" sign-off at the end of the page is removed.
+>
 > **v1.2 (2026-11-18, Sasha's call):** the result is named concretely (at least one purchase), Week 4 and the promise reworded to match, a guarantee block added (`product_brief.md` §0.4), format now two 90-minute workshops a week (business + mindset), price copy reworded, and the page shows the same expandable testimonials as `/ignite`.
 >
 > **v1.1 (2026-11-18, Sasha's call):** one month instead of three weeks (four weekly sessions; the old Week 2 split into "The offer, packaged" and "Your words, your stage"), and two price options: group $1,111 and individual with Sasha $4,444. The copy below is v1.1 and matches `/products/built` (EN). v1.0 (3 weeks, $1,111 one-on-one at the cohort seat price, 2x $600 option) is what was sent on July 10, 2026; it stays in git history.
 
-## The offer copy (v1.1, as on the site)
+## The offer copy (as on the site)
 
-My proposal is simple: in one month, you go from "what is my real offer?" to selling your packaged signature offer to real people.
+In one month, you go from "what is my unique offer?" to selling your packaged signature offer to real people.
 
 As before, the secret sauce is you :) And how we move swiftly yet with care is this combo: my lived experience + the AI workflows you saw in our session + my guidance.
 
@@ -41,8 +43,8 @@ Your business touches the real world. We prep your first client sessions, run th
 
 This container is the direct continuation of the “Founder-Market Fit” product. It's a cohort program where we build together as a group, or it can be delivered individually too (seats are limited, naturally).
 
-- **In a group: $1,111.** Button: WhatsApp message to Sasha.
-- **Individually, with Sasha: $4,444.** Button: "Check eligibility (3 mins)", linking to `/quiz`.
+- **In a group: $1,111.** Button: "Message Aleksandr Konstantinov on WhatsApp".
+- **Individually, with Aleksandr Konstantinov: $4,444.** Button: "Check eligibility (3 mins)", linking to `/quiz`.
 
 **What I promise**
 

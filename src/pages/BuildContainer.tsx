@@ -16,7 +16,7 @@ import "./TheVector.css";
 import "./BuildContainer.css";
 
 const WHATSAPP_URL = "https://wa.me/14157073432?text=" +
-  encodeURIComponent("Hi Sasha! The BUILT container lands for me, and I wanted to get in touch.");
+  encodeURIComponent("Hi Aleksandr Konstantinov! The BUILT container lands for me, and I wanted to get in touch.");
 
 const WEEKS = [1, 2, 3, 4] as const;
 const GROUP_PRICE = "$1,111";
@@ -151,7 +151,6 @@ const BuildContainer = () => {
               <Link to="/ignite" className="vector-link">{t("thebuild.routerLink")}</Link>
               {t("thebuild.routerAfter")}
             </p>
-            <p className="vector-title build-signature">Aleks</p>
             <MoonDivider />
             <Link to="/data" className="vector-link inline-flex items-center justify-center min-h-11 text-xs">
               {t("thebuild.dataLink")}
