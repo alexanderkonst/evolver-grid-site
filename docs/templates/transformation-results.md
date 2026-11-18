@@ -1,6 +1,6 @@
 # Transformation results (measure a shift in the client's own words)
 
-*v1.2, 2026-11-18 (score statements, not topics; retrospective «then»; promise the measurement, not a number: Sasha). v1.1, 2026-11-17 (expected level in words, not a number: Sasha). v1 same day. Sasha: «это я буду дальше всем клиентам давать». First applied: The Crossing, client 1 (+113%). Used in: The Crossing, The Vector, BUILD (guarantee). Product map: [product_brief §0](../04-products/product_brief.md).*
+*v1.3, 2026-11-18 (statements come from the client's own explanation in session 1, baseline in session 2: Sasha). v1.2 same day (score statements, not topics; retrospective «then»; promise the measurement, not a number: Sasha). v1.1, 2026-11-17 (expected level in words, not a number: Sasha). v1 same day. Sasha: «это я буду дальше всем клиентам давать». First applied: The Crossing, client 1 (+113%). Used in: The Crossing, The Vector, BUILD (guarantee). Product map: [product_brief §0](../04-products/product_brief.md).*
 
 ## Meta-description
 - Produces: one page per client: goals in their words, 0–10 scores at start / mid / end, growth per goal and on average, one-sentence result, and the client's own verdict against what they expected (Goal Attainment Scaling).
@@ -15,9 +15,9 @@
 
 **1. Goals (session 1).** Ask what they want to get, and write each goal in their exact words. 3–7 goals. Ask AI to synthesize them into one sentence: the desired result.
 
-**2. Statements (session 1).** A goal is often a topic or a process («от концептов к приземлению»), which can't be scored. Turn each goal into one statement in the first person, close to their words, describing the lived result: «Озарение или идею я превращаю в конкретный шаг в течение недели». Read it back and let them adjust it until it's theirs. Scale: 0 = совсем не про меня, 10 = полностью про меня. A goal about seeing more (gaps, blind spots) is scored as clarity plus action («я ясно вижу… и знаю, что с этим делаю»), never as «how many gaps I have», which rises as they grow.
+**2. Statements (session 1).** A goal is often a topic or a process («от концептов к приземлению»), which can't be scored. In session 1 ask for each goal: «Поясни, что это для тебя значит и чего бы тебе хотелось?» From their explanation, write one statement in the first person in their words, describing the lived result. Read it back and let them adjust it until it's theirs. Prepared statements are only a fallback draft, never the measure. Scale: 0 = совсем не про меня, 10 = полностью про меня. A goal about seeing more (gaps, blind spots) is scored as clarity plus action («я ясно вижу… и знаю, что с этим делаю»), never as «how many gaps I have», which rises as they grow.
 
-**2b. Baseline (session 1).** For each statement: «Насколько это про тебя сейчас, от 0 до 10?» Write the number and any words around it («ну, на троечку»).
+**2b. Baseline (session 2).** Open session 2 with the statements from session 1: «Насколько это про тебя сейчас, от 0 до 10?» Short programs with no session 2 soon after: end of session 1. Write the number and any words around it («ну, на троечку»).
 
 **3. Desired change, in their words (session 1).** For each goal: «Какой результат ты хочешь получить? Опиши словами, как это будет выглядеть и ощущаться.» Write it verbatim («чтобы абстрактное я регулярно приземлял, и оно становилось частью жизни, а не висело в воздухе»). Do not ask for a target number: nobody can know in advance what growth from 1 will feel normal. The description is the GAS zero, written now so mid and end compare with a record, not with memory.
 
@@ -66,7 +66,7 @@ Phase Shift Technology Library, Technology 185: The Visible Shift.
 Goal Attainment Scaling (Kiresuk & Sherman, 1968); routine outcome monitoring (ORS/SRS, Miller & Duncan); pain NRS 0–10, ~2 points or ~30% is meaningful (Farrar et al., 2001).
 
 ## Applied in
-- The Vector, standard statements for its four directions (product page wording, Sasha 2026-11-18). Each client may adjust the wording in session 1:
+- The Vector, fallback draft statements for its four directions (Sasha 2026-11-18: «так себе», the real ones come from the client's explanation in session 1, baseline in session 2):
   1. От хай-левел концептов к приземлению → «Озарение или идею я превращаю в конкретный шаг в течение недели, и он становится частью моей жизни.»
   2. Развитие ментальных привычек → «В ситуациях, которые раньше меня выбивали, я замечаю старую реакцию и выбираю новую.»
   3. Увидеть свои пробелы → «Я ясно вижу, что именно меня тормозит, и знаю, что с этим делаю.»
