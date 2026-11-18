@@ -18,7 +18,7 @@
 import { ArrowRight, Check, ChevronDown, Play } from "lucide-react";
 import { trackPageView, trackCTAClick } from "@/lib/funnelAnalytics";
 import { ExpandableTestimonial } from "@/components/ExpandableTestimonial";
-import type { TestimonialData } from "@/components/ExpandableTestimonial";
+import { useTestimonials } from "@/hooks/useTestimonials";
 import { useLocation } from "react-router-dom";
 import GameShellV2 from "../components/game/GameShellV2";
 import SEO from "@/components/SEO";
@@ -32,46 +32,12 @@ import { useState, useEffect, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { marketDoor } from "@/data/marketDoorCopy";
 import geniusLogo from "@/assets/ignite-logo.png";
-import { supabase } from "@/integrations/supabase/client";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { journeyStepRows } from "@/lib/journeyLabels";
 import { cn } from "@/lib/utils";
 
-/* ─── Shared testimonial data (single source of truth) ─── */
-import { TESTIMONIALS } from "@/data/testimonials";
-const FALLBACK_TESTIMONIALS = TESTIMONIALS;
-
-/* ─── Hook: fetch testimonials from Supabase, fallback to hardcoded ─── */
-const useTestimonials = (): TestimonialData[] => {
-  const [testimonials, setTestimonials] = useState<TestimonialData[]>(FALLBACK_TESTIMONIALS);
-
-  useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const { data, error } = await (supabase as any)
-          .from('testimonials')
-          .select('person_name, title, short_quote, full_quote, sort_order')
-          .eq('surface', 'ignite')
-          .eq('is_active', true)
-          .order('sort_order', { ascending: true });
-
-        if (error || !data || data.length === 0) return; // Keep fallback
-
-        setTestimonials(data.map(row => ({
-          shortQuote: row.short_quote,
-          fullQuote: row.full_quote,
-          name: row.person_name,
-          before: row.title,
-        })));
-      } catch {
-        // Silently fall back to hardcoded
-      }
-    };
-    fetchTestimonials();
-  }, []);
-
-  return testimonials;
-};
+/* Testimonials hook (Supabase + hardcoded fallback) now lives in @/hooks/useTestimonials,
+   shared with /products/built. */
 
 const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/9B6dR9bME6i71TP7r2dEs0A";
 const CALCOM_BOOKING_LINK = "https://cal.com/aleksandrkonstantinov/productize-yourself";

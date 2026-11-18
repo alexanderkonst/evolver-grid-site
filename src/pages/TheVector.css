@@ -1,19 +1,123 @@
 /* /products/vector — infographic style (v4), Lunar baseline, re-voiced per skin.
 
    Structure never changes between skins; only the `--vec-*` role tokens do.
-   Roles: bg · stars · moon · title (gradient + glow) · accent · body · muted · rule · orb · bar · cta.
+   Roles: bg · stars · moon · title (gradient + glow) · accent · body · muted · rule · bar · cta.
    Where a skin already owns a token (ink, body, muted, rule, callout gradient, accent gold, CTA)
-   the role reads it with var(--skin-*). The page background and the pearl orbs have no skin token,
-   so each skin names them here. Scoped to `.vector-page`: no global theme style is touched.
+   the role reads it with var(--skin-*). The page background has no skin token,
+   so each skin names it here. Scoped to `.vector-page`: no global theme style is touched.
 
    Why this file exists: the first version borrowed the shared product-landing pieces, whose page
    background (--skin-ignite-bg) is defined by no skin and so fell back to cream on every skin,
    under light dark-theme ink: white title on cream, a faint eyebrow, an invisible CTA label. */
 
-/* ── Baseline = Lunar ─────────────────────────────────────────────────────── */
+/* ── Page fonts (/products/vector only) ───────────────────────────────────────
+   Self-hosted woff2 in public/fonts/vector, Cyrillic + Latin subsets only, font-display: swap.
+   Forum (headings), Alegreya (body), Alegreya Sans SC (labels). SIL OFL 1.1, from Google Fonts.
+   The faces are declared here but only used under `.vector-fonts` (set by TheVector.tsx), so
+   /products/built, which shares this stylesheet, keeps Cormorant Garamond and DM Sans and never
+   downloads them. */
+@font-face {
+  font-family: 'Forum'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/vector/Forum-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Forum'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/vector/Forum-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Alegreya'; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url('/fonts/vector/Alegreya-normal-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Alegreya'; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url('/fonts/vector/Alegreya-normal-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Alegreya'; font-style: italic; font-weight: 400 700; font-display: swap;
+  src: url('/fonts/vector/Alegreya-italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Alegreya'; font-style: italic; font-weight: 400 700; font-display: swap;
+  src: url('/fonts/vector/Alegreya-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Alegreya Sans SC'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/vector/AlegreyaSansSC-400-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Alegreya Sans SC'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/vector/AlegreyaSansSC-400-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Alegreya Sans SC'; font-style: normal; font-weight: 500; font-display: swap;
+  src: url('/fonts/vector/AlegreyaSansSC-500-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Alegreya Sans SC'; font-style: normal; font-weight: 500; font-display: swap;
+  src: url('/fonts/vector/AlegreyaSansSC-500-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Alegreya Sans SC'; font-style: normal; font-weight: 700; font-display: swap;
+  src: url('/fonts/vector/AlegreyaSansSC-700-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Alegreya Sans SC'; font-style: normal; font-weight: 700; font-display: swap;
+  src: url('/fonts/vector/AlegreyaSansSC-700-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Type roles. Defaults keep the original pairing (used by /products/built);
+   `.vector-fonts` (the Vector page only) swaps in Forum / Alegreya / Alegreya Sans SC. */
 .vector-page {
-  --vec-bg: linear-gradient(180deg, #050a18 0%, #070d1c 38%, #03060f 72%, #010205 100%);
-  --vec-star-rgb: 226, 234, 250;
+  --vec-font-head: 'Cormorant Garamond', serif;
+  --vec-font-body: 'DM Sans', system-ui, sans-serif;
+  --vec-font-label: 'DM Sans', system-ui, sans-serif;
+  --vec-font-quote: 'Cormorant Garamond', serif;
+  --vec-head-weight: 600;
+  --vec-head-track: -0.012em;
+  --vec-body-size: 1rem;
+  --vec-body-lh: 1.75;
+}
+
+.vector-page.vector-fonts {
+  --vec-font-head: 'Forum', 'Cormorant Garamond', Georgia, serif;
+  --vec-font-body: 'Alegreya', Georgia, serif;
+  --vec-font-label: 'Alegreya Sans SC', 'DM Sans', system-ui, sans-serif;
+  --vec-font-quote: 'Alegreya', Georgia, serif;
+  --vec-font-split-label: 'Alegreya Sans SC', 'DM Sans', system-ui, sans-serif;
+  --vec-split-weight: 500;
+  --vec-split-track: 0.12em;
+  --vec-head-weight: 400; /* Forum has one weight: never ask for bold, so nothing is faux-bolded */
+  --vec-head-track: 0.005em;
+  --vec-label-track: 0.12em;
+  --vec-body-size: 1.125rem; /* 18px */
+  --vec-body-lh: 1.6;
+  --vec-lead-scale: 1.12; /* the lead paragraph stays larger than body text in the wider-set face */
+}
+
+@media (min-width: 768px) {
+  .vector-page.vector-fonts { --vec-body-size: 1.1875rem; } /* 19px on desktop */
+}
+
+/* ── Baseline = Lunar: moon and neon (Sasha's Vector infographic deck) ─────────
+   Palette: deep night gradient, warm moonlight text, neon-green serif headings,
+   and one thin-film (iridescent) gradient that appears ONLY on 1–2px lines, panel borders,
+   and the CTA border. Never as a fill behind text. */
+.vector-page {
+  --vec-bg: linear-gradient(180deg, #090b14 0%, #111524 100%);
+  --vec-star-rgb: 233, 228, 207;
+  /* Sparse, static starfield: one 560px tile of radial-gradient dots. No canvas, no motion. */
   --vec-stars:
     radial-gradient(1px 1px at 8% 14%, rgba(var(--vec-star-rgb), 0.7) 50%, transparent 52%),
     radial-gradient(1px 1px at 23% 61%, rgba(var(--vec-star-rgb), 0.45) 50%, transparent 52%),
@@ -24,36 +128,40 @@
     radial-gradient(1px 1px at 91% 73%, rgba(var(--vec-star-rgb), 0.45) 50%, transparent 52%),
     radial-gradient(1px 1px at 45% 48%, rgba(var(--vec-star-rgb), 0.3) 50%, transparent 52%),
     radial-gradient(1px 1px at 16% 92%, rgba(var(--vec-star-rgb), 0.35) 50%, transparent 52%);
-  --vec-moon: #e9e4cf;
-  --vec-moon-opacity: 0.85;
+  --vec-moon-opacity: 1;
+  --vec-moon-glow: 0 0 70px 6px rgba(243, 227, 160, 0.22), 0 0 160px 30px rgba(233, 228, 207, 0.1);
+  --vec-halo: rgba(5, 7, 14, 0.8);
 
-  /* Headings: elegant serif, light leaf-green → deeper iguana-green, soft glow. */
-  --vec-title-solid: #b4f07c;
-  --vec-title-bg: linear-gradient(135deg, #c6f890 0%, #8de25c 48%, #52bd3c 100%);
-  --vec-title-glow: drop-shadow(0 0 14px rgba(124, 226, 84, 0.34));
+  /* Neon: headings (--vec-font-head), a vertical neon-hi → neon-lo gradient, soft glow. */
+  --neon: #96de46;
+  --neon-hi: #baee68;
+  --neon-lo: #6cbe2c;
+  --vec-title-solid: var(--neon-hi);
+  --vec-title-bg: linear-gradient(180deg, var(--neon-hi) 0%, var(--neon-lo) 100%);
+  --vec-title-glow: drop-shadow(0 0 18px rgba(150, 222, 70, 0.35));
+  --vec-title-shadow: 0 0 18px rgba(150, 222, 70, 0.35);
 
-  --vec-accent: #8fe35f;
-  --vec-body: var(--skin-text-body, rgba(230, 235, 242, 0.92));
-  --vec-muted: var(--skin-text-muted, rgba(230, 235, 242, 0.74));
-  --vec-rule: var(--skin-ornament-rule, rgba(200, 210, 222, 0.34));
-  --vec-rule-strong: rgba(214, 222, 236, 0.5);
-  --vec-quote-bar: rgba(143, 227, 95, 0.7);
-  --vec-focus: #c6f890;
+  --vec-accent: var(--neon);
+  --vec-body: #e9e4cf;
+  --vec-muted: #b9b5a3;
+  --vec-rule: rgba(233, 228, 207, 0.22);
+  --vec-rule-strong: rgba(233, 228, 207, 0.4);
+  --vec-quote-bar: rgba(150, 222, 70, 0.7);
+  --vec-focus: var(--neon-hi);
 
-  /* Iridescent pearl: soft highlight, cool body, a faint green–violet sheen. */
-  --vec-orb:
-    radial-gradient(circle at 32% 28%, #ffffff 0%, rgba(255, 255, 255, 0) 38%),
-    linear-gradient(135deg, rgba(150, 255, 205, 0.5) 0%, rgba(196, 160, 255, 0.5) 100%),
-    radial-gradient(circle at 50% 50%, #e8edf8 0%, #aab6d2 100%);
-  --vec-orb-ring: rgba(255, 255, 255, 0.4);
+  /* Thin-film: pink → lilac → mint → pale gold. Lines and borders only. */
+  --vec-iris: linear-gradient(115deg, #f2a7d8 0%, #c9b6ff 34%, #a8f0c6 68%, #f3e3a0 100%);
+  --vec-panel-bg: rgba(10, 13, 24, 0.58);
 
-  --vec-bar-a: #8de25c;
-  --vec-bar-b: rgba(214, 222, 236, 0.55);
+  --vec-bar-a: var(--neon);
+  --vec-bar-b: rgba(233, 228, 207, 0.5);
 
-  --vec-cta-bg: rgba(141, 226, 92, 0.12);
-  --vec-cta-text: #effce4;
-  --vec-cta-border: rgba(141, 226, 92, 0.7);
-  --vec-cta-glow: 0 0 22px -6px rgba(141, 226, 92, 0.55);
+  /* CTA: dark pill (#080a12 at 92%), iridescent 2px ring, neon label and arrow. */
+  --vec-cta-bg: rgba(8, 10, 18, 0.92);
+  --vec-cta-text: var(--neon);
+  --vec-cta-ring: var(--vec-iris);
+  --vec-cta-glow: 0 0 22px -6px rgba(150, 222, 70, 0.35);
+  --vec-cta-glow-hover: 0 0 30px -2px rgba(150, 222, 70, 0.6);
 }
 
 /* ── Gold-voiced dark skins: the same roles, read from the skin's own tokens ── */
@@ -71,8 +179,16 @@
   --vec-rule-strong: var(--skin-ornament-rule);
   --vec-bar-a: var(--skin-accent-gold);
   --vec-bar-b: var(--skin-text-muted);
-  --vec-moon: var(--skin-accent-gold);
+  /* the skin keeps its own ink, rules and gold: the iridescent film is Lunar-only */
+  --vec-body: var(--skin-text-body);
+  --vec-muted: var(--skin-text-muted);
+  --vec-rule: var(--skin-ornament-rule);
+  --vec-iris: linear-gradient(135deg, var(--skin-accent-gold), var(--skin-accent-gold));
+  --vec-cta-ring: linear-gradient(135deg, var(--skin-cta-border), var(--skin-cta-border));
   --vec-moon-opacity: 0.7;
+  --vec-moon-glow: none;
+  --vec-title-shadow: none;
+  --vec-cta-glow-hover: none;
   --vec-cta-bg: var(--skin-cta-bg);
   --vec-cta-text: var(--skin-cta-text);
   --vec-cta-border: var(--skin-cta-border);
@@ -83,10 +199,6 @@
 [data-skin="navy-gold"] .vector-page {
   --vec-bg: linear-gradient(180deg, #0a1628 0%, #07111f 45%, #040a14 100%);
   --vec-star-rgb: 245, 232, 190;
-  --vec-orb:
-    radial-gradient(circle at 32% 28%, #fffbea 0%, rgba(255, 251, 234, 0) 38%),
-    radial-gradient(circle at 50% 50%, #f1d98a 0%, #b8941e 100%);
-  --vec-orb-ring: rgba(255, 244, 205, 0.4);
   /* the skin's own CTA glass is too thin for 13px label text; use its callout gold, solid */
   --vec-cta-bg: var(--skin-callout-bg);
 }
@@ -95,43 +207,27 @@
 [data-skin="daouniverse"] .vector-page {
   --vec-bg: linear-gradient(180deg, #050d09 0%, #0a1a12 40%, #0d2218 70%, #050d09 100%);
   --vec-star-rgb: 240, 230, 210;
-  --vec-orb:
-    radial-gradient(circle at 32% 28%, #fffaf0 0%, rgba(255, 250, 240, 0) 38%),
-    radial-gradient(circle at 50% 50%, #e6d6a8 0%, #a8884c 100%);
-  --vec-orb-ring: rgba(255, 248, 225, 0.38);
 }
 
 /* planetir — olive night, champagne gold */
 [data-skin="planetir"] .vector-page {
   --vec-bg: linear-gradient(180deg, #08130c 0%, #0a1a10 45%, #07110a 100%);
   --vec-star-rgb: 245, 245, 235;
-  --vec-orb:
-    radial-gradient(circle at 32% 28%, #ffffff 0%, rgba(255, 255, 255, 0) 38%),
-    radial-gradient(circle at 50% 50%, #e9dcb3 0%, #a8884c 100%);
-  --vec-orb-ring: rgba(255, 255, 255, 0.38);
 }
 
 /* aurum — near-black, amber gold */
 [data-skin="aurum"] .vector-page {
   --vec-bg: linear-gradient(180deg, #050507 0%, #07070a 40%, #0a0a0e 70%, #020203 100%);
   --vec-star-rgb: 240, 226, 190;
-  --vec-orb:
-    radial-gradient(circle at 32% 28%, #fff8e0 0%, rgba(255, 248, 224, 0) 38%),
-    radial-gradient(circle at 50% 50%, #ecc766 0%, #b08a2a 100%);
-  --vec-orb-ring: rgba(255, 240, 200, 0.4);
 }
 
 /* techstars — black, signal green */
 [data-skin="techstars"] .vector-page {
   --vec-bg: linear-gradient(180deg, #050608 0%, #07080a 40%, #0a0b0e 70%, #02030a 100%);
   --vec-star-rgb: 220, 255, 226;
-  --vec-orb:
-    radial-gradient(circle at 32% 28%, #f2fff4 0%, rgba(242, 255, 244, 0) 38%),
-    radial-gradient(circle at 50% 50%, #7be58a 0%, #2ba036 100%);
-  --vec-orb-ring: rgba(235, 255, 238, 0.4);
 }
 
-/* ── Light skins: dark ink headings, no glow, no star field, orbs as soft metallic dots ── */
+/* ── Light skins: dark ink headings, no glow, no star field ── */
 [data-skin="lapis"] .vector-page,
 [data-skin="network-school"] .vector-page,
 [data-skin="dao"] .vector-page,
@@ -145,19 +241,24 @@
   --vec-rule-strong: var(--skin-ornament-rule);
   --vec-bar-a: var(--vec-accent);
   --vec-bar-b: var(--skin-text-muted);
-  --vec-moon: var(--skin-text-primary);
-  --vec-moon-opacity: 0.14;
+  --vec-body: var(--skin-text-body);
+  --vec-muted: var(--skin-text-muted);
+  --vec-rule: var(--skin-ornament-rule);
+  --vec-iris: linear-gradient(135deg, var(--skin-ornament-rule), var(--skin-ornament-rule));
+  --vec-panel-bg: rgba(255, 255, 255, 0.55);
+  --vec-halo: rgba(255, 255, 255, 0.7);
+  --vec-moon-opacity: 0.18;
+  --vec-moon-glow: none;
+  --vec-title-shadow: none;
+  --vec-cta-ring: linear-gradient(135deg, var(--vec-cta-border), var(--vec-cta-border));
   --vec-cta-glow: none;
+  --vec-cta-glow-hover: none;
 }
 
 /* lapis — cream paper, navy ink, antique gold */
 [data-skin="lapis"] .vector-page {
   --vec-bg: linear-gradient(180deg, #fdfaf3 0%, #f6efe0 45%, #fdfaf3 100%);
   --vec-accent: #7a5108;
-  --vec-orb:
-    radial-gradient(circle at 32% 28%, #fffaf0 0%, rgba(255, 250, 240, 0) 36%),
-    radial-gradient(circle at 50% 50%, #d9bd72 0%, #8a6a1c 100%);
-  --vec-orb-ring: rgba(122, 81, 8, 0.28);
   --vec-cta-bg: var(--skin-text-primary);
   --vec-cta-text: #fdfaf3;
   --vec-cta-border: var(--skin-text-primary);
@@ -168,10 +269,6 @@
 [data-skin="dao"] .vector-page {
   --vec-bg: linear-gradient(180deg, #ffffff 0%, #f8f8f6 50%, #ffffff 100%);
   --vec-accent: #3d3d3d;
-  --vec-orb:
-    radial-gradient(circle at 32% 28%, #ffffff 0%, rgba(255, 255, 255, 0) 36%),
-    radial-gradient(circle at 50% 50%, #c4c4c4 0%, #6b6b6b 100%);
-  --vec-orb-ring: rgba(10, 10, 10, 0.2);
   --vec-cta-bg: var(--skin-cta-bg);
   --vec-cta-text: var(--skin-cta-text);
   --vec-cta-border: var(--skin-text-primary);
@@ -181,22 +278,18 @@
 [data-skin="karime"] .vector-page {
   --vec-bg: linear-gradient(180deg, #f7f0e5 0%, #efe3d2 50%, #f7f0e5 100%);
   --vec-accent: #7d4412;
-  --vec-orb:
-    radial-gradient(circle at 32% 28%, #fff6ea 0%, rgba(255, 246, 234, 0) 36%),
-    radial-gradient(circle at 50% 50%, #dba777 0%, #8a4f1c 100%);
-  --vec-orb-ring: rgba(91, 42, 11, 0.28);
   --vec-cta-bg: var(--skin-text-primary);
   --vec-cta-text: #f7f0e5;
   --vec-cta-border: var(--skin-text-primary);
 }
 
-/* ── Page: night sky, faint stars, crescent ─────────────────────────────────── */
+/* ── Page: night sky, static starfield ─────────────────────────────────────── */
 .product-landing.vector-page {
   position: relative;
   overflow: hidden;
   background: var(--vec-bg);
   color: var(--vec-body);
-  font-family: 'DM Sans', system-ui, sans-serif;
+  font-family: var(--vec-font-body);
 }
 
 .vector-page .vector-sky {
@@ -207,45 +300,117 @@
   background-size: 560px 560px;
 }
 
+/* ── Iridescent ring: a 1–2px border drawn with a mask, so the film never fills a box ──
+   Used by cards, panels and the CTA. Pure line work. */
+.vector-page .vector-card::before,
+.vector-page .vector-panel::before,
+.vector-page .vector-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--vec-ring-w, 1px);
+  background: var(--vec-iris);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.vector-page .vector-cta::before { --vec-ring-w: 2px; background: var(--vec-cta-ring); }
+
+/* ── Hero: a full moon with the title set on it ─────────────────────────────── */
+.vector-page .vector-hero-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(84vw, 25rem);
+  aspect-ratio: 1;
+  margin: 0.5rem auto 0;
+}
+
 .vector-page .vector-moon {
   position: absolute;
-  top: 2.75rem;
-  right: 0.25rem;
-  width: 2.2rem;
-  height: 2.2rem;
-  background: var(--vec-moon);
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
   opacity: var(--vec-moon-opacity);
-  -webkit-mask: var(--vec-moon-mask) center / contain no-repeat;
-  mask: var(--vec-moon-mask) center / contain no-repeat;
-  --vec-moon-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'/%3E%3C/svg%3E");
+  box-shadow: var(--vec-moon-glow);
+}
+
+.vector-page .vector-moon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* the photo is neutral grey: warm it a little toward moonlight */
+  filter: sepia(0.22) saturate(1.1) brightness(0.95);
+}
+
+.vector-page .vector-hero-text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+/* Dark soft halo behind the words: keeps neon type readable over the craters. */
+.vector-page .vector-hero-text::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -22% -34%;
+  background: radial-gradient(closest-side, var(--vec-halo) 0%, var(--vec-halo) 38%, transparent 100%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.vector-page .vector-hero-label {
+  font-family: var(--vec-font-label);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: var(--vec-label-track, 0.32em);
+  text-transform: lowercase;
+  color: var(--vec-body);
 }
 
 /* ── Type ──────────────────────────────────────────────────────────────────── */
 .vector-page .vector-title,
-.vector-page .vector-price {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 700;
-  letter-spacing: -0.018em;
+.vector-page .vector-price,
+.vector-page .vector-heading-text {
+  font-family: var(--vec-font-head);
+  font-weight: var(--vec-head-weight);
+  letter-spacing: var(--vec-head-track);
   line-height: 1.15;
+  overflow-wrap: break-word;
   text-wrap: balance;
   color: var(--vec-title-solid);
+  text-shadow: var(--vec-title-shadow);
   width: fit-content;
   max-width: 100%;
 }
 
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
   .vector-page .vector-title,
-  .vector-page .vector-price {
+  .vector-page .vector-price,
+  .vector-page .vector-heading-text {
     background-image: var(--vec-title-bg);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    /* glow as a drop-shadow filter: a text-shadow would tint the clipped gradient */
+    text-shadow: none;
     filter: var(--vec-title-glow);
   }
 }
 
 .vector-page .vector-hero-title {
-  font-size: clamp(2.1rem, 5.4vw, 3.1rem);
+  font-size: clamp(3.4rem, 15vw, 5.6rem);
+  line-height: 1;
+  letter-spacing: 0.01em;
   margin-inline: auto;
 }
 
@@ -256,46 +421,45 @@
 
 .vector-page .vector-price {
   font-size: clamp(3rem, 8vw, 3.75rem);
-  font-weight: 600;
   margin-inline: auto;
 }
 
 .vector-page .vector-body,
 .vector-page .vector-lead {
-  font-family: 'DM Sans', system-ui, sans-serif;
+  font-family: var(--vec-font-body);
   font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.75;
+  font-size: var(--vec-body-size);
+  line-height: var(--vec-body-lh);
   color: var(--vec-body);
   overflow-wrap: break-word;
 }
 
 .vector-page .vector-lead {
   font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+  font-size: calc(clamp(1.05rem, 2.4vw, 1.2rem) * var(--vec-lead-scale, 1));
   font-style: normal;
 }
 
 .vector-page .vector-muted {
-  font-family: 'DM Sans', system-ui, sans-serif;
+  font-family: var(--vec-font-body);
   color: var(--vec-muted);
   line-height: 1.6;
 }
 
-/* Eyebrow: small tracked caps, a section number, a hairline under it. */
+/* Section heading: serif neon title, a small numeral, an iridescent hairline under it. */
 .vector-page .vector-eyebrow {
   position: relative;
   display: flex;
   flex-wrap: wrap;
+  align-items: baseline;
   justify-content: center;
   gap: 0.5em;
-  padding-bottom: 0.95rem;
-  font-family: 'DM Sans', system-ui, sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.28em;
-  line-height: 1.7;
-  text-transform: uppercase;
-  color: var(--vec-accent);
+  padding-bottom: 1rem;
+  font-family: var(--vec-font-head);
+  font-size: clamp(1.6rem, 5vw, 1.9rem);
+  font-weight: var(--vec-head-weight);
+  line-height: 1.2;
+  color: var(--vec-title-solid);
 }
 
 .vector-page .vector-eyebrow::after {
@@ -303,47 +467,210 @@
   position: absolute;
   left: 50%;
   bottom: 0;
-  width: 3rem;
+  width: 5rem;
   height: 1px;
   transform: translateX(-50%);
-  background: var(--vec-rule-strong);
+  background: var(--vec-iris);
+}
+
+.vector-page .vector-eyebrow-num {
+  font-family: var(--vec-font-label);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: var(--vec-label-track, 0.24em);
+  color: var(--vec-accent);
 }
 
 .vector-page .vector-eyebrow-dot {
   opacity: 0.8;
 }
 
+/* ── Cards and collapsible panels (01, 02): dark glass with a hairline iridescent border ── */
+.vector-page .vector-card,
+.vector-page .vector-panel {
+  position: relative;
+  border-radius: 1.1rem;
+  background: var(--vec-panel-bg);
+}
+
+.vector-page section.vector-card { padding: 1.75rem 1.4rem; }
+.vector-page li.vector-card { padding: 1.1rem 1.25rem 1.2rem; }
+.vector-page .vector-panel { padding: 0 1.4rem; }
+
+/* The eyebrow heading is the toggle */
+.vector-page .vector-eyebrow-toggle { padding-bottom: 0; }
+.vector-page .vector-eyebrow-toggle::after { display: none; }
+
+.vector-page .vector-panel-toggle {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.5em;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.85rem 0;
+  background: none;
+  border: 0;
+  border-radius: 4px;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-transform: inherit;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.vector-page .vector-panel-toggle:hover .vector-heading-text { filter: var(--vec-title-glow) brightness(1.12); }
+
+.vector-page .vector-panel-toggle:focus-visible {
+  outline: 2px solid var(--vec-focus);
+  outline-offset: 2px;
+}
+
+.vector-page .vector-panel-chevron {
+  align-self: center;
+  color: var(--vec-accent);
+  opacity: 0.9;
+  transition: transform 0.25s ease;
+}
+
+.vector-page .vector-panel[data-open="true"] .vector-panel-chevron { transform: rotate(180deg); }
+
+/* Body folds via grid rows 0fr → 1fr; hidden while folded so it can't be tabbed into. */
+.vector-page .vector-panel-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.vector-page .vector-panel[data-open="true"] .vector-panel-body {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 0.3s ease, visibility 0s;
+}
+
+.vector-page .vector-panel-clip { min-height: 0; overflow: hidden; }
+.vector-page .vector-panel-inner { padding: 0.5rem 0 1.5rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .vector-page .vector-panel-body,
+  .vector-page .vector-panel[data-open="true"] .vector-panel-body,
+  .vector-page .vector-panel-chevron { transition: none; }
+}
+
 /* Pull-quote: italic serif, thin left bar. */
 .vector-page .vector-quote {
   padding-left: 1.1rem;
   border-left: 2px solid var(--vec-quote-bar);
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--vec-font-quote, var(--vec-font-body));
   font-size: 1.3rem;
   font-style: italic;
   line-height: 1.5;
   color: var(--vec-body);
 }
 
-/* ── Pearl orbs ────────────────────────────────────────────────────────────── */
-.vector-page .vector-orb,
-.vector-page .vector-route-orb {
+/* Section divider: iridescent hairlines either side of one small star (centre gap leaves it room). */
+.vector-page .vector-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 28rem;
+  margin-inline: auto;
+  height: 2.25rem;
+}
+
+.vector-page .vector-divider::before,
+.vector-page .vector-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: calc(50% - 1.5rem);
+  height: 1px;
+  background: var(--vec-iris);
+}
+
+.vector-page .vector-divider::before { left: 0; }
+.vector-page .vector-divider::after { right: 0; }
+
+/* ── The Ignite star: replaces the old pearl orbs (dividers, bullets, route stops) ──
+   The artwork is a wide canvas with the star centred, so it is cropped to a square:
+   the box size is within ~20% of the visible star. Only a light glow, no other filters. */
+.vector-page .vector-star {
   display: block;
   flex-shrink: 0;
-  border-radius: 50%;
-  background: var(--vec-orb);
-  box-shadow: inset 0 0 0 1px var(--vec-orb-ring);
+  object-fit: cover;
+  object-position: center;
+  filter: drop-shadow(0 0 4px rgba(243, 227, 160, 0.4));
+  pointer-events: none;
+  user-select: none;
+}
+
+.vector-page .vector-divider-star {
+  position: relative;
+  width: 2.25rem;
+  height: 2.25rem;
 }
 
 .vector-page .vector-list > li {
   display: flex;
   align-items: flex-start;
-  gap: 0.95rem;
+  gap: 0.8rem;
 }
 
-.vector-page .vector-list .vector-orb {
-  width: 0.6rem;
-  height: 0.6rem;
-  margin-top: 0.62rem;
+.vector-page .vector-list .vector-bullet {
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: 0.38rem;
+}
+
+/* Nested list (unique-for-inner-life breakdown): same star, indented under the parent text. */
+.vector-page .vector-sublist {
+  margin-top: 0.75rem;
+}
+
+.vector-page .vector-sublist > li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.vector-page .vector-sublist .vector-bullet {
+  width: 0.9rem;
+  height: 0.9rem;
+  margin-top: 0.45rem;
+}
+
+/* The "why" paragraph under the first term: quieter than the term itself. */
+.vector-page .vector-why {
+  color: var(--vec-muted);
+}
+
+.vector-page .vector-link {
+  color: var(--vec-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Guarantee panel: same look as BUILT's (`.build-promise`): a hairline box, accent label above the text. */
+.vector-page .vector-guarantee {
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--vec-rule-strong);
+  border-radius: 0.75rem;
+}
+
+.vector-page .vector-guarantee-label {
+  font-family: var(--vec-font-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: var(--vec-label-track, 0.24em);
+  line-height: 1.7;
+  text-transform: uppercase;
+  color: var(--vec-accent);
 }
 
 /* ── Session split: one thin bar, 40 / 50, labels below ─────────────────────── */
@@ -370,15 +697,15 @@
 .vector-page .vector-split-content { background: var(--vec-bar-b); }
 
 .vector-page .vector-split-label {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--vec-font-split-label, var(--vec-font-head));
   font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  font-weight: var(--vec-split-weight, 600);
+  letter-spacing: var(--vec-split-track, 0.03em);
   color: var(--vec-body);
 }
 
 /* ── The 0–9 path ────────────────────────────────────────────────────────────
-   Mobile: a vertical hairline. Desktop: it leans across --lean; each orb sits on the line
+   Mobile: a vertical hairline. Desktop: it leans across --lean; each star sits on the line
    at its block's share of the height (--shift, 0..1, measured in TheVector.tsx). */
 .vector-page .vector-route-section {
   max-width: 34rem;
@@ -387,11 +714,11 @@
 .vector-page .vector-route {
   --lean: 0rem;
   --gut: 1.75rem;
-  --orb: 0.95rem;
-  --orb-y: 1rem;
+  --orb: 1.5rem; /* star box on the route; the visible star is ~80% of it */
+  --orb-y: 2rem;
   position: relative;
   display: grid;
-  gap: 2.6rem;
+  gap: 1.5rem;
   padding-left: calc(0.5rem + var(--lean) + var(--gut));
   padding-bottom: 2.75rem;
 }
@@ -409,7 +736,7 @@
   width: 1px;
   height: var(--route-h, calc(100% - 6rem));
   transform-origin: top;
-  background: var(--vec-rule-strong);
+  background: var(--vec-iris);
 }
 
 @media (min-width: 768px) {
@@ -420,7 +747,7 @@
   }
 }
 
-/* Arrowhead under the last orb: the direction of the vector. */
+/* Arrowhead under the last star: the direction of the vector. */
 .vector-page .vector-route::after {
   content: '';
   position: absolute;
@@ -444,7 +771,6 @@
   left: calc(-1 * (var(--gut) + var(--lean)) + var(--shift, 0) * var(--lean) - var(--orb) / 2);
   top: calc(var(--orb-y) - var(--orb) / 2);
 }
-
 /* ── Five elements, block 7: flat chips on a hairline ───────────────────────── */
 .vector-page .vector-elements {
   display: flex;
@@ -469,31 +795,33 @@
   color: var(--vec-accent);
 }
 
-/* ── CTA: a pill whose colours come from the skin ────────────────────────────── */
+/* ── CTA: dark pill, 2px iridescent ring, neon label and arrow ───────────────── */
 .vector-page .vector-cta {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
   max-width: 100%;
   min-height: 3rem;
-  padding: 0.85rem 1.75rem;
+  padding: 0.85rem 1.85rem;
   border-radius: 9999px;
-  border: 1px solid var(--vec-cta-border);
   background: var(--vec-cta-bg);
   box-shadow: var(--vec-cta-glow);
   color: var(--vec-cta-text);
-  font-family: 'DM Sans', system-ui, sans-serif;
+  font-family: var(--vec-font-label);
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
-  transition: filter 200ms ease, transform 200ms ease;
+  transition: box-shadow 200ms ease, transform 200ms ease;
 }
 
-.vector-page .vector-cta:hover { filter: brightness(1.12); transform: translateY(-1px); }
+.vector-page .vector-cta > svg { color: var(--vec-cta-text); }
+
+.vector-page .vector-cta:hover { box-shadow: var(--vec-cta-glow-hover); transform: translateY(-1px); }
 .vector-page .vector-cta:active { transform: none; }
 
 .vector-page a:focus-visible {
@@ -501,12 +829,19 @@
   outline-offset: 4px;
 }
 
-.vector-page .vector-footer-mark {
-  font-family: 'DM Sans', system-ui, sans-serif;
+/* Photo credit (CC BY-SA 3.0): small, muted, a link to the file page. */
+.vector-page .vector-credit {
+  font-family: var(--vec-font-body);
   font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  line-height: 1.5;
   color: var(--vec-muted);
+}
+
+.vector-page .vector-credit a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--vec-rule-strong);
+  text-underline-offset: 3px;
 }
 
 /* Draw the line in once on load, only when motion is welcome. */

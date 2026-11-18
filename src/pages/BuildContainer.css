@@ -1,0 +1,196 @@
+/* /products/built — page-specific parts of the moon/neon look.
+   Tokens, starfield, cards, CTA, headings, star bullets and dividers all come from TheVector.css
+   (everything there is scoped to `.vector-page`, so no global or other-page style is touched).
+   Colours here read only the `--vec-*` role tokens, so every skin stays readable (>= 4.5:1). */
+
+/* Hero: the Ignite star, kept from the previous page; a light glow only. */
+.vector-page .build-hero-star {
+  display: block;
+  width: 140px;
+  max-width: 40vw;
+  height: auto;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 14px rgba(243, 227, 160, 0.35));
+}
+
+/* Small tracked caps: the old eyebrow, now in the accent role (neon on night, ink-gold on paper). */
+.vector-page .build-eyebrow {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  line-height: 1.7;
+  text-transform: uppercase;
+  color: var(--vec-accent);
+}
+
+.vector-page .build-hero-title {
+  font-size: clamp(1.95rem, 6vw, 2.9rem);
+  line-height: 1.2;
+  margin-inline: auto;
+}
+
+.vector-page .build-sauce { font-style: italic; }
+
+/* Hero price line: both options, side by side where there is room. */
+.vector-page .build-hero-prices {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.75rem;
+}
+
+.vector-page .build-hero-prices > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.vector-page .build-hero-amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--vec-title-solid);
+}
+
+.vector-page .build-hero-tier {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--vec-muted);
+}
+
+/* The four weeks: one card each, no gutter line. */
+.vector-page .build-weeks {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.vector-page .build-week-label { margin-bottom: 0.35rem; }
+
+/* Price block: two cards side by side on desktop, stacked on mobile. */
+.vector-page .build-price-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  max-width: 34rem;
+  margin-inline: auto;
+}
+
+@media (min-width: 640px) {
+  .vector-page .build-price-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.vector-page .build-price-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem 1.1rem 1.4rem;
+}
+
+.vector-page .build-price-card .vector-price {
+  font-size: clamp(2.5rem, 7vw, 3rem);
+  margin-inline: auto;
+}
+
+/* Long button labels may wrap inside a card instead of overflowing it. */
+.vector-page .build-price-card .vector-cta {
+  width: 100%;
+  padding-inline: 1.1rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+}
+
+.vector-page .build-promise {
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--vec-rule-strong);
+  border-radius: 0.75rem;
+}
+
+/* Testimonials: the /ignite one-line expandable quotes, in the moon/neon look.
+   Quote = moonlight body, name = neon (accent) small caps, chevron = accent. All from --vec-* roles. */
+.vector-page .moon-testimonials { display: grid; gap: 0.25rem; }
+
+.vector-page .moon-testimonial {
+  display: block;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background: transparent;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.vector-page .moon-testimonial:hover,
+.vector-page .moon-testimonial[data-open="true"] {
+  background: var(--vec-panel-bg);
+  border-color: var(--vec-rule);
+}
+
+.vector-page .moon-testimonial:focus-visible {
+  outline: 2px solid var(--vec-focus);
+  outline-offset: 2px;
+}
+
+.vector-page .moon-testimonial-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.vector-page .moon-testimonial-quote {
+  flex: 1;
+  min-width: 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--vec-body);
+}
+
+.vector-page .moon-testimonial-name {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--vec-accent);
+}
+
+.vector-page .moon-testimonial-chevron {
+  flex-shrink: 0;
+  align-self: center;
+  width: 1rem;
+  height: 1rem;
+  color: var(--vec-accent);
+  transition: transform 0.2s ease;
+}
+
+.vector-page .moon-testimonial[data-open="true"] .moon-testimonial-chevron { transform: rotate(180deg); }
+
+.vector-page .moon-testimonial-full {
+  display: block;
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--vec-rule);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.5;
+  white-space: pre-line;
+  color: var(--vec-body);
+}
+
+.vector-page .build-closing {
+  font-size: 1.4rem;
+  font-style: italic;
+  margin-inline: auto;
+}
