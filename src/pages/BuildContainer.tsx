@@ -1,91 +1,147 @@
 /**
- * /products/built — the BUILT container, in Ignite's editorial visual language.
- * Copy remains verbatim: docs/04-products/the_build_container.md.
+ * /products/built — the BUILT container, in the moon/neon look shared with /products/vector.
+ * Visual tokens and shared classes live in TheVector.css (scoped to `.vector-page`);
+ * BuildContainer.css holds only what is specific to this page.
+ * Copy source of truth: docs/04-products/the_build_container.md.
  */
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SEO from "@/components/SEO";
-import { ProductCta, ProductEyebrow, ProductHero, ProductLanding, ProductList } from "@/components/products/ProductLanding";
-import { Ornament } from "@/lib/landingDesign";
+import { MoonDivider, MoonEyebrow, MoonStar } from "@/components/products/MoonNeon";
+import { igniteLogo } from "@/lib/landingDesign";
+import "./TheVector.css";
+import "./BuildContainer.css";
 
 const WHATSAPP_URL = "https://wa.me/14157073432?text=" +
   encodeURIComponent("Hi Sasha! The BUILT container lands for me, and I wanted to get in touch.");
 
+const WEEKS = [1, 2, 3, 4] as const;
+const GROUP_PRICE = "$1,111";
+const INDIVIDUAL_PRICE = "$4,444";
+
 const BuildContainer = () => {
   const { t } = useTranslation();
-  const contact = <ProductCta href={WHATSAPP_URL} external breathe>{t("thebuild.cta")}</ProductCta>;
+  const cta = (label: string, arrow = true) => (
+    <>
+      <span>{label}</span>
+      {arrow && <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />}
+    </>
+  );
+  const whatsapp = (
+    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="vector-cta">
+      {cta(t("thebuild.cta"))}
+    </a>
+  );
+  const eligibility = (
+    <Link to="/quiz" className="vector-cta">
+      {cta(t("thebuild.eligibilityCta"))}
+    </Link>
+  );
 
   return (
     <>
       <SEO title={t("thebuild.seoTitle")} description={t("thebuild.seoDescription")} path="/products/built" />
-      <ProductLanding>
-        <ProductHero eyebrow={t("thebuild.eyebrow")} title={t("thebuild.h1")} subtitle={t("thebuild.sauce")}>
-          <Ornament />
-          <div className="flex flex-col items-center gap-3 pt-2">
-            {contact}
-            <p className="product-body text-xs">$1,111</p>
-          </div>
-        </ProductHero>
+      <main className="product-landing vector-page build-page relative min-h-dvh font-sans">
+        <div className="vector-sky" aria-hidden="true" />
+        <div className="vector-inner relative max-w-2xl mx-auto px-5 md:px-6 py-16 space-y-14">
+          <header className="text-center space-y-6 pt-2 pb-2">
+            <img src={igniteLogo} alt={t("ignite.logoAlt")} width={140} height={106} decoding="async"
+              className="build-hero-star mx-auto" />
+            <p className="build-eyebrow">{t("thebuild.eyebrow")}</p>
+            <h1 className="vector-title build-hero-title">{t("thebuild.h1")}</h1>
+            <p className="vector-body build-sauce max-w-md mx-auto">{t("thebuild.sauce")}</p>
+            <MoonDivider />
+            <div className="flex flex-col items-center gap-4 pt-1">
+              {whatsapp}
+              <ul className="build-hero-prices" aria-label={t("thebuild.priceLabel")}>
+                <li>
+                  <span className="build-hero-amount">{GROUP_PRICE}</span>
+                  <span className="build-hero-tier">{t("thebuild.groupLabel")}</span>
+                </li>
+                <li>
+                  <span className="build-hero-amount">{INDIVIDUAL_PRICE}</span>
+                  <span className="build-hero-tier">{t("thebuild.individualLabel")}</span>
+                </li>
+              </ul>
+            </div>
+          </header>
 
-        <section className="max-w-lg mx-auto">
-          <ol className="product-timeline space-y-8">
-            {[1, 2, 3].map(week => (
-              <li key={week}>
-                <ProductEyebrow>{t(`thebuild.w${week}Label`)}</ProductEyebrow>
-                <h2 className="product-title text-2xl mt-2 mb-3">{t(`thebuild.w${week}Title`)}</h2>
-                <p className="product-body text-base">{t(`thebuild.w${week}Body`)}</p>
-              </li>
-            ))}
-          </ol>
-        </section>
+          <section className="max-w-lg mx-auto">
+            <ol className="build-weeks">
+              {WEEKS.map(week => (
+                <li key={week} className="vector-card">
+                  <p className="build-eyebrow build-week-label">{t(`thebuild.w${week}Label`)}</p>
+                  <h2 className="vector-title vector-block-title">{t(`thebuild.w${week}Title`)}</h2>
+                  <p className="vector-body">{t(`thebuild.w${week}Body`)}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
 
-        <Ornament />
+          <MoonDivider />
 
-        <section className="max-w-md mx-auto space-y-5">
-          <ProductEyebrow heading className="text-center">{t("thebuild.storiesEyebrow")}</ProductEyebrow>
-          <p className="product-body text-base">{t("thebuild.storyFounder")}</p>
-          <p className="product-body text-base">{t("thebuild.storyCoach")}</p>
-          <p className="product-body text-sm italic text-center">
-            {t("thebuild.testimonialsBefore")}{" "}
-            <Link to="/ignite" className="product-quiet-link">{t("thebuild.testimonialsLink")}</Link>
-          </p>
-          <p className="product-body text-base pt-2">{t("thebuild.noScratch")}</p>
-        </section>
+          <section className="max-w-md mx-auto space-y-5">
+            <MoonEyebrow heading>{t("thebuild.storiesEyebrow")}</MoonEyebrow>
+            <p className="vector-body">{t("thebuild.storyFounder")}</p>
+            <p className="vector-body">{t("thebuild.storyCoach")}</p>
+            <p className="vector-body text-sm italic text-center">
+              {t("thebuild.testimonialsBefore")}{" "}
+              <Link to="/ignite" className="vector-link">{t("thebuild.testimonialsLink")}</Link>
+            </p>
+            <p className="vector-body pt-2">{t("thebuild.noScratch")}</p>
+          </section>
 
-        <Ornament />
+          <MoonDivider />
 
-        <section className="liquid-glass-strong rounded-[2.5rem] p-7 md:p-9 text-center space-y-6">
-          <ProductEyebrow heading>{t("thebuild.formatLabel")}</ProductEyebrow>
-          <div className="max-w-md mx-auto">
-            <ProductList items={[1, 2, 3].map(i => t(`thebuild.format${i}`))} />
-          </div>
-          <Ornament />
-          <div className="space-y-3">
-            <ProductEyebrow heading>{t("thebuild.priceLabel")}</ProductEyebrow>
-            <p className="product-price">$1,111</p>
-            <p className="product-body text-base max-w-md mx-auto">{t("thebuild.priceBody")}</p>
-          </div>
-          <p className="product-body text-base max-w-md mx-auto rounded-xl border p-4"
-            style={{ borderColor: "var(--skin-ornament-rule, rgba(26,30,58,0.16))" }}>
-            {t("thebuild.promise")}
-          </p>
-          <p className="product-title text-xl italic">{t("thebuild.closing")}</p>
-          <div className="pt-2">{contact}</div>
-        </section>
+          <section className="vector-card space-y-7 text-center">
+            <MoonEyebrow heading>{t("thebuild.formatLabel")}</MoonEyebrow>
+            <ul className="vector-list space-y-3 text-left max-w-md mx-auto">
+              {[1, 2, 3].map(i => (
+                <li key={i}>
+                  <MoonStar className="vector-bullet" />
+                  <span className="vector-body">{t(`thebuild.format${i}`)}</span>
+                </li>
+              ))}
+            </ul>
 
-        <footer className="text-center space-y-6 pb-8">
-          <p className="product-body text-sm italic max-w-md mx-auto">
-            {t("thebuild.routerBefore")}{" "}
-            <Link to="/ignite" className="product-quiet-link">{t("thebuild.routerLink")}</Link>
-            {t("thebuild.routerAfter")}
-          </p>
-          <p className="product-title text-base">Aleks</p>
-          <Ornament />
-          <Link to="/data" className="product-quiet-link inline-flex items-center justify-center min-h-11 text-xs">
-            {t("thebuild.dataLink")}
-          </Link>
-        </footer>
-      </ProductLanding>
+            <MoonDivider />
+
+            <div className="space-y-5">
+              <MoonEyebrow heading>{t("thebuild.priceLabel")}</MoonEyebrow>
+              <p className="vector-body max-w-md mx-auto">{t("thebuild.priceBody")}</p>
+              <div className="build-price-grid">
+                <div className="build-price-card vector-card">
+                  <p className="build-eyebrow">{t("thebuild.groupLabel")}</p>
+                  <p className="vector-price">{GROUP_PRICE}</p>
+                  {whatsapp}
+                </div>
+                <div className="build-price-card vector-card">
+                  <p className="build-eyebrow">{t("thebuild.individualLabel")}</p>
+                  <p className="vector-price">{INDIVIDUAL_PRICE}</p>
+                  {eligibility}
+                </div>
+              </div>
+            </div>
+
+            <p className="vector-body build-promise max-w-md mx-auto">{t("thebuild.promise")}</p>
+            <p className="vector-title build-closing">{t("thebuild.closing")}</p>
+          </section>
+
+          <footer className="text-center space-y-6 pb-8">
+            <p className="vector-body text-sm italic max-w-md mx-auto">
+              {t("thebuild.routerBefore")}{" "}
+              <Link to="/ignite" className="vector-link">{t("thebuild.routerLink")}</Link>
+              {t("thebuild.routerAfter")}
+            </p>
+            <p className="vector-title build-signature">Aleks</p>
+            <MoonDivider />
+            <Link to="/data" className="vector-link inline-flex items-center justify-center min-h-11 text-xs">
+              {t("thebuild.dataLink")}
+            </Link>
+          </footer>
+        </div>
+      </main>
     </>
   );
 };

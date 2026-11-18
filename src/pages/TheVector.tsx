@@ -6,6 +6,7 @@ import { ArrowRight, ChevronDown, Droplets, Flame, Mountain, Sparkles, Wind, typ
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
+import { MoonDivider as VectorDivider, MoonEyebrow as VectorEyebrow, MoonStar } from "@/components/products/MoonNeon";
 import "./TheVector.css";
 
 const TELEGRAM_CONVERSATION = "https://t.me/integralevolution";
@@ -26,24 +27,6 @@ const ELEMENTS: { key: string; Icon: LucideIcon }[] = [
   { key: "air", Icon: Wind },
   { key: "ether", Icon: Sparkles },
 ];
-
-/** Section eyebrow: small tracked caps, a section number and a hairline under it. */
-const VectorEyebrow = ({ n, children, heading = false }: { n?: string; children: ReactNode; heading?: boolean }) => {
-  const Tag = heading ? "h2" : "p";
-  return (
-    <Tag className="vector-eyebrow">
-      {n && <span className="vector-eyebrow-num" aria-hidden="true">{n} <span className="vector-eyebrow-dot">·</span></span>}
-      <span className="vector-heading-text">{children}</span>
-    </Tag>
-  );
-};
-
-/** Section divider: a 1px iridescent line with one pearl orb at its centre. No logo, no motion. */
-const VectorDivider = () => (
-  <div className="vector-divider" aria-hidden="true">
-    <span className="vector-orb" />
-  </div>
-);
 
 /** Collapsible panel (sections 01 and 02). The numbered eyebrow heading is the toggle: a real
  *  <button> inside the <h2>, wired with aria-expanded / aria-controls. Collapsed on load.
@@ -73,7 +56,7 @@ const VectorPanel = ({ n, heading, children }: { n: string; heading: ReactNode; 
 };
 
 /** The 0–9 path. On desktop the hairline leans: JS only measures where each block sits,
- *  so the pearl orbs ride the diagonal exactly; CSS decides whether to use it (mobile stays vertical). */
+ *  so the stars ride the diagonal exactly; CSS decides whether to use it (mobile stays vertical). */
 const VectorRoute = ({ children }: { children: ReactNode }) => {
   const ref = useRef<HTMLOListElement>(null);
 
@@ -136,7 +119,7 @@ const TheVector = () => {
             <ul className="vector-list space-y-3 text-left">
               {["g1", "g2", "g3", "g4"].map(key => (
                 <li key={key}>
-                  <span className="vector-orb" aria-hidden="true" />
+                  <MoonStar className="vector-bullet" />
                   <span className="vector-body">{t(`vector.${key}`)}</span>
                 </li>
               ))}
@@ -154,7 +137,7 @@ const TheVector = () => {
               <ul className="vector-list space-y-3 text-left">
                 {["f1", "f2", "f3", "f4", "f5"].map(key => (
                   <li key={key}>
-                    <span className="vector-orb" aria-hidden="true" />
+                    <MoonStar className="vector-bullet" />
                     <span className="vector-body">{t(`vector.${key}`)}</span>
                   </li>
                 ))}
@@ -194,7 +177,7 @@ const TheVector = () => {
             <VectorRoute>
               {BLOCK_KEYS.map((key, index) => (
                 <li key={key} className="vector-card" style={{ "--n": index } as CSSProperties}>
-                  <span className="vector-route-orb" aria-hidden="true" />
+                  <MoonStar className="vector-route-orb" />
                   <h3 className="vector-title vector-block-title">{t(`vector.${key}.title`)}</h3>
                   <p className="vector-body">{t(`vector.${key}.body`)}</p>
                   {key === ELEMENTS_BLOCK && (
@@ -220,18 +203,18 @@ const TheVector = () => {
             <ul className="vector-list space-y-3 text-left">
               {["in1", "in2", "in3", "in4", "in5"].map(key => (
                 <li key={key}>
-                  <span className="vector-orb" aria-hidden="true" />
+                  <MoonStar className="vector-bullet" />
                   <span className="vector-body">{t(`vector.${key}`)}</span>
                 </li>
               ))}
               <li>
-                <span className="vector-orb" aria-hidden="true" />
+                <MoonStar className="vector-bullet" />
                 <div className="min-w-0">
                   <span className="vector-body">{t("vector.in6")}</span>
                   <ul className="vector-sublist space-y-2">
                     {["u1", "u2", "u3", "u4"].map(key => (
                       <li key={key}>
-                        <span className="vector-orb" aria-hidden="true" />
+                        <MoonStar className="vector-bullet" />
                         <span className="vector-body">{t(`vector.${key}`)}</span>
                       </li>
                     ))}
@@ -247,7 +230,7 @@ const TheVector = () => {
             <ul className="vector-list space-y-3 text-left">
               {["out1", "out2", "out3"].map(key => (
                 <li key={key}>
-                  <span className="vector-orb" aria-hidden="true" />
+                  <MoonStar className="vector-bullet" />
                   <span className="vector-body">{t(`vector.${key}`)}</span>
                 </li>
               ))}
@@ -260,7 +243,7 @@ const TheVector = () => {
             <VectorEyebrow heading>{t("vector.termsHeading")}</VectorEyebrow>
             <ul className="vector-list space-y-3 text-left">
               <li>
-                <span className="vector-orb" aria-hidden="true" />
+                <MoonStar className="vector-bullet" />
                 <div className="min-w-0 space-y-3">
                   <span className="vector-body block">{t("vector.t1")}</span>
                   <p className="vector-body vector-why">{t("vector.t1Why")}</p>
@@ -268,7 +251,7 @@ const TheVector = () => {
               </li>
               {["t2", "t3", "t4", "t5"].map(key => (
                 <li key={key}>
-                  <span className="vector-orb" aria-hidden="true" />
+                  <MoonStar className="vector-bullet" />
                   <span className="vector-body">{t(`vector.${key}`)}</span>
                 </li>
               ))}
