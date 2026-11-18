@@ -8,6 +8,8 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SEO from "@/components/SEO";
+import { ExpandableTestimonial } from "@/components/ExpandableTestimonial";
+import { useTestimonials } from "@/hooks/useTestimonials";
 import { MoonDivider, MoonEyebrow, MoonStar } from "@/components/products/MoonNeon";
 import { igniteLogo } from "@/lib/landingDesign";
 import "./TheVector.css";
@@ -22,6 +24,7 @@ const INDIVIDUAL_PRICE = "$4,444";
 
 const BuildContainer = () => {
   const { t } = useTranslation();
+  const testimonials = useTestimonials();
   const cta = (label: string, arrow = true) => (
     <>
       <span>{label}</span>
@@ -85,11 +88,21 @@ const BuildContainer = () => {
             <MoonEyebrow heading>{t("thebuild.storiesEyebrow")}</MoonEyebrow>
             <p className="vector-body">{t("thebuild.storyFounder")}</p>
             <p className="vector-body">{t("thebuild.storyCoach")}</p>
-            <p className="vector-body text-sm italic text-center">
-              {t("thebuild.testimonialsBefore")}{" "}
-              <Link to="/ignite" className="vector-link">{t("thebuild.testimonialsLink")}</Link>
-            </p>
-            <p className="vector-body pt-2">{t("thebuild.noScratch")}</p>
+          </section>
+
+          {/* Same expandable one-line quotes as /ignite (shared hook, same data). */}
+          <section className="max-w-md mx-auto text-left" id="testimonials" aria-label={t("thebuild.storiesEyebrow")}>
+            <div className="moon-testimonials">
+              {testimonials.map((item, i) => (
+                <ExpandableTestimonial key={i} t={item} variant="moon" compact />
+              ))}
+            </div>
+          </section>
+
+          <MoonDivider />
+
+          <section className="max-w-md mx-auto">
+            <p className="vector-body">{t("thebuild.noScratch")}</p>
           </section>
 
           <MoonDivider />
@@ -124,7 +137,11 @@ const BuildContainer = () => {
               </div>
             </div>
 
-            <p className="vector-body build-promise max-w-md mx-auto">{t("thebuild.promise")}</p>
+            <div className="build-promise max-w-md mx-auto space-y-4 text-left">
+              <p className="vector-body">{t("thebuild.promise")}</p>
+              <p className="build-eyebrow">{t("thebuild.guaranteeLabel")}</p>
+              <p className="vector-body">{t("thebuild.guarantee")}</p>
+            </div>
             <p className="vector-title build-closing">{t("thebuild.closing")}</p>
           </section>
 

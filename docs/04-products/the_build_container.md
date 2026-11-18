@@ -3,8 +3,10 @@
 > **Naming:** renamed **BUILD → BUILT** on July 12, 2026 (Day 122), Sasha's call. Past tense = done-state: the offer packaged, the business launched. Route: `/products/built`.
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
-> **Status:** v1.1 (2026-11-18). v1.0 — first offer ever sent July 10, 2026 (Day 120) to Nia Leak. This file holds the canonical offer copy as sent, its origin, and the copy laws it obeys.
+> **Status:** v1.2 (2026-11-18). v1.0 — first offer ever sent July 10, 2026 (Day 120) to Nia Leak. This file holds the canonical offer copy as sent, its origin, and the copy laws it obeys.
 
+> **v1.2 (2026-11-18, Sasha's call):** the result is named concretely (at least one purchase), Week 4 and the promise reworded to match, a guarantee block added (`product_brief.md` §0.4), format now two 90-minute workshops a week (business + mindset), price copy reworded, and the page shows the same expandable testimonials as `/ignite`.
+>
 > **v1.1 (2026-11-18, Sasha's call):** one month instead of three weeks (four weekly sessions; the old Week 2 split into "The offer, packaged" and "Your words, your stage"), and two price options: group $1,111 and individual with Sasha $4,444. The copy below is v1.1 and matches `/products/built` (EN). v1.0 (3 weeks, $1,111 one-on-one at the cohort seat price, 2x $600 option) is what was sent on July 10, 2026; it stays in git history.
 
 ## The offer copy (v1.1, as on the site)
@@ -27,20 +29,30 @@ We give the offer its words: the bio people actually get, a landing page that se
 
 **Week 4: SERVING REAL PEOPLE**
 
-Your business touches the real world. We prep your first client sessions, run the first manual sales moves together, and set up the feedback loop that turns every conversation into a product improvement. By the end of the month, or shortly after, you'll have your first clients: free, paid, or a mix. No more spinning wheels: continuous motion, with a direction. Which essentially is a running business.
+Your business touches the real world. We prep your first client sessions, run the first manual sales moves together, and set up the feedback loop that turns every conversation into a product improvement. By the end of the month, or within two weeks after, you have your first purchase: someone paying for what you uniquely give. No more spinning wheels: continuous motion, with a direction. Which essentially is a running business.
 
 **Format**
 
-- weekly 2-hour hands-on business building sessions, for one month
+- Two 90-minute workshops every week: one on building the business, one on building the mindset, which in essence activates the bigger version of you that's ready for the business to grow.
 - check-ins through chat between sessions
 - one clear expected result per week
 
 **Price**
 
-This container is the direct continuation of the Private Founder-Market Fit Session. Go in a group, where we build together as a cohort, or individually with me.
+This container is the direct continuation of the “Founder-Market Fit” product. It's a cohort program where we build together as a group, or it can be delivered individually too (seats are limited, naturally).
 
 - **In a group: $1,111.** Button: WhatsApp message to Sasha.
 - **Individually, with Sasha: $4,444.** Button: "Check eligibility (3 mins)", linking to `/quiz`.
+
+**What I promise**
+
+To be clear about what I promise: one direction, your unique offer packaged and priced, and at least one real purchase of it. I'm not promising rapid riches and I'm not selling a scheme. This is sustainable business and wealth creation, aligned with who you are.
+
+**The guarantee**
+
+Deliver your offer to at least 5 people (5 individual sessions). If within two weeks after the program ends, or after your 5th session, whichever comes later, there is still no purchase, I refund 90% on request. No questions, no forms. A purchase is any amount of money, an in-kind exchange, a money thank-you or a gift of real value; a thank-you in words alone doesn't count. The 10% covers real costs like AI.
+
+*Terms source: `product_brief.md` §0.1 row 4 and §0.4. The "What I promise" and guarantee blocks sit in one panel on the page, after the price cards.*
 
 ## Where this copy came from
 
@@ -52,7 +64,7 @@ Woven from harvested threshold language (Threshold Language Harvest, `marketing_
 2. **Being-wanted register (Step 0.5):** timing facts stated plainly (cohort cadence), price held, no apology, no luring anchors.
 3. **Stage-matched money door:** price integrity kept, never a discount. (v1.0 offered a 2x $600 split as cash-flow shape for survival-stage buyers; the v1.1 page lists the two prices only.)
 4. **One result per week:** each week ends in something the client can hold.
-5. **No overpromise:** "first clients: free, paid, or a mix" — the honest floor, not the dream ceiling.
+5. **No overpromise, named concretely (2026-11-18):** the result is at least one purchase of the client's unique product: the honest floor, not the dream ceiling. The guarantee (90% back on request, conditions above) stands behind that floor.
 
 ## Ladder position
 

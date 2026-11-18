@@ -21,6 +21,8 @@ export interface TestimonialData {
  *                     strip. Added Day 131 for the /ignite reskin —
  *                     purely additive, does not change "light"/"dark"
  *                     behavior for existing consumers.
+ * variant="moon"   → moon/neon product pages (/products/built); compact only.
+ *                     Styled by `.moon-testimonial*` in BuildContainer.css.
  *
  * Day 61 (Sasha 2026-05-04): added `compact` prop. When true, renders
  * the testimonial as a single inline line (quote + name + chevron) by
@@ -34,18 +36,44 @@ export const ExpandableTestimonial = ({
   compact = false,
 }: {
   t: TestimonialData;
-  variant?: "light" | "dark" | "house";
+  variant?: "light" | "dark" | "house" | "moon";
   compact?: boolean;
 }) => {
   const [open, setOpen] = useState(false);
 
   const isLight = variant === "light";
   const isHouse = variant === "house";
+  const isMoon = variant === "moon";
 
   // Day 61 (Sasha 2026-05-04): compact rendering — single-line default,
   // expand to full quote. Skips the "before" label and "after" line
   // (those belong to the heavier card variant).
   if (compact) {
+    if (isMoon) {
+      // Moon/neon look for /products/built: moonlight quote, neon small-caps name.
+      // Colours come from the page-scoped --vec-* tokens (see BuildContainer.css).
+      return (
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          className="moon-testimonial"
+          data-open={open}
+          aria-expanded={open}
+        >
+          <span className="moon-testimonial-row">
+            <span className="moon-testimonial-quote">
+              "{t.shortQuote}"{" "}
+              <span className="moon-testimonial-name">— {t.name}</span>
+            </span>
+            <ChevronDown className="moon-testimonial-chevron" aria-hidden="true" />
+          </span>
+          {open && (
+            <span className="moon-testimonial-full">"{t.fullQuote}"</span>
+          )}
+        </button>
+      );
+    }
+
     if (isHouse) {
       // House parchment look — Cormorant italic quote, gold small-caps
       // name, matching /home's testimony strip typography.
