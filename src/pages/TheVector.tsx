@@ -1,8 +1,8 @@
 /** /products/vector — the landing-and-direction program, in the infographic style (v4).
  *  Lunar is the baseline; every other skin re-voices the same structure through the
  *  `--vec-*` role tokens in TheVector.css. No colour lives in this file. */
-import { useLayoutEffect, useRef, type CSSProperties, type ReactNode } from "react";
-import { ArrowRight, Droplets, Flame, Mountain, Sparkles, Wind, type LucideIcon } from "lucide-react";
+import { useId, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { ArrowRight, ChevronDown, Droplets, Flame, Mountain, Sparkles, Wind, type LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
@@ -32,6 +32,33 @@ const VectorEyebrow = ({ n, children, heading = false }: { n?: string; children:
       {n && <span className="vector-eyebrow-num" aria-hidden="true">{n} <span className="vector-eyebrow-dot">·</span></span>}
       <span>{children}</span>
     </Tag>
+  );
+};
+
+/** Collapsible panel (sections 01 and 02). The numbered eyebrow heading is the toggle: a real
+ *  <button> inside the <h2>, wired with aria-expanded / aria-controls. Collapsed on load.
+ *  The body folds with a grid-rows transition (CSS drops it under reduced motion); while folded it is
+ *  `visibility: hidden`, so it leaves both the tab order and the accessibility tree. */
+const VectorPanel = ({ n, heading, children }: { n: string; heading: ReactNode; children: ReactNode }) => {
+  const [open, setOpen] = useState(false);
+  const uid = useId();
+  const bodyId = `${uid}-body`;
+  return (
+    <div className="vector-panel" data-open={open}>
+      <h2 className="vector-eyebrow vector-eyebrow-toggle">
+        <button type="button" className="vector-panel-toggle" aria-expanded={open} aria-controls={bodyId}
+          onClick={() => setOpen(v => !v)}>
+          <span className="vector-eyebrow-num" aria-hidden="true">{n} <span className="vector-eyebrow-dot">·</span></span>
+          <span>{heading}</span>
+          <ChevronDown className="vector-panel-chevron w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+        </button>
+      </h2>
+      <div id={bodyId} className="vector-panel-body" role="region" aria-label={typeof heading === "string" ? heading : undefined}>
+        <div className="vector-panel-clip">
+          <div className="vector-panel-inner">{children}</div>
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -104,34 +131,39 @@ const TheVector = () => {
 
           <section className="max-w-md mx-auto space-y-6">
             <p className="vector-body text-center">{t("vector.essence")}</p>
-            <VectorEyebrow n="01" heading>{t("vector.formatHeading")}</VectorEyebrow>
-            <ul className="vector-list space-y-3 text-left">
-              {["f1", "f2", "f3", "f4", "f5"].map(key => (
-                <li key={key}>
-                  <span className="vector-orb" aria-hidden="true" />
-                  <span className="vector-body">{t(`vector.${key}`)}</span>
-                </li>
-              ))}
-            </ul>
+            {/* Panels 01 and 02 start collapsed (Sasha, 2026-11-17); the heading is the toggle. */}
+            <VectorPanel n="01" heading={t("vector.formatHeading")}>
+              <ul className="vector-list space-y-3 text-left">
+                {["f1", "f2", "f3", "f4", "f5"].map(key => (
+                  <li key={key}>
+                    <span className="vector-orb" aria-hidden="true" />
+                    <span className="vector-body">{t(`vector.${key}`)}</span>
+                  </li>
+                ))}
+              </ul>
+            </VectorPanel>
           </section>
 
-          <section className="space-y-7">
-            <VectorEyebrow n="02" heading>{t("vector.splitHeading")}</VectorEyebrow>
-            {/* One thin bar, split 40 / 50: flex-grow carries the minutes, so the widths are 4:5. */}
-            <div className="vector-split" role="presentation">
-              <div className="vector-split-part" style={{ flexGrow: 40 }}>
-                <span className="vector-split-bar vector-split-yours" />
-                <span className="vector-split-label">{t("vector.split1Label")}</span>
+          <section>
+            <VectorPanel n="02" heading={t("vector.splitHeading")}>
+              <div className="space-y-7">
+                {/* One thin bar, split 40 / 50: flex-grow carries the minutes, so the widths are 4:5. */}
+                <div className="vector-split" role="presentation">
+                  <div className="vector-split-part" style={{ flexGrow: 40 }}>
+                    <span className="vector-split-bar vector-split-yours" />
+                    <span className="vector-split-label">{t("vector.split1Label")}</span>
+                  </div>
+                  <div className="vector-split-part" style={{ flexGrow: 50 }}>
+                    <span className="vector-split-bar vector-split-content" />
+                    <span className="vector-split-label">{t("vector.split2Label")}</span>
+                  </div>
+                </div>
+                <div className="grid gap-5 md:grid-cols-[40fr_50fr] md:gap-6">
+                  <p className="vector-body">{t("vector.split1Body")}</p>
+                  <p className="vector-body">{t("vector.split2Body")}</p>
+                </div>
               </div>
-              <div className="vector-split-part" style={{ flexGrow: 50 }}>
-                <span className="vector-split-bar vector-split-content" />
-                <span className="vector-split-label">{t("vector.split2Label")}</span>
-              </div>
-            </div>
-            <div className="grid gap-5 md:grid-cols-[40fr_50fr] md:gap-6">
-              <p className="vector-body">{t("vector.split1Body")}</p>
-              <p className="vector-body">{t("vector.split2Body")}</p>
-            </div>
+            </VectorPanel>
           </section>
 
           <Ornament />

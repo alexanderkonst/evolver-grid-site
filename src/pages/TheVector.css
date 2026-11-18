@@ -313,6 +313,80 @@
   opacity: 0.8;
 }
 
+/* ── Collapsible panels (01, 02): the eyebrow heading is the toggle ─────────── */
+.vector-page .vector-eyebrow-toggle { padding-bottom: 0; }
+.vector-page .vector-eyebrow-toggle::after { display: none; }
+
+.vector-page .vector-panel-toggle {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.5rem 0 0.95rem;
+  background: none;
+  border: 0;
+  border-radius: 4px;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-transform: inherit;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.vector-page .vector-panel-toggle::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 3rem;
+  height: 1px;
+  transform: translateX(-50%);
+  background: var(--vec-rule-strong);
+}
+
+.vector-page .vector-panel-toggle:hover { color: var(--vec-title-solid); }
+
+.vector-page .vector-panel-toggle:focus-visible {
+  outline: 2px solid var(--vec-focus);
+  outline-offset: 2px;
+}
+
+.vector-page .vector-panel-chevron {
+  opacity: 0.85;
+  transition: transform 0.25s ease;
+}
+
+.vector-page .vector-panel[data-open="true"] .vector-panel-chevron { transform: rotate(180deg); }
+
+/* Body folds via grid rows 0fr → 1fr; hidden while folded so it can't be tabbed into. */
+.vector-page .vector-panel-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.vector-page .vector-panel[data-open="true"] .vector-panel-body {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 0.3s ease, visibility 0s;
+}
+
+.vector-page .vector-panel-clip { min-height: 0; overflow: hidden; }
+.vector-page .vector-panel-inner { padding-top: 1.5rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .vector-page .vector-panel-body,
+  .vector-page .vector-panel[data-open="true"] .vector-panel-body,
+  .vector-page .vector-panel-chevron { transition: none; }
+}
+
 /* Pull-quote: italic serif, thin left bar. */
 .vector-page .vector-quote {
   padding-left: 1.1rem;
