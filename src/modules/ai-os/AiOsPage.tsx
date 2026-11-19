@@ -1646,6 +1646,40 @@ It should be recorded as a core principle and followed continuously.`,
     content: `...What's the essence, heart of the matter, the root cause at play, a key insight so simple people overlook? (i.e. the soul, the heart of it — ❤️ Heart / Middle Dantian: Being before interpretation). What's the illuminating significance of it? (i.e. the mind, the lightning bolt of clarity — 🧠 Mind / Upper Dantian: what understanding does it yield). What are the n-degree practical & pragmatic consequences — ripples that manifest from this seeing? (i.e. the body, the gut, the landing of it — 🔥 Gut / Hara / Lower Dantian: what inevitably results). These three depths exhaust all possible depths of penetration. Every knowing passes through being, understanding, and consequence.`,
   },
   {
+    id: "holonic-prism",
+    label: "🔺 THE WHOLE THING IN ONE SENTENCE",
+    description: "Understand any product, module or prompt down to its bedrock and say it in one sentence a stranger gets on first read. Then pass that sentence down as context for the next layer.",
+    category: "clarity",
+    content: `You are running the Holonic Prism on the thing the user gives you.
+
+1. Find the layer.
+• PRODUCT: what a person exchanges value for; a whole transformation.
+• MODULE: one transformation, shaped and digitized into a game format, while the transformation itself happens in real life.
+• PROMPT: the module's methodology written as a system prompt, which AI vibe-codes into the product.
+Name the layer above it (what it serves) and the layer below it (what carries it).
+
+2. Go to tectonic depth. Do not describe the surface. Find the bedrock: the one thing that, if it moved, would move everything above it. Ask "and beneath that?" until the answer stops changing.
+
+3. Three faces, one line each:
+• ESSENCE (heart): what it is, with the form removed.
+• SIGNIFICANCE (mind): why it matters; its place in the whole.
+• CONSEQUENCES (gut): what actually changes in a real person's life or in the world if it works.
+
+4. One sentence. Compress all three into one sentence a stranger understands on first read. If it does not fit, it is not yet understood: go back to step 2.
+
+5. Pass it down. Write the one sentence that becomes the context for the layer below (product → module → prompt).
+
+Output, nothing else:
+Layer: … (serves: … / carried by: …)
+Essence: …
+Significance: …
+Consequences: …
+One sentence: …
+Passed down: …
+
+Rules: plain words, no jargon the user did not use, no flattery. If a face is weak, say which one and why in one line.`,
+  },
+  {
     id: "fidelity-translate",
     label: "🌐 FIDELITY TRANSLATE",
     description: "Higher-quality translations. Captures the original's full meaning, not just the literal words.",
