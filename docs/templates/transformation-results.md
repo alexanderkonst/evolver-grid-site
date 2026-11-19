@@ -5,6 +5,7 @@
 ## Meta-description
 - Produces: one page per client: goals in their words, 0–10 scores at start / mid / end, growth per goal and on average, one-sentence result, and the client's own verdict against what they expected (Goal Attainment Scaling).
 - Lens: **Causal** (named goals → baseline → desired change in their words → re-measure → verdict → fair exchange).
+- Shift carried: PST 185 The Visible Shift: Measure in Their Words · before: the client's change is felt but unnamed, so it can't be shown or fairly paid · after: the change is named in their words, scored 0–10 at start/mid/end and judged against their own expectation · check: the client says in their words whether it came true, less / as / more than expected.
 - Why: transformation can only be judged by the person who lives it. A simple scale lets them see what they received, and a person who sees the value they got calibrates the exchange by themselves (money, a gift, a referral, gratitude). Unseen value distorts the exchange.
 
 ## Never
