@@ -22,6 +22,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Copy, Check, Sparkles, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { getOrCreateGameProfileId } from "@/lib/gameProfile";
@@ -31,7 +32,7 @@ const TEST_PROMPT_EN =
   "Based on everything you know about me, what are the optimal actions you recommend for me in the short-, medium-, and long-term horizons? Answer with one sentence for each horizon.";
 
 type Props = {
-  /** The full AI OS install prompt content that gets copied to clipboard. */
+  /** The full Your AI install prompt content that gets copied to clipboard. */
   installPromptContent: string;
 };
 
@@ -42,6 +43,7 @@ const ratingTier = (rating: number): "resonant" | "partial" | "off" => {
 };
 
 export default function AiOsSpotlight({ installPromptContent }: Props) {
+  const { t } = useTranslation();
   const [installCopied, setInstallCopied] = useState(false);
   const [testCopied, setTestCopied] = useState(false);
 
@@ -193,7 +195,7 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
             textShadow: "0 0 14px rgba(244,212,114,0.35), 0 0 12px rgba(0,0,0,0.85)",
           }}
         >
-          Read this · 30 seconds
+          {t("aiOsPage.spotlight.eyebrow")}
         </p>
 
         {/* Headline */}
@@ -207,7 +209,7 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
               "0 0 40px rgba(132,96,234,0.40), 0 0 80px rgba(180,140,255,0.18), 0 2px 8px rgba(0,0,0,0.9)",
           }}
         >
-          One paste. Permanent AI upgrade.
+          {t("aiOsPage.spotlight.headline")}
         </h2>
 
         {/* Body — ultra concise per Sasha */}
@@ -218,9 +220,7 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
             textShadow: "0 0 14px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.7)",
           }}
         >
-          Paste into a fresh AI chat. Same input you'd give — higher quality
-          output. Faster on everyday tasks, deeper on complex ones. (Unless
-          AI is new to you — build a baseline first.)
+          {t("aiOsPage.spotlight.body")}
         </p>
 
         {/* Soft divider */}
@@ -245,21 +245,20 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
                 textShadow: "0 0 12px rgba(132,96,234,0.35), 0 0 12px rgba(0,0,0,0.85)",
               }}
             >
-              You'll know in 60 seconds
+              {t("aiOsPage.spotlight.knowEyebrow")}
             </p>
             <p
               className="text-sm sm:text-base leading-relaxed max-w-2xl"
               style={{ color: "hsl(0 0% 100% / 0.85)", textShadow: "0 0 12px rgba(0,0,0,0.7)" }}
             >
-              One prompt. Run it now, install the system prompt, run it
-              again. You'll feel the shift.
+              {t("aiOsPage.spotlight.knowBody")}
             </p>
           </div>
 
           {/* Step 1 — paste the test prompt in current AI */}
           <div className="space-y-3">
             <ExperimentStep n={1}>
-              In your current AI, paste this prompt. Read the response.
+              {t("aiOsPage.spotlight.step1")}
             </ExperimentStep>
             <div
               className="rounded-2xl p-4 sm:p-5 space-y-3"
@@ -283,20 +282,18 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
                   border: "1px solid hsla(0, 0%, 100%, 0.20)",
                   color: "hsl(0 0% 100% / 0.90)",
                 }}
-                aria-label="Copy the test prompt to clipboard"
+                aria-label={t("aiOsPage.spotlight.copyTestAria")}
               >
                 {testCopied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                {testCopied ? "Copied" : "Copy test prompt"}
+                {testCopied ? t("aiOsPage.spotlight.copied") : t("aiOsPage.spotlight.copyTest")}
               </button>
             </div>
           </div>
 
-          {/* Step 2 — install AI OS in a new chat, run the same prompt */}
+          {/* Step 2 — install Your AI in a new chat, run the same prompt */}
           <div className="space-y-3">
             <ExperimentStep n={2}>
-              Open a <strong>new chat</strong>. Paste the system prompt.
-              It's a fascinating read, if you like. Then run the same
-              prompt again.
+              {t("aiOsPage.spotlight.step2Before")}<strong>{t("aiOsPage.spotlight.step2Strong")}</strong>{t("aiOsPage.spotlight.step2After")}
             </ExperimentStep>
             <div>
               <button
@@ -312,10 +309,10 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
                   boxShadow:
                     "0 0 0 1px hsla(40, 75%, 75%, 0.20), 0 10px 32px -8px rgba(244,212,114,0.5), 0 0 48px -12px rgba(244,212,114,0.4)",
                 }}
-                aria-label="Copy the AI OS system prompt v6.0 to clipboard"
+                aria-label={t("aiOsPage.spotlight.copyInstallAria")}
               >
                 {installCopied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
-                {installCopied ? "Copied — paste into a new AI chat" : "Copy the AI OS system prompt v6.0"}
+                {installCopied ? t("aiOsPage.spotlight.installCopied") : t("aiOsPage.spotlight.copyInstall")}
               </button>
             </div>
           </div>
@@ -323,7 +320,7 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
           {/* Step 3 — compare */}
           <div>
             <ExperimentStep n={3}>
-              Compare. Notice what's different.
+              {t("aiOsPage.spotlight.step3")}
             </ExperimentStep>
           </div>
         </div>
@@ -352,13 +349,13 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
                   textShadow: "0 0 12px rgba(132,96,234,0.35), 0 0 12px rgba(0,0,0,0.85)",
                 }}
               >
-                How did it go?
+                {t("aiOsPage.spotlight.rateEyebrow")}
               </p>
               <p
                 className="text-sm sm:text-base leading-relaxed max-w-2xl"
                 style={{ color: "hsl(0 0% 100% / 0.78)", textShadow: "0 0 12px rgba(0,0,0,0.7)" }}
               >
-                Compare the two responses. Rate the difference.
+                {t("aiOsPage.spotlight.rateBody")}
               </p>
             </div>
 
@@ -377,8 +374,8 @@ export default function AiOsSpotlight({ installPromptContent }: Props) {
               className="text-[11px] sm:text-xs leading-relaxed"
               style={{ color: "hsl(0 0% 100% / 0.50)" }}
             >
-              <strong style={{ color: "hsl(0 0% 100% / 0.70)" }}>10</strong> = significantly more useful response ·{" "}
-              <strong style={{ color: "hsl(0 0% 100% / 0.70)" }}>1</strong> = no difference noticed
+              <strong style={{ color: "hsl(0 0% 100% / 0.70)" }}>10</strong>{t("aiOsPage.spotlight.scaleHigh")} ·{" "}
+              <strong style={{ color: "hsl(0 0% 100% / 0.70)" }}>1</strong>{t("aiOsPage.spotlight.scaleLow")}
             </p>
           </div>
         )}
@@ -426,13 +423,14 @@ const RatingScale = ({
   onSelect: (n: number) => void;
   disabled: boolean;
 }) => {
+  const { t } = useTranslation();
   const numbers = Array.from({ length: 10 }, (_, i) => i + 1);
   return (
     <div
       className="flex flex-wrap gap-1.5 sm:gap-2"
       onMouseLeave={() => onHover(null)}
       role="radiogroup"
-      aria-label="Rate the difference between before and after AI OS install, 1 to 10"
+      aria-label={t("aiOsPage.spotlight.rateGroupAria")}
     >
       {numbers.map((n) => {
         const active = hovered !== null ? n <= hovered : false;
@@ -456,7 +454,7 @@ const RatingScale = ({
                 ? "0 0 14px -2px rgba(132,96,234,0.45), 0 0 24px -6px rgba(244,212,114,0.35)"
                 : undefined,
             }}
-            aria-label={`Rate ${n} out of 10`}
+            aria-label={t("aiOsPage.spotlight.rateAria", { n })}
           >
             {n}
           </button>
@@ -466,7 +464,9 @@ const RatingScale = ({
   );
 };
 
-const SubmittedThanks = ({ rating }: { rating: number }) => (
+const SubmittedThanks = ({ rating }: { rating: number }) => {
+  const { t } = useTranslation();
+  return (
   <div
     className="rounded-2xl p-4 sm:p-5 flex items-start gap-3"
     style={{
@@ -485,15 +485,15 @@ const SubmittedThanks = ({ rating }: { rating: number }) => (
         className="text-sm sm:text-base font-medium"
         style={{ color: "hsl(0 0% 100% / 0.95)" }}
       >
-        Thank you. Logged as <strong>{rating} / 10</strong>.
+        {t("aiOsPage.spotlight.thanksBefore")}<strong>{rating} / 10</strong>{t("aiOsPage.spotlight.thanksAfter")}
       </p>
       <p
         className="text-xs sm:text-sm leading-relaxed"
         style={{ color: "hsl(0 0% 100% / 0.70)" }}
       >
-        Your data point joins the open replication pool. The benchmark gets
-        sharper every time someone runs this.
+        {t("aiOsPage.spotlight.thanksBody")}
       </p>
     </div>
   </div>
-);
+  );
+};

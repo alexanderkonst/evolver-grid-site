@@ -34,7 +34,7 @@ export function buildGifts(src: FamiliarSources): GiftState[] {
       detail: hasTalent ? (hasMission ? "your top talent + your mission" : "your top talent") : undefined,
       opensWhen: hasTalent ? undefined : "Opens when you save your top talent",
     },
-    { key: "activated", lit: true, label: "Activated", detail: `AI OS ${src.aiOsVersion}` },
+    { key: "activated", lit: true, label: "Activated", detail: `Your AI ${src.aiOsVersion}` },
     {
       key: "knowsYourWork",
       lit: pieces > 0,

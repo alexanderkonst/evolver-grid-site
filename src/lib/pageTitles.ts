@@ -17,7 +17,7 @@ const titleRules: TitleRule[] = [
   // Journey space — section-specific so each tab is self-identifying.
   { match: (path) => path === "/playbook" || path.startsWith("/playbook/"), title: "Playbook" },
   { match: (path) => path === "/path" || path.startsWith("/path/"), title: "Path" },
-  { match: (path) => path === "/ai-os" || path.startsWith("/ai-os/"), title: "AI OS" },
+  { match: (path) => path === "/ai-os" || path.startsWith("/ai-os/"), title: "Your AI" },
   { match: (path) => path === "/dashboard", title: "Dashboard" },
   { match: (path) => path === "/build/cockpit/dashboard", title: "Founder Cockpit" },
   { match: (path) => path === "/build/cockpit/offers", title: "Offers Board" },
