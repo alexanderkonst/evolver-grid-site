@@ -42,6 +42,12 @@ Everything about AI itself (AI OS, benchmark, the Hark leap, self-awareness map,
 
 ---
 
+## Generative learning module
+
+[Generative learning](./06-modules/generative-learning/README.md) contains the reusable skill tutor, language tutor, Japanese learning records and route to C2. [Agent handoff and file taxonomy](./06-modules/generative-learning/AGENT-HANDOFF.md) provides the entry points.
+
+---
+
 ## 🌌 01-vision (Philosophy & Ontology)
 
 *The deepest layer — the architecture of reality itself.*

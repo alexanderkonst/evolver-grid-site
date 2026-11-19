@@ -1,0 +1,539 @@
+{
+  "status": "Session 027 complete; construction-first phase",
+  "learner": "Sasha",
+  "target_language": "Japanese",
+  "explanation_language": {
+    "value": "Russian",
+    "status": "explicit preference October 20; supersedes prior English"
+  },
+  "starting_level": {
+    "value": "beginner assumption",
+    "status": "not assessed"
+  },
+  "goals": {
+    "source_stated": [
+      "spoken Japanese",
+      "progressive reading and writing"
+    ],
+    "specific_use_cases": "not yet established"
+  },
+  "other_languages": "Russian explicitly reported as first language; English chosen for explanations",
+  "preferences_hypotheses": [
+    "structural explanations",
+    "pattern discovery",
+    "low-pressure construction",
+    "three-component curriculum: architecture, vocabulary, everyday multi-context use"
+  ],
+  "generators": [
+    {
+      "key": "polite polarity",
+      "state": "demonstrated; forming in mixed use",
+      "evidence": "sessions/002/record.md"
+    },
+    {
+      "key": "polite past",
+      "state": "demonstrated; forming in mixed use",
+      "evidence": "sessions/002/record.md"
+    },
+    {
+      "key": "polite negative past",
+      "state": "demonstrated; forming in mixed use",
+      "evidence": "sessions/002/record.md"
+    },
+    {
+      "key": "single-predicate question",
+      "state": "demonstrated; forming in mixed use",
+      "evidence": "sessions/002/record.md"
+    },
+    {
+      "key": "desire",
+      "state": "demonstrated; forming in mixed use",
+      "evidence": "sessions/002/record.md"
+    },
+    {
+      "key": "negative desire",
+      "state": "demonstrated; forming in mixed use",
+      "evidence": "sessions/002/record.md"
+    },
+    {
+      "key": "statement connection and contrast",
+      "state": "demonstrated; forming in mixed use",
+      "evidence": "sessions/002/record.md"
+    },
+    {
+      "key": "object phrase",
+      "state": "demonstrated with some scaffolding; forming",
+      "evidence": "sessions/003/record.md; sessions/004/record.md"
+    },
+    {
+      "key": "destination phrase",
+      "state": "demonstrated with some scaffolding; forming",
+      "evidence": "sessions/003/record.md; sessions/004/record.md"
+    },
+    {
+      "key": "where-to question",
+      "state": "demonstrated with some scaffolding; forming",
+      "evidence": "sessions/003/record.md; sessions/004/record.md"
+    },
+    {
+      "key": "time with intact predicate",
+      "state": "demonstrated with some scaffolding; forming",
+      "evidence": "sessions/003/record.md; sessions/004/record.md"
+    },
+    {
+      "key": "what-object question with desire",
+      "state": "demonstrated with corrections",
+      "evidence": "sessions/005/record.md E1–E2"
+    },
+    {
+      "key": "reason clause + kara + result",
+      "state": "local transfer demonstrated after scaffolding",
+      "evidence": "sessions/005/record.md E3–E6"
+    },
+    {
+      "key": "noun + o + kudasai request",
+      "state": "demonstrated; cue/repair details in record; forming",
+      "evidence": "sessions/006/record.md"
+    },
+    {
+      "key": "noun joining with to and additive mo",
+      "state": "demonstrated; cue/repair details in record; forming",
+      "evidence": "sessions/006/record.md"
+    },
+    {
+      "key": "standalone and noun-modifying demonstratives",
+      "state": "demonstrated; cue/repair details in record; forming",
+      "evidence": "sessions/006/record.md"
+    },
+    {
+      "key": "dore/dono choice questions",
+      "state": "demonstrated; cue/repair details in record; forming",
+      "evidence": "sessions/006/record.md"
+    },
+    {
+      "key": "itsu time questions",
+      "state": "demonstrated; cue/repair details in record; forming",
+      "evidence": "sessions/006/record.md"
+    },
+    {
+      "key": "ikura price questions and selected yen amounts",
+      "state": "demonstrated with assistance as detailed; forming",
+      "evidence": "sessions/007/record.md"
+    },
+    {
+      "key": "takai/yasui and i-adjective negation",
+      "state": "demonstrated with assistance as detailed; forming",
+      "evidence": "sessions/007/record.md"
+    },
+    {
+      "key": "iie and ja/jaa in cafe exchange",
+      "state": "demonstrated with assistance as detailed; forming",
+      "evidence": "sessions/007/record.md"
+    },
+    {
+      "key": "oishii with contrast and reason",
+      "state": "demonstrated with assistance as detailed; forming",
+      "evidence": "sessions/007/record.md"
+    },
+    {
+      "key": "action-location de versus destination ni",
+      "state": "demonstrated with scaffolding/repairs; forming",
+      "evidence": "sessions/008/record.md"
+    },
+    {
+      "key": "koko/soko action locations",
+      "state": "demonstrated with scaffolding/repairs; forming",
+      "evidence": "sessions/008/record.md"
+    },
+    {
+      "key": "kinō with past action",
+      "state": "demonstrated with scaffolding/repairs; forming",
+      "evidence": "sessions/008/record.md"
+    },
+    {
+      "key": "companion to and dare to",
+      "state": "demonstrated with cues/repairs; forming",
+      "evidence": "sessions/009/record.md"
+    },
+    {
+      "key": "possessive/associative no and dare no",
+      "state": "demonstrated with cues/repairs; forming",
+      "evidence": "sessions/009/record.md"
+    },
+    {
+      "key": "adjective before noun",
+      "state": "demonstrated with cues/repairs; forming",
+      "evidence": "sessions/009/record.md"
+    },
+    {
+      "key": "buying kai/kaimasu/kaimashita",
+      "state": "demonstrated with cues/repairs; forming",
+      "evidence": "sessions/009/record.md"
+    },
+    {
+      "key": "shop mise and product origin versus purchase location",
+      "state": "demonstrated with cues/repairs; forming",
+      "evidence": "sessions/009/record.md"
+    },
+    {
+      "key": "ga hoshii object desire versus o kaitai action desire",
+      "state": "introduced and demonstrated with varying support; see record",
+      "evidence": "sessions/010/record.md"
+    },
+    {
+      "key": "hoshikunai",
+      "state": "introduced and demonstrated with varying support; see record",
+      "evidence": "sessions/010/record.md"
+    },
+    {
+      "key": "hitotsu/futatsu and restrictive dake",
+      "state": "introduced and demonstrated with varying support; see record",
+      "evidence": "sessions/010/record.md"
+    },
+    {
+      "key": "mō one more versus mo also",
+      "state": "introduced and demonstrated with varying support; see record",
+      "evidence": "sessions/010/record.md"
+    },
+    {
+      "key": "comparative yori",
+      "state": "introduced and demonstrated with varying support; see record",
+      "evidence": "sessions/010/record.md"
+    },
+    {
+      "key": "arimasu availability and donna type question",
+      "state": "introduced and demonstrated with varying support; see record",
+      "evidence": "sessions/010/record.md"
+    },
+    {
+      "key": "zenbu de total price",
+      "state": "introduced and demonstrated with varying support; see record",
+      "evidence": "sessions/010/record.md"
+    },
+    {
+      "key": "asoko item location versus de action location",
+      "state": "introduced and demonstrated with varying support; see record",
+      "evidence": "sessions/010/record.md"
+    },
+    {
+      "key": "te-form + kudasai request",
+      "state": "locally demonstrated; te-form derivation supplied; forming",
+      "evidence": "sessions/011/record.md"
+    },
+    {
+      "key": "te-form + mo ii desu ka permission",
+      "state": "locally demonstrated with cue/repair; forming",
+      "evidence": "sessions/011/record.md"
+    },
+    {
+      "key": "te-form + wa ikemasen prohibition",
+      "state": "locally demonstrated after meaning and role cues; forming",
+      "evidence": "sessions/011/record.md"
+    },
+    {
+      "key": "te-form + kara temporal sequence",
+      "state": "locally demonstrated after several repairs and full model; forming",
+      "evidence": "sessions/011/record.md"
+    },
+    {
+      "key": "te-form + imasu ongoing action",
+      "state": "locally demonstrated; tutor corrected optional ima error; forming",
+      "evidence": "sessions/011/record.md"
+    },
+    {
+      "key": "dare ga actor question versus wa topic",
+      "state": "locally demonstrated with support; forming",
+      "evidence": "sessions/011/record.md"
+    },
+    {
+      "key": "place + kara origin, means + de, dō yatte manner",
+      "state": "locally demonstrated in route sentences; forming",
+      "evidence": "sessions/011/record.md"
+    },
+    {
+      "key": "multi-action chain with nonfinal -te",
+      "state": "final three-action sentence built from meaning after key introduction; forming",
+      "evidence": "sessions/011/record.md"
+    },
+    {
+      "key": "purpose-of-going (verb masu-stem + ni ikimasu)",
+      "state": "locally demonstrated; desire combination required two repairs; forming",
+      "evidence": "sessions/012/record.md"
+    },
+    {
+      "key": "trial action (-te mimasu) with desire and past",
+      "state": "locally demonstrated with cues; delayed retrieval unassessed",
+      "evidence": "sessions/012/record.md"
+    },
+    {
+      "key": "-te hoshii / hoshikunai: wanting another person to act",
+      "state": "locally demonstrated with cues; forming",
+      "evidence": "sessions/013/record.md"
+    },
+    {
+      "key": "-te ageru / -te kureru: direction of helpful action",
+      "state": "locally demonstrated after role repairs; forming",
+      "evidence": "sessions/013/record.md"
+    },
+    {
+      "key": "selected dictionary-to-te form patterns and irregular iku/kuru",
+      "state": "locally applied with keys supplied; no full group mastery",
+      "evidence": "sessions/013/record.md"
+    },
+    {
+      "key": "hanasu with desire/ongoing/ability hanaseru",
+      "state": "locally demonstrated with role and question cues; forming",
+      "evidence": "sessions/013/record.md"
+    },
+    {
+      "key": "potential ability ikeru/nomeru with polite polarity",
+      "state": "locally demonstrated after cues; forming",
+      "evidence": "sessions/014/record.md"
+    },
+    {
+      "key": "ima time word versus existential/ongoing imasu",
+      "state": "clarified and locally applied with explicit model; forming",
+      "evidence": "sessions/014/record.md"
+    },
+    {
+      "key": "imasu for living beings versus arimasu for things at locations",
+      "state": "locally demonstrated after reminders and role cues; forming",
+      "evidence": "sessions/014/record.md"
+    },
+    {
+      "key": "dictionary-form + mae ni (before doing)",
+      "state": "locally demonstrated with transfer from iku to hanasu; companion role needed cues",
+      "evidence": "sessions/015/record.md"
+    },
+    {
+      "key": "proposition + to omoimasu (I think that...)",
+      "state": "locally demonstrated with affirmative and negative adjective after cues",
+      "evidence": "sessions/015/record.md"
+    },
+    {
+      "key": "why/how questions (dōshite, dō omoimasu ka)",
+      "state": "locally demonstrated with particle, form and question-ending cues",
+      "evidence": "sessions/016/record.md"
+    },
+    {
+      "key": "plain-form verbal proposition + to omoimasu",
+      "state": "locally demonstrated after tutor repaired omitted prerequisite; affirmative, negative and potential",
+      "evidence": "sessions/016/record.md"
+    },
+    {
+      "key": "reason + opinion with isogashii kara",
+      "state": "locally demonstrated in familiar friend/travel meaning",
+      "evidence": "sessions/016/record.md"
+    },
+    {
+      "key": "reported proposition + to iimashita",
+      "state": "locally demonstrated after ordering cue",
+      "evidence": "sessions/016/record.md"
+    },
+    {
+      "key": "heard report: plain proposition + to kikimashita, person-source kara",
+      "state": "locally demonstrated after ending cue; ASR ambiguity excluded",
+      "evidence": "sessions/017/record.md"
+    },
+    {
+      "key": "plain proposition + kamo shiremasen (possibility)",
+      "state": "adjective independently built; verb transfer assisted with exact iku reminder",
+      "evidence": "sessions/017/record.md"
+    },
+    {
+      "key": "dictionary-form verb + tsumori desu (intention/plan)",
+      "state": "locally demonstrated; independent travel plan, learner-confirmed buying plan, correct friend plan after ASR clarification",
+      "evidence": "sessions/018/record.md"
+    },
+    {
+      "key": "noun/tsumori predicate + da to iimashita / to omoimasu",
+      "state": "locally demonstrated; reported plan independently after rule, noun report/opinion after targeted cues",
+      "evidence": "sessions/019/record.md"
+    },
+    {
+      "key": "noun predicate negation ja nai before to omoimasu/to iimashita",
+      "state": "locally demonstrated; reported form after iimashita reminder",
+      "evidence": "sessions/020/record.md"
+    },
+    {
+      "key": "embedded plain question + ka wakarimasen",
+      "state": "locally demonstrated with yes/no, destination and object questions after role and lexical cues",
+      "evidence": "sessions/020/record.md"
+    },
+    {
+      "key": "conditional iku -> itta -> ittara",
+      "state": "locally demonstrated in future if-go-buy consequence; final self-corrected",
+      "evidence": "sessions/020/record.md"
+    },
+    {
+      "key": "verb and i-adjective -tara condition",
+      "state": "locally demonstrated with form/particle cues; forming",
+      "evidence": "sessions/021/record.md"
+    },
+    {
+      "key": "V-te mo and i-adjective -kute mo concession",
+      "state": "locally demonstrated with particle cues; forming",
+      "evidence": "sessions/021/record.md"
+    },
+    {
+      "key": "permission -te mo ii desu ka versus item request -o kudasai",
+      "state": "distinction explained and final permission question constructed after te-form cue",
+      "evidence": "sessions/021/record.md"
+    },
+    {
+      "key": "place + ni + sunde imasu",
+      "state": "locally demonstrated in statement, independent where-question after initial teaching, and contrast after demo reminder",
+      "evidence": "sessions/022/record.md"
+    },
+    {
+      "key": "eki in location, destination, and companion sentences",
+      "state": "locally demonstrated with structure and repair cues",
+      "evidence": "sessions/023/record.md"
+    },
+    {
+      "key": "matsu with person + o and action place + de",
+      "state": "statements with cues; local independent where-question",
+      "evidence": "sessions/024/record.md"
+    }
+  ],
+  "pronunciation": "unassessed",
+  "listening": "unassessed",
+  "literacy": "Learner explicitly reports no Japanese-script reading/writing; glyphs are dictation",
+  "sessions_observed": 27,
+  "canonical_learner_state": "LEARNER-STATE.md",
+  "retention": "Prior material used across September and October; intervening exposure unknown",
+  "introduced_not_demonstrated": [
+    "tsukaremasu",
+    "explanatory -n desu (learner produced; not taught)"
+  ],
+  "proposed_not_taught": [
+    "-te kuremasu ka as a possible next key; verify register and prerequisites first"
+  ],
+  "next_lesson": "Consider noun description through an action, using familiar vocabulary and teaching required plain forms. Three short prompts, with concise opening and closing key explanation.",
+  "session_count_note": "Archival records, not verified distinct learning days; 006 includes catch-up material",
+  "latest_reflection": "Learner expects rapid compounding from grammar, high-value words, foundational principles and real response patterns; near-error-free common construction within a month is learner forecast, unverified",
+  "evolution_map": "JAPANESE-EVOLUTION-MAP.md",
+  "current_provisional_profile": {
+    "construction": "0→A1 steps 1–5 observed with varying assistance across sessions; step 6 transfer is the next module",
+    "lexical_freedom": "concentrated in familiar domains; not scored",
+    "live_interaction_listening": "unassessed",
+    "pronunciation": "unassessed",
+    "literacy": "unassessed"
+  },
+  "learner_time_hypothesis": "Firm A1/entering A2 in roughly one month, possibly B1 in the following month; not established",
+  "assessment_preference": "Explicit assessment requested; integrate with teaching, occasional transparent checkpoint; distinguish independent/hinted/modeled/unobserved",
+  "curriculum_components": [
+    {
+      "name": "language architecture",
+      "scope": "foundational principles plus generative grammatical constructors"
+    },
+    {
+      "name": "vocabulary repertoire",
+      "scope": "overall stock and precision, grown with awareness of frequency in real use"
+    },
+    {
+      "name": "real everyday multi-context use",
+      "scope": "appropriate production, comprehension, response, repair and register across varied situations"
+    }
+  ],
+  "evolution_map_version": "0.7",
+  "method_version": "AI-TUTOR-MASTER.md v1.27 (English-only prompt text)",
+  "daily_practice_preference": "While Japanese is the current priority, open each daily lesson with three self-built sentences, one at a time, about five minutes total. Continue after three if the learner wants and has time and energy. Use the same small opening after missed days.",
+  "integrated_methods": [
+    "JF/CEFR Can-do as task goal and evidence",
+    "action-oriented real multi-context exchanges",
+    "selected Irodori input/audio",
+    "retrieval and spacing inside forward learning",
+    "minimal corrective cue and self-repair"
+  ],
+  "long_term_target": "C1 Japanese for independent, nuanced spoken use; C2 not a separate course goal",
+  "practice_transition": "Deferred until learner requests or jointly chooses it; current tutor–learner exchange is sufficient conversational setting",
+  "time_targets": "Learner hypotheses only; performance evidence takes priority over dates",
+  "current_phase": "construction-first; no dedicated dialogue or unpredictable-reply exercises yet",
+  "teaching_preferences_2026_10_23": [
+    "Use natural Russian as the explanatory base for Japanese; show a comprehensible meaning bridge before grammatical labels",
+    "Choose semantically motivated examples rather than formally possible but contrived combinations",
+    "Verify with sources backstage; cite in lessons only on request or to resolve a dispute"
+  ],
+  "teaching_preferences_2026_10_24": [
+    "Master prompt text must be entirely English",
+    "Introduce new Japanese verbs with dictionary form, meaning and polite form; one needed transformation at a time",
+    "Use natural Russian meaning-block order close to Japanese when helpful",
+    "Avoid dense conjugation-group tables; gradually build structural understanding",
+    "After every lesson, give a concise recap of new words, new expressive abilities, strengths, difficulties, and genuinely unretrieved older words"
+  ],
+  "explicitly_requested_reminders_2026_10_25": [
+    "koko (here)",
+    "doko (where)",
+    "atsui (hot)",
+    "tsumetai (cold)"
+  ],
+  "teaching_preferences_2026_10_25": [
+    "After an incorrect use of a known form, cue the meaning contrast first and allow self-repair before giving an exact ending",
+    "Provide an exact form when learner explicitly says it cannot be retrieved"
+  ],
+  "explicitly_requested_reminders_2026_10_26": [
+    "hanashitai desu (want to talk)",
+    "takakunai (not expensive)"
+  ],
+  "learner_requested_support_2026_10_26": "Compact hanasu form comparison table used when multiple forms blurred; not a standing full-table approach",
+  "explicitly_requested_reminders_2026_10_27": [
+    "kaitai desu (want to buy), after repeated attempts",
+    "ikemasu (can go), requested in compact iku form table"
+  ],
+  "learner_recovered_2026_10_27": "takakunai from takai without answer-bearing tutor reminder",
+  "tutor_corrections_2026_10_27": [
+    "wakaru was initially conflated with knowing; means understand",
+    "plain verb form before to omoimasu was not taught before elicitation; supplied ikemasu -> ikeru after source verification"
+  ],
+  "explicitly_requested_reminders_2026_11_01": [
+    "iimashita versus omoimasu endpoints after learner said several forms were not retrievable"
+  ],
+  "asr_correction_2026_11_01": "Tutor misattributed garbled transcript (including ikō/time word) to learner; learner stated actual speech was correct. No pronunciation or conjugation error established.",
+  "explicitly_requested_reminders_2026_11_03": [
+    "tsumori desu (plan)",
+    "kamo shiremasen (possibility)",
+    "iimashita (said)"
+  ],
+  "streak_2026_11_03": "Learner reports 21-day streak and plans a rest day tomorrow; archival records do not independently verify daily continuity",
+  "teaching_preferences_2026_11_08": [
+    "Use selective vivid multilingual memory hooks for difficult new words or expressions, drawing on learner-known Russian, English, Spanish or familiar French",
+    "Distinguish mnemonic sound from actual Japanese pronunciation and invented image from etymology; keep sentence construction central",
+    "Mnemonic scene must visually encode both sound and meaning; arbitrary shouted syllables do not count. If no strong image exists, omit the hook.",
+    "Provide a brief multilingual mnemonic for every genuinely new lexical word or short expression at introduction, and for explicitly forgotten older words; keep it visually meaningful and accurate about sound"
+  ],
+  "explicitly_requested_reminders_2026_11_08": [
+    "iimashita (said)",
+    "kamo shiremasen (maybe)",
+    "wakarimasen (do not understand/know answer)",
+    "doko (where/to where)",
+    "nani (what)"
+  ],
+  "explicitly_requested_reminders_2026_11_13": [
+    "nonde mimasu (try drinking)"
+  ],
+  "session_021_evidence": "sessions/021/record.md; verb/adjective -tara, verb/adjective -te mo, permission -te mo ii desu ka locally built with documented cues; no pronunciation or literacy inference from ASR",
+  "explicitly_requested_reminders_2026_11_14": [
+    "demo (but)"
+  ],
+  "explicitly_requested_reminders_2026_11_16": [
+    "koko",
+    "soko",
+    "asoko",
+    "-te kara",
+    "kuru → kite",
+    "mae ni",
+    "-te mo ii desu ka"
+  ],
+  "explicitly_requested_reminders_2026_11_17": [
+    "hanasu (talk)"
+  ],
+  "explicitly_requested_reminders_2026_11_18": [
+    "matsu"
+  ],
+  "keybook": "JAPANESE-KEYBOOK.md",
+  "key_explanation_preference": "At opening and close, one sentence connecting essence, significance and consequences at the level of the human possibility opened. Approved example in JAPANESE-KEYBOOK.md.",
+  "explicitly_requested_reminders_2026_11_19": [
+    "miru (look)"
+  ]
+}

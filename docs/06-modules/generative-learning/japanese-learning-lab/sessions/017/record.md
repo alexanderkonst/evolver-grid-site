@@ -1,0 +1,16 @@
+# Session 017 — October 30–November 1, 2026
+
+Evidence: chat turns and possible speech-recognition renderings; Japanese script in user messages is not literacy evidence, and pronunciation is unassessed. Russian elicitation, romaji feedback. Learner explicitly ended the session before attempting the final `tsumori desu` prompt.
+
+## Work and evidence
+
+- Reused reported-speech `to iimashita` with an adjective proposition. After a structure cue and a precise `wa`/plain-adjective cue, learner built `watashi no tomodachi wa kono ocha wa oishii to iimashita`. The first clause was initially rendered unclearly by ASR; do not treat it as a lexical error.
+- Introduced `kiku / kikimashita` in its “hear/heard” sense, contrasting with “ask/asked” and with `iu / iimashita`. Learner built `kono ocha wa oishii to kikimashita`; the first word was rendered by ASR as `kimashita`, so no pronunciation assessment. Introduced person-source `kara` (“from”) distinct from causal `kara`; after selecting `kara` without an answer cue, learner completed `watashi no tomodachi kara kono ocha wa oishii to kikimashita` after a `to kikimashita` ending cue. ASR may have rendered `kono ocha` as `kono kōcha` (black tea); do not count that as an error.
+- Contrast of friend’s report and learner’s opinion: after explicitly saying several forms were not retrievable, learner first used `kara` + `to kikimashita` and `to iimasu`. Tutor supplied minimal exact reminders for `watashi no tomodachi wa ... to iimashita` and `... to omoimasu`; learner then produced `watashi no tomodachi wa kono ocha [wa] takai to iimashita. Demo takakunai to omoimasu`. Tutor noted optional topic marker in careful full speech and accepted the communicative construction without a repetition loop.
+- Introduced `kamo shiremasen` (“possibly/might”) after a plain proposition. Learner independently produced `kono ocha wa takai kamo shiremasen`. For verbal transfer, learner first used `ikimasu`, then `ikeru ... kamo shiremasu`, then `iki kamo shiremasen`; after meaning-level and form cues plus the exact `iku` reminder, learner built `watashi no tomodachi wa ashita Kyōto ni iku kamo shiremasen`. This is assisted local transfer, not independent mastery of plain verb attachment.
+- `tsumori desu` (“intend/plan to”) was presented only in the last assistant prompt. Learner explicitly deferred the construction until tomorrow. Mark as proposed, not demonstrated; do not open the next lesson as a retrieval check for it.
+
+## Teaching observations and next step
+
+- The source distinction (`iimashita` friend said, `kikimashita` I heard, `omoimasu` I think) offered a meaningful expansion of one `to` attachment pattern. `Kamo shiremasen` extends the same simple-proposition attachment to uncertainty, but the learner needed graduated cues to distinguish `iku` from `iki`, `ikimasu` and `ikeru`.
+- Next session: briefly explain `tsumori desu` as a plan/intention (not mere possibility) and that it follows dictionary-form `iku`; let learner build “I plan to go to Kyoto tomorrow” without a full answer. Then contrast the learner’s own plan with a friend’s reported plan or possibility in one natural new meaning. No dense table or repetition loop. Russian prompts, romaji display, dictionary-form-first verbs, and normal session-close recap/ledger routine.

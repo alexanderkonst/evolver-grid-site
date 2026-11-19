@@ -1,0 +1,31 @@
+{
+  "status": "pre-session; unassessed",
+  "learner": "Sasha",
+  "target_language": "Japanese",
+  "explanation_language": {
+    "value": "English",
+    "status": "provisional from source"
+  },
+  "starting_level": {
+    "value": "beginner assumption",
+    "status": "not assessed"
+  },
+  "goals": {
+    "source_stated": [
+      "spoken Japanese",
+      "progressive reading and writing"
+    ],
+    "specific_use_cases": "not yet established"
+  },
+  "other_languages": "not verified; prior assistant suggestions are not learner evidence",
+  "preferences_hypotheses": [
+    "structural explanations",
+    "pattern discovery",
+    "low-pressure construction"
+  ],
+  "generators": [],
+  "pronunciation": "unassessed",
+  "listening": "unassessed",
+  "literacy": "unassessed",
+  "sessions_observed": 0
+}
