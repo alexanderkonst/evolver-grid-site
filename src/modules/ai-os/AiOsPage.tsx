@@ -3061,7 +3061,8 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     textShadow: '0 0 12px rgba(132,96,234,0.4)',
                   }}
                 >
-                  Additional power-ups
+                  {/* Sasha 2026-11-19: the button panel is named the Controller, as on Nintendo / PlayStation. */}
+                  The Controller
                 </p>
                 <h2
                   className="ai-os-glow-text-medium font-display italic text-2xl sm:text-3xl md:text-4xl font-medium leading-[1.15] tracking-[-0.02em]"
