@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { ITERATE_STRATEGY_CRUCIBLE_V2_PROMPT } from "@/prompts";
 import { AI_OS_PROMPT } from "@/modules/familiar/aiOsSource";
+import { tr } from "@/lib/villageCopy";
 // Day 120 (Sasha 2026-07-10): YOU · be original — holographic variant.
 // The inside-layer brand's second temperature: gold signs the human/warm
 // surfaces (reveal, saved profile), holo signs the AI-native layer.
@@ -2490,8 +2491,19 @@ const SUITE_SLUG: Record<string, string> = {
   design: "design",
 };
 
+// contextLabel (English source) → aiOsPage.contexts.<key>.
+const CONTEXT_KEY: Record<string, string> = {
+  "🎨 UI / Code": "uiCode",
+  "🖼 Image tool": "imageTool",
+};
+
 const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
   const { t } = useTranslation();
+  // Copy that lives in the data above stays the English source; translate it at render.
+  const suiteName = (category: string, english: string) => tr(t, `aiOsPage.suites.${category}`, english);
+  const suiteTitle = (category: string) => tr(t, `aiOsPage.suiteTitle.${category}`, SUITE_TITLE[category]);
+  const skillText = (prompt: Prompt, field: "label" | "description") =>
+    tr(t, `aiOsPage.skills.${prompt.id}.${field}`, prompt[field]);
 
   // Per-page SEO — sets browser tab title on /ai-os and per-suite sub-routes.
   // Global og: tags from index.html still apply.
@@ -2500,10 +2512,11 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
   useEffect(() => {
     const prev = document.title;
     document.title = focusCategory
-      ? `${SUITE_TITLE[focusCategory]} — AI OS`
-      : "AI OS — A different kind of cognition";
+      ? `${suiteTitle(focusCategory)} — ${tr(t, "aiOsPage.seo.docTitleSuffix", "Your AI")}`
+      : tr(t, "aiOsPage.seo.docTitle", "Your AI — A different kind of cognition");
     return () => { document.title = prev; };
-  }, [focusCategory]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [focusCategory, t]);
 
   // Day 79 (Sasha 2026-05-22): latch the ever-visited flag for the
   // SpacesRail AI OS chip gate. Writes localStorage on first mount
@@ -2667,8 +2680,8 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
       setCopiedId(prompt.id);
       
       toast({
-        title: "Copied to clipboard",
-        description: prompt.label,
+        title: t("aiOsPage.toast.copied"),
+        description: skillText(prompt, "label"),
         duration: 2000,
       });
 
@@ -2677,8 +2690,8 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
       }, 1500);
     } catch (err) {
       toast({
-        title: "Copy failed",
-        description: "Please try again",
+        title: t("aiOsPage.toast.copyFailed"),
+        description: t("aiOsPage.toast.tryAgain"),
         variant: "destructive",
         duration: 2000,
       });
@@ -2697,16 +2710,16 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
       
       await navigator.clipboard.writeText(data.transcript);
       toast({
-        title: "Transcript copied!",
-        description: `Language: ${data.language || 'unknown'}`,
+        title: t("aiOsPage.toast.transcriptCopied"),
+        description: t("aiOsPage.toast.transcriptLang", { language: data.language || t("aiOsPage.toast.transcriptUnknownLang") }),
         duration: 3000,
       });
       setShowTranscriptDialog(false);
       setYtUrl("");
     } catch (err: any) {
       toast({
-        title: "Failed to fetch transcript",
-        description: err.message || "Please try again",
+        title: t("aiOsPage.toast.transcriptFailed"),
+        description: err.message || t("aiOsPage.toast.tryAgain"),
         variant: "destructive",
         duration: 3000,
       });
@@ -2778,17 +2791,22 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
   }, []);
 
   const seoMeta = (() => {
+    const seo = (key: string, path: string, title: string, description: string) => ({
+      title: tr(t, `aiOsPage.seo.${key}.title`, title),
+      path,
+      description: tr(t, `aiOsPage.seo.${key}.description`, description),
+    });
     switch (focusCategory) {
       case "clarity":
-        return { title: "AI OS — Clarity skills", path: "/ai-os/clarity", description: "Free, curated AI skills for clarity. The Holonic Commons library." };
+        return seo("clarity", "/ai-os/clarity", "Your AI — Clarity skills", "Free, curated AI skills for clarity. The Holonic Commons library.");
       case "iteration":
-        return { title: "AI OS — Iteration skills", path: "/ai-os/iteration", description: "Free, curated AI skills for iteration and refinement." };
+        return seo("iteration", "/ai-os/iteration", "Your AI — Iteration skills", "Free, curated AI skills for iteration and refinement.");
       case "deployment":
-        return { title: "AI OS — Vibe Code skills", path: "/ai-os/vibe-code", description: "Free, curated AI skills for shipping. The Holonic Commons library." };
+        return seo("deployment", "/ai-os/vibe-code", "Your AI — Vibe Code skills", "Free, curated AI skills for shipping. The Holonic Commons library.");
       case "design":
-        return { title: "AI OS — Design skills", path: "/ai-os/design", description: "Free, curated AI skills for design work." };
+        return seo("design", "/ai-os/design", "Your AI — Design skills", "Free, curated AI skills for design work.");
       default:
-        return { title: "AI OS — The Holonic Commons", path: "/ai-os", description: "A free, curated library of AI skills for solo founders. Holonic Commons. Aleksandr's curatorship is the paid layer." };
+        return seo("home", "/ai-os", "Your AI — The Holonic Commons", "A free, curated library of AI skills for solo founders. Holonic Commons. Aleksandr's curatorship is the paid layer.");
     }
   })();
   return (
@@ -2873,7 +2891,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                 {/* Day 50 (Sasha): hero torus medallion retired — the
                     GameShell rail already carries the brand mark.
                     Day 53 evening (Sasha 2026-04-27): profile button + auth
-                    flow retired entirely from /ai-os. AI OS is Holonic
+                    flow retired entirely from /ai-os. Your AI is Holonic
                     Commons — free for everyone, no profile, no sign-in.
                     Anyone arriving at the page can use it immediately
                     without an account. The /ai-os/auth and /ai-os/profile
@@ -2894,7 +2912,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     backgroundClip: 'text',
                   }}
                 >
-                  AI <span className="font-bold" style={{ fontStyle: 'italic' }}>OS</span>
+                  {t("aiOsPage.hero.titleLead")} <span className="font-bold" style={{ fontStyle: 'italic' }}>{t("aiOsPage.hero.titleEmph")}</span>
                 </h1>
                 {/* Day 52 (Sasha 2026-04-26): credibility beat — collapses
                     "is this a weekend project?" objection in seven words.
@@ -2907,7 +2925,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                   color: 'hsl(0 0% 100% / 0.62)',
                   textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.7)',
                 }}>
-                  Version 6.0 · Since 2024
+                  {t("aiOsPage.hero.version")}
                 </p>
                 {/* Day 51 r3 (Sasha 2026-04-25 evening): subtitles tightened
                     into a unified two-line block. Previously the second
@@ -2920,13 +2938,13 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     color: 'hsl(0 0% 100% / 0.96)',
                     textShadow: '0 0 20px rgba(132,96,234,0.4), 0 0 50px rgba(180,140,255,0.25), 0 0 16px rgba(0,0,0,0.95), 0 2px 8px rgba(0,0,0,0.9)',
                   }}>
-                    Permanent level-up to AI cognition. Instant install.
+                    {t("aiOsPage.hero.subtitle1")}
                   </p>
                   <p className="text-sm font-light italic" style={{
                     color: 'hsl(242 30% 85% / 0.78)',
                     textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.8)',
                   }}>
-                    Same model. Different conversation.
+                    {t("aiOsPage.hero.subtitle2")}
                   </p>
                 </div>
                 {/* Day 52 (Sasha 2026-04-26): licensing terms surfaced
@@ -2954,7 +2972,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                       textShadow: '0 0 12px rgba(0,0,0,0.9), 0 0 24px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.8)',
                     }}
                   >
-                    <span className="whitespace-nowrap">Free for personal use · CC BY-NC-SA 4.0</span>
+                    <span className="whitespace-nowrap">{t("aiOsPage.hero.license")}</span>
                     <span aria-hidden="true" className="hidden sm:inline opacity-70">·</span>
                     <a
                       href="https://t.me/integralevolution"
@@ -2963,7 +2981,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                       className="inline-block whitespace-nowrap no-underline border-b border-[hsl(40_70%_75%/0.45)] hover:border-[hsl(40_70%_75%/0.85)] pb-[1px] transition-colors"
                       style={{ color: 'hsl(40 70% 90% / 0.95)' }}
                     >
-                      Reach out for partnership
+                      {t("aiOsPage.hero.partnership")}
                     </a>
                   </p>
                 </div>
@@ -2981,7 +2999,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                       textShadow: '0 0 14px rgba(132,96,234,0.45), 0 0 24px rgba(0,0,0,0.7), 0 1px 4px rgba(0,0,0,0.8)',
                     }}
                   >
-                    Start here ↓
+                    {t("aiOsPage.hero.startHere")}
                   </p>
                 </div>
               </header>
@@ -3037,7 +3055,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
             <nav
               id="suites-nav"
               className="liquid-glass-strong rounded-3xl px-6 py-8 sm:px-8 sm:py-10 scroll-mt-8 relative overflow-hidden"
-              aria-label="Pick your class of tasks"
+              aria-label={t("aiOsPage.controller.aria")}
               style={{
                 boxShadow:
                   '0 0 0 1px hsla(242, 30%, 73%, 0.25), 0 20px 60px -20px rgba(132,96,234,0.35), 0 40px 120px -40px rgba(132,96,234,0.25), inset 0 1px 0 hsla(0, 0%, 100%, 0.08)',
@@ -3062,7 +3080,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                   }}
                 >
                   {/* Sasha 2026-11-19: the button panel is named the Controller, as on Nintendo / PlayStation. */}
-                  The Controller
+                  {t("aiOsPage.controller.eyebrow")}
                 </p>
                 <h2
                   className="ai-os-glow-text-medium font-display italic text-2xl sm:text-3xl md:text-4xl font-medium leading-[1.15] tracking-[-0.02em]"
@@ -3074,7 +3092,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     backgroundClip: 'text',
                   }}
                 >
-                  Select skills for everyday craft
+                  {t("aiOsPage.controller.heading")}
                 </h2>
                 <p
                   className="mt-2 text-xs sm:text-sm font-light italic"
@@ -3083,7 +3101,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     textShadow: '0 0 12px rgba(0,0,0,0.8)',
                   }}
                 >
-                  Pick a category for the move you're on. The OS is already installed above.
+                  {t("aiOsPage.controller.subtitle")}
                 </p>
               </div>
 
@@ -3106,7 +3124,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                         textShadow: `0 0 12px ${color}80`,
                       }}
                     >
-                      <span className="relative z-10">{group.label}</span>
+                      <span className="relative z-10">{suiteName(group.category, group.label)}</span>
                       <span
                         aria-hidden="true"
                         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
@@ -3136,7 +3154,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
               This is the structural "AI OS as own Space" payoff: each
               suite gets its own focused page, /ai-os is the install. */}
           {focusCategory && (
-          <section className="space-y-16" aria-label="Available suites">
+          <section className="space-y-16" aria-label={t("aiOsPage.suite.aria")}>
             {/* Day 120 (Sasha 2026-07-10): orientation header for deep-linked
                 suite sub-routes. Bug found via founder pulse feedback (Tom
                 Norwood) — landing directly on /ai-os/iteration (e.g. from the
@@ -3156,14 +3174,14 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                   style={{ color: 'hsla(242, 40%, 85%, 0.75)' }}
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
-                  AI OS
+                  {tr(t, "aiOsPage.seo.docTitleSuffix", "Your AI")}
                 </Link>
                 <span aria-hidden="true" style={{ color: 'hsla(0, 0%, 100%, 0.3)' }}>/</span>
                 <span
                   className="text-xs sm:text-sm font-medium tracking-wide"
                   style={{ color: 'hsla(0, 0%, 100%, 0.92)' }}
                 >
-                  {SUITE_TITLE[focusCategory]}
+                  {suiteTitle(focusCategory)}
                 </span>
               </div>
             </RevealSection>
@@ -3179,7 +3197,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
               const renderPrompt = (prompt: typeof group.prompts[0], cardIndex: number) => {
                     const isMeta = group.category === "meta";
                     const isCopied = copiedId === prompt.id;
-                    // Day 51 (Sasha 2026-04-25): Holonic Commons — AI OS free
+                    // Day 51 (Sasha 2026-04-25): Holonic Commons — Your AI free
                     // forever for everyone. `isLocked` always false → every
                     // prompt is copyable, no firewall, no /pricing redirect.
                     // `isPremiumPrompt` retained ONLY for visual treatment
@@ -3229,7 +3247,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                             <div className="mb-3">
                               <span className="text-[10px] font-semibold tracking-[0.2em] uppercase px-3 py-1 rounded-full"
                                 style={{ background: 'linear-gradient(135deg, hsl(45 90% 55% / 0.2), hsl(45 85% 50% / 0.1))', color: 'hsl(45 90% 70%)', border: '1px solid hsl(45 90% 55% / 0.2)', textShadow: '0 0 8px hsl(45 90% 55% / 0.4)' }}
-                              >⚡ Signature · Automatic — one paste, full suite</span>
+                              >{t("aiOsPage.suite.signature")}</span>
                             </div>
                           )}
                           <button
@@ -3239,30 +3257,30 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                               else { handleCopy(prompt); }
                             }}
                             className={`group w-full text-left transition-all duration-300 active:scale-[0.97] ${isRec || isPremiumPrompt ? 'hover:scale-[1.02]' : 'hover:scale-[1.01]'}`}
-                            aria-label={isLocked ? `Unlock: ${prompt.label}` : `Copy skill: ${prompt.label}`}
+                            aria-label={isLocked ? t("aiOsPage.suite.unlockAria", { label: skillText(prompt, "label") }) : t("aiOsPage.suite.copyAria", { label: skillText(prompt, "label") })}
                           >
                             <span className="flex items-start justify-between gap-3">
                               <span className="flex flex-col gap-2">
                                 <span className={`font-medium leading-snug tracking-[-0.02em] ${isRec || isPremiumPrompt ? 'text-base sm:text-lg' : 'text-sm sm:text-base'}`}
                                   style={{ color: isRec || isPremiumPrompt ? 'hsl(0 0% 100%)' : 'hsl(0 0% 100% / 0.9)', ...(isRec && { textShadow: '0 0 16px hsl(242 40% 80% / 0.4)' }) }}>
-                                  {isCopied ? "Copied!" : prompt.label}
+                                  {isCopied ? t("aiOsPage.suite.copied") : skillText(prompt, "label")}
                                   {isLocked && (
                                     <span className="ml-2 inline-flex items-center gap-1 text-[10px] font-semibold tracking-[0.15em] uppercase px-2.5 py-0.5 rounded-full"
                                       style={{ background: 'linear-gradient(135deg, hsl(242 40% 70% / 0.2), hsl(290 30% 60% / 0.15))', color: 'hsl(242 40% 85%)', border: '1px solid hsl(242 40% 70% / 0.25)' }}>
-                                      <Lock className="w-3 h-3" /> Premium
+                                      <Lock className="w-3 h-3" /> {t("aiOsPage.suite.premium")}
                                     </span>
                                   )}
                                   {hasCustomFields && !isLocked && (
                                     <span className="ml-2 text-[10px] font-medium tracking-[0.1em] uppercase px-2 py-0.5 rounded-full"
-                                      style={{ background: `${headerColor}12`, color: headerColor }}>Customizable</span>
+                                      style={{ background: `${headerColor}12`, color: headerColor }}>{t("aiOsPage.suite.customizable")}</span>
                                   )}
                                   {prompt.contextLabel && (
                                     <span className="ml-2 text-[10px] font-medium tracking-[0.1em] px-2 py-0.5 rounded-full"
-                                      style={{ background: 'hsl(0 0% 100% / 0.05)', color: 'hsl(0 0% 100% / 0.45)' }}>{prompt.contextLabel}</span>
+                                      style={{ background: 'hsl(0 0% 100% / 0.05)', color: 'hsl(0 0% 100% / 0.45)' }}>{tr(t, CONTEXT_KEY[prompt.contextLabel] && `aiOsPage.contexts.${CONTEXT_KEY[prompt.contextLabel]}`, prompt.contextLabel)}</span>
                                   )}
                                 </span>
                                 <span className="text-xs leading-relaxed font-light" style={{ color: isRec || isPremiumPrompt ? 'hsl(0 0% 100% / 0.7)' : 'hsl(0 0% 100% / 0.6)' }}>
-                                  {prompt.description}
+                                  {skillText(prompt, "description")}
                                 </span>
                               </span>
                               <span className="flex-shrink-0 mt-0.5 transition-all duration-300 group-hover:scale-110" style={{ color: isCopied ? headerColor : 'hsl(0 0% 100% / 0.4)' }}>
@@ -3281,18 +3299,18 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                                 const currentVal = customValues[prompt.id]?.[field.key] || field.defaultValue;
                                 return (
                                   <div key={field.key} className="flex flex-col gap-1.5">
-                                    <label className="text-[10px] font-medium tracking-[0.2em] uppercase" style={{ color: 'hsl(0 0% 100% / 0.45)' }}>{field.label}</label>
+                                    <label className="text-[10px] font-medium tracking-[0.2em] uppercase" style={{ color: 'hsl(0 0% 100% / 0.45)' }}>{tr(t, `aiOsPage.fields.${field.key}.label`, field.label)}</label>
                                     {field.type === 'select' && field.options ? (
                                       <div className="flex flex-wrap gap-2">
-                                        {field.options.map((opt) => (
+                                        {field.options.map((opt, optIndex) => (
                                           <button key={opt.value} onClick={() => handleCustomFieldChange(prompt.id, field.key, opt.value)}
                                             className="text-[11px] font-medium px-3 py-1.5 rounded-full transition-all duration-200"
                                             style={{ background: currentVal === opt.value ? `${headerColor}25` : 'hsl(0 0% 100% / 0.04)', border: `1px solid ${currentVal === opt.value ? `${headerColor}50` : 'hsl(0 0% 100% / 0.1)'}`, color: currentVal === opt.value ? headerColor : 'hsl(0 0% 100% / 0.6)' }}
-                                          >{opt.label}</button>
+                                          >{tr(t, `aiOsPage.fields.${field.key}.options.${optIndex}`, opt.label)}</button>
                                         ))}
                                       </div>
                                     ) : (
-                                      <input type="text" placeholder={field.placeholder} value={currentVal}
+                                      <input type="text" placeholder={field.placeholder && tr(t, `aiOsPage.fields.${field.key}.placeholder`, field.placeholder)} value={currentVal}
                                         onChange={(e) => handleCustomFieldChange(prompt.id, field.key, e.target.value)}
                                         className="text-xs px-3 py-2 rounded-xl w-full outline-none"
                                         style={{ background: 'hsl(0 0% 100% / 0.04)', border: '1px solid hsl(0 0% 100% / 0.1)', color: 'hsl(0 0% 100% / 0.8)' }} />
@@ -3303,7 +3321,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                               <button onClick={() => handleCopy(prompt)}
                                 className="w-full text-xs font-medium py-2.5 rounded-xl transition-all duration-200 hover:scale-[1.01] active:scale-[0.98]"
                                 style={{ background: `${headerColor}20`, border: `1px solid ${headerColor}30`, color: headerColor }}
-                              >{copiedId === prompt.id ? '✓ Copied!' : 'Copy customized skill'}</button>
+                              >{copiedId === prompt.id ? t("aiOsPage.suite.copiedCheck") : t("aiOsPage.suite.copyCustom")}</button>
                             </div>
                           )}
                         </div>
@@ -3319,11 +3337,11 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                       >
                         {/* Suite header */}
                         <div className="mb-8">
-                          <p className="text-[10px] font-semibold tracking-[0.3em] uppercase mb-2" style={{ color: `${headerColor}90` }}>Suite</p>
+                          <p className="text-[10px] font-semibold tracking-[0.3em] uppercase mb-2" style={{ color: `${headerColor}90` }}>{t("aiOsPage.suite.eyebrow")}</p>
                           <h2
                             className="font-display italic text-xl sm:text-2xl font-semibold tracking-[-0.02em]"
                             style={{ color: headerColor, textShadow: `0 0 20px ${headerColor}50, 0 0 40px ${headerColor}25, 0 2px 8px rgba(0,0,0,0.6)`, filter: `drop-shadow(0 0 12px ${headerColor}30)` }}
-                          >{group.label}</h2>
+                          >{suiteName(group.category, group.label)}</h2>
                           <div className="mt-3 flex items-center gap-1">
                             {Array.from({ length: 12 }).map((_, i) => (<div key={i} className="rounded-full" style={{ width: '3px', height: '3px', background: headerColor, opacity: 0.5 - (i * 0.04) }} />))}
                             <div className="flex-1 h-px" style={{ background: `linear-gradient(90deg, ${headerColor}15, transparent)` }} />
@@ -3362,14 +3380,14 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                                     color: headerColor,
                                   }}
                                 >
-                                  Manual
+                                  {t("aiOsPage.suite.manual")}
                                 </span>
                                 <span className="flex flex-col">
                                   <span className="text-sm font-medium" style={{ textShadow: `0 0 10px ${headerColor}60` }}>
-                                    {isSubOpen ? 'Hide sub-modules' : 'See sub-modules'}
+                                    {isSubOpen ? t("aiOsPage.suite.hideSub") : t("aiOsPage.suite.showSub")}
                                   </span>
                                   <span className="text-[11px] font-light italic opacity-70">
-                                    {subModulePrompts.length} individual module{subModulePrompts.length === 1 ? '' : 's'} — mix &amp; match
+                                    {t("aiOsPage.suite.subCount", { count: subModulePrompts.length })}
                                   </span>
                                 </span>
                               </span>
@@ -3435,7 +3453,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                 style={{ color: 'hsl(242 40% 80%)' }}
               >
                 <Heart className="w-4 h-4" aria-hidden="true" />
-                <span>Why this is free</span>
+                <span>{t("aiOsPage.footer.free")}</span>
                 <span className="w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 group-hover:translate-x-0.5" style={{ background: 'hsl(0 0% 100% / 0.1)' }}>
                   <ArrowRight className="w-3 h-3" aria-hidden="true" />
                 </span>
@@ -3448,11 +3466,11 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                 style={{ color: 'hsl(242 40% 80%)' }}
               >
                 <Send className="w-4 h-4" aria-hidden="true" />
-                <span>Contact on Telegram</span>
+                <span>{t("aiOsPage.footer.telegram")}</span>
               </a>
               <div className="flex items-center justify-center gap-3">
                 <p className="text-[11px] font-extralight tracking-wide" style={{ color: 'hsl(0 0% 100% / 0.4)' }}>
-                  © 2026 Aleksandr Konstantinov · {' '}
+                  {t("aiOsPage.footer.author")} · {' '}
                   <a
                     href="https://FindYourTopTalent.Com"
                     target="_blank"
@@ -3468,7 +3486,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     rel="noopener noreferrer"
                     className="underline underline-offset-2 transition-colors hover:opacity-80"
                   >
-                    docs CC BY-NC-SA 4.0
+                    {t("aiOsPage.footer.docsLicense")}
                   </a>
                   {' '} · {' '}
                   {/* Day 51 (Sasha 2026-04-25): code is forkable. Quiet
@@ -3483,7 +3501,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                     rel="noopener noreferrer"
                     className="underline underline-offset-2 transition-colors hover:opacity-80"
                   >
-                    code PolyForm NC (fork on GitHub)
+                    {t("aiOsPage.footer.codeLicense")}
                   </a>
                 </p>
                 <button
@@ -3493,8 +3511,8 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                   }}
                   className="w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
                   style={{ background: 'hsl(0 0% 100% / 0.06)', color: 'hsl(0 0% 100% / 0.25)' }}
-                  aria-label="Copy premium boost"
-                  title="Copy premium boost"
+                  aria-label={t("aiOsPage.footer.copyBoost")}
+                  title={t("aiOsPage.footer.copyBoost")}
                 >
                   <Copy className="w-3 h-3" />
                 </button>
@@ -3708,7 +3726,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
               {/* Outro CTA — soft, in-aesthetic */}
               <div className="pt-6 mt-4" style={{ borderTop: '1px solid hsla(195, 30%, 70%, 0.15)' }}>
                 <p className="text-sm sm:text-base" style={{ color: 'hsl(0 0% 100% / 0.7)' }}>
-                  AI OS is your knoware library. Start anywhere — every skill is a piece of the layer.
+                  {t("aiOsPage.story.outro")}
                 </p>
                 <button
                   onClick={() => setShowStoryDialog(false)}

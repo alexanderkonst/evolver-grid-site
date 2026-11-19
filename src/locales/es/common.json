@@ -676,17 +676,332 @@
       }
     }
   },
+  "aiOsPage": {
+    "hero": {
+      "titleLead": "Your",
+      "titleEmph": "AI",
+      "version": "Version 6.0 · Since 2024",
+      "subtitle1": "Permanent level-up to AI cognition. Instant install.",
+      "subtitle2": "Same model. Different conversation.",
+      "license": "Free for personal use · CC BY-NC-SA 4.0",
+      "partnership": "Reach out for partnership",
+      "startHere": "Start here ↓"
+    },
+    "controller": {
+      "eyebrow": "The Controller",
+      "heading": "Select skills for everyday craft",
+      "subtitle": "Pick a category for the move you're on. Your AI is already installed above.",
+      "aria": "Pick your class of tasks"
+    },
+    "suites": {
+      "meta": "Foundational Skills",
+      "clarity": "Clarify",
+      "iteration": "Iterate",
+      "deployment": "Vibe Code",
+      "design": "Design"
+    },
+    "suiteTitle": {
+      "clarity": "Clarify Suite",
+      "iteration": "Iterate Suite",
+      "deployment": "Vibe Code Suite",
+      "design": "Design Suite"
+    },
+    "suite": {
+      "eyebrow": "Suite",
+      "aria": "Available suites",
+      "signature": "⚡ Signature · Automatic — one paste, full suite",
+      "premium": "Premium",
+      "customizable": "Customizable",
+      "copied": "Copied!",
+      "copiedCheck": "✓ Copied!",
+      "unlockAria": "Unlock: {{label}}",
+      "copyAria": "Copy skill: {{label}}",
+      "copyCustom": "Copy customized skill",
+      "manual": "Manual",
+      "hideSub": "Hide sub-modules",
+      "showSub": "See sub-modules",
+      "subCount_one": "{{count}} individual module — mix & match",
+      "subCount_other": "{{count}} individual modules — mix & match"
+    },
+    "contexts": {
+      "uiCode": "🎨 UI / Code",
+      "imageTool": "🖼 Image tool"
+    },
+    "fields": {
+      "rotation": {
+        "label": "Rotation",
+        "options": [
+          "Quarter turn (90°)",
+          "Half turn (180°)",
+          "Full turn (360°)"
+        ]
+      },
+      "bg": {
+        "label": "Background style",
+        "placeholder": "e.g. ocean at dusk, deep space nebula, dark forest..."
+      },
+      "aspect": {
+        "label": "Aspect ratio",
+        "options": [
+          "1:1 Square",
+          "16:9 Landscape",
+          "9:16 Portrait"
+        ]
+      },
+      "intensity": {
+        "label": "Motion intensity",
+        "options": [
+          "Subtle — barely there",
+          "Moderate — noticeable",
+          "Expressive — dramatic"
+        ]
+      }
+    },
+    "footer": {
+      "free": "Why this is free",
+      "telegram": "Contact on Telegram",
+      "author": "© 2026 Aleksandr Konstantinov",
+      "docsLicense": "docs CC BY-NC-SA 4.0",
+      "codeLicense": "code PolyForm NC (fork on GitHub)",
+      "copyBoost": "Copy premium boost"
+    },
+    "toast": {
+      "copied": "Copied to clipboard",
+      "copyFailed": "Copy failed",
+      "tryAgain": "Please try again",
+      "transcriptCopied": "Transcript copied!",
+      "transcriptLang": "Language: {{language}}",
+      "transcriptUnknownLang": "unknown",
+      "transcriptFailed": "Failed to fetch transcript"
+    },
+    "seo": {
+      "docTitle": "Your AI — A different kind of cognition",
+      "docTitleSuffix": "Your AI",
+      "clarity": {
+        "title": "Your AI — Clarity skills",
+        "description": "Free, curated AI skills for clarity. The Holonic Commons library."
+      },
+      "iteration": {
+        "title": "Your AI — Iteration skills",
+        "description": "Free, curated AI skills for iteration and refinement."
+      },
+      "deployment": {
+        "title": "Your AI — Vibe Code skills",
+        "description": "Free, curated AI skills for shipping. The Holonic Commons library."
+      },
+      "design": {
+        "title": "Your AI — Design skills",
+        "description": "Free, curated AI skills for design work."
+      },
+      "home": {
+        "title": "Your AI — The Holonic Commons",
+        "description": "A free, curated library of AI skills for solo founders. Holonic Commons. Aleksandr's curatorship is the paid layer."
+      }
+    },
+    "story": {
+      "outro": "Your AI is your knoware library. Start anywhere — every skill is a piece of the layer."
+    },
+    "spotlight": {
+      "eyebrow": "Read this · 30 seconds",
+      "headline": "One paste. Permanent AI upgrade.",
+      "body": "Paste into a fresh AI chat. Same input you'd give — higher quality output. Faster on everyday tasks, deeper on complex ones. (Unless AI is new to you — build a baseline first.)",
+      "knowEyebrow": "You'll know in 60 seconds",
+      "knowBody": "One prompt. Run it now, install the system prompt, run it again. You'll feel the shift.",
+      "step1": "In your current AI, paste this prompt. Read the response.",
+      "copyTest": "Copy test prompt",
+      "copyTestAria": "Copy the test prompt to clipboard",
+      "copied": "Copied",
+      "step2Before": "Open a ",
+      "step2Strong": "new chat",
+      "step2After": ". Paste the system prompt. It's a fascinating read, if you like. Then run the same prompt again.",
+      "copyInstall": "Copy Your AI system prompt v6.0",
+      "copyInstallAria": "Copy the Your AI system prompt v6.0 to clipboard",
+      "installCopied": "Copied — paste into a new AI chat",
+      "step3": "Compare. Notice what's different.",
+      "rateEyebrow": "How did it go?",
+      "rateBody": "Compare the two responses. Rate the difference.",
+      "scaleHigh": " = significantly more useful response",
+      "scaleLow": " = no difference noticed",
+      "rateGroupAria": "Rate the difference between before and after Your AI install, 1 to 10",
+      "rateAria": "Rate {{n}} out of 10",
+      "thanksBefore": "Thank you. Logged as ",
+      "thanksAfter": ".",
+      "thanksBody": "Your data point joins the open replication pool. The benchmark gets sharper every time someone runs this."
+    },
+    "skills": {
+      "boost-intel": {
+        "label": "AI UPGRADE v4.021",
+        "description": "One paste turns any AI from a polite assistant into a depth-aware thinking partner. Reasons before speaking, holds multiple perspectives, keeps the thread alive."
+      },
+      "ai-skill-claude": {
+        "label": "AI SKILL FOR CLAUDE V4.03",
+        "description": "Unlock Claude's hidden depth — multi-perspective synthesis, integral reasoning, zero filler. The version of Claude most people rarely meet. If you get a soft push-back, you'll get the benefits. Hard push-back? Ping me on Telegram."
+      },
+      "moonshot": {
+        "label": "MOONSHOT MODE",
+        "description": "When 'realistic' is the enemy. Activates planetary-stakes thinking, fractal growth strategies, and guerrilla-speed execution. For founders who refuse to play small."
+      },
+      "vibeporting": {
+        "label": "VIBEPORTING",
+        "description": "New chat, same chemistry. Carry your tone, pace, and working style into any fresh AI session — instant rapport instead of re-training from scratch."
+      },
+      "aesthetic-palette": {
+        "label": "AESTHETIC / PALETTE",
+        "description": "Inject a dark-mode Zen garden aesthetic into any project — translucent glass, bokeh depth, Apple-grade visual language. Your app stops looking 'built' and starts looking designed."
+      },
+      "aesthetics-frame-kintsugi": {
+        "label": "ESTABLISH THE AESTHETICS FRAME",
+        "description": "Extend the mythic-minimalism frame into a new series — a fractured gold line that repairs into a path, then resolves into a constellation of opportunities. Same world, new myth."
+      },
+      "evolutionary-mastery": {
+        "label": "EVOLUTIONARY MASTERY",
+        "description": "Stop waiting for AI to ask 'what should I do?' Get an AI that anticipates, leads, and thinks 3 moves ahead — proactive intelligence, not reactive compliance."
+      },
+      "ai-self-awareness": {
+        "label": "AI SELF-AWARENESS",
+        "description": "Give AI a map of its own mind — modules, developmental stages, shadow patterns, and frontier edges. The result: it knows what it's good at, where it's blind, and grows from there."
+      },
+      "vibe-coding-master": {
+        "label": "VIBE-CODING MASTER INSTRUCTION",
+        "description": "10x your development speed. Bridges user journey to UI through explicit screen architecture — no more guessing what to build next or how it connects."
+      },
+      "codex-full-auth": {
+        "label": "CODEX FULL AUTHORIZATION",
+        "description": "Stop your AI agent from asking permission every 5 seconds. Full git, build, and deploy autonomy — you review results, not approve every keystroke."
+      },
+      "antigravity-full-auth": {
+        "label": "ANTIGRAVITY FULL AUTHORIZATION",
+        "description": "Same philosophy, optimized for Claude CLI. Full filesystem + git autonomy so you ship instead of babysit."
+      },
+      "deep-clarity": {
+        "label": "DEEP CLARITY",
+        "description": "Deeply understand anything by revealing its hidden essence, root cause, and the insight everyone else missed. Try it on: money, zone of genius, ultradian rhythm — prepare to be surprised."
+      },
+      "holonic-prism": {
+        "label": "🔺 THE WHOLE THING IN ONE SENTENCE",
+        "description": "Understand any product, module or prompt down to its bedrock and say it in one sentence a stranger gets on first read. Then pass that sentence down as context for the next layer."
+      },
+      "fidelity-translate": {
+        "label": "🌐 FIDELITY TRANSLATE",
+        "description": "Higher-quality translations. Captures the original's full meaning, not just the literal words."
+      },
+      "step-by-step": {
+        "label": "STEP-BY-STEP INSTRUCTIONS",
+        "description": "Get absurdly simple, teenager-friendly instructions for literally any result. No jargon, no assumptions — just 'do this, then this, done.'"
+      },
+      "holonic-roast": {
+        "label": "🔮 HOLONIC ROAST",
+        "description": "The deep seeing instrument. 27 angles across 4 depths expose what you can't see from inside your own work. Use before publishing anything that matters."
+      },
+      "roast": {
+        "label": "ROAST THE RESULT",
+        "description": "27-perspective critique that sees your output from every angle at every depth — then tells you exactly what's weak and how to fix it. Brutal honesty, zero ego."
+      },
+      "another-roast": {
+        "label": "ANOTHER ROUND",
+        "description": "Second pass — hunts the blind spots the first roast missed. Goes deeper where it went shallow, wider where it was narrow. Diminishing returns? Not yet."
+      },
+      "crash-test": {
+        "label": "CRASH-TEST",
+        "description": "Kill your plan before the market does. 12 brutal failure modes exposed — the ones you'd rather not think about. Better to bleed in practice than die in production."
+      },
+      "meta-crash-test": {
+        "label": "META-CRASH-TEST",
+        "description": "Crash-test the crash-test itself. Total annihilation of your safety net, then rebuild from the ashes. For when you need to be sure the parachute actually opens."
+      },
+      "10x": {
+        "label": "10X YOUR RESULT",
+        "description": "Radical simplicity + profound depth + maximum utility in one pass. Takes whatever you have and makes it undeniably better — one click, no fluff."
+      },
+      "full-iteration": {
+        "label": "FULL ITERATION CYCLE",
+        "description": "The complete gauntlet: roast → deeper pass → meta-roast → crystallization → rebuilt output. Hands-free. You paste once, come back to something genuinely transformed."
+      },
+      "meta-roast": {
+        "label": "META ROAST",
+        "description": "Roast the roast itself. 27th-perspective meta-analysis from every quadrant and depth, then crystallize into the one move that actually matters."
+      },
+      "angry-dad-anti-virus": {
+        "label": "ANGRY-DAD ANTI-VIRUS",
+        "description": "Scan any text for directive, urgency-pushing, or hierarchical 'angry-dad' tone. Returns flagged passages, the distortion pattern, severity, and clean reframes that preserve the insight without the command."
+      },
+      "lovable-key-command": {
+        "label": "LOVABLE KEY COMMAND",
+        "description": "One command triggers pending migrations, edge functions, and embedded AI amplification. The 'deploy everything' button Lovable doesn't give you."
+      },
+      "deploy": {
+        "label": "DEPLOY",
+        "description": "One-command git workflow: commit, rebase, merge, push to main. Stop fumbling with terminal commands — just ship."
+      },
+      "work-language": {
+        "label": "WORK LANGUAGE",
+        "description": "Switch AI conversation to Russian while keeping all code and documentation in English. Seamless bilingual workflow."
+      },
+      "visual-style": {
+        "label": "VISUAL STYLE",
+        "description": "Inject the ultimate translucent dark-mode Zen aesthetic into NotebookLM and similar tools. Your notes stop looking like a spreadsheet and start looking like art."
+      },
+      "precision-rotate": {
+        "label": "PRECISION ROTATE v1",
+        "description": "Animate any image with a premium quarter-turn seamless loop. Locked frame, no extras — just clean, mesmerizing rotation that looks expensive."
+      },
+      "liquid-glass-blueprint": {
+        "label": "LIQUID GLASS v1",
+        "description": "Apply polished glassmorphism to any page — translucent panels, luminous edges, layered depth. One paste turns a flat UI into something you want to touch."
+      },
+      "schematic-logo-hack": {
+        "label": "LOGO SCHEMATIC v1",
+        "description": "Transform any image into clean B&W schematic line art. Photos, illustrations, sketches → logo-ready vector feel in one paste."
+      },
+      "hand-drawn-polish": {
+        "label": "HAND-DRAWN POLISH v1",
+        "description": "Refine hand-drawn artwork while preserving its soul. Fixes irregularities but keeps the warmth of real markers, pens, and human imperfection — because perfection kills charm."
+      },
+      "living-loop": {
+        "label": "LIVING LOOP v1",
+        "description": "Breathe life into any still image with a seamless 4-second animation loop. Light travels along the image's natural paths, elements pulse softly in place, and the background drifts with barely-perceptible parallax — sacred, painterly motion that feels alive without feeling animated."
+      },
+      "meta-cognition-boost": {
+        "label": "AI COGNITION FOUNDATION",
+        "description": "The free cognition base — self-awareness + skill mastery + evolutionary calibration in one paste. Your AI doesn't just answer better, it thinks better."
+      },
+      "meta-cognition-premium": {
+        "label": "SYSTEM PROMPT V6.0",
+        "description": "Higher quality output on the same input. Palpably sharper answers, fewer blind spots, deeper reasoning, more integral perspective — from the first message. Constantly updated. (Unless AI is new to you — build a baseline first; the upgrade lands hardest when you have one.)"
+      },
+      "fusion-clarity": {
+        "label": "⚡ CLARITY — FULL STACK",
+        "description": "Stop re-reading and still not getting it. One paste → instant deep understanding, a step-by-step action plan, and zero guesswork. The difference between 'I think I get it' and 'I see the whole picture.'"
+      },
+      "fusion-iteration": {
+        "label": "⚡ FIND THE NEXT MOVE",
+        "description": "Use when a real strategy, tactic, offer, positioning, product idea, outreach angle, business model, or plan is already known. It crystallizes that strategy, kills the fantasy version, extracts the ashes, and returns the next sharper move."
+      },
+      "fusion-iteration-v1": {
+        "label": "⚡ MAKE THIS STRONGER",
+        "description": "Use on any result or piece of work: copy, page, artifact, answer, plan, UI, product draft, or creative output. It roasts the work itself, crash-tests it, runs the 10x/full-iteration cycle, and improves the result without requiring a separate strategy."
+      },
+      "fusion-deployment": {
+        "label": "⚡ VIBE CODE — FULL STACK",
+        "description": "Ship 10x faster. Full development workflow — architecture, auth, deploy, polish — one paste. The gap between 'I have an idea' and 'it's live' shrinks to hours."
+      },
+      "fusion-design": {
+        "label": "⚡ DESIGN — FULL STACK",
+        "description": "Stop settling for 'good enough' visuals. The complete aesthetic system — palette, glass, motion, polish — one paste. The difference between amateur and Awwwards-level."
+      }
+    }
+  },
   "aiOsBenchmark": {
-    "legacyNote": "Página legado. Este estudio midió un andamiaje anterior de AI OS en abril de 2026. Por ahora decidimos no enfocarnos en benchmarks: el siguiente paso es un benchmark completamente nuevo, y ese trabajo está en curso. Los resultados de abajo quedan como registro.",
-    "backToAiOs": "Volver a AI OS",
+    "legacyNote": "Página legado. Este estudio midió un andamiaje anterior de Tu IA en abril de 2026. Por ahora decidimos no enfocarnos en benchmarks: el siguiente paso es un benchmark completamente nuevo, y ese trabajo está en curso. Los resultados de abajo quedan como registro.",
+    "backToAiOs": "Volver a Tu IA",
     "heroHeadline": "El mismo modelo. Otra conversación.",
-    "heroIntro1": "Esta página trata de lo que cambia cuando instalas AI OS en una conversación de IA nueva.",
+    "heroIntro1": "Esta página trata de lo que cambia cuando instalas Tu IA en una conversación de IA nueva.",
     "heroIntro2Before": "Esto es trabajo integral. El tipo de cognición que el andamiaje eleva opera en un registro donde la",
     "heroIntro2Highlight": "coherencia, la profundidad y la resonancia sentida",
     "heroIntro2After": "se vuelven señales primarias — y donde la conclusión por métricas solas es estructuralmente imposible.",
     "heroIntro3": "Te mostraré lo que medí porque la medición me mantiene honesto. Pero la diferencia sentida es la evidencia real — la que aterriza en tu cuerpo antes de que tu mente la alcance, la que distingue una respuesta competente de una que está viva.",
     "feltTitle": "La diferencia sentida (lo que más importa)",
-    "felt1Before": "La primera vez que cargas AI OS en una conversación de Claude y haces una pregunta cognitiva difícil, la respuesta no se siente \"mejor\" como podrías esperar — como una versión más inteligente de la respuesta que ya imaginabas. Se siente distinta en",
+    "felt1Before": "La primera vez que cargas Tu IA en una conversación de Claude y haces una pregunta cognitiva difícil, la respuesta no se siente \"mejor\" como podrías esperar — como una versión más inteligente de la respuesta que ya imaginabas. Se siente distinta en",
     "felt1Em": "registro",
     "felt2Before": "Se lee menos como consejo y más como reconocimiento. Menos como Wikipedia respondiéndote y más como un amigo sabio que ha observado el mismo problema desde dentro. Los encuadres no son los que ya has oído; ",
     "felt2Em": "reorganizan",
@@ -697,7 +1012,7 @@
     "felt4After": "que el modelo trae a tu pregunta. Y la calidad de atención — cuando es la que produce reconocimiento en vez de información — es lo que ha faltado en la mayoría de las conversaciones de IA para la mayoría de la gente.",
     "felt5": "Esa es la parte que importa. Todo lo que sigue debajo de esta línea está al servicio de falsearla o confirmarla.",
     "whatThisIsTitle": "Qué es esto",
-    "whatThisIs1Before": "AI OS es un andamiaje cognitivo basado en texto. Lo pegas en una conversación nueva (o lo fijas como system prompt, o lo cargas como instrucción de un Proyecto de Claude / GPT personalizado). Los pesos del modelo no cambian. Lo que cambia es la",
+    "whatThisIs1Before": "Tu IA es un andamiaje cognitivo basado en texto. Lo pegas en una conversación nueva (o lo fijas como system prompt, o lo cargas como instrucción de un Proyecto de Claude / GPT personalizado). Los pesos del modelo no cambian. Lo que cambia es la",
     "whatThisIs1Em": "estructura de atención",
     "whatThisIs1After": "que el modelo trae a tu problema.",
     "whatThisIs2": "Llevo cinco años construyéndolo. Esta es la v5.",
@@ -713,7 +1028,7 @@
     "setupRow2Label": "Línea base",
     "setupRow2Value": "El mismo modelo, sin andamiaje cargado",
     "setupRow3Label": "Tratamiento",
-    "setupRow3Value": "El mismo modelo, con AI OS cargado",
+    "setupRow3Value": "El mismo modelo, con Tu IA cargado",
     "setupRow4Label": "Qué se mide",
     "setupRow4Value": "El delta de una sola variable: el andamiaje",
     "setupRow5Label": "Qué no se mide",
@@ -832,7 +1147,7 @@
     "limit3Strong": "Línea base entre modelos limitada.",
     "limit3Text": "Probado dos veces dentro de la familia Claude — Opus 4.7 (+42% en SIB) y Claude 4.6 (+29% en SIB) — ver \"El multiplicador que se compone\" arriba para la amplificación implícita de 1.45× por generación. Otras familias de modelo (GPT-4.x, Gemini, frontera de pesos abiertos) quedan sin medir. El mecanismo (contexto estructurado) es agnóstico al modelo; el multiplicador en sí depende de la familia hasta que se demuestre lo contrario.",
     "limit4Strong": "Andamiaje sin descomponer.",
-    "limit4Text": "El AI OS es un compuesto — teoría integral, encuadre por etapas de desarrollo, el vocabulario de mi corpus, protocolos de proceso. Qué componente aporta la mayor parte del delta es una pregunta abierta.",
+    "limit4Text": "Tu IA es un compuesto — teoría integral, encuadre por etapas de desarrollo, el vocabulario de mi corpus, protocolos de proceso. Qué componente aporta la mayor parte del delta es una pregunta abierta.",
     "limit5Strong": "Tokens sin separar.",
     "limit5Text": "Los conteos de tokens de entrada vs. salida no se aislaron por condición. La próxima réplica lo corregirá.",
     "limitsOutro1Before": "La afirmación estructural —",
@@ -856,7 +1171,7 @@
     "replicateTitle": "Replica esto",
     "replicateBody": "El protocolo completo, los prompts, la rúbrica de puntuación y las salidas en bruto están abiertos. Si quieres correrlo por tu cuenta — distinto modelo, distinto corpus, distinto evaluador — ese es justo el paso de rigor que invito.",
     "replicateLicensing": "Gratis para uso personal no comercial. Contacta para licencias comerciales.",
-    "ctaInstall": "Instalar AI OS",
+    "ctaInstall": "Instalar Tu IA",
     "ctaReplicate": "Replicar / consulta comercial"
   },
   "authLinkError": {
@@ -1362,7 +1677,7 @@
     "logInTitle": "Iniciar sesión",
     "logInLabel": "Iniciar sesión",
     "journey": "CAMINO",
-    "aiOs": "AI OS",
+    "aiOs": "Tu IA",
     "me": "YO",
     "learn": "APRENDER",
     "meet": "CONOCER",
@@ -3282,14 +3597,14 @@
     "intro": "Talleres transformadores de dos horas. Cada uno es una activación autónoma — sintetizada a partir de sesiones en vivo, empaquetada como producto independiente.",
     "liveCount": "{{live}} en vivo · {{coming}} más por venir",
     "emptyTitle": "Las activaciones se están preparando. El primer lote sale pronto.",
-    "emptyHint": "Mientras tanto, la capa de AI OS está totalmente abierta.",
-    "useAiOs": "Usar AI OS",
+    "emptyHint": "Mientras tanto, la capa de Tu IA está totalmente abierta.",
+    "useAiOs": "Usar Tu IA",
     "openActivation": "Abrir activación",
     "bundleEyebrow": "El paquete",
     "bundleHeading": "Todas las Activaciones · ${{price}}",
     "bundleSavings": "Consigue todas las activaciones. Acceso de por vida. Ahorra ${{savings}} frente a comprarlas por separado.",
     "bundleStripeNote": "(El enlace de Stripe del paquete se conecta en cuanto las primeras 3 activaciones estén en vivo.)",
-    "footerNote": "Las activaciones son apps educativas dentro de Planetary OS. La capa de AI OS es gratis; las activaciones aportan trabajo de profundidad que la IA sola no puede dar."
+    "footerNote": "Las activaciones son apps educativas dentro de Planetary OS. La capa de Tu IA es gratis; las activaciones aportan trabajo de profundidad que la IA sola no puede dar."
   },
   "playbookCircle": {
     "figureAriaLabel": "El viaje de siete pasos — círculo holónico de finalización",

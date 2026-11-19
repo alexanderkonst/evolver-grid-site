@@ -131,7 +131,7 @@ const SPACE_SECTIONS: SpaceSections = {
     // (Benchmark) from the upgrade path (Pricing). The Suites parent
     // mirrors the ME `top-talent` parent-with-children pattern.
     "ai-os": {
-        title: "AI OS",
+        title: "Your AI",
         sections: [
             {
                 id: "ai-os-install",

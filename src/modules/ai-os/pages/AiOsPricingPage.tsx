@@ -26,8 +26,8 @@ const Pricing = () => {
   return (
     <>
       <SEO
-        title="Work With Us — AI OS"
-        description="Holonic Commons. AI OS is free for everyone. The paid layer is Aleksandr's curatorship — work with us directly."
+        title="Work With Us — Your AI"
+        description="Holonic Commons. Your AI is free for everyone. The paid layer is Aleksandr's curatorship — work with us directly."
         path="/ai-os/work-with-us"
       />
       <div className="fixed inset-0 z-0" style={{ background: 'linear-gradient(180deg, rgba(30,67,116,0.35) 0%, rgba(44,49,80,0.55) 50%, rgba(0,0,0,0.85) 100%)' }} />
@@ -48,7 +48,7 @@ const Pricing = () => {
               }}
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              Back to AI OS
+              Back to Your AI
             </button>
 
             <div className="flex justify-center mb-3">
@@ -62,7 +62,7 @@ const Pricing = () => {
                   0.55 — present but not blasted. */}
               <img
                 src={logoImg}
-                alt="AI OS"
+                alt="Your AI"
                 className="w-14 h-14 rounded-full object-cover gentle-spin-always"
                 style={{
                   filter:
@@ -85,7 +85,7 @@ const Pricing = () => {
                 backgroundClip: 'text',
               }}
             >
-              AI OS is free.
+              Your AI is free.
               <br />
               Forever. For everyone.
             </h1>
@@ -168,10 +168,10 @@ const Pricing = () => {
                 <div className="flex-1">
                   <p className="text-[10px] tracking-[0.25em] uppercase font-medium mb-1" style={{ color: 'hsl(160 40% 78% / 0.75)' }}>For builders · License + rev-share</p>
                   <h3 className="text-lg sm:text-xl font-display italic font-normal mb-2" style={{ color: 'hsl(0 0% 100% / 0.95)' }}>
-                    Steward AI OS
+                    Steward Your AI
                   </h3>
                   <p className="text-sm font-light leading-relaxed mb-4" style={{ color: 'hsl(0 0% 100% / 0.78)' }}>
-                    Use AI OS commercially — embed it in your product, service, or platform. Per-deal license, no upfront fee, revenue share if you make money with it. Stewardship Agreement on request.
+                    Use Your AI commercially — embed it in your product, service, or platform. Per-deal license, no upfront fee, revenue share if you make money with it. Stewardship Agreement on request.
                   </p>
                   <a
                     href={ALEKSANDR_TELEGRAM_URL}
@@ -235,7 +235,7 @@ const Pricing = () => {
           {/* Quiet footer — free use + optional tip */}
           <div className="text-center space-y-3 pt-6 border-t" style={{ borderColor: 'hsl(0 0% 100% / 0.06)' }}>
             <p className="text-xs font-light leading-relaxed pt-6" style={{ color: 'hsl(0 0% 100% / 0.55)' }}>
-              Or just use AI OS for free.{" "}
+              Or just use Your AI for free.{" "}
               <button
                 onClick={() => navigate("/ai-os")}
                 className="underline underline-offset-2 transition-colors hover:opacity-80"

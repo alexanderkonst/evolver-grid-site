@@ -41,8 +41,8 @@ describe("getPageTitle", () => {
     expect(getPageTitle("/playbook")).toBe("Playbook");
   });
 
-  it("returns AI OS for /ai-os subpaths", () => {
-    expect(getPageTitle("/ai-os/benchmark")).toBe("AI OS");
+  it("returns Your AI for /ai-os subpaths", () => {
+    expect(getPageTitle("/ai-os/benchmark")).toBe("Your AI");
   });
 
   it("returns empty string for unknown routes (caller drops the suffix)", () => {
