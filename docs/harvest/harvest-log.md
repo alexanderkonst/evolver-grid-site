@@ -18,11 +18,17 @@
 
 ## Cycle: 2026-11 (from 2026-11-16)
 
+### 2026-11-19 · Golden Age Revelations
+- **Essence:** the mission is the core of the golden age's digital infrastructure, launched as an iconic game.
+- **Significance:** the top holon the whole project sits under: game, AI, science, economy, way of living.
+- **Consequences:** the holon core starts from it; a network of mutually contracting individuals sharing revenue in good faith (provisional).
+- Link: [golden-age-revelations.md](../01-vision/golden-age-revelations.md) · Holon: root
+
 ### 2026-11-19 · Technologies give each product its full template
 - **Essence:** a product carries several Phase Shift Technologies, often a whole conceptual architecture of them, and that set yields the product's methodology and its complete template.
 - **Significance:** this is how each product comes alive in the game, in all its aspects.
 - **Consequences:** the router's technology column grows from one number per row to each product's set; the product's template is derived from its technologies, not written from scratch.
-- **Technology candidate:** yes (working name: Technologies → Template → Living Product).
+- **Technology:** entered the library as Technology 186 (Sasha, 2026-11-19).
 - Link: [template-router.md](../templates/template-router.md) · Holon: —
 
 ### 2026-11-19 · Template Router named a load-bearing module
