@@ -7,14 +7,23 @@
 2. **Hark proposes.** When I judge something important that he did not mark, I add it and name it in my report. He confirms (✅), rejects (✗, the entry goes) or reframes it. Entries carry no author: authorship is set for the whole project (Sasha, 2026-11-19).
 3. **Each entry = the prism in three lines** (Essence / Significance / Consequences) + one link to the result + holon ID (once the holon core exists; until then "—").
 4. **Learning loop.** Every ✗ or reframe becomes a line in "What Sasha counts as harvest" below. At each cycle end I report my hit rate (proposed → confirmed). Goal: my proposals match his marks, then he stops marking.
-5. **Cycle end (lunar).** Run the whole cycle's entries through [holonic-prism.md](../templates/holonic-prism.md): the harvest in one sentence + one infographic. Claude Code adds an entry in a PR body only when the PR delivers a marked result.
+5. **Technology check.** Some breakthroughs are, or become, Phase Shift Technologies. When an entry looks like one, I say so in the chat the same turn and mark it «Technology candidate» here; Sasha decides whether it enters the library (Sasha, 2026-11-19).
+6. **Cycle end (lunar).** Run the whole cycle's entries through [holonic-prism.md](../templates/holonic-prism.md): the harvest in one sentence + one infographic. Claude Code adds an entry in a PR body only when the PR delivers a marked result.
 
 ## What Sasha counts as harvest (learned rules)
 - A new law, principle or understanding that changes how we build or sell (seed, 2026-11-19).
 - A form that makes his method repeatable without him (template, router, rule) (seed, 2026-11-19).
+- A breakthrough that is, or becomes, a technology; Hark flags it if Sasha skips the moment (2026-11-19).
 - *(grows from his marks and corrections)*
 
 ## Cycle: 2026-11 (from 2026-11-16)
+
+### 2026-11-19 · Technologies give each product its full template
+- **Essence:** a product carries several Phase Shift Technologies, often a whole conceptual architecture of them, and that set yields the product's methodology and its complete template.
+- **Significance:** this is how each product comes alive in the game, in all its aspects.
+- **Consequences:** the router's technology column grows from one number per row to each product's set; the product's template is derived from its technologies, not written from scratch.
+- **Technology candidate:** yes (working name: Technologies → Template → Living Product).
+- Link: [template-router.md](../templates/template-router.md) · Holon: —
 
 ### 2026-11-19 · Template Router named a load-bearing module
 - **Essence:** one table maps any task to its template, for every agent.
