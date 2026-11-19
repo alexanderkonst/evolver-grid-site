@@ -1,6 +1,6 @@
 # Holonic Prism — prompt (v1)
 
-> Button on the Your AI console: **Prism**. Source: Sasha, 2026-11-19 («ПРОДУКТ // МОДУЛЬ // ПРОМПТ — треугольная призма тектонической глубиной суть-значимость-следствия, упакованная в одно предложение»). Template: meta-template.
+> Button on the Your AI console (AI OS Clarify): **🔺 The whole thing in one sentence**. Infographic: [RU](../assets/infographics/prism/holonic-prism-ru.png) · [EN](../assets/infographics/prism/holonic-prism-en.png). Routed by [template-router.md](./template-router.md). Source: Sasha, 2026-11-19 («ПРОДУКТ // МОДУЛЬ // ПРОМПТ — треугольная призма тектонической глубиной суть-значимость-следствия, упакованная в одно предложение»). Template: meta-template.
 
 ## When to use
 Before building, naming, selling or shipping anything: a product, a module, a prompt, a page, a decision.

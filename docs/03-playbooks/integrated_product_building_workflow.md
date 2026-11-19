@@ -1,3 +1,5 @@
+> Layer: MODULE of the [Synthesizer](../04-products/synthesizer.md) product, the unfolded [Holonic Prism](../templates/holonic-prism.md) (Sasha, 2026-11-19). Its §1.4 Heart/Mind/Gut = the prism's Essence/Significance/Consequences at screen scale.
+
 > The Transformative-Result Pattern is synthesized into docs/templates/module-form.md (2026-10-27). This file is kept as a source.
 
 > Landing and Final screen copy law (Sasha, 2026-11-03): docs/templates/module-form.md §12.
