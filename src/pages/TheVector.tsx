@@ -1,7 +1,10 @@
 /** /products/vector — the landing-and-direction program, in the infographic style (v5: moon and neon).
  *  Lunar is the baseline; every other skin re-voices the same structure through the
  *  `--vec-*` role tokens in TheVector.css. No colour lives in this file. */
-import { useId, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import {
+  useId, useLayoutEffect, useRef, useState,
+  type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent, type ReactNode,
+} from "react";
 import { ArrowRight, ChevronDown, Droplets, Flame, Mountain, Sparkles, Wind, type LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
@@ -51,6 +54,89 @@ const VectorPanel = ({ n, heading, children }: { n: string; heading: ReactNode; 
           <div className="vector-panel-inner">{children}</div>
         </div>
       </div>
+    </div>
+  );
+};
+
+/** Panel 02: the 30 / 60 proportion as a slider the client moves each session. A demonstration only,
+ *  nothing is saved. Always 90 minutes total, steps of 15. The body columns below stay on their
+ *  default grid so the text never reflows while dragging. */
+const SPLIT_TOTAL = 90;
+const SPLIT_STEP = 15;
+const SPLIT_MIN = 15;
+const SPLIT_MAX = 75;
+const SPLIT_DEFAULT = 30;
+
+const SessionSplit = () => {
+  const { t } = useTranslation();
+  const [yours, setYours] = useState(SPLIT_DEFAULT);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const content = SPLIT_TOTAL - yours;
+
+  const clamp = (v: number) => Math.min(SPLIT_MAX, Math.max(SPLIT_MIN, v));
+
+  const moveTo = (clientX: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const rect = track.getBoundingClientRect();
+    if (rect.width <= 0) return;
+    const minutes = ((clientX - rect.left) / rect.width) * SPLIT_TOTAL;
+    setYours(clamp(Math.round(minutes / SPLIT_STEP) * SPLIT_STEP));
+  };
+
+  const onPointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
+    e.currentTarget.setPointerCapture(e.pointerId);
+    e.currentTarget.focus();
+    moveTo(e.clientX);
+  };
+  const onPointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) moveTo(e.clientX);
+  };
+
+  const onKeyDown = (e: ReactKeyboardEvent<HTMLDivElement>) => {
+    let next: number | null = null;
+    if (e.key === "ArrowLeft" || e.key === "ArrowDown") next = yours - SPLIT_STEP;
+    else if (e.key === "ArrowRight" || e.key === "ArrowUp") next = yours + SPLIT_STEP;
+    else if (e.key === "Home") next = SPLIT_MIN;
+    else if (e.key === "End") next = SPLIT_MAX;
+    if (next === null) return;
+    e.preventDefault();
+    setYours(clamp(next));
+  };
+
+  const yoursLabel = t("vector.splitMinutes", { minutes: yours });
+  const contentLabel = t("vector.splitMinutes", { minutes: content });
+
+  return (
+    <div className="space-y-4">
+      {/* One thin bar: flex-grow carries the minutes (30 / 60 gives widths 1:2). The knob sits on the seam. */}
+      <div className="vector-split-track" ref={trackRef}>
+        <div className="vector-split" style={{ "--split": yours / SPLIT_TOTAL } as CSSProperties}>
+          <div className="vector-split-part" style={{ flexGrow: yours }}>
+            <span className="vector-split-bar vector-split-yours" />
+            <span className="vector-split-label">{yoursLabel}</span>
+          </div>
+          <div className="vector-split-part" style={{ flexGrow: content }}>
+            <span className="vector-split-bar vector-split-content" />
+            <span className="vector-split-label">{contentLabel}</span>
+          </div>
+          <div
+            className="vector-split-knob"
+            role="slider"
+            tabIndex={0}
+            aria-label={t("vector.splitHeading")}
+            aria-orientation="horizontal"
+            aria-valuemin={SPLIT_MIN}
+            aria-valuemax={SPLIT_MAX}
+            aria-valuenow={yours}
+            aria-valuetext={`${yoursLabel} / ${contentLabel}`}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onKeyDown={onKeyDown}
+          />
+        </div>
+      </div>
+      <p className="vector-split-hint">{t("vector.splitHint")}</p>
     </div>
   );
 };
@@ -149,17 +235,7 @@ const TheVector = () => {
           <section>
             <VectorPanel n="02" heading={t("vector.splitHeading")}>
               <div className="space-y-7">
-                {/* One thin bar, split 30 / 60: flex-grow carries the minutes, so the widths are 1:2. */}
-                <div className="vector-split" role="presentation">
-                  <div className="vector-split-part" style={{ flexGrow: 30 }}>
-                    <span className="vector-split-bar vector-split-yours" />
-                    <span className="vector-split-label">{t("vector.split1Label")}</span>
-                  </div>
-                  <div className="vector-split-part" style={{ flexGrow: 60 }}>
-                    <span className="vector-split-bar vector-split-content" />
-                    <span className="vector-split-label">{t("vector.split2Label")}</span>
-                  </div>
-                </div>
+                <SessionSplit />
                 <div className="grid gap-5 md:grid-cols-[30fr_60fr] md:gap-6">
                   <p className="vector-body">{t("vector.split1Body")}</p>
                   <p className="vector-body">{t("vector.split2Body")}</p>

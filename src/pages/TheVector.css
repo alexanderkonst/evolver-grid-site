@@ -678,9 +678,17 @@
 }
 
 /* ── Session split: one thin bar, 40 / 50, labels below ─────────────────────── */
+.vector-page .vector-split-track {
+  /* Layout-neutral (padding cancels margin): the bar stays where it was, the knob has the panel's top padding. */
+  padding-top: 4px;
+  margin-top: -4px;
+}
+
 .vector-page .vector-split {
+  --split-gap: 0.375rem;
+  position: relative;
   display: flex;
-  gap: 0.375rem;
+  gap: var(--split-gap);
 }
 
 .vector-page .vector-split-part {
@@ -706,6 +714,56 @@
   font-weight: var(--vec-split-weight, 600);
   letter-spacing: var(--vec-split-track, 0.03em);
   color: var(--vec-body);
+}
+
+/* The knob: an iridescent ring around a dark core, soft accent glow, on the seam between the bars.
+   `--split` is yours / 90; the seam is that share of the bar width, with the gap taken out. */
+.vector-page .vector-split-knob {
+  position: absolute;
+  top: 2px;
+  left: calc((100% - var(--split-gap)) * var(--split) + var(--split-gap) / 2);
+  width: 19px;
+  height: 19px;
+  box-sizing: border-box;
+  transform: translate(-50%, -50%);
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background:
+    linear-gradient(var(--vec-cta-bg, #080a12), var(--vec-cta-bg, #080a12)) padding-box,
+    var(--vec-iris) border-box;
+  box-shadow: 0 0 8px 1px color-mix(in srgb, var(--vec-accent) 55%, transparent);
+  cursor: grab;
+  touch-action: none; /* the drag is ours, the page must not scroll under the finger */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Bigger invisible hit area for fingers (44px). */
+.vector-page .vector-split-knob::before {
+  content: '';
+  position: absolute;
+  inset: -13px;
+  border-radius: 50%;
+}
+
+.vector-page .vector-split-knob:active { cursor: grabbing; }
+
+.vector-page .vector-split-knob:focus-visible {
+  outline: 2px solid var(--vec-focus);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .vector-page .vector-split-part { transition: flex-grow 0.18s ease; }
+  .vector-page .vector-split-knob { transition: left 0.18s ease; }
+}
+
+/* The line under the bar: quiet, smaller than body copy. */
+.vector-page .vector-split-hint {
+  font-family: var(--vec-font-body);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--vec-muted);
+  overflow-wrap: break-word;
 }
 
 /* ── The 0–9 path ────────────────────────────────────────────────────────────
