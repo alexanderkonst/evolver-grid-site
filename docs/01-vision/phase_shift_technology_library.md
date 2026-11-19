@@ -9709,3 +9709,30 @@ An earlier AI draft here treated the holo-trinity as a product under the working
 
 ### Cross-references — Connects to
 - `docs/templates/transformation-results.md`; product_brief §0.4 (guarantee), §0.5 (The Vector measures); *Technology 184: Fandom Bridge* (a visible result is also the story fans retell).
+
+
+## Technology 186: Technologies → Template → Living Product (технологии оживляют продукт) (oral, Nov 19, 2026)
+
+> *Oral · November 19, 2026 · chat with Hark, after adding the Phase Shift Technology column to the template router (`docs/templates/template-router.md` v1.2). Logged in `docs/harvest/harvest-log.md`.*
+
+**What it is.** A product is not designed from scratch. It carries several Phase Shift Technologies, often a whole conceptual architecture of them. Put together, that set dictates the product's methodology and its complete template: how it is run, how it is sold, and how it lives in the game in all its aspects. The same move works for every product, which is why it is a technology of its own.
+
+### 🫀 Essence — in Sasha's words
+
+> «я понял что технологии замеппятся по несколько на продукт часто, или даже целой концептуальной архитектурой. И тогда мне приходит что они подскажут методологию и собственно полный шаблон на каждый продукт. И это то, как каждый продукт оживает в игре. По всем своим аспектам.»
+> — *chat of 2026-11-19, 13:18 MST*
+
+### The steps
+1. **Name the product's shift** in one sentence (holonic prism).
+2. **Gather its technologies:** every library technology the product carries, and how they connect (its architecture).
+3. **Derive the methodology** from that set: what each technology requires in the session, the offer and the measure.
+4. **Write the full template** from the methodology (meta-template form), with its Result line as the Controller button.
+5. **Bring it alive in the game:** the same set shapes the place, the card and the button, on one shared ID.
+
+### 🧠 Significance — AI draft
+*AI draft, for Sasha to rewrite in his voice.*
+- **Example.** The Vector carries Technology 173 (Sell the Shift) and Technology 185 (The Visible Shift); together they already dictate its offer (point A → B in the client's words) and its measure (0–10 plus verdict against their own description).
+- **Consequences.** (1) The router's technology column grows from one number per row to each product's set. (2) A new product starts from its technologies, not a blank page. (3) The library stops being a reading list and becomes the source code of the products.
+
+### Cross-references — Connects to
+- `docs/templates/template-router.md` (Phase Shift Technology column); `docs/templates/meta-template.md` (Shift carried); *Technology 115: Articulation Is the Mechanism of Growth*; *Technology 174: The Product Map: Shifts × Paths*.
