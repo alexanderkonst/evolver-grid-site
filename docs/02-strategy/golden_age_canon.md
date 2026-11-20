@@ -218,6 +218,12 @@ Abbreviations: GoBY = [game_of_being_you.md](./game_of_being_you.md) · PB = [pr
 | 4 | The Book of Infographics (psychoactive) | B1-77, B1-78 |
 | 4 | New courses: rotation of Sasha's sessions = Platonic solids | B1-79 |
 
+## 6a. Forks settled (Sasha, 2026-11-20 15:53)
+- **Fund:** keep, but later (not this moon).
+- **Moon strategy 3, the playable game (B2-50):** part of the strategy, not struck out.
+- **Rings (B1-66), placed by Hark on Sasha's delegation:** academia | university | school → face 4 (how the theory is taught); white-label village | digital twin | infrastructure → face 1 (the game's village and its digital twin); mystical insight | integration | formalization | application → the engine of §2, running through all faces from 4 to 1.
+- **Ontology formalization:** Sasha does it himself in parallel; it does not hold up step 1.
+
 ## 6. Open forks for Sasha (not resolved here)
 1. **Fund vs "no fund".** Notebook branch 3.7 "фонд: инвестиционный тезис · самоуправление · децентрализация" (B1-58) vs [sovereign_founder_collective.md](./sovereign_founder_collective.md) "No fund, no pooling… Never hold or pool anyone else's investment money." Keep, rename (e.g. treasury, or direct deals only), or drop?
 2. **Four faces vs five.** This canon: Game · Sasha's business · Collective · Theory, with Your AI as a ring. [holon-core.md](../01-vision/holon-core.md): Game · AI · Science · Economy · Way of living. Which tree is the root, or how do they map?
