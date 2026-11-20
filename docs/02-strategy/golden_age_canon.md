@@ -29,6 +29,7 @@ Sasha, 2026-11-20 (renamed branch Z → 2 the same day):
 | 4 | **The Theory of Everything** | The ontology from which the whole system follows inevitably. Primary source [universal_ontology.md](../01-vision/universal_ontology.md), then [phase_shift_technology_library.md](../01-vision/phase_shift_technology_library.md). | «ТЕОРИЯ ВСЕГО ЗОЛОТОГО ВЕКА» (B1-65) |
 
 - **Your AI = a concentric ring through all four faces** (Sasha 2026-11-20, tentative, "his guess"). In the game it is the player's AI; in his business it is the connector between founder+AI pairs; in the collective it is the Founder's AI suite; in the theory it is the Controller of lenses (prisms).
+- **Face 2 vs face 3, settled** (Sasha 2026-11-20 14:45: «мой уникальный бизнес, а вообще уникальный бизнес уникальных бизнесов… а коллектив это именно про взаимодействие»): face 2 is **what** — Sasha's unique business, which is a unique business of unique businesses: his comes first and is the pattern each founder's business plugs into. Face 3 is **how they interact** (terms, rhythm, exchange). Player-facing name stays "Your unique business".
 - **Rings around the faces** (B1-66, the photo does not say which ring belongs to which face `[?]`): academia | university | school · white-label village | digital twin | infrastructure · mystical insight | integration | formalization | application. Center: 8-spoke star (red, teal, yellow); brown star on the left axis `[?]` (B1-67).
 - **Geometry** of how the modules fold into each other: not decided; to be seen over time (Sasha 2026-11-20).
 
