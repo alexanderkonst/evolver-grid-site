@@ -94,3 +94,15 @@ Latest November 19: session 027 closed after three tasks. Read sessions/027/reco
 November 19 quality update: master v1.26 and skill master v1.6 include Sasha’s approved essence–significance–consequences prism and exemplar. Read JAPANESE-KEYBOOK.md for the exact Russian sentence.
 
 November 19 selection update: master v1.27 and skill master v1.7 now evaluate keys by breadth, human importance and downstream learning, together with readiness and effort. See the selection sections for the action-linking example.
+
+November 20 active lesson: new noun description through a past action. Sasha requested concrete importance and an aligned Russian task sentence, not a differently ordered prompt followed by instructions. Master v1.28 and skill master v1.8 sharpen this. First task remains pending: yesterday-bought tea, want to drink. Session not closed.
+
+November 20, still active: explicitly requested kinō, kyō and ashita; supplied all three with mnemonic attempts. First noun-description attempt rendered in romaji as “Kino o katta ocha nomitai desu.” The noun-description order is present. Cue removing object o after the time word and placing it after the whole tea phrase. No completed session yet.
+
+November 20 active lesson: master v1.29 and skill master v1.9 supersede naturalness constraints for aligned prompts. Sasha likes unusual Russian order as a scaffold. Fade only per structure after easy accurate independent use across contexts and sessions. Task 2 attempt: watashi no tomodachi ga katta ocha nomitai desu. Noun description built; object o and trying meaning remain to repair.
+
+
+Latest November 20: session 028 complete, three noun-description tasks. Next: another familiar action before a noun. Read sessions/028/record.md. Current language master v1.29, skill master v1.9. Aligned Russian phrasing remains needed.
+
+
+November 20 explanation standard: language master v1.30 and skill master v1.10 now include the approved concrete noun-description explanation, plus three tutor-proposed examples. Use familiar before/after expressive possibilities, useful new meanings and why this key fits now. The keybook preserves the full approved Russian wording.

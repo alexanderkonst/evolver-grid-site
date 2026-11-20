@@ -1,5 +1,5 @@
 {
-  "status": "Session 027 complete; construction-first phase",
+  "status": "Session 028 complete; construction-first phase",
   "learner": "Sasha",
   "target_language": "Japanese",
   "explanation_language": {
@@ -394,12 +394,17 @@
       "key": "matsu with person + o and action place + de",
       "state": "statements with cues; local independent where-question",
       "evidence": "sessions/024/record.md"
+    },
+    {
+      "key": "action clause before noun",
+      "state": "locally demonstrated with lexical, attachment and particle cues",
+      "evidence": "sessions/028/record.md"
     }
   ],
   "pronunciation": "unassessed",
   "listening": "unassessed",
   "literacy": "Learner explicitly reports no Japanese-script reading/writing; glyphs are dictation",
-  "sessions_observed": 27,
+  "sessions_observed": 28,
   "canonical_learner_state": "LEARNER-STATE.md",
   "retention": "Prior material used across September and October; intervening exposure unknown",
   "introduced_not_demonstrated": [
@@ -409,7 +414,7 @@
   "proposed_not_taught": [
     "-te kuremasu ka as a possible next key; verify register and prerequisites first"
   ],
-  "next_lesson": "Consider noun description through an action, using familiar vocabulary and teaching required plain forms. Three short prompts, with concise opening and closing key explanation.",
+  "next_lesson": "Three tasks extending action-before-noun descriptions to another familiar verb. Teach required plain form, use closely aligned Russian order, brief key explanation.",
   "session_count_note": "Archival records, not verified distinct learning days; 006 includes catch-up material",
   "latest_reflection": "Learner expects rapid compounding from grammar, high-value words, foundational principles and real response patterns; near-error-free common construction within a month is learner forecast, unverified",
   "evolution_map": "JAPANESE-EVOLUTION-MAP.md",
@@ -437,7 +442,7 @@
     }
   ],
   "evolution_map_version": "0.7",
-  "method_version": "AI-TUTOR-MASTER.md v1.27 (English-only prompt text)",
+  "method_version": "AI-TUTOR-MASTER.md v1.30 (English-only prompt text)",
   "daily_practice_preference": "While Japanese is the current priority, open each daily lesson with three self-built sentences, one at a time, about five minutes total. Continue after three if the learner wants and has time and energy. Use the same small opening after missed days.",
   "integrated_methods": [
     "JF/CEFR Can-do as task goal and evidence",
@@ -532,8 +537,15 @@
     "matsu"
   ],
   "keybook": "JAPANESE-KEYBOOK.md",
-  "key_explanation_preference": "At opening and close, one sentence connecting essence, significance and consequences at the level of the human possibility opened. Approved example in JAPANESE-KEYBOOK.md.",
+  "key_explanation_preference": "Ground essence/significance/consequences in a before-to-after contrast, two or three concrete applications, and why the key fits existing ingredients now. Compress after explaining. Preserve learner-approved examples in JAPANESE-KEYBOOK.md.",
   "explicitly_requested_reminders_2026_11_19": [
     "miru (look)"
-  ]
+  ],
+  "explicitly_requested_reminders_2026_11_20": [
+    "kinō",
+    "kyō",
+    "ashita",
+    "ageru"
+  ],
+  "prompt_order_preference": "Closely mirror target order even with unusual base-language phrasing while a structure is forming. Fade alignment per structure after repeated easy accurate independent use across meanings and sessions. Current noun-description pattern still needs alignment."
 }

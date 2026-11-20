@@ -164,3 +164,13 @@ Sasha requested short essence/significance/consequence explanations at the openi
 ## O36 — November 19: approved depth for key explanations
 
 Sasha approved the key formulation connecting event order to sharing lived experience and imagining a future with another person. Recorded the exact Russian sentence in JAPANESE-KEYBOOK.md and its English translation in both masters. This establishes a requested quality standard for explanations.
+
+
+## O37 — November 20: learner-approved unusual base-language order
+
+Sasha reported that aligned Russian wording helps establish Japanese order and explicitly welcomed less natural phrasing. Three noun-description constructions completed with documented cues. See sessions/028/record.md.
+
+
+## O38 — November 20: concrete examples make key importance clear
+
+Sasha approved a contrast from this/that/tasty tea to tea a friend bought, followed by person and station examples and the reason for teaching the operation now. Abstract wording about an item’s history had caused confusion. Both masters and JAPANESE-KEYBOOK.md now preserve the example and a rule for grounding compressed explanations in concrete possibilities.

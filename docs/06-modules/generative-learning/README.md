@@ -6,7 +6,7 @@ Attach one complete file to a new AI conversation and say: “Use this as our tu
 - BUSINESS-RELATIONS-TUTOR.md — complete master plus a business-relations learning brief.
 - MOON-MYSTICISM-TUTOR.md — complete master plus a moon-mysticism learning brief.
 
-Both specialist files are self-contained and begin with the same v1.7 teaching protocol. Attach the edition that fits your goal. Each combines the shared method and a brief for the skill.
+Both specialist files are self-contained and begin with the same v1.10 teaching protocol. Attach the edition that fits your goal. Each combines the shared method and a brief for the skill.
 
 The [language master](japanese-learning-lab/AI-TUTOR-MASTER.md) applies the shared method to language learning. The [Japanese lab](japanese-learning-lab/START-HERE.md) holds the first learner case, the Russian-to-Japanese teaching choices, and the evidence that informs revisions. Version 1.1 adds nested planning, selection by frequency and reach, and a feedback loop for improving the method across lessons.
 

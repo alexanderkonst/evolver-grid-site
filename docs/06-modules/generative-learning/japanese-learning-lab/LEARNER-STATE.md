@@ -160,3 +160,8 @@ See [session 026](sessions/026/record.md). Three tasks completed. Explicit remin
 ## November 19 — session 027 complete
 
 See [session 027](sessions/027/record.md). Miru needed an explicit reminder. Learner built permission with mite, te-linked viewing and buying, and a buying-then-drinking sequence with a companion. Next candidate: noun description through an action, subject to prerequisite checks.
+
+
+## November 20 — session 028 complete
+
+Action-before-noun descriptions locally demonstrated with varying support. Kinō katta ocha and friend ga katta ocha composed with desire, trying and giving. Explicit reminders: time words and ageru. Next: action-before-noun with another familiar verb. See sessions/028/record.md.
