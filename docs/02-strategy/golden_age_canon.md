@@ -188,6 +188,7 @@ Abbreviations: GoBY = [game_of_being_you.md](./game_of_being_you.md) · PB = [pr
 | 1 | Have the four glyphs properly drawn | B2-19 |
 | 1 | Define the stat cards U, U.O., $ (QoL exists) | B2-04..08 |
 | 1 | Social network: messaging, profile view, filters for useful people | B2-02 |
+| 1 | **Character Sheet = Your House** (Sasha, 2026-11-20): one screen per person that gathers profile, top talent card, mission, resources, business profile and shop as its parts; plus a beautiful one-page "dossier" export (reference: AstroAI candidate dossier screenshot). Resolves the faceless repo module High-precision Business Profile | chat 2026-11-20 14:04 |
 | 1 | "Make your (Village) buttons for world-building" `[?]` | B1-81 |
 | 1 | Educational game: 3D model of the elements | B1-74 |
 | 1 | Launch strategy for the playable game (status `[?]`) | B2-50 |
