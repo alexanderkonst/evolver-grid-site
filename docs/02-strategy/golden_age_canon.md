@@ -186,6 +186,7 @@ Abbreviations: GoBY = [game_of_being_you.md](./game_of_being_you.md) · PB = [pr
 | Face | Task | Ledger |
 |---|---|---|
 | 1 | Promo video = opening screen → onboarding into the Digital Village | B2-18, B2-15 |
+| 1 | **Words of the first touches in the top talent reveal** (owner: Sasha, he rewrites them himself; method untouched) | chat 2026-11-20 16:04 |
 | 1 | Have the four glyphs properly drawn | B2-19 |
 | 1 | Define the stat cards U, U.O., $ (QoL exists) | B2-04..08 |
 | 1 | Social network: messaging, profile view, filters for useful people | B2-02 |
@@ -223,6 +224,7 @@ Abbreviations: GoBY = [game_of_being_you.md](./game_of_being_you.md) · PB = [pr
 - **Moon strategy 3, the playable game (B2-50):** part of the strategy, not struck out.
 - **Rings (B1-66), placed by Hark on Sasha's delegation:** academia | university | school → face 4 (how the theory is taught); white-label village | digital twin | infrastructure → face 1 (the game's village and its digital twin); mystical insight | integration | formalization | application → the engine of §2, running through all faces from 4 to 1.
 - **Ontology formalization:** Sasha does it himself in parallel; it does not hold up step 1.
+- **Game steps after the reveal (Activation and on):** decided later. Polishing, assembling and testing the steps happens once the picture of the whole game and platform has formed; step by step (Sasha, 2026-11-20 16:04). Unified look (lunar theme, module form, #322, glyphs) is also end-stage polish.
 
 ## 6. Open forks for Sasha (not resolved here)
 1. **Fund vs "no fund".** Notebook branch 3.7 "фонд: инвестиционный тезис · самоуправление · децентрализация" (B1-58) vs [sovereign_founder_collective.md](./sovereign_founder_collective.md) "No fund, no pooling… Never hold or pool anyone else's investment money." Keep, rename (e.g. treasury, or direct deals only), or drop?
