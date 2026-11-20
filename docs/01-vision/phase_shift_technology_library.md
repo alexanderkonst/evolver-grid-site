@@ -4,8 +4,6 @@
 
 *Application layer · Technologies of phase-shifting built on the universal ontology*
 
-> **Three layers (2026-11-20).** Vision: [universal_ontology.md](universal_ontology.md) · Theory: [universal_ontology_formalization.md](universal_ontology_formalization.md) · The cycle: [README.md](README.md).
-
 > **Naming note (July 26, 2026):** entries in this library were previously called *Domains*; they are renamed *Technologies*, because each is a technology of phase-shifting rather than a subject area. Numbering is unchanged, so *Domain N* in older documents refers to *Technology N* here.
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*

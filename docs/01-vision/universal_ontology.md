@@ -4,8 +4,6 @@
 
 *Vision layer · The ontology and cosmology of the universe: what is, and how it unfolds*
 
-> **Three layers (2026-11-20).** This is the vision. Its mathematics and physics, step by step: [universal_ontology_formalization.md](universal_ontology_formalization.md). Its applications: [phase_shift_technology_library.md](phase_shift_technology_library.md). The cycle: [README.md](README.md).
-
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
 > Uni-verse — One Song
