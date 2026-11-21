@@ -77,4 +77,4 @@ Why the router: it is the only doc that already ties task → template → resul
 
 **Founder terminal prompt v0:** one file `system-prompts/v6.0/terminal.md`, a `CLAUDE.md`-style prompt a founder drops into their own repo: AI OS v6.0 lite (`system-prompts/v6.0/lite.md`, linked, not copied) + the templates-first rule pointing to [template-router.md](../../templates/template-router.md) + a short lane contract (agent proposes, founder approves outbound and money), linked from PISP Stage 10.
 
-**What it ships:** the first company harness made from Sasha's own (closes notebook rows 3 and 16, half of 6), and the first way the router know-how reaches a founder's agents without Sasha. Docs only: no `src/` change, no Lovable credits, no outreach. Waits on Sasha's yes.
+**What it ships:** the first company harness made from Sasha's own (closes notebook rows 3 and 16, half of 6), and the first way the router know-how reaches a founder's agents without Sasha. Docs only: no `src/` change, no Lovable credits, no outreach. **Status: v0 shipped** 2026-11-21 → [system-prompts/v6.0/terminal.md](../../../system-prompts/v6.0/terminal.md).
