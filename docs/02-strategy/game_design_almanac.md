@@ -3,6 +3,12 @@
 > Evolutionary map of game design: one invariant parameter, tracked through phase shifts. Companion to [game_of_being_you.md](./game_of_being_you.md).
 > *Started: 2026-10-26. Owner: Aleksandr Konstantinov. Keeper: Evolver (Hark). v0.2: stages 1–7 confirmed by Sasha («Бинго!», 2026-10-26); second axis (fidelity) and forecast stages 8–10 and method added; Sasha: «Это ЗОЛОТО».*
 
+## Everything is a game (Sasha, 2026-11-21)
+
+«Нет ничего, что не является игрой. Вся реальность игра уже сейчас. Вопрос того, насколько мы это осознаем, и насколько мы игровые механики используем через то же осознавание.»
+
+There is nothing that is not a game: all of reality already is one. The question is how aware we are of it, and how consciously we use its mechanics. Consequence for our research: we learn mechanics not only from video games but from every social structure that proved itself, especially over many years: apps, organizations (MIT, AIESEC, JCI, YPO, Y Combinator, Product Hunt), institutions (UN, WEF), and old social dynamics. The source taxonomy lives in [research/cult-mechanics/taxonomy.md](./research/cult-mechanics/taxonomy.md).
+
 ## Invariant parameter: the scope of player authorship
 
 What a player is allowed to author keeps growing: first a move, then a strategy, a performance, an identity, a path through a world, whole worlds for others, and finally their own life. Each phase shift widens the frame by one order of magnitude.

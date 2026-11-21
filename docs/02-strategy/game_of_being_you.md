@@ -1341,6 +1341,8 @@ Open: design protection before any physical sale; which stage unlocks the purcha
 
 ## 24. Mechanics from cult games and real-life games (Sasha's verdicts, 2026-11-21)
 
+Premise: everything is a game ([almanac](./game_design_almanac.md)); sources are any social structure that proved itself (taxonomy in the research folder).
+
 Single list of what we take into the game from the cult-mechanics research. Reasoning and sources: [research/cult-mechanics/](./research/cult-mechanics/) (registry.md = status per mechanic, games/ = one analysis per game, taxonomy.md = map of all mechanics). A row of `game_launch_spec.md` changes only on Sasha's yes to its exact text.
 
 Rule for every mechanic: a counter, streak or number only where it mirrors a real-world act, never a mindless hook. No linear planning or time estimates (Golden Age).
@@ -1357,7 +1359,7 @@ Rule for every mechanic: a counter, streak or number only where it mirrors a rea
 | 7 | Rhythm: day = one real act; week = Monday step -> Sunday Save Point; month = real moon -> Harvest; year = New Year or the player's birthday. No 6-week seasons | Heroes III H3-6 | new row "Rhythm", A9, A13 | "LOVE IT!!!" |
 | 8 | Four rings as the personal biological clock: day / week / month / year, from the Equilibrium engine, NOT tied to actions (Sasha 16:35), on the main game screen. Spec: [docs/specs/equilibrium/biologic_clock_rings_spec.md](../specs/equilibrium/biologic_clock_rings_spec.md) | Apple Watch rings + H3-6 | A9, main game screen | yes; build this lunar cycle |
 | 9 | Reviews of shops and products (Market) | Couchsurfing CS-2 | A6, A7 | yes |
-| 10 | Circles: our own Luma inside GoBY; each circle has a host who is easy to replace | Facebook FB-2, Mafia | Circles project | "crucial"; host rules for first launch open |
+| 10 | Circles: our own Luma inside GoBY. First launch: host (who created the circle) + co-host + hand the role on in one tap; succession rules added on demand | Facebook FB-2, Mafia | Circles project | "crucial"; host v1 "yes!!!! do it" |
 | 11 | Artifact sets: a finished chapter set opens the right to the physical artifact Sasha makes | Heroes III H3-8 | A12 | "VERY COOL!!!" |
 | 12 | Village music: A8 radio plays the village's musicians (Radio San Pancho stream, issue #371) | Heroes III H3-9 | A8 | "connect it" |
 | 13 | Season Harvest of real projects: villagers offer real backing, no winners; part of the Collective; first version = locked section + email collection | Evoke JM-3 | Collective, A11 | "yes!" |
@@ -1370,15 +1372,16 @@ Rule for every mechanic: a counter, streak or number only where it mirrors a rea
 
 ### 24.2 Considering
 - Needs & Offers: each player has a Needs line and an Offers line; an offer can be sent only to someone whose need matches; three exchange modes (gift, quest at a place, paid), one stamp; no internal currency. Open: offers only on a need? payment inside the game or direct?
-- Geocaching: players hide caches for each other in real places.
 - Village charter (Burning Man regionals): "Create a new digital village" opens once the founders accept a five-line charter. Draft (Hark, 2026-11-21, awaiting Sasha's yes to the text): 1. A real place: people meet here in person. 2. A real person behind every avatar. 3. Gift first. 4. Deeds are confirmed by people, never bought. 5. The host can always be handed on.
 - Feed of real deeds (Sasha 2026-11-21: "this is a great feed"; Strava kudos): only status updates of confirmed acts (stamp, achievement, finished course, launched business), from your village and people you follow; one tap "I see you" plus an optional written line; the doer sees who tapped, nobody sees a count; the feed ends ("you're up to date"), no endless scroll. Replaces FB-3's "never a Like" with "no counts, no endless feed". Hark recommends; awaiting Sasha's yes.
-- Secret Santa: gift of one's talent to an unknown villager at the moon's Harvest; both get a stamp.
 
 ### 24.3 Open
 - How a false confirmation is detected (proposal: the person the deed concerned says it did not happen, or someone present disputes it, or the trail does not fit; the right is paused, two people on that step talk to both and decide).
 - Can a step be paused if someone harms the village, or is it permanent?
 - Levels as milestones of the path (Sasha 2026-11-21 16:28: "when the player's path exists, it will be clear whether levels are needed; levels as simple milestones of the path, that is the direction I was thinking"). Decide when the player's path is designed.
 
-### 24.4 Rejected
+### 24.4 Later (Sasha: too early)
+- Secret Santa: a talent gift to an unknown villager.
+
+### 24.5 Rejected
 Density gate before the next village (FB-1) · village book night (JM-4) · 6-week seasons · secret identity · villains and battles · points and levels as score · internal currency · votes · crisis simulations · ranking people · "raid" vocabulary.
