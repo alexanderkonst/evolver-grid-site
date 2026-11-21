@@ -12,13 +12,14 @@ Status: **live** = on the site · **partial** = exists, gap named · **none** = 
 | A2 | Promo video = opening screen (B2-15, B2-18①) | a short film plays before the title; skip button; then onboarding into the village | none (no video yet) | Yes |
 | A3 | Onboarding into the digital village (B2-18②) | after the film/title a new player lands in the village with one obvious first step | partial: guest path + Home, issue #354 (main chat) | Yes |
 | A4 | Hook after reveal: «Your next potential is… Your first micro-quest to claim that version of yourself is this:» | every reveal ends with one named potential and one doable micro-quest | none | Yes |
-| A5 | Stats cards on Your House: QoL, U, U.O., $ ("people love stats") | four cards with a number and its change; QoL e.g. 6.3/10 (+0.1 in Q2) | partial: QoL level exists; U, U.O., $ not built | — |
-| A6 | Social network: see a profile, filter for useful people, write to them | from a profile a player can send a message; the person gets it | partial: profiles `/profile/:id`, directory with 7 filters `/game/collaborate/people`, Connect; **no writing** | — |
+| A5 | Stats cards on Your House, owner-only, shown only when they have a value (Sasha 2026-11-21): QoL; U = resonance of the current uniqueness statement (1–10); $ = income the unique business brought, if the player has the number. U.O. parked | the cards a player has values for appear; nothing empty | in work: issue #357 | — |
+| A6 | Social network: see a profile, filter for useful people, write to them | from a profile a player can send a message; the person gets it | partial: profiles `/profile/:id`, directory with 7 filters `/game/collaborate/people`, Connect; **no writing**; in work: issue #356 | — |
 | A7 | Artifacts / products / clients | player sees what they made, sell and who bought | partial `/my-artifacts`, `/game/marketplace/my-products`; clients none | — |
 | A8 | Radio for each space | each village place has its own stream | none | — |
 | A9 | Equilibrium clock (lunar creative hours for creative cycles) | clock visible in the game | partial: `/equilibrium` page | — |
 | A10 | 4 glyphs drawn properly: helix 6.3, Y, polyhedron in circle, U-loop | four clean vector glyphs, used on the stats cards | none | — |
 | A11 | Real world: San Pancho = Village #1, spaces where people already play (NS, SP…), invite everyone to collaborate | a real community can enter the game as its village | spec: GoBY §16, community_whitelabel_spec | Yes (public) |
+| A12 | Badges (Sasha 2026-11-21: important, this sprint, by January) | every step's outro awards its badge; shelf in Your House shows earned and faint not-yet badges (GoBY §14.12) | partial: outro badge and shelf in code; check in playtest | — |
 
 Design compass (not tasks): actions in the game world are done in the real one; repeats social dynamics that already work; unites the evolutionary avant-garde. Refs: Ready Player One, Heroes III, Monopoly (collaboration), Foundation (Asimov).
 
