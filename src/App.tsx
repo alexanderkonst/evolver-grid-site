@@ -48,6 +48,9 @@ import ChatLauncher from "@/components/ChatLauncher";
 // thin UI consumer that reads state via context. See
 // SoundCloudPlayerProvider.tsx for the full architecture rationale.
 import { SoundCloudPlayerProvider } from "@/components/audio/SoundCloudPlayerProvider";
+// A8: the village radio (Radio San Pancho). Engine + control, village and game screens only.
+import { RadioProvider } from "@/components/audio/RadioProvider";
+import RadioControl from "@/components/audio/RadioControl";
 // Funnel v2 (Day 77, Sasha 2026-05-20): captures `?path=match` from the
 // URL on first hit and persists across the multi-step Top Talent / Mission /
 // Assets / QoL flow so each completion surface can render match-flavored
@@ -541,6 +544,9 @@ const App = () => (
           {isTechstarsScope && <TechstarsScopeLock />}
           <GlobalChrome />
           <ChatLauncher />
+          <RadioProvider>
+            <RadioControl />
+          </RadioProvider>
           <EntryPathProvider>
           <CelebrationModalListener />
           <SoundCloudPlayerProvider>

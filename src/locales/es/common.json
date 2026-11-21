@@ -35,6 +35,14 @@
       }
     }
   },
+  "radio": {
+    "aria": "Radio de la aldea",
+    "play": "Reproducir {{name}}",
+    "pause": "Pausar {{name}}",
+    "volume": "Volumen de la radio",
+    "connecting": "Sintonizando…",
+    "offline": "La radio no está disponible ahora"
+  },
   "village": {
     "backTitleAria": "Volver al título",
     "enterPlace": "Entrar a {{place}}",

@@ -35,6 +35,14 @@
       }
     }
   },
+  "radio": {
+    "aria": "Радио деревни",
+    "play": "Включить: {{name}}",
+    "pause": "Пауза: {{name}}",
+    "volume": "Громкость радио",
+    "connecting": "Настраиваемся…",
+    "offline": "Радио сейчас недоступно"
+  },
   "village": {
     "backTitleAria": "Назад к заставке",
     "enterPlace": "Войти: {{place}}",

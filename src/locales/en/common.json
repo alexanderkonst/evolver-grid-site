@@ -3410,6 +3410,14 @@
     "here": "You are here",
     "chapterLabel": "The path of uniqueness"
   },
+  "radio": {
+    "aria": "Village radio",
+    "play": "Play {{name}}",
+    "pause": "Pause {{name}}",
+    "volume": "Radio volume",
+    "connecting": "Tuning in…",
+    "offline": "Radio is offline right now"
+  },
   "village": {
     "title": "The Digital Village",
     "tabTitle": "The Digital Village · FindYourTopTalent",
