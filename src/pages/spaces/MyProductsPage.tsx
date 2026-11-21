@@ -6,18 +6,21 @@ import {
     ExternalLink,
     Copy,
     Package,
+    Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GameShellV2 from "@/components/game/GameShellV2";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { usePublishedGeniusBusiness } from "@/modules/product-builder/ProductBuilderContext";
 import { useToast } from "@/hooks/use-toast";
+import { useMyClients } from "@/lib/myClients";
 
 const MyProductsPage = () => {
     const navigate = useNavigate();
     const { t } = useTranslation();
     const business = usePublishedGeniusBusiness();
     const { toast } = useToast();
+    const { loading: clientsLoading, signedIn, failed: clientsFailed, clients } = useMyClients();
 
     const handleCopyLink = async () => {
         if (business?.productUrl) {
@@ -89,6 +92,49 @@ const MyProductsPage = () => {
                             <p className="text-muted-foreground text-sm">{t('villagePlaces.market.empty')}</p>
                             <Button asChild className="mt-3"><Link to="/ubb">{t("villagePlaces.openWorkshop")}</Link></Button>
                         </div>
+                    )}
+
+                    {/* Clients: the seller's own sales_events rows, read-only */}
+                    {signedIn && !clientsLoading && (
+                        <section className="mt-8" aria-labelledby="my-clients-title">
+                            <div className="flex items-center gap-3 mb-3">
+                                <Users className="w-5 h-5 text-foreground" />
+                                <h2 id="my-clients-title" className="text-lg font-semibold text-foreground">
+                                    {t('myProducts.clients.title')}
+                                </h2>
+                            </div>
+                            {clientsFailed ? (
+                                <p className="text-sm text-muted-foreground">{t('myProducts.clients.error')}</p>
+                            ) : clients.length === 0 ? (
+                                <p className="text-sm text-muted-foreground">{t('myProducts.clients.empty')}</p>
+                            ) : (
+                                <ul className="space-y-2">
+                                    {clients.map((client) => (
+                                        <li
+                                            key={client.id}
+                                            className="rounded-xl border border-border bg-[color:rgba(var(--paper-rgb),0.85)] backdrop-blur-sm px-4 py-3 shadow-[0_4px_16px_rgba(var(--text-ink-rgb),0.06)] flex items-start justify-between gap-4"
+                                        >
+                                            <div className="min-w-0">
+                                                <p className="font-medium text-foreground">
+                                                    {client.buyer ?? t('myProducts.clients.anonymous')}
+                                                </p>
+                                                {client.offer && (
+                                                    <p className="text-sm text-muted-foreground break-words">{client.offer}</p>
+                                                )}
+                                            </div>
+                                            <div className="text-right shrink-0">
+                                                {client.amount && (
+                                                    <p className="font-medium text-foreground">{client.amount}</p>
+                                                )}
+                                                {client.date && (
+                                                    <p className="text-xs text-muted-foreground">{client.date}</p>
+                                                )}
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </section>
                     )}
                 </div>
             </ErrorBoundary>

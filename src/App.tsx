@@ -337,6 +337,7 @@ function ExternalRedirect({ to }: { to: string }) {
 const GrowSpace = lazy(() => import("./pages/spaces/ProfileSpace")); // was Profile
 const LearnSpace = lazy(() => import("./pages/spaces/TransformationSpace")); // was Transformation
 const ElementsModel = lazy(() => import("./pages/spaces/transformation/Elements")); // /game/learn/elements — the five elements in 3D (C1)
+const InfographicBook = lazy(() => import("./pages/spaces/transformation/InfographicBook")); // /game/learn/book: Book of Infographics reader (C4), public
 const CourseSales = lazy(() => import("./pages/CourseSales")); // /academy/:slug — one sales page per course (Sasha 2026-10-30)
 const MeetSpace = lazy(() => import("./pages/spaces/EventsSpace")); // was Events
 const CollaborateSpace = lazy(() => import("./pages/spaces/TeamsSpace")); // was Teams/Discover
@@ -853,6 +854,7 @@ const App = () => (
                   <Route path="/game/learn" element={<LearnSpace />} />
                   {/* C1: the five elements as a playable 3D model. Public, like /game/learn. */}
                   <Route path="/game/learn/elements" element={<ElementsModel />} />
+                  <Route path="/game/learn/book" element={<InfographicBook />} />
                   <Route path="/game/learn/today" element={<RequireAuth><TodaysPractice /></RequireAuth>} />
                   <Route path="/game/learn/paths" element={<RequireAuth><TransformationGrowthPaths /></RequireAuth>} />
                   <Route path="/game/learn/path/:pathId" element={<RequireAuth><PathSection /></RequireAuth>} />

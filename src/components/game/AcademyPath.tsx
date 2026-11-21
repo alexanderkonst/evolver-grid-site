@@ -4,6 +4,7 @@ import { Lock } from "lucide-react";
 import { ACADEMY_COURSES } from "@/lib/placeColor";
 import { courseSalesPath } from "@/data/courseSales";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
+import { BOOK_CARDS, BOOK_TITLE } from "@/data/infographicBook";
 import { BODY_STYLE, EYEBROW_STYLE, TITLE_STYLE } from "@/pages/Library";
 
 /**
@@ -99,6 +100,20 @@ const AcademyPath = () => {
         </div>
         <div className="text-sm italic" style={BODY_STYLE}>
           Four orbit, one sits in the center. Turn the model and find the fifth.
+        </div>
+      </Link>
+
+      {/* The Book of Infographics (C4): public, a guest can read it. */}
+      <Link
+        to="/game/learn/book"
+        className="block mt-3.5 rounded-2xl p-5 text-left transition-all duration-300 liquid-glass-strong hover:scale-[1.012] hover:shadow-[0_12px_36px_-14px_rgba(10,22,40,0.25)] motion-reduce:transition-none motion-reduce:hover:scale-100"
+        style={cardStyle}
+      >
+        <div className="text-lg font-semibold mb-1 leading-snug" style={{ ...TITLE_STYLE, fontWeight: 600 }}>
+          {BOOK_TITLE}
+        </div>
+        <div className="text-sm italic" style={BODY_STYLE}>
+          The game journey in pictures · {BOOK_CARDS.length} cards
         </div>
       </Link>
 

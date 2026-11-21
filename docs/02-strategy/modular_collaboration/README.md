@@ -7,6 +7,7 @@ Face 2 of the Golden Age ([golden_age_canon.md](../golden_age_canon.md)): Sasha'
 |---|---|---|
 | [connector.md](./connector.md) | The connector: AI reads a partner's project into module cards; link from a game space into their ecosystem; integration roadmap 0–4; attribution and terms | Draft v2, 2026-11-21 |
 | [our_rack.md](./our_rack.md) | Our platform as a rack: village places as slots, our modules as cards, what level 0 takes | Draft v1, 2026-11-21 |
+| [planetir_inside.md](./planetir_inside.md) | Planetir: landing vs what really works; Sasha's profile there; research | v1, 2026-11-21 |
 | [dry_run_planetir.md](./dry_run_planetir.md) | L6: Planetir described as module cards by hand; Flourish peer model found | v1, 2026-11-21 |
 | [partner_offer.md](./partner_offer.md) | L1: partner terms, one page, draft for Sasha's approval | v1, 2026-11-21 |
 | [launch_plan.md](./launch_plan.md) | Plan v3: phases L1–L9 to the epic launch | v1, 2026-11-21 |

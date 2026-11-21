@@ -20,7 +20,7 @@ Status: **live** = on the site · **partial** = exists, gap named · **none** = 
 | A10 | 4 glyphs drawn properly (Sasha confirmed meaning 2026-11-21): helix = QoL (gold lived up to the level, blue still unwinding); Grail cup = U (the field passes through one point and turns out into the world); crystal in ring = UB, unique business (was U.O.); Grail loop = $ (the flow closes and returns as a coin) | four clean vector glyphs, used on the stats cards | draft v2 traced from the notebook (2026-11-21): [docs/assets/glyphs/](../assets/glyphs/) SVG, gold + blue; v1 free version in v1-free/; awaits Sasha's look | — |
 | A11 | Real world: San Pancho = Village #1, spaces where people already play (NS, SP…), invite everyone to collaborate | a real community can enter the game as its village | spec: GoBY §16, community_whitelabel_spec | Yes (public) |
 | A12 | Badges (Sasha 2026-11-21: important, this sprint, by January) | every step's outro awards its badge; shelf in Your House shows earned and faint not-yet badges (GoBY §14.12) | partial: logic live (outro badge + House shelf, `houseRooms.ts`). Art v1 rejected by Sasha 2026-11-21 (docs/assets/badges/v1-rejected). Direction (Sasha 2026-11-21): a badge = one of Sasha's own digital designs, gifted for an achievement and kept in the House, turned into beautiful 3D objects (Sasha 2026-11-21); NFT form open (proposal: off-chain first, claimable on-chain later). Awaits Sasha's design set | — |
-| A13 | Forgiving streak (Sasha 2026-11-21: «стрик используем только где это зеркалит действия в реальном мире, не просто как бездумную фишку»). Source: Duolingo analysis (cult-mechanics branch, DL-1); canon GoBY §10 point 3 | one real act a day extends the streak: today's 5-minute practice, a Journey step or the reveal's micro-quest, named by the player ("Day 12: wrote to a client"); never app opens; not tied to the QoL goal or amount; up to 2 freezes held, earned by real acts, never sold; owner-only card on Your House next to A5; no shaming reminders | none | — |
+| A13 | Forgiving streak (Sasha 2026-11-21: «стрик используем только где это зеркалит действия в реальном мире, не просто как бездумную фишку»). Source: Duolingo analysis (cult-mechanics branch, DL-1); canon GoBY §10 point 3 | one real act a day extends the streak: today's 5-minute practice, a Journey step or the reveal's micro-quest, named by the player ("Day 12: wrote to a client"); never app opens; not tied to the QoL goal or amount; up to 2 freezes held, earned by real acts, never sold; owner-only card on Your House next to A5; no shaming reminders | queued: issue opens after #357 (same House files) | — |
 
 Design compass (not tasks): actions in the game world are done in the real one; repeats social dynamics that already work; unites the evolutionary avant-garde. Refs: Ready Player One, Heroes III, Monopoly (collaboration), Foundation (Asimov).
 
@@ -29,7 +29,7 @@ Design compass (not tasks): actions in the game world are done in the real one; 
 | # | Feature | Done when | Status | Yes |
 |---|---|---|---|---|
 | B1 | First game levels free | a guest plays the first levels with no payment | partial (guest path, #354) | — |
-| B2 | Hero's journey questionnaire | test → result page → into the game | partial `/quiz`, `HeroQuiz` | — |
+| B2 | Hero's journey questionnaire | test → result page → into the game | partial `/quiz`, `HeroQuiz`; door into the game queued after #354 | — |
 | B3 | Infographic sets per person and situation | a player gets a set picked for them | partial: [BOOK.md](../assets/infographics/BOOK.md) | — |
 | B4 | Before & after and other psychoactive images | a set shown in the game/lead flow | none | — |
 
@@ -37,7 +37,7 @@ Design compass (not tasks): actions in the game world are done in the real one; 
 
 | # | Feature | Done when | Status | Yes |
 |---|---|---|---|---|
-| C1 | 3D model of the elements | the five elements as a playable 3D model | partial (GoBY §2) | — |
+| C1 | 3D model of the elements | the five elements as a playable 3D model | partial (GoBY §2); in work: `/game/learn/elements`, issue #361 | — |
 | C2 | Course constructor ← infographics | a course assembled from infographics | none | — |
 | C3 | Holonic-intuitive learning sequence | courses ordered by it | none | — |
 | C4 | Book of Infographics | readable book in the Academy | partial (BOOK.md); in work: reader at `/game/learn/book`, issue #359 | — |

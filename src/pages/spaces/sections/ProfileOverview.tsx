@@ -22,6 +22,7 @@ import {
     type HouseRoomId,
 } from "@/lib/houseRooms";
 import { placeSaveFromSheet } from "@/lib/placeState";
+import { buildHouseStats, useHouseStatsData } from "@/lib/houseStats";
 import { getVillagePlace } from "@/data/villagePlaces";
 import { placeTagline, tr } from "@/lib/villageCopy";
 import { displayName } from "@/lib/displayName";
@@ -43,9 +44,13 @@ import "./CharacterSheet.css";
  * states and badges are `src/lib/houseRooms.ts`. Colors and the scene follow the skin through
  * tokens (q8, principle 8); Lunar paints earned rooms and badges with the soul colors.
  *
- * PRIVACY (q5): the private level shows only here, to its owner. The 1–10 ratings are kept
- * and never shown; choices and asset details never leave this screen. Keep all of it off
- * every public profile, matchmaking and marketplace surface (§13.2).
+ * STATS (A5, issue #357; Sasha 2026-11-21): QoL, U (uniqueness resonance) and $ (income) cards
+ * above the rooms, each only when the player has a value (`src/lib/houseStats.ts`). This overrides
+ * q4's «ratings never shown» for the owner's own House only.
+ *
+ * PRIVACY (q5): the private level and the stats cards show only here, to their owner. Choices and
+ * asset details never leave this screen. Keep all of it off every public profile, share card,
+ * matchmaking and marketplace surface (§13.2).
  */
 
 // Same families as GameTitle's FONTS_HREF. Keep the two in sync.
@@ -96,6 +101,23 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
         });
 
     const metricHistory = usePlayerMetricHistory();
+    // A5: the stats cards, owner-only. A card exists only when its value does; none = no block.
+    const statsData = useHouseStatsData(sheet.userId, sheet.profileId);
+    const levelSeries = metricHistory.series.level;
+    const stats = useMemo(
+        () =>
+            statsData
+                ? buildHouseStats({
+                      qolLevel: sheet.qol?.level ?? null,
+                      qolPrevious: sheet.qol && levelSeries.length > 1
+                          ? { value: levelSeries[1].value, at: levelSeries[1].measuredAt }
+                          : null,
+                      resonance: statsData.resonance,
+                      income: statsData.income,
+                  })
+                : [],
+        [statsData, sheet.qol, levelSeries],
+    );
     // W2: the one player name (rail, Home, Reception, card). No name yet = no name line.
     const playerName = displayName({ signedIn: !!sheet.userId, firstName: sheet.firstName });
     const name = playerName ?? t("characterSheet.playerFallback");
@@ -361,6 +383,32 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
                 )}
                 <h1 className="cs-name">{name}</h1>
             </header>
+
+            {stats.length > 0 && (
+                <section className="cs-stats" aria-label={t("characterSheet.stats.title")}>
+                    <ul className="cs-stats__list">
+                        {stats.map((s) => (
+                            <li key={s.id} className="cs-stat">
+                                <p className="cs-mono cs-stat__label">{t(`characterSheet.stats.${s.id}`)}</p>
+                                <p className="cs-value cs-stat__value">
+                                    {s.value}
+                                    {s.max && <span> {s.max}</span>}
+                                </p>
+                                {s.change && (
+                                    <p className="cs-mono cs-stat__change">
+                                        {s.change.delta === 0
+                                            ? t("characterSheet.stats.same", { since: s.change.since })
+                                            : t("characterSheet.stats.changeSince", {
+                                                  delta: `${s.change.delta > 0 ? "+" : "−"}${Math.abs(s.change.delta)}`,
+                                                  since: s.change.since,
+                                              })}
+                                    </p>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            )}
 
             <ol className="cs-rooms">{rooms.map(renderRoom)}</ol>
         </div>
