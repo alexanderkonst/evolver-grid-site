@@ -7865,6 +7865,12 @@
     "fallbackPromise": "Tu oferta transformadora",
     "viewPage": "Ver página",
     "copyLink": "Copiar enlace",
+    "clients": {
+      "title": "Clientes",
+      "empty": "Tu primer cliente aparecerá aquí.",
+      "anonymous": "Un cliente",
+      "error": "No se pudieron cargar tus clientes en este momento."
+    },
     "empty": {
       "title": "Aún no hay productos publicados.",
       "cta": "Completa tu lienzo de negocio único para empezar."
