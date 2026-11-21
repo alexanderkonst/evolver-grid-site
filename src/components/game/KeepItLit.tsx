@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { X } from "lucide-react";
+import { tr } from "@/lib/villageCopy";
 import TopTalentAuthGate from "@/modules/zone-of-genius/TopTalentAuthGate";
 
 /**
@@ -30,15 +32,29 @@ const KeepItLit = ({ resultPayload, assessmentVersion, saved = false, onSaved }:
   const title = t("zogEntry.saveCharacterModalTitle");
 
   if (open) {
+    // Issue #354: the email panel has a close (X). It only folds the panel back to the one
+    // button; the reveal card sits above it and stays on screen.
     return (
-      <TopTalentAuthGate
-        inline
-        saved={saved}
-        resultPayload={resultPayload}
-        assessmentVersion={assessmentVersion}
-        title={title}
-        onSaved={onSaved}
-      />
+      <div className="relative">
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          aria-label={tr(t, "zogEntry.keepLitClose", "Close")}
+          data-testid="keep-it-lit-close"
+          className="absolute right-3 top-3 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full transition-opacity hover:opacity-100"
+          style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.72))", opacity: 0.8 }}
+        >
+          <X aria-hidden="true" className="h-4 w-4" />
+        </button>
+        <TopTalentAuthGate
+          inline
+          saved={saved}
+          resultPayload={resultPayload}
+          assessmentVersion={assessmentVersion}
+          title={title}
+          onSaved={onSaved}
+        />
+      </div>
     );
   }
 

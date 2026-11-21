@@ -70,6 +70,7 @@ import Hls from "hls.js";
 import ModuleIntro from "@/components/game/ModuleIntro";
 import ModuleOutro from "@/components/game/ModuleOutro";
 import { getJourneyModule } from "@/data/journeyModules";
+import { ZOG_ENTRY_PATH, ZOG_RESULT_PATH } from "@/lib/shellRoutes";
 
 // WP-5: this module in the module form (Intro → one button → the flow → Outro).
 const ZOG_MODULE = getJourneyModule("find-top-talent")!;
@@ -126,6 +127,10 @@ const ZoneOfGeniusEntry = () => {
     const location = useLocation();
     const { toast } = useToast();
     const [searchParams] = useSearchParams();
+    // Issue #354: the load effect must not re-run when the URL changes (reveal → /result), or a
+    // saved older result could replace the fresh reveal. It reads navigate through a ref.
+    const navigateRef = useRef(navigate);
+    navigateRef.current = navigate;
     // Day 79 (Sasha 2026-05-22): match-path orientation gate. When the
     // user arrived via `?path=match` (Balaji/ecosystem outreach), the
     // choice-route screen shows a "Step 1 of 2" preamble above the
@@ -385,7 +390,7 @@ const ZoneOfGeniusEntry = () => {
 
             // If user has complete Excalibur data AND came from another page, redirect to profile
             if (savedExcalibur && hasValidExcaliburData(savedExcalibur) && hasReturnParam) {
-                navigate("/");
+                navigateRef.current("/");
                 return;
             }
 
@@ -409,7 +414,68 @@ const ZoneOfGeniusEntry = () => {
         loadExisting()
             .catch(() => undefined)
             .finally(() => setLoaded(true));
-    }, [navigate, returnPath]);
+    }, [returnPath]);
+
+    // Issue #354: /zone-of-genius/result is the stable URL of the revealed card. A cold visit
+    // (refresh, a saved link, a return later) re-renders it from saved state: localStorage for a
+    // guest, the DB for a signed-in player (loadSavedData picks the right one). With nothing
+    // saved there is no card to show, so the player goes to the entry.
+    const isResultRoute = location.pathname === ZOG_RESULT_PATH;
+    const [resultChecking, setResultChecking] = useState(isResultRoute);
+    useEffect(() => {
+        if (!isResultRoute) return;
+        if (step === "appleseed-result" || step === "excalibur-result") {
+            setResultChecking(false);
+            return;
+        }
+        // A ?result=<token> link is Mode A's (it loads that player's snapshot above).
+        if (new URLSearchParams(window.location.search).has("result")) {
+            setResultChecking(false);
+            return;
+        }
+        let active = true;
+        setResultChecking(true);
+        (async () => {
+            try {
+                const { appleseed: saved, excalibur: savedExcalibur } = await loadSavedData();
+                if (!active) return;
+                if (saved && isAppleseedReadable(saved)) {
+                    setAppleseed(saved);
+                    // Loaded, not freshly generated: the auto-save must not re-write it.
+                    hasSavedAppleseed.current = true;
+                    if (savedExcalibur) setExcalibur(savedExcalibur);
+                    setStep(savedExcalibur ? "excalibur-result" : "appleseed-result");
+                } else {
+                    navigateRef.current(
+                        { pathname: ZOG_ENTRY_PATH, search: window.location.search },
+                        { replace: true },
+                    );
+                }
+            } catch {
+                if (active) {
+                    navigateRef.current(
+                        { pathname: ZOG_ENTRY_PATH, search: window.location.search },
+                        { replace: true },
+                    );
+                }
+            } finally {
+                if (active) setResultChecking(false);
+            }
+        })();
+        return () => {
+            active = false;
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isResultRoute]);
+
+    // Issue #354: once the Top Talent card is on screen (a fresh reveal, or one loaded from
+    // saved state), the URL says so. Replace, not push: Back leaves the page instead of
+    // bouncing between the two paths. Same component instance, so nothing remounts.
+    useEffect(() => {
+        if (step === "appleseed-result" && appleseed && location.pathname === ZOG_ENTRY_PATH) {
+            navigate({ pathname: ZOG_RESULT_PATH, search: location.search }, { replace: true });
+        }
+    }, [step, appleseed, location.pathname, location.search, navigate]);
 
     useEffect(() => {
         let isMounted = true;
@@ -586,6 +652,10 @@ const ZoneOfGeniusEntry = () => {
         setIsSaved(fresh.isSaved);
         setGuestRevealUnlocked(fresh.guestRevealUnlocked);
         setStep(fresh.step);
+        // Issue #354: no card on screen any more, so the URL goes back to the entry.
+        if (location.pathname === ZOG_RESULT_PATH) {
+            navigate({ pathname: ZOG_ENTRY_PATH, search: location.search }, { replace: true });
+        }
     };
 
     const handleCopyPrompt = async () => {
@@ -837,6 +907,12 @@ const ZoneOfGeniusEntry = () => {
         </>
     );
 
+    // Issue #354: a cold /result visit paints nothing (not the Intro) until the saved-state
+    // check has decided between the card and the entry.
+    if (resultChecking && isResultRoute) {
+        return <GameShellV2 hideNavigation={hideNav} hideLogo><div className="min-h-dvh" /></GameShellV2>;
+    }
+
     // Step: Generating Appleseed (Ritual Loading)
     if (step === "generating-appleseed") {
         return (
@@ -1054,7 +1130,9 @@ const ZoneOfGeniusEntry = () => {
                 </div>
             )}
 
-            <div className="relative z-10 px-5 lg:px-10 py-4 sm:py-6 max-w-2xl mx-auto min-h-dvh flex flex-col justify-center">
+            {/* Issue #354: on a desktop viewport the step uses the width (max-w-4xl from lg up) instead of a
+                    narrow column in an empty canvas; phones and tablets keep max-w-2xl. */}
+            <div className="relative z-10 px-5 lg:px-10 py-4 sm:py-6 max-w-2xl lg:max-w-4xl mx-auto min-h-dvh flex flex-col justify-center">
                 {/* Day 53 second pass (Sasha 2026-04-27): the page-level
                     cream wash that lived here was retired. It was bounded
                     to max-w-2xl so it created a visible cream column with
@@ -1277,8 +1355,9 @@ const ZoneOfGeniusEntry = () => {
                         {/* Darkroom prompt preview. Use darkroom tokens instead
                             of card-fill tokens so dark skins never produce
                             gold-on-gold prompt text. */}
+                        {/* Issue #354: Copy sits in its own bar above the text, so it never overlaps it. */}
                         <div
-                            className="relative rounded-2xl"
+                            className="rounded-2xl overflow-hidden"
                             style={{
                                 background:
                                     "var(--skin-darkroom-bg, rgba(10,10,26,0.76))",
@@ -1287,36 +1366,38 @@ const ZoneOfGeniusEntry = () => {
                                 WebkitBackdropFilter: "blur(12px)",
                             }}
                         >
+                            <div className="flex justify-end px-3 pt-3">
+                                <Button
+                                    variant="outline"
+                                    size="sm"
+                                    className="shadow-sm text-xs rounded-lg"
+                                    style={{
+                                        backgroundColor: "var(--skin-input-fill, rgba(255,255,255,0.35))",
+                                        borderColor: "var(--skin-hairline, rgba(26,30,58,0.2))",
+                                        color: "var(--skin-text-primary, #0a1628)",
+                                        backdropFilter: "blur(8px)",
+                                    }}
+                                    onClick={handleCopyPrompt}
+                                >
+                                    {copied ? (
+                                        <>
+                                            <Check className="w-3 h-3 mr-1" />
+                                            {t('zogEntry.copyButtonCopied')}
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Copy className="w-3 h-3 mr-1" />
+                                            {t('zogEntry.copyButton')}
+                                        </>
+                                    )}
+                                </Button>
+                            </div>
                             <pre
-                                className="text-[11px] whitespace-pre-wrap font-mono leading-snug max-h-36 overflow-y-auto p-4 pr-16 selection:bg-[color:rgba(var(--accent-rgb),0.25)]"
+                                className="text-[11px] lg:text-xs whitespace-pre-wrap font-mono leading-snug max-h-36 lg:max-h-72 overflow-y-auto p-4 selection:bg-[color:rgba(var(--accent-rgb),0.25)]"
                                 style={{ color: "var(--skin-darkroom-muted, rgba(245,245,250,0.7))" }}
                             >
                                 {ZONE_OF_GENIUS_PROMPT}
                             </pre>
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                className="absolute top-3 right-3 shadow-sm text-xs rounded-lg"
-                                style={{
-                                    backgroundColor: "var(--skin-input-fill, rgba(255,255,255,0.35))",
-                                    borderColor: "var(--skin-hairline, rgba(26,30,58,0.2))",
-                                    color: "var(--skin-text-primary, #0a1628)",
-                                    backdropFilter: "blur(8px)",
-                                }}
-                                onClick={handleCopyPrompt}
-                            >
-                                {copied ? (
-                                    <>
-                                        <Check className="w-3 h-3 mr-1" />
-                                        {t('zogEntry.copyButtonCopied')}
-                                    </>
-                                ) : (
-                                    <>
-                                        <Copy className="w-3 h-3 mr-1" />
-                                        {t('zogEntry.copyButton')}
-                                    </>
-                                )}
-                            </Button>
                         </div>
 
                         <div className="flex justify-center">

@@ -1007,7 +1007,12 @@ const App = () => (
                       character»: the reveal shows right after the test, with
                       TopTalentAuthGate inline under it. Saving unlocks the full reading,
                       and its primary button «Enter the village» leads to /village. */}
-                  <Route path="/zone-of-genius/entry" element={<ZoneOfGeniusEntry />} />
+                  {/* Issue #354: /result is the same page on the revealed card. Both paths sit under
+                      one pathless layout route so the page keeps its state when the URL changes. */}
+                  <Route element={<ZoneOfGeniusEntry />}>
+                    <Route path="/zone-of-genius/entry" />
+                    <Route path="/zone-of-genius/result" />
+                  </Route>
                   {/* Day 47 (Sasha): assessment is now public — no login gate. Log-in
                       added friction AND showed the legacy shell; guests can now complete
                       the guided path and be offered to save on the result page. */}

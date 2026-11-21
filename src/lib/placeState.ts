@@ -362,12 +362,24 @@ export const placeState = (place: PlaceInput, save: PlaceSave): PlaceStateName =
   const { opens, steps, live } = place.rule;
   if (opens && !isMet(save, opens)) return "closed";
   if (isLiveNow(live, save.now)) return "live";
-  if (steps && steps.length > 0 && steps.every((req) => isMet(save, req))) return "done";
+  // Issue #354: a revealed top talent finishes Reception even before it is saved to an account
+  // (the Journey step itself still waits on the account, so Home and the rest stay closed).
+  const reached = (req: PlaceRequirement) =>
+    isMet(save, req) || (req === "find-top-talent" && awaitingSave(save));
+  if (steps && steps.length > 0 && steps.every(reached)) return "done";
   const next = nextJourneyStep(save);
   // Awaiting the save, the test is behind the guest: Reception is no longer the next move.
   if (next && steps?.includes(next) && !awaitingSave(save)) return "next";
   return "open";
 };
+
+/**
+ * A closed place that waits only on the top talent being SAVED, for a guest who has already
+ * revealed it. The map says what opens it («Opens when your top talent is saved», the same
+ * promise as the next-move card) instead of the flat «Not open yet» (issue #354).
+ */
+export const gatedByUnsavedTalent = (place: PlaceInput, save: PlaceSave): boolean =>
+  awaitingSave(save) && place.rule.opens === "find-top-talent" && placeState(place, save) === "closed";
 
 const trimDot = (s: string) => s.trim().replace(/\.+$/, "");
 

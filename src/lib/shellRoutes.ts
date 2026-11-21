@@ -35,6 +35,13 @@
  */
 export const ZOG_ENTRY_PATH = "/zone-of-genius/entry";
 
+/**
+ * Issue #354: the stable URL of the revealed Top Talent card. Same page and same shell as the
+ * entry (App.tsx mounts both under one layout route, so the reveal never remounts); a cold
+ * visit re-renders the card from saved state (localStorage for a guest, the DB when signed in).
+ */
+export const ZOG_RESULT_PATH = "/zone-of-genius/result";
+
 /** Old URLs into the test. They stay alive as redirects; none asks for a login. */
 export const LEGACY_ZOG_ENTRY_PATHS: readonly string[] = [
     "/zone-of-genius",
@@ -50,6 +57,7 @@ export function zogEntryRedirectTarget(pathname: string, search = "", hash = "")
 /** Pages that render their own shell with special config — layout stays out. */
 const HOLDOUT_EXACT = new Set<string>([
     ZOG_ENTRY_PATH,         // ZoneOfGeniusEntry (shell config flips per wizard step)
+    ZOG_RESULT_PATH,        // the same page, on the revealed card (issue #354)
     "/quiz2",                // GeniusQuiz (hideNavigation) — moved from /quiz July 28, 2026
     "/quiz",                 // TransitionQuizPage — standalone, own layout, no shell
     "/game/settings",        // Settings (showNavigation)

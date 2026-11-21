@@ -369,7 +369,13 @@ const TitleScreen = () => {
     const onScroll = () => {
       if (window.scrollY > 8) setStarted(true);
     };
-    const onPointer = () => setStarted(true);
+    // Issue #354: a press ON the PRESS START button must not hide it here. Hiding sets
+    // pointer-events:none between pointerdown and click, so the click landed on the
+    // covering div and PRESS START did nothing. The button's own onClick sets `started`.
+    const onPointer = (e: PointerEvent) => {
+      if ((e.target as Element | null)?.closest?.(".gt-start")) return;
+      setStarted(true);
+    };
     window.addEventListener("keydown", onKey);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("pointerdown", onPointer);

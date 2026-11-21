@@ -52,9 +52,18 @@ type PlaceStateProps = {
 };
 
 /** The state as a word. Closed is read by screen readers only (the line carries it visually). */
-export const PlaceStateTag = ({ state, className }: { state: PlaceStateName; className?: string }) => {
+export const PlaceStateTag = ({
+  state,
+  className,
+  text: override,
+}: {
+  state: PlaceStateName;
+  className?: string;
+  /** Replaces the state word (issue #354: «Opens when your top talent is saved» on a gated place). */
+  text?: string;
+}) => {
   const { t } = useTranslation();
-  const text = stateWordText(state, t);
+  const text = override ?? stateWordText(state, t);
   if (!text) return null;
   return (
     <span className={cn("ps-tag", `ps-tag--${state}`, className)} data-tag={state}>
