@@ -89,6 +89,20 @@ const AcademyPath = () => {
         ))}
       </ol>
 
+      {/* C1: the five elements as a playable 3D model. */}
+      <Link
+        to="/game/learn/elements"
+        className="mt-3.5 block rounded-2xl p-5 text-left transition-all duration-300 liquid-glass-strong hover:scale-[1.012] hover:shadow-[0_12px_36px_-14px_rgba(10,22,40,0.25)] motion-reduce:transition-none motion-reduce:hover:scale-100"
+        style={cardStyle}
+      >
+        <div className="text-lg font-semibold mb-1 leading-snug" style={{ ...TITLE_STYLE, fontWeight: 600 }}>
+          The five elements
+        </div>
+        <div className="text-sm italic" style={BODY_STYLE}>
+          Four orbit, one sits in the center. Turn the model and find the fifth.
+        </div>
+      </Link>
+
       {/* The Book of Infographics (C4): public, a guest can read it. */}
       <Link
         to="/game/learn/book"
