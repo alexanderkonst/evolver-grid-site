@@ -16,8 +16,8 @@ Status: **live** = on the site · **partial** = exists, gap named · **none** = 
 | A6 | Social network: see a profile, filter for useful people, write to them | from a profile a player can send a message; the person gets it | partial: profiles `/profile/:id`, directory with 7 filters `/game/collaborate/people`, Connect; **no writing**; in work: issue #356 | — |
 | A7 | Artifacts / products / clients | player sees what they made, sell and who bought | partial `/my-artifacts`, `/game/marketplace/my-products`; clients none | — |
 | A8 | Radio for each space | each village place has its own stream | none | — |
-| A9 | Equilibrium clock (lunar creative hours for creative cycles) | clock visible in the game | partial: `/equilibrium` page | — |
-| A10 | 4 glyphs drawn properly: helix 6.3, Y, polyhedron in circle, U-loop | four clean vector glyphs, used on the stats cards | none | — |
+| A9 | Equilibrium clock (lunar creative hours for creative cycles) | clock visible in the game | live: moon dial in the Village, full watch at `/build/equilibrium` (in game shell) | — |
+| A10 | 4 glyphs drawn properly: helix 6.3, Y, polyhedron in circle, U-loop | four clean vector glyphs, used on the stats cards | draft v1 (2026-11-21): [docs/assets/glyphs/](../assets/glyphs/) SVG, awaits Sasha's look | — |
 | A11 | Real world: San Pancho = Village #1, spaces where people already play (NS, SP…), invite everyone to collaborate | a real community can enter the game as its village | spec: GoBY §16, community_whitelabel_spec | Yes (public) |
 | A12 | Badges (Sasha 2026-11-21: important, this sprint, by January) | every step's outro awards its badge; shelf in Your House shows earned and faint not-yet badges (GoBY §14.12) | partial: outro badge and shelf in code; check in playtest | — |
 
@@ -39,7 +39,7 @@ Design compass (not tasks): actions in the game world are done in the real one; 
 | C1 | 3D model of the elements | the five elements as a playable 3D model | partial (GoBY §2) | — |
 | C2 | Course constructor ← infographics | a course assembled from infographics | none | — |
 | C3 | Holonic-intuitive learning sequence | courses ordered by it | none | — |
-| C4 | Book of Infographics | readable book in the Academy | partial (BOOK.md) | — |
+| C4 | Book of Infographics | readable book in the Academy | partial (BOOK.md); in work: reader at `/game/learn/book`, issue #359 | — |
 | C5 | New courses: my sessions' rotation = Platonic solids | course outline on that frame | none | — |
 | C6 | Landings for courses | one landing per course | partial `/academy/:slug` | Yes (public) |
 | C7 | Make your (Village) buttons for world-building | player adds places to their village | none | — |
