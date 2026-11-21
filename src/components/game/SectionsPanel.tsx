@@ -185,6 +185,14 @@ const SPACE_SECTIONS: SpaceSections = {
             // profile (identity, talents, mission, assets, QoL, collab
             // requests, history, LinkedIn, PDF export) as the first ME item.
             // Spec: docs/specs/profile-space/sow_and_dods.md.
+            // Sasha 2026-11-21 (step 2, front 4, option A): Home is the
+            // player's cabinet; it grows on /game/me/overview. Until now it
+            // was reachable only from the village house.
+            {
+                id: "me-home",
+                label: "Home",
+                path: "/game/me/overview",
+            },
             {
                 id: "me-profile",
                 label: "Character",
