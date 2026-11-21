@@ -1,5 +1,7 @@
 # AI course for founders: outline v0.1
 
+> Superseded framing → see wizards spec: [your_ai_wizards_spec_v0.1.md](./your_ai_wizards_spec_v0.1.md) (products are result wizards, not courses; the §3 ladder and §5 defaults here stay valid, decided 2026-11-21).
+
 ## 1. Header
 
 - **Date:** 2026-11-21
