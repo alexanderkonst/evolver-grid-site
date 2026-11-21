@@ -1366,6 +1366,7 @@ Rule for every mechanic: a counter, streak or number only where it mirrors a rea
 | 16 | Proof model: daily act = the player alone, private; village quest = the villager who gave it confirms (H3-7); Journey step = one witness the player picks, checked against a pre-written "done when", answered in words, never scored; rights over others = two people already on that step, both needed, picked by the player from anyone on it. Proof is never sold, ranked or turned into points | proof-of-learning PL-1..14 | §23.4 | yes |
 | 17 | Village quest: a villager pins one real deed to their place with a "done when" line; the player comes in person; the villager confirms -> stamp + artifact | Heroes III H3-7 | §23.4, World map | yes |
 | 18 | Achievements for real-life deeds: closing a set (e.g. 3 sessions from 3 different people) = an achievement. Separate track: research/cult-mechanics/achievements.md | §23.4, Camino, Scouting | A12 | "very cool, separate task" |
+| 19 | Levels matter only where they open something: a right to act, people, a new chapter. Earned right fits only as constructor steps; the word "level" is not used for it. No ranks or ratings that set people against each other. Chapter = Path J1-J12; what cannot be lost = Peak, badges | levels study LV-1..8 | constructor, §20 | "TRUE! smart! yes" 16:28 |
 
 ### 24.2 Considering
 - Needs & Offers: each player has a Needs line and an Offers line; an offer can be sent only to someone whose need matches; three exchange modes (gift, quest at a place, paid), one stamp; no internal currency. Open: offers only on a need? payment inside the game or direct?
@@ -1377,7 +1378,7 @@ Rule for every mechanic: a counter, streak or number only where it mirrors a rea
 ### 24.3 Open
 - How a false confirmation is detected (proposal: the person the deed concerned says it did not happen, or someone present disputes it, or the trail does not fit; the right is paused, two people on that step talk to both and decide).
 - Can a step be paused if someone harms the village, or is it permanent?
-- Levels: only the "earned right" kind fits, as constructor steps (the word is "steps"); no ranks, no XP.
+- Levels as milestones of the path (Sasha 2026-11-21 16:28: "when the player's path exists, it will be clear whether levels are needed; levels as simple milestones of the path, that is the direction I was thinking"). Decide when the player's path is designed.
 
 ### 24.4 Rejected
 Density gate before the next village (FB-1) · village book night (JM-4) · 6-week seasons · secret identity · villains and battles · points and levels as score · internal currency · votes · crisis simulations · ranking people · "raid" vocabulary.
