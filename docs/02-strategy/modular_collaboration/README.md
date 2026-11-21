@@ -7,6 +7,7 @@ Face 2 of the Golden Age ([golden_age_canon.md](../golden_age_canon.md)): Sasha'
 |---|---|---|
 | [connector.md](./connector.md) | The connector: AI reads a partner's project into module cards; link from a game space into their ecosystem; integration roadmap 0–4; attribution and terms | Draft v2, 2026-11-21 |
 | [our_rack.md](./our_rack.md) | Our platform as a rack: village places as slots, our modules as cards, what level 0 takes | Draft v1, 2026-11-21 |
+| [dry_run_planetir.md](./dry_run_planetir.md) | L6: Planetir described as module cards by hand; Flourish peer model found | v1, 2026-11-21 |
 | [partner_offer.md](./partner_offer.md) | L1: partner terms, one page, draft for Sasha's approval | v1, 2026-11-21 |
 | [launch_plan.md](./launch_plan.md) | Plan v3: phases L1–L9 to the epic launch | v1, 2026-11-21 |
 | [launch_from_corpus.md](./launch_from_corpus.md) | What the corpus already decides for the launch (terms, matchmaking, modules, assembly) and what blocks it | v1, 2026-11-21 |
@@ -15,7 +16,7 @@ Face 2 of the Golden Age ([golden_age_canon.md](../golden_age_canon.md)): Sasha'
 
 ## Plan v3 (2026-11-21, launch plan)
 Full plan: [launch_plan.md](./launch_plan.md). Plan v2 is superseded (its P1, P2 done; P3 became the dry run L6; P5 became L5).
-- [~] L1 Partner offer (draft) · [~] L2 One module registry · [ ] L3 Self-serve intake · [ ] L4 Partner buildings + attribution · [ ] L5 Public page, two doors · [ ] L6 Dry run · [ ] L7 Launch message and list · [ ] L8 Know automatically · [ ] L9 After launch
+- [~] L1 Partner offer (draft) · [~] L2 One module registry · [ ] L3 Self-serve intake · [ ] L4 Partner buildings + attribution · [ ] L5 Public page, two doors · [x] L6 Dry run (by hand, Planetir) · [ ] L7 Launch message and list · [ ] L8 Know automatically · [ ] L9 After launch
 
 ## Launch (Sasha, 2026-11-21 13:29)
 One epic launch: one message from Sasha to many people at once, inviting partners (very simple, concrete terms and connect conditions) and players into the game, together with other initiatives. Partners connect on their own; Sasha need not know someone connected. Stage 1 may be partly manual. The landing does not wait for a partner.
