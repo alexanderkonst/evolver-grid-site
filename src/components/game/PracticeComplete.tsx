@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { CheckCircle2, Flame, Zap, Users } from "lucide-react";
+import NameTodaysAct from "@/components/game/NameTodaysAct";
 
 interface PracticeCompleteProps {
     practiceName?: string | null;
@@ -109,6 +110,9 @@ const PracticeComplete = ({
                         <p className="text-white/60 text-xs uppercase tracking-widest">Day Streak 🔥</p>
                     </div>
                 </div>
+
+                {/* A13: the player names the real act; only a named act extends the streak */}
+                <NameTodaysAct source="practice" variant="plain" className="mb-8" />
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row justify-center gap-4">

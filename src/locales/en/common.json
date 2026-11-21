@@ -7826,6 +7826,22 @@
       "mission": "My Mission"
     }
   },
+  "streak": {
+    "nameToday": "Name today's act",
+    "placeholder": "e.g. wrote to a client",
+    "nameIt": "Name it",
+    "named": "Today's act: {{text}}",
+    "card": {
+      "label": "Streak",
+      "days_one": "day",
+      "days_other": "days",
+      "freezes_one": "{{count}} freeze held",
+      "freezes_other": "{{count}} freezes held",
+      "today": "Today: {{text}}",
+      "nameToday": "Name today's act to extend it",
+      "resting": "Longest run: {{best}}. Name an act to start a new one."
+    }
+  },
   "characterSheet": {
     "stats": {
       "title": "Your stats",
