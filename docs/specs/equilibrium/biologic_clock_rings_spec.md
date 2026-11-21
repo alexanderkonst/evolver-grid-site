@@ -2,6 +2,7 @@
 
 Sasha, 2026-11-21 16:35 MST, on the four-rings mockup: «чисто как часы персональные биологические, на основании движка эквилибриума, на основном игровом экране». Build in this lunar cycle: the engine, the minimal clock on the main screen and the Equilibrium art already exist; the work is synthesis into one simple visual.
 Origin: cult-mechanics research (Apple Watch rings + Heroes III calendar), GoBY §24 #8. Mockup v0: [four-rings.png](../../02-strategy/research/cult-mechanics/mockups/four-rings.png) (shape only; it was drawn as filled by acts, which is now dropped).
+Mockup v1 (2026-11-21 16:38 MST, real engine values for Sasha, birthday 1985-01-04: year 88% lived, Waxing Gibbous day 11.8, Saturday ♄, 16:38): [on the village map](../../02-strategy/research/cult-mechanics/mockups/four-rings-v1-village.jpg) · [close-up with reading key](../../02-strategy/research/cult-mechanics/mockups/four-rings-v1-closeup.png). Every ring starts at the top (birthday, new moon, Monday, midnight) and runs clockwise; lived = dim, left = bright; centre = tonight's moon. Static, not in code.
 
 ## What it is
 A personal biological clock read at one glance: where I am in my day, week, moon and year, and how much of each is left. Data per person: everyone is born on a different day, so the cycles overlap differently for each player.
