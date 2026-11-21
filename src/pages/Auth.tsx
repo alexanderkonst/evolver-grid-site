@@ -27,6 +27,27 @@ import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 // magic-link sign-in completes).
 const PENDING_CLAIM_EMAIL_KEY = "pending_claim_email";
 
+// Issue #370: every sign-up outcome is shown inline (a toast alone was missed: the button
+// reverted to "Sign Up" and the player saw nothing). Raw Supabase text is never shown.
+type SignUpNotice =
+  | { kind: "checkInbox"; email: string }
+  | { kind: "rateLimit" }
+  | { kind: "unconfirmed" }
+  | { kind: "weakPassword" }
+  | { kind: "error" };
+
+type AuthErrorLike = { message?: string; code?: string; status?: number } | null | undefined;
+
+const errorText = (error: AuthErrorLike) => `${error?.code ?? ""} ${error?.message ?? ""}`.toLowerCase();
+
+const isRateLimitError = (error: AuthErrorLike) =>
+  error?.status === 429 ||
+  /rate_limit|rate limit|for security purposes|only request this after/.test(errorText(error));
+
+const isUnconfirmedError = (error: AuthErrorLike) => /email_not_confirmed|not confirmed/.test(errorText(error));
+
+const isWeakPasswordError = (error: AuthErrorLike) => /weak_password|password should be/.test(errorText(error));
+
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,6 +56,7 @@ const Auth = () => {
   const [loading, setLoading] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [resetEmailSent, setResetEmailSent] = useState(false);
+  const [signUpNotice, setSignUpNotice] = useState<SignUpNotice | null>(null);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { toast } = useToast();
@@ -157,6 +179,7 @@ const Auth = () => {
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSignUpNotice(null);
     setLoading(true);
 
     try {
@@ -226,17 +249,24 @@ const Auth = () => {
         return;
       }
 
-      // Case 1: email confirmation required — no session yet
+      // Case 1: email confirmation required — no session yet. The inline
+      // "Check your inbox" state replaces the form at once (issue #370).
+      setSignUpNotice({ kind: "checkInbox", email: email.trim() });
       toast({
         title: t('auth.checkInboxTitle'),
         description: t('auth.checkInboxDesc', { email }),
       });
     } catch (error: any) {
-      toast({
-        title: t('auth.signUpFailedTitle'),
-        description: error.message,
-        variant: "destructive",
-      });
+      // Map the outcome to a plain line; never surface the raw Supabase message.
+      console.warn("[Auth] sign-up failed", error);
+      const notice: SignUpNotice = isRateLimitError(error)
+        ? { kind: "rateLimit" }
+        : isUnconfirmedError(error)
+          ? { kind: "unconfirmed" }
+          : isWeakPasswordError(error)
+            ? { kind: "weakPassword" }
+            : { kind: "error" };
+      setSignUpNotice(notice);
     } finally {
       setLoading(false);
     }
@@ -263,7 +293,8 @@ const Auth = () => {
     } catch (error: any) {
       toast({
         title: t('auth.loginFailedTitle'),
-        description: error.message,
+        // An account still waiting on its confirm link: say so (issue #370).
+        description: isUnconfirmedError(error) ? t('auth.loginUnconfirmed') : error.message,
         variant: "destructive",
       });
     } finally {
@@ -603,7 +634,14 @@ const Auth = () => {
           <Ornament className="my-6" />
 
           {/* Tabs */}
-          <Tabs value={tab} onValueChange={setTab} className="w-full">
+          <Tabs
+            value={tab}
+            onValueChange={(next) => {
+              setSignUpNotice(null);
+              setTab(next);
+            }}
+            className="w-full"
+          >
             <TabsList
               className="grid w-full grid-cols-2 mb-6 rounded-full p-1"
               style={{
@@ -644,6 +682,11 @@ const Auth = () => {
                   <Input
                     id="login-email"
                     type="email"
+                    name="email"
+                    autoComplete="email"
+                    inputMode="email"
+                    autoCapitalize="none"
+                    spellCheck={false}
                     placeholder={t('auth.emailPlaceholder')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -733,6 +776,25 @@ const Auth = () => {
 
             {/* ─── SIGN UP ─── */}
             <TabsContent value="signup">
+              {signUpNotice?.kind === "checkInbox" ? (
+                <div className="space-y-4 text-center" role="status" aria-live="polite" data-testid="signup-check-inbox">
+                  <div className="mx-auto w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: "rgba(var(--accent-rgb), 0.12)" }}>
+                    <Mail className="w-6 h-6" style={{ color: "var(--skin-text-primary, #0a1628)" }} />
+                  </div>
+                  <h2
+                    className="text-2xl font-bold"
+                    style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--skin-text-primary, #0a1628)" }}
+                  >
+                    {t('auth.checkInboxTitle')}
+                  </h2>
+                  <p className="text-sm" style={{ color: "var(--skin-text-body, rgba(11,42,90,0.97))" }}>
+                    {t('auth.checkInboxDesc', { email: signUpNotice.email })}
+                  </p>
+                  <p className="text-xs" style={{ color: "var(--skin-text-muted, rgba(11,42,90,0.93))" }}>
+                    {t('auth.checkInboxHint')}
+                  </p>
+                </div>
+              ) : (
               <form onSubmit={handleSignUp} className="space-y-4">
                 <div className="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2">
                   <div className="space-y-1.5">
@@ -792,6 +854,11 @@ const Auth = () => {
                   <Input
                     id="signup-email"
                     type="email"
+                    name="email"
+                    autoComplete="email"
+                    inputMode="email"
+                    autoCapitalize="none"
+                    spellCheck={false}
                     placeholder={t('auth.emailPlaceholder')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -813,6 +880,8 @@ const Auth = () => {
                   <Input
                     id="signup-password"
                     type="password"
+                    name="new-password"
+                    autoComplete="new-password"
                     placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -820,10 +889,31 @@ const Auth = () => {
                     className="h-11 rounded-xl"
                   />
                 </div>
+                {signUpNotice ? (
+                  <p
+                    role="alert"
+                    data-testid="signup-error"
+                    className="text-sm rounded-xl px-3 py-2"
+                    style={{
+                      color: "var(--skin-text-primary, #0a1628)",
+                      backgroundColor: "rgba(var(--accent-rgb), 0.10)",
+                      border: "1px solid rgba(var(--accent-rgb), 0.28)",
+                    }}
+                  >
+                    {signUpNotice.kind === "rateLimit"
+                      ? t('auth.signUpRateLimit')
+                      : signUpNotice.kind === "unconfirmed"
+                        ? t('auth.signUpUnconfirmed')
+                        : signUpNotice.kind === "weakPassword"
+                          ? t('auth.signUpWeakPassword')
+                          : t('auth.signUpGenericError')}
+                  </p>
+                ) : null}
                 <Button type="submit" className="w-full h-12 rounded-full" disabled={loading}>
                   {loading ? t('auth.creatingAccount') : t('auth.signUpButton')}
                 </Button>
               </form>
+              )}
             </TabsContent>
           </Tabs>
         </article>

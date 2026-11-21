@@ -406,7 +406,13 @@
     "lastNamePlaceholder": "Doe",
     "passwordHint": "At least 6 characters.",
     "creatingAccount": "Creating account…",
-    "signUpButton": "Sign Up"
+    "signUpButton": "Sign Up",
+    "signUpRateLimit": "Please wait a minute and try again.",
+    "signUpUnconfirmed": "Your account is waiting for confirmation. Open the link we emailed you to finish signing up.",
+    "signUpWeakPassword": "Choose a password with at least 6 characters.",
+    "signUpGenericError": "We couldn't create your account. Please try again.",
+    "checkInboxHint": "If it isn't there, check your spam folder.",
+    "loginUnconfirmed": "Your account is waiting for confirmation. Open the link we emailed you, then log in."
   },
   "resetPassword": {
     "toastMismatchTitle": "Passwords don't match",

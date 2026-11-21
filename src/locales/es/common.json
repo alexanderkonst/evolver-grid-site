@@ -3257,7 +3257,13 @@
     "lastNamePlaceholder": "García",
     "passwordHint": "Al menos 6 caracteres.",
     "creatingAccount": "Creando cuenta…",
-    "signUpButton": "Registrarse"
+    "signUpButton": "Registrarse",
+    "signUpRateLimit": "Espera un minuto e inténtalo de nuevo.",
+    "signUpUnconfirmed": "Tu cuenta está esperando confirmación. Abre el enlace que te enviamos por email para terminar el registro.",
+    "signUpWeakPassword": "Elige una contraseña de al menos 6 caracteres.",
+    "signUpGenericError": "No pudimos crear tu cuenta. Inténtalo de nuevo.",
+    "checkInboxHint": "Si no está, revisa tu carpeta de spam.",
+    "loginUnconfirmed": "Tu cuenta está esperando confirmación. Abre el enlace que te enviamos y luego inicia sesión."
   },
   "geniusOfferIntake": {
     "toast": {
