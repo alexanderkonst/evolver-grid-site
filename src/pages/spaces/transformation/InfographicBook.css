@@ -1,0 +1,17 @@
+/* The Book of Infographics reader (/game/learn/book). House type: Space Grotesk, as on the cards. */
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/SpaceGrotesk.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+.infographic-book,
+.infographic-book-viewer {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+}
+
+.infographic-book-lower {
+  text-transform: lowercase;
+}
