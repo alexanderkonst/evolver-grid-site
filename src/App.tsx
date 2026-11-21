@@ -336,6 +336,7 @@ function ExternalRedirect({ to }: { to: string }) {
 // Space pages - renamed: GROW, LEARN, MEET, COLLABORATE, BUILD, OFFER
 const GrowSpace = lazy(() => import("./pages/spaces/ProfileSpace")); // was Profile
 const LearnSpace = lazy(() => import("./pages/spaces/TransformationSpace")); // was Transformation
+const InfographicBook = lazy(() => import("./pages/spaces/transformation/InfographicBook")); // /game/learn/book: Book of Infographics reader (C4), public
 const CourseSales = lazy(() => import("./pages/CourseSales")); // /academy/:slug — one sales page per course (Sasha 2026-10-30)
 const MeetSpace = lazy(() => import("./pages/spaces/EventsSpace")); // was Events
 const CollaborateSpace = lazy(() => import("./pages/spaces/TeamsSpace")); // was Teams/Discover
@@ -850,6 +851,7 @@ const App = () => (
                   {/* Issue #186: the Academy is open to a guest, who plays one module and is asked
                       for the account only at «Save». The sub-routes below still need it. */}
                   <Route path="/game/learn" element={<LearnSpace />} />
+                  <Route path="/game/learn/book" element={<InfographicBook />} />
                   <Route path="/game/learn/today" element={<RequireAuth><TodaysPractice /></RequireAuth>} />
                   <Route path="/game/learn/paths" element={<RequireAuth><TransformationGrowthPaths /></RequireAuth>} />
                   <Route path="/game/learn/path/:pathId" element={<RequireAuth><PathSection /></RequireAuth>} />
