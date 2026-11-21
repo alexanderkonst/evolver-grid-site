@@ -154,6 +154,10 @@
   font-size: var(--vl-text-lead); line-height: 1.3; color: var(--cs-ink-2);
 }
 
+/* the one quiet line that names the other locked rooms (#375) */
+.cs-room-fold { list-style: none; margin: 0; padding: 4px 0 0; }
+.cs-room-fold p { margin: 0; color: var(--cs-ink-3); }
+
 /* a closed room is dimmed by PlaceState (--lock-filter, --lock-dim); its line stays at full strength */
 .cs-room[data-place-state="closed"] .cs-room__label { margin: 0; }
 

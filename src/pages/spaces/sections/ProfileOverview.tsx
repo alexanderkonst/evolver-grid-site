@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
+import { Fragment, useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
@@ -17,6 +17,7 @@ import {
     badgeResult,
     houseBadges,
     houseRooms,
+    lockedRoomFold,
     nextHouseRoom,
     type HouseRoom,
     type HouseRoomId,
@@ -87,6 +88,8 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
         [sheet.chain, sheet.offerSaved],
     );
     const rooms = useMemo(() => houseRooms(save), [save]);
+    // #375: one locked block (the next one) and one quiet line for the rest.
+    const lockedFold = useMemo(() => lockedRoomFold(rooms), [rooms]);
     const badges = useMemo(() => houseBadges(save), [save]);
 
     // The next room starts open, and the shelf: the two things a returning player looks for.
@@ -247,18 +250,30 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
         const isOpen = open.has(room.id);
 
         if (closed) {
+            // Folded rooms are named in the one line after the shown locked block.
+            if (room !== lockedFold.shown) return null;
             return (
-                <PlaceState
-                    key={room.id}
-                    as="li"
-                    state="closed"
-                    className="cs-room"
-                    tag={false}
-                    scene={<p className="cs-mono cs-room__label">{label(room)}</p>}
-                >
-                    <p className="cs-room__line">{room.line}</p>
-                    <PlaceStateTag state="closed" />
-                </PlaceState>
+                <Fragment key={room.id}>
+                    <PlaceState
+                        as="li"
+                        state="closed"
+                        className="cs-room"
+                        tag={false}
+                        scene={<p className="cs-mono cs-room__label">{label(room)}</p>}
+                    >
+                        <p className="cs-room__line">{room.line}</p>
+                        <PlaceStateTag state="closed" />
+                    </PlaceState>
+                    {lockedFold.folded.length > 0 && (
+                        <li className="cs-room-fold">
+                            <p className="cs-mono">
+                                {t("characterSheet.lockedFold", {
+                                    rooms: lockedFold.folded.map(label).join(", "),
+                                })}
+                            </p>
+                        </li>
+                    )}
+                </Fragment>
             );
         }
 

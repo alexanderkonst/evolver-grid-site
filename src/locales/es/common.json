@@ -3241,6 +3241,7 @@
     "subtitleQol": "Inicia sesión para guardar tu Mapa de Calidad de Vida. Vuelve a hacerlo cuando quieras — sigue tu crecimiento con el tiempo.",
     "subtitleCockpit": "Inicia sesión para entrar a tu Founder Cockpit.",
     "subtitleMatch": "Guarda tus datos para que no los pierdas. Luego sigue con el descubrimiento de tu misión.",
+    "subtitleSavedResult": "Guarda tu talento principal y abre tu misión.",
     "subtitleOnboarding": "Guarda tu Talento Principal. Desbloquea tu negocio único.",
     "subtitleReturning": "Retoma donde lo dejaste — tu Talento Principal y tu progreso te están esperando.",
     "tabLogIn": "Iniciar sesión",
@@ -3263,7 +3264,10 @@
     "signUpWeakPassword": "Elige una contraseña de al menos 6 caracteres.",
     "signUpGenericError": "No pudimos crear tu cuenta. Inténtalo de nuevo.",
     "checkInboxHint": "Si no está, revisa tu carpeta de spam.",
-    "loginUnconfirmed": "Tu cuenta está esperando confirmación. Abre el enlace que te enviamos y luego inicia sesión."
+    "loginUnconfirmed": "Tu cuenta está esperando confirmación. Abre el enlace que te enviamos y luego inicia sesión.",
+    "loginInvalid": "El email y la contraseña no coinciden. Inténtalo de nuevo.",
+    "loginGenericError": "No pudimos iniciar tu sesión. Inténtalo de nuevo.",
+    "resetGenericError": "No pudimos enviar el email de restablecimiento. Inténtalo de nuevo."
   },
   "geniusOfferIntake": {
     "toast": {
@@ -7768,6 +7772,7 @@
     }
   },
   "characterSheet": {
+    "lockedFold": "Aún sin abrir: {{rooms}}.",
     "eyebrow": "Casa",
     "playerFallback": "Jugador",
     "character": {

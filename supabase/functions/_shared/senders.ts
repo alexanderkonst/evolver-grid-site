@@ -16,6 +16,8 @@
 // individual functions.
 
 export const BRAND_NAME = "Find Your Top Talent";
+// The game's own name, as on the title screen (src/pages/GameTitle.tsx). Used by the signup email.
+export const GAME_NAME = "The Game of Being You";
 export const BRAND_TAGLINE =
   "bring the full force of who you are to what you build.";
 export const SENDER_DOMAIN = "notify.findyourtoptalent.com";

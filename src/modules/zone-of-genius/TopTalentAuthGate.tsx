@@ -171,8 +171,8 @@ const TopTalentAuthGate = ({
     } catch (err) {
       setStatus("error");
       setError(
-        err instanceof Error &&
-          !err.message.includes("Edge Function returned a non-2xx status code")
+        // Only our own plain line is shown; any other message is raw Supabase / HTTP text.
+        err instanceof Error && err.message === t("zogEntry.gateSaveFailed")
           ? err.message
           : t("zogEntry.gateSaveFailedGeneric"),
       );
