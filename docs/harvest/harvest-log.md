@@ -18,6 +18,37 @@
 
 ## Cycle: 2026-11 (from 2026-11-16)
 
+### 2026-11-21 · Result Wizards, not courses (marked by Sasha)
+- **Essence:** Sasha's materials → micro-modules → each one an infographic + AI video (one NotebookLM per micro-module) → chained into a wizard that walks a person to a transformational result, on our platform.
+- **Significance:** one product is at once infographic, wizard, result and module; nobody needs another course, people need the result.
+- **Consequences:** any body of his work can become a product the same way; first family = the 8-level Your AI ladder; everything sits under Your AI.
+- **Technology candidate:** a repeatable materials-to-wizard conversion (Sasha decides).
+- Link: [ai_course_outline_v0.1.md](../02-strategy/ai-suite/ai_course_outline_v0.1.md) (wizards spec in progress) · Holon: —
+
+### 2026-11-21 · Template grows from the wizards it makes (marked by Sasha)
+- **Essence:** template as is → build a wizard → update the template from what it taught → repeat, many cycles, as we go.
+- **Significance:** the method learns from real use instead of being designed once and frozen.
+- **Consequences:** every spec in this family is versioned and revised after each wizard ships.
+- Link: [ai_course_outline_v0.1.md](../02-strategy/ai-suite/ai_course_outline_v0.1.md) · Holon: —
+
+### 2026-11-21 · Setup handed out level by level, on a visible check (Hark proposes)
+- **Essence:** a founder gets each piece of Sasha's AI setup when they pass that level's check, not on day one; levels 0–3 open to all, 4–7 inside the collective.
+- **Significance:** answers "when do they get the setup" and protects the know-how (router, terminal, harnesses).
+- **Consequences:** minimum setup = levels 1–3; the rest is the collective's edge.
+- Link: [ai_course_outline_v0.1.md](../02-strategy/ai-suite/ai_course_outline_v0.1.md) §3, §5 · Holon: —
+
+### 2026-11-21 · Terminal prompt: Sasha's AI becomes portable (Hark proposes)
+- **Essence:** one file a founder drops into their repo so their coding agent thinks with AI OS, works from his templates and asks before anything outbound or paid.
+- **Significance:** the first piece of his setup someone else can install in minutes.
+- **Consequences:** level 5 of the ladder exists; the lane contract travels with every founder's agent.
+- Link: [terminal.md](../../system-prompts/v6.0/terminal.md) · Holon: —
+
+### 2026-11-21 · Collective terms as a roadmap (Hark proposes)
+- **Essence:** steward now → Sasha decentralizes himself in 2027–2028 → purpose entity at ~25 → council at ~50.
+- **Significance:** the collective's terms are a path, not a fixed contract.
+- **Consequences:** Linux Foundation + Red Hat shape; each stage has its own entry terms.
+- Link: [collective_terms_roadmap.md](../02-strategy/collective/collective_terms_roadmap.md) · Holon: —
+
 ### 2026-11-19 · Golden Age Revelations
 - **Essence:** the mission is the core of the golden age's digital infrastructure, launched as an iconic game.
 - **Significance:** the top holon the whole project sits under: game, AI, science, economy, way of living.
@@ -94,4 +125,4 @@
 ## Hit rate
 | Cycle | Hark proposed | Confirmed | Rejected / reframed |
 |---|---|---|---|
-| 2026-11 | 5 | 5 (Sasha, 2026-11-19) | 0 |
+| 2026-11 | 8 | 5 (Sasha, 2026-11-19); 3 waiting (2026-11-21) | 0 |
