@@ -116,6 +116,18 @@
 .cs-cur { width: 2em; color: var(--cs-accent); opacity: 0; transition: opacity 0.4s ease; }
 .cs-link:hover .cs-cur, .cs-link:focus-visible .cs-cur { opacity: 1; }
 
+/* ---------- Stats cards (A5): owner-only, only the ones that have a value ---------- */
+.cs-stats { margin: clamp(32px, 5vh, 48px) 0 0; }
+.cs-stats__list {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px;
+}
+.cs-stat { border: 1px solid var(--cs-hair); padding: 16px 18px; min-width: 0; }
+.cs-stat__label { margin: 0 0 10px; color: var(--cs-ink-3); }
+.cs-stat__value { font-size: clamp(30px, 7vw, 40px); line-height: 1; }
+.cs-stat__value span { font-size: 0.4em; color: var(--cs-ink-3); letter-spacing: 0.08em; }
+.cs-stat__change { margin: 10px 0 0; color: var(--cs-ink-2); }
+
 /* ---------- Rooms: one sheet, hairlines, each unfolds in place ---------- */
 .cs-rooms { list-style: none; margin: clamp(40px, 7vh, 72px) 0 0; padding: 0; }
 .cs-room, .cs-badge { --slot-accent: var(--cs-accent); }
