@@ -13,7 +13,7 @@ Status: **live** = on the site · **partial** = exists, gap named · **none** = 
 | A3 | Onboarding into the digital village (B2-18②) | after the film/title a new player lands in the village with one obvious first step | partial: guest path + Home, issue #354 (main chat) | Yes |
 | A4 | Hook after reveal: «Your next potential is… Your first micro-quest to claim that version of yourself is this:» | every reveal ends with one named potential and one doable micro-quest | none | Yes |
 | A5 | Stats cards on Your House: QoL, U, U.O., $ ("people love stats") | four cards with a number and its change; QoL e.g. 6.3/10 (+0.1 in Q2) | partial: QoL level exists; U, U.O., $ not built | — |
-| A6 | Social network: see a profile, filter for useful people, write to them | from a profile a player can send a message; the person gets it | partial: profiles `/profile/:id`, directory with 7 filters `/game/collaborate/people`, Connect; **no writing** | — |
+| A6 | Social network: see a profile, filter for useful people, write to them | from a profile a player can send a message; the person gets it | built in issue #356 (PR open): Write on profile + directory card, inbox `/game/collaborate/messages`, unread badge in Party & Guild; **migration `20261121190000_player_messages.sql` not deployed, held for Sasha's yes** | — |
 | A7 | Artifacts / products / clients | player sees what they made, sell and who bought | partial `/my-artifacts`, `/game/marketplace/my-products`; clients none | — |
 | A8 | Radio for each space | each village place has its own stream | none | — |
 | A9 | Equilibrium clock (lunar creative hours for creative cycles) | clock visible in the game | partial: `/equilibrium` page | — |

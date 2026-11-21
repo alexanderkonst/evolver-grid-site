@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { MapPin, Target } from "lucide-react";
 import ShareCard from "@/components/game/ShareCard";
 import ShareCardAnswer from "@/components/game/ShareCardAnswer";
+import WriteButton from "@/components/game/WriteButton";
 import { usePlayerReflections } from "@/hooks/usePlayerReflections";
 import { pickGift } from "@/lib/shareCard";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
@@ -475,8 +476,14 @@ const PublicProfile = ({ onMissing }: PublicProfileProps = {}) => {
             </div>
           )}
 
-          <div className="mt-8 flex justify-center">
-            <Button onClick={() => navigate("/connections")}>{t("publicProfile.connect")}</Button>
+          {/* Spec A6: Write. This screen only renders for viewers the profile's audience gate
+              and visibility already allow, so the button follows the same privacy rules; the
+              database re-checks on send (can_message_player). Guests are sent to sign in. */}
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            {!viewerIsOwner && <WriteButton recipientUserId={profile.user_id} />}
+            <Button variant={viewerIsOwner ? "default" : "outline"} onClick={() => navigate("/connections")}>
+              {t("publicProfile.connect")}
+            </Button>
           </div>
         </div>
       </div>

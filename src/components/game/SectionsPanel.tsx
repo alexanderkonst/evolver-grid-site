@@ -23,6 +23,7 @@ import { useJourneyProgress, type JourneyProgress } from "@/hooks/useJourneyProg
 import { useLinkedQuizResult, type LinkedQuizResult } from "@/hooks/useLinkedQuizResult";
 import { useEntryPath } from "@/contexts/EntryPathContext";
 import { useSkin } from "@/contexts/SkinContext";
+import { useUnreadMessages } from "@/hooks/useUnreadMessages";
 import {
     TooltipProvider,
 } from "@/components/ui/tooltip";
@@ -315,6 +316,11 @@ const SPACE_SECTIONS: SpaceSections = {
                 lockedHint: "Coming soon. Directory needs profile permissions before it ships.",
             },
             {
+                id: "messages",
+                label: "Messages",
+                path: "/game/collaborate/messages",
+            },
+            {
                 id: "mission",
                 label: "Mission Groups",
                 path: "/game/collaborate/mission",
@@ -441,6 +447,7 @@ export const STATIC_LABEL_KEYS: Record<string, { label: string; lockedHint?: str
         label: "rail.collaborate.people.label",
         lockedHint: "rail.collaborate.people.lockedHint",
     },
+    messages: { label: "rail.collaborate.messages.label" },
     mission: {
         label: "rail.collaborate.missionGroups.label",
         lockedHint: "rail.collaborate.missionGroups.lockedHint",
@@ -818,6 +825,8 @@ const SectionsPanel = ({
         skin !== "planetir" &&
         skin !== "techstars";
     const { t } = useTranslation();
+    // Spec A6: unread player messages show as the badge on the Collaborate "Messages" row.
+    const unreadMessages = useUnreadMessages();
     const location = useLocation();
     const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
     const [userEmail, setUserEmail] = useState<string | null>(null);
@@ -1079,7 +1088,14 @@ const SectionsPanel = ({
     // untouched (no-op map).
     const rawSpaceData = getSections();
     const spaceData = rawSpaceData
-        ? { ...rawSpaceData, sections: localizeSections(t, rawSpaceData.sections) }
+        ? {
+              ...rawSpaceData,
+              sections: localizeSections(t, rawSpaceData.sections).map((section) =>
+                  section.id === "messages" && unreadMessages > 0
+                      ? { ...section, badge: unreadMessages > 99 ? "99+" : String(unreadMessages) }
+                      : section,
+              ),
+          }
         : rawSpaceData;
 
     const toggleExpand = (sectionId: string) => {

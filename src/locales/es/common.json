@@ -2072,6 +2072,9 @@
         "label": "Directorio de personas",
         "lockedHint": "Próximamente. El directorio necesita permisos de perfil antes de lanzarse."
       },
+      "messages": {
+        "label": "Mensajes"
+      },
       "missionGroups": {
         "label": "Grupos de misión",
         "lockedHint": "Próximamente. El flujo de formación de grupos aún no está listo."
@@ -6462,6 +6465,27 @@
     "errorSaveOffer": "No se pudo guardar tu Oferta Única",
     "toastGenerationFailedTitle": "Error al generar",
     "toastGenerationFailedFallback": "Inténtalo de nuevo."
+  },
+  "messages": {
+    "title": "Mensajes",
+    "write": "Escribir",
+    "send": "Enviar",
+    "placeholder": "Escribe un mensaje…",
+    "fallbackName": "Miembro de la comunidad",
+    "you": "Tú: ",
+    "unreadCount_one": "{{count}} sin leer",
+    "unreadCount_other": "{{count}} sin leer",
+    "emptyTitle": "Aún no hay mensajes",
+    "emptyBody": "Encuentra a alguien útil en el Directorio de personas, abre su perfil y escríbele.",
+    "findPeople": "Buscar personas",
+    "threadEmpty": "Aún no hay mensajes con {{name}}. Escribe el primero.",
+    "viewProfile": "Ver perfil",
+    "backToInbox": "Volver a Mensajes",
+    "signInTitle": "Inicia sesión para leer tus mensajes",
+    "signIn": "Iniciar sesión",
+    "unavailable": "Los mensajes aún no están disponibles.",
+    "sendFailed": "Mensaje no enviado",
+    "cannotWrite": "Revisa tu conexión e inténtalo de nuevo. Si sigue fallando, es posible que esta persona no acepte mensajes tuyos."
   },
   "peopleDir": {
     "title": "Directorio de personas",
