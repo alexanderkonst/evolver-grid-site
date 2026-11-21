@@ -1,6 +1,8 @@
-# The Book of Psychoactive Infographics · v0.4 (2026-11-17)
+# The Book of Psychoactive Infographics · v0.5 (2026-11-21)
 
 RU: «Книга психоактивной инфографики». Single source of truth for the book's taxonomy, contents and card files. Format: [docs/templates/infographic.md](../../templates/infographic.md). License: [LICENSE.md](LICENSE.md) (CC BY-NC-SA 4.0; commercial use by agreement with Aleksandr). Card images: [book/](book/). The word "psychoactive" is the book's name only; it never appears on a card.
+
+**Reader in the game:** `/game/learn/book` (Academy, public). It reads `src/data/infographicBook.ts` and serves images from `public/infographics/book/` (same folder names as `book/` here). That data file must follow this file: when contents, a chapter, a card title or caption, or a status changes here, change it there and copy new images to `public/infographics/book/` in the same PR. `src/data/__tests__/infographicBook.test.ts` checks the card list against this file.
 
 ## Contents (mirrors the game journey and its spaces; v0.4)
 The book is the game journey in pictures: each chapter is a step or space of the game and opens with its course's main infographic. Order (Sasha, 2026-11-17):
@@ -126,6 +128,7 @@ Private, not in this book (evolver-private-ledger): client book "The Crossing" (
 - Status: draft v6 · File: [book/laws/VII.01.png](book/laws/VII.01.png)
 
 ## Changelog
+- v0.5 (2026-11-21): reader built in the Academy (`/game/learn/book`, spec row C4); data file `src/data/infographicBook.ts` follows this file. Content unchanged.
 - v0.4 (2026-11-17): contents rebuilt on the game journey (Sasha): ADP course → uniqueness, mission, resources, quality of life → Unique Business (default) and Grow branches; the seven funds dropped.
 - v0.3 (2026-11-17): card files moved into book/ under LICENSE.md; laws redrawn as v6 (Sasha's feedback 15:48: no "psychoactive" label, two-level context, one thing per card) and filled with prism, keys, notes; 19 first-principles and 3 noosphere cards listed to be placed.
 - v0.2 (2026-11-17): moved here from the Hark workspace; levels fund → scheme → subscheme.
