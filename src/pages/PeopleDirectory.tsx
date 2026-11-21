@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { MapPin, Target, Users } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
+import WriteButton from "@/components/game/WriteButton";
+import { useSessionUserId } from "@/hooks/useSessionUserId";
+import { fetchWritableUserIds } from "@/lib/playerMessages";
 import { Button } from "@/components/ui/button";
 import SkeletonCard from "@/components/ui/SkeletonCard";
 import {
@@ -76,6 +79,9 @@ const PeopleDirectory = () => {
   const [people, setPeople] = useState<DirectoryPerson[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  // Spec A6: who the viewer may write to (profile audience settings). null = not resolved yet.
+  const viewerId = useSessionUserId();
+  const [writableIds, setWritableIds] = useState<Set<string> | null>(null);
 
   const [pillarFilter, setPillarFilter] = useState<string>("all");
   const [focusFilter, setFocusFilter] = useState<string>("all");
@@ -190,6 +196,22 @@ const PeopleDirectory = () => {
       isMounted = false;
     };
   }, []);
+
+  useEffect(() => {
+    if (people.length === 0) return;
+    let live = true;
+    if (!viewerId) {
+      // Guests keep the button (it sends them to sign in); the profile page re-checks audience.
+      setWritableIds(new Set(people.map((p) => p.userId)));
+      return;
+    }
+    fetchWritableUserIds(viewerId, people.map((p) => p.userId)).then((ids) => {
+      if (live) setWritableIds(ids);
+    });
+    return () => {
+      live = false;
+    };
+  }, [people, viewerId]);
 
   const availableLocations = useMemo(() => {
     const locations = new Set<string>();
@@ -430,13 +452,20 @@ const PeopleDirectory = () => {
               const canShowLocation =
                 person.visibility !== "minimal" && person.showLocation && !!person.location;
 
+              // Write only where the person's audience settings allow it (A6).
+              const canWrite = writableIds?.has(person.userId) ?? false;
+
               // Day 91 (Sasha 2026-06-09): tokenized for Aurum — raw white/85
               // cards put cream muted-foreground text on white (invisible).
               return (
-                <button
+                <div
                   key={person.userId}
+                  className="flex flex-col rounded-2xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)] transition hover:border-primary/40 hover:shadow-md"
+                >
+                <button
+                  type="button"
                   onClick={() => navigate(`/profile/${person.userId}`)}
-                  className="text-left rounded-2xl border border-border bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm p-4 shadow-[0_4px_16px_rgba(44,49,80,0.06)] transition hover:border-primary/40 hover:shadow-md"
+                  className="flex-1 text-left"
                 >
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-full bg-muted overflow-hidden flex items-center justify-center">
@@ -482,6 +511,12 @@ const PeopleDirectory = () => {
                     )}
                   </div>
                 </button>
+                {canWrite && (
+                  <div className="mt-4">
+                    <WriteButton recipientUserId={person.userId} size="sm" variant="outline" />
+                  </div>
+                )}
+                </div>
               );
             })}
           </div>
