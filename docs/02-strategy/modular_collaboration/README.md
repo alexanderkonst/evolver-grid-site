@@ -7,18 +7,14 @@ Face 2 of the Golden Age ([golden_age_canon.md](../golden_age_canon.md)): Sasha'
 |---|---|---|
 | [connector.md](./connector.md) | The connector: AI reads a partner's project into module cards; link from a game space into their ecosystem; integration roadmap 0–4; attribution and terms | Draft v2, 2026-11-21 |
 | [our_rack.md](./our_rack.md) | Our platform as a rack: village places as slots, our modules as cards, what level 0 takes | Draft v1, 2026-11-21 |
+| [launch_plan.md](./launch_plan.md) | Plan v3: phases L1–L9 to the epic launch | v1, 2026-11-21 |
 | [launch_from_corpus.md](./launch_from_corpus.md) | What the corpus already decides for the launch (terms, matchmaking, modules, assembly) and what blocks it | v1, 2026-11-21 |
 | [research/](./research/) | Three full reads: matchmaking, modules, assembly | 2026-11-21 |
 | [landing.md](./landing.md) | Landing «bring your module»: how the industry builds partner pages, outline for ours, Ordana as a peer | Draft v1, 2026-11-21 |
 
-## Plan v2 (approved by Sasha 2026-11-21 13:15)
-- [x] 1. Connector (draft v2)
-- [x] 2. Our rack described as module cards
-- [ ] 3. Sample partner: one external project as module cards + integration proposal (Sasha picks the project; nothing sent)
-- [ ] 4. Level 0 in the game: partner card + link with referral id (game screen changes only with Sasha's yes)
-- [~] 5. Landing (research + outline done; build waits for the first partner row) «bring your module»: how partner and app-marketplace pages are built, then a draft (published only with his yes)
-- [ ] 6. Funnel: find projects → cards → proposal → LinkedIn request (Sasha writes) → one CTA; tracker
-- [ ] 7. Thought leadership on LinkedIn; session exchange (list is Sasha's)
+## Plan v3 (2026-11-21, launch plan)
+Full plan: [launch_plan.md](./launch_plan.md). Plan v2 is superseded (its P1, P2 done; P3 became the dry run L6; P5 became L5).
+- [ ] L1 Partner offer · [ ] L2 One module registry · [ ] L3 Self-serve intake · [ ] L4 Partner buildings + attribution · [ ] L5 Public page, two doors · [ ] L6 Dry run · [ ] L7 Launch message and list · [ ] L8 Know automatically · [ ] L9 After launch
 
 ## Launch (Sasha, 2026-11-21 13:29)
 One epic launch: one message from Sasha to many people at once, inviting partners (very simple, concrete terms and connect conditions) and players into the game, together with other initiatives. Partners connect on their own; Sasha need not know someone connected. Stage 1 may be partly manual. The landing does not wait for a partner.
