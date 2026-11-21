@@ -7803,6 +7803,14 @@
     }
   },
   "characterSheet": {
+    "stats": {
+      "title": "Your stats",
+      "qol": "QoL",
+      "uniqueness": "Uniqueness resonance",
+      "income": "Unique business income",
+      "changeSince": "{{delta}} since {{since}}",
+      "same": "Same as in {{since}}"
+    },
     "eyebrow": "Home",
     "playerFallback": "Player",
     "character": {
