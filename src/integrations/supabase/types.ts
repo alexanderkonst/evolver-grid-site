@@ -2310,6 +2310,33 @@ export type Database = {
         }
         Relationships: []
       }
+      player_messages: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          read_at: string | null
+          recipient_id: string
+          sender_id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          id?: string
+          read_at?: string | null
+          recipient_id: string
+          sender_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          read_at?: string | null
+          recipient_id?: string
+          sender_id?: string
+        }
+        Relationships: []
+      }
       player_reflections: {
         Row: {
           answer: string
@@ -3492,6 +3519,7 @@ export type Database = {
           previous_tier: Database["public"]["Enums"]["entitlement_tier"]
         }[]
       }
+      can_message_player: { Args: { p_recipient: string }; Returns: boolean }
       claim_window: {
         Args: { p_token: string }
         Returns: {

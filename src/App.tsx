@@ -237,6 +237,7 @@ import CreateEvent from "./pages/events/CreateEvent";
 import MyRsvps from "./pages/events/MyRsvps";
 import CommunityEvents from "./pages/CommunityEvents";
 import Connections from "./pages/Connections";
+import Messages from "./pages/Messages";
 import Matchmaking from "./pages/Matchmaking";
 import PeopleDirectory from "./pages/PeopleDirectory";
 import MissionSelection from "./pages/MissionSelection";
@@ -336,6 +337,8 @@ function ExternalRedirect({ to }: { to: string }) {
 // Space pages - renamed: GROW, LEARN, MEET, COLLABORATE, BUILD, OFFER
 const GrowSpace = lazy(() => import("./pages/spaces/ProfileSpace")); // was Profile
 const LearnSpace = lazy(() => import("./pages/spaces/TransformationSpace")); // was Transformation
+const ElementsModel = lazy(() => import("./pages/spaces/transformation/Elements")); // /game/learn/elements — the five elements in 3D (C1)
+const InfographicBook = lazy(() => import("./pages/spaces/transformation/InfographicBook")); // /game/learn/book: Book of Infographics reader (C4), public
 const CourseSales = lazy(() => import("./pages/CourseSales")); // /academy/:slug — one sales page per course (Sasha 2026-10-30)
 const MeetSpace = lazy(() => import("./pages/spaces/EventsSpace")); // was Events
 const CollaborateSpace = lazy(() => import("./pages/spaces/TeamsSpace")); // was Teams/Discover
@@ -850,6 +853,9 @@ const App = () => (
                   {/* Issue #186: the Academy is open to a guest, who plays one module and is asked
                       for the account only at «Save». The sub-routes below still need it. */}
                   <Route path="/game/learn" element={<LearnSpace />} />
+                  {/* C1: the five elements as a playable 3D model. Public, like /game/learn. */}
+                  <Route path="/game/learn/elements" element={<ElementsModel />} />
+                  <Route path="/game/learn/book" element={<InfographicBook />} />
                   <Route path="/game/learn/today" element={<RequireAuth><TodaysPractice /></RequireAuth>} />
                   <Route path="/game/learn/paths" element={<RequireAuth><TransformationGrowthPaths /></RequireAuth>} />
                   <Route path="/game/learn/path/:pathId" element={<RequireAuth><PathSection /></RequireAuth>} />
@@ -890,6 +896,8 @@ const App = () => (
                   <Route path="/game/collaborate/connections" element={<RequireAuth><Connections /></RequireAuth>} />
                   <Route path="/game/collaborate/mission" element={<RequireAuth><MissionSelection /></RequireAuth>} />
                   <Route path="/game/collaborate/people" element={<RequireAuth><PeopleDirectory /></RequireAuth>} />
+                  <Route path="/game/collaborate/messages" element={<RequireAuth><Messages /></RequireAuth>} />
+                  <Route path="/game/collaborate/messages/:userId" element={<RequireAuth><Messages /></RequireAuth>} />
                   {/* Legacy redirects */}
                   <Route path="/game/teams" element={<Navigate to="/game/collaborate" replace />} />
                   <Route path="/game/matches" element={<Navigate to="/game/collaborate/matches" replace />} />

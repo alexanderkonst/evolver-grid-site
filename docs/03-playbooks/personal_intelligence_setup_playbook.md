@@ -129,6 +129,7 @@ Why: browser sessions of Telegram Web and WhatsApp Web expire and keep asking fo
 - Claude Code through the GitHub Action (`claude.yml`, secret `CLAUDE_CODE_OAUTH_TOKEN`): the orchestrator opens an issue with `@claude`, Claude opens a PR, checks run, the orchestrator merges.
 - Optional second and third trees: Codex cloud (ChatGPT) and Jules (Gemini). Optional local runners on the Mac (launchd, one labeled issue every 30 min) for private repos, to spend the subscription instead of Actions minutes.
 - **Check:** one small issue goes from "@claude" to a merged PR without you opening GitHub.
+- **Terminal prompt:** copy [terminal.md](../../system-prompts/v6.0/terminal.md) to your repo root as `CLAUDE.md` and `AGENTS.md` (founder terminal prompt v0: AI OS Lite, templates-first, lane contract, working loop).
 
 ### Stage 11. Video, sound, images (20 min)
 

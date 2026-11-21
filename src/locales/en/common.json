@@ -709,6 +709,9 @@
         "label": "People Directory",
         "lockedHint": "Coming soon. Directory needs profile permissions before it ships."
       },
+      "messages": {
+        "label": "Messages"
+      },
       "missionGroups": {
         "label": "Mission Groups",
         "lockedHint": "Coming soon. Group-formation flow not yet ready."
@@ -1060,6 +1063,27 @@
       "button": "Reach me on Telegram",
       "footer": "Updated April 2026 · findyourtoptalent.com/intros"
     }
+  },
+  "messages": {
+    "title": "Messages",
+    "write": "Write",
+    "send": "Send",
+    "placeholder": "Write a message…",
+    "fallbackName": "Community Member",
+    "you": "You: ",
+    "unreadCount_one": "{{count}} unread",
+    "unreadCount_other": "{{count}} unread",
+    "emptyTitle": "No messages yet",
+    "emptyBody": "Find someone useful in the People Directory, open their profile and write to them.",
+    "findPeople": "Find people",
+    "threadEmpty": "No messages with {{name}} yet. Write the first one.",
+    "viewProfile": "View profile",
+    "backToInbox": "Back to Messages",
+    "signInTitle": "Sign in to read your messages",
+    "signIn": "Sign in",
+    "unavailable": "Messages are not available yet.",
+    "sendFailed": "Message not sent",
+    "cannotWrite": "Check your connection and try again. If it keeps failing, this person may not accept messages from you."
   },
   "peopleDir": {
     "title": "People Directory",
@@ -7803,6 +7827,14 @@
     }
   },
   "characterSheet": {
+    "stats": {
+      "title": "Your stats",
+      "qol": "QoL",
+      "uniqueness": "Uniqueness resonance",
+      "income": "Unique business income",
+      "changeSince": "{{delta}} since {{since}}",
+      "same": "Same as in {{since}}"
+    },
     "eyebrow": "Home",
     "playerFallback": "Player",
     "character": {
@@ -7906,6 +7938,12 @@
     "fallbackPromise": "Your transformational offer",
     "viewPage": "View Page",
     "copyLink": "Copy Link",
+    "clients": {
+      "title": "Clients",
+      "empty": "Your first client will appear here.",
+      "anonymous": "A client",
+      "error": "Your clients could not be loaded just now."
+    },
     "empty": {
       "title": "No products published yet.",
       "cta": "Complete your Unique Business Canvas to get started."
