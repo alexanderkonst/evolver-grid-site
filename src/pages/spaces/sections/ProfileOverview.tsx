@@ -26,6 +26,7 @@ import { buildHouseStats, useHouseStatsData } from "@/lib/houseStats";
 import { getVillagePlace } from "@/data/villagePlaces";
 import { placeTagline, tr } from "@/lib/villageCopy";
 import { displayName } from "@/lib/displayName";
+import { Skeleton } from "@/components/ui/skeleton";
 import "./CharacterSheet.css";
 
 /**
@@ -435,8 +436,21 @@ const ProfileOverviewContent = () => {
             </div>
             <div className="cs-grain" aria-hidden="true" />
             {sheet.isLoading ? (
-                <div className="cs-inner">
-                    <p className="cs-mono" aria-live="polite">{t("profileOverview.loading")}</p>
+                // Issue #370: the shared Skeleton in the shape of the sheet (crystal, name, rooms),
+                // not a bare line. The text stays for screen readers.
+                <div className="cs-inner" aria-busy="true">
+                    <p className="sr-only" aria-live="polite">{t("profileOverview.loading")}</p>
+                    <div className="flex flex-col items-center gap-4" aria-hidden="true">
+                        <Skeleton className="h-28 w-28 rounded-full" />
+                        <Skeleton className="h-6 w-48" />
+                    </div>
+                    <ol className="cs-rooms" aria-hidden="true">
+                        {[0, 1, 2, 3].map((i) => (
+                            <li key={i} className="cs-room">
+                                <Skeleton className="h-5 w-2/3" />
+                            </li>
+                        ))}
+                    </ol>
                 </div>
             ) : sheet.loadFailed ? (
                 // A failed or timed-out read: say so, never an endless loading line (#263).

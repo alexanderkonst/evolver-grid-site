@@ -12,6 +12,7 @@ import { computeQolLevel, type QolLevel } from "@/lib/qolLevel";
 import { fetchTopTalentSnapshot } from "@/lib/topTalentSnapshot";
 import { slicePhrase } from "@/modules/unique-business-builder/journeySlices";
 import { LOAD_TIMEOUT_MS, withTimeout } from "@/lib/withTimeout";
+import { awaitGuestResultSync } from "@/lib/postAuthSideEffects";
 
 /**
  * useCharacterSheet — read-only data layer for the Character Sheet
@@ -121,6 +122,11 @@ async function loadSheet(): Promise<CharacterSheetData> {
     } = await supabase.auth.getSession();
     const user = session?.user ?? null;
     if (!user) return EMPTY;
+
+    // Issue #370: read the save only after the guest Top Talent result is synced into the
+    // account. Shares the one memoised run with useJourneyCompletion (the late re-read is
+    // fired from there, so it is not duplicated here).
+    await awaitGuestResultSync(user.id);
 
     // Five of the reads below are keyed by the user id, not the profile id. Start them now,
     // beside the profile lookup, so they do not wait for it (#263: in series, Home paid for

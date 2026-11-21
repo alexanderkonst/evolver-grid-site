@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { JOURNEY_SEQUENCE, type JourneyItemId } from "@/data/journeySequence";
 import { LOAD_TIMEOUT_MS, REQUEST_TIMEOUT_MS, TimeoutError, withTimeout } from "@/lib/withTimeout";
+import { awaitGuestResultSync } from "@/lib/postAuthSideEffects";
+import { JOURNEY_ITEM_COMPLETED_EVENT } from "@/data/journeySequence";
 
 /**
  * useJourneyCompletion — composite completion-state hook for the JOURNEY pane.
@@ -108,6 +110,13 @@ export async function loadCompletion(): Promise<{ completion: CompletionMap; fai
     } = await supabase.auth.getSession();
     const user = session?.user ?? null;
     if (!user) return { completion: EMPTY_COMPLETION, failed: false };
+
+    // Issue #370: decide the gating AFTER the guest Top Talent result is synced into the
+    // account (a freshly confirmed player lands here before the sync has finished). If the
+    // sync outlasts the wait, re-read once it lands.
+    await awaitGuestResultSync(user.id, {
+        onLate: () => window.dispatchEvent(new CustomEvent(JOURNEY_ITEM_COMPLETED_EVENT, { detail: { id: "guest-sync" } })),
+    });
 
     // Step 2: lookup the game_profiles row. Read-only — do NOT create one if missing.
     // Some predicates only need user.id (e.g. user_assets), so a missing profile

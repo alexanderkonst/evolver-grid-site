@@ -51,14 +51,35 @@ import { migrateGuestDataToProfile } from "@/modules/zone-of-genius/saveToDataba
 // 2026-10-24 incident: claims go through the ownership guard (see file).
 import { claimAnonymousZogIfAllowed } from "@/lib/anonClaimGuard";
 
-// Track which user IDs have had `claim-anonymous-zog` invoked for them
-// in this browser session. Prevents redundant calls when SIGNED_IN
-// fires multiple times for the same user (which can happen on token
-// refresh in some supabase-js versions). Cleared on SIGNED_OUT so the
-// next sign-in (potentially a different user on a shared browser) is
-// processed fresh. Also cleared per-user when claim exhausts retries
-// so a future SIGNED_IN can re-attempt.
-const claimAttemptedFor = new Set<string>();
+// One guest-result sync per user ID per page load, memoised as a promise so every
+// caller (the SIGNED_IN listener below, and the gating loaders via
+// `awaitGuestResultSync`) shares the SAME in-flight run. Prevents redundant calls when
+// SIGNED_IN fires multiple times for the same user (token refresh in some supabase-js
+// versions) and prevents the migrate/claim double-INSERT race documented above.
+// Cleared on SIGNED_OUT so the next sign-in (potentially a different user on a shared
+// browser) is processed fresh. Also cleared per-user when claim exhausts retries so a
+// future SIGNED_IN can re-attempt.
+const syncByUser = new Map<string, Promise<void>>();
+
+// Issue #370: a loader (not a sign-in transition) only needs to run the sync the first
+// time on this device. Once it has finished cleanly for a user, remember that.
+const SYNC_DONE_KEY_PREFIX = "fytt:guest-sync-done:v1:";
+
+function wasSyncedBefore(userId: string): boolean {
+    try {
+        return typeof window !== "undefined" && window.localStorage.getItem(SYNC_DONE_KEY_PREFIX + userId) === "1";
+    } catch {
+        return false;
+    }
+}
+
+function rememberSynced(userId: string): void {
+    try {
+        if (typeof window !== "undefined") window.localStorage.setItem(SYNC_DONE_KEY_PREFIX + userId, "1");
+    } catch {
+        // storage disabled: the loader just re-runs the (idempotent) sync next load.
+    }
+}
 
 let installed = false;
 
@@ -83,7 +104,7 @@ let installed = false;
  * debugging; for prod observability, edge-function logs in the
  * Supabase dashboard show failure rates.
  */
-async function attemptClaimWithRetry(userId: string): Promise<void> {
+async function attemptClaimWithRetry(): Promise<boolean> {
     const MAX_ATTEMPTS = 2;
     const RETRY_DELAY_MS = 1500;
 
@@ -91,7 +112,7 @@ async function attemptClaimWithRetry(userId: string): Promise<void> {
         try {
             const result = await claimAnonymousZogIfAllowed("postAuth");
             if (result === "error") throw new Error("claim-anonymous-zog failed");
-            return; // success (or deliberately skipped) — done
+            return true; // success (or deliberately skipped) — done
         } catch (err) {
             console.warn(
                 `[postAuthSideEffects] claim attempt ${attempt}/${MAX_ATTEMPTS} failed:`,
@@ -105,7 +126,7 @@ async function attemptClaimWithRetry(userId: string): Promise<void> {
         }
     }
 
-    // All attempts exhausted. Clear the dedup-set entry so the next
+    // All attempts exhausted. The caller clears the memoised entry so the next
     // SIGNED_IN for this user (next session, magic-link click, manual
     // sign-out + sign-in) re-attempts cleanly. The unclaimed row in
     // `anonymous_genius_results` is preserved server-side, so eventual
@@ -113,7 +134,67 @@ async function attemptClaimWithRetry(userId: string): Promise<void> {
     console.error(
         "[postAuthSideEffects] claim exhausted retries — will retry on next sign-in. Snapshot data is preserved server-side.",
     );
-    claimAttemptedFor.delete(userId);
+    return false;
+}
+
+/**
+ * Sync the guest Top Talent result into the signed-in account: migrate the localStorage
+ * buffer FIRST, claim the anonymous row SECOND (see the sequencing note in the listener).
+ * Memoised per user; callers share one run. `force` (a real sign-in transition) ignores
+ * the "already synced on this device" memory.
+ */
+function syncGuestResult(userId: string, force: boolean): Promise<void> {
+    const existing = syncByUser.get(userId);
+    if (existing) return existing;
+    if (!force && wasSyncedBefore(userId)) return Promise.resolve();
+
+    const run = (async () => {
+        let migrated = true;
+        try {
+            await migrateGuestDataToProfile();
+        } catch (err) {
+            migrated = false;
+            console.warn("[postAuthSideEffects] migrateGuestDataToProfile failed:", err);
+        }
+        // attemptClaimWithRetry handles its own retries.
+        const claimed = await attemptClaimWithRetry();
+        // Whatever was cached before the result reached the account is stale now.
+        clearCachedZogSnapshot();
+        if (claimed) {
+            if (migrated) rememberSynced(userId);
+        } else {
+            syncByUser.delete(userId); // let a later SIGNED_IN / load try again
+        }
+    })();
+    syncByUser.set(userId, run);
+    return run;
+}
+
+/**
+ * Issue #370: gate on the sync. A player who just confirmed their email lands on a gated
+ * route (e.g. /mission-discovery) with a session but with the guest Top Talent not yet in
+ * the account; reading the save before the sync finishes showed «Not open yet». The
+ * loaders call this before they read, so the gate is decided AFTER the result is synced.
+ * Bounded: a slow edge function never holds the page (the sync keeps running; `onLate`
+ * fires if it finishes after the wait gave up so the caller can re-read). Never throws.
+ */
+export async function awaitGuestResultSync(
+    userId: string,
+    opts: { timeoutMs?: number; onLate?: () => void } = {},
+): Promise<void> {
+    const { timeoutMs = 6000, onLate } = opts;
+    try {
+        const sync = syncGuestResult(userId, false);
+        let timer: ReturnType<typeof setTimeout> | undefined;
+        const timedOut = new Promise<"timeout">((resolve) => {
+            timer = setTimeout(() => resolve("timeout"), timeoutMs);
+        });
+        const outcome = await Promise.race([sync.then(() => "done" as const), timedOut]);
+        if (timer) clearTimeout(timer);
+        if (outcome === "timeout" && onLate) void sync.then(onLate, () => {});
+    } catch (err) {
+        console.warn("[postAuthSideEffects] awaitGuestResultSync failed:", err);
+    }
 }
 
 /**
@@ -130,7 +211,7 @@ export function installPostAuthSideEffects(): void {
         // processed fresh.
         if (event === "SIGNED_OUT") {
             clearCachedZogSnapshot();
-            claimAttemptedFor.clear();
+            syncByUser.clear();
             return;
         }
 
@@ -142,49 +223,19 @@ export function installPostAuthSideEffects(): void {
         // since returning users have already been claimed.
         if (event === "SIGNED_IN" && session?.user?.id) {
             const userId = session.user.id;
-            if (claimAttemptedFor.has(userId)) return;
-            claimAttemptedFor.add(userId);
+            if (syncByUser.has(userId)) return;
 
             // Day 61 (Sasha 2026-05-04 20:00): MIGRATE guest data
-            // BEFORE claim. Closes Case 2 from the edge-case audit:
-            // user took quiz unauthed → guest_appleseed_data lives in
-            // localStorage → user signs in via ANY path (signup,
-            // magic-link recovery for already-registered email,
-            // password). Without this hook, only MeGate.onSuccess
-            // (fresh signup) called migrateGuestDataToProfile —
-            // every other sign-in path orphaned the localStorage
-            // data, and the user's NEW quiz results were silently
-            // lost in favor of their OLD existing snapshot.
+            // BEFORE claim, via ANY sign-in path (signup, magic-link,
+            // password) — see syncGuestResult for the sequencing and the
+            // reasons (migrate = SELECT-then-UPDATE-or-INSERT, claim =
+            // blind INSERT; parallel runs would duplicate the snapshot).
+            // Issue #370: the same memoised run is what the gating loaders
+            // await, so they never read the save before it is synced.
             //
-            // Sequencing: migrate FIRST (awaited), claim SECOND.
-            // Why: claim-anonymous-zog INSERTs blindly when it
-            // finds an unclaimed anonymous_genius_results row.
-            // Migrate uses getOrCreateSnapshot (SELECT-then-UPDATE-
-            // or-INSERT). If both fired in parallel, both might
-            // INSERT and create duplicate snapshots. Sequencing
-            // means by the time claim runs, the snapshot row from
-            // migrate already exists — claim will still create one
-            // for the rare overlap user (had BOTH localStorage AND
-            // anonymous_genius_results) but that's an acceptable
-            // edge case (getOrCreateSnapshot returns most recent;
-            // user sees their data correctly).
-            //
-            // Async IIFE so the listener callback itself returns
+            // Not awaited here: the listener callback itself returns
             // synchronously (doesn't block other listeners).
-            // claimAttemptedFor dedup at top of block prevents
-            // double-firing if SIGNED_IN repeats for same user.
-            void (async () => {
-                try {
-                    await migrateGuestDataToProfile();
-                } catch (err) {
-                    console.warn(
-                        "[postAuthSideEffects] migrateGuestDataToProfile failed:",
-                        err,
-                    );
-                }
-                // attemptClaimWithRetry handles its own retries + cleanup.
-                attemptClaimWithRetry(userId);
-            })();
+            void syncGuestResult(userId, true);
 
             // Cache invalidation is decoupled from migrate/claim success.
             // Even if either is still in flight (or fails permanently),

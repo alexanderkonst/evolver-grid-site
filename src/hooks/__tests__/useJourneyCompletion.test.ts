@@ -22,6 +22,9 @@ vi.mock("@/integrations/supabase/client", () => ({
   },
 }));
 
+// Issue #370: loadCompletion waits for the guest-result sync (tested in postAuthSideEffects.test.ts).
+vi.mock("@/lib/postAuthSideEffects", () => ({ awaitGuestResultSync: vi.fn(async () => {}) }));
+
 import { loadCompletion } from "../useJourneyCompletion";
 import { LOAD_TIMEOUT_MS, REQUEST_TIMEOUT_MS, TimeoutError, withTimeout } from "@/lib/withTimeout";
 

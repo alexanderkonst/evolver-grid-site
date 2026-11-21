@@ -628,7 +628,13 @@
     "lastNamePlaceholder": "Фамилия",
     "passwordHint": "Минимум 6 символов.",
     "creatingAccount": "Создаём аккаунт…",
-    "signUpButton": "Зарегистрироваться"
+    "signUpButton": "Зарегистрироваться",
+    "signUpRateLimit": "Подожди минуту и попробуй ещё раз.",
+    "signUpUnconfirmed": "Твой аккаунт ждёт подтверждения. Открой ссылку из письма, чтобы завершить регистрацию.",
+    "signUpWeakPassword": "Пароль должен быть не короче 6 символов.",
+    "signUpGenericError": "Не удалось создать аккаунт. Попробуй ещё раз.",
+    "checkInboxHint": "Письма нет? Загляни в папку «Спам».",
+    "loginUnconfirmed": "Твой аккаунт ждёт подтверждения. Открой ссылку из письма и затем войди."
   },
   "resetPassword": {
     "toastMismatchTitle": "Пароли не совпадают",
