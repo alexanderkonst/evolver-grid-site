@@ -16,7 +16,7 @@ Founders who build a business out of who they are, and build it alongside each o
 A small circle of founders, each building a unique business: one only they could run, because it grows out of their own gift. We work on the same method, keep the same rhythm, and help each other where our businesses meet.
 
 - **Same method.** Uniqueness → Shadow → Myth → Tribe → Promise → offer → landing → first clients ([the path](/path)).
-- **Same rhythm.** We plan and review by the lunar month: quiet weeks to gather and plant, loud weeks to lead and harvest.
+- **Same rhythm.** [Slot, open question С5: shared lunar rhythm or one-to-one?] Draft line: we plan and review by the lunar month: quiet weeks to gather and plant, loud weeks to lead and harvest.
 - **Each other.** Introductions, joint offers and shared clients where two businesses fit together.
 
 ## Who it is for
@@ -59,4 +59,5 @@ More founders appear here as their own pages go live.
 
 - Founder slots: by the K2 readiness map, one core founder has a live page today; the other two are not ready to link.
 - «Membership is by invitation» keeps /path step 7 as it is.
+- «Same rhythm» stays a slot until you answer С5 (shared lunar rhythm or one-to-one).
 - The page has no price for joining: the only money term is the 10% once the business earns. Say if joining should carry a fee.
