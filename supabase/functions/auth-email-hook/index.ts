@@ -130,7 +130,7 @@ const handler = createAuthEmailHandler({
   sendUrl: Deno.env.get('LOVABLE_SEND_URL'),
   emails: {
     signup: {
-      subject: 'Confirm your email',
+      subject: 'The Game of Being You: confirm your email',
       render: (data) =>
         React.createElement(SignupEmail, {
           siteName: SITE_NAME,

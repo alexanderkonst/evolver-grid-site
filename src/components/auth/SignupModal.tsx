@@ -16,6 +16,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { localizedOrigin } from "@/i18n/localeScope";
 import { useTranslation } from "react-i18next";
+import { loginErrorLine, signUpErrorLine } from "@/lib/authErrors";
 import { User, Sparkles } from "lucide-react";
 
 interface SignupModalProps {
@@ -99,7 +100,7 @@ const SignupModal = ({
         } catch (error: any) {
             toast({
                 title: t("signupModal.signupErrorTitle"),
-                description: error.message,
+                description: signUpErrorLine(error, t),
                 variant: "destructive",
             });
         } finally {
@@ -132,7 +133,7 @@ const SignupModal = ({
         } catch (error: any) {
             toast({
                 title: t("signupModal.loginErrorTitle"),
-                description: error.message,
+                description: loginErrorLine(error, t),
                 variant: "destructive",
             });
         } finally {

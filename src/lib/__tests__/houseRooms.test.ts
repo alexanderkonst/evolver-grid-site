@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
-import { badgeResult, houseBadges, houseRooms, nextHouseRoom, type HouseRoomId } from "../houseRooms";
+import { badgeResult, houseBadges, houseRooms, lockedRoomFold, nextHouseRoom, type HouseRoomId } from "../houseRooms";
 import { placeSaveFromSheet } from "../placeState";
 
 const NOW = new Date("2026-10-28T18:00:00Z");
@@ -129,5 +129,29 @@ describe("badgeResult", () => {
     expect(badgeResult("assess-qol", sheet)).toBeNull();
     expect(badgeResult("map-assets", sheet)).toBeNull();
     expect(badgeResult("build-business", sheet)).toBeNull();
+  });
+});
+
+describe("lockedRoomFold (issue #375)", () => {
+  const closedOf = (rooms: ReturnType<typeof houseRooms>) => rooms.filter((r) => r.state === "closed");
+
+  it("a fresh player sees one locked block and one fold line, not four blocks", () => {
+    const rooms = houseRooms(saveWith(["find-top-talent"]));
+    const { shown, folded } = lockedRoomFold(rooms);
+    expect(closedOf(rooms).length).toBeGreaterThan(2);
+    expect(shown).toBeDefined();
+    expect(shown?.line).toMatch(/^Opens when .+\. Inside: .+\.$/);
+    expect([shown, ...folded].map((r) => r?.id).sort()).toEqual(closedOf(rooms).map((r) => r.id).sort());
+  });
+
+  it("never leads with the soul-colors room: it waits on Spectrum Reading, not on a step", () => {
+    const { shown, folded } = lockedRoomFold(houseRooms(saveWith(["find-top-talent"])));
+    expect(shown?.id).not.toBe("colors");
+    expect(folded.map((r) => r.id)).toContain("colors");
+  });
+
+  it("shows nothing when no room is locked", () => {
+    const rooms = houseRooms(saveWith(JOURNEY_MAIN.map((i) => i.id), true)).map((r) => ({ ...r, state: "done" as const }));
+    expect(lockedRoomFold(rooms)).toEqual({ shown: undefined, folded: [] });
   });
 });

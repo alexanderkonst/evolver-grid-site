@@ -807,11 +807,11 @@ const ZoneOfGeniusEntry = () => {
             const result = await generateExcalibur(appleseed);
             setExcalibur(result);
             setStep("excalibur-result");
-        } catch (err) {
+        } catch {
             setError(t('zogEntry.errorGenerateExcalibur'));
             toast({
                 title: t('zogEntry.toastGenerationFailedTitle'),
-                description: err instanceof Error ? err.message : t('zogEntry.toastPleaseTryAgain'),
+                description: t('zogEntry.toastPleaseTryAgain'),
                 variant: "destructive",
             });
             setStep("appleseed-result");

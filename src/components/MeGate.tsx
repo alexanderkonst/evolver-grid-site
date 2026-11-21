@@ -14,6 +14,7 @@ import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { migrateGuestDataToProfile } from "@/modules/zone-of-genius/saveToDatabase";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { localizedOrigin } from "@/i18n/localeScope";
+import { loginErrorLine, signUpErrorLine } from "@/lib/authErrors";
 
 /**
  * MeGate — entry guard for /game/me.
@@ -404,7 +405,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
             } else {
                 toast({
                     title: t("meGate.toastCouldntSaveTitle"),
-                    description: raw,
+                    description: signUpErrorLine(err, t),
                     variant: "destructive",
                 });
             }
@@ -427,7 +428,7 @@ const SaveProfileCard = ({ onSuccess }: { onSuccess: () => void }) => {
         } catch (err: any) {
             toast({
                 title: t("meGate.toastCouldntOpenTitle"),
-                description: err.message,
+                description: loginErrorLine(err, t),
                 variant: "destructive",
             });
         } finally {

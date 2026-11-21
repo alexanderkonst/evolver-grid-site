@@ -7,9 +7,7 @@ import {
   Button,
   Container,
   Head,
-  Heading,
   Html,
-  Link,
   Preview,
   Section,
   Text,
@@ -21,52 +19,40 @@ import {
   header,
   brandMark,
   body,
-  h1,
   text,
-  link,
   button,
   footerWrap,
   footer,
 } from './_shared-styles.ts'
-import { BRAND_NAME, BRAND_TAGLINE } from '../senders.ts'
+import { BRAND_NAME, BRAND_TAGLINE, GAME_NAME } from '../senders.ts'
 
+// Issue #375: the signup confirmation in the game's voice. The game name, one line, one button.
+export const SIGNUP_EMAIL_LINE =
+  'Confirm your email to keep your top talent and open your mission.'
+
+// The auth hook passes siteName, siteUrl and recipient to every template; this one does not
+// use them (the preview data and the hook keep the same shape).
 interface SignupEmailProps {
-  siteName: string
-  siteUrl: string
-  recipient: string
+  siteName?: string
+  siteUrl?: string
+  recipient?: string
   confirmationUrl: string
 }
 
-export const SignupEmail = ({
-  siteName,
-  siteUrl,
-  recipient,
-  confirmationUrl,
-}: SignupEmailProps) => (
+export const SignupEmail = ({ confirmationUrl }: SignupEmailProps) => (
   <Html lang="en" dir="ltr">
     <Head />
-    <Preview>Confirm your email — your Top Talent awaits</Preview>
+    <Preview>{SIGNUP_EMAIL_LINE}</Preview>
     <Body style={main}>
       <Container style={container}>
         <Section style={header}>
-          <Text style={brandMark}>Find Your Top Talent</Text>
+          <Text style={brandMark}>{GAME_NAME}</Text>
         </Section>
         <Section style={body}>
-          <Heading style={h1}>Welcome. Let's confirm it's you.</Heading>
-          <Text style={text}>
-            Thanks for joining{' '}
-            <Link href={siteUrl} style={link}>
-              <strong>{siteName}</strong>
-            </Link>
-            . Confirm <strong>{recipient}</strong> to activate your account and
-            unlock your Top Talent.
-          </Text>
+          <Text style={text}>{SIGNUP_EMAIL_LINE}</Text>
           <Button style={button} href={confirmationUrl}>
             Confirm email
           </Button>
-          <Text style={{ ...text, marginTop: '32px', fontSize: '13px' }}>
-            If you didn't create an account, you can safely ignore this email.
-          </Text>
         </Section>
         <Section style={footerWrap}>
           <Text style={footer}>

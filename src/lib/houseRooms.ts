@@ -110,6 +110,18 @@ export const houseRooms = (save: PlaceSave): HouseRoom[] =>
 export const nextHouseRoom = (rooms: HouseRoom[]): HouseRoom | undefined =>
   rooms.find((r) => r.state === "next");
 
+/**
+ * Issue #375: a fresh player's Home stacked four «Opens when…» blocks. The next locked room
+ * shows as one block (its «Inside: …» line kept); the other locked rooms fold into one quiet
+ * line. «Next» is the first closed room in order that waits on a Journey step: the soul-colors
+ * room waits on Spectrum Reading, which is not built, so it is folded and never leads.
+ */
+export const lockedRoomFold = (rooms: HouseRoom[]): { shown?: HouseRoom; folded: HouseRoom[] } => {
+  const closed = rooms.filter((r) => r.state === "closed");
+  const shown = closed.find((r) => r.step) ?? closed[0];
+  return { shown, folded: closed.filter((r) => r !== shown) };
+};
+
 export type HouseBadge = {
   step: JourneyItemId;
   /** `done` = earned; anything else is a faint outline. */

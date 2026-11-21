@@ -16,6 +16,14 @@ import GameShellV2 from "@/components/game/GameShellV2";
 import { ArrowLeft, Mail, Sparkles } from "lucide-react";
 import { captureReferralIdFromUrl } from "@/lib/gameProfile";
 import { localizedOrigin } from "@/i18n/localeScope";
+import {
+  emailSendErrorLine,
+  isRateLimitError,
+  isUnconfirmedError,
+  isWeakPasswordError,
+  loginErrorLine,
+} from "@/lib/authErrors";
+import { hasGuestTopTalentResult } from "@/lib/firstVisit";
 // Day 51 night v2 (Sasha 2026-04-26): editorial v2 of the auth surface
 // reuses the landing's gold-text gradient + ornament rule so the auth
 // page reads as part of the same brand register, not a generic shadcn
@@ -35,18 +43,6 @@ type SignUpNotice =
   | { kind: "unconfirmed" }
   | { kind: "weakPassword" }
   | { kind: "error" };
-
-type AuthErrorLike = { message?: string; code?: string; status?: number } | null | undefined;
-
-const errorText = (error: AuthErrorLike) => `${error?.code ?? ""} ${error?.message ?? ""}`.toLowerCase();
-
-const isRateLimitError = (error: AuthErrorLike) =>
-  error?.status === 429 ||
-  /rate_limit|rate limit|for security purposes|only request this after/.test(errorText(error));
-
-const isUnconfirmedError = (error: AuthErrorLike) => /email_not_confirmed|not confirmed/.test(errorText(error));
-
-const isWeakPasswordError = (error: AuthErrorLike) => /weak_password|password should be/.test(errorText(error));
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -160,7 +156,7 @@ const Auth = () => {
     } catch (error: any) {
       toast({
         title: t('auth.magicLinkErrorTitle'),
-        description: error?.message ?? t('auth.tryAgain'),
+        description: emailSendErrorLine(error, t, 'auth.tryAgain'),
         variant: "destructive",
       });
     } finally {
@@ -294,7 +290,7 @@ const Auth = () => {
       toast({
         title: t('auth.loginFailedTitle'),
         // An account still waiting on its confirm link: say so (issue #370).
-        description: isUnconfirmedError(error) ? t('auth.loginUnconfirmed') : error.message,
+        description: loginErrorLine(error, t),
         variant: "destructive",
       });
     } finally {
@@ -317,7 +313,7 @@ const Auth = () => {
     } catch (error: any) {
       toast({
         title: t('auth.testLoginFailedTitle'),
-        description: error.message,
+        description: loginErrorLine(error, t),
         variant: "destructive",
       });
     } finally {
@@ -353,7 +349,7 @@ const Auth = () => {
     } catch (error: any) {
       toast({
         title: t('auth.resetEmailFailedTitle'),
-        description: error.message,
+        description: emailSendErrorLine(error, t, 'auth.resetGenericError'),
         variant: "destructive",
       });
     } finally {
@@ -561,11 +557,16 @@ const Auth = () => {
   // forward promise into mission discovery. The generic onboarding
   // line ("Unlock your unique business") was built for build-path
   // users heading toward Ignite — wrong direction for this user.
+  // Issue #375: a player who arrives with a finished reading kept on this device (after the
+  // reveal) is told what the account gives, in terms of the result. Plain auth keeps its line.
+  const arrivesWithSavedResult = !!queryNext && mode !== "login" && hasGuestTopTalentResult();
   const subtitleText = isQolRedirect
     ? t('auth.subtitleQol')
     : isCockpitRedirect
       ? t('auth.subtitleCockpit')
-      : isMatchPathEntry && mode !== "login"
+      : arrivesWithSavedResult
+        ? t('auth.subtitleSavedResult')
+        : isMatchPathEntry && mode !== "login"
       ? t('auth.subtitleMatch')
       : isOnboardingFlow
         ? t('auth.subtitleOnboarding')
