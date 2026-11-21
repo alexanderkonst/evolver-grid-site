@@ -29,7 +29,7 @@ Design compass (not tasks): actions in the game world are done in the real one; 
 | # | Feature | Done when | Status | Yes |
 |---|---|---|---|---|
 | B1 | First game levels free | a guest plays the first levels with no payment | partial (guest path, #354) | — |
-| B2 | Hero's journey questionnaire | test → result page → into the game | partial `/quiz`, `HeroQuiz`; door into the game queued after #354 | — |
+| B2 | Hero's journey questionnaire | test → result page → into the game | live: `/quiz` fresh and saved reads (`/quiz/r/:id`) carry a quiet «Continue in the game» link to `/village` (issue #362) | — |
 | B3 | Infographic sets per person and situation | a player gets a set picked for them | partial: [BOOK.md](../assets/infographics/BOOK.md) | — |
 | B4 | Before & after and other psychoactive images | a set shown in the game/lead flow | none | — |
 

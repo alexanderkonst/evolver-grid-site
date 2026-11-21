@@ -8830,6 +8830,7 @@
       "saved": "Your chapter is saved to your profile.",
       "error": "Couldn't save it — try again in a moment."
     },
+    "continueInGame": "Continue in the game",
     "ext": {
       "chapter": {
         "eyebrow": "YOUR CURRENT CHAPTER",
