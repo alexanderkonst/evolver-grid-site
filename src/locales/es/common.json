@@ -87,6 +87,7 @@
     },
     "state": {
       "closed": "Aún no abre",
+      "gated": "Se abre cuando tu talento principal está guardado",
       "next": "Siguiente",
       "done": "Hecho",
       "live": "En vivo"
@@ -5265,6 +5266,7 @@
     "keepLitButton": "Mantenla encendida",
     "keepLitHint": "Un correo, para poder enviarte el enlace.",
     "keepLitNotNow": "Ahora no, recorrer la aldea",
+    "keepLitClose": "Cerrar",
     "keepLitSent": "Tu luz es tuya. Un enlace va en camino a {{email}}.",
     "saveCharacterResultSaved": "Tu resultado se guarda en tu personaje.",
     "gateResultReady": "Tu resultado está listo",

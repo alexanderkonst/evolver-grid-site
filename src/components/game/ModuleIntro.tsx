@@ -84,6 +84,9 @@ const ModuleIntro = ({ module, onStart, state: forced, ready = false, neverClose
         state={state}
         className="mf__state"
         bodyClassName="mf__copy"
+        // Issue #354: no floating «Next» word on the Intro. The one verb button below it is the
+        // next move; a closed Intro keeps its state word.
+        tag={state !== "next"}
         scene={
           place ? (
             <img

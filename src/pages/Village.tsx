@@ -26,6 +26,7 @@ import { useSoulColors } from "@/hooks/useSoulColors";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
 import {
   awaitingSave,
+  gatedByUnsavedTalent,
   houseLit,
   nextMove,
   nextMoveCopy,
@@ -351,6 +352,12 @@ const Village = () => {
   const changes = useVillageChanges(sheet.userId, VILLAGE_PLACES, save, ready);
   const changesLine = whatChangedLine(changes.fresh, t);
   const isNew = (p: VillagePlace) => changes.fresh.includes(p);
+  // Issue #354: Home waits on the SAVE, not on the reveal. For a guest who has revealed, its tag
+  // says so, in step with the next-move card, instead of «Not open yet».
+  const gatedText = (p: VillagePlace) =>
+    ready && gatedByUnsavedTalent(p, save)
+      ? tr(t, "village.state.gated", "Opens when your top talent is saved")
+      : undefined;
   // The first sale (J12, WP-11) lights the player's house on the map; its own state is unchanged.
   const isLit = (p: VillagePlace) => p.key === HOUSE_PLACE && ready && houseLit(save);
   // Places that took their colour since the last visit: the colour fills into them once (WP-15).
@@ -550,7 +557,7 @@ const Village = () => {
                           >
                             <span className="vl-dot ps-fade" aria-hidden="true" />
                             <span className="vl-pin__name">{placeName(p, t)}</span>
-                            <PlaceStateTag state={shown[i]} />
+                            <PlaceStateTag state={shown[i]} text={gatedText(p)} />
                           </a>
                         ) : (
                           <Link
@@ -638,7 +645,7 @@ const Village = () => {
                     // Issue #270: closed means aria-disabled and no navigation; the line says what opens it.
                     <a role="link" aria-disabled="true" tabIndex={0} className="is-locked">
                       <span className="vl-list__name">{placeName(p, t)}</span>
-                      <PlaceStateTag state={shown[i]} />
+                      <PlaceStateTag state={shown[i]} text={gatedText(p)} />
                       <span className="vl-list__line">{placeLine(p, shown[i], t, signedIn === true, playerName)}</span>
                     </a>
                   ) : (

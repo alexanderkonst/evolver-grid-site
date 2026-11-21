@@ -9,6 +9,7 @@ import {
   awaitingSave,
   closedLine,
   emptyPlaceSave,
+  gatedByUnsavedTalent,
   houseLit,
   moveTitle,
   nextJourneyStep,
@@ -447,8 +448,21 @@ describe("a guest with a finished test (WP-7b: result first, account only to sav
 
   it("Reception is no longer the glowing next move, and nothing else claims it", () => {
     const s = statesOf(guest());
-    expect(s.reception).toBe("open");
+    // Issue #354: a revealed top talent finishes Reception (it was «open / Unfinished»).
+    expect(s.reception).toBe("done");
     expect(Object.values(s)).not.toContain("next");
+  });
+
+  it("Reception is still unfinished with no result, and Home reads as gated on the save (issue #354)", () => {
+    expect(placeState(place("reception"), saveWith([], { events: { "guest-result": false } }))).not.toBe("done");
+    const save = guest();
+    expect(gatedByUnsavedTalent(place("house"), save)).toBe(true);
+    expect(gatedByUnsavedTalent(place("quest-board"), save)).toBe(true);
+    // Places that wait on later steps are plainly «not open yet».
+    expect(gatedByUnsavedTalent(place("workshop"), save)).toBe(false);
+    // Without a result on the device, or once saved, nothing is gated on the save.
+    expect(gatedByUnsavedTalent(place("house"), saveWith([]))).toBe(false);
+    expect(gatedByUnsavedTalent(place("house"), guest(["find-top-talent"]))).toBe(false);
   });
 
   it("once saved, the next move is the mission at Home (J2)", () => {

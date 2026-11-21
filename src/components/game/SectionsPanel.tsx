@@ -1245,10 +1245,11 @@ const SectionsPanel = ({
                 pane's compactness. Plan B: keep pane 2's compact h-16
                 header at its natural Y, and align the top-right
                 rotating logo to *this* Y instead. */}
-            <div className="h-16 px-4 flex items-center justify-between">
+            {/* Issue #354: min-h (not h) so a two-line place line is shown whole, not cut with «…». */}
+            <div className="min-h-16 px-4 py-2 flex items-center justify-between">
                 <div className="min-w-0">
-                    <span
-                        className="block text-[11px] font-semibold"
+                    <div
+                        className="text-[11px] font-semibold"
                         style={{
                             fontFamily: "'Cormorant Garamond', serif",
                             color: "#f4d472",
@@ -1258,12 +1259,13 @@ const SectionsPanel = ({
                         }}
                     >
                         {placeName ?? spaceData.title}
-                    </span>
-                    {/* The place's one line from the village map, under its name. */}
+                    </div>
+                    {/* The place's one line from the village map, under its name. A real block
+                        (issue #354), so name and line never read as one run-together string. */}
                     {placeLine && (
-                        <span className="block mt-0.5 text-[12px] italic text-white/60 truncate">
+                        <p className="mt-0.5 text-[12px] italic leading-snug text-white/60 break-words">
                             {placeLine}
-                        </span>
+                        </p>
                     )}
                 </div>
                 {onClose && (
