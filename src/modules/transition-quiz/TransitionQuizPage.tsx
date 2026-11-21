@@ -52,6 +52,7 @@ import {
 } from "./engine";
 import { ExtResultScreen } from "./ExtResultScreen";
 import { SaveMyRead } from "./SaveMyRead";
+import { ContinueInGameLink } from "./ContinueInGameLink";
 
 import "./TransitionQuizPage.css";
 
@@ -630,6 +631,9 @@ const TransitionQuizPage = () => {
               />
             )
           )}
+
+          {/* B2: the quiet door into the game, under the finished read (not-yet or result). */}
+          {(screen === "result" || screen === "notYet") && <ContinueInGameLink />}
 
           {screen === "buyingFrame" && (
             <BuyingFrameScreen

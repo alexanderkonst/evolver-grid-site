@@ -32,6 +32,7 @@ import {
   CurrentChapterScreen,
 } from "./TransitionQuizPage";
 import { ExtResultScreen } from "./ExtResultScreen";
+import { ContinueInGameLink } from "./ContinueInGameLink";
 import "./TransitionQuizPage.css";
 
 interface FetchedResult {
@@ -261,7 +262,12 @@ const TransitionQuizResultPage = () => {
           </section>
         )}
 
-        {loadState === "ready" && result && <ReconstructedResult t={t} stageNames={stageNames} result={result} />}
+        {loadState === "ready" && result && (
+          <>
+            <ReconstructedResult t={t} stageNames={stageNames} result={result} />
+            <ContinueInGameLink />
+          </>
+        )}
       </div>
     </main>
   );
