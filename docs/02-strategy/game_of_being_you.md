@@ -1355,7 +1355,7 @@ Rule for every mechanic: a counter, streak or number only where it mirrors a rea
 | 5 | Button "Create a new digital village" | Ingress PG-1 | World map, A11 | yes |
 | 6 | Constructor: presets and editing first, AI generation second; credits may buy generations, never artifacts, badges or rights | Sasha + §23.2 | constructor | "yes, but needs careful work" |
 | 7 | Rhythm: day = one real act; week = Monday step -> Sunday Save Point; month = real moon -> Harvest; year = New Year or the player's birthday. No 6-week seasons | Heroes III H3-6 | new row "Rhythm", A9, A13 | "LOVE IT!!!" |
-| 8 | Four rings as the biological clock: day / week / month / year; fill only from real acts, missed stays empty, never red. Mockup: research/cult-mechanics/mockups/four-rings.png | Apple Watch rings + H3-6 | Your House, A9 | yes; design open |
+| 8 | Four rings as the personal biological clock: day / week / month / year, from the Equilibrium engine, NOT tied to actions (Sasha 16:35), on the main game screen. Spec: [docs/specs/equilibrium/biologic_clock_rings_spec.md](../specs/equilibrium/biologic_clock_rings_spec.md) | Apple Watch rings + H3-6 | A9, main game screen | yes; build this lunar cycle |
 | 9 | Reviews of shops and products (Market) | Couchsurfing CS-2 | A6, A7 | yes |
 | 10 | Circles: our own Luma inside GoBY; each circle has a host who is easy to replace | Facebook FB-2, Mafia | Circles project | "crucial"; host rules for first launch open |
 | 11 | Artifact sets: a finished chapter set opens the right to the physical artifact Sasha makes | Heroes III H3-8 | A12 | "VERY COOL!!!" |
