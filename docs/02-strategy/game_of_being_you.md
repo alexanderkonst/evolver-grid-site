@@ -1370,6 +1370,8 @@ Rule for every mechanic: a counter, streak or number only where it mirrors a rea
 ### 24.2 Considering
 - Needs & Offers: each player has a Needs line and an Offers line; an offer can be sent only to someone whose need matches; three exchange modes (gift, quest at a place, paid), one stamp; no internal currency. Open: offers only on a need? payment inside the game or direct?
 - Geocaching: players hide caches for each other in real places.
+- Village charter (Burning Man regionals): "Create a new digital village" opens once the founders accept a five-line charter. Draft (Hark, 2026-11-21, awaiting Sasha's yes to the text): 1. A real place: people meet here in person. 2. A real person behind every avatar. 3. Gift first. 4. Deeds are confirmed by people, never bought. 5. The host can always be handed on.
+- Feed of real deeds (Sasha 2026-11-21: "this is a great feed"; Strava kudos): only status updates of confirmed acts (stamp, achievement, finished course, launched business), from your village and people you follow; one tap "I see you" plus an optional written line; the doer sees who tapped, nobody sees a count; the feed ends ("you're up to date"), no endless scroll. Replaces FB-3's "never a Like" with "no counts, no endless feed". Hark recommends; awaiting Sasha's yes.
 - Secret Santa: gift of one's talent to an unknown villager at the moon's Harvest; both get a stamp.
 
 ### 24.3 Open
