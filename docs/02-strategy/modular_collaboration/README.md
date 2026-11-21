@@ -7,6 +7,8 @@ Face 2 of the Golden Age ([golden_age_canon.md](../golden_age_canon.md)): Sasha'
 |---|---|---|
 | [connector.md](./connector.md) | The connector: AI reads a partner's project into module cards; link from a game space into their ecosystem; integration roadmap 0–4; attribution and terms | Draft v2, 2026-11-21 |
 | [our_rack.md](./our_rack.md) | Our platform as a rack: village places as slots, our modules as cards, what level 0 takes | Draft v1, 2026-11-21 |
+| [launch_from_corpus.md](./launch_from_corpus.md) | What the corpus already decides for the launch (terms, matchmaking, modules, assembly) and what blocks it | v1, 2026-11-21 |
+| [research/](./research/) | Three full reads: matchmaking, modules, assembly | 2026-11-21 |
 | [landing.md](./landing.md) | Landing «bring your module»: how the industry builds partner pages, outline for ours, Ordana as a peer | Draft v1, 2026-11-21 |
 
 ## Plan v2 (approved by Sasha 2026-11-21 13:15)
@@ -17,6 +19,9 @@ Face 2 of the Golden Age ([golden_age_canon.md](../golden_age_canon.md)): Sasha'
 - [~] 5. Landing (research + outline done; build waits for the first partner row) «bring your module»: how partner and app-marketplace pages are built, then a draft (published only with his yes)
 - [ ] 6. Funnel: find projects → cards → proposal → LinkedIn request (Sasha writes) → one CTA; tracker
 - [ ] 7. Thought leadership on LinkedIn; session exchange (list is Sasha's)
+
+## Launch (Sasha, 2026-11-21 13:29)
+One epic launch: one message from Sasha to many people at once, inviting partners (very simple, concrete terms and connect conditions) and players into the game, together with other initiatives. Partners connect on their own; Sasha need not know someone connected. Stage 1 may be partly manual. The landing does not wait for a partner.
 
 ## Open for Sasha
 - Terms: commission % on sales from game referrals, or free listing for the first partners.

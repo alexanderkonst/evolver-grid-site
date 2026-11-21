@@ -55,13 +55,13 @@ Two ways to offer it: the full roadmap («start at 0, grow as it pays»), or two
 
 Attribution at level 0 is simple: we know who clicked the link. Each partner link carries a referral id per player; partners report sales against it (level 1 automates that).
 
-Terms follow your rule (no equity; capped rev share or debt) and your collaboration model (revenue share, IP stays with its creator):
-- **A. Commission on attributed sales** (capped rev share): partner pays a % of sales from game-referred clients. My pick.
-- **B. Free listing for the first partners**, commission later: fastest way to fill the Academy.
-- **C. Session exchange** for partners you personally want (from v1).
-- **D. Do nothing.**
+Terms already exist in the canon (found 2026-11-21, see [launch_from_corpus.md](./launch_from_corpus.md)); no new menu is needed:
+- **Partner sells on their own site (levels 0–1):** commission-only, 10% of what each client who arrives through the game pays them; no clients, nothing to pay. Sasha, 2026-11-02: «ЭТО НАША СТРАТЕГИЯ» ([matchmaker_brief_v5.1.md](../briefs/matchmaker_brief_v5.1.md), «Build in the village»).
+- **Sold through our checkout (level 2+):** the hosted split, author 66.6% / platform 33.3% when the game brought the buyer, 90% / 10% when the author did ([monetization_strategies.md](../monetization_strategies.md) §6, decided 2026-10-30).
+- Spirit: [the_three_terms.md](../../05-reference/the_three_terms.md): «The gift is free. The system is paid. The name is permanent.» No equity, no pooled funds.
+- Self-serve acceptance model: the Distributor Agreement's «nothing to sign on day one, the act of going commercial is the act of accepting».
 
-Needed from you: the % for A, or a yes to B for the first partners.
+Needed from Sasha: confirm 10% as the one line in the launch message (Hark's pick, likely), and whether to add a time bound per client (Three Terms prefers revenue share «bounded in time and project»).
 
 ## 6. Interoperability questions (open)
 
@@ -79,7 +79,7 @@ Level 0 is only a link; if few people play, partners see little flow and the off
 - [ecosystem-offer.md](../../templates/ecosystem-offer.md): proposal that fits a partner's mission
 - [collaboration_spectrum.md](../collaboration_spectrum.md): 11 readiness stages
 - [community_whitelabel_spec.md](../community_whitelabel_spec.md): partner skins (level 3)
-- [ai_matchmaker_brief.md](../ai_matchmaker_brief.md): founder+AI ↔ founder+AI
+- [ai_matchmaker_brief.md](../ai_matchmaker_brief.md), [matchmaking_strategy.md](../matchmaking_strategy.md): person-to-person matching; project profiles parked in §7
 
 ## Next
 - Phase 2 landing «bring your module»: how the industry builds partner and app-marketplace pages, then a draft.
