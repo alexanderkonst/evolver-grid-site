@@ -1179,16 +1179,8 @@ Sunday Save Point, Circle at new moon, Harvest at full moon. Sasha's idea: give 
 ### 21.6 Daily journal in the house (good, secondary)
 A journal in Your House, dictated through Your AI, with deep prompts. Possibly the daily hook, not the main dynamic.
 
-### 21.7 Learn from real-life games (to research; Hark's starting list)
-| Game | What it teaches us |
-|---|---|
-| Pokémon GO / Ingress | real places on a real map; gather in person; portals = real landmarks |
-| Heroes of Might and Magic | build your town, your hero, expand across a map |
-| Animal Crossing | a slow daily loop; visiting and trading between islands |
-| Duolingo | one linear path, visible next step, forgiving streaks |
-| Habitica | character grows from real-life tasks |
-| Strava | real activity → social recognition, local clubs, segments |
-| Couchsurfing / Burning Man regionals | ambassadors per city, gift economy, real gatherings |
+### 21.7 Learn from real-life games
+Done as the cult-mechanics research (2026-11-21). Decisions: §24. Research: [research/cult-mechanics/](./research/cult-mechanics/).
 
 ### 21.8 Next
 Game-design session Sasha × Hark (next session): the quest sequence and its artifacts, what a village unlocks, what the world map shows on day one (San Pancho + one more real village).
@@ -1346,3 +1338,44 @@ Real-life item (Sasha's extension):
 - Sequence: earn it in the game first, then unlock the right to buy the real one. Cult story, world-class designs, new revenue line.
 
 Open: design protection before any physical sale; which stage unlocks the purchase; maker/jeweler, price, lead time; whether village quests (§23.4) unlock village-only artifacts.
+
+## 24. Mechanics from cult games and real-life games (Sasha's verdicts, 2026-11-21)
+
+Single list of what we take into the game from the cult-mechanics research. Reasoning and sources: [research/cult-mechanics/](./research/cult-mechanics/) (registry.md = status per mechanic, games/ = one analysis per game, taxonomy.md = map of all mechanics). A row of `game_launch_spec.md` changes only on Sasha's yes to its exact text.
+
+Rule for every mechanic: a counter, streak or number only where it mirrors a real-world act, never a mindless hook. No linear planning or time estimates (Golden Age).
+
+### 24.1 Accepted
+| # | What we include | From | Lands | Sasha |
+|---|---|---|---|---|
+| 1 | Forgiving streak on real acts only (2 earned freezes, never sold) | Duolingo DL-1 | A13 (in spec) | yes |
+| 2 | Town screen: Your House grows building by building from real steps | Heroes III H3-1 | Your House, A12 | "cool! cult status" |
+| 3 | Interior from earned artifacts | Ready Player One RPO-2 | Your House, A12 | "cool" |
+| 4 | Constructor of buildings, interiors and villages; opens by steps (real deeds, no artificial limits) | H3-3, RPO-2, PG-1 | new row + §23 | yes |
+| 5 | Button "Create a new digital village" | Ingress PG-1 | World map, A11 | yes |
+| 6 | Constructor: presets and editing first, AI generation second; credits may buy generations, never artifacts, badges or rights | Sasha + §23.2 | constructor | "yes, but needs careful work" |
+| 7 | Rhythm: day = one real act; week = Monday step -> Sunday Save Point; month = real moon -> Harvest; year = New Year or the player's birthday. No 6-week seasons | Heroes III H3-6 | new row "Rhythm", A9, A13 | "LOVE IT!!!" |
+| 8 | Four rings as the biological clock: day / week / month / year; fill only from real acts, missed stays empty, never red. Mockup: research/cult-mechanics/mockups/four-rings.png | Apple Watch rings + H3-6 | Your House, A9 | yes; design open |
+| 9 | Reviews of shops and products (Market) | Couchsurfing CS-2 | A6, A7 | yes |
+| 10 | Circles: our own Luma inside GoBY; each circle has a host who is easy to replace | Facebook FB-2, Mafia | Circles project | "crucial"; host rules for first launch open |
+| 11 | Artifact sets: a finished chapter set opens the right to the physical artifact Sasha makes | Heroes III H3-8 | A12 | "VERY COOL!!!" |
+| 12 | Village music: A8 radio plays the village's musicians (Radio San Pancho stream, issue #371) | Heroes III H3-9 | A8 | "connect it" |
+| 13 | Season Harvest of real projects: villagers offer real backing, no winners; part of the Collective; first version = locked section + email collection | Evoke JM-3 | Collective, A11 | "yes!" |
+| 14 | Camino passport: the player's book of stamps; a stamp = a villager confirming a real quest at their place; a full page = artifact set (#11). Visual form of A12 badges and village visits | Camino de Santiago | A12 | "COOL!!!" |
+| 15 | Core principle: quality is held by a person who already walked that path. This is how constructor steps open | Scouting, Camino, H3-7, JM-1 | constructor, §23.4 | "powerful, part of the solution" |
+| 16 | Proof model: daily act = the player alone, private; village quest = the villager who gave it confirms (H3-7); Journey step = one witness the player picks, checked against a pre-written "done when", answered in words, never scored; rights over others = two people already on that step, both needed, picked by the player from anyone on it. Proof is never sold, ranked or turned into points | proof-of-learning PL-1..14 | §23.4 | yes |
+| 17 | Village quest: a villager pins one real deed to their place with a "done when" line; the player comes in person; the villager confirms -> stamp + artifact | Heroes III H3-7 | §23.4, World map | yes |
+| 18 | Achievements for real-life deeds: closing a set (e.g. 3 sessions from 3 different people) = an achievement. Separate track: research/cult-mechanics/achievements.md | §23.4, Camino, Scouting | A12 | "very cool, separate task" |
+
+### 24.2 Considering
+- Needs & Offers: each player has a Needs line and an Offers line; an offer can be sent only to someone whose need matches; three exchange modes (gift, quest at a place, paid), one stamp; no internal currency. Open: offers only on a need? payment inside the game or direct?
+- Geocaching: players hide caches for each other in real places.
+- Secret Santa: gift of one's talent to an unknown villager at the moon's Harvest; both get a stamp.
+
+### 24.3 Open
+- How a false confirmation is detected (proposal: the person the deed concerned says it did not happen, or someone present disputes it, or the trail does not fit; the right is paused, two people on that step talk to both and decide).
+- Can a step be paused if someone harms the village, or is it permanent?
+- Levels: only the "earned right" kind fits, as constructor steps (the word is "steps"); no ranks, no XP.
+
+### 24.4 Rejected
+Density gate before the next village (FB-1) · village book night (JM-4) · 6-week seasons · secret identity · villains and battles · points and levels as score · internal currency · votes · crisis simulations · ranking people · "raid" vocabulary.
