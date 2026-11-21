@@ -117,11 +117,13 @@ Abbreviations: GoBY = [game_of_being_you.md](./game_of_being_you.md) · PB = [pr
 | Academy (school for adults) | live | `/game/learn`, `/academy/:slug`; GoBY §13.1 · B1-66 ("school") | Learning place in the village. |
 
 ### Face 2 · Sasha's own unique business (modular collaboration; formerly branch Z)
+Working folder: [modular_collaboration/](./modular_collaboration/README.md) (plan, connector, our rack).
+
 | Module | Status | Source | Result |
 |---|---|---|---|
 | Simplest collaboration structure | notebook | B2-32 | The minimum shape of working together. |
 | Module rack / plug-in ("can I incorporate into your system") | spec, partial | [module-form.md](../templates/module-form.md); [module_registry.md](../05-reference/module_registry.md) (superseded) · B2-23, B2-25 | Others' modules plug into Sasha's system. |
-| Connector (integral view) | notebook | B2-26 | What a module connector looks like. |
+| Connector (integral view) | draft v2 | [modular_collaboration/connector.md](./modular_collaboration/connector.md) · B2-26 | What a module connector looks like: module cards + link + integration roadmap 0–4. |
 | Founder+AI ↔ founder+AI matching | spec | [ai_matchmaker_brief.md](./ai_matchmaker_brief.md); [proactive-matchmaker](../specs/proactive-matchmaker/scope_of_work.md) · B2-27, B2-28 | Two founders' AIs find the fit and arrange the deal. |
 | Living conceptual architecture | spec | [holon-core.md](../01-vision/holon-core.md) · B2-29 | The architecture as a living tree of holons. |
 | Terms: full autonomy, sovereignty, individual pricing | spec | UB "The Three Terms"; SFC · B2-30, B2-45 | Conditions for anyone collaborating. |
