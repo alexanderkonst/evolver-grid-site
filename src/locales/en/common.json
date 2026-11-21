@@ -7906,6 +7906,12 @@
     "fallbackPromise": "Your transformational offer",
     "viewPage": "View Page",
     "copyLink": "Copy Link",
+    "clients": {
+      "title": "Clients",
+      "empty": "Your first client will appear here.",
+      "anonymous": "A client",
+      "error": "Your clients could not be loaded just now."
+    },
     "empty": {
       "title": "No products published yet.",
       "cta": "Complete your Unique Business Canvas to get started."
