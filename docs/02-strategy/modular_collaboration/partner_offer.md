@@ -18,7 +18,7 @@ Let's connect our systems: my players will come to you. You pay 10% of what each
 
 - **Commission:** 10% of what each client who arrives through the game pays you. No clients, nothing to pay. (Sasha, 2026-11-02.)
 - **Nothing to sign:** listing your module is accepting these terms. Acceptance is recorded with the date.
-- **Attribution:** a client counts as game-sourced when they reach you through your module's link with its referral id. Window: open question for Sasha (proposal: 12 months from the first click).
+- **Attribution:** a client counts as game-sourced when they reach you through your module's link with its referral id. Window: 12 months from the first click (Sasha, 2026-11-21).
 - **Reporting at stage 1:** you report sales from game-sourced clients once a month; we trust by default and check only by exception. Later the payment split happens automatically.
 - **Your name stays yours:** your brand, your prices, your clients' data on your side. We never sell or share your data or your players' data.
 - **Exit any time:** remove your module and the terms end; commission is owed only on sales already made.
@@ -36,6 +36,5 @@ Players who come to the game from your link are yours to credit: their referral 
 
 ## Open for Sasha
 
-1. Attribution window: 12 months from first click (pick), or no limit.
-2. Rule for players partners send to us: nothing (simplest), or the same 10% back.
-3. Approve the text for the public page (L5).
+1. Rule for players partners send to us: nothing (simplest), or the same 10% back.
+2. Approve the text for the public page (L5).
