@@ -4,7 +4,7 @@ Filled: 2026-11-21 · Status: draft, awaiting Sasha
 Almanac stage: 7 (life-gamified play; the habit lives in the player's real day) · Fidelity: system (the app's own lessons), not reality
 One line: language app; one lesson a day keeps your streak, a linear path shows the next step, the owl celebrates milestones. The most-tested habit loop in consumer software.
 
-## 1. Why it's cult (facts)
+## 1. Why it's iconic (facts)
 
 | Fact | Number | Source, date | Grade |
 |---|---|---|---|
@@ -14,7 +14,7 @@ One line: language app; one lesson a day keeps your streak, a linear path shows 
 | Streak culture | "over 6 million people on a streak of 7 days or more" (Jan 2022); streaks extended on wedding days and in childbirth | [5] Duolingo blog 2022, [4] 2020 | B |
 | Streak worth | June 2026 Streak Revival event: 15.4M learners, ~8M had no active streak; the Q2 2026 letter called it one of its most successful campaigns | [8] secondary, citing the Q2 2026 letter | C (not opened in the letter) |
 
-Share of the cult credited to the mechanics below: **large**. *Judgment:* Duolingo itself says DAU growth comes mostly from retaining current users [2], and the streak is its most-tested retention tool [4][5].
+Share of the iconic credited to the mechanics below: **large**. *Judgment:* Duolingo itself says DAU growth comes mostly from retaining current users [2], and the streak is its most-tested retention tool [4][5].
 
 ## 2. Mechanics that demonstrably worked
 

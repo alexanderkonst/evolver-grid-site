@@ -84,7 +84,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
   {
     key: "reception",
     name: "Entry Portal",
-    // A guest is «you», never «guest» and never a name (cult spec §5 #4).
+    // A guest is «you», never «guest» and never a name (iconic spec §5 #4).
     line: "You're welcome here. Discover your uniqueness.",
     lineReturning: "Welcome back. Discover your uniqueness.",
     lineReturningNamed: "Welcome back, {{name}}. Discover your uniqueness.",

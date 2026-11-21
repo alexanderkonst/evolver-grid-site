@@ -403,7 +403,7 @@ The inner-turn taxonomy (ISIC/NAICS top layers + market-map niches + the axis ou
 | What we build | Avant-garde subtype | Golden-age meta-artifact | Function in the whole |
 |---|---|---|---|
 | AI interface | Consciousness technologists | **Mirror** (the disappearing interface) | To see and understand |
-| Cult game | Mythmakers | **Myth-initiation** | To become oneself |
+| Iconic game | Mythmakers | **Myth-initiation** | To become oneself |
 | Life operating system | Masters of development | **Path** (everyday practice) | To live from the center |
 | Collective of sovereign founders | Founders of calling | **Guild / Circle** | To create together |
 | New economy | Gift economists | **Market of geniuses** (radiation instead of extraction) | To exchange gifts |

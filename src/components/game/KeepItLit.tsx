@@ -6,7 +6,7 @@ import { tr } from "@/lib/villageCopy";
 import TopTalentAuthGate from "@/modules/zone-of-genius/TopTalentAuthGate";
 
 /**
- * KeepItLit: the guest's save, moved to after the reveal (cult spec §6 W5).
+ * KeepItLit: the guest's save, moved to after the reveal (iconic spec §6 W5).
  *
  * Under the reveal card a guest sees one button, «Keep your light lit», and a quiet way on.
  * No email field is on screen until the player taps it, so the card is seen first and the

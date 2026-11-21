@@ -10,7 +10,7 @@ Standing rules applied to every mechanic (Sasha): (1) a counter/streak/number on
 
 ---
 
-## 1. Why it's cult: facts new in this pass
+## 1. Why it's iconic: facts new in this pass
 
 | Fact | Number | Source, date | Grade |
 |---|---|---|---|
@@ -26,7 +26,7 @@ Standing rules applied to every mechanic (Sasha): (1) a counter/streak/number on
 | Concerts | Heroes Orchestra (Warsaw, students of the Chopin University of Music) since 2017; 5-concert festival for the 25th anniversary (2024) with Romero; Szczecin Philharmonic 2025-04-28; Romero with LUMOS Orchestra in Lviv (2023-06-26) and Kyiv (2023-07-01/02); first fan concert Budapest 2011 (~100 fans) | [6], [9], [10], [11] | B |
 | Russia | Buka's localisation sold ~500,000 copies; the real audience was larger because of hot seat and computer clubs | [6] Meduza | C (journalist figure, no primary source) |
 
-Share of the cult credited to the mechanics below: **part.** *Judgment:* the calendar is part of the core loop the press credits ("one day follows another, every week your army grows", Meduza [6]); music is named by Meduza as "an important component of success"; quests and combination artifacts are map-making tools that feed the 27-year map culture of pass 2. None is isolated by data.
+Share of the iconic credited to the mechanics below: **part.** *Judgment:* the calendar is part of the core loop the press credits ("one day follows another, every week your army grows", Meduza [6]); music is named by Meduza as "an important component of success"; quests and combination artifacts are map-making tools that feed the 27-year map culture of pass 2. None is isolated by data.
 
 ---
 
@@ -34,7 +34,7 @@ Share of the cult credited to the mechanics below: **part.** *Judgment:* the cal
 
 ### H3-6. The calendar: four nested units, each with its own job (Sasha: day, week, month, year)
 - **In the source:** one clock for everyone. **Day** = your move; at its start, what you own pays out (mines, towns). **Week** = growth; on day 1 every dwelling adds creatures, and what you did not take stays (in towns). **Month** = the world changes; merchants restock, a special month can double growth or bring plague. Weeks and months get names. There is no year: games end inside months. The designer's choice that matters: **each unit triggers a different kind of event**, not the same check-in at four sizes [1][2].
-- **Evidence it worked:** C for the calendar as a cause of the cult (Meduza names it as the core loop [6]; the "week of the X" phrase is widely remembered, pass 2). B that it is unchanged in HotA 27 years on [2].
+- **Evidence it worked:** C for the calendar as a cause of the iconic (Meduza names it as the core loop [6]; the "week of the X" phrase is widely remembered, pass 2). B that it is unchanged in HotA 27 years on [2].
 - **Driver (why it works):** the **fresh start effect** of temporal landmarks, grade **A** (Dai, Milkman & Riis 2014, three field datasets) [12]. Measured separately for each unit:
 
 | Landmark | Gym visits (11,912 students, 5.27M person-days) | Commitment contracts on stickK (66,062 contracts, 43,012 users) | Google "diet" searches (3,104 days) |
@@ -59,7 +59,7 @@ Share of the cult credited to the mechanics below: **part.** *Judgment:* the cal
 
 ### H3-9. Every town has its own music
 - **In the source:** one composed theme per town, playing while you are in it [6][7]. The town's music is part of its identity, together with its look and creatures.
-- **Evidence it worked:** B that the music lives outside the game (orchestra founded by fans 2017, multi-country concert tours with the composer 2011–2025 [6][9][10][11]); C that it explains the cult (Meduza: "an important component of success" [6]).
+- **Evidence it worked:** B that the music lives outside the game (orchestra founded by fans 2017, multi-country concert tours with the composer 2011–2025 [6][9][10][11]); C that it explains the iconic (Meduza: "an important component of success" [6]).
 - **Driver:** **music-evoked autobiographical memory**, grade **A** (lab and online study, Janata, Tomic & Rakowski 2007): on average 30% of song presentations evoked autobiographical memories; emotions mostly positive; nostalgia the third most common [15]. Music binds to the time and place it was lived in. What it did NOT prove: anything about game music specifically.
 
 ---

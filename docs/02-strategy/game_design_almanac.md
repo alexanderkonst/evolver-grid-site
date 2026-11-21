@@ -7,7 +7,7 @@
 
 «Нет ничего, что не является игрой. Вся реальность игра уже сейчас. Вопрос того, насколько мы это осознаем, и насколько мы игровые механики используем через то же осознавание.»
 
-There is nothing that is not a game: all of reality already is one. The question is how aware we are of it, and how consciously we use its mechanics. Consequence for our research: we learn mechanics not only from video games but from every social structure that proved itself, especially over many years: apps, organizations (MIT, AIESEC, JCI, YPO, Y Combinator, Product Hunt), institutions (UN, WEF), and old social dynamics. The source taxonomy lives in [research/cult-mechanics/taxonomy.md](./research/cult-mechanics/taxonomy.md).
+There is nothing that is not a game: all of reality already is one. The question is how aware we are of it, and how consciously we use its mechanics. Consequence for our research: we learn mechanics not only from video games but from every social structure that proved itself, especially over many years: apps, organizations (MIT, AIESEC, JCI, YPO, Y Combinator, Product Hunt), institutions (UN, WEF), and old social dynamics. The source taxonomy lives in [research/iconic-mechanics/taxonomy.md](./research/iconic-mechanics/taxonomy.md).
 
 ## Invariant parameter: the scope of player authorship
 

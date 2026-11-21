@@ -16,7 +16,7 @@ Replaces the five faces of v0.1 (Game, AI, Science, Economy, Way of living), whi
 
 | ID | Holon | Result sentence | Lives today in |
 |---|---|---|---|
-| H0.G | The cult game | A person plays their way into their own uniqueness and its value, and moves in the game are moves in life. | findyourtoptalent.com (the game) · player path below · the village and the digital twin of a settlement |
+| H0.G | The iconic game | A person plays their way into their own uniqueness and its value, and moves in the game are moves in life. | findyourtoptalent.com (the game) · player path below · the village and the digital twin of a settlement |
 | H0.B | Your unique business (inside: Sasha's unique business of unique businesses, the first instance and the pattern) | A founder stops selling hours: their module plugs into others' systems and is paid for results. | H3 Unique Business below · capped rev share |
 | H0.C | Collective of sovereign founders | How sovereign founders interact: shared terms, rhythm and exchange, each with full autonomy and their own pricing. | cockpit · constructor · Equilibrium |
 | H0.T | Theory of Everything | A decentralized theory of everything, tested in practice, from which the whole system follows. | [phase_shift_technology_library.md](./phase_shift_technology_library.md) · [universal_ontology.md](./universal_ontology.md) |

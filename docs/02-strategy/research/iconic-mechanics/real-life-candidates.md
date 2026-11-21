@@ -1,15 +1,15 @@
-# Real-life cult games: candidate list for GoBY
+# Real-life iconic games: candidate list for GoBY
 
 Brief (Sasha, 2026-11-21): «надо брать игры которые сделаны под реальную жизнь. Самые культовые по максимуму.»
 Written 2026-11-21. Excludes what the registry already covers or queues (Heroes III, Couchsurfing, Ready Player One, Duolingo, Pokémon GO/Ingress, LinkedIn, Facebook) and Jane McGonigal's games (analysed separately).
 
-Ranking = (a) cult status: players, years alive, money, press; × (b) how directly the game's moves are real acts with real people.
+Ranking = (a) iconic status: players, years alive, money, press; × (b) how directly the game's moves are real acts with real people.
 Evidence grade: **A** study · **B** hard numbers (official counts, records) · **C** consensus or company claim.
 Figures are as published; company figures are graded C unless they are counts of a verifiable thing (certificates, registrations).
 
 ## Top 10
 
-| # | Game | What the player does in real life | Cult evidence (grade, source) | Mechanic most worth analysing for GoBY | Why |
+| # | Game | What the player does in real life | Iconic evidence (grade, source) | Mechanic most worth analysing for GoBY | Why |
 |---|---|---|---|---|---|
 | 1 | **Scouting badges** (Baden-Powell, 1908) | Learns a real skill (first aid, camping, cooking, a trade), shows it to an adult who checks it, sews the badge on | ~60M members est. 2025, 176 national orgs, record high (C, WOSM estimate: https://www.scout.org/news/news/world-scoutings-membership-reaches-historic-highs); 57M official-census basis (B, https://www.scout.org/); 500M+ people ever (C, https://www.scout.org/who-we-are/scout-movement/scoutings-history); proficiency badges 1908, 57 merit badges in 1911 handbook (C, https://scoutmasterbucky.com/history/) | **The badge is signed off by a person who checks the real skill** (counselor / leader), not by an app | 117 years of a badge economy that never drifted into vanity because every badge is a demonstrated act witnessed by a human. Direct template for a Journey step being closed by a villager, not by a tap |
 | 2 | **Camino de Santiago: credential + Compostela** | Walks (or cycles) the route, collects stamps (sellos) from albergues, churches, cafés; shows the stamped credential in Santiago to receive the Compostela | 530,987 Compostelas in 2025, record, +6% on 2024; 4th record year in a row; 93,929 in 2005 → 5.7× in 20 years (B, Pilgrim's Office via https://santiago.es/en/news/record-pilgrims-2025 and https://caminantes.co/guides/how-many-people-walk-the-camino-de-santiago); rule: last 100 km on foot / 200 km by bike, proved by stamps (B, https://www.oursundayvisitor.com/spains-famed-camino-sets-record-with-half-a-million-pilgrims-in-2024/) | **The stamped passport: proof of presence collected from real hosts along the way, redeemed at the end for a certificate issued by people** | The purest "the game is the walk" design at half a million players a year, growing with zero marketing. Every stamp is a real place and a real person. Maps onto GoBY's village places: a passport stamped by the café, the stall, the Fire Circle |
@@ -23,15 +23,15 @@ Figures are as published; company figures are graded C unless they are counts of
 
 ## Considered, not in the top 10
 
-- **BookCrossing** (2001): 1.2M members, 13M+ books "released into the wild" with a tracking ID (B/C, https://www.bookcrossing.com/about , https://en.wikipedia.org/wiki/BookCrossing). Strong GoBY fit (follow a gift through strangers), weaker cult. First reserve.
+- **BookCrossing** (2001): 1.2M members, 13M+ books "released into the wild" with a tracking ID (B/C, https://www.bookcrossing.com/about , https://en.wikipedia.org/wiki/BookCrossing). Strong GoBY fit (follow a gift through strangers), weaker iconic. First reserve.
 - **Habitica** (2013): "4M+" users (C, https://habitica.com/); party takes damage when one member skips a Daily. Real tasks, but the people are online party members, not neighbours.
-- **Foursquare / Swarm mayorships**: cult in 2010–2014, mayorships removed then restored; vanity check-ins, no real act with people. Not searched for numbers.
+- **Foursquare / Swarm mayorships**: iconic in 2010–2014, mayorships removed then restored; vanity check-ins, no real act with people. Not searched for numbers.
 - **Zombies, Run!, Nike Run Club, Fitbit challenges, Forest, Finch, Tamagotchi**: real or care acts, but solo; Tamagotchi's care is for a virtual pet.
-- **ARGs (The Beast 2001, Cicada 3301, Year Zero)**: high cult, but the acts are puzzle-solving online; RPO-1 already covers the hidden-quest pattern.
+- **ARGs (The Beast 2001, Cicada 3301, Year Zero)**: high iconic, but the acts are puzzle-solving online; RPO-1 already covers the hidden-quest pattern.
 - **LARP, Jet Lag-style chase, Turf**: real-world, but no comparable sourced scale found in this pass.
 
 ## Gaps
 
-- Mafia/Werewolf has no reliable total-player figure; its cult status rests on spread, longevity and press (C).
+- Mafia/Werewolf has no reliable total-player figure; its iconic status rests on spread, longevity and press (C).
 - Strava's Local Legend rule and Scouting's counselor sign-off are stated from general knowledge of the products, not from a page fetched in this pass (C).
 - Burning Man regional and lifetime figures are the organisation's own (C); Black Rock City counts are census-based (B).

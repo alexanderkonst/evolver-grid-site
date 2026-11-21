@@ -1,4 +1,4 @@
-# Synthesis: what we take from 7 cult games into The Game of Being You
+# Synthesis: what we take from 7 iconic games into The Game of Being You
 
 Draft 2026-11-21 · Status: awaiting Sasha's verdict per package · Nothing changed in the repo.
 Games (Sasha's list): Heroes III (2 passes), Couchsurfing, Ready Player One, Duolingo, Pokemon GO / Ingress, LinkedIn, Facebook. Details per game in games/<name>.md, every mechanic in registry.md.
@@ -62,12 +62,12 @@ Too many additions to three rows at once. Mitigation: take one package at a time
 - H3-3 → for us: a **constructor of buildings, interiors and villages** («конструктор зданий, интерьеров, и деревень»). Merges with PG-1 and the creation ladder.
 - PG-1 → a button **"Create a new digital village"**: people create their own locations, repeat the world, maybe invent non-existent places. "Let's see."
 - H3-5 week as unit: «ОЧЕНЬ КРУТО». Our rhythm has four units: day, week, month, year.
-- H3-1 town screen + interior from earned artifacts: yes, cult.
+- H3-1 town screen + interior from earned artifacts: yes, iconic.
 - CS-2 references → extend to **reviews of shops and products** (Market). Sasha and Karime already have many reviews and clients (possible seed; source and import to be decided).
 - FB-1 density before breadth: **rejected**. San Pancho has different network effects: great depth, high social cohesion. Villages are not gated by density.
 - FB-2 player-hosted circles and the ladder: Sasha asked what they mean (explained in chat).
 - Planning rule: no linear planning, no time estimates; «Мы в Золотом Веке… делаем не заботясь о том, сколько это займет».
 - FB-2 player-hosted circles: Sasha 15:18 «да, но это нужно хорошо проработать. Нужно по сути повторить Лума внутри нашего интерфейса.» Needs its own design pass (Luma inside GoBY: create circle, RSVP, host marks who came, recurring).
 - Constructor access: Sasha 15:22 «по ступеням, надо только продумать ступени, и искусственно никого не ограничивать, но и качество поддерживать на этом же уровне». Draft steps proposed in chat: each step opens by a real deed (no timers, levels, payment); quality held by people already on that step (JM-1 witness, H3-7 villager confirms).
-- Round 3 analysed 2026-11-21: Heroes III pass 3 (H3-6…H3-9), Jane McGonigal (JM-1…JM-5), real-life-candidates.md (top 10 real-life cult games: Scouting, Camino, parkrun, Burning Man, Strava, Mafia, Reddit Secret Santa, HvZ, Apple Watch rings).
+- Round 3 analysed 2026-11-21: Heroes III pass 3 (H3-6…H3-9), Jane McGonigal (JM-1…JM-5), real-life-candidates.md (top 10 real-life iconic games: Scouting, Camino, parkrun, Burning Man, Strava, Mafia, Reddit Secret Santa, HvZ, Apple Watch rings).
 - FB-2 circles: Sasha 15:30 «точно делаем свое… берем всю удобность, переходы между экранами, юзабилити. Делай» → moved to separate project «Круги в GoBY» (id 63431008-2a31-4772-bcca-9c25bc05e84c).

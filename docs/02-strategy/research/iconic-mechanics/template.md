@@ -1,6 +1,6 @@
 # Mechanic Transplant Template (v1)
 
-How we take one cult game or product apart and move what demonstrably worked into **The Game of Being You** (GoBY).
+How we take one iconic game or product apart and move what demonstrably worked into **The Game of Being You** (GoBY).
 v1, 2026-11-21. Keeper: Evolver (Hark). Owner: Aleksandr Konstantinov. Sasha sets the order of games.
 Worked examples: [games/heroes-iii.md](games/heroes-iii.md), [games/couchsurfing.md](games/couchsurfing.md). All mechanics across games: [registry.md](registry.md).
 
@@ -18,7 +18,7 @@ Canon this template reads from (repo `alexanderkonst/evolver-grid-site`, snapsho
    - **B** hard numbers that are observational (sales, members, retention curves, the platform's own stats).
    - **C** consensus, designer interviews, fan memory. Allowed, but never alone for a "High" priority.
 2. **Facts, assumptions, judgments never mixed.** Each fact carries its source and date. My reading is marked *Judgment*.
-3. **Separate the mechanic from the game's success.** A cult game is cult for many reasons; say how much of it this mechanic plausibly explains.
+3. **Separate the mechanic from the game's success.** An iconic game is iconic for many reasons; say how much of it this mechanic plausibly explains.
 4. **Canon filter before design.** A mechanic that fails §10a (adds something artificial) or §21.2 (no real-life counterpart) is recorded as *rejected* with the reason, not redesigned in secret.
 5. **No dates invented.** The smallest test has a signal and a kill line, not a deadline.
 6. **Nothing touches the repo** (no commits, no issues, no Lovable credits) until Sasha says yes to the exact change.
@@ -34,10 +34,10 @@ Filled: <YYYY-MM-DD> · Status: draft | reviewed by Sasha | adopted
 Almanac stage: <1–7> (<player authors …>) · Fidelity: <symbol / model / … / reality>
 One line: <what this game is, in plain words>
 
-## 1. Why it's cult (facts)
+## 1. Why it's iconic (facts)
 | Fact | Number | Source, date | Grade |
 |---|---|---|---|
-Share of the cult this analysis credits to the mechanics below: <small / part / large> + one line why.
+Share of the iconic this analysis credits to the mechanics below: <small / part / large> + one line why.
 
 ## 2. Mechanics that demonstrably worked (1–3)
 ### M1. <name>

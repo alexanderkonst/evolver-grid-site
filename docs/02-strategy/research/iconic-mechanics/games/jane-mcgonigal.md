@@ -6,7 +6,7 @@ One line: one designer's body of work (2004–2022) built on one thesis, "games 
 
 Scope note: in-person gatherings unlocked by presence are PG-2; trust between real people is CS-1/CS-2; written lines instead of Likes are FB-3; the creation ladder is RPO-2 / H3-3. This file adds only what those do not cover. Canon status to respect: **§15.1 "name the enemy, call allies" is Parked by Sasha (2026-10-27).** JM-2 below brings the allies half back with evidence; whether to unpark it is his call.
 
-## 1. Why it's cult (facts)
+## 1. Why it's iconic (facts)
 
 | Fact | Number | Source, date | Grade |
 |---|---|---|---|
@@ -23,7 +23,7 @@ Scope note: in-person gatherings unlocked by presence are PG-2; trust between re
 | The Lost Ring (McDonald's / IOC / AKQA, 2008) | 250,000+ players, 10,000+ core, 100+ countries, 7 languages; audience 2.9M (agency claim); One Show Merit 2009 | [15] RIB p. 281ff; [18] One Club | B / C |
 | Her reach | TED 2010 "Gaming can make a better world": 6,644,584 plays (TED page, 2026-11-21); *Reality Is Broken* and *SuperBetter* both NYT bestsellers | [19] TED; [3] | B |
 
-Share of the cult this analysis credits to the mechanics below: **part.** *Judgment:* her fame is the thesis, the TED talks and the book; the large numbers (I Love Bees, Lost Ring) were bought by marketing budgets and ran on fiction. The mechanics with evidence are the quieter ones: real acts with a witness (SuperBetter, Evoke), a season that ends in a real project (Evoke), one night in a real place (Find the Future).
+Share of the iconic this analysis credits to the mechanics below: **part.** *Judgment:* her fame is the thesis, the TED talks and the book; the large numbers (I Love Bees, Lost Ring) were bought by marketing budgets and ran on fiction. The mechanics with evidence are the quieter ones: real acts with a witness (SuperBetter, Evoke), a season that ends in a real project (Evoke), one night in a real place (Find the Future).
 
 Her frame, quoted so we use the same words: games share four traits, "a goal, rules, a feedback system, and voluntary participation"; people crave four intrinsic rewards, "satisfying work", "the experience, or at least the hope, of being successful", "social connection", "meaning, or the chance to be a part of something larger than ourselves" [15, pp. 21, 49–50]. Her 14 "fixes" [15, pp. 346–348] are principles, not mechanics; the ones that touch GoBY are #9 "Have more fun with strangers", #12 "Seek out more epic wins" (real volunteer tasks), #14 "Develop massively multiplayer foresight". *Judgment:* the four rewards overlap the §15.8 Koster check and §10a; they add no new rule, so nothing is proposed from them.
 

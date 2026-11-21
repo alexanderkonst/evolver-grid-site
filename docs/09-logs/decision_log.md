@@ -29,7 +29,7 @@
 
 **Decision:** findyourtoptalent.com is designed as THE GAME OF BEING YOU. The homepage is a title screen (NEW GAME / LOAD GAME / TUTORIAL / MULTIPLAYER / ABOUT → Investor Room). Goal = high Quality of Life on the 8-domain map; level = bottleneck domain; soul colors = the player's Spectrum. "Genius" is renamed "Uniqueness". Spirit = tetrahedron/fire, Uniqueness = dodecahedron/aether (the fifth element, at the center). The new homepage goes straight onto `/`.
 
-**Rationale:** Sasha: «Игра — это blueprint… стало настолько проще». The game frame unifies course, test, Mastermind, Masterclass and marketplace into one coherent loop, and makes the cult/viral mechanics native.
+**Rationale:** Sasha: «Игра — это blueprint… стало настолько проще». The game frame unifies course, test, Mastermind, Masterclass and marketplace into one coherent loop, and makes the iconic/viral mechanics native.
 
 **Reversibility:** Doctrinal and visual; the homepage swap is reversible (old page kept at `/journey`). The name (The 5th Element vs THE GAME OF BEING YOU) is an open fork.
 

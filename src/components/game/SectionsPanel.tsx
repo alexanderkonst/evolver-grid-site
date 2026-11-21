@@ -719,7 +719,7 @@ const buildJourneySections = (
     // + chapter name once the user has a linked result.
     linkedQuizResult: LinkedQuizResult | null = null,
     onRetakeQuiz: () => void = () => {},
-    // W1 (cult spec §5 #1): a guest sees no price on the rail. The $37 power-up row
+    // W1 (iconic spec §5 #1): a guest sees no price on the rail. The $37 power-up row
     // waits for a signed-in player. The route `/activate-top-talent` stays reachable.
     signedIn: boolean = false,
 ): Section[] => {

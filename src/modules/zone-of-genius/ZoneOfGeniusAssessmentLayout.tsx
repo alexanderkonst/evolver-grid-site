@@ -3,7 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import { ZoneOfGeniusProvider } from "./ZoneOfGeniusContext";
 import { cn } from "@/lib/utils";
 import { getZogAssessmentBasePath, getZogAssessmentSteps } from "./zogRoutes";
-// W1 (cult spec §5 #2): the game frame, not the "Genius Business" logo, on game routes.
+// W1 (iconic spec §5 #2): the game frame, not the "Genius Business" logo, on game routes.
 import brandLogo from "@/assets/you-be-original-main-lockup.webp";
 import GameShellV2 from "@/components/game/GameShellV2";
 

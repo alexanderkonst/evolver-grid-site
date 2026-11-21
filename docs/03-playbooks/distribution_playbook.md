@@ -1692,4 +1692,4 @@ Because the brief is the articulation, every improvement to the unique-business 
 
 *Law: Technology 184, Fandom Bridge. Hack and setup: `docs/02-strategy/guerrilla_marketing_hacks.md`, "Fandom Bridge".*
 
-A fandom is a ready audience whose desire is already named. For every product, list 3–5 cult analogues whose core matches the product's core (Game of Being You: Ready Player One, Heroes III), map their fan rooms, and enter as a fan with one line: «I built X, but in real life». Measure per room: replies, clicks, sign-ups per post. Keep the analogue that converts; it also becomes the product's one-sentence pitch.
+A fandom is a ready audience whose desire is already named. For every product, list 3–5 iconic analogues whose core matches the product's core (Game of Being You: Ready Player One, Heroes III), map their fan rooms, and enter as a fan with one line: «I built X, but in real life». Measure per room: replies, clicks, sign-ups per post. Keep the analogue that converts; it also becomes the product's one-sentence pitch.

@@ -2,11 +2,11 @@
 
 Filled: 2026-11-21 · Status: draft, awaiting Sasha
 Almanac stage: 5–6 (players author their profile, their ties, their groups; the graph is real people, the activity is mostly on screen) · Fidelity: identity = reality (real names, real campuses); activity = symbol (likes, feed)
-One line: a social network that started as a closed, real-name directory of one campus (Harvard, Feb 2004), opened one campus at a time, and later grew Groups (communities with their own hosts) and Events. What made it cult is not what made it harmful; this file separates the two.
+One line: a social network that started as a closed, real-name directory of one campus (Harvard, Feb 2004), opened one campus at a time, and later grew Groups (communities with their own hosts) and Events. What made it iconic is not what made it harmful; this file separates the two.
 
 Scope note: trust between strangers is in [couchsurfing.md](couchsurfing.md) (CS-1, CS-2); in-person gatherings unlocked by presence are in [pokemon-go-ingress.md](pokemon-go-ingress.md) (PG-2); the creation ladder is in [ready-player-one.md](ready-player-one.md) (RPO-2). This file adds only what those do not cover.
 
-## 1. Why it's cult (facts)
+## 1. Why it's iconic (facts)
 
 | Fact | Number | Source, date | Grade |
 |---|---|---|---|
@@ -18,7 +18,7 @@ Scope note: trust between strangers is in [couchsurfing.md](couchsurfing.md) (CS
 | Groups | "More than 1 billion people" use Groups; "more than 100 million" in "meaningful groups" (2017) → "almost 1.8 billion people use Facebook Groups every month", 25 million monthly active public groups (Oct 2024) | [6] Meta, 2017-06-22; [7] Meta, 2024-10-04 | B (platform's own stats) |
 | Group hosts | 70 million people active in the past month as admins/moderators; median size of people's "most important" group 25–100; 38% named local-tied groups as giving "quite a bit or a great deal of belonging"; hosting is "a unpaid labor of love" | [8] GovLab/NYU report (Facebook-funded, YouGov survey 15×1,000), 2021-02-23 | C (company-funded survey) |
 
-Share of the cult this analysis credits to the mechanics below: **large for FB-1, part for FB-2, small but decisive as a warning for FB-3.** *Judgment:* the first year of Facebook is FB-1 almost alone (a closed real-name map of people you already know, campus by campus); Groups (FB-2) is what kept people after 2017 when Facebook itself turned to it; the feed and Like (rejected below) drove time spent, not the cult.
+Share of the iconic this analysis credits to the mechanics below: **large for FB-1, part for FB-2, small but decisive as a warning for FB-3.** *Judgment:* the first year of Facebook is FB-1 almost alone (a closed real-name map of people you already know, campus by campus); Groups (FB-2) is what kept people after 2017 when Facebook itself turned to it; the feed and Like (rejected below) drove time spent, not the iconic.
 
 ## 2. Mechanics that demonstrably worked
 

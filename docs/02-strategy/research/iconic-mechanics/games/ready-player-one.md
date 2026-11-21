@@ -5,7 +5,7 @@ Almanac stage: 7 (a world players live and build in) · Fidelity: the novel is f
 One line: a dead founder hides an Easter egg in the world he built; whoever knows his life well enough to pass three gates inherits the world. The world itself (OASIS) is built by its users.
 Sasha's direction (2026-11-21, this session): players get the right to change the game gradually: interiors, new buildings, their own modules, quests. Focus first on the games closest to this: Ready Player One, Heroes III, LinkedIn, Facebook. "No mush."
 
-## 1. Why it's cult (facts)
+## 1. Why it's iconic (facts)
 
 | Fact | Number | Source, date | Grade |
 |---|---|---|---|

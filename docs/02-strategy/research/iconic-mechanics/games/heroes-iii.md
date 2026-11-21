@@ -4,7 +4,7 @@ Filled: 2026-11-21 · Status: draft (worked example of template v1), awaiting Sa
 Almanac stage: 2 (Designed Systems: the player authors a strategy), with stage-5 traits (a map you explore) · Fidelity: model
 One line: turn-based strategy (1999); you grow towns building by building, raise armies, and explore a map with heroes. Sasha's pick: the town screen, where you see your town grow.
 
-## 1. Why it's cult (facts)
+## 1. Why it's iconic (facts)
 
 | Fact | Number | Source, date | Grade |
 |---|---|---|---|
@@ -18,7 +18,7 @@ One line: turn-based strategy (1999); you grow towns building by building, raise
 | Publisher bets again | Ubisoft announced Heroes III Remake in 2026, for 2027 | [1] | B |
 | Active online play | fan site counts 5.47M ranked games, 210,077 players in the HotA lobby (as of Nov 11, 2026) | [5] fan site, single maker | C |
 
-Share of the cult credited to the mechanics below: **part**. *Judgment:* the cult rests on several things at once (nine distinct factions, music, hot-seat with friends, map editor [4]). The town screen is one of them; nobody has isolated it.
+Share of the iconic credited to the mechanics below: **part**. *Judgment:* the iconic rests on several things at once (nine distinct factions, music, hot-seat with friends, map editor [4]). The town screen is one of them; nobody has isolated it.
 
 ## 2. Mechanics that demonstrably worked
 

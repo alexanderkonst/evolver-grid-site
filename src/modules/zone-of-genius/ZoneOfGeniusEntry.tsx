@@ -1224,7 +1224,7 @@ const ZoneOfGeniusEntry = () => {
                                                 "var(--skin-text-halo-deep, 0 0 28px rgba(255,255,255,0.85), 0 1px 2px rgba(255,255,255,0.95), 0 0 1px rgba(11,42,90,0.65), 0 1px 0 rgba(11,42,90,0.45))",
                                         }}
                                     >
-                                        {/* W1 (cult spec §5 #3): the village voice, not "profile for matching". */}
+                                        {/* W1 (iconic spec §5 #3): the village voice, not "profile for matching". */}
                                         {t('zogEntry.receptionLine')}
                                     </p>
                                 </div>

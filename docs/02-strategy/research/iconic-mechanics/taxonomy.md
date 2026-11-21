@@ -12,8 +12,8 @@ Lens for every source (filled when it is analysed): **holon** it works at (H1 pe
 | Kind | Examples | What to learn |
 |---|---|---|
 | A1.1 Classic board and tabletop | chess, Go, Monopoly (origin: The Landlord's Game), D&D | rules that last centuries; a game master who holds the table |
-| A1.2 Cult video games 1980s–2000s | Heroes III ✓, SimCity, Ultima Online, The Sims, StarCraft, Diablo II | a town that grows, persistent worlds, the first online communities |
-| A1.3 Modern cult games | Minecraft, Roblox, Animal Crossing, Stardew Valley, Fortnite, Among Us, Journey | creation by players, a slow daily loop, wordless cooperation with strangers |
+| A1.2 Iconic video games 1980s–2000s | Heroes III ✓, SimCity, Ultima Online, The Sims, StarCraft, Diablo II | a town that grows, persistent worlds, the first online communities |
+| A1.3 Modern iconic games | Minecraft, Roblox, Animal Crossing, Stardew Valley, Fortnite, Among Us, Journey | creation by players, a slow daily loop, wordless cooperation with strangers |
 | A1.4 Fiction about games | Ready Player One ✓, Foundation, Ender's Game | the world we are building toward |
 
 ## A2. Games played in real life

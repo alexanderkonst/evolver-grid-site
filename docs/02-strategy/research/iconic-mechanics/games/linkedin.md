@@ -5,7 +5,7 @@ Almanac stage: 6–7 (the player authors a public professional self; the graph i
 One line: the professional social network (2003); a profile, a graph of real colleagues, and signals that tell others what you can do and what you want next. Studied for spec row A6 (see a profile, filter for useful people, write to them).
 Already covered elsewhere, not repeated: written references and vouching (games/couchsurfing.md, CS-1, CS-2). The creation ladder (games/ready-player-one.md) is unaffected; LinkedIn adds nothing to who may change the game.
 
-## 1. Why it's cult (facts)
+## 1. Why it's iconic (facts)
 
 | Fact | Number | Source, date | Grade |
 |---|---|---|---|
@@ -15,7 +15,7 @@ Already covered elsewhere, not repeated: written references and vouching (games/
 | Endorsements scale | 10 billion+ skill endorsements given 2012–2016 | [3] LinkedIn blog, 2016-10-19 (company) | C |
 | Open to Work scale | ~200M members turned it on privately; ~40M showed the public frame (July 2024) | [4] Fortune, 2024-09-05, citing LinkedIn | C |
 
-Share of the cult credited to the mechanics below: **part**. *Judgment:* LinkedIn's moat is the network effect of a real-name professional graph plus recruiters paying for access to it. The three mechanics below are how the graph got filled (LI-1), how it was made useful (LI-2) and how intent became legible (LI-3). Recruiter monetization, the feed and Premium are outside this analysis.
+Share of the iconic credited to the mechanics below: **part**. *Judgment:* LinkedIn's moat is the network effect of a real-name professional graph plus recruiters paying for access to it. The three mechanics below are how the graph got filled (LI-1), how it was made useful (LI-2) and how intent became legible (LI-3). Recruiter monetization, the feed and Premium are outside this analysis.
 
 ## 2. Mechanics that demonstrably worked
 

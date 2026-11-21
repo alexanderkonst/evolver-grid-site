@@ -1,4 +1,4 @@
-# Mechanics Registry: cult games → The Game of Being You
+# Mechanics Registry: iconic games → The Game of Being You
 
 One row per mechanic, across all games. Source of truth for status; the reasoning lives in `games/<name>.md`. Template: [template.md](template.md).
 Updated: 2026-11-21 (all 7 of Sasha's games analysed; synthesis in synthesis.md). Status lifecycle: candidate → analysed → proposed → accepted → in spec → built → tested → kept / dropped (rejected keeps its row with the reason).

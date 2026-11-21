@@ -8,7 +8,7 @@
 
 **Subtitle:** Self-Discovery · Growth · Quality of Life · Uniqueness · Tribe · Village · Collective (Sasha, 2026-10-27; was «Self-Discovery · Quality of Life · Uniqueness · Growth · Tribe», 2026-10-26).
 **Tagline:** *Bring the full force of who you are to what you build.*
-**Moonshot (Sasha, 2026-10-26):** make a cult game, a "candy": polished, simple, hard to forget. We already have plenty of mystery, ritual and content; the work now is craft and form.
+**Moonshot (Sasha, 2026-10-26):** make an iconic game, a "candy": polished, simple, hard to forget. We already have plenty of mystery, ritual and content; the work now is craft and form.
 
 ## Meta-description (the game as the Blueprint lens)
 *Added 2026-10-27 by Evolver, per [Meta-Template](../templates/meta-template.md) §6 and T5; nothing below is restructured.*
@@ -104,9 +104,9 @@ Experience and a personal result first, never "leave your email".
 | Closed beta / invitation | Multiplayer by invitation |
 | Free weekend | Open trial Mastermind sessions |
 
-## 7. The golden thread of cult virality
+## 7. The golden thread of iconic virality
 
-Cult things spread when they turn the audience into authors:
+Iconic things spread when they turn the audience into authors:
 1. **A world, not a product:** dense enough to live in, with gaps for interpretation.
 2. **A small, dense tribe of creators:** the first players create the culture.
 3. **Tools for remix:** players make their own things inside the world.
@@ -275,7 +275,7 @@ Physical twin: San Pancho as Village #1 (§16).
 - **Inventory = assets** (Asset Mapping).
 - **Level = your real QoL score, not invented levels.** E.g. 6.1 out of 10, the weakest domain sets it. **Private:** only the player sees their own level, to track progress and look at their life soberly. No public levels, no leaderboards.
 - **Party = Mastermind, Guild = Venture Co-op.** Game names only where they serve.
-- **Cult game, not a generic game.** «Игры бывают разные! Нам не нужно перенимать всякую дребедень.» Take from games only what serves real transformation; no borrowed junk mechanics (no arbitrary points, no public status ladders, no grind).
+- **Iconic game, not a generic game.** «Игры бывают разные! Нам не нужно перенимать всякую дребедень.» Take from games only what serves real transformation; no borrowed junk mechanics (no arbitrary points, no public status ladders, no grind).
 
 ### 13.3 First quest chain: the path of uniqueness (Sasha, 2026-10-27)
 - **Gate = the uniqueness test.** Passing the Top Talent test is the entry to the village: this is how the Digital Village gets to know a new person. Test passed, then you enter.
@@ -1180,7 +1180,7 @@ Sunday Save Point, Circle at new moon, Harvest at full moon. Sasha's idea: give 
 A journal in Your House, dictated through Your AI, with deep prompts. Possibly the daily hook, not the main dynamic.
 
 ### 21.7 Learn from real-life games
-Done as the cult-mechanics research (2026-11-21). Decisions: §24. Research: [research/cult-mechanics/](./research/cult-mechanics/).
+Done as the iconic-mechanics research (2026-11-21). Decisions: §24. Research: [research/iconic-mechanics/](./research/iconic-mechanics/).
 
 ### 21.8 Next
 Game-design session Sasha × Hark (next session): the quest sequence and its artifacts, what a village unlocks, what the world map shows on day one (San Pancho + one more real village).
@@ -1305,7 +1305,7 @@ Sasha's open question: why does the conscious village use the platform? How exac
 Sub-quests: simple ones per step; Sasha designs them himself.
 
 ### 23.2 Artifacts (Sasha, 2026-11-02; mechanics below are Hark's [SUGGESTION], not decided)
-Sasha: artifacts can become interior objects in "Your House", jewelry amulets on the avatar, or real jewelry rings; easy to implement, a cult story; his sacred-object designs are world class. Open: protecting the designs.
+Sasha: artifacts can become interior objects in "Your House", jewelry amulets on the avatar, or real jewelry rings; easy to implement, an iconic story; his sacred-object designs are world class. Open: protecting the designs.
 
 [SUGGESTION] mechanics:
 - **Earned, never bought in-game.** One artifact per completed quest (Reveal, Activation, Mission, ...), as §20 already implies («артефакты за каждый, которые устанавливаются в каждый дом»).
@@ -1313,7 +1313,7 @@ Sasha: artifacts can become interior objects in "Your House", jewelry amulets on
 - **Worn on the avatar:** the player chooses one amulet to show in the village; it signals their gift and chapter to others and feeds matchmaking (a visible, honest signal).
 - **Unlocks, not power:** an artifact opens the next quest or a village place; no pay-to-win.
 - **Seasonal rares:** Mastermind and season artifacts, only for those who played that season.
-- **Physical edition:** a real ring or amulet for players who complete a chapter, made to order. A revenue line and the cult object; requires the design-protection decision first.
+- **Physical edition:** a real ring or amulet for players who complete a chapter, made to order. A revenue line and the iconic object; requires the design-protection decision first.
 
 ### 23.3 Step 10 wording (Sasha, 2026-11-02)
 - Sasha's choice: **"The business within"**, or simply **"Your personal business"**. (Hark's earlier candidates "The business you were born with" etc. rejected.)
@@ -1335,15 +1335,15 @@ Mechanics (Hark's proposal, accepted by Sasha):
 Real-life item (Sasha's extension):
 - At a certain stage (e.g. after a completed chapter) the player gets the right to **buy the physical item in real life**: a real ring or jewel of their artifact.
 - We **really sell it on the site**, made to order, with the page saying how long it takes to make ("ready in N weeks").
-- Sequence: earn it in the game first, then unlock the right to buy the real one. Cult story, world-class designs, new revenue line.
+- Sequence: earn it in the game first, then unlock the right to buy the real one. Iconic story, world-class designs, new revenue line.
 
 Open: design protection before any physical sale; which stage unlocks the purchase; maker/jeweler, price, lead time; whether village quests (§23.4) unlock village-only artifacts.
 
-## 24. Mechanics from cult games and real-life games (Sasha's verdicts, 2026-11-21)
+## 24. Mechanics from iconic games and real-life games (Sasha's verdicts, 2026-11-21)
 
 Premise: everything is a game ([almanac](./game_design_almanac.md)); sources are any social structure that proved itself (taxonomy in the research folder).
 
-Single list of what we take into the game from the cult-mechanics research. Reasoning and sources: [research/cult-mechanics/](./research/cult-mechanics/) (registry.md = status per mechanic, games/ = one analysis per game, taxonomy.md = map of all mechanics). A row of `game_launch_spec.md` changes only on Sasha's yes to its exact text.
+Single list of what we take into the game from the iconic-mechanics research. Reasoning and sources: [research/iconic-mechanics/](./research/iconic-mechanics/) (registry.md = status per mechanic, games/ = one analysis per game, taxonomy.md = map of all mechanics). A row of `game_launch_spec.md` changes only on Sasha's yes to its exact text.
 
 Rule for every mechanic: a counter, streak or number only where it mirrors a real-world act, never a mindless hook. No linear planning or time estimates (Golden Age).
 
@@ -1351,7 +1351,7 @@ Rule for every mechanic: a counter, streak or number only where it mirrors a rea
 | # | What we include | From | Lands | Sasha |
 |---|---|---|---|---|
 | 1 | Forgiving streak on real acts only (2 earned freezes, never sold) | Duolingo DL-1 | A13 (in spec) | yes |
-| 2 | Town screen: Your House grows building by building from real steps | Heroes III H3-1 | Your House, A12 | "cool! cult status" |
+| 2 | Town screen: Your House grows building by building from real steps | Heroes III H3-1 | Your House, A12 | "cool! iconic status" |
 | 3 | Interior from earned artifacts | Ready Player One RPO-2 | Your House, A12 | "cool" |
 | 4 | Constructor of buildings, interiors and villages; opens by steps (real deeds, no artificial limits) | H3-3, RPO-2, PG-1 | new row + §23 | yes |
 | 5 | Button "Create a new digital village" | Ingress PG-1 | World map, A11 | yes |
@@ -1367,14 +1367,14 @@ Rule for every mechanic: a counter, streak or number only where it mirrors a rea
 | 15 | Core principle: quality is held by a person who already walked that path. This is how constructor steps open | Scouting, Camino, H3-7, JM-1 | constructor, §23.4 | "powerful, part of the solution" |
 | 16 | Proof model: daily act = the player alone, private; village quest = the villager who gave it confirms (H3-7); Journey step = one witness the player picks, checked against a pre-written "done when", answered in words, never scored; rights over others = two people already on that step, both needed, picked by the player from anyone on it. Proof is never sold, ranked or turned into points | proof-of-learning PL-1..14 | §23.4 | yes |
 | 17 | Village quest: a villager pins one real deed to their place with a "done when" line; the player comes in person; the villager confirms -> stamp + artifact | Heroes III H3-7 | §23.4, World map | yes |
-| 18 | Achievements for real-life deeds: closing a set (e.g. 3 sessions from 3 different people) = an achievement. Separate track: research/cult-mechanics/achievements.md | §23.4, Camino, Scouting | A12 | "very cool, separate task" |
+| 18 | Achievements for real-life deeds: closing a set (e.g. 3 sessions from 3 different people) = an achievement. Separate track: research/iconic-mechanics/achievements.md | §23.4, Camino, Scouting | A12 | "very cool, separate task" |
 | 19 | Levels matter only where they open something: a right to act, people, a new chapter. Earned right fits only as constructor steps; the word "level" is not used for it. No ranks or ratings that set people against each other. Chapter = Path J1-J12; what cannot be lost = Peak, badges | levels study LV-1..8 | constructor, §20 | "TRUE! smart! yes" 16:28 |
 | 20 | Shops: only people Sasha approves get a shop (an app store in essence); anyone can browse shops, filtered to any one village; an offer goes only where someone's open quest matches it (#21) (no spam, no mass mailing); matches searched across all villages, own village shown first; payment in whatever tool the shop uses, which is direct between people; no internal currency, no seller ratings: everyone is unique. "Quest at a place" dropped from shops | Needs & Offers (H3-7), CS-2 | Market, A6, A7 | "yes" 2026-11-21 |
 | 21 | Village quests = the needs: a villager pins a real request to their place with a "done when" line, with or without a price; the player comes in person; the villager confirms. A quest is only a request, never an offer (otherwise the map becomes a billboard). The word "needs" is not used; it is "quest". How confirmation works is decided case by case (two confirmers and false-confirmation handling parked until a real case) | Seer's Hut H3-7, Needs & Offers | village map, Market | "yes, quests are better" 2026-11-21 |
+| 22 | Village Charter (for now two lines): 1. A real place: we meet in person. 2. A real person behind every avatar. "Create a new digital village" opens once its founders accept it | Burning Man regionals | Create a village, H5 | "let's keep it like this for now" 2026-11-21 |
 
 ### 24.2 Considering
 - Shops, open parts: gift as a mode (not sure yet); one written review line after a real deal (yes) and what to do with negative ones (proposal: both sides write blind, revealed together, per Airbnb RCT, Fradkin et al. 2021; negative goes to the shop owner and the approver privately first); offers also in reply to "Open to…" (parked).
-- Village charter (Burning Man regionals): "Create a new digital village" opens once the founders accept a five-line charter. Draft (Hark, 2026-11-21, awaiting Sasha's yes to the text): 1. A real place: people meet here in person. 2. A real person behind every avatar. 3. Gift first. 4. Deeds are confirmed by people, never bought. 5. The host can always be handed on.
 - Feed of real deeds (Sasha 2026-11-21: "this is a great feed"; Strava kudos): only status updates of confirmed acts (stamp, achievement, finished course, launched business), from your village and people you follow; one tap "I see you" plus an optional written line; the doer sees who tapped, nobody sees a count; the feed ends ("you're up to date"), no endless scroll. Replaces FB-3's "never a Like" with "no counts, no endless feed". Hark recommends; awaiting Sasha's yes.
 
 ### 24.3 Open

@@ -1,10 +1,10 @@
-# The Game of Being You — Cult Spec: from 43 to 75 in six weeks
+# The Game of Being You — Iconic Spec: from 43 to 75 in six weeks
 
 **Started:** 2026-10-30 · **Author:** Evolver (Hark), for Sasha's review
 **Status:** v1 spec. No `src/` changes, no issues opened yet.
-**Targets:** cult score **43 → 60 by Fri 2026-11-13 → 75 by Fri 2026-12-11**, horizon **85 by Sat 2027-01-30**.
+**Targets:** iconic score **43 → 60 by Fri 2026-11-13 → 75 by Fri 2026-12-11**, horizon **85 by Sat 2027-01-30**.
 **Grounded in:** `docs/02-strategy/game_of_being_you.md` (§7 golden thread, §13.2, §14.1 principles, §14.11 Lunar colour, §14.12a share card, §15 game masters, §15.7a two loops, §19 live audit and §19.8 wave rules), `docs/specs/ai-familiar/ai-familiar_tracker.md` (§15 design principles, §16 our AI), the Whole Map v-next (five primitives Gift · Step · Trace · Your AI · Room; seven notes Mirror · Initiation · Practice · Circle · Market · Village · Federation), the product × needs overlay (Hark drafts, 2026-10-30), live guest/signed-in/390 playtests of 2026-10-30 (Hark workspace notes), code at main 2026-10-30.
-**Source gap:** the cult strategy audit file (`cult_strategy.md`) was not found in the Hark workspace when this spec was written. Its total (43/100) and main gaps (sacred reveal, community myth, sharing, rhythm) are on record; the per-ingredient baseline in §2 is **re-derived from the 10-30 playtest evidence** to sum to 43. Re-score both on the §3 rubric at the first walk.
+**Source gap:** the iconic strategy audit file (`cult_strategy.md`) was not found in the Hark workspace when this spec was written. Its total (43/100) and main gaps (sacred reveal, community myth, sharing, rhythm) are on record; the per-ingredient baseline in §2 is **re-derived from the 10-30 playtest evidence** to sum to 43. Re-score both on the §3 rubric at the first walk.
 
 ---
 
@@ -24,7 +24,7 @@
 
 ## 1. The thesis in one paragraph
 
-Cult games give you **one moment you would tell a friend about**, make you **someone** in a **world that remembers you**, put that world on a **shared clock**, and let you **show your mark** to people who then come to make their own. Today the game has the world (title light, village, real moon, prophecy-like closed lines) but the flagship moment, the reveal, ends under an email form in a village that does not change, nobody else is visible, and the share artifact carries no link back. The fix is one signature moment, **Light a Window**, that every other ingredient hangs on: your window lights in a dark village, it has a number, others lit before you, it is stamped with tonight's moon, and the card you share carries all three plus a door back in.
+Iconic games give you **one moment you would tell a friend about**, make you **someone** in a **world that remembers you**, put that world on a **shared clock**, and let you **show your mark** to people who then come to make their own. Today the game has the world (title light, village, real moon, prophecy-like closed lines) but the flagship moment, the reveal, ends under an email form in a village that does not change, nobody else is visible, and the share artifact carries no link back. The fix is one signature moment, **Light a Window**, that every other ingredient hangs on: your window lights in a dark village, it has a number, others lit before you, it is stamped with tonight's moon, and the card you share carries all three plus a door back in.
 
 Journey: the light at Reception becomes your light (Mirror → Initiation). Animal Crossing: the real moon. Wordle: a numbered, shareable, spoiler-free mark. Sky: you light candles, others' lights are around you. Pokémon GO: the world map fills with real people's marks.
 
@@ -52,7 +52,7 @@ Each ingredient is scored 0–10 on the rubric in §3; total = sum (max 100).
 
 ---
 
-## 3. How we measure the cult score (re-scorable rubric)
+## 3. How we measure the iconic score (re-scorable rubric)
 
 **Who scores.** Two scorers per walk: Hark (playtest skill) + one human who has never played (a first-timer from Sasha's circle or a paid tester). Score each ingredient separately, then average the two; disagreements >2 points get one line of reasoning in the walk log. A score needs **evidence** (screenshot or verbatim copy) from the walk.
 
@@ -262,7 +262,7 @@ Each WP: small diff, en/es/ru keys in the same PR, unit tests where logic, **DoD
 |---|---|---|---|---|---|
 | W1 | Voice sweep: the first ten minutes | hide the $37 power-up rail item for guests until a window is lit; replace the Genius Business logo on game routes with the game frame; replace the "profile for matching" preamble with a village line (*"Reception knows every light in the village. Yours is next."*); add a locale test that fails on spell-breaker strings (§5 #1–3, #7, #10) on game routes in en/es/ru | `SpacesRail.tsx`/rail data, `ZoneOfGeniusAssessmentLayout.tsx`, `ZoneOfGeniusEntry.tsx`, `src/locales/*/common.json`, new test | guest walk 390: no price, no Genius Business, no "profile for matching" before the window; test green | no |
 | W2 | One player name | one `displayName()` (first name from profile → given window name → none); guest copy says "you", never a stranger's name; signed-in never "guest"; music credit labelled *Now playing*; Reception founder line labelled *left by the founder* | rail footer, Reception foyer, Home, `useCharacterSheet` | the same name on rail, Home, Reception, card in a signed-in walk; guest sees no name | no (fold into #241 if still open) |
-| W3 | Windows data, proposed | the SQL of §4.6 as `docs/specs/cult/village_windows.proposed.sql` + a client adapter `src/lib/villageWindows.ts` (`lightWindow()`, `claimWindow()`, `windowCount()`, probe returning state B when the RPC is missing) + tests; nothing applied | new lib + doc | adapter tests cover A/B/E/F; app behaves in state B live | **migration later (batch row 2)** |
+| W3 | Windows data, proposed | the SQL of §4.6 as `docs/specs/iconic/village_windows.proposed.sql` + a client adapter `src/lib/villageWindows.ts` (`lightWindow()`, `claimWindow()`, `windowCount()`, probe returning state B when the RPC is missing) + tests; nothing applied | new lib + doc | adapter tests cover A/B/E/F; app behaves in state B live | **migration later (batch row 2)** |
 | W4 | Light a Window, the moment | S0 + S1 per §4.1–4.4: button under the reveal card, ignite scene, number/before/moon lines, reduced motion, tap-to-finish, 390 layout, chat launcher hidden; state B live today | reveal screen (`Step4GenerateSnapshot` / Your AI reveal), new `LightWindow.tsx`, `villageSky.ts` (read only), motion tokens | guest walk 390 + 1920: window lights within 1 s of tap, copy exact, screenshots A (staging) and B (live) | no |
 | W5 | Keep it lit: the email after | move "Save your character" from under the card to S2 after the moment; same save flow, new copy; signed-in skips S2; next-move card "Keep your window lit" for unsaved guests | save panel component, `placeState.ts` next-move copy | no email field visible before S1; keep → link email arrives; village next move correct | no |
 

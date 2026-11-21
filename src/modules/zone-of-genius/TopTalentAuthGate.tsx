@@ -224,7 +224,7 @@ const TopTalentAuthGate = ({
           >
             {title ?? t("zogEntry.gateDefaultTitle")}
           </h1>
-          {/* W5 (cult spec §4.2 S2): the inline save is «keep it lit», one body line. */}
+          {/* W5 (iconic spec §4.2 S2): the inline save is «keep it lit», one body line. */}
           {inline ? (
             <p
               className="text-sm sm:text-base leading-relaxed"

@@ -1,5 +1,5 @@
 /**
- * displayName: the one name the game calls a player (cult spec §5 #4, §6 W2).
+ * displayName: the one name the game calls a player (iconic spec §5 #4, §6 W2).
  *
  * Rail, Home, Reception and the card all read it, so they cannot disagree.
  *

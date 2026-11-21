@@ -5,7 +5,7 @@ Almanac stage: 6–7 (the game board is the real town) · Fidelity: places are r
 One line: Niantic's location games. Ingress (2012) had players put real landmarks on the map; Pokémon GO (2016) inherited that map and made people walk, meet and play together at those places.
 Vocabulary note: Sasha banned the word for group boss fights on 2026-10-27 (GoBY line 195). This file says "group battles" for the source and "gathering" for ours.
 
-## 1. Why it's cult (facts)
+## 1. Why it's iconic (facts)
 
 | Fact | Number | Source, date | Grade |
 |---|---|---|---|

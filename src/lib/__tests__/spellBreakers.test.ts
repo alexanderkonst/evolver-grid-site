@@ -6,7 +6,7 @@ import es from "@/locales/es/common.json";
 import ru from "@/locales/ru/common.json";
 
 /**
- * W1 (docs/specs/cult/cult_spec.md §5 #1–3): the strings that break the spell for a guest in
+ * W1 (docs/specs/iconic/iconic_spec.md §5 #1–3): the strings that break the spell for a guest in
  * the first ten minutes. The first half scans the catalog of every guest-facing screen in
  * en/es/ru; the second half pins the code that used to put them on screen.
  */

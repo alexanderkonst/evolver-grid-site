@@ -208,7 +208,7 @@ const QUEST_BOARD = "quest-board";
 const SAVE_PLACE = "house";
 
 /** The next move for a guest who has a result and no account. */
-// W5 (cult spec §6): «Keep your light lit», same save flow, new words. No window wording.
+// W5 (iconic spec §6): «Keep your light lit», same save flow, new words. No window wording.
 export const SAVE_CHARACTER_TITLE = "Keep your light lit";
 const SAVE_CHARACTER_RESULT = "your light stays lit wherever you play, and Home opens.";
 

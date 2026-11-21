@@ -10,7 +10,7 @@ Standing rules applied to every mechanic (Sasha): (1) a counter/streak/number on
 
 ---
 
-## 1. Why it's cult: facts new in this pass
+## 1. Why it's iconic: facts new in this pass
 
 | Fact | Number | Source, date | Grade |
 |---|---|---|---|
@@ -29,7 +29,7 @@ Standing rules applied to every mechanic (Sasha): (1) a counter/streak/number on
 | Competitive scene | 2026 Polish Championship: 518 registered; World Championship decided Jan 2022: >1,000 players, €1,000 prize | [3] (CD-Action, Instalki.pl) | C |
 | Online lobby (known) | 5,474,937 ranked games, 210,077 players (2026-11-11) | pass 1 [5] | C |
 
-Share of the cult this pass credits to the mechanics below: **large for the longevity, small for the launch.** *Judgment:* the launch success (1999) came from the core game; the 27-year life is mostly player-made content (maps, HotA) plus playing together. HotA's own Wikipedia entry and the board-game maker Archon credit the mod with "extending the longevity of the game" [1].
+Share of the iconic this pass credits to the mechanics below: **large for the longevity, small for the launch.** *Judgment:* the launch success (1999) came from the core game; the 27-year life is mostly player-made content (maps, HotA) plus playing together. HotA's own Wikipedia entry and the board-game maker Archon credit the mod with "extending the longevity of the game" [1].
 
 ---
 
@@ -42,7 +42,7 @@ Share of the cult this pass credits to the mechanics below: **large for the long
 
 ### H3-4. Hot seat: one screen, everyone in the same room
 - **In the source:** up to 8 players take turns at one computer; the day ends when all have moved [4].
-- **Evidence it worked:** B that it exists in every edition and that the 2027 Remake re-invests in it [4]; B that internet was scarce where the cult grew (2% RU, 7% PL in 1999) [pass 1]; C that it explains popularity (Android.com.pl names playing together at one computer among the reasons the game lasted in Poland [4]). What it did NOT prove: that it matters once everyone has a phone.
+- **Evidence it worked:** B that it exists in every edition and that the 2027 Remake re-invests in it [4]; B that internet was scarce where the iconic grew (2% RU, 7% PL in 1999) [pass 1]; C that it explains popularity (Android.com.pl names playing together at one computer among the reasons the game lasted in Poland [4]). What it did NOT prove: that it matters once everyone has a phone.
 - **Driver:** *Judgment*, no study read here: play as an occasion to be together physically; the screen is the excuse, the room is the point.
 
 ### H3-5. The week as the unit of growth

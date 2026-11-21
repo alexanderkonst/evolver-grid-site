@@ -5417,7 +5417,7 @@ A Unique Business does not move in a straight line from articulation to revenue.
 
 ## Tactic: Find the Fandom of Your Uniqueness (November 17, 2026)
 
-A unique business looks unique, so it seems to have no market. It does: somewhere a book, a film or a game already carries the same core, and people already love it. Find that work, and its fans are the first customers: «I built X, but in real life.» Add a field to the canvas: **Cult analogues** (works whose core matches yours) and **their fan rooms**. Sasha's hypothesis (2026-11-17), to test: every unique business grows this way. Full technology: Phase Shift Technology Library, Technology 184.
+A unique business looks unique, so it seems to have no market. It does: somewhere a book, a film or a game already carries the same core, and people already love it. Find that work, and its fans are the first customers: «I built X, but in real life.» Add a field to the canvas: **Iconic analogues** (works whose core matches yours) and **their fan rooms**. Sasha's hypothesis (2026-11-17), to test: every unique business grows this way. Full technology: Phase Shift Technology Library, Technology 184.
 
 ---
 

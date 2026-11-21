@@ -23,7 +23,7 @@ Sasha, 2026-11-20 (renamed branch Z → 2 the same day):
 
 | # | Face | What the project is from this face | Notebook title |
 |---|---|---|---|
-| 1 | **The cult game** | The Game of Being You: growth, realization, village life, mutual benefit and self-organization, played. Blueprint: [game_of_being_you.md](./game_of_being_you.md). | «ИГРОВОЙ ЭКСПИРИЕНС РОСТА, РЕАЛИЗАЦИИ, ДЕРЕВЕНСКОЙ ЖИЗНИ, И ВЗАИМОВЫГОДЫ, И САМООРГАНИЗАЦИИ» (B1-62); «THE GAME OF BEING YOU» (B2-01) |
+| 1 | **The iconic game** | The Game of Being You: growth, realization, village life, mutual benefit and self-organization, played. Blueprint: [game_of_being_you.md](./game_of_being_you.md). | «ИГРОВОЙ ЭКСПИРИЕНС РОСТА, РЕАЛИЗАЦИИ, ДЕРЕВЕНСКОЙ ЖИЗНИ, И ВЗАИМОВЫГОДЫ, И САМООРГАНИЗАЦИИ» (B1-62); «THE GAME OF BEING YOU» (B2-01) |
 | 2 | **Sasha's own unique business** | Collaboration through modular nesting: others plug their modules into his system, his into theirs. Business doc: [alexanders_unique_business.md](./unique-businesses/alexanders_unique_business.md). | «КОЛЛАБОРАЦИЯ ЧЕРЕЗ МОДУЛЬНУЮ ВЛОЖЕННОСТЬ» (B1-63); «СТРУКТУРА ПРОСТЕЙШЕЙ КОЛЛАБОРАЦИИ» (B2-32) |
 | 3 | **A collective of sovereign founders** | Unique founders, each with full autonomy, sharing tools, rhythm and terms. Concept: [sovereign_founder_collective.md](./sovereign_founder_collective.md). | «КОЛЛЕКТИВ УНИКАЛЬНЫХ ФАУНДЕРОВ» (B1-64) |
 | 4 | **The Theory of Everything** | The ontology from which the whole system follows inevitably. Primary source [universal_ontology.md](../01-vision/universal_ontology.md), then [phase_shift_technology_library.md](../01-vision/phase_shift_technology_library.md). | «ТЕОРИЯ ВСЕГО ЗОЛОТОГО ВЕКА» (B1-65) |
@@ -89,7 +89,7 @@ Abbreviations: GoBY = [game_of_being_you.md](./game_of_being_you.md) · PB = [pr
 | Deep AI training (The Nature of AI, mental-garbage clearings on AI) | spec, partial | PB 0.2 · B1-34, B1-35 | Understand AI for years ahead. |
 | Founder's AI suite: terminal prompt, GitHub setup, agent orchestration, AI company, company-wide harnesses, licence / business model | notebook | B1-27, B1-30, B1-31, B1-33, B1-36, B1-40 | A founder runs an AI company, not a prompt. |
 
-### Face 1 · The cult game (The Game of Being You)
+### Face 1 · The iconic game (The Game of Being You)
 | Module | Status | Source | Result |
 |---|---|---|---|
 | Title screen (NEW GAME) | live | `/`; GoBY §4 | Entry menu. |

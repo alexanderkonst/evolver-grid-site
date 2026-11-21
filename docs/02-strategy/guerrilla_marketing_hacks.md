@@ -364,7 +364,7 @@ Network School = how to make life easy, work easy, play easy, community easy. Bu
 - *Heroes of Might and Magic III* fans: «Like Heroes III, but your own life is the map, and the hero is you.»
 
 **Setup:**
-1. Name the analogue: the cult work whose core matches the product's core (not its surface).
+1. Name the analogue: the iconic work whose core matches the product's core (not its surface).
 2. Find its fan rooms: subreddits, Discords, forums, fan wikis, Telegram chats.
 3. Read the room's rules; post as a fan, in its language, one story-worthy line plus a door.
 4. Make the launch a ritual the fandom already knows (keys, quests, "Ready Player One?").
@@ -372,7 +372,7 @@ Network School = how to make life easy, work easy, play easy, community easy. Bu
 **Why It Works:**
 - The fandom has already done the hardest work: they know what they love and why. Desire exists; we only point it at a real-life version.
 - One analogy carries the whole explanation in a sentence. No category to teach.
-- Cult language spreads by itself: fans retell it.
+- Iconic language spreads by itself: fans retell it.
 
 **Principles Applied:** go where the desire already lives; analogy over explanation; story-worthy; respect the room (a fan's post, not an ad). Technology: Phase Shift Technology Library, Technology 184 (Fandom Bridge).
 

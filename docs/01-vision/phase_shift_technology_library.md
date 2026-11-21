@@ -9669,7 +9669,7 @@ An earlier AI draft here treated the holo-trinity as a product under the working
 
 ### The steps
 1. **Core.** Name your product's core in one line (Game of Being You: a game that returns the player to real life).
-2. **Analogues.** List cult works with the same core (Ready Player One; Heroes III).
+2. **Analogues.** List iconic works with the same core (Ready Player One; Heroes III).
 3. **Rooms.** Find where their fans gather.
 4. **Bridge line.** «I built X, but in real life», said as a fan.
 5. **Ritual launch.** Borrow the fandom's own rituals (keys, quests, the call "Ready Player One?").
@@ -9677,7 +9677,7 @@ An earlier AI draft here treated the holo-trinity as a product under the working
 ### 🧠 Significance — AI draft
 *AI draft, for Sasha to rewrite in his voice.*
 - **Essence.** Desire is the scarcest thing in marketing; a fandom is stored desire. The bridge spends no energy creating it.
-- **Consequences.** (1) The analogue is also the pitch: one sentence replaces a category explanation. (2) The canvas gains a field: cult analogues and their rooms. (3) Hypothesis, not yet law: "every unique business works this way"; test across clients (Gleb, Eva) before stating it as law.
+- **Consequences.** (1) The analogue is also the pitch: one sentence replaces a category explanation. (2) The canvas gains a field: iconic analogues and their rooms. (3) Hypothesis, not yet law: "every unique business works this way"; test across clients (Gleb, Eva) before stating it as law.
 - **Cautions.** Respect fan rooms' rules on self-promotion; the core must truly match, or fans read it as appropriation; never use a franchise's trademarks in the product name.
 
 ### Cross-references — Connects to

@@ -4,7 +4,7 @@ Filled: 2026-11-21 · Status: draft (worked example of template v1), awaiting Sa
 Almanac stage: 7–8 (real life is the game state: you let a stranger sleep in your home; a shared reality across cities) · Fidelity: reality
 One line: a hospitality network (2004) where strangers host travelers for free; trust between strangers came from verification, references and **vouching**. Sasha's pick: vouching.
 
-## 1. Why it's cult (facts)
+## 1. Why it's iconic (facts)
 
 | Fact | Number | Source, date | Grade |
 |---|---|---|---|
@@ -15,7 +15,7 @@ One line: a hospitality network (2004) where strangers host travelers for free; 
 | Trust held | only 0.17% of references negative (one week, April 2009) | [1] citing site stats | B |
 | Today | company claims 25M+ registered members in 200,000+ cities | [6] Couchsurfing press page, 2026-08-11 (company claim) | C |
 
-Share of the cult credited to the mechanics below: **large**. *Judgment:* the product is trust between strangers; the reputation system (verification, references, vouching) is what made it possible [1].
+Share of the iconic credited to the mechanics below: **large**. *Judgment:* the product is trust between strangers; the reputation system (verification, references, vouching) is what made it possible [1].
 
 ## 2. Mechanics that demonstrably worked
 
