@@ -13,6 +13,14 @@
  */
 
 import type { PlaceInput, PlaceRule } from "@/lib/placeState";
+import { getRegistryModule } from "@/data/modules";
+
+/** Start route of a module, read from the module registry (src/data/modules.ts), the one source of module data. */
+const moduleRoute = (slug: string): string => {
+  const route = getRegistryModule(slug)?.startRoute;
+  if (!route) throw new Error(`villagePlaces: module "${slug}" has no startRoute in the registry`);
+  return route;
+};
 
 export type VillagePlaceKey =
   | "reception"
@@ -88,7 +96,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     line: "You're welcome here. Discover your uniqueness.",
     lineReturning: "Welcome back. Discover your uniqueness.",
     lineReturningNamed: "Welcome back, {{name}}. Discover your uniqueness.",
-    to: "/zone-of-genius/entry",
+    to: moduleRoute("zone-of-genius"),
     rule: { steps: ["find-top-talent"] },
     // The scene file is still named gate.webp; kept until a Reception scene is made.
     image: "/game/village/gate.webp",

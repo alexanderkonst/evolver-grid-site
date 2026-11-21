@@ -28,6 +28,26 @@ import type { CourseModule } from "@/data/courses/types";
 import { CONSCIOUSNESS_MEETS_SCIENCE, CMS_COURSE_PATH } from "@/data/courses/consciousnessMeetsScience";
 import { ACTIVATE_YOUR_DORMANT_POTENTIAL, COURSE_PATH as ADP_COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
 import { ACTIVATION_OF_INNER_VISION, AIV_COURSE_PATH } from "@/data/courses/activationOfInnerVision";
+import { getRegistryModule } from "@/data/modules";
+import type { Module } from "@/types/module";
+
+/**
+ * Slug, title, price, promise and SEO text of every course come from the module registry
+ * (src/data/modules.ts, Module 2 · L2); this file keeps the sales copy only.
+ * Exception: Integral Mystery School. Its registry entry is the landing-page tile (status
+ * "Coming Soon", no price, its own tagline), and the tile must not change, so its sales
+ * fields stay local here.
+ */
+const registered = (slug: string): Module => {
+    const m = getRegistryModule(slug);
+    if (!m) throw new Error(`courseSales: "${slug}" is not in the module registry`);
+    return m;
+};
+const plainText = (html: string) => html.replace(/<[^>]+>/g, "");
+const fromRegistry = (slug: string) => {
+    const m = registered(slug);
+    return { slug: m.slug, title: m.title, promise: m.tagline, price: m.price, seoDescription: plainText(m.description) };
+};
 
 export const COURSE_SALES_BASE = "/academy";
 export const courseSalesPath = (slug: string) => `${COURSE_SALES_BASE}/${slug}`;
@@ -87,10 +107,8 @@ const aivPublished = countEpisodes(ACTIVATION_OF_INNER_VISION.modules, true);
 
 export const COURSE_SALES: CourseSalesData[] = [
     {
-        slug: CONSCIOUSNESS_MEETS_SCIENCE.slug,
-        title: CONSCIOUSNESS_MEETS_SCIENCE.title,
+        ...fromRegistry(CONSCIOUSNESS_MEETS_SCIENCE.slug),
         eyebrow: "Free mini-course",
-        promise: "Inner insight and scientific knowledge are two sides of the same coin.",
         lead: `How inner experience and modern science co-reveal the nature of reality. In ${cmsVideos} short videos, see how what you feel inside and what science finds outside tell one story.`,
         forWhom: [
             "You have had moments you couldn't explain, and you also trust science.",
@@ -102,17 +120,12 @@ export const COURSE_SALES: CourseSalesData[] = [
             "Each episode ends with a short practice: a few breaths, one question, a minute of noticing.",
             "Science claims are marked as established or as hypothesis, so you always know which is which.",
         ],
-        price: "Free",
         format: `${cmsVideos} short videos · about 2 minutes each · watch at your own pace`,
         cta: { kind: "start", label: "Start the course", to: CMS_COURSE_PATH },
-        seoDescription:
-            "A free mini-course by Aleksandr Konstantinov: how inner experience and modern science co-reveal the nature of reality.",
     },
     {
-        slug: ACTIVATE_YOUR_DORMANT_POTENTIAL.slug,
-        title: ACTIVATE_YOUR_DORMANT_POTENTIAL.title,
+        ...fromRegistry(ACTIVATE_YOUR_DORMANT_POTENTIAL.slug),
         eyebrow: "Free mini-course",
-        promise: "You grow first, and then the results follow.",
         lead: "How to master your spirit, mind, emotions, body and unique genius: the five paths of growth, one short video at a time.",
         forWhom: [
             "You want to grow on purpose, not by accident.",
@@ -121,17 +134,12 @@ export const COURSE_SALES: CourseSalesData[] = [
         ],
         modules: ACTIVATE_YOUR_DORMANT_POTENTIAL.modules,
         practice: ACTIVATE_YOUR_DORMANT_POTENTIAL.practices.map((p) => `${p.title} (${p.duration}), a guided audio practice.`),
-        price: "Free",
         format: `${adpVideos} short videos · ${ACTIVATE_YOUR_DORMANT_POTENTIAL.practices.length} audio practices · watch at your own pace`,
         cta: { kind: "start", label: "Start the course", to: ADP_COURSE_PATH },
-        seoDescription:
-            "A free mini-course by Aleksandr Konstantinov: how to master your spirit, mind, emotions, body and unique genius.",
     },
     {
-        slug: "founder-academy",
-        title: "Founder Academy",
+        ...fromRegistry("founder-academy"),
         eyebrow: "Recorded course · after the two free courses",
-        promise: "A map of how we grow, so that growth speeds up, and a playbook for building from your genius.",
         lead: "Five sessions, recorded live with the first cohort: human development, its acceleration, your Zone of Genius, a conscious entrepreneurship playbook, and AI.",
         forWhom: [
             "You are starting or building something of your own and want to grow as a person while you build.",
@@ -149,15 +157,12 @@ export const COURSE_SALES: CourseSalesData[] = [
         practice: [
             "One master practice, conscious breath and heart-centering, played as a daily game.",
         ],
-        price: "$111",
         format: "Recorded · 5 sessions, about 2 hours each",
         cta: {
             kind: "telegram",
             label: "Ask on Telegram",
             message: "Hi Aleksandr, I'd like to join Founder Academy ($111, recorded).",
         },
-        seoDescription:
-            "Founder Academy by Aleksandr Konstantinov: five recorded sessions on human development, your Zone of Genius, conscious entrepreneurship and AI.",
     },
     {
         slug: "integral-mystery-school",
@@ -194,10 +199,8 @@ export const COURSE_SALES: CourseSalesData[] = [
             "Integral Mystery School by Aleksandr Konstantinov: five recorded sessions on first principles, inspirited leadership, the soul's compass and integral mastery.",
     },
     {
-        slug: ACTIVATION_OF_INNER_VISION.slug,
-        title: "Advanced micro-course: Activation of Inner Vision",
+        ...fromRegistry(ACTIVATION_OF_INNER_VISION.slug),
         eyebrow: "Advanced micro-course · after Integral Mystery School",
-        promise: "See any situation whole, from 27 positions, and let the seeing land as one act.",
         lead: `${aivVideos} short videos on the 27-perspective instrument: two axes, twelve dimensions, the Logos, the octave of seeing the seer, and the 27th, where seeing becomes an act.`,
         forWhom: [
             "You finished Integral Mystery School and want an instrument, not only a map.",
@@ -207,7 +210,6 @@ export const COURSE_SALES: CourseSalesData[] = [
         practice: [
             `Every episode ends in a practice on your own real situation, the same one carried through all ${aivVideos}.`,
         ],
-        price: "$27",
         format: `${aivVideos} short videos · built on the paper “27-Perspective Vision”`,
         order: "After Integral Mystery School",
         status: aivPublished === 0 ? "Videos in production" : undefined,
@@ -216,14 +218,10 @@ export const COURSE_SALES: CourseSalesData[] = [
             label: "Ask on Telegram",
             message: "Hi Aleksandr, I'd like to take the advanced micro-course Activation of Inner Vision ($27).",
         },
-        seoDescription:
-            "An advanced micro-course on 27-perspective seeing, by Aleksandr Konstantinov. After Integral Mystery School.",
     },
     {
-        slug: "live-group",
-        title: "Live group",
+        ...fromRegistry("live-group"),
         eyebrow: "Live · 1 month",
-        promise: "Founder Academy and Integral Mystery School, live, together.",
         lead: "The live version of both courses: you go through them with a group, with Aleksandr, over one month.",
         forWhom: [
             "You'd rather learn live, with people, than alone with recordings.",
@@ -235,15 +233,12 @@ export const COURSE_SALES: CourseSalesData[] = [
             { title: "Integral Mystery School", note: "First principles, inspirited leadership, soul's compass, integral mastery, activation." },
         ],
         practice: ["The practices of both courses, done live with the group."],
-        price: "$333",
         format: "Live group · 1 month",
         cta: {
             kind: "waitlist",
             label: "Join the waitlist",
             waitlistName: "Live group: Founder Academy + Integral Mystery School ($333)",
         },
-        seoDescription:
-            "A one-month live group with Aleksandr Konstantinov: the live version of Founder Academy and Integral Mystery School.",
     },
 ];
 

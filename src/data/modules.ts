@@ -1,10 +1,29 @@
-import { Module } from "@/types/module";
+import type { LegacyModuleCategory, Module, ModuleSource } from "@/types/module";
+import { CMS_COURSE_PATH, CONSCIOUSNESS_MEETS_SCIENCE } from "@/data/courses/consciousnessMeetsScience";
+import { ACTIVATE_YOUR_DORMANT_POTENTIAL, COURSE_PATH as ADP_COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
+import { AIV_COURSE_SLUG } from "@/data/courses/activationOfInnerVision";
+
+/**
+ * THE module registry (Module 2 · L2): one list of every module in the game, ours and,
+ * later, partners'. Plan: docs/02-strategy/modular_collaboration/launch_plan.md (L2).
+ *
+ * Derived from here, not restated: src/data/courseSales.ts (slug, title, price, promise,
+ * SEO text of each Academy course) and the Reception route in src/data/villagePlaces.ts.
+ * Places stay places (villagePlaces.ts); only module data lives here, and `place` says
+ * which place shows the module.
+ *
+ * The first block is the modules the landing page (Index) lists; those keep a legacy
+ * category. Entries with a space category (LEARN, …) are registry-only: the landing page
+ * and /m/:slug never see them (see `isLandingModule`), so no screen changes.
+ */
 
 export const modules: Module[] = [
   {
     id: "1",
     title: "DESTINY: YOUR UNIQUE GENIUS BUSINESS",
     slug: "destiny",
+    owner: "evolver",
+    source: "internal",
     category: "Business",
     tagline: "Activate your genius and design your core offer",
     status: "Live",
@@ -38,9 +57,11 @@ export const modules: Module[] = [
     story: "Destiny emerged from working with hundreds of talented individuals who struggled to articulate their unique value. This program distills that experience into a clear pathway for building a business around your genius.",
   },
   {
-    id: "10",
+    id: "11", // was "10", which collided with MULTIPLE INTELLIGENCES; ids must be unique
     title: "GENIUS-LAYER MATCHING",
     slug: "genius-layer-matching",
+    owner: "evolver",
+    source: "internal",
     category: "Business",
     tagline: "Stop guessing co-founder fit. Match on how people are built to play.",
     status: "Live",
@@ -76,6 +97,8 @@ export const modules: Module[] = [
     id: "9",
     title: "GENIUS OFFER SNAPSHOT",
     slug: "genius-offer",
+    owner: "evolver",
+    source: "internal",
     category: "Business",
     tagline: "Turn your genius into one clear offer people can say yes to.",
     status: "Live",
@@ -110,6 +133,8 @@ export const modules: Module[] = [
     id: "2",
     title: "INTELLIGENCE BOOST FOR YOUR AI MODEL",
     slug: "intelligence-boost-for-your-ai-model",
+    owner: "evolver",
+    source: "internal",
     category: "AI",
     tagline: "Upgrade your AI's thinking to match the power of your creative output",
     status: "Live",
@@ -157,6 +182,8 @@ export const modules: Module[] = [
     id: "3",
     title: "МУЖСКОЙ КРУГ",
     slug: "mens-circle",
+    owner: "evolver",
+    source: "internal",
     category: "Ceremonies",
     tagline: "Душевное пространство",
     status: "Live",
@@ -193,6 +220,8 @@ export const modules: Module[] = [
     id: "7",
     title: "QUALITY OF LIFE ACTIVATION",
     slug: "quality-of-life-map",
+    owner: "evolver",
+    source: "internal",
     category: "Tools",
     tagline: "An integral framework for rapid life upgrades",
     status: "Live",
@@ -232,6 +261,9 @@ export const modules: Module[] = [
     id: "8",
     title: "ZONE OF GENIUS DISCOVERY",
     slug: "zone-of-genius",
+    owner: "evolver",
+    source: "internal",
+    place: "reception",
     category: "Tools",
     tagline: "Get AI-powered clarity on your core strengths and next career step",
     status: "Live",
@@ -271,6 +303,8 @@ export const modules: Module[] = [
     id: "10",
     title: "MULTIPLE INTELLIGENCES SELF-ASSESSMENT",
     slug: "intelligences",
+    owner: "evolver",
+    source: "internal",
     category: "Tools",
     tagline: "A free 2–3 minute test to quickly map the ways you're naturally most intelligent",
     status: "Live",
@@ -307,6 +341,8 @@ export const modules: Module[] = [
     id: "4",
     title: "Heartcraft (Game)",
     slug: "heartcraft-game",
+    owner: "evolver",
+    source: "internal",
     category: "Growth",
     tagline: "A level-based awakening game using conscious breathwork",
     status: "Coming Soon",
@@ -340,6 +376,9 @@ export const modules: Module[] = [
     id: "5",
     title: "Integral Mystery School",
     slug: "integral-mystery-school",
+    owner: "evolver",
+    source: "internal",
+    place: "academy",
     category: "Growth",
     tagline: "A 5-module program on leadership and evolutionary development",
     status: "Coming Soon",
@@ -370,14 +409,99 @@ export const modules: Module[] = [
       { label: "Course Portal", url: "#" }
     ]
   },
+
+  // ── Academy courses (registry-only; sales copy stays in src/data/courseSales.ts) ──
+  // Integral Mystery School, the fifth course, is the "integral-mystery-school" entry above.
+  {
+    id: "course-activate-your-dormant-potential",
+    title: ACTIVATE_YOUR_DORMANT_POTENTIAL.title,
+    slug: ACTIVATE_YOUR_DORMANT_POTENTIAL.slug,
+    category: "LEARN",
+    tagline: "You grow first, and then the results follow.",
+    status: "Live",
+    price: "Free",
+    space: "LEARN",
+    startRoute: ADP_COURSE_PATH,
+    description: "<p>A free mini-course by Aleksandr Konstantinov: how to master your spirit, mind, emotions, body and unique genius.</p>",
+    owner: "evolver",
+    source: "internal",
+    place: "academy",
+  },
+  {
+    id: "course-consciousness-meets-science",
+    title: CONSCIOUSNESS_MEETS_SCIENCE.title,
+    slug: CONSCIOUSNESS_MEETS_SCIENCE.slug,
+    category: "LEARN",
+    tagline: "Inner insight and scientific knowledge are two sides of the same coin.",
+    status: "Live",
+    price: "Free",
+    space: "LEARN",
+    startRoute: CMS_COURSE_PATH,
+    description: "<p>A free mini-course by Aleksandr Konstantinov: how inner experience and modern science co-reveal the nature of reality.</p>",
+    owner: "evolver",
+    source: "internal",
+    place: "academy",
+  },
+  {
+    id: "course-founder-academy",
+    title: "Founder Academy",
+    slug: "founder-academy",
+    category: "LEARN",
+    tagline: "A map of how we grow, so that growth speeds up, and a playbook for building from your genius.",
+    status: "Live",
+    price: "$111",
+    space: "LEARN",
+    description: "<p>Founder Academy by Aleksandr Konstantinov: five recorded sessions on human development, your Zone of Genius, conscious entrepreneurship and AI.</p>",
+    owner: "evolver",
+    source: "internal",
+    place: "academy",
+  },
+  {
+    id: "course-activation-of-inner-vision",
+    title: "Advanced micro-course: Activation of Inner Vision",
+    slug: AIV_COURSE_SLUG,
+    category: "LEARN",
+    tagline: "See any situation whole, from 27 positions, and let the seeing land as one act.",
+    status: "Coming Soon", // videos in production (courseSales.ts shows the same line)
+    price: "$27",
+    space: "LEARN",
+    description: "<p>An advanced micro-course on 27-perspective seeing, by Aleksandr Konstantinov. After Integral Mystery School.</p>",
+    owner: "evolver",
+    source: "internal",
+    place: "academy",
+  },
+  {
+    id: "course-live-group",
+    title: "Live group",
+    slug: "live-group",
+    category: "LEARN",
+    tagline: "Founder Academy and Integral Mystery School, live, together.",
+    status: "Coming Soon", // waitlist
+    price: "$333",
+    space: "LEARN",
+    description: "<p>A one-month live group with Aleksandr Konstantinov: the live version of Founder Academy and Integral Mystery School.</p>",
+    owner: "evolver",
+    source: "internal",
+    place: "academy",
+  },
 ];
 
+const LEGACY_CATEGORIES: readonly LegacyModuleCategory[] = ["AI", "Growth", "Business", "Ceremonies", "Tools", "Apps", "Other"];
+
+/** True for the modules the landing page (Index) and /m/:slug show: the ones with a legacy category. */
+export const isLandingModule = (module: Module): boolean =>
+  (LEGACY_CATEGORIES as readonly string[]).includes(module.category);
+
+/** Every module in the registry, whether or not the landing page shows it. */
+export const getRegistryModule = (slug: string): Module | undefined =>
+  modules.find((module) => module.slug === slug);
+
 export const getModuleBySlug = (slug: string): Module | undefined => {
-  return modules.find((module) => module.slug === slug);
+  return modules.find((module) => module.slug === slug && isLandingModule(module));
 };
 
 export const getModulesByCategory = (category: string): Module[] => {
-  if (category === "ALL") return modules;
+  if (category === "ALL") return modules.filter(isLandingModule);
   // Match category with proper casing (AI stays uppercase, others title case)
   const normalizedCategory = category === "AI" ? "AI" : category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
   return modules.filter((module) => module.category === normalizedCategory);
@@ -385,5 +509,10 @@ export const getModulesByCategory = (category: string): Module[] => {
 
 export const getRelatedModules = (moduleId: string, relatedSlugs?: string[]): Module[] => {
   if (!relatedSlugs) return [];
-  return modules.filter((module) => relatedSlugs.includes(module.slug) && module.id !== moduleId);
+  return modules.filter((module) => relatedSlugs.includes(module.slug) && module.id !== moduleId && isLandingModule(module));
 };
+
+// Defaults for the partner fields, applied in one place so entries can leave them out.
+export const moduleOwner = (module: Module): string => module.owner ?? "evolver";
+export const moduleSource = (module: Module): ModuleSource => module.source ?? "internal";
+export const moduleReferralParam = (module: Module): string => module.referralParam ?? "ref";
