@@ -7758,6 +7758,26 @@
       "mission": "Моя миссия"
     }
   },
+  "streak": {
+    "nameToday": "Назови сегодняшний поступок",
+    "placeholder": "например: написал клиенту",
+    "nameIt": "Назвать",
+    "named": "Сегодняшний поступок: {{text}}",
+    "card": {
+      "label": "Серия",
+      "days_one": "день",
+      "days_few": "дня",
+      "days_many": "дней",
+      "days_other": "дня",
+      "freezes_one": "{{count}} заморозка в запасе",
+      "freezes_few": "{{count}} заморозки в запасе",
+      "freezes_many": "{{count}} заморозок в запасе",
+      "freezes_other": "{{count}} заморозки в запасе",
+      "today": "Сегодня: {{text}}",
+      "nameToday": "Назови сегодняшний поступок, чтобы продлить",
+      "resting": "Самая длинная серия: {{best}}. Назови поступок, чтобы начать новую."
+    }
+  },
   "characterSheet": {
     "eyebrow": "Дом",
     "playerFallback": "Игрок",

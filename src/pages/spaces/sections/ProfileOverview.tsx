@@ -23,6 +23,7 @@ import {
 } from "@/lib/houseRooms";
 import { placeSaveFromSheet } from "@/lib/placeState";
 import { buildHouseStats, useHouseStatsData } from "@/lib/houseStats";
+import { useStreakActs } from "@/hooks/useStreakActs";
 import { getVillagePlace } from "@/data/villagePlaces";
 import { placeTagline, tr } from "@/lib/villageCopy";
 import { displayName } from "@/lib/displayName";
@@ -118,6 +119,9 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
                 : [],
         [statsData, sheet.qol, levelSeries],
     );
+    // A13: the forgiving streak, owner-only, only once the player has a first named act.
+    const streakActs = useStreakActs();
+    const streak = streakActs.available && streakActs.streak.status !== "none" ? streakActs.streak : null;
     // W2: the one player name (rail, Home, Reception, card). No name yet = no name line.
     const playerName = displayName({ signedIn: !!sheet.userId, firstName: sheet.firstName });
     const name = playerName ?? t("characterSheet.playerFallback");
@@ -384,7 +388,7 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
                 <h1 className="cs-name">{name}</h1>
             </header>
 
-            {stats.length > 0 && (
+            {(stats.length > 0 || streak) && (
                 <section className="cs-stats" aria-label={t("characterSheet.stats.title")}>
                     <ul className="cs-stats__list">
                         {stats.map((s) => (
@@ -406,6 +410,27 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
                                 )}
                             </li>
                         ))}
+                        {streak && (
+                            <li className="cs-stat" data-stat="streak">
+                                <p className="cs-mono cs-stat__label">{t("streak.card.label", "Streak")}</p>
+                                <p className="cs-value cs-stat__value">
+                                    {streak.count}
+                                    <span> {t("streak.card.days", { count: streak.count, defaultValue: "days" })}</span>
+                                </p>
+                                <p className="cs-mono cs-stat__note">
+                                    {streak.status === "resting"
+                                        ? t("streak.card.resting", { best: streak.best })
+                                        : streakActs.todayText
+                                          ? t("streak.card.today", { text: streakActs.todayText })
+                                          : t("streak.card.nameToday")}
+                                </p>
+                                {streak.freezes > 0 && (
+                                    <p className="cs-mono cs-stat__change">
+                                        {t("streak.card.freezes", { count: streak.freezes })}
+                                    </p>
+                                )}
+                            </li>
+                        )}
                     </ul>
                 </section>
             )}

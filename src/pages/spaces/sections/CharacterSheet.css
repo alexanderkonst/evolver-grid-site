@@ -127,6 +127,8 @@
 .cs-stat__value { font-size: clamp(30px, 7vw, 40px); line-height: 1; }
 .cs-stat__value span { font-size: 0.4em; color: var(--cs-ink-3); letter-spacing: 0.08em; }
 .cs-stat__change { margin: 10px 0 0; color: var(--cs-ink-2); }
+/* A13: the streak card wears the stat family: no red, no alarm, just the number and a quiet line. */
+.cs-stat__note { margin: 10px 0 0; color: var(--cs-ink-3); overflow-wrap: anywhere; }
 
 /* ---------- Rooms: one sheet, hairlines, each unfolds in place ---------- */
 .cs-rooms { list-style: none; margin: clamp(40px, 7vh, 72px) 0 0; padding: 0; }

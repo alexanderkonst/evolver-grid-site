@@ -7737,6 +7737,22 @@
       "mission": "Mi misión"
     }
   },
+  "streak": {
+    "nameToday": "Nombra el acto de hoy",
+    "placeholder": "p. ej. escribí a un cliente",
+    "nameIt": "Nombrarlo",
+    "named": "Acto de hoy: {{text}}",
+    "card": {
+      "label": "Racha",
+      "days_one": "día",
+      "days_other": "días",
+      "freezes_one": "{{count}} congelación guardada",
+      "freezes_other": "{{count}} congelaciones guardadas",
+      "today": "Hoy: {{text}}",
+      "nameToday": "Nombra el acto de hoy para extenderla",
+      "resting": "Racha más larga: {{best}}. Nombra un acto para empezar una nueva."
+    }
+  },
   "characterSheet": {
     "eyebrow": "Casa",
     "playerFallback": "Jugador",

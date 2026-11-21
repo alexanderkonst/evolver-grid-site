@@ -2,6 +2,7 @@ import { useEffect, useId, useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLeave } from "@/lib/motion";
 import LeaveParticle from "@/components/game/LeaveParticle";
+import NameTodaysAct from "@/components/game/NameTodaysAct";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
 import { useJourneyVictory } from "@/hooks/useJourneyVictory";
 import { useModuleChoice } from "@/hooks/useModuleChoice";
@@ -171,6 +172,8 @@ const ModuleOutro = ({ module, result, className }: Props) => {
             </fieldset>
           )
         ) : null}
+
+        <NameTodaysAct source="journey" />
 
         <div className="mf__after">
           <Link className="mf__go" to="/village" onClick={(e) => leave(() => navigate("/village"), e)}>
