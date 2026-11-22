@@ -4,7 +4,7 @@ Step 2 of the synthesis (Sasha, 2026-11-22): for every source in [taxonomy.md](t
 
 Format per source: kind · longevity · holon (H1 person … H6 civilization) · quadrant (I / IT / WE / ITS) · mechanics with evidence ([link], grade A peer-reviewed or official data / B serious journalism or books / C own claim or mechanism only) and driver · invariant hint. Each class ends with its cross-cutting patterns. Mechanics are extracted, not yet mapped onto our game.
 
-## Invariants v0 (draft for step 3)
+## Invariants v1 (accepted by Sasha 2026-11-22)
 
 Patterns that recur across classes. Count = how many of the eight classes show it independently.
 
@@ -23,7 +23,7 @@ Patterns that recur across classes. Count = how many of the eight classes show i
 
 Classes are now eight (IV.1 land projects and IV.2 festivals added 2026-11-22); counts for #9–10 are estimates from the new classes plus earlier ones. Failure mode seen in both new classes: worn-out volunteer cores and rented or state-held ground (Nowhere ended 2026, Envision has no path to 2027, Network School moved out of Malaysia, Cabin DAO wound down 2025).
 
-Next: check each invariant against GoBY §24 (what we already have, what is missing), then choose the smallest combination where each piece strengthens the others.
+Step 3 done: every invariant has a mechanic in GoBY §24; the core bundle is §24.1 #25 (circle × weekly rhythm × Save Point speech rule × peer confirmation). #10 is covered by the Café circle kind "Care of a place" (Circles v1, issue #384), not by a separate system. Harvest row for golden_age_canon.md §3 handed to main chat.
 
 ## Contents
 
