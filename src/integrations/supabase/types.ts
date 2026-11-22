@@ -285,6 +285,156 @@ export type Database = {
           },
         ]
       }
+      circle_handoffs: {
+        Row: {
+          accepted_at: string | null
+          created_at: string
+          event_id: string | null
+          from_user: string
+          id: string
+          series_id: string | null
+          to_user: string
+        }
+        Insert: {
+          accepted_at?: string | null
+          created_at?: string
+          event_id?: string | null
+          from_user: string
+          id?: string
+          series_id?: string | null
+          to_user: string
+        }
+        Update: {
+          accepted_at?: string | null
+          created_at?: string
+          event_id?: string | null
+          from_user?: string
+          id?: string
+          series_id?: string | null
+          to_user?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "circle_handoffs_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      circle_lines: {
+        Row: {
+          body: string
+          created_at: string
+          event_id: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          event_id: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          event_id?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "circle_lines_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      circle_notices: {
+        Row: {
+          audience: string
+          event_id: string | null
+          id: string
+          kind: string
+          sent_at: string
+          series_id: string | null
+          week_of: string | null
+        }
+        Insert: {
+          audience?: string
+          event_id?: string | null
+          id?: string
+          kind: string
+          sent_at?: string
+          series_id?: string | null
+          week_of?: string | null
+        }
+        Update: {
+          audience?: string
+          event_id?: string | null
+          id?: string
+          kind?: string
+          sent_at?: string
+          series_id?: string | null
+          week_of?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "circle_notices_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      circle_steps: {
+        Row: {
+          claimed_done_at: string | null
+          confirmed_at: string | null
+          created_at: string
+          done_when: string
+          id: string
+          series_id: string
+          step: string
+          user_id: string
+          week_of: string
+          witness_id: string | null
+          witness_note: string | null
+        }
+        Insert: {
+          claimed_done_at?: string | null
+          confirmed_at?: string | null
+          created_at?: string
+          done_when: string
+          id?: string
+          series_id: string
+          step: string
+          user_id: string
+          week_of: string
+          witness_id?: string | null
+          witness_note?: string | null
+        }
+        Update: {
+          claimed_done_at?: string | null
+          confirmed_at?: string | null
+          created_at?: string
+          done_when?: string
+          id?: string
+          series_id?: string
+          step?: string
+          user_id?: string
+          week_of?: string
+          witness_id?: string | null
+          witness_note?: string | null
+        }
+        Relationships: []
+      }
       commercial_outbound_actions: {
         Row: {
           action_type: string
@@ -912,28 +1062,37 @@ export type Database = {
       }
       event_rsvps: {
         Row: {
+          came: boolean
+          came_marked_at: string | null
           created_at: string | null
           email: string | null
           event_id: string | null
           id: string
+          note: string | null
           status: string | null
           user_id: string | null
           wants_reminder: boolean | null
         }
         Insert: {
+          came?: boolean
+          came_marked_at?: string | null
           created_at?: string | null
           email?: string | null
           event_id?: string | null
           id?: string
+          note?: string | null
           status?: string | null
           user_id?: string | null
           wants_reminder?: boolean | null
         }
         Update: {
+          came?: boolean
+          came_marked_at?: string | null
           created_at?: string | null
           email?: string | null
           event_id?: string | null
           id?: string
+          note?: string | null
           status?: string | null
           user_id?: string | null
           wants_reminder?: boolean | null
@@ -950,43 +1109,76 @@ export type Database = {
       }
       events: {
         Row: {
+          after_photo_url: string | null
+          cancelled_at: string | null
+          capacity: number | null
+          cohost_id: string | null
           community_id: string | null
           created_at: string | null
           created_by: string | null
           description: string | null
+          end_time: string | null
           event_date: string
           event_time: string
+          host_id: string | null
           id: string
+          kind: string
           location: string | null
+          online_url: string | null
           photo_url: string | null
+          repeat_rule: string
+          requires_approval: boolean
+          series_id: string | null
           timezone: string | null
           title: string
           visibility: string | null
         }
         Insert: {
+          after_photo_url?: string | null
+          cancelled_at?: string | null
+          capacity?: number | null
+          cohost_id?: string | null
           community_id?: string | null
           created_at?: string | null
           created_by?: string | null
           description?: string | null
+          end_time?: string | null
           event_date: string
           event_time: string
+          host_id?: string | null
           id?: string
+          kind?: string
           location?: string | null
+          online_url?: string | null
           photo_url?: string | null
+          repeat_rule?: string
+          requires_approval?: boolean
+          series_id?: string | null
           timezone?: string | null
           title: string
           visibility?: string | null
         }
         Update: {
+          after_photo_url?: string | null
+          cancelled_at?: string | null
+          capacity?: number | null
+          cohost_id?: string | null
           community_id?: string | null
           created_at?: string | null
           created_by?: string | null
           description?: string | null
+          end_time?: string | null
           event_date?: string
           event_time?: string
+          host_id?: string | null
           id?: string
+          kind?: string
           location?: string | null
+          online_url?: string | null
           photo_url?: string | null
+          repeat_rule?: string
+          requires_approval?: boolean
+          series_id?: string | null
           timezone?: string | null
           title?: string
           visibility?: string | null
@@ -3486,6 +3678,10 @@ export type Database = {
       }
     }
     Functions: {
+      accept_circle_handoff: {
+        Args: { p_handoff_id: string }
+        Returns: undefined
+      }
       admin_founder_states: { Args: never; Returns: Json }
       admin_lookup_entitlement: {
         Args: { p_email: string }
@@ -3520,6 +3716,55 @@ export type Database = {
         }[]
       }
       can_message_player: { Args: { p_recipient: string }; Returns: boolean }
+      circle_face_visible: { Args: { p_user: string }; Returns: boolean }
+      circle_going_faces: {
+        Args: { p_event_ids: string[] }
+        Returns: {
+          avatar_url: string
+          event_id: string
+          first_name: string
+          going_count: number
+          user_id: string
+        }[]
+      }
+      circle_notify: {
+        Args: {
+          p_audience?: string
+          p_body: string
+          p_event_id: string
+          p_kind?: string
+          p_recipients: string[]
+        }
+        Returns: number
+      }
+      circle_people: {
+        Args: { p_event_id: string }
+        Returns: {
+          avatar_url: string
+          came: boolean
+          face_visible: boolean
+          first_name: string
+          last_name: string
+          role: string
+          status: string
+          user_id: string
+          username: string
+        }[]
+      }
+      circle_search_villagers: {
+        Args: { p_query: string }
+        Returns: {
+          avatar_url: string
+          first_name: string
+          last_name: string
+          user_id: string
+        }[]
+      }
+      circle_send_notices: { Args: never; Returns: number }
+      circle_step_notify: {
+        Args: { p_body: string; p_step_id: string; p_to_witness: boolean }
+        Returns: undefined
+      }
       claim_window: {
         Args: { p_token: string }
         Returns: {
@@ -3577,6 +3822,10 @@ export type Database = {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
+        Returns: boolean
+      }
+      is_circle_member: {
+        Args: { p_series: string; p_user: string }
         Returns: boolean
       }
       knowledge_retrieve: {
