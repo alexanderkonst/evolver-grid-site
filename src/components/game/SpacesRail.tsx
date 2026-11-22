@@ -96,17 +96,24 @@ import MoonMedallion from "@/components/game/MoonMedallion";
  * Each place gets a painted gold-engraving icon of its object, lit by the player's topaz
  * (icon grammar v1.2, Sasha 2026-11-22; replaces the photoreal buildings of 2026-11-02),
  * framed in CSS (`.village-place-icon`, src/index.css): moon-stone border, ochre inner
- * line, soft glow. Closed places dim through --lock-filter, so an unlit icon needs no file. The state still reads from the shared lock / open / live tokens
+ * line, soft glow. Closed places dim through --lock-filter, so an unlit icon needs no file.
+ * The crystal in the icons is the dodecahedron (Sasha 2026-11-22). The state still reads from the shared lock / open / live tokens
  * (src/styles/theme-tokens.css), so every skin renders every state.
  */
-const placeIconSrc = (key: VillagePlaceKey) => `/game/village/icons/${key}.webp`;
-const placeIconSrc2x = (key: VillagePlaceKey) => `/game/village/icons/${key}@2x.webp`;
+// One icon set per skin, same drawing, the metal recoloured (Sasha 2026-11-22: icons change
+// with the theme, their essence does not). Lapis is the root set; aurum, lunar and dao have
+// their own folders; every other skin falls back to the root set.
+const ICON_SKIN_DIR: Partial<Record<Skin, string>> = { aurum: "aurum/", lunar: "lunar/", dao: "dao/" };
+const placeIconSrc = (key: VillagePlaceKey, skin?: Skin) =>
+    `/game/village/icons/${(skin && ICON_SKIN_DIR[skin]) || ""}${key}.webp`;
+const placeIconSrc2x = (key: VillagePlaceKey, skin?: Skin) =>
+    `/game/village/icons/${(skin && ICON_SKIN_DIR[skin]) || ""}${key}@2x.webp`;
 
-const PlaceIcon = ({ place, size }: { place: VillagePlace; size: number }) => (
+const PlaceIcon = ({ place, size, skin }: { place: VillagePlace; size: number; skin?: Skin }) => (
     <span className="village-place-icon flex-shrink-0" style={{ width: size, height: size }}>
         <img
-            src={placeIconSrc(place.key)}
-            srcSet={`${placeIconSrc(place.key)} 1x, ${placeIconSrc2x(place.key)} 2x`}
+            src={placeIconSrc(place.key, skin)}
+            srcSet={`${placeIconSrc(place.key, skin)} 1x, ${placeIconSrc2x(place.key, skin)} 2x`}
             alt={place.alt}
             width={size}
             height={size}
@@ -840,7 +847,7 @@ const SpacesRail = ({
                                 )}
                                 style={closed ? { filter: "var(--lock-filter)", opacity: "var(--lock-dim)" } : undefined}
                             >
-                                <PlaceIcon place={place} size={compact ? 26 : 28} />
+                                <PlaceIcon place={place} size={compact ? 26 : 28} skin={skin} />
                                 {!compact && (
                                     <span
                                         className={cn(
