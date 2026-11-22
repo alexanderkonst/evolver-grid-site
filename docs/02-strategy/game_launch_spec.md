@@ -1,6 +1,7 @@
 # The Game of Being You — launch spec (Module 1)
 
 v1, 2026-11-21. Source of the rows: Sasha's notebook (2026-11-20, ledger B1/B2). Canon: [golden_age_canon.md](./golden_age_canon.md) face 1 · Blueprint: [game_of_being_you.md](./game_of_being_you.md) (GoBY).
+Mechanics Sasha accepted live in one list: [GoBY §24](./game_of_being_you.md) (24.1 accepted, 24.2 considering, 24.3 open, 24.4 later, 24.5 rejected). A mechanic becomes a row here only on his yes to the exact text, and the row names its §24 number. Research behind them: [research/iconic-mechanics/](./research/iconic-mechanics/).
 Launch: early January 2027, after 2027-01-04. No phase dates: we go down the list; Sasha sets the order.
 Status: **live** = on the site · **partial** = exists, gap named · **none** = not built. **Yes** = needs Sasha's yes to the exact change (core flows, money, public).
 
