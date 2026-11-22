@@ -21,7 +21,12 @@ import { Ornament } from "@/lib/landingDesign";
 import { cn } from "@/lib/utils";
 import { tr } from "@/lib/villageCopy";
 import { MASTERMIND_LIVE_SESSION_URL } from "@/data/mastermindSession";
+import KindCircles from "@/components/circles/KindCircles";
+import type { CircleKind } from "@/lib/circles";
 import type { CSSProperties } from "react";
+
+/** Kinds of Café circle shown here (stable reference so the list loads once). */
+const MASTERMIND_CIRCLE_KINDS: CircleKind[] = ["mastermind", "weekly_circle"];
 
 /* ─── Constants: copy, price, CTA (single source of truth) ─── */
 const MASTERMIND_PRICE = "$222";
@@ -248,6 +253,9 @@ const Mastermind = () => {
               </a>
               .
             </p>
+
+            {/* Circles hosted by villagers: the Café's Mastermind and Weekly circles (circles spec §9.1). Renders nothing until one exists. */}
+            <KindCircles kinds={MASTERMIND_CIRCLE_KINDS} heading="Mastermind circles in the Café" />
 
             {/* BRIDGE */}
             <p className="text-center text-sm italic leading-relaxed" style={BODY_SERIF}>

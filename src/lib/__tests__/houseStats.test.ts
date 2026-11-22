@@ -86,3 +86,16 @@ describe("quarterLabel", () => {
     expect(quarterLabel("2025-12-10T10:00:00Z", NOW)).toBe("Q4 2025");
   });
 });
+
+describe("circle counts (Circles v1 §6)", () => {
+  const base = { qolLevel: null, qolPrevious: null, resonance: [], income: null };
+  it("shows each count only when it is a real, non-zero number", () => {
+    expect(buildHouseStats({ ...base, circlesCameToYours: 12, circlesYouCameTo: 5 }).map((s) => [s.id, s.value])).toEqual([
+      ["circlesCameToYours", "12"],
+      ["circlesYouCameTo", "5"],
+    ]);
+    expect(buildHouseStats({ ...base, circlesCameToYours: 0, circlesYouCameTo: 0 })).toEqual([]);
+    expect(buildHouseStats({ ...base, circlesCameToYours: null })).toEqual([]);
+    expect(buildHouseStats({ ...base })).toEqual([]);
+  });
+});

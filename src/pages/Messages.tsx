@@ -21,6 +21,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useSessionUserId } from "@/hooks/useSessionUserId";
 import { supabase } from "@/integrations/supabase/client";
 import { formatDate, formatTime } from "@/i18n/format";
+import { splitCircleLinks, stripCircleLinks } from "@/lib/circles";
 import {
   buildThreads,
   fetchMyMessages,
@@ -229,7 +230,15 @@ const Messages = () => {
                       mine ? "bg-primary text-primary-foreground" : "bg-muted text-foreground"
                     }`}
                   >
-                    {m.body}
+                    {splitCircleLinks(m.body).map((part, i) =>
+                      part.to ? (
+                        <Link key={i} to={part.to} className="underline font-medium">
+                          {part.text}
+                        </Link>
+                      ) : (
+                        <span key={i}>{part.text}</span>
+                      ),
+                    )}
                     <div className={`mt-1 text-[10px] ${mine ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
                       {formatDate(m.created_at, { dateStyle: "medium" })} · {formatTime(m.created_at)}
                     </div>
@@ -314,7 +323,7 @@ const Messages = () => {
                       </div>
                       <p className="text-sm text-muted-foreground truncate">
                         {mine ? t("messages.you") : ""}
-                        {thread.last.body}
+                        {stripCircleLinks(thread.last.body)}
                       </p>
                     </div>
                     {thread.unread > 0 && (

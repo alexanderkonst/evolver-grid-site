@@ -236,6 +236,8 @@ import TransformationGeniusAssessment from "./pages/spaces/transformation/Transf
 import EventDetail from "./pages/EventDetail";
 import CreateEvent from "./pages/events/CreateEvent";
 import MyRsvps from "./pages/events/MyRsvps";
+import ManageCircle from "./pages/events/ManageCircle";
+import MarkCame from "./pages/events/MarkCame";
 import CommunityEvents from "./pages/CommunityEvents";
 import Connections from "./pages/Connections";
 import Messages from "./pages/Messages";
@@ -912,6 +914,12 @@ const App = () => (
                   <Route path="/game/meet" element={<MeetSpace />} />
                   <Route path="/game/meet/create" element={<RequireAuth><CreateEvent /></RequireAuth>} />
                   <Route path="/game/meet/my-rsvps" element={<RequireAuth><MyRsvps /></RequireAuth>} />
+                  {/* Circles v1 (#384): "Host a circle" is also /new in the spec; the circle page is public so guests can browse. */}
+                  <Route path="/game/meet/new" element={<Navigate to="/game/meet/create" replace />} />
+                  <Route path="/game/meet/:id" element={<EventDetail />} />
+                  <Route path="/game/meet/:id/edit" element={<RequireAuth><CreateEvent /></RequireAuth>} />
+                  <Route path="/game/meet/:id/manage" element={<RequireAuth><ManageCircle /></RequireAuth>} />
+                  <Route path="/game/meet/:id/came" element={<RequireAuth><MarkCame /></RequireAuth>} />
                   {/* Legacy redirects */}
                   <Route path="/game/events" element={<Navigate to="/game/meet" replace />} />
                   <Route path="/game/events/*" element={<Navigate to="/game/meet" replace />} />

@@ -119,6 +119,8 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
                           : null,
                       resonance: statsData.resonance,
                       income: statsData.income,
+                      circlesCameToYours: statsData.circles.cameToYours,
+                      circlesYouCameTo: statsData.circles.youCameTo,
                   })
                 : [],
         [statsData, sheet.qol, levelSeries],
