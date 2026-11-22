@@ -1,4 +1,4 @@
-# Course-from-Source Template
+# Mini-Training Constructor (Course-from-Source Template)
 
 > How *Activate Your Dormant Potential* was built; the reusable way to turn any body of Sasha's work (workshops, an article, infographics) into a mini-course.
 > *Moved here 2026-10-27 from [VIDEO_PRODUCTION_PLAN.md](../08-content/VIDEO_PRODUCTION_PLAN.md). Video settings (90–120 s Video Overview, style prompt): that file → Video Configuration Prompts.*
@@ -10,17 +10,39 @@
 - What emerges: a body of Sasha's work (workshops, an article, infographics) becomes a path other people can walk on their own: modules, episodes, one badge.
 - As a part of the whole: the Meta-Template sees this as emergence of a transmission into a learnable form: what arrived through Sasha is given a spine and a rhythm so it can be received, repeated and grown in another person without loss.
 - Siblings / repeats: testimonial-clips (the same transmission returning as others' words); the NotebookLM video production cluster (synthesized in below, 2026-10-27: Production line, Genealogy) and the micro-module format (still to merge, see README inventory); Hark specialty `course-from-source` is a mirror of this file.
-- Status · applied in · last reviewed: in use · Activate Your Dormant Potential; Consciousness Meets Science (draft) · 2026-10-27
+- Status · applied in · last reviewed: in use · Activate Your Dormant Potential; Consciousness Meets Science (draft) · 2026-11-22 (v2: 11 steps, words mini-training and wizard)
 
 > **Added:** 2026-10-27, in Sasha's words, as the reusable way to turn any body of his work (workshops, an article, infographics) into a mini-course. A living course: it keeps improving after release.
 
-### The 6 steps
+### Words (Sasha, 2026-11-22)
+- **Mini-training** is the one word for the product's form. Not "course", not "mini-course". (Older text in this file and in the Applications still says course; read it as mini-training.)
+- **Wizard** is what it is in essence: it leads a person to one result. Not "master".
+- A mini-training can be for a person or for an AI.
+
+### The 11 steps (v2, 2026-11-22, approved by Sasha)
+*Merges the 6 steps below (2026-10-27) with Sasha's sequence of 2026-11-21 (materials → synthesized lesson series → infographic + AI video, one NotebookLM per micro-module → wizard to a transformational result → our platform). Nothing added beyond his words.*
+1. **Result.** What the person can do after the mini-training. One line, never "a course about X".
+2. **Structure.** Sasha sets it. The structure is the spine; content hangs on it, never the other way round.
+3. **Materials.** Sasha gives his materials: training recordings, slides, articles, infographics.
+4. **Insights.** AI extracts the most powerful, biggest insights from the materials.
+5. **By theme.** The insights are sorted into the structure's themes.
+6. **Series of micro-modules.** A series of lessons: one micro-module = one idea, its own text and one promise line (as in Consciousness Meets Science).
+7. **Infographic and video.** One NotebookLM per micro-module: an infographic and a 90–120 s video. One look for the whole mini-training, one scene per episode (Look & feel below).
+8. **Signature.** Sasha signs under every word. Nothing ships that he would not sign.
+9. **Wizard.** The micro-modules are put together as a path that leads to the result of step 1.
+10. **Academy.** A mini-training ships only inside the Academy on our platform, at its level (Academy → University → School; exact names to confirm). It has a mini-training page and a sales page.
+11. **Update the template.** After each mini-training, and during the work, the template is updated from experience. Many cycles.
+
+<details><summary>The 6 steps (v1, 2026-10-27), kept for history</summary>
+
 1. **Structure first.** Sasha sets the course structure himself. For ADP it is the six-path map (Foundational, Spirit, Mind, Emotions, Body, Genius) that has evolved over ~6 years. The structure is the spine; content hangs on it, never the other way round.
 2. **Harvest insights from the source.** Give AI the source material on the relevant themes (for ADP: recordings/transcripts of Sasha's workshops). Extract the most powerful, biggest insights.
 3. **Distribute by theme.** Sort the insights into the structure's themes. Result: dense material per theme.
 4. **Episodes and modules in NotebookLM.** Put the material into NotebookLM with clear instructions to break it into modules and episodes (text per episode).
 5. **Video Overview per episode.** For each episode, give NotebookLM that episode's text and ask for a Video Overview of **90–120 seconds** (see [VIDEO_PRODUCTION_PLAN.md](../08-content/VIDEO_PRODUCTION_PLAN.md) → Video Configuration Prompts).
 6. **Authorship check.** The Foundational module is written by Sasha himself, almost word for word. The other modules are mostly AI-written, but Sasha signs under practically every word. Nothing ships that he would not sign.
+
+</details>
 
 ### Look & feel (NotebookLM Video Overview)
 - Format: **Explainer (16:9)**, never Short 9:16 (too simplified). Add to the end of Custom topic: "Total video length must stay under 2 minutes."
