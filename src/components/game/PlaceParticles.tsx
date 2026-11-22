@@ -6,7 +6,8 @@ import type { VillageParticle } from "@/hooks/useVillageParticles";
  *
  * Three small lights at a time, one line each, drifting softly and trading
  * places one by one. No likes, no counts, no replies. Never anonymous: each
- * light carries the player's real photo, real name and uniqueness. Decorative:
+ * light carries the player's real photo and real name (no role/archetype
+ * subtitle under the name: Sasha, 2026-11-22; the data stays). Decorative:
  * pointer-events are off and the lines are not announced.
  * Styles live in Village.css (.vl-motes).
  */
@@ -72,7 +73,6 @@ const PlaceParticles = ({ particles }: Props) => {
               <img className="vl-mote__face" src={particle.avatar_url} alt="" loading="lazy" />
               <span className="vl-mote__text">{particle.text}</span>
               <span className="vl-mote__name">{particle.display_name}</span>
-              {particle.uniqueness && <span className="vl-mote__unique">{particle.uniqueness}</span>}
             </span>
           </p>
         );
