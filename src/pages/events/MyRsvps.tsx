@@ -144,6 +144,17 @@ const MyRsvps = () => {
                       created_at: null,
                       created_by: null,
                       visibility: "public",
+                      kind: "gathering",
+                      end_time: null,
+                      capacity: null,
+                      requires_approval: false,
+                      online_url: null,
+                      series_id: null,
+                      repeat_rule: "never",
+                      cancelled_at: null,
+                      host_id: null,
+                      cohost_id: null,
+                      after_photo_url: null,
                       rsvp_count: (row as any).rsvp_count ?? 0,
                     }}
                     onClick={() => navigate(`/events/${evt.id}`)}
