@@ -54,5 +54,5 @@ The game brings you players for free. The 10% is how you keep that engine going 
 
 ## Open for Sasha
 
-1. Wallet and network for gifts; fiat as a rare exception or never.
+1. Wallet and network: Sasha already has them (14:16); the address goes into the public text when it is approved. Fiat as a rare exception or never: open.
 2. Approve the text for the public page.
