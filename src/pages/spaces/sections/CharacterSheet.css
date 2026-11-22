@@ -95,6 +95,9 @@
   margin: 24px 0 0; color: var(--cs-ink); text-wrap: balance;
 }
 
+/* A9 (#377): the biological clock under the name, ~160px */
+.cs-hero .cs-clock { --bc-size: 160px; margin-top: 24px; }
+
 /* ---------- Values and the one button ---------- */
 .cs-value {
   font-family: var(--cs-serif); font-weight: 300; font-size: clamp(26px, 5.4vw, 34px);

@@ -53,7 +53,7 @@ interface MoonOrbProps {
  *   • Other phases: two arcs — moon's outer edge on the lit side +
  *     terminator ellipse arc closing back.
  */
-function getLitRegionPath(phaseIndex: number, r: number, cx: number, cy: number): string {
+export function getLitRegionPath(phaseIndex: number, r: number, cx: number, cy: number): string {
   const top = cy - r;
   const bottom = cy + r;
   if (phaseIndex === 0) return "";
