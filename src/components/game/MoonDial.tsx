@@ -11,8 +11,8 @@ import "./MoonDial.css";
  * MoonDial — the small Equilibrium watch on the village map (village-as-dashboard step 2).
  * The dial itself is the BiologicClock (issue #377: four rings Year · Moon · Week · Day, tonight's
  * moon in the centre; it replaced the old eight-sector SVG, one clock on the screen). Beside it
- * stays the copy block: tonight's phase, Moon Focus and the one HUMAN DO NOW, both the player's
- * own (useMoonDialData). A guest or an empty Equilibrium sees tonight's real phase and one
+ * stays the copy block: tonight's phase and the player's own Moon Focus (useMoonDialData). Do now
+ * was removed from the village dial on Sasha's call (2026-11-22). A guest or an empty Equilibrium sees tonight's real phase and one
  * invitation, never sample data.
  */
 
@@ -31,7 +31,7 @@ export const MoonDial = ({ className }: { className?: string }) => {
   const data = useMoonDialData();
   const current = now.sector;
   const phase = phaseLabel(current, t);
-  const empty = data.status === "ready" && !data.moonFocus && !data.doNow;
+  const empty = data.status === "ready" && !data.moonFocus;
 
   return (
     <aside className={`moon-dial${className ? ` ${className}` : ""}`} aria-label={tr(t, "village.dial.aria", "Moon dial: tonight in Equilibrium")}>
@@ -41,7 +41,7 @@ export const MoonDial = ({ className }: { className?: string }) => {
         {data.status === "guest" ? (
           <p className="moon-dial__line moon-dial__invite">
             <Link to="/auth?redirect=%2Fvillage">
-              {tr(t, "village.dial.signIn", "Sign in to see your Moon Focus and Do now")}
+              {tr(t, "village.dial.signIn", "Sign in to see your Moon Focus")}
             </Link>
           </p>
         ) : null}
@@ -50,10 +50,6 @@ export const MoonDial = ({ className }: { className?: string }) => {
             <p className="moon-dial__line">
               <span className="moon-dial__label">{tr(t, "village.dial.focus", "Moon Focus")}</span>
               <span className="moon-dial__value">{data.moonFocus ?? tr(t, "village.dial.notSet", "not set yet")}</span>
-            </p>
-            <p className="moon-dial__line">
-              <span className="moon-dial__label">{tr(t, "village.dial.doNow", "Do now")}</span>
-              <span className="moon-dial__value">{data.doNow ?? tr(t, "village.dial.nothingChosen", "nothing chosen")}</span>
             </p>
           </>
         ) : null}
