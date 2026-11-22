@@ -40,6 +40,7 @@ import {
 import { generateExcalibur, ExcaliburData } from "./excaliburGenerator";
 import { saveAppleseed, saveExcalibur, loadSavedData, saveAppleseedToLocalStorage } from "./saveToDatabase";
 import AppleseedDisplay from "./AppleseedDisplay";
+import NextPotentialHook from "./NextPotentialHook";
 import AppleseedRitualLoading from "./AppleseedRitualLoading";
 import ExcaliburDisplay from "./ExcaliburDisplay";
 import KeepItLit from "@/components/game/KeepItLit";
@@ -1001,6 +1002,8 @@ const ZoneOfGeniusEntry = () => {
                         saveResonanceRating(profileId, "appleseed", rating)
                     }
                 />
+                {/* A4: the hook after the reveal card, before «Enter the village». Hidden for old reveals. */}
+                <NextPotentialHook appleseed={appleseed} onAccepted={setAppleseed} />
                 {/* Funnel v2 (§4.4.1): match-path "Discover your mission in
                     1 minute →" CTA below the reveal. Renders nothing for
                     build-path users — AppleseedDisplay's existing CTAs are
