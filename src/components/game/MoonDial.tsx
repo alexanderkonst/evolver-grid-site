@@ -1,47 +1,31 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { moonDialNow, phaseLabel } from "@/lib/moonDial";
 import BiologicClock from "@/components/game/BiologicClock";
 import { useMoonDialData } from "@/hooks/useMoonDialData";
 import { tr } from "@/lib/villageCopy";
 import "./MoonDial.css";
 
 /**
- * MoonDial — the small Equilibrium watch on the village map (village-as-dashboard step 2).
- * The dial itself is the BiologicClock (issue #377: four rings Year · Moon · Week · Day, tonight's
- * moon in the centre; it replaced the old eight-sector SVG, one clock on the screen). Beside it
- * stays the copy block: tonight's phase, Moon Focus and the one HUMAN DO NOW, both the player's
- * own (useMoonDialData). A guest or an empty Equilibrium sees tonight's real phase and one
- * invitation, never sample data.
+ * MoonDial — the Equilibrium watch on the village map (village-as-dashboard step 2). The dial and
+ * its readout are the BiologicClock v5 (issue #381: Moon and Week rings, symbol + meaning,
+ * previous / next, time to the next moon phase). Below it stays the player's own Moon Focus
+ * (useMoonDialData). Do now is gone (PR #380): the clock shows cycles, never actions. A guest or
+ * an empty Equilibrium sees the real clock and one invitation, never sample data.
  */
-
-const useDialNow = () => {
-  const [now, setNow] = useState(() => moonDialNow());
-  useEffect(() => {
-    const id = window.setInterval(() => setNow(moonDialNow()), 10 * 60 * 1000);
-    return () => window.clearInterval(id);
-  }, []);
-  return now;
-};
 
 export const MoonDial = ({ className }: { className?: string }) => {
   const { t } = useTranslation();
-  const now = useDialNow();
   const data = useMoonDialData();
-  const current = now.sector;
-  const phase = phaseLabel(current, t);
-  const empty = data.status === "ready" && !data.moonFocus && !data.doNow;
+  const empty = data.status === "ready" && !data.moonFocus;
 
   return (
     <aside className={`moon-dial${className ? ` ${className}` : ""}`} aria-label={tr(t, "village.dial.aria", "Moon dial: tonight in Equilibrium")}>
       <BiologicClock className="moon-dial__clock" />
       <div className="moon-dial__copy">
-        <p className="moon-dial__phase">{phase}</p>
         {data.status === "guest" ? (
           <p className="moon-dial__line moon-dial__invite">
             <Link to="/auth?redirect=%2Fvillage">
-              {tr(t, "village.dial.signIn", "Sign in to see your Moon Focus and Do now")}
+              {tr(t, "village.dial.signIn", "Sign in to see your Moon Focus")}
             </Link>
           </p>
         ) : null}
@@ -50,10 +34,6 @@ export const MoonDial = ({ className }: { className?: string }) => {
             <p className="moon-dial__line">
               <span className="moon-dial__label">{tr(t, "village.dial.focus", "Moon Focus")}</span>
               <span className="moon-dial__value">{data.moonFocus ?? tr(t, "village.dial.notSet", "not set yet")}</span>
-            </p>
-            <p className="moon-dial__line">
-              <span className="moon-dial__label">{tr(t, "village.dial.doNow", "Do now")}</span>
-              <span className="moon-dial__value">{data.doNow ?? tr(t, "village.dial.nothingChosen", "nothing chosen")}</span>
             </p>
           </>
         ) : null}
