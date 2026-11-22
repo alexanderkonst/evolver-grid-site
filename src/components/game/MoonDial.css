@@ -3,20 +3,18 @@
 .moon-dial {
   --md-moon: 217, 209, 180;
   --md-ochre: 150, 112, 58;
-  display: flex; align-items: center; flex-wrap: wrap; gap: 16px 24px;
-  max-width: 560px; margin: 0;
+  display: flex; flex-direction: column; align-items: stretch; gap: 20px;
+  max-width: 880px; margin: 0;
   font-family: var(--vl-serif, "Cormorant Garamond", Georgia, serif);
   color: var(--vl-ink, rgba(235, 238, 242, 0.92));
   text-shadow: 0 1px 18px rgba(var(--scene-shadow-rgb, 0, 0, 0), 0.75);
 }
-/* The dial is the BiologicClock (issue #377): ~280px on desktop, ~200px on a phone. */
-.moon-dial .moon-dial__clock { --bc-size: 280px; }
-@media (max-width: 720px) { .moon-dial .moon-dial__clock { --bc-size: 200px; } }
-.moon-dial__copy { min-width: 0; flex: 1 1 160px; }
-.moon-dial__phase {
-  margin: 0; font-family: var(--vl-mono, "IBM Plex Mono", ui-monospace, monospace); font-weight: 300;
-  font-size: var(--vl-text-label, 12px); letter-spacing: 0.24em; text-transform: uppercase; color: rgb(var(--md-moon));
-}
+/* The dial and its readout are the BiologicClock v5 (issue #381): dial left, readout right;
+   on a phone the dial on top (its own media query), readout below. Moon Focus sits under it. */
+.moon-dial .moon-dial__clock { --bc-size: 320px; justify-content: flex-start; }
+@media (max-width: 720px) { .moon-dial .moon-dial__clock { justify-content: center; } }
+.moon-dial__copy { min-width: 0; }
+.moon-dial__copy:empty { display: none; }
 .moon-dial__line { margin: 6px 0 0; font-size: var(--vl-text-small, 15px); line-height: 1.3; color: var(--vl-ink-2, rgba(235, 238, 242, 0.82)); }
 .moon-dial__label {
   display: block; font-family: var(--vl-mono, "IBM Plex Mono", ui-monospace, monospace); font-weight: 300;

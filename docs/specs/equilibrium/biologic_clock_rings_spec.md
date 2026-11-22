@@ -61,3 +61,4 @@ A player opens the village map and, without a legend, sees the moon phase and th
 - v0/v1 (2026-11-21): four rings Year · Moon · Week · Day, built in PR #378. Sasha 2026-11-22 10:38: hard to read even for its author; insider glyphs, four grammars, legend only in the mockup.
 - v2: one grammar, word labels (rejected: cut pieces, lost the meaning). v3: Equilibrium-style strips with meanings (rejected: must look like cycles). v4: v3 content on two rings. v5: photo planets, chakra track, new words → decided.
 - Lessons: reuse Equilibrium before drawing new visuals; 5-second test without a legend.
+- v5 built (issue #381, 2026-11-22): `BiologicClock.tsx` rewritten to two rings + readout + «+ Year and day» (localStorage `bioclock:expanded`); engine words changed; Do now removed from `MoonDial`. The day-part arc carries no words (the engine has none for parts of the day).

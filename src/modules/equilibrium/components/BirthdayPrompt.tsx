@@ -12,6 +12,9 @@ interface BirthdayPromptProps {
   userId: string | null;
   /** Called after a successful save so the hook can refresh state. */
   onSaved: (newBirthday: string) => void;
+  /** Optional «Not now». Equilibrium's own pages omit it (there the prompt stays until answered);
+   *  the village biologic clock passes it so opening «+ Year and day» never traps a player. */
+  onDismiss?: () => void;
 }
 
 /**
@@ -38,6 +41,7 @@ export const BirthdayPrompt = ({
   loading,
   userId,
   onSaved,
+  onDismiss,
 }: BirthdayPromptProps) => {
   const [value, setValue] = useState("");
   const [saving, setSaving] = useState(false);
@@ -192,6 +196,15 @@ export const BirthdayPrompt = ({
         >
           {saving ? "Saving…" : "Continue"}
         </button>
+        {onDismiss && (
+          <button
+            type="button"
+            onClick={onDismiss}
+            className="eq-text-halo mt-3 text-sm text-[#0a1628]/80 underline underline-offset-4"
+          >
+            Not now
+          </button>
+        )}
       </div>
     </div>
   );
