@@ -1380,10 +1380,10 @@ Rule for every mechanic: a counter, streak or number only where it mirrors a rea
 | 1 | Forgiving streak on real acts only (2 earned freezes, never sold) | Duolingo DL-1 | A13 (in spec) | yes | in spec: A13 (issue #368) |
 | 2 | Town screen: Your House grows building by building from real steps | Heroes III H3-1 | Your House, A12 | "cool! iconic status" | accepted |
 | 3 | Interior from earned artifacts | Ready Player One RPO-2 | Your House, A12 | "cool" | accepted |
-| 4 | Constructor of buildings, interiors and villages; opens by steps (real deeds, no artificial limits) | H3-3, RPO-2, PG-1 | new row + §23 | yes | accepted; no spec row yet |
+| 4 | Constructor of buildings, interiors and villages; opens by steps (real deeds, no artificial limits) | H3-3, RPO-2, PG-1 | new row + §23 | yes | in spec: A14 |
 | 5 | Button "Create a new digital village" | Ingress PG-1 | World map, A11 | yes | accepted |
 | 6 | Constructor: presets and editing first, AI generation second; credits may buy generations, never artifacts, badges or rights | Sasha + §23.2 | constructor | "yes, but needs careful work" | accepted |
-| 7 | Rhythm: day = one real act; week = Monday step -> Sunday Save Point; month = real moon -> Harvest; year = New Year or the player's birthday. No 6-week seasons | Heroes III H3-6 | new row "Rhythm", A9, A13 | "LOVE IT!!!" | accepted; no spec row yet |
+| 7 | Rhythm: day = one real act; week = Monday step -> Sunday Save Point; month = real moon -> Harvest; year = New Year or the player's birthday. No 6-week seasons | Heroes III H3-6 | new row "Rhythm", A9, A13 | "LOVE IT!!!" | in spec: A15 |
 | 8 | Four rings as the personal biological clock: day / week / month / year, from the Equilibrium engine, NOT tied to actions (Sasha 16:35), on the main game screen. Spec: [docs/specs/equilibrium/biologic_clock_rings_spec.md](../specs/equilibrium/biologic_clock_rings_spec.md) | Apple Watch rings + H3-6 | A9, main game screen | yes; build this lunar cycle | live: A9 (#378) |
 | 9 | (merged into #24) Reviews of shops and products (Market) | Couchsurfing CS-2 | A6, A7 | yes | merged into #24 |
 | 10 | Circles: our own Luma inside GoBY. First launch: host (who created the circle) + co-host + hand the role on in one tap; succession rules added on demand | Facebook FB-2, Mafia | Circles project | "crucial"; host v1 "yes!!!! do it" | in work: Circles project |
