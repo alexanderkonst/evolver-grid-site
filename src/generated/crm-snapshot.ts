@@ -1,5 +1,5 @@
 const crmSnapshot = {
-  "generated_at": "2026-11-22T22:47:33.547Z",
+  "generated_at": "2026-11-22T22:55:08.764Z",
   "error": "ENOENT: no such file or directory, open '/dev-server/docs/02-strategy/strategic_crm_outreach_tracker.md'",
   "contactsCount": 0,
   "stageDistribution": {},

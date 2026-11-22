@@ -2475,6 +2475,42 @@ export type Database = {
         }
         Relationships: []
       }
+      partner_submissions: {
+        Row: {
+          accepted_social_contract: boolean
+          created_at: string
+          email: string
+          id: string
+          modules: Json
+          name: string
+          project_name: string
+          project_url: string
+          status: string
+        }
+        Insert: {
+          accepted_social_contract: boolean
+          created_at?: string
+          email: string
+          id?: string
+          modules: Json
+          name: string
+          project_name: string
+          project_url: string
+          status?: string
+        }
+        Update: {
+          accepted_social_contract?: boolean
+          created_at?: string
+          email?: string
+          id?: string
+          modules?: Json
+          name?: string
+          project_name?: string
+          project_url?: string
+          status?: string
+        }
+        Relationships: []
+      }
       player_cards: {
         Row: {
           card: Json
