@@ -2,6 +2,8 @@
 
 Premise (Sasha, 2026-11-21): everything is a game; reality already is one, the question is how aware we are of it. So we learn mechanics not only from video games but from any social structure that proved itself, best over many years. See [game_design_almanac.md § Everything is a game](../../game_design_almanac.md#everything-is-a-game-sasha-2026-11-21).
 
+Mechanics extracted from every source: [mechanics-atlas.md](mechanics-atlas.md) (v1, 2026-11-22), with invariants v0.
+
 The taxonomy has two parts. **Part A: sources** — what kinds of "games" we learn from (three levels: class → kind → examples). **Part B: map** — where each mechanic we take lands in our game (holon × quadrant × rhythm).
 
 # Part A. Sources: what we learn from
