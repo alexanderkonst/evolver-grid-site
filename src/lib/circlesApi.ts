@@ -1,5 +1,5 @@
 /**
- * Circles v1 data layer (docs/specs/circles_v1_spec.md, issue #384).
+ * Circles v1 data layer (issue #384).
  *
  * Thin calls over `events`, `event_rsvps`, `circle_*` tables and the SECURITY DEFINER
  * functions in supabase/migrations/20261122220000_circles_v1.sql. `types.ts` is generated
@@ -12,9 +12,11 @@
  */
 import { supabase } from "@/integrations/supabase/client";
 import {
+  canSetAfterPhoto,
   circlePath,
   hostOf,
   seriesDates,
+  validWhere,
   visibilityToColumn,
   type CircleKind,
   type CircleLike,
@@ -32,6 +34,8 @@ export interface Circle extends CircleLike {
   title: string;
   description: string | null;
   photo_url: string | null;
+  /** Care of a place only: the place after, set by the host or co-host on Who came. */
+  after_photo_url: string | null;
   event_date: string;
   event_time: string;
   end_time: string | null;
@@ -367,22 +371,27 @@ export interface CircleDraft {
   visibility: CircleVisibility;
 }
 
-const draftToRow = (d: CircleDraft) => ({
-  title: d.title.trim(),
-  description: d.description.trim() || null,
-  kind: d.kind,
-  event_time: `${d.start}:00`,
-  end_time: d.end ? `${d.end}:00` : null,
-  timezone: d.timezone || "UTC",
-  location: d.onlineUrl ? "Online" : d.location.trim() || null,
-  online_url: d.onlineUrl.trim() || null,
-  photo_url: d.photoUrl.trim() || null,
-  requires_approval: d.requiresApproval,
-  capacity: d.capacity,
-  cohost_id: d.cohostId,
-  visibility: visibilityToColumn(d.visibility),
-  repeat_rule: d.repeat,
-});
+const draftToRow = (d: CircleDraft) => {
+  // Care of a place is a real place only (no Online); validWhere drops a call link for it.
+  const where = validWhere(d.kind, d.location, d.onlineUrl);
+  if (!where) throw new Error("A place is required");
+  return {
+    title: d.title.trim(),
+    description: d.description.trim() || null,
+    kind: d.kind,
+    event_time: `${d.start}:00`,
+    end_time: d.end ? `${d.end}:00` : null,
+    timezone: d.timezone || "UTC",
+    location: where.location,
+    online_url: where.onlineUrl,
+    photo_url: d.photoUrl.trim() || null,
+    requires_approval: d.requiresApproval,
+    capacity: d.capacity,
+    cohost_id: d.cohostId,
+    visibility: visibilityToColumn(d.visibility),
+    repeat_rule: d.repeat,
+  };
+};
 
 /** Host a circle: one row, or the first 4 meetings of a series, each with its own guest list. */
 export async function createCircle(draft: CircleDraft): Promise<Circle> {
@@ -404,14 +413,69 @@ export async function createCircle(draft: CircleDraft): Promise<Circle> {
 }
 
 /** Save an edit to one meeting (S4 Edit). */
-export async function updateCircle(id: string, draft: CircleDraft): Promise<void> {
+export async function updateCircle(id: string, draft: CircleDraft, hadAfterPhoto = false): Promise<void> {
   // Editing one meeting never changes how the series repeats.
-  const row: Partial<ReturnType<typeof draftToRow>> = draftToRow(draft);
+  const row: Partial<ReturnType<typeof draftToRow>> & { after_photo_url?: null } = draftToRow(draft);
   delete row.repeat_rule;
+  // The "after" photo belongs to Care of a place only: leaving that kind drops it. The column
+  // is touched only when there is a photo to drop, so other edits never need the new column.
+  if (hadAfterPhoto && draft.kind !== "care") row.after_photo_url = null;
   const { error } = await db
     .from("events")
     .update({ ...row, event_date: draft.date })
     .eq("id", id);
+  if (error) throw error;
+}
+
+// ─── the "after" photo (Care of a place) ───────────────────────────────────────
+
+const AFTER_PHOTO_MAX_EDGE = 1600;
+/** The app's one image bucket (public, one folder per user, see the avatars storage policies). */
+const IMAGE_BUCKET = "avatars";
+
+/** Shrink a phone photo before upload: longest edge 1600 px, JPEG. */
+async function downscaleToJpeg(file: File): Promise<Blob> {
+  const bitmap = await createImageBitmap(file);
+  const scale = Math.min(1, AFTER_PHOTO_MAX_EDGE / Math.max(bitmap.width, bitmap.height));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(bitmap.width * scale);
+  canvas.height = Math.round(bitmap.height * scale);
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not read the photo");
+  ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  bitmap.close();
+  return new Promise((resolve, reject) =>
+    canvas.toBlob((blob) => (blob ? resolve(blob) : reject(new Error("Could not read the photo"))), "image/jpeg", 0.85),
+  );
+}
+
+/**
+ * Host or co-host of a Care of a place circle: save the one "after" photo. Uploads to the
+ * image bucket the app already uses, under the signed-in player's own folder (what its
+ * storage policy allows), then writes the URL to the event; the host update policy and the
+ * events check decide the rest. Returns the public URL.
+ */
+export async function setAfterPhoto(circle: Circle, file: File): Promise<string> {
+  const userId = await currentUserId();
+  if (!userId || !canSetAfterPhoto(circle, userId)) throw new Error("only the host can add the photo");
+  if (!file.type.startsWith("image/")) throw new Error("That file is not a photo");
+  const blob = await downscaleToJpeg(file);
+  const path = `${userId}/circle-after-${circle.id}-${Date.now()}.jpg`;
+  const { error: uploadError } = await supabase.storage
+    .from(IMAGE_BUCKET)
+    .upload(path, blob, { contentType: "image/jpeg", upsert: true });
+  if (uploadError) throw uploadError;
+  const url = supabase.storage.from(IMAGE_BUCKET).getPublicUrl(path).data.publicUrl;
+  const { error } = await db.from("events").update({ after_photo_url: url }).eq("id", circle.id);
+  if (error) throw error;
+  return url;
+}
+
+/** Take the "after" photo off (host or co-host). */
+export async function removeAfterPhoto(circle: Circle): Promise<void> {
+  const userId = await currentUserId();
+  if (!userId || !canSetAfterPhoto(circle, userId)) throw new Error("only the host can remove the photo");
+  const { error } = await db.from("events").update({ after_photo_url: null }).eq("id", circle.id);
   if (error) throw error;
 }
 

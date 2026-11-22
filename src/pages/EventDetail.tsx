@@ -4,7 +4,7 @@
  * The same card shows different actions by role: a guest sees their status, the host sees
  * "Manage". Only "came" counts: before the circle you see who is going (faces, no number);
  * after it, who came (faces) and the one line each of them left. No likes, no views.
- * Spec: docs/specs/circles_v1_spec.md S3, S6, S7. Copy: src/data/circlesCopy.ts.
+ * Spec: issue #384 (S3, S6, S7; Care of a place: PR #388). Copy: src/data/circlesCopy.ts.
  */
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
@@ -19,12 +19,13 @@ import { ToastAction } from "@/components/ui/toast";
 import AddToCalendarButton from "@/components/events/AddToCalendarButton";
 import WeeklyPanel from "@/components/circles/WeeklyPanel";
 import { KindChip, MoonBadge, PersonFace, PersonName, cardClass, copyCircleLink } from "@/components/circles/CircleBits";
-import { CIRCLE_PAGE, HOST_FORM, WEEKLY } from "@/data/circlesCopy";
+import { CARE, CIRCLE_PAGE, HOST_FORM, WEEKLY } from "@/data/circlesCopy";
 import { useEventRsvp } from "@/hooks/useEvents";
 import { useSessionUserId } from "@/hooks/useSessionUserId";
 import { useToast } from "@/hooks/use-toast";
 import {
   LINE_MAX,
+  afterPhotoOf,
   canRun,
   dateBadge,
   dateRailLabel,
@@ -76,6 +77,7 @@ const COVER: Record<string, string> = {
   practice: "from-[#a4a3d0] to-[#d9d4f5]",
   dinner: "from-[#e8a96b] to-[#f6d9b5]",
   gathering: "from-[#6bb59a] to-[#c5e6d9]",
+  care: "from-[#4f9a6b] to-[#d3ecb8]",
 };
 
 const EventDetail = () => {
@@ -458,6 +460,13 @@ const EventDetail = () => {
                 {state === "ended" && <p className="text-foreground">{CIRCLE_PAGE.ended}</p>}
               </>
             )}
+          </div>
+        )}
+
+        {/* Care of a place: the "after" photo, above Came. One photo, no caption, no count. */}
+        {afterPhotoOf(circle) && (
+          <div className="rounded-xl overflow-hidden border border-border">
+            <img src={afterPhotoOf(circle) as string} alt={CARE.afterAlt} loading="lazy" className="w-full max-h-96 object-cover" />
           </div>
         )}
 

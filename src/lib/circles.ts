@@ -1,5 +1,5 @@
 /**
- * Circles v1: the rules that need no database (docs/specs/circles_v1_spec.md).
+ * Circles v1: the rules that need no database (spec: issue #384).
  *
  * Pure functions only, so the Café list, the circle page, Manage and Who came all read one
  * set of rules: defaults by kind, repeat dates, the "came" window, which join card to show.
@@ -10,7 +10,7 @@
  */
 import { getLunarState } from "@/lib/equilibrium-cycles";
 
-export const CIRCLE_KINDS = ["weekly_circle", "mastermind", "practice", "dinner", "gathering"] as const;
+export const CIRCLE_KINDS = ["weekly_circle", "mastermind", "practice", "dinner", "gathering", "care"] as const;
 export type CircleKind = (typeof CIRCLE_KINDS)[number];
 
 export const REPEAT_RULES = ["never", "weekly", "biweekly", "monthly", "new_moon", "full_moon"] as const;
@@ -50,7 +50,33 @@ export const KIND_DEFAULTS: Record<CircleKind, KindDefaults> = {
   practice: { capacity: null, requiresApproval: false, repeat: "never" },
   dinner: { capacity: 10, requiresApproval: true, repeat: "never" },
   gathering: { capacity: null, requiresApproval: false, repeat: "never" },
+  // Care of a place: open (no Ask to join), unlimited, one meeting unless the host repeats it.
+  care: { capacity: null, requiresApproval: false, repeat: "never" },
 };
+
+/** Care of a place: a real place we share, in person. */
+export const isCare = (kind: unknown): boolean => kind === "care";
+
+/** Care of a place has no Online option: the place is the point. */
+export const kindAllowsOnline = (kind: unknown): boolean => !isCare(kind);
+
+/**
+ * "Where" is required for Care of a place, and it must be a real place (no call link).
+ * Other kinds may leave it empty. Returns the where the row should carry.
+ */
+export function validWhere(
+  kind: unknown,
+  location: string,
+  onlineUrl: string,
+): { location: string | null; onlineUrl: string | null } | null {
+  const place = location.trim();
+  const link = onlineUrl.trim();
+  if (isCare(kind)) {
+    if (!place || place.toLowerCase() === "online") return null;
+    return { location: place, onlineUrl: null };
+  }
+  return { location: link ? "Online" : place || null, onlineUrl: link || null };
+}
 
 // ─── dates and zones ───────────────────────────────────────────────────────────
 
@@ -293,6 +319,8 @@ export interface CircleLike {
   host_id?: string | null;
   created_by?: string | null;
   cohost_id?: string | null;
+  kind?: string | null;
+  after_photo_url?: string | null;
 }
 
 export const hostOf = (c: CircleLike): string | null => c.host_id ?? c.created_by ?? null;
@@ -313,6 +341,22 @@ export const endInstant = (c: CircleLike): number =>
   ) + (c.end_time && timeToMinutes(c.end_time) < timeToMinutes(c.event_time) ? 86400000 : 0);
 
 export const hasEnded = (c: CircleLike, now: number = Date.now()): boolean => now >= endInstant(c);
+
+/**
+ * The "after" photo: Care of a place only, set by the people who run the circle (host or
+ * co-host), never by a guest. The same rule is in the database (host update policy plus a
+ * check that the photo exists only on kind 'care').
+ */
+export const canSetAfterPhoto = (c: CircleLike, userId: string | null | undefined): boolean =>
+  isCare(c.kind) && !c.cancelled_at && canRun(c, userId);
+
+/** The after photo to show on the circle page, above Came. Care circles only. */
+export const afterPhotoOf = (c: CircleLike): string | null =>
+  isCare(c.kind) && c.after_photo_url ? c.after_photo_url : null;
+
+/** S1: a past Care circle shows its "after" photo as the row thumbnail. Nothing else gets one. */
+export const rowThumbnail = (c: CircleLike, now: number = Date.now()): string | null =>
+  hasEnded(c, now) ? afterPhotoOf(c) : null;
 
 /** "Mark who came": active from start time until 7 days after (S4, S5). */
 export function canMarkCame(c: CircleLike, now: number = Date.now()): boolean {

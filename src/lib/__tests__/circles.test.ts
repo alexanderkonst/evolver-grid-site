@@ -1,21 +1,27 @@
 import { describe, expect, it } from "vitest";
 import {
+  CIRCLE_KINDS,
   KIND_DEFAULTS,
+  afterPhotoOf,
   canMarkCame,
   canRun,
+  canSetAfterPhoto,
   dateRailLabel,
   defaultWhen,
   formatClock,
   formatTimeRange,
   groupByDay,
   hasEnded,
+  isCare,
   isHost,
   joinState,
+  kindAllowsOnline,
   kindOf,
   mondayOf,
   moonMark,
   nextWeekday,
   periodFromSearch,
+  rowThumbnail,
   seriesDates,
   shouldAskKeepGoing,
   splitByPeriod,
@@ -24,6 +30,7 @@ import {
   statusPill,
   validLine,
   validStep,
+  validWhere,
   visibilityFromColumn,
   visibilityToColumn,
   zonedInstant,
@@ -255,5 +262,79 @@ describe("circle links in inbox notes", () => {
   });
   it("strips the path for a one-line preview", () => {
     expect(stripCircleLinks(`Dinner is tomorrow. /game/meet/${id}`)).toBe("Dinner is tomorrow.");
+  });
+});
+
+describe("Care of a place", () => {
+  const care = (over: Partial<CircleLike> = {}) => circle({ kind: "care", ...over });
+  // 2026-11-24 19:00 in Mazatlan (UTC-7) ends 20:30, so these two instants are before and after
+  const during = zonedInstant("2026-11-24", "19:30", "America/Mazatlan");
+  const after = zonedInstant("2026-11-25", "10:00", "America/Mazatlan");
+  const PHOTO = "https://example.test/after.jpg";
+
+  it("is a circle kind with the spec defaults: open, unlimited, never repeats", () => {
+    expect(CIRCLE_KINDS).toContain("care");
+    expect(kindOf("care")).toBe("care");
+    expect(isCare("care")).toBe(true);
+    expect(isCare("gathering")).toBe(false);
+    expect(KIND_DEFAULTS.care).toEqual({ capacity: null, requiresApproval: false, repeat: "never" });
+  });
+
+  it("has no Online option, and Where is required and must be a real place", () => {
+    expect(kindAllowsOnline("care")).toBe(false);
+    for (const kind of CIRCLE_KINDS.filter((k) => k !== "care")) expect(kindAllowsOnline(kind)).toBe(true);
+
+    expect(validWhere("care", "", "")).toBeNull();
+    expect(validWhere("care", "   ", "")).toBeNull();
+    expect(validWhere("care", "Online", "")).toBeNull();
+    expect(validWhere("care", "Playa Norte", "")).toEqual({ location: "Playa Norte", onlineUrl: null });
+    // a call link never survives on a Care circle
+    expect(validWhere("care", "Playa Norte", "https://meet.example/x")).toEqual({ location: "Playa Norte", onlineUrl: null });
+    expect(validWhere("care", "", "https://meet.example/x")).toBeNull();
+  });
+
+  it("leaves Where optional for the other kinds, as before", () => {
+    expect(validWhere("gathering", "", "")).toEqual({ location: null, onlineUrl: null });
+    expect(validWhere("gathering", "The Café", "")).toEqual({ location: "The Café", onlineUrl: null });
+    expect(validWhere("practice", "", "https://meet.example/x")).toEqual({ location: "Online", onlineUrl: "https://meet.example/x" });
+  });
+
+  it("lets the host and co-host set the after photo, nobody else", () => {
+    expect(canSetAfterPhoto(care(), "host")).toBe(true);
+    expect(canSetAfterPhoto(care({ cohost_id: "co" }), "co")).toBe(true);
+    // a guest, even one marked came, and a signed-out visitor
+    expect(canSetAfterPhoto(care(), "guest")).toBe(false);
+    expect(canSetAfterPhoto(care(), null)).toBe(false);
+    expect(canSetAfterPhoto(care(), undefined)).toBe(false);
+  });
+
+  it("offers the after photo to Care circles only", () => {
+    for (const kind of CIRCLE_KINDS.filter((k) => k !== "care")) {
+      expect(canSetAfterPhoto(circle({ kind }), "host")).toBe(false);
+    }
+    // events from before circles carry no kind: plain gatherings
+    expect(canSetAfterPhoto(circle({ kind: null }), "host")).toBe(false);
+    expect(canSetAfterPhoto(circle(), "host")).toBe(false);
+  });
+
+  it("does not offer the photo on a cancelled circle", () => {
+    expect(canSetAfterPhoto(care({ cancelled_at: "2026-11-24T00:00:00Z" }), "host")).toBe(false);
+  });
+
+  it("shows the after photo only for kind care", () => {
+    expect(afterPhotoOf(care({ after_photo_url: PHOTO }))).toBe(PHOTO);
+    expect(afterPhotoOf(care({ after_photo_url: null }))).toBeNull();
+    expect(afterPhotoOf(care())).toBeNull();
+    expect(afterPhotoOf(circle({ kind: "gathering", after_photo_url: PHOTO }))).toBeNull();
+  });
+
+  it("uses the after photo as the Café row thumbnail once the circle is past", () => {
+    const withPhoto = care({ after_photo_url: PHOTO });
+    expect(rowThumbnail(withPhoto, after)).toBe(PHOTO);
+    // not before it ends
+    expect(rowThumbnail(withPhoto, during)).toBeNull();
+    // no photo, no thumbnail; other kinds never get one
+    expect(rowThumbnail(care(), after)).toBeNull();
+    expect(rowThumbnail(circle({ kind: "dinner", after_photo_url: PHOTO }), after)).toBeNull();
   });
 });

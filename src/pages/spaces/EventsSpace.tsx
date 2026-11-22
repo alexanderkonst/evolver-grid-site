@@ -17,6 +17,7 @@ import {
   groupByDay,
   moonMark,
   periodFromSearch,
+  rowThumbnail,
   splitByPeriod,
   statusPill,
   zoneLabel,
@@ -160,6 +161,8 @@ const EventsSpace = () => {
                         const people = faces[c.id] || [];
                         const where = c.online_url ? "Online" : c.location;
                         const at = zonedInstant(c.event_date, c.event_time, c.timezone);
+                        // A past Care of a place shows its "after" photo; nothing else has a thumbnail.
+                        const thumb = rowThumbnail(c);
                         return (
                           <li key={c.id}>
                             <div
@@ -169,6 +172,7 @@ const EventsSpace = () => {
                               onKeyDown={(e) => e.key === "Enter" && navigate(`/game/meet/${c.id}`)}
                               className={`${cardClass} p-4 flex items-center gap-4 cursor-pointer hover:border-foreground/40 transition-colors`}
                             >
+                              {thumb && <img src={thumb} alt="" loading="lazy" className="w-14 h-14 shrink-0 rounded-lg object-cover" />}
                               <div className="w-28 shrink-0 text-sm text-muted-foreground">
                                 {formatClock(c.event_time)}
                                 <span className="block text-xs">{zoneLabel(c.timezone, at)}</span>

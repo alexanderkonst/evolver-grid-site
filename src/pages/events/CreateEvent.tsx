@@ -6,7 +6,7 @@
  *
  * Settings are compact rows that show their value; a tap opens a small popover, never a new
  * page (Luma habits 2–4). Picking a kind sets sensible defaults; the host can change any.
- * Spec: docs/specs/circles_v1_spec.md. Copy: src/data/circlesCopy.ts.
+ * Spec: issue #384 (Care of a place: PR #388). Copy: src/data/circlesCopy.ts.
  */
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -20,7 +20,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { MoonBadge, cardClass } from "@/components/circles/CircleBits";
-import { HOST_FORM, KIND_LABEL, KIND_ORDER, WEEKLY } from "@/data/circlesCopy";
+import { CARE, HOST_FORM, KIND_LABEL, KIND_ORDER, WEEKLY } from "@/data/circlesCopy";
 import { useToast } from "@/hooks/use-toast";
 import { useSessionUserId } from "@/hooks/useSessionUserId";
 import { supabase } from "@/integrations/supabase/client";
@@ -29,11 +29,14 @@ import {
   REPEAT_RULES,
   canRun,
   defaultWhen,
+  isCare,
+  kindAllowsOnline,
   kindOf,
   moonMark,
   nextWeekday,
   parseDateString,
   toDateString,
+  validWhere,
   visibilityFromColumn,
   zoneLongLabel,
   type CircleKind,
@@ -54,6 +57,7 @@ const COVER_GRADIENT: Record<CircleKind, string> = {
   practice: "from-[#a4a3d0] to-[#d9d4f5]",
   dinner: "from-[#e8a96b] to-[#f6d9b5]",
   gathering: "from-[#6bb59a] to-[#c5e6d9]",
+  care: "from-[#4f9a6b] to-[#d3ecb8]",
 };
 
 /** A settings row that shows its value and opens a small popover. */
@@ -205,13 +209,17 @@ const CreateEvent = () => {
       capacity: defaults.capacity,
       requiresApproval: defaults.requiresApproval,
       repeat: editing ? prev.repeat : defaults.repeat,
+      // Care of a place is a real place: a call link does not carry over
+      onlineUrl: kindAllowsOnline(kind) ? prev.onlineUrl : "",
+      location: !kindAllowsOnline(kind) && prev.onlineUrl ? "" : prev.location,
       // the Weekly circle meets on Sunday
       date: kind === "weekly_circle" && !editing ? nextWeekday(parseDateString(prev.date), 0) : prev.date,
     }));
   };
 
   const place = draft.onlineUrl ? HOST_FORM.online : draft.location || HOST_FORM.whereAdd;
-  const canSubmit = draft.title.trim().length > 0 && !saving;
+  // Care of a place needs a real place (Where is required, no Online)
+  const canSubmit = draft.title.trim().length > 0 && !!validWhere(draft.kind, draft.location, draft.onlineUrl) && !saving;
   const today = useMemo(() => toDateString(new Date()), []);
   const dateObj = parseDateString(draft.date);
 
@@ -221,7 +229,7 @@ const CreateEvent = () => {
     setSaving(true);
     try {
       if (editing) {
-        await updateCircle(editing.id, draft);
+        await updateCircle(editing.id, draft, !!editing.after_photo_url);
         navigate(`/game/meet/${editing.id}/manage`);
       } else {
         const created = await createCircle(draft);
@@ -329,6 +337,7 @@ const CreateEvent = () => {
                 {WEEKLY.helper} <span className="block mt-0.5">{WEEKLY.bestWith}</span>
               </p>
             )}
+            {isCare(draft.kind) && <p className="text-xs text-muted-foreground mt-2">{CARE.helper}</p>}
           </div>
 
           {/* When */}
@@ -407,13 +416,15 @@ const CreateEvent = () => {
               onChange={(e) => setDraft((prev) => ({ ...prev, location: e.target.value, onlineUrl: "" }))}
               aria-label={HOST_FORM.anyAddress}
             />
-            <Input
-              type="url"
-              placeholder={`${HOST_FORM.online}: ${HOST_FORM.onlineLink}`}
-              value={draft.onlineUrl}
-              onChange={(e) => setDraft((prev) => ({ ...prev, onlineUrl: e.target.value, location: e.target.value ? "" : prev.location }))}
-              aria-label={`${HOST_FORM.online} ${HOST_FORM.onlineLink}`}
-            />
+            {kindAllowsOnline(draft.kind) && (
+              <Input
+                type="url"
+                placeholder={`${HOST_FORM.online}: ${HOST_FORM.onlineLink}`}
+                value={draft.onlineUrl}
+                onChange={(e) => setDraft((prev) => ({ ...prev, onlineUrl: e.target.value, location: e.target.value ? "" : prev.location }))}
+                aria-label={`${HOST_FORM.online} ${HOST_FORM.onlineLink}`}
+              />
+            )}
           </Row>
 
           {/* About */}
@@ -435,7 +446,7 @@ const CreateEvent = () => {
               <DialogHeader>
                 <DialogTitle>About</DialogTitle>
               </DialogHeader>
-              <Textarea rows={5} autoFocus placeholder={HOST_FORM.aboutPlaceholder} value={aboutText} onChange={(e) => setAboutText(e.target.value)} />
+              <Textarea rows={5} autoFocus placeholder={isCare(draft.kind) ? CARE.aboutPlaceholder : HOST_FORM.aboutPlaceholder} value={aboutText} onChange={(e) => setAboutText(e.target.value)} />
               <Button
                 type="button"
                 onClick={() => {

@@ -1,5 +1,5 @@
 -- 2026-11-22: Circles v1, player-hosted gatherings in the village Café (issue #384).
--- Spec: docs/specs/circles_v1_spec.md (§7 data, S7 weekly circle, §5 reminders).
+-- Spec: issue #384 (§7 data, S7 weekly circle, §5 reminders); Care of a place: PR #388.
 --
 -- Extends `events` and `event_rsvps`; adds circle_handoffs, circle_lines, circle_steps,
 -- circle_notices, and SECURITY DEFINER functions. Nothing is dropped except two creator-only
@@ -41,11 +41,23 @@ ALTER TABLE public.events
   ADD COLUMN IF NOT EXISTS repeat_rule text NOT NULL DEFAULT 'never',
   ADD COLUMN IF NOT EXISTS cancelled_at timestamptz,
   ADD COLUMN IF NOT EXISTS host_id uuid REFERENCES auth.users(id),
-  ADD COLUMN IF NOT EXISTS cohost_id uuid REFERENCES auth.users(id);
+  ADD COLUMN IF NOT EXISTS cohost_id uuid REFERENCES auth.users(id),
+  -- Care of a place: the one "after" photo, set on Who came. Public URL in the app's existing
+  -- image bucket (avatars); no new table. Only host / co-host can write it (the update policy
+  -- below), and only on kind 'care' (events_care_check).
+  ADD COLUMN IF NOT EXISTS after_photo_url text;
 
 ALTER TABLE public.events DROP CONSTRAINT IF EXISTS events_kind_check;
 ALTER TABLE public.events ADD CONSTRAINT events_kind_check
-  CHECK (kind IN ('weekly_circle','mastermind','practice','dinner','gathering'));
+  CHECK (kind IN ('weekly_circle','mastermind','practice','dinner','gathering','care'));
+-- Care of a place is a real place (no Online, no call link), and only it carries an after photo.
+ALTER TABLE public.events DROP CONSTRAINT IF EXISTS events_care_check;
+ALTER TABLE public.events ADD CONSTRAINT events_care_check
+  CHECK (
+    (kind = 'care' AND nullif(btrim(location), '') IS NOT NULL
+      AND lower(btrim(location)) <> 'online' AND online_url IS NULL)
+    OR (kind <> 'care' AND after_photo_url IS NULL)
+  );
 ALTER TABLE public.events DROP CONSTRAINT IF EXISTS events_capacity_check;
 ALTER TABLE public.events ADD CONSTRAINT events_capacity_check
   CHECK (capacity IS NULL OR capacity > 0);

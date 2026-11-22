@@ -7,25 +7,27 @@
  * one inbox note ("{Host} confirmed you came to {circle}. Leave one line?").
  * Editable from the start time until 7 days after; then fixed.
  */
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Check } from "lucide-react";
+import { Check, Image as ImageIcon } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Face, PersonFace, cardClass } from "@/components/circles/CircleBits";
-import { CAME } from "@/data/circlesCopy";
+import { CAME, CARE } from "@/data/circlesCopy";
 import { useSessionUserId } from "@/hooks/useSessionUserId";
 import { useToast } from "@/hooks/use-toast";
-import { canMarkCame, canRun, hostOf, startInstant } from "@/lib/circles";
+import { afterPhotoOf, canMarkCame, canRun, canSetAfterPhoto, hostOf, startInstant } from "@/lib/circles";
 import {
   circleErrorMessage,
   confirmCame,
   fetchCircle,
   fetchPeople,
   myFirstName,
+  removeAfterPhoto,
   searchVillagers,
+  setAfterPhoto,
   type Circle,
   type CirclePerson,
 } from "@/lib/circlesApi";
@@ -50,6 +52,8 @@ const MarkCame = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  const [photoBusy, setPhotoBusy] = useState(false);
+  const photoInput = useRef<HTMLInputElement | null>(null);
 
   const load = useCallback(async () => {
     if (!id || !userId) return;
@@ -113,6 +117,34 @@ const MarkCame = () => {
       return next;
     });
 
+  // Care of a place: the optional "after" photo saves on its own, not with Confirm.
+  const changePhoto = async (file: File | undefined) => {
+    if (!file || !circle) return;
+    setPhotoBusy(true);
+    try {
+      const url = await setAfterPhoto(circle, file);
+      setCircle({ ...circle, after_photo_url: url });
+    } catch (err) {
+      toast({ title: circleErrorMessage(err, "Could not save the photo."), variant: "destructive" });
+    } finally {
+      setPhotoBusy(false);
+      if (photoInput.current) photoInput.current.value = "";
+    }
+  };
+
+  const dropPhoto = async () => {
+    if (!circle) return;
+    setPhotoBusy(true);
+    try {
+      await removeAfterPhoto(circle);
+      setCircle({ ...circle, after_photo_url: null });
+    } catch (err) {
+      toast({ title: circleErrorMessage(err, "Could not remove the photo."), variant: "destructive" });
+    } finally {
+      setPhotoBusy(false);
+    }
+  };
+
   const confirm = async () => {
     if (!circle || !userId) return;
     setSaving(true);
@@ -157,6 +189,8 @@ const MarkCame = () => {
 
   const open = canMarkCame(circle);
   const tooEarly = Date.now() < startInstant(circle);
+  const afterPhoto = afterPhotoOf(circle);
+  const mayAddPhoto = canSetAfterPhoto(circle, userId) && open;
 
   return (
     <GameShellV2>
@@ -222,6 +256,32 @@ const MarkCame = () => {
                   </li>
                 ))}
             </ul>
+          </div>
+        )}
+
+        {/* Care of a place only; host or co-host only. One photo, optional. */}
+        {mayAddPhoto && (
+          <div className={`${cardClass} p-5 space-y-3`}>
+            {afterPhoto && <img src={afterPhoto} alt={CARE.afterAlt} className="w-full max-h-72 rounded-lg object-cover" />}
+            <input
+              ref={photoInput}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => changePhoto(e.target.files?.[0])}
+              aria-label={afterPhoto ? CARE.changeAfterPhoto : CARE.addAfterPhoto}
+            />
+            <div className="flex items-center gap-4">
+              <Button type="button" variant="outline" size="sm" disabled={photoBusy || saving} onClick={() => photoInput.current?.click()}>
+                <ImageIcon className="w-4 h-4 mr-1.5" aria-hidden />
+                {afterPhoto ? CARE.changeAfterPhoto : CARE.addAfterPhoto}
+              </Button>
+              {afterPhoto && (
+                <button type="button" disabled={photoBusy || saving} onClick={dropPhoto} className="text-sm text-muted-foreground underline hover:text-foreground">
+                  {CARE.removeAfterPhoto}
+                </button>
+              )}
+            </div>
           </div>
         )}
 

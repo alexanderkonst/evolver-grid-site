@@ -1,5 +1,5 @@
 /**
- * Circles v1 copy, English, exactly as docs/specs/circles_v1_spec.md (sections S1–S7, §5).
+ * Circles v1 copy, English, exactly as the spec in issue #384 (sections S1–S7, §5; Care of a place: PR #388).
  * One file so the words live in one place; the screens import from here and never rephrase.
  *
  * Not in the i18n JSON on purpose: the spec fixes this wording and the circle words
@@ -25,9 +25,20 @@ export const KIND_LABEL: Record<CircleKind, string> = {
   practice: "Practice",
   dinner: "Dinner",
   gathering: "Gathering",
+  care: "Care of a place",
 };
 
-export const KIND_ORDER: CircleKind[] = ["mastermind", "practice", "dinner", "gathering", "weekly_circle"];
+export const KIND_ORDER: CircleKind[] = ["mastermind", "practice", "dinner", "gathering", "care", "weekly_circle"];
+
+/** Care of a place (closes mechanics-atlas invariant #10, "visible care of the shared ground"). */
+export const CARE = {
+  helper: "Take care of a place we share: a beach, a garden, a street. Come in person.",
+  aboutPlaceholder: "What we'll do. Done when…",
+  addAfterPhoto: 'Add an "after" photo',
+  changeAfterPhoto: 'Change the "after" photo',
+  removeAfterPhoto: "Remove",
+  afterAlt: "The place after we cared for it",
+} as const;
 
 export const WEEKLY = {
   helper:
