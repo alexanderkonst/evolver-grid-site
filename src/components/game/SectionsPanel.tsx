@@ -320,8 +320,6 @@ const SPACE_SECTIONS: SpaceSections = {
                 id: "people",
                 label: "People Directory",
                 path: "/game/collaborate/people",
-                locked: true,
-                lockedHint: "Coming soon. Directory needs profile permissions before it ships.",
             },
             {
                 id: "messages",
@@ -451,10 +449,7 @@ export const STATIC_LABEL_KEYS: Record<string, { label: string; lockedHint?: str
         label: "rail.collaborate.connections.label",
         lockedHint: "rail.collaborate.connections.lockedHint",
     },
-    people: {
-        label: "rail.collaborate.people.label",
-        lockedHint: "rail.collaborate.people.lockedHint",
-    },
+    people: { label: "rail.collaborate.people.label" },
     messages: { label: "rail.collaborate.messages.label" },
     mission: {
         label: "rail.collaborate.missionGroups.label",

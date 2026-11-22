@@ -902,6 +902,7 @@ const App = () => (
                   <Route path="/game/collaborate/messages" element={<RequireAuth><Messages /></RequireAuth>} />
                   <Route path="/game/collaborate/messages/:userId" element={<RequireAuth><Messages /></RequireAuth>} />
                   {/* Legacy redirects */}
+                  <Route path="/game/messages" element={<Navigate to="/game/collaborate/messages" replace />} />
                   <Route path="/game/teams" element={<Navigate to="/game/collaborate" replace />} />
                   <Route path="/game/matches" element={<Navigate to="/game/collaborate/matches" replace />} />
                   <Route path="/connections" element={<Navigate to="/game/collaborate/connections" replace />} />

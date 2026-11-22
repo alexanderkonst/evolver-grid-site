@@ -1,11 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { MapPin, Target, Users } from "lucide-react";
+import { MapPin, Search, Sparkles, Target, Users } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import WriteButton from "@/components/game/WriteButton";
-import { useSessionUserId } from "@/hooks/useSessionUserId";
-import { fetchWritableUserIds } from "@/lib/playerMessages";
 import { Button } from "@/components/ui/button";
 import SkeletonCard from "@/components/ui/SkeletonCard";
 import {
@@ -16,7 +14,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
-import { AppleseedData } from "@/modules/zone-of-genius/appleseedGenerator";
+import { Input } from "@/components/ui/input";
+import { directoryProfilePath, matchesDirectoryQuery } from "@/lib/peopleDirectory";
 import { MISSIONS } from "@/modules/mission-discovery/data/missions";
 import { DESIRED_OUTCOMES } from "@/modules/mission-discovery/data/outcomes";
 import { KEY_CHALLENGES } from "@/modules/mission-discovery/data/challenges";
@@ -27,8 +26,10 @@ const PAGE_SIZE = 12;
 
 type VisibilityLevel = "hidden" | "minimal" | "medium" | "full";
 
+/** One row of public.list_directory_players(): already filtered to what this viewer may see. */
 interface DirectoryProfileRow {
   user_id: string;
+  username: string | null;
   first_name: string | null;
   last_name: string | null;
   avatar_url: string | null;
@@ -36,8 +37,10 @@ interface DirectoryProfileRow {
   visibility: VisibilityLevel | null;
   show_location: boolean | null;
   show_mission: boolean | null;
-  show_offer: boolean | null;
-  last_zog_snapshot_id: string | null;
+  archetype: string | null;
+  tagline: string | null;
+  top_talent: string | null;
+  can_write: boolean | null;
 }
 
 interface MissionRow {
@@ -59,7 +62,9 @@ interface DirectoryPerson {
   visibility: VisibilityLevel;
   showLocation: boolean;
   showMission: boolean;
-  showOffer: boolean;
+  profilePath: string;
+  canWrite: boolean;
+  topTalent: string | null;
   archetype: string;
   tagline: string | null;
   mission: MissionRow | null;
@@ -79,9 +84,7 @@ const PeopleDirectory = () => {
   const [people, setPeople] = useState<DirectoryPerson[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
-  // Spec A6: who the viewer may write to (profile audience settings). null = not resolved yet.
-  const viewerId = useSessionUserId();
-  const [writableIds, setWritableIds] = useState<Set<string> | null>(null);
+  const [query, setQuery] = useState("");
 
   const [pillarFilter, setPillarFilter] = useState<string>("all");
   const [focusFilter, setFocusFilter] = useState<string>("all");
@@ -99,17 +102,24 @@ const PeopleDirectory = () => {
       setError(null);
 
       try {
-        const { data: profileRows, error: profileError } = await supabase
-          .from("game_profiles")
-          .select(
-            "user_id, first_name, last_name, avatar_url, location, visibility, show_location, show_mission, show_offer, last_zog_snapshot_id"
-          )
-          .neq("visibility", "hidden");
+        // Spec A6: game_profiles is owner-readable only, so the directory reads through a narrow
+        // SECURITY DEFINER function that applies each profile's audience (public / friends /
+        // communities / hidden) for this viewer. Not in the generated types until it is deployed.
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const { data: profileRows, error: profileError } = await (supabase as any).rpc(
+          "list_directory_players"
+        );
 
-        if (profileError) throw profileError;
+        if (profileError) {
+          const missing =
+            profileError.code === "PGRST202" ||
+            profileError.code === "42883" ||
+            /list_directory_players/.test(profileError.message || "");
+          throw new Error(missing ? t("peopleDir.notAvailable") : profileError.message);
+        }
 
-        const usableProfiles = (profileRows || []).filter(
-          (row): row is DirectoryProfileRow => !!row.user_id
+        const usableProfiles = ((profileRows || []) as DirectoryProfileRow[]).filter(
+          (row) => !!row.user_id
         );
 
         const userIds = usableProfiles.map((row) => row.user_id);
@@ -138,27 +148,8 @@ const PeopleDirectory = () => {
           }
         });
 
-        const snapshotIds = usableProfiles
-          .map((row) => row.last_zog_snapshot_id)
-          .filter(Boolean) as string[];
-
-        const { data: snapshots } = await supabase
-          .from("zog_snapshots")
-          .select("id, appleseed_data")
-          .in("id", snapshotIds);
-
-        const snapshotMap = new Map<string, AppleseedData>();
-        (snapshots || []).forEach((snapshot) => {
-          if (snapshot.appleseed_data) {
-            snapshotMap.set(snapshot.id, snapshot.appleseed_data as unknown as AppleseedData);
-          }
-        });
-
-        const directoryPeople = usableProfiles.map((row) => {
+        const directoryPeople: DirectoryPerson[] = usableProfiles.map((row) => {
           const visibility = resolveVisibility(row.visibility);
-          const appleseed = row.last_zog_snapshot_id
-            ? snapshotMap.get(row.last_zog_snapshot_id)
-            : null;
           const firstName = row.first_name || "";
           const lastName = row.last_name || "";
           const name = `${firstName} ${lastName}`.trim() || t("peopleDir.fallbackName");
@@ -171,9 +162,11 @@ const PeopleDirectory = () => {
             visibility,
             showLocation: row.show_location ?? true,
             showMission: row.show_mission ?? true,
-            showOffer: row.show_offer ?? true,
-            archetype: appleseed?.vibrationalKey?.name || t("peopleDir.unknownArchetype"),
-            tagline: appleseed?.vibrationalKey?.tagline || null,
+            profilePath: directoryProfilePath(row.username, row.user_id),
+            canWrite: row.can_write ?? false,
+            topTalent: row.top_talent || null,
+            archetype: row.archetype || t("peopleDir.unknownArchetype"),
+            tagline: row.tagline || null,
             mission: missionByUser.get(row.user_id) ?? null,
           };
         });
@@ -196,22 +189,6 @@ const PeopleDirectory = () => {
       isMounted = false;
     };
   }, []);
-
-  useEffect(() => {
-    if (people.length === 0) return;
-    let live = true;
-    if (!viewerId) {
-      // Guests keep the button (it sends them to sign in); the profile page re-checks audience.
-      setWritableIds(new Set(people.map((p) => p.userId)));
-      return;
-    }
-    fetchWritableUserIds(viewerId, people.map((p) => p.userId)).then((ids) => {
-      if (live) setWritableIds(ids);
-    });
-    return () => {
-      live = false;
-    };
-  }, [people, viewerId]);
 
   const availableLocations = useMemo(() => {
     const locations = new Set<string>();
@@ -256,6 +233,7 @@ const PeopleDirectory = () => {
   const filteredPeople = useMemo(() => {
     return people.filter((person) => {
       if (person.visibility === "hidden") return false;
+      if (!matchesDirectoryQuery(person, query)) return false;
 
       const canShowMission =
         person.visibility !== "minimal" && person.showMission && !!person.mission;
@@ -288,6 +266,7 @@ const PeopleDirectory = () => {
     });
   }, [
     people,
+    query,
     pillarFilter,
     focusFilter,
     challengeFilter,
@@ -302,6 +281,7 @@ const PeopleDirectory = () => {
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
   }, [
+    query,
     pillarFilter,
     focusFilter,
     challengeFilter,
@@ -323,6 +303,18 @@ const PeopleDirectory = () => {
             <p className="text-sm text-muted-foreground mt-2">
               {t("peopleDir.subtitle")}
             </p>
+          </div>
+
+          <div className="relative mb-3">
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder={t("peopleDir.searchPlaceholder")}
+              aria-label={t("peopleDir.searchPlaceholder")}
+              className="pl-9"
+            />
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-8">
@@ -452,8 +444,8 @@ const PeopleDirectory = () => {
               const canShowLocation =
                 person.visibility !== "minimal" && person.showLocation && !!person.location;
 
-              // Write only where the person's audience settings allow it (A6).
-              const canWrite = writableIds?.has(person.userId) ?? false;
+              // Write only where the person's audience settings allow it (A6): the database says so.
+              const canWrite = person.canWrite;
 
               // Day 91 (Sasha 2026-06-09): tokenized for Aurum — raw white/85
               // cards put cream muted-foreground text on white (invisible).
@@ -464,7 +456,7 @@ const PeopleDirectory = () => {
                 >
                 <button
                   type="button"
-                  onClick={() => navigate(`/profile/${person.userId}`)}
+                  onClick={() => navigate(person.profilePath)}
                   className="flex-1 text-left"
                 >
                   <div className="flex items-center gap-4">
@@ -491,6 +483,12 @@ const PeopleDirectory = () => {
                       <p className="text-sm text-muted-foreground truncate">✦ {person.archetype} ✦</p>
                     </div>
                   </div>
+                  {person.topTalent && (
+                    <div className="mt-3 flex items-center gap-2 text-xs text-foreground">
+                      <Sparkles className="w-3 h-3" />
+                      <span className="truncate">{person.topTalent}</span>
+                    </div>
+                  )}
                   {person.tagline && (
                     <p className="mt-3 text-sm text-muted-foreground italic line-clamp-2">
                       "{person.tagline}"

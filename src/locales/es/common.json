@@ -2069,8 +2069,7 @@
         "lockedHint": "Próximamente. La superficie de seguimiento de conexiones está en desarrollo."
       },
       "people": {
-        "label": "Directorio de personas",
-        "lockedHint": "Próximamente. El directorio necesita permisos de perfil antes de lanzarse."
+        "label": "Directorio de personas"
       },
       "messages": {
         "label": "Mensajes"
@@ -6518,7 +6517,9 @@
     "loadMore": "Cargar más",
     "fallbackName": "Miembro de la comunidad",
     "unknownArchetype": "Arquetipo desconocido",
-    "loadError": "No se pudo cargar el directorio."
+    "loadError": "No se pudo cargar el directorio.",
+    "notAvailable": "El directorio aún no está disponible.",
+    "searchPlaceholder": "Buscar por nombre o talento"
   },
   "activationSteps": {
     "heading": "Empecemos.",
