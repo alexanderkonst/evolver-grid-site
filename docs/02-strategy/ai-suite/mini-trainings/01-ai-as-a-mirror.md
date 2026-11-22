@@ -84,7 +84,7 @@ Timing: 7 × (≈ 90 s button + 90 s video) ≈ 21 min, plus micro-module 8 (≈
 
 ## Open for Sasha
 
-- **Money (separate fork, later):** inside the platform each button is an AI call (≈ 12 per person; Lovable credits). Free, paid, or «Copy into your own AI» only?
+- **Money: decided** (Sasha, 2026-11-22): buttons inside the platform run on the **cheapest chat model the Lovable AI connector offers** (today Gemini 3.1 Flash Lite or GPT-6 Luna, per docs.lovable.dev/integrations/ai). ≈ 12 calls per person. Copy into your own AI stays available.
 - To check before signing: run all buttons with 3 real profiles in Your AI, ChatGPT and Claude; mark any answer that argues with the video.
 - Building the button card (Send · Edit · Microphone · Copy · Save plan · tap-a-line in #6) is platform work: through a @claude issue, no Lovable credits without your yes.
 - **Academy level:** levels confirmed (Human Development Academy · Soul University · Mystery School); which level this mini-training sits on is not set yet.
