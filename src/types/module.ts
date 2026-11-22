@@ -1,3 +1,5 @@
+import type { VillagePlaceKey } from "@/data/villagePlaces";
+
 // Legacy categories (used by old Index.tsx landing page modules)
 export type LegacyModuleCategory =
   | "AI"
@@ -66,7 +68,28 @@ export interface Module {
 
   // Landing page data (generated via Module Landing Page Workflow SOP)
   landingData?: ModuleLandingData;
+
+  // Partner fields (Module 2 · L2). Plan: docs/02-strategy/modular_collaboration/launch_plan.md.
+  // Nothing renders these yet; defaults are applied by the helpers in src/data/modules.ts.
+  /** "evolver" for ours, the partner's name otherwise. Default: "evolver". */
+  owner?: string;
+  /** Who receives the revenue for this module. */
+  payee?: string;
+  /** The partner's own page for the module. */
+  externalUrl?: string;
+  /** Query param that carries our referral id on `externalUrl`. Default: "ref". */
+  referralParam?: string;
+  /** How deep the connection goes; 0 = link with referral id (connector.md §4). */
+  integrationLevel?: IntegrationLevel;
+  /** "internal" = built by us, "partner" = brought in by a partner. Default: "internal". */
+  source?: ModuleSource;
+  /** The village place that shows the module (course → academy, product → market, session → mastermind). */
+  place?: VillagePlaceKey;
 }
+
+export type IntegrationLevel = 0 | 1 | 2 | 3 | 4;
+
+export type ModuleSource = "internal" | "partner";
 
 /**
  * Marketing-grade landing page content for a module.
