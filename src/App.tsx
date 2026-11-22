@@ -87,6 +87,7 @@ const ProductsPage = lazy(() => import("./pages/ProductsPage"));
 // Your AI (village place `oracle`): carries the 5,400-word AI OS prompt, so it loads on demand.
 const FamiliarPage = lazy(() => import("./modules/familiar/FamiliarPage"));
 const Mastermind = lazy(() => import("./pages/Mastermind"));
+const BringYourModule = lazy(() => import("./pages/BringYourModule"));
 const EvolutionPortal = lazy(() => import("./pages/EvolutionPortal"));
 const EvolutionPortalKarime = lazy(() => import("./pages/EvolutionPortalKarime"));
 const BuildContainer = lazy(() => import("./pages/BuildContainer"));
@@ -706,6 +707,8 @@ const App = () => (
                   {/* Day 133: plain-language data promise + legal companions. */}
                   <Route path="/data" element={<YourDataPlainly />} />
                   <Route path="/privacy" element={<PrivacyPolicy />} />
+                  {/* Issue #383: partner intake. Deliberately not linked from any screen until Sasha says publish. */}
+                  <Route path="/bring-your-module" element={<BringYourModule />} />
                   <Route path="/terms" element={<TermsOfService />} />
                   {/* Day 80 Wave 2.4 (Sasha 2026-05-22): $37 Top Talent
                       Activation as its own clean landing — extracted
