@@ -1403,10 +1403,10 @@ Rule for every mechanic: a counter, streak or number only where it mirrors a rea
 | 24 | Reviews after a real deal: one written line, no stars; both sides write blind and reviews open together (Airbnb RCT, Fradkin et al. 2021: negative text +12% guests, +17% hosts; 1-star retaliation -31%); a negative review goes first privately to the shop owner and to Sasha as approver | Airbnb, Couchsurfing CS-2 | Market, A6, A7 | "yes" 2026-11-21 | accepted |
 | 25 | Core bundle, the minimal set with the largest combined effect: Circle (#10) × Rhythm (#7) × Save Point speech rule × peer confirmation (#15, #16). A small circle of 5–12 people with a host meets every week. Each member sets a step on Monday, and the circle meets at the Sunday Save Point. There each person answers three questions: what I intended, what happened, what I take with me. Speak only from your own experience: no advice, no blame. A deed counts when someone already on that step confirms it (stamp, #14). The four parts work only together | AA, after-action reviews, Burning Man camps; mechanics atlas invariants 1–4 | Circles project, A9, §23.4 | "yes, great" 2026-11-22 | accepted |
 
-### 24.2 Considering
+### 24.2 Considering (parked by Sasha 2026-11-22)
 - Shops, open parts: gift as a mode (not sure yet); offers also in reply to "Open to…" (parked).
 
-### 24.3 Open
+### 24.3 Open (parked by Sasha 2026-11-22)
 - How a false confirmation is detected (proposal: the person the deed concerned says it did not happen, or someone present disputes it, or the trail does not fit; the right is paused, two people on that step talk to both and decide).
 - Can a step be paused if someone harms the village, or is it permanent?
 - Significant steps (definition accepted, Sasha 2026-11-21 18:23 «Именно так!»; the list is built with the player's path; Sasha 17:00: «значимые шаги?») instead of "levels as milestones": a step marked only where something real turns (first real deal, chapter closed, first gathering hosted) and something opens. Earlier wording: levels as milestones of the path (Sasha 2026-11-21 16:28: "when the player's path exists, it will be clear whether levels are needed; levels as simple milestones of the path, that is the direction I was thinking"). Decide when the player's path is designed.
