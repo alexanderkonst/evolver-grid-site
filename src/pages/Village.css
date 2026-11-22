@@ -101,7 +101,7 @@
 }
 .vl-moonline { margin: 14px 0 0; text-transform: none; letter-spacing: 0.14em; font-size: var(--vl-text-small); color: var(--vl-ink-2); }
 /* The sky moon on the map steps left of the biological-clock watch (#385) that holds the top-right corner. */
-.vl-frame .vl-moon { right: calc(14px + 128px + clamp(24px, 3vw, 48px)); }
+.vl-frame .vl-moon { right: calc(14px + 200px + clamp(24px, 3vw, 48px)); }
 .vl-intro { opacity: 0; animation: vl-fade-in 1.6s ease-out 0.4s forwards; }
 @keyframes vl-fade-in { to { opacity: 1; } }
 

@@ -16,10 +16,10 @@
 }
 .moon-dial.vl-watch .bio-clock { pointer-events: none; }
 .moon-dial.vl-watch .bio-clock__watch, .moon-dial.vl-watch .bio-clock__readout { pointer-events: auto; }
-.moon-dial .moon-dial__clock { --bc-size: 128px; }
+.moon-dial .moon-dial__clock { --bc-size: 200px; }
 @media (max-width: 720px) {
   .moon-dial.vl-watch { top: 8px; right: 8px; left: 8px; }
-  .moon-dial .moon-dial__clock { --bc-size: 96px; }
+  .moon-dial .moon-dial__clock { --bc-size: 148px; }
 }
 .moon-dial__line { margin: 6px 0 0; font-size: var(--vl-text-small, 15px); line-height: 1.3; color: var(--vl-ink-2, rgba(235, 238, 242, 0.82)); }
 .moon-dial__label {
