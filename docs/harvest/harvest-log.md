@@ -49,6 +49,97 @@
 - **Consequences:** Linux Foundation + Red Hat shape; each stage has its own entry terms.
 - Link: [collective_terms_roadmap.md](../02-strategy/collective/collective_terms_roadmap.md) · Holon: —
 
+### 2026-11-21 · A stranger reaches Home in about 8 minutes (Hark proposes)
+- **Essence:** the guest door is live (PRESS START, result URL, village statuses, desktop layout, clean prompt), and the first timed run with a fresh account went from start to Home in ≈8 minutes against the 20-minute target.
+- **Significance:** the readiness target for the end of the moon is measured for the first time, and already met on time; the loss is trust at the reveal → account seam, not speed.
+- **Consequences:** sign-up fixes and the Home/account copy went live the same day (#374, #376); the next runs measure the seam, not the clock.
+- Link: [issue #370](https://github.com/alexanderkonst/evolver-grid-site/issues/370) · PRs [#355](https://github.com/alexanderkonst/evolver-grid-site/pull/355), [#374](https://github.com/alexanderkonst/evolver-grid-site/pull/374), [#376](https://github.com/alexanderkonst/evolver-grid-site/pull/376) · Holon: H1
+
+### 2026-11-21 · Six game rows live in one day (Hark proposes)
+- **Essence:** players can write to each other (A6), see their stats (A5) and their clients (A7), read the Book of Infographics (C4), play the five elements in 3D (C1), and step from the quiz into the game (B2).
+- **Significance:** the notebook's game list became one spec, and a third of it shipped the day it was written.
+- **Consequences:** the spec is the single list we walk down; the open rows wait on Sasha's content (video, radio, reveal words, badge designs).
+- Link: [game_launch_spec.md](../02-strategy/game_launch_spec.md) · Holon: H0.G
+
+### 2026-11-21 · Home stays Home (Hark proposes)
+- **Essence:** no separate Working Cabinet; Home (/game/me/overview) grows into it and gathers profile, talent, mission, resources, business and shop (Character Sheet = Your House).
+- **Significance:** the cabinet fork closed with nothing to rename and no new place to build.
+- **Consequences:** Home sits in the Character menu (#369); the row of result buttons comes at assembly.
+- Link: [PR #369](https://github.com/alexanderkonst/evolver-grid-site/pull/369) · [golden_age_canon.md](../02-strategy/golden_age_canon.md) · Holon: H0.G
+
+### 2026-11-21 · Real acts, confirmed by someone who walked the path (Hark proposes)
+- **Essence:** the game credits only acts done in the real world (a streak never counts app opens), and quality is held by a person who has already walked that step (Scouts sign-off, Camino stamp, witness).
+- **Significance:** progress in the game stays honest without a central examiner.
+- **Consequences:** A13 forgiving streak on real acts only; the Camino-style passport with stamps; a circle is hosted by someone who has been to one.
+- Link: [proof-of-learning.md](../02-strategy/research/iconic-mechanics/games/proof-of-learning.md) · [game_launch_spec.md](../02-strategy/game_launch_spec.md) A13 · Holon: H0.G
+
+### 2026-11-21 · Everything is already a game (Hark proposes)
+- **Essence:** an integral holonic taxonomy of social engineering: mechanics taken from iconic games, apps, organizations, sites and long-lived social structures, filtered by what the canon already holds.
+- **Significance:** GoBY borrows mechanics proven at scale instead of inventing them.
+- **Consequences:** one accepted list in GoBY §24; the research lives in the corpus, one source of truth.
+- **Technology candidate:** mechanics transplant (proven mechanic → canon check → GoBY row) (Sasha decides).
+- Link: [taxonomy.md](../02-strategy/research/iconic-mechanics/taxonomy.md) · [game_of_being_you.md](../02-strategy/game_of_being_you.md) §24 · Holon: H0.G
+
+### 2026-11-21 · Players gradually change the game (Hark proposes)
+- **Essence:** a creation ladder: interiors → quests for the next player → own module → buildings → "Create a new digital village".
+- **Significance:** the game grows from its players, as Heroes III fans' content became official.
+- **Consequences:** the constructor opens by steps, no artificial limits, quality held at the same level.
+- Link: [game_of_being_you.md](../02-strategy/game_of_being_you.md) §24 · Holon: H0.G
+
+### 2026-11-21 · Time in four units (Hark proposes)
+- **Essence:** day, week, month (the real moon), year; no seasons; shown as a personal biologic clock of four rings from the Equilibrium engine, not tied to acts.
+- **Significance:** the game's rhythm is the living rhythm of the body and the moon.
+- **Consequences:** four-ring clock on the main game screen (A9 next); the moon closes with a Harvest.
+- Link: [biologic_clock_rings_spec.md](../specs/equilibrium/biologic_clock_rings_spec.md) · Holon: H0.G · H0.C
+
+### 2026-11-21 · Circles: our own build with Luma's ease (Hark proposes)
+- **Essence:** circles are built inside GoBY, not integrated from Luma; the creator hosts with a co-host and hands the circle over in one tap; any signed-in person can create one, by design.
+- **Significance:** the base self-governance of the Collective lives in the game from the first launch.
+- **Consequences:** fuller succession rules come on demand, from Sasha's three group templates.
+- Link: circles_v1_spec.md in project «Круги в GoBY» (not in the corpus yet) · Holon: H0.C
+
+### 2026-11-21 · Modular collaboration launches without waiting for a partner (Hark proposes)
+- **Essence:** one mass message invites partners and players at once; partners connect themselves; terms are 10% commission only; a partner's modules live inside existing places, an own building only for ecosystems, by Sasha's decision.
+- **Significance:** the partner door scales without Sasha knowing who walked in.
+- **Consequences:** partner offer and launch plan written; attribution window 12 months; Planetir studied and parked.
+- Link: [launch_from_corpus.md](../02-strategy/modular_collaboration/launch_from_corpus.md) · [partner_offer.md](../02-strategy/modular_collaboration/partner_offer.md) · Holon: H0.B
+
+### 2026-11-21 · Knowledge intake on stream (Hark proposes)
+- **Essence:** links, essays and papers go through one template with an authorship standard and a Use Map; the first source (a16z reading list, 25 texts) entered the graph.
+- **Significance:** outside thought enters the corpus credited and tested against Sasha's technologies.
+- **Consequences:** PST 75 refined: fear as a signal → move toward the problem; fear as a grip → ease first.
+- Link: [source-integration.md](../templates/source-integration.md) · Holon: H0.T
+
+### 2026-11-21 · The ontology formalized end to end, first result proved (Hark proposes)
+- **Essence:** universal_ontology.md formalized in order, from self-relation (Step 1) to Step 75; the Grail field is an exact Maxwell field that inversion with time reversal maps onto itself (φ*F = F, proved analytically; helicity π²/16).
+- **Significance:** the drawing lands on real physics, and the theory faced its first honest tests: no optics prediction beyond Maxwell (Step 69), the holon-threshold test on real data inconclusive (Step 75).
+- **Consequences:** three vision decisions wait on Sasha; the theory stays private until people he trusts review it.
+- Link: private repo knowledgegraph, «15 Universal Ontology/» · Holon: H0.T
+
+### 2026-11-20 · One picture: four faces and the Your AI ring (Hark proposes)
+- **Essence:** the Golden Age project = game, unique business (inside it Sasha's unique business of unique businesses), Collective (interaction), Theory, with Your AI as the ring through all four.
+- **Significance:** the holon core and the canon now say the same thing; roadmap step 1 closed.
+- **Consequences:** forks settled: fund later, the playable game stays a strategy, the rings placed.
+- Link: [holon-core.md](../01-vision/holon-core.md) · [golden_age_canon.md](../02-strategy/golden_age_canon.md) · Holon: H0
+
+### 2026-11-20 · Vision, theory, application (Hark proposes)
+- **Essence:** three layers: universal_ontology.md (vision, an ontology and cosmology of the universe), the formalization (theory), the Phase Shift Technology library (application), cycling back through practice to renewed vision.
+- **Significance:** insight and proof stay apart and point at each other.
+- **Consequences:** "formalization", not "theory of everything", until numerical predictions exist; no attention drawn until trusted review.
+- Link: [universal_ontology.md](../01-vision/universal_ontology.md) · Holon: H0.T
+
+### 2026-11-20 · Hark Brief v2 (Hark proposes)
+- **Essence:** one brief format synthesized from 20 command traditions, Anglo and non-Anglo.
+- **Significance:** every report reaches Sasha decision-first, at the level of the best organizations.
+- **Consequences:** used for every finished chunk (brief + link to the result).
+- Link: — (Hark's format; a corpus copy waits on Sasha's yes) · Holon: H0.A
+
+### 2026-11-19 · The Vector: the client moves the split (Hark proposes)
+- **Essence:** the 30/60 split is a slider the client moves at each meeting; price $3,600 (was $3,333).
+- **Significance:** the program is a product the client tunes, priced by result.
+- **Consequences:** live on the page (#351).
+- Link: https://findyourtoptalent.com/products/vector · Holon: H3.2
+
 ### 2026-11-19 · Golden Age Revelations
 - **Essence:** the mission is the core of the golden age's digital infrastructure, launched as an iconic game.
 - **Significance:** the top holon the whole project sits under: game, AI, science, economy, way of living.
@@ -125,4 +216,4 @@
 ## Hit rate
 | Cycle | Hark proposed | Confirmed | Rejected / reframed |
 |---|---|---|---|
-| 2026-11 | 8 | 5 (Sasha, 2026-11-19); 3 waiting (2026-11-21) | 0 |
+| 2026-11 | 23 | 5 (Sasha, 2026-11-19); 18 waiting (3 from 2026-11-21, 15 from the 2026-11-19..21 pass) | 0 |
