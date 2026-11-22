@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 /**
  * Shared sections reused across /founders and /game/marketplace pages.
  * Light-mode styling by default (for in-platform use).
@@ -37,14 +39,17 @@ export const FoundersHero = ({ lightMode = true }: { lightMode?: boolean }) => (
         { val: "$0", label: "ad spend" },
         { val: "100%", label: "conversion" },
       ].map((s, i) => (
-        <div key={i} className="flex flex-col items-center gap-0.5">
+        <Fragment key={i}>
+        {i > 0 && " "}
+        <div className="flex flex-col items-center gap-0.5">
           <span
             className={`text-sm font-display font-medium bg-gradient-to-b bg-clip-text text-transparent ${lightMode ? 'from-[color:var(--skin-ink-body,rgba(44,49,80,0.6))] to-[color:var(--skin-ink-muted,rgba(44,49,80,0.3))]' : 'from-white/40 to-white/15'}`}
           >
             {s.val}
-          </span>
+          </span>{" "}
           <span>{s.label}</span>
         </div>
+        </Fragment>
       ))}
     </div>
   </div>

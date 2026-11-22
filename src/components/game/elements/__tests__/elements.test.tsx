@@ -89,6 +89,28 @@ describe("ElementsExplorer", () => {
   });
 });
 
+describe("drag turns the model, and a drag is not a tap (playtest 2026-11-22, #391)", () => {
+  it("the SVG fallback takes pointer events and blocks touch scrolling", () => {
+    const html = render(<ElementsFallback selected={null} onSelect={() => {}} />);
+    expect(html).toContain("touch-action:none");
+  });
+
+  it("the fallback ignores the click that ends a drag and captures the pointer only after a drag starts", () => {
+    const src = read("../ElementsFallback.tsx");
+    expect(src).toContain("onPointerDown");
+    expect(src).toContain("onPointerMove");
+    expect(src).toContain("swallowIfDragged");
+    expect(src).toMatch(/if \(Math\.abs\(e\.clientX - p\.x\) < DRAG_PX\) return;[\s\S]*setPointerCapture/);
+  });
+
+  it("the WebGL canvas sets touch-action none and drops a drag-ending click", () => {
+    const src = read("../ElementsScene.tsx");
+    expect(src).toContain('gl.domElement.style.touchAction = "none"');
+    expect(src).toContain("e.delta > DRAG_PX");
+    expect(src).toMatch(/onPointerMissed=\{[\s\S]*Math\.hypot[\s\S]*> DRAG_PX\) return;/);
+  });
+});
+
 describe("wiring", () => {
   const app = read("../../../../App.tsx");
 

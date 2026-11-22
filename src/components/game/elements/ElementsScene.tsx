@@ -33,6 +33,8 @@ const BASE_ANGLES = ORBITING.map((_, i) => (i / ORBITING.length) * Math.PI * 2);
 const ORBIT_SPEED = 0.12; // rad/s: a full turn in about 52 s
 const SELECTED_SCALE = 1.35;
 const CENTER_SELECTED_SCALE = 1.14;
+/** Pointer travel (px) between press and release beyond which it was a drag, not a tap. */
+const DRAG_PX = 6;
 
 /** Resolve a CSS custom property to a colour string THREE can parse. */
 const readToken = (name: string, fallback: string): string => {
@@ -110,6 +112,7 @@ const Solid = ({ def, color, edge, active, onPick }: SolidProps) => {
     <group
       onClick={(e) => {
         e.stopPropagation();
+        if (e.delta > DRAG_PX) return; // the end of a drag, not a tap
         onPick();
       }}
       onPointerOver={(e) => {
@@ -274,17 +277,41 @@ export interface ElementsSceneProps {
   reducedMotion: boolean;
 }
 
-const ElementsScene = ({ selected, onSelect, reducedMotion }: ElementsSceneProps) => (
-  <Canvas
-    camera={{ position: [0, 1.6, 7.4], fov: 38 }}
-    gl={{ alpha: true, antialias: true }}
-    dpr={[1, 2]}
-    frameloop={reducedMotion ? "demand" : "always"}
-    onPointerMissed={() => onSelect(null)}
-    aria-hidden="true"
-  >
-    <World selected={selected} onSelect={onSelect} reduced={reducedMotion} />
-  </Canvas>
-);
+const ElementsScene = ({ selected, onSelect, reducedMotion }: ElementsSceneProps) => {
+  // Where the press began: a release that far away is the end of a drag and must not
+  // count as a tap on empty space (that would close the open card).
+  const down = useRef<{ x: number; y: number } | null>(null);
+
+  return (
+    <div
+      className="w-full h-full"
+      style={{ touchAction: "none" }}
+      onPointerDownCapture={(e) => {
+        down.current = { x: e.clientX, y: e.clientY };
+      }}
+    >
+      <Canvas
+        camera={{ position: [0, 1.6, 7.4], fov: 38 }}
+        gl={{ alpha: true, antialias: true }}
+        dpr={[1, 2]}
+        frameloop={reducedMotion ? "demand" : "always"}
+        style={{ touchAction: "none" }}
+        onCreated={({ gl }) => {
+          // touch-action is not inherited: set it on the canvas itself so a touch drag turns
+          // the model instead of scrolling the page.
+          gl.domElement.style.touchAction = "none";
+        }}
+        onPointerMissed={(e) => {
+          const d = down.current;
+          if (d && Math.hypot(e.clientX - d.x, e.clientY - d.y) > DRAG_PX) return;
+          onSelect(null);
+        }}
+        aria-hidden="true"
+      >
+        <World selected={selected} onSelect={onSelect} reduced={reducedMotion} />
+      </Canvas>
+    </div>
+  );
+};
 
 export default ElementsScene;

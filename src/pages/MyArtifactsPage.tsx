@@ -39,7 +39,7 @@ type ArtifactKey =
 interface Artifact {
   id: string;
   user_id: string;
-  artifact_key: ArtifactKey;
+  artifact_key: string;
   step_number: number;
   content: string | null;
   version: string;
@@ -61,6 +61,14 @@ const ARTIFACT_LABEL_KEYS: Record<ArtifactKey, string> = {
   unique_product: "myArtifacts.labels.uniqueProduct",
 };
 
+/** "core_belief" → "Core Belief": last-resort label for a key nobody has named yet. */
+const humanizeKey = (key: string): string =>
+  key
+    .split("_")
+    .filter(Boolean)
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+
 // ─── Component ─────────────────────────────────────────────────────────────
 
 const MyArtifactsPage = () => {
@@ -75,8 +83,10 @@ const MyArtifactsPage = () => {
   useEffect(() => {
     let cancelled = false;
     const load = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user || cancelled) {
+      // getSession reads the stored session (no network round-trip, unlike getUser); RLS on
+      // the table still scopes every row to the signed-in user.
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session?.user || cancelled) {
         setLoading(false);
         return;
       }
@@ -187,8 +197,31 @@ const MyArtifactsPage = () => {
           </p>
 
           {loading ? (
-            <div className="py-20 text-center text-white/50 text-sm">
-              {t("myArtifacts.loading")}
+            <div role="status" aria-live="polite" aria-busy="true" data-testid="artifacts-skeleton">
+              <span className="sr-only">{t("myArtifacts.loading")}</span>
+              <div className="space-y-6" aria-hidden="true">
+                {[0, 1].map((n) => (
+                  <div
+                    key={n}
+                    className="rounded-2xl overflow-hidden animate-pulse motion-reduce:animate-none"
+                    style={{
+                      background: "linear-gradient(180deg, rgba(15,25,45,0.65), rgba(20,15,40,0.55))",
+                      border: "1px solid rgba(231,233,229,0.08)",
+                    }}
+                  >
+                    <div className="px-6 py-4 border-b border-white/[0.06]">
+                      <div className="h-2.5 w-16 rounded bg-white/10 mb-2" />
+                      <div className="h-4 w-48 rounded bg-white/10" />
+                    </div>
+                    {[0, 1, 2].map((m) => (
+                      <div key={m} className="px-6 py-4 border-b border-white/[0.04] last:border-b-0">
+                        <div className="h-3 w-32 rounded bg-white/10 mb-3" />
+                        <div className="h-3 w-full max-w-md rounded bg-white/[0.06]" />
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
           ) : artifacts.length === 0 ? (
             /* Empty state */
@@ -285,13 +318,19 @@ const MyArtifactsPage = () => {
                     <div className="divide-y divide-white/[0.04]">
                       {items.map((a) => {
                         const isOpen = expanded.has(a.id);
-                        const labelKey = ARTIFACT_LABEL_KEYS[a.artifact_key];
+                        const labelKey = ARTIFACT_LABEL_KEYS[a.artifact_key as ArtifactKey];
+                        // Keys the page does not name itself (core_belief, golden_dm, …) take
+                        // their title from the dossier's artifact names; unknown ones are
+                        // humanized rather than shown as raw snake_case.
                         const label = labelKey
                           ? t(labelKey)
-                          : a.artifact_key;
+                          : t(`publicDossier.artifact.${a.artifact_key}`, {
+                              defaultValue: humanizeKey(a.artifact_key),
+                            });
+                        // No score yet: show nothing, not a dash.
                         const score = a.precision_score
                           ? `${Number(a.precision_score).toFixed(1)}/10`
-                          : "—";
+                          : null;
                         const preview = a.content ?? "";
                         const isLong = preview.length > 120;
                         const shown =
@@ -309,8 +348,8 @@ const MyArtifactsPage = () => {
                                 className="flex items-center gap-3 text-[11px]"
                                 style={{ color: "rgba(231,233,229,0.55)" }}
                               >
-                                <span className="font-mono">{a.version}</span>
-                                <span className="font-mono">{score}</span>
+                                {a.version && <span className="font-mono">{a.version}</span>}
+                                {score && <span className="font-mono">{score}</span>}
                               </div>
                             </div>
                             {preview && (

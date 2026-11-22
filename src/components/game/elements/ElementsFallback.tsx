@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useRef, useState, type PointerEvent, type ReactNode } from "react";
 import { ORBITING, CENTER, type ElementDef, type ElementId } from "@/lib/elementsModel";
 
 /**
@@ -7,15 +7,23 @@ import { ORBITING, CENTER, type ElementDef, type ElementId } from "@/lib/element
  * Shown when WebGL is missing or the canvas fails. Same mapping as the 3D scene: the
  * dodecahedron (Aether) in the center, cube / icosahedron / octahedron / tetrahedron around
  * it. Colours are the same theme tokens; strokes use the skin's primary text colour, so it
- * reads in every skin. Tapping a shape selects it, exactly like the scene.
+ * reads in every skin. Tapping a shape selects it, exactly like the scene; dragging turns the
+ * four around the center (pointer events, so mouse, touch and pen), and a drag is never a tap.
  */
 
-const SPOTS: Record<Exclude<ElementId, "uniqueness">, { x: number; y: number }> = {
-  body: { x: 60, y: 62 },
-  emotions: { x: 240, y: 62 },
-  mind: { x: 60, y: 188 },
-  spirit: { x: 240, y: 188 },
+const CX = 150;
+const CY = 125;
+const ORBIT_RX = 108;
+const ORBIT_RY = 80;
+/** Where each orbiting shape starts on the ellipse (degrees; 0 = right, 90 = front/bottom). */
+const START_DEG: Record<Exclude<ElementId, "uniqueness">, number> = {
+  body: -135,
+  emotions: -45,
+  spirit: 45,
+  mind: 135,
 };
+/** Pointer travel (px) before a press becomes a drag; below it, it is still a tap. */
+const DRAG_PX = 6;
 
 const polygon = (cx: number, cy: number, r: number, sides: number, rotation = -90): string =>
   Array.from({ length: sides }, (_, i) => {
@@ -88,25 +96,83 @@ export interface ElementsFallbackProps {
 }
 
 const ElementsFallback = ({ selected, onSelect }: ElementsFallbackProps) => {
-  const all: { def: ElementDef; x: number; y: number; r: number }[] = [
-    ...ORBITING.map((def) => ({ def, ...SPOTS[def.id as keyof typeof SPOTS], r: 34 })),
-    { def: CENTER, x: 150, y: 125, r: 52 },
-  ];
+  const [angle, setAngle] = useState(0); // radians, added to every orbiting shape
+  const press = useRef<{ id: number; x: number; last: number; dragging: boolean } | null>(null);
+  const dragged = useRef(false);
+
+  const onPointerDown = (e: PointerEvent<SVGSVGElement>) => {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    dragged.current = false;
+    press.current = { id: e.pointerId, x: e.clientX, last: e.clientX, dragging: false };
+  };
+
+  const onPointerMove = (e: PointerEvent<SVGSVGElement>) => {
+    const p = press.current;
+    if (!p || p.id !== e.pointerId) return;
+    if (!p.dragging) {
+      if (Math.abs(e.clientX - p.x) < DRAG_PX) return;
+      p.dragging = true;
+      dragged.current = true;
+      // Capture only once it is a drag, so a plain tap still reaches the shape under it.
+      try {
+        e.currentTarget.setPointerCapture(e.pointerId);
+      } catch {
+        /* not capturable (synthetic event): the drag still works while the pointer is over the svg */
+      }
+    }
+    const width = e.currentTarget.getBoundingClientRect().width || 300;
+    setAngle((a) => a + ((e.clientX - p.last) / width) * Math.PI * 2);
+    p.last = e.clientX;
+  };
+
+  const endPress = (e: PointerEvent<SVGSVGElement>) => {
+    if (press.current?.id === e.pointerId) press.current = null;
+  };
+
+  // The click that follows a drag must not select, deselect or close anything.
+  const swallowIfDragged = (e: { stopPropagation: () => void }): boolean => {
+    if (!dragged.current) return false;
+    dragged.current = false;
+    e.stopPropagation();
+    return true;
+  };
+
+  const placed = ORBITING.map((def) => {
+    const a = (START_DEG[def.id as keyof typeof START_DEG] * Math.PI) / 180 + angle;
+    const depth = (1 + Math.sin(a)) / 2; // 0 = back, 1 = front
+    return {
+      def,
+      x: CX + ORBIT_RX * Math.cos(a),
+      y: CY + ORBIT_RY * Math.sin(a),
+      r: 30 + 7 * depth,
+      depth,
+    };
+  });
+  // Back to front, with the center sitting in the middle of the depth order.
+  const all = [...placed, { def: CENTER, x: CX, y: CY, r: 52, depth: 0.5 }].sort((a, b) => a.depth - b.depth);
 
   return (
     <svg
       viewBox="0 0 300 250"
-      className="block w-full h-full"
+      className="block w-full h-full select-none"
       role="img"
       aria-label="The five elements: a dodecahedron in the center, a cube, an icosahedron, an octahedron and a tetrahedron around it"
-      onClick={() => onSelect(null)}
+      style={{ touchAction: "none", cursor: "grab" }}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={endPress}
+      onPointerCancel={endPress}
+      onClick={(e) => {
+        if (swallowIfDragged(e)) return;
+        onSelect(null);
+      }}
     >
       {/* The orbit, drawn flat. */}
       <ellipse
-        cx={150}
-        cy={125}
-        rx={118}
-        ry={78}
+        cx={CX}
+        cy={CY}
+        rx={ORBIT_RX}
+        ry={ORBIT_RY}
         fill="none"
         stroke="var(--skin-text-primary, #0a1628)"
         strokeOpacity={0.25}
@@ -126,6 +192,7 @@ const ElementsFallback = ({ selected, onSelect }: ElementsFallbackProps) => {
             transform={active ? `translate(${x} ${y}) scale(1.18) translate(${-x} ${-y})` : undefined}
             onClick={(e) => {
               e.stopPropagation();
+              if (swallowIfDragged(e)) return;
               onSelect(def.id);
             }}
           >
