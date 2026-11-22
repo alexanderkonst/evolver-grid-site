@@ -1,39 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { DIAL_SECTORS, beDoWord, moonDialNow, phaseLabel } from "@/lib/moonDial";
+import { moonDialNow, phaseLabel } from "@/lib/moonDial";
+import BiologicClock from "@/components/game/BiologicClock";
 import { useMoonDialData } from "@/hooks/useMoonDialData";
 import { tr } from "@/lib/villageCopy";
 import "./MoonDial.css";
 
 /**
  * MoonDial — the small Equilibrium watch on the village map (village-as-dashboard step 2).
- * A round dial of the eight phases (BE sectors filled, DO sectors open; tonight's sector lit
- * in moonlight), tonight's phase and BE/DO in the middle, and beside it two lines: Moon Focus
- * and the one HUMAN DO NOW, both the player's own (useMoonDialData). A guest or an empty
- * Equilibrium sees tonight's real phase and one invitation, never sample data.
+ * The dial itself is the BiologicClock (issue #377: four rings Year · Moon · Week · Day, tonight's
+ * moon in the centre; it replaced the old eight-sector SVG, one clock on the screen). Beside it
+ * stays the copy block: tonight's phase, Moon Focus and the one HUMAN DO NOW, both the player's
+ * own (useMoonDialData). A guest or an empty Equilibrium sees tonight's real phase and one
+ * invitation, never sample data.
  */
-
-const R_OUT = 46;
-const R_IN = 30;
-const C = 50;
-
-const polar = (r: number, turn: number) => {
-  const a = turn * 2 * Math.PI - Math.PI / 2; // 0 = top, clockwise
-  return [C + r * Math.cos(a), C + r * Math.sin(a)] as const;
-};
-
-/** One ring sector as an SVG path, `i` of 8, with a hairline gap between sectors. */
-const sectorPath = (i: number) => {
-  const gap = 0.006;
-  const a0 = i / 8 + gap;
-  const a1 = (i + 1) / 8 - gap;
-  const [x0, y0] = polar(R_OUT, a0);
-  const [x1, y1] = polar(R_OUT, a1);
-  const [x2, y2] = polar(R_IN, a1);
-  const [x3, y3] = polar(R_IN, a0);
-  return `M${x0.toFixed(2)} ${y0.toFixed(2)} A${R_OUT} ${R_OUT} 0 0 1 ${x1.toFixed(2)} ${y1.toFixed(2)} L${x2.toFixed(2)} ${y2.toFixed(2)} A${R_IN} ${R_IN} 0 0 0 ${x3.toFixed(2)} ${y3.toFixed(2)} Z`;
-};
 
 const useDialNow = () => {
   const [now, setNow] = useState(() => moonDialNow());
@@ -50,23 +31,11 @@ export const MoonDial = ({ className }: { className?: string }) => {
   const data = useMoonDialData();
   const current = now.sector;
   const phase = phaseLabel(current, t);
-  const bd = beDoWord(current.beDo, t);
   const empty = data.status === "ready" && !data.moonFocus && !data.doNow;
 
   return (
     <aside className={`moon-dial${className ? ` ${className}` : ""}`} aria-label={tr(t, "village.dial.aria", "Moon dial: tonight in Equilibrium")}>
-      <svg className="moon-dial__svg" viewBox="0 0 100 100" role="img" aria-label={`${phase} · ${bd}`}>
-        {DIAL_SECTORS.map((s, i) => (
-          <path
-            key={s.name}
-            d={sectorPath(i)}
-            className={`moon-dial__sector moon-dial__sector--${s.beDo}${s.position === now.position ? " is-now" : ""}`}
-          >
-            <title>{`${phaseLabel(s, t)} · ${beDoWord(s.beDo, t)}`}</title>
-          </path>
-        ))}
-        <text x="50" y="50" className="moon-dial__bedo" textAnchor="middle" dominantBaseline="central">{bd}</text>
-      </svg>
+      <BiologicClock className="moon-dial__clock" />
       <div className="moon-dial__copy">
         <p className="moon-dial__phase">{phase}</p>
         {data.status === "guest" ? (

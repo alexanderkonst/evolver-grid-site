@@ -1,0 +1,54 @@
+/* BiologicClock: four rings, outside in Year · Moon · Week · Day, tonight's moon in the centre.
+   Palette is fixed by the spec (A9): night #070b16 at ~55%, moon silver rgb(217,209,180), ochre
+   rgb(150,112,58), gold #f2c46b and the seven chakra colours set per segment in the component.
+   Lived part dim, what is left bright. No motion at all: no load animation, no hover animation. */
+.bio-clock {
+  --bc-silver: 217, 209, 180;
+  --bc-ochre: 150, 112, 58;
+  --bc-gold: 242, 196, 107;
+  --bc-size: 160px;
+  display: block; flex: none; overflow: visible;
+  width: var(--bc-size); height: var(--bc-size);
+}
+.bio-clock:focus-visible { outline: 2px solid rgb(var(--bc-silver)); outline-offset: 4px; border-radius: 50%; }
+
+.bio-clock__night { fill: #070b16; fill-opacity: 0.55; }
+
+/* Year */
+.bio-clock__year { fill: none; stroke: rgb(var(--bc-silver)); }
+.bio-clock__year.bio-clock__lived { stroke-opacity: 0.28; }
+.bio-clock__birthday { fill: rgb(var(--bc-ochre)); stroke: rgba(7, 11, 22, 0.8); stroke-width: 0.8; }
+.bio-clock__arrow { fill: #fff; }
+.bio-clock__hit { fill: none; stroke: transparent; pointer-events: stroke; }
+.bio-clock__link { cursor: pointer; outline: none; }
+.bio-clock__link:focus-visible .bio-clock__year { stroke-opacity: 1; stroke: #fff; }
+
+/* Moon */
+.bio-clock__moonring { fill: none; stroke: rgb(var(--bc-silver)); stroke-width: 1.2; }
+.bio-clock__moonring.bio-clock__lived { stroke-opacity: 0.25; }
+.bio-clock__moonring.bio-clock__left { stroke-opacity: 0.75; }
+.bio-clock__moon.is-past { opacity: 0.45; }
+.bio-clock__moon-halo { fill: none; stroke: rgb(var(--bc-silver)); stroke-width: 1.2; }
+.bio-clock__tick { stroke: #fff; stroke-width: 0.9; stroke-linecap: round; opacity: 0.9; }
+
+/* Week: today in full colour with an outline, past days dim, the lived part of today darker */
+.bio-clock__seg-fill { fill: var(--bc-seg); fill-opacity: 0.88; }
+.bio-clock__seg.is-past { opacity: 0.32; }
+.bio-clock__seg-lived { fill: #070b16; fill-opacity: 0.45; }
+.bio-clock__seg-outline { fill: none; stroke: #fff; stroke-width: 1; }
+.bio-clock__glyph {
+  font-family: "Segoe UI Symbol", "Noto Sans Symbols", "Apple Symbols", system-ui, sans-serif;
+  font-variant-emoji: text; font-size: 9px; fill: #fff; user-select: none;
+}
+.bio-clock__glyph.is-dark { fill: #070b16; }
+
+/* Day: gold, midnight at the top, the Sun at now */
+.bio-clock__dayring { fill: none; stroke: #f2c46b; stroke-width: 4; }
+.bio-clock__dayring.bio-clock__lived { stroke-opacity: 0.28; }
+.bio-clock__daydot { fill: rgba(var(--bc-gold), 0.8); }
+.bio-clock__sunglow { fill: rgba(var(--bc-gold), 0.35); filter: drop-shadow(0 0 3px rgba(var(--bc-gold), 0.9)); }
+
+@media (forced-colors: active) {
+  .bio-clock__night { fill: Canvas; }
+  .bio-clock__year, .bio-clock__moonring, .bio-clock__dayring { stroke: CanvasText; }
+}

@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { PlaceState, PlaceStateTag } from "@/components/game/PlaceState";
+import BiologicClock from "@/components/game/BiologicClock";
 import SoulDodecahedron from "@/components/SoulDodecahedron";
 import ProfilePictureUpload from "@/components/profile/ProfilePictureUpload";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
@@ -398,6 +399,8 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
                     </>
                 )}
                 <h1 className="cs-name">{name}</h1>
+                {/* A9 (#377): the player's own biological clock, compact, in the page header. */}
+                <BiologicClock className="cs-clock" />
             </header>
 
             {stats.length > 0 && (
